@@ -20,10 +20,10 @@ const GrowthPaths = () => {
                 {/* Header */}
                 <div className="mb-8">
                     <div className="flex items-center gap-3 mb-2">
-                        <TrendingUp className="w-6 h-6 text-[#2c3150]" />
-                        <h1 className="text-2xl font-bold text-[#2c3150]">5 Growth Paths</h1>
+                        <TrendingUp className="w-6 h-6 text-foreground" />
+                        <h1 className="text-2xl font-bold text-foreground">5 Growth Paths</h1>
                     </div>
-                    <p className="text-[rgba(44,49,80,0.7)]">Body, Emotions, Mind, Genius, Spirit</p>
+                    <p className="text-muted-foreground">Body, Emotions, Mind, Genius, Spirit</p>
                 </div>
 
                 {/* Paths Grid */}
@@ -32,17 +32,17 @@ const GrowthPaths = () => {
                         <Link
                             key={path.id}
                             to={path.path}
-                            className="block rounded-xl border border-[#a4a3d0]/20 bg-white/85 backdrop-blur-sm p-4 hover:border-[#a4a3d0]/40 hover:shadow-sm transition-all shadow-[0_4px_16px_rgba(44,49,80,0.06)]"
+                            className="block rounded-xl border border-border bg-white/85 backdrop-blur-sm p-4 hover:border-border hover:shadow-sm transition-all shadow-[0_4px_16px_rgba(44,49,80,0.06)]"
                         >
                             <div className="flex items-center gap-4">
-                                <div className="p-2 rounded-lg bg-[#a4a3d0]/20">
-                                    <path.icon className="w-5 h-5 text-[#2c3150]" />
+                                <div className="p-2 rounded-lg bg-muted/40">
+                                    <path.icon className="w-5 h-5 text-foreground" />
                                 </div>
                                 <div className="flex-1">
-                                    <h3 className="font-semibold text-[#2c3150]">{path.label}</h3>
-                                    <p className="text-sm text-[#2c3150]/60">{path.description}</p>
+                                    <h3 className="font-semibold text-foreground">{path.label}</h3>
+                                    <p className="text-sm text-muted-foreground">{path.description}</p>
                                 </div>
-                                <ArrowRight className="w-4 h-4 text-[#2c3150]/50" />
+                                <ArrowRight className="w-4 h-4 text-muted-foreground" />
                             </div>
                         </Link>
                     ))}

@@ -25,10 +25,10 @@ const CommunityEvents = () => {
 
         <div className="mb-8">
           <div className="flex items-center gap-3 mb-2">
-            <CalendarDays className="w-6 h-6 text-[#2c3150]" />
-            <h1 className="text-2xl font-bold text-[#2c3150]">Community Events</h1>
+            <CalendarDays className="w-6 h-6 text-foreground" />
+            <h1 className="text-2xl font-bold text-foreground">Community Events</h1>
           </div>
-          <p className="text-[rgba(44,49,80,0.7)]">
+          <p className="text-muted-foreground">
             Community: {communityId}
           </p>
         </div>
@@ -46,9 +46,9 @@ const CommunityEvents = () => {
         )}
 
         {!loading && !error && filteredEvents.length === 0 && (
-          <div className="rounded-xl border border-[#a4a3d0]/20 bg-white/85 backdrop-blur-sm p-8 shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
+          <div className="rounded-xl border border-border bg-white/85 backdrop-blur-sm p-8 shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
             <EmptyState
-              icon={<CalendarDays className="w-6 h-6 text-[#2c3150]/50" />}
+              icon={<CalendarDays className="w-6 h-6 text-muted-foreground" />}
               title="No events yet"
               description="Check back later for new community gatherings."
               action={{

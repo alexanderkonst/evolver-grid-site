@@ -106,9 +106,9 @@ const CreateEvent = () => {
       <GameShellV2>
         <div className="p-6 lg:p-8 max-w-2xl mx-auto text-center">
           <div className="flex flex-col items-center gap-3 mb-6">
-            <Users className="w-10 h-10 text-[#2c3150]/50" />
-            <h1 className="text-2xl font-semibold text-[#2c3150]">Sign in to create events</h1>
-            <p className="text-[rgba(44,49,80,0.7)]">
+            <Users className="w-10 h-10 text-muted-foreground" />
+            <h1 className="text-2xl font-semibold text-foreground">Sign in to create events</h1>
+            <p className="text-muted-foreground">
               You need an account to publish events for the community.
             </p>
           </div>
@@ -128,13 +128,13 @@ const CreateEvent = () => {
       <div className="p-6 lg:p-8 max-w-2xl mx-auto">
         <div className="mb-6">
           <div className="flex items-center gap-3 mb-2">
-            <CalendarDays className="w-6 h-6 text-[#2c3150]" />
-            <h1 className="text-2xl font-bold text-[#2c3150]">Create Event</h1>
+            <CalendarDays className="w-6 h-6 text-foreground" />
+            <h1 className="text-2xl font-bold text-foreground">Create Event</h1>
           </div>
-          <p className="text-[rgba(44,49,80,0.7)]">Share a gathering with the community.</p>
+          <p className="text-muted-foreground">Share a gathering with the community.</p>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-5 rounded-xl border border-[#a4a3d0]/20 bg-white/85 backdrop-blur-sm p-6 shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
+        <form onSubmit={handleSubmit} className="space-y-5 rounded-xl border border-border bg-white/85 backdrop-blur-sm p-6 shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
           <div className="space-y-2">
             <Label htmlFor="title">Title *</Label>
             <Input
@@ -148,7 +148,7 @@ const CreateEvent = () => {
 
           <div className="space-y-2">
             <Label htmlFor="description" className="flex items-center gap-2">
-              <FileText className="w-4 h-4 text-[#2c3150]/60" />
+              <FileText className="w-4 h-4 text-muted-foreground" />
               Description
             </Label>
             <Textarea
@@ -162,7 +162,7 @@ const CreateEvent = () => {
 
           <div className="space-y-2">
             <Label htmlFor="datetime" className="flex items-center gap-2">
-              <Clock className="w-4 h-4 text-[#2c3150]/60" />
+              <Clock className="w-4 h-4 text-muted-foreground" />
               Date & time *
             </Label>
             <Input
@@ -176,7 +176,7 @@ const CreateEvent = () => {
 
           <div className="space-y-2">
             <Label htmlFor="location" className="flex items-center gap-2">
-              <MapPin className="w-4 h-4 text-[#2c3150]/60" />
+              <MapPin className="w-4 h-4 text-muted-foreground" />
               Location
             </Label>
             <Input
@@ -189,7 +189,7 @@ const CreateEvent = () => {
 
           <div className="space-y-2">
             <Label htmlFor="community" className="flex items-center gap-2">
-              <Users className="w-4 h-4 text-[#2c3150]/60" />
+              <Users className="w-4 h-4 text-muted-foreground" />
               Community
             </Label>
             <select
@@ -209,7 +209,7 @@ const CreateEvent = () => {
 
           <div className="space-y-2">
             <Label className="flex items-center gap-2">
-              <Users className="w-4 h-4 text-[#2c3150]/60" />
+              <Users className="w-4 h-4 text-muted-foreground" />
               Visibility
             </Label>
             <Select
@@ -250,7 +250,7 @@ const CreateEvent = () => {
 
           <div className="space-y-2">
             <Label htmlFor="photo" className="flex items-center gap-2">
-              <Image className="w-4 h-4 text-[#2c3150]/60" />\n              Image URL"
+              <Image className="w-4 h-4 text-muted-foreground" />\n              Image URL"
             </Label>
             <Input
               id="photo"
@@ -265,7 +265,7 @@ const CreateEvent = () => {
             <Button type="button" variant="outline" onClick={() => navigate("/game/events")}>
               Cancel
             </Button>
-            <Button type="submit" disabled={loading || !canSubmit} className="bg-[#8460ea] hover:bg-[#8460ea]/90">
+            <Button type="submit" disabled={loading || !canSubmit} className="bg-primary hover:bg-primary/90">
               {loading ? "Creating..." : "Create Event"}
             </Button>
           </div>

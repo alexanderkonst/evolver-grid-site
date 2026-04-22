@@ -424,21 +424,21 @@ const TeamsSpace = () => {
                     {/* Header */}
                     <div className="mb-8">
                         <div className="flex items-center gap-3 mb-2">
-                            <Users className="w-6 h-6 text-[#2c3150]" />
-                            <h1 className="text-2xl font-bold text-[#2c3150]">Teams</h1>
+                            <Users className="w-6 h-6 text-foreground" />
+                            <h1 className="text-2xl font-bold text-foreground">Teams</h1>
                         </div>
-                        <p className="text-[rgba(44,49,80,0.7)]">Find your people. Connect with complementary geniuses.</p>
+                        <p className="text-muted-foreground">Find your people. Connect with complementary geniuses.</p>
                     </div>
 
                     <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
                         <div className="flex flex-wrap items-center gap-3">
-                            <div className="inline-flex items-center rounded-full bg-[#f0f4ff] p-1 text-xs">
+                            <div className="inline-flex items-center rounded-full bg-muted p-1 text-xs">
                                 <button
                                     type="button"
                                     onClick={() => setMatchMode("genius")}
                                     className={`rounded-full px-3 py-1 font-medium transition ${matchMode === "genius"
-                                        ? "bg-white text-[#2c3150] shadow-sm"
-                                        : "text-[#2c3150]/60"
+                                        ? "bg-white text-foreground shadow-sm"
+                                        : "text-muted-foreground"
                                         }`}
                                 >
                                     Genius Match
@@ -447,22 +447,22 @@ const TeamsSpace = () => {
                                     type="button"
                                     onClick={() => setMatchMode("assets")}
                                     className={`rounded-full px-3 py-1 font-medium transition ${matchMode === "assets"
-                                        ? "bg-white text-[#2c3150] shadow-sm"
-                                        : "text-[#2c3150]/60"
+                                        ? "bg-white text-foreground shadow-sm"
+                                        : "text-muted-foreground"
                                         }`}
                                 >
                                     Match by Assets
                                 </button>
                             </div>
                             <div className="flex items-center gap-2">
-                                <label htmlFor="match-filter" className="text-xs text-[#2c3150]/60">
+                                <label htmlFor="match-filter" className="text-xs text-muted-foreground">
                                     Filter
                                 </label>
                                 <select
                                     id="match-filter"
                                     value={filterMode}
                                     onChange={(e) => setFilterMode(e.target.value as FilterMode)}
-                                    className="rounded-md border border-[#a4a3d0]/30 bg-white px-2 py-1 text-sm"
+                                    className="rounded-md border border-border bg-white px-2 py-1 text-sm"
                                 >
                                     <option value="all">All Matches</option>
                                     <option value="mission">Same Mission</option>
@@ -489,10 +489,10 @@ const TeamsSpace = () => {
                     )}
 
                     {!loading && !error && !currentMatch && (
-                        <div className="rounded-xl border border-[#a4a3d0]/20 bg-white/85 backdrop-blur-sm p-10 text-center shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
-                            <Users className="w-12 h-12 text-[#2c3150]/50 mx-auto mb-4" />
-                            <h2 className="text-xl font-semibold text-[#2c3150] mb-2">No matches yet</h2>
-                            <p className="text-[#2c3150]/60 max-w-md mx-auto">
+                        <div className="rounded-xl border border-border bg-white/85 backdrop-blur-sm p-10 text-center shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
+                            <Users className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
+                            <h2 className="text-xl font-semibold text-foreground mb-2">No matches yet</h2>
+                            <p className="text-muted-foreground max-w-md mx-auto">
                                 {filterMode === "cofounders"
                                     ? "No complementary matches right now. Try a different filter."
                                     : "We will surface new matches as your community grows."}
@@ -501,10 +501,10 @@ const TeamsSpace = () => {
                     )}
 
                     {!loading && !error && matchMode === "assets" && currentUserAssets.length === 0 && (
-                        <div className="rounded-xl border border-[#8460ea]/30 bg-[#8460ea]/5 p-5 text-sm text-[#2c3150] mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                        <div className="rounded-xl border border-primary/30 bg-primary/5 p-5 text-sm text-foreground mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                             <div>
-                                <p className="font-semibold text-[#8460ea]">Add assets to unlock smarter matches.</p>
-                                <p className="text-[#2c3150]/70">Map what you can offer so we can pair you by collaboration potential.</p>
+                                <p className="font-semibold text-primary">Add assets to unlock smarter matches.</p>
+                                <p className="text-muted-foreground">Map what you can offer so we can pair you by collaboration potential.</p>
                             </div>
                             <Button variant="outline" onClick={() => navigate("/asset-mapping")}>
                                 Map Assets
@@ -534,7 +534,7 @@ const TeamsSpace = () => {
                                 </DialogTitle>
                             </DialogHeader>
                             <div className="space-y-3">
-                                <label htmlFor="connect-message" className="text-sm text-[rgba(44,49,80,0.7)]">
+                                <label htmlFor="connect-message" className="text-sm text-muted-foreground">
                                     Add a message (optional)
                                 </label>
                                 <Textarea

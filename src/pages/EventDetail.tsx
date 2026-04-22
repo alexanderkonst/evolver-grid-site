@@ -173,9 +173,9 @@ const EventDetail = () => {
     return (
       <div className="min-h-dvh bg-white flex items-center justify-center">
         <div className="text-center p-6">
-          <CalendarDays className="w-12 h-12 text-[#2c3150]/50 mx-auto mb-4" />
-          <h2 className="text-xl font-semibold text-[#2c3150] mb-2">Event Not Found</h2>
-          <p className="text-[rgba(44,49,80,0.7)] mb-4">{error || "This event doesn't exist or has been removed."}</p>
+          <CalendarDays className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
+          <h2 className="text-xl font-semibold text-foreground mb-2">Event Not Found</h2>
+          <p className="text-muted-foreground mb-4">{error || "This event doesn't exist or has been removed."}</p>
           <BackButton to="/game/events" />
         </div>
       </div>
@@ -200,10 +200,10 @@ const EventDetail = () => {
   const hasRsvp = currentStatus === "going";
   const visibility = event.visibility ?? "public";
   const visibilityConfig = {
-    public: { label: "Public", icon: Globe, className: "bg-[#f0f4ff] text-[#2c3150]" },
-    community: { label: "Community", icon: Users, className: "bg-[#6894d0]/10 text-[#6894d0]" },
-    private: { label: "Private", icon: Lock, className: "bg-[#f0f4ff] text-[#2c3150]" },
-    team: { label: "Team", icon: UserCheck, className: "bg-[#b1c9b6]/20 text-[#2c3150]" },
+    public: { label: "Public", icon: Globe, className: "bg-muted text-foreground" },
+    community: { label: "Community", icon: Users, className: "bg-[#6894d0]/10 text-primary" },
+    private: { label: "Private", icon: Lock, className: "bg-muted text-foreground" },
+    team: { label: "Team", icon: UserCheck, className: "bg-[#b1c9b6]/20 text-foreground" },
   } as const;
   const visibilityBadge = visibilityConfig[visibility as keyof typeof visibilityConfig];
 
@@ -227,16 +227,16 @@ const EventDetail = () => {
         {/* Back Button */}
         <BackButton
           to="/game/events"
-          className="absolute top-4 left-4 bg-white/80 hover:bg-white"
+          className="absolute top-4 left-4 bg-card/80 hover:bg-white"
         />
       </div>
 
       {/* Content */}
       <div className="max-w-2xl mx-auto px-4 -mt-8 relative z-above pb-12">
-        <div className="bg-white/85 backdrop-blur-sm rounded-xl shadow-[0_4px_16px_rgba(44,49,80,0.06)] border border-[#a4a3d0]/20 overflow-hidden">
+        <div className="bg-white/85 backdrop-blur-sm rounded-xl shadow-[0_4px_16px_rgba(44,49,80,0.06)] border border-border overflow-hidden">
           {/* Title & RSVP */}
-          <div className="p-6 border-b border-[#a4a3d0]/10">"
-            <h1 className="text-2xl font-bold text-[#2c3150] mb-4">{event.title}</h1>
+          <div className="p-6 border-b border-border/10">"
+            <h1 className="text-2xl font-bold text-foreground mb-4">{event.title}</h1>
             {visibilityBadge && (
               <div className="mb-4">
                 <span className={`inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-medium ${visibilityBadge.className}`}>
@@ -255,7 +255,7 @@ const EventDetail = () => {
               {currentStatus === "going" ? "Attending" : "RSVP"}
             </Button>
             {!isAuthenticated && (
-              <p className="text-xs text-[#2c3150]/60 mt-2">Sign in to RSVP</p>
+              <p className="text-xs text-muted-foreground mt-2">Sign in to RSVP</p>
             )}
           </div>
 
@@ -265,11 +265,11 @@ const EventDetail = () => {
             <div className="flex items-start gap-3">
               <CalendarDays className="w-5 h-5 text-amber-500 mt-0.5" />
               <div>
-                <p className="font-medium text-[#2c3150]">{localDateTime.date}</p>
-                <p className="text-[rgba(44,49,80,0.7)] flex items-center gap-1">
+                <p className="font-medium text-foreground">{localDateTime.date}</p>
+                <p className="text-muted-foreground flex items-center gap-1">
                   <Clock className="w-4 h-4" />
                   {localDateTime.time}
-                  <span className="text-xs text-[#2c3150]/60">Your time</span>
+                  <span className="text-xs text-muted-foreground">Your time</span>
                 </p>
                 <button
                   type="button"
@@ -279,7 +279,7 @@ const EventDetail = () => {
                   {showOriginalTime ? "Hide original time" : "Show original time"}
                 </button>
                 {showOriginalTime && (
-                  <p className="text-xs text-[#2c3150]/60 mt-1">
+                  <p className="text-xs text-muted-foreground mt-1">
                     {originalDateTime.date} · {originalDateTime.time} ({eventTimezone})
                   </p>
                 )}
@@ -290,24 +290,24 @@ const EventDetail = () => {
             {event.location && (
               <div className="flex items-start gap-3">
                 <MapPin className="w-5 h-5 text-amber-500 mt-0.5" />
-                <p className="text-[#2c3150]">{event.location}</p>
+                <p className="text-foreground">{event.location}</p>
               </div>
             )}
 
             {/* Attendees */}
             <div className="flex items-start gap-3">
               <Users className="w-5 h-5 text-amber-500 mt-0.5" />
-              <p className="text-[#2c3150]">
+              <p className="text-foreground">
                 {goingCount} {goingCount === 1 ? "person" : "people"} going
               </p>
             </div>
 
             {/* RSVP Reminder */}
             {hasRsvp && (
-              <div className="rounded-lg border border-[#a4a3d0]/20 bg-[#f0f4ff]/50 p-4 space-y-3">
+              <div className="rounded-lg border border-border bg-muted/40 p-4 space-y-3">
                 <div className="flex items-center gap-2">
-                  <Mail className="w-4 h-4 text-[#2c3150]/60" />
-                  <p className="text-sm font-medium text-[#2c3150]">Email reminder</p>
+                  <Mail className="w-4 h-4 text-muted-foreground" />
+                  <p className="text-sm font-medium text-foreground">Email reminder</p>
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="rsvp-email">Email address</Label>
@@ -327,7 +327,7 @@ const EventDetail = () => {
                     onCheckedChange={(checked) => setWantsReminder(Boolean(checked))}
                     disabled={sendingReminder}
                   />
-                  <Label htmlFor="rsvp-reminder" className="text-sm text-[rgba(44,49,80,0.7)]">
+                  <Label htmlFor="rsvp-reminder" className="text-sm text-muted-foreground">
                     Send me a reminder
                   </Label>
                 </div>
@@ -356,17 +356,17 @@ const EventDetail = () => {
 
             {/* Description */}
             {event.description && (
-              <div className="pt-4 border-t border-[#a4a3d0]/20">
-                <h3 className="font-medium text-[#2c3150] mb-2">About this event</h3>
-                <p className="text-[rgba(44,49,80,0.7)] whitespace-pre-wrap">{event.description}</p>
+              <div className="pt-4 border-t border-border">
+                <h3 className="font-medium text-foreground mb-2">About this event</h3>
+                <p className="text-muted-foreground whitespace-pre-wrap">{event.description}</p>
               </div>
             )}
           </div>
 
           {/* Attendees List */}
           {attendees.length > 0 && (
-            <div className="p-6 bg-[#f0f4ff]/50 border-t border-[#a4a3d0]/10">
-              <h3 className="font-medium text-[#2c3150] mb-3">Who's coming</h3>
+            <div className="p-6 bg-muted/40 border-t border-border/10">
+              <h3 className="font-medium text-foreground mb-3">Who's coming</h3>
               <div className="flex flex-wrap gap-2">
                 {goingAttendees.slice(0, maxAvatars).map((attendee, idx) => (
                   <div
@@ -378,7 +378,7 @@ const EventDetail = () => {
                   </div>
                 ))}
                 {extraCount > 0 && (
-                  <span className="text-xs text-[#2c3150]/60 self-center">
+                  <span className="text-xs text-muted-foreground self-center">
                     +{extraCount} more
                   </span>
                 )}

@@ -63,10 +63,10 @@ const EventsSpace = () => {
           <div className="flex items-start justify-between mb-8">
             <div>
               <div className="flex items-center gap-3 mb-2">
-                <CalendarDays className="w-6 h-6 text-[#2c3150]" />
-                <h1 className="text-2xl font-bold text-[#2c3150]">Events</h1>
+                <CalendarDays className="w-6 h-6 text-foreground" />
+                <h1 className="text-2xl font-bold text-foreground">Events</h1>
               </div>
-              <p className="text-[rgba(44,49,80,0.7)]">Gatherings and experiences</p>
+              <p className="text-muted-foreground">Gatherings and experiences</p>
             </div>
 
             {/* Create Event Button */}
@@ -95,14 +95,14 @@ const EventsSpace = () => {
           {!loading && !error && events.length > 0 && (
             <div className="flex flex-wrap items-center gap-3 mb-6">
               <div className="flex items-center gap-2">
-                <label htmlFor="events-filter" className="text-xs text-[#2c3150]/60">
+                <label htmlFor="events-filter" className="text-xs text-muted-foreground">
                   Filter
                 </label>
                 <select
                   id="events-filter"
                   value={filterMode}
                   onChange={(e) => setFilterMode(e.target.value as "all" | "location" | "community")}
-                  className="rounded-md border border-[#a4a3d0]/30 bg-white px-2 py-1 text-sm"
+                  className="rounded-md border border-border bg-white px-2 py-1 text-sm"
                 >
                   <option value="all">All Events</option>
                   <option value="location">By Location</option>
@@ -111,14 +111,14 @@ const EventsSpace = () => {
               </div>
               {filterMode === "community" && (
                 <div className="flex items-center gap-2">
-                  <label htmlFor="community-filter" className="text-xs text-[#2c3150]/60">
+                  <label htmlFor="community-filter" className="text-xs text-muted-foreground">
                     Community
                   </label>
                   <select
                     id="community-filter"
                     value={selectedCommunity}
                     onChange={(e) => setSelectedCommunity(e.target.value)}
-                    className="rounded-md border border-[#a4a3d0]/30 bg-white px-2 py-1 text-sm"
+                    className="rounded-md border border-border bg-white px-2 py-1 text-sm"
                   >
                     <option value="all">All Communities</option>
                     {communityOptions.map((communityId) => (
@@ -143,9 +143,9 @@ const EventsSpace = () => {
 
           {/* Empty State */}
           {!loading && !error && events.length === 0 && (
-            <div className="rounded-xl border border-[#a4a3d0]/20 bg-white/85 backdrop-blur-sm p-8 shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
+            <div className="rounded-xl border border-border bg-white/85 backdrop-blur-sm p-8 shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
               <EmptyState
-                icon={<CalendarDays className="w-6 h-6 text-[#2c3150]/50" />}
+                icon={<CalendarDays className="w-6 h-6 text-muted-foreground" />}
                 title="No events yet"
                 description={
                   isAuthenticated
@@ -171,7 +171,7 @@ const EventsSpace = () => {
                 <div className="space-y-6">
                   {Object.entries(eventsByLocation).map(([location, grouped]) => (
                     <div key={location}>
-                      <h3 className="text-sm font-semibold text-[#2c3150] mb-3">{location}</h3>
+                      <h3 className="text-sm font-semibold text-foreground mb-3">{location}</h3>
                       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                         {grouped.map((event) => (
                           <EventCard

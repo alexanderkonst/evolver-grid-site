@@ -126,7 +126,7 @@ const Connections = () => {
     return (
       <GameShellV2>
         <div className="p-6 lg:p-8 max-w-3xl mx-auto text-center">
-          <h1 className="text-2xl font-semibold text-[#2c3150] mb-3">Sign in to view connections</h1>
+          <h1 className="text-2xl font-semibold text-foreground mb-3">Sign in to view connections</h1>
           <Button onClick={() => navigate("/auth")}>Sign in</Button>
         </div>
       </GameShellV2>
@@ -153,11 +153,11 @@ const Connections = () => {
       : "Community member";
 
     return (
-      <div key={row.id} className="rounded-xl border border-[#a4a3d0]/20 bg-white/85 backdrop-blur-sm p-4 shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
+      <div key={row.id} className="rounded-xl border border-border bg-white/85 backdrop-blur-sm p-4 shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
         <div className="flex items-center justify-between gap-4">
           <div>
-            <p className="font-semibold text-[#2c3150]">{name}</p>
-            {row.message && <p className="text-sm text-[rgba(44,49,80,0.7)] mt-1">"{row.message}"</p>}
+            <p className="font-semibold text-foreground">{name}</p>
+            {row.message && <p className="text-sm text-muted-foreground mt-1">"{row.message}"</p>}
           </div>
           {showActions && (
             <div className="flex gap-2">
@@ -189,14 +189,14 @@ const Connections = () => {
         <BackButton to="/game/matches" className="mb-6" />
 
         <div className="flex items-center gap-3 mb-6">
-          <UserPlus className="w-6 h-6 text-[#2c3150]" />
-          <h1 className="text-2xl font-bold text-[#2c3150]">Connections</h1>
+          <UserPlus className="w-6 h-6 text-foreground" />
+          <h1 className="text-2xl font-bold text-foreground">Connections</h1>
         </div>
 
         {!hasConnections ? (
-          <div className="rounded-xl border border-[#a4a3d0]/20 bg-white/85 backdrop-blur-sm p-6 shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
+          <div className="rounded-xl border border-border bg-white/85 backdrop-blur-sm p-6 shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
             <EmptyState
-              icon={<UserPlus className="w-6 h-6 text-[#2c3150]/50" />}
+              icon={<UserPlus className="w-6 h-6 text-muted-foreground" />}
               title="No connections yet"
               description="Start connecting with people to build your network."
               action={{
@@ -208,27 +208,27 @@ const Connections = () => {
         ) : (
           <div className="space-y-8">
             <section className="space-y-3">
-              <h2 className="text-sm font-semibold text-[rgba(44,49,80,0.7)]">Pending requests</h2>
+              <h2 className="text-sm font-semibold text-muted-foreground">Pending requests</h2>
               {incoming.length === 0 ? (
-                <p className="text-sm text-[#2c3150]/60">No incoming requests.</p>
+                <p className="text-sm text-muted-foreground">No incoming requests.</p>
               ) : (
                 incoming.map((row) => renderRow(row, true))
               )}
             </section>
 
             <section className="space-y-3">
-              <h2 className="text-sm font-semibold text-[rgba(44,49,80,0.7)]">Sent requests</h2>
+              <h2 className="text-sm font-semibold text-muted-foreground">Sent requests</h2>
               {outgoing.length === 0 ? (
-                <p className="text-sm text-[#2c3150]/60">No sent requests.</p>
+                <p className="text-sm text-muted-foreground">No sent requests.</p>
               ) : (
                 outgoing.map((row) => renderRow(row, false))
               )}
             </section>
 
             <section className="space-y-3">
-              <h2 className="text-sm font-semibold text-[rgba(44,49,80,0.7)]">Active connections</h2>
+              <h2 className="text-sm font-semibold text-muted-foreground">Active connections</h2>
               {accepted.length === 0 ? (
-                <p className="text-sm text-[#2c3150]/60">No accepted connections yet.</p>
+                <p className="text-sm text-muted-foreground">No accepted connections yet.</p>
               ) : (
                 accepted.map((row) => renderRow(row, false))
               )}

@@ -10,17 +10,17 @@ const CoopSpace = () => {
                     {/* Header */}
                     <div className="mb-8">
                         <div className="flex items-center gap-3 mb-2">
-                            <Building2 className="w-6 h-6 text-[#2c3150]" />
-                            <h1 className="text-2xl font-bold text-[#2c3150]">Business Incubator</h1>
+                            <Building2 className="w-6 h-6 text-foreground" />
+                            <h1 className="text-2xl font-bold text-foreground">Business Incubator</h1>
                         </div>
-                        <p className="text-[rgba(44,49,80,0.7)]">Build together. Create collective wealth.</p>
+                        <p className="text-muted-foreground">Build together. Create collective wealth.</p>
                     </div>
 
                     {/* Coming Soon */}
-                    <div className="rounded-xl border-2 border-dashed border-[#a4a3d0]/40 bg-[#f0f4ff]/50 p-12 text-center">
-                        <Building2 className="w-12 h-12 text-[#2c3150]/50 mx-auto mb-4" />
-                        <h2 className="text-xl font-semibold text-[#2c3150] mb-2">Coming Soon</h2>
-                        <p className="text-[#2c3150]/60 max-w-md mx-auto">
+                    <div className="rounded-xl border-2 border-dashed border-border bg-muted/40 p-12 text-center">
+                        <Building2 className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
+                        <h2 className="text-xl font-semibold text-foreground mb-2">Coming Soon</h2>
+                        <p className="text-muted-foreground max-w-md mx-auto">
                             The Business Incubator will enable you to build products, join collective ventures, contribute your genius,
                             and share in the wealth created by the community.
                         </p>

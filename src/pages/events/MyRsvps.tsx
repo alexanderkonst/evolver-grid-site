@@ -84,7 +84,7 @@ const MyRsvps = () => {
     return (
       <GameShellV2>
         <div className="p-6 lg:p-8 max-w-2xl mx-auto text-center">
-          <h1 className="text-2xl font-semibold text-[#2c3150] mb-3">Sign in to view RSVPs</h1>
+          <h1 className="text-2xl font-semibold text-foreground mb-3">Sign in to view RSVPs</h1>
           <Button onClick={() => navigate("/auth")}>Sign in</Button>
         </div>
       </GameShellV2>
@@ -96,10 +96,10 @@ const MyRsvps = () => {
       <div className="p-6 lg:p-8 max-w-4xl mx-auto">
         <div className="mb-8">
           <div className="flex items-center gap-3 mb-2">
-            <CalendarDays className="w-6 h-6 text-[#2c3150]" />
-            <h1 className="text-2xl font-bold text-[#2c3150]">My RSVPs</h1>
+            <CalendarDays className="w-6 h-6 text-foreground" />
+            <h1 className="text-2xl font-bold text-foreground">My RSVPs</h1>
           </div>
-          <p className="text-[rgba(44,49,80,0.7)]">Events you have RSVP’d to.</p>
+          <p className="text-muted-foreground">Events you have RSVP’d to.</p>
         </div>
 
         {loading && (
@@ -115,10 +115,10 @@ const MyRsvps = () => {
         )}
 
         {!loading && !error && displayRsvps.length === 0 && (
-          <div className="rounded-xl border border-[#a4a3d0]/20 bg-white/85 backdrop-blur-sm p-8 text-center shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
-            <CalendarDays className="w-10 h-10 text-[#2c3150]/50 mx-auto mb-3" />
-            <h2 className="text-lg font-semibold text-[#2c3150] mb-2">No RSVPs yet</h2>
-            <p className="text-[rgba(44,49,80,0.7)] mb-4">Browse events and join one to see it here.</p>
+          <div className="rounded-xl border border-border bg-white/85 backdrop-blur-sm p-8 text-center shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
+            <CalendarDays className="w-10 h-10 text-muted-foreground mx-auto mb-3" />
+            <h2 className="text-lg font-semibold text-foreground mb-2">No RSVPs yet</h2>
+            <p className="text-muted-foreground mb-4">Browse events and join one to see it here.</p>
             <Button onClick={() => navigate("/game/events")}>Browse Events</Button>
           </div>
         )}
@@ -148,8 +148,8 @@ const MyRsvps = () => {
                     }}
                     onClick={() => navigate(`/events/${evt.id}`)}
                   />
-                  <p className="text-xs text-[#2c3150]/60">
-                    RSVP status: <span className="font-medium text-[#2c3150]">{row.status || "going"}</span>
+                  <p className="text-xs text-muted-foreground">
+                    RSVP status: <span className="font-medium text-foreground">{row.status || "going"}</span>
                   </p>
                 </div>
               );

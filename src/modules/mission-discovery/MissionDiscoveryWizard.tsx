@@ -22,12 +22,12 @@ interface SelectionColumnProps {
 }
 
 const SelectionColumn = ({ title, description, items, selectedId, onSelect, disabled, readOnly }: SelectionColumnProps) => (
-    <div className={`bg-[#f0f4ff]/50 rounded-xl p-3 sm:p-4 ${disabled ? "opacity-50" : ""} ${readOnly ? "pointer-events-none" : ""}`}>
-        <h3 className="font-semibold text-[#2c3150] mb-1 text-sm sm:text-base">{title}</h3>
-        <p className="text-xs text-[#2c3150]/60 mb-3 line-clamp-2">{description}</p>
+    <div className={`bg-muted/40 rounded-xl p-3 sm:p-4 ${disabled ? "opacity-50" : ""} ${readOnly ? "pointer-events-none" : ""}`}>
+        <h3 className="font-semibold text-foreground mb-1 text-sm sm:text-base">{title}</h3>
+        <p className="text-xs text-muted-foreground mb-3 line-clamp-2">{description}</p>
         <div className="space-y-2 max-h-48 sm:max-h-64 overflow-y-auto">
             {items.length === 0 && (
-                <p className="text-sm text-[#2c3150]/60 italic">Select from previous column first</p>
+                <p className="text-sm text-muted-foreground italic">Select from previous column first</p>
             )}
             {items.map((item) => (
                 <button
@@ -38,7 +38,7 @@ const SelectionColumn = ({ title, description, items, selectedId, onSelect, disa
               w-full text-left px-3 py-3 rounded-lg text-sm transition-colors min-h-[44px]
               ${selectedId === item.id
                             ? "bg-[#6894d0] text-white"
-                            : "bg-white border border-[#a4a3d0]/20 text-[#2c3150] hover:border-[#6894d0] hover:bg-[#6894d0]/5"
+                            : "bg-white border border-border text-foreground hover:border-[#6894d0] hover:bg-primary/90/5"
                         }
               ${(disabled || readOnly) ? "cursor-not-allowed" : "cursor-pointer"}
             `}
@@ -289,7 +289,7 @@ const MissionDiscoveryWizard = () => {
     return (
         <div className="min-h-dvh bg-white">
             {/* Header */}
-            <div className="border-b border-[#a4a3d0]/20 bg-white sticky top-0 z-above">
+            <div className="border-b border-border bg-white sticky top-0 z-above">
                 <div className="max-w-7xl mx-auto px-4 py-3 sm:py-4">
                     <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
                         <div className="flex items-center gap-3 sm:gap-4">
@@ -303,10 +303,10 @@ const MissionDiscoveryWizard = () => {
                                 <span className="hidden sm:inline">Back to mission list</span>
                             </Button>
                             <div>
-                                <h1 className="text-lg sm:text-xl font-bold text-[#2c3150]">
+                                <h1 className="text-lg sm:text-xl font-bold text-foreground">
                                     {isReadOnly ? "Mission Details" : "Mission Discovery"}
                                 </h1>
-                                <p className="text-xs sm:text-sm text-[#2c3150]/60 hidden sm:block">
+                                <p className="text-xs sm:text-sm text-muted-foreground hidden sm:block">
                                     {isReadOnly ? "Review mission before committing" : "Find your contribution to the planet"}
                                 </p>
                             </div>
@@ -376,12 +376,12 @@ const MissionDiscoveryWizard = () => {
                 {/* Bottom Row: Mission Selection + Details */}
                 <div className={`grid grid-cols-1 lg:grid-cols-3 gap-4 ${isReadOnly ? "opacity-75" : ""}`}>
                     {/* Mission List */}
-                    <div className={`bg-[#f0f4ff]/50 rounded-xl p-4 ${isReadOnly ? "pointer-events-none" : ""}`}>
-                        <h3 className="font-semibold text-[#2c3150] mb-1">Select a Mission</h3>
-                        <p className="text-xs text-[#2c3150]/60 mb-3">Choose a mission associated with the selected outcome</p>
+                    <div className={`bg-muted/40 rounded-xl p-4 ${isReadOnly ? "pointer-events-none" : ""}`}>
+                        <h3 className="font-semibold text-foreground mb-1">Select a Mission</h3>
+                        <p className="text-xs text-muted-foreground mb-3">Choose a mission associated with the selected outcome</p>
                         <div className="space-y-2 max-h-80 overflow-y-auto">
                             {missions.length === 0 && (
-                                <p className="text-sm text-[#2c3150]/60 italic">Complete selections above first</p>
+                                <p className="text-sm text-muted-foreground italic">Complete selections above first</p>
                             )}
                             {missions.map((mission) => (
                                 <button
@@ -392,7 +392,7 @@ const MissionDiscoveryWizard = () => {
                     w-full text-left px-3 py-3 rounded-lg text-sm transition-colors
                     ${selectedMissionId === mission.id
                                             ? "bg-[#6894d0] text-white"
-                                            : "bg-white border border-[#a4a3d0]/20 text-[#2c3150] hover:border-[#6894d0] hover:bg-[#6894d0]/5"
+                                            : "bg-white border border-border text-foreground hover:border-[#6894d0] hover:bg-primary/90/5"
                                         }
                     ${isReadOnly ? "cursor-not-allowed" : "cursor-pointer"}
                   `}
@@ -404,18 +404,18 @@ const MissionDiscoveryWizard = () => {
                     </div>
 
                     {/* Mission Details */}
-                    <div className="lg:col-span-2 bg-white/85 backdrop-blur-sm border border-[#a4a3d0]/20 rounded-xl p-6 shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
-                        <h3 className="font-semibold text-[#2c3150] mb-4">Mission Details</h3>
+                    <div className="lg:col-span-2 bg-white/85 backdrop-blur-sm border border-border rounded-xl p-6 shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
+                        <h3 className="font-semibold text-foreground mb-4">Mission Details</h3>
                         {selectedMission ? (
                             <div className="space-y-4">
                                 <div>
-                                    <p className="text-[#2c3150] leading-relaxed">{selectedMission.statement}</p>
+                                    <p className="text-foreground leading-relaxed">{selectedMission.statement}</p>
                                 </div>
 
                                 {selectedMission.existingProjects && selectedMission.existingProjects.length > 0 && (
                                     <div>
-                                        <h4 className="font-semibold text-[#2c3150] mb-2">Existing Projects</h4>
-                                        <ul className="list-disc list-inside text-sm text-[rgba(44,49,80,0.7)] space-y-1">
+                                        <h4 className="font-semibold text-foreground mb-2">Existing Projects</h4>
+                                        <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
                                             {selectedMission.existingProjects.map((project, idx) => (
                                                 <li key={idx}>{project}</li>
                                             ))}
@@ -424,23 +424,23 @@ const MissionDiscoveryWizard = () => {
                                 )}
 
                                 <div>
-                                    <h4 className="font-semibold text-[#2c3150] mb-2">Mission Chat</h4>
+                                    <h4 className="font-semibold text-foreground mb-2">Mission Chat</h4>
                                     {selectedMission.chatLink ? (
                                         <a
                                             href={selectedMission.chatLink}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="text-[#6894d0] hover:underline text-sm"
+                                            className="text-primary hover:underline text-sm"
                                         >
                                             Join the conversation →
                                         </a>
                                     ) : (
-                                        <p className="text-sm text-[#2c3150]/60">No chat link available</p>
+                                        <p className="text-sm text-muted-foreground">No chat link available</p>
                                     )}
                                 </div>
                             </div>
                         ) : (
-                            <div className="flex items-center justify-center h-48 text-[#2c3150]/50">
+                            <div className="flex items-center justify-center h-48 text-muted-foreground">
                                 <div className="text-center">
                                     <Sparkles className="w-8 h-8 mx-auto mb-2 opacity-50" />
                                     <p>Select a mission to see details</p>

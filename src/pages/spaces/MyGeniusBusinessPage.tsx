@@ -37,8 +37,8 @@ const MyGeniusBusinessPage: React.FC = () => {
             <GameShellV2>
                 <ErrorBoundary>
                     <div className="p-6 lg:p-8 max-w-2xl mx-auto text-center py-20">
-                        <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[#8460ea]/15 ring-1 ring-white/10 mb-6">
-                            <Sparkles className="w-8 h-8 text-[#8460ea]" />
+                        <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/15 ring-1 ring-white/10 mb-6">
+                            <Sparkles className="w-8 h-8 text-primary" />
                         </div>
                         <h1 className="text-2xl font-bold text-white mb-3">
                             No Genius Business Yet
@@ -70,7 +70,7 @@ const MyGeniusBusinessPage: React.FC = () => {
                     {/* Header */}
                     <div className="mb-8">
                         <div className="flex items-center gap-3 mb-2">
-                            <Sparkles className="w-6 h-6 text-[#8460ea]" />
+                            <Sparkles className="w-6 h-6 text-primary" />
                             <h1 className="text-2xl font-bold text-white">My Genius Business</h1>
                         </div>
                         <p className="text-white/50">Your published genius business at a glance.</p>
@@ -95,21 +95,21 @@ const MyGeniusBusinessPage: React.FC = () => {
                         {/* Quick Stats */}
                         <div className="grid grid-cols-3 gap-4 mb-6">
                             <div className="text-center p-3 rounded-lg bg-white/[0.02] ring-1 ring-white/5">
-                                <Users className="w-5 h-5 text-[#8460ea] mx-auto mb-1" />
+                                <Users className="w-5 h-5 text-primary mx-auto mb-1" />
                                 <p className="text-xs text-white/30">ICP</p>
                                 <p className="text-sm font-medium text-white/80 truncate">
                                     {business.deepICP?.who?.split('.')[0]?.slice(0, 30) || "Defined"}
                                 </p>
                             </div>
                             <div className="text-center p-3 rounded-lg bg-white/[0.02] ring-1 ring-white/5">
-                                <Target className="w-5 h-5 text-[#8460ea] mx-auto mb-1" />
+                                <Target className="w-5 h-5 text-primary mx-auto mb-1" />
                                 <p className="text-xs text-white/30">Promise</p>
                                 <p className="text-sm font-medium text-white/80 truncate">
                                     {business.deepTP?.promiseStatement?.slice(0, 30) || "Defined"}
                                 </p>
                             </div>
                             <div className="text-center p-3 rounded-lg bg-white/[0.02] ring-1 ring-white/5">
-                                <BookOpen className="w-5 h-5 text-[#8460ea] mx-auto mb-1" />
+                                <BookOpen className="w-5 h-5 text-primary mx-auto mb-1" />
                                 <p className="text-xs text-white/30">Blueprint</p>
                                 <p className="text-sm font-medium text-white/80 truncate">
                                     {business.blueprintContent?.steps?.length || 0} steps
@@ -134,7 +134,7 @@ const MyGeniusBusinessPage: React.FC = () => {
                         <div className="flex flex-wrap gap-3">
                             <button
                                 onClick={() => business.productUrl && navigate(business.productUrl)}
-                                className="px-4 py-2 rounded-lg bg-[#8460ea]/20 ring-1 ring-[#8460ea]/30 text-[#a4a3d0] hover:bg-[#8460ea]/30 transition-all text-sm font-medium flex items-center gap-1"
+                                className="px-4 py-2 rounded-lg bg-primary/20 ring-1 ring-[#8460ea]/30 text-muted-foreground hover:bg-primary/30 transition-all text-sm font-medium flex items-center gap-1"
                             >
                                 <ExternalLink className="w-4 h-4" />
                                 View Page
@@ -152,8 +152,8 @@ const MyGeniusBusinessPage: React.FC = () => {
                     {/* Refine Section */}
                     <div className="liquid-glass-strong rounded-xl ring-1 ring-[#8460ea]/15 p-6 mb-4">
                         <div className="flex items-start gap-4">
-                            <div className="p-2.5 rounded-xl bg-[#8460ea]/15 flex-shrink-0">
-                                <RefreshCw className="w-6 h-6 text-[#8460ea]" />
+                            <div className="p-2.5 rounded-xl bg-primary/15 flex-shrink-0">
+                                <RefreshCw className="w-6 h-6 text-primary" />
                             </div>
                             <div className="flex-1">
                                 <h3 className="font-semibold text-white mb-1">Refine Your Genius Business</h3>
@@ -163,7 +163,7 @@ const MyGeniusBusinessPage: React.FC = () => {
                                 </p>
                                 <button
                                     onClick={() => navigate("/game/build/refine")}
-                                    className="px-4 py-2 rounded-lg liquid-glass ring-1 ring-[#8460ea]/30 text-[#a4a3d0] hover:bg-[#8460ea]/10 transition-all text-sm font-medium flex items-center gap-1"
+                                    className="px-4 py-2 rounded-lg liquid-glass ring-1 ring-[#8460ea]/30 text-muted-foreground hover:bg-primary/10 transition-all text-sm font-medium flex items-center gap-1"
                                 >
                                     <Zap className="w-4 h-4" />
                                     Start Refinement
@@ -178,8 +178,8 @@ const MyGeniusBusinessPage: React.FC = () => {
                          onClick={() => navigate("/game/me/canvas")}
                     >
                         <div className="flex items-center gap-3">
-                            <div className="p-2 rounded-lg bg-[#8460ea]/15 flex-shrink-0">
-                                <Eye className="w-5 h-5 text-[#8460ea]" />
+                            <div className="p-2 rounded-lg bg-primary/15 flex-shrink-0">
+                                <Eye className="w-5 h-5 text-primary" />
                             </div>
                             <div className="flex-1">
                                 <h3 className="font-semibold text-white text-sm group-hover:text-white transition-colors">View Your Canvas</h3>
