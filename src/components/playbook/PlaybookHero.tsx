@@ -89,20 +89,25 @@ const PlaybookHero = () => {
           <span>Takes 2 minutes. No signup.</span>
         </div>
 
-        {/* Secondary — text link. Preserves Open Blueprint Paradox
-            without competing with the primary CTA's weight. */}
-        <button
-          type="button"
-          onClick={() => navigate("/playbook")}
-          className="text-xs mt-1 transition-colors hover:underline underline-offset-4"
-          style={{
-            color: "var(--skin-link-secondary, rgba(26,30,58,0.6))",
-            textShadow:
-              "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
-          }}
-        >
-          or see the exact playbook
-        </button>
+        {/* Secondary — Day 47 iter 15 (Sasha): restored as a button.
+            The text-link treatment made the path feel under-weighted for
+            its real importance (it IS the Open Blueprint Paradox's other
+            door). Back to a liquid-glass pill, de-ranked via weight/tone
+            rather than via scale. */}
+        <div className="w-full max-w-[380px] mt-2">
+          <button
+            type="button"
+            onClick={() => navigate("/playbook")}
+            className={cn(buttonBase, "liquid-glass", "font-medium")}
+            style={{
+              color: "var(--skin-link-secondary, rgba(26,30,58,0.85))",
+              textShadow:
+                "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
+            }}
+          >
+            See the exact playbook
+          </button>
+        </div>
       </div>
     </div>
   );
