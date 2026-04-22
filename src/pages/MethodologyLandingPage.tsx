@@ -21,53 +21,66 @@ const MethodologyLandingPage = () => {
     <div className="max-w-[740px] mx-auto px-5 py-10 md:py-16">
       {/* ═══════ NAME ═══════ */}
       <header className="text-center mb-10 px-4">
+        {/*
+          Hero v10 (Day 47 iter 10 — Sasha + GFOA synthesis):
+          Two-layer hero. Recognition FIRST, structure SECOND.
+
+          LAYER 1 — Recognition opener (dark navy, no gradients):
+            "You can't clearly explain what you do.
+             So it's not turning into something people pay for."
+
+          LAYER 2 — Compressed structure (UV→IR rainbow preserved,
+          7 steps mapped across the promise):
+            "Find Your [Top Talent]₁.
+             [Productize]₂ Yourself.
+             [Build]₃ it. [Launch]₄ it.
+             [Scale]₅ your [Revenue]₆ and [Impact]₇."
+
+          GFOA framing: "recognition first, compressed structure second —
+          layered, not chosen." Emotional lock happens in 5-10s; the
+          rainbow octave is preserved one beat later.
+        */}
         <h1
           className="text-3xl sm:text-4xl md:text-5xl font-semibold leading-[1.15] tracking-[-0.01em]"
           style={{
             fontFamily: "'Cormorant Garamond', serif",
-            // Panel 3 is nearly transparent so dark text reads better than
-            // white on the varied video areas. Soft white halo + subtle
-            // depth shadow lift the letters on any background patch.
+            color: "#0a1628",
+            textShadow:
+              "0 0 22px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.8), 0 2px 12px rgba(26,30,58,0.15)",
+          }}
+        >
+          {/* ── LAYER 1: Recognition opener ── */}
+          You can't clearly explain what you do.
+          <br />
+          So it's not turning into something people pay for.
+        </h1>
+
+        {/* Breathing room between recognition and structure */}
+        <div className="h-6 sm:h-8" aria-hidden="true" />
+
+        {/* ── LAYER 2: Compressed structure · UV→IR rainbow preserved ── */}
+        <h2
+          className="text-3xl sm:text-4xl md:text-5xl font-semibold leading-[1.15] tracking-[-0.01em]"
+          style={{
+            fontFamily: "'Cormorant Garamond', serif",
             color: "#0a1628",
             textShadow:
               "0 0 22px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.8), 0 2px 12px rgba(26,30,58,0.15)",
           }}
         >
           {/*
-            Highlights (Sasha, 2026-04-21 v3 — NEON + glow):
-              Each word maps to a playbook step color. Gradients span wider
-              hue ranges for visible flow. `filter: drop-shadow` adds the
-              neon glow halo around the gradient-clipped letters.
+            Neon gradients v8 (unchanged from Day 47 iter 5):
+              • Lightness 28% · Saturation 85% · 135deg 3-stop gradients
+              • 10px blur @ 0.38 opacity primary glow
+              • 3px blur @ 0.45 opacity secondary glow
+              • textShadow:'none' on every gradient span (prevents parent
+                h1's white halo from bleeding into transparent glyphs)
+            UV→IR mapping:
+              Top Talent (1) violet · Productize (2) indigo ·
+              Build (3) blue · Launch (4) cyan · Scale (5) green ·
+              Revenue (6) orange-gold · Impact (7) red-orange
           */}
-          {/*
-            Neon gradients v8 (Day 47 iter 5): HARMONY THROUGH NUANCE.
-            Sasha's rule: the 7-step UV→IR rainbow is an octave — it is
-            LOAD-BEARING to the methodology and must stay. So we don't
-            collapse hues. Instead we make the TREATMENT identical across
-            every word so they read as a unified family spanning the
-            spectrum, not six different intensities shouting at each other.
-
-            Uniform dimensions (every word, no exceptions):
-              • Lightness      = 28% (center stop 24%, edge 26%)
-              • Saturation     = 85% (was 85-100, now clamped)
-              • Gradient       = 135deg, 3 stops, tight hue range per word
-              • Primary glow   = 10px blur at 0.38 opacity   (was 14px / 0.5-0.6)
-              • Secondary glow = 3px  blur at 0.45 opacity   (was 0.55-0.65)
-
-            What varies: only the HUE per word, preserving UV→IR mapping.
-            What unifies: everything else. The rainbow now sings in tune.
-
-            textShadow:'none' stays on every span — prevents the parent
-            h1's white halo from bleeding through transparent gradients.
-          */}
-          {/*
-            v9 line structure (Day 47 late-late — Sasha):
-              Line 1: "Find Your [Top Talent]."
-              Line 2: "[Productize] It." ← on its own line, breathing room
-              Line 3: "[Build] It, [Launch] It, and [Scale] It"  ← "and" added
-              Line 4: "Alongside [Impact] Entrepreneurs"  ← no period at end
-                      (psychological: avoids "stop here" cue)
-          */}
+          {/* Line 1: Find Your [Top Talent]. */}
           Find Your{" "}
           <span
             className="bg-clip-text text-transparent"
@@ -83,6 +96,7 @@ const MethodologyLandingPage = () => {
           </span>
           .
           <br />
+          {/* Line 2: [Productize] Yourself. */}
           <span
             className="bg-clip-text text-transparent"
             style={{
@@ -95,8 +109,9 @@ const MethodologyLandingPage = () => {
           >
             Productize
           </span>{" "}
-          It.
+          Yourself.
           <br />
+          {/* Line 3: [Build] it. [Launch] it. */}
           <span
             className="bg-clip-text text-transparent"
             style={{
@@ -109,7 +124,7 @@ const MethodologyLandingPage = () => {
           >
             Build
           </span>{" "}
-          It,{" "}
+          it.{" "}
           <span
             className="bg-clip-text text-transparent"
             style={{
@@ -122,7 +137,9 @@ const MethodologyLandingPage = () => {
           >
             Launch
           </span>{" "}
-          It, and{" "}
+          it.
+          <br />
+          {/* Line 4: [Scale] your [Revenue] and [Impact]. */}
           <span
             className="bg-clip-text text-transparent"
             style={{
@@ -135,23 +152,34 @@ const MethodologyLandingPage = () => {
           >
             Scale
           </span>{" "}
-          It
-          <br />
-          Alongside{" "}
+          your{" "}
           <span
             className="bg-clip-text text-transparent"
             style={{
               backgroundImage:
-                "linear-gradient(135deg, hsl(28, 85%, 28%) 0%, hsl(15, 85%, 24%) 50%, hsl(2, 85%, 26%) 100%)",
+                "linear-gradient(135deg, hsl(45, 95%, 32%) 0%, hsl(38, 95%, 28%) 50%, hsl(28, 90%, 30%) 100%)",
               filter:
-                "drop-shadow(0 0 10px hsl(15 95% 50% / 0.4)) drop-shadow(0 0 3px hsl(8 95% 48% / 0.48))",
+                "drop-shadow(0 0 10px hsl(40 100% 50% / 0.4)) drop-shadow(0 0 3px hsl(35 100% 48% / 0.48))",
+              textShadow: "none",
+            }}
+          >
+            Revenue
+          </span>{" "}
+          and{" "}
+          <span
+            className="bg-clip-text text-transparent"
+            style={{
+              backgroundImage:
+                "linear-gradient(135deg, hsl(15, 85%, 28%) 0%, hsl(8, 85%, 24%) 50%, hsl(2, 85%, 26%) 100%)",
+              filter:
+                "drop-shadow(0 0 10px hsl(10 95% 50% / 0.4)) drop-shadow(0 0 3px hsl(5 95% 48% / 0.48))",
               textShadow: "none",
             }}
           >
             Impact
-          </span>{" "}
-          Entrepreneurs
-        </h1>
+          </span>
+          .
+        </h2>
       </header>
 
       {/* ═══════ INFOGRAPHIC + CTA ═══════ */}
