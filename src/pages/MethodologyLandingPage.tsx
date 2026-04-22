@@ -40,8 +40,11 @@ const MethodologyLandingPage = () => {
           layered, not chosen." Emotional lock happens in 5-10s; the
           rainbow octave is preserved one beat later.
         */}
+        {/* ── LAYER 1: Recognition opener — Day 47 iter 12 (GFOA v1.1):
+            Hierarchy restored. First line bold + large (impact beat).
+            Second line smaller + lighter (echo beat). Clear spacing between. */}
         <h1
-          className="text-3xl sm:text-4xl md:text-5xl font-semibold leading-[1.15] tracking-[-0.01em]"
+          className="text-3xl sm:text-4xl md:text-5xl font-semibold leading-[1.1] tracking-[-0.01em] mb-5 sm:mb-6"
           style={{
             fontFamily: "'Cormorant Garamond', serif",
             color: "#0a1628",
@@ -49,18 +52,68 @@ const MethodologyLandingPage = () => {
               "0 0 22px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.8), 0 2px 12px rgba(26,30,58,0.15)",
           }}
         >
-          {/* ── LAYER 1: Recognition opener ── */}
-          You can't clearly explain what you do.
-          <br />
-          So it's not turning into something people pay for.
+          You can't clearly say what you do.
         </h1>
+        <p
+          className="text-xl sm:text-2xl md:text-3xl leading-[1.2] tracking-[-0.005em]"
+          style={{
+            fontFamily: "'Cormorant Garamond', serif",
+            fontWeight: 400,
+            color: "rgba(26,30,58,0.7)",
+            textShadow:
+              "0 0 18px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.75)",
+          }}
+        >
+          So people don't buy it.
+        </p>
 
-        {/* Breathing room between recognition and structure */}
-        <div className="h-6 sm:h-8" aria-hidden="true" />
+        {/* Editorial ornament between the two layers — Day 47 iter 11
+            (Sasha, from ChatGPT mockup): thin gradient rule + gold star
+            centerpiece. Zero functional, whole-page lift. */}
+        <div
+          className="flex items-center justify-center gap-4 my-6 sm:my-8 max-w-md mx-auto"
+          aria-hidden="true"
+        >
+          <span
+            className="flex-1 h-px"
+            style={{
+              background:
+                "linear-gradient(to right, transparent, rgba(26,30,58,0.25))",
+            }}
+          />
+          <span
+            className="text-base"
+            style={{
+              color: "rgba(184,134,11,0.85)",
+              textShadow:
+                "0 0 12px rgba(240,194,127,0.5), 0 0 3px rgba(240,194,127,0.7)",
+            }}
+          >
+            ✦
+          </span>
+          <span
+            className="flex-1 h-px"
+            style={{
+              background:
+                "linear-gradient(to left, transparent, rgba(26,30,58,0.25))",
+            }}
+          />
+        </div>
 
-        {/* ── LAYER 2: Compressed structure · UV→IR rainbow preserved ── */}
-        <h2
-          className="text-3xl sm:text-4xl md:text-5xl font-semibold leading-[1.15] tracking-[-0.01em]"
+        {/* ── LAYER 2: Structure — Day 47 iter 12 (GFOA v1.1):
+            Three moves:
+              (a) 7 colored words → 3 colored words. Only TOP TALENT, PRODUCTIZE,
+                  SCALE carry neon gradient. Build / Launch / Revenue / Impact
+                  render in neutral dark navy. Color regains meaning by scarcity.
+                  NOTE: this retires the UV→IR octave rainbow from the hero.
+                  The 7-step methodology still lives on /playbook in full color;
+                  the landing now reads as "3 beats with 3 accents" not "rainbow".
+              (b) 4 lines become 4 separate block elements with proper vertical
+                  spacing (space-y-4 sm:space-y-5) — path rhythm, not paragraph.
+              (c) Font weight + tracking unchanged from prior iteration.
+          */}
+        <div
+          className="space-y-4 sm:space-y-5"
           style={{
             fontFamily: "'Cormorant Garamond', serif",
             color: "#0a1628",
@@ -68,118 +121,63 @@ const MethodologyLandingPage = () => {
               "0 0 22px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.8), 0 2px 12px rgba(26,30,58,0.15)",
           }}
         >
-          {/*
-            Neon gradients v8 (unchanged from Day 47 iter 5):
-              • Lightness 28% · Saturation 85% · 135deg 3-stop gradients
-              • 10px blur @ 0.38 opacity primary glow
-              • 3px blur @ 0.45 opacity secondary glow
-              • textShadow:'none' on every gradient span (prevents parent
-                h1's white halo from bleeding into transparent glyphs)
-            UV→IR mapping:
-              Top Talent (1) violet · Productize (2) indigo ·
-              Build (3) blue · Launch (4) cyan · Scale (5) green ·
-              Revenue (6) orange-gold · Impact (7) red-orange
-          */}
           {/* Line 1: Find Your [Top Talent]. */}
-          Find Your{" "}
-          <span
-            className="bg-clip-text text-transparent"
-            style={{
-              backgroundImage:
-                "linear-gradient(135deg, hsl(285, 85%, 28%) 0%, hsl(272, 85%, 24%) 50%, hsl(258, 85%, 26%) 100%)",
-              filter:
-                "drop-shadow(0 0 10px hsl(278 95% 55% / 0.38)) drop-shadow(0 0 3px hsl(268 95% 48% / 0.45))",
-              textShadow: "none",
-            }}
-          >
-            Top Talent
-          </span>
-          .
-          <br />
+          <p className="text-3xl sm:text-4xl md:text-5xl font-semibold leading-[1.15] tracking-[-0.01em]">
+            Find Your{" "}
+            <span
+              className="bg-clip-text text-transparent"
+              style={{
+                backgroundImage:
+                  "linear-gradient(135deg, hsl(285, 85%, 28%) 0%, hsl(272, 85%, 24%) 50%, hsl(258, 85%, 26%) 100%)",
+                filter:
+                  "drop-shadow(0 0 10px hsl(278 95% 55% / 0.38)) drop-shadow(0 0 3px hsl(268 95% 48% / 0.45))",
+                textShadow: "none",
+              }}
+            >
+              Top Talent
+            </span>
+            .
+          </p>
+
           {/* Line 2: [Productize] Yourself. */}
-          <span
-            className="bg-clip-text text-transparent"
-            style={{
-              backgroundImage:
-                "linear-gradient(135deg, hsl(255, 85%, 28%) 0%, hsl(245, 85%, 24%) 50%, hsl(235, 85%, 26%) 100%)",
-              filter:
-                "drop-shadow(0 0 10px hsl(248 95% 55% / 0.38)) drop-shadow(0 0 3px hsl(240 95% 48% / 0.45))",
-              textShadow: "none",
-            }}
-          >
-            Productize
-          </span>{" "}
-          Yourself.
-          <br />
-          {/* Line 3: [Build] it. [Launch] it. */}
-          <span
-            className="bg-clip-text text-transparent"
-            style={{
-              backgroundImage:
-                "linear-gradient(135deg, hsl(220, 85%, 28%) 0%, hsl(210, 85%, 24%) 50%, hsl(200, 85%, 26%) 100%)",
-              filter:
-                "drop-shadow(0 0 10px hsl(212 95% 52% / 0.38)) drop-shadow(0 0 3px hsl(205 95% 48% / 0.45))",
-              textShadow: "none",
-            }}
-          >
-            Build
-          </span>{" "}
-          it.{" "}
-          <span
-            className="bg-clip-text text-transparent"
-            style={{
-              backgroundImage:
-                "linear-gradient(135deg, hsl(188, 85%, 28%) 0%, hsl(178, 85%, 24%) 50%, hsl(168, 85%, 26%) 100%)",
-              filter:
-                "drop-shadow(0 0 10px hsl(180 95% 45% / 0.38)) drop-shadow(0 0 3px hsl(175 95% 42% / 0.45))",
-              textShadow: "none",
-            }}
-          >
-            Launch
-          </span>{" "}
-          it.
-          <br />
-          {/* Line 4: [Scale] your [Revenue] and [Impact]. */}
-          <span
-            className="bg-clip-text text-transparent"
-            style={{
-              backgroundImage:
-                "linear-gradient(135deg, hsl(138, 85%, 28%) 0%, hsl(128, 85%, 24%) 50%, hsl(115, 85%, 26%) 100%)",
-              filter:
-                "drop-shadow(0 0 10px hsl(130 95% 42% / 0.38)) drop-shadow(0 0 3px hsl(122 95% 38% / 0.45))",
-              textShadow: "none",
-            }}
-          >
-            Scale
-          </span>{" "}
-          your{" "}
-          <span
-            className="bg-clip-text text-transparent"
-            style={{
-              backgroundImage:
-                "linear-gradient(135deg, hsl(45, 95%, 32%) 0%, hsl(38, 95%, 28%) 50%, hsl(28, 90%, 30%) 100%)",
-              filter:
-                "drop-shadow(0 0 10px hsl(40 100% 50% / 0.4)) drop-shadow(0 0 3px hsl(35 100% 48% / 0.48))",
-              textShadow: "none",
-            }}
-          >
-            Revenue
-          </span>{" "}
-          and{" "}
-          <span
-            className="bg-clip-text text-transparent"
-            style={{
-              backgroundImage:
-                "linear-gradient(135deg, hsl(15, 85%, 28%) 0%, hsl(8, 85%, 24%) 50%, hsl(2, 85%, 26%) 100%)",
-              filter:
-                "drop-shadow(0 0 10px hsl(10 95% 50% / 0.4)) drop-shadow(0 0 3px hsl(5 95% 48% / 0.48))",
-              textShadow: "none",
-            }}
-          >
-            Impact
-          </span>
-          .
-        </h2>
+          <p className="text-3xl sm:text-4xl md:text-5xl font-semibold leading-[1.15] tracking-[-0.01em]">
+            <span
+              className="bg-clip-text text-transparent"
+              style={{
+                backgroundImage:
+                  "linear-gradient(135deg, hsl(255, 85%, 28%) 0%, hsl(245, 85%, 24%) 50%, hsl(235, 85%, 26%) 100%)",
+                filter:
+                  "drop-shadow(0 0 10px hsl(248 95% 55% / 0.38)) drop-shadow(0 0 3px hsl(240 95% 48% / 0.45))",
+                textShadow: "none",
+              }}
+            >
+              Productize
+            </span>{" "}
+            Yourself.
+          </p>
+
+          {/* Line 3: Build it. Launch it. — NEUTRAL (no gradient). */}
+          <p className="text-3xl sm:text-4xl md:text-5xl font-semibold leading-[1.15] tracking-[-0.01em]">
+            Build it. Launch it.
+          </p>
+
+          {/* Line 4: [Scale] your Revenue and Impact. */}
+          <p className="text-3xl sm:text-4xl md:text-5xl font-semibold leading-[1.15] tracking-[-0.01em]">
+            <span
+              className="bg-clip-text text-transparent"
+              style={{
+                backgroundImage:
+                  "linear-gradient(135deg, hsl(138, 85%, 28%) 0%, hsl(128, 85%, 24%) 50%, hsl(115, 85%, 26%) 100%)",
+                filter:
+                  "drop-shadow(0 0 10px hsl(130 95% 42% / 0.38)) drop-shadow(0 0 3px hsl(122 95% 38% / 0.45))",
+                textShadow: "none",
+              }}
+            >
+              Scale
+            </span>{" "}
+            your Revenue and Impact.
+          </p>
+        </div>
       </header>
 
       {/* ═══════ INFOGRAPHIC + CTA ═══════ */}

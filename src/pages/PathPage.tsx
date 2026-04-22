@@ -153,7 +153,7 @@ const PathPage = () => {
                 >
                   Traction
                 </span>
-                , and{" "}
+                .{" "}
                 <span
                   className="bg-clip-text text-transparent"
                   style={{

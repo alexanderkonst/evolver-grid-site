@@ -32,37 +32,63 @@ const PlaybookHero = () => {
   return (
     <div className="mb-6 sm:mb-10">
       <div className="flex flex-col items-center gap-3 px-4 text-center">
-        {/* Primary CTA — heavy Apple Liquid Glass, no arrow, normal case. */}
+        {/* Primary CTA — Day 47 iter 12 (GFOA v1.1):
+            Replaced meh-glass pill with high-contrast dark-navy button +
+            arrow. Must feel like a decision, not an option. */}
         <div className="w-full max-w-[380px]">
           <button
             type="button"
             onClick={() => navigate("/zone-of-genius")}
-            className={cn(buttonBase, "liquid-glass-strong")}
+            className={cn(
+              "group relative w-full rounded-full px-6 py-4",
+              "text-sm sm:text-base font-semibold tracking-wide",
+              "transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]",
+              "focus-visible:ring-2 focus-visible:ring-[#0a1628]/40 outline-none",
+              "inline-flex items-center justify-center gap-3",
+            )}
             style={{
-              color: "#0a1628",
-              textShadow: "0 1px 2px rgba(255,255,255,0.75)",
+              color: "rgba(245,245,250,0.98)",
+              backgroundImage:
+                "linear-gradient(135deg, #0a1628 0%, #1a1e3a 50%, #0a1628 100%)",
+              border: "1px solid rgba(255,255,255,0.12)",
+              boxShadow:
+                "0 20px 50px -18px rgba(10,22,40,0.65), 0 0 0 1px rgba(10,22,40,0.25), inset 0 1px 1px rgba(255,255,255,0.18)",
+              textShadow: "0 0 16px rgba(240,194,127,0.25), 0 1px 2px rgba(0,0,0,0.35)",
             }}
           >
-            Find your top talent
+            <span
+              aria-hidden="true"
+              style={{
+                color: "rgba(240,194,127,0.9)",
+                textShadow:
+                  "0 0 10px rgba(240,194,127,0.6), 0 0 3px rgba(240,194,127,0.8)",
+              }}
+            >
+              ✦
+            </span>
+            <span>Find your top talent</span>
+            <span
+              aria-hidden="true"
+              className="transition-transform duration-300 group-hover:translate-x-1"
+            >
+              →
+            </span>
           </button>
         </div>
 
-        {/* Meta line — Day 47 iter 10 (Sasha + GFOA v2.0):
-            "Claim your gift · takes two minutes" → "Takes 2 minutes. No signup."
-            Sharper, no ask, removes friction anxiety up front. */}
+        {/* Meta line — subtle, under primary CTA */}
         <div
-          className="text-xs inline-flex items-center justify-center gap-2 max-w-[460px]"
+          className="text-xs inline-flex items-center justify-center gap-2 max-w-[460px] mt-1"
           style={{
             color: "rgba(26,30,58,0.65)",
             textShadow: "0 1px 2px rgba(255,255,255,0.6)",
           }}
         >
-          <span aria-hidden="true">↑</span>
           <span>Takes 2 minutes. No signup.</span>
         </div>
 
         {/* Secondary — lighter Apple Liquid Glass, no arrow. */}
-        <div className="w-full max-w-[380px]">
+        <div className="w-full max-w-[380px] mt-2">
           <button
             type="button"
             onClick={() => navigate("/playbook")}
