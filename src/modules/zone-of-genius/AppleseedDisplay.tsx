@@ -6,6 +6,7 @@ import { AppleseedData } from "./appleseedGenerator";
 import { useState, useCallback, useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
+import { useSkin } from "@/contexts/SkinContext";
 
 const STRIPE_PAYMENT_LINK = "https://buy.stripe.com/9B6dR9bME6i71TP7r2dEs0A";
 
@@ -157,6 +158,11 @@ const AppleseedDisplay = ({
     onResonanceRating,
 }: AppleseedDisplayProps) => {
     const { toast } = useToast();
+    const { skin } = useSkin();
+    // On Navy+Gold the light-cream reveal card reads as a bright slab on
+    // dark panel. Use the hero's built-in `darkMode` palette (liquid-glass
+    // body + cream text) so the card stays in the skin's family.
+    const useDarkHero = skin === "navy-gold";
 
     // Email gate state
     const [email, setEmail] = useState('');
@@ -231,6 +237,7 @@ const AppleseedDisplay = ({
                         primeDriver: appleseed.threeLenses.primeDriver,
                         archetype: appleseed.threeLenses.archetype,
                     }}
+                    darkMode={useDarkHero}
                 />
 
                 {/* Resonance Rating */}
