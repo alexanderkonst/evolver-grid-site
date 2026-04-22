@@ -589,6 +589,18 @@ const IgniteSession = () => {
             If your heart isn't resonating with this, don't sign up. This works because people come when they're ready — not when they're pressured.
           </p>
 
+          {/* Framing above primary CTA — Day 47 iter 10 (GFOA v2.0):
+              Short, declarative, guarantee-compressed. Lives above the
+              existing guarantee block — doesn't replace it, reinforces entry. */}
+          <div className="space-y-1 pt-2">
+            <p className="text-base md:text-lg text-white font-medium tracking-wide">
+              We fix this in 2 hours.
+            </p>
+            <p className="text-base md:text-lg text-white font-medium tracking-wide">
+              Or you don't pay.
+            </p>
+          </div>
+
           {/* CTA */}
           <PrimaryCTA id="book-session-btn" label="Book Your Session" showPrice={false} />
 
