@@ -52,6 +52,44 @@
     pointer-events: none;
   }
 
+  /* DARK GLASS — primary CTA, dark-tinted glass with bright rim.
+     Day 47 very-late-night (Sasha): primary CTA was a solid dark navy
+     gradient pill, secondary was liquid-glass (light). Sasha asked for
+     glassmorphism on BOTH. This variant gives the primary the same
+     backdrop-blur + inner-highlight treatment as light glass, while
+     keeping the dark navy body so it still reads as the primary
+     decision. Apple Control Center's dark-mode glass is the reference. */
+  .liquid-glass-dark {
+    background: rgba(10, 18, 34, 0.55);
+    backdrop-filter: blur(30px) saturate(180%);
+    -webkit-backdrop-filter: blur(30px) saturate(180%);
+    border: 0.5px solid rgba(255, 255, 255, 0.14);
+    box-shadow:
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.18),     /* top specular highlight */
+      inset 0 -1px 0 0 rgba(0, 0, 0, 0.28),          /* bottom rim shadow */
+      0 8px 24px -6px rgba(0, 0, 0, 0.35),
+      0 24px 60px -18px rgba(10, 22, 40, 0.5);
+    position: relative;
+    overflow: hidden;
+  }
+  .liquid-glass-dark::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(180deg,
+      rgba(255, 255, 255, 0.35) 0%,
+      rgba(255, 255, 255, 0.10) 30%,
+      rgba(255, 255, 255, 0.00) 55%,
+      rgba(0, 0, 0, 0.25) 80%,
+      rgba(0, 0, 0, 0.40) 100%);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
   /* STRONG GLASS — CTAs, prominent panels, pricing cards. */
   .liquid-glass-strong {
     background: rgba(255, 255, 255, 0.18);
@@ -119,23 +157,29 @@
   --skin-text-halo-soft:   0 1px 2px rgba(255,255,255,0.7);
 
   /* ── Panel 3 overlay ──
-     Day 47 iter 15 (Sasha): bumped from /0.21 → /0.38. Panel 3 now
-     reads as distinctly lighter — the Mux video shimmers through as
-     ambient texture rather than competing pattern. */
-  --skin-panel-wash: rgba(255, 255, 255, 0.38);
+     Day 47 iter 16 (Sasha, very late): bumped to /0.68 to match the
+     ChatGPT editorial mockup — a clean cream pearlescent where the
+     Mux video contributes only subtle aurora diffractions, not
+     competing pink/purple blobs. Previous 0.21 was too transparent
+     (video dominated), 0.38 was still too busy. 0.68 lands at the
+     "soft paper with faint shimmer" register the hero needs. */
+  --skin-panel-wash: rgba(255, 255, 255, 0.68);
 
   /* ── Ornament (hero divider) ── */
   --skin-ornament-rule:  rgba(26, 30, 58, 0.25);
   --skin-ornament-star:  rgba(184, 134, 11, 0.85);
   --skin-ornament-shadow: 0 0 12px rgba(240,194,127,0.5), 0 0 3px rgba(240,194,127,0.7);
 
-  /* ── Primary CTA ── */
-  --skin-cta-bg: linear-gradient(135deg, #0a1628 0%, #1a1e3a 50%, #0a1628 100%);
+  /* ── Primary CTA ──
+     Day 47 iter 16 (Sasha, very late): translucent navy so the
+     `liquid-glass-dark` backdrop-blur shows through. Still reads
+     as a dark primary, now with actual glass depth. */
+  --skin-cta-bg: linear-gradient(135deg, rgba(10,22,40,0.72) 0%, rgba(26,30,58,0.62) 50%, rgba(10,22,40,0.72) 100%);
   --skin-cta-text: rgba(245, 245, 250, 0.98);
-  --skin-cta-border: rgba(255, 255, 255, 0.12);
-  --skin-cta-shadow: 0 20px 50px -18px rgba(10,22,40,0.65), 0 0 0 1px rgba(10,22,40,0.25), inset 0 1px 1px rgba(255,255,255,0.18);
+  --skin-cta-border: rgba(255, 255, 255, 0.14);
+  --skin-cta-shadow: none; /* handled by .liquid-glass-dark */
   --skin-cta-text-shadow: 0 0 16px rgba(240,194,127,0.25), 0 1px 2px rgba(0,0,0,0.35);
-  --skin-cta-icon: rgba(240, 194, 127, 0.9);
+  --skin-cta-icon: rgba(240, 194, 127, 0.92);
   --skin-cta-icon-shadow: 0 0 10px rgba(240,194,127,0.6), 0 0 3px rgba(240,194,127,0.8);
 
   /* ── Gradient accent words (Top Talent / Productize / Scale) ── */
@@ -173,11 +217,13 @@
   --skin-ornament-star:  #d4af37;
   --skin-ornament-shadow: 0 0 14px rgba(212,175,55,0.7), 0 0 4px rgba(244,208,111,0.85);
 
-  /* Primary CTA — INVERTED: gold button, navy text, navy star */
-  --skin-cta-bg: linear-gradient(135deg, #e6c35a 0%, #d4af37 50%, #b8941e 100%);
+  /* Primary CTA — INVERTED: gold glass button, navy text, navy star.
+     Day 47 iter 16: bg also translucent so `liquid-glass-dark` still
+     applies its blur/rim correctly. */
+  --skin-cta-bg: linear-gradient(135deg, rgba(230,195,90,0.80) 0%, rgba(212,175,55,0.70) 50%, rgba(184,148,30,0.80) 100%);
   --skin-cta-text: #0a1628;
   --skin-cta-border: rgba(10, 22, 40, 0.25);
-  --skin-cta-shadow: 0 20px 50px -18px rgba(212,175,55,0.45), 0 0 0 1px rgba(212,175,55,0.3), inset 0 1px 1px rgba(255,255,255,0.35);
+  --skin-cta-shadow: none;
   --skin-cta-text-shadow: 0 1px 2px rgba(255,255,255,0.25);
   --skin-cta-icon: #0a1628;
   --skin-cta-icon-shadow: 0 0 6px rgba(10,22,40,0.45);

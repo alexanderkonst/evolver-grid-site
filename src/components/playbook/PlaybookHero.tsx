@@ -4,82 +4,89 @@ import { cn } from "@/lib/utils";
 /**
  * PlaybookHero — the CTAs below the landing's headline.
  *
- * Day 47 late pass (Sasha): buttons rewritten in Apple iOS 26 Liquid Glass
- * style. Both CTAs now use pure glass (no colored fill, no arrows) and rely
- * on text weight + glass tier to establish primary/secondary hierarchy. The
- * meta line between them is no longer uppercase and is allowed to flow
- * wider than the buttons so "Claim your gift · takes two minutes" reads
- * naturally.
+ * Day 47 very-late-night (Sasha): THREE critical corrections.
  *
- *   [ Find your top talent     ]  ← primary  (liquid-glass-strong)
- *       ↑ Claim your gift · takes two minutes
- *   [ See the exact playbook   ]  ← secondary (liquid-glass)
+ * 1. GLASSMORPHISM ON BOTH buttons. Primary was a solid dark navy
+ *    gradient pill (no glass). Now primary uses the new
+ *    `liquid-glass-dark` variant — same backdrop-blur + rim as light
+ *    glass, just on a dark-tinted body. Secondary keeps `liquid-glass`.
+ *    Both buttons now read as "glass from the same family," primary
+ *    just tinted dark.
+ *
+ * 2. PRIMARY CTA SHRUNK. It was `w-full` inside a `max-w-[380px]`
+ *    wrapper with large padding, so the icon + label + arrow wrapped
+ *    to two lines and the button felt enormous. Now auto-width,
+ *    inline-flex, smaller padding, whitespace-nowrap so the label
+ *    stays on one line regardless of viewport. Compact pill, matches
+ *    the ChatGPT editorial mockup proportions.
+ *
+ * 3. Secondary also shrunk and made auto-width for visual parity
+ *    with the compact primary. Still de-ranked via `font-medium` +
+ *    dimmer text color (hierarchy not scale).
+ *
+ *   [ ✦ Find your top talent →  ]  ← primary  (liquid-glass-dark)
+ *          Takes 2 minutes. No signup.
+ *   [ See the exact playbook    ]  ← secondary (liquid-glass)
  */
 
 const PlaybookHero = () => {
   const navigate = useNavigate();
 
-  // Both CTA buttons stretch to the same width inside this max-w wrapper.
-  // Pill shape (rounded-full), Apple Liquid Glass texture via utility class.
-  const buttonBase = cn(
-    "relative w-full rounded-full",
-    "px-6 py-4",
-    "text-sm sm:text-base font-semibold tracking-wide",
-    "transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]",
-    "focus-visible:ring-2 focus-visible:ring-[#0a1628]/30 outline-none",
-  );
-
   return (
     <div className="mb-6 sm:mb-10">
       <div className="flex flex-col items-center gap-3 px-4 text-center">
-        {/* Primary CTA — Day 47 iter 12 (GFOA v1.1):
-            Replaced meh-glass pill with high-contrast dark-navy button +
-            arrow. Must feel like a decision, not an option. */}
-        <div className="w-full max-w-[380px]">
-          <button
-            type="button"
-            onClick={() => navigate("/zone-of-genius")}
-            className={cn(
-              "group relative w-full rounded-full px-6 py-4",
-              "text-sm sm:text-base font-semibold tracking-wide",
-              "transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]",
-              "focus-visible:ring-2 focus-visible:ring-[#0a1628]/40 outline-none",
-              "inline-flex items-center justify-center gap-3",
-            )}
+        {/* Primary CTA — compact glass pill. Auto-width via
+            `inline-flex` + `whitespace-nowrap`. Padding reduced
+            `px-6 py-4` → `px-5 py-2.5` so the button feels precise
+            rather than shouting. */}
+        <button
+          type="button"
+          onClick={() => navigate("/zone-of-genius")}
+          className={cn(
+            "group liquid-glass-dark rounded-full",
+            "inline-flex items-center justify-center gap-2.5",
+            "px-5 py-2.5 whitespace-nowrap",
+            "text-sm font-semibold tracking-wide",
+            "transition-all duration-300 hover:scale-[1.03] active:scale-[0.97]",
+            "focus-visible:ring-2 focus-visible:ring-white/40 outline-none",
+          )}
+          style={{
+            color: "var(--skin-cta-text, rgba(245,245,250,0.98))",
+            // The liquid-glass-dark class supplies background-color +
+            // backdrop-blur + inner highlights + outer drop shadow.
+            // We layer the skin-cta-bg (translucent navy or gold
+            // gradient) on top as a background-image so the color
+            // tint still reads "navy" in Aurora / "gold" in Navy+Gold,
+            // while the glass effect underneath provides depth.
+            backgroundImage:
+              "var(--skin-cta-bg, linear-gradient(135deg, rgba(10,22,40,0.72) 0%, rgba(26,30,58,0.62) 50%, rgba(10,22,40,0.72) 100%))",
+            textShadow:
+              "var(--skin-cta-text-shadow, 0 0 16px rgba(240,194,127,0.25), 0 1px 2px rgba(0,0,0,0.35))",
+          }}
+        >
+          <span
+            aria-hidden="true"
+            className="text-[0.95em]"
             style={{
-              color: "var(--skin-cta-text, rgba(245,245,250,0.98))",
-              backgroundImage:
-                "var(--skin-cta-bg, linear-gradient(135deg, #0a1628 0%, #1a1e3a 50%, #0a1628 100%))",
-              border: "1px solid var(--skin-cta-border, rgba(255,255,255,0.12))",
-              boxShadow:
-                "var(--skin-cta-shadow, 0 20px 50px -18px rgba(10,22,40,0.65), 0 0 0 1px rgba(10,22,40,0.25), inset 0 1px 1px rgba(255,255,255,0.18))",
+              color: "var(--skin-cta-icon, rgba(240,194,127,0.92))",
               textShadow:
-                "var(--skin-cta-text-shadow, 0 0 16px rgba(240,194,127,0.25), 0 1px 2px rgba(0,0,0,0.35))",
+                "var(--skin-cta-icon-shadow, 0 0 10px rgba(240,194,127,0.6), 0 0 3px rgba(240,194,127,0.8))",
             }}
           >
-            <span
-              aria-hidden="true"
-              style={{
-                color: "var(--skin-cta-icon, rgba(240,194,127,0.9))",
-                textShadow:
-                  "var(--skin-cta-icon-shadow, 0 0 10px rgba(240,194,127,0.6), 0 0 3px rgba(240,194,127,0.8))",
-              }}
-            >
-              ✦
-            </span>
-            <span>Find your top talent</span>
-            <span
-              aria-hidden="true"
-              className="transition-transform duration-300 group-hover:translate-x-1"
-            >
-              →
-            </span>
-          </button>
-        </div>
+            ✦
+          </span>
+          <span>Find your top talent</span>
+          <span
+            aria-hidden="true"
+            className="transition-transform duration-300 group-hover:translate-x-0.5 text-[0.95em]"
+          >
+            →
+          </span>
+        </button>
 
         {/* Meta line — subtle, under primary CTA */}
         <div
-          className="text-xs inline-flex items-center justify-center gap-2 max-w-[460px] mt-1"
+          className="text-xs inline-flex items-center justify-center gap-2 max-w-[460px] mt-0.5"
           style={{
             color: "var(--skin-text-muted-soft, rgba(26,30,58,0.6))",
             textShadow:
@@ -89,25 +96,29 @@ const PlaybookHero = () => {
           <span>Takes 2 minutes. No signup.</span>
         </div>
 
-        {/* Secondary — Day 47 iter 15 (Sasha): restored as a button.
-            The text-link treatment made the path feel under-weighted for
-            its real importance (it IS the Open Blueprint Paradox's other
-            door). Back to a liquid-glass pill, de-ranked via weight/tone
-            rather than via scale. */}
-        <div className="w-full max-w-[380px] mt-2">
-          <button
-            type="button"
-            onClick={() => navigate("/playbook")}
-            className={cn(buttonBase, "liquid-glass", "font-medium")}
-            style={{
-              color: "var(--skin-link-secondary, rgba(26,30,58,0.85))",
-              textShadow:
-                "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
-            }}
-          >
-            See the exact playbook
-          </button>
-        </div>
+        {/* Secondary — also compact glass pill, de-ranked via
+            font-weight + muted text color. Auto-width so it reads as
+            visually parallel to the primary rather than as a sidebar
+            or full-width banner. */}
+        <button
+          type="button"
+          onClick={() => navigate("/playbook")}
+          className={cn(
+            "liquid-glass rounded-full",
+            "inline-flex items-center justify-center",
+            "px-5 py-2.5 whitespace-nowrap",
+            "text-sm font-medium tracking-wide",
+            "transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]",
+            "focus-visible:ring-2 focus-visible:ring-[#0a1628]/30 outline-none mt-1",
+          )}
+          style={{
+            color: "var(--skin-link-secondary, rgba(26,30,58,0.85))",
+            textShadow:
+              "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
+          }}
+        >
+          See the exact playbook
+        </button>
       </div>
     </div>
   );

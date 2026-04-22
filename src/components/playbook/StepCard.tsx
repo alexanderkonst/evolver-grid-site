@@ -226,16 +226,29 @@ const Step2Essay = (_: { neonHsl: string; neonRgb: string }) => {
     fontWeight: 600,
   };
 
+  // Day 47 very-late-night (Sasha): Two CRITICAL fixes for this essay.
+  // (1) Restored the missing sentences — "Startup Influencers say
+  //     'Productize yourself'." and "Social media influencers say
+  //     'monetize who you are', 'build your authentic brand'." — which
+  //     had been silently cut in an earlier revision. They are the two
+  //     bookends of the "nobody tells you HOW" opener alongside
+  //     personality tests. Without them the essay opens on personality
+  //     tests alone, which misrepresents the field.
+  // (2) Spacing unified with `space-y-5` on the parent. Previous version
+  //     mixed mb-3 / mb-5 / mb-8 per paragraph, which read as jumpy
+  //     rhythm. Now every paragraph has the same vertical breathing —
+  //     the blockquote example, the list, and the links all inherit the
+  //     same 1.25rem (~20px) gap between blocks.
   return (
     <section
       id="step-2-essay"
       aria-label="The Secret to Productizing Yourself"
-      className="mb-10 max-w-2xl mx-auto text-base sm:text-[17px] leading-relaxed"
+      className="mb-10 max-w-2xl mx-auto text-base sm:text-[17px] leading-relaxed space-y-5"
       style={bodyStyle}
     >
       {/* ── Title ── */}
       <h2
-        className="text-xl sm:text-2xl md:text-3xl font-semibold leading-[1.25] mb-10 text-center"
+        className="text-xl sm:text-2xl md:text-3xl font-semibold leading-[1.25] text-center"
         style={{
           fontFamily: "'Cormorant Garamond', serif",
           color: "#0a1628",
@@ -245,68 +258,76 @@ const Step2Essay = (_: { neonHsl: string; neonRgb: string }) => {
         The Secret to Productizing Yourself
       </h2>
 
-      <p className="mb-5">
+      {/* Three "they don't tell us HOW" bookends — startup influencers,
+          personality tests, social media influencers. All three restored. */}
+      <p>Startup Influencers say "Productize yourself".</p>
+
+      <p>
         Personality tests give you unmonetizable "too long didn't read" reports. You go "so now what?" and archive it in your inbox foreva.
       </p>
 
-      <p className="mb-8">They don't tell us HOW. They hand us frustrating fluff.</p>
+      <p>
+        Social media influencers say "monetize who you are", "build your authentic brand".
+      </p>
 
-      <p className="mb-5">
+      <p>They don't tell us HOW. They hand us frustrating fluff.</p>
+
+      <p>
         The catch is that there is a looong way from the vague "I help people to get better results in life and business" to a 9/10 CRISP SPECIFICITY of what you do.
       </p>
 
       {/* Example — minimal left-rule offset, no font change */}
       <p
-        className="mb-5 pl-4 border-l"
+        className="pl-4 border-l"
         style={{ borderColor: "rgba(26,30,58,0.25)" }}
       >
         Let me share my example at ~10/10 precision: I assist conscious aspiring impact founders turn their top talent into a growing scalable business in flow.
       </p>
 
-      <p className="mb-5">
+      <p>
         It is sufficiently SPECIFIC, which then makes my entire business offer a laser beam that has this same specificity.
       </p>
 
-      <p className="mb-8">
+      <p>
         This level of clarity pulls in highly aligned clients, and repels others.
       </p>
 
-      <p className="mb-5">So how do YOU get YOUR top talent to sufficient PRECISION?</p>
+      <p>So how do YOU get YOUR top talent to sufficient PRECISION?</p>
 
-      <p className="mb-5">Here is the secret.</p>
+      <p>Here is the secret.</p>
 
-      <p className="mb-5">The top talent reveal on this page gets you to ~7/10.</p>
+      <p>The top talent reveal on this page gets you to ~7/10.</p>
 
-      <p className="mb-8">
+      <p>
         You must reach 9/10 resonance (or higher) to productize yourself.
       </p>
 
-      <p className="mb-5">How do people get there?</p>
+      <p>How do people get there?</p>
 
-      <p className="mb-5">They do years of focused introspection, and iteration on the wording.</p>
+      <p>They do years of focused introspection, and iteration on the wording.</p>
 
-      <p className="mb-8">That's what I did.</p>
+      <p>That's what I did.</p>
 
-      <p className="mb-5">Is there a shortcut?</p>
+      <p>Is there a shortcut?</p>
 
-      <p className="mb-3">Yes indeed.</p>
+      <p>Yes indeed.</p>
 
-      <p className="mb-3">I know two.</p>
+      <p>I know two.</p>
 
-      <ol className="mb-8 space-y-2 list-decimal list-outside ml-6">
+      <ol className="list-decimal list-outside ml-6 space-y-2">
         <li>You get guidance from someone who has reached 9.9+ precision for themselves and shares it with others.</li>
         <li>You use a high-precision purpose-discovery tool. Or both.</li>
       </ol>
 
-      <p className="mb-5">
+      <p>
         Truth is, such guides or tools are still EXTREMELY RARE as of 2026.
       </p>
 
-      <p className="mb-5">
+      <p>
         The method I developed and refined over the last six years gets you there in about 40 minutes.
       </p>
 
-      <p className="mb-5">
+      <p>
         I only know a couple of other tools that I dare recommend:{" "}
         <a href="https://talentq.me/" target="_blank" rel="noreferrer noopener" style={linkStyle}>1</a>
         ,{" "}
