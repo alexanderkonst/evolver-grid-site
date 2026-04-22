@@ -75,7 +75,12 @@ const ProfileSettingsSection = () => {
         setIsLoading(true);
         const { data: { user } } = await supabase.auth.getUser();
         if (!user) {
-            navigate("/auth?redirect=/game/settings");
+            // Day 48 (Sasha): guests can land on /game/settings (e.g. via
+            // the rail Settings button). Don't kick them to /auth — just
+            // render the guest state. The Appearance tab still works for
+            // them; Profile tab shows a "Log in to manage" stub.
+            setUser(null);
+            setIsLoading(false);
             return;
         }
         setUser(user);
