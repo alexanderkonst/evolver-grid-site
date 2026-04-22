@@ -570,27 +570,14 @@ All colors MUST be HSL.
   }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: 220 30% 12%;
-    --foreground: 0 0% 96%;
-    --card: 220 30% 14%;
-    --card-foreground: 0 0% 96%;
-    --popover: 220 30% 14%;
-    --popover-foreground: 0 0% 96%;
-    --primary: 45 100% 65%;
-    --primary-foreground: 220 30% 12%;
-    --secondary: 220 20% 20%;
-    --secondary-foreground: 0 0% 96%;
-    --muted: 220 20% 18%;
-    --muted-foreground: 0 0% 75%;
-    --accent: 215 70% 60%;
-    --accent-foreground: 0 0% 96%;
-    --border: 220 20% 22%;
-    --input: 220 20% 22%;
-    --ring: 45 100% 65%;
-  }
-}
+/* Day 48 (Sasha): the `@media (prefers-color-scheme: dark)` block that
+   used to override :root tokens when the OS was in dark mode has been
+   retired. We have an explicit skin system now (`[data-skin="aurora"]`
+   vs `[data-skin="navy-gold"]`). Letting the OS impose a dark palette
+   on top caused Aurora to render with dark shadcn cards whenever the
+   user's Mac was in dark mode — mixing the two skins in one view.
+   Aurora now stays Aurora regardless of OS preference; Navy+Gold
+   delivers the dark register when the user chooses it. */
 
 @layer base {
   * {
