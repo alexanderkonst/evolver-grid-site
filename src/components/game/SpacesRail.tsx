@@ -8,6 +8,12 @@ import {
 import { cn } from "@/lib/utils";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
+import {
+    Tooltip,
+    TooltipContent,
+    TooltipProvider,
+    TooltipTrigger,
+} from "@/components/ui/tooltip";
 import GlyphIcon from "./GlyphIcon";
 // Day 48 (Sasha): brand logo sits at the top of the rail.
 // Desktop uses the full orb + wordmark lockup.
@@ -282,8 +288,14 @@ const SpacesRail = ({
                   already communicate locked state; the black disc was
                   reading as Bootstrap debris.
                 • Label transition-opacity 500ms → rewards unlock. */}
+            {/* Day 48 iter 16 (Sasha): `TooltipProvider` wraps the whole
+                nav so any chip can opt into a custom tooltip. Delay 150ms
+                so hover feels crisp but not jumpy. `skipDelayDuration=0`
+                so moving between adjacent chips doesn't re-flash the
+                delay. */}
             <ScrollArea className="flex-1">
-              <nav className="flex flex-col gap-1.5 p-2 md:p-3">
+              <TooltipProvider delayDuration={150} skipDelayDuration={0}>
+                <nav className="flex flex-col gap-1.5 p-2 md:p-3">
                 {SPACES.filter(space => !hiddenSpaces.includes(space.id)).map((space) => {
                     const isLocked = unlockStatus[space.id] === false;
                     const active = isActive(space.path);
@@ -295,7 +307,7 @@ const SpacesRail = ({
                         navigate(space.path);
                     };
 
-                    return (
+                    const chipButton = (
                         <button
                             key={space.id}
                             data-tour-id={space.id}
@@ -308,31 +320,24 @@ const SpacesRail = ({
                                 isLocked
                                     ? "bg-white/5 text-white/30 cursor-not-allowed"
                                     : active
-                                        // Active: gold ring + halo + faint
-                                        // gold inset tint on the interior.
                                         ? "text-white ring-1 ring-[#d4af37]/60 shadow-[0_0_22px_-6px_rgba(244,212,114,0.55),0_0_48px_-14px_rgba(212,175,55,0.35)]"
                                         : hasNudge
                                             ? "bg-emerald-500/20 text-emerald-400 hover:bg-emerald-500/30 hover:text-emerald-300 ring-1 ring-emerald-500/50 shadow-[0_0_20px_rgba(16,185,129,0.4)] animate-pulse"
-                                            // Hover: soft outer gold glow
-                                            // in addition to the ring.
                                             : "bg-white/5 text-white/60 hover:bg-white/10 hover:text-white hover:ring-1 hover:ring-[#d4af37]/30 hover:shadow-[0_0_16px_-4px_rgba(244,212,114,0.28)] hover:translate-y-[-1px] active:translate-y-0"
                             )}
                             style={
                                 active
-                                    ? {
-                                          // Gold inset tint bonds the halo
-                                          // to the chip body. Without it,
-                                          // the gold ring read as "floating
-                                          // outline around white/5," not
-                                          // "this chip is lit from within."
-                                          backgroundColor: "rgba(212, 175, 55, 0.08)",
-                                      }
+                                    ? { backgroundColor: "rgba(212, 175, 55, 0.08)" }
                                     : undefined
                             }
-                            title={isLocked ? (unlockHints[space.id] || `${space.label} — locked`) : space.label}
+                            // Day 48 iter 16: native `title` attribute retired for
+                            // locked chips (replaced by the Radix Tooltip below).
+                            // Non-locked chips keep the native title as a simple
+                            // accessibility fallback for mobile where the label
+                            // column is hidden.
+                            title={!isLocked ? space.label : undefined}
+                            aria-label={isLocked ? (unlockHints[space.id] || `${space.label} — locked`) : space.label}
                         >
-                            {/* Icon — lock badge retired (dim + tooltip
-                                handles the message cleanly). */}
                             <span className="relative flex-shrink-0">
                                 <span
                                     className={cn(
@@ -344,10 +349,6 @@ const SpacesRail = ({
                                 </span>
                             </span>
 
-                            {/* Label — Cormorant Garamond uppercase tracked.
-                                Same small-caps treatment as the primary CTA
-                                label, so the rail chips rhyme with every
-                                CTA across the funnel. */}
                             <span
                                 className="hidden md:block truncate transition-opacity duration-500"
                                 style={{
@@ -361,7 +362,6 @@ const SpacesRail = ({
                                 {space.label}
                             </span>
 
-                            {/* Nudge Badge - new unlock indicator */}
                             {hasNudge && (
                                 <span className="absolute -top-1 -right-1 w-3 h-3 bg-emerald-500 rounded-full border-2 border-black/30 animate-ping" />
                             )}
@@ -369,15 +369,75 @@ const SpacesRail = ({
                                 <span className="absolute -top-1 -right-1 w-3 h-3 bg-emerald-500 rounded-full border-2 border-black/30" />
                             )}
 
-                            {/* Active indicator — gold pip, centered on
-                                the chip's vertical midline. */}
                             {active && (
                                 <div className="absolute left-0 top-1/2 w-1 h-8 rounded-r-full -translate-x-1/2 -translate-y-1/2 bg-[#d4af37] shadow-[0_0_8px_rgba(244,212,114,0.7)]" />
                             )}
                         </button>
                     );
+
+                    // Day 48 iter 16 (Sasha): custom Radix tooltip for locked
+                    // chips. Replaces the system `title=` tooltip (ugly black
+                    // rectangle, cursor overlap). Premium register: dark glass
+                    // pill + gold hairline + Cormorant italic text. Positioned
+                    // on the RIGHT of the chip (side="right") so the cursor
+                    // (over the chip itself) never covers the message. Small
+                    // side-offset so it doesn't touch the rail edge.
+                    if (isLocked) {
+                        const hint = unlockHints[space.id] || `${space.label} — locked`;
+                        return (
+                            <Tooltip key={space.id}>
+                                <TooltipTrigger asChild>
+                                    {chipButton}
+                                </TooltipTrigger>
+                                <TooltipContent
+                                    side="right"
+                                    align="center"
+                                    sideOffset={12}
+                                    className="max-w-[260px] rounded-xl border-none p-0 shadow-none bg-transparent animate-in fade-in-0 zoom-in-95"
+                                >
+                                    <div
+                                        className="liquid-glass-dark rounded-xl px-4 py-3"
+                                        style={{
+                                            backgroundImage:
+                                                "linear-gradient(135deg, rgba(10,22,40,0.92) 0%, rgba(18,28,56,0.88) 50%, rgba(10,22,40,0.92) 100%)",
+                                            border: "1px solid rgba(212, 175, 55, 0.35)",
+                                            boxShadow:
+                                                "0 0 0 1px rgba(212, 175, 55, 0.15), 0 8px 28px -8px rgba(10, 22, 40, 0.6), 0 0 24px -6px rgba(244, 212, 114, 0.25)",
+                                        }}
+                                    >
+                                        <p
+                                            className="text-[11px] mb-1"
+                                            style={{
+                                                fontFamily: "'Cormorant Garamond', serif",
+                                                fontWeight: 600,
+                                                letterSpacing: "0.22em",
+                                                textTransform: "uppercase",
+                                                color: "#f4d472",
+                                                textShadow: "0 0 10px rgba(244, 212, 114, 0.4)",
+                                            }}
+                                        >
+                                            {space.label} · Locked
+                                        </p>
+                                        <p
+                                            className="text-[13px] italic leading-snug"
+                                            style={{
+                                                fontFamily: "'Cormorant Garamond', serif",
+                                                fontWeight: 400,
+                                                color: "rgba(245, 241, 232, 0.92)",
+                                            }}
+                                        >
+                                            {hint}
+                                        </p>
+                                    </div>
+                                </TooltipContent>
+                            </Tooltip>
+                        );
+                    }
+
+                    return chipButton;
                 })}
-            </nav>
+                </nav>
+              </TooltipProvider>
             </ScrollArea>
 
             {/* Footer — Day 47 late pass (Sasha): hard border-t divider removed;
