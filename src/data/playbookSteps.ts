@@ -224,26 +224,26 @@ export const PLAYBOOK_STEPS: PlaybookStep[] = [
       {
         number: 1,
         name: "Find your Top Blind Spot",
-        description:
-          "Find your top blind spot.",
+        // Day 48 (Sasha, ceremony pass): redundant "Find your top blind
+        // spot." description cleared — title stands on its own.
+        description: "",
         oneProvenStrategy:
-          "Ask your AI to reveal your top blind spot by Turning Your Top Talent Inside Out.",
+          "Give your AI your Top Talent, ask it: please reveal my top blind spot by turning my top talent inside out.",
       },
       {
         number: 2,
-        name: "Turn Blind Spot into Master Lie and Master Truth",
-        description:
-          "Turn your blind spot into a Master Lie the world believes in, and turn your top talent into a Master Truth you stand behind.",
+        name: "Remember Your Personal Myth that Magnetizes Your Aligned Clients",
+        description: "",
         oneProvenStrategy:
-          "[TO BE FILLED]",
+          "Ask your AI: turn my top blind spot into a Master Belief most of the world believes in, turn my top talent into a Master Truth I stand behind when I shine.",
       },
       {
         number: 3,
-        name: "Produce the minimally viable set of key business artifacts",
-        description:
-          "Translate the myth, talent and blind spot into the Pain of Having the Blind Spot, into Your Tribe, The Transformation Promise; and finally the user journey you take your tribe on.",
+        name:
+          "Produce the minimally viable set of key business artifacts that together form a concrete specific business strategy that stands the test of reason and that of an investor.",
+        description: "",
         oneProvenStrategy:
-          "Just give your AI this playbook and you will get your unique business structure at 5-7 level of resonance. Then keep iterating until you get to 9.5+/10. Empirically this seems to be a sufficient precision to continue to the next step.",
+          "Translate your top talent, your top blind spot, and your magnetizing myth into the pain that one experiences by living everyday with blind spot, especially when it gets acute, then into your aligned client tribe, then into a transformation promise; and finally the user/hero journey you serve and guide them on. You got a business. To make it rain, keep iterating, getting stuck, getting naturally unstuck, until you get to 9.5+/10. Empirically this seems to be a sufficient specificity to continue to the next step.",
       },
     ],
   },
