@@ -131,14 +131,23 @@ All decisions documented in [architecture spec](./unique-business-builder_archit
 - [x] Module scaffold: `src/modules/unique-business-builder/types.ts` + `constants.ts` + `index.ts` — all TypeScript types, route helpers, artifact labels, phase mapping, specificity bands, version helpers.
 
 ### Still ahead in Phase 4
-- [ ] 4.1 — Complete module scaffold: `UniqueBusinessContext.tsx`, `UniqueBusinessLayout.tsx`, `UniqueBusinessRoutes.tsx`, hooks (useArtifact / useImprove / useGenerate / useVersionHistory / useDossier / usePublishLandingPage)
-- [ ] 4.2 — 6 shared components: `ArtifactPanel`, `ImproveButton`, `ImproveReviewDrawer`, `SpecificityBadge`, `VersionHistoryPanel`, `CompoundArtifactCard`
-- [ ] 4.2 — 14 screens (Canvas Overview + 7 canvas + Session + 3 market compound + Landing Page + Dossier)
-- [ ] 4.3 — Wire routes in `App.tsx` + public `/ubd/:slug` + `/ubl/:slugWithVersion`
-- [ ] 4.4 — Data wiring verified end-to-end (migrations applied → edge fn callable → Context reads/writes work)
-- [ ] 4.5 — Verification: build, TS clean, console clean, browser walkthrough
-- [ ] 4.6 — AI Self-Test (optional)
-- [ ] 🔥 ROAST GATE 4
+- [x] 4.1 — Core scaffold: `UniqueBusinessContext.tsx` (supabase-driven, realtime, all actions), `UniqueBusinessLayout.tsx` (focus mode + progress bar)
+- [x] 4.2 — 3 shared components landed: `SpecificityBadge`, `ImproveButton`, `ImproveReviewDrawer`
+- [x] 4.2 — 5 screens landed: `CanvasOverviewScreen`, `GenericArtifactScreen`, `CompoundScreen` (session/marketing/distribution/communications), `LandingPageScreen` (stub publish), `DossierScreen` (stub publish)
+- [x] 4.2 — 2 public pages stubbed: `PublicDossier`, `PublicLandingPage`
+- [x] 4.3 — Routes wired in `App.tsx` (`/ubb/*` protected + `/ubd/:slug` + `/ubl/:slugWithVersion` public)
+- [x] 4.5 — `tsc --noEmit` clean. Dev server boots clean. `/ubb` correctly redirects to `/auth?redirect=/ubb`. `/ubd/test-slug` renders the public stub. Zero console errors.
+- [ ] 4.2 — Remaining components (nice-to-have, not blocking): `ArtifactPanel` (generic wrapper — currently inlined), `VersionHistoryPanel` (expandable list), `CompoundArtifactCard` (used inline in CompoundScreen)
+- [ ] 4.4 — Data wiring verified WITH LIVE DATA: requires migrations applied in Supabase + Sasha logged in + at least one ZoG snapshot. Blocked on deploy.
+- [ ] 4.4 — `publishLandingPage` + `publishDossier` implementations (stubs throw today)
+- [ ] 4.4 — Full public render for `/ubd/:slug` and `/ubl/:slugWithVersion` (currently stub pages)
+- [ ] 4.6 — AI Self-Test (optional — first-holon run serves this)
+- [ ] 🔥 ROAST GATE 4 — awaiting Sasha's live walkthrough after migrations deploy
+
+### What needs to happen next to go live
+1. **Apply the 3 migrations** to the Supabase project (Lovable deploy or CLI)
+2. **Sasha logs in** and navigates to `/ubb`
+3. **First-holon test:** generate Uniqueness v1 from ZoG seed → Improve → Accept → confirm v2 with higher specificity lands in DB
 
 ---
 

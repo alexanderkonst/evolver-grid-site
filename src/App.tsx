@@ -152,6 +152,15 @@ import FounderMarketFit from "./pages/FounderMarketFit";
 import TheOriginalsPage from "./pages/TheOriginalsPage";
 import IntegralTheoryUpgrade1 from "./pages/IntegralTheoryUpgrade1";
 import Intros from "./pages/Intros";
+// Unique Business Builder v2.0
+import UniqueBusinessLayout from "./modules/unique-business-builder/UniqueBusinessLayout";
+import CanvasOverviewScreen from "./modules/unique-business-builder/screens/CanvasOverviewScreen";
+import GenericArtifactScreen from "./modules/unique-business-builder/screens/GenericArtifactScreen";
+import CompoundScreen from "./modules/unique-business-builder/screens/CompoundScreen";
+import UbbLandingPageScreen from "./modules/unique-business-builder/screens/LandingPageScreen";
+import DossierScreen from "./modules/unique-business-builder/screens/DossierScreen";
+import PublicDossier from "./pages/PublicDossier";
+import PublicLandingPage from "./pages/PublicLandingPage";
 
 const PageLoader = () => (
   <div className="h-screen flex items-center justify-center bg-[#0a0a1a]">
@@ -217,6 +226,8 @@ const App = () => (
                   <Route path="/u/:username" element={<PublicProfile />} />
                   <Route path="/p/:slug" element={<CreatorPage />} />
                   <Route path="/mp/:slug" element={<MarketplaceProductPage />} />
+                  <Route path="/ubd/:slug" element={<PublicDossier />} />
+                  <Route path="/ubl/:slugWithVersion" element={<PublicLandingPage />} />
 
                   {/* ══════ PROTECTED ROUTES (login required) ══════ */}
                   {/* Day 47 (Sasha): /ignite is now public — the ZoG result CTA lands
@@ -364,6 +375,23 @@ const App = () => (
                     <Route path="blueprint" element={<BlueprintScreen />} />
                     <Route path="cta" element={<CTAScreen />} />
                     <Route path="published" element={<PublishedScreen />} />
+                  </Route>
+                  {/* Unique Business Builder v2.0 */}
+                  <Route path="/ubb" element={<RequireAuth><UniqueBusinessLayout /></RequireAuth>}>
+                    <Route index element={<CanvasOverviewScreen />} />
+                    <Route path="uniqueness" element={<GenericArtifactScreen />} />
+                    <Route path="myth" element={<GenericArtifactScreen />} />
+                    <Route path="tribe" element={<GenericArtifactScreen />} />
+                    <Route path="pain" element={<GenericArtifactScreen />} />
+                    <Route path="promise" element={<GenericArtifactScreen />} />
+                    <Route path="lead-magnet" element={<GenericArtifactScreen />} />
+                    <Route path="value-ladder" element={<GenericArtifactScreen />} />
+                    <Route path="session" element={<CompoundScreen />} />
+                    <Route path="marketing" element={<CompoundScreen />} />
+                    <Route path="distribution" element={<CompoundScreen />} />
+                    <Route path="communications" element={<CompoundScreen />} />
+                    <Route path="landing-page" element={<UbbLandingPageScreen />} />
+                    <Route path="dossier" element={<DossierScreen />} />
                   </Route>
                   {/* Legacy redirects */}
                   <Route path="/game/coop" element={<Navigate to="/game/build" replace />} />

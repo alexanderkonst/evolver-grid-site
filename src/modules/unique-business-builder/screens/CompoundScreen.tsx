@@ -1,0 +1,156 @@
+/**
+ * CompoundScreen — renders multiple sub-artifacts on one screen.
+ *
+ * Used for:
+ *   /ubb/session         → [session_bridge]
+ *   /ubb/marketing       → [core_belief, packaging, frictionless_purchase]
+ *   /ubb/distribution    → [reach, delivery, spread]
+ *   /ubb/communications  → [surface_inventory, tuning_fork, golden_dm]
+ */
+
+import { useLocation, Link } from "react-router-dom";
+import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Loader2 } from "lucide-react";
+import { useUniqueBusiness } from "../UniqueBusinessContext";
+import { ImproveButton } from "../components/ImproveButton";
+import { SpecificityBadge } from "../components/SpecificityBadge";
+import { ARTIFACT_LABELS, UBB_ROOT } from "../constants";
+import { COMPOUND_GROUPING, type ArtifactKey, type CompoundScreenKey } from "../types";
+
+const SLUG_TO_COMPOUND: Record<string, CompoundScreenKey> = {
+  session: "session",
+  marketing: "marketing",
+  distribution: "distribution",
+  communications: "communications",
+};
+
+const COMPOUND_TITLES: Record<CompoundScreenKey, { title: string; subtitle: string }> = {
+  session: {
+    title: "1st Session Design",
+    subtitle:
+      "Transformational Result → Trinity of Sub-Results → 1st Session that delivers guaranteed wins without overwhelm.",
+  },
+  marketing: {
+    title: "Marketing — 3 Pillars",
+    subtitle: "Core Belief · Packaging · Frictionless Purchase.",
+  },
+  distribution: {
+    title: "Distribution — 3 Pillars",
+    subtitle: "Reach · Delivery · Spread.",
+  },
+  communications: {
+    title: "Communications",
+    subtitle: "Surface Inventory · Tuning Fork · Golden DM.",
+  },
+};
+
+export default function CompoundScreen() {
+  const location = useLocation();
+  const slug = location.pathname.split("/").pop() || "";
+  const compound = SLUG_TO_COMPOUND[slug];
+
+  if (!compound) {
+    return (
+      <div className="py-12 text-center">
+        <div className="text-sm text-muted-foreground">Unknown section: {slug}</div>
+        <Button asChild variant="outline" className="mt-4">
+          <Link to={UBB_ROOT}>Back to Canvas</Link>
+        </Button>
+      </div>
+    );
+  }
+
+  const subKeys = COMPOUND_GROUPING[compound];
+  const meta = COMPOUND_TITLES[compound];
+
+  return (
+    <div className="mx-auto max-w-4xl space-y-6">
+      <header className="space-y-1">
+        <h1 className="text-2xl font-semibold tracking-tight">{meta.title}</h1>
+        <p className="text-sm text-muted-foreground">{meta.subtitle}</p>
+      </header>
+
+      <div className="space-y-4">
+        {subKeys.map((key) => (
+          <SubArtifactCard key={key} artifactKey={key} />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function SubArtifactCard({ artifactKey }: { artifactKey: ArtifactKey }) {
+  const { artifacts, generateArtifact, isGenerating } = useUniqueBusiness();
+  const state = artifacts[artifactKey];
+  const latest = state?.latest;
+  const thisIsGenerating = isGenerating === artifactKey;
+
+  return (
+    <Card className="p-5">
+      <div className="flex items-start justify-between gap-4">
+        <div className="flex-1 min-w-0">
+          <div className="flex items-center gap-2">
+            <h2 className="text-lg font-medium">{ARTIFACT_LABELS[artifactKey]}</h2>
+            {latest && <SpecificityBadge score={latest.specificity_score} size="sm" />}
+          </div>
+          {latest && (
+            <div className="mt-0.5 text-xs text-muted-foreground">
+              v{latest.version} · {state?.versionCount} version{state?.versionCount === 1 ? "" : "s"}
+              {state?.latestLocked && <span className="ml-2 text-emerald-600">● locked</span>}
+            </div>
+          )}
+        </div>
+      </div>
+
+      <div className="mt-4">
+        {!latest ? (
+          <div className="py-6 text-center">
+            <p className="mb-3 text-sm text-muted-foreground">Not generated yet.</p>
+            <Button
+              size="sm"
+              onClick={() => generateArtifact(artifactKey)}
+              disabled={thisIsGenerating}
+            >
+              {thisIsGenerating ? (
+                <>
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  Generating…
+                </>
+              ) : (
+                `Generate ${ARTIFACT_LABELS[artifactKey]}`
+              )}
+            </Button>
+          </div>
+        ) : (
+          <>
+            <div className="mb-4 rounded-md bg-muted/30 p-3">
+              <CompactContent content={latest.content} />
+            </div>
+            <div className="flex items-center justify-end">
+              <ImproveButton artifactKey={artifactKey} size="default" />
+            </div>
+          </>
+        )}
+      </div>
+    </Card>
+  );
+}
+
+function CompactContent({ content }: { content: unknown }) {
+  if (content === null || content === undefined) return <span className="text-sm text-muted-foreground">(empty)</span>;
+  if (typeof content === "string") return <div className="whitespace-pre-wrap text-sm">{content}</div>;
+  if (typeof content === "object") {
+    return (
+      <div className="space-y-2">
+        {Object.entries(content as Record<string, unknown>).map(([k, v]) => (
+          <div key={k} className="text-sm">
+            <span className="text-xs font-medium uppercase tracking-wider text-muted-foreground">{k.replace(/_/g, " ")}: </span>
+            {typeof v === "string" ? v : <code className="text-xs">{JSON.stringify(v)}</code>}
+          </div>
+        ))}
+      </div>
+    );
+  }
+  return <span className="text-sm">{String(content)}</span>;
+}
