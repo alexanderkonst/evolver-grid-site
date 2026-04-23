@@ -114,10 +114,14 @@ const SubstepRow = ({
         >
           {substep.number}
         </div>
-        <div className="flex-1 pt-1 space-y-3">
-          {/* ══ Substep name — skin-aware text + halo */}
+        <div className="flex-1 space-y-3">
+          {/* ══ Substep name — skin-aware text + halo.
+              Day 48 (Sasha): line-height locked to the circle's h-8 (32px)
+              on the title's first line so the number badge and title baseline
+              visually align across every substep. Removed the stale `pt-1`
+              that was nudging the title ~1px below the circle center. */}
           <h3
-            className="text-base sm:text-lg font-semibold leading-snug"
+            className="text-base sm:text-lg font-semibold leading-8"
             style={{
               fontFamily: "'Cormorant Garamond', serif",
               color: "var(--skin-text-primary, #0a1628)",
