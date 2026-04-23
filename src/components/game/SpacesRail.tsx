@@ -45,7 +45,9 @@ const ImageIcon = ({
         alt={alt}
         aria-hidden="true"
         draggable={false}
-        className="flex-shrink-0 select-none object-contain"
+        // Day 48 iter 9 (Sasha): `.gentle-spin` applies the shared 60s
+        // rotation used for every geometric image site-wide.
+        className="flex-shrink-0 select-none object-contain gentle-spin"
         style={{
             width: 28,
             height: 28,
@@ -388,17 +390,33 @@ const SpacesRail = ({
                             "linear-gradient(90deg, transparent 0%, rgba(212, 175, 55, 0.22) 50%, transparent 100%)",
                     }}
                 />
+                {/* Day 48 iter 9 (Sasha): Settings chip upgraded to match
+                    the chip register — rounded-2xl, Cormorant Garamond
+                    uppercase tracked. Kept dimmer (white/45) so the
+                    "utility ↓ / spaces ↑" hierarchy still reads
+                    through weight, not through visual-family mismatch. */}
                 <button
                     onClick={() => navigate("/game/settings")}
                     className={cn(
-                        "flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all w-full",
+                        "flex items-center gap-3 px-3 py-2.5 rounded-2xl transition-all duration-300 w-full",
                         "justify-center md:justify-start",
                         "bg-white/[0.03] text-white/45 hover:bg-white/10 hover:text-white/80 hover:translate-y-[-1px] active:translate-y-0"
                     )}
                     title="Settings"
                 >
                     <Settings className="w-5 h-5 flex-shrink-0" />
-                    <span className="hidden md:block text-sm font-medium">Settings</span>
+                    <span
+                        className="hidden md:block truncate"
+                        style={{
+                            fontFamily: "'Cormorant Garamond', serif",
+                            fontWeight: 600,
+                            fontSize: "0.78rem",
+                            letterSpacing: "0.14em",
+                            textTransform: "uppercase",
+                        }}
+                    >
+                        Settings
+                    </span>
                 </button>
                 {(() => {
                     // Hide Log In on pages that are part of the unauthenticated
