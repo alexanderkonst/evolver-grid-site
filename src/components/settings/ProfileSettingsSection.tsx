@@ -427,9 +427,24 @@ const ProfileSettingsSection = () => {
                     <div className="flex items-center gap-3">
                         <CreditCard className="h-5 w-5 text-muted-foreground" />
                         <div>
-                            <CardTitle className="text-foreground font-sans text-lg">Billing & Purchases</CardTitle>
-                            <CardDescription className="text-muted-foreground font-sans">
-                                Your purchase history and subscription management
+                            <CardTitle
+                                className="text-xl text-foreground"
+                                style={{
+                                    fontFamily: "'Cormorant Garamond', serif",
+                                    fontWeight: 600,
+                                }}
+                            >
+                                Billing & Purchases
+                            </CardTitle>
+                            <CardDescription
+                                className="text-base text-muted-foreground mt-0.5"
+                                style={{
+                                    fontFamily: "'Cormorant Garamond', serif",
+                                    fontWeight: 400,
+                                    fontStyle: "italic",
+                                }}
+                            >
+                                Your purchase history and subscription management.
                             </CardDescription>
                         </div>
                     </div>
@@ -475,9 +490,24 @@ const ProfileSettingsSection = () => {
                     <div className="flex items-center gap-3">
                         <AlertTriangle className="h-5 w-5 text-red-600" />
                         <div>
-                            <CardTitle className="text-red-900">Danger Zone</CardTitle>
-                            <CardDescription className="text-red-700">
-                                Irreversible actions regarding your account data
+                            <CardTitle
+                                className="text-xl text-red-900"
+                                style={{
+                                    fontFamily: "'Cormorant Garamond', serif",
+                                    fontWeight: 600,
+                                }}
+                            >
+                                Danger Zone
+                            </CardTitle>
+                            <CardDescription
+                                className="text-base text-red-700 mt-0.5"
+                                style={{
+                                    fontFamily: "'Cormorant Garamond', serif",
+                                    fontWeight: 400,
+                                    fontStyle: "italic",
+                                }}
+                            >
+                                Irreversible actions regarding your account data.
                             </CardDescription>
                         </div>
                     </div>
