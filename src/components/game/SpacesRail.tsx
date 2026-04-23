@@ -11,10 +11,13 @@ import { cn } from "@/lib/utils";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import GlyphIcon from "./GlyphIcon";
-// Day 48 (Sasha): brand logo (orb + "FIND YOUR TOP TALENT" wordmark)
-// now sits at the top of the rail, replacing the avatar + stacked
-// text lockup. Single asset, renders at native aspect ratio.
+// Day 48 (Sasha): brand logo sits at the top of the rail.
+// Desktop uses the full orb + wordmark lockup.
+// Mobile (rail compressed to 72px) uses the standalone torus image
+// — the wordmark would crop off on a 72px column, so a dedicated
+// mark-only asset is cleaner.
 import brandLogo from "@/assets/find-your-top-talent-logo.png";
+import brandMark from "@/assets/find-your-top-talent-torus.png";
 
 interface SpaceItem {
     id: string;
@@ -169,16 +172,13 @@ const SpacesRail = ({
                     className="block group transition-all hover:opacity-90"
                     aria-label="Find Your Top Talent — home"
                 >
-                    {/* Mobile: square orb crop from the left of the image. */}
-                    <div
-                        className="md:hidden w-8 h-8 mx-auto overflow-hidden"
-                        style={{
-                            backgroundImage: `url(${brandLogo})`,
-                            backgroundSize: "auto 100%",
-                            backgroundPosition: "left center",
-                            backgroundRepeat: "no-repeat",
-                        }}
-                        aria-hidden="true"
+                    {/* Mobile: dedicated torus mark, no wordmark — avoids
+                        the wordmark-cropping bug on a 72px rail. Day 48 (Sasha). */}
+                    <img
+                        src={brandMark}
+                        alt="Find Your Top Talent"
+                        className="md:hidden w-10 h-10 mx-auto object-contain"
+                        draggable={false}
                     />
                     {/* Desktop: full wordmark — original placement, size
                         reduced 11% from full rail width. */}
