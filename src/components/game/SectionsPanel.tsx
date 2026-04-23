@@ -4,7 +4,6 @@ import { useLocation } from "react-router-dom";
 import { ChevronRight, ChevronDown, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { supabase } from "@/integrations/supabase/client";
-import { useJourneyProgression } from "@/hooks/useJourneyProgression";
 import { PLAYBOOK_STEPS } from "@/data/playbookSteps";
 
 interface SubSection {
@@ -213,7 +212,6 @@ const SectionsPanel = ({
     const location = useLocation();
     const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({});
     const [userEmail, setUserEmail] = useState<string | null>(null);
-    const { currentStep } = useJourneyProgression();
 
     // Check user email for feature gating
     useEffect(() => {
@@ -227,14 +225,13 @@ const SectionsPanel = ({
         const baseData = SPACE_SECTIONS[activeSpaceId];
         if (!baseData) return null;
 
-        // JOURNEY → progressive reveal driven by onboarding_stage.
-        // "The Path" is always appended (public). "My Artifacts" requires
-        // authentication since it reads RLS-scoped user rows.
+        // JOURNEY → fixed trio (Start Here · The Playbook · The Path).
+        // Day 48 (Sasha): same list for guests and authed users. No
+        // My Artifacts, no progression-aware reveal, no extras.
         if (activeSpaceId === "journey") {
-            const showAuthedExtras = !!userEmail;
             return {
                 ...baseData,
-                sections: buildJourneySections(currentStep, showAuthedExtras),
+                sections: buildJourneySections(),
             };
         }
 
