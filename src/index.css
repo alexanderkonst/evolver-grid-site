@@ -591,14 +591,55 @@ All colors MUST be HSL.
     @apply border-border;
   }
 
+  /* Day 48 iter 2 (Sasha, premium pass): global focus ring shifts from
+     violet to signature gold. Every keyboard-tabbable surface now
+     flashes gold instead of the legacy wabi-sabi violet — reinforces
+     the Aurora → Navy+Gold identity and harmonizes with the ornament
+     star + CTA halo. Navy+Gold inherits the same gold naturally. */
   :focus-visible {
-    outline: 2px solid #8460ea;
+    outline: 2px solid var(--skin-accent-gold, #b8860b);
     outline-offset: 2px;
+  }
+
+  /* Day 48 iter 2 (Sasha): text selection also renders in the signature
+     gold palette — tiny premium tell that rewards careful reading. */
+  ::selection {
+    background: rgba(212, 175, 55, 0.28);
+    color: var(--skin-text-primary, #0b2a5a);
+  }
+  [data-skin="navy-gold"] ::selection {
+    background: rgba(244, 212, 114, 0.35);
+    color: #0a1628;
   }
 
   body {
     @apply text-foreground font-sans antialiased;
     background: hsl(30, 15%, 96%);
+    position: relative;
+  }
+
+  /* Day 48 iter 2 (Sasha): editorial paper grain. A barely-perceptible
+     monochrome noise overlay lifts the whole cream background from
+     "web color" to "printed paper". ~3% opacity so it never interferes
+     with readability, fixed-position so it doesn't shift on scroll,
+     pointer-events-none so it never blocks clicks. The SVG is inlined
+     as a data-URI feTurbulence pattern — tiny, no extra request. */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.035;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.1  0 0 0 0 0.1  0 0 0 0 0.12  0 0 0 1 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    background-size: 180px 180px;
+  }
+  /* Navy+Gold: invert the grain so it reads as light noise on dark. */
+  [data-skin="navy-gold"] body::before {
+    mix-blend-mode: screen;
+    opacity: 0.05;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.96  0 0 0 0 0.95  0 0 0 0 0.91  0 0 0 1 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
   }
 
   h1,
@@ -925,6 +966,69 @@ All colors MUST be HSL.
     radial-gradient(circle at 80% 30%, rgba(164, 163, 208, 0.18), transparent 40%),
     radial-gradient(circle at 30% 80%, rgba(200, 183, 216, 0.16), transparent 45%);
   animation: bokeh-shimmer 3s ease-in-out infinite;
+}
+
+/* ========================================
+   PREMIUM POLISH — Day 48 iter 2 (Sasha)
+   ======================================== */
+
+/* CTA breath — slow 3s inhale/exhale on the primary pill. A 1%
+   scale + gold-halo swell reads as "alive, inviting" without
+   drawing attention away from the headline. Halo values echo
+   the --skin-cta-shadow token so the breath sits inside the
+   established CTA identity. */
+@keyframes cta-breath {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow:
+      0 0 0 1px rgba(212, 175, 55, 0.28),
+      0 0 18px -4px rgba(240, 194, 127, 0.45),
+      0 0 40px -8px rgba(212, 175, 55, 0.28),
+      0 10px 24px -10px rgba(10, 22, 40, 0.55);
+  }
+  50% {
+    transform: scale(1.012);
+    box-shadow:
+      0 0 0 1px rgba(212, 175, 55, 0.42),
+      0 0 26px -4px rgba(240, 194, 127, 0.62),
+      0 0 56px -8px rgba(212, 175, 55, 0.40),
+      0 12px 28px -10px rgba(10, 22, 40, 0.6);
+  }
+}
+
+.cta-breath {
+  animation: cta-breath 3.2s ease-in-out infinite;
+  will-change: transform, box-shadow;
+}
+
+/* Hover/focus pause the breath so the button's own interaction
+   feedback (scale-[1.03], focus ring) reads cleanly. */
+.cta-breath:hover,
+.cta-breath:focus-visible {
+  animation-play-state: paused;
+}
+
+/* Ornament star slow rotation — 48s per turn, barely perceptible.
+   The ✦ centerpiece drifts clockwise as a "living document" tell. */
+@keyframes ornament-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+.ornament-spin {
+  animation: ornament-spin 48s linear infinite;
+  display: inline-block;
+  transform-origin: center;
+  will-change: transform;
+}
+
+/* Respect reduced-motion: anyone who asked for less animation gets
+   the CTA halo as a static state and the star stops turning. */
+@media (prefers-reduced-motion: reduce) {
+  .cta-breath,
+  .ornament-spin {
+    animation: none !important;
+  }
 }
 
 @keyframes bokeh-shimmer {

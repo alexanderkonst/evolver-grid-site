@@ -43,19 +43,28 @@ const PlaybookHero = () => {
             `inline-flex` + `whitespace-nowrap`. Padding reduced
             `px-6 py-4` → `px-5 py-2.5` so the button feels precise
             rather than shouting. */}
+        {/* Day 48 iter 2 (Sasha, premium pass):
+            - CTA label now renders in small-caps with tracked-out
+              letter-spacing so "FIND YOUR TOP TALENT" reads as a
+              chiseled editorial call rather than a sentence-case button.
+              The serif + small-caps combination rhymes with the
+              gold-embossed wordmark.
+            - `cta-breath` animation class added. Subtle 3.2s gold-halo
+              breath — signals "alive, waiting" without shouting. Pauses
+              on hover / focus (so the button's own hover feedback is
+              read cleanly). Respects prefers-reduced-motion. */}
         <button
           type="button"
           onClick={() => navigate("/zone-of-genius")}
           className={cn(
-            "group liquid-glass-dark rounded-full",
+            "group liquid-glass-dark cta-breath rounded-full",
             "inline-flex items-center justify-center gap-2.5",
             "px-6 py-3 whitespace-nowrap",
             // Day 48 (Sasha): shifted the primary CTA from DM Sans to
             // Cormorant Garamond semibold so it reads as a ceremonial
             // serif moment that rhymes with the ornate gold-embossed
-            // wordmark in the logo. Slight bump in size/padding to
-            // match the serif's natural heft.
-            "text-base font-semibold tracking-[0.01em]",
+            // wordmark in the logo.
+            "text-base font-semibold",
             "transition-all duration-300 hover:scale-[1.03] active:scale-[0.97]",
             "focus-visible:ring-2 focus-visible:ring-white/40 outline-none",
           )}
@@ -81,7 +90,15 @@ const PlaybookHero = () => {
             }}
             draggable={false}
           />
-          <span>Find your top talent</span>
+          <span
+            style={{
+              textTransform: "uppercase",
+              letterSpacing: "0.14em",
+              fontSize: "0.88em",
+            }}
+          >
+            Find your top talent
+          </span>
           <span
             aria-hidden="true"
             className="transition-transform duration-300 group-hover:translate-x-0.5 text-[0.95em]"
@@ -90,16 +107,24 @@ const PlaybookHero = () => {
           </span>
         </button>
 
-        {/* Meta line — subtle, under primary CTA */}
+        {/* Meta line — Day 48 iter 2: small-caps editorial eyebrow.
+            "TAKES 2 MINUTES · NO SIGNUP" with tracked letter-spacing
+            reads as a printed dateline sitting under the CTA rather
+            than as a caption. The middle dot replaces the period to
+            echo the gold ornament above. */}
         <div
-          className="text-xs inline-flex items-center justify-center gap-2 max-w-[460px] mt-0.5"
+          className="inline-flex items-center justify-center gap-2 max-w-[460px] mt-1"
           style={{
             color: "var(--skin-text-muted-soft, rgba(26,30,58,0.6))",
             textShadow:
               "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
+            fontSize: "0.68rem",
+            letterSpacing: "0.22em",
+            textTransform: "uppercase",
+            fontWeight: 500,
           }}
         >
-          <span>Takes 2 minutes. No signup.</span>
+          <span>Takes 2 minutes · No signup</span>
         </div>
 
         {/* Secondary — also compact glass pill, de-ranked via

@@ -8,186 +8,261 @@ import PlaybookHero from "@/components/playbook/PlaybookHero";
  *   1. The name  — canonical headline in Cormorant Garamond
  *   2. The infographic — 7-step animated circle (Mux HLS, rendered by
  *      `PlaybookHero`, which also owns the CTA)
- *   3. The CTA — "Claim your gift" → /auth?claim=true&next=/zone-of-genius
+ *   3. The CTA — "Find your top talent" → /zone-of-genius
  *
  * No testimonials, no social-proof row, no "other projects" link. Everything
  * else belongs deeper in the journey, not on the front door.
  *
- * Pane 2 (SectionsPanel) auto-collapses on the JOURNEY route — see
- * `GameShellV2.tsx` where `isJourneyPage` gates the default state.
+ * ═══════════════════════════════════════════════════════════════════════════
+ * Day 48 iter 2 (Sasha, premium pass — "make it feel more premium"):
+ *
+ * Tier-1 moves applied to this file:
+ *   • Accent unification: the three colored accents (Top Talent / Productize /
+ *     Scale) are now all rendered in the signature gold palette. Color
+ *     regains meaning by coherence — "this is what we call Gold on this
+ *     page, the three inflection points of the promise". The rainbow
+ *     octave still lives on /playbook (where the 7 steps need distinct
+ *     colors to be navigable); here it would read as decoration.
+ *   • Editorial drop cap on the first letter of the hero — a large gold
+ *     italic "Y" anchors the eye before the sentence completes.
+ *   • Echo line ("So people don't buy it.") now italic + smaller — it
+ *     reads as the whispered consequence of the headline, not a peer
+ *     statement.
+ *   • Ornament bookends — a mirror of the gold-star divider closes the
+ *     four-line path, giving the hero editorial symmetry (open brace /
+ *     close brace around the promise).
+ *   • "Top Talent" carries a subtle gold underline — the one phrase that
+ *     is both the product name and the promise gets its own typographic
+ *     tell.
+ *   • Hero frame — a hairline border + rounded-3xl chamfer wraps the
+ *     whole promise block so it reads as an embossed card, not a loose
+ *     run of text.
+ *   • Whitespace — section gaps opened up, container padding increased.
+ *
+ * Tier-2 / Tier-3 moves live in index.css (paper grain, gold selection,
+ * gold focus rings, cta-breath / ornament-spin keyframes) and in
+ * PlaybookHero.tsx (small-caps eyebrow + CTA label, breath animation,
+ * star spin on the embedded star).
+ * ═══════════════════════════════════════════════════════════════════════════
  */
+
+// Signature gold gradient used for all three accents + the underline.
+// Lives inline rather than as a token because it's only used here — if
+// we later need it elsewhere we'll promote it to --skin-gold-gradient.
+const GOLD_GRADIENT =
+  "linear-gradient(135deg, #f4d472 0%, #d4af37 50%, #b8941e 100%)";
+const GOLD_GLOW =
+  "drop-shadow(0 0 10px rgba(244,212,114,0.45)) drop-shadow(0 0 3px rgba(212,175,55,0.55))";
+
+// Shared ornament (gradient rule · ✦ star · gradient rule).
+// Extracted so the top + bottom bookends stay pixel-identical.
+const Ornament = ({ className = "" }: { className?: string }) => (
+  <div
+    className={`flex items-center justify-center gap-4 max-w-md mx-auto ${className}`}
+    aria-hidden="true"
+  >
+    <span
+      className="flex-1 h-px"
+      style={{
+        background:
+          "linear-gradient(to right, transparent, var(--skin-ornament-rule, rgba(26,30,58,0.25)))",
+      }}
+    />
+    <span
+      className="text-base ornament-spin"
+      style={{
+        color: "var(--skin-ornament-star, rgba(184,134,11,0.85))",
+        textShadow:
+          "var(--skin-ornament-shadow, 0 0 12px rgba(240,194,127,0.5), 0 0 3px rgba(240,194,127,0.7))",
+      }}
+    >
+      ✦
+    </span>
+    <span
+      className="flex-1 h-px"
+      style={{
+        background:
+          "linear-gradient(to left, transparent, var(--skin-ornament-rule, rgba(26,30,58,0.25)))",
+      }}
+    />
+  </div>
+);
+
 const MethodologyLandingPage = () => {
   return (
-    /* Day 47 iter 13 (Sasha + mockup proportions):
-       Container compressed (max-w 740 → 640, py-10/16 → py-6/8) so the
-       whole hero (title + echo + ornament + structure + CTA + meta + text
-       link) fits on one viewport without scroll at common desktop heights. */
-    <div className="max-w-[640px] mx-auto px-5 py-6 md:py-8">
-      {/* ═══════ NAME ═══════ */}
-      <header className="text-center mb-6 px-4">
-        {/*
-          Hero v10 (Day 47 iter 10 — Sasha + GFOA synthesis):
-          Two-layer hero. Recognition FIRST, structure SECOND.
-
-          LAYER 1 — Recognition opener (dark navy, no gradients):
-            "You can't clearly explain what you do.
-             So it's not turning into something people pay for."
-
-          LAYER 2 — Compressed structure (UV→IR rainbow preserved,
-          7 steps mapped across the promise):
-            "Find Your [Top Talent]₁.
-             [Productize]₂ Yourself.
-             [Build]₃ it. [Launch]₄ it.
-             [Scale]₅ your [Revenue]₆ and [Impact]₇."
-
-          GFOA framing: "recognition first, compressed structure second —
-          layered, not chosen." Emotional lock happens in 5-10s; the
-          rainbow octave is preserved one beat later.
-        */}
-        {/* ── LAYER 1: Recognition opener — Day 47 iter 12 (GFOA v1.1):
-            Hierarchy restored. First line bold + large (impact beat).
-            Second line smaller + lighter (echo beat). Clear spacing between. */}
-        <h1
-          className="text-3xl sm:text-4xl md:text-5xl font-semibold leading-[1.1] tracking-[-0.01em] mb-5 sm:mb-6"
-          style={{
-            fontFamily: "'Cormorant Garamond', serif",
-            color: "var(--skin-text-primary, #0a1628)",
-            textShadow:
-              "var(--skin-text-halo-strong, 0 0 22px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.8), 0 2px 12px rgba(26,30,58,0.15))",
-          }}
-        >
-          You can't clearly say what you do.
-        </h1>
-        <p
-          className="text-xl sm:text-2xl md:text-3xl leading-[1.2] tracking-[-0.005em]"
-          style={{
-            fontFamily: "'Cormorant Garamond', serif",
-            fontWeight: 400,
-            color: "var(--skin-text-muted, rgba(26,30,58,0.7))",
-            textShadow:
-              "var(--skin-text-halo-subtle, 0 0 18px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.75))",
-          }}
-        >
-          So people don't buy it.
-        </p>
-
-        {/* Editorial ornament between the two layers — Day 47 iter 11
-            (Sasha, from ChatGPT mockup): thin gradient rule + gold star
-            centerpiece. Zero functional, whole-page lift. */}
-        <div
-          className="flex items-center justify-center gap-4 my-5 sm:my-6 max-w-md mx-auto"
-          aria-hidden="true"
-        >
-          <span
-            className="flex-1 h-px"
+    /* Day 48 iter 2: container widened slightly (640 → 680) AND vertical
+       padding opened up (py-6/8 → py-10/14) so the hero block breathes.
+       The frame (rounded-3xl + hairline border) is what holds the
+       composition together visually, not a tight column. */
+    <div className="max-w-[680px] mx-auto px-5 py-10 md:py-14">
+      {/* ═══════ HERO FRAME — Day 48 iter 2 ═══════
+          Subtle chamfered card around the full hero. A 1px hairline
+          + rounded-3xl + faint gold-tinted inset highlight makes the
+          whole promise read as "printed card" rather than "raw HTML
+          text in a pane". The frame is deliberately low-contrast —
+          it should register peripherally, never fight the text. */}
+      <div
+        className="relative rounded-3xl px-6 sm:px-10 py-10 sm:py-14"
+        style={{
+          border: "1px solid var(--skin-rule-medium, rgba(26,30,58,0.15))",
+          background:
+            "linear-gradient(180deg, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0.08) 100%)",
+          boxShadow:
+            "inset 0 1px 0 0 rgba(244, 212, 114, 0.18), 0 10px 40px -20px rgba(10, 22, 40, 0.15)",
+        }}
+      >
+        {/* ═══════ NAME ═══════ */}
+        <header className="text-center">
+          {/* ── LAYER 1: Recognition opener
+              Day 48 iter 2 (Sasha): editorial DROP CAP on the first
+              letter. Large gold italic "Y" sits flush with the rest
+              of the sentence — anchors the eye before the word
+              "You" even resolves. */}
+          <h1
+            className="text-3xl sm:text-4xl md:text-5xl font-semibold leading-[1.1] tracking-[-0.01em] mb-4 sm:mb-5"
             style={{
-              background:
-                "linear-gradient(to right, transparent, var(--skin-ornament-rule, rgba(26,30,58,0.25)))",
-            }}
-          />
-          <span
-            className="text-base"
-            style={{
-              color: "var(--skin-ornament-star, rgba(184,134,11,0.85))",
+              fontFamily: "'Cormorant Garamond', serif",
+              color: "var(--skin-text-primary, #0a1628)",
               textShadow:
-                "var(--skin-ornament-shadow, 0 0 12px rgba(240,194,127,0.5), 0 0 3px rgba(240,194,127,0.7))",
+                "var(--skin-text-halo-strong, 0 0 22px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.8), 0 2px 12px rgba(26,30,58,0.15))",
             }}
           >
-            ✦
-          </span>
-          <span
-            className="flex-1 h-px"
-            style={{
-              background:
-                "linear-gradient(to left, transparent, var(--skin-ornament-rule, rgba(26,30,58,0.25)))",
-            }}
-          />
-        </div>
-
-        {/* ── LAYER 2: Structure — Day 47 iter 12 (GFOA v1.1):
-            Three moves:
-              (a) 7 colored words → 3 colored words. Only TOP TALENT, PRODUCTIZE,
-                  SCALE carry neon gradient. Build / Launch / Revenue / Impact
-                  render in neutral dark navy. Color regains meaning by scarcity.
-                  NOTE: this retires the UV→IR octave rainbow from the hero.
-                  The 7-step methodology still lives on /playbook in full color;
-                  the landing now reads as "3 beats with 3 accents" not "rainbow".
-              (b) 4 lines become 4 separate block elements with proper vertical
-                  spacing (space-y-4 sm:space-y-5) — path rhythm, not paragraph.
-              (c) Font weight + tracking unchanged from prior iteration.
-          */}
-        <div
-          className="space-y-1.5 sm:space-y-2"
-          style={{
-            fontFamily: "'Cormorant Garamond', serif",
-            color: "var(--skin-text-primary, #0a1628)",
-            textShadow:
-              "var(--skin-text-halo-strong, 0 0 22px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.8), 0 2px 12px rgba(26,30,58,0.15))",
-          }}
-        >
-          {/* Line 1: Find Your [Top Talent]. */}
-          <p className="text-xl sm:text-2xl md:text-[1.75rem] font-medium leading-[1.3] tracking-[-0.005em]">
-            Find Your{" "}
             <span
+              aria-hidden="true"
               className="bg-clip-text text-transparent"
               style={{
-                backgroundImage:
-                  "var(--skin-accent-1-bg, linear-gradient(135deg, hsl(285, 85%, 28%) 0%, hsl(272, 85%, 24%) 50%, hsl(258, 85%, 26%) 100%))",
-                filter:
-                  "var(--skin-accent-1-glow, drop-shadow(0 0 10px hsl(278 95% 55% / 0.38)) drop-shadow(0 0 3px hsl(268 95% 48% / 0.45)))",
+                // Drop cap: 1.5× the body size, italic, gold gradient.
+                // `vertical-align: -0.08em` keeps the baseline aligned
+                // with the rest of the line despite the size bump.
+                fontSize: "1.5em",
+                fontStyle: "italic",
+                fontWeight: 600,
+                lineHeight: "0.9",
+                verticalAlign: "-0.08em",
+                marginRight: "0.02em",
+                backgroundImage: GOLD_GRADIENT,
+                filter: GOLD_GLOW,
                 textShadow: "none",
               }}
             >
-              Top Talent
+              Y
             </span>
-            .
+            {/* Screen readers get the full sentence; visual users see
+                the drop cap replacing the first Y. */}
+            <span className="sr-only">You</span>
+            <span aria-hidden="true">ou</span>
+            {" can't clearly say what you do."}
+          </h1>
+
+          {/* ── Echo — Day 48 iter 2: italic + smaller + lighter.
+              "So people don't buy it." drops in weight so it reads as
+              the whispered consequence of the headline, not a peer
+              statement. */}
+          <p
+            className="text-lg sm:text-xl md:text-2xl leading-[1.25] tracking-[-0.005em] italic"
+            style={{
+              fontFamily: "'Cormorant Garamond', serif",
+              fontWeight: 400,
+              color: "var(--skin-text-muted, rgba(26,30,58,0.7))",
+              textShadow:
+                "var(--skin-text-halo-subtle, 0 0 18px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.75))",
+            }}
+          >
+            So people don't buy it.
           </p>
 
-          {/* Line 2: [Productize] Yourself. */}
-          <p className="text-xl sm:text-2xl md:text-[1.75rem] font-medium leading-[1.3] tracking-[-0.005em]">
-            <span
-              className="bg-clip-text text-transparent"
-              style={{
-                backgroundImage:
-                  "var(--skin-accent-2-bg, linear-gradient(135deg, hsl(255, 85%, 28%) 0%, hsl(245, 85%, 24%) 50%, hsl(235, 85%, 26%) 100%))",
-                filter:
-                  "var(--skin-accent-2-glow, drop-shadow(0 0 10px hsl(248 95% 55% / 0.38)) drop-shadow(0 0 3px hsl(240 95% 48% / 0.45)))",
-                textShadow: "none",
-              }}
-            >
-              Productize
-            </span>{" "}
-            Yourself.
-          </p>
+          {/* Editorial ornament (top bookend) */}
+          <Ornament className="my-7 sm:my-8" />
 
-          {/* Line 3: Build it. Launch it. — NEUTRAL (no gradient). */}
-          <p className="text-xl sm:text-2xl md:text-[1.75rem] font-medium leading-[1.3] tracking-[-0.005em]">
-            Build it. Launch it.
-          </p>
+          {/* ── LAYER 2: Structure — Day 48 iter 2:
+              Three accents unified to gold (was: violet / indigo / green).
+              Scarcity preserved (only 3 of 7 words glow), but coherence
+              upgraded — gold reads as the signature metal of this page,
+              not a remnant of the old rainbow octave.
+              "Top Talent" additionally carries a subtle gold underline
+              since it is both the product name and the promise. */}
+          <div
+            className="space-y-2 sm:space-y-2.5"
+            style={{
+              fontFamily: "'Cormorant Garamond', serif",
+              color: "var(--skin-text-primary, #0a1628)",
+              textShadow:
+                "var(--skin-text-halo-strong, 0 0 22px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.8), 0 2px 12px rgba(26,30,58,0.15))",
+            }}
+          >
+            {/* Line 1: Find Your [Top Talent]. */}
+            <p className="text-xl sm:text-2xl md:text-[1.75rem] font-medium leading-[1.3] tracking-[-0.005em]">
+              Find Your{" "}
+              <span
+                className="bg-clip-text text-transparent relative"
+                style={{
+                  backgroundImage: GOLD_GRADIENT,
+                  filter: GOLD_GLOW,
+                  textShadow: "none",
+                  // Gold underline on Top Talent only — the product name.
+                  // Rendered via inline background-image + no-repeat so it
+                  // sits under the text regardless of line wrapping, and
+                  // doesn't affect the gradient text-fill above.
+                  backgroundPosition: "0 0, 0 100%",
+                  boxShadow: "inset 0 -2px 0 0 rgba(212, 175, 55, 0.5)",
+                  paddingBottom: "0.05em",
+                }}
+              >
+                Top Talent
+              </span>
+              .
+            </p>
 
-          {/* Line 4: [Scale] your Revenue and Impact. */}
-          <p className="text-xl sm:text-2xl md:text-[1.75rem] font-medium leading-[1.3] tracking-[-0.005em]">
-            <span
-              className="bg-clip-text text-transparent"
-              style={{
-                backgroundImage:
-                  "var(--skin-accent-3-bg, linear-gradient(135deg, hsl(138, 85%, 28%) 0%, hsl(128, 85%, 24%) 50%, hsl(115, 85%, 26%) 100%))",
-                filter:
-                  "var(--skin-accent-3-glow, drop-shadow(0 0 10px hsl(130 95% 42% / 0.38)) drop-shadow(0 0 3px hsl(122 95% 38% / 0.45)))",
-                textShadow: "none",
-              }}
-            >
-              Scale
-            </span>{" "}
-            your Revenue and Impact.
-          </p>
+            {/* Line 2: [Productize] Yourself. */}
+            <p className="text-xl sm:text-2xl md:text-[1.75rem] font-medium leading-[1.3] tracking-[-0.005em]">
+              <span
+                className="bg-clip-text text-transparent"
+                style={{
+                  backgroundImage: GOLD_GRADIENT,
+                  filter: GOLD_GLOW,
+                  textShadow: "none",
+                }}
+              >
+                Productize
+              </span>{" "}
+              Yourself.
+            </p>
+
+            {/* Line 3: Build it. Launch it. — NEUTRAL (no gradient). */}
+            <p className="text-xl sm:text-2xl md:text-[1.75rem] font-medium leading-[1.3] tracking-[-0.005em]">
+              Build it. Launch it.
+            </p>
+
+            {/* Line 4: [Scale] your Revenue and Impact. */}
+            <p className="text-xl sm:text-2xl md:text-[1.75rem] font-medium leading-[1.3] tracking-[-0.005em]">
+              <span
+                className="bg-clip-text text-transparent"
+                style={{
+                  backgroundImage: GOLD_GRADIENT,
+                  filter: GOLD_GLOW,
+                  textShadow: "none",
+                }}
+              >
+                Scale
+              </span>{" "}
+              your Revenue and Impact.
+            </p>
+          </div>
+
+          {/* Editorial ornament (bottom bookend) — Day 48 iter 2:
+              mirrors the top so the hero reads as an opened + closed
+              editorial passage, not an open-ended run-on. */}
+          <Ornament className="mt-8 sm:mt-10" />
+        </header>
+
+        {/* ═══════ INFOGRAPHIC + CTA ═══════
+            Day 48 iter 2: opened the gap between the ornament and the
+            CTA block so the CTA can breathe (the actual cta-breath
+            animation also reinforces this spatially). */}
+        <div className="mt-8 sm:mt-10">
+          <PlaybookHero />
         </div>
-      </header>
-
-      {/* ═══════ INFOGRAPHIC + CTA ═══════ */}
-      {/* PlaybookHero owns: the 7-step animated circle (Mux HLS) AND the
-          "Claim your gift" CTA. Keep the landing frame minimal around it. */}
-      <PlaybookHero />
+      </div>
     </div>
   );
 };

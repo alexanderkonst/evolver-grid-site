@@ -136,7 +136,11 @@ const PlaybookShell = ({
                     // "the seven round steps on top of the playbook keep the
                     // colors they have". Only the number glyph color adapts.
                     backgroundImage: `radial-gradient(circle at 30% 30%, ${step.neonHsl}, rgba(132,96,234,0.6))`,
-                    color: "var(--skin-text-primary, #0a1628)",
+                    // Day 48 (Sasha, mobile readability): pure navy on pale
+                    // neon read washed out at small mobile scale. Color-mix
+                    // with deeper navy for a bold readable digit.
+                    color: `color-mix(in srgb, var(--skin-text-primary, #0a1628) 85%, #000 15%)`,
+                    fontWeight: 700,
                     border: isActive
                       ? `1.5px solid ${step.neonHsl}`
                       : "1px solid var(--skin-rule-strong, rgba(26,30,58,0.2))",

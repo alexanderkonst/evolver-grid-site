@@ -34,8 +34,8 @@ export const TESTIMONIALS: TestimonialData[] = [
     after: "transmits a frequency of unconditional love — people arrive carrying weight, they leave alleviated.",
   },
   {
-    shortQuote: "It flips the whole situation. Transformative, full of high truths.",
-    fullQuote: "Wow. Wow. This is beautiful, man. It flips the whole situation. Thank you for enabling me this opportunity—or this journey, actually. I highly resonate with it. Your vision is beautiful. It's like a meta-startup, intergalactic meta-startup. Everything that you said—I remember, and it resonated, and it helped at that moment a lot. I'm laughing because it's liberating. I feel so much in the flow. It's such a beautiful thing to actually do. Such a good vibe, such a good understanding. Transformative, full of high truths, or at least discoveries for me.",
+    shortQuote: "The whole journey feels really beautiful.",
+    fullQuote: "Wow. Wow. This is beautiful, man. It flips the whole situation. Thank you for enabling me this opportunity — or this journey, actually. I highly resonate with it.",
     name: "Aleksa Stojanovic",
     before: "Web3 System Architect",
     after: "maps invisible architecture — the hidden pattern connecting everything you do into one product.",
