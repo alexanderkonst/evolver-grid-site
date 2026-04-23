@@ -282,10 +282,6 @@ const AppleseedDisplay = ({
                             <span aria-hidden="true" style={{ color: "var(--skin-text-faint, rgba(26,30,58,0.5))" }}>–</span>
                             <span>If people don't understand it → they don't buy.</span>
                         </li>
-                        <li className="flex gap-3">
-                            <span aria-hidden="true" style={{ color: "var(--skin-text-faint, rgba(26,30,58,0.5))" }}>–</span>
-                            <span>So nothing changes — even if you're actually good at what you do.</span>
-                        </li>
                     </ul>
 
                     <div className="space-y-2 pt-4">
@@ -320,8 +316,7 @@ const AppleseedDisplay = ({
                         }}
                     >
                         "I was applying force, but the vector was wrong.
-                        The structure you developed is genius. Absolutely
-                        everything clicks."
+                        The structure is genius. Absolutely everything clicks."
                     </blockquote>
                     <figcaption
                         className="mt-4 text-xs"
