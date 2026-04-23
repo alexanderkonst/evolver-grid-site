@@ -151,14 +151,16 @@ const Step3OrderTalents = () => {
               </button>
             </div>
 
-            {/* Rank badge — purple accent for #1, graded violet hues */}
+            {/* Rank badge — gold accent for #1, graded gold hues */}
             <div
               className="w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold shrink-0"
               style={
                 index === 0
-                  ? { backgroundColor: "#5b21b6", color: "#ffffff" }
+                  // Day 48 iter 7 (Sasha): migrated violet → gold for funnel coherence.
+                  ? { backgroundColor: "#a06d08", color: "#ffffff" }
                   : index === 1
-                    ? { backgroundColor: "rgba(91,33,182,0.2)", color: "#5b21b6" }
+                    // Day 48 iter 7 (Sasha): migrated violet → gold for funnel coherence.
+                    ? { backgroundColor: "rgba(212,175,55,0.18)", color: "#b08810" }
                     : { backgroundColor: "rgba(26,30,58,0.08)", color: "var(--skin-text-muted, rgba(26,30,58,0.7))" }
               }
             >
@@ -202,7 +204,8 @@ const Step3OrderTalents = () => {
             textShadow: "0 1px 2px rgba(255,255,255,0.6)",
           }}
         >
-          <Sparkles size={14} style={{ color: "#5b21b6" }} />
+          {/* Day 48 iter 7 (Sasha): migrated violet → gold for funnel coherence. */}
+          <Sparkles size={14} style={{ color: "#7a5108" }} />
           Generate My Top Talent
         </button>
       </div>
@@ -234,7 +237,8 @@ const Step3OrderTalents = () => {
             textShadow: "0 1px 2px rgba(255,255,255,0.6)",
           }}
         >
-          <Sparkles size={14} style={{ color: "#5b21b6" }} />
+          {/* Day 48 iter 7 (Sasha): migrated violet → gold for funnel coherence. */}
+          <Sparkles size={14} style={{ color: "#7a5108" }} />
           Generate My Snapshot
         </button>
       </div>

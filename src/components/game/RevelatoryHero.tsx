@@ -37,40 +37,47 @@ const RevelatoryHero = ({
 }: RevelatoryHeroProps) => {
     const isAppleseed = type === "appleseed";
 
+    // Day 48 iter 7 (Sasha): all three palette variants migrated from the
+    // violet/indigo family to the signature antique-gold language shared
+    // with the landing. Excalibur variant retains the deepest contrast
+    // (warm gold on cream) so it still reads distinctly from Appleseed.
     const palette = darkMode
         ? {
             gradient: "from-transparent to-transparent",
             icon: Sparkles,
-            iconBg: "bg-[#8460ea]/15",
-            iconColor: "text-[#8460ea]",
+            iconBg: "bg-[#d4af37]/20",
+            iconColor: "text-[#f4d472]",
             textPrimary: "text-white/90",
             textSecondary: "text-white/60",
-            textMuted: "text-[#b8a4f8]",
-            glowColor: "rgba(132,96,234,0.2)",
+            textMuted: "text-[#f4d472]",
+            glowColor: "rgba(212,175,55,0.22)",
             divider: "bg-white/10",
         }
         : isAppleseed
         ? {
-            gradient: "from-white/70 via-[#f0f4ff]/80 to-white/60",
+            gradient: "from-white/70 via-[#fdf6e3]/80 to-white/60",
             icon: Sparkles,
-            iconBg: "bg-[#8460ea]/10",
-            iconColor: "text-[#8460ea]",
+            iconBg: "bg-[#d4af37]/12",
+            iconColor: "text-[#7a5108]",
             textPrimary: "text-[#2c3150]",
             textSecondary: "text-[#2c3150]/70",
-            textMuted: "text-[#8460ea]",
-            glowColor: "rgba(132,96,234,0.1)",
-            divider: "bg-[#a4a3d0]/20",
+            textMuted: "text-[#7a5108]",
+            glowColor: "rgba(212,175,55,0.14)",
+            divider: "bg-[#d4af37]/22",
         }
         : {
-            gradient: "from-[#7c3aed] via-[#6d28d9] to-[#5b21b6]",
+            // Excalibur: rich warm-gold wash with cream text. Was a deep
+            // violet-purple gradient — now a single gold-family gradient
+            // that still sits apart from Appleseed via higher saturation.
+            gradient: "from-[#8c6410] via-[#7a5108] to-[#6b4208]",
             icon: Sword,
-            iconBg: "bg-violet-200/20",
-            iconColor: "text-violet-200",
+            iconBg: "bg-[#f4d472]/22",
+            iconColor: "text-[#f4d472]",
             textPrimary: "text-white",
-            textSecondary: "text-violet-100/80",
-            textMuted: "text-violet-100/60",
-            glowColor: "rgba(139,92,246,0.3)",
-            divider: "bg-violet-200/30",
+            textSecondary: "text-[#f5e6b0]/85",
+            textMuted: "text-[#f5e6b0]/65",
+            glowColor: "rgba(244,212,114,0.3)",
+            divider: "bg-[#f4d472]/30",
         };
 
     const IconComponent = palette.icon;

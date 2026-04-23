@@ -3,7 +3,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
 import { useNavigate } from "react-router-dom";
-import { ExternalLink, Download } from "lucide-react";
+import { ArrowRight, ExternalLink, Download } from "lucide-react";
 import { generateZogPdf } from "./generateZogPdf";
 import AppleseedSummaryCard from "@/components/profile/AppleseedSummaryCard";
 import ExcaliburSummaryCard from "@/components/profile/ExcaliburSummaryCard";
@@ -11,6 +11,10 @@ import SkeletonCard from "@/components/ui/SkeletonCard";
 import { AppleseedData } from "./appleseedGenerator";
 import { ExcaliburData } from "./excaliburGenerator";
 import { loadSavedData } from "./saveToDatabase";
+// Day 48 iter 7 (Sasha): every primary CTA on this page now uses the
+// landing-CTA signature (glass-dark pill + ignite emblem + small-caps
+// + breath). Shared helpers keep this page in lockstep with /.
+import { CTA_SMALL_CAPS_STYLE, igniteLogo } from "@/lib/landingDesign";
 
 const ZoneOfGeniusLandingPage = () => {
   const navigate = useNavigate();
@@ -60,16 +64,44 @@ const ZoneOfGeniusLandingPage = () => {
                 {appleseed && <AppleseedSummaryCard appleseed={appleseed} />}
                 {excalibur && <ExcaliburSummaryCard excalibur={excalibur} />}
                 {appleseed && !excalibur && (
-                  <div className="p-6 bg-violet-50 rounded-2xl border border-violet-200 text-center">
+                  /* Day 48 iter 7 (Sasha): violet fallback (bg-violet-50 +
+                     bg-violet-600) migrated to gold-tinted card + dark
+                     glass primary CTA so it reads as one family with
+                     every other CTA in the funnel. */
+                  <div
+                    className="p-6 rounded-2xl text-center"
+                    style={{
+                      backgroundImage:
+                        "linear-gradient(135deg, rgba(244, 212, 114, 0.10), rgba(212, 175, 55, 0.04))",
+                      border: "1px solid rgba(212, 175, 55, 0.25)",
+                    }}
+                  >
                     <h3 className="text-lg font-semibold text-[#2c3150] mb-2">Your Unique Offer</h3>
                     <p className="text-[rgba(44,49,80,0.7)] mb-4">
                       You know who you are. Now discover what you can offer.
                     </p>
                     <button
                       onClick={() => navigate("/zone-of-genius/entry")}
-                      className="px-4 py-2 rounded-full bg-violet-600 text-white font-semibold hover:bg-violet-700"
+                      className="group liquid-glass-dark cta-breath rounded-full inline-flex items-center justify-center gap-2.5 px-5 py-2.5 whitespace-nowrap text-sm font-semibold transition-all duration-300 hover:scale-[1.03] active:scale-[0.97]"
+                      style={{
+                        fontFamily: "'Cormorant Garamond', serif",
+                        color: "var(--skin-cta-text, rgba(245,245,250,0.98))",
+                        backgroundImage:
+                          "var(--skin-cta-bg, linear-gradient(135deg, rgba(10,22,40,0.72) 0%, rgba(26,30,58,0.62) 50%, rgba(10,22,40,0.72) 100%))",
+                        boxShadow:
+                          "var(--skin-cta-shadow, 0 0 18px -4px rgba(240,194,127,0.45), 0 10px 24px -10px rgba(10,22,40,0.5))",
+                      }}
                     >
-                      Create My Unique Offer →
+                      <img
+                        src={igniteLogo}
+                        alt=""
+                        aria-hidden="true"
+                        className="h-3.5 w-auto opacity-80 transition-opacity group-hover:opacity-100"
+                        style={{ filter: "drop-shadow(0 0 6px rgba(244, 212, 114, 0.45))" }}
+                        draggable={false}
+                      />
+                      <span style={CTA_SMALL_CAPS_STYLE}>Create my unique offer</span>
+                      <ArrowRight aria-hidden="true" className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />
                     </button>
                   </div>
                 )}
@@ -77,14 +109,20 @@ const ZoneOfGeniusLandingPage = () => {
 
               {/* Download PDF */}
               {appleseed && (
+                /* Day 48 iter 7 (Sasha): PDF download is secondary action
+                   (not "enter the funnel") — rendered as liquid-glass
+                   pill, not the gold-haloed primary. */
                 <div className="text-center pt-2">
                   <button
                     onClick={() => generateZogPdf(appleseed, excalibur)}
-                    className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold rounded-full transition-all shadow-md hover:shadow-lg"
-                    style={{ backgroundColor: 'hsl(210, 70%, 15%)', color: 'white' }}
+                    className="liquid-glass inline-flex items-center gap-2 px-6 py-3 text-sm font-medium rounded-full transition-all hover:scale-[1.02] active:scale-[0.98]"
+                    style={{
+                      fontFamily: "'Cormorant Garamond', serif",
+                      color: "var(--skin-link-secondary, rgba(26,30,58,0.85))",
+                    }}
                   >
                     <Download className="w-4 h-4" />
-                    Download Full PDF
+                    Download full PDF
                   </button>
                   <p className="text-xs text-muted-foreground mt-2">
                     All {excalibur ? '12 perspectives + Genius Business' : '12 perspectives'} in one clean document
@@ -104,19 +142,47 @@ const ZoneOfGeniusLandingPage = () => {
               Zone of Genius test that shows your core talents, where you thrive, and where you don't.
             </p>
 
+            {/* Day 48 iter 7 (Sasha): hero primary CTA migrated to
+                the landing-CTA signature — glass-dark pill + ignite
+                emblem + small-caps + breath. */}
             <button
               onClick={handleStartAssessment}
-              className="mt-8 px-8 py-4 text-base font-semibold rounded-full transition-all shadow-[0_0_20px_rgba(26,54,93,0.5)] hover:shadow-[0_0_30px_rgba(26,54,93,0.8)]"
+              className="group liquid-glass-dark cta-breath mt-8 rounded-full inline-flex items-center justify-center gap-2.5 px-7 py-3.5 whitespace-nowrap text-base font-semibold transition-all duration-300 hover:scale-[1.03] active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-white/40 outline-none"
               style={{
-                backgroundColor: 'hsl(210, 70%, 15%)',
-                color: 'white'
+                fontFamily: "'Cormorant Garamond', serif",
+                color: "var(--skin-cta-text, rgba(245,245,250,0.98))",
+                backgroundImage:
+                  "var(--skin-cta-bg, linear-gradient(135deg, rgba(10,22,40,0.72) 0%, rgba(26,30,58,0.62) 50%, rgba(10,22,40,0.72) 100%))",
+                boxShadow:
+                  "var(--skin-cta-shadow, 0 0 18px -4px rgba(240,194,127,0.45), 0 10px 24px -10px rgba(10,22,40,0.5))",
+                textShadow:
+                  "var(--skin-cta-text-shadow, 0 0 16px rgba(240,194,127,0.25), 0 1px 2px rgba(0,0,0,0.35))",
               }}
             >
-              Start My Zone of Genius Snapshot
+              <img
+                src={igniteLogo}
+                alt=""
+                aria-hidden="true"
+                className="h-4 w-auto opacity-80 transition-opacity group-hover:opacity-100"
+                style={{ filter: "drop-shadow(0 0 6px rgba(244, 212, 114, 0.45))" }}
+                draggable={false}
+              />
+              <span style={CTA_SMALL_CAPS_STYLE}>Start my snapshot</span>
+              <ArrowRight aria-hidden="true" className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5" />
             </button>
 
-            <p className="text-sm text-muted-foreground">
-              Free · ~3-15 minutes · One page you'll actually use (not a 40-page report)
+            {/* Meta eyebrow — small-caps editorial dateline under the CTA. */}
+            <p
+              className="text-xs"
+              style={{
+                color: "var(--skin-text-muted-soft, rgba(26,30,58,0.6))",
+                fontSize: "0.68rem",
+                letterSpacing: "0.22em",
+                textTransform: "uppercase",
+                fontWeight: 500,
+              }}
+            >
+              Free · 3–15 minutes · One page you'll actually use
             </p>
           </section>
 
@@ -214,13 +280,26 @@ const ZoneOfGeniusLandingPage = () => {
             <div className="text-center pt-6">
               <button
                 onClick={handleStartAssessment}
-                className="px-8 py-4 text-base font-semibold rounded-full transition-all shadow-[0_0_20px_rgba(26,54,93,0.5)] hover:shadow-[0_0_30px_rgba(26,54,93,0.8)]"
+                className="group liquid-glass-dark cta-breath rounded-full inline-flex items-center justify-center gap-2.5 px-7 py-3.5 whitespace-nowrap text-base font-semibold transition-all duration-300 hover:scale-[1.03] active:scale-[0.97]"
                 style={{
-                  backgroundColor: 'hsl(210, 70%, 15%)',
-                  color: 'white'
+                  fontFamily: "'Cormorant Garamond', serif",
+                  color: "var(--skin-cta-text, rgba(245,245,250,0.98))",
+                  backgroundImage:
+                    "var(--skin-cta-bg, linear-gradient(135deg, rgba(10,22,40,0.72) 0%, rgba(26,30,58,0.62) 50%, rgba(10,22,40,0.72) 100%))",
+                  boxShadow:
+                    "var(--skin-cta-shadow, 0 0 18px -4px rgba(240,194,127,0.45), 0 10px 24px -10px rgba(10,22,40,0.5))",
                 }}
               >
-                Get My Zone of Genius Snapshot
+                <img
+                  src={igniteLogo}
+                  alt=""
+                  aria-hidden="true"
+                  className="h-4 w-auto opacity-80 transition-opacity group-hover:opacity-100"
+                  style={{ filter: "drop-shadow(0 0 6px rgba(244, 212, 114, 0.45))" }}
+                  draggable={false}
+                />
+                <span style={CTA_SMALL_CAPS_STYLE}>Get my snapshot</span>
+                <ArrowRight aria-hidden="true" className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5" />
               </button>
             </div>
           </section>
@@ -446,13 +525,26 @@ const ZoneOfGeniusLandingPage = () => {
 
             <button
               onClick={handleStartAssessment}
-              className="px-8 py-4 text-base font-semibold rounded-full transition-all shadow-[0_0_20px_rgba(26,54,93,0.5)] hover:shadow-[0_0_30px_rgba(26,54,93,0.8)]"
+              className="group liquid-glass-dark cta-breath rounded-full inline-flex items-center justify-center gap-2.5 px-7 py-3.5 whitespace-nowrap text-base font-semibold transition-all duration-300 hover:scale-[1.03] active:scale-[0.97]"
               style={{
-                backgroundColor: 'hsl(210, 70%, 15%)',
-                color: 'white'
+                fontFamily: "'Cormorant Garamond', serif",
+                color: "var(--skin-cta-text, rgba(245,245,250,0.98))",
+                backgroundImage:
+                  "var(--skin-cta-bg, linear-gradient(135deg, rgba(10,22,40,0.72) 0%, rgba(26,30,58,0.62) 50%, rgba(10,22,40,0.72) 100%))",
+                boxShadow:
+                  "var(--skin-cta-shadow, 0 0 18px -4px rgba(240,194,127,0.45), 0 10px 24px -10px rgba(10,22,40,0.5))",
               }}
             >
-              Start My Zone of Genius Snapshot
+              <img
+                src={igniteLogo}
+                alt=""
+                aria-hidden="true"
+                className="h-4 w-auto opacity-80 transition-opacity group-hover:opacity-100"
+                style={{ filter: "drop-shadow(0 0 6px rgba(244, 212, 114, 0.45))" }}
+                draggable={false}
+              />
+              <span style={CTA_SMALL_CAPS_STYLE}>Start my snapshot</span>
+              <ArrowRight aria-hidden="true" className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5" />
             </button>
 
             <p className="text-xs text-muted-foreground pt-2">
@@ -468,17 +560,30 @@ const ZoneOfGeniusLandingPage = () => {
       {/* Scroll to Top Button */}
       <ScrollToTop />
 
-      {/* Sticky Mobile CTA */}
+      {/* Sticky Mobile CTA — Day 48 iter 7 (Sasha): unified to the
+          glass-dark pill signature. Ignite emblem + small-caps so
+          even the mobile snap-to-action reads as the brand voice. */}
       <div className="sm:hidden fixed bottom-0 left-0 right-0 bg-background/95 backdrop-blur-sm border-t border-border p-3 pb-safe-4 shadow-lg z-modal">
         <button
           onClick={handleStartAssessment}
-          className="w-full py-3 rounded-full font-semibold transition-all text-sm shadow-[0_0_20px_rgba(26,54,93,0.5)]"
+          className="group liquid-glass-dark cta-breath w-full rounded-full inline-flex items-center justify-center gap-2 px-5 py-3 text-sm font-semibold transition-all duration-300 active:scale-[0.98]"
           style={{
-            backgroundColor: 'hsl(210, 70%, 15%)',
-            color: 'white'
+            fontFamily: "'Cormorant Garamond', serif",
+            color: "var(--skin-cta-text, rgba(245,245,250,0.98))",
+            backgroundImage:
+              "var(--skin-cta-bg, linear-gradient(135deg, rgba(10,22,40,0.72) 0%, rgba(26,30,58,0.62) 50%, rgba(10,22,40,0.72) 100%))",
           }}
         >
-          Start Free Assessment
+          <img
+            src={igniteLogo}
+            alt=""
+            aria-hidden="true"
+            className="h-3.5 w-auto opacity-80"
+            style={{ filter: "drop-shadow(0 0 6px rgba(244, 212, 114, 0.45))" }}
+            draggable={false}
+          />
+          <span style={CTA_SMALL_CAPS_STYLE}>Start free assessment</span>
+          <ArrowRight aria-hidden="true" className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />
         </button>
       </div>
     </div>

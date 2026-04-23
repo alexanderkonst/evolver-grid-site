@@ -92,12 +92,18 @@ const OwnershipSection = ({
                         style={{ color: "var(--skin-text-primary, #0a1628)" }}
                         required
                     />
+                    {/* Day 48 iter 7 (Sasha): save-email button migrated
+                        from violet (#8460ea) to the signature gold so
+                        it reads as the same family as the primary CTA. */}
                     <button
                         type="submit"
                         disabled={emailSaving || !email.trim()}
                         className="flex-shrink-0 rounded-full px-4 py-1.5 text-xs font-semibold text-white
-                                   bg-[#8460ea]/90 hover:bg-[#8460ea]
                                    disabled:opacity-40 transition-colors"
+                        style={{
+                            backgroundImage:
+                                "linear-gradient(135deg, #a06d08 0%, #7a5108 45%, #6b4208 100%)",
+                        }}
                     >
                         {emailSaving ? "Saving…" : "Send it"}
                     </button>
@@ -384,11 +390,13 @@ const AppleseedDisplay = ({
                                 Turn My Top Talent into a Growing Business
                             </p>
                         </div>
+                        {/* Day 48 iter 7 (Sasha): violet arrow disc (#8460ea
+                            bg + #5b21b6 arrow) migrated to gold. */}
                         <span
                             className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 ml-4"
-                            style={{ backgroundColor: "rgba(132,96,234,0.15)" }}
+                            style={{ backgroundColor: "rgba(212, 175, 55, 0.18)" }}
                         >
-                            <ArrowRight className="w-5 h-5" style={{ color: "var(--skin-selected-text, #5b21b6)" }} />
+                            <ArrowRight className="w-5 h-5" style={{ color: "#7a5108" }} />
                         </span>
                     </a>
 

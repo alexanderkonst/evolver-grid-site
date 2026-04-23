@@ -135,7 +135,8 @@ const Step2SelectTop3CoreTalents = () => {
               {isSelected && (
                 <div
                   className="absolute top-3 right-3 w-5 h-5 rounded-full flex items-center justify-center"
-                  style={{ backgroundColor: "#5b21b6" }}
+                  // Day 48 iter 7 (Sasha): migrated violet → gold for funnel coherence.
+                  style={{ backgroundColor: "#a06d08" }}
                 >
                   <Check size={12} className="text-white" />
                 </div>

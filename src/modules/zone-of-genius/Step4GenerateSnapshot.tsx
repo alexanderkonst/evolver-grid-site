@@ -533,8 +533,9 @@ GENERAL STYLE RULES:
                       key={talent.id}
                       className="inline-flex items-center rounded-full px-4 py-2 text-xs sm:text-sm font-medium"
                       style={{
-                        backgroundColor: "rgba(91,33,182,0.15)",
-                        color: "#5b21b6",
+                        // Day 48 iter 7 (Sasha): migrated violet → gold for funnel coherence.
+                        backgroundColor: "rgba(212,175,55,0.18)",
+                        color: "#7a5108",
                       }}
                     >
                       {talent.name}
@@ -723,7 +724,12 @@ GENERAL STYLE RULES:
                     <button
                       type="submit"
                       disabled={saveState === "saving" || !saveEmail.trim()}
-                      className="flex-shrink-0 rounded-full px-4 py-1.5 text-xs font-semibold text-white bg-[#8460ea]/90 hover:bg-[#8460ea] disabled:opacity-40 transition-colors"
+                      // Day 48 iter 7 (Sasha): migrated violet → gold for funnel coherence.
+                      className="flex-shrink-0 rounded-full px-4 py-1.5 text-xs font-semibold text-white disabled:opacity-40 transition-colors"
+                      style={{
+                        backgroundImage:
+                          "linear-gradient(135deg, #a06d08 0%, #7a5108 45%, #6b4208 100%)",
+                      }}
                     >
                       {saveState === "saving" ? "Saving…" : "Send it"}
                     </button>

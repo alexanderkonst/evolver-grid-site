@@ -1028,11 +1028,52 @@ All colors MUST be HSL.
   will-change: transform;
 }
 
+/* Brand-mark alive tell — Day 48 iter 7 (Sasha):
+   The rail's torus/wordmark needs a subtle "living" quality so the
+   nav column doesn't feel dead. Two animations, used separately:
+
+   • `brand-breath` — very gentle 6s scale pulse. Safe for the
+     wordmark lockup (doesn't tilt text), adds depth without drawing
+     the eye. Applied to both desktop + mobile brand marks.
+   • `brand-spin-slow` — 60s full rotation. ONLY applied to the
+     mobile torus-only asset (pure geometric form reads fine at any
+     rotation). Desktop wordmark stays upright because rotating text
+     is visually wrong. */
+@keyframes brand-breath {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.98;
+  }
+  50% {
+    transform: scale(1.018);
+    opacity: 1;
+  }
+}
+
+@keyframes brand-spin-slow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+.brand-breath {
+  animation: brand-breath 6s ease-in-out infinite;
+  will-change: transform, opacity;
+  transform-origin: center;
+}
+
+.brand-spin-slow {
+  animation: brand-spin-slow 60s linear infinite;
+  will-change: transform;
+  transform-origin: center;
+}
+
 /* Respect reduced-motion: anyone who asked for less animation gets
-   the CTA halo as a static state and the star stops turning. */
+   the CTA halo + ornament + brand mark as static states. */
 @media (prefers-reduced-motion: reduce) {
   .cta-breath,
-  .ornament-spin {
+  .ornament-spin,
+  .brand-breath,
+  .brand-spin-slow {
     animation: none !important;
   }
 }

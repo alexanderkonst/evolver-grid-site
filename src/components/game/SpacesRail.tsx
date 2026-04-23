@@ -18,6 +18,44 @@ import GlyphIcon from "./GlyphIcon";
 // mark-only asset is cleaner.
 import brandLogo from "@/assets/find-your-top-talent-logo.png";
 import brandMark from "@/assets/find-your-top-talent-torus.png";
+// Day 48 iter 7 (Sasha): JOURNEY + ME spaces now render with custom
+// image assets (gold-tinted) instead of typographic glyphs — keeps
+// them coherent with the gold-signature identity while the other
+// five spaces retain their color-coded rainbow glyphs (they're
+// locked + colorful-by-design).
+import journeyIcon from "@/assets/journey-icon.png";
+import meIcon from "@/assets/me-icon.png";
+
+/**
+ * ImageIcon — inline <img> used for spaces whose glyph is better
+ * expressed as a custom image (JOURNEY + ME). Matches GlyphIcon's
+ * 28×28 footprint so it slots into the same grid cell. Optional
+ * `glow` adds a warm gold drop-shadow halo around the mark.
+ */
+const ImageIcon = ({
+    src,
+    alt,
+    glow = false,
+}: {
+    src: string;
+    alt: string;
+    glow?: boolean;
+}) => (
+    <img
+        src={src}
+        alt={alt}
+        aria-hidden="true"
+        draggable={false}
+        className="flex-shrink-0 select-none object-contain"
+        style={{
+            width: 28,
+            height: 28,
+            filter: glow
+                ? "drop-shadow(0 0 8px rgba(244, 212, 114, 0.7)) drop-shadow(0 0 2px rgba(212, 175, 55, 0.9))"
+                : "drop-shadow(0 0 4px rgba(244, 212, 114, 0.3))",
+        }}
+    />
+);
 
 interface SpaceItem {
     id: string;
@@ -38,7 +76,10 @@ const SPACES: SpaceItem[] = [
     {
         id: "journey",
         label: "JOURNEY",
-        icon: <GlyphIcon glyph="✵" color="hsl(175, 80%, 60%)" />,
+        // Day 48 iter 7 (Sasha): teal ✵ glyph replaced with the custom
+        // gold-with-blue-hints journey icon asset. Asset ships with its
+        // own warm palette so no extra glow is needed.
+        icon: <ImageIcon src={journeyIcon} alt="Journey" />,
         path: "/game/journey",
     },
     // Hidden until built — uncomment to re-enable
@@ -51,7 +92,10 @@ const SPACES: SpaceItem[] = [
     {
         id: "grow",
         label: "ME",
-        icon: <GlyphIcon glyph="❂" color="hsl(265, 70%, 72%)" />,
+        // Day 48 iter 7 (Sasha): purple ❂ glyph replaced with the custom
+        // ME icon asset. Sasha asked for a warm gold glow around the
+        // mark — rendered via drop-shadow on the <img> (see ImageIcon).
+        icon: <ImageIcon src={meIcon} alt="Me" glow />,
         path: "/game/me",
     },
     {
@@ -148,19 +192,37 @@ const SpacesRail = ({
     return (
         <div
             className={cn(
-                "w-[72px] lg:w-[280px] flex flex-col",
+                "w-[72px] lg:w-[280px] flex flex-col relative",
                 "liquid-glass",
                 className
             )}
             /* Day 48 later (Sasha): Pane 1 pulls --skin-panel-1-bg (marine
-               navy in both skins) + a warm gold right-edge glow so the
-               seam between rail and content reads like the mockup. */
+               navy in both skins). Day 48 iter 7 (Sasha): the flat 1px
+               inset gold line retired in favor of a vertical gradient
+               "spine" rendered as an absolute-positioned element below.
+               Outer gold glow preserved via boxShadow. */
             style={{
                 backgroundColor: "var(--skin-panel-1-bg, rgba(8, 20, 44, 0.86))",
                 boxShadow:
-                    "inset -1px 0 0 rgba(212, 175, 55, 0.22), 3px 0 24px -10px rgba(244, 212, 114, 0.18)",
+                    "3px 0 28px -10px rgba(244, 212, 114, 0.22)",
             }}
         >
+            {/* Gold spine — Day 48 iter 7 (Sasha):
+                Right-edge accent as a vertical gradient. Strongest in
+                the upper-middle (where the eye naturally lands — near
+                the active JOURNEY chip), softer at top and bottom so
+                the pane reads as a backlit "book spine" rather than a
+                flat ruled line. Positioned absolute on the inner
+                right edge; pointer-events-none so it never blocks
+                interaction. */}
+            <span
+                aria-hidden="true"
+                className="absolute top-0 right-0 h-full w-px pointer-events-none"
+                style={{
+                    backgroundImage:
+                        "linear-gradient(180deg, rgba(212, 175, 55, 0) 0%, rgba(212, 175, 55, 0.18) 16%, rgba(244, 212, 114, 0.55) 40%, rgba(212, 175, 55, 0.38) 62%, rgba(212, 175, 55, 0.12) 88%, rgba(212, 175, 55, 0) 100%)",
+                }}
+            />
             {/* Brand logo — Day 48 (Sasha): back to the original
                 left-anchored placement (inside the p-2 md:p-3 padding),
                 then -11% size. Desktop: full wordmark fills rail width
@@ -173,19 +235,24 @@ const SpacesRail = ({
                     aria-label="Find Your Top Talent — home"
                 >
                     {/* Mobile: dedicated torus mark, no wordmark — avoids
-                        the wordmark-cropping bug on a 72px rail. Day 48 (Sasha). */}
+                        the wordmark-cropping bug on a 72px rail.
+                        Day 48 iter 7 (Sasha): torus now carries BOTH a
+                        slow 60s rotation and a gentle 6s breath so the
+                        rail feels like a living object, not a nav bar. */}
                     <img
                         src={brandMark}
                         alt="Find Your Top Talent"
-                        className="md:hidden w-10 h-10 mx-auto object-contain"
+                        className="md:hidden w-10 h-10 mx-auto object-contain brand-spin-slow"
                         draggable={false}
                     />
-                    {/* Desktop: full wordmark — original placement, size
-                        reduced 11% from full rail width. */}
+                    {/* Desktop: full wordmark — breath only (no rotation,
+                        since spinning text reads as broken). The 6s
+                        scale pulse adds depth without compromising the
+                        wordmark's legibility. */}
                     <img
                         src={brandLogo}
                         alt="Find Your Top Talent"
-                        className="hidden md:block h-auto object-contain"
+                        className="hidden md:block h-auto object-contain brand-breath"
                         style={{ width: "89%" }}
                         draggable={false}
                     />
