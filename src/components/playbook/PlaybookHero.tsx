@@ -37,8 +37,11 @@ const PlaybookHero = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="mb-6 sm:mb-10">
-      <div className="flex flex-col items-center gap-3 px-4 text-center">
+    /* Day 48 iter 5 (Sasha): outer mb tightened (mb-6/10 → mb-3/5)
+       so the CTA sits above the fold on the landing. Inner gap
+       reduced (gap-3 → gap-2.5) to match. */
+    <div className="mb-3 sm:mb-5">
+      <div className="flex flex-col items-center gap-2.5 px-4 text-center">
         {/* Primary CTA — compact glass pill. Auto-width via
             `inline-flex` + `whitespace-nowrap`. Padding reduced
             `px-6 py-4` → `px-5 py-2.5` so the button feels precise
