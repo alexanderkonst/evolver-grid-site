@@ -176,52 +176,33 @@ interface SectionsPanelProps {
 /**
  * Build the JOURNEY pane sections.
  *
- * Rule (Sasha, 2026-04-21 v2): three items, always shown in this order:
- *   1. Start here         → /             (the landing page)
- *   2. The playbook       → /playbook     (the full 7-step methodology)
- *   3. The path           → /path         (the value ladder)
+ * Rule (Sasha, Day 48 final): exactly three items during onboarding —
+ * same list for guests and authenticated users.
+ *   1. Start Here     → /         (the landing page)
+ *   2. The Playbook   → /playbook (the full 7-step methodology)
+ *   3. The Path       → /path     (the value ladder)
  *
- * If the user is authenticated, "My Artifacts" is appended at the end.
- * The deeper progressive "Step N: ..." list is retired — it lived in a
- * separate phase of the design. Can return later as a sub-section if
- * Sasha calls for it.
- *
- * `currentStep` is kept in the signature for now in case we reintroduce
- * progression-aware reveals; currently unused.
+ * "My Artifacts" retired from the sidebar — not part of the onboarding
+ * trio. Still reachable via its URL for users who want it.
+ * Deeper progressive "Step N: ..." list also stays retired.
  */
-const buildJourneySections = (
-    _currentStep: number,
-    showAuthedExtras: boolean,
-): Section[] => {
-    const sections: Section[] = [
-        {
-            id: "journey-start-here",
-            label: "1. Start Here",
-            path: "/",
-        },
-        {
-            id: "journey-the-playbook",
-            label: "2. The Playbook",
-            path: "/playbook",
-        },
-        {
-            id: "journey-the-path",
-            label: "3. The Path",
-            path: "/path",
-        },
-    ];
-
-    // "My Artifacts" requires auth — each user's own artifacts, RLS-scoped.
-    if (showAuthedExtras) {
-        sections.push({
-            id: "journey-my-artifacts",
-            label: `${sections.length + 1}. My Artifacts`,
-            path: "/my-artifacts",
-        });
-    }
-
-    return sections;
-};
+const buildJourneySections = (): Section[] => [
+    {
+        id: "journey-start-here",
+        label: "1. Start Here",
+        path: "/",
+    },
+    {
+        id: "journey-the-playbook",
+        label: "2. The Playbook",
+        path: "/playbook",
+    },
+    {
+        id: "journey-the-path",
+        label: "3. The Path",
+        path: "/path",
+    },
+];
 
 const SectionsPanel = ({
     activeSpaceId,
