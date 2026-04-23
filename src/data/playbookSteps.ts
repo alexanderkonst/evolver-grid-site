@@ -308,21 +308,22 @@ export const PLAYBOOK_STEPS: PlaybookStep[] = [
         name: "Intuitively identify 5 people in your network that are in your tribe",
         description: "",
         oneProvenStrategy:
-          "Watch for names of people in your network naturally bubbling up in your awareness. Write them down as they do — trust your first instinct even when the mind says \u201Cthat must be a glitch\u201D (that\u2019s exactly NOT a glitch). Send intuitive quick messages without overthinking it, offering them the transformational promise.",
+          "Set an intention to be listening to your intuition to suggest. Then from then on, watch for names of people in your network naturally bubbling up in your awareness. Maybe almost right away, maybe in the next day or two, maybe longer. Don\u2019t brute force it with the mind greedily wanting more client names. The key is to get one at a time. Until the next one. Trust your first instinct even when the mind says \u201Cthat could not be it\u201D. Write them down immediately so your ego doesn\u2019t dodge. Then whenever you get to it send an intuitive quick message without overthinking it. At this stage, you could offer them the transformational promise as a gift, offer is at an introductory price if appropriate, share an exciting professional update of now focusing on this.",
       },
       {
         number: 2,
-        name: "Deliver your product, record it, track and analyze with AI, learn iteratively, track key metrics",
+        name:
+          "Deliver your product as a 1:1 session, record it, track and analyze with AI, extract testimonials from their direct text (and/or video) quotes, do it again, learn iteratively, track what you think are your three key metrics.",
         description: "",
         oneProvenStrategy:
-          "Use a simple dashboard to track delivery + outcomes. Use an AI recorder like fathom.video or Plaud so every session becomes a learning artifact.",
+          "Use a simple dashboard to track delivery + outcomes like www.aleksandrkonstantinov.com/dashboard. Do use an AI recorder like fathom.video or Plaud so every session becomes a learning artifact.",
       },
       {
         number: 3,
-        name: "Polish your delivery and find your tribe with bull\u2019s-eye precision",
+        name: "Get good at delivery and find your highly specific tribe.",
         description: "",
         oneProvenStrategy:
-          "When you reach ~10 sessions delivered across ~5 clients (numbers are arbitrary but empirical), that\u2019s where you start to know what you\u2019re doing — getting really good at delivering transformational results across flavors of people, and the bull\u2019s-eye tribe (aka beachhead market) emerges.",
+          "When you reach ~10 sessions delivered across ~5 clients (so it seems), that\u2019s where you start to be getting good at delivering transformational results across key flavors of people and situations to your tribe. Out of this newly earned clarity blossoms the flower of the highly specific aligned client tribe. For me as of April 2026 that\u2019s conscious aspiring impact entrepreneurs building their visionary ventures.",
       },
     ],
   },
@@ -341,21 +342,22 @@ export const PLAYBOOK_STEPS: PlaybookStep[] = [
         name: "Build landing, funnel, and lead magnet that transform your ~10/10 tribe at every touchpoint",
         description: "",
         oneProvenStrategy:
-          "Crystallize everything from Steps 1–5 into ONE landing page + ONE funnel + the playbook as the free lead magnet. Give out the methodology of how you get people to the transformational result as best and as openly as you can so that it becomes a DIY recipe. Every word, every CTA, every screen transition should name their lived pain, collapse indecision into consciousness of the cost of consequences, and use identity-shift language. Use Godfather Offer Architect GPT or equivalent; run 5–10+ rounds of live iteration until the page can close without you on the call. Test of success: a cold ~10/10 aligned reader almost takes out their card unprompted. If yes, the page is live. If not, keep iterating.",
+          "The site you are reading is the landing page, the lead magnet is this playbook and the top talent reveal. The funnel is you reading this and what follows. Here is the template:\n\n1. Give out your method/playbook of how you got your transformational result as a free lead magnet.\n2. Crystallize everything from Steps 1–5 into a landing page, and a funnel. Use Godfather Offer Architect GPT or equivalent, and iterate through cycles of roast, and producing a next version.\n3. Your funnel is you helping them make a beneficial decision. You could highlight the cost of procrastinating on solving their painful situation, use identity-shift language. Iterate until the page can close without you on the call. Test of success is straightforward: ~10/10 aligned clients buy. If yes, you are at early PMF. If not, keep iterating. You are the answer.\n\nPS: My recommendation is not to quit doing whatever is currently bringing income. Not until at least this stage of your unique business. Kinda obvious but it is better to say it.",
       },
       {
         number: 2,
-        name: "Create and activate a \u201Cmaster tuning fork\u201D that repels non-clients and pulls in your bull\u2019s-eye tribe \u2014 the simplest possible frame of the transformation in ONE sentence",
+        name: "Laser-focus your communication on your 9+/10 tribe.",
         description: "",
         oneProvenStrategy:
-          "Lock ONE sentence that makes the wrong people quietly leave and the right people sit up. Then post it onto your key digital channels: (a) bios (LinkedIn, Instagram, WhatsApp, Telegram, email signature, X, FB) with the same line + same URL; (b) ONE DM template (personalize only the name); (c) ONE life-update post \u2014 what you just focused your life on, URL as only link, no pitch; (d) ONE bold content piece that diagnoses the pain the tribe lives in.",
+          "Create and activate a \u201Cmaster tuning fork\u201D that repels non-clients and pulls in your 9+/10 tribe \u2014 the simplest possible frame of the transformation in ONE sentence. It will make the right people sit up, and makes other quietly leave. Then post a variation of it to your key digital channels: (a) one line + a URL bios (LinkedIn, Instagram, WhatsApp, Telegram, email signature, X, FB); (b) ONE DM template gifting the lead magnet and sharing your life\u2019s work; (c) ONE life-update post \u2014 what you just focused your life on, URL as only link, no pitch; (d) ONE bold content piece that diagnoses the pain the tribe lives in, or another first post.",
       },
       {
         number: 3,
-        name: "Send a personal life-update + your lead magnet to 10/10 tribe-aligned people (selected intuitively, especially ones holding a community). Make intros in 10/10 aligned live communities. If demand isn\u2019t growing organically at this point, activate additional digital + physical surfaces, go upstream to aligned practitioners serving a similar ~10/10 tribe, and/or start outreach campaigns",
-        description: "",
+        name: "Send a personal life-update + your lead magnet to tribe-aligned people (selected intuitively, especially ones holding a community). Make intros in 9+/10 aligned communities where appropriate.",
+        description:
+          "If demand isn\u2019t growing organically at this point yet, there are three strategies to add more kindle to this ignition:\n\n1. you need more iteration towards higher specificity on your tribe which may require adjustment to the landing, funnel, and lead magnet, and/or\n2. Activate additional digital + physical surfaces (ask AI to give your an integral list of digital and physical surfaces where it is optimal for you to place your communication for your specific tribe)\n3. Go upstream to aligned practitioners serving the same tribe, and/or start outreach campaigns",
         oneProvenStrategy:
-          "Sit still, let names arise \u2014 trust the first instinct, especially weak-tie names (research is clear: weak ties carry the novelty strong ties can\u2019t). The higher their tribe-alignment AND community-holding potential, the better. Include the lead magnet (playbook / methodology link) as the gift, not the ask. Parallel: write ONE short, culture-matched intro for each alive ~10/10 community where you\u2019re already a member \u2014 wherever appropriate.",
+          "Sit still, let names arise \u2014 trust the first instinct, especially weak-tie names (research is clear: weak ties carry the novelty strong ties can\u2019t). The higher their tribe-alignment AND community-holding potential, the better. Include the lead magnet (playbook / methodology link) as the gift, not the ask. Parallel: write ONE short intro for each alive ~10/10 community where you\u2019re already a member \u2014 wherever appropriate. Culture-match the text using AI by giving it some of the chat content, and/or intros.",
       },
     ],
   },
