@@ -48,13 +48,13 @@ const LADDER: LadderRow[] = [
   {
     step: "Step 4",
     title: "Build your First Unique Product",
-    duration: "3 weeks, part-time",
+    duration: "3 weeks, alongside other conscious impact entrepreneurs",
     price: "$1,111",
   },
   {
     step: "Step 5",
     title: "Gift it or Sell It To Beta-Test That Everything Works",
-    duration: "1–2 weeks (capped 1 month)",
+    duration: "Estimated 1–3 weeks",
     price: "$333",
   },
   {
