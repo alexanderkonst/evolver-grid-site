@@ -158,11 +158,12 @@ const SpacesRail = ({
                     "inset -1px 0 0 rgba(212, 175, 55, 0.22), 3px 0 24px -10px rgba(244, 212, 114, 0.18)",
             }}
         >
-            {/* Brand logo — Day 48 (Sasha, later): centered in the rail
-                with a harmonized max-width (148px) so it sits as a
-                visual centerpiece rather than a left-anchored slab.
-                Mobile keeps the 32×32 orb crop for the 72px rail. */}
-            <div className="px-3 pt-4 pb-2">
+            {/* Brand logo — Day 48 (Sasha): back to the original
+                left-anchored placement (inside the p-2 md:p-3 padding),
+                then -11% size. Desktop: full wordmark fills rail width
+                naturally minus 11% via `max-w-[89%]`. Mobile: 32×32
+                orb crop kept small. */}
+            <div className="p-2 md:p-3">
                 <Link
                     to="/"
                     className="block group transition-all hover:opacity-90"
@@ -179,12 +180,13 @@ const SpacesRail = ({
                         }}
                         aria-hidden="true"
                     />
-                    {/* Desktop: full logo (orb + wordmark), centered. */}
+                    {/* Desktop: full wordmark — original placement, size
+                        reduced 11% from full rail width. */}
                     <img
                         src={brandLogo}
                         alt="Find Your Top Talent"
-                        className="hidden md:block h-auto object-contain mx-auto"
-                        style={{ width: "100%", maxWidth: "148px" }}
+                        className="hidden md:block h-auto object-contain"
+                        style={{ width: "89%" }}
                         draggable={false}
                     />
                 </Link>
