@@ -2,7 +2,6 @@ import { ReactNode, memo, useEffect, useState } from "react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
-    Settings,
     LogOut,
     LogIn,
 } from "lucide-react";
@@ -24,6 +23,9 @@ import brandMark from "@/assets/find-your-top-talent-torus.png";
 // locked + colorful-by-design).
 import journeyIcon from "@/assets/journey-icon.png";
 import meIcon from "@/assets/me-icon.png";
+// Day 48 iter 10 (Sasha): Settings gear (lucide) replaced with a
+// custom gold settings mark. Does NOT rotate — Sasha's explicit note.
+import settingsIcon from "@/assets/settings-icon.png";
 
 /**
  * ImageIcon — inline <img> used for spaces whose glyph is better
@@ -404,7 +406,22 @@ const SpacesRail = ({
                     )}
                     title="Settings"
                 >
-                    <Settings className="w-5 h-5 flex-shrink-0" />
+                    {/* Day 48 iter 10 (Sasha): custom gold settings
+                        mark in place of the lucide gear. Static — no
+                        rotation per Sasha's explicit note. */}
+                    <img
+                        src={settingsIcon}
+                        alt=""
+                        aria-hidden="true"
+                        draggable={false}
+                        className="flex-shrink-0 select-none object-contain"
+                        style={{
+                            width: 22,
+                            height: 22,
+                            filter: "drop-shadow(0 0 4px rgba(244, 212, 114, 0.25))",
+                            opacity: 0.75,
+                        }}
+                    />
                     <span
                         className="hidden md:block truncate"
                         style={{

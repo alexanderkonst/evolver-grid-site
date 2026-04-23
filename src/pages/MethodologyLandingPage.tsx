@@ -44,7 +44,7 @@ const MethodologyLandingPage = () => {
               "var(--skin-text-halo-subtle, 0 0 18px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.75))",
           }}
         >
-          So people don't buy it.
+          So people don't buy.
         </p>
 
         {/* Top ornament bookend (bottom bookend retired — CTA emblem
