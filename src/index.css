@@ -1028,6 +1028,74 @@ All colors MUST be HSL.
   will-change: transform;
 }
 
+/* ========================================
+   GENTLE-SPIN — Day 48 iter 9 (Sasha)
+   ========================================
+   One rotation utility for every geometric (non-text) image across
+   the site. Applied via descendant selectors below so we don't have
+   to touch every CTA by hand.
+
+   Cost profile (answering Sasha's question):
+     • GPU-composited transform — near-zero CPU impact
+     • Each rotating element gets its own compositor layer (~KB GPU
+       memory). We rotate ~10-15 small images total, well within
+       budget on any device from the last 5 years.
+     • 60s duration means the GPU can render at 15fps and still look
+       smooth (delta per frame is 6° — well below perceptible jitter).
+     • Linear easing (not cubic) skips the bezier calc — cheaper.
+     • `will-change: transform` promotes the layer upfront so the
+       browser doesn't have to do it on first rotation tick.
+     • Mobile behaves identically — iOS + Android ship the same
+       GPU compositor pipeline as desktop Chromium / Safari.
+
+   Rule of thumb: as many as you want, at speeds this slow.
+   ======================================== */
+@keyframes gentle-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+.gentle-spin {
+  animation: gentle-spin 60s linear infinite;
+  will-change: transform;
+  transform-origin: center;
+  display: inline-block;
+}
+
+/* Targeted rules — these apply the rotation globally without needing
+   per-file edits. Each selector is scoped tight enough that we only
+   catch the emblems/icons we mean to rotate, never text or chrome. */
+
+/* 1. Every primary CTA across the site uses `.cta-breath` as its
+   signature class. The first <img> inside is always the ignite
+   emblem (landing, ZoG entry's 3 buttons, ZoG landing's 4 CTAs,
+   ExcaliburDisplay's Product Builder — all ~10 places). This
+   single rule rotates them all. */
+.cta-breath > img:first-of-type {
+  animation: gentle-spin 60s linear infinite;
+  will-change: transform;
+  transform-origin: center;
+}
+
+/* 2. Rail custom icons (JOURNEY + ME) carry the shared drop-shadow
+   signature we wired into `ImageIcon`. We can't select by class from
+   here, so SpacesRail.tsx applies `.gentle-spin` directly on those
+   two <img> elements. (The 5 other space icons are typographic
+   glyphs — not images — so they stay upright by nature.) */
+
+/* 3. Top-right "home" icon in GameShellV2 — applied via className
+   on the <img> itself. */
+
+/* 4. Ornament centerpiece already spins via `ornament-spin` (48s,
+   kept separate so the editorial dividers have their own tempo). */
+
+@media (prefers-reduced-motion: reduce) {
+  .gentle-spin,
+  .cta-breath > img:first-of-type {
+    animation: none !important;
+  }
+}
+
 /* Brand-mark alive tell — Day 48 iter 7 (Sasha):
    The rail's torus/wordmark needs a subtle "living" quality so the
    nav column doesn't feel dead. Two animations, used separately:

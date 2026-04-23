@@ -538,6 +538,11 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                         Renders the legacy dodecahedron/fractal icon with a radial
                         mask — reads as a distinct "home button" visually separate
                         from the new brand wordmark that sits in the rail. */}
+                    {/* Day 48 iter 9 (Sasha): home icon now rotates slowly
+                        via .gentle-spin (60s linear infinite). Matches
+                        the rail icons + CTA emblems + ornament centerpiece
+                        so every geometric image on the page has the same
+                        "breathing object" tempo. */}
                     {!hideLogo && (
                         <Link to="/" className="absolute top-4 right-4 z-50 block w-10 h-10 group">
                             <div
@@ -547,7 +552,7 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                                     maskImage: "radial-gradient(circle at center, black 40%, transparent 75%)",
                                 }}
                             >
-                                <img src={logoSrc} alt="Home" className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" draggable={false} />
+                                <img src={logoSrc} alt="Home" className="w-full h-full object-cover gentle-spin transition-transform duration-300 group-hover:scale-110" draggable={false} />
                             </div>
                         </Link>
                     )}
