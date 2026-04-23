@@ -10,6 +10,7 @@ import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 import { getOrCreateGameProfileId } from "@/lib/gameProfile";
 import { logActionEvent } from "@/lib/actionEvents";
+import { getPostZogRedirect } from "@/lib/onboardingRouting";
 import { getZogAssessmentBasePath, getZogStepPath } from "./zogRoutes";
 
 const Step4GenerateSnapshot = () => {
