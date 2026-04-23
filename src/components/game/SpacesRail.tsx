@@ -2,7 +2,6 @@ import { ReactNode, memo, useEffect, useState } from "react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
-    Lock,
     Settings,
     LogOut,
     LogIn,
@@ -259,8 +258,22 @@ const SpacesRail = ({
                 </Link>
             </div>
 
+            {/* Day 48 iter 8 (Sasha) — chip refinements:
+                • gap between chips bumped (gap-1 → gap-1.5) so the
+                  active gold halo has room to breathe.
+                • rounded-xl → rounded-2xl — matches the CTA-pill radius
+                  family, reads as editorial instead of cornery.
+                • Labels shift to Cormorant Garamond uppercase with
+                  0.14em tracking — same voice as the landing CTA.
+                • Active chip gets a faint gold inset tint on the
+                  interior so the halo + body bond into one lit object.
+                • Hover adds a soft outer gold glow (not just a ring).
+                • Lock badge retired — dimmed icon + tooltip hint
+                  already communicate locked state; the black disc was
+                  reading as Bootstrap debris.
+                • Label transition-opacity 500ms → rewards unlock. */}
             <ScrollArea className="flex-1">
-              <nav className="flex flex-col gap-1 p-2 md:p-3">
+              <nav className="flex flex-col gap-1.5 p-2 md:p-3">
                 {SPACES.filter(space => !hiddenSpaces.includes(space.id)).map((space) => {
                     const isLocked = unlockStatus[space.id] === false;
                     const active = isActive(space.path);
@@ -279,37 +292,62 @@ const SpacesRail = ({
                             onClick={handleSpaceClick}
                             disabled={isLocked}
                             className={cn(
-                                "flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all duration-200 relative group",
+                                "flex items-center gap-3 px-3 py-2.5 rounded-2xl transition-all duration-300 relative group",
                                 "justify-center md:justify-start",
                                 "focus:outline-none focus-visible:ring-2 focus-visible:ring-[#d4af37]/40",
                                 isLocked
                                     ? "bg-white/5 text-white/30 cursor-not-allowed"
                                     : active
-                                        // Day 48 (Sasha): active chip gains a gold ring + gold
-                                        // halo, matching the mockup's warm-metal accent on the
-                                        // marine rail. Text bumps to cream-white so it reads
-                                        // against the gold frame.
-                                        ? "bg-white/5 text-white ring-1 ring-[#d4af37]/55 shadow-[0_0_22px_-6px_rgba(244,212,114,0.55),0_0_48px_-14px_rgba(212,175,55,0.35)]"
+                                        // Active: gold ring + halo + faint
+                                        // gold inset tint on the interior.
+                                        ? "text-white ring-1 ring-[#d4af37]/60 shadow-[0_0_22px_-6px_rgba(244,212,114,0.55),0_0_48px_-14px_rgba(212,175,55,0.35)]"
                                         : hasNudge
                                             ? "bg-emerald-500/20 text-emerald-400 hover:bg-emerald-500/30 hover:text-emerald-300 ring-1 ring-emerald-500/50 shadow-[0_0_20px_rgba(16,185,129,0.4)] animate-pulse"
-                                            : "bg-white/5 text-white/60 hover:bg-white/10 hover:text-white hover:ring-1 hover:ring-[#d4af37]/25 hover:translate-y-[-1px] active:translate-y-0"
+                                            // Hover: soft outer gold glow
+                                            // in addition to the ring.
+                                            : "bg-white/5 text-white/60 hover:bg-white/10 hover:text-white hover:ring-1 hover:ring-[#d4af37]/30 hover:shadow-[0_0_16px_-4px_rgba(244,212,114,0.28)] hover:translate-y-[-1px] active:translate-y-0"
                             )}
+                            style={
+                                active
+                                    ? {
+                                          // Gold inset tint bonds the halo
+                                          // to the chip body. Without it,
+                                          // the gold ring read as "floating
+                                          // outline around white/5," not
+                                          // "this chip is lit from within."
+                                          backgroundColor: "rgba(212, 175, 55, 0.08)",
+                                      }
+                                    : undefined
+                            }
                             title={isLocked ? (unlockHints[space.id] || `${space.label} — locked`) : space.label}
                         >
-                            {/* Icon — always show the space's own icon, dim when locked */}
+                            {/* Icon — lock badge retired (dim + tooltip
+                                handles the message cleanly). */}
                             <span className="relative flex-shrink-0">
-                                <span className={cn(isLocked && "opacity-30")}>
+                                <span
+                                    className={cn(
+                                        "transition-opacity duration-500",
+                                        isLocked && "opacity-30",
+                                    )}
+                                >
                                     {space.icon}
                                 </span>
-                                {isLocked && (
-                                    <span className="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-black/60 rounded-full flex items-center justify-center border border-white/10">
-                                        <Lock className="w-2 h-2 text-white/40" />
-                                    </span>
-                                )}
                             </span>
 
-                            {/* Label - hidden on mobile, shown on desktop with truncation */}
-                            <span className="hidden md:block text-sm font-medium truncate">
+                            {/* Label — Cormorant Garamond uppercase tracked.
+                                Same small-caps treatment as the primary CTA
+                                label, so the rail chips rhyme with every
+                                CTA across the funnel. */}
+                            <span
+                                className="hidden md:block truncate transition-opacity duration-500"
+                                style={{
+                                    fontFamily: "'Cormorant Garamond', serif",
+                                    fontWeight: active ? 700 : 600,
+                                    fontSize: "0.78rem",
+                                    letterSpacing: "0.14em",
+                                    textTransform: "uppercase",
+                                }}
+                            >
                                 {space.label}
                             </span>
 
@@ -321,11 +359,8 @@ const SpacesRail = ({
                                 <span className="absolute -top-1 -right-1 w-3 h-3 bg-emerald-500 rounded-full border-2 border-black/30" />
                             )}
 
-                            {/* Active indicator — gold pip, centered on the
-                                chip's vertical midline. Day 48 (Sasha) fix:
-                                without `top-1/2 -translate-y-1/2` the pip
-                                defaulted to top:0 and cut through the chip's
-                                top-left corner — visible as a "glow glitch". */}
+                            {/* Active indicator — gold pip, centered on
+                                the chip's vertical midline. */}
                             {active && (
                                 <div className="absolute left-0 top-1/2 w-1 h-8 rounded-r-full -translate-x-1/2 -translate-y-1/2 bg-[#d4af37] shadow-[0_0_8px_rgba(244,212,114,0.7)]" />
                             )}
