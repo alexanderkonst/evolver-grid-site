@@ -139,7 +139,19 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
         const isLandingPage = p === '/' || p.startsWith('/game/journey');
         return !isLandingPage;
     });
-    const [mobileView, setMobileView] = useState<"navigation" | "content">("navigation");
+    const [mobileView, setMobileView] = useState<"navigation" | "content">(() => {
+        // Day 48 (Sasha, mobile fix): on mobile, the mobileView state was
+        // always resetting to "navigation" when a new page's GameShellV2
+        // mounted after route change. That made section clicks feel like
+        // "the first click did nothing" — the route changed but the user
+        // stayed on the navigation view. Derive from pathname on mount:
+        // landing stays on navigation (so new visitors see the rail),
+        // everything else starts on content (the page they just arrived at).
+        if (typeof window === "undefined") return "navigation";
+        const p = window.location.pathname;
+        const isLandingPage = p === "/" || p.startsWith("/game/journey");
+        return isLandingPage ? "navigation" : "content";
+    });
     const [shortcutsOpen, setShortcutsOpen] = useState(false);
 
     const getSpaceFromPath = (pathname: string): string | undefined => {

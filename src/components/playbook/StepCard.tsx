@@ -164,9 +164,11 @@ const SubstepRow = ({
                 "focus-visible:ring-2 focus-visible:ring-white/40 outline-none",
               )}
               style={{
-                backgroundImage: `linear-gradient(135deg, rgba(${neonRgb},0.22), rgba(${neonRgb},0.08))`,
-                border: `1px solid rgba(${neonRgb},0.45)`,
-                color: `color-mix(in srgb, ${neonHsl} 55%, var(--skin-text-primary, #0a1628) 45%)`,
+                // Day 48 (Sasha, mobile polish): deeper tint + darker text
+                // for contrast at small scale. Was pastel-washed on cream.
+                backgroundImage: `linear-gradient(135deg, rgba(${neonRgb},0.35), rgba(${neonRgb},0.14))`,
+                border: `1px solid rgba(${neonRgb},0.6)`,
+                color: `color-mix(in srgb, ${neonHsl} 35%, var(--skin-text-primary, #0a1628) 65%)`,
                 boxShadow: open ? `0 0 18px -4px ${neonHsl}` : "none",
               }}
               aria-expanded={open}

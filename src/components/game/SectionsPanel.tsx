@@ -188,17 +188,17 @@ interface SectionsPanelProps {
 const buildJourneySections = (): Section[] => [
     {
         id: "journey-start-here",
-        label: "1. Start Here",
+        label: "1. Start",
         path: "/",
     },
     {
         id: "journey-the-playbook",
-        label: "2. The Playbook",
+        label: "2. Playbook",
         path: "/playbook",
     },
     {
         id: "journey-the-path",
-        label: "3. The Path",
+        label: "3. Path",
         path: "/path",
     },
 ];
