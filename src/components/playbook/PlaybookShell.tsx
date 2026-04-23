@@ -141,7 +141,12 @@ const PlaybookShell = ({
                       ? `1.5px solid ${step.neonHsl}`
                       : "1px solid var(--skin-rule-strong, rgba(26,30,58,0.2))",
                     boxShadow: isActive
-                      ? `0 0 0 3px rgba(255,255,255,0.5), 0 0 18px -2px ${step.neonHsl}, 0 0 32px -8px rgba(132,96,234,0.6)`
+                      // Day 48 (Sasha): tightened the active-step halo so
+                      // it doesn't render as a diffuse "malformed cloud"
+                      // above the stepper — smaller white ring (2px vs 3px),
+                      // shorter neon glow (12px vs 18px), outer violet halo
+                      // retired entirely.
+                      ? `0 0 0 2px rgba(255,255,255,0.55), 0 0 12px -2px ${step.neonHsl}`
                       : `0 1px 3px rgba(26,30,58,0.15)`,
                   }}
                   aria-current={isActive ? "step" : undefined}
@@ -173,19 +178,13 @@ const PlaybookShell = ({
         </ol>
       </nav>
 
-      {/* ═══════ GRADIENT BRIDGE (nav → step card) ═══════
-          Soft violet fade that converts the fold from a cut to a seam. */}
-      <div
-        aria-hidden="true"
-        className="relative h-6 -mt-2 -mb-2 pointer-events-none"
-        style={{
-          backgroundImage:
-            "linear-gradient(180deg, transparent 0%, rgba(132,96,234,0.08) 50%, transparent 100%)",
-        }}
-      />
+      {/* Gradient bridge retired Day 48 (Sasha): the soft violet fade
+          between nav and step card was reading as a malformed glow cloud
+          above the step box. Removed — the spacing between nav and card
+          now does the "seam" work on its own. */}
 
       {/* ═══════ STEP CONTENT ═══════ */}
-      <div>{children}</div>
+      <div className="mt-4">{children}</div>
     </div>
   );
 };
