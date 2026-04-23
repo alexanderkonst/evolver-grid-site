@@ -158,18 +158,20 @@ const MethodologyLandingPage = () => {
               "var(--skin-text-halo-strong, 0 0 22px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.8), 0 2px 12px rgba(26,30,58,0.15))",
           }}
         >
-          {/* Line 1: Find Your [Top Talent]. */}
+          {/* Line 1: Find Your [Top Talent].
+              Day 48 iter 4 (Sasha): underline on "Top Talent" retired.
+              "WHy do we need to underline Top Talent? I don't think it
+              makes sense or adds much." The gold gradient + subtle
+              edge glow already signal "this is the phrase" — an
+              additional underline is redundant and reads as a link. */}
           <p className="text-xl sm:text-2xl md:text-[1.75rem] font-medium leading-[1.3] tracking-[-0.005em]">
             Find Your{" "}
             <span
-              className="bg-clip-text text-transparent relative"
+              className="bg-clip-text text-transparent"
               style={{
                 backgroundImage: GOLD_GRADIENT,
                 filter: GOLD_GLOW,
                 textShadow: "none",
-                // Gold underline on Top Talent only — the product name.
-                boxShadow: "inset 0 -2px 0 0 rgba(160, 109, 8, 0.55)",
-                paddingBottom: "0.05em",
               }}
             >
               Top Talent
