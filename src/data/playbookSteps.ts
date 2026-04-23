@@ -38,6 +38,15 @@ export type Substep = {
    * Hidden until the substep's "See one proven strategy" button is clicked.
    */
   oneProvenStrategy: string;
+  /**
+   * Day 48 (Sasha): open-blueprint exemplar. One snapshot of the founder's
+   * OWN artifact for this substep at its current precision — so an AI or
+   * human reader can pattern-match against a real, specific form rather
+   * than an abstract target. Multi-paragraph content via `\n\n`. Rendered
+   * as a muted card labeled "Example — Aleksandr, {date}" (attribution +
+   * timestamp, so it reads as a snapshot, not a monument).
+   */
+  example?: string;
 };
 
 export type PlaybookStep = {
@@ -151,6 +160,11 @@ export const PLAYBOOK_STEPS: PlaybookStep[] = [
         description: "",
         oneProvenStrategy:
           "Ask your AI to do this for you, and then polish it yourself.",
+        // Exemplar at ~10/10 precision — Aleksandr's vetted top talent
+        // sentence. Shown here so readers (and their AIs) can see what
+        // the finish-line form looks like.
+        example:
+          "I assist conscious aspiring impact founders turn their top talent into a growing scalable business in flow.",
       },
       {
         number: 3,
@@ -349,7 +363,12 @@ export const PLAYBOOK_STEPS: PlaybookStep[] = [
         name: "Laser-focus your communication on your 9+/10 tribe.",
         description: "",
         oneProvenStrategy:
-          "Create and activate a \u201Cmaster tuning fork\u201D that repels non-clients and pulls in your 9+/10 tribe \u2014 the simplest possible frame of the transformation in ONE sentence. It will make the right people sit up, and makes other quietly leave. Then post a variation of it to your key digital channels: (a) one line + a URL bios (LinkedIn, Instagram, WhatsApp, Telegram, email signature, X, FB); (b) ONE DM template gifting the lead magnet and sharing your life\u2019s work; (c) ONE life-update post \u2014 what you just focused your life on, URL as only link, no pitch; (d) ONE bold content piece that diagnoses the pain the tribe lives in, or another first post.\n\nExample (mine): \u201CAn aspiring impact founder walks in challenged to clearly explain what they do into my digital shop \u2014 and walks out, 6\u20138 weeks later, with a running scalable business at early product-market fit.\u201D",
+          "Create and activate a \u201Cmaster tuning fork\u201D that repels non-clients and pulls in your 9+/10 tribe \u2014 the simplest possible frame of the transformation in ONE sentence. It will make the right people sit up, and makes other quietly leave. Then post a variation of it to your key digital channels: (a) one line + a URL bios (LinkedIn, Instagram, WhatsApp, Telegram, email signature, X, FB); (b) ONE DM template gifting the lead magnet and sharing your life\u2019s work; (c) ONE life-update post \u2014 what you just focused your life on, URL as only link, no pitch; (d) ONE bold content piece that diagnoses the pain the tribe lives in, or another first post.",
+        // Three tuning-fork variants at different compressions. Same signal,
+        // three rhythms. The arc form at the end is the canonical template
+        // structure (see docs/02-strategy/unique_business_canvas_template.md).
+        example:
+          "Primary (full — for bios, About pages, speaker intros):\nI help conscious aspiring impact founders turn their top talent into an organically growing scalable business — in flow, in 6\u20138 weeks.\n\nCompressed (for email signature, WhatsApp bio, X bio):\nI turn conscious founders\u2019 top talent into a scalable business in 6\u20138 weeks.\n\nTransformation arc (for life-update posts, About page openers):\nAn aspiring impact founder walks in challenged to clearly explain what they do into my digital shop \u2014 and walks out, 6\u20138 weeks later, with a running scalable business at early product-market fit.",
       },
       {
         number: 3,

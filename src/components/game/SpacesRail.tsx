@@ -161,7 +161,10 @@ const SpacesRail = ({
             {/* Brand logo — Day 48 (Sasha): orb + wordmark image lockup
                 replaces the text + avatar header. Clicking it returns
                 home. On mobile (rail compressed to 72px) only the orb
-                crop is visible; on desktop the full wordmark shows. */}
+                crop is visible; on desktop the full wordmark shows.
+                Day 48 later (Sasha): shrunk ~33% — desktop caps at
+                66% of the rail width (~185px on a 280px rail), mobile
+                orb crops to 32×32 instead of 48×48. */}
             <div className="p-2 md:p-3">
                 <Link
                     to="/"
@@ -170,7 +173,7 @@ const SpacesRail = ({
                 >
                     {/* Mobile: square orb crop from the left of the image. */}
                     <div
-                        className="md:hidden w-12 h-12 mx-auto overflow-hidden"
+                        className="md:hidden w-8 h-8 mx-auto overflow-hidden"
                         style={{
                             backgroundImage: `url(${brandLogo})`,
                             backgroundSize: "auto 100%",
@@ -179,11 +182,13 @@ const SpacesRail = ({
                         }}
                         aria-hidden="true"
                     />
-                    {/* Desktop: full logo (orb + wordmark). Native aspect. */}
+                    {/* Desktop: full logo (orb + wordmark). Capped width so
+                        it doesn't dominate the rail. */}
                     <img
                         src={brandLogo}
                         alt="Find Your Top Talent"
-                        className="hidden md:block w-full h-auto object-contain"
+                        className="hidden md:block h-auto object-contain"
+                        style={{ width: "66%", maxWidth: "180px" }}
                         draggable={false}
                     />
                 </Link>

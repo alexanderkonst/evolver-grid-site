@@ -182,9 +182,9 @@ const SubstepRow = ({
           <div
             className={cn(
               "overflow-hidden transition-[max-height,opacity] duration-500 ease-out",
-              // Day 48 (Sasha): bumped from 600px to 1600px so the longer
-              // multi-paragraph How-Tos (Steps 5 + 6) don't get clipped.
-              open ? "max-h-[1600px] opacity-100" : "max-h-0 opacity-0",
+              // Day 48 (Sasha): bumped to 2400px so the longer
+              // multi-paragraph How-Tos + example cards don't get clipped.
+              open ? "max-h-[2400px] opacity-100" : "max-h-0 opacity-0",
             )}
           >
             <div
@@ -205,6 +205,46 @@ const SubstepRow = ({
                 ))}
               </div>
             </div>
+
+            {/* ══ Example card (optional) — Day 48 (Sasha, Open Blueprint
+                Paradox). Renders only when the substep ships with an
+                `example` field. Muted card + gold eyebrow — attribution +
+                timestamp so it reads as a snapshot from Aleksandr's
+                in-progress canvas, not a pedestal. */}
+            {substep.example && (
+              <div
+                className="mt-3 rounded-2xl p-4 sm:p-5"
+                style={{
+                  backgroundColor:
+                    "var(--skin-card-bg, rgba(255, 255, 255, 0.45))",
+                  border:
+                    "1px solid var(--skin-card-border, rgba(26, 30, 58, 0.1))",
+                  boxShadow:
+                    "inset 3px 0 0 rgba(212, 175, 55, 0.55)",
+                }}
+              >
+                <div
+                  className="text-[10px] sm:text-[11px] uppercase tracking-[0.22em] font-semibold mb-2"
+                  style={{ color: "#b8860b" }}
+                >
+                  ✦ Example — Aleksandr, April 2026
+                </div>
+                <div
+                  className="text-sm sm:text-[15px] leading-relaxed space-y-2 italic"
+                  style={{
+                    color:
+                      "var(--skin-text-strong, rgba(26,30,58,0.88))",
+                    fontFamily: "'Cormorant Garamond', serif",
+                  }}
+                >
+                  {substep.example.split("\n\n").map((para, i) => (
+                    <p key={i} style={{ whiteSpace: "pre-line" }}>
+                      {para}
+                    </p>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>

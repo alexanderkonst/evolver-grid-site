@@ -4,11 +4,12 @@ import { ArrowLeft, PanelLeft } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { getOrCreateGameProfileId } from "@/lib/gameProfile";
 import { cn } from "@/lib/utils";
-// Day 48 (Sasha): swapped the legacy dodecahedron icon for the new
-// brand orb (cropped from the FIND YOUR TOP TALENT logo). Same image
-// as the SpacesRail wordmark — consistent visual identity across the
-// two corners of the shell.
-import brandLogo from "@/assets/find-your-top-talent-logo.png";
+// Top-right corner icon — stays as the legacy dodecahedron/fractal
+// image (Sasha, Day 48 later: "let's stick to what we had there").
+// The rail top-left now carries the new brand wordmark; the top-right
+// keeps its own visual register as a round, radially-masked icon that
+// reads as a "home button," not a second brand hit.
+import logoSrc from "@/assets/logo.jpg";
 import SpacesRail, { SPACES } from "./SpacesRail";
 import SectionsPanel from "./SectionsPanel";
 import PlayerStatsBadge from "./PlayerStatsBadge";
@@ -518,28 +519,20 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                     className="flex-1 min-h-dvh overflow-auto relative z-10 pt-4 bg-transparent"
                 >
                     {/* Logo — fixed upper right. Hidden when hideLogo prop is set.
-                        Day 48 (Sasha): renders the brand orb (cropped from the
-                        top-left of the logo PNG via background-position). Keeps
-                        the wordmark for the rail, uses just the orb as the
-                        corner icon so the two brand hits feel connected but
-                        not repeated. */}
+                        Renders the legacy dodecahedron/fractal icon with a radial
+                        mask — reads as a distinct "home button" visually separate
+                        from the new brand wordmark that sits in the rail. */}
                     {!hideLogo && (
-                        <Link
-                            to="/"
-                            className="absolute top-4 right-4 z-50 block w-10 h-10 group"
-                            aria-label="Home — Find Your Top Talent"
-                        >
+                        <Link to="/" className="absolute top-4 right-4 z-50 block w-10 h-10 group">
                             <div
-                                className="w-full h-full rounded-full transition-transform duration-300 group-hover:scale-110"
+                                className="w-full h-full rounded-lg overflow-hidden"
                                 style={{
-                                    backgroundImage: `url(${brandLogo})`,
-                                    backgroundSize: "auto 100%",
-                                    backgroundPosition: "left center",
-                                    backgroundRepeat: "no-repeat",
-                                    filter: "drop-shadow(0 0 10px rgba(244, 212, 114, 0.35))",
+                                    WebkitMaskImage: "radial-gradient(circle at center, black 40%, transparent 75%)",
+                                    maskImage: "radial-gradient(circle at center, black 40%, transparent 75%)",
                                 }}
-                                aria-hidden="true"
-                            />
+                            >
+                                <img src={logoSrc} alt="Home" className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" draggable={false} />
+                            </div>
                         </Link>
                     )}
                     <div className="page-transition-enter">
