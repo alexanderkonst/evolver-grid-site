@@ -460,19 +460,19 @@ const IgniteSession = () => {
                 emoji: "🔮",
                 step: "1",
                 title: "We name what you already do — clearly",
-                desc: "You talk. I listen for what's already there — but invisible to you. We land it in one sentence a 7-year-old understands, an investor trusts, and a client buys.",
+                desc: "We look at what's already there — but invisible to you. We land it in one top talent any teenager understands. And you feel as yours.",
               },
               {
                 emoji: "📦",
                 step: "2",
                 title: "We structure it into something people can buy",
-                desc: "That sentence becomes a clear offer, a defined audience, a real problem, a real outcome. No guessing. Just structure that holds.",
+                desc: "That sentence trickles down into a clear offer, a defined audience, a real problem, a real outcome. No guessing. Things make sense.",
               },
               {
                 emoji: "🚀",
                 step: "3",
                 title: "You leave with a one-page offer",
-                desc: "Not something to 'figure out later.' AI compiles everything live into one page: what you do, who it's for, why they pay, and what to say next.",
+                desc: "AI compiles everything live into one page: what you do, who it's for, why they pay, and what follows.",
               },
             ].map((item, i) => (
               <div
@@ -490,14 +490,24 @@ const IgniteSession = () => {
           </div>
         </section>
 
-        {/* S5: ABOUT */}
+        {/* S5: ABOUT
+            Day 48 iter 3 (Sasha): TWO fixes on this section only.
+            1. The photo had `opacity-90` + sat halfway over the glass
+               card's top edge (`-mt-10`). The 10% transparency caused
+               the card's rim highlight to bleed through the photo as
+               a visible horizontal line crossing the face. Setting
+               opacity to full hides the line — the photo itself now
+               occludes the card edge behind it.
+            2. Text was too close to the bottom of the photo. Bumped
+               `pt-14` → `pt-20` so the first paragraph has a proper
+               breath below the circular portrait. */}
         <section id="about-section" aria-label="About Aleksandr" className="relative pt-8">
           <img
             src={aleksandrPhoto}
             alt="Aleksandr Konstantinov"
-            className="w-20 h-20 rounded-full object-cover opacity-90 mx-auto relative z-10 border-2 border-white/10"
+            className="w-20 h-20 rounded-full object-cover mx-auto relative z-10 border-2 border-white/10"
           />
-          <div className="liquid-glass rounded-3xl p-6 md:p-8 pt-14 -mt-10 text-center space-y-3">
+          <div className="liquid-glass rounded-3xl p-6 md:p-8 pt-20 -mt-10 text-center space-y-3">
             <p className="text-sm text-white/70 leading-relaxed">
               I spent years in the loop myself. Building startups that didn't stick. Consulting. Coaching friends for free. Circling the same question everyone in this situation circles:
             </p>
