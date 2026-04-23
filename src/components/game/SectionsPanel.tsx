@@ -382,13 +382,20 @@ const SectionsPanel = ({
                                   gold interior tint (white border retired
                                   — read as macOS Finder, not gold-brand).
                                 • py-2 → py-2.5 for more breathing room. */}
+                            {/* Day 48 iter 11 (Sasha): section text was
+                                reading too faint + too small on the
+                                lit-navy pane. Bumped: color white/65 →
+                                white/88, size 15px → 17px, weight 500
+                                → 600 (active: 600 → 700). Step pip
+                                also slightly larger (w-4 → w-[18px])
+                                so it stays proportional to the label. */}
                             <div
                                 className={cn(
-                                    "group flex items-center gap-2 px-3 py-2.5 mx-2 rounded-md cursor-pointer transition-all duration-200 relative",
+                                    "group flex items-center gap-2.5 px-3 py-2.5 mx-2 rounded-md cursor-pointer transition-all duration-200 relative",
                                     "focus:outline-none focus-visible:ring-2 focus-visible:ring-[#d4af37]/40",
                                     sectionActive && !hasSubSections
                                         ? "text-white"
-                                        : "text-white/65 hover:bg-white/8 hover:text-white hover:translate-x-0.5"
+                                        : "text-white/88 hover:bg-white/8 hover:text-white hover:translate-x-0.5"
                                 )}
                                 style={
                                     sectionActive && !hasSubSections
@@ -407,12 +414,12 @@ const SectionsPanel = ({
                                     }
                                 }}
                             >
-                                <span className="w-4 h-4 flex items-center justify-center">
+                                <span className="w-[18px] h-[18px] flex items-center justify-center">
                                     {hasSubSections ? (
                                         isExpanded ? (
-                                            <ChevronDown className="w-3 h-3" />
+                                            <ChevronDown className="w-3.5 h-3.5" />
                                         ) : (
-                                            <ChevronRight className="w-3 h-3" />
+                                            <ChevronRight className="w-3.5 h-3.5" />
                                         )
                                     ) : number ? (
                                         // Gold step pip — the old "1. 2. 3."
@@ -420,7 +427,7 @@ const SectionsPanel = ({
                                         // gold disc so the numeral becomes
                                         // an ornament, not type.
                                         <span
-                                            className="inline-flex items-center justify-center w-4 h-4 rounded-full text-[9px] font-semibold"
+                                            className="inline-flex items-center justify-center w-[18px] h-[18px] rounded-full text-[10px] font-semibold"
                                             style={{
                                                 backgroundColor: "rgba(212, 175, 55, 0.18)",
                                                 color: "#f4d472",
@@ -434,10 +441,10 @@ const SectionsPanel = ({
                                 </span>
                                 {section.icon}
                                 <span
-                                    className="flex-1 text-[15px] leading-snug"
+                                    className="flex-1 text-[17px] leading-snug"
                                     style={{
                                         fontFamily: "'Cormorant Garamond', serif",
-                                        fontWeight: sectionActive ? 600 : 500,
+                                        fontWeight: sectionActive ? 700 : 600,
                                         letterSpacing: "0.005em",
                                     }}
                                 >
@@ -465,7 +472,7 @@ const SectionsPanel = ({
                                                     "flex items-center gap-2 px-3 py-1.5 ml-2 rounded-md cursor-pointer transition-colors",
                                                     subActive
                                                         ? "text-white"
-                                                        : "text-white/45 hover:bg-white/5 hover:text-white/90"
+                                                        : "text-white/70 hover:bg-white/5 hover:text-white"
                                                 )}
                                                 style={
                                                     subActive
@@ -476,8 +483,11 @@ const SectionsPanel = ({
                                                 }
                                                 onClick={() => onSectionSelect?.(sub.path)}
                                             >
+                                                {/* Day 48 iter 11 (Sasha): sub-label
+                                                    bumped 13px → 15px, opacity
+                                                    45 → 70 inactive for legibility. */}
                                                 <span
-                                                    className="text-[13px]"
+                                                    className="text-[15px] leading-snug"
                                                     style={{
                                                         fontFamily: "'Cormorant Garamond', serif",
                                                         fontWeight: subActive ? 600 : 500,
