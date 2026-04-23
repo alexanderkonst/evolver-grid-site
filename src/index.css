@@ -1056,42 +1056,44 @@ All colors MUST be HSL.
 }
 
 .gentle-spin {
-  animation: gentle-spin 60s linear infinite;
+  animation: gentle-spin 60s linear infinite !important;
   will-change: transform;
-  transform-origin: center;
+  transform-origin: center !important;
   display: inline-block;
 }
 
 /* Targeted rules — these apply the rotation globally without needing
    per-file edits. Each selector is scoped tight enough that we only
-   catch the emblems/icons we mean to rotate, never text or chrome. */
+   catch the emblems/icons we mean to rotate, never text or chrome.
+
+   Day 48 iter 13 (Sasha): selectors widened from `> img:first-of-type`
+   to `img` (any descendant) + `!important` on the animation shorthand
+   so any Tailwind `transition-*` utility or inline style can't
+   interrupt the transform. */
 
 /* 1. Every primary CTA across the site uses `.cta-breath` as its
-   signature class. The first <img> inside is always the ignite
-   emblem (landing, ZoG entry's 3 buttons, ZoG landing's 4 CTAs,
-   ExcaliburDisplay's Product Builder — all ~10 places). This
-   single rule rotates them all. */
-.cta-breath > img:first-of-type {
-  animation: gentle-spin 60s linear infinite;
+   signature class. Every img descendant (usually just the ignite
+   emblem) rotates. */
+.cta-breath img {
+  animation: gentle-spin 60s linear infinite !important;
   will-change: transform;
-  transform-origin: center;
+  transform-origin: center !important;
 }
 
 /* 2. Rail custom icons (JOURNEY + ME) carry the shared drop-shadow
-   signature we wired into `ImageIcon`. We can't select by class from
-   here, so SpacesRail.tsx applies `.gentle-spin` directly on those
-   two <img> elements. (The 5 other space icons are typographic
-   glyphs — not images — so they stay upright by nature.) */
+   signature we wired into `ImageIcon`. SpacesRail.tsx applies
+   `.gentle-spin` directly on those two <img> elements. The rule
+   above covers them via the class. */
 
 /* 3. Top-right "home" icon in GameShellV2 — applied via className
-   on the <img> itself. */
+   on the <img> itself (gentle-spin). */
 
 /* 4. Ornament centerpiece already spins via `ornament-spin` (48s,
    kept separate so the editorial dividers have their own tempo). */
 
 @media (prefers-reduced-motion: reduce) {
   .gentle-spin,
-  .cta-breath > img:first-of-type {
+  .cta-breath img {
     animation: none !important;
   }
 }
