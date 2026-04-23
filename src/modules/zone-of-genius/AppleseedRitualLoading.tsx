@@ -46,20 +46,23 @@ const AppleseedRitualLoading = ({
                 same light treatment as the rest of the journey. */}
 
             <div className="relative z-10 min-h-screen flex flex-col items-center justify-center p-8">
-                {/* Sacred Geometry Animation */}
+                {/* Sacred Geometry Animation — Day 48 iter 7 (Sasha):
+                    violet (#8460ea) + periwinkle (#a4a3d0) + dusty blue
+                    (#6894d0) migrated to the signature antique-gold
+                    palette. Ring intensities preserved relatively. */}
                 <div className="relative w-32 h-32 mb-8">
                     {/* Outer ring */}
                     <div className="absolute inset-0 border-2 rounded-full animate-spin"
                         style={{ animationDuration: '8s', borderColor: 'rgba(26,30,58,0.18)' }} />
 
                     {/* Middle ring */}
-                    <div className="absolute inset-4 border-2 border-[#8460ea]/40 rounded-full animate-spin" style={{ animationDuration: '6s', animationDirection: 'reverse' }} />
+                    <div className="absolute inset-4 border-2 border-[#a06d08]/45 rounded-full animate-spin" style={{ animationDuration: '6s', animationDirection: 'reverse' }} />
 
                     {/* Inner ring */}
-                    <div className="absolute inset-8 border-2 border-[#8460ea]/55 rounded-full animate-spin" style={{ animationDuration: '4s' }} />
+                    <div className="absolute inset-8 border-2 border-[#7a5108]/60 rounded-full animate-spin" style={{ animationDuration: '4s' }} />
 
                     {/* Center glow with dodecahedron */}
-                    <div className="absolute inset-10 bg-gradient-to-br from-[#a4a3d0]/30 to-[#8460ea]/20 backdrop-blur-sm rounded-full animate-pulse flex items-center justify-center">
+                    <div className="absolute inset-10 bg-gradient-to-br from-[#f4d472]/30 to-[#a06d08]/25 backdrop-blur-sm rounded-full animate-pulse flex items-center justify-center">
                         <img
                             src="/dodecahedron.png"
                             alt="Soul"
@@ -71,7 +74,7 @@ const AppleseedRitualLoading = ({
                     {[...Array(6)].map((_, i) => (
                         <div
                             key={i}
-                            className="absolute w-2 h-2 bg-[#8460ea]/50 rounded-full animate-ping"
+                            className="absolute w-2 h-2 bg-[#a06d08]/55 rounded-full animate-ping"
                             style={{
                                 top: `${20 + Math.sin(i * 60 * Math.PI / 180) * 40}%`,
                                 left: `${50 + Math.cos(i * 60 * Math.PI / 180) * 40}%`,
@@ -95,11 +98,16 @@ const AppleseedRitualLoading = ({
                     </p>
                 </div>
 
-                {/* Progress bar — glass treatment */}
+                {/* Progress bar — glass treatment. Gold gradient in
+                    place of the prior violet/blue. */}
                 <div className="w-64 h-1.5 liquid-glass rounded-full overflow-hidden">
                     <div
-                        className="h-full bg-gradient-to-r from-[#8460ea]/80 to-[#6894d0]/70 transition-all duration-100 ease-out rounded-full"
-                        style={{ width: `${progress}%` }}
+                        className="h-full transition-all duration-100 ease-out rounded-full"
+                        style={{
+                            width: `${progress}%`,
+                            backgroundImage:
+                                "linear-gradient(90deg, rgba(160,109,8,0.80) 0%, rgba(212,175,55,0.65) 100%)",
+                        }}
                     />
                 </div>
 
