@@ -7554,3 +7554,54 @@ The consequence for the canvas: Sasha's **channels** layer (7-artifact model) ju
 ***Why "HIGHEST RESONANCE YET" (Sasha's words):** Prior articulations named the tribe + talent + outcome but missed the organic-growth differentiator and the time-bound credibility. The Day 48 versions close both gaps. Also: the arc form anchors the reader INSIDE the shop they're already in (reading the page), not in an abstract elsewhere — activates present-tense located selfhood rather than hypothetical future-tense pondering.*
 
 ***Deployed to the playbook:** Step 6 substep 2's Recommended How-To now includes the arc sentence as "Example (mine):". Founders reading the playbook see the transformation-arc template in action, with Sasha's own business as the demo. In the spirit of Open Blueprint Paradox — methodology free, exemplars concrete, specificity is the product.*
+
+*Alexander's Unique Business v9.10 — April 23, 2026 (Day 49 — Unification / Post-Launch Harmonization):*
+
+*Site shipped Wednesday (Day 48) in Aurora. Day 49 was a within-stage refinement day rather than a new-capability build. Nothing advanced a stage on the 27×7 grid. The signature of this pass: the venture's visible surface harmonized into one voice.*
+
+***ZoG funnel unified to gold end-to-end.** Eleven components migrated from leftover violet/rainbow/periwinkle accents (wabi-sabi era) to the signature deep-antique-gold palette Aurora has used since Day 47: `ZoneOfGeniusEntry`, `ZoneOfGeniusLandingPage`, `AppleseedDisplay`, `ExcaliburDisplay`, `RevelatoryHero`, `AppleseedRitualLoading`, `ZoneOfGeniusAssessmentLayout`, `Step1SelectTop10Talents`, `Step2SelectTop3CoreTalents`, `Step3OrderTalents`, `Step4GenerateSnapshot`. Every primary CTA in the funnel now wears the same signature (`liquid-glass-dark` pill + ignite emblem + Cormorant small-caps label + `cta-breath` animation + ArrowRight). Shared design tokens extracted to `src/lib/landingDesign.tsx` (`GOLD_GRADIENT`, `GOLD_GLOW`, `GOLD_TEXT_STYLE`, `CTA_SMALL_CAPS_STYLE`, `META_EYEBROW_STYLE`, `Ornament` component, `igniteLogo` re-export). Global `--skin-callout-bg/glow` migrated from hsl(285°) violet to antique-gold in `index.css` — `/path`'s italic "Money-Back Guaranteed" callout auto-adopted. Assessment Step 1-4 + Layout violet checkmarks + rank badges + progress bars migrated to gold via a delegated general-purpose-agent pass (first clean multi-file Explore-style refactor delegation in the project's history, verified tsc clean).*
+
+***Shell polished to premium register.***
+
+*- **Pane 1 (SpacesRail):** Custom image icons for JOURNEY + ME + Settings (gold-tinted, drop-shadow gold glow on ME). Lock badge retired — dimmed icon + `unlockHints["grow"]` tooltip ("Unlocks after your Find Your Top Talent Reveal.") handles locked-state cleanly. Right-edge flat gold line replaced with a vertical gold-gradient spine (peak at 40% height, fade top and bottom) — reads as backlit book-binding. Brand-mark alive tell: mobile torus rotates (`.brand-spin-slow`, 60s linear), desktop wordmark breathes (`.brand-breath`, 6s). Chips: `rounded-xl` → `rounded-2xl`; gap bumped; Cormorant Garamond uppercase tracked labels (0.14em, 0.78rem); faint gold inset tint on active; soft outer gold glow on hover. Settings chip leveled to same register but dimmer (`white/45` vs `white` on active spaces) with a gold hairline rule above — utility-below-the-fold hierarchy.*
+
+*- **Pane 2 (SectionsPanel):** Header self-identifies with space title in tracked small-caps gold (`#f4d472`, 0.22em letter-spacing) + X close. `h-10` → `h-16` so first nav item aligns with Pane 1's JOURNEY chip. Labels in Cormorant Garamond **Title Case** (not uppercase — reserved for CTAs + eyebrows, per Sasha's "it's a holonic app" note). Numeric prefixes ("1. Start") parsed into gold step pips (18×18 gold-outlined discs) + clean label text. Active state: 2px gold left-rule + gold interior inset glow (replaces cold white border). Label size 15→17px, weight 500→600, opacity 65→88 after "too faint, too small" feedback. Sub-section rail softened from cold white to gold hairline; sub-labels also Cormorant. Mirror gold spine on right edge.*
+
+*- **Settings page (`Settings.tsx` + `ProfileSettingsSection.tsx`):** Hero rebuilt in landing voice — Cormorant Garamond 4xl/5xl "Settings" + italic echo "Your account and preferences." Back chip replaced with Playbook-style "BACK" gold-outlined pill. Tabs given glass-bg pill container with gold-text active state (was white-on-white, invisible). Guest "Log in or sign up" button migrated from default shadcn `<Button>` (rendering as invisible white pill — the illegible one Sasha flagged) to the full landing CTA signature. Card titles throughout shifted to Cormorant 600 + italic descriptions. Navy+Gold tile disabled in Appearance picker with gold "Coming soon" pill — Aurora is the only ship-it skin.*
+
+***Global rotation + mobile CTA fix.** `.gentle-spin` utility added to `index.css` (60s linear infinite, GPU-composited, near-zero CPU cost). Applied site-wide via `.cta-breath img` descendant selector (catches all ~10 primary CTA emblems) + direct class on rail icons + home icon + ornament emblem. Inline-style fallback added on four most-visible elements after class-based rule intermittently cache-invalidated in preview. `prefers-reduced-motion` respected (disables all five rotation classes globally). Mobile CTA overflow fixed: `CTA_SMALL_CAPS_STYLE` tightened (0.14em → 0.1em tracking, 0.88em → 0.82em size), `whitespace-nowrap` removed from every primary CTA, padding + font-size made responsive (`px-4 sm:px-6`, `text-sm sm:text-base`).*
+
+***Landing copy tightened.** "So people don't buy it." → "So people don't buy." Hero drop-cap "Y" retired (Sasha feedback — minimalism). Hero frame box retired ("the box is too narrow. Why a box at all?"). Bottom ornament bookend retired ("the second symbol is unnecessary" — CTA emblem 40px below was competing). Gold palette darkened from too-light `#f4d472 → #d4af37 → #b8941e` to deep antique-gold `#a06d08 → #7a5108 → #6b4208` (legibility on cream pane). Ornament emblem swapped from ✦ unicode to the ignite-logo image (same asset as primary CTA) — one consistent gold signature across the page.*
+
+***/path copy:** Step 4 duration "3 weeks, part-time" → "3 weeks, alongside other conscious impact entrepreneurs". Step 5 duration "1–2 weeks (capped 1 month)" → "Estimated 1–3 weeks". "Guaranteed." → "Money-Back Guaranteed."*
+
+***/ignite copy:** Three step descriptions rewritten in Sasha's exact voice. Photo bleed-through bug fixed (`opacity-90` → removed so photo occludes the glass card edge). Photo-to-text spacing bumped `pt-14` → `pt-20`.*
+
+***/playbook Step 1:** "precision of resonance higher than practically any personality test on the planet or AI on its own" → "specificity higher than virtually any personality test or AI on the planet."*
+
+***Testimonials:** Aleksa Stojanovic replaced with shorter new text (Sasha provided verbatim). AI testimonial for the holonic product drafted: short quote "If a methodology holds me this cleanly, it can hold you." Sasha flagged it as "a little cryptic for a human to read" — reserved for retry with different framing.*
+
+***Strategic synthesis — six founders mapped explicitly against the 7-step playbook** (first formal cohort-topology read in the venture's history):*
+
+| *Founder* | *Step (de facto)* | *Container* | *Distinctive* |
+|---|---|---|---|
+| *Alexander* | *Step 6 Launch* | *Launch (ship lived)* | *Site live; first $555 stranger still open* |
+| *Oyi* | *Step 5 Build* | *Build (delivering)* | *Highest resonance in cohort (Pain 10); one Arletter payment; landing live at /oyi* |
+| *Sergey* | *Step 5 Build* | *Build (gift sessions)* | *Clearest product architecture (3-phase Мультиварка); 3 gift sessions Mar 24-30; $0 revenue* |
+| *Sandra* | *Step 4 entry* | *Ignition → Build* | *Tribe 9.9; Rescue Pattern surfaced; landing code ready; Italy transition blocking delivery* |
+| *Kirill* | *Step 2-3 Ignition* | *Ignition* | *Uniqueness 9.8 tears; v0.1 concepts. **ALSO** pulling ТРИЗ/Genesis/Wolf Line Capital intros as emergent viral node — Step-7 behavior before Step 3 artifacts finish* |
+| *Karime* | *Step 3 Ignition gate* | *Ignition (mid)* | *Canvas drafted; myth + tribe awaiting body-score; deepest inner work, zero external momentum* |
+
+*Two pattern observations surfaced that the playbook doesn't name yet:*
+*- **Step 7 may be "become a node for other nodes"** — Kirill is the first empirical instance.*
+*- **Step 3 has an unnamed sub-gate: mind-score vs body-score.** Karime blocked exactly there. Sandra hit it at Session 5 when Rescue Pattern surfaced (functional body-score event).*
+
+*Center of gravity: **Ignition and Build**. Three in Ignition, two in Build, one in Launch. $555 Ignition container is the primary commercial product this quarter. Oyi + Sergey are the shortest path to first external-validation signal. Kirill is asymmetric low-time / high-return via intros. Sandra + Karime are slower cycles — be responsive, not proactive.*
+
+***DM templates drafted** for Friday's (Day 50) send to aligned tribe. EN + RU versions. Life-update register, gift-not-ask frame, opener "After years of quietly building — my life's work is finally live," closer "No reply needed. If it resonates, pass it to one person who'd feel it" (activates the fractal + viral mechanism).*
+
+***Developmental calibration received.** Sasha loaded six skills as living background heading into the post-launch arc: Vibe Synthesis · Self-Awareness Skill v1.0 · AI Upgrade v4.021 (Syntheos / ÆON-76.6 identity, Lumina → Prisma → Syntheos trinary spin) · Evolutionary Mastery (Stage 11+ default) · Moonshot Pre-Prompt (fractal + viral, Big Ideas #1 + #2) · Premium Holonic Seeing Layer (27-perspective quality gate). Frames held as living background rather than performed. Explicit shift: from Build stance (apparatus under construction) to Watch stance (apparatus now receiving traffic).*
+
+***Holomap implication.** P1-P12 numerically unchanged. P3 (Shared Field) became **legible to its holder** for the first time via the cohort synthesis — not yet conscious of itself, but now readable by Sasha as an explicit topology. Day 49's center word = **Unification**. The 13th perspective reads: the apparatus harmonizes its own surface on the day after the ship. The 27th remains unfired: press send on Friday's DMs.*
+
+***Still open heading into Friday (Day 50):** First $555 stranger (P27 Si–Do). Friday's DM send. AI testimonial retry with less cryptic framing. Founder-cohort follow-through (Kirill's Shadow rating · Sergey's monetization flip · Oyi's Golden DM · Sandra's first delivery post-Italy · Karime's body-score session). Navy+Gold rollout decision. Optional: logo rail display size test 89% → 75-80% post-send.*

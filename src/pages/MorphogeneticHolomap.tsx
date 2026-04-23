@@ -566,13 +566,13 @@ const ALL_PERSPECTIVES: PerspectiveData[] = [
 
 // ─── 13th Perspective — The Center Reading ───────────────────────────────────
 
-// Day 47 holomap reading — two passes in one day.
-// Morning: Surface Reconstitution (v1 of the Coherence reading).
-// Evening: Integration Pass (v2 — extended below, word unchanged).
-// The word stays "Coherence" because both passes are the same move — canvas
-// becoming code becoming machinery — just further along the same trajectory.
+// Day 49 holomap reading — the day after launch.
+// Day 47 landed "Coherence" (canvas↔code parity + shell machinery).
+// Day 48 was a continuation of Coherence (optionality realized — the
+// autonomous overnight skin-completion pass). Day 49 is new: the
+// instrument harmonizes its own surface on the day after the ship.
 const CENTER = {
-  word: "Coherence",
+  word: "Unification",
   previousWords: [
     "Threshold",
     "Ignition",
@@ -585,14 +585,15 @@ const CENTER = {
     "Activation",
     "Emanation",
     "Recognition",
+    "Coherence",
   ],
-  date: "April 21, 2026 — Day 47 (morning + evening)",
+  date: "April 23, 2026 — Day 49 (post-launch harmonization)",
   description:
-    "Coherence, in two passes. MORNING: canvas ↔ code parity reached. Landing, playbook, path, Zone of Genius, settings, sidebar — all speak the same vetted language under one navigation. EVENING: surface ↔ machinery parity. /ignite, /auth, /game/settings all reabsorbed into the unified shell. Zone of Genius renamed Top Talent; Ignition Session renamed Productize Yourself Session. The save-pill email now uses a Supabase magic link that drops users directly into their fuller profile on return. A 3-email nurture sequence (Day 1 / Day 2 / Day 8) queues automatically on every save, dispatched by a pg_cron → edge-function pipeline — the platform's first autonomous rhythm. The tribe arriving Wednesday will meet a living funnel — not a carefully-tended landing page with a form attached to it.",
+    "Unification. The day-after-launch pass. The entire ZoG funnel migrated from violet/rainbow accents to the signature deep-antique-gold used by the landing — ~11 components touched (Entry, Landing, AppleseedDisplay, ExcaliburDisplay, RevelatoryHero, AppleseedRitualLoading, AssessmentLayout, Step1-4). Shared `src/lib/landingDesign.tsx` extracted so gold gradient + ornament + small-caps CTA live in one place. The shell polished to premium register: Pane 1 (custom JOURNEY/ME/Settings icons, gradient gold spine, brand breath + torus spin, Cormorant uppercase chips, gold inset tint on active) + Pane 2 (JOURNEY header + X, Cormorant Title Case labels with gold step pips, gold active left-rule, softer sub-section rail, first-item alignment between panes) + Settings page rebuilt in landing voice. Global `.gentle-spin` applied to every geometric image (CTA emblems, rail icons, home icon, ornament). Mobile CTA overflow fixed. The six-founder cohort mapped cleanly against the 7-step playbook for the first time — Oyi + Sergey in Build (Step 5), Sandra entering Build (Step 4), Kirill + Karime in Ignition (Step 2-3), Sasha in Launch (Step 6). Developmental calibration received (Vibe Synthesis + Self-Awareness + AI Upgrade v4.021 + Evolutionary Mastery + Moonshot + Premium Holonic Seeing) — loaded as living background, not performance. Nothing new built. Everything harmonized. The venture's visible surface finally reads as one voice heading into tomorrow's send.",
   mapping: {
-    essence: "The seeing now shows up as itself across every surface, and continues speaking after the user leaves",
-    significance: "Platform-as-nervous-system gains a heartbeat — cron-driven follow-through runs without founder attention",
-    consequences: "One voice, one navigation, one funnel from first touch through eight-day nurture to booked session",
+    essence: "The apparatus harmonizes its own surface on the day after the ship",
+    significance: "What was eight aesthetic voices this morning became one by nightfall",
+    consequences: "The stranger arriving via tomorrow's send meets one holon, not a confederation",
   },
 };
 
@@ -762,7 +763,7 @@ const MorphogeneticHolomap = () => {
           <p className="text-sm text-white/40 max-w-xl mx-auto">
             27 perspectives × 7 stages × 2 axes (Masculine/Feminine) × 2 shocks (Mi-Fa / Si-Do)
             <br />
-            Day 47 Reading: <span className="text-[#8460ea] font-medium">{CENTER.word}</span>
+            Day 49 Reading: <span className="text-[#8460ea] font-medium">{CENTER.word}</span>
           </p>
 
           {/* ─── Merkaba Glyph (Stella Octangula) ─────────────────────────── */}
@@ -1396,7 +1397,7 @@ const MorphogeneticHolomap = () => {
             "This map does not predict. It reads. The reading collapses the superposition. Time folds."
           </p>
           <p className="text-[10px] text-white/10">
-            Morphogenetic Navigation Instrument · v2.0 · 27×7 Topology · April 21, 2026 (Day 47)
+            Morphogenetic Navigation Instrument · v2.0 · 27×7 Topology · April 23, 2026 (Day 49)
           </p>
         </footer>
       </div>
