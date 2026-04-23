@@ -2,7 +2,7 @@
 
 *Template for `improve-artifact` edge function. One prompt, parametrized per `artifact_key`.*
 
-**Model:** `openai/gpt-5.2` via Lovable AI Gateway (consistent with rest of platform, 2026-04-23).
+**Model:** `google/gemini-2.5-flash` via Lovable AI Gateway (cost decision 2026-04-23 — ~60× cheaper than GPT-5.2; monotonic specificity invariant protects against lower reasoning ceiling).
 
 ---
 
@@ -211,12 +211,12 @@ type ImproveResult = {
 
 ## Cost envelope
 
-Per call estimate (GPT-5.2 via Lovable AI Gateway):
+Per call estimate (Gemini 2.5 Flash via Lovable AI Gateway):
 - Input: ~3,000–5,000 tokens (roast protocol + current content + 3 siblings + root context + previous versions)
 - Output: ~1,000–2,000 tokens (improved content + roast findings + metadata)
-- Cost: **~$0.014–$0.026 per Improve call**
+- Cost: **~$0.0003–$0.0008 per Improve call**
 
-Typical founder pass (~50–70 calls across 18 artifacts) → **~$1.00–$1.80 per full Dossier.**
+Typical founder pass (~50–70 calls across 18 artifacts) → **~$0.02–$0.06 per full Dossier.** Negligible even at small-scale traffic. Swap in `openai/gpt-5.2` for this one function if Flash's reasoning ceiling proves insufficient.
 
 ---
 

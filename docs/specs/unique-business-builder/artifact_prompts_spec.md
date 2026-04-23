@@ -2,7 +2,7 @@
 
 *Per-artifact generation input, output shape, and specificity criteria. Injected into `generate-artifact` and `improve-artifact` edge functions.*
 
-**Model:** `openai/gpt-5.2` via Lovable AI Gateway.
+**Model:** `google/gemini-2.5-flash` via Lovable AI Gateway.
 **Two edge functions, both parametrized by `artifact_key`:**
 - `generate-artifact` — produces v1 from seed context (ZoG + any locked siblings)
 - `improve-artifact` — applies the 27-perspective roast + iterates (see `improve_roast_prompt.md`)
