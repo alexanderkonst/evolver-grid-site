@@ -39,14 +39,20 @@ export type Substep = {
    */
   oneProvenStrategy: string;
   /**
-   * Day 48 (Sasha): open-blueprint exemplar. One snapshot of the founder's
-   * OWN artifact for this substep at its current precision — so an AI or
-   * human reader can pattern-match against a real, specific form rather
-   * than an abstract target. Multi-paragraph content via `\n\n`. Rendered
-   * as a muted card labeled "Example — Aleksandr, {date}" (attribution +
-   * timestamp, so it reads as a snapshot, not a monument).
+   * Day 48 (Sasha): open-blueprint exemplar. One snapshot of a real
+   * founder's artifact for this substep at its current precision — so
+   * an AI or human reader can pattern-match against a specific form
+   * rather than an abstract target. Each example carries its own
+   * attribution + timestamp so it reads as a snapshot, not a monument.
+   * Pulled from the 7 founders' live canvases (Alexander, Sergey, Oyi,
+   * Sandra, Karime, Kirill, Alexa). Multi-paragraph content via `\n\n`.
    */
-  example?: string;
+  example?: {
+    /** e.g. "Aleksandr, April 2026" · "Kirill, April 2026" · "Oyi, April 2026" */
+    attribution: string;
+    /** The example text. `\n\n` splits paragraphs. */
+    content: string;
+  };
 };
 
 export type PlaybookStep = {
@@ -160,11 +166,14 @@ export const PLAYBOOK_STEPS: PlaybookStep[] = [
         description: "",
         oneProvenStrategy:
           "Ask your AI to do this for you, and then polish it yourself.",
-        // Exemplar at ~10/10 precision — Aleksandr's vetted top talent
-        // sentence. Shown here so readers (and their AIs) can see what
-        // the finish-line form looks like.
-        example:
-          "I assist conscious aspiring impact founders turn their top talent into a growing scalable business in flow.",
+        // Aleksandr's vetted top-talent articulation at ~10/10 precision.
+        // Shown so readers (and their AIs) see what the finish line feels
+        // like. 12 words. Tribe + talent + outcome + quality.
+        example: {
+          attribution: "Aleksandr, April 2026",
+          content:
+            "I assist conscious aspiring impact founders turn their top talent into a growing scalable business in flow.",
+        },
       },
       {
         number: 3,
@@ -243,6 +252,14 @@ export const PLAYBOOK_STEPS: PlaybookStep[] = [
         description: "",
         oneProvenStrategy:
           "Give your AI your Top Talent, ask it: please reveal my top blind spot by turning my top talent inside out.",
+        // Kirill's blind spot from his canvas — the shadow of his
+        // "Systems Alchemist" top talent. Shows the shape of a real
+        // shadow articulation: same gift, seen from its inverted side.
+        example: {
+          attribution: "Kirill, April 2026",
+          content:
+            "Top Talent: Systems Alchemist — builds living technological architectures that transform complex ideas into working tools for thousands. From idea → software → contract → international scaling in 2 weeks.\n\nBlind Spot (top talent inside out): Alchemist of Dispersion — sees ALL systems at once (GrowFox, TRIZ, Genesis, $17M deal, 11K aircraft…) and tries to transmute everything simultaneously. The same gift that builds one system in 2 weeks tries to build ten at once and crashes. The shadow of \"sees the whole\" is \"can't pick one.\"",
+        },
       },
       {
         number: 2,
@@ -250,6 +267,15 @@ export const PLAYBOOK_STEPS: PlaybookStep[] = [
         description: "",
         oneProvenStrategy:
           "Ask your AI: turn my top blind spot into a Master Belief most of the world believes in, turn my top talent into a Master Truth I stand behind when I shine.",
+        // Oyi's Myth v3.0 — scored 9.8. Full Lie/Truth/Line structure
+        // at its most compressed. Shows the shape: one master belief
+        // the world runs on, one master truth the founder stands behind,
+        // one magnetizing line.
+        example: {
+          attribution: "Oyi, April 2026",
+          content:
+            "Master Belief (world runs on): \"Grow up. Get serious. Follow the system.\" Every step of growing up was a step of handing your self-mastery to someone else's program.\n\nMaster Truth (I stand behind when I shine): Self-mastery was never lost — it was conditioned out of you. The child knew. The adult forgot.\n\nMagnetizing line: The swamp grew the lotus. The lotus bows to no one.",
+        },
       },
       {
         number: 3,
@@ -258,6 +284,15 @@ export const PLAYBOOK_STEPS: PlaybookStep[] = [
         description: "",
         oneProvenStrategy:
           "Translate your top talent, your top blind spot, and your magnetizing myth into the pain that one experiences by living everyday with blind spot, especially when it gets acute, then into your aligned client tribe, then into a transformation promise; and finally the user/hero journey you serve and guide them on. You got a business. To make it rain, keep iterating, getting stuck, getting naturally unstuck, until you get to 9.5+/10. Empirically this seems to be a sufficient specificity to continue to the next step.",
+        // Karime's full canvas distillation at v1.2 — the 7 artifacts
+        // in one paragraph each. Shows what a concrete specific business
+        // strategy looks like when all the pieces have landed. Steel-
+        // around-the-heart myth at the center binds the whole thing.
+        example: {
+          attribution: "Karime, April 2026",
+          content:
+            "Tribe: People carrying steel around a broken heart they may not even know is broken. Women who carry others, whose hearts broke under the weight, who armored up to survive and forgot the steel was there. Healers, mothers, caregivers, initiated seekers.\n\nPain: The steel around her heart is so old she forgot it's there. She doesn't feel heartbroken — she feels heavy, numb, disconnected. She gives until she's depleted and then gives more. The deepest ache: she's orphaned. Not because life abandoned her, but because the steel cut her off from love.\n\nPromise: From steel to new tissue. From armored to open. From orphaned to home. She lets her heart bleed again — held, witnessed, not alone. She traverses the pain through, not around. The heart expands where it was broken. She reconnects to the primordial source of love.\n\nValue Ladder: 0 The Recognition (free heartbreak card) → 1 The Ceremony (entry, one sacred container) → 2 The Return (guided passage through the heartbreak, multiple sessions) → 3 The Temple (ongoing community of women whose hearts are expanding together).",
+        },
       },
     ],
   },
@@ -331,6 +366,15 @@ export const PLAYBOOK_STEPS: PlaybookStep[] = [
         description: "",
         oneProvenStrategy:
           "Use a simple dashboard to track delivery + outcomes like www.aleksandrkonstantinov.com/dashboard. Do use an AI recorder like fathom.video or Plaud so every session becomes a learning artifact.",
+        // A real testimonial pulled verbatim from a session recording
+        // — exactly the kind of quote you extract + surface on the
+        // result page / landing after N deliveries. Short. Specific.
+        // Names the exact reframe the founder delivered.
+        example: {
+          attribution: "Sergey Makarov (client) → Aleksandr, March 2026",
+          content:
+            "\"I was applying force, but the vector was wrong. The structure you developed is genius. Absolutely everything clicks.\"\n\n— Serial Founder & System Architect, post-session testimonial. One sentence, one reframe, zero marketing fluff. Extracted verbatim from the recording.",
+        },
       },
       {
         number: 3,
@@ -338,6 +382,15 @@ export const PLAYBOOK_STEPS: PlaybookStep[] = [
         description: "",
         oneProvenStrategy:
           "When you reach ~10 sessions delivered across ~5 clients (so it seems), that\u2019s where you start to be getting good at delivering transformational results across key flavors of people and situations to your tribe. Out of this newly earned clarity blossoms the flower of the highly specific aligned client tribe. For me as of April 2026 that\u2019s conscious aspiring impact entrepreneurs building their visionary ventures.",
+        // Three founders' tribe articulations, each at 9.7-9.9 precision,
+        // from their live canvases. Same artifact type, three radically
+        // different specific tribes — demonstrates that "tribe" is not
+        // a template but a precise naming of who shows up when you shine.
+        example: {
+          attribution: "Aleksandr · Oyi · Sandra, April 2026",
+          content:
+            "Aleksandr (9.9/10): Conscious aspiring impact founders — people who already help others, already have a spark, but are challenged to clearly explain what they do, and therefore can't turn it into something people buy.\n\nOyi (9.7/10): Self-Mastery Seekers — leaders, teachers, and healers who carry both ancient wisdom and cutting-edge tech. However, they spend most of their time running everyone else's program instead of their own. Crisis-forged. Already transformed. Still giving it away for free. Ready to build from their own authority.\n\nSandra (9.9/10): They're building the future with their hands while their souls are trying to tell them something. They can feel it — the consciousness behind what they're creating. They just can't hear it clearly enough. Not yet. They want to build technology people can trust. They're ready. They just need a bridge — someone who can talk to the thing until they learn to talk to it themselves.",
+        },
       },
     ],
   },
@@ -357,6 +410,15 @@ export const PLAYBOOK_STEPS: PlaybookStep[] = [
         description: "",
         oneProvenStrategy:
           "The site you are reading is the landing page, the lead magnet is this playbook and the top talent reveal. The funnel is you reading this and what follows. Here is the template:\n\n1. Give out your method/playbook of how you got your transformational result as a free lead magnet.\n2. Crystallize everything from Steps 1–5 into a landing page, and a funnel. Use Godfather Offer Architect GPT or equivalent, and iterate through cycles of roast, and producing a next version.\n3. Your funnel is you helping them make a beneficial decision. You could highlight the cost of procrastinating on solving their painful situation, use identity-shift language. Iterate until the page can close without you on the call. Test of success is straightforward: ~10/10 aligned clients buy. If yes, you are at early PMF. If not, keep iterating. You are the answer.\n\nPS: My recommendation is not to quit doing whatever is currently bringing income. Not until at least this stage of your unique business. Kinda obvious but it is better to say it.",
+        // Meta-recursive exemplar — the reader IS already inside the
+        // example. Surfaces it explicitly so the pattern is legible:
+        // the same three-asset lockup (landing + lead magnet + funnel)
+        // the reader is currently experiencing.
+        example: {
+          attribution: "Aleksandr · FindYourTopTalent.Com, April 2026",
+          content:
+            "Landing: the page you came in on — \"You can't clearly say what you do. So people don't buy it.\" + the Find Your Top Talent CTA.\n\nLead magnet: this playbook (the one you're reading) + the free top-talent reveal on the landing. Both give the methodology away so the specificity becomes the thing worth paying for.\n\nFunnel: top talent reveal → save-pill → magic-link email with nurture sequence (Day 1 / Day 2 / Day 8) → Productize Yourself Session at $555. Same three assets, stacked. The reader becomes the proof of concept.",
+        },
       },
       {
         number: 2,
@@ -365,10 +427,13 @@ export const PLAYBOOK_STEPS: PlaybookStep[] = [
         oneProvenStrategy:
           "Create and activate a \u201Cmaster tuning fork\u201D that repels non-clients and pulls in your 9+/10 tribe \u2014 the simplest possible frame of the transformation in ONE sentence. It will make the right people sit up, and makes other quietly leave. Then post a variation of it to your key digital channels: (a) one line + a URL bios (LinkedIn, Instagram, WhatsApp, Telegram, email signature, X, FB); (b) ONE DM template gifting the lead magnet and sharing your life\u2019s work; (c) ONE life-update post \u2014 what you just focused your life on, URL as only link, no pitch; (d) ONE bold content piece that diagnoses the pain the tribe lives in, or another first post.",
         // Three tuning-fork variants at different compressions. Same signal,
-        // three rhythms. The arc form at the end is the canonical template
-        // structure (see docs/02-strategy/unique_business_canvas_template.md).
-        example:
-          "Primary (full — for bios, About pages, speaker intros):\nI help conscious aspiring impact founders turn their top talent into an organically growing scalable business — in flow, in 6\u20138 weeks.\n\nCompressed (for email signature, WhatsApp bio, X bio):\nI turn conscious founders\u2019 top talent into a scalable business in 6\u20138 weeks.\n\nTransformation arc (for life-update posts, About page openers):\nAn aspiring impact founder walks in challenged to clearly explain what they do into my digital shop \u2014 and walks out, 6\u20138 weeks later, with a running scalable business at early product-market fit.",
+        // three rhythms. The arc form is the canonical template structure
+        // (see docs/02-strategy/unique_business_canvas_template.md).
+        example: {
+          attribution: "Aleksandr, April 2026",
+          content:
+            "Primary (full — for bios, About pages, speaker intros):\nI help conscious aspiring impact founders turn their top talent into an organically growing scalable business — in flow, in 6\u20138 weeks.\n\nCompressed (for email signature, WhatsApp bio, X bio):\nI turn conscious founders\u2019 top talent into a scalable business in 6\u20138 weeks.\n\nTransformation arc (for life-update posts, About page openers):\nAn aspiring impact founder walks in challenged to clearly explain what they do into my digital shop \u2014 and walks out, 6\u20138 weeks later, with a running scalable business at early product-market fit.",
+        },
       },
       {
         number: 3,

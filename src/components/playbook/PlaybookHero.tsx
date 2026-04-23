@@ -45,18 +45,19 @@ const PlaybookHero = () => {
           className={cn(
             "group liquid-glass-dark rounded-full",
             "inline-flex items-center justify-center gap-2.5",
-            "px-5 py-2.5 whitespace-nowrap",
-            "text-sm font-semibold tracking-wide",
+            "px-6 py-3 whitespace-nowrap",
+            // Day 48 (Sasha): shifted the primary CTA from DM Sans to
+            // Cormorant Garamond semibold so it reads as a ceremonial
+            // serif moment that rhymes with the ornate gold-embossed
+            // wordmark in the logo. Slight bump in size/padding to
+            // match the serif's natural heft.
+            "text-base font-semibold tracking-[0.01em]",
             "transition-all duration-300 hover:scale-[1.03] active:scale-[0.97]",
             "focus-visible:ring-2 focus-visible:ring-white/40 outline-none",
           )}
           style={{
+            fontFamily: "'Cormorant Garamond', serif",
             color: "var(--skin-cta-text, rgba(245,245,250,0.98))",
-            // liquid-glass-dark supplies the backdrop-blur + inner edge
-            // highlight. We layer the skin-cta-bg gradient on top + the
-            // skin-cta-shadow which carries the gold halo in both skins
-            // (Aurora: gold glow on dark navy button; Navy+Gold: subtle
-            // gold rim since the button is gold-tinted already).
             backgroundImage:
               "var(--skin-cta-bg, linear-gradient(135deg, rgba(10,22,40,0.72) 0%, rgba(26,30,58,0.62) 50%, rgba(10,22,40,0.72) 100%))",
             boxShadow:
@@ -107,12 +108,13 @@ const PlaybookHero = () => {
           className={cn(
             "liquid-glass rounded-full",
             "inline-flex items-center justify-center",
-            "px-5 py-2.5 whitespace-nowrap",
-            "text-sm font-medium tracking-wide",
+            "px-6 py-3 whitespace-nowrap",
+            "text-base font-medium tracking-[0.01em]",
             "transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]",
             "focus-visible:ring-2 focus-visible:ring-[#0a1628]/30 outline-none mt-1",
           )}
           style={{
+            fontFamily: "'Cormorant Garamond', serif",
             color: "var(--skin-link-secondary, rgba(26,30,58,0.85))",
             textShadow:
               "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
