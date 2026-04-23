@@ -179,7 +179,7 @@ const PathPage = () => {
                     textShadow: "none",
                   }}
                 >
-                  Guaranteed.
+                  Money-Back Guaranteed.
                 </span>
               </p>
 

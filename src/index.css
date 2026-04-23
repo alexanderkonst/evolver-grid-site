@@ -253,9 +253,15 @@
   --skin-darkroom-muted:  rgba(245, 245, 250, 0.65);
   --skin-darkroom-border: rgba(255, 255, 255, 0.12);
 
-  /* Italic italic Guaranteed / call-out accent */
-  --skin-callout-bg:     linear-gradient(135deg, hsl(285, 85%, 28%) 0%, hsl(272, 85%, 24%) 50%, hsl(258, 85%, 26%) 100%);
-  --skin-callout-glow:   drop-shadow(0 0 10px hsl(278 95% 55% / 0.38)) drop-shadow(0 0 3px hsl(268 95% 48% / 0.45));
+  /* Italic italic Guaranteed / call-out accent.
+     Day 48 iter 7 (Sasha): migrated from deep violet (hue 285°) to the
+     signature deep antique-gold gradient used site-wide. Every surface
+     reading `--skin-callout-bg/glow` auto-adopts gold without needing
+     per-file edits. The /path "Money-Back Guaranteed." is the primary
+     consumer. Keep Navy+Gold override below unchanged — it's already
+     gold there. */
+  --skin-callout-bg:     linear-gradient(135deg, #a06d08 0%, #7a5108 45%, #6b4208 100%);
+  --skin-callout-glow:   drop-shadow(0 0 1px rgba(212, 175, 55, 0.6)) drop-shadow(0 1px 0 rgba(255, 255, 255, 0.35));
 }
 
 /* ── Navy + Gold — premium editorial alternate ───────────────────────── */
