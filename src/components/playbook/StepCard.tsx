@@ -131,14 +131,21 @@ const SubstepRow = ({
             {substep.name}
           </h3>
 
-          {/* ══ Description — skin-aware muted body */}
+          {/* ══ Description — skin-aware muted body.
+              Day 48 (Sasha): descriptions can now carry structured text
+              (intro paragraph + numbered list) by using `\n\n` as
+              paragraph separators. Each paragraph renders independently. */}
           {substep.description && (
-            <p
-              className="text-sm sm:text-[15px] leading-relaxed"
+            <div
+              className="text-sm sm:text-[15px] leading-relaxed space-y-2"
               style={{ color: "var(--skin-text-body, rgba(26,30,58,0.78))" }}
             >
-              {substep.description}
-            </p>
+              {substep.description.split("\n\n").map((para, i) => (
+                <p key={i} style={{ whiteSpace: "pre-line" }}>
+                  {para}
+                </p>
+              ))}
+            </div>
           )}
 
           {/* ══ Recommended How-To button — keeps the step's rainbow
@@ -175,7 +182,9 @@ const SubstepRow = ({
           <div
             className={cn(
               "overflow-hidden transition-[max-height,opacity] duration-500 ease-out",
-              open ? "max-h-[600px] opacity-100" : "max-h-0 opacity-0",
+              // Day 48 (Sasha): bumped from 600px to 1600px so the longer
+              // multi-paragraph How-Tos (Steps 5 + 6) don't get clipped.
+              open ? "max-h-[1600px] opacity-100" : "max-h-0 opacity-0",
             )}
           >
             <div
@@ -185,12 +194,16 @@ const SubstepRow = ({
                 border: `1px solid rgba(${neonRgb},0.25)`,
               }}
             >
-              <p
-                className="text-sm sm:text-[15px] leading-relaxed"
+              <div
+                className="text-sm sm:text-[15px] leading-relaxed space-y-2"
                 style={{ color: "var(--skin-text-strong, rgba(26,30,58,0.88))" }}
               >
-                {substep.oneProvenStrategy}
-              </p>
+                {substep.oneProvenStrategy.split("\n\n").map((para, i) => (
+                  <p key={i} style={{ whiteSpace: "pre-line" }}>
+                    {para}
+                  </p>
+                ))}
+              </div>
             </div>
           </div>
         </div>
