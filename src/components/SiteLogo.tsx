@@ -1,20 +1,21 @@
 import { Link, useLocation } from "react-router-dom";
+// Day 48 (Sasha): the brand logo (orb + FIND YOUR TOP TALENT wordmark).
+// Same asset used by the SpacesRail and the top-right shell icon.
+import brandLogo from "@/assets/find-your-top-talent-logo.png";
 
 /**
- * SiteLogo — Circular logo, fixed top-CENTER of the viewport, links to home.
+ * SiteLogo — Full brand lockup, fixed top-center of the viewport, links to home.
  * Hidden on routes whose shell already supplies a logo (SpacesRail in GameShellV2,
  * the playbook's top-right logo inside Panel 3, or custom hero treatments).
+ *
+ * Day 48 (Sasha): retired the old round dodecahedron avatar in favor of
+ * the full "FIND YOUR TOP TALENT" wordmark — consistent brand across
+ * every surface that renders the logo.
  */
 const SiteLogo = () => {
     const location = useLocation();
 
-    // Hide on pages that have their own logo/hero treatment, or whose
-    // shell/layout supplies one via SpacesRail's top identity chip.
-    // Day 47: /path + /zone-of-genius + /my-artifacts added — they render
-    // inside GameShellV2 with `hideLogo`, the center logo is redundant.
-    // Day 48 (Sasha): /auth added — the login/signup card is its own hero;
-    // a floating logo on top of it competes with the form and mixes
-    // visual register between shell and modal.
+    // Hide on pages whose layout already carries the brand elsewhere.
     const hidden = [
         "/game",
         "/zone-of-genius",
@@ -30,16 +31,17 @@ const SiteLogo = () => {
         <Link
             to="/"
             className="fixed top-4 left-1/2 -translate-x-1/2 z-50 group"
-            aria-label="Home"
+            aria-label="Find Your Top Talent — home"
         >
-            <div className="w-[94px] h-[94px] rounded-full liquid-glass-strong ring-1 ring-white/15 shadow-[0_0_30px_rgba(255,255,255,0.06)] p-[3px] hover:scale-110 hover:shadow-[0_0_40px_rgba(255,255,255,0.12)] transition-all duration-300">
-                <img
-                    src="/evolver-logo.jpg"
-                    alt=""
-                    className="w-full h-full object-cover rounded-full"
-                    aria-hidden="true"
-                />
-            </div>
+            <img
+                src={brandLogo}
+                alt="Find Your Top Talent"
+                className="h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-[1.04]"
+                style={{
+                    filter: "drop-shadow(0 0 14px rgba(244, 212, 114, 0.3))",
+                }}
+                draggable={false}
+            />
         </Link>
     );
 };

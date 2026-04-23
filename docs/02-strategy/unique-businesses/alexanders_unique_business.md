@@ -11,6 +11,54 @@
 >
 > **This file is the single source of truth.** Each artifact is versioned with essence, significance, and key practical implications. When a new insight deepens an articulation, update it here — nowhere else.
 
+---
+
+## 🧭 Business Dashboard
+
+*Day 48 (April 22, 2026). Distilled snapshot. The canvas sprawls below — this is the top-of-the-file glance.*
+
+### Name & Surfaces
+- **Name:** Find Your Top Talent
+- **Domain:** [FindYourTopTalent.Com](https://findyourtoptalent.com)
+- **Founder domain:** [aleksandrkonstantinov.com](https://aleksandrkonstantinov.com)
+- **Site skins:** Aurora (default · light pearlescent + rainbow highlights) · Navy + Gold (preview at `/preview` · deep navy + gold accents, editorial dark)
+
+### Tribe (9.9/10 precision)
+**Conscious aspiring impact founders** — people who already help others, already have a spark, but are challenged to clearly explain what they do, and therefore can't turn it into something people buy.
+
+### Top Talent — 10/10 articulation
+I assist conscious aspiring impact founders turn their top talent into a growing scalable business in flow.
+
+### ⭐ Master Tuning Forks — v1.0 (April 22, 2026)
+
+*The one-sentence frames of the transformation. Each is the same signal at a different compression. Posted across bios, DMs, life-update posts, About pages.*
+
+**Tuning Fork #1 — Primary (full)**
+> I help conscious aspiring impact founders turn their top talent into an organically growing scalable business — in flow, in 6–8 weeks.
+
+*Use for:* LinkedIn About · Instagram bio · site footer · speaker bios. Long enough to carry the full differentiator (**organically growing** · **in flow** · **6–8 weeks**), short enough to feel alive.
+
+**Tuning Fork #2 — Compressed**
+> I turn conscious founders' top talent into a scalable business in 6–8 weeks.
+
+*Use for:* Email signature · WhatsApp bio · Telegram bio · X bio · LinkedIn tagline. Any slot where space is tight.
+
+**Tuning Fork #3 — Transformation Arc**
+> An aspiring impact founder walks in challenged to clearly explain what they do into my digital shop — and walks out, 6–8 weeks later, with a running scalable business at early product-market fit.
+
+*Use for:* Life-update post ("what I just focused my life on") · About page opener · Step 6 masthead example · the example-in-playbook that demonstrates the "master tuning fork" substep. **This is the template sentence structure** for anyone producing their own Step 6 tuning fork.
+
+### Value Ladder (the Path · `/path`)
+Step 1 free · Steps 2+3 **$555** · Step 4 **$1,111** · Step 5 **$333** · Step 6 **$1,111 + 1/3 of first $10k** (capped) · Step 7 by invitation. Total entry path to PMF: **$2,555** in 6–8 weeks. Money-back guarantee on every step.
+
+### Current State (snapshot)
+- **7 founders** (Alexander · Oyi · Sergey · Alexa · Sandra · Karime · Kirill) co-identifying as a collective.
+- **$1,931 total** (cash + in-kind + rev-share contracts through Day 47).
+- **Wednesday launch** (April 22, 2026) — Aurora skin, full funnel live, nurture emails automated.
+- **First $555 stranger pays** = the P27 Si-Do shock still open.
+
+---
+
 ## Table of Contents
 
 ### I. Core Artifacts (The 14-Domain OS)
@@ -7488,3 +7536,21 @@ The consequence for the canvas: Sasha's **channels** layer (7-artifact model) ju
 ***Net effect:** The skin system is now complete for the critical preview tour. What was a landing-only demo is now a real preview across the entire journey. Whatever Sasha decides post-launch — keep Navy+Gold preview-only, roll it out as a per-founder skin, offer it as a Founder-Collective tier identity, make it seasonal — the infrastructure cost is paid. No build cost attached to the decision.*
 
 ***Wednesday launch remains Aurora-locked.** Navy+Gold sits latent on `/preview`, reachable only by URL.*
+
+*Alexander's Unique Business v9.9 — April 22, 2026 (Day 48 — Master Tuning Forks + Business Dashboard):*
+
+***Business Dashboard added at the top of this file.** A distilled snapshot — name, surfaces, tribe articulation at 9.9/10, top talent 10/10, the 3 master tuning forks, value ladder, current state — so anyone opening the canvas gets the whole business at a glance before diving into 7000+ lines of artifacts. Modeled as a "top-of-file dashboard" that pairs with the sprawling artifact detail below.*
+
+***Three master tuning forks locked at v1.0** (Day 48 iteration in Sasha's ceremony-state flow):*
+
+*- **#1 (Primary, full):** "I help conscious aspiring impact founders turn their top talent into an organically growing scalable business — in flow, in 6–8 weeks." For LinkedIn About, Instagram bio, speaker bios, site footer. Key upgrade from prior v8.x articulation ("turn their top talent into a growing scalable business in flow"): added **organically** (differentiates resonance-pulled growth from ads-bought growth) and **in 6–8 weeks** (time-bound credible). Same tribe/talent/outcome, upgraded with two load-bearing qualities.*
+
+*- **#2 (Compressed):** "I turn conscious founders' top talent into a scalable business in 6–8 weeks." For email signature, WhatsApp/Telegram/X bios, LinkedIn tagline, anywhere space is tight.*
+
+*- **#3 (Transformation Arc):** "An aspiring impact founder walks in challenged to clearly explain what they do into my digital shop — and walks out, 6–8 weeks later, with a running scalable business at early product-market fit." For life-update posts, About page openers, and as THE example in the playbook's Step 6 substep 2 ("master tuning fork") — the sentence structure other founders will template from.*
+
+***Template status:** Tuning Fork #3 (the arc) is now the canonical template form. Structure: "[tribe member] walks in [challenged situation] into [founder's digital shop] — and walks out, [timeframe] later, with [concrete transformational result]." Any founder applying Step 6 can fill this template for their own business. Codified separately in `docs/02-strategy/unique_business_canvas_template.md` (Day 48).*
+
+***Why "HIGHEST RESONANCE YET" (Sasha's words):** Prior articulations named the tribe + talent + outcome but missed the organic-growth differentiator and the time-bound credibility. The Day 48 versions close both gaps. Also: the arc form anchors the reader INSIDE the shop they're already in (reading the page), not in an abstract elsewhere — activates present-tense located selfhood rather than hypothetical future-tense pondering.*
+
+***Deployed to the playbook:** Step 6 substep 2's Recommended How-To now includes the arc sentence as "Example (mine):". Founders reading the playbook see the transformation-arc template in action, with Sasha's own business as the demo. In the spirit of Open Blueprint Paradox — methodology free, exemplars concrete, specificity is the product.*
