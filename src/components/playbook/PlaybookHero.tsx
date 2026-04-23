@@ -1,5 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import { cn } from "@/lib/utils";
+// Day 48 (Sasha): primary CTA icon switched from the ✦ glyph to the
+// ignite-logo asset. Rendered small + light-opacity so it reads as a
+// subtle emblem rather than dominating the pill.
+import igniteLogo from "@/assets/ignite-logo.png";
 
 /**
  * PlaybookHero — the CTAs below the landing's headline.
@@ -66,17 +70,17 @@ const PlaybookHero = () => {
               "var(--skin-cta-text-shadow, 0 0 16px rgba(240,194,127,0.25), 0 1px 2px rgba(0,0,0,0.35))",
           }}
         >
-          <span
+          <img
+            src={igniteLogo}
+            alt=""
             aria-hidden="true"
-            className="text-[0.95em]"
+            className="h-4 w-auto opacity-80 transition-opacity group-hover:opacity-100"
             style={{
-              color: "var(--skin-cta-icon, rgba(240,194,127,0.92))",
-              textShadow:
-                "var(--skin-cta-icon-shadow, 0 0 10px rgba(240,194,127,0.6), 0 0 3px rgba(240,194,127,0.8))",
+              filter:
+                "drop-shadow(0 0 6px rgba(244, 212, 114, 0.45))",
             }}
-          >
-            ✦
-          </span>
+            draggable={false}
+          />
           <span>Find your top talent</span>
           <span
             aria-hidden="true"

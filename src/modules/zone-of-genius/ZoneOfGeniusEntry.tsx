@@ -1,12 +1,16 @@
 import { useState, useEffect, useRef } from "react";
 import { trackPageView, trackFunnelEvent } from "@/lib/funnelAnalytics";
 import { useNavigate, useSearchParams, useLocation } from "react-router-dom";
-import { ArrowRight, Copy, Check, Sparkles, Bot, ClipboardList, Sword } from "lucide-react";
+import { ArrowRight, Copy, Check, Bot, ClipboardList, Sword } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { PremiumButton } from "@/components/ui/PremiumButton";
 import { Textarea } from "@/components/ui/textarea";
 import GameShellV2 from "@/components/game/GameShellV2";
 import { ZONE_OF_GENIUS_PROMPT } from "@/prompts";
+// Day 48 (Sasha): primary CTA icon across the ZoG flow uses the
+// ignite logo asset — rendered small + light so it reads as a
+// subtle emblem consistent with the landing CTA.
+import igniteLogo from "@/assets/ignite-logo.png";
 import { generateAppleseed, AppleseedData } from "./appleseedGenerator";
 import { generateExcalibur, ExcaliburData } from "./excaliburGenerator";
 import { saveAppleseed, saveExcalibur, loadSavedData, saveAppleseedToLocalStorage } from "./saveToDatabase";
@@ -737,17 +741,16 @@ const ZoneOfGeniusEntry = () => {
                                 }}
                                 onClick={() => setStep("choice-route")}
                             >
-                                <span
+                                <img
+                                    src={igniteLogo}
+                                    alt=""
                                     aria-hidden="true"
-                                    className="text-[0.95em]"
+                                    className="h-4 w-auto opacity-80 transition-opacity group-hover:opacity-100"
                                     style={{
-                                        color: "var(--skin-cta-icon, rgba(240,194,127,0.92))",
-                                        textShadow:
-                                            "var(--skin-cta-icon-shadow, 0 0 10px rgba(240,194,127,0.6), 0 0 3px rgba(240,194,127,0.8))",
+                                        filter: "drop-shadow(0 0 6px rgba(244, 212, 114, 0.45))",
                                     }}
-                                >
-                                    ✦
-                                </span>
+                                    draggable={false}
+                                />
                                 <span>Find my top talent</span>
                                 <ArrowRight
                                     aria-hidden="true"
@@ -774,38 +777,46 @@ const ZoneOfGeniusEntry = () => {
                             </h2>
                         </div>
 
+                        {/* Day 48 (Sasha): selector cards re-skinned to the
+                            dark-navy glass register so the ZoG flow feels
+                            like one design family with the landing CTA.
+                            Kept card shape (icon + title + description) for
+                            scannability; swapped the white wash for
+                            liquid-glass-dark + skin-cta-bg, bumped the
+                            headings to Cormorant Garamond, kept the violet /
+                            blue accent circles as subtle colored anchors. */}
                         <div className="space-y-3">
                             <button
                                 onClick={() => setStep("ai-prompt")}
-                                className="w-full p-6 rounded-2xl
-                                           transition-all duration-300
-                                           text-left flex items-start gap-4 group
-                                           hover:scale-[1.015] active:scale-[0.985]
-                                           animate-in fade-in slide-in-from-bottom-2 duration-400"
+                                className="group liquid-glass-dark w-full p-5 rounded-2xl text-left transition-all duration-300 hover:scale-[1.015] active:scale-[0.985] animate-in fade-in slide-in-from-bottom-2 duration-400 focus-visible:ring-2 focus-visible:ring-white/40 outline-none"
                                 style={{
+                                    color: "var(--skin-cta-text, rgba(245,245,250,0.98))",
                                     backgroundImage:
-                                        "linear-gradient(135deg, rgba(255,255,255,0.32), rgba(255,255,255,0.14))",
-                                    border: "1px solid var(--skin-rule-medium, rgba(26,30,58,0.14))",
-                                    backdropFilter: "blur(12px)",
-                                    WebkitBackdropFilter: "blur(12px)",
-                                    color: "var(--skin-text-primary, #0a1628)",
+                                        "var(--skin-cta-bg, linear-gradient(135deg, rgba(10,22,40,0.72) 0%, rgba(26,30,58,0.62) 50%, rgba(10,22,40,0.72) 100%))",
+                                    boxShadow:
+                                        "var(--skin-cta-shadow, 0 0 18px -4px rgba(240,194,127,0.45), 0 10px 24px -10px rgba(10,22,40,0.5))",
                                 }}
                             >
                                 <div className="flex items-center gap-4">
-                                    <div className="p-3 rounded-full shrink-0 transition-colors duration-300"
-                                        style={{ backgroundColor: "rgba(132,96,234,0.15)" }}>
-                                        <Bot className="w-5 h-5" style={{ color: "#5b21b6" }} />
+                                    <div
+                                        className="p-3 rounded-full shrink-0 transition-colors duration-300"
+                                        style={{ backgroundColor: "rgba(244, 212, 114, 0.18)" }}
+                                    >
+                                        <Bot className="w-5 h-5" style={{ color: "#f4d472" }} />
                                     </div>
                                     <div>
                                         <p
-                                            className="text-base font-semibold tracking-wide"
-                                            style={{ color: "var(--skin-text-primary, #0a1628)" }}
+                                            className="text-lg font-semibold tracking-[0.01em]"
+                                            style={{
+                                                fontFamily: "'Cormorant Garamond', serif",
+                                                color: "var(--skin-cta-text, rgba(245,245,250,0.98))",
+                                            }}
                                         >
-                                            🤖 Faster (1 min)
+                                            Faster (1 min)
                                         </p>
                                         <p
-                                            className="text-xs mt-1 leading-relaxed"
-                                            style={{ color: "var(--skin-text-muted-soft, rgba(26,30,58,0.65))" }}
+                                            className="text-xs mt-0.5 leading-relaxed"
+                                            style={{ color: "rgba(245,245,250,0.65)" }}
                                         >
                                             Ask your AI & paste its response → get your pattern instantly
                                         </p>
@@ -815,36 +826,36 @@ const ZoneOfGeniusEntry = () => {
 
                             <button
                                 onClick={handleStartManualAssessment}
-                                className="w-full p-6 rounded-2xl
-                                           transition-all duration-300
-                                           text-left flex items-start gap-4 group
-                                           hover:scale-[1.015] active:scale-[0.985]
-                                           animate-in fade-in slide-in-from-bottom-2 duration-400"
+                                className="group liquid-glass-dark w-full p-5 rounded-2xl text-left transition-all duration-300 hover:scale-[1.015] active:scale-[0.985] animate-in fade-in slide-in-from-bottom-2 duration-400 focus-visible:ring-2 focus-visible:ring-white/40 outline-none"
                                 style={{
+                                    color: "var(--skin-cta-text, rgba(245,245,250,0.98))",
                                     backgroundImage:
-                                        "linear-gradient(135deg, rgba(255,255,255,0.32), rgba(255,255,255,0.14))",
-                                    border: "1px solid var(--skin-rule-medium, rgba(26,30,58,0.14))",
-                                    backdropFilter: "blur(12px)",
-                                    WebkitBackdropFilter: "blur(12px)",
-                                    color: "var(--skin-text-primary, #0a1628)",
+                                        "var(--skin-cta-bg, linear-gradient(135deg, rgba(10,22,40,0.72) 0%, rgba(26,30,58,0.62) 50%, rgba(10,22,40,0.72) 100%))",
+                                    boxShadow:
+                                        "var(--skin-cta-shadow, 0 0 18px -4px rgba(240,194,127,0.45), 0 10px 24px -10px rgba(10,22,40,0.5))",
                                     animationDelay: "100ms",
                                 }}
                             >
                                 <div className="flex items-center gap-4">
-                                    <div className="p-3 rounded-full shrink-0 transition-colors duration-300"
-                                        style={{ backgroundColor: "rgba(104,148,208,0.18)" }}>
-                                        <ClipboardList className="w-5 h-5" style={{ color: "#1e40af" }} />
+                                    <div
+                                        className="p-3 rounded-full shrink-0 transition-colors duration-300"
+                                        style={{ backgroundColor: "rgba(244, 212, 114, 0.18)" }}
+                                    >
+                                        <ClipboardList className="w-5 h-5" style={{ color: "#f4d472" }} />
                                     </div>
                                     <div>
                                         <p
-                                            className="text-base font-semibold tracking-wide"
-                                            style={{ color: "var(--skin-text-primary, #0a1628)" }}
+                                            className="text-lg font-semibold tracking-[0.01em]"
+                                            style={{
+                                                fontFamily: "'Cormorant Garamond', serif",
+                                                color: "var(--skin-cta-text, rgba(245,245,250,0.98))",
+                                            }}
                                         >
-                                            📋 Guided (10–15 min)
+                                            Guided (10–15 min)
                                         </p>
                                         <p
-                                            className="text-xs mt-1 leading-relaxed"
-                                            style={{ color: "var(--skin-text-muted-soft, rgba(26,30,58,0.65))" }}
+                                            className="text-xs mt-0.5 leading-relaxed"
+                                            style={{ color: "rgba(245,245,250,0.65)" }}
                                         >
                                             Assessment of your top talents
                                         </p>
@@ -919,30 +930,38 @@ const ZoneOfGeniusEntry = () => {
                             </Button>
                         </div>
 
-                        <button
-                            className="w-full max-w-md mx-auto rounded-2xl px-10 py-6
-                                       font-semibold text-lg
-                                       transition-all duration-300 ease-out
-                                       hover:scale-[1.02] active:scale-95
-                                       flex items-center justify-center gap-4
-                                       alive-card"
-                            style={{
-                                fontFamily: "'DM Sans', sans-serif",
-                                color: "var(--skin-text-primary, #0a1628)",
-                                backgroundImage:
-                                    "linear-gradient(135deg, rgba(255,255,255,0.38), rgba(255,255,255,0.18))",
-                                border: "1px solid var(--skin-rule-strong, rgba(26,30,58,0.18))",
-                                backdropFilter: "blur(14px)",
-                                WebkitBackdropFilter: "blur(14px)",
-                                boxShadow:
-                                    "0 20px 60px -24px rgba(26,30,58,0.25), inset 0 1px 1px rgba(255,255,255,0.8)",
-                                textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.7))",
-                            }}
-                            onClick={() => setStep("paste-response")}
-                        >
-                            I've got my AI's response
-                            <ArrowRight className="w-5 h-5 opacity-70" />
-                        </button>
+                        <div className="flex justify-center">
+                            <button
+                                className="group liquid-glass-dark rounded-full inline-flex items-center justify-center gap-2.5 px-6 py-3 whitespace-nowrap text-base font-semibold tracking-[0.01em] transition-all duration-300 hover:scale-[1.03] active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-white/40 outline-none"
+                                style={{
+                                    fontFamily: "'Cormorant Garamond', serif",
+                                    color: "var(--skin-cta-text, rgba(245,245,250,0.98))",
+                                    backgroundImage:
+                                        "var(--skin-cta-bg, linear-gradient(135deg, rgba(10,22,40,0.72) 0%, rgba(26,30,58,0.62) 50%, rgba(10,22,40,0.72) 100%))",
+                                    boxShadow:
+                                        "var(--skin-cta-shadow, 0 0 18px -4px rgba(240,194,127,0.45), 0 10px 24px -10px rgba(10,22,40,0.5))",
+                                    textShadow:
+                                        "var(--skin-cta-text-shadow, 0 0 16px rgba(240,194,127,0.25), 0 1px 2px rgba(0,0,0,0.35))",
+                                }}
+                                onClick={() => setStep("paste-response")}
+                            >
+                                <img
+                                    src={igniteLogo}
+                                    alt=""
+                                    aria-hidden="true"
+                                    className="h-4 w-auto opacity-80 transition-opacity group-hover:opacity-100"
+                                    style={{
+                                        filter: "drop-shadow(0 0 6px rgba(244, 212, 114, 0.45))",
+                                    }}
+                                    draggable={false}
+                                />
+                                <span>I've got my AI's response</span>
+                                <ArrowRight
+                                    aria-hidden="true"
+                                    className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5"
+                                />
+                            </button>
+                        </div>
 
                         <div className="text-center pt-2">
                             <button
@@ -992,32 +1011,39 @@ const ZoneOfGeniusEntry = () => {
                             }}
                         />
 
-                        <button
-                            className={`w-full max-w-md mx-auto rounded-2xl px-10 py-6
-                                       font-semibold text-lg
-                                       transition-all duration-300 ease-out
-                                       hover:scale-[1.02] active:scale-95
-                                       disabled:opacity-60 disabled:hover:scale-100 disabled:shadow-none
-                                       flex items-center justify-center gap-4
-                                       ${aiResponse.trim() ? "alive-card" : ""}`}
-                            style={{
-                                fontFamily: "'DM Sans', sans-serif",
-                                color: "var(--skin-text-primary, #0a1628)",
-                                backgroundImage:
-                                    "linear-gradient(135deg, rgba(255,255,255,0.38), rgba(255,255,255,0.18))",
-                                border: "1px solid var(--skin-rule-strong, rgba(26,30,58,0.18))",
-                                backdropFilter: "blur(14px)",
-                                WebkitBackdropFilter: "blur(14px)",
-                                boxShadow:
-                                    "0 20px 60px -24px rgba(26,30,58,0.25), inset 0 1px 1px rgba(255,255,255,0.8)",
-                                textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.7))",
-                            }}
-                            onClick={handleGenerateAppleseed}
-                            disabled={isProcessing || !aiResponse.trim()}
-                        >
-                            {isProcessing ? "Revealing..." : "Reveal my top talent"}
-                            <Sparkles className="w-5 h-5 opacity-70" />
-                        </button>
+                        <div className="flex justify-center">
+                            <button
+                                className="group liquid-glass-dark rounded-full inline-flex items-center justify-center gap-2.5 px-6 py-3 whitespace-nowrap text-base font-semibold tracking-[0.01em] transition-all duration-300 hover:scale-[1.03] active:scale-[0.97] disabled:opacity-50 disabled:hover:scale-100 focus-visible:ring-2 focus-visible:ring-white/40 outline-none"
+                                style={{
+                                    fontFamily: "'Cormorant Garamond', serif",
+                                    color: "var(--skin-cta-text, rgba(245,245,250,0.98))",
+                                    backgroundImage:
+                                        "var(--skin-cta-bg, linear-gradient(135deg, rgba(10,22,40,0.72) 0%, rgba(26,30,58,0.62) 50%, rgba(10,22,40,0.72) 100%))",
+                                    boxShadow:
+                                        "var(--skin-cta-shadow, 0 0 18px -4px rgba(240,194,127,0.45), 0 10px 24px -10px rgba(10,22,40,0.5))",
+                                    textShadow:
+                                        "var(--skin-cta-text-shadow, 0 0 16px rgba(240,194,127,0.25), 0 1px 2px rgba(0,0,0,0.35))",
+                                }}
+                                onClick={handleGenerateAppleseed}
+                                disabled={isProcessing || !aiResponse.trim()}
+                            >
+                                <img
+                                    src={igniteLogo}
+                                    alt=""
+                                    aria-hidden="true"
+                                    className="h-4 w-auto opacity-80 transition-opacity group-hover:opacity-100"
+                                    style={{
+                                        filter: "drop-shadow(0 0 6px rgba(244, 212, 114, 0.45))",
+                                    }}
+                                    draggable={false}
+                                />
+                                <span>{isProcessing ? "Revealing..." : "Reveal my top talent"}</span>
+                                <ArrowRight
+                                    aria-hidden="true"
+                                    className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5"
+                                />
+                            </button>
+                        </div>
                     </div>
                 )}
             </div>
