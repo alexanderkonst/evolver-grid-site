@@ -208,9 +208,11 @@ const SubstepRow = ({
 
             {/* ══ Example card (optional) — Day 48 (Sasha, Open Blueprint
                 Paradox). Renders only when the substep ships with an
-                `example` field. Muted card + gold eyebrow — attribution +
-                timestamp so it reads as a snapshot from Aleksandr's
-                in-progress canvas, not a pedestal. */}
+                `example` object. Muted card + gold eyebrow — attribution
+                + timestamp carried per-card so each example can surface
+                its real author (Aleksandr, Oyi, Kirill, Sergey, etc.).
+                Reads as a snapshot from a real founder's canvas, not a
+                pedestal. */}
             {substep.example && (
               <div
                 className="mt-3 rounded-2xl p-4 sm:p-5"
@@ -227,7 +229,7 @@ const SubstepRow = ({
                   className="text-[10px] sm:text-[11px] uppercase tracking-[0.22em] font-semibold mb-2"
                   style={{ color: "#b8860b" }}
                 >
-                  ✦ Example — Aleksandr, April 2026
+                  ✦ Example — {substep.example.attribution}
                 </div>
                 <div
                   className="text-sm sm:text-[15px] leading-relaxed space-y-2 italic"
@@ -237,7 +239,7 @@ const SubstepRow = ({
                     fontFamily: "'Cormorant Garamond', serif",
                   }}
                 >
-                  {substep.example.split("\n\n").map((para, i) => (
+                  {substep.example.content.split("\n\n").map((para, i) => (
                     <p key={i} style={{ whiteSpace: "pre-line" }}>
                       {para}
                     </p>

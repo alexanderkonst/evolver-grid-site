@@ -716,33 +716,43 @@ const ZoneOfGeniusEntry = () => {
                     Matches /path and /playbook hero aesthetic.
                     ═══════════════════════════════════════════════════════ */}
 
-                {/* Step: Choice */}
+                {/* Step: Choice — Day 48 (Sasha): button reworked to the
+                    same style stack as the landing's primary CTA so the
+                    visual signature carries across pages. Dark-navy glass
+                    pill + gold ✦ + gold halo + Cormorant Garamond semibold. */}
                 {step === "choice" && (
                     <div ref={stepContentRef} className="space-y-6 animate-in fade-in duration-500">
                         <div className="text-center">
                             <button
-                                className="w-full max-w-md mx-auto rounded-2xl px-10 py-6
-                                           font-semibold text-lg sm:text-xl
-                                           transition-all duration-300 ease-out
-                                           hover:scale-[1.02] active:scale-95
-                                           flex items-center justify-center gap-4
-                                           alive-card"
+                                className="group liquid-glass-dark rounded-full inline-flex items-center justify-center gap-2.5 px-6 py-3 whitespace-nowrap text-base font-semibold tracking-[0.01em] transition-all duration-300 hover:scale-[1.03] active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-white/40 outline-none"
                                 style={{
-                                    fontFamily: "'DM Sans', sans-serif",
-                                    color: "var(--skin-text-primary, #0a1628)",
+                                    fontFamily: "'Cormorant Garamond', serif",
+                                    color: "var(--skin-cta-text, rgba(245,245,250,0.98))",
                                     backgroundImage:
-                                        "linear-gradient(135deg, rgba(255,255,255,0.38), rgba(255,255,255,0.18))",
-                                    border: "1px solid var(--skin-rule-strong, rgba(26,30,58,0.18))",
-                                    backdropFilter: "blur(14px)",
-                                    WebkitBackdropFilter: "blur(14px)",
+                                        "var(--skin-cta-bg, linear-gradient(135deg, rgba(10,22,40,0.72) 0%, rgba(26,30,58,0.62) 50%, rgba(10,22,40,0.72) 100%))",
                                     boxShadow:
-                                        "0 20px 60px -24px rgba(26,30,58,0.25), inset 0 1px 1px rgba(255,255,255,0.8)",
-                                    textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.7))",
+                                        "var(--skin-cta-shadow, 0 0 18px -4px rgba(240,194,127,0.45), 0 10px 24px -10px rgba(10,22,40,0.5))",
+                                    textShadow:
+                                        "var(--skin-cta-text-shadow, 0 0 16px rgba(240,194,127,0.25), 0 1px 2px rgba(0,0,0,0.35))",
                                 }}
                                 onClick={() => setStep("choice-route")}
                             >
-                                Find my top talent
-                                <ArrowRight className="w-5 h-5 opacity-70" />
+                                <span
+                                    aria-hidden="true"
+                                    className="text-[0.95em]"
+                                    style={{
+                                        color: "var(--skin-cta-icon, rgba(240,194,127,0.92))",
+                                        textShadow:
+                                            "var(--skin-cta-icon-shadow, 0 0 10px rgba(240,194,127,0.6), 0 0 3px rgba(240,194,127,0.8))",
+                                    }}
+                                >
+                                    ✦
+                                </span>
+                                <span>Find my top talent</span>
+                                <ArrowRight
+                                    aria-hidden="true"
+                                    className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5"
+                                />
                             </button>
                         </div>
                     </div>

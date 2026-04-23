@@ -158,14 +158,11 @@ const SpacesRail = ({
                     "inset -1px 0 0 rgba(212, 175, 55, 0.22), 3px 0 24px -10px rgba(244, 212, 114, 0.18)",
             }}
         >
-            {/* Brand logo — Day 48 (Sasha): orb + wordmark image lockup
-                replaces the text + avatar header. Clicking it returns
-                home. On mobile (rail compressed to 72px) only the orb
-                crop is visible; on desktop the full wordmark shows.
-                Day 48 later (Sasha): shrunk ~33% — desktop caps at
-                66% of the rail width (~185px on a 280px rail), mobile
-                orb crops to 32×32 instead of 48×48. */}
-            <div className="p-2 md:p-3">
+            {/* Brand logo — Day 48 (Sasha, later): centered in the rail
+                with a harmonized max-width (148px) so it sits as a
+                visual centerpiece rather than a left-anchored slab.
+                Mobile keeps the 32×32 orb crop for the 72px rail. */}
+            <div className="px-3 pt-4 pb-2">
                 <Link
                     to="/"
                     className="block group transition-all hover:opacity-90"
@@ -182,13 +179,12 @@ const SpacesRail = ({
                         }}
                         aria-hidden="true"
                     />
-                    {/* Desktop: full logo (orb + wordmark). Capped width so
-                        it doesn't dominate the rail. */}
+                    {/* Desktop: full logo (orb + wordmark), centered. */}
                     <img
                         src={brandLogo}
                         alt="Find Your Top Talent"
-                        className="hidden md:block h-auto object-contain"
-                        style={{ width: "66%", maxWidth: "180px" }}
+                        className="hidden md:block h-auto object-contain mx-auto"
+                        style={{ width: "100%", maxWidth: "148px" }}
                         draggable={false}
                     />
                 </Link>
@@ -256,10 +252,13 @@ const SpacesRail = ({
                                 <span className="absolute -top-1 -right-1 w-3 h-3 bg-emerald-500 rounded-full border-2 border-black/30" />
                             )}
 
-                            {/* Active indicator — gold pip that aligns with the
-                                mockup's warm-metal accent on the marine rail. */}
+                            {/* Active indicator — gold pip, centered on the
+                                chip's vertical midline. Day 48 (Sasha) fix:
+                                without `top-1/2 -translate-y-1/2` the pip
+                                defaulted to top:0 and cut through the chip's
+                                top-left corner — visible as a "glow glitch". */}
                             {active && (
-                                <div className="absolute left-0 w-1 h-8 rounded-r-full -translate-x-1/2 bg-[#d4af37] shadow-[0_0_8px_rgba(244,212,114,0.7)]" />
+                                <div className="absolute left-0 top-1/2 w-1 h-8 rounded-r-full -translate-x-1/2 -translate-y-1/2 bg-[#d4af37] shadow-[0_0_8px_rgba(244,212,114,0.7)]" />
                             )}
                         </button>
                     );
