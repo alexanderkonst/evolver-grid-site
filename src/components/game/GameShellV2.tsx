@@ -120,15 +120,19 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
     // Navigation state
     const [activeSpaceId, setActiveSpaceId] = useState<string>("next-move");
     const [sectionsPanelOpen, setSectionsPanelOpen] = useState(() => {
-        if (typeof window !== 'undefined') {
-            // Default to closed on Journey page — the app store view needs full width
-            const p = window.location.pathname;
-            const isJourneyPage = p === '/' || p.startsWith('/game/journey');
-            if (isJourneyPage) return false;
-            const saved = localStorage.getItem('sectionsPanelOpen');
-            return saved !== null ? JSON.parse(saved) : true;
-        }
-        return true;
+        // Day 48 (Sasha): Pane 2 is CLOSED only on the very first page
+        // (landing) so the primary "Find your top talent" CTA gets full
+        // attention. On every other funnel surface — /playbook, /path,
+        // /zone-of-genius, /game/settings, /my-artifacts — Pane 2 is
+        // OPEN by default so the user sees the onboarding step list
+        // (Start Here · The Playbook · The Path) at a glance. Toggle
+        // stays available inside each page; we stopped persisting the
+        // toggle to localStorage so a "closed" state on landing doesn't
+        // bleed into the next page.
+        if (typeof window === 'undefined') return true;
+        const p = window.location.pathname;
+        const isLandingPage = p === '/' || p.startsWith('/game/journey');
+        return !isLandingPage;
     });
     const [mobileView, setMobileView] = useState<"navigation" | "content">("navigation");
     const [shortcutsOpen, setShortcutsOpen] = useState(false);
@@ -293,10 +297,12 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
         }
     }, [profile?.onboarding_stage, location.pathname, navigate]);
 
-    // Persist sections panel state to localStorage
-    useEffect(() => {
-        localStorage.setItem('sectionsPanelOpen', JSON.stringify(sectionsPanelOpen));
-    }, [sectionsPanelOpen]);
+    // Day 48 (Sasha): localStorage persistence for sectionsPanelOpen
+    // retired. Each page's default state is now computed from the
+    // pathname on mount (closed on landing, open everywhere else); a
+    // stale "closed" from a previous session no longer bleeds across
+    // routes. User's in-page toggle still works — it just resets to
+    // the per-page default on the next navigation.
 
     // Keyboard shortcut: Cmd/Ctrl + B to toggle sections panel
     useEffect(() => {
