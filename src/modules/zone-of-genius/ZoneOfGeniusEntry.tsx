@@ -742,7 +742,7 @@ const ZoneOfGeniusEntry = () => {
                                 + small-caps label for the full landing-CTA
                                 signature. */}
                             <button
-                                className="group liquid-glass-dark cta-breath rounded-full inline-flex items-center justify-center gap-2.5 px-6 py-3 whitespace-nowrap text-base font-semibold transition-all duration-300 hover:scale-[1.03] active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-white/40 outline-none"
+                                className="group liquid-glass-dark cta-breath rounded-full inline-flex items-center justify-center gap-2 sm:gap-2.5 px-4 sm:px-6 py-3 max-w-full text-sm sm:text-base font-semibold transition-all duration-300 hover:scale-[1.03] active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-white/40 outline-none"
                                 style={{
                                     fontFamily: "'Cormorant Garamond', serif",
                                     color: "var(--skin-cta-text, rgba(245,245,250,0.98))",
@@ -946,7 +946,7 @@ const ZoneOfGeniusEntry = () => {
 
                         <div className="flex justify-center">
                             <button
-                                className="group liquid-glass-dark cta-breath rounded-full inline-flex items-center justify-center gap-2.5 px-6 py-3 whitespace-nowrap text-base font-semibold transition-all duration-300 hover:scale-[1.03] active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-white/40 outline-none"
+                                className="group liquid-glass-dark cta-breath rounded-full inline-flex items-center justify-center gap-2 sm:gap-2.5 px-4 sm:px-6 py-3 max-w-full text-sm sm:text-base font-semibold transition-all duration-300 hover:scale-[1.03] active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-white/40 outline-none"
                                 style={{
                                     fontFamily: "'Cormorant Garamond', serif",
                                     color: "var(--skin-cta-text, rgba(245,245,250,0.98))",
@@ -1027,7 +1027,7 @@ const ZoneOfGeniusEntry = () => {
 
                         <div className="flex justify-center">
                             <button
-                                className="group liquid-glass-dark cta-breath rounded-full inline-flex items-center justify-center gap-2.5 px-6 py-3 whitespace-nowrap text-base font-semibold transition-all duration-300 hover:scale-[1.03] active:scale-[0.97] disabled:opacity-50 disabled:hover:scale-100 focus-visible:ring-2 focus-visible:ring-white/40 outline-none"
+                                className="group liquid-glass-dark cta-breath rounded-full inline-flex items-center justify-center gap-2 sm:gap-2.5 px-4 sm:px-6 py-3 max-w-full text-sm sm:text-base font-semibold transition-all duration-300 hover:scale-[1.03] active:scale-[0.97] disabled:opacity-50 disabled:hover:scale-100 focus-visible:ring-2 focus-visible:ring-white/40 outline-none"
                                 style={{
                                     fontFamily: "'Cormorant Garamond', serif",
                                     color: "var(--skin-cta-text, rgba(245,245,250,0.98))",

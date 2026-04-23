@@ -47,14 +47,25 @@ export const GOLD_TEXT_STYLE: React.CSSProperties = {
 
 // ── Small-caps CTA label treatment ──
 // Used on the primary pill CTA label so "FIND YOUR TOP TALENT" reads
-// as a chiseled editorial call rather than sentence case. The 0.14em
-// letter-spacing and 0.88em size relative to the button's own font
-// size keep it balanced with the ignite-logo emblem + arrow.
+// as a chiseled editorial call rather than sentence case.
+//
+// Day 48 iter 15 (Sasha): original 0.14em + 0.88em combo overflowed
+// iPhone-width viewports ("I'VE GOT MY AI'S RESPON…" clipped at the
+// right edge). Tightened to 0.1em + 0.82em — still unmistakably
+// small-caps editorial, but fits 320px mobile columns with room to
+// spare. On desktop the difference is barely perceptible.
 export const CTA_SMALL_CAPS_STYLE: React.CSSProperties = {
   textTransform: "uppercase",
-  letterSpacing: "0.14em",
-  fontSize: "0.88em",
+  letterSpacing: "0.1em",
+  fontSize: "0.82em",
 };
+
+// ── CTA small-caps classname (responsive) ──
+// Use this on CTAs where content can be tight on mobile. Tailwind
+// responsive variant widens tracking on sm+ so desktop still reads
+// fully editorial.
+export const CTA_SMALL_CAPS_CLASS =
+  "uppercase tracking-[0.08em] sm:tracking-[0.14em] text-[0.8em] sm:text-[0.88em]";
 
 // ── Small-caps meta eyebrow ──
 // Used for editorial "datelines" under CTAs (e.g. "TAKES 2 MINUTES · NO
