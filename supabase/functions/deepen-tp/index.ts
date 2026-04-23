@@ -83,7 +83,7 @@ PAIN LANDSCAPE:
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                model: "google/gemini-2.5-flash",
+                model: "openai/gpt-5.2",
                 messages: [
                     { role: "system", content: DEEPEN_TP_PROMPT },
                     { role: "user", content: `Crystallize the transformational promise:\n\n${context}` }
