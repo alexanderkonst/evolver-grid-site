@@ -281,7 +281,7 @@ const Step2Essay = (_: { neonHsl: string; neonRgb: string }) => {
 
       {/* Three "they don't tell us HOW" bookends — startup influencers,
           personality tests, social media influencers. All three restored. */}
-      <p>Startup Influencers say "Productize yourself".</p>
+      <p>Startup influencers say "Productize yourself".</p>
 
       <p>
         Personality tests give you unmonetizable "too long didn't read" reports. You go "so now what?" and archive it in your inbox foreva.
