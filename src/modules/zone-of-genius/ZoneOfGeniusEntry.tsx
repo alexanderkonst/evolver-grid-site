@@ -10,7 +10,15 @@ import { ZONE_OF_GENIUS_PROMPT } from "@/prompts";
 // Day 48 (Sasha): primary CTA icon across the ZoG flow uses the
 // ignite logo asset — rendered small + light so it reads as a
 // subtle emblem consistent with the landing CTA.
-import igniteLogo from "@/assets/ignite-logo.png";
+// Day 48 iter 7 (Sasha): shared design language imported from the
+// landing — gold gradient style, small-caps CTA treatment, and the
+// ornament helper live in @/lib/landingDesign. Editing that module
+// updates every funnel surface at once.
+import {
+    GOLD_TEXT_STYLE,
+    CTA_SMALL_CAPS_STYLE,
+    igniteLogo,
+} from "@/lib/landingDesign";
 import { generateAppleseed, AppleseedData } from "./appleseedGenerator";
 import { generateExcalibur, ExcaliburData } from "./excaliburGenerator";
 import { saveAppleseed, saveExcalibur, loadSavedData, saveAppleseedToLocalStorage } from "./saveToDatabase";
@@ -450,8 +458,12 @@ const ZoneOfGeniusEntry = () => {
                     <div className="w-full max-w-3xl mx-auto px-5 pt-4">
                         {anonymousSave.status === "sending" && (
                             <div
-                                className="rounded-xl bg-[#8460ea]/10 border border-[#8460ea]/20 px-5 py-4 text-sm"
-                                style={{ color: "var(--skin-text-primary, #2c3150)" }}
+                                className="rounded-xl px-5 py-4 text-sm"
+                                style={{
+                                    color: "var(--skin-text-primary, #2c3150)",
+                                    backgroundColor: "rgba(212, 175, 55, 0.10)",
+                                    border: "1px solid rgba(212, 175, 55, 0.22)",
+                                }}
                             >
                                 Saving your result to <strong>{anonymousSave.email}</strong>…
                             </div>
@@ -472,7 +484,7 @@ const ZoneOfGeniusEntry = () => {
                                     <button
                                         type="button"
                                         onClick={handleRedoClaimEmail}
-                                        className="underline text-[#8460ea] hover:text-[#6894d0]"
+                                        className="underline text-[#7a5108] hover:text-[#a06d08]"
                                     >
                                         Wrong email? Redo
                                     </button>
@@ -489,7 +501,7 @@ const ZoneOfGeniusEntry = () => {
                                     <button
                                         type="button"
                                         onClick={handleRedoClaimEmail}
-                                        className="underline text-[#8460ea] hover:text-[#6894d0]"
+                                        className="underline text-[#7a5108] hover:text-[#a06d08]"
                                     >
                                         Try a different email
                                     </button>
@@ -516,13 +528,17 @@ const ZoneOfGeniusEntry = () => {
     if (step === "generating-excalibur") {
         return (
             <GameShellV2 hideNavigation={hideNav} hideLogo>
+                {/* Day 48 iter 7 (Sasha): spinner + progress bar migrated
+                    from the violet/periwinkle family (#8460ea / #a4a3d0 /
+                    #6894d0) to the signature antique gold. Reads as the
+                    same visual language as the landing and CTA. */}
                 <div className="min-h-dvh flex flex-col items-center justify-center p-8">
                     <div className="relative w-32 h-32 mb-8">
-                        <div className="absolute inset-0 border-2 border-[#a4a3d0]/30 rounded-full animate-spin" style={{ animationDuration: '8s' }} />
-                        <div className="absolute inset-4 border-2 border-[#8460ea]/30 rounded-full animate-spin" style={{ animationDuration: '6s', animationDirection: 'reverse' }} />
-                        <div className="absolute inset-8 border-2 border-[#8460ea]/50 rounded-full animate-spin" style={{ animationDuration: '4s' }} />
-                        <div className="absolute inset-12 bg-gradient-to-br from-[#a4a3d0]/20 to-[#8460ea]/15 rounded-full animate-pulse flex items-center justify-center backdrop-blur-sm">
-                            <Sword className="w-6 h-6 text-[#8460ea]" />
+                        <div className="absolute inset-0 border-2 border-[#d4af37]/25 rounded-full animate-spin" style={{ animationDuration: '8s' }} />
+                        <div className="absolute inset-4 border-2 border-[#a06d08]/35 rounded-full animate-spin" style={{ animationDuration: '6s', animationDirection: 'reverse' }} />
+                        <div className="absolute inset-8 border-2 border-[#7a5108]/55 rounded-full animate-spin" style={{ animationDuration: '4s' }} />
+                        <div className="absolute inset-12 bg-gradient-to-br from-[#f4d472]/25 to-[#a06d08]/20 rounded-full animate-pulse flex items-center justify-center backdrop-blur-sm">
+                            <Sword className="w-6 h-6" style={{ color: "#7a5108" }} />
                         </div>
                     </div>
                     <p className="text-lg text-[#2c3150]/60 animate-pulse">
@@ -534,10 +550,11 @@ const ZoneOfGeniusEntry = () => {
 
                     {/* Progress Bar */}
                     <div className="w-full max-w-xs mt-6">
-                        <div className="h-1.5 bg-[#a4a3d0]/15 rounded-full overflow-hidden backdrop-blur-sm">
+                        <div className="h-1.5 bg-[#d4af37]/15 rounded-full overflow-hidden backdrop-blur-sm">
                             <div
-                                className="h-full bg-gradient-to-r from-[#8460ea]/60 to-[#6894d0]/40 rounded-full"
+                                className="h-full rounded-full"
                                 style={{
+                                    backgroundImage: "linear-gradient(90deg, rgba(160,109,8,0.65) 0%, rgba(212,175,55,0.50) 100%)",
                                     animation: 'progress-bar 3s ease-in-out infinite',
                                     width: '100%',
                                 }}
@@ -614,17 +631,16 @@ const ZoneOfGeniusEntry = () => {
                                 "var(--skin-text-halo-strong, 0 0 22px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.8), 0 2px 12px rgba(26,30,58,0.15))",
                         }}
                     >
+                        {/* Day 48 iter 7 (Sasha): both accent phrases unified
+                            to the signature deep-antique-gold used on the
+                            landing. The old violet + red gradients belonged
+                            to the playbook's rainbow octave — they don't
+                            belong on ZoG where gold is the single accent. */}
                         <span className="block text-balance">
                             Why is it still so hard to{" "}
                             <span
                                 className="bg-clip-text text-transparent"
-                                style={{
-                                    backgroundImage:
-                                        "var(--skin-accent-1-bg, linear-gradient(135deg, hsl(285, 85%, 28%) 0%, hsl(272, 85%, 24%) 50%, hsl(258, 85%, 26%) 100%))",
-                                    filter:
-                                        "var(--skin-accent-1-glow, drop-shadow(0 0 10px hsl(278 95% 55% / 0.38)) drop-shadow(0 0 3px hsl(268 95% 48% / 0.45)))",
-                                    textShadow: "none",
-                                }}
+                                style={GOLD_TEXT_STYLE}
                             >
                                 explain what you do?
                             </span>
@@ -633,13 +649,7 @@ const ZoneOfGeniusEntry = () => {
                             And turn it into something people{" "}
                             <span
                                 className="bg-clip-text text-transparent"
-                                style={{
-                                    backgroundImage:
-                                        "var(--skin-accent-3-bg, linear-gradient(135deg, hsl(28, 85%, 28%) 0%, hsl(15, 85%, 24%) 50%, hsl(2, 85%, 26%) 100%))",
-                                    filter:
-                                        "var(--skin-accent-3-glow, drop-shadow(0 0 10px hsl(15 95% 50% / 0.4)) drop-shadow(0 0 3px hsl(8 95% 48% / 0.48)))",
-                                    textShadow: "none",
-                                }}
+                                style={GOLD_TEXT_STYLE}
                             >
                                 actually pay for?
                             </span>
@@ -727,8 +737,12 @@ const ZoneOfGeniusEntry = () => {
                 {step === "choice" && (
                     <div ref={stepContentRef} className="space-y-6 animate-in fade-in duration-500">
                         <div className="text-center">
+                            {/* Day 48 iter 7 (Sasha): added .cta-breath
+                                (slow 3.2s gold-halo swell, pauses on hover)
+                                + small-caps label for the full landing-CTA
+                                signature. */}
                             <button
-                                className="group liquid-glass-dark rounded-full inline-flex items-center justify-center gap-2.5 px-6 py-3 whitespace-nowrap text-base font-semibold tracking-[0.01em] transition-all duration-300 hover:scale-[1.03] active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-white/40 outline-none"
+                                className="group liquid-glass-dark cta-breath rounded-full inline-flex items-center justify-center gap-2.5 px-6 py-3 whitespace-nowrap text-base font-semibold transition-all duration-300 hover:scale-[1.03] active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-white/40 outline-none"
                                 style={{
                                     fontFamily: "'Cormorant Garamond', serif",
                                     color: "var(--skin-cta-text, rgba(245,245,250,0.98))",
@@ -751,7 +765,7 @@ const ZoneOfGeniusEntry = () => {
                                     }}
                                     draggable={false}
                                 />
-                                <span>Find my top talent</span>
+                                <span style={CTA_SMALL_CAPS_STYLE}>Find my top talent</span>
                                 <ArrowRight
                                     aria-hidden="true"
                                     className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5"
@@ -899,7 +913,7 @@ const ZoneOfGeniusEntry = () => {
                             }}
                         >
                             <pre
-                                className="text-[11px] whitespace-pre-wrap font-mono leading-snug max-h-36 overflow-y-auto p-4 pr-16 selection:bg-[#8460ea]/20"
+                                className="text-[11px] whitespace-pre-wrap font-mono leading-snug max-h-36 overflow-y-auto p-4 pr-16 selection:bg-[#d4af37]/25"
                                 style={{ color: "var(--skin-text-hint, rgba(26,30,58,0.45))" }}
                             >
                                 {ZONE_OF_GENIUS_PROMPT}
@@ -932,7 +946,7 @@ const ZoneOfGeniusEntry = () => {
 
                         <div className="flex justify-center">
                             <button
-                                className="group liquid-glass-dark rounded-full inline-flex items-center justify-center gap-2.5 px-6 py-3 whitespace-nowrap text-base font-semibold tracking-[0.01em] transition-all duration-300 hover:scale-[1.03] active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-white/40 outline-none"
+                                className="group liquid-glass-dark cta-breath rounded-full inline-flex items-center justify-center gap-2.5 px-6 py-3 whitespace-nowrap text-base font-semibold transition-all duration-300 hover:scale-[1.03] active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-white/40 outline-none"
                                 style={{
                                     fontFamily: "'Cormorant Garamond', serif",
                                     color: "var(--skin-cta-text, rgba(245,245,250,0.98))",
@@ -955,7 +969,7 @@ const ZoneOfGeniusEntry = () => {
                                     }}
                                     draggable={false}
                                 />
-                                <span>I've got my AI's response</span>
+                                <span style={CTA_SMALL_CAPS_STYLE}>I've got my AI's response</span>
                                 <ArrowRight
                                     aria-hidden="true"
                                     className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5"
@@ -1013,7 +1027,7 @@ const ZoneOfGeniusEntry = () => {
 
                         <div className="flex justify-center">
                             <button
-                                className="group liquid-glass-dark rounded-full inline-flex items-center justify-center gap-2.5 px-6 py-3 whitespace-nowrap text-base font-semibold tracking-[0.01em] transition-all duration-300 hover:scale-[1.03] active:scale-[0.97] disabled:opacity-50 disabled:hover:scale-100 focus-visible:ring-2 focus-visible:ring-white/40 outline-none"
+                                className="group liquid-glass-dark cta-breath rounded-full inline-flex items-center justify-center gap-2.5 px-6 py-3 whitespace-nowrap text-base font-semibold transition-all duration-300 hover:scale-[1.03] active:scale-[0.97] disabled:opacity-50 disabled:hover:scale-100 focus-visible:ring-2 focus-visible:ring-white/40 outline-none"
                                 style={{
                                     fontFamily: "'Cormorant Garamond', serif",
                                     color: "var(--skin-cta-text, rgba(245,245,250,0.98))",
@@ -1037,7 +1051,7 @@ const ZoneOfGeniusEntry = () => {
                                     }}
                                     draggable={false}
                                 />
-                                <span>{isProcessing ? "Revealing..." : "Reveal my top talent"}</span>
+                                <span style={CTA_SMALL_CAPS_STYLE}>{isProcessing ? "Revealing..." : "Reveal my top talent"}</span>
                                 <ArrowRight
                                     aria-hidden="true"
                                     className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5"

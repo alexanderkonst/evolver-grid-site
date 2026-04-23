@@ -401,10 +401,14 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
         }
         : {};
 
-    // Unlock hint tooltips — shown on hover over locked spaces
+    // Unlock hint tooltips — shown on hover over locked spaces.
+    // Day 48 iter 7 (Sasha): ME's hint sharpened from the generic
+    // "Unlocks after Step 1" to the proper product language:
+    // "Unlocks after your Find Your Top Talent Reveal." Hovered
+    // via the native `title` attribute on the locked chip.
     const unlockHints: Record<string, string> = {
         "next-move": "Unlocks after Step 1",
-        "grow": "Unlocks after Step 1",
+        "grow": "Unlocks after your Find Your Top Talent Reveal.",
         "learn": "Unlocks after Step 1",
         "build": "Unlocks after Step 2",
         "meet": "Unlocks after Step 1",

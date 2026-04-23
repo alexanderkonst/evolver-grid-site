@@ -64,7 +64,8 @@ const ZoneOfGeniusAssessmentLayout = ({
             className="h-full rounded-full transition-all duration-700 ease-out"
             style={{
               width: `${progress}%`,
-              background: "linear-gradient(90deg, #5b21b6, #8460ea)",
+              // Day 48 iter 7 (Sasha): migrated violet → gold for funnel coherence.
+              background: "linear-gradient(90deg, #7a5108, #a06d08)",
             }}
           />
         </div>
@@ -97,12 +98,14 @@ const ZoneOfGeniusAssessmentLayout = ({
                 )}
                 style={
                   activeStep > step.number
-                    ? { backgroundColor: "#5b21b6", color: "#ffffff" }
+                    // Day 48 iter 7 (Sasha): migrated violet → gold for funnel coherence.
+                    ? { backgroundColor: "#a06d08", color: "#ffffff" }
                     : activeStep === step.number
                       ? {
-                          backgroundColor: "rgba(91,33,182,0.15)",
-                          color: "#5b21b6",
-                          boxShadow: "inset 0 0 0 1px rgba(91,33,182,0.4)",
+                          // Day 48 iter 7 (Sasha): migrated violet → gold for funnel coherence.
+                          backgroundColor: "rgba(212,175,55,0.14)",
+                          color: "#7a5108",
+                          boxShadow: "inset 0 0 0 1px #7a5108",
                         }
                       : {
                           backgroundColor: "rgba(26,30,58,0.06)",
@@ -120,7 +123,8 @@ const ZoneOfGeniusAssessmentLayout = ({
                 style={{
                   backgroundColor:
                     activeStep > step.number
-                      ? "rgba(91,33,182,0.4)"
+                      // Day 48 iter 7 (Sasha): migrated violet → gold for funnel coherence.
+                      ? "rgba(212,175,55,0.4)"
                       : "rgba(26,30,58,0.15)",
                 }}
               />
