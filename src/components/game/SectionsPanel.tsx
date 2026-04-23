@@ -293,26 +293,65 @@ const SectionsPanel = ({
     // Early return AFTER all hooks (Rules of Hooks compliance)
     if (!spaceData) return null;
 
+    // Day 48 iter 8 (Sasha): parse numeric prefix from section labels
+    // ("1. Start" → { number: "1", text: "Start" }) so the numeral can
+    // render as a small gold step-pip on the left, freeing the label
+    // text to read as an editorial chapter title. Labels without a
+    // leading number pass through unchanged.
+    const parseNumberedLabel = (label: string): { number?: string; text: string } => {
+        const match = label.match(/^(\d+)\.\s+(.+)$/);
+        if (match) return { number: match[1], text: match[2] };
+        return { text: label };
+    };
+
     return (
         <div
             className={cn(
-                "w-[260px] flex flex-col",
+                "w-[260px] flex flex-col relative",
                 "liquid-glass",
                 className
             )}
-            /* Day 48 later (Sasha): Pane 2 now pulls the lit-navy overlay
-               (--skin-panel-2-bg) with a subtle gold right-edge seam that
-               mirrors the mockup. When minimized the same treatment reads
-               as a thin gold line between rail and content. */
+            /* Day 48 iter 8 (Sasha): Pane 2 now pulls the lit-navy overlay
+               (--skin-panel-2-bg). The flat 1px inset gold line retired
+               in favor of a vertical gradient "spine" (absolute-positioned
+               below) that mirrors pane 1 — both panes now read as the
+               same backlit book-binding. */
             style={{
                 backgroundColor: "var(--skin-panel-2-bg, rgba(14, 32, 68, 0.42))",
                 boxShadow:
-                    "inset -1px 0 0 rgba(212, 175, 55, 0.25), 2px 0 18px -8px rgba(244, 212, 114, 0.22)",
+                    "2px 0 22px -10px rgba(244, 212, 114, 0.22)",
             }}
         >
-            {/* Close button (only when onClose provided) */}
-            {onClose && (
-                <div className="h-10 px-4 flex items-center justify-end">
+            {/* Gold spine — mirrors the pane 1 treatment. Strongest in
+                the upper-middle, fades at top and bottom. */}
+            <span
+                aria-hidden="true"
+                className="absolute top-0 right-0 h-full w-px pointer-events-none"
+                style={{
+                    backgroundImage:
+                        "linear-gradient(180deg, rgba(212, 175, 55, 0) 0%, rgba(212, 175, 55, 0.18) 16%, rgba(244, 212, 114, 0.52) 40%, rgba(212, 175, 55, 0.32) 64%, rgba(212, 175, 55, 0.10) 88%, rgba(212, 175, 55, 0) 100%)",
+                }}
+            />
+
+            {/* Header — Day 48 iter 8 (Sasha):
+                The lone X in the top-right was visually orphaned. The
+                header now self-identifies the pane: title on the left
+                (space name in tracked small-caps gold), close X on the
+                right. Readers always know what they're inside. */}
+            <div className="h-10 px-4 flex items-center justify-between">
+                <span
+                    className="text-[11px] font-semibold"
+                    style={{
+                        fontFamily: "'Cormorant Garamond', serif",
+                        color: "#f4d472",
+                        letterSpacing: "0.22em",
+                        textTransform: "uppercase",
+                        textShadow: "0 0 12px rgba(244, 212, 114, 0.35)",
+                    }}
+                >
+                    {spaceData.title}
+                </span>
+                {onClose && (
                     <button
                         onClick={onClose}
                         className="p-1.5 text-white/50 hover:text-white hover:bg-white/10 rounded-md transition-colors"
@@ -321,27 +360,45 @@ const SectionsPanel = ({
                     >
                         <X className="w-4 h-4" />
                     </button>
-                </div>
-            )}
+                )}
+            </div>
 
             <ScrollArea className="flex-1">
-            <nav className="py-2 pt-4">
+            <nav className="py-2 pt-3">
                 {spaceData.sections.map((section) => {
                     const hasSubSections = section.subSections && section.subSections.length > 0;
                     const isExpanded = expandedSections[section.id] ?? false;
                     const sectionActive = isActive(section.path);
+                    const { number, text: sectionText } = parseNumberedLabel(section.label);
 
                     return (
                         <div key={section.id}>
-                            {/* Section item */}
+                            {/* Section item — Day 48 iter 8 (Sasha):
+                                • Cormorant Garamond, Title Case (not
+                                  uppercase — that's reserved for CTAs
+                                  + eyebrows). Reads as book-chapter, not
+                                  file-manager row.
+                                • Active state: 2px gold left-rule + faint
+                                  gold interior tint (white border retired
+                                  — read as macOS Finder, not gold-brand).
+                                • py-2 → py-2.5 for more breathing room. */}
                             <div
                                 className={cn(
-                                    "flex items-center gap-2 px-3 py-2 mx-2 rounded-md cursor-pointer transition-all duration-150",
-                                    "focus:outline-none focus-visible:ring-2 focus-visible:ring-white/30",
+                                    "group flex items-center gap-2 px-3 py-2.5 mx-2 rounded-md cursor-pointer transition-all duration-200 relative",
+                                    "focus:outline-none focus-visible:ring-2 focus-visible:ring-[#d4af37]/40",
                                     sectionActive && !hasSubSections
-                                        ? "bg-white/15 text-white border-l-2 border-white/40"
-                                        : "text-white/60 hover:bg-white/10 hover:text-white hover:translate-x-0.5"
+                                        ? "text-white"
+                                        : "text-white/65 hover:bg-white/8 hover:text-white hover:translate-x-0.5"
                                 )}
+                                style={
+                                    sectionActive && !hasSubSections
+                                        ? {
+                                              backgroundColor: "rgba(212, 175, 55, 0.10)",
+                                              boxShadow:
+                                                  "inset 2px 0 0 0 #d4af37, inset 0 0 18px -6px rgba(244, 212, 114, 0.35)",
+                                          }
+                                        : undefined
+                                }
                                 onClick={() => {
                                     if (hasSubSections) {
                                         toggleExpand(section.id);
@@ -357,15 +414,48 @@ const SectionsPanel = ({
                                         ) : (
                                             <ChevronRight className="w-3 h-3" />
                                         )
+                                    ) : number ? (
+                                        // Gold step pip — the old "1. 2. 3."
+                                        // text prefix promoted to a tiny
+                                        // gold disc so the numeral becomes
+                                        // an ornament, not type.
+                                        <span
+                                            className="inline-flex items-center justify-center w-4 h-4 rounded-full text-[9px] font-semibold"
+                                            style={{
+                                                backgroundColor: "rgba(212, 175, 55, 0.18)",
+                                                color: "#f4d472",
+                                                border: "0.5px solid rgba(212, 175, 55, 0.42)",
+                                                fontFamily: "'Cormorant Garamond', serif",
+                                            }}
+                                        >
+                                            {number}
+                                        </span>
                                     ) : null}
                                 </span>
                                 {section.icon}
-                                <span className="text-sm flex-1">{section.label}</span>
+                                <span
+                                    className="flex-1 text-[15px] leading-snug"
+                                    style={{
+                                        fontFamily: "'Cormorant Garamond', serif",
+                                        fontWeight: sectionActive ? 600 : 500,
+                                        letterSpacing: "0.005em",
+                                    }}
+                                >
+                                    {sectionText}
+                                </span>
                             </div>
 
-                            {/* Sub-sections with indent */}
+                            {/* Sub-sections — Day 48 iter 8 (Sasha):
+                                cold white rail (border-white/10) softened
+                                to a gold hairline. Sub-labels also shift
+                                to Cormorant Garamond. */}
                             {hasSubSections && isExpanded && (
-                                <div className="ml-8 border-l border-white/10">
+                                <div
+                                    className="ml-8"
+                                    style={{
+                                        borderLeft: "1px solid rgba(212, 175, 55, 0.14)",
+                                    }}
+                                >
                                     {section.subSections!.map((sub) => {
                                         const subActive = isActive(sub.path);
                                         return (
@@ -374,12 +464,27 @@ const SectionsPanel = ({
                                                 className={cn(
                                                     "flex items-center gap-2 px-3 py-1.5 ml-2 rounded-md cursor-pointer transition-colors",
                                                     subActive
-                                                        ? "bg-white/15 text-white"
-                                                        : "text-white/40 hover:bg-white/10 hover:text-white"
+                                                        ? "text-white"
+                                                        : "text-white/45 hover:bg-white/5 hover:text-white/90"
                                                 )}
+                                                style={
+                                                    subActive
+                                                        ? {
+                                                              backgroundColor: "rgba(212, 175, 55, 0.10)",
+                                                          }
+                                                        : undefined
+                                                }
                                                 onClick={() => onSectionSelect?.(sub.path)}
                                             >
-                                                <span className="text-sm">{sub.label}</span>
+                                                <span
+                                                    className="text-[13px]"
+                                                    style={{
+                                                        fontFamily: "'Cormorant Garamond', serif",
+                                                        fontWeight: subActive ? 600 : 500,
+                                                    }}
+                                                >
+                                                    {sub.label}
+                                                </span>
                                             </div>
                                         );
                                     })}
