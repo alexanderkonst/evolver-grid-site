@@ -82,6 +82,9 @@ const PlaybookHero = () => {
               "var(--skin-cta-text-shadow, 0 0 16px rgba(240,194,127,0.25), 0 1px 2px rgba(0,0,0,0.35))",
           }}
         >
+          {/* Day 48 iter 14 (Sasha): CTA emblem rotation applied as
+              inline style so the cascade can't strip it. 60s linear
+              infinite — the site-wide tempo. */}
           <img
             src={igniteLogo}
             alt=""
@@ -90,6 +93,9 @@ const PlaybookHero = () => {
             style={{
               filter:
                 "drop-shadow(0 0 6px rgba(244, 212, 114, 0.45))",
+              animation: "gentle-spin 60s linear infinite",
+              willChange: "transform",
+              transformOrigin: "center",
             }}
             draggable={false}
           />

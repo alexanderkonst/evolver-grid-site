@@ -543,6 +543,12 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                         the rail icons + CTA emblems + ornament centerpiece
                         so every geometric image on the page has the same
                         "breathing object" tempo. */}
+                    {/* Day 48 iter 14 (Sasha): rotation via INLINE style
+                        (as well as the class) — class-only was failing
+                        in preview. Also retired `group-hover:scale-110`
+                        on the img because Tailwind's scale utility
+                        writes an explicit `transform: ... scale(1.1)`
+                        which would interrupt the rotation animation. */}
                     {!hideLogo && (
                         <Link to="/" className="absolute top-4 right-4 z-50 block w-10 h-10 group">
                             <div
@@ -552,7 +558,17 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                                     maskImage: "radial-gradient(circle at center, black 40%, transparent 75%)",
                                 }}
                             >
-                                <img src={logoSrc} alt="Home" className="w-full h-full object-cover gentle-spin transition-transform duration-300 group-hover:scale-110" draggable={false} />
+                                <img
+                                    src={logoSrc}
+                                    alt="Home"
+                                    className="w-full h-full object-cover gentle-spin"
+                                    style={{
+                                        animation: "gentle-spin 60s linear infinite",
+                                        willChange: "transform",
+                                        transformOrigin: "center",
+                                    }}
+                                    draggable={false}
+                                />
                             </div>
                         </Link>
                     )}
