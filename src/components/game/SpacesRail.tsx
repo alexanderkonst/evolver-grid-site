@@ -1,8 +1,7 @@
 import { ReactNode, memo, useEffect, useState } from "react";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
-    User,
     Lock,
     Settings,
     LogOut,
@@ -12,6 +11,10 @@ import { cn } from "@/lib/utils";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import GlyphIcon from "./GlyphIcon";
+// Day 48 (Sasha): brand logo (orb + "FIND YOUR TOP TALENT" wordmark)
+// now sits at the top of the rail, replacing the avatar + stacked
+// text lockup. Single asset, renders at native aspect ratio.
+import brandLogo from "@/assets/find-your-top-talent-logo.png";
 
 interface SpaceItem {
     id: string;
@@ -139,10 +142,6 @@ const SpacesRail = ({
         return location.pathname.startsWith(path);
     };
 
-    const displayName = userName || 'Guest';
-    const avatarUrl = userAvatarUrl;
-
-
     return (
         <div
             className={cn(
@@ -159,44 +158,35 @@ const SpacesRail = ({
                     "inset -1px 0 0 rgba(212, 175, 55, 0.22), 3px 0 24px -10px rgba(244, 212, 114, 0.18)",
             }}
         >
-            {/* Brand lockup — Day 48 (Sasha): replaced the "Guest / Member"
-                identity block with a "FIND YOUR TOP TALENT" brand header so
-                the rail opens with the product name, not the user's auth
-                state. Avatar kept for authenticated users (no-op for guests). */}
+            {/* Brand logo — Day 48 (Sasha): orb + wordmark image lockup
+                replaces the text + avatar header. Clicking it returns
+                home. On mobile (rail compressed to 72px) only the orb
+                crop is visible; on desktop the full wordmark shows. */}
             <div className="p-2 md:p-3">
-                <div className="flex items-center justify-center md:justify-start gap-2 p-1.5 -m-1.5">
-                    {avatarUrl ? (
-                        <img
-                            src={avatarUrl}
-                            alt={displayName}
-                            loading="lazy"
-                            onError={(e) => {
-                                e.currentTarget.src = "/placeholder.svg";
-                            }}
-                            className="w-8 h-8 rounded-full object-cover flex-shrink-0"
-                        />
-                    ) : (
-                        <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0">
-                            <User className="w-4 h-4 text-white/50" />
-                        </div>
-                    )}
-                    <div className="hidden md:block overflow-hidden flex-1 min-w-0">
-                        <p
-                            className="text-[11px] tracking-[0.18em] uppercase font-semibold leading-tight"
-                            style={{ color: "#d4af37" }}
-                        >
-                            Find Your
-                        </p>
-                        <p
-                            className="text-[11px] tracking-[0.18em] uppercase font-semibold leading-tight"
-                            style={{ color: "#d4af37" }}
-                        >
-                            Top Talent
-                        </p>
-                    </div>
-                </div>
-                {/* Mobile-only Level/XP block removed Day 47 late pass — it was
-                    creating visual clutter between the avatar and the icon rail. */}
+                <Link
+                    to="/"
+                    className="block group transition-all hover:opacity-90"
+                    aria-label="Find Your Top Talent — home"
+                >
+                    {/* Mobile: square orb crop from the left of the image. */}
+                    <div
+                        className="md:hidden w-12 h-12 mx-auto overflow-hidden"
+                        style={{
+                            backgroundImage: `url(${brandLogo})`,
+                            backgroundSize: "auto 100%",
+                            backgroundPosition: "left center",
+                            backgroundRepeat: "no-repeat",
+                        }}
+                        aria-hidden="true"
+                    />
+                    {/* Desktop: full logo (orb + wordmark). Native aspect. */}
+                    <img
+                        src={brandLogo}
+                        alt="Find Your Top Talent"
+                        className="hidden md:block w-full h-auto object-contain"
+                        draggable={false}
+                    />
+                </Link>
             </div>
 
             <ScrollArea className="flex-1">

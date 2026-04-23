@@ -13,6 +13,54 @@
 
 ---
 
+## 🧭 Business Dashboard
+
+*Distilled snapshot. Top-of-file glance — the canvas sprawls below. Pattern originated Day 48 (April 22, 2026) in Sasha's canvas; codified here as a template for every founder building their own unique business.*
+
+### Name & Surfaces
+- **Name:** *[Your business name]*
+- **Domain:** *[yoursite.com]*
+- **Founder domain:** *[yourname.com]* (if different)
+- **Site skins / aesthetic identity:** *[optional — e.g. "Light + rainbow" / "Dark + metal"]*
+
+### Tribe (target 9+/10 precision)
+*[Who your 9+/10 clients are, in your own voice. One paragraph. Should make the right person sit up and the wrong person quietly leave.]*
+
+### Top Talent — target 9+/10 articulation
+*[Your top talent distilled to one sentence at 9+/10 precision. See Step 2 of the playbook.]*
+
+### ⭐ Master Tuning Forks — v1.0
+
+*The one-sentence frames of the transformation. Three compressions of the same signal, posted across bios, DMs, life-update posts, and About pages. See Step 6 of the playbook.*
+
+**Tuning Fork #1 — Primary (full)**
+> *[I help {tribe} turn their {input} into {outcome} — {quality}, in {timeframe}.]*
+
+*Use for:* LinkedIn About · Instagram bio · site footer · speaker bios. Long enough to carry your full differentiator, short enough to feel alive.
+
+**Tuning Fork #2 — Compressed**
+> *[I turn {tribe}'s {input} into {outcome} in {timeframe}.]*
+
+*Use for:* Email signature · WhatsApp bio · Telegram bio · X bio · LinkedIn tagline. Any slot where space is tight.
+
+**Tuning Fork #3 — Transformation Arc** ← *canonical template form*
+> *[{tribe member} walks in {challenged situation} into my digital shop — and walks out, {timeframe} later, with {concrete transformational result}.]*
+
+*Use for:* Life-update post ("what I just focused my life on") · About page opener · Step 6 masthead example. This is the form a reader *locates themselves inside* — they're already in the shop reading the line, so the arc begins right now.
+
+**Sasha's working example (reference):**
+> "An aspiring impact founder walks in challenged to clearly explain what they do into my digital shop — and walks out, 6–8 weeks later, with a running scalable business at early product-market fit."
+
+### Value Ladder snapshot
+*[Step 1 free · Steps 2+3 {$} · Step 4 {$} · Step 5 {$} · Step 6 {$+rev share} · Step 7 by invitation. Total entry path: {$total} in {timeframe}. See Path page / Value Ladder artifact below.]*
+
+### Current State
+- **Founders / cohort:** *[names or count]*
+- **Revenue to date:** *[cash + in-kind + rev share]*
+- **Next milestone:** *[the specific Si-Do crystallization this business is working toward]*
+
+---
+
 ## Artifact Status
 
 | Artifact | Version | Precision | Status |
