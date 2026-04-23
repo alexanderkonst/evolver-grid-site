@@ -102,9 +102,13 @@ const MethodologyLandingPage = () => {
     /* Day 48 iter 3 (Sasha): hero frame retired. The pane wash itself
        is the surface; the hero no longer sits inside a rounded card.
        Container slightly widened (680 → 720px) now that there's no
-       internal frame eating horizontal space. Generous vertical
-       padding from iter 2 preserved. */
-    <div className="max-w-[720px] mx-auto px-5 py-10 md:py-14">
+       internal frame eating horizontal space.
+       Day 48 iter 5 (Sasha): vertical padding tightened
+       (py-10/14 → py-6/8) because the iter-2 generous padding combined
+       with the ornament bookends pushed the CTA below the fold on a
+       standard laptop viewport. Whitespace inside the hero preserved;
+       only the outer container gaps came down. */
+    <div className="max-w-[720px] mx-auto px-5 py-6 md:py-8">
       {/* ═══════ NAME ═══════ */}
       <header className="text-center">
         {/* ── LAYER 1: Recognition opener
@@ -140,8 +144,9 @@ const MethodologyLandingPage = () => {
           So people don't buy it.
         </p>
 
-        {/* Editorial ornament (top bookend) */}
-        <Ornament className="my-7 sm:my-8" />
+        {/* Editorial ornament (top bookend) — iter 5: tightened
+            my-7/8 → my-5/6 to help the CTA clear the fold. */}
+        <Ornament className="my-5 sm:my-6" />
 
         {/* ── LAYER 2: Structure
             Three accents unified to a DEEP antique-gold gradient so
@@ -216,12 +221,17 @@ const MethodologyLandingPage = () => {
         </div>
 
         {/* Editorial ornament (bottom bookend) — mirrors the top so the
-            hero reads as an opened + closed editorial passage. */}
-        <Ornament className="mt-8 sm:mt-10" />
+            hero reads as an opened + closed editorial passage.
+            iter 5: tightened mt-8/10 → mt-5/6 for fold. */}
+        <Ornament className="mt-5 sm:mt-6" />
       </header>
 
-      {/* ═══════ INFOGRAPHIC + CTA ═══════ */}
-      <div className="mt-8 sm:mt-10">
+      {/* ═══════ INFOGRAPHIC + CTA ═══════
+          iter 5: tightened mt-8/10 → mt-5/6 so the CTA sits on-screen
+          on first paint. The ornament above already provides the
+          visual beat between structure and CTA — the 40px mt is
+          rhythm, not gap. */}
+      <div className="mt-5 sm:mt-6">
         <PlaybookHero />
       </div>
     </div>
