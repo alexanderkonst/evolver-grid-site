@@ -23,7 +23,7 @@ THIS SPEC         derivation of constitution + federal laws for one module.
 
 > **Predecessor:** v1.0 Product Builder at `src/modules/product-builder/` — kept live, not migrated.
 > **This module:** `src/modules/unique-business-builder/` — new duplicate, built from the constitution.
-> **AI runtime:** `openai/gpt-5.2` via Lovable AI Gateway. ~$1.50–$3.50 per full Dossier pass.
+> **AI runtime:** `google/gemini-2.5-flash` via Lovable AI Gateway. ~$0.02–$0.06 per full Dossier pass.
 
 ---
 
