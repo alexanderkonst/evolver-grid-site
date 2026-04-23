@@ -294,24 +294,54 @@ const Step2Essay = (_: { neonHsl: string; neonRgb: string }) => {
       </p>
 
       <p>
-        This level of clarity pulls in highly aligned clients, and repels others.
+        This level of clarity turned into copy specificity pulls in highly aligned clients, and repels others.
       </p>
 
-      <p>So how do YOU get YOUR top talent to sufficient PRECISION?</p>
+      <p>So how do YOU get YOUR top talent to that level of specificity?</p>
 
-      <p>Here is the secret.</p>
+      <p>Here is the secret hidden in plain sight.</p>
+
+      {/* Day 48 (Sasha): the fluffy vs specific contrast rendered as a
+          two-line structured block so the arrows read as a quick "before
+          vs after" rather than two running paragraphs. */}
+      <div
+        className="my-1 space-y-1.5 pl-4 border-l"
+        style={{
+          borderColor: "var(--skin-rule-strong, rgba(26,30,58,0.25))",
+        }}
+      >
+        <p>Fluffy self-description → fluffy target audience, and fluffy copy.</p>
+        <p>Highly specific self-description → magnetizing pull.</p>
+      </div>
 
       <p>The top talent reveal on this page gets you to ~7/10.</p>
 
       <p>
-        You must reach 9/10 resonance (or higher) to productize yourself.
+        In my experience of having led in transformational containers for hundreds of entrepreneurs:
       </p>
+
+      {/* Day 48 (Sasha): THIS IS GOLD — the single most load-bearing claim
+          in the essay. Rendered as a standalone callout with gold left-rule
+          + elevated weight so it can't be missed. */}
+      <blockquote
+        className="my-2 pl-4 py-2 border-l-[3px]"
+        style={{
+          borderColor: "var(--skin-accent-gold, #b8860b)",
+          fontSize: "1.08em",
+          fontWeight: 600,
+          color: "var(--skin-text-primary, #0a1628)",
+        }}
+      >
+        people that productize themselves successfully reach 9+/10 specificity before things click.
+      </blockquote>
+
+      <p>Let this sit for a second. Does it feel true?</p>
 
       <p>How do people get there?</p>
 
-      <p>They do years of focused introspection, and iteration on the wording.</p>
-
-      <p>That's what I did.</p>
+      <p>
+        Years of focused introspection, iterations on the wording, authentic / artistic self-expression, sudden awakenings, plant medicine, purpose coaching, years of founder journey.
+      </p>
 
       <p>Is there a shortcut?</p>
 
@@ -325,11 +355,7 @@ const Step2Essay = (_: { neonHsl: string; neonRgb: string }) => {
       </ol>
 
       <p>
-        Truth is, such guides or tools are still EXTREMELY RARE as of 2026.
-      </p>
-
-      <p>
-        The method I developed and refined over the last six years gets you there in about 40 minutes.
+        Truth is, such guides or tools are still very rare as of 2026.
       </p>
 
       <p>
@@ -347,7 +373,7 @@ const Step2Essay = (_: { neonHsl: string; neonRgb: string }) => {
       <p>
         You could work with a purpose coach too, I'd recommend:{" "}
         <a
-          href="https://wa.me/13018733135?text=Hi%20Paul%2C%20Aleksandr%20recommended%20you%20as%20a%20purpose%20coach%20I%20can%20work%20with.%20What%27s%20the%20best%20way%20to%20engage%20with%20you%3F"
+          href="https://wa.me/13018733135?text=Hi%20Paul%2C%20Aleksandr%20Konstantinov%20at%20www.FindYourTopTalent.com%20recommended%20you%20as%20a%20purpose%20coach%20I%20can%20work%20with.%20What%27s%20the%20best%20way%20to%20engage%20with%20you%3F"
           target="_blank"
           rel="noreferrer noopener"
           style={linkStyle}
@@ -356,7 +382,7 @@ const Step2Essay = (_: { neonHsl: string; neonRgb: string }) => {
         </a>
         ,{" "}
         <a
-          href="https://wa.me/447771911220?text=Hi%20John%2C%20Aleksandr%20recommended%20you%20as%20a%20purpose%20coach%20I%20can%20work%20with.%20What%27s%20the%20best%20way%20to%20engage%20with%20you%3F"
+          href="https://wa.me/447771911220?text=Hi%20John%2C%20Aleksandr%20Konstantinov%20at%20www.FindYourTopTalent.com%20recommended%20you%20as%20a%20purpose%20coach%20I%20can%20work%20with.%20What%27s%20the%20best%20way%20to%20engage%20with%20you%3F"
           target="_blank"
           rel="noreferrer noopener"
           style={linkStyle}
@@ -376,6 +402,29 @@ const Step2Essay = (_: { neonHsl: string; neonRgb: string }) => {
       </p>
 
       <p>I wish these were commonplace but they are not.</p>
+
+      {/* Day 48 (Sasha): new closing that repositions the 6-year method
+          after the tools+coaches list and seats the commercial ask
+          naturally at the very end. "Book a session" routes to the
+          pricing block on /ignite. */}
+      <p>
+        The method I developed and refined over the last six years gets you to a 9+/10 in about 40 minutes.
+      </p>
+
+      <p>
+        Then we spend the next 160 mins turning it into a highly specific business using custom-made AI skills and templates of other founders that saw theirs.
+      </p>
+
+      <p>
+        A business that has always been uniquely yours, and obvious in hindsight.
+      </p>
+
+      <p>
+        <a href="/ignite#pricing-section" style={linkStyle}>
+          Book a session
+        </a>{" "}
+        if you'd like to take the shortcut.
+      </p>
     </section>
   );
 };
