@@ -66,7 +66,7 @@ IDEAL CLIENT:
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                model: "google/gemini-2.5-flash",
+                model: "openai/gpt-5.2",
                 messages: [
                     { role: "system", content: GENERATE_BLUEPRINT_PROMPT },
                     { role: "user", content: `Generate a blueprint lead magnet:\n\n${context}` }
