@@ -1,19 +1,18 @@
 # Unique Business Builder v2.0 — Progress Tracker
 
 **Started:** 2026-04-23
-**Status:** Phase 1 (PRODUCT) — awaiting Roast Gate 1 review
+**Status:** ✅ Phase 1 COMPLETE · ⏳ Phase 2 (Architecture) ready to start
 **Owner:** Alexander
 **Approach:** Recursive. Applying the Integrated Product Building Workflow to build the tool that delivers it. First holon tests everything.
 
-**Source playbooks (v2.0 spine):**
-- `docs/03-playbooks/unique_business_playbook.md` — 7-artifact canvas
-- `docs/03-playbooks/integrated_product_building_workflow.md` — 1st session bridge
-- `docs/03-playbooks/marketing_playbook.md` — 3 pillars
-- `docs/03-playbooks/distribution_playbook.md` — 3 pillars
-- `docs/03-playbooks/communications_playbook.md` — surfaces, tuning fork, Golden DM
+**Source of truth hierarchy:**
+- **Constitution:** `/playbook` → `unique_business_playbook.md` (supreme authority)
+- **Federal laws:** domain playbooks in `docs/03-playbooks/` (integrated_product_building_workflow · marketing · distribution · communications)
+- **This spec:** one module's derivation from constitution + federal laws
 
 **Predecessor:** v1.0 Genius Product Builder at `src/modules/product-builder/`. Kept live. Not migrated.
 **This module:** `src/modules/unique-business-builder/` — new duplicate, built from the playbooks.
+**AI runtime:** `openai/gpt-5.2` via Lovable AI Gateway. ~$1.50–$3.50 per full Dossier pass.
 
 ---
 
