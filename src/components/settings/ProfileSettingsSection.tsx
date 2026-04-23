@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { User, CreditCard, Check, Edit2, X, AlertTriangle } from "lucide-react";
+import { User, CreditCard, Check, Edit2, X, AlertTriangle, ArrowRight } from "lucide-react";
 import { PremiumLoader } from "@/components/ui/PremiumLoader";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -10,6 +10,9 @@ import { Badge } from "@/components/ui/badge";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { useStripePortal } from "@/hooks/use-stripe-portal";
+// Day 48 iter 12 (Sasha): shared design language for the landing-CTA
+// signature (glass-dark pill + ignite emblem + small-caps + breath).
+import { CTA_SMALL_CAPS_STYLE, igniteLogo } from "@/lib/landingDesign";
 
 /**
  * ProfileSettingsSection — extracted from src/pages/Profile.tsx (2026-04-21).
@@ -193,6 +196,14 @@ const ProfileSettingsSection = () => {
 
     // Day 48 (Sasha): guest state — Settings is public; the Profile tab
     // shows a short "log in" prompt instead of redirecting the visitor.
+    //
+    // Day 48 iter 12 (Sasha): the default shadcn Button was rendering as
+    // a white-on-white pill with invisible label (Aurora token stack
+    // + card bg collision). Replaced with the landing primary CTA —
+    // glass-dark pill + ignite emblem + small-caps + breath. Now reads
+    // as a real call to action that rhymes with every other CTA.
+    // Title + description also shifted to Cormorant Garamond so the
+    // guest state feels like part of the same book as the landing.
     if (!user) {
         return (
             <div className="space-y-6">
@@ -201,17 +212,53 @@ const ProfileSettingsSection = () => {
                         <div className="flex items-center gap-3">
                             <User className="h-5 w-5 text-muted-foreground" />
                             <div>
-                                <CardTitle className="text-lg">Profile</CardTitle>
-                                <CardDescription>
+                                <CardTitle
+                                    className="text-xl"
+                                    style={{
+                                        fontFamily: "'Cormorant Garamond', serif",
+                                        fontWeight: 600,
+                                    }}
+                                >
+                                    Profile
+                                </CardTitle>
+                                <CardDescription
+                                    className="mt-1 text-base"
+                                    style={{
+                                        fontFamily: "'Cormorant Garamond', serif",
+                                        fontWeight: 400,
+                                        fontStyle: "italic",
+                                    }}
+                                >
                                     You're browsing as a guest. Log in to manage your personal information, review purchases, and reset your progress.
                                 </CardDescription>
                             </div>
                         </div>
                     </CardHeader>
                     <CardContent>
-                        <Button onClick={() => navigate("/auth?redirect=/game/settings")}>
-                            Log in or sign up
-                        </Button>
+                        <button
+                            type="button"
+                            onClick={() => navigate("/auth?redirect=/game/settings")}
+                            className="group liquid-glass-dark cta-breath rounded-full inline-flex items-center justify-center gap-2.5 px-6 py-3 whitespace-nowrap text-base font-semibold transition-all duration-300 hover:scale-[1.03] active:scale-[0.97]"
+                            style={{
+                                fontFamily: "'Cormorant Garamond', serif",
+                                color: "var(--skin-cta-text, rgba(245,245,250,0.98))",
+                                backgroundImage:
+                                    "var(--skin-cta-bg, linear-gradient(135deg, rgba(10,22,40,0.72) 0%, rgba(26,30,58,0.62) 50%, rgba(10,22,40,0.72) 100%))",
+                                boxShadow:
+                                    "var(--skin-cta-shadow, 0 0 18px -4px rgba(240,194,127,0.45), 0 10px 24px -10px rgba(10,22,40,0.5))",
+                            }}
+                        >
+                            <img
+                                src={igniteLogo}
+                                alt=""
+                                aria-hidden="true"
+                                className="h-4 w-auto opacity-80 transition-opacity group-hover:opacity-100"
+                                style={{ filter: "drop-shadow(0 0 6px rgba(244, 212, 114, 0.45))" }}
+                                draggable={false}
+                            />
+                            <span style={CTA_SMALL_CAPS_STYLE}>Log in or sign up</span>
+                            <ArrowRight aria-hidden="true" className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5" />
+                        </button>
                     </CardContent>
                 </Card>
             </div>
@@ -229,8 +276,25 @@ const ProfileSettingsSection = () => {
                         <div className="flex items-center gap-3">
                             <User className="h-5 w-5 text-muted-foreground" />
                             <div>
-                                <CardTitle className="text-lg">Personal Information</CardTitle>
-                                <CardDescription>Your basic account details</CardDescription>
+                                <CardTitle
+                                    className="text-xl"
+                                    style={{
+                                        fontFamily: "'Cormorant Garamond', serif",
+                                        fontWeight: 600,
+                                    }}
+                                >
+                                    Personal Information
+                                </CardTitle>
+                                <CardDescription
+                                    className="text-base mt-0.5"
+                                    style={{
+                                        fontFamily: "'Cormorant Garamond', serif",
+                                        fontWeight: 400,
+                                        fontStyle: "italic",
+                                    }}
+                                >
+                                    Your basic account details.
+                                </CardDescription>
                             </div>
                         </div>
                         {!isEditing && (

@@ -10,32 +10,25 @@ import { cn } from "@/lib/utils";
 /**
  * Settings — unified settings page at /game/settings.
  *
- * Reorganized Day 48 (Sasha):
- *   - Profile tab    → personal info, billing, danger zone
- *   - Appearance tab → single skin toggle (Aurora · Navy + Gold)
- *
- * The old Appearance tab let the user hand-mix individual panel colors.
- * That's too much exposure for a product surface — we retired it in favor
- * of a simple two-option skin switch. The underlying `ThemeContext` still
- * exists for any legacy consumers; the skin system (see `SkinContext`)
- * is the canonical aesthetic control going forward.
- *
- * Deep links:
- *   /game/settings            → Profile tab (default)
- *   /game/settings?tab=profile
- *   /game/settings?tab=appearance
+ * Day 48 iter 12 (Sasha): visual pass to align with the landing
+ * design language:
+ *   • Cormorant Garamond "Settings" title + italic echo subtitle
+ *     (same voice as the landing hero)
+ *   • Back chip in the same glass-dark register as the Playbook's
+ *     "Back" pill
+ *   • Tabs get gold active accents (underline + text) instead of
+ *     the stark white-on-white that was washing out
+ *   • ProfileSettingsSection's "Log in or sign up" button upgraded
+ *     to the landing CTA signature (glass-dark pill + ignite emblem
+ *     + small-caps + breath) — was rendering as a white-on-white
+ *     pill where the label was invisible
  */
 
 interface SkinOption {
     id: Skin;
     label: string;
     tagline: string;
-    /** CSS `background` value used for the swatch — must visually reflect
-     *  the skin's actual identity (pearlescent rainbow for Aurora, deep
-     *  navy with a gold star for Navy+Gold). Day 48 (Sasha): the swatches
-     *  should communicate each skin at a glance. */
     swatchBackground: string;
-    /** Optional overlay content (e.g. the gold ✦ on Navy+Gold). */
     swatchOverlay?: React.ReactNode;
 }
 
@@ -74,15 +67,17 @@ const AppearanceTab = () => {
 
     return (
         <div className="space-y-6">
-            {/* Day 48 (Sasha): card + options rendered with shadcn tokens
-                (bg-card / text-foreground / border-border / text-muted-foreground)
-                so Aurora and Navy+Gold don't mix tints. All tokens resolve
-                through the [data-skin] CSS-var block in index.css. */}
             <div className="rounded-2xl p-5 sm:p-6 space-y-4 bg-card border border-border shadow-sm">
                 <div className="flex items-start gap-3">
                     <Palette className="w-5 h-5 mt-0.5 flex-shrink-0 text-muted-foreground" />
                     <div>
-                        <h2 className="text-base font-semibold leading-tight text-foreground">
+                        <h2
+                            className="text-xl leading-tight text-foreground"
+                            style={{
+                                fontFamily: "'Cormorant Garamond', serif",
+                                fontWeight: 600,
+                            }}
+                        >
                             Skin
                         </h2>
                         <p className="text-sm mt-1 leading-relaxed text-muted-foreground">
@@ -106,15 +101,14 @@ const AppearanceTab = () => {
                                     "relative text-left rounded-xl p-4 transition-all duration-200",
                                     "bg-background border",
                                     "hover:scale-[1.01] active:scale-[0.995]",
-                                    "focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+                                    "focus:outline-none focus-visible:ring-2 focus-visible:ring-[#d4af37]/50 focus-visible:ring-offset-2",
                                     active
-                                        ? "border-primary ring-2 ring-primary/35 shadow-md"
+                                        ? "border-[#d4af37] ring-2 ring-[#d4af37]/40 shadow-md"
                                         : "border-border shadow-sm",
                                 )}
                             >
                                 <div className="flex items-center justify-between gap-3">
                                     <div className="flex items-center gap-3 min-w-0">
-                                        {/* Preview swatch — each skin's actual identity at a glance. */}
                                         <div
                                             aria-hidden="true"
                                             className="relative w-10 h-10 rounded-lg flex-shrink-0 overflow-hidden border border-border"
@@ -127,7 +121,13 @@ const AppearanceTab = () => {
                                             {opt.swatchOverlay}
                                         </div>
                                         <div className="min-w-0">
-                                            <div className="text-sm font-semibold leading-tight text-foreground">
+                                            <div
+                                                className="text-base leading-tight text-foreground"
+                                                style={{
+                                                    fontFamily: "'Cormorant Garamond', serif",
+                                                    fontWeight: 600,
+                                                }}
+                                            >
                                                 {opt.label}
                                             </div>
                                             <div className="text-xs mt-0.5 leading-snug text-muted-foreground">
@@ -138,9 +138,10 @@ const AppearanceTab = () => {
                                     {active && (
                                         <span
                                             aria-hidden="true"
-                                            className="flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center bg-primary"
+                                            className="flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center"
+                                            style={{ backgroundColor: "#7a5108" }}
                                         >
-                                            <Check className="w-3 h-3 text-primary-foreground" />
+                                            <Check className="w-3 h-3 text-white" />
                                         </span>
                                     )}
                                 </div>
@@ -166,34 +167,120 @@ const Settings = () => {
 
     return (
         <GameShellV2>
-            {/* Outer gradient retired — Settings inherits Panel 3's skin-aware wash. */}
             <div className="min-h-dvh">
                 <div className="max-w-3xl mx-auto p-6">
-                    <div className="flex items-center gap-4 mb-8">
+                    {/* Back pill — Day 48 iter 12 (Sasha): matches the Playbook
+                        "Back" chip style so the return affordance reads
+                        consistently across pages. */}
+                    <div className="mb-5">
                         <button
+                            type="button"
                             onClick={() => navigate(-1)}
-                            className="p-2 rounded-lg transition-colors hover:bg-accent"
+                            className={cn(
+                                "inline-flex items-center gap-2 py-1.5 px-3 rounded-full",
+                                "text-[10px] sm:text-[11px] uppercase tracking-[0.22em] font-medium",
+                                "transition-all duration-300 hover:scale-[1.02]",
+                                "focus-visible:ring-2 focus-visible:ring-[#d4af37]/40 outline-none",
+                            )}
+                            style={{
+                                backgroundImage:
+                                    "linear-gradient(135deg, rgba(26,30,58,0.08), rgba(26,30,58,0.02))",
+                                border:
+                                    "1px solid var(--skin-rule-strong, rgba(26,30,58,0.2))",
+                                color: "var(--skin-link-secondary, rgba(26,30,58,0.85))",
+                            }}
                             aria-label="Back"
                         >
-                            <ArrowLeft className="w-5 h-5 text-muted-foreground" />
+                            <ArrowLeft className="w-3 h-3" aria-hidden="true" />
+                            <span>Back</span>
                         </button>
-                        <div>
-                            <h1 className="text-2xl font-bold text-foreground">
-                                Settings
-                            </h1>
-                            <p className="text-sm text-muted-foreground">
-                                Your account and preferences
-                            </p>
-                        </div>
                     </div>
 
+                    {/* Hero — Cormorant Garamond "Settings" + italic echo.
+                        Same typographic voice as the landing hero so the
+                        page feels like part of the same book, not a
+                        stripped-down settings dialog. */}
+                    <header className="mb-8">
+                        <h1
+                            className="text-4xl sm:text-5xl leading-[1.05] tracking-[-0.01em] mb-2"
+                            style={{
+                                fontFamily: "'Cormorant Garamond', serif",
+                                fontWeight: 600,
+                                color: "var(--skin-text-primary, #0a1628)",
+                                textShadow:
+                                    "var(--skin-text-halo-strong, 0 0 22px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.8), 0 2px 12px rgba(26,30,58,0.15))",
+                            }}
+                        >
+                            Settings
+                        </h1>
+                        <p
+                            className="text-lg sm:text-xl leading-snug italic"
+                            style={{
+                                fontFamily: "'Cormorant Garamond', serif",
+                                fontWeight: 400,
+                                color: "var(--skin-text-muted, rgba(26,30,58,0.7))",
+                                textShadow:
+                                    "var(--skin-text-halo-subtle, 0 0 18px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.75))",
+                            }}
+                        >
+                            Your account and preferences.
+                        </p>
+                    </header>
+
                     <Tabs value={activeTab} onValueChange={handleTabChange}>
-                        <TabsList className="mb-6">
-                            <TabsTrigger value="profile" className="gap-2">
-                                <User className="w-4 h-4" />Profile
+                        {/* Day 48 iter 12 (Sasha): TabsList gets a glass base
+                            + gold underline for the active tab. The default
+                            shadcn white-on-white was reading as a blank pill
+                            with no affordance. */}
+                        <TabsList
+                            className="mb-6 h-auto p-1 rounded-full bg-white/40 backdrop-blur-md border"
+                            style={{
+                                borderColor: "var(--skin-rule-medium, rgba(26,30,58,0.12))",
+                            }}
+                        >
+                            <TabsTrigger
+                                value="profile"
+                                className={cn(
+                                    "gap-2 rounded-full px-5 py-2 transition-all",
+                                    "data-[state=active]:bg-white data-[state=active]:shadow-sm",
+                                    "data-[state=inactive]:text-muted-foreground",
+                                )}
+                                style={{
+                                    fontFamily: "'Cormorant Garamond', serif",
+                                    fontWeight: 600,
+                                    fontSize: "0.78rem",
+                                    letterSpacing: "0.14em",
+                                    textTransform: "uppercase",
+                                    color:
+                                        activeTab === "profile"
+                                            ? "#7a5108"
+                                            : undefined,
+                                }}
+                            >
+                                <User className="w-3.5 h-3.5" />
+                                Profile
                             </TabsTrigger>
-                            <TabsTrigger value="appearance" className="gap-2">
-                                <Palette className="w-4 h-4" />Appearance
+                            <TabsTrigger
+                                value="appearance"
+                                className={cn(
+                                    "gap-2 rounded-full px-5 py-2 transition-all",
+                                    "data-[state=active]:bg-white data-[state=active]:shadow-sm",
+                                    "data-[state=inactive]:text-muted-foreground",
+                                )}
+                                style={{
+                                    fontFamily: "'Cormorant Garamond', serif",
+                                    fontWeight: 600,
+                                    fontSize: "0.78rem",
+                                    letterSpacing: "0.14em",
+                                    textTransform: "uppercase",
+                                    color:
+                                        activeTab === "appearance"
+                                            ? "#7a5108"
+                                            : undefined,
+                                }}
+                            >
+                                <Palette className="w-3.5 h-3.5" />
+                                Appearance
                             </TabsTrigger>
                         </TabsList>
                         <TabsContent value="profile">
