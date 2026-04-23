@@ -30,6 +30,9 @@ interface SkinOption {
     tagline: string;
     swatchBackground: string;
     swatchOverlay?: React.ReactNode;
+    /** Day 48 iter 14 (Sasha): lets an option render as "coming soon"
+     *  — visible so users know it exists, but not clickable. */
+    disabled?: boolean;
 }
 
 const SKIN_OPTIONS: SkinOption[] = [
@@ -44,6 +47,12 @@ const SKIN_OPTIONS: SkinOption[] = [
         id: "navy-gold",
         label: "Navy + Gold",
         tagline: "Deep navy · gold · editorial dark",
+        // Day 48 iter 14 (Sasha): disabled pending a full QA pass on
+        // the Navy+Gold skin — Aurora is the only skin shipping at
+        // launch. Keeping the tile visible (muted, non-clickable,
+        // "Coming soon" label) signals the capability without
+        // letting users fall into a half-baked register.
+        disabled: true,
         swatchBackground:
             "linear-gradient(135deg, #04081a 0%, #0a1628 55%, #142244 100%)",
         swatchOverlay: (
@@ -90,21 +99,30 @@ const AppearanceTab = () => {
                 <div role="radiogroup" aria-label="Skin" className="grid sm:grid-cols-2 gap-3 pt-1">
                     {SKIN_OPTIONS.map((opt) => {
                         const active = opt.id === skin;
+                        const isDisabled = !!opt.disabled;
                         return (
                             <button
                                 key={opt.id}
                                 type="button"
                                 role="radio"
                                 aria-checked={active}
-                                onClick={() => setSkin(opt.id)}
+                                aria-disabled={isDisabled}
+                                onClick={() => {
+                                    if (!isDisabled) setSkin(opt.id);
+                                }}
+                                disabled={isDisabled}
                                 className={cn(
                                     "relative text-left rounded-xl p-4 transition-all duration-200",
                                     "bg-background border",
-                                    "hover:scale-[1.01] active:scale-[0.995]",
                                     "focus:outline-none focus-visible:ring-2 focus-visible:ring-[#d4af37]/50 focus-visible:ring-offset-2",
-                                    active
-                                        ? "border-[#d4af37] ring-2 ring-[#d4af37]/40 shadow-md"
-                                        : "border-border shadow-sm",
+                                    isDisabled
+                                        ? "opacity-55 cursor-not-allowed border-border shadow-sm"
+                                        : cn(
+                                              "hover:scale-[1.01] active:scale-[0.995]",
+                                              active
+                                                  ? "border-[#d4af37] ring-2 ring-[#d4af37]/40 shadow-md"
+                                                  : "border-border shadow-sm",
+                                          ),
                                 )}
                             >
                                 <div className="flex items-center justify-between gap-3">
@@ -122,20 +140,34 @@ const AppearanceTab = () => {
                                         </div>
                                         <div className="min-w-0">
                                             <div
-                                                className="text-base leading-tight text-foreground"
+                                                className="text-base leading-tight text-foreground flex items-center gap-2"
                                                 style={{
                                                     fontFamily: "'Cormorant Garamond', serif",
                                                     fontWeight: 600,
                                                 }}
                                             >
-                                                {opt.label}
+                                                <span>{opt.label}</span>
+                                                {isDisabled && (
+                                                    <span
+                                                        className="text-[9px] tracking-[0.22em] uppercase font-semibold px-2 py-0.5 rounded-full"
+                                                        style={{
+                                                            backgroundColor: "rgba(212, 175, 55, 0.14)",
+                                                            color: "#7a5108",
+                                                            border: "0.5px solid rgba(212, 175, 55, 0.32)",
+                                                            fontFamily: "'Cormorant Garamond', serif",
+                                                            letterSpacing: "0.18em",
+                                                        }}
+                                                    >
+                                                        Coming soon
+                                                    </span>
+                                                )}
                                             </div>
                                             <div className="text-xs mt-0.5 leading-snug text-muted-foreground">
                                                 {opt.tagline}
                                             </div>
                                         </div>
                                     </div>
-                                    {active && (
+                                    {active && !isDisabled && (
                                         <span
                                             aria-hidden="true"
                                             className="flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center"
