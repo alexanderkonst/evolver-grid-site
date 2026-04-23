@@ -337,8 +337,14 @@ const SectionsPanel = ({
                 The lone X in the top-right was visually orphaned. The
                 header now self-identifies the pane: title on the left
                 (space name in tracked small-caps gold), close X on the
-                right. Readers always know what they're inside. */}
-            <div className="h-10 px-4 flex items-center justify-between">
+                right. Readers always know what they're inside.
+
+                Day 48 iter 15 (Sasha): header height bumped h-10 → h-16
+                so pane 2's first nav item lines up with pane 1's first
+                chip (which sits under the taller brand-wordmark area).
+                Both first-items now share the same Y — the panes read
+                as a single coherent grid row. */}
+            <div className="h-16 px-4 flex items-center justify-between">
                 <span
                     className="text-[11px] font-semibold"
                     style={{
@@ -364,7 +370,7 @@ const SectionsPanel = ({
             </div>
 
             <ScrollArea className="flex-1">
-            <nav className="py-2 pt-3">
+            <nav className="py-2 pt-1">
                 {spaceData.sections.map((section) => {
                     const hasSubSections = section.subSections && section.subSections.length > 0;
                     const isExpanded = expandedSections[section.id] ?? false;

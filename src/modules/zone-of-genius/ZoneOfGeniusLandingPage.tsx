@@ -82,7 +82,7 @@ const ZoneOfGeniusLandingPage = () => {
                     </p>
                     <button
                       onClick={() => navigate("/zone-of-genius/entry")}
-                      className="group liquid-glass-dark cta-breath rounded-full inline-flex items-center justify-center gap-2.5 px-5 py-2.5 whitespace-nowrap text-sm font-semibold transition-all duration-300 hover:scale-[1.03] active:scale-[0.97]"
+                      className="group liquid-glass-dark cta-breath rounded-full inline-flex items-center justify-center gap-2 sm:gap-2.5 px-4 sm:px-5 py-2.5 max-w-full text-xs sm:text-sm font-semibold transition-all duration-300 hover:scale-[1.03] active:scale-[0.97]"
                       style={{
                         fontFamily: "'Cormorant Garamond', serif",
                         color: "var(--skin-cta-text, rgba(245,245,250,0.98))",
@@ -147,7 +147,7 @@ const ZoneOfGeniusLandingPage = () => {
                 emblem + small-caps + breath. */}
             <button
               onClick={handleStartAssessment}
-              className="group liquid-glass-dark cta-breath mt-8 rounded-full inline-flex items-center justify-center gap-2.5 px-7 py-3.5 whitespace-nowrap text-base font-semibold transition-all duration-300 hover:scale-[1.03] active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-white/40 outline-none"
+              className="group liquid-glass-dark cta-breath mt-8 rounded-full inline-flex items-center justify-center gap-2 sm:gap-2.5 px-4 sm:px-7 py-3 sm:py-3.5 max-w-full text-sm sm:text-base font-semibold transition-all duration-300 hover:scale-[1.03] active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-white/40 outline-none"
               style={{
                 fontFamily: "'Cormorant Garamond', serif",
                 color: "var(--skin-cta-text, rgba(245,245,250,0.98))",
@@ -280,7 +280,7 @@ const ZoneOfGeniusLandingPage = () => {
             <div className="text-center pt-6">
               <button
                 onClick={handleStartAssessment}
-                className="group liquid-glass-dark cta-breath rounded-full inline-flex items-center justify-center gap-2.5 px-7 py-3.5 whitespace-nowrap text-base font-semibold transition-all duration-300 hover:scale-[1.03] active:scale-[0.97]"
+                className="group liquid-glass-dark cta-breath rounded-full inline-flex items-center justify-center gap-2 sm:gap-2.5 px-4 sm:px-7 py-3 sm:py-3.5 max-w-full text-sm sm:text-base font-semibold transition-all duration-300 hover:scale-[1.03] active:scale-[0.97]"
                 style={{
                   fontFamily: "'Cormorant Garamond', serif",
                   color: "var(--skin-cta-text, rgba(245,245,250,0.98))",
@@ -525,7 +525,7 @@ const ZoneOfGeniusLandingPage = () => {
 
             <button
               onClick={handleStartAssessment}
-              className="group liquid-glass-dark cta-breath rounded-full inline-flex items-center justify-center gap-2.5 px-7 py-3.5 whitespace-nowrap text-base font-semibold transition-all duration-300 hover:scale-[1.03] active:scale-[0.97]"
+              className="group liquid-glass-dark cta-breath rounded-full inline-flex items-center justify-center gap-2 sm:gap-2.5 px-4 sm:px-7 py-3 sm:py-3.5 max-w-full text-sm sm:text-base font-semibold transition-all duration-300 hover:scale-[1.03] active:scale-[0.97]"
               style={{
                 fontFamily: "'Cormorant Garamond', serif",
                 color: "var(--skin-cta-text, rgba(245,245,250,0.98))",

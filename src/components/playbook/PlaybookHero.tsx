@@ -61,13 +61,13 @@ const PlaybookHero = () => {
           onClick={() => navigate("/zone-of-genius")}
           className={cn(
             "group liquid-glass-dark cta-breath rounded-full",
-            "inline-flex items-center justify-center gap-2.5",
-            "px-6 py-3 whitespace-nowrap",
-            // Day 48 (Sasha): shifted the primary CTA from DM Sans to
-            // Cormorant Garamond semibold so it reads as a ceremonial
-            // serif moment that rhymes with the ornate gold-embossed
-            // wordmark in the logo.
-            "text-base font-semibold",
+            "inline-flex items-center justify-center gap-2 sm:gap-2.5",
+            // Day 48 iter 15 (Sasha): `whitespace-nowrap` retired so the
+            // label can wrap cleanly on very narrow viewports if needed.
+            // Padding tightened on mobile (px-4 → px-6 at sm+) so the
+            // pill hugs the label without overflowing.
+            "px-4 sm:px-6 py-3 max-w-full",
+            "text-sm sm:text-base font-semibold",
             "transition-all duration-300 hover:scale-[1.03] active:scale-[0.97]",
             "focus-visible:ring-2 focus-visible:ring-white/40 outline-none",
           )}

@@ -7,6 +7,12 @@ import { useState, useCallback, useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { useSkin } from "@/contexts/SkinContext";
+// Day 48 iter 15 (Sasha): the "Turn My Top Talent into a Growing
+// Business" primary CTA migrated from the white-glass card to the
+// landing CTA signature (glass-dark pill + ignite emblem + small-caps
+// label + breath) so every primary action across the funnel reads
+// as the same voice.
+import { CTA_SMALL_CAPS_STYLE, igniteLogo } from "@/lib/landingDesign";
 
 const STRIPE_PAYMENT_LINK = "https://buy.stripe.com/9B6dR9bME6i71TP7r2dEs0A";
 
@@ -370,34 +376,47 @@ const AppleseedDisplay = ({
                         Or you don't pay.
                     </p>
 
-                    {/* CTA 1 (PRIMARY) — Apple Liquid Glass */}
+                    {/* CTA 1 (PRIMARY) — Day 48 iter 15 (Sasha):
+                        migrated from the white-glass card with arrow
+                        disc to the full landing CTA signature: dark
+                        glass pill + ignite emblem + small-caps label
+                        + breath animation. Now rhymes with the landing
+                        hero CTA and every other primary across the
+                        funnel. */}
                     <a
                         href="/ignite#pricing-section"
-                        className="w-full flex items-center justify-between p-5 rounded-2xl
-                                   liquid-glass-strong
-                                   hover:scale-[1.02] active:scale-95
-                                   transition-all duration-300 alive-card"
-                        style={{ color: "var(--skin-text-primary, #0a1628)" }}
+                        className="group liquid-glass-dark cta-breath w-full rounded-full inline-flex items-center justify-center gap-2 sm:gap-2.5 px-4 sm:px-6 py-3 sm:py-3.5 max-w-full text-sm sm:text-base font-semibold transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+                        style={{
+                            fontFamily: "'Cormorant Garamond', serif",
+                            color: "var(--skin-cta-text, rgba(245,245,250,0.98))",
+                            backgroundImage:
+                                "var(--skin-cta-bg, linear-gradient(135deg, rgba(10,22,40,0.72) 0%, rgba(26,30,58,0.62) 50%, rgba(10,22,40,0.72) 100%))",
+                            boxShadow:
+                                "var(--skin-cta-shadow, 0 0 18px -4px rgba(240,194,127,0.45), 0 10px 24px -10px rgba(10,22,40,0.5))",
+                            textShadow:
+                                "var(--skin-cta-text-shadow, 0 0 16px rgba(240,194,127,0.25), 0 1px 2px rgba(0,0,0,0.35))",
+                        }}
                     >
-                        <div>
-                            <p
-                                className="text-base font-semibold tracking-wide"
-                                style={{
-                                    color: "var(--skin-text-primary, #0a1628)",
-                                    textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.7))",
-                                }}
-                            >
-                                Turn My Top Talent into a Growing Business
-                            </p>
-                        </div>
-                        {/* Day 48 iter 7 (Sasha): violet arrow disc (#8460ea
-                            bg + #5b21b6 arrow) migrated to gold. */}
-                        <span
-                            className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 ml-4"
-                            style={{ backgroundColor: "rgba(212, 175, 55, 0.18)" }}
-                        >
-                            <ArrowRight className="w-5 h-5" style={{ color: "#7a5108" }} />
+                        <img
+                            src={igniteLogo}
+                            alt=""
+                            aria-hidden="true"
+                            className="h-4 w-auto opacity-80 transition-opacity group-hover:opacity-100 flex-shrink-0"
+                            style={{
+                                filter: "drop-shadow(0 0 6px rgba(244, 212, 114, 0.45))",
+                                animation: "gentle-spin 60s linear infinite",
+                                willChange: "transform",
+                                transformOrigin: "center",
+                            }}
+                            draggable={false}
+                        />
+                        <span style={CTA_SMALL_CAPS_STYLE} className="text-center">
+                            Turn my top talent into a growing business
                         </span>
+                        <ArrowRight
+                            aria-hidden="true"
+                            className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 flex-shrink-0"
+                        />
                     </a>
 
                     {/* Mini bridge line */}

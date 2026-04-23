@@ -143,7 +143,7 @@ export const PLAYBOOK_STEPS: PlaybookStep[] = [
         // knows Step 1 is also solved by taking the test on this site —
         // not only by prompting their own AI.
         oneProvenStrategy:
-          "Use this prompt: \u201CBased on all you know about me, what\u2019s my zone of genius?\u201D Or do the top talent reveal on this page. That gets you to a precision of resonance higher than practically any personality test on the planet or AI on its own.",
+          "Use this prompt: \u201CBased on all you know about me, what\u2019s my zone of genius?\u201D Or do the top talent reveal on this page. That gets you to a specificity higher than virtually any personality test or AI on the planet.",
       },
       {
         number: 2,
