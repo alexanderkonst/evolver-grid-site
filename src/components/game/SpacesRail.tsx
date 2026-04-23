@@ -42,13 +42,16 @@ const ImageIcon = ({
     alt: string;
     glow?: boolean;
 }) => (
+    // Day 48 iter 14 (Sasha): rotation is now applied via INLINE style
+    // (in addition to the .gentle-spin class) — the class rule wasn't
+    // landing in Sasha's preview. Inline styles bypass the entire
+    // cascade and can only be beaten by !important inline, which
+    // nothing else sets.
     <img
         src={src}
         alt={alt}
         aria-hidden="true"
         draggable={false}
-        // Day 48 iter 9 (Sasha): `.gentle-spin` applies the shared 60s
-        // rotation used for every geometric image site-wide.
         className="flex-shrink-0 select-none object-contain gentle-spin"
         style={{
             width: 28,
@@ -56,6 +59,9 @@ const ImageIcon = ({
             filter: glow
                 ? "drop-shadow(0 0 8px rgba(244, 212, 114, 0.7)) drop-shadow(0 0 2px rgba(212, 175, 55, 0.9))"
                 : "drop-shadow(0 0 4px rgba(244, 212, 114, 0.3))",
+            animation: "gentle-spin 60s linear infinite",
+            willChange: "transform",
+            transformOrigin: "center",
         }}
     />
 );

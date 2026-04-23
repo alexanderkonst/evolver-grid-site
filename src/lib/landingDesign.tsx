@@ -88,6 +88,10 @@ export const Ornament = ({ className = "" }: { className?: string }) => (
           "linear-gradient(to right, transparent, var(--skin-ornament-rule, rgba(26,30,58,0.25)))",
       }}
     />
+    {/* Day 48 iter 14 (Sasha): rotation via INLINE style (not just the
+        .ornament-spin class) because the class rule was getting
+        cascade-overridden somewhere in Sasha's preview. Inline wins
+        everything except other !important inline — bulletproof. */}
     <img
       src={igniteLogo}
       alt=""
@@ -96,6 +100,9 @@ export const Ornament = ({ className = "" }: { className?: string }) => (
       style={{
         filter:
           "drop-shadow(0 0 10px rgba(240, 194, 127, 0.5)) drop-shadow(0 0 3px rgba(212, 175, 55, 0.7))",
+        animation: "ornament-spin 48s linear infinite",
+        willChange: "transform",
+        transformOrigin: "center",
       }}
       draggable={false}
     />
