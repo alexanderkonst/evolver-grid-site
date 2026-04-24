@@ -538,6 +538,60 @@ const BuildCanvasPage = () => {
     <GameShellV2>
       <ErrorBoundary>
         <div className="max-w-2xl mx-auto p-4 lg:p-6 space-y-5">
+          {/* ── UBB v2 Promo Card — top of page ── */}
+          <div
+            className="relative overflow-hidden rounded-2xl liquid-glass-strong ring-1 ring-[#8460ea]/30 p-5 sm:p-6 cursor-pointer transition-all hover:ring-[#8460ea]/50 hover:shadow-[0_0_28px_rgba(132,96,234,0.25)] group"
+            onClick={() => navigate("/ubb")}
+          >
+            <div
+              className="absolute inset-0 opacity-40 pointer-events-none"
+              style={{
+                background:
+                  "radial-gradient(ellipse at 80% 0%, rgba(132,96,234,0.18) 0%, transparent 60%), radial-gradient(ellipse at 0% 100%, rgba(200,183,255,0.10) 0%, transparent 50%)",
+              }}
+            />
+            <div className="relative z-10 flex items-start gap-4">
+              <div className="hidden sm:flex w-11 h-11 rounded-xl bg-[#8460ea]/15 ring-1 ring-[#8460ea]/30 items-center justify-center flex-shrink-0">
+                <Sparkles className="w-5 h-5 text-[#c8b7ff]" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center gap-2 mb-1.5">
+                  <span
+                    className="text-[10px] font-bold uppercase tracking-widest px-1.5 py-0.5 rounded-md"
+                    style={{
+                      backgroundColor: "rgba(132,96,234,0.22)",
+                      color: "#c8b7ff",
+                      border: "0.5px solid rgba(132,96,234,0.45)",
+                    }}
+                  >
+                    new · v2
+                  </span>
+                  <p className="text-[10px] uppercase tracking-widest text-white/40">
+                    Improve loop · 27 perspectives
+                  </p>
+                </div>
+                <h2 className="text-base sm:text-lg font-display font-bold text-white mb-1">
+                  Build with Improve — the v2 Unique Business Builder
+                </h2>
+                <p className="text-xs sm:text-[13px] text-white/60 leading-relaxed mb-3">
+                  Same canvas, now with a 27-perspective holonic roast per artifact.
+                  Specificity goes up. Versions never lost.
+                </p>
+                <Button
+                  size="sm"
+                  className="bg-[#8460ea] hover:bg-[#9374f0] text-white rounded-lg text-xs h-8 px-3"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    navigate("/ubb");
+                  }}
+                >
+                  Open v2
+                  <ArrowRight className="w-3.5 h-3.5 ml-1.5 group-hover:translate-x-0.5 transition-transform" />
+                </Button>
+              </div>
+            </div>
+          </div>
+
           {/* ── Hero ── */}
           <div
             className="text-center py-8 px-6 rounded-2xl relative overflow-hidden liquid-glass ring-1 ring-white/10"
