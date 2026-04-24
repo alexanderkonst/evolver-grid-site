@@ -683,6 +683,35 @@ GENERAL STYLE RULES:
                   Book your Productize Yourself Session
                   <ArrowRight className="w-4 h-4 opacity-70" />
                 </a>
+                {/* Day 50 (Sasha): UBB v2 secondary CTA — DIY path next to the
+                    facilitated Ignite primary. Lets the user start building
+                    the unique business themselves with the Improve loop. */}
+                <div className="mt-4">
+                  <button
+                    type="button"
+                    onClick={() => navigate("/ubb")}
+                    className="inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-xs font-medium transition-all hover:scale-[1.02] active:scale-95"
+                    style={{
+                      color: "var(--skin-text-muted, rgba(26,30,58,0.72))",
+                      backgroundColor: "rgba(255,255,255,0.35)",
+                      border: "0.5px solid rgba(132,96,234,0.35)",
+                      backdropFilter: "blur(8px)",
+                    }}
+                  >
+                    <span
+                      className="text-[9px] font-bold uppercase tracking-widest px-1.5 py-0.5 rounded"
+                      style={{
+                        backgroundColor: "rgba(132,96,234,0.22)",
+                        color: "#5a3fc7",
+                        border: "0.5px solid rgba(132,96,234,0.4)",
+                      }}
+                    >
+                      v2
+                    </span>
+                    Build your unique business
+                    <ArrowRight className="w-3.5 h-3.5 opacity-70" />
+                  </button>
+                </div>
               </article>
 
               {/* ═══════════════════════════════════════════════════════
