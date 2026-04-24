@@ -118,7 +118,7 @@ All decisions documented in [architecture spec](./unique-business-builder_archit
 
 ---
 
-## PHASE 4: VIBE-CODING `[■■■░░░░░░░]` ~30% (foundation landed 2026-04-23)
+## PHASE 4: VIBE-CODING `[■■■■■■■■■░]` ~90% code-complete (2026-04-23) — awaiting deploy
 
 ### Foundation landed
 - [x] 3 Supabase migrations written:
@@ -137,12 +137,13 @@ All decisions documented in [architecture spec](./unique-business-builder_archit
 - [x] 4.2 — 2 public pages stubbed: `PublicDossier`, `PublicLandingPage`
 - [x] 4.3 — Routes wired in `App.tsx` (`/ubb/*` protected + `/ubd/:slug` + `/ubl/:slugWithVersion` public)
 - [x] 4.5 — `tsc --noEmit` clean. Dev server boots clean. `/ubb` correctly redirects to `/auth?redirect=/ubb`. `/ubd/test-slug` renders the public stub. Zero console errors.
-- [ ] 4.2 — Remaining components (nice-to-have, not blocking): `ArtifactPanel` (generic wrapper — currently inlined), `VersionHistoryPanel` (expandable list), `CompoundArtifactCard` (used inline in CompoundScreen)
-- [ ] 4.4 — Data wiring verified WITH LIVE DATA: requires migrations applied in Supabase + Sasha logged in + at least one ZoG snapshot. Blocked on deploy.
-- [ ] 4.4 — `publishLandingPage` + `publishDossier` implementations (stubs throw today)
-- [ ] 4.4 — Full public render for `/ubd/:slug` and `/ubl/:slugWithVersion` (currently stub pages)
+- [x] 4.4 — `publishLandingPage` + `publishDossier` implemented (insert into `unique_business_dossiers`, return slug, toast success)
+- [x] 4.4 — Full public render: `/ubd/:slug` groups all 18 artifacts by phase; `/ubl/:slugWithVersion` renders the landing_page artifact as a dark-surface marketing page
+- [x] 4.5 — tsc clean · dev server clean · `/ubl/:slug` renders not-found state gracefully with no data
+- [ ] 4.2 — Remaining components (nice-to-have, not blocking): standalone `ArtifactPanel` / `VersionHistoryPanel` / `CompoundArtifactCard` — currently inlined where used
+- [ ] 4.4 — Data wiring verified WITH LIVE DATA: requires migrations applied + logged-in user + ZoG snapshot. **Blocked on deploy.**
 - [ ] 4.6 — AI Self-Test (optional — first-holon run serves this)
-- [ ] 🔥 ROAST GATE 4 — awaiting Sasha's live walkthrough after migrations deploy
+- [ ] 🔥 ROAST GATE 4 — awaiting live walkthrough after migrations deploy
 
 ### What needs to happen next to go live
 1. **Apply the 3 migrations** to the Supabase project (Lovable deploy or CLI)
