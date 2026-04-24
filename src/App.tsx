@@ -161,6 +161,9 @@ import UbbLandingPageScreen from "./modules/unique-business-builder/screens/Land
 import DossierScreen from "./modules/unique-business-builder/screens/DossierScreen";
 import PublicDossier from "./pages/PublicDossier";
 import PublicLandingPage from "./pages/PublicLandingPage";
+// Metaprompt module — Sasha's prompt library at /prompt (imported from
+// github.com/alexanderkonst/metaprompt and adapted to evolver patterns 2026-04-24)
+import MetapromptPage from "./modules/metaprompt/MetapromptPage";
 
 const PageLoader = () => (
   <div className="h-screen flex items-center justify-center bg-[#0a0a1a]">
@@ -228,6 +231,7 @@ const App = () => (
                   <Route path="/mp/:slug" element={<MarketplaceProductPage />} />
                   <Route path="/ubd/:slug" element={<PublicDossier />} />
                   <Route path="/ubl/:slugWithVersion" element={<PublicLandingPage />} />
+                  <Route path="/prompt" element={<MetapromptPage />} />
 
                   {/* ══════ PROTECTED ROUTES (login required) ══════ */}
                   {/* Day 47 (Sasha): /ignite is now public — the ZoG result CTA lands

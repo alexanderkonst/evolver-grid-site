@@ -1,132 +1,69 @@
-import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
-
 const corsHeaders = {
-    "Access-Control-Allow-Origin": "*",
-    "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version',
 };
 
-/**
- * YouTube Transcript Edge Function
- * 
- * Fetches transcript from YouTube videos using the youtube-transcript library approach.
- * Acts as a CORS-bypassing proxy.
- */
-serve(async (req) => {
-    if (req.method === "OPTIONS") {
-        return new Response(null, { headers: corsHeaders });
+function extractVideoId(url: string): string | null {
+  const patterns = [
+    /(?:youtube\.com\/watch\?v=)([a-zA-Z0-9_-]{11})/,
+    /(?:youtu\.be\/)([a-zA-Z0-9_-]{11})/,
+    /(?:youtube\.com\/embed\/)([a-zA-Z0-9_-]{11})/,
+    /(?:youtube\.com\/shorts\/)([a-zA-Z0-9_-]{11})/,
+  ];
+  for (const pattern of patterns) {
+    const match = url.match(pattern);
+    if (match) return match[1];
+  }
+  return null;
+}
+
+Deno.serve(async (req) => {
+  if (req.method === 'OPTIONS') {
+    return new Response(null, { headers: corsHeaders });
+  }
+
+  try {
+    const SUPADATA_API_KEY = Deno.env.get('SUPADATA_API_KEY');
+    if (!SUPADATA_API_KEY) {
+      throw new Error('SUPADATA_API_KEY is not configured');
     }
 
-    try {
-        const { videoId } = await req.json();
-
-        if (!videoId) {
-            return new Response(
-                JSON.stringify({ error: "Missing videoId" }),
-                { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-            );
-        }
-
-        // Fetch the YouTube video page to get transcript data
-        const videoUrl = `https://www.youtube.com/watch?v=${videoId}`;
-
-        const response = await fetch(videoUrl, {
-            headers: {
-                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
-                "Accept-Language": "en-US,en;q=0.9",
-            },
-        });
-
-        if (!response.ok) {
-            throw new Error("Failed to fetch video page");
-        }
-
-        const html = await response.text();
-
-        // Extract captions data from the page
-        const captionsMatch = html.match(/"captionTracks":(\[.*?\])/);
-
-        if (!captionsMatch) {
-            // Try alternative pattern
-            const altMatch = html.match(/playerCaptionsTracklistRenderer.*?captionTracks.*?(\[.*?\])/s);
-            if (!altMatch) {
-                return new Response(
-                    JSON.stringify({ error: "No captions available for this video" }),
-                    { status: 404, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-                );
-            }
-        }
-
-        let captionTracks;
-        try {
-            // Parse the captions data
-            const captionsJson = captionsMatch ? captionsMatch[1] : "[]";
-            captionTracks = JSON.parse(captionsJson);
-        } catch {
-            return new Response(
-                JSON.stringify({ error: "Failed to parse captions data" }),
-                { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-            );
-        }
-
-        if (!captionTracks || captionTracks.length === 0) {
-            return new Response(
-                JSON.stringify({ error: "No captions available for this video" }),
-                { status: 404, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-            );
-        }
-
-        // Get the first available caption track (prefer English)
-        let captionTrack = captionTracks.find((t: any) => t.languageCode === "en") || captionTracks[0];
-        const captionUrl = captionTrack.baseUrl;
-
-        // Fetch the actual transcript XML
-        const transcriptResponse = await fetch(captionUrl);
-
-        if (!transcriptResponse.ok) {
-            throw new Error("Failed to fetch transcript");
-        }
-
-        const transcriptXml = await transcriptResponse.text();
-
-        // Parse XML to extract text
-        const textMatches = transcriptXml.matchAll(/<text[^>]*>([^<]*)<\/text>/g);
-        const textParts: string[] = [];
-
-        for (const match of textMatches) {
-            // Decode HTML entities
-            let text = match[1]
-                .replace(/&amp;/g, "&")
-                .replace(/&lt;/g, "<")
-                .replace(/&gt;/g, ">")
-                .replace(/&quot;/g, '"')
-                .replace(/&#39;/g, "'")
-                .replace(/\n/g, " ");
-            textParts.push(text);
-        }
-
-        const transcript = textParts.join(" ").replace(/\s+/g, " ").trim();
-
-        if (!transcript) {
-            return new Response(
-                JSON.stringify({ error: "Transcript is empty" }),
-                { status: 404, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-            );
-        }
-
-        return new Response(
-            JSON.stringify({
-                transcript,
-                language: captionTrack.languageCode,
-                wordCount: transcript.split(" ").length
-            }),
-            { headers: { ...corsHeaders, "Content-Type": "application/json" } }
-        );
-
-    } catch (error) {
-        console.error("Error in youtube-transcript:", error);
-        return new Response(
-            JSON.stringify({ error: error instanceof Error ? error.message : "Failed to fetch transcript" }),
-            { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-        );
+    const { url } = await req.json();
+    if (!url) {
+      return new Response(JSON.stringify({ error: 'URL is required' }), {
+        status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      });
     }
+
+    const videoId = extractVideoId(url);
+    if (!videoId) {
+      return new Response(JSON.stringify({ error: 'Invalid YouTube URL' }), {
+        status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      });
+    }
+
+    const res = await fetch(`https://api.supadata.ai/v1/youtube/transcript?videoId=${videoId}&text=true`, {
+      headers: { 'x-api-key': SUPADATA_API_KEY },
+    });
+
+    if (!res.ok) {
+      const errBody = await res.text();
+      console.error('Supadata error:', res.status, errBody);
+      throw new Error(`Transcript API error [${res.status}]: ${errBody}`);
+    }
+
+    const data = await res.json();
+    const transcript = data.content || data.text || (Array.isArray(data) ? data.map((s: any) => s.text).join(' ') : JSON.stringify(data));
+
+    return new Response(JSON.stringify({ transcript, language: data.lang || 'en' }), {
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+    });
+  } catch (error) {
+    console.error('Error:', error);
+    const msg = error.message || 'Internal server error';
+    const status = msg.includes('Transcript API error') ? 502 : 500;
+    return new Response(JSON.stringify({ error: msg }), {
+      status, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+    });
+  }
 });
