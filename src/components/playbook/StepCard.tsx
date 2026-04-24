@@ -538,13 +538,13 @@ const StepCard = ({ step }: StepCardProps) => {
     <article
       className="relative rounded-3xl p-6 sm:p-10 transition-all duration-500 liquid-glass-strong"
     >
-      {/* ══ STEP HEADER — Day 47 iter 5 (Sasha): "purple too faint" fix.
-          Previous approach used a `neonHsl → #0a1628 → neonHsl` gradient
-          bg-clipped to the text. At small sizes the navy center dominated
-          and the step color barely read. New approach: SOLID darkened
-          step color (via color-mix with navy) + neon text-shadow glow in
-          the step's hue. Letter fills with readable ink, glow provides
-          the neon aura. No more bg-clip gymnastics. */}
+      {/* ══ STEP HEADER — Day 48 (Sasha): FLIPPED emphasis. Previously
+          "Step N." carried the neon step color and the name was plain
+          ink. That put the weight on the ordinal (which is just scaffolding)
+          instead of the name of the step (which is the substance). Now
+          "Step N:" renders in plain skin-text-primary (functionally black
+          on light skins) and the subtitle carries the step's neon color
+          + glow. Colon instead of period per Sasha. */}
       <header className="mb-8">
         <h1
           className="text-2xl sm:text-3xl md:text-4xl font-semibold leading-[1.15]"
@@ -555,6 +555,7 @@ const StepCard = ({ step }: StepCardProps) => {
               "var(--skin-text-halo-subtle, 0 0 18px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.75))",
           }}
         >
+          Step {step.number}:{" "}
           <span
             style={{
               // Step color blended with skin-text-primary so it stays
@@ -563,9 +564,8 @@ const StepCard = ({ step }: StepCardProps) => {
               textShadow: `0 0 14px rgba(${step.neonRgb}, 0.45), 0 0 3px rgba(${step.neonRgb}, 0.55), var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.7))`,
             }}
           >
-            Step {step.number}.
-          </span>{" "}
-          {step.subtitle}
+            {step.subtitle}
+          </span>
         </h1>
       </header>
 
