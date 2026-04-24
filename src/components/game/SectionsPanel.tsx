@@ -17,6 +17,7 @@ interface Section {
     label: string;
     path: string;
     icon?: ReactNode;
+    badge?: string;
     subSections?: SubSection[];
 }
 
@@ -148,6 +149,7 @@ const SPACE_SECTIONS: SpaceSections = {
         title: "BUILD",
         sections: [
             { id: "canvas", label: "Unique Business Canvas", path: "/game/build/canvas" },
+            { id: "ubb-v2", label: "Unique Business Builder", path: "/ubb", badge: "v2" },
             { id: "product-builder", label: "Product Builder", path: "/game/build/product-builder" },
             { id: "my-business", label: "My Genius Business", path: "/game/build/my-business" },
             { id: "refine", label: "Refine My Business", path: "/game/build/refine" },
@@ -456,6 +458,19 @@ const SectionsPanel = ({
                                 >
                                     {sectionText}
                                 </span>
+                                {section.badge && (
+                                    <span
+                                        className="ml-1 inline-flex items-center justify-center px-1.5 py-0.5 rounded-md text-[9px] font-bold uppercase tracking-wider"
+                                        style={{
+                                            backgroundColor: "rgba(132, 96, 234, 0.18)",
+                                            color: "#c8b7ff",
+                                            border: "0.5px solid rgba(132, 96, 234, 0.42)",
+                                            fontFamily: "'Inter', sans-serif",
+                                        }}
+                                    >
+                                        {section.badge}
+                                    </span>
+                                )}
                             </div>
 
                             {/* Sub-sections — Day 48 iter 8 (Sasha):
