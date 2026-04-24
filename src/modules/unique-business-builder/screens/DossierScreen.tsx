@@ -5,9 +5,12 @@
  * Publish action is stubbed for Phase 4 continuation.
  */
 
+import { useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { Copy, Loader2, Rocket } from "lucide-react";
+import { toast } from "sonner";
 import { useUniqueBusiness } from "../UniqueBusinessContext";
 import { SpecificityBadge } from "../components/SpecificityBadge";
 import { ARTIFACT_LABELS, UBB_ROOT, ARTIFACT_URL_SLUGS, phaseOf, PHASE_LABELS } from "../constants";
@@ -15,7 +18,29 @@ import { ALL_ARTIFACT_KEYS } from "../types";
 import type { ArtifactKey } from "../types";
 
 export default function DossierScreen() {
-  const { artifacts, lockedCount, avgSpecificity } = useUniqueBusiness();
+  const { artifacts, lockedCount, avgSpecificity, publishDossier } = useUniqueBusiness();
+  const [isPublishing, setIsPublishing] = useState(false);
+  const [publishedUrl, setPublishedUrl] = useState<string | null>(null);
+
+  const handlePublish = async () => {
+    setIsPublishing(true);
+    try {
+      const result = await publishDossier();
+      const url = `${window.location.origin}/ubd/${result.slug}`;
+      setPublishedUrl(url);
+    } catch (e: any) {
+      toast.error(e?.message || "Publish failed.");
+    } finally {
+      setIsPublishing(false);
+    }
+  };
+
+  const handleCopy = () => {
+    if (publishedUrl) {
+      navigator.clipboard.writeText(publishedUrl);
+      toast.success("URL copied.");
+    }
+  };
 
   const byPhase: Record<string, ArtifactKey[]> = {};
   for (const key of ALL_ARTIFACT_KEYS) {
@@ -56,9 +81,41 @@ export default function DossierScreen() {
         );
       })}
 
-      <div className="rounded-md border border-dashed border-border bg-muted/20 p-4 text-center text-xs text-muted-foreground">
-        Publish flow (shareable URL + Send Golden DM) arrives with Phase 4 continuation.
-      </div>
+      <Card className="space-y-3 p-5">
+        <div className="flex items-center justify-between">
+          <div>
+            <h2 className="text-sm font-medium">Publish this Dossier</h2>
+            <p className="text-xs text-muted-foreground">
+              Creates a shareable snapshot of your current 18 artifacts.
+            </p>
+          </div>
+          <Button onClick={handlePublish} disabled={isPublishing || lockedCount === 0} className="gap-2">
+            {isPublishing ? (
+              <>
+                <Loader2 className="h-4 w-4 animate-spin" />
+                Publishing…
+              </>
+            ) : (
+              <>
+                <Rocket className="h-4 w-4" />
+                Publish Dossier
+              </>
+            )}
+          </Button>
+        </div>
+        {publishedUrl && (
+          <div className="flex items-center gap-2 rounded-md border border-emerald-500/40 bg-emerald-50/40 p-3 dark:bg-emerald-900/10">
+            <code className="flex-1 text-xs">{publishedUrl}</code>
+            <Button size="sm" variant="ghost" onClick={handleCopy} className="gap-1">
+              <Copy className="h-3.5 w-3.5" />
+              Copy
+            </Button>
+            <Button size="sm" variant="outline" asChild>
+              <a href={publishedUrl} target="_blank" rel="noopener noreferrer">Open ↗</a>
+            </Button>
+          </div>
+        )}
+      </Card>
 
       <div>
         <Button asChild variant="outline">

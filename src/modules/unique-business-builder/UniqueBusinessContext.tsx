@@ -476,13 +476,83 @@ export function UniqueBusinessProvider({ children }: { children: ReactNode }) {
     [userId]
   );
 
+  // Build frozen snapshot of all 18 artifacts at their latest-locked (or latest) version
+  const buildArtifactSnapshot = useCallback(() => {
+    const snapshot: Record<string, { version: number; content: unknown; specificity_score: number }> = {};
+    for (const key of ALL_ARTIFACT_KEYS) {
+      const s = artifacts[key];
+      const row = s?.latestLocked ?? s?.latest;
+      if (row) {
+        snapshot[key] = {
+          version: row.version,
+          content: row.content,
+          specificity_score: row.specificity_score,
+        };
+      }
+    }
+    return snapshot;
+  }, [artifacts]);
+
   const publishLandingPage = useCallback(async (): Promise<LandingPagePublication> => {
-    throw new Error("publishLandingPage: not yet implemented (Phase 4 continuation)");
-  }, []);
+    if (!userId) throw new Error("Please sign in first.");
+    const landing = artifacts.landing_page?.latestLocked ?? artifacts.landing_page?.latest;
+    if (!landing) throw new Error("Generate and lock a Landing Page first.");
+
+    const random = Math.random().toString(36).slice(2, 8);
+    const slug = `l-${random}-v${landing.version}`;
+    const snapshot = buildArtifactSnapshot();
+
+    const { data, error } = await (supabase as any)
+      .from("unique_business_dossiers")
+      .insert({
+        user_id: userId,
+        slug,
+        title: "Landing Page",
+        artifact_snapshot: snapshot,
+        specificity_avg: derived.avgSpecificity,
+        landing_page_version: `v${landing.version}`,
+        landing_page_rendered_html: null,
+        is_live: true,
+      })
+      .select("*")
+      .single();
+
+    if (error) throw error;
+    toast.success(`Landing page v${landing.version} published.`);
+    return {
+      slug: data.slug,
+      version: `v${landing.version}`,
+      rendered_html: "",
+      published_at: data.published_at,
+      is_live: true,
+    };
+  }, [userId, artifacts, buildArtifactSnapshot, derived.avgSpecificity]);
 
   const publishDossier = useCallback(async () => {
-    throw new Error("publishDossier: not yet implemented (Phase 4 continuation)");
-  }, []);
+    if (!userId) throw new Error("Please sign in first.");
+    const snapshot = buildArtifactSnapshot();
+    if (Object.keys(snapshot).length === 0) throw new Error("Nothing to publish yet.");
+
+    const random = Math.random().toString(36).slice(2, 8);
+    const slug = `d-${random}`;
+
+    const { data, error } = await (supabase as any)
+      .from("unique_business_dossiers")
+      .insert({
+        user_id: userId,
+        slug,
+        title: "Unique Business Dossier",
+        artifact_snapshot: snapshot,
+        specificity_avg: derived.avgSpecificity,
+        is_live: true,
+      })
+      .select("*")
+      .single();
+
+    if (error) throw error;
+    toast.success(`Dossier published at /ubd/${data.slug}`);
+    return { slug: data.slug };
+  }, [userId, buildArtifactSnapshot, derived.avgSpecificity]);
 
   // Derived values
   const derived = useMemo(() => computeDerived(artifacts), [artifacts]);
