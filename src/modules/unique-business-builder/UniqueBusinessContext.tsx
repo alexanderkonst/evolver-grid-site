@@ -477,6 +477,9 @@ export function UniqueBusinessProvider({ children }: { children: ReactNode }) {
   );
 
   // Build frozen snapshot of all 18 artifacts at their latest-locked (or latest) version
+  // Derived values (must be declared before callbacks that read them)
+  const derived = useMemo(() => computeDerived(artifacts), [artifacts]);
+
   const buildArtifactSnapshot = useCallback(() => {
     const snapshot: Record<string, { version: number; content: unknown; specificity_score: number }> = {};
     for (const key of ALL_ARTIFACT_KEYS) {
@@ -521,7 +524,7 @@ export function UniqueBusinessProvider({ children }: { children: ReactNode }) {
     toast.success(`Landing page v${landing.version} published.`);
     return {
       slug: data.slug,
-      version: `v${landing.version}`,
+      version: landing.version,
       rendered_html: "",
       published_at: data.published_at,
       is_live: true,
@@ -554,8 +557,6 @@ export function UniqueBusinessProvider({ children }: { children: ReactNode }) {
     return { slug: data.slug };
   }, [userId, buildArtifactSnapshot, derived.avgSpecificity]);
 
-  // Derived values
-  const derived = useMemo(() => computeDerived(artifacts), [artifacts]);
   const stalenessWarnings = useMemo(() => {
     return Object.values(artifacts)
       .filter((s): s is ArtifactState => !!s && s.isStale)
