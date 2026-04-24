@@ -142,6 +142,75 @@ export type Database = {
         }
         Relationships: []
       }
+      artifact_improvements: {
+        Row: {
+          accepted: boolean
+          artifact_after_id: string | null
+          artifact_before_id: string | null
+          artifact_key: string
+          created_at: string
+          crystallized_action: string | null
+          diminishing_returns: boolean
+          id: string
+          model_used: string
+          roast_findings: Json
+          specificity_after: number | null
+          specificity_before: number | null
+          specificity_delta: number | null
+          user_id: string
+          what_changed: string | null
+        }
+        Insert: {
+          accepted: boolean
+          artifact_after_id?: string | null
+          artifact_before_id?: string | null
+          artifact_key: string
+          created_at?: string
+          crystallized_action?: string | null
+          diminishing_returns?: boolean
+          id?: string
+          model_used?: string
+          roast_findings: Json
+          specificity_after?: number | null
+          specificity_before?: number | null
+          specificity_delta?: number | null
+          user_id: string
+          what_changed?: string | null
+        }
+        Update: {
+          accepted?: boolean
+          artifact_after_id?: string | null
+          artifact_before_id?: string | null
+          artifact_key?: string
+          created_at?: string
+          crystallized_action?: string | null
+          diminishing_returns?: boolean
+          id?: string
+          model_used?: string
+          roast_findings?: Json
+          specificity_after?: number | null
+          specificity_before?: number | null
+          specificity_delta?: number | null
+          user_id?: string
+          what_changed?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "artifact_improvements_artifact_after_id_fkey"
+            columns: ["artifact_after_id"]
+            isOneToOne: false
+            referencedRelation: "user_business_artifacts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "artifact_improvements_artifact_before_id_fkey"
+            columns: ["artifact_before_id"]
+            isOneToOne: false
+            referencedRelation: "user_business_artifacts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       canvas_snapshots: {
         Row: {
           artifact_status: Json | null
@@ -1590,6 +1659,54 @@ export type Database = {
         }
         Relationships: []
       }
+      unique_business_dossiers: {
+        Row: {
+          artifact_snapshot: Json
+          dossier_rendered_html: string | null
+          id: string
+          is_live: boolean
+          landing_page_rendered_html: string | null
+          landing_page_version: string | null
+          published_at: string
+          slug: string
+          specificity_avg: number
+          title: string
+          updated_at: string
+          user_id: string
+          views: number
+        }
+        Insert: {
+          artifact_snapshot: Json
+          dossier_rendered_html?: string | null
+          id?: string
+          is_live?: boolean
+          landing_page_rendered_html?: string | null
+          landing_page_version?: string | null
+          published_at?: string
+          slug: string
+          specificity_avg: number
+          title: string
+          updated_at?: string
+          user_id: string
+          views?: number
+        }
+        Update: {
+          artifact_snapshot?: Json
+          dossier_rendered_html?: string | null
+          id?: string
+          is_live?: boolean
+          landing_page_rendered_html?: string | null
+          landing_page_version?: string | null
+          published_at?: string
+          slug?: string
+          specificity_avg?: number
+          title?: string
+          updated_at?: string
+          user_id?: string
+          views?: number
+        }
+        Relationships: []
+      }
       upgrade_catalog: {
         Row: {
           branch: string
@@ -1675,37 +1792,63 @@ export type Database = {
         Row: {
           artifact_key: string
           content: string | null
+          content_json: Json | null
           created_at: string
           id: string
+          is_locked: boolean
+          parent_version_id: string | null
           precision_score: number | null
+          roast_findings: Json | null
+          specificity_score: number | null
           step_number: number
           updated_at: string
           user_id: string
           version: string
+          what_changed: string | null
         }
         Insert: {
           artifact_key: string
           content?: string | null
+          content_json?: Json | null
           created_at?: string
           id?: string
+          is_locked?: boolean
+          parent_version_id?: string | null
           precision_score?: number | null
+          roast_findings?: Json | null
+          specificity_score?: number | null
           step_number: number
           updated_at?: string
           user_id: string
           version?: string
+          what_changed?: string | null
         }
         Update: {
           artifact_key?: string
           content?: string | null
+          content_json?: Json | null
           created_at?: string
           id?: string
+          is_locked?: boolean
+          parent_version_id?: string | null
           precision_score?: number | null
+          roast_findings?: Json | null
+          specificity_score?: number | null
           step_number?: number
           updated_at?: string
           user_id?: string
           version?: string
+          what_changed?: string | null
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "user_business_artifacts_parent_version_id_fkey"
+            columns: ["parent_version_id"]
+            isOneToOne: false
+            referencedRelation: "user_business_artifacts"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       user_roles: {
         Row: {
