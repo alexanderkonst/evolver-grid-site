@@ -23,6 +23,7 @@ export type ArtifactKey =
   | "promise"
   | "lead_magnet"
   | "value_ladder"
+  | "specificity_matrix"
   | "session_bridge"
   | "core_belief"
   | "packaging"
@@ -128,20 +129,29 @@ export const ARTIFACT_CONFIGS: Record<ArtifactKey, ArtifactConfig> = {
   },
   lead_magnet: {
     label: "Lead Magnet",
-    sourcePlaybook: "marketing_playbook.md — Playbook-as-Lead-Magnet Pattern",
+    sourcePlaybook: "marketing_playbook.md — Playbook-as-Lead-Magnet Pattern · unique_business_playbook.md — Principle 15 (Specificity Loop) for the transformational result sequence",
     specificityCriteria: [
       "A stranger could take it and benefit without ever buying",
       "Creates felt precision gap",
       "Nothing withheld",
       "Sovereignty-respecting CTA (no pressure)",
+      "Articulates the transformational result sequence — pain → promised land — as a straight line, not fog (per Specificity Loop framework)",
+      "Each waypoint in the sequence corresponds to a reveal moment that mirrors the user back to themselves (matrix-shaped, even if not literally a matrix artifact)",
     ],
     outputSchema: `{
       "format": "e.g. PDF playbook, assessment, audit, tool",
       "artifact_description": "what the tribe receives",
       "recognition_trigger": "what the tribe will recognize about themselves",
-      "sovereignty_respect": "why the CTA doesn't pressure"
+      "sovereignty_respect": "why the CTA doesn't pressure",
+      "transformational_result_sequence": [
+        "ordered list of waypoints from pain to promised land — each waypoint named in tribe language, each one a moment where the user sees themselves more clearly"
+      ]
     }`,
-    generationGuidance: "A true gift. Real value delivered freely. The precision gap creates the pull toward the paid offer — without manufacturing urgency.",
+    generationGuidance: `A true gift. Real value delivered freely. The precision gap creates the pull toward the paid offer — without manufacturing urgency.
+
+LEAD MAGNET = THE FOUNDER'S MEDICINE IN MOTION. The lead magnet is the method revealed to oneself as one consciously and in focus delivers the transformational result. It is not a downloadable resource — it is the founder's transformation made visible and shareable.
+
+Use the Specificity Loop framework (Principle 15) when articulating the transformational_result_sequence: each waypoint should be a moment where the user could rate "how specific to me is this?" and the founder's voice would answer not with instruction but with recognition — *"What if [this stage] IS [the next thing you're already becoming]?"* The sibling artifact specificity_matrix, if present, IS the canonical voice for those reveal moments.`,
   },
   value_ladder: {
     label: "Value Ladder",
@@ -162,6 +172,57 @@ export const ARTIFACT_CONFIGS: Record<ArtifactKey, ArtifactConfig> = {
       }
     }`,
     generationGuidance: "Free → low → mid → high (+ optional slack adjuster). Each rung named in tribe language. Prices carry positioning weight.",
+  },
+  specificity_matrix: {
+    label: "Specificity Matrix",
+    sourcePlaybook: "unique_business_playbook.md — Principle 15 (The Specificity Loop) · phase_shift_technology_library.md — Domain 81",
+    specificityCriteria: [
+      "Every cell uses the canonical form: 'What if [thing they witnessed] IS [bigger truth they've been seeking]?'",
+      "Resonant tier (8-10) names what just landed as already true — declarative invitation, never instruction",
+      "Partial tier (5-7) points to the precision gap as the work — curious invitation",
+      "Off tier (1-4) names friction as a clean signal that this isn't them — honest invitation",
+      "Voice matches the founder's uniqueness sentence + myth language exactly — no generic platitudes",
+      "Every cell mirrors content from the founder's tribe / pain / promise — never invents new claims",
+      "No cell instructs the user, thanks the user, or centers the founder",
+    ],
+    outputSchema: `{
+      "meta_question": "the single question every reveal asks beneath the surface — usually 'How specific to what you know about you is this articulation?' or a founder-voiced equivalent",
+      "voice_signature": "one sentence naming the tonal signature of these messages — drawn from the founder's uniqueness + myth",
+      "stages": {
+        "appleseed": { "resonant": "string", "partial": "string", "off": "string" },
+        "excalibur": { "resonant": "string", "partial": "string", "off": "string" },
+        "icp":       { "resonant": "string", "partial": "string", "off": "string" },
+        "pain":      { "resonant": "string", "partial": "string", "off": "string" },
+        "tp":        { "resonant": "string", "partial": "string", "off": "string" },
+        "landing":   { "resonant": "string", "partial": "string", "off": "string" }
+      }
+    }`,
+    generationGuidance: `The Specificity Matrix is the founder's voice expressed as the conversion mechanism of their funnel. At every reveal moment (rating 1-10 by the user), this matrix replaces the generic "Thanks!" with an identity-revelation question in the founder's voice.
+
+CANONICAL EXAMPLE — Sasha's master holon matrix (use as few-shot reference for SHAPE and FREQUENCY only — never copy the words):
+
+  appleseed.resonant: "What if this voice has been yours all along?"
+  pain.resonant:      "What if naming this pain IS half the medicine?"
+  tp.resonant:        "What if this promise IS the door they've been walking past?"
+  landing.resonant:   "What if these words ARE the front door of your venture?"
+
+The form "What if [witnessed thing] IS [bigger truth]?" is fixed. The words are the founder's.
+
+Generate using:
+  - founder's uniqueness sentence (the voice register)
+  - founder's myth (the metaphor system they speak in)
+  - founder's tribe (who is being addressed)
+  - founder's pain (what is being named in stages 'pain' / 'icp')
+  - founder's promise (what is being claimed in 'tp' / 'landing')
+
+Each tier serves a different purpose:
+  - Resonant (8-10): mirror that the user already sees what they're seeing → name it as true
+  - Partial (5-7): the precision gap is the work → invite refinement WITHOUT instruction
+  - Off (1-4): name the signal that this isn't them, with care and zero shame → invite the truer version
+
+Never instruct. Never thank. Never center the founder. The user is being SERVED at the moment of highest attention. This matrix IS the protocol Principle 15 names.
+
+This artifact is also the framework that informs improvements to lead_magnet — the matrix describes the transformational result sequence the lead magnet delivers.`,
   },
   session_bridge: {
     label: "1st Session Design",
