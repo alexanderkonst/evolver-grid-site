@@ -23,8 +23,12 @@ const SiteLogo = () => {
         "/path",
         "/my-artifacts",
         "/auth",
+        // Day 50 (Sasha): /dashboard now lives inside GameShellV2, which
+        // already supplies the brand mark via the SpacesRail. Suppress
+        // the global SiteLogo here so the wordmark doesn't double up.
+        "/dashboard",
     ];
-    const exactHidden = ["/", "/ignite", "/my-result", "/path", "/auth"];
+    const exactHidden = ["/", "/ignite", "/my-result", "/path", "/auth", "/dashboard"];
     if (hidden.some(p => location.pathname.startsWith(p)) || exactHidden.includes(location.pathname)) return null;
 
     return (

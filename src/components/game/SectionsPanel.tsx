@@ -206,16 +206,25 @@ const buildJourneySections = (currentPath: string): Section[] => {
             label: "3. Path",
             path: "/path",
         },
+        // Day 50 (Sasha): the Venture Dashboard is a permanent 4th rail
+        // item — built-in-public surface, always discoverable from any
+        // Journey-family page.
+        {
+            id: "journey-dashboard",
+            label: "4. Dashboard",
+            path: "/dashboard",
+        },
     ];
 
-    // Day 49 (Sasha): the metaprompt page is a 4th rail item, but only
+    // Day 49 (Sasha): the metaprompt page is a rail item, but only
     // surfaces when the user is OFF the landing/journey routes. Keeps the
     // funnel pages clean while still discoverable from anywhere else.
+    // Day 50: Dashboard takes slot 4; Prompt bumps to 5.
     const normalized = currentPath.split(/[?#]/)[0].replace(/\/$/, "") || "/";
     if (!HIDE_PROMPT_RAIL_ROUTES.has(normalized) && !normalized.startsWith("/playbook/")) {
         base.push({
             id: "journey-prompt",
-            label: "4. Prompt",
+            label: "5. Prompt",
             path: "/prompt",
         });
     }
