@@ -2322,11 +2322,15 @@ const HlsVideo = () => {
       muted
       playsInline
       className="fixed inset-0 w-screen h-screen object-cover z-0"
-      // Day 50 (Sasha): pull the visible crop leftward so the subject is
-      // centered in the content column (the GameShell rail offsets the
-      // true viewport center rightward, which was making the hero feel
-      // right-heavy). 35% keeps it natural, not obviously recentered.
-      style={{ minWidth: '100vw', minHeight: '100vh', objectPosition: '35% center' }}
+      // Day 51 (Sasha 2026-04-25): the previous '35% center' was a
+      // hand-tuned offset for one specific viewport state (both rails
+      // open). It made the hero feel "crooked" in other states because
+      // a single fixed objectPosition can't satisfy every combination
+      // of rail-open / rail-collapsed / mobile. Resetting to true
+      // center; if a content-area-relative crop is needed long-term,
+      // the right move is to contain the video in the content column
+      // rather than the full viewport (bigger refactor — separate slice).
+      style={{ minWidth: '100vw', minHeight: '100vh', objectPosition: '50% center' }}
     />
   );
 };

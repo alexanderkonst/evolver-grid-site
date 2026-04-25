@@ -616,7 +616,26 @@ const ZoneOfGeniusEntry = () => {
                     last gradient word (no more orphaned "?" on its own line)
                     and each question sits inside a text-balance block so the
                     browser picks more even line lengths. */}
-                <div className="text-center mb-6">
+                {/* Day 51 (Sasha 2026-04-25): legibility scrim added —
+                    the sparkle-rich background image varies in brightness
+                    from area to area, washing out dark navy text on the
+                    bright zones (right edge especially). Soft radial
+                    vignette behind the text block gives the words a
+                    consistent mid-tone backdrop without breaking the
+                    airy aesthetic. Combined with bumped halos on the
+                    headline + supporting copy. */}
+                <div className="relative text-center mb-6">
+                    <div
+                        aria-hidden="true"
+                        className="absolute inset-0 -inset-x-6 sm:-inset-x-10 -top-4 -bottom-4 pointer-events-none"
+                        style={{
+                            background:
+                                "radial-gradient(ellipse 70% 60% at 50% 45%, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0.32) 35%, rgba(255,255,255,0.12) 60%, rgba(255,255,255,0) 90%)",
+                            backdropFilter: "blur(2px)",
+                            WebkitBackdropFilter: "blur(2px)",
+                        }}
+                    />
+                    <div className="relative">
                     {/* Dodecahedron — 50% smaller per Sasha */}
                     <div className="inline-flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-full overflow-hidden mb-3 ring-1 ring-[#0a1628]/10 breathing-card">
                         <img src="/dodecahedron.png" alt="" className="w-full h-full object-cover" aria-hidden="true" />
@@ -627,8 +646,12 @@ const ZoneOfGeniusEntry = () => {
                         style={{
                             fontFamily: "'Cormorant Garamond', serif",
                             color: "var(--skin-text-primary, #0a1628)",
+                            // Day 51 (Sasha): stronger halo than the default
+                            // skin variable — the wider white glow keeps the
+                            // dark navy readable even where the sparkles are
+                            // brightest.
                             textShadow:
-                                "var(--skin-text-halo-strong, 0 0 22px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.8), 0 2px 12px rgba(26,30,58,0.15))",
+                                "0 0 36px rgba(255,255,255,0.85), 0 0 18px rgba(255,255,255,0.95), 0 1px 3px rgba(255,255,255,0.9), 0 2px 12px rgba(26,30,58,0.2)",
                         }}
                     >
                         {/* Day 48 iter 7 (Sasha): both accent phrases unified
@@ -664,7 +687,8 @@ const ZoneOfGeniusEntry = () => {
                             style={{
                                 fontFamily: "'Source Serif 4', serif",
                                 color: "var(--skin-text-primary, #0a1628)",
-                                textShadow: "var(--skin-text-halo-subtle, 0 0 18px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.75))",
+                                // Day 51 (Sasha): bumped halo for sparkle bg legibility
+                                textShadow: "0 0 24px rgba(255,255,255,0.85), 0 1px 3px rgba(255,255,255,0.9)",
                             }}
                         >
                             You already help people.
@@ -674,7 +698,7 @@ const ZoneOfGeniusEntry = () => {
                             style={{
                                 fontFamily: "'Source Serif 4', serif",
                                 color: "var(--skin-link-secondary, rgba(26,30,58,0.85))",
-                                textShadow: "var(--skin-text-halo-subtle, 0 0 18px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.7))",
+                                textShadow: "0 0 24px rgba(255,255,255,0.85), 0 1px 3px rgba(255,255,255,0.85)",
                             }}
                         >
                             You just don't have a clear way to say what you do.
@@ -688,7 +712,7 @@ const ZoneOfGeniusEntry = () => {
                             style={{
                                 fontFamily: "'Source Serif 4', serif",
                                 color: "var(--skin-text-muted, rgba(26,30,58,0.75))",
-                                textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.7))",
+                                textShadow: "0 0 18px rgba(255,255,255,0.8), 0 1px 2px rgba(255,255,255,0.85)",
                             }}
                         >
                             If this sounds familiar:
@@ -698,22 +722,23 @@ const ZoneOfGeniusEntry = () => {
                             style={{
                                 fontFamily: "'Source Serif 4', serif",
                                 color: "var(--skin-link-secondary, rgba(26,30,58,0.85))",
-                                textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
+                                textShadow: "0 0 16px rgba(255,255,255,0.75), 0 1px 2px rgba(255,255,255,0.8)",
                             }}
                         >
                             <li className="flex gap-3">
-                                <span aria-hidden="true" style={{ color: "var(--skin-text-faint, rgba(26,30,58,0.5))" }}>–</span>
+                                <span aria-hidden="true" style={{ color: "var(--skin-text-faint, rgba(26,30,58,0.55))" }}>–</span>
                                 <span>You've helped people — but don't have a clear offer.</span>
                             </li>
                             <li className="flex gap-3">
-                                <span aria-hidden="true" style={{ color: "var(--skin-text-faint, rgba(26,30,58,0.5))" }}>–</span>
+                                <span aria-hidden="true" style={{ color: "var(--skin-text-faint, rgba(26,30,58,0.55))" }}>–</span>
                                 <span>You over-explain what you do — and people get confused.</span>
                             </li>
                             <li className="flex gap-3">
-                                <span aria-hidden="true" style={{ color: "var(--skin-text-faint, rgba(26,30,58,0.5))" }}>–</span>
+                                <span aria-hidden="true" style={{ color: "var(--skin-text-faint, rgba(26,30,58,0.55))" }}>–</span>
                                 <span>You feel like something is there — but can't pin it down.</span>
                             </li>
                         </ul>
+                    </div>
                     </div>
                 </div>
 

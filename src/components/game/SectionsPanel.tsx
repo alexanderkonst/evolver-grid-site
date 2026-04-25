@@ -347,9 +347,11 @@ const SectionsPanel = ({
             // Day 51 (Sasha 2026-04-25 r2): bg lowered further 0.30 → 0.18
             // — Sasha likes the "curtain" effect where bg figure peeks
             // through. Combined with backdrop-blur, reads as silk veil
-            // over the animated stream.
+            // over the animated stream. border: none — same fix as Pane 1,
+            // removes liquid-glass's 0.5px white top border.
             style={{
                 backgroundColor: "rgba(14, 32, 68, 0.18)",
+                border: "none",
                 boxShadow:
                     "2px 0 22px -10px rgba(244, 212, 114, 0.22)",
             }}

@@ -221,8 +221,11 @@ const SpacesRail = ({
             // Day 51 (Sasha 2026-04-25): Pane 1 bg hardcoded near-solid navy
             // so the animated bg video doesn't bleed through. Mockup pixel-
             // match: Pane 1 solid (brand owns), Pane 2 glass (video shows).
+            // border: none — removes liquid-glass's 0.5px white border that
+            // was painting a visible line across the top of the viewport.
             style={{
                 backgroundColor: "rgba(10, 22, 50, 0.98)",
+                border: "none",
                 boxShadow:
                     "3px 0 28px -10px rgba(244, 212, 114, 0.22)",
             }}
@@ -499,7 +502,7 @@ const SpacesRail = ({
                             textTransform: "lowercase",
                         }}
                     >
-                        request guidance
+                        chat with us
                     </span>
                 </a>
                 {/* Day 48 iter 9 (Sasha): Settings chip upgraded to match

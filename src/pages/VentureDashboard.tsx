@@ -221,18 +221,27 @@ const VentureDashboard = () => {
 
         {/* ═══════ KPI GRID ═══════ */}
         <section className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-3" id="kpi-grid">
-          {KPIS.map((kpi, i) => (
+          {KPIS.map((kpi, i) => {
+            // Day 51 (Sasha 2026-04-25): KPI cards without trend/detail
+            // (e.g. Continuation Rate at 100%) center their content
+            // vertically + horizontally so the value sits balanced in
+            // the card instead of clinging to top-left while siblings
+            // fill their card with extra rows.
+            const isMinimal = !kpi.trend && !kpi.detail;
+            return (
             <div
               key={kpi.label}
-              className="rounded-xl p-5 transition-all duration-300 hover:translate-y-[-1px]"
+              className={`rounded-xl p-5 transition-all duration-300 hover:translate-y-[-1px] flex flex-col ${
+                isMinimal ? "items-center justify-center text-center" : ""
+              }`}
               style={{ ...cardStyle, animationDelay: `${i * 100}ms` }}
               id={`kpi-${i}`}
             >
-              <div className="text-[11px] font-medium tracking-[0.18em] uppercase mb-3" style={textMuted}>
+              <div className={`text-[11px] font-medium tracking-[0.18em] uppercase mb-3 ${isMinimal ? "text-center" : ""}`} style={textMuted}>
                 {kpi.label}
               </div>
               <div
-                className="text-4xl md:text-5xl font-medium tracking-[-0.02em] mb-2 leading-none"
+                className={`text-4xl md:text-5xl font-medium tracking-[-0.02em] mb-2 leading-none ${isMinimal ? "text-center" : ""}`}
                 style={{
                   ...serif,
                   ...(kpi.gold ? {} : textPrimary),
@@ -267,7 +276,8 @@ const VentureDashboard = () => {
                 </div>
               )}
             </div>
-          ))}
+            );
+          })}
         </section>
 
         {/* ═══════ SECONDARY STATS ═══════ */}
