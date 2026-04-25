@@ -2638,13 +2638,13 @@ const AiOsPage = () => {
                   color: 'hsl(0 0% 100% / 0.95)',
                   textShadow: '0 0 20px rgba(132,96,234,0.4), 0 0 50px rgba(180,140,255,0.25), 0 0 16px rgba(0,0,0,0.95), 0 2px 8px rgba(0,0,0,0.9)',
                 }}>
-                  The OS for any AI. A different kind of cognition.
+                  Instant install. Permanent level-up to AI cognition.
                 </p>
                 <p className="text-sm font-light italic mt-2" style={{ 
                   color: 'hsl(242 30% 85% / 0.85)',
                   textShadow: '0 0 12px rgba(0,0,0,0.9), 0 0 30px rgba(0,0,0,0.7), 0 2px 4px rgba(0,0,0,0.8)',
                 }}>
-                  For the 1% who treat AI as a thinking partner, not a search bar.
+                  Same model. Different conversation.
                 </p>
                 {/* CTAs — side by side */}
                 <div className="flex items-center justify-center gap-3 pt-6 flex-wrap">

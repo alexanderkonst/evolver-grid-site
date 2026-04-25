@@ -213,7 +213,7 @@ const VentureDashboard = () => {
             className="text-lg sm:text-xl md:text-2xl leading-[1.25] tracking-[-0.005em] italic max-w-xl mx-auto"
             style={{ ...serif, fontWeight: 400, ...textMuted, ...haloSubtle }}
           >
-            The methodology, applied — in real time.
+            Built in the open. Paid in the open. Open-source methodology.
           </p>
 
           <Ornament className="my-6 sm:my-8" />
