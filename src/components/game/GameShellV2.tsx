@@ -619,19 +619,51 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                         mobileView === "content" ? "translate-x-0" : "translate-x-full"
                     )}
                 >
+                    {/* Day 50 (Sasha): mobile content-view header now
+                        mirrors the landing's pane 2 chrome — navy panel
+                        wash + gold spine at the bottom, Cormorant title
+                        in tracked gold small-caps. Same visual register
+                        as the desktop pane 2 header so the brand
+                        doesn't reset when crossing breakpoints. */}
                     <header
-                        className="bg-black/30 backdrop-blur-xl flex items-center px-4 gap-3 sticky top-0 z-modal border-b border-white/10"
-                        style={{ paddingTop: 'calc(env(safe-area-inset-top) + 0.5rem)', paddingBottom: '0.5rem', minHeight: '3.5rem' }}
+                        className="flex items-center px-4 gap-3 sticky top-0 z-modal relative overflow-hidden"
+                        style={{
+                            paddingTop: 'calc(env(safe-area-inset-top) + 0.5rem)',
+                            paddingBottom: '0.5rem',
+                            minHeight: '3.5rem',
+                            backgroundColor: 'var(--skin-panel-2-bg, rgba(14, 32, 68, 0.82))',
+                            backdropFilter: 'blur(14px)',
+                            WebkitBackdropFilter: 'blur(14px)',
+                            boxShadow: 'inset 0 -1px 0 rgba(212, 175, 55, 0.22), 0 8px 22px -12px rgba(244, 212, 114, 0.2)',
+                        }}
                     >
+                        {/* Gold spine accent — same signature as pane 2 */}
+                        <span
+                            aria-hidden="true"
+                            className="absolute bottom-0 left-0 right-0 h-px pointer-events-none"
+                            style={{
+                                backgroundImage:
+                                    'linear-gradient(90deg, rgba(212,175,55,0) 0%, rgba(244,212,114,0.52) 50%, rgba(212,175,55,0) 100%)',
+                            }}
+                        />
                         <button
                             onClick={handleBackToNavigation}
-                            className="min-h-[44px] min-w-[44px] p-2 text-white/70 hover:bg-white/10 rounded-lg transition-colors"
+                            className="min-h-[44px] min-w-[44px] p-2 rounded-lg transition-colors relative"
+                            style={{
+                                color: 'var(--skin-accent-gold, #d4af37)',
+                            }}
                             aria-label="Back to navigation"
                         >
                             <ArrowLeft className="w-5 h-5" />
                         </button>
-                        <span className="text-white/90 font-medium flex-1 truncate">
-                            {SPACES.find(s => s.id === activeSpaceId)?.label || "Genius Business"}
+                        <span
+                            className="flex-1 truncate text-[11px] font-medium tracking-[0.28em] uppercase relative"
+                            style={{
+                                color: 'var(--skin-accent-gold, #d4af37)',
+                                textShadow: '0 0 14px rgba(244,212,114,0.35)',
+                            }}
+                        >
+                            {SPACES.find(s => s.id === activeSpaceId)?.label || "Journey"}
                         </span>
                     </header>
 
