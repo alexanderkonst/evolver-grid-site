@@ -206,7 +206,7 @@ const VentureDashboard = () => {
             className="text-3xl sm:text-4xl md:text-5xl font-semibold leading-[1.1] tracking-[-0.01em] mb-3"
             style={{ ...serif, ...textPrimary, ...haloStrong }}
           >
-            Venture <span className="bg-clip-text text-transparent" style={GOLD_TEXT_STYLE}>Dashboard</span>.
+            Venture <span className="bg-clip-text text-transparent" style={GOLD_TEXT_STYLE}>Dashboard</span>
           </h1>
 
           <p
