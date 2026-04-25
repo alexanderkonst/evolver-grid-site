@@ -2386,6 +2386,14 @@ const useParallax = (speed = 0.3) => {
 };
 
 const MetapromptPage = () => {
+  // Per-page SEO — sets browser tab title on /ai-os.
+  // Global og: tags from index.html still apply.
+  useEffect(() => {
+    const prev = document.title;
+    document.title = "AI OS — Get +42% out of any AI";
+    return () => { document.title = prev; };
+  }, []);
+
   const [copiedId, setCopiedId] = useState<string | null>(null);
   const [showTranscriptDialog, setShowTranscriptDialog] = useState(false);
   const [showStoryDialog, setShowStoryDialog] = useState(false);
@@ -2599,13 +2607,13 @@ const MetapromptPage = () => {
                     filter: 'drop-shadow(0 0 60px rgba(132,96,234,0.6)) drop-shadow(0 0 120px rgba(132,96,234,0.35)) drop-shadow(0 0 200px rgba(180,140,255,0.2))',
                   }}
                 >
-                  /<span className="font-bold" style={{ fontStyle: 'italic' }}>co</span>dex
+                  AI <span className="font-bold" style={{ fontStyle: 'italic' }}>OS</span>
                 </h1>
                 <p className="text-base sm:text-lg font-normal leading-relaxed max-w-lg mx-auto" style={{ 
                   color: 'hsl(0 0% 100% / 0.95)',
                   textShadow: '0 0 20px rgba(132,96,234,0.4), 0 0 50px rgba(180,140,255,0.25), 0 0 16px rgba(0,0,0,0.95), 0 2px 8px rgba(0,0,0,0.9)',
                 }}>
-                  Get an unfair advantage by powering up your AI
+                  The OS for any AI. +42% out of the box.
                 </p>
                 <p className="text-sm font-light italic mt-2" style={{ 
                   color: 'hsl(242 30% 85% / 0.85)',

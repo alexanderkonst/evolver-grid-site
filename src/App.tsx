@@ -164,11 +164,11 @@ import PublicDossier from "./pages/PublicDossier";
 import PublicLandingPage from "./pages/PublicLandingPage";
 // Metaprompt module — Sasha's prompt library at /prompt (imported from
 // github.com/alexanderkonst/metaprompt and adapted to evolver patterns 2026-04-24)
-import MetapromptPage from "./modules/metaprompt/MetapromptPage";
-import MetapromptAuthPage from "./modules/metaprompt/pages/MetapromptAuthPage";
-import MetapromptPricingPage from "./modules/metaprompt/pages/MetapromptPricingPage";
-import MetapromptProfilePage from "./modules/metaprompt/pages/MetapromptProfilePage";
-import { MetapromptAuthProvider } from "./modules/metaprompt/hooks/useMetapromptAuth";
+import MetapromptPage from "./modules/ai-os/MetapromptPage";
+import MetapromptAuthPage from "./modules/ai-os/pages/MetapromptAuthPage";
+import MetapromptPricingPage from "./modules/ai-os/pages/MetapromptPricingPage";
+import MetapromptProfilePage from "./modules/ai-os/pages/MetapromptProfilePage";
+import { MetapromptAuthProvider } from "./modules/ai-os/hooks/useMetapromptAuth";
 
 const PageLoader = () => (
   <div className="h-screen flex items-center justify-center bg-[#0a0a1a]">
