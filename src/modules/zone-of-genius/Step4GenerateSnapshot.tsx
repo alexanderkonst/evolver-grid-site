@@ -213,7 +213,7 @@ ${snapshotText}`;
           await supabase
             .from('zog_snapshots')
             .update({
-              appleseed_data: appleseedData,
+              appleseed_data: appleseedData as unknown as Json,
               appleseed_generated_at: new Date().toISOString(),
               ai_response_raw: guidedRawSignal,
             })
