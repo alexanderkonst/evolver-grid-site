@@ -586,9 +586,21 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
 
                 {/* Panel 3: Content — lightened another 40% per Sasha (2026-04-21).
                     Progression (bg-black opacity): Rail 70 → Sections 40 → Content 6.
-                    Content now barely tints the video. */}
+                    Content now barely tints the video.
+                    Day 51 (Sasha 2026-04-25): pt-4 dropped on page-owned-bg
+                    routes. The .page-transition-enter wrapper carries an
+                    animation-fill-forwards transform, which makes it a
+                    containing block for fixed descendants. With pt-4 above
+                    it, fixed videos (e.g. /ai-os HLS) end up positioned
+                    16px below the true viewport top — leaving a thin dark
+                    strip where the shell bg shows. Skipping pt-4 here puts
+                    the wrapper at top:0 so fixed bg videos reach the top
+                    edge as intended. */}
                 <main
-                    className="flex-1 min-h-dvh overflow-auto relative z-10 pt-4 bg-transparent"
+                    className={cn(
+                        "flex-1 min-h-dvh overflow-auto relative z-10 bg-transparent",
+                        pageOwnsBackground ? "" : "pt-4"
+                    )}
                 >
                     {/* Logo — fixed upper right. Hidden when hideLogo prop is set.
                         Renders the legacy dodecahedron/fractal icon with a radial
