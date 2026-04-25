@@ -148,14 +148,14 @@
       {
         "matcher": "Bash",
         "hooks": [
-          { "type": "command", "command": "python3 .claude/hooks/block-irreversible.py" },
-          { "type": "command", "command": "python3 .claude/hooks/block-deploy-commit.py" }
+          { "type": "command", "command": "python3 $CLAUDE_PROJECT_DIR/.claude/hooks/block-irreversible.py" },
+          { "type": "command", "command": "python3 $CLAUDE_PROJECT_DIR/.claude/hooks/block-deploy-commit.py" }
         ]
       },
       {
         "matcher": "Edit|Write|MultiEdit",
         "hooks": [
-          { "type": "command", "command": "python3 .claude/hooks/canon-lock.py" }
+          { "type": "command", "command": "python3 $CLAUDE_PROJECT_DIR/.claude/hooks/canon-lock.py" }
         ]
       }
     ],
@@ -163,7 +163,7 @@
       {
         "matcher": "",
         "hooks": [
-          { "type": "command", "command": "python3 .claude/hooks/session-log-nudge.py" }
+          { "type": "command", "command": "python3 $CLAUDE_PROJECT_DIR/.claude/hooks/session-log-nudge.py" }
         ]
       }
     ]

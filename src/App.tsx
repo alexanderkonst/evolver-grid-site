@@ -165,6 +165,10 @@ import PublicLandingPage from "./pages/PublicLandingPage";
 // Metaprompt module — Sasha's prompt library at /prompt (imported from
 // github.com/alexanderkonst/metaprompt and adapted to evolver patterns 2026-04-24)
 import MetapromptPage from "./modules/metaprompt/MetapromptPage";
+import MetapromptAuthPage from "./modules/metaprompt/pages/MetapromptAuthPage";
+import MetapromptPricingPage from "./modules/metaprompt/pages/MetapromptPricingPage";
+import MetapromptProfilePage from "./modules/metaprompt/pages/MetapromptProfilePage";
+import { MetapromptAuthProvider } from "./modules/metaprompt/hooks/useMetapromptAuth";
 
 const PageLoader = () => (
   <div className="h-screen flex items-center justify-center bg-[#0a0a1a]">
@@ -232,7 +236,10 @@ const App = () => (
                   <Route path="/mp/:slug" element={<MarketplaceProductPage />} />
                   <Route path="/ubd/:slug" element={<PublicDossier />} />
                   <Route path="/ubl/:slugWithVersion" element={<PublicLandingPage />} />
-                  <Route path="/prompt" element={<MetapromptPage />} />
+                  <Route path="/prompt" element={<GameShellV2><MetapromptAuthProvider><MetapromptPage /></MetapromptAuthProvider></GameShellV2>} />
+                  <Route path="/prompt/auth" element={<MetapromptAuthProvider><MetapromptAuthPage /></MetapromptAuthProvider>} />
+                  <Route path="/prompt/pricing" element={<GameShellV2><MetapromptAuthProvider><MetapromptPricingPage /></MetapromptAuthProvider></GameShellV2>} />
+                  <Route path="/prompt/profile" element={<RequireAuth><GameShellV2><MetapromptAuthProvider><MetapromptProfilePage /></MetapromptAuthProvider></GameShellV2></RequireAuth>} />
 
                   {/* ══════ PROTECTED ROUTES (login required) ══════ */}
                   {/* Day 47 (Sasha): /ignite is now public — the ZoG result CTA lands

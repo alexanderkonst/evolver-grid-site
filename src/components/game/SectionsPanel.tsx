@@ -187,23 +187,41 @@ interface SectionsPanelProps {
  * trio. Still reachable via its URL for users who want it.
  * Deeper progressive "Step N: ..." list also stays retired.
  */
-const buildJourneySections = (): Section[] => [
-    {
-        id: "journey-start-here",
-        label: "1. Start",
-        path: "/",
-    },
-    {
-        id: "journey-the-playbook",
-        label: "2. Playbook",
-        path: "/playbook",
-    },
-    {
-        id: "journey-the-path",
-        label: "3. Path",
-        path: "/path",
-    },
-];
+const HIDE_PROMPT_RAIL_ROUTES = new Set(["/", "/zone-of-genius", "/path", "/playbook"]);
+
+const buildJourneySections = (currentPath: string): Section[] => {
+    const base: Section[] = [
+        {
+            id: "journey-start-here",
+            label: "1. Start",
+            path: "/",
+        },
+        {
+            id: "journey-the-playbook",
+            label: "2. Playbook",
+            path: "/playbook",
+        },
+        {
+            id: "journey-the-path",
+            label: "3. Path",
+            path: "/path",
+        },
+    ];
+
+    // Day 49 (Sasha): the metaprompt page is a 4th rail item, but only
+    // surfaces when the user is OFF the landing/journey routes. Keeps the
+    // funnel pages clean while still discoverable from anywhere else.
+    const normalized = currentPath.split(/[?#]/)[0].replace(/\/$/, "") || "/";
+    if (!HIDE_PROMPT_RAIL_ROUTES.has(normalized) && !normalized.startsWith("/playbook/")) {
+        base.push({
+            id: "journey-prompt",
+            label: "4. Prompt",
+            path: "/prompt",
+        });
+    }
+
+    return base;
+};
 
 const SectionsPanel = ({
     activeSpaceId,
@@ -233,7 +251,7 @@ const SectionsPanel = ({
         if (activeSpaceId === "journey") {
             return {
                 ...baseData,
-                sections: buildJourneySections(),
+                sections: buildJourneySections(location.pathname),
             };
         }
 

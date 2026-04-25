@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
-import type { User as SupabaseUser } from "@supabase/supabase-js";
 import { Card } from "@/components/ui/card";
 import { toast } from "@/hooks/use-toast";
 import { Copy, Check, Send, Loader2, Youtube, User, Lock, ExternalLink, ArrowRight, Zap } from "lucide-react";
@@ -10,26 +9,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } f
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
-
-/**
- * Local auth hook — replaces metaprompt's useAuth which assumed a wrapping
- * AuthProvider. Evolver doesn't use one; we just listen to the supabase
- * auth state directly. Returns just the user, since that's all this page needs.
- */
-function useMetapromptUser(): { user: SupabaseUser | null } {
-  const [user, setUser] = useState<SupabaseUser | null>(null);
-  useEffect(() => {
-    let mounted = true;
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      if (mounted) setUser(session?.user ?? null);
-    });
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      (_event, session) => { if (mounted) setUser(session?.user ?? null); }
-    );
-    return () => { mounted = false; subscription.unsubscribe(); };
-  }, []);
-  return { user };
-}
+import { useMetapromptAuth } from "./hooks/useMetapromptAuth";
 
 interface CustomField {
   key: string;
@@ -2410,11 +2390,11 @@ const MetapromptPage = () => {
   // Premium gating disabled for evolver integration — every signed-in user
   // sees all prompts. The original metaprompt repo had a `premium_subscriptions`
   // table; evolver doesn't, and Sasha can wire its own gating later if needed.
-  const [isPremium] = useState(true);
+  const [isPremium, setIsPremium] = useState(false);
   const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
   const [customValues, setCustomValues] = useState<Record<string, Record<string, string>>>({});
   const [expandedPrompt, setExpandedPrompt] = useState<string | null>(null);
-  const { user } = useMetapromptUser();
+  const { user } = useMetapromptAuth();
   const navigate = useNavigate();
 
   // Repaint the body to the metaprompt's deep navy while this page is mounted.
@@ -2434,6 +2414,22 @@ const MetapromptPage = () => {
     window.addEventListener('mousemove', handleMouseMove, { passive: true });
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
+
+  // Check premium status from premium_subscriptions table
+  useEffect(() => {
+    if (!user) { setIsPremium(false); return; }
+    (supabase as any)
+      .from('premium_subscriptions')
+      .select('status, expires_at')
+      .eq('user_id', user.id)
+      .eq('status', 'active')
+      .maybeSingle()
+      .then(({ data }: any) => {
+        if (data && (!data.expires_at || new Date(data.expires_at) > new Date())) {
+          setIsPremium(true);
+        }
+      });
+  }, [user]);
 
     const getCustomizedContent = (prompt: Prompt) => {
       let content = prompt.content;
@@ -2608,7 +2604,7 @@ const MetapromptPage = () => {
                     />
                   </div>
                   <button
-                    onClick={() => navigate(user ? "/game/settings" : "/auth?redirect=/prompt")}
+                    onClick={() => navigate(user ? "/prompt/profile" : "/prompt/auth")}
                     className="absolute right-0 top-1/2 -translate-y-1/2 p-2.5 rounded-full transition-all duration-300 hover:scale-110"
                     style={{ 
                       background: 'hsl(0 0% 100% / 0.08)',
@@ -2668,7 +2664,7 @@ const MetapromptPage = () => {
                     <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />
                   </a>
                   <button
-                    onClick={() => navigate("/ignite#pricing-section")}
+                    onClick={() => navigate("/prompt/pricing")}
                     className="inline-flex items-center gap-2 text-xs font-medium tracking-wide px-5 py-2.5 rounded-full transition-all duration-300 hover:scale-105 group"
                     style={{ 
                       background: 'hsla(290, 30%, 70%, 0.15)',
@@ -2755,7 +2751,7 @@ const MetapromptPage = () => {
                           )}
                           <button
                             onClick={() => {
-                              if (isLocked) { navigate('/ignite#pricing-section'); return; }
+                              if (isLocked) { navigate('/prompt/pricing'); return; }
                               if (hasCustomFields) { setExpandedPrompt(isExpanded ? null : prompt.id); }
                               else { handleCopy(prompt); }
                             }}
@@ -2879,7 +2875,7 @@ const MetapromptPage = () => {
           <RevealSection>
             <footer className="text-center space-y-5 pt-10" style={{ borderTop: '1px solid hsl(0 0% 100% / 0.05)' }}>
               <button
-                onClick={() => navigate("/ignite#pricing-section")}
+                onClick={() => navigate("/prompt/pricing")}
                 className="inline-flex items-center gap-3 text-sm font-medium px-6 py-3 rounded-full liquid-glass transition-all duration-300 hover:scale-105 group"
                 style={{ color: 'hsl(242 40% 80%)' }}
               >
