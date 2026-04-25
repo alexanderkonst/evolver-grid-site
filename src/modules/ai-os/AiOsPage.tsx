@@ -2639,7 +2639,7 @@ const AiOsPage = () => {
                     <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />
                   </a>
                   <a
-                    href="https://FindYourTopTalent.Com"
+                    href="https://t.me/integralevolution"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 text-xs font-medium tracking-wide px-5 py-2.5 rounded-full transition-all duration-300 hover:scale-105 group"

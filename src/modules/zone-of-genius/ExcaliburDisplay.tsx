@@ -115,10 +115,10 @@ const ExcaliburDisplay = ({ excalibur, profileId, onSaveToProfile, isSaving, onR
                 </div>
             </div>
 
-            {/* Resonance Rating - Validation metric */}
+            {/* Resonance Rating — Specificity Loop step "excalibur" */}
             {onResonanceRating && (
                 <ResonanceRating
-                    question="From 1 to 10, how clearly does this describe the value you can bring to others?"
+                    step="excalibur"
                     onRate={onResonanceRating}
                 />
             )}

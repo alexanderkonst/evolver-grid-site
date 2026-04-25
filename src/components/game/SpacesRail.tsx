@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
     LogOut,
     LogIn,
+    MessageCircle,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { supabase } from "@/integrations/supabase/client";
@@ -459,6 +460,45 @@ const SpacesRail = ({
                             "linear-gradient(90deg, transparent 0%, rgba(212, 175, 55, 0.22) 50%, transparent 100%)",
                     }}
                 />
+                {/* Day 51 (Sasha 2026-04-25): Request Guidance — direct
+                    Telegram DM to Aleksandr. Zero backend, zero widget.
+                    Aligned with Holonic Commons: open access, no SaaS.
+                    Slightly warmer opacity (white/55) than Settings to
+                    invite contact while staying within utility row. */}
+                <a
+                    href="https://t.me/integralevolution"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={cn(
+                        "flex items-center gap-3 px-3 py-2.5 rounded-2xl transition-all duration-300 w-full",
+                        "justify-center md:justify-start",
+                        "bg-white/[0.03] text-white/55 hover:bg-white/10 hover:text-white/85 hover:translate-y-[-1px] active:translate-y-0"
+                    )}
+                    title="Direct message Aleksandr on Telegram"
+                >
+                    <MessageCircle
+                        className="flex-shrink-0"
+                        style={{
+                            width: 22,
+                            height: 22,
+                            opacity: 0.8,
+                            filter: "drop-shadow(0 0 4px rgba(244, 212, 114, 0.25))",
+                        }}
+                        aria-hidden="true"
+                    />
+                    <span
+                        className="hidden md:block truncate"
+                        style={{
+                            fontFamily: "'Cormorant Garamond', serif",
+                            fontWeight: 600,
+                            fontSize: "0.78rem",
+                            letterSpacing: "0.14em",
+                            textTransform: "uppercase",
+                        }}
+                    >
+                        Request Guidance
+                    </span>
+                </a>
                 {/* Day 48 iter 9 (Sasha): Settings chip upgraded to match
                     the chip register — rounded-2xl, Cormorant Garamond
                     uppercase tracked. Kept dimmer (white/45) so the
