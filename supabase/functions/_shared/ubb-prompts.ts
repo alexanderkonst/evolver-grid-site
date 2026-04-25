@@ -480,5 +480,5 @@ GUARDRAILS:
 • Never weaken a phrase the founder already got to 9+ specificity on; build around it.
 `.trim();
 
-export const MODEL = "openai/gpt-5.2";
+export const MODEL = "google/gemini-2.5-flash-lite";
 export const AI_GATEWAY_URL = "https://ai.gateway.lovable.dev/v1/chat/completions";
