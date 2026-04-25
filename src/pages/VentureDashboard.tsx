@@ -221,27 +221,25 @@ const VentureDashboard = () => {
 
         {/* ═══════ KPI GRID ═══════ */}
         <section className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-3" id="kpi-grid">
-          {KPIS.map((kpi, i) => {
-            // Day 51 (Sasha 2026-04-25): KPI cards without trend/detail
-            // (e.g. Continuation Rate at 100%) center their content
-            // vertically + horizontally so the value sits balanced in
-            // the card instead of clinging to top-left while siblings
-            // fill their card with extra rows.
-            const isMinimal = !kpi.trend && !kpi.detail;
-            return (
+          {KPIS.map((kpi, i) => (
+            // Day 51 evening (Sasha 2026-04-25): all KPI cards now
+            // center their content uniformly. Earlier branch (only
+            // centering when no trend/detail) made cards visually
+            // inconsistent — single-digit values like "7" looked
+            // marooned in the top-left while siblings filled their
+            // cards. Consistent centering reads more balanced and
+            // matches the editorial register of the dashboard.
             <div
               key={kpi.label}
-              className={`rounded-xl p-5 transition-all duration-300 hover:translate-y-[-1px] flex flex-col ${
-                isMinimal ? "items-center justify-center text-center" : ""
-              }`}
+              className="rounded-xl p-5 transition-all duration-300 hover:translate-y-[-1px] flex flex-col items-center justify-center text-center"
               style={{ ...cardStyle, animationDelay: `${i * 100}ms` }}
               id={`kpi-${i}`}
             >
-              <div className={`text-[11px] font-medium tracking-[0.18em] uppercase mb-3 ${isMinimal ? "text-center" : ""}`} style={textMuted}>
+              <div className="text-[11px] font-medium tracking-[0.18em] uppercase mb-3 text-center" style={textMuted}>
                 {kpi.label}
               </div>
               <div
-                className={`text-4xl md:text-5xl font-medium tracking-[-0.02em] mb-2 leading-none ${isMinimal ? "text-center" : ""}`}
+                className="text-4xl md:text-5xl font-medium tracking-[-0.02em] mb-2 leading-none text-center"
                 style={{
                   ...serif,
                   ...(kpi.gold ? {} : textPrimary),
@@ -256,7 +254,7 @@ const VentureDashboard = () => {
                   kpi.value
                 )}
               </div>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center justify-center gap-2">
                 {kpi.trend && (
                   <span
                     className="text-[11px] font-medium px-1.5 py-0.5 rounded-md"
@@ -271,13 +269,12 @@ const VentureDashboard = () => {
                 {kpi.trendLabel && <span className="text-[10px]" style={textMutedSoft}>{kpi.trendLabel}</span>}
               </div>
               {kpi.detail && (
-                <div className="text-[10px] mt-2 leading-relaxed" style={textMutedSoft}>
+                <div className="text-[10px] mt-2 leading-relaxed text-center" style={textMutedSoft}>
                   {kpi.detail}
                 </div>
               )}
             </div>
-            );
-          })}
+          ))}
         </section>
 
         {/* ═══════ SECONDARY STATS ═══════ */}
