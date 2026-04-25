@@ -3,8 +3,8 @@
 > *© 2026 Alexander Konstantinov · [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)*
 
 > *April 3, 2026 · v8.0 — Declaration Phase*
-> *Current version: **v9.7** (April 25, 2026 — Day 51 · Specificity Loop discovered live, Principle 15 added to playbook, matrix v2 shipped to all six in-funnel reveals). Prior versions preserved in the changelog at end of file — nothing deleted, each version additive.*
-> *Playbook: [Unique Business Playbook](../../03-playbooks/unique_business_playbook.md) (v4.4)*
+> *Current version: **v9.8** (April 25, 2026 — Day 51 evening · Specificity Loop dual-treatment landed: matrix shipped as UBB artifact #19, runtime fallback hook live, lead_magnet prompt cross-references the framework). Prior versions preserved in the changelog at end of file — nothing deleted, each version additive.*
+> *Playbook: [Unique Business Playbook](../../03-playbooks/unique_business_playbook.md) (v4.5)*
 > *Customer Journey: [Customer Journey Playbook](../../03-playbooks/customer_journey_playbook.md)*
 
 > **Architecture:** This document is a **Layer 1 (Operating System)** — the produced artifacts of Alexander's unique business. Layer 2 applications (FMF session, landing page, DMs) run on this OS. Layer 0 (Cosmogenesis / Prime Radiant) is the origin pattern beneath it.

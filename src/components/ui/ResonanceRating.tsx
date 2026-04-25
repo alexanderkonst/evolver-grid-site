@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Sparkles } from "lucide-react";
 import {
     SPECIFICITY_PROMPT,
-    resonanceMessage,
+    useResonanceMessage,
     type ResonanceStep,
 } from "@/lib/resonanceMatrix";
 
@@ -45,8 +45,17 @@ const ResonanceRating = ({
         onRate(rating);
     };
 
+    // Resolve the reveal message via the hook so a per-founder matrix
+    // (when wrapped in <ResonanceMatrixProvider>) wins over the master.
+    // Hook is called unconditionally per Rules of Hooks; result is only
+    // used when both step and rating are present.
+    const { message: revealFromMatrix } = useResonanceMessage(
+        step ?? "appleseed",
+        selectedRating ?? 5,
+    );
+
     if (hasRated && selectedRating !== null) {
-        const reveal = step ? resonanceMessage(step, selectedRating) : null;
+        const reveal = step ? revealFromMatrix : null;
 
         if (reveal) {
             // Specificity Loop reveal — identity-question in the same
