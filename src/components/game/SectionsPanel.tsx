@@ -438,11 +438,20 @@ const SectionsPanel = ({
                             className={cn(
                                 "group flex items-center gap-2.5 px-3 py-3 mx-2 rounded-2xl transition-all duration-300 relative",
                                 "focus:outline-none focus-visible:ring-2 focus-visible:ring-[#d4af37]/40",
+                                // Day 51 (Sasha 2026-04-25): legibility pass.
+                                // Now that pane 2 is fully opaque dark navy on
+                                // every route, the previous translucency budget
+                                // we left for the wash is gone — text needs to
+                                // sit cleanly on solid navy. Inactive bumped
+                                // /80 → /95, locked /35 → /60. Inactive chip
+                                // also gets a faint bg-white/5 baseline so
+                                // each row reads as a discrete object even
+                                // before hover.
                                 isLocked
-                                    ? "cursor-not-allowed text-white/35"
+                                    ? "cursor-not-allowed bg-white/[0.04] text-white/60"
                                     : sectionActive && !hasSubSections
                                         ? "cursor-pointer text-white ring-1 ring-[#d4af37]/60 shadow-[0_0_22px_-6px_rgba(244,212,114,0.55),0_0_48px_-14px_rgba(212,175,55,0.35)]"
-                                        : "cursor-pointer text-white/80 hover:bg-white/[0.04] hover:text-white hover:ring-1 hover:ring-[#d4af37]/30 hover:shadow-[0_0_16px_-4px_rgba(244,212,114,0.28)] hover:translate-y-[-1px] active:translate-y-0"
+                                        : "cursor-pointer bg-white/[0.05] text-white/95 hover:bg-white/[0.10] hover:text-white hover:ring-1 hover:ring-[#d4af37]/30 hover:shadow-[0_0_16px_-4px_rgba(244,212,114,0.28)] hover:translate-y-[-1px] active:translate-y-0"
                             )}
                             style={
                                 sectionActive && !hasSubSections && !isLocked
@@ -467,16 +476,16 @@ const SectionsPanel = ({
                                         className="inline-flex items-center justify-center w-[22px] h-[22px] rounded-full text-[11px] font-semibold transition-all duration-200"
                                         style={{
                                             background: isLocked
-                                                ? "rgba(212, 175, 55, 0.05)"
+                                                ? "rgba(212, 175, 55, 0.14)"
                                                 : sectionActive && !hasSubSections
-                                                    ? "linear-gradient(135deg, rgba(244, 212, 114, 0.42) 0%, rgba(212, 175, 55, 0.24) 100%)"
-                                                    : "linear-gradient(135deg, rgba(244, 212, 114, 0.22) 0%, rgba(212, 175, 55, 0.12) 100%)",
-                                            color: isLocked ? "rgba(244, 212, 114, 0.40)" : "#f4d472",
+                                                    ? "linear-gradient(135deg, rgba(244, 212, 114, 0.55) 0%, rgba(212, 175, 55, 0.32) 100%)"
+                                                    : "linear-gradient(135deg, rgba(244, 212, 114, 0.34) 0%, rgba(212, 175, 55, 0.20) 100%)",
+                                            color: isLocked ? "rgba(244, 212, 114, 0.70)" : "#f4d472",
                                             border: isLocked
-                                                ? "0.5px solid rgba(212, 175, 55, 0.22)"
+                                                ? "0.5px solid rgba(212, 175, 55, 0.40)"
                                                 : sectionActive && !hasSubSections
-                                                    ? "0.5px solid rgba(212, 175, 55, 0.85)"
-                                                    : "0.5px solid rgba(212, 175, 55, 0.55)",
+                                                    ? "0.5px solid rgba(212, 175, 55, 0.95)"
+                                                    : "0.5px solid rgba(212, 175, 55, 0.70)",
                                             fontFamily: "'Cormorant Garamond', serif",
                                             boxShadow: isLocked
                                                 ? undefined
