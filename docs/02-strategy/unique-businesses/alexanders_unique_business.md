@@ -7636,3 +7636,39 @@ The consequence for the canvas: Sasha's **channels** layer (7-artifact model) ju
 ***Holomap implication.** P5 (Precision Gap) and P11 (Resonance Metric) collapsed into a single mechanism. The 13th perspective reads: the funnel just discovered its own conversion architecture by being built in the right voice. The 27th may have just fired one note early — not the DM send, but the structural recognition that makes the DM send land harder when it goes out.*
 
 ***Open implication, not yet shipped.** UBB (`/ubb`) has 18 artifacts × 6 phases waiting for the same protocol — the Specificity Loop matrix needs an artifact-level extension (`{ uniqueness, myth, tribe, pain, promise, lead_magnet, value_ladder, session_bridge, core_belief, packaging, frictionless_purchase, reach, delivery, spread, surface_inventory, tuning_fork, golden_dm, landing_page }` × 3 tiers). And: 4 of the 6 currently-active rating instances (ICP / Pain / TP / Landing in `product-builder`) save only to React Context — a `resonance_events` table is the next infrastructure move so the Specificity Loop becomes telemetry as well as UX. AI Credits architecture (already half-named via `ERROR_MESSAGES.insufficient_credit`) is the third leg — the monetization rail for the regenerate-for-higher-resonance loop that Principle 13 implies.*
+
+---
+
+## Day 51 Evening Note (April 25, 2026) — Matrix landed dual-treatment + Distribution collapse named
+
+*Wave 2 of Day 51. The Specificity Loop became operational at both layers (framework + artifact). The platform crossed a coherence threshold — every reveal in the funnel now uses the matrix, every founder will eventually generate their own. And the strategic implication of the matrix's conversion mechanism collapsed the distribution strategy into a concrete call sheet for Friday.*
+
+***Both-treatment architecture shipped.** The matrix lives at two layers simultaneously:*
+*1. **Framework** — Playbook Principle 15 + Phase Shift Library Domain 81. The `lead_magnet` artifact's edge-function prompt now explicitly references the framework when articulating its `transformational_result_sequence`.*
+*2. **UBB artifact #19 (`specificity_matrix`)** — added at end of Phase A Canvas, after `value_ladder`. Each founder generates THEIR matrix in their voice via the standard generate-artifact flow, locks it, versions it like any other UBB artifact.*
+
+***Code surfaces touched (one wave, ~40 min):***
+*- `src/modules/unique-business-builder/types.ts` → `specificity_matrix` in ArtifactKey union + PHASE_A_CANVAS*
+*- `src/modules/unique-business-builder/constants.ts` → URL slug + label*
+*- `supabase/functions/_shared/ubb-prompts.ts` → ARTIFACT_CONFIGS entry with Sasha's master matrix as few-shot example for SHAPE/FREQUENCY only (never copy words); also enhanced `lead_magnet` config with `transformational_result_sequence` field + framework cross-reference*
+*- `src/modules/unique-business-builder/screens/GenericArtifactScreen.tsx` → SpecificityMatrixView table renderer (6 stages × 3 tiers, structural detection so future per-funnel matrices with different stage sets still render)*
+*- `src/lib/resonanceMatrix.ts` → renamed MATRIX → MASTER_MATRIX (Sasha's canonical), added ResonanceMatrix type, ResonanceMatrixProvider context, useResonanceMessage hook*
+*- `src/components/ui/ResonanceRating.tsx` → reads via the hook, so a per-founder matrix wins over the master when wrapped in ResonanceMatrixProvider*
+*- `src/pages/PublicDossier.tsx` → label entry added*
+
+***Runtime resolution priority (now operational):***
+*1. Explicit override argument (tests, previews)*
+*2. ResonanceMatrixProvider context (per-founder, post-Lovable wiring)*
+*3. MASTER_MATRIX (Sasha's canonical, universal fallback for anonymous visitors and pre-generation founders)*
+
+***Friday DM send — distribution collapse named.** Strategy collapses to **warm-first, in rooms, with intro**. Concrete call sheet:*
+*1. **Friday DM (priority #1)** → ~30-50 aligned tribe in network. EN/RU templates already drafted in Day 49 notes. Life-update register, gift-not-ask. Closer activates fractal+viral pass-along: "If it resonates, pass it to one person who'd feel it." Conversion path: Appleseed reveal → Specificity Loop compounds them through stages → $555 Ignition emerges naturally.*
+*2. **Cohort follow-throughs (parallel, this week)** — stage-specific micro-touches: Oyi → Golden DM forge · Sergey → monetization flip · Sandra → post-Italy first delivery · Kirill → Shadow rating (Step 3 sub-gate) · Karime → body-score session (unnamed sub-gate) · Sasha → ship Friday send.*
+*3. **Knoware article on LinkedIn / Twitter** — already in /codex modal, repost as standalone. Cold reach via signal, attracts AI-native sophisticates. Domain 79 in action (Question = Content = Lead Magnet).*
+*4. **Specificity Loop announcement (1-2 weeks out)** — short post about Day 51 discovery. Establishes Sasha as architect of new conversion category. Prep for public UBB rollout.*
+
+***Explicit DON'T-do:** cold mass campaigns · paid ads · big public launch · open UBB signups. All downstream of proof through 30-50 warm souls.*
+
+***Holomap implication.** The funnel just passed the threshold of being "voiced operationally" — every reveal now speaks in Sasha's voice via matrix v2 with per-founder generalization waiting in UBB. P11 (Resonance Metric) and P5 (Precision Gap = Specificity) collapsed into one mechanism that converts. The 27th remains: press send Friday.*
+
+***Open heading into Friday:** Friday DM send · resonance_events table migration spec to ship via Lovable (drafted; awaiting Sasha to paste into Lovable session) · cohort follow-throughs · AI Credits MVP architecture (next big lever — `ERROR_MESSAGES.insufficient_credit` already wired, schema + debit middleware + settings page next).*
