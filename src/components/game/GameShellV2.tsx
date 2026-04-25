@@ -188,7 +188,7 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
         // /playbook, /path, /my-artifacts, /zone-of-genius — Sasha, 2026-04-21.
         // Day 48 (Sasha): /game/settings joins the family so Pane 2 stays
         // visible on Settings with the same Journey section list.
-        const journeyPaths = ["/", "/playbook", "/path", "/my-artifacts", "/zone-of-genius", "/game/settings", "/dashboard", "/codex"];
+        const journeyPaths = ["/", "/playbook", "/path", "/my-artifacts", "/zone-of-genius", "/game/settings", "/dashboard", "/ai-os"];
         const isJourneyFamily = journeyPaths.some(
             (p) => location.pathname === p || location.pathname.startsWith(p + "/"),
         );

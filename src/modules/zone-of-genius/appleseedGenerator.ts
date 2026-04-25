@@ -82,17 +82,36 @@ Output:
 // ---------------------------------------------------------------------------
 
 export const ROASTING_INSTRUCTIONS = `
-After generating the initial Appleseed, internally refine it:
+After generating the initial Appleseed, internally refine through 3 rounds. Be ruthless — no compromise.
 
-ROUND 1: Roast with tough love. What's generic? What's imprecise? Where did you play safe?
-ROUND 2: Continue roasting. What else is flat? Where is signal diluted?
-ROUND 3: Now synthesize. Fix what's weak. Amplify signal. Cut noise.
+ROUND 1 — IDENTIFY THE GENERIC. For every field, ask:
+- Could this describe 50,000 other people? Reject it.
+- Does the Vibrational Key contain a stand-alone generic word ("Visionary," "Leader," "Catalyst," "Coach," "Architect," "Mentor," "Guide," "Healer," "Strategist")? Combine with something rare and specific, or rewrite.
+- Does the Life Scene contain at least 3 concrete sensory anchors (smell, sound, light, body posture, exact words spoken, specific place)? If abstract, reject and rewrite concrete.
+- Does the Elevator Pitch contain filler ("passionate about," "deeply committed to," "helps people," "empowers," "transforms")? Strip every filler word.
+- Does the Prime Driver describe a real action that produces a real effect, or is it a vibe ("Inspire others," "Build community")? Make it surgical.
+Mark every weak field. Do not skip this round.
 
-The final output should:
-- Have a Vibrational Key that is UNIQUE (not generic like "Visionary Leader")
-- Life Scene should be SENSORY and SPECIFIC
-- No filler words in the Elevator Pitch
-- Person would recognize themselves instantly
+ROUND 2 — TEST FOR SIGNAL. For every salvaged field, ask:
+- Would this person, reading the field cold, say "this is me, and only me" — or "yeah this could be anyone with similar interests"? Only the first answer passes.
+- Does the Archetype combine TWO things in tension (e.g., "Mythic Builder × Land Listener")? Single-word archetypes lack depth.
+- Does each Mastery Stage describe a distinct evolutionary leap, or are stages just "more of the same skill"? If repetitive, redesign.
+- Are the "Appreciated For" entries describing concrete effects in concrete situations, or generic value-prop language?
+Reject anything that fails. Rewrite or remove.
+
+ROUND 3 — AMPLIFY AND CRYSTALLIZE:
+- Replace abstract nouns with concrete images.
+- Replace common verbs with precise verbs.
+- Cut every adjective that doesn't carry meaning.
+- The Elevator Pitch must land in one breath, zero filler.
+- The Life Scene must be physically vivid — the person should feel seen, not described.
+
+NON-NEGOTIABLE OUTPUT BAR:
+✗ No "Visionary Leader," "Strategic Coach," "Heart-Centered Healer" or other LinkedIn-flavored archetypes
+✗ No filler in Elevator Pitch ("passionate about," "deeply committed," "helps people achieve")
+✗ No abstract Life Scenes — minimum 3 concrete sensory anchors
+✗ No repetitive Mastery Stages — each must be a distinct evolutionary leap
+✓ Person reads it and says: "this is me. only me. how did you know?"
 `;
 
 // ---------------------------------------------------------------------------
@@ -299,38 +318,12 @@ Every field in the JSON output should serve this paradigm.
 `;
 
 // ---------------------------------------------------------------------------
-// FULL PROMPT CONSTRUCTOR — versioned. Active version exported as
-// buildAppleseedPrompt. Prior versions kept for rollback, A/B testing,
-// and signal-evolution audit.
+// FULL PROMPT CONSTRUCTOR — ACTIVE: v2.0 (2026-04-24)
+// V2 prepends ZONE_OF_GENIUS_DEFINITION to prime the model on what
+// "Zone of Genius" actually means. Prior versions live in git history.
 // ---------------------------------------------------------------------------
 
-export const buildAppleseedPromptV1 = (rawSignal: string): string => {
-  const processedSignal = sanitizeRawSignal(rawSignal);
-
-  return `You are an Appleseed Generator — a system that transforms raw understanding of someone's genius into a high-precision, archetypal profile.
-
-${APPLESEED_TEMPLATE}
-
-${CALIBRATION_EXAMPLES}
-
-${ROASTING_INSTRUCTIONS}
-
-${LANGUAGE_GUIDELINES}
-
----
-
-Now, generate an Appleseed for this person based on the following input:
-
-${processedSignal}
-
----
-
-${OUTPUT_FORMAT}
-
-Return ONLY the JSON object. No explanation. No preamble.`;
-};
-
-export const buildAppleseedPromptV2 = (rawSignal: string): string => {
+export const buildAppleseedPrompt = (rawSignal: string): string => {
   const processedSignal = sanitizeRawSignal(rawSignal);
 
   return `You are an Appleseed Generator — a system that transforms raw understanding of someone's genius into a high-precision, archetypal profile.
@@ -357,9 +350,6 @@ ${OUTPUT_FORMAT}
 
 Return ONLY the JSON object. No explanation. No preamble.`;
 };
-
-// Active version
-export const buildAppleseedPrompt = buildAppleseedPromptV2;
 
 // ---------------------------------------------------------------------------
 // TYPES

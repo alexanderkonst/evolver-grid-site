@@ -4,7 +4,7 @@ import { useZoneOfGenius } from "./ZoneOfGeniusContext";
 import { TALENTS } from "./talents";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
-import { generateAppleseed } from "./appleseedGenerator";
+import { generateAppleseed, type AppleseedData } from "./appleseedGenerator";
 import { buildZogSnapshotPrompt } from "./zogSnapshotPrompt";
 import { Download, ArrowLeft, ArrowRight, Mail, Share2 } from "lucide-react";
 import { PremiumLoader } from "@/components/ui/PremiumLoader";
@@ -32,6 +32,9 @@ const Step4GenerateSnapshot = () => {
   const [isDownloading, setIsDownloading] = useState(false);
   const [profileId, setProfileId] = useState<string | null>(null);
   const [isLoadingProfile, setIsLoadingProfile] = useState(true);
+  // Populated by background appleseed processing — single source of truth
+  // for downstream (email funnel, profile cards, Excalibur).
+  const [appleseed, setAppleseed] = useState<AppleseedData | null>(null);
   const snapshotRef = useRef<HTMLDivElement>(null);
 
   // Day 47 very-late pass (Sasha): save pill state — mirrors AppleseedDisplay
@@ -67,20 +70,24 @@ const Step4GenerateSnapshot = () => {
     "",
   );
 
-  // Build an AppleseedData-shaped payload so we can reuse save-zog-result
-  // (which enqueues the 3-email nurture sequence). The guided snapshot
-  // doesn't naturally have a bullseyeSentence — use the first sentence of
-  // the description as a best-effort equivalent.
-  const buildSavePayload = () => ({
-    vibrationalKey: { name: cleanedArchetypeTitle },
-    bullseyeSentence:
-      (parsedSnapshot?.description || "").split(/\.\s+/)[0]?.slice(0, 280) || "",
-    threeLenses: {
-      actions: top3Talents.map((t) => t.name),
-      primeDriver: parsedSnapshot?.masteryAction || "",
-      archetype: cleanedArchetypeTitle,
-    },
-  });
+  // Unified output: prefer the real AppleseedData generated in background
+  // (single source of truth used downstream — email funnel, profile cards,
+  // Excalibur). Falls back to a snapshot-derived minimum only if the user
+  // clicks save before background appleseed completes.
+  const buildSavePayload = () => {
+    if (appleseed) return appleseed;
+
+    return {
+      vibrationalKey: { name: cleanedArchetypeTitle },
+      bullseyeSentence:
+        (parsedSnapshot?.description || "").split(/\.\s+/)[0]?.slice(0, 280) || "",
+      threeLenses: {
+        actions: top3Talents.map((t) => t.name),
+        primeDriver: parsedSnapshot?.masteryAction || "",
+        archetype: cleanedArchetypeTitle,
+      },
+    };
+  };
 
   const handleSaveSubmit = useCallback(
     async (e: React.FormEvent) => {
@@ -200,6 +207,9 @@ ${snapshotText}`;
 
       void generateAppleseed(guidedRawSignal)
         .then(async (appleseedData) => {
+          // Make available to buildSavePayload — when user clicks "save email"
+          // after this resolves, the email funnel uses the real AppleseedData.
+          setAppleseed(appleseedData);
           await supabase
             .from('zog_snapshots')
             .update({

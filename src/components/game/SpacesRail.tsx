@@ -92,9 +92,10 @@ const SPACES: SpaceItem[] = [
         id: "journey",
         label: "JOURNEY",
         // Day 48 iter 7 (Sasha): teal ✵ glyph replaced with the custom
-        // gold-with-blue-hints journey icon asset. Asset ships with its
-        // own warm palette so no extra glow is needed.
-        icon: <ImageIcon src={journeyIcon} alt="Journey" />,
+        // gold-with-blue-hints journey icon asset.
+        // Day 50 (Sasha): warm gold glow now matches ME — the two
+        // gold-tinted icons (JOURNEY + ME) read as a paired set.
+        icon: <ImageIcon src={journeyIcon} alt="Journey" glow />,
         path: "/game/journey",
     },
     // Hidden until built — uncomment to re-enable

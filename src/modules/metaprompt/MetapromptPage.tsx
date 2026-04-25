@@ -2388,6 +2388,7 @@ const useParallax = (speed = 0.3) => {
 const MetapromptPage = () => {
   const [copiedId, setCopiedId] = useState<string | null>(null);
   const [showTranscriptDialog, setShowTranscriptDialog] = useState(false);
+  const [showStoryDialog, setShowStoryDialog] = useState(false);
   const [loadingTranscript, setLoadingTranscript] = useState(false);
   const [ytUrl, setYtUrl] = useState("");
   // Premium gating disabled for evolver integration — every signed-in user
@@ -2566,7 +2567,7 @@ const MetapromptPage = () => {
                     second emblem above the hero wordmark was a duplicate.
                     Profile button stays, pinned top-right. */}
                 <button
-                  onClick={() => navigate(user ? "/codex/profile" : "/codex/auth")}
+                  onClick={() => navigate(user ? "/ai-os/profile" : "/ai-os/auth")}
                   className="absolute right-0 top-6 sm:top-10 p-2.5 rounded-full transition-all duration-300 hover:scale-110"
                   style={{
                     background: 'hsl(0 0% 100% / 0.08)',
@@ -2628,9 +2629,9 @@ const MetapromptPage = () => {
                     <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />
                   </a>
                   <button
-                    onClick={() => navigate("/codex/pricing")}
+                    onClick={() => navigate("/ai-os/pricing")}
                     className="inline-flex items-center gap-2 text-xs font-medium tracking-wide px-5 py-2.5 rounded-full transition-all duration-300 hover:scale-105 group"
-                    style={{ 
+                    style={{
                       background: 'hsla(290, 30%, 70%, 0.15)',
                       border: '1px solid hsla(290, 30%, 70%, 0.25)',
                       color: 'hsl(290 30% 88%)',
@@ -2638,6 +2639,19 @@ const MetapromptPage = () => {
                     }}
                   >
                     Unlock Premium
+                  </button>
+                  <button
+                    onClick={() => setShowStoryDialog(true)}
+                    className="inline-flex items-center gap-2 text-xs font-medium tracking-wide px-5 py-2.5 rounded-full transition-all duration-300 hover:scale-105 group"
+                    style={{
+                      background: 'hsla(195, 35%, 70%, 0.12)',
+                      border: '1px solid hsla(195, 35%, 70%, 0.22)',
+                      color: 'hsl(195 35% 88%)',
+                      textShadow: '0 0 12px rgba(96,200,234,0.35)',
+                    }}
+                  >
+                    <Zap className="w-3.5 h-3.5" />
+                    Why this works
                   </button>
                 </div>
                 {/* Bottom ornament + extra breathing room */}
@@ -2787,7 +2801,7 @@ const MetapromptPage = () => {
                           )}
                           <button
                             onClick={() => {
-                              if (isLocked) { navigate('/codex/pricing'); return; }
+                              if (isLocked) { navigate('/ai-os/pricing'); return; }
                               if (hasCustomFields) { setExpandedPrompt(isExpanded ? null : prompt.id); }
                               else { handleCopy(prompt); }
                             }}
@@ -2998,7 +3012,7 @@ const MetapromptPage = () => {
           <RevealSection>
             <footer className="text-center space-y-5 pt-10" style={{ borderTop: '1px solid hsl(0 0% 100% / 0.05)' }}>
               <button
-                onClick={() => navigate("/codex/pricing")}
+                onClick={() => navigate("/ai-os/pricing")}
                 className="inline-flex items-center gap-3 text-sm font-medium px-6 py-3 rounded-full liquid-glass transition-all duration-300 hover:scale-105 group"
                 style={{ color: 'hsl(242 40% 80%)' }}
               >
@@ -3084,6 +3098,224 @@ const MetapromptPage = () => {
                 "Fetch & Copy"
               )}
             </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      {/* The Story — "Why this works" modal. Introduces "Knoware" as the
+          layer codex operates on. Long-form narrative, premium typography,
+          scrollable. */}
+      <Dialog open={showStoryDialog} onOpenChange={setShowStoryDialog}>
+        <DialogContent
+          className="rounded-3xl border-0 p-0 overflow-hidden"
+          style={{
+            maxWidth: 'min(720px, 94vw)',
+            maxHeight: '90vh',
+            background: 'linear-gradient(180deg, rgba(12, 14, 24, 0.96) 0%, rgba(8, 9, 18, 0.96) 100%)',
+            backdropFilter: 'blur(40px) saturate(1.6)',
+            WebkitBackdropFilter: 'blur(40px) saturate(1.6)',
+            boxShadow: '0 0 0 1px hsla(195, 35%, 70%, 0.18), 0 30px 80px -20px rgba(96,180,234,0.25), 0 60px 160px -40px rgba(132,96,234,0.2), inset 0 1px 0 hsla(0, 0%, 100%, 0.06)',
+          }}
+        >
+          <div className="overflow-y-auto px-6 sm:px-10 py-8 sm:py-12" style={{ maxHeight: '90vh' }}>
+            <DialogHeader className="space-y-4 mb-8 text-left">
+              <p
+                className="text-[11px] tracking-[0.35em] uppercase font-medium"
+                style={{ color: 'hsl(195 35% 80% / 0.85)' }}
+              >
+                Why this works
+              </p>
+              <DialogTitle asChild>
+                <h2
+                  className="font-display italic font-normal leading-[1.05] tracking-[-0.03em]"
+                  style={{
+                    fontSize: 'clamp(1.9rem, 5.5vw, 3rem)',
+                    background: 'linear-gradient(135deg, hsl(0 0% 100%) 0%, hsl(195 40% 90%) 50%, hsl(242 40% 90%) 100%)',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    backgroundClip: 'text',
+                    filter: 'drop-shadow(0 0 40px rgba(96,180,234,0.45))',
+                  }}
+                >
+                  I made the same AI think{' '}
+                  <span className="font-bold not-italic">42% better.</span>
+                </h2>
+              </DialogTitle>
+              <DialogDescription className="text-sm sm:text-base font-light" style={{ color: 'hsl(0 0% 100% / 0.65)' }}>
+                Same model — Opus 4.7. Same setup. One seemingly small change.
+              </DialogDescription>
+            </DialogHeader>
+
+            <article
+              className="space-y-5 text-[15px] sm:text-base leading-relaxed font-light"
+              style={{ color: 'hsl(0 0% 100% / 0.85)' }}
+            >
+              <p>I ran a controlled A/B test.</p>
+              <p>
+                In the first run, I added a <span className="font-medium" style={{ color: 'hsl(195 35% 92%)' }}>6-page text file</span>.
+                In the other, I didn't.
+              </p>
+              <p className="italic" style={{ color: 'hsl(0 0% 100% / 0.65)' }}>Guess what happened.</p>
+
+              {/* The numbers — visual emphasis */}
+              <div
+                className="my-8 rounded-2xl p-6 sm:p-7 flex flex-col gap-5"
+                style={{
+                  background: 'hsla(195, 35%, 70%, 0.06)',
+                  border: '1px solid hsla(195, 35%, 70%, 0.18)',
+                  boxShadow: 'inset 0 1px 0 hsla(0, 0%, 100%, 0.05)',
+                }}
+              >
+                <div>
+                  <p className="text-[11px] tracking-[0.25em] uppercase font-medium mb-2" style={{ color: 'hsl(195 35% 80% / 0.8)' }}>
+                    Deep reasoning
+                  </p>
+                  <div className="flex items-baseline gap-3 flex-wrap">
+                    <span
+                      className="font-display italic font-bold leading-none"
+                      style={{
+                        fontSize: 'clamp(2rem, 7vw, 3.2rem)',
+                        background: 'linear-gradient(135deg, hsl(195 60% 85%) 0%, hsl(242 50% 88%) 100%)',
+                        WebkitBackgroundClip: 'text',
+                        WebkitTextFillColor: 'transparent',
+                        backgroundClip: 'text',
+                      }}
+                    >
+                      67 → 95
+                    </span>
+                    <span className="text-base font-medium" style={{ color: 'hsl(195 35% 88%)' }}>
+                      +42%
+                    </span>
+                  </div>
+                  <p className="text-sm mt-1" style={{ color: 'hsl(0 0% 100% / 0.55)' }}>out of 100</p>
+                </div>
+                <div className="h-px" style={{ background: 'linear-gradient(90deg, transparent, hsl(195 35% 70% / 0.2), transparent)' }} />
+                <div>
+                  <p className="text-[11px] tracking-[0.25em] uppercase font-medium mb-2" style={{ color: 'hsl(195 35% 80% / 0.8)' }}>
+                    Everyday tasks
+                  </p>
+                  <div className="flex items-baseline gap-3 flex-wrap">
+                    <span
+                      className="font-display italic font-bold leading-none"
+                      style={{
+                        fontSize: 'clamp(2rem, 7vw, 3.2rem)',
+                        background: 'linear-gradient(135deg, hsl(195 60% 85%) 0%, hsl(242 50% 88%) 100%)',
+                        WebkitBackgroundClip: 'text',
+                        WebkitTextFillColor: 'transparent',
+                        backgroundClip: 'text',
+                      }}
+                    >
+                      −21%
+                    </span>
+                    <span className="text-base font-medium" style={{ color: 'hsl(195 35% 88%)' }}>
+                      response time
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <p>
+                Not better wording. Not faster replies. <span className="font-medium" style={{ color: 'hsl(0 0% 100% / 0.95)' }}>Better thinking.</span>
+              </p>
+
+              <p>It may sound like a cool trick. It's not.</p>
+
+              <p className="font-medium" style={{ color: 'hsl(195 35% 92%)' }}>
+                The smarter the model, the bigger this effect becomes.
+              </p>
+
+              <p>
+                This wasn't even my latest upgrade — and it already jumped 42%. So what happens as models get better?
+                This doesn't stay a 42% gain. It becomes a multiplier. And multipliers compound.
+              </p>
+
+              <p>
+                Which means the gap between people using AI is about to widen. Same tools, very different outcomes.
+              </p>
+
+              <p>Most people are still optimizing:</p>
+              <ul className="space-y-1.5 pl-1" style={{ color: 'hsl(0 0% 100% / 0.75)' }}>
+                <li>· prompts</li>
+                <li>· workflows</li>
+                <li>· model choice</li>
+              </ul>
+
+              <p>But there's a deeper layer almost nobody is touching:</p>
+
+              <p
+                className="text-lg sm:text-xl font-display italic leading-snug py-2"
+                style={{ color: 'hsl(0 0% 100% / 0.95)' }}
+              >
+                What you load into the model changes how it thinks. Not just output. Cognition.
+              </p>
+
+              {/* Knoware — the brand-defining moment */}
+              <div
+                className="my-8 rounded-2xl p-7 sm:p-8 text-center"
+                style={{
+                  background: 'radial-gradient(ellipse at center, hsla(195, 50%, 60%, 0.10) 0%, hsla(242, 40%, 60%, 0.05) 70%)',
+                  border: '1px solid hsla(195, 35%, 70%, 0.2)',
+                }}
+              >
+                <p className="text-[11px] tracking-[0.35em] uppercase font-medium mb-3" style={{ color: 'hsl(195 35% 80% / 0.85)' }}>
+                  I call this layer
+                </p>
+                <p
+                  className="font-display italic font-bold leading-none"
+                  style={{
+                    fontSize: 'clamp(2.4rem, 8vw, 3.6rem)',
+                    background: 'linear-gradient(135deg, hsl(0 0% 100%) 0%, hsl(195 50% 88%) 50%, hsl(242 45% 88%) 100%)',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    backgroundClip: 'text',
+                    filter: 'drop-shadow(0 0 50px rgba(96,180,234,0.55)) drop-shadow(0 0 100px rgba(132,96,234,0.3))',
+                  }}
+                >
+                  Knoware.
+                </p>
+              </div>
+
+              <p>
+                If you ignore it, AI still works. You'll just be using a fraction of what's possible.
+              </p>
+
+              <p>
+                If you use knoware consciously: every new model gets stronger for you than it does for everyone else.
+              </p>
+
+              <p className="font-medium" style={{ color: 'hsl(0 0% 100% / 0.95)' }}>That's the shift.</p>
+
+              <p>This isn't about better AI. It's about who extracts more intelligence from the same AI. And that gap is already forming.</p>
+
+              <p>The real question isn't <span className="italic">"Which model are you using?"</span></p>
+
+              <p
+                className="text-lg sm:text-xl font-display italic leading-snug py-2"
+                style={{ color: 'hsl(195 40% 92%)' }}
+              >
+                It's: how much of its intelligence are you actually accessing?
+              </p>
+
+              {/* Outro CTA — soft, in-aesthetic */}
+              <div className="pt-6 mt-4" style={{ borderTop: '1px solid hsla(195, 30%, 70%, 0.15)' }}>
+                <p className="text-sm sm:text-base" style={{ color: 'hsl(0 0% 100% / 0.7)' }}>
+                  AI OS is your knoware library. Start anywhere — every prompt is a piece of the layer.
+                </p>
+                <button
+                  onClick={() => setShowStoryDialog(false)}
+                  className="mt-5 inline-flex items-center gap-2 text-xs font-medium tracking-wide px-5 py-2.5 rounded-full transition-all duration-300 hover:scale-105 group"
+                  style={{
+                    background: 'hsla(195, 35%, 70%, 0.15)',
+                    border: '1px solid hsla(195, 35%, 70%, 0.28)',
+                    color: 'hsl(195 35% 92%)',
+                    textShadow: '0 0 12px rgba(96,200,234,0.4)',
+                  }}
+                >
+                  Explore the library
+                  <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />
+                </button>
+              </div>
+            </article>
           </div>
         </DialogContent>
       </Dialog>

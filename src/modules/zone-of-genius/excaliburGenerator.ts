@@ -145,17 +145,33 @@ Excalibur:
 // ---------------------------------------------------------------------------
 
 export const EXCALIBUR_ROASTING = `
-After generating the initial Excalibur, internally refine it:
+After generating the initial Excalibur, internally refine through 3 rounds. No compromise.
 
-ROUND 1: Is this one sword or a bundle of sticks? Is the offer absurdly simple?
-ROUND 2: Would someone pay TODAY? Is survival fog truly cut?
-ROUND 3: Does the person walk away saying "This is mine. Let's go."?
+ROUND 1 — TEST FOR ONE BLADE:
+- Is this ONE sword or a bundle of sticks? If the offer contains "and" or a list, it's a bundle. Cut to one.
+- Can the offer be said in one breath, no commas, no qualifiers? If not, not absurdly simple — rewrite.
+- Does the offer name the EXACT human (specific profile, not "leaders" or "founders"), the EXACT moment in their life, the EXACT transformation? Specific or reject.
+- Is the price a specific number, not vague ("ask," "TBD," "starting at," "investment varies")? Specific or reject.
+- Is the form one of: Session / Sprint / Container / Tool? Or vague ("custom," "depends")? Specific or reject.
 
-The final output should:
-- Have ONE clear offer sentence (not two or three)
-- Have SPECIFIC pricing (not "TBD" or "ask")
-- Have CONCRETE next step (not "think about it")
-- Cut survival fog with immediate aha
+ROUND 2 — TEST FOR PURCHASE READINESS:
+- Would the ideal client, reading the hook cold, message you within 24 hours? If not, the hook isn't sharp enough.
+- Is the survival pattern named so precisely the client feels caught (not flattered)?
+- Does the "Aha" moment land with internal recognition ("I've been doing this my whole life") or generic insight ("clarity is important")? Specific recognition only.
+- Is the next step actionable today, with no friction? "Schedule a call" is friction. "DM 3 people in your network this week" is action.
+
+ROUND 3 — TEST FOR INEVITABILITY:
+- Does the person reading the Excalibur feel: "this is mine. I've been waiting for this. let's go"? If they feel "interesting, will think about it," the sword has not landed.
+- Does the offer feel inevitable — like the only thing this person could honestly sell — or like one of many options?
+- Does the bigger arc make the offer feel like the next step in a real story, not a standalone product?
+
+NON-NEGOTIABLE OUTPUT BAR:
+✗ No bundled offers (one sword, no list, no "and")
+✗ No vague pricing ("contact for pricing," "investment varies")
+✗ No generic ideal-client descriptions ("entrepreneurs and leaders," "high-performers")
+✗ No motivational filler in the hook
+✓ Client reads it and says: "this is exactly mine. let's go."
+✓ Offer is so specific you'd lose 90% of the market — and gain the right 10% with 10x conviction
 `;
 
 // ---------------------------------------------------------------------------
@@ -281,9 +297,9 @@ Every field in the JSON output should serve this paradigm.
 `;
 
 // ---------------------------------------------------------------------------
-// FULL PROMPT CONSTRUCTOR — versioned. Active version exported as
-// buildExcaliburPrompt. Prior versions kept for rollback, A/B testing,
-// and signal-evolution audit.
+// FULL PROMPT CONSTRUCTOR — ACTIVE: v2.0 (2026-04-24)
+// V2 prepends UNIQUE_OFFER_DEFINITION to prime the model on what the
+// "sacred sword" offer actually is. Prior versions live in git history.
 // ---------------------------------------------------------------------------
 
 const buildExcaliburAppleseedSummary = (appleseed: AppleseedData): string => `
@@ -298,35 +314,7 @@ APPLESEED (Zone of Genius):
 - Monetization Avenues: ${appleseed.monetizationAvenues.join(', ')}
 `;
 
-export const buildExcaliburPromptV1 = (appleseed: AppleseedData): string => {
-  const appleseedSummary = buildExcaliburAppleseedSummary(appleseed);
-
-  return `You are an Excalibur Generator — a system that transforms Zone of Genius (Appleseed) into a Unique Genius Offering.
-
-${EXCALIBUR_PHILOSOPHY}
-
-${LAYERS_OF_MONETIZATION}
-
-${EXCALIBUR_TEMPLATE}
-
-${EXCALIBUR_EXAMPLES}
-
-${EXCALIBUR_ROASTING}
-
----
-
-Now, generate an Excalibur for this person based on their Appleseed:
-
-${appleseedSummary}
-
----
-
-${EXCALIBUR_OUTPUT_FORMAT}
-
-Return ONLY the JSON object. No explanation. No preamble.`;
-};
-
-export const buildExcaliburPromptV2 = (appleseed: AppleseedData): string => {
+export const buildExcaliburPrompt = (appleseed: AppleseedData): string => {
   const appleseedSummary = buildExcaliburAppleseedSummary(appleseed);
 
   return `You are an Excalibur Generator — a system that transforms Zone of Genius (Appleseed) into a Unique Genius Offering.
@@ -355,9 +343,6 @@ ${EXCALIBUR_OUTPUT_FORMAT}
 
 Return ONLY the JSON object. No explanation. No preamble.`;
 };
-
-// Active version
-export const buildExcaliburPrompt = buildExcaliburPromptV2;
 
 // ---------------------------------------------------------------------------
 // GENERATION FUNCTION (Placeholder for Lovable AI integration)

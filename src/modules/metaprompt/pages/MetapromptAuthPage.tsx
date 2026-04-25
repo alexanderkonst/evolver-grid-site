@@ -19,7 +19,7 @@ const Auth = () => {
   const { user } = useAuth();
 
   useEffect(() => {
-    if (user) navigate("/codex");
+    if (user) navigate("/ai-os");
   }, [user, navigate]);
 
   const handleSubmit = async (e: React.FormEvent) => {
