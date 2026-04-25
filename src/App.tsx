@@ -162,13 +162,13 @@ import UbbLandingPageScreen from "./modules/unique-business-builder/screens/Land
 import DossierScreen from "./modules/unique-business-builder/screens/DossierScreen";
 import PublicDossier from "./pages/PublicDossier";
 import PublicLandingPage from "./pages/PublicLandingPage";
-// Metaprompt module — Sasha's prompt library at /prompt (imported from
+// AiOs module — Sasha's prompt library at /prompt (imported from
 // github.com/alexanderkonst/metaprompt and adapted to evolver patterns 2026-04-24)
-import MetapromptPage from "./modules/ai-os/MetapromptPage";
-import MetapromptAuthPage from "./modules/ai-os/pages/MetapromptAuthPage";
-import MetapromptPricingPage from "./modules/ai-os/pages/MetapromptPricingPage";
-import MetapromptProfilePage from "./modules/ai-os/pages/MetapromptProfilePage";
-import { MetapromptAuthProvider } from "./modules/ai-os/hooks/useMetapromptAuth";
+import AiOsPage from "./modules/ai-os/AiOsPage";
+import AiOsAuthPage from "./modules/ai-os/pages/AiOsAuthPage";
+import AiOsPricingPage from "./modules/ai-os/pages/AiOsPricingPage";
+import AiOsProfilePage from "./modules/ai-os/pages/AiOsProfilePage";
+import { AiOsAuthProvider } from "./modules/ai-os/hooks/useAiOsAuth";
 
 const PageLoader = () => (
   <div className="h-screen flex items-center justify-center bg-[#0a0a1a]">
@@ -241,10 +241,10 @@ const App = () => (
                       (perpendicular to the AI-model race; OS+Apps for AI).
                       Old /codex and /prompt paths redirect for any links
                       already in the wild (DMs, screenshots, prior deploys). */}
-                  <Route path="/ai-os" element={<GameShellV2><MetapromptAuthProvider><MetapromptPage /></MetapromptAuthProvider></GameShellV2>} />
-                  <Route path="/ai-os/auth" element={<MetapromptAuthProvider><MetapromptAuthPage /></MetapromptAuthProvider>} />
-                  <Route path="/ai-os/pricing" element={<GameShellV2><MetapromptAuthProvider><MetapromptPricingPage /></MetapromptAuthProvider></GameShellV2>} />
-                  <Route path="/ai-os/profile" element={<RequireAuth><GameShellV2><MetapromptAuthProvider><MetapromptProfilePage /></MetapromptAuthProvider></GameShellV2></RequireAuth>} />
+                  <Route path="/ai-os" element={<GameShellV2><AiOsAuthProvider><AiOsPage /></AiOsAuthProvider></GameShellV2>} />
+                  <Route path="/ai-os/auth" element={<AiOsAuthProvider><AiOsAuthPage /></AiOsAuthProvider>} />
+                  <Route path="/ai-os/pricing" element={<GameShellV2><AiOsAuthProvider><AiOsPricingPage /></AiOsAuthProvider></GameShellV2>} />
+                  <Route path="/ai-os/profile" element={<RequireAuth><GameShellV2><AiOsAuthProvider><AiOsProfilePage /></AiOsAuthProvider></GameShellV2></RequireAuth>} />
                   <Route path="/codex" element={<Navigate to="/ai-os" replace />} />
                   <Route path="/codex/auth" element={<Navigate to="/ai-os/auth" replace />} />
                   <Route path="/codex/pricing" element={<Navigate to="/ai-os/pricing" replace />} />

@@ -21,7 +21,7 @@ const AuthContext = createContext<AuthContextType>({
   signOut: async () => {},
 });
 
-export const MetapromptAuthProvider = ({ children }: { children: ReactNode }) => {
+export const AiOsAuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
   const [session, setSession] = useState<Session | null>(null);
   const [loading, setLoading] = useState(true);
@@ -55,4 +55,4 @@ export const MetapromptAuthProvider = ({ children }: { children: ReactNode }) =>
   );
 };
 
-export const useMetapromptAuth = () => useContext(AuthContext);
+export const useAiOsAuth = () => useContext(AuthContext);
