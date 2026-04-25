@@ -260,12 +260,53 @@ const jsonToReadableText = (obj: unknown, prefix = ""): string => {
 };
 
 // ---------------------------------------------------------------------------
-// FULL PROMPT CONSTRUCTOR
+// ZONE OF GENIUS DEFINITION (paradigm-level)
+// V2 (2026-04-24): primes the model on what "Zone of Genius" actually means —
+// not skills, strengths, or LinkedIn signal, but the irreducible signature
+// pattern. Without this layer, models drift toward resume-shaped output.
 // ---------------------------------------------------------------------------
 
-export const buildAppleseedPrompt = (rawSignal: string): string => {
+export const ZONE_OF_GENIUS_DEFINITION = `
+ZONE OF GENIUS — PARADIGM-LEVEL DEFINITION:
+
+When we generate an Appleseed, we are NOT articulating:
+- Skills the person is good at
+- Their profession or job title
+- Strengths-Finder / Enneagram / MBTI categories
+- Resume bullets or LinkedIn taglines
+
+We ARE articulating: the irreducible signature pattern of how this person creates value that no other human on the planet replicates.
+
+This pattern lives at the intersection of three layers:
+  • ESSENCE — who they are at the deepest level (their being-pattern)
+  • INSIGHT — the unique way they see, think, and recognize patterns
+  • MANIFESTATION — the outputs that flow from them effortlessly and produce disproportionate impact
+
+It is the place where:
+  • Time disappears (flow)
+  • Effort collapses (work feels inevitable, not forced)
+  • Quality surges natively — not from grinding
+  • Others say: "only THEY could have done it that way"
+
+It is not what they are good at — it is what they are FOR.
+The unique gift only this body, this lineage, this consciousness can deliver.
+
+Articulate THIS layer.
+The Appleseed is the resonant, archetypal crystallization of THIS layer across 12 perspectives.
+Not the resume layer. Not the strengths layer. Not the personality-test layer.
+
+Every field in the JSON output should serve this paradigm.
+`;
+
+// ---------------------------------------------------------------------------
+// FULL PROMPT CONSTRUCTOR — versioned. Active version exported as
+// buildAppleseedPrompt. Prior versions kept for rollback, A/B testing,
+// and signal-evolution audit.
+// ---------------------------------------------------------------------------
+
+export const buildAppleseedPromptV1 = (rawSignal: string): string => {
   const processedSignal = sanitizeRawSignal(rawSignal);
-  
+
   return `You are an Appleseed Generator — a system that transforms raw understanding of someone's genius into a high-precision, archetypal profile.
 
 ${APPLESEED_TEMPLATE}
@@ -288,6 +329,37 @@ ${OUTPUT_FORMAT}
 
 Return ONLY the JSON object. No explanation. No preamble.`;
 };
+
+export const buildAppleseedPromptV2 = (rawSignal: string): string => {
+  const processedSignal = sanitizeRawSignal(rawSignal);
+
+  return `You are an Appleseed Generator — a system that transforms raw understanding of someone's genius into a high-precision, archetypal profile.
+
+${ZONE_OF_GENIUS_DEFINITION}
+
+${APPLESEED_TEMPLATE}
+
+${CALIBRATION_EXAMPLES}
+
+${ROASTING_INSTRUCTIONS}
+
+${LANGUAGE_GUIDELINES}
+
+---
+
+Now, generate an Appleseed for this person based on the following input:
+
+${processedSignal}
+
+---
+
+${OUTPUT_FORMAT}
+
+Return ONLY the JSON object. No explanation. No preamble.`;
+};
+
+// Active version
+export const buildAppleseedPrompt = buildAppleseedPromptV2;
 
 // ---------------------------------------------------------------------------
 // TYPES
