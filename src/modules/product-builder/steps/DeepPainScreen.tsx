@@ -150,10 +150,10 @@ const DeepPainScreen: React.FC = () => {
                 ))}
             </div>
 
-            {/* Resonance Rating */}
+            {/* Resonance Rating — Specificity Loop step "pain" */}
             <div className="max-w-2xl mx-auto mb-8">
                 <ResonanceRating
-                    question="How well does this describe your ideal client?"
+                    step="pain"
                     onRate={handleResonanceRating}
                 />
             </div>

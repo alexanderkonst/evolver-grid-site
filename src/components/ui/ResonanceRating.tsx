@@ -1,20 +1,39 @@
 import { useState } from "react";
 import { Sparkles } from "lucide-react";
+import {
+    SPECIFICITY_PROMPT,
+    resonanceMessage,
+    type ResonanceStep,
+} from "@/lib/resonanceMatrix";
 
 interface ResonanceRatingProps {
+    /**
+     * The funnel step this rating belongs to. When provided, the
+     * post-rating message comes from the Specificity Loop matrix
+     * (matrix v2 — see lib/resonanceMatrix.ts and the playbook).
+     * Without it, the component falls back to the legacy thank-you
+     * (so any caller that hasn't been migrated still works).
+     */
+    step?: ResonanceStep;
     question?: string;
     onRate: (rating: number) => void;
     disabled?: boolean;
 }
 
 /**
- * ResonanceRating - 1-10 rating component for validation metrics
- * Used after Appleseed and Excalibur generation to capture resonance
+ * ResonanceRating — 1-10 specificity-to-self capture.
+ *
+ * The question we are really asking, beneath the surface wording, is
+ * SPECIFICITY_PROMPT ("how specific to what you know about you is
+ * this articulation?"). On rating, we do NOT thank the user — we
+ * mirror back an identity-revelation question matched to their tier
+ * (resonant / partial / off). See the playbook for the protocol.
  */
 const ResonanceRating = ({
+    step,
     question = "How well does this match your brightest self?",
     onRate,
-    disabled = false
+    disabled = false,
 }: ResonanceRatingProps) => {
     const [selectedRating, setSelectedRating] = useState<number | null>(null);
     const [hasRated, setHasRated] = useState(false);
@@ -26,7 +45,31 @@ const ResonanceRating = ({
         onRate(rating);
     };
 
-    if (hasRated) {
+    if (hasRated && selectedRating !== null) {
+        const reveal = step ? resonanceMessage(step, selectedRating) : null;
+
+        if (reveal) {
+            // Specificity Loop reveal — identity-question in the same
+            // frequency as the macro-bridge ("What if … IS …").
+            return (
+                <div className="text-center py-6 animate-in fade-in duration-700">
+                    <p
+                        className="font-display italic leading-snug max-w-xl mx-auto px-4"
+                        style={{
+                            fontFamily: "'Source Serif 4', serif",
+                            fontSize: "clamp(1.15rem, 2.6vw, 1.5rem)",
+                            fontWeight: 500,
+                            color: "var(--skin-text-primary, #2c3150)",
+                            textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.7))",
+                        }}
+                    >
+                        {reveal}
+                    </p>
+                </div>
+            );
+        }
+
+        // Legacy fallback for any caller without a step.
         return (
             <div className="text-center py-3 animate-in fade-in duration-500">
                 <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-[#8460ea]/10 to-[#a78bfa]/10 rounded-full">
@@ -38,7 +81,9 @@ const ResonanceRating = ({
                         className="text-sm"
                         style={{ color: "var(--skin-text-primary, #2c3150)" }}
                     >
-                        Thank you! {selectedRating === 10 ? "🎯 Perfect resonance!" : `Rated ${selectedRating}/10`}
+                        {selectedRating === 10
+                            ? "🎯 Perfect resonance!"
+                            : `Rated ${selectedRating}/10`}
                     </span>
                 </div>
             </div>
@@ -51,7 +96,7 @@ const ResonanceRating = ({
                 className="text-center text-sm leading-relaxed px-2"
                 style={{ color: "var(--skin-text-muted, #6b7280)" }}
             >
-                {question}
+                {step ? SPECIFICITY_PROMPT : question}
             </p>
             <div className="flex justify-center gap-1.5 flex-wrap px-2">
                 {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((num) => (

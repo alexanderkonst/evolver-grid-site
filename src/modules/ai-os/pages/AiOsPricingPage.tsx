@@ -11,7 +11,10 @@ import StarryBackground from "../components/StarryBackground";
 // Contribution rights to core are earned through trust, not money.
 
 const STRIPE_TIP_URL = "https://buy.stripe.com/3cI00j5og8qf1TPdPqdEs0G";
-const FIND_YOUR_TOP_TALENT_URL = "https://FindYourTopTalent.Com";
+// Day 51 (Sasha 2026-04-25): "Work with Aleksandr" CTA points directly to
+// Telegram, not the FindYourTopTalent.Com landing. Aligned with Holonic
+// Commons — proximity to source happens through real conversation.
+const ALEKSANDR_TELEGRAM_URL = "https://t.me/integralevolution";
 
 const Pricing = () => {
   const navigate = useNavigate();
@@ -191,7 +194,7 @@ const Pricing = () => {
                     The Productize Yourself Session. 90 minutes to name your craft, find the business built on who you already are, and get your first easy move. The path into the first holon — where AI OS is actively shaped.
                   </p>
                   <a
-                    href={FIND_YOUR_TOP_TALENT_URL}
+                    href={ALEKSANDR_TELEGRAM_URL}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 text-xs font-semibold px-5 py-2.5 rounded-full transition-all duration-300 hover:scale-105"
@@ -201,7 +204,7 @@ const Pricing = () => {
                       boxShadow: '0 4px 16px -2px hsla(40, 70%, 50%, 0.4)',
                     }}
                   >
-                    FindYourTopTalent.Com
+                    Work with Aleksandr
                     <ExternalLink className="w-3.5 h-3.5" />
                   </a>
                 </div>

@@ -220,10 +220,10 @@ const LandingPageScreen: React.FC = () => {
                 </CardContent>
             </Card>
 
-            {/* Resonance Rating */}
+            {/* Resonance Rating — Specificity Loop step "landing" */}
             <div className="max-w-2xl mx-auto mb-8">
                 <ResonanceRating
-                    question="How excited are you about this landing page?"
+                    step="landing"
                     onRate={handleResonanceRating}
                 />
             </div>

@@ -164,10 +164,10 @@ const DeepICPScreen: React.FC = () => {
                 </CardContent>
             </Card>
 
-            {/* Resonance Rating */}
+            {/* Resonance Rating — Specificity Loop step "icp" */}
             <div className="max-w-2xl mx-auto mb-8">
                 <ResonanceRating
-                    question="How well does this describe your ideal client?"
+                    step="icp"
                     onRate={handleResonanceRating}
                 />
             </div>

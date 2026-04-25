@@ -287,10 +287,10 @@ const AppleseedDisplay = ({
                     </p>
                 </div>
 
-                {/* Resonance Rating */}
+                {/* Resonance Rating — Specificity Loop step "appleseed" */}
                 {onResonanceRating && (
                     <ResonanceRating
-                        question="From 1 to 10, how well does this match how you see yourself at your brightest?"
+                        step="appleseed"
                         onRate={onResonanceRating}
                     />
                 )}
