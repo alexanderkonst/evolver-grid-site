@@ -3048,6 +3048,15 @@ const AiOsPage = () => {
                 <p className="text-[11px] font-extralight tracking-wide" style={{ color: 'hsl(0 0% 100% / 0.4)' }}>
                   © 2026 Aleksandr Konstantinov · {' '}
                   <a
+                    href="https://FindYourTopTalent.Com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="underline underline-offset-2 transition-colors hover:opacity-80"
+                  >
+                    FindYourTopTalent.Com
+                  </a>
+                  {' '} · {' '}
+                  <a
                     href="https://creativecommons.org/licenses/by-nc-sa/4.0/"
                     target="_blank"
                     rel="noopener noreferrer"

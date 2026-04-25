@@ -14,7 +14,7 @@
 // ============================================================================
 
 export type ArtifactKey =
-  // Phase A — Canvas (7)
+  // Phase A — Canvas (8)
   | 'uniqueness'
   | 'myth'
   | 'tribe'
@@ -22,6 +22,7 @@ export type ArtifactKey =
   | 'promise'
   | 'lead_magnet'
   | 'value_ladder'
+  | 'specificity_matrix'
   // Phase B — Session bridge (1 compound)
   | 'session_bridge'
   // Phase C — Market path (9)
@@ -45,6 +46,13 @@ export const PHASE_A_CANVAS: readonly ArtifactKey[] = [
   'promise',
   'lead_magnet',
   'value_ladder',
+  // Day 51 (Sasha 2026-04-25): specificity_matrix added as 8th canvas
+  // artifact. The Specificity Loop matrix (Playbook Principle 15 / Phase
+  // Shift Library Domain 81) is now generated per-founder from their
+  // voice + canvas content, then injected into their funnel reveals at
+  // runtime. Lives at end of Phase A because it depends on the voice
+  // (uniqueness, myth) and content (tribe, pain, promise) that precede it.
+  'specificity_matrix',
 ] as const;
 
 export const PHASE_B_SESSION: readonly ArtifactKey[] = ['session_bridge'] as const;
