@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { Card } from "@/components/ui/card";
 import { toast } from "@/hooks/use-toast";
 import { Copy, Check, Send, Loader2, Youtube, User, Lock, ExternalLink, ArrowRight, Zap } from "lucide-react";
-import logoImg from "./assets/logo.jpg";
 import StarryBackground from "./components/StarryBackground";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
@@ -2323,7 +2322,11 @@ const HlsVideo = () => {
       muted
       playsInline
       className="fixed inset-0 w-screen h-screen object-cover z-0"
-      style={{ minWidth: '100vw', minHeight: '100vh' }}
+      // Day 50 (Sasha): pull the visible crop leftward so the subject is
+      // centered in the content column (the GameShell rail offsets the
+      // true viewport center rightward, which was making the hero feel
+      // right-heavy). 35% keeps it natural, not obviously recentered.
+      style={{ minWidth: '100vw', minHeight: '100vh', objectPosition: '35% center' }}
     />
   );
 };
@@ -2552,71 +2555,23 @@ const MetapromptPage = () => {
             <div ref={parallaxRef} className="will-change-transform">
             <RevealSection>
               <header className="text-center space-y-6 relative pt-12 sm:pt-20 pb-8">
-                {/* Top bar: logo centered, profile button right */}
-                <div className="flex items-center justify-center relative mb-6">
-                  <div 
-                    className="logo-glass w-20 h-20 sm:w-24 sm:h-24 rounded-full relative overflow-hidden"
-                    style={{
-                      background: 'rgba(255, 255, 255, 0.03)',
-                      backdropFilter: 'blur(50px)',
-                      WebkitBackdropFilter: 'blur(50px)',
-                      boxShadow: '4px 4px 4px rgba(0, 0, 0, 0.05), inset 0 1px 1px rgba(255, 255, 255, 0.15), 0 0 30px rgba(132,96,234,0.3), 0 0 60px rgba(132,96,234,0.15)',
-                      border: '1px solid rgba(255, 255, 255, 0.15)',
-                      padding: '3px',
-                      transition: 'all 0.3s ease',
-                      cursor: 'pointer',
-                    }}
-                    onMouseEnter={e => {
-                      (e.currentTarget as HTMLElement).style.transform = 'scale(1.1)';
-                      (e.currentTarget as HTMLElement).style.boxShadow = '4px 4px 4px rgba(0, 0, 0, 0.05), inset 0 1px 1px rgba(255, 255, 255, 0.15), 0 0 40px rgba(255,255,255,0.12), 0 0 30px rgba(132,96,234,0.3)';
-                    }}
-                    onMouseLeave={e => {
-                      (e.currentTarget as HTMLElement).style.transform = 'scale(1)';
-                      (e.currentTarget as HTMLElement).style.boxShadow = '4px 4px 4px rgba(0, 0, 0, 0.05), inset 0 1px 1px rgba(255, 255, 255, 0.15), 0 0 30px rgba(132,96,234,0.3), 0 0 60px rgba(132,96,234,0.15)';
-                    }}
-                  >
-                    <img 
-                      src={logoImg} 
-                      alt="Metaprompts logo" 
-                      className="w-full h-full rounded-full object-cover"
-                      style={{ 
-                        transform: 'scale(0.92)',
-                        opacity: 0.7,
-                        mixBlendMode: 'luminosity',
-                      }}
-                    />
-                    {/* Glassmorphism overlay ON TOP of the logo */}
-                    <div 
-                      className="absolute inset-0 rounded-full pointer-events-none"
-                      style={{
-                        background: 'rgba(255, 255, 255, 0.03)',
-                        backdropFilter: 'blur(1px)',
-                        WebkitBackdropFilter: 'blur(1px)',
-                        boxShadow: 'inset 0 1px 1px rgba(255, 255, 255, 0.12), inset 0 -1px 1px rgba(0, 0, 0, 0.06)',
-                      }}
-                    />
-                    {/* Soft radial vignette — fades gradually, doesn't clip torus */}
-                    <div 
-                      className="absolute inset-0 rounded-full pointer-events-none"
-                      style={{
-                        background: 'radial-gradient(circle, transparent 50%, rgba(10,10,26,0.15) 65%, rgba(10,10,26,0.5) 80%, rgba(10,10,26,0.9) 100%)',
-                      }}
-                    />
-                  </div>
-                  <button
-                    onClick={() => navigate(user ? "/prompt/profile" : "/prompt/auth")}
-                    className="absolute right-0 top-1/2 -translate-y-1/2 p-2.5 rounded-full transition-all duration-300 hover:scale-110"
-                    style={{ 
-                      background: 'hsl(0 0% 100% / 0.08)',
-                      border: '1px solid hsl(0 0% 100% / 0.12)',
-                      color: 'hsl(0 0% 100% / 0.7)',
-                      backdropFilter: 'blur(8px)',
-                    }}
-                    aria-label={user ? "Profile" : "Sign in"}
-                  >
-                    <User className="w-4 h-4 sm:w-5 sm:h-5" />
-                  </button>
-                </div>
+                {/* Day 50 (Sasha): hero torus medallion retired — the
+                    GameShell rail already carries the brand mark, so a
+                    second emblem above the hero wordmark was a duplicate.
+                    Profile button stays, pinned top-right. */}
+                <button
+                  onClick={() => navigate(user ? "/prompt/profile" : "/prompt/auth")}
+                  className="absolute right-0 top-6 sm:top-10 p-2.5 rounded-full transition-all duration-300 hover:scale-110"
+                  style={{
+                    background: 'hsl(0 0% 100% / 0.08)',
+                    border: '1px solid hsl(0 0% 100% / 0.12)',
+                    color: 'hsl(0 0% 100% / 0.7)',
+                    backdropFilter: 'blur(8px)',
+                  }}
+                  aria-label={user ? "Profile" : "Sign in"}
+                >
+                  <User className="w-4 h-4 sm:w-5 sm:h-5" />
+                </button>
                 <p className="text-xs tracking-[0.35em] uppercase font-medium" style={{ 
                   color: 'hsl(0 0% 100% / 0.7)',
                   textShadow: '0 0 12px rgba(0,0,0,0.9), 0 0 30px rgba(0,0,0,0.7), 0 2px 4px rgba(0,0,0,0.8)',
@@ -2686,19 +2641,93 @@ const MetapromptPage = () => {
             );
           })()}
 
-          {/* Navigation — suite pills */}
+          {/* Navigation — suite picker (a real choice, not a nav pill).
+              Day 50 (Sasha): upgraded from a thin "Suites" pill row to a
+              full decision card — the user is meant to pick the class of
+              tasks they want to power up before scrolling on. Headline,
+              elevated glass shell, large category chips with glow. */}
           <RevealSection delay={150}>
-            <nav id="suites-nav" className="liquid-glass rounded-3xl px-6 py-5 scroll-mt-8" aria-label="Navigation">
-              <p className="text-[10px] font-medium tracking-[0.3em] uppercase mb-4" style={{ color: 'hsl(0 0% 100% / 0.5)' }}>
-                Suites
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {groupedPrompts.map((group) => (
-                  <a key={group.category} href={`#section-${group.category}`}
-                    className="text-xs font-medium tracking-wide px-4 py-2 rounded-full transition-all duration-300 hover:scale-105"
-                    style={{ color: tocColors[group.category] || '#a4a3d0', background: `${tocColors[group.category]}10`, border: `1px solid ${tocColors[group.category]}20` }}
-                  >{group.label}</a>
-                ))}
+            <nav
+              id="suites-nav"
+              className="liquid-glass-strong rounded-3xl px-6 py-8 sm:px-8 sm:py-10 scroll-mt-8 relative overflow-hidden"
+              aria-label="Pick your class of tasks"
+              style={{
+                boxShadow:
+                  '0 0 0 1px hsla(242, 30%, 73%, 0.25), 0 20px 60px -20px rgba(132,96,234,0.35), 0 40px 120px -40px rgba(132,96,234,0.25), inset 0 1px 0 hsla(0, 0%, 100%, 0.08)',
+              }}
+            >
+              {/* Soft accent glow — draws the eye without stealing it */}
+              <div
+                aria-hidden="true"
+                className="absolute inset-0 pointer-events-none"
+                style={{
+                  background:
+                    'radial-gradient(ellipse at top, hsla(242, 45%, 60%, 0.18) 0%, transparent 60%)',
+                }}
+              />
+
+              <div className="relative text-center mb-6 sm:mb-8">
+                <p
+                  className="text-[10px] sm:text-[11px] font-semibold tracking-[0.32em] uppercase mb-3"
+                  style={{
+                    color: 'hsla(242, 40%, 85%, 0.85)',
+                    textShadow: '0 0 12px rgba(132,96,234,0.4)',
+                  }}
+                >
+                  Step 1 · Choose
+                </p>
+                <h2
+                  className="font-display italic text-2xl sm:text-3xl md:text-4xl font-medium leading-[1.15] tracking-[-0.02em]"
+                  style={{
+                    background:
+                      'linear-gradient(135deg, hsl(0 0% 100%) 0%, hsl(242 40% 92%) 50%, hsl(290 30% 90%) 100%)',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    backgroundClip: 'text',
+                    filter:
+                      'drop-shadow(0 0 24px rgba(132,96,234,0.45)) drop-shadow(0 0 60px rgba(132,96,234,0.2))',
+                  }}
+                >
+                  Pick your class of tasks
+                </h2>
+                <p
+                  className="mt-2 text-xs sm:text-sm font-light italic"
+                  style={{
+                    color: 'hsla(0, 0%, 100%, 0.7)',
+                    textShadow: '0 0 12px rgba(0,0,0,0.8)',
+                  }}
+                >
+                  Each suite is a focused lens. Pick the one closest to your current move.
+                </p>
+              </div>
+
+              <div className="relative flex flex-wrap items-stretch justify-center gap-2.5 sm:gap-3">
+                {groupedPrompts.map((group) => {
+                  const color = tocColors[group.category] || '#a4a3d0';
+                  return (
+                    <a
+                      key={group.category}
+                      href={`#section-${group.category}`}
+                      className="group relative text-sm font-medium tracking-wide px-5 py-3 rounded-2xl transition-all duration-300 hover:-translate-y-0.5"
+                      style={{
+                        color,
+                        background: `linear-gradient(135deg, ${color}20, ${color}08)`,
+                        border: `1px solid ${color}40`,
+                        boxShadow: `0 0 0 1px ${color}10, 0 8px 24px -12px ${color}60, inset 0 1px 0 hsla(0, 0%, 100%, 0.08)`,
+                        textShadow: `0 0 12px ${color}80`,
+                      }}
+                    >
+                      <span className="relative z-10">{group.label}</span>
+                      <span
+                        aria-hidden="true"
+                        className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+                        style={{
+                          boxShadow: `0 0 20px ${color}50, inset 0 0 20px ${color}15`,
+                        }}
+                      />
+                    </a>
+                  );
+                })}
               </div>
             </nav>
           </RevealSection>
