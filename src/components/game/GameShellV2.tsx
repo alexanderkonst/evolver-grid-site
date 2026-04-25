@@ -19,7 +19,10 @@ import SiteLogo from "@/components/SiteLogo";
 // import { loadNudgeState } from "@/lib/myNextMoveLogic";
 
 /** Animated video background — Mux HLS stream behind all panels */
-const MUX_BG_URL = "https://stream.mux.com/8DFxbzBL8jIJYpaZv3s6kDx4AfPkVI1gH4bBh38GNw8.m3u8";
+// Day 51 (Sasha 2026-04-25): swapped to new animated cosmic-landscape stream
+// — gold particles, mountain, sunset. Visible behind translucent Pane 2 +
+// content area. Pane 1 stays solid navy so the brand isn't competing.
+const MUX_BG_URL = "https://stream.mux.com/hTE02fn3vOf5czL8H1s02IcVKGmIxmr4tPacZkQ5KRZwo.m3u8";
 
 const MuxVideoBackground = () => {
     const videoRef = useRef<HTMLVideoElement>(null);
