@@ -33,7 +33,10 @@ export function ImproveButton({ artifactKey, disabled, className, size = "lg" }:
       size={size}
       className={cn(
         "group relative gap-2 font-medium",
-        !isDisabled && "motion-safe:animate-pulse-slow",
+        // Day 51 (Sasha 2026-04-25): retired motion-safe:animate-pulse-slow —
+        // Tailwind's pulse oscillates opacity to 0.5, dragging button text
+        // into illegibility on light skins. If we want attention later, use
+        // a box-shadow pulse so text stays at full opacity.
         className
       )}
       aria-busy={thisIsImproving}
