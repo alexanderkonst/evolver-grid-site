@@ -167,7 +167,12 @@
      not want. Shifted to clean navy (hue ≈ 220°) — no purple pull, just
      deep-sea blue. "Navy is a good basic." */
   --skin-panel-1-bg: rgba(16, 42, 96, 0.88);   /* Pane 1 — classic navy rail */
-  --skin-panel-2-bg: rgba(26, 58, 128, 0.46);  /* Pane 2 — lit navy overlay */
+  /* Day 51 (Sasha 2026-04-25): pane 2 bumped 0.46 → 0.92 so the rail
+     stays solid navy on every route. Old translucent value let the
+     cream `--skin-panel-wash-quiet` bleed through on /playbook + /path
+     and washed pane 2 to beige. Lighter RGB preserved so pane 2 still
+     reads a hair lifted from pane 1 — three-tier hierarchy intact. */
+  --skin-panel-2-bg: rgba(26, 58, 128, 0.92);  /* Pane 2 — solid lit navy */
   /* Day 51 (Sasha 2026-04-25): wash dropped 0.68 → 0.10 so the animated
      bg video reads in near-full saturation (mockup pixel match). Hero
      text contrasts on its own through serif weight + dark color, doesn't
@@ -301,7 +306,9 @@
      indigo-leaning "midnight" to clean navy at hue ≈ 220°. Slightly
      deeper than Aurora's navy so the register still reads ceremonial. */
   --skin-panel-1-bg:   rgba(10, 30, 78, 0.92);   /* Pane 1 — deep navy */
-  --skin-panel-2-bg:   rgba(18, 46, 110, 0.58);  /* Pane 2 — lit navy */
+  /* Day 51 (Sasha 2026-04-25): pane 2 bumped 0.58 → 0.94 — same fix
+     as Aurora. Solid lit navy regardless of pane 3 wash behind. */
+  --skin-panel-2-bg:   rgba(18, 46, 110, 0.94);  /* Pane 2 — solid lit navy */
   /* Day 51 (Sasha 2026-04-25): wash lowered to match Aurora — animated
      bg video reads vivid on both skins. */
   --skin-panel-wash:   rgba(10, 22, 40, 0.10);   /* Pane 3 — lightest */
@@ -1191,6 +1198,77 @@ All colors MUST be HSL.
 
   100% {
     opacity: 0.25;
+  }
+}
+
+/* ========================================
+   SIGNATURE MOTION LANGUAGE
+   Day 51 (Sasha 2026-04-25)
+
+   Three named primitives that codify the site-wide motion vocabulary
+   so any clickable can opt in by class name instead of re-inventing
+   the values at each call site:
+
+     .signature-lift   — 2px hover lift + soft gold underglow
+     .signature-press  — 1px compress on :active
+     .signature-pulse  — one-shot ~1.2s gold halo at completion beats
+
+   Page-level motion (cross-fade + 8px rise on route change) lives in
+   `PageTransition.tsx` and uses tailwindcss-animate utilities.
+
+   All three respect prefers-reduced-motion (block at the bottom).
+   ======================================== */
+
+.signature-lift {
+  transition: transform 220ms cubic-bezier(0.2, 0.8, 0.2, 1),
+              box-shadow 220ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  will-change: transform;
+}
+
+.signature-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px -10px rgba(244, 212, 114, 0.35),
+              0 0 18px -6px rgba(244, 212, 114, 0.28);
+}
+
+.signature-press:active {
+  transform: translateY(1px);
+  transition: transform 80ms ease-out;
+}
+
+@keyframes signature-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(244, 212, 114, 0);
+  }
+
+  30% {
+    box-shadow: 0 0 0 6px rgba(244, 212, 114, 0.18),
+                0 0 26px 4px rgba(244, 212, 114, 0.55);
+  }
+
+  100% {
+    box-shadow: 0 0 0 0 rgba(244, 212, 114, 0);
+  }
+}
+
+.signature-pulse {
+  animation: signature-pulse 1200ms cubic-bezier(0.2, 0.8, 0.2, 1) 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .signature-lift,
+  .signature-press {
+    transition: none;
+  }
+
+  .signature-lift:hover,
+  .signature-press:active {
+    transform: none;
+    box-shadow: none;
+  }
+
+  .signature-pulse {
+    animation: none;
   }
 }
 
