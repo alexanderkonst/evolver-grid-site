@@ -323,12 +323,12 @@ const SpacesRail = ({
                                 "justify-center md:justify-start",
                                 "focus:outline-none focus-visible:ring-2 focus-visible:ring-[#d4af37]/40",
                                 isLocked
-                                    ? "bg-white/5 text-white/30 cursor-not-allowed"
+                                    ? "text-white/30 cursor-not-allowed"
                                     : active
                                         ? "text-white ring-1 ring-[#d4af37]/60 shadow-[0_0_22px_-6px_rgba(244,212,114,0.55),0_0_48px_-14px_rgba(212,175,55,0.35)]"
                                         : hasNudge
                                             ? "bg-emerald-500/20 text-emerald-400 hover:bg-emerald-500/30 hover:text-emerald-300 ring-1 ring-emerald-500/50 shadow-[0_0_20px_rgba(16,185,129,0.4)] animate-pulse"
-                                            : "bg-white/5 text-white/60 hover:bg-white/10 hover:text-white hover:ring-1 hover:ring-[#d4af37]/30 hover:shadow-[0_0_16px_-4px_rgba(244,212,114,0.28)] hover:translate-y-[-1px] active:translate-y-0"
+                                            : "text-white/55 hover:bg-white/[0.04] hover:text-white/95 hover:ring-1 hover:ring-[#d4af37]/30 hover:shadow-[0_0_16px_-4px_rgba(244,212,114,0.28)] hover:translate-y-[-1px] active:translate-y-0"
                             )}
                             style={
                                 active
@@ -475,7 +475,7 @@ const SpacesRail = ({
                     className={cn(
                         "flex items-center gap-3 px-3 py-2.5 rounded-2xl transition-all duration-300 w-full",
                         "justify-center md:justify-start",
-                        "bg-white/[0.03] text-white/55 hover:bg-white/10 hover:text-white/85 hover:translate-y-[-1px] active:translate-y-0"
+                        "text-white/55 hover:bg-white/[0.04] hover:text-white/85 hover:translate-y-[-1px] active:translate-y-0"
                     )}
                     title="Direct message Aleksandr on Telegram"
                 >
@@ -512,7 +512,7 @@ const SpacesRail = ({
                     className={cn(
                         "flex items-center gap-3 px-3 py-2.5 rounded-2xl transition-all duration-300 w-full",
                         "justify-center md:justify-start",
-                        "bg-white/[0.03] text-white/45 hover:bg-white/10 hover:text-white/80 hover:translate-y-[-1px] active:translate-y-0"
+                        "text-white/45 hover:bg-white/[0.04] hover:text-white/80 hover:translate-y-[-1px] active:translate-y-0"
                     )}
                     title="Settings"
                 >

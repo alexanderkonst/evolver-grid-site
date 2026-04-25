@@ -344,8 +344,12 @@ const SectionsPanel = ({
                in favor of a vertical gradient "spine" (absolute-positioned
                below) that mirrors pane 1 — both panes now read as the
                same backlit book-binding. */
+            // Day 51 (Sasha 2026-04-25): Pane 2 bg lowered to 0.30 alpha so
+            // the animated bg video shows through clearly (mockup pixel match).
+            // Combined with backdrop-filter blur from `liquid-glass` class →
+            // proper frosted-glass effect. Pane 1 stays solid by contrast.
             style={{
-                backgroundColor: "var(--skin-panel-2-bg, rgba(14, 32, 68, 0.42))",
+                backgroundColor: "rgba(14, 32, 68, 0.30)",
                 boxShadow:
                     "2px 0 22px -10px rgba(244, 212, 114, 0.22)",
             }}
@@ -433,10 +437,10 @@ const SectionsPanel = ({
                                 "group flex items-center gap-2.5 px-3 py-3 mx-2 rounded-2xl transition-all duration-300 relative",
                                 "focus:outline-none focus-visible:ring-2 focus-visible:ring-[#d4af37]/40",
                                 isLocked
-                                    ? "cursor-not-allowed bg-white/5 text-white/35"
+                                    ? "cursor-not-allowed text-white/35"
                                     : sectionActive && !hasSubSections
                                         ? "cursor-pointer text-white ring-1 ring-[#d4af37]/60 shadow-[0_0_22px_-6px_rgba(244,212,114,0.55),0_0_48px_-14px_rgba(212,175,55,0.35)]"
-                                        : "cursor-pointer bg-white/5 text-white/80 hover:bg-white/10 hover:text-white hover:ring-1 hover:ring-[#d4af37]/30 hover:shadow-[0_0_16px_-4px_rgba(244,212,114,0.28)] hover:translate-y-[-1px] active:translate-y-0"
+                                        : "cursor-pointer text-white/80 hover:bg-white/[0.04] hover:text-white hover:ring-1 hover:ring-[#d4af37]/30 hover:shadow-[0_0_16px_-4px_rgba(244,212,114,0.28)] hover:translate-y-[-1px] active:translate-y-0"
                             )}
                             style={
                                 sectionActive && !hasSubSections && !isLocked

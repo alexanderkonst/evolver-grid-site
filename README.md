@@ -1,10 +1,12 @@
-# Planetary OS
+# Find Your Top Talent · Planetary OS
 
 > **The coordination infrastructure for conscious innovation — helping people discover their unique genius, build ventures around it, and connect with the right collaborators across tribes.**
 
-**Live**: [aleksandrkonstantinov.com](https://aleksandrkonstantinov.com)
+**Live:** [FindYourTopTalent.Com](https://findyourtoptalent.com) · [aleksandrkonstantinov.com](https://aleksandrkonstantinov.com)
 
-[![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
+[![Code License: AGPL-3.0](https://img.shields.io/badge/Code-AGPL--3.0-blue.svg)](./LICENSE) [![Docs License: CC BY-NC-SA 4.0](https://img.shields.io/badge/Docs-CC%20BY--NC--SA%204.0-lightgrey.svg)](./LICENSE.md)
+
+> **Forkable by design.** This is a master holon meant to seed a network of holons — see [Self-Hosting](#self-hosting) below. If you've felt the frequency of this work, you can run your own instance for yourself or your community.
 
 ---
 
@@ -170,10 +172,89 @@ This is documented in full at [docs/01-vision/universal_ontology.md](docs/01-vis
 
 ```bash
 npm install
+cp .env.example .env   # then fill in your own Supabase project values
 npm run dev
 ```
 
-Open [http://localhost:5173](http://localhost:5173)
+Open [http://localhost:8080](http://localhost:8080)
+
+> **First run will fail without a Supabase project.** See [Self-Hosting](#self-hosting) below — takes ~20 minutes.
+
+---
+
+## Self-Hosting
+
+This codebase is the **master holon** of the Find Your Top Talent / Planetary OS system. It is meant to be forkable.
+
+**What it becomes when you fork it:**
+
+| Who forks | What it becomes |
+|-----------|-----------------|
+| **One person, for themselves** | A *Personal Holon* — your own funnel running your own voice, your own data on your own server. Not a SaaS subscription you rent. A possession you own. |
+| **A community / cohort** | A *Community Holon* — a complete venture-creation apparatus tuned to your tribe's voice, with your master matrix, your playbook variants, your codex. |
+| **Many forks together** | The *actual* decentralized Planetary OS — a federation of holons, each whole on its own, all interoperable. The "elephant" of the [Integration Layer Manifesto](docs/06-architecture/integration_layer_manifesto.md) emerging through many instances, not one. |
+
+### Setup
+
+1. **Clone**
+   ```bash
+   git clone https://github.com/alexanderkonst/evolver-grid-site.git my-holon
+   cd my-holon
+   npm install
+   ```
+
+2. **Create your own Supabase project** at [supabase.com](https://supabase.com) (free tier is enough to start).
+
+3. **Configure environment** — copy `.env.example` to `.env` and fill in *your* values from Supabase → Settings → API:
+   ```
+   VITE_SUPABASE_PROJECT_ID="your-project-id"
+   VITE_SUPABASE_PUBLISHABLE_KEY="your-anon-publishable-key"
+   VITE_SUPABASE_URL="https://your-project-id.supabase.co"
+   VITE_DAILY_LOOP_V2=true
+   ```
+
+4. **Run the migrations**
+   ```bash
+   npx supabase db push
+   ```
+   Migrations live in `supabase/migrations/` — they create the schema for ZoG snapshots, UBB artifacts, resonance events, and everything else the platform writes to.
+
+5. **Configure server-side secrets** (Edge Functions). Via the Supabase dashboard or CLI:
+   ```bash
+   supabase secrets set LOVABLE_API_KEY="..."
+   supabase secrets set OPENAI_API_KEY="..."   # if you use OpenAI-backed flows
+   # add others as flagged by edge function startup errors
+   ```
+
+6. **Deploy edge functions**
+   ```bash
+   npx supabase functions deploy
+   ```
+
+7. **Run the dev server**
+   ```bash
+   npm run dev
+   ```
+   Open [http://localhost:8080](http://localhost:8080) — your holon is live locally.
+
+8. **(Optional) Deploy** to Vercel / Netlify / your own server. Vercel is the path of least resistance — connect your fork's repo, set the same env vars in the Vercel dashboard, push to deploy.
+
+### Make it yours
+
+Once your fork is running, the next move is to make it sound like *you*, not like Sasha. The system is designed for this:
+
+- **Generate your own Specificity Matrix** at `/ubb/specificity-matrix` — the AI takes your locked uniqueness + myth + tribe + pain + promise and writes the matrix in your voice. The runtime then uses *your* matrix at every reveal in your funnel instead of the canonical master matrix.
+- **Replace the brand assets** in `/src/assets/` (logo, torus, icons) with your own.
+- **Edit `docs/02-strategy/unique-businesses/`** — write your own business doc; the master holon's `alexanders_unique_business.md` is an example, not a template you must follow.
+- **Fork the playbook** under CC BY-NC-SA 4.0 — credit the original, but make the methodology yours where your experience deepens it.
+
+### What stays shared
+
+The connective tissue — modules, AI prompts, runtime architecture — is portable across all holons. Future federation work (matchmaking across instances, cross-holon dossier resolution) will let your holon talk to other holons in the network without giving up its sovereignty. See [Integration Layer Manifesto](docs/06-architecture/integration_layer_manifesto.md) for the topology.
+
+### Support expectations
+
+This is a personal-scale project run by one founder. Issues and PRs are welcome but support is best-effort, not contractual. If you need a self-hosted production instance with hand-holding, reach out via [Telegram](https://t.me/integralevolution) — that's a separate conversation.
 
 ---
 
@@ -318,13 +399,20 @@ This is infrastructure for the Great Turning. An operating system for human tran
 
 ## License
 
-This project is licensed under the **[Creative Commons Attribution 4.0 International License (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/)**.
+This project uses a **three-license model** matching the nature of each layer:
 
-You are free to **share** and **adapt** this material for any purpose, even commercially, as long as you give appropriate credit.
+| Layer | What it covers | License | Why |
+|-------|---------------|---------|-----|
+| **Code** | `src/`, `supabase/`, configs, scripts | **AGPL-3.0** ([`LICENSE`](./LICENSE)) | Software-native ShareAlike + network clause. Forks are free, commercial use is free, but improvements come back to the commons. SaaS deployments built on the code must release their source. Walled gardens are juridically impossible. |
+| **Documentation & methodology** | `docs/`, playbooks, canvases, business artifacts, prose content | **CC BY-NC-SA 4.0** ([`LICENSE.md`](./LICENSE.md)) | Founder's lived methodology. Free to study, adapt, and share with attribution; non-commercial use; derivatives stay open. For commercial use of the methodology, contact the author. |
+| **Anthropic-derived skills** | `.agent/skills/` | **MIT** | Inherits upstream license — must remain MIT. |
 
-> **Documentation and methodology** (playbooks, ontology, business artifacts) are licensed under [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/) — free to share and adapt for non-commercial use with attribution and share-alike.
+**Why AGPL-3.0 for code, not MIT or CC BY-NC?**
+- MIT permits closed proprietary forks — would let a SaaS take this code and never give back. Conflicts with the "shared connective tissue" intent of the [Integration Layer Manifesto](docs/06-architecture/integration_layer_manifesto.md).
+- CC licenses are not designed for software (Creative Commons themselves [recommend against this](https://creativecommons.org/faq/#can-i-apply-a-creative-commons-license-to-software)). AGPL-3.0 is the software-native equivalent of the docs' "ShareAlike" intent — with a network-use clause that closes the SaaS loophole.
+- Commercial use is allowed and *encouraged* — Step 6 of the [Planetary OS Assembly](docs/02-strategy/planetary_os_assembly.md) is facilitator emergence. NC would block exactly the fractal commercial deployment the system is designed for.
 
-For commercial licensing inquiries, contact Alexander Konstantinov.
+**For commercial dual-licensing** (organizations that want to use the code without AGPL compliance obligations), contact Alexander Konstantinov.
 
 ---
 
