@@ -28,6 +28,7 @@ const SLUG_TO_KEY: Record<string, ArtifactKey> = {
   promise: "promise",
   "lead-magnet": "lead_magnet",
   "value-ladder": "value_ladder",
+  "specificity-matrix": "specificity_matrix",
   "landing-page": "landing_page",
 };
 
@@ -141,6 +142,10 @@ function ArtifactContentView({ content }: { content: unknown }) {
   if (typeof content === "string") {
     return <div className="whitespace-pre-wrap text-base leading-relaxed">{content}</div>;
   }
+  // Specificity Matrix has its own table layout
+  if (isSpecificityMatrix(content)) {
+    return <SpecificityMatrixView content={content} />;
+  }
   // Render JSON object with keys as simple labeled blocks
   if (typeof content === "object") {
     return (
@@ -159,6 +164,81 @@ function ArtifactContentView({ content }: { content: unknown }) {
     );
   }
   return <div className="text-sm">{String(content)}</div>;
+}
+
+// ─── Specificity Matrix renderer ─────────────────────────────────
+//
+// Day 51 (Sasha 2026-04-25): the Specificity Matrix is a content
+// shape unique to one artifact (specificity_matrix). It needs a
+// table layout (6 stages × 3 tiers) instead of the generic key:value
+// dump that other artifacts use. Detection is structural — we look
+// for a `stages` object whose values match the {resonant, partial, off}
+// triple. This avoids binding the renderer to any artifact_key, so
+// future per-funnel matrices with different stage sets still render.
+
+type MatrixStageRow = { resonant: string; partial: string; off: string };
+type MatrixContent = {
+  stages: Record<string, MatrixStageRow>;
+  meta_question?: string;
+  voice_signature?: string;
+};
+
+function isSpecificityMatrix(content: unknown): content is MatrixContent {
+  if (!content || typeof content !== "object") return false;
+  const c = content as Record<string, unknown>;
+  if (!c.stages || typeof c.stages !== "object") return false;
+  const stages = Object.values(c.stages as Record<string, unknown>);
+  if (stages.length === 0) return false;
+  return stages.every((row) => {
+    if (!row || typeof row !== "object") return false;
+    const r = row as Record<string, unknown>;
+    return typeof r.resonant === "string" && typeof r.partial === "string" && typeof r.off === "string";
+  });
+}
+
+function SpecificityMatrixView({ content }: { content: MatrixContent }) {
+  return (
+    <div className="space-y-5">
+      {content.meta_question && (
+        <div>
+          <div className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
+            The question every reveal asks beneath the words
+          </div>
+          <div className="mt-1 italic text-sm leading-relaxed">{content.meta_question}</div>
+        </div>
+      )}
+      {content.voice_signature && (
+        <div>
+          <div className="text-xs font-medium uppercase tracking-wider text-muted-foreground">Voice signature</div>
+          <div className="mt-1 text-sm leading-relaxed">{content.voice_signature}</div>
+        </div>
+      )}
+      <div className="overflow-x-auto rounded-lg border">
+        <table className="w-full border-collapse text-sm">
+          <thead>
+            <tr className="border-b bg-muted/30 text-left">
+              <th className="px-3 py-2 font-medium">Stage</th>
+              <th className="px-3 py-2 font-medium">Resonant (8–10)</th>
+              <th className="px-3 py-2 font-medium">Partial (5–7)</th>
+              <th className="px-3 py-2 font-medium">Off (1–4)</th>
+            </tr>
+          </thead>
+          <tbody>
+            {Object.entries(content.stages).map(([stage, row]) => (
+              <tr key={stage} className="border-b align-top last:border-b-0">
+                <td className="px-3 py-3 font-medium uppercase tracking-wider text-xs text-muted-foreground">
+                  {stage}
+                </td>
+                <td className="px-3 py-3 italic leading-relaxed">{row.resonant}</td>
+                <td className="px-3 py-3 italic leading-relaxed text-muted-foreground">{row.partial}</td>
+                <td className="px-3 py-3 italic leading-relaxed text-muted-foreground">{row.off}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
 }
 
 function findNextUnlocked(
