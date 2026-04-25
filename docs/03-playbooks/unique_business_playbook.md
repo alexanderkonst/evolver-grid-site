@@ -756,7 +756,7 @@ The Specificity Loop lives at two layers simultaneously, on purpose:
 
 When facilitating live (not via product), the same frequency holds. After every reflection the client gives, do not validate ("yes, exactly!") and do not instruct ("now look at X"). Ask the recognition question: *"What if this IS what you've been telling me all along?"* The recognition collapses the gap between insight and ownership.
 
-> *Relates to: Principle 4 (Mirror, Not Teacher), Principle 5 (Precision Gap IS Product), Principle 11 (Resonance Metric), Principle 13 (Highest-Rated Version Rule). Phase Shift Library entry: Domain 81 — The Specificity Loop. The macro-bridge ("What if your shining this top talent bright IS your business?") is the canonical example of the protocol applied at scale (page level, not micro-rating level).*
+> *Relates to: Principle 4 (Mirror, Not Teacher), Principle 5 (Precision Gap IS Product), Principle 11 (Resonance Metric), Principle 13 (Highest-Rated Version Rule). Phase Shift Library entry: Domain 81 — The Specificity Loop. The macro-bridge ("What if your shining this top talent bright IS your business?") is the canonical example of the protocol applied at scale (page level, not micro-rating level). The per-founder matrix architecture is the technical foundation of the [Holonic Franchise model](../02-strategy/holonic_franchise_model.md) — operational identity sovereignty for distributors.*
 
 ---
 
