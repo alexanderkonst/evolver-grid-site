@@ -2536,8 +2536,11 @@ const AiOsPage = () => {
     <div data-ai-os className="ai-os-root">
       {/* Video background — HLS stream */}
       <HlsVideo />
-      {/* Dark overlay with radial vignette */}
-      <div className="fixed inset-0 z-[1]" style={{ background: 'linear-gradient(180deg, rgba(20,45,80,0.5) 0%, rgba(30,34,56,0.7) 50%, rgba(0,0,0,0.85) 100%)' }} />
+      {/* Day 51 (Sasha 2026-04-25): heavy dark overlay — was 0.5/0.7/0.85
+          gradient which let the HLS video bleed through and compete with
+          the hero. Now near-solid navy so video reads as ambient texture,
+          not foreground subject. Hero owns the page. */}
+      <div className="fixed inset-0 z-[1]" style={{ background: 'linear-gradient(180deg, rgba(8,15,32,0.94) 0%, rgba(10,18,38,0.95) 50%, rgba(0,0,0,0.97) 100%)' }} />
       <div className="vignette-overlay z-[1]" />
       {/* Noise/grain overlay */}
       <div className="noise-overlay" />
