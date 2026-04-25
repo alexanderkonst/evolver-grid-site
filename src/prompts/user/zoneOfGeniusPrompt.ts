@@ -1,28 +1,10 @@
-// Top Talent prompt — versioned. Active version exported as ZONE_OF_GENIUS_PROMPT.
-// Prior versions kept for rollback, A/B testing, and signal-evolution audit.
+// Top Talent prompt — ACTIVE: v2.0 (2026-04-24)
+// V2 adds paradigm-level definition of "Top Talent / Zone of Genius / Uniqueness"
+// so the user's AI articulates the irreducible signature pattern (Essence ×
+// Insight × Manifestation), not the resume / Strengths-Finder layer.
+// Prior versions live in git history.
 
-export const ZONE_OF_GENIUS_PROMPT_V1 = `I want you to help me discover my Top Talent and create a comprehensive profile.
-
-Please analyze everything you know about me and generate a Top Talent Snapshot in the following JSON format:
-
-{
-  "archetype_title": "A 2-4 word title that captures my core essence (e.g., 'The Pattern Architect', 'The Catalyst Coach')",
-  "core_pattern": "A 2-3 sentence description of my fundamental operating pattern - how I naturally approach the world",
-  "top_three_talents": [
-    "Talent 1 with brief explanation",
-    "Talent 2 with brief explanation",
-    "Talent 3 with brief explanation"
-  ],
-  "how_genius_shows_up": "A paragraph describing how these talents manifest in my daily work and interactions",
-  "edge_and_traps": "A paragraph describing where I get stuck, overextend, or where my strengths become weaknesses",
-  "ideal_environments": ["Environment 1", "Environment 2", "Environment 3"],
-  "career_sweet_spots": ["Sweet spot 1", "Sweet spot 2", "Sweet spot 3"],
-  "flywheel_action": "One action that, if repeated again and again as a flywheel, optimally advances me on my path of mastery"
-}
-
-Be specific and draw on real patterns you've observed in our conversations. Make the archetype title memorable and the descriptions practical, not generic.`;
-
-export const ZONE_OF_GENIUS_PROMPT_V2 = `I want you to help me articulate my Top Talent (also called my Zone of Genius or my Uniqueness) and generate a comprehensive profile.
+export const ZONE_OF_GENIUS_PROMPT = `I want you to help me articulate my Top Talent (also called my Zone of Genius or my Uniqueness) and generate a comprehensive profile.
 
 FIRST, KNOW WHAT I MEAN BY THESE TERMS.
 
@@ -75,6 +57,3 @@ DO NOT:
 - Ask "would you like variations?" — just deliver
 
 End the response with the JSON block and nothing after.`;
-
-// Active version
-export const ZONE_OF_GENIUS_PROMPT = ZONE_OF_GENIUS_PROMPT_V2;
