@@ -294,7 +294,24 @@ export function UniqueBusinessProvider({ children }: { children: ReactNode }) {
             step_number: 1,
             is_locked: false,
           });
-        if (insertError) throw insertError;
+
+        if (insertError) {
+          // 23505 = Postgres unique_violation. Row already exists for
+          // (user_id, artifact_key, version) — local state was out-of-sync
+          // with DB (previous session, realtime missed an event, or
+          // double-click race). Reload to sync, then nudge toward Improve.
+          if (insertError.code === '23505') {
+            const { data: rows } = await (supabase as any)
+              .from("user_business_artifacts")
+              .select("*")
+              .eq("user_id", userId)
+              .in("artifact_key", ALL_ARTIFACT_KEYS as unknown as string[]);
+            setArtifacts(buildArtifactStates((rows || []) as DbRow[]));
+            toast.message(`${key}: a version already exists — synced your canvas. Use Improve to evolve it.`);
+            return;
+          }
+          throw insertError;
+        }
         toast.success(`${key}: first draft ready.`);
       } catch (e: any) {
         console.error("generateArtifact failed:", e);
@@ -437,9 +454,18 @@ export function UniqueBusinessProvider({ children }: { children: ReactNode }) {
         .eq("id", latest.id);
       if (error) {
         toast.error("Couldn't lock — please retry.");
-      } else {
-        toast.success(`${key}: locked.`);
+        return;
       }
+      // Optimistic local update — don't rely on realtime to flip the UI.
+      // (Realtime can be flaky; without this, toast fires but button stays
+      // on "Lock & Continue" instead of swapping to "Continue to →".)
+      setArtifacts((prev) => {
+        const s = prev[key];
+        if (!s || !s.latest) return prev;
+        const updated = { ...s.latest, is_locked: true };
+        return { ...prev, [key]: { ...s, latest: updated, latestLocked: updated } };
+      });
+      toast.success(`${key}: locked.`);
     },
     [artifacts]
   );
@@ -452,7 +478,19 @@ export function UniqueBusinessProvider({ children }: { children: ReactNode }) {
         .from("user_business_artifacts")
         .update({ is_locked: false })
         .eq("id", locked.id);
-      if (error) toast.error("Couldn't unlock — please retry.");
+      if (error) {
+        toast.error("Couldn't unlock — please retry.");
+        return;
+      }
+      // Same optimistic-update pattern as lockArtifact.
+      setArtifacts((prev) => {
+        const s = prev[key];
+        if (!s) return prev;
+        const updatedLatest = s.latest && s.latest.id === locked.id
+          ? { ...s.latest, is_locked: false }
+          : s.latest;
+        return { ...prev, [key]: { ...s, latest: updatedLatest, latestLocked: null } };
+      });
     },
     [artifacts]
   );
