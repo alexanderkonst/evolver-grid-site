@@ -27,6 +27,7 @@ import Destiny from "./pages/Destiny";
 import MensCircle from "./pages/MensCircle";
 import MensCircleThankYou from "./pages/MensCircleThankYou";
 import VentureDashboard from "./pages/VentureDashboard";
+import GameShellV2 from "./components/game/GameShellV2";
 import MorphogeneticHolomap from "./pages/MorphogeneticHolomap";
 import FoundersShowcase from "./pages/FoundersShowcase";
 import IgniteSession from "./pages/IgniteSession";
@@ -461,7 +462,7 @@ const App = () => (
                   {/* Community Pages */}
                   <Route path="/the-originals" element={<RequireAuth><TheOriginalsPage /></RequireAuth>} />
                   {/* Venture Dashboard */}
-                  <Route path="/dashboard" element={<VentureDashboard />} />
+                  <Route path="/dashboard" element={<GameShellV2><VentureDashboard /></GameShellV2>} />
                   <Route path="/holomap" element={<RequireAuth><MorphogeneticHolomap /></RequireAuth>} />
                   <Route path="/founders" element={<RequireAuth><FoundersShowcase /></RequireAuth>} />
                   {/* Day 47 very-late-night (Sasha): skin preview route.
