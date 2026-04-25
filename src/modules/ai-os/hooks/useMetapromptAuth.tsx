@@ -1,21 +1,16 @@
-import { useState, useEffect, useCallback, createContext, useContext, ReactNode } from "react";
+import { useState, useEffect, createContext, useContext, ReactNode } from "react";
 import { User, Session } from "@supabase/supabase-js";
 import { supabase } from "@/integrations/supabase/client";
 
-interface SubscriptionInfo {
-  subscribed: boolean;
-  plan_type: string | null;
-  period: string | null;
-  subscription_end: string | null;
-}
+// Auth context for AI OS — Holonic Commons model.
+// Subscription concept retired (Day 51, 2026-04-24): AI OS is free for everyone,
+// proximity to source (Aleksandr) is the paid layer through services, not SaaS tiers.
+// Auth still used for: profile, contributor identity, future contribution rights.
 
 interface AuthContextType {
   user: User | null;
   session: Session | null;
   loading: boolean;
-  subscription: SubscriptionInfo | null;
-  subscriptionLoading: boolean;
-  refreshSubscription: () => Promise<void>;
   signOut: () => Promise<void>;
 }
 
@@ -23,9 +18,6 @@ const AuthContext = createContext<AuthContextType>({
   user: null,
   session: null,
   loading: true,
-  subscription: null,
-  subscriptionLoading: false,
-  refreshSubscription: async () => {},
   signOut: async () => {},
 });
 
@@ -33,26 +25,6 @@ export const MetapromptAuthProvider = ({ children }: { children: ReactNode }) =>
   const [user, setUser] = useState<User | null>(null);
   const [session, setSession] = useState<Session | null>(null);
   const [loading, setLoading] = useState(true);
-  const [subscription, setSubscription] = useState<SubscriptionInfo | null>(null);
-  const [subscriptionLoading, setSubscriptionLoading] = useState(false);
-
-  const checkSubscription = useCallback(async () => {
-    if (!session) {
-      setSubscription(null);
-      return;
-    }
-    setSubscriptionLoading(true);
-    try {
-      const { data, error } = await supabase.functions.invoke("check-subscription");
-      if (error) throw error;
-      setSubscription(data as SubscriptionInfo);
-    } catch (e) {
-      console.error("Failed to check subscription:", e);
-      setSubscription(null);
-    } finally {
-      setSubscriptionLoading(false);
-    }
-  }, [session]);
 
   useEffect(() => {
     const { data: { subscription: authSub } } = supabase.auth.onAuthStateChange(
@@ -72,21 +44,12 @@ export const MetapromptAuthProvider = ({ children }: { children: ReactNode }) =>
     return () => authSub.unsubscribe();
   }, []);
 
-  // Check subscription when session changes
-  useEffect(() => {
-    if (session) {
-      checkSubscription();
-    } else {
-      setSubscription(null);
-    }
-  }, [session, checkSubscription]);
-
   const signOut = async () => {
     await supabase.auth.signOut();
   };
 
   return (
-    <AuthContext.Provider value={{ user, session, loading, subscription, subscriptionLoading, refreshSubscription: checkSubscription, signOut }}>
+    <AuthContext.Provider value={{ user, session, loading, signOut }}>
       {children}
     </AuthContext.Provider>
   );
