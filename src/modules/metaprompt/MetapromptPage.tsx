@@ -2584,10 +2584,13 @@ const MetapromptPage = () => {
                 }}>
                   Copy, paste, enjoy
                 </p>
-                <h1 
-                  className="font-display italic font-normal leading-[1.2] tracking-[-0.06em] pb-2"
-                  style={{ 
-                    fontSize: 'clamp(3rem, 8vw, 5rem)',
+                <h1
+                  // Day 50 (Sasha): tightened the hero clamp so the
+                  // wordmark never overruns narrow phones. Tracking also
+                  // snaps tighter on mobile to prevent italic-tail clip.
+                  className="font-display italic font-normal leading-[1.1] tracking-[-0.04em] sm:tracking-[-0.06em] pb-2 mx-auto w-fit max-w-full"
+                  style={{
+                    fontSize: 'clamp(2.4rem, 11vw, 5rem)',
                     background: 'linear-gradient(135deg, hsl(0 0% 100%) 0%, hsl(242 40% 90%) 50%, hsl(290 30% 88%) 100%)',
                     WebkitBackgroundClip: 'text',
                     WebkitTextFillColor: 'transparent',
