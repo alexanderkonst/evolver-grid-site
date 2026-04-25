@@ -33,10 +33,10 @@ export function ImproveButton({ artifactKey, disabled, className, size = "lg" }:
       size={size}
       className={cn(
         "group relative gap-2 font-medium",
-        // Day 51 (Sasha 2026-04-25): retired motion-safe:animate-pulse-slow —
-        // Tailwind's pulse oscillates opacity to 0.5, dragging button text
-        // into illegibility on light skins. If we want attention later, use
-        // a box-shadow pulse so text stays at full opacity.
+        // Day 51 (Sasha 2026-04-25 r2): explicit dark navy + white text to
+        // override Aurora skin's translucent-white primary that was making
+        // the button invisible (white-on-white). Now readable on any skin.
+        "bg-[#0b2641] text-white hover:bg-[#16385c] disabled:bg-[#0b2641]/40 disabled:text-white/60",
         className
       )}
       aria-busy={thisIsImproving}

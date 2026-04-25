@@ -175,6 +175,17 @@ const haloSubtle: React.CSSProperties = {
 
 const serif = { fontFamily: "'Cormorant Garamond', serif" } as React.CSSProperties;
 
+// Day 51 (Sasha 2026-04-25): Cormorant Garamond's "1" reads as "I" even
+// with `lnum` forced — its lining figures still keep the serif-1 ambiguity.
+// Numerals swapped to DM Sans (already loaded for body) with tabular-nums.
+// Editorial-dashboard convention: serif titles + clean sans-serif data.
+// "1" is unambiguously "1", digits sit at uniform width for column scan.
+const numerals: React.CSSProperties = {
+  fontFamily: "'DM Sans', system-ui, sans-serif",
+  fontVariantNumeric: "tabular-nums lining-nums",
+  fontFeatureSettings: '"tnum" 1, "lnum" 1',
+};
+
 // ─── Component ──────────────────────────────────────────────────────────────
 
 const VentureDashboard = () => {
@@ -241,7 +252,7 @@ const VentureDashboard = () => {
               <div
                 className="text-4xl md:text-5xl font-medium tracking-[-0.02em] mb-2 leading-none text-center"
                 style={{
-                  ...serif,
+                  ...numerals,
                   ...(kpi.gold ? {} : textPrimary),
                   ...(kpi.gold ? {} : haloSubtle),
                 }}
@@ -285,7 +296,7 @@ const VentureDashboard = () => {
         >
           {SECONDARY_STATS.map((s) => (
             <div key={s.label} className="flex items-center gap-2">
-              <span className="text-base font-medium" style={{ ...serif, ...textPrimary }}>{s.value}</span>
+              <span className="text-base font-medium" style={{ ...numerals, ...textPrimary }}>{s.value}</span>
               <span className="text-[10px] uppercase tracking-[0.18em]" style={textMuted}>{s.label}</span>
             </div>
           ))}
@@ -392,7 +403,7 @@ const VentureDashboard = () => {
             <div className="mt-5 pt-4" style={{ borderTop: "1px solid var(--skin-card-border, rgba(26,30,58,0.08))" }}>
               <div className="flex items-center justify-between mb-1">
                 <span className="text-[10px] uppercase tracking-[0.18em]" style={textMuted}>Total</span>
-                <span className="text-2xl font-medium" style={serif}>
+                <span className="text-2xl font-medium" style={numerals}>
                   <span className="bg-clip-text text-transparent" style={GOLD_TEXT_STYLE}>
                     {formatCurrency(totalAll)}
                   </span>

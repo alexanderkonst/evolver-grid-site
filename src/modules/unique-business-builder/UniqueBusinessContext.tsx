@@ -18,6 +18,7 @@ import React, {
 } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
+import { getOrCreateGameProfileId } from "@/lib/gameProfile";
 import type {
   ArtifactKey,
   ArtifactState,
@@ -169,17 +170,26 @@ export function UniqueBusinessProvider({ children }: { children: ReactNode }) {
       setUserId(uid);
       if (!uid) return;
 
-      // Load latest ZoG snapshot
-      const { data: zogRows } = await (supabase as any)
-        .from("zog_snapshots")
-        .select("*")
-        .eq("user_id", uid)
-        .order("created_at", { ascending: false })
-        .limit(1);
-      if (cancelled) return;
-      if (zogRows && zogRows[0]) {
-        setZogSnapshot(zogRows[0]);
-        setExcaliburData(zogRows[0].excalibur_data ?? null);
+      // Load latest ZoG snapshot — Day 51 (Sasha 2026-04-25): the schema
+      // uses profile_id (FK to game_profiles), not user_id. Resolve the
+      // game_profile first, then query zog_snapshots by profile_id.
+      // Was: .eq("user_id", uid) → 400 Bad Request, root context empty.
+      try {
+        const profileId = await getOrCreateGameProfileId();
+        if (cancelled) return;
+        const { data: zogRows } = await (supabase as any)
+          .from("zog_snapshots")
+          .select("*")
+          .eq("profile_id", profileId)
+          .order("created_at", { ascending: false })
+          .limit(1);
+        if (cancelled) return;
+        if (zogRows && zogRows[0]) {
+          setZogSnapshot(zogRows[0]);
+          setExcaliburData(zogRows[0].excalibur_data ?? null);
+        }
+      } catch (e) {
+        console.warn("[UBB] zog_snapshot load failed (non-fatal):", e);
       }
 
       // Load all artifact rows for this user (v2.0 keys only)
