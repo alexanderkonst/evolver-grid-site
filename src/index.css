@@ -168,7 +168,11 @@
      deep-sea blue. "Navy is a good basic." */
   --skin-panel-1-bg: rgba(16, 42, 96, 0.88);   /* Pane 1 — classic navy rail */
   --skin-panel-2-bg: rgba(26, 58, 128, 0.46);  /* Pane 2 — lit navy overlay */
-  --skin-panel-wash: rgba(255, 255, 255, 0.68); /* Pane 3 — luminous content */
+  /* Day 51 (Sasha 2026-04-25): wash dropped 0.68 → 0.10 so the animated
+     bg video reads in near-full saturation (mockup pixel match). Hero
+     text contrasts on its own through serif weight + dark color, doesn't
+     need a heavy white veil to be legible. */
+  --skin-panel-wash: rgba(255, 255, 255, 0.10); /* Pane 3 — luminous content */
 
   /* ── Ornament (hero divider) ── */
   --skin-ornament-rule:  rgba(26, 30, 58, 0.25);
@@ -283,7 +287,9 @@
      deeper than Aurora's navy so the register still reads ceremonial. */
   --skin-panel-1-bg:   rgba(10, 30, 78, 0.92);   /* Pane 1 — deep navy */
   --skin-panel-2-bg:   rgba(18, 46, 110, 0.58);  /* Pane 2 — lit navy */
-  --skin-panel-wash:   rgba(10, 22, 40, 0.28);   /* Pane 3 — lightest */
+  /* Day 51 (Sasha 2026-04-25): wash lowered to match Aurora — animated
+     bg video reads vivid on both skins. */
+  --skin-panel-wash:   rgba(10, 22, 40, 0.10);   /* Pane 3 — lightest */
 
   /* Ornament — pure gold, stronger glow */
   --skin-ornament-rule:  rgba(212, 175, 55, 0.4);
