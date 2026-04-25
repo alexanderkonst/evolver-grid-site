@@ -187,51 +187,18 @@ interface SectionsPanelProps {
  * trio. Still reachable via its URL for users who want it.
  * Deeper progressive "Step N: ..." list also stays retired.
  */
-const HIDE_CODEX_RAIL_ROUTES = new Set(["/", "/zone-of-genius", "/path", "/playbook"]);
-
-const buildJourneySections = (currentPath: string): Section[] => {
-    const base: Section[] = [
-        {
-            id: "journey-start-here",
-            label: "1. Start",
-            path: "/",
-        },
-        {
-            id: "journey-the-playbook",
-            label: "2. Playbook",
-            path: "/playbook",
-        },
-        {
-            id: "journey-the-path",
-            label: "3. Path",
-            path: "/path",
-        },
-        // Day 50 (Sasha): the Venture Dashboard is a permanent 4th rail
-        // item — built-in-public surface, always discoverable from any
-        // Journey-family page.
-        {
-            id: "journey-dashboard",
-            label: "4. Dashboard",
-            path: "/dashboard",
-        },
+const buildJourneySections = (_currentPath: string): Section[] => {
+    // Day 50 late (Sasha): five permanent rail items, no hide gating.
+    // The rail is the same on every Journey-family page — including
+    // the landing — so nothing appears/disappears as the user navigates.
+    // Order: Start · Playbook · Path · Codex · Dashboard.
+    return [
+        { id: "journey-start-here",   label: "1. Start",     path: "/" },
+        { id: "journey-the-playbook", label: "2. Playbook",  path: "/playbook" },
+        { id: "journey-the-path",     label: "3. Path",      path: "/path" },
+        { id: "journey-codex",        label: "4. Codex",     path: "/codex" },
+        { id: "journey-dashboard",    label: "5. Dashboard", path: "/dashboard" },
     ];
-
-    // Day 49 (Sasha): the Codex (signature meta-prompt library) is a
-    // rail item, but only surfaces when the user is OFF the
-    // landing/journey routes. Keeps the funnel pages clean while still
-    // discoverable from anywhere else.
-    // Day 50: Dashboard takes slot 4; Codex bumps to 5 (renamed from
-    // "Prompt" so one word carries both the page name and the rail).
-    const normalized = currentPath.split(/[?#]/)[0].replace(/\/$/, "") || "/";
-    if (!HIDE_CODEX_RAIL_ROUTES.has(normalized) && !normalized.startsWith("/playbook/")) {
-        base.push({
-            id: "journey-codex",
-            label: "5. Codex",
-            path: "/codex",
-        });
-    }
-
-    return base;
 };
 
 const SectionsPanel = ({
