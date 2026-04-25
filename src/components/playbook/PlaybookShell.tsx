@@ -189,6 +189,40 @@ const PlaybookShell = ({
 
       {/* ═══════ STEP CONTENT ═══════ */}
       <div className="mt-4">{children}</div>
+
+      {/* Day 51 (Sasha 2026-04-25): quiet "this is open" footer.
+          The playbook itself is the methodology; the codebase running it
+          is forkable. Forks of the entire system are the actual goal of
+          the Integration Layer Manifesto. Subtle by design — utility,
+          not promotion. */}
+      <div
+        className="mt-12 pt-6 text-center"
+        style={{
+          borderTop: "1px solid var(--skin-rule-soft, rgba(26,30,58,0.1))",
+        }}
+      >
+        <p
+          className="text-xs leading-relaxed"
+          style={{ color: "var(--skin-text-muted-soft, rgba(26,30,58,0.55))" }}
+        >
+          The full method is open. The platform running it is open too.
+        </p>
+        <a
+          href="https://github.com/alexanderkonst/evolver-grid-site"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-1.5 mt-2 text-xs underline-offset-4 hover:underline transition-colors"
+          style={{
+            fontFamily: "'Cormorant Garamond', serif",
+            fontWeight: 600,
+            fontSize: "0.78rem",
+            letterSpacing: "0.06em",
+            color: "var(--skin-link-secondary, rgba(26,30,58,0.75))",
+          }}
+        >
+          Fork it on GitHub →
+        </a>
+      </div>
     </div>
   );
 };

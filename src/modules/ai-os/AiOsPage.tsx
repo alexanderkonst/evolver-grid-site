@@ -3082,7 +3082,19 @@ const AiOsPage = () => {
                     rel="noopener noreferrer"
                     className="underline underline-offset-2 transition-colors hover:opacity-80"
                   >
-                    CC BY-NC-SA 4.0
+                    docs CC BY-NC-SA 4.0
+                  </a>
+                  {' '} · {' '}
+                  {/* Day 51 (Sasha 2026-04-25): code is forkable. Quiet
+                      link to the repo so anyone reading codex can take
+                      the whole apparatus, not just the prompts. */}
+                  <a
+                    href="https://github.com/alexanderkonst/evolver-grid-site"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="underline underline-offset-2 transition-colors hover:opacity-80"
+                  >
+                    code AGPL-3.0 (fork on GitHub)
                   </a>
                 </p>
                 <button

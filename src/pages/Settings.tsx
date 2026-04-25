@@ -322,6 +322,40 @@ const Settings = () => {
                             <AppearanceTab />
                         </TabsContent>
                     </Tabs>
+
+                    {/* Day 51 (Sasha 2026-04-25): quiet meta-footer pointing at
+                        the open-source repo. Lives at the bottom of Settings
+                        because it's utility / transparency, not a primary
+                        action. Confirms the platform is forkable per the
+                        Integration Layer Manifesto — walks the talk. */}
+                    <div
+                        className="mt-12 pt-6 text-center"
+                        style={{
+                            borderTop: "1px solid var(--skin-rule-soft, rgba(26,30,58,0.1))",
+                        }}
+                    >
+                        <p
+                            className="text-xs leading-relaxed"
+                            style={{ color: "var(--skin-text-muted-soft, rgba(26,30,58,0.55))" }}
+                        >
+                            This platform is open-source. Fork it for yourself or your community.
+                        </p>
+                        <a
+                            href="https://github.com/alexanderkonst/evolver-grid-site"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1.5 mt-2 text-xs underline-offset-4 hover:underline transition-colors"
+                            style={{
+                                fontFamily: "'Cormorant Garamond', serif",
+                                fontWeight: 600,
+                                fontSize: "0.78rem",
+                                letterSpacing: "0.06em",
+                                color: "var(--skin-link-secondary, rgba(26,30,58,0.75))",
+                            }}
+                        >
+                            Source on GitHub →
+                        </a>
+                    </div>
                 </div>
             </div>
         </GameShellV2>
