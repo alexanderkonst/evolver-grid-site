@@ -167,12 +167,12 @@
      not want. Shifted to clean navy (hue ≈ 220°) — no purple pull, just
      deep-sea blue. "Navy is a good basic." */
   --skin-panel-1-bg: rgba(16, 42, 96, 0.88);   /* Pane 1 — classic navy rail */
-  /* Day 51 (Sasha 2026-04-25): pane 2 bumped 0.46 → 0.92 so the rail
-     stays solid navy on every route. Old translucent value let the
-     cream `--skin-panel-wash-quiet` bleed through on /playbook + /path
-     and washed pane 2 to beige. Lighter RGB preserved so pane 2 still
-     reads a hair lifted from pane 1 — three-tier hierarchy intact. */
-  --skin-panel-2-bg: rgba(26, 58, 128, 0.92);  /* Pane 2 — solid lit navy */
+  /* Day 51 (Sasha 2026-04-25): pane 2 fully opaque so backdrop never
+     bleeds through. Earlier 0.92 still let the dark /ai-os video tint
+     pane 2 a shade darker than on /playbook /path (which sit on cream
+     wash). Now identical on every route. Lighter RGB preserved so
+     pane 2 reads a hair lifted from pane 1. */
+  --skin-panel-2-bg: rgb(26, 58, 128);         /* Pane 2 — solid lit navy */
   /* Day 51 (Sasha 2026-04-25): wash dropped 0.68 → 0.10 so the animated
      bg video reads in near-full saturation (mockup pixel match). Hero
      text contrasts on its own through serif weight + dark color, doesn't
@@ -306,9 +306,9 @@
      indigo-leaning "midnight" to clean navy at hue ≈ 220°. Slightly
      deeper than Aurora's navy so the register still reads ceremonial. */
   --skin-panel-1-bg:   rgba(10, 30, 78, 0.92);   /* Pane 1 — deep navy */
-  /* Day 51 (Sasha 2026-04-25): pane 2 bumped 0.58 → 0.94 — same fix
-     as Aurora. Solid lit navy regardless of pane 3 wash behind. */
-  --skin-panel-2-bg:   rgba(18, 46, 110, 0.94);  /* Pane 2 — solid lit navy */
+  /* Day 51 (Sasha 2026-04-25): pane 2 fully opaque — same fix as Aurora.
+     Solid lit navy regardless of pane 3 wash or page-owned video bg. */
+  --skin-panel-2-bg:   rgb(18, 46, 110);         /* Pane 2 — solid lit navy */
   /* Day 51 (Sasha 2026-04-25): wash lowered to match Aurora — animated
      bg video reads vivid on both skins. */
   --skin-panel-wash:   rgba(10, 22, 40, 0.10);   /* Pane 3 — lightest */
