@@ -23,6 +23,11 @@ import Library from "./pages/Library";
 import ModuleDetail from "./pages/ModuleDetail";
 import ModuleLandingPage from "./pages/ModuleLandingPage";
 import AIUpgrade from "./pages/AIUpgrade";
+// Activations — educational apps in the Planetary OS (Day 51, Sasha 2026-04-25).
+// Public marketing routes. Per-activation Stripe Payment Link → /activations/<slug>/access.
+import ActivationsIndex from "./pages/activations/ActivationsIndex";
+import ActivationLandingPage from "./pages/activations/ActivationLandingPage";
+import ActivationAccessPage from "./pages/activations/ActivationAccessPage";
 import Destiny from "./pages/Destiny";
 import MensCircle from "./pages/MensCircle";
 import MensCircleThankYou from "./pages/MensCircleThankYou";
@@ -253,6 +258,14 @@ const App = () => (
                   <Route path="/prompt/auth" element={<Navigate to="/ai-os/auth" replace />} />
                   <Route path="/prompt/pricing" element={<Navigate to="/ai-os/pricing" replace />} />
                   <Route path="/prompt/profile" element={<Navigate to="/ai-os/profile" replace />} />
+
+                  {/* Activations — public marketing routes (Day 51, Sasha 2026-04-25).
+                      /activations              → index (live entries from src/data/activations.ts)
+                      /activations/<slug>       → per-workshop landing + Stripe checkout
+                      /activations/<slug>/access → post-purchase YouTube access page */}
+                  <Route path="/activations" element={<ActivationsIndex />} />
+                  <Route path="/activations/:slug" element={<ActivationLandingPage />} />
+                  <Route path="/activations/:slug/access" element={<ActivationAccessPage />} />
 
                   {/* ══════ PROTECTED ROUTES (login required) ══════ */}
                   {/* Day 47 (Sasha): /ignite is now public — the ZoG result CTA lands
