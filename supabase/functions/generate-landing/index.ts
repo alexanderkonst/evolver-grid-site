@@ -96,7 +96,7 @@ Make it specific enough that they can repeat your offer to a friend after one re
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                model: "openai/gpt-5.2",
+                model: "google/gemini-2.5-flash-lite",
                 messages: [
                     { role: "system", content: GENERATE_LANDING_PROMPT },
                     { role: "user", content: `Generate landing page copy:\n\n${context}` }

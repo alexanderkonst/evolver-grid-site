@@ -49,7 +49,7 @@ serve(async (req) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        model: "openai/gpt-5.2",
+        model: "google/gemini-2.5-flash-lite",
         messages: [
           { role: "system", content: "You are a helpful guide for spiritual and wellness practices." },
           { role: "user", content: prompt }

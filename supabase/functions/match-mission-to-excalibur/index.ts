@@ -103,7 +103,7 @@ Return ONLY the JSON array. No explanation.`;
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                model: "openai/gpt-5.2",
+                model: "google/gemini-2.5-flash-lite",
                 messages: [
                     {
                         role: "system",
