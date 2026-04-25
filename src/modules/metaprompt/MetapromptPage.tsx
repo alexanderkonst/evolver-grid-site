@@ -2397,6 +2397,12 @@ const MetapromptPage = () => {
   const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
   const [customValues, setCustomValues] = useState<Record<string, Record<string, string>>>({});
   const [expandedPrompt, setExpandedPrompt] = useState<string | null>(null);
+  // Day 50 (Sasha): per-suite "manual gearbox" toggle. The signature
+  // meta-prompt (isRec) is the automatic — one paste, the whole suite.
+  // Everything else is a sub-module you can mix-and-match by hand; we
+  // keep those collapsed behind one button so they don't visually
+  // compete with the signature transmission above.
+  const [expandedSubmodules, setExpandedSubmodules] = useState<Record<string, boolean>>({});
   const { user } = useMetapromptAuth();
   const navigate = useNavigate();
 
@@ -2560,7 +2566,7 @@ const MetapromptPage = () => {
                     second emblem above the hero wordmark was a duplicate.
                     Profile button stays, pinned top-right. */}
                 <button
-                  onClick={() => navigate(user ? "/prompt/profile" : "/prompt/auth")}
+                  onClick={() => navigate(user ? "/codex/profile" : "/codex/auth")}
                   className="absolute right-0 top-6 sm:top-10 p-2.5 rounded-full transition-all duration-300 hover:scale-110"
                   style={{
                     background: 'hsl(0 0% 100% / 0.08)',
@@ -2589,7 +2595,7 @@ const MetapromptPage = () => {
                     filter: 'drop-shadow(0 0 60px rgba(132,96,234,0.6)) drop-shadow(0 0 120px rgba(132,96,234,0.35)) drop-shadow(0 0 200px rgba(180,140,255,0.2))',
                   }}
                 >
-                  /<span className="font-bold" style={{ fontStyle: 'italic' }}>meta</span>prompts
+                  /<span className="font-bold" style={{ fontStyle: 'italic' }}>co</span>dex
                 </h1>
                 <p className="text-base sm:text-lg font-normal leading-relaxed max-w-lg mx-auto" style={{ 
                   color: 'hsl(0 0% 100% / 0.95)',
@@ -2619,7 +2625,7 @@ const MetapromptPage = () => {
                     <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />
                   </a>
                   <button
-                    onClick={() => navigate("/prompt/pricing")}
+                    onClick={() => navigate("/codex/pricing")}
                     className="inline-flex items-center gap-2 text-xs font-medium tracking-wide px-5 py-2.5 rounded-full transition-all duration-300 hover:scale-105 group"
                     style={{ 
                       background: 'hsla(290, 30%, 70%, 0.15)',
@@ -2732,25 +2738,23 @@ const MetapromptPage = () => {
             </nav>
           </RevealSection>
 
-          {/* Prompt sections — unified view */}
-          <section className="space-y-16" aria-label="Available prompts">
+          {/* Prompt sections — unified view.
+              Day 50 (Sasha) gearbox metaphor:
+                • Signature prompts (isRec + premium) ship above the fold
+                  of each suite as the AUTOMATIC — one paste, full transmission.
+                • Standalone sub-modules sit UNDER a single "See sub-modules"
+                  toggle — the MANUAL — for users who want to mix and match. */}
+          <section className="space-y-16" aria-label="Available suites">
             {groupedPrompts.map((group) => {
               const headerColor = tocColors[group.category] || '#a4a3d0';
-              return (
-              <RevealSection key={group.category}>
-                <div id={`section-${group.category}`} className={`space-y-4 scroll-mt-8 rounded-3xl p-6 sm:p-8 section-gradient-${group.category}`}>
-                  <div className="mb-8">
-                    <p className="text-[10px] font-semibold tracking-[0.3em] uppercase mb-2" style={{ color: `${headerColor}90` }}>Section</p>
-                    <h2 className="font-display italic text-xl sm:text-2xl font-semibold tracking-[-0.02em]"
-                      style={{ color: headerColor, textShadow: `0 0 20px ${headerColor}50, 0 0 40px ${headerColor}25, 0 2px 8px rgba(0,0,0,0.6)`, filter: `drop-shadow(0 0 12px ${headerColor}30)` }}
-                    >{group.label}</h2>
-                    <div className="mt-3 flex items-center gap-1">
-                      {Array.from({ length: 12 }).map((_, i) => (<div key={i} className="rounded-full" style={{ width: '3px', height: '3px', background: headerColor, opacity: 0.5 - (i * 0.04) }} />))}
-                      <div className="flex-1 h-px" style={{ background: `linear-gradient(90deg, ${headerColor}15, transparent)` }} />
-                    </div>
-                  </div>
-
-                  {group.prompts.map((prompt, cardIndex) => {
+              const signaturePrompts = group.prompts.filter(
+                (p) => p.isRecommended === true || p.locked === true
+              );
+              const subModulePrompts = group.prompts.filter(
+                (p) => !p.isRecommended && !p.locked
+              );
+              const isSubOpen = !!expandedSubmodules[group.category];
+              const renderPrompt = (prompt: typeof group.prompts[0], cardIndex: number) => {
                     const isMeta = group.category === "meta";
                     const isCopied = copiedId === prompt.id;
                     const isLocked = prompt.locked === true && !isPremium;
@@ -2775,12 +2779,12 @@ const MetapromptPage = () => {
                             <div className="mb-3">
                               <span className="text-[10px] font-semibold tracking-[0.2em] uppercase px-3 py-1 rounded-full"
                                 style={{ background: 'linear-gradient(135deg, hsl(45 90% 55% / 0.2), hsl(45 85% 50% / 0.1))', color: 'hsl(45 90% 70%)', border: '1px solid hsl(45 90% 55% / 0.2)', textShadow: '0 0 8px hsl(45 90% 55% / 0.4)' }}
-                              >⚡ Recommended — one paste, complete suite</span>
+                              >⚡ Signature · Automatic — one paste, full suite</span>
                             </div>
                           )}
                           <button
                             onClick={() => {
-                              if (isLocked) { navigate('/prompt/pricing'); return; }
+                              if (isLocked) { navigate('/codex/pricing'); return; }
                               if (hasCustomFields) { setExpandedPrompt(isExpanded ? null : prompt.id); }
                               else { handleCopy(prompt); }
                             }}
@@ -2863,10 +2867,97 @@ const MetapromptPage = () => {
                         </div>
                       </RevealSection>
                     );
-                  })}
-                </div>
-              </RevealSection>
-              );
+                  };
+
+                  return (
+                    <RevealSection key={group.category}>
+                      <div
+                        id={`section-${group.category}`}
+                        className={`space-y-4 scroll-mt-8 rounded-3xl p-6 sm:p-8 section-gradient-${group.category}`}
+                      >
+                        {/* Suite header */}
+                        <div className="mb-8">
+                          <p className="text-[10px] font-semibold tracking-[0.3em] uppercase mb-2" style={{ color: `${headerColor}90` }}>Suite</p>
+                          <h2
+                            className="font-display italic text-xl sm:text-2xl font-semibold tracking-[-0.02em]"
+                            style={{ color: headerColor, textShadow: `0 0 20px ${headerColor}50, 0 0 40px ${headerColor}25, 0 2px 8px rgba(0,0,0,0.6)`, filter: `drop-shadow(0 0 12px ${headerColor}30)` }}
+                          >{group.label}</h2>
+                          <div className="mt-3 flex items-center gap-1">
+                            {Array.from({ length: 12 }).map((_, i) => (<div key={i} className="rounded-full" style={{ width: '3px', height: '3px', background: headerColor, opacity: 0.5 - (i * 0.04) }} />))}
+                            <div className="flex-1 h-px" style={{ background: `linear-gradient(90deg, ${headerColor}15, transparent)` }} />
+                          </div>
+                        </div>
+
+                        {/* Automatic gearbox — signature meta-prompt(s) */}
+                        {signaturePrompts.map((prompt, i) => renderPrompt(prompt, i))}
+
+                        {/* Manual gearbox — single toggle, reveals sub-modules */}
+                        {subModulePrompts.length > 0 && (
+                          <div className="pt-3">
+                            <button
+                              onClick={() =>
+                                setExpandedSubmodules((prev) => ({
+                                  ...prev,
+                                  [group.category]: !prev[group.category],
+                                }))
+                              }
+                              aria-expanded={isSubOpen}
+                              aria-controls={`submodules-${group.category}`}
+                              className="group w-full flex items-center justify-between gap-3 px-5 py-3.5 rounded-2xl transition-all duration-300 hover:-translate-y-0.5"
+                              style={{
+                                background: `linear-gradient(135deg, ${headerColor}12, ${headerColor}04)`,
+                                border: `1px solid ${headerColor}30`,
+                                boxShadow: `0 0 0 1px ${headerColor}08, 0 8px 20px -12px ${headerColor}40`,
+                                color: headerColor,
+                              }}
+                            >
+                              <span className="flex items-center gap-3 text-left">
+                                <span
+                                  className="text-[10px] font-semibold tracking-[0.22em] uppercase px-2 py-0.5 rounded-full"
+                                  style={{
+                                    background: `${headerColor}18`,
+                                    border: `1px solid ${headerColor}35`,
+                                    color: headerColor,
+                                  }}
+                                >
+                                  Manual
+                                </span>
+                                <span className="flex flex-col">
+                                  <span className="text-sm font-medium" style={{ textShadow: `0 0 10px ${headerColor}60` }}>
+                                    {isSubOpen ? 'Hide sub-modules' : 'See sub-modules'}
+                                  </span>
+                                  <span className="text-[11px] font-light italic opacity-70">
+                                    {subModulePrompts.length} individual module{subModulePrompts.length === 1 ? '' : 's'} — mix &amp; match
+                                  </span>
+                                </span>
+                              </span>
+                              <span
+                                className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-transform duration-300"
+                                style={{
+                                  background: `${headerColor}14`,
+                                  border: `1px solid ${headerColor}30`,
+                                  transform: isSubOpen ? 'rotate(180deg)' : 'rotate(0deg)',
+                                }}
+                              >
+                                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                                  <path d="M4 6L8 10L12 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                                </svg>
+                              </span>
+                            </button>
+
+                            {isSubOpen && (
+                              <div
+                                id={`submodules-${group.category}`}
+                                className="mt-3 space-y-4"
+                              >
+                                {subModulePrompts.map((prompt, i) => renderPrompt(prompt, i))}
+                              </div>
+                            )}
+                          </div>
+                        )}
+                      </div>
+                    </RevealSection>
+                  );
             })}
           </section>
 
@@ -2904,7 +2995,7 @@ const MetapromptPage = () => {
           <RevealSection>
             <footer className="text-center space-y-5 pt-10" style={{ borderTop: '1px solid hsl(0 0% 100% / 0.05)' }}>
               <button
-                onClick={() => navigate("/prompt/pricing")}
+                onClick={() => navigate("/codex/pricing")}
                 className="inline-flex items-center gap-3 text-sm font-medium px-6 py-3 rounded-full liquid-glass transition-all duration-300 hover:scale-105 group"
                 style={{ color: 'hsl(242 40% 80%)' }}
               >

@@ -18,7 +18,7 @@ const Profile = () => {
 
   useEffect(() => {
     if (!authLoading && !user) {
-      navigate("/prompt/auth");
+      navigate("/codex/auth");
       return;
     }
     if (user) {
@@ -60,7 +60,7 @@ const Profile = () => {
 
   const handleSignOut = async () => {
     await signOut();
-    navigate("/prompt");
+    navigate("/codex");
   };
 
   if (authLoading) return null;
@@ -80,7 +80,7 @@ const Profile = () => {
           }}
         >
           <div className="flex items-center justify-between mb-6">
-            <button onClick={() => navigate("/prompt")} className="text-muted-foreground hover:text-foreground transition-colors">
+            <button onClick={() => navigate("/codex")} className="text-muted-foreground hover:text-foreground transition-colors">
               <ArrowLeft className="w-5 h-5" />
             </button>
             <h1 className="text-xl font-light tracking-tight text-foreground">Profile</h1>

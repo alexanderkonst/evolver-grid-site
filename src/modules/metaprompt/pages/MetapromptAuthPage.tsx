@@ -19,7 +19,7 @@ const Auth = () => {
   const { user } = useAuth();
 
   useEffect(() => {
-    if (user) navigate("/prompt");
+    if (user) navigate("/codex");
   }, [user, navigate]);
 
   const handleSubmit = async (e: React.FormEvent) => {
