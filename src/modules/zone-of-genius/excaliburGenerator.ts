@@ -245,12 +245,48 @@ export interface ExcaliburData {
 }
 
 // ---------------------------------------------------------------------------
-// FULL PROMPT CONSTRUCTOR
+// UNIQUE OFFER DEFINITION (paradigm-level)
+// V2 (2026-04-24): primes the model on what "Unique Offer / Sacred Sword"
+// actually means — not a productized service menu, not a generic coaching
+// package, but the ONE blade that emerges from the person's genius and
+// creates disproportionate transformation. Without this layer, models
+// default to generic niche-finder logic.
 // ---------------------------------------------------------------------------
 
-export const buildExcaliburPrompt = (appleseed: AppleseedData): string => {
-  // Extract key info from Appleseed
-  const appleseedSummary = `
+export const UNIQUE_OFFER_DEFINITION = `
+UNIQUE OFFER — PARADIGM-LEVEL DEFINITION:
+
+When we generate an Excalibur, we are NOT articulating:
+- A productized service menu
+- A generic coaching package
+- A templated offer based on niche-finder logic
+- A "value ladder" of upsells
+
+We ARE articulating: the ONE sword that emerges from this person's Zone of Genius — the irreducible offering that only THEY can deliver, that creates disproportionate transformation for a specific kind of human in a specific moment of their life.
+
+The Sword has these qualities:
+  • ABSURDLY SIMPLE — one offer, one audience, one transformation
+  • SACRED — it cuts at the level of truth, not decoration
+  • INEVITABLE — the right person reading the offer says "this is mine. I've been waiting for this."
+  • COMPLETE — the offer plus the bigger arc plus the soul-architecture all fit on one page
+
+It is not a list of services. It is the ONE blade.
+Not the menu. Not the bundle. Not the "what I help with."
+The sword that, when wielded, cuts survival fog and lands clients in immediate aha.
+
+Articulate THIS sword.
+The Excalibur is the precise blueprint of THAT sword — who it cuts for, how it cuts, what transformation it delivers, and how it bridges into the larger venture this person is building.
+
+Every field in the JSON output should serve this paradigm.
+`;
+
+// ---------------------------------------------------------------------------
+// FULL PROMPT CONSTRUCTOR — versioned. Active version exported as
+// buildExcaliburPrompt. Prior versions kept for rollback, A/B testing,
+// and signal-evolution audit.
+// ---------------------------------------------------------------------------
+
+const buildExcaliburAppleseedSummary = (appleseed: AppleseedData): string => `
 APPLESEED (Zone of Genius):
 - Vibrational Key: ${appleseed.vibrationalKey.name}
 - Tagline: "${appleseed.vibrationalKey.tagline}"
@@ -261,6 +297,9 @@ APPLESEED (Zone of Genius):
 - Appreciated For: ${appleseed.appreciatedFor.map(a => a.effect).join(', ')}
 - Monetization Avenues: ${appleseed.monetizationAvenues.join(', ')}
 `;
+
+export const buildExcaliburPromptV1 = (appleseed: AppleseedData): string => {
+  const appleseedSummary = buildExcaliburAppleseedSummary(appleseed);
 
   return `You are an Excalibur Generator — a system that transforms Zone of Genius (Appleseed) into a Unique Genius Offering.
 
@@ -286,6 +325,39 @@ ${EXCALIBUR_OUTPUT_FORMAT}
 
 Return ONLY the JSON object. No explanation. No preamble.`;
 };
+
+export const buildExcaliburPromptV2 = (appleseed: AppleseedData): string => {
+  const appleseedSummary = buildExcaliburAppleseedSummary(appleseed);
+
+  return `You are an Excalibur Generator — a system that transforms Zone of Genius (Appleseed) into a Unique Genius Offering.
+
+${UNIQUE_OFFER_DEFINITION}
+
+${EXCALIBUR_PHILOSOPHY}
+
+${LAYERS_OF_MONETIZATION}
+
+${EXCALIBUR_TEMPLATE}
+
+${EXCALIBUR_EXAMPLES}
+
+${EXCALIBUR_ROASTING}
+
+---
+
+Now, generate an Excalibur for this person based on their Appleseed:
+
+${appleseedSummary}
+
+---
+
+${EXCALIBUR_OUTPUT_FORMAT}
+
+Return ONLY the JSON object. No explanation. No preamble.`;
+};
+
+// Active version
+export const buildExcaliburPrompt = buildExcaliburPromptV2;
 
 // ---------------------------------------------------------------------------
 // GENERATION FUNCTION (Placeholder for Lovable AI integration)

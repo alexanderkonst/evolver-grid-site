@@ -4,6 +4,8 @@ import { useZoneOfGenius } from "./ZoneOfGeniusContext";
 import { TALENTS } from "./talents";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
+import { generateAppleseed } from "./appleseedGenerator";
+import { buildZogSnapshotPrompt } from "./zogSnapshotPrompt";
 import { Download, ArrowLeft, ArrowRight, Mail, Share2 } from "lucide-react";
 import { PremiumLoader } from "@/components/ui/PremiumLoader";
 import html2canvas from "html2canvas";
@@ -178,6 +180,39 @@ const Step4GenerateSnapshot = () => {
         throw snapshotError;
       }
 
+      // Wire fix (2026-04-24): pass guided-lane result through the appleseed
+      // pipeline so this lane also produces full AppleseedData (12-perspective
+      // JSON), not just plain-text snapshot. Runs in background, non-blocking
+      // — UI flow continues unchanged. Same row is updated when appleseed
+      // completes. This closes the parity gap with the AI lane.
+      const guidedRawSignal = `TOP TALENT — GUIDED ASSESSMENT (talent-selection lane)
+
+The user completed a structured assessment, selecting their Top 10 talents from a curated bank, then ordering their Top 3.
+
+TOP 10 TALENTS SELECTED:
+${JSON.stringify(top10Talents.map(t => ({ name: t.name, description: t.description })), null, 2)}
+
+TOP 3 CORE TALENTS (in order, 1 = strongest):
+${JSON.stringify(top3Talents.map(t => ({ name: t.name, description: t.description })), null, 2)}
+
+FIRST-PASS SNAPSHOT (already synthesized from the talent selection):
+${snapshotText}`;
+
+      void generateAppleseed(guidedRawSignal)
+        .then(async (appleseedData) => {
+          await supabase
+            .from('zog_snapshots')
+            .update({
+              appleseed_data: appleseedData,
+              appleseed_generated_at: new Date().toISOString(),
+              ai_response_raw: guidedRawSignal,
+            })
+            .eq('id', snapshotData.id);
+        })
+        .catch((err) => {
+          console.warn("[Step4] Guided-lane appleseed processing failed (non-fatal):", err);
+        });
+
       if (!snapshotData.xp_awarded) {
         const { data: profileData } = await supabase
           .from('game_profiles')
@@ -258,63 +293,6 @@ const Step4GenerateSnapshot = () => {
       top3OrderedTalents: top3List
     });
   };
-
-  function buildZogSnapshotPrompt(payload: {
-    top10Talents: { id: number; name: string; description: string; }[];
-    top3OrderedTalents: { id: number; name: string; description: string; }[];
-  }): string {
-    return `You are helping a person integrate their Top Talent.
-They have just completed an assessment where they selected their Top 10 talents and Top 3 core talents.
-Use the information below to generate a short, premium, highly practical snapshot of their pattern.
-
-INPUT:
-Top 10 talents:
-${JSON.stringify(payload.top10Talents, null, 2)}
-
-Top 3 core talents in order (1 = strongest / most used):
-${JSON.stringify(payload.top3OrderedTalents, null, 2)}
-
-OUTPUT:
-Write plain text (no markdown headings) with the following clearly labeled sections, in this exact order:
-
-Archetype Title:
-– 1 short phrase that names their Top Talent archetype. It should be 6 words or fewer, easy to say out loud, and feel like a character name (e.g., 'Ethical Architect of Systems').
-
-Your Top Talent Description (3–4 rich sentences):
-– What this genius naturally seeks or does when active.
-– How it shows up when they are at their best.
-– The unique value they bring to environments.
-– Make this feel like a fuller character description, not just a summary.
-
-Superpowers in Action (3 bullets max):
-– Each bullet 1 sentence.
-– Describe concrete ways this pattern shows up in daily life and work when they are at their best.
-
-Your Edge (3 bullets max):
-– This is their supershadow — the flip side of their gift where growth happens.
-– Each bullet 1 sentence.
-– Be direct, piercing, uncomfortable but true. Name the most common ways they overuse, distort, or sabotage this pattern.
-– Make it cut deeper than generic warnings. This should feel like an honest mirror.
-
-Where This Genius Thrives (exactly 6 bullets):
-– Each bullet 1 sentence.
-– Describe roles, environments, types of work, collaboration styles, and impact areas where this pattern tends to shine.
-– Mix specificity: include role types, cultural fit, ideal collaborators, and contribution directions.
-
-Mastery Action:
-– Answer this question: "Knowing my Top Talent and all you know about me, what's one action that if repeated again and again, successfully leads me to being more masterful each time this action is performed?"
-– Write exactly 1 sentence, max 25 words.
-– Be specific, concrete, and actionable. This should be a repeatable practice, not a vague aspiration.
-– Example: "Spend 15 minutes daily sketching system diagrams that connect disparate ideas into unified frameworks."
-
-GENERAL STYLE RULES:
-– Use clear, simple language a smart 15-year-old could understand.
-– No paragraphs longer than 2 sentences in the description section.
-– No more than 20 words per sentence.
-– Speak directly to 'you'.
-– Avoid generic self-help clichés. Make it feel tailored, precise, and surprising.
-– For Your Edge: be honest and sharp, but not cruel. Frame as "working skillfully with your own pattern."`.trim();
-  }
 
   function parseSnapshotSections(text: string) {
     const sections: Record<string, string> = {};
