@@ -344,12 +344,12 @@ const SectionsPanel = ({
                in favor of a vertical gradient "spine" (absolute-positioned
                below) that mirrors pane 1 — both panes now read as the
                same backlit book-binding. */
-            // Day 51 (Sasha 2026-04-25): Pane 2 bg lowered to 0.30 alpha so
-            // the animated bg video shows through clearly (mockup pixel match).
-            // Combined with backdrop-filter blur from `liquid-glass` class →
-            // proper frosted-glass effect. Pane 1 stays solid by contrast.
+            // Day 51 (Sasha 2026-04-25 r2): bg lowered further 0.30 → 0.18
+            // — Sasha likes the "curtain" effect where bg figure peeks
+            // through. Combined with backdrop-blur, reads as silk veil
+            // over the animated stream.
             style={{
-                backgroundColor: "rgba(14, 32, 68, 0.30)",
+                backgroundColor: "rgba(14, 32, 68, 0.18)",
                 boxShadow:
                     "2px 0 22px -10px rgba(244, 212, 114, 0.22)",
             }}

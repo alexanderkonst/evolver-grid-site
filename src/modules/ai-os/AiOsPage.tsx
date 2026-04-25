@@ -2806,7 +2806,13 @@ const AiOsPage = () => {
               const renderPrompt = (prompt: typeof group.prompts[0], cardIndex: number) => {
                     const isMeta = group.category === "meta";
                     const isCopied = copiedId === prompt.id;
-                    const isLocked = prompt.locked === true && !isPremium;
+                    // Day 51 (Sasha 2026-04-25): Holonic Commons — AI OS free
+                    // forever for everyone. `isLocked` always false → every
+                    // prompt is copyable, no firewall, no /pricing redirect.
+                    // `isPremiumPrompt` retained ONLY for visual treatment
+                    // (purple gradient + larger card) to mark high-signal
+                    // prompts. Once locked, badge auto-flips to "✓ Unlocked".
+                    const isLocked = false;
                     const isPremiumPrompt = prompt.locked === true;
                     const isRec = prompt.isRecommended === true;
                     const hoverGlowClass = `hover-glow-${group.category}`;
@@ -3087,14 +3093,16 @@ const AiOsPage = () => {
                   {' '} · {' '}
                   {/* Day 51 (Sasha 2026-04-25): code is forkable. Quiet
                       link to the repo so anyone reading codex can take
-                      the whole apparatus, not just the prompts. */}
+                      the whole apparatus, not just the prompts.
+                      License: PolyForm NC + 10% rev-share for
+                      commercial use (Holonic Franchise model). */}
                   <a
                     href="https://github.com/alexanderkonst/evolver-grid-site"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="underline underline-offset-2 transition-colors hover:opacity-80"
                   >
-                    code AGPL-3.0 (fork on GitHub)
+                    code PolyForm NC (fork on GitHub)
                   </a>
                 </p>
                 <button

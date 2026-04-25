@@ -205,7 +205,9 @@ const PlaybookShell = ({
           className="text-xs leading-relaxed"
           style={{ color: "var(--skin-text-muted-soft, rgba(26,30,58,0.55))" }}
         >
-          The full method is open. The platform running it is open too.
+          The method is open to read. The platform is forkable.
+          <br />
+          Run it for your own community — under your own brand. 10% to commons if you go commercial.
         </p>
         <a
           href="https://github.com/alexanderkonst/evolver-grid-site"

@@ -40,7 +40,7 @@ If you want to improve the master holon itself — bugfixes, new modules, docume
 
 #### License
 
-By contributing code, you agree your contribution is licensed under **AGPL-3.0** (matching the rest of the code). By contributing documentation, you agree it's licensed under **CC BY-NC-SA 4.0**. There is no CLA — the license itself is the agreement.
+By contributing code, you agree your contribution is licensed under **PolyForm Noncommercial 1.0.0** (matching the rest of the code). By contributing documentation, you agree it's licensed under **CC BY-NC-SA 4.0**. Commercial use of contributed code (whether by you or anyone else) is governed by the project's [Distributor Agreement](./DISTRIBUTOR_AGREEMENT.md). There is no CLA — the license model itself is the agreement.
 
 ---
 
