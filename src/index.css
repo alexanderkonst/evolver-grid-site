@@ -173,10 +173,20 @@
      text contrasts on its own through serif weight + dark color, doesn't
      need a heavy white veil to be legible. */
   --skin-panel-wash: rgba(255, 255, 255, 0.10); /* Pane 3 — luminous content */
-  /* Day 51 evening (Sasha): working routes (playbook, path, settings, ubb)
-     wash the bg into a calm canvas so dense content doesn't compete with
-     atmospheric video behind it. Aurora skin = warm off-white. */
-  --skin-panel-wash-quiet: rgba(248, 246, 240, 0.98);
+  /* Day 51 night (Sasha): working routes wash the bg into a calm canvas.
+     Per the harmony mockup, the cream is NOT flat — it carries a soft
+     warm glow at the top-right, as if light is coming from outside the
+     frame. This implies the same light source that lights Panels 1 & 2
+     in the dark register, even though Panel 3 doesn't need a video.
+     The result: all three panels feel lit by one source at three
+     intensities, instead of three separated worlds. */
+  --skin-panel-wash-quiet:
+    radial-gradient(
+      ellipse 70% 90% at 88% 12%,
+      rgba(255, 232, 196, 0.85) 0%,
+      rgba(252, 244, 228, 0.95) 28%,
+      rgba(248, 246, 240, 0.99) 70%
+    );
 
   /* ── Ornament (hero divider) ── */
   --skin-ornament-rule:  rgba(26, 30, 58, 0.25);
@@ -294,9 +304,17 @@
   /* Day 51 (Sasha 2026-04-25): wash lowered to match Aurora — animated
      bg video reads vivid on both skins. */
   --skin-panel-wash:   rgba(10, 22, 40, 0.10);   /* Pane 3 — lightest */
-  /* Day 51 evening (Sasha): Navy+Gold quiet wash — deep navy near-solid
-     for working routes. Same intent as Aurora's quiet wash, dark side. */
-  --skin-panel-wash-quiet: rgba(8, 18, 38, 0.97);
+  /* Day 51 night (Sasha): Navy+Gold quiet wash — deep navy with a soft
+     gold glow at the top-right. Mirrors Aurora's harmony intent on the
+     dark register: same implied light source through all three panels,
+     just rendered in gold-on-navy instead of warm-on-cream. */
+  --skin-panel-wash-quiet:
+    radial-gradient(
+      ellipse 70% 90% at 88% 12%,
+      rgba(244, 212, 114, 0.18) 0%,
+      rgba(28, 38, 70, 0.92) 35%,
+      rgba(8, 18, 38, 0.98) 75%
+    );
 
   /* Ornament — pure gold, stronger glow */
   --skin-ornament-rule:  rgba(212, 175, 55, 0.4);

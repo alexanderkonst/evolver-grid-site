@@ -516,8 +516,14 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                 {!pageOwnsBackground && (
                   <div
                     className="absolute inset-0"
+                    // Day 51 night (Sasha): switched from backgroundColor
+                    // to background so the quiet wash can be a radial
+                    // gradient (warm directional glow per harmony mockup).
+                    // Landing wash is still a flat color and renders the
+                    // same; gradient render only kicks in when the working-
+                    // route variable resolves to a gradient.
                     style={{
-                      backgroundColor: isWorkingRoute
+                      background: isWorkingRoute
                         ? "var(--skin-panel-wash-quiet, rgba(248, 246, 240, 0.98))"
                         : "var(--skin-panel-wash, rgba(255, 255, 255, 0.21))",
                     }}
