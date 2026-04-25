@@ -2394,6 +2394,23 @@ const AiOsPage = () => {
     return () => { document.title = prev; };
   }, []);
 
+  // Day 51 (Sasha 2026-04-25): force body + html bg to deep navy while
+  // /ai-os is mounted. Aurora skin sets body bg to a light cream; the
+  // page's fixed inset-0 dark gradient covers most of the viewport, but
+  // any uncovered edge (overscroll, mobile safe-areas, browser dev pixel
+  // strips) revealed the cream as a thin white strip at the top/left.
+  // Painting body+html dark eliminates the bleed at the source.
+  useEffect(() => {
+    const prevBodyBg = document.body.style.backgroundColor;
+    const prevHtmlBg = document.documentElement.style.backgroundColor;
+    document.body.style.backgroundColor = '#08101f';
+    document.documentElement.style.backgroundColor = '#08101f';
+    return () => {
+      document.body.style.backgroundColor = prevBodyBg;
+      document.documentElement.style.backgroundColor = prevHtmlBg;
+    };
+  }, []);
+
   const [copiedId, setCopiedId] = useState<string | null>(null);
   const [showTranscriptDialog, setShowTranscriptDialog] = useState(false);
   const [showStoryDialog, setShowStoryDialog] = useState(false);
@@ -2534,13 +2551,13 @@ const AiOsPage = () => {
 
   return (
     <div data-ai-os className="ai-os-root">
-      {/* Video background — HLS stream */}
-      <HlsVideo />
-      {/* Day 51 (Sasha 2026-04-25): heavy dark overlay — was 0.5/0.7/0.85
-          gradient which let the HLS video bleed through and compete with
-          the hero. Now near-solid navy so video reads as ambient texture,
-          not foreground subject. Hero owns the page. */}
-      <div className="fixed inset-0 z-[1]" style={{ background: 'linear-gradient(180deg, rgba(8,15,32,0.94) 0%, rgba(10,18,38,0.95) 50%, rgba(0,0,0,0.97) 100%)' }} />
+      {/* Day 51 (Sasha 2026-04-25 r3): HLS video retired from /ai-os.
+          The video competed with the hero (busy desk/library imagery
+          on every breakpoint) and tuning the overlay couldn't satisfy
+          both readability AND not-too-dark. Now: clean dark navy +
+          stars + subtle vignette = premium, hero owns the page.
+          Body+html bg (set via useEffect) handles edge bleed. */}
+      <div className="fixed inset-0 z-[1]" style={{ background: 'linear-gradient(180deg, #0a1224 0%, #08101e 50%, #050912 100%)' }} />
       <div className="vignette-overlay z-[1]" />
       {/* Noise/grain overlay */}
       <div className="noise-overlay" />
