@@ -1,10 +1,14 @@
-# License
+# Documentation & Methodology License
+
+> **Scope:** this license covers `/docs`, the playbook, the methodology, and any prose / canvas / blueprint content of this project.
+> **Code** lives under a separate license — see [`LICENSE`](./LICENSE) (AGPL-3.0).
+> **Anthropic-derived skills** in `/.agent/skills/` are MIT (per their upstream license).
 
 ## Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0)
 
 © 2026 Alexander Konstantinov
 
-This work is licensed under the [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-nc-sa/4.0/).
+The documentation and methodology of this work are licensed under the [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-nc-sa/4.0/).
 
 ### You are free to:
 
