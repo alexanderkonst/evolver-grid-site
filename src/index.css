@@ -173,19 +173,20 @@
      text contrasts on its own through serif weight + dark color, doesn't
      need a heavy white veil to be legible. */
   --skin-panel-wash: rgba(255, 255, 255, 0.10); /* Pane 3 — luminous content */
-  /* Day 51 night (Sasha): working routes wash the bg into a calm canvas.
-     Per the harmony mockup, the cream is NOT flat — it carries a soft
-     warm glow at the top-right, as if light is coming from outside the
-     frame. This implies the same light source that lights Panels 1 & 2
-     in the dark register, even though Panel 3 doesn't need a video.
-     The result: all three panels feel lit by one source at three
-     intensities, instead of three separated worlds. */
+  /* Day 51 night v2 (Sasha): warmth pushed substantially — first pass
+     was too subtle to register as a visible glow. Now the source
+     reads as actual sunlight through a window: hotter color at the
+     focal point, larger warm zone (extends through 65% of the
+     canvas), more saturated amber notes. Mirrors the harmony mockup's
+     visible directional light. */
   --skin-panel-wash-quiet:
     radial-gradient(
-      ellipse 70% 90% at 88% 12%,
-      rgba(255, 232, 196, 0.85) 0%,
-      rgba(252, 244, 228, 0.95) 28%,
-      rgba(248, 246, 240, 0.99) 70%
+      ellipse 95% 105% at 95% 5%,
+      rgba(255, 200, 130, 0.55) 0%,
+      rgba(255, 218, 170, 0.45) 18%,
+      rgba(252, 232, 200, 0.75) 38%,
+      rgba(248, 240, 220, 0.92) 65%,
+      rgba(245, 242, 235, 0.98) 88%
     );
 
   /* ── Ornament (hero divider) ── */
