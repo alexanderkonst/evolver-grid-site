@@ -74,6 +74,11 @@ const MuxVideoBackground = () => {
     }
 
     return (
+        // Day 51 (Sasha 2026-04-25): scale 1.10 from top-left to crop the
+        // Veo watermark in bottom-right. Top-left anchored so visual content
+        // (sky, particles, mountain) stays composed; the extra ~10% grows
+        // toward bottom-right and clips against the viewport edge, taking
+        // the watermark with it.
         <video
             ref={videoRef}
             autoPlay
@@ -81,6 +86,10 @@ const MuxVideoBackground = () => {
             muted
             playsInline
             className="w-full h-full object-cover"
+            style={{
+                transform: 'scale(1.10)',
+                transformOrigin: 'top left',
+            }}
             aria-hidden="true"
             onError={() => setVideoFailed(true)}
         />

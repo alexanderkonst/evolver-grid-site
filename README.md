@@ -4,7 +4,7 @@
 
 **Live:** [FindYourTopTalent.Com](https://findyourtoptalent.com) · [aleksandrkonstantinov.com](https://aleksandrkonstantinov.com)
 
-[![Code License: AGPL-3.0](https://img.shields.io/badge/Code-AGPL--3.0-blue.svg)](./LICENSE) [![Docs License: CC BY-NC-SA 4.0](https://img.shields.io/badge/Docs-CC%20BY--NC--SA%204.0-lightgrey.svg)](./LICENSE.md)
+[![Code License: PolyForm NC 1.0.0](https://img.shields.io/badge/Code-PolyForm%20NC%201.0.0-blue.svg)](./LICENSE) [![Docs License: CC BY-NC-SA 4.0](https://img.shields.io/badge/Docs-CC%20BY--NC--SA%204.0-lightgrey.svg)](./LICENSE.md) [![Distributor License: 10% rev-share](https://img.shields.io/badge/Commercial-10%25%20rev--share-purple.svg)](./DISTRIBUTOR_AGREEMENT.md)
 
 > **Forkable by design.** This is a master holon meant to seed a network of holons — see [Self-Hosting](#self-hosting) below. If you've felt the frequency of this work, you can run your own instance for yourself or your community.
 
@@ -256,6 +256,10 @@ The connective tissue — modules, AI prompts, runtime architecture — is porta
 
 This is a personal-scale project run by one founder. Issues and PRs are welcome but support is best-effort, not contractual. If you need a self-hosted production instance with hand-holding, reach out via [Telegram](https://t.me/integralevolution) — that's a separate conversation.
 
+### Going commercial?
+
+The PolyForm NC license covers personal and non-commercial community use. The moment you start charging anyone (clients, members, subscribers) through your forked instance, you cross into commercial territory and need a [Distributor Agreement](./DISTRIBUTOR_AGREEMENT.md) — radically simple 10% rev-share, free under $1K/month, you keep your brand. See the [License section](#license--the-holonic-franchise-model) above.
+
 ---
 
 ## Tech Stack
@@ -397,22 +401,45 @@ This is infrastructure for the Great Turning. An operating system for human tran
 
 ---
 
-## License
+## License — The Holonic Franchise Model
 
-This project uses a **three-license model** matching the nature of each layer:
+This project uses a **three-tier license model** that captures both the openness of the system and the value of the years of work behind it:
 
-| Layer | What it covers | License | Why |
-|-------|---------------|---------|-----|
-| **Code** | `src/`, `supabase/`, configs, scripts | **AGPL-3.0** ([`LICENSE`](./LICENSE)) | Software-native ShareAlike + network clause. Forks are free, commercial use is free, but improvements come back to the commons. SaaS deployments built on the code must release their source. Walled gardens are juridically impossible. |
-| **Documentation & methodology** | `docs/`, playbooks, canvases, business artifacts, prose content | **CC BY-NC-SA 4.0** ([`LICENSE.md`](./LICENSE.md)) | Founder's lived methodology. Free to study, adapt, and share with attribution; non-commercial use; derivatives stay open. For commercial use of the methodology, contact the author. |
-| **Anthropic-derived skills** | `.agent/skills/` | **MIT** | Inherits upstream license — must remain MIT. |
+| Layer | What it covers | License | Commercial use |
+|-------|---------------|---------|----------------|
+| **Code** | `src/`, `supabase/`, configs, scripts | **[PolyForm Noncommercial 1.0.0](./LICENSE)** | Requires a Distributor Agreement (see below) |
+| **Documentation & methodology** | `docs/`, playbooks, canvases, business artifacts, prose content | **[CC BY-NC-SA 4.0](./LICENSE.md)** | Requires permission |
+| **Anthropic-derived skills** | `.agent/skills/` | **MIT** | Free (inherits upstream) |
 
-**Why AGPL-3.0 for code, not MIT or CC BY-NC?**
-- MIT permits closed proprietary forks — would let a SaaS take this code and never give back. Conflicts with the "shared connective tissue" intent of the [Integration Layer Manifesto](docs/06-architecture/integration_layer_manifesto.md).
-- CC licenses are not designed for software (Creative Commons themselves [recommend against this](https://creativecommons.org/faq/#can-i-apply-a-creative-commons-license-to-software)). AGPL-3.0 is the software-native equivalent of the docs' "ShareAlike" intent — with a network-use clause that closes the SaaS loophole.
-- Commercial use is allowed and *encouraged* — Step 6 of the [Planetary OS Assembly](docs/02-strategy/planetary_os_assembly.md) is facilitator emergence. NC would block exactly the fractal commercial deployment the system is designed for.
+### What you can do without asking
 
-**For commercial dual-licensing** (organizations that want to use the code without AGPL compliance obligations), contact Alexander Konstantinov.
+- **Use the platform** as a customer at [FindYourTopTalent.Com](https://findyourtoptalent.com) — pay for sessions, generate your artifacts, all of that is normal.
+- **Own everything you generate** — your Appleseed, Excalibur, UBB canvas, Specificity Matrix, dossier, landing page. Yours forever.
+- **Fork the code for personal or non-commercial community use** — clone, deploy on your own server, run your own instance for yourself or a small private community. No payment required, no permission needed.
+- **Study the methodology** — read the playbook, learn the protocols, apply the principles in your own thinking. CC BY-NC-SA covers learning and non-commercial sharing with attribution.
+
+### What requires a Distributor Agreement
+
+If you want to **fork the code and run it commercially** — charge clients for sessions or products through your forked instance, host it as a paid service for a community, or deploy it as the operational layer of your venture — that is a commercial use of the codebase and requires a [Distributor Agreement](./DISTRIBUTOR_AGREEMENT.md).
+
+The terms are radically simple:
+
+- **10% revenue share** on platform revenue (everything sold through your forked instance).
+- **Free under $1,000/month** in platform revenue — experiment without friction.
+- **Optional brand attribution** — *"Powered by Find Your Top Talent"* in the footer if you choose, removable.
+- **Opt-in commons** — you choose which of your community's anonymized data flows into the public commons that benefits every distributor.
+
+You keep 90%. You operate under your own brand. You serve your own tribe. The 10% is a tithe to the commons that grew you and continues to grow because you joined.
+
+See [`DISTRIBUTOR_AGREEMENT.md`](./DISTRIBUTOR_AGREEMENT.md) for the full terms.
+
+### Why this model
+
+- **MIT** would let anyone close the code and resell — extracts value, gives nothing back.
+- **AGPL-3.0** keeps the code open but allows commercial use without compensation — disrespects the years of methodology development.
+- **PolyForm NC + 10% rev-share** treats every commercial fork as a partner: they distribute under their brand, they keep most of the value they create, and a small tithe sustains the commons that all forks share. This is **the Holonic Franchise pattern** — fractal sovereignty with proportional contribution.
+
+For dual-licensing (organizations that want a private commercial license without the rev-share structure), contact Alexander Konstantinov.
 
 ---
 

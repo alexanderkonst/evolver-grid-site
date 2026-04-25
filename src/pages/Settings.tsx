@@ -338,7 +338,9 @@ const Settings = () => {
                             className="text-xs leading-relaxed"
                             style={{ color: "var(--skin-text-muted-soft, rgba(26,30,58,0.55))" }}
                         >
-                            This platform is open-source. Fork it for yourself or your community.
+                            Source-available. Fork for yourself or your community — free.
+                            <br />
+                            Going commercial? 10% revenue share, you keep your brand.
                         </p>
                         <a
                             href="https://github.com/alexanderkonst/evolver-grid-site"
