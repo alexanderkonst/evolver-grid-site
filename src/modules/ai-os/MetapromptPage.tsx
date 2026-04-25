@@ -2,7 +2,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { Card } from "@/components/ui/card";
 import { toast } from "@/hooks/use-toast";
-import { Copy, Check, Send, Loader2, Youtube, User, Lock, ExternalLink, ArrowRight, Zap } from "lucide-react";
+import { Copy, Check, Send, Loader2, Youtube, User, Lock, ExternalLink, ArrowRight, Zap, Heart } from "lucide-react";
 import StarryBackground from "./components/StarryBackground";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
@@ -2636,18 +2636,20 @@ const MetapromptPage = () => {
                     Start here
                     <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />
                   </a>
-                  <button
-                    onClick={() => navigate("/ai-os/pricing")}
+                  <a
+                    href="https://FindYourTopTalent.Com"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 text-xs font-medium tracking-wide px-5 py-2.5 rounded-full transition-all duration-300 hover:scale-105 group"
                     style={{
-                      background: 'hsla(290, 30%, 70%, 0.15)',
-                      border: '1px solid hsla(290, 30%, 70%, 0.25)',
-                      color: 'hsl(290 30% 88%)',
-                      textShadow: '0 0 12px rgba(200,96,234,0.4)',
+                      background: 'linear-gradient(135deg, hsla(40, 70%, 55%, 0.18) 0%, hsla(40, 60%, 45%, 0.1) 100%)',
+                      border: '1px solid hsla(40, 60%, 60%, 0.3)',
+                      color: 'hsl(40 60% 88%)',
+                      textShadow: '0 0 12px rgba(244,212,114,0.35)',
                     }}
                   >
-                    Unlock Premium
-                  </button>
+                    Work with Aleksandr
+                  </a>
                   <button
                     onClick={() => setShowStoryDialog(true)}
                     className="inline-flex items-center gap-2 text-xs font-medium tracking-wide px-5 py-2.5 rounded-full transition-all duration-300 hover:scale-105 group"
@@ -3024,8 +3026,8 @@ const MetapromptPage = () => {
                 className="inline-flex items-center gap-3 text-sm font-medium px-6 py-3 rounded-full liquid-glass transition-all duration-300 hover:scale-105 group"
                 style={{ color: 'hsl(242 40% 80%)' }}
               >
-                <Zap className="w-4 h-4" aria-hidden="true" />
-                <span>Unlock Premium</span>
+                <Heart className="w-4 h-4" aria-hidden="true" />
+                <span>Why this is free</span>
                 <span className="w-6 h-6 rounded-full flex items-center justify-center transition-all duration-300 group-hover:translate-x-0.5" style={{ background: 'hsl(0 0% 100% / 0.1)' }}>
                   <ArrowRight className="w-3 h-3" aria-hidden="true" />
                 </span>
