@@ -2551,13 +2551,12 @@ const AiOsPage = () => {
 
   return (
     <div data-ai-os className="ai-os-root">
-      {/* Day 51 (Sasha 2026-04-25 r3): HLS video retired from /ai-os.
-          The video competed with the hero (busy desk/library imagery
-          on every breakpoint) and tuning the overlay couldn't satisfy
-          both readability AND not-too-dark. Now: clean dark navy +
-          stars + subtle vignette = premium, hero owns the page.
-          Body+html bg (set via useEffect) handles edge bleed. */}
-      <div className="fixed inset-0 z-[1]" style={{ background: 'linear-gradient(180deg, #0a1224 0%, #08101e 50%, #050912 100%)' }} />
+      {/* Day 51 (Sasha 2026-04-25 r5): /ai-os HLS stream restored as bg
+          (different from GameShell's animated bg). Gradient lighter at top
+          (0.55) so video shows clearly behind hero, heavier toward bottom
+          so prompt library reads on stable dark. */}
+      <HlsVideo />
+      <div className="fixed inset-0 z-[1]" style={{ background: 'linear-gradient(180deg, rgba(10,22,50,0.55) 0%, rgba(8,16,30,0.86) 45%, rgba(5,9,18,0.95) 100%)' }} />
       <div className="vignette-overlay z-[1]" />
       {/* Noise/grain overlay */}
       <div className="noise-overlay" />
