@@ -471,23 +471,58 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
         setSectionsPanelOpen(prev => !prev);
     };
 
+    // Day 51 (Sasha 2026-04-25): route-aware background.
+    //
+    // The dust/sparkle video is doing two opposite jobs and losing the
+    // working one — gorgeous on landing, distracting on dense reading
+    // surfaces. Modern working surfaces (Linear, Notion, Apple product
+    // docs) use calm canvases for content and reserve visual richness
+    // for marketing moments. We do the same.
+    //
+    // Two reasons to suppress the shell's video:
+    //   (a) WORKING route — the page is dense reading content (playbook,
+    //       path, settings, UBB artifacts). Render a calm wash instead.
+    //   (b) PAGE-OWNED background — the page mounts its own full-screen
+    //       background already (e.g. /ai-os has an HLS editorial scene).
+    //       Two stacked videos fight at z-0; only one should win, and
+    //       the page's choice is more specific.
+    const path = location.pathname;
+    const pageOwnsBackground =
+        path === "/ai-os" || path === "/codex"; // /codex routes through ai-os
+    const isWorkingRoute =
+        path.startsWith("/playbook") ||
+        path.startsWith("/path") ||
+        path.startsWith("/game/settings") ||
+        path.startsWith("/ubb") ||
+        path.startsWith("/ai-os/profile") ||
+        path.startsWith("/ai-os/pricing") ||
+        path.startsWith("/ai-os/auth");
+    const suppressShellBackground = isWorkingRoute || pageOwnsBackground;
+
     return (
         <div className="min-h-dvh bg-[#0a0a1a]">
-            {/* Full-screen animated video background — behind all three panels */}
+            {/* Full-screen background — video on landing-class routes,
+                calm wash on working routes, NOTHING when the page owns
+                its own background. */}
             <div className="fixed inset-0 z-0">
-                <MuxVideoBackground />
+                {!suppressShellBackground && <MuxVideoBackground />}
                 {/*
-                  Base wash — skin-aware. Aurora: white wash /0.21 (daylight
-                  frost). Navy+Gold: deep navy wash /0.82 (evening, video
-                  barely flickers through). Var lives in index.css per skin.
+                  Base wash. When the page owns its background, render
+                  no wash either — let the page's own surface shine
+                  through cleanly without our atmospheric overlay.
+                  Working routes get a heavy calm wash. Landing routes
+                  get the light atmospheric wash over the shell video.
                 */}
-                <div
-                  className="absolute inset-0"
-                  style={{
-                    backgroundColor:
-                      "var(--skin-panel-wash, rgba(255, 255, 255, 0.21))",
-                  }}
-                />
+                {!pageOwnsBackground && (
+                  <div
+                    className="absolute inset-0"
+                    style={{
+                      backgroundColor: isWorkingRoute
+                        ? "var(--skin-panel-wash-quiet, rgba(248, 246, 240, 0.98))"
+                        : "var(--skin-panel-wash, rgba(255, 255, 255, 0.21))",
+                    }}
+                  />
+                )}
             </div>
             {/* === DESKTOP LAYOUT === */}
             <div className="hidden lg:flex min-h-dvh">
