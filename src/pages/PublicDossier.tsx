@@ -37,6 +37,7 @@ const ARTIFACT_LABELS: Record<string, string> = {
   promise: "Promise",
   lead_magnet: "Lead Magnet",
   value_ladder: "Value Ladder",
+  specificity_matrix: "Specificity Matrix",
   session_bridge: "1st Session Design",
   core_belief: "Core Belief",
   packaging: "Packaging",

@@ -625,16 +625,22 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                         in tracked gold small-caps. Same visual register
                         as the desktop pane 2 header so the brand
                         doesn't reset when crossing breakpoints. */}
+                    {/* Day 51 (Sasha 2026-04-25): mobile content-view header.
+                        Was using `var(--skin-panel-2-bg)` which in the Aurora
+                        (light) skin resolved to a light lavender wash — gold
+                        text on light bg = unreadable. Now forced to a solid
+                        dark navy (skin-independent) so gold text always reads.
+                        Title also gets dark text-shadow as belt-and-suspenders. */}
                     <header
                         className="flex items-center px-4 gap-3 sticky top-0 z-modal relative overflow-hidden"
                         style={{
                             paddingTop: 'calc(env(safe-area-inset-top) + 0.5rem)',
                             paddingBottom: '0.5rem',
                             minHeight: '3.5rem',
-                            backgroundColor: 'var(--skin-panel-2-bg, rgba(14, 32, 68, 0.82))',
+                            backgroundColor: 'rgba(10, 22, 50, 0.96)',
                             backdropFilter: 'blur(14px)',
                             WebkitBackdropFilter: 'blur(14px)',
-                            boxShadow: 'inset 0 -1px 0 rgba(212, 175, 55, 0.22), 0 8px 22px -12px rgba(244, 212, 114, 0.2)',
+                            boxShadow: 'inset 0 -1px 0 rgba(212, 175, 55, 0.32), 0 8px 22px -12px rgba(244, 212, 114, 0.25)',
                         }}
                     >
                         {/* Gold spine accent — same signature as pane 2 */}
@@ -650,7 +656,8 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                             onClick={handleBackToNavigation}
                             className="min-h-[44px] min-w-[44px] p-2 rounded-lg transition-colors relative"
                             style={{
-                                color: 'var(--skin-accent-gold, #d4af37)',
+                                color: '#f4d472',
+                                filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.5))',
                             }}
                             aria-label="Back to navigation"
                         >
@@ -659,8 +666,8 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                         <span
                             className="flex-1 truncate text-[11px] font-medium tracking-[0.28em] uppercase relative"
                             style={{
-                                color: 'var(--skin-accent-gold, #d4af37)',
-                                textShadow: '0 0 14px rgba(244,212,114,0.35)',
+                                color: '#f4d472',
+                                textShadow: '0 1px 2px rgba(0,0,0,0.7), 0 0 14px rgba(244,212,114,0.4)',
                             }}
                         >
                             {SPACES.find(s => s.id === activeSpaceId)?.label || "Journey"}
