@@ -2454,21 +2454,11 @@ const AiOsPage = () => {
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
-  // Check premium status from premium_subscriptions table
-  useEffect(() => {
-    if (!user) { setIsPremium(false); return; }
-    (supabase as any)
-      .from('premium_subscriptions')
-      .select('status, expires_at')
-      .eq('user_id', user.id)
-      .eq('status', 'active')
-      .maybeSingle()
-      .then(({ data }: any) => {
-        if (data && (!data.expires_at || new Date(data.expires_at) > new Date())) {
-          setIsPremium(true);
-        }
-      });
-  }, [user]);
+  // Day 51 (Sasha 2026-04-25): premium_subscriptions table retired with the
+  // Holonic Commons rollout. AI OS is free for everyone — no firewall, no
+  // subscription state. Effect deleted; the table no longer exists in
+  // Supabase and the query was 404'ing on every page load. `isPremium`
+  // stays in state for legacy visual treatment compatibility.
 
     const getCustomizedContent = (prompt: Prompt) => {
       let content = prompt.content;
