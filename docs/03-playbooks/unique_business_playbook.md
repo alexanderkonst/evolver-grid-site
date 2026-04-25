@@ -663,6 +663,87 @@ When a client brings a challenge, don't help them push through. Ask: *"What is t
 
 ---
 
+## Principle 15: The Specificity Loop
+
+> *"How specific to what you know about you is this articulation?"* — the question every reveal in the funnel is actually asking, beneath the words.
+>
+> *v1.0 · April 25, 2026 (Day 51) — Discovered live during the build of the macro-bridge ("What if your shining this top talent bright IS your business?") and recognized as a replicable structural pattern, not a copy decision.*
+
+### The Discovery
+
+At every reveal moment in the AI-native funnel — Appleseed card, Excalibur offer, ICP, Pain, Transformation Promise, Landing — the user is asked to rate 1-10 how the articulation lands. The standard pattern is to thank them: *"Thanks! Perfect resonance!"* This is wasted attention.
+
+The discovery: **at the moment of highest attention, the user is being SERVED, not us being thanked.** Replace the thank-you with an identity-revelation question in the same frequency as the macro-bridge. The result is what we call **the optimal cliffhanger** — the user keeps the realization, comes back to it even if they drop the process, and converts at unprecedented rates when they do.
+
+### The Frequency
+
+The question form has a precise architecture:
+
+> **What if [the thing they just witnessed] IS [the bigger truth they've been seeking]?**
+
+Examples from the canonical matrix (matrix v2):
+
+| Step | Resonant (8-10) |
+|------|-----------------|
+| Appleseed | *What if this voice has been yours all along?* |
+| Excalibur | *What if this offer IS the way your gift wants to be paid?* |
+| ICP | *What if these ARE the people you've been quietly built for?* |
+| Pain | *What if naming this pain IS half the medicine?* |
+| Promise | *What if this promise IS the door they've been walking past?* |
+| Landing | *What if these words ARE the front door of your venture?* |
+
+Three tiers per step (resonant 8-10, partial 5-7, off 1-4) — the principle holds across all three: never instruct, always reveal what's already becoming visible. The full matrix lives in `src/lib/resonanceMatrix.ts`.
+
+### Why It Works (and why conversion compounds)
+
+The protocol embodies four prior principles at once:
+
+- **Principle 4 (Mirror, Not Teacher)** — every reveal mirrors, never instructs.
+- **Principle 5 (Precision Gap IS Product)** — *Specificity is the rebranded Precision.* The metric the user is asked to measure (specificity-to-self) IS the product they are buying.
+- **Principle 11 (Resonance Metric)** — the rating IS the data; the message IS the offer; the loop IS the relationship.
+- **Principle 13 (Highest-Rated Version Rule)** — partial/off tiers invite refinement, which produces higher-resonance versions, which compound.
+
+When a user hits a reveal at 8-10, the realization is **theirs**, not ours. They walk through doors they realize they already opened. This is the structural reason for the conversion lift: there is no decision to make — only a recognition to confirm.
+
+### Why It Compounds Down the Funnel
+
+The same frequency holds at every reveal. A user who lands at 9-10 on Appleseed and meets the question *"What if this voice has been yours all along?"* arrives at the next reveal already inside the frame. By the time they reach Landing and read *"What if these words ARE the front door of your venture?"* the realization has stacked through five prior moments. The whole journey **stays at this level** — there is no engagement drop because the protocol does not ask for engagement; it confirms what is already happening.
+
+This is why the strategic implication is so dramatic (see below).
+
+### The Strategic Collapse
+
+Once the protocol holds at this level, the founder's strategy collapses to:
+
+1. **Offer the lead magnet to ~10/10 aligned client tribe first**, in rooms with a warm intro.
+2. **Lead magnet = the method, revealed to oneself as one consciously and in focus delivers their medicine.** The lead magnet doesn't need to be invented — it reveals itself as the founder articulates the transformational result sequence.
+3. **The transformational result sequence mirrors the user journey** — from pain to promised land, in a straight line, consciously, not zigzagging in fog.
+
+The work, then, is not "marketing." The work is **describing what the lead magnet does** — the transformation it delivers — with the same Specificity Loop frequency that converts so high in the funnel. The Lead Magnet article in Part II accounts for this: lead magnet as the founder's medicine in motion, made visible.
+
+### The Anti-Pattern
+
+The protocol **fails** the moment any reveal drifts into instruction:
+- ❌ *"Now let's go to where it hurts."* (instructs the next click)
+- ❌ *"You nailed it!"* (thanks the user; centers us)
+- ❌ *"Try again for a sharper version."* (treats the user as someone needing correction)
+
+The protocol holds the moment every reveal stays inside the *"What if … IS …"* form — because that form does only one thing: it offers identity recognition. Nothing else.
+
+### Implementation
+
+- `src/lib/resonanceMatrix.ts` — the canonical 6-step × 3-tier matrix and the `SPECIFICITY_PROMPT` constant
+- `src/components/ui/ResonanceRating.tsx` — the component that asks the question and renders the reveal
+- All six in-funnel callers wired to step keys: `appleseed`, `excalibur`, `icp`, `pain`, `tp`, `landing`
+
+### For Facilitators
+
+When facilitating live (not via product), the same frequency holds. After every reflection the client gives, do not validate ("yes, exactly!") and do not instruct ("now look at X"). Ask the recognition question: *"What if this IS what you've been telling me all along?"* The recognition collapses the gap between insight and ownership.
+
+> *Relates to: Principle 4 (Mirror, Not Teacher), Principle 5 (Precision Gap IS Product), Principle 11 (Resonance Metric), Principle 13 (Highest-Rated Version Rule). Phase Shift Library entry: Domain 81 — The Specificity Loop. The macro-bridge ("What if your shining this top talent bright IS your business?") is the canonical example of the protocol applied at scale (page level, not micro-rating level).*
+
+---
+
 # Part I: Philosophy & Ontology
 
 > *"The moment you can articulate your genius precisely, the market crystallizes around it."*
