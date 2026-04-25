@@ -2390,7 +2390,7 @@ const MetapromptPage = () => {
   // Global og: tags from index.html still apply.
   useEffect(() => {
     const prev = document.title;
-    document.title = "AI OS — Get +42% out of any AI";
+    document.title = "AI OS — A different kind of cognition";
     return () => { document.title = prev; };
   }, []);
 
@@ -2613,7 +2613,7 @@ const MetapromptPage = () => {
                   color: 'hsl(0 0% 100% / 0.95)',
                   textShadow: '0 0 20px rgba(132,96,234,0.4), 0 0 50px rgba(180,140,255,0.25), 0 0 16px rgba(0,0,0,0.95), 0 2px 8px rgba(0,0,0,0.9)',
                 }}>
-                  The OS for any AI. +42% out of the box.
+                  The OS for any AI. A different kind of cognition.
                 </p>
                 <p className="text-sm font-light italic mt-2" style={{ 
                   color: 'hsl(242 30% 85% / 0.85)',

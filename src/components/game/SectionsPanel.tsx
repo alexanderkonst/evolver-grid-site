@@ -415,35 +415,36 @@ const SectionsPanel = ({
                         }
                     };
 
-                    // Day 50 (Sasha): pane 2 rows lifted toward "more
-                    // precious" — text 17 → 18px with subtle tracking,
-                    // step pip 18 → 22px set-jewel (gold gradient + halo
-                    // + inner glow), py 2.5 → 3 for breathing room.
-                    // Locked rows: dimmed pip, dimmed label, no hover
-                    // lift, cursor-not-allowed, Radix tooltip with hint.
+                    // Day 50 later (Sasha): pane 2 rows now mirror the
+                    // SPACES chips on pane 1 — rounded-2xl pill, bg-white/5
+                    // baseline so each row reads as its own discrete
+                    // object, hover gets a gold ring + soft halo + 1px
+                    // lift, active gets a gold ring + larger halo + the
+                    // absolute gold left-pill marker (matching pane 1's
+                    // active treatment exactly). Locked rows: chip still
+                    // visible but text dim + no hover lift.
                     const rowContent = (
                         <div
                             className={cn(
-                                "group flex items-center gap-2.5 px-3 py-3 mx-2 rounded-md transition-all duration-200 relative",
+                                "group flex items-center gap-2.5 px-3 py-3 mx-2 rounded-2xl transition-all duration-300 relative",
                                 "focus:outline-none focus-visible:ring-2 focus-visible:ring-[#d4af37]/40",
                                 isLocked
-                                    ? "cursor-not-allowed text-white/45"
+                                    ? "cursor-not-allowed bg-white/5 text-white/35"
                                     : sectionActive && !hasSubSections
-                                        ? "cursor-pointer text-white"
-                                        : "cursor-pointer text-white/92 hover:bg-white/8 hover:text-white hover:translate-x-0.5"
+                                        ? "cursor-pointer text-white ring-1 ring-[#d4af37]/60 shadow-[0_0_22px_-6px_rgba(244,212,114,0.55),0_0_48px_-14px_rgba(212,175,55,0.35)]"
+                                        : "cursor-pointer bg-white/5 text-white/80 hover:bg-white/10 hover:text-white hover:ring-1 hover:ring-[#d4af37]/30 hover:shadow-[0_0_16px_-4px_rgba(244,212,114,0.28)] hover:translate-y-[-1px] active:translate-y-0"
                             )}
                             style={
                                 sectionActive && !hasSubSections && !isLocked
-                                    ? {
-                                          backgroundColor: "rgba(212, 175, 55, 0.10)",
-                                          boxShadow:
-                                              "inset 2px 0 0 0 #d4af37, inset 0 0 18px -6px rgba(244, 212, 114, 0.35)",
-                                      }
+                                    ? { backgroundColor: "rgba(212, 175, 55, 0.08)" }
                                     : undefined
                             }
                             onClick={handleSectionClick}
                             aria-disabled={isLocked || undefined}
                         >
+                            {sectionActive && !hasSubSections && !isLocked && (
+                                <div className="absolute left-0 top-1/2 w-1 h-8 rounded-r-full -translate-x-1/2 -translate-y-1/2 bg-[#d4af37] shadow-[0_0_8px_rgba(244,212,114,0.7)]" />
+                            )}
                             <span className="w-[22px] h-[22px] flex items-center justify-center">
                                 {hasSubSections ? (
                                     isExpanded ? (
@@ -457,15 +458,21 @@ const SectionsPanel = ({
                                         style={{
                                             background: isLocked
                                                 ? "rgba(212, 175, 55, 0.05)"
-                                                : "linear-gradient(135deg, rgba(244, 212, 114, 0.22) 0%, rgba(212, 175, 55, 0.12) 100%)",
+                                                : sectionActive && !hasSubSections
+                                                    ? "linear-gradient(135deg, rgba(244, 212, 114, 0.42) 0%, rgba(212, 175, 55, 0.24) 100%)"
+                                                    : "linear-gradient(135deg, rgba(244, 212, 114, 0.22) 0%, rgba(212, 175, 55, 0.12) 100%)",
                                             color: isLocked ? "rgba(244, 212, 114, 0.40)" : "#f4d472",
                                             border: isLocked
                                                 ? "0.5px solid rgba(212, 175, 55, 0.22)"
-                                                : "0.5px solid rgba(212, 175, 55, 0.55)",
+                                                : sectionActive && !hasSubSections
+                                                    ? "0.5px solid rgba(212, 175, 55, 0.85)"
+                                                    : "0.5px solid rgba(212, 175, 55, 0.55)",
                                             fontFamily: "'Cormorant Garamond', serif",
                                             boxShadow: isLocked
                                                 ? undefined
-                                                : "0 0 8px -2px rgba(244, 212, 114, 0.32), inset 0 0 6px -2px rgba(244, 212, 114, 0.22)",
+                                                : sectionActive && !hasSubSections
+                                                    ? "0 0 14px -2px rgba(244, 212, 114, 0.55), inset 0 0 8px -2px rgba(244, 212, 114, 0.35)"
+                                                    : "0 0 8px -2px rgba(244, 212, 114, 0.32), inset 0 0 6px -2px rgba(244, 212, 114, 0.22)",
                                             textShadow: isLocked
                                                 ? undefined
                                                 : "0 0 6px rgba(244, 212, 114, 0.35)",

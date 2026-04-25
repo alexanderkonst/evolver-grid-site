@@ -218,9 +218,9 @@ const Intros = () => {
                   </p>
                   <p className="text-[15px] text-[#1a1a2e]/75 leading-relaxed mb-3">
                     A scaffold that moves any frontier model up a developmental
-                    stage. Blind A/B: +42% on the hardest questions, +1.14
-                    stages. Axis 2 of AI progress — the field layer — opened
-                    and released as public infrastructure.
+                    stage. In blind A/B testing: measurable cognitive uplift on
+                    the hardest questions. Axis 2 of AI progress — the field
+                    layer — opened and released as public infrastructure.
                   </p>
                   <span className="inline-flex items-center gap-1.5 text-sm text-[#8460ea] font-semibold group-hover:underline">
                     Read the release: Knoware · t.me/ARKHAZM/170
