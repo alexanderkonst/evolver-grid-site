@@ -5,7 +5,7 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/hooks/use-toast";
-import { useMetapromptAuth as useAuth } from "../hooks/useMetapromptAuth";
+import { useAiOsAuth as useAuth } from "../hooks/useAiOsAuth";
 import BokehBackground from "../components/BokehBackground";
 import { ArrowLeft, LogOut } from "lucide-react";
 

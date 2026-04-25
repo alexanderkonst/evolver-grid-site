@@ -13,6 +13,7 @@ import { useSkin } from "@/contexts/SkinContext";
 // label + breath) so every primary action across the funnel reads
 // as the same voice.
 import { CTA_SMALL_CAPS_STYLE, igniteLogo } from "@/lib/landingDesign";
+import mcCrossStar from "@/assets/mc-cross-star.png";
 
 const STRIPE_PAYMENT_LINK = "https://buy.stripe.com/9B6dR9bME6i71TP7r2dEs0A";
 
@@ -252,6 +253,40 @@ const AppleseedDisplay = ({
                     darkMode={useDarkHero}
                 />
 
+                {/* THE BRIDGE — Day 51 (Sasha): macro-bridge between
+                    "this is you" (the card above) and "this is a business"
+                    (the gap + CTAs below). Lands as a seed-question right
+                    after the card so everything that follows is read
+                    through it. */}
+                <div
+                    className="pt-8 pb-4 max-w-2xl mx-auto text-center"
+                    style={{
+                        fontFamily: "'Source Serif 4', serif",
+                        color: "var(--skin-text-primary, #0a1628)",
+                        textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.7))",
+                    }}
+                >
+                    <p
+                        className="leading-[1.2] tracking-tight"
+                        style={{
+                            fontSize: 'clamp(1.6rem, 4.5vw, 2.5rem)',
+                            fontWeight: 500,
+                        }}
+                    >
+                        What if your shining this top talent bright{' '}
+                        <em
+                            className="not-italic"
+                            style={{
+                                fontWeight: 700,
+                                fontStyle: 'italic',
+                            }}
+                        >
+                            IS
+                        </em>{' '}
+                        your business?
+                    </p>
+                </div>
+
                 {/* Resonance Rating */}
                 {onResonanceRating && (
                     <ResonanceRating
@@ -286,12 +321,22 @@ const AppleseedDisplay = ({
                         className="text-base leading-relaxed space-y-3 list-none text-left max-w-md mx-auto"
                         style={{ color: "var(--skin-link-secondary, rgba(26,30,58,0.85))" }}
                     >
-                        <li className="flex gap-3">
-                            <span aria-hidden="true" style={{ color: "var(--skin-text-faint, rgba(26,30,58,0.5))" }}>–</span>
+                        <li className="flex gap-3 items-start">
+                            <img
+                                src={mcCrossStar}
+                                alt=""
+                                aria-hidden="true"
+                                className="w-5 h-5 mt-0.5 flex-shrink-0 object-contain opacity-90"
+                            />
                             <span>If you can't explain it clearly → people don't understand it.</span>
                         </li>
-                        <li className="flex gap-3">
-                            <span aria-hidden="true" style={{ color: "var(--skin-text-faint, rgba(26,30,58,0.5))" }}>–</span>
+                        <li className="flex gap-3 items-start">
+                            <img
+                                src={mcCrossStar}
+                                alt=""
+                                aria-hidden="true"
+                                className="w-5 h-5 mt-0.5 flex-shrink-0 object-contain opacity-90"
+                            />
                             <span>If people don't understand it → they don't buy.</span>
                         </li>
                     </ul>

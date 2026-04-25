@@ -1377,14 +1377,14 @@ All colors MUST be HSL.
   border-radius: 8px;
 }
 /* ============================================================================
-   Metaprompt module (/prompt) — scoped to [data-metaprompt]
+   AI OS module (/ai-os) — scoped to [data-ai-os]
    Sourced from github.com/alexanderkonst/metaprompt 2026-04-24.
    Every selector below is namespaced so this CSS is a no-op everywhere
    else on the site (the metaprompt redefines :root variables and shares
    class names like .liquid-glass with evolver).
    ============================================================================ */
 
-[data-metaprompt] {
+[data-ai-os] {
   /* Deep navy-indigo base — overrides evolver's :root inside the metaprompt page */
   --background: 228 30% 10%;
   --foreground: 240 10% 92%;
@@ -1427,39 +1427,39 @@ All colors MUST be HSL.
 /* Metaprompt's own glass system — evolver already defines .liquid-glass /
    .liquid-glass-strong with different visuals, so we override them only
    inside the metaprompt page. */
-[data-metaprompt] .liquid-glass {
+[data-ai-os] .liquid-glass {
   background: hsla(228, 25%, 8%, 0.55);
   backdrop-filter: blur(12px) saturate(1.2);
   -webkit-backdrop-filter: blur(12px) saturate(1.2);
   border: 1px solid hsla(240, 20%, 100%, 0.08);
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
-[data-metaprompt] .liquid-glass::before { content: none; }
-[data-metaprompt] .liquid-glass-strong {
+[data-ai-os] .liquid-glass::before { content: none; }
+[data-ai-os] .liquid-glass-strong {
   background: hsla(228, 25%, 8%, 0.65);
   backdrop-filter: blur(16px) saturate(1.4);
   -webkit-backdrop-filter: blur(16px) saturate(1.4);
   border: 1px solid hsla(240, 20%, 100%, 0.12);
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
-[data-metaprompt] .liquid-glass-strong::before { content: none; }
+[data-ai-os] .liquid-glass-strong::before { content: none; }
 
-[data-metaprompt] .wabi-card {
+[data-ai-os] .wabi-card {
   box-shadow: 0 0 0 1px hsla(240, 20%, 100%, 0.06), 0 8px 40px hsla(228, 30%, 5%, 0.5), 0 24px 80px hsla(228, 30%, 5%, 0.3);
   border: 1px solid hsla(240, 20%, 100%, 0.08);
   backdrop-filter: blur(12px);
 }
 
-[data-metaprompt] .section-gradient-meta { background: var(--gradient-meta); }
-[data-metaprompt] .section-gradient-core { background: var(--gradient-core); }
-[data-metaprompt] .section-gradient-clarity { background: var(--gradient-clarity); }
-[data-metaprompt] .section-gradient-iteration { background: var(--gradient-iteration); }
-[data-metaprompt] .section-gradient-deployment { background: var(--gradient-deployment); }
-[data-metaprompt] .section-gradient-design { background: var(--gradient-design); }
+[data-ai-os] .section-gradient-meta { background: var(--gradient-meta); }
+[data-ai-os] .section-gradient-core { background: var(--gradient-core); }
+[data-ai-os] .section-gradient-clarity { background: var(--gradient-clarity); }
+[data-ai-os] .section-gradient-iteration { background: var(--gradient-iteration); }
+[data-ai-os] .section-gradient-deployment { background: var(--gradient-deployment); }
+[data-ai-os] .section-gradient-design { background: var(--gradient-design); }
 
-[data-metaprompt] .bokeh-glow { box-shadow: var(--shadow-glow); }
+[data-ai-os] .bokeh-glow { box-shadow: var(--shadow-glow); }
 
-[data-metaprompt] .noise-overlay {
+[data-ai-os] .noise-overlay {
   position: fixed;
   inset: 0;
   z-index: 2;
@@ -1470,14 +1470,14 @@ All colors MUST be HSL.
   background-size: 256px 256px;
 }
 
-[data-metaprompt] .vignette-overlay {
+[data-ai-os] .vignette-overlay {
   position: fixed;
   inset: 0;
   pointer-events: none;
   background: radial-gradient(ellipse at center, transparent 40%, hsla(228, 30%, 5%, 0.4) 100%);
 }
 
-[data-metaprompt] .font-display {
+[data-ai-os] .font-display {
   font-family: 'Source Serif 4', Georgia, 'Times New Roman', serif;
 }
 
@@ -1487,8 +1487,8 @@ All colors MUST be HSL.
   100% { background-position: 0% 50%; }
 }
 
-[data-metaprompt] .shimmer-border { position: relative; }
-[data-metaprompt] .shimmer-border::before {
+[data-ai-os] .shimmer-border { position: relative; }
+[data-ai-os] .shimmer-border::before {
   content: '';
   position: absolute;
   inset: -1px;
@@ -1512,17 +1512,17 @@ All colors MUST be HSL.
   from { opacity: 0; transform: scale(0.95); }
   to { opacity: 1; transform: scale(1); }
 }
-[data-metaprompt] .reveal-up { animation: metaprompt-reveal-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) both; }
-[data-metaprompt] .scale-reveal { animation: metaprompt-scale-reveal 0.6s cubic-bezier(0.16, 1, 0.3, 1) both; }
+[data-ai-os] .reveal-up { animation: metaprompt-reveal-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) both; }
+[data-ai-os] .scale-reveal { animation: metaprompt-scale-reveal 0.6s cubic-bezier(0.16, 1, 0.3, 1) both; }
 
-[data-metaprompt] .hover-glow-meta:hover { border-color: hsla(262, 60%, 58%, 0.35) !important; box-shadow: 0 0 24px hsla(262, 60%, 58%, 0.12), 0 0 48px hsla(262, 60%, 58%, 0.06); }
-[data-metaprompt] .hover-glow-core:hover { border-color: hsla(215, 60%, 60%, 0.35) !important; box-shadow: 0 0 24px hsla(215, 60%, 60%, 0.12), 0 0 48px hsla(215, 60%, 60%, 0.06); }
-[data-metaprompt] .hover-glow-clarity:hover { border-color: hsla(190, 35%, 74%, 0.35) !important; box-shadow: 0 0 24px hsla(190, 35%, 74%, 0.12), 0 0 48px hsla(190, 35%, 74%, 0.06); }
-[data-metaprompt] .hover-glow-iteration:hover { border-color: hsla(290, 25%, 75%, 0.35) !important; box-shadow: 0 0 24px hsla(290, 25%, 75%, 0.12), 0 0 48px hsla(290, 25%, 75%, 0.06); }
-[data-metaprompt] .hover-glow-deployment:hover { border-color: hsla(340, 25%, 73%, 0.35) !important; box-shadow: 0 0 24px hsla(340, 25%, 73%, 0.12), 0 0 48px hsla(340, 25%, 73%, 0.06); }
-[data-metaprompt] .hover-glow-design:hover { border-color: hsla(140, 18%, 74%, 0.35) !important; box-shadow: 0 0 24px hsla(140, 18%, 74%, 0.12), 0 0 48px hsla(140, 18%, 74%, 0.06); }
+[data-ai-os] .hover-glow-meta:hover { border-color: hsla(262, 60%, 58%, 0.35) !important; box-shadow: 0 0 24px hsla(262, 60%, 58%, 0.12), 0 0 48px hsla(262, 60%, 58%, 0.06); }
+[data-ai-os] .hover-glow-core:hover { border-color: hsla(215, 60%, 60%, 0.35) !important; box-shadow: 0 0 24px hsla(215, 60%, 60%, 0.12), 0 0 48px hsla(215, 60%, 60%, 0.06); }
+[data-ai-os] .hover-glow-clarity:hover { border-color: hsla(190, 35%, 74%, 0.35) !important; box-shadow: 0 0 24px hsla(190, 35%, 74%, 0.12), 0 0 48px hsla(190, 35%, 74%, 0.06); }
+[data-ai-os] .hover-glow-iteration:hover { border-color: hsla(290, 25%, 75%, 0.35) !important; box-shadow: 0 0 24px hsla(290, 25%, 75%, 0.12), 0 0 48px hsla(290, 25%, 75%, 0.06); }
+[data-ai-os] .hover-glow-deployment:hover { border-color: hsla(340, 25%, 73%, 0.35) !important; box-shadow: 0 0 24px hsla(340, 25%, 73%, 0.12), 0 0 48px hsla(340, 25%, 73%, 0.06); }
+[data-ai-os] .hover-glow-design:hover { border-color: hsla(140, 18%, 74%, 0.35) !important; box-shadow: 0 0 24px hsla(140, 18%, 74%, 0.12), 0 0 48px hsla(140, 18%, 74%, 0.06); }
 
-[data-metaprompt] .logo-glass::before {
+[data-ai-os] .logo-glass::before {
   content: '';
   position: absolute;
   inset: 0;
@@ -1536,7 +1536,7 @@ All colors MUST be HSL.
   z-index: 2;
 }
 
-[data-metaprompt] ::selection {
+[data-ai-os] ::selection {
   background: hsla(242, 30%, 73%, 0.3);
   color: hsl(0 0% 100%);
 }

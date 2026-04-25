@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/hooks/use-toast";
 import BokehBackground from "../components/BokehBackground";
-import { useMetapromptAuth as useAuth } from "../hooks/useMetapromptAuth";
+import { useAiOsAuth as useAuth } from "../hooks/useAiOsAuth";
 import { useEffect } from "react";
 
 const Auth = () => {

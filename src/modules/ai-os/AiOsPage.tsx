@@ -8,7 +8,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } f
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
-import { useMetapromptAuth } from "./hooks/useMetapromptAuth";
+import { useAiOsAuth } from "./hooks/useAiOsAuth";
 
 interface CustomField {
   key: string;
@@ -2385,7 +2385,7 @@ const useParallax = (speed = 0.3) => {
   return ref;
 };
 
-const MetapromptPage = () => {
+const AiOsPage = () => {
   // Per-page SEO — sets browser tab title on /ai-os.
   // Global og: tags from index.html still apply.
   useEffect(() => {
@@ -2412,7 +2412,7 @@ const MetapromptPage = () => {
   // keep those collapsed behind one button so they don't visually
   // compete with the signature transmission above.
   const [expandedSubmodules, setExpandedSubmodules] = useState<Record<string, boolean>>({});
-  const { user } = useMetapromptAuth();
+  const { user } = useAiOsAuth();
   const navigate = useNavigate();
 
   // Repaint the body to the metaprompt's deep navy while this page is mounted.
@@ -2533,7 +2533,7 @@ const MetapromptPage = () => {
   };
 
   return (
-    <div data-metaprompt className="metaprompt-root">
+    <div data-ai-os className="ai-os-root">
       {/* Video background — HLS stream */}
       <HlsVideo />
       {/* Dark overlay with radial vignette */}
@@ -2558,18 +2558,20 @@ const MetapromptPage = () => {
         }}
       />
 
-      <main 
-        className="relative z-10 min-h-screen w-full flex justify-center px-4 py-16 sm:px-6 sm:py-20"
+      <main
+        className="relative z-10 min-h-screen w-full flex justify-center px-4 py-4 sm:px-6 sm:py-8"
       >
         <div className="w-full max-w-[42rem] space-y-20">
 
-          {/* Header — generous spacing, serif hero with gradient text + parallax */}
+          {/* Header — Day 51 (Sasha 2026-04-24): tightened padding stack.
+              GameShellV2 already supplies pt-4; layered py-16+pt-12 was
+              pushing hero ~30% down the viewport. Now hero sits high. */}
           {(() => {
             const parallaxRef = useParallax(0.25);
             return (
             <div ref={parallaxRef} className="will-change-transform">
             <RevealSection>
-              <header className="text-center space-y-6 relative pt-12 sm:pt-20 pb-8">
+              <header className="text-center space-y-5 relative pt-2 sm:pt-4 pb-8">
                 {/* Day 50 (Sasha): hero torus medallion retired — the
                     GameShell rail already carries the brand mark, so a
                     second emblem above the hero wordmark was a duplicate.
@@ -3333,4 +3335,4 @@ const MetapromptPage = () => {
   );
 };
 
-export default MetapromptPage;
+export default AiOsPage;
