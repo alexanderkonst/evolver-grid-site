@@ -5,8 +5,8 @@
 
 > *"Work seen as sacred, executed as ceremony."*
 
-**Version:** 4.3  
-**Created:** February 2026 · Last updated: April 21, 2026 (Day 47 evening)  
+**Version:** 4.4  
+**Created:** February 2026 · Last updated: April 25, 2026 (Day 51 — *Specificity Loop discovered & codified, Principle 15 added*)  
 **Purpose:** The master playbook for AI-assisted genius-based venture building  
 **Execution:** [Customer Journey Playbook](./customer_journey_playbook.md) — the operational map from first touchpoint to paid session
 
