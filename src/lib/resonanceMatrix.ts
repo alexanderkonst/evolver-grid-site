@@ -12,9 +12,31 @@
  *   - partial  (5-7):  the precision gap is the work → invite refinement
  *   - off      (1-4):  this isn't them → invite the truer signal
  *
- * Codified in docs/03-playbooks/unique_business_playbook.md
- * (Principle 15 — The Specificity Loop).
+ * Codified in:
+ *   - docs/03-playbooks/unique_business_playbook.md (Principle 15)
+ *   - docs/01-vision/phase_shift_technology_library.md (Domain 81)
+ *
+ * ─── ARCHITECTURE — master matrix vs per-founder matrix ──────────
+ *
+ * MASTER_MATRIX (this file) is Sasha's canonical, master-holon
+ * Specificity Matrix — the seed example every other founder sees if
+ * they have not yet generated their own.
+ *
+ * Per-founder matrices are generated as the UBB artifact
+ * `specificity_matrix` (added to ArtifactKey on Day 51) and stored
+ * in `user_business_artifacts`. At runtime, the funnel resolves the
+ * active matrix in this priority order:
+ *
+ *   1. Explicit `override` argument passed to `resonanceMessage()`
+ *      (the highest-priority escape hatch, used by tests and previews).
+ *   2. The `ResonanceMatrixContext` value, set by `<ResonanceMatrixProvider>`.
+ *      Future: a small loader hook reads the founder's locked
+ *      `specificity_matrix` artifact from Supabase and provides it.
+ *   3. MASTER_MATRIX — Sasha's canonical, used as the universal
+ *      fallback for anonymous visitors and founders pre-generation.
  */
+
+import { createContext, createElement, useContext, type ReactNode } from "react";
 
 export type ResonanceStep =
     | "appleseed"
@@ -26,7 +48,9 @@ export type ResonanceStep =
 
 export type ResonanceTier = "resonant" | "partial" | "off";
 
-const MATRIX: Record<ResonanceStep, Record<ResonanceTier, string>> = {
+export type ResonanceMatrix = Record<ResonanceStep, Record<ResonanceTier, string>>;
+
+export const MASTER_MATRIX: ResonanceMatrix = {
     appleseed: {
         resonant:
             "What if this voice has been yours all along?",
@@ -83,8 +107,19 @@ export function tierFor(rating: number): ResonanceTier {
     return "off";
 }
 
-export function resonanceMessage(step: ResonanceStep, rating: number): string {
-    return MATRIX[step][tierFor(rating)];
+/**
+ * Pure resolver. Used outside React (telemetry, tests, server contexts)
+ * and as the engine inside the hook. Pass a per-founder matrix as the
+ * third argument to override the master.
+ */
+export function resonanceMessage(
+    step: ResonanceStep,
+    rating: number,
+    override?: ResonanceMatrix | null,
+): string {
+    const matrix = override ?? MASTER_MATRIX;
+    const stage = matrix[step] ?? MASTER_MATRIX[step];
+    return stage[tierFor(rating)] ?? MASTER_MATRIX[step][tierFor(rating)];
 }
 
 /**
@@ -93,3 +128,47 @@ export function resonanceMessage(step: ResonanceStep, rating: number): string {
  */
 export const SPECIFICITY_PROMPT =
     "How specific to what you know about you is this articulation?";
+
+// ─── React layer — provider + hook ──────────────────────────────
+
+const ResonanceMatrixContext = createContext<ResonanceMatrix | null>(null);
+
+/**
+ * Wraps any subtree that should use a per-founder matrix instead of the
+ * master. Pass `null` (or omit value) to fall through to the master.
+ *
+ * Future wiring (post-Lovable migration of `user_business_artifacts`):
+ *   - A small `useFounderResonanceMatrix(profileId)` hook reads the
+ *     locked `specificity_matrix` artifact from Supabase, parses it
+ *     into a `ResonanceMatrix` shape, and feeds it into this provider.
+ *   - The provider can sit inside `GameShellV2` so every authenticated
+ *     view inside the shell uses the founder's voice automatically.
+ *   - Anonymous visitors (no provider above) keep using MASTER_MATRIX.
+ */
+export function ResonanceMatrixProvider({
+    matrix,
+    children,
+}: {
+    matrix: ResonanceMatrix | null;
+    children: ReactNode;
+}) {
+    return createElement(
+        ResonanceMatrixContext.Provider,
+        { value: matrix },
+        children,
+    );
+}
+
+/**
+ * The canonical hook for any in-funnel reveal. Reads the active matrix
+ * from context (per-founder) and falls back to MASTER_MATRIX. Returns
+ * the message to render plus the resolved tier (useful for telemetry
+ * and styling).
+ */
+export function useResonanceMessage(step: ResonanceStep, rating: number) {
+    const founderMatrix = useContext(ResonanceMatrixContext);
+    return {
+        message: resonanceMessage(step, rating, founderMatrix),
+        tier: tierFor(rating),
+    };
+}

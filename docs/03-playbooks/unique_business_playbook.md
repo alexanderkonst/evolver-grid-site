@@ -5,8 +5,8 @@
 
 > *"Work seen as sacred, executed as ceremony."*
 
-**Version:** 4.4  
-**Created:** February 2026 · Last updated: April 25, 2026 (Day 51 — *Specificity Loop discovered & codified, Principle 15 added*)  
+**Version:** 4.5  
+**Created:** February 2026 · Last updated: April 25, 2026 (Day 51 evening — *Specificity Loop dual-treatment landed: artifact + framework. Matrix shipped as UBB artifact #19 with per-founder generator and runtime fallback hook.*)  
 **Purpose:** The master playbook for AI-assisted genius-based venture building  
 **Execution:** [Customer Journey Playbook](./customer_journey_playbook.md) — the operational map from first touchpoint to paid session
 
@@ -730,10 +730,26 @@ The protocol **fails** the moment any reveal drifts into instruction:
 
 The protocol holds the moment every reveal stays inside the *"What if … IS …"* form — because that form does only one thing: it offers identity recognition. Nothing else.
 
-### Implementation
+### Implementation — Dual Treatment
 
-- `src/lib/resonanceMatrix.ts` — the canonical 6-step × 3-tier matrix and the `SPECIFICITY_PROMPT` constant
-- `src/components/ui/ResonanceRating.tsx` — the component that asks the question and renders the reveal
+The Specificity Loop lives at two layers simultaneously, on purpose:
+
+**Framework layer** — this principle (and Phase Shift Library Domain 81). The conceptual protocol every founder reads, every artifact respects. The `lead_magnet` artifact's prompt explicitly references this framework when articulating its `transformational_result_sequence` — the matrix shape is the lead magnet's voice at every waypoint.
+
+**Artifact layer** — `specificity_matrix` (Day 51 — added as UBB artifact #19, end of Phase A Canvas, after `value_ladder`). Each founder generates THEIR matrix in their voice, locks it, and the funnel uses it at runtime. Sasha's master holon matrix in `src/lib/resonanceMatrix.ts` (`MASTER_MATRIX`) is the canonical few-shot example for the generator and the universal fallback for any visitor or founder who hasn't yet locked their own.
+
+**Runtime resolution priority** (`resonanceMessage()` / `useResonanceMessage()` hook):
+1. Explicit override argument (tests, previews)
+2. `<ResonanceMatrixProvider>` context value (per-founder, post-Lovable wiring)
+3. `MASTER_MATRIX` (Sasha's canonical, universal fallback)
+
+**Code surfaces:**
+- `src/lib/resonanceMatrix.ts` — `MASTER_MATRIX`, `resonanceMessage()`, `ResonanceMatrixProvider`, `useResonanceMessage()` hook, `SPECIFICITY_PROMPT` constant
+- `src/components/ui/ResonanceRating.tsx` — asks the question, renders the reveal via the hook
+- `src/modules/unique-business-builder/types.ts` — `specificity_matrix` in `ArtifactKey` + `PHASE_A_CANVAS`
+- `src/modules/unique-business-builder/constants.ts` — slug + label
+- `src/modules/unique-business-builder/screens/GenericArtifactScreen.tsx` — `SpecificityMatrixView` table renderer (6 stages × 3 tiers)
+- `supabase/functions/_shared/ubb-prompts.ts` — `ARTIFACT_CONFIGS.specificity_matrix` generator prompt (uses Sasha's matrix as few-shot example for SHAPE/FREQUENCY only, never for words) + cross-reference inside `ARTIFACT_CONFIGS.lead_magnet` to the framework
 - All six in-funnel callers wired to step keys: `appleseed`, `excalibur`, `icp`, `pain`, `tp`, `landing`
 
 ### For Facilitators
