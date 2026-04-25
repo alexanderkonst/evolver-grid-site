@@ -87,9 +87,13 @@ const SPACE_SECTIONS: SpaceSections = {
         ],
     },
     // LEARN Space
+    // Day 51 (Sasha 2026-04-25): Activations live here as educational apps
+    // in the Planetary OS. Body / Emotions / Mind / Talent / Spirit themes
+    // remain as future-grouping placeholders below.
     learn: {
         title: "LEARN",
         sections: [
+            { id: "activations", label: "Activations", path: "/activations" },
             { id: "overview", label: "Growth Sequence", path: "/game/learn" },
             {
                 id: "body",
