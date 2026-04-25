@@ -3,8 +3,8 @@
 > *© 2026 Alexander Konstantinov · [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)*
 
 > *April 3, 2026 · v8.0 — Declaration Phase*
-> *Current version: **v9.6** (April 21, 2026 — Day 47 evening · Integration Pass). Prior versions preserved in the changelog at end of file — nothing deleted, each version additive.*
-> *Playbook: [Unique Business Playbook](../../03-playbooks/unique_business_playbook.md) (v4.3)*
+> *Current version: **v9.7** (April 25, 2026 — Day 51 · Specificity Loop discovered live, Principle 15 added to playbook, matrix v2 shipped to all six in-funnel reveals). Prior versions preserved in the changelog at end of file — nothing deleted, each version additive.*
+> *Playbook: [Unique Business Playbook](../../03-playbooks/unique_business_playbook.md) (v4.4)*
 > *Customer Journey: [Customer Journey Playbook](../../03-playbooks/customer_journey_playbook.md)*
 
 > **Architecture:** This document is a **Layer 1 (Operating System)** — the produced artifacts of Alexander's unique business. Layer 2 applications (FMF session, landing page, DMs) run on this OS. Layer 0 (Cosmogenesis / Prime Radiant) is the origin pattern beneath it.
@@ -7605,3 +7605,34 @@ The consequence for the canvas: Sasha's **channels** layer (7-artifact model) ju
 ***Holomap implication.** P1-P12 numerically unchanged. P3 (Shared Field) became **legible to its holder** for the first time via the cohort synthesis — not yet conscious of itself, but now readable by Sasha as an explicit topology. Day 49's center word = **Unification**. The 13th perspective reads: the apparatus harmonizes its own surface on the day after the ship. The 27th remains unfired: press send on Friday's DMs.*
 
 ***Still open heading into Friday (Day 50):** First $555 stranger (P27 Si–Do). Friday's DM send. AI testimonial retry with less cryptic framing. Founder-cohort follow-through (Kirill's Shadow rating · Sergey's monetization flip · Oyi's Golden DM · Sandra's first delivery post-Italy · Karime's body-score session). Navy+Gold rollout decision. Optional: logo rail display size test 89% → 75-80% post-send.*
+
+---
+
+## Day 51 Note (April 25, 2026) — The Specificity Loop Discovered
+
+*Discovered live during the build of a single piece of copy. Recognized immediately as a structural pattern — not a copy decision — and codified the same day into Principle 15 of the Unique Business Playbook (v4.4) and Domain 81 of the Phase Shift Library.*
+
+***The trigger.** Adding an article to /codex about why context loaded into a model changes how it thinks (Knoware) — and immediately after, the request to drop a single line of copy onto the Appleseed result page, right after the user's unique-gift card: **"What if your shining this top talent bright IS your business?"** That line was meant as a transitional bridge between "this is you" and "this is a business." It turned out to be the architectural seed of an entire conversion mechanism.*
+
+***The recognition.** When the same form (*What if [thing they witnessed] IS [bigger truth]?*) is applied at every micro-rating in the funnel — replacing the generic "Thanks! Perfect resonance!" — the post-rating moment becomes what we are calling **the optimal cliffhanger.** The user keeps the recognition. They come back to it even if they drop the immediate process. And when they do come back, conversion rates climb to a level the playbook hasn't seen before this high in the funnel.*
+
+***The collapse the discovery causes.** Strategy stops being marketing. The work becomes:*
+
+*1. Offer the lead magnet to ~10/10 aligned tribe members first, in rooms where a warm intro is possible.*
+*2. Treat the lead magnet as the founder's medicine in motion — the method revealed to oneself as one consciously and in focus delivers the transformational result.*
+*3. Describe the transformational result sequence — pain → promised land — in the same Specificity Loop frequency that converts so high in the funnel.*
+
+*This is what Principle 15 calls the **Strategic Collapse**: when the protocol holds, the founder is not "doing marketing" anymore. They are doing God's work in flow, with challenges that arrive in straight-line clarity rather than fog-zigzagging.*
+
+***Specificity = rebranded Precision.** The naming convention shifted: SPECIFICITY_BANDS already lived in `/ubb` constants (sketch → drafted → landing → sharp → photon, 0-10). Principle 5 (The Precision Gap IS the Product) is the same axis under its older name. The single question every reveal in the funnel is now, beneath the surface wording: **"How specific to what you know about you is this articulation?"** — exposed in the codebase as `SPECIFICITY_PROMPT`.*
+
+***Shipped same day:***
+
+*- `src/lib/resonanceMatrix.ts` — canonical 6-step × 3-tier matrix (Appleseed · Excalibur · ICP · Pain · TP · Landing × resonant 8-10 / partial 5-7 / off 1-4)*
+*- `src/components/ui/ResonanceRating.tsx` — refactored to render the matrix v2 reveal in Source Serif 4 italic at every step, falling back to legacy thank-you only when no `step` prop provided*
+*- All 6 in-funnel callers wired by step key — generic "thank you" copy gone from the entire funnel*
+*- Macro-bridge ("What if your shining this top talent bright IS your business?") shipped on the Appleseed result page above the rating widget — the page-level expression of the same protocol; mc-cross-star bullets rendered on the Gap section to carry the visual signature down*
+
+***Holomap implication.** P5 (Precision Gap) and P11 (Resonance Metric) collapsed into a single mechanism. The 13th perspective reads: the funnel just discovered its own conversion architecture by being built in the right voice. The 27th may have just fired one note early — not the DM send, but the structural recognition that makes the DM send land harder when it goes out.*
+
+***Open implication, not yet shipped.** UBB (`/ubb`) has 18 artifacts × 6 phases waiting for the same protocol — the Specificity Loop matrix needs an artifact-level extension (`{ uniqueness, myth, tribe, pain, promise, lead_magnet, value_ladder, session_bridge, core_belief, packaging, frictionless_purchase, reach, delivery, spread, surface_inventory, tuning_fork, golden_dm, landing_page }` × 3 tiers). And: 4 of the 6 currently-active rating instances (ICP / Pain / TP / Landing in `product-builder`) save only to React Context — a `resonance_events` table is the next infrastructure move so the Specificity Loop becomes telemetry as well as UX. AI Credits architecture (already half-named via `ERROR_MESSAGES.insufficient_credit`) is the third leg — the monetization rail for the regenerate-for-higher-resonance loop that Principle 13 implies.*

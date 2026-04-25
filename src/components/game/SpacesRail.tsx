@@ -491,12 +491,12 @@ const SpacesRail = ({
                         style={{
                             fontFamily: "'Cormorant Garamond', serif",
                             fontWeight: 600,
-                            fontSize: "0.78rem",
-                            letterSpacing: "0.14em",
-                            textTransform: "uppercase",
+                            fontSize: "0.82rem",
+                            letterSpacing: "0.06em",
+                            textTransform: "lowercase",
                         }}
                     >
-                        Request Guidance
+                        request guidance
                     </span>
                 </a>
                 {/* Day 48 iter 9 (Sasha): Settings chip upgraded to match
@@ -534,12 +534,12 @@ const SpacesRail = ({
                         style={{
                             fontFamily: "'Cormorant Garamond', serif",
                             fontWeight: 600,
-                            fontSize: "0.78rem",
-                            letterSpacing: "0.14em",
-                            textTransform: "uppercase",
+                            fontSize: "0.82rem",
+                            letterSpacing: "0.06em",
+                            textTransform: "lowercase",
                         }}
                     >
-                        Settings
+                        settings
                     </span>
                 </button>
                 {(() => {
