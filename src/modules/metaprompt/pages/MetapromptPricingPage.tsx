@@ -94,7 +94,7 @@ const Pricing = () => {
 
   const handleCheckout = async (planId: string) => {
     if (!user) {
-      navigate("/prompt/auth");
+      navigate("/codex/auth");
       return;
     }
     setLoadingPlan(planId);
@@ -145,7 +145,7 @@ const Pricing = () => {
           {/* Header */}
           <header className="text-center space-y-4">
             <button
-              onClick={() => navigate("/prompt")}
+              onClick={() => navigate("/codex")}
               className="inline-flex items-center gap-2 text-xs font-medium px-4 py-2 rounded-full transition-all duration-300 hover:scale-105 mb-6"
               style={{
                 background: 'hsl(0 0% 100% / 0.06)',

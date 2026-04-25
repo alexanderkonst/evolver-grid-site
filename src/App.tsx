@@ -236,10 +236,18 @@ const App = () => (
                   <Route path="/mp/:slug" element={<MarketplaceProductPage />} />
                   <Route path="/ubd/:slug" element={<PublicDossier />} />
                   <Route path="/ubl/:slugWithVersion" element={<PublicLandingPage />} />
-                  <Route path="/prompt" element={<GameShellV2><MetapromptAuthProvider><MetapromptPage /></MetapromptAuthProvider></GameShellV2>} />
-                  <Route path="/prompt/auth" element={<MetapromptAuthProvider><MetapromptAuthPage /></MetapromptAuthProvider>} />
-                  <Route path="/prompt/pricing" element={<GameShellV2><MetapromptAuthProvider><MetapromptPricingPage /></MetapromptAuthProvider></GameShellV2>} />
-                  <Route path="/prompt/profile" element={<RequireAuth><GameShellV2><MetapromptAuthProvider><MetapromptProfilePage /></MetapromptAuthProvider></GameShellV2></RequireAuth>} />
+                  {/* Codex — canonical prompt suite. Day 50 (Sasha):
+                      renamed from /prompt → /codex. The old /prompt
+                      paths redirect for any links already in the wild
+                      (DMs, screenshots, the rail before this deploy). */}
+                  <Route path="/codex" element={<GameShellV2><MetapromptAuthProvider><MetapromptPage /></MetapromptAuthProvider></GameShellV2>} />
+                  <Route path="/codex/auth" element={<MetapromptAuthProvider><MetapromptAuthPage /></MetapromptAuthProvider>} />
+                  <Route path="/codex/pricing" element={<GameShellV2><MetapromptAuthProvider><MetapromptPricingPage /></MetapromptAuthProvider></GameShellV2>} />
+                  <Route path="/codex/profile" element={<RequireAuth><GameShellV2><MetapromptAuthProvider><MetapromptProfilePage /></MetapromptAuthProvider></GameShellV2></RequireAuth>} />
+                  <Route path="/prompt" element={<Navigate to="/codex" replace />} />
+                  <Route path="/prompt/auth" element={<Navigate to="/codex/auth" replace />} />
+                  <Route path="/prompt/pricing" element={<Navigate to="/codex/pricing" replace />} />
+                  <Route path="/prompt/profile" element={<Navigate to="/codex/profile" replace />} />
 
                   {/* ══════ PROTECTED ROUTES (login required) ══════ */}
                   {/* Day 47 (Sasha): /ignite is now public — the ZoG result CTA lands

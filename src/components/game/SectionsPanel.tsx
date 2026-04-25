@@ -187,7 +187,7 @@ interface SectionsPanelProps {
  * trio. Still reachable via its URL for users who want it.
  * Deeper progressive "Step N: ..." list also stays retired.
  */
-const HIDE_PROMPT_RAIL_ROUTES = new Set(["/", "/zone-of-genius", "/path", "/playbook"]);
+const HIDE_CODEX_RAIL_ROUTES = new Set(["/", "/zone-of-genius", "/path", "/playbook"]);
 
 const buildJourneySections = (currentPath: string): Section[] => {
     const base: Section[] = [
@@ -216,16 +216,18 @@ const buildJourneySections = (currentPath: string): Section[] => {
         },
     ];
 
-    // Day 49 (Sasha): the metaprompt page is a rail item, but only
-    // surfaces when the user is OFF the landing/journey routes. Keeps the
-    // funnel pages clean while still discoverable from anywhere else.
-    // Day 50: Dashboard takes slot 4; Prompt bumps to 5.
+    // Day 49 (Sasha): the Codex (signature meta-prompt library) is a
+    // rail item, but only surfaces when the user is OFF the
+    // landing/journey routes. Keeps the funnel pages clean while still
+    // discoverable from anywhere else.
+    // Day 50: Dashboard takes slot 4; Codex bumps to 5 (renamed from
+    // "Prompt" so one word carries both the page name and the rail).
     const normalized = currentPath.split(/[?#]/)[0].replace(/\/$/, "") || "/";
-    if (!HIDE_PROMPT_RAIL_ROUTES.has(normalized) && !normalized.startsWith("/playbook/")) {
+    if (!HIDE_CODEX_RAIL_ROUTES.has(normalized) && !normalized.startsWith("/playbook/")) {
         base.push({
-            id: "journey-prompt",
-            label: "5. Prompt",
-            path: "/prompt",
+            id: "journey-codex",
+            label: "5. Codex",
+            path: "/codex",
         });
     }
 
