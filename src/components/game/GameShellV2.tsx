@@ -497,13 +497,22 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
         path.startsWith("/ai-os/profile") ||
         path.startsWith("/ai-os/pricing") ||
         path.startsWith("/ai-os/auth");
-    const suppressShellBackground = isWorkingRoute || pageOwnsBackground;
+    // Day 51 night v4 (Sasha 2026-04-25): shell video now runs on
+    // working routes too. Earlier it was suppressed there, which left
+    // pane 2's translucent "curtain" with nothing alive behind it on
+    // /playbook and /path — the rail read as flat dark navy. Pane 3's
+    // heavy cream wash (relocated inside <main>) keeps the editorial
+    // feel for content; pane 2 finally has the animated dust to peek
+    // through. Only page-owned-bg routes still suppress the shell
+    // video (they render their own).
+    const suppressShellBackground = pageOwnsBackground;
 
     return (
         <div className="min-h-dvh bg-[#0a0a1a]">
-            {/* Full-screen background — video on landing-class routes,
-                calm wash on working routes, NOTHING when the page owns
-                its own background. */}
+            {/* Full-screen background — animated video everywhere
+                except page-owned-bg routes (which render their own).
+                Pane 3 wash sits inside <main> and covers the video
+                only in the content column on working routes. */}
             <div className="fixed inset-0 z-0">
                 {!suppressShellBackground && <MuxVideoBackground />}
                 {/*
