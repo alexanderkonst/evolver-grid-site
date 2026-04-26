@@ -66,6 +66,7 @@ interface AppleseedData {
         archetypeWise?: string;
         synergy?: string;
     };
+    monetizationAvenues?: string[];
     lifeScene?: string;
 }
 
@@ -77,6 +78,61 @@ const SectionLabel = ({ children }: { children: React.ReactNode }) => (
         {children}
     </p>
 );
+
+/**
+ * Parse a Monetization Avenue string. Day 52 prompt asks for the shape:
+ *   "Intro · Signal Map — 90-min 1:1 ... ($297)"
+ *   "Signature · Compress to Ship — 6-week cohort ... ($2,997)"
+ *   "Scale · Architecture Review — async retainer ... ($497/mo)"
+ *
+ * Older snapshots (pre-Day-52) may have plain strings ("Speaking gigs",
+ * "Coaching package", etc.) — those return as `description` only so they
+ * still render cleanly without a tier badge or fake price.
+ *
+ * Tier whitelist (Intro / Signature / Scale) is enforced — otherwise the
+ * "tier" field stays empty and the whole string falls into description.
+ * This prevents a hallucinated AI tier like "Premium · Exclusive ..." from
+ * leaking into our value-ladder colorway.
+ */
+const TIER_WHITELIST = new Set(["intro", "signature", "scale"]);
+
+const parseMonetizationAvenue = (
+    raw: string
+): { tier: string; name: string; description: string; price: string } => {
+    if (typeof raw !== "string" || !raw.trim()) {
+        return { tier: "", name: "", description: "", price: "" };
+    }
+    const text = raw.trim();
+
+    // Extract trailing price: "(...)" at end. Allow $/€ + numbers + suffix.
+    let price = "";
+    let body = text;
+    const priceMatch = text.match(/\(([^()]*[\d][^()]*)\)\s*$/);
+    if (priceMatch) {
+        price = priceMatch[1].trim();
+        body = text.slice(0, priceMatch.index).trim();
+    }
+
+    // Tier prefix: "Intro · ..." (or em-dash, or colon)
+    let tier = "";
+    let rest = body;
+    const tierMatch = body.match(/^(\w+)\s*[·:—-]\s*(.+)$/);
+    if (tierMatch && TIER_WHITELIST.has(tierMatch[1].toLowerCase())) {
+        tier = tierMatch[1].charAt(0).toUpperCase() + tierMatch[1].slice(1).toLowerCase();
+        rest = tierMatch[2].trim();
+    }
+
+    // Name vs description: split on " — " (em-dash). Fallback: name = "", description = rest.
+    let name = "";
+    let description = rest;
+    const nameMatch = rest.match(/^(.+?)\s+—\s+(.+)$/);
+    if (nameMatch) {
+        name = nameMatch[1].trim();
+        description = nameMatch[2].trim();
+    }
+
+    return { tier, name, description, price };
+};
 
 const ZoneOfGeniusOverview = () => {
     const navigate = useNavigate();
@@ -193,6 +249,7 @@ const ZoneOfGeniusOverview = () => {
     const stages = appleseedData.masteryStages;
     const partner = appleseedData.complementaryPartner;
     const roles = appleseedData.rolesEnvironments;
+    const monetization = appleseedData.monetizationAvenues;
 
     return (
         <GameShellV2>
@@ -377,6 +434,63 @@ const ZoneOfGeniusOverview = () => {
                                 <ExternalLink className="h-3.5 w-3.5 flex-shrink-0" style={{ color: "rgba(184,134,11,0.7)" }} />
                             </div>
                         </a>
+                    </section>
+                )}
+
+                {/* ═══ MONETIZATION AVENUES — value-ladder offers ═══
+                    Day 52 (Sasha 2026-04-26): the prompt now demands three
+                    voice-matched offers spanning intro/signature/scale tiers
+                    instead of generic "1:1 coaching / group program" clichés.
+                    We attempt to parse the structured "Tier · Name — Deliverable
+                    ($price)" shape, but fall back gracefully to plain text for
+                    legacy snapshots that pre-date the prompt update. */}
+                {monetization && monetization.length > 0 && (
+                    <section className="liquid-glass rounded-2xl p-6 space-y-4">
+                        <SectionLabel>Monetization Avenues</SectionLabel>
+                        <ul className="space-y-3">
+                            {monetization.map((raw, i) => {
+                                const parsed = parseMonetizationAvenue(raw);
+                                return (
+                                    <li
+                                        key={i}
+                                        className="liquid-glass rounded-xl p-4 space-y-1.5"
+                                    >
+                                        <div className="flex items-center gap-2 flex-wrap">
+                                            {parsed.tier && (
+                                                <span
+                                                    className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] uppercase tracking-[0.18em] font-semibold"
+                                                    style={{
+                                                        background: "rgba(132,96,234,0.15)",
+                                                        color: "#5b21b6",
+                                                        border: "1px solid rgba(132,96,234,0.3)",
+                                                    }}
+                                                >
+                                                    {parsed.tier}
+                                                </span>
+                                            )}
+                                            {parsed.name && (
+                                                <span className="text-sm font-medium" style={{ color: INK }}>
+                                                    {parsed.name}
+                                                </span>
+                                            )}
+                                            {parsed.price && (
+                                                <span
+                                                    className="ml-auto text-xs font-medium tabular-nums"
+                                                    style={{ color: "#5b21b6" }}
+                                                >
+                                                    {parsed.price}
+                                                </span>
+                                            )}
+                                        </div>
+                                        {parsed.description && (
+                                            <p className="text-sm leading-relaxed" style={{ color: INK_BODY }}>
+                                                {parsed.description}
+                                            </p>
+                                        )}
+                                    </li>
+                                );
+                            })}
+                        </ul>
                     </section>
                 )}
 

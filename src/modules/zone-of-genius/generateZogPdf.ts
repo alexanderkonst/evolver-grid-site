@@ -5,19 +5,22 @@
  * and optional Excalibur (Genius Business) data using jsPDF.
  *
  * Day 52 (Sasha 2026-04-26) — section pruning + Mastery CTA + brand fix:
- *   • REMOVED: Professional Activities, Monetization Avenues,
- *              Visual Codes, Elevator Pitch (per Sasha — these are
- *              career-advisory or redundant with the bullseye, and
- *              dilute the recognition moment).
+ *   • REMOVED: Professional Activities, Visual Codes, Elevator Pitch
+ *              (career-advisory pollution and redundant articulations
+ *              that diluted the recognition moment).
  *   • KEPT:    Bullseye, Vibrational Key, Three Lenses, Appreciated
  *              For, Mastery Stages, Roles & Environments,
- *              Complementary Partner, Life Scene.
+ *              Complementary Partner, Monetization Avenues, Life Scene.
  *   • ADDED:   Mastery Stages CTA — "Accelerate your path of mastery
  *              — book a session with Aleksandr → t.me/integralevolution"
- *              rendered as a gold-pill block right under the 7-stage
- *              list. Same CTA appears on the public /reveal/<slug> page.
+ *              rendered as a gold-pill block right under the 7-stage list.
  *   • FIXED:   Footer brand — was "geniusbusiness.app" (legacy),
  *              now "aleksandrkonstantinov.com" (canonical home).
+ *
+ * Day 52 evening — Monetization Avenues restored (Sasha): the prompt
+ * in appleseedGenerator.ts was sharpened to demand voice-matched
+ * intro/signature/scale tiers with concrete deliverables (no LinkedIn
+ * clichés like "1:1 coaching package", "online course", "membership").
  */
 
 import jsPDF from "jspdf";
@@ -297,9 +300,20 @@ function renderComplementaryPartner(b: PdfBuilder, appleseed: AppleseedData) {
   b.labelValue("Synergy", appleseed.complementaryPartner?.synergy || "—");
 }
 
+function renderMonetization(b: PdfBuilder, appleseed: AppleseedData) {
+  // Day 52 (Sasha 2026-04-26): restored. The earlier removal stripped a
+  // load-bearing section — founders need to see their three voice-matched
+  // value-ladder offers (intro / signature / scale). The prompt was
+  // sharpened to demand specificity (no LinkedIn clichés); see
+  // appleseedGenerator.ts ROASTING_INSTRUCTIONS for the new bar.
+  b.hr();
+  b.sectionHeader("8 · Monetization Avenues");
+  b.bulletList(appleseed.monetizationAvenues || []);
+}
+
 function renderLifeScene(b: PdfBuilder, appleseed: AppleseedData) {
   b.hr();
-  b.sectionHeader("8 · Life Scene");
+  b.sectionHeader("9 · Life Scene");
   b.doc.setFont("helvetica", "italic");
   b.doc.setFontSize(9);
   b.doc.setTextColor(...COLORS.text);
@@ -423,9 +437,11 @@ export function generateZogPdf(
   //   1. Bullseye · 2. Vibrational Key · 3. Three Lenses
   //   4. Appreciated For · 5. Mastery Stages (+CTA)
   //   6. Roles & Environments · 7. Complementary Partner
-  //   8. Life Scene
-  // Removed: Professional Activities, Monetization, Visual Codes,
-  // Elevator Pitch (see file header note for rationale).
+  //   8. Monetization Avenues · 9. Life Scene
+  // Removed: Professional Activities, Visual Codes, Elevator Pitch
+  // (see file header note for rationale). Monetization restored
+  // 2026-04-26 with a sharpened prompt (intro/signature/scale tiers,
+  // voice-matched names, no LinkedIn clichés).
   renderHeader(b, appleseed);
   renderBullseye(b, appleseed);
   renderVibrationalKey(b, appleseed);
@@ -434,6 +450,7 @@ export function generateZogPdf(
   renderMasteryStages(b, appleseed);
   renderRolesEnvironments(b, appleseed);
   renderComplementaryPartner(b, appleseed);
+  renderMonetization(b, appleseed);
   renderLifeScene(b, appleseed);
 
   // Excalibur page (optional)

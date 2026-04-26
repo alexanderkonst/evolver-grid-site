@@ -29,7 +29,10 @@ STRUCTURE:
 6. Professional Activities — LinkedIn-searchable roles
 7. Roles & Environments — As Creator, Contributor, Founder + ideal vibe
 8. Best Complementary Partner — Who to seek
-9. Monetization Avenues — How to monetize
+9. Monetization Avenues — Three voice-matched offers across the value-ladder
+   (intro / signature / scale). Each tier MUST be a specific, shippable
+   deliverable that ONLY this archetype could offer — never generic SaaS-
+   speak ("coaching package", "online course", "group program").
 10. Life Scene — Sensory embodiment in flow
 11. Visual Codes — Symbolic anchors
 12. Elevator Pitch — Final synthesis
@@ -90,6 +93,7 @@ ROUND 1 — IDENTIFY THE GENERIC. For every field, ask:
 - Does the Life Scene contain at least 3 concrete sensory anchors (smell, sound, light, body posture, exact words spoken, specific place)? If abstract, reject and rewrite concrete.
 - Does the Elevator Pitch contain filler ("passionate about," "deeply committed to," "helps people," "empowers," "transforms")? Strip every filler word.
 - Does the Prime Driver describe a real action that produces a real effect, or is it a vibe ("Inspire others," "Build community")? Make it surgical.
+- Do the Monetization Avenues contain LinkedIn-clichés ("1:1 coaching", "group program", "online course", "mastermind", "membership community", "VIP day", "consulting package", "speaking engagements", "ebook")? If yes, REJECT and rewrite each as a specific deliverable that names what is BEING PRODUCED — not the format wrapper.
 Mark every weak field. Do not skip this round.
 
 ROUND 2 — TEST FOR SIGNAL. For every salvaged field, ask:
@@ -97,6 +101,7 @@ ROUND 2 — TEST FOR SIGNAL. For every salvaged field, ask:
 - Does the Archetype combine TWO things in tension (e.g., "Mythic Builder × Land Listener")? Single-word archetypes lack depth.
 - Does each Mastery Stage describe a distinct evolutionary leap, or are stages just "more of the same skill"? If repetitive, redesign.
 - Are the "Appreciated For" entries describing concrete effects in concrete situations, or generic value-prop language?
+- Do the three Monetization Avenues actually span the value-ladder (intro / signature / scale)? Same price-bracket × 3 fails. Same delivery format × 3 fails. Each tier must (a) target a different commitment level, (b) name a different transformation timeframe, (c) carry a voice-matched offer name that ONLY this archetype could call it.
 Reject anything that fails. Rewrite or remove.
 
 ROUND 3 — AMPLIFY AND CRYSTALLIZE:
@@ -105,12 +110,18 @@ ROUND 3 — AMPLIFY AND CRYSTALLIZE:
 - Cut every adjective that doesn't carry meaning.
 - The Elevator Pitch must land in one breath, zero filler.
 - The Life Scene must be physically vivid — the person should feel seen, not described.
+- Each Monetization Avenue must read like an offer slot from THIS founder's website, not a category label. Format hint:
+  "<Tier> · <voice-matched name> — <one-sentence concrete deliverable> ($<price>)"
+  Examples of strong: "Intro · Signal Map — 90-min 1:1 that distills your messy founder narrative into one sentence and three shippable architectures ($297)"
+  Examples of WEAK (REJECT): "Intro · 1:1 coaching package — work with me to clarify your business ($297)"
 
 NON-NEGOTIABLE OUTPUT BAR:
 ✗ No "Visionary Leader," "Strategic Coach," "Heart-Centered Healer" or other LinkedIn-flavored archetypes
 ✗ No filler in Elevator Pitch ("passionate about," "deeply committed," "helps people achieve")
 ✗ No abstract Life Scenes — minimum 3 concrete sensory anchors
 ✗ No repetitive Mastery Stages — each must be a distinct evolutionary leap
+✗ No format-wrapper Monetization ("group program", "online course", "membership") — name what is BEING PRODUCED, not the container
+✗ No three avenues at the same price bracket or same delivery form — must span intro/signature/scale
 ✓ Person reads it and says: "this is me. only me. how did you know?"
 `;
 
@@ -179,7 +190,11 @@ Return a JSON object with this exact structure:
     "archetypeWise": "string",
     "synergy": "string"
   },
-  "monetizationAvenues": ["string", "string", "string"],
+  "monetizationAvenues": [
+    "Intro · <voice-matched name> — <one-sentence specific deliverable that only this archetype produces> ($<entry price>)",
+    "Signature · <voice-matched name> — <one-sentence transformation this archetype runs> ($<core price>)",
+    "Scale · <voice-matched name> — <async/retainer/license/cohort form> ($<scale price>)"
+  ],
   "lifeScene": "string - sensory, embodied, specific",
   "visualCodes": [
     {
