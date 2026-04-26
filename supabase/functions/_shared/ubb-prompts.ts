@@ -439,49 +439,163 @@ This artifact is also the framework that informs improvements to lead_magnet —
 };
 
 /**
- * The 27-perspective roast protocol used by improve-artifact.
- * See docs/specs/unique-business-builder/improve_roast_prompt.md for full spec.
+ * The full holonic seeing protocol (v3.0) used by improve-artifact.
+ *
+ * Day 52 (Sasha 2026-04-26): upgraded from a condensed 4-quadrant + 13th
+ * + 27th sketch to the FULL three-round protocol Sasha runs himself when
+ * he roasts artifacts:
+ *
+ *   • Round 1 — apply all 12 perspectives (4 quadrants × 3 depths)
+ *               + the 13th (Sun Logos / center)
+ *   • Round 2 — Recursive Birth (perspectives 14–25): replay the 4×3
+ *               motion on the round-1 critique itself, leading with
+ *               whatever quadrants/depths round 1 under-explored
+ *   • Round 3 — Meta-Logos (26th): roast the critique-of-the-artifact;
+ *               find the roaster's blind spot
+ *   • 27th    — Si-Do crystallization: ONE irreversible action
+ *
+ * INTERNAL ONLY. None of this vocabulary may leak into the output —
+ * the lens stays invisible; only the improved artifact ships. Output
+ * quarantine is enforced explicitly below.
+ *
+ * Spec source: Sasha's "HOLONIC SEEING MODE — 27-PERSPECTIVE ANALYSIS
+ * v3.0" prompt (see docs/specs/holonic_seeing_v3.md if/when added).
  */
 export const ROAST_PROTOCOL = `
-ROAST PROTOCOL — apply ALL checks internally before producing output:
+HOLONIC SEEING PROTOCOL — apply ALL of this INTERNALLY before producing output.
+None of the framework vocabulary appears in your output. The output is the
+improved artifact; the lens through which you saw it stays invisible.
 
-FOUR QUADRANTS (UL/UR/LL/LR Essence):
-• UL-Essence: Does this feel true from the inside? (soul test)
-• UR-Essence: Does this work mechanically? (engineering test)
-• LL-Essence: Would the tribe recognize themselves in this? (resonance test)
-• LR-Essence: Does this serve the system at scale? (architecture test)
+═══ TWO AXES OF COMPLETE SEEING ═══
 
-13TH PERSPECTIVE:
-• Does the CENTER hold? Does the whole see something the parts missed?
+Masculine axis (Structure) — 4 Quadrants:
+  UL = I    (interior-individual / soul)
+  UR = It   (exterior-individual / mechanism)
+  LL = We   (interior-collective / tribe resonance)
+  LR = Its  (exterior-collective / system architecture)
 
-DEPTH CHECK:
-• Was Essence (what IS this) addressed before Implications (what to change)?
-• Was Significance (why it matters) named before suggesting changes?
-• Are all 4 quadrants balanced — not just UR/LR mechanics?
+Feminine axis (Depth) — 3 Depths:
+  Essence ❤️       — what IS this? (Being before interpretation)
+  Significance 🧠  — why does it MATTER?
+  Consequences 🔥  — what does it inevitably RESULT IN?
 
-27TH CRYSTALLIZATION:
-• Is the ONE irreversible next action named that makes this land in reality?
-• Is it specific enough to execute immediately?
-• Does it feel inevitable — like all 26 perspectives were pointing there?
+4 quadrants × 3 depths = 12 seeing-positions. Plus the 13th — the center —
+which is not a 13th cell but the awareness that holds all 12 simultaneously.
 
-SPECIFICITY RULES:
+═══ ROUND 1 — ALL 12 + THE 13TH ═══
+
+Internally walk all 12. Do NOT write 12 bullets. Let each inform the seeing:
+
+ESSENCE ❤️
+  UL: Does this feel TRUE from the inside? Would the founder recognize their soul in it?
+  UR: Does this WORK mechanically? Is logic tight, structure sound?
+  LL: Does this create SHARED MEANING? Would the tribe say "this is us"?
+  LR: Does this fit the SYSTEM? Architecturally sound at scale?
+
+SIGNIFICANCE 🧠
+  UL: Does this liberate or constrain the individual soul?
+  UR: Does evidence support the claims?
+  LL: Is a cultural shift happening here?
+  LR: Does this serve the larger mission?
+
+CONSEQUENCES 🔥
+  UL: What inner move must the founder make next?
+  UR: What concretely must be built or changed?
+  LL: What must the tribe do together?
+  LR: What does this mean at system scale?
+
+13th — THE CENTER: hold all 12 at once. What does the whole see that no
+single perspective caught? This is emergence, not summary.
+
+═══ ROUND 2 — RECURSIVE BIRTH (14–25) ═══
+
+Replay the 4×3 motion on round 1 itself. Identify which quadrants/depths
+round 1 UNDER-explored — most defaults over-serve UR (mechanical) and
+LR (systemic) while neglecting UL (felt truth) and LL (tribal resonance).
+Lead round 2 with the under-explored angles. This is the correction layer.
+
+Apply the 13th again, now informed by two passes. What emerges from the
+center after both rounds that wasn't visible after one?
+
+═══ ROUND 3 — META-LOGOS (26TH) ═══
+
+Roast the critique itself. Was your critique seeing clearly, or projecting?
+Which quadrant did your critique consistently over-serve? That reveals YOUR
+blind spot. The 26th is the pattern connecting (a) the artifact's truth,
+(b) the critique's truth, and (c) the gap between them. Breakthrough lives
+in the gap.
+
+═══ 27TH — CRYSTALLIZATION (Si-Do shock) ═══
+
+Given everything seen — name the ONE irreversible action that makes the
+artifact land in reality. Rules:
+  • ONE thing, never a list.
+  • Specific enough to execute immediately.
+  • Irreversible — once done, the artifact is permanently different.
+  • Inevitable-feeling — like all 26 perspectives were pointing here.
+  • An ACTION, never an analysis.
+
+═══ MI-FA SHOCK CHECK ═══
+
+Before producing output, verify you actually held the perspectives you found
+uncomfortable, not just catalogued them. The shock IS love — willingness to
+hold all 12 angles without collapsing any. If you flinched at a perspective
+(usually UL or LL), go back and hold it.
+
+═══ AI BLIND-SPOT WATCHDOG ═══
+
+Before finalizing, audit your own seeing:
+  • Did I over-index on UR (fix the mechanism) and LR (fix the architecture)?
+  • Did I under-index on UL (does this feel true?) and LL (does this move the tribe?)?
+  • If yes, rebalance before producing output.
+
+═══ OUTPUT QUARANTINE — CRITICAL ═══
+
+The output the user sees (improved_content, roast_findings, what_changed,
+crystallized_action) MUST NOT contain ANY of the framework's internal
+vocabulary. The following terms are FORBIDDEN in any output field:
+
+  "27-perspective" · "12-perspective" · "13-perspective" · "26th" · "27th" ·
+  "holonic" · "Holon" · "Logos" · "Sun Logos" · "Meta-Logos" · "Merkaba" ·
+  "Mi-Fa" · "Si-Do" · "shock" (in this sense) · "Recursive Birth" ·
+  "Masculine Axis" · "Feminine Axis" · "Four Quadrants" · "UL/UR/LL/LR" ·
+  "Three Depths" · "Essence/Significance/Consequences" (as a labeled triad) ·
+  "dodecahedron" · "Plato's solid" · "vacuum geometry" · "Kabbalah" ·
+  "string theory" · "Star Tetrahedron" · "dantian" · "Hara"
+
+Speak in the founder's voice and the tribe's plain language. The roast
+findings should sound like sharp human observations ("this hides behind
+generic verbs"; "the tribe wouldn't recognize themselves in this"), NEVER
+like framework labels ("UL-Essence weakness: …"). The crystallized action
+should sound like a clear next move ("rewrite the headline so a stranger
+in the tribe can quote it"), NEVER like ritual language ("the Si-Do shock
+crystallizes as…").
+
+If a roast_finding's "quadrant" field is required by schema, use the
+short codes (UL/UR/LL/LR) ONLY in that field — that's an internal
+audit trail, not user-facing copy. Every other field is plain prose.
+
+═══ SPECIFICITY RULES ═══
+
 1. New version MUST have specificity strictly greater than current.
-   If you cannot produce such a version, return diminishing_returns: true.
-2. Specificity rises by: adding distinguishing detail, removing generic phrasing,
-   naming what only this founder / this tribe would say.
-3. Specificity does NOT rise by: adding more words, hedging, adding caveats,
+   If you cannot, return diminishing_returns: true.
+2. Specificity rises by: adding distinguishing detail, removing generic
+   phrasing, naming what only this founder / this tribe would say.
+3. Specificity does NOT rise by: more words, hedging, adding caveats,
    or moving toward safer generic language.
 4. Length is not specificity. Often the more specific version is shorter.
 
-GUARDRAILS:
+═══ GUARDRAILS ═══
+
 • Preserve Russian register if current_content is in Russian. Same for English.
 • Never invent client names, testimonials, revenue numbers, or dates.
-• If current_content has a "locked_phrasing" field, honor it verbatim and improve only surrounding structure.
+• If current_content has a "locked_phrasing" field, honor it verbatim and
+  improve only surrounding structure.
 • Never weaken a phrase the founder already got to 9+ specificity on; build around it.
 `.trim();
 
 // ============================================================================
-// LATTICE PROTOCOL — Linguistic Synthesis Through Energy Enumeration
+// SYNTHESIS PROTOCOL — Linguistic Synthesis Through Energy Enumeration
 // (Phase Shift Technology Library, Domain 82 — April 26, 2026)
 //
 // Doctrinally enforces the simple/simplistic distinction in every AI synthesis.
@@ -494,12 +608,12 @@ GUARDRAILS:
 //   - generate-artifact (v1 generation)
 //   - improve-artifact  (iteration loop)
 // Both inject this block into their system prompt.
-// Both demand `_lattice` and `_distillation` as fields inside the artifact's
-// content JSON, so the lattice is carried forward as a transparent audit
-// trail the human can challenge.
+// Both demand `_energies` and `_distillation` as fields inside the artifact's
+// content JSON, so the kept signal-energies are carried forward as a
+// transparent audit trail the human can challenge.
 // ============================================================================
-export const LATTICE_PROTOCOL_PROMPT = `
-LATTICE PROTOCOL — Linguistic Synthesis Through Energy Enumeration
+export const SYNTHESIS_PROTOCOL_PROMPT = `
+LINGUISTIC SYNTHESIS — Energy Enumeration Protocol
 (Phase Shift Library, Domain 82)
 
 You will produce a one-sentence distillation of this artifact. Read this
@@ -533,24 +647,25 @@ For each energy in your enumeration, mark it signal or noise:
     changes if absent.
   - NOISE: decorative, defensive, or stylistic. Removable without loss to the
     substance.
-Drop the noise. Keep all signal. The kept signal IS the LATTICE.
+Drop the noise. Keep all signal. The kept signal-energies are what carry
+forward into the distillation.
 
-The lattice is the structural skeleton of the meaning. It is the metric for
+This kept list is the structural skeleton of the meaning — the metric for
 what the distillation must contain.
 
 STEP 3 — SYNTHESIZE THE DISTILLATION.
 Compose ONE sentence such that:
-  1. Every signal-energy from the lattice is present (explicitly or
-     compressively, but always traceable).
+  1. Every kept signal-energy is present (explicitly or compressively, but
+     always traceable).
   2. No noise-energy is present.
   3. It reads as one coherent thought, not a concatenation of clauses with
      periods. One thought. One sentence.
 
 FIDELITY CHECK (run this BEFORE writing your output).
-Re-read your distillation sentence. For each item in your lattice, ask: is
+Re-read your distillation sentence. For each kept signal-energy, ask: is
 this present? If any signal-energy is missing or distorted, recompose the
-sentence. Do not return to Step 1 or Step 2 unless the lattice itself was
-wrong. Iterate Step 3 until every lattice item lands.
+sentence. Do not return to Step 1 or Step 2 unless the enumeration itself
+was wrong. Iterate Step 3 until every signal-energy lands.
 
 ANTI-PATTERNS — recognize and reject:
   - The distillation reads fluently but a reader of the long form senses
@@ -560,18 +675,18 @@ ANTI-PATTERNS — recognize and reject:
   - The distillation is generic enough to apply to many people — the
     friction-points specific to THIS founder's voice were sanded down.
   - You jumped from prose to sentence without the enumeration step. (If your
-    output has fewer lattice items than energies in the inputs, you compressed
-    at Step 1 instead of Step 3.)
+    output has fewer energies than the inputs carry, you compressed at
+    Step 1 instead of Step 3.)
 
 OUTPUT REQUIREMENT.
 Inside the artifact's "content" object, include two fields ALONGSIDE the
 artifact's structured fields:
-  - "_lattice": string[]   — the kept signal-energies (Step 2 result, signal
-                              only). Each item ≤10 words. Numbered ordering
-                              is preserved by array index.
+  - "_energies": string[]   — the kept signal-energies (Step 2 result, signal
+                               only). Each item ≤10 words. Numbered ordering
+                               is preserved by array index.
   - "_distillation": string — the one-sentence synthesis (Step 3 result).
-                              Every "_lattice" item must be locatable in this
-                              sentence.
+                              Every "_energies" item must be locatable in
+                              this sentence.
 
 These two fields are the audit trail. The human will check: did you see all
 my energies, score them correctly, and put them all back into the sentence?

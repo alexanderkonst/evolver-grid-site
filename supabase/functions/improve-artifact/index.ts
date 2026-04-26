@@ -12,7 +12,7 @@ import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import {
   ARTIFACT_CONFIGS,
   ROAST_PROTOCOL,
-  LATTICE_PROTOCOL_PROMPT,
+  SYNTHESIS_PROTOCOL_PROMPT,
   MODEL,
   AI_GATEWAY_URL,
   type ArtifactKey,
@@ -95,15 +95,16 @@ SOURCE PLAYBOOK: ${config.sourcePlaybook}
 
 ---
 
-${LATTICE_PROTOCOL_PROMPT}
+${SYNTHESIS_PROTOCOL_PROMPT}
 
-ITERATION-SPECIFIC NOTE — when iterating across versions, your Step 1 (Enumerate
-the Energies) must look at CURRENT CONTENT and PREVIOUS VERSIONS together. The
-lattice for the new version is the union of signal-energies from across all
-versions, plus any new signal-energies surfaced by the roast. The common
-threads across versions are higher-confidence signal; energies that appear in
-only one version need to be scored carefully — they may be signal that hasn't
-yet been preserved, or noise the iteration is correctly shedding.`;
+ITERATION-SPECIFIC NOTE — when iterating across versions, your Step 1
+(Enumerate the Energies) must look at CURRENT CONTENT and PREVIOUS VERSIONS
+together. The list of energies for the new version is the union of
+signal-energies from across all versions, plus any new signal-energies
+surfaced by the roast. The common threads across versions are higher-
+confidence signal; energies that appear in only one version need to be
+scored carefully — they may be signal that hasn't yet been preserved, or
+noise the iteration is correctly shedding.`;
 
     const siblingSummary = Object.entries(sibling_artifacts || {})
       .map(([k, v]) => `- ${k} (specificity ${v.specificity}): ${JSON.stringify(v.content).slice(0, 400)}`)
@@ -150,28 +151,33 @@ ${ROAST_PROTOCOL}
 ---
 
 RETURN STRICT JSON matching this shape. The "improved_content" object MUST
-include "_lattice" and "_distillation" per the LATTICE PROTOCOL above,
+include "_energies" and "_distillation" per the SYNTHESIS PROTOCOL above,
 ALONGSIDE this artifact's specific fields:
 
 {
   "roast_findings": [
     { "quadrant": "UL|UR|LL|LR|13|depth|27", "weakness": "<one sentence>" }
     // 2-5 findings, each must map to a concrete change
+    // The "quadrant" field accepts ONLY these short codes — that field
+    // is the only place framework codes appear. The "weakness" string
+    // is plain founder/tribe language with NO framework vocabulary
+    // (see OUTPUT QUARANTINE in the protocol).
   ],
   "improved_content": {
-    "_lattice": ["<kept signal-energy 1>", "<kept signal-energy 2>", ...],
-    "_distillation": "<one sentence containing every _lattice item>",
+    "_energies": ["<kept signal-energy 1>", "<kept signal-energy 2>", ...],
+    "_distillation": "<one sentence containing every _energies item>",
     ...${config.outputSchema.replace(/^\{|\}$/g, "").trim()}
   },
-  "what_changed": "<one sentence describing the delta>",
+  "what_changed": "<one sentence describing the delta — plain language>",
   "specificity_score": <float 0-10, MUST be > ${current_specificity} unless diminishing_returns=true>,
   "specificity_delta": <float, new minus ${current_specificity}>,
-  "crystallized_action": "<the ONE irreversible next action this artifact names>",
+  "crystallized_action": "<the ONE irreversible next action — written as a sharp human directive, not as ritual language>",
   "diminishing_returns": <boolean>
 }
 
-Return ONLY the JSON. No explanation. The lattice and distillation are
-mandatory, not optional.`;
+Return ONLY the JSON. No explanation. The energies list and distillation are
+mandatory, not optional. The output quarantine is mandatory: framework
+vocabulary appears nowhere in any string field except the quadrant codes.`;
 
     // Call Lovable AI Gateway
     const response = await fetch(AI_GATEWAY_URL, {

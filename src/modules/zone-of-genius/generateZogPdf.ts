@@ -1,8 +1,23 @@
 /**
  * Zone of Genius PDF Generator
  *
- * Generates a clean, branded PDF containing all 12 Appleseed perspectives
+ * Generates a clean, branded PDF containing the Appleseed perspectives
  * and optional Excalibur (Genius Business) data using jsPDF.
+ *
+ * Day 52 (Sasha 2026-04-26) — section pruning + Mastery CTA + brand fix:
+ *   • REMOVED: Professional Activities, Monetization Avenues,
+ *              Visual Codes, Elevator Pitch (per Sasha — these are
+ *              career-advisory or redundant with the bullseye, and
+ *              dilute the recognition moment).
+ *   • KEPT:    Bullseye, Vibrational Key, Three Lenses, Appreciated
+ *              For, Mastery Stages, Roles & Environments,
+ *              Complementary Partner, Life Scene.
+ *   • ADDED:   Mastery Stages CTA — "Accelerate your path of mastery
+ *              — book a session with Aleksandr → t.me/integralevolution"
+ *              rendered as a gold-pill block right under the 7-stage
+ *              list. Same CTA appears on the public /reveal/<slug> page.
+ *   • FIXED:   Footer brand — was "geniusbusiness.app" (legacy),
+ *              now "aleksandrkonstantinov.com" (canonical home).
  */
 
 import jsPDF from "jspdf";
@@ -19,7 +34,15 @@ const COLORS = {
   muted: [120, 120, 140] as [number, number, number],
   divider: [200, 200, 210] as [number, number, number],
   bg: [245, 245, 250] as [number, number, number],
+  // Day 52 (Sasha 2026-04-26): warm gold for the Mastery CTA card —
+  // matches the "Work with Aleksandr" gold pill on /ai-os hero, so
+  // the same offer reads consistently across surfaces.
+  gold: [184, 134, 11] as [number, number, number],
+  goldFill: [251, 243, 219] as [number, number, number],
 };
+
+const MASTERY_CTA_URL = "https://t.me/integralevolution";
+const MASTERY_CTA_TEXT = "Accelerate your path of mastery — book a session with Aleksandr →";
 
 const PAGE_W = 210; // A4 mm
 const MARGIN = 20;
@@ -225,21 +248,40 @@ function renderMasteryStages(b: PdfBuilder, appleseed: AppleseedData) {
       text: `${s.name} — ${s.description}`,
     }))
   );
+  // Day 52 (Sasha 2026-04-26): CTA card right under the 7 stages.
+  // The path of mastery has stages — and a guide. This pulls users
+  // who feel the pull toward acceleration straight to the booking
+  // surface (Telegram DM with Aleksandr).
+  renderMasteryCta(b);
 }
 
-function renderProfessionalActivities(b: PdfBuilder, appleseed: AppleseedData) {
-  b.hr();
-  b.sectionHeader("6 · Professional Activities");
-  for (const act of appleseed.professionalActivities || []) {
-    b.subHeader(act.activity);
-    b.body(`For: ${act.targetAudience}`, 4);
-    b.body(`Purpose: ${act.purpose}`, 4);
-  }
+function renderMasteryCta(b: PdfBuilder) {
+  b.gap(2);
+  b.ensureSpace(18);
+  // Soft gold-fill card, gold border, gold link text. jsPDF link()
+  // makes the whole card clickable in any standard PDF viewer.
+  const cardX = MARGIN;
+  const cardY = b.y;
+  const cardH = 14;
+  const cardW = CONTENT_W;
+  b.doc.setFillColor(...COLORS.goldFill);
+  b.doc.setDrawColor(...COLORS.gold);
+  b.doc.setLineWidth(0.4);
+  b.doc.roundedRect(cardX, cardY, cardW, cardH, 2.5, 2.5, "FD");
+  b.doc.setFont("helvetica", "bold");
+  b.doc.setFontSize(9);
+  b.doc.setTextColor(...COLORS.gold);
+  b.doc.textWithLink(MASTERY_CTA_TEXT, cardX + 4, cardY + 9, {
+    url: MASTERY_CTA_URL,
+  });
+  // Make the entire card clickable, not only the text glyphs.
+  b.doc.link(cardX, cardY, cardW, cardH, { url: MASTERY_CTA_URL });
+  b.y = cardY + cardH + 4;
 }
 
 function renderRolesEnvironments(b: PdfBuilder, appleseed: AppleseedData) {
   b.hr();
-  b.sectionHeader("7 · Roles & Environments");
+  b.sectionHeader("6 · Roles & Environments");
   b.labelValue("As Creator", appleseed.rolesEnvironments?.asCreator || "—");
   b.labelValue("As Contributor", appleseed.rolesEnvironments?.asContributor || "—");
   b.labelValue("As Founder", appleseed.rolesEnvironments?.asFounder || "—");
@@ -248,22 +290,16 @@ function renderRolesEnvironments(b: PdfBuilder, appleseed: AppleseedData) {
 
 function renderComplementaryPartner(b: PdfBuilder, appleseed: AppleseedData) {
   b.hr();
-  b.sectionHeader("8 · Best Complementary Partner");
+  b.sectionHeader("7 · Best Complementary Partner");
   b.labelValue("Skills-wise", appleseed.complementaryPartner?.skillsWise || "—");
   b.labelValue("Genius-wise", appleseed.complementaryPartner?.geniusWise || "—");
   b.labelValue("Archetype-wise", appleseed.complementaryPartner?.archetypeWise || "—");
   b.labelValue("Synergy", appleseed.complementaryPartner?.synergy || "—");
 }
 
-function renderMonetization(b: PdfBuilder, appleseed: AppleseedData) {
-  b.hr();
-  b.sectionHeader("9 · Monetization Avenues");
-  b.bulletList(appleseed.monetizationAvenues || []);
-}
-
 function renderLifeScene(b: PdfBuilder, appleseed: AppleseedData) {
   b.hr();
-  b.sectionHeader("10 · Life Scene");
+  b.sectionHeader("8 · Life Scene");
   b.doc.setFont("helvetica", "italic");
   b.doc.setFontSize(9);
   b.doc.setTextColor(...COLORS.text);
@@ -276,28 +312,12 @@ function renderLifeScene(b: PdfBuilder, appleseed: AppleseedData) {
   b.gap();
 }
 
-function renderVisualCodes(b: PdfBuilder, appleseed: AppleseedData) {
-  b.hr();
-  b.sectionHeader("11 · Visual Codes");
-  for (const code of appleseed.visualCodes || []) {
-    b.body(`${code.symbol} — ${code.meaning}`, 4);
-  }
-}
-
-function renderElevatorPitch(b: PdfBuilder, appleseed: AppleseedData) {
-  b.hr();
-  b.sectionHeader("12 · Elevator Pitch");
-  b.doc.setFont("helvetica", "bold");
-  b.doc.setFontSize(10);
-  b.doc.setTextColor(...COLORS.text);
-  const lines = b.doc.splitTextToSize(appleseed.elevatorPitch || "", CONTENT_W);
-  for (const line of lines) {
-    b.ensureSpace(6);
-    b.doc.text(line, MARGIN, b.y);
-    b.y += 5;
-  }
-  b.gap();
-}
+// Day 52 (Sasha 2026-04-26): Professional Activities, Monetization
+// Avenues, Visual Codes, and Elevator Pitch removed from the rendered
+// PDF per Sasha. The underlying JSON fields stay populated by the
+// generator (no migration), so older snapshots remain valid; the
+// renderer simply stops reading them. If we ever want to bring any
+// of them back, restore the function and re-add to the call list.
 
 // ---------------------------------------------------------------------------
 // Excalibur (Genius Business) — optional page
@@ -371,6 +391,9 @@ function renderExcalibur(b: PdfBuilder, excalibur: ExcaliburData) {
 // ---------------------------------------------------------------------------
 
 function renderFooter(b: PdfBuilder) {
+  // Day 52 (Sasha 2026-04-26): brand fix — was "geniusbusiness.app"
+  // (legacy product name from the metaprompt era), now the canonical
+  // home Sasha actually uses. findyourtoptalent.com redirects there.
   const pageCount = b.doc.getNumberOfPages();
   for (let i = 1; i <= pageCount; i++) {
     b.doc.setPage(i);
@@ -378,7 +401,7 @@ function renderFooter(b: PdfBuilder) {
     b.doc.setFontSize(7);
     b.doc.setTextColor(...COLORS.muted);
     b.doc.text(
-      `Page ${i} of ${pageCount}  ·  geniusbusiness.app`,
+      `Page ${i} of ${pageCount}  ·  aleksandrkonstantinov.com`,
       PAGE_W / 2,
       292,
       { align: "center" }
@@ -396,20 +419,22 @@ export function generateZogPdf(
 ): void {
   const b = new PdfBuilder();
 
-  // Appleseed pages
+  // Appleseed pages — Day 52 (Sasha 2026-04-26) section list:
+  //   1. Bullseye · 2. Vibrational Key · 3. Three Lenses
+  //   4. Appreciated For · 5. Mastery Stages (+CTA)
+  //   6. Roles & Environments · 7. Complementary Partner
+  //   8. Life Scene
+  // Removed: Professional Activities, Monetization, Visual Codes,
+  // Elevator Pitch (see file header note for rationale).
   renderHeader(b, appleseed);
   renderBullseye(b, appleseed);
   renderVibrationalKey(b, appleseed);
   renderThreeLenses(b, appleseed);
   renderAppreciatedFor(b, appleseed);
   renderMasteryStages(b, appleseed);
-  renderProfessionalActivities(b, appleseed);
   renderRolesEnvironments(b, appleseed);
   renderComplementaryPartner(b, appleseed);
-  renderMonetization(b, appleseed);
   renderLifeScene(b, appleseed);
-  renderVisualCodes(b, appleseed);
-  renderElevatorPitch(b, appleseed);
 
   // Excalibur page (optional)
   if (excalibur) {
