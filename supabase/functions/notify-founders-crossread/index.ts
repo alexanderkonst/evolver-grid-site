@@ -96,7 +96,7 @@ const buildEmail = (founder: Founder, allFounders: Founder[]): string => {
     </p>
 
     <div style="text-align: center;">
-      <a href="https://aleksandrkonstantinov.com/founders" class="cta">
+      <a href="https://findyourtoptalent.com/founders" class="cta">
         Read the other canvases →
       </a>
     </div>

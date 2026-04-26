@@ -199,7 +199,7 @@ serve(async (req) => {
     // token-based /my-result URL. On click the user authenticates and lands
     // in `/game/me` where their fuller Top Talent profile surfaces.
     const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
-    const SITE_URL = Deno.env.get("SITE_URL") || "https://aleksandrkonstantinov.com";
+    const SITE_URL = Deno.env.get("SITE_URL") || "https://findyourtoptalent.com";
 
     // Generate the magic link (admin-issued, redirects to /game/me on success)
     let magicLink = `${SITE_URL}/auth?next=%2Fgame%2Fme`;
