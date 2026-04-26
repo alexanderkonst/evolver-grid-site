@@ -1,6 +1,5 @@
 import { ArrowRight, Mail } from "lucide-react";
 import RevelatoryHero from "@/components/game/RevelatoryHero";
-import ShareZoG from "@/components/sharing/ShareZoG";
 import ResonanceRating from "@/components/ui/ResonanceRating";
 import { AppleseedData } from "./appleseedGenerator";
 import { useState, useCallback, useEffect } from "react";
@@ -121,44 +120,13 @@ const OwnershipSection = ({
 };
 
 /**
- * DelayedShare — appears 800ms after page load, below CTAs
- */
-const DelayedShare = ({
-    appleseed,
-    profileId,
-    profileUrl,
-}: {
-    appleseed: AppleseedData;
-    profileId?: string;
-    profileUrl?: string;
-}) => {
-    const [visible, setVisible] = useState(false);
-
-    useEffect(() => {
-        const timer = setTimeout(() => setVisible(true), 800);
-        return () => clearTimeout(timer);
-    }, []);
-
-    if (!visible) return null;
-
-    return (
-        <div className="animate-in fade-in duration-700 opacity-50 hover:opacity-70 transition-opacity max-w-md mx-auto">
-            <ShareZoG
-                archetypeName={appleseed.vibrationalKey.name}
-                tagline={appleseed.bullseyeSentence}
-                primeDriver={appleseed.threeLenses.primeDriver}
-                talents={appleseed.threeLenses.actions}
-                archetype={appleseed.threeLenses.archetype}
-                profileId={profileId}
-                profileUrl={profileUrl}
-            />
-        </div>
-    );
-};
-
-/**
  * AppleseedDisplay — ZoG result screen (dark liquid glass)
- * Flow: Genius reveal → Email gate → Own (save) → Amplify (share, delayed)
+ * Flow: Genius reveal → Email gate → Own (save)
+ *
+ * Day 51 night (Sasha): the standalone delayed-share strip
+ * (formerly "Optional: Get perspective from others") was retired.
+ * Save + Share now live in-card via CardActions inside RevelatoryHero
+ * — one-click, always visible, no delay, no second component to discover.
  */
 const AppleseedDisplay = ({
     appleseed,
@@ -509,17 +477,11 @@ const AppleseedDisplay = ({
                         emailSaving={emailSaving}
                         handleEmailSubmit={handleEmailSubmit}
                     />
-                    <DelayedShare
-                        appleseed={appleseed}
-                        profileId={profileId}
-                        profileUrl={profileUrl}
-                    />
                 </div>
 
-                {/* Bottom signature removed 2026-04-21 per Sasha — it was
-                    clipping into the open share dropdown and reading as a
-                    glitch. The identical signature still appears in
-                    RevelatoryHero above the page, so nothing is lost. */}
+                {/* Day 51 night (Sasha): bottom signature + delayed share strip
+                    both retired. Save + Share now live in-card via CardActions
+                    inside RevelatoryHero. */}
             </div>
         </>
     );

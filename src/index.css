@@ -272,7 +272,12 @@
   --skin-input-placeholder: rgba(26, 30, 58, 0.45);
 
   /* Ignite / decision-room dark panel (deep navy, stays dark in both skins) */
-  --skin-darkroom-bg:     rgba(10, 10, 26, 0.92);
+  /* Day 51 night (Sasha 2026-04-25): darkroom-bg lowered 0.92 → 0.62.
+     Inside GameShellV2's pane 3, this overlay was reading as oppressive
+     — too much black sealing off the page video underneath. 0.62 keeps
+     the decision-room dark register (text contrast preserved) while
+     letting the underlying ignition video pulse through as motion. */
+  --skin-darkroom-bg:     rgba(10, 10, 26, 0.62);
   --skin-darkroom-text:   rgba(245, 245, 250, 0.94);
   --skin-darkroom-muted:  rgba(245, 245, 250, 0.65);
   --skin-darkroom-border: rgba(255, 255, 255, 0.12);

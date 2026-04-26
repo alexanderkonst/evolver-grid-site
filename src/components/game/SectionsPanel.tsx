@@ -335,7 +335,7 @@ const SectionsPanel = ({
     return (
         <div
             className={cn(
-                "w-[260px] flex flex-col relative",
+                "w-[260px] flex flex-col relative z-30",
                 "liquid-glass",
                 className
             )}
@@ -349,6 +349,12 @@ const SectionsPanel = ({
             // through. Combined with backdrop-blur, reads as silk veil
             // over the animated stream. border: none — same fix as Pane 1,
             // removes liquid-glass's 0.5px white top border.
+            //
+            // Day 51 r3 (Sasha 2026-04-25 night): z-30 added so Pane 2 always
+            // sits above page-owned background overlays (e.g. /ai-os's
+            // z-[1] gradient + vignette + noise + StarryBackground). Without
+            // this, on /ai-os the overlays were drawn over the panel and
+            // Sasha saw the panel "disappear."
             style={{
                 backgroundColor: "rgba(14, 32, 68, 0.18)",
                 border: "none",
