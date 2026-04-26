@@ -1,8 +1,10 @@
-# Monetization Strategies — The Holonic Franchise
+# Monetization Strategies
+
+> *Open-source platform · sovereign distributors · commons tithe · per-founder voice generation*
 
 > *© 2026 Alexander Konstantinov · [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)*
 
-> *v2.1 · April 25, 2026 (Day 51 night) — File renamed to `monetization_strategies.md` (Sasha's call: this is what the file functionally tracks; the *Holonic Franchise* model name stays as the brand-bearing pattern at the heart of the strategy). Single canonical doc for both the architectural pattern AND the dynamic, sequenced business-monetization strategies that operate within it. Supersedes v2.0 (the prior `holonic_franchise_model.md` rename) + v1.0 of that file + the short-lived earlier `monetization_strategy.md` (singular) — all consolidated here so there's one source of truth.*
+> *v2.2 · April 25, 2026 (Day 51 night) — Brand-name dropped (Path A). The earlier name "Holonic Franchise" was retired same day for two reasons: (1) **legal exposure** — calling a model "franchise" in the US can trigger the FTC Franchise Rule + state franchise statutes (FDD requirements, registration, etc.), regardless of whether the underlying economics actually warrant franchise classification; (2) **accessibility** — "holonic" is opaque outside Wilber/integral circles. Going forward this doc describes the model functionally. The handle "**Sovereign Network**" is preserved as a soft brand for marketing moments where a memorable phrase helps; otherwise the model is described by what it IS: an open-source platform with sovereign distributors operating under their own brand and contributing 10% of platform revenue to a shared commons. Single canonical doc for both the architectural pattern AND the dynamic, sequenced business-monetization strategies that operate within it. Supersedes v2.1 (rename to `monetization_strategies.md`) + v2.0 (the prior merge from `monetization_strategy.md`) + v1.0 of the predecessor `holonic_franchise_model.md` — all consolidated here so there's one source of truth.*
 >
 > **Status:** living document. Always work from the latest version. Each addition is additive (changelog at end of file); nothing is deleted, but the *current shape* is whatever the latest version describes.
 >
