@@ -45,10 +45,6 @@ import GeniusOfferIntake from "./pages/GeniusOfferIntake";
 import AdminMissionParticipants from "./pages/AdminMissionParticipants";
 import AdminMissionSync from "./pages/AdminMissionSync";
 import AdminContentManager from "./pages/AdminContentManager";
-// Day 52 (Sasha 2026-04-26): public Top Talent reveal at /reveal/:slug.
-// Lazy because the page is its own world (full-bleed, no GameShell).
-const RevealPage = lazy(() => import("./pages/RevealPage"));
-
 // Phase 1 of the Autonomous Navigation Loop — Sasha-only founder-state surfaces.
 // See docs/06-architecture/autonomous-navigation-loop.md.
 const FoundersIndex = lazy(() => import("./pages/admin/FoundersIndex"));
@@ -233,11 +229,12 @@ const App = () => (
                   <Route path="/auth" element={<Auth />} />
                   <Route path="/auth/callback" element={<AuthCallback />} />
                   <Route path="/auth/reset-password" element={<ResetPassword />} />
-                  {/* Day 52 (Sasha 2026-04-26): /reveal/:slug is the public
-                      Top Talent share page. Bare /reveal still redirects
-                      home so legacy links don't 404. */}
+                  {/* /reveal — legacy redirect kept so any old shared
+                      links resolve home. The PDF download + the in-app
+                      Top Talent overview ARE the reveal — no need for
+                      a duplicate public page (Sasha 2026-04-26). */}
                   <Route path="/reveal" element={<Navigate to="/" replace />} />
-                  <Route path="/reveal/:slug" element={<RevealPage />} />
+                  <Route path="/reveal/:slug" element={<Navigate to="/" replace />} />
                   <Route path="/my-result" element={<MyResult />} />
                   {/* Day 47 late pass (Sasha): /integral_theory_upgrade1 renamed to /27.
                       Old path kept as redirect so any shared links stay alive. */}
