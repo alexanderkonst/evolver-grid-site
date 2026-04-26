@@ -11,11 +11,11 @@
 import { useLocation, Link } from "react-router-dom";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Loader2 } from "lucide-react";
+import { ArrowLeft, ArrowRight, Loader2 } from "lucide-react";
 import { useUniqueBusiness } from "../UniqueBusinessContext";
 import { ImproveButton } from "../components/ImproveButton";
 import { SpecificityBadge } from "../components/SpecificityBadge";
-import { ARTIFACT_LABELS, UBB_ROOT } from "../constants";
+import { ARTIFACT_LABELS, ROUTES, UBB_ROOT } from "../constants";
 import { COMPOUND_GROUPING, type ArtifactKey, type CompoundScreenKey } from "../types";
 
 const SLUG_TO_COMPOUND: Record<string, CompoundScreenKey> = {
@@ -23,6 +23,43 @@ const SLUG_TO_COMPOUND: Record<string, CompoundScreenKey> = {
   marketing: "marketing",
   distribution: "distribution",
   communications: "communications",
+};
+
+// Day 51 night v2 (Sasha 2026-04-26): explicit Next/Prev wiring so a
+// founder can walk the canvas linearly without bouncing back to the
+// overview between every step. Order matches the canonical phase
+// sequence (Phase B Session → Phase C Marketing → Distribution →
+// Communications → Phase D Landing Page).
+const COMPOUND_ORDER: CompoundScreenKey[] = ["session", "marketing", "distribution", "communications"];
+
+type NavTarget = { label: string; to: string };
+
+const nextTarget = (current: CompoundScreenKey): NavTarget | null => {
+  const idx = COMPOUND_ORDER.indexOf(current);
+  // Next compound, if any
+  if (idx >= 0 && idx < COMPOUND_ORDER.length - 1) {
+    const next = COMPOUND_ORDER[idx + 1];
+    return { label: COMPOUND_TITLES[next].title, to: `${UBB_ROOT}/${next}` };
+  }
+  // After the last compound (communications), the journey continues to
+  // the Landing Page — Phase D's terminal artifact.
+  if (current === "communications") {
+    return { label: "Landing Page", to: ROUTES.landingPage };
+  }
+  return null;
+};
+
+const prevTarget = (current: CompoundScreenKey): NavTarget | null => {
+  const idx = COMPOUND_ORDER.indexOf(current);
+  if (idx > 0) {
+    const prev = COMPOUND_ORDER[idx - 1];
+    return { label: COMPOUND_TITLES[prev].title, to: `${UBB_ROOT}/${prev}` };
+  }
+  // Before /ubb/session is the canvas overview (Phase A).
+  if (current === "session") {
+    return { label: "Canvas", to: UBB_ROOT };
+  }
+  return null;
 };
 
 const COMPOUND_TITLES: Record<CompoundScreenKey, { title: string; subtitle: string }> = {
@@ -64,6 +101,9 @@ export default function CompoundScreen() {
   const subKeys = COMPOUND_GROUPING[compound];
   const meta = COMPOUND_TITLES[compound];
 
+  const next = nextTarget(compound);
+  const prev = prevTarget(compound);
+
   return (
     <div className="mx-auto max-w-4xl space-y-6">
       <header className="space-y-1">
@@ -76,6 +116,38 @@ export default function CompoundScreen() {
           <SubArtifactCard key={key} artifactKey={key} />
         ))}
       </div>
+
+      {/* Day 51 night v2 (Sasha 2026-04-26): canvas-walk nav row.
+          Founders kept getting stuck at the bottom of /ubb/session
+          with only an Improve button per sub-artifact and no obvious
+          way forward. Next button promotes the natural sequence
+          (session → marketing → distribution → communications →
+          landing-page); Back returns to the previous compound or the
+          canvas overview. */}
+      {(next || prev) && (
+        <div className="mt-10 pt-6 border-t flex items-center justify-between gap-4">
+          <div>
+            {prev && (
+              <Button asChild variant="outline" className="rounded-full">
+                <Link to={prev.to}>
+                  <ArrowLeft className="w-4 h-4 mr-1.5" />
+                  {prev.label}
+                </Link>
+              </Button>
+            )}
+          </div>
+          <div>
+            {next && (
+              <Button asChild className="rounded-full">
+                <Link to={next.to}>
+                  Next: {next.label}
+                  <ArrowRight className="w-4 h-4 ml-1.5" />
+                </Link>
+              </Button>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

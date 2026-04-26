@@ -173,6 +173,7 @@ import AiOsPage from "./modules/ai-os/AiOsPage";
 import AiOsAuthPage from "./modules/ai-os/pages/AiOsAuthPage";
 import AiOsPricingPage from "./modules/ai-os/pages/AiOsPricingPage";
 import AiOsProfilePage from "./modules/ai-os/pages/AiOsProfilePage";
+import AiOsBenchmark from "./pages/AiOsBenchmark";
 import { AiOsAuthProvider } from "./modules/ai-os/hooks/useAiOsAuth";
 
 const PageLoader = () => (
@@ -250,6 +251,7 @@ const App = () => (
                   <Route path="/ai-os/auth" element={<AiOsAuthProvider><AiOsAuthPage /></AiOsAuthProvider>} />
                   <Route path="/ai-os/pricing" element={<GameShellV2><AiOsAuthProvider><AiOsPricingPage /></AiOsAuthProvider></GameShellV2>} />
                   <Route path="/ai-os/profile" element={<RequireAuth><GameShellV2><AiOsAuthProvider><AiOsProfilePage /></AiOsAuthProvider></GameShellV2></RequireAuth>} />
+                  <Route path="/ai-os/benchmark" element={<GameShellV2><AiOsBenchmark /></GameShellV2>} />
                   <Route path="/codex" element={<Navigate to="/ai-os" replace />} />
                   <Route path="/codex/auth" element={<Navigate to="/ai-os/auth" replace />} />
                   <Route path="/codex/pricing" element={<Navigate to="/ai-os/pricing" replace />} />
