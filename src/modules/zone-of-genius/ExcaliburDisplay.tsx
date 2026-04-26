@@ -122,13 +122,9 @@ const ExcaliburDisplay = ({ excalibur, profileId, onSaveToProfile, isSaving, onR
                 />
             )}
 
-            {/* Share Button */}
-            <ShareZoG
-                archetypeName={excalibur?.businessIdentity?.name || "Your Genius"}
-                tagline={excalibur?.businessIdentity?.tagline || ""}
-                primeDriver={excalibur?.essenceAnchor?.primeDriver || ""}
-                profileId={profileId}
-            />
+            {/* Day 51 night (Sasha): standalone Share button retired —
+                Save + Share now live in-card via CardActions inside
+                RevelatoryHero. */}
 
             {/* Launch Product Builder — Day 48 iter 7 (Sasha):
                 violet-blue gradient (#8460ea → #6894d0) swapped for

@@ -23,7 +23,6 @@ import { AppleseedData } from "@/modules/zone-of-genius/appleseedGenerator";
 import { ExcaliburData } from "@/modules/zone-of-genius/excaliburGenerator";
 import MyLifeSection from "@/components/game/MyLifeSection";
 import dodecahedronImage from "@/assets/mc-dodecahedron.png";
-import ShareZoG from "@/components/sharing/ShareZoG";
 import { MISSIONS } from "@/modules/mission-discovery/data/missions";
 import { DESIRED_OUTCOMES } from "@/modules/mission-discovery/data/outcomes";
 import { KEY_CHALLENGES } from "@/modules/mission-discovery/data/challenges";
@@ -379,13 +378,9 @@ const CharacterHub = () => {
                         {appleseed ? (
                             <div className="space-y-4">
                                 <AppleseedSummaryCard appleseed={appleseed} />
-                                <ShareZoG
-                                    archetypeName={appleseed.vibrationalKey.name}
-                                    tagline={appleseed.vibrationalKey.tagline}
-                                    primeDriver={appleseed.threeLenses.primeDriver}
-                                    profileId={profile?.id}
-                                    profileUrl={user?.id && typeof window !== "undefined" ? `${window.location.origin}/profile/${user.id}` : undefined}
-                                />
+                                {/* Day 51 night (Sasha): standalone share strip
+                                    retired — Save + Share live in-card via
+                                    CardActions inside RevelatoryHero. */}
                             </div>
                         ) : (
                             <div className="rounded-2xl border border-[#8460ea]/30 bg-[#8460ea]/10 p-5 text-left">

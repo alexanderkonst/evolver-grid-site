@@ -554,7 +554,7 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                 {/* Panel 2: Sections with transition */}
                 <div
                     className={cn(
-                        "transition-all duration-200 ease-out h-dvh sticky top-0 overflow-hidden",
+                        "transition-all duration-200 ease-out h-dvh sticky top-0 overflow-hidden relative z-30",
                         sectionsPanelOpen ? "w-[260px]" : "w-0"
                     )}
                 >
@@ -563,6 +563,7 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                         onSectionSelect={handleSectionSelect}
                         onClose={toggleSectionsPanel}
                         className="h-full w-[260px]"
+                        pageOwnsBackground={pageOwnsBackground}
                     />
                 </div>
 
@@ -706,6 +707,7 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                             activeSpaceId={activeSpaceId}
                             onSectionSelect={handleSectionSelect}
                             className="w-full h-full"
+                            pageOwnsBackground={pageOwnsBackground}
                         />
                     </div>
                 </div>

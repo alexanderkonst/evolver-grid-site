@@ -184,6 +184,15 @@ interface SectionsPanelProps {
     onSectionSelect?: (path: string) => void;
     onClose?: () => void;
     className?: string;
+    /**
+     * When the parent page renders its own full-screen background (e.g.
+     * /ai-os HLS scene), Pane 2's default 0.18 alpha gets washed out into
+     * invisibility against busy dark imagery. This flag bumps the panel to
+     * a more substantive glass tint so the section list stays visible.
+     * Day 51 r3 (Sasha 2026-04-25 night): without this, Sasha saw both
+     * panels disappear on /ai-os.
+     */
+    pageOwnsBackground?: boolean;
 }
 
 /**
@@ -236,6 +245,7 @@ const SectionsPanel = ({
     onSectionSelect,
     onClose,
     className,
+    pageOwnsBackground = false,
 }: SectionsPanelProps) => {
     const location = useLocation();
     const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({});
@@ -354,9 +364,14 @@ const SectionsPanel = ({
             // sits above page-owned background overlays (e.g. /ai-os's
             // z-[1] gradient + vignette + noise + StarryBackground). Without
             // this, on /ai-os the overlays were drawn over the panel and
-            // Sasha saw the panel "disappear."
+            // Sasha saw the panel "disappear." On page-owned-bg routes the
+            // bg is also bumped from 0.18 → 0.55 so the section list stays
+            // legible on busy dark imagery — 0.18 alone got washed into
+            // invisibility against /ai-os's editorial scene.
             style={{
-                backgroundColor: "rgba(14, 32, 68, 0.18)",
+                backgroundColor: pageOwnsBackground
+                    ? "rgba(12, 26, 56, 0.55)"
+                    : "rgba(14, 32, 68, 0.18)",
                 border: "none",
                 boxShadow:
                     "2px 0 22px -10px rgba(244, 212, 114, 0.22)",
