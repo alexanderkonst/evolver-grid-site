@@ -14,9 +14,11 @@
 
 ## The One-Line Version
 
-> **PolyForm NC code + 10% rev-share license + forkable kit + opt-in commons = Holonic Franchise.**
+> **PolyForm NC code + 10% rev-share license + forkable kit + opt-in commons + per-founder voice generation = the model.**
 >
-> A new commercial-decentralization pattern: forkable open-source apparatus + per-founder voice generation + opt-in shared commons + 10% tithe to the commons that grew the founder. Distributors become sovereign nodes operating under their own brand, contributing back through a transparent revenue share, and benefiting from a public dataset that compounds in value as the network grows. **Six commercial layers** sit on top of this foundation, sequenced across **four phases**, designed to compound rather than compete.
+> A new commercial-decentralization pattern: forkable open-source apparatus + per-founder voice generation + opt-in shared commons + 10% tithe to the commons that grew the founder. Distributors become **sovereign nodes** operating under their own brand, contributing back through a transparent revenue share, and benefiting from a public dataset that compounds in value as the network grows. **Six commercial layers** sit on top of this foundation, sequenced across **four phases**, designed to compound rather than compete.
+>
+> Soft brand for marketing moments: **the Sovereign Network**. Otherwise the model is described by what it IS, not by a trade name.
 
 ---
 
@@ -28,7 +30,7 @@ This is the operational model that emerged on Day 51 from three converging needs
 2. **The reality of years of methodology work** — pure giveaway under MIT or AGPL leaves the founder uncompensated when the network scales.
 3. **The Specificity Loop discovery** ([Principle 15](../03-playbooks/unique_business_playbook.md)) — per-founder matrix generation became technically possible Day 51, which made true sovereignty of distributors operationally real.
 
-Combined, these three forces produced a model that doesn't fit cleanly into existing categories (open-source, franchise, cooperative, platform-as-a-service). Hence the name: **Holonic Franchise.**
+Combined, these three forces produced a model that doesn't fit cleanly into existing categories (open-source, franchise, cooperative, platform-as-a-service). The earlier brand name "Holonic Franchise" was retired Day 51 night for legal and accessibility reasons (see *On Naming* below). The model now travels by what it IS — *open-source platform with sovereign distributors and a 10% commons tithe* — with **the Sovereign Network** kept as a soft brand for marketing moments where a memorable phrase helps.
 
 This doc serves five jobs:
 
@@ -69,7 +71,7 @@ Each distributor's users explicitly choose at the artifact level whether their (
 
 ## Comparison to Existing Models
 
-The Holonic Franchise sits at a specific intersection. None of the rows below is the same model — each shares some properties, none combines all.
+This model sits at a specific intersection. None of the rows below is the same model — each shares some properties, none combines all.
 
 | Model | Forkable code | Distributor brand sovereignty | Per-founder voice | Shared commons | Tithe back | Decentralized |
 |-------|:---:|:---:|:---:|:---:|:---:|:---:|
@@ -80,7 +82,7 @@ The Holonic Franchise sits at a specific intersection. None of the rows below is
 | Federated commons (Mastodon, fediverse) | ✅ | ✅ | ❌ | ❌ (no commercial rail) | ❌ | ✅ |
 | Platform cooperative (Stocksy, Resonate) | partial | ❌ | ❌ | ❌ | n/a | partial |
 | Nas.io / Patreon (creator platforms) | ❌ | ✅ | ❌ | ❌ | ✅ (8-30%) | ❌ |
-| **Holonic Franchise (this)** | **✅** | **✅** | **✅** | **✅** | **✅ (10%)** | **✅** |
+| **This model (the Sovereign Network)** | **✅** | **✅** | **✅** | **✅** | **✅ (10%)** | **✅** |
 
 **What's genuinely novel** is the per-founder voice generation (#3 in the row above) and the combination of all six properties simultaneously. The other components are well-precedented; the architecture that holds them together is new.
 
@@ -88,7 +90,7 @@ The Holonic Franchise sits at a specific intersection. None of the rows below is
 
 ## Why This Resolves the Alignment Problem (Without Tokens)
 
-Web3 attempted commercial decentralization through token incentives and largely failed because token speculation polluted alignment — value extraction became the game. The Holonic Franchise achieves the same goal through three mundane mechanisms:
+Web3 attempted commercial decentralization through token incentives and largely failed because token speculation polluted alignment — value extraction became the game. This model achieves the same goal through three mundane mechanisms:
 
 1. **Tithe pattern** — anthropologically robust, used by every long-running religious and franchise system. 10% is generous enough to feel ownership-preserving, meaningful enough to fund the commons.
 2. **Brand sovereignty** — distributors don't compete for attention with a master brand. Their identity is intact. They build their own house.
@@ -166,7 +168,7 @@ Each play is described through the three-depths instrument: **❤️ Essence** (
 - **Pricing model — critically different from #3** because most coaches won't fork the codebase; they want to log into a hosted version with their client and run a session together. Three candidate models:
   - **Flat fee:** $99-299/month — simplest to scale, but doesn't align with the coach's actual usage economics
   - **Per-session pay:** ~$50 per ZoG generation — aligns better with their economics, but adds friction at the moment of use
-  - **Rev-share:** 10-20% on session revenue — aligns most with the Holonic Franchise philosophy, but hardest to enforce without integrated billing
+  - **Rev-share:** 10-20% on session revenue — aligns most with this model's commons-tithe philosophy, but hardest to enforce without integrated billing
 - **Critical decision (open):** is this a different commercial layer from the Distributor Agreement, or do coaches sign the same agreement at the lowest tier? Probably the former — it's a different *product* (use, not deploy)
 - **Infrastructure needed:** a "facilitator console" that doesn't exist yet — a logged-in surface where a coach can run a session for a client and see their results. Likely 1-2 weeks of focused build work
 - **Acquisition:** warm referrals from existing cohort + Sasha's network of integrative practitioners + the Knoware article reaching AI-curious coaches who haven't yet realized they want a system
@@ -178,7 +180,7 @@ Each play is described through the three-depths instrument: **❤️ Essence** (
 
 ### 3. Platform Distribution Play
 
-**❤️ Essence.** This is the Holonic Franchise architecture itself made commercially explicit. Founders / orgs **fork the entire platform** under their own brand, on their own infrastructure, charge their own clients. They become **sovereign nodes** in the network. The 10% tithe to commons is the one structural commitment they make. Specificity Matrix in their voice means their funnel speaks like them, not like Sasha.
+**❤️ Essence.** This is the foundational architecture itself made commercially explicit. Founders / orgs **fork the entire platform** under their own brand, on their own infrastructure, charge their own clients. They become **sovereign nodes** in the network. The 10% tithe to commons is the one structural commitment they make. Specificity Matrix in their voice means their funnel speaks like them, not like Sasha.
 
 **🧠 Significance.** This is **Step 11 of the [Assembly](./planetary_os_assembly.md)** — other communities adopting the tools — at the highest level of distributor sovereignty. It's the play that activates the fractal scaling mechanism. Each distributor is a complete holon. Theoretically infinite. The commons effect compounds: every distributor's anonymized contributions make the public dataset more valuable for every other distributor and any aligned external project. **This is the play that makes the [Integration Layer Manifesto](../06-architecture/integration_layer_manifesto.md) commercially real, not aspirational.**
 
@@ -335,7 +337,7 @@ Every distributor's users choose at the artifact level whether to contribute (de
 - **Unique Gift profiles** — anonymized at appropriate granularity
 - **Tribe membership signals** — who belongs to which tribe (with consent)
 
-Over time, this becomes the **first cross-tribe coordination commons** — a public dataset that any aligned project (not just Holonic Franchise distributors) can query. Practical uses:
+Over time, this becomes the **first cross-tribe coordination commons** — a public dataset that any aligned project (not just our distributors) can query. Practical uses:
 
 - A distributor running on this code can match their member with someone in another distributor's instance whose missions complement
 - A researcher can study how tribes form and what assets predict thriving
@@ -436,25 +438,34 @@ These are the decisions that must be made before each play moves from concept to
 
 ---
 
-## The Naming Question
+## On Naming (Day 51 Night Decision)
 
-"Holonic Franchise" was chosen to signal:
-- **Holonic** — each distributor is whole on its own AND part of the larger commons (Wilber/Koestler holon definition)
-- **Franchise** — the commercial pattern is recognizable (10% tithe, brand sovereignty, shared apparatus) without inventing new vocabulary
+The earlier brand name "Holonic Franchise" was retired same day for two real reasons:
 
-Alternatives considered:
-- *Holonic Cooperative* — too cooperative-coded; misleading because there's no shared governance
-- *Sovereign Distributor Network* — accurate but flat
-- *Open Franchise* — clear but vague
-- *Fractal Franchise* — also accurate; loses "wholeness" emphasis
+**1. Legal exposure.** In the US, the FTC Franchise Rule attaches when three elements are present in a commercial relationship: trademark license + significant control or assistance + required payment. Our model arguably triggers all three (methodology brand association + matrix generator + 10% rev share). Calling the model a "franchise" is gasoline on this fire — it doesn't change the underlying economics, but it gives a regulator the easy hook to treat us as one and require Franchise Disclosure Documents (FDD), state registrations, and a long compliance tail. Several US states (California, NY, Illinois, others) have additional franchise statutes that bite hard. EU and Canadian provincial regimes have analogous exposure. Renaming away from "franchise" now is genuinely prudent, not cosmetic.
 
-If a better name emerges from real distributor conversations, this doc updates. The pattern is more important than the name.
+**2. Accessibility.** "Holonic" is a strong technical term inside Wilber/Koestler integral-theory circles and inaccessible outside them. A Y Combinator partner, a corporate L&D buyer, a counsel reviewing the Distributor Agreement — all hit "holonic" and either skim past or assume the work is too esoteric to take seriously. Distributors hear the phrase before they hear the substance.
+
+**The Path A decision (Sasha, Day 51 night):** drop the formal brand name. Describe the model functionally everywhere — *open-source platform with sovereign distributors and a 10% commons tithe*. Keep the soft brand handle **the Sovereign Network** in 1-2 evocative spots (README's *what it becomes when you fork* table, the distributor onboarding wizard's headline) for marketing moments where a memorable phrase helps.
+
+This avoids the lock-in problem of branding a category before having sold one of it. It lets the right name emerge from real distributor conversations rather than be imposed. If "Sovereign Network" proves sticky in real deals, it gets promoted to the formal name in v3.0. If it doesn't, the model stays descriptive forever.
+
+**Names considered and rejected:**
+- *Holonic Franchise* (the prior name) — legal exposure (franchise) + accessibility (holonic)
+- *Holonic Cooperative* — implies shared governance the model doesn't have
+- *Sovereign Distributor Network* — accurate, but bulky
+- *Open Franchise* — still triggers franchise law
+- *Fractal Franchise* — same legal exposure
+- *Mutualist Network* — anarchist-coded baggage
+- *The Tithe Network* — religious-adjacent (could be plus or minus depending on tribe; in pocket as a fallback)
+
+The pattern is more important than the name. If you're describing the model to someone, lead with what it IS, not with a label.
 
 ---
 
 ## What This Means for Sasha
 
-Strategically, the Holonic Franchise model converts Sasha's role from:
+Strategically, this model converts Sasha's role from:
 
 **Old:** sole provider of a methodology and platform → bottleneck to growth, dependent on his time
 
@@ -468,8 +479,18 @@ This is **Big Idea #1 (master holon prototypes everything before the network) an
 
 ## Changelog
 
-### v2.0 — April 25, 2026 (Day 51 night)
-- **Merged** the short-lived `monetization_strategy.md` into this file. The two docs were redundant — both described the architecture, plays, status, sequencing, and open questions. Single canonical doc going forward; the *Holonic Franchise* name is the brand-bearing name and the only one needed.
+### v2.2 — April 25, 2026 (Day 51 night, third pass)
+- **Brand name "Holonic Franchise" retired (Path A).** Two reasons: legal exposure (calling the model a "franchise" can trigger US FTC Franchise Rule + state franchise statutes regardless of underlying economics) + accessibility ("holonic" is opaque outside Wilber/integral circles). Going forward: model described functionally; soft brand handle **the Sovereign Network** preserved in 1-2 evocative spots only.
+- Title changed: *Monetization Strategies — The Holonic Franchise* → *Monetization Strategies* (with subtitle: *open-source platform · sovereign distributors · commons tithe · per-founder voice generation*).
+- *On Naming* section rewritten to capture the Path A rationale, names considered and rejected, and the principle of letting a brand emerge from real distributor conversations rather than imposing one before having sold one of these.
+- All inline mentions of "Holonic Franchise" replaced with functional descriptions ("the model", "this commercial-decentralization pattern", "the foundational architecture", etc.) — except in changelog entries and the *On Naming* section where the historical name is preserved as record.
+- Cross-references updated across the corpus: `unique_business_playbook.md` (Principle 15), `alexanders_unique_business.md`, `roadmap.md`, `session_log.md`, `morphogenetic_holomap.md`, `README.md`, `DISTRIBUTOR_AGREEMENT.md`, `AiOsPage.tsx`.
+
+### v2.1 — April 25, 2026 (Day 51 night, second pass)
+- **File renamed** `holonic_franchise_model.md` → `monetization_strategies.md` (Sasha's call: this is what the file functionally tracks). Title still carried "Holonic Franchise" at this stage; the brand-name retirement happened next in v2.2.
+
+### v2.0 — April 25, 2026 (Day 51 night, first pass)
+- **Merged** the short-lived `monetization_strategy.md` into the predecessor `holonic_franchise_model.md`. The two docs were redundant — both described the architecture, plays, status, sequencing, and open questions.
 - Added: *How the Plays Grow Holonically* (one-table radically-simple synthesis of how each play wraps the prior layer in a larger holon, Sasha's role evolution, revenue scaling with holon size).
 - Added: full Heart/Mind/Gut treatment for all six plays (was only narrative description before).
 - Added: tensions/combinations/non-overlap matrix.
@@ -482,12 +503,12 @@ This is **Big Idea #1 (master holon prototypes everything before the network) an
 - Document created. Codified the operational model that emerged when matrix v2 + license decisions + distributor terms collapsed into a single coherent commercial-decentralization pattern. Five ingredients, comparison table, alignment-without-tokens reasoning, implementation status, strategic sequencing, six open questions.
 
 ### Future versions
-- **v2.1** — when the first commercial distributor signs (Play #3 first deal). Update Open Decisions answered. Update Implementation Status. Capture lessons learned.
-- **v2.2** — when the facilitator console ships and the first paying coach signs up (Play #2 first deal).
-- **v3.0** — when Phase 2 opens (first community white-label deal). Public messaging shifts from foundation-only to foundation + community.
+- **v2.3** — when the first commercial distributor signs (Play #3 first deal). Update Open Decisions answered. Update Implementation Status. Capture lessons learned.
+- **v2.4** — when the facilitator console ships and the first paying coach signs up (Play #2 first deal).
+- **v3.0** — when Phase 2 opens (first community white-label deal). Public messaging shifts from foundation-only to foundation + community. *Possible:* if "Sovereign Network" has caught on in real distributor conversations by this point, promote from soft brand to formal name.
 - **v4.0** — when Phase 3 opens (first venture studio deal).
 - **v5.0** — when Phase 4 opens (first system license deal).
 
 ---
 
-*v2.0 · April 25, 2026 (Day 51 night) · Single canonical doc for the Holonic Franchise model + the dynamic, sequenced six-play monetization strategy that operates within it. Six plays. One foundation. Four phases. Sixteen open decisions tracked. The plays compound; they don't compete. Each phase mature before the next opens. Plays in later phases stay in pocket — not promises made. This document is the source of truth for how the venture earns money across all of its commercial layers, and the place where decisions get tracked as the strategy evolves.*
+*v2.2 · April 25, 2026 (Day 51 night) · Single canonical doc for the dynamic, sequenced six-play monetization strategy and the foundational open-source-platform-with-commons-tithe architecture it operates within. Six plays. One foundation. Four phases. Sixteen open decisions tracked. The plays compound; they don't compete. Each phase mature before the next opens. Plays in later phases stay in pocket — not promises made. This document is the source of truth for how the venture earns money across all of its commercial layers, and the place where decisions get tracked as the strategy evolves. **Soft brand for marketing moments: the Sovereign Network.** Otherwise the model travels by what it IS.*

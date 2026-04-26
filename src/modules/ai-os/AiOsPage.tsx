@@ -2624,63 +2624,87 @@ const AiOsPage = () => {
                 >
                   AI <span className="font-bold" style={{ fontStyle: 'italic' }}>OS</span>
                 </h1>
-                <p className="text-base sm:text-lg font-normal leading-relaxed max-w-lg mx-auto" style={{ 
-                  color: 'hsl(0 0% 100% / 0.95)',
-                  textShadow: '0 0 20px rgba(132,96,234,0.4), 0 0 50px rgba(180,140,255,0.25), 0 0 16px rgba(0,0,0,0.95), 0 2px 8px rgba(0,0,0,0.9)',
-                }}>
-                  Instant install. Permanent level-up to AI cognition.
-                </p>
-                <p className="text-sm font-light italic mt-2" style={{ 
-                  color: 'hsl(242 30% 85% / 0.85)',
-                  textShadow: '0 0 12px rgba(0,0,0,0.9), 0 0 30px rgba(0,0,0,0.7), 0 2px 4px rgba(0,0,0,0.8)',
-                }}>
-                  Same model. Different conversation.
-                </p>
-                {/* CTAs — side by side */}
-                <div className="flex items-center justify-center gap-3 pt-6 flex-wrap">
+                {/* Day 51 r3 (Sasha 2026-04-25 evening): subtitles tightened
+                    into a unified two-line block. Previously the second
+                    italic line had mt-2 + extra textShadow, reading as a
+                    third visual element competing with the first subtitle.
+                    Now the two lines breathe as one paragraph — concrete
+                    promise + philosophical punch sit together. */}
+                <div className="mx-auto max-w-lg space-y-1.5">
+                  <p className="text-base sm:text-lg font-normal leading-relaxed" style={{
+                    color: 'hsl(0 0% 100% / 0.96)',
+                    textShadow: '0 0 20px rgba(132,96,234,0.4), 0 0 50px rgba(180,140,255,0.25), 0 0 16px rgba(0,0,0,0.95), 0 2px 8px rgba(0,0,0,0.9)',
+                  }}>
+                    Instant install. Permanent level-up to AI cognition.
+                  </p>
+                  <p className="text-sm font-light italic" style={{
+                    color: 'hsl(242 30% 85% / 0.78)',
+                    textShadow: '0 0 12px rgba(0,0,0,0.9), 0 0 30px rgba(0,0,0,0.7), 0 2px 4px rgba(0,0,0,0.8)',
+                  }}>
+                    Same model. Different conversation.
+                  </p>
+                </div>
+                {/* CTAs — Day 51 r3 (Sasha 2026-04-25 evening): visual
+                    hierarchy added. Three equal-weight pills was reading
+                    as a committee. Now:
+                    • Primary "Start here" — bigger pill, brighter purple
+                      glow, the unmistakable "do this first" affordance.
+                    • Secondary "Work with Aleksandr" — gold rim preserved
+                      (premium signal) but matched to primary's height so
+                      the two read as a paired primary row.
+                    • Tertiary "Why this works" — demoted to a ghost text
+                      link with a thin underline-on-hover; carries the
+                      lightning glyph but no bg, so it stops competing
+                      with the actual decisions above. */}
+                <div className="flex items-center justify-center gap-3 pt-7 flex-wrap">
                   <a
                     href="#suites-nav"
-                    className="inline-flex items-center gap-2 text-xs font-medium tracking-wide px-5 py-2.5 rounded-full transition-all duration-300 hover:scale-105 group"
-                    style={{ 
-                      background: 'hsla(242, 30%, 73%, 0.15)',
-                      border: '1px solid hsla(242, 30%, 73%, 0.25)',
-                      color: 'hsl(242 30% 90%)',
-                      textShadow: '0 0 12px rgba(132,96,234,0.4)',
+                    className="inline-flex items-center gap-2 text-sm font-medium tracking-wide px-6 py-3 rounded-full transition-all duration-300 hover:scale-[1.04] group"
+                    style={{
+                      background: 'linear-gradient(135deg, hsla(252, 70%, 70%, 0.32) 0%, hsla(242, 60%, 60%, 0.22) 100%)',
+                      border: '1px solid hsla(252, 60%, 80%, 0.45)',
+                      color: 'hsl(0 0% 100%)',
+                      textShadow: '0 0 14px rgba(132,96,234,0.6), 0 1px 4px rgba(0,0,0,0.5)',
+                      boxShadow: '0 0 0 1px hsla(252, 70%, 80%, 0.15), 0 8px 28px -10px rgba(132,96,234,0.55), 0 0 36px -10px rgba(180,140,255,0.4)',
                     }}
                   >
                     Start here
-                    <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />
+                    <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5" />
                   </a>
                   <a
                     href="https://t.me/integralevolution"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-xs font-medium tracking-wide px-5 py-2.5 rounded-full transition-all duration-300 hover:scale-105 group"
+                    className="inline-flex items-center gap-2 text-sm font-medium tracking-wide px-6 py-3 rounded-full transition-all duration-300 hover:scale-[1.04]"
                     style={{
-                      background: 'linear-gradient(135deg, hsla(40, 70%, 55%, 0.18) 0%, hsla(40, 60%, 45%, 0.1) 100%)',
-                      border: '1px solid hsla(40, 60%, 60%, 0.3)',
-                      color: 'hsl(40 60% 88%)',
-                      textShadow: '0 0 12px rgba(244,212,114,0.35)',
+                      background: 'linear-gradient(135deg, hsla(40, 70%, 55%, 0.20) 0%, hsla(40, 60%, 45%, 0.10) 100%)',
+                      border: '1px solid hsla(40, 70%, 65%, 0.40)',
+                      color: 'hsl(40 70% 92%)',
+                      textShadow: '0 0 14px rgba(244,212,114,0.45), 0 1px 4px rgba(0,0,0,0.5)',
+                      boxShadow: '0 0 0 1px hsla(40, 70%, 65%, 0.12), 0 8px 24px -12px rgba(244,212,114,0.4)',
                     }}
                   >
                     Work with Aleksandr
                   </a>
+                </div>
+                <div className="flex items-center justify-center pt-3">
                   <button
                     onClick={() => setShowStoryDialog(true)}
-                    className="inline-flex items-center gap-2 text-xs font-medium tracking-wide px-5 py-2.5 rounded-full transition-all duration-300 hover:scale-105 group"
+                    className="inline-flex items-center gap-1.5 text-xs font-medium tracking-wide transition-all duration-300 group"
                     style={{
-                      background: 'hsla(195, 35%, 70%, 0.12)',
-                      border: '1px solid hsla(195, 35%, 70%, 0.22)',
-                      color: 'hsl(195 35% 88%)',
-                      textShadow: '0 0 12px rgba(96,200,234,0.35)',
+                      color: 'hsl(195 35% 80% / 0.78)',
+                      textShadow: '0 0 12px rgba(0,0,0,0.85), 0 1px 4px rgba(0,0,0,0.7)',
                     }}
                   >
-                    <Zap className="w-3.5 h-3.5" />
-                    Why this works
+                    <Zap className="w-3 h-3 opacity-70 group-hover:opacity-100 transition-opacity" />
+                    <span className="border-b border-transparent group-hover:border-current/60 transition-colors">
+                      Why this works
+                    </span>
                   </button>
                 </div>
-                {/* Bottom ornament + extra breathing room */}
-                <div className="flex items-center justify-center pt-6 pb-4">
+                {/* Bottom ornament — Day 51 r3: tightened pt to keep the
+                    hero compact while the new ghost link sits above it. */}
+                <div className="flex items-center justify-center pt-5 pb-2">
                   <div className="h-px w-24" style={{ background: 'linear-gradient(90deg, transparent, hsl(242 30% 73% / 0.25), transparent)' }} />
                 </div>
               </header>
