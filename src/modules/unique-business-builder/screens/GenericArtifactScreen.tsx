@@ -73,6 +73,7 @@ export function ArtifactView({ artifactKey }: { artifactKey: ArtifactKey }) {
             size="lg"
             onClick={() => generateArtifact(artifactKey)}
             disabled={thisIsGenerating}
+            className="bg-[#0b2641] text-white hover:bg-[#16385c] disabled:bg-[#0b2641]/40 disabled:text-white/60"
           >
             {thisIsGenerating ? (
               <>
@@ -135,6 +136,57 @@ export function ArtifactView({ artifactKey }: { artifactKey: ArtifactKey }) {
   );
 }
 
+// Day 51 (Sasha 2026-04-25): renderValue extracted as recursive helper so
+// arrays render as bullet lists and nested objects get nested labeled blocks
+// instead of raw JSON.stringify dump. Was: a value object showed as
+// {"attack": "..."} JSON; now: clean nested presentation.
+function renderValue(v: unknown): React.ReactNode {
+  if (v === null || v === undefined) return <span className="text-muted-foreground">(empty)</span>;
+  if (typeof v === "string") {
+    return <span className="whitespace-pre-wrap">{v}</span>;
+  }
+  if (typeof v === "number" || typeof v === "boolean") {
+    return <span>{String(v)}</span>;
+  }
+  if (Array.isArray(v)) {
+    // Array of strings → bullet list. Array of objects → nested cards.
+    const allStrings = v.every((x) => typeof x === "string");
+    if (allStrings) {
+      return (
+        <ul className="list-disc space-y-1 pl-5">
+          {v.map((s, i) => (
+            <li key={i} className="leading-relaxed">{s as string}</li>
+          ))}
+        </ul>
+      );
+    }
+    return (
+      <div className="space-y-2">
+        {v.map((x, i) => (
+          <div key={i} className="rounded border border-border/40 p-2">
+            {renderValue(x)}
+          </div>
+        ))}
+      </div>
+    );
+  }
+  if (typeof v === "object") {
+    return (
+      <div className="space-y-2">
+        {Object.entries(v as Record<string, unknown>).map(([k, val]) => (
+          <div key={k}>
+            <div className="text-[10px] font-medium uppercase tracking-wider text-muted-foreground">
+              {k.replace(/[_-]+/g, " ")}
+            </div>
+            <div className="mt-0.5 text-sm leading-relaxed">{renderValue(val)}</div>
+          </div>
+        ))}
+      </div>
+    );
+  }
+  return <span>{String(v)}</span>;
+}
+
 function ArtifactContentView({ content }: { content: unknown }) {
   if (content === null || content === undefined) {
     return <div className="text-sm text-muted-foreground">(empty)</div>;
@@ -146,17 +198,20 @@ function ArtifactContentView({ content }: { content: unknown }) {
   if (isSpecificityMatrix(content)) {
     return <SpecificityMatrixView content={content} />;
   }
-  // Render JSON object with keys as simple labeled blocks
+  // Render JSON object with keys as labeled blocks; values use recursive renderer
   if (typeof content === "object") {
     return (
       <div className="space-y-3">
         {Object.entries(content as Record<string, unknown>).map(([k, v]) => (
           <div key={k}>
             <div className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
-              {k.replace(/_/g, " ")}
+              {/* Handle both underscore AND hyphen separators — AI sometimes
+                  returns "why_this-names_it" mixed; now clean uppercase
+                  display regardless of separator. */}
+              {k.replace(/[_-]+/g, " ")}
             </div>
-            <div className="mt-1 whitespace-pre-wrap text-sm leading-relaxed">
-              {typeof v === "string" ? v : JSON.stringify(v, null, 2)}
+            <div className="mt-1 text-sm leading-relaxed">
+              {renderValue(v)}
             </div>
           </div>
         ))}

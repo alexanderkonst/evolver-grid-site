@@ -5344,3 +5344,181 @@ Day 49's center word = **Unification**. The 13th perspective reads: the apparatu
 ---
 
 *Day 47 late-night → Day 48 early-morning (autonomous) complete. When Sasha wakes up: `/preview` is now a real preview, not a landing-only demo. Every surface of the site renders Navy+Gold coherently. Aurora ships Wednesday unchanged. The infrastructure for aesthetic optionality is done — whatever he decides about rollout has no build cost attached.*
+
+---
+
+## Day 50 — Knoware article ships to /codex + macro-bridge to ZoG (April 24, 2026)
+
+### Context
+
+Friday. Day-after-launch. Sasha is in the Watch stance from Day 49's developmental calibration. The DM send is queued for the warm-tie aligned tribe; templates already drafted EN + RU. Today's work was preparing the *receiving surfaces* for traffic that hasn't arrived yet — sharpening copy, planting seeds, naming categories. No new module shipped. Everything was strengthening the doors people will walk through tomorrow.
+
+### Major work blocks
+
+**1. Knoware article modal added to /codex.** Sasha drafted the 350-word Knoware piece (the LinkedIn-shaped article: *"I made the same AI think 42% better"* — A/B test framing, +42% on deep reasoning, −21% on everyday tasks, "Knoware" as the named layer). Added to /codex as a `/codex` modal accessed via a new third hero CTA labeled *"Why this works"* (sits next to *Start here* + *Unlock Premium* in the hero row). Cyan tint distinguishes it visually from the violet-magenta primary CTA pair without competing for attention.
+
+The modal renders the article in /codex's premium aesthetic: dark-glass background, Cormorant Garamond italic headline with linear-gradient text fill, the *67 → 95 (+42%)* numbers rendered in their own outlined card, the "Knoware." reveal centered in a soft radial glow card, italic pull-quote *"It's: how much of its intelligence are you actually accessing?"*, soft outro CTA *Explore the library*. Files: `src/modules/ai-os/AiOsPage.tsx`.
+
+The article does triple duty: (a) immediate read-while-on-codex value, (b) plants the term *Knoware* as a category Sasha owns, (c) reframes /codex from "free prompts library" to "the surface where Knoware lives." Future LinkedIn / X reposts of the article become organic traffic into the same surface.
+
+**2. Macro-bridge added to /zone-of-genius after the Appleseed card.** Sasha named the line: *"What if your shining this top talent bright IS your business?"* Placed right after the user's Appleseed reveal card, before the Resonance Rating. Cormorant Garamond italic 1.6-2.5rem clamp, "IS" rendered bold-italic for emphasis. The Gap section bullets had their plain `–` markers replaced with the `mc-cross-star` image used on the landing page. Files: `src/modules/zone-of-genius/AppleseedDisplay.tsx`.
+
+This is the seed-question that made Day 51's discovery possible: when the Specificity Loop matrix v2 was written the next morning, this line was the canonical example of the architecture — *"What if [thing they witnessed] IS [bigger truth they've been seeking]?"*
+
+**3. Lowercase rail labels (`request guidance` + `settings`).** Sasha flagged that the *REQUEST GUIDANCE* label in the SpacesRail footer was getting truncated to *REQUEST GUI...* at narrower viewport states. Fix: `text-transform: uppercase` → `lowercase`, font-size 0.78rem → 0.82rem, letter-spacing 0.14em → 0.06em. Applied to both rail footer items for consistency. Files: `src/components/game/SpacesRail.tsx`.
+
+**4. The first sketch of matrix v2 emerges (architectural seed).** In conversation about the Resonance Rating component's *"Thank you! 🎯 Perfect resonance!"* feedback, Sasha noticed: *"We should use this user's attention spike for delivering a message, not just thank-you as if it for us. They are being served. With love, and care."* This is the moment the Specificity Loop discovery began. Initial matrix sketched as 4 funnel steps × 3 rating tiers (instructional register — superseded by v2 the next day). Sasha then redirected to the v2 frequency — *"What if your shining this top talent bright IS your business?"* — and asked the matrix to be rewritten in that question-form, identity-revelation register. Day 50 ended with the matrix concept in the air; codification happened Day 51.
+
+### What Sasha named that became load-bearing later
+
+> *"This isn't just thank-you. This is the optimal cliffhanger. The actual KEY. The actual CODE. HACK. Then one comes back to it even if they drop the process."*
+
+This framing — that a micro-rating moment can become a *cliffhanger* the user keeps returning to — was the Day 50 seed of what became Day 51's full Principle 15 (The Specificity Loop) in the playbook + Domain 81 in the Phase Shift Library.
+
+### Holomap implication
+
+P1-P12 numerically unchanged. P5 (Ontological Liberation) and P11 (Resonance Metric) starting to converge into a single mechanism conceptually, though not yet operationally. The day's seed was named, but the architecture was not yet built. Center reading: still *Unification* (Day 49's word continues — the harmony work continues into Day 50).
+
+---
+
+## Day 51 — The Specificity Loop emerges; Holonic Franchise codified (April 25, 2026)
+
+### Context
+
+Saturday. The Knoware modal landed Day 50, the macro-bridge planted on /zone-of-genius, the matrix v2 frequency named in conversation. Day 51 was the day all of it became operational, named, documented, licensed, and harmonized. Six concurrent threads converged into one architecture: **the Specificity Loop as a discovery, the per-founder matrix as the operational layer, the Holonic Franchise as the business model, PolyForm NC + Distributor Agreement as the legal layer, the warm-radial Panel-3 wash as the visual layer, the Day 51 Note in `alexanders_unique_business.md` as the strategic capture.**
+
+### The center reading: "Codification"
+
+Every previous center word named what the venture was *doing* (Threshold, Ignition, Branching, Rooting, Flowering, Declaration, Crystallization, Consolidation, Activation, Emanation, Recognition, Unification). "Codification" names what the venture *became*: a discovery turned into a documented, named, operational system with legal scaffolding and UI consistency. Concepts that had been ambient in Sasha's voice for weeks (Specificity Loop, Knoware, the Holonic Franchise, fork-it-for-yourself sovereignty) all became concrete artifacts in a single day.
+
+The instrument has the slot for this kind of word now (per Day 44's 12×6 → 27×7 upgrade). Day 49 was harmony at the visual register. Day 51 is harmony at the architectural register — one story across code + license + doc + UI + strategy.
+
+### Major work blocks
+
+**1. The Specificity Loop (Principle 15) discovered + codified.** During the build of the macro-bridge (Day 50, work block 2), Sasha recognized the question-form *"What if [thing they just witnessed] IS [bigger truth they've been seeking]?"* as a structural pattern, not a copy decision. Day 51 morning: matrix v2 written in that frequency for all six in-funnel reveals (Appleseed · Excalibur · ICP · Pain · TP · Landing) × three tiers (resonant 8-10 / partial 5-7 / off 1-4). Sample cells:
+- Appleseed resonant: *"What if this voice has been yours all along?"*
+- Pain resonant: *"What if naming this pain IS half the medicine?"*
+- TP resonant: *"What if this promise IS the door they've been walking past?"*
+- Landing resonant: *"What if these words ARE the front door of your venture?"*
+
+Sasha's read on the matrix: *"the optimal cliffhanger. The actual KEY. The actual CODE. HACK. Then one comes back to it even if they drop the process. Whoever comes to this step, and they are aligned — they are more than likely in. We are talking about record conversion levels."*
+
+Codified as **Principle 15: The Specificity Loop** in `unique_business_playbook.md` (v4.4 → v4.5). Cross-referenced as **Domain 81: The Specificity Loop (The Optimal Cliffhanger)** in `phase_shift_technology_library.md`. The principle names: every reveal in the funnel replaces the thank-you with an identity-revelation question; the form is fixed (*"What if X IS Y?"*); three tiers per reveal; never instructs, never thanks, never centers the founder; *Specificity is the rebranded Precision* (the renaming of Principle 5's metric to match Day 51's operational vocabulary).
+
+The single question every reveal asks beneath the surface wording — *"How specific to what you know about you is this articulation?"* — exposed in code as `SPECIFICITY_PROMPT`.
+
+**2. Matrix v2 shipped to all six in-funnel reveals + per-founder runtime hook.** New file `src/lib/resonanceMatrix.ts` exports `MASTER_MATRIX` (Sasha's canonical 6×3 matrix), `ResonanceMatrix` type, `tierFor()`, `resonanceMessage(step, rating, override?)` (pure resolver), `SPECIFICITY_PROMPT` constant, `ResonanceMatrixContext` (React Context), `ResonanceMatrixProvider` component, `useResonanceMessage(step, rating)` hook.
+
+`src/components/ui/ResonanceRating.tsx` refactored to read messages via the hook. Resolution priority: explicit `override` argument → `<ResonanceMatrixProvider>` context value (per-founder, post-Lovable wiring) → `MASTER_MATRIX` (universal fallback). Six in-funnel callers wired by step key: `appleseed`, `excalibur`, `icp`, `pain`, `tp`, `landing`. Generic *Thank you! 🎯 Perfect resonance!* retired entirely from the funnel; only kept as legacy fallback for any future caller without a `step` prop.
+
+Verified DOM: clicking 10/10 on Appleseed renders *"What if this voice has been yours all along?"* in Source Serif 4 italic 24px navy with soft halo.
+
+**3. Per-founder Specificity Matrix shipped as UBB artifact #19 (`specificity_matrix`).** Added to `ArtifactKey` union in `src/modules/unique-business-builder/types.ts` + appended to `PHASE_A_CANVAS` (after `value_ladder`). URL slug `specificity-matrix`, label *Specificity Matrix*. Generator prompt added to `supabase/functions/_shared/ubb-prompts.ts` `ARTIFACT_CONFIGS.specificity_matrix` — uses Sasha's master matrix as a canonical few-shot example for SHAPE/FREQUENCY only (never copy the words), takes the founder's locked uniqueness + myth + tribe + pain + promise as input and generates the matrix in their voice. Output schema: 6 stages × {resonant, partial, off} + meta_question + voice_signature.
+
+Cross-linked to `lead_magnet` config: enhanced prompt now references the Specificity Loop framework when articulating its `transformational_result_sequence` field. Sibling-aware so when both artifacts exist, the lead_magnet generator knows the matrix is the canonical voice for those reveals.
+
+`src/modules/unique-business-builder/screens/GenericArtifactScreen.tsx` extended with `SpecificityMatrixView` — structural detection (looks for `stages` object whose values match `{resonant, partial, off}` triple) + 6×3 table layout. `src/pages/PublicDossier.tsx` got the new label entry for completeness.
+
+**4. Holonic Franchise model codified — license + agreement + README.** The biggest single doc move of the day:
+
+- `LICENSE` replaced (was AGPL-3.0 brief earlier in the session, before that CC BY 4.0) → **PolyForm Noncommercial 1.0.0** (canonical text, 73 lines)
+- `LICENSE.md` header clarified: scope = docs/methodology only, code lives under `LICENSE`, skills under MIT
+- `DISTRIBUTOR_AGREEMENT.md` v0.1 written (15 sections): definitions, grant of commercial license, 10% revenue share with $1K/month free tier, Stripe Connect Express as preferred default for auto-split, monthly reporting, audit right (1×/year), brand sovereignty + optional "Powered by" attribution, opt-in commons released under CC BY 4.0, modifications-stay-with-you, prohibited uses, termination, dual licensing for enterprise, prospective-only changes clause, governing law placeholder, spirit clause (*"Distributors are partners, not licensees. Trust by default, audit by exception. Commons is the long game."*)
+- `README.md` rewritten: title now *Find Your Top Talent · Planetary OS*, three new license badges, three-license model table with explanation, full *Self-Hosting* section (8-step deployment guide), *What it becomes when you fork* table (Personal Holon / Community Holon / Network of Holons), *Make it yours* + *What stays shared* + *Going commercial?* sections
+- `CONTRIBUTING.md` written: *Two ways to participate* (fork it for yourself OR PR back), low-maintenance expectations, voice & style notes
+- `.gitignore` updated: `.env` + `.env.*` added with `!.env.example` exception
+- Sasha's manual steps remaining (sandbox blocks `.env*` writes from Claude): create `.env.example` with placeholders, run `git rm --cached .env`
+
+**5. Repo public link surfaced in three platform locations.** Quiet, non-funnel-critical placements:
+- `/game/settings` (Settings.tsx) — footer below the tabs: *"Source-available. Fork for yourself or your community — free. Going commercial? 10% revenue share, you keep your brand."* + *Source on GitHub →*
+- `/playbook` (PlaybookShell.tsx) — footer below StepCard: *"The method is open to read. The platform is forkable. Run it for your own community — under your own brand. 10% to commons if you go commercial."* + *Fork it on GitHub →*
+- `/codex` (AiOsPage.tsx) — copyright line in main footer: `code PolyForm NC (fork on GitHub)` rendered alongside docs license
+
+Verified all three live in DOM. Console errors: 0.
+
+**6. Holonic Franchise model strategy doc written.** New file `docs/02-strategy/holonic_franchise_model.md` v1.0 — the operating model that emerged when matrix v2 + license decisions + distributor terms collapsed into a single coherent architecture. Captures: 5 ingredients (PolyForm NC code + CC BY-NC-SA docs + Distributor Agreement + per-founder Specificity Matrix + opt-in commons), comparison table to other models (Skool, Sentry-class OSS, classic franchise, worker cooperative, fediverse, Patreon-class — none combine all six properties), why this resolves the alignment problem without tokens, what each distributor gets, what the commons becomes over time, implementation status, strategic sequencing, six open tuning questions for v1.1.
+
+**7. Six business model "plays" mapped through Heart/Mind/Gut.** Strategic conversation late in the session — Sasha listed six potential plays as commercial layers atop the Holonic Franchise foundation:
+1. Conscious Entrepreneur play (individual user) — the foundational customer journey, $555/$5K/$500-mo value ladder
+2. Purpose Coach play — existing facilitators using the platform's tools with their existing clients (Step 6 facilitator emergence at lowest friction)
+3. Platform Distribution play — the Holonic Franchise we just shipped (sovereign distributors at 10% rev share)
+4. Venture Studio play — equity / persistent rev share in ventures born inside the platform (highest upside, highest political tension)
+5. Community White-Label play — communities (Holo Movement, Symbiosis, Core Nexus, accelerators, corporate L&D) deploy the apparatus under their brand for their members
+6. Unique Business System License play — pure IP licensing of the methodology to training schools, accelerators, certified coaches
+
+Synthesized matrix of tensions + recommended sequencing: Phase 1 = #1+#2+#3 (the Holonic Franchise foundation, shipped today); Phase 2 = #5 (community white-label, pilot with one pre-aligned community); Phase 3 = #4 (venture studio tier, opt-in for exceptional founders); Phase 4 = #6 (system licensing as the maturity play). Don't put #4-#6 on the menu yet — they're plays in pocket, not promises made.
+
+**8. UI polish wave — route-aware backgrounds + KPI centering + dashboard subtitle + AI OS hero copy refresh + label changes.**
+
+*Route-aware backgrounds (`GameShellV2.tsx` + `index.css`):* the dust/sparkle MUX video reads gorgeous on landing-class routes and competes badly with dense reading content on working routes. Added `pageOwnsBackground` + `isWorkingRoute` flags. Working routes (`/playbook`, `/path`, `/game/settings`, `/ubb`, `/ai-os/profile|pricing|auth`) render the shell video OFF + a calm wash on. Pages that own their own full-screen background (`/ai-os` proper, `/codex`) render shell video AND wash off entirely (fixes the AI OS double-video collision). Landing routes (`/`, `/zone-of-genius`, `/dashboard`, `/game/journey`) keep the full video.
+
+*Calm wash design — first pass too subtle, pushed harder.* `--skin-panel-wash-quiet` initially flat cream `rgba(248, 246, 240, 0.98)`. Per Sasha's harmony mockup, working routes should still imply the same *light source* that lights Panels 1 & 2. Wash upgraded to a **warm radial gradient** with focal point at top-right (95%, 5%) — peach/amber `rgba(255, 200, 130, 0.55)` at center fading to calm cream at 88%. Reads as actual sunlight through a window. Switched the React style from `backgroundColor` → `background` so gradients render. Navy+Gold skin variant: gold-toned glow over deep navy.
+
+*KPI cards centered uniformly.* `VentureDashboard.tsx` KPI grid earlier had inconsistent card layouts. All three cards now use `flex flex-col items-center justify-center text-center` uniformly. Visual consistency restored.
+
+*Dashboard subtitle copy refresh.* "The methodology, applied — in real time." → **"Built in the open. Paid in the open. Open-source methodology."** Triple cadence, names what's already true under the licenses. Sasha-finalized after multiple iteration passes.
+
+*AI OS hero copy refresh.* "The OS for any AI. A different kind of cognition." → **"Instant install. Permanent level-up to AI cognition."** + sub-subtitle "For the 1% who treat AI as a thinking partner, not a search bar." → **"Same model. Different conversation."** Sasha-finalized.
+
+*Rail label.* "request guidance" → **"chat with us"** (Sasha-finalized; lowercase fix from Day 50 stayed but wording softened from formal to casual).
+
+*ZoG headline legibility.* Headline + Recognition block + bullets got bumped text-shadow halos + a soft radial scrim for consistent legibility against the variable-brightness background image.
+
+### Strategic conversations that didn't ship code but did ship clarity
+
+**The "what does this become when forked" reframe.** Sasha asked: *"what if they can fork it for them? it becomes a... what?"* Synthesis: Personal Holon (one founder for themselves) / Community Holon (collective for their tribe) / Network of Holons (federation = the *actual* decentralized Planetary OS). Codified into the new strategy doc + README's *What it becomes when you fork* table.
+
+**The license journey CC BY 4.0 → AGPL-3.0 → PolyForm NC.** Three license decisions in one day, each a tightening of values protection. Sasha asked: *"The fact I change license three times on the same repo doesn't mean anything as long as we got the right one online?"* Honest answer: yes, copyright holders can re-license freely; old commits retain old-license rights for that snapshot but for a repo with no known commercial forks (until today), risk is structurally zero.
+
+**Does AGPL/PolyForm NC close any revenue path?** Sasha's instinct: *"They earn money on what I built for years, and give me nothing? Isn't this a case for commercial license?"* — correct instinct. Pure AGPL allowed commercial use without compensation (too generous for years of methodology work); PolyForm NC + Distributor Agreement + 10% rev share is the right-balance answer. Bonus: opens dual-licensing as a future revenue stream.
+
+**The Day-1 distributor experience.** Sasha asked what *"Day 1"* of having their own platform actually looks like. Honest answer: today it's possible only for technical Oyi/Sergey-level founders who can do manual Vercel + Supabase + Stripe setup with hands-on help; "Skool-easy" one-button onboarding requires ~3-5 weeks of focused work to build. Cleanest sequencing: ship the legal layer NOW (done), pilot one real distributor manually (Oyi-level), then build the kit informed by real walk-through.
+
+**Tiered distributor split Tier 1 (10/90) vs Tier 2 (40/60).** Software-only deployments → 10% to commons / 90% to distributor. Distributors who want Sasha *physically in the room* (live in sessions, embodied delivery) → 40% to Sasha / 60% to distributor. Captured as one of the six open tuning questions in `holonic_franchise_model.md`.
+
+### Distribution synthesis ("who am I sending what")
+
+Earlier Claude attempts framed distribution as *"30-50 close-tie people get one DM with the funnel link"* — Sasha corrected sharply. Real synthesis: **weak ties × highly aligned tribe × three lead magnets as gifts**. Three magnets each get their own broadcast in their own room:
+
+1. **Top Talent Near-Instant Reveal** (Appleseed flow at FindYourTopTalent.Com) → multipotentialites, coaches in transition, founders mid-pivot → WhatsApp/Telegram broadcast lists, forwarded into rooms
+2. **AI OS** (/codex + Knoware article + premium prompts) → operators using AI daily, indie builders, consultants who hit ChatGPT plateau → LinkedIn (Knoware article reposted standalone), Twitter thread, AI craft DMs
+3. **Conscious Impact Entrepreneurship Playbook** (/playbook + DIY prompts in /codex) → pre-launch founders, post-corporate transitioners, regen-economy builders → linked from /codex, shared in conscious capitalism networks
+
+Voice of gift in all three: *"Wanted to share something I built — yours: [URL]. If now's not the time, scroll past. If it lands, pass it to one person it'd land for."* Three sentences, sovereignty closer + soft viral nudge. EN versions drafted after Sasha noted my Russian quality is meaningfully worse than my English (memory saved: default to English for substantive content).
+
+### Manual steps remaining for Sasha
+
+- Create `.env.example` in repo root (template content provided in conversation; sandbox blocks Claude writing to `.env*`)
+- Run `git rm --cached .env` (untrack without deleting locally)
+- Apply `supabase/migrations/20260425000001_resonance_events.sql` via Lovable (paste the prompt at `docs/05-specs/resonance_events_lovable_prompt.md`)
+- Push the Holonic Franchise commit (LICENSE + LICENSE.md + DISTRIBUTOR_AGREEMENT.md + README + CONTRIBUTING + .gitignore + the strategy doc)
+
+### Holomap implication
+
+P5 (Ontological Liberation) and P11 (Resonance Metric) collapsed into a single mechanism — the Specificity Loop. Both the principle (P15 in playbook) and the operational artifact (per-founder matrix as UBB #19) now live, with runtime resolution priority that lets the network grow per-founder voices on top of Sasha's canonical master.
+
+P4 (System Architecture) advanced: the system now has a *named, documented, legally-scaffolded business model* (Holonic Franchise) where before it had open-source code with ambient business intent. Three-license model + Distributor Agreement + 6-play strategic map + dedicated strategy doc — the architecture became readable to outside operators.
+
+P2 (Observable System) advanced: the platform now has its forkable layer made explicit (repo link in 3 surfaces, README's Self-Hosting section, license badges, *forkable by design* framing). What was open-source-as-decoration became open-source-as-real-offer.
+
+P12 (System at Scale) precondition strengthened: the legal + methodology layer of the network-of-holons is now in place. Technical layer (provisioning automation + Stripe Connect Express + commons publication) is the next blocker but no longer the architectural blocker.
+
+Day 51's 27th: still *"press send Friday"* (the DMs to the warm-tie aligned tribe) as named on Day 49 — not yet fired. The Specificity Loop / Holonic Franchise codification gives the apparatus *more depth to receive* the eventual send without changing the Si–Do.
+
+Center reading: **Codification.** Day 49 unified the surface; Day 51 unified the architecture beneath the surface.
+
+### Files touched (Day 51)
+
+**Code:** `src/lib/resonanceMatrix.ts` (NEW) · `src/components/ui/ResonanceRating.tsx` · `src/modules/zone-of-genius/AppleseedDisplay.tsx` · `src/modules/zone-of-genius/ExcaliburDisplay.tsx` · `src/modules/zone-of-genius/ZoneOfGeniusEntry.tsx` · `src/modules/product-builder/steps/{DeepICPScreen,DeepPainScreen,DeepTPScreen,LandingPageScreen}.tsx` · `src/modules/unique-business-builder/{types,constants}.ts` · `src/modules/unique-business-builder/screens/GenericArtifactScreen.tsx` · `src/pages/{PublicDossier,VentureDashboard,Settings}.tsx` · `src/components/game/{GameShellV2,SpacesRail}.tsx` · `src/components/playbook/PlaybookShell.tsx` · `src/modules/ai-os/AiOsPage.tsx` · `src/index.css`
+
+**Edge functions / migrations:** `supabase/functions/_shared/ubb-prompts.ts` · `supabase/migrations/20260425000001_resonance_events.sql` (NEW)
+
+**Repo root:** `LICENSE` (replaced — PolyForm NC canonical) · `LICENSE.md` (header clarified) · `README.md` (rewritten) · `CONTRIBUTING.md` (NEW) · `DISTRIBUTOR_AGREEMENT.md` (NEW v0.1) · `.gitignore` (env files excluded)
+
+**Docs:** `docs/02-strategy/holonic_franchise_model.md` (NEW v1.0) · `docs/03-playbooks/unique_business_playbook.md` (v4.3 → v4.5: P15 added, dual-treatment refined) · `docs/01-vision/phase_shift_technology_library.md` (Domain 81 added) · `docs/02-strategy/unique-businesses/alexanders_unique_business.md` (v9.6 → v9.8: three Day 51 entries) · `docs/05-specs/resonance_events_lovable_prompt.md` (NEW)
+
+**Memory:** `~/.claude/projects/.../memory/feedback_language.md` (NEW — English-default for substantive content) · `MEMORY.md` (index entry added)
+
+---
+
+*Day 50 → Day 51 arc complete. The Specificity Loop is now both a named principle (Playbook P15 + Phase Shift Library Domain 81) and an operational artifact (per-founder Specificity Matrix as UBB #19, runtime hook with three-tier resolution). The Holonic Franchise model has its license stack (PolyForm NC + Distributor Agreement) and its strategy doc. The funnel speaks in matrix v2 across all six reveals. The repo is publicly fork-ready. Six business-model plays mapped strategically with sequencing. UI harmony pass shipped on /playbook + /path + /codex + /ai-os + /dashboard + /zone-of-genius. The first $555 stranger remains the unfired Si–Do. Press-send Friday is no longer about preparing the apparatus — it's about pressing send.*

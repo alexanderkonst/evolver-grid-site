@@ -5,8 +5,8 @@
 
 > *"Work seen as sacred, executed as ceremony."*
 
-**Version:** 4.5  
-**Created:** February 2026 · Last updated: April 25, 2026 (Day 51 evening — *Specificity Loop dual-treatment landed: artifact + framework. Matrix shipped as UBB artifact #19 with per-founder generator and runtime fallback hook.*)  
+**Version:** 4.6  
+**Created:** February 2026 · Last updated: April 25, 2026 (Day 51 night — *Holonic Franchise model codified as the v1.0 commercial-decentralization architecture this playbook now operates within. Six business-model plays mapped with 4-phase sequencing. Specificity Loop principle (P15) and per-founder Specificity Matrix (UBB artifact #19) are the operational foundation.*)  
 **Purpose:** The master playbook for AI-assisted genius-based venture building  
 **Execution:** [Customer Journey Playbook](./customer_journey_playbook.md) — the operational map from first touchpoint to paid session
 
@@ -720,6 +720,21 @@ Once the protocol holds at this level, the founder's strategy collapses to:
 3. **The transformational result sequence mirrors the user journey** — from pain to promised land, in a straight line, consciously, not zigzagging in fog.
 
 The work, then, is not "marketing." The work is **describing what the lead magnet does** — the transformation it delivers — with the same Specificity Loop frequency that converts so high in the funnel. The Lead Magnet article in Part II accounts for this: lead magnet as the founder's medicine in motion, made visible.
+
+### The Six Business-Model Plays (Day 51 Strategic Map)
+
+The Specificity Loop conversion mechanism + per-founder voice generation made it operationally real for the master holon to support **six distinct commercial layers** sitting on top of the playbook's methodology, each with its own audience, infrastructure, and economics. The plays:
+
+1. **Conscious Entrepreneur play (User)** — individual founder using the platform for themselves; the foundational $555 / $5K / $500-mo value ladder customer journey
+2. **Purpose Coach play** — existing facilitators using the platform's tools with their existing clients (Step 6 facilitator emergence at lowest friction; hosted multi-tenant SaaS / facilitator-tier model)
+3. **Platform Distribution play** — the [Holonic Franchise](../02-strategy/holonic_franchise_model.md) v1.0: sovereign distributors fork the entire platform, operate under their own brand, 10% rev share to commons
+4. **Venture Studio play** — equity / persistent rev share in ventures BORN inside the platform (highest upside, opt-in studio tier)
+5. **Community White-Label play** — communities (Holo Movement, Symbiosis, Core Nexus, accelerators, corporate L&D) deploy the apparatus under their brand for their members (enterprise-style)
+6. **Unique Business System License play** — pure IP licensing of the methodology to training schools, accelerators, certified coaches (decoupled from code/platform)
+
+**Sequencing (Sasha-decided Day 51):** Phase 1 = #1+#2+#3 (the Holonic Franchise foundation, shipped Day 51 at the legal/methodology layer); Phase 2 = #5 (community white-label, pilot with one pre-aligned community); Phase 3 = #4 (venture studio tier, opt-in for exceptional founders); Phase 4 = #6 (system licensing as the maturity play). Plays #4-#6 are *plays in pocket, not promises made* — they only get publicly mentioned once the foundation has proven distributors.
+
+The Specificity Loop is the conversion engine that makes plays #1, #2, #3 work simultaneously without dilution — each operates under its own commercial relationship to the master holon, but all three speak in matrix v2 frequency at every reveal.
 
 ### The Anti-Pattern
 
