@@ -388,6 +388,21 @@ const SectionsPanel = ({
                 }}
             />
 
+            {/* Bottom continuation fade — Day 51 night v2 (Sasha 2026-04-26):
+                pane 2 used to read as terminating at a hard horizontal bottom
+                edge, which made the column feel finite. A 96px gradient at the
+                bottom (transparent → deeper navy) implies "the column keeps
+                going" without forcing a literal scroll. Pointer-events-none
+                so it never blocks interaction with the items above. */}
+            <span
+                aria-hidden="true"
+                className="absolute bottom-0 left-0 right-0 h-24 pointer-events-none z-10"
+                style={{
+                    backgroundImage:
+                        "linear-gradient(180deg, rgba(8, 18, 38, 0) 0%, rgba(8, 18, 38, 0.30) 50%, rgba(8, 18, 38, 0.62) 100%)",
+                }}
+            />
+
             {/* Header — Day 48 iter 8 (Sasha):
                 The lone X in the top-right was visually orphaned. The
                 header now self-identifies the pane: title on the left

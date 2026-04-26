@@ -12,6 +12,11 @@ import { useToast } from "@/hooks/use-toast";
 import GameShellV2 from "@/components/game/GameShellV2";
 import { ArrowLeft, Mail, Sparkles } from "lucide-react";
 import { captureReferralIdFromUrl } from "@/lib/gameProfile";
+// Day 51 night v2 (Sasha 2026-04-26): editorial v2 of the auth surface
+// reuses the landing's gold-text gradient + ornament rule so the auth
+// page reads as part of the same brand register, not a generic shadcn
+// settings screen.
+import { GOLD_TEXT_STYLE, Ornament } from "@/lib/landingDesign";
 
 // Key used by ZoneOfGeniusEntry to detect that the anonymous result should be
 // POSTed to save-anonymous-zog with this email (so it can be claimed after the
@@ -388,151 +393,314 @@ const Auth = () => {
   }
 
   // ── Normal Auth View (login / signup tabs) ─────────────────────────
+  // Day 51 night v2 (Sasha 2026-04-26): editorial v2 of the auth surface.
+  // Old version was a generic shadcn Card that rendered as a flat grey
+  // box and titled itself "Welcome to Genius Business" (legacy brand
+  // name — site brand is "Find Your Top Talent"). The submit Button
+  // also had invisible white-on-white text on the Aurora skin (fixed
+  // globally in components/ui/button.tsx — default variant now uses
+  // bg-primary). This rewrite:
+  //   • drops the wrong brand name; the rail's wordmark already brands
+  //     the page, the H1 simply welcomes
+  //   • Cormorant Garamond title with gold accent on the operative word
+  //   • italic subtitle keyed to the flow (login vs onboarding)
+  //   • Ornament rule between header and tabs (matches landing rhythm)
+  //   • liquid-glass-strong card with rounded-3xl + generous padding
+  //   • subtle gold focus ring on the active tab + form inputs
+  //   • primary CTA renders via the (now-fixed) shadcn Button default
+  //     so it picks up bg-primary / text-primary-foreground
+  const titleNode = isOnboardingFlow ? (
+    <>
+      Create your{" "}
+      <span className="bg-clip-text text-transparent" style={GOLD_TEXT_STYLE}>
+        account
+      </span>
+    </>
+  ) : (
+    <>
+      <span className="bg-clip-text text-transparent" style={GOLD_TEXT_STYLE}>
+        Welcome
+      </span>
+      .
+    </>
+  );
+
+  const subtitleText = isOnboardingFlow
+    ? "Save your Top Talent. Unlock your unique business."
+    : "Pick up where you left off — your Top Talent and progress are waiting.";
+
   return (
     <GameShellV2 hideLogo>
-      <main className="min-h-dvh flex items-center justify-center px-4 py-24 relative z-10">
-        <Card className="w-full max-w-md">
-          <CardHeader className="text-center">
-            <CardTitle className="text-2xl font-bold">
-              {isOnboardingFlow ? "Create Your Account" : "Welcome to Genius Business"}
-            </CardTitle>
-            <CardDescription>
-              {isOnboardingFlow
-                ? "Save your Top Talent and unlock your genius business."
-                : "Create an account or log in to save your character progress across devices."}
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <Tabs defaultValue={defaultTab} className="w-full">
-              <TabsList className="grid w-full grid-cols-2">
-                <TabsTrigger value="login">Log In</TabsTrigger>
-                <TabsTrigger value="signup">Sign Up</TabsTrigger>
-              </TabsList>
+      <main className="min-h-dvh flex items-center justify-center px-4 py-16 sm:py-24 relative z-10">
+        <article
+          className="w-full max-w-md liquid-glass-strong rounded-3xl px-6 sm:px-9 py-10 sm:py-12"
+          style={{
+            boxShadow:
+              "0 8px 24px -10px rgba(10, 22, 40, 0.18), 0 24px 60px -24px rgba(10, 22, 40, 0.22), 0 0 0 1px rgba(212, 175, 55, 0.10)",
+          }}
+        >
+          {/* Header — Cormorant title + italic subtitle */}
+          <header className="text-center mb-2">
+            <h1
+              className="text-3xl sm:text-4xl font-semibold leading-[1.1] tracking-[-0.018em]"
+              style={{
+                fontFamily: "'Cormorant Garamond', serif",
+                color: "var(--skin-text-primary, #0a1628)",
+                textShadow:
+                  "var(--skin-text-halo-strong, 0 0 22px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.8))",
+              }}
+            >
+              {titleNode}
+            </h1>
+            <p
+              className="mt-3 text-base sm:text-lg italic leading-snug"
+              style={{
+                fontFamily: "'Cormorant Garamond', serif",
+                fontWeight: 400,
+                color: "var(--skin-text-muted, rgba(26,30,58,0.7))",
+                textShadow:
+                  "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
+              }}
+            >
+              {subtitleText}
+            </p>
+          </header>
 
-              <TabsContent value="login">
-                <form onSubmit={handleLogin} className="space-y-4">
-                  <div className="space-y-2">
-                    <Label htmlFor="login-email">Email</Label>
-                    <Input
-                      id="login-email"
-                      type="email"
-                      placeholder="you@example.com"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      required
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <div className="flex items-center justify-between">
-                      <Label htmlFor="login-password">Password</Label>
-                      <button
-                        type="button"
-                        onClick={() => setShowForgotPassword(true)}
-                        className="text-xs text-primary hover:underline"
-                      >
-                        Forgot password?
-                      </button>
-                    </div>
-                    <Input
-                      id="login-password"
-                      type="password"
-                      placeholder="••••••••"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                      required
-                    />
-                  </div>
-                  <Button type="submit" className="w-full" disabled={loading}>
-                    {loading ? "Logging in..." : "Log In"}
-                  </Button>
+          {/* Ornament rule */}
+          <Ornament className="my-6" />
 
-                  {/* Magic-link alternative — same OTP flow as claim mode,
-                      without the pending-claim email stash. */}
+          {/* Tabs */}
+          <Tabs defaultValue={defaultTab} className="w-full">
+            <TabsList
+              className="grid w-full grid-cols-2 mb-6 rounded-full p-1"
+              style={{
+                backgroundColor: "rgba(212, 175, 55, 0.08)",
+                border: "1px solid rgba(212, 175, 55, 0.18)",
+              }}
+            >
+              <TabsTrigger
+                value="login"
+                className="rounded-full text-[11px] uppercase tracking-[0.18em] font-semibold data-[state=active]:bg-[rgba(212,175,55,0.18)] data-[state=active]:text-[#0a1628] data-[state=active]:shadow-[0_0_14px_-4px_rgba(244,212,114,0.45)]"
+                style={{ fontFamily: "'Cormorant Garamond', serif" }}
+              >
+                Log In
+              </TabsTrigger>
+              <TabsTrigger
+                value="signup"
+                className="rounded-full text-[11px] uppercase tracking-[0.18em] font-semibold data-[state=active]:bg-[rgba(212,175,55,0.18)] data-[state=active]:text-[#0a1628] data-[state=active]:shadow-[0_0_14px_-4px_rgba(244,212,114,0.45)]"
+                style={{ fontFamily: "'Cormorant Garamond', serif" }}
+              >
+                Sign Up
+              </TabsTrigger>
+            </TabsList>
+
+            {/* ─── LOG IN ─── */}
+            <TabsContent value="login">
+              <form onSubmit={handleLogin} className="space-y-4">
+                <div className="space-y-1.5">
+                  <Label
+                    htmlFor="login-email"
+                    className="text-[10px] uppercase tracking-[0.22em] font-medium"
+                    style={{
+                      fontFamily: "'Cormorant Garamond', serif",
+                      color: "var(--skin-text-muted, rgba(26,30,58,0.7))",
+                    }}
+                  >
+                    Email
+                  </Label>
+                  <Input
+                    id="login-email"
+                    type="email"
+                    placeholder="you@example.com"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                    className="rounded-xl"
+                  />
+                </div>
+                <div className="space-y-1.5">
+                  <div className="flex items-baseline justify-between">
+                    <Label
+                      htmlFor="login-password"
+                      className="text-[10px] uppercase tracking-[0.22em] font-medium"
+                      style={{
+                        fontFamily: "'Cormorant Garamond', serif",
+                        color: "var(--skin-text-muted, rgba(26,30,58,0.7))",
+                      }}
+                    >
+                      Password
+                    </Label>
+                    <button
+                      type="button"
+                      onClick={() => setShowForgotPassword(true)}
+                      className="text-[11px] italic underline-offset-4 hover:underline"
+                      style={{
+                        fontFamily: "'Cormorant Garamond', serif",
+                        color: "var(--skin-link-secondary, rgba(26,30,58,0.7))",
+                      }}
+                    >
+                      Forgot password?
+                    </button>
+                  </div>
+                  <Input
+                    id="login-password"
+                    type="password"
+                    placeholder="••••••••"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                    className="rounded-xl"
+                  />
+                </div>
+                <Button type="submit" className="w-full h-12 rounded-full" disabled={loading}>
+                  {loading ? "Logging in…" : "Log In"}
+                </Button>
+
+                <div className="flex items-center gap-3 py-1">
+                  <span className="flex-1 h-px" style={{ backgroundColor: "var(--skin-rule-medium, rgba(26,30,58,0.12))" }} />
+                  <span
+                    className="text-[10px] uppercase tracking-[0.22em]"
+                    style={{
+                      fontFamily: "'Cormorant Garamond', serif",
+                      color: "var(--skin-text-muted-soft, rgba(26,30,58,0.5))",
+                    }}
+                  >
+                    or
+                  </span>
+                  <span className="flex-1 h-px" style={{ backgroundColor: "var(--skin-rule-medium, rgba(26,30,58,0.12))" }} />
+                </div>
+
+                <Button
+                  type="button"
+                  variant="outline"
+                  onClick={handleMagicLinkFromLogin}
+                  className="w-full h-12 rounded-full"
+                  disabled={loading || !email}
+                >
+                  <Sparkles className="w-4 h-4 mr-2" />
+                  Send me a magic link
+                </Button>
+
+                {import.meta.env.DEV && (
                   <Button
                     type="button"
                     variant="outline"
-                    onClick={handleMagicLinkFromLogin}
+                    onClick={handleTestLogin}
                     className="w-full"
-                    disabled={loading || !email}
+                    disabled={loading}
                   >
-                    <Sparkles className="w-4 h-4 mr-2" />
-                    Or send me a magic link instead
+                    Test Login (Dev Only)
                   </Button>
+                )}
+              </form>
+            </TabsContent>
 
-                  {import.meta.env.DEV && (
-                    <Button
-                      type="button"
-                      variant="outline"
-                      onClick={handleTestLogin}
-                      className="w-full"
-                      disabled={loading}
+            {/* ─── SIGN UP ─── */}
+            <TabsContent value="signup">
+              <form onSubmit={handleSignUp} className="space-y-4">
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="space-y-1.5">
+                    <Label
+                      htmlFor="signup-firstname"
+                      className="text-[10px] uppercase tracking-[0.22em] font-medium"
+                      style={{
+                        fontFamily: "'Cormorant Garamond', serif",
+                        color: "var(--skin-text-muted, rgba(26,30,58,0.7))",
+                      }}
                     >
-                      Test Login (Dev Only)
-                    </Button>
-                  )}
-                </form>
-              </TabsContent>
-
-              <TabsContent value="signup">
-                <form onSubmit={handleSignUp} className="space-y-4">
-                  <div className="grid grid-cols-2 gap-3">
-                    <div className="space-y-2">
-                      <Label htmlFor="signup-firstname">First Name</Label>
-                      <Input
-                        id="signup-firstname"
-                        type="text"
-                        placeholder="Jane"
-                        value={firstName}
-                        onChange={(e) => setFirstName(e.target.value)}
-                        required
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="signup-lastname">Last Name</Label>
-                      <Input
-                        id="signup-lastname"
-                        type="text"
-                        placeholder="Doe"
-                        value={lastName}
-                        onChange={(e) => setLastName(e.target.value)}
-                        required
-                      />
-                    </div>
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="signup-email">Email</Label>
+                      First Name
+                    </Label>
                     <Input
-                      id="signup-email"
-                      type="email"
-                      placeholder="you@example.com"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
+                      id="signup-firstname"
+                      type="text"
+                      placeholder="Jane"
+                      value={firstName}
+                      onChange={(e) => setFirstName(e.target.value)}
                       required
+                      className="rounded-xl"
                     />
                   </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="signup-password">Password</Label>
+                  <div className="space-y-1.5">
+                    <Label
+                      htmlFor="signup-lastname"
+                      className="text-[10px] uppercase tracking-[0.22em] font-medium"
+                      style={{
+                        fontFamily: "'Cormorant Garamond', serif",
+                        color: "var(--skin-text-muted, rgba(26,30,58,0.7))",
+                      }}
+                    >
+                      Last Name
+                    </Label>
                     <Input
-                      id="signup-password"
-                      type="password"
-                      placeholder="••••••••"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
+                      id="signup-lastname"
+                      type="text"
+                      placeholder="Doe"
+                      value={lastName}
+                      onChange={(e) => setLastName(e.target.value)}
                       required
-                      minLength={6}
+                      className="rounded-xl"
                     />
-                    <p className="text-xs text-muted-foreground">
-                      Password must be at least 6 characters
-                    </p>
                   </div>
-                  <Button type="submit" className="w-full" disabled={loading}>
-                    {loading ? "Creating account..." : "Sign Up"}
-                  </Button>
-                </form>
-              </TabsContent>
-            </Tabs>
-          </CardContent>
-        </Card>
+                </div>
+                <div className="space-y-1.5">
+                  <Label
+                    htmlFor="signup-email"
+                    className="text-[10px] uppercase tracking-[0.22em] font-medium"
+                    style={{
+                      fontFamily: "'Cormorant Garamond', serif",
+                      color: "var(--skin-text-muted, rgba(26,30,58,0.7))",
+                    }}
+                  >
+                    Email
+                  </Label>
+                  <Input
+                    id="signup-email"
+                    type="email"
+                    placeholder="you@example.com"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                    className="rounded-xl"
+                  />
+                </div>
+                <div className="space-y-1.5">
+                  <Label
+                    htmlFor="signup-password"
+                    className="text-[10px] uppercase tracking-[0.22em] font-medium"
+                    style={{
+                      fontFamily: "'Cormorant Garamond', serif",
+                      color: "var(--skin-text-muted, rgba(26,30,58,0.7))",
+                    }}
+                  >
+                    Password
+                  </Label>
+                  <Input
+                    id="signup-password"
+                    type="password"
+                    placeholder="••••••••"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                    minLength={6}
+                    className="rounded-xl"
+                  />
+                  <p
+                    className="text-[11px] italic mt-1.5"
+                    style={{
+                      fontFamily: "'Cormorant Garamond', serif",
+                      color: "var(--skin-text-muted-soft, rgba(26,30,58,0.55))",
+                    }}
+                  >
+                    At least 6 characters.
+                  </p>
+                </div>
+                <Button type="submit" className="w-full h-12 rounded-full" disabled={loading}>
+                  {loading ? "Creating account…" : "Sign Up"}
+                </Button>
+              </form>
+            </TabsContent>
+          </Tabs>
+        </article>
       </main>
     </GameShellV2>
   );
