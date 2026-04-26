@@ -1,4 +1,5 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import {
     Download,
     Share2,
@@ -53,14 +54,45 @@ const CardActions = ({
     const [shareOpen, setShareOpen] = useState(false);
     const [copied, setCopied] = useState(false);
     const popoverRef = useRef<HTMLDivElement>(null);
+    const shareBtnRef = useRef<HTMLButtonElement>(null);
+    // Day 51 night fix #1 (Sasha): the popover used to render inside the
+    // captured card, which has overflow:hidden + rounded-3xl — that
+    // clipped the menu to the bottom edge of the card so all the user
+    // could see was a sliver of white. We now portal the popover to
+    // document.body and position it via the share button's bounding rect.
+    const [popoverPos, setPopoverPos] = useState<{ top: number; left: number } | null>(null);
+
+    useLayoutEffect(() => {
+        if (!shareOpen) {
+            setPopoverPos(null);
+            return;
+        }
+        const update = () => {
+            const btn = shareBtnRef.current;
+            if (!btn) return;
+            const rect = btn.getBoundingClientRect();
+            setPopoverPos({
+                top: rect.bottom + 8,
+                left: rect.left + rect.width / 2,
+            });
+        };
+        update();
+        window.addEventListener("resize", update);
+        window.addEventListener("scroll", update, true);
+        return () => {
+            window.removeEventListener("resize", update);
+            window.removeEventListener("scroll", update, true);
+        };
+    }, [shareOpen]);
 
     // Close share popover on outside click
     useEffect(() => {
         if (!shareOpen) return;
         const handler = (e: MouseEvent) => {
-            if (popoverRef.current && !popoverRef.current.contains(e.target as Node)) {
-                setShareOpen(false);
-            }
+            const target = e.target as Node;
+            if (popoverRef.current && popoverRef.current.contains(target)) return;
+            if (shareBtnRef.current && shareBtnRef.current.contains(target)) return;
+            setShareOpen(false);
         };
         // Defer one tick so the click that opened the popover doesn't immediately close it
         const id = window.setTimeout(() => {
@@ -80,11 +112,31 @@ const CardActions = ({
         }
         setSaving(true);
         try {
+            // Day 51 night fix #2 (Sasha): html2canvas was throwing on
+            // `backdrop-filter` (used by `breathing-card backdrop-blur-md`)
+            // and on running animations / transitions in the captured tree.
+            // The onclone pass scrubs both in the cloned DOM (which is
+            // discarded after capture — original card is untouched).
+            // Solid background so the PNG isn't transparent on socials
+            // that render PNGs over black (X/Twitter, dark Telegram).
             const canvas = await html2canvas(el, {
                 scale: 2,
                 useCORS: true,
                 logging: false,
-                backgroundColor: null, // preserve transparency
+                backgroundColor: darkMode ? "#0a162a" : "#fdf6e3",
+                imageTimeout: 15000,
+                onclone: (clonedDoc) => {
+                    const styleTag = clonedDoc.createElement("style");
+                    styleTag.textContent = `
+                        *, *::before, *::after {
+                            animation: none !important;
+                            transition: none !important;
+                            backdrop-filter: none !important;
+                            -webkit-backdrop-filter: none !important;
+                        }
+                    `;
+                    clonedDoc.head.appendChild(styleTag);
+                },
             });
             const dataUrl = canvas.toDataURL("image/png");
             const link = document.createElement("a");
@@ -95,8 +147,12 @@ const CardActions = ({
             document.body.removeChild(link);
             toast({ title: "Saved to Downloads" });
         } catch (err) {
-            console.warn("[CardActions] save failed:", err);
-            toast({ title: "Save failed — try again", variant: "destructive" });
+            console.error("[CardActions] save failed:", err);
+            toast({
+                title: "Save failed — try again",
+                description: err instanceof Error ? err.message : undefined,
+                variant: "destructive",
+            });
         } finally {
             setSaving(false);
         }
@@ -157,6 +213,7 @@ const CardActions = ({
 
             {/* Share Text */}
             <button
+                ref={shareBtnRef}
                 type="button"
                 onClick={() => setShareOpen((o) => !o)}
                 className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[11px] uppercase tracking-[0.14em] font-medium transition-all duration-200 ${idle} ${hover} ${buttonBg}`}
@@ -169,14 +226,18 @@ const CardActions = ({
                 <span>Share</span>
             </button>
 
-            {/* Share popover */}
-            {shareOpen && (
+            {/* Share popover — portaled to <body> so the card's
+                overflow:hidden + rounded-3xl can't clip it. */}
+            {shareOpen && popoverPos && createPortal(
                 <div
                     ref={popoverRef}
                     role="menu"
-                    className="absolute top-full mt-2 right-0 sm:left-1/2 sm:-translate-x-1/2 sm:right-auto z-50 min-w-[200px] rounded-xl liquid-glass shadow-lg overflow-hidden"
+                    className="z-[9999] min-w-[200px] rounded-xl shadow-lg overflow-hidden"
                     style={{
-                        // Always-readable popover regardless of card palette
+                        position: "fixed",
+                        top: popoverPos.top,
+                        left: popoverPos.left,
+                        transform: "translateX(-50%)",
                         background: "rgba(255, 255, 255, 0.96)",
                         backdropFilter: "blur(24px) saturate(180%)",
                         WebkitBackdropFilter: "blur(24px) saturate(180%)",
@@ -210,7 +271,8 @@ const CardActions = ({
                         )}
                         <span className="font-medium">{copied ? "Copied!" : "Copy text"}</span>
                     </button>
-                </div>
+                </div>,
+                document.body,
             )}
         </div>
     );
