@@ -52,7 +52,7 @@ export default function GenericArtifactScreen() {
 }
 
 export function ArtifactView({ artifactKey }: { artifactKey: ArtifactKey }) {
-  const { artifacts, generateArtifact, isGenerating, lockArtifact, unlockArtifact } = useUniqueBusiness();
+  const { artifacts, generateArtifact, isGenerating, lockArtifact, unlockArtifact, updateArtifactScore } = useUniqueBusiness();
   const state = artifacts[artifactKey];
   const latest = state?.latest;
   const isLocked = !!state?.latestLocked;
@@ -97,7 +97,12 @@ export function ArtifactView({ artifactKey }: { artifactKey: ArtifactKey }) {
                   <ArtifactContentView content={latest.content} />
                 </div>
               </div>
-              <SpecificityBadge score={latest.specificity_score} />
+              {/* Day 51 (Sasha 2026-04-25): score is human-editable — AI
+                  suggests, human adjusts. Locked artifacts: read-only. */}
+              <SpecificityBadge
+                score={latest.specificity_score}
+                onScoreChange={isLocked ? undefined : (s) => updateArtifactScore(artifactKey, s)}
+              />
             </div>
           </Card>
 
