@@ -82,9 +82,22 @@ const PlaybookShell = ({
       </div>
 
       {/* ═══════ TOP NAV: 7 steps ═══════ */}
+      {/* Day 51 night (Sasha 2026-04-25): nav now sticky-on-scroll. Step 2's
+          long-form essay + multi-substep cards on other steps make the
+          page tall — without a sticky spine, the reader loses the spatial
+          map of where they are in the 7-step arc. Backdrop-blur lets
+          content read through it; a thin gold-tinted bottom rule cues the
+          floating-vs-flowing distinction. Sits at top:0 inside <main>'s
+          scroll container (pane 3). */}
       <nav
         aria-label="Playbook progression"
-        className="mb-5 sm:mb-6"
+        className="sticky top-0 z-20 -mx-4 sm:-mx-6 px-4 sm:px-6 py-3 sm:py-4 mb-5 sm:mb-6 backdrop-blur-xl"
+        style={{
+          backgroundImage:
+            "linear-gradient(180deg, var(--skin-panel-wash-quiet, rgba(248, 246, 240, 0.92)) 0%, rgba(248, 246, 240, 0.78) 100%)",
+          borderBottom: "1px solid rgba(212, 175, 55, 0.18)",
+          boxShadow: "0 6px 18px -10px rgba(10, 22, 40, 0.18)",
+        }}
       >
         <ol className="flex items-start justify-between gap-1 sm:gap-2">
           {PLAYBOOK_STEPS.map((step, i) => {

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { ChevronRight, Wrench } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { PlaybookStep, Substep } from "@/data/playbookSteps";
+import { PLAYBOOK_STEPS, PlaybookStep, Substep } from "@/data/playbookSteps";
 import { getBuildLinksForStep } from "@/data/playbookArtifactMap";
 import { UBB_ROOT } from "@/modules/unique-business-builder/constants";
 // useStepCheckout was used by the per-step CTA block that was removed
@@ -177,7 +177,11 @@ const SubstepRow = ({
               aria-expanded={open}
             >
               <Triangle open={open} neonHsl={neonHsl} neonRgb={neonRgb} />
-              <span>Recommended How-To</span>
+              {/* Day 51 night (Sasha 2026-04-25): label aligned to the
+                  data field name. "Recommended How-To" was generic. "One
+                  Proven Strategy" is what's actually behind the disclosure —
+                  matches the prose register inside the reveal too. */}
+              <span>One Proven Strategy</span>
             </button>
           </div>
 
@@ -471,7 +475,11 @@ const StepCard = ({ step }: StepCardProps) => {
   const [openSubsteps, setOpenSubsteps] = useState<Set<number>>(new Set());
 
   // Re-seed state whenever the step slug changes (navigating 1 → 2 → …)
-  // Default: all substep strategies closed. Hash #how-N opens that one.
+  // Day 51 night (Sasha 2026-04-25): on initial visit (no hash), substep 1
+  // auto-opens so a first-time DIY reader sees the actual prompt / method
+  // immediately instead of a row of empty pills. The Open Blueprint
+  // Paradox: prove the method is real in the first 5 seconds of reading.
+  // Hash #how-N still wins (deep links land on the requested substep).
   useEffect(() => {
     if (typeof window === "undefined") return;
     const { substep } = parseHash(window.location.hash);
@@ -479,7 +487,7 @@ const StepCard = ({ step }: StepCardProps) => {
     setOpenSubsteps(
       substep !== null && step.substeps.some((s) => s.number === substep)
         ? new Set([substep])
-        : new Set(),
+        : new Set([1]),
     );
 
     const onHashChange = () => {
@@ -570,6 +578,28 @@ const StepCard = ({ step }: StepCardProps) => {
             {step.subtitle}
           </span>
         </h1>
+
+        {/* ══ Day 51 night (Sasha 2026-04-25): outcome-before-route.
+            transformationalResult was sitting in the data unused. Now
+            it renders right under the step title as the user-voice
+            promise — italic, step-tinted left rule, modest size so it
+            reads as a quiet "this is what you'll be able to say after"
+            rather than a CTA-shouting block. */}
+        <p
+          className="mt-3 sm:mt-4 pl-4 italic text-base sm:text-lg leading-snug"
+          style={{
+            fontFamily: "'Cormorant Garamond', serif",
+            fontWeight: 500,
+            color: "var(--skin-text-strong, rgba(26,30,58,0.88))",
+            borderLeft: `2px solid ${step.neonHsl}`,
+            textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
+          }}
+        >
+          By the end:{" "}
+          <span style={{ color: "var(--skin-text-primary, #0a1628)" }}>
+            &ldquo;{step.transformationalResult}&rdquo;
+          </span>
+        </p>
       </header>
 
       {/* ══ CONTENT — Day 47 iter 6 (Sasha): Step 2 is special. Instead of
@@ -604,10 +634,98 @@ const StepCard = ({ step }: StepCardProps) => {
           — that's intentional, not an omission. */}
       <BuildTheseInBuilder step={step} />
 
+      {/* ══ UP NEXT — Day 51 night (Sasha 2026-04-25): pulls the reader
+          through the playbook. For step N < 7, teases step N+1. For step 7,
+          loops back to "Now go walk it" → /zone-of-genius. Subtle, not a
+          shouting CTA — the page has its own forkability footer below. */}
+      <UpNext step={step} />
+
       {/* The "Here's your result" + CTA + "Pay as you progress" block was
           removed 2026-04-21 per Sasha — every step's substeps stand alone.
           Commercial layer lives on /path, not inside each step card. */}
     </article>
+  );
+};
+
+// ───── Up Next teaser ────────────────────────────────────────────
+//
+// Quiet pull at the bottom of every step card. On steps 1–6, points to
+// the next step's slug + subtitle. On step 7, points to /zone-of-genius
+// — the actual doing surface — closing the loop on the playbook.
+const UpNext = ({ step }: { step: PlaybookStep }) => {
+  const isLast = step.number === PLAYBOOK_STEPS.length;
+  const nextStep = isLast
+    ? null
+    : PLAYBOOK_STEPS.find((s) => s.number === step.number + 1) ?? null;
+
+  if (isLast) {
+    return (
+      <div className="mt-8 pt-6 text-center"
+        style={{
+          borderTop: `1px solid rgba(${step.neonRgb}, 0.22)`,
+        }}
+      >
+        <p
+          className="text-[10px] sm:text-[11px] uppercase tracking-[0.24em] font-semibold mb-2"
+          style={{
+            color: `color-mix(in srgb, ${step.neonHsl} 40%, var(--skin-text-primary, #0a1628) 60%)`,
+          }}
+        >
+          You've seen the method
+        </p>
+        <Link
+          to="/zone-of-genius"
+          className="inline-flex items-center gap-2 text-base sm:text-lg font-semibold transition-all hover:translate-x-0.5"
+          style={{
+            fontFamily: "'Cormorant Garamond', serif",
+            color: "var(--skin-text-primary, #0a1628)",
+            textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
+          }}
+        >
+          Now go walk it →
+        </Link>
+      </div>
+    );
+  }
+
+  if (!nextStep) return null;
+
+  return (
+    <div className="mt-8 pt-6"
+      style={{
+        borderTop: `1px solid rgba(${step.neonRgb}, 0.22)`,
+      }}
+    >
+      <Link
+        to={`/playbook/${nextStep.slug}`}
+        className="group inline-flex items-baseline gap-3 transition-all hover:translate-x-0.5"
+      >
+        <span
+          className="text-[10px] sm:text-[11px] uppercase tracking-[0.24em] font-semibold"
+          style={{
+            color: `color-mix(in srgb, ${nextStep.neonHsl} 45%, var(--skin-text-primary, #0a1628) 55%)`,
+          }}
+        >
+          Up next · Step {nextStep.number}
+        </span>
+        <span
+          className="text-base sm:text-lg font-semibold"
+          style={{
+            fontFamily: "'Cormorant Garamond', serif",
+            color: "var(--skin-text-primary, #0a1628)",
+            textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
+          }}
+        >
+          {nextStep.subtitle}{" "}
+          <span
+            aria-hidden="true"
+            className="inline-block transition-transform duration-300 group-hover:translate-x-0.5"
+          >
+            →
+          </span>
+        </span>
+      </Link>
+    </div>
   );
 };
 
