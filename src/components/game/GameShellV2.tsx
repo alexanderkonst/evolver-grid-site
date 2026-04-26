@@ -770,6 +770,27 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                         className="flex-1 overflow-auto relative"
                         style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}
                     >
+                        {/* Pane-3 wash on mobile — Day 51 night (Sasha
+                            2026-04-25): mirror of the desktop fix. When
+                            the wash was relocated inside desktop <main>,
+                            mobile got skipped — leaving the dust/particle
+                            shell video bleeding through behind hero copy
+                            on /, /playbook, /path, where the pane-3 area
+                            should read as editorial cream. Same gating as
+                            desktop: working routes get the heavy quiet
+                            wash, landing routes get the light atmospheric
+                            wash, page-owned-bg routes skip entirely. */}
+                    {!pageOwnsBackground && (
+                      <div
+                        aria-hidden="true"
+                        className="absolute inset-0 pointer-events-none -z-10"
+                        style={{
+                          background: isWorkingRoute
+                            ? "var(--skin-panel-wash-quiet, rgba(248, 246, 240, 0.98))"
+                            : "var(--skin-panel-wash, rgba(255, 255, 255, 0.21))",
+                        }}
+                      />
+                    )}
                         <div className="page-transition-enter">
                             {children}
                         </div>
