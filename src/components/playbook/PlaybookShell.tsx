@@ -204,12 +204,15 @@ const PlaybookShell = ({
       <div className="mt-4">{children}</div>
 
       {/* Day 51 (Sasha 2026-04-25): quiet "this is open" footer.
-          The playbook itself is the methodology; the codebase running it
-          is forkable. Forks of the entire system are the actual goal of
-          the Integration Layer Manifesto. Subtle by design — utility,
-          not promotion. */}
+          Day 51 night v2 (Sasha 2026-04-26): split into two paragraphs —
+          the first is the open-source frame (method + platform open to
+          fork on GitHub), the second is the collective frame (run it
+          under your brand, 10% to commons, plus collective benefits via
+          Telegram). Each ends with its own destination link, so the
+          reader who wants the code goes to GitHub and the reader who
+          wants the relational on-ramp goes to Telegram. */}
       <div
-        className="mt-12 pt-6 text-center"
+        className="mt-12 pt-6 text-center space-y-4"
         style={{
           borderTop: "1px solid var(--skin-rule-soft, rgba(26,30,58,0.1))",
         }}
@@ -218,25 +221,46 @@ const PlaybookShell = ({
           className="text-xs leading-relaxed"
           style={{ color: "var(--skin-text-muted-soft, rgba(26,30,58,0.55))" }}
         >
-          The method is open to read. The platform is forkable.
-          <br />
-          Run it for your own community — under your own brand. 10% to commons if you go commercial.
+          The method is open to read. The platform is forkable.{" "}
+          <a
+            href="https://github.com/alexanderkonst/evolver-grid-site"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1 underline-offset-4 hover:underline transition-colors"
+            style={{
+              fontFamily: "'Cormorant Garamond', serif",
+              fontWeight: 600,
+              fontSize: "0.82rem",
+              letterSpacing: "0.04em",
+              color: "var(--skin-link-secondary, rgba(26,30,58,0.85))",
+            }}
+          >
+            Fork it on GitHub →
+          </a>
         </p>
-        <a
-          href="https://github.com/alexanderkonst/evolver-grid-site"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-1.5 mt-2 text-xs underline-offset-4 hover:underline transition-colors"
-          style={{
-            fontFamily: "'Cormorant Garamond', serif",
-            fontWeight: 600,
-            fontSize: "0.78rem",
-            letterSpacing: "0.06em",
-            color: "var(--skin-link-secondary, rgba(26,30,58,0.75))",
-          }}
+        <p
+          className="text-xs leading-relaxed max-w-xl mx-auto"
+          style={{ color: "var(--skin-text-muted-soft, rgba(26,30,58,0.55))" }}
         >
-          Fork it on GitHub →
-        </a>
+          Run it for your own community — under your own brand. 10% to commons
+          if you go commercial (plus the many other benefits of entering the
+          impact founder collective).{" "}
+          <a
+            href="https://t.me/integralevolution"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1 underline-offset-4 hover:underline transition-colors"
+            style={{
+              fontFamily: "'Cormorant Garamond', serif",
+              fontWeight: 600,
+              fontSize: "0.82rem",
+              letterSpacing: "0.04em",
+              color: "var(--skin-link-secondary, rgba(26,30,58,0.85))",
+            }}
+          >
+            Contact me on Telegram →
+          </a>
+        </p>
       </div>
     </div>
   );

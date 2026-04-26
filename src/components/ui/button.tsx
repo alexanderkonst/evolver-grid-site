@@ -9,7 +9,16 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "liquid-glass-strong ring-1 ring-white/25 text-white hover:ring-white/40 shadow-[0_0_30px_rgba(132,96,234,0.1)]",
+        // Day 51 night (Sasha 2026-04-26): default variant rewritten.
+        // Old: `liquid-glass-strong ring-1 ring-white/25 text-white …` —
+        // produced WHITE text on a 0.18-white-glass surface, which on
+        // the Aurora cream skin rendered as invisible (white on white).
+        // The auth Log-In button and other primary CTAs across the site
+        // were illegible. Now uses proper shadcn semantic tokens
+        // (bg-primary / text-primary-foreground) so contrast is correct
+        // on both skins: Aurora → deep navy bg + white text, Navy+Gold
+        // → gold bg + dark navy text. Soft hover dim + focus ring stays.
+        default: "bg-primary text-primary-foreground hover:bg-primary/90 shadow-[0_4px_18px_-6px_hsla(var(--primary),0.45)]",
         destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90",
         outline: "border border-border bg-transparent hover:bg-secondary/50",
         secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",

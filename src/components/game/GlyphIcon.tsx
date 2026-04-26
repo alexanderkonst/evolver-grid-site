@@ -28,6 +28,12 @@ export type GlyphIconProps = {
 //   • grid + place-items:center — strictly tighter than flex centering
 //   • text-align center + letter-spacing 0 — removes any trailing space
 //     that some glyphs pick up from the font's default tracking
+// Day 51 night v2 (Sasha 2026-04-26): glow strengthened for parity with
+// the JOURNEY + ME image icons. Previous treatment (single 12px halo at
+// 50% color alpha) read as muted next to the gold-tinted JOURNEY icon.
+// Now layers three shadows: bright color core, broader color halo, and
+// a soft gold rim that ties the whole rail to the brand register —
+// every space reads as "alive, lit" instead of just typeset.
 const GlyphIcon = ({ glyph, color, size = 28 }: GlyphIconProps) => (
   <span
     aria-hidden="true"
@@ -44,7 +50,12 @@ const GlyphIcon = ({ glyph, color, size = 28 }: GlyphIconProps) => (
       letterSpacing: 0,
       textAlign: "center",
       color,
-      textShadow: `0 0 12px ${color}80, 0 0 3px ${color}66`,
+      textShadow: `
+        0 0 4px ${color},
+        0 0 14px ${color}cc,
+        0 0 26px ${color}66,
+        0 0 18px rgba(244, 212, 114, 0.32)
+      `,
     }}
   >
     {glyph}
