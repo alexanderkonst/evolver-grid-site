@@ -81,7 +81,7 @@ export default function CompoundScreen() {
 }
 
 function SubArtifactCard({ artifactKey }: { artifactKey: ArtifactKey }) {
-  const { artifacts, generateArtifact, isGenerating } = useUniqueBusiness();
+  const { artifacts, generateArtifact, isGenerating, updateArtifactScore } = useUniqueBusiness();
   const state = artifacts[artifactKey];
   const latest = state?.latest;
   const thisIsGenerating = isGenerating === artifactKey;
