@@ -217,7 +217,7 @@ const VentureDashboard = () => {
             className="text-3xl sm:text-4xl md:text-5xl font-semibold leading-[1.1] tracking-[-0.01em] mb-3"
             style={{ ...serif, ...textPrimary, ...haloStrong }}
           >
-            Venture <span className="bg-clip-text text-transparent" style={GOLD_TEXT_STYLE}>Dashboard</span>
+            Venture <span className="bg-clip-text text-transparent" style={GOLD_TEXT_STYLE}>Growth Dashboard</span>
           </h1>
 
           <p
@@ -240,9 +240,16 @@ const VentureDashboard = () => {
             // marooned in the top-left while siblings filled their
             // cards. Consistent centering reads more balanced and
             // matches the editorial register of the dashboard.
+            // Day 51 night (Sasha 2026-04-25): switched justify-center →
+            // justify-start so the BIG NUMBERS sit at the same Y across
+            // all three cards. Previously "100%" floated to the geometric
+            // center of its (taller-than-content) card while $1,973 and
+            // "7" were lifted by their trend + detail rows below. Now the
+            // label/number stack is top-anchored uniformly and the empty
+            // space sits at the bottom of the no-trend card.
             <div
               key={kpi.label}
-              className="rounded-xl p-5 transition-all duration-300 hover:translate-y-[-1px] flex flex-col items-center justify-center text-center"
+              className="rounded-xl p-5 transition-all duration-300 hover:translate-y-[-1px] flex flex-col items-center justify-start text-center"
               style={{ ...cardStyle, animationDelay: `${i * 100}ms` }}
               id={`kpi-${i}`}
             >
