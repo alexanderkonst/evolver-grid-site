@@ -6,7 +6,7 @@
 > *"Work seen as sacred, executed as ceremony."*
 
 **Version:** 4.6  
-**Created:** February 2026 · Last updated: April 25, 2026 (Day 51 night — *Holonic Franchise model codified as the v1.0 commercial-decentralization architecture this playbook now operates within. Six business-model plays mapped with 4-phase sequencing. Specificity Loop principle (P15) and per-founder Specificity Matrix (UBB artifact #19) are the operational foundation.*)  
+**Created:** February 2026 · Last updated: April 25, 2026 (Day 51 night — *commercial-decentralization model codified as the v1.0 commercial-decentralization architecture this playbook now operates within. Six business-model plays mapped with 4-phase sequencing. Specificity Loop principle (P15) and per-founder Specificity Matrix (UBB artifact #19) are the operational foundation.*)  
 **Purpose:** The master playbook for AI-assisted genius-based venture building  
 **Execution:** [Customer Journey Playbook](./customer_journey_playbook.md) — the operational map from first touchpoint to paid session
 
@@ -727,12 +727,12 @@ The Specificity Loop conversion mechanism + per-founder voice generation made it
 
 1. **Conscious Entrepreneur play (User)** — individual founder using the platform for themselves
 2. **Purpose Coach play** — existing facilitators using the platform's tools with their existing clients
-3. **Platform Distribution play** — sovereign distributors fork the entire platform under their own brand (the [Holonic Franchise](../02-strategy/monetization_strategies.md) foundation)
+3. **Platform Distribution play** — sovereign distributors fork the entire platform under their own brand (the [the commercial-decentralization model](../02-strategy/monetization_strategies.md) foundation)
 4. **Venture Studio play** — equity / persistent rev-share in ventures born inside the platform
 5. **Community White-Label play** — communities deploy the apparatus under their brand for their members
 6. **Unique Business System License play** — pure IP licensing of the methodology to training schools / accelerators / certified coaches
 
-**Sequencing (Sasha-decided Day 51):** Phase 1 = #1+#2+#3 (the Holonic Franchise foundation, shipped Day 51 at the legal/methodology layer); Phase 2 = #5; Phase 3 = #4; Phase 4 = #6. Plays #4-#6 are *plays in pocket, not promises made* — they only get publicly mentioned once the foundation has proven distributors.
+**Sequencing (Sasha-decided Day 51):** Phase 1 = #1+#2+#3 (the foundational architecture, shipped Day 51 at the legal/methodology layer); Phase 2 = #5; Phase 3 = #4; Phase 4 = #6. Plays #4-#6 are *plays in pocket, not promises made* — they only get publicly mentioned once the foundation has proven distributors.
 
 The Specificity Loop is the conversion engine that makes plays #1, #2, #3 work simultaneously without dilution — each operates under its own commercial relationship to the master holon, but all three speak in matrix v2 frequency at every reveal.
 
@@ -773,7 +773,7 @@ The Specificity Loop lives at two layers simultaneously, on purpose:
 
 When facilitating live (not via product), the same frequency holds. After every reflection the client gives, do not validate ("yes, exactly!") and do not instruct ("now look at X"). Ask the recognition question: *"What if this IS what you've been telling me all along?"* The recognition collapses the gap between insight and ownership.
 
-> *Relates to: Principle 4 (Mirror, Not Teacher), Principle 5 (Precision Gap IS Product), Principle 11 (Resonance Metric), Principle 13 (Highest-Rated Version Rule). Phase Shift Library entry: Domain 81 — The Specificity Loop. The macro-bridge ("What if your shining this top talent bright IS your business?") is the canonical example of the protocol applied at scale (page level, not micro-rating level). The per-founder matrix architecture is the technical foundation of the [Holonic Franchise model](../02-strategy/monetization_strategies.md) — operational identity sovereignty for distributors.*
+> *Relates to: Principle 4 (Mirror, Not Teacher), Principle 5 (Precision Gap IS Product), Principle 11 (Resonance Metric), Principle 13 (Highest-Rated Version Rule). Phase Shift Library entry: Domain 81 — The Specificity Loop. The macro-bridge ("What if your shining this top talent bright IS your business?") is the canonical example of the protocol applied at scale (page level, not micro-rating level). The per-founder matrix architecture is the technical foundation of the [commercial-decentralization model](../02-strategy/monetization_strategies.md) — operational identity sovereignty for distributors.*
 
 ---
 

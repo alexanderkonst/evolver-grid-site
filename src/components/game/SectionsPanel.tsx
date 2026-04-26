@@ -486,7 +486,16 @@ const SectionsPanel = ({
                                                 : sectionActive && !hasSubSections
                                                     ? "0.5px solid rgba(212, 175, 55, 0.95)"
                                                     : "0.5px solid rgba(212, 175, 55, 0.70)",
-                                            fontFamily: "'Cormorant Garamond', serif",
+                                            // Day 51 night (Sasha 2026-04-25): pip digits switched
+                                            // from Cormorant Garamond to DM Sans (same family used
+                                            // for the Venture Growth Dashboard KPI numbers).
+                                            // Cormorant's "1" reads as "I" at small sizes and the
+                                            // figures don't sit at uniform height — fine in prose,
+                                            // bad in a number badge. DM Sans tabular-nums gives
+                                            // crisp uniform-width digits that work at 11px.
+                                            fontFamily: "'DM Sans', system-ui, sans-serif",
+                                            fontVariantNumeric: "tabular-nums lining-nums",
+                                            fontFeatureSettings: '"tnum" 1, "lnum" 1',
                                             boxShadow: isLocked
                                                 ? undefined
                                                 : sectionActive && !hasSubSections
