@@ -68,6 +68,13 @@ const SPACE_SECTIONS: SpaceSections = {
                 id: "top-talent",
                 label: "Top Talent",
                 path: "/game/me/zone-of-genius",
+                // Day 52 (Sasha 2026-04-26): Professional Activities,
+                // Monetization, Visual Codes, and Elevator Pitch removed
+                // from the snapshot (they were diluting essence with
+                // career-advisory and redundant articulations). The nav
+                // items are dropped here too so the rail matches reality.
+                // Mastery Stages, Roles & Environments, and Complementary
+                // Partner stay — Sasha called these load-bearing.
                 subSections: [
                     { id: "tt-overview", label: "Overview", path: "/game/me/zone-of-genius" },
                     { id: "tt-bullseye", label: "Bullseye Sentence", path: "/game/me/zone-of-genius/bullseye" },
@@ -75,13 +82,9 @@ const SPACE_SECTIONS: SpaceSections = {
                     { id: "tt-three-lenses", label: "Three Lenses", path: "/game/me/zone-of-genius/three-lenses" },
                     { id: "tt-appreciated-for", label: "Appreciated For", path: "/game/me/zone-of-genius/appreciated-for" },
                     { id: "tt-mastery", label: "Mastery Stages", path: "/game/me/zone-of-genius/mastery" },
-                    { id: "tt-activities", label: "Professional Activities", path: "/game/me/zone-of-genius/activities" },
                     { id: "tt-roles", label: "Roles & Environments", path: "/game/me/zone-of-genius/roles" },
                     { id: "tt-partner", label: "Complementary Partner", path: "/game/me/zone-of-genius/partner" },
-                    { id: "tt-monetization", label: "Monetization", path: "/game/me/zone-of-genius/monetization" },
                     { id: "tt-life-scene", label: "Life Scene", path: "/game/me/zone-of-genius/life-scene" },
-                    { id: "tt-visual-codes", label: "Visual Codes", path: "/game/me/zone-of-genius/visual-codes" },
-                    { id: "tt-elevator-pitch", label: "Elevator Pitch", path: "/game/me/zone-of-genius/elevator-pitch" },
                 ],
             },
         ],
