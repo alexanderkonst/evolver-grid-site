@@ -2,7 +2,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { Card } from "@/components/ui/card";
 import { toast } from "@/hooks/use-toast";
-import { Copy, Check, Send, Loader2, Youtube, User, Lock, ExternalLink, ArrowRight, Zap, Heart } from "lucide-react";
+import { Copy, Check, Send, Loader2, Youtube, User, Lock, ExternalLink, ArrowRight, Zap, Heart, BarChart3 } from "lucide-react";
 import StarryBackground from "./components/StarryBackground";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
@@ -2624,6 +2624,19 @@ const AiOsPage = () => {
                 >
                   AI <span className="font-bold" style={{ fontStyle: 'italic' }}>OS</span>
                 </h1>
+                {/* Day 52 (Sasha 2026-04-26): credibility beat — collapses
+                    "is this a weekend project?" objection in seven words.
+                    "Version 5.0" reads as software discipline (familiar to
+                    anyone who's installed an app); "five years in the
+                    making" is a stock English phrase that needs zero
+                    decoding. Sized small + uppercase so it reads as a fact
+                    label, not a tagline competing with the subtitle below. */}
+                <p className="text-[11px] sm:text-xs tracking-[0.18em] uppercase font-medium" style={{
+                  color: 'hsl(0 0% 100% / 0.62)',
+                  textShadow: '0 0 12px rgba(0,0,0,0.9), 0 0 24px rgba(0,0,0,0.6), 0 1px 4px rgba(0,0,0,0.7)',
+                }}>
+                  Version 5.0 · Five years in the making
+                </p>
                 {/* Day 51 r3 (Sasha 2026-04-25 evening): subtitles tightened
                     into a unified two-line block. Previously the second
                     italic line had mt-2 + extra textShadow, reading as a
@@ -2642,6 +2655,32 @@ const AiOsPage = () => {
                     textShadow: '0 0 12px rgba(0,0,0,0.9), 0 0 30px rgba(0,0,0,0.7), 0 2px 4px rgba(0,0,0,0.8)',
                   }}>
                     Same model. Different conversation.
+                  </p>
+                </div>
+                {/* Day 52 (Sasha 2026-04-26): licensing terms surfaced
+                    directly under the hero subtitle. Free for personal
+                    non-commercial use is the front door; commercial
+                    inquiries route via Telegram (t.me/integralevolution),
+                    same channel as the "Work with Aleksandr" CTA. Sized
+                    one notch below the italic subtitle so it reads as
+                    a contract line, not a third tagline. */}
+                <div className="mx-auto max-w-lg pt-3">
+                  <p className="text-xs sm:text-[13px] font-normal leading-relaxed" style={{
+                    color: 'hsl(0 0% 100% / 0.82)',
+                    textShadow: '0 0 12px rgba(0,0,0,0.9), 0 0 24px rgba(0,0,0,0.6), 0 1px 4px rgba(0,0,0,0.8)',
+                  }}>
+                    Free for personal non-commercial use.
+                    <br />
+                    <a
+                      href="https://t.me/integralevolution"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="underline decoration-[hsl(40_70%_75%/0.45)] decoration-1 underline-offset-[3px] hover:decoration-[hsl(40_70%_75%/0.85)] transition-colors"
+                      style={{ color: 'hsl(40 70% 90% / 0.95)' }}
+                    >
+                      Contact
+                    </a>{" "}
+                    to inquire about licensed commercial use.
                   </p>
                 </div>
                 {/* CTAs — Day 51 r3 (Sasha 2026-04-25 evening): visual
@@ -2687,7 +2726,15 @@ const AiOsPage = () => {
                     Work with Aleksandr
                   </a>
                 </div>
-                <div className="flex items-center justify-center pt-3">
+                {/* Day 52 (Sasha 2026-04-26): two parallel ghost links —
+                    "Why this works" (story modal, philosophical why) and
+                    "See the +42% benchmark" (proof page, empirical receipt).
+                    Dot-separated on one row so they read as a paired
+                    credibility/proof affordance below the primary CTAs.
+                    The +42% number is the hook — answers "should I click?"
+                    before the click. Gold tint on the benchmark link to
+                    distinguish it from the cool "why this works" link. */}
+                <div className="flex items-center justify-center gap-3 pt-3 flex-wrap">
                   <button
                     onClick={() => setShowStoryDialog(true)}
                     className="inline-flex items-center gap-1.5 text-xs font-medium tracking-wide transition-all duration-300 group"
@@ -2700,6 +2747,23 @@ const AiOsPage = () => {
                     <span className="border-b border-transparent group-hover:border-current/60 transition-colors">
                       Why this works
                     </span>
+                  </button>
+                  <span aria-hidden="true" className="text-xs" style={{ color: 'hsl(0 0% 100% / 0.35)' }}>
+                    ·
+                  </span>
+                  <button
+                    onClick={() => navigate('/ai-os/benchmark')}
+                    className="inline-flex items-center gap-1.5 text-xs font-medium tracking-wide transition-all duration-300 group"
+                    style={{
+                      color: 'hsl(40 70% 82% / 0.85)',
+                      textShadow: '0 0 12px rgba(244,212,114,0.3), 0 0 12px rgba(0,0,0,0.85), 0 1px 4px rgba(0,0,0,0.7)',
+                    }}
+                  >
+                    <BarChart3 className="w-3 h-3 opacity-70 group-hover:opacity-100 transition-opacity" />
+                    <span className="border-b border-transparent group-hover:border-current/60 transition-colors">
+                      See the +42% benchmark
+                    </span>
+                    <ArrowRight className="w-3 h-3 opacity-50 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all" />
                   </button>
                 </div>
                 {/* Bottom ornament — Day 51 r3: tightened pt to keep the

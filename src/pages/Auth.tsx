@@ -580,18 +580,13 @@ const Auth = () => {
                   <Sparkles className="w-4 h-4 mr-2" />
                   Send me a magic link
                 </Button>
-
-                {import.meta.env.DEV && (
-                  <Button
-                    type="button"
-                    variant="outline"
-                    onClick={handleTestLogin}
-                    className="w-full"
-                    disabled={loading}
-                  >
-                    Test Login (Dev Only)
-                  </Button>
-                )}
+                {/* Day 51 night v2 (Sasha 2026-04-26): "Test Login (Dev Only)"
+                    button removed. It was gated behind import.meta.env.DEV
+                    but the lovable.app preview build was apparently treating
+                    that as truthy and shipping it to mobile users — Sasha
+                    saw it in the public funnel. Cleaner to delete than to
+                    re-gate. The handleTestLogin handler stays in the file
+                    in case it's wanted back behind a stricter gate later. */}
               </form>
             </TabsContent>
 

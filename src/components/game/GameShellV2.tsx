@@ -364,13 +364,30 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
     const hideNavigation = !forceShowNavigation && (forceHideNavigation || (profile?.onboarding_stage && earlyOnboardingStages.includes(profile.onboarding_stage)));
 
     if (hideNavigation) {
+        // Day 52 (Sasha): even in the no-nav path, AI OS pages own a dark
+        // canvas. Swap the cream/white wrapper for the same deep navy used
+        // by the main path. Without this, /ai-os/benchmark on a profile
+        // still in early onboarding bleached the entire dark page design.
+        const navlessPath = location.pathname;
+        const navlessPageOwnsBackground =
+            navlessPath === "/ai-os" ||
+            navlessPath === "/codex" ||
+            navlessPath === "/ai-os/benchmark";
         return (
-            <div className="min-h-dvh bg-gradient-to-br from-white via-[#f0f8ff] to-[#f5f5ff]">
-                {/* Wabi-sabi Bokeh Overlay */}
-                <div className="fixed inset-0 pointer-events-none z-0">
-                    <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(132,96,234,0.06)_0%,transparent_50%)]" />
-                    <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(164,163,208,0.08)_0%,transparent_50%)]" />
-                </div>
+            <div
+                className={
+                    navlessPageOwnsBackground
+                        ? "min-h-dvh bg-[#0a0a1a]"
+                        : "min-h-dvh bg-gradient-to-br from-white via-[#f0f8ff] to-[#f5f5ff]"
+                }
+            >
+                {/* Wabi-sabi Bokeh Overlay — only on the cream variant */}
+                {!navlessPageOwnsBackground && (
+                    <div className="fixed inset-0 pointer-events-none z-0">
+                        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(132,96,234,0.06)_0%,transparent_50%)]" />
+                        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(164,163,208,0.08)_0%,transparent_50%)]" />
+                    </div>
+                )}
                 <SiteLogo />
                 <div className="relative z-10">
                     {children}
@@ -493,7 +510,9 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
     //       the page's choice is more specific.
     const path = location.pathname;
     const pageOwnsBackground =
-        path === "/ai-os" || path === "/codex"; // /codex routes through ai-os
+        path === "/ai-os" ||
+        path === "/codex" || // /codex routes through ai-os
+        path === "/ai-os/benchmark"; // Day 52: benchmark page owns its own dark canvas
     const isWorkingRoute =
         path.startsWith("/playbook") ||
         path.startsWith("/path") ||
