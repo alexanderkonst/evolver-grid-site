@@ -20,8 +20,17 @@ const AiOsBenchmark = () => {
     useEffect(() => {
         const prevTitle = document.title;
         document.title = "AI OS — The Benchmark";
+        // Belt + suspenders for the dark canvas: in-page fixed overlays
+        // give the radial luminosity, body bg is the safety net for any
+        // transient paint moments (page-enter fade, route transitions).
+        const prevBg = document.body.style.background;
+        const prevHtmlBg = document.documentElement.style.background;
+        document.body.style.background = "hsl(228 35% 8%)";
+        document.documentElement.style.background = "hsl(228 35% 8%)";
         return () => {
             document.title = prevTitle;
+            document.body.style.background = prevBg;
+            document.documentElement.style.background = prevHtmlBg;
         };
     }, []);
 
