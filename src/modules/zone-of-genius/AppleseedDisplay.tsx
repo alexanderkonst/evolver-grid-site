@@ -273,7 +273,7 @@ const AppleseedDisplay = ({
                             fontWeight: 500,
                         }}
                     >
-                        What if your shining this top talent bright{' '}
+                        What if you shining this top talent bright{' '}
                         <em
                             className="not-italic"
                             style={{
