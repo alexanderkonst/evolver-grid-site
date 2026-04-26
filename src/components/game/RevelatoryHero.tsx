@@ -23,8 +23,6 @@ interface RevelatoryHeroProps {
 
 /**
  * Build the share text used by the in-card Save · Share affordance.
- * Mirrors the structure of ShareZoG's buildShareText so external
- * shares from either surface read the same.
  */
 const buildShareTextFor = (
     title: string,
@@ -110,7 +108,7 @@ const RevelatoryHero = ({
     // prompt with an in-card Save (PNG) + Share (socials) affordance.
     // The ref captures the card's outer wrapper so html2canvas can
     // serialize what the user sees, including the breathing-card glow
-    // and the gradient backdrop. Share text mirrors ShareZoG's structure.
+    // and the gradient backdrop.
     const cardRef = useRef<HTMLDivElement>(null);
     const shareText = buildShareTextFor(title, actionStatement, threeLenses);
 
