@@ -14,12 +14,65 @@
 
 ## Table of Contents
 
-0. [Part 0: The Soul-Aligned Foundation](#part-0-the-soul-aligned-foundation)
-1. [Part I: Philosophy & Ontology](#part-i-philosophy--ontology)
-2. [Part II: Core Frameworks](#part-ii-core-frameworks)
-3. [Part III: AI-Executable Workflows](#part-iii-ai-executable-workflows)
-4. [Part IV: SOP Quick Reference](#part-iv-sop-quick-reference)
-5. [Part V: Tactics](#part-v-tactics)
+0. [The Integrated Stack — How This Playbook Is One Continuous Machine](#the-integrated-stack--how-this-playbook-is-one-continuous-machine)
+1. [Part 0: The Soul-Aligned Foundation](#part-0-the-soul-aligned-foundation)
+2. [Part I: Philosophy & Ontology](#part-i-philosophy--ontology)
+3. [Part II: Core Frameworks](#part-ii-core-frameworks)
+4. [Part III: AI-Executable Workflows](#part-iii-ai-executable-workflows)
+5. [Part IV: SOP Quick Reference](#part-iv-sop-quick-reference)
+6. [Part V: Tactics](#part-v-tactics)
+
+---
+
+# The Integrated Stack — How This Playbook Is One Continuous Machine
+
+> *v4.6 · April 26, 2026 — The unifying frame the playbook had been pointing at for months without naming. Every chapter that follows operates inside this stack. Codified in full as Phase Shift Technology Library Domain 83.*
+
+For most of its life, this playbook was experienced as a collection of frameworks: name your uniqueness, articulate your tribe, slice the pain, promise the transformation, build the value ladder, run the session. Each framework was complete on its own. None was the whole.
+
+The whole is one sentence:
+
+> *"Top talent → playbook → business off that top talent → a builder tool that a) follows the playbook; b) makes sure no versions get lost, that the specificity score is going up as a trend; c) AI workflows are leveraged to ease the work; d) stuckness of ignorance is largely eradicated and only stuckness of inner challenges remains."*
+
+Read it in one breath. That is the founder's full arc.
+
+## The four moving pieces
+
+```
+1. TOP TALENT       — revealed via the Specificity Loop (Principle 15 / Domain 81)
+2. PLAYBOOK         — this document; the methodology that turns top talent
+                      into a productized business
+3. BUILDER TOOL     — the Unique Business Builder (UBB); the playbook
+                      made executable, with AI carrying the generative load
+4. GUIDED JOURNEY   — optional human catalyst (Locked-in tier) that
+                      compresses the canvas via shortcuts of the hero's
+                      journey, intervening at inner-work moments where the
+                      tool alone cannot
+```
+
+Every chapter that follows in this playbook is a property of one of these four. Part 0 (Soul-Aligned Foundation) and Part I (Philosophy & Ontology) define the *shape* of the playbook. Part II (Core Frameworks) and Part III (AI-Executable Workflows) are *what UBB executes*. Parts IV–V are the *operational layer* the guide and the founder walk together.
+
+## The deepest claim: ignorance-stuckness eliminated
+
+Founders are blocked by two kinds of stuckness — *ignorance* ("I don't know what to do") and *inner challenge* ("I know what to do but something inside resists"). The Integrated Stack eliminates the first kind structurally. The playbook tells you what to do; the builder gives you a working draft; Linguistic Synthesis (Domain 82) keeps the output simple-not-simplistic; the improve loop pushes specificity up and refuses to ship if it doesn't.
+
+What remains is the inner work — and that is exactly the founder's own. The stack is the structure that **clears the external noise so the founder meets only their own inner work, not their ignorance**. This is the deepest compression of what this playbook delivers.
+
+## Empirical validation (April 26, 2026)
+
+- **Near-9 specificity in days, with cheap AI.** Run UBB end-to-end with Gemini Flash and 3–4 improve iterations per artifact and the founder reaches close-to-9 specificity on first pass. The methodology is the active ingredient; the AI is the substrate.
+- **9.9+ in months, hand-iterated.** `alexanders_unique_business.md` sits at 9.9+, hand-built. There is still ground above what cheap AI can produce on first pass. That ground is the Guided Path's value, and the value of ongoing iteration in the Builder.
+
+The pricing tiers map directly onto this spectrum. See Domain 83 for the full empirical argument and strategic implications.
+
+## Where to look next
+
+- **Operating the methodology in your own life:** continue with Part 0 onward.
+- **Operating the Builder:** the artifact prompts in `supabase/functions/_shared/ubb-prompts.ts` are this playbook compiled into machine instructions.
+- **The two paths through the stack and the source-of-truth architecture:** Phase Shift Technology Library, Domain 83.
+- **Linguistic Synthesis (the simple-vs-simplistic guarantee at every distillation):** Phase Shift Technology Library, Domain 82.
+
+Everything that follows operates inside this frame.
 
 ---
 

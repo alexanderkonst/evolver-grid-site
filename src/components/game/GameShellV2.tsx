@@ -167,6 +167,13 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
     const [shortcutsOpen, setShortcutsOpen] = useState(false);
 
     const getSpaceFromPath = (pathname: string): string | undefined => {
+        // Day 52 (Sasha 2026-04-26): /ubb (Unique Business Builder)
+        // belongs to the BUILD space. When the user clicks "Build a
+        // business off your top talent" from JOURNEY pane 2 and lands
+        // on /ubb, the BUILD chip in pane 1 lights up and pane 2
+        // re-resolves to BUILD's section list. The UBB nav itself
+        // becoming pane 2 (deeper integration) is a separate refactor.
+        if (pathname === "/ubb" || pathname.startsWith("/ubb/")) return "build";
         const match = pathname.match(/^\/game\/([^/]+)/);
         if (!match) return undefined;
         const space = match[1];

@@ -69,12 +69,12 @@ const SPACE_SECTIONS: SpaceSections = {
                 label: "Top Talent",
                 path: "/game/me/zone-of-genius",
                 // Day 52 (Sasha 2026-04-26): Professional Activities,
-                // Monetization, Visual Codes, and Elevator Pitch removed
-                // from the snapshot (they were diluting essence with
-                // career-advisory and redundant articulations). The nav
-                // items are dropped here too so the rail matches reality.
-                // Mastery Stages, Roles & Environments, and Complementary
-                // Partner stay — Sasha called these load-bearing.
+                // Visual Codes, and Elevator Pitch removed from the
+                // snapshot (career-advisory pollution and redundant
+                // articulations). Monetization restored later same day
+                // with a sharpened prompt (intro/signature/scale tiers).
+                // Mastery Stages, Roles & Environments, Complementary
+                // Partner, and Monetization stay — load-bearing per Sasha.
                 subSections: [
                     { id: "tt-overview", label: "Overview", path: "/game/me/zone-of-genius" },
                     { id: "tt-bullseye", label: "Bullseye Sentence", path: "/game/me/zone-of-genius/bullseye" },
@@ -84,6 +84,7 @@ const SPACE_SECTIONS: SpaceSections = {
                     { id: "tt-mastery", label: "Mastery Stages", path: "/game/me/zone-of-genius/mastery" },
                     { id: "tt-roles", label: "Roles & Environments", path: "/game/me/zone-of-genius/roles" },
                     { id: "tt-partner", label: "Complementary Partner", path: "/game/me/zone-of-genius/partner" },
+                    { id: "tt-monetization", label: "Monetization", path: "/game/me/zone-of-genius/monetization" },
                     { id: "tt-life-scene", label: "Life Scene", path: "/game/me/zone-of-genius/life-scene" },
                 ],
             },
@@ -220,6 +221,12 @@ const buildJourneySections = (_currentPath: string): Section[] => {
     // Mission Discovery (#6, unlocks after first session booking) and
     // Asset Mapper (#7, sequenced after Mission Discovery). Locked rows
     // render dimmed with a Radix tooltip showing the unlock hint.
+    // Day 52 (Sasha 2026-04-26): item #6 inserted — "Build a business off
+    // your top talent" — the bridge from JOURNEY into BUILD. Routes to
+    // /ubb (the Unique Business Builder), which is a member of the BUILD
+    // space; clicking it from JOURNEY's pane 2 also flips the active space
+    // to BUILD via getSpaceFromPath in GameShellV2. Mission Discovery and
+    // Asset Mapper bump down to 7 and 8, both still locked.
     return [
         { id: "journey-start-here",        label: "1. Start",             path: "/" },
         { id: "journey-the-playbook",      label: "2. Playbook",          path: "/playbook" },
@@ -227,15 +234,20 @@ const buildJourneySections = (_currentPath: string): Section[] => {
         { id: "journey-ai-os",             label: "4. AI OS",             path: "/ai-os" },
         { id: "journey-dashboard",         label: "5. Dashboard",         path: "/dashboard" },
         {
+            id: "journey-build-business",
+            label: "6. Build a business off your top talent",
+            path: "/ubb",
+        },
+        {
             id: "journey-mission-discovery",
-            label: "6. Mission Discovery",
+            label: "7. Mission Discovery",
             path: "/mission-discovery",
             locked: true,
             lockedHint: "Unlocks after your high-precision Top Talent.",
         },
         {
             id: "journey-asset-mapper",
-            label: "7. Asset Mapper",
+            label: "8. Asset Mapper",
             path: "/asset-mapping",
             locked: true,
             lockedHint: "Unlocks after Mission Discovery.",
@@ -627,39 +639,72 @@ const SectionsPanel = ({
                         <div key={section.id}>
                             {rowWithTooltip}
 
-                            {/* Sub-sections — gold hairline rail. */}
+                            {/* Sub-sections — Day 52 (Sasha 2026-04-26):
+                                editorial register matched to JOURNEY pane 2.
+                                Sub-sections now render as numbered chapter
+                                rows: gold step-pip + 18px Cormorant + chip
+                                hover lift + active gold ring + halo. The
+                                gold hairline rail is retired — the pip
+                                column carries the visual sequence on its
+                                own. The container indent is tightened
+                                (ml-8 → ml-3) so sub-sections read as
+                                first-class items in the same scan column
+                                as the parent, not as a typographic
+                                indentation layer below it. */}
                             {hasSubSections && isExpanded && !isLocked && (
-                                <div
-                                    className="ml-8"
-                                    style={{
-                                        borderLeft: "1px solid rgba(212, 175, 55, 0.14)",
-                                    }}
-                                >
-                                    {section.subSections!.map((sub) => {
+                                <div className="ml-3 mt-1 mb-2">
+                                    {section.subSections!.map((sub, subIdx) => {
                                         const subActive = isActive(sub.path);
+                                        const subNumber = subIdx + 1;
                                         return (
                                             <div
                                                 key={sub.id}
                                                 className={cn(
-                                                    "flex items-center gap-2 px-3 py-1.5 ml-2 rounded-md cursor-pointer transition-colors",
+                                                    "group flex items-center gap-2.5 px-3 py-2.5 mx-2 rounded-2xl transition-all duration-300 relative cursor-pointer",
+                                                    "focus:outline-none focus-visible:ring-2 focus-visible:ring-[#d4af37]/40",
                                                     subActive
-                                                        ? "text-white"
-                                                        : "text-white/70 hover:bg-white/5 hover:text-white"
+                                                        ? "text-white ring-1 ring-[#d4af37]/60 shadow-[0_0_22px_-6px_rgba(244,212,114,0.55),0_0_48px_-14px_rgba(212,175,55,0.35)]"
+                                                        : "bg-white/[0.05] text-white/95 hover:bg-white/[0.10] hover:text-white hover:ring-1 hover:ring-[#d4af37]/30 hover:shadow-[0_0_16px_-4px_rgba(244,212,114,0.28)] hover:translate-y-[-1px] active:translate-y-0"
                                                 )}
                                                 style={
                                                     subActive
-                                                        ? {
-                                                              backgroundColor: "rgba(212, 175, 55, 0.10)",
-                                                          }
+                                                        ? { backgroundColor: "rgba(212, 175, 55, 0.08)" }
                                                         : undefined
                                                 }
                                                 onClick={() => onSectionSelect?.(sub.path)}
                                             >
+                                                {subActive && (
+                                                    <div className="absolute left-0 top-1/2 w-1 h-8 rounded-r-full -translate-x-1/2 -translate-y-1/2 bg-[#d4af37] shadow-[0_0_8px_rgba(244,212,114,0.7)]" />
+                                                )}
+                                                <span className="w-[22px] h-[22px] flex items-center justify-center">
+                                                    <span
+                                                        className="inline-flex items-center justify-center w-[22px] h-[22px] rounded-full text-[11px] font-semibold transition-all duration-200"
+                                                        style={{
+                                                            background: subActive
+                                                                ? "linear-gradient(135deg, rgba(244, 212, 114, 0.55) 0%, rgba(212, 175, 55, 0.32) 100%)"
+                                                                : "linear-gradient(135deg, rgba(244, 212, 114, 0.34) 0%, rgba(212, 175, 55, 0.20) 100%)",
+                                                            color: "#f4d472",
+                                                            border: subActive
+                                                                ? "0.5px solid rgba(212, 175, 55, 0.95)"
+                                                                : "0.5px solid rgba(212, 175, 55, 0.70)",
+                                                            fontFamily: "'DM Sans', system-ui, sans-serif",
+                                                            fontVariantNumeric: "tabular-nums lining-nums",
+                                                            fontFeatureSettings: '"tnum" 1, "lnum" 1',
+                                                            boxShadow: subActive
+                                                                ? "0 0 14px -2px rgba(244, 212, 114, 0.55), inset 0 0 8px -2px rgba(244, 212, 114, 0.35)"
+                                                                : "0 0 8px -2px rgba(244, 212, 114, 0.32), inset 0 0 6px -2px rgba(244, 212, 114, 0.22)",
+                                                            textShadow: "0 0 6px rgba(244, 212, 114, 0.35)",
+                                                        }}
+                                                    >
+                                                        {subNumber}
+                                                    </span>
+                                                </span>
                                                 <span
-                                                    className="text-[15px] leading-snug"
+                                                    className="flex-1 text-[18px] leading-snug"
                                                     style={{
                                                         fontFamily: "'Cormorant Garamond', serif",
-                                                        fontWeight: subActive ? 600 : 500,
+                                                        fontWeight: subActive ? 700 : 600,
+                                                        letterSpacing: "0.012em",
                                                     }}
                                                 >
                                                     {sub.label}
