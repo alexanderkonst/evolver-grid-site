@@ -5526,7 +5526,7 @@ In every case, the list of energies is the layer where simple-vs-simplistic is d
 
 ### 82j. The One-Sentence Version
 
-> *"Distillation is not shortening — it is re-encoding the list of energies of energies into the most compressed form that loses no signal; the list of energies must be made explicit before the sentence is written, or the sentence will be simplistic."*
+> *"Distillation is not shortening — it is re-encoding the list of signal-energies into the most compressed form that loses no signal; the list must be made explicit before the sentence is written, or the sentence will be simplistic."*
 
 ---
 

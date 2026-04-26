@@ -2,10 +2,12 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import GameShellV2 from "@/components/game/GameShellV2";
 import { Button } from "@/components/ui/button";
-import { Sparkles, Star, Zap, Target, Quote, TrendingUp, Download } from "lucide-react";
+import { Sparkles, Star, Zap, Target, Quote, TrendingUp, Download, Link as LinkIcon, Copy, Check } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { getOrCreateGameProfileId } from "@/lib/gameProfile";
 import { generateZogPdf } from "@/modules/zone-of-genius/generateZogPdf";
+import { generateRevealSlug } from "@/modules/zone-of-genius/shareSlug";
+import { toast } from "@/hooks/use-toast";
 import type { AppleseedData as FullAppleseedData } from "@/modules/zone-of-genius/appleseedGenerator";
 import type { ExcaliburData } from "@/modules/zone-of-genius/excaliburGenerator";
 
@@ -38,6 +40,11 @@ const ZoneOfGeniusOverview = () => {
     const [fullAppleseed, setFullAppleseed] = useState<FullAppleseedData | null>(null);
     const [excaliburData, setExcaliburData] = useState<ExcaliburData | null>(null);
     const [profileId, setProfileId] = useState<string | null>(null);
+    // Day 52 (Sasha 2026-04-26): public-share state.
+    const [snapshotId, setSnapshotId] = useState<string | null>(null);
+    const [shareSlug, setShareSlug] = useState<string | null>(null);
+    const [generatingSlug, setGeneratingSlug] = useState(false);
+    const [copiedShare, setCopiedShare] = useState(false);
 
     useEffect(() => {
         const loadData = async () => {
@@ -61,12 +68,18 @@ const ZoneOfGeniusOverview = () => {
                     return;
                 }
 
-                // Load appleseed_data AND basic snapshot fields from zog_snapshots
+                // Load appleseed_data AND basic snapshot fields from zog_snapshots.
+                // Day 52 (Sasha 2026-04-26): also pull share_slug for the
+                // public-reveal link UI below the hero.
+                setSnapshotId(profileData.last_zog_snapshot_id);
                 const { data: snapshotData } = await supabase
                     .from("zog_snapshots")
-                    .select("appleseed_data, excalibur_data, archetype_title, core_pattern, top_three_talents")
+                    .select("appleseed_data, excalibur_data, archetype_title, core_pattern, top_three_talents, share_slug")
                     .eq("id", profileData.last_zog_snapshot_id)
                     .single();
+                if ((snapshotData as any)?.share_slug) {
+                    setShareSlug((snapshotData as any).share_slug as string);
+                }
 
                 if (snapshotData?.appleseed_data) {
                     console.log("[ZoGOverview] Loaded appleseed_data:", snapshotData.appleseed_data);
@@ -100,6 +113,59 @@ const ZoneOfGeniusOverview = () => {
         };
         loadData();
     }, []);
+
+    /**
+     * Day 52 (Sasha 2026-04-26): on-demand slug backfill. Snapshots
+     * created before the share-slug column was added (or any row that
+     * somehow missed it) get a slug the first time the user clicks
+     * "Generate share link." Uniqueness is enforced by the unique index;
+     * if we collide we retry once with a fresh slug.
+     */
+    const ensureShareSlug = async () => {
+        if (shareSlug || !snapshotId) return shareSlug;
+        setGeneratingSlug(true);
+        try {
+            for (let attempt = 0; attempt < 2; attempt++) {
+                const candidate = generateRevealSlug();
+                const { error } = await (supabase as any)
+                    .from("zog_snapshots")
+                    .update({ share_slug: candidate })
+                    .eq("id", snapshotId);
+                if (!error) {
+                    setShareSlug(candidate);
+                    return candidate;
+                }
+                // 23505 = unique violation; retry once with a different slug
+                if (!String(error.code || "").includes("23505") && !String(error.message || "").match(/duplicate key/i)) {
+                    throw error;
+                }
+            }
+            toast({ title: "Couldn't create share link", description: "Please try again.", variant: "destructive" });
+            return null;
+        } catch (e) {
+            console.error("[ZoG] ensureShareSlug failed:", e);
+            toast({ title: "Couldn't create share link", description: "Please try again.", variant: "destructive" });
+            return null;
+        } finally {
+            setGeneratingSlug(false);
+        }
+    };
+
+    const onCopyShareUrl = async () => {
+        const slug = shareSlug ?? (await ensureShareSlug());
+        if (!slug) return;
+        const url = `${window.location.origin}/reveal/${slug}`;
+        try {
+            await navigator.clipboard.writeText(url);
+            setCopiedShare(true);
+            setTimeout(() => setCopiedShare(false), 1800);
+            toast({ title: "Share link copied", description: url });
+        } catch {
+            toast({ title: "Copy failed", description: "Select and copy manually.", variant: "destructive" });
+        }
+    };
+
+    const shareUrl = shareSlug ? `${window.location.origin}/reveal/${shareSlug}` : null;
 
     const subPages = [
         { id: "archetype", label: "My Archetype", icon: Star, path: "/game/me/zone-of-genius/archetype", description: "Your unique genius type" },
@@ -179,6 +245,65 @@ const ZoneOfGeniusOverview = () => {
                         {fullAppleseed ? 'Download Full PDF' : 'Generate & Download PDF'}
                     </button>
                 </div>
+
+                {/* Day 52 (Sasha 2026-04-26): public share link.
+                    Renders as a soft card that either shows the live URL
+                    (slug already exists) or a "Generate share link" button
+                    that lazy-backfills the slug column for snapshots that
+                    pre-date the public-reveal feature. URL is the canonical
+                    shareable artifact; PDF is a derivative. */}
+                {fullAppleseed && (
+                    <div className="p-4 bg-white/60 rounded-xl border border-[#a4a3d0]/20 space-y-3">
+                        <div className="flex items-center gap-2">
+                            <LinkIcon className="w-4 h-4 text-[#8460ea]" />
+                            <p className="text-xs text-[#8460ea] uppercase tracking-wide font-medium">
+                                Public reveal link
+                            </p>
+                        </div>
+                        {shareUrl ? (
+                            <>
+                                <div className="flex items-center gap-2 px-3 py-2 bg-white/80 rounded-md border border-[#a4a3d0]/30 text-sm font-mono text-[#2c3150] truncate">
+                                    {shareUrl}
+                                </div>
+                                <div className="flex flex-wrap gap-2">
+                                    <button
+                                        onClick={onCopyShareUrl}
+                                        className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-full bg-[#8460ea]/10 text-[#8460ea] hover:bg-[#8460ea]/20 transition-colors"
+                                    >
+                                        {copiedShare ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
+                                        {copiedShare ? "Copied" : "Copy link"}
+                                    </button>
+                                    <a
+                                        href={shareUrl}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-full text-[#a4a3d0] hover:text-[#8460ea] hover:bg-[#8460ea]/5 transition-colors"
+                                    >
+                                        Open ↗
+                                    </a>
+                                </div>
+                                <p className="text-[11px] text-[#a4a3d0] leading-relaxed">
+                                    Anyone with this link sees your archetype, bullseye,
+                                    and the path of mastery — your raw inputs and ratings stay private.
+                                </p>
+                            </>
+                        ) : (
+                            <>
+                                <p className="text-xs text-[#a4a3d0]">
+                                    Generate a share link to send your Top Talent reveal as a public page.
+                                </p>
+                                <button
+                                    onClick={onCopyShareUrl}
+                                    disabled={generatingSlug}
+                                    className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-full bg-[#8460ea]/10 text-[#8460ea] hover:bg-[#8460ea]/20 disabled:opacity-50 transition-colors"
+                                >
+                                    <LinkIcon className="w-3.5 h-3.5" />
+                                    {generatingSlug ? "Generating…" : "Generate &amp; copy link"}
+                                </button>
+                            </>
+                        )}
+                    </div>
+                )}
 
                 {/* Three Lenses Summary */}
                 {appleseedData.threeLenses && (
