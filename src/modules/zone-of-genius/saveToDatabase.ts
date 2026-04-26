@@ -4,6 +4,7 @@ import { awardFirstTimeBonus } from "@/lib/xpService";
 import { getOrCreateGameProfileId } from "@/lib/gameProfile";
 import { AppleseedData } from "./appleseedGenerator";
 import { ExcaliburData } from "./excaliburGenerator";
+import { generateRevealSlug } from "./shareSlug";
 
 // LocalStorage keys for guest data
 const GUEST_APPLESEED_KEY = "guest_appleseed_data";
@@ -140,11 +141,13 @@ const getProfileId = async (): Promise<string | null> => {
  */
 const getOrCreateSnapshot = async (
   profileId: string
-): Promise<{ id: string; xp_awarded: boolean | null; excalibur_generated_at: string | null }> => {
-  // Check if snapshot exists
+): Promise<{ id: string; xp_awarded: boolean | null; excalibur_generated_at: string | null; share_slug: string | null }> => {
+  // Check if snapshot exists. Day 52 (Sasha 2026-04-26): include
+  // share_slug so the caller can backfill it on existing rows that
+  // pre-date the public-reveal feature.
   const { data: existing } = await supabase
     .from("zog_snapshots")
-    .select("id, xp_awarded, excalibur_generated_at")
+    .select("id, xp_awarded, excalibur_generated_at, share_slug")
     .eq("profile_id", profileId)
     .order("created_at", { ascending: false })
     .limit(1)
@@ -155,10 +158,14 @@ const getOrCreateSnapshot = async (
       id: existing.id,
       xp_awarded: existing.xp_awarded,
       excalibur_generated_at: existing.excalibur_generated_at,
+      share_slug: (existing as any).share_slug ?? null,
     };
   }
 
-  // Create minimal snapshot (will be filled by Appleseed)
+  // Create minimal snapshot (will be filled by Appleseed). Day 52
+  // (Sasha 2026-04-26): generate share_slug at creation so every new
+  // snapshot is shareable from inception. Lazy-backfill of older rows
+  // happens in saveAppleseed below.
   const { data: newSnapshot, error } = await supabase
     .from("zog_snapshots")
     .insert({
@@ -168,8 +175,9 @@ const getOrCreateSnapshot = async (
       top_ten_talents: [],
       top_three_talents: [],
       xp_awarded: false,
-    })
-    .select("id, xp_awarded, excalibur_generated_at")
+      share_slug: generateRevealSlug(),
+    } as any)
+    .select("id, xp_awarded, excalibur_generated_at, share_slug")
     .single();
 
   if (error) throw error;
@@ -177,6 +185,7 @@ const getOrCreateSnapshot = async (
     id: newSnapshot.id,
     xp_awarded: newSnapshot.xp_awarded,
     excalibur_generated_at: newSnapshot.excalibur_generated_at,
+    share_slug: (newSnapshot as any).share_slug ?? null,
   };
 };
 
@@ -211,18 +220,26 @@ export const saveAppleseed = async (
 
     const snapshot = await getOrCreateSnapshot(profileId);
 
+    // Day 52 (Sasha 2026-04-26): lazy-backfill share_slug for snapshots
+    // that pre-date the public-reveal feature. New snapshots already
+    // get one at creation; this branch only fires for older rows.
+    const updatePayload: Record<string, unknown> = {
+      appleseed_data: JSON.parse(JSON.stringify(appleseed)),
+      appleseed_generated_at: new Date().toISOString(),
+      ai_response_raw: aiResponseRaw || null,
+      // Also update archetype from Appleseed
+      archetype_title: appleseed.vibrationalKey.name,
+      core_pattern: appleseed.bullseyeSentence,
+      top_three_talents: appleseed.threeLenses.actions.slice(0, 3),
+    };
+    if (!snapshot.share_slug) {
+      updatePayload.share_slug = generateRevealSlug();
+    }
+
     // Update snapshot with Appleseed data
     const { error } = await supabase
       .from("zog_snapshots")
-      .update({
-        appleseed_data: JSON.parse(JSON.stringify(appleseed)),
-        appleseed_generated_at: new Date().toISOString(),
-        ai_response_raw: aiResponseRaw || null,
-        // Also update archetype from Appleseed
-        archetype_title: appleseed.vibrationalKey.name,
-        core_pattern: appleseed.bullseyeSentence,
-        top_three_talents: appleseed.threeLenses.actions.slice(0, 3),
-      })
+      .update(updatePayload as any)
       .eq("id", snapshot.id);
 
     if (error) throw error;

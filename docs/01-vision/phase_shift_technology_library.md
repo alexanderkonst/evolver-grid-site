@@ -5368,7 +5368,7 @@ This question is exposed in the codebase as `SPECIFICITY_PROMPT` and used as the
 ---
 
 
-## Domain 82: The Lattice (Linguistic Synthesis Through Energy Enumeration)
+## Domain 82: Linguistic Synthesis (Energy Enumeration → Lossless Distillation)
 
 > *April 26, 2026 — Discovered live during the design of the Unique Business Builder's distillation layer. Codified in response to a tendency observed across many models: AI defaulting to **simplistic** rather than **simple** when asked to synthesize a longer text into a single sentence. This Domain names the trap, the underlying linguistic theory, and the multi-step protocol that mitigates it. Applied operationally to every place in the platform where AI produces a 1-sentence synthesis or distillation.*
 
@@ -5403,7 +5403,7 @@ Three convergent pressures push AI toward simplistic compression:
 2. **Brevity bias.** "Distill into one sentence" reads as "make shorter." It is not. It is "re-encode without loss." A model that interprets the task as shortening will drop content; a model that interprets it as re-encoding will preserve.
 3. **Lack of structural mediation.** When a model is asked to compose the distillation directly from the long form, it is doing two cognitive tasks at once — *identifying* the signal and *encoding* it. Doing both simultaneously is harder than doing each in sequence. The signal-identification step gets compressed (or skipped) under the encoding pressure.
 
-The fix is to forbid direct distillation. Distillation must sequence through three steps — *identify*, *score*, *encode* — with the lattice as the externalized structure that makes each step verifiable.
+The fix is to forbid direct distillation. Distillation must sequence through three steps — *identify*, *score*, *encode* — with the list of energies as the externalized structure that makes each step verifiable.
 
 ### 82c. The Three-Step Protocol
 
@@ -5415,13 +5415,13 @@ Read the long form. (When iterating across multiple versions, read the set of ve
 
 Produce a numbered list of the *distinct energies* present. An energy is the **idea behind the phrase** — the precursor to wording. Not the words themselves; the force the words are pointing at. Energies are concepts, qualities, threads, forces, intentions. Each is named in the most signal-dense form possible — not a sentence, not a phrase, often just a few words that point.
 
-This list is the **lattice**. It is the structural skeleton of the meaning, expressed at the layer that doesn't change between rephrasings.
+This list of energies is the structural skeleton of the meaning, expressed at the layer that doesn't change between rephrasings.
 
-The lattice must be exhaustive at the signal level: every energy the long form is carrying must appear, even if some will be scored as noise in Step 2. Missing an energy at Step 1 means it cannot make it into the distillation.
+The list must be exhaustive at the signal level: every energy the long form is carrying must appear, even if some will be scored as noise in Step 2. Missing an energy at Step 1 means it cannot make it into the distillation.
 
-**Step 2 — Score the lattice. Signal vs noise.**
+**Step 2 — Score the list of energies. Signal vs noise.**
 
-For each energy in the lattice, mark it as signal or noise:
+For each energy in the list of energies, mark it as signal or noise:
 
 - **Signal energies are load-bearing.** The expression breaks if removed. The reader's understanding changes if absent.
 - **Noise energies are decorative, defensive, or stylistic.** Removable without loss to the substance.
@@ -5440,23 +5440,23 @@ Compose ONE sentence such that:
 
 The sentence's signal-to-noise ratio is the metric. A reader of the distillation should receive every signal-energy that the long form carried, in the most compressed form that one English sentence can hold without breaking.
 
-### 82d. The Lattice as Layer — Why It Works
+### 82d. Why It Works — Working at the Energy Layer
 
 The reason the protocol works is that it externalizes a structure AI is otherwise being asked to hold implicitly.
 
 When a model is asked to compose the distillation directly from prose, it is operating at the *language layer* — words against words, sentences against sentences. The signal lives at a layer beneath the words. Without an explicit pass at the energy layer, the model's compression decisions are made at the wrong altitude.
 
-The lattice is the energy layer made explicit. Once it is written down, the synthesis becomes a constrained optimization at the right altitude:
+The list of energies is the energy layer made explicit. Once it is written down, the synthesis becomes a constrained optimization at the right altitude:
 
-> *Compose one sentence containing every node in this lattice.*
+> *Compose one sentence containing every signal-energy in this list.*
 
 This is much harder to fail at than:
 
 > *Shorten this paragraph.*
 
-The first is a structural task with a verifiable success condition (every lattice node either appears in the output or doesn't). The second is a stylistic task with no internal check.
+The first is a structural task with a verifiable success condition (every signal-energy either appears in the output or doesn't). The second is a stylistic task with no internal check.
 
-The lattice also makes synthesis *iterable in the right place*. If a distillation lands at 7/10 instead of 9+/10, the iteration is not "rewrite the sentence" — that is iterating at the language layer, where the actual problem rarely lives. The iteration is "what energy is present in the long form but missing from my lattice?" or "what energy did I score as noise that is actually signal?" These are corrections at the layer where the simplistic-vs-simple difference is decided.
+The energies-first approach also makes synthesis *iterable in the right place*. If a distillation lands at 7/10 instead of 9+/10, the iteration is not "rewrite the sentence" — that is iterating at the language layer, where the actual problem rarely lives. The iteration is "what energy is present in the long form but missing from my list?" or "what energy did I score as noise that is actually signal?" These are corrections at the layer where the simplistic-vs-simple difference is decided.
 
 ### 82e. The Fidelity Check
 
@@ -5464,11 +5464,11 @@ After Step 3, before showing the user anything, run this verification:
 
 > Re-read the distillation. For each numbered signal-energy from Step 1 (kept after Step 2), ask: *"Is this present in the sentence?"*
 >
-> If any signal-energy is missing or distorted, the distillation is simplistic. Return to Step 3 with a different composition. Do not return to Step 1 or 2 unless the lattice itself was wrong.
+> If any signal-energy is missing or distorted, the distillation is simplistic. Return to Step 3 with a different composition. Do not return to Step 1 or 2 unless the list of energies itself was wrong.
 
-This check is the AI's self-audit. The user's resonance rating is the final test, but the lattice check happens before the user sees the output. It catches simplistic compressions inside the model's loop instead of producing them and waiting for human correction.
+This check is the AI's self-audit. The user's resonance rating is the final test, but the list of energies check happens before the user sees the output. It catches simplistic compressions inside the model's loop instead of producing them and waiting for human correction.
 
-The fidelity check is also the user's audit instrument. When the lattice is carried alongside the distillation in the artifact's schema, a user who feels the distillation missed something can check: *"Was the missing energy in the lattice? If yes, did Step 3 drop it? If no, the lattice itself was incomplete."* The audit point is structural, not stylistic.
+The fidelity check is also the user's audit instrument. When the list of energies is carried alongside the distillation in the artifact's schema, a user who feels the distillation missed something can check: *"Was the missing energy in the list of energies? If yes, did Step 3 drop it? If no, the list of energies itself was incomplete."* The audit point is structural, not stylistic.
 
 ### 82f. The Anti-Pattern
 
@@ -5478,47 +5478,47 @@ The protocol fails the moment AI shortcuts to direct distillation. Recognizable 
 - ❌ Distillation could be reworded with synonyms and a similar sentence-shape and the reader would not notice.
 - ❌ The wording of the distillation is *generic enough that it could apply to many people* — the friction-points specific to this person's voice were sanded down.
 - ❌ The model produces the distillation in fewer than three reasoning steps, jumping from prose to sentence with no enumeration in between.
-- ❌ The lattice is missing from the output schema, or the lattice has fewer items than energies in the long form.
+- ❌ The list of energies is missing from the output schema, or has fewer items than energies the long form is carrying.
 
 The protocol holds when:
 
-- ✅ The lattice is explicit, numbered, and exhaustive at the signal level.
-- ✅ Each lattice item is named at the energy layer (concept-token), not at the language layer (sentence-token).
-- ✅ Every signal-energy from the lattice can be located in the distillation by the reader.
-- ✅ A user who disagrees with the distillation can point to *which lattice item they think is missing* — not just "I don't like the wording."
+- ✅ The list of energies is explicit, numbered, and exhaustive at the signal level.
+- ✅ Each signal-energy is named at the energy layer (concept-token), not at the language layer (sentence-token).
+- ✅ Every signal-energy from the list of energies can be located in the distillation by the reader.
+- ✅ A user who disagrees with the distillation can point to *which signal-energy they think is missing* — not just "I don't like the wording."
 
 ### 82g. Implementation — Schema and Prompt Protocol
 
 Every AI generation in the platform that produces a 1-sentence synthesis must:
 
-1. Carry the lattice as a transparent field in the output schema:
+1. Carry the list of energies as a transparent field in the output schema:
     ```ts
     type SynthesizedContent = {
-      lattice: string[];      // enumerated energies (Step 1, post-scoring in Step 2)
+      _energies: string[];    // kept signal-energies (Step 1, post-scoring in Step 2)
       distillation: string;   // 1-sentence synthesis (Step 3)
       prose?: string | object; // optional expanded form
     }
     ```
-2. Use a prompt that names the simple/simplistic distinction explicitly, instructs the three-step sequence, and demands the lattice as part of the output.
-3. Render the distillation prominently in the UI, with the lattice available behind a small disclosure for human audit.
-4. Treat the user's resonance rating as the conversion mechanism (Domain 81 — Specificity Loop), and treat the lattice as the structural audit mechanism. Both are kept; they answer different questions.
+2. Use a prompt that names the simple/simplistic distinction explicitly, instructs the three-step sequence, and demands the list of energies as part of the output.
+3. Render the distillation prominently in the UI, with the list of energies available behind a small disclosure for human audit.
+4. Treat the user's resonance rating as the conversion mechanism (Domain 81 — Specificity Loop), and treat the list of energies as the structural audit mechanism. Both are kept; they answer different questions.
 
 ### 82h. The General Principle
 
 The protocol generalizes beyond per-artifact distillation. Any task where AI is asked to *compress without loss* benefits from the same structure:
 
-- **Cross-version synthesis.** Three rephrasings of a Top Talent statement → enumerate the common threads among them → score → synthesize one canonical version. The common threads ARE the lattice, surfaced by triangulation.
+- **Cross-version synthesis.** Three rephrasings of a Top Talent statement → enumerate the common threads among them → score → synthesize one canonical version. The common threads ARE the list of energies, surfaced by triangulation.
 - **Multi-input combination.** Pain + Promise + Tribe → enumerate the energies present in all three → score → synthesize a Transformational Result.
 - **Roast synthesis.** Multiple roast findings across the 26-perspective protocol → enumerate the structural weaknesses identified → score by severity → synthesize the One Irreversible Action (Domain 66, the 27th Perspective).
-- **Iterative refinement.** Each Improve loop in the Unique Business Builder is a new pass through the lattice — not a rewrite of the sentence, but a refinement of which energies are present and which are signal.
+- **Iterative refinement.** Each Improve loop in the Unique Business Builder is a new pass through the list of energies — not a rewrite of the sentence, but a refinement of which energies are present and which are signal.
 
-In every case, the lattice is the layer where simple-vs-simplistic is decided. Working at that layer first is what makes "simple" possible at all.
+In every case, the list of energies is the layer where simple-vs-simplistic is decided. Working at that layer first is what makes "simple" possible at all.
 
 ### 82i. Relationship to Other Domains
 
-- **Domain 5 (The Precision Gap IS Product)** — Domain 82 names the structural mechanism of precision. Precision is preserved when the lattice is exhaustive at the signal level; precision is lost when the lattice is incomplete or wrongly scored.
-- **Domain 11 (One Lie, Four Wounds)** — the Pain Slicer is itself a lattice. Domain 82 generalizes the operation: enumerate the structure beneath the prose before compressing.
-- **Domain 13 (Scattered Light to Laser)** — laser focus at the language level requires lattice clarity at the energy level. Without the lattice, the laser scatters.
+- **Domain 5 (The Precision Gap IS Product)** — Domain 82 names the structural mechanism of precision. Precision is preserved when the list of energies is exhaustive at the signal level; precision is lost when the list of energies is incomplete or wrongly scored.
+- **Domain 11 (One Lie, Four Wounds)** — the Pain Slicer is itself an enumeration of energies. Domain 82 generalizes the operation: enumerate the structure beneath the prose before compressing.
+- **Domain 13 (Scattered Light to Laser)** — laser focus at the language level requires clarity at the energy level. Without the list of energies, the laser scatters.
 - **Domain 15 (The 26-Perspective Framework)** — both are tools for *complete seeing*. Domain 15 ensures no perspective is missed; Domain 82 ensures no energy is lost in compression. Used together, the synthesis after a 26-perspective roast carries every perspective's signal into one sentence.
 - **Domain 47 (The Quality That Sells)** — quality is high signal-to-noise. Domain 82 names the operational protocol that produces it.
 - **Domain 66 (The 27th Perspective — Crystallization)** — the One Irreversible Action is itself a synthesized output. Domain 82 prescribes how to produce it without dropping any of the prior 26 perspectives' signal.
@@ -5526,7 +5526,7 @@ In every case, the lattice is the layer where simple-vs-simplistic is decided. W
 
 ### 82j. The One-Sentence Version
 
-> *"Distillation is not shortening — it is re-encoding the lattice of energies into the most compressed form that loses no signal; the lattice must be made explicit before the sentence is written, or the sentence will be simplistic."*
+> *"Distillation is not shortening — it is re-encoding the list of energies of energies into the most compressed form that loses no signal; the list of energies must be made explicit before the sentence is written, or the sentence will be simplistic."*
 
 ---
 
