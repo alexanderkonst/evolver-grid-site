@@ -8,7 +8,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Lock, CircleDashed, Circle, CheckCircle2 } from "lucide-react";
+import { CircleDashed, Circle, CheckCircle2, BookOpen } from "lucide-react";
 import { useUniqueBusiness } from "../UniqueBusinessContext";
 import { SpecificityBadge } from "../components/SpecificityBadge";
 import {
@@ -20,6 +20,7 @@ import {
 } from "../types";
 import { ARTIFACT_LABELS, ARTIFACT_URL_SLUGS, UBB_ROOT, ROUTES } from "../constants";
 import type { ArtifactKey } from "../types";
+import { getStepForArtifact } from "@/data/playbookArtifactMap";
 
 export default function CanvasOverviewScreen() {
   const { artifacts, lockedCount, avgSpecificity, stalenessWarnings } = useUniqueBusiness();
@@ -107,9 +108,44 @@ export default function CanvasOverviewScreen() {
 }
 
 function PhaseSection({ title, keys }: { title: string; keys: readonly ArtifactKey[] }) {
+  // Day 51 (Sasha 2026-04-25): show ALL Playbook steps this phase spans.
+  // Phase A (Canvas) actually spans Step 3 (foundation: uniqueness/myth/
+  // tribe/pain/promise) AND Step 4 (productization: lead_magnet/
+  // value_ladder/specificity_matrix). Showing only the first step misled —
+  // now we render one chip per unique step in display order.
+  const stepLinks = (() => {
+    const seen = new Set<number>();
+    const out: { slug: string; number: number; appName: string }[] = [];
+    for (const k of keys) {
+      const s = getStepForArtifact(k);
+      if (s && !seen.has(s.number)) {
+        seen.add(s.number);
+        out.push(s);
+      }
+    }
+    return out.sort((a, b) => a.number - b.number);
+  })();
+
   return (
     <section className="space-y-2">
-      <h2 className="text-xs font-medium uppercase tracking-wider text-muted-foreground">{title}</h2>
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <h2 className="text-xs font-medium uppercase tracking-wider text-muted-foreground">{title}</h2>
+        {stepLinks.length > 0 && (
+          <div className="flex flex-wrap items-center gap-1.5">
+            {stepLinks.map((sl) => (
+              <Link
+                key={sl.number}
+                to={`/playbook/${sl.slug}`}
+                className="inline-flex items-center gap-1.5 rounded-full border border-border bg-card px-2 py-0.5 text-[10px] font-medium uppercase tracking-wider text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+                title={`This phase implements Playbook Step ${sl.number} — ${sl.appName}`}
+              >
+                <BookOpen className="h-3 w-3" aria-hidden="true" />
+                Step {sl.number} · {sl.appName}
+              </Link>
+            ))}
+          </div>
+        )}
+      </div>
       <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
         {keys.map((k) => (
           <ArtifactCard key={k} artifactKey={k} />

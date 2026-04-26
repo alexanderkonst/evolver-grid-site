@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
-import { ChevronRight } from "lucide-react";
+import { Link } from "react-router-dom";
+import { ChevronRight, Wrench } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { PlaybookStep, Substep } from "@/data/playbookSteps";
+import { getBuildLinksForStep } from "@/data/playbookArtifactMap";
+import { UBB_ROOT } from "@/modules/unique-business-builder/constants";
 // useStepCheckout was used by the per-step CTA block that was removed
 // 2026-04-21. The commercial flow now lives at /path + /game/settings.
 
@@ -594,10 +597,76 @@ const StepCard = ({ step }: StepCardProps) => {
         </section>
       )}
 
+      {/* ══ BUILD THESE — Day 51 (Sasha 2026-04-25): bridge from Playbook
+          step to UBB artifacts. The Playbook tells you WHAT to build at
+          this stage; UBB is WHERE you build it. Steps with no mapped
+          artifacts (DISCOVER/PACKAGE/TEST/SCALE) skip this block entirely
+          — that's intentional, not an omission. */}
+      <BuildTheseInBuilder step={step} />
+
       {/* The "Here's your result" + CTA + "Pay as you progress" block was
           removed 2026-04-21 per Sasha — every step's substeps stand alone.
           Commercial layer lives on /path, not inside each step card. */}
     </article>
+  );
+};
+
+// ───── Bridge to UBB ─────────────────────────────────────────────
+//
+// Step → UBB artifact links. Lives at the bottom of the step card so
+// the methodology reads first, the tooling appears as the natural
+// "ok where do I do this?" answer.
+const BuildTheseInBuilder = ({ step }: { step: PlaybookStep }) => {
+  const links = getBuildLinksForStep(step.slug);
+  if (links.length === 0) return null;
+
+  return (
+    <section
+      aria-label="Build these in the Unique Business Builder"
+      className="mt-2 rounded-2xl p-5 sm:p-6"
+      style={{
+        backgroundImage: `linear-gradient(135deg, rgba(${step.neonRgb},0.10), rgba(${step.neonRgb},0.03))`,
+        border: `1px solid rgba(${step.neonRgb},0.30)`,
+      }}
+    >
+      <div className="mb-3 flex items-center gap-2">
+        <Wrench
+          className="h-4 w-4"
+          style={{ color: `color-mix(in srgb, ${step.neonHsl} 60%, var(--skin-text-primary, #0a1628) 40%)` }}
+          aria-hidden="true"
+        />
+        <h3
+          className="text-[10px] sm:text-[11px] uppercase tracking-[0.24em] font-semibold"
+          style={{ color: `color-mix(in srgb, ${step.neonHsl} 35%, var(--skin-text-primary, #0a1628) 65%)` }}
+        >
+          Build these in your Builder
+        </h3>
+      </div>
+      <p
+        className="mb-4 text-sm leading-relaxed"
+        style={{ color: "var(--skin-text-body, rgba(26,30,58,0.78))" }}
+      >
+        The artifacts that crystallize this step into a working part of your business.
+        Each one is improvable — generate, then iterate to 9+/10 specificity.
+      </p>
+      <div className="flex flex-wrap gap-2">
+        {links.map((link) => (
+          <Link
+            key={link.slug}
+            to={`${UBB_ROOT}/${link.slug}`}
+            className="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-medium transition-all hover:scale-[1.02]"
+            style={{
+              backgroundImage: `linear-gradient(135deg, rgba(${step.neonRgb},0.20), rgba(${step.neonRgb},0.08))`,
+              border: `1px solid rgba(${step.neonRgb},0.40)`,
+              color: "var(--skin-text-strong, rgba(26,30,58,0.88))",
+            }}
+          >
+            {link.label}
+            <ChevronRight className="h-3 w-3 opacity-70" aria-hidden="true" />
+          </Link>
+        ))}
+      </div>
+    </section>
   );
 };
 
