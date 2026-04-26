@@ -158,6 +158,15 @@ interface SpacesRailProps {
     /** Spaces to completely hide from the rail (gradual reveal) */
     hiddenSpaces?: string[];
     className?: string;
+    /**
+     * When the parent page renders its OWN full-screen background (e.g. /ai-os
+     * with the HLS editorial scene), Pane 1 should not paint a near-opaque navy
+     * block over it. Setting this to true switches the rail to a glass-morphic
+     * tint that lets the page bg bleed through, matching how Pane 2 already
+     * behaves. Day 51 (Sasha 2026-04-25): this fixes the "black column" bug
+     * Sasha flagged on /ai-os in the Lovable preview.
+     */
+    pageOwnsBackground?: boolean;
     // Optional user data props
     userName?: string;
     userAvatarUrl?: string;
@@ -173,6 +182,7 @@ const SpacesRail = ({
     nudgeBadges = [],
     hiddenSpaces = [],
     className,
+    pageOwnsBackground = false,
     userName,
     userAvatarUrl,
     userLevel,
@@ -223,8 +233,20 @@ const SpacesRail = ({
             // match: Pane 1 solid (brand owns), Pane 2 glass (video shows).
             // border: none — removes liquid-glass's 0.5px white border that
             // was painting a visible line across the top of the viewport.
+            //
+            // Day 51 r2 (Sasha 2026-04-25, evening): on page-owned-background
+            // routes (/ai-os) we drop the rail to a deep navy GLASS tint so
+            // the page's HLS scene reads continuously across the viewport.
+            // Sasha called the previous solid rail a "black column" that
+            // broke the visual flow. The gold spine + outer halo stay so the
+            // rail still has its own presence — it just no longer occludes
+            // the editorial background behind it.
             style={{
-                backgroundColor: "rgba(10, 22, 50, 0.98)",
+                backgroundColor: pageOwnsBackground
+                    ? "rgba(10, 22, 50, 0.32)"
+                    : "rgba(10, 22, 50, 0.98)",
+                backdropFilter: pageOwnsBackground ? "blur(14px) saturate(140%)" : undefined,
+                WebkitBackdropFilter: pageOwnsBackground ? "blur(14px) saturate(140%)" : undefined,
                 border: "none",
                 boxShadow:
                     "3px 0 28px -10px rgba(244, 212, 114, 0.22)",
@@ -619,6 +641,7 @@ const areEqual = (prev: SpacesRailProps, next: SpacesRailProps) => {
     if (prev.activeSpaceId !== next.activeSpaceId) return false;
     if (prev.onSpaceSelect !== next.onSpaceSelect) return false;
     if (prev.className !== next.className) return false;
+    if (prev.pageOwnsBackground !== next.pageOwnsBackground) return false;
     // Check nudgeBadges
     const prevNudges = prev.nudgeBadges || [];
     const nextNudges = next.nudgeBadges || [];
