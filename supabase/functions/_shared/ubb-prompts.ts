@@ -480,5 +480,103 @@ GUARDRAILS:
 • Never weaken a phrase the founder already got to 9+ specificity on; build around it.
 `.trim();
 
+// ============================================================================
+// LATTICE PROTOCOL — Linguistic Synthesis Through Energy Enumeration
+// (Phase Shift Technology Library, Domain 82 — April 26, 2026)
+//
+// Doctrinally enforces the simple/simplistic distinction in every AI synthesis.
+// Models trained for fluency default to "simplistic" — sentences that look
+// brief but lose signal. The fix is to forbid direct distillation: the model
+// must enumerate the energies present, score them as signal/noise, and only
+// then compose the one-sentence synthesis containing every signal-energy.
+//
+// Used by:
+//   - generate-artifact (v1 generation)
+//   - improve-artifact  (iteration loop)
+// Both inject this block into their system prompt.
+// Both demand `_lattice` and `_distillation` as fields inside the artifact's
+// content JSON, so the lattice is carried forward as a transparent audit
+// trail the human can challenge.
+// ============================================================================
+export const LATTICE_PROTOCOL_PROMPT = `
+LATTICE PROTOCOL — Linguistic Synthesis Through Energy Enumeration
+(Phase Shift Library, Domain 82)
+
+You will produce a one-sentence distillation of this artifact. Read this
+section carefully. The default failure mode of synthesis tasks is what English
+calls SIMPLISTIC — a sentence that LOOKS clean but has lost signal that the
+longer form was carrying. Your job is to produce SIMPLE — maximally compressed
+form that loses NO signal. The two are not the same word. They are inverses.
+
+To guarantee SIMPLE (not simplistic), you MUST sequence your synthesis through
+three steps. Do not shortcut. The intermediate state of each step must appear
+in your output as a transparent audit trail.
+
+STEP 1 — ENUMERATE THE ENERGIES.
+Read every input you have (root context, sibling artifacts, generation
+guidance, current content if iterating). List the distinct ENERGIES present.
+An energy is the IDEA BEHIND THE PHRASE — the precursor to wording. It lives
+at the layer beneath the words: a concept, a force, a thread, a quality, an
+intention. It is named in the most signal-dense form possible — usually a few
+words that point. Not a sentence. Not a paraphrase.
+
+When iterating across multiple versions, the energies are the COMMON THREADS
+among them. What survives across rephrasings is closer to signal; what
+changes between rephrasings is closer to wording. Identify what survives.
+
+The list must be exhaustive at the signal level. Missing an energy here
+means it cannot make it into the distillation downstream.
+
+STEP 2 — SCORE.
+For each energy in your enumeration, mark it signal or noise:
+  - SIGNAL: load-bearing. Expression breaks if removed. Reader's understanding
+    changes if absent.
+  - NOISE: decorative, defensive, or stylistic. Removable without loss to the
+    substance.
+Drop the noise. Keep all signal. The kept signal IS the LATTICE.
+
+The lattice is the structural skeleton of the meaning. It is the metric for
+what the distillation must contain.
+
+STEP 3 — SYNTHESIZE THE DISTILLATION.
+Compose ONE sentence such that:
+  1. Every signal-energy from the lattice is present (explicitly or
+     compressively, but always traceable).
+  2. No noise-energy is present.
+  3. It reads as one coherent thought, not a concatenation of clauses with
+     periods. One thought. One sentence.
+
+FIDELITY CHECK (run this BEFORE writing your output).
+Re-read your distillation sentence. For each item in your lattice, ask: is
+this present? If any signal-energy is missing or distorted, recompose the
+sentence. Do not return to Step 1 or Step 2 unless the lattice itself was
+wrong. Iterate Step 3 until every lattice item lands.
+
+ANTI-PATTERNS — recognize and reject:
+  - The distillation reads fluently but a reader of the long form senses
+    something missing.
+  - The distillation could be reworded with synonyms in the same shape and
+    no one would notice — meaning each word is not load-bearing.
+  - The distillation is generic enough to apply to many people — the
+    friction-points specific to THIS founder's voice were sanded down.
+  - You jumped from prose to sentence without the enumeration step. (If your
+    output has fewer lattice items than energies in the inputs, you compressed
+    at Step 1 instead of Step 3.)
+
+OUTPUT REQUIREMENT.
+Inside the artifact's "content" object, include two fields ALONGSIDE the
+artifact's structured fields:
+  - "_lattice": string[]   — the kept signal-energies (Step 2 result, signal
+                              only). Each item ≤10 words. Numbered ordering
+                              is preserved by array index.
+  - "_distillation": string — the one-sentence synthesis (Step 3 result).
+                              Every "_lattice" item must be locatable in this
+                              sentence.
+
+These two fields are the audit trail. The human will check: did you see all
+my energies, score them correctly, and put them all back into the sentence?
+If they cannot, the synthesis was simplistic — return to it.
+`.trim();
+
 export const MODEL = "google/gemini-2.5-flash-lite";
 export const AI_GATEWAY_URL = "https://ai.gateway.lovable.dev/v1/chat/completions";

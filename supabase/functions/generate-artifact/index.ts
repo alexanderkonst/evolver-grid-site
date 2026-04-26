@@ -10,6 +10,7 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import {
   ARTIFACT_CONFIGS,
+  LATTICE_PROTOCOL_PROMPT,
   MODEL,
   AI_GATEWAY_URL,
   type ArtifactKey,
@@ -70,7 +71,11 @@ Your output is a working draft — not a polished final. It's meant to be read a
 
 Keep it honest. Don't perform thoroughness. If the seed context is thin, the draft will be thin — that's correct. The founder sharpens from there.
 
-SOURCE PLAYBOOK: ${config.sourcePlaybook}`;
+SOURCE PLAYBOOK: ${config.sourcePlaybook}
+
+---
+
+${LATTICE_PROTOCOL_PROMPT}`;
 
     const siblingSummary = Object.entries(sibling_artifacts || {})
       .map(([k, v]) => `- ${k}: ${JSON.stringify(v.content).slice(0, 400)}`)
@@ -103,15 +108,23 @@ ${rootSummary}
 
 ---
 
-Produce a v1 draft. JSON only:
+Produce a v1 draft. JSON only.
+
+The "content" object MUST include "_lattice" and "_distillation" fields per
+the LATTICE PROTOCOL above, ALONGSIDE this artifact's specific fields:
 
 {
-  "content": ${config.outputSchema},
+  "content": {
+    "_lattice": ["<kept signal-energy 1>", "<kept signal-energy 2>", ...],
+    "_distillation": "<one sentence containing every _lattice item>",
+    ...${config.outputSchema.replace(/^\{|\}$/g, "").trim()}
+  },
   "initial_specificity": <float 0-10, typically 5-7 for a first draft>,
   "crystallized_action": "<the ONE irreversible next action this draft names>"
 }
 
-Return ONLY the JSON. No explanation.`;
+Return ONLY the JSON. No explanation. The lattice and distillation are
+mandatory, not optional.`;
 
     const response = await fetch(AI_GATEWAY_URL, {
       method: "POST",
