@@ -92,7 +92,13 @@ function SubArtifactCard({ artifactKey }: { artifactKey: ArtifactKey }) {
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2">
             <h2 className="text-lg font-medium">{ARTIFACT_LABELS[artifactKey]}</h2>
-            {latest && <SpecificityBadge score={latest.specificity_score} size="sm" />}
+            {latest && (
+              <SpecificityBadge
+                score={latest.specificity_score}
+                size="sm"
+                onScoreChange={state?.latestLocked ? undefined : (s) => updateArtifactScore(artifactKey, s)}
+              />
+            )}
           </div>
           {latest && (
             <div className="mt-0.5 text-xs text-muted-foreground">

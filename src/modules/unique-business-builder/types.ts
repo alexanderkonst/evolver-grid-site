@@ -237,4 +237,6 @@ export type UniqueBusinessActions = {
   loadVersionHistory: (key: ArtifactKey) => Promise<void>;
   publishLandingPage: () => Promise<LandingPagePublication>;
   publishDossier: () => Promise<{ slug: string }>;
+  /** Day 51 (Sasha 2026-04-25): human-override for AI-suggested score. */
+  updateArtifactScore: (key: ArtifactKey, newScore: number) => Promise<void>;
 };

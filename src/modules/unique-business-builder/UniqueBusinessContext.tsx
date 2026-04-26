@@ -503,6 +503,42 @@ export function UniqueBusinessProvider({ children }: { children: ReactNode }) {
     }
   }, [pendingImprovement, userId, artifacts]);
 
+  // Day 51 (Sasha 2026-04-25): human-override for AI-suggested specificity
+  // score. AI suggests, human can adjust via the badge in the UI. Stores
+  // the human-chosen value back in `specificity_score` (single source of
+  // truth — the AI's original is preserved in version history if needed).
+  const updateArtifactScore = useCallback(
+    async (key: ArtifactKey, newScore: number) => {
+      const latest = artifacts[key]?.latest;
+      if (!latest) return;
+      const clamped = Math.max(0, Math.min(10, Number(newScore.toFixed(1))));
+      const { error } = await (supabase as any)
+        .from("user_business_artifacts")
+        .update({ specificity_score: clamped })
+        .eq("id", latest.id);
+      if (error) {
+        toast.error("Couldn't update score — please retry.");
+        return;
+      }
+      // Optimistic local state update.
+      setArtifacts((prev) => {
+        const s = prev[key];
+        if (!s || !s.latest) return prev;
+        const updatedLatest = { ...s.latest, specificity_score: clamped };
+        const wasLockedSame = s.latestLocked && s.latestLocked.id === s.latest.id;
+        return {
+          ...prev,
+          [key]: {
+            ...s,
+            latest: updatedLatest,
+            latestLocked: wasLockedSame ? updatedLatest : s.latestLocked,
+          },
+        };
+      });
+    },
+    [artifacts]
+  );
+
   const lockArtifact = useCallback(
     async (key: ArtifactKey) => {
       const latest = artifacts[key]?.latest;
@@ -680,6 +716,7 @@ export function UniqueBusinessProvider({ children }: { children: ReactNode }) {
     loadVersionHistory,
     publishLandingPage,
     publishDossier,
+    updateArtifactScore,
   };
 
   return (
