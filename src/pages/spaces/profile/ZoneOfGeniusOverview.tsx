@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/button";
 import { Sparkles, Star, Zap, Target, Quote, TrendingUp, Download } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { getOrCreateGameProfileId } from "@/lib/gameProfile";
-import ShareZoG from "@/components/sharing/ShareZoG";
 import { generateZogPdf } from "@/modules/zone-of-genius/generateZogPdf";
 import type { AppleseedData as FullAppleseedData } from "@/modules/zone-of-genius/appleseedGenerator";
 import type { ExcaliburData } from "@/modules/zone-of-genius/excaliburGenerator";
@@ -268,15 +267,9 @@ const ZoneOfGeniusOverview = () => {
                     </Button>
                 </div>
 
-                {/* Share */}
-                <ShareZoG
-                    archetypeName={appleseedData.vibrationalKey.name}
-                    tagline={appleseedData.bullseyeSentence || ""}
-                    primeDriver={appleseedData.threeLenses?.primeDriver || ""}
-                    talents={appleseedData.threeLenses?.actions}
-                    archetype={appleseedData.threeLenses?.archetype}
-                    profileId={profileId ?? undefined}
-                />
+                {/* Day 51 night (Sasha): standalone Share strip retired —
+                    Save + Share now live in-card via CardActions inside
+                    RevelatoryHero. */}
             </div>
         </GameShellV2>
     );

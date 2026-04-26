@@ -399,8 +399,11 @@
   --skin-input-text:    #f5f1e8;
   --skin-input-placeholder: rgba(245, 241, 232, 0.42);
 
-  /* Darkroom stays dark but harmonized with the navy palette */
-  --skin-darkroom-bg:     rgba(4, 8, 20, 0.95);
+  /* Darkroom stays dark but harmonized with the navy palette.
+     Day 51 night (Sasha 2026-04-25): lowered 0.95 → 0.68 to match the
+     Aurora skin's lighter darkroom — same rationale (ignition video
+     needs to pulse through, oppressive black sealing it off was bad). */
+  --skin-darkroom-bg:     rgba(4, 8, 20, 0.68);
   --skin-darkroom-text:   rgba(245, 241, 232, 0.96);
   --skin-darkroom-muted:  rgba(245, 241, 232, 0.7);
   --skin-darkroom-border: rgba(212, 175, 55, 0.22);
