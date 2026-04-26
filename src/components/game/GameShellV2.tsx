@@ -507,28 +507,17 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
             <div className="fixed inset-0 z-0">
                 {!suppressShellBackground && <MuxVideoBackground />}
                 {/*
-                  Base wash. When the page owns its background, render
-                  no wash either — let the page's own surface shine
-                  through cleanly without our atmospheric overlay.
-                  Working routes get a heavy calm wash. Landing routes
-                  get the light atmospheric wash over the shell video.
+                  Base wash USED to live here as `absolute inset-0` —
+                  which stretched the cream gradient across the whole
+                  viewport, including behind pane 2. Pane 2 is a
+                  translucent "curtain" (0.18 alpha) so the cream bled
+                  through and the rail read as washed beige.
+                  Day 51 night v3 (Sasha 2026-04-25): wash relocated
+                  INSIDE <main> (pane 3 column) so it can no longer
+                  bleed behind pane 1 / pane 2. The video / shell-bg
+                  remains full-viewport here so the curtain effect on
+                  panes 1+2 is preserved on landing-class routes.
                 */}
-                {!pageOwnsBackground && (
-                  <div
-                    className="absolute inset-0"
-                    // Day 51 night (Sasha): switched from backgroundColor
-                    // to background so the quiet wash can be a radial
-                    // gradient (warm directional glow per harmony mockup).
-                    // Landing wash is still a flat color and renders the
-                    // same; gradient render only kicks in when the working-
-                    // route variable resolves to a gradient.
-                    style={{
-                      background: isWorkingRoute
-                        ? "var(--skin-panel-wash-quiet, rgba(248, 246, 240, 0.98))"
-                        : "var(--skin-panel-wash, rgba(255, 255, 255, 0.21))",
-                    }}
-                  />
-                )}
             </div>
             {/* === DESKTOP LAYOUT === */}
             <div className="hidden lg:flex min-h-dvh">
@@ -602,6 +591,24 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                         pageOwnsBackground ? "" : "pt-4"
                     )}
                 >
+                    {/* Pane-3 wash — moved here from the shell-wide
+                        fixed-overlay so the cream gradient no longer
+                        bleeds behind pane 1 / pane 2. Working routes
+                        get the heavy calm wash; landing routes get the
+                        light atmospheric wash over the shell video.
+                        Page-owned-bg routes (/ai-os, /codex) skip this
+                        entirely so the page's own video is unobstructed. */}
+                    {!pageOwnsBackground && (
+                      <div
+                        aria-hidden="true"
+                        className="absolute inset-0 pointer-events-none -z-10"
+                        style={{
+                          background: isWorkingRoute
+                            ? "var(--skin-panel-wash-quiet, rgba(248, 246, 240, 0.98))"
+                            : "var(--skin-panel-wash, rgba(255, 255, 255, 0.21))",
+                        }}
+                      />
+                    )}
                     {/* Logo — fixed upper right. Hidden when hideLogo prop is set.
                         Renders the legacy dodecahedron/fractal icon with a radial
                         mask — reads as a distinct "home button" visually separate
