@@ -5436,7 +5436,7 @@ Cross-linked to `lead_magnet` config: enhanced prompt now references the Specifi
 
 Verified all three live in DOM. Console errors: 0.
 
-**6. Holonic Franchise model strategy doc written.** New file `docs/02-strategy/holonic_franchise_model.md` v1.0 — the operating model that emerged when matrix v2 + license decisions + distributor terms collapsed into a single coherent architecture. Captures: 5 ingredients (PolyForm NC code + CC BY-NC-SA docs + Distributor Agreement + per-founder Specificity Matrix + opt-in commons), comparison table to other models (Skool, Sentry-class OSS, classic franchise, worker cooperative, fediverse, Patreon-class — none combine all six properties), why this resolves the alignment problem without tokens, what each distributor gets, what the commons becomes over time, implementation status, strategic sequencing, six open tuning questions for v1.1.
+**6. Holonic Franchise model strategy doc written.** New file `docs/02-strategy/monetization_strategies.md` v1.0 — the operating model that emerged when matrix v2 + license decisions + distributor terms collapsed into a single coherent architecture. Captures: 5 ingredients (PolyForm NC code + CC BY-NC-SA docs + Distributor Agreement + per-founder Specificity Matrix + opt-in commons), comparison table to other models (Skool, Sentry-class OSS, classic franchise, worker cooperative, fediverse, Patreon-class — none combine all six properties), why this resolves the alignment problem without tokens, what each distributor gets, what the commons becomes over time, implementation status, strategic sequencing, six open tuning questions for v1.1.
 
 **7. Six business model "plays" mapped through Heart/Mind/Gut.** Strategic conversation late in the session — Sasha listed six potential plays as commercial layers atop the Holonic Franchise foundation:
 1. Conscious Entrepreneur play (individual user) — the foundational customer journey, $555/$5K/$500-mo value ladder
@@ -5474,7 +5474,7 @@ Synthesized matrix of tensions + recommended sequencing: Phase 1 = #1+#2+#3 (the
 
 **The Day-1 distributor experience.** Sasha asked what *"Day 1"* of having their own platform actually looks like. Honest answer: today it's possible only for technical Oyi/Sergey-level founders who can do manual Vercel + Supabase + Stripe setup with hands-on help; "Skool-easy" one-button onboarding requires ~3-5 weeks of focused work to build. Cleanest sequencing: ship the legal layer NOW (done), pilot one real distributor manually (Oyi-level), then build the kit informed by real walk-through.
 
-**Tiered distributor split Tier 1 (10/90) vs Tier 2 (40/60).** Software-only deployments → 10% to commons / 90% to distributor. Distributors who want Sasha *physically in the room* (live in sessions, embodied delivery) → 40% to Sasha / 60% to distributor. Captured as one of the six open tuning questions in `holonic_franchise_model.md`.
+**Tiered distributor split Tier 1 (10/90) vs Tier 2 (40/60).** Software-only deployments → 10% to commons / 90% to distributor. Distributors who want Sasha *physically in the room* (live in sessions, embodied delivery) → 40% to Sasha / 60% to distributor. Captured as one of the six open tuning questions in `monetization_strategies.md`.
 
 ### Distribution synthesis ("who am I sending what")
 
@@ -5515,7 +5515,7 @@ Center reading: **Codification.** Day 49 unified the surface; Day 51 unified the
 
 **Repo root:** `LICENSE` (replaced — PolyForm NC canonical) · `LICENSE.md` (header clarified) · `README.md` (rewritten) · `CONTRIBUTING.md` (NEW) · `DISTRIBUTOR_AGREEMENT.md` (NEW v0.1) · `.gitignore` (env files excluded)
 
-**Docs:** `docs/02-strategy/holonic_franchise_model.md` (NEW v1.0) · `docs/03-playbooks/unique_business_playbook.md` (v4.3 → v4.5: P15 added, dual-treatment refined) · `docs/01-vision/phase_shift_technology_library.md` (Domain 81 added) · `docs/02-strategy/unique-businesses/alexanders_unique_business.md` (v9.6 → v9.8: three Day 51 entries) · `docs/05-specs/resonance_events_lovable_prompt.md` (NEW)
+**Docs:** `docs/02-strategy/monetization_strategies.md` (NEW v1.0) · `docs/03-playbooks/unique_business_playbook.md` (v4.3 → v4.5: P15 added, dual-treatment refined) · `docs/01-vision/phase_shift_technology_library.md` (Domain 81 added) · `docs/02-strategy/unique-businesses/alexanders_unique_business.md` (v9.6 → v9.8: three Day 51 entries) · `docs/05-specs/resonance_events_lovable_prompt.md` (NEW)
 
 **Memory:** `~/.claude/projects/.../memory/feedback_language.md` (NEW — English-default for substantive content) · `MEMORY.md` (index entry added)
 
