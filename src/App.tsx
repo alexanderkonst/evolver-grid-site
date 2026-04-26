@@ -424,6 +424,7 @@ const App = () => (
                     <Route path="promise" element={<GenericArtifactScreen />} />
                     <Route path="lead-magnet" element={<GenericArtifactScreen />} />
                     <Route path="value-ladder" element={<GenericArtifactScreen />} />
+                    <Route path="specificity-matrix" element={<GenericArtifactScreen />} />
                     <Route path="session" element={<CompoundScreen />} />
                     <Route path="marketing" element={<CompoundScreen />} />
                     <Route path="distribution" element={<CompoundScreen />} />
