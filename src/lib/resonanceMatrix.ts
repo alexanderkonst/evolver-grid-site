@@ -52,8 +52,15 @@ export type ResonanceMatrix = Record<ResonanceStep, Record<ResonanceTier, string
 
 export const MASTER_MATRIX: ResonanceMatrix = {
     appleseed: {
+        // Day 51 night (Sasha 2026-04-25): the matrix's reflective
+        // "What if X?" shape doesn't apply at appleseed — at peak first-
+        // resonance the user's intent is forward motion, not ambient
+        // reflection. Replaced the line with a doorway statement that
+        // confirms + opens Step 2 in five words, framed in the user's
+        // own voice. Other steps still use the "What if" shape since
+        // by then the reader is in reflective mode.
         resonant:
-            "What if this voice has been yours all along?",
+            "That's your top talent. Now — what business does it want to become?",
         partial:
             "What if the missing word is the one you've been quietly afraid to claim?",
         off:

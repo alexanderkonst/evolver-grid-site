@@ -4,7 +4,6 @@ import GameShellV2 from "@/components/game/GameShellV2";
 import { Button } from "@/components/ui/button";
 import { Users, Target, Radio, Telescope, Sparkles, Sword } from "lucide-react";
 import { useExcaliburData } from "@/hooks/useExcaliburData";
-import ShareZoG from "@/components/sharing/ShareZoG";
 import { supabase } from "@/integrations/supabase/client";
 
 /**
@@ -18,7 +17,7 @@ import { supabase } from "@/integrations/supabase/client";
  */
 const GeniusBusiness = () => {
     const navigate = useNavigate();
-    const { loading, excaliburData, hasAppleseed, snapshotId, profileId } = useExcaliburData();
+    const { loading, excaliburData, hasAppleseed, snapshotId } = useExcaliburData();
     const [isGenerating, setIsGenerating] = useState(false);
 
     const modules = [
@@ -187,13 +186,9 @@ const GeniusBusiness = () => {
                     ))}
                 </div>
 
-                {/* Share button */}
-                <ShareZoG
-                    archetypeName={excaliburData.businessIdentity.name}
-                    tagline={excaliburData.businessIdentity.tagline}
-                    primeDriver={excaliburData.essenceAnchor?.primeDriver || ""}
-                    profileId={profileId ?? undefined}
-                />
+                {/* Day 51 night (Sasha): standalone Share strip retired —
+                    Save + Share now live in-card via CardActions inside
+                    RevelatoryHero / ExcaliburDisplay. */}
             </div>
         </GameShellV2>
     );

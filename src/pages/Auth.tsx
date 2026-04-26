@@ -108,7 +108,24 @@ const Auth = () => {
     setLoading(true);
 
     try {
-      const { error } = await supabase.auth.signUp({
+      // Day 51 night (Sasha 2026-04-25): the previous code assumed
+      // auto-confirm was always on and redirected immediately. Two
+      // failure modes that produced the "Login failed: Invalid login
+      // credentials" report after signup:
+      //
+      //   1. Email confirmation required → signUp creates a user but
+      //      data.session is null. Old code redirected anyway; the user
+      //      then hit /auth and tried to log in with a not-yet-confirmed
+      //      account → "Invalid login credentials".
+      //
+      //   2. Email already exists in auth.users → Supabase returns
+      //      success with no session AND data.user.identities is
+      //      empty (security feature: don't leak whether an email is
+      //      registered). The password just typed was never saved;
+      //      logging in with it fails against the OLD stored password.
+      //
+      // Fix: branch on what signUp actually returned.
+      const { data, error } = await supabase.auth.signUp({
         email,
         password,
         options: {
@@ -122,13 +139,32 @@ const Auth = () => {
 
       if (error) throw error;
 
-      toast({
-        title: "Success!",
-        description: "Your account has been created. Redirecting...",
-      });
+      // Case 2: existing email — identities array empty
+      if (data.user && (data.user.identities?.length ?? 0) === 0) {
+        toast({
+          title: "This email is already registered",
+          description:
+            "Try logging in instead, or use 'Forgot password?' to reset it.",
+          variant: "destructive",
+        });
+        return;
+      }
 
-      // Redirect immediately since auto-confirm is enabled
-      setTimeout(() => navigate(nextPath), 1000);
+      // Case 3: auto-confirm ON, session created → log in immediately
+      if (data.session) {
+        toast({
+          title: "Welcome.",
+          description: "Account created. Redirecting…",
+        });
+        setTimeout(() => navigate(nextPath), 800);
+        return;
+      }
+
+      // Case 1: email confirmation required — no session yet
+      toast({
+        title: "Check your inbox",
+        description: `We sent a confirmation link to ${email}. Click it to finish signing up.`,
+      });
     } catch (error: any) {
       toast({
         title: "Sign up failed",
