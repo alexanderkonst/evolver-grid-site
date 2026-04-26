@@ -1352,27 +1352,36 @@ All colors MUST be HSL.
 }
 
 /* Page Transitions */
+/* Day 51 night v2 (Sasha 2026-04-25): keyframe is now strictly
+   opacity-only. Even when `to` had no transform, Chrome's forwards
+   fill mode kept the `from` transform applied to the element after
+   the animation landed — leaving a residual `matrix(1,0,0,1,0,12)`
+   that created a CSS containing block for fixed AND sticky
+   descendants (broke pane 1's `sticky top-0` and offset fixed bg
+   videos by 12px). Removing transform from the entire keyframe is
+   the only reliable way to guarantee no residual transform. We
+   trade the 12px entry rise for working sticky everywhere. */
 @keyframes page-enter {
   from {
     opacity: 0;
-    transform: translateY(12px);
   }
 
   to {
     opacity: 1;
-    transform: translateY(0);
   }
 }
 
+/* Day 51 night (Sasha 2026-04-25): page-exit also drops its transform
+   for the same reason as page-enter. Animation now opacity-only at the
+   wrapper level so neither the inner nor the outer transition wrapper
+   leaves a residual transform that would create a containing block. */
 @keyframes page-exit {
   from {
     opacity: 1;
-    transform: translateY(0);
   }
 
   to {
     opacity: 0;
-    transform: translateY(-8px);
   }
 }
 

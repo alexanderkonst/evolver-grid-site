@@ -1,8 +1,8 @@
-# The Holonic Franchise Model
+# Monetization Strategies — The Holonic Franchise
 
 > *© 2026 Alexander Konstantinov · [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)*
 
-> *v2.0 · April 25, 2026 (Day 51 night) — Single canonical doc for both the architectural pattern AND the dynamic, sequenced business-monetization strategy that operates within it. Supersedes v1.0 of this file + the short-lived `monetization_strategy.md` (merged in here so there's one source of truth).*
+> *v2.1 · April 25, 2026 (Day 51 night) — File renamed to `monetization_strategies.md` (Sasha's call: this is what the file functionally tracks; the *Holonic Franchise* model name stays as the brand-bearing pattern at the heart of the strategy). Single canonical doc for both the architectural pattern AND the dynamic, sequenced business-monetization strategies that operate within it. Supersedes v2.0 (the prior `holonic_franchise_model.md` rename) + v1.0 of that file + the short-lived earlier `monetization_strategy.md` (singular) — all consolidated here so there's one source of truth.*
 >
 > **Status:** living document. Always work from the latest version. Each addition is additive (changelog at end of file); nothing is deleted, but the *current shape* is whatever the latest version describes.
 >

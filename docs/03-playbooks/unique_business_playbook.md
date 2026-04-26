@@ -727,7 +727,7 @@ The Specificity Loop conversion mechanism + per-founder voice generation made it
 
 1. **Conscious Entrepreneur play (User)** — individual founder using the platform for themselves
 2. **Purpose Coach play** — existing facilitators using the platform's tools with their existing clients
-3. **Platform Distribution play** — sovereign distributors fork the entire platform under their own brand (the [Holonic Franchise](../02-strategy/holonic_franchise_model.md) foundation)
+3. **Platform Distribution play** — sovereign distributors fork the entire platform under their own brand (the [Holonic Franchise](../02-strategy/monetization_strategies.md) foundation)
 4. **Venture Studio play** — equity / persistent rev-share in ventures born inside the platform
 5. **Community White-Label play** — communities deploy the apparatus under their brand for their members
 6. **Unique Business System License play** — pure IP licensing of the methodology to training schools / accelerators / certified coaches
@@ -736,7 +736,7 @@ The Specificity Loop conversion mechanism + per-founder voice generation made it
 
 The Specificity Loop is the conversion engine that makes plays #1, #2, #3 work simultaneously without dilution — each operates under its own commercial relationship to the master holon, but all three speak in matrix v2 frequency at every reveal.
 
-> **Canonical reference for the full strategy:** [`docs/02-strategy/monetization_strategy.md`](../02-strategy/monetization_strategy.md). That doc is the always-updated source of truth — Heart/Mind/Gut for each play, tensions/combinations matrix, four-phase sequenced rollout with explicit exit criteria, implementation status, and 16 open decisions tracked. When you need the current commercial layer state, work from there, not from this summary.
+> **Canonical reference for the full strategy:** [`docs/02-strategy/monetization_strategies.md`](../02-strategy/monetization_strategies.md). That doc is the always-updated source of truth — the architecture + Heart/Mind/Gut for each play + tensions/combinations matrix + four-phase sequenced rollout with explicit exit criteria + per-play implementation status + 16 open decisions tracked + how the plays grow holonically. When you need the current commercial layer state, work from there, not from this summary.
 
 ### The Anti-Pattern
 
@@ -773,7 +773,7 @@ The Specificity Loop lives at two layers simultaneously, on purpose:
 
 When facilitating live (not via product), the same frequency holds. After every reflection the client gives, do not validate ("yes, exactly!") and do not instruct ("now look at X"). Ask the recognition question: *"What if this IS what you've been telling me all along?"* The recognition collapses the gap between insight and ownership.
 
-> *Relates to: Principle 4 (Mirror, Not Teacher), Principle 5 (Precision Gap IS Product), Principle 11 (Resonance Metric), Principle 13 (Highest-Rated Version Rule). Phase Shift Library entry: Domain 81 — The Specificity Loop. The macro-bridge ("What if your shining this top talent bright IS your business?") is the canonical example of the protocol applied at scale (page level, not micro-rating level). The per-founder matrix architecture is the technical foundation of the [Holonic Franchise model](../02-strategy/holonic_franchise_model.md) — operational identity sovereignty for distributors.*
+> *Relates to: Principle 4 (Mirror, Not Teacher), Principle 5 (Precision Gap IS Product), Principle 11 (Resonance Metric), Principle 13 (Highest-Rated Version Rule). Phase Shift Library entry: Domain 81 — The Specificity Loop. The macro-bridge ("What if your shining this top talent bright IS your business?") is the canonical example of the protocol applied at scale (page level, not micro-rating level). The per-founder matrix architecture is the technical foundation of the [Holonic Franchise model](../02-strategy/monetization_strategies.md) — operational identity sovereignty for distributors.*
 
 ---
 

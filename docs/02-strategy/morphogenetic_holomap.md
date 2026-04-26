@@ -2533,7 +2533,7 @@ License journey of the day: CC BY 4.0 (legacy) → AGPL-3.0 (briefly) → **Poly
 
 **`README.md` rewritten** with three-license badges (PolyForm NC + CC BY-NC-SA + 10% rev-share Distributor Agreement), three-license model table, *Self-Hosting* section (8-step deployment guide), *What it becomes when you fork* table (Personal Holon / Community Holon / Network of Holons). **`CONTRIBUTING.md` written** with low-maintenance expectations + voice & style notes.
 
-**`docs/02-strategy/holonic_franchise_model.md` v1.0 (NEW)** — the dedicated strategy doc. Captures 5 ingredients (PolyForm NC code + CC BY-NC-SA docs + Distributor Agreement + per-founder Specificity Matrix + opt-in commons), comparison table to other models (Skool, Sentry-class OSS, classic franchise, worker cooperative, fediverse, Patreon-class — none combine all six properties), why this resolves alignment without tokens, what each distributor gets, what the commons becomes over time, implementation status, strategic sequencing, six open tuning questions for v1.1.
+**`docs/02-strategy/monetization_strategies.md` v1.0 (NEW)** — the dedicated strategy doc. Captures 5 ingredients (PolyForm NC code + CC BY-NC-SA docs + Distributor Agreement + per-founder Specificity Matrix + opt-in commons), comparison table to other models (Skool, Sentry-class OSS, classic franchise, worker cooperative, fediverse, Patreon-class — none combine all six properties), why this resolves alignment without tokens, what each distributor gets, what the commons becomes over time, implementation status, strategic sequencing, six open tuning questions for v1.1.
 
 **Repo link surfaced in three platform locations** (Settings, /playbook footer, /codex copyright line). Quiet, non-funnel-critical placements; verified live in DOM.
 
@@ -2622,10 +2622,10 @@ Same shape, deeper apparatus to receive the eventual send. Sasha's stated next m
 
 - `session_log.md` — Day 50 + Day 51 entries appended (this cycle)
 - `roadmap.md` — v5.2 stamp + Day 51 update at top + Specificity Loop / Holonic Franchise items appended to Completed
-- `unique_business_playbook.md` v4.5 — Principle 15 (Specificity Loop) added with dual-treatment (framework + artifact) explanation; cross-references to `holonic_franchise_model.md` and Domain 81
+- `unique_business_playbook.md` v4.5 — Principle 15 (Specificity Loop) added with dual-treatment (framework + artifact) explanation; cross-references to `monetization_strategies.md` and Domain 81
 - `phase_shift_technology_library.md` — Domain 81 added (a-j sub-sections in Domain 80's voice)
 - `alexanders_unique_business.md` — Day 51 (morning) + Day 51 evening + Day 51 night entries; v9.6 → v9.8
-- `holonic_franchise_model.md` v1.0 — NEW dedicated strategy doc
+- `monetization_strategies.md` v1.0 — NEW dedicated strategy doc
 
 > *Day 51 reading: **Codification.** April 25, 2026 (Saturday). The architecture beneath the surface gets named, shipped, legally scaffolded, and made forkable — in one day. The Specificity Loop is now both a named principle (Playbook P15 + Phase Shift Library Domain 81) and an operational artifact (per-founder Specificity Matrix as UBB #19, runtime hook with three-tier resolution). The Holonic Franchise model has its license stack (PolyForm Noncommercial 1.0.0 + Distributor Agreement v0.1 + CC BY-NC-SA on docs + MIT on Anthropic-derived skills) and its strategy doc. The funnel speaks in matrix v2 across all six reveals. The repo is publicly fork-ready. Six business-model plays mapped strategically with sequencing. UI harmony pass shipped on /playbook + /path + /codex + /ai-os + /dashboard + /zone-of-genius. The first $555 stranger remains the unfired Si–Do. Press-send Friday is no longer about preparing the apparatus — it's about pressing send. The apparatus is operationally complete for the discoveries it's now capable of receiving. Next reading fires upon first stranger pays, or upon Sasha's send + response data, whichever comes first.*
 
