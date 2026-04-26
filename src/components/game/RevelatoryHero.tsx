@@ -1,5 +1,6 @@
-import { ReactNode } from "react";
+import { ReactNode, useRef } from "react";
 import { Sparkles, Sword } from "lucide-react";
+import CardActions from "@/components/sharing/CardActions";
 
 interface ThreeLensesData {
     actions?: string[];
@@ -19,6 +20,29 @@ interface RevelatoryHeroProps {
     subtitle?: string;
     subtitlePlain?: string;
 }
+
+/**
+ * Build the share text used by the in-card Save · Share affordance.
+ * Mirrors the structure of ShareZoG's buildShareText so external
+ * shares from either surface read the same.
+ */
+const buildShareTextFor = (
+    title: string,
+    actionStatement: string | undefined,
+    threeLenses: ThreeLensesData | undefined,
+): string => {
+    let text = `This is how I naturally create value:\n\n`;
+    text += `${title}\n`;
+    if (actionStatement) text += `"${actionStatement}"\n\n`;
+    if (threeLenses?.actions?.length) {
+        text += `${threeLenses.actions.join(" · ")}\n`;
+    }
+    if (threeLenses?.primeDriver) {
+        text += `What drives it: ${threeLenses.primeDriver}\n\n`;
+    }
+    text += `Curious what you see.\n\n→ FindYourTopTalent.Com`;
+    return text;
+};
 
 /**
  * Epic revelatory hero section for ZoG results
@@ -82,8 +106,19 @@ const RevelatoryHero = ({
 
     const IconComponent = palette.icon;
 
+    // Day 51 night (Sasha): replaces the old "Screenshot this. get yours →"
+    // prompt with an in-card Save (PNG) + Share (socials) affordance.
+    // The ref captures the card's outer wrapper so html2canvas can
+    // serialize what the user sees, including the breathing-card glow
+    // and the gradient backdrop. Share text mirrors ShareZoG's structure.
+    const cardRef = useRef<HTMLDivElement>(null);
+    const shareText = buildShareTextFor(title, actionStatement, threeLenses);
+
     return (
-        <div className={`relative overflow-hidden rounded-3xl mb-4 breathing-card backdrop-blur-md ${darkMode ? 'liquid-glass ring-1 ring-white/10' : 'border border-white/40'}`}>
+        <div
+            ref={cardRef}
+            className={`relative overflow-hidden rounded-3xl mb-4 breathing-card backdrop-blur-md ${darkMode ? 'liquid-glass ring-1 ring-white/10' : 'border border-white/40'}`}
+        >
             {/* Gradient Background */}
             <div className={`absolute inset-0 bg-gradient-to-br ${palette.gradient}`} />
 
@@ -199,17 +234,20 @@ const RevelatoryHero = ({
                     </div>
                 )}
 
-                {/* Screenshot prompt + signature — Day 47 late pass (Sasha):
-                    dark variant when palette is light. */}
+                {/* Day 51 night (Sasha): in-card Save (PNG) + Share affordance.
+                    Replaces the old "Screenshot this. get yours →" prompt with
+                    one-click actions. Save downloads a PNG of this very card;
+                    Share opens a popover with WhatsApp / Telegram / LinkedIn
+                    / X / Copy Text options. Sized small + low-opacity by
+                    default so it sits inside the card without competing with
+                    the genius reveal above. */}
                 <div className="mt-4 text-center">
-                    <p className={`text-xs italic ${darkMode ? 'text-white/70' : ''}`}
-                       style={darkMode ? undefined : { color: 'rgba(26,30,58,0.7)' }}>
-                        Screenshot this.
-                    </p>
-                    <p className={`text-xs ${darkMode ? 'text-white/60' : ''}`}
-                       style={darkMode ? undefined : { color: 'rgba(26,30,58,0.6)' }}>
-                        get yours → FindYourTopTalent.Com
-                    </p>
+                    <CardActions
+                        captureRef={cardRef}
+                        fileName={`${title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "my-top-talent"}-find-your-top-talent`}
+                        shareText={shareText}
+                        darkMode={darkMode}
+                    />
                 </div>
             </div>
 

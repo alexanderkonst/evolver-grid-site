@@ -5,6 +5,16 @@ import { cn } from "@/lib/utils";
 import { PLAYBOOK_STEPS, PlaybookStep, Substep } from "@/data/playbookSteps";
 import { getBuildLinksForStep } from "@/data/playbookArtifactMap";
 import { UBB_ROOT } from "@/modules/unique-business-builder/constants";
+
+/**
+ * Feature gate for the Playbook → UBB cross-link section.
+ * Day 51 evening (Sasha 2026-04-25): UBB module isn't tested for public
+ * yet — hide the "Build these in your Builder →" block on Playbook step
+ * cards until UBB is solid. Flip back to `true` to re-enable. The data
+ * and the BuildTheseInBuilder component stay shipped; this is just the
+ * surface visibility switch.
+ */
+const SHOW_UBB_BRIDGE = false;
 // useStepCheckout was used by the per-step CTA block that was removed
 // 2026-04-21. The commercial flow now lives at /path + /game/settings.
 
@@ -631,8 +641,16 @@ const StepCard = ({ step }: StepCardProps) => {
           step to UBB artifacts. The Playbook tells you WHAT to build at
           this stage; UBB is WHERE you build it. Steps with no mapped
           artifacts (DISCOVER/PACKAGE/TEST/SCALE) skip this block entirely
-          — that's intentional, not an omission. */}
-      <BuildTheseInBuilder step={step} />
+          — that's intentional, not an omission.
+
+          Day 51 evening (Sasha 2026-04-25): GATED OFF for now. UBB
+          module isn't beta-tested for public yet — Sasha doesn't want
+          people discovering it from Playbook until it's solid. Flip
+          SHOW_UBB_BRIDGE to true when UBB is ready to launch. The
+          reverse chips on /ubb Canvas (STEP N · APPNAME → Playbook)
+          are intentionally LEFT visible — they only render for users
+          who already found UBB, so they don't expose anything. */}
+      {SHOW_UBB_BRIDGE && <BuildTheseInBuilder step={step} />}
 
       {/* ══ UP NEXT — Day 51 night (Sasha 2026-04-25): pulls the reader
           through the playbook. For step N < 7, teases step N+1. For step 7,

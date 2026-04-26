@@ -3112,7 +3112,8 @@ const AiOsPage = () => {
                       link to the repo so anyone reading codex can take
                       the whole apparatus, not just the prompts.
                       License: PolyForm NC + 10% rev-share for
-                      commercial use (Holonic Franchise model). */}
+                      commercial use. See docs/02-strategy/
+                      monetization_strategies.md for the full pattern. */}
                   <a
                     href="https://github.com/alexanderkonst/evolver-grid-site"
                     target="_blank"
