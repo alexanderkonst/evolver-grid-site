@@ -401,7 +401,7 @@ This is infrastructure for the Great Turning. An operating system for human tran
 
 ---
 
-## License — The Holonic Franchise Model
+## License — Open-Source Platform with Sovereign Distributors
 
 This project uses a **three-tier license model** that captures both the openness of the system and the value of the years of work behind it:
 
@@ -437,7 +437,7 @@ See [`DISTRIBUTOR_AGREEMENT.md`](./DISTRIBUTOR_AGREEMENT.md) for the full terms.
 
 - **MIT** would let anyone close the code and resell — extracts value, gives nothing back.
 - **AGPL-3.0** keeps the code open but allows commercial use without compensation — disrespects the years of methodology development.
-- **PolyForm NC + 10% rev-share** treats every commercial fork as a partner: they distribute under their brand, they keep most of the value they create, and a small tithe sustains the commons that all forks share. This is **the Holonic Franchise pattern** — fractal sovereignty with proportional contribution.
+- **PolyForm NC + 10% rev-share** treats every commercial fork as a partner: they distribute under their brand, they keep most of the value they create, and a small tithe sustains the commons that all forks share. The pattern: **fractal sovereignty with proportional contribution** — sometimes called *the Sovereign Network* as a soft brand handle.
 
 For dual-licensing (organizations that want a private commercial license without the rev-share structure), contact Alexander Konstantinov.
 

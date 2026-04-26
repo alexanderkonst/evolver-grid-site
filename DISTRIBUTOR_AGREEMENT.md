@@ -107,7 +107,7 @@ The Licensor reserves the right to request reasonable verification of reported f
 
 ### 5.3 Honor System
 
-The default mode of this agreement is **trust**. The audit right exists for the rare bad-faith case, not for routine policing. The Holonic Franchise model assumes Distributors are partners, not adversaries.
+The default mode of this agreement is **trust**. The audit right exists for the rare bad-faith case, not for routine policing. This commercial-decentralization model assumes Distributors are partners, not adversaries.
 
 ---
 
@@ -229,4 +229,4 @@ When in doubt, talk to the Licensor directly: [Telegram](https://t.me/integralev
 
 ---
 
-*v0.1 · April 25, 2026 (Day 51) · Drafted by [Alexander Konstantinov](https://aleksandrkonstantinov.com) with AI assistance during the Specificity Loop / Holonic Franchise emergence. Pending v1.0 finalization with legal counsel review.*
+*v0.1 · April 25, 2026 (Day 51) · Drafted by [Alexander Konstantinov](https://aleksandrkonstantinov.com) with AI assistance during the Specificity Loop / commercial-decentralization architecture emergence. Pending v1.0 finalization with legal counsel review.*

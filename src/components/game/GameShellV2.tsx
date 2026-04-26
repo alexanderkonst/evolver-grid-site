@@ -773,15 +773,19 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                         style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}
                     >
                         {/* Pane-3 wash on mobile — Day 51 night (Sasha
-                            2026-04-25): mirror of the desktop fix. When
-                            the wash was relocated inside desktop <main>,
-                            mobile got skipped — leaving the dust/particle
-                            shell video bleeding through behind hero copy
-                            on /, /playbook, /path, where the pane-3 area
-                            should read as editorial cream. Same gating as
-                            desktop: working routes get the heavy quiet
-                            wash, landing routes get the light atmospheric
-                            wash, page-owned-bg routes skip entirely. */}
+                            2026-04-25): mirror of the desktop fix, with
+                            one mobile-specific deviation. On the LANDING
+                            route, desktop uses --skin-panel-wash (10%
+                            white) so the video reads almost full-saturation
+                            behind the hero — works on desktop because the
+                            video has room to breathe at scale. On mobile,
+                            the dust particles render at the same size as
+                            the hero copy and chew up legibility. So mobile
+                            landing uses a stronger flat cream wash (~55%)
+                            that preserves a hint of the video as texture
+                            but tames the noise enough for text to read.
+                            Working routes still get the heavy cream
+                            radial; page-owned-bg routes skip entirely. */}
                     {!pageOwnsBackground && (
                       <div
                         aria-hidden="true"
@@ -789,7 +793,7 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                         style={{
                           background: isWorkingRoute
                             ? "var(--skin-panel-wash-quiet, rgba(248, 246, 240, 0.98))"
-                            : "var(--skin-panel-wash, rgba(255, 255, 255, 0.21))",
+                            : "rgba(248, 246, 240, 0.55)",
                         }}
                       />
                     )}

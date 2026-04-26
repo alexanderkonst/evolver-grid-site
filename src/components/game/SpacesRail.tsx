@@ -242,11 +242,18 @@ const SpacesRail = ({
             // rail still has its own presence — it just no longer occludes
             // the editorial background behind it.
             style={{
+                // Day 51 r2 (Sasha 2026-04-25 evening): on /ai-os we use a
+                // semi-transparent navy with a strong blur — gives the rail
+                // its own substance (logo + chips read clearly) while the
+                // editorial scene still bleeds through at the edges so the
+                // page reads as one unbroken composition. 0.62 chosen by
+                // eye: 0.32 lost the chip text against dark frames, 0.85+
+                // re-introduced the "black column" Sasha flagged.
                 backgroundColor: pageOwnsBackground
-                    ? "rgba(10, 22, 50, 0.32)"
+                    ? "rgba(8, 18, 42, 0.62)"
                     : "rgba(10, 22, 50, 0.98)",
-                backdropFilter: pageOwnsBackground ? "blur(14px) saturate(140%)" : undefined,
-                WebkitBackdropFilter: pageOwnsBackground ? "blur(14px) saturate(140%)" : undefined,
+                backdropFilter: pageOwnsBackground ? "blur(18px) saturate(140%)" : undefined,
+                WebkitBackdropFilter: pageOwnsBackground ? "blur(18px) saturate(140%)" : undefined,
                 border: "none",
                 boxShadow:
                     "3px 0 28px -10px rgba(244, 212, 114, 0.22)",
