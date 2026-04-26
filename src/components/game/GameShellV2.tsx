@@ -200,7 +200,12 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
         // /playbook, /path, /my-artifacts, /zone-of-genius — Sasha, 2026-04-21.
         // Day 48 (Sasha): /game/settings joins the family so Pane 2 stays
         // visible on Settings with the same Journey section list.
-        const journeyPaths = ["/", "/playbook", "/path", "/my-artifacts", "/zone-of-genius", "/game/settings", "/dashboard", "/ai-os"];
+        // Day 51 night (Sasha 2026-04-25): /ignite added to the journey
+        // family. /ignite is part of the funnel arc (the booking/payment
+        // surface for Steps 2+3) — keeping pane 2 visible there with the
+        // journey items so the user never loses spatial orientation in
+        // the 7-step methodology.
+        const journeyPaths = ["/", "/playbook", "/path", "/my-artifacts", "/zone-of-genius", "/game/settings", "/dashboard", "/ai-os", "/ignite"];
         const isJourneyFamily = journeyPaths.some(
             (p) => location.pathname === p || location.pathname.startsWith(p + "/"),
         );

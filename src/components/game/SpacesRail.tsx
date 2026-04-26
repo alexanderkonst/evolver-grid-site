@@ -219,7 +219,7 @@ const SpacesRail = ({
     return (
         <div
             className={cn(
-                "w-[72px] lg:w-[280px] flex flex-col relative",
+                "w-[72px] lg:w-[280px] flex flex-col relative z-30",
                 "liquid-glass",
                 className
             )}
@@ -234,26 +234,22 @@ const SpacesRail = ({
             // border: none — removes liquid-glass's 0.5px white border that
             // was painting a visible line across the top of the viewport.
             //
-            // Day 51 r2 (Sasha 2026-04-25, evening): on page-owned-background
-            // routes (/ai-os) we drop the rail to a deep navy GLASS tint so
-            // the page's HLS scene reads continuously across the viewport.
-            // Sasha called the previous solid rail a "black column" that
-            // broke the visual flow. The gold spine + outer halo stay so the
-            // rail still has its own presence — it just no longer occludes
-            // the editorial background behind it.
+            // Day 51 r3 (Sasha 2026-04-25 night): rail must STAY VISIBLE on
+            // /ai-os. The previous 0.62 + 18px blur dropped the rail
+            // ENTIRELY behind the page's z-[1] gradient overlay — Sasha
+            // saw both panels "disappear." Two corrections: (a) z-30 on the
+            // rail so it always sits above page-owned background overlays
+            // (which are z-[1] inside <main>); (b) opacity bumped to 0.86
+            // — still glass-morphic enough that the editorial scene
+            // breathes through subtly, but solid enough that the brand
+            // logo, JOURNEY chip, and labels read clearly against the
+            // busy dark scene.
             style={{
-                // Day 51 r2 (Sasha 2026-04-25 evening): on /ai-os we use a
-                // semi-transparent navy with a strong blur — gives the rail
-                // its own substance (logo + chips read clearly) while the
-                // editorial scene still bleeds through at the edges so the
-                // page reads as one unbroken composition. 0.62 chosen by
-                // eye: 0.32 lost the chip text against dark frames, 0.85+
-                // re-introduced the "black column" Sasha flagged.
                 backgroundColor: pageOwnsBackground
-                    ? "rgba(8, 18, 42, 0.62)"
+                    ? "rgba(10, 22, 48, 0.86)"
                     : "rgba(10, 22, 50, 0.98)",
-                backdropFilter: pageOwnsBackground ? "blur(18px) saturate(140%)" : undefined,
-                WebkitBackdropFilter: pageOwnsBackground ? "blur(18px) saturate(140%)" : undefined,
+                backdropFilter: pageOwnsBackground ? "blur(20px) saturate(140%)" : undefined,
+                WebkitBackdropFilter: pageOwnsBackground ? "blur(20px) saturate(140%)" : undefined,
                 border: "none",
                 boxShadow:
                     "3px 0 28px -10px rgba(244, 212, 114, 0.22)",

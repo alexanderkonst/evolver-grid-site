@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Copy, Check, Users, ArrowRight, User, Rocket, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { PremiumButton } from "@/components/ui/PremiumButton";
-import ShareZoG from "@/components/sharing/ShareZoG";
 import ResonanceRating from "@/components/ui/ResonanceRating";
 import { ExcaliburData } from "./excaliburGenerator";
 
