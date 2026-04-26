@@ -774,9 +774,17 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                         </span>
                     </header>
 
-                    {/* Content with safe area bottom */}
+                    {/* Content with safe area bottom + top breathing room.
+                        Day 51 night (Sasha 2026-04-25): added pt-4 so a
+                        page's first line doesn't butt up against the
+                        sticky JOURNEY header (was clipping the H1 on
+                        /zone-of-genius gateway). Matches desktop main's
+                        pt-4 convention for non-page-owned-bg routes. */}
                     <main
-                        className="flex-1 overflow-auto relative"
+                        className={cn(
+                            "flex-1 overflow-auto relative",
+                            pageOwnsBackground ? "" : "pt-4"
+                        )}
                         style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}
                     >
                         {/* Pane-3 wash on mobile — Day 51 night (Sasha
