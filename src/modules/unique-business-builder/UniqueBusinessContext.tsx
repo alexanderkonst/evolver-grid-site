@@ -292,8 +292,9 @@ export function UniqueBusinessProvider({ children }: { children: ReactNode }) {
           return;
         }
 
-        // Insert v1 row
-        const { error: insertError } = await (supabase as any)
+        // Insert v1 row — return inserted row so we can update local state
+        // optimistically (don't rely on realtime channel).
+        const { data: inserted, error: insertError } = await (supabase as any)
           .from("user_business_artifacts")
           .insert({
             user_id: userId,
@@ -303,14 +304,21 @@ export function UniqueBusinessProvider({ children }: { children: ReactNode }) {
             specificity_score: result.initial_specificity,
             step_number: 1,
             is_locked: false,
-          });
+          })
+          .select("*")
+          .single();
 
         if (insertError) {
           // 23505 = Postgres unique_violation. Row already exists for
           // (user_id, artifact_key, version) — local state was out-of-sync
           // with DB (previous session, realtime missed an event, or
           // double-click race). Reload to sync, then nudge toward Improve.
-          if (insertError.code === '23505') {
+          // Day 51 (Sasha 2026-04-25): Supabase JS may return error.code
+          // OR error.message containing the SQL state — check both.
+          const isUnique =
+            insertError.code === '23505' ||
+            /23505|duplicate key/i.test(insertError.message || '');
+          if (isUnique) {
             const { data: rows } = await (supabase as any)
               .from("user_business_artifacts")
               .select("*")
@@ -321,6 +329,28 @@ export function UniqueBusinessProvider({ children }: { children: ReactNode }) {
             return;
           }
           throw insertError;
+        }
+
+        // Optimistic local state update — don't rely on realtime channel.
+        // Day 51 (Sasha 2026-04-25): without this, generate succeeded in DB
+        // but UI stayed on "Nothing here yet" until manual reload. Now state
+        // syncs immediately after insert.
+        if (inserted) {
+          setArtifacts((prev) => {
+            const next = { ...prev };
+            const newRow = rowToVersion(inserted as DbRow);
+            const existing = next[key];
+            const bucket = existing?.latest ? [newRow, existing.latest] : [newRow];
+            next[key] = {
+              key,
+              latest: newRow,
+              latestLocked: existing?.latestLocked ?? null,
+              versionCount: bucket.length,
+              isStale: false,
+              staleReason: undefined,
+            };
+            return next;
+          });
         }
         toast.success(`${key}: first draft ready.`);
       } catch (e: any) {
@@ -402,6 +432,25 @@ export function UniqueBusinessProvider({ children }: { children: ReactNode }) {
         .select("*")
         .single();
       if (insertError) throw insertError;
+
+      // Optimistic local state update — Day 51 (Sasha 2026-04-25): same
+      // pattern as generateArtifact. Don't rely on realtime to flip state.
+      if (inserted) {
+        setArtifacts((prev) => {
+          const next = { ...prev };
+          const newRow = rowToVersion(inserted as DbRow);
+          const existing = next[artifact_key];
+          next[artifact_key] = {
+            key: artifact_key,
+            latest: newRow,
+            latestLocked: existing?.latestLocked ?? null,
+            versionCount: (existing?.versionCount ?? 0) + 1,
+            isStale: false,
+            staleReason: undefined,
+          };
+          return next;
+        });
+      }
 
       // Log the improvement event
       await (supabase as any).from("artifact_improvements").insert({

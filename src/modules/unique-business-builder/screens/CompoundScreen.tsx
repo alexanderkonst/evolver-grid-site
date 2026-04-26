@@ -111,6 +111,7 @@ function SubArtifactCard({ artifactKey }: { artifactKey: ArtifactKey }) {
               size="sm"
               onClick={() => generateArtifact(artifactKey)}
               disabled={thisIsGenerating}
+              className="bg-[#0b2641] text-white hover:bg-[#16385c] disabled:bg-[#0b2641]/40 disabled:text-white/60"
             >
               {thisIsGenerating ? (
                 <>
@@ -137,6 +138,49 @@ function SubArtifactCard({ artifactKey }: { artifactKey: ArtifactKey }) {
   );
 }
 
+// Day 51 (Sasha 2026-04-25): recursive renderer — was rendering nested
+// objects/arrays as raw JSON via JSON.stringify, which made compound
+// artifacts (session/marketing/distribution/communications) unreadable.
+function renderCompactValue(v: unknown): React.ReactNode {
+  if (v === null || v === undefined) return <span className="text-muted-foreground">(empty)</span>;
+  if (typeof v === "string") return <span className="whitespace-pre-wrap">{v}</span>;
+  if (typeof v === "number" || typeof v === "boolean") return <span>{String(v)}</span>;
+  if (Array.isArray(v)) {
+    const allStrings = v.every((x) => typeof x === "string");
+    if (allStrings) {
+      return (
+        <ul className="list-disc space-y-0.5 pl-5">
+          {v.map((s, i) => <li key={i}>{s as string}</li>)}
+        </ul>
+      );
+    }
+    return (
+      <div className="space-y-1.5">
+        {v.map((x, i) => (
+          <div key={i} className="rounded border border-border/40 p-1.5">
+            {renderCompactValue(x)}
+          </div>
+        ))}
+      </div>
+    );
+  }
+  if (typeof v === "object") {
+    return (
+      <div className="space-y-1">
+        {Object.entries(v as Record<string, unknown>).map(([k, val]) => (
+          <div key={k}>
+            <span className="text-[10px] font-medium uppercase tracking-wider text-muted-foreground">
+              {k.replace(/[_-]+/g, " ")}:
+            </span>{" "}
+            <span className="text-xs">{renderCompactValue(val)}</span>
+          </div>
+        ))}
+      </div>
+    );
+  }
+  return <span>{String(v)}</span>;
+}
+
 function CompactContent({ content }: { content: unknown }) {
   if (content === null || content === undefined) return <span className="text-sm text-muted-foreground">(empty)</span>;
   if (typeof content === "string") return <div className="whitespace-pre-wrap text-sm">{content}</div>;
@@ -145,8 +189,8 @@ function CompactContent({ content }: { content: unknown }) {
       <div className="space-y-2">
         {Object.entries(content as Record<string, unknown>).map(([k, v]) => (
           <div key={k} className="text-sm">
-            <span className="text-xs font-medium uppercase tracking-wider text-muted-foreground">{k.replace(/_/g, " ")}: </span>
-            {typeof v === "string" ? v : <code className="text-xs">{JSON.stringify(v)}</code>}
+            <span className="text-xs font-medium uppercase tracking-wider text-muted-foreground">{k.replace(/[_-]+/g, " ")}: </span>
+            <span className="text-sm">{renderCompactValue(v)}</span>
           </div>
         ))}
       </div>

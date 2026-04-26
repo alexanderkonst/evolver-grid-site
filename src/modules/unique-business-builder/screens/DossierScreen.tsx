@@ -174,8 +174,14 @@ function CompactDossierContent({ content }: { content: unknown }) {
       <div className="space-y-1 text-sm">
         {entries.slice(0, 4).map(([k, v]) => (
           <div key={k}>
-            <span className="text-xs text-muted-foreground">{k.replace(/_/g, " ")}: </span>
-            {typeof v === "string" ? v : <code className="text-xs">{JSON.stringify(v).slice(0, 120)}</code>}
+            {/* Day 51 (Sasha 2026-04-25): handle hyphen+underscore separators
+                + render arrays/objects compactly instead of raw JSON. */}
+            <span className="text-xs text-muted-foreground">{k.replace(/[_-]+/g, " ")}: </span>
+            {typeof v === "string"
+              ? v
+              : Array.isArray(v) && v.every((x) => typeof x === "string")
+                ? <span className="text-xs">{v.join(" · ")}</span>
+                : <code className="text-xs">{JSON.stringify(v).slice(0, 120)}</code>}
           </div>
         ))}
         {entries.length > 4 && (
