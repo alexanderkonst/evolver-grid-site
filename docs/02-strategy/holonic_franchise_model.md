@@ -4,7 +4,7 @@
 
 > *v1.0 · April 25, 2026 (Day 51) — Discovered live during the Specificity Loop / distributor architecture session. Codifies the operating model that emerged when matrix v2, license decisions, and distributor terms collapsed into a single coherent commercial-decentralization pattern.*
 >
-> *Related: [Unique Business Playbook v4.5 — Principle 15](../03-playbooks/unique_business_playbook.md), [Phase Shift Library Domain 81](../01-vision/phase_shift_technology_library.md), [Integration Layer Manifesto](../06-architecture/integration_layer_manifesto.md), [Planetary OS Assembly](./planetary_os_assembly.md), [Distributor Agreement](../../DISTRIBUTOR_AGREEMENT.md)*
+> *Related: [**Monetization Strategy**](./monetization_strategy.md) — the canonical doc tracking the six business-model plays + sequenced rollout (the commercial-layer strategy this architecture supports) · [Unique Business Playbook — Principle 15](../03-playbooks/unique_business_playbook.md), [Phase Shift Library Domain 81](../01-vision/phase_shift_technology_library.md), [Integration Layer Manifesto](../06-architecture/integration_layer_manifesto.md), [Planetary OS Assembly](./planetary_os_assembly.md), [Distributor Agreement](../../DISTRIBUTOR_AGREEMENT.md)*
 
 ---
 
