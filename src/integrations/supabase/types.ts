@@ -1952,6 +1952,7 @@ export type Database = {
           id: string
           mastery_action: string | null
           profile_id: string | null
+          share_slug: string | null
           top_ten_talents: Json
           top_three_talents: Json
           xp_awarded: boolean
@@ -1968,6 +1969,7 @@ export type Database = {
           id?: string
           mastery_action?: string | null
           profile_id?: string | null
+          share_slug?: string | null
           top_ten_talents: Json
           top_three_talents: Json
           xp_awarded?: boolean
@@ -1984,6 +1986,7 @@ export type Database = {
           id?: string
           mastery_action?: string | null
           profile_id?: string | null
+          share_slug?: string | null
           top_ten_talents?: Json
           top_three_talents?: Json
           xp_awarded?: boolean
@@ -2069,6 +2072,18 @@ export type Database = {
       enqueue_email: {
         Args: { payload: Json; queue_name: string }
         Returns: number
+      }
+      get_public_zog_snapshot: {
+        Args: { p_slug: string }
+        Returns: {
+          appleseed_data: Json
+          appleseed_generated_at: string
+          archetype_title: string
+          core_pattern: string
+          created_at: string
+          mastery_action: string
+          share_slug: string
+        }[]
       }
       has_role: {
         Args: {
