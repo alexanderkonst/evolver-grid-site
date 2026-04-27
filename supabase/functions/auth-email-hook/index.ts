@@ -1,8 +1,141 @@
 import * as React from 'npm:react@18.3.1'
 import { renderAsync } from 'npm:@react-email/components@0.0.22'
-import { parseEmailWebhookPayload } from 'npm:@lovable.dev/email-js'
-import { WebhookError, verifyWebhookRequest } from 'npm:@lovable.dev/webhooks-js'
 import { createClient } from 'npm:@supabase/supabase-js@2'
+
+// ---------------------------------------------------------------------------
+// Inlined webhook verification (was previously imported from
+// npm:@lovable.dev/webhooks-js + npm:@lovable.dev/email-js).
+//
+// Those packages live in a private Lovable npm registry and do not resolve
+// reliably during edge-function deploys, even with `nodeModulesDir: "auto"`.
+// The logic is small and self-contained, so we vendor it here. Behavior is
+// byte-for-byte equivalent to the upstream 0.0.1 / 0.0.4 packages for the
+// fields this hook actually uses.
+// ---------------------------------------------------------------------------
+
+type WebhookErrorCode =
+  | 'missing_secret'
+  | 'missing_timestamp'
+  | 'invalid_timestamp'
+  | 'stale_timestamp'
+  | 'invalid_signature'
+  | 'body_too_large'
+  | 'invalid_json'
+  | 'invalid_payload'
+
+class WebhookError extends Error {
+  readonly code: WebhookErrorCode
+  constructor(code: WebhookErrorCode, message: string) {
+    super(message)
+    this.code = code
+  }
+}
+
+interface EmailWebhookPayload {
+  version: string
+  type: string
+  run_id?: string
+  data?: Record<string, unknown> & {
+    api_base_url?: string
+    callback_url?: string
+    email?: string
+    action_type?: string
+    url?: string
+    token?: string
+    new_email?: string
+  }
+}
+
+const SIGNATURE_HEADER = 'x-lovable-signature'
+const TIMESTAMP_HEADER = 'x-lovable-timestamp'
+const TOLERANCE_MS = 5 * 60 * 1000
+const MAX_BODY_BYTES = 1 << 20 // 1 MB
+
+async function computeSignature(signedPayload: string, secret: string): Promise<string> {
+  const encoder = new TextEncoder()
+  const key = await crypto.subtle.importKey(
+    'raw',
+    encoder.encode(secret),
+    { name: 'HMAC', hash: 'SHA-256' },
+    false,
+    ['sign'],
+  )
+  const sig = await crypto.subtle.sign('HMAC', key, encoder.encode(signedPayload))
+  return (
+    'sha256=' +
+    Array.from(new Uint8Array(sig))
+      .map((b) => b.toString(16).padStart(2, '0'))
+      .join('')
+  )
+}
+
+function constantTimeEqual(a: string, b: string): boolean {
+  if (a.length !== b.length) return false
+  let result = 0
+  for (let i = 0; i < a.length; i++) {
+    result |= a.charCodeAt(i) ^ b.charCodeAt(i)
+  }
+  return result === 0
+}
+
+function parseTimestamp(timestamp: string): number {
+  const numeric = Number(timestamp)
+  if (Number.isFinite(numeric)) {
+    if (Math.abs(numeric) < 1e12) return numeric * 1000
+    return numeric
+  }
+  const parsed = Date.parse(timestamp)
+  if (!Number.isNaN(parsed)) return parsed
+  throw new WebhookError('invalid_timestamp', 'Invalid webhook timestamp')
+}
+
+async function verifyWebhookRequest<TPayload = unknown>(opts: {
+  req: Request
+  secret: string
+  parser?: (body: string) => TPayload
+}): Promise<{ body: string; payload: TPayload; timestamp: string }> {
+  const { req, secret, parser } = opts
+  const signature = req.headers.get(SIGNATURE_HEADER)
+  const timestamp = req.headers.get(TIMESTAMP_HEADER)
+  if (!timestamp) {
+    throw new WebhookError('missing_timestamp', 'Missing webhook timestamp')
+  }
+  const timestampMs = parseTimestamp(timestamp)
+  if (Math.abs(Date.now() - timestampMs) > TOLERANCE_MS) {
+    throw new WebhookError('stale_timestamp', 'Webhook timestamp outside tolerance window')
+  }
+  const body = await req.text()
+  if (new TextEncoder().encode(body).length > MAX_BODY_BYTES) {
+    throw new WebhookError('body_too_large', 'Webhook body exceeds size limit')
+  }
+  if (!secret) {
+    throw new WebhookError('missing_secret', 'Missing webhook secret')
+  }
+  const expected = await computeSignature(`${timestamp}.${body}`, secret)
+  if (!signature || !constantTimeEqual(signature, expected)) {
+    throw new WebhookError('invalid_signature', 'Invalid webhook signature')
+  }
+  let payload: TPayload
+  try {
+    payload = parser ? parser(body) : (JSON.parse(body) as TPayload)
+  } catch {
+    if (parser) throw new WebhookError('invalid_payload', 'Failed to parse webhook payload')
+    throw new WebhookError('invalid_json', 'Invalid JSON in request body')
+  }
+  return { body, payload, timestamp }
+}
+
+function parseEmailWebhookPayload(body: string): EmailWebhookPayload {
+  const parsed = JSON.parse(body)
+  if (!parsed || typeof parsed !== 'object') {
+    throw new Error('Invalid email webhook payload: missing version or type')
+  }
+  const p = parsed as EmailWebhookPayload
+  if (typeof p.version !== 'string' || typeof p.type !== 'string') {
+    throw new Error('Invalid email webhook payload: missing version or type')
+  }
+  return p
+}
 import { SignupEmail } from '../_shared/email-templates/signup.tsx'
 import { InviteEmail } from '../_shared/email-templates/invite.tsx'
 import { MagicLinkEmail } from '../_shared/email-templates/magic-link.tsx'

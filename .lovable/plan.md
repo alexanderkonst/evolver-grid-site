@@ -1,39 +1,36 @@
+Проблема уже достаточно ясна: `auth-email-hook` падает на импорте `npm:@lovable.dev/webhooks-js`. `nodeModulesDir: "auto"` и локальный `deno install` не лечат это надежно, потому что деплой/рантайм Deno не стабильно резолвит этот приватный npm-пакет. При этом код пакета простой: HMAC SHA-256 проверка `x-lovable-signature` + timestamp + JSON parsing.
 
+## План исправления
 
-## Fix Game Shell Panel Contrast
+1. **Убрать хрупкую зависимость из `auth-email-hook`**
+   - Удалить импорт:
+     - `parseEmailWebhookPayload` из `@lovable.dev/email-js`
+     - `WebhookError`, `verifyWebhookRequest` из `@lovable.dev/webhooks-js`
+   - Оставить `@lovable.dev/email-js` только там, где он реально нужен для отправки писем (`process-email-queue`).
 
-### Problem
-- Panel 2 (SectionsPanel) at `bg-black/25` looks nearly identical to Panel 1 (`bg-black/50`) — not enough visual separation
-- Panel 3 (Content) at `bg-white/5 backdrop-blur-xl` is too dark for the 126+ content files that use dark text colors (`text-[#2c3150]`, `text-[rgba(44,49,80,0.7)]`) and light card backgrounds (`bg-white/85`)
+2. **Встроить минимальную webhook-проверку прямо в `auth-email-hook/index.ts`**
+   - Реализовать локально:
+     - `WebhookError` с теми же кодами ошибок
+     - `computeSignature()` через Web Crypto HMAC SHA-256
+     - constant-time сравнение сигнатур
+     - timestamp parsing + 5-minute tolerance
+     - body size limit 1 MB
+     - JSON parsing/validation payload (`version`, `type`, `run_id`, `data.action_type`, `data.email`)
+   - Поведение webhook останется тем же, но без внешнего приватного пакета.
 
-### Strategy
-Rather than rewriting 126 files to use white text, we make Panel 3 light enough that existing dark text is readable. This creates a natural left-to-right brightness gradient: **dark → medium → light**.
+3. **Почистить Deno-конфигурацию функции**
+   - Оставить `deno.json` минимальным с `nodeModulesDir: "auto"` для React Email и Supabase client.
+   - Удалить/обновить lockfile функции, если он продолжит тащить `@lovable.dev/webhooks-js` и ломать deploy.
 
-### Changes
+4. **Проверить сборку и деплой**
+   - Запустить Deno test/deploy validation для `auth-email-hook`.
+   - Задеплоить `auth-email-hook`.
+   - Вызвать preview endpoint или function smoke test, чтобы убедиться, что функция грузится и больше не падает на import resolution.
 
-**1. SectionsPanel.tsx — Panel 2 lighter**
-- Change `bg-black/25` → `bg-black/10` (currently too close to Panel 1's `bg-black/50`)
-- This creates a clear visual step between the two dark panels
+5. **Если всплывет следующий пакет**
+   - Если после этого упадет `process-email-queue` на `@lovable.dev/email-js`, применить тот же принцип: заменить `sendLovableEmail` локальной минимальной функцией на `fetch("https://api.lovable.dev/v1/messaging/email/send")`, поскольку пакет тоже небольшой.
+   - Но сначала фиксируем именно текущий blocking import в `auth-email-hook`.
 
-**2. GameShellV2.tsx — Panel 3 significantly lighter**
-- Desktop: change `bg-white/5 backdrop-blur-xl` → `bg-white/70 backdrop-blur-xl`
-- Mobile content view: apply same `bg-white/70 backdrop-blur-xl` treatment
-- This makes the content area a frosted-light surface where dark text is fully readable, while the gradient still subtly shows through
+## Почему это правильнее, чем снова `deno install`
 
-**3. GameShellV2.tsx — Mobile header bar**
-- Mobile content header uses `liquid-glass-strong` — change to `bg-white/80 backdrop-blur-xl` so the back button and title have proper contrast against the now-lighter content area
-- Update mobile header text from `text-white` → `text-[#2c3150]` to match the lighter background
-
-### Result
-```text
-Panel 1          Panel 2          Panel 3
-bg-black/50      bg-black/10      bg-white/70
-(darkest)        (medium dark)    (light frosted)
-```
-
-All 126 content files with dark text colors work as-is. The gradient.jpg still bleeds through Panel 3 at ~30% opacity, maintaining the glass feel without sacrificing readability.
-
-### Files to edit
-1. `src/components/game/SectionsPanel.tsx` — line 258: `bg-black/25` → `bg-black/10`
-2. `src/components/game/GameShellV2.tsx` — line 344: Panel 3 desktop bg; lines 403-416: mobile content header
-
+Мы уже видим, что пакет присутствует локально, но ошибка приходит от Deno resolution в среде выполнения/деплоя. Значит проблема не в бизнес-логике email hook, а в приватном npm resolution. Самый надежный фикс — убрать этот runtime dependency из критического auth hook и оставить всю проверку webhook внутри функции.
