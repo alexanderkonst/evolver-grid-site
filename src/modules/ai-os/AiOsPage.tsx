@@ -4,6 +4,7 @@ import { Card } from "@/components/ui/card";
 import { toast } from "@/hooks/use-toast";
 import { Copy, Check, Send, Loader2, Youtube, User, Lock, ExternalLink, ArrowRight, Zap, Heart, BarChart3 } from "lucide-react";
 import StarryBackground from "./components/StarryBackground";
+import AiOsSpotlight from "./components/AiOsSpotlight";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -2777,11 +2778,35 @@ const AiOsPage = () => {
             );
           })()}
 
-          {/* Navigation — suite picker (a real choice, not a nav pill).
-              Day 50 (Sasha): upgraded from a thin "Suites" pill row to a
-              full decision card — the user is meant to pick the class of
-              tasks they want to power up before scrolling on. Headline,
-              elevated glass shell, large category chips with glow. */}
+          {/* SPOTLIGHT — Day 53 (Sasha 2026-04-27): the AI OS install prompt
+              is THE thing on this page. It used to live as one card among
+              many in the prompt grid, where it was easy to miss and easier
+              still to install-and-then-normalize the upgrade without
+              actually noticing it. The spotlight section solves both:
+              (a) gold-accented hero placement makes it unmissable,
+              (b) the embedded self-experiment protocol (ask the test
+                  prompt before AND after install — feel the difference)
+                  prevents the "I installed it, didn't notice anything"
+                  dynamic that hurts everyone,
+              (c) the reveal-on-copy 1-10 rating writes to resonance_events
+                  so we get empirical data instead of vibes.
+              Lookup the meta-cognition-premium content at render time so
+              we don't fork the source of truth for the install prompt. */}
+          <RevealSection delay={100}>
+            <AiOsSpotlight
+              installPromptContent={
+                META_PROMPTS.find((p) => p.id === "meta-cognition-premium")?.content || ""
+              }
+            />
+          </RevealSection>
+
+          {/* Additional power-ups — Day 53 (Sasha 2026-04-27) reframe:
+              this section was previously the page's primary "Step 1 ·
+              Choose / Pick your class of tasks" decision card. With the
+              spotlight above, this is now secondary — high-quality
+              category prompts for everyday craft, supporting the main
+              install rather than competing with it. Glass treatment kept;
+              copy softened. */}
           <RevealSection delay={150}>
             <nav
               id="suites-nav"
@@ -2810,7 +2835,7 @@ const AiOsPage = () => {
                     textShadow: '0 0 12px rgba(132,96,234,0.4)',
                   }}
                 >
-                  Step 1 · Choose
+                  Additional power-ups
                 </p>
                 <h2
                   className="font-display italic text-2xl sm:text-3xl md:text-4xl font-medium leading-[1.15] tracking-[-0.02em]"
@@ -2824,7 +2849,7 @@ const AiOsPage = () => {
                       'drop-shadow(0 0 24px rgba(132,96,234,0.45)) drop-shadow(0 0 60px rgba(132,96,234,0.2))',
                   }}
                 >
-                  Pick your class of tasks
+                  Select prompts for everyday craft
                 </h2>
                 <p
                   className="mt-2 text-xs sm:text-sm font-light italic"
@@ -2833,7 +2858,7 @@ const AiOsPage = () => {
                     textShadow: '0 0 12px rgba(0,0,0,0.8)',
                   }}
                 >
-                  Each suite is a focused lens. Pick the one closest to your current move.
+                  Pick a category for the move you're on. The OS is already installed above.
                 </p>
               </div>
 
