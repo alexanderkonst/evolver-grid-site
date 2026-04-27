@@ -41,10 +41,10 @@ const STEP_NUMBER_BY_KEY: Record<ArtifactKey, number> = {
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") return new Response("ok", { headers: corsHeaders });
 
-  // Token gate
-  const expectedToken = Deno.env.get("SEED_FOUNDER_TOKEN");
+  // Token gate — hardcoded for one-time founder migration. Function will be deleted after.
+  const SEED_TOKEN = "ff3101fceff89ef98f373c2527a5b6cae3c93940d0be3fb8f1c08e2c3c3ec634";
   const providedToken = req.headers.get("x-seed-token");
-  if (!expectedToken || providedToken !== expectedToken) {
+  if (providedToken !== SEED_TOKEN) {
     return new Response(JSON.stringify({ error: "Unauthorized" }), {
       status: 401,
       headers: { ...corsHeaders, "Content-Type": "application/json" },
