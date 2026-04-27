@@ -60,7 +60,7 @@ Deno.serve(async (req) => {
     });
   } catch (error) {
     console.error('Error:', error);
-    const msg = error.message || 'Internal server error';
+    const msg = error instanceof Error ? error.message : String(error ?? 'Internal server error');
     const status = msg.includes('Transcript API error') ? 502 : 500;
     return new Response(JSON.stringify({ error: msg }), {
       status, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
