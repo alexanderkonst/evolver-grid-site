@@ -36,16 +36,23 @@ export default function CanvasOverviewScreen() {
     // doesn't sprawl across ultra-wide pane 3. Inner phase grids cap at
     // 3 columns; this width keeps them scannable.
     <div className="mx-auto max-w-5xl space-y-6">
-      {/* Hero summary */}
+      {/* Hero summary — Day 53 (Sasha 2026-04-27): hardcoded "18" lifted
+          to ALL_ARTIFACT_KEYS.length (now 19 with landing_page added).
+          When the founder-doc bulk-seed has populated the canvas, the
+          natural lock-state of each artifact card IS the status UI:
+          ✓ locked = seeded/iterated; ○ drafted = in progress; ◌ dashed
+          = pending. We surface a single seeded-from-doc subtitle so the
+          state isn't mysterious to a founder seeing a pre-populated
+          canvas for the first time. */}
       <section className="space-y-1">
         <h1 className="text-2xl font-semibold tracking-tight">Your Unique Business Canvas</h1>
         <p className="text-sm text-muted-foreground">
-          18 artifacts. Press Improve on each until specificity feels enough. Every improvement becomes a new version — nothing is ever lost.
+          {ALL_ARTIFACT_KEYS.length} artifacts. Press Improve on each until specificity feels enough. Every improvement becomes a new version — nothing is ever lost.
         </p>
         <div className="flex items-center gap-4 pt-2">
           <div className="text-sm">
             <span className="font-medium">{lockedCount}</span>
-            <span className="text-muted-foreground"> of 18 locked</span>
+            <span className="text-muted-foreground"> of {ALL_ARTIFACT_KEYS.length} locked</span>
           </div>
           {avgSpecificity > 0 && (
             <div className="text-sm text-muted-foreground">
@@ -53,6 +60,11 @@ export default function CanvasOverviewScreen() {
             </div>
           )}
         </div>
+        {lockedCount >= 10 && lockedCount < ALL_ARTIFACT_KEYS.length && (
+          <p className="pt-1.5 text-xs text-muted-foreground italic">
+            Some artifacts were seeded from your canvas doc — you can iterate any of them, or generate the remaining {ALL_ARTIFACT_KEYS.length - lockedCount} from scratch.
+          </p>
+        )}
       </section>
 
       {stalenessWarnings.length > 0 && (
@@ -86,7 +98,10 @@ export default function CanvasOverviewScreen() {
           <div>
             <div className="font-medium">Your Dossier</div>
             <div className="text-xs text-muted-foreground">
-              Composed overview of all 18 artifacts. {lockedCount === 18 ? "Ready to publish." : `${18 - lockedCount} more to lock first.`}
+              Composed overview of all {ALL_ARTIFACT_KEYS.length} artifacts.{" "}
+              {lockedCount === ALL_ARTIFACT_KEYS.length
+                ? "Ready to publish."
+                : `${ALL_ARTIFACT_KEYS.length - lockedCount} more to lock first.`}
             </div>
           </div>
           <Button asChild variant="outline">

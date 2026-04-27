@@ -108,7 +108,7 @@ serve(async (req) => {
 
     // ── 4. Fetch assets ────────────────────────────────────────────────
 
-    let assetMap = new Map<string, { type: string; title: string; description: string | null }[]>();
+    const assetMap = new Map<string, { type: string; title: string; description: string | null }[]>();
     const { data: assetRows, error: assetError } = await supabase
       .from("user_assets")
       .select("user_id, type_id, title, description")

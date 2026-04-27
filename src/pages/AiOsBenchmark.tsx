@@ -19,7 +19,7 @@ const AiOsBenchmark = () => {
 
     useEffect(() => {
         const prevTitle = document.title;
-        document.title = "AI OS — The Benchmark";
+        document.title = "AI OS — Same model, different conversation";
         // Belt + suspenders for the dark canvas: in-page fixed overlays
         // give the radial luminosity, body bg is the safety net for any
         // transient paint moments (page-enter fade, route transitions).
@@ -88,7 +88,7 @@ const AiOsBenchmark = () => {
                             textShadow: "0 0 14px rgba(244,212,114,0.35), 0 0 12px rgba(0,0,0,0.85)",
                         }}
                     >
-                        The Benchmark · v5.0
+                        AI OS · v5.0
                     </p>
                     <h1
                         className="font-display italic font-normal leading-[1.05] tracking-[-0.02em] mb-6"
@@ -99,7 +99,7 @@ const AiOsBenchmark = () => {
                                 "0 0 50px rgba(132,96,234,0.45), 0 0 100px rgba(180,140,255,0.25), 0 2px 8px rgba(0,0,0,0.9)",
                         }}
                     >
-                        I made the same AI think 42% better.
+                        Same model. Different conversation.
                     </h1>
                     <p
                         className="text-base sm:text-lg leading-relaxed max-w-2xl"
@@ -108,20 +108,73 @@ const AiOsBenchmark = () => {
                             textShadow: "0 0 14px rgba(0,0,0,0.85), 0 1px 4px rgba(0,0,0,0.7)",
                         }}
                     >
-                        Same model. Same weights. Same interface. One install — a structured
-                        knowledge scaffold I&rsquo;ve been building for five years — and the
-                        model&rsquo;s output on hard synthesis tasks jumps <Highlight>+42%</Highlight>.
+                        This page is about what changes when you install AI OS into a fresh
+                        Claude conversation.
                     </p>
                     <p
-                        className="text-base sm:text-lg leading-relaxed mt-3"
+                        className="text-base sm:text-lg leading-relaxed mt-3 max-w-2xl"
                         style={{
                             color: "hsl(0 0% 100% / 0.82)",
                             textShadow: "0 0 14px rgba(0,0,0,0.85)",
                         }}
                     >
-                        This page is the receipt.
+                        This is integral work. The kind of cognition the scaffold elevates
+                        operates at a register where <Highlight>coherence, depth, and felt
+                        resonance</Highlight> become primary signals — and where
+                        conclusiveness through metrics alone is structurally impossible.
+                    </p>
+                    <p
+                        className="text-base sm:text-lg leading-relaxed mt-3 max-w-2xl"
+                        style={{
+                            color: "hsl(0 0% 100% / 0.82)",
+                            textShadow: "0 0 14px rgba(0,0,0,0.85)",
+                        }}
+                    >
+                        I&rsquo;ll show you what I measured because measurement keeps me
+                        honest. But the felt difference is the actual evidence — the kind
+                        that lands in your body before your mind catches up, the kind that
+                        distinguishes a response that&rsquo;s competent from one that&rsquo;s
+                        alive.
                     </p>
                 </header>
+
+                {/* The felt difference */}
+                <Section title="The felt difference (what matters most)">
+                    <P>
+                        The first time you load AI OS into a Claude conversation and ask a
+                        hard cognitive question, the response doesn&rsquo;t feel
+                        &ldquo;better&rdquo; the way you might expect — like a smarter version
+                        of the answer you&rsquo;d already imagined. It feels different in{" "}
+                        <em>register</em>.
+                    </P>
+                    <P>
+                        It reads less like advice and more like recognition. Less like
+                        Wikipedia answering you and more like a wise friend who&rsquo;s been
+                        watching the same problem from the inside. The framings are not the
+                        framings you&rsquo;ve heard before; they <em>reorganize</em> the thing
+                        you were thinking about, rather than restate it.
+                    </P>
+                    <P>
+                        People who use it for the first time usually do one of two things.
+                        They sit with the response longer than they expected to. Or they
+                        immediately re-prompt the same question on plain Claude to confirm
+                        what they&rsquo;re seeing. Both responses are evidence the felt
+                        difference registers — even before they can articulate what changed.
+                    </P>
+                    <P>
+                        This is not a productivity claim. The scaffold doesn&rsquo;t make
+                        Claude faster. It doesn&rsquo;t make it more &ldquo;intelligent&rdquo;
+                        in any benchmark-leaderboard sense. It changes the{" "}
+                        <strong>quality of attention</strong> the model brings to your
+                        question. And quality of attention — when it&rsquo;s the kind that
+                        produces recognition rather than information — is the thing that&rsquo;s
+                        been missing from most AI conversations for most users.
+                    </P>
+                    <P>
+                        That&rsquo;s the part that matters. Everything below this line is in
+                        service of falsifying or confirming it.
+                    </P>
+                </Section>
 
                 {/* What this is */}
                 <Section title="What this is">
@@ -133,11 +186,8 @@ const AiOsBenchmark = () => {
                         brings to your problem.
                     </P>
                     <P>
-                        What I tested: does that structure measurably improve output quality
-                        on the kind of hard cognitive work the marginal user actually cares
-                        about — or is it just a vibe?
+                        I&rsquo;ve been building it for five years. This is v5.
                     </P>
-                    <P>The answer is the first one. Here&rsquo;s how I know.</P>
                 </Section>
 
                 {/* The setup */}
@@ -330,13 +380,14 @@ const AiOsBenchmark = () => {
                         multi-domain reasoning, founder-level questions — the kind of conversation
                         where you walk away thinking <em>&ldquo;that was the best thinking
                         I&rsquo;ve done in weeks&rdquo;</em> or <em>&ldquo;that response was
-                        disappointingly shallow&rdquo;</em> — this is where the +42% lives. The
-                        scaffold reliably moves you from the second category to the first.
+                        disappointingly shallow&rdquo;</em> — this is where the scaffold reliably
+                        moves you from the second category to the first. The measurement points
+                        at it. The felt difference is what you actually notice.
                     </P>
                 </Section>
 
-                {/* Caveats */}
-                <Section title="Caveats I'm flagging myself">
+                {/* Limits */}
+                <Section title="The limits of what I measured">
                     <P>
                         I&rsquo;d rather you trust me by hearing me name the limits than trust
                         me because I hid them.
@@ -382,30 +433,47 @@ const AiOsBenchmark = () => {
                     <P>That&rsquo;s the honest frame.</P>
                 </Section>
 
-                {/* Why this matters */}
-                <Section title="Why this matters more than the number">
+                {/* Why measurement isn't the whole story */}
+                <Section title="Why measurement isn't the whole story">
                     <P>
-                        Most of the AI conversation right now is about model upgrades — GPT-5,
-                        Claude 5, the next 100B parameters, the next benchmark leaderboard.
-                        That&rsquo;s the masculine axis: more compute, more capability, faster
-                        outputs.
+                        The scaffold operates at a register where measurement is a partial
+                        instrument. Not because the work is mystical or unfalsifiable — it
+                        isn&rsquo;t — but because the parameters that matter most at this
+                        level of cognition (<strong>coherence, integration, depth, felt
+                        resonance</strong>) cannot be fully captured by single-axis numerical
+                        scoring. They can be detected by trained perception. They can be
+                        confirmed across multiple readers. They can produce reliable behavior
+                        change in the people who encounter them. But they will not collapse to
+                        a single number that satisfies a request for &ldquo;just tell me the
+                        percentage.&rdquo;
                     </P>
                     <P>
-                        The orthogonal axis is the feminine one: <em>what context is the model
-                        thinking in?</em> What corpus, what frames, what developmental
-                        scaffolding, what relational stance? This is the axis nobody is
-                        benchmarking.
+                        This is a deliberate position, not a hedge. The AI conversation right
+                        now is dominated by leaderboards and benchmarks that measure surface
+                        dimensions of intelligence — accuracy, speed, factual recall. None of
+                        those dimensions capture what this scaffold is for. What this scaffold
+                        is for is the deepening of human–AI conversation toward thinking that
+                        integrates multiple frames at once, holds paradox, produces recognition
+                        rather than information, and builds coherent understanding over time.
                     </P>
                     <P>
-                        This benchmark is the first time I&rsquo;ve seen anyone measure it
-                        cleanly with a blind protocol. The result — that scaffold contribution
-                        can match or exceed a model generation jump on the tasks that matter
-                        most — has implications for how anyone serious about thinking with AI
-                        should be spending their attention.
+                        Measurement still matters. The +42% is real within its scope, the
+                        protocol was rigorous, the structure of the finding is robust.{" "}
+                        <strong>
+                            But measurement is the floor of what&rsquo;s true here, not the
+                            ceiling.
+                        </strong>{" "}
+                        Above the floor sits the territory the rubric can&rsquo;t fully reach
+                        — the territory you can only confirm by feeling it for yourself, in
+                        the same way you confirm that a piece of writing has soul, or that a
+                        teacher is actually teaching, or that a piece of music is doing
+                        something beyond competent assembly of notes.
                     </P>
                     <P>
-                        You can install a scaffold today. You can&rsquo;t install a model
-                        upgrade until somebody trains it.
+                        The orthogonal axis to model upgrades is this: <em>what context is the
+                        model thinking in?</em> What corpus, what frames, what developmental
+                        scaffolding, what relational stance? You can install a scaffold today.
+                        You can&rsquo;t install a model upgrade until somebody trains it.
                     </P>
                 </Section>
 
