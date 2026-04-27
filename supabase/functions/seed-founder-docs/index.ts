@@ -113,7 +113,7 @@ Extract the "${config.label}" artifact (key: ${artifact_key}) per the schema and
           { role: "user", content: userPrompt },
         ],
         response_format: { type: "json_object" },
-        max_completion_tokens: 4000,
+        max_completion_tokens: 8000,
       }),
     });
 
