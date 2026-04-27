@@ -704,7 +704,15 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                         writes an explicit `transform: ... scale(1.1)`
                         which would interrupt the rotation animation. */}
                     {!hideLogo && (
-                        <Link to="/" className="absolute top-4 right-4 z-50 block w-10 h-10 group">
+                        // Day 53 (Sasha 2026-04-27): vertical position
+                        // tuned to align the home-icon torus with the
+                        // orb in the left-pane logo lockup. Math: pane 1
+                        // is 280px, logo renders at 89% width = 249px;
+                        // logo aspect 666:375 → 140px tall; 12px top-
+                        // padding + 70px to orb's vertical center =
+                        // 82px from rail top. Right icon is 40px tall,
+                        // so top:62 puts its center at 82 — exact match.
+                        <Link to="/" className="absolute top-[62px] right-4 z-50 block w-10 h-10 group">
                             <div
                                 className="w-full h-full rounded-lg overflow-hidden"
                                 style={{
