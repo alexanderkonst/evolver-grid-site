@@ -368,7 +368,28 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
     // Show sidebar by default, hide only during early onboarding or when explicitly requested
     // Early onboarding stages: "new", "zog_started" - user hasn't completed basic setup
     const earlyOnboardingStages = ["new", "zog_started"];
-    const hideNavigation = !forceShowNavigation && (forceHideNavigation || (profile?.onboarding_stage && earlyOnboardingStages.includes(profile.onboarding_stage)));
+    // Day 52 (Sasha 2026-04-26): public marketing surfaces (/, /ai-os,
+    // /playbook, /path) must ALWAYS show the navigation panes regardless
+    // of onboarding stage. The stage-gate was intended to keep half-
+    // onboarded users focused on the assessment funnel — but it was
+    // accidentally hiding the rail on /ai-os too, which is its own free
+    // top-level destination listed in JOURNEY (#4 AI OS). On mobile this
+    // produced the "AI OS rendered without 1/2 panes" report from Sasha.
+    // forceHideNavigation (set explicitly by assessment Step1-4 pages)
+    // still wins — those pages truly need full focus. forceShowNavigation
+    // (the tour spotlight) keeps overriding everything.
+    const isPublicSurface =
+        location.pathname === "/" ||
+        location.pathname.startsWith("/ai-os") ||
+        location.pathname === "/codex" ||
+        location.pathname.startsWith("/playbook") ||
+        location.pathname === "/path";
+    const earlyOnboardingHide =
+        !!profile?.onboarding_stage &&
+        earlyOnboardingStages.includes(profile.onboarding_stage) &&
+        !isPublicSurface;
+    const hideNavigation =
+        !forceShowNavigation && (forceHideNavigation || earlyOnboardingHide);
 
     if (hideNavigation) {
         // Day 52 (Sasha): even in the no-nav path, AI OS pages own a dark
