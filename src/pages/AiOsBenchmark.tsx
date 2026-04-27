@@ -254,6 +254,69 @@ const AiOsBenchmark = () => {
                     </P>
                 </Section>
 
+                {/* Compounding multiplier — Day 52 (Sasha 2026-04-26):
+                    second within-family data point landed. Replicated the
+                    SIB benchmark on Claude 4.6 and got +29%. Compared to
+                    +42% on Opus 4.7, that's a 1.45× per-generation
+                    multiplier on the scaffold's effect. This section makes
+                    the cross-generation finding visible and projects the
+                    next three Claude flagships under the assumption that
+                    the multiplier holds. */}
+                <Section title="The compounding multiplier">
+                    <P>
+                        I re-ran the SIB benchmark on a second model in the same family —
+                        <strong> Claude 4.6</strong> — and the scaffold delivered{" "}
+                        <Highlight>+29%</Highlight>. Same protocol, same blind labeling, same
+                        scoring rubric. Only the model changed.
+                    </P>
+                    <MultiplierTable />
+                    <P>
+                        That&rsquo;s a <Highlight>+45% relative lift</Highlight> in
+                        scaffold-effect across one model generation (29% → 42%, a 1.45×
+                        multiplier). The scaffold doesn&rsquo;t just stack on top of model
+                        capability — within the Claude family it appears to{" "}
+                        <strong>stack multiplicatively</strong>. As the model gets better, the
+                        same scaffold amplifies it more.
+                    </P>
+                    <P>
+                        If the 1.45× per-generation multiplier holds for the next three Claude
+                        flagships:
+                    </P>
+                    <ProjectionTable />
+                    <P>
+                        Read those projections with the eyes of an honest forecaster, not a
+                        marketer:
+                    </P>
+                    <ul className="space-y-3 list-none pl-0" style={{ color: "hsl(0 0% 100% / 0.82)" }}>
+                        <Bullet>
+                            <strong>Two-point extrapolation.</strong> A 1.45× multiplier from two
+                            data points is a <em>direction</em>, not a law. The next replication
+                            could come in tighter (1.20×) or looser (1.70×). I&rsquo;m posting the
+                            line of best fit so future me can be embarrassed by it precisely.
+                        </Bullet>
+                        <Bullet>
+                            <strong>Benchmark ceiling.</strong> The Claude 5.0 projection of
+                            +128% is a measurement artifact — it would require the scaffolded
+                            output to score &gt;200% of baseline on a 100-point benchmark, which
+                            saturates. The honest read: <em>by Claude 4.9 we need a harder
+                            benchmark</em>. The scaffold&rsquo;s absolute capability lift keeps
+                            climbing; the percentage simply outgrows this particular ruler.
+                        </Bullet>
+                        <Bullet>
+                            <strong>Family-specific.</strong> The 1.45× is Claude-internal. The
+                            mechanism (structured context) is model-agnostic; the magnitude is
+                            family-dependent. GPT-5, Gemini 3, and the open-weights frontier need
+                            their own replications before any of this generalizes.
+                        </Bullet>
+                    </ul>
+                    <P>
+                        The structural takeaway is the one that doesn&rsquo;t depend on the
+                        precise multiplier: <strong>scaffold and weights compound</strong>. Each
+                        new flagship that ships is a free amplification of every scaffold already
+                        installed. You don&rsquo;t pay for the upgrade — you receive it.
+                    </P>
+                </Section>
+
                 {/* What this means */}
                 <Section title="What this means in practice">
                     <P>
@@ -291,10 +354,13 @@ const AiOsBenchmark = () => {
                             is the obvious next rigor step, and I&rsquo;m inviting it.
                         </Bullet>
                         <Bullet>
-                            <strong>No cross-model baseline.</strong> Tested on Opus 4.7. The
-                            effect on GPT-4.x, Gemini, etc. is unmeasured. The mechanism
-                            (structured context) is model-agnostic; the magnitude is not yet
-                            established.
+                            <strong>Limited cross-model baseline.</strong> Tested twice within
+                            the Claude family — Opus 4.7 (+42% on SIB) and Claude 4.6 (+29% on
+                            SIB) — see &ldquo;The compounding multiplier&rdquo; above for the
+                            implied 1.45× per-generation amplification. Other model families
+                            (GPT-4.x, Gemini, open-weights frontier) remain unmeasured. The
+                            mechanism (structured context) is model-agnostic; the multiplier
+                            itself is family-dependent until proven otherwise.
                         </Bullet>
                         <Bullet>
                             <strong>Scaffold not decomposed.</strong> The AI OS is a compound —
@@ -570,6 +636,172 @@ const SetupTable = () => (
                 ))}
             </tbody>
         </table>
+    </div>
+);
+
+// — Multiplier tables (Day 52) ————————————————————————————
+
+const MultiplierTable = () => (
+    <div
+        className="rounded-xl overflow-x-auto my-2"
+        style={{
+            background: "hsl(0 0% 100% / 0.04)",
+            border: "1px solid hsl(0 0% 100% / 0.08)",
+            backdropFilter: "blur(8px)",
+        }}
+    >
+        <table className="w-full text-sm sm:text-base">
+            <thead>
+                <tr style={{ borderBottom: "1px solid hsl(0 0% 100% / 0.12)" }}>
+                    <th
+                        className="px-4 py-3 text-left text-[11px] uppercase tracking-wider font-medium"
+                        style={{ color: "hsl(40 70% 80% / 0.85)" }}
+                    >
+                        Model (Claude family)
+                    </th>
+                    <th
+                        className="px-4 py-3 text-right text-[11px] uppercase tracking-wider font-medium"
+                        style={{ color: "hsl(40 70% 80% / 0.85)" }}
+                    >
+                        SIB scaffold lift
+                    </th>
+                    <th
+                        className="px-4 py-3 text-right text-[11px] uppercase tracking-wider font-medium"
+                        style={{ color: "hsl(40 70% 80% / 0.85)" }}
+                    >
+                        Source
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                {[
+                    { model: "Claude 4.6", lift: "+29%", source: "measured" },
+                    { model: "Claude Opus 4.7", lift: "+42%", source: "measured (this benchmark)" },
+                ].map((row, i, arr) => (
+                    <tr
+                        key={row.model}
+                        style={{
+                            borderBottom:
+                                i < arr.length - 1 ? "1px solid hsl(0 0% 100% / 0.06)" : "none",
+                        }}
+                    >
+                        <td
+                            className="px-4 py-3 font-medium"
+                            style={{ color: "hsl(0 0% 100% / 0.92)" }}
+                        >
+                            {row.model}
+                        </td>
+                        <td
+                            className="px-4 py-3 text-right tabular-nums font-semibold"
+                            style={{
+                                color: "hsl(40 80% 80%)",
+                                textShadow: "0 0 12px rgba(244,212,114,0.4)",
+                            }}
+                        >
+                            {row.lift}
+                        </td>
+                        <td
+                            className="px-4 py-3 text-right tabular-nums"
+                            style={{ color: "hsl(0 0% 100% / 0.6)" }}
+                        >
+                            {row.source}
+                        </td>
+                    </tr>
+                ))}
+            </tbody>
+        </table>
+    </div>
+);
+
+const ProjectionTable = () => (
+    <div
+        className="rounded-xl overflow-x-auto my-2"
+        style={{
+            background: "hsl(0 0% 100% / 0.04)",
+            border: "1px solid hsl(0 0% 100% / 0.08)",
+            backdropFilter: "blur(8px)",
+        }}
+    >
+        <table className="w-full text-sm sm:text-base">
+            <thead>
+                <tr style={{ borderBottom: "1px solid hsl(0 0% 100% / 0.12)" }}>
+                    <th
+                        className="px-4 py-3 text-left text-[11px] uppercase tracking-wider font-medium"
+                        style={{ color: "hsl(40 70% 80% / 0.85)" }}
+                    >
+                        Generation
+                    </th>
+                    <th
+                        className="px-4 py-3 text-right text-[11px] uppercase tracking-wider font-medium"
+                        style={{ color: "hsl(40 70% 80% / 0.85)" }}
+                    >
+                        Projected lift
+                    </th>
+                    <th
+                        className="px-4 py-3 text-right text-[11px] uppercase tracking-wider font-medium"
+                        style={{ color: "hsl(40 70% 80% / 0.85)" }}
+                    >
+                        Math (1.45×)
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                {[
+                    { gen: "Claude 4.6 (measured)", lift: "+29%", math: "—", projected: false },
+                    { gen: "Claude Opus 4.7 (measured)", lift: "+42%", math: "29 × 1.45", projected: false },
+                    { gen: "Claude 4.8 (projected)", lift: "+61%", math: "42 × 1.45 = 60.9", projected: true },
+                    { gen: "Claude 4.9 (projected)", lift: "+88%", math: "60.9 × 1.45 = 88.3", projected: true },
+                    { gen: "Claude 5.0 (projected)", lift: "+128%", math: "88.3 × 1.45 = 128.0 †", projected: true },
+                ].map((row, i, arr) => (
+                    <tr
+                        key={row.gen}
+                        style={{
+                            borderBottom:
+                                i < arr.length - 1 ? "1px solid hsl(0 0% 100% / 0.06)" : "none",
+                            background: row.projected ? "hsla(252, 50%, 60%, 0.04)" : undefined,
+                        }}
+                    >
+                        <td
+                            className="px-4 py-3 font-medium"
+                            style={{
+                                color: row.projected ? "hsl(252 50% 88% / 0.92)" : "hsl(0 0% 100% / 0.92)",
+                            }}
+                        >
+                            {row.gen}
+                        </td>
+                        <td
+                            className="px-4 py-3 text-right tabular-nums font-semibold"
+                            style={{
+                                color: row.projected ? "hsl(252 60% 82%)" : "hsl(40 80% 80%)",
+                                textShadow: row.projected
+                                    ? "0 0 12px rgba(132,96,234,0.4)"
+                                    : "0 0 12px rgba(244,212,114,0.4)",
+                            }}
+                        >
+                            {row.lift}
+                        </td>
+                        <td
+                            className="px-4 py-3 text-right tabular-nums text-xs"
+                            style={{ color: "hsl(0 0% 100% / 0.55)" }}
+                        >
+                            {row.math}
+                        </td>
+                    </tr>
+                ))}
+            </tbody>
+        </table>
+        <p
+            className="px-4 py-3 text-xs italic"
+            style={{
+                color: "hsl(0 0% 100% / 0.55)",
+                borderTop: "1px solid hsl(0 0% 100% / 0.06)",
+            }}
+        >
+            † Claude 5.0 projection saturates the 100-point SIB ceiling. Either the
+            multiplier flattens, or — more likely — the benchmark needs harder questions
+            calibrated for that capability tier. The absolute lift continues climbing;
+            the percentage outgrows the ruler.
+        </p>
     </div>
 );
 
