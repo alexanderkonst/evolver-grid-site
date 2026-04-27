@@ -470,20 +470,12 @@ const SectionsPanel = ({
                 }}
             />
 
-            {/* Bottom continuation fade — Day 51 night v2 (Sasha 2026-04-26):
-                pane 2 used to read as terminating at a hard horizontal bottom
-                edge, which made the column feel finite. A 96px gradient at the
-                bottom (transparent → deeper navy) implies "the column keeps
-                going" without forcing a literal scroll. Pointer-events-none
-                so it never blocks interaction with the items above. */}
-            <span
-                aria-hidden="true"
-                className="absolute bottom-0 left-0 right-0 h-24 pointer-events-none z-10"
-                style={{
-                    backgroundImage:
-                        "linear-gradient(180deg, rgba(8, 18, 38, 0) 0%, rgba(8, 18, 38, 0.30) 50%, rgba(8, 18, 38, 0.62) 100%)",
-                }}
-            />
+            {/* Day 52 (Sasha 2026-04-27): bottom fade gradient retired.
+                It read as the pane "disappearing" — the gradient was being
+                multiplied by locked items' fogOpacity, so chips 6/7/8 (which
+                land in the bottom 96px) washed into the navy and looked
+                literally cut off. Locked items keep their developmental
+                gating; we just stop double-erasing them with the overlay. */}
 
             {/* Header — Day 48 iter 8 (Sasha):
                 The lone X in the top-right was visually orphaned. The
