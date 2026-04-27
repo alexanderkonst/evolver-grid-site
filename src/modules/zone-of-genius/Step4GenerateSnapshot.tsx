@@ -929,7 +929,7 @@ ${snapshotText}`;
                     unique business on one page.
                   </p>
                   <p style={{ fontSize: '13px', fontWeight: 700, color: '#2c3150' }}>
-                    $555 · 2 hours · Book at aleksandrkonstantinov.com/ignite
+                    $555 · 2 hours · Book at findyourtoptalent.com/ignite
                   </p>
                 </div>
               </div>

@@ -15,7 +15,7 @@
  *              — book a session with Aleksandr → t.me/integralevolution"
  *              rendered as a gold-pill block right under the 7-stage list.
  *   • FIXED:   Footer brand — was "geniusbusiness.app" (legacy),
- *              now "aleksandrkonstantinov.com" (canonical home).
+ *              now "findyourtoptalent.com" (canonical home as of 2026-04-26).
  *
  * Day 52 evening — Monetization Avenues restored (Sasha): the prompt
  * in appleseedGenerator.ts was sharpened to demand voice-matched
@@ -415,7 +415,7 @@ function renderFooter(b: PdfBuilder) {
     b.doc.setFontSize(7);
     b.doc.setTextColor(...COLORS.muted);
     b.doc.text(
-      `Page ${i} of ${pageCount}  ·  aleksandrkonstantinov.com`,
+      `Page ${i} of ${pageCount}  ·  findyourtoptalent.com`,
       PAGE_W / 2,
       292,
       { align: "center" }
