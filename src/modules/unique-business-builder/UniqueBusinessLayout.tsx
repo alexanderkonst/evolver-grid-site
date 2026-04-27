@@ -27,7 +27,15 @@ import { ImproveReviewDrawer } from "./components/ImproveReviewDrawer";
 export default function UniqueBusinessLayout() {
   return (
     <UniqueBusinessProvider>
-      <Outlet />
+      {/* Day 52 (Sasha 2026-04-26): GameShellV2's <main> only provides
+          pt-4 — no horizontal padding. Without this wrapper the artifact
+          screens bleed to the cream-wash edges of pane 3. px-6 desktop
+          comfort, py-4 keeps the hero off the shell's pt-4. Inner screens
+          set their own max-width (CanvasOverview: full-width grid;
+          GenericArtifactScreen: max-w-2xl; Compound: max-w-4xl). */}
+      <div className="px-6 py-4">
+        <Outlet />
+      </div>
       <ImproveReviewDrawer />
     </UniqueBusinessProvider>
   );

@@ -311,6 +311,30 @@ const SpacesRail = ({
                 </Link>
             </div>
 
+            {/* Day 52 (Sasha 2026-04-26): canonical positioning credo —
+                the locked-in three-clause sentence sits between the
+                brand wordmark and the SPACES nav. Renders desktop-only
+                (mobile rail is a narrow torus column with no room for
+                editorial type). Three stacked lines, italic Cormorant,
+                low-opacity cream — reads as a credo, not a tagline
+                competing with the wordmark above or the chips below. */}
+            <div className="hidden md:block px-3 pb-3 pt-1">
+                <p
+                    className="text-left text-[10px] leading-snug italic"
+                    style={{
+                        fontFamily: "'Cormorant Garamond', serif",
+                        color: "hsl(40 30% 88% / 0.62)",
+                        letterSpacing: "0.01em",
+                    }}
+                >
+                    The methodology is free.
+                    <br />
+                    Working with us is paid.
+                    <br />
+                    Distributing the methodology is licensed.
+                </p>
+            </div>
+
             {/* Day 48 iter 8 (Sasha) — chip refinements:
                 • gap between chips bumped (gap-1 → gap-1.5) so the
                   active gold halo has room to breathe.
