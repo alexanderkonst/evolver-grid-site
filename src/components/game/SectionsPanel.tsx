@@ -539,7 +539,24 @@ const SectionsPanel = ({
                 {spaceData.sections.map((section) => {
                     const hasSubSections = section.subSections && section.subSections.length > 0;
                     const isExpanded = expandedSections[section.id] ?? false;
-                    const sectionActive = isActive(section.path);
+                    // Day 52 (Sasha 2026-04-26): when sibling sections share a
+                    // common path prefix (e.g. UBB pane 2: /ubb, /ubb/session,
+                    // /ubb/marketing, …), plain isActive() false-positives the
+                    // shorter parent for any deeper child path. Resolve by
+                    // longest-match: a section is active only if no sibling
+                    // with a longer matching path also matches the current
+                    // pathname. JOURNEY/ME panes are unaffected (their sibling
+                    // paths don't share prefixes).
+                    const sectionActive = (() => {
+                        if (!isActive(section.path)) return false;
+                        const moreSpecific = spaceData.sections.some(
+                            (s) =>
+                                s.id !== section.id &&
+                                s.path.length > section.path.length &&
+                                isActive(s.path),
+                        );
+                        return !moreSpecific;
+                    })();
                     const isLocked = section.locked === true;
                     const { number, text: sectionText } = parseNumberedLabel(section.label);
 

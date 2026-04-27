@@ -406,7 +406,11 @@ const App = () => (
                   <Route path="/game/events" element={<Navigate to="/game/meet" replace />} />
                   <Route path="/game/events/*" element={<Navigate to="/game/meet" replace />} />
                   {/* BUILD Space */}
-                  <Route path="/game/build" element={<Navigate to="/game/build/canvas" replace />} />
+                  {/* Day 52 (Sasha 2026-04-26): /game/build now redirects to
+                      /ubb. UBB is the canonical BUILD experience; legacy
+                      /game/build/{canvas,product-builder,my-business,refine}
+                      remain reachable directly for back-compat. */}
+                  <Route path="/game/build" element={<Navigate to="/ubb" replace />} />
                   <Route path="/game/build/canvas" element={<RequireAuth><BuildCanvasPage /></RequireAuth>} />
                   <Route path="/game/build/my-business" element={<RequireAuth><MyGeniusBusinessPage /></RequireAuth>} />
                   <Route path="/game/build/refine" element={<RequireAuth><RefineBusinessPage /></RequireAuth>} />
