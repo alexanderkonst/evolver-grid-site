@@ -598,10 +598,19 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                     userXp={profile?.xp_total || undefined}
                 />
 
-                {/* Panel 2: Sections with transition */}
+                {/* Panel 2: Sections with transition.
+                    Day 52 (Sasha 2026-04-27): `relative` removed.
+                    tailwind-merge dedupes position utilities, and with both
+                    `sticky` and `relative` present, `relative` was winning
+                    — Pane 2 was scrolling with the page instead of sticking
+                    to the viewport top. That made the liquid-glass backdrop
+                    compute against scrolled page bg, so items at the bottom
+                    of the panel visually fell into a different "zone" once
+                    the page scrolled. Sticky elements carry z-index
+                    natively, so dropping `relative` doesn't cost the z-30. */}
                 <div
                     className={cn(
-                        "transition-all duration-200 ease-out h-dvh sticky top-0 overflow-hidden relative z-30",
+                        "transition-all duration-200 ease-out h-dvh sticky top-0 overflow-hidden z-30",
                         sectionsPanelOpen ? "w-[260px]" : "w-0"
                     )}
                 >
