@@ -84,12 +84,17 @@ export default function AiOsSpotlight({ installPromptContent }: Props) {
   };
 
   const onCopyInstall = async () => {
-    const ok = await copyToClipboard(installPromptContent);
-    if (!ok) return;
-    setInstallCopied(true);
+    // Reveal the rating section the moment the user CLICKS the button —
+    // not only on copy-success. Clipboard can fail silently in iframes /
+    // strict secure contexts, and the click itself is the real engagement
+    // signal we want to honor. The copy-confirmation badge still flips
+    // only on success so honest signaling stays intact.
     setShowRating(true);
-    // Reset the "Copied" badge after a moment so the button re-arms visually
-    setTimeout(() => setInstallCopied(false), 2400);
+    const ok = await copyToClipboard(installPromptContent);
+    if (ok) {
+      setInstallCopied(true);
+      setTimeout(() => setInstallCopied(false), 2400);
+    }
   };
 
   const onCopyTest = async () => {
