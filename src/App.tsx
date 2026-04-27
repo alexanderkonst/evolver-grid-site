@@ -421,8 +421,13 @@ const App = () => (
                     <Route path="cta" element={<CTAScreen />} />
                     <Route path="published" element={<PublishedScreen />} />
                   </Route>
-                  {/* Unique Business Builder v2.0 */}
-                  <Route path="/ubb" element={<RequireAuth><UniqueBusinessLayout /></RequireAuth>}>
+                  {/* Unique Business Builder v2.0 — Day 52 (Sasha 2026-04-26):
+                      UBB now lives inside GameShellV2 (BUILD space). Pane 2 owns
+                      the 6 phase-group navigation; pane 3 hosts the artifacts +
+                      wizards. UniqueBusinessLayout strips its own chrome
+                      (header, progress bar, max-w wrapper) since the shell
+                      provides those affordances. */}
+                  <Route path="/ubb" element={<RequireAuth><GameShellV2><UniqueBusinessLayout /></GameShellV2></RequireAuth>}>
                     <Route index element={<CanvasOverviewScreen />} />
                     <Route path="uniqueness" element={<GenericArtifactScreen />} />
                     <Route path="myth" element={<GenericArtifactScreen />} />

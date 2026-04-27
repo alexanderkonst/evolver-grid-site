@@ -212,6 +212,42 @@ interface SectionsPanelProps {
  * trio. Still reachable via its URL for users who want it.
  * Deeper progressive "Step N: ..." list also stays retired.
  */
+/**
+ * Build the BUILD pane sections when the user is inside the Unique
+ * Business Builder (/ubb*).
+ *
+ * Sasha, Day 52 (2026-04-26): UBB lives in BUILD space. Pane 2 holds
+ * the SIX phase groups (not the 18 individual artifacts — those live
+ * in pane 3 alongside their wizards). The groups follow the canonical
+ * playbook arc:
+ *
+ *   1. Canvas              — Phase A · 7 artifacts (uniqueness, myth,
+ *                            tribe, pain, promise, lead-magnet,
+ *                            value-ladder). Routes to /ubb (the
+ *                            CanvasOverviewScreen which lists all 7
+ *                            with their wizards).
+ *   2. 1st Session Design  — Phase B · 1 compound. Routes to /ubb/session.
+ *   3. Marketing           — Phase C · 3 pillars (core belief, packaging,
+ *                            frictionless purchase). Routes to /ubb/marketing.
+ *   4. Distribution        — Phase C · 3 pillars (reach, delivery, spread).
+ *                            Routes to /ubb/distribution.
+ *   5. Communications      — Phase C · 3 pillars (surface inventory,
+ *                            tuning fork, golden DM). Routes to
+ *                            /ubb/communications.
+ *   6. Landing Page        — Phase D · 1 artifact. Routes to /ubb/landing-page.
+ *
+ * The Dossier is reachable from inside /ubb (as a publication exit),
+ * not from pane 2 — it's an output, not a navigation peer.
+ */
+const buildUbbSections = (): Section[] => [
+    { id: "ubb-canvas",         label: "1. Canvas",            path: "/ubb" },
+    { id: "ubb-session",        label: "2. 1st Session",       path: "/ubb/session" },
+    { id: "ubb-marketing",      label: "3. Marketing",         path: "/ubb/marketing" },
+    { id: "ubb-distribution",   label: "4. Distribution",      path: "/ubb/distribution" },
+    { id: "ubb-communications", label: "5. Communications",    path: "/ubb/communications" },
+    { id: "ubb-landing",        label: "6. Landing Page",      path: "/ubb/landing-page" },
+];
+
 const buildJourneySections = (_currentPath: string): Section[] => {
     // Day 50 late (Sasha): five permanent rail items, no hide gating.
     // The rail is the same on every Journey-family page — including
@@ -298,6 +334,24 @@ const SectionsPanel = ({
             return {
                 ...baseData,
                 sections: buildJourneySections(location.pathname),
+            };
+        }
+
+        // BUILD ∩ /ubb → UBB phase groups (Canvas · Session · Marketing ·
+        // Distribution · Communications · Landing Page). When the user
+        // is anywhere inside the Unique Business Builder, pane 2 owns
+        // the phase-group navigation; pane 3 hosts the artifacts and
+        // their wizards. Outside /ubb, BUILD pane 2 falls back to the
+        // legacy build items (canvas/product-builder/my-business/refine)
+        // which still have live routes under /game/build/*. Sasha,
+        // Day 52 (2026-04-26).
+        if (
+            activeSpaceId === "build" &&
+            (location.pathname === "/ubb" || location.pathname.startsWith("/ubb/"))
+        ) {
+            return {
+                title: "BUILD",
+                sections: buildUbbSections(),
             };
         }
 
