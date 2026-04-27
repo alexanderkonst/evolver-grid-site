@@ -314,7 +314,7 @@ export const PLAYBOOK_STEPS: PlaybookStep[] = [
           "Deliver your product as a 1:1 session, record it, track and analyze with AI, extract testimonials from their direct text (and/or video) quotes, do it again, learn iteratively, track what you think are your three key metrics.",
         description: "",
         oneProvenStrategy:
-          "Use a simple dashboard to track delivery + outcomes like www.aleksandrkonstantinov.com/dashboard. Do use an AI recorder like fathom.video or Plaud so every session becomes a learning artifact.",
+          "Use a simple dashboard to track delivery + outcomes like findyourtoptalent.com/dashboard. Do use an AI recorder like fathom.video or Plaud so every session becomes a learning artifact.",
       },
       {
         number: 3,

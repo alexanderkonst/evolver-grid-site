@@ -384,7 +384,7 @@ const Intros = () => {
             </a>
           </div>
           <p className="text-xs text-[#1a1a2e]/45 mt-8">
-            Updated April 2026 · aleksandrkonstantinov.com/intros
+            Updated April 2026 · findyourtoptalent.com/intros
           </p>
         </section>
       </div>

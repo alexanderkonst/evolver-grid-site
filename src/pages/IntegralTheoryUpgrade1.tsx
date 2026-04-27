@@ -629,7 +629,7 @@ export default function IntegralTheoryUpgrade1() {
             {' · '}
             {c.versionDate}
             {' · '}
-            <a href="https://aleksandrkonstantinov.com" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-white/30 transition-colors">aleksandrkonstantinov.com</a>
+            <a href="https://findyourtoptalent.com" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-white/30 transition-colors">findyourtoptalent.com</a>
             {' · '}
             <a href="https://github.com/alexanderkonst/evolver-grid-site/blob/main/src/pages/IntegralTheoryUpgrade1.tsx" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-white/30 transition-colors">source on github</a>
           </p>
@@ -709,13 +709,13 @@ export default function IntegralTheoryUpgrade1() {
               }
             </p>
             <a
-              href="https://aleksandrkonstantinov.com"
+              href="https://findyourtoptalent.com"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block text-white/40 text-xs tracking-widest uppercase hover:text-white/60 transition-colors"
               style={{ fontFamily: "'Poppins', sans-serif" }}
             >
-              aleksandrkonstantinov.com
+              findyourtoptalent.com
             </a>
           </div>
         </footer>
