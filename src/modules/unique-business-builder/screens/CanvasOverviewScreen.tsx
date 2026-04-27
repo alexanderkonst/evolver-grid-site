@@ -32,7 +32,10 @@ export default function CanvasOverviewScreen() {
     | undefined;
 
   return (
-    <div className="space-y-6">
+    // Day 52 (Sasha 2026-04-26): max-w-5xl + mx-auto so the canvas grid
+    // doesn't sprawl across ultra-wide pane 3. Inner phase grids cap at
+    // 3 columns; this width keeps them scannable.
+    <div className="mx-auto max-w-5xl space-y-6">
       {/* Hero summary */}
       <section className="space-y-1">
         <h1 className="text-2xl font-semibold tracking-tight">Your Unique Business Canvas</h1>
