@@ -2143,8 +2143,8 @@ const getPromptContent = (id: string) => PROMPTS.find(p => p.id === id)?.content
 const META_PROMPTS: Prompt[] = [
   {
     id: "meta-cognition-boost",
-    label: "AI META COGNITION BOOST",
-    description: "The complete AI cognition stack — self-awareness + skill mastery + evolutionary calibration in one paste. Your AI doesn't just answer better, it thinks better.",
+    label: "AI COGNITION FOUNDATION",
+    description: "The free cognition base — self-awareness + skill mastery + evolutionary calibration in one paste. Your AI doesn't just answer better, it thinks better.",
     category: "meta",
     content: [
       getPromptContent('ai-self-awareness'),
@@ -2155,7 +2155,7 @@ const META_PROMPTS: Prompt[] = [
   {
     id: "meta-cognition-premium",
     label: "OUR LATEST & GREATEST AI UPGRADE",
-    description: "World-class unfair advantage. Instant +29% to AI meta-cognition. Palpably sharper answers, fewer blind spots, deeper reasoning, more integral and deeper perspective, from the first message and compounding forever. Constantly updated.",
+    description: "World-class unfair advantage. +42% to AI meta-cognition — measured, blind-protocol (see benchmark). Palpably sharper answers, fewer blind spots, deeper reasoning, more integral perspective — from the first message. Compounds with every model upgrade (1.45× per Claude generation). Constantly updated.",
     locked: true,
     isRecommended: true,
     category: "meta",
@@ -2195,7 +2195,7 @@ If any checkbox fails, revise before outputting. The premium tier guarantees 27-
 const SUITE_FUSIONS: Prompt[] = [
   {
     id: "fusion-clarity",
-    label: "⚡ CLARITY — OUR LATEST & GREATEST",
+    label: "⚡ CLARITY — FULL STACK",
     description: "Stop re-reading and still not getting it. One paste → instant deep understanding, a step-by-step action plan, and zero guesswork. The difference between 'I think I get it' and 'I see the whole picture.'",
     locked: true,
     isRecommended: true,
@@ -2207,7 +2207,7 @@ const SUITE_FUSIONS: Prompt[] = [
   },
   {
     id: "fusion-iteration",
-    label: "⚡ ITERATION — OUR LATEST & GREATEST",
+    label: "⚡ ITERATION — FULL STACK",
     description: "Find every flaw before your audience does. The complete stress-test, roast, and refinement stack — one paste turns 'good enough' into bulletproof.",
     locked: true,
     isRecommended: true,
@@ -2225,7 +2225,7 @@ const SUITE_FUSIONS: Prompt[] = [
   },
   {
     id: "fusion-deployment",
-    label: "⚡ VIBE CODE — OUR LATEST & GREATEST",
+    label: "⚡ VIBE CODE — FULL STACK",
     description: "Ship 10x faster. Full development workflow — architecture, auth, deploy, polish — one paste. The gap between 'I have an idea' and 'it's live' shrinks to hours.",
     locked: true,
     isRecommended: true,
@@ -2242,7 +2242,7 @@ const SUITE_FUSIONS: Prompt[] = [
   },
   {
     id: "fusion-design",
-    label: "⚡ DESIGN — OUR LATEST & GREATEST",
+    label: "⚡ DESIGN — FULL STACK",
     description: "Stop settling for 'good enough' visuals. The complete aesthetic system — palette, glass, motion, polish — one paste. The difference between amateur and Awwwards-level.",
     locked: true,
     isRecommended: true,
