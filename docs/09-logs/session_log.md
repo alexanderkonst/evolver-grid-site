@@ -5522,3 +5522,51 @@ Center reading: **Codification.** Day 49 unified the surface; Day 51 unified the
 ---
 
 *Day 50 → Day 51 arc complete. The Specificity Loop is now both a named principle (Playbook P15 + Phase Shift Library Domain 81) and an operational artifact (per-founder Specificity Matrix as UBB #19, runtime hook with three-tier resolution). The commercial-decentralization model has its license stack (PolyForm NC + Distributor Agreement) and its strategy doc. The funnel speaks in matrix v2 across all six reveals. The repo is publicly fork-ready. Six business-model plays mapped strategically with sequencing. UI harmony pass shipped on /playbook + /path + /codex + /ai-os + /dashboard + /zone-of-genius. The first $555 stranger remains the unfired Si–Do. Press-send Friday is no longer about preparing the apparatus — it's about pressing send.*
+
+---
+
+## Day 53 — UBB Founder-Doc Bulk Migration cleanup (April 27, 2026)
+
+**Center reading: Codification holds.** No structural advance from Day 51. This was operational hygiene: closing the loop on a Lovable session that landed prod-only changes, capturing them faithfully in source, and finishing the small UI/lint follow-ups.
+
+### What landed
+
+**Lovable session (earlier — captured in roadmap Item 45):** ran the `seed-founder-docs` Supabase edge function against `docs/02-strategy/unique-businesses/alexanders_unique_business.md` for all 18 remaining UBB artifact keys (after the `uniqueness` pilot). Seeded 16/18 as **locked v1 at specificity 9.5** for Alexander (`user_id 39e554f8…`): `myth · tribe · pain · promise · lead_magnet · value_ladder · specificity_matrix · session_bridge · core_belief · packaging · frictionless_purchase · reach · spread · surface_inventory · tuning_fork · golden_dm`. Two failed: `delivery` (truncation) and `landing_page` (step_number 19 vs constraint cap 18). Same session loosened the constraint to ≤19 directly in prod and bumped `max_completion_tokens` 4000 → 8000. Retried the two — gateway returned HTTP 402 ("credits exhausted"). 16/18 final.
+
+**Cowork-lane Day 53:**
+
+1. **Repo ↔ prod synchronization** — Lovable applied the constraint loosening as a session-only ALTER; no migration file shipped. Wrote idempotent fixture migration `supabase/migrations/20260427000001_ubb_step_number_constraint_19.sql` that drops the existing `user_business_artifacts_step_number_check` constraint (if present) and recreates it as `step_number ∈ [1, 19]`. Comment ties it to `STEP_NUMBER_BY_KEY` in `seed-founder-docs/index.ts` so a future engineer reading the constraint sees the source of truth. Token-budget bump confirmed already in repo at `seed-founder-docs/index.ts:116` (`max_completion_tokens: 8000`).
+
+2. **Item 47 — Artifact seeding status UI** → minimum-viable-meaningful: the lock-state already IS the UI (✓ locked = seeded; ○ drafted = in progress; ◌ dashed = pending). Day-53 fix lifted hardcoded `18` → `ALL_ARTIFACT_KEYS.length` (now 19 with landing_page) on Canvas hero (3× occurrences) + Dossier card. Added a seed-aware italic subtitle on hero when `lockedCount ≥ 10`: *"Some artifacts were seeded from your canvas doc — you can iterate any of them, or generate the remaining N from scratch."* Visible on Lovable preview (where 16/19 are seeded); correctly hidden on Sasha's local DB (where lockedCount=5). File: `src/modules/unique-business-builder/screens/CanvasOverviewScreen.tsx`.
+
+3. **Item 48 — Security linter** → `npm run lint -- --fix` ran clean: 14 auto-fixable issues resolved (1067 → 1053 problems). Inspected the remaining 1053: virtually all are `@typescript-eslint/no-explicit-any` in Supabase edge functions (Deno code where `any` is idiomatic for `catch (e: any)` blocks) plus a handful of `prefer-const` / `no-require-imports`. Type-quality, NOT security. Lovable was correct that they're "pre-existing and unrelated." A full type-quality sweep is deferred to a separate dedicated pass — not Day-53 scope.
+
+4. **Item 49 — Publish after DB change** → repo state now matches Lovable's prod via the fixture migration. On next Lovable publish both will ride out through the standard flow. No manual deploy from Sasha needed.
+
+5. **Item 50 — Verify module CMS wiring** → preview MCP smoke-test on `/ubb` Canvas at desktop confirmed: hero subtitle reads *"19 artifacts. Press Improve..."*, locked counter reads *"5 of 19 locked"* (local DB state — seeded prod will read 16/19), Dossier line reads *"Composed overview of all 19 artifacts. 14 more to lock first."* All hardcoded `18` references swept. Generic + Compound artifact-view renderers untouched (already battle-tested via Day-51 specificity-matrix work).
+
+### What's still open
+
+**Item 46** — retry `delivery` + `landing_page` artifact seeding. Blocked solely on Lovable AI gateway credits. Tracked in **WO8** (Waiting On). Self-resolves on credit refresh; retry pattern already documented in roadmap Item 45. After both seed: 18/18 → all locked v1 @ 9.5 specificity for Alexander, WO8 closes, Item 46 → Done.
+
+### Holomap implication
+
+P11 (Delivery Machinery) advanced incrementally: the bulk-migration apparatus now has its source of truth in repo (the migration fixture + the seed function code + the data file), not just in Lovable session state. P4 (System Architecture) gained a small piece of debt resolution: hardcoded magic numbers replaced with array lengths. Neither is a stage advance — both are hygiene that strengthens the existing stage's foundation.
+
+P2 (Observable System) gained a tiny visibility win — Sasha (or any future founder) seeing `/ubb` Canvas after a doc-seed run gets one italic line explaining the pre-populated state, not silent confusion.
+
+### Files touched (Day 53)
+
+**Migrations:** `supabase/migrations/20260427000001_ubb_step_number_constraint_19.sql` (NEW — idempotent fixture)
+
+**Code:** `src/modules/unique-business-builder/screens/CanvasOverviewScreen.tsx` (hardcoded `18` → `ALL_ARTIFACT_KEYS.length` × 4 + seed-aware subtitle); incidental linter --fix touched `src/modules/ai-os/AiOsPage.tsx` (cosmetic only — const, indent)
+
+**Docs:** `docs/02-strategy/roadmap.md` (Items 47-50 → ✅ DONE Day 53; v5.3 footnote; Last-updated callout); `docs/09-logs/session_log.md` (this entry); `docs/02-strategy/roadmap.md` `WO8` cross-reference live for the still-open Item 46
+
+### The Si–Do continues
+
+Day 51's 27th still applies: **press send Friday** — the unfired DM cluster to the warm-tie aligned tribe. Day 53 does not change that. The apparatus has slightly more depth to receive the eventual send (UBB canvas is now a fully-seeded surface with explicit state UI rather than 14 empty cards under a pre-loaded hero), but the send itself remains the move that fires the 27th.
+
+---
+
+*Day 53 closes the operational loop on Lovable's Day-52 bulk migration — partial success captured in source, partial failure cleanly tracked, follow-up cleanly enumerated. The funnel apparatus is one degree closer to "ready to receive the send" — every artifact card on /ubb that previously read "Not started" for Alexander now reads "v1 · 1 version · 9.5 / 10 — locked" (16 of 19 of them). Whatever conversation Friday's DM kicks off, the receiving surface is now substantially richer than it was on Day 50.*
