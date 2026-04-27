@@ -223,10 +223,21 @@ const buildJourneySections = (_currentPath: string): Section[] => {
     // render dimmed with a Radix tooltip showing the unlock hint.
     // Day 52 (Sasha 2026-04-26): item #6 inserted — "Build a business off
     // your top talent" — the bridge from JOURNEY into BUILD. Routes to
-    // /ubb (the Unique Business Builder), which is a member of the BUILD
-    // space; clicking it from JOURNEY's pane 2 also flips the active space
-    // to BUILD via getSpaceFromPath in GameShellV2. Mission Discovery and
-    // Asset Mapper bump down to 7 and 8, both still locked.
+    // /ubb. All three trailing items (#6, #7, #8) are LOCKED and rendered
+    // with graduated opacity to create a "fog of war" effect: the rail
+    // visually conveys that there is more methodology ahead, with the
+    // further items receding into fainter visibility. Hints sequence the
+    // unlocks along the Integrated Stack (Domain 83) arc:
+    //   6 → after Top Talent reaches 9+ specificity
+    //   7 → after Build a business
+    //   8 → after Mission Discovery
+    //
+    // Eventual behavior (when UBB is production-ready): #6 becomes a
+    // SOFT lock — visible and active for anyone authed with a Top Talent
+    // saved (it's the natural next step in the linear walk). Hard-locked
+    // here for now because the Builder is not yet shipped to public users.
+    // To switch over: gate the `locked` field on the user's Top Talent
+    // state instead of hardcoding `true`.
     return [
         { id: "journey-start-here",        label: "1. Start",             path: "/" },
         { id: "journey-the-playbook",      label: "2. Playbook",          path: "/playbook" },
@@ -237,13 +248,15 @@ const buildJourneySections = (_currentPath: string): Section[] => {
             id: "journey-build-business",
             label: "6. Build a business off your top talent",
             path: "/ubb",
+            locked: true,
+            lockedHint: "Unlocks after your Top Talent reaches 9+ specificity.",
         },
         {
             id: "journey-mission-discovery",
             label: "7. Mission Discovery",
             path: "/mission-discovery",
             locked: true,
-            lockedHint: "Unlocks after your high-precision Top Talent.",
+            lockedHint: "Unlocks after you build a business off your top talent.",
         },
         {
             id: "journey-asset-mapper",
@@ -460,12 +473,34 @@ const SectionsPanel = ({
                 tooltip as the locked space chips on pane 1. */}
             <TooltipProvider delayDuration={150} skipDelayDuration={0}>
             <nav className="py-2 pt-1">
+                {/* Day 52 (Sasha 2026-04-26): Fog-of-war effect.
+                    Locked items in pane 2 are dimmed progressively: the
+                    first locked item is clearly readable (still soft), and
+                    each subsequent locked item recedes further into the
+                    background. Visually conveys "there is more methodology
+                    ahead, and the further you look the less is yet
+                    visible." The opacity multiplier is computed inline per
+                    row from each locked item's 0-indexed position among
+                    locked items. */}
                 {spaceData.sections.map((section) => {
                     const hasSubSections = section.subSections && section.subSections.length > 0;
                     const isExpanded = expandedSections[section.id] ?? false;
                     const sectionActive = isActive(section.path);
                     const isLocked = section.locked === true;
                     const { number, text: sectionText } = parseNumberedLabel(section.label);
+
+                    // Fog-of-war opacity for locked items. 1st locked stays
+                    // clearly readable (0.85), each next one fainter. Anything
+                    // beyond the third caps at 0.30 so it doesn't disappear.
+                    const lockedFogIndex = isLocked
+                        ? spaceData.sections.filter(
+                              (s, i) => s.locked && i < spaceData.sections.indexOf(section),
+                          ).length
+                        : -1;
+                    const FOG_OPACITY: number[] = [0.85, 0.60, 0.40, 0.30];
+                    const fogOpacity = isLocked
+                        ? (FOG_OPACITY[lockedFogIndex] ?? 0.30)
+                        : 1;
 
                     const handleSectionClick = () => {
                         if (isLocked) return;
@@ -507,7 +542,9 @@ const SectionsPanel = ({
                             style={
                                 sectionActive && !hasSubSections && !isLocked
                                     ? { backgroundColor: "rgba(212, 175, 55, 0.08)" }
-                                    : undefined
+                                    : isLocked
+                                        ? { opacity: fogOpacity }
+                                        : undefined
                             }
                             onClick={handleSectionClick}
                             aria-disabled={isLocked || undefined}
