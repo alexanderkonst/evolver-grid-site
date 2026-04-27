@@ -21,7 +21,7 @@ export const useAIUpgradeAccess = (user: User | null) => {
 
       try {
         // Find or create profile linked to user
-        let profile = await findOrCreateUserProfile(user.id);
+        const profile = await findOrCreateUserProfile(user.id);
         setProfileId(profile.id);
 
         if (profile.ai_upgrade_access) {

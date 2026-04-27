@@ -40,7 +40,7 @@ const CATEGORY_LABELS: Record<string, string> = {
   design: "Design & Perception",
 };
 
-let PROMPTS: Prompt[] = [
+const PROMPTS: Prompt[] = [
   {
     id: "boost-intel",
     label: "AI UPGRADE v4.021",
