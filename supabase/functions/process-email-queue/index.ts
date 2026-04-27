@@ -1,5 +1,87 @@
-import { sendLovableEmail } from 'npm:@lovable.dev/email-js'
 import { createClient } from 'npm:@supabase/supabase-js@2'
+
+// ---------------------------------------------------------------------------
+// Inlined Lovable email send helper (was: npm:@lovable.dev/email-js).
+// Vendored locally because the private Lovable npm registry does not resolve
+// reliably inside edge-function deploys. Behavior matches the upstream 0.0.4
+// package for the fields this dispatcher uses.
+// ---------------------------------------------------------------------------
+
+const DEFAULT_API_BASE_URL = 'https://api.lovable.dev'
+const DEFAULT_SEND_PATH = '/v1/messaging/email/send'
+
+class EmailAPIError extends Error {
+  readonly status: number
+  readonly retryAfterSeconds: number | null
+  constructor(status: number, message: string, retryAfterSeconds: number | null) {
+    super(message)
+    this.name = 'EmailAPIError'
+    this.status = status
+    this.retryAfterSeconds = retryAfterSeconds
+  }
+}
+
+function parseRetryAfter(header: string | null): number | null {
+  if (!header) return null
+  const numeric = Number(header)
+  if (!Number.isNaN(numeric)) return numeric
+  const date = new Date(header)
+  if (!Number.isNaN(date.getTime())) {
+    return Math.max(0, Math.ceil((date.getTime() - Date.now()) / 1000))
+  }
+  return null
+}
+
+interface EmailSendRequest {
+  run_id?: string
+  to: string
+  from: string
+  sender_domain?: string
+  subject: string
+  html: string
+  text: string
+  purpose?: string
+  reply_to?: string
+  label?: string
+  idempotency_key?: string
+  unsubscribe_token?: string
+  message_id?: string
+}
+
+async function sendLovableEmail(
+  payload: EmailSendRequest,
+  options: { apiKey: string; sendUrl?: string; apiBaseUrl?: string },
+): Promise<unknown> {
+  const apiKey = options.apiKey
+  if (!apiKey) throw new Error('Missing Lovable API key')
+  const apiBaseUrl = options.apiBaseUrl ?? DEFAULT_API_BASE_URL
+  const url = options.sendUrl || `${apiBaseUrl.replace(/\/$/, '')}${DEFAULT_SEND_PATH}`
+  const idempotencyKey = payload.idempotency_key ?? payload.run_id
+
+  const headers: Record<string, string> = {
+    Authorization: `Bearer ${apiKey}`,
+    'Content-Type': 'application/json',
+  }
+  if (idempotencyKey) headers['Idempotency-Key'] = idempotencyKey
+
+  const response = await fetch(url, {
+    method: 'POST',
+    headers,
+    body: JSON.stringify(payload),
+  })
+
+  if (!response.ok) {
+    const errorText = await response.text()
+    const safe = errorText.length > 500 ? `${errorText.slice(0, 500)}...` : errorText
+    throw new EmailAPIError(
+      response.status,
+      `Email API error: ${response.status} ${safe}`,
+      parseRetryAfter(response.headers.get('Retry-After')),
+    )
+  }
+
+  return await response.json()
+}
 
 const MAX_RETRIES = 5
 const DEFAULT_BATCH_SIZE = 10
