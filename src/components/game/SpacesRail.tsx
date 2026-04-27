@@ -137,7 +137,11 @@ const SPACES: SpaceItem[] = [
         id: "build",
         label: "BUILD",
         icon: <GlyphIcon glyph="⬢" color="hsl(45, 90%, 62%)" />,
-        path: "/game/build",
+        // Day 52 (Sasha 2026-04-26): BUILD chip lands on the Unique
+        // Business Builder. UBB is the canonical BUILD experience —
+        // legacy /game/build/* paths still resolve for back-compat
+        // but are no longer the primary destination.
+        path: "/ubb",
     },
     {
         id: "buysell",
