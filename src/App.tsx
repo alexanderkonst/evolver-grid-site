@@ -167,14 +167,15 @@ import UbbLandingPageScreen from "./modules/unique-business-builder/screens/Land
 import DossierScreen from "./modules/unique-business-builder/screens/DossierScreen";
 import PublicDossier from "./pages/PublicDossier";
 import PublicLandingPage from "./pages/PublicLandingPage";
-// AiOs module — Sasha's prompt library at /prompt (imported from
-// github.com/alexanderkonst/metaprompt and adapted to evolver patterns 2026-04-24)
+// AiOs module — Sasha's prompt library at /ai-os (imported from
+// github.com/alexanderkonst/metaprompt and adapted to evolver patterns 2026-04-24).
+// Day 53 evening (2026-04-27): retired AiOsAuthPage / AiOsProfilePage /
+// AiOsAuthProvider — /ai-os is pure Holonic Commons, free for everyone,
+// no profile, no sign-in. Components stay in source for archival and any
+// future re-introduction; routes that referenced them now redirect home.
 import AiOsPage from "./modules/ai-os/AiOsPage";
-import AiOsAuthPage from "./modules/ai-os/pages/AiOsAuthPage";
 import AiOsPricingPage from "./modules/ai-os/pages/AiOsPricingPage";
-import AiOsProfilePage from "./modules/ai-os/pages/AiOsProfilePage";
 import AiOsBenchmark from "./pages/AiOsBenchmark";
-import { AiOsAuthProvider } from "./modules/ai-os/hooks/useAiOsAuth";
 
 const PageLoader = () => (
   <div className="h-screen flex items-center justify-center bg-[#0a0a1a]">
@@ -252,19 +253,26 @@ const App = () => (
                       (perpendicular to the AI-model race; OS+Apps for AI).
                       Old /codex and /prompt paths redirect for any links
                       already in the wild (DMs, screenshots, prior deploys). */}
-                  <Route path="/ai-os" element={<GameShellV2><AiOsAuthProvider><AiOsPage /></AiOsAuthProvider></GameShellV2>} />
-                  <Route path="/ai-os/auth" element={<AiOsAuthProvider><AiOsAuthPage /></AiOsAuthProvider>} />
-                  <Route path="/ai-os/pricing" element={<GameShellV2><AiOsAuthProvider><AiOsPricingPage /></AiOsAuthProvider></GameShellV2>} />
-                  <Route path="/ai-os/profile" element={<RequireAuth><GameShellV2><AiOsAuthProvider><AiOsProfilePage /></AiOsAuthProvider></GameShellV2></RequireAuth>} />
+                  {/* Day 53 evening (Sasha 2026-04-27): /ai-os goes pure
+                      Holonic Commons — free, no profile, no sign-in. The
+                      AiOsAuthProvider wrapper retired from /ai-os, /ai-os/pricing,
+                      /ai-os/benchmark since the page no longer reads `useAiOsAuth`.
+                      /ai-os/auth and /ai-os/profile redirect home to defang any
+                      stale links. /ai-os/pricing kept for the Holonic Commons
+                      tip / patronage flow (no auth needed).  */}
+                  <Route path="/ai-os" element={<GameShellV2><AiOsPage /></GameShellV2>} />
+                  <Route path="/ai-os/auth" element={<Navigate to="/ai-os" replace />} />
+                  <Route path="/ai-os/pricing" element={<GameShellV2><AiOsPricingPage /></GameShellV2>} />
+                  <Route path="/ai-os/profile" element={<Navigate to="/ai-os" replace />} />
                   <Route path="/ai-os/benchmark" element={<GameShellV2><AiOsBenchmark /></GameShellV2>} />
                   <Route path="/codex" element={<Navigate to="/ai-os" replace />} />
-                  <Route path="/codex/auth" element={<Navigate to="/ai-os/auth" replace />} />
+                  <Route path="/codex/auth" element={<Navigate to="/ai-os" replace />} />
                   <Route path="/codex/pricing" element={<Navigate to="/ai-os/pricing" replace />} />
-                  <Route path="/codex/profile" element={<Navigate to="/ai-os/profile" replace />} />
+                  <Route path="/codex/profile" element={<Navigate to="/ai-os" replace />} />
                   <Route path="/prompt" element={<Navigate to="/ai-os" replace />} />
-                  <Route path="/prompt/auth" element={<Navigate to="/ai-os/auth" replace />} />
+                  <Route path="/prompt/auth" element={<Navigate to="/ai-os" replace />} />
                   <Route path="/prompt/pricing" element={<Navigate to="/ai-os/pricing" replace />} />
-                  <Route path="/prompt/profile" element={<Navigate to="/ai-os/profile" replace />} />
+                  <Route path="/prompt/profile" element={<Navigate to="/ai-os" replace />} />
 
                   {/* Activations — public marketing routes (Day 51, Sasha 2026-04-25).
                       /activations              → index (live entries from src/data/activations.ts)

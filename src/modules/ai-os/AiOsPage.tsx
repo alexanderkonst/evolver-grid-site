@@ -2,14 +2,15 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { Card } from "@/components/ui/card";
 import { toast } from "@/hooks/use-toast";
-import { Copy, Check, Send, Loader2, Youtube, User, Lock, ExternalLink, ArrowRight, Zap, Heart, BarChart3 } from "lucide-react";
+import { Copy, Check, Send, Loader2, Youtube, Lock, ExternalLink, ArrowRight, Zap, Heart, BarChart3 } from "lucide-react";
 import StarryBackground from "./components/StarryBackground";
 import AiOsSpotlight from "./components/AiOsSpotlight";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
-import { useAiOsAuth } from "./hooks/useAiOsAuth";
+// Day 53 evening (Sasha 2026-04-27): useAiOsAuth retired from /ai-os.
+// The page is Holonic Commons — free for everyone, no profile, no sign-in.
 
 interface CustomField {
   key: string;
@@ -2434,7 +2435,6 @@ const AiOsPage = () => {
   // keep those collapsed behind one button so they don't visually
   // compete with the signature transmission above.
   const [expandedSubmodules, setExpandedSubmodules] = useState<Record<string, boolean>>({});
-  const { user } = useAiOsAuth();
   const navigate = useNavigate();
 
   // Repaint the body to the metaprompt's deep navy while this page is mounted.
@@ -2587,22 +2587,13 @@ const AiOsPage = () => {
             <RevealSection>
               <header className="text-center space-y-5 relative pt-2 sm:pt-4 pb-8">
                 {/* Day 50 (Sasha): hero torus medallion retired — the
-                    GameShell rail already carries the brand mark, so a
-                    second emblem above the hero wordmark was a duplicate.
-                    Profile button stays, pinned top-right. */}
-                <button
-                  onClick={() => navigate(user ? "/ai-os/profile" : "/ai-os/auth")}
-                  className="absolute right-0 top-6 sm:top-10 p-2.5 rounded-full transition-all duration-300 hover:scale-110"
-                  style={{
-                    background: 'hsl(0 0% 100% / 0.08)',
-                    border: '1px solid hsl(0 0% 100% / 0.12)',
-                    color: 'hsl(0 0% 100% / 0.7)',
-                    backdropFilter: 'blur(8px)',
-                  }}
-                  aria-label={user ? "Profile" : "Sign in"}
-                >
-                  <User className="w-4 h-4 sm:w-5 sm:h-5" />
-                </button>
+                    GameShell rail already carries the brand mark.
+                    Day 53 evening (Sasha 2026-04-27): profile button + auth
+                    flow retired entirely from /ai-os. AI OS is Holonic
+                    Commons — free for everyone, no profile, no sign-in.
+                    Anyone arriving at the page can use it immediately
+                    without an account. The /ai-os/auth and /ai-os/profile
+                    routes redirect home. */}
                 <p className="text-xs tracking-[0.35em] uppercase font-medium" style={{ 
                   color: 'hsl(0 0% 100% / 0.7)',
                   textShadow: '0 0 12px rgba(0,0,0,0.9), 0 0 30px rgba(0,0,0,0.7), 0 2px 4px rgba(0,0,0,0.8)',
