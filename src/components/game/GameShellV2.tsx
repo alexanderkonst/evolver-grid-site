@@ -152,17 +152,14 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
         return !isLandingPage;
     });
     const [mobileView, setMobileView] = useState<"navigation" | "content">(() => {
-        // Day 48 (Sasha, mobile fix): on mobile, the mobileView state was
-        // always resetting to "navigation" when a new page's GameShellV2
-        // mounted after route change. That made section clicks feel like
-        // "the first click did nothing" — the route changed but the user
-        // stayed on the navigation view. Derive from pathname on mount:
-        // landing stays on navigation (so new visitors see the rail),
-        // everything else starts on content (the page they just arrived at).
-        if (typeof window === "undefined") return "navigation";
-        const p = window.location.pathname;
-        const isLandingPage = p === "/" || p.startsWith("/game/journey");
-        return isLandingPage ? "navigation" : "content";
+        // Day 53 (Sasha 2026-04-27): mobile landing now defaults to CONTENT
+        // (the hero), not navigation. Hiding the hero behind a nav list
+        // on the entry page defeats the landing's job — new visitors need
+        // to feel the offer first. The platform map can be discovered via
+        // the menu toggle once they're hooked. All non-landing routes still
+        // default to content (the page they just navigated to).
+        if (typeof window === "undefined") return "content";
+        return "content";
     });
     const [shortcutsOpen, setShortcutsOpen] = useState(false);
 
