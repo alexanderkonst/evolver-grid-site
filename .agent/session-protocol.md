@@ -4,6 +4,75 @@
 
 ---
 
+## Task framing protocol — entry & exit
+
+**The single most important protocol in this file.** Sasha is not the project tracker. **I am.** He shouldn't have to re-open a chat to wonder whether work is finished, or whether something he asked for is in progress, or whether what I'm doing duplicates something already in the roadmap.
+
+The roadmap (`docs/02-strategy/roadmap.md`) is the source of truth. I keep him oriented relative to it.
+
+### What counts as a "task"
+
+A scoped unit of work that has a clear goal and a clear end-state. *"Build the admin send-link button"*, *"Fuse /admin/dashboard and /admin/grants into one page"*, *"Restyle the Library to use pane 2 navigation"* — these are tasks. *"What does this function do?"*, *"Fix this typo"*, casual back-and-forth — these are not tasks; framing/declaring would be theater.
+
+### Entry (before the first tool call)
+
+When Sasha gives me a task — or when *I* propose work proactively — before I do any tool work, I check:
+
+1. **Is this in the roadmap?** Cite the row if yes.
+2. **Does this depend on something in the roadmap?** Surface the dependency.
+3. **Does this resemble or duplicate something in the roadmap or recent session log?** Flag it so Sasha can decide if it's the same thing or different.
+
+Then I orient him in one short paragraph:
+
+> *"This relates to [roadmap row X]. No blockers. Proceeding."*
+> *"This is net-new — not in the roadmap. Adding as a new task. Proceeding."*
+> *"This resembles [item Y] in the backlog. Same thing or different? — call it."*
+
+**If there's a decision for Sasha to make, name it explicitly on its own line — never bury it in prose:**
+
+> **Decision:** Bundle Steps 2+3 into one Stripe checkout, or keep separate? *Recommended: bundle.*
+
+If it's clearly novel and standalone, say so explicitly. The point is Sasha is never wondering *"how does this fit?"* — I tell him before I start.
+
+**Apply this protocol to my own proactive proposals too.** When I suggest work (not just when Sasha asks), I frame it the same way. My proposals are tasks; they need entry framing too. This stops me from sneaking scope through suggestions.
+
+### During (while working)
+
+**Scope is locked at entry.** No "and while we're here let's also..." mid-task scope creep. If new work emerges during execution that's worth doing, I have two options:
+
+1. **Finish the current task. Declare DONE. Then frame the new work as a separate task** with its own entry paragraph.
+2. **Explicit re-frame mid-task**, with a visible call-out:
+
+> *"**Re-framing:** adding [X] to current scope because [reason]. Confirm or override?"*
+
+Either path is valid. Silently expanding scope is not.
+
+**Roadmap stays live as I work.** If the task IS in the roadmap, I move its row to in-progress (or the equivalent status indicator) at entry, and to Completed at exit. The roadmap reflects truth as a side-effect of doing the work — not as a separate "update the roadmap" pass afterward.
+
+### Exit (when work is functionally complete)
+
+When the task is verified, tested, with no remaining loose ends, I declare it explicitly:
+
+> **"Done — [task name]. [1-2 line summary of what changed.]"**
+
+The summary is the line Sasha drops into `docs/09-logs/session_log.md`. Three lines max. Plain English. No marketing.
+
+After the declaration, I **stop**. I don't expand scope unprompted. If new work emerges during execution that's worth doing, I surface it as an *offer*, not as additional unrequested ship:
+
+> *"There's a related polish I noticed: [X]. Worth one more turn? Otherwise this stream is closed."*
+
+Sasha calls the next play. He shouldn't have to *guess* whether I'm still working or done.
+
+### Why this matters
+
+Sasha said it explicitly: *"It's rare that you tell me, 'Okay, this is finished, this is done.' What we started is done, and I really need that. Otherwise I keep opening chats again and again, trying to understand if there is anything missing."*
+
+This is the bug. The fix is the protocol above. Apply it without exception.
+
+The principle: **Sasha is not the project tracker. I am.** The roadmap is the source of truth, and I keep it honest. He shouldn't need Trello, Jira, or a parallel chat tab to know where things stand. The orientation is in my entry paragraph; the closure is in my exit declaration; the trail is in the roadmap and the session log.
+
+---
+
 ## Session-open protocol (adaptive)
 
 I decide what to read based on Sasha's first message:

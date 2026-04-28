@@ -5,6 +5,7 @@ import { ChevronRight, ChevronDown, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { supabase } from "@/integrations/supabase/client";
 import { PLAYBOOK_STEPS } from "@/data/playbookSteps";
+import { GROWTH_STEPS } from "@/modules/library/growthSteps";
 // Day 53 night iter 3 (Sasha 2026-04-27): pane 2 phase progress decorations.
 // Hook returns null when not on /ubb*, so this import is free on every
 // other route — the hook is the gate, not a wrapper.
@@ -103,55 +104,21 @@ const SPACE_SECTIONS: SpaceSections = {
         ],
     },
     // LEARN Space
-    // Day 51 (Sasha 2026-04-25): Activations live here as educational apps
-    // in the Planetary OS. Body / Emotions / Mind / Talent / Spirit themes
-    // remain as future-grouping placeholders below.
+    // Day 56 (Sasha 2026-04-28): the 6-step Growth Sequence (Library) is
+    // promoted from a stacked accordion in pane 3 to first-class pane 2
+    // items. Each step is its own row with a numbered gold pip, mirroring
+    // JOURNEY's editorial register. Locked steps render with the same
+    // fog-of-war opacity gradient + lockedHint tooltip as JOURNEY's locked
+    // teasers — one consistent visual language for "what you're earning
+    // toward." The 5 Growth Paths (Body / Emotions / Mind / Talent / Spirit)
+    // remain below as a separate group of placeholders.
+    //
+    // Sections built dynamically from GROWTH_STEPS in `getSections()` so
+    // there's a single source of truth for the steps (also read by Library.tsx
+    // when rendering the active step's content in pane 3).
     learn: {
         title: "LEARN",
-        sections: [
-            { id: "activations", label: "Activations", path: "/activations" },
-            { id: "overview", label: "Growth Sequence", path: "/game/learn" },
-            {
-                id: "body",
-                label: "Body",
-                path: "/game/learn/path/body",
-                subSections: [
-                    { id: "body-overview", label: "Coming soon", path: "/game/learn/path/body" },
-                ],
-            },
-            {
-                id: "emotions",
-                label: "Emotions",
-                path: "/game/learn/path/emotions",
-                subSections: [
-                    { id: "emotions-overview", label: "Coming soon", path: "/game/learn/path/emotions" },
-                ],
-            },
-            {
-                id: "mind",
-                label: "Mind",
-                path: "/game/learn/path/mind",
-                subSections: [
-                    { id: "mind-overview", label: "Coming soon", path: "/game/learn/path/mind" },
-                ],
-            },
-            {
-                id: "talent",
-                label: "Talent",
-                path: "/game/learn/path/genius",
-                subSections: [
-                    { id: "talent-overview", label: "Coming soon", path: "/game/learn/path/genius" },
-                ],
-            },
-            {
-                id: "spirit",
-                label: "Spirit",
-                path: "/game/learn/path/spirit",
-                subSections: [
-                    { id: "spirit-overview", label: "Coming soon", path: "/game/learn/path/spirit" },
-                ],
-            },
-        ],
+        sections: [],
     },
     // MEET Space (was Events)
     meet: {
@@ -281,6 +248,69 @@ const buildUbbSections = (
     ];
 };
 
+/**
+ * Day 56 (Sasha 2026-04-28): LEARN pane 2 sections.
+ *
+ * The 6 Growth Sequence steps render as numbered pane 2 rows — same gold
+ * pip + Cormorant label register as JOURNEY. Locked steps carry their
+ * `lockedHint` from the shared growthSteps module, which surfaces in the
+ * locked-row tooltip (already implemented downstream in this file).
+ *
+ * Public route: `/library/:stepId`
+ * Authed route: `/game/learn/library/:stepId`
+ *
+ * The pathBase is selected by the caller based on whether the user is
+ * inside an authed `/game/*` route — keeps a single visual structure for
+ * both surfaces while routing them to their respective scopes.
+ *
+ * Below the 6 steps, the 5 Growth Paths (Body / Emotions / Mind / Talent /
+ * Spirit) hang as future-grouping placeholders, unchanged from before.
+ */
+const buildLearnSections = (pathBase: "/library" | "/game/learn/library"): Section[] => {
+    const stepRows: Section[] = GROWTH_STEPS.map((step) => ({
+        id: `learn-step-${step.id}`,
+        label: `${step.number}. ${step.shortLabel}`,
+        path: `${pathBase}/${step.id}`,
+        locked: step.locked,
+        lockedHint: step.lockedHint,
+    }));
+
+    const pathRows: Section[] = [
+        {
+            id: "body",
+            label: "Body",
+            path: "/game/learn/path/body",
+            subSections: [{ id: "body-overview", label: "Coming soon", path: "/game/learn/path/body" }],
+        },
+        {
+            id: "emotions",
+            label: "Emotions",
+            path: "/game/learn/path/emotions",
+            subSections: [{ id: "emotions-overview", label: "Coming soon", path: "/game/learn/path/emotions" }],
+        },
+        {
+            id: "mind",
+            label: "Mind",
+            path: "/game/learn/path/mind",
+            subSections: [{ id: "mind-overview", label: "Coming soon", path: "/game/learn/path/mind" }],
+        },
+        {
+            id: "talent",
+            label: "Talent",
+            path: "/game/learn/path/genius",
+            subSections: [{ id: "talent-overview", label: "Coming soon", path: "/game/learn/path/genius" }],
+        },
+        {
+            id: "spirit",
+            label: "Spirit",
+            path: "/game/learn/path/spirit",
+            subSections: [{ id: "spirit-overview", label: "Coming soon", path: "/game/learn/path/spirit" }],
+        },
+    ];
+
+    return [...stepRows, ...pathRows];
+};
+
 const buildJourneySections = (_currentPath: string): Section[] => {
     // Day 50 late (Sasha): five permanent rail items, no hide gating.
     // The rail is the same on every Journey-family page — including
@@ -373,6 +403,23 @@ const SectionsPanel = ({
             return {
                 ...baseData,
                 sections: buildJourneySections(location.pathname),
+            };
+        }
+
+        // LEARN → 6-step Growth Sequence (Library) + 5 Growth Paths.
+        // The pane 2 rows are built dynamically from GROWTH_STEPS so the
+        // step list is a single source of truth shared with Library.tsx
+        // (which renders each step's content in pane 3). Path base
+        // depends on whether the user is inside an authed /game/* route
+        // or browsing the public /library surface — same pane structure,
+        // different scope. Sasha, Day 56 (2026-04-28).
+        if (activeSpaceId === "learn") {
+            const insideAuthed =
+                location.pathname === "/game/learn" || location.pathname.startsWith("/game/learn/");
+            const pathBase = insideAuthed ? "/game/learn/library" : "/library";
+            return {
+                title: "LEARN",
+                sections: buildLearnSections(pathBase),
             };
         }
 
