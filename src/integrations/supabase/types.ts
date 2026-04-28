@@ -402,6 +402,30 @@ export type Database = {
         }
         Relationships: []
       }
+      entitlement_cron_log: {
+        Row: {
+          duration_ms: number | null
+          error_message: string | null
+          id: string
+          ran_at: string
+          reverted_count: number
+        }
+        Insert: {
+          duration_ms?: number | null
+          error_message?: string | null
+          id?: string
+          ran_at?: string
+          reverted_count?: number
+        }
+        Update: {
+          duration_ms?: number | null
+          error_message?: string | null
+          id?: string
+          ran_at?: string
+          reverted_count?: number
+        }
+        Relationships: []
+      }
       entitlement_grants: {
         Row: {
           created_at: string
@@ -2193,6 +2217,14 @@ export type Database = {
           target_email: string
         }[]
       }
+      admin_rollback_entitlement: {
+        Args: { p_reason?: string; p_target_email: string }
+        Returns: {
+          email: string
+          new_tier: Database["public"]["Enums"]["entitlement_tier"]
+          previous_tier: Database["public"]["Enums"]["entitlement_tier"]
+        }[]
+      }
       delete_email: {
         Args: { message_id: number; queue_name: string }
         Returns: boolean
@@ -2240,9 +2272,10 @@ export type Database = {
       revert_expired_entitlement_grants: {
         Args: never
         Returns: {
-          previous_tier: Database["public"]["Enums"]["entitlement_tier"]
-          reverted_profile_id: string
-          user_email: string
+          duration_ms: number
+          error_message: string
+          ran_at: string
+          reverted_count: number
         }[]
       }
       set_entitlement_tier: {
