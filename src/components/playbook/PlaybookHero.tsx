@@ -37,11 +37,12 @@ const PlaybookHero = () => {
   const navigate = useNavigate();
 
   return (
-    /* Day 48 iter 5 (Sasha): outer mb tightened (mb-6/10 → mb-3/5)
-       so the CTA sits above the fold on the landing. Inner gap
-       reduced (gap-3 → gap-2.5) to match. */
-    <div className="mb-3 sm:mb-5">
-      <div className="flex flex-col items-center gap-2.5 px-4 text-center">
+    /* Day 54 (Sasha 2026-04-28): inner stack opened up to match the
+       landing's breath pass. gap-2.5 → gap-4 so primary CTA, meta
+       line, and secondary CTA each sit as their own beat instead of
+       reading as a single tight cluster. Outer mb 3/5 → 5/7. */
+    <div className="mb-5 sm:mb-7">
+      <div className="flex flex-col items-center gap-4 px-4 text-center">
         {/* Primary CTA — compact glass pill. Auto-width via
             `inline-flex` + `whitespace-nowrap`. Padding reduced
             `px-6 py-4` → `px-5 py-2.5` so the button feels precise
