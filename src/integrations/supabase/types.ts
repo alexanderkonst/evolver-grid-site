@@ -402,6 +402,47 @@ export type Database = {
         }
         Relationships: []
       }
+      entitlement_grants: {
+        Row: {
+          created_at: string
+          expires_at: string | null
+          granted_by: string | null
+          id: string
+          new_tier: Database["public"]["Enums"]["entitlement_tier"]
+          note: string | null
+          previous_tier: Database["public"]["Enums"]["entitlement_tier"] | null
+          profile_id: string
+        }
+        Insert: {
+          created_at?: string
+          expires_at?: string | null
+          granted_by?: string | null
+          id?: string
+          new_tier: Database["public"]["Enums"]["entitlement_tier"]
+          note?: string | null
+          previous_tier?: Database["public"]["Enums"]["entitlement_tier"] | null
+          profile_id: string
+        }
+        Update: {
+          created_at?: string
+          expires_at?: string | null
+          granted_by?: string | null
+          id?: string
+          new_tier?: Database["public"]["Enums"]["entitlement_tier"]
+          note?: string | null
+          previous_tier?: Database["public"]["Enums"]["entitlement_tier"] | null
+          profile_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "entitlement_grants_profile_id_fkey"
+            columns: ["profile_id"]
+            isOneToOne: false
+            referencedRelation: "game_profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       equilibrium_users: {
         Row: {
           birthday: string
@@ -630,6 +671,11 @@ export type Database = {
           created_at: string
           current_streak_days: number
           email: string | null
+          entitlement_expires_at: string | null
+          entitlement_granted_at: string | null
+          entitlement_granted_by: string | null
+          entitlement_note: string | null
+          entitlement_tier: Database["public"]["Enums"]["entitlement_tier"]
           first_name: string | null
           first_time_actions: Json | null
           genius_stage: string | null
@@ -686,6 +732,11 @@ export type Database = {
           created_at?: string
           current_streak_days?: number
           email?: string | null
+          entitlement_expires_at?: string | null
+          entitlement_granted_at?: string | null
+          entitlement_granted_by?: string | null
+          entitlement_note?: string | null
+          entitlement_tier?: Database["public"]["Enums"]["entitlement_tier"]
           first_name?: string | null
           first_time_actions?: Json | null
           genius_stage?: string | null
@@ -742,6 +793,11 @@ export type Database = {
           created_at?: string
           current_streak_days?: number
           email?: string | null
+          entitlement_expires_at?: string | null
+          entitlement_granted_at?: string | null
+          entitlement_granted_by?: string | null
+          entitlement_note?: string | null
+          entitlement_tier?: Database["public"]["Enums"]["entitlement_tier"]
           first_name?: string | null
           first_time_actions?: Json | null
           genius_stage?: string | null
@@ -2157,9 +2213,31 @@ export type Database = {
           read_ct: number
         }[]
       }
+      set_entitlement_tier: {
+        Args: {
+          p_expires_at?: string
+          p_new_tier: Database["public"]["Enums"]["entitlement_tier"]
+          p_note?: string
+          p_target_email: string
+        }
+        Returns: {
+          granted_at: string
+          new_tier: Database["public"]["Enums"]["entitlement_tier"]
+          previous_tier: Database["public"]["Enums"]["entitlement_tier"]
+          profile_id: string
+        }[]
+      }
     }
     Enums: {
       app_role: "admin" | "user"
+      entitlement_tier:
+        | "tasting"
+        | "builder"
+        | "locked_in"
+        | "gifted_builder"
+        | "gifted_locked_in"
+        | "founders_50"
+        | "ignition"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -2288,6 +2366,15 @@ export const Constants = {
   public: {
     Enums: {
       app_role: ["admin", "user"],
+      entitlement_tier: [
+        "tasting",
+        "builder",
+        "locked_in",
+        "gifted_builder",
+        "gifted_locked_in",
+        "founders_50",
+        "ignition",
+      ],
     },
   },
 } as const
