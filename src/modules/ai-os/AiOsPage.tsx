@@ -34,12 +34,17 @@ interface Prompt {
   isRecommended?: boolean; // fusion packs get this flag
 }
 
+// Day 54+ (Sasha 2026-04-28): suite labels unified to VERB form.
+// `Clarity Tools` → `Clarify`, `Iteration Suite` → `Iterate`,
+// `Vibe Coding` → `Vibe Code`, `Design & Perception` → `Design`.
+// The four read as siblings now, not a noun+gerund mix. The "Suite"
+// suffix lives in SUITE_TITLE for per-suite document.title only.
 const CATEGORY_LABELS: Record<string, string> = {
   meta: "AI Cognition Power-Ups",
-  clarity: "Clarity Tools",
-  iteration: "Iteration Suite",
-  deployment: "Vibe Coding",
-  design: "Design & Perception",
+  clarity: "Clarify",
+  iteration: "Iterate",
+  deployment: "Vibe Code",
+  design: "Design",
 };
 
 const PROMPTS: Prompt[] = [
@@ -2429,9 +2434,10 @@ interface AiOsPageProps {
   focusCategory?: "clarity" | "iteration" | "deployment" | "design";
 }
 
+// Day 54+ (Sasha): per-suite document.title — verb + "Suite" suffix.
 const SUITE_TITLE: Record<string, string> = {
-  clarity: "Clarity Suite",
-  iteration: "Iteration Suite",
+  clarity: "Clarify Suite",
+  iteration: "Iterate Suite",
   deployment: "Vibe Code Suite",
   design: "Design Suite",
 };
