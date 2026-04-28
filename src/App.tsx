@@ -200,7 +200,13 @@ const TitleManager = () => {
   const location = useLocation();
 
   useEffect(() => {
-    document.title = `Find Your Top Talent | ${getPageTitle(location.pathname)}`;
+    // Day 53 (Sasha 2026-04-27): drop the " | suffix" when getPageTitle
+    // returns "" (root + unmapped routes). Old behavior appended "| Home"
+    // / "| Explore" which read as confusing leftover boilerplate in tabs.
+    const sectionTitle = getPageTitle(location.pathname);
+    document.title = sectionTitle
+      ? `Find Your Top Talent | ${sectionTitle}`
+      : "Find Your Top Talent";
   }, [location.pathname]);
 
   return null;
