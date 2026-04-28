@@ -2387,11 +2387,19 @@ const RevealSection = ({ children, className = '', delay = 0 }: { children: Reac
   );
 };
 
-// Parallax hook for hero
-const useParallax = (speed = 0.3) => {
+// Parallax hook for hero. Day 54 r3 (Sasha 2026-04-28): `enabled` flag
+// added so the scroll handler can be skipped on mobile. The combination
+// of (a) a permanently GPU-promoted hero (will-change: transform), (b) a
+// scroll handler updating that transform on every frame, and (c) the
+// already-promoted fixed-position HLS video + overlay layers was crashing
+// the iOS Chrome renderer on /ai-os specifically — none of the working
+// pages have this pattern. When disabled, the ref is still returned so
+// the consumer's JSX doesn't need a conditional render.
+const useParallax = (speed = 0.3, enabled = true) => {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    if (!enabled) return;
     const handleScroll = () => {
       if (!ref.current) return;
       const scrollY = window.scrollY;
@@ -2400,7 +2408,7 @@ const useParallax = (speed = 0.3) => {
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [speed]);
+  }, [speed, enabled]);
 
   return ref;
 };
@@ -2620,9 +2628,16 @@ const AiOsPage = () => {
               GameShellV2 already supplies pt-4; layered py-16+pt-12 was
               pushing hero ~30% down the viewport. Now hero sits high. */}
           {(() => {
-            const parallaxRef = useParallax(0.25);
+            // Day 54 r3 (Sasha 2026-04-28): parallax + will-change-transform
+            // gated to desktop. On mobile WebKit, a permanently GPU-promoted
+            // hero whose transform changes per scroll-frame, layered over an
+            // HLS video and four fixed-position overlays, was thrashing the
+            // renderer until iOS Chrome killed the tab. Visual delta on
+            // mobile is nil (parallax barely registers on a phone-sized
+            // viewport during fast finger-scroll). Desktop unchanged.
+            const parallaxRef = useParallax(0.25, isHeavyFxCapable);
             return (
-            <div ref={parallaxRef} className="will-change-transform">
+            <div ref={parallaxRef} className={isHeavyFxCapable ? "will-change-transform" : ""}>
             <RevealSection>
               <header className="text-center space-y-5 relative pt-2 sm:pt-4 pb-8">
                 {/* Day 50 (Sasha): hero torus medallion retired — the
