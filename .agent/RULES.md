@@ -92,13 +92,30 @@ Alexander has consolidated onto the Claude ecosystem. Two Claude surfaces, one a
 - **gstack** (`~/.claude/skills/gstack/`): Slash-command skills available in Claude Code Mac app — `/plan-ceo-review`, `/review`, `/qa`, `/ship`, `/investigate`, `/retro`, etc. Global install. NOT connected to this project's `CLAUDE.md` (that's intentional — preserves pointer-only contract). Namespaced as `/gstack-*` to avoid collision.
 - **UI/UX Pro Max** (`.agent/skills/ui-ux-pro-max/`): Local project skill. Read `SKILL.md` before any UI work.
 
-## Verification Before Completion
+## Definition of Done — Before AND After
+
+This section pairs with `.agent/working-agreement.md` (the contract). The DoD pattern has two halves; both are mandatory on non-trivial tasks.
+
+### Before the work — the DoD table
+
+Produce a numbered DoD table in chat **before any file is touched**. Columns: `#`, `Item`, `Evidence`, `Status`. Rows are observable; status is binary (⬜ pending / ✅ done); the table covers the FULL intent of the request, not one round of it.
+
+**Sasha confirms or adjusts.** If he says "go" that's confirmation. No work starts until the DoD is set.
+
+If the work breaks naturally into rounds, **all rounds are in the table.** No silent "Phase 2" carve-outs. If something genuinely should be deferred, ask — don't decide.
+
+### After the work — verify, then declare
 
 Before saying "done" on any non-trivial task:
 - Re-read what was actually written (not just trust the tool response).
 - If edits touched multiple files, verify each one reflects the intended change.
-- If a task has a success criterion ("landing page loads," "skill installed," "no broken refs"), check it directly — run the build, open the file, fetch the URL, grep for the old string.
-- If blocked or partial, say so. Don't mark complete.
+- If a task has a success criterion ("landing page loads," "skill installed," "no broken refs"), check it directly — run the build, open the file, fetch the URL, grep for the old string. For UI/preview-able changes, run preview MCP against the real change.
+- Each ✅ row needs a concrete artifact in its Evidence column: URL, screenshot, file:line, command output. Not "I checked."
+- If blocked or partial, say so. Don't mark complete. **Verify is the gate, not the afterthought.**
+
+Sign-off message includes the full DoD table with evidence populated. Sasha sees the receipt, not just a "done."
+
+See `.agent/working-agreement.md` for the full lifecycle, the six practices, anti-patterns, and trigger phrases.
 
 ## Key Reference Documents
 - `/working-agreements` - Full working agreements
