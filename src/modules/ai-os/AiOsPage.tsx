@@ -2751,22 +2751,22 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
                     Same model. Different conversation.
                   </p>
                 </div>
-                {/* Day 54 (Sasha 2026-04-28): hero license line reframed
-                    from "Free for personal non-commercial use / Contact to
-                    inquire about licensed commercial use" → MIT framing.
-                    AI OS scaffold split out of CC BY-NC-SA into MIT
-                    (LICENSE.md §2) — the old copy was the trap line, since
-                    a permanent system-prompt install in the user's own AI
-                    cannot meaningfully be policed for personal-vs-commercial
-                    use. New line names what's actually true. Telegram link
-                    preserved for partnership / Distributor conversations
-                    (those are still real, just no longer about AI OS itself). */}
+                {/* Day 52 (Sasha 2026-04-26): licensing terms surfaced
+                    directly under the hero subtitle. Free for personal
+                    non-commercial use is the front door; commercial
+                    inquiries route via Telegram (t.me/integralevolution),
+                    same channel as the "Work with Aleksandr" CTA. Sized
+                    one notch below the italic subtitle so it reads as
+                    a contract line, not a third tagline.
+                    Day 54+ unwind (Sasha 2026-04-28 evening): MIT block
+                    reverted to this pre-MIT copy as a rollback baseline
+                    after the framing reset. License re-decision pending. */}
                 <div className="mx-auto max-w-lg pt-3">
                   <p className="text-xs sm:text-[13px] font-normal leading-relaxed" style={{
                     color: 'hsl(0 0% 100% / 0.82)',
                     textShadow: '0 0 12px rgba(0,0,0,0.9), 0 0 24px rgba(0,0,0,0.6), 0 1px 4px rgba(0,0,0,0.8)',
                   }}>
-                    MIT-licensed. Yours forever — personal, client work, or fork.
+                    Free for personal non-commercial use.
                     <br />
                     <a
                       href="https://t.me/integralevolution"
@@ -2775,9 +2775,9 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
                       className="underline decoration-[hsl(40_70%_75%/0.45)] decoration-1 underline-offset-[3px] hover:decoration-[hsl(40_70%_75%/0.85)] transition-colors"
                       style={{ color: 'hsl(40 70% 90% / 0.95)' }}
                     >
-                      Reach out
+                      Contact
                     </a>{" "}
-                    for partnership conversations.
+                    to inquire about licensed commercial use.
                   </p>
                 </div>
                 {/* CTAs — Day 51 r3 (Sasha 2026-04-25 evening): visual
