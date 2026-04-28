@@ -2237,6 +2237,14 @@ export type Database = {
           read_ct: number
         }[]
       }
+      revert_expired_entitlement_grants: {
+        Args: never
+        Returns: {
+          previous_tier: Database["public"]["Enums"]["entitlement_tier"]
+          reverted_profile_id: string
+          user_email: string
+        }[]
+      }
       set_entitlement_tier: {
         Args: {
           p_expires_at?: string
