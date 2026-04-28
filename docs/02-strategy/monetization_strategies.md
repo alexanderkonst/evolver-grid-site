@@ -67,6 +67,24 @@ The `specificity_matrix` UBB artifact (Day 51, [Playbook Principle 15](../03-pla
 ### 5. Opt-in commons (asset mappings, mission discoveries, anonymized artifacts)
 Each distributor's users explicitly choose at the artifact level whether their (anonymized) data flows into the public commons. The commons is released under CC BY 4.0 — usable as a public good across all distributors and any aligned external project. Network effects compound for everyone in the network without forced extraction.
 
+### 6. CC BY-SA 4.0 AI OS scaffold license (Day 54+, April 28, 2026)
+The **AI OS scaffold** (the meta-cognition system prompt distributed via `/ai-os` plus its derivative prompt suites — Clarify / Iterate / Vibe Code / Design) lives under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) — a deliberate, scoped exception to the broader CC BY-NC-SA on docs. Why a different license for this layer:
+
+- **The artifact is unenforceable on use.** A system prompt pasted into the user's own Claude / ChatGPT / Gemini cannot meaningfully be policed for personal-vs-commercial use. CC BY-NC-SA's NC clause would trap the well-meaning coach (whose upgraded Claude technically violates) without stopping the actual threat (someone packaging "AI OS Pro" and reselling).
+- **CC BY-SA solves the actual threat.** Share-alike triggers on **distribution of derivatives**, not **use** — so the coach using upgraded Claude is fine, while a reseller's "AI OS Pro" must also be released under CC BY-SA (anyone can then copy it and undercut their pricing → no proprietary moat → predator move dies).
+- **Honest commercial use stays free; proprietary use pays.** Anyone who wants to use AI OS in a closed product without share-alike obligations comes to Sasha for a per-deal commercial license. Standard CC BY-SA + commercial dual-licensing pattern (MongoDB-style, Sentry-style, Cal.com-style — adapted).
+
+**License map** (the full picture as of Day 54+):
+
+| Layer | License | Strict open source? |
+|---|---|---|
+| Code (`/src`, `/api`, `/supabase`) | PolyForm Noncommercial 1.0.0 | ❌ source-available |
+| Docs / methodology (`/docs`) | CC BY-NC-SA 4.0 | ❌ source-available |
+| AI OS scaffold (system prompt + derivative suites) | **CC BY-SA 4.0** | ✅ open |
+| Anthropic-derived skills (`.agent/skills/`) | MIT (upstream-inherited) | ✅ open |
+
+**The honest external framing:** "Built in the open. Licensed for honest use; commercial use through partnership." Two-thirds of the project is source-available (NC-bound), one-third is strictly open. *"Open-source methodology"* is a soft stretch — works rhetorically, won't survive a strict OSI advocate's audit. Use precise language when stakes warrant.
+
 ---
 
 ## Comparison to Existing Models
@@ -97,6 +115,24 @@ Web3 attempted commercial decentralization through token incentives and largely 
 3. **Compounding commons** — every distributor's contribution makes the commons more valuable to every other distributor. Self-reinforcing without requiring belief in a token's future value.
 
 No speculation surface. No need for blockchain. No volatile alignment.
+
+---
+
+## The Impact Founder Collective — the human-side framing (Day 54+, April 28, 2026)
+
+The architecture above (Sovereign Network · Distributor Agreement · six plays · CC BY-SA scaffold) describes the **legal and economic mechanics**. The **Impact Founder Collective** names the **human relationship layer** that runs through it. Same coin, two sides.
+
+In Sasha's vocabulary:
+- *Venture coop* = the outside-in description (cooperative-style venture structure with shared commons, revenue sharing, network-effect economics)
+- *Impact Founder Collective* = the inside-out description (a constellation of aligned founders, Sasha at the gravitational center, organized by tiered intimacy rather than employment hierarchy)
+- *Sovereign Network* = the brand handle when a memorable phrase helps externally
+- *Holonic Commons* = the commons layer specifically (the shared dataset of asset mappings, mission discoveries, AI OS scaffold)
+
+These are not different things. They are **four lenses on one structure** — pick the lens that fits the audience.
+
+**Why this matters for monetization strategy:** the six plays in the next section are not "products in a portfolio." They are **tiers of intimacy with the source** (Sasha + the body of work). Pricing reflects access depth, not feature count. This collapses business structure into elegance and radical simplicity — the founder *is* the product, made accessible at varying depths via the tier ladder. A traditional company-vs-customer distinction does not apply: founders in the IFC are *both* served by the methodology *and* contributors to it. They are members of the collective, not customers of a firm.
+
+This is also why the standard open-source-business-model frame (Red Hat ↔ Linus / Supabase ↔ Postgres / etc.) only **half-applies** to AI OS. In those cases, the company is built around the open project but is structurally separable from any individual contributor. Here, **Sasha IS AI OS** — the project's author, made accessible via tiered intimacy, where the body of work and the human are one holon. *Self-monetization* rather than product-monetization.
 
 ---
 

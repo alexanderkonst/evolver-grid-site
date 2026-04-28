@@ -9,6 +9,8 @@
 
 The codebase at [github.com/alexanderkonst/evolver-grid-site](https://github.com/alexanderkonst/evolver-grid-site) (the **Platform**) is licensed for non-commercial use under [PolyForm Noncommercial 1.0.0](./LICENSE). The methodology in `/docs` is licensed for non-commercial use under [CC BY-NC-SA 4.0](./LICENSE.md).
 
+> **Note on AI OS.** The AI OS scaffold (the meta-cognition system prompt at `/ai-os` and its derivative prompt suites — Clarify · Iterate · Vibe Code · Design) is **CC BY-SA 4.0-licensed** and is **not subject to this Agreement**. Use it freely (including commercially), modify it, distribute it, even sell it. Two conditions: keep the author's name on copies you share; if you build a modified version, your version must stay open under CC BY-SA 4.0 (see [`LICENSE.md`](./LICENSE.md) §2). If you want a proprietary build of AI OS without the share-alike obligation (closed integration into a commercial product), that's a per-deal commercial license — reach out via [Telegram](https://t.me/integralevolution).
+
 If you want to USE the Platform commercially — to charge clients, sell sessions, run a coaching practice, or operate a paid offering using the methodology — there are two clean paths. Most people take Path A.
 
 ### Path A — Subscribe to the hosted Platform (recommended for most)
@@ -49,7 +51,7 @@ By deploying a Distributor Instance commercially, you accept the terms below. Th
 
 - **Licensor** — Alexander Konstantinov.
 - **Distributor** — any person, company, or community that operates a forked or derivative instance of the Platform commercially.
-- **Platform** — the codebase, methodology, and modules of Find Your Top Talent / Planetary OS, including all artifacts inheriting the licenses above.
+- **Platform** — the codebase, methodology, and modules of Find Your Top Talent / Planetary OS, including all artifacts inheriting the licenses above. **Excludes the AI OS scaffold and its derivative prompt suites**, which are CC BY-SA 4.0-licensed (see [`LICENSE.md`](./LICENSE.md) §2) and explicitly out of scope for this Agreement. Proprietary commercial use of the AI OS scaffold (without share-alike) is governed by per-deal commercial license — separate from this Agreement.
 - **Distributor Instance** — your forked, modified, or hosted version of the Platform, operating under your own brand.
 - **Platform Revenue** — gross revenue (before your costs and taxes) earned through your Distributor Instance, from any of the following:
   - Sessions, programs, containers, or coaching sold to clients introduced or processed through your Distributor Instance.

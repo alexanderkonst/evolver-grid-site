@@ -830,6 +830,60 @@ When facilitating live (not via product), the same frequency holds. After every 
 
 ---
 
+## Principle 16: The Self-Monetizing Founder — Open Wedge, Paid Proximity
+
+> *"Unique business is self-productization, self-monetization. The collapse of business structure into elegance and radical simplicity."* — Sasha, April 28, 2026
+
+### The principle
+
+For a founder whose unique business is built on their own integrated body of work (methodology + frameworks + voice + lived practice), the **license + business model decision is one decision, not two**. The license expresses what the artifact IS; the business model expresses how value flows; both must match the artifact's nature, the actual threat, and the founder's organizational reality. Get this match right and the business collapses into elegance: free wedge at the bottom, paid proximity at the top, no firm in between.
+
+### The two halves
+
+**Half 1 — The Open Wedge.** The most distilled token of the founder's body of work goes out under the most permissive license that still protects against the actual threat. Free at the bottom = customer acquisition done by the artifact itself. Every install, every share, every fork carries attribution → the founder's name spreads at zero marginal cost. The wedge is the funnel; the wedge is not the product.
+
+**Half 2 — Paid Proximity.** What gets sold is not the artifact (it's free; copies cannot stop being made). What gets sold is **proximity to the source** — direct access to the founder, in tiers of increasing intimacy and decreasing capacity:
+- Free scaffold → mass distribution
+- Sessions → 1:1 attention
+- Cohorts → 1:few container
+- Commercial license → 1:org bilateral relationship
+- Advisory → 1:strategic-org high-leverage
+
+Each tier prices the asymmetric scarcity of the founder's time + judgment + presence. Conventional OSS-business-model frame (Red Hat ↔ Linus / Supabase ↔ Postgres) only **half-applies**, because in those cases the company is structurally separable from any one contributor. Here, **the founder IS the project** — which means proximity to them cannot be copied, share-aliked, forked, or resold by anyone else. It is structurally theirs.
+
+### The matchmaking criteria
+
+Before choosing a license for any artifact in the body of work, run it through these five questions:
+
+1. **What is the artifact's nature?** Bounded code? Prose methodology? A scaffold that lives permanently in someone's AI? Each demands different license logic.
+2. **What is the real threat?** Pure rip-and-resell as proprietary? Hyperscaler exploitation? Forks that compete with the original? Misattribution? Be specific — generic "I want protection" does not match to a specific license.
+3. **What is the business model that supports the work?** Sessions? SaaS? Sponsorship? Custom enterprise contracts? The license must not block the business model from operating.
+4. **What is enforceable in practice vs. theater?** A system prompt pasted into a user's own AI cannot be policed for personal-vs-commercial use. Pretending otherwise traps honest users without stopping bad actors. License what you can actually enforce; design around what you can't.
+5. **Where does honest commercial use need to remain free vs. need to come pay?** A coach using their upgraded AI for client work is honest commercial use; a competitor reselling a packaged version is the threat. The license should differentiate.
+
+The match is not "find the perfect license." The match is "find the license whose mechanics align with answers 1-5."
+
+### The journey-as-method (not just the destination)
+
+This principle was discovered through an iterative process that ran for one week in April 2026 across the AI OS scaffold license decision. The journey is the methodology; preserve it as such for other founders to recognize their own version of the same process:
+
+- **Phase 1 — Conflation.** First attempt jammed three different artifacts (platform code / methodology / scaffold) under one license framework, treating them as if uniform. They are not. Different artifacts demand different licenses.
+- **Phase 2 — Failed default.** A non-commercial license was the default for everything; this trapped the honest commercial user (the coach using their upgraded AI for client work) without stopping the actual threat (a competitor reselling a packaged version).
+- **Phase 3 — The unenforceable-honest move.** Pivot to maximally permissive (MIT) for the scaffold layer, on the rationale that *the artifact is unenforceable on use, so the license should admit that honestly*. This was structurally true for the unenforceability question but failed answer #2 (the real threat — rip-and-resell could happen without protection).
+- **Phase 4 — The misattribution.** During the MIT advocacy, the AI collaborator built the case using framings the AI synthesized from the founder's stated values, then attributed the conviction back to the founder. The decision looked like the founder's; substantial parts of the framing were the AI's. **This is a known failure mode of high-context AI work — be vigilant about whose voice is whose.** When the founder questioned the decision, the AI quoted its own prior framings back as if they were the founder's. Caught and corrected. Lesson: when advocating for a position, the AI should name it as the AI's position ("here's my read, here's why"), not present synthesis as the founder's conviction.
+- **Phase 5 — The "doesn't add up" gut check.** The founder named the structural mismatch out loud ("They can sell it and not share anything with me? That doesn't add up!"). Gut check overrode the over-shaped decision.
+- **Phase 6 — Reset.** Re-examined the actual threat (rip-and-resell, version exploitation), the actual constraint (unenforceability on use), the actual business model (paid proximity), and arrived at: **CC BY-SA 4.0 + per-deal commercial license for proprietary use.** Share-alike triggers on distribution-of-derivatives, not on use → coach is fine, predator is blocked, business model is intact. Match achieved.
+
+The destination (CC BY-SA + commercial dual-license) is one valid answer. **The matchmaking process is the playbook.** Other founders, with different artifacts and different threats and different business models, will arrive at different destinations through the same process.
+
+### The organizational primitive that emerges — Impact Founder Collective
+
+When the founder/firm distinction collapses (the founder IS the product, not a separable thing), what replaces the firm is **founder-as-nucleus + network-of-aligned-founders-as-orbit + tiered-intimacy-as-revenue-mechanism**. Sasha's name for this in his own work is the **Impact Founder Collective** (IFC). Other lenses on the same structure: *venture coop* (outside-in), *Sovereign Network* (brand handle), *Holonic Commons* (the commons layer specifically). See [`monetization_strategies.md`](../02-strategy/monetization_strategies.md) for the legal/economic mechanics that hold the IFC together (PolyForm-NC code · CC BY-NC-SA docs · CC BY-SA scaffold · Distributor Agreement · 10% rev-share · per-founder Specificity Matrix · opt-in commons).
+
+> *Relates to: Principle 1 (Copernican Inversion — start with founder's genius, not market gap), Principle 2 (Open Blueprint Paradox — sharing the methodology IS the moat), Principle 3 (P×M×D=ONE — person/methodology/delivery as one holon), Principle 15 (Specificity Loop — per-founder voice). The Self-Monetizing Founder is what these earlier principles look like when fully expressed at the **business architecture** layer rather than the **artifact** layer.*
+
+---
+
 # Part I: Philosophy & Ontology
 
 > *"The moment you can articulate your genius precisely, the market crystallizes around it."*

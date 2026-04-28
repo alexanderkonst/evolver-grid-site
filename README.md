@@ -4,7 +4,7 @@
 
 **Live:** [FindYourTopTalent.Com](https://findyourtoptalent.com) · [aleksandrkonstantinov.com](https://aleksandrkonstantinov.com)
 
-[![Code License: PolyForm NC 1.0.0](https://img.shields.io/badge/Code-PolyForm%20NC%201.0.0-blue.svg)](./LICENSE) [![Docs License: CC BY-NC-SA 4.0](https://img.shields.io/badge/Docs-CC%20BY--NC--SA%204.0-lightgrey.svg)](./LICENSE.md) [![Distributor License: 10% rev-share](https://img.shields.io/badge/Commercial-10%25%20rev--share-purple.svg)](./DISTRIBUTOR_AGREEMENT.md)
+[![Code License: PolyForm NC 1.0.0](https://img.shields.io/badge/Code-PolyForm%20NC%201.0.0-blue.svg)](./LICENSE) [![Docs License: CC BY-NC-SA 4.0](https://img.shields.io/badge/Docs-CC%20BY--NC--SA%204.0-lightgrey.svg)](./LICENSE.md) [![AI OS License: CC BY-SA 4.0](https://img.shields.io/badge/AI%20OS-CC%20BY--SA%204.0-green.svg)](./LICENSE.md) [![Distributor License: 10% rev-share](https://img.shields.io/badge/Commercial-10%25%20rev--share-purple.svg)](./DISTRIBUTOR_AGREEMENT.md)
 
 > **Forkable by design.** This is a master holon meant to seed a network of holons — see [Self-Hosting](#self-hosting) below. If you've felt the frequency of this work, you can run your own instance for yourself or your community.
 
@@ -401,15 +401,20 @@ This is infrastructure for the Great Turning. An operating system for human tran
 
 ---
 
-## License — Open-Source Platform with Sovereign Distributors
+## License — Layered, Honest, Source-Available + Open Where It Counts
 
-This project uses a **three-tier license model** that captures both the openness of the system and the value of the years of work behind it:
+> *"Built in the open. Licensed for honest use; commercial use through partnership."*
 
-| Layer | What it covers | License | Commercial use |
-|-------|---------------|---------|----------------|
-| **Code** | `src/`, `supabase/`, configs, scripts | **[PolyForm Noncommercial 1.0.0](./LICENSE)** | Requires a Distributor Agreement (see below) |
-| **Documentation & methodology** | `docs/`, playbooks, canvases, business artifacts, prose content | **[CC BY-NC-SA 4.0](./LICENSE.md)** | Requires permission |
-| **Anthropic-derived skills** | `.agent/skills/` | **MIT** | Free (inherits upstream) |
+This project uses a **four-tier layered license model** — each layer matched to the nature of the artifact, the actual threat, and the business model that supports the work. Two of the layers are strictly open source (per OSI definition); two are source-available with non-commercial restrictions. (For the matchmaking methodology behind this split, see [Playbook Principle 16](./docs/03-playbooks/unique_business_playbook.md) — *The Self-Monetizing Founder*.)
+
+| Layer | What it covers | License | Strict OSI? | Commercial use |
+|-------|---------------|---------|:---:|----------------|
+| **Code** | `src/`, `supabase/`, configs, scripts | **[PolyForm Noncommercial 1.0.0](./LICENSE)** | ❌ | Requires a Distributor Agreement (see below) |
+| **Documentation & methodology** | `docs/`, playbooks, canvases, business artifacts, prose content | **[CC BY-NC-SA 4.0](./LICENSE.md)** | ❌ | Requires permission |
+| **AI OS scaffold** | `/ai-os` system prompt + derivative suites (Clarify · Iterate · Vibe Code · Design) | **[CC BY-SA 4.0](./LICENSE.md)** | ✅ | Free for any use including paid client work + selling. Modified versions must stay open under same license (share-alike). Per-deal commercial license available for proprietary use without share-alike — reach out. |
+| **Anthropic-derived skills** | `.agent/skills/` | **MIT** | ✅ | Free (inherits upstream) |
+
+The AI OS scaffold sits under CC BY-SA as a deliberate, scoped exception — see [`LICENSE.md`](./LICENSE.md) §2 for the full reasoning. Short version: a system-prompt that lives permanently in someone's Claude / ChatGPT / Gemini cannot meaningfully be policed for personal-vs-commercial use, but CAN be protected against rip-and-resell-as-closed-product. CC BY-SA does exactly that: anyone can use it (including for client work), but anyone modifying and redistributing must keep their version open too — killing the proprietary-fork moat.
 
 ### What you can do without asking
 
@@ -435,9 +440,9 @@ See [`DISTRIBUTOR_AGREEMENT.md`](./DISTRIBUTOR_AGREEMENT.md) for the full terms.
 
 ### Why this model
 
-- **MIT** would let anyone close the code and resell — extracts value, gives nothing back.
+- **MIT for code** would let anyone close the code and resell — extracts value, gives nothing back. (MIT IS used deliberately for the upstream-Anthropic skills, where we don't relicense; and CC BY-SA 4.0 is used for the AI OS scaffold layer, where unenforceability on use is structural and share-alike protection is sufficient.)
 - **AGPL-3.0** keeps the code open but allows commercial use without compensation — disrespects the years of methodology development.
-- **PolyForm NC + 10% rev-share** treats every commercial fork as a partner: they distribute under their brand, they keep most of the value they create, and a small tithe sustains the commons that all forks share. The pattern: **fractal sovereignty with proportional contribution** — sometimes called *the Sovereign Network* as a soft brand handle.
+- **PolyForm NC + 10% rev-share** treats every commercial fork as a partner: they distribute under their brand, they keep most of the value they create, and a small tithe sustains the commons that all forks share. The pattern: **fractal sovereignty with proportional contribution** — sometimes called *the Sovereign Network* as a soft brand handle (and the *Impact Founder Collective* as the human-relationship-layer name; see [`docs/02-strategy/monetization_strategies.md`](./docs/02-strategy/monetization_strategies.md)).
 
 For dual-licensing (organizations that want a private commercial license without the rev-share structure), contact Alexander Konstantinov.
 

@@ -2768,23 +2768,26 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
                     Same model. Different conversation.
                   </p>
                 </div>
-                {/* Day 52 (Sasha 2026-04-26): licensing terms surfaced
-                    directly under the hero subtitle. Free for personal
-                    non-commercial use is the front door; commercial
-                    inquiries route via Telegram (t.me/integralevolution),
-                    same channel as the "Work with Aleksandr" CTA. Sized
-                    one notch below the italic subtitle so it reads as
-                    a contract line, not a third tagline.
-                    Day 54+ unwind (Sasha 2026-04-28 evening): MIT block
-                    reverted to this pre-MIT copy as a rollback baseline
-                    after the framing reset. License re-decision pending. */}
+                {/* Day 54+ (Sasha 2026-04-28 evening): hero license line
+                    landed as CC BY-SA 4.0 after the MIT decision was
+                    reversed. AI OS scaffold split out of CC BY-NC-SA into
+                    CC BY-SA (LICENSE.md §2). The line names the license
+                    explicitly + the two real conditions (attribution +
+                    share-alike) without overpromising "free for everyone
+                    forever no conditions." Telegram link preserved for
+                    partnership / proprietary-build conversations (the
+                    per-deal commercial license path that bypasses
+                    share-alike). Full discipline lives in Playbook §16
+                    (The Self-Monetizing Founder — Open Wedge, Paid
+                    Proximity). */}
                 <div className="mx-auto max-w-lg pt-3">
                   <p className="text-xs sm:text-[13px] font-normal leading-relaxed" style={{
                     color: 'hsl(0 0% 100% / 0.82)',
                     textShadow: '0 0 12px rgba(0,0,0,0.9), 0 0 24px rgba(0,0,0,0.6), 0 1px 4px rgba(0,0,0,0.8)',
                   }}>
-                    Free for personal non-commercial use.
+                    CC BY-SA 4.0. Yours to use, copy, modify, even sell.
                     <br />
+                    Keep the author's name on copies you share.{" "}
                     <a
                       href="https://t.me/integralevolution"
                       target="_blank"
@@ -2792,9 +2795,9 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
                       className="underline decoration-[hsl(40_70%_75%/0.45)] decoration-1 underline-offset-[3px] hover:decoration-[hsl(40_70%_75%/0.85)] transition-colors"
                       style={{ color: 'hsl(40 70% 90% / 0.95)' }}
                     >
-                      Contact
+                      Reach out
                     </a>{" "}
-                    to inquire about licensed commercial use.
+                    for partnership.
                   </p>
                 </div>
                 {/* CTAs — Day 51 r3 (Sasha 2026-04-25 evening): visual
