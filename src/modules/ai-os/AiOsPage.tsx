@@ -2295,22 +2295,43 @@ const HlsVideo = () => {
     video.setAttribute('playsinline', '');
     video.setAttribute('webkit-playsinline', '');
 
+    // Day 54 (Sasha 2026-04-28): mobile detection for HLS quality cap.
+    // Full-bitrate Mux variant on iOS Chrome (esp. opened from WhatsApp's
+    // in-app handoff) was OOM-crashing the renderer. Cap to ≤720p on
+    // mobile — same cinematic vibe, fraction of the decode/memory cost.
+    const isMobile =
+      typeof window !== 'undefined' &&
+      (window.matchMedia?.('(pointer: coarse)').matches || window.innerWidth < 1024);
+
     const tryPlay = () => {
       const p = video.play();
       if (p) p.catch(() => {});
     };
 
     if (video.canPlayType("application/vnd.apple.mpegurl")) {
-      // Safari / iOS native HLS
-      video.src = HLS_SRC;
+      // Safari / iOS native HLS — append Mux's resolution cap query param
+      // (max_resolution_tier=720p) to keep the decoder under iOS limits.
+      video.src = isMobile ? `${HLS_SRC}?max_resolution_tier=720p` : HLS_SRC;
       tryPlay();
     } else {
       import("hls.js").then(({ default: Hls }) => {
         if (Hls.isSupported()) {
-          const hls = new Hls();
+          // hls.js: cap level by capLevelToPlayerSize + a hard pixel ceiling
+          // on mobile so we never select a 1080p+ variant.
+          const hls = new Hls({
+            capLevelToPlayerSize: true,
+            maxBufferLength: isMobile ? 10 : 30,
+            maxMaxBufferLength: isMobile ? 20 : 60,
+          });
           hls.loadSource(HLS_SRC);
           hls.attachMedia(video);
-          hls.on(Hls.Events.MANIFEST_PARSED, () => tryPlay());
+          hls.on(Hls.Events.MANIFEST_PARSED, () => {
+            if (isMobile) {
+              const maxLevel = hls.levels.findIndex((l) => l.height && l.height > 720) - 1;
+              if (maxLevel >= 0) hls.autoLevelCapping = maxLevel;
+            }
+            tryPlay();
+          });
         }
       });
     }
@@ -2323,15 +2344,8 @@ const HlsVideo = () => {
       loop
       muted
       playsInline
+      preload="metadata"
       className="fixed inset-0 w-screen h-screen object-cover z-0"
-      // Day 51 (Sasha 2026-04-25): the previous '35% center' was a
-      // hand-tuned offset for one specific viewport state (both rails
-      // open). It made the hero feel "crooked" in other states because
-      // a single fixed objectPosition can't satisfy every combination
-      // of rail-open / rail-collapsed / mobile. Resetting to true
-      // center; if a content-area-relative crop is needed long-term,
-      // the right move is to contain the video in the content column
-      // rather than the full viewport (bigger refactor — separate slice).
       style={{ minWidth: '100vw', minHeight: '100vh', objectPosition: '50% center' }}
     />
   );
