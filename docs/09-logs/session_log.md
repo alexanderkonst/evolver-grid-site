@@ -5994,3 +5994,89 @@ Brand assets: ~7 file swaps (logo + torus + 5 favicon files).
 ---
 
 *Day 53 night iter 3 close: every unblocked item from the queue shipped. UBB has phase progress chips and a thin gold bar in pane 2 (live, fed by a targeted Supabase query that only runs on /ubb routes); skeleton states cover the initial fetch window; a fresh canvas now invites the founder to "Begin with Uniqueness" instead of confronting them with a wall of placeholder cards; ✦ ornament density pruned to load-bearing instances. The apparatus is at its current best — every screen, every URL, every loading state, every license clause has been roasted by its own author within the last 24 hours. Friday's send is no longer waiting on infrastructure; it's waiting on Sasha's hand on the keyboard.*
+
+---
+
+## Day 53 night iter 4 — Builder gifting / entitlement system (April 27, 2026)
+
+After iter 3, Sasha greenlit the gating-system work he'd previously wanted (gift Builder/Locked-in tier to specific users without going through Stripe), and asked: *"If you need me to do anything in supabase or edge functions, you give me the exact prompt I run in lovable. Otherwise, please go ahead."*
+
+Two-track delivery: a single Lovable prompt for the DB + RPC, all frontend pieces shipped autonomously.
+
+### The Lovable prompt (handed to Sasha for execution)
+
+Five-step migration covering:
+
+1. **Enum + columns**: new `entitlement_tier` enum with 7 values (`tasting | builder | locked_in | gifted_builder | gifted_locked_in | founders_50 | ignition`); `profiles` extended with `entitlement_tier`, `entitlement_granted_at`, `entitlement_granted_by`, `entitlement_expires_at`, `entitlement_note`.
+
+2. **Audit log**: new `entitlement_grants` table — every change writes a row with previous/new tier, granted_by, expires_at, note. RLS: admins full access, users read own grants.
+
+3. **Admin RPC** `public.set_entitlement_tier(email, tier, expires_at, note)` — `SECURITY DEFINER`, gates on `has_role(auth.uid(), 'admin')`, atomically updates `profiles` AND inserts the audit row in one transaction. Resolves email → profile_id internally.
+
+4. **Edge function gating**: deferred. Schema makes the tier readable; per-tier credit caps come later when billing actually ships. Don't add gating now or it would prevent every existing user from generating.
+
+5. **Admin role grant**: `INSERT INTO user_roles (user_id, role) SELECT id, 'admin'::app_role FROM auth.users WHERE email IN ('personalytics@gmail.com', 'alexanderkonst@gmail.com') ON CONFLICT DO NOTHING` — so Sasha can use the admin UI immediately.
+
+Plus a checklist for verification (enum exists, default is tasting, RPC callable, admin role in user_roles, test grant succeeds end-to-end).
+
+### Frontend — shipped fully autonomous
+
+**`/admin/grants` page** (`src/pages/admin/Grants.tsx`):
+- AdminGate-wrapped, GameShellV2-rendered
+- Grant form: email + tier dropdown (7 options with hint text per tier showing pricing model context) + optional expiry + optional note → calls `set_entitlement_tier` RPC → success toast + audit log refresh
+- Lookup: enter email → returns current tier + granted_at + expires_at + note in an editorial card
+- Recent grants list (last 20): email + tier-transition (`Builder → Locked-in`) + relative date + note. Resolves profile_id → email via a separate `profiles` query for readability.
+- Editorial register matches the rest of the platform (Cormorant + skin tokens + gold accents + parchment cards). Form inputs styled with cream backgrounds + gold focus rings.
+
+**`useEntitlement` hook** (`src/hooks/useEntitlement.ts`):
+- Single read-side surface — any component that needs to know "what tier is this user?" calls it
+- Returns `{ tier, isGifted, isCommercial, expiresAt, note, isLoading }`
+- Computes `isCommercial` (locked_in / gifted_locked_in / founders_50 / ignition — the tiers that grant license to build for paying clients) and `isGifted` (gifted_* tiers)
+- Defensive: if the column doesn't exist yet (pre-migration), silently falls back to `tasting`. Hook is safe to ship before the DB migration runs.
+
+**`EntitlementBadge` component** (`src/components/EntitlementBadge.tsx`):
+- Editorial gold ✦ + Cormorant tracked-uppercase tier label + italic Source Serif "· gifted by Sasha" credit on `gifted_*` tiers
+- Silent on `tasting` (default) so most users see nothing
+- Wired into `CanvasOverviewScreen` hero — when a gifted Builder opens `/ubb`, they see their tier above the title without needing to check Stripe or settings
+
+**Route**: `/admin/grants` (lazy-loaded, AdminGate'd via existing pattern)
+
+### What this enables
+
+Once Sasha runs the Lovable prompt:
+
+1. The 7 founders he works with 1:1 can each be gifted Locked-in tier (commercial license) directly via `/admin/grants`.
+2. Each gift writes an audit row — full record of who got what when.
+3. Their dashboards show "✦ Locked-in · gifted by Sasha" so they know what they have without needing to check anywhere else.
+4. Future commercial-feature gating (when those features ship) reads tier server-side via the same `entitlement_tier` column.
+
+The entitlement system is a one-way door: it's the canonical record of who has what commercial right. Stripe webhooks (when wired) write to the same column; admin grants write to the same column; both flow through the same audit log.
+
+### Files touched (Day 53 night iter 4)
+
+**New (frontend, shipped):**
+- `src/pages/admin/Grants.tsx` — admin grant + lookup + audit log surface
+- `src/hooks/useEntitlement.ts` — read-side hook, all callers route through here
+- `src/components/EntitlementBadge.tsx` — editorial tier badge
+
+**Modified (frontend):**
+- `src/App.tsx` — `/admin/grants` route added, lazy import
+- `src/modules/unique-business-builder/screens/CanvasOverviewScreen.tsx` — `<EntitlementBadge />` rendered above hero title
+
+**Pending (Sasha runs in Lovable):**
+- `entitlement_tier` enum + `profiles` column extensions
+- `entitlement_grants` audit table + RLS
+- `public.set_entitlement_tier(...)` RPC
+- Admin role grant for Sasha's accounts
+
+### Holomap implication
+
+P14 (Inversion) gets a small advance: the commercial-decentralization model now has a Stripe-bypass affordance for the founder collective. Sasha can hand commercial license to a 1:1 client without forcing them through a checkout — the gift IS the license, the audit row IS the receipt.
+
+P11 (Delivery Machinery) gains another rung: the Builder gifting feature was queued at the strategic level (Day 51 commercial-decentralization codification), specced at the architectural level (Day 53 night iter 1), and now operationalized at the code level. Three days from "concept" to "ready-to-ship-pending-DB-migration."
+
+Center reading still **Codification**. Iter 4 is the final operational completion within this center.
+
+---
+
+*Day 53 night iter 4 close: the apparatus is fully prepared for a 1:1 client gift the moment Sasha runs the Lovable prompt. From that point forward, every conversation that ends with "I'd love to give you Locked-in" can be backed by a single click in `/admin/grants` rather than a manual Stripe coupon dance. The system honors the gift as a first-class commercial relationship — auditable, durable, and visible to the recipient.*
