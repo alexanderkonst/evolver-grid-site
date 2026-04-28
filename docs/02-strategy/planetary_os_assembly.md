@@ -327,6 +327,23 @@ Think of it like LEGO bricks scattered across a floor. Each brick is well-made. 
 
 Our modules — genius discovery, Canvas, asset mapping, matchmaking, quality of life map, mission discovery — are contributions to the whole. They happen to live under our branding, but they're designed to be portable. Any community can use them. Any other platform can plug them in.
 
+### The Impact Founder Collective — the organizational primitive (Day 54+, April 28, 2026)
+
+The structure that emerges from Steps 1-12 above is not a company in the traditional sense. It is the **Impact Founder Collective** — a constellation of aligned founders, with Sasha as gravitational source and the methodology as shared substrate. Other names for the same thing depending on which face is being described:
+
+- **Venture coop** — the outside-in description (cooperative-style venture structure with shared commons + revenue sharing)
+- **Sovereign Network** — the brand handle in commons documents (see [`monetization_strategies.md`](./monetization_strategies.md))
+- **Holonic Commons** — the commons / open layer (AI OS scaffold + asset mappings + mission discoveries + CC BY 4.0 contributions)
+- **Impact Founder Collective** — the human-relationship layer
+
+**The realization that named this** (April 28, 2026 Cowork chat): a self-productized founder doesn't build a *firm* in the traditional sense — there is no separate corporate entity, no employee hierarchy, no scalable-and-sellable company. What replaces the firm is **founder-as-nucleus + network-of-aligned-founders-as-orbit + tiered-intimacy-as-revenue-mechanism.** The "company" is the collective itself; growth of the collective IS growth of the business. This is what venture-coop / IFC actually is, structurally.
+
+This is not a uniquely Sasha-shaped pattern — it's one of the major emergent organizational primitives of the AI-tooled solo-founder era ($104B creator economy → projected $480B by 2027 is largely this shape). Earlier-better in tight niches: being first-to-name-the-frontier compounds.
+
+**Implication for the 12-step path:** Steps 1-7 build the foundation (the founder, the methodology, the first holon). Step 8 onward is where the IFC becomes legible as a structure to itself. The collective doesn't need to be designed top-down; it self-organizes as the holons accumulate and discover each other.
+
+---
+
 ### The Integral Ecosystem Builder Network (April 6, 2026)
 
 > **Trigger:** Nabadi conversation about open-sourcing code + years of prior involvement crystallizing into actionable intelligence.

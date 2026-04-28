@@ -122,6 +122,6 @@ The full protocol, prompts, scoring rubric, and raw outputs are open. If you wan
 
 If you replicate, send me your results: [t.me/integralevolution](https://t.me/integralevolution).
 
-**Free for personal non-commercial use. Contact for commercial licensing.**
+**CC BY-SA 4.0 — yours to use, copy, modify, even sell.** Keep the author's name on copies you share; modified versions stay open under the same license. Want a proprietary build without share-alike? [Reach out](https://t.me/integralevolution). Full terms: [`LICENSE.md`](../../LICENSE.md) §2.
 
 — Aleksandr Konstantinov
