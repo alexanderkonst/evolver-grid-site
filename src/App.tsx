@@ -50,6 +50,10 @@ import AdminContentManager from "./pages/AdminContentManager";
 const FoundersIndex = lazy(() => import("./pages/admin/FoundersIndex"));
 const FounderDetail = lazy(() => import("./pages/admin/FounderDetail"));
 const AdminDashboard = lazy(() => import("./pages/admin/Dashboard"));
+// Day 53 night iter 4 (Sasha 2026-04-27): admin grants page for the
+// entitlement_tier system — gift Builder / Locked-in / Founders 50
+// access to specific users without going through Stripe.
+const AdminGrants = lazy(() => import("./pages/admin/Grants"));
 import SandraIgnition from "./pages/SandraIgnition";
 import SergeyIgnition from "./pages/SergeyIgnition";
 import OyiIgnition from "./pages/OyiIgnition";
@@ -348,6 +352,7 @@ const App = () => (
                   <Route path="/admin/mission-sync" element={<RequireAuth><AdminMissionSync /></RequireAuth>} />
                   <Route path="/admin/content" element={<RequireAuth><AdminContentManager /></RequireAuth>} />
                   <Route path="/admin/dashboard" element={<AdminDashboard />} />
+                  <Route path="/admin/grants" element={<AdminGrants />} />
                   <Route path="/founders" element={<FoundersIndex />} />
                   <Route path="/founders/:slug" element={<FounderDetail />} />
                   <Route path="/sandra" element={<RequireAuth><SandraIgnition /></RequireAuth>} />

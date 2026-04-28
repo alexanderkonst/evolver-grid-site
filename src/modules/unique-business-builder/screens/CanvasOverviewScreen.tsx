@@ -33,6 +33,10 @@ import {
 import { ARTIFACT_LABELS, ARTIFACT_URL_SLUGS, UBB_ROOT, ROUTES } from "../constants";
 import type { ArtifactKey } from "../types";
 import { getStepForArtifact } from "@/data/playbookArtifactMap";
+// Day 53 night iter 4 (Sasha 2026-04-27): tier badge for gifted/paid users
+// — appears in the Canvas Overview hero so the founder sees their tier
+// without needing to check Stripe or settings. Silent on default 'tasting'.
+import { EntitlementBadge } from "@/components/EntitlementBadge";
 
 export default function CanvasOverviewScreen() {
   const { artifacts, lockedCount, avgSpecificity, stalenessWarnings, isInitializing } = useUniqueBusiness();
@@ -62,6 +66,9 @@ export default function CanvasOverviewScreen() {
     <div className="mx-auto max-w-5xl space-y-10">
       {/* ═══ Hero ═══ Cormorant headline + italic subhead + glance row */}
       <section className="space-y-3">
+        {/* Tier badge — surfaces gifted/paid status above the title.
+            Silent for tasting users (most). */}
+        <EntitlementBadge />
         <h1
           className="leading-[1.05]"
           style={{
