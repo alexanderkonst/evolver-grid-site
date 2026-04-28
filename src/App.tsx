@@ -294,7 +294,15 @@ const App = () => (
                       tip / patronage flow (no auth needed).  */}
                   <Route path="/ai-os" element={<GameShellV2><AiOsPage /></GameShellV2>} />
                   <Route path="/ai-os/auth" element={<Navigate to="/ai-os" replace />} />
-                  <Route path="/ai-os/pricing" element={<GameShellV2><AiOsPricingPage /></GameShellV2>} />
+                  {/* Day 54+ (Sasha 2026-04-28): /ai-os/pricing renamed to
+                      /ai-os/work-with-us. The page no longer leads with
+                      "pricing" framing — it's now the partnership invite
+                      surface. Old URL preserved as redirect for inbound
+                      links / shares already in the wild. hideLogo=true on
+                      the new route because the merkaba sits inside the
+                      hero now (one logo per page, not two — Sasha's call). */}
+                  <Route path="/ai-os/work-with-us" element={<GameShellV2 hideLogo><AiOsPricingPage /></GameShellV2>} />
+                  <Route path="/ai-os/pricing" element={<Navigate to="/ai-os/work-with-us" replace />} />
                   <Route path="/ai-os/profile" element={<Navigate to="/ai-os" replace />} />
                   <Route path="/ai-os/benchmark" element={<GameShellV2><AiOsBenchmark /></GameShellV2>} />
                   {/* Day 54 (Sasha 2026-04-28): per-suite sub-routes. Each renders
@@ -312,11 +320,11 @@ const App = () => (
                   <Route path="/ai-os/suites" element={<Navigate to="/ai-os" replace />} />
                   <Route path="/codex" element={<Navigate to="/ai-os" replace />} />
                   <Route path="/codex/auth" element={<Navigate to="/ai-os" replace />} />
-                  <Route path="/codex/pricing" element={<Navigate to="/ai-os/pricing" replace />} />
+                  <Route path="/codex/pricing" element={<Navigate to="/ai-os/work-with-us" replace />} />
                   <Route path="/codex/profile" element={<Navigate to="/ai-os" replace />} />
                   <Route path="/prompt" element={<Navigate to="/ai-os" replace />} />
                   <Route path="/prompt/auth" element={<Navigate to="/ai-os" replace />} />
-                  <Route path="/prompt/pricing" element={<Navigate to="/ai-os/pricing" replace />} />
+                  <Route path="/prompt/pricing" element={<Navigate to="/ai-os/work-with-us" replace />} />
                   <Route path="/prompt/profile" element={<Navigate to="/ai-os" replace />} />
 
                   {/* Activations — public marketing routes (Day 51, Sasha 2026-04-25).

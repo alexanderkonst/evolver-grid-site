@@ -10,6 +10,11 @@ import { cn } from "@/lib/utils";
 // keeps its own visual register as a round, radially-masked icon that
 // reads as a "home button," not a second brand hit.
 import logoSrc from "@/assets/logo.jpg";
+// Day 54+ (Sasha 2026-04-28): on AI OS routes, the top-right home icon
+// uses the merkaba (matching the AI OS Space rail icon) instead of the
+// default torus-dodecahedron logo.jpg. Route-detected inside the
+// component so callers don't need to pass a prop.
+import aiOsHomeIcon from "@/assets/mc-merkaba.png";
 // Day 53 (Sasha 2026-04-27): brand torus mark used as the leading
 // glyph in the mobile menu pill — pairs with the hamburger to read as
 // "your home + open menu" in one affordance.
@@ -762,9 +767,9 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                                 }}
                             >
                                 <img
-                                    src={logoSrc}
+                                    src={location.pathname.startsWith("/ai-os") ? aiOsHomeIcon : logoSrc}
                                     alt="Home"
-                                    className="w-full h-full object-cover gentle-spin"
+                                    className="w-full h-full object-cover gentle-spin-always"
                                     style={{
                                         animation: "gentle-spin 60s linear infinite",
                                         willChange: "transform",
