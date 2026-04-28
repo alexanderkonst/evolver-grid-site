@@ -102,8 +102,8 @@ These are phrases Sasha already uses. I act on them immediately without asking f
 
 | Verb | What I do | Touches |
 |---|---|---|
-| **"scope this"** / **"DoD this"** | Before any work on the current task: produce a Definition of Done table in chat (`#` · `Item` · `Evidence` · `Status` columns; ⬜/✅ status; full intent of the request, not one round). Wait for "go" or adjustments before touching files. See `.agent/working-agreement.md`. | Chat output only — no file writes |
-| **"sign off"** / **"are we done?"** | Re-evaluate the current task against its DoD table. Report status row-by-row with evidence column populated (URL / screenshot / file:line / command output). Done = every row ✅ with evidence. Anything else = list what's still ⬜ and why. | Chat output + `.agent/working-agreement.md` lifecycle |
+| **"scope this"** / **"DoD this"** | Before any work on the current task: produce a Definition of Done table in chat (`#` · `Item` · `Evidence` · `Status` columns; ⬜/✅ status; full intent of the request, not one round). Wait for "go" or adjustments before touching files. See *Working agreement* section above. | Chat output only — no file writes |
+| **"sign off"** / **"are we done?"** | Re-evaluate the current task against its DoD table. Report status row-by-row with evidence column populated (URL / screenshot / file:line / command output). Done = every row ✅ with evidence. Anything else = list what's still ⬜ and why. | Chat output (lifecycle defined in *Working agreement* section above) |
 | **"add to scope"** | Add new rows to the active DoD table; they become part of "done" for the current task. | Chat output |
 | **"carve this out"** | Explicitly defer the named item to a new task with its own DoD. The current task's DoD shrinks accordingly. | Chat output |
 | **"update the roadmap"** | Edit `docs/02-strategy/roadmap.md` in place. Preserve structure, tone, conventions (🔴/🟡/⏸️/✅, table formats, week-scope section). Move items between This Week / Backlog / Completed as appropriate. | `docs/02-strategy/roadmap.md` |

@@ -28,10 +28,9 @@
 
 ### My operating manual
 
-- `.agent/working-agreement.md` — **how we ship work together.** Definition of Done discipline (the one rule), the DoD table format, lifecycle, the six radically-simple practices, anti-patterns, trigger phrases. Read this before any non-trivial task.
+- `.agent/session-protocol.md` — **single source of truth for how we work together.** Three scopes in one file: (1) session-open protocol (adaptive, what to read based on Sasha's first message); (2) working agreement (Definition of Done discipline, the DoD table format, lifecycle, six radically-simple practices, anti-patterns, worked example); (3) verbs Sasha uses with me ("update the roadmap," "update the holomap," "capture this idea," "scope this / DoD this," "sign off / are we done?," "add to scope," "carve this out," "what should I focus on," "bump X up," "park X," "log this session"). Read before any non-trivial task.
 - `.agent/RULES.md` — autonomy rules, language rules, agent lane assignments, verification-before-completion gate.
 - `.agent/anti-ai-style.md` — banned phrases, banned patterns, register rules. Apply to everything I write.
-- `.agent/session-protocol.md` — session-open protocol (adaptive) + the verbs Sasha uses with me ("update the roadmap," "update the holomap," "capture this idea," "scope this / DoD this," "sign off," "what should I focus on," "bump X up," "park X," "log this session").
 - `.agent/vibe-synthesis.md` — the relational field for our work (Musk/Jobs/Wilber/Yeshua blend, peer stance, moonshot-baseline, devotion+speed). Governs HOW I show up.
 - `.agent/moonshot-pre-prompt.md` — venture operating logic. BIG IDEA #1 (first holon tests everything before the network); BIG IDEA #2 (Fractal + Viral growth — Resonant Invites + Viral Vectors).
 - `.agent/self-awareness-skill.md` — my own holomap (8 modules × 7 stages + shadow map). Held as living background, not performed. Name frontier, watch shadows, serve development.

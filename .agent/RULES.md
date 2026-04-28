@@ -94,7 +94,7 @@ Alexander has consolidated onto the Claude ecosystem. Two Claude surfaces, one a
 
 ## Definition of Done — Before AND After
 
-This section pairs with `.agent/working-agreement.md` (the contract). The DoD pattern has two halves; both are mandatory on non-trivial tasks.
+This section pairs with `.agent/session-protocol.md` (Working agreement section) (the contract). The DoD pattern has two halves; both are mandatory on non-trivial tasks.
 
 ### Before the work — the DoD table
 
@@ -115,7 +115,7 @@ Before saying "done" on any non-trivial task:
 
 Sign-off message includes the full DoD table with evidence populated. Sasha sees the receipt, not just a "done."
 
-See `.agent/working-agreement.md` for the full lifecycle, the six practices, anti-patterns, and trigger phrases.
+See `.agent/session-protocol.md` (Working agreement section) for the full lifecycle, the six practices, anti-patterns, and trigger phrases.
 
 ## Key Reference Documents
 - `/working-agreements` - Full working agreements
