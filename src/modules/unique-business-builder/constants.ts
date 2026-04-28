@@ -19,8 +19,12 @@ export const ROUTES = {
   artifact: (key: ArtifactKey | CompoundScreenKey) => `${UBB_ROOT}/${ARTIFACT_URL_SLUGS[key as ArtifactKey] ?? key}`,
   landingPage: `${UBB_ROOT}/landing-page`,
   dossier: `${UBB_ROOT}/dossier`,
-  publicDossier: (slug: string) => `/ubd/${slug}`,
-  publicLandingPage: (slug: string, version: string) => `/ubl/${slug}-${version}`,
+  // Day 53 night iter 2 (Sasha 2026-04-27): UBD/UBL acronyms retired.
+  // New canonical: /dossier/{slug} + /page/{slug}-v{n} — plain English,
+  // decode at sight. Old /ubd/* + /ubl/* still resolve via redirects in
+  // App.tsx so previously shared URLs aren't broken.
+  publicDossier: (slug: string) => `/dossier/${slug}`,
+  publicLandingPage: (slug: string, version: string) => `/page/${slug}-${version}`,
 } as const;
 
 // Artifact → URL slug (hyphenated)

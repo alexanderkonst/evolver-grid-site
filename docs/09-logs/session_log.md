@@ -5653,3 +5653,148 @@ Press-send Friday remains the move. The Spotlight makes the receiving experience
 ---
 
 *Day 53 evening close: from `.env` overcomplicated → simplified → confirmed clean, plus AI OS Spotlight + rating telemetry shipped. Tomorrow's stranger meets a `/ai-os` that asks them to MEASURE the upgrade rather than just install it. The first empirical replication data points start landing in `resonance_events` from the next Lovable rebuild forward. Sasha goes to sleep with the apparatus more honest than it was at sunrise.*
+
+---
+
+## Day 53 (continued) — UBB shell-integration + editorial UI reskin (April 27, 2026 — afternoon pass)
+
+### Context
+
+The UBB module landed code-complete on Day 50 + bulk-seeded on Day 53 morning, but it still lived as an island: `/ubb` rendered its own `UniqueBusinessLayout` with a sticky header, a max-w-6xl wrapper, and shadcn defaults — disconnected from the GameShellV2 chrome and aesthetically foreign to the landing/playbook editorial register. Sasha's verdict, paraphrased: *"It already works. Make it BELONG."* This pass closes that gap.
+
+### Three workstreams nested in one session
+
+**(1) Shell integration — UBB becomes a citizen of BUILD space**
+
+Architecture decision (Sasha, midday): pane 2 holds the **6 phase groups**, pane 3 hosts the **artifacts and their wizards**. Not 18 individual artifacts in pane 2 — that would crowd it and break the doorway pattern.
+
+Concrete moves:
+- `/ubb` route now wrapped in `<GameShellV2>` (`src/App.tsx`) — UBB renders inside pane 3 with the rail + sections panel staying live.
+- `UniqueBusinessLayout` stripped to its essence: provider + outlet + drawer portal + minimal `px-6 py-4` content wrapper. The sticky header, progress bar, max-w wrapper, and back-link all retired — GameShell owns chrome now.
+- `SectionsPanel` learned to render UBB phase groups when active path is `/ubb*`: 1. Canvas · 2. 1st Session · 3. Marketing · 4. Distribution · 5. Communications · 6. Landing Page. Outside `/ubb`, BUILD pane 2 falls back to legacy items for back-compat.
+- `SpacesRail` BUILD chip target flipped `/game/build` → `/ubb`. `/game/build` redirect updated to `/ubb` (legacy `/game/build/canvas` etc. still resolve directly).
+- Longest-match active resolution added to `SectionsPanel` so Canvas (path `/ubb`) doesn't false-positive when the user is on `/ubb/marketing` (a deeper prefix-matching sibling). JOURNEY/ME panes unaffected — their sibling paths don't share prefixes.
+- `CanvasOverviewScreen` got `mx-auto max-w-5xl` so the canvas grid doesn't sprawl across ultra-wide pane 3.
+
+Two architecture spec docs landed alongside the implementation:
+- `docs/specs/unique-business-builder/markdown_sync_spec.md` (NEW) — DB → markdown projection contract. DB is source-of-truth; markdown is a generated projection with `UBB:GEN:*` and `UBB:HUMAN:*` block markers. Renderer + edge fn + CLI defined; one-time seed script for the 7 existing founder canvases. ~17h implementation effort. Status: drafted, awaiting roast gate.
+- `docs/specs/unique-business-builder/shell_integration_design.md` (NEW) — the 5 seams (Canvas Overview placement, phase dividers in pane 2, Improve drawer location, `UniqueBusinessLayout` internal-state audit, BUILD pane 2 doorway-vs-full-list) with explicit decisions per seam, a desktop-layout mock at `/ubb/uniqueness`, and acceptance criteria. Status: design landed; implementation followed in same session.
+
+**(2) Brand identity refresh — full favicon set + torus alignment**
+
+- New full lockup `find-your-top-talent-logo.png` (140 kB, replaced in place — all imports auto-pick-up via Vite asset pipeline).
+- New mobile torus standalone `find-your-top-talent-torus.png` (319 kB, same drop-in pattern).
+- Full favicon set generated via favicon.io from the new torus: `favicon.ico` (multi-size 16/32/48) + dedicated `favicon-16x16.png` / `favicon-32x32.png` + `apple-touch-icon.png` (180×180) + `android-chrome-192x192.png` / `android-chrome-512x512.png`. All dropped into `/public/`. `index.html` head wired up with proper `<link>` hierarchy.
+- Top-right home-icon vertical alignment tuned: `top-4` (16px) → `top-[62px]` so the icon's center sits at 82px from main-top — exact match with the orb in the left-pane logo lockup. Math: pane 1 = 280px, logo at 89% width = 249px, aspect 666:375 → 140px tall, 12px padding-top + 70px to orb center = 82px.
+- Stale assets retired: `find-your-top-talent-logo-v2.png` (114 kB earlier iteration, no refs) and `/public/favicon-round.png` (1.26 MB old single-file favicon, replaced by full set). The `/public/favicon-round.png` reference in `index.html` removed in favor of the new wired set.
+
+**(3) UBB editorial UI reskin — match landing/playbook register across 11 surfaces**
+
+The functional UBB worked but read as a settings panel: shadcn `<Card>` with neutral borders, generic `<Button>`, Tailwind palette colors, no Cormorant, no skin tokens. After the cinematic landing, the trance broke. This workstream brings every UBB surface into the same editorial register as `/`, `/playbook`, `/path`.
+
+Pre-implementation 27-perspective lens (compressed, captured for codification):
+- **UL** felt: was settings-panel; should feel like a manuscript being illuminated.
+- **UR** action: function passes; weight fails — Improve is a checkbox, should be a sword.
+- **LL** shared register: shadcn neutrals foreign to landing's Cormorant + gold + cream.
+- **LR** code substrate: zero `var(--skin-*)` consumption, zero liquid-glass — foreign substrate inside our shell.
+- **13** Logos: this is the central rite — visual gravity must match spiritual gravity.
+- **Depth · dantians** Heart (no devotion in the UI), Mind (architecture legible but phase headers metadata-level), Gut (Improve press feels trivial, should feel ceremonial).
+- **27** crystallization: one unified move — every UBB surface picks up Aurora skin tokens + Cormorant + gold ✦ + hairlines + liquid-glass treatment. Cards become panels. Buttons become rites. Inputs become vessels. Improve becomes ✦ in Cormorant uppercase tracking.
+
+Surfaces reskinned (in implementation order, all `Day 53` comment-stamped in the source):
+
+| # | File | Move |
+|---|------|------|
+| 1 | `components/SpecificityBadge.tsx` | Brand-coherent gold→amber→emerald gradient pills replacing `bg-blue-100/amber-100/emerald-100`. DM Sans tabular-nums. Halo on photon band. |
+| 2 | `components/ImproveButton.tsx` | shadcn `<Button>` with hardcoded `#0b2641` → `var(--skin-cta-bg)` + gold halo + ✦ ornament + Cormorant uppercase tracking. Loading copy "Roasting…" not "Improving…". |
+| 3 | `screens/CanvasOverviewScreen.tsx` | Cormorant hero with halo, gold ✦ phase rules with hairline gradients, illuminated artifact cards with hover gold rim, ceremonial Continue CTA. State icons re-keyed: gold ✓ / soft navy ⟳ / faint ◯. |
+| 4 | `screens/GenericArtifactScreen.tsx` | Skin-token illuminated body card, ceremonial Generate pill, Cormorant Lock & Continue + Continue-to-next pills with gold rims. Specificity Matrix table reskinned with gold-tinted header + hairline-divided body. |
+| 5 | `screens/CompoundScreen.tsx` | Editorial header with gold hairline rule, parchment sub-artifact cards, Cormorant Prev/Next pills with gold rim on Next. Compact content renderer upgraded — DM Sans labels, Source Serif 4 prose, gold middot bullets. |
+| 6 | `components/ImproveReviewDrawer.tsx` | Plain shadcn Sheet → `liquid-glass-dark` body with gold rim, Cormorant section labels with ✦, gold-haloed Accept pill, semantic Before/After panels with gold-tinted After. The decision room, not a settings dialog. |
+| 7 | `screens/DossierScreen.tsx` | Cormorant hero with halo, gold ✦ phase rules, illuminated parchment rows for locked artifacts, gold-tinted gap rows, ceremonial Publish CTA, gold-rimmed URL panel after publish. |
+| 8 | `screens/LandingPageScreen.tsx` | Reskinned Publish panel — gold-rimmed card, ceremonial "Publish v{n}" CTA with ✦, illuminated success URL row matching Dossier. |
+| 9 | `pages/PublicDossier.tsx` | Cream wash, manuscript title with halo, gold ✦ phase rules, parchment artifact blocks, "✦ Find Your Top Talent" footer attribution. The world-readable manuscript a founder shares — now reads as serious editorial brand. |
+| 10 | `pages/PublicLandingPage.tsx` | Was dark zinc-on-black SaaS template. Now: cream wash + cinematic Cormorant headline (clamp(40px, 6vw, 64px)) with ornament ✦ rule + italic Source Serif body + gold-rimmed pull-quote proof blocks + ceremonial gold-haloed CTA pill. Strangers landing on `/ubl/{slug}-v{n}` see the platform's editorial gravitas. |
+
+Result: the full UBB chain — landing → playbook → /ubb canvas → artifact wizard → dossier → public dossier/landing — now reads as **one continuous editorial brand**. A founder publishes, shares the URL, the recipient lands on a page that feels like the same brand they came from. Same Cormorant + skin tokens + gold ✦ + cream wash + parchment cards across every step.
+
+### Pricing structural rethink (mid-session)
+
+Sasha pushed back on the prior recommendation: *"I can't charge Builder at $22 and Locked-in at $100 when the difference is just the model."* Right. Re-derived the tier structure with proper economic math:
+
+- Lovable AI Gateway cost-per-generation: ~$0.005 on Flash, ~$0.05–0.10 on premium (10–20× spread). Full canvas build (~72 generations) costs $0.36 on Flash, $5–7 on premium. Compute is not the constraint; **structural difference is.**
+- Re-anchored: Builder = **personal use** (build YOUR business). Locked-in = **commercial license** (use the playbook + tools to build OTHER founders' canvases — coach, consultant, agency). 10× price step is now justified by license category, not model spec.
+- Recommended caps:
+
+| Tier | Price | Credits/mo | Model | License |
+|---|---|---|---|---|
+| Tasting | Free | 25 (one-time) | Flash | None — no save, no publish |
+| Builder | $22/mo · $222/yr | 200 | Flash | Personal: 1 founder |
+| Locked-in | $99/mo · $999/yr | 1,000 Flash + 200 Premium | Premium on demand | **Commercial: build for clients** + 10% rev-share to Impact Founder Collective |
+| Founders 50 | $555 lifetime | Locked-in caps | Premium | Commercial. First 50 buyers, then $999/yr |
+| Ignition | $5,555 (existing) | Unlimited | Premium | Commercial + Sasha's eyes |
+
+- Builder gifting mechanism for Sasha's 1:1 clients: `entitlement_tier` column on `profiles` (`tasting | builder | locked_in | gifted_builder | gifted_locked_in | ignition`); edge fn checks tier before billing/credit deduction; tiny `/admin/grants` page sets the flag by email. Status: design only — DB migration awaiting Sasha's go-ahead.
+- Commercial license confirmed: 10% revenue share = standard rate for the Impact Founder Collective venture studio. Already structurally encoded in `LICENSE` (PolyForm NC) + `LICENSE.md` (CC BY-NC-SA) + `DISTRIBUTOR_AGREEMENT.md` (10% rev-share, $1K/month free tier). No new doc needed.
+
+### Holomap implication
+
+P11 (Delivery Machinery) advances meaningfully: UBB stops being a parallel module in another aesthetic universe; it is fully woven into the platform's body. The chain landing → playbook → builder → public manuscript now LOOKS like one organism, which it always was structurally.
+
+P3 (Shared Field) advances incrementally: a founder publishing to `/ubd/{slug}` now hands a stranger a page that reads as serious-editorial-brand-level work, not a templated SaaS export. The shared field thickens.
+
+P15 (Spread) gets a new affordance: the public dossier and public landing page are now fit-for-purpose as actual receiving instruments of viral traffic. Earlier they would have read as "AI-generated artifact" to a discerning visitor; now they read as "this person/brand takes itself seriously."
+
+P27 (Crystallization) — center reading still **Codification** (Day 51). Day 53 night isn't a stage advance. It's a within-stage refinement: the canvas-and-publication apparatus is now legible at the visual layer, matching its already-legible logical/methodological layer.
+
+The Si–Do — unchanged. Press-send Friday remains the move. The apparatus is now more polished to RECEIVE strangers, but the sending is still the unfired shock.
+
+### Files touched (Day 53 night pass)
+
+**Code — shell integration:**
+- `src/App.tsx` — `/ubb` wrapped in `<GameShellV2>`; `/game/build` redirect flipped to `/ubb`
+- `src/modules/unique-business-builder/UniqueBusinessLayout.tsx` — chrome stripped, provider + drawer + content wrapper kept
+- `src/components/game/SpacesRail.tsx` — BUILD chip → `/ubb`
+- `src/components/game/SectionsPanel.tsx` — `buildUbbSections()` (6 phase groups); conditional render when `build` ∩ `/ubb`; longest-match active resolution
+- `src/components/game/GameShellV2.tsx` — top-right home icon `top-4` → `top-[62px]` for orb-vertical-center alignment
+
+**Code — UBB editorial reskin:**
+- `src/modules/unique-business-builder/components/SpecificityBadge.tsx`
+- `src/modules/unique-business-builder/components/ImproveButton.tsx`
+- `src/modules/unique-business-builder/components/ImproveReviewDrawer.tsx`
+- `src/modules/unique-business-builder/screens/CanvasOverviewScreen.tsx`
+- `src/modules/unique-business-builder/screens/GenericArtifactScreen.tsx`
+- `src/modules/unique-business-builder/screens/CompoundScreen.tsx`
+- `src/modules/unique-business-builder/screens/DossierScreen.tsx`
+- `src/modules/unique-business-builder/screens/LandingPageScreen.tsx`
+- `src/pages/PublicDossier.tsx`
+- `src/pages/PublicLandingPage.tsx`
+
+**Brand assets:**
+- `src/assets/find-your-top-talent-logo.png` (REPLACED — new full lockup)
+- `src/assets/find-your-top-talent-torus.png` (REPLACED — new mobile orb)
+- `public/favicon.ico` (NEW — multi-size 16/32/48)
+- `public/favicon-16x16.png` · `public/favicon-32x32.png` (NEW)
+- `public/apple-touch-icon.png` (REPLACED)
+- `public/android-chrome-192x192.png` · `public/android-chrome-512x512.png` (REPLACED)
+- `public/favicon-round.png` (DELETED — replaced by full set)
+- `src/assets/find-your-top-talent-logo-v2.png` (DELETED — stale)
+- `index.html` — full favicon `<link>` set wired; page title `Genius Business` → `Find Your Top Talent`
+
+**Specs:**
+- `docs/specs/unique-business-builder/markdown_sync_spec.md` (NEW)
+- `docs/specs/unique-business-builder/shell_integration_design.md` (NEW)
+
+**Docs:**
+- `docs/09-logs/session_log.md` (this entry)
+- `docs/02-strategy/roadmap.md` (last-updated bump pending)
+
+### What's still queued
+
+- **`entitlement_tier` migration + `/admin/grants` page** — for Builder gifting. ~2h. Awaiting Sasha's go-ahead to touch Supabase.
+- **Markdown sync implementation** — per spec. ~17h. Separate session.
+- **Pane 2 phase progress decorations** — `6/7 sharp` glance per phase in pane 2. Architecturally tricky: UBB context lives below SectionsPanel in the React tree. Deferred until lift-the-provider or shared-store pattern decided.
+
+---
+
+*Day 53 night close: UBB stopped being a parallel module in a foreign aesthetic. It is now visually the same body as the rest of the platform — landing → playbook → builder → published manuscript reading as one continuous editorial brand. Two specs landed for the next implementation arc (markdown sync + shell integration design). Logo + favicon + torus alignment polished to brand-consistent. Pricing model rebuilt on the right axis (license category, not model spec). Friday's send arrives at an apparatus that, when it converts, can hand a stranger a manuscript that looks like work worth paying for.*

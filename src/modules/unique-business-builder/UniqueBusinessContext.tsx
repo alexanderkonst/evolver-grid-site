@@ -686,7 +686,7 @@ export function UniqueBusinessProvider({ children }: { children: ReactNode }) {
       .single();
 
     if (error) throw error;
-    toast.success(`Dossier published at /ubd/${data.slug}`);
+    toast.success(`Dossier published at /dossier/${data.slug}`);
     return { slug: data.slug };
   }, [userId, buildArtifactSnapshot, derived.avgSpecificity]);
 

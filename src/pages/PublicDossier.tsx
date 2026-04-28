@@ -1,5 +1,6 @@
 /**
- * PublicDossier — world-readable Dossier page served at /ubd/:slug.
+ * PublicDossier — world-readable Dossier page served at /dossier/:slug.
+ * (Legacy /ubd/:slug redirects here via App.tsx for back-compat.)
  *
  * Fetches the frozen artifact_snapshot from unique_business_dossiers,
  * renders all 19 artifacts grouped by phase. Read-access allowed for
@@ -27,13 +28,21 @@ type DossierRow = {
   is_live: boolean;
 };
 
+// Day 53 night (Sasha 2026-04-27): public dossier headings are for
+// STRANGERS, not the founder. Internal phase taxonomy ("Canvas" "Session
+// Bridge" "Communications") is methodology jargon that means nothing to
+// a visitor reading this for the first time. Replaced with plain-English
+// chapter labels that describe what the visitor will read in each
+// section. The founder still sees the full taxonomy inside `/ubb` (the
+// in-app DossierScreen uses PHASE_LABELS from constants, not these
+// labels). Keeping the keys aligned with PHASE_OF below.
 const PHASE_LABELS: Record<string, string> = {
-  canvas: "Canvas",
-  session: "Session Bridge",
-  marketing: "Marketing",
-  distribution: "Distribution",
-  communications: "Communications",
-  publication: "Publication",
+  canvas: "Foundation",         // was "Canvas"
+  session: "First Session",     // was "Session Bridge"
+  marketing: "Why · How · Buy",  // was "Marketing" — describes core_belief, packaging, frictionless_purchase
+  distribution: "Where People Find It", // was "Distribution" — describes reach, delivery, spread
+  communications: "How It Speaks",      // was "Communications" — surface_inventory, tuning_fork, golden_dm
+  publication: "The Page",      // was "Publication"
 };
 
 const ARTIFACT_LABELS: Record<string, string> = {
@@ -329,7 +338,7 @@ function ArtifactBlock({
     <article
       className="rounded-2xl px-5 py-5"
       style={{
-        background: "rgba(255, 255, 255, 0.55)",
+        background: "rgba(255, 255, 255, 0.68)",
         border: "0.5px solid rgba(26, 30, 58, 0.08)",
         boxShadow:
           "0 4px 16px -8px rgba(10, 22, 40, 0.10), 0 16px 40px -20px rgba(10, 22, 40, 0.15)",

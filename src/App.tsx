@@ -3,7 +3,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { lazy, Suspense, useEffect } from "react";
-import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, useLocation, useParams } from "react-router-dom";
 import CustomCursor from "@/components/CustomCursor";
 import SiteLogo from "@/components/SiteLogo";
 import RequireAuth from "@/components/RequireAuth";
@@ -206,6 +206,18 @@ const TitleManager = () => {
   return null;
 };
 
+// Day 53 night iter 2 (Sasha 2026-04-27): UBD/UBL → dossier/page rename.
+// These two micro-redirects preserve any previously shared URLs.
+// `replace` so the user's history shows the new URL, not the old.
+const UbdRedirect = () => {
+  const { slug } = useParams<{ slug: string }>();
+  return <Navigate to={`/dossier/${slug ?? ""}`} replace />;
+};
+const UblRedirect = () => {
+  const { slugWithVersion } = useParams<{ slugWithVersion: string }>();
+  return <Navigate to={`/page/${slugWithVersion ?? ""}`} replace />;
+};
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <ThemeProvider>
@@ -246,8 +258,18 @@ const App = () => (
                   <Route path="/u/:username" element={<PublicProfile />} />
                   <Route path="/p/:slug" element={<CreatorPage />} />
                   <Route path="/mp/:slug" element={<MarketplaceProductPage />} />
-                  <Route path="/ubd/:slug" element={<PublicDossier />} />
-                  <Route path="/ubl/:slugWithVersion" element={<PublicLandingPage />} />
+                  {/* Day 53 night iter 2 (Sasha 2026-04-27): UBD/UBL acronyms
+                      retired in favor of plain-English slugs that decode
+                      at sight. New canonical:
+                        /dossier/{slug}             — published dossier
+                        /page/{slug}-v{n}           — published landing page
+                      Old /ubd/* and /ubl/* preserved as redirects so any
+                      previously shared URLs still resolve. */}
+                  <Route path="/dossier/:slug" element={<PublicDossier />} />
+                  <Route path="/page/:slugWithVersion" element={<PublicLandingPage />} />
+                  {/* Legacy redirects — preserve old shared URLs */}
+                  <Route path="/ubd/:slug" element={<UbdRedirect />} />
+                  <Route path="/ubl/:slugWithVersion" element={<UblRedirect />} />
                   {/* AI OS — canonical prompt suite. Day 51 (Sasha 2026-04-24):
                       renamed /codex → /ai-os to align with the AI OS brand
                       (perpendicular to the AI-model race; OS+Apps for AI).

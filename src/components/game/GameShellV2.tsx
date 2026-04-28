@@ -15,7 +15,7 @@ import logoSrc from "@/assets/logo.jpg";
 // "your home + open menu" in one affordance.
 import brandMark from "@/assets/find-your-top-talent-torus.png";
 import SpacesRail, { SPACES } from "./SpacesRail";
-import SectionsPanel from "./SectionsPanel";
+import SectionsPanel, { SPACE_SECTIONS } from "./SectionsPanel";
 import PlayerStatsBadge from "./PlayerStatsBadge";
 import KeyboardShortcuts from "@/components/KeyboardShortcuts";
 import SiteLogo from "@/components/SiteLogo";
@@ -99,6 +99,23 @@ const MuxVideoBackground = () => {
         />
     );
 };
+
+// Day 53 (Sasha 2026-04-27): mobile breadcrumb section labels for the
+// JOURNEY space. The journey sections are built dynamically inside
+// SectionsPanel.tsx (see buildJourneySections), so we mirror the
+// label↔path map here for the mobile header breadcrumb. Keep in sync
+// with buildJourneySections() if section paths change. Sorted longest
+// path first so /playbook matches before /, etc.
+const JOURNEY_SECTION_LABELS: Array<{ path: string; label: string }> = [
+    { path: "/mission-discovery", label: "Mission Discovery" },
+    { path: "/asset-mapping", label: "Asset Mapper" },
+    { path: "/playbook", label: "Playbook" },
+    { path: "/dashboard", label: "Dashboard" },
+    { path: "/ai-os", label: "AI OS" },
+    { path: "/path", label: "Path" },
+    { path: "/ubb", label: "Build a Business" },
+    { path: "/", label: "Start" },
+];
 
 interface GameShellV2Props {
     children: ReactNode;
@@ -379,12 +396,20 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
     // forceHideNavigation (set explicitly by assessment Step1-4 pages)
     // still wins — those pages truly need full focus. forceShowNavigation
     // (the tour spotlight) keeps overriding everything.
+    //
+    // Day 53 evening (Sasha 2026-04-27): /dashboard added to the public
+    // surface list. The Venture Growth Dashboard is itself a public
+    // marketing artifact ("Built in the open. Paid in the open. Open-
+    // source methodology.") — visitors landing there should see the
+    // navigation rail, not a shell-less full-bleed page. Same mobile-
+    // visibility bug Sasha reported for /ai-os was hitting /dashboard.
     const isPublicSurface =
         location.pathname === "/" ||
         location.pathname.startsWith("/ai-os") ||
         location.pathname === "/codex" ||
         location.pathname.startsWith("/playbook") ||
-        location.pathname === "/path";
+        location.pathname === "/path" ||
+        location.pathname === "/dashboard";
     const earlyOnboardingHide =
         !!profile?.onboarding_stage &&
         earlyOnboardingStages.includes(profile.onboarding_stage) &&
@@ -845,15 +870,91 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                             />
                             <Menu className="w-4 h-4 flex-shrink-0" aria-hidden="true" />
                         </button>
-                        <span
-                            className="flex-1 truncate text-[11px] font-medium tracking-[0.28em] uppercase relative"
-                            style={{
-                                color: '#f4d472',
-                                textShadow: '0 1px 2px rgba(0,0,0,0.7), 0 0 14px rgba(244,212,114,0.4)',
-                            }}
-                        >
-                            {SPACES.find(s => s.id === activeSpaceId)?.label || "Journey"}
-                        </span>
+                        {/* Day 53 (Sasha 2026-04-27): mobile breadcrumb.
+                            Stacked iOS-native nested-nav pattern — small
+                            tracked-uppercase eyebrow shows the SPACE
+                            (where you are in the architecture); larger
+                            Cormorant anchor below shows the active SECTION
+                            within that space (where you actually are).
+                            The hierarchy is visible without a separator
+                            chevron, gracefully handles long section names,
+                            and matches the editorial typography used
+                            elsewhere in the brand. Falls back to just the
+                            space name when the section can't be derived
+                            (e.g., paths that aren't section-mapped). */}
+                        {(() => {
+                            const spaceLabel = SPACES.find(s => s.id === activeSpaceId)?.label || "Journey";
+                            const pathname = location.pathname;
+
+                            // Resolve active section label.
+                            let sectionLabel: string | null = null;
+                            if (activeSpaceId === "journey") {
+                                const match = JOURNEY_SECTION_LABELS.find(
+                                    (s) =>
+                                        pathname === s.path ||
+                                        (s.path !== "/" && pathname.startsWith(s.path + "/")),
+                                );
+                                sectionLabel = match?.label ?? null;
+                            } else {
+                                const space = (SPACE_SECTIONS as any)[activeSpaceId];
+                                if (space?.sections?.length) {
+                                    // Subsections first (more specific), then sections.
+                                    for (const section of space.sections) {
+                                        if (section.subSections) {
+                                            for (const sub of section.subSections) {
+                                                if (
+                                                    pathname === sub.path ||
+                                                    pathname.startsWith(sub.path + "/")
+                                                ) {
+                                                    sectionLabel = sub.label;
+                                                    break;
+                                                }
+                                            }
+                                        }
+                                        if (sectionLabel) break;
+                                    }
+                                    if (!sectionLabel) {
+                                        for (const section of space.sections) {
+                                            if (
+                                                pathname === section.path ||
+                                                pathname.startsWith(section.path + "/")
+                                            ) {
+                                                sectionLabel = section.label;
+                                                break;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
+                            return (
+                                <div className="flex-1 min-w-0 flex flex-col leading-tight relative">
+                                    <span
+                                        className="text-[10px] font-medium tracking-[0.28em] uppercase truncate"
+                                        style={{
+                                            color: 'rgba(244,212,114,0.72)',
+                                            textShadow: '0 1px 2px rgba(0,0,0,0.7)',
+                                        }}
+                                    >
+                                        {spaceLabel}
+                                    </span>
+                                    {sectionLabel && (
+                                        <span
+                                            className="text-sm sm:text-base truncate -mt-0.5"
+                                            style={{
+                                                color: 'rgba(255,255,255,0.96)',
+                                                textShadow: '0 1px 2px rgba(0,0,0,0.7), 0 0 14px rgba(244,212,114,0.30)',
+                                                fontFamily: "'Cormorant Garamond', serif",
+                                                fontWeight: 500,
+                                                letterSpacing: '0.005em',
+                                            }}
+                                        >
+                                            {sectionLabel}
+                                        </span>
+                                    )}
+                                </div>
+                            );
+                        })()}
                     </header>
 
                     {/* Content with safe area bottom + top breathing room.

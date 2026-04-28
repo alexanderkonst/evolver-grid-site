@@ -1,8 +1,9 @@
 # Documentation & Methodology License
 
 > **Scope:** this license covers `/docs`, the playbook, the methodology, and any prose / canvas / blueprint content of this project.
-> **Code** lives under a separate license — see [`LICENSE`](./LICENSE) (AGPL-3.0).
+> **Code** lives under a separate license — see [`LICENSE`](./LICENSE) (PolyForm Noncommercial 1.0.0).
 > **Anthropic-derived skills** in `/.agent/skills/` are MIT (per their upstream license).
+> **Commercial use** of either the code or the methodology — see [`DISTRIBUTOR_AGREEMENT.md`](./DISTRIBUTOR_AGREEMENT.md).
 
 ## Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0)
 
@@ -18,7 +19,9 @@ The documentation and methodology of this work are licensed under the [Creative 
 ### Under the following terms:
 
 - **Attribution** — You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use.
-- **NonCommercial** — You may not use the material for commercial purposes without explicit permission from the author.
+- **NonCommercial** — You may not use the material for commercial purposes without explicit permission from the author. Two paths to permitted commercial use:
+  1. **Subscribe** to the hosted platform at a tier that grants commercial rights (Locked-in / Founders 50 / Ignition). Your subscription IS your commercial license; no further rev-share applies.
+  2. **Fork and self-host** under the [Distributor Agreement](./DISTRIBUTOR_AGREEMENT.md) — 10% rev-share above the $1,000/month free tier.
 - **ShareAlike** — If you remix, transform, or build upon the material, you must distribute your contributions under the same license as the original.
 
 ### No additional restrictions
@@ -27,4 +30,4 @@ You may not apply legal terms or technological measures that legally restrict ot
 
 ---
 
-For commercial licensing inquiries, contact Alexander Konstantinov.
+For commercial licensing inquiries beyond the two paths above (enterprise procurement, flat-fee licensing, white-label arrangements), contact Alexander Konstantinov directly — see [`DISTRIBUTOR_AGREEMENT.md`](./DISTRIBUTOR_AGREEMENT.md) §11 (Dual Licensing).

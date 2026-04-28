@@ -1,5 +1,6 @@
 /**
- * PublicLandingPage — world-readable Landing Page served at /ubl/:slugWithVersion.
+ * PublicLandingPage — world-readable Landing Page served at /page/:slugWithVersion.
+ * (Legacy /ubl/:slugWithVersion redirects here via App.tsx for back-compat.)
  *
  * Fetches the row from unique_business_dossiers by slug and renders the
  * landing_page artifact content as a marketing surface.
@@ -20,8 +21,12 @@
  * aesthetic. Now: cream wash + Cormorant Garamond cinematic headline
  * + Source Serif 4 italic body + gold-haloed CTA pill, matching the
  * platform's `/` landing. The founder's published landing inherits
- * the brand's editorial gravitas — strangers landing on /ubl/{slug}
+ * the brand's editorial gravitas — strangers landing on /page/{slug}
  * see a serious brand, not a generic dark template.
+ *
+ * Day 53 night iter 2 (Sasha 2026-04-27): URL /ubl/{slug} retired in
+ * favor of /page/{slug} — plain English, no acronym decoding required.
+ * Old paths still resolve via App.tsx redirect.
  */
 
 import { useEffect, useState } from "react";
@@ -275,7 +280,7 @@ export default function PublicLandingPage() {
           <section
             className="rounded-2xl px-6 py-6"
             style={{
-              background: "rgba(255, 255, 255, 0.55)",
+              background: "rgba(255, 255, 255, 0.68)",
               border: "0.5px solid rgba(26, 30, 58, 0.08)",
               boxShadow:
                 "0 4px 16px -8px rgba(10, 22, 40, 0.10), 0 16px 40px -20px rgba(10, 22, 40, 0.15)",
@@ -419,7 +424,7 @@ export default function PublicLandingPage() {
               <div
                 className="inline-flex items-center gap-2 rounded-full px-7 py-3"
                 style={{
-                  background: "rgba(255, 255, 255, 0.55)",
+                  background: "rgba(255, 255, 255, 0.68)",
                   border: "0.5px solid rgba(212, 175, 55, 0.55)",
                   boxShadow: "0 0 14px -4px rgba(212, 175, 55, 0.32)",
                   fontFamily: "'Cormorant Garamond', serif",

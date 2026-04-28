@@ -221,7 +221,7 @@ const navPillStyle: React.CSSProperties = {
   textTransform: "uppercase",
   fontSize: "11.5px",
   color: "var(--skin-text-primary, #0b2a5a)",
-  background: "rgba(255, 255, 255, 0.55)",
+  background: "rgba(255, 255, 255, 0.68)",
   border: "0.5px solid var(--skin-rule-medium, rgba(26, 30, 58, 0.15))",
 };
 
@@ -232,7 +232,7 @@ const navPillStyleStrong: React.CSSProperties = {
   textTransform: "uppercase",
   fontSize: "12.5px",
   color: "var(--skin-text-primary, #0b2a5a)",
-  background: "rgba(255, 255, 255, 0.55)",
+  background: "rgba(255, 255, 255, 0.68)",
   border: "0.5px solid rgba(212, 175, 55, 0.55)",
   boxShadow: "0 0 14px -4px rgba(212, 175, 55, 0.32)",
 };
@@ -249,7 +249,7 @@ function SubArtifactCard({ artifactKey }: { artifactKey: ArtifactKey }) {
     <div
       className="relative rounded-2xl p-5"
       style={{
-        background: "var(--skin-card-bg, rgba(255, 255, 255, 0.55))",
+        background: "var(--skin-card-bg, rgba(255, 255, 255, 0.68))",
         border: "0.5px solid var(--skin-card-border, rgba(26, 30, 58, 0.08))",
         boxShadow:
           "var(--skin-card-shadow, 0 4px 16px -8px rgba(10, 22, 40, 0.12), 0 16px 40px -20px rgba(10, 22, 40, 0.18))",
@@ -346,11 +346,18 @@ function SubArtifactCard({ artifactKey }: { artifactKey: ArtifactKey }) {
           </div>
         ) : (
           <>
+            {/* Day 53 night iter 2 (Sasha 2026-04-27): was a card-inside-
+                card (outer 0.65 cream + inner 0.45 cream) — visually
+                identical to the wrapping SubArtifactCard, no information
+                layering. Replaced with gold-left-rule treatment: 1.5px
+                hairline at the left edge, no background. Reads as a
+                "quoted excerpt" of the artifact rather than a nested
+                card. The outer SubArtifactCard owns the card-ness; the
+                inner content is just the founder's words. */}
             <div
-              className="mb-4 rounded-lg p-4"
+              className="mb-4 pl-4 py-1"
               style={{
-                background: "rgba(255, 255, 255, 0.45)",
-                border: "0.5px solid var(--skin-rule-hairline, rgba(26, 30, 58, 0.08))",
+                borderLeft: "1.5px solid rgba(212, 175, 55, 0.55)",
               }}
             >
               <CompactContent content={latest.content} />
