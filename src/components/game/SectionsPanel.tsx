@@ -62,40 +62,44 @@ const SPACE_SECTIONS: SpaceSections = {
     },
     // AI OS Space — Day 54 (Sasha 2026-04-28): elevated from JOURNEY
     // step #4 to its own Space. Pane 2 separates the substrate
-    // (Install) from the toolkit on top (Suites) from the proof
-    // (Benchmark) from the upgrade path (Pricing). The Suites parent
-    // mirrors the ME `top-talent` parent-with-children pattern.
+    // (60-second install) from the toolkit on top (Prompt suites)
+    // from the proof (Benchmarking) from the partnership invite
+    // (Work with us). The suites parent mirrors the ME `top-talent`
+    // parent-with-children pattern. Day 54 r5: labels shifted to
+    // action-form so the menu reads as verbs the user can do
+    // (Clarify, Iterate) rather than abstract nouns (Clarity,
+    // Iteration). Pricing path updated to canonical /work-with-us.
     "ai-os": {
         title: "AI OS",
         sections: [
             {
                 id: "ai-os-install",
-                label: "Install",
+                label: "60-second install",
                 path: "/ai-os",
             },
             {
                 id: "ai-os-suites",
-                label: "Suites",
+                label: "Prompt suites",
                 // Parent path is intentionally a non-resolved sentinel —
                 // clicks toggle expand/collapse rather than navigating.
                 // The sub-sections own the real routes.
                 path: "/ai-os/suites",
                 subSections: [
-                    { id: "ai-os-clarity", label: "Clarity", path: "/ai-os/clarity" },
-                    { id: "ai-os-iteration", label: "Iteration", path: "/ai-os/iteration" },
+                    { id: "ai-os-clarity", label: "Clarify", path: "/ai-os/clarity" },
+                    { id: "ai-os-iteration", label: "Iterate", path: "/ai-os/iteration" },
                     { id: "ai-os-vibe-code", label: "Vibe Code", path: "/ai-os/vibe-code" },
                     { id: "ai-os-design", label: "Design", path: "/ai-os/design" },
                 ],
             },
             {
                 id: "ai-os-benchmark",
-                label: "Benchmark",
+                label: "Benchmarking",
                 path: "/ai-os/benchmark",
             },
             {
                 id: "ai-os-pricing",
-                label: "Pricing",
-                path: "/ai-os/pricing",
+                label: "Work with us",
+                path: "/ai-os/work-with-us",
             },
         ],
     },
