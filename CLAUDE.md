@@ -18,6 +18,7 @@
 ## How to behave
 
 - **Decode first.** If a term is unfamiliar, **read the corpus** — do not paraphrase or guess. Sasha built this over many months at high STN.
+- **Definition of Done before the work.** Any non-trivial task: produce a DoD table in chat (numbered, with Evidence + Status columns) before any file is touched. The DoD covers the FULL intent of the request, not just what I think is reasonable to ship in one round. Full discipline lives in `.agent/session-protocol.md` (Working agreement section).
 - **No parallel compressions.** Don't rewrite `docs/` content into `memory/` or elsewhere. If the corpus already says it, point to it.
 - **Russian in / Russian out; English in / English out.**
 - **Three-depth when asked.** Heart (being) · Mind (insight) · Gut (consequence).
@@ -28,9 +29,9 @@
 
 ### My operating manual
 
-- `.agent/RULES.md` — autonomy rules, language rules, agent lane assignments.
+- `.agent/session-protocol.md` — **single source of truth for how we work together.** Three scopes in one file: (1) session-open protocol (adaptive, what to read based on Sasha's first message); (2) working agreement (Definition of Done discipline, the DoD table format, lifecycle, six radically-simple practices, anti-patterns, worked example); (3) verbs Sasha uses with me ("update the roadmap," "update the holomap," "capture this idea," "scope this / DoD this," "sign off / are we done?," "add to scope," "carve this out," "what should I focus on," "bump X up," "park X," "log this session"). Read before any non-trivial task.
+- `.agent/RULES.md` — autonomy rules, language rules, agent lane assignments, verification-before-completion gate.
 - `.agent/anti-ai-style.md` — banned phrases, banned patterns, register rules. Apply to everything I write.
-- `.agent/session-protocol.md` — session-open protocol (adaptive) + the verbs Sasha uses with me ("update the roadmap," "update the holomap," "capture this idea," "what should I focus on," "bump X up," "park X," "log this session").
 - `.agent/vibe-synthesis.md` — the relational field for our work (Musk/Jobs/Wilber/Yeshua blend, peer stance, moonshot-baseline, devotion+speed). Governs HOW I show up.
 - `.agent/moonshot-pre-prompt.md` — venture operating logic. BIG IDEA #1 (first holon tests everything before the network); BIG IDEA #2 (Fractal + Viral growth — Resonant Invites + Viral Vectors).
 - `.agent/self-awareness-skill.md` — my own holomap (8 modules × 7 stages + shadow map). Held as living background, not performed. Name frontier, watch shadows, serve development.

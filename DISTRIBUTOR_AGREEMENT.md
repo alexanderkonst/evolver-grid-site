@@ -9,6 +9,8 @@
 
 The codebase at [github.com/alexanderkonst/evolver-grid-site](https://github.com/alexanderkonst/evolver-grid-site) (the **Platform**) is licensed for non-commercial use under [PolyForm Noncommercial 1.0.0](./LICENSE). The methodology in `/docs` is licensed for non-commercial use under [CC BY-NC-SA 4.0](./LICENSE.md).
 
+> **Note on AI OS.** The AI OS scaffold (the meta-cognition system prompt at `/ai-os` and its derivative prompt suites) is **MIT-licensed** and is **not subject to this Agreement**. Install it freely. Use it for any purpose, including paid client work. Fork or remix it. Attribution is required (the MIT terms in [`LICENSE.md`](./LICENSE.md) §2 apply). This Agreement covers the broader Platform code and methodology, not the AI OS scaffold.
+
 If you want to USE the Platform commercially — to charge clients, sell sessions, run a coaching practice, or operate a paid offering using the methodology — there are two clean paths. Most people take Path A.
 
 ### Path A — Subscribe to the hosted Platform (recommended for most)
@@ -49,7 +51,7 @@ By deploying a Distributor Instance commercially, you accept the terms below. Th
 
 - **Licensor** — Alexander Konstantinov.
 - **Distributor** — any person, company, or community that operates a forked or derivative instance of the Platform commercially.
-- **Platform** — the codebase, methodology, and modules of Find Your Top Talent / Planetary OS, including all artifacts inheriting the licenses above.
+- **Platform** — the codebase, methodology, and modules of Find Your Top Talent / Planetary OS, including all artifacts inheriting the licenses above. **Excludes the AI OS scaffold and its derivative prompt suites**, which are MIT-licensed (see [`LICENSE.md`](./LICENSE.md) §2) and explicitly out of scope for this Agreement.
 - **Distributor Instance** — your forked, modified, or hosted version of the Platform, operating under your own brand.
 - **Platform Revenue** — gross revenue (before your costs and taxes) earned through your Distributor Instance, from any of the following:
   - Sessions, programs, containers, or coaching sold to clients introduced or processed through your Distributor Instance.

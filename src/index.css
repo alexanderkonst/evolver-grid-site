@@ -123,6 +123,34 @@
     mask-composite: exclude;
     pointer-events: none;
   }
+
+  /* Day 54 r2 (Sasha 2026-04-28): iOS GPU tile-memory rescue.
+     Heavy backdrop-filter blur+saturate on /ai-os crashed iOS Chrome
+     — each backdrop-filter element becomes its own GPU compositing
+     layer, and /ai-os has ~23 of them, blowing past iOS's per-process
+     tile budget (the "renders for a split second then dies" symptom).
+     On touch devices: drop the blur, nudge background opacity up to
+     hold the visual weight. Borders, drop-shadows, and the ::before
+     specular edge do the design work — the blur was the only piece
+     that was GPU-expensive, and against the dark video+gradient BG
+     the visual delta is barely perceptible. */
+  @media (pointer: coarse), (max-width: 1023px) {
+    .liquid-glass {
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+      background: rgba(255, 255, 255, 0.16);
+    }
+    .liquid-glass-dark {
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+      background: rgba(10, 18, 34, 0.78);
+    }
+    .liquid-glass-strong {
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+      background: rgba(255, 255, 255, 0.28);
+    }
+  }
 }
 
 /* ==========================================================================
@@ -1128,6 +1156,20 @@ All colors MUST be HSL.
   display: inline-block;
 }
 
+/* Sasha 2026-04-28: `.gentle-spin-always` is a deliberate exception to
+   prefers-reduced-motion. The rail emblems (JOURNEY / AI OS / ME) carry
+   brand identity through their slow rotation — the motion *is* the mark.
+   The rotation period (60s = one revolution per minute) is well under
+   the threshold that triggers vestibular discomfort, and the icons sit
+   in fixed left-rail positions where the user controls dwell time.
+   This class is reserved for the rail emblems only; do not generalize. */
+.gentle-spin-always {
+  animation: gentle-spin 60s linear infinite !important;
+  will-change: transform;
+  transform-origin: center !important;
+  display: inline-block;
+}
+
 /* Targeted rules — these apply the rotation globally without needing
    per-file edits. Each selector is scoped tight enough that we only
    catch the emblems/icons we mean to rotate, never text or chrome.
@@ -1161,6 +1203,12 @@ All colors MUST be HSL.
   .gentle-spin,
   .cta-breath img {
     animation: none !important;
+  }
+  /* `.gentle-spin-always` deliberately re-asserts its animation here
+     because the rail emblems carry brand identity through rotation —
+     see definition above for full rationale. */
+  .gentle-spin-always {
+    animation: gentle-spin 60s linear infinite !important;
   }
 }
 
@@ -1594,6 +1642,31 @@ All colors MUST be HSL.
   box-shadow: 0 0 0 1px hsla(240, 20%, 100%, 0.06), 0 8px 40px hsla(228, 30%, 5%, 0.5), 0 24px 80px hsla(228, 30%, 5%, 0.3);
   border: 1px solid hsla(240, 20%, 100%, 0.08);
   backdrop-filter: blur(12px);
+}
+
+/* Day 54 r2 (Sasha 2026-04-28): /ai-os iOS GPU-tile rescue.
+   Same fix as the base @media block higher in this file, scoped under
+   [data-ai-os] to win the specificity battle against the /ai-os-only
+   glass overrides above. The /ai-os page has ~23 backdrop-filter
+   layers — each a GPU compositing layer — which exhausted iOS's
+   per-process tile budget and crashed Chrome iOS / WhatsApp WKWebView.
+   On touch / narrow viewports: drop all blurs, bump background opacity
+   slightly so the glass surfaces still read against the dark video BG. */
+@media (pointer: coarse), (max-width: 1023px) {
+  [data-ai-os] .liquid-glass {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: hsla(228, 25%, 8%, 0.78);
+  }
+  [data-ai-os] .liquid-glass-strong {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: hsla(228, 25%, 8%, 0.85);
+  }
+  [data-ai-os] .wabi-card {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
 }
 
 [data-ai-os] .section-gradient-meta { background: var(--gradient-meta); }

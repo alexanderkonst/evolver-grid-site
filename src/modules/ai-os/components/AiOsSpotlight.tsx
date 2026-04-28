@@ -201,30 +201,8 @@ export default function AiOsSpotlight({ installPromptContent }: Props) {
           }}
         >
           Paste into a fresh AI chat. Sharper from message one. Faster on
-          everyday tasks, deeper on complex ones. Virtually no trade-offs.
+          everyday tasks, deeper on complex ones. No trade-offs.
         </p>
-
-        {/* PRIMARY CTA — copy install */}
-        <div className="pt-1">
-          <button
-            type="button"
-            onClick={onCopyInstall}
-            className="inline-flex items-center gap-2.5 text-base font-medium tracking-wide px-7 py-3.5 rounded-full transition-all duration-300 hover:scale-[1.04] active:scale-95"
-            style={{
-              background:
-                "linear-gradient(135deg, hsla(40, 75%, 60%, 0.32) 0%, hsla(252, 70%, 70%, 0.28) 50%, hsla(40, 75%, 60%, 0.32) 100%)",
-              border: "1px solid hsla(40, 75%, 70%, 0.55)",
-              color: "hsl(0 0% 100%)",
-              textShadow: "0 0 14px rgba(244,212,114,0.5), 0 1px 4px rgba(0,0,0,0.5)",
-              boxShadow:
-                "0 0 0 1px hsla(40, 75%, 75%, 0.20), 0 10px 32px -8px rgba(244,212,114,0.5), 0 0 48px -12px rgba(244,212,114,0.4)",
-            }}
-            aria-label="Copy AI OS install prompt to clipboard"
-          >
-            {installCopied ? <Check className="w-5 h-5" /> : <Copy className="w-5 h-5" />}
-            {installCopied ? "Copied — paste into a new AI chat" : "Copy AI OS install"}
-          </button>
-        </div>
 
         {/* Soft divider */}
         <div
@@ -236,8 +214,10 @@ export default function AiOsSpotlight({ installPromptContent }: Props) {
           }}
         />
 
-        {/* EXPERIMENT — antidote to "permanent upgrade gets normalized" */}
-        <div className="space-y-4">
+        {/* EXPERIMENT — Day 54 (Sasha 2026-04-28): leads now. Install button
+            lives inside Step 2 of the protocol so people can't grab the paste
+            and skip the calibration. The whole flow IS the experiment. */}
+        <div className="space-y-5">
           <div className="space-y-1.5">
             <p
               className="text-[10px] sm:text-xs uppercase tracking-[0.28em] font-medium"
@@ -246,64 +226,85 @@ export default function AiOsSpotlight({ installPromptContent }: Props) {
                 textShadow: "0 0 12px rgba(132,96,234,0.35), 0 0 12px rgba(0,0,0,0.85)",
               }}
             >
-              Try it on yourself first
+              You'll know in 60 seconds
             </p>
             <p
               className="text-sm sm:text-base leading-relaxed max-w-2xl"
-              style={{ color: "hsl(0 0% 100% / 0.78)", textShadow: "0 0 12px rgba(0,0,0,0.7)" }}
+              style={{ color: "hsl(0 0% 100% / 0.85)", textShadow: "0 0 12px rgba(0,0,0,0.7)" }}
             >
-              Easy to install a permanent upgrade and then normalize it
-              without noticing. Run this 60-second experiment to feel the
-              difference before it disappears into the new normal.
+              One prompt. Run it now, install AI OS, run it again. You'll
+              feel the shift.
             </p>
           </div>
 
-          {/* The 3 steps */}
-          <ol
-            className="space-y-2.5 text-sm sm:text-[15px] leading-relaxed list-none pl-0"
-            style={{ color: "hsl(0 0% 100% / 0.85)" }}
-          >
+          {/* Step 1 — paste the test prompt in current AI */}
+          <div className="space-y-3">
             <ExperimentStep n={1}>
-              In your current AI (no install yet), paste the test prompt.
-              Read the response.
+              In your current AI, paste this prompt. Read the response.
             </ExperimentStep>
+            <div
+              className="rounded-2xl p-4 sm:p-5 space-y-3"
+              style={{
+                background: "hsla(0, 0%, 100%, 0.04)",
+                border: "1px solid hsla(0, 0%, 100%, 0.10)",
+              }}
+            >
+              <p
+                className="font-display italic text-sm sm:text-base leading-relaxed"
+                style={{ color: "hsl(0 0% 100% / 0.92)" }}
+              >
+                "{TEST_PROMPT_EN}"
+              </p>
+              <button
+                type="button"
+                onClick={onCopyTest}
+                className="inline-flex items-center gap-2 text-xs font-medium tracking-wide px-4 py-2 rounded-full transition-all duration-300 hover:scale-[1.03]"
+                style={{
+                  background: "hsla(0, 0%, 100%, 0.08)",
+                  border: "1px solid hsla(0, 0%, 100%, 0.20)",
+                  color: "hsl(0 0% 100% / 0.90)",
+                }}
+                aria-label="Copy the test prompt to clipboard"
+              >
+                {testCopied ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
+                {testCopied ? "Copied" : "Copy test prompt"}
+              </button>
+            </div>
+          </div>
+
+          {/* Step 2 — install AI OS in a new chat, run the same prompt */}
+          <div className="space-y-3">
             <ExperimentStep n={2}>
               Open a <strong>new chat</strong>. Paste the AI OS install.
-              Then paste the test prompt again.
+              Then run the same prompt again.
             </ExperimentStep>
-            <ExperimentStep n={3}>
-              Compare the two responses. Notice what's different.
-            </ExperimentStep>
-          </ol>
+            <div>
+              <button
+                type="button"
+                onClick={onCopyInstall}
+                className="inline-flex items-center gap-2.5 text-base font-medium tracking-wide px-7 py-3.5 rounded-full transition-all duration-300 hover:scale-[1.04] active:scale-95"
+                style={{
+                  background:
+                    "linear-gradient(135deg, hsla(40, 75%, 60%, 0.32) 0%, hsla(252, 70%, 70%, 0.28) 50%, hsla(40, 75%, 60%, 0.32) 100%)",
+                  border: "1px solid hsla(40, 75%, 70%, 0.55)",
+                  color: "hsl(0 0% 100%)",
+                  textShadow: "0 0 14px rgba(244,212,114,0.5), 0 1px 4px rgba(0,0,0,0.5)",
+                  boxShadow:
+                    "0 0 0 1px hsla(40, 75%, 75%, 0.20), 0 10px 32px -8px rgba(244,212,114,0.5), 0 0 48px -12px rgba(244,212,114,0.4)",
+                }}
+                aria-label="Copy AI OS install prompt to clipboard"
+              >
+                {installCopied ? <Check className="w-5 h-5" /> : <Copy className="w-5 h-5" />}
+                {installCopied ? "Copied — paste into a new AI chat" : "Copy AI OS install"}
+              </button>
+            </div>
+          </div>
 
-          {/* Test prompt — italic for "this is what to paste", with its own copy */}
-          <div
-            className="rounded-2xl p-4 sm:p-5 space-y-3"
-            style={{
-              background: "hsla(0, 0%, 100%, 0.04)",
-              border: "1px solid hsla(0, 0%, 100%, 0.10)",
-            }}
-          >
-            <p
-              className="font-display italic text-sm sm:text-base leading-relaxed"
-              style={{ color: "hsl(0 0% 100% / 0.92)" }}
-            >
-              "{TEST_PROMPT_EN}"
-            </p>
-            <button
-              type="button"
-              onClick={onCopyTest}
-              className="inline-flex items-center gap-2 text-xs font-medium tracking-wide px-4 py-2 rounded-full transition-all duration-300 hover:scale-[1.03]"
-              style={{
-                background: "hsla(0, 0%, 100%, 0.08)",
-                border: "1px solid hsla(0, 0%, 100%, 0.20)",
-                color: "hsl(0 0% 100% / 0.90)",
-              }}
-              aria-label="Copy the test prompt to clipboard"
-            >
-              {testCopied ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
-              {testCopied ? "Copied" : "Copy test prompt"}
-            </button>
+          {/* Step 3 — compare */}
+          <div>
+            <ExperimentStep n={3}>
+              Compare. Notice what's different.
+            </ExperimentStep>
           </div>
         </div>
 

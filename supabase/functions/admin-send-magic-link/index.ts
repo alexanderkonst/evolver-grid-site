@@ -29,6 +29,10 @@
 // long-TTL invite-token backup is Phase 2 — see roadmap entry.
 
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+// Admin-only endpoint that sends a magic link to a target email using the service role.
+// Only callers with the 'admin' role (per public.has_role) may invoke.
+
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2.45.0";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -42,7 +46,6 @@ const corsHeaders = {
 // column, this list and src/lib/isAdmin.ts both update.
 const ADMIN_EMAILS = new Set<string>([
   "alexanderkonst@gmail.com",
-  "alex@evolvergrid.com",
 ]);
 
 interface SendMagicLinkPayload {
@@ -53,6 +56,7 @@ interface SendMagicLinkPayload {
 }
 
 const json = (status: number, body: unknown) =>
+const json = (body: unknown, status = 200) =>
   new Response(JSON.stringify(body), {
     status,
     headers: { ...corsHeaders, "Content-Type": "application/json" },
@@ -60,94 +64,82 @@ const json = (status: number, body: unknown) =>
 
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") {
-    return new Response(null, { headers: corsHeaders });
+    return new Response("ok", { headers: corsHeaders });
   }
-  if (req.method !== "POST") return json(405, { error: "method_not_allowed" });
 
   try {
-    const supabaseUrl = Deno.env.get("SUPABASE_URL");
-    const serviceRoleKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
-    const anonKey = Deno.env.get("SUPABASE_ANON_KEY");
-    const siteUrl = Deno.env.get("SITE_URL") ?? Deno.env.get("PUBLIC_SITE_URL") ?? "";
-    if (!supabaseUrl || !serviceRoleKey || !anonKey) {
-      console.error("admin-send-magic-link: missing env vars");
-      return json(500, { error: "server_misconfigured" });
-    }
+    const SUPABASE_URL = Deno.env.get("SUPABASE_URL")!;
+    const SUPABASE_ANON_KEY = Deno.env.get("SUPABASE_ANON_KEY")!;
+    const SUPABASE_SERVICE_ROLE_KEY = Deno.env.get(
+      "SUPABASE_SERVICE_ROLE_KEY",
+    )!;
+    const SITE_URL =
+      Deno.env.get("SITE_URL") ?? "https://findyourtoptalent.com";
 
-    // ── Verify caller is admin ──────────────────────────────────────
     const authHeader = req.headers.get("Authorization") ?? "";
-    const callerToken = authHeader.startsWith("Bearer ")
-      ? authHeader.slice("Bearer ".length).trim()
-      : "";
-    if (!callerToken) return json(401, { error: "missing_bearer_token" });
+    if (!authHeader.startsWith("Bearer ")) {
+      return json({ error: "Missing Authorization bearer token" }, 401);
+    }
 
-    const callerClient = createClient(supabaseUrl, anonKey, {
-      auth: { autoRefreshToken: false, persistSession: false },
-      global: { headers: { Authorization: `Bearer ${callerToken}` } },
+    // Validate caller via anon client + their JWT
+    const userClient = createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
+      global: { headers: { Authorization: authHeader } },
     });
-    const { data: callerUserData, error: callerError } = await callerClient.auth.getUser();
-    if (callerError || !callerUserData?.user) {
-      return json(401, { error: "invalid_session" });
-    }
-    const callerEmail = (callerUserData.user.email ?? "").toLowerCase();
-    if (!ADMIN_EMAILS.has(callerEmail)) {
-      return json(403, { error: "not_admin" });
-    }
-
-    // ── Parse + resolve target ──────────────────────────────────────
-    const body = (await req.json().catch(() => ({}))) as SendMagicLinkPayload;
-    const targetUserId = body.user_id?.trim() || "";
-    const targetEmailInput = body.email?.trim().toLowerCase() || "";
-    const redirectPath = body.redirect_path?.trim() || "/game/me";
-
-    if (!targetUserId && !targetEmailInput) {
-      return json(400, { error: "missing_target", detail: "user_id or email required" });
+    const {
+      data: { user },
+      error: userErr,
+    } = await userClient.auth.getUser();
+    if (userErr || !user) {
+      return json({ error: "Invalid or expired session" }, 401);
     }
 
-    const admin = createClient(supabaseUrl, serviceRoleKey, {
-      auth: { autoRefreshToken: false, persistSession: false },
+    // Service-role client for admin checks + magic link generation
+    const admin = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY);
+
+    const { data: isAdmin, error: roleErr } = await admin.rpc("has_role", {
+      _user_id: user.id,
+      _role: "admin",
     });
-
-    let resolvedEmail = targetEmailInput;
-    if (targetUserId) {
-      const { data: userData, error: userError } = await admin.auth.admin.getUserById(
-        targetUserId,
-      );
-      if (userError || !userData?.user?.email) {
-        console.warn("admin-send-magic-link: user lookup failed", userError);
-        return json(404, { error: "user_not_found" });
-      }
-      resolvedEmail = userData.user.email.toLowerCase();
+    if (roleErr) {
+      console.error("has_role error", roleErr);
+      return json({ error: "Role check failed" }, 500);
+    }
+    if (!isAdmin) {
+      return json({ error: "Forbidden: admin role required" }, 403);
     }
 
-    if (!resolvedEmail || !resolvedEmail.includes("@")) {
-      return json(400, { error: "invalid_email" });
+    let body: { email?: string; redirectTo?: string };
+    try {
+      body = await req.json();
+    } catch {
+      return json({ error: "Invalid JSON body" }, 400);
     }
 
-    // ── Issue magic link (Supabase auto-sends via auth-email-hook) ──
-    const redirectTo = `${siteUrl}/auth/callback?next=${encodeURIComponent(redirectPath)}`;
-    const { error: linkError } = await admin.auth.admin.generateLink({
+    const email = (body.email ?? "").trim().toLowerCase();
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      return json({ error: "Valid 'email' is required" }, 400);
+    }
+
+    const redirectTo = body.redirectTo ?? SITE_URL;
+
+    const { data, error } = await admin.auth.admin.generateLink({
       type: "magiclink",
-      email: resolvedEmail,
+      email,
       options: { redirectTo },
     });
-    if (linkError) {
-      console.error("admin-send-magic-link: generateLink failed", linkError);
-      return json(502, { error: "link_generation_failed", detail: linkError.message });
+
+    if (error) {
+      console.error("generateLink error", error);
+      return json({ error: error.message }, 500);
     }
 
-    console.info(
-      `admin-send-magic-link: ${callerEmail} → ${resolvedEmail} (redirect=${redirectPath})`,
-    );
-
-    return json(200, {
+    return json({
       ok: true,
-      sent_to: resolvedEmail,
-      redirect_path: redirectPath,
+      email,
+      action_link: data.properties?.action_link ?? null,
     });
-  } catch (error) {
-    const message = error instanceof Error ? error.message : String(error);
-    console.error("admin-send-magic-link: unexpected error", message);
-    return json(500, { error: "internal_error", detail: message });
+  } catch (e) {
+    console.error("admin-send-magic-link unexpected error", e);
+    return json({ error: (e as Error).message ?? "Unknown error" }, 500);
   }
 });
