@@ -1,13 +1,22 @@
 /**
- * SpecificityBadge — pill showing current specificity (0–10) with optional delta.
+ * SpecificityBadge — editorial pill showing current specificity (0–10) with optional delta.
  *
- * Color gradient by score band (see constants.SPECIFICITY_BANDS).
- * Delta pill shows ↑ or ↓ with a count-up animation on positive changes.
+ * Day 53 (Sasha 2026-04-27): re-skinned to match the landing/playbook
+ * register — gold→amber→emerald gradient by band, DM Sans tabular-nums
+ * for the score, gold hairline border, soft glow on the active band.
+ * No more Tailwind palette colors (bg-blue-100 / bg-amber-100 etc.) —
+ * everything routes through the brand spectrum.
  *
- * Day 51 (Sasha 2026-04-25): if `onScoreChange` prop is provided, the badge
- * becomes click-to-edit — AI suggests, human adjusts. Click → number input,
- * Enter or blur to save, Esc to cancel. Without onScoreChange, behaves as
- * read-only display (Dossier, Improve drawer Before/After, etc.).
+ * Bands (from constants.SPECIFICITY_BANDS):
+ *   sketch (0–4)    → cool deep navy + faint gold line
+ *   drafted (4–6.5) → warm amber, sub-currents of gold
+ *   landing (6.5–8) → solid gold, pre-resonant
+ *   sharp (8–9.5)   → bright gold + emerald undertone
+ *   photon (9.5+)   → emerald with full gold halo, the "lit" state
+ *
+ * If `onScoreChange` prop is provided, the badge becomes click-to-edit —
+ * AI suggests, human adjusts. Click → number input, Enter or blur to
+ * save, Esc to cancel.
  */
 
 import { useState, useRef, useEffect, type KeyboardEvent } from "react";
@@ -24,10 +33,44 @@ type Props = {
   onScoreChange?: (newScore: number) => void | Promise<void>;
 };
 
-const bandColorClasses: Record<string, string> = {
-  info: "bg-blue-100 text-blue-900 dark:bg-blue-900/30 dark:text-blue-200",
-  warning: "bg-amber-100 text-amber-900 dark:bg-amber-900/30 dark:text-amber-200",
-  success: "bg-emerald-100 text-emerald-900 dark:bg-emerald-900/30 dark:text-emerald-200",
+// Band → editorial gradient + ring + glow. Each band carries its own
+// ceremonial weight. Higher score = more lit. Lower = more "still
+// gathering." All values brand-consistent (no Tailwind palette refugees).
+const bandStyle: Record<
+  string,
+  {
+    background: string;
+    border: string;
+    color: string;
+    boxShadow: string;
+  }
+> = {
+  // sketch (info, low) — deep navy with the faintest gold rim
+  info: {
+    background:
+      "linear-gradient(135deg, rgba(11, 38, 65, 0.10) 0%, rgba(11, 38, 65, 0.04) 100%)",
+    border: "0.5px solid rgba(212, 175, 55, 0.30)",
+    color: "rgba(11, 42, 90, 0.85)",
+    boxShadow: "inset 0 0 0 0.5px rgba(255, 255, 255, 0.40)",
+  },
+  // landing zone — full gold, pre-resonant
+  warning: {
+    background:
+      "linear-gradient(135deg, rgba(244, 212, 114, 0.32) 0%, rgba(212, 175, 55, 0.18) 100%)",
+    border: "0.5px solid rgba(212, 175, 55, 0.85)",
+    color: "#7a5108",
+    boxShadow:
+      "inset 0 0 0 0.5px rgba(255, 255, 255, 0.45), 0 0 12px -3px rgba(244, 212, 114, 0.45)",
+  },
+  // sharp / photon — emerald with gold halo, the lit state
+  success: {
+    background:
+      "linear-gradient(135deg, rgba(16, 122, 88, 0.22) 0%, rgba(244, 212, 114, 0.18) 100%)",
+    border: "0.5px solid rgba(212, 175, 55, 0.95)",
+    color: "#0c5b40",
+    boxShadow:
+      "inset 0 0 0 0.5px rgba(255, 255, 255, 0.50), 0 0 16px -4px rgba(244, 212, 114, 0.55), 0 0 32px -10px rgba(16, 122, 88, 0.35)",
+  },
 };
 
 const clamp = (n: number) => Math.max(0, Math.min(10, n));
@@ -46,7 +89,6 @@ export function SpecificityBadge({ score, delta, size = "md", className, onScore
   useEffect(() => {
     if (editing) {
       setDraft(score.toFixed(1));
-      // Focus + select on next tick so the user can immediately overwrite.
       requestAnimationFrame(() => {
         inputRef.current?.focus();
         inputRef.current?.select();
@@ -90,16 +132,28 @@ export function SpecificityBadge({ score, delta, size = "md", className, onScore
     }
   };
 
+  const style = bandStyle[band.color] || bandStyle.info;
+
+  // Common sizing for both display + edit modes
+  const sizeCls =
+    size === "sm" ? "px-2.5 py-0.5 text-xs" : "px-3 py-1 text-sm";
+
   if (editing) {
     return (
       <div className={cn("inline-flex items-center gap-1.5", className)}>
         <span
           className={cn(
-            "inline-flex items-center rounded-full font-medium tabular-nums",
-            bandColorClasses[band.color] || bandColorClasses.info,
-            size === "sm" ? "px-2 py-0.5 text-xs" : "px-2.5 py-1 text-sm",
-            saving && "opacity-50"
+            "inline-flex items-center rounded-full",
+            sizeCls,
+            saving && "opacity-50",
           )}
+          style={{
+            ...style,
+            fontFamily: "'DM Sans', system-ui, sans-serif",
+            fontVariantNumeric: "tabular-nums lining-nums",
+            fontFeatureSettings: '"tnum" 1, "lnum" 1',
+            fontWeight: 600,
+          }}
         >
           <input
             ref={inputRef}
@@ -112,10 +166,16 @@ export function SpecificityBadge({ score, delta, size = "md", className, onScore
             onChange={(e) => setDraft(e.target.value)}
             onBlur={commit}
             onKeyDown={onKeyDown}
-            className="w-12 bg-transparent text-center tabular-nums outline-none [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+            className="w-12 bg-transparent text-center outline-none [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+            style={{
+              fontFamily: "'DM Sans', system-ui, sans-serif",
+              fontVariantNumeric: "tabular-nums lining-nums",
+            }}
             aria-label="Adjust specificity score"
           />
-          <span className="ml-1 text-[0.85em] opacity-70">/ 10</span>
+          <span className="ml-0.5 opacity-60" style={{ fontSize: "0.78em" }}>
+            / 10
+          </span>
         </span>
       </div>
     );
@@ -127,11 +187,17 @@ export function SpecificityBadge({ score, delta, size = "md", className, onScore
         type="button"
         onClick={editable ? () => setEditing(true) : undefined}
         className={cn(
-          "group inline-flex items-center rounded-full font-medium tabular-nums",
-          bandColorClasses[band.color] || bandColorClasses.info,
-          size === "sm" ? "px-2 py-0.5 text-xs" : "px-2.5 py-1 text-sm",
-          editable && "cursor-pointer hover:ring-1 hover:ring-current/20 transition"
+          "group inline-flex items-center rounded-full transition-all duration-200",
+          sizeCls,
+          editable && "cursor-pointer hover:translate-y-[-0.5px]",
         )}
+        style={{
+          ...style,
+          fontFamily: "'DM Sans', system-ui, sans-serif",
+          fontVariantNumeric: "tabular-nums lining-nums",
+          fontFeatureSettings: '"tnum" 1, "lnum" 1',
+          fontWeight: 600,
+        }}
         aria-label={
           editable
             ? `Specificity ${score.toFixed(1)} of 10 — ${band.label}. Click to adjust.`
@@ -141,18 +207,25 @@ export function SpecificityBadge({ score, delta, size = "md", className, onScore
         disabled={!editable}
       >
         {score.toFixed(1)}
-        <span className="ml-1 text-[0.85em] opacity-70">/ 10</span>
+        <span className="ml-0.5 opacity-60" style={{ fontSize: "0.78em" }}>
+          / 10
+        </span>
         {editable && (
-          <Pencil className="ml-1 h-3 w-3 opacity-40 group-hover:opacity-80 transition" aria-hidden="true" />
+          <Pencil
+            className="ml-1.5 h-3 w-3 opacity-40 transition-opacity duration-200 group-hover:opacity-80"
+            aria-hidden="true"
+          />
         )}
       </button>
       {typeof delta === "number" && delta !== 0 && (
         <span
-          className={cn(
-            "text-xs tabular-nums",
-            isUp && "text-emerald-600",
-            isDown && "text-red-600"
-          )}
+          className="text-xs"
+          style={{
+            fontFamily: "'DM Sans', system-ui, sans-serif",
+            fontVariantNumeric: "tabular-nums lining-nums",
+            color: isUp ? "#0c5b40" : isDown ? "#a04030" : "var(--skin-text-muted)",
+            fontWeight: 500,
+          }}
           aria-live="polite"
         >
           {isUp ? "↑" : "↓"} {Math.abs(delta).toFixed(1)}
