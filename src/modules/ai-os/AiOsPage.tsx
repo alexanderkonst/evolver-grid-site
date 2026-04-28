@@ -2462,14 +2462,16 @@ const AiOsPage = () => {
     return () => { document.body.style.background = previous; };
   }, []);
 
-  // Cursor glow tracking
+  // Cursor glow tracking — desktop only (touch devices don't have a cursor
+  // and the per-mousemove setState was contributing to mobile OOM).
   useEffect(() => {
+    if (!isHeavyFxCapable) return;
     const handleMouseMove = (e: MouseEvent) => {
       setCursorPos({ x: e.clientX, y: e.clientY });
     };
     window.addEventListener('mousemove', handleMouseMove, { passive: true });
     return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
+  }, [isHeavyFxCapable]);
 
   // Day 51 (Sasha 2026-04-25): premium_subscriptions table retired with the
   // Holonic Commons rollout. AI OS is free for everyone — no firewall, no
