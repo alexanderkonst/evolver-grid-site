@@ -1,3 +1,19 @@
+/**
+ * /ignite — purchase page for the **Top Talent Business Session**
+ *           (formerly known as "Ignition Session").
+ *
+ * Day 53 (Sasha 2026-04-27): canonical product name is now
+ * **Top Talent Business Session**. The /ignite route, file name, and
+ * the `igniteLogo` asset are kept for URL stability + asset import
+ * coherence; user-facing copy + all post-Day-53 references should use
+ * "Top Talent Business Session." Price: $555. Length: 2 hours.
+ * Guarantee: or you don't pay.
+ *
+ * Entry points to this page (post-rename):
+ *   - Landing primary CTA → /zone-of-genius (assessment) → reveal →
+ *     "Build a business off your top talent" → /ignite#pricing-section
+ *   - AppleseedDisplay reveal → primary CTA → here
+ */
 import { ArrowRight, Check, ShieldCheck, MessageCircle, ChevronDown } from "lucide-react";
 import { trackPageView, trackCTAClick, trackFunnelEvent } from "@/lib/funnelAnalytics";
 import { ExpandableTestimonial } from "@/components/ExpandableTestimonial";
