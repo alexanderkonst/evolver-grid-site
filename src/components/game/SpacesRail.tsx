@@ -73,8 +73,13 @@ const ImageIcon = ({
         style={{
             width: 28,
             height: 28,
+            // Day 54+ (Sasha 2026-04-28 evening): glow softened. Was 8px@0.7 +
+            // 2px@0.9 — too hot, the icons read as competing with the wordmark.
+            // Now 5px@0.4 + 1px@0.55: the gold ring stays present (paired-set
+            // identity for JOURNEY · AI OS · ME holds), but the halo no longer
+            // dominates the rail.
             filter: glow
-                ? "drop-shadow(0 0 8px rgba(244, 212, 114, 0.7)) drop-shadow(0 0 2px rgba(212, 175, 55, 0.9))"
+                ? "drop-shadow(0 0 5px rgba(244, 212, 114, 0.4)) drop-shadow(0 0 1px rgba(212, 175, 55, 0.55))"
                 : "drop-shadow(0 0 4px rgba(244, 212, 114, 0.3))",
             animation: "gentle-spin 60s linear infinite",
             willChange: "transform",

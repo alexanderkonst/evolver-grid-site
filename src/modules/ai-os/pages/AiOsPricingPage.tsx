@@ -53,13 +53,25 @@ const Pricing = () => {
             </button>
 
             <div className="flex justify-center mb-3">
+              {/* Day 54+ (Sasha 2026-04-28 evening): hero medallion gets the
+                  same gentle-spin rotation + gold drop-shadow halo as the
+                  SpacesRail icon — page-level visual coherence (the icon
+                  reads as the same mark across surfaces), brand-aligned
+                  glow color, and the rotation gives the medallion the
+                  same "breathing object" tempo as every other ceremonial
+                  geometric image on the site. Subtle: 8px @ 0.4 + 2px @
+                  0.55 — present but not blasted. */}
               <img
                 src={logoImg}
                 alt="AI OS"
-                className="w-14 h-14 rounded-full object-cover"
+                className="w-14 h-14 rounded-full object-cover gentle-spin-always"
                 style={{
-                  boxShadow: '0 0 30px rgba(132,96,234,0.3)',
+                  filter:
+                    'drop-shadow(0 0 8px rgba(244, 212, 114, 0.4)) drop-shadow(0 0 2px rgba(212, 175, 55, 0.55))',
                   border: '1px solid hsl(0 0% 100% / 0.12)',
+                  animation: 'gentle-spin 60s linear infinite',
+                  willChange: 'transform',
+                  transformOrigin: 'center',
                 }}
               />
             </div>
