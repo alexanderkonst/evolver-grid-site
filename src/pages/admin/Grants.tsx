@@ -44,15 +44,13 @@ const TIER_OPTIONS: { value: EntitlementTier; label: string; hint: string }[] = 
 
 type GrantRow = {
   id: string;
-  profile_id: string;
-  granted_by: string | null;
+  target_email: string | null;
+  granted_by_email: string | null;
   previous_tier: EntitlementTier | null;
   new_tier: EntitlementTier;
   expires_at: string | null;
   note: string | null;
   created_at: string;
-  /** Joined: target user's email — fetched separately. */
-  target_email?: string | null;
 };
 
 function GrantsPage() {
@@ -80,37 +78,21 @@ function GrantsPage() {
 
   const loadRecent = async () => {
     setLoadingRecent(true);
-    const { data, error } = await (supabase as any)
-      .from("entitlement_grants")
-      .select("id, profile_id, granted_by, previous_tier, new_tier, expires_at, note, created_at")
-      .order("created_at", { ascending: false })
-      .limit(20);
+    // Day 53 night iter 4 follow-up (Sasha 2026-04-27): was joining
+    // entitlement_grants → profiles to resolve emails browser-side.
+    // `profiles` table doesn't carry email in this project (it's in
+    // auth.users, not exposed to anon key). Replaced with `admin_recent_grants`
+    // RPC — admin-gated, joins server-side, returns enriched rows.
+    const { data, error } = await (supabase as any).rpc("admin_recent_grants", {
+      p_limit: 20,
+    });
     if (error) {
       console.error("Failed to load recent grants:", error);
       toast.error("Couldn't load recent grants.");
       setLoadingRecent(false);
       return;
     }
-    // Resolve emails for the profile_ids (best-effort, falls back to UUID).
-    const ids = Array.from(new Set((data ?? []).map((r: GrantRow) => r.profile_id)));
-    let emailMap: Record<string, string> = {};
-    if (ids.length > 0) {
-      const { data: users } = await (supabase as any)
-        .from("profiles")
-        .select("id, email")
-        .in("id", ids);
-      if (users) {
-        for (const u of users as Array<{ id: string; email: string }>) {
-          emailMap[u.id] = u.email;
-        }
-      }
-    }
-    setRecent(
-      (data ?? []).map((r: GrantRow) => ({
-        ...r,
-        target_email: emailMap[r.profile_id] ?? null,
-      })),
-    );
+    setRecent((data ?? []) as GrantRow[]);
     setLoadingRecent(false);
   };
 
@@ -157,26 +139,28 @@ function GrantsPage() {
     setLookupResult(null);
     try {
       const target = lookupEmail.trim().toLowerCase();
-      // Fetch profile entitlement by email
-      const { data, error } = await (supabase as any)
-        .from("profiles")
-        .select("email, entitlement_tier, entitlement_granted_at, entitlement_expires_at, entitlement_note")
-        .eq("email", target)
-        .maybeSingle();
+      // Day 53 night iter 4 follow-up: was direct profiles query (table
+      // doesn't carry email in this project). Replaced with
+      // `admin_lookup_entitlement` RPC — admin-gated, joins auth.users
+      // ↔ game_profiles server-side, returns the enriched row.
+      const { data, error } = await (supabase as any).rpc("admin_lookup_entitlement", {
+        p_email: target,
+      });
       if (error) {
         toast.error(error.message);
         return;
       }
-      if (!data) {
+      const row = Array.isArray(data) ? data[0] : data;
+      if (!row) {
         toast.error(`No profile found for ${target}`);
         return;
       }
       setLookupResult({
-        email: data.email,
-        tier: data.entitlement_tier as EntitlementTier,
-        granted_at: data.entitlement_granted_at,
-        expires_at: data.entitlement_expires_at,
-        note: data.entitlement_note,
+        email: row.email,
+        tier: row.tier as EntitlementTier,
+        granted_at: row.granted_at,
+        expires_at: row.expires_at,
+        note: row.note,
       });
     } finally {
       setLookingUp(false);
@@ -460,7 +444,7 @@ function GrantsPage() {
                       color: "var(--skin-text-primary, #0b2a5a)",
                     }}
                   >
-                    {r.target_email || `(${r.profile_id.slice(0, 8)}…)`}
+                    {r.target_email ?? "(unknown)"}
                   </span>
                   <span
                     style={{
