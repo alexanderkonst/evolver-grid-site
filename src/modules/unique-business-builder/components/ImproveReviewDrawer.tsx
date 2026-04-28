@@ -1,12 +1,21 @@
 /**
- * ImproveReviewDrawer — shows the proposed improvement from the Improve button.
+ * ImproveReviewDrawer — the rite of judgment.
+ *
+ * Shows the proposed improvement from the Improve button. The founder
+ * reads what the 27-perspective roast found, sees the before/after,
+ * decides: keep this version, or reject and try again.
  *
  * Desktop: right-side sheet. Mobile: bottom sheet.
- * User accepts → new version saved. User rejects → nothing saved.
+ *
+ * Day 53 (Sasha 2026-04-27): full editorial re-skin. Drawer body is
+ * now liquid-glass-dark (the dark editorial register used elsewhere
+ * for decision rooms — /ignite, dossier review, etc.). Cormorant
+ * headers, gold ✦ ornaments on quadrant labels, semantic accept/reject
+ * pills (gold for accept, soft navy for reject). The before/after
+ * blocks render as illuminated glass panels rather than raw JSON dumps.
  */
 
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription } from "@/components/ui/sheet";
-import { Button } from "@/components/ui/button";
 import { Check, X } from "lucide-react";
 import { useUniqueBusiness } from "../UniqueBusinessContext";
 import { SpecificityBadge } from "./SpecificityBadge";
@@ -14,13 +23,13 @@ import { ARTIFACT_LABELS } from "../constants";
 import type { RoastQuadrant } from "../types";
 
 const QUADRANT_LABELS: Record<RoastQuadrant, string> = {
-  UL: "Soul (does it feel true from the inside?)",
-  UR: "Engineering (does it work mechanically?)",
-  LL: "Resonance (would the tribe recognize themselves?)",
-  LR: "Architecture (does it serve at scale?)",
-  "13": "Center (does the whole see what the parts missed?)",
-  depth: "Depth (Essence → Significance → Implications balance)",
-  "27": "Crystallization (the one irreversible action named?)",
+  UL: "Soul · does it feel true from the inside?",
+  UR: "Engineering · does it work mechanically?",
+  LL: "Resonance · would the tribe recognize themselves?",
+  LR: "Architecture · does it serve at scale?",
+  "13": "Center · does the whole see what the parts missed?",
+  depth: "Depth · Essence → Significance → Implications balance",
+  "27": "Crystallization · the one irreversible action named?",
 };
 
 export function ImproveReviewDrawer() {
@@ -37,17 +46,63 @@ export function ImproveReviewDrawer() {
         if (!isOpen && pending) rejectImprovement();
       }}
     >
-      <SheetContent className="w-full sm:max-w-[480px] overflow-y-auto">
+      <SheetContent
+        className="liquid-glass-dark w-full overflow-y-auto sm:max-w-[520px]"
+        style={{
+          // Override shadcn Sheet's white bg — we want the dark glass
+          // body so the drawer reads as the decision room, not a
+          // settings dialog.
+          background: "rgba(10, 18, 34, 0.78)",
+          backdropFilter: "blur(40px) saturate(180%)",
+          WebkitBackdropFilter: "blur(40px) saturate(180%)",
+          color: "rgba(245, 241, 232, 0.94)",
+          border: "0.5px solid rgba(212, 175, 55, 0.28)",
+          boxShadow:
+            "inset 0 1px 0 0 rgba(255, 255, 255, 0.18), 0 24px 60px -18px rgba(10, 22, 40, 0.7), 0 0 0 1px rgba(212, 175, 55, 0.18)",
+        }}
+      >
         {pending && (
           <>
-            <SheetHeader className="space-y-2">
-              <SheetTitle className="flex items-center gap-2 text-base">
-                ⚡ Improvement proposed
+            {/* ═══ Header ═══ */}
+            <SheetHeader className="space-y-3 pr-8">
+              <SheetTitle asChild>
+                <div className="flex items-center gap-3">
+                  <span
+                    aria-hidden="true"
+                    style={{
+                      color: "#f4d472",
+                      textShadow: "0 0 14px rgba(244,212,114,0.7), 0 0 4px rgba(212,175,55,0.9)",
+                      fontSize: "18px",
+                    }}
+                  >
+                    ✦
+                  </span>
+                  <span
+                    style={{
+                      fontFamily: "'Cormorant Garamond', serif",
+                      fontWeight: 600,
+                      fontSize: "22px",
+                      letterSpacing: "-0.005em",
+                      color: "rgba(245, 241, 232, 0.96)",
+                    }}
+                  >
+                    Improvement proposed
+                  </span>
+                </div>
               </SheetTitle>
-              <SheetDescription>
-                {ARTIFACT_LABELS[pending.artifact_key]}
+              <SheetDescription asChild>
+                <div
+                  style={{
+                    fontFamily: "'Source Serif 4', serif",
+                    fontStyle: "italic",
+                    fontSize: "14.5px",
+                    color: "rgba(245, 241, 232, 0.72)",
+                  }}
+                >
+                  {ARTIFACT_LABELS[pending.artifact_key]}
+                </div>
               </SheetDescription>
-              <div className="pt-2">
+              <div className="pt-1">
                 <SpecificityBadge
                   score={pending.result.specificity_score}
                   delta={pending.result.specificity_delta}
@@ -55,75 +110,188 @@ export function ImproveReviewDrawer() {
               </div>
             </SheetHeader>
 
-            <section className="mt-6 space-y-4">
+            {/* ═══ Body sections ═══ */}
+            <section className="mt-7 space-y-6">
+              {/* What the roast found */}
               <div>
-                <h3 className="text-sm font-medium">What the roast found</h3>
-                <ul className="mt-2 space-y-2">
+                <SectionLabel>What the roast found</SectionLabel>
+                <ul className="mt-3 space-y-3">
                   {pending.result.roast_findings.map((f, i) => (
-                    <li key={i} className="text-sm">
-                      <div className="text-xs font-medium text-muted-foreground">
+                    <li key={i}>
+                      <div
+                        className="flex items-baseline gap-2"
+                        style={{
+                          fontFamily: "'Cormorant Garamond', serif",
+                          fontSize: "11.5px",
+                          letterSpacing: "0.18em",
+                          textTransform: "uppercase",
+                          color: "#f4d472",
+                          fontWeight: 600,
+                        }}
+                      >
+                        <span aria-hidden="true" style={{ fontSize: "10px", opacity: 0.85 }}>✦</span>
                         {QUADRANT_LABELS[f.quadrant as RoastQuadrant] || f.quadrant}
                       </div>
-                      <div>{f.weakness}</div>
+                      <div
+                        className="mt-1"
+                        style={{
+                          fontFamily: "'Source Serif 4', serif",
+                          fontSize: "14.5px",
+                          lineHeight: 1.55,
+                          color: "rgba(245, 241, 232, 0.92)",
+                        }}
+                      >
+                        {f.weakness}
+                      </div>
                     </li>
                   ))}
                 </ul>
               </div>
 
+              {/* What changed */}
               {pending.result.what_changed && (
                 <div>
-                  <h3 className="text-sm font-medium">What changed</h3>
-                  <p className="mt-1 text-sm text-muted-foreground">
+                  <SectionLabel>What changed</SectionLabel>
+                  <p
+                    className="mt-2"
+                    style={{
+                      fontFamily: "'Source Serif 4', serif",
+                      fontSize: "14.5px",
+                      lineHeight: 1.55,
+                      color: "rgba(245, 241, 232, 0.85)",
+                    }}
+                  >
                     {pending.result.what_changed}
                   </p>
                 </div>
               )}
 
-              <div className="space-y-3">
+              {/* Before / After */}
+              <div className="space-y-4">
                 <div>
-                  <h3 className="text-xs font-medium text-muted-foreground">Before</h3>
-                  <pre className="mt-1 whitespace-pre-wrap rounded-md border border-border bg-muted/30 p-3 text-xs">
-                    {JSON.stringify(current?.content ?? null, null, 2)}
-                  </pre>
+                  <SectionLabel muted>Before</SectionLabel>
+                  <div
+                    className="mt-2 overflow-x-auto rounded-xl px-3 py-3"
+                    style={{
+                      background: "rgba(245, 241, 232, 0.05)",
+                      border: "0.5px solid rgba(245, 241, 232, 0.10)",
+                      fontFamily: "'DM Sans', system-ui, sans-serif",
+                      fontSize: "11.5px",
+                      lineHeight: 1.55,
+                      color: "rgba(245, 241, 232, 0.62)",
+                    }}
+                  >
+                    <pre className="whitespace-pre-wrap">{JSON.stringify(current?.content ?? null, null, 2)}</pre>
+                  </div>
                 </div>
                 <div>
-                  <h3 className="text-xs font-medium text-muted-foreground">After</h3>
-                  <pre className="mt-1 whitespace-pre-wrap rounded-md border border-emerald-500/40 bg-emerald-50/50 p-3 text-xs dark:bg-emerald-900/10">
-                    {JSON.stringify(pending.result.improved_content, null, 2)}
-                  </pre>
+                  <SectionLabel>After</SectionLabel>
+                  <div
+                    className="mt-2 overflow-x-auto rounded-xl px-3 py-3"
+                    style={{
+                      background: "rgba(244, 212, 114, 0.06)",
+                      border: "0.5px solid rgba(244, 212, 114, 0.32)",
+                      boxShadow: "inset 0 0 18px -8px rgba(244, 212, 114, 0.20)",
+                      fontFamily: "'DM Sans', system-ui, sans-serif",
+                      fontSize: "11.5px",
+                      lineHeight: 1.55,
+                      color: "rgba(245, 241, 232, 0.92)",
+                    }}
+                  >
+                    <pre className="whitespace-pre-wrap">{JSON.stringify(pending.result.improved_content, null, 2)}</pre>
+                  </div>
                 </div>
               </div>
 
+              {/* Crystallized action */}
               {pending.result.crystallized_action && (
-                <div className="rounded-md border border-border bg-muted/30 p-3">
-                  <div className="text-xs font-medium text-muted-foreground">
-                    Next irreversible action
+                <div
+                  className="rounded-xl px-4 py-3.5"
+                  style={{
+                    background: "rgba(244, 212, 114, 0.06)",
+                    border: "0.5px solid rgba(244, 212, 114, 0.40)",
+                    boxShadow: "0 0 22px -8px rgba(244, 212, 114, 0.32)",
+                  }}
+                >
+                  <SectionLabel>Next irreversible action</SectionLabel>
+                  <div
+                    className="mt-1.5"
+                    style={{
+                      fontFamily: "'Source Serif 4', serif",
+                      fontSize: "15px",
+                      lineHeight: 1.55,
+                      color: "rgba(245, 241, 232, 0.96)",
+                    }}
+                  >
+                    {pending.result.crystallized_action}
                   </div>
-                  <div className="mt-1 text-sm">{pending.result.crystallized_action}</div>
                 </div>
               )}
             </section>
 
-            <div className="mt-8 flex gap-2">
-              <Button
-                variant="outline"
+            {/* ═══ Decision row ═══ */}
+            <div className="mt-9 flex gap-3">
+              <button
                 onClick={rejectImprovement}
-                className="flex-1 gap-2"
+                className="group flex-1 inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 transition-all duration-200 hover:translate-y-[-0.5px]"
+                style={{
+                  fontFamily: "'Cormorant Garamond', serif",
+                  fontWeight: 600,
+                  letterSpacing: "0.14em",
+                  textTransform: "uppercase",
+                  fontSize: "12.5px",
+                  color: "rgba(245, 241, 232, 0.78)",
+                  background: "rgba(245, 241, 232, 0.04)",
+                  border: "0.5px solid rgba(245, 241, 232, 0.20)",
+                }}
               >
-                <X className="h-4 w-4" />
+                <X className="h-4 w-4" aria-hidden="true" />
                 Reject
-              </Button>
-              <Button
+              </button>
+              <button
                 onClick={acceptImprovement}
-                className="flex-1 gap-2"
+                className="group flex-1 inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 transition-all duration-300 hover:translate-y-[-1px]"
+                style={{
+                  fontFamily: "'Cormorant Garamond', serif",
+                  fontWeight: 600,
+                  letterSpacing: "0.14em",
+                  textTransform: "uppercase",
+                  fontSize: "12.5px",
+                  color: "rgba(245, 241, 232, 0.98)",
+                  background: "linear-gradient(135deg, rgba(212, 175, 55, 0.42) 0%, rgba(244, 212, 114, 0.32) 50%, rgba(212, 175, 55, 0.42) 100%)",
+                  border: "0.5px solid rgba(244, 212, 114, 0.85)",
+                  boxShadow:
+                    "inset 0 1px 0 0 rgba(255, 255, 255, 0.30), 0 0 22px -4px rgba(244, 212, 114, 0.55), 0 0 48px -12px rgba(212, 175, 55, 0.40)",
+                  textShadow: "0 0 14px rgba(244, 212, 114, 0.55)",
+                }}
               >
-                <Check className="h-4 w-4" />
+                <Check className="h-4 w-4" aria-hidden="true" style={{ color: "#fff8e0" }} />
                 Accept
-              </Button>
+              </button>
             </div>
           </>
         )}
       </SheetContent>
     </Sheet>
+  );
+}
+
+/* ─── Section label helper ───────────────────────────────────────── */
+
+function SectionLabel({ children, muted = false }: { children: React.ReactNode; muted?: boolean }) {
+  return (
+    <div
+      style={{
+        fontFamily: "'Cormorant Garamond', serif",
+        fontWeight: 600,
+        fontSize: "11px",
+        letterSpacing: "0.22em",
+        textTransform: "uppercase",
+        color: muted ? "rgba(245, 241, 232, 0.55)" : "#f4d472",
+        textShadow: muted ? "none" : "0 0 10px rgba(244, 212, 114, 0.35)",
+      }}
+    >
+      {children}
+    </div>
   );
 }
