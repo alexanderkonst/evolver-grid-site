@@ -2568,27 +2568,34 @@ const AiOsPage = () => {
           (different from GameShell's animated bg). Gradient lighter at top
           (0.55) so video shows clearly behind hero, heavier toward bottom
           so prompt library reads on stable dark. */}
-      <HlsVideo />
+      {/* Day 54 (Sasha 2026-04-28): heavy FX (HLS Mux stream + animated
+          star canvas + cursor glow) gated to desktop. On mobile/touch
+          they were OOM-crashing iOS Chrome tabs opened from in-app
+          browsers. Mood is preserved by the static gradient + vignette
+          + noise overlays below, which carry zero per-frame cost. */}
+      {isHeavyFxCapable && <HlsVideo />}
       <div className="fixed inset-0 z-[1]" style={{ background: 'linear-gradient(180deg, rgba(10,22,50,0.55) 0%, rgba(8,16,30,0.86) 45%, rgba(5,9,18,0.95) 100%)' }} />
       <div className="vignette-overlay z-[1]" />
       {/* Noise/grain overlay */}
       <div className="noise-overlay" />
       {/* Starry overlay */}
-      <StarryBackground />
+      {isHeavyFxCapable && <StarryBackground />}
       
       {/* Cursor glow */}
-      <div 
-        className="pointer-events-none fixed z-20"
-        style={{
-          left: cursorPos.x - 20,
-          top: cursorPos.y - 20,
-          width: 40,
-          height: 40,
-          background: 'radial-gradient(circle, rgba(132,96,234,0.25) 0%, rgba(180,140,255,0.1) 40%, transparent 70%)',
-          borderRadius: '50%',
-          transition: 'left 0.05s ease-out, top 0.05s ease-out',
-        }}
-      />
+      {isHeavyFxCapable && (
+        <div 
+          className="pointer-events-none fixed z-20"
+          style={{
+            left: cursorPos.x - 20,
+            top: cursorPos.y - 20,
+            width: 40,
+            height: 40,
+            background: 'radial-gradient(circle, rgba(132,96,234,0.25) 0%, rgba(180,140,255,0.1) 40%, transparent 70%)',
+            borderRadius: '50%',
+            transition: 'left 0.05s ease-out, top 0.05s ease-out',
+          }}
+        />
+      )}
 
       <main
         className="relative z-10 min-h-screen w-full flex justify-center px-4 py-4 sm:px-6 sm:py-8 overflow-x-hidden"
