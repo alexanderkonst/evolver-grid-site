@@ -2582,12 +2582,12 @@ const AiOsPage = () => {
           (different from GameShell's animated bg). Gradient lighter at top
           (0.55) so video shows clearly behind hero, heavier toward bottom
           so prompt library reads on stable dark. */}
-      {/* Day 54 (Sasha 2026-04-28): heavy FX (HLS Mux stream + animated
-          star canvas + cursor glow) gated to desktop. On mobile/touch
-          they were OOM-crashing iOS Chrome tabs opened from in-app
-          browsers. Mood is preserved by the static gradient + vignette
-          + noise overlays below, which carry zero per-frame cost. */}
-      {isHeavyFxCapable && <HlsVideo />}
+      {/* Day 54 (Sasha 2026-04-28): video stays on mobile (cinematic vibe
+          is non-negotiable) — HLS quality is capped to ≤720p inside
+          HlsVideo so iOS doesn't pull a 1080p+ variant and OOM the tab.
+          The animated star canvas and cursor-glow tracker (the actual
+          memory killers) remain desktop-only. */}
+      <HlsVideo />
       <div className="fixed inset-0 z-[1]" style={{ background: 'linear-gradient(180deg, rgba(10,22,50,0.55) 0%, rgba(8,16,30,0.86) 45%, rgba(5,9,18,0.95) 100%)' }} />
       <div className="vignette-overlay z-[1]" />
       {/* Noise/grain overlay */}
