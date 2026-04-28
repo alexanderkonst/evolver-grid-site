@@ -2785,7 +2785,7 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
                     as a committee. Now:
                     • Primary "Start here" — bigger pill, brighter purple
                       glow, the unmistakable "do this first" affordance.
-                    • Secondary "Work with Aleksandr" — gold rim preserved
+                    • Secondary "Work with us" (was "Work with Aleksandr" — Day 54+, Sasha) — gold rim preserved
                       (premium signal) but matched to primary's height so
                       the two read as a paired primary row.
                     • Tertiary "Why this works" — demoted to a ghost text
@@ -2820,7 +2820,7 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
                       boxShadow: '0 0 0 1px hsla(40, 70%, 65%, 0.12), 0 8px 24px -12px rgba(244,212,114,0.4)',
                     }}
                   >
-                    Work with Aleksandr
+                    Work with us
                   </a>
                 </div>
                 {/* Day 52 (Sasha 2026-04-26): two parallel ghost links —
@@ -3242,35 +3242,10 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
           </section>
           )}
 
-          {/* YT Transcript Button */}
-          <RevealSection>
-            <button
-              onClick={() => setShowTranscriptDialog(true)}
-              disabled={loadingTranscript}
-              className="group w-full text-left liquid-glass px-5 py-5 rounded-2xl transition-all duration-300 active:scale-[0.97] hover:scale-[1.01] hover-glow-core"
-              aria-label="Fetch YouTube transcript"
-            >
-              <span className="flex items-start justify-between gap-3">
-                <span className="flex flex-col gap-1.5">
-                  <span className="text-sm sm:text-base font-medium leading-snug tracking-[-0.02em]" style={{ color: 'hsl(0 0% 100% / 0.9)' }}>
-                    {loadingTranscript ? "Fetching transcript..." : "YT TRANSCRIPT"}
-                  </span>
-                  <span className="text-xs leading-relaxed font-light" style={{ color: 'hsl(0 0% 100% / 0.55)' }}>
-                    Fetch & copy a YouTube video transcript to clipboard.
-                  </span>
-                </span>
-                <span className="flex-shrink-0 mt-0.5 transition-all duration-300 group-hover:scale-110">
-                  <span className="w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 group-hover:bg-[hsl(0_0%_100%/0.15)]" style={{ background: 'hsl(0 0% 100% / 0.1)', color: 'hsl(0 0% 100% / 0.5)' }}>
-                    {loadingTranscript ? (
-                      <Loader2 className="w-4 h-4 animate-spin" aria-hidden="true" />
-                    ) : (
-                      <Youtube className="w-4 h-4" aria-hidden="true" />
-                    )}
-                  </span>
-                </span>
-              </span>
-            </button>
-          </RevealSection>
+          {/* Day 54+ (Sasha 2026-04-28): YT Transcript button retired —
+              didn't belong on /ai-os. The transcript dialog at the bottom
+              of this file (showTranscriptDialog state, ytUrl state,
+              handleFetchTranscript, the <Dialog>) is also retired below. */}
 
           {/* Footer — polished CTA pill + finer license text */}
           <RevealSection>
@@ -3351,44 +3326,12 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
         </div>
       </main>
 
-      {/* YouTube Transcript Dialog */}
-      <Dialog open={showTranscriptDialog} onOpenChange={setShowTranscriptDialog}>
-        <DialogContent className="sm:max-w-md liquid-glass-strong rounded-3xl">
-          <DialogHeader>
-            <DialogTitle className="flex items-center gap-2">
-              <Youtube className="w-5 h-5" style={{ color: 'hsl(0 62% 50%)' }} />
-              YouTube Transcript
-            </DialogTitle>
-            <DialogDescription>
-              Paste a YouTube URL to fetch and copy its transcript.
-            </DialogDescription>
-          </DialogHeader>
-          <div className="flex flex-col gap-3">
-            <Input
-              placeholder="https://youtube.com/watch?v=..."
-              value={ytUrl}
-              onChange={(e) => setYtUrl(e.target.value)}
-              onKeyDown={(e) => e.key === 'Enter' && handleFetchTranscript()}
-              disabled={loadingTranscript}
-              className="rounded-full"
-            />
-            <Button
-              onClick={handleFetchTranscript}
-              disabled={loadingTranscript || !ytUrl.trim()}
-              className="w-full rounded-full"
-            >
-              {loadingTranscript ? (
-                <>
-                  <Loader2 className="w-4 h-4 animate-spin" />
-                  Fetching...
-                </>
-              ) : (
-                "Fetch & Copy"
-              )}
-            </Button>
-          </div>
-        </DialogContent>
-      </Dialog>
+      {/* Day 54+ (Sasha 2026-04-28): YouTube Transcript Dialog retired
+          along with its trigger button above. The state declarations
+          (showTranscriptDialog, ytUrl, loadingTranscript, handleFetchTranscript)
+          are now unused and harmless — leaving them in place to avoid
+          a larger surgery in this 3500-line file; they can be cleaned up
+          in a follow-up sweep if desired. */}
 
       {/* The Story — "Why this works" modal. Introduces "Knoware" as the
           layer codex operates on. Long-form narrative, premium typography,

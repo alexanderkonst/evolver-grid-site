@@ -1,7 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { ArrowLeft, ArrowRight, Heart, ExternalLink, Sparkles } from "lucide-react";
-import logoImg from "../assets/logo.jpg";
+// Day 54+ (Sasha 2026-04-28): hero medallion swapped from the legacy
+// FYTT torus (logo.jpg) to the merkaba — same icon as the AI OS Space
+// in the rail. Page-level visual coherence: AI OS = merkaba everywhere.
+import logoImg from "@/assets/mc-merkaba.png";
 import StarryBackground from "../components/StarryBackground";
 
 // Holonic Commons pricing page — Day 51 (Sasha 2026-04-24).
@@ -11,9 +14,10 @@ import StarryBackground from "../components/StarryBackground";
 // Contribution rights to core are earned through trust, not money.
 
 const STRIPE_TIP_URL = "https://buy.stripe.com/3cI00j5og8qf1TPdPqdEs0G";
-// Day 51 (Sasha 2026-04-25): "Work with Aleksandr" CTA points directly to
-// Telegram, not the FindYourTopTalent.Com landing. Aligned with Holonic
-// Commons — proximity to source happens through real conversation.
+// Day 51 (Sasha 2026-04-25): "Work with us" CTA (was "Work with Aleksandr"
+// — Day 54+ rename) points directly to Telegram, not the FindYourTopTalent.Com
+// landing. Aligned with Holonic Commons — proximity to source happens through
+// real conversation.
 const ALEKSANDR_TELEGRAM_URL = "https://t.me/integralevolution";
 
 const Pricing = () => {
@@ -186,12 +190,12 @@ const Pricing = () => {
                   <ArrowRight className="w-4 h-4" style={{ color: 'hsl(40 70% 75%)' }} />
                 </div>
                 <div className="flex-1">
-                  <p className="text-[10px] tracking-[0.25em] uppercase font-medium mb-1" style={{ color: 'hsl(40 50% 75% / 0.75)' }}>Path III · Work with Aleksandr</p>
+                  <p className="text-[10px] tracking-[0.25em] uppercase font-medium mb-1" style={{ color: 'hsl(40 50% 75% / 0.75)' }}>Path III · Work with us</p>
                   <h2 className="text-lg sm:text-xl font-display italic font-normal mb-2" style={{ color: 'hsl(0 0% 100% / 0.95)' }}>
-                    Find Your Top Talent
+                    Productize Yourself Session
                   </h2>
                   <p className="text-sm font-light leading-relaxed mb-4" style={{ color: 'hsl(0 0% 100% / 0.78)' }}>
-                    The Productize Yourself Session. 90 minutes to name your craft, find the business built on who you already are, and get your first easy move. The path into the first holon — where AI OS is actively shaped.
+                    A consulting session inside the Find Your Top Talent path. 90 minutes to name your craft, find the business built on who you already are, and get your first easy move. The path into the first holon — where AI OS is actively shaped.
                   </p>
                   <a
                     href={ALEKSANDR_TELEGRAM_URL}
@@ -204,7 +208,7 @@ const Pricing = () => {
                       boxShadow: '0 4px 16px -2px hsla(40, 70%, 50%, 0.4)',
                     }}
                   >
-                    Work with Aleksandr
+                    Work with us
                     <ExternalLink className="w-3.5 h-3.5" />
                   </a>
                 </div>
@@ -216,7 +220,7 @@ const Pricing = () => {
           {/* Footer note about contribution */}
           <div className="text-center space-y-2 pt-4">
             <p className="text-[11px] font-light max-w-md mx-auto leading-relaxed" style={{ color: 'hsl(0 0% 100% / 0.42)' }}>
-              Want to contribute prompts or modules to the core of AI OS itself? Trust is earned through working with Aleksandr first — that's how the holon stays coherent.
+              Want to contribute prompts or modules to the core of AI OS itself? Trust is earned through working with us first — that's how the holon stays coherent.
             </p>
           </div>
 
