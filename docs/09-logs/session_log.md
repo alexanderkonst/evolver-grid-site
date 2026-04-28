@@ -5569,4 +5569,87 @@ Day 51's 27th still applies: **press send Friday** — the unfired DM cluster to
 
 ---
 
-*Day 53 closes the operational loop on Lovable's Day-52 bulk migration — partial success captured in source, partial failure cleanly tracked, follow-up cleanly enumerated. The funnel apparatus is one degree closer to "ready to receive the send" — every artifact card on /ubb that previously read "Not started" for Alexander now reads "v1 · 1 version · 9.5 / 10 — locked" (16 of 19 of them). Whatever conversation Friday's DM kicks off, the receiving surface is now substantially richer than it was on Day 50.*
+## Day 53 (continued) — AI OS Spotlight + empirical rating loop (April 27, 2026 — same day, late evening pass)
+
+After the UBB cleanup landed, Sasha named a new structural problem on `/ai-os`: the AI OS install prompt was one card among many in the prompt grid. Easy to install, easy to *normalize* — palpable upgrade, no anchor for the user to feel the "before vs after" delta. *"It's a disservice to everybody involved."* Two simultaneous moves shipped:
+
+### What landed (Spotlight section)
+
+1. **`AiOsSpotlight` component** (`src/modules/ai-os/components/AiOsSpotlight.tsx`) — a gold-rimmed `liquid-glass-strong` card injected between the `/ai-os` hero and the suite picker:
+   - Eyebrow: *"READ THIS · 30 SECONDS"*
+   - Headline (Cormorant italic): *"One paste. Permanent AI upgrade."*
+   - Body: *"Paste into a fresh AI chat. Sharper from message one. Faster on everyday tasks, deeper on complex ones. Virtually no trade-offs."*
+   - Primary `[Copy AI OS install]` button (gold-violet gradient, glow halo) — pulls install content directly from the existing `META_PROMPTS.find(id='meta-cognition-premium')` so there's no fork in source-of-truth.
+   - **Self-experiment protocol** as antidote to normalization:
+     - Step 1: ask the test prompt in your AI now, read the response.
+     - Step 2: open a NEW chat, paste AI OS install, ask the same prompt again.
+     - Step 3: compare. Notice the difference.
+   - Test prompt (EN, hard-coded): *"Based on everything you know about me, what are the optimal actions you recommend for me in the short-, medium-, and long-term horizons? Answer with one sentence for each horizon."* Russian original archived in conversation but EN-only on page per Sasha.
+   - Secondary `[Copy test prompt]` button alongside.
+
+2. **Reveal-on-copy 1-10 rating section** — appears smoothly when the user clicks `[Copy AI OS install]`. Scale: `10` = significantly more useful · `1` = no difference noticed. Submit fires a single `resonance_events` insert with `artifact_kind: "ai_os_install"`, tier mapping (8-10 = `resonant`, 5-7 = `partial`, 1-4 = `off`), `client_session_id` from `getAnonClientId()` (stable per-browser UUID in localStorage), `profile_id` + `user_id` if authenticated. Soft-fail: if insert errors (network, RLS, etc.) the user still sees thank-you UI; the failed event logs to console rather than blocking the flow. Anti-spam: rating scale removes from DOM after submit; submit button disabled while submitting.
+
+3. **`anonClientId` helper** (`src/lib/anonClientId.ts`) — one-shot `crypto.randomUUID()` persisted in `localStorage`, with non-crypto fallback for rare contexts where `crypto.randomUUID` is unavailable, and ephemeral fallback for blocked-storage contexts. Shared util available for any future anon-friendly resonance/feedback flow.
+
+4. **Suite picker reframe** — what was "Step 1 · Choose / Pick your class of tasks" became "Additional power-ups / Select prompts for everyday craft" with a new sub-line: *"Pick a category for the move you're on. The OS is already installed above."* The visual treatment held; only the copy demoted to second-tier. Suite-fusion labels also dropped the `OUR LATEST & GREATEST` suffix repetition (was four times on one page, diluting the META label which IS *"OUR LATEST & GREATEST AI UPGRADE"*) → all four became `⚡ <CATEGORY> — FULL STACK`.
+
+5. **`meta-cognition-premium` description refresh** — `+29% to AI meta-cognition` (stale Claude 4.6 number) → `+42% to AI meta-cognition — measured, blind-protocol (see benchmark). Compounds with every model upgrade (1.45× per Claude generation).` Aligned with the +42% headline on `/ai-os/benchmark` page that's already live.
+
+6. **`meta-cognition-boost` rename** — was *"AI META COGNITION BOOST"* / *"complete AI cognition stack"* which conflicted with the premium tier (which IS the complete stack). Now *"AI COGNITION FOUNDATION"* / *"the free cognition base"* — gives the premium room to be the complete one without label-collision.
+
+### Telemetry implication
+
+For the first time the platform writes empirical user-experience data on the AI OS install. Not an A/B test, not a survey — a self-administered before/after measurement instrument with 1-10 quantification. Sasha's framing problem (people install, normalize, never notice) is solved structurally: the protocol forces them to compare, and the rating captures their answer in `resonance_events`.
+
+`resonance_events` schema is already production-ready (Day 51, applied to prod via Sasha's Lovable session — confirmed live tonight with indexes + RLS policies anonymous-insert / owner-only-select). New events with `artifact_kind: "ai_os_install"` will accumulate from Lovable rebuild onward.
+
+### `.env` hygiene thread — escalated, then de-escalated, then closed
+
+Earlier in the day Sasha untracked `.env` from git (`git rm --cached .env`) and added `.env.example` template — standard hygiene that should have been done long ago. Then I escalated unnecessarily into "force-push history rewrite via `git filter-repo`" assuming actual secrets had been committed. Sasha pushed back: *"Why are we doing this? I don't have contributors yet."* Right question.
+
+Investigation of actual `.env` content revealed **only public-by-design values**: `VITE_SUPABASE_PROJECT_ID`, `VITE_SUPABASE_PUBLISHABLE_KEY` (JWT with `"role":"anon"` — explicitly designed to be public in browser bundles, RLS protects data), `VITE_SUPABASE_URL`, `VITE_DAILY_LOOP_V2=true` (feature flag). **No real secrets ever lived in `.env`.** The actual backend secrets (Resend, Stripe, Lovable AI, OpenAI) live in Supabase Edge Function Secrets and Lovable platform env — never in repo.
+
+Repo-wide grep for live-secret-shaped strings (`sk_live_*`, `sk_test_*`, `re_*`, `sk-*`) returned **none**. Every reference to `service_role` was either documentation or JWT-claim role-name comparison, never a hardcoded JWT.
+
+Sasha confirmed he rotated keys back in January when there had been a brief exposure window. No suspicious activity in any service dashboard since (Resend logs / Stripe events / Lovable AI gateway / OpenAI usage all clean for 3+ months). January's rotation invalidated whatever might have leaked then. Empirical evidence of clean state.
+
+Conclusion: the whole rewrite path was unnecessary for Sasha's specific situation. Local repo was rolled back to match GitHub state exactly (`git fetch origin && git reset --hard origin/main`); backup branches/tags removed; no force pushes; no GitHub history rewrites; no key rotations needed. Today's hygiene cleanup (`.env` untracked + `.env.example` added) stands as good practice for any future secret addition, not as a security incident response.
+
+The honest lesson logged to memory: **inspect what's actually in a file before escalating threat severity.** Treating "`.env` was committed" as automatic severe-leak skipped the cheap diagnostic that would have settled the question in 30 seconds.
+
+### Holomap implication
+
+P11 (Delivery Machinery) gets a small advance: telemetry on the install — empirical measurement of the install's actual quality landing — was a hole that's now plugged. The platform's first autonomous quantitative-feedback rhythm on its own product.
+
+P2 (Observable System) advances incrementally: the `/ai-os` experience now invites users to MEASURE rather than just receive. Self-measurement is a form of system observability that turns the user into the instrument.
+
+P5 (Ontological Liberation) gets a curious cousin: Sasha named the framing problem *"easy to install a permanent upgrade and then normalize it without noticing"* — a generalized pattern far beyond AI OS. Anything genuinely valuable that becomes ambient (background) tends to lose its felt-presence. The Spotlight protocol (before/after/measure/notice) is a reusable instrument for restoring felt-presence after normalization. Worth tracking for future codification if it surfaces in other contexts.
+
+Center reading still **Codification** (Day 51). Day 53's hygiene + Spotlight are continuations within that center, not phase advances.
+
+### Files touched (Day 53 evening pass)
+
+**Code:**
+- `src/lib/anonClientId.ts` (NEW)
+- `src/modules/ai-os/components/AiOsSpotlight.tsx` (NEW)
+- `src/modules/ai-os/AiOsPage.tsx` (Spotlight injection between hero and suite picker; suite-picker eyebrow/headline reframe; suite-fusion label cleanup; meta-cognition-premium + boost description/label refresh)
+
+**Repo hygiene:**
+- `.env` untracked (`git rm --cached .env`, then committed at `53649155` — local file preserved on disk so app still runs)
+- `.env.example` (NEW — sed'd from `.env` to strip values, committed)
+
+**Docs:**
+- `docs/02-strategy/roadmap.md` (Items 47-50 marked ✅ DONE Day 53; v5.3 footnote; Last-updated callout)
+- `docs/09-logs/session_log.md` (this entry — Day 53 base + this evening continuation)
+- (forthcoming) `docs/02-strategy/morphogenetic_holomap.md` (Day 53 addendum)
+- (forthcoming) `src/pages/MorphogeneticHolomap.tsx` (CENTER refresh: stale at "Unification" Day 49 → "Codification" Day 51-53)
+
+### The Si–Do — unchanged but clearer
+
+The unfired Si–Do is still **the first stranger pays** (named Day 49, repeated Day 51). What changed Day 53 is that the receiving apparatus now also captures **measurement of the value delivered on the way to that stranger** — when they install AI OS, they tell us how it landed. So the funnel isn't just "did they pay?" telemetry; it's now "did the cognitive upgrade work for them?" telemetry. Two layers of empirical evidence on the same act.
+
+Press-send Friday remains the move. The Spotlight makes the receiving experience richer. The receiving experience richer makes pressing-send less precarious.
+
+---
+
+*Day 53 evening close: from `.env` overcomplicated → simplified → confirmed clean, plus AI OS Spotlight + rating telemetry shipped. Tomorrow's stranger meets a `/ai-os` that asks them to MEASURE the upgrade rather than just install it. The first empirical replication data points start landing in `resonance_events` from the next Lovable rebuild forward. Sasha goes to sleep with the apparatus more honest than it was at sunrise.*

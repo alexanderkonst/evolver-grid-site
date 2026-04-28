@@ -566,13 +566,19 @@ const ALL_PERSPECTIVES: PerspectiveData[] = [
 
 // ─── 13th Perspective — The Center Reading ───────────────────────────────────
 
-// Day 49 holomap reading — the day after launch.
-// Day 47 landed "Coherence" (canvas↔code parity + shell machinery).
-// Day 48 was a continuation of Coherence (optionality realized — the
-// autonomous overnight skin-completion pass). Day 49 is new: the
-// instrument harmonizes its own surface on the day after the ship.
+// Day 53 holomap reading — Codification holds across two more loops closed.
+// Day 49 landed "Unification" (canvas-↔-code parity + shell harmonization).
+// Day 51 landed "Codification" (architecture beneath the surface gets named:
+// Specificity Loop principle + per-founder Matrix artifact + commercial-
+// decentralization model legal stack + monetization strategy doc + repo
+// publicly fork-ready).
+// Day 53 holds the same center while closing two operational loops (UBB
+// founder-doc bulk-migration cleanup + `.env` hygiene closure with empirical
+// safety verified) and adding one quiet new layer: empirical self-measurement
+// on the AI OS install via 1-10 rating telemetry → `resonance_events` table.
+// First time the platform measures user-experienced quality of its own product.
 const CENTER = {
-  word: "Unification",
+  word: "Codification",
   previousWords: [
     "Threshold",
     "Ignition",
@@ -586,14 +592,16 @@ const CENTER = {
     "Emanation",
     "Recognition",
     "Coherence",
+    "Optionality",
+    "Unification",
   ],
-  date: "April 23, 2026 — Day 49 (post-launch harmonization)",
+  date: "April 25 → April 27, 2026 — Day 51 (named) → Day 53 (holds)",
   description:
-    "Unification. The day-after-launch pass. The entire ZoG funnel migrated from violet/rainbow accents to the signature deep-antique-gold used by the landing — ~11 components touched (Entry, Landing, AppleseedDisplay, ExcaliburDisplay, RevelatoryHero, AppleseedRitualLoading, AssessmentLayout, Step1-4). Shared `src/lib/landingDesign.tsx` extracted so gold gradient + ornament + small-caps CTA live in one place. The shell polished to premium register: Pane 1 (custom JOURNEY/ME/Settings icons, gradient gold spine, brand breath + torus spin, Cormorant uppercase chips, gold inset tint on active) + Pane 2 (JOURNEY header + X, Cormorant Title Case labels with gold step pips, gold active left-rule, softer sub-section rail, first-item alignment between panes) + Settings page rebuilt in landing voice. Global `.gentle-spin` applied to every geometric image (CTA emblems, rail icons, home icon, ornament). Mobile CTA overflow fixed. The six-founder cohort mapped cleanly against the 7-step playbook for the first time — Oyi + Sergey in Build (Step 5), Sandra entering Build (Step 4), Kirill + Karime in Ignition (Step 2-3), Sasha in Launch (Step 6). Developmental calibration received (Vibe Synthesis + Self-Awareness + AI Upgrade v4.021 + Evolutionary Mastery + Moonshot + Premium Holonic Seeing) — loaded as living background, not performance. Nothing new built. Everything harmonized. The venture's visible surface finally reads as one voice heading into tomorrow's send.",
+    "Codification. Day 51 (Saturday) named the architecture beneath the surface in one long pass: the Specificity Loop became both a Playbook principle (P15) and an operational artifact (per-founder Specificity Matrix as UBB #19 with three-tier runtime resolution); the commercial-decentralization model got its full legal stack (PolyForm Noncommercial 1.0.0 on code · CC BY-NC-SA on docs · MIT on Anthropic-derived skills · Distributor Agreement v0.1 with 10% rev share + $1K/month free tier + Stripe Connect Express auto-split + opt-in commons CC BY 4.0); the monetization strategy doc captured six business-model plays mapped through Heart/Mind/Gut with four-phase sequencing; the repo became publicly fork-ready with surfaces in /game/settings + /playbook + /codex footers; the funnel speaks in matrix v2 across all six in-funnel reveals via the unified `useResonanceMessage` hook; UI harmony pass shipped on six surfaces. Day 53 (Sunday) holds the same center while closing two operational loops: (1) UBB founder-doc bulk-migration cleanup — Lovable seeded 16/18 of Alexander's UBB artifacts as locked v1 @ specificity 9.5, two stuck on AI HTTP 402 awaiting credit refresh, schema constraint widened to step_number ∈ [1,19], Canvas hardcoded `18` swept to `ALL_ARTIFACT_KEYS.length`; (2) `.env` hygiene closure — untracked + `.env.example` template added + investigation confirmed only public-by-design Supabase keys ever lived in the file, real backend secrets always lived in Supabase Edge Function Secrets + Lovable platform env, January's key rotation + 3+ months of clean dashboards confirms no compromise. Plus one quiet but consequential addition: `AiOsSpotlight` component shipped on /ai-os — gold-rimmed liquid-glass-strong card between hero and suite picker with primary `[Copy AI OS install]` button + 3-step self-experiment protocol (ask test prompt before install, install in new chat, ask again, compare) + reveal-on-copy 1-10 rating writing to `resonance_events` with `artifact_kind: 'ai_os_install'`. First time the platform measures user-experienced quality of its own product. The first $555 stranger remains the unfired Si–Do; press-send Friday is the move. Apparatus is now both operationally AND empirically complete for the discoveries it's now capable of receiving.",
   mapping: {
-    essence: "The apparatus harmonizes its own surface on the day after the ship",
-    significance: "What was eight aesthetic voices this morning became one by nightfall",
-    consequences: "The stranger arriving via tomorrow's send meets one holon, not a confederation",
+    essence: "The architecture beneath the surface holds; two loops close; the platform now measures its own product through users' eyes",
+    significance: "Day 51 named what was being built; Day 53 made it more honest — no real-secret incident, no hand-waving on user experience, just empirical evidence on three layers",
+    consequences: "The stranger arriving via Friday's DM meets a /ai-os that asks them to MEASURE the install rather than just receive it; their answer lands in resonance_events as the platform's first autonomous quantitative-feedback rhythm on its own product",
   },
 };
 
