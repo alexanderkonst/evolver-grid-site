@@ -49,11 +49,10 @@ import AdminContentManager from "./pages/AdminContentManager";
 // See docs/06-architecture/autonomous-navigation-loop.md.
 const FoundersIndex = lazy(() => import("./pages/admin/FoundersIndex"));
 const FounderDetail = lazy(() => import("./pages/admin/FounderDetail"));
-const AdminDashboard = lazy(() => import("./pages/admin/Dashboard"));
-// Day 53 night iter 4 (Sasha 2026-04-27): admin grants page for the
-// entitlement_tier system — gift Builder / Locked-in / Founders 50
-// access to specific users without going through Stripe.
-const AdminGrants = lazy(() => import("./pages/admin/Grants"));
+// Day 54 (Sasha 2026-04-28): /admin/dashboard + /admin/grants fused into
+// one operator console at /admin. Old URLs redirect to /admin so any
+// bookmarks/links keep working. Source: src/pages/admin/Admin.tsx.
+const AdminPage = lazy(() => import("./pages/admin/Admin"));
 import SandraIgnition from "./pages/SandraIgnition";
 import SergeyIgnition from "./pages/SergeyIgnition";
 import OyiIgnition from "./pages/OyiIgnition";
@@ -340,7 +339,7 @@ const App = () => (
                       here directly. Auth at the pricing step was redundant funnel friction. */}
                   <Route path="/ignite" element={<IgniteSession />} />
                   <Route path="/library" element={<Library />} />
-                  <Route path="/library/:category" element={<Library />} />
+                  <Route path="/library/:stepId" element={<Library />} />
                   <Route path="/contact" element={<RequireAuth><ContactNew /></RequireAuth>} />
                   <Route path="/feedback" element={<RequireAuth><FeedbackPage /></RequireAuth>} />
                   <Route path="/tools" element={<RequireAuth><ToolsRedirect /></RequireAuth>} />
@@ -372,8 +371,9 @@ const App = () => (
                   <Route path="/admin/mission-participants" element={<RequireAuth><AdminMissionParticipants /></RequireAuth>} />
                   <Route path="/admin/mission-sync" element={<RequireAuth><AdminMissionSync /></RequireAuth>} />
                   <Route path="/admin/content" element={<RequireAuth><AdminContentManager /></RequireAuth>} />
-                  <Route path="/admin/dashboard" element={<AdminDashboard />} />
-                  <Route path="/admin/grants" element={<AdminGrants />} />
+                  <Route path="/admin" element={<AdminPage />} />
+                  <Route path="/admin/dashboard" element={<Navigate to="/admin" replace />} />
+                  <Route path="/admin/grants" element={<Navigate to="/admin" replace />} />
                   <Route path="/founders" element={<FoundersIndex />} />
                   <Route path="/founders/:slug" element={<FounderDetail />} />
                   <Route path="/sandra" element={<RequireAuth><SandraIgnition /></RequireAuth>} />
@@ -429,6 +429,7 @@ const App = () => (
                   <Route path="/game/learn/paths" element={<RequireAuth><TransformationGrowthPaths /></RequireAuth>} />
                   <Route path="/game/learn/path/:pathId" element={<RequireAuth><PathSection /></RequireAuth>} />
                   <Route path="/game/learn/library" element={<RequireAuth><TransformationPracticeLibrary /></RequireAuth>} />
+                  <Route path="/game/learn/library/:stepId" element={<RequireAuth><TransformationPracticeLibrary /></RequireAuth>} />
                   <Route path="/game/learn/tests" element={<RequireAuth><TransformationPersonalityTests /></RequireAuth>} />
                   <Route path="/game/learn/qol-assessment" element={<RequireAuth><TransformationQolAssessment /></RequireAuth>} />
                   <Route path="/game/learn/qol-results" element={<RequireAuth><TransformationQolResults /></RequireAuth>} />
