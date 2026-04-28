@@ -175,11 +175,24 @@
      wash). Now identical on every route. Lighter RGB preserved so
      pane 2 reads a hair lifted from pane 1. */
   --skin-panel-2-bg: rgb(26, 58, 128);         /* Pane 2 — solid lit navy */
-  /* Day 51 (Sasha 2026-04-25): wash dropped 0.68 → 0.10 so the animated
-     bg video reads in near-full saturation (mockup pixel match). Hero
-     text contrasts on its own through serif weight + dark color, doesn't
-     need a heavy white veil to be legible. */
-  --skin-panel-wash: rgba(255, 255, 255, 0.10); /* Pane 3 — luminous content */
+  /* Day 53 (Sasha 2026-04-27): wash promoted from flat 10% white to a
+     radial gradient — strong (~50%) at the center column where hero text
+     sits, fading to ~8% at edges so the animated video still reads
+     through where there's no copy on top of it. Day 51's flat 10% killed
+     legibility on the gold-particle hero (text washed out against
+     bright zones); Day 51's earlier 0.68 was too heavy and obscured
+     the video. The radial split gives both: text stays sharp, video
+     keeps presence at the edges. Applies uniformly to every route
+     (landing, /zone-of-genius, mobile + desktop) via the GameShellV2
+     panel-3 wash element. */
+  --skin-panel-wash:
+    radial-gradient(
+      ellipse 85% 95% at 50% 50%,
+      rgba(255, 255, 255, 0.52) 0%,
+      rgba(255, 255, 255, 0.42) 35%,
+      rgba(255, 255, 255, 0.24) 70%,
+      rgba(255, 255, 255, 0.08) 100%
+    );
   /* Day 51 night v2 (Sasha): warmth pushed substantially — first pass
      was too subtle to register as a visible glow. Now the source
      reads as actual sunlight through a window: hotter color at the
