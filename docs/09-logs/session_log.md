@@ -6133,3 +6133,70 @@ When writing migration prompts that reference a project's profile table, use the
 ---
 
 *Day 53 night iter 4 follow-up close: schema mismatch caught + corrected within minutes of Lovable verification. The Grant button is one Lovable prompt away from being live. The apparatus continues to tighten.*
+
+---
+
+## Day 54 — AI OS as its own Space + MIT decoupling + spin-on-desktop (April 28, 2026)
+
+**Holomap center:** Codification (Day 51 — unchanged). Day 54 is a within-stage architectural alignment, not a phase advance.
+
+### The framing call (the 27th — Crystallization)
+
+The session opened on a strategy thread Sasha had been having with Lovable about AI OS licensing. Lovable correctly diagnosed that "non-commercial use" of AI OS is structurally unenforceable — once the system prompt is pasted into someone's Claude / ChatGPT / Gemini, the personal-vs-commercial boundary collapses. But Lovable then tried to engineer a single line that worked for the whole stack and ended up conflating three different artifacts.
+
+The diagnosis I added: **AI OS, the platform code, and the methodology are three different ontological registers and need three different license shapes.** The platform code is a bounded artifact (PolyForm-NC + Distributor Agreement makes sense). The methodology is bounded prose (CC BY-NC-SA makes sense). The AI OS scaffold is unbounded — a thinking environment installed in someone's own AI. Trying to police it is incoherent.
+
+Sasha's reply named the synchronicity: MIT — the only license that fits AI OS — is the license named after his alma mater. Holons reflecting each other. The institution that taught him precision-as-generosity → the license that fits a thinking-upgrade. Acknowledged the synchronicity as signal, not noise; named my own CC BY-SA pull as a Values shadow trace (optimizing for control of unknowable futures over coherence of present action); course-corrected to MIT.
+
+Underneath the license question, the deeper realization: **AI OS shouldn't be JOURNEY step #4 either.** Treating a permanent cognitive substrate as a stop on the value ladder is the same conflation at the structural layer. The fix: elevate AI OS to its own peer Space in the shell — process / substrate / being, the three foundational doors.
+
+### What shipped
+
+**Architectural change — AI OS as own Space (Order A: JOURNEY → AI OS → ME):**
+- New `ai-os` entry in `SPACES` array at position 2, with custom merkaba icon (`src/assets/mc-merkaba.png` — rainbow harmonic geometry inside a circle, the substrate-symbol Sasha selected) + warm gold glow matching the JOURNEY/ME paired-set treatment.
+- New `SPACE_SECTIONS["ai-os"]` config in `SectionsPanel.tsx` with 4 top-level sections — **Install · Suites (parent, 4 children) · Benchmark · Pricing** — and 4 sub-children under Suites: **Clarity · Iteration · Vibe Code · Design** (terse labels per Sasha's call; longer "Suite" suffix lives in the page heading).
+- AI OS removed from `buildJourneySections` — JOURNEY pane 2 renumbered 1–7 (was 1–8). All tail items (Build / Mission Discovery / Asset Mapper) bumped down one.
+- `GameShellV2.tsx` `journeyPaths` array cleaned to drop `/ai-os`; the fallback at the bottom of the active-space effect now resolves `/ai-os` and all sub-routes to the new `ai-os` space via `SPACES.find startsWith` match. `JOURNEY_SECTION_LABELS` mobile-breadcrumb map pruned. Navless-route dark-canvas widened from `=== "/ai-os/benchmark"` to `startsWith("/ai-os/")` so all suite sub-routes inherit the dark canvas in early-onboarding render paths.
+
+**Routing — 5 new routes:**
+- `/ai-os/clarity` → `<AiOsPage focusCategory="clarity" />`
+- `/ai-os/iteration` → `<AiOsPage focusCategory="iteration" />`
+- `/ai-os/vibe-code` → `<AiOsPage focusCategory="deployment" />` (URL slug renamed for resonance; internal category id stable for back-compat with `PROMPTS` data + `tocColors`)
+- `/ai-os/design` → `<AiOsPage focusCategory="design" />`
+- `/ai-os/suites` → `<Navigate to="/ai-os" replace />` (the SectionsPanel parent path; clicks toggle expand/collapse so this route is rarely hit, but if a user types it directly we redirect rather than 404)
+
+**`AiOsPage` accepts `focusCategory` prop:**
+- When set: filters `visibleGroups` to only that category; per-suite `document.title` ("Clarity Suite — AI OS" etc.); chip-nav block hidden entirely (the user is already on a focused page); the full prompt-rendering section visible (focused suite only).
+- When unset (`/ai-os` main): the full prompt-rendering section is hidden; only the chip-nav appears with hrefs retargeted from in-page anchors (`#section-clarity`) to actual sub-route Links (`/ai-os/clarity`); meta category filtered out of chips because the Spotlight above already IS the meta install. Result: `/ai-os` is now SHORT (hero + Spotlight + chip-nav-to-suites + footer) — exactly what Sasha asked for ("It can just be one short landing page").
+
+**License decoupling — single source of truth, MIT scoped to AI OS:**
+- `LICENSE.md` rewritten as a license-map preamble + §1 (CC BY-NC-SA for docs/methodology) + §2 (MIT for AI OS scaffold). Full MIT text inlined in §2 with a scope clause naming the meta-cognition system prompt + derivative prompt suites. One document, four underlying license layers, no separate `LICENSE-AI-OS` file (Sasha's preference).
+- `DISTRIBUTOR_AGREEMENT.md` preamble now includes "Note on AI OS — out of scope" callout; §1 Definitions narrows `Platform` to exclude the AI OS scaffold and its derivative prompt suites.
+- `README.md` license table widened from three-tier to four-tier with a new MIT badge; rationale paragraph updated to explain the deliberate exception ("MIT would let anyone close the code and resell — extracts value, gives nothing back. (Used deliberately for the AI OS scaffold layer, where unenforceability is structural.)").
+- `CONTRIBUTING.md` license-clause expanded — code under PolyForm-NC, docs under CC BY-NC-SA, **AI OS scaffold contributions under MIT**.
+- `docs/01-vision/ai_os_benchmark.md:127` last-line license footer rewritten from *"Free for personal non-commercial use. Contact for commercial licensing."* (the trap line) to *"MIT-licensed. Yours forever. Use it for anything — personal, client work, derivative tools, remix. Just keep the attribution."*
+
+**Spin-on-desktop:**
+- Sasha's Mac has macOS Reduce Motion enabled in Accessibility settings; the existing `.gentle-spin` class correctly honored `prefers-reduced-motion: reduce` but that disabled the rail emblems' brand-identity rotation on his desktop. He reported it as a feature regression, not a bug — the rotation IS the mark.
+- New `.gentle-spin-always` class added to `src/index.css` that re-asserts `animation: gentle-spin 60s linear infinite !important` inside the `prefers-reduced-motion: reduce` media query — scoped to rail emblems only. Comment in CSS captures the rationale: 60s rotation period is well under vestibular-discomfort threshold; icons sit in fixed-position rail cells where dwell is user-controlled; this exception should not be generalized to other animations.
+- `ImageIcon` in `SpacesRail.tsx` switched from `.gentle-spin` to `.gentle-spin-always`. JOURNEY + AI OS + ME now spin even when the user has Reduce Motion enabled.
+
+### Definition-of-done discipline
+
+Mid-session, Sasha pushed back on a structural pattern that was about to recur: I had shipped the architectural plumbing (Round 1) and offered a "Phase 2" follow-up for the experience polish. Sasha named the cost out loud: *"I need to know when we're done, otherwise we enter into a sequence of me going to the website, checking in, giving you back, you changing, and then again and again and again. See how inefficient that is."*
+
+Response: explicit 20-item Definition of Done laid out in chat before the Round 2 work began. All 20 items knocked out in continuous pass, no further deferrals. Final acceptance test verified each item live via preview MCP — rail order, pane 2 sections + Suites parent auto-expand + active-highlight on Clarity child, JOURNEY renumber, merkaba icon load + dimensions, `gentle-spin-always` animation active, suite filter behavior, per-suite document.title, chip-nav slim-on-/ai-os, full-suite-render-on-sub-routes, mobile breadcrumb showing "AI OS · Clarity", `/ai-os/suites` redirect, zero console errors, zero server errors.
+
+The lesson is structural, not tactical: Definition of Done lives in chat before the work, not in the post-mortem. When work breaks naturally into rounds, the Definition of Done covers the full intent of the request — not just one round of it.
+
+### Files touched (12)
+
+`LICENSE.md` · `DISTRIBUTOR_AGREEMENT.md` · `README.md` · `CONTRIBUTING.md` · `docs/01-vision/ai_os_benchmark.md` · `src/index.css` · `src/components/game/SpacesRail.tsx` · `src/components/game/SectionsPanel.tsx` · `src/components/game/GameShellV2.tsx` · `src/App.tsx` · `src/modules/ai-os/AiOsPage.tsx` · plus `docs/02-strategy/roadmap.md` Day 54 entry + this `session_log.md` Day 54 entry.
+
+### Si–Do
+
+Unchanged. Press send Friday's DMs. Day 54 is apparatus-tightening, not a stage advance — the substrate that's already methodologically codified now has its own structural seat in the shell. The first $555 stranger remains the unfired Si–Do.
+
+---
+
+*Day 54: AI OS becomes substrate, not stop. MIT becomes the license for the scaffold. The merkaba spins on desktop. Definition of Done becomes a chat artifact, not a post-mortem.*

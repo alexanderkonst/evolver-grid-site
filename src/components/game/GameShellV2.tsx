@@ -111,7 +111,9 @@ const JOURNEY_SECTION_LABELS: Array<{ path: string; label: string }> = [
     { path: "/asset-mapping", label: "Asset Mapper" },
     { path: "/playbook", label: "Playbook" },
     { path: "/dashboard", label: "Dashboard" },
-    { path: "/ai-os", label: "AI OS" },
+    // Day 54 (Sasha 2026-04-28): /ai-os removed — elevated to its own
+    // Space. Mobile breadcrumb for /ai-os now resolves via the AI OS
+    // space's own pane 2 sections (Install / Suites / Benchmark / Pricing).
     { path: "/path", label: "Path" },
     { path: "/ubb", label: "Build a Business" },
     { path: "/", label: "Start" },
@@ -230,7 +232,12 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
         // surface for Steps 2+3) — keeping pane 2 visible there with the
         // journey items so the user never loses spatial orientation in
         // the 7-step methodology.
-        const journeyPaths = ["/", "/playbook", "/path", "/my-artifacts", "/zone-of-genius", "/game/settings", "/dashboard", "/ai-os", "/ignite"];
+        // Day 54 (Sasha 2026-04-28): "/ai-os" removed from this list —
+        // AI OS is now its own Space (see SPACES array in SpacesRail.tsx
+        // and SPACE_SECTIONS["ai-os"] in SectionsPanel.tsx). The fallback
+        // at the bottom of this effect resolves /ai-os and all sub-routes
+        // to the "ai-os" space via SPACES.find startsWith match.
+        const journeyPaths = ["/", "/playbook", "/path", "/my-artifacts", "/zone-of-genius", "/game/settings", "/dashboard", "/ignite"];
         const isJourneyFamily = journeyPaths.some(
             (p) => location.pathname === p || location.pathname.startsWith(p + "/"),
         );
@@ -391,8 +398,12 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
     // of onboarding stage. The stage-gate was intended to keep half-
     // onboarded users focused on the assessment funnel — but it was
     // accidentally hiding the rail on /ai-os too, which is its own free
-    // top-level destination listed in JOURNEY (#4 AI OS). On mobile this
-    // produced the "AI OS rendered without 1/2 panes" report from Sasha.
+    // top-level destination. On mobile this produced the "AI OS rendered
+    // without 1/2 panes" report from Sasha.
+    // Day 54 (Sasha 2026-04-28): AI OS elevated from JOURNEY step #4 to
+    // its own Space — the public-surface rule still applies to the whole
+    // /ai-os tree (Install / Clarity / Iteration / Vibe Code / Design /
+    // Benchmark / Pricing), all reachable via the startsWith match below.
     // forceHideNavigation (set explicitly by assessment Step1-4 pages)
     // still wins — those pages truly need full focus. forceShowNavigation
     // (the tour spotlight) keeps overriding everything.
@@ -423,10 +434,14 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
         // by the main path. Without this, /ai-os/benchmark on a profile
         // still in early onboarding bleached the entire dark page design.
         const navlessPath = location.pathname;
+        // Day 54 (Sasha 2026-04-28): widened to a single startsWith on
+        // /ai-os so the new suite sub-routes (clarity / iteration /
+        // vibe-code / design) all inherit the same dark canvas in the
+        // navless early-onboarding render path.
         const navlessPageOwnsBackground =
-            navlessPath === "/ai-os" ||
             navlessPath === "/codex" ||
-            navlessPath === "/ai-os/benchmark";
+            navlessPath === "/ai-os" ||
+            navlessPath.startsWith("/ai-os/");
         return (
             <div
                 className={

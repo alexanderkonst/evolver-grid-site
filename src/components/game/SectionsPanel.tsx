@@ -59,6 +59,45 @@ const SPACE_SECTIONS: SpaceSections = {
         title: "JOURNEY",
         sections: [],
     },
+    // AI OS Space — Day 54 (Sasha 2026-04-28): elevated from JOURNEY
+    // step #4 to its own Space. Pane 2 separates the substrate
+    // (Install) from the toolkit on top (Suites) from the proof
+    // (Benchmark) from the upgrade path (Pricing). The Suites parent
+    // mirrors the ME `top-talent` parent-with-children pattern.
+    "ai-os": {
+        title: "AI OS",
+        sections: [
+            {
+                id: "ai-os-install",
+                label: "Install",
+                path: "/ai-os",
+            },
+            {
+                id: "ai-os-suites",
+                label: "Suites",
+                // Parent path is intentionally a non-resolved sentinel —
+                // clicks toggle expand/collapse rather than navigating.
+                // The sub-sections own the real routes.
+                path: "/ai-os/suites",
+                subSections: [
+                    { id: "ai-os-clarity", label: "Clarity", path: "/ai-os/clarity" },
+                    { id: "ai-os-iteration", label: "Iteration", path: "/ai-os/iteration" },
+                    { id: "ai-os-vibe-code", label: "Vibe Code", path: "/ai-os/vibe-code" },
+                    { id: "ai-os-design", label: "Design", path: "/ai-os/design" },
+                ],
+            },
+            {
+                id: "ai-os-benchmark",
+                label: "Benchmark",
+                path: "/ai-os/benchmark",
+            },
+            {
+                id: "ai-os-pricing",
+                label: "Pricing",
+                path: "/ai-os/pricing",
+            },
+        ],
+    },
     // Hidden until built — uncomment to re-enable
     // "next-move": {
     //     title: "My Next Move",
@@ -307,29 +346,31 @@ const buildJourneySections = (_currentPath: string): Section[] => {
     // here for now because the Builder is not yet shipped to public users.
     // To switch over: gate the `locked` field on the user's Top Talent
     // state instead of hardcoding `true`.
+    // Day 54 (Sasha 2026-04-28): AI OS removed from this list — elevated
+    // to its own Space (see SPACES array in SpacesRail.tsx and the
+    // SPACE_SECTIONS["ai-os"] config above). Items 5-8 renumbered to 4-7.
     return [
         { id: "journey-start-here",        label: "1. Start",             path: "/" },
         { id: "journey-the-playbook",      label: "2. Playbook",          path: "/playbook" },
         { id: "journey-the-path",          label: "3. Path",              path: "/path" },
-        { id: "journey-ai-os",             label: "4. AI OS",             path: "/ai-os" },
-        { id: "journey-dashboard",         label: "5. Dashboard",         path: "/dashboard" },
+        { id: "journey-dashboard",         label: "4. Dashboard",         path: "/dashboard" },
         {
             id: "journey-build-business",
-            label: "6. Build a business off your top talent",
+            label: "5. Build a business off your top talent",
             path: "/ubb",
             locked: true,
             lockedHint: "Unlocks after your Top Talent reaches 9+ specificity.",
         },
         {
             id: "journey-mission-discovery",
-            label: "7. Mission Discovery",
+            label: "6. Mission Discovery",
             path: "/mission-discovery",
             locked: true,
             lockedHint: "Unlocks after you build a business off your top talent.",
         },
         {
             id: "journey-asset-mapper",
-            label: "8. Asset Mapper",
+            label: "7. Asset Mapper",
             path: "/asset-mapping",
             locked: true,
             lockedHint: "Unlocks after Mission Discovery.",

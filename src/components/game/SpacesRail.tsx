@@ -30,6 +30,11 @@ import brandMark from "@/assets/find-your-top-talent-torus.png";
 // locked + colorful-by-design).
 import journeyIcon from "@/assets/journey-icon.png";
 import meIcon from "@/assets/me-icon.png";
+// Day 54 (Sasha 2026-04-28): AI OS elevated from JOURNEY step #4 to its
+// own Space. The merkaba — rainbow harmonic geometry inside a circle —
+// signals the substrate it is (cognitive scaffold), not a stop on the
+// value ladder.
+import aiOsIcon from "@/assets/mc-merkaba.png";
 // Day 48 iter 10 (Sasha): Settings gear (lucide) replaced with a
 // custom gold settings mark. Does NOT rotate — Sasha's explicit note.
 import settingsIcon from "@/assets/settings-icon.png";
@@ -59,7 +64,12 @@ const ImageIcon = ({
         alt={alt}
         aria-hidden="true"
         draggable={false}
-        className="flex-shrink-0 select-none object-contain gentle-spin"
+        // Day 54 (Sasha 2026-04-28): switched from `.gentle-spin` to
+        // `.gentle-spin-always` — the rail emblems carry brand identity
+        // through their slow rotation; this class re-asserts the spin
+        // even when the user has prefers-reduced-motion enabled. See
+        // index.css for the full rationale and scope guidance.
+        className="flex-shrink-0 select-none object-contain gentle-spin-always"
         style={{
             width: 28,
             height: 28,
@@ -98,6 +108,18 @@ const SPACES: SpaceItem[] = [
         // gold-tinted icons (JOURNEY + ME) read as a paired set.
         icon: <ImageIcon src={journeyIcon} alt="Journey" glow />,
         path: "/game/journey",
+    },
+    {
+        id: "ai-os",
+        label: "AI OS",
+        // Day 54 (Sasha 2026-04-28): AI OS elevated to its own Space,
+        // sitting between JOURNEY and ME — process / substrate / being,
+        // the three foundational doors. The merkaba carries the rainbow
+        // harmonic geometry already established elsewhere on site; gold
+        // glow matches the JOURNEY + ME paired-set treatment so all
+        // three foundational icons read as siblings.
+        icon: <ImageIcon src={aiOsIcon} alt="AI OS" glow />,
+        path: "/ai-os",
     },
     // Hidden until built — uncomment to re-enable
     // {

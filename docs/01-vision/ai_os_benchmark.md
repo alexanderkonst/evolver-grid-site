@@ -122,6 +122,6 @@ The full protocol, prompts, scoring rubric, and raw outputs are open. If you wan
 
 If you replicate, send me your results: [t.me/integralevolution](https://t.me/integralevolution).
 
-**Free for personal non-commercial use. Contact for commercial licensing.**
+**MIT-licensed. Yours forever. Use it for anything — personal, client work, derivative tools, remix.** Just keep the attribution. Full terms: [`LICENSE.md`](../../LICENSE.md) §2.
 
 — Aleksandr Konstantinov
