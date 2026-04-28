@@ -17,18 +17,21 @@ import { GOLD_TEXT_STYLE, Ornament } from "@/lib/landingDesign";
  */
 const MethodologyLandingPage = () => {
   return (
-    /* Day 51 (Sasha 2026-04-25): negative-space pass — desktop py
-       bumped 8 → 10 so the hero breathes against the lit pane.
-       Mobile fold preserved at py-6 (CTA above the fold rule). */
-    <div className="max-w-[720px] mx-auto px-5 py-6 md:py-10">
+    /* Day 54 (Sasha 2026-04-28): mobile breath pass. The above-the-fold
+       was reading as too packed — eight visual blocks stacked into one
+       phone viewport with sub-24px gaps between them. The CTA-above-the-
+       fold rule was driving an over-tight `py-6`; trading 8-12px below
+       the fold for a much calmer reading rhythm. Container vertical
+       padding, headline → italic gap, ornament margin, manifesto bullet
+       gaps, and the CTA-cluster offset all bumped one notch on mobile. */
+    <div className="max-w-[720px] mx-auto px-5 py-8 sm:py-9 md:py-10">
       {/* ═══════ NAME ═══════ */}
       <header className="text-center">
         {/* Recognition opener — plain "You", no drop cap (Sasha).
-            Day 51 (Sasha): tracking tightened -0.01em → -0.018em
-            for the large-serif chiseled feel. mb after headline
-            bumped 5 → 6 at sm+ for breath before the italic echo. */}
+            Day 54 (Sasha): mb under headline bumped 4 → 6 on mobile so
+            the italic echo doesn't crash into the headline's descender. */}
         <h1
-          className="text-3xl sm:text-4xl md:text-5xl font-semibold leading-[1.1] tracking-[-0.018em] mb-4 sm:mb-6"
+          className="text-3xl sm:text-4xl md:text-5xl font-semibold leading-[1.1] tracking-[-0.018em] mb-6 sm:mb-7"
           style={{
             fontFamily: "'Cormorant Garamond', serif",
             color: "var(--skin-text-primary, #0a1628)",
@@ -56,15 +59,19 @@ const MethodologyLandingPage = () => {
         </p>
 
         {/* Top ornament bookend (bottom bookend retired — CTA emblem
-            carries the gold signature below without competition). */}
-        <Ornament className="my-5 sm:my-6" />
+            carries the gold signature below without competition).
+            Day 54 (Sasha): margin opened up so the ornament reads as a
+            real beat of breath, not a tight visual divider. */}
+        <Ornament className="my-8 sm:my-9" />
 
         {/* Structure — four accents unified to deep antique-gold.
-            Day 51 (Sasha): vertical rhythm between bullets opened
-            up (space-y-2/2.5 → 2.5/3.5) so each bullet reads as
-            its own beat in the manifesto, not a stacked list. */}
+            Day 54 (Sasha): vertical rhythm between bullets bumped
+            again (space-y-2.5/3.5 → 4/5) so each bullet sits as its
+            own beat in the manifesto rather than collapsing into a
+            stacked list on mobile. Line-height also opened slightly
+            for in-bullet breathability. */}
         <div
-          className="space-y-2.5 sm:space-y-3.5"
+          className="space-y-4 sm:space-y-5"
           style={{
             fontFamily: "'Cormorant Garamond', serif",
             color: "var(--skin-text-primary, #0a1628)",
@@ -72,7 +79,7 @@ const MethodologyLandingPage = () => {
               "var(--skin-text-halo-strong, 0 0 22px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.8), 0 2px 12px rgba(26,30,58,0.15))",
           }}
         >
-          <p className="text-xl sm:text-2xl md:text-[1.75rem] font-medium leading-[1.3] tracking-[-0.005em]">
+          <p className="text-xl sm:text-2xl md:text-[1.75rem] font-medium leading-[1.4] tracking-[-0.005em]">
             Find Your{" "}
             <span
               className="bg-clip-text text-transparent"
@@ -83,7 +90,7 @@ const MethodologyLandingPage = () => {
             .
           </p>
 
-          <p className="text-xl sm:text-2xl md:text-[1.75rem] font-medium leading-[1.3] tracking-[-0.005em]">
+          <p className="text-xl sm:text-2xl md:text-[1.75rem] font-medium leading-[1.4] tracking-[-0.005em]">
             <span
               className="bg-clip-text text-transparent"
               style={GOLD_TEXT_STYLE}
@@ -93,11 +100,11 @@ const MethodologyLandingPage = () => {
             Yourself.
           </p>
 
-          <p className="text-xl sm:text-2xl md:text-[1.75rem] font-medium leading-[1.3] tracking-[-0.005em]">
+          <p className="text-xl sm:text-2xl md:text-[1.75rem] font-medium leading-[1.4] tracking-[-0.005em]">
             Build it. Launch it.
           </p>
 
-          <p className="text-xl sm:text-2xl md:text-[1.75rem] font-medium leading-[1.3] tracking-[-0.005em]">
+          <p className="text-xl sm:text-2xl md:text-[1.75rem] font-medium leading-[1.4] tracking-[-0.005em]">
             <span
               className="bg-clip-text text-transparent"
               style={GOLD_TEXT_STYLE}
@@ -110,9 +117,11 @@ const MethodologyLandingPage = () => {
       </header>
 
       {/* ═══════ INFOGRAPHIC + CTA ═══════ */}
-      {/* Day 51 (Sasha): mt 5/6 → 6/8 — slightly more space between
-          the manifesto bullets and the infographic + CTA below. */}
-      <div className="mt-6 sm:mt-8">
+      {/* Day 54 (Sasha): mt 6/8 → 10/12 — the manifesto bullets need
+          a real chapter-break before the CTA cluster, not a polite
+          gap. On mobile especially, this is the moment of breath
+          between "what we promise" and "do this." */}
+      <div className="mt-10 sm:mt-12">
         <PlaybookHero />
       </div>
     </div>
