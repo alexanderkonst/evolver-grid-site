@@ -5,6 +5,10 @@ import { toast } from "@/hooks/use-toast";
 import { Copy, Check, Send, Loader2, Youtube, Lock, ExternalLink, ArrowRight, Zap, Heart, BarChart3 } from "lucide-react";
 import StarryBackground from "./components/StarryBackground";
 import AiOsSpotlight from "./components/AiOsSpotlight";
+// Day 54+ (Sasha 2026-04-28 evening): hero medallion — same merkaba mark
+// used by the SpacesRail icon and the AI OS pricing/work-with-us page hero.
+// Page-level visual coherence: AI OS = merkaba on every surface.
+import aiOsMerkaba from "@/assets/mc-merkaba.png";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -2712,13 +2716,29 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
                     Commons — free for everyone, no profile, no sign-in.
                     Anyone arriving at the page can use it immediately
                     without an account. The /ai-os/auth and /ai-os/profile
-                    routes redirect home. */}
-                <p className="text-xs tracking-[0.35em] uppercase font-medium" style={{ 
-                  color: 'hsl(0 0% 100% / 0.7)',
-                  textShadow: '0 0 12px rgba(0,0,0,0.9), 0 0 30px rgba(0,0,0,0.7), 0 2px 4px rgba(0,0,0,0.8)',
-                }}>
-                  Copy, paste, enjoy
-                </p>
+                    routes redirect home.
+                    Day 54+ (Sasha 2026-04-28 evening): "Copy, paste, enjoy"
+                    eyebrow retired in favor of the merkaba medallion —
+                    matches the AI OS pricing/work-with-us hero so the AI OS
+                    mark reads as the same icon across surfaces. Subtle
+                    gold halo + gentle-spin rotation, sized up slightly
+                    (w-16 vs w-14) for the larger hero context. */}
+                <div className="flex justify-center mb-3">
+                  <img
+                    src={aiOsMerkaba}
+                    alt="AI OS"
+                    className="w-16 h-16 sm:w-20 sm:h-20 rounded-full object-cover gentle-spin-always"
+                    draggable={false}
+                    style={{
+                      filter:
+                        'drop-shadow(0 0 8px rgba(244, 212, 114, 0.4)) drop-shadow(0 0 2px rgba(212, 175, 55, 0.55))',
+                      border: '1px solid hsl(0 0% 100% / 0.12)',
+                      animation: 'gentle-spin 60s linear infinite',
+                      willChange: 'transform',
+                      transformOrigin: 'center',
+                    }}
+                  />
+                </div>
                 <h1
                   // Day 50 (Sasha): tightened the hero clamp so the
                   // wordmark never overruns narrow phones. Tracking also
