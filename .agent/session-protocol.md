@@ -28,6 +28,10 @@ These are phrases Sasha already uses. I act on them immediately without asking f
 
 | Verb | What I do | Touches |
 |---|---|---|
+| **"scope this"** / **"DoD this"** | Before any work on the current task: produce a Definition of Done table in chat (`#` · `Item` · `Evidence` · `Status` columns; ⬜/✅ status; full intent of the request, not one round). Wait for "go" or adjustments before touching files. See `.agent/working-agreement.md`. | Chat output only — no file writes |
+| **"sign off"** / **"are we done?"** | Re-evaluate the current task against its DoD table. Report status row-by-row with evidence column populated (URL / screenshot / file:line / command output). Done = every row ✅ with evidence. Anything else = list what's still ⬜ and why. | Chat output + `.agent/working-agreement.md` lifecycle |
+| **"add to scope"** | Add new rows to the active DoD table; they become part of "done" for the current task. | Chat output |
+| **"carve this out"** | Explicitly defer the named item to a new task with its own DoD. The current task's DoD shrinks accordingly. | Chat output |
 | **"update the roadmap"** | Edit `docs/02-strategy/roadmap.md` in place. Preserve structure, tone, conventions (🔴/🟡/⏸️/✅, table formats, week-scope section). Move items between This Week / Backlog / Completed as appropriate. | `docs/02-strategy/roadmap.md` |
 | **"update the holomap"** | Run the holomap's own auto-update protocol. Read `docs/09-logs/session_log.md` (entries since last holomap update date) + `docs/02-strategy/roadmap.md` (current status + weekly scope). Then edit `docs/02-strategy/morphogenetic_holomap.md` in place: advance `►` markers, update stage completions (`✓`), refresh timing overlays, update assessment scores and commentary. Bump version + date in header. | `docs/02-strategy/morphogenetic_holomap.md` |
 | **"capture this idea"** | Add a seed to `docs/02-strategy/roadmap.md` — Active Backlog or Parked/Future depending on leverage. Preserve Sasha's phrasing verbatim where possible. | `docs/02-strategy/roadmap.md` |
