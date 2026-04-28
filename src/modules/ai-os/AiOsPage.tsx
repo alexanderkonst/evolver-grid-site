@@ -2728,7 +2728,7 @@ const AiOsPage = () => {
                       with the actual decisions above. */}
                 <div className="flex items-center justify-center gap-3 pt-7 flex-wrap">
                   <a
-                    href="#suites-nav"
+                    href="#ai-os-spotlight"
                     className="inline-flex items-center gap-2 text-sm font-medium tracking-wide px-6 py-3 rounded-full transition-all duration-300 hover:scale-[1.04] group"
                     style={{
                       background: 'linear-gradient(135deg, hsla(252, 70%, 70%, 0.32) 0%, hsla(242, 60%, 60%, 0.22) 100%)',
