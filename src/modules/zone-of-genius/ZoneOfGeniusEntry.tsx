@@ -609,6 +609,25 @@ const ZoneOfGeniusEntry = () => {
             )}
 
             <div className="relative z-10 px-5 lg:px-10 py-4 sm:py-6 max-w-2xl mx-auto min-h-dvh flex flex-col justify-center">
+                {/* Day 53 (Sasha 2026-04-27): full-content cream wash.
+                    The previous local heading scrim only covered the title,
+                    leaving the bullets + CTA + supporting copy on raw dark
+                    hero — the overlay visibly "broke" mid-page. This new
+                    scrim sits as a sibling absolute layer covering the
+                    entire inner wrapper, so the cream wash extends from
+                    headline through CTA without seam. Sized with negative
+                    horizontal insets so it bleeds to screen edges on mobile
+                    instead of stopping at the wrapper padding. */}
+                <div
+                    aria-hidden="true"
+                    className="absolute inset-0 -inset-x-5 lg:-inset-x-10 pointer-events-none -z-0"
+                    style={{
+                        background:
+                            "linear-gradient(180deg, rgba(255,255,255,0.42) 0%, rgba(255,255,255,0.38) 40%, rgba(255,255,255,0.34) 70%, rgba(255,255,255,0.30) 100%)",
+                        backdropFilter: "blur(6px)",
+                        WebkitBackdropFilter: "blur(6px)",
+                    }}
+                />
 
                 {/* Header — Day 48 (Sasha): vertical rhythm compressed so hero +
                     CTA fit on one viewport. Logo shrunk ~50% (20 → 10).

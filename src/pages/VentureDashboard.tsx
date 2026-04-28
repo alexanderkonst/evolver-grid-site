@@ -28,6 +28,8 @@ const REVENUE_TIMELINE = [
   { day: 41, date: "Apr 13", total: 1931, label: "Oyi $500 in-kind" },
   { day: 44, date: "Apr 18", total: 1931, label: "Kirill joins — 7th founder" },
   { day: 46, date: "Apr 20", total: 2250, label: "Oyi $319 in-kind (5 gifts)" },
+  { day: 51, date: "Apr 25", total: 2250, label: "Codification — commercial-decentralization model + Specificity Loop shipped, repo publicly fork-ready" },
+  { day: 53, date: "Apr 27", total: 2250, label: "AI OS empirical-rating telemetry + UBB founder-doc bulk seed (16/18) + .env hygiene closure" },
 ];
 
 // ─── KPI Data ───────────────────────────────────────────────────────────────
@@ -62,7 +64,7 @@ const KPIS = [
 const SECONDARY_STATS = [
   { label: "Marketing Spend", value: "$0" },
   { label: "CRM Contacts", value: "31" },
-  { label: "Days Active", value: "46" },
+  { label: "Days Active", value: "53" },
 ];
 
 // ─── Revenue Breakdown ──────────────────────────────────────────────────────
