@@ -5798,3 +5798,88 @@ The Si–Do — unchanged. Press-send Friday remains the move. The apparatus is 
 ---
 
 *Day 53 night close: UBB stopped being a parallel module in a foreign aesthetic. It is now visually the same body as the rest of the platform — landing → playbook → builder → published manuscript reading as one continuous editorial brand. Two specs landed for the next implementation arc (markdown sync + shell integration design). Logo + favicon + torus alignment polished to brand-consistent. Pricing model rebuilt on the right axis (license category, not model spec). Friday's send arrives at an apparatus that, when it converts, can hand a stranger a manuscript that looks like work worth paying for.*
+
+---
+
+## Day 53 night iter 2 — License clarity + UI roast pass + URL rename (April 27, 2026 — late night)
+
+After Sasha asked "keep going" on the design pass, three smaller workstreams landed in tight succession.
+
+### License docs — coherent + correct
+
+`LICENSE.md` had a stale `AGPL-3.0` reference for the code path, but the actual `LICENSE` file is **PolyForm Noncommercial 1.0.0**. Fixed. Also added a "Two paths to commercial use" pointer in the NonCommercial clause so a reader hits both options before scrolling away.
+
+`DISTRIBUTOR_AGREEMENT.md` bumped v0.1 → v0.2 with a new preface section. Was: 232 lines of fork-scale legal text — overkill for the 95% of users who just want to subscribe to the hosted Builder/Locked-in tier. Now: a "Two paths" preface up top.
+
+| Path | Who it's for | What it grants | Cost beyond subscription |
+|---|---|---|---|
+| **A** | Most commercial users | Subscribe to Builder/Locked-in/Founders 50/Ignition — the subscription IS the commercial license | None |
+| **B** | The rare fork-and-self-host case | Distributor Agreement (the rest of the doc) | 10% rev-share above $1K/mo |
+
+Two paths mutually exclusive on a given operation. If you outgrow A and start forking, you cross to B; if you previously forked under B and decide hosted is simpler, you migrate to A. Earlier license-system was complete-but-illegible from a reader's perspective; now legible.
+
+### UI roast — five fixes ranked by leverage
+
+After the Day 53 night reskin landed clean, did a self-roast pass on the UBB UI for issues a fresh-eyes reviewer would catch. Five fixes in priority order:
+
+1. **🔴 Improve drawer "After" panel** rendered raw `JSON.stringify` — biggest legibility hole. Founders comparing Before/After were squinting at cryptic key-value dumps. Added a `DarkContentRenderer` that mirrors the cream `ArtifactContentView` in `GenericArtifactScreen` but tuned for the dark drawer body (gold tracked-uppercase labels, Source Serif prose, gold middot bullets, protocol tracer fields stripped). Before/After now compare as legible content.
+
+2. **🟠 Cards reading as faint white veil** on Aurora cream wash. `--skin-card-bg` token was set to `rgba(255, 255, 255, 0.45)` in Aurora — too quiet. UBB artifact cards in particular looked semi-translucent against the warm wash. Bumped to `0.65`. Cards now read as discrete paper-warm parchment objects without losing the editorial register. Affects UBB + VentureDashboard (the only consumers of the token).
+
+3. **🔴 PublicDossier showed methodology jargon to strangers.** Public-facing PHASE_LABELS were "Canvas / Session Bridge / Marketing / Distribution / Communications / Publication" — plain methodology terminology that means nothing to a visitor reading a founder's published work for the first time. Rewrote to plain English chapter labels: **Foundation · First Session · Why · How · Buy / Where People Find It / How It Speaks · The Page**. Founders still see the full taxonomy inside `/ubb` (the in-app `DossierScreen` uses `PHASE_LABELS` from `constants.ts`, not the public one).
+
+4. **🟠 CompoundScreen had cards-inside-cards.** Outer SubArtifactCard at `0.65` cream + inner content panel at `0.45` cream = nearly indistinguishable two layers. Replaced inner content panel with a 1.5px gold left rule (no background) — the inner content reads as a "quoted excerpt" of the founder's words; the outer card owns the card-ness. Information layering restored.
+
+5. **🟡 SpecificityBadge was a mystery score.** "9.2 / 10" with no explainer — was 9 good? Was 7 close to enough? Added native `title` tooltip with plain-English explanation per band: sketch (0–4) reads as placeholder, drafted (4–6.5) right shape but generic, landing (6.5–8) close + recognizable, sharp (8–9.5) "only this founder for this tribe at this moment could have said this," photon (9.5+) "the version that ends iteration." Hover the badge → understand without leaving the screen.
+
+### URL rename — UBD/UBL acronyms retired
+
+Sasha caught it first: *"I also don't know what the UBD and UBL are."* The acronyms were a violation of his own naming philosophy ("name after WHAT IT IS"). Pre-existing UBB v2.0 spec convention but never sanity-checked.
+
+Renamed to plain English:
+- `/ubd/{slug}` → `/dossier/{slug}` (kept "dossier" vocabulary that's already in the product UI)
+- `/ubl/{slug}-v{n}` → `/page/{slug}-v{n}` (matches "Landing Page" in-app vocabulary)
+
+Migration is dual-route: new canonical paths plus legacy redirects for any previously-shared URLs. Inline `UbdRedirect` + `UblRedirect` components in `App.tsx` do `<Navigate replace>` so the user's history shows the new URL.
+
+Cascade: `App.tsx` routes + `constants.ts` `ROUTES.publicDossier` / `publicLandingPage` builders + `DossierScreen` + `LandingPageScreen` publish handlers + `UniqueBusinessContext` toast message + `PublicDossier` + `PublicLandingPage` file headers. All updated. Spec docs (`schema_delta.md`, `unique-business-builder_tracker.md`, `architecture_spec.md`) preserve the old refs as historical record — they're snapshots from earlier days, not living source-of-truth.
+
+### Drawer copy — small but real
+
+Two copy changes in `ImproveReviewDrawer`:
+- Title: "Improvement proposed" → **"A sharper version"** (was Microsoft-y; new copy is brand-coherent — specificity vocabulary — and reads like a pull quote rather than a software notification).
+- Reject button: "Reject" → **"Discard"** (the AI's roast is a best-effort gift, not a proposal to refute; "Discard" is neutral, accurate, lower-stakes).
+
+### Files touched (Day 53 night iter 2)
+
+**License:**
+- `LICENSE.md` (AGPL-3.0 stale ref → PolyForm NC 1.0.0; "Two paths" pointer added)
+- `DISTRIBUTOR_AGREEMENT.md` (v0.1 → v0.2 with "Two paths to commercial use" preface; mutually-exclusive disclaimer; Path A subscription tier table)
+
+**UI roast:**
+- `src/modules/unique-business-builder/components/ImproveReviewDrawer.tsx` (DarkContentRenderer added; "Improvement proposed" → "A sharper version"; "Reject" → "Discard")
+- `src/index.css` (`--skin-card-bg` Aurora token 0.45 → 0.65)
+- `src/pages/PublicDossier.tsx` (PHASE_LABELS rewritten to plain English for stranger-readability)
+- `src/modules/unique-business-builder/screens/CompoundScreen.tsx` (inner content panel: card-on-card → gold left rule)
+- `src/modules/unique-business-builder/components/SpecificityBadge.tsx` (`specificityExplanation()` helper added; native title tooltip per band)
+
+**URL rename:**
+- `src/App.tsx` (new `/dossier/:slug` + `/page/:slugWithVersion` routes; `UbdRedirect` + `UblRedirect` components; `useParams` import added)
+- `src/modules/unique-business-builder/constants.ts` (`ROUTES.publicDossier` + `publicLandingPage` builders updated)
+- `src/modules/unique-business-builder/screens/DossierScreen.tsx` (publish URL builder)
+- `src/modules/unique-business-builder/screens/LandingPageScreen.tsx` (publish URL builder)
+- `src/modules/unique-business-builder/UniqueBusinessContext.tsx` (publish toast message)
+- `src/pages/PublicDossier.tsx` (file header)
+- `src/pages/PublicLandingPage.tsx` (file header)
+
+### Holomap implication
+
+P11 (Delivery Machinery) gains a small refinement: the public manuscript now reads as a serious editorial document to the stranger who lands on it. The phase labels stop pretending the visitor is fluent in the methodology and start meeting them where they are.
+
+P5 (Ontological Liberation) gets a tiny advance: the URL now decodes at sight. `/dossier/sasha` tells you what you're looking at; `/ubd/sasha` made you guess.
+
+Center reading still **Codification**. Iter 2 is operational refinement within that center.
+
+---
+
+*Day 53 night iter 2 close: license docs legible, UI roast cleared the five highest-leverage findings, URL acronyms retired in favor of plain English. The next stranger who lands on a published manuscript reads it as a serious editorial document at a URL that decodes at sight. Friday's send arrives at an apparatus that's been polished one more pass — every layer of the funnel has been roasted by its own author within the last 24 hours.*
