@@ -10,6 +10,10 @@ import { cn } from "@/lib/utils";
 // keeps its own visual register as a round, radially-masked icon that
 // reads as a "home button," not a second brand hit.
 import logoSrc from "@/assets/logo.jpg";
+// Day 53 (Sasha 2026-04-27): brand torus mark used as the leading
+// glyph in the mobile menu pill — pairs with the hamburger to read as
+// "your home + open menu" in one affordance.
+import brandMark from "@/assets/find-your-top-talent-torus.png";
 import SpacesRail, { SPACES } from "./SpacesRail";
 import SectionsPanel from "./SectionsPanel";
 import PlayerStatsBadge from "./PlayerStatsBadge";
@@ -813,19 +817,16 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                                     'linear-gradient(90deg, rgba(212,175,55,0) 0%, rgba(244,212,114,0.52) 50%, rgba(212,175,55,0) 100%)',
                             }}
                         />
-                        {/* Day 53 (Sasha 2026-04-27): mobile back-arrow
-                            replaced with an explicit Menu pill. The bare
-                            arrow read as "go back" (browser-back semantics)
-                            rather than "open the navigation," and on
-                            landing-style entry pages there's nothing to
-                            "go back" to. The pill is unambiguous: the
-                            ☰ icon + the word MENU together get ~95% of
-                            users vs ~70% for icon-alone. Sized as a real
-                            tap target with subtle gold rim so it reads
-                            as the page's primary navigation affordance. */}
+                        {/* Day 53 (Sasha 2026-04-27): mobile menu pill —
+                            brand torus mark + hamburger icon. Word "MENU"
+                            retired (Sasha) — the brand glyph + ☰ together
+                            read as "home + open menu" cohesively, doubles
+                            as identity reinforcement, and the hamburger is
+                            well-understood without a label in 2026.
+                            44px min tap target preserved. */}
                         <button
                             onClick={handleBackToNavigation}
-                            className="min-h-[44px] inline-flex items-center gap-2 px-3 py-2 rounded-full transition-all relative hover:scale-[1.02] active:scale-[0.98]"
+                            className="min-h-[44px] inline-flex items-center gap-2 px-2.5 py-1.5 rounded-full transition-all relative hover:scale-[1.02] active:scale-[0.98]"
                             style={{
                                 color: '#f4d472',
                                 background: 'rgba(244,212,114,0.08)',
@@ -835,15 +836,14 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                             }}
                             aria-label="Open menu"
                         >
-                            <Menu className="w-4 h-4" aria-hidden="true" />
-                            <span
-                                className="text-[11px] font-medium uppercase tracking-[0.18em]"
-                                style={{
-                                    textShadow: '0 1px 2px rgba(0,0,0,0.5)',
-                                }}
-                            >
-                                Menu
-                            </span>
+                            <img
+                                src={brandMark}
+                                alt=""
+                                aria-hidden="true"
+                                className="w-7 h-7 object-contain flex-shrink-0"
+                                draggable={false}
+                            />
+                            <Menu className="w-4 h-4 flex-shrink-0" aria-hidden="true" />
                         </button>
                         <span
                             className="flex-1 truncate text-[11px] font-medium tracking-[0.28em] uppercase relative"
