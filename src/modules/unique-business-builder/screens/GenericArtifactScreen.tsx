@@ -1,16 +1,19 @@
 /**
  * GenericArtifactScreen — a single artifact view.
  *
- * Used for uniqueness, myth, tribe, pain, promise, lead_magnet, value_ladder,
- * landing_page. Gets artifact_key from the route.
+ * Used for uniqueness, myth, tribe, pain, promise, lead_magnet,
+ * value_ladder, landing_page. Gets artifact_key from the route.
  *
- * Phase B (session) and Phase C (marketing/distribution/communications) use
- * a separate CompoundScreen to stack multiple sub-artifacts.
+ * Phase B (session) and Phase C (marketing/distribution/communications)
+ * use a separate CompoundScreen to stack multiple sub-artifacts.
+ *
+ * Day 53 (Sasha 2026-04-27): full editorial re-skin to match the
+ * landing/playbook register. Cormorant headline, skin-token body
+ * surface, ceremonial Improve / Lock / Continue trio. The artifact
+ * card now reads as illuminated parchment, not a settings card.
  */
 
 import { useLocation, Link } from "react-router-dom";
-import { Card } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
 import { useUniqueBusiness } from "../UniqueBusinessContext";
 import { ImproveButton } from "../components/ImproveButton";
@@ -39,11 +42,35 @@ export default function GenericArtifactScreen() {
 
   if (!artifactKey) {
     return (
-      <div className="py-12 text-center">
-        <div className="text-sm text-muted-foreground">Unknown artifact: {slug}</div>
-        <Button asChild variant="outline" className="mt-4">
-          <Link to={UBB_ROOT}>Back to Canvas</Link>
-        </Button>
+      <div
+        className="mx-auto max-w-2xl py-16 text-center"
+        style={{ color: "var(--skin-text-muted, rgba(11, 42, 90, 0.62))" }}
+      >
+        <div
+          style={{
+            fontFamily: "'Cormorant Garamond', serif",
+            fontSize: "16px",
+            fontStyle: "italic",
+          }}
+        >
+          Unknown artifact: {slug}
+        </div>
+        <Link
+          to={UBB_ROOT}
+          className="mt-4 inline-flex items-center rounded-full px-4 py-2"
+          style={{
+            fontFamily: "'Cormorant Garamond', serif",
+            fontWeight: 600,
+            letterSpacing: "0.14em",
+            textTransform: "uppercase",
+            fontSize: "11.5px",
+            color: "var(--skin-text-primary, #0b2a5a)",
+            background: "rgba(255, 255, 255, 0.55)",
+            border: "0.5px solid rgba(212, 175, 55, 0.45)",
+          }}
+        >
+          ← Back to Canvas
+        </Link>
       </div>
     );
   }
@@ -61,67 +88,185 @@ export function ArtifactView({ artifactKey }: { artifactKey: ArtifactKey }) {
   const nextKey = findNextUnlocked(artifactKey, artifacts);
 
   return (
-    <div className="mx-auto max-w-2xl space-y-6">
-      <h1 className="text-2xl font-semibold tracking-tight">{ARTIFACT_LABELS[artifactKey]}</h1>
+    <div className="mx-auto max-w-3xl space-y-8">
+      {/* ═══ Title ═══ */}
+      <h1
+        className="leading-[1.05]"
+        style={{
+          fontFamily: "'Cormorant Garamond', serif",
+          fontWeight: 600,
+          fontSize: "clamp(28px, 3.5vw, 36px)",
+          letterSpacing: "-0.005em",
+          color: "var(--skin-text-primary, #0b2a5a)",
+          textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.7))",
+        }}
+      >
+        {ARTIFACT_LABELS[artifactKey]}
+      </h1>
 
       {!latest ? (
-        <Card className="space-y-4 p-6 text-center">
-          <p className="text-sm text-muted-foreground">
+        /* ─── Empty state — generate first version ─── */
+        <div
+          className="space-y-5 rounded-2xl px-6 py-8 text-center"
+          style={{
+            background: "var(--skin-card-bg, rgba(255, 255, 255, 0.55))",
+            border: "0.5px solid var(--skin-card-border, rgba(26, 30, 58, 0.08))",
+            boxShadow: "var(--skin-card-shadow, 0 4px 16px -8px rgba(10, 22, 40, 0.12), 0 16px 40px -20px rgba(10, 22, 40, 0.18))",
+          }}
+        >
+          <p
+            style={{
+              fontFamily: "'Source Serif 4', 'Cormorant Garamond', serif",
+              fontStyle: "italic",
+              fontSize: "16px",
+              lineHeight: 1.55,
+              color: "var(--skin-text-body, rgba(11, 42, 90, 0.85))",
+            }}
+          >
             Nothing here yet. Generate your first version to start iterating.
           </p>
-          <Button
-            size="lg"
+          <button
             onClick={() => generateArtifact(artifactKey)}
             disabled={thisIsGenerating}
-            className="bg-[#0b2641] text-white hover:bg-[#16385c] disabled:bg-[#0b2641]/40 disabled:text-white/60"
+            className="group relative inline-flex items-center gap-2.5 rounded-full px-6 py-3 transition-all duration-300 hover:translate-y-[-1px] disabled:cursor-not-allowed disabled:opacity-50"
+            style={{
+              background: "var(--skin-cta-bg, linear-gradient(135deg, rgba(10,22,40,0.82) 0%, rgba(18,28,56,0.72) 50%, rgba(10,22,40,0.82) 100%))",
+              color: "var(--skin-cta-text, rgba(245, 245, 250, 0.98))",
+              border: "0.5px solid var(--skin-cta-border, rgba(255, 255, 255, 0.14))",
+              boxShadow: "var(--skin-cta-shadow, 0 0 0 1px rgba(212, 175, 55, 0.28), 0 0 18px -4px rgba(240, 194, 127, 0.45), 0 0 40px -8px rgba(212, 175, 55, 0.28))",
+              backdropFilter: "blur(14px) saturate(160%)",
+              WebkitBackdropFilter: "blur(14px) saturate(160%)",
+            }}
           >
             {thisIsGenerating ? (
               <>
-                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                Generating…
+                <Loader2 className="h-4 w-4 animate-spin" style={{ color: "var(--skin-cta-icon)" }} />
+                <span style={ceremonialLabel}>Generating…</span>
               </>
             ) : (
-              <>Generate {ARTIFACT_LABELS[artifactKey]}</>
+              <>
+                <span aria-hidden="true" style={ceremonialIcon}>✦</span>
+                <span style={ceremonialLabel}>Generate {ARTIFACT_LABELS[artifactKey]}</span>
+              </>
             )}
-          </Button>
-        </Card>
+          </button>
+        </div>
       ) : (
         <>
-          <Card className="space-y-4 p-6">
+          {/* ─── Artifact body — illuminated card ─── */}
+          <div
+            className="relative space-y-5 rounded-2xl px-6 py-6"
+            style={{
+              background: "var(--skin-card-bg, rgba(255, 255, 255, 0.55))",
+              border: "0.5px solid var(--skin-card-border, rgba(26, 30, 58, 0.08))",
+              boxShadow: "var(--skin-card-shadow, 0 4px 16px -8px rgba(10, 22, 40, 0.12), 0 16px 40px -20px rgba(10, 22, 40, 0.18))",
+            }}
+          >
             <div className="flex items-start justify-between gap-4">
-              <div className="flex-1">
-                <div className="text-xs text-muted-foreground">
-                  v{latest.version} · {state?.versionCount} version{state?.versionCount === 1 ? "" : "s"}
+              <div className="flex-1 min-w-0">
+                <div
+                  style={{
+                    fontFamily: "'DM Sans', system-ui, sans-serif",
+                    fontSize: "11px",
+                    letterSpacing: "0.14em",
+                    textTransform: "uppercase",
+                    fontWeight: 500,
+                    color: "var(--skin-text-muted, rgba(11, 42, 90, 0.62))",
+                    fontVariantNumeric: "tabular-nums lining-nums",
+                  }}
+                >
+                  v{latest.version} · {state?.versionCount} version
+                  {state?.versionCount === 1 ? "" : "s"}
+                  {isLocked && (
+                    <>
+                      {" · "}
+                      <span style={{ color: "var(--skin-accent-gold, #b8860b)" }}>locked</span>
+                    </>
+                  )}
                 </div>
-                <div className="mt-2">
+                <div className="mt-3">
                   <ArtifactContentView content={latest.content} />
                 </div>
               </div>
-              {/* Day 51 (Sasha 2026-04-25): score is human-editable — AI
-                  suggests, human adjusts. Locked artifacts: read-only. */}
               <SpecificityBadge
                 score={latest.specificity_score}
                 onScoreChange={isLocked ? undefined : (s) => updateArtifactScore(artifactKey, s)}
               />
             </div>
-          </Card>
+          </div>
 
-          <div className="flex items-center justify-between gap-2">
+          {/* ─── Action row — Improve · Lock · Continue ─── */}
+          <div className="flex flex-wrap items-center justify-between gap-3 pt-2">
             <ImproveButton artifactKey={artifactKey} />
             {!isLocked ? (
-              <Button variant="outline" onClick={() => lockArtifact(artifactKey)}>
-                Lock & Continue →
-              </Button>
+              <button
+                onClick={() => lockArtifact(artifactKey)}
+                className="inline-flex items-center gap-2 rounded-full px-5 py-2.5 transition-all duration-200 hover:translate-y-[-0.5px]"
+                style={{
+                  fontFamily: "'Cormorant Garamond', serif",
+                  fontWeight: 600,
+                  letterSpacing: "0.14em",
+                  textTransform: "uppercase",
+                  fontSize: "12.5px",
+                  color: "var(--skin-text-primary, #0b2a5a)",
+                  background: "rgba(255, 255, 255, 0.55)",
+                  border: "0.5px solid rgba(212, 175, 55, 0.55)",
+                  boxShadow: "0 0 14px -4px rgba(212, 175, 55, 0.32)",
+                }}
+              >
+                <span aria-hidden="true" style={{ color: "var(--skin-accent-gold, #b8860b)" }}>✓</span>
+                Lock & Continue
+              </button>
             ) : nextKey ? (
-              <Button asChild>
-                <Link to={`${UBB_ROOT}/${ARTIFACT_URL_SLUGS[nextKey]}`}>
-                  Continue to {ARTIFACT_LABELS[nextKey]} →
-                </Link>
-              </Button>
+              <Link
+                to={`${UBB_ROOT}/${ARTIFACT_URL_SLUGS[nextKey]}`}
+                className="group inline-flex items-center gap-2 rounded-full px-5 py-2.5 transition-all duration-200 hover:translate-y-[-0.5px]"
+                style={{
+                  fontFamily: "'Cormorant Garamond', serif",
+                  fontWeight: 600,
+                  letterSpacing: "0.14em",
+                  textTransform: "uppercase",
+                  fontSize: "12.5px",
+                  color: "var(--skin-text-primary, #0b2a5a)",
+                  background: "rgba(255, 255, 255, 0.55)",
+                  border: "0.5px solid rgba(212, 175, 55, 0.55)",
+                  boxShadow: "0 0 14px -4px rgba(212, 175, 55, 0.32)",
+                }}
+              >
+                Continue to {ARTIFACT_LABELS[nextKey]}
+                <span
+                  aria-hidden="true"
+                  className="transition-transform duration-300 group-hover:translate-x-0.5"
+                  style={{ color: "var(--skin-accent-gold, #b8860b)" }}
+                >
+                  →
+                </span>
+              </Link>
             ) : (
-              <Button asChild>
-                <Link to={`${UBB_ROOT}/dossier`}>Open Dossier →</Link>
-              </Button>
+              <Link
+                to={`${UBB_ROOT}/dossier`}
+                className="group inline-flex items-center gap-2 rounded-full px-5 py-2.5 transition-all duration-200 hover:translate-y-[-0.5px]"
+                style={{
+                  fontFamily: "'Cormorant Garamond', serif",
+                  fontWeight: 600,
+                  letterSpacing: "0.14em",
+                  textTransform: "uppercase",
+                  fontSize: "12.5px",
+                  color: "var(--skin-text-primary, #0b2a5a)",
+                  background: "rgba(255, 255, 255, 0.55)",
+                  border: "0.5px solid rgba(212, 175, 55, 0.55)",
+                  boxShadow: "0 0 14px -4px rgba(212, 175, 55, 0.32)",
+                }}
+              >
+                Open Dossier
+                <span
+                  aria-hidden="true"
+                  className="transition-transform duration-300 group-hover:translate-x-0.5"
+                  style={{ color: "var(--skin-accent-gold, #b8860b)" }}
+                >
+                  →
+                </span>
+              </Link>
             )}
           </div>
 
@@ -129,7 +274,12 @@ export function ArtifactView({ artifactKey }: { artifactKey: ArtifactKey }) {
             <div className="text-center">
               <button
                 onClick={() => unlockArtifact(artifactKey)}
-                className="text-xs text-muted-foreground underline hover:text-foreground"
+                className="text-xs underline transition-colors duration-200 hover:no-underline"
+                style={{
+                  fontFamily: "'Source Serif 4', serif",
+                  fontStyle: "italic",
+                  color: "var(--skin-text-muted, rgba(11, 42, 90, 0.62))",
+                }}
               >
                 Unlock to improve again
               </button>
@@ -141,34 +291,81 @@ export function ArtifactView({ artifactKey }: { artifactKey: ArtifactKey }) {
   );
 }
 
-// Day 51 (Sasha 2026-04-25): renderValue extracted as recursive helper so
-// arrays render as bullet lists and nested objects get nested labeled blocks
-// instead of raw JSON.stringify dump. Was: a value object showed as
-// {"attack": "..."} JSON; now: clean nested presentation.
+/* ─── Ceremonial typography presets ──────────────────────────────── */
+
+const ceremonialLabel: React.CSSProperties = {
+  fontFamily: "'Cormorant Garamond', serif",
+  fontWeight: 600,
+  letterSpacing: "0.14em",
+  textTransform: "uppercase",
+  fontSize: "13px",
+  textShadow: "var(--skin-cta-text-shadow, 0 0 16px rgba(240,194,127,0.28))",
+};
+
+const ceremonialIcon: React.CSSProperties = {
+  color: "var(--skin-cta-icon, rgba(244, 212, 114, 0.98))",
+  textShadow: "var(--skin-cta-icon-shadow, 0 0 12px rgba(244,212,114,0.8))",
+  fontSize: "16px",
+};
+
+/* ─── Recursive content renderer ─────────────────────────────────── */
+//
+// Day 51 (Sasha): renderValue handles arrays as bullet lists and nested
+// objects as labeled blocks. Day 53: typography upgraded — labels in
+// Cormorant tracked-uppercase + skin-text-muted, values in Source Serif
+// 4 italic for prose, DM Sans for data, with skin-token colors. Lists
+// use a gold middot pseudo-bullet.
+
 function renderValue(v: unknown): React.ReactNode {
-  if (v === null || v === undefined) return <span className="text-muted-foreground">(empty)</span>;
+  if (v === null || v === undefined) {
+    return <span style={italicMuted}>(empty)</span>;
+  }
   if (typeof v === "string") {
     return <span className="whitespace-pre-wrap">{v}</span>;
   }
   if (typeof v === "number" || typeof v === "boolean") {
-    return <span>{String(v)}</span>;
+    return <span style={{ fontFamily: "'DM Sans', system-ui, sans-serif" }}>{String(v)}</span>;
   }
   if (Array.isArray(v)) {
-    // Array of strings → bullet list. Array of objects → nested cards.
     const allStrings = v.every((x) => typeof x === "string");
     if (allStrings) {
       return (
-        <ul className="list-disc space-y-1 pl-5">
+        <ul className="space-y-1.5 pl-0">
           {v.map((s, i) => (
-            <li key={i} className="leading-relaxed">{s as string}</li>
+            <li
+              key={i}
+              className="flex gap-2 leading-relaxed"
+              style={{ color: "var(--skin-text-body, rgba(11, 42, 90, 0.85))" }}
+            >
+              <span
+                aria-hidden="true"
+                className="flex-shrink-0"
+                style={{
+                  color: "var(--skin-accent-gold, #b8860b)",
+                  textShadow: "var(--skin-accent-gold-glow, 0 0 6px rgba(240,194,127,0.5))",
+                  fontSize: "13px",
+                  lineHeight: "1.5",
+                }}
+              >
+                ·
+              </span>
+              <span>{s as string}</span>
+            </li>
           ))}
         </ul>
       );
     }
     return (
-      <div className="space-y-2">
+      <div className="space-y-2.5">
         {v.map((x, i) => (
-          <div key={i} className="rounded border border-border/40 p-2">
+          <div
+            key={i}
+            className="rounded-lg p-3"
+            style={{
+              background: "rgba(255, 255, 255, 0.45)",
+              border: "0.5px solid var(--skin-rule-medium, rgba(26, 30, 58, 0.15))",
+            }}
+          >
             {renderValue(x)}
           </div>
         ))}
@@ -177,13 +374,21 @@ function renderValue(v: unknown): React.ReactNode {
   }
   if (typeof v === "object") {
     return (
-      <div className="space-y-2">
+      <div className="space-y-2.5">
         {Object.entries(v as Record<string, unknown>).map(([k, val]) => (
           <div key={k}>
-            <div className="text-[10px] font-medium uppercase tracking-wider text-muted-foreground">
-              {k.replace(/[_-]+/g, " ")}
+            <div style={fieldLabel}>{k.replace(/[_-]+/g, " ")}</div>
+            <div
+              className="mt-0.5"
+              style={{
+                fontFamily: "'Source Serif 4', serif",
+                fontSize: "14.5px",
+                lineHeight: 1.55,
+                color: "var(--skin-text-body, rgba(11, 42, 90, 0.85))",
+              }}
+            >
+              {renderValue(val)}
             </div>
-            <div className="mt-0.5 text-sm leading-relaxed">{renderValue(val)}</div>
           </div>
         ))}
       </div>
@@ -194,28 +399,41 @@ function renderValue(v: unknown): React.ReactNode {
 
 function ArtifactContentView({ content }: { content: unknown }) {
   if (content === null || content === undefined) {
-    return <div className="text-sm text-muted-foreground">(empty)</div>;
+    return <div style={italicMuted}>(empty)</div>;
   }
   if (typeof content === "string") {
-    return <div className="whitespace-pre-wrap text-base leading-relaxed">{content}</div>;
+    return (
+      <div
+        className="whitespace-pre-wrap"
+        style={{
+          fontFamily: "'Source Serif 4', serif",
+          fontSize: "16px",
+          lineHeight: 1.6,
+          color: "var(--skin-text-body, rgba(11, 42, 90, 0.85))",
+        }}
+      >
+        {content}
+      </div>
+    );
   }
-  // Specificity Matrix has its own table layout
   if (isSpecificityMatrix(content)) {
     return <SpecificityMatrixView content={content} />;
   }
-  // Render JSON object with keys as labeled blocks; values use recursive renderer
   if (typeof content === "object") {
     return (
-      <div className="space-y-3">
+      <div className="space-y-4">
         {Object.entries(content as Record<string, unknown>).map(([k, v]) => (
           <div key={k}>
-            <div className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
-              {/* Handle both underscore AND hyphen separators — AI sometimes
-                  returns "why_this-names_it" mixed; now clean uppercase
-                  display regardless of separator. */}
-              {k.replace(/[_-]+/g, " ")}
-            </div>
-            <div className="mt-1 text-sm leading-relaxed">
+            <div style={sectionLabel}>{k.replace(/[_-]+/g, " ")}</div>
+            <div
+              className="mt-1.5"
+              style={{
+                fontFamily: "'Source Serif 4', serif",
+                fontSize: "15px",
+                lineHeight: 1.6,
+                color: "var(--skin-text-body, rgba(11, 42, 90, 0.85))",
+              }}
+            >
               {renderValue(v)}
             </div>
           </div>
@@ -223,18 +441,35 @@ function ArtifactContentView({ content }: { content: unknown }) {
       </div>
     );
   }
-  return <div className="text-sm">{String(content)}</div>;
+  return <div style={{ fontFamily: "'Source Serif 4', serif", color: "var(--skin-text-body)" }}>{String(content)}</div>;
 }
 
-// ─── Specificity Matrix renderer ─────────────────────────────────
-//
-// Day 51 (Sasha 2026-04-25): the Specificity Matrix is a content
-// shape unique to one artifact (specificity_matrix). It needs a
-// table layout (6 stages × 3 tiers) instead of the generic key:value
-// dump that other artifacts use. Detection is structural — we look
-// for a `stages` object whose values match the {resonant, partial, off}
-// triple. This avoids binding the renderer to any artifact_key, so
-// future per-funnel matrices with different stage sets still render.
+const sectionLabel: React.CSSProperties = {
+  fontFamily: "'Cormorant Garamond', serif",
+  fontWeight: 600,
+  fontSize: "11.5px",
+  letterSpacing: "0.20em",
+  textTransform: "uppercase",
+  color: "var(--skin-accent-gold, #b8860b)",
+};
+
+const fieldLabel: React.CSSProperties = {
+  fontFamily: "'DM Sans', system-ui, sans-serif",
+  fontWeight: 500,
+  fontSize: "10px",
+  letterSpacing: "0.16em",
+  textTransform: "uppercase",
+  color: "var(--skin-text-muted, rgba(11, 42, 90, 0.62))",
+};
+
+const italicMuted: React.CSSProperties = {
+  fontFamily: "'Source Serif 4', serif",
+  fontStyle: "italic",
+  fontSize: "14px",
+  color: "var(--skin-text-muted, rgba(11, 42, 90, 0.55))",
+};
+
+/* ─── Specificity Matrix renderer ────────────────────────────────── */
 
 type MatrixStageRow = { resonant: string; partial: string; off: string };
 type MatrixContent = {
@@ -261,37 +496,113 @@ function SpecificityMatrixView({ content }: { content: MatrixContent }) {
     <div className="space-y-5">
       {content.meta_question && (
         <div>
-          <div className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
-            The question every reveal asks beneath the words
+          <div style={sectionLabel}>The question every reveal asks beneath the words</div>
+          <div
+            className="mt-1.5 italic"
+            style={{
+              fontFamily: "'Source Serif 4', serif",
+              fontSize: "15px",
+              lineHeight: 1.55,
+              color: "var(--skin-text-body, rgba(11, 42, 90, 0.85))",
+            }}
+          >
+            {content.meta_question}
           </div>
-          <div className="mt-1 italic text-sm leading-relaxed">{content.meta_question}</div>
         </div>
       )}
       {content.voice_signature && (
         <div>
-          <div className="text-xs font-medium uppercase tracking-wider text-muted-foreground">Voice signature</div>
-          <div className="mt-1 text-sm leading-relaxed">{content.voice_signature}</div>
+          <div style={sectionLabel}>Voice signature</div>
+          <div
+            className="mt-1.5"
+            style={{
+              fontFamily: "'Source Serif 4', serif",
+              fontSize: "15px",
+              lineHeight: 1.55,
+              color: "var(--skin-text-body, rgba(11, 42, 90, 0.85))",
+            }}
+          >
+            {content.voice_signature}
+          </div>
         </div>
       )}
-      <div className="overflow-x-auto rounded-lg border">
+      <div
+        className="overflow-x-auto rounded-xl"
+        style={{
+          background: "rgba(255, 255, 255, 0.40)",
+          border: "0.5px solid var(--skin-rule-medium, rgba(26, 30, 58, 0.15))",
+        }}
+      >
         <table className="w-full border-collapse text-sm">
           <thead>
-            <tr className="border-b bg-muted/30 text-left">
-              <th className="px-3 py-2 font-medium">Stage</th>
-              <th className="px-3 py-2 font-medium">Resonant (8–10)</th>
-              <th className="px-3 py-2 font-medium">Partial (5–7)</th>
-              <th className="px-3 py-2 font-medium">Off (1–4)</th>
+            <tr
+              style={{
+                borderBottom: "0.5px solid var(--skin-rule-strong, rgba(26, 30, 58, 0.25))",
+                background: "var(--skin-tint-gold-soft, rgba(212, 175, 55, 0.06))",
+              }}
+            >
+              <th className="px-4 py-3 text-left" style={tableHeader}>Stage</th>
+              <th className="px-4 py-3 text-left" style={tableHeader}>Resonant (8–10)</th>
+              <th className="px-4 py-3 text-left" style={tableHeader}>Partial (5–7)</th>
+              <th className="px-4 py-3 text-left" style={tableHeader}>Off (1–4)</th>
             </tr>
           </thead>
           <tbody>
             {Object.entries(content.stages).map(([stage, row]) => (
-              <tr key={stage} className="border-b align-top last:border-b-0">
-                <td className="px-3 py-3 font-medium uppercase tracking-wider text-xs text-muted-foreground">
+              <tr
+                key={stage}
+                className="align-top"
+                style={{
+                  borderBottom: "0.5px solid var(--skin-rule-hairline, rgba(26, 30, 58, 0.08))",
+                }}
+              >
+                <td
+                  className="px-4 py-3.5"
+                  style={{
+                    fontFamily: "'Cormorant Garamond', serif",
+                    fontWeight: 600,
+                    fontSize: "12px",
+                    letterSpacing: "0.16em",
+                    textTransform: "uppercase",
+                    color: "var(--skin-accent-gold, #b8860b)",
+                    whiteSpace: "nowrap",
+                  }}
+                >
                   {stage}
                 </td>
-                <td className="px-3 py-3 italic leading-relaxed">{row.resonant}</td>
-                <td className="px-3 py-3 italic leading-relaxed text-muted-foreground">{row.partial}</td>
-                <td className="px-3 py-3 italic leading-relaxed text-muted-foreground">{row.off}</td>
+                <td
+                  className="px-4 py-3.5 italic"
+                  style={{
+                    fontFamily: "'Source Serif 4', serif",
+                    fontSize: "13.5px",
+                    lineHeight: 1.55,
+                    color: "var(--skin-text-body, rgba(11, 42, 90, 0.85))",
+                  }}
+                >
+                  {row.resonant}
+                </td>
+                <td
+                  className="px-4 py-3.5 italic"
+                  style={{
+                    fontFamily: "'Source Serif 4', serif",
+                    fontSize: "13.5px",
+                    lineHeight: 1.55,
+                    color: "var(--skin-text-muted, rgba(11, 42, 90, 0.62))",
+                  }}
+                >
+                  {row.partial}
+                </td>
+                <td
+                  className="px-4 py-3.5 italic"
+                  style={{
+                    fontFamily: "'Source Serif 4', serif",
+                    fontSize: "13.5px",
+                    lineHeight: 1.55,
+                    color: "var(--skin-text-muted, rgba(11, 42, 90, 0.5))",
+                  }}
+                >
+                  {row.off}
+                </td>
               </tr>
             ))}
           </tbody>
@@ -300,6 +611,15 @@ function SpecificityMatrixView({ content }: { content: MatrixContent }) {
     </div>
   );
 }
+
+const tableHeader: React.CSSProperties = {
+  fontFamily: "'DM Sans', system-ui, sans-serif",
+  fontWeight: 600,
+  fontSize: "10.5px",
+  letterSpacing: "0.16em",
+  textTransform: "uppercase",
+  color: "var(--skin-text-muted, rgba(11, 42, 90, 0.62))",
+};
 
 function findNextUnlocked(
   after: ArtifactKey,
