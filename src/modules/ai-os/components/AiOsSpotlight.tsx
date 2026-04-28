@@ -201,7 +201,7 @@ export default function AiOsSpotlight({ installPromptContent }: Props) {
           }}
         >
           Paste into a fresh AI chat. Sharper from message one. Faster on
-          everyday tasks, deeper on complex ones. Virtually no trade-offs.
+          everyday tasks, deeper on complex ones. No trade-offs.
         </p>
 
         {/* PRIMARY CTA — copy install */}
