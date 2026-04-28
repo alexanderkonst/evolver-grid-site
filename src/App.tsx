@@ -200,7 +200,7 @@ const TitleManager = () => {
   const location = useLocation();
 
   useEffect(() => {
-    document.title = `Genius Business | ${getPageTitle(location.pathname)}`;
+    document.title = `Find Your Top Talent | ${getPageTitle(location.pathname)}`;
   }, [location.pathname]);
 
   return null;
