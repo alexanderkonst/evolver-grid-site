@@ -359,9 +359,22 @@ const AppleseedDisplay = ({
                     as a quiet save-to-inbox option, not a barrier. */}
 
                 {/* ═══════════════════════════════════════════════
-                    CTAs — primary/secondary (Sasha, 2026-04-21):
-                    "Turn My Top Talent into a Growing Business" is the main
-                    action. The diagnostic quiz is the secondary learn-more.
+                    CTAs — primary/secondary
+                    Day 53 (Sasha 2026-04-27): post-reveal funnel locked
+                    to two buttons (was three, dropped AI OS as a
+                    distraction here).
+                    Primary  → "Build a business off your top talent"
+                              → /ignite#pricing-section (Top Talent
+                                 Business Session purchase page —
+                                 formerly "Ignition Session"; the new
+                                 canonical name is Top Talent Business
+                                 Session). NOT the Excalibur module.
+                    Secondary → "See the exact playbook" → /playbook
+                                (matches the landing page's secondary
+                                button verbatim — same label, same
+                                destination, same liquid-glass pill
+                                styling for visual coherence across
+                                the funnel).
                     ═══════════════════════════════════════════════ */}
                 <div className="max-w-md mx-auto space-y-4">
 
@@ -375,7 +388,7 @@ const AppleseedDisplay = ({
                             textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.7))",
                         }}
                     >
-                        We fix this in 2 hours.
+                        We do it together in 2 hours.
                     </p>
                     <p
                         className="text-center text-sm sm:text-base mb-4"
@@ -389,13 +402,11 @@ const AppleseedDisplay = ({
                         Or you don't pay.
                     </p>
 
-                    {/* CTA 1 (PRIMARY) — Day 48 iter 15 (Sasha):
-                        migrated from the white-glass card with arrow
-                        disc to the full landing CTA signature: dark
-                        glass pill + ignite emblem + small-caps label
-                        + breath animation. Now rhymes with the landing
-                        hero CTA and every other primary across the
-                        funnel. */}
+                    {/* CTA 1 (PRIMARY) — Top Talent Business Session.
+                        Dark glass pill + ignite emblem + small-caps
+                        label + breath animation. Rhymes with the
+                        landing hero CTA and every other primary across
+                        the funnel. */}
                     <a
                         href="/ignite#pricing-section"
                         className="group liquid-glass-dark cta-breath w-full rounded-full inline-flex items-center justify-center gap-2 sm:gap-2.5 px-4 sm:px-6 py-3 sm:py-3.5 max-w-full text-sm sm:text-base font-semibold transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
@@ -424,7 +435,7 @@ const AppleseedDisplay = ({
                             draggable={false}
                         />
                         <span style={CTA_SMALL_CAPS_STYLE} className="text-center">
-                            Turn my top talent into a growing business
+                            Build a business off your top talent
                         </span>
                         <ArrowRight
                             aria-hidden="true"
@@ -437,28 +448,24 @@ const AppleseedDisplay = ({
                         className="text-center text-xs italic"
                         style={{ color: "var(--skin-text-muted-soft, rgba(26,30,58,0.62))" }}
                     >
-                        Want to learn more before acting?
+                        Or read the methodology first.
                     </p>
 
-                    {/* CTA 2 (SECONDARY): Diagnostic quiz */}
+                    {/* CTA 2 (SECONDARY): See the exact playbook —
+                        matches landing page secondary verbatim. Same
+                        label, same destination (/playbook), same
+                        liquid-glass rounded-full Cormorant pill. */}
                     <a
-                        href="/quiz"
-                        className="w-full flex items-center justify-center gap-3 p-4
-                                   rounded-2xl liquid-glass
-                                   hover:scale-[1.015] active:scale-[0.985]
-                                   transition-all duration-300 text-sm tracking-wide font-medium"
-                        style={{ color: "var(--skin-text-body, rgba(26,30,58,0.82))" }}
+                        href="/playbook"
+                        className="w-full liquid-glass rounded-full inline-flex items-center justify-center px-6 py-3 whitespace-nowrap text-base font-medium tracking-[0.01em] transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+                        style={{
+                            fontFamily: "'Cormorant Garamond', serif",
+                            color: "var(--skin-link-secondary, rgba(26,30,58,0.85))",
+                            textShadow:
+                                "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
+                        }}
                     >
-                        <span>
-                            See exactly why this hasn't turned into income
-                            <span
-                                className="block tracking-normal text-[10px] mt-0.5"
-                                style={{ color: "var(--skin-text-faint, rgba(26,30,58,0.55))" }}
-                            >
-                                6-question diagnostic
-                            </span>
-                        </span>
-                        <ArrowRight className="w-4 h-4" />
+                        See the exact playbook
                     </a>
                 </div>
 
