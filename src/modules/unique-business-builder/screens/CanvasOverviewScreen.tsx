@@ -219,7 +219,7 @@ export default function CanvasOverviewScreen() {
               textTransform: "uppercase",
               fontSize: "11.5px",
               color: "var(--skin-text-primary, #0b2a5a)",
-              background: "rgba(255, 255, 255, 0.55)",
+              background: "rgba(255, 255, 255, 0.68)",
               border: "0.5px solid rgba(212, 175, 55, 0.45)",
               boxShadow: "0 0 12px -4px rgba(212, 175, 55, 0.30)",
             }}
@@ -386,7 +386,7 @@ function ArtifactCard({ artifactKey }: { artifactKey: ArtifactKey }) {
       to={href}
       className="group relative block rounded-xl p-4 transition-all duration-300 hover:translate-y-[-1px]"
       style={{
-        background: "var(--skin-card-bg, rgba(255, 255, 255, 0.55))",
+        background: "var(--skin-card-bg, rgba(255, 255, 255, 0.68))",
         border: "0.5px solid var(--skin-card-border, rgba(26, 30, 58, 0.08))",
         boxShadow:
           "var(--skin-card-shadow, 0 4px 16px -8px rgba(10, 22, 40, 0.12), 0 16px 40px -20px rgba(10, 22, 40, 0.18))",

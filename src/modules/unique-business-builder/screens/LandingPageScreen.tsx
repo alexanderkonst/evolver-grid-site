@@ -30,7 +30,7 @@ export default function LandingPageScreen() {
     setIsPublishing(true);
     try {
       const result = await publishLandingPage();
-      const url = `${window.location.origin}/ubl/${result.slug}`;
+      const url = `${window.location.origin}/page/${result.slug}`;
       setPublishedUrl(url);
     } catch (e: any) {
       toast.error(e?.message || "Publish failed.");
@@ -54,7 +54,7 @@ export default function LandingPageScreen() {
         <div
           className="mx-auto max-w-3xl space-y-4 rounded-2xl px-5 py-5"
           style={{
-            background: "var(--skin-card-bg, rgba(255, 255, 255, 0.55))",
+            background: "var(--skin-card-bg, rgba(255, 255, 255, 0.68))",
             border: "0.5px solid rgba(212, 175, 55, 0.45)",
             boxShadow:
               "0 0 22px -8px rgba(212, 175, 55, 0.30), 0 16px 40px -20px rgba(10, 22, 40, 0.18)",
@@ -163,7 +163,7 @@ export default function LandingPageScreen() {
                   textTransform: "uppercase",
                   fontSize: "10px",
                   color: "var(--skin-text-primary, #0b2a5a)",
-                  background: "rgba(255, 255, 255, 0.55)",
+                  background: "rgba(255, 255, 255, 0.68)",
                   border: "0.5px solid rgba(212, 175, 55, 0.55)",
                 }}
               >

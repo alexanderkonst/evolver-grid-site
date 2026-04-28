@@ -75,6 +75,27 @@ const bandStyle: Record<
 
 const clamp = (n: number) => Math.max(0, Math.min(10, n));
 
+// Plain-English explainer per band, surfaced via native title tooltip.
+// "Specificity" = how distinguishable from generic noise this version is —
+// the founder's voice, the tribe's words, the moment they're in. Higher
+// score = sharper signal, less interchangeable with anyone else's version.
+function specificityExplanation(bandLabel: string): string {
+  switch (bandLabel) {
+    case "sketch":
+      return "Sketch (0–4): rough first pass. Reads as a placeholder, not a position. Press Improve.";
+    case "drafted":
+      return "Drafted (4–6.5): real shape, still generic. The right shape, but a stranger could have written it.";
+    case "landing":
+      return "Landing (6.5–8): close. Specific enough to be recognizable. Worth one or two more rounds.";
+    case "sharp":
+      return "Sharp (8–9.5): only this founder, for this tribe, at this moment, could have said this.";
+    case "photon":
+      return "Photon (9.5–10): the version that ends iteration. Anyone who reads it knows whose it is.";
+    default:
+      return "Specificity: how distinguishable this version is from generic noise.";
+  }
+}
+
 export function SpecificityBadge({ score, delta, size = "md", className, onScoreChange }: Props) {
   const band = specificityBand(score);
   const isUp = typeof delta === "number" && delta > 0;
@@ -203,7 +224,15 @@ export function SpecificityBadge({ score, delta, size = "md", className, onScore
             ? `Specificity ${score.toFixed(1)} of 10 — ${band.label}. Click to adjust.`
             : `Specificity ${score.toFixed(1)} of 10 — ${band.label}`
         }
-        title={editable ? "AI suggests this score — click to adjust" : undefined}
+        // Day 53 night iter 2 (Sasha 2026-04-27): native title tooltip
+        // explains what the score means. Score-only was a mystery — was
+        // 9.2 good? Was 7.4 close to enough? Now hover gives plain English.
+        // Bands match SPECIFICITY_BANDS in constants.ts.
+        title={
+          editable
+            ? `${specificityExplanation(band.label)}\n\nClick to adjust — AI suggests, you decide.`
+            : specificityExplanation(band.label)
+        }
         disabled={!editable}
       >
         {score.toFixed(1)}

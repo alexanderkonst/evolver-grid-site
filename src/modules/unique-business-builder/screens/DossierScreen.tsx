@@ -3,7 +3,7 @@
  *
  * Composed view of all artifacts at their latest-locked versions.
  * Auto-composed from state (not improved directly). Publishing creates
- * a shareable snapshot at /ubd/{slug}.
+ * a shareable snapshot at /dossier/{slug}.
  *
  * Day 53 (Sasha 2026-04-27): full editorial re-skin to match the
  * landing/playbook register. The dossier is the most ceremonial UBB
@@ -38,7 +38,7 @@ export default function DossierScreen() {
     setIsPublishing(true);
     try {
       const result = await publishDossier();
-      const url = `${window.location.origin}/ubd/${result.slug}`;
+      const url = `${window.location.origin}/dossier/${result.slug}`;
       setPublishedUrl(url);
     } catch (e: any) {
       toast.error(e?.message || "Publish failed.");
@@ -218,7 +218,7 @@ export default function DossierScreen() {
       <div
         className="relative space-y-4 overflow-hidden rounded-2xl px-5 py-5"
         style={{
-          background: "var(--skin-card-bg, rgba(255, 255, 255, 0.55))",
+          background: "var(--skin-card-bg, rgba(255, 255, 255, 0.68))",
           border: "0.5px solid rgba(212, 175, 55, 0.45)",
           boxShadow:
             "0 0 22px -8px rgba(212, 175, 55, 0.30), 0 16px 40px -20px rgba(10, 22, 40, 0.18)",
@@ -324,7 +324,7 @@ export default function DossierScreen() {
                 textTransform: "uppercase",
                 fontSize: "10px",
                 color: "var(--skin-text-primary, #0b2a5a)",
-                background: "rgba(255, 255, 255, 0.55)",
+                background: "rgba(255, 255, 255, 0.68)",
                 border: "0.5px solid rgba(212, 175, 55, 0.55)",
               }}
             >
@@ -346,7 +346,7 @@ export default function DossierScreen() {
             textTransform: "uppercase",
             fontSize: "11.5px",
             color: "var(--skin-text-primary, #0b2a5a)",
-            background: "rgba(255, 255, 255, 0.55)",
+            background: "rgba(255, 255, 255, 0.68)",
             border: "0.5px solid var(--skin-rule-medium, rgba(26, 30, 58, 0.15))",
           }}
         >
@@ -447,7 +447,7 @@ function DossierRow({ artifactKey }: { artifactKey: ArtifactKey }) {
     <div
       className="rounded-xl px-4 py-3.5"
       style={{
-        background: "var(--skin-card-bg, rgba(255, 255, 255, 0.55))",
+        background: "var(--skin-card-bg, rgba(255, 255, 255, 0.68))",
         border: "0.5px solid var(--skin-card-border, rgba(26, 30, 58, 0.08))",
         boxShadow:
           "var(--skin-card-shadow, 0 4px 16px -8px rgba(10, 22, 40, 0.10), 0 16px 40px -20px rgba(10, 22, 40, 0.15))",

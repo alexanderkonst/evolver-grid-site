@@ -248,8 +248,14 @@
   --skin-link-hover:        rgba(26, 30, 58, 0.7);
   --skin-link-underline:    rgba(26, 30, 58, 0.35);
 
-  /* Card / panel surfaces layered on top of Panel 3 wash */
-  --skin-card-bg:       rgba(255, 255, 255, 0.45);
+  /* Card / panel surfaces layered on top of Panel 3 wash.
+     Day 53 night (Sasha 2026-04-27): bg alpha 0.45 → 0.65. The 0.45 was
+     reading as a faint white veil rather than a distinct card on bright
+     Aurora cream — UBB artifact cards in particular looked semi-translucent
+     against the warm wash. 0.65 keeps the paper-warm parchment feel while
+     giving cards enough body to read as discrete objects. Affects UBB
+     screens + VentureDashboard (the only other consumer). */
+  --skin-card-bg:       rgba(255, 255, 255, 0.65);
   --skin-card-border:   rgba(26, 30, 58, 0.08);
   --skin-card-shadow:   0 4px 16px -8px rgba(10, 22, 40, 0.12), 0 16px 40px -20px rgba(10, 22, 40, 0.18);
 

@@ -56,8 +56,12 @@ const PlaybookShell = ({
     <div className="w-full max-w-[960px] mx-auto px-4 sm:px-6 pt-6 pb-20">
       {/* ═══════ BACK (→ "/" Start Here) ═══════ */}
       {/* Day 47 later-same-day (Sasha): "BACK TO LANDING" → just "BACK".
-          Destination unchanged — still navigates to "/" (Start Here). */}
-      <div className="mb-5">
+          Destination unchanged — still navigates to "/" (Start Here).
+          Day 53 (Sasha 2026-04-27): hidden on mobile. The new mobile
+          shell breadcrumb (SPACE › Section) + Menu pill make this
+          in-page back redundant on small screens. Desktop still benefits
+          from the explicit return-to-landing affordance. */}
+      <div className="hidden md:block mb-5">
         <button
           type="button"
           onClick={() => navigate("/")}

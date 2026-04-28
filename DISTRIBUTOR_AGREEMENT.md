@@ -1,17 +1,47 @@
 # Distributor Agreement
 
-**Version 0.1 · April 25, 2026 (Day 51)**
+**Version 0.2 · April 27, 2026 (Day 53)**
 *This is a draft. The intent is binding; the legal language will tighten with counsel review before any first signature.*
 
 ---
 
-## What this document is
+## Two paths to commercial use — pick one
 
 The codebase at [github.com/alexanderkonst/evolver-grid-site](https://github.com/alexanderkonst/evolver-grid-site) (the **Platform**) is licensed for non-commercial use under [PolyForm Noncommercial 1.0.0](./LICENSE). The methodology in `/docs` is licensed for non-commercial use under [CC BY-NC-SA 4.0](./LICENSE.md).
 
-This agreement governs **commercial use** of either layer — running a forked instance of the Platform to serve paying clients, charging for sessions or products through the Platform's flow, or otherwise deriving revenue from the Platform or its methodology.
+If you want to USE the Platform commercially — to charge clients, sell sessions, run a coaching practice, or operate a paid offering using the methodology — there are two clean paths. Most people take Path A.
 
-By deploying the Platform commercially, you accept the terms below. There is nothing to sign on day one — the act of going commercial is the act of accepting these terms. The intent is friction-free entry, fair contribution, and shared upside.
+### Path A — Subscribe to the hosted Platform (recommended for most)
+
+Subscribe to a tier that grants commercial rights at [findyourtoptalent.com](https://findyourtoptalent.com):
+
+| Tier | Price | What it grants commercially |
+|---|---|---|
+| **Tasting** | Free, 25 generations | Try the Platform. NOT a commercial license — no client work. |
+| **Builder** | $22/mo · $222/yr | Personal use. Build YOUR ONE business. NOT a license to build for paying clients. |
+| **Locked-in** | $99/mo · $999/yr | **Commercial license included.** Use the Platform to build canvases for paying clients (coach, consultant, agency). No further rev-share. The subscription IS your commercial license. |
+| **Founders 50** | $555 lifetime | Commercial license. First 50 buyers, then $999/yr. Lifetime grandfathered. |
+| **Ignition** | $5,555 (one-time) | Commercial license + 1:1 founder coaching from Alexander. |
+
+On Path A, you owe NOTHING beyond the subscription fee. The hosted Platform handles infrastructure, updates, AI gateway, billing — you just use it. No rev-share. No reporting. No audit. The subscription is the commercial license.
+
+**Path A is the right path for ~95% of commercial use cases.** Path B exists for the rare situation where hosted constraints don't fit (regulated industry, white-label brand requirements, custom infrastructure, etc.).
+
+### Path B — Fork and self-host (this document)
+
+If you fork the Platform and run your own instance — modifying the code, hosting on your own infrastructure, operating under your own brand — the Distributor Agreement below applies. Summary: 10% rev-share above a $1,000/month free tier, opt-in commons contribution, attribution preserved, audit by exception.
+
+> **The two paths are mutually exclusive on a given operation.** Path A means "use Sasha's hosted Platform." Path B means "run your own forked Platform." If you outgrow Path A and start forking, you cross to Path B. If you previously forked under Path B and decide hosted is simpler, you migrate to Path A.
+
+The rest of this document is **Path B** — the Distributor Agreement for fork-and-self-host operators.
+
+---
+
+## What this document is (Path B)
+
+This agreement governs **fork-scale commercial use** of either layer — running a forked, self-hosted instance of the Platform to serve paying clients, charging for sessions or products through your forked instance, or otherwise deriving revenue from a self-hosted Platform fork or its methodology.
+
+By deploying a Distributor Instance commercially, you accept the terms below. There is nothing to sign on day one — the act of going commercial is the act of accepting these terms. The intent is friction-free entry, fair contribution, and shared upside.
 
 ---
 
@@ -229,4 +259,6 @@ When in doubt, talk to the Licensor directly: [Telegram](https://t.me/integralev
 
 ---
 
-*v0.1 · April 25, 2026 (Day 51) · Drafted by [Alexander Konstantinov](https://aleksandrkonstantinov.com) with AI assistance during the Specificity Loop / commercial-decentralization architecture emergence. Pending v1.0 finalization with legal counsel review.*
+*v0.2 · April 27, 2026 (Day 53) · Two-paths preface added so visitors aren't dropped into fork-scale legal text when they want the hosted subscription. Path A (hosted Builder/Locked-in/Founders 50/Ignition tiers) clarified as the default-recommended commercial path; Path B (fork + self-host with 10% rev-share above $1K/mo) preserved for the rare cases that need it. Drafted by [Alexander Konstantinov](https://aleksandrkonstantinov.com) with AI assistance. Pending v1.0 finalization with legal counsel review.*
+
+*v0.1 · April 25, 2026 (Day 51) · Initial draft during the Specificity Loop / commercial-decentralization architecture emergence.*
