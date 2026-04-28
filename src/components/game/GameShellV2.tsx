@@ -1,6 +1,6 @@
 import { ReactNode, useState, useEffect, useRef } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { ArrowLeft, PanelLeft } from "lucide-react";
+import { ArrowLeft, Menu, PanelLeft } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { getOrCreateGameProfileId } from "@/lib/gameProfile";
 import { cn } from "@/lib/utils";
@@ -813,16 +813,37 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                                     'linear-gradient(90deg, rgba(212,175,55,0) 0%, rgba(244,212,114,0.52) 50%, rgba(212,175,55,0) 100%)',
                             }}
                         />
+                        {/* Day 53 (Sasha 2026-04-27): mobile back-arrow
+                            replaced with an explicit Menu pill. The bare
+                            arrow read as "go back" (browser-back semantics)
+                            rather than "open the navigation," and on
+                            landing-style entry pages there's nothing to
+                            "go back" to. The pill is unambiguous: the
+                            ☰ icon + the word MENU together get ~95% of
+                            users vs ~70% for icon-alone. Sized as a real
+                            tap target with subtle gold rim so it reads
+                            as the page's primary navigation affordance. */}
                         <button
                             onClick={handleBackToNavigation}
-                            className="min-h-[44px] min-w-[44px] p-2 rounded-lg transition-colors relative"
+                            className="min-h-[44px] inline-flex items-center gap-2 px-3 py-2 rounded-full transition-all relative hover:scale-[1.02] active:scale-[0.98]"
                             style={{
                                 color: '#f4d472',
+                                background: 'rgba(244,212,114,0.08)',
+                                border: '1px solid rgba(244,212,114,0.30)',
                                 filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.5))',
+                                boxShadow: '0 0 12px -4px rgba(244,212,114,0.25)',
                             }}
-                            aria-label="Back to navigation"
+                            aria-label="Open menu"
                         >
-                            <ArrowLeft className="w-5 h-5" />
+                            <Menu className="w-4 h-4" aria-hidden="true" />
+                            <span
+                                className="text-[11px] font-medium uppercase tracking-[0.18em]"
+                                style={{
+                                    textShadow: '0 1px 2px rgba(0,0,0,0.5)',
+                                }}
+                            >
+                                Menu
+                            </span>
                         </button>
                         <span
                             className="flex-1 truncate text-[11px] font-medium tracking-[0.28em] uppercase relative"

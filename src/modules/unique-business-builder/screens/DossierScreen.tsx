@@ -1,15 +1,24 @@
 /**
- * DossierScreen — composed view of all 18 artifacts at their latest-locked versions.
+ * DossierScreen — the publication threshold.
  *
- * Auto-composed from state (not improved directly).
- * Publish action is stubbed for Phase 4 continuation.
+ * Composed view of all artifacts at their latest-locked versions.
+ * Auto-composed from state (not improved directly). Publishing creates
+ * a shareable snapshot at /ubd/{slug}.
+ *
+ * Day 53 (Sasha 2026-04-27): full editorial re-skin to match the
+ * landing/playbook register. The dossier is the most ceremonial UBB
+ * surface — the moment the founder's 19 artifacts become a single
+ * publishable artifact-of-artifacts. Visual register reflects that
+ * weight: Cormorant headline, gold ✦ phase rules, illuminated
+ * parchment rows, ceremonial Publish CTA with gold halo.
+ *
+ * Hardcoded "18" replaced with ALL_ARTIFACT_KEYS.length (now 19) — same
+ * fix applied to CanvasOverviewScreen on Day 53 morning.
  */
 
 import { useState } from "react";
-import { Card } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { Copy, Loader2, Rocket } from "lucide-react";
+import { Copy, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import { useUniqueBusiness } from "../UniqueBusinessContext";
 import { SpecificityBadge } from "../components/SpecificityBadge";
@@ -21,6 +30,9 @@ export default function DossierScreen() {
   const { artifacts, lockedCount, avgSpecificity, publishDossier } = useUniqueBusiness();
   const [isPublishing, setIsPublishing] = useState(false);
   const [publishedUrl, setPublishedUrl] = useState<string | null>(null);
+
+  const totalArtifacts = ALL_ARTIFACT_KEYS.length;
+  const remainingToLock = totalArtifacts - lockedCount;
 
   const handlePublish = async () => {
     setIsPublishing(true);
@@ -42,6 +54,7 @@ export default function DossierScreen() {
     }
   };
 
+  // Group artifacts by phase
   const byPhase: Record<string, ArtifactKey[]> = {};
   for (const key of ALL_ARTIFACT_KEYS) {
     const p = phaseOf(key);
@@ -50,29 +63,149 @@ export default function DossierScreen() {
   }
 
   return (
-    <div className="mx-auto max-w-3xl space-y-6">
-      <header className="space-y-1">
-        <h1 className="text-2xl font-semibold tracking-tight">Your Unique Business Dossier</h1>
-        <p className="text-sm text-muted-foreground">
-          {lockedCount} of 18 locked · avg specificity {avgSpecificity.toFixed(1)}
+    <div className="mx-auto max-w-3xl space-y-9">
+      {/* ═══ Header ═══ */}
+      <header className="space-y-2">
+        <h1
+          className="leading-[1.05]"
+          style={{
+            fontFamily: "'Cormorant Garamond', serif",
+            fontWeight: 600,
+            fontSize: "clamp(28px, 4vw, 40px)",
+            letterSpacing: "-0.005em",
+            color: "var(--skin-text-primary, #0b2a5a)",
+            textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.7))",
+          }}
+        >
+          Your Unique Business Dossier
+        </h1>
+        <p
+          className="flex flex-wrap items-baseline gap-x-3 gap-y-1"
+          style={{
+            fontFamily: "'Source Serif 4', serif",
+            fontStyle: "italic",
+            fontSize: "15px",
+            color: "var(--skin-text-body, rgba(11, 42, 90, 0.85))",
+          }}
+        >
+          <span>
+            <span
+              className="not-italic"
+              style={{
+                fontFamily: "'DM Sans', system-ui, sans-serif",
+                fontWeight: 600,
+                fontVariantNumeric: "tabular-nums lining-nums",
+                color: "var(--skin-text-primary, #0b2a5a)",
+              }}
+            >
+              {lockedCount}
+            </span>
+            {" of "}
+            <span
+              className="not-italic"
+              style={{
+                fontFamily: "'DM Sans', system-ui, sans-serif",
+                fontWeight: 600,
+                fontVariantNumeric: "tabular-nums lining-nums",
+                color: "var(--skin-text-primary, #0b2a5a)",
+              }}
+            >
+              {totalArtifacts}
+            </span>
+            {" locked"}
+          </span>
+          {avgSpecificity > 0 && (
+            <span style={{ color: "var(--skin-text-muted, rgba(11, 42, 90, 0.62))" }}>
+              · avg specificity{" "}
+              <span
+                className="not-italic"
+                style={{
+                  fontFamily: "'DM Sans', system-ui, sans-serif",
+                  fontWeight: 600,
+                  fontVariantNumeric: "tabular-nums lining-nums",
+                  color: "var(--skin-text-primary, #0b2a5a)",
+                }}
+              >
+                {avgSpecificity.toFixed(1)}
+              </span>
+            </span>
+          )}
         </p>
       </header>
 
-      {lockedCount < 18 && (
-        <Card className="border-amber-500/40 bg-amber-50/30 p-4 text-sm dark:bg-amber-900/10">
-          {18 - lockedCount} artifact{18 - lockedCount === 1 ? "" : "s"} not yet locked. Gaps are shown below — finish them before publishing.
-        </Card>
+      {/* ═══ Gap warning ═══ */}
+      {lockedCount < totalArtifacts && (
+        <div
+          className="relative rounded-2xl px-4 py-3.5"
+          style={{
+            background: "var(--skin-tint-gold-soft, linear-gradient(135deg, rgba(212,175,55,0.08), rgba(212,175,55,0.02)))",
+            border: "0.5px solid rgba(212, 175, 55, 0.40)",
+            boxShadow: "0 4px 16px -8px rgba(212, 175, 55, 0.22)",
+          }}
+        >
+          <p
+            style={{
+              fontFamily: "'Source Serif 4', serif",
+              fontSize: "14px",
+              lineHeight: 1.55,
+              color: "var(--skin-text-body, rgba(11, 42, 90, 0.85))",
+            }}
+          >
+            <span
+              style={{
+                fontFamily: "'DM Sans', system-ui, sans-serif",
+                fontWeight: 600,
+                color: "var(--skin-text-primary, #0b2a5a)",
+                fontVariantNumeric: "tabular-nums lining-nums",
+              }}
+            >
+              {remainingToLock}
+            </span>
+            {" "}
+            artifact{remainingToLock === 1 ? "" : "s"} not yet locked. Gaps shown below — finish them before publishing.
+          </p>
+        </div>
       )}
 
+      {/* ═══ Phase sections ═══ */}
       {(Object.keys(PHASE_LABELS) as Array<keyof typeof PHASE_LABELS>).map((phase) => {
         const keys = byPhase[phase] || [];
         if (keys.length === 0) return null;
         return (
           <section key={phase} className="space-y-3">
-            <h2 className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
-              {PHASE_LABELS[phase]}
-            </h2>
-            <div className="space-y-3">
+            {/* Phase rule — gold ✦ + Cormorant tracked uppercase + hairline */}
+            <div className="flex items-baseline gap-3">
+              <span
+                aria-hidden="true"
+                style={{
+                  color: "var(--skin-accent-gold, #b8860b)",
+                  textShadow: "var(--skin-accent-gold-glow, 0 0 10px rgba(240,194,127,0.6))",
+                  fontSize: "13px",
+                }}
+              >
+                ✦
+              </span>
+              <h2
+                style={{
+                  fontFamily: "'Cormorant Garamond', serif",
+                  fontWeight: 600,
+                  fontSize: "13px",
+                  letterSpacing: "0.22em",
+                  textTransform: "uppercase",
+                  color: "var(--skin-accent-gold, #b8860b)",
+                }}
+              >
+                {PHASE_LABELS[phase]}
+              </h2>
+            </div>
+            <div
+              className="h-px w-full"
+              style={{
+                background:
+                  "linear-gradient(90deg, rgba(212, 175, 55, 0.45) 0%, rgba(212, 175, 55, 0.18) 25%, rgba(26, 30, 58, 0.08) 70%, rgba(26, 30, 58, 0) 100%)",
+              }}
+            />
+            <div className="space-y-2.5 pt-1">
               {keys.map((k) => (
                 <DossierRow key={k} artifactKey={k} />
               ))}
@@ -81,50 +214,174 @@ export default function DossierScreen() {
         );
       })}
 
-      <Card className="space-y-3 p-5">
-        <div className="flex items-center justify-between">
-          <div>
-            <h2 className="text-sm font-medium">Publish this Dossier</h2>
-            <p className="text-xs text-muted-foreground">
-              Creates a shareable snapshot of your current 18 artifacts.
+      {/* ═══ Publish panel ═══ Ceremonial CTA on a gold-tinted glass card */}
+      <div
+        className="relative space-y-4 overflow-hidden rounded-2xl px-5 py-5"
+        style={{
+          background: "var(--skin-card-bg, rgba(255, 255, 255, 0.55))",
+          border: "0.5px solid rgba(212, 175, 55, 0.45)",
+          boxShadow:
+            "0 0 22px -8px rgba(212, 175, 55, 0.30), 0 16px 40px -20px rgba(10, 22, 40, 0.18)",
+        }}
+      >
+        <div className="flex flex-wrap items-center justify-between gap-4">
+          <div className="min-w-0 flex-1">
+            <div
+              style={{
+                fontFamily: "'Cormorant Garamond', serif",
+                fontWeight: 600,
+                fontSize: "20px",
+                letterSpacing: "-0.005em",
+                color: "var(--skin-text-primary, #0b2a5a)",
+              }}
+            >
+              Publish this Dossier
+            </div>
+            <p
+              className="mt-1"
+              style={{
+                fontFamily: "'Source Serif 4', serif",
+                fontStyle: "italic",
+                fontSize: "13.5px",
+                lineHeight: 1.5,
+                color: "var(--skin-text-muted, rgba(11, 42, 90, 0.62))",
+              }}
+            >
+              Creates a shareable snapshot of your current {totalArtifacts} artifacts.
             </p>
           </div>
-          <Button onClick={handlePublish} disabled={isPublishing || lockedCount === 0} className="gap-2">
+          <button
+            onClick={handlePublish}
+            disabled={isPublishing || lockedCount === 0}
+            className="group relative inline-flex items-center gap-2.5 rounded-full px-6 py-3 transition-all duration-300 hover:translate-y-[-1px] disabled:cursor-not-allowed disabled:opacity-50"
+            style={{
+              background: "var(--skin-cta-bg, linear-gradient(135deg, rgba(10,22,40,0.82) 0%, rgba(18,28,56,0.72) 50%, rgba(10,22,40,0.82) 100%))",
+              color: "var(--skin-cta-text, rgba(245, 245, 250, 0.98))",
+              border: "0.5px solid var(--skin-cta-border, rgba(255, 255, 255, 0.14))",
+              boxShadow:
+                "var(--skin-cta-shadow, 0 0 0 1px rgba(212, 175, 55, 0.28), 0 0 18px -4px rgba(240, 194, 127, 0.45), 0 0 40px -8px rgba(212, 175, 55, 0.28))",
+              backdropFilter: "blur(14px) saturate(160%)",
+              WebkitBackdropFilter: "blur(14px) saturate(160%)",
+            }}
+          >
             {isPublishing ? (
               <>
-                <Loader2 className="h-4 w-4 animate-spin" />
-                Publishing…
+                <Loader2 className="h-4 w-4 animate-spin" style={{ color: "var(--skin-cta-icon)" }} />
+                <span style={ceremonialLabel}>Publishing…</span>
               </>
             ) : (
               <>
-                <Rocket className="h-4 w-4" />
-                Publish Dossier
+                <span aria-hidden="true" style={ceremonialIcon}>✦</span>
+                <span style={ceremonialLabel}>Publish Dossier</span>
               </>
             )}
-          </Button>
+          </button>
         </div>
+
         {publishedUrl && (
-          <div className="flex items-center gap-2 rounded-md border border-emerald-500/40 bg-emerald-50/40 p-3 dark:bg-emerald-900/10">
-            <code className="flex-1 text-xs">{publishedUrl}</code>
-            <Button size="sm" variant="ghost" onClick={handleCopy} className="gap-1">
-              <Copy className="h-3.5 w-3.5" />
+          <div
+            className="flex items-center gap-2 rounded-xl px-3 py-2.5"
+            style={{
+              background: "rgba(212, 175, 55, 0.08)",
+              border: "0.5px solid rgba(212, 175, 55, 0.45)",
+              boxShadow: "inset 0 0 12px -4px rgba(244, 212, 114, 0.30)",
+            }}
+          >
+            <code
+              className="flex-1 truncate"
+              style={{
+                fontFamily: "'DM Sans', system-ui, sans-serif",
+                fontSize: "12px",
+                color: "var(--skin-text-primary, #0b2a5a)",
+              }}
+            >
+              {publishedUrl}
+            </code>
+            <button
+              onClick={handleCopy}
+              className="inline-flex items-center gap-1 rounded-full px-3 py-1 transition-colors duration-200 hover:bg-white/30"
+              style={{
+                fontFamily: "'Cormorant Garamond', serif",
+                fontWeight: 600,
+                letterSpacing: "0.14em",
+                textTransform: "uppercase",
+                fontSize: "10px",
+                color: "var(--skin-text-primary, #0b2a5a)",
+              }}
+            >
+              <Copy className="h-3 w-3" />
               Copy
-            </Button>
-            <Button size="sm" variant="outline" asChild>
-              <a href={publishedUrl} target="_blank" rel="noopener noreferrer">Open ↗</a>
-            </Button>
+            </button>
+            <a
+              href={publishedUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center rounded-full px-3 py-1 transition-all duration-200 hover:translate-y-[-0.5px]"
+              style={{
+                fontFamily: "'Cormorant Garamond', serif",
+                fontWeight: 600,
+                letterSpacing: "0.14em",
+                textTransform: "uppercase",
+                fontSize: "10px",
+                color: "var(--skin-text-primary, #0b2a5a)",
+                background: "rgba(255, 255, 255, 0.55)",
+                border: "0.5px solid rgba(212, 175, 55, 0.55)",
+              }}
+            >
+              Open ↗
+            </a>
           </div>
         )}
-      </Card>
+      </div>
 
+      {/* ═══ Back to Canvas pill ═══ */}
       <div>
-        <Button asChild variant="outline">
-          <Link to={UBB_ROOT}>← Back to Canvas</Link>
-        </Button>
+        <Link
+          to={UBB_ROOT}
+          className="group inline-flex items-center gap-2 rounded-full px-4 py-2 transition-all duration-200 hover:translate-y-[-0.5px]"
+          style={{
+            fontFamily: "'Cormorant Garamond', serif",
+            fontWeight: 600,
+            letterSpacing: "0.14em",
+            textTransform: "uppercase",
+            fontSize: "11.5px",
+            color: "var(--skin-text-primary, #0b2a5a)",
+            background: "rgba(255, 255, 255, 0.55)",
+            border: "0.5px solid var(--skin-rule-medium, rgba(26, 30, 58, 0.15))",
+          }}
+        >
+          <span
+            aria-hidden="true"
+            className="transition-transform duration-300 group-hover:-translate-x-0.5"
+            style={{ color: "var(--skin-accent-gold, #b8860b)" }}
+          >
+            ←
+          </span>
+          Back to Canvas
+        </Link>
       </div>
     </div>
   );
 }
+
+/* ─── Ceremonial typography presets ──────────────────────────────── */
+
+const ceremonialLabel: React.CSSProperties = {
+  fontFamily: "'Cormorant Garamond', serif",
+  fontWeight: 600,
+  letterSpacing: "0.14em",
+  textTransform: "uppercase",
+  fontSize: "13px",
+  textShadow: "var(--skin-cta-text-shadow, 0 0 16px rgba(240,194,127,0.28))",
+};
+
+const ceremonialIcon: React.CSSProperties = {
+  color: "var(--skin-cta-icon, rgba(244, 212, 114, 0.98))",
+  textShadow: "var(--skin-cta-icon-shadow, 0 0 12px rgba(244,212,114,0.8))",
+  fontSize: "16px",
+};
+
+/* ─── Dossier row ────────────────────────────────────────────────── */
 
 function DossierRow({ artifactKey }: { artifactKey: ArtifactKey }) {
   const { artifacts } = useUniqueBusiness();
@@ -132,63 +389,171 @@ function DossierRow({ artifactKey }: { artifactKey: ArtifactKey }) {
   const locked = state?.latestLocked;
 
   if (!locked) {
+    // Gap state — soft amber tint, faint italic, "Start" pill
     return (
-      <Card className="flex items-center justify-between p-4">
-        <div>
-          <div className="text-sm font-medium">{ARTIFACT_LABELS[artifactKey]}</div>
-          <div className="mt-0.5 text-xs text-amber-600">Gap — not yet locked.</div>
+      <div
+        className="flex items-center justify-between gap-3 rounded-xl px-4 py-3"
+        style={{
+          background: "rgba(255, 252, 245, 0.55)",
+          border: "0.5px solid rgba(212, 175, 55, 0.30)",
+          boxShadow: "0 2px 8px -4px rgba(212, 175, 55, 0.18)",
+        }}
+      >
+        <div className="min-w-0">
+          <div
+            style={{
+              fontFamily: "'Cormorant Garamond', serif",
+              fontWeight: 600,
+              fontSize: "16px",
+              color: "var(--skin-text-primary, #0b2a5a)",
+            }}
+          >
+            {ARTIFACT_LABELS[artifactKey]}
+          </div>
+          <div
+            className="mt-0.5 italic"
+            style={{
+              fontFamily: "'Source Serif 4', serif",
+              fontSize: "12.5px",
+              color: "var(--skin-accent-gold, #b8860b)",
+            }}
+          >
+            Gap — not yet locked.
+          </div>
         </div>
-        <Button asChild variant="outline" size="sm">
-          <Link to={`${UBB_ROOT}/${ARTIFACT_URL_SLUGS[artifactKey]}`}>Start</Link>
-        </Button>
-      </Card>
+        <Link
+          to={`${UBB_ROOT}/${ARTIFACT_URL_SLUGS[artifactKey]}`}
+          className="inline-flex items-center rounded-full px-4 py-1.5 transition-all duration-200 hover:translate-y-[-0.5px]"
+          style={{
+            fontFamily: "'Cormorant Garamond', serif",
+            fontWeight: 600,
+            letterSpacing: "0.14em",
+            textTransform: "uppercase",
+            fontSize: "11px",
+            color: "var(--skin-text-primary, #0b2a5a)",
+            background: "rgba(255, 255, 255, 0.65)",
+            border: "0.5px solid rgba(212, 175, 55, 0.55)",
+            boxShadow: "0 0 10px -4px rgba(212, 175, 55, 0.30)",
+          }}
+        >
+          Start
+        </Link>
+      </div>
     );
   }
 
+  // Locked state — illuminated parchment row
   return (
-    <Card className="p-4">
+    <div
+      className="rounded-xl px-4 py-3.5"
+      style={{
+        background: "var(--skin-card-bg, rgba(255, 255, 255, 0.55))",
+        border: "0.5px solid var(--skin-card-border, rgba(26, 30, 58, 0.08))",
+        boxShadow:
+          "var(--skin-card-shadow, 0 4px 16px -8px rgba(10, 22, 40, 0.10), 0 16px 40px -20px rgba(10, 22, 40, 0.15))",
+      }}
+    >
       <div className="flex items-start justify-between gap-3">
-        <div className="flex-1">
-          <div className="flex items-center gap-2">
-            <div className="text-sm font-medium">{ARTIFACT_LABELS[artifactKey]}</div>
+        <div className="min-w-0 flex-1">
+          <div className="flex flex-wrap items-center gap-2">
+            <div
+              style={{
+                fontFamily: "'Cormorant Garamond', serif",
+                fontWeight: 600,
+                fontSize: "17px",
+                letterSpacing: "0.005em",
+                color: "var(--skin-text-primary, #0b2a5a)",
+              }}
+            >
+              {ARTIFACT_LABELS[artifactKey]}
+            </div>
             <SpecificityBadge score={locked.specificity_score} size="sm" />
           </div>
-          <div className="mt-2 text-sm">
+          <div className="mt-2">
             <CompactDossierContent content={locked.content} />
           </div>
         </div>
-        <Button asChild variant="ghost" size="sm">
-          <Link to={`${UBB_ROOT}/${ARTIFACT_URL_SLUGS[artifactKey]}`}>Edit</Link>
-        </Button>
+        <Link
+          to={`${UBB_ROOT}/${ARTIFACT_URL_SLUGS[artifactKey]}`}
+          className="inline-flex flex-shrink-0 items-center rounded-full px-3 py-1 transition-colors duration-200 hover:bg-white/40"
+          style={{
+            fontFamily: "'Cormorant Garamond', serif",
+            fontWeight: 600,
+            letterSpacing: "0.14em",
+            textTransform: "uppercase",
+            fontSize: "10.5px",
+            color: "var(--skin-text-muted, rgba(11, 42, 90, 0.62))",
+          }}
+        >
+          Edit
+        </Link>
       </div>
-    </Card>
+    </div>
   );
 }
 
+/* ─── Compact content (preview lines for the dossier list) ───────── */
+
 function CompactDossierContent({ content }: { content: unknown }) {
   if (content === null || content === undefined) return null;
-  if (typeof content === "string") return <div className="whitespace-pre-wrap">{content}</div>;
+
+  const proseStyle: React.CSSProperties = {
+    fontFamily: "'Source Serif 4', serif",
+    fontSize: "14px",
+    lineHeight: 1.55,
+    color: "var(--skin-text-body, rgba(11, 42, 90, 0.85))",
+  };
+
+  if (typeof content === "string") {
+    return <div className="whitespace-pre-wrap" style={proseStyle}>{content}</div>;
+  }
   if (typeof content === "object") {
     const entries = Object.entries(content as Record<string, unknown>);
     return (
-      <div className="space-y-1 text-sm">
+      <div className="space-y-1.5">
         {entries.slice(0, 4).map(([k, v]) => (
-          <div key={k}>
-            {/* Day 51 (Sasha 2026-04-25): handle hyphen+underscore separators
-                + render arrays/objects compactly instead of raw JSON. */}
-            <span className="text-xs text-muted-foreground">{k.replace(/[_-]+/g, " ")}: </span>
-            {typeof v === "string"
-              ? v
-              : Array.isArray(v) && v.every((x) => typeof x === "string")
-                ? <span className="text-xs">{v.join(" · ")}</span>
-                : <code className="text-xs">{JSON.stringify(v).slice(0, 120)}</code>}
+          <div key={k} className="flex flex-wrap items-baseline gap-x-1.5">
+            <span style={inlineLabel}>{k.replace(/[_-]+/g, " ")}:</span>
+            {typeof v === "string" ? (
+              <span style={proseStyle}>{v}</span>
+            ) : Array.isArray(v) && v.every((x) => typeof x === "string") ? (
+              <span style={proseStyle}>{(v as string[]).join(" · ")}</span>
+            ) : (
+              <span
+                style={{
+                  fontFamily: "'DM Sans', system-ui, sans-serif",
+                  fontSize: "12px",
+                  color: "var(--skin-text-muted, rgba(11, 42, 90, 0.62))",
+                }}
+              >
+                {JSON.stringify(v).slice(0, 120)}
+              </span>
+            )}
           </div>
         ))}
         {entries.length > 4 && (
-          <div className="text-xs text-muted-foreground">+ {entries.length - 4} more field{entries.length - 4 === 1 ? "" : "s"}</div>
+          <div
+            className="italic"
+            style={{
+              fontFamily: "'Source Serif 4', serif",
+              fontSize: "12px",
+              color: "var(--skin-text-muted, rgba(11, 42, 90, 0.55))",
+            }}
+          >
+            + {entries.length - 4} more field{entries.length - 4 === 1 ? "" : "s"}
+          </div>
         )}
       </div>
     );
   }
-  return <span>{String(content)}</span>;
+  return <span style={proseStyle}>{String(content)}</span>;
 }
+
+const inlineLabel: React.CSSProperties = {
+  fontFamily: "'DM Sans', system-ui, sans-serif",
+  fontWeight: 500,
+  fontSize: "10px",
+  letterSpacing: "0.16em",
+  textTransform: "uppercase",
+  color: "var(--skin-text-muted, rgba(11, 42, 90, 0.62))",
+};
