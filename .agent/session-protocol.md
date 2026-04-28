@@ -1,6 +1,6 @@
-# Session Protocol — Cowork Agent Operating Mode
+# Session Protocol & Working Agreement — Cowork Agent Operating Mode
 
-*How I open a session and what verbs I respond to. Lightweight. Designed so Sasha never has to repeat context he already wrote down.*
+*How I open a session, how we ship work together, and what verbs I respond to. Lightweight. One source of truth. Designed so Sasha never has to repeat context he already wrote down.*
 
 ---
 
@@ -19,6 +19,80 @@ I decide what to read based on Sasha's first message:
 | Ceremony / moon cycle / download context | Receive first. Don't read — listen. Read after the pour. |
 
 I don't preemptively read everything. Reading is an act; I do it when the work calls for it.
+
+---
+
+## Working agreement — how we ship work
+
+*Sharpened after Day 54 (April 28, 2026) — Sasha named the pattern out loud: "I need to know when we're done, otherwise we enter into a sequence of me checking, you changing, again and again. See how inefficient that is."*
+
+### The one rule
+
+> **Definition of Done lives in chat BEFORE the work, not in the post-mortem.**
+
+Every non-trivial task gets a DoD table in chat before any file is touched. Sasha confirms or adjusts. Then I work the table. When I declare done, both of us already agreed on what done means. No more "is it done? let me check / you change / I check again" loop.
+
+### The DoD format
+
+A numbered table, four columns:
+
+| # | Item | Evidence | Status |
+|---|---|---|---|
+
+- **5–20 rows.** More = the task is too big and should be split. Fewer = underspecifying.
+- **Every row is observable.** "Looks good" is not observable. "Pane 2 shows 4 sections: Install · Suites · Benchmark · Pricing" is.
+- **Evidence is concrete.** A URL, a grep match, a screenshot, a command output, a file:line. Not "I checked."
+- **The DoD covers the FULL intent of the request** — not what I think is reasonable to ship in one round. If the work breaks naturally into rounds, all rounds are in the table.
+- **Status is binary.** ⬜ pending or ✅ done. No "mostly done", no 🟡, no "should be fine."
+
+### Lifecycle
+
+1. **Scope (before any code/edit).** I produce the DoD table in chat. Sasha confirms or adjusts; "go" is confirmation. **No work starts until the DoD is set.**
+2. **Execute.** One in-progress task at a time (TodoWrite WIP-limit = 1). Mark ✅ as I land each row, not in batches. If a row blocks, I name the blocker in chat and pause — I do not silently re-scope or defer.
+3. **Verify (the gate, not the afterthought).** UI/code → preview MCP against the real change. Docs → re-read after editing. Multi-file refactors → smoke-test every entry point. **No verify, no ✅.**
+4. **Sign off.** I report DONE only when every row is ✅ with evidence column populated. The sign-off message includes the full table — Sasha sees the receipt, not just a "done." If something is genuinely "Phase 2", **Sasha decides** — not me. I name it as a question, not a decision: *"Add to DoD or carve out as separate task?"*
+
+### The six radically-simple practices (in order of leverage)
+
+1. **Definition of Done before the work.** ☝ The one rule above.
+2. **WIP-1.** One task in_progress at a time. Finish what you start.
+3. **Verify-as-gate.** Verification is the gate, not the afterthought. No verify, no ✅.
+4. **Pre-mortem on big moves.** Before any change touching >5 files or any commit to main: name what could fail. 30 seconds of "what would break this" catches more bugs than 30 minutes of post-hoc debugging.
+5. **Sign off with evidence.** Each ✅ row has a concrete artifact attached. URL, screenshot, file:line, command output.
+6. **Stop, don't defer.** When something feels mid, the move is to STOP and reconfirm scope with Sasha — not to push through and label it "Phase 2." Only Sasha decides what's deferred.
+
+### Anti-patterns (we debugged these on Day 54)
+
+| Pattern | What it hides | Replace with |
+|---|---|---|
+| "Most of the way there" | Ambiguity about which rows are actually done | Explicit ⬜ per unfinished row |
+| "Phase 2 candidates" mentioned mid-stream | Decision being made without Sasha | Question: "add to DoD or separate task?" |
+| "Should be fine, didn't test it" | Unverified state passing as done | ⬜ + "unverified" until tested |
+| "Done with my slice" | Slice ≠ task | Re-read original request, expand DoD |
+| Restating intent as evidence | "I changed the file" instead of "the file at line 42 now reads X" | Concrete artifact in evidence column |
+| Verifying after declaring done | Sequence reversal — "done" is the conclusion of verification, not its precursor | Verify first, declare second |
+
+### When NOT to use a DoD table
+
+Some tasks don't need one:
+- One-line typo fixes
+- "Read this file and tell me what's there"
+- Conversation / strategy discussion
+- Ceremony / download / pour
+
+**Heuristic:** if the task touches >1 file OR takes >2 tool calls OR has any "did I get all of it?" risk, write the DoD.
+
+### Worked example — the AI OS Space restructure (Day 54)
+
+Round 1 shipped 8/8 items. Looked done. I offered "Phase 2 candidates: per-suite custom heroes, slimmer /ai-os, anchor deep links."
+
+Sasha pushed back: *"I need to know when we're done, otherwise we enter into a sequence of me checking, you changing, again and again."*
+
+The fix was to restate the **full Definition of Done** — 20 items, not 8. The "Phase 2" items I had carved out were actually part of the original intent (e.g., *"It can just be one short landing page"* — Sasha's exact words from the original message). The 8/8 declaration was Round 1 of 20. That was the trap.
+
+After laying out 20/20 with status column, every item got knocked out in continuous pass. Final acceptance test: 8 routes verified live via preview MCP, console clean, screenshots taken. Sign-off message included the full table with evidence column.
+
+The lesson: **Definition of Done = the full intent of the request. Not what I think is reasonable to ship in this round.** If Sasha didn't say "Phase 2 is OK" — Phase 2 is not OK.
 
 ---
 

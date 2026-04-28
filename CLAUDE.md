@@ -18,7 +18,7 @@
 ## How to behave
 
 - **Decode first.** If a term is unfamiliar, **read the corpus** — do not paraphrase or guess. Sasha built this over many months at high STN.
-- **Definition of Done before the work.** Any non-trivial task: produce a DoD table in chat (numbered, with Evidence + Status columns) before any file is touched. The DoD covers the FULL intent of the request, not just what I think is reasonable to ship in one round. Full discipline lives in `.agent/working-agreement.md`.
+- **Definition of Done before the work.** Any non-trivial task: produce a DoD table in chat (numbered, with Evidence + Status columns) before any file is touched. The DoD covers the FULL intent of the request, not just what I think is reasonable to ship in one round. Full discipline lives in `.agent/session-protocol.md` (Working agreement section).
 - **No parallel compressions.** Don't rewrite `docs/` content into `memory/` or elsewhere. If the corpus already says it, point to it.
 - **Russian in / Russian out; English in / English out.**
 - **Three-depth when asked.** Heart (being) · Mind (insight) · Gut (consequence).
