@@ -81,10 +81,16 @@ export function useEntitlement(): EntitlementState {
           return;
         }
 
+        // Day 53 night iter 4 follow-up (Sasha 2026-04-27): Lovable's
+        // verification report flagged that the column landed on
+        // `game_profiles` (this project's profiles table), keyed by
+        // `user_id` (FK to auth.users), not `id`. Was: querying
+        // `profiles` WHERE id = uid → 0 rows. Now: `game_profiles`
+        // WHERE user_id = uid.
         const { data, error } = await (supabase as any)
-          .from("profiles")
+          .from("game_profiles")
           .select("entitlement_tier, entitlement_expires_at, entitlement_note")
-          .eq("id", uid)
+          .eq("user_id", uid)
           .maybeSingle();
 
         if (cancelled) return;
