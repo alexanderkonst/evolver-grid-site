@@ -199,6 +199,12 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
         // re-resolves to BUILD's section list. The UBB nav itself
         // becoming pane 2 (deeper integration) is a separate refactor.
         if (pathname === "/ubb" || pathname.startsWith("/ubb/")) return "build";
+        // Day 56 (Sasha 2026-04-28): /library is the public face of LEARN.
+        // Mapping it here lights up the LEARN chip in pane 1 and renders
+        // LEARN's section list (the 6 Growth Sequence steps) in pane 2 —
+        // so a public visitor sees the same pane 2 navigation as an authed
+        // user inside /game/learn/library.
+        if (pathname === "/library" || pathname.startsWith("/library/")) return "learn";
         const match = pathname.match(/^\/game\/([^/]+)/);
         if (!match) return undefined;
         const space = match[1];

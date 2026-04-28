@@ -1,3 +1,34 @@
+// admin-send-magic-link
+//
+// Admin-gated endpoint. Issues a fresh Supabase magic link for a target user
+// and sends it via the configured auth-email-hook (Resend → magic-link.tsx
+// template). Used by /founders (FoundersIndex) so Sasha — and, in the white-
+// label future, any founder running their own client cohort — can hand a
+// founder their platform-entry link at the end of a paid Top Talent Business
+// Session.
+//
+// Decision recorded in: docs/02-strategy/roadmap.md (Parked / Future →
+// Decision (parked) — Platform Onboarding Pathway, 2026-04-28).
+//
+// Auth model:
+//   - Caller MUST be authenticated as an admin (email in ADMIN_EMAILS).
+//   - The Supabase JWT is verified server-side by re-calling getUser with the
+//     bearer token — no trusting client-side claims.
+//
+// What it does:
+//   1. Verifies caller is an admin.
+//   2. Looks up the target user by user_id (preferred) or email.
+//   3. Generates a fresh magic link via the admin API.
+//      Supabase auto-fires the auth email hook, which renders the
+//      magic-link.tsx template via Resend. No manual email send needed.
+//   4. Returns success + the resolved target email so the UI can show
+//      "Magic link sent to <email>".
+//
+// TTL: Supabase magic links default to ~1 hour. The end-of-session use case
+// almost always sees them clicked within 10 minutes, so this is fine. A
+// long-TTL invite-token backup is Phase 2 — see roadmap entry.
+
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 // Admin-only endpoint that sends a magic link to a target email using the service role.
 // Only callers with the 'admin' role (per public.has_role) may invoke.
 
@@ -10,6 +41,21 @@ const corsHeaders = {
   "Access-Control-Allow-Methods": "POST, OPTIONS",
 };
 
+// Mirrors src/lib/isAdmin.ts. Kept inline here because edge functions can't
+// import from /src; if the project later moves to a `profiles.role = 'admin'`
+// column, this list and src/lib/isAdmin.ts both update.
+const ADMIN_EMAILS = new Set<string>([
+  "alexanderkonst@gmail.com",
+]);
+
+interface SendMagicLinkPayload {
+  user_id?: string;
+  email?: string;
+  /** Where the user lands after clicking. Defaults to /game/me. */
+  redirect_path?: string;
+}
+
+const json = (status: number, body: unknown) =>
 const json = (body: unknown, status = 200) =>
   new Response(JSON.stringify(body), {
     status,

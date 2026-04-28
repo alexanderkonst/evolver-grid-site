@@ -232,6 +232,66 @@ const VentureDashboard = () => {
           <Ornament className="my-6 sm:my-8" />
         </header>
 
+        {/* ═══════ WHAT THIS IS · WHAT'S COMING ═══════ */}
+        {/* Day 54 (Sasha 2026-04-28): editorial context block — sets the
+            frame before the numbers land. Two beats:
+              1. WHAT THIS IS — the dashboard reflects the state of the
+                 venture AND the state of the founders building their
+                 unique businesses inside it. Both, live.
+              2. WHAT'S COMING — founders who advance through the journey
+                 will be able to fork this entire platform and run it for
+                 their own community — same engine, same methodology,
+                 their own tribe and brand. The signal travels by
+                 replication. Released in the next version. */}
+        <section
+          className="rounded-xl px-6 py-8 sm:px-8 sm:py-10 mb-12 fade-in-section"
+          style={cardStyle}
+          id="dashboard-context"
+          aria-label="What this dashboard is and what's coming next"
+        >
+          <div className="grid gap-8 sm:gap-10 sm:grid-cols-2 sm:divide-x sm:divide-[rgba(212,175,55,0.18)]">
+            {/* — What this is — */}
+            <div className="sm:pr-8">
+              <div className="mb-3" style={eyebrowStyle}>
+                What this is
+              </div>
+              <p
+                className="text-base sm:text-lg leading-[1.55] tracking-[-0.005em] italic"
+                style={{ ...serif, fontWeight: 400, ...textPrimary, ...haloSubtle }}
+              >
+                The state of the venture, and the state of the founders building their{" "}
+                <span className="bg-clip-text text-transparent" style={GOLD_TEXT_STYLE}>
+                  unique businesses
+                </span>{" "}
+                inside it. The dashboard updates as both evolve.
+              </p>
+            </div>
+
+            {/* — What's coming — */}
+            <div className="sm:pl-8">
+              <div className="mb-3" style={eyebrowStyle}>
+                What's coming
+              </div>
+              <p
+                className="text-base sm:text-lg leading-[1.55] tracking-[-0.005em] italic"
+                style={{ ...serif, fontWeight: 400, ...textPrimary, ...haloSubtle }}
+              >
+                Founders who advance through the journey will be able to{" "}
+                <span className="bg-clip-text text-transparent" style={GOLD_TEXT_STYLE}>
+                  fork this entire platform
+                </span>{" "}
+                and offer it to their community — same engine, same methodology, their own tribe and brand. Every active founder becomes a node.
+              </p>
+              <p
+                className="mt-3 text-[12px] uppercase tracking-[0.18em]"
+                style={{ ...textMutedSoft, fontWeight: 500 }}
+              >
+                Released in the next version.
+              </p>
+            </div>
+          </div>
+        </section>
+
         {/* ═══════ KPI GRID ═══════ */}
         <section className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-3" id="kpi-grid">
           {KPIS.map((kpi, i) => (

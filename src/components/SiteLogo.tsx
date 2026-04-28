@@ -29,9 +29,14 @@ const SiteLogo = () => {
         // wordmark doesn't double up.
         "/dashboard",
         "/ai-os",
+        // Day 56 (Sasha 2026-04-28): /library now lives inside GameShellV2
+        // and is mapped to the LEARN space — the SpacesRail wordmark + the
+        // top-right home glyph already brand the page. Drop the global
+        // SiteLogo here too so the wordmark doesn't triple up.
+        "/library",
         "/prompt", // legacy redirect target — harmless but tidy
     ];
-    const exactHidden = ["/", "/ignite", "/my-result", "/path", "/auth", "/dashboard", "/ai-os", "/prompt"];
+    const exactHidden = ["/", "/ignite", "/my-result", "/path", "/auth", "/dashboard", "/ai-os", "/library", "/prompt"];
     if (hidden.some(p => location.pathname.startsWith(p)) || exactHidden.includes(location.pathname)) return null;
 
     return (

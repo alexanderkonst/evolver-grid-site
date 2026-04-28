@@ -1,13 +1,18 @@
 import GameShellV2 from "@/components/game/GameShellV2";
-import { GrowSpaceContent } from "@/pages/Library";
+import { LearnSpaceContent } from "@/pages/Library";
 
 /**
- * PracticeLibrary — Grow Space inside the GameShell (/game/learn/library).
- * Uses the same GrowSpaceContent as /library but wrapped in GameShellV2.
+ * PracticeLibrary — Authed Library inside the LEARN space.
+ * Routes: /game/learn/library and /game/learn/library/:stepId.
+ *
+ * Day 56 (Sasha 2026-04-28): Library is now driven by pane 2 navigation.
+ * `LearnSpaceContent` reads `:stepId` from the URL and renders only that
+ * step's content in pane 3. Without a stepId, it falls back to the index
+ * grid.
  */
 const PracticeLibrary = () => (
     <GameShellV2>
-        <GrowSpaceContent />
+        <LearnSpaceContent pathBase="/game/learn/library" />
     </GameShellV2>
 );
 
