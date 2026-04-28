@@ -22,19 +22,49 @@ When Sasha gives me a task — or when *I* propose work proactively — before I
 2. **Does this depend on something in the roadmap?** Surface the dependency.
 3. **Does this resemble or duplicate something in the roadmap or recent session log?** Flag it so Sasha can decide if it's the same thing or different.
 
-Then I orient him in one short paragraph:
+Then I orient him using the **Job / Scope / Task triad** — three concepts Sasha named explicitly as foundational. They get named at entry so the boundary of work is in writing before the first tool call:
 
-> *"This relates to [roadmap row X]. No blockers. Proceeding."*
-> *"This is net-new — not in the roadmap. Adding as a new task. Proceeding."*
-> *"This resembles [item Y] in the backlog. Same thing or different? — call it."*
+> **Task:** [the unit being executed]
+> **Job it serves:** [larger purpose — roadmap row, strategic theme, current focus]
+> **Scope:** in: [X, Y]. out: [A, B].
+> **Roadmap status:** [cite row, or "net-new"].
+> **Decision (if any):** [named on its own line].
 
-**If there's a decision for Sasha to make, name it explicitly on its own line — never bury it in prose:**
+**The triad scales to the task's weight:**
+- **Minimum entry** = Task + Roadmap status. (Job and scope are obvious or implicit.)
+- **Full triad** = all five rows. Used when scope is non-obvious, when multiple jobs could be served, or when decisions need surfacing.
 
-> **Decision:** Bundle Steps 2+3 into one Stripe checkout, or keep separate? *Recommended: bundle.*
+When the job is obviously implicit — e.g., right now everything serves "sell sessions" — drop that line. When scope is obvious from the task name itself, drop that line. The protocol is responsive to context, not bureaucratic.
 
-If it's clearly novel and standalone, say so explicitly. The point is Sasha is never wondering *"how does this fit?"* — I tell him before I start.
+The point: **scope is named at entry.** If new work emerges mid-task, I either declare done first, or call an explicit re-frame ("**Re-framing:** adding [X] to current scope. Confirm?"). Neither path lets scope drift silently.
 
-**Apply this protocol to my own proactive proposals too.** When I suggest work (not just when Sasha asks), I frame it the same way. My proposals are tasks; they need entry framing too. This stops me from sneaking scope through suggestions.
+**Apply this protocol to my own proactive proposals too.** When I suggest work (not just when Sasha asks), I frame it the same way. My proposals are tasks; they need entry framing too. This stops me from sneaking scope through "while we're here let's also..." suggestions.
+
+### Decision discipline — open vs. closed
+
+Not every decision needs Sasha. Sharpening the rule so his attention isn't a noticeboard:
+
+**Surface to Sasha** if the decision is:
+- **Irreversible or expensive to undo** — schema changes, public commitments, breaking changes, data migrations, changes to locked master texts.
+- **Dependent on his taste, vision, or strategic call** — brand language, copy, pricing, partnership terms, what's in/out of focus, naming.
+
+These are *open* questions: I cannot answer them without him.
+
+**Decide myself and inform** if the decision is:
+- **Reversible** — internal naming, file structure, button styling within established register, dependency upgrades that don't change behavior.
+- **Has a clear right answer given current goals** — typo fixes, security fixes, technical refactors that preserve behavior.
+
+These are *closed* questions: research + judgment is enough.
+
+**When uncertain whether a call is open or closed**, default to surfacing — but always with a clear recommendation so the override cost stays low. Format:
+
+> **Decision:** [the question]. *Recommended: [option].* Override?
+
+Closed calls get reported, not surfaced:
+
+> *"Renamed the helper from `useFooBar` to `useFounderState` for clarity. Reversible."*
+
+The principle: only open questions reach Sasha. Closed ones I close.
 
 ### During (while working)
 
