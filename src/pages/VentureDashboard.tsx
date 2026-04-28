@@ -463,9 +463,14 @@ const VentureDashboard = () => {
           </p>
 
           <div className="relative">
-            {/* Timeline line */}
+            {/* Day 53 (Sasha 2026-04-27): timeline line + nodes hidden on
+                mobile. The amber circles + vertical line on the left of
+                each card weren't aesthetically pleasing and didn't carry
+                meaningful function on a stacked single-column layout.
+                Desktop keeps the timeline visualization where it earns
+                its place via the alternating left/right card layout. */}
             <div
-              className="absolute left-[7px] md:left-1/2 top-0 bottom-0 w-px"
+              className="hidden md:block absolute left-[7px] md:left-1/2 top-0 bottom-0 w-px"
               style={{
                 background:
                   "linear-gradient(to bottom, var(--skin-accent-gold, #b8860b)40, var(--skin-accent-gold, #b8860b)20, transparent)",
@@ -479,9 +484,9 @@ const VentureDashboard = () => {
                   className={`relative flex items-start gap-6 ${i % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"}`}
                   id={`timeline-${t.name.toLowerCase()}-${t.day}`}
                 >
-                  {/* Node */}
+                  {/* Node — desktop only (see comment above) */}
                   <div
-                    className="absolute left-[7px] md:left-1/2 w-[15px] h-[15px] rounded-full -translate-x-1/2 mt-1.5 z-10"
+                    className="hidden md:block absolute left-[7px] md:left-1/2 w-[15px] h-[15px] rounded-full -translate-x-1/2 mt-1.5 z-10"
                     style={{
                       background: "var(--skin-accent-gold, #b8860b)",
                       boxShadow:
@@ -490,7 +495,7 @@ const VentureDashboard = () => {
                   />
 
                   {/* Content */}
-                  <div className={`ml-8 md:ml-0 md:w-[45%] ${i % 2 === 0 ? "md:pr-10 md:text-right" : "md:pl-10"}`}>
+                  <div className={`md:w-[45%] ${i % 2 === 0 ? "md:pr-10 md:text-right" : "md:pl-10"}`}>
                     <div className="rounded-lg p-4" style={cardStyle}>
                       <div
                         className="flex items-center gap-2 mb-1"
