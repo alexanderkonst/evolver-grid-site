@@ -19,12 +19,13 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import GameShellV2 from "@/components/game/GameShellV2";
 import { Button } from "@/components/ui/button";
-import { Sparkles, Star, Zap, Target, Quote, Download, ExternalLink } from "lucide-react";
+import { Sparkles, Star, Zap, Target, Quote, Download, ExternalLink, ArrowRight } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { getOrCreateGameProfileId } from "@/lib/gameProfile";
 import { generateZogPdf } from "@/modules/zone-of-genius/generateZogPdf";
 import type { AppleseedData as FullAppleseedData } from "@/modules/zone-of-genius/appleseedGenerator";
 import type { ExcaliburData } from "@/modules/zone-of-genius/excaliburGenerator";
+import { CTA_SMALL_CAPS_STYLE, igniteLogo } from "@/lib/landingDesign";
 
 // Light-glass + dark-text palette, per the blueprint.
 const INK = "#0a1628";
@@ -574,18 +575,85 @@ const ZoneOfGeniusOverview = () => {
                     </div>
                 </section>
 
-                {/* ═══ Build CTA — gold-bordered like the Mastery CTA ═══ */}
-                <section className="liquid-glass-strong rounded-2xl p-6 text-center space-y-3">
-                    <p className="text-sm" style={{ color: INK_BODY }}>
-                        Ready to turn your genius into a business?
-                    </p>
-                    <Button
-                        variant="wabi-primary"
-                        onClick={() => navigate("/game/me/genius-business")}
+                {/* ═══ Post-reveal funnel — same 2-button pattern as
+                    AppleseedDisplay (Day 53, Sasha 2026-04-27).
+                    Primary  → "Build a business off your top talent" →
+                              /ignite#pricing-section (Top Talent
+                              Business Session purchase). NOT the
+                              Excalibur module.
+                    Secondary → "See the exact playbook" → /playbook
+                                (matches landing secondary verbatim).
+                    Same canonical funnel CTAs surface here so a returning
+                    user with a saved Top Talent profile sees the exact
+                    same next-move logic they saw post-reveal — visual
+                    + verbal coherence across the whole funnel. ═══ */}
+                <section className="liquid-glass-strong rounded-2xl p-6 text-center space-y-4 max-w-md mx-auto">
+                    <div className="space-y-1">
+                        <p className="text-sm sm:text-base font-medium" style={{ color: INK_BODY }}>
+                            We do it together in 2 hours.
+                        </p>
+                        <p className="text-sm sm:text-base font-medium" style={{ color: INK_BODY }}>
+                            Or you don't pay.
+                        </p>
+                    </div>
+
+                    {/* PRIMARY — Top Talent Business Session */}
+                    <a
+                        href="/ignite#pricing-section"
+                        className="group liquid-glass-dark cta-breath w-full rounded-full inline-flex items-center justify-center gap-2 sm:gap-2.5 px-4 sm:px-6 py-3 sm:py-3.5 max-w-full text-sm sm:text-base font-semibold transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+                        style={{
+                            fontFamily: "'Cormorant Garamond', serif",
+                            color: "var(--skin-cta-text, rgba(245,245,250,0.98))",
+                            backgroundImage:
+                                "var(--skin-cta-bg, linear-gradient(135deg, rgba(10,22,40,0.72) 0%, rgba(26,30,58,0.62) 50%, rgba(10,22,40,0.72) 100%))",
+                            boxShadow:
+                                "var(--skin-cta-shadow, 0 0 18px -4px rgba(240,194,127,0.45), 0 10px 24px -10px rgba(10,22,40,0.5))",
+                            textShadow:
+                                "var(--skin-cta-text-shadow, 0 0 16px rgba(240,194,127,0.25), 0 1px 2px rgba(0,0,0,0.35))",
+                        }}
                     >
-                        <Sparkles className="w-4 h-4 mr-2" />
-                        Build My Unique Business
-                    </Button>
+                        <img
+                            src={igniteLogo}
+                            alt=""
+                            aria-hidden="true"
+                            className="h-4 w-auto opacity-80 transition-opacity group-hover:opacity-100 flex-shrink-0"
+                            style={{
+                                filter: "drop-shadow(0 0 6px rgba(244, 212, 114, 0.45))",
+                                animation: "gentle-spin 60s linear infinite",
+                                willChange: "transform",
+                                transformOrigin: "center",
+                            }}
+                            draggable={false}
+                        />
+                        <span style={CTA_SMALL_CAPS_STYLE} className="text-center">
+                            Build a business off your top talent
+                        </span>
+                        <ArrowRight
+                            aria-hidden="true"
+                            className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 flex-shrink-0"
+                        />
+                    </a>
+
+                    <p
+                        className="text-center text-xs italic"
+                        style={{ color: "var(--skin-text-muted-soft, rgba(26,30,58,0.62))" }}
+                    >
+                        Or read the methodology first.
+                    </p>
+
+                    {/* SECONDARY — See the exact playbook */}
+                    <a
+                        href="/playbook"
+                        className="w-full liquid-glass rounded-full inline-flex items-center justify-center px-6 py-3 whitespace-nowrap text-base font-medium tracking-[0.01em] transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+                        style={{
+                            fontFamily: "'Cormorant Garamond', serif",
+                            color: "var(--skin-link-secondary, rgba(26,30,58,0.85))",
+                            textShadow:
+                                "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
+                        }}
+                    >
+                        See the exact playbook
+                    </a>
                 </section>
             </div>
         </GameShellV2>
