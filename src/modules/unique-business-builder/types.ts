@@ -216,6 +216,15 @@ export type UniqueBusinessState = {
   pendingImprovement: { artifact_key: ArtifactKey; result: ImproveResult } | null;
   isImproving: ArtifactKey | null;
   isGenerating: ArtifactKey | null;
+  /**
+   * Day 53 night iter 3 (Sasha 2026-04-27): true while the initial
+   * artifacts fetch is in flight. Lets surfaces (e.g. CanvasOverviewScreen)
+   * distinguish "loading — don't render anything yet" from "fresh canvas
+   * with zero artifacts — show empty state." Without this, the empty
+   * state would flash for ~500ms on every page load before real data
+   * arrives. Flips to false once the first fetch resolves (success or fail).
+   */
+  isInitializing: boolean;
 
   // Derived
   lockedCount: number;

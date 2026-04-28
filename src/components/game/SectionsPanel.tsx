@@ -5,6 +5,10 @@ import { ChevronRight, ChevronDown, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { supabase } from "@/integrations/supabase/client";
 import { PLAYBOOK_STEPS } from "@/data/playbookSteps";
+// Day 53 night iter 3 (Sasha 2026-04-27): pane 2 phase progress decorations.
+// Hook returns null when not on /ubb*, so this import is free on every
+// other route — the hook is the gate, not a wrapper.
+import { useCanvasProgressLite } from "@/modules/unique-business-builder/useCanvasProgressLite";
 import {
     Tooltip,
     TooltipContent,
@@ -27,6 +31,14 @@ interface Section {
     subSections?: SubSection[];
     locked?: boolean;
     lockedHint?: string;
+    /**
+     * Day 53 night iter 3 (Sasha 2026-04-27): right-aligned progress
+     * fraction for UBB phase rows ("6/7", "0/3"). When set, the row
+     * also renders a thin gold progress bar beneath the label —
+     * visible at-a-glance signal of how locked each phase is. JOURNEY
+     * and ME panes don't use this field, so its absence is harmless.
+     */
+    progress?: { locked: number; total: number };
 }
 
 interface SpaceSections {
@@ -239,14 +251,35 @@ interface SectionsPanelProps {
  * The Dossier is reachable from inside /ubb (as a publication exit),
  * not from pane 2 — it's an output, not a navigation peer.
  */
-const buildUbbSections = (): Section[] => [
-    { id: "ubb-canvas",         label: "1. Canvas",            path: "/ubb" },
-    { id: "ubb-session",        label: "2. 1st Session",       path: "/ubb/session" },
-    { id: "ubb-marketing",      label: "3. Marketing",         path: "/ubb/marketing" },
-    { id: "ubb-distribution",   label: "4. Distribution",      path: "/ubb/distribution" },
-    { id: "ubb-communications", label: "5. Communications",    path: "/ubb/communications" },
-    { id: "ubb-landing",        label: "6. Landing Page",      path: "/ubb/landing-page" },
-];
+/**
+ * Day 53 night iter 3 (Sasha 2026-04-27): UBB phase rows now carry
+ * live progress (e.g. "6/7" for Canvas) when the founder is inside
+ * /ubb*. Progress is fed by `useCanvasProgressLite` — a targeted
+ * Supabase fetch that only runs on /ubb routes. Outside /ubb the
+ * `progress` field is undefined and rows render plain.
+ *
+ * Per-phase total is taken from the live data, not hardcoded — keeps
+ * the row labels honest if `ALL_ARTIFACT_KEYS` ever shifts.
+ */
+const buildUbbSections = (
+    progress: ReturnType<typeof useCanvasProgressLite>,
+): Section[] => {
+    const get = (phaseKey: string): { locked: number; total: number } | undefined => {
+        if (!progress || progress.isLoading) return undefined;
+        const p = progress.perPhase[phaseKey];
+        // Don't render the bar if total is zero (would imply taxonomy drift)
+        if (!p || p.total === 0) return undefined;
+        return { locked: p.locked, total: p.total };
+    };
+    return [
+        { id: "ubb-canvas",         label: "1. Canvas",            path: "/ubb",                progress: get("canvas") },
+        { id: "ubb-session",        label: "2. 1st Session",       path: "/ubb/session",        progress: get("session") },
+        { id: "ubb-marketing",      label: "3. Marketing",         path: "/ubb/marketing",      progress: get("marketing") },
+        { id: "ubb-distribution",   label: "4. Distribution",      path: "/ubb/distribution",   progress: get("distribution") },
+        { id: "ubb-communications", label: "5. Communications",    path: "/ubb/communications", progress: get("communications") },
+        { id: "ubb-landing",        label: "6. Landing Page",      path: "/ubb/landing-page",   progress: get("publication") },
+    ];
+};
 
 const buildJourneySections = (_currentPath: string): Section[] => {
     // Day 50 late (Sasha): five permanent rail items, no hide gating.

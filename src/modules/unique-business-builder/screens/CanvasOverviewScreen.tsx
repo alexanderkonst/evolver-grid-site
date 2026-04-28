@@ -35,13 +35,28 @@ import type { ArtifactKey } from "../types";
 import { getStepForArtifact } from "@/data/playbookArtifactMap";
 
 export default function CanvasOverviewScreen() {
-  const { artifacts, lockedCount, avgSpecificity, stalenessWarnings } = useUniqueBusiness();
+  const { artifacts, lockedCount, avgSpecificity, stalenessWarnings, isInitializing } = useUniqueBusiness();
   const navigate = useNavigate();
 
   const firstUnlocked = ALL_ARTIFACT_KEYS.find((k) => !artifacts[k]?.latestLocked) as
     | ArtifactKey
     | undefined;
   const totalArtifacts = ALL_ARTIFACT_KEYS.length;
+
+  // Day 53 night iter 3 (Sasha 2026-04-27): empty state trigger.
+  // A fresh founder lands on /ubb with NO artifacts generated yet —
+  // currently sees a wall of 19 "Not started" cards across 4 phase
+  // grids. That reads as a dim spreadsheet, not an invitation. When
+  // hasStarted is false (no artifact has any `latest` content yet),
+  // we render a focused "Begin here" surface instead of the grids.
+  // Once they generate even one artifact, the full grid view returns.
+  const hasStarted = ALL_ARTIFACT_KEYS.some((k) => !!artifacts[k]?.latest);
+
+  // Skeleton during the initial fetch — without this, the empty state
+  // would flash for a beat on every page load before real data arrives.
+  if (isInitializing) {
+    return <CanvasOverviewSkeleton />;
+  }
 
   return (
     <div className="mx-auto max-w-5xl space-y-10">
@@ -132,6 +147,183 @@ export default function CanvasOverviewScreen() {
         )}
       </section>
 
+      {/* ═══ EMPTY STATE — fresh canvas ═══
+          Replaces the phase grids when no artifact has been generated yet.
+          A focused "Begin with Uniqueness" card + a brief "what's ahead"
+          map of the 6 phases as plain text. Re-shows the full grid the
+          moment any artifact gets generated. */}
+      {!hasStarted && (
+        <section className="space-y-8 pt-2">
+          <div
+            className="relative overflow-hidden rounded-2xl px-7 py-8 text-center"
+            style={{
+              background: "var(--skin-card-bg, rgba(255, 255, 255, 0.65))",
+              border: "0.5px solid rgba(212, 175, 55, 0.45)",
+              boxShadow:
+                "0 0 24px -8px rgba(212, 175, 55, 0.30), 0 16px 40px -20px rgba(10, 22, 40, 0.18)",
+            }}
+          >
+            {/* Soft gold radial glow behind the begin card */}
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-0"
+              style={{
+                background:
+                  "radial-gradient(ellipse 60% 80% at 50% 50%, rgba(244, 212, 114, 0.10) 0%, rgba(244, 212, 114, 0) 70%)",
+              }}
+            />
+            <div className="relative space-y-5">
+              <div
+                style={{
+                  fontFamily: "'Cormorant Garamond', serif",
+                  fontWeight: 600,
+                  fontSize: "11px",
+                  letterSpacing: "0.24em",
+                  textTransform: "uppercase",
+                  color: "var(--skin-accent-gold, #b8860b)",
+                  textShadow: "var(--skin-accent-gold-glow, 0 0 8px rgba(240,194,127,0.55))",
+                }}
+              >
+                Begin here
+              </div>
+              <h2
+                className="leading-[1.1]"
+                style={{
+                  fontFamily: "'Cormorant Garamond', serif",
+                  fontWeight: 600,
+                  fontSize: "clamp(24px, 3vw, 32px)",
+                  letterSpacing: "-0.005em",
+                  color: "var(--skin-text-primary, #0b2a5a)",
+                  textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.7))",
+                }}
+              >
+                Start with your Uniqueness
+              </h2>
+              <p
+                className="mx-auto max-w-xl"
+                style={{
+                  fontFamily: "'Source Serif 4', serif",
+                  fontStyle: "italic",
+                  fontSize: "15px",
+                  lineHeight: 1.6,
+                  color: "var(--skin-text-body, rgba(11, 42, 90, 0.85))",
+                }}
+              >
+                Every artifact downstream — your tribe, your promise, your offer, your landing page — flows from how clearly you can name what only you do.
+                The first version comes from your Top Talent. You sharpen it from there.
+              </p>
+              <div className="pt-2">
+                <button
+                  onClick={() => navigate(`${UBB_ROOT}/${ARTIFACT_URL_SLUGS.uniqueness}`)}
+                  className="group relative inline-flex items-center gap-2.5 rounded-full px-7 py-3 transition-all duration-300 hover:translate-y-[-1px]"
+                  style={{
+                    background:
+                      "var(--skin-cta-bg, linear-gradient(135deg, rgba(10,22,40,0.82) 0%, rgba(18,28,56,0.72) 50%, rgba(10,22,40,0.82) 100%))",
+                    color: "var(--skin-cta-text, rgba(245, 245, 250, 0.98))",
+                    border: "0.5px solid var(--skin-cta-border, rgba(255, 255, 255, 0.14))",
+                    boxShadow:
+                      "var(--skin-cta-shadow, 0 0 0 1px rgba(212, 175, 55, 0.28), 0 0 18px -4px rgba(240, 194, 127, 0.45), 0 0 40px -8px rgba(212, 175, 55, 0.28), 0 10px 24px -10px rgba(10, 22, 40, 0.55))",
+                    backdropFilter: "blur(14px) saturate(160%)",
+                    WebkitBackdropFilter: "blur(14px) saturate(160%)",
+                  }}
+                >
+                  <span
+                    aria-hidden="true"
+                    style={{
+                      color: "var(--skin-cta-icon, rgba(244, 212, 114, 0.98))",
+                      textShadow: "var(--skin-cta-icon-shadow, 0 0 12px rgba(244,212,114,0.8))",
+                      fontSize: "16px",
+                    }}
+                  >
+                    ✦
+                  </span>
+                  <span
+                    style={{
+                      fontFamily: "'Cormorant Garamond', serif",
+                      fontWeight: 600,
+                      letterSpacing: "0.14em",
+                      textTransform: "uppercase",
+                      fontSize: "13px",
+                      textShadow: "var(--skin-cta-text-shadow, 0 0 16px rgba(240,194,127,0.28))",
+                    }}
+                  >
+                    Begin with Uniqueness
+                  </span>
+                  <span
+                    aria-hidden="true"
+                    className="transition-transform duration-300 group-hover:translate-x-0.5"
+                    style={{ color: "var(--skin-cta-icon, rgba(244, 212, 114, 0.98))" }}
+                  >
+                    →
+                  </span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* What's ahead — plain-text map of the 6 phases, no grids */}
+          <div className="space-y-3">
+            <div
+              className="text-center"
+              style={{
+                fontFamily: "'Cormorant Garamond', serif",
+                fontWeight: 600,
+                fontSize: "10.5px",
+                letterSpacing: "0.24em",
+                textTransform: "uppercase",
+                color: "var(--skin-text-muted, rgba(11, 42, 90, 0.55))",
+              }}
+            >
+              What's ahead
+            </div>
+            <ol
+              className="mx-auto max-w-xl space-y-2 text-center"
+              style={{
+                fontFamily: "'Source Serif 4', serif",
+                fontSize: "14.5px",
+                lineHeight: 1.55,
+                color: "var(--skin-text-body, rgba(11, 42, 90, 0.78))",
+              }}
+            >
+              <li>
+                <span style={{ color: "var(--skin-accent-gold, #b8860b)", fontWeight: 600, fontFamily: "'DM Sans', system-ui, sans-serif", fontSize: "12px" }}>1</span>
+                {"  Canvas — uniqueness, myth, tribe, pain, promise, lead magnet, value ladder."}
+              </li>
+              <li>
+                <span style={{ color: "var(--skin-accent-gold, #b8860b)", fontWeight: 600, fontFamily: "'DM Sans', system-ui, sans-serif", fontSize: "12px" }}>2</span>
+                {"  First Session — the transformation a paying client walks out with."}
+              </li>
+              <li>
+                <span style={{ color: "var(--skin-accent-gold, #b8860b)", fontWeight: 600, fontFamily: "'DM Sans', system-ui, sans-serif", fontSize: "12px" }}>3</span>
+                {"  Marketing — core belief, packaging, frictionless purchase."}
+              </li>
+              <li>
+                <span style={{ color: "var(--skin-accent-gold, #b8860b)", fontWeight: 600, fontFamily: "'DM Sans', system-ui, sans-serif", fontSize: "12px" }}>4</span>
+                {"  Distribution — how the right people find you."}
+              </li>
+              <li>
+                <span style={{ color: "var(--skin-accent-gold, #b8860b)", fontWeight: 600, fontFamily: "'DM Sans', system-ui, sans-serif", fontSize: "12px" }}>5</span>
+                {"  Communications — surface inventory, tuning fork, golden DM."}
+              </li>
+              <li>
+                <span style={{ color: "var(--skin-accent-gold, #b8860b)", fontWeight: 600, fontFamily: "'DM Sans', system-ui, sans-serif", fontSize: "12px" }}>6</span>
+                {"  Landing Page — the public surface where strangers convert."}
+              </li>
+            </ol>
+            <p
+              className="pt-2 text-center italic"
+              style={{
+                fontFamily: "'Source Serif 4', serif",
+                fontSize: "13px",
+                color: "var(--skin-text-muted, rgba(11, 42, 90, 0.5))",
+              }}
+            >
+              The grid view returns the moment you generate your first artifact.
+            </p>
+          </div>
+        </section>
+      )}
+
       {stalenessWarnings.length > 0 && (
         <div
           className="relative rounded-2xl p-4"
@@ -166,71 +358,81 @@ export default function CanvasOverviewScreen() {
         </div>
       )}
 
-      {/* ═══ Phase sections ═══ */}
-      <PhaseSection title="Canvas" keys={PHASE_A_CANVAS as readonly ArtifactKey[]} />
-      <PhaseSection title="Session Bridge" keys={PHASE_B_SESSION as readonly ArtifactKey[]} />
-      <PhaseSection title="Market Path" keys={PHASE_C_MARKET as readonly ArtifactKey[]} />
-      <PhaseSection title="Publication" keys={PHASE_D_PUBLICATION as readonly ArtifactKey[]} />
+      {/* ═══ Phase sections ═══ rendered only after the canvas has been started */}
+      {hasStarted && (
+        <>
+          <PhaseSection title="Canvas" keys={PHASE_A_CANVAS as readonly ArtifactKey[]} />
+          <PhaseSection title="Session Bridge" keys={PHASE_B_SESSION as readonly ArtifactKey[]} />
+          <PhaseSection title="Market Path" keys={PHASE_C_MARKET as readonly ArtifactKey[]} />
+          <PhaseSection title="Publication" keys={PHASE_D_PUBLICATION as readonly ArtifactKey[]} />
+        </>
+      )}
 
-      {/* ═══ Dossier panel ═══ */}
-      <div
-        className="relative overflow-hidden rounded-2xl px-5 py-4"
-        style={{
-          background: "var(--skin-card-bg, rgba(255, 255, 255, 0.45))",
-          border: "0.5px solid var(--skin-card-border, rgba(26, 30, 58, 0.08))",
-          boxShadow: "var(--skin-card-shadow, 0 4px 16px -8px rgba(10, 22, 40, 0.12), 0 16px 40px -20px rgba(10, 22, 40, 0.18))",
-        }}
-      >
-        <div className="flex items-center justify-between gap-4">
-          <div className="min-w-0">
-            <div
-              style={{
-                fontFamily: "'Cormorant Garamond', serif",
-                fontWeight: 600,
-                fontSize: "20px",
-                color: "var(--skin-text-primary, #0b2a5a)",
-                letterSpacing: "-0.005em",
-              }}
-            >
-              Your Dossier
-            </div>
-            <div
-              className="mt-0.5"
-              style={{
-                fontFamily: "'Source Serif 4', serif",
-                fontStyle: "italic",
-                fontSize: "13.5px",
-                color: "var(--skin-text-muted, rgba(11, 42, 90, 0.62))",
-              }}
-            >
-              Composed overview of all {totalArtifacts} artifacts.{" "}
-              {lockedCount === totalArtifacts
-                ? "Ready to publish."
-                : `${totalArtifacts - lockedCount} more to lock first.`}
-            </div>
-          </div>
-          <Link
-            to={ROUTES.dossier}
-            className="inline-flex flex-shrink-0 items-center rounded-full px-4 py-2 transition-all duration-200 hover:translate-y-[-1px]"
+      {/* ═══ Dossier panel ═══ — hidden until the canvas has been started */}
+      {hasStarted && (
+        <>
+          <div
+            className="relative overflow-hidden rounded-2xl px-5 py-4"
             style={{
-              fontFamily: "'Cormorant Garamond', serif",
-              fontWeight: 600,
-              letterSpacing: "0.14em",
-              textTransform: "uppercase",
-              fontSize: "11.5px",
-              color: "var(--skin-text-primary, #0b2a5a)",
-              background: "rgba(255, 255, 255, 0.68)",
-              border: "0.5px solid rgba(212, 175, 55, 0.45)",
-              boxShadow: "0 0 12px -4px rgba(212, 175, 55, 0.30)",
+              background: "var(--skin-card-bg, rgba(255, 255, 255, 0.45))",
+              border: "0.5px solid var(--skin-card-border, rgba(26, 30, 58, 0.08))",
+              boxShadow: "var(--skin-card-shadow, 0 4px 16px -8px rgba(10, 22, 40, 0.12), 0 16px 40px -20px rgba(10, 22, 40, 0.18))",
             }}
           >
-            Open Dossier
-          </Link>
-        </div>
-      </div>
+            <div className="flex items-center justify-between gap-4">
+              <div className="min-w-0">
+                <div
+                  style={{
+                    fontFamily: "'Cormorant Garamond', serif",
+                    fontWeight: 600,
+                    fontSize: "20px",
+                    color: "var(--skin-text-primary, #0b2a5a)",
+                    letterSpacing: "-0.005em",
+                  }}
+                >
+                  Your Dossier
+                </div>
+                <div
+                  className="mt-0.5"
+                  style={{
+                    fontFamily: "'Source Serif 4', serif",
+                    fontStyle: "italic",
+                    fontSize: "13.5px",
+                    color: "var(--skin-text-muted, rgba(11, 42, 90, 0.62))",
+                  }}
+                >
+                  Composed overview of all {totalArtifacts} artifacts.{" "}
+                  {lockedCount === totalArtifacts
+                    ? "Ready to publish."
+                    : `${totalArtifacts - lockedCount} more to lock first.`}
+                </div>
+              </div>
+              <Link
+                to={ROUTES.dossier}
+                className="inline-flex flex-shrink-0 items-center rounded-full px-4 py-2 transition-all duration-200 hover:translate-y-[-1px]"
+                style={{
+                  fontFamily: "'Cormorant Garamond', serif",
+                  fontWeight: 600,
+                  letterSpacing: "0.14em",
+                  textTransform: "uppercase",
+                  fontSize: "11.5px",
+                  color: "var(--skin-text-primary, #0b2a5a)",
+                  background: "rgba(255, 255, 255, 0.68)",
+                  border: "0.5px solid rgba(212, 175, 55, 0.45)",
+                  boxShadow: "0 0 12px -4px rgba(212, 175, 55, 0.30)",
+                }}
+              >
+                Open Dossier
+              </Link>
+            </div>
+          </div>
+        </>
+      )}
 
-      {/* ═══ Continue CTA ═══ Ceremonial pill matching landing CTAs */}
-      {firstUnlocked && (
+      {/* ═══ Continue CTA ═══ Ceremonial pill matching landing CTAs.
+          Hidden in empty state (the Begin-with-Uniqueness card owns
+          the lone primary action when nothing has been started). */}
+      {hasStarted && firstUnlocked && (
         <div className="flex justify-center pt-4">
           <button
             onClick={() => navigate(`${UBB_ROOT}/${ARTIFACT_URL_SLUGS[firstUnlocked]}`)}
@@ -276,6 +478,57 @@ export default function CanvasOverviewScreen() {
           </button>
         </div>
       )}
+    </div>
+  );
+}
+
+/* ─── Skeleton — initial fetch placeholder ───────────────────────── */
+//
+// Shown only during the brief window between mount and first data
+// arrival (~200-500ms typical). Mirrors the eventual layout — hero
+// strip, four phase rules with grid placeholders — so the page
+// doesn't visibly relayout when data lands. Pulse animation honors
+// prefers-reduced-motion via Tailwind's `motion-safe:` prefix.
+
+function CanvasOverviewSkeleton() {
+  const skBlock = (h: string, w: string, opacity = 1): React.CSSProperties => ({
+    height: h,
+    width: w,
+    background:
+      "linear-gradient(90deg, rgba(11, 42, 90, 0.04) 0%, rgba(11, 42, 90, 0.10) 50%, rgba(11, 42, 90, 0.04) 100%)",
+    borderRadius: "8px",
+    opacity,
+  });
+
+  return (
+    <div className="mx-auto max-w-5xl space-y-10">
+      <section className="space-y-3">
+        <div className="motion-safe:animate-pulse" style={skBlock("44px", "65%")} />
+        <div className="motion-safe:animate-pulse" style={skBlock("18px", "85%", 0.7)} />
+        <div className="motion-safe:animate-pulse" style={skBlock("18px", "55%", 0.7)} />
+        <div className="flex gap-6 pt-2">
+          <div className="motion-safe:animate-pulse" style={skBlock("28px", "120px")} />
+          <div className="motion-safe:animate-pulse" style={skBlock("28px", "180px", 0.7)} />
+        </div>
+      </section>
+
+      {[0, 1, 2, 3].map((i) => (
+        <section key={i} className="space-y-3">
+          <div className="motion-safe:animate-pulse" style={skBlock("16px", "200px")} />
+          <div
+            className="h-px w-full"
+            style={{
+              background:
+                "linear-gradient(90deg, rgba(212, 175, 55, 0.20) 0%, rgba(26, 30, 58, 0.05) 70%, rgba(26, 30, 58, 0) 100%)",
+            }}
+          />
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 pt-1">
+            {[0, 1, 2].map((j) => (
+              <div key={j} className="motion-safe:animate-pulse" style={skBlock("78px", "100%", 0.85 - j * 0.05)} />
+            ))}
+          </div>
+        </section>
+      ))}
     </div>
   );
 }

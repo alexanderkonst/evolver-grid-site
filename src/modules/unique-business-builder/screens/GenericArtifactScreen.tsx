@@ -79,13 +79,21 @@ export default function GenericArtifactScreen() {
 }
 
 export function ArtifactView({ artifactKey }: { artifactKey: ArtifactKey }) {
-  const { artifacts, generateArtifact, isGenerating, lockArtifact, unlockArtifact, updateArtifactScore } = useUniqueBusiness();
+  const { artifacts, generateArtifact, isGenerating, lockArtifact, unlockArtifact, updateArtifactScore, isInitializing } = useUniqueBusiness();
   const state = artifacts[artifactKey];
   const latest = state?.latest;
   const isLocked = !!state?.latestLocked;
   const thisIsGenerating = isGenerating === artifactKey;
 
   const nextKey = findNextUnlocked(artifactKey, artifacts);
+
+  // Day 53 night iter 3 (Sasha 2026-04-27): skeleton during initial fetch.
+  // Prevents the "Nothing here yet — Generate your first version" empty
+  // state from flashing for ~500ms before real data arrives, which would
+  // confuse a returning founder who already generated this artifact.
+  if (isInitializing) {
+    return <ArtifactSkeleton label={ARTIFACT_LABELS[artifactKey]} />;
+  }
 
   return (
     <div className="mx-auto max-w-3xl space-y-8">
@@ -307,6 +315,55 @@ const ceremonialIcon: React.CSSProperties = {
   textShadow: "var(--skin-cta-icon-shadow, 0 0 12px rgba(244,212,114,0.8))",
   fontSize: "16px",
 };
+
+/* ─── Skeleton — initial fetch placeholder ───────────────────────── */
+
+function ArtifactSkeleton({ label }: { label: string }) {
+  const skBlock = (h: string, w: string, opacity = 1): React.CSSProperties => ({
+    height: h,
+    width: w,
+    background:
+      "linear-gradient(90deg, rgba(11, 42, 90, 0.04) 0%, rgba(11, 42, 90, 0.10) 50%, rgba(11, 42, 90, 0.04) 100%)",
+    borderRadius: "8px",
+    opacity,
+  });
+
+  return (
+    <div className="mx-auto max-w-3xl space-y-8">
+      {/* Real title — keeps the user oriented during the load */}
+      <h1
+        className="leading-[1.05]"
+        style={{
+          fontFamily: "'Cormorant Garamond', serif",
+          fontWeight: 600,
+          fontSize: "clamp(28px, 3.5vw, 36px)",
+          letterSpacing: "-0.005em",
+          color: "var(--skin-text-primary, #0b2a5a)",
+          textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.7))",
+        }}
+      >
+        {label}
+      </h1>
+      <div
+        className="space-y-4 rounded-2xl px-6 py-6"
+        style={{
+          background: "var(--skin-card-bg, rgba(255, 255, 255, 0.65))",
+          border: "0.5px solid var(--skin-card-border, rgba(26, 30, 58, 0.08))",
+          boxShadow:
+            "var(--skin-card-shadow, 0 4px 16px -8px rgba(10, 22, 40, 0.12), 0 16px 40px -20px rgba(10, 22, 40, 0.18))",
+        }}
+      >
+        <div className="motion-safe:animate-pulse" style={skBlock("12px", "120px")} />
+        <div className="space-y-2 pt-2">
+          <div className="motion-safe:animate-pulse" style={skBlock("14px", "92%", 0.8)} />
+          <div className="motion-safe:animate-pulse" style={skBlock("14px", "78%", 0.8)} />
+          <div className="motion-safe:animate-pulse" style={skBlock("14px", "85%", 0.8)} />
+          <div className="motion-safe:animate-pulse" style={skBlock("14px", "60%", 0.8)} />
+        </div>
+      </div>
+    </div>
+  );
+}
 
 /* ─── Recursive content renderer ─────────────────────────────────── */
 //

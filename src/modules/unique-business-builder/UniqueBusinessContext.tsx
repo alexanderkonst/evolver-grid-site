@@ -158,53 +158,66 @@ export function UniqueBusinessProvider({ children }: { children: ReactNode }) {
   const [userId, setUserId] = useState<string | null>(null);
   const [zogSnapshot, setZogSnapshot] = useState<Record<string, unknown> | null>(null);
   const [excaliburData, setExcaliburData] = useState<Record<string, unknown> | null>(null);
+  // Day 53 night iter 3 (Sasha 2026-04-27): tracks whether the initial
+  // artifacts fetch has completed. Without this, surfaces can't tell
+  // "loading" apart from "fresh user with zero artifacts" — both states
+  // have artifacts === {}. Flips to false in the finally-block of the
+  // initial fetch effect.
+  const [isInitializing, setIsInitializing] = useState(true);
 
   // Load user + ZoG + artifacts on mount
   useEffect(() => {
     let cancelled = false;
 
     (async () => {
-      const { data: userRes } = await supabase.auth.getUser();
-      const uid = userRes.user?.id ?? null;
-      if (cancelled) return;
-      setUserId(uid);
-      if (!uid) return;
-
-      // Load latest ZoG snapshot — Day 51 (Sasha 2026-04-25): the schema
-      // uses profile_id (FK to game_profiles), not user_id. Resolve the
-      // game_profile first, then query zog_snapshots by profile_id.
-      // Was: .eq("user_id", uid) → 400 Bad Request, root context empty.
       try {
-        const profileId = await getOrCreateGameProfileId();
+        const { data: userRes } = await supabase.auth.getUser();
+        const uid = userRes.user?.id ?? null;
         if (cancelled) return;
-        const { data: zogRows } = await (supabase as any)
-          .from("zog_snapshots")
-          .select("*")
-          .eq("profile_id", profileId)
-          .order("created_at", { ascending: false })
-          .limit(1);
-        if (cancelled) return;
-        if (zogRows && zogRows[0]) {
-          setZogSnapshot(zogRows[0]);
-          setExcaliburData(zogRows[0].excalibur_data ?? null);
-        }
-      } catch (e) {
-        console.warn("[UBB] zog_snapshot load failed (non-fatal):", e);
-      }
+        setUserId(uid);
+        if (!uid) return;
 
-      // Load all artifact rows for this user (v2.0 keys only)
-      const { data: rows, error } = await (supabase as any)
-        .from("user_business_artifacts")
-        .select("*")
-        .eq("user_id", uid)
-        .in("artifact_key", ALL_ARTIFACT_KEYS as unknown as string[]);
-      if (cancelled) return;
-      if (error) {
-        console.error("Failed to load artifacts:", error);
-        toast.error("Couldn't load your canvas — please refresh.");
-        return;
+        // Load latest ZoG snapshot — Day 51 (Sasha 2026-04-25): the schema
+        // uses profile_id (FK to game_profiles), not user_id. Resolve the
+        // game_profile first, then query zog_snapshots by profile_id.
+        // Was: .eq("user_id", uid) → 400 Bad Request, root context empty.
+        try {
+          const profileId = await getOrCreateGameProfileId();
+          if (cancelled) return;
+          const { data: zogRows } = await (supabase as any)
+            .from("zog_snapshots")
+            .select("*")
+            .eq("profile_id", profileId)
+            .order("created_at", { ascending: false })
+            .limit(1);
+          if (cancelled) return;
+          if (zogRows && zogRows[0]) {
+            setZogSnapshot(zogRows[0]);
+            setExcaliburData(zogRows[0].excalibur_data ?? null);
+          }
+        } catch (e) {
+          console.warn("[UBB] zog_snapshot load failed (non-fatal):", e);
+        }
+
+        // Load all artifact rows for this user (v2.0 keys only)
+        const { data: rows, error } = await (supabase as any)
+          .from("user_business_artifacts")
+          .select("*")
+          .eq("user_id", uid)
+          .in("artifact_key", ALL_ARTIFACT_KEYS as unknown as string[]);
+        if (cancelled) return;
+        if (error) {
+          console.error("Failed to load artifacts:", error);
+          toast.error("Couldn't load your canvas — please refresh.");
+          return;
+        }
+        setArtifacts(buildArtifactStates((rows || []) as DbRow[]));
+      } finally {
+        // Day 53 night iter 3: flip isInitializing false whether the
+        // fetch succeeded, errored, or returned no auth — surfaces stop
+        // showing skeleton placeholders and render their resolved state.
+        if (!cancelled) setIsInitializing(false);
       }
-      setArtifacts(buildArtifactStates((rows || []) as DbRow[]));
     })();
 
     return () => {
@@ -702,6 +715,7 @@ export function UniqueBusinessProvider({ children }: { children: ReactNode }) {
     pendingImprovement,
     isImproving,
     isGenerating,
+    isInitializing,
     lockedCount: derived.lockedCount,
     unlockedCount: derived.unlockedCount,
     avgSpecificity: derived.avgSpecificity,

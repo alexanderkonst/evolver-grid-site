@@ -122,8 +122,11 @@ export function ImproveReviewDrawer() {
                 <ul className="mt-3 space-y-3">
                   {pending.result.roast_findings.map((f, i) => (
                     <li key={i}>
+                      {/* Day 53 night iter 3 (Sasha 2026-04-27): per-finding
+                          ✦ pruned — was decorative density (drawer already
+                          has ✦ on title and at the macro section level).
+                          Quadrant label alone carries the structural marker. */}
                       <div
-                        className="flex items-baseline gap-2"
                         style={{
                           fontFamily: "'Cormorant Garamond', serif",
                           fontSize: "11.5px",
@@ -133,7 +136,6 @@ export function ImproveReviewDrawer() {
                           fontWeight: 600,
                         }}
                       >
-                        <span aria-hidden="true" style={{ fontSize: "10px", opacity: 0.85 }}>✦</span>
                         {QUADRANT_LABELS[f.quadrant as RoastQuadrant] || f.quadrant}
                       </div>
                       <div
