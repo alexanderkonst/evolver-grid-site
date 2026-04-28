@@ -2427,6 +2427,22 @@ const AiOsPage = () => {
   // table; evolver doesn't, and Sasha can wire its own gating later if needed.
   const [isPremium, setIsPremium] = useState(false);
   const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
+  // Day 54 (Sasha 2026-04-28): mobile crash fix. /ai-os was OOM-killing
+  // iOS Chrome tabs (especially when opened from in-app browsers like
+  // WhatsApp where memory budget is already low). The combo of:
+  //   1. full-viewport HLS Mux stream (HlsVideo)
+  //   2. animated canvas StarryBackground (~80 stars × 60fps RAF)
+  //   3. cursor-glow tracker (state update per mousemove)
+  // ...was pushing first-paint over the renderer's tab memory ceiling.
+  // Detect coarse pointer / small viewport once at mount and skip all
+  // three heavy effects on mobile. Static gradient + vignette + noise
+  // overlays still carry the mood without the GPU/RAM cost.
+  const [isHeavyFxCapable] = useState(() => {
+    if (typeof window === 'undefined') return true;
+    const isCoarse = window.matchMedia?.('(pointer: coarse)').matches ?? false;
+    const isSmall = window.innerWidth < 1024;
+    return !(isCoarse || isSmall);
+  });
   const [customValues, setCustomValues] = useState<Record<string, Record<string, string>>>({});
   const [expandedPrompt, setExpandedPrompt] = useState<string | null>(null);
   // Day 50 (Sasha): per-suite "manual gearbox" toggle. The signature
