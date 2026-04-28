@@ -2294,6 +2294,23 @@ const HlsVideo = () => {
     const video = videoRef.current;
     if (!video) return;
 
+    // Day 54 r4 (Sasha 2026-04-28): bail out if our parent chain is hidden.
+    // GameShellV2 renders its `children` twice — once inside a desktop-only
+    // wrapper (`hidden lg:flex`) and once inside a mobile-only wrapper
+    // (`lg:hidden`). CSS hides one tree at a time, but React still mounts
+    // BOTH — so without this gate we end up with two HlsVideo instances
+    // both fetching the same HLS manifest and spinning up two iOS video
+    // decoders for the same stream. iOS WebKit chokes on the double decoder
+    // pressure ("half disappears, then crashes" symptom). We can't use
+    // `video.offsetParent === null` because the video is `position: fixed`
+    // (its offsetParent is always null regardless of visibility). Walk the
+    // parent chain instead, looking for any ancestor with `display: none`.
+    let ancestor: HTMLElement | null = video.parentElement;
+    while (ancestor) {
+      if (getComputedStyle(ancestor).display === 'none') return;
+      ancestor = ancestor.parentElement;
+    }
+
     // Ensure attributes for mobile autoplay
     video.muted = true;
     video.playsInline = true;
