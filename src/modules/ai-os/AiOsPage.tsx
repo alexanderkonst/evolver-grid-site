@@ -2640,7 +2640,7 @@ const AiOsPage = () => {
                     color: 'hsl(0 0% 100% / 0.96)',
                     textShadow: '0 0 20px rgba(132,96,234,0.4), 0 0 50px rgba(180,140,255,0.25), 0 0 16px rgba(0,0,0,0.95), 0 2px 8px rgba(0,0,0,0.9)',
                   }}>
-                    Instant install. Permanent level-up to AI cognition.
+                    Permanent level-up to AI cognition. Instant install.
                   </p>
                   <p className="text-sm font-light italic" style={{
                     color: 'hsl(242 30% 85% / 0.78)',
