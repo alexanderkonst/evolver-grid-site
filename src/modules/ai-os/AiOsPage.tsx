@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { Card } from "@/components/ui/card";
 import { toast } from "@/hooks/use-toast";
 import { Copy, Check, Send, Loader2, Youtube, Lock, ExternalLink, ArrowRight, Zap, Heart, BarChart3 } from "lucide-react";
@@ -2413,14 +2413,56 @@ const useParallax = (speed = 0.3, enabled = true) => {
   return ref;
 };
 
-const AiOsPage = () => {
-  // Per-page SEO — sets browser tab title on /ai-os.
+// Day 54 (Sasha 2026-04-28): `focusCategory` prop drives the per-suite
+// sub-routes (/ai-os/clarity, /ai-os/iteration, /ai-os/vibe-code,
+// /ai-os/design). When set, the page filters its visible suite sections
+// down to that one category — same hero, same Install spotlight, only
+// the focused suite's prompts below. The main /ai-os route passes no
+// prop and renders all suites as before.
+//
+// URL slug ↔ category id mapping (URL → internal):
+//   /ai-os/clarity    → "clarity"
+//   /ai-os/iteration  → "iteration"
+//   /ai-os/vibe-code  → "deployment"   ← URL renamed for resonance, internal id kept stable
+//   /ai-os/design     → "design"
+interface AiOsPageProps {
+  focusCategory?: "clarity" | "iteration" | "deployment" | "design";
+}
+
+const SUITE_TITLE: Record<string, string> = {
+  clarity: "Clarity Suite",
+  iteration: "Iteration Suite",
+  deployment: "Vibe Code Suite",
+  design: "Design Suite",
+};
+
+// URL slug for each suite. Keys are the internal category ids, values are
+// the URL path segment under /ai-os/. "deployment" → "vibe-code" is the
+// only renamed slug — internal id stays stable for back-compat with the
+// existing PROMPTS data + tocColors etc. Used by the chip-nav on /ai-os.
+const SUITE_SLUG: Record<string, string> = {
+  clarity: "clarity",
+  iteration: "iteration",
+  deployment: "vibe-code",
+  design: "design",
+};
+
+const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
+  // Per-page SEO — sets browser tab title on /ai-os and per-suite sub-routes.
   // Global og: tags from index.html still apply.
   useEffect(() => {
     const prev = document.title;
-    document.title = "AI OS — A different kind of cognition";
+    document.title = focusCategory
+      ? `${SUITE_TITLE[focusCategory]} — AI OS`
+      : "AI OS — A different kind of cognition";
     return () => { document.title = prev; };
-  }, []);
+  }, [focusCategory]);
+
+  // Day 54: when on a suite sub-route, only render that one category;
+  // when on /ai-os (no focus), render all five suites as before.
+  const visibleGroups = focusCategory
+    ? groupedPrompts.filter((g) => g.category === focusCategory)
+    : groupedPrompts;
 
   // Day 51 (Sasha 2026-04-25): force body + html bg to deep navy while
   // /ai-os is mounted. Aurora skin sets body bg to a light cream; the
@@ -2703,19 +2745,22 @@ const AiOsPage = () => {
                     Same model. Different conversation.
                   </p>
                 </div>
-                {/* Day 52 (Sasha 2026-04-26): licensing terms surfaced
-                    directly under the hero subtitle. Free for personal
-                    non-commercial use is the front door; commercial
-                    inquiries route via Telegram (t.me/integralevolution),
-                    same channel as the "Work with Aleksandr" CTA. Sized
-                    one notch below the italic subtitle so it reads as
-                    a contract line, not a third tagline. */}
+                {/* Day 54 (Sasha 2026-04-28): hero license line reframed
+                    from "Free for personal non-commercial use / Contact to
+                    inquire about licensed commercial use" → MIT framing.
+                    AI OS scaffold split out of CC BY-NC-SA into MIT
+                    (LICENSE.md §2) — the old copy was the trap line, since
+                    a permanent system-prompt install in the user's own AI
+                    cannot meaningfully be policed for personal-vs-commercial
+                    use. New line names what's actually true. Telegram link
+                    preserved for partnership / Distributor conversations
+                    (those are still real, just no longer about AI OS itself). */}
                 <div className="mx-auto max-w-lg pt-3">
                   <p className="text-xs sm:text-[13px] font-normal leading-relaxed" style={{
                     color: 'hsl(0 0% 100% / 0.82)',
                     textShadow: '0 0 12px rgba(0,0,0,0.9), 0 0 24px rgba(0,0,0,0.6), 0 1px 4px rgba(0,0,0,0.8)',
                   }}>
-                    Free for personal non-commercial use.
+                    MIT-licensed. Yours forever — personal, client work, or fork.
                     <br />
                     <a
                       href="https://t.me/integralevolution"
@@ -2724,9 +2769,9 @@ const AiOsPage = () => {
                       className="underline decoration-[hsl(40_70%_75%/0.45)] decoration-1 underline-offset-[3px] hover:decoration-[hsl(40_70%_75%/0.85)] transition-colors"
                       style={{ color: 'hsl(40 70% 90% / 0.95)' }}
                     >
-                      Contact
+                      Reach out
                     </a>{" "}
-                    to inquire about licensed commercial use.
+                    for partnership conversations.
                   </p>
                 </div>
                 {/* CTAs — Day 51 r3 (Sasha 2026-04-25 evening): visual
@@ -2851,7 +2896,18 @@ const AiOsPage = () => {
               spotlight above, this is now secondary — high-quality
               category prompts for everyday craft, supporting the main
               install rather than competing with it. Glass treatment kept;
-              copy softened. */}
+              copy softened.
+              Day 54 (Sasha 2026-04-28): chip-nav rendering is now gated
+              on `!focusCategory` — it ONLY shows on /ai-os (the short
+              landing). On suite sub-routes (/ai-os/clarity etc.) the
+              user is already focused; the chip nav becomes redundant
+              and the focused suite section below this block carries
+              the experience. Chip hrefs also re-targeted from in-page
+              anchors (`#section-clarity`) to actual sub-routes
+              (`/ai-os/clarity`) so the chips do real navigation. Meta
+              category filtered out of the chips because it IS the
+              install — the spotlight above already handles it. */}
+          {!focusCategory && (
           <RevealSection delay={150}>
             <nav
               id="suites-nav"
@@ -2908,12 +2964,15 @@ const AiOsPage = () => {
               </div>
 
               <div className="relative flex flex-wrap items-stretch justify-center gap-2.5 sm:gap-3">
-                {groupedPrompts.map((group) => {
+                {groupedPrompts
+                  .filter((group) => group.category !== "meta")
+                  .map((group) => {
                   const color = tocColors[group.category] || '#a4a3d0';
+                  const slug = SUITE_SLUG[group.category];
                   return (
-                    <a
+                    <Link
                       key={group.category}
-                      href={`#section-${group.category}`}
+                      to={`/ai-os/${slug}`}
                       className="group relative text-sm font-medium tracking-wide px-5 py-3 rounded-2xl transition-all duration-300 hover:-translate-y-0.5"
                       style={{
                         color,
@@ -2931,21 +2990,30 @@ const AiOsPage = () => {
                           boxShadow: `0 0 20px ${color}50, inset 0 0 20px ${color}15`,
                         }}
                       />
-                    </a>
+                    </Link>
                   );
                 })}
               </div>
             </nav>
           </RevealSection>
+          )}
 
           {/* Prompt sections — unified view.
               Day 50 (Sasha) gearbox metaphor:
                 • Signature prompts (isRec + premium) ship above the fold
                   of each suite as the AUTOMATIC — one paste, full transmission.
                 • Standalone sub-modules sit UNDER a single "See sub-modules"
-                  toggle — the MANUAL — for users who want to mix and match. */}
+                  toggle — the MANUAL — for users who want to mix and match.
+              Day 54 (Sasha 2026-04-28): this full-render section now ONLY
+              shows when on a suite sub-route (focusCategory set) — i.e.
+              /ai-os/clarity, /ai-os/iteration, /ai-os/vibe-code, /ai-os/design.
+              On the main /ai-os landing the section is hidden so the page
+              stays SHORT (hero + spotlight + chip-nav-to-suites + footer).
+              This is the structural "AI OS as own Space" payoff: each
+              suite gets its own focused page, /ai-os is the install. */}
+          {focusCategory && (
           <section className="space-y-16" aria-label="Available suites">
-            {groupedPrompts.map((group) => {
+            {visibleGroups.map((group) => {
               const headerColor = tocColors[group.category] || '#a4a3d0';
               const signaturePrompts = group.prompts.filter(
                 (p) => p.isRecommended === true || p.locked === true
@@ -3166,6 +3234,7 @@ const AiOsPage = () => {
                   );
             })}
           </section>
+          )}
 
           {/* YT Transcript Button */}
           <RevealSection>

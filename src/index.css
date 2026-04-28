@@ -1156,6 +1156,20 @@ All colors MUST be HSL.
   display: inline-block;
 }
 
+/* Sasha 2026-04-28: `.gentle-spin-always` is a deliberate exception to
+   prefers-reduced-motion. The rail emblems (JOURNEY / AI OS / ME) carry
+   brand identity through their slow rotation — the motion *is* the mark.
+   The rotation period (60s = one revolution per minute) is well under
+   the threshold that triggers vestibular discomfort, and the icons sit
+   in fixed left-rail positions where the user controls dwell time.
+   This class is reserved for the rail emblems only; do not generalize. */
+.gentle-spin-always {
+  animation: gentle-spin 60s linear infinite !important;
+  will-change: transform;
+  transform-origin: center !important;
+  display: inline-block;
+}
+
 /* Targeted rules — these apply the rotation globally without needing
    per-file edits. Each selector is scoped tight enough that we only
    catch the emblems/icons we mean to rotate, never text or chrome.
@@ -1189,6 +1203,12 @@ All colors MUST be HSL.
   .gentle-spin,
   .cta-breath img {
     animation: none !important;
+  }
+  /* `.gentle-spin-always` deliberately re-asserts its animation here
+     because the rail emblems carry brand identity through rotation —
+     see definition above for full rationale. */
+  .gentle-spin-always {
+    animation: gentle-spin 60s linear infinite !important;
   }
 }
 

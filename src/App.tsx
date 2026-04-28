@@ -297,6 +297,19 @@ const App = () => (
                   <Route path="/ai-os/pricing" element={<GameShellV2><AiOsPricingPage /></GameShellV2>} />
                   <Route path="/ai-os/profile" element={<Navigate to="/ai-os" replace />} />
                   <Route path="/ai-os/benchmark" element={<GameShellV2><AiOsBenchmark /></GameShellV2>} />
+                  {/* Day 54 (Sasha 2026-04-28): per-suite sub-routes. Each renders
+                      AiOsPage with focusCategory set so only the matching suite's
+                      prompts appear. URL "vibe-code" maps to internal category id
+                      "deployment" — slug renamed for resonance, internal id stable. */}
+                  <Route path="/ai-os/clarity" element={<GameShellV2><AiOsPage focusCategory="clarity" /></GameShellV2>} />
+                  <Route path="/ai-os/iteration" element={<GameShellV2><AiOsPage focusCategory="iteration" /></GameShellV2>} />
+                  <Route path="/ai-os/vibe-code" element={<GameShellV2><AiOsPage focusCategory="deployment" /></GameShellV2>} />
+                  <Route path="/ai-os/design" element={<GameShellV2><AiOsPage focusCategory="design" /></GameShellV2>} />
+                  {/* /ai-os/suites is the SectionsPanel parent path for the Suites
+                      group — clicks toggle expand/collapse so this route is rarely
+                      hit, but if a user types it directly we redirect to /ai-os
+                      rather than 404. */}
+                  <Route path="/ai-os/suites" element={<Navigate to="/ai-os" replace />} />
                   <Route path="/codex" element={<Navigate to="/ai-os" replace />} />
                   <Route path="/codex/auth" element={<Navigate to="/ai-os" replace />} />
                   <Route path="/codex/pricing" element={<Navigate to="/ai-os/pricing" replace />} />
