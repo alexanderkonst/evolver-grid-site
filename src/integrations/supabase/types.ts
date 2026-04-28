@@ -2169,6 +2169,30 @@ export type Database = {
       }
     }
     Functions: {
+      admin_lookup_entitlement: {
+        Args: { p_email: string }
+        Returns: {
+          email: string
+          expires_at: string
+          granted_at: string
+          granted_by_email: string
+          note: string
+          tier: Database["public"]["Enums"]["entitlement_tier"]
+        }[]
+      }
+      admin_recent_grants: {
+        Args: { p_limit?: number }
+        Returns: {
+          created_at: string
+          expires_at: string
+          granted_by_email: string
+          id: string
+          new_tier: Database["public"]["Enums"]["entitlement_tier"]
+          note: string
+          previous_tier: Database["public"]["Enums"]["entitlement_tier"]
+          target_email: string
+        }[]
+      }
       delete_email: {
         Args: { message_id: number; queue_name: string }
         Returns: boolean
