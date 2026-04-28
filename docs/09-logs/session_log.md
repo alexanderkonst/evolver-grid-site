@@ -6080,3 +6080,56 @@ Center reading still **Codification**. Iter 4 is the final operational completio
 ---
 
 *Day 53 night iter 4 close: the apparatus is fully prepared for a 1:1 client gift the moment Sasha runs the Lovable prompt. From that point forward, every conversation that ends with "I'd love to give you Locked-in" can be backed by a single click in `/admin/grants` rather than a manual Stripe coupon dance. The system honors the gift as a first-class commercial relationship — auditable, durable, and visible to the recipient.*
+
+---
+
+## Day 53 night iter 4 — schema-fix follow-up (post-Lovable verification)
+
+Sasha ran the Lovable migration. All 6 verification checks passed cleanly. One adapter fact came back from the report:
+
+> Column on profiles table, default `tasting` | ✅ on `game_profiles` (this project's profiles table), NOT NULL, default `'tasting'`
+
+Lovable correctly placed the `entitlement_tier` column on `game_profiles` (the canonical profile table in this project, keyed by `user_id` FK to `auth.users`), not on a hypothetical `profiles` table. The RPC was likewise adapted to join `auth.users JOIN game_profiles ON game_profiles.user_id = auth.users.id`. The end-to-end test passed live — `personalytics@gmail.com` set to `ignition`, audit row written, both reads verified.
+
+**My frontend code was wrong in two places:**
+1. `useEntitlement.ts` queried `profiles WHERE id = uid` — needed `game_profiles WHERE user_id = uid`
+2. `Grants.tsx` queried `profiles` for email lookup + email resolution — but `profiles` table doesn't carry `email` in this project (email lives on `auth.users`, which the anon key can't query directly)
+
+**Fixes shipped:**
+- `useEntitlement.ts` — switched to `game_profiles WHERE user_id = uid`. Defensive fallback path unchanged (still returns `tasting` if anything fails).
+- `Grants.tsx` — replaced both direct `profiles` queries with two new admin-gated RPCs: `admin_lookup_entitlement(email)` for the lookup form, `admin_recent_grants(limit)` for the audit log. Both join `auth.users.email` ↔ `game_profiles.entitlement_*` server-side and return enriched rows. Browser never touches `auth.users`.
+- `GrantRow` type updated — was `{ profile_id, granted_by, ... }`, now `{ target_email, granted_by_email, ... }` matching the RPC output.
+
+**Follow-up Lovable prompt** handed to Sasha for the two read-side RPCs:
+
+```sql
+CREATE OR REPLACE FUNCTION public.admin_lookup_entitlement(p_email TEXT)
+RETURNS TABLE (email, tier, granted_at, granted_by_email, expires_at, note)
+LANGUAGE plpgsql SECURITY DEFINER ...
+
+CREATE OR REPLACE FUNCTION public.admin_recent_grants(p_limit INT DEFAULT 20)
+RETURNS TABLE (id, target_email, granted_by_email, previous_tier, new_tier, expires_at, note, created_at)
+LANGUAGE plpgsql SECURITY DEFINER ...
+```
+
+Both gated on `has_role(auth.uid(), 'admin'::app_role)`. Both `GRANT EXECUTE ... TO authenticated`. Verification step at the bottom: call each as authenticated admin, confirm rows return.
+
+### Files touched (iter 4 follow-up)
+
+**Frontend:**
+- `src/hooks/useEntitlement.ts` — table + key column corrected
+- `src/pages/admin/Grants.tsx` — RPC-based lookup + recent grants; row shape updated
+
+**Awaiting Lovable run:**
+- `admin_lookup_entitlement(email)` RPC
+- `admin_recent_grants(limit)` RPC
+
+After the second Lovable prompt runs, the `/admin/grants` page is fully wired end-to-end — Sasha can gift Locked-in to his 7 founders immediately.
+
+### Lesson logged
+
+When writing migration prompts that reference a project's profile table, use the canonical table name (`game_profiles` here) explicitly rather than the generic `profiles` — Lovable adapted it correctly, but my frontend code didn't.
+
+---
+
+*Day 53 night iter 4 follow-up close: schema mismatch caught + corrected within minutes of Lovable verification. The Grant button is one Lovable prompt away from being live. The apparatus continues to tighten.*

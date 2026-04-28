@@ -1,6 +1,13 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { User, CreditCard, Check, Edit2, X, AlertTriangle, ArrowRight } from "lucide-react";
+// Day 53 night iter 4 (Sasha 2026-04-27): entitlement tier surfacing.
+// `SettingsTierBadge` (defined below) wraps `EntitlementBadge` to handle
+// the "no tier yet / tasting" case with a friendly placeholder rather
+// than blank space, since Settings is one of the few places where users
+// expect to see SOMETHING in the field.
+import { EntitlementBadge } from "@/components/EntitlementBadge";
+import { useEntitlement, tierLabel } from "@/hooks/useEntitlement";
 import { PremiumLoader } from "@/components/ui/PremiumLoader";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -322,6 +329,18 @@ const ProfileSettingsSection = () => {
                                 <Input value={user?.email || ""} disabled className="bg-muted" />
                                 <p className="text-xs text-muted-foreground">Email cannot be changed</p>
                             </div>
+                            {/* Day 53 night iter 4 (Sasha 2026-04-27): tier
+                                badge surfaces here so the user always knows
+                                what plan they're on without checking Stripe.
+                                Silent on default 'tasting' (most users see
+                                nothing). For gifted_* tiers, shows
+                                "✦ Gifted Builder · gifted by Sasha". */}
+                            <div className="space-y-2">
+                                <Label>Account tier</Label>
+                                <div className="rounded-md border bg-muted px-3 py-2.5">
+                                    <SettingsTierBadge />
+                                </div>
+                            </div>
                             <div className="space-y-3">
                                 <Label>Languages</Label>
                                 <div className="flex flex-wrap gap-2">
@@ -570,5 +589,33 @@ const ProfileSettingsSection = () => {
         </div>
     );
 };
+
+/**
+ * SettingsTierBadge — wraps `EntitlementBadge` for the Settings surface.
+ *
+ * `EntitlementBadge` is intentionally silent on `tasting` (default tier)
+ * across most surfaces — most users see nothing, only paid/gifted users
+ * see their tier. But Settings is the one place where users expect a
+ * concrete answer: this card asks "what tier am I on?" and a blank
+ * answer is confusing. So this wrapper renders a friendly placeholder
+ * for the Tasting case while delegating the rest to EntitlementBadge.
+ */
+function SettingsTierBadge() {
+    const { tier, isLoading } = useEntitlement();
+    if (isLoading) {
+        return <span className="text-xs text-muted-foreground">Loading…</span>;
+    }
+    if (tier === "tasting") {
+        return (
+            <span className="inline-flex items-baseline gap-2 text-sm">
+                <span className="font-medium text-foreground">{tierLabel(tier)}</span>
+                <span className="text-xs italic text-muted-foreground">
+                    Free trial · upgrade for save + publish
+                </span>
+            </span>
+        );
+    }
+    return <EntitlementBadge tier={tier} showOnTasting />;
+}
 
 export default ProfileSettingsSection;
