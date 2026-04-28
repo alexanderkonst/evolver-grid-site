@@ -514,9 +514,13 @@ export default function PublicLandingPage() {
 /* ─── Section label helper ───────────────────────────────────────── */
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
+  // Day 53 night iter 3 (Sasha 2026-04-27): per-section ✦ pruned.
+  // Hero ornament rule already carries the signature ✦ for the page;
+  // adding ✦ to every section label diluted the impact. Section label
+  // now stands on its own with Cormorant tracked-uppercase + gold color.
   return (
     <h2
-      className="flex items-center justify-center gap-2 text-center"
+      className="text-center"
       style={{
         fontFamily: "'Cormorant Garamond', serif",
         fontWeight: 600,
@@ -526,7 +530,6 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
         color: "#b8860b",
       }}
     >
-      <span aria-hidden="true" style={{ textShadow: "0 0 8px rgba(240,194,127,0.55)", fontSize: "10px" }}>✦</span>
       {children}
     </h2>
   );

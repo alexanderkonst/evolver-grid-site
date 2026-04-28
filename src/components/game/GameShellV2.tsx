@@ -822,7 +822,7 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                         dark navy (skin-independent) so gold text always reads.
                         Title also gets dark text-shadow as belt-and-suspenders. */}
                     <header
-                        className="flex items-center px-4 gap-3 sticky top-0 z-modal relative overflow-hidden"
+                        className="flex items-center pl-2 pr-4 gap-3 sticky top-0 z-modal relative overflow-hidden"
                         style={{
                             paddingTop: 'calc(env(safe-area-inset-top) + 0.5rem)',
                             paddingBottom: '0.5rem',
