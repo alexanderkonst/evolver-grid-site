@@ -1596,6 +1596,54 @@ export type Database = {
           },
         ]
       }
+      resonance_events: {
+        Row: {
+          artifact_id: string | null
+          artifact_kind: string
+          client_session_id: string | null
+          context_json: Json | null
+          created_at: string
+          id: string
+          matrix_source: string
+          matrix_version: string | null
+          message_seen: string | null
+          profile_id: string | null
+          rating: number
+          tier: string
+          user_id: string | null
+        }
+        Insert: {
+          artifact_id?: string | null
+          artifact_kind: string
+          client_session_id?: string | null
+          context_json?: Json | null
+          created_at?: string
+          id?: string
+          matrix_source?: string
+          matrix_version?: string | null
+          message_seen?: string | null
+          profile_id?: string | null
+          rating: number
+          tier: string
+          user_id?: string | null
+        }
+        Update: {
+          artifact_id?: string | null
+          artifact_kind?: string
+          client_session_id?: string | null
+          context_json?: Json | null
+          created_at?: string
+          id?: string
+          matrix_source?: string
+          matrix_version?: string | null
+          message_seen?: string | null
+          profile_id?: string | null
+          rating?: number
+          tier?: string
+          user_id?: string | null
+        }
+        Relationships: []
+      }
       suppressed_emails: {
         Row: {
           created_at: string
