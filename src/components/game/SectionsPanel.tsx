@@ -348,6 +348,12 @@ const SectionsPanel = ({
     const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({});
     const [userEmail, setUserEmail] = useState<string | null>(null);
 
+    // Day 53 night iter 3 (Sasha 2026-04-27): pane 2 phase progress.
+    // Hook returns null when not on /ubb*; only fires its Supabase fetch
+    // there. Drives the right-aligned "6/7" + thin gold progress bar on
+    // each UBB phase row.
+    const ubbProgress = useCanvasProgressLite();
+
     // Check user email for feature gating
     useEffect(() => {
         supabase.auth.getUser().then(({ data: { user } }) => {
@@ -384,7 +390,7 @@ const SectionsPanel = ({
         ) {
             return {
                 title: "BUILD",
-                sections: buildUbbSections(),
+                sections: buildUbbSections(ubbProgress),
             };
         }
 
@@ -718,6 +724,38 @@ const SectionsPanel = ({
                                     {section.badge}
                                 </span>
                             )}
+                            {/* Day 53 night iter 3 (Sasha 2026-04-27): UBB
+                                phase progress chip — right-aligned "6/7"
+                                in DM Sans tabular nums. Only renders for
+                                rows that pass `progress` (UBB phase rows
+                                inside /ubb*). Color shifts with state:
+                                  · gold when fully complete (locked = total)
+                                  · soft cream-gold when partial
+                                  · faint when none locked yet (just numerals) */}
+                            {section.progress && !isLocked && (
+                                <span
+                                    className="ml-1 inline-flex items-center"
+                                    style={{
+                                        fontFamily: "'DM Sans', system-ui, sans-serif",
+                                        fontVariantNumeric: "tabular-nums lining-nums",
+                                        fontFeatureSettings: '"tnum" 1, "lnum" 1',
+                                        fontSize: "10.5px",
+                                        fontWeight: 500,
+                                        letterSpacing: "0.04em",
+                                        color: section.progress.locked === section.progress.total
+                                            ? "#f4d472"
+                                            : section.progress.locked > 0
+                                                ? "rgba(244, 212, 114, 0.85)"
+                                                : "rgba(255, 255, 255, 0.40)",
+                                        textShadow: section.progress.locked === section.progress.total
+                                            ? "0 0 6px rgba(244, 212, 114, 0.55)"
+                                            : "none",
+                                    }}
+                                    title={`${section.progress.locked} of ${section.progress.total} locked`}
+                                >
+                                    {section.progress.locked}/{section.progress.total}
+                                </span>
+                            )}
                         </div>
                     );
 
@@ -771,6 +809,38 @@ const SectionsPanel = ({
                     return (
                         <div key={section.id}>
                             {rowWithTooltip}
+
+                            {/* Day 53 night iter 3 (Sasha 2026-04-27): thin
+                                gold progress bar beneath UBB phase rows.
+                                Renders just the filled portion (no track) so
+                                the bar reads as "this much earned" rather
+                                than "this much remaining." Position: just
+                                below the row, indented to align with the
+                                label text. Hidden on locked rows + rows
+                                with no progress data. */}
+                            {section.progress && !isLocked && section.progress.total > 0 && (
+                                <div className="mx-2 -mt-0.5 mb-0.5 px-3">
+                                    <div
+                                        className="h-px relative"
+                                        style={{
+                                            background: "rgba(255, 255, 255, 0.06)",
+                                        }}
+                                    >
+                                        <div
+                                            className="absolute left-0 top-0 h-full transition-[width] duration-500"
+                                            style={{
+                                                width: `${(section.progress.locked / section.progress.total) * 100}%`,
+                                                background: section.progress.locked === section.progress.total
+                                                    ? "linear-gradient(90deg, rgba(244, 212, 114, 0.45) 0%, rgba(244, 212, 114, 0.85) 100%)"
+                                                    : "linear-gradient(90deg, rgba(244, 212, 114, 0.30) 0%, rgba(244, 212, 114, 0.55) 100%)",
+                                                boxShadow: section.progress.locked === section.progress.total
+                                                    ? "0 0 6px rgba(244, 212, 114, 0.50)"
+                                                    : "0 0 4px rgba(244, 212, 114, 0.25)",
+                                            }}
+                                        />
+                                    </div>
+                                </div>
+                            )}
 
                             {/* Sub-sections — Day 52 (Sasha 2026-04-26):
                                 editorial register matched to JOURNEY pane 2.

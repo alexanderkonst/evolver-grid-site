@@ -5883,3 +5883,114 @@ Center reading still **Codification**. Iter 2 is operational refinement within t
 ---
 
 *Day 53 night iter 2 close: license docs legible, UI roast cleared the five highest-leverage findings, URL acronyms retired in favor of plain English. The next stranger who lands on a published manuscript reads it as a serious editorial document at a URL that decodes at sight. Friday's send arrives at an apparatus that's been polished one more pass — every layer of the funnel has been roasted by its own author within the last 24 hours.*
+
+---
+
+## Day 53 night iter 3 — finishing the queue (April 27, 2026 — late night, autonomous pass)
+
+After Sasha said *"continue with all of this until you're done,"* I worked through every remaining unblocked item on the queue. Five workstreams in one focused pass.
+
+### 1. ✦ ornament density audit — pruned
+
+Counted ✦ usage per file: 0–5 per surface, with ImproveReviewDrawer (3) and PublicLandingPage (4) showing decorative overuse on per-finding and per-section labels.
+
+Pruned:
+- **Drawer per-finding ✦** removed — the QUADRANT label (e.g. "Soul · does it feel true...") carries the structural marker on its own. Title ✦ + crystallized-action label ✦ remain as load-bearing punctuation.
+- **PublicLandingPage section label ✦** removed from the `SectionLabel` helper — the hero ornament rule already carries the page's signature ✦; section labels stand alone.
+
+Load-bearing ✦ kept everywhere: phase chapter rules, primary CTAs (Improve / Continue / Generate / Publish / Begin), drawer title.
+
+### 2. Empty state for fresh /ubb canvas
+
+Was: a fresh founder lands on `/ubb` with zero artifacts and sees a wall of 19 "Not started" cards across 4 phase grids — reads as a dim spreadsheet, not an invitation.
+
+Now: when `hasStarted` is false (no artifact has any `latest` content), the phase grids + dossier panel + Continue CTA all hide, replaced by:
+- **Begin-here card**: gold-rimmed glass with soft radial glow, eyebrow "BEGIN HERE", Cormorant title *"Start with your Uniqueness"*, italic Source Serif body explaining why uniqueness is first ("Every artifact downstream — your tribe, your promise, your offer — flows from how clearly you can name what only you do"), and a single ceremonial CTA: *"✦ Begin with Uniqueness →"*.
+- **What's ahead** plain-text map of the 6 phases beneath, gold-numbered, no grids.
+- *"The grid view returns the moment you generate your first artifact."* — sets the contract.
+
+Trigger: `ALL_ARTIFACT_KEYS.some((k) => !!artifacts[k]?.latest)`. Once any artifact has any latest content (drafted or locked), the full grid view returns.
+
+### 3. Skeleton loading
+
+Problem: between mount and first artifacts fetch (~200–500ms typical), the empty state would flash because `artifacts === {}` matches both "loading" and "fresh user with zero artifacts." A returning founder who already had artifacts would briefly see "Begin with Uniqueness" before their real data arrived.
+
+Fix:
+- **`isInitializing` state** added to `UniqueBusinessContext` — true until the initial fetch resolves (success or fail), via try/finally.
+- **`CanvasOverviewSkeleton`** component — pulse-animated placeholder strips that mirror the eventual layout: hero (title + 2 body lines + glance row) + 4 phase sections (label + hairline + 3-card grid). Honors `prefers-reduced-motion` via Tailwind's `motion-safe:` prefix.
+- **`ArtifactSkeleton`** for `GenericArtifactScreen` — same pulse pattern, real title kept (orienting), card body 4 lines of placeholder text. Prevents the "Nothing here yet" empty state from flashing on route entry.
+
+`CanvasOverviewScreen` and `GenericArtifactScreen` early-return their skeletons when `isInitializing === true`.
+
+### 4. URL slugs continued — `/ubd/` `/ubl/` retired (already shipped iter 2)
+
+Reaffirming from iter 2: `/ubd/{slug}` → `/dossier/{slug}` and `/ubl/{slug}-v{n}` → `/page/{slug}-v{n}`. Old paths preserved as redirects (`UbdRedirect` + `UblRedirect` in `App.tsx`). All cascade points updated.
+
+### 5. Pane 2 phase progress — the architectural lift
+
+This was the largest item. Pane 2 (`SectionsPanel`) sits ABOVE `UniqueBusinessLayout` in the React tree, so it can't consume `UniqueBusinessContext` directly. Lifting the provider above `GameShellV2` would force a Supabase query on every route. Solution: a targeted hook that only runs when needed.
+
+**`useCanvasProgressLite()`** — new file at `src/modules/unique-business-builder/useCanvasProgressLite.ts`:
+- Returns `null` when not on `/ubb*`. The pathname check is the gate; importing the hook costs nothing on other routes.
+- When on `/ubb*`: single Supabase query (`select artifact_key from user_business_artifacts where is_locked=true and user_id=$uid`), counts distinct keys, groups by phase via `phaseOf()`.
+- Refetches on pathname change within `/ubb` so locks via "Lock & Continue" (which navigate) refresh pane 2 automatically.
+- Returns `{ perPhase, totalLocked, total, isLoading }`.
+
+**`SectionsPanel` integration:**
+- `Section` interface extended with optional `progress?: { locked: number; total: number }`.
+- `buildUbbSections(progress)` injects the per-phase progress into each row.
+- Row JSX adds two new affordances:
+  - Right-aligned **fraction chip** (DM Sans tabular nums, 10.5px): gold when fully complete, soft cream-gold when partial, faint cream when none locked.
+  - **Thin gold progress bar** beneath the row — fill-only (no track) so it reads as "this much earned" rather than "this much remaining." Width animates on locks (`transition-[width] duration-500`).
+
+What it does NOT do (deliberate): no realtime subscription. Locking typically navigates to the next artifact, which triggers pathname change → refetch. Lock-and-stay edge case stays slightly stale until next nav. Realtime can be added later if it matters.
+
+### 6. Drawer copy iteration (already in iter 2)
+
+Reaffirming: title "Improvement proposed" → *"A sharper version"*; "Reject" → *"Discard"*. Both now stable.
+
+### Mobile CSS audit (defensive review, no device test)
+
+Spot-checked the UBB UI for mobile pitfalls without a real device:
+- **No hardcoded pixel widths** in any UBB screen — all widths use `mx-auto max-w-{n}` (responsive cap) or full-bleed. Pass.
+- **Hero/title sizes** use `clamp()` (e.g. `clamp(40px, 6vw, 64px)`) — clamp lower bound (40px / 28px) holds on 375px without overflowing. Pass.
+- **Long-label CTA pills** (e.g. *"Continue with Surface Inventory →"*) might wrap awkwardly inside `rounded-full` on 375px. Edge case; deferred — only matters when artifact labels are 2+ words AND user is on a narrow phone AND just locked the previous artifact in that phase.
+- **Drawer** uses shadcn Sheet defaults — full-screen on mobile via `sm:max-w-[520px]`. Pass.
+- **`UniqueBusinessLayout` wrapper** added a `px-6 py-4` container so artifact screens get horizontal padding inside `GameShellV2`'s `<main>` (Sasha's iter-3 fix during this pass). Pass.
+
+No urgent mobile changes. A proper device test pass is queued separately when Sasha gets one in front of him.
+
+### Files touched (Day 53 night iter 3)
+
+**New:**
+- `src/modules/unique-business-builder/useCanvasProgressLite.ts` (NEW — targeted Supabase hook for pane 2)
+
+**Modified:**
+- `src/modules/unique-business-builder/types.ts` (added `isInitializing` to `UniqueBusinessState`)
+- `src/modules/unique-business-builder/UniqueBusinessContext.tsx` (added state + try/finally on initial fetch + exposed in provider value)
+- `src/modules/unique-business-builder/screens/CanvasOverviewScreen.tsx` (empty state + `CanvasOverviewSkeleton` + early-return on `isInitializing`)
+- `src/modules/unique-business-builder/screens/GenericArtifactScreen.tsx` (`ArtifactSkeleton` + early-return on `isInitializing`)
+- `src/modules/unique-business-builder/components/ImproveReviewDrawer.tsx` (per-finding ✦ pruned)
+- `src/pages/PublicLandingPage.tsx` (per-section-label ✦ pruned from `SectionLabel` helper)
+- `src/components/game/SectionsPanel.tsx` (Section interface extended; `buildUbbSections(progress)` signature; `useCanvasProgressLite` import + call; fraction chip + progress bar JSX)
+
+### Holomap implication
+
+P3 (Shared Field) advances incrementally: pane 2 is now a living instrument of canvas state. The founder no longer has to mentally track "where am I in the build?" — the rail tells them with two glance signals (fraction + bar fill).
+
+P11 (Delivery Machinery) gets one more layer of polish: skeleton states + empty state mean the apparatus no longer flashes "wrong information" during loading windows. Returning founders with seeded canvases never see "Begin with Uniqueness." Fresh founders never see a wall of "Not started."
+
+P15 (Spread) — unchanged at the structural level, but the apparatus is now ready to receive a stranger and have the canvas reveal its state legibly within the first few hundred milliseconds rather than after a sub-second relayout.
+
+Center reading still **Codification**. Iter 3 is the final operational refinement within this center before tomorrow's send.
+
+### Files touched cumulative across Day 53 night (iter 1 + 2 + 3)
+
+Code: ~16 files modified, 1 new (`useCanvasProgressLite.ts`).
+Specs: 2 new (`markdown_sync_spec.md`, `shell_integration_design.md`).
+License: 2 modified (`LICENSE.md` corrected + `DISTRIBUTOR_AGREEMENT.md` v0.2 with two-paths preface).
+Brand assets: ~7 file swaps (logo + torus + 5 favicon files).
+
+---
+
+*Day 53 night iter 3 close: every unblocked item from the queue shipped. UBB has phase progress chips and a thin gold bar in pane 2 (live, fed by a targeted Supabase query that only runs on /ubb routes); skeleton states cover the initial fetch window; a fresh canvas now invites the founder to "Begin with Uniqueness" instead of confronting them with a wall of placeholder cards; ✦ ornament density pruned to load-bearing instances. The apparatus is at its current best — every screen, every URL, every loading state, every license clause has been roasted by its own author within the last 24 hours. Friday's send is no longer waiting on infrastructure; it's waiting on Sasha's hand on the keyboard.*
