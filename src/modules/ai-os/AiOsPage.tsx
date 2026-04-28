@@ -2427,6 +2427,22 @@ const AiOsPage = () => {
   // table; evolver doesn't, and Sasha can wire its own gating later if needed.
   const [isPremium, setIsPremium] = useState(false);
   const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
+  // Day 54 (Sasha 2026-04-28): mobile crash fix. /ai-os was OOM-killing
+  // iOS Chrome tabs (especially when opened from in-app browsers like
+  // WhatsApp where memory budget is already low). The combo of:
+  //   1. full-viewport HLS Mux stream (HlsVideo)
+  //   2. animated canvas StarryBackground (~80 stars × 60fps RAF)
+  //   3. cursor-glow tracker (state update per mousemove)
+  // ...was pushing first-paint over the renderer's tab memory ceiling.
+  // Detect coarse pointer / small viewport once at mount and skip all
+  // three heavy effects on mobile. Static gradient + vignette + noise
+  // overlays still carry the mood without the GPU/RAM cost.
+  const [isHeavyFxCapable] = useState(() => {
+    if (typeof window === 'undefined') return true;
+    const isCoarse = window.matchMedia?.('(pointer: coarse)').matches ?? false;
+    const isSmall = window.innerWidth < 1024;
+    return !(isCoarse || isSmall);
+  });
   const [customValues, setCustomValues] = useState<Record<string, Record<string, string>>>({});
   const [expandedPrompt, setExpandedPrompt] = useState<string | null>(null);
   // Day 50 (Sasha): per-suite "manual gearbox" toggle. The signature
@@ -2446,14 +2462,16 @@ const AiOsPage = () => {
     return () => { document.body.style.background = previous; };
   }, []);
 
-  // Cursor glow tracking
+  // Cursor glow tracking — desktop only (touch devices don't have a cursor
+  // and the per-mousemove setState was contributing to mobile OOM).
   useEffect(() => {
+    if (!isHeavyFxCapable) return;
     const handleMouseMove = (e: MouseEvent) => {
       setCursorPos({ x: e.clientX, y: e.clientY });
     };
     window.addEventListener('mousemove', handleMouseMove, { passive: true });
     return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
+  }, [isHeavyFxCapable]);
 
   // Day 51 (Sasha 2026-04-25): premium_subscriptions table retired with the
   // Holonic Commons rollout. AI OS is free for everyone — no firewall, no
@@ -2550,27 +2568,34 @@ const AiOsPage = () => {
           (different from GameShell's animated bg). Gradient lighter at top
           (0.55) so video shows clearly behind hero, heavier toward bottom
           so prompt library reads on stable dark. */}
-      <HlsVideo />
+      {/* Day 54 (Sasha 2026-04-28): heavy FX (HLS Mux stream + animated
+          star canvas + cursor glow) gated to desktop. On mobile/touch
+          they were OOM-crashing iOS Chrome tabs opened from in-app
+          browsers. Mood is preserved by the static gradient + vignette
+          + noise overlays below, which carry zero per-frame cost. */}
+      {isHeavyFxCapable && <HlsVideo />}
       <div className="fixed inset-0 z-[1]" style={{ background: 'linear-gradient(180deg, rgba(10,22,50,0.55) 0%, rgba(8,16,30,0.86) 45%, rgba(5,9,18,0.95) 100%)' }} />
       <div className="vignette-overlay z-[1]" />
       {/* Noise/grain overlay */}
       <div className="noise-overlay" />
       {/* Starry overlay */}
-      <StarryBackground />
+      {isHeavyFxCapable && <StarryBackground />}
       
       {/* Cursor glow */}
-      <div 
-        className="pointer-events-none fixed z-20"
-        style={{
-          left: cursorPos.x - 20,
-          top: cursorPos.y - 20,
-          width: 40,
-          height: 40,
-          background: 'radial-gradient(circle, rgba(132,96,234,0.25) 0%, rgba(180,140,255,0.1) 40%, transparent 70%)',
-          borderRadius: '50%',
-          transition: 'left 0.05s ease-out, top 0.05s ease-out',
-        }}
-      />
+      {isHeavyFxCapable && (
+        <div 
+          className="pointer-events-none fixed z-20"
+          style={{
+            left: cursorPos.x - 20,
+            top: cursorPos.y - 20,
+            width: 40,
+            height: 40,
+            background: 'radial-gradient(circle, rgba(132,96,234,0.25) 0%, rgba(180,140,255,0.1) 40%, transparent 70%)',
+            borderRadius: '50%',
+            transition: 'left 0.05s ease-out, top 0.05s ease-out',
+          }}
+        />
+      )}
 
       <main
         className="relative z-10 min-h-screen w-full flex justify-center px-4 py-4 sm:px-6 sm:py-8 overflow-x-hidden"
