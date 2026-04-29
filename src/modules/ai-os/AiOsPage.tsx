@@ -2378,6 +2378,103 @@ const HlsVideo = () => {
   );
 };
 
+// Day 54 r11 (Sasha 2026-04-28): diagnostic overlay for the iOS WebKit crash.
+// Mount with `?debug=1` in the URL. Captures, with timestamps from page-mount:
+//   - mount, viewport, ua
+//   - errors (window.error, unhandledrejection)
+//   - visibility / pagehide / pageshow
+//   - JS heap memory (Chrome only, every 500ms)
+//   - scroll counter
+// Renders as a fixed log overlay at the very top of the page so even when
+// the renderer is about to die, a screenshot captures what fired last.
+// No impact when ?debug is absent — returns null.
+const DiagnosticOverlay = () => {
+  const [enabled] = useState(() => {
+    if (typeof window === 'undefined') return false;
+    return new URLSearchParams(window.location.search).has('debug');
+  });
+  const [log, setLog] = useState<string[]>([]);
+
+  useEffect(() => {
+    if (!enabled) return;
+    const start = Date.now();
+    const append = (msg: string) => {
+      const t = ((Date.now() - start) / 1000).toFixed(2);
+      setLog(prev => [...prev, `[${t}s] ${msg}`].slice(-40));
+    };
+
+    append(`mount ${window.innerWidth}×${window.innerHeight} dpr${window.devicePixelRatio}`);
+    append(`ua ${navigator.userAgent.slice(0, 110)}`);
+
+    const onError = (e: ErrorEvent) => append(`ERR ${(e.message || '').slice(0, 120)} @ ${(e.filename || '').split('/').pop()}:${e.lineno || '?'}`);
+    const onRej = (e: PromiseRejectionEvent) => append(`REJ ${String(e.reason).slice(0, 140)}`);
+    const onVis = () => append(`vis:${document.visibilityState}`);
+    const onPageHide = (e: PageTransitionEvent) => append(`pagehide persisted=${e.persisted}`);
+    const onPageShow = () => append('pageshow');
+    let scrolls = 0;
+    const onScroll = () => { scrolls++; if (scrolls % 10 === 1) append(`scroll x${scrolls} y=${window.scrollY|0}`); };
+
+    window.addEventListener('error', onError);
+    window.addEventListener('unhandledrejection', onRej);
+    document.addEventListener('visibilitychange', onVis);
+    window.addEventListener('pagehide', onPageHide);
+    window.addEventListener('pageshow', onPageShow);
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    let memInt: number | undefined;
+    const perfMem = (performance as { memory?: { usedJSHeapSize: number; jsHeapSizeLimit: number } }).memory;
+    if (perfMem) {
+      memInt = window.setInterval(() => {
+        const m = (performance as { memory?: { usedJSHeapSize: number; jsHeapSizeLimit: number } }).memory!;
+        append(`mem ${(m.usedJSHeapSize / 1048576).toFixed(0)}/${(m.jsHeapSizeLimit / 1048576).toFixed(0)}MB`);
+      }, 500);
+    }
+
+    // Render heartbeat — proves the React tree is still updating
+    let beats = 0;
+    const beatInt = window.setInterval(() => { beats++; append(`beat ${beats}`); }, 1000);
+
+    return () => {
+      window.removeEventListener('error', onError);
+      window.removeEventListener('unhandledrejection', onRej);
+      document.removeEventListener('visibilitychange', onVis);
+      window.removeEventListener('pagehide', onPageHide);
+      window.removeEventListener('pageshow', onPageShow);
+      window.removeEventListener('scroll', onScroll);
+      if (memInt) clearInterval(memInt);
+      clearInterval(beatInt);
+    };
+  }, [enabled]);
+
+  if (!enabled) return null;
+  return (
+    <div
+      style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        zIndex: 999999,
+        background: 'rgba(0,0,0,0.92)',
+        color: '#0f0',
+        fontFamily: 'ui-monospace, Menlo, monospace',
+        fontSize: 10,
+        lineHeight: 1.35,
+        padding: '8px 10px',
+        maxHeight: '50vh',
+        overflowY: 'auto',
+        whiteSpace: 'pre-wrap',
+        wordBreak: 'break-all',
+        pointerEvents: 'none',
+      }}
+    >
+      {log.map((line, i) => (
+        <div key={i}>{line}</div>
+      ))}
+    </div>
+  );
+};
+
 // Day 54 r9 (Sasha 2026-04-28): mobile background — static poster fallback.
 // Even one HlsVideo decoder was tipping iOS WebKit's tile/GPU memory budget
 // over the edge on /ai-os (the heaviest page in the app — backdrop blurs in
