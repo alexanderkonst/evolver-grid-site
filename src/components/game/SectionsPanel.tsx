@@ -666,15 +666,15 @@ const SectionsPanel = ({
                 chip (which sits under the taller brand-wordmark area).
 
                 Day 55 (Sasha 2026-04-29): header height grown h-16 →
-                h-[124px] so the title's vertical center lands at ~62px
-                from pane top, sharing the new alignment trio Y with
-                pane 1's wordmark orb (raised via reduced top padding)
-                and the top-right rotating logo (raised via top-[42px]).
-                Side benefit: pane 2's first nav row now lands at ~124px,
-                closer to pane 1's first chip after the wordmark area —
-                restoring the original "first-row alignment across panes"
-                intent more faithfully. */}
-            <div className="h-[124px] px-4 flex items-center justify-between">
+                h-[124px], then h-[124px] → h-[160px] (iter 2) after
+                visual check showed pane 1 orb actually centers around
+                y=80 (the wordmark image's orb sits lower within the
+                image than the pure-vertical-center assumption suggested).
+                Title now at center 80, matching pane 1 orb and top-right
+                rotating logo. Side benefit: pane 2's first nav row
+                lands at ~160px, near pane 1's first chip after the
+                wordmark area. */}
+            <div className="h-[160px] px-4 flex items-center justify-between">
                 <span
                     className="text-[11px] font-semibold"
                     style={{
