@@ -3129,15 +3129,13 @@ const AiOsPage = ({ focusCategory, __diagHeroOnly }: AiOsPageProps = {}) => {
                   Additional power-ups
                 </p>
                 <h2
-                  className="font-display italic text-2xl sm:text-3xl md:text-4xl font-medium leading-[1.15] tracking-[-0.02em]"
+                  className="ai-os-glow-text-medium font-display italic text-2xl sm:text-3xl md:text-4xl font-medium leading-[1.15] tracking-[-0.02em]"
                   style={{
                     background:
                       'linear-gradient(135deg, hsl(0 0% 100%) 0%, hsl(242 40% 92%) 50%, hsl(290 30% 90%) 100%)',
                     WebkitBackgroundClip: 'text',
                     WebkitTextFillColor: 'transparent',
                     backgroundClip: 'text',
-                    filter:
-                      'drop-shadow(0 0 24px rgba(132,96,234,0.45)) drop-shadow(0 0 60px rgba(132,96,234,0.2))',
                   }}
                 >
                   Select prompts for everyday craft
