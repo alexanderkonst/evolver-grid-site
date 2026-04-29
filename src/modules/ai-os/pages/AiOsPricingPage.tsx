@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-import { ArrowLeft, ArrowRight, Heart, ExternalLink, Sparkles } from "lucide-react";
+import { ArrowLeft, ExternalLink, Compass, Layers, MessageSquare } from "lucide-react";
 // Day 54+ (Sasha 2026-04-28): hero medallion swapped from the legacy
 // FYTT torus (logo.jpg) to the merkaba — same icon as the AI OS Space
 // in the rail. Page-level visual coherence: AI OS = merkaba everywhere.
@@ -93,86 +93,28 @@ const Pricing = () => {
 
           </header>
 
-          {/* Three paths */}
+          {/* Section intro — Day 55 (Sasha 2026-04-29): the previous
+              "three paths" framing (Use / Tip / Work-with-us) conflated
+              tipping with partnership and made the Productize Yourself
+              Session look like the only real way to engage. Re-framed as
+              three concrete partnership shapes — each with its own clear
+              next step — so a visitor doesn't have to invent how to
+              propose a partnership. "Use it free" + tip moved to a quiet
+              footer (the main /ai-os page already carries the free-use
+              story). */}
+          <div className="text-center space-y-3 pt-4">
+            <p className="text-[10px] tracking-[0.3em] uppercase font-medium" style={{ color: 'hsl(40 50% 75% / 0.7)' }}>Real ways to partner</p>
+            <h2 className="text-2xl sm:text-3xl font-display italic font-normal" style={{ color: 'hsl(0 0% 100% / 0.94)' }}>
+              Three concrete shapes.
+            </h2>
+            <p className="text-sm sm:text-base font-light max-w-xl mx-auto leading-relaxed" style={{ color: 'hsl(0 0% 100% / 0.72)' }}>
+              Pick the one that fits. Or propose one we haven't named.
+            </p>
+          </div>
+
           <div className="grid gap-5">
 
-            {/* Path I — Use */}
-            <article
-              className="rounded-2xl p-6 sm:p-7 transition-all duration-300 hover:scale-[1.01]"
-              style={{
-                background: 'hsl(0 0% 100% / 0.04)',
-                border: '1px solid hsl(0 0% 100% / 0.1)',
-                backdropFilter: 'blur(12px)',
-              }}
-            >
-              <div className="flex items-start gap-4">
-                <div className="flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center" style={{ background: 'hsla(195, 35%, 70%, 0.15)' }}>
-                  <Sparkles className="w-4 h-4" style={{ color: 'hsl(195 50% 80%)' }} />
-                </div>
-                <div className="flex-1">
-                  <p className="text-[10px] tracking-[0.25em] uppercase font-medium mb-1" style={{ color: 'hsl(195 35% 80% / 0.7)' }}>Path I · Free</p>
-                  <h2 className="text-lg sm:text-xl font-display italic font-normal mb-2" style={{ color: 'hsl(0 0% 100% / 0.95)' }}>
-                    Use AI OS
-                  </h2>
-                  <p className="text-sm font-light leading-relaxed mb-4" style={{ color: 'hsl(0 0% 100% / 0.7)' }}>
-                    The OS layer for any AI. A different kind of cognition. No signup wall, no gates, no tiers — open as Wikipedia, free as Linux.
-                  </p>
-                  <button
-                    onClick={() => navigate("/ai-os")}
-                    className="inline-flex items-center gap-2 text-xs font-medium px-4 py-2 rounded-full transition-all duration-300 hover:scale-105"
-                    style={{
-                      background: 'hsla(195, 35%, 70%, 0.15)',
-                      border: '1px solid hsla(195, 35%, 70%, 0.25)',
-                      color: 'hsl(195 50% 90%)',
-                    }}
-                  >
-                    Open the library
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </button>
-                </div>
-              </div>
-            </article>
-
-            {/* Path II — Tip */}
-            <article
-              className="rounded-2xl p-6 sm:p-7 transition-all duration-300 hover:scale-[1.01]"
-              style={{
-                background: 'hsl(0 0% 100% / 0.04)',
-                border: '1px solid hsl(0 0% 100% / 0.1)',
-                backdropFilter: 'blur(12px)',
-              }}
-            >
-              <div className="flex items-start gap-4">
-                <div className="flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center" style={{ background: 'hsla(290, 35%, 70%, 0.15)' }}>
-                  <Heart className="w-4 h-4" style={{ color: 'hsl(290 50% 82%)' }} />
-                </div>
-                <div className="flex-1">
-                  <p className="text-[10px] tracking-[0.25em] uppercase font-medium mb-1" style={{ color: 'hsl(290 35% 80% / 0.7)' }}>Path II · Optional</p>
-                  <h2 className="text-lg sm:text-xl font-display italic font-normal mb-2" style={{ color: 'hsl(0 0% 100% / 0.95)' }}>
-                    Tip / Patronage
-                  </h2>
-                  <p className="text-sm font-light leading-relaxed mb-4" style={{ color: 'hsl(0 0% 100% / 0.7)' }}>
-                    If AI OS shifted something for you and you want to support its evolution — leave a tip. Pay what feels true. No tier, no return obligation.
-                  </p>
-                  <a
-                    href={STRIPE_TIP_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-xs font-medium px-4 py-2 rounded-full transition-all duration-300 hover:scale-105"
-                    style={{
-                      background: 'hsla(290, 30%, 70%, 0.15)',
-                      border: '1px solid hsla(290, 30%, 70%, 0.25)',
-                      color: 'hsl(290 50% 88%)',
-                    }}
-                  >
-                    Send a tip
-                    <ExternalLink className="w-3.5 h-3.5" />
-                  </a>
-                </div>
-              </div>
-            </article>
-
-            {/* Path III — Go Deep (the only paid path — proximity to source) */}
+            {/* Partnership I — Productize Yourself Session (1:1) */}
             <article
               className="rounded-2xl p-6 sm:p-7 transition-all duration-300 hover:scale-[1.01] relative"
               style={{
@@ -182,26 +124,17 @@ const Pricing = () => {
                 boxShadow: '0 4px 32px -8px hsla(40, 60%, 50%, 0.2)',
               }}
             >
-              <span
-                className="absolute -top-3 left-6 text-[10px] font-semibold tracking-[0.2em] uppercase px-3 py-1 rounded-full"
-                style={{
-                  background: 'linear-gradient(135deg, hsl(40 70% 55%) 0%, hsl(40 60% 45%) 100%)',
-                  color: 'hsl(40 30% 12%)',
-                }}
-              >
-                Go Deep
-              </span>
-              <div className="flex items-start gap-4 pt-2">
+              <div className="flex items-start gap-4">
                 <div className="flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center" style={{ background: 'hsla(40, 60%, 50%, 0.2)', border: '1px solid hsla(40, 60%, 60%, 0.3)' }}>
-                  <ArrowRight className="w-4 h-4" style={{ color: 'hsl(40 70% 75%)' }} />
+                  <Compass className="w-4 h-4" style={{ color: 'hsl(40 70% 75%)' }} />
                 </div>
                 <div className="flex-1">
-                  <p className="text-[10px] tracking-[0.25em] uppercase font-medium mb-1" style={{ color: 'hsl(40 50% 75% / 0.75)' }}>Path III · Work with us</p>
-                  <h2 className="text-lg sm:text-xl font-display italic font-normal mb-2" style={{ color: 'hsl(0 0% 100% / 0.95)' }}>
+                  <p className="text-[10px] tracking-[0.25em] uppercase font-medium mb-1" style={{ color: 'hsl(40 50% 75% / 0.75)' }}>For individuals · 1:1</p>
+                  <h3 className="text-lg sm:text-xl font-display italic font-normal mb-2" style={{ color: 'hsl(0 0% 100% / 0.95)' }}>
                     Productize Yourself Session
-                  </h2>
+                  </h3>
                   <p className="text-sm font-light leading-relaxed mb-4" style={{ color: 'hsl(0 0% 100% / 0.78)' }}>
-                    A consulting session inside the Find Your Top Talent path. 90 minutes to name your craft, find the business built on who you already are, and get your first easy move. The path into the first holon — where AI OS is actively shaped.
+                    90 minutes, 1:1 with Aleksandr. Name your craft, find the business built on who you already are, leave with your first easy move. $555 with money-back guarantee.
                   </p>
                   <a
                     href={ALEKSANDR_TELEGRAM_URL}
@@ -214,7 +147,86 @@ const Pricing = () => {
                       boxShadow: '0 4px 16px -2px hsla(40, 70%, 50%, 0.4)',
                     }}
                   >
-                    Work with us
+                    Book a session
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            {/* Partnership II — Steward AI OS (commercial license + rev share) */}
+            <article
+              className="rounded-2xl p-6 sm:p-7 transition-all duration-300 hover:scale-[1.01]"
+              style={{
+                background: 'linear-gradient(135deg, hsla(160, 40%, 40%, 0.12) 0%, hsla(170, 35%, 35%, 0.06) 100%)',
+                border: '1px solid hsla(160, 45%, 55%, 0.28)',
+                backdropFilter: 'blur(12px)',
+                boxShadow: '0 4px 32px -8px hsla(160, 45%, 45%, 0.18)',
+              }}
+            >
+              <div className="flex items-start gap-4">
+                <div className="flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center" style={{ background: 'hsla(160, 40%, 50%, 0.18)', border: '1px solid hsla(160, 45%, 60%, 0.28)' }}>
+                  <Layers className="w-4 h-4" style={{ color: 'hsl(160 50% 75%)' }} />
+                </div>
+                <div className="flex-1">
+                  <p className="text-[10px] tracking-[0.25em] uppercase font-medium mb-1" style={{ color: 'hsl(160 40% 78% / 0.75)' }}>For builders · License + rev-share</p>
+                  <h3 className="text-lg sm:text-xl font-display italic font-normal mb-2" style={{ color: 'hsl(0 0% 100% / 0.95)' }}>
+                    Steward AI OS
+                  </h3>
+                  <p className="text-sm font-light leading-relaxed mb-4" style={{ color: 'hsl(0 0% 100% / 0.78)' }}>
+                    Use AI OS commercially — embed it in your product, service, or platform. Per-deal license, no upfront fee, revenue share if you make money with it. Stewardship Agreement on request.
+                  </p>
+                  <a
+                    href={ALEKSANDR_TELEGRAM_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-xs font-semibold px-5 py-2.5 rounded-full transition-all duration-300 hover:scale-105"
+                    style={{
+                      background: 'linear-gradient(135deg, hsla(160, 50%, 45%, 0.85) 0%, hsla(170, 45%, 38%, 0.85) 100%)',
+                      color: 'hsl(160 40% 10%)',
+                      boxShadow: '0 4px 16px -2px hsla(160, 50%, 40%, 0.35)',
+                    }}
+                  >
+                    Start a license conversation
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            {/* Partnership III — Custom partnership (everything else, open door) */}
+            <article
+              className="rounded-2xl p-6 sm:p-7 transition-all duration-300 hover:scale-[1.01]"
+              style={{
+                background: 'hsl(0 0% 100% / 0.04)',
+                border: '1px solid hsl(0 0% 100% / 0.12)',
+                backdropFilter: 'blur(12px)',
+              }}
+            >
+              <div className="flex items-start gap-4">
+                <div className="flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center" style={{ background: 'hsla(242, 30%, 70%, 0.15)', border: '1px solid hsla(242, 30%, 70%, 0.22)' }}>
+                  <MessageSquare className="w-4 h-4" style={{ color: 'hsl(242 40% 82%)' }} />
+                </div>
+                <div className="flex-1">
+                  <p className="text-[10px] tracking-[0.25em] uppercase font-medium mb-1" style={{ color: 'hsl(242 30% 80% / 0.75)' }}>For everything else · Open door</p>
+                  <h3 className="text-lg sm:text-xl font-display italic font-normal mb-2" style={{ color: 'hsl(0 0% 100% / 0.95)' }}>
+                    Custom partnership
+                  </h3>
+                  <p className="text-sm font-light leading-relaxed mb-4" style={{ color: 'hsl(0 0% 100% / 0.78)' }}>
+                    Co-builds, advisory, a partnership shape we haven't named yet — message us with what you have in mind. If it's a real fit we'll find it together.
+                  </p>
+                  <a
+                    href={ALEKSANDR_TELEGRAM_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-xs font-medium px-5 py-2.5 rounded-full transition-all duration-300 hover:scale-105"
+                    style={{
+                      background: 'hsla(242, 30%, 70%, 0.18)',
+                      border: '1px solid hsla(242, 30%, 70%, 0.32)',
+                      color: 'hsl(242 40% 90%)',
+                    }}
+                  >
+                    Message on Telegram
                     <ExternalLink className="w-3.5 h-3.5" />
                   </a>
                 </div>
@@ -223,10 +235,31 @@ const Pricing = () => {
 
           </div>
 
-          {/* Footer note about contribution */}
-          <div className="text-center space-y-2 pt-4">
-            <p className="text-[11px] font-light max-w-md mx-auto leading-relaxed" style={{ color: 'hsl(0 0% 100% / 0.42)' }}>
-              Want to contribute prompts or modules to the core of AI OS itself? Trust is earned through working with us first — that's how the holon stays coherent.
+          {/* Quiet footer — free use + optional tip */}
+          <div className="text-center space-y-3 pt-6 border-t" style={{ borderColor: 'hsl(0 0% 100% / 0.06)' }}>
+            <p className="text-xs font-light leading-relaxed pt-6" style={{ color: 'hsl(0 0% 100% / 0.55)' }}>
+              Or just use AI OS for free.{" "}
+              <button
+                onClick={() => navigate("/ai-os")}
+                className="underline underline-offset-2 transition-colors hover:opacity-80"
+                style={{ color: 'hsl(195 40% 85% / 0.85)' }}
+              >
+                Open the library
+              </button>
+              .
+            </p>
+            <p className="text-[11px] font-light leading-relaxed" style={{ color: 'hsl(0 0% 100% / 0.42)' }}>
+              If it shifted something for you and you want to support its evolution,{" "}
+              <a
+                href={STRIPE_TIP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline underline-offset-2 transition-colors hover:opacity-80"
+                style={{ color: 'hsl(290 35% 80% / 0.7)' }}
+              >
+                leave a tip
+              </a>
+              {" "}— pay what feels true.
             </p>
           </div>
 

@@ -109,7 +109,7 @@ const AiOsBenchmark = () => {
                         }}
                     >
                         This page is about what changes when you install AI OS into a fresh
-                        Claude conversation.
+                        AI conversation.
                     </p>
                     <p
                         className="text-base sm:text-lg leading-relaxed mt-3 max-w-2xl"
