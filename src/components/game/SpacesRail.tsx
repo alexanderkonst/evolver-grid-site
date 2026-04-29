@@ -327,14 +327,17 @@ const SpacesRail = ({
                 then -11% size. Desktop: full wordmark fills rail width
                 naturally minus 11% via `max-w-[89%]`. Mobile: 32×32
                 orb crop kept small.
-                Day 55 (Sasha 2026-04-29): desktop top padding tightened
-                12 → 4px so the orb's vertical center sits ~8px higher.
-                This becomes the shared Y centerline for the alignment
-                trio: pane 1 wordmark orb · pane 2 space title ·
-                top-right rotating logo. See matching changes in
-                SectionsPanel.tsx (header h-16 → h-[124px]) and
-                GameShellV2.tsx (top-[62px] → top-[42px]). */}
-            <div className="p-2 md:pt-1 md:px-3 md:pb-3">
+                Day 55 (Sasha 2026-04-29): an iter-1/iter-2 attempt to
+                drag this lockup onto a shared Y with pane 2 title and
+                the top-right rotating logo was reverted. The wordmark
+                is a brand lockup (orb + text as one unit, vertically
+                self-centered) — forcing it onto the same line as a
+                small chip-header title and a navigation icon meant
+                deforming pane 2's compact header to compensate, which
+                broke that panel's design. Plan B: leave the wordmark
+                in its natural editorial position; align ONLY the two
+                flexible elements (pane 2 title + top-right logo). */}
+            <div className="p-2 md:p-3">
                 <Link
                     to="/"
                     className="block group transition-all hover:opacity-90"

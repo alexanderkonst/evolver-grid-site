@@ -850,16 +850,14 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                         // Day 53 (Sasha 2026-04-27): vertical position
                         // tuned to align the home-icon torus with the
                         // orb in the left-pane logo lockup.
-                        // Day 55 (Sasha 2026-04-29 iter 2): re-tuned to
-                        // top-[60px] after visual check showed pane 1
-                        // orb actually centers around y=80 (wordmark
-                        // image's orb sits lower within the image than
-                        // the pure-vertical-center assumption used in
-                        // iter 1). Pane 2 header also grown to h-[160px]
-                        // (title center 80). Right icon is 40px tall,
-                        // so top:60 puts its center at 80 — all three
-                        // elements now share Y=80.
-                        <Link to="/" className="absolute top-[60px] right-4 z-50 block w-10 h-10 group">
+                        // Day 55 (Sasha 2026-04-29 Plan B): aligned with
+                        // pane 2's compact h-16 header title (center
+                        // ~32px from pane top). Pane 1 wordmark left
+                        // alone — it's a brand lockup with its own
+                        // editorial position. Right icon is 40px tall,
+                        // so top:12 puts its center at 32 — matches
+                        // pane 2 title.
+                        <Link to="/" className="absolute top-[12px] right-4 z-50 block w-10 h-10 group">
                             <div
                                 className="w-full h-full rounded-lg overflow-hidden"
                                 style={{
