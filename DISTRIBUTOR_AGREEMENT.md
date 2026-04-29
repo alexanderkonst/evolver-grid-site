@@ -1,8 +1,8 @@
 # Stewarding Agreement
 
-> *Formerly "Stewarding Agreement." Renamed Day 54+ (April 28, 2026) — the conscious aspiring impact founder tribe wants relationship, not contract; "Stewarding Agreement" honors the mutual commitment + commons-stewardship spirit that this document actually carries. Filename `DISTRIBUTOR_AGREEMENT.md` retained for back-compat with external links / bookmarks.*
+> *Formerly "Distributor Agreement." Renamed Day 54+ (April 28, 2026) — the conscious aspiring impact founder tribe wants relationship, not contract; "Stewarding Agreement" honors the active, ongoing practice of stewardship over a shared commons that this document actually structures. The "Stewarding" form is more active + practical than alternatives like "Steward Covenant" (briefly considered same day) — the agreement is about ongoing practice, not a one-time pledge. Filename `DISTRIBUTOR_AGREEMENT.md` retained for back-compat with external links / bookmarks.*
 
-**Version 0.3 · April 28, 2026 (Day 54+)** — Renamed from Stewarding Agreement to Stewarding Agreement.
+**Version 0.3 · April 28, 2026 (Day 54+)** — Renamed from "Distributor Agreement" → "Stewarding Agreement" (final). Tribe-vocabulary alignment.
 **Prior version 0.2 · April 27, 2026 (Day 53)** — Two-paths preface added (Path A subscribe vs. Path B fork). See changelog at end.
 
 *This is a draft. The intent is binding; the legal language will tighten with counsel review before any first signature.*
