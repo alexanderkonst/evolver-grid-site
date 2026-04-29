@@ -482,7 +482,7 @@ const ZoneOfGeniusLandingPage = () => {
 
             <div className="space-y-4 text-foreground/90 leading-relaxed">
               <p>The free snapshot gives you clarity — your genius named, your strengths articulated.</p>
-              <p>If you want to build a <strong>unique business</strong> around that genius, the Ignition Session takes you from words to canvas.</p>
+              <p>If you want to build a <strong>unique business</strong> around that genius, the Productize Yourself Session takes you from words to canvas.</p>
               <p>In 60–90 minutes we will:</p>
               <ul className="space-y-2 pl-6">
                 <li className="flex items-start gap-3">
@@ -506,7 +506,7 @@ const ZoneOfGeniusLandingPage = () => {
                 href="/ignite"
                 className="inline-flex items-center gap-2 px-8 py-4 text-base font-semibold rounded-full transition-all border-2 border-primary/30 bg-card/60 hover:bg-card hover:border-primary/50 text-primary shadow-sm"
               >
-                Book an Ignition Session
+                Book a Productize Yourself Session
                 <ExternalLink size={18} />
               </a>
               <p className="text-sm text-muted-foreground mt-3">$555 · 60–90 minutes · Full Unique Business Canvas</p>

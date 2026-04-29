@@ -445,7 +445,7 @@ const BuildCanvasPage = () => {
                 Unique Business Canvas
               </h1>
               <p className="text-white/50 max-w-md mx-auto leading-relaxed">
-                The Canvas is built during a facilitated Ignition Session — 60–90 minutes
+                The Canvas is built during a facilitated Productize Yourself Session — 60–90 minutes
                 where we discover your uniqueness, forge your myth, identify your tribe,
                 and design your business around who you already are.
               </p>
@@ -504,7 +504,7 @@ const BuildCanvasPage = () => {
                 onClick={() => window.open("https://www.calendly.com/konstantinov", "_blank")}
               >
                 <Flame className="w-4 h-4 mr-2" />
-                Book Ignition Session — $555
+                Book Productize Yourself Session — $555
               </Button>
               <p className="text-xs text-muted-foreground">
                 60–90 minutes · Full 7-artifact Canvas · AI-compiled in real time

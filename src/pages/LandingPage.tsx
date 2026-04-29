@@ -92,10 +92,10 @@ const LandingPage = () => {
                   Build your unique business
                 </h3>
                 <p className="text-sm text-[#2c3150]/50 leading-relaxed mb-3">
-                  The Ignition Session. 60–90 minutes. Walk out with your entire business on one page. $555.
+                  The Productize Yourself Session. 60–90 minutes. Walk out with your entire business on one page. $555.
                 </p>
                 <span className="inline-flex items-center gap-1 text-sm font-medium text-[#8460ea] group-hover:gap-2 transition-all">
-                  Book Ignition Session <ArrowRight className="w-4 h-4" />
+                  Book Productize Yourself Session <ArrowRight className="w-4 h-4" />
                 </span>
               </button>
             </section>
@@ -164,7 +164,7 @@ const LandingPage = () => {
               Zone of Genius
             </a>
             <a href="/ignite" className="text-[10px] text-[#8460ea]/40 hover:text-[#8460ea]/70 transition-colors">
-              Ignition Session
+              Productize Yourself Session
             </a>
             <a href="/founders" className="text-[10px] text-[#8460ea]/40 hover:text-[#8460ea]/70 transition-colors">
               Founders

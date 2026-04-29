@@ -84,7 +84,7 @@ export const FoundersCTA = ({ lightMode = true }: { lightMode?: boolean }) => (
             id="book-session-btn"
           >
             <span className="text-lg">◉</span>
-            Book Your Ignition Session — $555
+            Book Your Productize Yourself Session — $555
           </a>
         </div>
       </div>

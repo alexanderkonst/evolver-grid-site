@@ -195,7 +195,7 @@ const SPACE_SECTIONS: SpaceSections = {
         sections: [
             { id: "overview", label: "Overview", path: "/game/marketplace" },
             { id: "my-products", label: "My Products", path: "/game/marketplace/my-products" },
-            { id: "ignite", label: "Ignition Session", path: "/game/marketplace/ignite" },
+            { id: "ignite", label: "Productize Yourself Session", path: "/game/marketplace/ignite" },
             { id: "public-page", label: "My Public Page", path: "/marketplace/create-page" },
         ],
     },
@@ -379,11 +379,18 @@ const buildJourneySections = (_currentPath: string): Section[] => {
     // Day 54 (Sasha 2026-04-28): AI OS removed from this list — elevated
     // to its own Space (see SPACES array in SpacesRail.tsx and the
     // SPACE_SECTIONS["ai-os"] config above). Items 5-8 renumbered to 4-7.
+    // Day 55 (Sasha 2026-04-29): Journey pane 2 labels re-cast as
+    // action+outcome promises (was: short noun-tags). Pattern matches
+    // existing item 5 ("Build a business off your top talent"). Each
+    // row now teaches the user what they'll *get* by clicking, not just
+    // where they'll land. Order preserved — Dashboard sits at #4 as the
+    // last unlocked item before the locked progression (5–7), keeping
+    // the fog-of-war fade intact.
     return [
-        { id: "journey-start-here",        label: "1. Start",             path: "/" },
-        { id: "journey-the-playbook",      label: "2. Playbook",          path: "/playbook" },
-        { id: "journey-the-path",          label: "3. Path",              path: "/path" },
-        { id: "journey-dashboard",         label: "4. Dashboard",         path: "/dashboard" },
+        { id: "journey-start-here",        label: "1. Start by finding your top talent", path: "/" },
+        { id: "journey-the-playbook",      label: "2. Take the whole playbook",          path: "/playbook" },
+        { id: "journey-the-path",          label: "3. See the path to your business",    path: "/path" },
+        { id: "journey-dashboard",         label: "4. See how we're building this",      path: "/dashboard" },
         {
             id: "journey-build-business",
             label: "5. Build a business off your top talent",
@@ -393,17 +400,17 @@ const buildJourneySections = (_currentPath: string): Section[] => {
         },
         {
             id: "journey-mission-discovery",
-            label: "6. Mission Discovery",
+            label: "6. Discover your mission",
             path: "/mission-discovery",
             locked: true,
             lockedHint: "Unlocks after you build a business off your top talent.",
         },
         {
             id: "journey-asset-mapper",
-            label: "7. Asset Mapper",
+            label: "7. Map your essence",
             path: "/asset-mapping",
             locked: true,
-            lockedHint: "Unlocks after Mission Discovery.",
+            lockedHint: "Unlocks after you discover your mission.",
         },
     ];
 };

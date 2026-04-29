@@ -58,7 +58,7 @@ export const GROWTH_STEPS: GrowthStep[] = [
     description:
       "Structured modules to build your unique business from your zone of genius.",
     locked: true,
-    lockedHint: "Unlocks after the foundational course and an Ignition Session.",
+    lockedHint: "Unlocks after the foundational course and a Productize Yourself Session.",
     icon: <GraduationCap className="w-5 h-5" />,
     neonColor: "from-violet-400 to-violet-300",
     neonColorRgb: "167, 139, 250",
