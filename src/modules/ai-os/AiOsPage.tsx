@@ -2733,66 +2733,15 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
             <div ref={parallaxRef} className={isHeavyFxCapable ? "will-change-transform" : ""}>
             <RevealSection>
               <header className="text-center space-y-5 relative pt-2 sm:pt-4 pb-8">
-                {/* Day 50 (Sasha): hero torus medallion retired — the
-                    GameShell rail already carries the brand mark.
-                    Day 53 evening (Sasha 2026-04-27): profile button + auth
-                    flow retired entirely from /ai-os. AI OS is Holonic
-                    Commons — free for everyone, no profile, no sign-in.
-                    Anyone arriving at the page can use it immediately
-                    without an account. The /ai-os/auth and /ai-os/profile
-                    routes redirect home.
-                    Day 54+ (Sasha 2026-04-28 evening): "Copy, paste, enjoy"
-                    eyebrow retired in favor of the merkaba medallion —
-                    matches the AI OS pricing/work-with-us hero so the AI OS
-                    mark reads as the same icon across surfaces. Subtle
-                    gold halo + gentle-spin rotation, sized up slightly
-                    (w-16 vs w-14) for the larger hero context. */}
-                <div className="flex justify-center mb-3">
-                  {/* Day 54+ (Sasha 2026-04-28 evening, late): merkaba was
-                      reading too bright on the editorial hero scene.
-                      Wrapped in a glassmorphic frame — circular mask, gold
-                      rim border, soft inset+outer halo on the wrapper,
-                      and a static (non-rotating) overlay layered on top
-                      of the image. The image itself gets a cheap
-                      brightness(0.78) + saturate(0.92) filter to mute the
-                      iridescence one notch. The vignette overlay
-                      feathers the edge into darkness, so the medallion
-                      sits IN the scene rather than ON it. No
-                      backdrop-filter — pure compositing, GPU-trivial,
-                      no parallax compute hit. Image keeps gentle-spin so
-                      the icon still breathes; the wrapper + overlay
-                      stay still so the rim and vignette don't rotate
-                      with the merkaba. */}
-                  <div
-                    className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden"
-                    style={{
-                      border: '0.5px solid rgba(255, 255, 255, 0.18)',
-                      boxShadow:
-                        '0 0 8px rgba(244, 212, 114, 0.32), 0 0 2px rgba(212, 175, 55, 0.45), inset 0 0 14px rgba(0, 0, 0, 0.42)',
-                    }}
-                  >
-                    <img
-                      src={aiOsMerkaba}
-                      alt="AI OS"
-                      className="w-full h-full object-cover gentle-spin-always"
-                      draggable={false}
-                      style={{
-                        filter: 'brightness(0.78) saturate(0.92)',
-                        animation: 'gentle-spin 60s linear infinite',
-                        willChange: 'transform',
-                        transformOrigin: 'center',
-                      }}
-                    />
-                    <div
-                      aria-hidden="true"
-                      className="absolute inset-0 pointer-events-none"
-                      style={{
-                        background:
-                          'radial-gradient(circle at center, transparent 38%, rgba(0, 0, 0, 0.32) 100%), linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0) 55%)',
-                      }}
-                    />
-                  </div>
-                </div>
+                {/* Day 54++ (Sasha 2026-04-28, post-27P-roast): hero
+                    merkaba medallion retired again. The 27P roast surfaced
+                    register collision (spirit/integral + tech + business
+                    on one page); pruning toward a single coherent
+                    SaaS-style frequency. The merkaba still lives top-right
+                    via GameShellV2 (route-detected merkaba on /ai-os/*),
+                    so the AI OS mark is still present on the page — just
+                    not as a centered hero medallion. Hero leads cleaner
+                    with H1 only, more white space, slower pacing. */}
                 <h1
                   // Day 50 (Sasha): tightened the hero clamp so the
                   // wordmark never overruns narrow phones. Tracking also
@@ -2812,15 +2761,16 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
                 {/* Day 52 (Sasha 2026-04-26): credibility beat — collapses
                     "is this a weekend project?" objection in seven words.
                     "Version 5.0" reads as software discipline (familiar to
-                    anyone who's installed an app); "five years in the
-                    making" is a stock English phrase that needs zero
-                    decoding. Sized small + uppercase so it reads as a fact
-                    label, not a tagline competing with the subtitle below. */}
+                    anyone who's installed an app).
+                    Day 54++ (Sasha 2026-04-28, post-roast): "Five years in
+                    the making" → "Since 2024". The whole platform is 5
+                    years in the making, but the AI OS scaffold itself is
+                    younger. Honest dating instead of conflated tenure. */}
                 <p className="text-[11px] sm:text-xs tracking-[0.18em] uppercase font-medium" style={{
                   color: 'hsl(0 0% 100% / 0.62)',
                   textShadow: '0 0 12px rgba(0,0,0,0.9), 0 0 24px rgba(0,0,0,0.6), 0 1px 4px rgba(0,0,0,0.7)',
                 }}>
-                  Version 5.0 · Five years in the making
+                  Version 5.0 · Since 2024
                 </p>
                 {/* Day 51 r3 (Sasha 2026-04-25 evening): subtitles tightened
                     into a unified two-line block. Previously the second
@@ -2835,33 +2785,31 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
                   }}>
                     Permanent level-up to AI cognition. Instant install.
                   </p>
-                  <p className="text-sm font-light italic" style={{
+                  {/* Day 54++ (Sasha 2026-04-28, post-27P-roast): italic
+                      dropped from "Same model. Different conversation."
+                      Italic was carrying the depth-mystic frequency that
+                      conflicted with the surrounding SaaS-style register.
+                      Line stays — it's the philosophical core — but
+                      flattens to match the hero's coherent register. */}
+                  <p className="text-sm font-light" style={{
                     color: 'hsl(242 30% 85% / 0.78)',
                     textShadow: '0 0 12px rgba(0,0,0,0.9), 0 0 30px rgba(0,0,0,0.7), 0 2px 4px rgba(0,0,0,0.8)',
                   }}>
                     Same model. Different conversation.
                   </p>
                 </div>
-                {/* Day 54+ (Sasha 2026-04-28 evening): hero license line
-                    landed as CC BY-SA 4.0 after the MIT decision was
-                    reversed. AI OS scaffold split out of CC BY-NC-SA into
-                    CC BY-SA (LICENSE.md §2). The line names the license
-                    explicitly + the two real conditions (attribution +
-                    share-alike) without overpromising "free for everyone
-                    forever no conditions." Telegram link preserved for
-                    partnership / proprietary-build conversations (the
-                    per-deal commercial license path that bypasses
-                    share-alike). Full discipline lives in Playbook §16
-                    (The Self-Monetizing Founder — Open Wedge, Paid
-                    Proximity). */}
-                <div className="mx-auto max-w-lg pt-3">
-                  <p className="text-xs sm:text-[13px] font-normal leading-relaxed" style={{
-                    color: 'hsl(0 0% 100% / 0.82)',
+                {/* Day 54++ (Sasha 2026-04-28, post-27P-roast): hero
+                    license line collapsed to single SaaS-style microcopy
+                    line. The 2-line license-spirit framing was carrying
+                    too much weight in the hero; full plain-English CC BY-SA
+                    explanation lives on /ai-os/work-with-us. Hero just
+                    needs the badge + partnership pointer. */}
+                <div className="mx-auto pt-3">
+                  <p className="text-xs sm:text-[13px] font-normal" style={{
+                    color: 'hsl(0 0% 100% / 0.65)',
                     textShadow: '0 0 12px rgba(0,0,0,0.9), 0 0 24px rgba(0,0,0,0.6), 0 1px 4px rgba(0,0,0,0.8)',
                   }}>
-                    CC BY-SA 4.0. Yours to use, copy, modify, even sell.
-                    <br />
-                    Keep the author's name on copies you share.{" "}
+                    Open source · CC BY-SA 4.0 ·{" "}
                     <a
                       href="https://t.me/integralevolution"
                       target="_blank"
@@ -2869,24 +2817,27 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
                       className="underline decoration-[hsl(40_70%_75%/0.45)] decoration-1 underline-offset-[3px] hover:decoration-[hsl(40_70%_75%/0.85)] transition-colors"
                       style={{ color: 'hsl(40 70% 90% / 0.95)' }}
                     >
-                      Reach out
-                    </a>{" "}
-                    for partnership.
+                      Reach out for partnership
+                    </a>
                   </p>
                 </div>
-                {/* CTAs — Day 51 r3 (Sasha 2026-04-25 evening): visual
-                    hierarchy added. Three equal-weight pills was reading
-                    as a committee. Now:
-                    • Primary "Start here" — bigger pill, brighter purple
-                      glow, the unmistakable "do this first" affordance.
-                    • Secondary "Work with us" (was "Work with Aleksandr" — Day 54+, Sasha) — gold rim preserved
-                      (premium signal) but matched to primary's height so
-                      the two read as a paired primary row.
-                    • Tertiary "Why this works" — demoted to a ghost text
-                      link with a thin underline-on-hover; carries the
-                      lightning glyph but no bg, so it stops competing
-                      with the actual decisions above. */}
-                <div className="flex items-center justify-center gap-3 pt-7 flex-wrap">
+                {/* CTAs — Day 54++ (Sasha 2026-04-28, post-27P-roast):
+                    pruned from 3 CTAs (Start here / Work with us / Why
+                    this works · +42% benchmark) → 1 primary CTA only.
+                    The 27P roast surfaced decision paralysis in the hero;
+                    pruning to single CTA respects the "slow the page
+                    down, fewer asks" middle-path call.
+                    • "Work with us" → moved to small subtle callout below
+                      Spotlight (so install flow doesn't compete with
+                      partnership ask)
+                    • "Why this works" → dropped entirely (let the page
+                      itself BE the why)
+                    • "See the +42% benchmark" → dropped from hero;
+                      benchmark accessible via pane 2 only.
+                    The dropped story-modal trigger leaves showStoryDialog
+                    state + the modal at bottom of file as dead code —
+                    harmless, can be cleaned up in a follow-up sweep. */}
+                <div className="flex items-center justify-center pt-7">
                   <a
                     href="#ai-os-spotlight"
                     className="inline-flex items-center gap-2 text-sm font-medium tracking-wide px-6 py-3 rounded-full transition-all duration-300 hover:scale-[1.04] group"
@@ -2901,65 +2852,13 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
                     Start here
                     <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5" />
                   </a>
-                  <a
-                    href="https://t.me/integralevolution"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-sm font-medium tracking-wide px-6 py-3 rounded-full transition-all duration-300 hover:scale-[1.04]"
-                    style={{
-                      background: 'linear-gradient(135deg, hsla(40, 70%, 55%, 0.20) 0%, hsla(40, 60%, 45%, 0.10) 100%)',
-                      border: '1px solid hsla(40, 70%, 65%, 0.40)',
-                      color: 'hsl(40 70% 92%)',
-                      textShadow: '0 0 14px rgba(244,212,114,0.45), 0 1px 4px rgba(0,0,0,0.5)',
-                      boxShadow: '0 0 0 1px hsla(40, 70%, 65%, 0.12), 0 8px 24px -12px rgba(244,212,114,0.4)',
-                    }}
-                  >
-                    Work with us
-                  </a>
-                </div>
-                {/* Day 52 (Sasha 2026-04-26): two parallel ghost links —
-                    "Why this works" (story modal, philosophical why) and
-                    "See the +42% benchmark" (proof page, empirical receipt).
-                    Dot-separated on one row so they read as a paired
-                    credibility/proof affordance below the primary CTAs.
-                    The +42% number is the hook — answers "should I click?"
-                    before the click. Gold tint on the benchmark link to
-                    distinguish it from the cool "why this works" link. */}
-                <div className="flex items-center justify-center gap-3 pt-3 flex-wrap">
-                  <button
-                    onClick={() => setShowStoryDialog(true)}
-                    className="inline-flex items-center gap-1.5 text-xs font-medium tracking-wide transition-all duration-300 group"
-                    style={{
-                      color: 'hsl(195 35% 80% / 0.78)',
-                      textShadow: '0 0 12px rgba(0,0,0,0.85), 0 1px 4px rgba(0,0,0,0.7)',
-                    }}
-                  >
-                    <Zap className="w-3 h-3 opacity-70 group-hover:opacity-100 transition-opacity" />
-                    <span className="border-b border-transparent group-hover:border-current/60 transition-colors">
-                      Why this works
-                    </span>
-                  </button>
-                  <span aria-hidden="true" className="text-xs" style={{ color: 'hsl(0 0% 100% / 0.35)' }}>
-                    ·
-                  </span>
-                  <button
-                    onClick={() => navigate('/ai-os/benchmark')}
-                    className="inline-flex items-center gap-1.5 text-xs font-medium tracking-wide transition-all duration-300 group"
-                    style={{
-                      color: 'hsl(40 70% 82% / 0.85)',
-                      textShadow: '0 0 12px rgba(244,212,114,0.3), 0 0 12px rgba(0,0,0,0.85), 0 1px 4px rgba(0,0,0,0.7)',
-                    }}
-                  >
-                    <BarChart3 className="w-3 h-3 opacity-70 group-hover:opacity-100 transition-opacity" />
-                    <span className="border-b border-transparent group-hover:border-current/60 transition-colors">
-                      See the +42% benchmark
-                    </span>
-                    <ArrowRight className="w-3 h-3 opacity-50 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all" />
-                  </button>
                 </div>
                 {/* Bottom ornament — Day 51 r3: tightened pt to keep the
-                    hero compact while the new ghost link sits above it. */}
-                <div className="flex items-center justify-center pt-5 pb-2">
+                    hero compact. Day 54++ (post-roast): pt increased
+                    slightly to honor the "more white space, deeper pacing"
+                    middle-path call now that the 2 dropped CTA rows freed
+                    vertical room. */}
+                <div className="flex items-center justify-center pt-8 pb-2">
                   <div className="h-px w-24" style={{ background: 'linear-gradient(90deg, transparent, hsl(242 30% 73% / 0.25), transparent)' }} />
                 </div>
               </header>
@@ -2990,23 +2889,45 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
             />
           </RevealSection>
 
-          {/* Additional power-ups — Day 53 (Sasha 2026-04-27) reframe:
-              this section was previously the page's primary "Step 1 ·
-              Choose / Pick your class of tasks" decision card. With the
-              spotlight above, this is now secondary — high-quality
-              category prompts for everyday craft, supporting the main
-              install rather than competing with it. Glass treatment kept;
-              copy softened.
-              Day 54 (Sasha 2026-04-28): chip-nav rendering is now gated
-              on `!focusCategory` — it ONLY shows on /ai-os (the short
-              landing). On suite sub-routes (/ai-os/clarity etc.) the
-              user is already focused; the chip nav becomes redundant
-              and the focused suite section below this block carries
-              the experience. Chip hrefs also re-targeted from in-page
-              anchors (`#section-clarity`) to actual sub-routes
-              (`/ai-os/clarity`) so the chips do real navigation. Meta
-              category filtered out of the chips because it IS the
-              install — the spotlight above already handles it. */}
+          {/* Work-with-us callout — Day 54++ (Sasha 2026-04-28, post-27P-roast):
+              "Work with us" CTA migrated here from the hero, where it
+              was creating decision paralysis alongside "Start here" +
+              "Why this works" + "+42% benchmark". As a subtle gold-rim
+              pill below the Spotlight, it reads as the natural next
+              step for visitors who've installed and want to go deeper
+              — partnership conversation, not a pitch interruption.
+              Only renders when not on a suite sub-route (otherwise
+              suite-focused experience carries on without distraction). */}
+          {!focusCategory && (
+          <RevealSection delay={120}>
+            <div className="text-center max-w-md mx-auto py-8">
+              <a
+                href="https://t.me/integralevolution"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-sm font-medium tracking-wide px-6 py-3 rounded-full transition-all duration-300 hover:scale-[1.04]"
+                style={{
+                  background: 'linear-gradient(135deg, hsla(40, 70%, 55%, 0.20) 0%, hsla(40, 60%, 45%, 0.10) 100%)',
+                  border: '1px solid hsla(40, 70%, 65%, 0.40)',
+                  color: 'hsl(40 70% 92%)',
+                  textShadow: '0 0 14px rgba(244,212,114,0.45), 0 1px 4px rgba(0,0,0,0.5)',
+                  boxShadow: '0 0 0 1px hsla(40, 70%, 65%, 0.12), 0 8px 24px -12px rgba(244,212,114,0.4)',
+                }}
+              >
+                Work with us
+              </a>
+            </div>
+          </RevealSection>
+          )}
+
+          {/* Prompt Suites — Day 54++ (Sasha 2026-04-28, post-27P-roast):
+              eyebrow renamed from "Additional power-ups" → "Prompt Suites"
+              per the middle-path register-coherence call (gamer/tech
+              "power-ups" was off-register with the conscious-impact-founder
+              tribe vocabulary). Section's structural role unchanged: chip
+              nav to suite sub-routes, gated on `!focusCategory` (only
+              renders on /ai-os main, not on suite sub-routes). Meta
+              category filtered out of chips because it IS the install. */}
           {!focusCategory && (
           <RevealSection delay={150}>
             <nav
@@ -3036,7 +2957,7 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
                     textShadow: '0 0 12px rgba(132,96,234,0.4)',
                   }}
                 >
-                  Additional power-ups
+                  Prompt Suites
                 </p>
                 <h2
                   className="font-display italic text-2xl sm:text-3xl md:text-4xl font-medium leading-[1.15] tracking-[-0.02em]"

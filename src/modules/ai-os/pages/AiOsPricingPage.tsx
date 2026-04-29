@@ -27,7 +27,7 @@ const Pricing = () => {
 
   useEffect(() => {
     const prev = document.title;
-    document.title = "Work with us — Holonic Commons";
+    document.title = "Work with us — AI OS";
     return () => { document.title = prev; };
   }, []);
 
@@ -105,9 +105,14 @@ const Pricing = () => {
             <p className="text-sm sm:text-base font-light max-w-xl mx-auto leading-relaxed" style={{ color: 'hsl(0 0% 100% / 0.78)' }}>
               Use it, copy it, modify it, even sell it — for your own projects, client work, or products. Keep the author's name on copies you share. Modified versions stay open under the same license, so others can build on it too.
             </p>
-            <p className="text-[10px] tracking-[0.3em] uppercase font-medium" style={{ color: 'hsl(195 35% 75% / 0.55)' }}>
-              Holonic Commons
-            </p>
+            {/* Day 54++ (Sasha 2026-04-28, post-27P-roast): "Holonic
+                Commons" tag dropped from the hero. Tribe-shibboleth
+                doing tribe-only work on a page that should also be
+                accessible to the universal visitor. The CC BY-SA H1
+                + plain-English subtitle already self-evidence the
+                spirit; no need to label it. Internal architecture
+                docs (monetization_strategies.md etc.) still use the
+                Holonic Commons name where appropriate. */}
           </header>
 
           {/* Three paths */}

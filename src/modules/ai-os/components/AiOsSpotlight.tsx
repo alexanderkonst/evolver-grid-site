@@ -167,7 +167,12 @@ export default function AiOsSpotlight({ installPromptContent }: Props) {
       />
 
       <div className="relative space-y-6">
-        {/* Eyebrow — explicitly says "read this" per Sasha */}
+        {/* Eyebrow — Day 54++ (Sasha 2026-04-28, post-27P-roast):
+            "Read this · 30 seconds" → "Feel the shift · 60 seconds".
+            The new copy is depth-coded (the felt experience is the
+            actual deliverable) AND practical (60-second time commit
+            still gates the click). 60 instead of 30 because the
+            install + re-prompt actually takes ~60s end-to-end. */}
         <p
           className="text-[10px] sm:text-xs uppercase tracking-[0.32em] font-medium"
           style={{
@@ -175,7 +180,7 @@ export default function AiOsSpotlight({ installPromptContent }: Props) {
             textShadow: "0 0 14px rgba(244,212,114,0.35), 0 0 12px rgba(0,0,0,0.85)",
           }}
         >
-          Read this · 30 seconds
+          Feel the shift · 60 seconds
         </p>
 
         {/* Headline */}
