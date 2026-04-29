@@ -966,6 +966,17 @@ All colors MUST be HSL.
     -ms-overflow-style: none;
   }
 
+  @media (max-width: 1023px) {
+    .mobile-content-scroll {
+      /* Durable fallback for classic WebKit scrollbars that ignore
+         scrollbar-width/display:none in embedded mobile previews: place
+         the gutter outside the clipped shell while keeping content width. */
+      width: calc(100% + 18px);
+      margin-right: -18px;
+      padding-right: 18px;
+    }
+  }
+
   .mobile-content-scroll::-webkit-scrollbar {
     display: none !important;
     width: 0 !important;
