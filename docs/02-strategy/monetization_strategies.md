@@ -8,7 +8,7 @@
 >
 > **Status:** living document. Always work from the latest version. Each addition is additive (changelog at end of file); nothing is deleted, but the *current shape* is whatever the latest version describes.
 >
-> **Cross-references:** [Unique Business Playbook — Principle 15](../03-playbooks/unique_business_playbook.md) (the conversion mechanism every play leverages) · [Phase Shift Library Domain 81](../01-vision/phase_shift_technology_library.md) (the discovery in research-grade form) · [Stewarding Agreement v0.1](../../DISTRIBUTOR_AGREEMENT.md) (the legal instrument) · [Integration Layer Manifesto](../06-architecture/integration_layer_manifesto.md) (the architectural rationale for plays #3 and #5) · [Planetary OS Assembly](./planetary_os_assembly.md) (the 12-step growth path the plays map to) · [Roadmap](./roadmap.md) (current sprint status) · [Alexander's Unique Business](./unique-businesses/alexanders_unique_business.md) (the master holon's lived state)
+> **Cross-references:** [Unique Business Playbook — Principle 15](../03-playbooks/unique_business_playbook.md) (the conversion mechanism every play leverages) · [Phase Shift Library Domain 81](../01-vision/phase_shift_technology_library.md) (the discovery in research-grade form) · [Distributor Agreement v0.1](../../DISTRIBUTOR_AGREEMENT.md) (the legal instrument) · [Integration Layer Manifesto](../06-architecture/integration_layer_manifesto.md) (the architectural rationale for plays #3 and #5) · [Planetary OS Assembly](./planetary_os_assembly.md) (the 12-step growth path the plays map to) · [Roadmap](./roadmap.md) (current sprint status) · [Alexander's Unique Business](./unique-businesses/alexanders_unique_business.md) (the master holon's lived state)
 
 ---
 
@@ -49,13 +49,13 @@ When a candidate distributor, community partner, investor, counsel, or future Cl
 The model is the assembly of five components. None is novel on its own; the **specific combination, applied to AI-native human-development infrastructure, is what's new.**
 
 ### 1. PolyForm Noncommercial code license
-The codebase ships under [PolyForm Noncommercial 1.0.0](../../LICENSE). Personal and small-community forks are free; commercial deployment requires a Stewarding Agreement. Software-native equivalent of the docs license's "ShareAlike + NonCommercial" intent.
+The codebase ships under [PolyForm Noncommercial 1.0.0](../../LICENSE). Personal and small-community forks are free; commercial deployment requires a Distributor Agreement. Software-native equivalent of the docs license's "ShareAlike + NonCommercial" intent.
 
 ### 2. CC BY-NC-SA 4.0 documentation license
 Methodology, playbook, frameworks under [CC BY-NC-SA 4.0](../../LICENSE.md). Free to study, adapt, share with attribution for non-commercial use; commercial use of the methodology requires permission.
 
-### 3. Stewarding Agreement with 10% revenue share
-[Stewarding Agreement v0.1](../../DISTRIBUTOR_AGREEMENT.md) governs commercial use:
+### 3. Distributor Agreement with 10% revenue share
+[Distributor Agreement v0.1](../../DISTRIBUTOR_AGREEMENT.md) governs commercial use:
 - 10% of platform revenue (gross), free under USD $1,000/month
 - Stripe Connect Express auto-split as preferred mechanism (when wired)
 - Distributor keeps 90%, operates under their own brand
@@ -66,24 +66,6 @@ The `specificity_matrix` UBB artifact (Day 51, [Playbook Principle 15](../03-pla
 
 ### 5. Opt-in commons (asset mappings, mission discoveries, anonymized artifacts)
 Each distributor's users explicitly choose at the artifact level whether their (anonymized) data flows into the public commons. The commons is released under CC BY 4.0 — usable as a public good across all distributors and any aligned external project. Network effects compound for everyone in the network without forced extraction.
-
-### 6. CC BY-SA 4.0 AI OS scaffold license (Day 54+, April 28, 2026)
-The **AI OS scaffold** (the meta-cognition system prompt distributed via `/ai-os` plus its derivative prompt suites — Clarify / Iterate / Vibe Code / Design) lives under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) — a deliberate, scoped exception to the broader CC BY-NC-SA on docs. Why a different license for this layer:
-
-- **The artifact is unenforceable on use.** A system prompt pasted into the user's own Claude / ChatGPT / Gemini cannot meaningfully be policed for personal-vs-commercial use. CC BY-NC-SA's NC clause would trap the well-meaning coach (whose upgraded Claude technically violates) without stopping the actual threat (someone packaging "AI OS Pro" and reselling).
-- **CC BY-SA solves the actual threat.** Share-alike triggers on **distribution of derivatives**, not **use** — so the coach using upgraded Claude is fine, while a reseller's "AI OS Pro" must also be released under CC BY-SA (anyone can then copy it and undercut their pricing → no proprietary moat → predator move dies).
-- **Honest commercial use stays free; proprietary use pays.** Anyone who wants to use AI OS in a closed product without share-alike obligations comes to Sasha for a per-deal commercial license. Standard CC BY-SA + commercial dual-licensing pattern (MongoDB-style, Sentry-style, Cal.com-style — adapted).
-
-**License map** (the full picture as of Day 54+):
-
-| Layer | License | Strict open source? |
-|---|---|---|
-| Code (`/src`, `/api`, `/supabase`) | PolyForm Noncommercial 1.0.0 | ❌ source-available |
-| Docs / methodology (`/docs`) | CC BY-NC-SA 4.0 | ❌ source-available |
-| AI OS scaffold (system prompt + derivative suites) | **CC BY-SA 4.0** | ✅ open |
-| Anthropic-derived skills (`.agent/skills/`) | MIT (upstream-inherited) | ✅ open |
-
-**The honest external framing:** "Built in the open. Licensed for honest use; commercial use through partnership." Two-thirds of the project is source-available (NC-bound), one-third is strictly open. *"Open-source methodology"* is a soft stretch — works rhetorically, won't survive a strict OSI advocate's audit. Use precise language when stakes warrant.
 
 ---
 
@@ -115,24 +97,6 @@ Web3 attempted commercial decentralization through token incentives and largely 
 3. **Compounding commons** — every distributor's contribution makes the commons more valuable to every other distributor. Self-reinforcing without requiring belief in a token's future value.
 
 No speculation surface. No need for blockchain. No volatile alignment.
-
----
-
-## The Impact Founder Collective — the human-side framing (Day 54+, April 28, 2026)
-
-The architecture above (Sovereign Network · Stewarding Agreement · six plays · CC BY-SA scaffold) describes the **legal and economic mechanics**. The **Impact Founder Collective** names the **human relationship layer** that runs through it. Same coin, two sides.
-
-In Sasha's vocabulary:
-- *Venture coop* = the outside-in description (cooperative-style venture structure with shared commons, revenue sharing, network-effect economics)
-- *Impact Founder Collective* = the inside-out description (a constellation of aligned founders, Sasha at the gravitational center, organized by tiered intimacy rather than employment hierarchy)
-- *Sovereign Network* = the brand handle when a memorable phrase helps externally
-- *Holonic Commons* = the commons layer specifically (the shared dataset of asset mappings, mission discoveries, AI OS scaffold)
-
-These are not different things. They are **four lenses on one structure** — pick the lens that fits the audience.
-
-**Why this matters for monetization strategy:** the six plays in the next section are not "products in a portfolio." They are **tiers of intimacy with the source** (Sasha + the body of work). Pricing reflects access depth, not feature count. This collapses business structure into elegance and radical simplicity — the founder *is* the product, made accessible at varying depths via the tier ladder. A traditional company-vs-customer distinction does not apply: founders in the IFC are *both* served by the methodology *and* contributors to it. They are members of the collective, not customers of a firm.
-
-This is also why the standard open-source-business-model frame (Red Hat ↔ Linus / Supabase ↔ Postgres / etc.) only **half-applies** to AI OS. In those cases, the company is built around the open project but is structurally separable from any individual contributor. Here, **Sasha IS AI OS** — the project's author, made accessible via tiered intimacy, where the body of work and the human are one holon. *Self-monetization* rather than product-monetization.
 
 ---
 
@@ -205,7 +169,7 @@ Each play is described through the three-depths instrument: **❤️ Essence** (
   - **Flat fee:** $99-299/month — simplest to scale, but doesn't align with the coach's actual usage economics
   - **Per-session pay:** ~$50 per ZoG generation — aligns better with their economics, but adds friction at the moment of use
   - **Rev-share:** 10-20% on session revenue — aligns most with this model's commons-tithe philosophy, but hardest to enforce without integrated billing
-- **Critical decision (open):** is this a different commercial layer from the Stewarding Agreement, or do coaches sign the same agreement at the lowest tier? Probably the former — it's a different *product* (use, not deploy)
+- **Critical decision (open):** is this a different commercial layer from the Distributor Agreement, or do coaches sign the same agreement at the lowest tier? Probably the former — it's a different *product* (use, not deploy)
 - **Infrastructure needed:** a "facilitator console" that doesn't exist yet — a logged-in surface where a coach can run a session for a client and see their results. Likely 1-2 weeks of focused build work
 - **Acquisition:** warm referrals from existing cohort + Sasha's network of integrative practitioners + the Knoware article reaching AI-curious coaches who haven't yet realized they want a system
 - **Risk:** if the facilitator console is too generic, coaches use it to dilute the methodology. If it's too prescriptive, coaches feel constrained and don't adopt. The console design needs the same care as a product launch
@@ -221,12 +185,12 @@ Each play is described through the three-depths instrument: **❤️ Essence** (
 **🧠 Significance.** This is **Step 11 of the [Assembly](./planetary_os_assembly.md)** — other communities adopting the tools — at the highest level of distributor sovereignty. It's the play that activates the fractal scaling mechanism. Each distributor is a complete holon. Theoretically infinite. The commons effect compounds: every distributor's anonymized contributions make the public dataset more valuable for every other distributor and any aligned external project. **This is the play that makes the [Integration Layer Manifesto](../06-architecture/integration_layer_manifesto.md) commercially real, not aspirational.**
 
 **🔥 Implications.**
-- **Pricing model is locked:** 10% rev share on platform revenue (gross), $1K/month free tier, distributor keeps 90%. Codified in [Stewarding Agreement v0.1](../../DISTRIBUTOR_AGREEMENT.md).
+- **Pricing model is locked:** 10% rev share on platform revenue (gross), $1K/month free tier, distributor keeps 90%. Codified in [Distributor Agreement v0.1](../../DISTRIBUTOR_AGREEMENT.md).
 - **Infrastructure debt is real** — provisioning automation + brand wizard + Stripe Connect Express need to be built before this can run "Skool-easy". Estimated 4-5 weeks of focused work, much less with Sasha + Lovable. Until then, distribution is hands-on per-distributor (only Oyi/Sergey-level technical founders can manage it on their own).
 - **Long-tail expectation:** with 50 distributors averaging $3K/month each = $150K/month platform revenue × 10% = $15K/month to commons (Sasha). With 500 distributors at the same average = $150K/month to commons. The math gets serious only at network scale.
 - **Critical risk:** if the per-founder Specificity Matrix experience isn't excellent, the whole sovereignty premise collapses — distributors will feel like they're using Sasha's brand badly relabeled. Quality of voice generation is load-bearing.
 - **Acquisition:** the cohort first (Oyi, Sergey are technical enough to do manual setup with Sasha's help; Sandra, Karime, Kirill need the kit before they can adopt). Then weak-tie aligned tribe via the three lead magnets (some users will graduate from #1 to #3 naturally).
-- **Status:** ✅ **Legal layer shipped Day 51** (PolyForm NC + Stewarding Agreement v0.1 + README rewrite + repo public links). 🔄 **Technical layer not shipped** (provisioning automation + brand wizard + Stripe Connect Express). 🔄 **No commercial distributors signed yet.**
+- **Status:** ✅ **Legal layer shipped Day 51** (PolyForm NC + Distributor Agreement v0.1 + README rewrite + repo public links). 🔄 **Technical layer not shipped** (provisioning automation + brand wizard + Stripe Connect Express). 🔄 **No commercial distributors signed yet.**
 - **Sequencing position:** Phase 1 (alongside #1 and #2). Pilot one real distributor manually (Oyi-level) before building the kit; let real walk-through inform what to automate.
 
 #### What Each Distributor Gets
@@ -333,12 +297,12 @@ The plays come online in a deliberate sequence. **Phase 1 must mature before Pha
 - **Status:** #1 active and proven. #3 legal layer shipped Day 51; technical layer (provisioning + brand wizard + Stripe Connect Express) builds in this phase informed by first real distributor walk-through. #2 facilitator console builds in this phase.
 - **First commercial distributor target:** Oyi or Sergey (technical enough to do manual setup with Sasha's help). Real-world learning loop before automation.
 - **Public messaging:** the foundation is what's offered. #4-#6 stay in pocket.
-- **Exit criterion to Phase 2:** at least one signed Stewarding Agreement (#3) AND at least one paying coach (#2).
+- **Exit criterion to Phase 2:** at least one signed Distributor Agreement (#3) AND at least one paying coach (#2).
 
 ### Phase 2 — Community Adoption (next 2-3 months)
 - **Plays added:** #5 (Community White-Label)
 - **Status:** Sales conversations with one or two pre-aligned communities (Holo Movement, Symbiosis, Core Nexus). Pricing model decided based on what they need. Pilot one community deal.
-- **Public messaging:** *"For aligned founders → Stewarding Agreement. For aligned communities → Community White-Label deal."* Two clear paths.
+- **Public messaging:** *"For aligned founders → Distributor Agreement. For aligned communities → Community White-Label deal."* Two clear paths.
 - **Exit criterion to Phase 3:** at least one signed Community White-Label deal AND 3-5 active distributors from Phase 1.
 
 ### Phase 3 — Selective Co-Founding (3-6 months out)
@@ -392,7 +356,7 @@ This is also where the model's long-term moat lives. **Forkable code is forkable
 |---|------|-------|---------|----------------|-----------|--------------|
 | 1 | Conscious Entrepreneur | n/a — direct customer | ✅ $555 / $5K / $500-mo | ✅ ZoG → Excalibur → UBB → first clients flow | 6 founders (Oyi, Sergey, Sandra, Alexa, Karime, Kirill) | Phase 1 ✅ |
 | 2 | Purpose Coach | 🔄 separate agreement *(open)* | 🔄 model *(open)* | 🔄 facilitator console *(not built)* | 0 | Phase 1 🔄 |
-| 3 | Platform Distribution | ✅ PolyForm NC + Stewarding Agreement v0.1 | ✅ 10% rev share, $1K/mo free tier | 🔄 provisioning automation + brand wizard + Stripe Connect Express *(not built)* | 0 | Phase 1 🔄 |
+| 3 | Platform Distribution | ✅ PolyForm NC + Distributor Agreement v0.1 | ✅ 10% rev share, $1K/mo free tier | 🔄 provisioning automation + brand wizard + Stripe Connect Express *(not built)* | 0 | Phase 1 🔄 |
 | 4 | Venture Studio | 🔭 SAFE template *(not drafted)* | 🔭 split *(not decided)* | 🔭 nothing yet | 0 | Phase 3 🔭 |
 | 5 | Community White-Label | 🔭 enterprise contract template *(not drafted)* | 🔭 model *(open)* | 🔭 nothing yet | 0 | Phase 2 🔭 |
 | 6 | Unique Business System License | 🔭 certification + license template *(not drafted)* | 🔭 fee structure *(open)* | 🔭 certification program *(not built)* | 0 | Phase 4 🔭 |
@@ -446,7 +410,7 @@ These are the decisions that must be made before each play moves from concept to
 
 ### For Play #2 (Purpose Coach)
 1. **Pricing model:** flat fee / per-use / rev-share — which one
-2. **Commercial layer:** separate agreement or lowest-tier of Stewarding Agreement
+2. **Commercial layer:** separate agreement or lowest-tier of Distributor Agreement
 3. **Facilitator console scope:** what minimum surface lets a coach run a session for a client
 
 ### For Play #3 (Platform Distribution)
@@ -454,7 +418,7 @@ These are the decisions that must be made before each play moves from concept to
 2. **Soft pricing floor for distributors:** should there be a minimum price (e.g. "no fire-sale pricing — minimum $X — to protect category-level perception")?
 3. **Brand attribution default:** *"Powered by Find Your Top Talent"* in distributor footer — soft requirement or fully optional?
 4. **Anonymization spec for commons:** the data classes that flow into the public commons need a written spec
-5. **Governing law for Stewarding Agreement:** currently placeholder; likely Delaware, USA or another neutral common-law jurisdiction
+5. **Governing law for Distributor Agreement:** currently placeholder; likely Delaware, USA or another neutral common-law jurisdiction
 6. **Tier 1.5 (brand-borrowing) tier:** distributor under their own brand but explicitly references Sasha's methodology in marketing. Could be 20/80 between platform-only (10%) and Sasha-live (40%). Optional — depends on whether brand-borrowing equity proves to be a meaningful asset transfer in practice.
 
 ### For Play #4 (Venture Studio)
@@ -480,7 +444,7 @@ The earlier brand name "Holonic Franchise" was retired same day for two real rea
 
 **1. Legal exposure.** In the US, the FTC Franchise Rule attaches when three elements are present in a commercial relationship: trademark license + significant control or assistance + required payment. Our model arguably triggers all three (methodology brand association + matrix generator + 10% rev share). Calling the model a "franchise" is gasoline on this fire — it doesn't change the underlying economics, but it gives a regulator the easy hook to treat us as one and require Franchise Disclosure Documents (FDD), state registrations, and a long compliance tail. Several US states (California, NY, Illinois, others) have additional franchise statutes that bite hard. EU and Canadian provincial regimes have analogous exposure. Renaming away from "franchise" now is genuinely prudent, not cosmetic.
 
-**2. Accessibility.** "Holonic" is a strong technical term inside Wilber/Koestler integral-theory circles and inaccessible outside them. A Y Combinator partner, a corporate L&D buyer, a counsel reviewing the Stewarding Agreement — all hit "holonic" and either skim past or assume the work is too esoteric to take seriously. Distributors hear the phrase before they hear the substance.
+**2. Accessibility.** "Holonic" is a strong technical term inside Wilber/Koestler integral-theory circles and inaccessible outside them. A Y Combinator partner, a corporate L&D buyer, a counsel reviewing the Distributor Agreement — all hit "holonic" and either skim past or assume the work is too esoteric to take seriously. Distributors hear the phrase before they hear the substance.
 
 **The Path A decision (Sasha, Day 51 night):** drop the formal brand name. Describe the model functionally everywhere — *open-source platform with sovereign distributors and a 10% commons tithe*. Keep the soft brand handle **the Sovereign Network** in 1-2 evocative spots (README's *what it becomes when you fork* table, the distributor onboarding wizard's headline) for marketing moments where a memorable phrase helps.
 

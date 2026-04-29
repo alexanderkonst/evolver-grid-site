@@ -62,44 +62,40 @@ const SPACE_SECTIONS: SpaceSections = {
     },
     // AI OS Space — Day 54 (Sasha 2026-04-28): elevated from JOURNEY
     // step #4 to its own Space. Pane 2 separates the substrate
-    // (60-second install) from the toolkit on top (Prompt suites)
-    // from the proof (Benchmarking) from the partnership invite
-    // (Work with us). The suites parent mirrors the ME `top-talent`
-    // parent-with-children pattern. Day 54 r5: labels shifted to
-    // action-form so the menu reads as verbs the user can do
-    // (Clarify, Iterate) rather than abstract nouns (Clarity,
-    // Iteration). Pricing path updated to canonical /work-with-us.
+    // (Install) from the toolkit on top (Suites) from the proof
+    // (Benchmark) from the upgrade path (Pricing). The Suites parent
+    // mirrors the ME `top-talent` parent-with-children pattern.
     "ai-os": {
         title: "AI OS",
         sections: [
             {
                 id: "ai-os-install",
-                label: "60-second install",
+                label: "Install",
                 path: "/ai-os",
             },
             {
                 id: "ai-os-suites",
-                label: "Prompt suites",
+                label: "Suites",
                 // Parent path is intentionally a non-resolved sentinel —
                 // clicks toggle expand/collapse rather than navigating.
                 // The sub-sections own the real routes.
                 path: "/ai-os/suites",
                 subSections: [
-                    { id: "ai-os-clarity", label: "Clarify", path: "/ai-os/clarity" },
-                    { id: "ai-os-iteration", label: "Iterate", path: "/ai-os/iteration" },
+                    { id: "ai-os-clarity", label: "Clarity", path: "/ai-os/clarity" },
+                    { id: "ai-os-iteration", label: "Iteration", path: "/ai-os/iteration" },
                     { id: "ai-os-vibe-code", label: "Vibe Code", path: "/ai-os/vibe-code" },
                     { id: "ai-os-design", label: "Design", path: "/ai-os/design" },
                 ],
             },
             {
                 id: "ai-os-benchmark",
-                label: "Benchmarking",
+                label: "Benchmark",
                 path: "/ai-os/benchmark",
             },
             {
                 id: "ai-os-pricing",
-                label: "Work with us",
-                path: "/ai-os/work-with-us",
+                label: "Pricing",
+                path: "/ai-os/pricing",
             },
         ],
     },
@@ -560,33 +556,31 @@ const SectionsPanel = ({
             className={cn(
                 "w-[260px] flex flex-col relative z-30",
                 "liquid-glass",
-                // Day 51 r2 (desktop silk-veil) + Day 54+ (mobile fix):
-                //   Desktop: 0.18 alpha — Sasha's "curtain" effect, the bg
-                //     figure peeks through the silk veil over the animated
-                //     Mux stream (combined with backdrop-blur).
-                //   Mobile: 0.55 alpha — the bg cycles through bright cream
-                //     zones that wash the section list into invisibility at
-                //     0.18 (lower items "Build a business / Mission /
-                //     Assets" disappear over the lower-bright frame).
-                //   pageOwnsBackground (e.g. /ai-os): 0.55 across both —
-                //     page-level bg overlays already eat the silk veil, so
-                //     pane 2 holds its weight regardless of viewport.
-                pageOwnsBackground
-                    ? "bg-[rgba(6,12,28,0.78)]"
-                    : "bg-[rgba(14,32,68,0.55)] lg:bg-[rgba(14,32,68,0.42)]",
                 className
             )}
             /* Day 48 iter 8 (Sasha): Pane 2 now pulls the lit-navy overlay
                (--skin-panel-2-bg). The flat 1px inset gold line retired
                in favor of a vertical gradient "spine" (absolute-positioned
                below) that mirrors pane 1 — both panes now read as the
-               same backlit book-binding.
-               border: none — removes liquid-glass's 0.5px white top border.
-               z-30 ensures pane 2 sits above page-owned background overlays
-               (e.g. /ai-os's z-[1] gradient + vignette + noise +
-               StarryBackground); without this, the overlays were drawn over
-               the panel and the panel appeared to "disappear." */
+               same backlit book-binding. */
+            // Day 51 (Sasha 2026-04-25 r2): bg lowered further 0.30 → 0.18
+            // — Sasha likes the "curtain" effect where bg figure peeks
+            // through. Combined with backdrop-blur, reads as silk veil
+            // over the animated stream. border: none — same fix as Pane 1,
+            // removes liquid-glass's 0.5px white top border.
+            //
+            // Day 51 r3 (Sasha 2026-04-25 night): z-30 added so Pane 2 always
+            // sits above page-owned background overlays (e.g. /ai-os's
+            // z-[1] gradient + vignette + noise + StarryBackground). Without
+            // this, on /ai-os the overlays were drawn over the panel and
+            // Sasha saw the panel "disappear." On page-owned-bg routes the
+            // bg is also bumped from 0.18 → 0.55 so the section list stays
+            // legible on busy dark imagery — 0.18 alone got washed into
+            // invisibility against /ai-os's editorial scene.
             style={{
+                backgroundColor: pageOwnsBackground
+                    ? "rgba(12, 26, 56, 0.55)"
+                    : "rgba(14, 32, 68, 0.18)",
                 border: "none",
                 boxShadow:
                     "2px 0 22px -10px rgba(244, 212, 114, 0.22)",

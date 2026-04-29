@@ -151,22 +151,6 @@
       background: rgba(255, 255, 255, 0.28);
     }
   }
-
-  /* Day 54+ (Sasha 2026-04-28 night): Radix ScrollArea Viewport wraps
-     all children in `<div style="display: table; min-width: 100%">` —
-     a workaround Radix uses for cross-browser scrollbar consistency.
-     iOS Safari renders rounded-corner children inside a `display: table`
-     ancestor with phantom curve clips on the right edge of each child
-     — Sasha caught this on the JOURNEY pane 2 mobile (Start, Playbook,
-     Path, Dashboard, Build a business all rendering with a curved
-     "notch" on their right edge). Chrome/desktop don't reproduce.
-     Forcing the viewport child to `display: block` keeps Radix's
-     scroll mechanics intact while fixing iOS clipping. Targeted to
-     ScrollArea only — does not touch any actual <table> elements. */
-  [data-radix-scroll-area-viewport] > div {
-    display: block !important;
-    min-width: 0 !important;
-  }
 }
 
 /* ==========================================================================
@@ -1225,30 +1209,6 @@ All colors MUST be HSL.
      see definition above for full rationale. */
   .gentle-spin-always {
     animation: gentle-spin 60s linear infinite !important;
-  }
-}
-
-/* Day 54+++ (Sasha 2026-04-28 evening): on touch devices (phones,
-   tablets) disable `.gentle-spin-always` entirely. The cumulative
-   GPU compositor pressure of 3-4 permanently-promoted spinning
-   layers (top-right home merkaba + Pane 1 rail icons: JOURNEY,
-   AI OS, ME) was contributing to iOS Chrome OOM crashes on /ai-os
-   — even after all heavy effects (HlsVideo, StarryBackground,
-   cursor-glow, parallax) were already gated to mobile-skip.
-   Brand identity rotation preserved on desktop where the GPU
-   budget is much higher; mobile rail emblems sit static.
-
-   Day 54+++ iter 2 → reverted iter 3 (Sasha 2026-04-28 evening):
-   the H1-filter and noise/vignette strips were chasing the wrong
-   cause. The actual iOS Chrome OOM was a 907 KB merkaba PNG being
-   decoded 2-3× per AI OS page (rail + top-right home + hero medallion);
-   the WebP swap (12 KB, see AiOsPage.tsx import) is the real fix.
-   These strips are reverted to restore desktop-equivalent visuals
-   on mobile. The gentle-spin-always disable stays as a small win
-   (3-4 fewer permanently-promoted compositor layers on touch devices). */
-@media (hover: none) and (pointer: coarse) {
-  .gentle-spin-always {
-    animation: none !important;
   }
 }
 

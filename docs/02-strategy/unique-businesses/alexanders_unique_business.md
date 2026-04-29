@@ -53,24 +53,6 @@ Step 1 free · Steps 2+3 **$555** · Step 4 **$1,111** · Step 5 **$333** · Ste
 
 > **✦ Canonical product name (Day 53, April 27, 2026):** the $555 Steps 2+3 product is now called the **Top Talent Business Session.** Naming evolution: *Ignition Session* (v1.0, March 5) → *Productize Yourself Session* (Day 47, April 21) → **Top Talent Business Session** (Day 53). Older SOPs in this doc still use "Ignition Session" — those are dated artifacts of evolution, preserved as genealogy. New copy + active surfaces should use Top Talent Business Session. URL stays `/ignite#pricing-section`.
 
-> **✦ Tier ladder extended (Day 54+, April 28, 2026):** the value ladder above describes **the methodology arc** (the 7-step path from name your top talent → scale). It now sits inside a broader **tier ladder** that organizes Sasha's complete revenue mechanism around **asymmetric scarcity of his time + judgment + presence** — see Self-Monetizing Founder principle ([Playbook §16](../../03-playbooks/unique_business_playbook.md)).
->
-> | Tier | Form | Status |
-> |---|---|---|
-> | Free wedge — mass | AI OS scaffold install (`/ai-os`) | live; the funnel into everything below |
-> | 1:1 attention | Top Talent Business Session ($555) — Steps 2+3 of value ladder | live |
-> | 1:few container | Build cohort ($1,111+ rev share) — Steps 4+5 | live |
-> | 1:org bilateral | **Commercial license** for proprietary use of AI OS scaffold (skips share-alike obligations) | **emerging — surfaced Day 54+; needs explicit pricing + intake process** |
-> | 1:strategic-org | **Advisory / board** (long-form strategic engagements) | **latent — activates with adoption + reputation** |
->
-> The bottom three tiers are crisp and live. The top two emerged in the Day 54+ Cowork chat that re-framed the AI OS license as CC BY-SA 4.0 + commercial dual-license. Both need explicit packaging when commercial inquiries materialize (no premature productization — wait for first 3 inbound asks before standardizing the commercial license terms).
-
-> **✦ Organizational primitive — Impact Founder Collective (Day 54+, April 28, 2026):** Sasha's "company" is not a firm in the traditional sense. There is no separate corporate entity that could be sold, scaled, or staffed independently of Sasha. What exists instead is the **Impact Founder Collective** — a constellation of aligned founders, Sasha as gravitational source, methodology + AI OS scaffold as shared substrate, organized by tiered intimacy rather than employment hierarchy. Other lenses on the same structure: *venture coop* (outside-in description), *Sovereign Network* (commons-doc brand handle in [`monetization_strategies.md`](../monetization_strategies.md)), *Holonic Commons* (the open-license commons specifically). All four are facets of the same thing.
->
-> **The realization that named this:** A self-productized founder doesn't build a *firm* — there is no separable corporate entity. The founder IS the body of work. What replaces the firm is **founder-as-nucleus + network-of-aligned-founders-as-orbit + tiered-intimacy-as-revenue-mechanism**. The collective IS the company; growth of the collective IS growth of the business. This is one of the major emergent organizational primitives of the AI-tooled solo-founder era — earlier-better in tight niches, and "integral cognition scaffolds for conscious entrepreneurs" is a tight niche where being first-to-name-the-frontier compounds.
->
-> **Implications for Sasha's unique business:** (1) Stop trying to build a "company"; build a body of work + a collective. (2) Time is the most precious resource — protect it ferociously, it's the only finite input. (3) Documentation is survival — the corpus must be transferable. (4) Growth is by attraction, not ads or sales funnels. (5) Conventional VC funding doesn't fit; sponsor/patron + sessions + commercial licenses + advisory are the revenue mechanism. (6) Eventually train successors who can deliver lower-tier sessions in your register — years out, after methodology is fully codified.
-
 ### Current State (snapshot)
 - **7 founders** (Alexander · Oyi · Sergey · Alexa · Sandra · Karime · Kirill) co-identifying as a collective.
 - **$1,931 total** (cash + in-kind + rev-share contracts through Day 47).

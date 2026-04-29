@@ -7,13 +7,11 @@ import { ArrowLeft, ArrowRight, Heart, ExternalLink, Sparkles } from "lucide-rea
 import logoImg from "@/assets/mc-merkaba.png";
 import StarryBackground from "../components/StarryBackground";
 
-// Holonic Commons "Work with us" page — Day 51 (Sasha 2026-04-24).
-// Replaces the prior 4-tier SaaS pricing. AI OS scaffold lives under
-// CC BY-SA 4.0 (Day 54+, Sasha 2026-04-28): free to use, copy, modify,
-// even sell — keep attribution + share-alike on derivatives. Real
-// proximity to source (sessions, partnerships) is the paid layer.
-// Tip path is optional (Wikipedia-style). Contribution rights to core
-// are earned through trust, not money.
+// Holonic Commons pricing page — Day 51 (Sasha 2026-04-24).
+// Replaces the prior 4-tier SaaS pricing (Personal/Commercial × Monthly/Yearly).
+// AI OS is now free, forever, for everyone. Aleksandr's curatorship is the paid
+// layer (via FindYourTopTalent.Com session). Tip is optional (Wikipedia-style).
+// Contribution rights to core are earned through trust, not money.
 
 const STRIPE_TIP_URL = "https://buy.stripe.com/3cI00j5og8qf1TPdPqdEs0G";
 // Day 51 (Sasha 2026-04-25): "Work with us" CTA (was "Work with Aleksandr"
@@ -27,7 +25,7 @@ const Pricing = () => {
 
   useEffect(() => {
     const prev = document.title;
-    document.title = "Work with us — AI OS";
+    document.title = "AI OS is free — Holonic Commons";
     return () => { document.title = prev; };
   }, []);
 
@@ -78,15 +76,6 @@ const Pricing = () => {
               />
             </div>
 
-            {/* Day 54+ (Sasha 2026-04-28 evening): H1 reframed from
-                "AI OS is free / Forever. For everyone." (the MIT-style
-                overpromise that didn't match reality — MIT and CC BY-SA
-                both have real conditions) to honest CC BY-SA framing.
-                Subtitle reframed from "Aleksandr's curatorship is the
-                paid layer..." (uses Sasha's name + "paid layer" framing
-                he doesn't want) to distilled CC BY-SA terms in plain
-                English. Three paths (Use / Tip / Work with us) below
-                carry the partnership invite. */}
             <h1
               className="font-display italic font-normal tracking-[-0.04em] leading-[1.1]"
               style={{
@@ -97,22 +86,17 @@ const Pricing = () => {
                 backgroundClip: 'text',
               }}
             >
-              Yours under CC BY-SA 4.0.
+              AI OS is free.
               <br />
               Forever. For everyone.
             </h1>
 
             <p className="text-sm sm:text-base font-light max-w-xl mx-auto leading-relaxed" style={{ color: 'hsl(0 0% 100% / 0.78)' }}>
-              Use it, copy it, modify it, even sell it — for your own projects, client work, or products. Keep the author's name on copies you share. Modified versions stay open under the same license, so others can build on it too.
+              Aleksandr's curatorship is the paid layer. Contribution rights to core are earned through trust.
             </p>
-            {/* Day 54++ (Sasha 2026-04-28, post-27P-roast): "Holonic
-                Commons" tag dropped from the hero. Tribe-shibboleth
-                doing tribe-only work on a page that should also be
-                accessible to the universal visitor. The CC BY-SA H1
-                + plain-English subtitle already self-evidence the
-                spirit; no need to label it. Internal architecture
-                docs (monetization_strategies.md etc.) still use the
-                Holonic Commons name where appropriate. */}
+            <p className="text-[10px] tracking-[0.3em] uppercase font-medium" style={{ color: 'hsl(195 35% 75% / 0.55)' }}>
+              Holonic Commons
+            </p>
           </header>
 
           {/* Three paths */}

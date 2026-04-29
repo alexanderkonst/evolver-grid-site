@@ -34,9 +34,7 @@ import meIcon from "@/assets/me-icon.png";
 // own Space. The merkaba — rainbow harmonic geometry inside a circle —
 // signals the substrate it is (cognitive scaffold), not a stop on the
 // value ladder.
-// Day 54+++ iter 3 (Sasha 2026-04-28 evening): swapped to optimized
-// WebP (12 KB vs 907 KB PNG). See AiOsPage.tsx for full rationale.
-import aiOsIcon from "@/assets/mc-merkaba.webp";
+import aiOsIcon from "@/assets/mc-merkaba.png";
 // Day 48 iter 10 (Sasha): Settings gear (lucide) replaced with a
 // custom gold settings mark. Does NOT rotate — Sasha's explicit note.
 import settingsIcon from "@/assets/settings-icon.png";
