@@ -2773,10 +2773,12 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
 
   return (
     <div data-ai-os className="ai-os-root">
-      {/* Day 54 r11 (Sasha 2026-04-28): diagnostic overlay — only renders
-          with `?debug=1` in the URL. Mounted at the very top of the tree
-          so it survives as long as possible if everything else fails. */}
-      <DiagnosticOverlay />
+      {/* Day 54 r12 (Sasha 2026-04-28): React-side DiagnosticOverlay
+          retired in favor of an inline pre-React diagnostic in
+          index.html. The inline version starts before the bundle loads
+          AND persists to localStorage, so even when the page dies in
+          0.1s before React can mount, the next visit sees what fired
+          in the previous session. Activate with `?debug=1`. */}
       {/* Day 51 (Sasha 2026-04-25 r5): /ai-os HLS stream restored as bg
           (different from GameShell's animated bg). Gradient lighter at top
           (0.55) so video shows clearly behind hero, heavier toward bottom
