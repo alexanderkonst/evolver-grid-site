@@ -2856,16 +2856,16 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
                   <button
                     type="button"
                     onClick={() => {
-                      // Day 55 (Sasha 2026-04-29): scrollIntoView was
-                      // unresponsive on iOS Chrome inside the mobile
-                      // shell's overflow-y-auto scroll container. Now
-                      // we explicitly find the nearest scrollable
-                      // ancestor and call scrollTo with computed offset.
-                      // Falls back to window scroll on desktop where the
-                      // document is the scroller. Works in both layouts.
+                      // Day 56 (Sasha 2026-04-29): /ai-os desktop is now a
+                      // real app-shell — pane 3 is the only scroller and
+                      // carries the .ai-os-desktop-content-scroll marker.
+                      // Mobile uses .mobile-content-scroll. Walk for either
+                      // one before falling back to window.
                       const target = document.getElementById("ai-os-spotlight");
                       if (!target) return;
-                      const scroller = target.closest<HTMLElement>('.mobile-content-scroll');
+                      const scroller = target.closest<HTMLElement>(
+                        '.ai-os-desktop-content-scroll, .mobile-content-scroll'
+                      );
                       if (scroller) {
                         const offset =
                           target.getBoundingClientRect().top -
