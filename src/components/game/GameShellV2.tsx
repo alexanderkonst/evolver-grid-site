@@ -759,7 +759,8 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                     <button
                         onClick={toggleSectionsPanel}
                         className={cn(
-                            "h-dvh sticky top-0 w-5 flex items-center justify-center transition-colors hover:bg-white/10 relative z-30 group",
+                            "h-dvh w-5 flex items-center justify-center transition-colors hover:bg-white/10 relative z-30 group",
+                            isAiOsRoute ? "shrink-0" : "sticky top-0",
                             pageOwnsBackground
                                 ? "bg-[rgba(6,12,28,0.78)]"
                                 : "bg-[rgba(14,32,68,0.32)]"
