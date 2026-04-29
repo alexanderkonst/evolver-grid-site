@@ -2815,8 +2815,16 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
                     Day 54+ unwind (Sasha 2026-04-28 evening): MIT block
                     reverted to this pre-MIT copy as a rollback baseline
                     after the framing reset. License re-decision pending. */}
-                <div className="mx-auto max-w-lg pt-3">
-                  <p className="text-xs sm:text-[13px] font-normal leading-relaxed" style={{
+                {/* Day 57 (Sasha 2026-04-29): mobile fix — the link
+                    "Reach out for partnership" was wrapping mid-phrase
+                    on narrow viewports and overflowing the viewport
+                    width, causing the page to "jump" horizontally.
+                    `inline-block` keeps the link as a single wrap unit;
+                    `break-words` on the paragraph guarantees no word
+                    bleeds past the container; px-2 gives the centered
+                    block a small inner gutter on phones. */}
+                <div className="mx-auto max-w-lg pt-3 px-2">
+                  <p className="text-xs sm:text-[13px] font-normal leading-relaxed break-words" style={{
                     color: 'hsl(0 0% 100% / 0.82)',
                     textShadow: '0 0 12px rgba(0,0,0,0.9), 0 0 24px rgba(0,0,0,0.6), 0 1px 4px rgba(0,0,0,0.8)',
                   }}>
@@ -2825,7 +2833,7 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
                       href="https://t.me/integralevolution"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="underline decoration-[hsl(40_70%_75%/0.45)] decoration-1 underline-offset-[3px] hover:decoration-[hsl(40_70%_75%/0.85)] transition-colors"
+                      className="inline-block whitespace-nowrap underline decoration-[hsl(40_70%_75%/0.45)] decoration-1 underline-offset-[3px] hover:decoration-[hsl(40_70%_75%/0.85)] transition-colors"
                       style={{ color: 'hsl(40 70% 90% / 0.95)' }}
                     >
                       Reach out for partnership
