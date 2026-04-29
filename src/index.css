@@ -151,6 +151,22 @@
       background: rgba(255, 255, 255, 0.28);
     }
   }
+
+  /* Day 54+ (Sasha 2026-04-28 night): Radix ScrollArea Viewport wraps
+     all children in `<div style="display: table; min-width: 100%">` —
+     a workaround Radix uses for cross-browser scrollbar consistency.
+     iOS Safari renders rounded-corner children inside a `display: table`
+     ancestor with phantom curve clips on the right edge of each child
+     — Sasha caught this on the JOURNEY pane 2 mobile (Start, Playbook,
+     Path, Dashboard, Build a business all rendering with a curved
+     "notch" on their right edge). Chrome/desktop don't reproduce.
+     Forcing the viewport child to `display: block` keeps Radix's
+     scroll mechanics intact while fixing iOS clipping. Targeted to
+     ScrollArea only — does not touch any actual <table> elements. */
+  [data-radix-scroll-area-viewport] > div {
+    display: block !important;
+    min-width: 0 !important;
+  }
 }
 
 /* ==========================================================================
