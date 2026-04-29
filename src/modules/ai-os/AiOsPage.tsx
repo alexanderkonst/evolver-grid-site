@@ -2472,6 +2472,62 @@ const SUITE_SLUG: Record<string, string> = {
 };
 
 const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
+  // ============================================================
+  // [TEST A — iOS crash diagnostic, 2026-04-29] REMOVE AFTER DIAG
+  // Paints device-detection state to a fixed banner SYNCHRONOUSLY
+  // during the very first render call, BEFORE any heavy effects,
+  // BEFORE Hls.js dynamic import, BEFORE the StarryBackground RAF,
+  // BEFORE PROMPTS array iteration. If the tab dies in <1s, this
+  // banner is the only thing that may have survived to the screen.
+  // ============================================================
+  if (typeof window !== 'undefined' && !(window as any).__aiOsDiagPainted) {
+    (window as any).__aiOsDiagPainted = true;
+    try {
+      const pointerCoarse = window.matchMedia?.('(pointer: coarse)').matches ?? null;
+      const innerWidth = window.innerWidth;
+      const innerHeight = window.innerHeight;
+      const isCoarse = pointerCoarse === true;
+      const isSmall = innerWidth < 1024;
+      const heavyFx = !(isCoarse || isSmall);
+      const data = {
+        heavyFx,
+        coarse: pointerCoarse,
+        w: innerWidth,
+        h: innerHeight,
+        dpr: window.devicePixelRatio,
+        ua: navigator.userAgent.slice(0, 140),
+      };
+      // Title gets set during render — visible in tab/share-sheet even if page never paints
+      try { document.title = 'DIAG ' + JSON.stringify(data).slice(0, 80); } catch {}
+      // Persist for post-mortem on the next load (survives tab crash)
+      try { localStorage.setItem('aiOsDiag', JSON.stringify({ ...data, t: Date.now() })); } catch {}
+      // Paint a fixed banner the moment the DOM is ready (or now if it already is)
+      const paint = () => {
+        try {
+          if (document.getElementById('ai-os-diag-banner')) return;
+          const el = document.createElement('div');
+          el.id = 'ai-os-diag-banner';
+          el.textContent = JSON.stringify(data, null, 1);
+          el.style.cssText =
+            'position:fixed;top:0;left:0;right:0;background:#fff;color:#000;' +
+            'font:11px/1.25 ui-monospace,monospace;padding:6px 8px;z-index:2147483647;' +
+            'white-space:pre-wrap;word-break:break-all;border-bottom:2px solid #f00;' +
+            'max-height:50vh;overflow:auto;pointer-events:none';
+          (document.body || document.documentElement).appendChild(el);
+        } catch {}
+      };
+      if (document.body) paint();
+      else document.addEventListener('DOMContentLoaded', paint, { once: true });
+      // Also schedule a microtask paint in case body wasn't ready above
+      queueMicrotask(paint);
+      // eslint-disable-next-line no-console
+      console.log('[ai-os-diag]', data);
+    } catch (e) {
+      try { document.title = 'DIAG-ERR ' + String(e).slice(0, 60); } catch {}
+    }
+  }
+  // ============= END TEST A DIAGNOSTIC =============
+
   // Per-page SEO — sets browser tab title on /ai-os and per-suite sub-routes.
   // Global og: tags from index.html still apply.
   useEffect(() => {
