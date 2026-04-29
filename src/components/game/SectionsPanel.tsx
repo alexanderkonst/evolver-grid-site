@@ -389,7 +389,7 @@ const buildJourneySections = (_currentPath: string): Section[] => {
     return [
         { id: "journey-start-here",        label: "1. Start by finding your top talent", path: "/" },
         { id: "journey-the-playbook",      label: "2. Take the whole playbook",          path: "/playbook" },
-        { id: "journey-the-path",          label: "3. See the path to your business",    path: "/path" },
+        { id: "journey-the-path",          label: "3. See the shortcut path to your business", path: "/path" },
         { id: "journey-dashboard",         label: "4. See how we're building this",      path: "/dashboard" },
         {
             id: "journey-build-business",

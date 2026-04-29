@@ -111,17 +111,20 @@ const MuxVideoBackground = () => {
 // label↔path map here for the mobile header breadcrumb. Keep in sync
 // with buildJourneySections() if section paths change. Sorted longest
 // path first so /playbook matches before /, etc.
+// Day 55 (Sasha 2026-04-29): journey labels recast as action+outcome
+// promises across the site. Mobile breadcrumb mirrors SectionsPanel
+// labels exactly so the user sees the same language across surfaces.
 const JOURNEY_SECTION_LABELS: Array<{ path: string; label: string }> = [
-    { path: "/mission-discovery", label: "Mission Discovery" },
-    { path: "/asset-mapping", label: "Asset Mapper" },
-    { path: "/playbook", label: "Playbook" },
-    { path: "/dashboard", label: "Dashboard" },
+    { path: "/mission-discovery", label: "Discover your mission" },
+    { path: "/asset-mapping", label: "Map your essence" },
+    { path: "/playbook", label: "Take the whole playbook" },
+    { path: "/dashboard", label: "See how we're building this" },
     // Day 54 (Sasha 2026-04-28): /ai-os removed — elevated to its own
     // Space. Mobile breadcrumb for /ai-os now resolves via the AI OS
     // space's own pane 2 sections (Install / Suites / Benchmark / Pricing).
-    { path: "/path", label: "Path" },
-    { path: "/ubb", label: "Build a Business" },
-    { path: "/", label: "Start" },
+    { path: "/path", label: "See the shortcut path to your business" },
+    { path: "/ubb", label: "Build a business off your top talent" },
+    { path: "/", label: "Start by finding your top talent" },
 ];
 
 interface GameShellV2Props {
