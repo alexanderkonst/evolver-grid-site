@@ -23,7 +23,7 @@ const titleRules: TitleRule[] = [
   // Day 55 (Sasha 2026-04-29): tab titles aligned with the new nav
   // vocabulary (noun cores of the action+outcome phrases).
   { match: (path) => path.startsWith("/mission-discovery"), title: "Mission" },
-  { match: (path) => path.startsWith("/asset-mapping"), title: "Essence" },
+  { match: (path) => path.startsWith("/asset-mapping"), title: "Assets" },
 
   // ME space → all collapsed to "Top Talent" (single-focus per Day 47).
   { match: (path) => path.startsWith("/zone-of-genius"), title: "Top Talent" },

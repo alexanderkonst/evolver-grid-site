@@ -116,8 +116,8 @@ const MuxVideoBackground = () => {
 // labels exactly so the user sees the same language across surfaces.
 const JOURNEY_SECTION_LABELS: Array<{ path: string; label: string }> = [
     { path: "/mission-discovery", label: "Discover your mission" },
-    { path: "/asset-mapping", label: "Map your essence" },
-    { path: "/playbook", label: "Take the whole playbook" },
+    { path: "/asset-mapping", label: "Map your assets" },
+    { path: "/playbook", label: "Take the playbook" },
     { path: "/dashboard", label: "See how we're building this" },
     // Day 54 (Sasha 2026-04-28): /ai-os removed — elevated to its own
     // Space. Mobile breadcrumb for /ai-os now resolves via the AI OS
