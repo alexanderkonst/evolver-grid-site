@@ -1,6 +1,10 @@
-# Distributor Agreement
+# Stewarding Agreement
 
-**Version 0.2 · April 27, 2026 (Day 53)**
+> *Formerly "Stewarding Agreement." Renamed Day 54+ (April 28, 2026) — the conscious aspiring impact founder tribe wants relationship, not contract; "Stewarding Agreement" honors the mutual commitment + commons-stewardship spirit that this document actually carries. Filename `DISTRIBUTOR_AGREEMENT.md` retained for back-compat with external links / bookmarks.*
+
+**Version 0.3 · April 28, 2026 (Day 54+)** — Renamed from Stewarding Agreement to Stewarding Agreement.
+**Prior version 0.2 · April 27, 2026 (Day 53)** — Two-paths preface added (Path A subscribe vs. Path B fork). See changelog at end.
+
 *This is a draft. The intent is binding; the legal language will tighten with counsel review before any first signature.*
 
 ---
@@ -31,11 +35,11 @@ On Path A, you owe NOTHING beyond the subscription fee. The hosted Platform hand
 
 ### Path B — Fork and self-host (this document)
 
-If you fork the Platform and run your own instance — modifying the code, hosting on your own infrastructure, operating under your own brand — the Distributor Agreement below applies. Summary: 10% rev-share above a $1,000/month free tier, opt-in commons contribution, attribution preserved, audit by exception.
+If you fork the Platform and run your own instance — modifying the code, hosting on your own infrastructure, operating under your own brand — the Stewarding Agreement below applies. Summary: 10% rev-share above a $1,000/month free tier, opt-in commons contribution, attribution preserved, audit by exception.
 
 > **The two paths are mutually exclusive on a given operation.** Path A means "use Sasha's hosted Platform." Path B means "run your own forked Platform." If you outgrow Path A and start forking, you cross to Path B. If you previously forked under Path B and decide hosted is simpler, you migrate to Path A.
 
-The rest of this document is **Path B** — the Distributor Agreement for fork-and-self-host operators.
+The rest of this document is **Path B** — the Stewarding Agreement for fork-and-self-host operators.
 
 ---
 

@@ -40,7 +40,7 @@ If you want to improve the master holon itself — bugfixes, new modules, docume
 
 #### License
 
-By contributing code, you agree your contribution is licensed under **PolyForm Noncommercial 1.0.0** (matching the rest of the code). By contributing documentation, you agree it's licensed under **CC BY-NC-SA 4.0**. By contributing to the **AI OS scaffold** (the prompt content under `src/modules/ai-os/` distributed via `/ai-os` and its suite sub-routes — Clarify · Iterate · Vibe Code · Design), you agree your contribution is licensed under **CC BY-SA 4.0** (matching the scaffold's license — see [`LICENSE.md`](./LICENSE.md) §2). Commercial use of contributed code or methodology (not the AI OS scaffold) is governed by the project's [Distributor Agreement](./DISTRIBUTOR_AGREEMENT.md). There is no CLA — the license model itself is the agreement.
+By contributing code, you agree your contribution is licensed under **PolyForm Noncommercial 1.0.0** (matching the rest of the code). By contributing documentation, you agree it's licensed under **CC BY-NC-SA 4.0**. By contributing to the **AI OS scaffold** (the prompt content under `src/modules/ai-os/` distributed via `/ai-os` and its suite sub-routes — Clarify · Iterate · Vibe Code · Design), you agree your contribution is licensed under **CC BY-SA 4.0** (matching the scaffold's license — see [`LICENSE.md`](./LICENSE.md) §2). Commercial use of contributed code or methodology (not the AI OS scaffold) is governed by the project's [Stewarding Agreement](./DISTRIBUTOR_AGREEMENT.md). There is no CLA — the license model itself is the agreement.
 
 ---
 

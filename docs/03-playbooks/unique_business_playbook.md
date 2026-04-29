@@ -878,7 +878,7 @@ The destination (CC BY-SA + commercial dual-license) is one valid answer. **The 
 
 ### The organizational primitive that emerges — Impact Founder Collective
 
-When the founder/firm distinction collapses (the founder IS the product, not a separable thing), what replaces the firm is **founder-as-nucleus + network-of-aligned-founders-as-orbit + tiered-intimacy-as-revenue-mechanism**. Sasha's name for this in his own work is the **Impact Founder Collective** (IFC). Other lenses on the same structure: *venture coop* (outside-in), *Sovereign Network* (brand handle), *Holonic Commons* (the commons layer specifically). See [`monetization_strategies.md`](../02-strategy/monetization_strategies.md) for the legal/economic mechanics that hold the IFC together (PolyForm-NC code · CC BY-NC-SA docs · CC BY-SA scaffold · Distributor Agreement · 10% rev-share · per-founder Specificity Matrix · opt-in commons).
+When the founder/firm distinction collapses (the founder IS the product, not a separable thing), what replaces the firm is **founder-as-nucleus + network-of-aligned-founders-as-orbit + tiered-intimacy-as-revenue-mechanism**. Sasha's name for this in his own work is the **Impact Founder Collective** (IFC). Other lenses on the same structure: *venture coop* (outside-in), *Sovereign Network* (brand handle), *Holonic Commons* (the commons layer specifically). See [`monetization_strategies.md`](../02-strategy/monetization_strategies.md) for the legal/economic mechanics that hold the IFC together (PolyForm-NC code · CC BY-NC-SA docs · CC BY-SA scaffold · **Stewarding Agreement** · 10% rev-share · per-founder Specificity Matrix · opt-in commons).
 
 ### The Self-Knowledge → Self-Business Map
 

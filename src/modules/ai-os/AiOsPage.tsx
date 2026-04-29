@@ -9,6 +9,7 @@ import AiOsSpotlight from "./components/AiOsSpotlight";
 // used by the SpacesRail icon and the AI OS pricing/work-with-us page hero.
 // Page-level visual coherence: AI OS = merkaba on every surface.
 import aiOsMerkaba from "@/assets/mc-merkaba.png";
+import aiOsBgPoster from "@/assets/ai-os-bg-poster.webp";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -2377,6 +2378,26 @@ const HlsVideo = () => {
   );
 };
 
+// Day 54 r9 (Sasha 2026-04-28): mobile background — static poster fallback.
+// Even one HlsVideo decoder was tipping iOS WebKit's tile/GPU memory budget
+// over the edge on /ai-os (the heaviest page in the app — backdrop blurs in
+// shell, fixed-position overlays, large DOM). The video would render then
+// purge the painted text layers and crash the renderer ("half disappears,
+// then dies"). On mobile we swap to a still frame of the same scene — same
+// editorial mood, zero decoder cost. WebP at 1280×852, ~227KB.
+const HlsPoster = () => (
+  <img
+    src={aiOsBgPoster}
+    alt=""
+    aria-hidden="true"
+    decoding="async"
+    fetchPriority="high"
+    className="fixed inset-0 w-screen h-screen object-cover z-0"
+    style={{ minWidth: '100vw', minHeight: '100vh', objectPosition: '50% center' }}
+    draggable={false}
+  />
+);
+
 // Intersection Observer hook for scroll-triggered animations
 const useRevealOnScroll = () => {
   const ref = useRef<HTMLDivElement>(null);
@@ -2659,12 +2680,15 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
           (different from GameShell's animated bg). Gradient lighter at top
           (0.55) so video shows clearly behind hero, heavier toward bottom
           so prompt library reads on stable dark. */}
-      {/* Day 54 (Sasha 2026-04-28): video stays on mobile (cinematic vibe
-          is non-negotiable) — HLS quality is capped to ≤720p inside
-          HlsVideo so iOS doesn't pull a 1080p+ variant and OOM the tab.
-          The animated star canvas and cursor-glow tracker (the actual
-          memory killers) remain desktop-only. */}
-      <HlsVideo />
+      {/* Day 54 r9 (Sasha 2026-04-28): video on desktop, static poster
+          on mobile. The "cinematic vibe non-negotiable" stance held until
+          empirical evidence showed even ONE HlsVideo decoder pushed iOS
+          WebKit's tile budget over the edge on /ai-os, purging painted
+          text layers and crashing the renderer. The poster (a still
+          frame of the same scene) preserves the editorial mood at zero
+          decoder cost. Desktop keeps the live HLS stream — same vibe,
+          intact motion, no GPU pressure issues at desktop scale. */}
+      {isHeavyFxCapable ? <HlsVideo /> : <HlsPoster />}
       <div className="fixed inset-0 z-[1]" style={{ background: 'linear-gradient(180deg, rgba(10,22,50,0.55) 0%, rgba(8,16,30,0.86) 45%, rgba(5,9,18,0.95) 100%)' }} />
       <div className="vignette-overlay z-[1]" />
       {/* Noise/grain overlay */}
@@ -2724,20 +2748,50 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
                     gold halo + gentle-spin rotation, sized up slightly
                     (w-16 vs w-14) for the larger hero context. */}
                 <div className="flex justify-center mb-3">
-                  <img
-                    src={aiOsMerkaba}
-                    alt="AI OS"
-                    className="w-16 h-16 sm:w-20 sm:h-20 rounded-full object-cover gentle-spin-always"
-                    draggable={false}
+                  {/* Day 54+ (Sasha 2026-04-28 evening, late): merkaba was
+                      reading too bright on the editorial hero scene.
+                      Wrapped in a glassmorphic frame — circular mask, gold
+                      rim border, soft inset+outer halo on the wrapper,
+                      and a static (non-rotating) overlay layered on top
+                      of the image. The image itself gets a cheap
+                      brightness(0.78) + saturate(0.92) filter to mute the
+                      iridescence one notch. The vignette overlay
+                      feathers the edge into darkness, so the medallion
+                      sits IN the scene rather than ON it. No
+                      backdrop-filter — pure compositing, GPU-trivial,
+                      no parallax compute hit. Image keeps gentle-spin so
+                      the icon still breathes; the wrapper + overlay
+                      stay still so the rim and vignette don't rotate
+                      with the merkaba. */}
+                  <div
+                    className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden"
                     style={{
-                      filter:
-                        'drop-shadow(0 0 8px rgba(244, 212, 114, 0.4)) drop-shadow(0 0 2px rgba(212, 175, 55, 0.55))',
-                      border: '1px solid hsl(0 0% 100% / 0.12)',
-                      animation: 'gentle-spin 60s linear infinite',
-                      willChange: 'transform',
-                      transformOrigin: 'center',
+                      border: '0.5px solid rgba(255, 255, 255, 0.18)',
+                      boxShadow:
+                        '0 0 8px rgba(244, 212, 114, 0.32), 0 0 2px rgba(212, 175, 55, 0.45), inset 0 0 14px rgba(0, 0, 0, 0.42)',
                     }}
-                  />
+                  >
+                    <img
+                      src={aiOsMerkaba}
+                      alt="AI OS"
+                      className="w-full h-full object-cover gentle-spin-always"
+                      draggable={false}
+                      style={{
+                        filter: 'brightness(0.78) saturate(0.92)',
+                        animation: 'gentle-spin 60s linear infinite',
+                        willChange: 'transform',
+                        transformOrigin: 'center',
+                      }}
+                    />
+                    <div
+                      aria-hidden="true"
+                      className="absolute inset-0 pointer-events-none"
+                      style={{
+                        background:
+                          'radial-gradient(circle at center, transparent 38%, rgba(0, 0, 0, 0.32) 100%), linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0) 55%)',
+                      }}
+                    />
+                  </div>
                 </div>
                 <h1
                   // Day 50 (Sasha): tightened the hero clamp so the

@@ -258,7 +258,7 @@ This is a personal-scale project run by one founder. Issues and PRs are welcome 
 
 ### Going commercial?
 
-The PolyForm NC license covers personal and non-commercial community use. The moment you start charging anyone (clients, members, subscribers) through your forked instance, you cross into commercial territory and need a [Distributor Agreement](./DISTRIBUTOR_AGREEMENT.md) — radically simple 10% rev-share, free under $1K/month, you keep your brand. See the [License section](#license--the-holonic-franchise-model) above.
+The PolyForm NC license covers personal and non-commercial community use. The moment you start charging anyone (clients, members, subscribers) through your forked instance, you cross into commercial territory and need a [Stewarding Agreement](./DISTRIBUTOR_AGREEMENT.md) — radically simple 10% rev-share, free under $1K/month, you keep your brand. See the [License section](#license--the-holonic-franchise-model) above.
 
 ---
 
@@ -409,7 +409,7 @@ This project uses a **four-tier layered license model** — each layer matched t
 
 | Layer | What it covers | License | Strict OSI? | Commercial use |
 |-------|---------------|---------|:---:|----------------|
-| **Code** | `src/`, `supabase/`, configs, scripts | **[PolyForm Noncommercial 1.0.0](./LICENSE)** | ❌ | Requires a Distributor Agreement (see below) |
+| **Code** | `src/`, `supabase/`, configs, scripts | **[PolyForm Noncommercial 1.0.0](./LICENSE)** | ❌ | Requires a Stewarding Agreement (see below) |
 | **Documentation & methodology** | `docs/`, playbooks, canvases, business artifacts, prose content | **[CC BY-NC-SA 4.0](./LICENSE.md)** | ❌ | Requires permission |
 | **AI OS scaffold** | `/ai-os` system prompt + derivative suites (Clarify · Iterate · Vibe Code · Design) | **[CC BY-SA 4.0](./LICENSE.md)** | ✅ | Free for any use including paid client work + selling. Modified versions must stay open under same license (share-alike). Per-deal commercial license available for proprietary use without share-alike — reach out. |
 | **Anthropic-derived skills** | `.agent/skills/` | **MIT** | ✅ | Free (inherits upstream) |
@@ -423,9 +423,9 @@ The AI OS scaffold sits under CC BY-SA as a deliberate, scoped exception — see
 - **Fork the code for personal or non-commercial community use** — clone, deploy on your own server, run your own instance for yourself or a small private community. No payment required, no permission needed.
 - **Study the methodology** — read the playbook, learn the protocols, apply the principles in your own thinking. CC BY-NC-SA covers learning and non-commercial sharing with attribution.
 
-### What requires a Distributor Agreement
+### What requires a Stewarding Agreement
 
-If you want to **fork the code and run it commercially** — charge clients for sessions or products through your forked instance, host it as a paid service for a community, or deploy it as the operational layer of your venture — that is a commercial use of the codebase and requires a [Distributor Agreement](./DISTRIBUTOR_AGREEMENT.md).
+If you want to **fork the code and run it commercially** — charge clients for sessions or products through your forked instance, host it as a paid service for a community, or deploy it as the operational layer of your venture — that is a commercial use of the codebase and requires a [Stewarding Agreement](./DISTRIBUTOR_AGREEMENT.md).
 
 The terms are radically simple:
 
