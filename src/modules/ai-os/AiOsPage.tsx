@@ -2845,9 +2845,23 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
                       lightning glyph but no bg, so it stops competing
                       with the actual decisions above. */}
                 <div className="flex items-center justify-center gap-3 pt-4 sm:pt-6 flex-wrap">
-                  <a
-                    href="#ai-os-spotlight"
-                    className="inline-flex items-center gap-2 text-sm font-medium tracking-wide px-6 py-3 rounded-full transition-all duration-300 hover:scale-[1.04] group"
+                  {/* Day 54 (Sasha 2026-04-29): was <a href="#ai-os-spotlight">.
+                      Native hash-jumps scroll the document root, but on mobile
+                      (and inside the shell's pane-3 column on desktop) the
+                      actual scroll container is a nested <main overflow-y-auto>.
+                      Document-root hash navigation is a no-op there — the
+                      "Start here" CTA was a dead button. scrollIntoView walks
+                      the ancestor chain and scrolls each overflow container
+                      it needs to, so it works in both layouts. */}
+                  <button
+                    type="button"
+                    onClick={() => {
+                      const target = document.getElementById("ai-os-spotlight");
+                      if (target) {
+                        target.scrollIntoView({ behavior: "smooth", block: "start" });
+                      }
+                    }}
+                    className="inline-flex items-center gap-2 text-sm font-medium tracking-wide px-6 py-3 rounded-full transition-all duration-300 hover:scale-[1.04] group cursor-pointer"
                     style={{
                       background: 'linear-gradient(135deg, hsla(252, 70%, 70%, 0.32) 0%, hsla(242, 60%, 60%, 0.22) 100%)',
                       border: '1px solid hsla(252, 60%, 80%, 0.45)',
@@ -2858,7 +2872,7 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
                   >
                     Start here
                     <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5" />
-                  </a>
+                  </button>
                 </div>
               </header>
             </RevealSection>
