@@ -1044,7 +1044,7 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                         hide the gutter. */}
                     <main
                         className={cn(
-                            "flex-1 overflow-auto scrollbar-hide relative",
+                            "mobile-content-scroll flex-1 overflow-auto scrollbar-hide relative",
                             pageOwnsBackground ? "" : "pt-4"
                         )}
                         style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}
