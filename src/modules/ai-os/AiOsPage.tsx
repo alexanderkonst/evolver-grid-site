@@ -2730,7 +2730,7 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
           {!focusCategory && (
             <div ref={parallaxRef} className={isHeavyFxCapable ? "will-change-transform" : ""}>
             <RevealSection>
-              <header className="text-center space-y-5 relative pt-2 sm:pt-4 pb-8">
+              <header className="text-center space-y-7 sm:space-y-8 relative pt-4 sm:pt-6 pb-12">
                 {/* Day 50 (Sasha): hero torus medallion retired — the
                     GameShell rail already carries the brand mark.
                     Day 53 evening (Sasha 2026-04-27): profile button + auth
@@ -2829,7 +2829,7 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
                       link with a thin underline-on-hover; carries the
                       lightning glyph but no bg, so it stops competing
                       with the actual decisions above. */}
-                <div className="flex items-center justify-center gap-3 pt-7 flex-wrap">
+                <div className="flex items-center justify-center gap-3 pt-4 sm:pt-6 flex-wrap">
                   <a
                     href="#ai-os-spotlight"
                     className="inline-flex items-center gap-2 text-sm font-medium tracking-wide px-6 py-3 rounded-full transition-all duration-300 hover:scale-[1.04] group"
@@ -2844,11 +2844,6 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
                     Start here
                     <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5" />
                   </a>
-                </div>
-                {/* Bottom ornament — Day 51 r3: tightened pt to keep the
-                    hero compact while the new ghost link sits above it. */}
-                <div className="flex items-center justify-center pt-5 pb-2">
-                  <div className="h-px w-24" style={{ background: 'linear-gradient(90deg, transparent, hsl(242 30% 73% / 0.25), transparent)' }} />
                 </div>
               </header>
             </RevealSection>
