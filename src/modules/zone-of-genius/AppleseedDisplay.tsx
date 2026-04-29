@@ -364,11 +364,10 @@ const AppleseedDisplay = ({
                     to two buttons (was three, dropped AI OS as a
                     distraction here).
                     Primary  → "Build a business off your top talent"
-                              → /ignite#pricing-section (Top Talent
-                                 Business Session purchase page —
-                                 formerly "Ignition Session"; the new
-                                 canonical name is Top Talent Business
-                                 Session). NOT the Excalibur module.
+                              → /ignite#pricing-section (Productize
+                                 Yourself Session purchase page —
+                                 canonical name as of Day 55,
+                                 2026-04-29). NOT the Excalibur module.
                     Secondary → "See the exact playbook" → /playbook
                                 (matches the landing page's secondary
                                 button verbatim — same label, same

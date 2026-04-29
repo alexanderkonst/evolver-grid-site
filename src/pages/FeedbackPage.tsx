@@ -16,7 +16,7 @@ import { supabase } from "@/integrations/supabase/client";
 type FormState = "form" | "submitting" | "submitted";
 
 const SESSION_TYPES = [
-  { value: "ignition", label: "Ignition Session (90 min)" },
+  { value: "ignition", label: "Productize Yourself Session (90 min)" },
   { value: "build", label: "The Build (multi-session)" },
   { value: "group", label: "Group Build" },
   { value: "other", label: "Other" },

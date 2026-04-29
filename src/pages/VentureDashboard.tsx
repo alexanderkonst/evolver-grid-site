@@ -490,7 +490,7 @@ const VentureDashboard = () => {
             style={serif}
           >
             <span className="bg-clip-text text-transparent" style={GOLD_TEXT_STYLE}>
-              First $555 Ignition Session from Funnel
+              First $555 Productize Yourself Session from Funnel
             </span>
           </h3>
           <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[11px]" style={textMuted}>
