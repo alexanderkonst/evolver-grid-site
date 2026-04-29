@@ -401,7 +401,7 @@ const AppleseedDisplay = ({
                         Or you don't pay.
                     </p>
 
-                    {/* CTA 1 (PRIMARY) — Top Talent Business Session.
+                    {/* CTA 1 (PRIMARY) — Productize Yourself Session.
                         Dark glass pill + ignite emblem + small-caps
                         label + breath animation. Rhymes with the
                         landing hero CTA and every other primary across
