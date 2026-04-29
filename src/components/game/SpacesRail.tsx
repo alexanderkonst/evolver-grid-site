@@ -382,7 +382,7 @@ const SpacesRail = ({
                                 "justify-center md:justify-start",
                                 "focus:outline-none focus-visible:ring-2 focus-visible:ring-[#d4af37]/40",
                                 isLocked
-                                    ? "text-white/[0.13] cursor-not-allowed hover:text-white/40 hover:bg-white/[0.02] transition-colors"
+                                    ? "text-white/[0.05] cursor-not-allowed hover:text-white/20 hover:bg-white/[0.02] transition-colors"
                                     : active
                                         ? "text-white ring-1 ring-[#d4af37]/60 shadow-[0_0_22px_-6px_rgba(244,212,114,0.55),0_0_48px_-14px_rgba(212,175,55,0.35)]"
                                         : hasNudge
@@ -406,12 +406,12 @@ const SpacesRail = ({
                                 <span
                                     className={cn(
                                         "transition-opacity duration-500",
-                                        // Day 54 r6 (Sasha 2026-04-28): locked icons
-                                        // ghosted to 13% so the chip reads as
-                                        // "present but inactive." Hovering bumps
-                                        // back to 40% so the user can actually
-                                        // see what they're hovering over.
-                                        isLocked && "opacity-[0.13] group-hover:opacity-40",
+                                        // Day 54 r7 (Sasha 2026-04-28): locked icons
+                                        // ghosted to 5% so the chip reads as
+                                        // "present but you have to look to see it."
+                                        // Hovering bumps to 20% so the user can
+                                        // actually read what they're hovering over.
+                                        isLocked && "opacity-[0.05] group-hover:opacity-20",
                                     )}
                                 >
                                     {space.icon}
