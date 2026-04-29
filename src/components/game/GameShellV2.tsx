@@ -646,7 +646,17 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                 */}
             </div>
             {/* === DESKTOP LAYOUT === */}
-            <div className="hidden lg:flex min-h-dvh">
+            {/* Day 55 (Sasha 2026-04-29): `isolation: isolate` added so the
+                desktop flex container forms its own stacking context. On
+                /ai-os, the Spotlight section uses `liquid-glass-strong`
+                with `backdrop-filter: blur(30px) saturate(200%)`, which
+                creates a nested stacking context inside <main> (z-10).
+                Without isolation on this parent flex, Chrome desktop
+                occasionally mis-composites: when the user scrolls so
+                Spotlight enters viewport, panes 1+2 (sticky, z-30) flicker
+                or disappear entirely. Isolating the parent stacking
+                context prevents the bleed and the panes stay rendered. */}
+            <div className="hidden lg:flex min-h-dvh isolate">
                 {/* Panel 1: Spaces Rail */}
                 <SpacesRail
                     activeSpaceId={activeSpaceId}
