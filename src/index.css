@@ -1714,7 +1714,7 @@ All colors MUST be HSL.
 [data-ai-os] .wabi-card {
   box-shadow: 0 0 0 1px hsla(240, 20%, 100%, 0.06), 0 8px 40px hsla(228, 30%, 5%, 0.5), 0 24px 80px hsla(228, 30%, 5%, 0.3);
   border: 1px solid hsla(240, 20%, 100%, 0.08);
-  backdrop-filter: blur(12px);
+  /* backdrop-filter retired — same stacking-context bug as glass surfaces. */
 }
 
 /* Day 54 r2 (Sasha 2026-04-28): /ai-os iOS GPU-tile rescue.
