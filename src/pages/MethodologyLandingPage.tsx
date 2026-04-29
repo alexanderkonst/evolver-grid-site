@@ -31,7 +31,7 @@ const MethodologyLandingPage = () => {
             Day 54 (Sasha): mb under headline bumped 4 → 6 on mobile so
             the italic echo doesn't crash into the headline's descender. */}
         <h1
-          className="text-3xl sm:text-4xl md:text-5xl font-semibold leading-[1.1] tracking-[-0.018em] mb-6 sm:mb-7"
+          className="text-3xl sm:text-4xl md:text-5xl font-semibold leading-[1.1] tracking-[-0.018em] mb-4 sm:mb-5"
           style={{
             fontFamily: "'Cormorant Garamond', serif",
             color: "var(--skin-text-primary, #0a1628)",
@@ -62,7 +62,7 @@ const MethodologyLandingPage = () => {
             carries the gold signature below without competition).
             Day 54 (Sasha): margin opened up so the ornament reads as a
             real beat of breath, not a tight visual divider. */}
-        <Ornament className="my-8 sm:my-9" />
+        <Ornament className="my-5 sm:my-6" />
 
         {/* Structure — four accents unified to deep antique-gold.
             Day 54 (Sasha): vertical rhythm between bullets bumped
@@ -71,7 +71,7 @@ const MethodologyLandingPage = () => {
             stacked list on mobile. Line-height also opened slightly
             for in-bullet breathability. */}
         <div
-          className="space-y-4 sm:space-y-5"
+          className="space-y-2.5 sm:space-y-3"
           style={{
             fontFamily: "'Cormorant Garamond', serif",
             color: "var(--skin-text-primary, #0a1628)",
@@ -121,7 +121,7 @@ const MethodologyLandingPage = () => {
           a real chapter-break before the CTA cluster, not a polite
           gap. On mobile especially, this is the moment of breath
           between "what we promise" and "do this." */}
-      <div className="mt-10 sm:mt-12">
+      <div className="mt-6 sm:mt-7">
         <PlaybookHero />
       </div>
     </div>
