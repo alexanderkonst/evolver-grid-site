@@ -1395,4 +1395,76 @@ If any answer is wrong → rewrite until it's right.
 *Updated: April 2, 2026 — Conversion Friction: Beyond Clicks (decision friction layer, cross-reference to ITFT Part IX)*
 *This is the master blueprint for the Distribution Compiler*
 
+---
+
+## Impact Founder Collective Distribution — Reaching + Onboarding Aligned Founders
+
+> Operationalizes [Unique Business Playbook Principle 16 — The Self-Monetizing Founder](./unique_business_playbook.md#principle-16-the-self-monetizing-founder--open-wedge-paid-proximity).
+
+For Founder-as-Body-of-Work businesses (UBP §16), distribution is not pushing a product to a market — it's **growing a network of aligned others** who recognize themselves in the work and want proximity to the source. The Impact Founder Collective (IFC) is the organizational primitive that emerges; this section covers how to reach + onboard the aligned founders who populate it.
+
+### The segmentation model — who are you actually broadcasting to?
+
+Not all founders fit the IFC pattern. Per UBP §16, the pattern fits founders whose unique business is built on their own integrated body of work (methodology + frameworks + voice + lived practice). Within that, the segments differ on alignment + immediacy:
+
+| Segment | Alignment fit | Painkiller fit | Immediacy | Outreach priority |
+|---|---|---|---|---|
+| **Consultants with proprietary frameworks** | High | High (acute productization gap) | Days–weeks | 🥇 #1 — lead with this |
+| **Coaches with proprietary methods** | High (when methodology is theirs) | Moderate (less business-architecture instinct) | Weeks–months | 🥈 #2 |
+| **Methodology authors / integral practitioners** | Very high (philosophical) | Lower (already have books/courses) | Months | 🥉 #3 |
+| **Spiritual teachers + lineage holders** | Variable | Variable (commerce-shyness common) | Long sales cycle | #4 (later) |
+| **Solo founders / creator economy** | Variable | Lower (already running ads) | Variable | #5 |
+| **Niche thought leaders + writers** | High | Low–moderate | Months | #6 |
+
+**Rule of thumb:** lead with the segment where (alignment × painkiller × immediacy) is highest. For most founders building IFC distribution, that's #1 (consultants with frameworks).
+
+### LinkedIn outreach — the operational pattern
+
+Specifically for segment #1 (consultants with frameworks), LinkedIn is the highest-leverage channel because:
+
+- They post often (visible portfolios + framework articulations)
+- They have followers who may also fit
+- They have business-decision authority + budget
+- They congregate around methodology-author content
+
+#### The 4-week ramp
+
+- **Week 1:** ~10 hand-crafted DMs/day to consultants whose framework you've engaged with (read a post, looked at their work, can reference something specific)
+- **Week 2:** continue daily, track responses, refine the framing
+- **Week 3:** the responders cluster — note common pain language, refine the structural-insight callout
+- **Week 4:** evaluate — what % responded? what % booked? what segment-within-the-segment converted highest? Adjust for week 5+ based on real signal.
+
+**Volume calibration:** 10/day max. Higher kills the personal frequency. Lower starves the funnel.
+
+#### The DM template (attraction-mode, not persuasion-mode)
+
+See `communications_playbook.md` — *Attraction-Mode DM Template* — for the actual copy structure. The structural elements:
+
+1. **Mirror first** — specific reference to their work (NOT generic compliment)
+2. **Name the structural insight** they may not have articulated (e.g., productization gap)
+3. **Specific offer** with crisp price + duration + guarantee
+4. **Permission-giving exit** — happy to stay in conversation either way
+
+### Onboarding — from first response to IFC member
+
+Once a consultant responds positively, the onboarding ramp:
+
+1. Quick exchange to confirm fit (one or two messages)
+2. Book the session (`/ignite#pricing-section`)
+3. Deliver the session (Productize Yourself / Top Talent Business Session per the Value Ladder in `alexanders_unique_business.md`)
+4. After-session: invite to community / next-tier engagement when appropriate
+5. Long-arc: graduates of cohort + advisory tier become **IFC members** — co-creators, distributors, network nodes
+
+### Anti-patterns for IFC distribution
+
+- ❌ Mass-DM automation (kills attraction-mode immediately + LinkedIn account risk)
+- ❌ Recruiting before they've experienced the work (relationship before transaction inverts the trust ramp)
+- ❌ Pitching collaboration to people who aren't yet aligned — wait for pull, not push
+- ❌ Confusing reach (lots of DMs) with resonance (right DMs to the right segment)
+- ❌ Over-targeting on segment #1 to the exclusion of others — let segments #2–#6 still be receptive when they reach out, even if you don't actively chase them
+
+---
+
+*Updated: April 28, 2026 (Day 54+) — Impact Founder Collective Distribution section added to operationalize UBP §16 (The Self-Monetizing Founder). Specifies segment fit ranking (consultants > coaches > methodology authors > spiritual teachers > solo founders > thought leaders), the LinkedIn 4-week outreach ramp, the onboarding ramp from first DM to IFC member, and IFC distribution anti-patterns. Cross-references `communications_playbook.md` (DM template) and `marketing_playbook.md` (attraction-mode mechanics).*
+
 
