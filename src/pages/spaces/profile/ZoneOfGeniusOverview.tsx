@@ -640,7 +640,7 @@ const ZoneOfGeniusOverview = () => {
                         className="text-center text-xs italic"
                         style={{ color: "var(--skin-text-muted-soft, rgba(26,30,58,0.62))" }}
                     >
-                        Or read the methodology first.
+                        Or read the methodology first:
                     </p>
 
                     {/* SECONDARY — See the exact playbook */}
