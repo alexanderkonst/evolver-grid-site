@@ -2745,7 +2745,17 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
           {!focusCategory && (
             <div ref={parallaxRef} className={isHeavyFxCapable ? "will-change-transform" : ""}>
             <RevealSection>
-              <header className="text-center space-y-7 sm:space-y-8 relative pt-4 sm:pt-6 pb-12">
+              {/* Day 57 (Sasha 2026-04-29): mobile fix — hero now
+                  vertically centers within the available viewport on
+                  phones so the CTA sits in the visual sweet spot
+                  instead of clinging to the top with a yawning gap
+                  beneath it. The min-h reserves roughly the visible
+                  shell area (dvh handles iOS URL-bar quirks); flex +
+                  justify-center distributes whitespace above and
+                  below the content evenly. Desktop keeps the original
+                  top-anchored layout (sm: resets min-height to auto
+                  and re-applies the original padding). */}
+              <header className="text-center space-y-7 sm:space-y-8 relative pt-4 sm:pt-6 pb-12 flex flex-col justify-center min-h-[calc(100dvh-9rem)] sm:min-h-0">
                 {/* Day 50 (Sasha): hero torus medallion retired — the
                     GameShell rail already carries the brand mark.
                     Day 53 evening (Sasha 2026-04-27): profile button + auth
@@ -2815,8 +2825,16 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
                     Day 54+ unwind (Sasha 2026-04-28 evening): MIT block
                     reverted to this pre-MIT copy as a rollback baseline
                     after the framing reset. License re-decision pending. */}
-                <div className="mx-auto max-w-lg pt-3">
-                  <p className="text-xs sm:text-[13px] font-normal leading-relaxed" style={{
+                {/* Day 57 (Sasha 2026-04-29): mobile fix — the link
+                    "Reach out for partnership" was wrapping mid-phrase
+                    on narrow viewports and overflowing the viewport
+                    width, causing the page to "jump" horizontally.
+                    `inline-block` keeps the link as a single wrap unit;
+                    `break-words` on the paragraph guarantees no word
+                    bleeds past the container; px-2 gives the centered
+                    block a small inner gutter on phones. */}
+                <div className="mx-auto max-w-lg pt-3 px-2">
+                  <p className="text-xs sm:text-[13px] font-normal leading-relaxed break-words" style={{
                     color: 'hsl(0 0% 100% / 0.82)',
                     textShadow: '0 0 12px rgba(0,0,0,0.9), 0 0 24px rgba(0,0,0,0.6), 0 1px 4px rgba(0,0,0,0.8)',
                   }}>
@@ -2825,7 +2843,7 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
                       href="https://t.me/integralevolution"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="underline decoration-[hsl(40_70%_75%/0.45)] decoration-1 underline-offset-[3px] hover:decoration-[hsl(40_70%_75%/0.85)] transition-colors"
+                      className="inline-block whitespace-nowrap underline decoration-[hsl(40_70%_75%/0.45)] decoration-1 underline-offset-[3px] hover:decoration-[hsl(40_70%_75%/0.85)] transition-colors"
                       style={{ color: 'hsl(40 70% 90% / 0.95)' }}
                     >
                       Reach out for partnership
@@ -2855,12 +2873,23 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
                       it needs to, so it works in both layouts. */}
                   <button
                     type="button"
-                    onClick={() => {
-                      // Day 56 (Sasha 2026-04-29): /ai-os desktop is now a
-                      // real app-shell — pane 3 is the only scroller and
-                      // carries the .ai-os-desktop-content-scroll marker.
-                      // Mobile uses .mobile-content-scroll. Walk for either
-                      // one before falling back to window.
+                    onClick={(e) => {
+                      // Day 57 (Sasha 2026-04-29): mobile fix — the
+                      // button used to "respond once then go dead" on
+                      // iOS. Two causes, both fixed here:
+                      //   (1) `hover:scale-[1.04]` was firing on touch
+                      //       and sticking (iOS hover-stuck behavior),
+                      //       so the button stayed in :hover state and
+                      //       subsequent taps registered as a "leave"
+                      //       instead of a click. Hover scale is now
+                      //       gated to pointer-fine devices via the
+                      //       `[@media(hover:hover)]:hover:` variant.
+                      //   (2) Smooth-scroll on the ancestor pane could
+                      //       still be in flight when the user tapped
+                      //       again. Blurring the button immediately
+                      //       releases iOS's focus lock so the next
+                      //       tap dispatches normally.
+                      (e.currentTarget as HTMLButtonElement).blur();
                       const target = document.getElementById("ai-os-spotlight");
                       if (!target) return;
                       const scroller = target.closest<HTMLElement>(
@@ -2878,13 +2907,14 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
                         window.scrollTo({ top: offset, behavior: "smooth" });
                       }
                     }}
-                    className="inline-flex items-center gap-2 text-sm font-medium tracking-wide px-6 py-3 rounded-full transition-all duration-300 hover:scale-[1.04] group cursor-pointer"
+                    className="inline-flex items-center gap-2 text-sm font-medium tracking-wide px-6 py-3 rounded-full transition-all duration-300 [@media(hover:hover)]:hover:scale-[1.04] active:scale-[0.98] group cursor-pointer touch-manipulation select-none"
                     style={{
                       background: 'linear-gradient(135deg, hsla(252, 70%, 70%, 0.32) 0%, hsla(242, 60%, 60%, 0.22) 100%)',
                       border: '1px solid hsla(252, 60%, 80%, 0.45)',
                       color: 'hsl(0 0% 100%)',
                       textShadow: '0 0 14px rgba(132,96,234,0.6), 0 1px 4px rgba(0,0,0,0.5)',
                       boxShadow: '0 0 0 1px hsla(252, 70%, 80%, 0.15), 0 8px 28px -10px rgba(132,96,234,0.55), 0 0 36px -10px rgba(180,140,255,0.4)',
+                      WebkitTapHighlightColor: 'transparent',
                     }}
                   >
                     Start here
