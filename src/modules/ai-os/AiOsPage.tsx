@@ -2,7 +2,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { Card } from "@/components/ui/card";
 import { toast } from "@/hooks/use-toast";
-import { Copy, Check, Send, Loader2, Youtube, Lock, ExternalLink, ArrowRight, Zap, Heart, BarChart3 } from "lucide-react";
+import { Copy, Check, Send, Loader2, Youtube, Lock, ExternalLink, ArrowRight, Heart } from "lucide-react";
 import StarryBackground from "./components/StarryBackground";
 import aiOsBgPoster from "@/assets/ai-os-bg-poster.webp";
 import AiOsSpotlight from "./components/AiOsSpotlight";
@@ -2553,6 +2553,11 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
     return () => { document.body.style.background = previous; };
   }, []);
 
+  // Parallax ref hoisted to top level so it's called unconditionally on
+  // every render (rules-of-hooks). The hero JSX that consumes it is gated
+  // on !focusCategory, but the hook itself must always run.
+  const parallaxRef = useParallax(0.25, isHeavyFxCapable);
+
   // Cursor glow tracking — desktop only (touch devices don't have a cursor
   // and the per-mousemove setState was contributing to mobile OOM).
   useEffect(() => {
@@ -2717,17 +2722,12 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
 
           {/* Header — Day 51 (Sasha 2026-04-24): tightened padding stack.
               GameShellV2 already supplies pt-4; layered py-16+pt-12 was
-              pushing hero ~30% down the viewport. Now hero sits high. */}
-          {(() => {
-            // Day 54 r3 (Sasha 2026-04-28): parallax + will-change-transform
-            // gated to desktop. On mobile WebKit, a permanently GPU-promoted
-            // hero whose transform changes per scroll-frame, layered over an
-            // HLS video and four fixed-position overlays, was thrashing the
-            // renderer until iOS Chrome killed the tab. Visual delta on
-            // mobile is nil (parallax barely registers on a phone-sized
-            // viewport during fast finger-scroll). Desktop unchanged.
-            const parallaxRef = useParallax(0.25, isHeavyFxCapable);
-            return (
+              pushing hero ~30% down the viewport. Now hero sits high.
+              Day 55 (Sasha 2026-04-29): hero gated on `!focusCategory`.
+              On suite sub-routes (/ai-os/clarity, /iteration, /vibe-code,
+              /design) the user has already chosen — landing copy becomes
+              redundant. Only the focused suite section renders below. */}
+          {!focusCategory && (
             <div ref={parallaxRef} className={isHeavyFxCapable ? "will-change-transform" : ""}>
             <RevealSection>
               <header className="text-center space-y-5 relative pt-2 sm:pt-4 pb-8">
@@ -2739,12 +2739,6 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
                     Anyone arriving at the page can use it immediately
                     without an account. The /ai-os/auth and /ai-os/profile
                     routes redirect home. */}
-                <p className="text-xs tracking-[0.35em] uppercase font-medium" style={{ 
-                  color: 'hsl(0 0% 100% / 0.7)',
-                  textShadow: '0 0 12px rgba(0,0,0,0.9), 0 0 30px rgba(0,0,0,0.7), 0 2px 4px rgba(0,0,0,0.8)',
-                }}>
-                  Copy, paste, enjoy
-                </p>
                 <h1
                   // Day 50 (Sasha): tightened the hero clamp so the
                   // wordmark never overruns narrow phones. Tracking also
@@ -2774,7 +2768,7 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
                   color: 'hsl(0 0% 100% / 0.62)',
                   textShadow: '0 0 12px rgba(0,0,0,0.9), 0 0 24px rgba(0,0,0,0.6), 0 1px 4px rgba(0,0,0,0.7)',
                 }}>
-                  Version 5.0 · Five years in the making
+                  Version 5.0 · Since 2024
                 </p>
                 {/* Day 51 r3 (Sasha 2026-04-25 evening): subtitles tightened
                     into a unified two-line block. Previously the second
@@ -2811,8 +2805,7 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
                     color: 'hsl(0 0% 100% / 0.82)',
                     textShadow: '0 0 12px rgba(0,0,0,0.9), 0 0 24px rgba(0,0,0,0.6), 0 1px 4px rgba(0,0,0,0.8)',
                   }}>
-                    Free for personal non-commercial use.
-                    <br />
+                    Open source · CC BY-SA 4.0 ·{" "}
                     <a
                       href="https://t.me/integralevolution"
                       target="_blank"
@@ -2820,9 +2813,8 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
                       className="underline decoration-[hsl(40_70%_75%/0.45)] decoration-1 underline-offset-[3px] hover:decoration-[hsl(40_70%_75%/0.85)] transition-colors"
                       style={{ color: 'hsl(40 70% 90% / 0.95)' }}
                     >
-                      Contact
-                    </a>{" "}
-                    to inquire about licensed commercial use.
+                      Reach out for partnership
+                    </a>
                   </p>
                 </div>
                 {/* CTAs — Day 51 r3 (Sasha 2026-04-25 evening): visual
@@ -2852,61 +2844,6 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
                     Start here
                     <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5" />
                   </a>
-                  <a
-                    href="https://t.me/integralevolution"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-sm font-medium tracking-wide px-6 py-3 rounded-full transition-all duration-300 hover:scale-[1.04]"
-                    style={{
-                      background: 'linear-gradient(135deg, hsla(40, 70%, 55%, 0.20) 0%, hsla(40, 60%, 45%, 0.10) 100%)',
-                      border: '1px solid hsla(40, 70%, 65%, 0.40)',
-                      color: 'hsl(40 70% 92%)',
-                      textShadow: '0 0 14px rgba(244,212,114,0.45), 0 1px 4px rgba(0,0,0,0.5)',
-                      boxShadow: '0 0 0 1px hsla(40, 70%, 65%, 0.12), 0 8px 24px -12px rgba(244,212,114,0.4)',
-                    }}
-                  >
-                    Work with us
-                  </a>
-                </div>
-                {/* Day 52 (Sasha 2026-04-26): two parallel ghost links —
-                    "Why this works" (story modal, philosophical why) and
-                    "See the +42% benchmark" (proof page, empirical receipt).
-                    Dot-separated on one row so they read as a paired
-                    credibility/proof affordance below the primary CTAs.
-                    The +42% number is the hook — answers "should I click?"
-                    before the click. Gold tint on the benchmark link to
-                    distinguish it from the cool "why this works" link. */}
-                <div className="flex items-center justify-center gap-3 pt-3 flex-wrap">
-                  <button
-                    onClick={() => setShowStoryDialog(true)}
-                    className="inline-flex items-center gap-1.5 text-xs font-medium tracking-wide transition-all duration-300 group"
-                    style={{
-                      color: 'hsl(195 35% 80% / 0.78)',
-                      textShadow: '0 0 12px rgba(0,0,0,0.85), 0 1px 4px rgba(0,0,0,0.7)',
-                    }}
-                  >
-                    <Zap className="w-3 h-3 opacity-70 group-hover:opacity-100 transition-opacity" />
-                    <span className="border-b border-transparent group-hover:border-current/60 transition-colors">
-                      Why this works
-                    </span>
-                  </button>
-                  <span aria-hidden="true" className="text-xs" style={{ color: 'hsl(0 0% 100% / 0.35)' }}>
-                    ·
-                  </span>
-                  <button
-                    onClick={() => navigate('/ai-os/benchmark')}
-                    className="inline-flex items-center gap-1.5 text-xs font-medium tracking-wide transition-all duration-300 group"
-                    style={{
-                      color: 'hsl(40 70% 82% / 0.85)',
-                      textShadow: '0 0 12px rgba(244,212,114,0.3), 0 0 12px rgba(0,0,0,0.85), 0 1px 4px rgba(0,0,0,0.7)',
-                    }}
-                  >
-                    <BarChart3 className="w-3 h-3 opacity-70 group-hover:opacity-100 transition-opacity" />
-                    <span className="border-b border-transparent group-hover:border-current/60 transition-colors">
-                      See the +42% benchmark
-                    </span>
-                    <ArrowRight className="w-3 h-3 opacity-50 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all" />
-                  </button>
                 </div>
                 {/* Bottom ornament — Day 51 r3: tightened pt to keep the
                     hero compact while the new ghost link sits above it. */}
@@ -2916,8 +2853,7 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
               </header>
             </RevealSection>
             </div>
-            );
-          })()}
+          )}
 
           {/* SPOTLIGHT — Day 53 (Sasha 2026-04-27): the AI OS install prompt
               is THE thing on this page. It used to live as one card among
@@ -2933,6 +2869,7 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
                   so we get empirical data instead of vibes.
               Lookup the meta-cognition-premium content at render time so
               we don't fork the source of truth for the install prompt. */}
+          {!focusCategory && (
           <RevealSection delay={100}>
             <AiOsSpotlight
               installPromptContent={
@@ -2940,6 +2877,7 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
               }
             />
           </RevealSection>
+          )}
 
           {/* Additional power-ups — Day 53 (Sasha 2026-04-27) reframe:
               this section was previously the page's primary "Step 1 ·
@@ -3303,6 +3241,23 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
                 <span className="w-6 h-6 rounded-full flex items-center justify-center transition-all duration-300 group-hover:translate-x-0.5" style={{ background: 'hsl(0 0% 100% / 0.1)' }}>
                   <ArrowRight className="w-3 h-3" aria-hidden="true" />
                 </span>
+              </button>
+              {/* Day 55 (Sasha 2026-04-29): "Work with us" relocated here
+                  from the hero primary CTA row. Hero now leads with a
+                  single decisive "Start here" — partnership conversation
+                  is downstream, not paired with the install. */}
+              <button
+                onClick={() => navigate("/ai-os/work-with-us")}
+                className="inline-flex items-center gap-2 text-sm font-medium tracking-wide px-6 py-3 rounded-full transition-all duration-300 hover:scale-[1.04]"
+                style={{
+                  background: 'linear-gradient(135deg, hsla(40, 70%, 55%, 0.20) 0%, hsla(40, 60%, 45%, 0.10) 100%)',
+                  border: '1px solid hsla(40, 70%, 65%, 0.40)',
+                  color: 'hsl(40 70% 92%)',
+                  textShadow: '0 0 14px rgba(244,212,114,0.45), 0 1px 4px rgba(0,0,0,0.5)',
+                  boxShadow: '0 0 0 1px hsla(40, 70%, 65%, 0.12), 0 8px 24px -12px rgba(244,212,114,0.4)',
+                }}
+              >
+                Work with us
               </button>
               <a
                 href="https://t.me/IntegralEvolution"

@@ -70,12 +70,12 @@ const SPACE_SECTIONS: SpaceSections = {
         sections: [
             {
                 id: "ai-os-install",
-                label: "Install",
+                label: "60-second install",
                 path: "/ai-os",
             },
             {
                 id: "ai-os-suites",
-                label: "Suites",
+                label: "Prompt Suites",
                 // Parent path is intentionally a non-resolved sentinel —
                 // clicks toggle expand/collapse rather than navigating.
                 // The sub-sections own the real routes.
