@@ -60,6 +60,12 @@ const BokehBackground = () => {
     };
 
     const animate = (time: number) => {
+      // Skip frame if canvas has no size (hidden tab, zero viewport)
+      if (!canvas.width || !canvas.height || !Number.isFinite(time)) {
+        animationRef.current = requestAnimationFrame(animate);
+        return;
+      }
+
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       orbsRef.current.forEach((orb) => {
@@ -75,8 +81,18 @@ const BokehBackground = () => {
 
         // Pulse effect
         const pulse = Math.sin(time * orb.pulseSpeed + orb.pulsePhase);
-        const currentOpacity = orb.opacity + pulse * 0.03;
-        const currentRadius = orb.radius + pulse * 8;
+        const currentOpacity = Math.max(0, Math.min(1, orb.opacity + pulse * 0.03));
+        const currentRadius = Math.max(1, orb.radius + pulse * 8);
+
+        // Guard against any non-finite values before passing to canvas APIs
+        if (
+          !Number.isFinite(orb.x) ||
+          !Number.isFinite(orb.y) ||
+          !Number.isFinite(currentRadius) ||
+          !Number.isFinite(currentOpacity)
+        ) {
+          return;
+        }
 
         // Create bokeh gradient
         const gradient = ctx.createRadialGradient(
