@@ -2497,14 +2497,29 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
   // any uncovered edge (overscroll, mobile safe-areas, browser dev pixel
   // strips) revealed the cream as a thin white strip at the top/left.
   // Painting body+html dark eliminates the bleed at the source.
+  // Day 55 (Sasha 2026-04-29): also hide the root scrollbar gutter while
+  // mounted. Mobile / preview WebKit can choose document scrolling for
+  // fixed-overlay pages even when GameShell's content pane is the intended
+  // scroller; the classic white scrollbar track then cuts the right edge of
+  // /ai-os overlays. The class is route-scoped and removed on unmount.
   useEffect(() => {
     const prevBodyBg = document.body.style.backgroundColor;
     const prevHtmlBg = document.documentElement.style.backgroundColor;
+    const prevBodyOverflow = document.body.style.overflow;
+    const prevHtmlOverflow = document.documentElement.style.overflow;
     document.body.style.backgroundColor = '#08101f';
     document.documentElement.style.backgroundColor = '#08101f';
+    document.body.style.overflow = 'hidden';
+    document.documentElement.style.overflow = 'hidden';
+    document.body.classList.add('ai-os-hide-root-scrollbar');
+    document.documentElement.classList.add('ai-os-hide-root-scrollbar');
     return () => {
       document.body.style.backgroundColor = prevBodyBg;
       document.documentElement.style.backgroundColor = prevHtmlBg;
+      document.body.style.overflow = prevBodyOverflow;
+      document.documentElement.style.overflow = prevHtmlOverflow;
+      document.body.classList.remove('ai-os-hide-root-scrollbar');
+      document.documentElement.classList.remove('ai-os-hide-root-scrollbar');
     };
   }, []);
 
