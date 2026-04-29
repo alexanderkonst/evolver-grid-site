@@ -715,9 +715,9 @@ const ZoneOfGeniusEntry = () => {
                     </div>
 
                     {/* Recognition bullets — If this sounds familiar */}
-                    <div className="mt-5 max-w-lg mx-auto text-left">
+                    <div className="mt-5 max-w-lg mx-auto text-center">
                         <p
-                            className="text-sm mb-3 text-center"
+                            className="text-sm mb-3"
                             style={{
                                 fontFamily: "'Source Serif 4', serif",
                                 color: "var(--skin-text-muted, rgba(26,30,58,0.75))",
@@ -734,16 +734,16 @@ const ZoneOfGeniusEntry = () => {
                                 textShadow: "0 0 16px rgba(255,255,255,0.75), 0 1px 2px rgba(255,255,255,0.8)",
                             }}
                         >
-                            <li className="flex gap-3">
-                                <span aria-hidden="true" style={{ color: "var(--skin-text-faint, rgba(26,30,58,0.55))" }}>–</span>
+                            <li className="flex items-baseline justify-center gap-2">
+                                <span aria-hidden="true" style={{ color: "var(--skin-text-faint, rgba(26,30,58,0.55))" }}>•</span>
                                 <span>You've helped people — but don't have a clear offer.</span>
                             </li>
-                            <li className="flex gap-3">
-                                <span aria-hidden="true" style={{ color: "var(--skin-text-faint, rgba(26,30,58,0.55))" }}>–</span>
+                            <li className="flex items-baseline justify-center gap-2">
+                                <span aria-hidden="true" style={{ color: "var(--skin-text-faint, rgba(26,30,58,0.55))" }}>•</span>
                                 <span>You over-explain what you do — and people get confused.</span>
                             </li>
-                            <li className="flex gap-3">
-                                <span aria-hidden="true" style={{ color: "var(--skin-text-faint, rgba(26,30,58,0.55))" }}>–</span>
+                            <li className="flex items-baseline justify-center gap-2">
+                                <span aria-hidden="true" style={{ color: "var(--skin-text-faint, rgba(26,30,58,0.55))" }}>•</span>
                                 <span>You feel like something is there — but can't pin it down.</span>
                             </li>
                         </ul>
