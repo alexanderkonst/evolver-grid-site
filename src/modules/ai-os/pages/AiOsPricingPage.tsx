@@ -25,7 +25,7 @@ const Pricing = () => {
 
   useEffect(() => {
     const prev = document.title;
-    document.title = "AI OS is free — Holonic Commons";
+    document.title = "Work with us — AI OS";
     return () => { document.title = prev; };
   }, []);
 
@@ -91,12 +91,6 @@ const Pricing = () => {
               Forever. For everyone.
             </h1>
 
-            <p className="text-sm sm:text-base font-light max-w-xl mx-auto leading-relaxed" style={{ color: 'hsl(0 0% 100% / 0.78)' }}>
-              Aleksandr's curatorship is the paid layer. Contribution rights to core are earned through trust.
-            </p>
-            <p className="text-[10px] tracking-[0.3em] uppercase font-medium" style={{ color: 'hsl(195 35% 75% / 0.55)' }}>
-              Holonic Commons
-            </p>
           </header>
 
           {/* Three paths */}

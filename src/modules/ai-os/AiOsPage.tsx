@@ -3052,14 +3052,6 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
                                 <span className={`font-medium leading-snug tracking-[-0.02em] ${isRec || isPremiumPrompt ? 'text-base sm:text-lg' : 'text-sm sm:text-base'}`}
                                   style={{ color: isRec || isPremiumPrompt ? 'hsl(0 0% 100%)' : 'hsl(0 0% 100% / 0.9)', ...(isRec && { textShadow: '0 0 16px hsl(242 40% 80% / 0.4)' }) }}>
                                   {isCopied ? "Copied!" : prompt.label}
-                                  {!isPremiumPrompt && !isRec && (
-                                    <span className="ml-2 inline-flex items-center gap-1 text-[10px] font-medium tracking-[0.15em] uppercase px-2 py-0.5 rounded-full"
-                                      style={{ background: 'hsl(142 40% 40% / 0.12)', color: 'hsl(142 50% 65%)' }}>Free</span>
-                                  )}
-                                  {isPremiumPrompt && !isLocked && (
-                                    <span className="ml-2 inline-flex items-center gap-1 text-[10px] font-semibold tracking-[0.15em] uppercase px-2.5 py-0.5 rounded-full"
-                                      style={{ background: 'linear-gradient(135deg, hsl(142 40% 40% / 0.25), hsl(142 40% 30% / 0.15))', color: 'hsl(142 50% 70%)', border: '1px solid hsl(142 40% 50% / 0.2)' }}>✓ Unlocked</span>
-                                  )}
                                   {isLocked && (
                                     <span className="ml-2 inline-flex items-center gap-1 text-[10px] font-semibold tracking-[0.15em] uppercase px-2.5 py-0.5 rounded-full"
                                       style={{ background: 'linear-gradient(135deg, hsl(242 40% 70% / 0.2), hsl(290 30% 60% / 0.15))', color: 'hsl(242 40% 85%)', border: '1px solid hsl(242 40% 70% / 0.25)' }}>
