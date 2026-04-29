@@ -1212,6 +1212,21 @@ All colors MUST be HSL.
   }
 }
 
+/* Day 54+++ (Sasha 2026-04-28 evening): on touch devices (phones,
+   tablets) disable `.gentle-spin-always` entirely. The cumulative
+   GPU compositor pressure of 3-4 permanently-promoted spinning
+   layers (top-right home merkaba + Pane 1 rail icons: JOURNEY,
+   AI OS, ME) was contributing to iOS Chrome OOM crashes on /ai-os
+   — even after all heavy effects (HlsVideo, StarryBackground,
+   cursor-glow, parallax) were already gated to mobile-skip.
+   Brand identity rotation preserved on desktop where the GPU
+   budget is much higher; mobile rail emblems sit static. */
+@media (hover: none) and (pointer: coarse) {
+  .gentle-spin-always {
+    animation: none !important;
+  }
+}
+
 /* Brand-mark alive tell — Day 48 iter 7 (Sasha):
    The rail's torus/wordmark needs a subtle "living" quality so the
    nav column doesn't feel dead. Two animations, used separately:
