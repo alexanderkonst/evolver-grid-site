@@ -1,44 +1,92 @@
-## Problem
+Task framing: this needs a small but structural mobile fix, not another cosmetic tweak. The previous change treated the button as an iOS hover/focus problem. Based on the current code and a mobile preview check, I would instead fix the actual scroll target + mobile layout structure.
 
-On `/ai-os` desktop, when the page lands the user cannot scroll the hero with mouse wheel or trackpad — only the "Start here" button moves the page. The "Start here" button works because it programmatically calls `scrollTo()` on `.ai-os-desktop-content-scroll`. Natural wheel scrolling fails because the cursor is hovering over the hero background, which is intercepting wheel events.
+Definition of Done:
 
-## Root Cause
+| # | Requirement | Evidence | Status |
+|---|---|---|---|
+| 1 | “Start here” reliably activates on mobile first tap and repeated taps | On 390px and 375px mobile preview, tapping scrolls to the install spotlight / “One paste. Permanent AI upgrade.” section | Planned |
+| 2 | No duplicate / invalid target IDs for the install spotlight | Code has exactly one scroll target ID for the install section | Planned |
+| 3 | Partnership line no longer breaks the page or creates a weird underline | Mobile screenshot shows clean license text + partnership link, with underline only under the link text | Planned |
+| 4 | Mobile hero spacing feels intentional, with no dead empty bottom area | Mobile screenshot shows CTA and next section spacing harmonized; desktop remains visually unchanged | Planned |
+| 5 | Desktop AI OS shell is not regressed | Desktop preview still scrolls inside the AI OS pane and the hero/spotlight layout remains intact | Planned |
 
-The hero stack in `src/modules/ai-os/AiOsPage.tsx` renders these layers as siblings of `<main>`:
+What I found:
 
-- `<video class="fixed inset-0 w-screen h-screen ...">` (line 2371) — desktop HLS background
-- `<img class="fixed inset-0 w-screen h-screen ...">` (line 2706) — mobile/low-power poster
-- `<div class="fixed inset-0 z-[1]" ...>` (line 2710) — gradient overlay
-- `<div class="vignette-overlay z-[1]" />` (line 2711)
+1. The “Start here” target is structurally fragile.
+   - `AiOsPage.tsx` renders an outer `<div id="ai-os-spotlight">`.
+   - `AiOsSpotlight.tsx` also renders an inner `<section id="ai-os-spotlight">`.
+   - Duplicate IDs are invalid HTML and make `document.getElementById("ai-os-spotlight")` unreliable.
+   - The current click handler also depends on a very specific ancestor selector and manual scroll math. On mobile, with the transformed shell panes and nested scroll container, this is exactly the kind of thing that can appear to “tap” but not move.
 
-None of these have `pointer-events-none`. Because they use `position: fixed`, they escape the `.ai-os-desktop-content-scroll` ancestor. When the wheel fires on top of them, the browser walks up THEIR ancestor chain looking for a scrollable element — and finds none (the document itself is `overflow: hidden` per the app-shell). So the wheel event is dropped.
+2. The underline issue is not solved by `inline-block whitespace-nowrap`.
+   - In the screenshot, the link text is still part of one inline paragraph with browser text-decoration.
+   - Mobile browser text-decoration + text shadows + tight inline layout can draw the underline in a visually wrong place.
+   - The safer fix is to stop relying on native underline for this hero line and render the partnership link as its own controlled inline-block/link unit, with a custom bottom border/pseudo underline.
 
-The starry overlay already has `pointer-events-none` (StarryBackground.tsx:77), which is why it doesn't block. The cursor-glow div also has it. The video, poster img, gradient, and vignette do not.
+3. The bottom empty space is coming from the mobile hero sizing strategy.
+   - The current hero uses `min-h-[calc(100dvh-9rem)]` and vertical centering.
+   - That can look balanced on one viewport, but on real mobile browser chrome it creates a large dead area below the CTA and pushes the real install section too far away.
 
-## Fix
+Implementation plan:
 
-Add `pointer-events-none` to all four decorative fixed background layers. They are all `aria-hidden="true"` decorations — they were never meant to receive pointer input. With pointer events disabled, wheel events fall through to `<main>` (z-10, inside the scroll container) and scroll behaves naturally.
+1. Make the install spotlight target unique and stable
+   - Replace the duplicated `id="ai-os-spotlight"` structure with one canonical target, for example:
+     - outer wrapper: `id="ai-os-install"` / `data-ai-os-install-target`
+     - inner `AiOsSpotlight` section: no duplicate ID, only `aria-labelledby="ai-os-spotlight-heading"`
+   - Update all references to use the new single target.
+   - Add a quick code search check after implementation to confirm only one canonical target exists.
 
-### Files to change
+2. Replace the Start here activation with a robust mobile-safe scroll helper
+   - Add a small helper inside `AiOsPage.tsx`, e.g. `scrollToAiOsInstall()`.
+   - It will:
+     - find `[data-ai-os-install-target]`, not a duplicated ID;
+     - find the real scroll container by walking ancestors and checking computed `overflow-y` + `scrollHeight > clientHeight`, with fallbacks to `.mobile-content-scroll`, `.ai-os-desktop-content-scroll`, then `window`;
+     - use scroll math based on the chosen container;
+     - use `behavior: "smooth"` unless reduced motion is enabled;
+     - focus the target after scroll with `preventScroll: true` for accessibility.
+   - Change the CTA to use both safe native semantics and JS fallback:
+     - either a styled `<a href="#ai-os-install">` with `onClick` interception, or a button with pointer/touch-safe activation;
+     - avoid iOS-sticky hover classes entirely on mobile;
+     - ensure repeated taps call the same function and do not leave the button in a stuck visual state.
 
-`src/modules/ai-os/AiOsPage.tsx`
+3. Rebuild the partnership/license line for mobile
+   - Change the hero license block from one inline paragraph into a small responsive cluster:
+     - Mobile: two clean centered lines:
+       - `Open source · CC BY-SA 4.0`
+       - `Reach out for partnership`
+     - Desktop/tablet: can stay inline if there is enough width.
+   - Replace native `text-decoration` with a controlled underline using `border-bottom` or an absolutely positioned pseudo underline.
+   - Keep `Reach out for partnership` as `whitespace-nowrap`, but do not force the entire paragraph to behave as one line.
+   - This removes both the weird underline and the page-jump risk.
 
-1. Line 2371 — `<video>` className: prepend `pointer-events-none`
-2. Line 2706 — `<img>` className: prepend `pointer-events-none`
-3. Line 2710 — gradient `<div>` className: prepend `pointer-events-none`
-4. Line 2711 — `<div className="vignette-overlay z-[1]" />`: add `pointer-events-none`
+4. Tune mobile-only hero spacing
+   - Remove the mobile `min-h-[calc(100dvh-9rem)]` / hard centering approach.
+   - Use mobile-specific vertical rhythm instead:
+     - controlled top padding;
+     - slightly tighter `space-y` between hero blocks;
+     - smaller gap between hero and spotlight on mobile (`space-y-10` instead of `space-y-20`);
+     - enough bottom padding after CTA, but not a whole empty viewport.
+   - Keep desktop layout unchanged via `sm:` / `lg:` responsive classes.
 
-Also verify `.vignette-overlay` and `.noise-overlay` rules in `src/index.css` don't re-enable pointer events; if they do, scope `pointer-events: none` on the elements via Tailwind class (which wins via utility specificity / inline order).
+5. Verification pass before reporting done
+   - Test `/ai-os` at 390×844 and 375×812.
+   - Tap “Start here” once: verify the install spotlight appears.
+   - Tap it again after returning/scrolling: verify it still works.
+   - Screenshot the hero: verify the partnership underline is clean and the bottom empty space is gone.
+   - Test desktop width: verify no regression to the AI OS app-shell scrolling.
 
-## Verification
+Files I expect to touch:
 
-After the change:
-- Land on `/ai-os` desktop, immediately wheel/trackpad-scroll over the hero — pane 3 scrolls smoothly down to the next section
-- "Start here" button continues to scroll to the next anchor as before
-- Panes 1 and 2 remain visible at all scroll depths (no regression on the prior app-shell fix)
-- Mobile `/ai-os` continues to scroll inside `.mobile-content-scroll` as before
-- No visual change to the hero — overlays are decorative and unaffected by removing pointer interception
+- `src/modules/ai-os/AiOsPage.tsx`
+  - CTA activation helper
+  - unique target wrapper
+  - mobile hero spacing
+  - partnership/license markup
 
-## Out of scope
+- `src/modules/ai-os/components/AiOsSpotlight.tsx`
+  - remove duplicate `id` or rename to non-conflicting structure
+  - optional `tabIndex={-1}` if we focus the section after scroll
 
-No layout, color, or animation changes. No changes to GameShellV2 or the app-shell architecture established last round. This is a single targeted fix to four className strings.
+- `src/index.css` only if a small scoped class is cleaner for the custom underline. If Tailwind classes are enough, I will avoid adding CSS.
+
+The key correction: I will not try another superficial button class tweak. I will fix the invalid duplicate target, make scroll-container detection robust, and verify the interaction in the mobile preview before calling it done.
