@@ -1042,6 +1042,36 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                         scrollbar gutter over the right edge of fixed/page-
                         owned overlays (/ai-os), making the page look
                         physically cut. Keep scrolling, hide the gutter. */}
+                    {/* Pane-3 wash on mobile — Day 54 (Sasha 2026-04-29):
+                        the wash MUST be painted as <main>'s own background,
+                        not as an `absolute inset-0` child div.
+
+                        Why: <main> here is the scroll container
+                        (`overflow-y-auto`). Inside a scroll container,
+                        `position: absolute; inset: 0` resolves to the
+                        PADDING BOX = the scrollport (one viewport tall),
+                        not the scrollable canvas. So the wash only
+                        covered the first viewport of content; anything
+                        below it (CTA, "TAKES 2 MINUTES", "See the exact
+                        playbook") sat on the raw Mux video, which read
+                        as a hard horizontal seam cutting the page in
+                        half — the recurring "overlay cut" bug.
+
+                        A scroll container's OWN background, by spec, is
+                        painted across the entire scrollable canvas. So
+                        the wash now lives on <main> directly and grows
+                        with content, no matter how long.
+
+                        Skin logic preserved verbatim:
+                          - Working routes  → heavy cream wash
+                            (--skin-panel-wash-quiet, ~98%)
+                          - Landing on mobile → flat ~55% cream so the
+                            Mux dust still reads as texture but copy
+                            stays legible (desktop uses --skin-panel-wash
+                            at ~10% because the video has room to breathe
+                            at scale; on mobile the dust chews legibility)
+                          - pageOwnsBackground (/ai-os, /codex) → no wash,
+                            page paints its own full-screen surface */}
                     <main
                         className={cn(
                             "mobile-content-scroll flex-1 overflow-y-auto overflow-x-hidden scrollbar-hide relative [&::-webkit-scrollbar]:hidden",
@@ -1051,33 +1081,13 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                             paddingBottom: 'env(safe-area-inset-bottom)',
                             scrollbarWidth: 'none',
                             msOverflowStyle: 'none',
+                            background: pageOwnsBackground
+                                ? undefined
+                                : isWorkingRoute
+                                    ? "var(--skin-panel-wash-quiet, rgba(248, 246, 240, 0.98))"
+                                    : "rgba(248, 246, 240, 0.55)",
                         }}
                     >
-                        {/* Pane-3 wash on mobile — Day 51 night (Sasha
-                            2026-04-25): mirror of the desktop fix, with
-                            one mobile-specific deviation. On the LANDING
-                            route, desktop uses --skin-panel-wash (10%
-                            white) so the video reads almost full-saturation
-                            behind the hero — works on desktop because the
-                            video has room to breathe at scale. On mobile,
-                            the dust particles render at the same size as
-                            the hero copy and chew up legibility. So mobile
-                            landing uses a stronger flat cream wash (~55%)
-                            that preserves a hint of the video as texture
-                            but tames the noise enough for text to read.
-                            Working routes still get the heavy cream
-                            radial; page-owned-bg routes skip entirely. */}
-                    {!pageOwnsBackground && (
-                      <div
-                        aria-hidden="true"
-                        className="absolute inset-0 pointer-events-none -z-10"
-                        style={{
-                          background: isWorkingRoute
-                            ? "var(--skin-panel-wash-quiet, rgba(248, 246, 240, 0.98))"
-                            : "rgba(248, 246, 240, 0.55)",
-                        }}
-                      />
-                    )}
                         <div className="page-transition-enter">
                             {children}
                         </div>
