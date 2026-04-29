@@ -81,8 +81,8 @@ const SPACE_SECTIONS: SpaceSections = {
                 // The sub-sections own the real routes.
                 path: "/ai-os/suites",
                 subSections: [
-                    { id: "ai-os-clarity", label: "Clarity", path: "/ai-os/clarity" },
-                    { id: "ai-os-iteration", label: "Iteration", path: "/ai-os/iteration" },
+                    { id: "ai-os-clarity", label: "Clarify", path: "/ai-os/clarity" },
+                    { id: "ai-os-iteration", label: "Iterate", path: "/ai-os/iteration" },
                     { id: "ai-os-vibe-code", label: "Vibe Code", path: "/ai-os/vibe-code" },
                     { id: "ai-os-design", label: "Design", path: "/ai-os/design" },
                 ],

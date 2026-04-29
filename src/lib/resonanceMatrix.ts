@@ -134,7 +134,7 @@ export function resonanceMessage(
  * Kept here so docs and UI can quote it from one source.
  */
 export const SPECIFICITY_PROMPT =
-    "How specific to what you know about you is this articulation?";
+    "How much does this sound like you?";
 
 // ─── React layer — provider + hook ──────────────────────────────
 
