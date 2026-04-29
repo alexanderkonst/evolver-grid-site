@@ -2450,10 +2450,6 @@ const useParallax = (speed = 0.3, enabled = true) => {
 //   /ai-os/design     → "design"
 interface AiOsPageProps {
   focusCategory?: "clarity" | "iteration" | "deployment" | "design";
-  /** [DIAG 2026-04-29] When true, render only fixed background layers
-   * + the hero <h1>. Skips <main>, prompt list, AiOsSpotlight,
-   * SectionsPanel. Used by AiOsDiagDispatcher for ?diag=c. */
-  __diagHeroOnly?: boolean;
 }
 
 // Day 54+ (Sasha): per-suite document.title — verb + "Suite" suffix.
@@ -2475,62 +2471,7 @@ const SUITE_SLUG: Record<string, string> = {
   design: "design",
 };
 
-const AiOsPage = ({ focusCategory, __diagHeroOnly }: AiOsPageProps = {}) => {
-  // ============================================================
-  // [TEST A — iOS crash diagnostic, 2026-04-29] REMOVE AFTER DIAG
-  // Paints device-detection state to a fixed banner SYNCHRONOUSLY
-  // during the very first render call, BEFORE any heavy effects,
-  // BEFORE Hls.js dynamic import, BEFORE the StarryBackground RAF,
-  // BEFORE PROMPTS array iteration. If the tab dies in <1s, this
-  // banner is the only thing that may have survived to the screen.
-  // ============================================================
-  if (typeof window !== 'undefined' && !(window as any).__aiOsDiagPainted) {
-    (window as any).__aiOsDiagPainted = true;
-    try {
-      const pointerCoarse = window.matchMedia?.('(pointer: coarse)').matches ?? null;
-      const innerWidth = window.innerWidth;
-      const innerHeight = window.innerHeight;
-      const isCoarse = pointerCoarse === true;
-      const isSmall = innerWidth < 1024;
-      const heavyFx = !(isCoarse || isSmall);
-      const data = {
-        heavyFx,
-        coarse: pointerCoarse,
-        w: innerWidth,
-        h: innerHeight,
-        dpr: window.devicePixelRatio,
-        ua: navigator.userAgent.slice(0, 140),
-      };
-      // Title gets set during render — visible in tab/share-sheet even if page never paints
-      try { document.title = 'DIAG ' + JSON.stringify(data).slice(0, 80); } catch {}
-      // Persist for post-mortem on the next load (survives tab crash)
-      try { localStorage.setItem('aiOsDiag', JSON.stringify({ ...data, t: Date.now() })); } catch {}
-      // Paint a fixed banner the moment the DOM is ready (or now if it already is)
-      const paint = () => {
-        try {
-          if (document.getElementById('ai-os-diag-banner')) return;
-          const el = document.createElement('div');
-          el.id = 'ai-os-diag-banner';
-          el.textContent = JSON.stringify(data, null, 1);
-          el.style.cssText =
-            'position:fixed;top:0;left:0;right:0;background:#fff;color:#000;' +
-            'font:11px/1.25 ui-monospace,monospace;padding:6px 8px;z-index:2147483647;' +
-            'white-space:pre-wrap;word-break:break-all;border-bottom:2px solid #f00;' +
-            'max-height:50vh;overflow:auto;pointer-events:none';
-          (document.body || document.documentElement).appendChild(el);
-        } catch {}
-      };
-      if (document.body) paint();
-      else document.addEventListener('DOMContentLoaded', paint, { once: true });
-      // Also schedule a microtask paint in case body wasn't ready above
-      queueMicrotask(paint);
-      // eslint-disable-next-line no-console
-      console.log('[ai-os-diag]', data);
-    } catch (e) {
-      try { document.title = 'DIAG-ERR ' + String(e).slice(0, 60); } catch {}
-    }
-  }
-  // ============= END TEST A DIAGNOSTIC =============
+const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
 
   // Per-page SEO — sets browser tab title on /ai-os and per-suite sub-routes.
   // Global og: tags from index.html still apply.
@@ -2712,92 +2653,12 @@ const AiOsPage = ({ focusCategory, __diagHeroOnly }: AiOsPageProps = {}) => {
     design: '#b1c9b6',
   };
 
-  // ============================================================
-  // [TEST C — iOS crash bisection, 2026-04-29] REMOVE AFTER DIAG
-  // Hero-only render with sub-bisection layers c1..c5. Each step
-  // adds ONE more compositing concern on top of the previous.
-  // Whichever step flips from "survives" to "crashes" on iPhone
-  // Chrome is the GPU killer.
-  //
-  //   c1 = solid bg + plain <h1> text (no filters at all)
-  //   c2 = c1 + fixed background <img> (poster)
-  //   c3 = c2 + dark gradient overlay + radial vignette overlay
-  //   c4 = c3 + drop-shadow filter stack on the <h1>
-  //   c5 = c4 + SVG feTurbulence noise-overlay (== full hero)
-  //   c  = legacy alias for c5 (full hero)
-  //
-  // All hooks above this line have already been called, so hook
-  // order remains stable across renders.
-  // ============================================================
-  if (__diagHeroOnly) {
-    const diagParam = typeof window !== 'undefined'
-      ? new URLSearchParams(window.location.search).get('diag')
-      : null;
-    const level = diagParam === 'c1' ? 1
-      : diagParam === 'c2' ? 2
-      : diagParam === 'c3' ? 3
-      : diagParam === 'c4' ? 4
-      : 5; // c, c5, or anything else => full
+  // Day 55 (Sasha 2026-04-29): iOS Chrome /ai-os crash root cause was
+  // identified by query-param bisection (see git history at this date)
+  // as the stacked drop-shadow filter on the hero <h1>. Fix lives in
+  // index.css under .ai-os-glow-text-* — drop-shadow on desktop, cheap
+  // text-shadow halo on touch devices.
 
-    const heroFilter = level >= 4
-      ? 'drop-shadow(0 0 60px rgba(132,96,234,0.6)) drop-shadow(0 0 120px rgba(132,96,234,0.35)) drop-shadow(0 0 200px rgba(180,140,255,0.2))'
-      : 'none';
-    const heroTextStyle: React.CSSProperties = level >= 4
-      ? {
-          fontSize: 'clamp(2.4rem, 11vw, 5rem)',
-          background: 'linear-gradient(135deg, hsl(0 0% 100%) 0%, hsl(242 40% 90%) 50%, hsl(290 30% 88%) 100%)',
-          WebkitBackgroundClip: 'text',
-          WebkitTextFillColor: 'transparent',
-          backgroundClip: 'text',
-          filter: heroFilter,
-        }
-      : {
-          fontSize: 'clamp(2.4rem, 11vw, 5rem)',
-          color: '#fff',
-        };
-
-    return (
-      <div data-ai-os className="ai-os-root" style={{ background: '#08101f', minHeight: '100vh' }}>
-        {/* c2+ : background poster image */}
-        {level >= 2 && (
-          <img
-            src={aiOsBgPoster}
-            alt=""
-            aria-hidden="true"
-            className="fixed inset-0 w-screen h-screen object-cover z-0"
-            style={{ minWidth: '100vw', minHeight: '100vh', objectPosition: '50% center' }}
-          />
-        )}
-        {/* c3+ : dark gradient + radial vignette overlays */}
-        {level >= 3 && (
-          <>
-            <div className="fixed inset-0 z-[1]" style={{ background: 'linear-gradient(180deg, rgba(10,22,50,0.55) 0%, rgba(8,16,30,0.86) 45%, rgba(5,9,18,0.95) 100%)' }} />
-            <div className="vignette-overlay z-[1]" />
-          </>
-        )}
-        {/* c5 : SVG feTurbulence noise overlay */}
-        {level >= 5 && <div className="noise-overlay" />}
-        <main className="relative z-10 min-h-screen w-full flex flex-col items-center justify-center px-4 py-20">
-          <h1
-            className="font-display italic font-normal leading-[1.1] tracking-[-0.04em] sm:tracking-[-0.06em] pb-2 mx-auto w-fit max-w-full"
-            style={heroTextStyle}
-          >
-            AI <span className="font-bold" style={{ fontStyle: 'italic' }}>OS</span>
-          </h1>
-          <p style={{ marginTop: 24, color: '#fff', fontFamily: 'monospace', fontSize: 12, opacity: 0.7, textAlign: 'center' }}>
-            diag=c{level === 5 ? '' : level} — hero layer {level} of 5
-            <br />
-            {level === 1 && 'solid bg + plain text only'}
-            {level === 2 && '+ background poster image'}
-            {level === 3 && '+ dark gradient + radial vignette'}
-            {level === 4 && '+ drop-shadow filter stack on <h1>'}
-            {level === 5 && '+ SVG feTurbulence noise overlay (full hero)'}
-          </p>
-        </main>
-      </div>
-    );
-  }
-  // ============= END TEST C HERO-ONLY BRANCH =============
 
   return (
     <div data-ai-os className="ai-os-root">
@@ -2888,14 +2749,16 @@ const AiOsPage = ({ focusCategory, __diagHeroOnly }: AiOsPageProps = {}) => {
                   // Day 50 (Sasha): tightened the hero clamp so the
                   // wordmark never overruns narrow phones. Tracking also
                   // snaps tighter on mobile to prevent italic-tail clip.
-                  className="font-display italic font-normal leading-[1.1] tracking-[-0.04em] sm:tracking-[-0.06em] pb-2 mx-auto w-fit max-w-full"
+                  // Day 55 (Sasha 2026-04-29): glow moved to
+                  // .ai-os-glow-text-strong — drop-shadow on desktop,
+                  // cheap text-shadow halo on touch (iOS GPU OOM fix).
+                  className="ai-os-glow-text-strong font-display italic font-normal leading-[1.1] tracking-[-0.04em] sm:tracking-[-0.06em] pb-2 mx-auto w-fit max-w-full"
                   style={{
                     fontSize: 'clamp(2.4rem, 11vw, 5rem)',
                     background: 'linear-gradient(135deg, hsl(0 0% 100%) 0%, hsl(242 40% 90%) 50%, hsl(290 30% 88%) 100%)',
                     WebkitBackgroundClip: 'text',
                     WebkitTextFillColor: 'transparent',
                     backgroundClip: 'text',
-                    filter: 'drop-shadow(0 0 60px rgba(132,96,234,0.6)) drop-shadow(0 0 120px rgba(132,96,234,0.35)) drop-shadow(0 0 200px rgba(180,140,255,0.2))',
                   }}
                 >
                   AI <span className="font-bold" style={{ fontStyle: 'italic' }}>OS</span>
@@ -3127,15 +2990,13 @@ const AiOsPage = ({ focusCategory, __diagHeroOnly }: AiOsPageProps = {}) => {
                   Additional power-ups
                 </p>
                 <h2
-                  className="font-display italic text-2xl sm:text-3xl md:text-4xl font-medium leading-[1.15] tracking-[-0.02em]"
+                  className="ai-os-glow-text-medium font-display italic text-2xl sm:text-3xl md:text-4xl font-medium leading-[1.15] tracking-[-0.02em]"
                   style={{
                     background:
                       'linear-gradient(135deg, hsl(0 0% 100%) 0%, hsl(242 40% 92%) 50%, hsl(290 30% 90%) 100%)',
                     WebkitBackgroundClip: 'text',
                     WebkitTextFillColor: 'transparent',
                     backgroundClip: 'text',
-                    filter:
-                      'drop-shadow(0 0 24px rgba(132,96,234,0.45)) drop-shadow(0 0 60px rgba(132,96,234,0.2))',
                   }}
                 >
                   Select prompts for everyday craft
@@ -3674,14 +3535,13 @@ const AiOsPage = ({ focusCategory, __diagHeroOnly }: AiOsPageProps = {}) => {
                   I call this layer
                 </p>
                 <p
-                  className="font-display italic font-bold leading-none"
+                  className="ai-os-glow-text-knoware font-display italic font-bold leading-none"
                   style={{
                     fontSize: 'clamp(2.4rem, 8vw, 3.6rem)',
                     background: 'linear-gradient(135deg, hsl(0 0% 100%) 0%, hsl(195 50% 88%) 50%, hsl(242 45% 88%) 100%)',
                     WebkitBackgroundClip: 'text',
                     WebkitTextFillColor: 'transparent',
                     backgroundClip: 'text',
-                    filter: 'drop-shadow(0 0 50px rgba(96,180,234,0.55)) drop-shadow(0 0 100px rgba(132,96,234,0.3))',
                   }}
                 >
                   Knoware.
