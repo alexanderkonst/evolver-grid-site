@@ -961,6 +961,21 @@ All colors MUST be HSL.
     display: none;
   }
 
+  /* Route-scoped mobile gutter guard for /ai-os. WebKit can paint the
+     document scrollbar over fixed page-owned overlays, producing the
+     recurring white right-edge "cut" even when the inner pane hides its
+     scrollbar. AiOsPage adds/removes this class while mounted. */
+  .ai-os-hide-root-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .ai-os-hide-root-scrollbar::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+  }
+
   /* Thin scrollbar for dark panels - matches brandbook */
   .scrollbar-thin {
     scrollbar-width: thin;
