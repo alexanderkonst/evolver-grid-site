@@ -572,7 +572,7 @@ const SectionsPanel = ({
                 //     page-level bg overlays already eat the silk veil, so
                 //     pane 2 holds its weight regardless of viewport.
                 pageOwnsBackground
-                    ? "bg-[rgba(12,26,56,0.55)]"
+                    ? "bg-[rgba(6,12,28,0.78)]"
                     : "bg-[rgba(14,32,68,0.55)] lg:bg-[rgba(14,32,68,0.18)]",
                 className
             )}

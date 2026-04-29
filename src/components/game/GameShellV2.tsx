@@ -719,18 +719,32 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                     Day 51 (Sasha 2026-04-25): bg dropped to transparent so
                     page-owned-bg routes (/ai-os) let the video extend
                     underneath. The gold seam alone gives the column its
-                    presence — no need for an opaque navy strip. */}
+                    presence — no need for an opaque navy strip.
+                    Day 54+ (Sasha 2026-04-28 night): "transparent on
+                    page-owned bg" failed in practice — on /ai-os the gold
+                    seam disappeared into the cosmic scene + starfield, so
+                    the button looked literally absent and Sasha had no way
+                    to reopen pane 2 once collapsed. Fix: give the column
+                    the same darker pane-2 overlay so the seam has an
+                    opaque anchor on every route. PageOwnsBackground gets
+                    the deeper navy that matches pane 2's darker bg on
+                    /ai-os; default keeps a subtle navy tint. */}
                 {!sectionsPanelOpen && (
                     <button
                         onClick={toggleSectionsPanel}
-                        className="h-dvh sticky top-0 w-5 flex items-center justify-center transition-colors hover:bg-white/5 relative group bg-transparent"
+                        className={cn(
+                            "h-dvh sticky top-0 w-5 flex items-center justify-center transition-colors hover:bg-white/10 relative group",
+                            pageOwnsBackground
+                                ? "bg-[rgba(6,12,28,0.78)]"
+                                : "bg-[rgba(14,32,68,0.32)]"
+                        )}
                         title="Expand sidebar (⌘B)"
                         style={{
                             boxShadow:
-                                "inset -1px 0 0 rgba(212, 175, 55, 0.35), 2px 0 18px -6px rgba(244, 212, 114, 0.3)",
+                                "inset -1px 0 0 rgba(212, 175, 55, 0.5), 2px 0 18px -6px rgba(244, 212, 114, 0.4)",
                         }}
                     >
-                        <PanelLeft className="w-3 h-3 text-[#d4af37]/70 group-hover:text-[#d4af37] transition-colors" />
+                        <PanelLeft className="w-3 h-3 text-[#d4af37]/85 group-hover:text-[#d4af37] transition-colors" />
                     </button>
                 )}
 
