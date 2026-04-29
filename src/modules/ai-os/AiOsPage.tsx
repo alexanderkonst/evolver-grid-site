@@ -2881,11 +2881,13 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
               we don't fork the source of truth for the install prompt. */}
           {!focusCategory && (
           <RevealSection delay={100}>
-            <AiOsSpotlight
-              installPromptContent={
-                META_PROMPTS.find((p) => p.id === "meta-cognition-premium")?.content || ""
-              }
-            />
+            <div id="ai-os-spotlight" className="scroll-mt-8">
+              <AiOsSpotlight
+                installPromptContent={
+                  META_PROMPTS.find((p) => p.id === "meta-cognition-premium")?.content || ""
+                }
+              />
+            </div>
           </RevealSection>
           )}
 
