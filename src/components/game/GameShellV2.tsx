@@ -624,8 +624,20 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
     // video (they render their own).
     const suppressShellBackground = pageOwnsBackground;
 
+    // Day 56 (Sasha 2026-04-29): /ai-os ships as a real app-shell on desktop.
+    // The earlier sticky-pane-on-document-scroll layout kept producing
+    // "1st and 2nd panes gone, page gets stuck" reports because the
+    // sticky containers ended where the long /ai-os content ended — at
+    // deep scroll positions the sticky chrome literally ran out of
+    // containing-block runway. Switching /ai-os* desktop to a viewport-
+    // height shell (h-dvh, no document scroll, panes are real flex
+    // children, pane 3 is the only overflow-y-auto) is the structural
+    // fix. All other routes keep the historical document-scroll layout
+    // because they rely on it (e.g. /playbook 7-step spine sticky).
+    const isAiOsRoute = path === "/ai-os" || path.startsWith("/ai-os/");
+
     return (
-        <div className="min-h-dvh bg-[#0a0a1a]">
+        <div className={cn(isAiOsRoute ? "h-dvh overflow-hidden" : "min-h-dvh", "bg-[#0a0a1a]")}>
             {/* Full-screen background — animated video everywhere
                 except page-owned-bg routes (which render their own).
                 Pane 3 wash sits inside <main> and covers the video
