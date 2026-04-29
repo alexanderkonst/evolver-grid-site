@@ -668,7 +668,7 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                 Spotlight enters viewport, panes 1+2 (sticky, z-30) flicker
                 or disappear entirely. Isolating the parent stacking
                 context prevents the bleed and the panes stay rendered. */}
-            <div className="hidden lg:flex min-h-dvh isolate">
+            <div className={cn("hidden lg:flex isolate", isAiOsRoute ? "h-dvh min-h-0 overflow-hidden" : "min-h-dvh")}>
                 {/* Panel 1: Spaces Rail */}
                 <SpacesRail
                     activeSpaceId={activeSpaceId}
@@ -677,7 +677,15 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                     unlockHints={unlockHints}
                     nudgeBadges={nudgeBadges}
                     hiddenSpaces={hiddenSpaces}
-                    className="h-dvh sticky top-0 transform-gpu"
+                    className={cn(
+                        "h-dvh transform-gpu",
+                        // On /ai-os desktop the shell is a true app-shell
+                        // (parent is h-dvh overflow-hidden), so sticky is
+                        // pointless and risky — use plain flex child.
+                        // Everywhere else, sticky preserves the historical
+                        // behavior these routes depend on.
+                        isAiOsRoute ? "shrink-0" : "sticky top-0",
+                    )}
                     pageOwnsBackground={pageOwnsBackground}
                     userName={profile?.first_name || undefined}
                     userAvatarUrl={profile?.avatar_url || undefined}
