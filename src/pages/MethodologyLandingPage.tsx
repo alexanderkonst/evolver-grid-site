@@ -39,7 +39,7 @@ const MethodologyLandingPage = () => {
               "var(--skin-text-halo-strong, 0 0 22px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.8), 0 2px 12px rgba(26,30,58,0.15))",
           }}
         >
-          You can't clearly say what you do.
+          Can you clearly say what you do?
         </h1>
 
         {/* Italic echo — whispered consequence of the headline.
@@ -55,7 +55,19 @@ const MethodologyLandingPage = () => {
               "var(--skin-text-halo-subtle, 0 0 18px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.75))",
           }}
         >
-          So people don't buy.
+          So right people will{" "}
+          <span
+            className="not-italic font-semibold bg-clip-text text-transparent"
+            style={{
+              ...GOLD_TEXT_STYLE,
+              letterSpacing: "0.04em",
+              textTransform: "uppercase",
+              fontSize: "0.92em",
+            }}
+          >
+            always
+          </span>{" "}
+          buy?
         </p>
 
         {/* Top ornament bookend (bottom bookend retired — CTA emblem
