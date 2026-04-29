@@ -2886,7 +2886,6 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
                       textShadow: '0 0 12px rgba(0,0,0,0.9), 0 0 24px rgba(0,0,0,0.6), 0 1px 4px rgba(0,0,0,0.8)',
                     }}
                   >
-<<<<<<< HEAD
                     Free for everyone · personal &amp; non-commercial use
                   </p>
                   <p
@@ -2897,10 +2896,6 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
                     }}
                   >
                     Open source · CC BY-NC-SA 4.0 · For commercial use,{' '}
-=======
-                    <span className="whitespace-nowrap">Free for everyone · CC BY-SA 4.0</span>
-                    <span aria-hidden="true" className="hidden sm:inline opacity-70">·</span>
->>>>>>> c78afe36 (deploy)
                     <a
                       href="https://t.me/integralevolution"
                       target="_blank"
