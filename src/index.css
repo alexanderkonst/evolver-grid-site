@@ -1689,15 +1689,45 @@ All colors MUST be HSL.
   background-size: 256px 256px;
 }
 
-/* Day 55 (Sasha 2026-04-29): iOS Chrome /ai-os crash root cause —
-   stacked drop-shadow filters (60px+120px+200px radii) on
-   background-clip:text + transparent fill forced WebKit to allocate
-   a render surface ~(text + 400px) on every side at dpr 3. GPU
-   process OOM, tab killed within ~1s of first paint. Bisection
-   isolated this to test layer "c4". On touch devices we swap to a
-   cheap text-shadow halo (no separate filter surface, no
-   transparent-fill compositing cost). Desktop keeps the stacked
-   drop-shadow look intact. */
+/* ⚠️ DO NOT move this filter chain off the desktop-only branch.
+   ⚠️ DO NOT raise the max blur radius above ~200px.
+   ⚠️ DO NOT apply it to a background-clip:text element on touch.
+
+   Day 55 (Sasha 2026-04-29) — iOS Chrome (and Safari) /ai-os tab
+   kill, root-caused via 5-step bisect (c1..c5), flipped at c4.
+
+   Known WebKit pattern (tracked variants in Bugzilla under
+   "filter: drop-shadow on background-clip:text" and
+   "ImageBuffer allocation failure with large blur radius"):
+
+     filter: drop-shadow(... Npx ...)         <-- N large
+       on an element with
+     background-clip: text; color: transparent;
+       at devicePixelRatio >= 3 (iPhone)
+       with viewport width ~390-430 CSS px
+
+   WebKit's filter pipeline computes the drop-shadow source surface
+   from the element's painted bounding box INFLATED by the max blur
+   radius on every side (here: text bbox + 200px × 4). Because the
+   fill is transparent and the visible glyphs come from the clipped
+   background, the source layer is allocated at full text-bbox size,
+   not glyph coverage — so a ~360×120 CSS-px <h1> at dpr 3 becomes a
+   ~(360+400) × (120+400) × 9 = ~3.5M-pixel RGBA surface PER
+   drop-shadow in the chain (we had three: 60 + 120 + 200). The GPU
+   process trips its ImageBuffer ceiling and the tab is killed
+   within ~1s of first paint. No JS error, no console — just gone.
+
+   Fix: desktop keeps the stacked drop-shadow look (compositor has
+   headroom). Touch devices fall through to the @media block below
+   and get a text-shadow halo, which is rasterized with the glyph
+   itself — no separate filter surface, no inflated bbox, no
+   transparent-fill compositing cost, no OOM.
+
+   If you "simplify" this by collapsing the media query or pushing
+   the filter into a shared utility, you WILL crash iPhones again.
+   Verify any change with: iPhone Chrome + /ai-os, hard-close tab
+   between loads. The bisect harness lived at ?diag=c1..c5 — see
+   git history around this commit if you need to reproduce. */
 .ai-os-glow-text-strong {
   filter: drop-shadow(0 0 60px rgba(132, 96, 234, 0.6))
           drop-shadow(0 0 120px rgba(132, 96, 234, 0.35))
