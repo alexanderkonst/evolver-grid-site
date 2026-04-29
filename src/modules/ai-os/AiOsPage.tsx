@@ -3277,31 +3277,14 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
                   <ArrowRight className="w-3 h-3" aria-hidden="true" />
                 </span>
               </button>
-              {/* Day 55 (Sasha 2026-04-29): "Work with us" relocated here
-                  from the hero primary CTA row. Hero now leads with a
-                  single decisive "Start here" — partnership conversation
-                  is downstream, not paired with the install. */}
-              <button
-                onClick={() => navigate("/ai-os/work-with-us")}
-                className="inline-flex items-center gap-2 text-sm font-medium tracking-wide px-6 py-3 rounded-full transition-all duration-300 hover:scale-[1.04]"
-                style={{
-                  background: 'linear-gradient(135deg, hsla(40, 70%, 55%, 0.20) 0%, hsla(40, 60%, 45%, 0.10) 100%)',
-                  border: '1px solid hsla(40, 70%, 65%, 0.40)',
-                  color: 'hsl(40 70% 92%)',
-                  textShadow: '0 0 14px rgba(244,212,114,0.45), 0 1px 4px rgba(0,0,0,0.5)',
-                  boxShadow: '0 0 0 1px hsla(40, 70%, 65%, 0.12), 0 8px 24px -12px rgba(244,212,114,0.4)',
-                }}
-              >
-                Work with us
-              </button>
               <a
                 href="https://t.me/IntegralEvolution"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-3 text-xs font-medium px-5 py-2.5 rounded-full transition-all duration-300 hover:scale-105 group"
-                style={{ color: 'hsl(0 0% 100% / 0.5)' }}
+                className="inline-flex items-center gap-3 text-sm font-medium px-6 py-3 rounded-full liquid-glass transition-all duration-300 hover:scale-105"
+                style={{ color: 'hsl(242 40% 80%)' }}
               >
-                <Send className="w-3.5 h-3.5" aria-hidden="true" />
+                <Send className="w-4 h-4" aria-hidden="true" />
                 <span>Contact on Telegram</span>
               </a>
               <div className="flex items-center justify-center gap-3">
