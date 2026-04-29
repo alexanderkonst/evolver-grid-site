@@ -948,7 +948,7 @@ Each step below: the **step alchemy** is the inner transformation for the step a
 - *Public Broadcast Cadence* — What you put out, where, on what rhythm. Daily-ish, not viral spike.
 - *Golden DM Architecture* — The hand-crafted outreach pattern: mirror first, name structural insight, crisp offer, permission-giving exit.
 - *Live Funnel surfaces* — The pages, threads, and channels where the aligned tribe lands and self-converts.
-- *Distribution channel* — One primary channel done deeply (LinkedIn for consultants, Substack for methodology authors, etc.), not five done shallowly.
+- *Distribution channel* — One primary channel done deeply (e.g., LinkedIn for conscious aspiring impact founders, Substack for methodology authors, Telegram for integral / spiritual practitioner communities), not five done shallowly.
 
 #### Step 7 · Turn Organic Growth into Scaling Impact
 
