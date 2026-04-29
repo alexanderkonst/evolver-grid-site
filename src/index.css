@@ -720,6 +720,29 @@ All colors MUST be HSL.
     position: relative;
   }
 
+  /* Mobile shell pages use their own internal scroll containers. If the
+     document/root scrollbar is allowed to paint, embedded WebKit previews
+     reserve a white gutter over fixed overlays and visually cut the right
+     edge (/ai-os is the repeat offender). Hide root scrollbars on mobile;
+     pane-level scrolling remains intact. */
+  @media (max-width: 1023px) {
+    html,
+    body,
+    #root {
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    html::-webkit-scrollbar,
+    body::-webkit-scrollbar,
+    #root::-webkit-scrollbar {
+      display: none !important;
+      width: 0 !important;
+      height: 0 !important;
+      background: transparent !important;
+    }
+  }
+
   /* Day 48 iter 2 (Sasha): editorial paper grain. A barely-perceptible
      monochrome noise overlay lifts the whole cream background from
      "web color" to "printed paper". ~3% opacity so it never interferes
