@@ -4,6 +4,7 @@ import { Card } from "@/components/ui/card";
 import { toast } from "@/hooks/use-toast";
 import { Copy, Check, Send, Loader2, Youtube, Lock, ExternalLink, ArrowRight, Zap, Heart, BarChart3 } from "lucide-react";
 import StarryBackground from "./components/StarryBackground";
+import aiOsBgPoster from "@/assets/ai-os-bg-poster.webp";
 import AiOsSpotlight from "./components/AiOsSpotlight";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
@@ -2655,12 +2656,27 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
           (different from GameShell's animated bg). Gradient lighter at top
           (0.55) so video shows clearly behind hero, heavier toward bottom
           so prompt library reads on stable dark. */}
-      {/* Day 54 (Sasha 2026-04-28): video stays on mobile (cinematic vibe
-          is non-negotiable) — HLS quality is capped to ≤720p inside
-          HlsVideo so iOS doesn't pull a 1080p+ variant and OOM the tab.
-          The animated star canvas and cursor-glow tracker (the actual
-          memory killers) remain desktop-only. */}
-      <HlsVideo />
+      {/* Day 54+++ (Sasha 2026-04-28 night): HlsVideo gated to desktop
+          only. The 720p cap reduced peak memory but did not eliminate the
+          cumulative GPU tile pressure on iOS Chrome — empirical: /ai-os
+          crashed at ~15s on iPhone Chrome with the cap in place, while
+          every shell-wrapped route WITHOUT this video survived
+          indefinitely. The "cinematic vibe non-negotiable" stance held
+          until the page literally stopped loading on mobile; a loaded
+          page with a static editorial poster beats a never-loading
+          cinematic video. Desktop keeps the live HLS stream — same vibe,
+          intact motion, no GPU pressure issues at desktop scale. */}
+      {isHeavyFxCapable ? (
+        <HlsVideo />
+      ) : (
+        <img
+          src={aiOsBgPoster}
+          alt=""
+          aria-hidden="true"
+          className="fixed inset-0 w-screen h-screen object-cover z-0"
+          style={{ minWidth: '100vw', minHeight: '100vh', objectPosition: '50% center' }}
+        />
+      )}
       <div className="fixed inset-0 z-[1]" style={{ background: 'linear-gradient(180deg, rgba(10,22,50,0.55) 0%, rgba(8,16,30,0.86) 45%, rgba(5,9,18,0.95) 100%)' }} />
       <div className="vignette-overlay z-[1]" />
       {/* Noise/grain overlay */}
