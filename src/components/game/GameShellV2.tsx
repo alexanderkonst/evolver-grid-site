@@ -849,13 +849,15 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                     {!hideLogo && (
                         // Day 53 (Sasha 2026-04-27): vertical position
                         // tuned to align the home-icon torus with the
-                        // orb in the left-pane logo lockup. Math: pane 1
-                        // is 280px, logo renders at 89% width = 249px;
-                        // logo aspect 666:375 → 140px tall; 12px top-
-                        // padding + 70px to orb's vertical center =
-                        // 82px from rail top. Right icon is 40px tall,
-                        // so top:62 puts its center at 82 — exact match.
-                        <Link to="/" className="absolute top-[62px] right-4 z-50 block w-10 h-10 group">
+                        // orb in the left-pane logo lockup.
+                        // Day 55 (Sasha 2026-04-29): bumped up to align
+                        // with the new shared Y centerline — pane 1
+                        // orb (now at center ~62px after the wordmark
+                        // top padding tightened 12 → 4px) and pane 2
+                        // title (now centered in h-[124px] header).
+                        // Right icon is 40px tall, so top:42 puts its
+                        // center at 62 — matches the trio.
+                        <Link to="/" className="absolute top-[42px] right-4 z-50 block w-10 h-10 group">
                             <div
                                 className="w-full h-full rounded-lg overflow-hidden"
                                 style={{

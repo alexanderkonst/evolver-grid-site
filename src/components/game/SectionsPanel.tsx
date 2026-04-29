@@ -664,9 +664,17 @@ const SectionsPanel = ({
                 Day 48 iter 15 (Sasha): header height bumped h-10 → h-16
                 so pane 2's first nav item lines up with pane 1's first
                 chip (which sits under the taller brand-wordmark area).
-                Both first-items now share the same Y — the panes read
-                as a single coherent grid row. */}
-            <div className="h-16 px-4 flex items-center justify-between">
+
+                Day 55 (Sasha 2026-04-29): header height grown h-16 →
+                h-[124px] so the title's vertical center lands at ~62px
+                from pane top, sharing the new alignment trio Y with
+                pane 1's wordmark orb (raised via reduced top padding)
+                and the top-right rotating logo (raised via top-[42px]).
+                Side benefit: pane 2's first nav row now lands at ~124px,
+                closer to pane 1's first chip after the wordmark area —
+                restoring the original "first-row alignment across panes"
+                intent more faithfully. */}
+            <div className="h-[124px] px-4 flex items-center justify-between">
                 <span
                     className="text-[11px] font-semibold"
                     style={{
