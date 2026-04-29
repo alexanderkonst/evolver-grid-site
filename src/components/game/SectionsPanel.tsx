@@ -11,11 +11,22 @@ import { GROWTH_STEPS } from "@/modules/library/growthSteps";
 // other route — the hook is the gate, not a wrapper.
 import { useCanvasProgressLite } from "@/modules/unique-business-builder/useCanvasProgressLite";
 import {
-    Tooltip,
-    TooltipContent,
     TooltipProvider,
-    TooltipTrigger,
 } from "@/components/ui/tooltip";
+// Day 55 (Sasha 2026-04-29): locked-row hints migrated from Tooltip
+// to Popover. Reasons:
+//   1. Popover has Portal built into shadcn's primitive — escapes
+//      pane 2's `overflow-hidden` wrapper without manual portal wrap.
+//   2. Popover supports controlled `open` state cleanly, so we can
+//      drive it from BOTH hover (desktop) and click (mobile) handlers
+//      via a single shared state.
+//   3. Tooltip's hover-only model fails on touch (Radix tooltip fires
+//      pointer-enter on tap-down but pointer-leave on tap-up, so the
+//      popup flashes briefly — unusable on phone).
+// Tooltip primitives kept imported for any non-locked-row uses
+// elsewhere (none currently in this file, but the imports are
+// referenced in the shared TooltipProvider wrapper at the panel root).
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 
 interface SubSection {
     id: string;
@@ -388,7 +399,7 @@ const buildJourneySections = (_currentPath: string): Section[] => {
     // the fog-of-war fade intact.
     return [
         { id: "journey-start-here",        label: "1. Start by finding your top talent", path: "/" },
-        { id: "journey-the-playbook",      label: "2. Take the playbook",                path: "/playbook" },
+        { id: "journey-the-playbook",      label: "2. Take the exact playbook",          path: "/playbook" },
         { id: "journey-the-path",          label: "3. See the shortcut path to your business", path: "/path" },
         { id: "journey-dashboard",         label: "4. See how we're building this",      path: "/dashboard" },
         {
@@ -431,6 +442,22 @@ const SectionsPanel = ({
     // there. Drives the right-aligned "6/7" + thin gold progress bar on
     // each UBB phase row.
     const ubbProgress = useCanvasProgressLite();
+
+    // Day 55 (Sasha 2026-04-29): touch detection for locked-row popover
+    // side switch. Desktop → "right" (popover floats into pane 3's
+    // empty area, escaping pane 2's overflow via Popover's built-in
+    // Portal). Touch → "bottom" (drops below the row; "right" has no
+    // viewport room when pane 2 takes the full mobile width).
+    const [isTouchDevice] = useState(() => {
+        if (typeof window === "undefined") return false;
+        return window.matchMedia?.("(pointer: coarse)").matches ?? false;
+    });
+
+    // Which locked row currently has its hint popover open. Single
+    // string lets us enforce "only one open at a time" without
+    // tracking open state per-row. Cleared on hover-leave (desktop)
+    // or click-outside (mobile, via Popover's onOpenChange).
+    const [openLockedHintId, setOpenLockedHintId] = useState<string | null>(null);
 
     // Check user email for feature gating
     useEffect(() => {
@@ -762,6 +789,20 @@ const SectionsPanel = ({
                             }
                             onClick={handleSectionClick}
                             aria-disabled={isLocked || undefined}
+                            // Day 55 (Sasha 2026-04-29): hover handlers
+                            // for desktop locked-row popover. Touch
+                            // devices skip these (no hover semantics);
+                            // tap is handled by PopoverTrigger below.
+                            onMouseEnter={
+                                isLocked && !isTouchDevice
+                                    ? () => setOpenLockedHintId(section.id)
+                                    : undefined
+                            }
+                            onMouseLeave={
+                                isLocked && !isTouchDevice
+                                    ? () => setOpenLockedHintId(null)
+                                    : undefined
+                            }
                         >
                             {sectionActive && !hasSubSections && !isLocked && (
                                 <div className="absolute left-0 top-1/2 w-1 h-8 rounded-r-full -translate-x-1/2 -translate-y-1/2 bg-[#d4af37] shadow-[0_0_8px_rgba(244,212,114,0.7)]" />
@@ -871,17 +912,32 @@ const SectionsPanel = ({
                         </div>
                     );
 
+                    // Day 55 (Sasha 2026-04-29): locked-row hint popover.
+                    // Controlled by `openLockedHintId` state — desktop
+                    // hover handlers (on rowContent above) drive it,
+                    // mobile uses PopoverTrigger's native click toggle.
+                    // Both paths converge through `onOpenChange` so
+                    // click-outside dismissal works on touch.
+                    // Visual: identical to the previous Tooltip — same
+                    // gold-on-navy gradient pill with Cormorant text.
                     const rowWithTooltip = isLocked ? (
-                        <Tooltip>
-                            <TooltipTrigger asChild>{rowContent}</TooltipTrigger>
-                            <TooltipContent
-                                side="right"
+                        <Popover
+                            open={openLockedHintId === section.id}
+                            onOpenChange={(open) => {
+                                setOpenLockedHintId(open ? section.id : null);
+                            }}
+                        >
+                            <PopoverTrigger asChild>{rowContent}</PopoverTrigger>
+                            <PopoverContent
+                                side={isTouchDevice ? "bottom" : "right"}
                                 align="center"
                                 sideOffset={12}
-                                className="max-w-[260px] rounded-xl border-none p-0 shadow-none bg-transparent animate-in fade-in-0 zoom-in-95"
+                                collisionPadding={16}
+                                onOpenAutoFocus={(e) => e.preventDefault()}
+                                className="w-auto max-w-[260px] rounded-xl border-none p-0 shadow-none bg-transparent"
                             >
                                 <div
-                                    className="liquid-glass-dark rounded-xl px-4 py-3"
+                                    className="rounded-xl px-4 py-3"
                                     style={{
                                         backgroundImage:
                                             "linear-gradient(135deg, rgba(10,22,40,0.92) 0%, rgba(18,28,56,0.88) 50%, rgba(10,22,40,0.92) 100%)",
@@ -914,8 +970,8 @@ const SectionsPanel = ({
                                         {section.lockedHint || "Locked"}
                                     </p>
                                 </div>
-                            </TooltipContent>
-                        </Tooltip>
+                            </PopoverContent>
+                        </Popover>
                     ) : rowContent;
 
                     return (
