@@ -2475,7 +2475,7 @@ const SUITE_SLUG: Record<string, string> = {
   design: "design",
 };
 
-const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
+const AiOsPage = ({ focusCategory, __diagHeroOnly }: AiOsPageProps = {}) => {
   // ============================================================
   // [TEST A — iOS crash diagnostic, 2026-04-29] REMOVE AFTER DIAG
   // Paints device-detection state to a fixed banner SYNCHRONOUSLY
