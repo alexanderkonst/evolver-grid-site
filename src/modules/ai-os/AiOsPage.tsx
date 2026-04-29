@@ -2825,89 +2825,87 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
                     Day 54+ unwind (Sasha 2026-04-28 evening): MIT block
                     reverted to this pre-MIT copy as a rollback baseline
                     after the framing reset. License re-decision pending. */}
-                {/* Day 57 (Sasha 2026-04-29): mobile fix — the link
-                    "Reach out for partnership" was wrapping mid-phrase
-                    on narrow viewports and overflowing the viewport
-                    width, causing the page to "jump" horizontally.
-                    `inline-block` keeps the link as a single wrap unit;
-                    `break-words` on the paragraph guarantees no word
-                    bleeds past the container; px-2 gives the centered
-                    block a small inner gutter on phones. */}
+                {/* Day 57 r2 (Sasha 2026-04-29): mobile fix - license line
+                    rebuilt as a flex cluster. Mobile stacks two centered
+                    lines so "Reach out for partnership" can never wrap
+                    mid-phrase or push the page horizontally. The link
+                    underline now uses a custom border-bottom so iOS
+                    Chrome cannot draw the native underline at the wrong
+                    vertical offset under the text-shadow. */}
                 <div className="mx-auto max-w-lg pt-3 px-2">
-                  <p className="text-xs sm:text-[13px] font-normal leading-relaxed break-words" style={{
-                    color: 'hsl(0 0% 100% / 0.82)',
-                    textShadow: '0 0 12px rgba(0,0,0,0.9), 0 0 24px rgba(0,0,0,0.6), 0 1px 4px rgba(0,0,0,0.8)',
-                  }}>
-                    Open source · CC BY-SA 4.0 ·{" "}
+                  <div
+                    className="flex flex-col sm:flex-row items-center justify-center gap-y-1 gap-x-2 text-xs sm:text-[13px] font-normal leading-relaxed"
+                    style={{
+                      color: 'hsl(0 0% 100% / 0.82)',
+                      textShadow: '0 0 12px rgba(0,0,0,0.9), 0 0 24px rgba(0,0,0,0.6), 0 1px 4px rgba(0,0,0,0.8)',
+                    }}
+                  >
+                    <span className="whitespace-nowrap">Open source · CC BY-SA 4.0</span>
+                    <span aria-hidden="true" className="hidden sm:inline opacity-70">·</span>
                     <a
                       href="https://t.me/integralevolution"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-block whitespace-nowrap underline decoration-[hsl(40_70%_75%/0.45)] decoration-1 underline-offset-[3px] hover:decoration-[hsl(40_70%_75%/0.85)] transition-colors"
+                      className="inline-block whitespace-nowrap no-underline border-b border-[hsl(40_70%_75%/0.45)] hover:border-[hsl(40_70%_75%/0.85)] pb-[1px] transition-colors"
                       style={{ color: 'hsl(40 70% 90% / 0.95)' }}
                     >
                       Reach out for partnership
                     </a>
-                  </p>
+                  </div>
                 </div>
-                {/* CTAs — Day 51 r3 (Sasha 2026-04-25 evening): visual
-                    hierarchy added. Three equal-weight pills was reading
-                    as a committee. Now:
-                    • Primary "Start here" — bigger pill, brighter purple
-                      glow, the unmistakable "do this first" affordance.
-                    • Secondary "Work with us" (was "Work with Aleksandr" — Day 54+, Sasha) — gold rim preserved
-                      (premium signal) but matched to primary's height so
-                      the two read as a paired primary row.
-                    • Tertiary "Why this works" — demoted to a ghost text
-                      link with a thin underline-on-hover; carries the
-                      lightning glyph but no bg, so it stops competing
-                      with the actual decisions above. */}
+                {/* CTA - Day 57 r2 (Sasha 2026-04-29): rendered as <a> with
+                    a real href so iOS treats activation reliably even when
+                    the surrounding shell uses transforms. The onClick walks
+                    to the nearest real scrolling ancestor instead of
+                    guessing one - and the native href is the safety net
+                    if JS ever fails. The duplicate id="ai-os-spotlight"
+                    on both AiOsPage and AiOsSpotlight has been resolved
+                    (see the install wrapper below - id="ai-os-install"
+                    + data-ai-os-install-target). */}
                 <div className="flex items-center justify-center gap-3 pt-4 sm:pt-6 flex-wrap">
-                  {/* Day 54 (Sasha 2026-04-29): was <a href="#ai-os-spotlight">.
-                      Native hash-jumps scroll the document root, but on mobile
-                      (and inside the shell's pane-3 column on desktop) the
-                      actual scroll container is a nested <main overflow-y-auto>.
-                      Document-root hash navigation is a no-op there — the
-                      "Start here" CTA was a dead button. scrollIntoView walks
-                      the ancestor chain and scrolls each overflow container
-                      it needs to, so it works in both layouts. */}
-                  <button
-                    type="button"
+                  <a
+                    href="#ai-os-install"
                     onClick={(e) => {
-                      // Day 57 (Sasha 2026-04-29): mobile fix — the
-                      // button used to "respond once then go dead" on
-                      // iOS. Two causes, both fixed here:
-                      //   (1) `hover:scale-[1.04]` was firing on touch
-                      //       and sticking (iOS hover-stuck behavior),
-                      //       so the button stayed in :hover state and
-                      //       subsequent taps registered as a "leave"
-                      //       instead of a click. Hover scale is now
-                      //       gated to pointer-fine devices via the
-                      //       `[@media(hover:hover)]:hover:` variant.
-                      //   (2) Smooth-scroll on the ancestor pane could
-                      //       still be in flight when the user tapped
-                      //       again. Blurring the button immediately
-                      //       releases iOS's focus lock so the next
-                      //       tap dispatches normally.
-                      (e.currentTarget as HTMLButtonElement).blur();
-                      const target = document.getElementById("ai-os-spotlight");
+                      const target =
+                        document.querySelector<HTMLElement>('[data-ai-os-install-target]') ||
+                        document.getElementById('ai-os-install');
                       if (!target) return;
-                      const scroller = target.closest<HTMLElement>(
-                        '.ai-os-desktop-content-scroll, .mobile-content-scroll'
-                      );
+                      e.preventDefault();
+                      (e.currentTarget as HTMLAnchorElement).blur();
+
+                      const findScroller = (node: HTMLElement | null): HTMLElement | null => {
+                        let el: HTMLElement | null = node?.parentElement ?? null;
+                        while (el && el !== document.body) {
+                          const style = window.getComputedStyle(el);
+                          const oy = style.overflowY;
+                          if ((oy === 'auto' || oy === 'scroll' || oy === 'overlay') && el.scrollHeight > el.clientHeight) {
+                            return el;
+                          }
+                          el = el.parentElement;
+                        }
+                        return null;
+                      };
+                      const scroller =
+                        findScroller(target) ||
+                        document.querySelector<HTMLElement>('.mobile-content-scroll, .ai-os-desktop-content-scroll');
+
+                      const reduced = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+                      const behavior: ScrollBehavior = reduced ? 'auto' : 'smooth';
+
                       if (scroller) {
                         const offset =
                           target.getBoundingClientRect().top -
                           scroller.getBoundingClientRect().top +
-                          scroller.scrollTop;
-                        scroller.scrollTo({ top: offset, behavior: "smooth" });
+                          scroller.scrollTop -
+                          16;
+                        scroller.scrollTo({ top: Math.max(0, offset), behavior });
                       } else {
                         const offset =
-                          target.getBoundingClientRect().top + window.scrollY;
-                        window.scrollTo({ top: offset, behavior: "smooth" });
+                          target.getBoundingClientRect().top + window.scrollY - 16;
+                        window.scrollTo({ top: Math.max(0, offset), behavior });
                       }
                     }}
-                    className="inline-flex items-center gap-2 text-sm font-medium tracking-wide px-6 py-3 rounded-full transition-all duration-300 [@media(hover:hover)]:hover:scale-[1.04] active:scale-[0.98] group cursor-pointer touch-manipulation select-none"
+                    className="inline-flex items-center gap-2 text-sm font-medium tracking-wide px-6 py-3 rounded-full transition-all duration-300 [@media(hover:hover)]:hover:scale-[1.04] active:scale-[0.98] group cursor-pointer touch-manipulation select-none no-underline"
                     style={{
                       background: 'linear-gradient(135deg, hsla(252, 70%, 70%, 0.32) 0%, hsla(242, 60%, 60%, 0.22) 100%)',
                       border: '1px solid hsla(252, 60%, 80%, 0.45)',
@@ -2919,7 +2917,7 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
                   >
                     Start here
                     <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5" />
-                  </button>
+                  </a>
                 </div>
               </header>
             </RevealSection>
