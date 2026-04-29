@@ -1220,7 +1220,16 @@ All colors MUST be HSL.
    — even after all heavy effects (HlsVideo, StarryBackground,
    cursor-glow, parallax) were already gated to mobile-skip.
    Brand identity rotation preserved on desktop where the GPU
-   budget is much higher; mobile rail emblems sit static. */
+   budget is much higher; mobile rail emblems sit static.
+
+   Day 54+++ iter 2 → reverted iter 3 (Sasha 2026-04-28 evening):
+   the H1-filter and noise/vignette strips were chasing the wrong
+   cause. The actual iOS Chrome OOM was a 907 KB merkaba PNG being
+   decoded 2-3× per AI OS page (rail + top-right home + hero medallion);
+   the WebP swap (12 KB, see AiOsPage.tsx import) is the real fix.
+   These strips are reverted to restore desktop-equivalent visuals
+   on mobile. The gentle-spin-always disable stays as a small win
+   (3-4 fewer permanently-promoted compositor layers on touch devices). */
 @media (hover: none) and (pointer: coarse) {
   .gentle-spin-always {
     animation: none !important;

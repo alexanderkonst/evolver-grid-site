@@ -2660,6 +2660,13 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
     const isSmall = window.innerWidth < 1024;
     return !(isCoarse || isSmall);
   });
+  // Day 54+++ iter 5 (Sasha 2026-04-28 evening): parallax hook hoisted
+  // to top of component so it fires unconditionally on every render
+  // — required by React's rules of hooks. The ref is conditionally
+  // attached in JSX below (only when !focusCategory, i.e., on /ai-os
+  // main, not on suite sub-routes). See iter-4 → iter-5 history in
+  // the JSX block where the hero is gated.
+  const parallaxRef = useParallax(0.25, isHeavyFxCapable);
   // Day 54 r13 (Sasha 2026-04-28): `?bare=1` strips the entire fixed-
   // position visual chrome stack (HlsVideo/HlsPoster + gradient + vignette
   // + noise overlays). Reductive testing flag for the iOS WebKit crash —
@@ -2855,16 +2862,24 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
               (hero + Spotlight) when users had already arrived via
               the chip nav from /ai-os main. Suite pages should be
               JUST the suite, not landing-page-plus-suite. */}
-          {!focusCategory && (() => {
-            // Day 54 r3 (Sasha 2026-04-28): parallax + will-change-transform
-            // gated to desktop. On mobile WebKit, a permanently GPU-promoted
-            // hero whose transform changes per scroll-frame, layered over an
-            // HLS video and four fixed-position overlays, was thrashing the
-            // renderer until iOS Chrome killed the tab. Visual delta on
-            // mobile is nil (parallax barely registers on a phone-sized
-            // viewport during fast finger-scroll). Desktop unchanged.
-            const parallaxRef = useParallax(0.25, isHeavyFxCapable);
-            return (
+          {/* Day 54 r3 (Sasha 2026-04-28): parallax + will-change-transform
+              gated to desktop. On mobile WebKit, a permanently GPU-promoted
+              hero whose transform changes per scroll-frame, layered over an
+              HLS video and four fixed-position overlays, was thrashing the
+              renderer until iOS Chrome killed the tab. Visual delta on
+              mobile is nil (parallax barely registers on a phone-sized
+              viewport during fast finger-scroll). Desktop unchanged.
+              Day 54+++ iter 5 (Sasha 2026-04-28 evening): useParallax
+              hook PULLED OUT of the IIFE that previously wrapped the
+              hero, because the iter-4 conditional `{!focusCategory && (() => { useParallax(...) })()}`
+              violated the rules of hooks (hook fired conditionally
+              based on focusCategory, breaking render-to-render hook
+              order). Now the hook is called unconditionally at the
+              top of the JSX; the ref is attached only when the hero
+              JSX renders (i.e., when !focusCategory). On suite
+              sub-routes the ref attaches to nothing; the hook still
+              fires every render. Honors React's hook rules. */}
+          {!focusCategory && (
             <div ref={parallaxRef} className={isHeavyFxCapable ? "will-change-transform" : ""}>
             <RevealSection>
               <header className="text-center space-y-5 relative pt-2 sm:pt-4 pb-8">
@@ -2999,8 +3014,7 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
               </header>
             </RevealSection>
             </div>
-            );
-          })()}
+          )}
 
           {/* SPOTLIGHT — Day 53 (Sasha 2026-04-27): the AI OS install prompt
               is THE thing on this page. It used to live as one card among
