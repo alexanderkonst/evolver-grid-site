@@ -263,7 +263,7 @@ const ZoneOfGeniusOverview = () => {
                     </div>
                     <p
                         className="text-[10px] uppercase tracking-[0.32em] font-medium"
-                        style={{ color: "rgba(132,96,234,0.85)" }}
+                        style={{ color: "var(--skin-accent-gold, #b8860b)" }}
                     >
                         My genius is to be a
                     </p>
@@ -393,11 +393,13 @@ const ZoneOfGeniusOverview = () => {
                             {stages.map((stage, i) => (
                                 <li key={stage.stage || i} className="flex gap-4">
                                     <span
-                                        className="flex-shrink-0 w-7 h-7 rounded-full text-xs font-medium flex items-center justify-center"
+                                        className="flex-shrink-0 w-7 h-7 rounded-full text-xs font-semibold flex items-center justify-center"
                                         style={{
-                                            background: "rgba(132,96,234,0.12)",
-                                            color: "#5b21b6",
-                                            border: "1px solid rgba(132,96,234,0.25)",
+                                            background: "linear-gradient(135deg, rgba(244, 212, 114, 0.95) 0%, rgba(212, 175, 55, 0.78) 100%)",
+                                            color: "#0a1628",
+                                            border: "0.5px solid rgba(122, 81, 8, 0.45)",
+                                            fontFamily: "'DM Sans', system-ui, sans-serif",
+                                            fontVariantNumeric: "tabular-nums lining-nums",
                                         }}
                                     >
                                         {stage.stage || i + 1}
