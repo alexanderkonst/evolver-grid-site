@@ -3,12 +3,6 @@ project_id = "jypjttotvastdhanwvrx"
 [functions.send-waitlist-email]
 verify_jwt = false
 
-[functions.generate-appleseed]
-verify_jwt = true
-
-[functions.generate-excalibur]
-verify_jwt = true
-
 [functions.generate-qol-guidance]
 verify_jwt = true
 
@@ -58,10 +52,10 @@ verify_jwt = false
 verify_jwt = false
 
 [functions.generate-appleseed]
-verify_jwt = true
+verify_jwt = false
 
 [functions.generate-excalibur]
-verify_jwt = true
+verify_jwt = false
 
 [functions.create-test-user]
 verify_jwt = false
