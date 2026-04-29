@@ -946,25 +946,25 @@ const SectionsPanel = ({
                                             "0 0 0 1px rgba(212, 175, 55, 0.15), 0 8px 28px -8px rgba(10, 22, 40, 0.6), 0 0 24px -6px rgba(244, 212, 114, 0.25)",
                                     }}
                                 >
-                                    <p
-                                        className="text-[11px] mb-1"
-                                        style={{
-                                            fontFamily: "'Cormorant Garamond', serif",
-                                            fontWeight: 600,
-                                            letterSpacing: "0.22em",
-                                            textTransform: "uppercase",
-                                            color: "#f4d472",
-                                            textShadow: "0 0 10px rgba(244, 212, 114, 0.4)",
-                                        }}
-                                    >
-                                        {sectionText} · Locked
-                                    </p>
+                                    {/* Day 55 (Sasha 2026-04-29): redundant
+                                        "[SECTION] · LOCKED" eyebrow retired
+                                        — the row itself already names the
+                                        section, and "Locked" is implied by
+                                        the hint sentence ("Unlocks after…").
+                                        Hint inherits the golden register
+                                        (Cormorant + gold color + gold halo)
+                                        from the retired eyebrow but stays
+                                        in natural case + italic for
+                                        readability — uppercase + 0.22em
+                                        tracking on a full sentence would
+                                        wrap and read as shouted. */}
                                     <p
                                         className="text-[13px] italic leading-snug"
                                         style={{
                                             fontFamily: "'Cormorant Garamond', serif",
-                                            fontWeight: 400,
-                                            color: "rgba(245, 241, 232, 0.92)",
+                                            fontWeight: 500,
+                                            color: "#f4d472",
+                                            textShadow: "0 0 10px rgba(244, 212, 114, 0.35), 0 1px 2px rgba(10,22,40,0.5)",
                                         }}
                                     >
                                         {section.lockedHint || "Locked"}
