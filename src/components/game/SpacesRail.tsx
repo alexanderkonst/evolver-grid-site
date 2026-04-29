@@ -223,6 +223,18 @@ const SpacesRail = ({
     const navigate = useNavigate();
     const { toast } = useToast();
 
+    // Day 54+++ (Sasha 2026-04-28 night): backdrop-filter disabled on touch
+    // devices. iOS WebKit's backdrop-filter on a full-viewport-height region
+    // (the rail is `h-dvh sticky`) accumulates GPU tile memory over time —
+    // the prime suspect for the 15s cumulative OOM that only hit /ai-os
+    // (the only route where pageOwnsBackground was true, gating the
+    // expensive blur(20px) saturate(140%) filter on this rail). Solid
+    // backgroundColor stays; the glass effect is a desktop affordance only.
+    const [isTouchDevice] = useState(() => {
+        if (typeof window === 'undefined') return false;
+        return window.matchMedia?.('(hover: none) and (pointer: coarse)').matches ?? false;
+    });
+
     // Track live auth state so the Log In / Log Out button reflects reality
     // regardless of what props the parent happens to pass in.
     const [isAuthed, setIsAuthed] = useState<boolean | null>(null);
@@ -279,8 +291,8 @@ const SpacesRail = ({
                 backgroundColor: pageOwnsBackground
                     ? "rgba(10, 22, 48, 0.86)"
                     : "rgba(10, 22, 50, 0.98)",
-                backdropFilter: pageOwnsBackground ? "blur(20px) saturate(140%)" : undefined,
-                WebkitBackdropFilter: pageOwnsBackground ? "blur(20px) saturate(140%)" : undefined,
+                backdropFilter: pageOwnsBackground && !isTouchDevice ? "blur(20px) saturate(140%)" : undefined,
+                WebkitBackdropFilter: pageOwnsBackground && !isTouchDevice ? "blur(20px) saturate(140%)" : undefined,
                 border: "none",
                 boxShadow:
                     "3px 0 28px -10px rgba(244, 212, 114, 0.22)",
