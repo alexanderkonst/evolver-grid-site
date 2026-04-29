@@ -55,7 +55,6 @@ interface SendMagicLinkPayload {
   redirect_path?: string;
 }
 
-const json = (status: number, body: unknown) =>
 const json = (body: unknown, status = 200) =>
   new Response(JSON.stringify(body), {
     status,
