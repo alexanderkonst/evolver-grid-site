@@ -1023,3 +1023,86 @@ This is a structural misidentification of what creates results.
 *Renamed from `epicenter_broadcast_playbook.md` → `communications_playbook.md` on 2026-04-18. Domain 65 "Epicenter Broadcast" remains the lineage anchor.*
 
 *v3.3 — April 18, 2026. Three enrichments from Kennedy 2008: (E6) Referral Threshold — satisfaction ≠ enthusiasm, added before §3b's referral scripts as a go/no-go gate; (E7) Referrals on Purpose — three strategies (storyworthy experiences · recognize/reward · track/measure) + the tiered acknowledgment ladder; (E8) Follow-Up Depth Rule — higher-value prospects need MORE touches, not fewer, 12-touch cadence across 90 days, counters the "ping twice then drop" default.*
+
+---
+
+## Broadcast as Marketing + Voice Integrity (Day 54+, April 28, 2026)
+
+> Operationalizes [Unique Business Playbook Principle 16 — The Self-Monetizing Founder](./unique_business_playbook.md#principle-16-the-self-monetizing-founder--open-wedge-paid-proximity) at the communications layer.
+
+For Founder-as-Body-of-Work businesses (UBP §16), there is **no separation between "doing the work" and "marketing the work."** Every public conversation, every artifact, every DM, every install of the scaffold IS the broadcast. The communications playbook for this business model is therefore not about copy that "converts" — it's about consistent, honest, visible work that the aligned tribe can recognize themselves in.
+
+### The principle: broadcast IS the marketing
+
+In persuasion-mode marketing, copy is engineered to overcome resistance. In attraction-mode (UBP §16 + `marketing_playbook.md` *Attraction-Mode Marketing*), copy is engineered to **be true at high resolution.** The asymmetric advantage is being yourself visibly + consistently — there is no copy you could write that's more attractive than your actual work in public.
+
+This means the communications discipline for this business model is:
+
+- **Daily-ish public presence** in places aligned tribe gathers
+- **Demonstrate the methodology** in public — solve real problems with your frame, in front of onlookers
+- **Articulate at maximum precision** — Specificity Loop (UBP §15) applied to every public utterance
+- **Resist message-market-fit testing** — A/B testing destroys signal coherence in attraction-mode
+
+### Voice integrity — synthesize, don't ventriloquize
+
+A specific failure mode that applies both to AI collaboration AND to communications copy: **synthesizing framings from the founder's stated values + presenting the synthesis AS their conviction**. This corrupts voice integrity at the foundation.
+
+Where this shows up in communications:
+
+- Ghostwriters using the founder's vocabulary to articulate positions the founder doesn't actually hold
+- AI-assisted copy that sounds like the founder but contains synthesized claims they haven't verified
+- Marketing copy that paraphrases the founder's worldview into "their" framings without explicit attribution
+
+**The rule:** when copy advocates for a position, it should be either (a) verifiably the founder's own words, or (b) marked as someone else's read of how something fits the founder's worldview. Synthesis is valuable; synthesis MASQUERADING as conviction is not.
+
+(This rule originated as the *Voice Integrity* anti-pattern in `.agent/session-protocol.md` Working Agreement section after a real misattribution incident on Day 54+. It applies to every collaborator who writes in the founder's voice — AI, ghostwriters, virtual assistants, community managers.)
+
+### The Attraction-Mode DM Template
+
+For LinkedIn / cold outreach to aligned founders (per `distribution_playbook.md` *Impact Founder Collective Distribution*):
+
+```
+[Name] — your [specific framework / post / piece] landed for me.
+The way you've articulated [specific insight from their work] is
+the kind of thinking most [their segment] spend years trying to find.
+
+A pattern I work with people on: [name a structural insight that
+addresses their pain]. There's usually a [timeframe] window where
+[the transformation can happen].
+
+I'm running a [format, duration, price, guarantee]. Happy to share
+more, or just stay in conversation about your work either way —
+no pressure.
+```
+
+**Load-bearing elements:**
+
+1. **Specific reference to their work** (mirror, not generic compliment)
+2. **Name the structural insight** (recognition, not pitch)
+3. **Crisp offer** (no "let's hop on a call" without context)
+4. **Permission-giving exit** ("either way — no pressure")
+
+**The honest test:** if outreach produces lots of polite "no" responses without distress on either side, it's attraction-mode. If it requires you to push, follow up aggressively, or feel slimy → you've slid into persuasion. Stop and recalibrate. Note: this contradicts the Follow-Up Depth Rule (E8) above for the persuasion-mode lane — the two lanes operate by different physics. Use depth follow-up for direct-response prospects; use single-touch + permission-exit for attraction-mode aligned-tribe outreach.
+
+### Cadence + channels for attraction-mode broadcast
+
+| Channel | Cadence | Purpose |
+|---|---|---|
+| Public posts (LinkedIn / Substack / X) | 3–5x weekly | Broadcast — demonstrates methodology to onlookers |
+| Newsletter / long-form | Weekly–monthly | Depth — for tribe members who want sustained engagement |
+| DMs (hand-crafted) | ~10/day max | Targeted broadcast — meets specific aligned founders where they are |
+| Live sessions (podcasts, talks, AMAs) | 1–2x monthly | High-bandwidth broadcast — voice + presence |
+| Community presence (Telegram, Discord) | Daily-ish | Sustained presence — the founder visible in their own scene |
+
+### Anti-patterns for attraction-mode communications
+
+- ❌ Outsourcing the founder's voice to a ghostwriter without explicit attribution discipline
+- ❌ A/B testing message variants for max conversion (kills the signal)
+- ❌ Manufactured urgency / scarcity in copy (real scarcity = founder's time, let it be visible)
+- ❌ Posting growth-hacky content optimized for algorithm rather than tribe
+- ❌ DM automation at any scale (kills attraction-mode + platform risk)
+- ❌ Aggressive follow-up sequences (3+ touches without response = stop, in attraction-mode)
+
+---
+
+*v3.4 — April 28, 2026 (Day 54+). Broadcast as Marketing + Voice Integrity section added to operationalize UBP §16 (The Self-Monetizing Founder). Captures: the broadcast-IS-marketing principle for Founder-as-Body-of-Work businesses, the Voice Integrity rule (synthesize don't ventriloquize, originated from `.agent/session-protocol.md` after a Day 54+ misattribution incident), the Attraction-Mode DM Template with 4 load-bearing elements + the honest-test signal, cadence + channels table, and anti-patterns. Notes the contradiction between attraction-mode (single-touch + permission-exit) and the persuasion-mode Follow-Up Depth Rule (E8 above) — different lanes, different physics; pick lane based on business model.*
