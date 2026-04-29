@@ -2878,24 +2878,16 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
                     underline now uses a custom border-bottom so iOS
                     Chrome cannot draw the native underline at the wrong
                     vertical offset under the text-shadow. */}
-                <div className="mx-auto max-w-lg pt-3 px-2 space-y-1.5 text-center">
+                <div className="mx-auto max-w-lg pt-3 px-2 text-center">
                   <p
-                    className="text-xs sm:text-[13px] font-medium leading-relaxed"
+                    className="flex flex-col sm:flex-row items-center justify-center gap-y-1 gap-x-2 text-xs sm:text-[13px] font-normal leading-relaxed"
                     style={{
-                      color: 'hsl(0 0% 100% / 0.92)',
+                      color: 'hsl(0 0% 100% / 0.82)',
                       textShadow: '0 0 12px rgba(0,0,0,0.9), 0 0 24px rgba(0,0,0,0.6), 0 1px 4px rgba(0,0,0,0.8)',
                     }}
                   >
-                    Free for everyone · personal &amp; non-commercial use
-                  </p>
-                  <p
-                    className="text-[11px] sm:text-xs font-normal leading-relaxed"
-                    style={{
-                      color: 'hsl(0 0% 100% / 0.7)',
-                      textShadow: '0 0 12px rgba(0,0,0,0.9), 0 0 24px rgba(0,0,0,0.6), 0 1px 4px rgba(0,0,0,0.8)',
-                    }}
-                  >
-                    Open source · CC BY-NC-SA 4.0 · For commercial use,{' '}
+                    <span className="whitespace-nowrap">Free for everyone · CC BY-SA 4.0</span>
+                    <span aria-hidden="true" className="hidden sm:inline opacity-70">·</span>
                     <a
                       href="https://t.me/integralevolution"
                       target="_blank"
@@ -2903,7 +2895,7 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
                       className="inline-block whitespace-nowrap no-underline border-b border-[hsl(40_70%_75%/0.45)] hover:border-[hsl(40_70%_75%/0.85)] pb-[1px] transition-colors"
                       style={{ color: 'hsl(40 70% 90% / 0.95)' }}
                     >
-                      reach out for partnership
+                      Reach out for partnership
                     </a>
                   </p>
                 </div>
