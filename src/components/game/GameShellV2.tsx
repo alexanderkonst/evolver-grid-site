@@ -589,8 +589,21 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
     //       Two stacked videos fight at z-0; only one should win, and
     //       the page's choice is more specific.
     const path = location.pathname;
+    // Day 54+++ (Sasha 2026-04-28 night): the four suite sub-routes render
+    // the SAME AiOsPage component as /ai-os main, which owns its own full-
+    // screen HLS/poster background. Without these in pageOwnsBackground,
+    // the shell mounted MuxVideoBackground UNDER the page's own background
+    // — two HLS streams active simultaneously on /ai-os/{clarity,iteration,
+    // vibe-code,design}, decoding two separate Mux manifests for stacked
+    // videos the user never sees both of. iOS Chrome doubled the decoder
+    // pressure for no visual gain. Adding them here unifies the regime:
+    // every route that mounts AiOsPage suppresses the shell video.
     const pageOwnsBackground =
         path === "/ai-os" ||
+        path === "/ai-os/clarity" ||
+        path === "/ai-os/iteration" ||
+        path === "/ai-os/vibe-code" ||
+        path === "/ai-os/design" ||
         path === "/codex" || // /codex routes through ai-os
         path === "/ai-os/benchmark"; // Day 52: benchmark page owns its own dark canvas
     const isWorkingRoute =
