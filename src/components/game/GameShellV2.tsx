@@ -1035,19 +1035,23 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                         sticky JOURNEY header (was clipping the H1 on
                         /zone-of-genius gateway). Matches desktop main's
                         pt-4 convention for non-page-owned-bg routes.
-                        Day 55 (Sasha 2026-04-29): `scrollbar-hide` is
-                        load-bearing on mobile. The content pane is the
-                        scroll container; desktop/mobile preview WebKit
-                        otherwise paints a white scrollbar gutter over the
-                        right edge of fixed/page-owned overlays (/ai-os),
-                        making the page look physically cut. Keep scrolling,
-                        hide the gutter. */}
+                        Day 55 (Sasha 2026-04-29): `scrollbar-hide` + the
+                        inline scrollbarWidth are load-bearing on mobile.
+                        The content pane is the scroll container; desktop/
+                        mobile preview WebKit otherwise paints a white
+                        scrollbar gutter over the right edge of fixed/page-
+                        owned overlays (/ai-os), making the page look
+                        physically cut. Keep scrolling, hide the gutter. */}
                     <main
                         className={cn(
-                            "mobile-content-scroll flex-1 overflow-auto scrollbar-hide relative",
+                            "mobile-content-scroll flex-1 overflow-y-auto overflow-x-hidden scrollbar-hide relative [&::-webkit-scrollbar]:hidden",
                             pageOwnsBackground ? "" : "pt-4"
                         )}
-                        style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}
+                        style={{
+                            paddingBottom: 'env(safe-area-inset-bottom)',
+                            scrollbarWidth: 'none',
+                            msOverflowStyle: 'none',
+                        }}
                     >
                         {/* Pane-3 wash on mobile — Day 51 night (Sasha
                             2026-04-25): mirror of the desktop fix, with
