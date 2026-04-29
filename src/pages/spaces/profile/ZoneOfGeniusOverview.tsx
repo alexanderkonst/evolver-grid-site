@@ -463,9 +463,9 @@ const ZoneOfGeniusOverview = () => {
                                                 <span
                                                     className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] uppercase tracking-[0.18em] font-semibold"
                                                     style={{
-                                                        background: "rgba(132,96,234,0.15)",
-                                                        color: "#5b21b6",
-                                                        border: "1px solid rgba(132,96,234,0.3)",
+                                                        background: "rgba(244, 212, 114, 0.18)",
+                                                        color: "#7a5108",
+                                                        border: "0.5px solid rgba(212, 175, 55, 0.55)",
                                                     }}
                                                 >
                                                     {parsed.tier}
@@ -478,8 +478,8 @@ const ZoneOfGeniusOverview = () => {
                                             )}
                                             {parsed.price && (
                                                 <span
-                                                    className="ml-auto text-xs font-medium tabular-nums"
-                                                    style={{ color: "#5b21b6" }}
+                                                    className="ml-auto text-xs font-semibold tabular-nums"
+                                                    style={{ color: "var(--skin-accent-gold, #b8860b)" }}
                                                 >
                                                     {parsed.price}
                                                 </span>
@@ -570,7 +570,7 @@ const ZoneOfGeniusOverview = () => {
                                 className="liquid-glass rounded-2xl p-4 transition-all hover:scale-[1.02] text-left flex items-center gap-3"
                                 style={{ color: INK }}
                             >
-                                <page.icon className="w-4 h-4 flex-shrink-0" style={{ color: "#5b21b6" }} />
+                                <page.icon className="w-4 h-4 flex-shrink-0" style={{ color: "var(--skin-accent-gold, #b8860b)" }} />
                                 <span className="text-sm font-medium">{page.label}</span>
                             </button>
                         ))}
