@@ -14,7 +14,10 @@ import logoSrc from "@/assets/logo.jpg";
 // uses the merkaba (matching the AI OS Space rail icon) instead of the
 // default torus-dodecahedron logo.jpg. Route-detected inside the
 // component so callers don't need to pass a prop.
-import aiOsHomeIcon from "@/assets/mc-merkaba.png";
+// Day 54+++ iter 3 (Sasha 2026-04-28 evening): swapped to optimized
+// WebP (12 KB vs 907 KB PNG). See AiOsPage.tsx for the full rationale —
+// the oversized PNG was the iOS Chrome OOM root cause on /ai-os routes.
+import aiOsHomeIcon from "@/assets/mc-merkaba.webp";
 // Day 53 (Sasha 2026-04-27): brand torus mark used as the leading
 // glyph in the mobile menu pill — pairs with the hamburger to read as
 // "your home + open menu" in one affordance.
