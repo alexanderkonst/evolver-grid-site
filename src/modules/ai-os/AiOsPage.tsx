@@ -8,7 +8,15 @@ import AiOsSpotlight from "./components/AiOsSpotlight";
 // Day 54+ (Sasha 2026-04-28 evening): hero medallion — same merkaba mark
 // used by the SpacesRail icon and the AI OS pricing/work-with-us page hero.
 // Page-level visual coherence: AI OS = merkaba on every surface.
-import aiOsMerkaba from "@/assets/mc-merkaba.png";
+// Day 54+++ iter 3 (Sasha 2026-04-28 evening): swapped mc-merkaba.png
+// (907 KB, 870×814) → mc-merkaba.webp (12 KB, 256×239). The original
+// PNG was full-res illustration art being loaded for icon use; on iOS
+// Chrome /ai-os routes triggered 2-3 separate decodes of the 907 KB
+// asset (rail + top-right home + was hero medallion), pushing
+// first-paint memory peak over the OOM threshold. WebP at icon-suitable
+// resolution is ~75x smaller, decodes ~50x cheaper, visually identical
+// at the displayed sizes (28-64px).
+import aiOsMerkaba from "@/assets/mc-merkaba.webp";
 import aiOsBgPoster from "@/assets/ai-os-bg-poster.webp";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
@@ -2652,6 +2660,17 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
     const isSmall = window.innerWidth < 1024;
     return !(isCoarse || isSmall);
   });
+  // Day 54 r13 (Sasha 2026-04-28): `?bare=1` strips the entire fixed-
+  // position visual chrome stack (HlsVideo/HlsPoster + gradient + vignette
+  // + noise overlays). Reductive testing flag for the iOS WebKit crash —
+  // if /ai-os?debug=1&bare=1 survives indefinitely on phone, the cumulative
+  // cost was the layered fixed-position chrome (positioning gridlock or
+  // compositor pressure). If it still crashes, the cost is in page content
+  // (DOM / Spotlight / prompt grid) and we strip further.
+  const [isBareMode] = useState(() => {
+    if (typeof window === 'undefined') return false;
+    return new URLSearchParams(window.location.search).has('bare');
+  });
   const [customValues, setCustomValues] = useState<Record<string, Record<string, string>>>({});
   const [expandedPrompt, setExpandedPrompt] = useState<string | null>(null);
   // Day 50 (Sasha): per-suite "manual gearbox" toggle. The signature
@@ -2791,11 +2810,17 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
           frame of the same scene) preserves the editorial mood at zero
           decoder cost. Desktop keeps the live HLS stream — same vibe,
           intact motion, no GPU pressure issues at desktop scale. */}
-      {isHeavyFxCapable ? <HlsVideo /> : <HlsPoster />}
-      <div className="fixed inset-0 z-[1]" style={{ background: 'linear-gradient(180deg, rgba(10,22,50,0.55) 0%, rgba(8,16,30,0.86) 45%, rgba(5,9,18,0.95) 100%)' }} />
-      <div className="vignette-overlay z-[1]" />
+      {/* Day 54 r13 (Sasha 2026-04-28): `?bare=1` strips the whole fixed-
+          position chrome stack — bg video/poster + gradient + vignette +
+          noise — for diagnostic reduction. When stripped, the page falls
+          back to the GameShell wrapper's flat dark navy. */}
+      {!isBareMode && (isHeavyFxCapable ? <HlsVideo /> : <HlsPoster />)}
+      {!isBareMode && (
+        <div className="fixed inset-0 z-[1]" style={{ background: 'linear-gradient(180deg, rgba(10,22,50,0.55) 0%, rgba(8,16,30,0.86) 45%, rgba(5,9,18,0.95) 100%)' }} />
+      )}
+      {!isBareMode && <div className="vignette-overlay z-[1]" />}
       {/* Noise/grain overlay */}
-      <div className="noise-overlay" />
+      {!isBareMode && <div className="noise-overlay" />}
       {/* Starry overlay */}
       {isHeavyFxCapable && <StarryBackground />}
       
@@ -2822,8 +2847,15 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
 
           {/* Header — Day 51 (Sasha 2026-04-24): tightened padding stack.
               GameShellV2 already supplies pt-4; layered py-16+pt-12 was
-              pushing hero ~30% down the viewport. Now hero sits high. */}
-          {(() => {
+              pushing hero ~30% down the viewport. Now hero sits high.
+              Day 54+++ iter 4 (Sasha 2026-04-28 evening): hero now gated
+              on `!focusCategory` — on suite sub-routes (/ai-os/clarity,
+              /iteration, /vibe-code, /design) the hero is HIDDEN. Sasha
+              caught that suite pages were re-showing landing copy
+              (hero + Spotlight) when users had already arrived via
+              the chip nav from /ai-os main. Suite pages should be
+              JUST the suite, not landing-page-plus-suite. */}
+          {!focusCategory && (() => {
             // Day 54 r3 (Sasha 2026-04-28): parallax + will-change-transform
             // gated to desktop. On mobile WebKit, a permanently GPU-promoted
             // hero whose transform changes per scroll-frame, layered over an
@@ -2983,7 +3015,14 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
               (c) the reveal-on-copy 1-10 rating writes to resonance_events
                   so we get empirical data instead of vibes.
               Lookup the meta-cognition-premium content at render time so
-              we don't fork the source of truth for the install prompt. */}
+              we don't fork the source of truth for the install prompt.
+              Day 54+++ iter 4 (Sasha 2026-04-28 evening): Spotlight gated
+              on `!focusCategory` — on suite sub-routes the install pitch
+              is hidden. Suite pages should be JUST the suite, assuming
+              the user already installed via /ai-os main. If they didn't,
+              they can navigate back via pane 2 "Install" item or via
+              the top-right home icon. */}
+          {!focusCategory && (
           <RevealSection delay={100}>
             <AiOsSpotlight
               installPromptContent={
@@ -2991,6 +3030,7 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
               }
             />
           </RevealSection>
+          )}
 
           {/* Work-with-us callout — Day 54++ (Sasha 2026-04-28, post-27P-roast):
               "Work with us" CTA migrated here from the hero, where it
