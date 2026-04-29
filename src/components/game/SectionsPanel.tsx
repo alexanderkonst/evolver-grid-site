@@ -560,31 +560,33 @@ const SectionsPanel = ({
             className={cn(
                 "w-[260px] flex flex-col relative z-30",
                 "liquid-glass",
+                // Day 51 r2 (desktop silk-veil) + Day 54+ (mobile fix):
+                //   Desktop: 0.18 alpha — Sasha's "curtain" effect, the bg
+                //     figure peeks through the silk veil over the animated
+                //     Mux stream (combined with backdrop-blur).
+                //   Mobile: 0.55 alpha — the bg cycles through bright cream
+                //     zones that wash the section list into invisibility at
+                //     0.18 (lower items "Build a business / Mission /
+                //     Assets" disappear over the lower-bright frame).
+                //   pageOwnsBackground (e.g. /ai-os): 0.55 across both —
+                //     page-level bg overlays already eat the silk veil, so
+                //     pane 2 holds its weight regardless of viewport.
+                pageOwnsBackground
+                    ? "bg-[rgba(12,26,56,0.55)]"
+                    : "bg-[rgba(14,32,68,0.55)] lg:bg-[rgba(14,32,68,0.18)]",
                 className
             )}
             /* Day 48 iter 8 (Sasha): Pane 2 now pulls the lit-navy overlay
                (--skin-panel-2-bg). The flat 1px inset gold line retired
                in favor of a vertical gradient "spine" (absolute-positioned
                below) that mirrors pane 1 — both panes now read as the
-               same backlit book-binding. */
-            // Day 51 (Sasha 2026-04-25 r2): bg lowered further 0.30 → 0.18
-            // — Sasha likes the "curtain" effect where bg figure peeks
-            // through. Combined with backdrop-blur, reads as silk veil
-            // over the animated stream. border: none — same fix as Pane 1,
-            // removes liquid-glass's 0.5px white top border.
-            //
-            // Day 51 r3 (Sasha 2026-04-25 night): z-30 added so Pane 2 always
-            // sits above page-owned background overlays (e.g. /ai-os's
-            // z-[1] gradient + vignette + noise + StarryBackground). Without
-            // this, on /ai-os the overlays were drawn over the panel and
-            // Sasha saw the panel "disappear." On page-owned-bg routes the
-            // bg is also bumped from 0.18 → 0.55 so the section list stays
-            // legible on busy dark imagery — 0.18 alone got washed into
-            // invisibility against /ai-os's editorial scene.
+               same backlit book-binding.
+               border: none — removes liquid-glass's 0.5px white top border.
+               z-30 ensures pane 2 sits above page-owned background overlays
+               (e.g. /ai-os's z-[1] gradient + vignette + noise +
+               StarryBackground); without this, the overlays were drawn over
+               the panel and the panel appeared to "disappear." */
             style={{
-                backgroundColor: pageOwnsBackground
-                    ? "rgba(12, 26, 56, 0.55)"
-                    : "rgba(14, 32, 68, 0.18)",
                 border: "none",
                 boxShadow:
                     "2px 0 22px -10px rgba(244, 212, 114, 0.22)",
