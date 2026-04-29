@@ -2368,7 +2368,7 @@ const HlsVideo = () => {
       muted
       playsInline
       preload="metadata"
-      className="fixed inset-0 w-screen h-screen object-cover z-0"
+      className="pointer-events-none fixed inset-0 w-screen h-screen object-cover z-0"
       style={{ minWidth: '100vw', minHeight: '100vh', objectPosition: '50% center' }}
     />
   );
@@ -2703,12 +2703,12 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
           src={aiOsBgPoster}
           alt=""
           aria-hidden="true"
-          className="fixed inset-0 w-screen h-screen object-cover z-0"
+          className="pointer-events-none fixed inset-0 w-screen h-screen object-cover z-0"
           style={{ minWidth: '100vw', minHeight: '100vh', objectPosition: '50% center' }}
         />
       )}
-      <div className="fixed inset-0 z-[1]" style={{ background: 'linear-gradient(180deg, rgba(10,22,50,0.55) 0%, rgba(8,16,30,0.86) 45%, rgba(5,9,18,0.95) 100%)' }} />
-      <div className="vignette-overlay z-[1]" />
+      <div className="pointer-events-none fixed inset-0 z-[1]" style={{ background: 'linear-gradient(180deg, rgba(10,22,50,0.55) 0%, rgba(8,16,30,0.86) 45%, rgba(5,9,18,0.95) 100%)' }} />
+      <div className="pointer-events-none vignette-overlay z-[1]" />
       {/* Noise/grain overlay */}
       <div className="noise-overlay" />
       {/* Starry overlay */}
