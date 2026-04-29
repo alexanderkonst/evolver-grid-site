@@ -149,8 +149,21 @@ export default function AiOsSpotlight({ installPromptContent }: Props) {
     <section
       id="ai-os-spotlight"
       aria-labelledby="ai-os-spotlight-heading"
-      className="liquid-glass-strong rounded-3xl px-6 py-8 sm:px-10 sm:py-12 relative overflow-hidden"
+      // Day 55 (Sasha 2026-04-29): `liquid-glass-strong` retired here.
+      // Its `backdrop-filter: blur(30px) saturate(200%)` was creating a
+      // viewport-sized GPU compositing layer on the page's full
+      // fixed-position background. On Chrome desktop, when the user
+      // scrolled this section into view, the backdrop-filter's stacking
+      // context caused the sibling sticky panes (rail + sections list,
+      // z-30) to drop out of the render tree — Sasha saw "panes vanish
+      // and page gets stuck on the spotlight." Replaced with an opaque
+      // dark frosted background that gives the same editorial weight
+      // without the backdrop-filter cost or the rendering bug.
+      className="rounded-3xl px-6 py-8 sm:px-10 sm:py-12 relative overflow-hidden"
       style={{
+        background:
+          "linear-gradient(180deg, rgba(20, 28, 56, 0.92) 0%, rgba(14, 22, 44, 0.96) 100%)",
+        border: "0.5px solid hsla(0, 0%, 100%, 0.10)",
         boxShadow:
           "0 0 0 1px hsla(40, 70%, 65%, 0.32), 0 16px 48px -16px rgba(244, 212, 114, 0.30), 0 32px 96px -32px rgba(244, 212, 114, 0.22), inset 0 1px 0 hsla(0, 0%, 100%, 0.10)",
       }}

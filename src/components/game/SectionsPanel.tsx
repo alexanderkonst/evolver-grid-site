@@ -555,7 +555,13 @@ const SectionsPanel = ({
         <div
             className={cn(
                 "w-[260px] flex flex-col relative z-30",
-                "liquid-glass",
+                // Day 55 (Sasha 2026-04-29): `liquid-glass` (backdrop-filter
+                // blur) suppressed on page-owned-bg routes — its viewport-
+                // tall backdrop-filter region was the second cause (after
+                // Spotlight) of the "panes vanish on /ai-os scroll" Chrome
+                // desktop bug. Solid bg via inline backgroundColor below
+                // does the visual job without the GPU compositing trap.
+                pageOwnsBackground ? "" : "liquid-glass",
                 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
                    DO NOT REVERT — pane 2 background-color rules.
                    This has been silently re-broken three times by deploy
@@ -587,7 +593,7 @@ const SectionsPanel = ({
                    is what gets reverted.
                    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
                 pageOwnsBackground
-                    ? "bg-[rgba(6,12,28,0.78)]"
+                    ? "bg-[rgba(6,12,28,0.94)]"
                     : "bg-[rgba(14,32,68,0.55)] lg:bg-[rgba(14,32,68,0.42)]",
                 className
             )}
