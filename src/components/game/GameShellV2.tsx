@@ -191,6 +191,36 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
     });
     const [shortcutsOpen, setShortcutsOpen] = useState(false);
 
+    // Day 54 r10 (Sasha 2026-04-28): JS-driven viewport switch.
+    // Previously the desktop and mobile layouts both lived in the JSX,
+    // gated only by `hidden lg:flex` / `lg:hidden`. CSS hides one tree;
+    // React mounts BOTH — so every page (especially heavy ones like
+    // /ai-os) was paying 2× the mount cost: doubled DOM, doubled hooks,
+    // doubled supabase touches, doubled observers, doubled video element
+    // (until that was poster-swapped). Empirical: `[data-ai-os]` count
+    // was 2 in the live DOM, both with full subtree.
+    //
+    // Now matchMedia decides at the JS level, and only one layout
+    // mounts. SSR-safe: defaults to desktop on the server. Trade-off:
+    // when the user crosses the lg breakpoint at runtime (rotation on
+    // a tablet, browser resize), `children` unmounts and remounts —
+    // any transient page state (cursor pos, expanded prompt, etc.)
+    // is lost. Acceptable for the gain.
+    const [isLgViewport, setIsLgViewport] = useState<boolean>(() => {
+        if (typeof window === 'undefined') return true;
+        return window.matchMedia('(min-width: 1024px)').matches;
+    });
+    useEffect(() => {
+        const mq = window.matchMedia('(min-width: 1024px)');
+        const handler = (e: MediaQueryListEvent) => setIsLgViewport(e.matches);
+        if (mq.addEventListener) mq.addEventListener('change', handler);
+        else mq.addListener(handler); // older Safari fallback
+        return () => {
+            if (mq.removeEventListener) mq.removeEventListener('change', handler);
+            else mq.removeListener(handler);
+        };
+    }, []);
+
     const getSpaceFromPath = (pathname: string): string | undefined => {
         // Day 52 (Sasha 2026-04-26): /ubb (Unique Business Builder)
         // belongs to the BUILD space. When the user clicks "Build a
@@ -636,7 +666,8 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                 */}
             </div>
             {/* === DESKTOP LAYOUT === */}
-            <div className="hidden lg:flex min-h-dvh">
+            {isLgViewport && (
+            <div className="flex min-h-dvh">
                 {/* Panel 1: Spaces Rail */}
                 <SpacesRail
                     activeSpaceId={activeSpaceId}
@@ -794,9 +825,11 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                     </div>
                 </main>
             </div>
+            )}
 
             {/* === MOBILE LAYOUT === */}
-            <div className="lg:hidden relative w-full min-h-dvh overflow-hidden">
+            {!isLgViewport && (
+            <div className="relative w-full min-h-dvh overflow-hidden">
                 {/* Mobile: Navigation View (Panel 1 + Panel 2) */}
                 <div
                     className={cn(
@@ -1030,6 +1063,7 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                     </main>
                 </div>
             </div>
+            )}
             <KeyboardShortcuts open={shortcutsOpen} onClose={() => setShortcutsOpen(false)} />
         </div>
     );
