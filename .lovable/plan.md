@@ -1,71 +1,44 @@
-Понял. Текущее поведение не похоже на один CSS `backdrop-filter` баг. Я посмотрел глубже: на десктопе `/ai-os` сейчас всё ещё рендерится как обычная документная прокрутка (`html` is the scroll region), а панели 1/2 сделаны `sticky` внутри flex-layout. На больших scroll-позициях sticky-панели не исчезают полностью из DOM, но их sticky-контейнер заканчивается раньше длинного контента — поэтому они выглядят “gone/stuck”: внизу страницы виден только нижний хвост панели, а верхняя навигация уехала за пределы viewport. Это не лечится очередным `z-index` или снятием blur.
+## Problem
 
-Definition of Done:
+On `/ai-os` desktop, when the page lands the user cannot scroll the hero with mouse wheel or trackpad — only the "Start here" button moves the page. The "Start here" button works because it programmatically calls `scrollTo()` on `.ai-os-desktop-content-scroll`. Natural wheel scrolling fails because the cursor is hovering over the hero background, which is intercepting wheel events.
 
-| # | Evidence | Status |
-|---|---|---|
-| 1 | `/ai-os` desktop: панели 1 и 2 видны от верха до низа viewport на любом scroll depth | To implement |
-| 2 | `/ai-os` desktop: страница прокручивается только в content-pane, не через document/html | To implement |
-| 3 | `/ai-os` desktop: background stays full-bleed behind content; no pane vanish/flicker | To implement |
-| 4 | `/ai-os` mobile: existing fixed overlay-cut fix remains intact; mobile menu/content still works | To implement |
-| 5 | `Start here` scrolls to the install card in the correct scroll container | To implement |
-| 6 | Add a route-scoped regression guard so future changes do not put `/ai-os` back on document-scroll + sticky panes | To implement |
+## Root Cause
 
-Plan:
+The hero stack in `src/modules/ai-os/AiOsPage.tsx` renders these layers as siblings of `<main>`:
 
-1. Stop treating `/ai-os` desktop like a normal document-scroll page.
-   - In `GameShellV2`, add an AI OS route flag, e.g. `isAiOsRoute = path === "/ai-os" || path.startsWith("/ai-os/")`.
-   - For desktop only, when `isAiOsRoute` is true:
-     - make the shell row `h-dvh min-h-0 overflow-hidden` instead of `min-h-dvh` document-flow scrolling;
-     - render Pane 1 and Pane 2 as full-height flex children, not sticky document participants;
-     - make Pane 3 `<main>` the only vertical scroll container: `h-dvh min-h-0 overflow-y-auto overflow-x-hidden`.
-   - Keep existing behavior for non-AI-OS routes so `/`, `/playbook`, `/path`, `/ubb`, etc. are not disturbed.
+- `<video class="fixed inset-0 w-screen h-screen ...">` (line 2371) — desktop HLS background
+- `<img class="fixed inset-0 w-screen h-screen ...">` (line 2706) — mobile/low-power poster
+- `<div class="fixed inset-0 z-[1]" ...>` (line 2710) — gradient overlay
+- `<div class="vignette-overlay z-[1]" />` (line 2711)
 
-2. Make desktop and mobile scroll-container logic explicit.
-   - Mobile already uses `.mobile-content-scroll`; keep it.
-   - Add a desktop route-scoped class/data marker for AI OS content scroller, e.g. `.ai-os-desktop-content-scroll`.
-   - Update the `Start here` handler in `AiOsPage.tsx` to find either:
-     - `.mobile-content-scroll`, or
-     - `.ai-os-desktop-content-scroll`,
-     before falling back to `window`.
-   - This prevents the button from trying to scroll `window` when the real scroller is Pane 3.
+None of these have `pointer-events-none`. Because they use `position: fixed`, they escape the `.ai-os-desktop-content-scroll` ancestor. When the wheel fires on top of them, the browser walks up THEIR ancestor chain looking for a scrollable element — and finds none (the document itself is `overflow: hidden` per the app-shell). So the wheel event is dropped.
 
-3. Remove the root overflow hack for `/ai-os` or make it conditional-safe.
-   - `AiOsPage.tsx` currently sets `document.body.style.overflow = 'hidden'` and `document.documentElement.style.overflow = 'hidden'`.
-   - That is dangerous when desktop still relies on document scroll, and it masks the real architecture issue.
-   - After Pane 3 becomes the official scroller on `/ai-os`, keep root overflow hidden only as route-scoped background protection, not as the scroll mechanism.
+The starry overlay already has `pointer-events-none` (StarryBackground.tsx:77), which is why it doesn't block. The cursor-glow div also has it. The video, poster img, gradient, and vignette do not.
 
-4. Keep the GPU fixes already in place, but stop relying on them for layout.
-   - Preserve the current no-`backdrop-filter` rule under `[data-ai-os]`.
-   - Preserve mobile heavy-FX gating.
-   - Do not reintroduce blur on `/ai-os` glass/panes.
-   - Update the existing comments/memory to reflect the actual root cause: sticky panes inside document scroll were structurally wrong for long AI OS content.
+## Fix
 
-5. Verify in preview after implementation.
-   - Desktop 1920x1080: load `/ai-os`, scroll top/middle/bottom; panes 1/2 must remain fully visible from top to bottom.
-   - Desktop: click `Start here`; content pane scrolls to the install card, panels stay fixed.
-   - Mobile 390x805: load `/ai-os`; no overlay cut, menu button still opens nav, content scroll remains smooth.
+Add `pointer-events-none` to all four decorative fixed background layers. They are all `aria-hidden="true"` decorations — they were never meant to receive pointer input. With pointer events disabled, wheel events fall through to `<main>` (z-10, inside the scroll container) and scroll behaves naturally.
 
-Technical direction:
+### Files to change
 
-```text
-Before:
-html/body scroll
-└─ desktop flex min-h-dvh
-   ├─ Pane 1 sticky top-0 h-dvh
-   ├─ Pane 2 sticky top-0 h-dvh
-   └─ Pane 3 grows with long AI OS content
+`src/modules/ai-os/AiOsPage.tsx`
 
-Problem:
-Sticky panes are constrained by their flex/document-flow context.
-At deep scroll positions they no longer behave like permanent app chrome.
+1. Line 2371 — `<video>` className: prepend `pointer-events-none`
+2. Line 2706 — `<img>` className: prepend `pointer-events-none`
+3. Line 2710 — gradient `<div>` className: prepend `pointer-events-none`
+4. Line 2711 — `<div className="vignette-overlay z-[1]" />`: add `pointer-events-none`
 
-After, only for /ai-os desktop:
-viewport h-dvh overflow-hidden
-└─ desktop flex h-dvh min-h-0
-   ├─ Pane 1 h-dvh shrink-0
-   ├─ Pane 2 h-dvh shrink-0
-   └─ Pane 3 h-dvh min-h-0 overflow-y-auto
-```
+Also verify `.vignette-overlay` and `.noise-overlay` rules in `src/index.css` don't re-enable pointer events; if they do, scope `pointer-events: none` on the elements via Tailwind class (which wins via utility specificity / inline order).
 
-This is the deeper fix: turn `/ai-os` into a real app-shell layout instead of patching sticky/z-index symptoms.
+## Verification
+
+After the change:
+- Land on `/ai-os` desktop, immediately wheel/trackpad-scroll over the hero — pane 3 scrolls smoothly down to the next section
+- "Start here" button continues to scroll to the next anchor as before
+- Panes 1 and 2 remain visible at all scroll depths (no regression on the prior app-shell fix)
+- Mobile `/ai-os` continues to scroll inside `.mobile-content-scroll` as before
+- No visual change to the hero — overlays are decorative and unaffected by removing pointer interception
+
+## Out of scope
+
+No layout, color, or animation changes. No changes to GameShellV2 or the app-shell architecture established last round. This is a single targeted fix to four className strings.
