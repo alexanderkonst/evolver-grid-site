@@ -2450,6 +2450,10 @@ const useParallax = (speed = 0.3, enabled = true) => {
 //   /ai-os/design     → "design"
 interface AiOsPageProps {
   focusCategory?: "clarity" | "iteration" | "deployment" | "design";
+  /** [DIAG 2026-04-29] When true, render only fixed background layers
+   * + the hero <h1>. Skips <main>, prompt list, AiOsSpotlight,
+   * SectionsPanel. Used by AiOsDiagDispatcher for ?diag=c. */
+  __diagHeroOnly?: boolean;
 }
 
 // Day 54+ (Sasha): per-suite document.title — verb + "Suite" suffix.
@@ -2471,7 +2475,7 @@ const SUITE_SLUG: Record<string, string> = {
   design: "design",
 };
 
-const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
+const AiOsPage = ({ focusCategory, __diagHeroOnly }: AiOsPageProps = {}) => {
   // ============================================================
   // [TEST A — iOS crash diagnostic, 2026-04-29] REMOVE AFTER DIAG
   // Paints device-detection state to a fixed banner SYNCHRONOUSLY
@@ -2528,6 +2532,8 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
   }
   // ============= END TEST A DIAGNOSTIC =============
 
+  // Per-page SEO — sets browser tab title on /ai-os and per-suite sub-routes.
+  // Global og: tags from index.html still apply.
   // Per-page SEO — sets browser tab title on /ai-os and per-suite sub-routes.
   // Global og: tags from index.html still apply.
   useEffect(() => {
@@ -2705,6 +2711,54 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
     deployment: '#cea4ae',
     design: '#b1c9b6',
   };
+
+  // ============================================================
+  // [TEST C — iOS crash bisection, 2026-04-29] REMOVE AFTER DIAG
+  // Render only fixed background layers + hero <h1>. All hooks
+  // above this line have already been called, so hook order
+  // remains stable across renders. Skips <main>, prompt list,
+  // AiOsSpotlight, sub-modules — everything below the hero.
+  // ============================================================
+  if (__diagHeroOnly) {
+    return (
+      <div data-ai-os className="ai-os-root">
+        {isHeavyFxCapable ? (
+          <HlsVideo />
+        ) : (
+          <img
+            src={aiOsBgPoster}
+            alt=""
+            aria-hidden="true"
+            className="fixed inset-0 w-screen h-screen object-cover z-0"
+            style={{ minWidth: '100vw', minHeight: '100vh', objectPosition: '50% center' }}
+          />
+        )}
+        <div className="fixed inset-0 z-[1]" style={{ background: 'linear-gradient(180deg, rgba(10,22,50,0.55) 0%, rgba(8,16,30,0.86) 45%, rgba(5,9,18,0.95) 100%)' }} />
+        <div className="vignette-overlay z-[1]" />
+        <div className="noise-overlay" />
+        {isHeavyFxCapable && <StarryBackground />}
+        <main className="relative z-10 min-h-screen w-full flex flex-col items-center justify-center px-4 py-20">
+          <h1
+            className="font-display italic font-normal leading-[1.1] tracking-[-0.04em] sm:tracking-[-0.06em] pb-2 mx-auto w-fit max-w-full"
+            style={{
+              fontSize: 'clamp(2.4rem, 11vw, 5rem)',
+              background: 'linear-gradient(135deg, hsl(0 0% 100%) 0%, hsl(242 40% 90%) 50%, hsl(290 30% 88%) 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+              filter: 'drop-shadow(0 0 60px rgba(132,96,234,0.6)) drop-shadow(0 0 120px rgba(132,96,234,0.35)) drop-shadow(0 0 200px rgba(180,140,255,0.2))',
+            }}
+          >
+            AI <span className="font-bold" style={{ fontStyle: 'italic' }}>OS</span>
+          </h1>
+          <p style={{ marginTop: 24, color: '#fff', fontFamily: 'monospace', fontSize: 12, opacity: 0.7 }}>
+            diag=c — hero compositing layers only
+          </p>
+        </main>
+      </div>
+    );
+  }
+  // ============= END TEST C HERO-ONLY BRANCH =============
 
   return (
     <div data-ai-os className="ai-os-root">
