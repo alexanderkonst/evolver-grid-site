@@ -2745,7 +2745,17 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
           {!focusCategory && (
             <div ref={parallaxRef} className={isHeavyFxCapable ? "will-change-transform" : ""}>
             <RevealSection>
-              <header className="text-center space-y-7 sm:space-y-8 relative pt-4 sm:pt-6 pb-12">
+              {/* Day 57 (Sasha 2026-04-29): mobile fix — hero now
+                  vertically centers within the available viewport on
+                  phones so the CTA sits in the visual sweet spot
+                  instead of clinging to the top with a yawning gap
+                  beneath it. The min-h reserves roughly the visible
+                  shell area (dvh handles iOS URL-bar quirks); flex +
+                  justify-center distributes whitespace above and
+                  below the content evenly. Desktop keeps the original
+                  top-anchored layout (sm: resets min-height to auto
+                  and re-applies the original padding). */}
+              <header className="text-center space-y-7 sm:space-y-8 relative pt-4 sm:pt-6 pb-12 flex flex-col justify-center min-h-[calc(100dvh-9rem)] sm:min-h-0">
                 {/* Day 50 (Sasha): hero torus medallion retired — the
                     GameShell rail already carries the brand mark.
                     Day 53 evening (Sasha 2026-04-27): profile button + auth
