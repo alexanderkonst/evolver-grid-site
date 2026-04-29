@@ -961,6 +961,18 @@ All colors MUST be HSL.
     display: none;
   }
 
+  .mobile-content-scroll {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .mobile-content-scroll::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+    background: transparent !important;
+  }
+
   /* Route-scoped mobile gutter guard for /ai-os. WebKit can paint the
      document scrollbar over fixed page-owned overlays, producing the
      recurring white right-edge "cut" even when the inner pane hides its
