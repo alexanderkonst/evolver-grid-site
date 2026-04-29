@@ -1903,3 +1903,22 @@ All colors MUST be HSL.
   background: hsla(242, 30%, 73%, 0.3);
   color: hsl(0 0% 100%);
 }
+
+/* Day 55 (Sasha 2026-04-29): autofill background neutralized inside
+   liquid-glass forms. Browsers (Chrome, Safari) paint a strong tint
+   on `<input>` elements that match a saved-credential domain — on the
+   /zone-of-genius email gate (a `liquid-glass` pill on the Aurora
+   light skin), this rendered as a lavender/yellow rectangle inside
+   the otherwise translucent form, breaking the glass aesthetic. The
+   inset box-shadow trick replaces the autofill bg with a transparent
+   1000px ring; the long transition delay defers the browser's own
+   re-paint past anything the user will sit on the page for. */
+form.liquid-glass input:-webkit-autofill,
+form.liquid-glass input:-webkit-autofill:hover,
+form.liquid-glass input:-webkit-autofill:focus,
+form.liquid-glass input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
+  -webkit-text-fill-color: var(--skin-text-primary, #0a1628) !important;
+  caret-color: var(--skin-text-primary, #0a1628);
+  transition: background-color 5000s ease-in-out 0s;
+}

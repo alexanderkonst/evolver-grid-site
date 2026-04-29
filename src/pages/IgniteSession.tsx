@@ -607,12 +607,12 @@ const IgniteSession = () => {
           {/* Micro social proof */}
           <div className="space-y-1.5 max-w-sm mx-auto">
             {[
-              "\"I was applying force, but the vector was wrong.\"",
-              "\"This is a miracle of miracles.\"",
-              "\"I've never been able to say it like that before.\"",
-            ].map((quote, i) => (
+              { quote: "\"I've never been able to say it like that before.\"", name: "Oyi" },
+              { quote: "\"It's uplifting me so much. It's a real breakthrough.\"", name: "Sandra" },
+              { quote: "\"I was applying force, but the vector was wrong.\"", name: "Sergey" },
+            ].map((t, i) => (
               <p key={i} className="text-xs text-white/40 italic text-center">
-                {quote}
+                {t.quote} <span className="not-italic text-white/55">— {t.name}</span>
               </p>
             ))}
           </div>
