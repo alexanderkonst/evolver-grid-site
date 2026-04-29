@@ -1689,6 +1689,47 @@ All colors MUST be HSL.
   background-size: 256px 256px;
 }
 
+/* Day 55 (Sasha 2026-04-29): iOS Chrome /ai-os crash root cause —
+   stacked drop-shadow filters (60px+120px+200px radii) on
+   background-clip:text + transparent fill forced WebKit to allocate
+   a render surface ~(text + 400px) on every side at dpr 3. GPU
+   process OOM, tab killed within ~1s of first paint. Bisection
+   isolated this to test layer "c4". On touch devices we swap to a
+   cheap text-shadow halo (no separate filter surface, no
+   transparent-fill compositing cost). Desktop keeps the stacked
+   drop-shadow look intact. */
+.ai-os-glow-text-strong {
+  filter: drop-shadow(0 0 60px rgba(132, 96, 234, 0.6))
+          drop-shadow(0 0 120px rgba(132, 96, 234, 0.35))
+          drop-shadow(0 0 200px rgba(180, 140, 255, 0.2));
+}
+.ai-os-glow-text-medium {
+  filter: drop-shadow(0 0 24px rgba(132, 96, 234, 0.45))
+          drop-shadow(0 0 60px rgba(132, 96, 234, 0.2));
+}
+.ai-os-glow-text-knoware {
+  filter: drop-shadow(0 0 50px rgba(96, 180, 234, 0.55))
+          drop-shadow(0 0 100px rgba(132, 96, 234, 0.3));
+}
+@media (pointer: coarse), (max-width: 1023px) {
+  .ai-os-glow-text-strong,
+  .ai-os-glow-text-medium,
+  .ai-os-glow-text-knoware {
+    filter: none;
+    /* Cheap text-shadow halo. Rendered with the glyph, no separate
+       compositing layer, no surface allocation, no GPU OOM. */
+    text-shadow:
+      0 0 18px rgba(132, 96, 234, 0.55),
+      0 0 36px rgba(180, 140, 255, 0.35);
+  }
+  /* feTurbulence noise overlay is the next-likely GPU killer on iOS.
+     At opacity 0.025 the visual signal is negligible, but the GPU
+     still composites the tiles. Drop on touch devices. */
+  [data-ai-os] .noise-overlay {
+    display: none;
+  }
+}
+
 [data-ai-os] .vignette-overlay {
   position: fixed;
   inset: 0;
