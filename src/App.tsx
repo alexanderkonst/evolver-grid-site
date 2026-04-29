@@ -176,7 +176,10 @@ import PublicLandingPage from "./pages/PublicLandingPage";
 // AiOsAuthProvider — /ai-os is pure Holonic Commons, free for everyone,
 // no profile, no sign-in. Components stay in source for archival and any
 // future re-introduction; routes that referenced them now redirect home.
-import AiOsPage from "./modules/ai-os/AiOsPage";
+// [DIAG 2026-04-29] AiOsDiagDispatcher wraps AiOsPage with ?diag=b/c/d
+// query-param bisection. Default behavior unchanged. Remove dispatcher +
+// import once iOS crash is diagnosed.
+import AiOsPage from "./modules/ai-os/AiOsDiagDispatcher";
 import AiOsPricingPage from "./modules/ai-os/pages/AiOsPricingPage";
 import AiOsBenchmark from "./pages/AiOsBenchmark";
 
