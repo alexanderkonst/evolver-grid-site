@@ -573,7 +573,7 @@ const SectionsPanel = ({
                 //     pane 2 holds its weight regardless of viewport.
                 pageOwnsBackground
                     ? "bg-[rgba(6,12,28,0.78)]"
-                    : "bg-[rgba(14,32,68,0.55)] lg:bg-[rgba(14,32,68,0.18)]",
+                    : "bg-[rgba(14,32,68,0.55)] lg:bg-[rgba(14,32,68,0.42)]",
                 className
             )}
             /* Day 48 iter 8 (Sasha): Pane 2 now pulls the lit-navy overlay
