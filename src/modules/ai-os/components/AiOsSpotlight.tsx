@@ -167,12 +167,7 @@ export default function AiOsSpotlight({ installPromptContent }: Props) {
       />
 
       <div className="relative space-y-6">
-        {/* Eyebrow — Day 54++ (Sasha 2026-04-28, post-27P-roast):
-            "Read this · 30 seconds" → "Feel the shift · 60 seconds".
-            The new copy is depth-coded (the felt experience is the
-            actual deliverable) AND practical (60-second time commit
-            still gates the click). 60 instead of 30 because the
-            install + re-prompt actually takes ~60s end-to-end. */}
+        {/* Eyebrow — explicitly says "read this" per Sasha */}
         <p
           className="text-[10px] sm:text-xs uppercase tracking-[0.32em] font-medium"
           style={{
@@ -180,7 +175,7 @@ export default function AiOsSpotlight({ installPromptContent }: Props) {
             textShadow: "0 0 14px rgba(244,212,114,0.35), 0 0 12px rgba(0,0,0,0.85)",
           }}
         >
-          Feel the shift · 60 seconds
+          Read this · 30 seconds
         </p>
 
         {/* Headline */}
@@ -367,48 +362,6 @@ export default function AiOsSpotlight({ installPromptContent }: Props) {
             </p>
           </div>
         )}
-
-        {/* Day-to-day usage tip (Day 54+, Sasha 2026-04-28 evening).
-            Always-visible (not gated on showRating). Sits below the
-            self-experiment / rating flow as ongoing-usage guidance:
-            the install is permanent (reaffirms the spotlight headline),
-            but re-pasting at the start of high-stakes conversations
-            bumps performance further. Permission-giving — skip for
-            everyday tasks. Synthesized from Sasha's direct statement
-            of the practice; visual treatment mirrors the rating block
-            so it reads as a sibling section. */}
-        <div className="pt-2 space-y-2">
-          <div
-            aria-hidden="true"
-            className="h-px"
-            style={{
-              background:
-                "linear-gradient(90deg, transparent 0%, hsla(252, 60%, 75%, 0.20) 50%, transparent 100%)",
-            }}
-          />
-          <p
-            className="text-[10px] sm:text-xs uppercase tracking-[0.28em] font-medium"
-            style={{
-              color: "hsl(252 50% 85% / 0.85)",
-              textShadow: "0 0 12px rgba(132,96,234,0.35), 0 0 12px rgba(0,0,0,0.85)",
-            }}
-          >
-            Day-to-day usage
-          </p>
-          <p
-            className="text-sm leading-relaxed max-w-2xl"
-            style={{
-              color: "hsl(0 0% 100% / 0.72)",
-              textShadow: "0 0 12px rgba(0,0,0,0.7)",
-            }}
-          >
-            The install is permanent. For everyday tasks, that's enough.
-            For depth conversations, strategic work, or anything where
-            clarity really matters — re-paste at the start of the thread.
-            The AI gets to its sharp register faster, and you spend fewer
-            tokens to get there.
-          </p>
-        </div>
       </div>
     </section>
   );

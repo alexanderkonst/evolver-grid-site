@@ -5,19 +5,6 @@ import { toast } from "@/hooks/use-toast";
 import { Copy, Check, Send, Loader2, Youtube, Lock, ExternalLink, ArrowRight, Zap, Heart, BarChart3 } from "lucide-react";
 import StarryBackground from "./components/StarryBackground";
 import AiOsSpotlight from "./components/AiOsSpotlight";
-// Day 54+ (Sasha 2026-04-28 evening): hero medallion — same merkaba mark
-// used by the SpacesRail icon and the AI OS pricing/work-with-us page hero.
-// Page-level visual coherence: AI OS = merkaba on every surface.
-// Day 54+++ iter 3 (Sasha 2026-04-28 evening): swapped mc-merkaba.png
-// (907 KB, 870×814) → mc-merkaba.webp (12 KB, 256×239). The original
-// PNG was full-res illustration art being loaded for icon use; on iOS
-// Chrome /ai-os routes triggered 2-3 separate decodes of the 907 KB
-// asset (rail + top-right home + was hero medallion), pushing
-// first-paint memory peak over the OOM threshold. WebP at icon-suitable
-// resolution is ~75x smaller, decodes ~50x cheaper, visually identical
-// at the displayed sizes (28-64px).
-import aiOsMerkaba from "@/assets/mc-merkaba.webp";
-import aiOsBgPoster from "@/assets/ai-os-bg-poster.webp";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -2386,123 +2373,6 @@ const HlsVideo = () => {
   );
 };
 
-// Day 54 r11 (Sasha 2026-04-28): diagnostic overlay for the iOS WebKit crash.
-// Mount with `?debug=1` in the URL. Captures, with timestamps from page-mount:
-//   - mount, viewport, ua
-//   - errors (window.error, unhandledrejection)
-//   - visibility / pagehide / pageshow
-//   - JS heap memory (Chrome only, every 500ms)
-//   - scroll counter
-// Renders as a fixed log overlay at the very top of the page so even when
-// the renderer is about to die, a screenshot captures what fired last.
-// No impact when ?debug is absent — returns null.
-const DiagnosticOverlay = () => {
-  const [enabled] = useState(() => {
-    if (typeof window === 'undefined') return false;
-    return new URLSearchParams(window.location.search).has('debug');
-  });
-  const [log, setLog] = useState<string[]>([]);
-
-  useEffect(() => {
-    if (!enabled) return;
-    const start = Date.now();
-    const append = (msg: string) => {
-      const t = ((Date.now() - start) / 1000).toFixed(2);
-      setLog(prev => [...prev, `[${t}s] ${msg}`].slice(-40));
-    };
-
-    append(`mount ${window.innerWidth}×${window.innerHeight} dpr${window.devicePixelRatio}`);
-    append(`ua ${navigator.userAgent.slice(0, 110)}`);
-
-    const onError = (e: ErrorEvent) => append(`ERR ${(e.message || '').slice(0, 120)} @ ${(e.filename || '').split('/').pop()}:${e.lineno || '?'}`);
-    const onRej = (e: PromiseRejectionEvent) => append(`REJ ${String(e.reason).slice(0, 140)}`);
-    const onVis = () => append(`vis:${document.visibilityState}`);
-    const onPageHide = (e: PageTransitionEvent) => append(`pagehide persisted=${e.persisted}`);
-    const onPageShow = () => append('pageshow');
-    let scrolls = 0;
-    const onScroll = () => { scrolls++; if (scrolls % 10 === 1) append(`scroll x${scrolls} y=${window.scrollY|0}`); };
-
-    window.addEventListener('error', onError);
-    window.addEventListener('unhandledrejection', onRej);
-    document.addEventListener('visibilitychange', onVis);
-    window.addEventListener('pagehide', onPageHide);
-    window.addEventListener('pageshow', onPageShow);
-    window.addEventListener('scroll', onScroll, { passive: true });
-
-    let memInt: number | undefined;
-    const perfMem = (performance as { memory?: { usedJSHeapSize: number; jsHeapSizeLimit: number } }).memory;
-    if (perfMem) {
-      memInt = window.setInterval(() => {
-        const m = (performance as { memory?: { usedJSHeapSize: number; jsHeapSizeLimit: number } }).memory!;
-        append(`mem ${(m.usedJSHeapSize / 1048576).toFixed(0)}/${(m.jsHeapSizeLimit / 1048576).toFixed(0)}MB`);
-      }, 500);
-    }
-
-    // Render heartbeat — proves the React tree is still updating
-    let beats = 0;
-    const beatInt = window.setInterval(() => { beats++; append(`beat ${beats}`); }, 1000);
-
-    return () => {
-      window.removeEventListener('error', onError);
-      window.removeEventListener('unhandledrejection', onRej);
-      document.removeEventListener('visibilitychange', onVis);
-      window.removeEventListener('pagehide', onPageHide);
-      window.removeEventListener('pageshow', onPageShow);
-      window.removeEventListener('scroll', onScroll);
-      if (memInt) clearInterval(memInt);
-      clearInterval(beatInt);
-    };
-  }, [enabled]);
-
-  if (!enabled) return null;
-  return (
-    <div
-      style={{
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        right: 0,
-        zIndex: 999999,
-        background: 'rgba(0,0,0,0.92)',
-        color: '#0f0',
-        fontFamily: 'ui-monospace, Menlo, monospace',
-        fontSize: 10,
-        lineHeight: 1.35,
-        padding: '8px 10px',
-        maxHeight: '50vh',
-        overflowY: 'auto',
-        whiteSpace: 'pre-wrap',
-        wordBreak: 'break-all',
-        pointerEvents: 'none',
-      }}
-    >
-      {log.map((line, i) => (
-        <div key={i}>{line}</div>
-      ))}
-    </div>
-  );
-};
-
-// Day 54 r9 (Sasha 2026-04-28): mobile background — static poster fallback.
-// Even one HlsVideo decoder was tipping iOS WebKit's tile/GPU memory budget
-// over the edge on /ai-os (the heaviest page in the app — backdrop blurs in
-// shell, fixed-position overlays, large DOM). The video would render then
-// purge the painted text layers and crash the renderer ("half disappears,
-// then dies"). On mobile we swap to a still frame of the same scene — same
-// editorial mood, zero decoder cost. WebP at 1280×852, ~227KB.
-const HlsPoster = () => (
-  <img
-    src={aiOsBgPoster}
-    alt=""
-    aria-hidden="true"
-    decoding="async"
-    fetchPriority="high"
-    className="fixed inset-0 w-screen h-screen object-cover z-0"
-    style={{ minWidth: '100vw', minHeight: '100vh', objectPosition: '50% center' }}
-    draggable={false}
-  />
-);
-
 // Intersection Observer hook for scroll-triggered animations
 const useRevealOnScroll = () => {
   const ref = useRef<HTMLDivElement>(null);
@@ -2660,38 +2530,6 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
     const isSmall = window.innerWidth < 1024;
     return !(isCoarse || isSmall);
   });
-  // Day 54+++ iter 5 (Sasha 2026-04-28 evening): parallax hook hoisted
-  // to top of component so it fires unconditionally on every render
-  // — required by React's rules of hooks. The ref is conditionally
-  // attached in JSX below (only when !focusCategory, i.e., on /ai-os
-  // main, not on suite sub-routes). See iter-4 → iter-5 history in
-  // the JSX block where the hero is gated.
-  const parallaxRef = useParallax(0.25, isHeavyFxCapable);
-  // Day 54 r13 (Sasha 2026-04-28): `?bare=1` strips the entire fixed-
-  // position visual chrome stack (HlsVideo/HlsPoster + gradient + vignette
-  // + noise overlays). Reductive testing flag for the iOS WebKit crash —
-  // if /ai-os?debug=1&bare=1 survives indefinitely on phone, the cumulative
-  // cost was the layered fixed-position chrome (positioning gridlock or
-  // compositor pressure). If it still crashes, the cost is in page content
-  // (DOM / Spotlight / prompt grid) and we strip further.
-  const [isBareMode] = useState(() => {
-    if (typeof window === 'undefined') return false;
-    return new URLSearchParams(window.location.search).has('bare');
-  });
-  // Day 54+++ iter 6 (Sasha 2026-04-28 evening): `?empty=1` strips
-  // the entire <main> content tree (hero, Spotlight, Work-with-us
-  // callout, chip nav, suite section, footer). Even more reductive
-  // than bare=1 — keeps only the page-level fixed-position chrome
-  // (HlsPoster + overlays, gated by bare=1 separately) plus the
-  // DiagnosticOverlay. If /ai-os?debug=1&bare=1&empty=1 survives
-  // indefinitely on iPhone, the iOS Chrome OOM is in AiOsPage content
-  // (Spotlight, hero, prompt-grid DOM, RevealSection observers, etc.).
-  // If it still crashes, the issue is in GameShellV2 wrapping or
-  // something more fundamental than the page itself.
-  const [isEmptyMode] = useState(() => {
-    if (typeof window === 'undefined') return false;
-    return new URLSearchParams(window.location.search).has('empty');
-  });
   const [customValues, setCustomValues] = useState<Record<string, Record<string, string>>>({});
   const [expandedPrompt, setExpandedPrompt] = useState<string | null>(null);
   // Day 50 (Sasha): per-suite "manual gearbox" toggle. The signature
@@ -2813,35 +2651,20 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
 
   return (
     <div data-ai-os className="ai-os-root">
-      {/* Day 54 r12 (Sasha 2026-04-28): React-side DiagnosticOverlay
-          retired in favor of an inline pre-React diagnostic in
-          index.html. The inline version starts before the bundle loads
-          AND persists to localStorage, so even when the page dies in
-          0.1s before React can mount, the next visit sees what fired
-          in the previous session. Activate with `?debug=1`. */}
       {/* Day 51 (Sasha 2026-04-25 r5): /ai-os HLS stream restored as bg
           (different from GameShell's animated bg). Gradient lighter at top
           (0.55) so video shows clearly behind hero, heavier toward bottom
           so prompt library reads on stable dark. */}
-      {/* Day 54 r9 (Sasha 2026-04-28): video on desktop, static poster
-          on mobile. The "cinematic vibe non-negotiable" stance held until
-          empirical evidence showed even ONE HlsVideo decoder pushed iOS
-          WebKit's tile budget over the edge on /ai-os, purging painted
-          text layers and crashing the renderer. The poster (a still
-          frame of the same scene) preserves the editorial mood at zero
-          decoder cost. Desktop keeps the live HLS stream — same vibe,
-          intact motion, no GPU pressure issues at desktop scale. */}
-      {/* Day 54 r13 (Sasha 2026-04-28): `?bare=1` strips the whole fixed-
-          position chrome stack — bg video/poster + gradient + vignette +
-          noise — for diagnostic reduction. When stripped, the page falls
-          back to the GameShell wrapper's flat dark navy. */}
-      {!isBareMode && (isHeavyFxCapable ? <HlsVideo /> : <HlsPoster />)}
-      {!isBareMode && (
-        <div className="fixed inset-0 z-[1]" style={{ background: 'linear-gradient(180deg, rgba(10,22,50,0.55) 0%, rgba(8,16,30,0.86) 45%, rgba(5,9,18,0.95) 100%)' }} />
-      )}
-      {!isBareMode && <div className="vignette-overlay z-[1]" />}
+      {/* Day 54 (Sasha 2026-04-28): video stays on mobile (cinematic vibe
+          is non-negotiable) — HLS quality is capped to ≤720p inside
+          HlsVideo so iOS doesn't pull a 1080p+ variant and OOM the tab.
+          The animated star canvas and cursor-glow tracker (the actual
+          memory killers) remain desktop-only. */}
+      <HlsVideo />
+      <div className="fixed inset-0 z-[1]" style={{ background: 'linear-gradient(180deg, rgba(10,22,50,0.55) 0%, rgba(8,16,30,0.86) 45%, rgba(5,9,18,0.95) 100%)' }} />
+      <div className="vignette-overlay z-[1]" />
       {/* Noise/grain overlay */}
-      {!isBareMode && <div className="noise-overlay" />}
+      <div className="noise-overlay" />
       {/* Starry overlay */}
       {isHeavyFxCapable && <StarryBackground />}
       
@@ -2864,59 +2687,38 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
       <main
         className="relative z-10 min-h-screen w-full flex justify-center px-4 py-4 sm:px-6 sm:py-8 overflow-x-hidden"
       >
-        {isEmptyMode ? (
-          /* Day 54+++ iter 6 (Sasha 2026-04-28 evening): `?empty=1`
-             reductive testing — strips the entire <main> content tree
-             so we can isolate whether the iOS Chrome OOM is in
-             AiOsPage content vs GameShellV2 wrapping. Renders only
-             a tiny placeholder so the diagnostic overlay has visible
-             page beneath it. */
-          <div style={{ color: 'rgba(255,255,255,0.3)', padding: '2rem', fontFamily: 'monospace', fontSize: 12 }}>
-            empty mode · ?empty=1 active · main content stripped
-          </div>
-        ) : (
         <div className="w-full max-w-[42rem] space-y-20">
 
           {/* Header — Day 51 (Sasha 2026-04-24): tightened padding stack.
               GameShellV2 already supplies pt-4; layered py-16+pt-12 was
-              pushing hero ~30% down the viewport. Now hero sits high.
-              Day 54+++ iter 4 (Sasha 2026-04-28 evening): hero now gated
-              on `!focusCategory` — on suite sub-routes (/ai-os/clarity,
-              /iteration, /vibe-code, /design) the hero is HIDDEN. Sasha
-              caught that suite pages were re-showing landing copy
-              (hero + Spotlight) when users had already arrived via
-              the chip nav from /ai-os main. Suite pages should be
-              JUST the suite, not landing-page-plus-suite. */}
-          {/* Day 54 r3 (Sasha 2026-04-28): parallax + will-change-transform
-              gated to desktop. On mobile WebKit, a permanently GPU-promoted
-              hero whose transform changes per scroll-frame, layered over an
-              HLS video and four fixed-position overlays, was thrashing the
-              renderer until iOS Chrome killed the tab. Visual delta on
-              mobile is nil (parallax barely registers on a phone-sized
-              viewport during fast finger-scroll). Desktop unchanged.
-              Day 54+++ iter 5 (Sasha 2026-04-28 evening): useParallax
-              hook PULLED OUT of the IIFE that previously wrapped the
-              hero, because the iter-4 conditional `{!focusCategory && (() => { useParallax(...) })()}`
-              violated the rules of hooks (hook fired conditionally
-              based on focusCategory, breaking render-to-render hook
-              order). Now the hook is called unconditionally at the
-              top of the JSX; the ref is attached only when the hero
-              JSX renders (i.e., when !focusCategory). On suite
-              sub-routes the ref attaches to nothing; the hook still
-              fires every render. Honors React's hook rules. */}
-          {!focusCategory && (
+              pushing hero ~30% down the viewport. Now hero sits high. */}
+          {(() => {
+            // Day 54 r3 (Sasha 2026-04-28): parallax + will-change-transform
+            // gated to desktop. On mobile WebKit, a permanently GPU-promoted
+            // hero whose transform changes per scroll-frame, layered over an
+            // HLS video and four fixed-position overlays, was thrashing the
+            // renderer until iOS Chrome killed the tab. Visual delta on
+            // mobile is nil (parallax barely registers on a phone-sized
+            // viewport during fast finger-scroll). Desktop unchanged.
+            const parallaxRef = useParallax(0.25, isHeavyFxCapable);
+            return (
             <div ref={parallaxRef} className={isHeavyFxCapable ? "will-change-transform" : ""}>
             <RevealSection>
               <header className="text-center space-y-5 relative pt-2 sm:pt-4 pb-8">
-                {/* Day 54++ (Sasha 2026-04-28, post-27P-roast): hero
-                    merkaba medallion retired again. The 27P roast surfaced
-                    register collision (spirit/integral + tech + business
-                    on one page); pruning toward a single coherent
-                    SaaS-style frequency. The merkaba still lives top-right
-                    via GameShellV2 (route-detected merkaba on /ai-os/*),
-                    so the AI OS mark is still present on the page — just
-                    not as a centered hero medallion. Hero leads cleaner
-                    with H1 only, more white space, slower pacing. */}
+                {/* Day 50 (Sasha): hero torus medallion retired — the
+                    GameShell rail already carries the brand mark.
+                    Day 53 evening (Sasha 2026-04-27): profile button + auth
+                    flow retired entirely from /ai-os. AI OS is Holonic
+                    Commons — free for everyone, no profile, no sign-in.
+                    Anyone arriving at the page can use it immediately
+                    without an account. The /ai-os/auth and /ai-os/profile
+                    routes redirect home. */}
+                <p className="text-xs tracking-[0.35em] uppercase font-medium" style={{ 
+                  color: 'hsl(0 0% 100% / 0.7)',
+                  textShadow: '0 0 12px rgba(0,0,0,0.9), 0 0 30px rgba(0,0,0,0.7), 0 2px 4px rgba(0,0,0,0.8)',
+                }}>
+                  Copy, paste, enjoy
+                </p>
                 <h1
                   // Day 50 (Sasha): tightened the hero clamp so the
                   // wordmark never overruns narrow phones. Tracking also
@@ -2936,16 +2738,15 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
                 {/* Day 52 (Sasha 2026-04-26): credibility beat — collapses
                     "is this a weekend project?" objection in seven words.
                     "Version 5.0" reads as software discipline (familiar to
-                    anyone who's installed an app).
-                    Day 54++ (Sasha 2026-04-28, post-roast): "Five years in
-                    the making" → "Since 2024". The whole platform is 5
-                    years in the making, but the AI OS scaffold itself is
-                    younger. Honest dating instead of conflated tenure. */}
+                    anyone who's installed an app); "five years in the
+                    making" is a stock English phrase that needs zero
+                    decoding. Sized small + uppercase so it reads as a fact
+                    label, not a tagline competing with the subtitle below. */}
                 <p className="text-[11px] sm:text-xs tracking-[0.18em] uppercase font-medium" style={{
                   color: 'hsl(0 0% 100% / 0.62)',
                   textShadow: '0 0 12px rgba(0,0,0,0.9), 0 0 24px rgba(0,0,0,0.6), 0 1px 4px rgba(0,0,0,0.7)',
                 }}>
-                  Version 5.0 · Since 2024
+                  Version 5.0 · Five years in the making
                 </p>
                 {/* Day 51 r3 (Sasha 2026-04-25 evening): subtitles tightened
                     into a unified two-line block. Previously the second
@@ -2960,31 +2761,30 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
                   }}>
                     Permanent level-up to AI cognition. Instant install.
                   </p>
-                  {/* Day 54++ (Sasha 2026-04-28, post-27P-roast): italic
-                      dropped from "Same model. Different conversation."
-                      Italic was carrying the depth-mystic frequency that
-                      conflicted with the surrounding SaaS-style register.
-                      Line stays — it's the philosophical core — but
-                      flattens to match the hero's coherent register. */}
-                  <p className="text-sm font-light" style={{
+                  <p className="text-sm font-light italic" style={{
                     color: 'hsl(242 30% 85% / 0.78)',
                     textShadow: '0 0 12px rgba(0,0,0,0.9), 0 0 30px rgba(0,0,0,0.7), 0 2px 4px rgba(0,0,0,0.8)',
                   }}>
                     Same model. Different conversation.
                   </p>
                 </div>
-                {/* Day 54++ (Sasha 2026-04-28, post-27P-roast): hero
-                    license line collapsed to single SaaS-style microcopy
-                    line. The 2-line license-spirit framing was carrying
-                    too much weight in the hero; full plain-English CC BY-SA
-                    explanation lives on /ai-os/work-with-us. Hero just
-                    needs the badge + partnership pointer. */}
-                <div className="mx-auto pt-3">
-                  <p className="text-xs sm:text-[13px] font-normal" style={{
-                    color: 'hsl(0 0% 100% / 0.65)',
+                {/* Day 52 (Sasha 2026-04-26): licensing terms surfaced
+                    directly under the hero subtitle. Free for personal
+                    non-commercial use is the front door; commercial
+                    inquiries route via Telegram (t.me/integralevolution),
+                    same channel as the "Work with Aleksandr" CTA. Sized
+                    one notch below the italic subtitle so it reads as
+                    a contract line, not a third tagline.
+                    Day 54+ unwind (Sasha 2026-04-28 evening): MIT block
+                    reverted to this pre-MIT copy as a rollback baseline
+                    after the framing reset. License re-decision pending. */}
+                <div className="mx-auto max-w-lg pt-3">
+                  <p className="text-xs sm:text-[13px] font-normal leading-relaxed" style={{
+                    color: 'hsl(0 0% 100% / 0.82)',
                     textShadow: '0 0 12px rgba(0,0,0,0.9), 0 0 24px rgba(0,0,0,0.6), 0 1px 4px rgba(0,0,0,0.8)',
                   }}>
-                    Open source · CC BY-SA 4.0 ·{" "}
+                    Free for personal non-commercial use.
+                    <br />
                     <a
                       href="https://t.me/integralevolution"
                       target="_blank"
@@ -2992,27 +2792,24 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
                       className="underline decoration-[hsl(40_70%_75%/0.45)] decoration-1 underline-offset-[3px] hover:decoration-[hsl(40_70%_75%/0.85)] transition-colors"
                       style={{ color: 'hsl(40 70% 90% / 0.95)' }}
                     >
-                      Reach out for partnership
-                    </a>
+                      Contact
+                    </a>{" "}
+                    to inquire about licensed commercial use.
                   </p>
                 </div>
-                {/* CTAs — Day 54++ (Sasha 2026-04-28, post-27P-roast):
-                    pruned from 3 CTAs (Start here / Work with us / Why
-                    this works · +42% benchmark) → 1 primary CTA only.
-                    The 27P roast surfaced decision paralysis in the hero;
-                    pruning to single CTA respects the "slow the page
-                    down, fewer asks" middle-path call.
-                    • "Work with us" → moved to small subtle callout below
-                      Spotlight (so install flow doesn't compete with
-                      partnership ask)
-                    • "Why this works" → dropped entirely (let the page
-                      itself BE the why)
-                    • "See the +42% benchmark" → dropped from hero;
-                      benchmark accessible via pane 2 only.
-                    The dropped story-modal trigger leaves showStoryDialog
-                    state + the modal at bottom of file as dead code —
-                    harmless, can be cleaned up in a follow-up sweep. */}
-                <div className="flex items-center justify-center pt-7">
+                {/* CTAs — Day 51 r3 (Sasha 2026-04-25 evening): visual
+                    hierarchy added. Three equal-weight pills was reading
+                    as a committee. Now:
+                    • Primary "Start here" — bigger pill, brighter purple
+                      glow, the unmistakable "do this first" affordance.
+                    • Secondary "Work with us" (was "Work with Aleksandr" — Day 54+, Sasha) — gold rim preserved
+                      (premium signal) but matched to primary's height so
+                      the two read as a paired primary row.
+                    • Tertiary "Why this works" — demoted to a ghost text
+                      link with a thin underline-on-hover; carries the
+                      lightning glyph but no bg, so it stops competing
+                      with the actual decisions above. */}
+                <div className="flex items-center justify-center gap-3 pt-7 flex-wrap">
                   <a
                     href="#ai-os-spotlight"
                     className="inline-flex items-center gap-2 text-sm font-medium tracking-wide px-6 py-3 rounded-full transition-all duration-300 hover:scale-[1.04] group"
@@ -3027,19 +2824,72 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
                     Start here
                     <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5" />
                   </a>
+                  <a
+                    href="https://t.me/integralevolution"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-sm font-medium tracking-wide px-6 py-3 rounded-full transition-all duration-300 hover:scale-[1.04]"
+                    style={{
+                      background: 'linear-gradient(135deg, hsla(40, 70%, 55%, 0.20) 0%, hsla(40, 60%, 45%, 0.10) 100%)',
+                      border: '1px solid hsla(40, 70%, 65%, 0.40)',
+                      color: 'hsl(40 70% 92%)',
+                      textShadow: '0 0 14px rgba(244,212,114,0.45), 0 1px 4px rgba(0,0,0,0.5)',
+                      boxShadow: '0 0 0 1px hsla(40, 70%, 65%, 0.12), 0 8px 24px -12px rgba(244,212,114,0.4)',
+                    }}
+                  >
+                    Work with us
+                  </a>
+                </div>
+                {/* Day 52 (Sasha 2026-04-26): two parallel ghost links —
+                    "Why this works" (story modal, philosophical why) and
+                    "See the +42% benchmark" (proof page, empirical receipt).
+                    Dot-separated on one row so they read as a paired
+                    credibility/proof affordance below the primary CTAs.
+                    The +42% number is the hook — answers "should I click?"
+                    before the click. Gold tint on the benchmark link to
+                    distinguish it from the cool "why this works" link. */}
+                <div className="flex items-center justify-center gap-3 pt-3 flex-wrap">
+                  <button
+                    onClick={() => setShowStoryDialog(true)}
+                    className="inline-flex items-center gap-1.5 text-xs font-medium tracking-wide transition-all duration-300 group"
+                    style={{
+                      color: 'hsl(195 35% 80% / 0.78)',
+                      textShadow: '0 0 12px rgba(0,0,0,0.85), 0 1px 4px rgba(0,0,0,0.7)',
+                    }}
+                  >
+                    <Zap className="w-3 h-3 opacity-70 group-hover:opacity-100 transition-opacity" />
+                    <span className="border-b border-transparent group-hover:border-current/60 transition-colors">
+                      Why this works
+                    </span>
+                  </button>
+                  <span aria-hidden="true" className="text-xs" style={{ color: 'hsl(0 0% 100% / 0.35)' }}>
+                    ·
+                  </span>
+                  <button
+                    onClick={() => navigate('/ai-os/benchmark')}
+                    className="inline-flex items-center gap-1.5 text-xs font-medium tracking-wide transition-all duration-300 group"
+                    style={{
+                      color: 'hsl(40 70% 82% / 0.85)',
+                      textShadow: '0 0 12px rgba(244,212,114,0.3), 0 0 12px rgba(0,0,0,0.85), 0 1px 4px rgba(0,0,0,0.7)',
+                    }}
+                  >
+                    <BarChart3 className="w-3 h-3 opacity-70 group-hover:opacity-100 transition-opacity" />
+                    <span className="border-b border-transparent group-hover:border-current/60 transition-colors">
+                      See the +42% benchmark
+                    </span>
+                    <ArrowRight className="w-3 h-3 opacity-50 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all" />
+                  </button>
                 </div>
                 {/* Bottom ornament — Day 51 r3: tightened pt to keep the
-                    hero compact. Day 54++ (post-roast): pt increased
-                    slightly to honor the "more white space, deeper pacing"
-                    middle-path call now that the 2 dropped CTA rows freed
-                    vertical room. */}
-                <div className="flex items-center justify-center pt-8 pb-2">
+                    hero compact while the new ghost link sits above it. */}
+                <div className="flex items-center justify-center pt-5 pb-2">
                   <div className="h-px w-24" style={{ background: 'linear-gradient(90deg, transparent, hsl(242 30% 73% / 0.25), transparent)' }} />
                 </div>
               </header>
             </RevealSection>
             </div>
-          )}
+            );
+          })()}
 
           {/* SPOTLIGHT — Day 53 (Sasha 2026-04-27): the AI OS install prompt
               is THE thing on this page. It used to live as one card among
@@ -3054,14 +2904,7 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
               (c) the reveal-on-copy 1-10 rating writes to resonance_events
                   so we get empirical data instead of vibes.
               Lookup the meta-cognition-premium content at render time so
-              we don't fork the source of truth for the install prompt.
-              Day 54+++ iter 4 (Sasha 2026-04-28 evening): Spotlight gated
-              on `!focusCategory` — on suite sub-routes the install pitch
-              is hidden. Suite pages should be JUST the suite, assuming
-              the user already installed via /ai-os main. If they didn't,
-              they can navigate back via pane 2 "Install" item or via
-              the top-right home icon. */}
-          {!focusCategory && (
+              we don't fork the source of truth for the install prompt. */}
           <RevealSection delay={100}>
             <AiOsSpotlight
               installPromptContent={
@@ -3069,47 +2912,24 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
               }
             />
           </RevealSection>
-          )}
 
-          {/* Work-with-us callout — Day 54++ (Sasha 2026-04-28, post-27P-roast):
-              "Work with us" CTA migrated here from the hero, where it
-              was creating decision paralysis alongside "Start here" +
-              "Why this works" + "+42% benchmark". As a subtle gold-rim
-              pill below the Spotlight, it reads as the natural next
-              step for visitors who've installed and want to go deeper
-              — partnership conversation, not a pitch interruption.
-              Only renders when not on a suite sub-route (otherwise
-              suite-focused experience carries on without distraction). */}
-          {!focusCategory && (
-          <RevealSection delay={120}>
-            <div className="text-center max-w-md mx-auto py-8">
-              <a
-                href="https://t.me/integralevolution"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-sm font-medium tracking-wide px-6 py-3 rounded-full transition-all duration-300 hover:scale-[1.04]"
-                style={{
-                  background: 'linear-gradient(135deg, hsla(40, 70%, 55%, 0.20) 0%, hsla(40, 60%, 45%, 0.10) 100%)',
-                  border: '1px solid hsla(40, 70%, 65%, 0.40)',
-                  color: 'hsl(40 70% 92%)',
-                  textShadow: '0 0 14px rgba(244,212,114,0.45), 0 1px 4px rgba(0,0,0,0.5)',
-                  boxShadow: '0 0 0 1px hsla(40, 70%, 65%, 0.12), 0 8px 24px -12px rgba(244,212,114,0.4)',
-                }}
-              >
-                Work with us
-              </a>
-            </div>
-          </RevealSection>
-          )}
-
-          {/* Prompt Suites — Day 54++ (Sasha 2026-04-28, post-27P-roast):
-              eyebrow renamed from "Additional power-ups" → "Prompt Suites"
-              per the middle-path register-coherence call (gamer/tech
-              "power-ups" was off-register with the conscious-impact-founder
-              tribe vocabulary). Section's structural role unchanged: chip
-              nav to suite sub-routes, gated on `!focusCategory` (only
-              renders on /ai-os main, not on suite sub-routes). Meta
-              category filtered out of chips because it IS the install. */}
+          {/* Additional power-ups — Day 53 (Sasha 2026-04-27) reframe:
+              this section was previously the page's primary "Step 1 ·
+              Choose / Pick your class of tasks" decision card. With the
+              spotlight above, this is now secondary — high-quality
+              category prompts for everyday craft, supporting the main
+              install rather than competing with it. Glass treatment kept;
+              copy softened.
+              Day 54 (Sasha 2026-04-28): chip-nav rendering is now gated
+              on `!focusCategory` — it ONLY shows on /ai-os (the short
+              landing). On suite sub-routes (/ai-os/clarity etc.) the
+              user is already focused; the chip nav becomes redundant
+              and the focused suite section below this block carries
+              the experience. Chip hrefs also re-targeted from in-page
+              anchors (`#section-clarity`) to actual sub-routes
+              (`/ai-os/clarity`) so the chips do real navigation. Meta
+              category filtered out of the chips because it IS the
+              install — the spotlight above already handles it. */}
           {!focusCategory && (
           <RevealSection delay={150}>
             <nav
@@ -3139,7 +2959,7 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
                     textShadow: '0 0 12px rgba(132,96,234,0.4)',
                   }}
                 >
-                  Prompt Suites
+                  Additional power-ups
                 </p>
                 <h2
                   className="font-display italic text-2xl sm:text-3xl md:text-4xl font-medium leading-[1.15] tracking-[-0.02em]"
@@ -3521,7 +3341,6 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
           </RevealSection>
 
         </div>
-        )}
       </main>
 
       {/* Day 54+ (Sasha 2026-04-28): YouTube Transcript Dialog retired

@@ -14,10 +14,7 @@ import logoSrc from "@/assets/logo.jpg";
 // uses the merkaba (matching the AI OS Space rail icon) instead of the
 // default torus-dodecahedron logo.jpg. Route-detected inside the
 // component so callers don't need to pass a prop.
-// Day 54+++ iter 3 (Sasha 2026-04-28 evening): swapped to optimized
-// WebP (12 KB vs 907 KB PNG). See AiOsPage.tsx for the full rationale —
-// the oversized PNG was the iOS Chrome OOM root cause on /ai-os routes.
-import aiOsHomeIcon from "@/assets/mc-merkaba.webp";
+import aiOsHomeIcon from "@/assets/mc-merkaba.png";
 // Day 53 (Sasha 2026-04-27): brand torus mark used as the leading
 // glyph in the mobile menu pill — pairs with the hamburger to read as
 // "your home + open menu" in one affordance.
@@ -193,36 +190,6 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
         return "content";
     });
     const [shortcutsOpen, setShortcutsOpen] = useState(false);
-
-    // Day 54 r10 (Sasha 2026-04-28): JS-driven viewport switch.
-    // Previously the desktop and mobile layouts both lived in the JSX,
-    // gated only by `hidden lg:flex` / `lg:hidden`. CSS hides one tree;
-    // React mounts BOTH — so every page (especially heavy ones like
-    // /ai-os) was paying 2× the mount cost: doubled DOM, doubled hooks,
-    // doubled supabase touches, doubled observers, doubled video element
-    // (until that was poster-swapped). Empirical: `[data-ai-os]` count
-    // was 2 in the live DOM, both with full subtree.
-    //
-    // Now matchMedia decides at the JS level, and only one layout
-    // mounts. SSR-safe: defaults to desktop on the server. Trade-off:
-    // when the user crosses the lg breakpoint at runtime (rotation on
-    // a tablet, browser resize), `children` unmounts and remounts —
-    // any transient page state (cursor pos, expanded prompt, etc.)
-    // is lost. Acceptable for the gain.
-    const [isLgViewport, setIsLgViewport] = useState<boolean>(() => {
-        if (typeof window === 'undefined') return true;
-        return window.matchMedia('(min-width: 1024px)').matches;
-    });
-    useEffect(() => {
-        const mq = window.matchMedia('(min-width: 1024px)');
-        const handler = (e: MediaQueryListEvent) => setIsLgViewport(e.matches);
-        if (mq.addEventListener) mq.addEventListener('change', handler);
-        else mq.addListener(handler); // older Safari fallback
-        return () => {
-            if (mq.removeEventListener) mq.removeEventListener('change', handler);
-            else mq.removeListener(handler);
-        };
-    }, []);
 
     const getSpaceFromPath = (pathname: string): string | undefined => {
         // Day 52 (Sasha 2026-04-26): /ubb (Unique Business Builder)
@@ -573,9 +540,6 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
     // Hide-don't-lock (Sasha, 2026-04-21): a locked space just clutters the
     // rail. Anywhere in the app, if a space isn't unlocked, hide it entirely —
     // it reveals itself when the user earns it. JOURNEY and ME are always on.
-    // Day 54 r8 (Sasha 2026-04-28): briefly tried "show but ghost at 5-13%"
-    // for cosmos visibility, reverted — the dim icons read as "in the making
-    // but not ready," cheapening the brand's polish. Hidden is the right call.
     const GATED_SPACES = ["next-move", "learn", "meet", "collaborate", "build", "buysell"] as const;
     const hiddenSpaces: string[] = profileLoaded
         ? GATED_SPACES.filter((id) => unlockStatus[id] === false)
@@ -669,8 +633,7 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                 */}
             </div>
             {/* === DESKTOP LAYOUT === */}
-            {isLgViewport && (
-            <div className="flex min-h-dvh">
+            <div className="hidden lg:flex min-h-dvh">
                 {/* Panel 1: Spaces Rail */}
                 <SpacesRail
                     activeSpaceId={activeSpaceId}
@@ -697,25 +660,10 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                     of the panel visually fell into a different "zone" once
                     the page scrolled. Sticky elements carry z-index
                     natively, so dropping `relative` doesn't cost the z-30. */}
-                {/* Day 54+ (Sasha 2026-04-28 night): pane 2 collapse fix.
-                    The wrapper had `w-0` when collapsed but the child
-                    SectionsPanel is `w-[260px]`. In flex layout with
-                    `flex-basis: auto` (the default), the child's content
-                    width becomes the flex basis — pinning the wrapper
-                    at 260px regardless of `w-0`. Pane 2 never actually
-                    collapsed; on /ai-os it looked like pane 2 was still
-                    half-open and there was no separate minimized
-                    affordance.
-                    Fix: `min-w-0` (allow shrinking past min-content) +
-                    `basis-0` on the collapsed state (force flex-basis:0
-                    so the algorithm doesn't reserve content width).
-                    Now `w-0 basis-0 min-w-0` gives a true 0px collapsed
-                    state, and the reopen button slides into x≈280 (right
-                    after pane 1) where it belongs. */}
                 <div
                     className={cn(
-                        "transition-all duration-200 ease-out h-dvh sticky top-0 overflow-hidden z-30 min-w-0",
-                        sectionsPanelOpen ? "w-[260px]" : "w-0 basis-0"
+                        "transition-all duration-200 ease-out h-dvh sticky top-0 overflow-hidden z-30",
+                        sectionsPanelOpen ? "w-[260px]" : "w-0"
                     )}
                 >
                     <SectionsPanel
@@ -734,32 +682,18 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                     Day 51 (Sasha 2026-04-25): bg dropped to transparent so
                     page-owned-bg routes (/ai-os) let the video extend
                     underneath. The gold seam alone gives the column its
-                    presence — no need for an opaque navy strip.
-                    Day 54+ (Sasha 2026-04-28 night): "transparent on
-                    page-owned bg" failed in practice — on /ai-os the gold
-                    seam disappeared into the cosmic scene + starfield, so
-                    the button looked literally absent and Sasha had no way
-                    to reopen pane 2 once collapsed. Fix: give the column
-                    the same darker pane-2 overlay so the seam has an
-                    opaque anchor on every route. PageOwnsBackground gets
-                    the deeper navy that matches pane 2's darker bg on
-                    /ai-os; default keeps a subtle navy tint. */}
+                    presence — no need for an opaque navy strip. */}
                 {!sectionsPanelOpen && (
                     <button
                         onClick={toggleSectionsPanel}
-                        className={cn(
-                            "h-dvh sticky top-0 w-5 flex items-center justify-center transition-colors hover:bg-white/10 relative group",
-                            pageOwnsBackground
-                                ? "bg-[rgba(6,12,28,0.78)]"
-                                : "bg-[rgba(14,32,68,0.32)]"
-                        )}
+                        className="h-dvh sticky top-0 w-5 flex items-center justify-center transition-colors hover:bg-white/5 relative group bg-transparent"
                         title="Expand sidebar (⌘B)"
                         style={{
                             boxShadow:
-                                "inset -1px 0 0 rgba(212, 175, 55, 0.5), 2px 0 18px -6px rgba(244, 212, 114, 0.4)",
+                                "inset -1px 0 0 rgba(212, 175, 55, 0.35), 2px 0 18px -6px rgba(244, 212, 114, 0.3)",
                         }}
                     >
-                        <PanelLeft className="w-3 h-3 text-[#d4af37]/85 group-hover:text-[#d4af37] transition-colors" />
+                        <PanelLeft className="w-3 h-3 text-[#d4af37]/70 group-hover:text-[#d4af37] transition-colors" />
                     </button>
                 )}
 
@@ -857,11 +791,9 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                     </div>
                 </main>
             </div>
-            )}
 
             {/* === MOBILE LAYOUT === */}
-            {!isLgViewport && (
-            <div className="relative w-full min-h-dvh overflow-hidden">
+            <div className="lg:hidden relative w-full min-h-dvh overflow-hidden">
                 {/* Mobile: Navigation View (Panel 1 + Panel 2) */}
                 <div
                     className={cn(
@@ -1095,7 +1027,6 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                     </main>
                 </div>
             </div>
-            )}
             <KeyboardShortcuts open={shortcutsOpen} onClose={() => setShortcutsOpen(false)} />
         </div>
     );

@@ -1,10 +1,6 @@
-# Stewarding Agreement
+# Distributor Agreement
 
-> *Formerly "Distributor Agreement." Renamed Day 54+ (April 28, 2026) — the conscious aspiring impact founder tribe wants relationship, not contract; "Stewarding Agreement" honors the active, ongoing practice of stewardship over a shared commons that this document actually structures. The "Stewarding" form is more active + practical than alternatives like "Steward Covenant" (briefly considered same day) — the agreement is about ongoing practice, not a one-time pledge. Filename `DISTRIBUTOR_AGREEMENT.md` retained for back-compat with external links / bookmarks.*
-
-**Version 0.3 · April 28, 2026 (Day 54+)** — Renamed from "Distributor Agreement" → "Stewarding Agreement" (final). Tribe-vocabulary alignment.
-**Prior version 0.2 · April 27, 2026 (Day 53)** — Two-paths preface added (Path A subscribe vs. Path B fork). See changelog at end.
-
+**Version 0.2 · April 27, 2026 (Day 53)**
 *This is a draft. The intent is binding; the legal language will tighten with counsel review before any first signature.*
 
 ---
@@ -12,8 +8,6 @@
 ## Two paths to commercial use — pick one
 
 The codebase at [github.com/alexanderkonst/evolver-grid-site](https://github.com/alexanderkonst/evolver-grid-site) (the **Platform**) is licensed for non-commercial use under [PolyForm Noncommercial 1.0.0](./LICENSE). The methodology in `/docs` is licensed for non-commercial use under [CC BY-NC-SA 4.0](./LICENSE.md).
-
-> **Note on AI OS.** The AI OS scaffold (the meta-cognition system prompt at `/ai-os` and its derivative prompt suites — Clarify · Iterate · Vibe Code · Design) is **CC BY-SA 4.0-licensed** and is **not subject to this Agreement**. Use it freely (including commercially), modify it, distribute it, even sell it. Two conditions: keep the author's name on copies you share; if you build a modified version, your version must stay open under CC BY-SA 4.0 (see [`LICENSE.md`](./LICENSE.md) §2). If you want a proprietary build of AI OS without the share-alike obligation (closed integration into a commercial product), that's a per-deal commercial license — reach out via [Telegram](https://t.me/integralevolution).
 
 If you want to USE the Platform commercially — to charge clients, sell sessions, run a coaching practice, or operate a paid offering using the methodology — there are two clean paths. Most people take Path A.
 
@@ -35,11 +29,11 @@ On Path A, you owe NOTHING beyond the subscription fee. The hosted Platform hand
 
 ### Path B — Fork and self-host (this document)
 
-If you fork the Platform and run your own instance — modifying the code, hosting on your own infrastructure, operating under your own brand — the Stewarding Agreement below applies. Summary: 10% rev-share above a $1,000/month free tier, opt-in commons contribution, attribution preserved, audit by exception.
+If you fork the Platform and run your own instance — modifying the code, hosting on your own infrastructure, operating under your own brand — the Distributor Agreement below applies. Summary: 10% rev-share above a $1,000/month free tier, opt-in commons contribution, attribution preserved, audit by exception.
 
 > **The two paths are mutually exclusive on a given operation.** Path A means "use Sasha's hosted Platform." Path B means "run your own forked Platform." If you outgrow Path A and start forking, you cross to Path B. If you previously forked under Path B and decide hosted is simpler, you migrate to Path A.
 
-The rest of this document is **Path B** — the Stewarding Agreement for fork-and-self-host operators.
+The rest of this document is **Path B** — the Distributor Agreement for fork-and-self-host operators.
 
 ---
 
@@ -55,7 +49,7 @@ By deploying a Distributor Instance commercially, you accept the terms below. Th
 
 - **Licensor** — Alexander Konstantinov.
 - **Distributor** — any person, company, or community that operates a forked or derivative instance of the Platform commercially.
-- **Platform** — the codebase, methodology, and modules of Find Your Top Talent / Planetary OS, including all artifacts inheriting the licenses above. **Excludes the AI OS scaffold and its derivative prompt suites**, which are CC BY-SA 4.0-licensed (see [`LICENSE.md`](./LICENSE.md) §2) and explicitly out of scope for this Agreement. Proprietary commercial use of the AI OS scaffold (without share-alike) is governed by per-deal commercial license — separate from this Agreement.
+- **Platform** — the codebase, methodology, and modules of Find Your Top Talent / Planetary OS, including all artifacts inheriting the licenses above.
 - **Distributor Instance** — your forked, modified, or hosted version of the Platform, operating under your own brand.
 - **Platform Revenue** — gross revenue (before your costs and taxes) earned through your Distributor Instance, from any of the following:
   - Sessions, programs, containers, or coaching sold to clients introduced or processed through your Distributor Instance.
