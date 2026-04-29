@@ -2678,6 +2678,20 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
     if (typeof window === 'undefined') return false;
     return new URLSearchParams(window.location.search).has('bare');
   });
+  // Day 54+++ iter 6 (Sasha 2026-04-28 evening): `?empty=1` strips
+  // the entire <main> content tree (hero, Spotlight, Work-with-us
+  // callout, chip nav, suite section, footer). Even more reductive
+  // than bare=1 — keeps only the page-level fixed-position chrome
+  // (HlsPoster + overlays, gated by bare=1 separately) plus the
+  // DiagnosticOverlay. If /ai-os?debug=1&bare=1&empty=1 survives
+  // indefinitely on iPhone, the iOS Chrome OOM is in AiOsPage content
+  // (Spotlight, hero, prompt-grid DOM, RevealSection observers, etc.).
+  // If it still crashes, the issue is in GameShellV2 wrapping or
+  // something more fundamental than the page itself.
+  const [isEmptyMode] = useState(() => {
+    if (typeof window === 'undefined') return false;
+    return new URLSearchParams(window.location.search).has('empty');
+  });
   const [customValues, setCustomValues] = useState<Record<string, Record<string, string>>>({});
   const [expandedPrompt, setExpandedPrompt] = useState<string | null>(null);
   // Day 50 (Sasha): per-suite "manual gearbox" toggle. The signature
@@ -2850,6 +2864,17 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
       <main
         className="relative z-10 min-h-screen w-full flex justify-center px-4 py-4 sm:px-6 sm:py-8 overflow-x-hidden"
       >
+        {isEmptyMode ? (
+          /* Day 54+++ iter 6 (Sasha 2026-04-28 evening): `?empty=1`
+             reductive testing — strips the entire <main> content tree
+             so we can isolate whether the iOS Chrome OOM is in
+             AiOsPage content vs GameShellV2 wrapping. Renders only
+             a tiny placeholder so the diagnostic overlay has visible
+             page beneath it. */
+          <div style={{ color: 'rgba(255,255,255,0.3)', padding: '2rem', fontFamily: 'monospace', fontSize: 12 }}>
+            empty mode · ?empty=1 active · main content stripped
+          </div>
+        ) : (
         <div className="w-full max-w-[42rem] space-y-20">
 
           {/* Header — Day 51 (Sasha 2026-04-24): tightened padding stack.
@@ -3496,6 +3521,7 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
           </RevealSection>
 
         </div>
+        )}
       </main>
 
       {/* Day 54+ (Sasha 2026-04-28): YouTube Transcript Dialog retired
