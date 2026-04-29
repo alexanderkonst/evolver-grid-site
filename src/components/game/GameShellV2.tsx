@@ -719,7 +719,8 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                     reopen flow on /ai-os AND /journey. */}
                 <div
                     className={cn(
-                        "transition-all duration-200 ease-out h-dvh sticky top-0 overflow-hidden z-30 min-w-0 transform-gpu",
+                        "transition-all duration-200 ease-out h-dvh overflow-hidden z-30 min-w-0 transform-gpu",
+                        isAiOsRoute ? "shrink-0" : "sticky top-0",
                         sectionsPanelOpen ? "w-[260px]" : "w-0 basis-0"
                     )}
                 >
