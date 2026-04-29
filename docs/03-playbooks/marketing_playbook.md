@@ -1338,7 +1338,7 @@ Attraction funnel: artifact → use → recognition → repeat use → mention t
 
 ### Operational guidance
 
-- **Channels:** wherever the aligned tribe already gathers. For consultants/founders: LinkedIn (long-form posts + DM at 9.99/10 alignment). For methodology authors: Substack + Twitter/X. For spiritual teachers: Telegram + community spaces.
+- **Channels:** wherever the aligned tribe already gathers. For conscious aspiring impact founders (the canonical tribe per [`alexanders_unique_business.md`](../02-strategy/unique-businesses/alexanders_unique_business.md)): LinkedIn (long-form posts + DM at 9.99/10 alignment) — they congregate there to articulate their work and find resonance with others doing similar consciousness-business integration. Adjacent communities: Substack (methodology authors), Telegram (spiritual + integral practitioners), Wisdom-tradition + integral conferences and retreats.
 - **Cadence:** consistent visible presence, not viral spike. Daily-ish broadcast over months, not one launch event.
 - **Form:** demonstrate the methodology in public — solve someone else's problem with your frame, in a way they (and onlookers) can recognize. Don't gate the methodology behind a lead magnet; the methodology IS the lead magnet.
 - **Outreach:** narrowly-targeted hand-crafted DMs (~10/day, max), mirror-first, names a structural insight, soft-exit. See `communications_playbook.md` Attraction-Mode DM Template for copy structure.
