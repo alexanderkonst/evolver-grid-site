@@ -2680,6 +2680,52 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
   // text-shadow halo on touch devices.
 
 
+  // Day 57 r3 (Sasha 2026-04-29): single source of truth for the
+  // "Start here" CTA scroll behavior. Wired to both onClick and onPointerUp
+  // so first-tap (pointerup) AND subsequent activations (synthetic clicks,
+  // keyboard Enter, automation) all reliably move the install card into view.
+  // Walks ancestors for the real scroll container — works in the mobile
+  // shell (.mobile-content-scroll), the desktop app-shell
+  // (.ai-os-desktop-content-scroll), or document scroll fallback.
+  const scrollToAiOsInstall = useCallback((btn: HTMLElement | null) => {
+    const target =
+      document.querySelector<HTMLElement>('[data-ai-os-install-target]') ||
+      document.getElementById('ai-os-install');
+    if (!target) return;
+
+    const findScroller = (node: HTMLElement | null): HTMLElement | null => {
+      let el: HTMLElement | null = node?.parentElement ?? null;
+      while (el && el !== document.body) {
+        const style = window.getComputedStyle(el);
+        const oy = style.overflowY;
+        if ((oy === 'auto' || oy === 'scroll' || oy === 'overlay') && el.scrollHeight > el.clientHeight) {
+          return el;
+        }
+        el = el.parentElement;
+      }
+      return null;
+    };
+    const scroller =
+      findScroller(target) ||
+      document.querySelector<HTMLElement>('.mobile-content-scroll, .ai-os-desktop-content-scroll');
+
+    const reduced = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+    const behavior: ScrollBehavior = reduced ? 'auto' : 'smooth';
+
+    if (scroller) {
+      const offset =
+        target.getBoundingClientRect().top -
+        scroller.getBoundingClientRect().top +
+        scroller.scrollTop -
+        16;
+      scroller.scrollTo({ top: Math.max(0, offset), behavior });
+    } else {
+      target.scrollIntoView({ behavior, block: 'start' });
+    }
+
+    if (btn) requestAnimationFrame(() => btn.blur());
+  }, []);
+
   return (
     <div data-ai-os className="ai-os-root">
       {/* Day 51 (Sasha 2026-04-25 r5): /ai-os HLS stream restored as bg
@@ -2865,53 +2911,8 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
                 <div className="flex items-center justify-center gap-3 pt-2 sm:pt-6 flex-wrap">
                   <button
                     type="button"
-                    onClick={(e) => { (window as any).__aiOsStart?.(e.currentTarget as HTMLButtonElement); }}
-                    onPointerUp={(e) => {
-                      // Day 57 r3 (Sasha 2026-04-29): pointerup, not click.
-                      // On iOS the prior <a> click could be swallowed when
-                      // focus stayed on the same element after the first tap,
-                      // making the button feel "dead" on subsequent presses.
-                      // pointerup fires reliably; we run scroll logic ourselves
-                      // and explicitly blur to release focus.
-                      const btn = e.currentTarget as HTMLButtonElement;
-                      const target =
-                        document.querySelector<HTMLElement>('[data-ai-os-install-target]') ||
-                        document.getElementById('ai-os-install');
-                      if (!target) return;
-                      btn.blur();
-
-                      const findScroller = (node: HTMLElement | null): HTMLElement | null => {
-                        let el: HTMLElement | null = node?.parentElement ?? null;
-                        while (el && el !== document.body) {
-                          const style = window.getComputedStyle(el);
-                          const oy = style.overflowY;
-                          if ((oy === 'auto' || oy === 'scroll' || oy === 'overlay') && el.scrollHeight > el.clientHeight) {
-                            return el;
-                          }
-                          el = el.parentElement;
-                        }
-                        return null;
-                      };
-                      const scroller =
-                        findScroller(target) ||
-                        document.querySelector<HTMLElement>('.mobile-content-scroll, .ai-os-desktop-content-scroll');
-
-                      const reduced = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
-                      const behavior: ScrollBehavior = reduced ? 'auto' : 'smooth';
-
-                      if (scroller) {
-                        const offset =
-                          target.getBoundingClientRect().top -
-                          scroller.getBoundingClientRect().top +
-                          scroller.scrollTop -
-                          16;
-                        scroller.scrollTo({ top: Math.max(0, offset), behavior });
-                      } else {
-                        target.scrollIntoView({ behavior, block: 'start' });
-                      }
-
-                      requestAnimationFrame(() => btn.blur());
-                    }}
+                    onClick={(e) => scrollToAiOsInstall(e.currentTarget as HTMLButtonElement)}
+                    onPointerUp={(e) => scrollToAiOsInstall(e.currentTarget as HTMLButtonElement)}
                     className="inline-flex items-center gap-2 text-sm font-medium tracking-wide px-6 py-3 rounded-full transition-all duration-300 [@media(hover:hover)]:hover:scale-[1.04] active:scale-[0.98] group cursor-pointer touch-manipulation select-none"
                     style={{
                       background: 'linear-gradient(135deg, hsla(252, 70%, 70%, 0.32) 0%, hsla(242, 60%, 60%, 0.22) 100%)',
