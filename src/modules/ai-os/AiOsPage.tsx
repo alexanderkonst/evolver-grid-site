@@ -2450,6 +2450,10 @@ const useParallax = (speed = 0.3, enabled = true) => {
 //   /ai-os/design     → "design"
 interface AiOsPageProps {
   focusCategory?: "clarity" | "iteration" | "deployment" | "design";
+  /** [DIAG 2026-04-29] When true, render only fixed background layers
+   * + the hero <h1>. Skips <main>, prompt list, AiOsSpotlight,
+   * SectionsPanel. Used by AiOsDiagDispatcher for ?diag=c. */
+  __diagHeroOnly?: boolean;
 }
 
 // Day 54+ (Sasha): per-suite document.title — verb + "Suite" suffix.
