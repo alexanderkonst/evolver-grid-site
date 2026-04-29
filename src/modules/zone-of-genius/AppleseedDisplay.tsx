@@ -203,7 +203,7 @@ const AppleseedDisplay = ({
               /zone-of-genius, /playbook, /path.
             */}
 
-            <div className="relative z-10 max-w-2xl mx-auto px-4 py-2 space-y-6">
+            <div className="relative z-10 max-w-2xl mx-auto px-4 pt-2 pb-16 sm:pb-20 space-y-6">
                 {/* Epic Revelatory Hero - The core genius reveal.
                     Day 47 late pass (Sasha): dropped `darkMode` so the hero uses
                     the light palette (dark slate text on soft white gradient) —

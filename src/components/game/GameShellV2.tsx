@@ -174,10 +174,17 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
         // stays available inside each page; we stopped persisting the
         // toggle to localStorage so a "closed" state on landing doesn't
         // bleed into the next page.
+        // Day 55 (Sasha 2026-04-29): /ignite added to the closed-by-
+        // default list. The page is a single decision surface (book
+        // the session) — pane 2 with the journey step list reads as
+        // navigation noise alongside the booking content. The user
+        // arriving at /ignite has already chosen the next step; let
+        // the page lead.
         if (typeof window === 'undefined') return true;
         const p = window.location.pathname;
         const isLandingPage = p === '/' || p.startsWith('/game/journey');
-        return !isLandingPage;
+        const isIgnitePage = p === '/ignite';
+        return !isLandingPage && !isIgnitePage;
     });
     const [mobileView, setMobileView] = useState<"navigation" | "content">(() => {
         // Day 53 (Sasha 2026-04-27): mobile landing now defaults to CONTENT

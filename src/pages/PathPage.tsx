@@ -191,7 +191,7 @@ const PathPage = () => {
                     "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
                 }}
               >
-                Provided you do your part, at an average speed.
+                Provided you do your part.
               </p>
             </section>
 

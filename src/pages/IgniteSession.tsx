@@ -288,18 +288,33 @@ const IgniteSession = () => {
     return () => { document.title = "Genius Business"; };
   }, []);
 
-  // Handle hash-based scrolling
+  // Handle hash-based scrolling.
+  // Day 55 (Sasha 2026-04-29): switched from a single 300ms-delayed
+  // smooth scroll to a two-shot instant scroll. The previous timing
+  // landed on the right element initially, but content loading after
+  // the scroll (testimonials fetch, HLS video, image decode) shifted
+  // the page down so the target ended up partially above the viewport
+  // top — the user landed BETWEEN sections, with stray copy from the
+  // previous block visible. Two instant `scrollIntoView` calls — one
+  // immediate, one after layout settles (450ms) — pin the target to
+  // viewport top regardless of late-loading content. Instant (`auto`)
+  // beats `smooth` here: the second call would jump anyway, and a
+  // smooth-then-jump animation reads as a glitch, not polish.
   useEffect(() => {
     const hash = location.hash;
-    if (hash) {
-      const timer = setTimeout(() => {
-        const el = document.querySelector(hash);
-        if (el) {
-          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      }, 300);
-      return () => clearTimeout(timer);
-    }
+    if (!hash) return;
+    const target = () => document.querySelector(hash);
+    const scroll = () => {
+      const el = target();
+      if (el) el.scrollIntoView({ behavior: 'auto', block: 'start' });
+    };
+    scroll();
+    const t1 = setTimeout(scroll, 100);
+    const t2 = setTimeout(scroll, 450);
+    return () => {
+      clearTimeout(t1);
+      clearTimeout(t2);
+    };
   }, [location.hash]);
 
   const content = (
