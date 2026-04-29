@@ -2865,6 +2865,7 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
                 <div className="flex items-center justify-center gap-3 pt-2 sm:pt-6 flex-wrap">
                   <button
                     type="button"
+                    onClick={(e) => { (window as any).__aiOsStart?.(e.currentTarget as HTMLButtonElement); }}
                     onPointerUp={(e) => {
                       // Day 57 r3 (Sasha 2026-04-29): pointerup, not click.
                       // On iOS the prior <a> click could be swallowed when
