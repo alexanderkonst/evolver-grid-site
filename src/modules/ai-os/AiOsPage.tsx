@@ -2899,33 +2899,22 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
                     </a>
                   </div>
                 </div>
-                {/* CTA - Day 57 r2 (Sasha 2026-04-29): rendered as <a> with
-                    a real href so iOS treats activation reliably even when
-                    the surrounding shell uses transforms. The onClick walks
-                    to the nearest real scrolling ancestor instead of
-                    guessing one - and the native href is the safety net
-                    if JS ever fails. The duplicate id="ai-os-spotlight"
-                    on both AiOsPage and AiOsSpotlight has been resolved
-                    (see the install wrapper below - id="ai-os-install"
-                    + data-ai-os-install-target). */}
-                <div className="flex items-center justify-center gap-3 pt-2 sm:pt-6 flex-wrap">
-                  <button
-                    type="button"
-                    onClick={(e) => scrollToAiOsInstall(e.currentTarget as HTMLButtonElement)}
-                    onPointerUp={(e) => scrollToAiOsInstall(e.currentTarget as HTMLButtonElement)}
-                    className="inline-flex items-center gap-2 text-sm font-medium tracking-wide px-6 py-3 rounded-full transition-all duration-300 [@media(hover:hover)]:hover:scale-[1.04] active:scale-[0.98] group cursor-pointer touch-manipulation select-none"
+                {/* Day 57 r4 (Sasha 2026-04-29): "Start here" CTA button
+                    retired. The page scrolls naturally; the spotlight
+                    install card is the next thing the eye lands on. We
+                    keep "Start here" as a section label so the visual
+                    rhythm and intent stay intact, without the brittle
+                    cross-shell scroll handler. */}
+                <div className="flex items-center justify-center pt-3 sm:pt-8">
+                  <p
+                    className="text-[11px] sm:text-xs tracking-[0.32em] uppercase font-medium"
                     style={{
-                      background: 'linear-gradient(135deg, hsla(252, 70%, 70%, 0.32) 0%, hsla(242, 60%, 60%, 0.22) 100%)',
-                      border: '1px solid hsla(252, 60%, 80%, 0.45)',
-                      color: 'hsl(0 0% 100%)',
-                      textShadow: '0 0 14px rgba(132,96,234,0.6), 0 1px 4px rgba(0,0,0,0.5)',
-                      boxShadow: '0 0 0 1px hsla(252, 70%, 80%, 0.15), 0 8px 28px -10px rgba(132,96,234,0.55), 0 0 36px -10px rgba(180,140,255,0.4)',
-                      WebkitTapHighlightColor: 'transparent',
+                      color: 'hsl(0 0% 100% / 0.7)',
+                      textShadow: '0 0 14px rgba(132,96,234,0.45), 0 0 24px rgba(0,0,0,0.7), 0 1px 4px rgba(0,0,0,0.8)',
                     }}
                   >
-                    Start here
-                    <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5" />
-                  </button>
+                    Start here ↓
+                  </p>
                 </div>
               </header>
             </RevealSection>
