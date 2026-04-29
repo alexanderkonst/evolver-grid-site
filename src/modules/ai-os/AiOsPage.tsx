@@ -2755,7 +2755,7 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
                   below the content evenly. Desktop keeps the original
                   top-anchored layout (sm: resets min-height to auto
                   and re-applies the original padding). */}
-              <header className="text-center space-y-7 sm:space-y-8 relative pt-4 sm:pt-6 pb-12 flex flex-col justify-center min-h-[calc(100dvh-9rem)] sm:min-h-0">
+              <header className="text-center space-y-6 sm:space-y-8 relative pt-4 sm:pt-6 pb-4 sm:pb-12">
                 {/* Day 50 (Sasha): hero torus medallion retired — the
                     GameShell rail already carries the brand mark.
                     Day 53 evening (Sasha 2026-04-27): profile button + auth
