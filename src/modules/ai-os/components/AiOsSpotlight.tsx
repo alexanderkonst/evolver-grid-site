@@ -164,8 +164,14 @@ export default function AiOsSpotlight({ installPromptContent }: Props) {
         background:
           "linear-gradient(180deg, rgba(20, 28, 56, 0.92) 0%, rgba(14, 22, 44, 0.96) 100%)",
         border: "0.5px solid hsla(0, 0%, 100%, 0.10)",
-        boxShadow:
-          "0 0 0 1px hsla(40, 70%, 65%, 0.32), 0 16px 48px -16px rgba(244, 212, 114, 0.30), 0 32px 96px -32px rgba(244, 212, 114, 0.22), inset 0 1px 0 hsla(0, 0%, 100%, 0.10)",
+        // Day 55 (Sasha 2026-04-29): gold rim/glow box-shadow stack
+        // retired. The 1px gold rim was rendering as an unexplained
+        // "gold line" on mobile (and was a confounder during the panes-
+        // vanish desktop bug hunt). Section now relies on its dark
+        // gradient bg + subtle white border for definition; gold accents
+        // moved into the section's content (eyebrow, ratings) where
+        // they belong.
+        boxShadow: "inset 0 1px 0 hsla(0, 0%, 100%, 0.10)",
       }}
     >
       {/* Soft gold luminous accent — signals "this is THE thing" without
