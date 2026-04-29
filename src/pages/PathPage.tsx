@@ -338,7 +338,7 @@ const PathPage = () => {
 
             {/* ─── CTAs — Day 47 late pass (Sasha): page no longer dead-ends.
                 Primary lands Step 1 free (ZoG reveal); secondary lands the
-                $555 Ignition Session directly at the /ignite pricing block.
+                $555 Productize Yourself Session directly at the /ignite pricing block.
                 Skin-aware: both read in Aurora and Navy+Gold. */}
             <div className="mt-10 flex flex-col items-center gap-3">
               <Link
