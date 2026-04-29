@@ -2733,7 +2733,7 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
       <main
         className="relative z-10 min-h-screen w-full flex justify-center px-4 py-4 sm:px-6 sm:py-8 overflow-x-hidden"
       >
-        <div className="w-full max-w-[42rem] space-y-20">
+        <div className="w-full max-w-[42rem] space-y-12 sm:space-y-20">
 
           {/* Header — Day 51 (Sasha 2026-04-24): tightened padding stack.
               GameShellV2 already supplies pt-4; layered py-16+pt-12 was
