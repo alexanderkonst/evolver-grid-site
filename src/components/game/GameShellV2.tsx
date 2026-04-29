@@ -679,21 +679,40 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                     narrower (w-8 → w-5) and dressed with a subtle gold edge
                     glow to match the mockup's warm-metal seam between rail
                     and content.
-                    Day 51 (Sasha 2026-04-25): bg dropped to transparent so
-                    page-owned-bg routes (/ai-os) let the video extend
-                    underneath. The gold seam alone gives the column its
-                    presence — no need for an opaque navy strip. */}
+                    Day 54+ (Sasha 2026-04-28 night, definitive): three
+                    fixes together because the previous Day 51 "transparent
+                    on page-owned-bg" stance kept failing on /ai-os.
+                    1. Opaque navy bg (route-aware): page-owned-bg gets the
+                       same darker pane-2 overlay so the seam has an opaque
+                       anchor. Default routes get a subtle navy tint.
+                    2. Stronger gold seam + halo so the column reads as
+                       intentional, not as ambient page noise.
+                    3. **z-30 (this is the actual fix Sasha caught):** the
+                       button was rendering at correct x/y/size on /ai-os,
+                       but AiOsPage mounts fixed-position overlays at z-[1]
+                       (dark gradient + vignette — see AiOsPage.tsx ~L2664).
+                       The button had `position: relative` with no z-index
+                       → stacked at z-auto (=0) → covered by the z-1
+                       overlays. /journey has no such overlays, which is
+                       why the button showed there but not on /ai-os.
+                       z-30 puts the reopen column on the same stacking
+                       layer as pane 1 + pane 2, above page overlays. */}
                 {!sectionsPanelOpen && (
                     <button
                         onClick={toggleSectionsPanel}
-                        className="h-dvh sticky top-0 w-5 flex items-center justify-center transition-colors hover:bg-white/5 relative group bg-transparent"
+                        className={cn(
+                            "h-dvh sticky top-0 w-5 flex items-center justify-center transition-colors hover:bg-white/10 relative z-30 group",
+                            pageOwnsBackground
+                                ? "bg-[rgba(6,12,28,0.78)]"
+                                : "bg-[rgba(14,32,68,0.32)]"
+                        )}
                         title="Expand sidebar (⌘B)"
                         style={{
                             boxShadow:
-                                "inset -1px 0 0 rgba(212, 175, 55, 0.35), 2px 0 18px -6px rgba(244, 212, 114, 0.3)",
+                                "inset -1px 0 0 rgba(212, 175, 55, 0.5), 2px 0 18px -6px rgba(244, 212, 114, 0.4)",
                         }}
                     >
-                        <PanelLeft className="w-3 h-3 text-[#d4af37]/70 group-hover:text-[#d4af37] transition-colors" />
+                        <PanelLeft className="w-3 h-3 text-[#d4af37]/85 group-hover:text-[#d4af37] transition-colors" />
                     </button>
                 )}
 
