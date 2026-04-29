@@ -556,31 +556,42 @@ const SectionsPanel = ({
             className={cn(
                 "w-[260px] flex flex-col relative z-30",
                 "liquid-glass",
+                /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+                   DO NOT REVERT — pane 2 background-color rules.
+                   This has been silently re-broken three times by deploy
+                   commits replacing the responsive Tailwind classes with a
+                   single inline rgba(14,32,68,0.18). Each time, Sasha sees
+                   pane 2 mobile washed out against the bright bg-image
+                   frames ("I see the absence of an overlay on the second
+                   pane"). The bg MUST be route- + viewport-responsive —
+                   not a single inline value.
+
+                   Why:
+                     • Desktop default routes: 0.42 alpha — backdrop-blur
+                       gives glassmorphism, the lower opacity preserves
+                       bg-stream peek-through.
+                     • Mobile default routes: 0.55 alpha — backdrop-blur is
+                       disabled on mobile (perf, see .liquid-glass media
+                       query in index.css), so opacity carries all the
+                       weight. 0.18 disappears in the bg-cycle's bright
+                       cream zones; 0.55 holds the section list legibility.
+                     • Page-owned-bg routes (/ai-os): 0.78 across both
+                       viewports — the page mounts its own z-[1] full-
+                       screen overlays + starfield, eating the silk veil.
+                       Pane 2 needs a heavier anchor regardless of size.
+
+                   If you change these, test BOTH /ai-os AND the landing
+                   on BOTH mobile (390px) AND desktop (1440px). Otherwise
+                   you'll re-break the issue Sasha keeps catching. Keep
+                   the Tailwind responsive classes — inline single value
+                   is what gets reverted.
+                   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+                pageOwnsBackground
+                    ? "bg-[rgba(6,12,28,0.78)]"
+                    : "bg-[rgba(14,32,68,0.55)] lg:bg-[rgba(14,32,68,0.42)]",
                 className
             )}
-            /* Day 48 iter 8 (Sasha): Pane 2 now pulls the lit-navy overlay
-               (--skin-panel-2-bg). The flat 1px inset gold line retired
-               in favor of a vertical gradient "spine" (absolute-positioned
-               below) that mirrors pane 1 — both panes now read as the
-               same backlit book-binding. */
-            // Day 51 (Sasha 2026-04-25 r2): bg lowered further 0.30 → 0.18
-            // — Sasha likes the "curtain" effect where bg figure peeks
-            // through. Combined with backdrop-blur, reads as silk veil
-            // over the animated stream. border: none — same fix as Pane 1,
-            // removes liquid-glass's 0.5px white top border.
-            //
-            // Day 51 r3 (Sasha 2026-04-25 night): z-30 added so Pane 2 always
-            // sits above page-owned background overlays (e.g. /ai-os's
-            // z-[1] gradient + vignette + noise + StarryBackground). Without
-            // this, on /ai-os the overlays were drawn over the panel and
-            // Sasha saw the panel "disappear." On page-owned-bg routes the
-            // bg is also bumped from 0.18 → 0.55 so the section list stays
-            // legible on busy dark imagery — 0.18 alone got washed into
-            // invisibility against /ai-os's editorial scene.
             style={{
-                backgroundColor: pageOwnsBackground
-                    ? "rgba(12, 26, 56, 0.55)"
-                    : "rgba(14, 32, 68, 0.18)",
                 border: "none",
                 boxShadow:
                     "2px 0 22px -10px rgba(244, 212, 114, 0.22)",
