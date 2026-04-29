@@ -660,10 +660,24 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                     of the panel visually fell into a different "zone" once
                     the page scrolled. Sticky elements carry z-index
                     natively, so dropping `relative` doesn't cost the z-30. */}
+                {/* Day 54+ (Sasha 2026-04-28 night, definitive — DO NOT REVERT):
+                    `min-w-0 basis-0` is load-bearing for pane 2 collapse.
+                    The wrapper has `w-0` when collapsed but the child
+                    SectionsPanel is `w-[260px]`. In flex layout with
+                    `flex-basis: auto` (default), the child's content
+                    width becomes the flex basis — pinning the wrapper
+                    at 260px regardless of `w-0`. Pane 2 never actually
+                    collapsed; on /ai-os the reopen button rendered at
+                    x≈540 (after the still-visible 260px) where it was
+                    unreachable past the page content.
+                    Fix: `min-w-0` (allow shrinking past min-content) +
+                    `basis-0` on the collapsed state (force flex-basis: 0).
+                    DO NOT REMOVE without re-testing the desktop collapse/
+                    reopen flow on /ai-os AND /journey. */}
                 <div
                     className={cn(
-                        "transition-all duration-200 ease-out h-dvh sticky top-0 overflow-hidden z-30",
-                        sectionsPanelOpen ? "w-[260px]" : "w-0"
+                        "transition-all duration-200 ease-out h-dvh sticky top-0 overflow-hidden z-30 min-w-0",
+                        sectionsPanelOpen ? "w-[260px]" : "w-0 basis-0"
                     )}
                 >
                     <SectionsPanel
