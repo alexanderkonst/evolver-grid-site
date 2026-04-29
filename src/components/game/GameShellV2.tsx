@@ -537,15 +537,17 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
     //     nudgeBadges.push('collaborate');
     // }
 
-    // Hide-don't-lock (Sasha, 2026-04-21): a locked space just clutters the
-    // rail. Anywhere in the app, if a space isn't unlocked, hide it entirely —
-    // it reveals itself when the user earns it. JOURNEY and ME are always on.
-    const GATED_SPACES = ["next-move", "learn", "meet", "collaborate", "build", "buysell"] as const;
-    const hiddenSpaces: string[] = profileLoaded
-        ? GATED_SPACES.filter((id) => unlockStatus[id] === false)
-        : // During the profile fetch, default to hiding gated spaces so there's
-          // no lock-then-hide flicker on first load.
-          [...GATED_SPACES];
+    // Day 54 r6 (Sasha 2026-04-28): "show, but barely" — middle path between
+    // (a) hiding locked spaces entirely (platform reads as empty; cold
+    // visitor doesn't sense that the cosmos exists) and (b) showing them at
+    // full visibility (choice paralysis + dead-ends at top of funnel). The
+    // full Space registry now always renders in the rail. Locked chips
+    // appear at very low opacity — present enough that the lineage's full
+    // shape is sensed by anyone who leans in, faint enough they don't
+    // compete with the active path. The dim treatment is in SpacesRail's
+    // `isLocked` branch. `unlockStatus` still drives which chips are
+    // interactable; this is purely a hide → ghost shift.
+    const hiddenSpaces: string[] = [];
 
     // Navigation handlers
     const handleSpaceSelect = (spaceId: string) => {

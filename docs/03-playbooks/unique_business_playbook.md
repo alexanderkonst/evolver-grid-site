@@ -880,7 +880,94 @@ The destination (CC BY-SA + commercial dual-license) is one valid answer. **The 
 
 When the founder/firm distinction collapses (the founder IS the product, not a separable thing), what replaces the firm is **founder-as-nucleus + network-of-aligned-founders-as-orbit + tiered-intimacy-as-revenue-mechanism**. Sasha's name for this in his own work is the **Impact Founder Collective** (IFC). Other lenses on the same structure: *venture coop* (outside-in), *Sovereign Network* (brand handle), *Holonic Commons* (the commons layer specifically). See [`monetization_strategies.md`](../02-strategy/monetization_strategies.md) for the legal/economic mechanics that hold the IFC together (PolyForm-NC code · CC BY-NC-SA docs · CC BY-SA scaffold · Distributor Agreement · 10% rev-share · per-founder Specificity Matrix · opt-in commons).
 
-> *Relates to: Principle 1 (Copernican Inversion — start with founder's genius, not market gap), Principle 2 (Open Blueprint Paradox — sharing the methodology IS the moat), Principle 3 (P×M×D=ONE — person/methodology/delivery as one holon), Principle 15 (Specificity Loop — per-founder voice). The Self-Monetizing Founder is what these earlier principles look like when fully expressed at the **business architecture** layer rather than the **artifact** layer.*
+### The Self-Knowledge → Self-Business Map
+
+The 7 steps of the value ladder are the **structure** (masculine) — what gets produced. Each step also requires an **inner transformation** (feminine) — the alchemy by which the founder becomes capable of producing that step's artifact authentically. Anyone can copy the artifacts; the artifact only carries the founder's signal if the corresponding alchemy has actually happened.
+
+Each step below: the **step alchemy** is the inner transformation for the step as a whole. The **per-artifact phrases** are the alchemical move required to produce each specific artifact within that step.
+
+#### Step 1 · Name Your Top Talent *(free)*
+
+🔴 **Step alchemy:** Stop trying to manufacture distinction. The talent that's been visible to others your whole life — what they've referred you for, what's effortless for you and astonishing to them — is already there. Your work is to recognize what they've been seeing, not invent something new.
+
+🔵 **Artifact:**
+
+- *Top Talent reveal (one sentence)* — Name what you've been doing all along, out loud.
+
+#### Step 2 · Articulate it with Precision
+
+🔴 **Step alchemy:** Stop hedging. The Specificity Loop (Principle 15) is the law: at 7/10 articulation people nod politely and walk away; at 9.5+/10 the right people light up. Keep refining the words until your tribe shows you their face — not until you feel sure (you'll never feel fully sure), but until the recognition lands in someone else.
+
+🔵 **Artifacts:**
+
+- *One-sentence unique business statement* — Compress your work down to one sentence the right person can repeat back to a stranger.
+- *Bullseye sentence* — The exact line that hits in your tribe member's chest, written in their language.
+- *Vibrational Key* — The frequency signature; the energy your work carries when you're in flow.
+- *Master Tuning Forks (full / compressed / transformation arc)* — The same signal at three compressions for different surfaces.
+
+#### Step 3 · Enhance it with Business Structure
+
+🔴 **Step alchemy:** Specificity REPELS the wrong people, and that's a feature. Until your tribe definition is sharp enough to make some people walk away on their own, you don't yet have a tribe — you have an audience. Reckon with what you've been actually solving for others without ever naming it. The pain you reach for in conversation, the transformation you've actually delivered (not the one in your head): name those out loud, in their words.
+
+🔵 **Artifacts:**
+
+- *Tribe / ICP (5-layer)* — Who specifically. Not demographics — psychographics + lived situation + felt language.
+- *Pain (Point A, 5-layer slicer)* — What they're suffering, named in their words at the layer they actually feel it.
+- *Dream Outcome (Point B)* — Where they'd be with the transformation, in their language not yours.
+- *Transformational Promise* — The exact bridge from A → B that you commit to.
+- *Method (MAP → MATCH → MOVE)* — The process you actually use to deliver, named honestly.
+
+#### Step 4 · Build your First Unique Product
+
+🔴 **Step alchemy:** Surrender perfectionism. The first version of the product is not the final version — it's a question you're asking the market. Your job is to make the question crisp enough to get a real answer. Charge before you feel ready, because pricing IS part of the question; without money flowing, the answer is incomplete.
+
+🔵 **Artifacts:**
+
+- *Product / Container structure* — The shape of the offer (session, cohort, retainer, etc.) — small enough to deliver, big enough to transform.
+- *Pricing* — Priced for the outcome the customer can achieve, not for your hourly cost.
+- *Godfather Offer* — The unrefusable framing that makes the answer obvious to the right person.
+- *Channel* — Where you find them; one channel done deeply, not many done shallowly.
+
+#### Step 5 · Beta-Test by Gifting / Selling
+
+🔴 **Step alchemy:** Receive money as confirmation, not as threat. Let "no" land without crisis. The feedback you actually get (from people who actually paid + actually went through the container) is the only feedback that matters — not the feedback you imagine, not the feedback from people who didn't buy. Iterate on real signal.
+
+🔵 **Artifacts:**
+
+- *Beta cohort* — The first 3–7 people through the container.
+- *Feedback loop* — How you collect what they tell you, including what they don't say.
+- *Iteration log* — What you changed between cohort 1 and cohort 2; the methodology earns shape only when it's been tested under real money.
+- *Proof (embodied credibility)* — The before/after artifacts, named honestly. Not testimonials manufactured for marketing; transformation visible to anyone watching.
+
+#### Step 6 · Laser-Focus Tactically + Go Live
+
+🔴 **Step alchemy:** Become the broadcast. Your daily public presence IS the marketing — there is no separation between "doing the work" and "selling the work." Embody the offer in every conversation; let visibility be a discipline, not a vanity. The work in public is the only sales mechanism that scales without diluting you.
+
+🔵 **Artifacts:**
+
+- *Public Broadcast Cadence* — What you put out, where, on what rhythm. Daily-ish, not viral spike.
+- *Golden DM Architecture* — The hand-crafted outreach pattern: mirror first, name structural insight, crisp offer, permission-giving exit.
+- *Live Funnel surfaces* — The pages, threads, and channels where the aligned tribe lands and self-converts.
+- *Distribution channel* — One primary channel done deeply (LinkedIn for consultants, Substack for methodology authors, etc.), not five done shallowly.
+
+#### Step 7 · Turn Organic Growth into Scaling Impact
+
+🔴 **Step alchemy:** Release attachment to being the only deliverer. Trust the methodology to live in others. Become the source rather than the sole channel. The corpus is the moat; the founders you've trained are the hands. The work continues at scale because you've made it transferable, not because you've cloned yourself.
+
+🔵 **Artifacts:**
+
+- *Collaborator network / Impact Founder Collective* — The constellation of aligned founders organized around the methodology, not employees in a hierarchy.
+- *Productized education* — The methodology itself, packaged so others can teach it (cohorts, courses, certification path).
+- *Certification path* — The trust ramp by which trained collaborators earn the right to deliver in your register.
+- *Trained successors* — Specific named people who can deliver the lower-tier sessions in your style, freeing your time for higher-leverage tiers.
+
+### What this map reveals
+
+The masculine column alone is what most playbooks teach — produce these artifacts in this sequence. Anyone can copy the artifacts. The feminine column is **why most attempts fail**: each artifact only carries the founder's signal if the corresponding alchemy has actually happened. A Top Talent statement written by someone who hasn't recognized what others see in them reads as performance. A Beta-Test priced by someone who hasn't surrendered perfectionism gets buried under endless revision before any money flows.
+
+**The integration is what makes the founder = body-of-work = business possible.** Without the feminine column, you have a SaaS-style product attempt that won't fit the founder. Without the masculine column, you have spiritual development that doesn't pay rent. Both columns, in honest succession, step by step — that's the alchemy of self-knowledge into self-business.
+
+> *Relates to: Principle 1 (Copernican Inversion — start with founder's genius, not market gap), Principle 2 (Open Blueprint Paradox — sharing the methodology IS the moat), Principle 3 (P×M×D=ONE — person/methodology/delivery as one holon), Principle 15 (Specificity Loop — per-founder voice). The Self-Monetizing Founder is what these earlier principles look like when fully expressed at the **business architecture** layer rather than the **artifact** layer. The Self-Knowledge → Self-Business Map (Day 54+, April 28, 2026) is the practical decomposition for founders applying the principle to their own 7-step ladder.*
 
 ---
 
