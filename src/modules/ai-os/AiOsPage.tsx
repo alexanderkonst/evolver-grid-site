@@ -2505,13 +2505,19 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
   useEffect(() => {
     const prevBodyBg = document.body.style.backgroundColor;
     const prevHtmlBg = document.documentElement.style.backgroundColor;
+    const prevBodyOverflow = document.body.style.overflow;
+    const prevHtmlOverflow = document.documentElement.style.overflow;
     document.body.style.backgroundColor = '#08101f';
     document.documentElement.style.backgroundColor = '#08101f';
+    document.body.style.overflow = 'hidden';
+    document.documentElement.style.overflow = 'hidden';
     document.body.classList.add('ai-os-hide-root-scrollbar');
     document.documentElement.classList.add('ai-os-hide-root-scrollbar');
     return () => {
       document.body.style.backgroundColor = prevBodyBg;
       document.documentElement.style.backgroundColor = prevHtmlBg;
+      document.body.style.overflow = prevBodyOverflow;
+      document.documentElement.style.overflow = prevHtmlOverflow;
       document.body.classList.remove('ai-os-hide-root-scrollbar');
       document.documentElement.classList.remove('ai-os-hide-root-scrollbar');
     };
