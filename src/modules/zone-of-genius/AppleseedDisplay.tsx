@@ -203,7 +203,7 @@ const AppleseedDisplay = ({
               /zone-of-genius, /playbook, /path.
             */}
 
-            <div className="relative z-10 max-w-2xl mx-auto px-4 pt-2 pb-16 sm:pb-20 space-y-6">
+            <div className="relative z-10 max-w-2xl mx-auto px-4 pt-2 pb-32 sm:pb-40 space-y-6">
                 {/* Epic Revelatory Hero - The core genius reveal.
                     Day 47 late pass (Sasha): dropped `darkMode` so the hero uses
                     the light palette (dark slate text on soft white gradient) —
@@ -448,7 +448,7 @@ const AppleseedDisplay = ({
                         className="text-center text-xs italic"
                         style={{ color: "var(--skin-text-muted-soft, rgba(26,30,58,0.62))" }}
                     >
-                        Or read the methodology first.
+                        Or read the methodology first:
                     </p>
 
                     {/* CTA 2 (SECONDARY): See the exact playbook —
