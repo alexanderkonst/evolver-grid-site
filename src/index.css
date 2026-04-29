@@ -1682,18 +1682,30 @@ All colors MUST be HSL.
 /* Metaprompt's own glass system — evolver already defines .liquid-glass /
    .liquid-glass-strong with different visuals, so we override them only
    inside the metaprompt page. */
+/* Day 55 (Sasha 2026-04-29) — DEFINITIVE FIX, DO NOT REVERT.
+   `backdrop-filter` retired ENTIRELY for /ai-os glass surfaces (desktop
+   AND touch). Each `backdrop-filter` element is a viewport-sized GPU
+   compositing layer that creates a new stacking context. With the
+   page-wide fixed-position video + multiple `liquid-glass-strong`
+   sections (suites-nav, prompt cards, pricing), Chrome desktop drops
+   the sibling sticky panes (rail z-30, sections panel z-30) out of the
+   render tree the moment one of these surfaces enters the viewport on
+   scroll — Sasha's recurring "1st and 2nd panes gone, page gets stuck"
+   bug. Solid-ish dark backgrounds give the same editorial weight; the
+   blur was imperceptible against the page's dark gradient anyway. The
+   touch override below is now redundant but kept for clarity. */
 [data-ai-os] .liquid-glass {
-  background: hsla(228, 25%, 8%, 0.55);
-  backdrop-filter: blur(12px) saturate(1.2);
-  -webkit-backdrop-filter: blur(12px) saturate(1.2);
+  background: hsla(228, 25%, 8%, 0.78);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
   border: 1px solid hsla(240, 20%, 100%, 0.08);
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 [data-ai-os] .liquid-glass::before { content: none; }
 [data-ai-os] .liquid-glass-strong {
-  background: hsla(228, 25%, 8%, 0.65);
-  backdrop-filter: blur(16px) saturate(1.4);
-  -webkit-backdrop-filter: blur(16px) saturate(1.4);
+  background: hsla(228, 25%, 8%, 0.85);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
   border: 1px solid hsla(240, 20%, 100%, 0.12);
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
