@@ -2530,6 +2530,33 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
 
   // Per-page SEO — sets browser tab title on /ai-os and per-suite sub-routes.
   // Global og: tags from index.html still apply.
+  // ============================================================
+  // [TEST B/C — iOS crash bisection, 2026-04-29] REMOVE AFTER DIAG
+  // ?diag=b → return a bare smoke div. All imports + top-level
+  //   constants (PROMPTS, META_PROMPTS, SUITE_FUSIONS, groupedPrompts)
+  //   were already evaluated at module load, so this isolates
+  //   "module evaluation cost" from "render cost". If iOS Chrome
+  //   survives ?diag=b, the killer is in the render tree.
+  // ?diag=c → render only the fixed background layers + the hero
+  //   <h1>. No <main>, no prompts list, no AiOsSpotlight, no
+  //   SectionsPanel. Isolates "hero compositing layers" from
+  //   "body content".
+  // ============================================================
+  const diagMode =
+    typeof window !== 'undefined'
+      ? new URLSearchParams(window.location.search).get('diag')
+      : null;
+  if (diagMode === 'b') {
+    return (
+      <div style={{ padding: 40, color: '#fff', background: '#08101f', minHeight: '100vh', font: '14px monospace' }}>
+        ai-os smoke test (diag=b) — render skipped, module evaluated
+      </div>
+    );
+  }
+  // ============= END TEST B EARLY-RETURN =============
+
+  // Per-page SEO — sets browser tab title on /ai-os and per-suite sub-routes.
+  // Global og: tags from index.html still apply.
   useEffect(() => {
     const prev = document.title;
     document.title = focusCategory
