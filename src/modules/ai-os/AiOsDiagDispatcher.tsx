@@ -65,10 +65,11 @@ const AiOsDiagDispatcher = ({ focusCategory }: Props) => {
     return <SmokeBWithModuleLoad />;
   }
 
-  // For diag=c — render AiOsPage in hero-only mode.
-  if (diag === "c") {
+  // For diag=c (and sub-bisect c1..c5) — render AiOsPage in hero-only mode.
+  // The page itself reads the diag param to pick the layer level.
+  if (diag === "c" || diag === "c1" || diag === "c2" || diag === "c3" || diag === "c4" || diag === "c5") {
     return (
-      <Suspense fallback={<SmokeDiv tag="diag=c loading" />}>
+      <Suspense fallback={<SmokeDiv tag={`diag=${diag} loading`} />}>
         <LazyAiOsPage focusCategory={focusCategory} __diagHeroOnly />
       </Suspense>
     );
