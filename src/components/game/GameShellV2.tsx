@@ -788,15 +788,18 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                     the wrapper at top:0 so fixed bg videos reach the top
                     edge as intended. */}
                 <main
-                    // Day 51 night (Sasha 2026-04-25): `overflow-auto`
-                    // dropped. It was creating a non-scrolling sticky
-                    // context — sticky descendants (e.g. /playbook's
-                    // 7-step spine) tried to react to main's scroll, but
-                    // main grows with content so html scrolls instead;
-                    // sticky elements never engaged. Without overflow,
-                    // sticky correctly references the document root.
+                    // Day 51 night: `overflow-auto` was historically dropped
+                    // here so non-/ai-os routes (e.g. /playbook) can use
+                    // document-scroll sticky.
+                    // Day 56 (Sasha 2026-04-29): on /ai-os desktop the
+                    // shell is now a true app-shell — pane 3 is the only
+                    // vertical scroller. Other routes keep their original
+                    // document-scroll behavior.
                     className={cn(
-                        "flex-1 min-h-dvh relative z-10 bg-transparent",
+                        "flex-1 relative z-10 bg-transparent",
+                        isAiOsRoute
+                            ? "ai-os-desktop-content-scroll h-dvh min-h-0 overflow-y-auto overflow-x-hidden scrollbar-hide"
+                            : "min-h-dvh",
                         pageOwnsBackground ? "" : "pt-4"
                     )}
                 >
