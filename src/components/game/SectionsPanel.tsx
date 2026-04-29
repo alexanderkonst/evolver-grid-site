@@ -89,13 +89,13 @@ const SPACE_SECTIONS: SpaceSections = {
             },
             {
                 id: "ai-os-benchmark",
-                label: "Benchmark",
+                label: "Benchmarking",
                 path: "/ai-os/benchmark",
             },
             {
                 id: "ai-os-pricing",
-                label: "Pricing",
-                path: "/ai-os/pricing",
+                label: "Work with us",
+                path: "/ai-os/work-with-us",
             },
         ],
     },
