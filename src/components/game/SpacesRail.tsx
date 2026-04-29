@@ -288,11 +288,19 @@ const SpacesRail = ({
             // logo, JOURNEY chip, and labels read clearly against the
             // busy dark scene.
             style={{
+                // Day 55 (Sasha 2026-04-29): bumped pageOwnsBackground alpha
+                // 0.86 → 0.96 so the rail holds its weight without help
+                // from a backdrop-filter (which has been retired entirely
+                // — see below).
                 backgroundColor: pageOwnsBackground
-                    ? "rgba(10, 22, 48, 0.86)"
+                    ? "rgba(10, 22, 48, 0.96)"
                     : "rgba(10, 22, 50, 0.98)",
-                backdropFilter: pageOwnsBackground && !isTouchDevice ? "blur(20px) saturate(140%)" : undefined,
-                WebkitBackdropFilter: pageOwnsBackground && !isTouchDevice ? "blur(20px) saturate(140%)" : undefined,
+                // Day 55 (Sasha 2026-04-29): backdrop-filter retired entirely
+                // (was already off on touch). On Chrome desktop too, the
+                // viewport-tall blurred backdrop region was contributing to
+                // the "/ai-os panes vanish on scroll" stacking-context bug.
+                // Solid bg color does the visual work; the blur effect was
+                // imperceptible against the dark page bg anyway.
                 border: "none",
                 boxShadow:
                     "3px 0 28px -10px rgba(244, 212, 114, 0.22)",
