@@ -147,7 +147,6 @@ export default function AiOsSpotlight({ installPromptContent }: Props) {
 
   return (
     <section
-      id="ai-os-spotlight"
       aria-labelledby="ai-os-spotlight-heading"
       // Day 55 (Sasha 2026-04-29): `liquid-glass-strong` retired here.
       // Its `backdrop-filter: blur(30px) saturate(200%)` was creating a
