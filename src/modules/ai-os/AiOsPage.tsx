@@ -2731,9 +2731,9 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
       )}
 
       <main
-        className="relative z-10 min-h-screen w-full flex justify-center px-4 py-4 sm:px-6 sm:py-8 overflow-x-hidden"
+        className="relative z-10 w-full flex justify-center px-4 pt-2 pb-4 sm:min-h-screen sm:px-6 sm:py-8 overflow-x-hidden"
       >
-        <div className="w-full max-w-[42rem] space-y-12 sm:space-y-20">
+        <div className="w-full max-w-[42rem] space-y-6 sm:space-y-20">
 
           {/* Header — Day 51 (Sasha 2026-04-24): tightened padding stack.
               GameShellV2 already supplies pt-4; layered py-16+pt-12 was
@@ -2755,7 +2755,7 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
                   below the content evenly. Desktop keeps the original
                   top-anchored layout (sm: resets min-height to auto
                   and re-applies the original padding). */}
-              <header className="text-center space-y-6 sm:space-y-8 relative pt-4 sm:pt-6 pb-4 sm:pb-12">
+              <header className="text-center space-y-4 sm:space-y-8 relative pt-1 sm:pt-6 pb-0 sm:pb-12">
                 {/* Day 50 (Sasha): hero torus medallion retired — the
                     GameShell rail already carries the brand mark.
                     Day 53 evening (Sasha 2026-04-27): profile button + auth
@@ -2862,16 +2862,22 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
                     on both AiOsPage and AiOsSpotlight has been resolved
                     (see the install wrapper below - id="ai-os-install"
                     + data-ai-os-install-target). */}
-                <div className="flex items-center justify-center gap-3 pt-4 sm:pt-6 flex-wrap">
-                  <a
-                    href="#ai-os-install"
-                    onClick={(e) => {
+                <div className="flex items-center justify-center gap-3 pt-2 sm:pt-6 flex-wrap">
+                  <button
+                    type="button"
+                    onPointerUp={(e) => {
+                      // Day 57 r3 (Sasha 2026-04-29): pointerup, not click.
+                      // On iOS the prior <a> click could be swallowed when
+                      // focus stayed on the same element after the first tap,
+                      // making the button feel "dead" on subsequent presses.
+                      // pointerup fires reliably; we run scroll logic ourselves
+                      // and explicitly blur to release focus.
+                      const btn = e.currentTarget as HTMLButtonElement;
                       const target =
                         document.querySelector<HTMLElement>('[data-ai-os-install-target]') ||
                         document.getElementById('ai-os-install');
                       if (!target) return;
-                      e.preventDefault();
-                      (e.currentTarget as HTMLAnchorElement).blur();
+                      btn.blur();
 
                       const findScroller = (node: HTMLElement | null): HTMLElement | null => {
                         let el: HTMLElement | null = node?.parentElement ?? null;
@@ -2900,12 +2906,12 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
                           16;
                         scroller.scrollTo({ top: Math.max(0, offset), behavior });
                       } else {
-                        const offset =
-                          target.getBoundingClientRect().top + window.scrollY - 16;
-                        window.scrollTo({ top: Math.max(0, offset), behavior });
+                        target.scrollIntoView({ behavior, block: 'start' });
                       }
+
+                      requestAnimationFrame(() => btn.blur());
                     }}
-                    className="inline-flex items-center gap-2 text-sm font-medium tracking-wide px-6 py-3 rounded-full transition-all duration-300 [@media(hover:hover)]:hover:scale-[1.04] active:scale-[0.98] group cursor-pointer touch-manipulation select-none no-underline"
+                    className="inline-flex items-center gap-2 text-sm font-medium tracking-wide px-6 py-3 rounded-full transition-all duration-300 [@media(hover:hover)]:hover:scale-[1.04] active:scale-[0.98] group cursor-pointer touch-manipulation select-none"
                     style={{
                       background: 'linear-gradient(135deg, hsla(252, 70%, 70%, 0.32) 0%, hsla(242, 60%, 60%, 0.22) 100%)',
                       border: '1px solid hsla(252, 60%, 80%, 0.45)',
@@ -2917,7 +2923,7 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
                   >
                     Start here
                     <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5" />
-                  </a>
+                  </button>
                 </div>
               </header>
             </RevealSection>
