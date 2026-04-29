@@ -388,7 +388,7 @@ const buildJourneySections = (_currentPath: string): Section[] => {
     // the fog-of-war fade intact.
     return [
         { id: "journey-start-here",        label: "1. Start by finding your top talent", path: "/" },
-        { id: "journey-the-playbook",      label: "2. Take the whole playbook",          path: "/playbook" },
+        { id: "journey-the-playbook",      label: "2. Take the playbook",                path: "/playbook" },
         { id: "journey-the-path",          label: "3. See the shortcut path to your business", path: "/path" },
         { id: "journey-dashboard",         label: "4. See how we're building this",      path: "/dashboard" },
         {
@@ -407,7 +407,7 @@ const buildJourneySections = (_currentPath: string): Section[] => {
         },
         {
             id: "journey-asset-mapper",
-            label: "7. Map your essence",
+            label: "7. Map your assets",
             path: "/asset-mapping",
             locked: true,
             lockedHint: "Unlocks after you discover your mission.",
