@@ -2653,92 +2653,12 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
     design: '#b1c9b6',
   };
 
-  // ============================================================
-  // [TEST C — iOS crash bisection, 2026-04-29] REMOVE AFTER DIAG
-  // Hero-only render with sub-bisection layers c1..c5. Each step
-  // adds ONE more compositing concern on top of the previous.
-  // Whichever step flips from "survives" to "crashes" on iPhone
-  // Chrome is the GPU killer.
-  //
-  //   c1 = solid bg + plain <h1> text (no filters at all)
-  //   c2 = c1 + fixed background <img> (poster)
-  //   c3 = c2 + dark gradient overlay + radial vignette overlay
-  //   c4 = c3 + drop-shadow filter stack on the <h1>
-  //   c5 = c4 + SVG feTurbulence noise-overlay (== full hero)
-  //   c  = legacy alias for c5 (full hero)
-  //
-  // All hooks above this line have already been called, so hook
-  // order remains stable across renders.
-  // ============================================================
-  if (__diagHeroOnly) {
-    const diagParam = typeof window !== 'undefined'
-      ? new URLSearchParams(window.location.search).get('diag')
-      : null;
-    const level = diagParam === 'c1' ? 1
-      : diagParam === 'c2' ? 2
-      : diagParam === 'c3' ? 3
-      : diagParam === 'c4' ? 4
-      : 5; // c, c5, or anything else => full
+  // Day 55 (Sasha 2026-04-29): iOS Chrome /ai-os crash root cause was
+  // identified by query-param bisection (see git history at this date)
+  // as the stacked drop-shadow filter on the hero <h1>. Fix lives in
+  // index.css under .ai-os-glow-text-* — drop-shadow on desktop, cheap
+  // text-shadow halo on touch devices.
 
-    const heroFilter = level >= 4
-      ? 'drop-shadow(0 0 60px rgba(132,96,234,0.6)) drop-shadow(0 0 120px rgba(132,96,234,0.35)) drop-shadow(0 0 200px rgba(180,140,255,0.2))'
-      : 'none';
-    const heroTextStyle: React.CSSProperties = level >= 4
-      ? {
-          fontSize: 'clamp(2.4rem, 11vw, 5rem)',
-          background: 'linear-gradient(135deg, hsl(0 0% 100%) 0%, hsl(242 40% 90%) 50%, hsl(290 30% 88%) 100%)',
-          WebkitBackgroundClip: 'text',
-          WebkitTextFillColor: 'transparent',
-          backgroundClip: 'text',
-          filter: heroFilter,
-        }
-      : {
-          fontSize: 'clamp(2.4rem, 11vw, 5rem)',
-          color: '#fff',
-        };
-
-    return (
-      <div data-ai-os className="ai-os-root" style={{ background: '#08101f', minHeight: '100vh' }}>
-        {/* c2+ : background poster image */}
-        {level >= 2 && (
-          <img
-            src={aiOsBgPoster}
-            alt=""
-            aria-hidden="true"
-            className="fixed inset-0 w-screen h-screen object-cover z-0"
-            style={{ minWidth: '100vw', minHeight: '100vh', objectPosition: '50% center' }}
-          />
-        )}
-        {/* c3+ : dark gradient + radial vignette overlays */}
-        {level >= 3 && (
-          <>
-            <div className="fixed inset-0 z-[1]" style={{ background: 'linear-gradient(180deg, rgba(10,22,50,0.55) 0%, rgba(8,16,30,0.86) 45%, rgba(5,9,18,0.95) 100%)' }} />
-            <div className="vignette-overlay z-[1]" />
-          </>
-        )}
-        {/* c5 : SVG feTurbulence noise overlay */}
-        {level >= 5 && <div className="noise-overlay" />}
-        <main className="relative z-10 min-h-screen w-full flex flex-col items-center justify-center px-4 py-20">
-          <h1
-            className="font-display italic font-normal leading-[1.1] tracking-[-0.04em] sm:tracking-[-0.06em] pb-2 mx-auto w-fit max-w-full"
-            style={heroTextStyle}
-          >
-            AI <span className="font-bold" style={{ fontStyle: 'italic' }}>OS</span>
-          </h1>
-          <p style={{ marginTop: 24, color: '#fff', fontFamily: 'monospace', fontSize: 12, opacity: 0.7, textAlign: 'center' }}>
-            diag=c{level === 5 ? '' : level} — hero layer {level} of 5
-            <br />
-            {level === 1 && 'solid bg + plain text only'}
-            {level === 2 && '+ background poster image'}
-            {level === 3 && '+ dark gradient + radial vignette'}
-            {level === 4 && '+ drop-shadow filter stack on <h1>'}
-            {level === 5 && '+ SVG feTurbulence noise overlay (full hero)'}
-          </p>
-        </main>
-      </div>
-    );
-  }
-  // ============= END TEST C HERO-ONLY BRANCH =============
 
   return (
     <div data-ai-os className="ai-os-root">
