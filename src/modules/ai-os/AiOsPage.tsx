@@ -2888,14 +2888,16 @@ const AiOsPage = ({ focusCategory, __diagHeroOnly }: AiOsPageProps = {}) => {
                   // Day 50 (Sasha): tightened the hero clamp so the
                   // wordmark never overruns narrow phones. Tracking also
                   // snaps tighter on mobile to prevent italic-tail clip.
-                  className="font-display italic font-normal leading-[1.1] tracking-[-0.04em] sm:tracking-[-0.06em] pb-2 mx-auto w-fit max-w-full"
+                  // Day 55 (Sasha 2026-04-29): glow moved to
+                  // .ai-os-glow-text-strong — drop-shadow on desktop,
+                  // cheap text-shadow halo on touch (iOS GPU OOM fix).
+                  className="ai-os-glow-text-strong font-display italic font-normal leading-[1.1] tracking-[-0.04em] sm:tracking-[-0.06em] pb-2 mx-auto w-fit max-w-full"
                   style={{
                     fontSize: 'clamp(2.4rem, 11vw, 5rem)',
                     background: 'linear-gradient(135deg, hsl(0 0% 100%) 0%, hsl(242 40% 90%) 50%, hsl(290 30% 88%) 100%)',
                     WebkitBackgroundClip: 'text',
                     WebkitTextFillColor: 'transparent',
                     backgroundClip: 'text',
-                    filter: 'drop-shadow(0 0 60px rgba(132,96,234,0.6)) drop-shadow(0 0 120px rgba(132,96,234,0.35)) drop-shadow(0 0 200px rgba(180,140,255,0.2))',
                   }}
                 >
                   AI <span className="font-bold" style={{ fontStyle: 'italic' }}>OS</span>
