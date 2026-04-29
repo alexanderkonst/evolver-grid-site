@@ -108,15 +108,6 @@ const RADAR_DATA = [
   { perspective: "LR-Imp", fullLabel: "System at Scale", value: 5, fullMark: 10 },
 ];
 
-const CHANNELS = [
-  { name: "Epicenter Broadcasts (DMs)", status: "active", emoji: "🟢", detail: "5 sent, 3 responded. Intuitive batches. Domain 65" },
-  { name: "Referral Bridges", status: "active", emoji: "🟢", detail: "Karime → Patricia + Chris. Organic frequency translation" },
-  { name: "Collaborator Network", status: "active", emoji: "🟢", detail: "Kirill (licensee), Anton (ZoG taker), Roso/Cori (demo)" },
-  { name: "Social (TG · IG · FB)", status: "active", emoji: "🟢", detail: "3 surfaces activated Apr 8. Grind addiction post live" },
-  { name: "Content Cadence", status: "ready", emoji: "🟡", detail: "Infographic Episodes ~60% complete. 10 viral posts queued" },
-  { name: "Partnership (Upstream)", status: "seed", emoji: "🌱", detail: "Self-knowledge practitioners → 'Now what?' → us" },
-];
-
 // ─── Helpers ────────────────────────────────────────────────────────────────
 
 const formatCurrency = (v: number) => (v >= 1000 ? `$${(v / 1000).toFixed(1)}K` : `$${v}`);
@@ -692,29 +683,6 @@ const VentureDashboard = () => {
         </section>
 
         <Ornament className="my-10" />
-
-        {/* ═══════ DISTRIBUTION CHANNELS ═══════ */}
-        <section id="channels-section" className="mb-12">
-          <h2 className="text-2xl md:text-3xl font-medium mb-6 text-center" style={{ ...serif, ...textPrimary, ...haloStrong }}>
-            Distribution Channels
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-            {CHANNELS.map((ch) => (
-              <div
-                key={ch.name}
-                className="rounded-xl p-4 transition-all duration-300 hover:translate-y-[-1px]"
-                style={cardStyle}
-                id={`channel-${ch.name.toLowerCase().replace(/\s/g, "-")}`}
-              >
-                <div className="flex items-center gap-2 mb-1.5">
-                  <span className="text-xs">{ch.emoji}</span>
-                  <span className="text-xs font-medium" style={textPrimary}>{ch.name}</span>
-                </div>
-                <p className="text-[11px] leading-relaxed" style={textMuted}>{ch.detail}</p>
-              </div>
-            ))}
-          </div>
-        </section>
 
         {/* ═══════ FOOTER ═══════ */}
         <footer
