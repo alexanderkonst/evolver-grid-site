@@ -3674,14 +3674,13 @@ const AiOsPage = ({ focusCategory, __diagHeroOnly }: AiOsPageProps = {}) => {
                   I call this layer
                 </p>
                 <p
-                  className="font-display italic font-bold leading-none"
+                  className="ai-os-glow-text-knoware font-display italic font-bold leading-none"
                   style={{
                     fontSize: 'clamp(2.4rem, 8vw, 3.6rem)',
                     background: 'linear-gradient(135deg, hsl(0 0% 100%) 0%, hsl(195 50% 88%) 50%, hsl(242 45% 88%) 100%)',
                     WebkitBackgroundClip: 'text',
                     WebkitTextFillColor: 'transparent',
                     backgroundClip: 'text',
-                    filter: 'drop-shadow(0 0 50px rgba(96,180,234,0.55)) drop-shadow(0 0 100px rgba(132,96,234,0.3))',
                   }}
                 >
                   Knoware.
