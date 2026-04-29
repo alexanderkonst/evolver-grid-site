@@ -28,7 +28,6 @@
 // almost always sees them clicked within 10 minutes, so this is fine. A
 // long-TTL invite-token backup is Phase 2 — see roadmap entry.
 
-import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 // Admin-only endpoint that sends a magic link to a target email using the service role.
 // Only callers with the 'admin' role (per public.has_role) may invoke.
 
