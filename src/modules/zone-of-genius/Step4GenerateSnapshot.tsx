@@ -709,7 +709,20 @@ ${snapshotText}`;
                   the snapshot, sends a magic-link email, and enqueues the
                   3-email nurture sequence.
                   ═══════════════════════════════════════════════════════ */}
-              <div className="max-w-md mx-auto pt-2">
+              <div className="max-w-md mx-auto pt-2 space-y-2">
+                {/* Day 52 (Sasha): primary path now leads into the Me profile,
+                    where deeper detail + mastery stages activate the talent. */}
+                <a
+                  href="/game/me"
+                  className="w-full flex items-center justify-center gap-2 p-3 rounded-full text-xs font-semibold text-white hover:scale-[1.015] active:scale-[0.985] transition-all duration-300"
+                  style={{
+                    backgroundImage:
+                      "linear-gradient(135deg, #a06d08 0%, #7a5108 45%, #6b4208 100%)",
+                  }}
+                >
+                  <span>Activate your full Genius Profile</span>
+                  <ArrowRight className="w-3.5 h-3.5 opacity-80" />
+                </a>
                 {saveState === "saved" ? (
                   <p className="text-center text-xs" style={{ color: "var(--skin-text-muted-soft, rgba(26,30,58,0.6))" }}>
                     ✓ Saved. We sent your Top Talent to your inbox so you can come back to it.
@@ -722,7 +735,7 @@ ${snapshotText}`;
                     style={{ color: "var(--skin-text-muted, rgba(26,30,58,0.7))" }}
                   >
                     <Mail className="w-3.5 h-3.5" />
-                    <span>Save my top talent result for later</span>
+                    <span>Or just email me my result</span>
                   </button>
                 ) : (
                   <form

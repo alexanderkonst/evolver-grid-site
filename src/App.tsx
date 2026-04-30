@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route, Navigate, useLocation, useParams } from "
 import CustomCursor from "@/components/CustomCursor";
 import SiteLogo from "@/components/SiteLogo";
 import RequireAuth from "@/components/RequireAuth";
+import MeGate from "@/components/MeGate";
 // AnimatedBackground removed for minimal SaaS design
 import PageTransition from "@/components/PageTransition";
 import ErrorBoundary from "@/components/ErrorBoundary";
@@ -392,20 +393,20 @@ const App = () => (
                       here post-auth (via magic link from save-result email)
                       and see their fuller Top Talent profile directly. */}
                   <Route path="/game/me" element={<Navigate to="/game/me/zone-of-genius" replace />} />
-                  <Route path="/game/me/overview" element={<RequireAuth><ProfileOverview /></RequireAuth>} />
+                  <Route path="/game/me/overview" element={<MeGate><ProfileOverview /></MeGate>} />
                   {/* Legacy ME-space Profile Settings now redirects to the unified Settings. */}
                   <Route path="/game/me/settings" element={<Navigate to="/game/settings?tab=profile" replace />} />
-                  <Route path="/game/me/mission" element={<RequireAuth><ProfileMissionSection /></RequireAuth>} />
-                  <Route path="/game/me/assets" element={<RequireAuth><ProfileAssetsSection /></RequireAuth>} />
-                  <Route path="/game/me/genius-business" element={<RequireAuth><GeniusBusiness /></RequireAuth>} />
-                  <Route path="/game/me/genius-business/audience" element={<RequireAuth><GeniusBusinessAudience /></RequireAuth>} />
-                  <Route path="/game/me/genius-business/promise" element={<RequireAuth><GeniusBusinessPromise /></RequireAuth>} />
-                  <Route path="/game/me/genius-business/channels" element={<RequireAuth><GeniusBusinessChannels /></RequireAuth>} />
-                  <Route path="/game/me/genius-business/vision" element={<RequireAuth><GeniusBusinessVision /></RequireAuth>} />
-                  <Route path="/game/me/zone-of-genius" element={<RequireAuth><ZoneOfGeniusOverview /></RequireAuth>} />
-                  <Route path="/game/me/zone-of-genius/:perspectiveId" element={<RequireAuth><ZoGPerspectiveView /></RequireAuth>} />
-                  <Route path="/game/me/canvas" element={<RequireAuth><CanvasOverviewPage /></RequireAuth>} />
-                  <Route path="/game/me/art" element={<RequireAuth><ArtPage /></RequireAuth>} />
+                  <Route path="/game/me/mission" element={<MeGate><ProfileMissionSection /></MeGate>} />
+                  <Route path="/game/me/assets" element={<MeGate><ProfileAssetsSection /></MeGate>} />
+                  <Route path="/game/me/genius-business" element={<MeGate><GeniusBusiness /></MeGate>} />
+                  <Route path="/game/me/genius-business/audience" element={<MeGate><GeniusBusinessAudience /></MeGate>} />
+                  <Route path="/game/me/genius-business/promise" element={<MeGate><GeniusBusinessPromise /></MeGate>} />
+                  <Route path="/game/me/genius-business/channels" element={<MeGate><GeniusBusinessChannels /></MeGate>} />
+                  <Route path="/game/me/genius-business/vision" element={<MeGate><GeniusBusinessVision /></MeGate>} />
+                  <Route path="/game/me/zone-of-genius" element={<MeGate><ZoneOfGeniusOverview /></MeGate>} />
+                  <Route path="/game/me/zone-of-genius/:perspectiveId" element={<MeGate><ZoGPerspectiveView /></MeGate>} />
+                  <Route path="/game/me/canvas" element={<MeGate><CanvasOverviewPage /></MeGate>} />
+                  <Route path="/game/me/art" element={<MeGate><ArtPage /></MeGate>} />
                   {/* Legacy redirects */}
                   <Route path="/game/profile" element={<Navigate to="/game/me" replace />} />
                   <Route path="/game/profile/*" element={<Navigate to="/game/me" replace />} />
