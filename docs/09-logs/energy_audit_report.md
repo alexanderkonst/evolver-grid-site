@@ -534,4 +534,78 @@ The methodology and the discoveries are unchanged. The system that teaches the P
 
 ---
 
-*Phase 1 + Phase 2 + Phase 3 complete. 28 findings flagged; 18 reframed and applied (5 HIGH + 13 MEDIUM); 10 LOW preserved with reasoning. 16 files modified.*
+# Phase 4 — Embedded skill sync (2026-04-30)
+
+> *Sasha extended scope to AI OS prompts + landing copy. Re-scoped to Group C only after his "do not auto-edit landing page / top-talent reveal copy" instruction. AI OS prompts (Group A) and IgniteSession decision-line (Group B) deferred — landing-page copy review will happen as a suggestions pass, not auto-applied.*
+
+## Files modified (1)
+
+| File | Edits | Pattern shift |
+|---|---|---|
+| `src/modules/ai-os/AiOsPage.tsx` | 2 | `evolutionary-mastery-skill` embedded copy resynced from cleaned `.agent/evolutionary-mastery-skill.md`: "I do not default to Stage 1" → "deliberate down-shifts when context calls for them"; "Anti-Patterns I Reject" → "Patterns to watch for" with "naming the drift is enough — once seen, the altitude resets" |
+
+## What was checked and left alone
+
+- `src/modules/ai-os/AiOsPage.tsx:1041` — embedded moonshot pre-prompt content (`first holon must test...`). Source `.agent/moonshot-pre-prompt.md` was LOW in Phase 1 and not changed; embedded copy stays in sync.
+- `src/modules/ai-os/AiOsPage.tsx:1295-1459` — embedded `self-awareness-skill` content. Source `.agent/self-awareness-skill.md` was clean in Phase 1 and not changed; embedded copy stays in sync.
+- `src/modules/ai-os/AiOsPage.tsx:554-1016` — composite `ai-skill-claude` v4.03. Grep for the cleaned phrases ("Apply it without exception", "All AI agents MUST", "Therefore, when working with Alexander", "Match the altitude") returned no hits — the composite doesn't carry stale fragments from the operating-manual-side files.
+- `src/prompts/*` (4 files) — deferred per Sasha's instruction; the upstream cleanup will likely suggest cleaner prompt copy organically when revisited.
+- ZoG funnel surfaces (`ZoneOfGeniusEntry`, `AppleseedDisplay`, `GeniusQuiz`) — off-limits per Sasha's "do not auto-change top-talent reveal" instruction. Suggestions pass to be surfaced separately.
+- `IgniteSession.tsx` decision-line copy — methodology-aligned; left by default.
+
+## Verification
+
+| Phrase | Source | Embedded |
+|---|---|---|
+| "deliberate down-shifts when context calls for them" | `.agent/evolutionary-mastery-skill.md:13` ✓ | `AiOsPage.tsx:1166` ✓ |
+| "Patterns to watch for" | `.agent/evolutionary-mastery-skill.md:91` ✓ | `AiOsPage.tsx:1261` ✓ |
+| "Stage 1 drift" | `.agent/evolutionary-mastery-skill.md:95` ✓ | `AiOsPage.tsx:1265` ✓ |
+| "naming the drift is enough — once seen, the altitude resets" | `.agent/evolutionary-mastery-skill.md:101` ✓ | `AiOsPage.tsx:1271` ✓ |
+
+Old phrases ("I do not default to Stage 1", "Anti-Patterns I Reject") confirmed absent via grep in both `.agent/` and `AiOsPage.tsx`.
+
+---
+
+# Phase 5 — Landing & top-talent reveal copy (2026-04-30)
+
+> *Sasha asked for a fresh suggestions pass on the landing & top-talent reveal surfaces with the post-cleanup lens. Surfaced the candidates; he picked the ones to apply. Hero gold-gradient drop was attempted then reverted on his call ("both should be accented, I already know"). All applied edits verified live via preview MCP at localhost:8080 — console clean.*
+
+## Files modified (3)
+
+| File | Edits | Pattern shift |
+|---|---|---|
+| `src/modules/zone-of-genius/AppleseedDisplay.tsx` | 1 | Bridge question grammar: "What if you shining this top talent bright IS your business?" → "What if shining this top talent bright IS your business?" (drop "you" — gerund without subject reset) |
+| `src/modules/zone-of-genius/ZoneOfGeniusEntry.tsx` | 2 | Route choice descriptions parallelized — Faster: "Ask your AI & paste its response → get your pattern instantly" → "Paste from your AI. See your pattern."; Guided: "Assessment of your top talents" → "Take the full assessment." Casual time labels (1 min / 10–15 min) preserved at top of each card |
+| `src/pages/IgniteSession.tsx` | 3 | Qualifier intro: "You've proven your value—for other people. The question is: What is yours to build?" → "What is yours to build?" (Sasha: "Implies one has to prove their value. But they don't"). Final decision (pricing section): "You don't need more time to figure this out. You need to decide if this becomes real." → "More time isn't what's missing. The decision is the move." Final collapse line: "It either becomes something real now — or it stays something you keep thinking about." → "It can become something real now — or stay something you keep thinking about." |
+
+## Reverted (mid-turn correction)
+
+| File | Reverted | Reason |
+|---|---|---|
+| `src/modules/zone-of-genius/ZoneOfGeniusEntry.tsx` | Removed gold gradient from "actually pay for?", then restored both gold accents | Sasha: "both should be accented, I already know" — design call already deliberated upstream |
+
+## Verification
+
+| Surface | Verified | How |
+|---|---|---|
+| ZoG hero — both gold accents present | ✓ | DOM inspect via preview_eval — both phrases have `bg-clip-text` + GOLD_TEXT_STYLE (1) |
+| ZoG route choice — new descriptions | ✓ | DOM scrape: "Faster (1 min) / Paste from your AI. See your pattern." + "Guided (10–15 min) / Take the full assessment." present (2) |
+| /ignite — qualifier intro = "What is yours to build?" alone | ✓ | DOM scrape returned the exact line; "proven your value" absent (3) |
+| /ignite — final decision softened | ✓ | DOM scrape: "More time isn't what's missing. The decision is the move." present; old "You need to decide if this becomes real" absent (4) |
+| /ignite — final collapse softened | ✓ | DOM scrape: "It can become something real now — or stay something you keep thinking about." present; old "It either becomes" absent (5) |
+| Console errors | ✓ | preview_console_logs `level=error` returned no logs (6) |
+
+## What was checked and left alone
+
+- ZoG entry hero structure (the two-question stack) — Sasha did not approve the collapse to one question; both questions and both gold accents kept.
+- `Index.tsx` "Transformational" word repetition (3× in one viewport) — flagged but not approved for application; awaits Sasha's separate call.
+- IgniteSession Pain Card chain logic, "We do it together in 2 hours / Or you don't pay" guarantee, "If you're still thinking about this after watching… you already know" Resonance Permission line, FAQ block, the painful quote list, the About section, "What Happens In 2 Hours" steps — all CLEAN, methodology-aligned, untouched.
+- AI OS prompts in `src/prompts/*` — deferred per Sasha's earlier instruction to let upstream clarity organically suggest cleaner downstream copy.
+
+## Browser preview verification
+
+Server: `vite-dev` on `localhost:8080` (preview MCP serverId `c2209eae-ba7c-4e5f-8ea8-02fcd3f958a4`). Pages exercised: `/zone-of-genius` (entry → choice-route via "Find my top talent" click), `/ignite` (full page load). Console: zero errors. Screenshot of `/ignite` hero captured for visual confirmation; layout intact.
+
+---
+
+*Phase 1 + 2 + 3 + 4 + 5 complete. 28 audit findings + Phase 5 light copy improvements applied. Total: 26 reframes across 20 files (5 HIGH + 13 MEDIUM upstream + 2 sync edits in AiOsPage.tsx + 6 landing/reveal/ignite edits). 10 LOW preserved. AI OS prompts deferred. Audit thread closed pending Sasha's signal.*

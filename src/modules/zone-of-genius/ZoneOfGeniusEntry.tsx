@@ -866,7 +866,7 @@ const ZoneOfGeniusEntry = () => {
                                             className="text-xs mt-0.5 leading-relaxed"
                                             style={{ color: "rgba(245,245,250,0.65)" }}
                                         >
-                                            Ask your AI & paste its response → get your pattern instantly
+                                            Paste from your AI. See your pattern.
                                         </p>
                                     </div>
                                 </div>
@@ -905,7 +905,7 @@ const ZoneOfGeniusEntry = () => {
                                             className="text-xs mt-0.5 leading-relaxed"
                                             style={{ color: "rgba(245,245,250,0.65)" }}
                                         >
-                                            Assessment of your top talents
+                                            Take the full assessment.
                                         </p>
                                     </div>
                                 </div>
