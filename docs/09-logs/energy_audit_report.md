@@ -608,4 +608,51 @@ Server: `vite-dev` on `localhost:8080` (preview MCP serverId `c2209eae-ba7c-4e5f
 
 ---
 
-*Phase 1 + 2 + 3 + 4 + 5 complete. 28 audit findings + Phase 5 light copy improvements applied. Total: 26 reframes across 20 files (5 HIGH + 13 MEDIUM upstream + 2 sync edits in AiOsPage.tsx + 6 landing/reveal/ignite edits). 10 LOW preserved. AI OS prompts deferred. Audit thread closed pending Sasha's signal.*
+# Phase 6 — System-prompt naming + WIIFM (2026-04-30)
+
+> *Carve-out from the audit (different job — incorporating new naming + value prop, not distortion cleanup), but kept on the same receipt since it's the same surfaces. Sasha's three updates: (1) AI OS main prompt is now formally called "system prompt" with version, (2) "meta" category becomes "System Prompts" — a category that "already existed" but now named, (3) WIIFM = "higher quality output on same quality input." With critical preservation requirement: do not lose the previous version.*
+
+## Versioning archive — new convention
+
+| Path | Purpose |
+|---|---|
+| [`system-prompts/`](../../system-prompts/) | **NEW** standout folder at repo root (not buried). Frozen archive of every shipped system-prompt version. |
+| [`system-prompts/README.md`](../../system-prompts/README.md) | Versioning convention explained. Major bump = structural change. Minor bump = refinement. Once snapshotted, never edited. |
+| [`system-prompts/v5.0/system-prompt.md`](../../system-prompts/v5.0/system-prompt.md) | Frozen v5.0 — full 903-line, 40,613-char assembled prompt as users get it today |
+| [`system-prompts/v5.0/manifest.json`](../../system-prompts/v5.0/manifest.json) | Snapshot metadata: components, char/line count, source file, snapshot date |
+| [`scripts/snapshot-system-prompt.mjs`](../../scripts/snapshot-system-prompt.mjs) | Reproducible snapshot tool. Reads `AiOsPage.tsx`, extracts the `meta-cognition-premium` assembly recipe (vibeporting + ai-self-awareness + boost-intel + evolutionary-mastery + moonshot + holonic seeing layer), writes to `system-prompts/v<n>/`. Run on every version bump. |
+
+## Files modified (3)
+
+| File | Edits | Pattern shift |
+|---|---|---|
+| `src/modules/ai-os/AiOsPage.tsx` | 2 | `CATEGORY_LABELS.meta`: "AI Cognition Power-Ups" → "System Prompts" (formal naming of the category). `meta-cognition-premium` label: "OUR LATEST & GREATEST AI UPGRADE" → "SYSTEM PROMPT V5.0" (explicit version surfaced); description rewritten to lead with "Higher quality output on the same input" + caveat "(Unless AI is new to you — build a baseline first; the upgrade lands hardest when you have one.)" |
+| `src/modules/ai-os/components/AiOsSpotlight.tsx` | 4 | Body copy reworked: "Sharper from message one. Faster on everyday tasks, deeper on complex ones. No trade-offs." → "Same input you'd give — higher quality output. Faster on everyday tasks, deeper on complex ones. (Unless AI is new to you — build a baseline first.)" Test-prompt instruction: "install AI OS" → "install the system prompt". Step 2 instruction: "Paste the AI OS install" → "Paste the system prompt". Install button label: "Copy AI OS install" → "Copy system prompt"; aria-label updated to match |
+
+## What was preserved deliberately
+
+- `AI OS` brand stays — the platform identity is `AI OS`. The system prompt is *one product within* AI OS, not a rename of the brand.
+- Hero subtitle "Permanent level-up to AI cognition. Instant install." + "Same model. Different conversation." — left intact. The WIIFM lives in the spotlight body where users decide; the hero stays brand-frame.
+- Spotlight headline "One paste. Permanent AI upgrade." — iconic, kept.
+- `meta-cognition-boost` ("AI COGNITION FOUNDATION", the free entry version) — left as the foundation entry; only the premium recommended version got the V5.0 label.
+- The `eyebrow "Read this · 30 seconds"` — operational pacing cue, kept.
+
+## Verification
+
+Server: `vite-dev` on `localhost:8080` (preview MCP serverId `12ac76f7-c1e6-4483-8e94-0fc76d5ada12`). Page exercised: `/ai-os`. Console: zero errors.
+
+| Check | Result |
+|---|---|
+| `Spotlight body shows "Same input you'd give — higher quality output"` | ✓ confirmed via DOM scrape |
+| `Step 2 reads "Paste the system prompt"` | ✓ |
+| `Install button reads "Copy system prompt"` | ✓ |
+| `Old "Copy AI OS install" / "Sharper from message one" / "AI Cognition Power-Ups" absent` | ✓ all three confirmed gone |
+| `v5.0 archive frozen at system-prompts/v5.0/system-prompt.md` | ✓ 903 lines, 40,613 chars, 5 components + holonic layer |
+
+## Note on metadata-only changes
+
+The `SYSTEM PROMPT V5.0` label and the new description are stored in the `meta-cognition-premium` Prompt object. The Spotlight component renders its own headline/body and doesn't display the prompt's `label`/`description` fields, and the chip-nav explicitly filters out the `meta` category. So those two metadata fields are not visibly surfaced on `/ai-os` today — they're correct in the data layer for any future UI that displays them. The visible re-naming work flows through the Spotlight body, button, and step instructions (already verified above).
+
+---
+
+*Phase 1 + 2 + 3 + 4 + 5 + 6 complete. 28 audit findings + 6 light copy improvements + system-prompt naming/WIIFM update + new versioning archive. Total: 32 reframes across 21 files; 1 new folder (`system-prompts/`) with v5.0 frozen; 1 new snapshot script. 10 LOW audit findings preserved. AI OS prompts in `src/prompts/` still deferred. Thread closed pending Sasha's signal.*

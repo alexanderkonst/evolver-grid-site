@@ -41,7 +41,7 @@ interface Prompt {
 // The four read as siblings now, not a noun+gerund mix. The "Suite"
 // suffix lives in SUITE_TITLE for per-suite document.title only.
 const CATEGORY_LABELS: Record<string, string> = {
-  meta: "AI Cognition Power-Ups",
+  meta: "System Prompts",
   clarity: "Clarify",
   iteration: "Iterate",
   deployment: "Vibe Code",
@@ -2166,8 +2166,8 @@ const META_PROMPTS: Prompt[] = [
   },
   {
     id: "meta-cognition-premium",
-    label: "OUR LATEST & GREATEST AI UPGRADE",
-    description: "World-class unfair advantage. +42% to AI meta-cognition — measured, blind-protocol (see benchmark). Palpably sharper answers, fewer blind spots, deeper reasoning, more integral perspective — from the first message. Compounds with every model upgrade (1.45× per Claude generation). Constantly updated.",
+    label: "SYSTEM PROMPT V5.0",
+    description: "Higher quality output on the same input. +42% to AI meta-cognition — measured, blind-protocol (see benchmark). Palpably sharper answers, fewer blind spots, deeper reasoning, more integral perspective — from the first message. Compounds with every model upgrade (1.45× per Claude generation). Constantly updated. (Unless AI is new to you — build a baseline first; the upgrade lands hardest when you have one.)",
     locked: true,
     isRecommended: true,
     category: "meta",
