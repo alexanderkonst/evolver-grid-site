@@ -455,8 +455,7 @@ const IgniteSession = () => {
             <BoldText>This Is For You If</BoldText>
           </h2>
           <p className="text-sm text-white/55 text-center max-w-md mx-auto leading-relaxed">
-            You've proven your value—for other people.<br/>
-            The question is: What is yours to build?
+            What is yours to build?
           </p>
           <div className="space-y-2 max-w-md mx-auto">
             {[
@@ -474,9 +473,6 @@ const IgniteSession = () => {
               </div>
             ))}
           </div>
-          <p className="text-xs text-white/45 text-center max-w-sm mx-auto leading-relaxed">
-            You've proven your value—for other people. The question is: What is yours to build?
-          </p>
         </section>
 
 
@@ -635,8 +631,8 @@ const IgniteSession = () => {
 
           {/* Final decision */}
           <p className="text-xs text-white/55 font-medium">
-            You don't need more time to figure this out.<br/>
-            You need to decide if this becomes real.
+            More time isn't what's missing.<br/>
+            The decision is the move.
           </p>
 
           {/* Resonance Permission */}
@@ -741,8 +737,8 @@ const IgniteSession = () => {
 
           {/* Final Collapse Line */}
           <p className="text-sm text-white/60 font-medium max-w-sm mx-auto pt-2">
-            It either becomes something real now —<br/>
-            or it stays something you keep thinking about.
+            It can become something real now —<br/>
+            or stay something you keep thinking about.
           </p>
 
           <PrimaryCTA id="final-close-btn" showPrice={false} />
