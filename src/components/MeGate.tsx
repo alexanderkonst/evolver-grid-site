@@ -82,7 +82,7 @@ const SaveProfileCard = ({ onSuccess }: { onSuccess: () => void }) => {
         e.preventDefault();
         setLoading(true);
         try {
-            const { error } = await supabase.auth.signUp({
+            const { data, error } = await supabase.auth.signUp({
                 email: email.trim(),
                 password,
                 options: {
@@ -91,6 +91,24 @@ const SaveProfileCard = ({ onSuccess }: { onSuccess: () => void }) => {
                 },
             });
             if (error) throw error;
+            // Edge case: signup with an already-registered email returns no
+            // error but a fake user with empty identities[] and no session.
+            // Tell the user plainly and switch them toward the return tab.
+            const identities = (data.user as any)?.identities;
+            if (data.user && Array.isArray(identities) && identities.length === 0) {
+                toast({
+                    title: "Looks like you've been here before",
+                    description: "Use the 'Coming back' tab with your password to open your profile.",
+                });
+                return;
+            }
+            if (!data.session) {
+                toast({
+                    title: "Almost there",
+                    description: "Check your email for a confirmation link, then come back.",
+                });
+                return;
+            }
             toast({
                 title: "Saved.",
                 description: "Your profile is now yours to come back to.",
