@@ -218,8 +218,9 @@ export default function AiOsSpotlight({ installPromptContent }: Props) {
             textShadow: "0 0 14px rgba(0,0,0,0.85), 0 1px 4px rgba(0,0,0,0.7)",
           }}
         >
-          Paste into a fresh AI chat. Sharper from message one. Faster on
-          everyday tasks, deeper on complex ones. No trade-offs.
+          Paste into a fresh AI chat. Same input you'd give — higher quality
+          output. Faster on everyday tasks, deeper on complex ones. (Unless
+          AI is new to you — build a baseline first.)
         </p>
 
         {/* Soft divider */}
@@ -250,8 +251,8 @@ export default function AiOsSpotlight({ installPromptContent }: Props) {
               className="text-sm sm:text-base leading-relaxed max-w-2xl"
               style={{ color: "hsl(0 0% 100% / 0.85)", textShadow: "0 0 12px rgba(0,0,0,0.7)" }}
             >
-              One prompt. Run it now, install AI OS, run it again. You'll
-              feel the shift.
+              One prompt. Run it now, install the system prompt, run it
+              again. You'll feel the shift.
             </p>
           </div>
 
@@ -293,7 +294,7 @@ export default function AiOsSpotlight({ installPromptContent }: Props) {
           {/* Step 2 — install AI OS in a new chat, run the same prompt */}
           <div className="space-y-3">
             <ExperimentStep n={2}>
-              Open a <strong>new chat</strong>. Paste the AI OS install.
+              Open a <strong>new chat</strong>. Paste the system prompt.
               Then run the same prompt again.
             </ExperimentStep>
             <div>
@@ -310,10 +311,10 @@ export default function AiOsSpotlight({ installPromptContent }: Props) {
                   boxShadow:
                     "0 0 0 1px hsla(40, 75%, 75%, 0.20), 0 10px 32px -8px rgba(244,212,114,0.5), 0 0 48px -12px rgba(244,212,114,0.4)",
                 }}
-                aria-label="Copy AI OS install prompt to clipboard"
+                aria-label="Copy the system prompt to clipboard"
               >
                 {installCopied ? <Check className="w-5 h-5" /> : <Copy className="w-5 h-5" />}
-                {installCopied ? "Copied — paste into a new AI chat" : "Copy AI OS install"}
+                {installCopied ? "Copied — paste into a new AI chat" : "Copy system prompt"}
               </button>
             </div>
           </div>
