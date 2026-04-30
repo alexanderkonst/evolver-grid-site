@@ -51,7 +51,7 @@ This is the myth-level naming of the collective. The studio operates as the mast
 
 ## Core Beliefs
 
-These are non-negotiable:
+These eight beliefs hold the project's gravity. Decisions and copy that align with them tend to compound; ones that violate them surface friction quickly.
 
 1. **Everyone has genius** — it just needs articulation (4M unique profiles from 81 talents)
 2. **Growth creates results** — inner development precedes outer success

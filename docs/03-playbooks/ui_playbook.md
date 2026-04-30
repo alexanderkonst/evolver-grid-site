@@ -124,7 +124,7 @@ UX/UI
 
 ## The Five Pillars of UI
 
-> **CRITICAL:** These five pillars must be established BEFORE writing any CSS/components.
+> These five pillars come first — CSS and components built without them tend to feel cheap or break trust on first impression.
 
 ### Master Result
 

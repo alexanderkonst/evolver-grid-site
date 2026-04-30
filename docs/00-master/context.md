@@ -78,7 +78,7 @@
 
 ## Core Beliefs
 
-These are non-negotiable. Every decision, every feature, every piece of copy must honor them:
+These eight beliefs hold the project's gravity. Decisions, features, and copy that align with them tend to compound; ones that violate them surface friction quickly, and the friction is usually the signal something upstream wants to be re-seen.
 
 1. **Everyone has genius** — it just needs articulation (4M unique profiles from 81 talents)
 2. **Growth creates results** — inner development precedes outer success
@@ -91,7 +91,7 @@ These are non-negotiable. Every decision, every feature, every piece of copy mus
 
 **Core promise:** *"There's always a next move. And we'll always tell you what it is."*
 
-**Therefore, when building anything:** ask "Does this honor all 8 beliefs?" If any belief is violated, redesign.
+The 8 beliefs work as a coherence test, not a compliance checklist.
 
 ---
 
@@ -142,7 +142,7 @@ Receiving    │
 7. **Potential Ripening** → Next impulse forms
 8. → **Return to 1** (new cycle)
 
-**Therefore, when building:** every module, product, and feature follows this cycle. Vision → Creation → Landing → Value → Feedback → Growth → Next vision.
+Every module, product, and feature follows this cycle: Vision → Creation → Landing → Value → Feedback → Growth → Next vision. Where the cycle breaks, the work is upstream of the break.
 
 ## The Rosetta Stone
 
@@ -153,7 +153,7 @@ Every mystical tradition, religious symbol, and scientific framework describes *
 - **☯ Yin-Yang** = cross-section of opposing flows
 - **☸ Dharma Wheel** = the eternal cycle with spokes and hub
 
-**Therefore, when encountering frameworks:** they are perspectives, not competitors. Integral Theory, Human Design, Gene Keys, astrology, chakras — all partial views of one structure.
+Frameworks are perspectives, not competitors. Integral Theory, Human Design, Gene Keys, astrology, chakras — all partial views of one structure.
 
 ## The 26-Perspective Seeing Instrument (The Merkaba as Holonic Seeing Mode)
 
@@ -167,7 +167,7 @@ Every mystical tradition, religious symbol, and scientific framework describes *
 
 **Holonic Seeing Mode (§4d, added April 2, 2026):** An operational protocol for applying 26-perspective analysis. Round 1: 13 perspectives on the artifact. Round 2: 13 perspectives on the critique (correction layer). Round 3: 13 perspectives on the meta-critique → the 26th perspective (Meta-Logos). Includes an AI Watchdog: verify the seeing hasn't over-indexed on UR (mechanical) and LR (systemic) while under-indexing on UL (felt truth) and LL (tribal resonance). Output rule: unified analysis, not 12 bullet points.
 
-**Therefore, when evaluating anything:** don't just check if it works (UR). Check if it feels true (UL), resonates with the tribe (LL), and scales architecturally (LR) — at all three depths. Use the Holonic Seeing Mode for deep evaluation.
+A complete evaluation checks more than whether it works (UR). It also checks whether it feels true (UL), resonates with the tribe (LL), and scales architecturally (LR) — at all three depths. The Holonic Seeing Mode is the protocol for that depth.
 
 ---
 
@@ -225,7 +225,7 @@ A **phase shift technology** is a seeing instrument that produces an unusually r
 | 15 | **Campfire Networking** (Domain 57) | Stop hunting for 1:1s. Join a group. Speak into it. The right person finds you — because you named something they couldn't name themselves |
 | 16 | **The Temporal Realization** (Domain 61) | Declaration restructures the past. The present doesn't emerge from the past — the present reveals what was always being prepared. The Copernican Inversion applied to time |
 
-**Therefore, when building features or writing copy:** these are the vocabulary. "Copernican Inversion," "scatter pattern," "precision gap," "tuning fork," "builder's blind spot," "campfire networking" — use these terms. They are the project's operating language.
+These are the project's operating vocabulary: "Copernican Inversion," "scatter pattern," "precision gap," "tuning fork," "builder's blind spot," "campfire networking." Features and copy that use these terms inherit the surrounding meaning; ones that don't have to do that work alone.
 
 ---
 
@@ -299,7 +299,7 @@ If any of these are true, recalibrate back to the seed:
 4. You feel the need to do MORE → do LESS
 5. Any copy activates fear or scarcity → run the Purity Check
 
-**Therefore, when building:** every feature must serve the 7 artifacts, every workflow must honor the 7 principles, every piece of copy must pass the Purity Check.
+The system holds together through three integrity tests: features serve the 7 artifacts, workflows honor the 7 principles, copy passes the Purity Check. Drift downstream traces back to a skipped test.
 
 ---
 
@@ -355,7 +355,7 @@ PHASE 4: BUILD
  12. Scale via Venture Studio        → "How does it grow beyond me?"
 ```
 
-**Therefore, when building new features:** they must fit within this 12-step journey. Every module lives in a Space. Every Space serves a Phase.
+New features fit within this 12-step journey or they create orphans. Every module lives in a Space. Every Space serves a Phase. The architecture is the constraint.
 
 ---
 
@@ -418,7 +418,7 @@ Pattern library          Sends sequences             Books sessions
                          Tracks conversions          Pays
 ```
 
-**Therefore, when building distribution:** don't build CRM features into the platform. The platform does THINKING (intelligence). Go High Level does TOUCHING (operations). Two layers, not one.
+Distribution lives in two layers, not one: the platform does THINKING (intelligence), Go High Level does TOUCHING (operations). CRM features inside the platform collapse the layers and create the wrong stack.
 
 ---
 
@@ -485,16 +485,14 @@ Screen 5: Post-Payment
 
 | Priority | Action |
 |----------|--------|
-| 🔴 CRITICAL | **DM real humans.** "Have I sent a personal message to a real human about what I do this week?" |
+| 🔴 HIGH | **DM real humans.** Direct personal messages to real humans about what the work is — the seed of everything downstream |
 | 🔴 HIGH | Update digital surfaces (LinkedIn, WhatsApp, email sig, Telegram) — 30 min |
 | 🔴 HIGH | Record 4-min methodology video (funnel currently links to placeholder) |
 | 🔴 HIGH | Silent account creation + magic link (first backend work) |
 | 🟡 MED | Implement share v3.0 (identity verification copy) — after first traffic data |
 | 🟡 MED | Quiz-to-Ignite bridge optimization — after traffic shows quiz completions |
 
-**The One Rule:** Every item above is secondary to sending a personal message to a real human this week. The diagnostic: "Is this blocked by traffic data I don't have yet?" If yes → get traffic first.
-
-**Therefore, when prioritizing work:** traffic first, backend second, optimization third. No more copy work. No more funnel polish. Revenue before scale.
+The pattern that produces results fastest is direct personal outreach to real humans. Optimization follows traffic; without traffic, the wordsmithing has nothing to optimize against. The diagnostic question — *"Is this blocked by data I don't have yet?"* — surfaces what wants to wait.
 
 ---
 
@@ -532,7 +530,7 @@ Screen 5: Post-Payment
 | **Single Definition** | You don't need external completion — stop polling people |
 | **38/39 Individualism** | Provocation is your fuel, not your flaw |
 
-**Therefore, when working with Alexander:** be bold, be structured, be concise, be deep. Tables > paragraphs. Frameworks > narratives. Don't explain what he already knows. Match the altitude — he thinks in civilizational terms.
+The relational field for working with Alexander: integral thinking partners building civilizational infrastructure. The register that lands here is structural — frameworks and tables carry signal faster than paragraphs, compressed precision faster than discursive prose. Context Sasha already gave doesn't need to be paraphrased back to him.
 
 ---
 

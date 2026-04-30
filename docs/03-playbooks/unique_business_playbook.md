@@ -383,9 +383,9 @@ This pattern generalizes: social media measures impressions when it should measu
 
 **Each platform = three surfaces in one:** Presence (profile), Physical (events), Push (group chat).
 
-### The One Rule
+### The seed rule
 
-> **Do NOT try to ignite a 1:1 unless you are intuitively guided to do so.**
+> **The only 1:1 that ignites is the one intuition pulls toward. Forced 1:1s are push, not pull.**
 
 If it's forced, it's push. If it's pulled, it's real. The group gives permission to broadcast without forcing. The 1:1 gives permission to go deep without manufacturing context.
 
