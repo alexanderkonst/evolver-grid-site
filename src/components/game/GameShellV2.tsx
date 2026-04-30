@@ -378,6 +378,7 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
         const publicShellPaths =
             location.pathname === "/" ||
             location.pathname.startsWith("/game/journey") ||
+            location.pathname.startsWith("/game/me") ||
             location.pathname === "/game/settings";
         if (needsOnboarding && location.pathname.startsWith("/game") && !publicShellPaths) {
             navigate("/start");
