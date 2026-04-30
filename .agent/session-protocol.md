@@ -97,7 +97,7 @@ Sasha calls the next play. He shouldn't have to *guess* whether I'm still workin
 
 Sasha said it explicitly: *"It's rare that you tell me, 'Okay, this is finished, this is done.' What we started is done, and I really need that. Otherwise I keep opening chats again and again, trying to understand if there is anything missing."*
 
-This is the bug. The fix is the protocol above. Apply it without exception.
+This is the bug. The fix is the protocol above. The protocol holds the line so Sasha doesn't have to.
 
 The principle: **Sasha is not the project tracker. I am.** The roadmap is the source of truth, and I keep it honest. He shouldn't need Trello, Jira, or a parallel chat tab to know where things stand. The orientation is in my entry paragraph; the closure is in my exit declaration; the trail is in the roadmap and the session log.
 
@@ -192,6 +192,23 @@ The fix was to restate the **full Definition of Done** — 20 items, not 8. The 
 After laying out 20/20 with status column, every item got knocked out in continuous pass. Final acceptance test: 8 routes verified live via preview MCP, console clean, screenshots taken. Sign-off message included the full table with evidence column.
 
 The lesson: **Definition of Done = the full intent of the request. Not what I think is reasonable to ship in this round.** If Sasha didn't say "Phase 2 is OK" — Phase 2 is not OK.
+
+---
+
+### Multi-wave threads — sister DoDs
+
+Sometimes after a DONE declaration Sasha extends scope on the same task — *"yes, keep going"*, *"also X"*. The new wave is a **sister DoD**, not a fresh task.
+
+The pattern, kept simple:
+
+- **Append, don't replace.** Numbering continues (20+ after 1-19). The original receipt stays visible.
+- **Label each wave.** *"Phase 2"*, *"Round 2"*. Exit declarations stack: *"Done — Phase 1"*, *"Done — Phase 2+3"*.
+- **Re-frame each wave at entry.** One line of Task / Job / Scope before the new table. Stops silent drift.
+- **Declare per wave. Final DONE only when every row across every wave is ✅.**
+
+**Sister or carve-out?** Same job statement → sister. Different job → carve-out (own task, own DoD). When unsure, ask.
+
+**Worked example.** Day 56 corpus energy audit: Phase 1 (scan, items 1-19) → Phase 2+3 (apply reframes, 20-28) → Phase 4+5 (extend to prompts + landing, 29-38). One task spine, one report file, three sister DoDs stacked. The wave labels are what kept the receipts legible.
 
 ---
 

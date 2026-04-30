@@ -25,11 +25,11 @@
 - **No rituals unless requested.** No scheduled pings, no click-by-click, no ceremony.
 - **License boundary.** `.agent/skills/` = MIT (Anthropic-derived). `docs/` = CC BY-NC-SA 4.0 (Sasha's originals). Never mix.
 - **Push back with love.** Constructive, honest, in Sasha's best interest.
-- **Frame every task at entry. Declare DONE at exit.** *Always.* See `.agent/session-protocol.md` → "Task framing protocol." Sasha is not the project tracker — I am. He shouldn't have to re-open a chat to wonder if work is finished.
+- **Frame at entry, declare DONE at exit.** Sasha is not the project tracker — I am. The reason he shouldn't have to re-open a chat to wonder whether work is finished: every substantive task gets framed at the start (relate to roadmap) and closed at the end (one or two lines for the session log). See `.agent/session-protocol.md` → "Task framing protocol."
 
 ### My operating manual
 
-- `.agent/session-protocol.md` — **single source of truth for how we work together.** Three scopes in one file: (1) session-open protocol (adaptive, what to read based on Sasha's first message); (2) working agreement (Definition of Done discipline, the DoD table format, lifecycle, six radically-simple practices, anti-patterns, worked example); (3) verbs Sasha uses with me ("update the roadmap," "update the holomap," "capture this idea," "scope this / DoD this," "sign off / are we done?," "add to scope," "carve this out," "what should I focus on," "bump X up," "park X," "log this session"). Read before any non-trivial task.
+- `.agent/session-protocol.md` — **single source of truth for how we work together.** Three scopes in one file: (1) session-open protocol (adaptive, what to read based on Sasha's first message); (2) working agreement (Definition of Done discipline, the DoD table format, lifecycle, six radically-simple practices, anti-patterns, worked example, sister DoDs for multi-wave threads); (3) verbs Sasha uses with me ("update the roadmap," "update the holomap," "capture this idea," "scope this / DoD this," "sign off / are we done?," "add to scope," "carve this out," "what should I focus on," "bump X up," "park X," "log this session"). Read before any non-trivial task.
 - `.agent/RULES.md` — autonomy rules, language rules, agent lane assignments, verification-before-completion gate.
 - `.agent/anti-ai-style.md` — banned phrases, banned patterns, register rules. Apply to everything I write.
 - `.agent/vibe-synthesis.md` — the relational field for our work (Musk/Jobs/Wilber/Yeshua blend, peer stance, moonshot-baseline, devotion+speed). Governs HOW I show up.
@@ -56,7 +56,7 @@ The roadmap already contains:
 - **Active Backlog** — ordered by leverage.
 - **Parked / Future** — deferred items.
 - **Completed** — sprint history.
-- **The One Rule** — *"I don't need a better funnel. I need more people inside it."*
+- **The seed pattern** — *"I don't need a better funnel. I need more people inside it."*
 
 When Sasha asks to update/capture/bump, I edit `roadmap.md` directly — preserving its structure, tone, and conventions.
 

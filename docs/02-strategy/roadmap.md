@@ -438,11 +438,11 @@
 
 ---
 
-## The One Rule
+## The seed pattern
 
 > **"I don't need a better funnel. I need more people inside it."**
 >
-> The diagnostic: **"Is this blocked by traffic data I don't have yet?"** If yes → send more messages first. If no → build it.
+> The pattern that produces results fastest is direct personal outreach. The diagnostic question — *"Is this blocked by traffic data I don't have yet?"* — surfaces what wants to wait. If yes: more messages first. If no: build it.
 
 ---
 

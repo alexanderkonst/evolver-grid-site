@@ -95,8 +95,8 @@ Every self-knowledge community has practitioners who deliver diagnosis but hit a
 
 ## The Three Pillars of Distribution
 
-> **CRITICAL:** These pillars directly follow from Marketing Playbook output.
-> Conversion is not a pillar — it's the RESULT of good Marketing + good Distribution Reach.
+> These pillars follow directly from Marketing Playbook output.
+> Conversion is not a pillar — it's the result of good Marketing + good Distribution Reach.
 
 ### Marketing → Distribution Connection
 

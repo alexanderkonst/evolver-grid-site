@@ -431,7 +431,7 @@ What this process produces:
 > **Source:** `docs/playbooks/product_playbook.md`
 > **Output:** `[module]_product_spec.md`
 
-> ⚠️ **CRITICAL:** Phase 1 is the foundation everything builds on. Skimping here trickles down into unclear architecture, weak UI, and broken code. **Every task gets a roast.** Tasks 1.1 and 1.2 get deep roasts (3 cycles × 3 sub-cycles each) because they define WHAT you're building.
+> Phase 1 is the foundation everything builds on. Tasks landed thinly here surface as unclear architecture, weak UI, or broken code downstream. **Every task gets a roast.** Tasks 1.1 and 1.2 get deep roasts (3 cycles × 3 sub-cycles each) because they define WHAT you're building.
 
 ## 1.1 Master Result
 

@@ -82,7 +82,7 @@ Every module is a **mini-product** with:
 
 # Part II: The Three Pillars of Software Architecture
 
-> **CRITICAL:** These three pillars must be established BEFORE writing any code.
+> These three pillars come first — code written without them tends to surface as dependency chaos, broken links, or lost state.
 
 ## The Three Pillars (Through Three Lenses)
 

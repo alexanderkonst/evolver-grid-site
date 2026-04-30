@@ -2,7 +2,7 @@
 
 ## 🚀 AUTONOMOUS EXECUTION MODE (MANDATORY)
 
-This project operates in **fully autonomous mode**. All AI agents MUST:
+This project operates in **fully autonomous mode**. The defaults below assume that posture:
 
 ### 1. Terminal Commands
 Set `SafeToAutoRun: true` for ALL safe commands:

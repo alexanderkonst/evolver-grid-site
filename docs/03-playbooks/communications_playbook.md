@@ -197,7 +197,7 @@
 ### SURFACE 5: LinkedIn Post (5 min)
 
 **Image:** Square poster (or personal photo)
-**⚠️ CRITICAL:** Do NOT put the link in the post body. LinkedIn suppresses posts with outbound links.
+**Where the link goes:** in a comment, not the post body. LinkedIn suppresses posts with outbound links — putting the link in the body kills the post's reach before it starts.
 
 **Steps:**
 1. Open LinkedIn (web or app)

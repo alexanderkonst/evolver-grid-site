@@ -95,7 +95,7 @@ Marketing and distribution are **different phases of one continuous flow**:
 
 # Part II: The Three Pillars of Marketing
 
-> **CRITICAL:** These three pillars must be established BEFORE any tactics, channels, or messaging.
+> These three pillars come first — tactics, channels, and messaging that don't rest on them tend to drift.
 
 ## Master Result
 

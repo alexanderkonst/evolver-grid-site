@@ -817,7 +817,7 @@ Messaging makes conversion work. **Outreach makes volume happen.**
 | Surface | Role |
 |---------|------|
 | LinkedIn | Daily signal. Primary public surface |
-| DMs | Direct outreach. Non-negotiable. 10-20/day warm people |
+| DMs | Direct outreach to warm people, 10-20/day. The seed of the funnel — when the rest stalls, this is upstream of the stall |
 | Past clients | Reactivation. "I've evolved what I do" |
 | Email | Nurture. Magic link returnees |
 | Communities | Presence. Not selling — signaling |

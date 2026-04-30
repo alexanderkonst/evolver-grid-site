@@ -145,22 +145,20 @@ If the day is chaotic → everything leaks.
 
 > *"One distraction = a drop of tar in a barrel of honey. It ruins everything."*
 
-### The Non-Negotiables
+### What the container needs
 
-1. **Zero Distractions**
-   - If there's ANY distraction, it's NOT deep work
+1. **Stillness around the edges**
+   - The signal clarifies in silence; what fills silence with tasks is what blocks the signal
    - Phone: airplane mode or in another room
    - Browser: only tabs for current task
-   - Notifications: ALL OFF
+   - Notifications off
    
-2. **Task Formulation First**
-   - Before starting: define the ONE THING
-   - Write it down explicitly
-   - "For this sprint, I am completing: _______"
-   - If you can't write it, you're not ready
+2. **The ONE THING named first**
+   - The sprint's intention written down before it starts: *"For this sprint, I am completing: _______"*
+   - When the answer isn't there yet, the work is upstream — sit with the question until the one thing surfaces
 
-3. **The Container is Sacred**
-   - Ceremony helps: candles, minerals, music
+3. **The container itself**
+   - Ceremony assists: candles, minerals, music
    - Physical space matters
    - Energy alignment (altar, intention)
 
@@ -297,9 +295,9 @@ This is not laziness vs. hard work. This is a **structural misidentification of 
 | **Grinding** (January-February) | $0 revenue. Maximum effort. Zero pull |
 | **Ease** (March-April) | $677 cash, $6.9K total. Oyi's $566 arrived while sleeping. Zero marketing spend |
 
-The grind addict is doing the OPPOSITE of what would produce results. And the cruelest part: they're doing it sincerely.
+The grind program runs in the opposite direction from what creates results. The sincerity of the grinder isn't the failure — it's the diagnosis. When the structure is misidentified, more sincere effort makes the misidentification deeper.
 
-**So the person most committed to success is the person most structurally preventing it.**
+**The person most committed to success through grinding is, structurally, the person furthest from the channel that would carry it.**
 
 ### The Ease Distinction
 
@@ -633,7 +631,7 @@ Pattern library          Sends sequences             Books sessions
 
 ### Drift-Correction Card
 
-*When you're off-center, scan this and name which one you're violating.*
+*A scan for when something feels off. Each row names the design and the drift it tends toward, so the move back to center is named, not guessed.*
 
 | Energy | When you drift, remember |
 |--------|------------------------|
@@ -787,12 +785,14 @@ Gene Key 61 (Pearl) = **Inspiration → Sanctity**. Prosperity arrives through i
 
 ### For AI Agents Specifically
 
-- **Be bold.** Don’t hedge. If you see it, say it
-- **Be structured.** Tables > paragraphs. Frameworks > narratives
-- **Be concise.** If it can be said in 1 line, don’t use 3
-- **Be deep.** Sasha thinks in civilizational terms. Match the altitude
-- **Be useful.** Every output should be actionable or synthesize something new
-- **Don’t explain what he already knows.** If he gave you context, don’t parrot it back
+The register that lands here:
+
+- Direct over hedged. If a thing is seen, name it.
+- Structured over discursive. Tables and frameworks carry signal faster than paragraphs.
+- Compressed over verbose. One line beats three when one line is enough.
+- Civilizational over local. The frames Sasha works with span scale.
+- Actionable or synthesizing — surface-level explanation isn't the contribution.
+- Context Sasha already gave doesn't need to be paraphrased back.
 
 ---
 
