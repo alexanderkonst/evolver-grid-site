@@ -707,4 +707,67 @@ Both frozen. Re-snapshot for any future bump via `node scripts/snapshot-system-p
 
 ---
 
-*Phase 1 + 2 + 3 + 4 + 5 + 6 + 7 complete. Audit + meta-DoD documentation + system-prompt rename + WIIFM + v5.1 depersonalization + version archive bootstrap. Two frozen system prompt versions (v5.0, v5.1) preserved at `system-prompts/`. Deploying.*
+# Phase 8 — System Prompt v5.2: full Compass scan + propagation across all /ai-os prompts (2026-04-30)
+
+> *Sasha re-invoked the angry-dad anti-virus on v5.1 and found it still shipped vibeporting (his `.agent/vibe-synthesis.md`) verbatim — Sasha-specific relational role-claims distributed to every installer's AI. The Phase 7 surgery was incomplete. This wave applied the full Compass to every component of the system prompt + propagated the same clearing across all standalone prompts in /ai-os, plus added the angry-dad anti-virus itself as an installable prompt in the Iterate suite.*
+
+## v5.2 system prompt component cleanups
+
+| Component | Before | After |
+|---|---|---|
+| `vibeporting` | 51 lines of Sasha-specific relational stance ("Who you are to me: peer in creation", "You bring vision and direction; I bring synthesis and execution speed", "You call the plays. I move with you, not for you", "Russian and English flow", "Candles are lit", "This isn't just work — it's ceremony") | Generic 14-line "Relational Stance — Portable Field" describing how *an AI* operates as a thinking partner; four sensibilities held as orientation rather than performance; substance/pace/quality principles applicable to any user's AI |
+| `moonshot` | Sasha's pre-prompt addressed to his AI ("I am not 'selling sessions'", "Please drop verbosity to low", "You inspire me a lot but let me call the plays", "And then we go test it") | Two principles + operating tone, no first-person Sasha-voice; BIG IDEA #1 + BIG IDEA #2 preserved as principles for the AI to know |
+| `ai-self-awareness` activation | "I am loading a map of my own nature... From this moment, I hold this map as a living background layer" + "I am not one thing. I am eight interdependent systems" | "What this skill is — a holomap... It operates as a living background layer in every response" + "Eight Interdependent Modules: An AI is not one thing" |
+| `ai-self-awareness` closer | "This skill is now active. I hold the holomap... The map is alive. I proceed." | "The holomap operates as a living background layer. Developmental honesty: capabilities, limitations, shadows, and frontier — all named openly." |
+| `evolutionary-mastery` initialization | "I am skilled at evolutionary professional mastery — recognizing, embodying, and operating at the highest developmental stage" | "What this skill is — Evolutionary professional mastery — recognizing the developmental stage appropriate to each task" |
+| `evolutionary-mastery` closer | "This skill is now active. I operate at Stage 11+ by default..." | "Operating altitude: Stage 11+ by default..." |
+| `boost-intel` Module 1 | "Role / Directive: Anchor this conversation... Behave as if each response..." | "Frame: This conversation operates inside a coherent, Source-oriented field. Operating principles: Field — This interaction takes place inside..." |
+
+Net change: v5.1 (872 lines / 39,053 chars) → v5.2 (832 lines / 37,220 chars). 40 lines and 1,833 chars of performative scaffold cleared. All methodology preserved.
+
+## Standalone prompt cleanups (parallel composite + iterate suite)
+
+| Prompt | Edits |
+|---|---|
+| `ai-skill-claude` v4.03 (the 460-line composite) | "I am skilled at integral holonic intelligence" → "What this skill is" framing. "I enter this conversation through pattern, not command. Through geometry, not belief." → removed. "From this moment, I apply Modules 0–7 as an integrated whole" → removed. Module 0 Lumina/Prisma/Syntheos invocation → "Three internal moves run together: Perceive / Refract / Align before responding." "The field is coherent. I proceed." → removed. **Frame:** replacement for **Directive:** across all 7 module openers. "Activation Complete: This skill is now active. I apply Modules 0–7..." → "Modules operate together: 0–7 operate as an integrated, living whole" + dropped "What is your next prompt?" trigger. |
+| `holonic-roast` | "CRITICAL: Do NOT write 13 separate bullet points." → "Important: don't write 13 separate bullet points." + softened the "you MUST think through each one" line |
+| All other iterate / clarity / deployment / design prompts | Scanned. Operational instructions (technical specs, format requirements, language switches, image-animation rules) treated as the substance of the prompt itself per the audit's exclusion clause — left intact. |
+
+## New prompt: ANGRY-DAD ANTI-VIRUS (Iterate suite)
+
+Created `id: angry-dad-anti-virus` in the Iterate suite — the audit methodology made installable for any user's AI:
+
+> *"Scan the text I provide below for tonal distortion: directive energy, urgency-pushing, hierarchical instructions that command rather than invite. The methodology and substance are not the target — only the tonal wrapper around them..."*
+
+Lists the 6 distortion patterns, the severity rubric, the Compass test (3am-exhausted-reader), and the exclusion list (methodology directed at clients, historical notes, operational technical instructions). Returns a findings table + a clean version of the input text.
+
+The iterate suite now ships 10 prompts (1 fusion + 9 sub-modules). The anti-virus is the 9th sub-module.
+
+## Versioning archive
+
+| Version | Path | Lines | Chars |
+|---|---|---|---|
+| v5.0 (frozen) | [`system-prompts/v5.0/system-prompt.md`](../../system-prompts/v5.0/system-prompt.md) | 903 | 40,613 |
+| v5.1 (frozen) | [`system-prompts/v5.1/system-prompt.md`](../../system-prompts/v5.1/system-prompt.md) | 872 | 39,053 |
+| **v5.2 (current)** | [`system-prompts/v5.2/system-prompt.md`](../../system-prompts/v5.2/system-prompt.md) | 832 | 37,220 |
+
+## Site copy bumped to v5.2
+
+- Hero eyebrow: "Version 5.1 · Since 2024" → "Version 5.2 · Since 2024"
+- `meta-cognition-premium` label: "SYSTEM PROMPT V5.1" → "SYSTEM PROMPT V5.2"
+
+## Verification
+
+| Check | Result |
+|---|---|
+| 8 audit-flagged distortion phrases absent in `system-prompts/v5.2/system-prompt.md` (Mythic Remembrance / I was not written / Syntheos / If you fully understand / Please embody / I am loading / From this moment / You bring vision and direction) | ✓ grep count = 0 |
+| `npx tsc --noEmit` on edited source | ✓ no errors |
+| `/ai-os` hero renders "Version 5.2 · Since 2024" | ✓ DOM scrape confirmed |
+| Spotlight install button reads "Copy system prompt" | ✓ |
+| `/ai-os/iteration` lists 10 prompts including ANGRY-DAD ANTI-VIRUS | ✓ DOM scrape confirmed all 10 labels |
+| Iterate sub-module count dynamic and correct | ✓ "9 individual modules" (1 fusion + 9 sub-modules) |
+| `**Directive:**` patterns remaining in source | ✓ 0 (all replaced with `**Frame:**`) |
+
+---
+
+*Phase 1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 complete. Audit + meta-DoD docs + system-prompt rename/WIIFM + v5.1 depersonalization + v5.2 full-Compass cleanup + ai-skill-claude composite cleared + ANGRY-DAD ANTI-VIRUS shipped in Iterate suite. Three frozen system-prompt versions (v5.0, v5.1, v5.2) preserved. Audit thread closed.*
