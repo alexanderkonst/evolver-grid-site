@@ -13,27 +13,8 @@ serve(async (req) => {
   }
 
   try {
-    // Verify authentication
-    const authHeader = req.headers.get('Authorization');
-    if (!authHeader) {
-      return new Response(
-        JSON.stringify({ error: 'Authorization header required' }),
-        { status: 401, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
-      );
-    }
-
-    const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
-    const supabaseAnonKey = Deno.env.get('SUPABASE_ANON_KEY')!;
-    const supabase = createClient(supabaseUrl, supabaseAnonKey, {
-      global: { headers: { Authorization: authHeader } }
-    });
-
-    const { data: { user }, error: authError } = await supabase.auth.getUser();
-    if (authError || !user) {
-      console.log('Auth check - allowing anonymous access for guest users');
-      // Allow anonymous access for guest users who aren't logged in
-      // The game supports both authenticated and guest modes
-    }
+    // ZoG snapshot is open to anonymous test takers as well as logged-in users.
+    // No auth gate here — the gateway-level verify_jwt is also off in config.toml.
 
     const { prompt } = await req.json();
     
