@@ -16,7 +16,7 @@ verify_jwt = true
 verify_jwt = true
 
 [functions.generate-zog-snapshot]
-verify_jwt = true
+verify_jwt = false
 
 [functions.library-advisor]
 verify_jwt = true
