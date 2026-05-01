@@ -1100,7 +1100,7 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                         PADDING BOX = the scrollport (one viewport tall),
                         not the scrollable canvas. So the wash only
                         covered the first viewport of content; anything
-                        below it (CTA, "TAKES 2 MINUTES", "See the exact
+                        below it (CTA, "TAKES 3 MINUTES", "See the exact
                         playbook") sat on the raw Mux video, which read
                         as a hard horizontal seam cutting the page in
                         half — the recurring "overlay cut" bug.
