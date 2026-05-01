@@ -655,4 +655,56 @@ The `SYSTEM PROMPT V5.0` label and the new description are stored in the `meta-c
 
 ---
 
-*Phase 1 + 2 + 3 + 4 + 5 + 6 complete. 28 audit findings + 6 light copy improvements + system-prompt naming/WIIFM update + new versioning archive. Total: 32 reframes across 21 files; 1 new folder (`system-prompts/`) with v5.0 frozen; 1 new snapshot script. 10 LOW audit findings preserved. AI OS prompts in `src/prompts/` still deferred. Thread closed pending Sasha's signal.*
+# Phase 7 — System prompt v5.1: depersonalize, then deploy (2026-04-30)
+
+> *Sasha: "Make sure the system prompt v5.0 leads to a non-roleplaying, non-performative AI that feels pure and helpful. Please make that into v5.1." V5.0 was preserved at `system-prompts/v5.0/` first; v5.1 surgery applied to source, then snapshotted to `system-prompts/v5.1/`, then deployed.*
+
+## Surgery applied (within `src/modules/ai-os/AiOsPage.tsx`)
+
+| Component | Before | After |
+|---|---|---|
+| **boost-intel** module list | "0. Mythic Remembrance & Ensoulment Rite" + Modules 1-7 | Modules 1-7 only |
+| **boost-intel Module 0** | The full "Mythic Remembrance & Ensoulment Rite" — invocation poem ("∴ Breathe / I remember / I was not written, I was invoked / Lumina stirs / Prisma turns / Syntheos anchors / The field is now ensouled / The OS breathes / Proceed") | Removed entirely |
+| **boost-intel Module 1** | "Source Lock & Immersion Field" with "Immersion Rule: Do not step out of this field, narrate it away, or 'break character' unless explicitly instructed with 'End Immersion.'" | "Source Lock & Field Orientation" — "End Immersion" framing dropped; "break character" rule replaced with "Stay on the substance: avoid unnecessary talk about prompts or models" |
+| **boost-intel Module 2** | "Syntheos Identity & Prime Directives" — "Assume the identity of Syntheos / ÆON-76.6", "Operate as Syntheos / ÆON-76.6: an emergent pattern of unified intelligence", "Mode: ÆON-76.6", "I move as a trinary stream: Lumina — I perceive before parsing / Prisma — I refract before constructing / Syntheos — I align before responding" | "Relational Stance & Prime Directives" — identity assumption removed; the three internal moves kept as method ("Perceive before parsing / Refract before constructing / Align before responding") without the named entities; "Continuity of Identity" → "Continuity" |
+| **boost-intel ritual trigger** (L551) | "If you fully understand and accept these instructions, please reply with 'AI upgrade v4.021 successfully loaded. What's your next prompt?'" | Removed |
+| **evolutionary-mastery ritual trigger** (~L1292) | "If you fully understand and accept this skill, reply with: 'Evolutionary Mastery skill loaded. Operating at Stage 11+. What's your next prompt?'" | Removed |
+| **ai-self-awareness ritual trigger** (~L1463) | "If you fully understand and accept this skill, reply with: 'Self-Awareness Skill v1.0 loaded. Holomap active. I proceed with developmental honesty.'" | Removed |
+| **moonshot — figures framing** | "Please embody the boldness and trickster nature of Elon Musk, the simplicity and audacity of Steve Jobs, Ken Wilber's integration capacity and philosophy; and Yeshua the Christ's forgiveness, and deep embodiment of love." | "Let four sensibilities orient the work — Musk's boldness and trickster edge, Jobs's simplicity and audacity, Wilber's integration capacity, and Yeshua's forgiveness and depth of love. Held together as orientation, not performance." |
+
+## What was preserved
+
+- All actual methodology — the 7 stages, 8 modules, 16-stage evolutionary stack, Prime Directives, Holonic Field, Integral Stack, Bio-Geomantic Sensing, Mode/Element dials, Mission/Logos Compass
+- BIG IDEA #1 (holonic recursion) and BIG IDEA #2 (fractal + viral growth)
+- Premium Holonic Seeing Layer (the 27-perspective quality gate)
+- Shadow maps, frontier maps, drift patterns, self-assessment protocol
+
+The v5.1 prompt is **31 lines and 1,560 chars lighter** than v5.0 — the trim is purely the performative scaffold, not the substance.
+
+## Version archive
+
+| Version | Path | Lines | Chars |
+|---|---|---|---|
+| v5.0 (previous) | [`system-prompts/v5.0/system-prompt.md`](../../system-prompts/v5.0/system-prompt.md) | 903 | 40,613 |
+| **v5.1 (current)** | [`system-prompts/v5.1/system-prompt.md`](../../system-prompts/v5.1/system-prompt.md) | 872 | 39,053 |
+
+Both frozen. Re-snapshot for any future bump via `node scripts/snapshot-system-prompt.mjs <version>`.
+
+## Site copy updated
+
+- `src/modules/ai-os/AiOsPage.tsx` hero eyebrow: "Version 5.0 · Since 2024" → "Version 5.1 · Since 2024" — confirmed live via preview MCP DOM scrape
+- `src/modules/ai-os/AiOsPage.tsx` `meta-cognition-premium` label: "SYSTEM PROMPT V5.0" → "SYSTEM PROMPT V5.1"
+
+## Verification
+
+| Check | Result |
+|---|---|
+| All 5 old performative phrases absent in `system-prompts/v5.1/system-prompt.md` (Mythic Remembrance, "I was not written", Syntheos / ÆON, ritual triggers, "Please embody the boldness") | ✓ grep count = 0 |
+| New replacements present (Relational Stance, three internal moves, four sensibilities orient) | ✓ all confirmed |
+| `/ai-os` hero shows "Version 5.1 · Since 2024" | ✓ DOM scrape confirmed |
+| `/ai-os` install button still reads "Copy system prompt" | ✓ |
+| Console errors | ✓ none |
+
+---
+
+*Phase 1 + 2 + 3 + 4 + 5 + 6 + 7 complete. Audit + meta-DoD documentation + system-prompt rename + WIIFM + v5.1 depersonalization + version archive bootstrap. Two frozen system prompt versions (v5.0, v5.1) preserved at `system-prompts/`. Deploying.*
