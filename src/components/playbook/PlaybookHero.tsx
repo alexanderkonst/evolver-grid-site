@@ -29,7 +29,7 @@ import igniteLogo from "@/assets/ignite-logo.png";
  *    dimmer text color (hierarchy not scale).
  *
  *   [ ✦ Find your top talent →  ]  ← primary  (liquid-glass-dark)
- *          Takes 2 minutes. No signup.
+ *          Takes 3 minutes. No signup.
  *   [ See the exact playbook    ]  ← secondary (liquid-glass)
  */
 
@@ -118,7 +118,7 @@ const PlaybookHero = () => {
         </button>
 
         {/* Meta line — Day 48 iter 2: small-caps editorial eyebrow.
-            "TAKES 2 MINUTES · NO SIGNUP" with tracked letter-spacing
+            "TAKES 3 MINUTES · NO SIGNUP" with tracked letter-spacing
             reads as a printed dateline sitting under the CTA rather
             than as a caption. The middle dot replaces the period to
             echo the gold ornament above. */}
@@ -134,7 +134,7 @@ const PlaybookHero = () => {
             fontWeight: 500,
           }}
         >
-          <span>Takes 2 minutes · No signup</span>
+          <span>Takes 3 minutes · No signup</span>
         </div>
 
         {/* Secondary — also compact glass pill, de-ranked via
