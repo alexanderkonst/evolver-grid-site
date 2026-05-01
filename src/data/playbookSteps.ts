@@ -150,7 +150,7 @@ export const PLAYBOOK_STEPS: PlaybookStep[] = [
         name: "Distill it into one sentence — and actually write it down",
         description: "",
         oneProvenStrategy:
-          "Ask your AI to do this for you, and then polish it yourself.",
+          "Ask your AI to do this for you, and then polish it yourself. You can use [this iterative improvement prompt](/ai-os/iteration).",
       },
       {
         number: 3,

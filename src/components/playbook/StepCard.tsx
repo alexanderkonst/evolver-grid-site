@@ -18,6 +18,44 @@ const SHOW_UBB_BRIDGE = false;
 // useStepCheckout was used by the per-step CTA block that was removed
 // 2026-04-21. The commercial flow now lives at /path + /game/settings.
 
+// Render a substep's prose with inline markdown-style links: [label](href).
+// Internal hrefs (starting with /) become react-router <Link>; external
+// links open in a new tab. Keeps the data layer plain strings — no JSX
+// inside playbookSteps.ts.
+const INLINE_LINK_RE = /(\[[^\]]+\]\([^)]+\))/g;
+const SINGLE_LINK_RE = /^\[([^\]]+)\]\(([^)]+)\)$/;
+const renderInlineLinks = (text: string): React.ReactNode => {
+  const parts = text.split(INLINE_LINK_RE);
+  return parts.map((part, i) => {
+    const match = part.match(SINGLE_LINK_RE);
+    if (!match) return part;
+    const [, label, href] = match;
+    const isInternal = href.startsWith("/");
+    if (isInternal) {
+      return (
+        <Link
+          key={i}
+          to={href}
+          className="underline underline-offset-4 decoration-current/40 hover:decoration-current transition-colors"
+        >
+          {label}
+        </Link>
+      );
+    }
+    return (
+      <a
+        key={i}
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="underline underline-offset-4 decoration-current/40 hover:decoration-current transition-colors"
+      >
+        {label}
+      </a>
+    );
+  });
+};
+
 /**
  * StepCard — renders one of the 7 playbook steps.
  *
@@ -219,7 +257,7 @@ const SubstepRow = ({
               >
                 {substep.oneProvenStrategy.split("\n\n").map((para, i) => (
                   <p key={i} style={{ whiteSpace: "pre-line" }}>
-                    {para}
+                    {renderInlineLinks(para)}
                   </p>
                 ))}
               </div>
