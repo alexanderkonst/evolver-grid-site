@@ -295,7 +295,8 @@ export default function AiOsSpotlight({ installPromptContent }: Props) {
           <div className="space-y-3">
             <ExperimentStep n={2}>
               Open a <strong>new chat</strong>. Paste the system prompt.
-              Then run the same prompt again.
+              It's a fascinating read, if you like. Then run the same
+              prompt again.
             </ExperimentStep>
             <div>
               <button
@@ -311,10 +312,10 @@ export default function AiOsSpotlight({ installPromptContent }: Props) {
                   boxShadow:
                     "0 0 0 1px hsla(40, 75%, 75%, 0.20), 0 10px 32px -8px rgba(244,212,114,0.5), 0 0 48px -12px rgba(244,212,114,0.4)",
                 }}
-                aria-label="Copy the system prompt to clipboard"
+                aria-label="Copy the AI OS system prompt v5.2 to clipboard"
               >
                 {installCopied ? <Check className="w-5 h-5" /> : <Copy className="w-5 h-5" />}
-                {installCopied ? "Copied — paste into a new AI chat" : "Copy system prompt"}
+                {installCopied ? "Copied — paste into a new AI chat" : "Copy the AI OS system prompt v5.2"}
               </button>
             </div>
           </div>
