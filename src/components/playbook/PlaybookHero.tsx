@@ -134,7 +134,7 @@ const PlaybookHero = () => {
             fontWeight: 500,
           }}
         >
-          <span>Takes 3 minutes · No signup</span>
+          <span>Free · Takes 3 minutes · No signup</span>
         </div>
 
         {/* Secondary — also compact glass pill, de-ranked via
