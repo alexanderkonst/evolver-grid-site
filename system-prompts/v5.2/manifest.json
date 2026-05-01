@@ -1,0 +1,14 @@
+{
+  "version": "5.2",
+  "snapshotted_at": "2026-05-01T00:16:01.963Z",
+  "source_file": "src/modules/ai-os/AiOsPage.tsx",
+  "components": [
+    "vibeporting",
+    "ai-self-awareness",
+    "boost-intel",
+    "evolutionary-mastery",
+    "moonshot"
+  ],
+  "char_count": 37327,
+  "line_count": 834
+}
