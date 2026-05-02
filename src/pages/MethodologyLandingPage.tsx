@@ -39,7 +39,7 @@ const MethodologyLandingPage = () => {
               "var(--skin-text-halo-strong, 0 0 22px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.8), 0 2px 12px rgba(26,30,58,0.15))",
           }}
         >
-          Can you say what you do{" "}
+          Can you say what you do so{" "}
           <span
             className="bg-clip-text text-transparent"
             style={{
@@ -49,9 +49,8 @@ const MethodologyLandingPage = () => {
               fontSize: "0.92em",
             }}
           >
-            so
-          </span>{" "}
-          clearly
+            clearly
+          </span>
         </h1>
 
         {/* Italic echo — whispered consequence of the headline.

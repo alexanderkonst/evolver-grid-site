@@ -38,7 +38,7 @@ NOW analyze everything you know about me and generate a Top Talent Snapshot in t
     "Talent 3 — same"
   ],
   "how_genius_shows_up": "A paragraph describing how these talents manifest in my daily work and interactions. Cite real patterns from our conversations — be concrete, not abstract.",
-  "edge_and_traps": "A paragraph describing where I overextend, where my strengths become weaknesses, and the shadow side of my gift.",
+  "edge_and_traps": "A paragraph naming the structural shadow my gift generates — the OTHER SIDE OF THE COIN, not a list of weaknesses. A unique gift always produces a structurally identical limiting belief, but inverted. Name (a) the inverted form of my gift (e.g., 'I help others articulate their uniqueness' generates 'my own uniqueness remains unarticulated'), (b) the limiting belief this inversion whispers in my own life (e.g., 'I need a better X before I can act'), (c) one short observation about how this looks in motion (the recursive trap I fall into when I forget my gift is for outward use, not inward use). Keep it specific to me, not generic. One paragraph, same length as how_genius_shows_up. Do not soften or moralize.",
   "ideal_environments": ["Specific env 1", "Env 2", "Env 3"],
   "career_sweet_spots": ["Sweet spot 1", "Sweet spot 2", "Sweet spot 3"],
   "flywheel_action": "The ONE action that, repeated as a flywheel, optimally advances me on my path of mastery. Specific enough to start today."

@@ -16,19 +16,36 @@ import { Target, Sparkles, Users, TrendingUp, Briefcase, DollarSign, Eye, Palett
 // pattern used on /admin and /dashboard so the ME space reads as part
 // of the same building.
 
+// Day 58 (Sasha 2026-05-02): Top Talent sub-pane restructured.
+// Removed: bullseye / vibrational-key / three-lenses / life-scene
+//   (now folded into the rebuilt overview hero box).
+// Added: how-it-shows-up / three-key-talents / top-shadow / one-action
+//   (sourced from topTalentProfile, the deep 8-field surface).
+// Renamed: mastery → "Path of Mastery"; roles → "Ideal Environments"
+//   (paths preserved so inbound URLs don't break).
+// Legacy IDs kept in the union for backwards compat (perspective view
+// still resolves them as fallthrough → "perspective not found"); they
+// no longer appear in the side-nav.
 type PerspectiveId =
-    | "bullseye"
-    | "vibrational-key"
-    | "three-lenses"
+    | "how-it-shows-up"
+    | "three-key-talents"
+    | "top-shadow"
+    | "one-action"
     | "appreciated-for"
     | "mastery"
-    | "activities"
     | "roles"
     | "partner"
     | "monetization"
+    // Legacy — no side-nav entry but still resolvable by URL:
+    | "bullseye"
+    | "vibrational-key"
+    | "three-lenses"
     | "life-scene"
+    | "activities"
     | "visual-codes"
     | "elevator-pitch";
+
+const MASTERY_CTA_URL = "https://t.me/integralevolution";
 
 interface PerspectiveConfig {
     title: string;
@@ -107,6 +124,110 @@ const FieldCard = ({
 );
 
 const PERSPECTIVES: Record<PerspectiveId, PerspectiveConfig> = {
+    // ─── Day 58 (Sasha 2026-05-02): four new deep-profile perspectives ───
+    "how-it-shows-up": {
+        title: "How It Shows Up",
+        subtitle: "Where your genius lights up in real life",
+        icon: Sparkles,
+        render: (data) => (
+            data.topTalentProfile?.how_genius_shows_up ? (
+                <div className="rounded-2xl px-6 py-7 sm:px-8 sm:py-8" style={cardSurface}>
+                    <p
+                        className="text-base sm:text-lg leading-relaxed"
+                        style={{
+                            fontFamily: "'Source Serif 4', Georgia, serif",
+                            color: "var(--skin-text-primary, #0b2a5a)",
+                            textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
+                        }}
+                    >
+                        {data.topTalentProfile.how_genius_shows_up}
+                    </p>
+                </div>
+            ) : null
+        ),
+    },
+    "three-key-talents": {
+        title: "Three Key Talents",
+        subtitle: "Your three load-bearing strengths in detail",
+        icon: Sparkles,
+        render: (data) => (
+            <ol className="space-y-4">
+                {data.topTalentProfile?.top_three_talents?.map((talent, i) => (
+                    <li
+                        key={i}
+                        className="rounded-2xl px-6 py-5 sm:px-7 sm:py-6 flex gap-4"
+                        style={cardSurface}
+                    >
+                        <span
+                            className="flex-shrink-0 w-8 h-8 rounded-full text-sm font-semibold flex items-center justify-center"
+                            style={{
+                                background: "linear-gradient(135deg, rgba(244, 212, 114, 0.95) 0%, rgba(212, 175, 55, 0.78) 100%)",
+                                color: "#0a1628",
+                                fontFamily: "'DM Sans', system-ui, sans-serif",
+                                fontVariantNumeric: "tabular-nums lining-nums",
+                                border: "0.5px solid rgba(122, 81, 8, 0.45)",
+                            }}
+                        >
+                            {i + 1}
+                        </span>
+                        <p
+                            className="text-base leading-relaxed flex-1 pt-0.5"
+                            style={{
+                                fontFamily: "'Source Serif 4', Georgia, serif",
+                                color: "var(--skin-text-primary, #0b2a5a)",
+                                textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
+                            }}
+                        >
+                            {talent}
+                        </p>
+                    </li>
+                ))}
+            </ol>
+        ),
+    },
+    "top-shadow": {
+        title: "Top Shadow",
+        subtitle: "The other side of the coin",
+        icon: Sparkles,
+        render: (data) => (
+            data.topTalentProfile?.edge_and_traps ? (
+                <div className="rounded-2xl px-6 py-7 sm:px-8 sm:py-8" style={cardSurface}>
+                    <p
+                        className="text-base sm:text-lg leading-relaxed"
+                        style={{
+                            fontFamily: "'Source Serif 4', Georgia, serif",
+                            color: "var(--skin-text-primary, #0b2a5a)",
+                            textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
+                        }}
+                    >
+                        {data.topTalentProfile.edge_and_traps}
+                    </p>
+                </div>
+            ) : null
+        ),
+    },
+    "one-action": {
+        title: "One Action",
+        subtitle: "The single action that, repeated, deepens your mastery",
+        icon: Sparkles,
+        render: (data) => (
+            data.topTalentProfile?.flywheel_action ? (
+                <div className="rounded-2xl px-6 py-7 sm:px-8 sm:py-8 space-y-3" style={accentCardSurface}>
+                    <p style={eyebrowStyle}>Repeat this</p>
+                    <p
+                        className="text-base sm:text-lg leading-relaxed font-medium"
+                        style={{
+                            fontFamily: "'Source Serif 4', Georgia, serif",
+                            color: "var(--skin-text-primary, #0b2a5a)",
+                            textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
+                        }}
+                    >
+                        {data.topTalentProfile.flywheel_action}
+                    </p>
+                </div>
+            ) : null
+        ),
+    },
     "bullseye": {
         title: "Bullseye Sentence",
         subtitle: "Your essence in one breath",
@@ -225,8 +346,8 @@ const PERSPECTIVES: Record<PerspectiveId, PerspectiveConfig> = {
         ),
     },
     "mastery": {
-        title: "Mastery Stages",
-        subtitle: "Your 7 stages of evolution",
+        title: "Path of Mastery",
+        subtitle: "Your seven stages of evolution",
         icon: TrendingUp,
         render: (data) => (
             <div className="space-y-3">
@@ -255,6 +376,29 @@ const PERSPECTIVES: Record<PerspectiveId, PerspectiveConfig> = {
                         </div>
                     </div>
                 ))}
+
+                {/* Day 58 (Sasha 2026-05-02): "Accelerate your path of
+                    mastery — book a session" CTA, lifted from the old
+                    overview surface. Phrasing dropped "with Aleksandr"
+                    per Sasha. */}
+                <a
+                    href={MASTERY_CTA_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block rounded-full px-5 py-3 mt-2 transition-all hover:scale-[1.01]"
+                    style={{
+                        background: "linear-gradient(135deg, hsla(40, 75%, 60%, 0.22) 0%, hsla(40, 65%, 50%, 0.10) 100%)",
+                        border: "1px solid hsla(40, 70%, 55%, 0.40)",
+                        boxShadow: "0 4px 14px -6px rgba(184,134,11,0.28)",
+                    }}
+                >
+                    <div className="flex items-center gap-3">
+                        <Sparkles className="h-4 w-4 flex-shrink-0" style={{ color: "#b8860b" }} />
+                        <span className="flex-1 text-sm font-medium" style={{ color: "#5d4307" }}>
+                            Accelerate your path of mastery — book a session
+                        </span>
+                    </div>
+                </a>
             </div>
         ),
     },
@@ -279,68 +423,176 @@ const PERSPECTIVES: Record<PerspectiveId, PerspectiveConfig> = {
         ),
     },
     "roles": {
-        title: "Roles & Environments",
-        subtitle: "As Creator, Contributor, Founder + ideal vibe",
+        title: "Ideal Environments",
+        subtitle: "Where your genius is most at home",
         icon: Users,
-        render: (data) => (
-            <div className="space-y-4">
-                <FieldCard label="As Creator">
-                    {data.rolesEnvironments?.asCreator}
-                </FieldCard>
-                <FieldCard label="As Contributor">
-                    {data.rolesEnvironments?.asContributor}
-                </FieldCard>
-                <FieldCard label="As Founder">
-                    {data.rolesEnvironments?.asFounder}
-                </FieldCard>
-                <FieldCard label="Ideal Environment" accent>
-                    <span className="font-medium">{data.rolesEnvironments?.environment}</span>
-                </FieldCard>
-            </div>
-        ),
+        // Day 58 (Sasha 2026-05-02): content swapped from rolesEnvironments
+        // to topTalentProfile.ideal_environments — three-bullet editorial
+        // list matching the deep-profile register. Falls back to the legacy
+        // rolesEnvironments shape for snapshots without the deep field.
+        render: (data) => {
+            const envs = data.topTalentProfile?.ideal_environments;
+            if (envs && envs.length > 0) {
+                return (
+                    <ul className="space-y-3">
+                        {envs.map((env, i) => (
+                            <li
+                                key={i}
+                                className="rounded-2xl px-6 py-5 flex gap-3"
+                                style={cardSurface}
+                            >
+                                <span
+                                    aria-hidden="true"
+                                    className="flex-shrink-0 mt-1 text-base"
+                                    style={{ color: "var(--skin-accent-gold, #b8860b)" }}
+                                >
+                                    ✦
+                                </span>
+                                <p
+                                    className="text-base leading-relaxed flex-1"
+                                    style={{
+                                        fontFamily: "'Source Serif 4', Georgia, serif",
+                                        color: "var(--skin-text-primary, #0b2a5a)",
+                                        textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
+                                    }}
+                                >
+                                    {env}
+                                </p>
+                            </li>
+                        ))}
+                    </ul>
+                );
+            }
+            // Legacy fallback for pre-Day-57 snapshots.
+            return (
+                <div className="space-y-4">
+                    {data.rolesEnvironments?.environment && (
+                        <FieldCard label="Ideal Environment" accent>
+                            <span className="font-medium">{data.rolesEnvironments.environment}</span>
+                        </FieldCard>
+                    )}
+                </div>
+            );
+        },
     },
     "partner": {
-        title: "Best Complementary Partner",
-        subtitle: "Who to seek for collaboration",
+        title: "Complementary Partner",
+        subtitle: "Who you most need beside you",
         icon: Users,
-        render: (data) => (
-            <div className="space-y-4">
-                <FieldCard label="Skills-Wise">
-                    {data.complementaryPartner?.skillsWise}
-                </FieldCard>
-                <FieldCard label="Genius-Wise">
-                    {data.complementaryPartner?.geniusWise}
-                </FieldCard>
-                <FieldCard label="Archetype-Wise">
-                    {data.complementaryPartner?.archetypeWise}
-                </FieldCard>
-                <FieldCard label="The Synergy" accent>
-                    <span className="font-medium">{data.complementaryPartner?.synergy}</span>
-                </FieldCard>
-            </div>
-        ),
+        // Day 58 (Sasha 2026-05-02): the prompt now asks for ONE fused
+        // paragraph in `synergy` rather than four piecemeal fields. We
+        // show the paragraph as the primary read; the labeled grid is
+        // kept as a legacy fallback for pre-Day-58 snapshots.
+        render: (data) => {
+            const partner = data.complementaryPartner;
+            const synergyParagraph = partner?.synergy?.trim();
+            const hasLegacyDetails = Boolean(
+                partner?.skillsWise || partner?.geniusWise || partner?.archetypeWise
+            );
+
+            // New shape: render the fused synergy paragraph alone.
+            if (synergyParagraph && !hasLegacyDetails) {
+                return (
+                    <div className="rounded-2xl px-6 py-7 sm:px-8 sm:py-8" style={cardSurface}>
+                        <p
+                            className="text-base sm:text-lg leading-relaxed"
+                            style={{
+                                fontFamily: "'Source Serif 4', Georgia, serif",
+                                color: "var(--skin-text-primary, #0b2a5a)",
+                                textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
+                            }}
+                        >
+                            {synergyParagraph}
+                        </p>
+                    </div>
+                );
+            }
+
+            // Legacy fallback — the four-field grid.
+            return (
+                <div className="space-y-4">
+                    {partner?.skillsWise && (
+                        <FieldCard label="Skills-Wise">{partner.skillsWise}</FieldCard>
+                    )}
+                    {partner?.geniusWise && (
+                        <FieldCard label="Genius-Wise">{partner.geniusWise}</FieldCard>
+                    )}
+                    {partner?.archetypeWise && (
+                        <FieldCard label="Archetype-Wise">{partner.archetypeWise}</FieldCard>
+                    )}
+                    {partner?.synergy && (
+                        <FieldCard label="The Synergy" accent>
+                            <span className="font-medium">{partner.synergy}</span>
+                        </FieldCard>
+                    )}
+                </div>
+            );
+        },
     },
     "monetization": {
-        title: "Monetization Avenues",
-        subtitle: "How to monetize your genius",
+        title: "Monetization",
+        subtitle: "How you turn your genius into revenue",
         icon: DollarSign,
+        // Day 58 (Sasha 2026-05-02): two sections inside one perspective.
+        //   1. Monetization Avenues — the existing pill list
+        //   2. Career Sweet Spots — bullets from topTalentProfile
         render: (data) => (
-            <div className="flex flex-wrap gap-2.5 justify-center">
-                {data.monetizationAvenues?.map((avenue, index) => (
-                    <span
-                        key={index}
-                        className="px-4 py-2 rounded-full font-medium text-sm"
-                        style={{
-                            fontFamily: "'Cormorant Garamond', serif",
-                            background: "rgba(244, 212, 114, 0.18)",
-                            border: "0.5px solid rgba(212, 175, 55, 0.55)",
-                            color: "var(--skin-text-primary, #0b2a5a)",
-                            letterSpacing: "0.02em",
-                        }}
-                    >
-                        {avenue}
-                    </span>
-                ))}
+            <div className="space-y-8">
+                {data.monetizationAvenues && data.monetizationAvenues.length > 0 && (
+                    <section className="space-y-3">
+                        <p style={eyebrowStyle}>Monetization Avenues</p>
+                        <div className="flex flex-wrap gap-2.5">
+                            {data.monetizationAvenues.map((avenue, index) => (
+                                <span
+                                    key={index}
+                                    className="px-4 py-2 rounded-full font-medium text-sm"
+                                    style={{
+                                        fontFamily: "'Cormorant Garamond', serif",
+                                        background: "rgba(244, 212, 114, 0.18)",
+                                        border: "0.5px solid rgba(212, 175, 55, 0.55)",
+                                        color: "var(--skin-text-primary, #0b2a5a)",
+                                        letterSpacing: "0.02em",
+                                    }}
+                                >
+                                    {avenue}
+                                </span>
+                            ))}
+                        </div>
+                    </section>
+                )}
+
+                {data.topTalentProfile?.career_sweet_spots && data.topTalentProfile.career_sweet_spots.length > 0 && (
+                    <section className="space-y-3">
+                        <p style={eyebrowStyle}>Career Sweet Spots</p>
+                        <ul className="space-y-3">
+                            {data.topTalentProfile.career_sweet_spots.map((spot, i) => (
+                                <li
+                                    key={i}
+                                    className="rounded-2xl px-6 py-5 flex gap-3"
+                                    style={cardSurface}
+                                >
+                                    <span
+                                        aria-hidden="true"
+                                        className="flex-shrink-0 mt-1 text-base"
+                                        style={{ color: "var(--skin-accent-gold, #b8860b)" }}
+                                    >
+                                        ✦
+                                    </span>
+                                    <p
+                                        className="text-base leading-relaxed flex-1"
+                                        style={{
+                                            fontFamily: "'Source Serif 4', Georgia, serif",
+                                            color: "var(--skin-text-primary, #0b2a5a)",
+                                            textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
+                                        }}
+                                    >
+                                        {spot}
+                                    </p>
+                                </li>
+                            ))}
+                        </ul>
+                    </section>
+                )}
             </div>
         ),
     },
@@ -443,7 +695,6 @@ const ZoGPerspectiveView = () => {
     }, []);
 
     const config = perspectiveId ? PERSPECTIVES[perspectiveId] : null;
-    const Icon = config?.icon || Sparkles;
 
     if (loading) {
         return (
@@ -477,31 +728,16 @@ const ZoGPerspectiveView = () => {
     return (
         <GameShellV2>
             <div className="max-w-3xl mx-auto px-5 py-8 lg:py-10 space-y-8">
-                {/* Header — editorial Aurora register: cream cardSurface,
-                    Cormorant title with gold-gradient accent on the
-                    operative word, italic subtitle, gold sparkle medallion,
-                    Ornament rule. Same rhythm as /admin and /dashboard. */}
+                {/* Header — Day 58 (Sasha 2026-05-02): the gold medallion
+                    + Lucide icon was replaced with a single Ornament rule
+                    above the title. Editorial reads cleaner without per-
+                    perspective icons; the pointed-star glyph IS the visual
+                    accent — no medallion, no icon needed. */}
                 <header
                     className="rounded-2xl px-6 py-8 sm:px-8 sm:py-10 text-center"
                     style={cardSurface}
                 >
-                    <div className="flex justify-center mb-4">
-                        <div
-                            className="inline-flex items-center justify-center w-12 h-12 rounded-full"
-                            style={{
-                                background:
-                                    "linear-gradient(135deg, rgba(244, 212, 114, 0.32) 0%, rgba(212, 175, 55, 0.18) 100%)",
-                                border: "0.5px solid rgba(212, 175, 55, 0.55)",
-                                boxShadow:
-                                    "0 0 14px -2px rgba(244, 212, 114, 0.45), inset 0 0 8px -2px rgba(244, 212, 114, 0.35)",
-                            }}
-                        >
-                            <Icon
-                                className="w-5 h-5"
-                                style={{ color: "rgba(160, 109, 8, 0.92)" }}
-                            />
-                        </div>
-                    </div>
+                    <Ornament className="mb-5" />
 
                     <h1
                         className="text-2xl sm:text-3xl font-semibold leading-tight tracking-tight"
@@ -516,8 +752,6 @@ const ZoGPerspectiveView = () => {
                     >
                         {config.subtitle}
                     </p>
-
-                    <Ornament className="mt-5" />
                 </header>
 
                 {/* Content */}

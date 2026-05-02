@@ -185,10 +185,10 @@ Return a JSON object with this exact structure:
     "environment": "string"
   },
   "complementaryPartner": {
-    "skillsWise": "string",
-    "geniusWise": "string",
-    "archetypeWise": "string",
-    "synergy": "string"
+    "synergy": "string — ONE tight prose paragraph (3-5 sentences) describing the complementary partner this archetype most needs. Fuse three layers into continuous flow, not labeled sections: skills the partner brings (what they execute that this person doesn't), genius they bring (how they sense, see, or create — their irreducible signature), and archetype they embody (their being-pattern). Then close with the synergy: what the two of them, together, produce that neither alone could. Read like a paragraph in a profile, not a four-row table. No bullet lists. No headings. No 'Skills-wise…, Genius-wise…' labels. One continuous read.",
+    "skillsWise": "string — OPTIONAL one-line supporting note. Leave empty if synergy paragraph already covers it.",
+    "geniusWise": "string — OPTIONAL one-line supporting note. Leave empty if synergy paragraph already covers it.",
+    "archetypeWise": "string — OPTIONAL one-line supporting note. Leave empty if synergy paragraph already covers it."
   },
   "monetizationAvenues": [
     "Intro · <voice-matched name> — <one-sentence specific deliverable that only this archetype produces> ($<entry price>)",

@@ -272,11 +272,6 @@ const ZoneOfGeniusOverview = () => {
     }
 
     const vk = appleseedData.vibrationalKey;
-    const lenses = appleseedData.threeLenses;
-    const stages = appleseedData.masteryStages;
-    const partner = appleseedData.complementaryPartner;
-    const roles = appleseedData.rolesEnvironments;
-    const monetization = appleseedData.monetizationAvenues;
 
     return (
         <GameShellV2>
