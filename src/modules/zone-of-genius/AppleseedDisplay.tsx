@@ -1,8 +1,8 @@
-import { ArrowRight, Mail } from "lucide-react";
+import { ArrowRight, Mail, X } from "lucide-react";
 import RevelatoryHero from "@/components/game/RevelatoryHero";
 import ResonanceRating from "@/components/ui/ResonanceRating";
 import { AppleseedData } from "./appleseedGenerator";
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { useSkin } from "@/contexts/SkinContext";
@@ -12,7 +12,12 @@ import { useSkin } from "@/contexts/SkinContext";
 // label + breath) so every primary action across the funnel reads
 // as the same voice.
 import { CTA_SMALL_CAPS_STYLE, igniteLogo } from "@/lib/landingDesign";
-import mcCrossStar from "@/assets/mc-cross-star.png";
+import { trackCTAClick } from "@/lib/funnelAnalytics";
+
+// Stripe checkout link for the $37 Activation product. Day 57 (Sasha
+// 2026-05-01). Stripe redirects customers to /activate/welcome on
+// successful payment.
+const STRIPE_ACTIVATE_LINK = "https://buy.stripe.com/00w6oH7wo21R41XaDedEs0H";
 
 const STRIPE_PAYMENT_LINK = "https://buy.stripe.com/9B6dR9bME6i71TP7r2dEs0A";
 
@@ -153,11 +158,99 @@ const AppleseedDisplay = ({
     const [emailUnlocked, setEmailUnlocked] = useState(false);
     const [emailSaving, setEmailSaving] = useState(false);
 
+    // Day 57 (Sasha 2026-05-01): post-reveal page upgrade — recognition →
+    // three options layout, fade-in timing, scroll bar, exit-intent modal.
+    const [ctasVisible, setCtasVisible] = useState(false);
+    const [floatBarVisible, setFloatBarVisible] = useState(false);
+    const [showExitModal, setShowExitModal] = useState(false);
+    const [modalEmail, setModalEmail] = useState('');
+    const [modalSubmitting, setModalSubmitting] = useState(false);
+    const exitShownRef = useRef(false);
+    // Captured at mount: if isSaved was already true, this is a return visit.
+    // Drives the "Your pattern is still here." top greeting.
+    const [isReturning] = useState(() => isSaved);
+
     // Day 47 late pass (Sasha): result page was opening mid-scroll (the
     // generation flow's scroll position carried over). Force top on mount.
     useEffect(() => {
         window.scrollTo({ top: 0, behavior: "auto" });
     }, []);
+
+    // Fade in the three options ~1.2s after the snapshot lands.
+    // Recognition block visible immediately; options arrive after the user
+    // has had a beat with their pattern.
+    useEffect(() => {
+        const t = setTimeout(() => setCtasVisible(true), 1200);
+        return () => clearTimeout(t);
+    }, []);
+
+    // Floating "you can come back to this anytime / activate" bar appears
+    // once the user has scrolled ~halfway through the page. Disappears near
+    // the very bottom so it doesn't double up with the inline footer.
+    useEffect(() => {
+        const handleScroll = () => {
+            const scrolled = window.scrollY;
+            const total = document.documentElement.scrollHeight - window.innerHeight;
+            if (total <= 0) {
+                setFloatBarVisible(false);
+                return;
+            }
+            const ratio = scrolled / total;
+            setFloatBarVisible(ratio >= 0.45 && ratio < 0.95);
+        };
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        handleScroll();
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
+    // Exit-intent — desktop mouseleave from top of viewport, fires once per
+    // session, suppressed if the user has already saved.
+    useEffect(() => {
+        const handleMouseLeave = (e: MouseEvent) => {
+            if (exitShownRef.current) return;
+            if (emailUnlocked || isSaved) return;
+            if (e.clientY <= 0 && (e.relatedTarget === null || (e.relatedTarget as Element)?.nodeName === 'HTML')) {
+                exitShownRef.current = true;
+                setShowExitModal(true);
+            }
+        };
+        document.addEventListener('mouseleave', handleMouseLeave);
+        return () => document.removeEventListener('mouseleave', handleMouseLeave);
+    }, [emailUnlocked, isSaved]);
+
+    const handleModalSubmit = useCallback(async (e: React.FormEvent) => {
+        e.preventDefault();
+        if (!modalEmail.trim() || !modalEmail.includes('@')) return;
+        setModalSubmitting(true);
+        try {
+            const { data, error } = await supabase.functions.invoke('save-zog-result', {
+                body: {
+                    email: modalEmail.trim(),
+                    appleseedData: appleseed,
+                    source: 'zog_exit_intent_save',
+                },
+            });
+            if (error) {
+                console.error('[modal save] Edge function error:', error);
+                await (supabase as any).from('divine_timing_leads').insert({
+                    email: modalEmail.trim(),
+                    source: 'zog_exit_intent_fallback',
+                    created_at: new Date().toISOString(),
+                });
+            } else {
+                console.log('[modal save] Success:', data);
+            }
+        } catch {
+            // Silently continue — UI should never break on save failure
+        }
+        setEmailUnlocked(true);
+        setModalSubmitting(false);
+        setShowExitModal(false);
+        toast({
+            title: "✓ Saved",
+            description: "You can come back to this anytime.",
+        });
+    }, [modalEmail, appleseed, toast]);
 
     const handleEmailSubmit = useCallback(async (e: React.FormEvent) => {
         e.preventDefault();
@@ -207,6 +300,23 @@ const AppleseedDisplay = ({
             */}
 
             <div className="relative z-10 max-w-2xl mx-auto px-4 pt-2 pb-32 sm:pb-40 space-y-6">
+                {/* Return-state greeting — Day 57 (Sasha 2026-05-01).
+                    Shown only when the user is coming back to a previously
+                    saved appleseed (isReturning captured at mount). */}
+                {isReturning && (
+                    <div className="text-center pt-1 -mb-2">
+                        <p
+                            className="text-xs italic"
+                            style={{
+                                color: "var(--skin-text-muted-soft, rgba(26,30,58,0.6))",
+                                fontFamily: "'Source Serif 4', serif",
+                            }}
+                        >
+                            Your pattern is still here.
+                        </p>
+                    </div>
+                )}
+
                 {/* Epic Revelatory Hero - The core genius reveal.
                     Day 47 late pass (Sasha): dropped `darkMode` so the hero uses
                     the light palette (dark slate text on soft white gradient) —
@@ -224,260 +334,320 @@ const AppleseedDisplay = ({
                     darkMode={useDarkHero}
                 />
 
-                {/* THE BRIDGE — Day 51 (Sasha): macro-bridge between
-                    "this is you" (the card above) and "this is a business"
-                    (the gap + CTAs below). Lands as a seed-question right
-                    after the card so everything that follows is read
-                    through it. */}
+                {/* RECOGNITION BLOCK — Day 57 (Sasha 2026-05-01).
+                    Replaces the prior Bridge ("What if shining...") and the
+                    Gap pain-chain. Holds the moment steady; no coercion;
+                    true → clear → usable. */}
                 <div
-                    className="pt-8 pb-4 max-w-2xl mx-auto text-center"
+                    className="py-10 max-w-lg mx-auto text-center space-y-7"
                     style={{
                         fontFamily: "'Source Serif 4', serif",
                         color: "var(--skin-text-primary, #0a1628)",
                         textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.7))",
                     }}
                 >
-                    <p
-                        className="leading-[1.2] tracking-tight"
-                        style={{
-                            fontSize: 'clamp(1.6rem, 4.5vw, 2.5rem)',
-                            fontWeight: 500,
-                        }}
-                    >
-                        What if shining this top talent bright{' '}
-                        <em
-                            className="not-italic"
-                            style={{
-                                fontWeight: 700,
-                                fontStyle: 'italic',
-                            }}
-                        >
-                            IS
-                        </em>{' '}
-                        your business?
-                    </p>
-                </div>
-
-                {/* Resonance Rating — Specificity Loop step "appleseed" */}
-                {onResonanceRating && (
-                    <ResonanceRating
-                        step="appleseed"
-                        onRate={onResonanceRating}
-                    />
-                )}
-
-                {/* ═══════════════════════════════════════════════
-                    THE GAP — Day 47 iter 10 (Sasha + GFOA v2.0):
-                    full copy replacement. Tighter. Named chain. Same
-                    visual container, fewer words, sharper bite. Preserves
-                    placement (post-archetype reveal), preserves text-only
-                    shape (no new visual structure).
-                    ═══════════════════════════════════════════════ */}
-                <div
-                    className="py-12 max-w-lg mx-auto flex flex-col items-center justify-center text-center space-y-6"
-                    style={{
-                        fontFamily: "'Source Serif 4', serif",
-                        color: "var(--skin-text-primary, #0a1628)",
-                        textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.7))",
-                    }}
-                >
-                    <p
-                        className="text-lg md:text-xl leading-relaxed"
-                        style={{ color: "var(--skin-text-primary, #0a1628)", fontWeight: 500 }}
-                    >
-                        Right now, you don't have a clear way to say what you do.
-                    </p>
-
-                    <ul
-                        className="text-base leading-relaxed space-y-3 list-none text-left max-w-md mx-auto"
-                        style={{ color: "var(--skin-link-secondary, rgba(26,30,58,0.85))" }}
-                    >
-                        <li className="flex gap-3 items-start">
-                            <img
-                                src={mcCrossStar}
-                                alt=""
-                                aria-hidden="true"
-                                className="w-5 h-5 mt-0.5 flex-shrink-0 object-contain opacity-90"
-                            />
-                            <span>If you can't explain it clearly → people don't understand it.</span>
-                        </li>
-                        <li className="flex gap-3 items-start">
-                            <img
-                                src={mcCrossStar}
-                                alt=""
-                                aria-hidden="true"
-                                className="w-5 h-5 mt-0.5 flex-shrink-0 object-contain opacity-90"
-                            />
-                            <span>If people don't understand it → they don't buy.</span>
-                        </li>
-                    </ul>
-
-                    <div className="space-y-2 pt-4">
-                        <p
-                            className="text-base leading-relaxed"
-                            style={{ color: "var(--skin-link-secondary, rgba(26,30,58,0.85))" }}
-                        >
-                            This isn't about trying harder.
+                    <div className="space-y-2">
+                        <p className="text-lg md:text-xl leading-relaxed" style={{ fontWeight: 600 }}>
+                            You felt that.
+                        </p>
+                        <p className="text-lg md:text-xl leading-relaxed" style={{ fontWeight: 500 }}>
+                            That's your pattern.
                         </p>
                         <p
-                            className="text-lg leading-relaxed"
-                            style={{ color: "var(--skin-text-primary, #0a1628)", fontWeight: 500 }}
+                            className="text-base leading-relaxed pt-1"
+                            style={{ color: "var(--skin-link-secondary, rgba(26,30,58,0.78))" }}
                         >
-                            It's about saying what you do in a way people buy.
+                            Not something added.
+                        </p>
+                        <p
+                            className="text-base leading-relaxed"
+                            style={{ color: "var(--skin-link-secondary, rgba(26,30,58,0.78))" }}
+                        >
+                            Something that's already been there.
+                        </p>
+                    </div>
+
+                    <div className="space-y-2">
+                        <p className="text-base md:text-lg leading-relaxed" style={{ fontWeight: 500 }}>
+                            Right now, you can see it.
+                        </p>
+                        <p
+                            className="text-base leading-relaxed"
+                            style={{ color: "var(--skin-link-secondary, rgba(26,30,58,0.78))" }}
+                        >
+                            And usually, this is where people pause.
+                        </p>
+                        <p
+                            className="text-base leading-relaxed italic"
+                            style={{ color: "var(--skin-link-secondary, rgba(26,30,58,0.78))" }}
+                        >
+                            They recognize it…
+                            <br />
+                            and then drift back into working the same way as before.
+                        </p>
+                    </div>
+
+                    <div className="space-y-1 pt-2">
+                        <p
+                            className="text-base leading-relaxed"
+                            style={{ color: "var(--skin-link-secondary, rgba(26,30,58,0.78))" }}
+                        >
+                            So the question is simple:
+                        </p>
+                        <p className="text-xl md:text-2xl leading-relaxed" style={{ fontWeight: 600 }}>
+                            What do you want to do with it?
                         </p>
                     </div>
                 </div>
 
-                {/* Social proof — Day 47 late pass (Sasha): ONE testimonial, inserted
-                    between "The Gap" and the primary CTA. Sergey's quote is the most
-                    on-theme because "I was applying force, but the vector was wrong"
-                    IS the reframe the whole Gap section just delivered. */}
-                <figure
-                    className="liquid-glass rounded-2xl p-6 max-w-lg mx-auto text-center"
-                    style={{ fontFamily: "'Source Serif 4', serif" }}
+                {/* THREE OPTIONS — Day 57 (Sasha 2026-05-01).
+                    Visual hierarchy is natural gravity, not pressure.
+                    Primary = calm-solid dark glass. Secondary = soft outline.
+                    Tertiary = text link. Fades in ~1.2s after the snapshot
+                    so the recognition lands first; choice arrives second. */}
+                <div
+                    className="space-y-8 max-w-lg mx-auto transition-all duration-700 ease-out"
+                    style={{
+                        opacity: ctasVisible ? 1 : 0,
+                        transform: ctasVisible ? 'translateY(0)' : 'translateY(12px)',
+                    }}
                 >
-                    <blockquote
-                        className="text-base md:text-lg leading-relaxed italic"
+                    {/* OPTION 1 — Build a business ($555, primary, large) */}
+                    <div
+                        className="liquid-glass-strong rounded-3xl p-6 sm:p-7 space-y-4 text-center"
                         style={{
-                            color: "var(--skin-text-primary, #0a1628)",
-                            textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.7))",
+                            boxShadow: '0 10px 32px -12px rgba(10,22,40,0.18), inset 0 1px 0 rgba(255,255,255,0.15)',
+                            border: '1px solid rgba(26,30,58,0.08)',
                         }}
                     >
-                        "I was applying force, but the vector was wrong.
-                        The structure is genius. Absolutely everything clicks."
-                    </blockquote>
-                    <figcaption
-                        className="mt-4 text-xs"
-                        style={{
-                            color: "var(--skin-text-muted-soft, rgba(26,30,58,0.65))",
-                            fontFamily: "'DM Sans', sans-serif",
-                        }}
-                    >
-                        — <strong style={{ color: "var(--skin-text-primary, #0a1628)" }}>Sergey Jay Makarov</strong>, Serial Founder &amp; System Architect
-                    </figcaption>
-                </figure>
-
-                {/* OwnershipSection used to sit here as a blocking email gate.
-                    Moved to the footer row below the CTAs (Sasha, 2026-04-21)
-                    as a quiet save-to-inbox option, not a barrier. */}
-
-                {/* ═══════════════════════════════════════════════
-                    CTAs — primary/secondary
-                    Day 53 (Sasha 2026-04-27): post-reveal funnel locked
-                    to two buttons (was three, dropped AI OS as a
-                    distraction here).
-                    Primary  → "Build a business off your top talent"
-                              → /ignite#pricing-section (Productize
-                                 Yourself Session purchase page —
-                                 canonical name as of Day 55,
-                                 2026-04-29). NOT the Excalibur module.
-                    Secondary → "See the exact playbook" → /playbook
-                                (matches the landing page's secondary
-                                button verbatim — same label, same
-                                destination, same liquid-glass pill
-                                styling for visual coherence across
-                                the funnel).
-                    ═══════════════════════════════════════════════ */}
-                <div className="max-w-md mx-auto space-y-4">
-
-                    {/* Framing line above primary CTA — Day 47 iter 10 (GFOA v2.0) */}
-                    <p
-                        className="text-center text-sm sm:text-base mb-1"
-                        style={{
-                            fontFamily: "'Source Serif 4', serif",
-                            color: "var(--skin-text-primary, #0a1628)",
-                            fontWeight: 500,
-                            textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.7))",
-                        }}
-                    >
-                        We do it together in 2 hours.
-                    </p>
-                    <p
-                        className="text-center text-sm sm:text-base mb-4"
-                        style={{
-                            fontFamily: "'Source Serif 4', serif",
-                            color: "var(--skin-text-primary, #0a1628)",
-                            fontWeight: 500,
-                            textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.7))",
-                        }}
-                    >
-                        Or you don't pay.
-                    </p>
-
-                    {/* CTA 1 (PRIMARY) — Productize Yourself Session.
-                        Dark glass pill + ignite emblem + small-caps
-                        label + breath animation. Rhymes with the
-                        landing hero CTA and every other primary across
-                        the funnel. */}
-                    <a
-                        href="/ignite#pricing-section"
-                        className="group liquid-glass-dark cta-breath w-full rounded-full inline-flex items-center justify-center gap-2 sm:gap-2.5 px-4 sm:px-6 py-3 sm:py-3.5 max-w-full text-sm sm:text-base font-semibold transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
-                        style={{
-                            fontFamily: "'Cormorant Garamond', serif",
-                            color: "var(--skin-cta-text, rgba(245,245,250,0.98))",
-                            backgroundImage:
-                                "var(--skin-cta-bg, linear-gradient(135deg, rgba(10,22,40,0.72) 0%, rgba(26,30,58,0.62) 50%, rgba(10,22,40,0.72) 100%))",
-                            boxShadow:
-                                "var(--skin-cta-shadow, 0 0 18px -4px rgba(240,194,127,0.45), 0 10px 24px -10px rgba(10,22,40,0.5))",
-                            textShadow:
-                                "var(--skin-cta-text-shadow, 0 0 16px rgba(240,194,127,0.25), 0 1px 2px rgba(0,0,0,0.35))",
-                        }}
-                    >
-                        <img
-                            src={igniteLogo}
-                            alt=""
-                            aria-hidden="true"
-                            className="h-4 w-auto opacity-80 transition-opacity group-hover:opacity-100 flex-shrink-0"
+                        <p
+                            className="text-[10px] sm:text-xs font-semibold tracking-[0.22em] uppercase"
+                            style={{ color: "var(--skin-text-muted, rgba(26,30,58,0.65))" }}
+                        >
+                            1 — Build a business from it
+                        </p>
+                        <p
+                            className="text-base sm:text-lg leading-relaxed"
                             style={{
-                                filter: "drop-shadow(0 0 6px rgba(244, 212, 114, 0.45))",
-                                animation: "gentle-spin 60s linear infinite",
-                                willChange: "transform",
-                                transformOrigin: "center",
+                                fontFamily: "'Source Serif 4', serif",
+                                color: "var(--skin-text-primary, #0a1628)",
+                                fontWeight: 500,
                             }}
-                            draggable={false}
-                        />
-                        <span style={CTA_SMALL_CAPS_STYLE} className="text-center">
-                            Build a business off your top talent
-                        </span>
-                        <ArrowRight
-                            aria-hidden="true"
-                            className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 flex-shrink-0"
-                        />
-                    </a>
+                        >
+                            Take this exact pattern and shape it into something clear and sellable.
+                        </p>
+                        <p
+                            className="text-sm leading-relaxed"
+                            style={{
+                                fontFamily: "'Source Serif 4', serif",
+                                color: "var(--skin-text-muted, rgba(26,30,58,0.7))",
+                            }}
+                        >
+                            We do it together in 2 hours.
+                        </p>
+                        <blockquote
+                            className="text-sm italic leading-relaxed pt-1"
+                            style={{
+                                fontFamily: "'Source Serif 4', serif",
+                                color: "var(--skin-text-primary, #0a1628)",
+                            }}
+                        >
+                            "Everything clicks." — <strong className="not-italic">Sergey Jay Makarov</strong>
+                        </blockquote>
 
-                    {/* Mini bridge line */}
-                    <p
-                        className="text-center text-xs italic"
-                        style={{ color: "var(--skin-text-muted-soft, rgba(26,30,58,0.62))" }}
-                    >
-                        Or read the methodology first:
-                    </p>
+                        {/* Primary CTA — hover swaps idle label for action label.
+                            Idle: "Build a business from your top talent — $555"
+                            Hover: "Turn this into an offer" */}
+                        <a
+                            href="/ignite#pricing-section"
+                            className="group liquid-glass-dark cta-breath relative w-full rounded-full inline-flex items-center justify-center gap-2 sm:gap-2.5 px-4 sm:px-6 py-3 sm:py-3.5 text-sm sm:text-base font-semibold transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+                            style={{
+                                fontFamily: "'Cormorant Garamond', serif",
+                                color: "var(--skin-cta-text, rgba(245,245,250,0.98))",
+                                backgroundImage:
+                                    "var(--skin-cta-bg, linear-gradient(135deg, rgba(10,22,40,0.72) 0%, rgba(26,30,58,0.62) 50%, rgba(10,22,40,0.72) 100%))",
+                                boxShadow:
+                                    "var(--skin-cta-shadow, 0 0 18px -4px rgba(240,194,127,0.45), 0 10px 24px -10px rgba(10,22,40,0.5))",
+                                textShadow:
+                                    "var(--skin-cta-text-shadow, 0 0 16px rgba(240,194,127,0.25), 0 1px 2px rgba(0,0,0,0.35))",
+                            }}
+                        >
+                            <img
+                                src={igniteLogo}
+                                alt=""
+                                aria-hidden="true"
+                                className="h-4 w-auto opacity-80 transition-opacity group-hover:opacity-100 flex-shrink-0"
+                                style={{
+                                    filter: "drop-shadow(0 0 6px rgba(244, 212, 114, 0.45))",
+                                    animation: "gentle-spin 60s linear infinite",
+                                    willChange: "transform",
+                                    transformOrigin: "center",
+                                }}
+                                draggable={false}
+                            />
+                            <span className="relative inline-block">
+                                <span
+                                    style={CTA_SMALL_CAPS_STYLE}
+                                    className="block transition-opacity duration-300 group-hover:opacity-0"
+                                >
+                                    Build a business from your top talent — $555
+                                </span>
+                                <span
+                                    style={CTA_SMALL_CAPS_STYLE}
+                                    className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100 whitespace-nowrap"
+                                >
+                                    Turn this into an offer
+                                </span>
+                            </span>
+                            <ArrowRight
+                                aria-hidden="true"
+                                className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 flex-shrink-0"
+                            />
+                        </a>
+                    </div>
 
-                    {/* CTA 2 (SECONDARY): See the exact playbook —
-                        matches landing page secondary verbatim. Same
-                        label, same destination (/playbook), same
-                        liquid-glass rounded-full Cormorant pill. */}
-                    <a
-                        href="/playbook"
-                        className="w-full liquid-glass rounded-full inline-flex items-center justify-center px-6 py-3 whitespace-nowrap text-base font-medium tracking-[0.01em] transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
-                        style={{
-                            fontFamily: "'Cormorant Garamond', serif",
-                            color: "var(--skin-link-secondary, rgba(26,30,58,0.85))",
-                            textShadow:
-                                "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
-                        }}
-                    >
-                        See the exact playbook
-                    </a>
+                    {/* OPTION 2 — Activate ($44, secondary, medium).
+                        TODO: wire /activate to the real Stripe link or new
+                        landing page once the Activation product is live.
+                        Until then this href will 404 — replace before launch. */}
+                    <div className="space-y-4 text-center px-2">
+                        <p
+                            className="text-[10px] sm:text-xs font-semibold tracking-[0.22em] uppercase"
+                            style={{ color: "var(--skin-text-muted, rgba(26,30,58,0.65))" }}
+                        >
+                            2 — Activate it
+                        </p>
+                        <div className="space-y-2">
+                            <p
+                                className="text-base leading-relaxed"
+                                style={{
+                                    fontFamily: "'Source Serif 4', serif",
+                                    color: "var(--skin-link-secondary, rgba(26,30,58,0.78))",
+                                }}
+                            >
+                                Right now, you can recognize it.
+                            </p>
+                            <p
+                                className="text-base sm:text-lg leading-relaxed"
+                                style={{
+                                    fontFamily: "'Source Serif 4', serif",
+                                    color: "var(--skin-text-primary, #0a1628)",
+                                    fontWeight: 500,
+                                }}
+                            >
+                                Activation is where you start working from it.
+                            </p>
+                            <p
+                                className="text-sm leading-relaxed"
+                                style={{
+                                    fontFamily: "'Source Serif 4', serif",
+                                    color: "var(--skin-text-muted, rgba(26,30,58,0.72))",
+                                }}
+                            >
+                                You see how it actually moves — in decisions, in output, in real situations.
+                            </p>
+                        </div>
+
+                        {/* Secondary CTA — hover swaps idle label for action label.
+                            Idle: "Let it become usable — $37"
+                            Hover: "Activate your Genius" */}
+                        <a
+                            href={STRIPE_ACTIVATE_LINK}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={() => trackCTAClick('activate_click', 'appleseed_option2')}
+                            className="group liquid-glass relative w-full rounded-full inline-flex items-center justify-center px-5 py-3 text-sm sm:text-base font-medium transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+                            style={{
+                                fontFamily: "'Cormorant Garamond', serif",
+                                color: "var(--skin-text-primary, #0a1628)",
+                                border: '1px solid rgba(26,30,58,0.2)',
+                                textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
+                            }}
+                        >
+                            <span className="relative inline-block">
+                                <span className="block transition-opacity duration-300 group-hover:opacity-0">
+                                    Let it become usable — $37
+                                </span>
+                                <span className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100 whitespace-nowrap">
+                                    Activate your Genius
+                                </span>
+                            </span>
+                        </a>
+                        <p
+                            className="text-xs italic"
+                            style={{
+                                fontFamily: "'Source Serif 4', serif",
+                                color: "var(--skin-text-muted-soft, rgba(26,30,58,0.6))",
+                            }}
+                        >
+                            Most people start here.
+                        </p>
+                    </div>
+
+                    {/* OPTION 3 — Playbook (tertiary text link, free) */}
+                    <div className="space-y-3 text-center px-2 pt-2">
+                        <p
+                            className="text-[10px] sm:text-xs font-semibold tracking-[0.22em] uppercase"
+                            style={{ color: "var(--skin-text-muted, rgba(26,30,58,0.65))" }}
+                        >
+                            3 — See the playbook
+                        </p>
+                        <p
+                            className="text-sm leading-relaxed"
+                            style={{
+                                fontFamily: "'Source Serif 4', serif",
+                                color: "var(--skin-link-secondary, rgba(26,30,58,0.78))",
+                            }}
+                        >
+                            If you want to understand the structure behind this:
+                        </p>
+                        <p
+                            className="text-sm italic leading-relaxed"
+                            style={{
+                                fontFamily: "'Source Serif 4', serif",
+                                color: "var(--skin-text-muted, rgba(26,30,58,0.72))",
+                            }}
+                        >
+                            Pattern → clarity → business.
+                        </p>
+                        <a
+                            href="/playbook"
+                            className="inline-block text-sm underline underline-offset-4 transition-colors hover:opacity-80"
+                            style={{
+                                fontFamily: "'Cormorant Garamond', serif",
+                                color: "var(--skin-text-primary, #0a1628)",
+                                textDecorationColor: "rgba(26,30,58,0.3)",
+                            }}
+                        >
+                            Monetize Your Top Talent Playbook → See the playbook
+                        </a>
+                    </div>
                 </div>
 
-                {/* ═══════════════════════════════════════════════
-                    FOOTER ROW — save + share, both de-emphasized
-                    (Sasha, 2026-04-21). Primary decision already lived
-                    in the CTAs above; this is the escape hatch for
-                    "not ready right now."
-                    ═══════════════════════════════════════════════ */}
+                {/* Resonance Rating — quiet analytics widget, moved below the
+                    three options so it doesn't disrupt the recognition flow. */}
+                {onResonanceRating && (
+                    <div className="pt-4">
+                        <ResonanceRating
+                            step="appleseed"
+                            onRate={onResonanceRating}
+                        />
+                    </div>
+                )}
+
+                {/* SAVE LINE + OwnershipSection — quiet escape hatch.
+                    Day 57 (Sasha 2026-05-01): added the framing line above
+                    the email pill. */}
                 <div className="max-w-md mx-auto space-y-3 pt-6">
+                    <p
+                        className="text-center text-xs italic"
+                        style={{
+                            color: "var(--skin-text-muted-soft, rgba(26,30,58,0.6))",
+                            fontFamily: "'Source Serif 4', serif",
+                        }}
+                    >
+                        Or just send this to yourself and come back to it.
+                    </p>
                     <OwnershipSection
                         emailUnlocked={emailUnlocked}
                         isSaved={isSaved}
@@ -487,11 +657,162 @@ const AppleseedDisplay = ({
                         handleEmailSubmit={handleEmailSubmit}
                     />
                 </div>
-
-                {/* Day 51 night (Sasha): bottom signature + delayed share strip
-                    both retired. Save + Share now live in-card via CardActions
-                    inside RevelatoryHero. */}
             </div>
+
+            {/* FLOATING SCROLL BAR — Day 57 (Sasha 2026-05-01).
+                Appears at ~50% scroll. Not urgency — continuity. */}
+            <div
+                className={`fixed bottom-0 left-0 right-0 z-40 px-3 pb-3 transition-all duration-500 ${
+                    floatBarVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-full pointer-events-none'
+                }`}
+                aria-hidden={!floatBarVisible}
+            >
+                <div
+                    className="mx-auto max-w-2xl rounded-2xl"
+                    style={{
+                        backgroundImage: 'linear-gradient(180deg, rgba(255,255,255,0.94), rgba(255,255,255,0.86))',
+                        border: '1px solid rgba(26,30,58,0.10)',
+                        boxShadow: '0 -8px 24px -12px rgba(10,22,40,0.18)',
+                        backdropFilter: 'blur(8px)',
+                        WebkitBackdropFilter: 'blur(8px)',
+                    }}
+                >
+                    <div className="flex items-center justify-between gap-3 px-4 py-3">
+                        <p
+                            className="text-xs italic"
+                            style={{
+                                color: "var(--skin-text-muted-soft, rgba(26,30,58,0.65))",
+                                fontFamily: "'Source Serif 4', serif",
+                            }}
+                        >
+                            You can come back to this anytime.
+                        </p>
+                        <a
+                            href={STRIPE_ACTIVATE_LINK}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={() => trackCTAClick('activate_click', 'appleseed_floating_bar')}
+                            className="text-sm font-medium whitespace-nowrap transition-opacity hover:opacity-80"
+                            style={{
+                                fontFamily: "'Cormorant Garamond', serif",
+                                color: "var(--skin-text-primary, #0a1628)",
+                            }}
+                        >
+                            Activate — $37 →
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            {/* EXIT INTENT MODAL — Day 57 (Sasha 2026-05-01).
+                Desktop mouseleave-from-top, fires once per session, suppressed
+                if the user has already saved. No guilt — just preservation. */}
+            {showExitModal && (
+                <div
+                    className="fixed inset-0 z-[100] flex items-center justify-center p-4"
+                    style={{ backgroundColor: "rgba(10,22,40,0.42)", backdropFilter: "blur(6px)", WebkitBackdropFilter: "blur(6px)" }}
+                    onClick={() => setShowExitModal(false)}
+                    role="dialog"
+                    aria-modal="true"
+                >
+                    <div
+                        className="rounded-3xl max-w-sm w-full p-6 sm:p-7 space-y-4 relative animate-in zoom-in-95 fade-in duration-200"
+                        onClick={(e) => e.stopPropagation()}
+                        style={{
+                            backgroundImage: 'linear-gradient(180deg, rgba(255,255,255,0.97), rgba(255,255,255,0.90))',
+                            boxShadow: '0 30px 60px -20px rgba(10,22,40,0.35), 0 1px 0 rgba(255,255,255,0.6) inset',
+                            border: '1px solid rgba(26,30,58,0.10)',
+                        }}
+                    >
+                        <button
+                            type="button"
+                            className="absolute top-3 right-3 p-1.5 rounded-full hover:bg-black/5 transition-colors"
+                            onClick={() => setShowExitModal(false)}
+                            aria-label="Close"
+                        >
+                            <X className="w-4 h-4" style={{ color: "var(--skin-text-muted, rgba(26,30,58,0.7))" }} />
+                        </button>
+                        <p
+                            className="text-[10px] sm:text-xs font-semibold tracking-[0.22em] uppercase"
+                            style={{ color: "var(--skin-text-muted, rgba(26,30,58,0.65))" }}
+                        >
+                            Before you go—
+                        </p>
+                        <p
+                            className="text-xl sm:text-2xl font-medium leading-snug"
+                            style={{
+                                fontFamily: "'Cormorant Garamond', serif",
+                                color: "var(--skin-text-primary, #0a1628)",
+                            }}
+                        >
+                            Do you want to keep this?
+                        </p>
+                        <form onSubmit={handleModalSubmit} className="space-y-3 pt-1">
+                            <div
+                                className="flex items-center gap-2 p-2 rounded-full"
+                                style={{
+                                    backgroundColor: "rgba(255,255,255,0.5)",
+                                    border: '1px solid rgba(26,30,58,0.16)',
+                                }}
+                            >
+                                <Mail
+                                    className="w-3.5 h-3.5 ml-2 flex-shrink-0"
+                                    style={{ color: "var(--skin-text-hint, rgba(26,30,58,0.45))" }}
+                                />
+                                <input
+                                    type="email"
+                                    value={modalEmail}
+                                    onChange={(e) => setModalEmail(e.target.value)}
+                                    placeholder="your@email.com"
+                                    autoFocus
+                                    className="flex-1 bg-transparent border-0 text-sm focus:outline-none min-w-0"
+                                    style={{ color: "var(--skin-text-primary, #0a1628)" }}
+                                    required
+                                />
+                                <button
+                                    type="submit"
+                                    disabled={modalSubmitting || !modalEmail.trim()}
+                                    className="flex-shrink-0 rounded-full px-4 py-1.5 text-xs font-semibold text-white disabled:opacity-40 transition-colors"
+                                    style={{
+                                        backgroundImage:
+                                            "linear-gradient(135deg, #a06d08 0%, #7a5108 45%, #6b4208 100%)",
+                                    }}
+                                >
+                                    {modalSubmitting ? "Saving…" : "Email my result"}
+                                </button>
+                            </div>
+                            <p
+                                className="text-center text-[11px] italic"
+                                style={{
+                                    color: "var(--skin-text-muted-soft, rgba(26,30,58,0.55))",
+                                    fontFamily: "'Source Serif 4', serif",
+                                }}
+                            >
+                                — or —
+                            </p>
+                            <a
+                                href={STRIPE_ACTIVATE_LINK}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                onClick={() => {
+                                    trackCTAClick('activate_click', 'appleseed_exit_modal');
+                                    setShowExitModal(false);
+                                }}
+                                className="w-full liquid-glass-dark cta-breath rounded-full inline-flex items-center justify-center px-5 py-3 text-sm sm:text-base font-semibold transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+                                style={{
+                                    fontFamily: "'Cormorant Garamond', serif",
+                                    color: "var(--skin-cta-text, rgba(245,245,250,0.98))",
+                                    backgroundImage:
+                                        "var(--skin-cta-bg, linear-gradient(135deg, rgba(10,22,40,0.72) 0%, rgba(26,30,58,0.62) 50%, rgba(10,22,40,0.72) 100%))",
+                                    textShadow: "var(--skin-cta-text-shadow, 0 0 16px rgba(240,194,127,0.25))",
+                                }}
+                            >
+                                Activate it — $37
+                            </a>
+                        </form>
+                    </div>
+                </div>
+            )}
         </>
     );
 };

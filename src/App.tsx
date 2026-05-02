@@ -17,6 +17,7 @@ import { ThemeProvider } from "@/contexts/ThemeContext";
 import { SkinProvider } from "@/contexts/SkinContext";
 import SkinPreview from "./pages/SkinPreview";
 import PreviewBanner from "@/components/skin/PreviewBanner";
+import MusicPlayer from "@/components/MusicPlayer";
 import LandingPage from "./pages/LandingPage";
 import FeedbackPage from "./pages/FeedbackPage";
 import ContactNew from "./pages/ContactNew";
@@ -37,6 +38,7 @@ import GameShellV2 from "./components/game/GameShellV2";
 import MorphogeneticHolomap from "./pages/MorphogeneticHolomap";
 import FoundersShowcase from "./pages/FoundersShowcase";
 import IgniteSession from "./pages/IgniteSession";
+import ActivateWelcome from "./pages/ActivateWelcome";
 import MethodologyLandingPage from "./pages/MethodologyLandingPage";
 import JourneyPage from "./pages/JourneyPage";
 import PlaybookPage from "./pages/PlaybookPage";
@@ -242,6 +244,14 @@ const App = () => (
           <TitleManager />
           <ScrollRestoration />
           <PreviewBanner />
+          {/* Day 56 (Sasha 2026-05-01): ambient music player. Mounted
+              ONCE at App root above <Routes> so the audio engine
+              persists across navigation — visitor presses play on /,
+              music keeps playing through /ai-os, /path, etc. Gated by
+              ?music=1 query param so production traffic sees nothing
+              while we iterate. Flip MusicPlayer's enabled gate to
+              default-true when ready to launch for everyone. */}
+          <MusicPlayer />
           <ErrorBoundary>
             <Suspense fallback={<PageLoader />}>
               <PageTransition>
@@ -339,6 +349,7 @@ const App = () => (
                   {/* Day 47 (Sasha): /ignite is now public — the ZoG result CTA lands
                       here directly. Auth at the pricing step was redundant funnel friction. */}
                   <Route path="/ignite" element={<IgniteSession />} />
+                  <Route path="/activate/welcome" element={<ActivateWelcome />} />
                   <Route path="/library" element={<Library />} />
                   <Route path="/library/:stepId" element={<Library />} />
                   <Route path="/contact" element={<RequireAuth><ContactNew /></RequireAuth>} />

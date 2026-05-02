@@ -370,6 +370,29 @@ Return ONLY the JSON object. No explanation. No preamble.`;
 // TYPES
 // ---------------------------------------------------------------------------
 
+/**
+ * Deep Top Talent Profile — the 8 rich fields produced by the user-facing
+ * `ZONE_OF_GENIUS_PROMPT` (src/prompts/user/zoneOfGeniusPrompt.ts) when
+ * pasted into ChatGPT/Claude/Gemini and JSON-returned. Captures the
+ * activation-level depth (edge & traps, ideal environments, career sweet
+ * spots, flywheel action) that the compressed snapshot doesn't carry.
+ *
+ * Day 57 (Sasha 2026-05-01): added as optional layer on AppleseedData so
+ * existing snapshots degrade gracefully (field stays undefined). New
+ * snapshots populate it via tryExtractTopTalentProfile() when rawSignal
+ * is the structured JSON output of the prompt.
+ */
+export interface TopTalentProfile {
+  archetype_title: string;
+  core_pattern: string;
+  top_three_talents: string[];
+  how_genius_shows_up: string;
+  edge_and_traps: string;
+  ideal_environments: string[];
+  career_sweet_spots: string[];
+  flywheel_action: string;
+}
+
 export interface AppleseedData {
   bullseyeSentence: string;
   vibrationalKey: {
@@ -418,6 +441,12 @@ export interface AppleseedData {
     meaning: string;
   }>;
   elevatorPitch: string;
+  /**
+   * Optional deep profile — present when rawSignal is the structured JSON
+   * output of ZONE_OF_GENIUS_PROMPT. Renders the activation-level surface
+   * on `/game/me/zone-of-genius`.
+   */
+  topTalentProfile?: TopTalentProfile;
 }
 
 // ---------------------------------------------------------------------------
@@ -427,8 +456,61 @@ export interface AppleseedData {
 import { supabase } from "@/integrations/supabase/client";
 
 /**
+ * If rawSignal is the structured JSON returned by `ZONE_OF_GENIUS_PROMPT`,
+ * extract the 8 deep-profile fields. Returns undefined when the input
+ * isn't that JSON (raw conversation text, partial fields, etc.) — caller
+ * should treat undefined as "no deep profile available, render fallback."
+ */
+const tryExtractTopTalentProfile = (rawSignal: string): TopTalentProfile | undefined => {
+  if (typeof rawSignal !== "string" || !rawSignal.trim()) return undefined;
+  // The prompt asks for a JSON block; users sometimes paste with leading
+  // prose or markdown fences. Try to locate the first `{...}` envelope.
+  const fenceMatch = rawSignal.match(/```(?:json)?\s*([\s\S]*?)```/);
+  const candidate = fenceMatch ? fenceMatch[1] : rawSignal;
+  const firstBrace = candidate.indexOf("{");
+  const lastBrace = candidate.lastIndexOf("}");
+  if (firstBrace === -1 || lastBrace === -1 || lastBrace <= firstBrace) return undefined;
+  const jsonSlice = candidate.slice(firstBrace, lastBrace + 1);
+  let parsed: any;
+  try {
+    parsed = JSON.parse(jsonSlice);
+  } catch {
+    return undefined;
+  }
+  if (!parsed || typeof parsed !== "object") return undefined;
+  // Validate the 8 expected keys are present + correctly shaped. Missing
+  // any → not the prompt's output; bail.
+  const required = [
+    "archetype_title",
+    "core_pattern",
+    "top_three_talents",
+    "how_genius_shows_up",
+    "edge_and_traps",
+    "ideal_environments",
+    "career_sweet_spots",
+    "flywheel_action",
+  ];
+  for (const k of required) {
+    if (!(k in parsed)) return undefined;
+  }
+  if (!Array.isArray(parsed.top_three_talents)) return undefined;
+  if (!Array.isArray(parsed.ideal_environments)) return undefined;
+  if (!Array.isArray(parsed.career_sweet_spots)) return undefined;
+  return {
+    archetype_title: String(parsed.archetype_title || ""),
+    core_pattern: String(parsed.core_pattern || ""),
+    top_three_talents: parsed.top_three_talents.map((t: unknown) => String(t)).filter(Boolean),
+    how_genius_shows_up: String(parsed.how_genius_shows_up || ""),
+    edge_and_traps: String(parsed.edge_and_traps || ""),
+    ideal_environments: parsed.ideal_environments.map((t: unknown) => String(t)).filter(Boolean),
+    career_sweet_spots: parsed.career_sweet_spots.map((t: unknown) => String(t)).filter(Boolean),
+    flywheel_action: String(parsed.flywheel_action || ""),
+  };
+};
+
+/**
  * Generate an Appleseed from raw signal using Lovable AI.
- * 
+ *
  * @param rawSignal - The user's pasted AI response about their genius
  * @returns Promise<AppleseedData> - The generated Appleseed
  */
@@ -451,5 +533,13 @@ export const generateAppleseed = async (rawSignal: string): Promise<AppleseedDat
     throw new Error('No appleseed data in response');
   }
 
-  return data.appleseed as AppleseedData;
+  const appleseed = data.appleseed as AppleseedData;
+
+  // Day 57 (Sasha 2026-05-01): also try to extract the 8-field deep profile
+  // from rawSignal if the user pasted the JSON output of ZONE_OF_GENIUS_PROMPT.
+  // Attached to the appleseed; persists via saveAppleseed → appleseed_data JSONB.
+  const deep = tryExtractTopTalentProfile(rawSignal);
+  if (deep) appleseed.topTalentProfile = deep;
+
+  return appleseed;
 };

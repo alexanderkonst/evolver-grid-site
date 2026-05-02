@@ -770,4 +770,156 @@ The iterate suite now ships 10 prompts (1 fusion + 9 sub-modules). The anti-viru
 
 ---
 
-*Phase 1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 complete. Audit + meta-DoD docs + system-prompt rename/WIIFM + v5.1 depersonalization + v5.2 full-Compass cleanup + ai-skill-claude composite cleared + ANGRY-DAD ANTI-VIRUS shipped in Iterate suite. Three frozen system-prompt versions (v5.0, v5.1, v5.2) preserved. Audit thread closed.*
+*Phase 1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 complete. Audit + meta-DoD docs + system-prompt rename/WIIFM + v5.1 depersonalization + v5.2 full-Compass cleanup + ai-skill-claude composite cleared + ANGRY-DAD ANTI-VIRUS shipped in Iterate suite. Three frozen system-prompt versions (v5.0, v5.1, v5.2) preserved.*
+
+---
+
+# Phase 9 — Post-Reveal Page Upgrade + $37 Activation Product (2026-05-01)
+
+> *Sasha shipped a major redesign of the post-Top-Talent-reveal page (AppleseedDisplay): replaced the Bridge + Gap chain with a Recognition Block, introduced a three-option CTA layout (Build a business $555 / Activate $37 / See the playbook free), added behavioral loops (1.2s fade-in, scroll-triggered floating bar, exit-intent modal). New Stripe-paid product "Activation" at $37. New post-payment landing at `/activate/welcome`.*
+
+## Files modified / created
+
+| Path | Change |
+|---|---|
+| `src/modules/zone-of-genius/AppleseedDisplay.tsx` | Major rewrite. Removed Bridge ("What if shining…") + Gap chain ("Right now you don't have…") + standalone Sergey figure + old single-CTA section. Added Recognition Block ("You felt that. That's your pattern…"), three-option CTA layout, 1.2s fade-in, scroll-triggered floating bar, exit-intent modal (mouseleave from top, once-per-session), return-state greeting (conditional on `isReturning` captured at mount). Sergey quote moved into Option 1 card. ResonanceRating relocated below Three Options as quiet analytics widget. Save line added above OwnershipSection. |
+| `src/pages/ActivateWelcome.tsx` | **NEW** post-payment landing page at `/activate/welcome`. Sasha's copy: "You're in. / Your full profile is open. / This is where your pattern starts to show itself more clearly — not just in how you think, but in how you actually work. / Take it at your own pace." + CTA "See your profile →" → `/game/me`. |
+| `src/App.tsx` | New route: `<Route path="/activate/welcome" element={<ActivateWelcome />} />`. Import added. |
+
+## Activation product wiring (live)
+
+| # | Wiring point | Value |
+|---|---|---|
+| 1 | Stripe checkout link | `https://buy.stripe.com/00w6oH7wo21R41XaDedEs0H` |
+| 2 | Stripe redirect URL (configured by Sasha in Stripe dashboard) | `https://findyourtoptalent.com/activate/welcome` |
+| 3 | Constant in source | `STRIPE_ACTIVATE_LINK` in `AppleseedDisplay.tsx` |
+| 4 | Three CTA placements wired with same link | Option 2 button (post-reveal card), floating bar (scroll-triggered), exit modal (mouseleave-triggered) |
+| 5 | Link attributes | `target="_blank" rel="noopener noreferrer"` on all three (so checkout opens cleanly without leaving the original tab) |
+| 6 | Funnel analytics | `trackCTAClick('activate_click', 'appleseed_option2' \| 'appleseed_floating_bar' \| 'appleseed_exit_modal')` on each — distinguishes which surface drove the click |
+| 7 | Price | $37 in all three places (changed from $44 mid-build) |
+
+## End-to-end user journey — verified rigor
+
+**Path A: Pre-authenticated user**
+1. `/zone-of-genius` → user does the test → AppleseedDisplay renders
+2. Recognition Block lands (instant) → Three Options fade in (1.2s)
+3. User clicks Option 2 "Let it become usable — $37" → Stripe checkout opens in new tab
+4. Payment succeeds → Stripe redirects to `https://findyourtoptalent.com/activate/welcome`
+5. Welcome page renders Sasha's copy
+6. User clicks "See your profile →" → `/game/me` → `/game/me/zone-of-genius`
+7. MeGate detects authenticated user → renders their full profile inside the shell
+
+**Path B: Anonymous user (no signup yet)**
+1-5: Same as Path A
+6. User clicks "See your profile →" → `/game/me` → `/game/me/zone-of-genius`
+7. MeGate detects guest → renders the standard shell with a small inline card explaining "we need email + password so we can find your profile next time, otherwise the data is gone." (Plain language, no "create account" jargon, per MeGate's design.)
+8. User submits email + password → MeGate calls `getOrCreateGameProfileId()` which attaches the existing localStorage profile (their saved appleseed) to the new user
+9. Authenticated → profile renders. No data lost.
+
+**Path C: Exit-intent capture**
+1-2: Same as Path A
+3. User moves mouse toward browser tab close / URL bar (mouseleave from top of viewport)
+4. Exit modal appears: "Before you go— / Do you want to keep this?" + inline email form OR "Activate it — $37" alt
+5a. User submits email → save-zog-result edge function fires → toast confirmation → modal closes → user can stay or leave
+5b. User clicks "Activate it — $37" → modal closes + Stripe opens in new tab → continues to Path A/B from step 4
+
+**Friction point analysis**
+- Stripe → /activate/welcome: clean (route exists, copy renders)
+- Welcome → /game/me: clean for authed users; for guests, MeGate handles gracefully with a sign-up card that preserves their localStorage profile
+- The journey **does NOT break** for any user state (signed-in, guest with saved data, fresh visitor)
+
+## Behavioral loops verified
+
+| Loop | Verified in browser |
+|---|---|
+| 1.2s fade-in for Three Options | ✓ — Recognition Block visible immediately; options arrive after 1.2s with opacity + translate-y transition |
+| Floating scroll bar at 45-95% scroll ratio | ✓ — appears at ~0.55 scroll, hides past 0.95, transition completes in 500ms |
+| Exit-intent modal (mouseleave from top, once per session) | ✓ — `dispatchEvent(new MouseEvent('mouseleave', { clientY: -10 }))` triggers dialog with role="dialog", aria-modal="true" |
+| Return-state greeting "Your pattern is still here." | ✓ — conditional on `isReturning` captured at mount (true if `isSaved` was already true on entry) |
+| Hover-text-swap on Option 1 | ✓ — idle "Build a business from your top talent — $555" / hover "Turn this into an offer" |
+| Hover-text-swap on Option 2 | ✓ — idle "Let it become usable — $37" / hover "Activate your Genius" |
+| Save line + OwnershipSection footer | ✓ — "Or just send this to yourself and come back to it." renders above the email pill |
+
+## Verification matrix
+
+| Check | Result |
+|---|---|
+| `npx tsc --noEmit` | ✓ Clean |
+| Old Bridge ("What if shining this top talent bright IS your business?") absent | ✓ |
+| Old Gap chain ("Right now, you don't have a clear way to say what you do") absent | ✓ |
+| Old standalone Sergey figure absent (quote moved into Option 1) | ✓ |
+| Recognition Block ("You felt that. That's your pattern…") rendering | ✓ |
+| Three Options rendering with correct hierarchy | ✓ — primary card (dark glass, $555), secondary (soft outline, $37), tertiary (text link, free) |
+| `$44` count in `AppleseedDisplay.tsx` | 0 (all replaced with $37) |
+| `$37` count | 3 in source (Option 2, floating bar, exit modal — each with 2 hover spans on Option 2) |
+| `href="/activate"` placeholder count | 0 (all replaced with `STRIPE_ACTIVATE_LINK`) |
+| Stripe link wired correctly with `target="_blank" rel="noopener noreferrer"` | ✓ on all three placement points |
+| `trackCTAClick('activate_click', ...)` on each click | ✓ option2, floating_bar, exit_modal — distinct surface labels |
+| `/activate/welcome` route renders | ✓ — verified via DOM scrape: "You're in." + "Your full profile is open." + "This is where your pattern starts to show itself" + "Take it at your own pace." + CTA `/game/me` |
+| `mcCrossStar` import removed (was used by deleted Gap chain) | ✓ |
+| `useRef`, `X` icon, `trackCTAClick` imports added | ✓ |
+| Browser preview verification | ✓ — DOM scrapes, screenshot of welcome page, exit-modal trigger test, scroll-bar transition test, fake-appleseed injection for AppleseedDisplay rendering |
+
+## Out-of-scope (Sasha's call)
+
+- **Follow-up email** ("Subject: → You saw it.") — needs email-sequence trigger system tied to `divine_timing_leads` or similar
+- **After-activation bridge** ("Now that you're working from it… → Build the business — $555") — needs the Activation product experience to actually exist; once the post-payment flow is fleshed out, this bridge can be added on the welcome page or in the ME profile
+- **Deeper Top Talent profile in ME section** (edge_and_traps, ideal_environments, career_sweet_spots, flywheel_action) — strategic plan documented earlier; data already returned by ZoG prompt, but rendering UI needs to be built. This is what the Activation product would naturally unlock for users — once ME shows these fields, the welcome page → ME flow lands the user on the deeper profile they paid for.
+
+---
+
+*Phase 1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9 complete. Audit + meta-DoD docs + system-prompt rename/WIIFM + v5.1+v5.2 depersonalization + ai-skill-claude composite cleared + ANGRY-DAD ANTI-VIRUS in Iterate suite + post-reveal page upgrade with three-option layout + $37 Activation product wired with Stripe + post-payment welcome page. Three frozen system-prompt versions preserved. Journey rigor verified end-to-end (Paths A, B, C).*
+
+---
+
+# Phase 10 — Deep Top Talent Profile module (Activation deliverable) (2026-05-01)
+
+> *The module Sasha shipped following [`docs/03-playbooks/integrated_product_building_workflow.md`](../03-playbooks/integrated_product_building_workflow.md). The deep profile is what the $37 Activation product unlocks — the 8 rich fields produced by `ZONE_OF_GENIUS_PROMPT` (archetype + core pattern + 3 talents long + how it shows up + edge & traps + ideal environments + career sweet spots + flywheel action) rendered on `/game/me/zone-of-genius`. Tracker at [`docs/05-specs/top-talent-profile-deep/top-talent-profile-deep_tracker.md`](../05-specs/top-talent-profile-deep/top-talent-profile-deep_tracker.md).*
+
+## Files modified / created
+
+| Path | Change |
+|---|---|
+| `docs/05-specs/top-talent-profile-deep/top-talent-profile-deep_tracker.md` | **NEW** — workflow-mandated progress tracker. INPUT (5/5), Phase 1 PRODUCT (Master Result + trinity sub-results + screens + dan tians + extensions + wireframes + roast gate 1), Phase 2 ARCHITECTURE (5 items + roast gate 2), Phase 3 UI (9 items + roast gate 3), Phase 4 VIBE-CODING (5 items + roast gate 4) — all checked off. |
+| `src/modules/zone-of-genius/appleseedGenerator.ts` | Added `TopTalentProfile` exported interface (8 fields). Extended `AppleseedData` with optional `topTalentProfile?: TopTalentProfile`. Added `tryExtractTopTalentProfile(rawSignal)` helper — defensively parses JSON from raw text, ```json-fenced blocks, or mixed inputs; validates 8 required keys + 3 array shapes before returning. `generateAppleseed()` now also runs this extractor on `rawSignal` and attaches result to `appleseed.topTalentProfile` when present. |
+| `src/pages/spaces/profile/ZoneOfGeniusOverview.tsx` | Added Deep Profile section after Hero, before Three Lenses. Three trinity articles in liquid-glass-strong cards: **1 · Recognize in detail** (archetype + core_pattern + how_genius_shows_up), **2 · Equip yourself** (numbered top three talents + edge & traps + gold-accented flywheel action box), **3 · Orient — where you thrive** (ideal_environments + career_sweet_spots as bullet lists). Conditional render — invisible when `topTalentProfile` is undefined. |
+
+## Architecture decisions
+
+| Decision | Rationale |
+|---|---|
+| **No schema migration** | `zog_snapshots.appleseed_data` is JSONB — extending the TypeScript shape automatically persists via existing `saveAppleseed`. Zero database churn. |
+| **Optional field, not required** | Existing snapshots fall through silently. Only new snapshots where user pastes the JSON output get the deep render. No data backfill needed for v1. |
+| **Trinity sub-results, not 8 flat sections** | The 8 fields naturally cluster into 3 felt wins: Recognize → Equip → Orient (per Phase 1 of the integrated workflow). Three articles map onto three sub-results, each containing the relevant fields. |
+| **Inserted after Hero, before Three Lenses** | Deep profile is the activation deliverable — it's what the user came to see. Three Lenses is at-a-glance recap; the deep profile is the headline content. Natural reading order: identity → operating manual → recap. |
+| **Defensive JSON parser** | Users may paste raw JSON, ```json-fenced blocks, or JSON inside other text. The parser handles all three; validates 8 required keys + 3 array shapes; returns `undefined` on any deviation so the rendering stays graceful. |
+
+## Verification
+
+| Check | Result |
+|---|---|
+| `npx tsc --noEmit` | ✓ Clean |
+| `/game/me/zone-of-genius` route renders for unauth user | ✓ MeGate sign-up card displays gracefully ("Save your profile — so it's here when you come back") |
+| `/zone-of-genius` entry route renders | ✓ "Find my top talent" CTA present, no console errors |
+| Deep profile section invisible when `topTalentProfile` is undefined | ✓ Conditional `{fullAppleseed?.topTalentProfile && ...}` ensures graceful degradation |
+| `TopTalentProfile` exported for downstream consumers (PDF generator, edge functions) | ✓ |
+
+## End-to-end module journey
+
+1. User pastes their AI's response into `/zone-of-genius` "Faster" path
+2. If response is the JSON output of `ZONE_OF_GENIUS_PROMPT` → `tryExtractTopTalentProfile` parses 8 fields → attached to result
+3. `generateAppleseed` returns the full appleseed including `topTalentProfile`
+4. `saveAppleseed` persists everything via `appleseed_data` JSONB column
+5. User navigates to `/game/me/zone-of-genius` (via "See your profile →" from `/activate/welcome`, or via journey nav)
+6. `ZoneOfGeniusOverview` loads snapshot, renders Hero → **Deep Profile (3 trinity articles)** → existing sections (Three Lenses, Life Scene, Mastery Stages, Monetization, Partner, Roles)
+7. Activation deliverable lands
+
+## Out of scope
+
+- **Backfill** for existing pre-Day-57 snapshots without `topTalentProfile`. Users would need to re-do their reveal. Future: add a "regenerate your deep profile" CTA.
+- **Guided assessment path** doesn't yet produce the 8 fields. Only the Faster path does. Future: extend the assessment generator.
+- **PDF export** of the deep profile. Existing `generateZogPdf` doesn't include the 8 fields yet. Future addition.
+
+---
+
+*Phase 1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9 + 10 complete. Activation deliverable shipped — the deep Top Talent profile renders on `/game/me/zone-of-genius` whenever the underlying snapshot carries the 8 rich fields. Zero regressions on existing snapshots. Workflow-mandated tracker preserved at `docs/05-specs/top-talent-profile-deep/top-talent-profile-deep_tracker.md`.*

@@ -318,6 +318,179 @@ const ZoneOfGeniusOverview = () => {
                     </div>
                 </article>
 
+                {/* ═══ DEEP TOP TALENT PROFILE — the 8-field activation surface ═══
+                    Day 57 (Sasha 2026-05-01): renders the rich profile produced
+                    by ZONE_OF_GENIUS_PROMPT when the user pasted the JSON
+                    output of their AI. Trinity sub-results:
+                      1 · RECOGNIZE — archetype + core_pattern + how_genius_shows_up
+                      2 · EQUIP     — top three talents (long) + edge & traps + flywheel
+                      3 · ORIENT    — ideal environments + career sweet spots
+                    Falls through silently if no topTalentProfile present
+                    (existing snapshots without the deep field render as before). */}
+                {fullAppleseed?.topTalentProfile && (
+                    <div className="space-y-6">
+                        {/* 1 · RECOGNIZE in detail */}
+                        <article className="liquid-glass-strong rounded-3xl p-7 space-y-5">
+                            <SectionLabel>1 · Recognize in detail</SectionLabel>
+
+                            {fullAppleseed.topTalentProfile.archetype_title && (
+                                <div className="space-y-1.5">
+                                    <p className="text-xs uppercase tracking-wider" style={{ color: INK_MUTED }}>Archetype</p>
+                                    <p
+                                        className="font-medium"
+                                        style={{
+                                            color: INK,
+                                            fontFamily: "'Cormorant Garamond', serif",
+                                            fontSize: "1.2rem",
+                                            textShadow: HALO_SOFT,
+                                        }}
+                                    >
+                                        {fullAppleseed.topTalentProfile.archetype_title}
+                                    </p>
+                                </div>
+                            )}
+
+                            {fullAppleseed.topTalentProfile.core_pattern && (
+                                <div className="space-y-1.5">
+                                    <p className="text-xs uppercase tracking-wider" style={{ color: INK_MUTED }}>Core pattern</p>
+                                    <p
+                                        className="text-sm leading-relaxed"
+                                        style={{ color: INK_BODY, fontFamily: "'Source Serif 4', Georgia, serif" }}
+                                    >
+                                        {fullAppleseed.topTalentProfile.core_pattern}
+                                    </p>
+                                </div>
+                            )}
+
+                            {fullAppleseed.topTalentProfile.how_genius_shows_up && (
+                                <div className="space-y-1.5 pt-2 border-t border-black/5">
+                                    <p className="text-xs uppercase tracking-wider" style={{ color: INK_MUTED }}>How it shows up</p>
+                                    <p
+                                        className="text-sm leading-relaxed"
+                                        style={{ color: INK_BODY, fontFamily: "'Source Serif 4', Georgia, serif" }}
+                                    >
+                                        {fullAppleseed.topTalentProfile.how_genius_shows_up}
+                                    </p>
+                                </div>
+                            )}
+                        </article>
+
+                        {/* 2 · EQUIP yourself */}
+                        <article className="liquid-glass-strong rounded-3xl p-7 space-y-5">
+                            <SectionLabel>2 · Equip yourself</SectionLabel>
+
+                            {fullAppleseed.topTalentProfile.top_three_talents?.length > 0 && (
+                                <div className="space-y-2.5">
+                                    <p className="text-xs uppercase tracking-wider" style={{ color: INK_MUTED }}>Three top talents</p>
+                                    <ol className="space-y-3">
+                                        {fullAppleseed.topTalentProfile.top_three_talents.map((talent, i) => (
+                                            <li key={i} className="flex gap-3">
+                                                <span
+                                                    className="flex-shrink-0 w-6 h-6 rounded-full text-[11px] font-semibold flex items-center justify-center mt-0.5"
+                                                    style={{
+                                                        background: "linear-gradient(135deg, rgba(244, 212, 114, 0.95) 0%, rgba(212, 175, 55, 0.78) 100%)",
+                                                        color: "#0a1628",
+                                                        fontFamily: "'DM Sans', system-ui, sans-serif",
+                                                        fontVariantNumeric: "tabular-nums",
+                                                    }}
+                                                >
+                                                    {i + 1}
+                                                </span>
+                                                <p
+                                                    className="text-sm leading-relaxed flex-1"
+                                                    style={{ color: INK, fontFamily: "'Source Serif 4', Georgia, serif" }}
+                                                >
+                                                    {talent}
+                                                </p>
+                                            </li>
+                                        ))}
+                                    </ol>
+                                </div>
+                            )}
+
+                            {fullAppleseed.topTalentProfile.edge_and_traps && (
+                                <div className="space-y-1.5 pt-2 border-t border-black/5">
+                                    <p className="text-xs uppercase tracking-wider" style={{ color: INK_MUTED }}>Edge &amp; traps</p>
+                                    <p
+                                        className="text-sm leading-relaxed"
+                                        style={{ color: INK_BODY, fontFamily: "'Source Serif 4', Georgia, serif" }}
+                                    >
+                                        {fullAppleseed.topTalentProfile.edge_and_traps}
+                                    </p>
+                                </div>
+                            )}
+
+                            {fullAppleseed.topTalentProfile.flywheel_action && (
+                                <div
+                                    className="rounded-xl p-4 mt-2"
+                                    style={{
+                                        background: "linear-gradient(135deg, rgba(244, 212, 114, 0.14) 0%, rgba(212, 175, 55, 0.08) 100%)",
+                                        border: "0.5px solid rgba(212, 175, 55, 0.35)",
+                                    }}
+                                >
+                                    <p
+                                        className="text-[10px] uppercase tracking-[0.28em] font-medium mb-1.5"
+                                        style={{ color: "#7a5108" }}
+                                    >
+                                        Flywheel action — repeat this
+                                    </p>
+                                    <p
+                                        className="text-sm leading-relaxed"
+                                        style={{
+                                            color: INK,
+                                            fontFamily: "'Source Serif 4', Georgia, serif",
+                                            fontWeight: 500,
+                                        }}
+                                    >
+                                        {fullAppleseed.topTalentProfile.flywheel_action}
+                                    </p>
+                                </div>
+                            )}
+                        </article>
+
+                        {/* 3 · ORIENT — where you thrive */}
+                        <article className="liquid-glass-strong rounded-3xl p-7 space-y-5">
+                            <SectionLabel>3 · Orient — where you thrive</SectionLabel>
+
+                            {fullAppleseed.topTalentProfile.ideal_environments?.length > 0 && (
+                                <div className="space-y-2.5">
+                                    <p className="text-xs uppercase tracking-wider" style={{ color: INK_MUTED }}>Ideal environments</p>
+                                    <ul className="space-y-2 list-none">
+                                        {fullAppleseed.topTalentProfile.ideal_environments.map((env, i) => (
+                                            <li
+                                                key={i}
+                                                className="text-sm leading-relaxed flex gap-2"
+                                                style={{ color: INK_BODY, fontFamily: "'Source Serif 4', Georgia, serif" }}
+                                            >
+                                                <span aria-hidden="true" className="flex-shrink-0 mt-1.5" style={{ color: INK_MUTED }}>•</span>
+                                                <span className="flex-1">{env}</span>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            )}
+
+                            {fullAppleseed.topTalentProfile.career_sweet_spots?.length > 0 && (
+                                <div className="space-y-2.5 pt-2 border-t border-black/5">
+                                    <p className="text-xs uppercase tracking-wider" style={{ color: INK_MUTED }}>Career sweet spots</p>
+                                    <ul className="space-y-2 list-none">
+                                        {fullAppleseed.topTalentProfile.career_sweet_spots.map((spot, i) => (
+                                            <li
+                                                key={i}
+                                                className="text-sm leading-relaxed flex gap-2"
+                                                style={{ color: INK_BODY, fontFamily: "'Source Serif 4', Georgia, serif" }}
+                                            >
+                                                <span aria-hidden="true" className="flex-shrink-0 mt-1.5" style={{ color: INK_MUTED }}>•</span>
+                                                <span className="flex-1">{spot}</span>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            )}
+                        </article>
+                    </div>
+                )}
+
                 {/* ═══ THREE LENSES ═══ */}
                 {lenses && (lenses.actions?.length > 0 || lenses.primeDriver || lenses.archetype) && (
                     <section className="liquid-glass rounded-2xl p-6 space-y-5">
