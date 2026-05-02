@@ -558,47 +558,55 @@ const PERSPECTIVES: Partial<Record<PerspectiveId, PerspectiveConfig>> = {
         title: "Monetization",
         subtitle: "How you turn your genius into revenue",
         icon: DollarSign,
-        // Day 58 (Sasha 2026-05-02): two sub-sections, both rendered as
-        // cream cards with gold ✦ bullets — the pill render was illegible
-        // for long avenues like "Intro · Signal Snapshot — 75-min session...".
-        // Eyebrow upgraded to landing-register treatment (larger + Cormorant
-        // small-caps with thin gold rule) for stronger visual hierarchy.
+        // Day 58 (Sasha 2026-05-02 late evening): each subsection now
+        // wrapped in its own bordered cream container so the eyebrow
+        // ("MONETIZATION AVENUES" / "CAREER SWEET SPOTS") reads cleanly
+        // against a stable cream background instead of disappearing
+        // gold-on-gold against the aurora page tint. Each container
+        // has a strong gold hairline + a Cormorant section heading at
+        // top, then the cards inside.
         render: (data) => {
-            const SubSectionEyebrow = ({ label }: { label: string }) => (
-                <div className="flex items-center gap-3 mb-4">
-                    <span
-                        aria-hidden="true"
-                        className="text-sm"
-                        style={{ color: "var(--skin-accent-gold, #b8860b)" }}
-                    >
-                        ✦
-                    </span>
-                    <p
-                        className="font-semibold uppercase"
+            const SectionContainer = ({
+                heading,
+                children,
+            }: {
+                heading: string;
+                children: React.ReactNode;
+            }) => (
+                <section
+                    className="rounded-2xl px-5 py-6 sm:px-7 sm:py-7"
+                    style={{
+                        // Stronger cream than the inner cards so the
+                        // outer container reads as the SECTION envelope
+                        // and the inner cards as DISTINCT items inside.
+                        background: "rgba(253, 247, 234, 0.92)",
+                        border: "1px solid rgba(184, 134, 11, 0.45)",
+                        boxShadow:
+                            "0 0 24px -6px rgba(184, 134, 11, 0.18), 0 14px 36px -20px rgba(10, 22, 40, 0.16)",
+                    }}
+                >
+                    <h3
+                        className="font-semibold uppercase mb-5"
                         style={{
                             fontFamily: "'DM Sans', system-ui, sans-serif",
-                            fontSize: "12px",
-                            letterSpacing: "0.24em",
-                            color: "var(--skin-accent-gold, #b8860b)",
+                            fontSize: "12.5px",
+                            letterSpacing: "0.26em",
+                            color: "rgba(122, 81, 8, 0.95)",
                         }}
                     >
-                        {label}
-                    </p>
-                    <span
-                        className="flex-1 h-px"
-                        style={{
-                            background:
-                                "linear-gradient(to right, rgba(184,134,11,0.45), transparent)",
-                        }}
-                        aria-hidden="true"
-                    />
-                </div>
+                        {heading}
+                    </h3>
+                    {children}
+                </section>
             );
 
             const ItemCard = ({ children }: { children: React.ReactNode }) => (
                 <li
-                    className="rounded-2xl px-6 py-5 flex gap-3"
-                    style={cardSurface}
+                    className="rounded-xl px-5 py-4 flex gap-3"
+                    style={{
+                        background: "rgba(255, 252, 244, 0.85)",
+                        border: "0.5px solid rgba(212, 175, 55, 0.35)",
+                    }}
                 >
                     <span
                         aria-hidden="true"
@@ -612,7 +620,6 @@ const PERSPECTIVES: Partial<Record<PerspectiveId, PerspectiveConfig>> = {
                         style={{
                             fontFamily: "'Source Serif 4', Georgia, serif",
                             color: "var(--skin-text-primary, #0b2a5a)",
-                            textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
                         }}
                     >
                         {children}
@@ -621,27 +628,25 @@ const PERSPECTIVES: Partial<Record<PerspectiveId, PerspectiveConfig>> = {
             );
 
             return (
-                <div className="space-y-10">
+                <div className="space-y-6">
                     {data.monetizationAvenues && data.monetizationAvenues.length > 0 && (
-                        <section>
-                            <SubSectionEyebrow label="Monetization Avenues" />
+                        <SectionContainer heading="Monetization Avenues">
                             <ul className="space-y-3">
                                 {data.monetizationAvenues.map((avenue, i) => (
                                     <ItemCard key={i}>{avenue}</ItemCard>
                                 ))}
                             </ul>
-                        </section>
+                        </SectionContainer>
                     )}
 
                     {data.topTalentProfile?.career_sweet_spots && data.topTalentProfile.career_sweet_spots.length > 0 && (
-                        <section>
-                            <SubSectionEyebrow label="Career Sweet Spots" />
+                        <SectionContainer heading="Career Sweet Spots">
                             <ul className="space-y-3">
                                 {data.topTalentProfile.career_sweet_spots.map((spot, i) => (
                                     <ItemCard key={i}>{spot}</ItemCard>
                                 ))}
                             </ul>
-                        </section>
+                        </SectionContainer>
                     )}
                 </div>
             );
