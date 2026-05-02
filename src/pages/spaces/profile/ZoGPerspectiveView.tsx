@@ -7,6 +7,7 @@ import { AppleseedData } from "@/modules/zone-of-genius/appleseedGenerator";
 import { GOLD_TEXT_STYLE, Ornament } from "@/lib/landingDesign";
 import ActivationSteps from "@/components/ActivationSteps";
 import ReadNextSectionButton from "@/components/profile/ReadNextSectionButton";
+import { flipToSecondPerson } from "@/lib/zogProfileVoice";
 import { Target, Sparkles, Users, TrendingUp, Briefcase, DollarSign, Eye, Palette, MessageSquare, Heart, Zap, Quote } from "lucide-react";
 
 // Day 54+ (Sasha 2026-04-28 night): full restyle of the ME · Top Talent
@@ -161,7 +162,7 @@ const PERSPECTIVES: Partial<Record<PerspectiveId, PerspectiveConfig>> = {
                             textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
                         }}
                     >
-                        {data.topTalentProfile.how_genius_shows_up}
+                        {flipToSecondPerson(data.topTalentProfile.how_genius_shows_up)}
                     </p>
                 </div>
             ) : null
@@ -216,7 +217,9 @@ const PERSPECTIVES: Partial<Record<PerspectiveId, PerspectiveConfig>> = {
         // structural unfolding. Reveal card shows only the sentence.
         render: (data) => {
             const oneSentence = data.topTalentProfile?.top_shadow_one_sentence;
-            const fullParagraph = data.topTalentProfile?.edge_and_traps;
+            const fullParagraph = data.topTalentProfile?.edge_and_traps
+                ? flipToSecondPerson(data.topTalentProfile.edge_and_traps)
+                : undefined;
             if (!oneSentence && !fullParagraph) return null;
             return (
                 <div className="space-y-5">
@@ -397,7 +400,7 @@ const PERSPECTIVES: Partial<Record<PerspectiveId, PerspectiveConfig>> = {
                         </div>
                         <div className="flex-1 min-w-0">
                             <p style={bodyStyle} className="font-semibold">{stage.name}</p>
-                            <p style={mutedStyle} className="text-sm leading-relaxed">{stage.description}</p>
+                            <p style={mutedStyle} className="text-sm leading-relaxed">{flipToSecondPerson(stage.description)}</p>
                         </div>
                     </div>
                 ))}

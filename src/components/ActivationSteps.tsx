@@ -111,13 +111,17 @@ export default function ActivationSteps({ showHeading = true }: ActivationStepsP
                 </div>
             </section>
 
-            {/* Step 2 — Listen */}
+            {/* Step 2 — Guided Meditation. Day 58 (Sasha 2026-05-02
+                late): renamed from "Listen" to "Guided Meditation" so
+                the user knows exactly what they're sitting with — no
+                ambiguity about whether this is music, a podcast, or
+                something else. Removes a small but real friction. */}
             <section className="space-y-5">
                 <p
                     className="text-[11px] sm:text-xs font-semibold tracking-[0.28em] uppercase text-center"
                     style={eyebrowStyle}
                 >
-                    2 · Listen
+                    2 · Guided Meditation
                 </p>
 
                 <MeditationPlayer
