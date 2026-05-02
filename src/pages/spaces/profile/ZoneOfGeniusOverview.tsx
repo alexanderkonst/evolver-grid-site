@@ -290,18 +290,17 @@ const ZoneOfGeniusOverview = () => {
     const vk = appleseedData.vibrationalKey;
 
     return (
-        <GameShellV2>
-            <div className="max-w-2xl mx-auto px-4 py-8 sm:px-6 sm:py-12 space-y-8">
+        <GameShellV2 hideLogo>
+            <div className="max-w-2xl mx-auto px-4 py-5 sm:px-6 sm:py-7 space-y-6">
 
-                {/* ═══ HERO — Day 58 (Sasha 2026-05-02): rebuilt per Wave 1.
-                    Box adorned with a soft golden halo so it reads as the
-                    meaningful artifact (not just another card). Dodecahedron
-                    wears its own gold ring. Decorative glyphs around the
-                    archetype name stripped at render. ONE phrase only —
-                    the bullseye in editorial sentence case (no period, no
-                    quotes). Core pattern paragraph below from the deep
-                    profile. CardActions Save · Share replaces the in-hero
-                    PDF button (PDF moves to bottom of page in Wave 2). ═══ */}
+                {/* ═══ HERO — Day 58 (Sasha 2026-05-02 evening): compressed
+                    to fit one viewport. Removed the dodecahedron icon
+                    and moved the core_pattern paragraph OUT into its
+                    own card below (smaller hero, deeper register
+                    preserved). hideLogo on the shell removes the
+                    rotating top-right home glyph that was crowding the
+                    top of the pane. Padding tightened from p-7 sm:p-10
+                    to p-6 sm:p-8 for further compression. ═══ */}
                 <div
                     style={{
                         borderRadius: '24px',
@@ -311,20 +310,11 @@ const ZoneOfGeniusOverview = () => {
                 >
                     <article
                         ref={heroCardRef}
-                        className="liquid-glass-strong rounded-3xl p-7 sm:p-10 text-center space-y-5"
+                        className="liquid-glass-strong rounded-3xl p-6 sm:p-8 text-center space-y-4"
                         style={{
                             border: "1px solid rgba(212, 175, 55, 0.32)",
                         }}
                     >
-                        <div
-                            className="relative inline-flex items-center justify-center w-16 h-16 rounded-full overflow-hidden mx-auto"
-                            style={{
-                                boxShadow:
-                                    "0 0 24px 4px rgba(244, 212, 114, 0.45), 0 0 48px 8px rgba(212, 175, 55, 0.18)",
-                            }}
-                        >
-                            <img src="/dodecahedron.png" alt="Top Talent" className="w-full h-full object-cover" />
-                        </div>
                         <p
                             className="text-[10px] uppercase tracking-[0.32em] font-medium"
                             style={{ color: "var(--skin-accent-gold, #b8860b)" }}
@@ -336,7 +326,7 @@ const ZoneOfGeniusOverview = () => {
                             style={{
                                 fontFamily: "'Cormorant Garamond', serif",
                                 fontWeight: 600,
-                                fontSize: "clamp(1.85rem, 5.5vw, 2.8rem)",
+                                fontSize: "clamp(1.75rem, 5vw, 2.5rem)",
                                 color: INK,
                                 textShadow: HALO_SOFT,
                             }}
@@ -349,23 +339,11 @@ const ZoneOfGeniusOverview = () => {
                                 style={{
                                     fontFamily: "'Source Serif 4', Georgia, serif",
                                     fontWeight: 300,
-                                    fontSize: "clamp(1.05rem, 2.2vw, 1.25rem)",
+                                    fontSize: "clamp(1rem, 2vw, 1.18rem)",
                                     color: INK_BODY,
                                 }}
                             >
                                 I {formatBullseye(appleseedData.bullseyeSentence)}
-                            </p>
-                        )}
-                        {fullAppleseed?.topTalentProfile?.core_pattern && (
-                            <p
-                                className="mx-auto max-w-[44ch] leading-relaxed pt-1"
-                                style={{
-                                    fontFamily: "'Source Serif 4', Georgia, serif",
-                                    fontSize: "0.95rem",
-                                    color: INK_BODY,
-                                }}
-                            >
-                                {fullAppleseed.topTalentProfile.core_pattern}
                             </p>
                         )}
 
@@ -383,6 +361,27 @@ const ZoneOfGeniusOverview = () => {
                         </div>
                     </article>
                 </div>
+
+                {/* Core pattern — Day 58 (Sasha 2026-05-02 evening):
+                    moved out of the hero box so the hero fits one
+                    viewport. Reads as the "deeper layer" of the
+                    recognition just below the artifact. */}
+                {fullAppleseed?.topTalentProfile?.core_pattern && (
+                    <div
+                        className="liquid-glass rounded-2xl p-5 sm:p-6 max-w-2xl mx-auto"
+                    >
+                        <p
+                            className="leading-relaxed text-center"
+                            style={{
+                                fontFamily: "'Source Serif 4', Georgia, serif",
+                                fontSize: "clamp(0.95rem, 1.8vw, 1.05rem)",
+                                color: INK_BODY,
+                            }}
+                        >
+                            {fullAppleseed.topTalentProfile.core_pattern}
+                        </p>
+                    </div>
+                )}
 
                 {/* ═══ Download PDF — Day 58 (Sasha 2026-05-02): moved from
                     inside the hero box to sit just above the closing CTA.

@@ -58,7 +58,7 @@ export default function ActivateWelcome() {
           </div>
         </div>
 
-        <ActivationSteps showFooter={false} />
+        <ActivationSteps showHeading={false} />
       </div>
     </GameShellV2>
   );
