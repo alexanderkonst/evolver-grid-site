@@ -3,6 +3,7 @@ import RevelatoryHero from "@/components/game/RevelatoryHero";
 import ResonanceRating from "@/components/ui/ResonanceRating";
 import { AppleseedData } from "./appleseedGenerator";
 import { useState, useCallback, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { useSkin } from "@/contexts/SkinContext";
@@ -20,6 +21,14 @@ import { trackCTAClick } from "@/lib/funnelAnalytics";
 const STRIPE_ACTIVATE_LINK = "https://buy.stripe.com/00w6oH7wo21R41XaDedEs0H";
 
 const STRIPE_PAYMENT_LINK = "https://buy.stripe.com/9B6dR9bME6i71TP7r2dEs0A";
+
+// Activation coupon — exceptional cases / testing only. Day 58 (Sasha
+// 2026-05-02). To rotate or revoke, change/remove this constant.
+// Comparison is case-insensitive. No backend validation: this is a
+// frontend bypass that skips the Stripe checkout and lands the user
+// directly on /activate/welcome (the same surface Stripe redirects
+// to after a successful $37 payment).
+const ACTIVATION_COUPON_CODE = "guerishenko";
 
 interface AppleseedDisplayProps {
     appleseed: AppleseedData;
@@ -148,6 +157,7 @@ const AppleseedDisplay = ({
 }: AppleseedDisplayProps) => {
     const { toast } = useToast();
     const { skin } = useSkin();
+    const navigate = useNavigate();
     // On Navy+Gold the light-cream reveal card reads as a bright slab on
     // dark panel. Use the hero's built-in `darkMode` palette (liquid-glass
     // body + cream text) so the card stays in the skin's family.
@@ -157,6 +167,23 @@ const AppleseedDisplay = ({
     const [email, setEmail] = useState('');
     const [emailUnlocked, setEmailUnlocked] = useState(false);
     const [emailSaving, setEmailSaving] = useState(false);
+
+    // Activation coupon bypass — exceptional / testing path. Subtle
+    // collapsed link below the $37 CTA; click to reveal a single input;
+    // valid code skips Stripe and routes straight to /activate/welcome.
+    const [couponOpen, setCouponOpen] = useState(false);
+    const [couponInput, setCouponInput] = useState('');
+    const [couponError, setCouponError] = useState(false);
+    const handleCouponSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        const entered = couponInput.trim().toLowerCase();
+        if (entered === ACTIVATION_COUPON_CODE) {
+            trackCTAClick('activate_coupon_redeemed', 'appleseed_option2');
+            navigate('/activate/welcome');
+        } else {
+            setCouponError(true);
+        }
+    };
 
     // Day 57 (Sasha 2026-05-01): post-reveal page upgrade — recognition →
     // three options layout, fade-in timing, scroll bar, exit-intent modal.
@@ -636,6 +663,71 @@ const AppleseedDisplay = ({
                         >
                             Most people start here.
                         </p>
+
+                        {/* Coupon bypass — Day 58 (Sasha 2026-05-02).
+                            Subtle inline expander; collapsed by default.
+                            For exceptional access / internal testing. */}
+                        {!couponOpen ? (
+                            <button
+                                type="button"
+                                onClick={() => setCouponOpen(true)}
+                                className="text-[11px] underline-offset-2 hover:underline transition-opacity duration-200 opacity-60 hover:opacity-90"
+                                style={{
+                                    fontFamily: "'Source Serif 4', serif",
+                                    color: "var(--skin-text-muted-soft, rgba(26,30,58,0.55))",
+                                }}
+                            >
+                                Have a code?
+                            </button>
+                        ) : (
+                            <form onSubmit={handleCouponSubmit} className="space-y-1.5 pt-1">
+                                <div className="flex items-center gap-2">
+                                    <input
+                                        type="text"
+                                        value={couponInput}
+                                        onChange={(e) => {
+                                            setCouponInput(e.target.value);
+                                            if (couponError) setCouponError(false);
+                                        }}
+                                        autoFocus
+                                        placeholder="Code"
+                                        aria-label="Activation code"
+                                        className="flex-1 min-w-0 rounded-full px-3.5 py-2 text-xs bg-white/70 border outline-none focus:ring-2 focus:ring-[hsla(40,70%,55%,0.45)]"
+                                        style={{
+                                            fontFamily: "'Source Serif 4', serif",
+                                            color: "var(--skin-text-primary, #0a1628)",
+                                            borderColor: couponError
+                                                ? 'rgba(180, 50, 50, 0.55)'
+                                                : 'rgba(26,30,58,0.18)',
+                                        }}
+                                    />
+                                    <button
+                                        type="submit"
+                                        disabled={!couponInput.trim()}
+                                        className="rounded-full px-3.5 py-2 text-xs font-semibold transition-all duration-200 hover:scale-[1.03] active:scale-[0.97] disabled:opacity-50 disabled:cursor-not-allowed"
+                                        style={{
+                                            fontFamily: "'Cormorant Garamond', serif",
+                                            background: "linear-gradient(135deg, hsla(40, 75%, 60%, 0.32) 0%, hsla(40, 65%, 50%, 0.18) 100%)",
+                                            border: "1px solid hsla(40, 70%, 55%, 0.50)",
+                                            color: "#5d4307",
+                                        }}
+                                    >
+                                        Apply
+                                    </button>
+                                </div>
+                                {couponError && (
+                                    <p
+                                        className="text-[10.5px] text-left pl-1"
+                                        style={{
+                                            fontFamily: "'Source Serif 4', serif",
+                                            color: "rgba(180, 50, 50, 0.85)",
+                                        }}
+                                    >
+                                        Invalid code.
+                                    </p>
+                                )}
+                            </form>
+                        )}
                     </div>
 
                     {/* OPTION 3 — Playbook (tertiary, free).
