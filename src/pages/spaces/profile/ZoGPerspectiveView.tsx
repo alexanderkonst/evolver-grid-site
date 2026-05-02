@@ -189,22 +189,53 @@ const PERSPECTIVES: Record<PerspectiveId, PerspectiveConfig> = {
         title: "Top Shadow",
         subtitle: "The other side of the coin",
         icon: Sparkles,
-        render: (data) => (
-            data.topTalentProfile?.edge_and_traps ? (
-                <div className="rounded-2xl px-6 py-7 sm:px-8 sm:py-8" style={cardSurface}>
-                    <p
-                        className="text-base sm:text-lg leading-relaxed"
-                        style={{
-                            fontFamily: "'Source Serif 4', Georgia, serif",
-                            color: "var(--skin-text-primary, #0b2a5a)",
-                            textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
-                        }}
-                    >
-                        {data.topTalentProfile.edge_and_traps}
-                    </p>
+        // Day 58 (Sasha 2026-05-02): subpage now renders BOTH the
+        // synthesized one-sentence form AND the full paragraph. The
+        // sentence is the punchy headline; the paragraph is the
+        // structural unfolding. Reveal card shows only the sentence.
+        render: (data) => {
+            const oneSentence = data.topTalentProfile?.top_shadow_one_sentence;
+            const fullParagraph = data.topTalentProfile?.edge_and_traps;
+            if (!oneSentence && !fullParagraph) return null;
+            return (
+                <div className="space-y-5">
+                    {oneSentence && (
+                        <div
+                            className="rounded-2xl px-6 py-6 sm:px-8 sm:py-7 text-center"
+                            style={accentCardSurface}
+                        >
+                            <p style={eyebrowStyle} className="mb-3">My top shadow is</p>
+                            <p
+                                className="italic leading-snug"
+                                style={{
+                                    fontFamily: "'Cormorant Garamond', serif",
+                                    fontSize: "clamp(1.25rem, 3vw, 1.6rem)",
+                                    fontWeight: 500,
+                                    color: "var(--skin-text-primary, #0b2a5a)",
+                                    textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
+                                }}
+                            >
+                                {oneSentence}
+                            </p>
+                        </div>
+                    )}
+                    {fullParagraph && (
+                        <div className="rounded-2xl px-6 py-7 sm:px-8 sm:py-8" style={cardSurface}>
+                            <p
+                                className="text-base sm:text-lg leading-relaxed"
+                                style={{
+                                    fontFamily: "'Source Serif 4', Georgia, serif",
+                                    color: "var(--skin-text-primary, #0b2a5a)",
+                                    textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
+                                }}
+                            >
+                                {fullParagraph}
+                            </p>
+                        </div>
+                    )}
                 </div>
-            ) : null
-        ),
+            );
+        },
     },
     "one-action": {
         title: "One Action",
