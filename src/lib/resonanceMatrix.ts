@@ -61,7 +61,7 @@ export const MASTER_MATRIX: ResonanceMatrix = {
         // 1-4 the result is "this isn't it" — name what's likely going
         // on + offer alternative paths. Markdown-rendered (links work).
         resonant:
-            "Congrats with receiving the gift of self-knowledge 💗",
+            "Congrats with receiving the gift of self-knowledge 💗  Many possibilities open for you now. Read on.",
         partial:
             "It mostly landed — likely sharper than any personality test you've taken. In our experience one of two things is at play: your AI doesn't yet know you deeply enough, or you need to get more in touch with your top talent first. We recommend you activate your top talent (button below), or [book](https://t.me/integralevolution) a top talent activation session with one of our coaches.",
         off:
