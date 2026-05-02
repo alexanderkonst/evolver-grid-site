@@ -395,7 +395,7 @@ function renderHero(b: PdfBuilder, appleseed: AppleseedData) {
     b.ornament();
     b.y += 3;
 
-    b.eyebrow("My Unique Archetype", { center: true });
+    b.eyebrow("My Top Talent Is", { center: true });
     b.y += 1;
 
     b.title(stripDecorativeGlyphs(appleseed.vibrationalKey.name), {

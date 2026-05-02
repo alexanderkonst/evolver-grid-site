@@ -129,7 +129,7 @@ const SPACE_SECTIONS: SpaceSections = {
         sections: [
             {
                 id: "top-talent",
-                label: "Top Talent",
+                label: "My Top Talent",
                 path: "/game/me/zone-of-genius",
                 // Day 58 (Sasha 2026-05-02): full sub-pane restructure.
                 // Removed: bullseye / vibrational-key / three-lenses / life-scene
@@ -142,6 +142,14 @@ const SPACE_SECTIONS: SpaceSections = {
                 //   → One Action → Appreciated For → Path of Mastery → Ideal
                 //   Environments → Complementary Partner → Monetization (10 total).
                 subSections: [
+                    // Day 58 (Sasha 2026-05-02): "Start Here" added as
+                    // the FIRST subsection — the activation home the
+                    // user can return to anytime to complete their
+                    // three-step activation. Same content as the
+                    // post-payment /activate/welcome page (shared
+                    // <ActivationSteps /> component) so the user can
+                    // come back to it from inside the ME shell.
+                    { id: "tt-start-here", label: "Start Here", path: "/game/me/zone-of-genius/start-here" },
                     { id: "tt-overview", label: "Overview", path: "/game/me/zone-of-genius" },
                     { id: "tt-how-it-shows-up", label: "How It Shows Up", path: "/game/me/zone-of-genius/how-it-shows-up" },
                     { id: "tt-three-key-talents", label: "Three Key Talents", path: "/game/me/zone-of-genius/three-key-talents" },
@@ -555,8 +563,14 @@ const SectionsPanel = ({
 
     const isActive = (path: string) => location.pathname === path || location.pathname.startsWith(path + "/");
 
+    // Auto-expand a section when the user lands on one of its sub-routes.
+    // Day 58 (Sasha 2026-05-02) bug fix: was running on every re-render
+    // because `spaceData` came from getSections() which returns a fresh
+    // reference each render — so any manual collapse was immediately
+    // re-expanded by this effect. Now keyed on pathname only: nav
+    // changes auto-expand, manual chevron clicks stay respected.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {
-        // Guard against null spaceData inside effect
         if (!spaceData) return;
 
         const nextExpanded: Record<string, boolean> = {};
@@ -572,7 +586,7 @@ const SectionsPanel = ({
         if (Object.keys(nextExpanded).length > 0) {
             setExpandedSections((prev) => ({ ...prev, ...nextExpanded }));
         }
-    }, [location.pathname, spaceData]);
+    }, [location.pathname]);
 
     // Early return AFTER all hooks (Rules of Hooks compliance)
     if (!spaceData) return null;
