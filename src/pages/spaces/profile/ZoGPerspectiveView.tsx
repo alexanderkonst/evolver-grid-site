@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import GameShellV2 from "@/components/game/GameShellV2";
 import { supabase } from "@/integrations/supabase/client";
 import { getOrCreateGameProfileId } from "@/lib/gameProfile";
 import { AppleseedData } from "@/modules/zone-of-genius/appleseedGenerator";
 import { GOLD_TEXT_STYLE, Ornament } from "@/lib/landingDesign";
 import ActivationSteps from "@/components/ActivationSteps";
+import ReadNextSectionButton from "@/components/profile/ReadNextSectionButton";
 import { Target, Sparkles, Users, TrendingUp, Briefcase, DollarSign, Eye, Palette, MessageSquare, Heart, Zap, Quote } from "lucide-react";
 
 // Day 54+ (Sasha 2026-04-28 night): full restyle of the ME · Top Talent
@@ -703,6 +704,7 @@ const PERSPECTIVES: Partial<Record<PerspectiveId, PerspectiveConfig>> = {
 
 const ZoGPerspectiveView = () => {
     const { perspectiveId } = useParams<{ perspectiveId: PerspectiveId }>();
+    const location = useLocation();
     const [loading, setLoading] = useState(true);
     const [appleseedData, setAppleseedData] = useState<AppleseedData | null>(null);
 
@@ -818,6 +820,13 @@ const ZoGPerspectiveView = () => {
                         is safe given the gate. */}
                     {config.render(appleseedData!)}
                 </div>
+
+                {/* Read Next Section — Day 58 (Sasha 2026-05-02 evening):
+                    appended at the bottom of every My Top Talent subpage
+                    so a first-read user can move through the deep
+                    profile in order without jumping back to the
+                    side-nav. Renders nothing on the last subpage. */}
+                <ReadNextSectionButton currentPath={location.pathname} />
             </div>
         </GameShellV2>
     );

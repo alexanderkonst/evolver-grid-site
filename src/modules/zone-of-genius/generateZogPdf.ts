@@ -184,19 +184,23 @@ class PdfBuilder {
         }
     }
 
-    // Pointed-star ornament with thin gold rules left+right. The
-    // editorial accent that replaces the navy banner.
+    // Editorial separator: a filled gold dot flanked by thin gold
+    // hairlines. Day 58 (Sasha 2026-05-02 evening) — replaced the
+    // unicode "✦" glyph (which was absent in the fallback font and
+    // rendered as nothing, leaving two stubby dashes with an empty
+    // middle) with a vector circle that always renders. Centered,
+    // small, low-key.
     ornament(centerX: number = PAGE_W / 2) {
         this.ensureSpace(8);
         const half = 22;
+        const gapHalf = 4;
+        const dotR = 0.8; // mm
         this.doc.setDrawColor(...C.goldHairline);
         this.doc.setLineWidth(0.3);
-        this.doc.line(centerX - half, this.y, centerX - 4, this.y);
-        this.doc.line(centerX + 4, this.y, centerX + half, this.y);
-        this.doc.setFont(this.fonts.serif, "normal");
-        this.doc.setFontSize(11);
-        this.doc.setTextColor(...C.gold);
-        this.doc.text("✦", centerX, this.y + 1.5, { align: "center" });
+        this.doc.line(centerX - half, this.y, centerX - gapHalf, this.y);
+        this.doc.line(centerX + gapHalf, this.y, centerX + half, this.y);
+        this.doc.setFillColor(...C.gold);
+        this.doc.circle(centerX, this.y, dotR, "F");
         this.y += 6;
     }
 
@@ -216,12 +220,20 @@ class PdfBuilder {
 
     title(text: string, opts: { size?: number; center?: boolean } = {}) {
         const size = opts.size ?? 16;
-        this.ensureSpace(size * 0.5 + 2);
+        // Day 58 (Sasha 2026-05-02 evening) bug fix: jsPDF's text() uses
+        // alphabetic baseline by default — y is the BASELINE, not the
+        // top. For a 26pt title, the cap-height reaches ~6mm above the
+        // baseline. If we draw at the same y where the previous element
+        // (eyebrow) just left off, the title's cap-height overlaps the
+        // eyebrow text. Pad y down by the cap-height before drawing
+        // so the title sits CLEANLY below the eyebrow.
+        const capHeightMm = size * 0.36;
+        this.ensureSpace(capHeightMm + size * 0.5 + 2);
+        this.y += capHeightMm;
         this.doc.setFont(this.fonts.serif, "bold");
         this.doc.setFontSize(size);
         this.doc.setTextColor(...C.ink);
         const x = opts.center ? PAGE_W / 2 : MARGIN;
-        // Wrap if needed
         const lines = this.doc.splitTextToSize(text, CONTENT_W);
         for (const line of lines) {
             this.doc.text(line, x, this.y, opts.center ? { align: "center" } : undefined);
@@ -684,13 +696,19 @@ export async function generateZogPdf(
     const fonts = await setupFonts(doc);
     const b = new PdfBuilder(doc, fonts);
 
+    // Day 58 (Sasha 2026-05-02 evening) — chapter order mirrors the
+    // ME-space subpages (SectionsPanel.tsx subSections):
+    //   Hero → How It Shows Up → Three Key Talents → Top Shadow →
+    //   Path of Mastery → One Action → Ideal Environments →
+    //   Complementary Partner → Monetization.
+    // Appreciated For retired (Sasha: "let's just delete it"). Start
+    // Here is instructions, not content — skipped in the PDF.
     renderHero(b, appleseed);
     renderHowItShowsUp(b, appleseed);
     renderThreeKeyTalents(b, appleseed);
     renderTopShadow(b, appleseed);
-    renderOneAction(b, appleseed);
-    renderAppreciatedFor(b, appleseed);
     renderPathOfMastery(b, appleseed);
+    renderOneAction(b, appleseed);
     renderIdealEnvironments(b, appleseed);
     renderComplementaryPartner(b, appleseed);
     renderMonetization(b, appleseed);
