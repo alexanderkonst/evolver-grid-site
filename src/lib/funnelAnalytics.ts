@@ -34,7 +34,10 @@ export type FunnelStep =
   | "clarity_call_click"  // Clicked 15-min clarity call
   | "divine_timing"     // Submitted "not now" email
   | "qol_start"         // Started QoL assessment
-  | "qol_complete";     // Completed QoL assessment
+  | "qol_complete"      // Completed QoL assessment
+  | "activate_click"            // Clicked Activate ($37) Stripe CTA on AppleseedDisplay
+  | "activate_coupon_redeemed"  // Redeemed coupon to bypass Stripe (Day 58)
+  | "activate_welcome";         // Landed on /activate/welcome (post-payment or coupon)
 
 export interface FunnelEvent {
   step: FunnelStep;

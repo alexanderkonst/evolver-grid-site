@@ -373,28 +373,31 @@ const AppleseedDisplay = ({
                     </div>
                 )}
 
-                {/* Epic Revelatory Hero — the core genius reveal.
-                    Day 58 (Sasha 2026-05-02): wrapped in a soft golden halo
-                    that signals "this is the meaningful artifact" without
-                    shouting. The shadow extends past the card's own borders
-                    so the glow reads as light *coming off* the artifact. */}
+                {/* Epic Revelatory Hero — the core recognition moment.
+                    Day 58 (Sasha 2026-05-02) restructure:
+                    • "My genius is to be a [Forger]" → "My top talent is
+                      [Forging]" (gerund form — reads grammatically
+                      clean, brandable as identity).
+                    • Three-Lenses inner-card retired. Replaced with the
+                      Top Shadow paragraph (the highest-leverage emotional
+                      payload — Sasha: "this is the one that hits hardest").
+                    • Stronger ambient halo + subtle gold border on the
+                      card itself. Dodecahedron rotates + glows.
+                    The halo extends past the card's own borders so the
+                    glow reads as light *coming off* the artifact. */}
                 <div
                     style={{
                         borderRadius: '24px',
                         boxShadow:
-                            '0 0 40px rgba(240, 194, 127, 0.22), 0 0 80px rgba(212, 175, 55, 0.10)',
+                            '0 0 50px rgba(240, 194, 127, 0.32), 0 0 100px rgba(212, 175, 55, 0.16)',
                     }}
                 >
                     <RevelatoryHero
                         type="appleseed"
                         title={appleseed.vibrationalKey.name}
-                        tagline="My genius is to be a"
+                        tagline="My top talent is"
                         actionStatement={appleseed.bullseyeSentence}
-                        threeLenses={{
-                            actions: appleseed.threeLenses.actions,
-                            primeDriver: appleseed.threeLenses.primeDriver,
-                            archetype: appleseed.threeLenses.archetype,
-                        }}
+                        topShadow={appleseed.topTalentProfile?.edge_and_traps}
                         darkMode={useDarkHero}
                     />
                 </div>

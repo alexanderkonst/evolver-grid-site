@@ -30,7 +30,7 @@ Articulate THIS layer. Not the resume layer.
 NOW analyze everything you know about me and generate a Top Talent Snapshot in the following JSON format:
 
 {
-  "archetype_title": "A 2-4 word title that captures my core essence (e.g., 'The Pattern Architect', 'The Catalyst Coach'). Singular to me — not a generic template.",
+  "archetype_title": "A 2-4 word GERUND-form name of my top talent itself (e.g., 'Signal-to-Form Forging', 'Pattern Architecting', 'Constellation Mapping'). Reads naturally as the complement of 'My top talent is ___'. Do NOT use actor nouns ('Forger', 'Architect', 'Mapper', 'Coach') — those break the grammar of the surrounding UI sentence. Compound forms ('Noun-to-Noun Verbing') are welcome when they carry signal. Singular to me — not a generic template.",
   "core_pattern": "2-3 sentences describing my fundamental operating pattern. Name the signature, not the category.",
   "top_three_talents": [
     "Talent 1 — brief, specific to how it manifests in me",

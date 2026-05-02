@@ -2,17 +2,18 @@ import { ReactNode, useRef } from "react";
 import { Sparkles, Sword } from "lucide-react";
 import CardActions from "@/components/sharing/CardActions";
 
-interface ThreeLensesData {
-    actions?: string[];
-    primeDriver?: string;
-    archetype?: string;
-}
-
 interface RevelatoryHeroProps {
     type: "appleseed" | "excalibur";
     title: string;
     actionStatement?: string;
-    threeLenses?: ThreeLensesData;
+    /**
+     * Day 58 (Sasha 2026-05-02): Top Shadow — the structurally-recursive
+     * inverted form of the gift, sourced from `topTalentProfile.edge_and_traps`.
+     * Renders below the bullseye, separated by a small gold ornament.
+     * Replaces the old Three-Lenses inner-card (actions / prime driver /
+     * archetype) — Sasha: "every phrase was already a packed thought form".
+     */
+    topShadow?: string;
     tagline?: string;
     children?: ReactNode;
     darkMode?: boolean;
@@ -22,40 +23,65 @@ interface RevelatoryHeroProps {
 }
 
 /**
+ * Strip decorative glyphs (✦ ✧ ◆ ◇ ❖ ✱ ★ ☆) some AI generators wrap
+ * archetype names in. We render the name unflanked.
+ */
+const stripDecorativeGlyphs = (name: string): string =>
+    name.replace(/[✦✧◆◇❖✱★☆]/g, "").trim();
+
+/**
+ * Format the bullseye sentence in editorial sentence case, no trailing
+ * period — matches the platform register. Day 58 (Sasha 2026-05-02).
+ */
+const formatBullseye = (sentence: string): string =>
+    sentence.toLowerCase().replace(/\.\s*$/, "").trim();
+
+/**
  * Build the share text used by the in-card Save · Share affordance.
+ * Day 58 (Sasha): the inner Three-Lenses block was retired, so the
+ * share text drops actions + prime driver. Top Shadow is intentionally
+ * NOT shared — it's heavy/private; people share what looks good, not
+ * what confesses. Keep the share light: archetype + bullseye + invite.
  */
 const buildShareTextFor = (
     title: string,
     actionStatement: string | undefined,
-    threeLenses: ThreeLensesData | undefined,
 ): string => {
-    let text = `This is how I naturally create value:\n\n`;
-    text += `${title}\n`;
-    if (actionStatement) text += `"${actionStatement}"\n\n`;
-    if (threeLenses?.actions?.length) {
-        text += `${threeLenses.actions.join(" · ")}\n`;
-    }
-    if (threeLenses?.primeDriver) {
-        text += `What drives it: ${threeLenses.primeDriver}\n\n`;
+    let text = `My top talent is ${stripDecorativeGlyphs(title)}.\n\n`;
+    if (actionStatement) {
+        text += `I ${formatBullseye(actionStatement)}.\n\n`;
     }
     text += `Curious what you see.\n\n→ FindYourTopTalent.Com`;
     return text;
 };
 
 /**
- * Epic revelatory hero section for ZoG results
- * New format: "Your genius is to be a [Archetype]" + actionable statement + Three Lenses
+ * Epic revelatory hero — the FIRST RECOGNITION moment in the funnel.
+ *
+ * Day 58 (Sasha 2026-05-02) restructure:
+ *   • Removed the Three-Lenses inner-card (Top Talents / Prime Driver /
+ *     Archetype). Each phrase was already a packed thought form;
+ *     stacking three of them next to each other diluted the recognition.
+ *   • Added Top Shadow paragraph below the bullseye — the highest-
+ *     leverage emotional payload (per Sasha: "this is the one that hits
+ *     hardest"). Sourced from `topTalentProfile.edge_and_traps`.
+ *   • Tagline eyebrow: "My top talent is" (was "My genius is to be a";
+ *     archetype shifted from action-noun "Forger" to gerund "Forging"
+ *     so it reads grammatically clean as a complement of "is").
+ *   • Dodecahedron: golden glow halo + slow rotation (60s) — signals
+ *     the artifact as living/alive without shouting.
+ *   • Subtle gold border around the card itself + slightly stronger
+ *     ambient halo (handled by the wrapper in AppleseedDisplay).
  */
 const RevelatoryHero = ({
     type,
     title,
     actionStatement,
-    threeLenses,
+    topShadow,
     tagline,
     children,
     darkMode = false,
     subtitle,
-    subtitlePlain
 }: RevelatoryHeroProps) => {
     const isAppleseed = type === "appleseed";
 
@@ -72,8 +98,10 @@ const RevelatoryHero = ({
             textPrimary: "text-white/90",
             textSecondary: "text-white/60",
             textMuted: "text-[#f4d472]",
+            shadowText: "text-white/75",
             glowColor: "rgba(212,175,55,0.22)",
-            divider: "bg-white/10",
+            divider: "rgba(244,212,114,0.32)",
+            cardBorder: "1px solid rgba(244, 212, 114, 0.32)",
         }
         : isAppleseed
         ? {
@@ -84,13 +112,12 @@ const RevelatoryHero = ({
             textPrimary: "text-[#2c3150]",
             textSecondary: "text-[#2c3150]/70",
             textMuted: "text-[#7a5108]",
+            shadowText: "text-[#2c3150]/80",
             glowColor: "rgba(212,175,55,0.14)",
-            divider: "bg-[#d4af37]/22",
+            divider: "rgba(212, 175, 55, 0.45)",
+            cardBorder: "1px solid rgba(212, 175, 55, 0.32)",
         }
         : {
-            // Excalibur: rich warm-gold wash with cream text. Was a deep
-            // violet-purple gradient — now a single gold-family gradient
-            // that still sits apart from Appleseed via higher saturation.
             gradient: "from-[#8c6410] via-[#7a5108] to-[#6b4208]",
             icon: Sword,
             iconBg: "bg-[#f4d472]/22",
@@ -98,24 +125,27 @@ const RevelatoryHero = ({
             textPrimary: "text-white",
             textSecondary: "text-[#f5e6b0]/85",
             textMuted: "text-[#f5e6b0]/65",
+            shadowText: "text-[#f5e6b0]/85",
             glowColor: "rgba(244,212,114,0.3)",
-            divider: "bg-[#f4d472]/30",
+            divider: "rgba(244,212,114,0.45)",
+            cardBorder: "1px solid rgba(244, 212, 114, 0.30)",
         };
 
-    const IconComponent = palette.icon;
-
-    // Day 51 night (Sasha): replaces the old "Screenshot this. get yours →"
-    // prompt with an in-card Save (PNG) + Share (socials) affordance.
-    // The ref captures the card's outer wrapper so html2canvas can
+    // The card ref captures the outer wrapper so html2canvas can
     // serialize what the user sees, including the breathing-card glow
     // and the gradient backdrop.
     const cardRef = useRef<HTMLDivElement>(null);
-    const shareText = buildShareTextFor(title, actionStatement, threeLenses);
+    const shareText = buildShareTextFor(title, actionStatement);
+
+    const cleanTitle = stripDecorativeGlyphs(title);
 
     return (
         <div
             ref={cardRef}
-            className={`relative overflow-hidden rounded-3xl mb-4 breathing-card backdrop-blur-md ${darkMode ? 'liquid-glass ring-1 ring-white/10' : 'border border-white/40'}`}
+            className={`relative overflow-hidden rounded-3xl mb-4 breathing-card backdrop-blur-md ${
+                darkMode ? "liquid-glass ring-1 ring-white/10" : ""
+            }`}
+            style={!darkMode ? { border: palette.cardBorder } : undefined}
         >
             {/* Gradient Background */}
             <div className={`absolute inset-0 bg-gradient-to-br ${palette.gradient}`} />
@@ -141,90 +171,113 @@ const RevelatoryHero = ({
                 ))}
             </div>
 
-            {/* Content - Compact for one-screen */}
-            <div className="relative px-4 py-4 sm:px-5 sm:py-5 text-center">
-                {/* Custom ZoG Logo */}
-                <div className="inline-flex items-center justify-center w-12 h-12 rounded-full overflow-hidden mb-3">
+            {/* Content */}
+            <div className="relative px-5 py-6 sm:px-7 sm:py-8 text-center">
+                {/* Dodecahedron — Day 58 (Sasha 2026-05-02): now wears
+                    its own gold halo + slow rotation. The icon reads as
+                    a living artifact instead of a static badge. */}
+                <div
+                    className="relative inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden mb-4 mx-auto"
+                    style={{
+                        boxShadow:
+                            "0 0 24px 4px rgba(244, 212, 114, 0.50), 0 0 56px 12px rgba(212, 175, 55, 0.22)",
+                    }}
+                >
                     <img
                         src="/zone-of-genius-logo.png"
                         alt="Top Talent"
                         className="w-full h-full object-cover"
+                        draggable={false}
+                        style={{
+                            animation: "rh-gentle-spin 60s linear infinite",
+                            willChange: "transform",
+                            transformOrigin: "center",
+                        }}
                     />
                 </div>
 
-                {/* Tagline */}
+                {/* Tagline — eyebrow above the archetype */}
                 {tagline && (
-                    <p className={`text-xs uppercase tracking-[0.2em] ${palette.textMuted} mb-1`}>
-                        My genius is to be a
+                    <p
+                        className={`text-[10px] sm:text-xs uppercase tracking-[0.28em] ${palette.textMuted} mb-2`}
+                    >
+                        {tagline}
                     </p>
                 )}
 
-                {/* Main Title - Archetype Name - Smaller */}
+                {/* Archetype Title — gerund form (e.g. "Signal-to-Form
+                    Forging"). Decorative glyphs already stripped. */}
                 <h1
-                    className={`font-display text-xl sm:text-2xl md:text-3xl font-semibold ${palette.textPrimary} mb-3 leading-tight`}
+                    className={`font-display text-2xl sm:text-3xl md:text-[2.2rem] font-semibold ${palette.textPrimary} mb-3 leading-[1.1] tracking-[-0.005em]`}
                     style={{ textShadow: `0 0 80px ${palette.glowColor}` }}
                 >
-                    {title.replace(/✦/g, '').trim()}
+                    {cleanTitle}
                 </h1>
 
-                {/* Action Statement — THE main information on the person's
-                    genius. Emphasized UI treatment (Sasha, 2026-04-21):
-                    larger, italic serif, glowy, centered in its own field. */}
+                {/* Bullseye / Action Statement — italic Cormorant, sentence
+                    case (no period, no quotes), centered in its own field. */}
                 {actionStatement && (
                     <p
-                        className={`font-display text-lg sm:text-xl md:text-2xl italic ${palette.textPrimary} max-w-2xl mx-auto mt-2 mb-6 leading-snug`}
+                        className={`font-display text-lg sm:text-xl md:text-[1.4rem] italic ${palette.textPrimary} max-w-2xl mx-auto mt-2 leading-snug`}
                         style={{
                             textShadow: `0 0 40px ${palette.glowColor}, 0 0 12px rgba(255,255,255,0.12)`,
                         }}
                     >
-                        I {actionStatement}
+                        I {formatBullseye(actionStatement)}
                     </p>
                 )}
 
                 {/* Legacy subtitle support */}
                 {!actionStatement && subtitle && (
-                    <p className={`text-lg sm:text-xl ${palette.textSecondary} italic max-w-xl mx-auto mb-6`}>
+                    <p
+                        className={`text-lg sm:text-xl ${palette.textSecondary} italic max-w-xl mx-auto mb-6`}
+                    >
                         "{subtitle}"
                     </p>
                 )}
 
-                {/* Three Lenses - Compact */}
-                {threeLenses && (
-                    <div className="mt-2 p-3 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 max-w-md mx-auto text-center">
-                        {/* Top Talents */}
-                        {threeLenses.actions && threeLenses.actions.length > 0 && (
-                            <div className="mb-2">
-                                <p className={`text-[10px] uppercase tracking-wider ${palette.textMuted} mb-0.5`}>My Top Talents</p>
-                                <p className={`text-sm ${palette.textPrimary} font-medium`}>
-                                    {threeLenses.actions.join(" • ")}
-                                </p>
-                            </div>
-                        )}
+                {/* Top Shadow — Day 58 (Sasha 2026-05-02). The new
+                    emotional payload: the structurally-recursive shadow
+                    of the gift. Separated from the bullseye by a small
+                    gold ornament glyph between thin rules — visual
+                    breath that signals register shift from heroic
+                    recognition to "the other side of the coin." */}
+                {topShadow && (
+                    <>
+                        {/* Ornament separator */}
+                        <div className="flex items-center justify-center gap-3 mt-7 mb-5 max-w-md mx-auto">
+                            <span
+                                className="flex-1 h-[0.5px]"
+                                style={{ backgroundColor: palette.divider }}
+                                aria-hidden="true"
+                            />
+                            <span
+                                className="text-sm"
+                                style={{ color: palette.divider }}
+                                aria-hidden="true"
+                            >
+                                ✦
+                            </span>
+                            <span
+                                className="flex-1 h-[0.5px]"
+                                style={{ backgroundColor: palette.divider }}
+                                aria-hidden="true"
+                            />
+                        </div>
 
-                        {/* Prime Driver */}
-                        {threeLenses.primeDriver && (
-                            <div className="mb-2">
-                                <p className={`text-[10px] uppercase tracking-wider ${palette.textMuted} mb-0.5`}>My Prime Driver</p>
-                                <p className={`text-sm ${palette.textPrimary} font-medium`}>
-                                    {threeLenses.primeDriver}
-                                </p>
-                            </div>
-                        )}
-
-                        {/* Archetype */}
-                        {threeLenses.archetype && (
-                            <div>
-                                <p className={`text-[10px] uppercase tracking-wider ${palette.textMuted} mb-0.5`}>My Archetype</p>
-                                <p className={`text-sm ${palette.textPrimary} font-medium`}>
-                                    {threeLenses.archetype}
-                                </p>
-                            </div>
-                        )}
-                    </div>
+                        <p
+                            className={`font-serif text-[0.95rem] sm:text-base italic leading-relaxed ${palette.shadowText} max-w-xl mx-auto px-2`}
+                            style={{
+                                fontFamily: "'Source Serif 4', Georgia, serif",
+                            }}
+                        >
+                            {topShadow}
+                        </p>
+                    </>
                 )}
 
-            {/* Children (optional extra content) */}
-                {children && !threeLenses && (
+                {/* Children (optional extra content) */}
+                {children && (
                     <div className="mt-6 p-6 bg-white/10 backdrop-blur-sm rounded-2xl border border-white/20 max-w-2xl mx-auto">
                         <div className={`text-lg ${palette.textPrimary} leading-relaxed`}>
                             {children}
@@ -232,17 +285,13 @@ const RevelatoryHero = ({
                     </div>
                 )}
 
-                {/* Day 51 night (Sasha): in-card Save (PNG) + Share affordance.
-                    Replaces the old "Screenshot this. get yours →" prompt with
-                    one-click actions. Save downloads a PNG of this very card;
-                    Share opens a popover with WhatsApp / Telegram / LinkedIn
-                    / X / Copy Text options. Sized small + low-opacity by
-                    default so it sits inside the card without competing with
-                    the genius reveal above. */}
-                <div className="mt-4 text-center">
+                {/* Save · Share — kept; one-click PNG capture + socials
+                    popover. Share text now drops the retired Three-Lenses
+                    block; carries archetype + bullseye + invite. */}
+                <div className="mt-7 text-center">
                     <CardActions
                         captureRef={cardRef}
-                        fileName={`${title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "my-top-talent"}-find-your-top-talent`}
+                        fileName={`${cleanTitle.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "my-top-talent"}-find-your-top-talent`}
                         shareText={shareText}
                         darkMode={darkMode}
                     />
@@ -250,14 +299,17 @@ const RevelatoryHero = ({
             </div>
 
             <style>{`
-        @keyframes float-particle {
-          0%, 100% { transform: translate(0, 0); opacity: 0.5; }
-          50% { transform: translate(12px, -18px); opacity: 0.2; }
-        }
-      `}</style>
+                @keyframes float-particle {
+                    0%, 100% { transform: translate(0, 0); opacity: 0.5; }
+                    50%      { transform: translate(12px, -18px); opacity: 0.2; }
+                }
+                @keyframes rh-gentle-spin {
+                    from { transform: rotate(0deg); }
+                    to   { transform: rotate(360deg); }
+                }
+            `}</style>
         </div>
     );
 };
 
 export default RevelatoryHero;
-

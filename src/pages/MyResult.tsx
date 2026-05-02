@@ -113,17 +113,19 @@ const MyResult = () => {
                             <p className="text-[10px] uppercase tracking-[4px] text-white/30 mb-2">Your Top Talent</p>
                         </div>
 
-                        {/* The reveal — same component as the live funnel */}
+                        {/* The reveal — same component as the live funnel.
+                            Day 58 (Sasha 2026-05-02): tagline shifted from
+                            "My genius is to be a" to "My top talent is" so
+                            the gerund-form archetype reads grammatically;
+                            Three-Lenses inner-card retired in favor of the
+                            Top Shadow paragraph (the highest-leverage
+                            emotional payload). */}
                         <RevelatoryHero
                             type="appleseed"
                             title={appleseed.vibrationalKey.name}
-                            tagline="My genius is to be a"
+                            tagline="My top talent is"
                             actionStatement={appleseed.bullseyeSentence}
-                            threeLenses={{
-                                actions: appleseed.threeLenses.actions,
-                                primeDriver: appleseed.threeLenses.primeDriver,
-                                archetype: appleseed.threeLenses.archetype,
-                            }}
+                            topShadow={appleseed.topTalentProfile?.edge_and_traps}
                             darkMode
                         />
 
