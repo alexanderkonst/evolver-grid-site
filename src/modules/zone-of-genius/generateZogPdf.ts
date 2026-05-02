@@ -1,467 +1,706 @@
 /**
- * Zone of Genius PDF Generator
+ * Top Talent PDF Generator — Day 58 (Sasha 2026-05-02) editorial revamp.
  *
- * Generates a clean, branded PDF containing the Appleseed perspectives
- * and optional Excalibur (Genius Business) data using jsPDF.
+ * Produces a portable artifact that mirrors the platform Top Talent
+ * profile structure + register. Designed to be handed to the user's AI
+ * as ongoing context ("give the PDF to your AI so it can know more
+ * about you" — copy on /game/me/zone-of-genius).
  *
- * Day 52 (Sasha 2026-04-26) — section pruning + Mastery CTA + brand fix:
- *   • REMOVED: Professional Activities, Visual Codes, Elevator Pitch
- *              (career-advisory pollution and redundant articulations
- *              that diluted the recognition moment).
- *   • KEPT:    Bullseye, Vibrational Key, Three Lenses, Appreciated
- *              For, Mastery Stages, Roles & Environments,
- *              Complementary Partner, Monetization Avenues, Life Scene.
- *   • ADDED:   Mastery Stages CTA — "Accelerate your path of mastery
- *              — book a session with Aleksandr → t.me/integralevolution"
- *              rendered as a gold-pill block right under the 7-stage list.
- *   • FIXED:   Footer brand — was "geniusbusiness.app" (legacy),
- *              now "findyourtoptalent.com" (canonical home as of 2026-04-26).
+ * Section list (parity with platform side-nav):
+ *   1. Hero (archetype, bullseye, core pattern)
+ *   2. How It Shows Up           ┐
+ *   3. Three Key Talents         │  All sourced from the deep
+ *   4. Top Shadow                │  topTalentProfile fields produced
+ *   5. One Action                ┘  by the appleseed prompt (Wave 4.4).
+ *   6. Appreciated For
+ *   7. Path of Mastery (+ "Book a session" gold pill)
+ *   8. Ideal Environments
+ *   9. Complementary Partner (fused-paragraph form, legacy fallback)
+ *  10. Monetization (avenues + career sweet spots)
  *
- * Day 52 evening — Monetization Avenues restored (Sasha): the prompt
- * in appleseedGenerator.ts was sharpened to demand voice-matched
- * intro/signature/scale tiers with concrete deliverables (no LinkedIn
- * clichés like "1:1 coaching package", "online course", "membership").
+ * Visual register (the "easy way out" for glassmorphism in jsPDF):
+ *   • Page bg: warm cream (no white sterility)
+ *   • Cards: solid cream + 0.5pt gold hairline border. No backdrop-blur
+ *     attempts — emulate the editorial AESTHETIC, not the filter.
+ *   • Headers: small gold ornament glyph + thin rules, then eyebrow +
+ *     title. No navy banner.
+ *   • Fonts: Cormorant Garamond (serif headings) + Source Serif 4
+ *     (body) loaded at runtime from /public/fonts/. Falls back to Times
+ *     gracefully if the TTFs aren't present yet — see Day-58 follow-up.
+ *
+ * Page size: A4. Filename: <archetype-slug>-top-talent-profile.pdf.
  */
 
 import jsPDF from "jspdf";
 import { AppleseedData } from "./appleseedGenerator";
 import { ExcaliburData } from "./excaliburGenerator";
 
-// ---------------------------------------------------------------------------
-// Design tokens
-// ---------------------------------------------------------------------------
-const COLORS = {
-  navy: [26, 54, 93] as [number, number, number],
-  violet: [132, 96, 234] as [number, number, number],
-  text: [44, 49, 80] as [number, number, number],
-  muted: [120, 120, 140] as [number, number, number],
-  divider: [200, 200, 210] as [number, number, number],
-  bg: [245, 245, 250] as [number, number, number],
-  // Day 52 (Sasha 2026-04-26): warm gold for the Mastery CTA card —
-  // matches the "Work with Aleksandr" gold pill on /ai-os hero, so
-  // the same offer reads consistently across surfaces.
-  gold: [184, 134, 11] as [number, number, number],
-  goldFill: [251, 243, 219] as [number, number, number],
+// ─────────────────────────────────────────────────────────────────────
+// Page geometry — A4 (mm)
+// ─────────────────────────────────────────────────────────────────────
+
+const PAGE_W = 210;
+const PAGE_H = 297;
+const MARGIN = 22;
+const CONTENT_W = PAGE_W - MARGIN * 2;
+const FOOTER_Y = PAGE_H - 12;
+const SECTION_GAP = 9;
+
+// ─────────────────────────────────────────────────────────────────────
+// Color tokens — cream/gold editorial register, RGB triples for jsPDF
+// ─────────────────────────────────────────────────────────────────────
+
+const C = {
+    cream:        [251, 247, 238] as [number, number, number],
+    cardCream:    [253, 250, 242] as [number, number, number],
+    ink:          [10, 22, 40]    as [number, number, number],
+    inkBody:      [40, 50, 70]    as [number, number, number],
+    muted:        [120, 125, 140] as [number, number, number],
+    gold:         [184, 134, 11]  as [number, number, number],
+    goldFill:     [251, 243, 219] as [number, number, number],
+    goldDeep:     [93, 67, 7]     as [number, number, number],
+    goldHairline: [212, 175, 55]  as [number, number, number],
 };
 
 const MASTERY_CTA_URL = "https://t.me/integralevolution";
-const MASTERY_CTA_TEXT = "Accelerate your path of mastery — book a session with Aleksandr →";
+const MASTERY_CTA_TEXT = "Accelerate your path of mastery — book a session";
 
-const PAGE_W = 210; // A4 mm
-const MARGIN = 20;
-const CONTENT_W = PAGE_W - MARGIN * 2;
+// ─────────────────────────────────────────────────────────────────────
+// Data formatting helpers (mirror the platform: strip glyphs, sentence
+// case the bullseye, slugify for filename)
+// ─────────────────────────────────────────────────────────────────────
 
-// ---------------------------------------------------------------------------
-// Helpers
-// ---------------------------------------------------------------------------
+const stripDecorativeGlyphs = (s: string): string =>
+    s.replace(/[✦✧◆◇❖✱★☆]/g, "").trim();
+
+const formatBullseye = (s: string): string =>
+    s.toLowerCase().replace(/\.\s*$/, "").trim();
+
+const slugifyArchetype = (s: string): string =>
+    stripDecorativeGlyphs(s)
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-|-$/g, "") || "my-top-talent";
+
+// ─────────────────────────────────────────────────────────────────────
+// Font loading — graceful fallback to jsPDF's built-in Times if the
+// TTFs aren't bundled. When Sasha drops the fonts in /public/fonts/,
+// the PDF lights up with the full editorial register automatically.
+// ─────────────────────────────────────────────────────────────────────
+
+interface FontMap {
+    serif: string;  // headings
+    body: string;   // body
+}
+
+const TIMES: FontMap = { serif: "times", body: "times" };
+
+async function tryLoadFont(url: string): Promise<string | null> {
+    try {
+        const res = await fetch(url);
+        if (!res.ok) return null;
+        const buf = await res.arrayBuffer();
+        const bytes = new Uint8Array(buf);
+        // Chunked base64 to avoid stack overflow on large buffers.
+        let binary = "";
+        const chunk = 0x8000;
+        for (let i = 0; i < bytes.length; i += chunk) {
+            binary += String.fromCharCode.apply(
+                null,
+                Array.from(bytes.subarray(i, i + chunk)),
+            );
+        }
+        return btoa(binary);
+    } catch {
+        return null;
+    }
+}
+
+async function setupFonts(doc: jsPDF): Promise<FontMap> {
+    const fonts: FontMap = { ...TIMES };
+
+    const cormorant = await tryLoadFont("/fonts/CormorantGaramond-Regular.ttf");
+    const cormorantBold = await tryLoadFont("/fonts/CormorantGaramond-Bold.ttf");
+    if (cormorant) {
+        doc.addFileToVFS("CormorantGaramond-Regular.ttf", cormorant);
+        doc.addFont("CormorantGaramond-Regular.ttf", "Cormorant", "normal");
+        if (cormorantBold) {
+            doc.addFileToVFS("CormorantGaramond-Bold.ttf", cormorantBold);
+            doc.addFont("CormorantGaramond-Bold.ttf", "Cormorant", "bold");
+        }
+        fonts.serif = "Cormorant";
+    }
+
+    const sourceSerif = await tryLoadFont("/fonts/SourceSerif4-Regular.ttf");
+    const sourceSerifItalic = await tryLoadFont("/fonts/SourceSerif4-Italic.ttf");
+    const sourceSerifBold = await tryLoadFont("/fonts/SourceSerif4-Bold.ttf");
+    if (sourceSerif) {
+        doc.addFileToVFS("SourceSerif4-Regular.ttf", sourceSerif);
+        doc.addFont("SourceSerif4-Regular.ttf", "SourceSerif", "normal");
+        if (sourceSerifItalic) {
+            doc.addFileToVFS("SourceSerif4-Italic.ttf", sourceSerifItalic);
+            doc.addFont("SourceSerif4-Italic.ttf", "SourceSerif", "italic");
+        }
+        if (sourceSerifBold) {
+            doc.addFileToVFS("SourceSerif4-Bold.ttf", sourceSerifBold);
+            doc.addFont("SourceSerif4-Bold.ttf", "SourceSerif", "bold");
+        }
+        fonts.body = "SourceSerif";
+    }
+
+    return fonts;
+}
+
+// ─────────────────────────────────────────────────────────────────────
+// PdfBuilder — primitives, page background, common building blocks
+// ─────────────────────────────────────────────────────────────────────
 
 class PdfBuilder {
-  doc: jsPDF;
-  y: number;
+    doc: jsPDF;
+    y: number;
+    fonts: FontMap;
 
-  constructor() {
-    this.doc = new jsPDF({ unit: "mm", format: "a4" });
-    this.y = MARGIN;
-  }
-
-  /** Ensure enough vertical room; add a new page if needed. */
-  ensureSpace(needed: number) {
-    if (this.y + needed > 280) {
-      this.doc.addPage();
-      this.y = MARGIN;
+    constructor(doc: jsPDF, fonts: FontMap) {
+        this.doc = doc;
+        this.fonts = fonts;
+        this.y = MARGIN;
+        this.paintPageBg();
     }
-  }
 
-  /** Draw a thin horizontal rule. */
-  hr() {
-    this.ensureSpace(6);
-    this.doc.setDrawColor(...COLORS.divider);
-    this.doc.setLineWidth(0.3);
-    this.doc.line(MARGIN, this.y, PAGE_W - MARGIN, this.y);
-    this.y += 6;
-  }
-
-  /** Section header in navy. */
-  sectionHeader(label: string) {
-    this.ensureSpace(14);
-    this.doc.setFont("helvetica", "bold");
-    this.doc.setFontSize(11);
-    this.doc.setTextColor(...COLORS.navy);
-    this.doc.text(label.toUpperCase(), MARGIN, this.y);
-    this.y += 7;
-  }
-
-  /** Sub-header. */
-  subHeader(label: string) {
-    this.ensureSpace(10);
-    this.doc.setFont("helvetica", "bold");
-    this.doc.setFontSize(9);
-    this.doc.setTextColor(...COLORS.violet);
-    this.doc.text(label, MARGIN + 2, this.y);
-    this.y += 5;
-  }
-
-  /** Body text, auto-wrapped. */
-  body(text: string, indent = 0) {
-    this.doc.setFont("helvetica", "normal");
-    this.doc.setFontSize(9);
-    this.doc.setTextColor(...COLORS.text);
-    const lines = this.doc.splitTextToSize(text, CONTENT_W - indent);
-    for (const line of lines) {
-      this.ensureSpace(5);
-      this.doc.text(line, MARGIN + indent, this.y);
-      this.y += 4.5;
+    paintPageBg() {
+        this.doc.setFillColor(...C.cream);
+        this.doc.rect(0, 0, PAGE_W, PAGE_H, "F");
     }
-    this.y += 2;
-  }
 
-  /** Bold label + normal value on same conceptual block. */
-  labelValue(label: string, value: string, indent = 0) {
-    this.ensureSpace(10);
-    this.doc.setFont("helvetica", "bold");
-    this.doc.setFontSize(9);
-    this.doc.setTextColor(...COLORS.muted);
-    this.doc.text(label, MARGIN + indent, this.y);
-    this.y += 4.5;
-    this.body(value, indent);
-  }
-
-  /** Bullet list. */
-  bulletList(items: string[], indent = 4) {
-    for (const item of items) {
-      this.ensureSpace(6);
-      this.doc.setFont("helvetica", "normal");
-      this.doc.setFontSize(9);
-      this.doc.setTextColor(...COLORS.text);
-      this.doc.text("•", MARGIN + indent, this.y);
-      const lines = this.doc.splitTextToSize(item, CONTENT_W - indent - 6);
-      for (const line of lines) {
-        this.ensureSpace(5);
-        this.doc.text(line, MARGIN + indent + 5, this.y);
-        this.y += 4.5;
-      }
+    newPage() {
+        this.doc.addPage();
+        this.y = MARGIN;
+        this.paintPageBg();
     }
-    this.y += 2;
-  }
 
-  /** Numbered list. */
-  numberedList(items: { num: string; text: string }[], indent = 4) {
-    for (const item of items) {
-      this.ensureSpace(6);
-      this.doc.setFont("helvetica", "bold");
-      this.doc.setFontSize(9);
-      this.doc.setTextColor(...COLORS.violet);
-      this.doc.text(item.num, MARGIN + indent, this.y);
-      this.doc.setFont("helvetica", "normal");
-      this.doc.setTextColor(...COLORS.text);
-      const lines = this.doc.splitTextToSize(item.text, CONTENT_W - indent - 10);
-      for (const line of lines) {
-        this.ensureSpace(5);
-        this.doc.text(line, MARGIN + indent + 8, this.y);
-        this.y += 4.5;
-      }
+    ensureSpace(needed: number) {
+        if (this.y + needed > FOOTER_Y - 4) {
+            this.newPage();
+        }
     }
-    this.y += 2;
-  }
 
-  gap(mm = 4) {
-    this.y += mm;
-  }
+    // Pointed-star ornament with thin gold rules left+right. The
+    // editorial accent that replaces the navy banner.
+    ornament(centerX: number = PAGE_W / 2) {
+        this.ensureSpace(8);
+        const half = 22;
+        this.doc.setDrawColor(...C.goldHairline);
+        this.doc.setLineWidth(0.3);
+        this.doc.line(centerX - half, this.y, centerX - 4, this.y);
+        this.doc.line(centerX + 4, this.y, centerX + half, this.y);
+        this.doc.setFont(this.fonts.serif, "normal");
+        this.doc.setFontSize(11);
+        this.doc.setTextColor(...C.gold);
+        this.doc.text("✦", centerX, this.y + 1.5, { align: "center" });
+        this.y += 6;
+    }
+
+    // Small uppercase gold eyebrow with letter-spacing simulated via
+    // inserted spaces. jsPDF has no native tracking so this is the
+    // closest visual analog.
+    eyebrow(label: string, opts: { center?: boolean } = {}) {
+        this.ensureSpace(6);
+        this.doc.setFont(this.fonts.body, "bold");
+        this.doc.setFontSize(7.5);
+        this.doc.setTextColor(...C.gold);
+        const spaced = label.toUpperCase().split("").join(" ");
+        const x = opts.center ? PAGE_W / 2 : MARGIN;
+        this.doc.text(spaced, x, this.y, opts.center ? { align: "center" } : undefined);
+        this.y += 5;
+    }
+
+    title(text: string, opts: { size?: number; center?: boolean } = {}) {
+        const size = opts.size ?? 16;
+        this.ensureSpace(size * 0.5 + 2);
+        this.doc.setFont(this.fonts.serif, "bold");
+        this.doc.setFontSize(size);
+        this.doc.setTextColor(...C.ink);
+        const x = opts.center ? PAGE_W / 2 : MARGIN;
+        // Wrap if needed
+        const lines = this.doc.splitTextToSize(text, CONTENT_W);
+        for (const line of lines) {
+            this.doc.text(line, x, this.y, opts.center ? { align: "center" } : undefined);
+            this.y += size * 0.42;
+        }
+        this.y += 2;
+    }
+
+    body(text: string, opts: {
+        italic?: boolean;
+        size?: number;
+        indent?: number;
+        center?: boolean;
+        color?: [number, number, number];
+    } = {}) {
+        const size = opts.size ?? 9.5;
+        const indent = opts.indent ?? 0;
+        const w = CONTENT_W - indent * 2;
+        this.doc.setFont(this.fonts.body, opts.italic ? "italic" : "normal");
+        this.doc.setFontSize(size);
+        this.doc.setTextColor(...(opts.color ?? C.inkBody));
+        const lines = this.doc.splitTextToSize(text, w);
+        for (const line of lines) {
+            this.ensureSpace(size * 0.5);
+            const x = opts.center ? PAGE_W / 2 : MARGIN + indent;
+            this.doc.text(line, x, this.y, opts.center ? { align: "center" } : undefined);
+            this.y += size * 0.5;
+        }
+    }
+
+    // Card with body text inside — measures, draws, fills.
+    cardBody(text: string, opts: { tinted?: boolean; italic?: boolean } = {}) {
+        const size = 9.5;
+        const pad = 5;
+        this.doc.setFont(this.fonts.body, opts.italic ? "italic" : "normal");
+        this.doc.setFontSize(size);
+        const lines = this.doc.splitTextToSize(text, CONTENT_W - pad * 2);
+        const cardH = pad * 2 + lines.length * (size * 0.5);
+        this.ensureSpace(cardH + 2);
+        const top = this.y;
+        this.doc.setFillColor(...(opts.tinted ? C.goldFill : C.cardCream));
+        this.doc.setDrawColor(...C.goldHairline);
+        this.doc.setLineWidth(0.3);
+        this.doc.roundedRect(MARGIN, top, CONTENT_W, cardH, 3, 3, "FD");
+        this.doc.setTextColor(...(opts.tinted ? C.goldDeep : C.inkBody));
+        this.doc.setFont(this.fonts.body, opts.italic ? "italic" : "normal");
+        this.doc.setFontSize(size);
+        let ty = top + pad + size * 0.4;
+        for (const line of lines) {
+            this.doc.text(line, MARGIN + pad, ty);
+            ty += size * 0.5;
+        }
+        this.y = top + cardH + 3;
+    }
+
+    // Numbered card — gold pip + body. For Three Key Talents and stages.
+    numberedCard(num: number | string, text: string) {
+        const size = 9.5;
+        const pad = 5;
+        const pipDiam = 6;
+        const pipGap = 3;
+        const textIndent = pipDiam + pipGap;
+        const w = CONTENT_W - pad * 2 - textIndent;
+        this.doc.setFont(this.fonts.body, "normal");
+        this.doc.setFontSize(size);
+        const lines = this.doc.splitTextToSize(text, w);
+        const cardH = pad * 2 + Math.max(pipDiam + 1, lines.length * (size * 0.5));
+        this.ensureSpace(cardH + 2);
+        const top = this.y;
+        // Card
+        this.doc.setFillColor(...C.cardCream);
+        this.doc.setDrawColor(...C.goldHairline);
+        this.doc.setLineWidth(0.3);
+        this.doc.roundedRect(MARGIN, top, CONTENT_W, cardH, 3, 3, "FD");
+        // Pip
+        const pipX = MARGIN + pad + pipDiam / 2;
+        const pipY = top + pad + pipDiam / 2;
+        this.doc.setFillColor(...C.goldHairline);
+        this.doc.setDrawColor(...C.goldDeep);
+        this.doc.setLineWidth(0.2);
+        this.doc.circle(pipX, pipY, pipDiam / 2, "FD");
+        this.doc.setFont(this.fonts.body, "bold");
+        this.doc.setFontSize(7);
+        this.doc.setTextColor(...C.ink);
+        this.doc.text(`${num}`, pipX, pipY + 1.2, { align: "center" });
+        // Body
+        this.doc.setFont(this.fonts.body, "normal");
+        this.doc.setFontSize(size);
+        this.doc.setTextColor(...C.inkBody);
+        let ty = top + pad + size * 0.4;
+        for (const line of lines) {
+            this.doc.text(line, MARGIN + pad + textIndent, ty);
+            ty += size * 0.5;
+        }
+        this.y = top + cardH + 3;
+    }
+
+    // Bullet card — single body line with a leading gold star glyph.
+    bulletCard(text: string) {
+        const size = 9.5;
+        const pad = 5;
+        const indent = 6;
+        const w = CONTENT_W - pad * 2 - indent;
+        this.doc.setFont(this.fonts.body, "normal");
+        this.doc.setFontSize(size);
+        const lines = this.doc.splitTextToSize(text, w);
+        const cardH = pad * 2 + lines.length * (size * 0.5);
+        this.ensureSpace(cardH + 2);
+        const top = this.y;
+        this.doc.setFillColor(...C.cardCream);
+        this.doc.setDrawColor(...C.goldHairline);
+        this.doc.setLineWidth(0.3);
+        this.doc.roundedRect(MARGIN, top, CONTENT_W, cardH, 3, 3, "FD");
+        // Bullet glyph
+        this.doc.setFont(this.fonts.serif, "normal");
+        this.doc.setFontSize(size);
+        this.doc.setTextColor(...C.gold);
+        this.doc.text("✦", MARGIN + pad, top + pad + size * 0.4);
+        // Text
+        this.doc.setFont(this.fonts.body, "normal");
+        this.doc.setTextColor(...C.inkBody);
+        let ty = top + pad + size * 0.4;
+        for (const line of lines) {
+            this.doc.text(line, MARGIN + pad + indent, ty);
+            ty += size * 0.5;
+        }
+        this.y = top + cardH + 2.5;
+    }
+
+    // Gold pill CTA — full-width, clickable, centered text.
+    goldPill(text: string, url: string) {
+        const size = 9.5;
+        const padY = 4;
+        const cardH = padY * 2 + size * 0.55;
+        this.ensureSpace(cardH + 4);
+        const top = this.y;
+        this.doc.setFillColor(...C.goldFill);
+        this.doc.setDrawColor(...C.gold);
+        this.doc.setLineWidth(0.4);
+        this.doc.roundedRect(MARGIN, top, CONTENT_W, cardH, 50, 50, "FD");
+        this.doc.setFont(this.fonts.serif, "bold");
+        this.doc.setFontSize(size);
+        this.doc.setTextColor(...C.goldDeep);
+        this.doc.textWithLink(text, PAGE_W / 2, top + cardH / 2 + 1.4, {
+            url,
+            align: "center",
+        });
+        this.doc.link(MARGIN, top, CONTENT_W, cardH, { url });
+        this.y = top + cardH + 5;
+    }
+
+    sectionGap() {
+        this.y += SECTION_GAP;
+    }
+
+    // Section divider — ornament + small spacing
+    sectionRule() {
+        this.ensureSpace(10);
+        this.ornament();
+        this.y += 2;
+    }
 }
 
-// ---------------------------------------------------------------------------
-// PDF Sections
-// ---------------------------------------------------------------------------
+// ─────────────────────────────────────────────────────────────────────
+// Section renderers — one per logical block
+// ─────────────────────────────────────────────────────────────────────
 
-function renderHeader(b: PdfBuilder, appleseed: AppleseedData) {
-  // Title bar
-  b.doc.setFillColor(...COLORS.navy);
-  b.doc.rect(0, 0, PAGE_W, 36, "F");
+function renderHero(b: PdfBuilder, appleseed: AppleseedData) {
+    b.y = MARGIN + 10;
 
-  b.doc.setFont("helvetica", "bold");
-  b.doc.setFontSize(18);
-  b.doc.setTextColor(255, 255, 255);
-  b.doc.text("Zone of Genius Snapshot", MARGIN, 16);
+    b.ornament();
+    b.y += 3;
 
-  b.doc.setFont("helvetica", "normal");
-  b.doc.setFontSize(11);
-  b.doc.text(`:: ${appleseed.vibrationalKey.name} ::`, MARGIN, 26);
+    b.eyebrow("My Unique Archetype", { center: true });
+    b.y += 1;
 
-  b.doc.setFontSize(8);
-  b.doc.setTextColor(180, 200, 220);
-  b.doc.text(`Generated ${new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}`, MARGIN, 33);
+    b.title(stripDecorativeGlyphs(appleseed.vibrationalKey.name), {
+        size: 26,
+        center: true,
+    });
+    b.y += 3;
 
-  b.y = 44;
+    if (appleseed.bullseyeSentence) {
+        const text = `I ${formatBullseye(appleseed.bullseyeSentence)}`;
+        b.doc.setFont(b.fonts.serif, "italic");
+        b.doc.setFontSize(13);
+        b.doc.setTextColor(...C.inkBody);
+        const lines = b.doc.splitTextToSize(text, CONTENT_W - 30);
+        for (const line of lines) {
+            b.ensureSpace(7);
+            b.doc.text(line, PAGE_W / 2, b.y, { align: "center" });
+            b.y += 6;
+        }
+        b.y += 2;
+    }
+
+    if (appleseed.topTalentProfile?.core_pattern) {
+        b.body(appleseed.topTalentProfile.core_pattern, { center: true });
+    }
+    b.y += 4;
 }
 
-function renderBullseye(b: PdfBuilder, appleseed: AppleseedData) {
-  b.sectionHeader("1 · Bullseye Sentence");
-  b.doc.setFont("helvetica", "bold");
-  b.doc.setFontSize(11);
-  b.doc.setTextColor(...COLORS.text);
-  const lines = b.doc.splitTextToSize(`I ${appleseed.bullseyeSentence}`, CONTENT_W);
-  for (const line of lines) {
-    b.ensureSpace(6);
-    b.doc.text(line, MARGIN, b.y);
-    b.y += 5.5;
-  }
-  b.gap();
+function renderHowItShowsUp(b: PdfBuilder, appleseed: AppleseedData) {
+    const text = appleseed.topTalentProfile?.how_genius_shows_up;
+    if (!text) return;
+    b.sectionRule();
+    b.eyebrow("How It Shows Up");
+    b.y += 1;
+    b.cardBody(text);
+    b.sectionGap();
 }
 
-function renderVibrationalKey(b: PdfBuilder, appleseed: AppleseedData) {
-  b.hr();
-  b.sectionHeader("2 · Vibrational Key");
-  b.labelValue("Archetype Name", appleseed.vibrationalKey.name);
-  b.labelValue("Tagline", `"${appleseed.vibrationalKey.tagline}"`);
-  if (appleseed.vibrationalKey.tagline_simple) {
-    b.labelValue("In plain words", appleseed.vibrationalKey.tagline_simple);
-  }
+function renderThreeKeyTalents(b: PdfBuilder, appleseed: AppleseedData) {
+    const talents = appleseed.topTalentProfile?.top_three_talents;
+    if (!talents || talents.length === 0) return;
+    b.sectionRule();
+    b.eyebrow("Three Key Talents");
+    b.y += 1;
+    talents.forEach((talent, i) => b.numberedCard(i + 1, talent));
+    b.sectionGap();
 }
 
-function renderThreeLenses(b: PdfBuilder, appleseed: AppleseedData) {
-  b.hr();
-  b.sectionHeader("3 · Three Lenses");
-  b.labelValue("Actions", appleseed.threeLenses.actions.join(" · "));
-  b.labelValue("Prime Driver", appleseed.threeLenses.primeDriver);
-  if (appleseed.threeLenses.primeDriver_meaning) {
-    b.body(`>> ${appleseed.threeLenses.primeDriver_meaning}`, 6);
-  }
-  b.labelValue("Archetype", appleseed.threeLenses.archetype);
-  if (appleseed.threeLenses.archetype_meaning) {
-    b.body(`>> ${appleseed.threeLenses.archetype_meaning}`, 6);
-  }
+function renderTopShadow(b: PdfBuilder, appleseed: AppleseedData) {
+    const text = appleseed.topTalentProfile?.edge_and_traps;
+    if (!text) return;
+    b.sectionRule();
+    b.eyebrow("Top Shadow");
+    b.y += 1;
+    b.cardBody(text);
+    b.sectionGap();
+}
+
+function renderOneAction(b: PdfBuilder, appleseed: AppleseedData) {
+    const text = appleseed.topTalentProfile?.flywheel_action;
+    if (!text) return;
+    b.sectionRule();
+    b.eyebrow("One Action — repeat this");
+    b.y += 1;
+    b.cardBody(text, { tinted: true });
+    b.sectionGap();
 }
 
 function renderAppreciatedFor(b: PdfBuilder, appleseed: AppleseedData) {
-  b.hr();
-  b.sectionHeader("4 · What You're Appreciated & Paid For");
-  for (const item of appleseed.appreciatedFor || []) {
-    b.subHeader(item.effect);
-    b.body(`Scene: ${item.scene}`, 4);
-    b.body(`Outcome: ${item.outcome}`, 4);
-  }
+    const items = appleseed.appreciatedFor;
+    if (!items || items.length === 0) return;
+    b.sectionRule();
+    b.eyebrow("Appreciated For");
+    b.y += 1;
+    items.forEach((item) => {
+        const parts: { text: string; bold?: boolean }[] = [];
+        if (item.effect) parts.push({ text: item.effect, bold: true });
+        if (item.scene) parts.push({ text: `Scene: ${item.scene}` });
+        if (item.outcome) parts.push({ text: `Outcome: ${item.outcome}` });
+        const size = 9.5;
+        const pad = 5;
+        b.doc.setFont(b.fonts.body, "normal");
+        b.doc.setFontSize(size);
+        const wrapped: { text: string; bold?: boolean }[] = [];
+        for (const p of parts) {
+            const ws = b.doc.splitTextToSize(p.text, CONTENT_W - pad * 2) as string[];
+            ws.forEach((w, i) => wrapped.push({ text: w, bold: p.bold && i === 0 }));
+        }
+        const cardH = pad * 2 + wrapped.length * (size * 0.5);
+        b.ensureSpace(cardH + 2);
+        const top = b.y;
+        b.doc.setFillColor(...C.cardCream);
+        b.doc.setDrawColor(...C.goldHairline);
+        b.doc.setLineWidth(0.3);
+        b.doc.roundedRect(MARGIN, top, CONTENT_W, cardH, 3, 3, "FD");
+        let ty = top + pad + size * 0.4;
+        for (const w of wrapped) {
+            b.doc.setFont(b.fonts.body, w.bold ? "bold" : "normal");
+            b.doc.setTextColor(...C.inkBody);
+            b.doc.text(w.text, MARGIN + pad, ty);
+            ty += size * 0.5;
+        }
+        b.y = top + cardH + 3;
+    });
+    b.sectionGap();
 }
 
-function renderMasteryStages(b: PdfBuilder, appleseed: AppleseedData) {
-  b.hr();
-  b.sectionHeader("5 · Mastery Stages");
-  b.numberedList(
-    (appleseed.masteryStages || []).map((s) => ({
-      num: `${s.stage}.`,
-      text: `${s.name} — ${s.description}`,
-    }))
-  );
-  // Day 52 (Sasha 2026-04-26): CTA card right under the 7 stages.
-  // The path of mastery has stages — and a guide. This pulls users
-  // who feel the pull toward acceleration straight to the booking
-  // surface (Telegram DM with Aleksandr).
-  renderMasteryCta(b);
+function renderPathOfMastery(b: PdfBuilder, appleseed: AppleseedData) {
+    const stages = appleseed.masteryStages;
+    if (!stages || stages.length === 0) return;
+    b.sectionRule();
+    b.eyebrow("Path of Mastery");
+    b.y += 1;
+    stages.forEach((stage) => {
+        const num = stage.stage || 1;
+        const text = stage.description
+            ? `${stage.name} — ${stage.description}`
+            : stage.name;
+        b.numberedCard(num, text);
+    });
+    b.y += 2;
+    b.goldPill(MASTERY_CTA_TEXT, MASTERY_CTA_URL);
+    b.sectionGap();
 }
 
-function renderMasteryCta(b: PdfBuilder) {
-  b.gap(2);
-  b.ensureSpace(18);
-  // Soft gold-fill card, gold border, gold link text. jsPDF link()
-  // makes the whole card clickable in any standard PDF viewer.
-  const cardX = MARGIN;
-  const cardY = b.y;
-  const cardH = 14;
-  const cardW = CONTENT_W;
-  b.doc.setFillColor(...COLORS.goldFill);
-  b.doc.setDrawColor(...COLORS.gold);
-  b.doc.setLineWidth(0.4);
-  b.doc.roundedRect(cardX, cardY, cardW, cardH, 2.5, 2.5, "FD");
-  b.doc.setFont("helvetica", "bold");
-  b.doc.setFontSize(9);
-  b.doc.setTextColor(...COLORS.gold);
-  b.doc.textWithLink(MASTERY_CTA_TEXT, cardX + 4, cardY + 9, {
-    url: MASTERY_CTA_URL,
-  });
-  // Make the entire card clickable, not only the text glyphs.
-  b.doc.link(cardX, cardY, cardW, cardH, { url: MASTERY_CTA_URL });
-  b.y = cardY + cardH + 4;
-}
-
-function renderRolesEnvironments(b: PdfBuilder, appleseed: AppleseedData) {
-  b.hr();
-  b.sectionHeader("6 · Roles & Environments");
-  b.labelValue("As Creator", appleseed.rolesEnvironments?.asCreator || "—");
-  b.labelValue("As Contributor", appleseed.rolesEnvironments?.asContributor || "—");
-  b.labelValue("As Founder", appleseed.rolesEnvironments?.asFounder || "—");
-  b.labelValue("Ideal Environment", appleseed.rolesEnvironments?.environment || "—");
+function renderIdealEnvironments(b: PdfBuilder, appleseed: AppleseedData) {
+    const envs = appleseed.topTalentProfile?.ideal_environments;
+    const fallback = appleseed.rolesEnvironments?.environment;
+    if ((!envs || envs.length === 0) && !fallback) return;
+    b.sectionRule();
+    b.eyebrow("Ideal Environments");
+    b.y += 1;
+    if (envs && envs.length > 0) {
+        envs.forEach((env) => b.bulletCard(env));
+    } else if (fallback) {
+        b.cardBody(fallback);
+    }
+    b.sectionGap();
 }
 
 function renderComplementaryPartner(b: PdfBuilder, appleseed: AppleseedData) {
-  b.hr();
-  b.sectionHeader("7 · Best Complementary Partner");
-  b.labelValue("Skills-wise", appleseed.complementaryPartner?.skillsWise || "—");
-  b.labelValue("Genius-wise", appleseed.complementaryPartner?.geniusWise || "—");
-  b.labelValue("Archetype-wise", appleseed.complementaryPartner?.archetypeWise || "—");
-  b.labelValue("Synergy", appleseed.complementaryPartner?.synergy || "—");
+    const partner = appleseed.complementaryPartner;
+    if (!partner) return;
+    const synergy = partner.synergy?.trim();
+    const hasLegacy = !!(partner.skillsWise || partner.geniusWise || partner.archetypeWise);
+    b.sectionRule();
+    b.eyebrow("Complementary Partner");
+    b.y += 1;
+    if (synergy && !hasLegacy) {
+        b.cardBody(synergy);
+    } else {
+        const lines: string[] = [];
+        if (partner.skillsWise) lines.push(`Skills — ${partner.skillsWise}`);
+        if (partner.geniusWise) lines.push(`Genius — ${partner.geniusWise}`);
+        if (partner.archetypeWise) lines.push(`Archetype — ${partner.archetypeWise}`);
+        if (synergy) lines.push(`Synergy — ${synergy}`);
+        b.cardBody(lines.join("\n\n"));
+    }
+    b.sectionGap();
 }
 
 function renderMonetization(b: PdfBuilder, appleseed: AppleseedData) {
-  // Day 52 (Sasha 2026-04-26): restored. The earlier removal stripped a
-  // load-bearing section — founders need to see their three voice-matched
-  // value-ladder offers (intro / signature / scale). The prompt was
-  // sharpened to demand specificity (no LinkedIn clichés); see
-  // appleseedGenerator.ts ROASTING_INSTRUCTIONS for the new bar.
-  b.hr();
-  b.sectionHeader("8 · Monetization Avenues");
-  b.bulletList(appleseed.monetizationAvenues || []);
+    const avenues = appleseed.monetizationAvenues;
+    const sweetSpots = appleseed.topTalentProfile?.career_sweet_spots;
+    const hasAvenues = avenues && avenues.length > 0;
+    const hasSweet = sweetSpots && sweetSpots.length > 0;
+    if (!hasAvenues && !hasSweet) return;
+    b.sectionRule();
+    b.eyebrow("Monetization");
+    b.y += 2;
+
+    if (hasAvenues) {
+        b.doc.setFont(b.fonts.body, "bold");
+        b.doc.setFontSize(8.5);
+        b.doc.setTextColor(...C.gold);
+        b.doc.text("Monetization Avenues", MARGIN, b.y);
+        b.y += 4.5;
+        avenues!.forEach((a) => b.bulletCard(a));
+        b.y += 2;
+    }
+
+    if (hasSweet) {
+        b.doc.setFont(b.fonts.body, "bold");
+        b.doc.setFontSize(8.5);
+        b.doc.setTextColor(...C.gold);
+        b.doc.text("Career Sweet Spots", MARGIN, b.y);
+        b.y += 4.5;
+        sweetSpots!.forEach((s) => b.bulletCard(s));
+    }
+    b.sectionGap();
 }
 
-function renderLifeScene(b: PdfBuilder, appleseed: AppleseedData) {
-  b.hr();
-  b.sectionHeader("9 · Life Scene");
-  b.doc.setFont("helvetica", "italic");
-  b.doc.setFontSize(9);
-  b.doc.setTextColor(...COLORS.text);
-  const lines = b.doc.splitTextToSize(appleseed.lifeScene || "", CONTENT_W - 4);
-  for (const line of lines) {
-    b.ensureSpace(5);
-    b.doc.text(line, MARGIN + 2, b.y);
-    b.y += 4.5;
-  }
-  b.gap();
-}
-
-// Day 52 (Sasha 2026-04-26): Professional Activities, Monetization
-// Avenues, Visual Codes, and Elevator Pitch removed from the rendered
-// PDF per Sasha. The underlying JSON fields stay populated by the
-// generator (no migration), so older snapshots remain valid; the
-// renderer simply stops reading them. If we ever want to bring any
-// of them back, restore the function and re-add to the call list.
-
-// ---------------------------------------------------------------------------
-// Excalibur (Genius Business) — optional page
-// ---------------------------------------------------------------------------
+// ─────────────────────────────────────────────────────────────────────
+// Excalibur (My Unique Genius Business) — kept working but in the new
+// register. Day 58: navy/violet banner replaced with cream + ornament
+// + Cormorant title to match the rest of the artifact. Full Excalibur
+// PDF redesign deferred to its own wave.
+// ─────────────────────────────────────────────────────────────────────
 
 function renderExcalibur(b: PdfBuilder, excalibur: ExcaliburData) {
-  b.doc.addPage();
-  b.y = MARGIN;
+    b.newPage();
+    b.y = MARGIN + 10;
+    b.ornament();
+    b.y += 3;
+    b.eyebrow("My Unique Genius Business", { center: true });
+    b.y += 1;
+    if (excalibur.businessIdentity?.name) {
+        b.title(excalibur.businessIdentity.name, { size: 22, center: true });
+    }
+    b.y += 4;
 
-  // Header bar
-  b.doc.setFillColor(...COLORS.violet);
-  b.doc.rect(0, 0, PAGE_W, 28, "F");
-  b.doc.setFont("helvetica", "bold");
-  b.doc.setFontSize(16);
-  b.doc.setTextColor(255, 255, 255);
-  b.doc.text("My Unique Genius Business", MARGIN, 14);
-  b.doc.setFont("helvetica", "normal");
-  b.doc.setFontSize(10);
-  b.doc.text(excalibur.businessIdentity?.name || "", MARGIN, 23);
-  b.y = 36;
+    const drawSection = (label: string, items: { k: string; v?: string }[]) => {
+        const present = items.filter((i) => i.v);
+        if (present.length === 0) return;
+        b.sectionRule();
+        b.eyebrow(label);
+        b.y += 1;
+        const lines = present.map((i) => `${i.k} — ${i.v}`);
+        b.cardBody(lines.join("\n\n"));
+        b.sectionGap();
+    };
 
-  // Business Identity
-  b.sectionHeader("Business Identity");
-  b.labelValue("Name", excalibur.businessIdentity?.name || "—");
-  b.labelValue("Tagline", excalibur.businessIdentity?.tagline || "—");
-
-  // Essence Anchor
-  b.hr();
-  b.sectionHeader("Essence Anchor");
-  b.labelValue("Genius Apple Seed", excalibur.essenceAnchor?.geniusAppleSeed || "—");
-  b.labelValue("Prime Driver", excalibur.essenceAnchor?.primeDriver || "—");
-  b.labelValue("Archetype", excalibur.essenceAnchor?.archetype || "—");
-
-  // Offer
-  b.hr();
-  b.sectionHeader("Your Offer");
-  b.labelValue("Statement", excalibur.offer?.statement || "—");
-  b.labelValue("Form", excalibur.offer?.form || "—");
-  b.labelValue("Deliverable", excalibur.offer?.deliverable || "—");
-
-  // Ideal Client
-  b.hr();
-  b.sectionHeader("Ideal Client");
-  b.labelValue("Profile", excalibur.idealClient?.profile || "—");
-  b.labelValue("Problem", excalibur.idealClient?.problem || "—");
-  b.labelValue("Aha Moment", excalibur.idealClient?.aha || "—");
-
-  // Transformational Promise
-  b.hr();
-  b.sectionHeader("Transformational Promise");
-  b.labelValue("From", excalibur.transformationalPromise?.fromState || "—");
-  b.labelValue("To", excalibur.transformationalPromise?.toState || "—");
-  b.labelValue("Journey", excalibur.transformationalPromise?.journey || "—");
-
-  // Channels
-  b.hr();
-  b.sectionHeader("Channels");
-  b.labelValue("Primary", excalibur.channels?.primary || "—");
-  b.labelValue("Secondary", excalibur.channels?.secondary || "—");
-  b.labelValue("Hook", excalibur.channels?.hook || "—");
-
-  // Bigger Arc
-  b.hr();
-  b.sectionHeader("The Bigger Arc");
-  b.labelValue("Vision", excalibur.biggerArc?.vision || "—");
-  b.labelValue("Moonshot", excalibur.biggerArc?.moonshot || "—");
+    drawSection("Business Identity", [
+        { k: "Tagline", v: excalibur.businessIdentity?.tagline },
+    ]);
+    drawSection("Essence Anchor", [
+        { k: "Genius Apple Seed", v: excalibur.essenceAnchor?.geniusAppleSeed },
+        { k: "Prime Driver", v: excalibur.essenceAnchor?.primeDriver },
+        { k: "Archetype", v: excalibur.essenceAnchor?.archetype },
+    ]);
+    drawSection("Your Offer", [
+        { k: "Statement", v: excalibur.offer?.statement },
+        { k: "Form", v: excalibur.offer?.form },
+        { k: "Deliverable", v: excalibur.offer?.deliverable },
+    ]);
+    drawSection("Ideal Client", [
+        { k: "Profile", v: excalibur.idealClient?.profile },
+        { k: "Problem", v: excalibur.idealClient?.problem },
+        { k: "Aha Moment", v: excalibur.idealClient?.aha },
+    ]);
+    drawSection("Transformational Promise", [
+        { k: "From", v: excalibur.transformationalPromise?.fromState },
+        { k: "To", v: excalibur.transformationalPromise?.toState },
+        { k: "Journey", v: excalibur.transformationalPromise?.journey },
+    ]);
+    drawSection("Channels", [
+        { k: "Primary", v: excalibur.channels?.primary },
+        { k: "Secondary", v: excalibur.channels?.secondary },
+        { k: "Hook", v: excalibur.channels?.hook },
+    ]);
+    drawSection("The Bigger Arc", [
+        { k: "Vision", v: excalibur.biggerArc?.vision },
+        { k: "Moonshot", v: excalibur.biggerArc?.moonshot },
+    ]);
 }
 
-// ---------------------------------------------------------------------------
-// Footer
-// ---------------------------------------------------------------------------
+// ─────────────────────────────────────────────────────────────────────
+// Footer — page-N-of-M, brand
+// ─────────────────────────────────────────────────────────────────────
 
 function renderFooter(b: PdfBuilder) {
-  // Day 52 (Sasha 2026-04-26): brand fix — was "geniusbusiness.app"
-  // (legacy product name from the metaprompt era), now the canonical
-  // home Sasha actually uses. findyourtoptalent.com redirects there.
-  const pageCount = b.doc.getNumberOfPages();
-  for (let i = 1; i <= pageCount; i++) {
-    b.doc.setPage(i);
-    b.doc.setFont("helvetica", "normal");
-    b.doc.setFontSize(7);
-    b.doc.setTextColor(...COLORS.muted);
-    b.doc.text(
-      `Page ${i} of ${pageCount}  ·  findyourtoptalent.com`,
-      PAGE_W / 2,
-      292,
-      { align: "center" }
-    );
-  }
+    const pageCount = b.doc.getNumberOfPages();
+    for (let i = 1; i <= pageCount; i++) {
+        b.doc.setPage(i);
+        b.doc.setFont(b.fonts.body, "normal");
+        b.doc.setFontSize(7);
+        b.doc.setTextColor(...C.muted);
+        b.doc.text(
+            `Page ${i} of ${pageCount}  ·  findyourtoptalent.com`,
+            PAGE_W / 2,
+            FOOTER_Y,
+            { align: "center" },
+        );
+    }
 }
 
-// ---------------------------------------------------------------------------
+// ─────────────────────────────────────────────────────────────────────
 // Public API
-// ---------------------------------------------------------------------------
+// ─────────────────────────────────────────────────────────────────────
 
-export function generateZogPdf(
-  appleseed: AppleseedData,
-  excalibur?: ExcaliburData | null
-): void {
-  const b = new PdfBuilder();
+export async function generateZogPdf(
+    appleseed: AppleseedData,
+    excalibur?: ExcaliburData | null,
+): Promise<void> {
+    const doc = new jsPDF({ unit: "mm", format: "a4" });
+    const fonts = await setupFonts(doc);
+    const b = new PdfBuilder(doc, fonts);
 
-  // Appleseed pages — Day 52 (Sasha 2026-04-26) section list:
-  //   1. Bullseye · 2. Vibrational Key · 3. Three Lenses
-  //   4. Appreciated For · 5. Mastery Stages (+CTA)
-  //   6. Roles & Environments · 7. Complementary Partner
-  //   8. Monetization Avenues · 9. Life Scene
-  // Removed: Professional Activities, Visual Codes, Elevator Pitch
-  // (see file header note for rationale). Monetization restored
-  // 2026-04-26 with a sharpened prompt (intro/signature/scale tiers,
-  // voice-matched names, no LinkedIn clichés).
-  renderHeader(b, appleseed);
-  renderBullseye(b, appleseed);
-  renderVibrationalKey(b, appleseed);
-  renderThreeLenses(b, appleseed);
-  renderAppreciatedFor(b, appleseed);
-  renderMasteryStages(b, appleseed);
-  renderRolesEnvironments(b, appleseed);
-  renderComplementaryPartner(b, appleseed);
-  renderMonetization(b, appleseed);
-  renderLifeScene(b, appleseed);
+    renderHero(b, appleseed);
+    renderHowItShowsUp(b, appleseed);
+    renderThreeKeyTalents(b, appleseed);
+    renderTopShadow(b, appleseed);
+    renderOneAction(b, appleseed);
+    renderAppreciatedFor(b, appleseed);
+    renderPathOfMastery(b, appleseed);
+    renderIdealEnvironments(b, appleseed);
+    renderComplementaryPartner(b, appleseed);
+    renderMonetization(b, appleseed);
 
-  // Excalibur page (optional)
-  if (excalibur) {
-    renderExcalibur(b, excalibur);
-  }
+    if (excalibur) {
+        renderExcalibur(b, excalibur);
+    }
 
-  // Page numbers
-  renderFooter(b);
+    renderFooter(b);
 
-  // Download
-  const filename = `Zone_of_Genius_${appleseed.vibrationalKey.name.replace(/\s+/g, "_")}.pdf`;
-  b.doc.save(filename);
+    const slug = slugifyArchetype(appleseed.vibrationalKey.name);
+    doc.save(`${slug}-top-talent-profile.pdf`);
 }

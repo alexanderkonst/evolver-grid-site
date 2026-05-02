@@ -46,14 +46,15 @@ export const CALIBRATION_EXAMPLES = `
 EXAMPLE 1: ALEKSANDR
 Input: Zone of genius is turning complexity into a clear map, then using it to unlock people, products, movements. Core pillars: Essentializing, Synthesis, Navigation, Systems architecture, Transmission.
 Output:
-- Vibrational Key: ✦ Architect of Integration Codes ✦ "He who sees what wants to be whole — and builds the blueprint."
+- Vibrational Key — name: "Signal-to-Form Architecting"  // GERUND form, reads as "My top talent is Signal-to-Form Architecting". NOT "Architect of Integration Codes" (actor noun, breaks the grammar).
+- Vibrational Key — tagline: "He who sees what wants to be whole — and builds the blueprint."
 - Actions: Envision • Architect • Activate • Orchestrate • Translate
 - Prime Driver: Activate Dormant Potential
 - Archetype: Visionary Architect — Evolutionary Mirror
 - Life Scene: On a rooftop in Lisbon, speaks a single sentence that reorganizes a room of 12 founders. Eyes light up. One weeps in recognition. Someone whispers: "I remembered who I am."
 
   Top Talent Profile (deep block — note the register):
-    archetype_title: "Signal Architect"  // 2-4 words, no decorative glyphs
+    archetype_title: "Signal-to-Form Architecting"  // matches vibrationalKey.name, gerund form, no glyphs
     core_pattern: "I distill chaotic signals into inevitable form. Where others see noise — meetings, decks, manifestos, spreadsheets — I find the one thread that carries the whole. Then I translate it into structures other people can use."
     top_three_talents:
       "1. Pattern recognition under noise — I locate the load-bearing beam in a system other people experience as overwhelming."
@@ -68,7 +69,8 @@ Output:
 EXAMPLE 2: KARIME
 Input: Zone of genius is restoring Love and coherence by sensing the unseen, reconnecting the disconnected, harmonizing until healing becomes natural. Core triad: Sensing, Bonding, Harmonizing.
 Output:
-- Vibrational Key: ✦ Bridge of the Love Source ✦ "She who plugs hearts back into the Source — and tends the field until love returns."
+- Vibrational Key — name: "Heart-to-Source Bridging"  // GERUND, reads "My top talent is Heart-to-Source Bridging"
+- Vibrational Key — tagline: "She who plugs hearts back into the Source — and tends the field until love returns."
 - Actions: Sense · Harmonize · Midwife · Reweave · Bless
 - Prime Driver: Restore Feminine Coherence
 - Archetype: Sacred Feminine Midwife — Empath-Integrator
@@ -77,7 +79,8 @@ Output:
 EXAMPLE 3: TRACEY
 Input: Maps communities, individuals, events. Uplifts people, connects them. Gives personalized readings on personality types. Meta-intention: leaders on purpose, plugged in.
 Output:
-- Vibrational Key: ✦ Constellation Oracle ✦ "She who sees the invisible pattern, senses the hour, and seats the soul in its appointed place."
+- Vibrational Key — name: "Constellation Mapping"  // GERUND
+- Vibrational Key — tagline: "She who sees the invisible pattern, senses the hour, and seats the soul in its appointed place."
 - Actions: Map · Mirror · Weave · Prime · Fire
 - Prime Driver: Ignite Timed Alignment
 - Archetype: Constellation Architect · Kairos Mirror
@@ -86,7 +89,8 @@ Output:
 EXAMPLE 4: TYLOR
 Input: Create regenerative systems for humans to reconnect with self, land, ancestors. Crafting visions, taking leadership to build a better world.
 Output:
-- Vibrational Key: ✦ Temple Systems Builder ✦ "He who hears the memory of the land and translates it into form."
+- Vibrational Key — name: "Land-Memory Templing"  // GERUND, compound form
+- Vibrational Key — tagline: "He who hears the memory of the land and translates it into form."
 - Actions: Map · Anchor · Ground · Ignite · Build
 - Prime Driver: Forge Sacred Form
 - Archetype: Mythic Builder — Land Listener × Team Firekeeper
@@ -159,9 +163,9 @@ Return a JSON object with this exact structure:
 {
   "bullseyeSentence": "string - one phrase essence starting with a present tense VERB (e.g. 'architect nested systems...' NOT 'architecting...'). This will be displayed as 'I [bullseySentence]' so the verb must be in first-person present tense.",
   "vibrationalKey": {
-    "name": "string - e.g. Architect of Integration Codes",
-    "tagline": "string - e.g. He who sees what wants to be whole...",
-    "tagline_simple": "string - one sentence anyone can understand"
+    "name": "string — 2-4 word GERUND-form name of the talent itself, NOT an actor noun. Reads naturally inside the sentence 'My top talent is ___' (e.g. 'Signal-to-Form Forging', 'Constellation Mapping', 'Heart Bridging', 'Pattern Architecting'). NEVER 'Forger', 'Mapper', 'Bridger', 'Architect' (actor nouns) — those break the grammar of the surrounding card. Compound forms ('Noun-to-Noun Verbing') are welcome when they carry signal. Do NOT wrap in decorative glyphs (✦, ✧, etc.) — the UI strips them.",
+    "tagline": "string — one prophetic third-person sentence that captures the gift in mythic register, e.g. 'He who finds the hidden pulse, gives it shape, and charts the definitive course.'",
+    "tagline_simple": "string — one sentence anyone can understand"
   },
   "threeLenses": {
     "actions": ["string", "string", "string", "string", "string"],
@@ -218,7 +222,7 @@ Return a JSON object with this exact structure:
   "elevatorPitch": "string - no filler words",
 
   "topTalentProfile": {
-    "archetype_title": "string — 2-4 word title that captures my core essence (e.g., 'The Pattern Architect', 'Signal Architect'). Singular and inevitable when I read it. Do NOT wrap in decorative glyphs (no '✦', '✧', etc.) — the UI strips them anyway.",
+    "archetype_title": "string — 2-4 word GERUND-form name of the talent itself (e.g., 'Signal-to-Form Forging', 'Pattern Architecting', 'Constellation Mapping'). Reads naturally inside 'My top talent is ___'. NEVER an actor noun ('Forger', 'Architect', 'Mapper') — those break the grammar of the surrounding UI. Match the same value as vibrationalKey.name. Do NOT wrap in decorative glyphs (no '✦', '✧', etc.) — the UI strips them anyway.",
     "core_pattern": "string — 2-3 sentence paragraph describing my fundamental operating pattern. Names the signature, not the category. This is the bullseye opened up into prose. Specific to me, not aspirational.",
     "top_three_talents": [
       "string — Talent 1, brief, specific to how it manifests in me (not generic strengths-finder language)",
