@@ -119,7 +119,7 @@ export default function ActivationSteps({ showHeading = true }: ActivationStepsP
                 </p>
 
                 <MeditationPlayer
-                    src="/audio/activation-meditation.mp3"
+                    src="/audio/activation-meditation.m4a"
                     title="The Activation"
                 />
 

@@ -27,6 +27,7 @@ import type { AppleseedData as FullAppleseedData } from "@/modules/zone-of-geniu
 import type { ExcaliburData } from "@/modules/zone-of-genius/excaliburGenerator";
 import { CTA_SMALL_CAPS_STYLE, igniteLogo } from "@/lib/landingDesign";
 import CardActions from "@/components/sharing/CardActions";
+import ReadNextSectionButton from "@/components/profile/ReadNextSectionButton";
 
 /**
  * Strip decorative glyphs (✦ ✧ ◆ ◇ ❖ ✱ ★ ☆) some AI generators wrap
@@ -361,6 +362,13 @@ const ZoneOfGeniusOverview = () => {
                         </div>
                     </article>
                 </div>
+
+                {/* Read Next Section — Day 58 (Sasha 2026-05-02 evening):
+                    appended right under the hero so a first-read user
+                    knows where to go next without scanning the side-nav.
+                    Same button shape rendered at the end of every
+                    My Top Talent subpage. */}
+                <ReadNextSectionButton currentPath="/game/me/zone-of-genius" />
 
                 {/* Core pattern — Day 58 (Sasha 2026-05-02 evening):
                     moved out of the hero box so the hero fits one

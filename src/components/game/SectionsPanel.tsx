@@ -731,7 +731,14 @@ const SectionsPanel = ({
                     locked items. */}
                 {spaceData.sections.map((section) => {
                     const hasSubSections = section.subSections && section.subSections.length > 0;
-                    const isExpanded = expandedSections[section.id] ?? false;
+                    // Day 58 (Sasha 2026-05-02 evening): default to "expanded
+                    // when there's an active child" so the dropdown opens
+                    // automatically the moment the user lands on a sub-route
+                    // — no flash of collapsed state, no waiting for the
+                    // useEffect tick. The user's explicit toggle still wins
+                    // (entry in `expandedSections` overrides the default).
+                    const hasActiveChild = !!section.subSections?.some((sub) => isActive(sub.path));
+                    const isExpanded = expandedSections[section.id] ?? hasActiveChild;
                     // Day 52 (Sasha 2026-04-26): when sibling sections share a
                     // common path prefix (e.g. UBB pane 2: /ubb, /ubb/session,
                     // /ubb/marketing, …), plain isActive() false-positives the
