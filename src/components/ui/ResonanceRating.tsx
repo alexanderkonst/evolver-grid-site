@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Sparkles } from "lucide-react";
+import ReactMarkdown from "react-markdown";
 import {
     SPECIFICITY_PROMPT,
     useResonanceMessage,
@@ -58,22 +59,48 @@ const ResonanceRating = ({
         const reveal = step ? revealFromMatrix : null;
 
         if (reveal) {
-            // Specificity Loop reveal — identity-question in the same
-            // frequency as the macro-bridge ("What if … IS …").
+            // Day 58 (Sasha 2026-05-02): the resonance-aftermath copy is
+            // now markdown — short for the resonant tier, longer for
+            // partial/off (with inline links to coach booking and
+            // personality tests). React-markdown renders the links;
+            // the styled `<a>` carries the editorial gold-link register.
             return (
-                <div className="text-center py-6 animate-in fade-in duration-700">
-                    <p
-                        className="font-display italic leading-snug max-w-xl mx-auto px-4"
+                <div className="text-center py-6 animate-in fade-in duration-700 max-w-xl mx-auto px-4">
+                    <div
+                        className="leading-relaxed"
                         style={{
                             fontFamily: "'Source Serif 4', serif",
-                            fontSize: "clamp(1.15rem, 2.6vw, 1.5rem)",
+                            fontSize: "clamp(1.05rem, 2.3vw, 1.3rem)",
                             fontWeight: 500,
                             color: "var(--skin-text-primary, #2c3150)",
                             textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.7))",
                         }}
                     >
-                        {reveal}
-                    </p>
+                        <ReactMarkdown
+                            components={{
+                                p: ({ children }) => (
+                                    <p className="my-2">{children}</p>
+                                ),
+                                a: ({ href, children }) => (
+                                    <a
+                                        href={href}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="font-medium underline underline-offset-2 transition-colors hover:opacity-80"
+                                        style={{
+                                            color: "var(--skin-accent-gold, #b8860b)",
+                                            textDecorationColor:
+                                                "rgba(184, 134, 11, 0.5)",
+                                        }}
+                                    >
+                                        {children}
+                                    </a>
+                                ),
+                            }}
+                        >
+                            {reveal}
+                        </ReactMarkdown>
+                    </div>
                 </div>
             );
         }
