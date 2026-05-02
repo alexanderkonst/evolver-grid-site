@@ -212,6 +212,28 @@ The pattern, kept simple:
 
 ---
 
+### Long-task recipe — Master DoD + open questions + sign-off prompt
+
+When a single request lands with N distinct surfaces of work AND non-trivial latitude inside it (Sasha gave instructions but left some judgment calls), structure the response as one master DoD that fans out into per-wave sister DoDs. **This pattern removes cognitive load from Sasha — he confirmed Day 58 (2026-05-02) that this is the preferred shape.**
+
+The recipe:
+
+1. **Master DoD** — single table with one row per *wave* of work. Columns: `# · Wave · Outcome (one-line) · Status`. Status starts at *pending sign-off*.
+2. **Per-wave sister DoDs** — each wave gets its own compact table directly below. Columns vary by wave content (`# · Task · Evidence` for build; `# · Block · Action` for cull; `# · Old · New · Source` for restructure). Keep tables scannable — no prose between tables unless absolutely necessary.
+3. **Open Questions block** — a numbered table at the end (`# · Question · My recommendation`). Every judgment call I'd otherwise make silently goes here, with my pick stated. This is the quiet override channel — Sasha redirects only the rows that need it.
+4. **Sign-off prompt** — close with a one-line instruction that minimizes Sasha's typing: *"If all waves + questions read right, just reply 'go' (and any answers to Q1-QN if they differ from my recommendation)."* Or invite row-level edits: *"If any wave needs a tweak, point at the row number (e.g. '3.7 — keep name, swap content only')."*
+
+Pre-conditions before producing the master DoD:
+- Read code / corpus enough to make the questions answerable. Don't punt unknowns into Q-block when one grep would resolve them.
+- Confirm-back any non-obvious interpretation in the per-wave row itself (Day 58 example: Wave 4.3 was an explicit confirm-back paragraph because the prompt-upgrade phrasing was ambiguous).
+
+When NOT to use this recipe:
+- Single-surface task → plain DoD table is enough.
+- Sasha already specified every detail → no Q-block needed (just confirm understanding + DoD).
+- Exploratory ("what could we do about X?") → recommendation in 2-3 sentences first, plan only after agreement.
+
+---
+
 ## Verbs Sasha uses with me (slash commands, informal)
 
 These are phrases Sasha already uses. I act on them immediately without asking for clarification.

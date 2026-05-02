@@ -15,25 +15,57 @@
  *   • Monetization avenues block — career-advisory pollution.
  */
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import GameShellV2 from "@/components/game/GameShellV2";
 import { Button } from "@/components/ui/button";
-import { Sparkles, Star, Zap, Target, Quote, Download, ExternalLink, ArrowRight } from "lucide-react";
+import { Sparkles, Download, ArrowRight } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { getOrCreateGameProfileId } from "@/lib/gameProfile";
 import { generateZogPdf } from "@/modules/zone-of-genius/generateZogPdf";
 import type { AppleseedData as FullAppleseedData } from "@/modules/zone-of-genius/appleseedGenerator";
 import type { ExcaliburData } from "@/modules/zone-of-genius/excaliburGenerator";
 import { CTA_SMALL_CAPS_STYLE, igniteLogo } from "@/lib/landingDesign";
+import CardActions from "@/components/sharing/CardActions";
+
+/**
+ * Strip decorative glyphs (✦ ✧ ◆ ◇ ❖ ✱ ★ ☆) some AI generators wrap
+ * archetype names in. We render the name unflanked. Day 58 (Sasha).
+ */
+const stripDecorativeGlyphs = (name: string): string =>
+    name.replace(/[✦✧◆◇❖✱★☆]/g, "").trim();
+
+/**
+ * Render the bullseye sentence in editorial sentence case, no trailing
+ * period — matches the landing register. Day 58 (Sasha 2026-05-02).
+ */
+const formatBullseye = (sentence: string): string =>
+    sentence.toLowerCase().replace(/\.\s*$/, "").trim();
+
+/**
+ * Share text for the overview hero CardActions. Same shape as
+ * RevelatoryHero's buildShareTextFor but drops the threeLenses block
+ * (the overview hero doesn't render lenses) and folds in core_pattern
+ * if present so the shared text carries the deeper resonance.
+ */
+const buildOverviewShareText = (
+    archetype: string,
+    bullseye: string | undefined,
+    corePattern: string | undefined,
+): string => {
+    let text = `This is how I naturally create value:\n\n`;
+    text += `${archetype}\n`;
+    if (bullseye) text += `I ${formatBullseye(bullseye)}\n\n`;
+    if (corePattern) text += `${corePattern}\n\n`;
+    text += `Curious what you see.\n\n→ FindYourTopTalent.Com`;
+    return text;
+};
 
 // Light-glass + dark-text palette, per the blueprint.
 const INK = "#0a1628";
 const INK_BODY = "rgba(26,30,58,0.78)";
 const INK_MUTED = "rgba(26,30,58,0.55)";
 const HALO_SOFT = "0 0 22px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.8), 0 2px 12px rgba(26,30,58,0.15)";
-
-const MASTERY_CTA_URL = "https://t.me/integralevolution";
 
 interface AppleseedData {
     vibrationalKey?: {
@@ -137,6 +169,7 @@ const parseMonetizationAvenue = (
 
 const ZoneOfGeniusOverview = () => {
     const navigate = useNavigate();
+    const heroCardRef = useRef<HTMLElement | null>(null);
     const [loading, setLoading] = useState(true);
     const [appleseedData, setAppleseedData] = useState<AppleseedData | null>(null);
     const [fullAppleseed, setFullAppleseed] = useState<FullAppleseedData | null>(null);
@@ -200,13 +233,6 @@ const ZoneOfGeniusOverview = () => {
         loadData();
     }, []);
 
-    const subPages = [
-        { id: "archetype", label: "Archetype", icon: Star, path: "/game/me/zone-of-genius/archetype" },
-        { id: "talents", label: "Top Talents", icon: Zap, path: "/game/me/zone-of-genius/talents" },
-        { id: "driver", label: "Prime Driver", icon: Target, path: "/game/me/zone-of-genius/driver" },
-        { id: "action", label: "Action Statement", icon: Quote, path: "/game/me/zone-of-genius/action" },
-    ];
-
     if (loading) {
         return (
             <GameShellV2>
@@ -256,498 +282,125 @@ const ZoneOfGeniusOverview = () => {
         <GameShellV2>
             <div className="max-w-2xl mx-auto px-4 py-8 sm:px-6 sm:py-12 space-y-8">
 
-                {/* ═══ HERO — liquid-glass-strong + Cormorant register ═══ */}
-                <article className="liquid-glass-strong rounded-3xl p-7 sm:p-10 text-center space-y-5">
-                    <div className="inline-flex items-center justify-center w-16 h-16 rounded-full overflow-hidden mx-auto">
-                        <img src="/dodecahedron.png" alt="Top Talent" className="w-full h-full object-cover" />
-                    </div>
-                    <p
-                        className="text-[10px] uppercase tracking-[0.32em] font-medium"
-                        style={{ color: "var(--skin-accent-gold, #b8860b)" }}
-                    >
-                        My genius is to be a
-                    </p>
-                    <h1
-                        className="leading-[1.1] tracking-[-0.01em]"
+                {/* ═══ HERO — Day 58 (Sasha 2026-05-02): rebuilt per Wave 1.
+                    Box adorned with a soft golden halo so it reads as the
+                    meaningful artifact (not just another card). Dodecahedron
+                    wears its own gold ring. Decorative glyphs around the
+                    archetype name stripped at render. ONE phrase only —
+                    the bullseye in editorial sentence case (no period, no
+                    quotes). Core pattern paragraph below from the deep
+                    profile. CardActions Save · Share replaces the in-hero
+                    PDF button (PDF moves to bottom of page in Wave 2). ═══ */}
+                <div
+                    style={{
+                        borderRadius: '24px',
+                        boxShadow:
+                            '0 0 40px rgba(240, 194, 127, 0.22), 0 0 80px rgba(212, 175, 55, 0.10)',
+                    }}
+                >
+                    <article
+                        ref={heroCardRef}
+                        className="liquid-glass-strong rounded-3xl p-7 sm:p-10 text-center space-y-5"
                         style={{
-                            fontFamily: "'Cormorant Garamond', serif",
-                            fontWeight: 600,
-                            fontSize: "clamp(1.85rem, 5.5vw, 2.8rem)",
-                            color: INK,
-                            textShadow: HALO_SOFT,
+                            border: "1px solid rgba(212, 175, 55, 0.32)",
                         }}
                     >
-                        {vk.name}
-                    </h1>
-                    {appleseedData.bullseyeSentence && (
+                        <div
+                            className="relative inline-flex items-center justify-center w-16 h-16 rounded-full overflow-hidden mx-auto"
+                            style={{
+                                boxShadow:
+                                    "0 0 24px 4px rgba(244, 212, 114, 0.45), 0 0 48px 8px rgba(212, 175, 55, 0.18)",
+                            }}
+                        >
+                            <img src="/dodecahedron.png" alt="Top Talent" className="w-full h-full object-cover" />
+                        </div>
                         <p
-                            className="mx-auto max-w-[34ch] italic leading-relaxed"
-                            style={{
-                                fontFamily: "'Source Serif 4', Georgia, serif",
-                                fontWeight: 300,
-                                fontSize: "clamp(1.05rem, 2.2vw, 1.25rem)",
-                                color: INK_BODY,
-                            }}
+                            className="text-[10px] uppercase tracking-[0.32em] font-medium"
+                            style={{ color: "var(--skin-accent-gold, #b8860b)" }}
                         >
-                            I {appleseedData.bullseyeSentence}
+                            My unique archetype
                         </p>
-                    )}
-                    {vk.tagline && (
-                        <p
-                            className="mx-auto max-w-[42ch] text-sm leading-relaxed pt-1"
-                            style={{ color: INK_MUTED, fontStyle: "italic" }}
-                        >
-                            "{vk.tagline}"
-                        </p>
-                    )}
-
-                    <div className="pt-2">
-                        <button
-                            onClick={() => {
-                                if (fullAppleseed) {
-                                    generateZogPdf(fullAppleseed, excaliburData);
-                                }
-                            }}
-                            disabled={!fullAppleseed}
-                            className="liquid-glass-strong inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 hover:scale-[1.02] active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
-                            style={{ color: INK }}
-                        >
-                            <Download className="w-4 h-4" />
-                            {fullAppleseed ? "Download Full PDF" : "Generating PDF data…"}
-                        </button>
-                    </div>
-                </article>
-
-                {/* ═══ DEEP TOP TALENT PROFILE — the 8-field activation surface ═══
-                    Day 57 (Sasha 2026-05-01): renders the rich profile produced
-                    by ZONE_OF_GENIUS_PROMPT when the user pasted the JSON
-                    output of their AI. Trinity sub-results:
-                      1 · RECOGNIZE — archetype + core_pattern + how_genius_shows_up
-                      2 · EQUIP     — top three talents (long) + edge & traps + flywheel
-                      3 · ORIENT    — ideal environments + career sweet spots
-                    Falls through silently if no topTalentProfile present
-                    (existing snapshots without the deep field render as before). */}
-                {fullAppleseed?.topTalentProfile && (
-                    <div className="space-y-6">
-                        {/* 1 · RECOGNIZE in detail */}
-                        <article className="liquid-glass-strong rounded-3xl p-5 sm:p-7 space-y-5">
-                            <SectionLabel>1 · Recognize in detail</SectionLabel>
-
-                            {fullAppleseed.topTalentProfile.archetype_title && (
-                                <div className="space-y-1.5">
-                                    <p className="text-xs uppercase tracking-wider" style={{ color: INK_MUTED }}>Archetype</p>
-                                    <p
-                                        className="font-medium"
-                                        style={{
-                                            color: INK,
-                                            fontFamily: "'Cormorant Garamond', serif",
-                                            fontSize: "1.2rem",
-                                            textShadow: HALO_SOFT,
-                                        }}
-                                    >
-                                        {fullAppleseed.topTalentProfile.archetype_title}
-                                    </p>
-                                </div>
-                            )}
-
-                            {fullAppleseed.topTalentProfile.core_pattern && (
-                                <div className="space-y-1.5">
-                                    <p className="text-xs uppercase tracking-wider" style={{ color: INK_MUTED }}>Core pattern</p>
-                                    <p
-                                        className="text-sm leading-relaxed"
-                                        style={{ color: INK_BODY, fontFamily: "'Source Serif 4', Georgia, serif" }}
-                                    >
-                                        {fullAppleseed.topTalentProfile.core_pattern}
-                                    </p>
-                                </div>
-                            )}
-
-                            {fullAppleseed.topTalentProfile.how_genius_shows_up && (
-                                <div className="space-y-1.5 pt-2 border-t border-black/5">
-                                    <p className="text-xs uppercase tracking-wider" style={{ color: INK_MUTED }}>How it shows up</p>
-                                    <p
-                                        className="text-sm leading-relaxed"
-                                        style={{ color: INK_BODY, fontFamily: "'Source Serif 4', Georgia, serif" }}
-                                    >
-                                        {fullAppleseed.topTalentProfile.how_genius_shows_up}
-                                    </p>
-                                </div>
-                            )}
-                        </article>
-
-                        {/* 2 · EQUIP yourself */}
-                        <article className="liquid-glass-strong rounded-3xl p-5 sm:p-7 space-y-5">
-                            <SectionLabel>2 · Equip yourself</SectionLabel>
-
-                            {fullAppleseed.topTalentProfile.top_three_talents?.length > 0 && (
-                                <div className="space-y-2.5">
-                                    <p className="text-xs uppercase tracking-wider" style={{ color: INK_MUTED }}>Three top talents</p>
-                                    <ol className="space-y-3">
-                                        {fullAppleseed.topTalentProfile.top_three_talents.map((talent, i) => (
-                                            <li key={i} className="flex gap-3">
-                                                <span
-                                                    className="flex-shrink-0 w-6 h-6 rounded-full text-[11px] font-semibold flex items-center justify-center mt-0.5"
-                                                    style={{
-                                                        background: "linear-gradient(135deg, rgba(244, 212, 114, 0.95) 0%, rgba(212, 175, 55, 0.78) 100%)",
-                                                        color: "#0a1628",
-                                                        fontFamily: "'DM Sans', system-ui, sans-serif",
-                                                        fontVariantNumeric: "tabular-nums",
-                                                    }}
-                                                >
-                                                    {i + 1}
-                                                </span>
-                                                <p
-                                                    className="text-sm leading-relaxed flex-1"
-                                                    style={{ color: INK, fontFamily: "'Source Serif 4', Georgia, serif" }}
-                                                >
-                                                    {talent}
-                                                </p>
-                                            </li>
-                                        ))}
-                                    </ol>
-                                </div>
-                            )}
-
-                            {fullAppleseed.topTalentProfile.edge_and_traps && (
-                                <div className="space-y-1.5 pt-2 border-t border-black/5">
-                                    <p className="text-xs uppercase tracking-wider" style={{ color: INK_MUTED }}>Edge &amp; traps</p>
-                                    <p
-                                        className="text-sm leading-relaxed"
-                                        style={{ color: INK_BODY, fontFamily: "'Source Serif 4', Georgia, serif" }}
-                                    >
-                                        {fullAppleseed.topTalentProfile.edge_and_traps}
-                                    </p>
-                                </div>
-                            )}
-
-                            {fullAppleseed.topTalentProfile.flywheel_action && (
-                                <div
-                                    className="rounded-xl p-4 mt-2"
-                                    style={{
-                                        background: "linear-gradient(135deg, rgba(244, 212, 114, 0.14) 0%, rgba(212, 175, 55, 0.08) 100%)",
-                                        border: "0.5px solid rgba(212, 175, 55, 0.35)",
-                                    }}
-                                >
-                                    <p
-                                        className="text-[10px] uppercase tracking-[0.28em] font-medium mb-1.5"
-                                        style={{ color: "#7a5108" }}
-                                    >
-                                        Flywheel action — repeat this
-                                    </p>
-                                    <p
-                                        className="text-sm leading-relaxed"
-                                        style={{
-                                            color: INK,
-                                            fontFamily: "'Source Serif 4', Georgia, serif",
-                                            fontWeight: 500,
-                                        }}
-                                    >
-                                        {fullAppleseed.topTalentProfile.flywheel_action}
-                                    </p>
-                                </div>
-                            )}
-                        </article>
-
-                        {/* 3 · ORIENT — where you thrive */}
-                        <article className="liquid-glass-strong rounded-3xl p-5 sm:p-7 space-y-5">
-                            <SectionLabel>3 · Orient — where you thrive</SectionLabel>
-
-                            {fullAppleseed.topTalentProfile.ideal_environments?.length > 0 && (
-                                <div className="space-y-2.5">
-                                    <p className="text-xs uppercase tracking-wider" style={{ color: INK_MUTED }}>Ideal environments</p>
-                                    <ul className="space-y-2 list-none">
-                                        {fullAppleseed.topTalentProfile.ideal_environments.map((env, i) => (
-                                            <li
-                                                key={i}
-                                                className="text-sm leading-relaxed flex gap-2"
-                                                style={{ color: INK_BODY, fontFamily: "'Source Serif 4', Georgia, serif" }}
-                                            >
-                                                <span aria-hidden="true" className="flex-shrink-0 mt-1.5" style={{ color: INK_MUTED }}>•</span>
-                                                <span className="flex-1">{env}</span>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
-                            )}
-
-                            {fullAppleseed.topTalentProfile.career_sweet_spots?.length > 0 && (
-                                <div className="space-y-2.5 pt-2 border-t border-black/5">
-                                    <p className="text-xs uppercase tracking-wider" style={{ color: INK_MUTED }}>Career sweet spots</p>
-                                    <ul className="space-y-2 list-none">
-                                        {fullAppleseed.topTalentProfile.career_sweet_spots.map((spot, i) => (
-                                            <li
-                                                key={i}
-                                                className="text-sm leading-relaxed flex gap-2"
-                                                style={{ color: INK_BODY, fontFamily: "'Source Serif 4', Georgia, serif" }}
-                                            >
-                                                <span aria-hidden="true" className="flex-shrink-0 mt-1.5" style={{ color: INK_MUTED }}>•</span>
-                                                <span className="flex-1">{spot}</span>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
-                            )}
-                        </article>
-                    </div>
-                )}
-
-                {/* ═══ THREE LENSES ═══ */}
-                {lenses && (lenses.actions?.length > 0 || lenses.primeDriver || lenses.archetype) && (
-                    <section className="liquid-glass rounded-2xl p-6 space-y-5">
-                        <SectionLabel>Three Lenses</SectionLabel>
-
-                        {lenses.actions?.length > 0 && (
-                            <div className="space-y-2">
-                                <p className="text-xs uppercase tracking-wider" style={{ color: INK_MUTED }}>Actions</p>
-                                <div className="flex flex-wrap gap-2">
-                                    {lenses.actions.map((action, i) => (
-                                        <span
-                                            key={i}
-                                            className="liquid-glass inline-flex items-center px-3 py-1.5 rounded-full text-sm"
-                                            style={{ color: INK }}
-                                        >
-                                            {action}
-                                        </span>
-                                    ))}
-                                </div>
-                            </div>
-                        )}
-
-                        {lenses.primeDriver && (
-                            <div className="space-y-1">
-                                <p className="text-xs uppercase tracking-wider" style={{ color: INK_MUTED }}>Prime Driver</p>
-                                <p className="text-base font-medium" style={{ color: INK }}>{lenses.primeDriver}</p>
-                                {lenses.primeDriver_meaning && (
-                                    <p className="text-sm leading-relaxed" style={{ color: INK_BODY }}>
-                                        {lenses.primeDriver_meaning}
-                                    </p>
-                                )}
-                            </div>
-                        )}
-
-                        {lenses.archetype && (
-                            <div className="space-y-1">
-                                <p className="text-xs uppercase tracking-wider" style={{ color: INK_MUTED }}>Archetype</p>
-                                <p className="text-base font-medium" style={{ color: INK }}>{lenses.archetype}</p>
-                                {lenses.archetype_meaning && (
-                                    <p className="text-sm leading-relaxed" style={{ color: INK_BODY }}>
-                                        {lenses.archetype_meaning}
-                                    </p>
-                                )}
-                            </div>
-                        )}
-                    </section>
-                )}
-
-                {/* ═══ LIFE SCENE — italic narrative block ═══ */}
-                {appleseedData.lifeScene && (
-                    <section className="liquid-glass rounded-2xl p-6 space-y-3">
-                        <SectionLabel>In the field</SectionLabel>
-                        <blockquote
-                            className="italic leading-relaxed"
+                        <h1
+                            className="leading-[1.1] tracking-[-0.01em]"
                             style={{
-                                fontFamily: "'Source Serif 4', Georgia, serif",
-                                fontWeight: 300,
-                                fontSize: "1.05rem",
-                                color: INK_BODY,
+                                fontFamily: "'Cormorant Garamond', serif",
+                                fontWeight: 600,
+                                fontSize: "clamp(1.85rem, 5.5vw, 2.8rem)",
+                                color: INK,
+                                textShadow: HALO_SOFT,
                             }}
                         >
-                            {appleseedData.lifeScene}
-                        </blockquote>
-                    </section>
-                )}
-
-                {/* ═══ MASTERY STAGES + book-a-session CTA ═══ */}
-                {stages && stages.length > 0 && (
-                    <section className="liquid-glass rounded-2xl p-6 space-y-5">
-                        <SectionLabel>Path of Mastery</SectionLabel>
-
-                        <ol className="space-y-3.5">
-                            {stages.map((stage, i) => (
-                                <li key={stage.stage || i} className="flex gap-4">
-                                    <span
-                                        className="flex-shrink-0 w-7 h-7 rounded-full text-xs font-semibold flex items-center justify-center"
-                                        style={{
-                                            background: "linear-gradient(135deg, rgba(244, 212, 114, 0.95) 0%, rgba(212, 175, 55, 0.78) 100%)",
-                                            color: "#0a1628",
-                                            border: "0.5px solid rgba(122, 81, 8, 0.45)",
-                                            fontFamily: "'DM Sans', system-ui, sans-serif",
-                                            fontVariantNumeric: "tabular-nums lining-nums",
-                                        }}
-                                    >
-                                        {stage.stage || i + 1}
-                                    </span>
-                                    <div className="flex-1 min-w-0 pt-0.5">
-                                        <p className="text-sm font-medium" style={{ color: INK }}>{stage.name}</p>
-                                        {stage.description && (
-                                            <p className="text-xs leading-relaxed mt-0.5" style={{ color: INK_BODY }}>
-                                                {stage.description}
-                                            </p>
-                                        )}
-                                    </div>
-                                </li>
-                            ))}
-                        </ol>
-
-                        {/* Gold CTA pill — same register as "Work with Aleksandr"
-                            on /ai-os hero, so the offer reads consistently. */}
-                        <a
-                            href={MASTERY_CTA_URL}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="block rounded-full px-5 py-3 transition-all hover:scale-[1.01]"
-                            style={{
-                                background: "linear-gradient(135deg, hsla(40, 75%, 60%, 0.22) 0%, hsla(40, 65%, 50%, 0.10) 100%)",
-                                border: "1px solid hsla(40, 70%, 55%, 0.40)",
-                                boxShadow: "0 4px 14px -6px rgba(184,134,11,0.28)",
-                            }}
-                        >
-                            <div className="flex items-center gap-3">
-                                <Sparkles className="h-4 w-4 flex-shrink-0" style={{ color: "#b8860b" }} />
-                                <span className="flex-1 text-sm font-medium" style={{ color: "#5d4307" }}>
-                                    Accelerate your path of mastery — book a session with Aleksandr
-                                </span>
-                                <ExternalLink className="h-3.5 w-3.5 flex-shrink-0" style={{ color: "rgba(184,134,11,0.7)" }} />
-                            </div>
-                        </a>
-                    </section>
-                )}
-
-                {/* ═══ MONETIZATION AVENUES — value-ladder offers ═══
-                    Day 52 (Sasha 2026-04-26): the prompt now demands three
-                    voice-matched offers spanning intro/signature/scale tiers
-                    instead of generic "1:1 coaching / group program" clichés.
-                    We attempt to parse the structured "Tier · Name — Deliverable
-                    ($price)" shape, but fall back gracefully to plain text for
-                    legacy snapshots that pre-date the prompt update. */}
-                {monetization && monetization.length > 0 && (
-                    <section className="liquid-glass rounded-2xl p-6 space-y-4">
-                        <SectionLabel>Monetization Avenues</SectionLabel>
-                        <ul className="space-y-3">
-                            {monetization.map((raw, i) => {
-                                const parsed = parseMonetizationAvenue(raw);
-                                return (
-                                    <li
-                                        key={i}
-                                        className="liquid-glass rounded-xl p-4 space-y-1.5"
-                                    >
-                                        <div className="flex items-center gap-2 flex-wrap">
-                                            {parsed.tier && (
-                                                <span
-                                                    className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] uppercase tracking-[0.18em] font-semibold"
-                                                    style={{
-                                                        background: "rgba(244, 212, 114, 0.18)",
-                                                        color: "#7a5108",
-                                                        border: "0.5px solid rgba(212, 175, 55, 0.55)",
-                                                    }}
-                                                >
-                                                    {parsed.tier}
-                                                </span>
-                                            )}
-                                            {parsed.name && (
-                                                <span className="text-sm font-medium" style={{ color: INK }}>
-                                                    {parsed.name}
-                                                </span>
-                                            )}
-                                            {parsed.price && (
-                                                <span
-                                                    className="ml-auto text-xs font-semibold tabular-nums"
-                                                    style={{ color: "var(--skin-accent-gold, #b8860b)" }}
-                                                >
-                                                    {parsed.price}
-                                                </span>
-                                            )}
-                                        </div>
-                                        {parsed.description && (
-                                            <p className="text-sm leading-relaxed" style={{ color: INK_BODY }}>
-                                                {parsed.description}
-                                            </p>
-                                        )}
-                                    </li>
-                                );
-                            })}
-                        </ul>
-                    </section>
-                )}
-
-                {/* ═══ COMPLEMENTARY PARTNER ═══ */}
-                {partner && (partner.skillsWise || partner.geniusWise || partner.archetypeWise || partner.synergy) && (
-                    <section className="liquid-glass rounded-2xl p-6 space-y-4">
-                        <SectionLabel>Best Complementary Partner</SectionLabel>
-                        {partner.skillsWise && (
-                            <div className="space-y-1">
-                                <p className="text-xs uppercase tracking-wider" style={{ color: INK_MUTED }}>Skills</p>
-                                <p className="text-sm leading-relaxed" style={{ color: INK }}>{partner.skillsWise}</p>
-                            </div>
-                        )}
-                        {partner.geniusWise && (
-                            <div className="space-y-1">
-                                <p className="text-xs uppercase tracking-wider" style={{ color: INK_MUTED }}>Genius</p>
-                                <p className="text-sm leading-relaxed" style={{ color: INK }}>{partner.geniusWise}</p>
-                            </div>
-                        )}
-                        {partner.archetypeWise && (
-                            <div className="space-y-1">
-                                <p className="text-xs uppercase tracking-wider" style={{ color: INK_MUTED }}>Archetype</p>
-                                <p className="text-sm leading-relaxed" style={{ color: INK }}>{partner.archetypeWise}</p>
-                            </div>
-                        )}
-                        {partner.synergy && (
-                            <div className="pt-2 border-t border-black/5 space-y-1">
-                                <p className="text-xs uppercase tracking-wider" style={{ color: INK_MUTED }}>Synergy</p>
-                                <p className="text-sm leading-relaxed italic" style={{ color: INK_BODY }}>{partner.synergy}</p>
-                            </div>
-                        )}
-                    </section>
-                )}
-
-                {/* ═══ ROLES & ENVIRONMENTS ═══ */}
-                {roles && (roles.asCreator || roles.asContributor || roles.asFounder || roles.environment) && (
-                    <section className="liquid-glass rounded-2xl p-6 space-y-4">
-                        <SectionLabel>Where You Work Best</SectionLabel>
-                        {roles.asCreator && (
-                            <div className="space-y-1">
-                                <p className="text-xs uppercase tracking-wider" style={{ color: INK_MUTED }}>As Creator</p>
-                                <p className="text-sm leading-relaxed" style={{ color: INK }}>{roles.asCreator}</p>
-                            </div>
-                        )}
-                        {roles.asContributor && (
-                            <div className="space-y-1">
-                                <p className="text-xs uppercase tracking-wider" style={{ color: INK_MUTED }}>As Contributor</p>
-                                <p className="text-sm leading-relaxed" style={{ color: INK }}>{roles.asContributor}</p>
-                            </div>
-                        )}
-                        {roles.asFounder && (
-                            <div className="space-y-1">
-                                <p className="text-xs uppercase tracking-wider" style={{ color: INK_MUTED }}>As Founder</p>
-                                <p className="text-sm leading-relaxed" style={{ color: INK }}>{roles.asFounder}</p>
-                            </div>
-                        )}
-                        {roles.environment && (
-                            <div className="space-y-1">
-                                <p className="text-xs uppercase tracking-wider" style={{ color: INK_MUTED }}>Ideal Environment</p>
-                                <p className="text-sm leading-relaxed italic" style={{ color: INK_BODY }}>{roles.environment}</p>
-                            </div>
-                        )}
-                    </section>
-                )}
-
-                {/* ═══ Sub-page nav — glassy chips, no flat boxes ═══ */}
-                <section className="space-y-3">
-                    <SectionLabel>Explore Each Lens</SectionLabel>
-                    <div className="grid grid-cols-2 gap-2">
-                        {subPages.map((page) => (
-                            <button
-                                key={page.id}
-                                onClick={() => navigate(page.path)}
-                                className="liquid-glass rounded-2xl p-4 transition-all hover:scale-[1.02] text-left flex items-center gap-3"
-                                style={{ color: INK }}
+                            {stripDecorativeGlyphs(vk.name)}
+                        </h1>
+                        {appleseedData.bullseyeSentence && (
+                            <p
+                                className="mx-auto max-w-[34ch] italic leading-relaxed"
+                                style={{
+                                    fontFamily: "'Source Serif 4', Georgia, serif",
+                                    fontWeight: 300,
+                                    fontSize: "clamp(1.05rem, 2.2vw, 1.25rem)",
+                                    color: INK_BODY,
+                                }}
                             >
-                                <page.icon className="w-4 h-4 flex-shrink-0" style={{ color: "var(--skin-accent-gold, #b8860b)" }} />
-                                <span className="text-sm font-medium">{page.label}</span>
-                            </button>
-                        ))}
-                    </div>
+                                I {formatBullseye(appleseedData.bullseyeSentence)}
+                            </p>
+                        )}
+                        {fullAppleseed?.topTalentProfile?.core_pattern && (
+                            <p
+                                className="mx-auto max-w-[44ch] leading-relaxed pt-1"
+                                style={{
+                                    fontFamily: "'Source Serif 4', Georgia, serif",
+                                    fontSize: "0.95rem",
+                                    color: INK_BODY,
+                                }}
+                            >
+                                {fullAppleseed.topTalentProfile.core_pattern}
+                            </p>
+                        )}
+
+                        <div className="pt-1">
+                            <CardActions
+                                captureRef={heroCardRef as React.RefObject<HTMLElement>}
+                                fileName={`${stripDecorativeGlyphs(vk.name).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "my-top-talent"}-find-your-top-talent`}
+                                shareText={buildOverviewShareText(
+                                    stripDecorativeGlyphs(vk.name),
+                                    appleseedData.bullseyeSentence,
+                                    fullAppleseed?.topTalentProfile?.core_pattern
+                                )}
+                                darkMode={false}
+                            />
+                        </div>
+                    </article>
+                </div>
+
+                {/* ═══ Download PDF — Day 58 (Sasha 2026-05-02): moved from
+                    inside the hero box to sit just above the closing CTA.
+                    Reason to download: hand the PDF to the user's AI as
+                    context so future conversations know who they are. ═══ */}
+                <section className="text-center space-y-3 max-w-md mx-auto pt-2">
+                    <p
+                        className="text-sm leading-relaxed italic"
+                        style={{
+                            fontFamily: "'Source Serif 4', Georgia, serif",
+                            color: "var(--skin-text-muted-soft, rgba(26,30,58,0.62))",
+                            textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.7))",
+                        }}
+                    >
+                        Give the PDF to your AI so it can know more about you.
+                    </p>
+                    <button
+                        onClick={() => {
+                            if (fullAppleseed) {
+                                generateZogPdf(fullAppleseed, excaliburData);
+                            }
+                        }}
+                        disabled={!fullAppleseed}
+                        className="liquid-glass-strong inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 hover:scale-[1.02] active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
+                        style={{ color: INK }}
+                    >
+                        <Download className="w-4 h-4" />
+                        {fullAppleseed ? "Download Full PDF" : "Generating PDF data…"}
+                    </button>
                 </section>
 
                 {/* ═══ Post-reveal funnel — same 2-button pattern as
