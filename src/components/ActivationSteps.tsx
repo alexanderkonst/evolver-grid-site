@@ -19,9 +19,11 @@
  *     shared component remains the source of truth in case we
  *     restore a standalone page later.
  */
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Download } from "lucide-react";
 import { Link } from "react-router-dom";
 import MeditationPlayer from "@/components/MeditationPlayer";
+
+const AUDIO_SRC = "/audio/activation-meditation.m4a";
 
 const eyebrowStyle: React.CSSProperties = {
     color: "rgba(122, 81, 8, 0.85)",
@@ -119,9 +121,31 @@ export default function ActivationSteps({ showHeading = true }: ActivationStepsP
                 </p>
 
                 <MeditationPlayer
-                    src="/audio/activation-meditation.m4a"
+                    src={AUDIO_SRC}
                     title="The Activation"
                 />
+
+                {/* Download button — Day 58 (Sasha 2026-05-02 late):
+                    let people take the meditation with them. Native
+                    <a download> attribute triggers a download instead
+                    of in-tab playback. Subtle, sits right under the
+                    player so the path is obvious without competing
+                    with the play affordance above. */}
+                <div className="flex justify-center pt-1">
+                    <a
+                        href={AUDIO_SRC}
+                        download="activation-meditation.m4a"
+                        className="group inline-flex items-center gap-1.5 rounded-full px-3.5 py-1.5 text-[11px] uppercase tracking-[0.18em] font-medium transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
+                        style={{
+                            color: "rgba(122, 81, 8, 0.85)",
+                            background: "rgba(244, 212, 114, 0.10)",
+                            border: "0.5px solid rgba(212, 175, 55, 0.35)",
+                        }}
+                    >
+                        <Download className="w-3 h-3 flex-shrink-0" aria-hidden="true" />
+                        <span>Download audio</span>
+                    </a>
+                </div>
 
                 <div
                     className="space-y-4 max-w-md mx-auto text-center pt-2 text-sm md:text-base leading-relaxed"
