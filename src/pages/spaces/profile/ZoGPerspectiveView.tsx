@@ -125,7 +125,10 @@ const FieldCard = ({
     </div>
 );
 
-const PERSPECTIVES: Record<PerspectiveId, PerspectiveConfig> = {
+// Day 58 (Sasha 2026-05-02): switched to Partial<Record> so retired
+// perspectives (e.g. "appreciated-for") can be removed from the dict
+// without TypeScript erroring. Runtime `if (!config)` handles missing.
+const PERSPECTIVES: Partial<Record<PerspectiveId, PerspectiveConfig>> = {
     // ─── Day 58 (Sasha 2026-05-02): "Start Here" — activation home ───
     // First subpage of My Top Talent. Same body as the post-payment
     // /activate/welcome page via the shared <ActivationSteps />
@@ -161,7 +164,7 @@ const PERSPECTIVES: Record<PerspectiveId, PerspectiveConfig> = {
     },
     "three-key-talents": {
         title: "Three Key Talents",
-        subtitle: "Your three load-bearing strengths in detail",
+        subtitle: "What you bring, every time",
         icon: Sparkles,
         render: (data) => (
             <ol className="space-y-4">
@@ -360,35 +363,8 @@ const PERSPECTIVES: Record<PerspectiveId, PerspectiveConfig> = {
             </div>
         ),
     },
-    "appreciated-for": {
-        title: "What You're Appreciated & Paid For",
-        subtitle: "Effect → Scene → Outcome",
-        icon: Heart,
-        render: (data) => (
-            <div className="space-y-4">
-                {data.appreciatedFor?.map((item, index) => (
-                    <div
-                        key={index}
-                        className="rounded-2xl px-5 py-4 space-y-2"
-                        style={cardSurface}
-                    >
-                        <div>
-                            <span style={eyebrowStyle}>Effect</span>
-                            <span style={bodyStyle} className="ml-2">{item.effect}</span>
-                        </div>
-                        <div>
-                            <span style={eyebrowStyle}>Scene</span>
-                            <span style={bodyStyle} className="ml-2">{item.scene}</span>
-                        </div>
-                        <div>
-                            <span style={eyebrowStyle}>Outcome</span>
-                            <span style={bodyStyle} className="ml-2 font-semibold">{item.outcome}</span>
-                        </div>
-                    </div>
-                ))}
-            </div>
-        ),
-    },
+    // "appreciated-for" — Day 58 (Sasha 2026-05-02): retired. Sasha:
+    // "let's just delete it." Side-nav entry already removed.
     "mastery": {
         title: "Path of Mastery",
         subtitle: "Your seven stages of evolution",
@@ -577,68 +553,94 @@ const PERSPECTIVES: Record<PerspectiveId, PerspectiveConfig> = {
         title: "Monetization",
         subtitle: "How you turn your genius into revenue",
         icon: DollarSign,
-        // Day 58 (Sasha 2026-05-02): two sections inside one perspective.
-        //   1. Monetization Avenues — the existing pill list
-        //   2. Career Sweet Spots — bullets from topTalentProfile
-        render: (data) => (
-            <div className="space-y-8">
-                {data.monetizationAvenues && data.monetizationAvenues.length > 0 && (
-                    <section className="space-y-3">
-                        <p style={eyebrowStyle}>Monetization Avenues</p>
-                        <div className="flex flex-wrap gap-2.5">
-                            {data.monetizationAvenues.map((avenue, index) => (
-                                <span
-                                    key={index}
-                                    className="px-4 py-2 rounded-full font-medium text-sm"
-                                    style={{
-                                        fontFamily: "'Cormorant Garamond', serif",
-                                        background: "rgba(244, 212, 114, 0.18)",
-                                        border: "0.5px solid rgba(212, 175, 55, 0.55)",
-                                        color: "var(--skin-text-primary, #0b2a5a)",
-                                        letterSpacing: "0.02em",
-                                    }}
-                                >
-                                    {avenue}
-                                </span>
-                            ))}
-                        </div>
-                    </section>
-                )}
+        // Day 58 (Sasha 2026-05-02): two sub-sections, both rendered as
+        // cream cards with gold ✦ bullets — the pill render was illegible
+        // for long avenues like "Intro · Signal Snapshot — 75-min session...".
+        // Eyebrow upgraded to landing-register treatment (larger + Cormorant
+        // small-caps with thin gold rule) for stronger visual hierarchy.
+        render: (data) => {
+            const SubSectionEyebrow = ({ label }: { label: string }) => (
+                <div className="flex items-center gap-3 mb-4">
+                    <span
+                        aria-hidden="true"
+                        className="text-sm"
+                        style={{ color: "var(--skin-accent-gold, #b8860b)" }}
+                    >
+                        ✦
+                    </span>
+                    <p
+                        className="font-semibold uppercase"
+                        style={{
+                            fontFamily: "'DM Sans', system-ui, sans-serif",
+                            fontSize: "12px",
+                            letterSpacing: "0.24em",
+                            color: "var(--skin-accent-gold, #b8860b)",
+                        }}
+                    >
+                        {label}
+                    </p>
+                    <span
+                        className="flex-1 h-px"
+                        style={{
+                            background:
+                                "linear-gradient(to right, rgba(184,134,11,0.45), transparent)",
+                        }}
+                        aria-hidden="true"
+                    />
+                </div>
+            );
 
-                {data.topTalentProfile?.career_sweet_spots && data.topTalentProfile.career_sweet_spots.length > 0 && (
-                    <section className="space-y-3">
-                        <p style={eyebrowStyle}>Career Sweet Spots</p>
-                        <ul className="space-y-3">
-                            {data.topTalentProfile.career_sweet_spots.map((spot, i) => (
-                                <li
-                                    key={i}
-                                    className="rounded-2xl px-6 py-5 flex gap-3"
-                                    style={cardSurface}
-                                >
-                                    <span
-                                        aria-hidden="true"
-                                        className="flex-shrink-0 mt-1 text-base"
-                                        style={{ color: "var(--skin-accent-gold, #b8860b)" }}
-                                    >
-                                        ✦
-                                    </span>
-                                    <p
-                                        className="text-base leading-relaxed flex-1"
-                                        style={{
-                                            fontFamily: "'Source Serif 4', Georgia, serif",
-                                            color: "var(--skin-text-primary, #0b2a5a)",
-                                            textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
-                                        }}
-                                    >
-                                        {spot}
-                                    </p>
-                                </li>
-                            ))}
-                        </ul>
-                    </section>
-                )}
-            </div>
-        ),
+            const ItemCard = ({ children }: { children: React.ReactNode }) => (
+                <li
+                    className="rounded-2xl px-6 py-5 flex gap-3"
+                    style={cardSurface}
+                >
+                    <span
+                        aria-hidden="true"
+                        className="flex-shrink-0 mt-1 text-base"
+                        style={{ color: "var(--skin-accent-gold, #b8860b)" }}
+                    >
+                        ✦
+                    </span>
+                    <p
+                        className="text-base leading-relaxed flex-1"
+                        style={{
+                            fontFamily: "'Source Serif 4', Georgia, serif",
+                            color: "var(--skin-text-primary, #0b2a5a)",
+                            textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
+                        }}
+                    >
+                        {children}
+                    </p>
+                </li>
+            );
+
+            return (
+                <div className="space-y-10">
+                    {data.monetizationAvenues && data.monetizationAvenues.length > 0 && (
+                        <section>
+                            <SubSectionEyebrow label="Monetization Avenues" />
+                            <ul className="space-y-3">
+                                {data.monetizationAvenues.map((avenue, i) => (
+                                    <ItemCard key={i}>{avenue}</ItemCard>
+                                ))}
+                            </ul>
+                        </section>
+                    )}
+
+                    {data.topTalentProfile?.career_sweet_spots && data.topTalentProfile.career_sweet_spots.length > 0 && (
+                        <section>
+                            <SubSectionEyebrow label="Career Sweet Spots" />
+                            <ul className="space-y-3">
+                                {data.topTalentProfile.career_sweet_spots.map((spot, i) => (
+                                    <ItemCard key={i}>{spot}</ItemCard>
+                                ))}
+                            </ul>
+                        </section>
+                    )}
+                </div>
+            );
+        },
     },
     "life-scene": {
         title: "Life Scene",
@@ -806,7 +808,11 @@ const ZoGPerspectiveView = () => {
 
                 {/* Content */}
                 <div>
-                    {config.render(appleseedData)}
+                    {/* appleseedData is non-null here for every perspective
+                        EXCEPT start-here (which is exempt — see gate above)
+                        and start-here's render ignores data anyway. The `!`
+                        is safe given the gate. */}
+                    {config.render(appleseedData!)}
                 </div>
             </div>
         </GameShellV2>

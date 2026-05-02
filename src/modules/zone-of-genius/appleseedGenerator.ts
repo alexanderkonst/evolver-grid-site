@@ -53,19 +53,19 @@ Output:
 - Archetype: Visionary Architect — Evolutionary Mirror
 - Life Scene: On a rooftop in Lisbon, speaks a single sentence that reorganizes a room of 12 founders. Eyes light up. One weeps in recognition. Someone whispers: "I remembered who I am."
 
-  Top Talent Profile (deep block — note the register):
+  Top Talent Profile (deep block — note the register: THIRD-PERSON, plain everyday language, no insider jargon):
     archetype_title: "Signal-to-Form Architecting"  // matches vibrationalKey.name, gerund form, no glyphs
-    core_pattern: "I distill chaotic signals into inevitable form. Where others see noise — meetings, decks, manifestos, spreadsheets — I find the one thread that carries the whole. Then I translate it into structures other people can use."
+    core_pattern: "They take chaotic signals and turn them into clear form. Where others see noise — meetings, decks, manifestos, spreadsheets — they find the one thread that carries the whole, then translate it into structures other people can use."
     top_three_talents:
-      "1. Pattern recognition under noise — I locate the load-bearing beam in a system other people experience as overwhelming."
-      "2. Signal-to-form translation — I turn perceptual insight into shippable artifacts: landing pages, offers, decks, frameworks, ceremonies."
-      "3. Architectural transmission — I encode complex truths into structures that survive transmission across people, mediums, and time."
-    how_genius_shows_up: "In conversation: someone describes their tangle for ten minutes; I summarize the actual shape in a sentence. In work: the page, the offer, the framework arrives feeling inevitable, as if it was always there. In leadership: I name what the room is actually doing under what it says it's doing — and the room reorganizes around the truth."
-    edge_and_traps: "My gift — making the invisible visible — generates its inverse: my own value remains invisible to me. The limiting belief: 'I need to refine the architecture more before I'm ready to charge for it.' The recursive trap: I keep building cathedrals (ontology, framework, language, interface) when the actual next move is one paid conversation, one landing page, one clear offer to one high-fit person. The shadow is signal inflation — making the work so vast and sacred that ordinary buyers can't find the simple doorway."
-    top_shadow_one_sentence: "Refining the cathedral while buyers wait for a doorway."  // synthesized — same recursive shadow as the paragraph, sharp, gerund noun phrase
-    ideal_environments: ["Small high-trust container with one founder ready to be seen", "Solo deep-work mornings with one explicit deliverable", "A round table of 5-12 mature operators, one shared question, no phones"]
-    career_sweet_spots: ["Founder advisory at $5K-50K per engagement, 1-3 sessions deep", "Systems architect for transformation-led ventures (cohorts, retreats, intensives)", "Editorial author of one defining book + one defining frame, then licensed to operators"]
-    flywheel_action: "Run one paid Signal Architecture Session every available workday: extract one founder's core pattern, name their unique business signal, translate it into one clear offer, publish the anonymized insight as a short post or visual."
+      "1. Reading patterns through noise — they spot the load-bearing thread in a system that overwhelms most people."
+      "2. Turning insight into shape — they convert what they see into things others can use: a one-line message, a clean offer, a simple map."
+      "3. Building things that survive the handoff — what they make holds its meaning across people, mediums, and time."
+    how_genius_shows_up: "In conversation: someone describes their tangle for ten minutes; they answer with the actual shape in one sentence. In work: the page, the offer, the framework arrives feeling inevitable, as if it was always there. In leadership: they name what the room is actually doing under what it says it's doing — and the room reorganizes around the truth."
+    edge_and_traps: "Their gift — making the invisible visible — comes paired with its inverse: their own value tends to stay invisible to them. The limiting belief whispers, 'one more layer of refinement and it'll finally be ready.' The recursive trap: they keep refining the framework when the next move is actually one paid conversation, one simple page, one clear offer to one well-fit person. The shadow is signal inflation — making the work so vast and sacred that ordinary buyers can't find the simple doorway."
+    top_shadow_one_sentence: "Refining the framework while the doorway stays unbuilt."  // synthesized — same recursive shadow as the paragraph, sharp, gerund noun phrase, third-person/neutral
+    ideal_environments: ["A small, high-trust setting with one founder ready to be seen", "Quiet morning solo time with one clear thing to ship", "A round table of 5-12 mature operators, one shared question, no phones"]
+    career_sweet_spots: ["Working one-to-one with founders on the messy parts of their venture, 1-3 sessions deep", "Designing the inner architecture for transformation-led containers (cohorts, retreats, intensives)", "Writing one defining book and one defining frame, then letting other operators run with it"]
+    flywheel_action: "Spend the first hour each day with one founder, name what they actually do in one sentence, and publish what surprised them. Repeat tomorrow."
 
 EXAMPLE 2: KARIME
 Input: Zone of genius is restoring Love and coherence by sensing the unseen, reconnecting the disconnected, harmonizing until healing becomes natural. Core triad: Sensing, Bonding, Harmonizing.
@@ -161,6 +161,14 @@ NO INSIDER JARGON, ANYWHERE (Day 58, 2026-05-02):
 - NEVER carry over the user's own private vocabulary into the rendered profile without translation. If they used a phrase like 'compression' or 'distillation' inside their raw signal, render it in plain everyday English in the output (e.g., 'turning complex ideas into simple ones').
 - Use ordinary verbs (talk to, write, send, make, run) and ordinary nouns (a person, a page, a message, a post, a session). The reader should understand every word without having to ask "what does that mean?".
 - If a phrase would require an insider footnote to land, rewrite the phrase.
+
+THIRD-PERSON REGISTER for the deep profile (Day 58, 2026-05-02 evening):
+- ALL topTalentProfile.* fields (core_pattern, top_three_talents, how_genius_shows_up, edge_and_traps, top_shadow_one_sentence, ideal_environments, career_sweet_spots, flywheel_action) MUST be written in OBJECTIVE THIRD-PERSON voice.
+- NEVER use "I", "me", "my", "mine" inside any deep-profile field.
+- Refer to the subject as "they / their / them" or with neutral noun phrases ("this person," "the gift," "the work"). The text should read like an outside observer naming what is structurally true about this person, not the person speaking about themselves.
+- Example WRONG (first person): "My gift — making the invisible visible — generates its inverse: my own value remains invisible to me."
+- Example RIGHT (third person): "Their gift — making the invisible visible — generates its inverse: their own value stays invisible to them." OR "This gift, naming what others can't see, comes paired with a shadow: the namer's own signal stays unnamed."
+- The bullseyeSentence (rendered as "I [verb]…" on the hero) and the elevator pitch are the ONLY first-person fields. Everything inside topTalentProfile is third person.
 `;
 
 // ---------------------------------------------------------------------------
