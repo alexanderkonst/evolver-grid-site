@@ -154,9 +154,8 @@ const SPACE_SECTIONS: SpaceSections = {
                     { id: "tt-how-it-shows-up", label: "How It Shows Up", path: "/game/me/zone-of-genius/how-it-shows-up" },
                     { id: "tt-three-key-talents", label: "Three Key Talents", path: "/game/me/zone-of-genius/three-key-talents" },
                     { id: "tt-top-shadow", label: "Top Shadow", path: "/game/me/zone-of-genius/top-shadow" },
-                    { id: "tt-one-action", label: "One Action", path: "/game/me/zone-of-genius/one-action" },
-                    { id: "tt-appreciated-for", label: "Appreciated For", path: "/game/me/zone-of-genius/appreciated-for" },
                     { id: "tt-mastery", label: "Path of Mastery", path: "/game/me/zone-of-genius/mastery" },
+                    { id: "tt-one-action", label: "One Action", path: "/game/me/zone-of-genius/one-action" },
                     { id: "tt-roles", label: "Ideal Environments", path: "/game/me/zone-of-genius/roles" },
                     { id: "tt-partner", label: "Complementary Partner", path: "/game/me/zone-of-genius/partner" },
                     { id: "tt-monetization", label: "Monetization", path: "/game/me/zone-of-genius/monetization" },
@@ -1049,8 +1048,21 @@ const SectionsPanel = ({
                             {hasSubSections && isExpanded && !isLocked && (
                                 <div className="ml-3 mt-1 mb-2">
                                     {section.subSections!.map((sub, subIdx) => {
-                                        const subActive = isActive(sub.path);
+                                        // Day 58 (Sasha 2026-05-02) bug fix:
+                                        // sub-items use EXACT match only.
+                                        // Was using `isActive` (prefix match)
+                                        // which made the Overview light up
+                                        // on every sub-route because every
+                                        // sub-path starts with the parent
+                                        // /game/me/zone-of-genius prefix.
+                                        const subActive = location.pathname === sub.path;
                                         const subNumber = subIdx + 1;
+                                        // Day 58 (Sasha 2026-05-02): "Start Here"
+                                        // gets a subtle persistent glow even
+                                        // when not active — it's the activation
+                                        // home, so the side-nav signals "this is
+                                        // where you return to."
+                                        const isHomeNode = sub.id === "tt-start-here";
                                         return (
                                             <div
                                                 key={sub.id}
@@ -1059,7 +1071,9 @@ const SectionsPanel = ({
                                                     "focus:outline-none focus-visible:ring-2 focus-visible:ring-[#d4af37]/40",
                                                     subActive
                                                         ? "text-white ring-1 ring-[#d4af37]/60 shadow-[0_0_22px_-6px_rgba(244,212,114,0.55),0_0_48px_-14px_rgba(212,175,55,0.35)]"
-                                                        : "bg-white/[0.05] text-white/95 hover:bg-white/[0.10] hover:text-white hover:ring-1 hover:ring-[#d4af37]/30 hover:shadow-[0_0_16px_-4px_rgba(244,212,114,0.28)] hover:translate-y-[-1px] active:translate-y-0"
+                                                        : isHomeNode
+                                                            ? "bg-[rgba(212,175,55,0.06)] text-white/95 ring-1 ring-[#d4af37]/25 shadow-[0_0_14px_-4px_rgba(244,212,114,0.28)] hover:bg-[rgba(212,175,55,0.10)] hover:ring-[#d4af37]/45 hover:shadow-[0_0_20px_-4px_rgba(244,212,114,0.40)] hover:translate-y-[-1px] active:translate-y-0"
+                                                            : "bg-white/[0.05] text-white/95 hover:bg-white/[0.10] hover:text-white hover:ring-1 hover:ring-[#d4af37]/30 hover:shadow-[0_0_16px_-4px_rgba(244,212,114,0.28)] hover:translate-y-[-1px] active:translate-y-0"
                                                 )}
                                                 style={
                                                     subActive

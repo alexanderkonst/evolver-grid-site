@@ -52,6 +52,7 @@ QUALITY BAR:
 - If a section would come out generic, replace it with something true and unusual instead
 - Don't soften, don't flatter, don't perform — articulate with precision
 - NO INSIDER JARGON, ANYWHERE. The output is for me to read myself — but it must use plain everyday language any reader could understand. NEVER invent capitalized product names ("Signal Snapshot", "Compression Capsule") and NEVER carry over my private vocabulary ("compression", "distillation") into the output without translation. Every word should land without requiring a footnote. If a phrase needs explaining, rewrite it.
+- THIRD-PERSON VOICE: write every field in this JSON in OBJECTIVE THIRD-PERSON ("they / their / this person / the gift / the work"). NEVER use "I", "me", "my" in any field of this JSON. The output reads like an outside observer naming what's structurally true about me, not me speaking about myself. Example WRONG: "My gift generates its inverse — my own value stays invisible to me." Example RIGHT: "Their gift, making the invisible visible, comes paired with a shadow: their own signal stays unnamed."
 
 DO NOT:
 - Output corporate-strengths language ("strategic thinker", "passionate leader", "results-driven")
