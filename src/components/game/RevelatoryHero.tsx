@@ -1,17 +1,20 @@
 import { ReactNode, useRef } from "react";
 import { Sparkles, Sword } from "lucide-react";
 import CardActions from "@/components/sharing/CardActions";
+import { Ornament } from "@/lib/landingDesign";
 
 interface RevelatoryHeroProps {
     type: "appleseed" | "excalibur";
     title: string;
     actionStatement?: string;
     /**
-     * Day 58 (Sasha 2026-05-02): Top Shadow — the structurally-recursive
-     * inverted form of the gift, sourced from `topTalentProfile.edge_and_traps`.
-     * Renders below the bullseye, separated by a small gold ornament.
-     * Replaces the old Three-Lenses inner-card (actions / prime driver /
-     * archetype) — Sasha: "every phrase was already a packed thought form".
+     * Day 58 (Sasha 2026-05-02): Top Shadow — synthesized one-sentence
+     * form (`topTalentProfile.top_shadow_one_sentence`). Rendered below
+     * the bullseye, behind a `<Ornament />` rule and a `MY TOP SHADOW
+     * IS` eyebrow that mirrors the `MY TOP TALENT IS` styling. The
+     * full paragraph (`edge_and_traps`) lives on the deep-profile
+     * "Top Shadow" subpage. The reveal card stays compact — one
+     * sentence, sharp.
      */
     topShadow?: string;
     tagline?: string;
@@ -171,8 +174,11 @@ const RevelatoryHero = ({
                 ))}
             </div>
 
-            {/* Content */}
-            <div className="relative px-5 py-6 sm:px-7 sm:py-8 text-center">
+            {/* Content — Day 58 (Sasha 2026-05-02): vertical padding
+                tightened (was py-6 sm:py-8) so the rebuilt card with
+                Top Shadow eyebrow + sentence still fits a single
+                viewport on common screen sizes. */}
+            <div className="relative px-5 py-5 sm:px-7 sm:py-6 text-center">
                 {/* Dodecahedron — Day 58 (Sasha 2026-05-02): now wears
                     its own gold halo + slow rotation. The icon reads as
                     a living artifact instead of a static badge. */}
@@ -236,39 +242,29 @@ const RevelatoryHero = ({
                     </p>
                 )}
 
-                {/* Top Shadow — Day 58 (Sasha 2026-05-02). The new
-                    emotional payload: the structurally-recursive shadow
-                    of the gift. Separated from the bullseye by a small
-                    gold ornament glyph between thin rules — visual
-                    breath that signals register shift from heroic
-                    recognition to "the other side of the coin." */}
+                {/* Top Shadow — Day 58 (Sasha 2026-05-02). Synthesized
+                    one-sentence form (the FIRST REVEAL surface stays
+                    compact). Full paragraph lives on the deep-profile
+                    "Top Shadow" subpage. Visual structure mirrors the
+                    archetype block above: ornament rule → small gold
+                    eyebrow ("MY TOP SHADOW IS") → the punchy sentence
+                    in italic Cormorant. The shadow IS the gift inverted
+                    — naming it grammatically as a noun phrase (per
+                    prompt instruction) so it reads as identity. */}
                 {topShadow && (
                     <>
-                        {/* Ornament separator */}
-                        <div className="flex items-center justify-center gap-3 mt-7 mb-5 max-w-md mx-auto">
-                            <span
-                                className="flex-1 h-[0.5px]"
-                                style={{ backgroundColor: palette.divider }}
-                                aria-hidden="true"
-                            />
-                            <span
-                                className="text-sm"
-                                style={{ color: palette.divider }}
-                                aria-hidden="true"
-                            >
-                                ✦
-                            </span>
-                            <span
-                                className="flex-1 h-[0.5px]"
-                                style={{ backgroundColor: palette.divider }}
-                                aria-hidden="true"
-                            />
-                        </div>
+                        <Ornament className="mt-6 mb-4" />
 
                         <p
-                            className={`font-serif text-[0.95rem] sm:text-base italic leading-relaxed ${palette.shadowText} max-w-xl mx-auto px-2`}
+                            className={`text-[10px] sm:text-xs uppercase tracking-[0.28em] ${palette.textMuted} mb-2`}
+                        >
+                            My top shadow is
+                        </p>
+
+                        <p
+                            className={`font-display text-lg sm:text-xl md:text-[1.4rem] italic ${palette.textPrimary} max-w-2xl mx-auto leading-snug`}
                             style={{
-                                fontFamily: "'Source Serif 4', Georgia, serif",
+                                textShadow: `0 0 40px ${palette.glowColor}, 0 0 12px rgba(255,255,255,0.10)`,
                             }}
                         >
                             {topShadow}

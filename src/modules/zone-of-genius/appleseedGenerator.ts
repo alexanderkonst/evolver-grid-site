@@ -231,6 +231,7 @@ Return a JSON object with this exact structure:
     ],
     "how_genius_shows_up": "string — paragraph describing how these talents manifest in my daily work and interactions. Cite real patterns from rawSignal — concrete, not abstract.",
     "edge_and_traps": "string — paragraph naming the structural shadow my gift generates — the OTHER SIDE OF THE COIN, not a list of weaknesses. A unique gift always produces a structurally identical limiting belief, but inverted. Name (a) the inverted form of my gift (e.g., 'I help others articulate their uniqueness' → 'my own uniqueness remains unarticulated'), (b) the limiting belief this inversion whispers in my own life ('I need a better X before I can act'), (c) one short observation about how this looks in motion (the recursive trap when I forget my gift is for outward use, not inward use). Specific to me. Same length as how_genius_shows_up. Do not soften or moralize.",
+    "top_shadow_one_sentence": "string — synthesize `edge_and_traps` above into ONE punchy sentence (max ~16 words). CRITICAL synthesis principle: preserve signal-to-noise ratio — minimal signal loss, minimal noise introduction. The reader should feel the same recursive-shadow recognition in this single sentence as in the full paragraph. Sharper than the paragraph, NOT more abstract. Phrased as a NOUN PHRASE / GERUND so it reads naturally inside 'My top shadow is ___' (parallel to the 'My top talent is ___' convention). e.g., 'Refining the cathedral while buyers wait for a doorway' or 'Naming everyone else's gift while my own stays unnamed' or 'Teaching the language I won't speak about myself'. Do not soften, do not generalize.",
     "ideal_environments": [
       "string — specific environment where this archetype is most at home",
       "string — second one, same standard of specificity",
@@ -428,6 +429,16 @@ export interface TopTalentProfile {
   top_three_talents: string[];
   how_genius_shows_up: string;
   edge_and_traps: string;
+  /**
+   * Day 58 (Sasha 2026-05-02): synthesized one-sentence form of
+   * `edge_and_traps`, phrased as a noun phrase / gerund so it reads
+   * naturally inside "My top shadow is ___" — parallel to the gerund
+   * archetype convention. Used on the FIRST REVEAL card (where space
+   * is at a premium); the full paragraph still renders on the deep-
+   * profile "Top Shadow" subpage. Optional for back-compat with
+   * pre-Day-58 snapshots.
+   */
+  top_shadow_one_sentence?: string;
   ideal_environments: string[];
   career_sweet_spots: string[];
   flywheel_action: string;
@@ -545,6 +556,11 @@ const tryExtractTopTalentProfile = (rawSignal: string): TopTalentProfile | undef
     top_three_talents: parsed.top_three_talents.map((t: unknown) => String(t)).filter(Boolean),
     how_genius_shows_up: String(parsed.how_genius_shows_up || ""),
     edge_and_traps: String(parsed.edge_and_traps || ""),
+    // Day 58 (Sasha 2026-05-02): synthesized form is optional in the
+    // legacy schema — older snapshots won't have it; new snapshots will.
+    top_shadow_one_sentence: parsed.top_shadow_one_sentence
+        ? String(parsed.top_shadow_one_sentence)
+        : undefined,
     ideal_environments: parsed.ideal_environments.map((t: unknown) => String(t)).filter(Boolean),
     career_sweet_spots: parsed.career_sweet_spots.map((t: unknown) => String(t)).filter(Boolean),
     flywheel_action: String(parsed.flywheel_action || ""),
