@@ -864,7 +864,7 @@ ${snapshotText}`;
             </div>
 
             {/* Hidden PDF content — uses inline styles for reliable html2canvas rendering */}
-            <div ref={snapshotRef} style={{ display: 'none' }}>
+            <div ref={snapshotRef} data-pdf-root="true" style={{ display: 'none' }}>
               <div style={{
                 width: '794px',
                 backgroundColor: '#ffffff',
