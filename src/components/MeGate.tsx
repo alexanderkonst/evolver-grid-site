@@ -9,6 +9,7 @@ import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useToast } from "@/hooks/use-toast";
 import { getOrCreateGameProfileId } from "@/lib/gameProfile";
+import { GOLD_TEXT_STYLE, Ornament } from "@/lib/landingDesign";
 
 /**
  * MeGate — entry guard for /game/me.
@@ -176,125 +177,252 @@ const SaveProfileCard = ({ onSuccess }: { onSuccess: () => void }) => {
         }
     };
 
+    // Day 56 (Sasha 2026-05-01): MeGate redesigned to match the main
+    // landing page register — Cormorant Garamond serif, dark navy on
+    // cream wash, ornament divider, gold-accented CTAs. Was previously
+    // a violet/dark-glass card that read as a different product. Now
+    // uses the same `@/lib/landingDesign` tokens as
+    // MethodologyLandingPage and the AppleseedDisplay reveal.
+    const editorialInputClass =
+        "bg-white/85 border border-[hsla(228,30%,18%,0.18)] text-[#0a1628] placeholder:text-[hsla(228,30%,18%,0.40)] focus-visible:ring-2 focus-visible:ring-[hsla(40,70%,55%,0.50)] focus-visible:border-[hsla(40,70%,55%,0.55)]";
+    const editorialLabelStyle = {
+        fontFamily: "'Cormorant Garamond', serif",
+        color: "var(--skin-text-muted, rgba(26,30,58,0.7))",
+        textShadow:
+            "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
+    } as const;
+    const ctaButtonStyle = {
+        fontFamily: "'Cormorant Garamond', serif",
+        color: "var(--skin-cta-text, rgba(245,245,250,0.98))",
+        backgroundImage:
+            "var(--skin-cta-bg, linear-gradient(135deg, rgba(10,22,40,0.92) 0%, rgba(26,30,58,0.85) 50%, rgba(10,22,40,0.92) 100%))",
+        boxShadow:
+            "var(--skin-cta-shadow, 0 0 18px -4px rgba(240,194,127,0.45), 0 10px 24px -10px rgba(10,22,40,0.5))",
+        textShadow:
+            "var(--skin-cta-text-shadow, 0 0 16px rgba(240,194,127,0.25), 0 1px 2px rgba(0,0,0,0.35))",
+        letterSpacing: "0.08em",
+        textTransform: "uppercase" as const,
+    } as const;
+
     return (
-        <div className="p-6 lg:p-8 max-w-xl mx-auto">
-            <div className="rounded-2xl liquid-glass ring-1 ring-white/10 p-6 sm:p-8">
-                <div className="flex flex-col items-center text-center mb-6">
-                    <div className="w-14 h-14 rounded-full bg-[#8460ea]/15 flex items-center justify-center ring-1 ring-white/10 mb-4">
-                        <Sparkles className="w-7 h-7 text-[#8460ea]" />
+        <div className="max-w-[640px] mx-auto px-5 py-8 sm:py-10 md:py-12">
+            {/* ═══════ HEADER — editorial register ═══════ */}
+            <header className="text-center">
+                <div className="flex justify-center mb-5">
+                    <div
+                        className="w-12 h-12 rounded-full flex items-center justify-center"
+                        style={{
+                            background:
+                                "linear-gradient(135deg, hsla(40, 70%, 65%, 0.18) 0%, hsla(40, 60%, 50%, 0.10) 100%)",
+                            border: "1px solid hsla(40, 70%, 65%, 0.35)",
+                            boxShadow:
+                                "0 0 20px -4px hsla(40, 70%, 55%, 0.30), inset 0 1px 0 hsla(0, 0%, 100%, 0.20)",
+                        }}
+                    >
+                        <Sparkles
+                            className="w-5 h-5"
+                            style={{
+                                color: "hsl(40 70% 50%)",
+                                filter: "drop-shadow(0 0 6px hsla(40, 70%, 55%, 0.5))",
+                            }}
+                        />
                     </div>
-                    <h1 className="text-xl font-semibold text-white mb-2">
-                        Save your profile so it's here when you come back
-                    </h1>
-                    <p className="text-sm text-white/60 leading-relaxed">
-                        Right now your result lives only on this device. Give us
-                        an email and a password — that's how we know it's you next
-                        time. Without them, the next visit starts from zero.
-                    </p>
                 </div>
 
-                <Tabs defaultValue="save" className="w-full">
-                    <TabsList className="grid w-full grid-cols-2 bg-white/5">
-                        <TabsTrigger value="save" className="text-white/70 data-[state=active]:bg-white/10 data-[state=active]:text-white">
-                            First time
-                        </TabsTrigger>
-                        <TabsTrigger value="return" className="text-white/70 data-[state=active]:bg-white/10 data-[state=active]:text-white">
-                            Coming back
-                        </TabsTrigger>
-                    </TabsList>
+                <h1
+                    className="text-3xl sm:text-4xl md:text-[2.75rem] font-semibold leading-[1.15] tracking-[-0.018em] mb-4 sm:mb-5"
+                    style={{
+                        fontFamily: "'Cormorant Garamond', serif",
+                        color: "var(--skin-text-primary, #0a1628)",
+                        textShadow:
+                            "var(--skin-text-halo-strong, 0 0 22px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.8), 0 2px 12px rgba(26,30,58,0.15))",
+                    }}
+                >
+                    Save your{" "}
+                    <span
+                        className="bg-clip-text text-transparent"
+                        style={GOLD_TEXT_STYLE}
+                    >
+                        profile
+                    </span>
+                </h1>
 
-                    <TabsContent value="save" className="mt-5">
-                        <form onSubmit={handleSave} className="space-y-3">
-                            <div className="space-y-1.5">
-                                <Label htmlFor="me-firstname" className="text-white/70 text-xs">Your name</Label>
-                                <Input
-                                    id="me-firstname"
-                                    type="text"
-                                    placeholder="What should we call you?"
-                                    value={firstName}
-                                    onChange={(e) => setFirstName(e.target.value)}
-                                    className="bg-white/10 border-white/15 text-white placeholder:text-white/30"
-                                />
-                            </div>
-                            <div className="space-y-1.5">
-                                <Label htmlFor="me-email" className="text-white/70 text-xs">Email</Label>
-                                <Input
-                                    id="me-email"
-                                    type="email"
-                                    placeholder="you@example.com"
-                                    value={email}
-                                    onChange={(e) => setEmail(e.target.value)}
-                                    required
-                                    className="bg-white/10 border-white/15 text-white placeholder:text-white/30"
-                                />
-                            </div>
-                            <div className="space-y-1.5">
-                                <Label htmlFor="me-password" className="text-white/70 text-xs">A password (so only you can open it)</Label>
-                                <Input
-                                    id="me-password"
-                                    type="password"
-                                    placeholder="At least 6 characters"
-                                    value={password}
-                                    onChange={(e) => setPassword(e.target.value)}
-                                    required
-                                    minLength={6}
-                                    className="bg-white/10 border-white/15 text-white placeholder:text-white/30"
-                                />
-                            </div>
-                            <Button
-                                type="submit"
-                                disabled={loading}
-                                className="w-full mt-2 text-white"
-                                style={{
-                                    backgroundImage:
-                                        "linear-gradient(135deg, #a06d08 0%, #7a5108 45%, #6b4208 100%)",
-                                }}
-                            >
-                                {loading ? "Saving…" : "Save my profile"}
-                            </Button>
-                        </form>
-                    </TabsContent>
+                <p
+                    className="text-base sm:text-lg md:text-xl leading-[1.4] tracking-[-0.005em] italic max-w-[480px] mx-auto"
+                    style={{
+                        fontFamily: "'Cormorant Garamond', serif",
+                        fontWeight: 400,
+                        color: "var(--skin-text-muted, rgba(26,30,58,0.7))",
+                        textShadow:
+                            "var(--skin-text-halo-subtle, 0 0 18px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.75))",
+                    }}
+                >
+                    So it's here when you come back.
+                </p>
 
-                    <TabsContent value="return" className="mt-5">
-                        <form onSubmit={handleReturn} className="space-y-3">
-                            <div className="space-y-1.5">
-                                <Label htmlFor="me-email-r" className="text-white/70 text-xs">Email</Label>
-                                <Input
-                                    id="me-email-r"
-                                    type="email"
-                                    placeholder="you@example.com"
-                                    value={email}
-                                    onChange={(e) => setEmail(e.target.value)}
-                                    required
-                                    className="bg-white/10 border-white/15 text-white placeholder:text-white/30"
-                                />
-                            </div>
-                            <div className="space-y-1.5">
-                                <Label htmlFor="me-password-r" className="text-white/70 text-xs">Password</Label>
-                                <Input
-                                    id="me-password-r"
-                                    type="password"
-                                    value={password}
-                                    onChange={(e) => setPassword(e.target.value)}
-                                    required
-                                    className="bg-white/10 border-white/15 text-white placeholder:text-white/30"
-                                />
-                            </div>
-                            <Button
-                                type="submit"
-                                disabled={loading}
-                                className="w-full mt-2 text-white"
-                                style={{
-                                    backgroundImage:
-                                        "linear-gradient(135deg, #a06d08 0%, #7a5108 45%, #6b4208 100%)",
-                                }}
+                <Ornament className="my-6 sm:my-7" />
+
+                <p
+                    className="text-sm sm:text-[15px] leading-relaxed max-w-[460px] mx-auto mb-6 sm:mb-8"
+                    style={{
+                        fontFamily: "'Source Serif 4', Georgia, serif",
+                        color: "var(--skin-text-muted, rgba(26,30,58,0.72))",
+                        textShadow:
+                            "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
+                    }}
+                >
+                    Right now your result lives only on this device. Give us
+                    an email and a password — that's how we know it's you next
+                    time. Without them, the next visit starts from zero.
+                </p>
+            </header>
+
+            {/* ═══════ FORM — editorial Tabs + inputs ═══════ */}
+            <Tabs defaultValue="save" className="w-full">
+                <TabsList
+                    className="grid w-full grid-cols-2 p-1 rounded-full"
+                    style={{
+                        background: "hsla(228, 30%, 18%, 0.06)",
+                        border: "1px solid hsla(228, 30%, 18%, 0.10)",
+                    }}
+                >
+                    <TabsTrigger
+                        value="save"
+                        className="rounded-full text-sm data-[state=active]:shadow-sm transition-all"
+                        style={{
+                            fontFamily: "'Cormorant Garamond', serif",
+                            color: "var(--skin-text-muted, rgba(26,30,58,0.6))",
+                        }}
+                    >
+                        First time
+                    </TabsTrigger>
+                    <TabsTrigger
+                        value="return"
+                        className="rounded-full text-sm data-[state=active]:shadow-sm transition-all"
+                        style={{
+                            fontFamily: "'Cormorant Garamond', serif",
+                            color: "var(--skin-text-muted, rgba(26,30,58,0.6))",
+                        }}
+                    >
+                        Coming back
+                    </TabsTrigger>
+                </TabsList>
+
+                <TabsContent value="save" className="mt-6">
+                    <form onSubmit={handleSave} className="space-y-4">
+                        <div className="space-y-1.5">
+                            <Label
+                                htmlFor="me-firstname"
+                                className="text-sm italic"
+                                style={editorialLabelStyle}
                             >
-                                {loading ? "Opening…" : "Open my profile"}
-                            </Button>
-                        </form>
-                    </TabsContent>
-                </Tabs>
-            </div>
+                                Your name
+                            </Label>
+                            <Input
+                                id="me-firstname"
+                                type="text"
+                                placeholder="What should we call you?"
+                                value={firstName}
+                                onChange={(e) => setFirstName(e.target.value)}
+                                className={editorialInputClass}
+                            />
+                        </div>
+                        <div className="space-y-1.5">
+                            <Label
+                                htmlFor="me-email"
+                                className="text-sm italic"
+                                style={editorialLabelStyle}
+                            >
+                                Email
+                            </Label>
+                            <Input
+                                id="me-email"
+                                type="email"
+                                placeholder="you@example.com"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                required
+                                className={editorialInputClass}
+                            />
+                        </div>
+                        <div className="space-y-1.5">
+                            <Label
+                                htmlFor="me-password"
+                                className="text-sm italic"
+                                style={editorialLabelStyle}
+                            >
+                                A password (so only you can open it)
+                            </Label>
+                            <Input
+                                id="me-password"
+                                type="password"
+                                placeholder="At least 6 characters"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                required
+                                minLength={6}
+                                className={editorialInputClass}
+                            />
+                        </div>
+                        <Button
+                            type="submit"
+                            disabled={loading}
+                            className="w-full mt-3 rounded-full py-6 text-sm font-semibold transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+                            style={ctaButtonStyle}
+                        >
+                            {loading ? "Saving…" : "Save my profile"}
+                        </Button>
+                    </form>
+                </TabsContent>
+
+                <TabsContent value="return" className="mt-6">
+                    <form onSubmit={handleReturn} className="space-y-4">
+                        <div className="space-y-1.5">
+                            <Label
+                                htmlFor="me-email-r"
+                                className="text-sm italic"
+                                style={editorialLabelStyle}
+                            >
+                                Email
+                            </Label>
+                            <Input
+                                id="me-email-r"
+                                type="email"
+                                placeholder="you@example.com"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                required
+                                className={editorialInputClass}
+                            />
+                        </div>
+                        <div className="space-y-1.5">
+                            <Label
+                                htmlFor="me-password-r"
+                                className="text-sm italic"
+                                style={editorialLabelStyle}
+                            >
+                                Password
+                            </Label>
+                            <Input
+                                id="me-password-r"
+                                type="password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                required
+                                className={editorialInputClass}
+                            />
+                        </div>
+                        <Button
+                            type="submit"
+                            disabled={loading}
+                            className="w-full mt-3 rounded-full py-6 text-sm font-semibold transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+                            style={ctaButtonStyle}
+                        >
+                            {loading ? "Opening…" : "Open my profile"}
+                        </Button>
+                    </form>
+                </TabsContent>
+            </Tabs>
         </div>
     );
 };
