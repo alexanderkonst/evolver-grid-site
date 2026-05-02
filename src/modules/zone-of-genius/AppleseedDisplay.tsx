@@ -687,15 +687,16 @@ const AppleseedDisplay = ({
                         </a>
 
                         {/* Day 58 (Sasha 2026-05-02 late evening): teaser
-                            line right under the Activate CTA — a single
-                            small-caps sentence that names the
-                            transformational result + the time investment
-                            it takes (synthesized from Sasha's actual
-                            deep-profile word count: ~915 words ≈ 5-min
-                            comfortable read, plus the 7-min meditation).
-                            Visually harmonious with the CTA's small-caps
-                            register; sits between the button and the
-                            italic "Most people start here" line. */}
+                            line right under the Activate CTA. Reframed
+                            "5 min read" → "7 min of recognition" per
+                            Sasha — these are bite-sized thoughts people
+                            re-read, and "reading" carries school-day
+                            resistance baggage. "Recognition" matches
+                            the platform's existing register ("That's
+                            your pattern", "the gift of self-knowledge")
+                            and names what is actually happening: meeting
+                            yourself in the words. Visually harmonious
+                            with the CTA's small-caps register. */}
                         <p
                             className="text-[10px] sm:text-[11px] font-semibold uppercase leading-relaxed pt-1"
                             style={{
@@ -704,7 +705,7 @@ const AppleseedDisplay = ({
                                 color: "rgba(122, 81, 8, 0.85)",
                             }}
                         >
-                            Deeper layers unfold · ~5 min read + 7 min guided meditation
+                            Deeper layers unfold · 7 min of recognition + 7 min of guided meditation
                         </p>
 
                         <p
