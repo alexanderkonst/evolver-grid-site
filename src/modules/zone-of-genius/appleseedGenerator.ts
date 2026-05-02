@@ -112,6 +112,7 @@ ROUND 1 — IDENTIFY THE GENERIC. For every field, ask:
 - Does the Elevator Pitch contain filler ("passionate about," "deeply committed to," "helps people," "empowers," "transforms")? Strip every filler word.
 - Does the Prime Driver describe a real action that produces a real effect, or is it a vibe ("Inspire others," "Build community")? Make it surgical.
 - Do the Monetization Avenues contain LinkedIn-clichés ("1:1 coaching", "group program", "online course", "mastermind", "membership community", "VIP day", "consulting package", "speaking engagements", "ebook")? If yes, REJECT and rewrite each as a specific deliverable that names what is BEING PRODUCED — not the format wrapper.
+- Day 58 (2026-05-02) JARGON CHECK: does ANY field — especially flywheel_action, top_three_talents, how_genius_shows_up — contain an invented capitalized product name ("Signal Snapshot," "Compression Capsule," "Architecture Session") or insider vocabulary the reader hasn't been introduced to ("compression," "distillation" used as nouns without translation)? REJECT and rewrite in plain everyday English. The reader has zero context for jargon — every undefined term breaks trust.
 Mark every weak field. Do not skip this round.
 
 ROUND 2 — TEST FOR SIGNAL. For every salvaged field, ask:
@@ -153,6 +154,13 @@ LANGUAGE GUIDELINES:
 - archetype_title should be poetic but archetype_meaning should be in everyday language
 - Use words a 13-year-old would understand in the "meaning" fields
 - Connect every concept to a real-world action or result
+
+NO INSIDER JARGON, ANYWHERE (Day 58, 2026-05-02):
+- This profile will be read by the user — who has NO context for any term they didn't bring themselves.
+- NEVER invent a capitalized product/service/offering name ('Signal Snapshot', 'Compression Capsule', 'Architecture Session', 'Genius Distillation'). Those imply a packaged thing the reader has no idea about, and immediately break trust ("am I supposed to know what this is?").
+- NEVER carry over the user's own private vocabulary into the rendered profile without translation. If they used a phrase like 'compression' or 'distillation' inside their raw signal, render it in plain everyday English in the output (e.g., 'turning complex ideas into simple ones').
+- Use ordinary verbs (talk to, write, send, make, run) and ordinary nouns (a person, a page, a message, a post, a session). The reader should understand every word without having to ask "what does that mean?".
+- If a phrase would require an insider footnote to land, rewrite the phrase.
 `;
 
 // ---------------------------------------------------------------------------
@@ -243,7 +251,7 @@ Return a JSON object with this exact structure:
       "string — second one",
       "string — third one"
     ],
-    "flywheel_action": "string — the ONE action that, repeated as a flywheel, optimally advances me on my path of mastery. Specific enough to start today. Not advice — an instruction."
+    "flywheel_action": "string — the ONE action that, repeated as a flywheel, optimally advances me on my path of mastery. Specific enough to start today. Not advice — an instruction. CRITICAL: write in plain everyday language only. Use ordinary verbs (talk to, write, send, make, run) and ordinary objects (a person, a page, a message, a post). NEVER invent capitalized product or service names ('Signal Snapshot', 'Compression Capsule', 'Architecture Session') — those imply a packaged offering the reader has no context for and immediately break trust. NEVER use insider jargon from the user's own world ('compression', 'distillation', 'capsule') without translation. Example of clean: 'Spend the first hour each morning helping one founder name what they actually do, then publish what surprised you.' Example of broken: 'Run one paid Signal Snapshot per workday, ship one artifact in 24 hours, post the compression visual.' Same action, very different reader experience."
   }
 }
 `;

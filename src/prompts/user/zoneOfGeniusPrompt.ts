@@ -42,7 +42,7 @@ NOW analyze everything you know about me and generate a Top Talent Snapshot in t
   "top_shadow_one_sentence": "Synthesize the edge_and_traps paragraph above into ONE punchy sentence (max ~16 words). CRITICAL synthesis principle: preserve signal-to-noise ratio — minimal signal loss, minimal noise introduction. The reader should feel the same recursive-shadow recognition in this single sentence as in the full paragraph. Sharper than the paragraph, NOT more abstract. Phrased as a NOUN PHRASE / GERUND so it reads naturally inside 'My top shadow is ___' (parallel to the 'My top talent is ___' convention). UNIVERSALLY RELATABLE — avoid metaphors so specific they only fit one archetype (e.g. 'cathedral' for architects, 'symphony' for composers). Examples that span different gift-domains: 'Naming everyone else's gift while my own stays unnamed' (seer's shadow) / 'Teaching the language I won't speak about myself' (teacher's shadow) / 'Holding space for everyone while no one holds mine' (healer's shadow). Match my actual gift, not these examples. Do not soften, do not generalize.",
   "ideal_environments": ["Specific env 1", "Env 2", "Env 3"],
   "career_sweet_spots": ["Sweet spot 1", "Sweet spot 2", "Sweet spot 3"],
-  "flywheel_action": "The ONE action that, repeated as a flywheel, optimally advances me on my path of mastery. Specific enough to start today."
+  "flywheel_action": "The ONE action that, repeated as a flywheel, optimally advances me on my path of mastery. Specific enough to start today. CRITICAL: write in plain everyday language only. Use ordinary verbs (talk to, write, send, make, run) and ordinary objects (a person, a page, a message, a post). NEVER invent capitalized product or service names ('Signal Snapshot', 'Compression Capsule', 'Architecture Session') — those imply a packaged offering the reader has no context for and break trust. NEVER use insider jargon from my own vocabulary ('compression', 'distillation') without translation. Example of clean: 'Spend the first hour each morning helping one founder name what they actually do, then publish what surprised you.'"
 }
 
 QUALITY BAR:
@@ -51,6 +51,7 @@ QUALITY BAR:
 - The archetype title should feel inevitable when I read it — like it was always true
 - If a section would come out generic, replace it with something true and unusual instead
 - Don't soften, don't flatter, don't perform — articulate with precision
+- NO INSIDER JARGON, ANYWHERE. The output is for me to read myself — but it must use plain everyday language any reader could understand. NEVER invent capitalized product names ("Signal Snapshot", "Compression Capsule") and NEVER carry over my private vocabulary ("compression", "distillation") into the output without translation. Every word should land without requiring a footnote. If a phrase needs explaining, rewrite it.
 
 DO NOT:
 - Output corporate-strengths language ("strategic thinker", "passionate leader", "results-driven")
