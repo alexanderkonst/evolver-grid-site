@@ -348,6 +348,38 @@ ${snapshotText}`;
         foreignObjectRendering: false,
         width: el.scrollWidth,
         height: el.scrollHeight,
+        // Day 58 fix (Sasha 2026-05-02): "Failed to execute 'addColorStop'
+        // on 'CanvasGradient': non-finite double" — html2canvas walks all
+        // ancestor computed styles and chokes on page-level gradients
+        // (BokehBackground canvas, CSS vars resolving to NaN stops, etc.).
+        // Strip backgrounds on every ancestor of the cloned snapshot and
+        // hide background canvases so html2canvas only paints the white
+        // PDF surface.
+        onclone: (clonedDoc) => {
+          const clonedRoot = clonedDoc.querySelector<HTMLElement>('[data-pdf-root="true"]');
+          // Walk up from clonedRoot, neutralizing backgrounds.
+          let node: HTMLElement | null = clonedRoot?.parentElement ?? null;
+          while (node && node !== clonedDoc.documentElement) {
+            node.style.background = 'none';
+            node.style.backgroundImage = 'none';
+            node.style.backgroundColor = 'transparent';
+            node = node.parentElement;
+          }
+          if (clonedDoc.documentElement) {
+            clonedDoc.documentElement.style.background = '#ffffff';
+            clonedDoc.documentElement.style.backgroundImage = 'none';
+          }
+          if (clonedDoc.body) {
+            clonedDoc.body.style.background = '#ffffff';
+            clonedDoc.body.style.backgroundImage = 'none';
+          }
+          // Hide any sibling canvases / decorative layers.
+          clonedDoc.querySelectorAll('canvas, video, iframe').forEach((n) => {
+            if (!clonedRoot || !clonedRoot.contains(n)) {
+              (n as HTMLElement).style.display = 'none';
+            }
+          });
+        },
       });
 
       el.style.display = 'none';
