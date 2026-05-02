@@ -35,6 +35,11 @@ const SiteLogo = () => {
         // SiteLogo here too so the wordmark doesn't triple up.
         "/library",
         "/prompt", // legacy redirect target — harmless but tidy
+        // Day 58 (Sasha 2026-05-02): /activate/welcome lives inside
+        // GameShellV2 with hideLogo, but the global SiteLogo was still
+        // leaking through and showing a duplicate brand mark above the
+        // hero. Suppress here so only the SpacesRail wordmark shows.
+        "/activate",
     ];
     const exactHidden = ["/", "/ignite", "/my-result", "/path", "/auth", "/dashboard", "/ai-os", "/library", "/prompt"];
     if (hidden.some(p => location.pathname.startsWith(p)) || exactHidden.includes(location.pathname)) return null;
