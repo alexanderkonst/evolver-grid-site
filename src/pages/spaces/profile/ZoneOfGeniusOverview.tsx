@@ -330,7 +330,7 @@ const ZoneOfGeniusOverview = () => {
                 {fullAppleseed?.topTalentProfile && (
                     <div className="space-y-6">
                         {/* 1 · RECOGNIZE in detail */}
-                        <article className="liquid-glass-strong rounded-3xl p-7 space-y-5">
+                        <article className="liquid-glass-strong rounded-3xl p-5 sm:p-7 space-y-5">
                             <SectionLabel>1 · Recognize in detail</SectionLabel>
 
                             {fullAppleseed.topTalentProfile.archetype_title && (
@@ -376,7 +376,7 @@ const ZoneOfGeniusOverview = () => {
                         </article>
 
                         {/* 2 · EQUIP yourself */}
-                        <article className="liquid-glass-strong rounded-3xl p-7 space-y-5">
+                        <article className="liquid-glass-strong rounded-3xl p-5 sm:p-7 space-y-5">
                             <SectionLabel>2 · Equip yourself</SectionLabel>
 
                             {fullAppleseed.topTalentProfile.top_three_talents?.length > 0 && (
@@ -449,7 +449,7 @@ const ZoneOfGeniusOverview = () => {
                         </article>
 
                         {/* 3 · ORIENT — where you thrive */}
-                        <article className="liquid-glass-strong rounded-3xl p-7 space-y-5">
+                        <article className="liquid-glass-strong rounded-3xl p-5 sm:p-7 space-y-5">
                             <SectionLabel>3 · Orient — where you thrive</SectionLabel>
 
                             {fullAppleseed.topTalentProfile.ideal_environments?.length > 0 && (

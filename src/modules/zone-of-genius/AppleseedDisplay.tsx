@@ -184,13 +184,31 @@ const AppleseedDisplay = ({
         return () => clearTimeout(t);
     }, []);
 
-    // Floating "you can come back to this anytime / activate" bar appears
-    // once the user has scrolled ~halfway through the page. Disappears near
-    // the very bottom so it doesn't double up with the inline footer.
+    // Floating Activate pill appears once the user has scrolled ~halfway
+    // through the page. Disappears near the very bottom so it doesn't
+    // double up with the inline footer.
+    //
+    // Day 58 (Sasha 2026-05-02): GameShellV2 uses an inner scroll
+    // container (.mobile-content-scroll on phones, .ai-os-desktop-content-scroll
+    // on desktop) — listening to `window` alone misses those events. We
+    // hook both window AND the actual scroller so the pill behaves on
+    // every layout.
     useEffect(() => {
+        const findScroller = (): HTMLElement | null => {
+            return (
+                document.querySelector<HTMLElement>(
+                    '.mobile-content-scroll, .ai-os-desktop-content-scroll'
+                ) ||
+                (document.scrollingElement as HTMLElement | null) ||
+                document.documentElement
+            );
+        };
         const handleScroll = () => {
-            const scrolled = window.scrollY;
-            const total = document.documentElement.scrollHeight - window.innerHeight;
+            const scroller = findScroller();
+            const scrolled = scroller?.scrollTop ?? window.scrollY;
+            const total =
+                (scroller?.scrollHeight ?? document.documentElement.scrollHeight) -
+                (scroller?.clientHeight ?? window.innerHeight);
             if (total <= 0) {
                 setFloatBarVisible(false);
                 return;
@@ -198,9 +216,20 @@ const AppleseedDisplay = ({
             const ratio = scrolled / total;
             setFloatBarVisible(ratio >= 0.45 && ratio < 0.95);
         };
+        const scroller = findScroller();
+        const isInnerScroller =
+            scroller && scroller !== document.documentElement && scroller !== document.body;
+        if (isInnerScroller) {
+            scroller!.addEventListener('scroll', handleScroll, { passive: true });
+        }
         window.addEventListener('scroll', handleScroll, { passive: true });
         handleScroll();
-        return () => window.removeEventListener('scroll', handleScroll);
+        return () => {
+            if (isInnerScroller) {
+                scroller!.removeEventListener('scroll', handleScroll);
+            }
+            window.removeEventListener('scroll', handleScroll);
+        };
     }, []);
 
     // Exit-intent — desktop mouseleave from top of viewport, fires once per
@@ -317,22 +346,42 @@ const AppleseedDisplay = ({
                     </div>
                 )}
 
-                {/* Epic Revelatory Hero - The core genius reveal.
-                    Day 47 late pass (Sasha): dropped `darkMode` so the hero uses
-                    the light palette (dark slate text on soft white gradient) —
-                    consistent with the now-light Panel 3. */}
-                <RevelatoryHero
-                    type="appleseed"
-                    title={appleseed.vibrationalKey.name}
-                    tagline="My genius is to be a"
-                    actionStatement={appleseed.bullseyeSentence}
-                    threeLenses={{
-                        actions: appleseed.threeLenses.actions,
-                        primeDriver: appleseed.threeLenses.primeDriver,
-                        archetype: appleseed.threeLenses.archetype,
+                {/* Epic Revelatory Hero — the core genius reveal.
+                    Day 58 (Sasha 2026-05-02): wrapped in a soft golden halo
+                    that signals "this is the meaningful artifact" without
+                    shouting. The shadow extends past the card's own borders
+                    so the glow reads as light *coming off* the artifact. */}
+                <div
+                    style={{
+                        borderRadius: '24px',
+                        boxShadow:
+                            '0 0 40px rgba(240, 194, 127, 0.22), 0 0 80px rgba(212, 175, 55, 0.10)',
                     }}
-                    darkMode={useDarkHero}
-                />
+                >
+                    <RevelatoryHero
+                        type="appleseed"
+                        title={appleseed.vibrationalKey.name}
+                        tagline="My genius is to be a"
+                        actionStatement={appleseed.bullseyeSentence}
+                        threeLenses={{
+                            actions: appleseed.threeLenses.actions,
+                            primeDriver: appleseed.threeLenses.primeDriver,
+                            archetype: appleseed.threeLenses.archetype,
+                        }}
+                        darkMode={useDarkHero}
+                    />
+                </div>
+
+                {/* Resonance Rating — Day 58 (Sasha 2026-05-02): placed
+                    directly under the reveal box so "How much does this
+                    sound like you?" lands right next to the thing being
+                    rated. Was previously below the three options. */}
+                {onResonanceRating && (
+                    <ResonanceRating
+                        step="appleseed"
+                        onRate={onResonanceRating}
+                    />
+                )}
 
                 {/* RECOGNITION BLOCK — Day 57 (Sasha 2026-05-01).
                     Replaces the prior Bridge ("What if shining...") and the
@@ -507,10 +556,15 @@ const AppleseedDisplay = ({
                     </div>
 
                     {/* OPTION 2 — Activate ($44, secondary, medium).
-                        TODO: wire /activate to the real Stripe link or new
-                        landing page once the Activation product is live.
-                        Until then this href will 404 — replace before launch. */}
-                    <div className="space-y-4 text-center px-2">
+                        Day 58 (Sasha 2026-05-02): now wrapped in a
+                        liquid-glass card so it reads as a sibling of
+                        Option 1's box — same shape, lighter weight. */}
+                    <div
+                        className="liquid-glass rounded-3xl p-6 sm:p-7 space-y-4 text-center"
+                        style={{
+                            border: '1px solid rgba(26,30,58,0.06)',
+                        }}
+                    >
                         <p
                             className="text-[10px] sm:text-xs font-semibold tracking-[0.22em] uppercase"
                             style={{ color: "var(--skin-text-muted, rgba(26,30,58,0.65))" }}
@@ -550,7 +604,7 @@ const AppleseedDisplay = ({
 
                         {/* Secondary CTA — hover swaps idle label for action label.
                             Idle: "Let it become usable — $37"
-                            Hover: "Activate your Genius" */}
+                            Hover: "Activate your top talent" */}
                         <a
                             href={STRIPE_ACTIVATE_LINK}
                             target="_blank"
@@ -569,7 +623,7 @@ const AppleseedDisplay = ({
                                     Let it become usable — $37
                                 </span>
                                 <span className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100 whitespace-nowrap">
-                                    Activate your Genius
+                                    Activate your top talent
                                 </span>
                             </span>
                         </a>
@@ -584,8 +638,18 @@ const AppleseedDisplay = ({
                         </p>
                     </div>
 
-                    {/* OPTION 3 — Playbook (tertiary text link, free) */}
-                    <div className="space-y-3 text-center px-2 pt-2">
+                    {/* OPTION 3 — Playbook (tertiary, free).
+                        Day 58 (Sasha 2026-05-02): wrapped in a quieter
+                        liquid-glass card — same shape as Options 1 & 2,
+                        less visual weight. Box continuity preserved
+                        across the trinity. */}
+                    <div
+                        className="liquid-glass rounded-3xl p-6 space-y-3 text-center"
+                        style={{
+                            backgroundColor: 'rgba(255, 255, 255, 0.04)',
+                            border: '1px solid rgba(26,30,58,0.04)',
+                        }}
+                    >
                         <p
                             className="text-[10px] sm:text-xs font-semibold tracking-[0.22em] uppercase"
                             style={{ color: "var(--skin-text-muted, rgba(26,30,58,0.65))" }}
@@ -624,17 +688,6 @@ const AppleseedDisplay = ({
                     </div>
                 </div>
 
-                {/* Resonance Rating — quiet analytics widget, moved below the
-                    three options so it doesn't disrupt the recognition flow. */}
-                {onResonanceRating && (
-                    <div className="pt-4">
-                        <ResonanceRating
-                            step="appleseed"
-                            onRate={onResonanceRating}
-                        />
-                    </div>
-                )}
-
                 {/* SAVE LINE + OwnershipSection — quiet escape hatch.
                     Day 57 (Sasha 2026-05-01): added the framing line above
                     the email pill. */}
@@ -659,49 +712,37 @@ const AppleseedDisplay = ({
                 </div>
             </div>
 
-            {/* FLOATING SCROLL BAR — Day 57 (Sasha 2026-05-01).
-                Appears at ~50% scroll. Not urgency — continuity. */}
+            {/* FLOATING ACTIVATE PILL — Day 58 (Sasha 2026-05-02).
+                Was a full-width translucent bar with redundant left text;
+                replaced with a compact right-anchored glass pill so it
+                reads as a quiet shortcut, not a banner. Appears at ~50%
+                scroll, hides near the very bottom (where the inline CTAs
+                already cover the same offer). */}
             <div
-                className={`fixed bottom-0 left-0 right-0 z-40 px-3 pb-3 transition-all duration-500 ${
-                    floatBarVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-full pointer-events-none'
+                className={`fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40 transition-all duration-500 ${
+                    floatBarVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'
                 }`}
                 aria-hidden={!floatBarVisible}
             >
-                <div
-                    className="mx-auto max-w-2xl rounded-2xl"
+                <a
+                    href={STRIPE_ACTIVATE_LINK}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => trackCTAClick('activate_click', 'appleseed_floating_bar')}
+                    className="inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium whitespace-nowrap transition-all duration-300 hover:scale-[1.04] active:scale-[0.97]"
                     style={{
-                        backgroundImage: 'linear-gradient(180deg, rgba(255,255,255,0.94), rgba(255,255,255,0.86))',
-                        border: '1px solid rgba(26,30,58,0.10)',
-                        boxShadow: '0 -8px 24px -12px rgba(10,22,40,0.18)',
-                        backdropFilter: 'blur(8px)',
-                        WebkitBackdropFilter: 'blur(8px)',
+                        fontFamily: "'Cormorant Garamond', serif",
+                        color: "var(--skin-text-primary, #0a1628)",
+                        backgroundImage: 'linear-gradient(180deg, rgba(255,255,255,0.97), rgba(255,255,255,0.90))',
+                        border: '1px solid rgba(122, 81, 8, 0.32)',
+                        boxShadow:
+                            '0 10px 28px -10px rgba(10,22,40,0.22), 0 0 18px -2px rgba(244,212,114,0.45), inset 0 1px 0 rgba(255,255,255,0.7)',
+                        backdropFilter: 'blur(10px)',
+                        WebkitBackdropFilter: 'blur(10px)',
                     }}
                 >
-                    <div className="flex items-center justify-between gap-3 px-4 py-3">
-                        <p
-                            className="text-xs italic"
-                            style={{
-                                color: "var(--skin-text-muted-soft, rgba(26,30,58,0.65))",
-                                fontFamily: "'Source Serif 4', serif",
-                            }}
-                        >
-                            You can come back to this anytime.
-                        </p>
-                        <a
-                            href={STRIPE_ACTIVATE_LINK}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            onClick={() => trackCTAClick('activate_click', 'appleseed_floating_bar')}
-                            className="text-sm font-medium whitespace-nowrap transition-opacity hover:opacity-80"
-                            style={{
-                                fontFamily: "'Cormorant Garamond', serif",
-                                color: "var(--skin-text-primary, #0a1628)",
-                            }}
-                        >
-                            Activate — $37 →
-                        </a>
-                    </div>
-                </div>
+                    Activate — $37 →
+                </a>
             </div>
 
             {/* EXIT INTENT MODAL — Day 57 (Sasha 2026-05-01).
