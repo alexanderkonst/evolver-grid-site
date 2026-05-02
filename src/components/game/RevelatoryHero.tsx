@@ -284,7 +284,7 @@ const RevelatoryHero = ({
                 {/* Save · Share — kept; one-click PNG capture + socials
                     popover. Share text now drops the retired Three-Lenses
                     block; carries archetype + bullseye + invite. */}
-                <div className="mt-7 text-center">
+                <div className="mt-5 text-center">
                     <CardActions
                         captureRef={cardRef}
                         fileName={`${cleanTitle.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "my-top-talent"}-find-your-top-talent`}

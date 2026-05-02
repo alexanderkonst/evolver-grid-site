@@ -125,7 +125,7 @@ const MyResult = () => {
                             title={appleseed.vibrationalKey.name}
                             tagline="My top talent is"
                             actionStatement={appleseed.bullseyeSentence}
-                            topShadow={appleseed.topTalentProfile?.edge_and_traps}
+                            topShadow={appleseed.topTalentProfile?.top_shadow_one_sentence}
                             darkMode
                         />
 
