@@ -6,6 +6,7 @@ import GameShellV2 from "@/components/game/GameShellV2";
 import ProfileSettingsSection from "@/components/settings/ProfileSettingsSection";
 import { useSkin, type Skin } from "@/contexts/SkinContext";
 import { cn } from "@/lib/utils";
+import { GOLD_TEXT_STYLE, Ornament } from "@/lib/landingDesign";
 
 /**
  * Settings — unified settings page at /game/settings.
@@ -76,20 +77,45 @@ const AppearanceTab = () => {
 
     return (
         <div className="space-y-6">
-            <div className="rounded-2xl p-5 sm:p-6 space-y-4 bg-card border border-border shadow-sm">
+            {/* Day 56 (Sasha 2026-05-02): card swapped from shadcn
+                bg-card/border-border (skin-dependent) to the explicit
+                cream editorial register that matches MeGate +
+                MethodologyLandingPage. Settings now reads as part of
+                the same book, not a separate utility tier. */}
+            <div
+                className="rounded-2xl p-5 sm:p-6 space-y-4"
+                style={{
+                    background: "rgba(255, 255, 255, 0.65)",
+                    border: "1px solid hsla(228, 30%, 18%, 0.10)",
+                    boxShadow:
+                        "0 4px 16px -8px hsla(228, 30%, 18%, 0.10), inset 0 1px 0 hsla(0, 0%, 100%, 0.50)",
+                    backdropFilter: "blur(8px)",
+                    WebkitBackdropFilter: "blur(8px)",
+                }}
+            >
                 <div className="flex items-start gap-3">
-                    <Palette className="w-5 h-5 mt-0.5 flex-shrink-0 text-muted-foreground" />
+                    <Palette
+                        className="w-5 h-5 mt-0.5 flex-shrink-0"
+                        style={{ color: "hsl(40 70% 45%)" }}
+                    />
                     <div>
                         <h2
-                            className="text-xl leading-tight text-foreground"
+                            className="text-xl leading-tight"
                             style={{
                                 fontFamily: "'Cormorant Garamond', serif",
                                 fontWeight: 600,
+                                color: "var(--skin-text-primary, #0a1628)",
                             }}
                         >
                             Skin
                         </h2>
-                        <p className="text-sm mt-1 leading-relaxed text-muted-foreground">
+                        <p
+                            className="text-sm mt-1 leading-relaxed"
+                            style={{
+                                fontFamily: "'Source Serif 4', Georgia, serif",
+                                color: "var(--skin-text-muted, rgba(26,30,58,0.7))",
+                            }}
+                        >
                             Pick the aesthetic that feels right. Applies instantly across the
                             whole app; we remember your choice on this device.
                         </p>
@@ -113,25 +139,31 @@ const AppearanceTab = () => {
                                 disabled={isDisabled}
                                 className={cn(
                                     "relative text-left rounded-xl p-4 transition-all duration-200",
-                                    "bg-background border",
                                     "focus:outline-none focus-visible:ring-2 focus-visible:ring-[#d4af37]/50 focus-visible:ring-offset-2",
                                     isDisabled
-                                        ? "opacity-55 cursor-not-allowed border-border shadow-sm"
+                                        ? "opacity-55 cursor-not-allowed shadow-sm"
                                         : cn(
                                               "hover:scale-[1.01] active:scale-[0.995]",
                                               active
-                                                  ? "border-[#d4af37] ring-2 ring-[#d4af37]/40 shadow-md"
-                                                  : "border-border shadow-sm",
+                                                  ? "ring-2 ring-[#d4af37]/40 shadow-md"
+                                                  : "shadow-sm",
                                           ),
                                 )}
+                                style={{
+                                    background: "rgba(255, 255, 255, 0.55)",
+                                    border: active
+                                        ? "1px solid hsla(40, 70%, 55%, 0.55)"
+                                        : "1px solid hsla(228, 30%, 18%, 0.10)",
+                                }}
                             >
                                 <div className="flex items-center justify-between gap-3">
                                     <div className="flex items-center gap-3 min-w-0">
                                         <div
                                             aria-hidden="true"
-                                            className="relative w-10 h-10 rounded-lg flex-shrink-0 overflow-hidden border border-border"
+                                            className="relative w-10 h-10 rounded-lg flex-shrink-0 overflow-hidden"
                                             style={{
                                                 background: opt.swatchBackground,
+                                                border: "1px solid hsla(228, 30%, 18%, 0.15)",
                                                 boxShadow:
                                                     "inset 0 1px 0 rgba(255, 255, 255, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.12)",
                                             }}
@@ -140,10 +172,11 @@ const AppearanceTab = () => {
                                         </div>
                                         <div className="min-w-0">
                                             <div
-                                                className="text-base leading-tight text-foreground flex items-center gap-2"
+                                                className="text-base leading-tight flex items-center gap-2"
                                                 style={{
                                                     fontFamily: "'Cormorant Garamond', serif",
                                                     fontWeight: 600,
+                                                    color: "var(--skin-text-primary, #0a1628)",
                                                 }}
                                             >
                                                 <span>{opt.label}</span>
@@ -162,7 +195,13 @@ const AppearanceTab = () => {
                                                     </span>
                                                 )}
                                             </div>
-                                            <div className="text-xs mt-0.5 leading-snug text-muted-foreground">
+                                            <div
+                                                className="text-xs mt-0.5 leading-snug italic"
+                                                style={{
+                                                    fontFamily: "'Cormorant Garamond', serif",
+                                                    color: "var(--skin-text-muted, rgba(26,30,58,0.6))",
+                                                }}
+                                            >
                                                 {opt.tagline}
                                             </div>
                                         </div>
@@ -200,7 +239,12 @@ const Settings = () => {
     return (
         <GameShellV2>
             <div className="min-h-dvh">
-                <div className="max-w-3xl mx-auto p-6">
+                {/* Day 56 (Sasha 2026-05-02): container narrowed and
+                    rhythm tightened to match MethodologyLandingPage's
+                    editorial column (max-w-[720px] · py-8/9/10). The
+                    page now reads as part of the same book — same
+                    voice, same column width, same vertical breath. */}
+                <div className="max-w-[720px] mx-auto px-5 py-8 sm:py-9 md:py-10">
                     {/* Back pill — Day 48 iter 12 (Sasha): matches the Playbook
                         "Back" chip style so the return affordance reads
                         consistently across pages. */}
@@ -228,25 +272,32 @@ const Settings = () => {
                         </button>
                     </div>
 
-                    {/* Hero — Cormorant Garamond "Settings" + italic echo.
-                        Same typographic voice as the landing hero so the
-                        page feels like part of the same book, not a
-                        stripped-down settings dialog. */}
-                    <header className="mb-8">
+                    {/* Hero — Cormorant Garamond + gold-accent + italic
+                        echo + ornament divider, mirroring the landing
+                        hero structure exactly. Day 56 (Sasha 2026-05-02):
+                        added gold accent on "settings" and an Ornament
+                        divider before the tabs so the rhythm matches
+                        MethodologyLandingPage / MeGate. */}
+                    <header className="text-center mb-8">
                         <h1
-                            className="text-4xl sm:text-5xl leading-[1.05] tracking-[-0.01em] mb-2"
+                            className="text-3xl sm:text-4xl md:text-5xl font-semibold leading-[1.1] tracking-[-0.018em] mb-4 sm:mb-5"
                             style={{
                                 fontFamily: "'Cormorant Garamond', serif",
-                                fontWeight: 600,
                                 color: "var(--skin-text-primary, #0a1628)",
                                 textShadow:
                                     "var(--skin-text-halo-strong, 0 0 22px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.8), 0 2px 12px rgba(26,30,58,0.15))",
                             }}
                         >
-                            Settings
+                            Your{" "}
+                            <span
+                                className="bg-clip-text text-transparent"
+                                style={GOLD_TEXT_STYLE}
+                            >
+                                Settings
+                            </span>
                         </h1>
                         <p
-                            className="text-lg sm:text-xl leading-snug italic"
+                            className="text-lg sm:text-xl md:text-2xl leading-[1.32] tracking-[-0.005em] italic"
                             style={{
                                 fontFamily: "'Cormorant Garamond', serif",
                                 fontWeight: 400,
@@ -257,17 +308,20 @@ const Settings = () => {
                         >
                             Your account and preferences.
                         </p>
+
+                        <Ornament className="my-5 sm:my-6" />
                     </header>
 
                     <Tabs value={activeTab} onValueChange={handleTabChange}>
-                        {/* Day 48 iter 12 (Sasha): TabsList gets a glass base
-                            + gold underline for the active tab. The default
-                            shadcn white-on-white was reading as a blank pill
-                            with no affordance. */}
+                        {/* Day 56 (Sasha 2026-05-02): tabs harmonized
+                            with MeGate's editorial pill — light mute
+                            base, Cormorant Garamond labels, gold tint
+                            on active. */}
                         <TabsList
-                            className="mb-6 h-auto p-1 rounded-full bg-white/40 backdrop-blur-md border"
+                            className="mb-6 h-auto p-1 rounded-full grid w-full grid-cols-2"
                             style={{
-                                borderColor: "var(--skin-rule-medium, rgba(26,30,58,0.12))",
+                                background: "hsla(228, 30%, 18%, 0.06)",
+                                border: "1px solid hsla(228, 30%, 18%, 0.10)",
                             }}
                         >
                             <TabsTrigger
