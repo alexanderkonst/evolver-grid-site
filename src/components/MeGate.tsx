@@ -27,7 +27,7 @@ import { GOLD_TEXT_STYLE, Ornament } from "@/lib/landingDesign";
  */
 // Temporary lock — Sasha is polishing the Me space. Flip to `false`
 // (or delete this block + the early return below) to unlock.
-const ME_SPACE_LOCKED = true;
+const ME_SPACE_LOCKED = false;
 
 const ComingSoonCard = () => (
     <div className="p-6 lg:p-8 max-w-xl mx-auto">
@@ -288,7 +288,7 @@ const SaveProfileCard = ({ onSuccess }: { onSuccess: () => void }) => {
                 >
                     <TabsTrigger
                         value="save"
-                        className="rounded-full text-sm data-[state=active]:shadow-sm transition-all"
+                        className="rounded-full min-h-[44px] text-sm data-[state=active]:shadow-sm transition-all"
                         style={{
                             fontFamily: "'Cormorant Garamond', serif",
                             color: "var(--skin-text-muted, rgba(26,30,58,0.6))",
@@ -298,7 +298,7 @@ const SaveProfileCard = ({ onSuccess }: { onSuccess: () => void }) => {
                     </TabsTrigger>
                     <TabsTrigger
                         value="return"
-                        className="rounded-full text-sm data-[state=active]:shadow-sm transition-all"
+                        className="rounded-full min-h-[44px] text-sm data-[state=active]:shadow-sm transition-all"
                         style={{
                             fontFamily: "'Cormorant Garamond', serif",
                             color: "var(--skin-text-muted, rgba(26,30,58,0.6))",

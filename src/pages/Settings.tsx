@@ -253,7 +253,7 @@ const Settings = () => {
                             type="button"
                             onClick={() => navigate(-1)}
                             className={cn(
-                                "inline-flex items-center gap-2 py-1.5 px-3 rounded-full",
+                                "inline-flex items-center gap-2 min-h-[44px] py-1.5 px-4 rounded-full",
                                 "text-[10px] sm:text-[11px] uppercase tracking-[0.22em] font-medium",
                                 "transition-all duration-300 hover:scale-[1.02]",
                                 "focus-visible:ring-2 focus-visible:ring-[#d4af37]/40 outline-none",
@@ -327,7 +327,7 @@ const Settings = () => {
                             <TabsTrigger
                                 value="profile"
                                 className={cn(
-                                    "gap-2 rounded-full px-5 py-2 transition-all",
+                                    "gap-2 rounded-full min-h-[44px] px-5 py-2 transition-all",
                                     "data-[state=active]:bg-white data-[state=active]:shadow-sm",
                                     "data-[state=inactive]:text-muted-foreground",
                                 )}
@@ -349,7 +349,7 @@ const Settings = () => {
                             <TabsTrigger
                                 value="appearance"
                                 className={cn(
-                                    "gap-2 rounded-full px-5 py-2 transition-all",
+                                    "gap-2 rounded-full min-h-[44px] px-5 py-2 transition-all",
                                     "data-[state=active]:bg-white data-[state=active]:shadow-sm",
                                     "data-[state=inactive]:text-muted-foreground",
                                 )}
