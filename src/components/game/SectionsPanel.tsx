@@ -131,24 +131,27 @@ const SPACE_SECTIONS: SpaceSections = {
                 id: "top-talent",
                 label: "Top Talent",
                 path: "/game/me/zone-of-genius",
-                // Day 52 (Sasha 2026-04-26): Professional Activities,
-                // Visual Codes, and Elevator Pitch removed from the
-                // snapshot (career-advisory pollution and redundant
-                // articulations). Monetization restored later same day
-                // with a sharpened prompt (intro/signature/scale tiers).
-                // Mastery Stages, Roles & Environments, Complementary
-                // Partner, and Monetization stay — load-bearing per Sasha.
+                // Day 58 (Sasha 2026-05-02): full sub-pane restructure.
+                // Removed: bullseye / vibrational-key / three-lenses / life-scene
+                //   (their content folded into the rebuilt overview hero).
+                // Added: how-it-shows-up / three-key-talents / top-shadow / one-action
+                //   (sourced from the deep topTalentProfile fields).
+                // Renamed: mastery → "Path of Mastery"; roles → "Ideal Environments"
+                //   (paths preserved — inbound URLs still resolve).
+                // Order: Overview → How It Shows Up → Three Key Talents → Top Shadow
+                //   → One Action → Appreciated For → Path of Mastery → Ideal
+                //   Environments → Complementary Partner → Monetization (10 total).
                 subSections: [
                     { id: "tt-overview", label: "Overview", path: "/game/me/zone-of-genius" },
-                    { id: "tt-bullseye", label: "Bullseye Sentence", path: "/game/me/zone-of-genius/bullseye" },
-                    { id: "tt-vibrational-key", label: "Vibrational Key", path: "/game/me/zone-of-genius/vibrational-key" },
-                    { id: "tt-three-lenses", label: "Three Lenses", path: "/game/me/zone-of-genius/three-lenses" },
+                    { id: "tt-how-it-shows-up", label: "How It Shows Up", path: "/game/me/zone-of-genius/how-it-shows-up" },
+                    { id: "tt-three-key-talents", label: "Three Key Talents", path: "/game/me/zone-of-genius/three-key-talents" },
+                    { id: "tt-top-shadow", label: "Top Shadow", path: "/game/me/zone-of-genius/top-shadow" },
+                    { id: "tt-one-action", label: "One Action", path: "/game/me/zone-of-genius/one-action" },
                     { id: "tt-appreciated-for", label: "Appreciated For", path: "/game/me/zone-of-genius/appreciated-for" },
-                    { id: "tt-mastery", label: "Mastery Stages", path: "/game/me/zone-of-genius/mastery" },
-                    { id: "tt-roles", label: "Roles & Environments", path: "/game/me/zone-of-genius/roles" },
+                    { id: "tt-mastery", label: "Path of Mastery", path: "/game/me/zone-of-genius/mastery" },
+                    { id: "tt-roles", label: "Ideal Environments", path: "/game/me/zone-of-genius/roles" },
                     { id: "tt-partner", label: "Complementary Partner", path: "/game/me/zone-of-genius/partner" },
                     { id: "tt-monetization", label: "Monetization", path: "/game/me/zone-of-genius/monetization" },
-                    { id: "tt-life-scene", label: "Life Scene", path: "/game/me/zone-of-genius/life-scene" },
                 ],
             },
         ],
