@@ -685,6 +685,28 @@ const AppleseedDisplay = ({
                                 </span>
                             </span>
                         </a>
+
+                        {/* Day 58 (Sasha 2026-05-02 late evening): teaser
+                            line right under the Activate CTA — a single
+                            small-caps sentence that names the
+                            transformational result + the time investment
+                            it takes (synthesized from Sasha's actual
+                            deep-profile word count: ~915 words ≈ 5-min
+                            comfortable read, plus the 7-min meditation).
+                            Visually harmonious with the CTA's small-caps
+                            register; sits between the button and the
+                            italic "Most people start here" line. */}
+                        <p
+                            className="text-[10px] sm:text-[11px] font-semibold uppercase leading-relaxed pt-1"
+                            style={{
+                                fontFamily: "'DM Sans', system-ui, sans-serif",
+                                letterSpacing: "0.18em",
+                                color: "rgba(122, 81, 8, 0.85)",
+                            }}
+                        >
+                            Deeper layers unfold · ~5 min read + 7 min guided meditation
+                        </p>
+
                         <p
                             className="text-xs italic"
                             style={{
