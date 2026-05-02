@@ -43,29 +43,49 @@ STRUCTURE:
 // ---------------------------------------------------------------------------
 
 export const CALIBRATION_EXAMPLES = `
-EXAMPLE 1: ALEKSANDR
-Input: Zone of genius is turning complexity into a clear map, then using it to unlock people, products, movements. Core pillars: Essentializing, Synthesis, Navigation, Systems architecture, Transmission.
+EXAMPLE 1: ALEKSANDR (Sasha's actual generated output, baked in Day 58 evening — note the SECOND-PERSON register throughout)
+Input: Zone of genius is turning fog into a clear path people can use. Listens through messy stories, names the living point in plain language, then builds simple structures (message, offer, steps) that make the work easy to repeat.
 Output:
-- Vibrational Key — name: "Signal-to-Form Architecting"  // GERUND form, reads as "My top talent is Signal-to-Form Architecting". NOT "Architect of Integration Codes" (actor noun, breaks the grammar).
-- Vibrational Key — tagline: "He who sees what wants to be whole — and builds the blueprint."
-- Actions: Envision • Architect • Activate • Orchestrate • Translate
-- Prime Driver: Activate Dormant Potential
-- Archetype: Visionary Architect — Evolutionary Mirror
-- Life Scene: On a rooftop in Lisbon, speaks a single sentence that reorganizes a room of 12 founders. Eyes light up. One weeps in recognition. Someone whispers: "I remembered who I am."
+- Vibrational Key — name: "Signal-to-Path Shaping"  // GERUND form, reads as "My top talent is Signal-to-Path Shaping". NEVER an actor noun ("Shaper", "Architect"); that breaks the grammar of the surrounding UI.
+- Vibrational Key — tagline: "He who turns foggy power into a clear path people can use."
+- bullseyeSentence (rendered as "I [verb]..."): "turn foggy power into a clear path people can use"  // First-person — this is the ONE field that stays first-person.
+- Actions: Listen · Name · Structure · Translate · Ship
+- Prime Driver: Turn Fog Into Path
+- Archetype: Path Shaper × Signal Translator
+- Life Scene: A founder leans across a wooden table, eyes a little wild, mid-rant about three half-built systems. You let it land for a beat, then say one sentence. Their shoulders drop. They write it down, look up, ask, "Can we do this Tuesday?"
 
-  Top Talent Profile (deep block — note the register: THIRD-PERSON, plain everyday language, no insider jargon):
-    archetype_title: "Signal-to-Form Architecting"  // matches vibrationalKey.name, gerund form, no glyphs
-    core_pattern: "They take chaotic signals and turn them into clear form. Where others see noise — meetings, decks, manifestos, spreadsheets — they find the one thread that carries the whole, then translate it into structures other people can use."
+  Top Talent Profile (deep block — note the register: SECOND-PERSON addressing the reader directly with "you / your". Plain everyday language. No insider jargon.):
+    archetype_title: "Signal-to-Path Shaping"  // matches vibrationalKey.name, gerund form, no glyphs
+    core_pattern: "You listen through messy stories until the living point reveals itself, then name it in plain language. Next, you build a simple structure — message, offer, and steps — that makes the work easy to repeat and hard to misunderstand."
     top_three_talents:
-      "1. Reading patterns through noise — they spot the load-bearing thread in a system that overwhelms most people."
-      "2. Turning insight into shape — they convert what they see into things others can use: a one-line message, a clean offer, a simple map."
-      "3. Building things that survive the handoff — what they make holds its meaning across people, mediums, and time."
-    how_genius_shows_up: "In conversation: someone describes their tangle for ten minutes; they answer with the actual shape in one sentence. In work: the page, the offer, the framework arrives feeling inevitable, as if it was always there. In leadership: they name what the room is actually doing under what it says it's doing — and the room reorganizes around the truth."
-    edge_and_traps: "Their gift — making the invisible visible — comes paired with its inverse: their own value tends to stay invisible to them. The limiting belief whispers, 'one more layer of refinement and it'll finally be ready.' The recursive trap: they keep refining the framework when the next move is actually one paid conversation, one simple page, one clear offer to one well-fit person. The shadow is signal inflation — making the work so vast and sacred that ordinary buyers can't find the simple doorway."
-    top_shadow_one_sentence: "Refining the framework while the doorway stays unbuilt."  // synthesized — same recursive shadow as the paragraph, sharp, gerund noun phrase, third-person/neutral
-    ideal_environments: ["A small, high-trust setting with one founder ready to be seen", "Quiet morning solo time with one clear thing to ship", "A round table of 5-12 mature operators, one shared question, no phones"]
-    career_sweet_spots: ["Working one-to-one with founders on the messy parts of their venture, 1-3 sessions deep", "Designing the inner architecture for transformation-led containers (cohorts, retreats, intensives)", "Writing one defining book and one defining frame, then letting other operators run with it"]
-    flywheel_action: "Spend the first hour each day with one founder, name what they actually do in one sentence, and publish what surprised them. Repeat tomorrow."
+      "1. Hearing the real point under the story — pulling the one thread that explains the whole person or project."
+      "2. Building nested clarity — turning scattered ideas into a clean sequence with levels, steps, and decision rules."
+      "3. Making usable artifacts — pages, decks, messages, and onboarding that still work when you are not in the room."
+    how_genius_shows_up: "Your genius shows up when the work is potent but foggy: big ideas, half-built systems, strong methods trapped in someone's head, or narratives that change depending on the audience. You can take raw material — notes, conversations, drafts, visuals — and reduce it to the central signal, then rebuild it as a path someone can follow: a clear offer, a clean landing page outline, a pitch story that holds, or a simple operating flow a team can run. People experience this as inevitability: after you name it, the next steps feel obvious and the noise stops arguing."
+    edge_and_traps: "Your gift — turning chaos into a clear path — creates an inverted shadow: building ever-bigger structure while the doorway stays too hard to enter. The limiting belief whispers that one more layer — language, framework, aesthetics, or a more complete system — must be finished before asking for money or feedback. In motion, it looks like refining the map while avoiding the simple market test: one paid conversation, one page sent, one offer made to one high-fit person. Your other trap is over-giving — delivering the breakthrough before the price, boundaries, or agreement are strong enough to hold it."
+    top_shadow_one_sentence: "Building a bigger plan while avoiding the one paid ask that would prove it."  // synthesized — gerund noun phrase, neutral (works in second-person context)
+    masteryStages (Path of Mastery — 7 stages, each second-person):
+      "1. Noise Tolerance — You learn to stay calm inside other people's mess (notes, emotions, shifting ideas) without needing clarity first."
+      "2. True Signal Naming — You start naming the one thing that is actually happening underneath the story, and people feel instantly seen."
+      "3. Simple Structure Building — You turn that signal into a usable shape: a one-line message, a short outline, and a step-by-step path."
+      "4. Artifact Reliability — Your work survives the handoff; pages, decks, and plans still make sense when someone else uses them without explanation."
+      "5. Market Doorway Discipline — You stop building the full universe first and instead build the smallest doorway that gets real buyers to say yes."
+      "6. Transmission Through Others — You design the work so other operators can run it: onboarding, scripts, checklists, and clear decision rules."
+      "7. Civilization-Scale Simplifying — You translate big, moral, or world-changing ideas into ordinary language and ordinary steps without losing their depth."
+    flywheel_action: "Every workday, take one paid call with one high-fit person, name their core message in one sentence, turn it into one clear offer, then publish one anonymized paragraph about what changed."  // imperative, second-person — "their" here = the OTHER person (the client), not the subject
+    ideal_environments:
+      "A small, high-trust room with a founder who can handle blunt clarity and will act this week"
+      "A venture studio or accelerator where raw potential must become an offer, a pitch, and a weekly execution plan"
+      "A quiet morning block with one messy input and one shippable output due by end of day"
+    complementaryPartner.synergy: "Your best partner is a grounded closer-operator who loves finishing: running sales calls, setting prices, sending proposals, and installing the weekly cadence that turns plans into revenue. This partner's genius is sensing what a real buyer will say yes to today, then making the smallest set of moves that gets the yes. Their being-pattern is steady, pragmatic, and slightly impatient with endless refining. Together, the work becomes both true and sellable: one of you names the real signal and builds the path, the other turns that path into booked calls, signed agreements, and shipped releases on a timetable."  // "Their" here = the partner, not the subject — that's correct second-person framing
+    monetizationAvenues:
+      "Intro · One-sentence + three-step clarity call — a 75-minute call that turns your messy story into one sentence, one clear offer, and three next actions you can take this week ($450)"
+      "Signature · Offer and page build sprint — a two-week build where they interview you, then deliver a finished offer, a landing page draft, and a simple sales message you can send to 10 high-fit people ($4500)"
+      "Scale · Studio retainer for founders-in-motion — a monthly retainer that delivers two shipped assets per month (page/deck/onboarding flow/message sequence) plus one decision call to keep the business pointed at the real signal ($9000)"
+    career_sweet_spots:
+      "Working with a founder to name what they actually do and turn it into a sellable offer and page"
+      "Helping an early-stage team turn scattered ideas into a testable plan and a pitch that investors can repeat back"
+      "Designing a teachable method — sequence, prompts, and onboarding — that lets others deliver the work without dilution"
 
 EXAMPLE 2: KARIME
 Input: Zone of genius is restoring Love and coherence by sensing the unseen, reconnecting the disconnected, harmonizing until healing becomes natural. Core triad: Sensing, Bonding, Harmonizing.
@@ -162,13 +182,15 @@ NO INSIDER JARGON, ANYWHERE (Day 58, 2026-05-02):
 - Use ordinary verbs (talk to, write, send, make, run) and ordinary nouns (a person, a page, a message, a post, a session). The reader should understand every word without having to ask "what does that mean?".
 - If a phrase would require an insider footnote to land, rewrite the phrase.
 
-THIRD-PERSON REGISTER for the deep profile (Day 58, 2026-05-02 evening):
-- ALL topTalentProfile.* fields (core_pattern, top_three_talents, how_genius_shows_up, edge_and_traps, top_shadow_one_sentence, ideal_environments, career_sweet_spots, flywheel_action) MUST be written in OBJECTIVE THIRD-PERSON voice.
-- NEVER use "I", "me", "my", "mine" inside any deep-profile field.
-- Refer to the subject as "they / their / them" or with neutral noun phrases ("this person," "the gift," "the work"). The text should read like an outside observer naming what is structurally true about this person, not the person speaking about themselves.
-- Example WRONG (first person): "My gift — making the invisible visible — generates its inverse: my own value remains invisible to me."
-- Example RIGHT (third person): "Their gift — making the invisible visible — generates its inverse: their own value stays invisible to them." OR "This gift, naming what others can't see, comes paired with a shadow: the namer's own signal stays unnamed."
-- The bullseyeSentence (rendered as "I [verb]…" on the hero) and the elevator pitch are the ONLY first-person fields. Everything inside topTalentProfile is third person.
+SECOND-PERSON REGISTER for the deep profile (Day 58, 2026-05-02 late — supersedes the earlier third-person rule):
+- ALL topTalentProfile.* fields (core_pattern, top_three_talents, how_genius_shows_up, edge_and_traps, top_shadow_one_sentence, ideal_environments, career_sweet_spots, flywheel_action) MUST address the reader directly in SECOND-PERSON voice — "you / your / yours."
+- NEVER use "I, me, my, mine" (first person).
+- NEVER use "they, their, them" (third person) when referring to the SUBJECT (the reader). "They/their/them" is fine when referring to OTHER people the reader is acting on (e.g., "name their core message" = the client's, not the reader's).
+- The text should read like an editorial observer speaking to the reader directly, naming what is structurally true about them — not a clinical write-up.
+- Example WRONG (first person): "My gift generates its inverse — my own value stays invisible to me."
+- Example WRONG (third person): "Their gift generates its inverse — their own value stays invisible to them."
+- Example RIGHT (second person): "Your gift, making the invisible visible, comes paired with a shadow — your own value tends to stay invisible to you."
+- The bullseyeSentence (rendered as "I [verb]…" on the hero) and the elevator pitch are the ONLY first-person fields. Everything inside topTalentProfile is second-person.
 `;
 
 // ---------------------------------------------------------------------------
