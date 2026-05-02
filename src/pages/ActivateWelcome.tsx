@@ -99,13 +99,17 @@ export default function ActivateWelcome() {
           </div>
         </section>
 
-        {/* Beat 2 — Listen */}
+        {/* Beat 2 — Listen. Day 58 (Sasha 2026-05-02): eyebrow renamed
+            from "Beat Two · Listen" to "Beat Two · Guided Meditation" so
+            the user knows exactly what they're about to sit with — no
+            ambiguity about whether this is music, a podcast, or
+            something else. Removes a small but real friction. */}
         <section className="space-y-4">
           <p
             className="text-[11px] sm:text-xs font-semibold tracking-[0.28em] uppercase text-center"
             style={{ color: "rgba(122, 81, 8, 0.85)" }}
           >
-            Beat Two · Listen
+            Beat Two · Guided Meditation
           </p>
 
           <MeditationPlayer

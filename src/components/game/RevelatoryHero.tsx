@@ -1,5 +1,4 @@
 import { ReactNode, useRef } from "react";
-import { Sparkles, Sword } from "lucide-react";
 import CardActions from "@/components/sharing/CardActions";
 import { Ornament } from "@/lib/landingDesign";
 
@@ -20,9 +19,9 @@ interface RevelatoryHeroProps {
     tagline?: string;
     children?: ReactNode;
     darkMode?: boolean;
-    // Legacy props for backward compatibility
+    // Legacy prop kept for back-compat with any caller that still uses
+    // the older subtitle path; new callers should use actionStatement.
     subtitle?: string;
-    subtitlePlain?: string;
 }
 
 /**
@@ -88,49 +87,34 @@ const RevelatoryHero = ({
 }: RevelatoryHeroProps) => {
     const isAppleseed = type === "appleseed";
 
-    // Day 48 iter 7 (Sasha): all three palette variants migrated from the
-    // violet/indigo family to the signature antique-gold language shared
-    // with the landing. Excalibur variant retains the deepest contrast
-    // (warm gold on cream) so it still reads distinctly from Appleseed.
+    // Day 58 (Sasha 2026-05-02): icon/iconBg/iconColor/divider fields
+    // pruned — were dead code after the Three-Lenses inner-card retired
+    // and the inline ornament was replaced with <Ornament />. Palette
+    // now carries only what the rendered surface actually consumes.
     const palette = darkMode
         ? {
             gradient: "from-transparent to-transparent",
-            icon: Sparkles,
-            iconBg: "bg-[#d4af37]/20",
-            iconColor: "text-[#f4d472]",
             textPrimary: "text-white/90",
-            textSecondary: "text-white/60",
             textMuted: "text-[#f4d472]",
             shadowText: "text-white/75",
             glowColor: "rgba(212,175,55,0.22)",
-            divider: "rgba(244,212,114,0.32)",
             cardBorder: "1px solid rgba(244, 212, 114, 0.32)",
         }
         : isAppleseed
         ? {
             gradient: "from-white/70 via-[#fdf6e3]/80 to-white/60",
-            icon: Sparkles,
-            iconBg: "bg-[#d4af37]/12",
-            iconColor: "text-[#7a5108]",
             textPrimary: "text-[#2c3150]",
-            textSecondary: "text-[#2c3150]/70",
             textMuted: "text-[#7a5108]",
             shadowText: "text-[#2c3150]/80",
             glowColor: "rgba(212,175,55,0.14)",
-            divider: "rgba(212, 175, 55, 0.45)",
             cardBorder: "1px solid rgba(212, 175, 55, 0.32)",
         }
         : {
             gradient: "from-[#8c6410] via-[#7a5108] to-[#6b4208]",
-            icon: Sword,
-            iconBg: "bg-[#f4d472]/22",
-            iconColor: "text-[#f4d472]",
             textPrimary: "text-white",
-            textSecondary: "text-[#f5e6b0]/85",
             textMuted: "text-[#f5e6b0]/65",
             shadowText: "text-[#f5e6b0]/85",
             glowColor: "rgba(244,212,114,0.3)",
-            divider: "rgba(244,212,114,0.45)",
             cardBorder: "1px solid rgba(244, 212, 114, 0.30)",
         };
 
@@ -233,10 +217,11 @@ const RevelatoryHero = ({
                     </p>
                 )}
 
-                {/* Legacy subtitle support */}
+                {/* Legacy subtitle support — uses shadowText shade
+                    (closest match to the retired textSecondary). */}
                 {!actionStatement && subtitle && (
                     <p
-                        className={`text-lg sm:text-xl ${palette.textSecondary} italic max-w-xl mx-auto mb-6`}
+                        className={`text-lg sm:text-xl ${palette.shadowText} italic max-w-xl mx-auto mb-6`}
                     >
                         "{subtitle}"
                     </p>
