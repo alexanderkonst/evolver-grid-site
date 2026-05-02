@@ -66,7 +66,7 @@ const MethodologyLandingPage = () => {
               "var(--skin-text-halo-subtle, 0 0 18px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.75))",
           }}
         >
-          Right people{" "}
+          right people{" "}
           <span
             className="not-italic font-semibold bg-clip-text text-transparent"
             style={{
