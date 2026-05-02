@@ -135,10 +135,14 @@ const PERSPECTIVES: Partial<Record<PerspectiveId, PerspectiveConfig>> = {
     // component — the user can return here anytime to complete their
     // three-step activation flow.
     "start-here": {
-        title: "Start Here",
-        subtitle: "The three steps to activate your top talent",
+        // Day 58 (Sasha 2026-05-02 evening): copy block from Sasha:
+        //   "You're in. Let's begin." + "Three moves." → header.
+        // showHeading=false on the body to avoid doubling the heading
+        // (perspective layout already renders title + subtitle).
+        title: "You're in. Let's begin.",
+        subtitle: "Three moves.",
         icon: Sparkles,
-        render: () => <ActivationSteps showFooter />,
+        render: () => <ActivationSteps showHeading={false} />,
     },
     // ─── Four deep-profile perspectives ───
     "how-it-shows-up": {

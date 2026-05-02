@@ -26,8 +26,9 @@ const STRIPE_PAYMENT_LINK = "https://buy.stripe.com/9B6dR9bME6i71TP7r2dEs0A";
 // 2026-05-02). To rotate or revoke, change/remove this constant.
 // Comparison is case-insensitive. No backend validation: this is a
 // frontend bypass that skips the Stripe checkout and lands the user
-// directly on /activate/welcome (the same surface Stripe redirects
-// to after a successful $37 payment).
+// directly on /game/me/zone-of-genius/start-here — the activation home
+// (Day 58 evening: /activate/welcome retired in favor of the in-shell
+// surface so the user can return to it anytime).
 const ACTIVATION_COUPON_CODE = "guerishenko";
 
 interface AppleseedDisplayProps {
@@ -179,7 +180,7 @@ const AppleseedDisplay = ({
         const entered = couponInput.trim().toLowerCase();
         if (entered === ACTIVATION_COUPON_CODE) {
             trackCTAClick('activate_coupon_redeemed', 'appleseed_option2');
-            navigate('/activate/welcome');
+            navigate('/game/me/zone-of-genius/start-here');
         } else {
             setCouponError(true);
         }

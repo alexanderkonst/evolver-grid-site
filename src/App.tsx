@@ -38,7 +38,9 @@ import GameShellV2 from "./components/game/GameShellV2";
 import MorphogeneticHolomap from "./pages/MorphogeneticHolomap";
 import FoundersShowcase from "./pages/FoundersShowcase";
 import IgniteSession from "./pages/IgniteSession";
-import ActivateWelcome from "./pages/ActivateWelcome";
+// ActivateWelcome retired Day 58 (Sasha 2026-05-02 evening) — its route
+// now redirects to /game/me/zone-of-genius/start-here; the page file
+// is kept for reference only and no longer mounted.
 import MethodologyLandingPage from "./pages/MethodologyLandingPage";
 import JourneyPage from "./pages/JourneyPage";
 import PlaybookPage from "./pages/PlaybookPage";
@@ -349,7 +351,16 @@ const App = () => (
                   {/* Day 47 (Sasha): /ignite is now public — the ZoG result CTA lands
                       here directly. Auth at the pricing step was redundant funnel friction. */}
                   <Route path="/ignite" element={<IgniteSession />} />
-                  <Route path="/activate/welcome" element={<ActivateWelcome />} />
+                  {/* Day 58 (Sasha 2026-05-02 evening): /activate/welcome
+                      eradicated as a standalone surface. The activation
+                      home now lives at /game/me/zone-of-genius/start-here
+                      (in-shell, returnable). The route stays as a
+                      redirect for any inbound traffic (Stripe redirect
+                      URL, old bookmarks, the coupon nav). After the
+                      Stripe payment-link redirect target is updated in
+                      the Stripe dashboard, this route can be deleted. */}
+                  <Route path="/activate/welcome" element={<Navigate to="/game/me/zone-of-genius/start-here" replace />} />
+                  <Route path="/activate" element={<Navigate to="/game/me/zone-of-genius/start-here" replace />} />
                   <Route path="/library" element={<Library />} />
                   <Route path="/library/:stepId" element={<Library />} />
                   <Route path="/contact" element={<RequireAuth><ContactNew /></RequireAuth>} />
