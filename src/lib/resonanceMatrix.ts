@@ -52,19 +52,20 @@ export type ResonanceMatrix = Record<ResonanceStep, Record<ResonanceTier, string
 
 export const MASTER_MATRIX: ResonanceMatrix = {
     appleseed: {
-        // Day 51 night (Sasha 2026-04-25): the matrix's reflective
-        // "What if X?" shape doesn't apply at appleseed — at peak first-
-        // resonance the user's intent is forward motion, not ambient
-        // reflection. Replaced the line with a doorway statement that
-        // confirms + opens Step 2 in five words, framed in the user's
-        // own voice. Other steps still use the "What if" shape since
-        // by then the reader is in reflective mode.
+        // Day 58 (Sasha 2026-05-02): the resonance-aftermath copy was
+        // forward-pushing ("now — what business does it want to become?")
+        // which clashed with the recognition register on the page. New
+        // copy names the transformational result instead: at 8-10 the
+        // result is self-knowledge; at 5-7 the result is partial — name
+        // the gap + offer the next move (activate or book a coach); at
+        // 1-4 the result is "this isn't it" — name what's likely going
+        // on + offer alternative paths. Markdown-rendered (links work).
         resonant:
-            "That's your top talent. Now — what business does it want to become?",
+            "Congrats with receiving the gift of self-knowledge 💗",
         partial:
-            "What if the missing word is the one you've been quietly afraid to claim?",
+            "It mostly landed — likely sharper than any personality test you've taken. In our experience one of two things is at play: your AI doesn't yet know you deeply enough, or you need to get more in touch with your top talent first. We recommend you activate your top talent (button below), or [book](https://t.me/integralevolution) a top talent activation session with one of our coaches.",
         off:
-            "What if the mirror went too quiet — and the truer name is sharper than this?",
+            "This didn't feel like you. Maybe the test didn't work, maybe your AI doesn't yet know you. Most likely you're new to this purpose work — top talent, zone of genius, unique gift, whatever you call it. Start with a personality test like [Enneagram](https://www.enneagraminstitute.com/) or [MBTI](https://www.16personalities.com/free-personality-test), or work with a purpose coach: [1](https://wa.me/13018733135?text=Hi%20Paul%2C%20Aleksandr%20Konstantinov%20at%20www.FindYourTopTalent.com%20recommended%20you%20as%20a%20purpose%20coach%20I%20can%20work%20with.%20What%27s%20the%20best%20way%20to%20engage%20with%20you%3F), [2](https://wa.me/447771911220?text=Hi%20John%2C%20Aleksandr%20Konstantinov%20at%20www.FindYourTopTalent.com%20recommended%20you%20as%20a%20purpose%20coach%20I%20can%20work%20with.%20What%27s%20the%20best%20way%20to%20engage%20with%20you%3F), or [3](https://www.linkedin.com/in/kawtar-mahdaoui-a3337810a/).",
     },
     excalibur: {
         resonant:

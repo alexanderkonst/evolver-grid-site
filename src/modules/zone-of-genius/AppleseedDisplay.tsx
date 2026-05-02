@@ -491,7 +491,10 @@ const AppleseedDisplay = ({
                         transform: ctasVisible ? 'translateY(0)' : 'translateY(12px)',
                     }}
                 >
-                    {/* OPTION 1 — Build a business ($555, primary, large) */}
+                    {/* OPTION 1 — Build a business ($555, primary, large)
+                        Day 58 (Sasha 2026-05-02): numbered eyebrow retired
+                        in favor of an italic lead-in ("If you're ready to
+                        act:") + Cormorant title-case header. */}
                     <div
                         className="liquid-glass-strong rounded-3xl p-6 sm:p-7 space-y-4 text-center"
                         style={{
@@ -500,11 +503,25 @@ const AppleseedDisplay = ({
                         }}
                     >
                         <p
-                            className="text-[10px] sm:text-xs font-semibold tracking-[0.22em] uppercase"
-                            style={{ color: "var(--skin-text-muted, rgba(26,30,58,0.65))" }}
+                            className="text-sm sm:text-base italic leading-snug"
+                            style={{
+                                fontFamily: "'Source Serif 4', serif",
+                                color: "var(--skin-text-muted, rgba(26,30,58,0.7))",
+                            }}
                         >
-                            1 — Build a business from it
+                            If you're ready to act:
                         </p>
+                        <h3
+                            className="leading-[1.15] tracking-[-0.005em]"
+                            style={{
+                                fontFamily: "'Cormorant Garamond', serif",
+                                fontSize: "clamp(1.5rem, 4vw, 1.85rem)",
+                                fontWeight: 600,
+                                color: "var(--skin-text-primary, #0a1628)",
+                            }}
+                        >
+                            Build a Business From It
+                        </h3>
                         <p
                             className="text-base sm:text-lg leading-relaxed"
                             style={{
@@ -595,12 +612,22 @@ const AppleseedDisplay = ({
                             border: '1px solid rgba(26,30,58,0.06)',
                         }}
                     >
-                        <p
-                            className="text-[10px] sm:text-xs font-semibold tracking-[0.22em] uppercase"
-                            style={{ color: "var(--skin-text-muted, rgba(26,30,58,0.65))" }}
+                        {/* Day 58 (Sasha 2026-05-02): numbered eyebrow
+                            ("2 — Activate it") retired. Per Sasha's
+                            spec, Option 2 is title-alone — no lead-in,
+                            no number — letting the editorial title carry
+                            the weight against the heavier Option 1. */}
+                        <h3
+                            className="leading-[1.15] tracking-[-0.005em]"
+                            style={{
+                                fontFamily: "'Cormorant Garamond', serif",
+                                fontSize: "clamp(1.5rem, 4vw, 1.85rem)",
+                                fontWeight: 600,
+                                color: "var(--skin-text-primary, #0a1628)",
+                            }}
                         >
-                            2 — Activate it
-                        </p>
+                            Activate Your Top Talent
+                        </h3>
                         <div className="space-y-2">
                             <p
                                 className="text-base leading-relaxed"
@@ -745,21 +772,30 @@ const AppleseedDisplay = ({
                             border: '1px solid rgba(26,30,58,0.04)',
                         }}
                     >
+                        {/* Day 58 (Sasha 2026-05-02): numbered eyebrow
+                            ("3 — See the playbook") retired. Replaced
+                            with the italic lead-in + Cormorant title
+                            pair, parallel structure with Option 1. */}
                         <p
-                            className="text-[10px] sm:text-xs font-semibold tracking-[0.22em] uppercase"
-                            style={{ color: "var(--skin-text-muted, rgba(26,30,58,0.65))" }}
-                        >
-                            3 — See the playbook
-                        </p>
-                        <p
-                            className="text-sm leading-relaxed"
+                            className="text-sm sm:text-base italic leading-snug"
                             style={{
                                 fontFamily: "'Source Serif 4', serif",
-                                color: "var(--skin-link-secondary, rgba(26,30,58,0.78))",
+                                color: "var(--skin-text-muted, rgba(26,30,58,0.7))",
                             }}
                         >
-                            If you want to understand the structure behind this:
+                            Use the exact playbook we use to DIY:
                         </p>
+                        <h3
+                            className="leading-[1.15] tracking-[-0.005em]"
+                            style={{
+                                fontFamily: "'Cormorant Garamond', serif",
+                                fontSize: "clamp(1.5rem, 4vw, 1.85rem)",
+                                fontWeight: 600,
+                                color: "var(--skin-text-primary, #0a1628)",
+                            }}
+                        >
+                            Use The Playbook
+                        </h3>
                         <p
                             className="text-sm italic leading-relaxed"
                             style={{
