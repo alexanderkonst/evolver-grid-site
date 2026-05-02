@@ -755,7 +755,13 @@ const ZoGPerspectiveView = () => {
         );
     }
 
-    if (!config || !appleseedData) {
+    // Day 58 (Sasha 2026-05-02): start-here doesn't need appleseed data
+    // (its render is the static ActivationSteps component) — exempt it
+    // from the no-data gate so the page renders cleanly even before the
+    // user completes the assessment.
+    const PERSPECTIVES_WITHOUT_DATA: PerspectiveId[] = ["start-here"];
+    const needsData = !PERSPECTIVES_WITHOUT_DATA.includes(perspectiveId as PerspectiveId);
+    if (!config || (needsData && !appleseedData)) {
         return (
             <GameShellV2>
                 <div className="max-w-2xl mx-auto px-5 py-10 text-center">
