@@ -24,10 +24,39 @@ import { getOrCreateGameProfileId } from "@/lib/gameProfile";
  * `game_profile_id`) is attached to the new user via
  * getOrCreateGameProfileId() — no data lost.
  */
+// Temporary lock — Sasha is polishing the Me space. Flip to `false`
+// (or delete this block + the early return below) to unlock.
+const ME_SPACE_LOCKED = true;
+
+const ComingSoonCard = () => (
+    <div className="p-6 lg:p-8 max-w-xl mx-auto">
+        <div className="rounded-2xl liquid-glass ring-1 ring-white/10 p-8 text-center">
+            <div className="w-14 h-14 mx-auto rounded-full bg-[#8460ea]/15 flex items-center justify-center ring-1 ring-white/10 mb-4">
+                <Sparkles className="w-7 h-7 text-[#8460ea]" />
+            </div>
+            <h1 className="text-xl font-semibold text-white mb-2">
+                Your Genius Profile is being polished
+            </h1>
+            <p className="text-sm text-white/60 leading-relaxed">
+                We're putting the final touches on this space. It opens
+                tomorrow. Your results are safe — come back soon.
+            </p>
+        </div>
+    </div>
+);
+
 const MeGate = ({ children }: { children: ReactNode }) => {
     const [status, setStatus] = useState<"loading" | "authed" | "guest">("loading");
     const location = useLocation();
     const navigate = useNavigate();
+
+    if (ME_SPACE_LOCKED) {
+        return (
+            <GameShellV2>
+                <ComingSoonCard />
+            </GameShellV2>
+        );
+    }
 
     useEffect(() => {
         let mounted = true;
