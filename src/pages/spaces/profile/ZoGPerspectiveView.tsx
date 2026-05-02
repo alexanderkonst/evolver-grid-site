@@ -27,6 +27,7 @@ import { Target, Sparkles, Users, TrendingUp, Briefcase, DollarSign, Eye, Palett
 // still resolves them as fallthrough → "perspective not found"); they
 // no longer appear in the side-nav.
 type PerspectiveId =
+    | "start-here"
     | "how-it-shows-up"
     | "three-key-talents"
     | "top-shadow"
@@ -124,7 +125,18 @@ const FieldCard = ({
 );
 
 const PERSPECTIVES: Record<PerspectiveId, PerspectiveConfig> = {
-    // ─── Day 58 (Sasha 2026-05-02): four new deep-profile perspectives ───
+    // ─── Day 58 (Sasha 2026-05-02): "Start Here" — activation home ───
+    // First subpage of My Top Talent. Same body as the post-payment
+    // /activate/welcome page via the shared <ActivationSteps />
+    // component — the user can return here anytime to complete their
+    // three-step activation flow.
+    "start-here": {
+        title: "Start Here",
+        subtitle: "The three steps to activate your top talent",
+        icon: Sparkles,
+        render: () => <ActivationSteps showFooter />,
+    },
+    // ─── Four deep-profile perspectives ───
     "how-it-shows-up": {
         title: "How It Shows Up",
         subtitle: "Where your genius lights up in real life",

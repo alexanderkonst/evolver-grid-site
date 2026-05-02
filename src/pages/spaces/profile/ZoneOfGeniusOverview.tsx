@@ -19,7 +19,7 @@ import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import GameShellV2 from "@/components/game/GameShellV2";
 import { Button } from "@/components/ui/button";
-import { Sparkles, Download, ArrowRight } from "lucide-react";
+import { Sparkles, Download, ArrowRight, Loader2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { getOrCreateGameProfileId } from "@/lib/gameProfile";
 import { generateZogPdf } from "@/modules/zone-of-genius/generateZogPdf";
@@ -174,6 +174,22 @@ const ZoneOfGeniusOverview = () => {
     const [appleseedData, setAppleseedData] = useState<AppleseedData | null>(null);
     const [fullAppleseed, setFullAppleseed] = useState<FullAppleseedData | null>(null);
     const [excaliburData, setExcaliburData] = useState<ExcaliburData | null>(null);
+    // Day 58 (Sasha 2026-05-02): the PDF generation is async (font fetch
+    // + html2canvas) and takes 1-3 seconds with no visible feedback —
+    // users were clicking again, thinking it was broken. This flag
+    // drives a spinner + "Preparing your PDF…" copy on the button.
+    const [pdfBuilding, setPdfBuilding] = useState(false);
+    const handleDownloadPdf = async () => {
+        if (!fullAppleseed || pdfBuilding) return;
+        setPdfBuilding(true);
+        try {
+            await generateZogPdf(fullAppleseed, excaliburData);
+        } catch (err) {
+            console.error("[ZoG Overview] PDF generation failed:", err);
+        } finally {
+            setPdfBuilding(false);
+        }
+    };
 
     useEffect(() => {
         const loadData = async () => {
@@ -313,7 +329,7 @@ const ZoneOfGeniusOverview = () => {
                             className="text-[10px] uppercase tracking-[0.32em] font-medium"
                             style={{ color: "var(--skin-accent-gold, #b8860b)" }}
                         >
-                            My unique archetype
+                            My top talent is
                         </p>
                         <h1
                             className="leading-[1.1] tracking-[-0.01em]"
@@ -384,17 +400,22 @@ const ZoneOfGeniusOverview = () => {
                         Give the PDF to your AI so it can know more about you.
                     </p>
                     <button
-                        onClick={() => {
-                            if (fullAppleseed) {
-                                generateZogPdf(fullAppleseed, excaliburData);
-                            }
-                        }}
-                        disabled={!fullAppleseed}
-                        className="liquid-glass-strong inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 hover:scale-[1.02] active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
+                        onClick={handleDownloadPdf}
+                        disabled={!fullAppleseed || pdfBuilding}
+                        aria-busy={pdfBuilding}
+                        className="liquid-glass-strong inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 hover:scale-[1.02] active:scale-95 disabled:opacity-60 disabled:cursor-wait"
                         style={{ color: INK }}
                     >
-                        <Download className="w-4 h-4" />
-                        {fullAppleseed ? "Download Full PDF" : "Generating PDF data…"}
+                        {pdfBuilding ? (
+                            <Loader2 className="w-4 h-4 animate-spin" aria-hidden="true" />
+                        ) : (
+                            <Download className="w-4 h-4" />
+                        )}
+                        {pdfBuilding
+                            ? "Preparing your PDF…"
+                            : fullAppleseed
+                                ? "Download Full PDF"
+                                : "Generating PDF data…"}
                     </button>
                 </section>
 
