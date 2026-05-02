@@ -5,6 +5,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { getOrCreateGameProfileId } from "@/lib/gameProfile";
 import { AppleseedData } from "@/modules/zone-of-genius/appleseedGenerator";
 import { GOLD_TEXT_STYLE, Ornament } from "@/lib/landingDesign";
+import ActivationSteps from "@/components/ActivationSteps";
 import { Target, Sparkles, Users, TrendingUp, Briefcase, DollarSign, Eye, Palette, MessageSquare, Heart, Zap, Quote } from "lucide-react";
 
 // Day 54+ (Sasha 2026-04-28 night): full restyle of the ME · Top Talent
