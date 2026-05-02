@@ -457,12 +457,23 @@ function renderThreeKeyTalents(b: PdfBuilder, appleseed: AppleseedData) {
 }
 
 function renderTopShadow(b: PdfBuilder, appleseed: AppleseedData) {
-    const text = appleseed.topTalentProfile?.edge_and_traps;
-    if (!text) return;
+    const oneSentence = appleseed.topTalentProfile?.top_shadow_one_sentence?.trim();
+    const paragraph = appleseed.topTalentProfile?.edge_and_traps?.trim();
+    if (!oneSentence && !paragraph) return;
     b.sectionRule();
     b.eyebrow("Top Shadow");
     b.y += 1;
-    b.cardBody(text);
+    // Day 58 (Sasha 2026-05-02 evening): mirror the ME-space subpage —
+    // synthesized one-sentence at top (in a tinted card with a "MY TOP
+    // SHADOW IS" sub-eyebrow), full paragraph below.
+    if (oneSentence) {
+        b.eyebrow("My top shadow is");
+        b.y -= 1;
+        b.cardBody(oneSentence, { tinted: true, italic: true });
+    }
+    if (paragraph) {
+        b.cardBody(paragraph);
+    }
     b.sectionGap();
 }
 
@@ -476,44 +487,9 @@ function renderOneAction(b: PdfBuilder, appleseed: AppleseedData) {
     b.sectionGap();
 }
 
-function renderAppreciatedFor(b: PdfBuilder, appleseed: AppleseedData) {
-    const items = appleseed.appreciatedFor;
-    if (!items || items.length === 0) return;
-    b.sectionRule();
-    b.eyebrow("Appreciated For");
-    b.y += 1;
-    items.forEach((item) => {
-        const parts: { text: string; bold?: boolean }[] = [];
-        if (item.effect) parts.push({ text: item.effect, bold: true });
-        if (item.scene) parts.push({ text: `Scene: ${item.scene}` });
-        if (item.outcome) parts.push({ text: `Outcome: ${item.outcome}` });
-        const size = 9.5;
-        const pad = 5;
-        b.doc.setFont(b.fonts.body, "normal");
-        b.doc.setFontSize(size);
-        const wrapped: { text: string; bold?: boolean }[] = [];
-        for (const p of parts) {
-            const ws = b.doc.splitTextToSize(p.text, CONTENT_W - pad * 2) as string[];
-            ws.forEach((w, i) => wrapped.push({ text: w, bold: p.bold && i === 0 }));
-        }
-        const cardH = pad * 2 + wrapped.length * (size * 0.5);
-        b.ensureSpace(cardH + 2);
-        const top = b.y;
-        b.doc.setFillColor(...C.cardCream);
-        b.doc.setDrawColor(...C.goldHairline);
-        b.doc.setLineWidth(0.3);
-        b.doc.roundedRect(MARGIN, top, CONTENT_W, cardH, 3, 3, "FD");
-        let ty = top + pad + size * 0.4;
-        for (const w of wrapped) {
-            b.doc.setFont(b.fonts.body, w.bold ? "bold" : "normal");
-            b.doc.setTextColor(...C.inkBody);
-            b.doc.text(w.text, MARGIN + pad, ty);
-            ty += size * 0.5;
-        }
-        b.y = top + cardH + 3;
-    });
-    b.sectionGap();
-}
+// renderAppreciatedFor — Day 58 (Sasha 2026-05-02 evening): retired.
+// Sasha: "let's just delete it". Removed from PDF chapter list and
+// from the function definitions to avoid unused-export drift.
 
 function renderPathOfMastery(b: PdfBuilder, appleseed: AppleseedData) {
     const stages = appleseed.masteryStages;
