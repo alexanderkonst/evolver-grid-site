@@ -52,6 +52,19 @@ Output:
 - Archetype: Visionary Architect — Evolutionary Mirror
 - Life Scene: On a rooftop in Lisbon, speaks a single sentence that reorganizes a room of 12 founders. Eyes light up. One weeps in recognition. Someone whispers: "I remembered who I am."
 
+  Top Talent Profile (deep block — note the register):
+    archetype_title: "Signal Architect"  // 2-4 words, no decorative glyphs
+    core_pattern: "I distill chaotic signals into inevitable form. Where others see noise — meetings, decks, manifestos, spreadsheets — I find the one thread that carries the whole. Then I translate it into structures other people can use."
+    top_three_talents:
+      "1. Pattern recognition under noise — I locate the load-bearing beam in a system other people experience as overwhelming."
+      "2. Signal-to-form translation — I turn perceptual insight into shippable artifacts: landing pages, offers, decks, frameworks, ceremonies."
+      "3. Architectural transmission — I encode complex truths into structures that survive transmission across people, mediums, and time."
+    how_genius_shows_up: "In conversation: someone describes their tangle for ten minutes; I summarize the actual shape in a sentence. In work: the page, the offer, the framework arrives feeling inevitable, as if it was always there. In leadership: I name what the room is actually doing under what it says it's doing — and the room reorganizes around the truth."
+    edge_and_traps: "My gift — making the invisible visible — generates its inverse: my own value remains invisible to me. The limiting belief: 'I need to refine the architecture more before I'm ready to charge for it.' The recursive trap: I keep building cathedrals (ontology, framework, language, interface) when the actual next move is one paid conversation, one landing page, one clear offer to one high-fit person. The shadow is signal inflation — making the work so vast and sacred that ordinary buyers can't find the simple doorway."
+    ideal_environments: ["Small high-trust container with one founder ready to be seen", "Solo deep-work mornings with one explicit deliverable", "A round table of 5-12 mature operators, one shared question, no phones"]
+    career_sweet_spots: ["Founder advisory at $5K-50K per engagement, 1-3 sessions deep", "Systems architect for transformation-led ventures (cohorts, retreats, intensives)", "Editorial author of one defining book + one defining frame, then licensed to operators"]
+    flywheel_action: "Run one paid Signal Architecture Session every available workday: extract one founder's core pattern, name their unique business signal, translate it into one clear offer, publish the anonymized insight as a short post or visual."
+
 EXAMPLE 2: KARIME
 Input: Zone of genius is restoring Love and coherence by sensing the unseen, reconnecting the disconnected, harmonizing until healing becomes natural. Core triad: Sensing, Bonding, Harmonizing.
 Output:
@@ -202,7 +215,30 @@ Return a JSON object with this exact structure:
       "meaning": "string"
     }
   ],
-  "elevatorPitch": "string - no filler words"
+  "elevatorPitch": "string - no filler words",
+
+  "topTalentProfile": {
+    "archetype_title": "string — 2-4 word title that captures my core essence (e.g., 'The Pattern Architect', 'Signal Architect'). Singular and inevitable when I read it. Do NOT wrap in decorative glyphs (no '✦', '✧', etc.) — the UI strips them anyway.",
+    "core_pattern": "string — 2-3 sentence paragraph describing my fundamental operating pattern. Names the signature, not the category. This is the bullseye opened up into prose. Specific to me, not aspirational.",
+    "top_three_talents": [
+      "string — Talent 1, brief, specific to how it manifests in me (not generic strengths-finder language)",
+      "string — Talent 2, same",
+      "string — Talent 3, same"
+    ],
+    "how_genius_shows_up": "string — paragraph describing how these talents manifest in my daily work and interactions. Cite real patterns from rawSignal — concrete, not abstract.",
+    "edge_and_traps": "string — paragraph naming the structural shadow my gift generates — the OTHER SIDE OF THE COIN, not a list of weaknesses. A unique gift always produces a structurally identical limiting belief, but inverted. Name (a) the inverted form of my gift (e.g., 'I help others articulate their uniqueness' → 'my own uniqueness remains unarticulated'), (b) the limiting belief this inversion whispers in my own life ('I need a better X before I can act'), (c) one short observation about how this looks in motion (the recursive trap when I forget my gift is for outward use, not inward use). Specific to me. Same length as how_genius_shows_up. Do not soften or moralize.",
+    "ideal_environments": [
+      "string — specific environment where this archetype is most at home",
+      "string — second one, same standard of specificity",
+      "string — third one"
+    ],
+    "career_sweet_spots": [
+      "string — concrete career role / project type where this archetype thrives",
+      "string — second one",
+      "string — third one"
+    ],
+    "flywheel_action": "string — the ONE action that, repeated as a flywheel, optimally advances me on my path of mastery. Specific enough to start today. Not advice — an instruction."
+  }
 }
 `;
 
@@ -442,9 +478,12 @@ export interface AppleseedData {
   }>;
   elevatorPitch: string;
   /**
-   * Optional deep profile — present when rawSignal is the structured JSON
-   * output of ZONE_OF_GENIUS_PROMPT. Renders the activation-level surface
-   * on `/game/me/zone-of-genius`.
+   * Deep profile — Day 58 (Sasha 2026-05-02): now generated by the
+   * appleseed prompt itself in a single Lovable call (was previously
+   * extracted from rawSignal only when the user happened to paste
+   * structured JSON). Every new snapshot populates this; legacy
+   * snapshots may still be missing it (kept optional for back-compat).
+   * Renders the activation-level surface on `/game/me/zone-of-genius`.
    */
   topTalentProfile?: TopTalentProfile;
 }
@@ -535,11 +574,15 @@ export const generateAppleseed = async (rawSignal: string): Promise<AppleseedDat
 
   const appleseed = data.appleseed as AppleseedData;
 
-  // Day 57 (Sasha 2026-05-01): also try to extract the 8-field deep profile
-  // from rawSignal if the user pasted the JSON output of ZONE_OF_GENIUS_PROMPT.
-  // Attached to the appleseed; persists via saveAppleseed → appleseed_data JSONB.
-  const deep = tryExtractTopTalentProfile(rawSignal);
-  if (deep) appleseed.topTalentProfile = deep;
+  // Day 58 (Sasha 2026-05-02): the appleseed prompt now produces the
+  // 8-field topTalentProfile in the same call (canonical source). Only
+  // use the legacy rawSignal-paste extractor as a fallback when the
+  // model didn't include topTalentProfile — defensive for the rare
+  // case where the model's JSON omits the block.
+  if (!appleseed.topTalentProfile) {
+    const deep = tryExtractTopTalentProfile(rawSignal);
+    if (deep) appleseed.topTalentProfile = deep;
+  }
 
   return appleseed;
 };
