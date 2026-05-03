@@ -124,6 +124,25 @@ export default function ActivationSteps({ showHeading = true }: ActivationStepsP
                     2 · Guided Meditation
                 </p>
 
+                <div
+                    className="space-y-4 max-w-md mx-auto text-center text-sm md:text-base leading-relaxed"
+                    style={inkPrimaryStyle}
+                >
+                    <p>Before you press play, go back to your profile.</p>
+                    <p>
+                        Find the one sentence that made you pause —<br />
+                        the one that felt like <em>"that's me."</em>
+                    </p>
+                    <p>Bring that sentence with you into the audio.</p>
+                    <p>
+                        During the activation, you'll return to it —<br />
+                        and step into the feeling of what it's like to live it.
+                    </p>
+                    <p style={inkSecondaryStyle} className="italic pt-1">
+                        No need to analyze anything. Just follow it.
+                    </p>
+                </div>
+
                 <MeditationPlayer
                     src={AUDIO_SRC}
                     title="The Activation"
@@ -150,25 +169,6 @@ export default function ActivationSteps({ showHeading = true }: ActivationStepsP
                         <span>Download audio</span>
                     </a>
                 </div>
-
-                <div
-                    className="space-y-4 max-w-md mx-auto text-center pt-2 text-sm md:text-base leading-relaxed"
-                    style={inkPrimaryStyle}
-                >
-                    <p>Before you press play, go back to your profile.</p>
-                    <p>
-                        Find the one sentence that made you pause —<br />
-                        the one that felt like <em>"that's me."</em>
-                    </p>
-                    <p>Bring that sentence with you into the audio.</p>
-                    <p>
-                        During the activation, you'll return to it —<br />
-                        and step into the feeling of what it's like to live it.
-                    </p>
-                    <p style={inkSecondaryStyle} className="italic pt-1">
-                        No need to analyze anything. Just follow it.
-                    </p>
-                </div>
             </section>
 
             {/* Step 3 — Next step (optional) */}
@@ -184,10 +184,18 @@ export default function ActivationSteps({ showHeading = true }: ActivationStepsP
                     style={inkPrimaryStyle}
                 >
                     <p>
-                        If that sentence felt true, you now have something most people never get:
+                        You've come into closer touch with your top talent —<br />
+                        and through this activation, you've turned it on.
+                    </p>
+                    <p>
+                        It will start shaping your professional life:<br />
+                        the projects you choose, the tasks you say yes to,<br />
+                        the work that brings more fulfillment, excitement,
+                        and productive output.
                     </p>
                     <p style={{ fontWeight: 500 }}>
-                        A clear articulation of what you do — in a way people recognize.
+                        The next obvious step is to monetize that top talent —<br />
+                        through a unique business.
                     </p>
                     <p style={inkSecondaryStyle}>That's what people pay for.</p>
                     <p style={inkSecondaryStyle} className="italic pt-1">
