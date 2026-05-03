@@ -123,7 +123,15 @@ const SoundCloudMinimalPlayer = ({
     )}&visual=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&auto_play=false&buying=false&sharing=false&download=false&show_artwork=false&show_playcount=false`;
 
     return (
-        <div className="flex items-center gap-2.5 px-3 py-2 rounded-2xl transition-all duration-300 hover:bg-white/[0.04]">
+        // Day 58+ (Sasha 2026-05-03): structurally mirror the
+        // chat-with-us anchor and settings button below — same
+        // `gap-3 px-3 py-2.5 rounded-2xl w-full justify-start` so
+        // the play button's left edge sits at the exact x-position
+        // as the chat-with-us / settings icons (and the JOURNEY/
+        // AI OS / ME chip icons above). Was `gap-2.5 px-3 py-2`
+        // without `w-full` — content-sized container caused the
+        // play button to drift visually right of the icon column.
+        <div className="flex items-center gap-3 px-3 py-2.5 rounded-2xl w-full justify-start transition-all duration-300 hover:bg-white/[0.04]">
             {/* Play / Pause */}
             <button
                 type="button"
