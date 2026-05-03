@@ -23,7 +23,7 @@ import { ArrowRight, Download } from "lucide-react";
 import { Link } from "react-router-dom";
 import MeditationPlayer from "@/components/MeditationPlayer";
 
-const AUDIO_SRC = "/audio/activation-meditation.m4a";
+const AUDIO_SRC = "/audio/activation-meditation.mp3";
 
 const eyebrowStyle: React.CSSProperties = {
     color: "rgba(122, 81, 8, 0.85)",
@@ -138,7 +138,7 @@ export default function ActivationSteps({ showHeading = true }: ActivationStepsP
                 <div className="flex justify-center pt-1">
                     <a
                         href={AUDIO_SRC}
-                        download="activation-meditation.m4a"
+                        download="activation-meditation.mp3"
                         className="group inline-flex items-center gap-1.5 rounded-full px-3.5 py-1.5 text-[11px] uppercase tracking-[0.18em] font-medium transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
                         style={{
                             color: "rgba(122, 81, 8, 0.85)",

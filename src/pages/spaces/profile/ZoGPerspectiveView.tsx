@@ -760,7 +760,7 @@ const ZoGPerspectiveView = () => {
                     .eq("id", profileData.last_zog_snapshot_id)
                     .single();
 
-                const apple = (snapshotData?.appleseed_data ?? null) as AppleseedData | null;
+                const apple = (snapshotData?.appleseed_data ?? null) as unknown as AppleseedData | null;
                 if (apple) {
                     setAppleseedData(apple);
                 } else {
@@ -769,7 +769,7 @@ const ZoGPerspectiveView = () => {
                 setCachedZogSnapshot({
                     profileId,
                     appleseedData: apple,
-                    excaliburData: (snapshotData?.excalibur_data ?? null) as ExcaliburData | null,
+                    excaliburData: (snapshotData?.excalibur_data ?? null) as unknown as ExcaliburData | null,
                     archetypeTitle: (snapshotData?.archetype_title as string | null) ?? null,
                     corePattern: (snapshotData?.core_pattern as string | null) ?? null,
                     topThreeTalents: (snapshotData?.top_three_talents as string[] | null) ?? null,
