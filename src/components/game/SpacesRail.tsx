@@ -16,6 +16,12 @@ import {
     TooltipTrigger,
 } from "@/components/ui/tooltip";
 import GlyphIcon from "./GlyphIcon";
+// Day 58+ (Sasha 2026-05-03): custom minimal SoundCloud player. Hides
+// the default iframe entirely (waveform / privacy-policy link / SC
+// branding gone) and drives playback via the SC Widget JS API. We
+// render only a gold play/pause button + a Cormorant track title —
+// in-register with the navy/gold rail.
+import SoundCloudMinimalPlayer from "@/components/SoundCloudMinimalPlayer";
 // Day 48 (Sasha): brand logo sits at the top of the rail.
 // Desktop uses the full orb + wordmark lockup.
 // Mobile (rail compressed to 72px) uses the standalone torus image
@@ -552,32 +558,18 @@ const SpacesRail = ({
                             "linear-gradient(90deg, transparent 0%, rgba(212, 175, 55, 0.22) 50%, transparent 100%)",
                     }}
                 />
-                {/* Day 58+ (Sasha 2026-05-03): SoundCloud playlist embed —
-                    `findyourtoptalent.com` playlist. Sits ABOVE "chat
-                    with us" in the bottom utility row (per Sasha — was
-                    briefly between chat-with-us and settings). Compact
-                    list mode (`visual=false`), gold accent, no autoplay,
-                    no comments / user / reposts / teaser, hide_related —
-                    minimum chrome. Hidden on mobile (`md:block` only)
-                    because the rail collapses to icons-only at <md and
-                    an iframe doesn't fit there. */}
-                <div className="hidden md:block px-1 py-1 mb-1">
-                    <iframe
-                        title="findyourtoptalent.com playlist"
-                        width="100%"
-                        height="200"
-                        scrolling="no"
-                        frameBorder={0}
-                        allow="autoplay"
-                        loading="lazy"
-                        src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/alexander-konstantinov-976475588/sets/findyourtoptalent-com-playlist&color=%23d4af37&visual=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&auto_play=false"
-                        style={{
-                            border: "0.5px solid rgba(244, 212, 114, 0.22)",
-                            borderRadius: "10px",
-                            opacity: 0.92,
-                            display: "block",
-                        }}
-                    />
+                {/* Day 58+ (Sasha 2026-05-03): SoundCloud playlist —
+                    `findyourtoptalent.com`. Sits ABOVE "chat with us"
+                    in the utility row. Initially shipped as a full
+                    SoundCloud iframe; now replaced with a custom
+                    in-register player (gold play/pause + Cormorant
+                    title + skip) that hides the iframe off-screen and
+                    drives playback via the SC Widget JS API. No
+                    SoundCloud chrome, no privacy-policy link, no
+                    waveform — just our own register. Hidden on mobile
+                    because the rail collapses to icons-only at <md. */}
+                <div className="hidden md:block">
+                    <SoundCloudMinimalPlayer />
                 </div>
 
                 {/* Day 51 (Sasha 2026-04-25): Request Guidance — direct

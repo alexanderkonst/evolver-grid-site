@@ -49,37 +49,10 @@ const isMusicEnabled = (): boolean => {
     return new URLSearchParams(window.location.search).has("music");
 };
 
-// ─── SoundCloud Widget API typing ───────────────────────────────────
-
-declare global {
-    interface Window {
-        SC?: {
-            Widget: ((iframe: HTMLIFrameElement) => SCWidget) & {
-                Events: {
-                    READY: string;
-                    PLAY: string;
-                    PAUSE: string;
-                    FINISH: string;
-                };
-            };
-        };
-    }
-}
-
-interface SCSound {
-    title: string;
-    user: { username: string };
-}
-
-interface SCWidget {
-    bind: (event: string, handler: (...args: unknown[]) => void) => void;
-    unbind: (event: string) => void;
-    play: () => void;
-    pause: () => void;
-    skip: (index: number) => void;
-    getSounds: (cb: (sounds: SCSound[]) => void) => void;
-    getCurrentSound: (cb: (sound: SCSound | null) => void) => void;
-}
+// SoundCloud Widget API types live in src/types/soundcloud.d.ts —
+// consolidated there so MusicPlayer + SoundCloudMinimalPlayer share
+// one declaration of `window.SC` (two parallel `declare global`
+// blocks were merging incompatibly).
 
 // ─── Component ──────────────────────────────────────────────────────
 
