@@ -273,20 +273,28 @@ const SubstepRow = ({
 };
 
 // ───── Step 2 Essay — "The Secret to Productizing Yourself" ─────
-// Day 47 iter 8 (Sasha): editorial pass. Previous version played with the
-// font too much — jumping sizes, weights, italics, colors, and line-heights
-// across paragraphs. Replaced with one consistent editorial voice:
-//   • one font for body (Source Serif 4)
-//   • one color (#0a1628, dark navy)
-//   • one size (text-base sm:text-[17px])
-//   • one line-height (leading-relaxed)
-//   • no italics on paragraphs
-//   • no colored inline emphasis — Sasha's natural uppercase (HOW, CRISP
-//     SPECIFICITY, YOU, PRECISE, RARE) carries the emphasis in the language
-//     itself, doesn't need CSS on top
-// The only visual offset is the example (left-rule) and the numbered list.
-// Links reduced to "1" and "2" — the tool names are not promoted. Third
-// tool (Kawtar) removed entirely per Sasha.
+// Day 47 iter 8 (Sasha): editorial pass — one font, one color, one size,
+// one line-height. Sasha's natural uppercase carries inline emphasis.
+//
+// Day 60 (Sasha 2026-05-03): full body rewrite. Voice shifted I→we
+// (collective method, not Sasha-as-individual). Structural beats
+// reordered: the influencer trio is now followed by a consolidated
+// personality-tests-and-coaches sentence + an explicit "Why?" hook
+// before the secret. Closing reshaped — the "40 minutes / 160 mins"
+// specifics dropped in favor of an emergence-frame ("when this
+// specificity has been reached, a highly specific business emerges
+// from that self-knowledge"). Two new emphasis tiers introduced per
+// Sasha's inline notes:
+//   • Tier 1 (the punchline) — "Success is proportional to the degree
+//     of SPECIFICITY of articulation of what you do." — gold-rule
+//     blockquote, elevated weight (the strongest emphasis token in this
+//     essay's design system).
+//   • Tier 2 (the secret tease) — "There is a secret to productizing
+//     yourself." — italic+bold pull-quote treatment, no rule, distinct
+//     from the punchline so the hierarchy reads.
+// The previous gold-blockquote on "9+/10 before things click" was
+// retired to plain paragraph so the new punchline owns the strongest
+// emphasis (one Tier-1 callout per essay, by design).
 const Step2Essay = (_: { neonHsl: string; neonRgb: string }) => {
   const bodyStyle: React.CSSProperties = {
     color: "var(--skin-text-primary, #0a1628)",
@@ -301,19 +309,6 @@ const Step2Essay = (_: { neonHsl: string; neonRgb: string }) => {
     fontWeight: 600,
   };
 
-  // Day 47 very-late-night (Sasha): Two CRITICAL fixes for this essay.
-  // (1) Restored the missing sentences — "Startup Influencers say
-  //     'Productize yourself'." and "Social media influencers say
-  //     'monetize who you are', 'build your authentic brand'." — which
-  //     had been silently cut in an earlier revision. They are the two
-  //     bookends of the "nobody tells you HOW" opener alongside
-  //     personality tests. Without them the essay opens on personality
-  //     tests alone, which misrepresents the field.
-  // (2) Spacing unified with `space-y-5` on the parent. Previous version
-  //     mixed mb-3 / mb-5 / mb-8 per paragraph, which read as jumpy
-  //     rhythm. Now every paragraph has the same vertical breathing —
-  //     the blockquote example, the list, and the links all inherit the
-  //     same 1.25rem (~20px) gap between blocks.
   return (
     <section
       id="step-2-essay"
@@ -334,37 +329,79 @@ const Step2Essay = (_: { neonHsl: string; neonRgb: string }) => {
         The Secret to Productizing Yourself
       </h2>
 
-      {/* Three "they don't tell us HOW" bookends — startup influencers,
-          personality tests, social media influencers. All three restored. */}
-      <p>Startup influencers say "Productize yourself".</p>
-
-      <p>
-        Personality tests give you unmonetizable "too long didn't read" reports. You go "so now what?" and archive it in your inbox foreva.
-      </p>
+      {/* The three voices that promise but don't deliver: startup
+          influencers, social media influencers, and the personality-
+          test + purpose-coach industry. Then the "Why?" hook. */}
+      <p>Startup influencers tell others "Productize yourself".</p>
 
       <p>
         Social media influencers say "monetize who you are", "build your authentic brand".
       </p>
 
-      <p>They don't tell us HOW. They hand us frustrating fluff.</p>
+      <p>
+        They don't tell us HOW and if they do, it is either too fluffy or too specific to them to work for us.
+      </p>
+
+      <p>
+        Personality tests and purpose coaches promise to solve it but rarely bring aligned paying clients.
+      </p>
+
+      <p>Why?</p>
+
+      {/* ── Tier 2 emphasis: the secret tease.
+          Italic + bold + slightly larger, no rule. Distinct from the
+          gold-rule punchline below so the hierarchy reads as: "this is
+          the setup line you should remember" (Tier 2) vs. "this is THE
+          claim of the whole essay" (Tier 1, gold rule). */}
+      <p
+        className="text-center italic"
+        style={{
+          fontFamily: "'Cormorant Garamond', serif",
+          fontSize: "1.18em",
+          fontWeight: 600,
+          color: "var(--skin-text-primary, #0a1628)",
+          textShadow:
+            "var(--skin-text-halo-subtle, 0 1px 2px rgba(255,255,255,0.7))",
+        }}
+      >
+        There is a secret to productizing yourself.
+      </p>
+
+      <p>It is not just knowing what you do vaguely.</p>
+
+      {/* ── Tier 1 emphasis: THE punchline.
+          Gold-rule blockquote, elevated weight, slightly larger. The
+          single load-bearing claim of the whole step. */}
+      <blockquote
+        className="my-2 pl-4 py-2 border-l-[3px]"
+        style={{
+          borderColor: "var(--skin-accent-gold, #b8860b)",
+          fontSize: "1.08em",
+          fontWeight: 600,
+          color: "var(--skin-text-primary, #0a1628)",
+        }}
+      >
+        Success is proportional to the degree of SPECIFICITY of articulation of what you do.
+      </blockquote>
 
       <p>
         The catch is that there is a looong way from the vague "I help people to get better results in life and business" to a 9/10 CRISP SPECIFICITY of what you do.
       </p>
 
-      {/* Example — minimal left-rule offset, no font change.
-          Rule color skin-aware: dark-navy on Aurora, warm gold on Navy+Gold. */}
+      <p>Here is an example of a business offer sentence at a ~10/10 precision:</p>
+
+      {/* The example sentence — left-rule offset, no font change. */}
       <p
         className="pl-4 border-l"
         style={{
           borderColor: "var(--skin-rule-strong, rgba(26,30,58,0.25))",
         }}
       >
-        Let me share my example at ~10/10 precision: I assist conscious aspiring impact founders turn their top talent into a growing scalable business in flow.
+        "I assist conscious aspiring impact founders turn their top talent into a growing scalable business in flow."
       </p>
 
       <p>
-        It is sufficiently SPECIFIC, which then makes my entire business offer a laser beam that has this same specificity.
+        It is sufficiently SPECIFIC, which then makes the entire business offer have that same specificity.
       </p>
 
       <p>
@@ -375,9 +412,7 @@ const Step2Essay = (_: { neonHsl: string; neonRgb: string }) => {
 
       <p>Here is the secret hidden in plain sight.</p>
 
-      {/* Day 48 (Sasha): the fluffy vs specific contrast rendered as a
-          two-line structured block so the arrows read as a quick "before
-          vs after" rather than two running paragraphs. */}
+      {/* The fluffy vs specific contrast rendered as a two-line block. */}
       <div
         className="my-1 space-y-1.5 pl-4 border-l"
         style={{
@@ -388,30 +423,23 @@ const Step2Essay = (_: { neonHsl: string; neonRgb: string }) => {
         <p>Highly specific self-description → magnetizing pull.</p>
       </div>
 
-      <p>The top talent reveal on this page gets you to ~7/10.</p>
+      <p>The top talent reveal on this page gets you to ~7/10 or ~8/10 on average.</p>
 
       <p>
-        In my experience of having led in transformational containers for hundreds of entrepreneurs:
+        In our experience of having led transformational containers for hundreds of entrepreneurs:
       </p>
 
-      {/* Day 48 (Sasha): THIS IS GOLD — the single most load-bearing claim
-          in the essay. Rendered as a standalone callout with gold left-rule
-          + elevated weight so it can't be missed. */}
-      <blockquote
-        className="my-2 pl-4 py-2 border-l-[3px]"
-        style={{
-          borderColor: "var(--skin-accent-gold, #b8860b)",
-          fontSize: "1.08em",
-          fontWeight: 600,
-          color: "var(--skin-text-primary, #0a1628)",
-        }}
-      >
-        people that productize themselves successfully reach 9+/10 specificity before things click.
-      </blockquote>
+      <p>
+        People that productize themselves successfully reach 9+/10 specificity before things click.
+      </p>
 
-      <p>Let this sit for a second. Does it feel true?</p>
+      <p>Let this sit for a second.</p>
 
-      <p>How do people get there?</p>
+      <p>
+        How specific is your <em>current self-understanding</em>? Does this information feel true?
+      </p>
+
+      <p>How does one arrive at such high specificity?</p>
 
       <p>
         Years of focused introspection, iterations on the wording, authentic / artistic self-expression, sudden awakenings, plant medicine, purpose coaching, years of founder journey.
@@ -421,31 +449,29 @@ const Step2Essay = (_: { neonHsl: string; neonRgb: string }) => {
 
       <p>Yes indeed.</p>
 
-      <p>I know two.</p>
-
-      <ol className="list-decimal list-outside ml-6 space-y-2">
-        <li>You get guidance from someone who has reached 9.9+ precision for themselves and shares it with others.</li>
-        <li>You use a high-precision purpose-discovery tool. Or both.</li>
-      </ol>
-
       <p>
-        Truth is, such guides or tools are still very rare as of 2026.
+        You could get guidance from someone who has reached 9.9+ precision for themselves and shares it with others.
       </p>
 
+      <p>Or, you could use a high-precision purpose-discovery tool.</p>
+
+      <p>Or both.</p>
+
+      <p>As of 2026, such guides or tools are still quite rare.</p>
+
       <p>
-        I only know a couple of other tools that I dare recommend:{" "}
+        We recommend a couple of other tools outside of findyourtoptalent tool:{" "}
         <a href="https://talentq.me/" target="_blank" rel="noreferrer noopener" style={linkStyle}>1</a>
         ,{" "}
         <a href="https://www.evolution.life/" target="_blank" rel="noreferrer noopener" style={linkStyle}>2</a>
         .
       </p>
 
-      {/* Day 48 (Sasha): three purpose coaches to work with. Paul + John
-          links open WhatsApp with a pre-composed intro message; Kawtar
-          goes straight to LinkedIn. No names surfaced — consistent with
-          how the tools above are rendered as anonymous numbered links. */}
+      {/* Three purpose coaches: Paul + John open WhatsApp with a pre-
+          composed intro; Kawtar goes to LinkedIn. Names not surfaced —
+          rendered as anonymous numbered links matching the tools above. */}
       <p>
-        You could work with a purpose coach too, I'd recommend:{" "}
+        You could work with a purpose coach too, we recommend:{" "}
         <a
           href="https://wa.me/13018733135?text=Hi%20Paul%2C%20Aleksandr%20Konstantinov%20at%20www.FindYourTopTalent.com%20recommended%20you%20as%20a%20purpose%20coach%20I%20can%20work%20with.%20What%27s%20the%20best%20way%20to%20engage%20with%20you%3F"
           target="_blank"
@@ -475,23 +501,23 @@ const Step2Essay = (_: { neonHsl: string; neonRgb: string }) => {
         .
       </p>
 
-      <p>I wish these were commonplace but they are not.</p>
+      <p>We wish these were commonplace but they are not (yet).</p>
 
-      {/* Day 48 (Sasha): new closing that repositions the 6-year method
-          after the tools+coaches list and seats the commercial ask
-          naturally at the very end. "Book a session" routes to the
-          pricing block on /ignite. */}
       <p>
-        The method I developed and refined over the last six years gets you to a 9+/10 in about 40 minutes.
+        The method we developed and refined over the last six years does get you to a 9+/10.
       </p>
 
       <p>
-        Then we spend the next 160 mins turning it into a highly specific business using custom-made AI skills and templates of other founders that saw theirs.
+        When this specificity has been reached, a highly specific business emerges from that self-knowledge.
       </p>
 
       <p>
-        A business that has always been uniquely yours, and obvious in hindsight.
+        Using custom-made AI skills and templates of other founders that already saw theirs makes it possible to build a business that has always been uniquely yours.
       </p>
+
+      <p>In hindsight, it always appears obvious. Like you have always known it.</p>
+
+      <p>The more people get there, the easier it becomes for the next people.</p>
 
       <p>
         <a href="/ignite#pricing-section" style={linkStyle}>
