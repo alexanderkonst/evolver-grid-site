@@ -29,6 +29,32 @@
 ### Top Talent — 10/10 articulation
 I assist conscious aspiring impact founders turn their top talent into a growing scalable business in flow.
 
+### Personal Top Talent Profile (Day 58 generated, May 2, 2026)
+
+*From Sasha's first Day-58 run of the upgraded prompt — reads in second-person register because the profile is for him to read directly. Stored in his `zog_snapshots.appleseed_data` and rendered at `/game/me/zone-of-genius`.*
+
+- **Archetype (gerund form, no glyphs):** **Signal-to-Path Shaping**
+- **Bullseye (first-person):** *I turn foggy power into a clear path people can use.*
+- **Core pattern:** You listen through messy stories until the living point reveals itself, then name it in plain language. Next, you build a simple structure — message, offer, and steps — that makes the work easy to repeat and hard to misunderstand.
+- **How it shows up:** Your genius shows up when the work is potent but foggy: big ideas, half-built systems, strong methods trapped in someone's head, or narratives that change depending on the audience. You can take raw material — notes, conversations, drafts, visuals — and reduce it to the central signal, then rebuild it as a path someone can follow: a clear offer, a clean landing page outline, a pitch story that holds, or a simple operating flow a team can run. People experience this as inevitability: after you name it, the next steps feel obvious and the noise stops arguing.
+- **Three Key Talents:**
+  1. Hearing the real point under the story — pulling the one thread that explains the whole person or project
+  2. Building nested clarity — turning scattered ideas into a clean sequence with levels, steps, and decision rules
+  3. Making usable artifacts — pages, decks, messages, and onboarding that still work when you are not in the room
+- **Top Shadow (synthesized one-sentence):** *Building a bigger plan while avoiding the one paid ask that would prove it.*
+- **Top Shadow (full paragraph):** Your gift, turning chaos into a clear path, creates an inverted shadow: building ever-bigger structure while the doorway stays too hard to enter. The limiting belief whispers that one more layer — language, framework, aesthetics, or a more complete system — must be finished before asking for money or feedback. In motion, it looks like refining the map while avoiding the simple market test: one paid conversation, one page sent, one offer made to one high-fit person. Your other trap is over-giving — delivering the breakthrough before the price, boundaries, or agreement are strong enough to hold it.
+- **One Action (repeat daily):** Every workday, take one paid call with one high-fit person, name their core message in one sentence, turn it into one clear offer, then publish one anonymized paragraph about what changed.
+- **Path of Mastery (7 stages):** Noise Tolerance → True Signal Naming → Simple Structure Building → Artifact Reliability → Market Doorway Discipline → Transmission Through Others → Civilization-Scale Simplifying.
+- **Ideal Environments:** A small high-trust room with a founder who can handle blunt clarity and will act this week · a venture studio or accelerator where raw potential must become an offer, a pitch, and a weekly execution plan · a quiet morning block with one messy input and one shippable output due by end of day.
+- **Complementary Partner:** A grounded closer-operator who loves finishing — running sales calls, setting prices, sending proposals, installing the weekly cadence that turns plans into revenue. Steady, pragmatic, slightly impatient with endless refining. Together: one names the real signal and builds the path; the other turns it into booked calls, signed agreements, shipped releases on a timetable.
+- **Monetization (3 tiers):**
+  - Intro · *One-sentence + three-step clarity call* — 75-min call that turns your messy story into one sentence, one clear offer, and three next actions you can take this week ($450)
+  - Signature · *Offer and page build sprint* — 2-week build delivering finished offer + landing page draft + simple sales message ready to send to 10 high-fit people ($4500)
+  - Scale · *Studio retainer for founders-in-motion* — monthly retainer delivering 2 shipped assets/month + 1 decision call ($9000/mo)
+- **Career Sweet Spots:** Working with a founder to name what they actually do and turn it into a sellable offer and page · helping an early-stage team turn scattered ideas into a testable plan and a pitch investors can repeat back · designing a teachable method (sequence, prompts, onboarding) that lets others deliver the work without dilution.
+
+These outputs are also baked into `appleseedGenerator.ts` `CALIBRATION_EXAMPLES` as the canonical Aleksandr reference for the model — every founder running the prompt now has a real example to anchor on, not a placeholder.
+
 ### ⭐ Master Tuning Forks — v1.0 (April 22, 2026)
 
 *The one-sentence frames of the transformation. Each is the same signal at a different compression. Posted across bios, DMs, life-update posts, About pages.*
