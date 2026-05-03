@@ -55,6 +55,30 @@ interface SoundCloudMinimalPlayerProps {
     playlistUrl?: string;
 }
 
+/**
+ * Tiny inline SoundCloud cloud mark — used as the attribution glyph
+ * required by SoundCloud's Developer Terms of Use (the iframe is
+ * hidden so the default in-widget logo isn't visible; a small mark
+ * here keeps us clean). Path is the canonical SC cloud silhouette.
+ * Sasha 2026-05-03: rendered tiny (h:10px) and at reduced opacity so
+ * it reads as editorial attribution, not a brand badge competing
+ * with the rail's gold register. Clicking opens the playlist on
+ * SoundCloud in a new tab — doubles as a useful affordance.
+ */
+const SoundCloudGlyph = () => (
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+        style={{ width: 14, height: "auto", display: "block" }}
+    >
+        <path
+            fill="currentColor"
+            d="M23.999 14.165c-.052 1.96-1.694 3.498-3.655 3.498h-8.18a.42.42 0 0 1-.415-.42V8.404c0-.218.109-.318.27-.379 0 0 .655-.466 1.872-.466 1.144 0 2.247.43 3.078 1.092a4.99 4.99 0 0 1 1.844 3.343c.298-.1.622-.16.948-.16 1.798 0 3.244 1.605 3.244 3.244 0 .029-.006.058-.006.087zM10.464 17.245a.156.156 0 0 1-.156.155h-.96a.155.155 0 0 1-.154-.155V9.21a.155.155 0 0 1 .104-.154 4.84 4.84 0 0 1 1.066-.262c.114-.013.21.082.21.196v8.255zM7.825 17.4h-1.06a.155.155 0 0 1-.156-.155V9.466c0-.085.06-.155.156-.155h1.06c.092 0 .154.074.154.155v7.779a.155.155 0 0 1-.154.155zm-2.59 0H4.171a.156.156 0 0 1-.155-.155v-5.795c0-.085.06-.156.154-.156h1.064c.092 0 .154.073.154.156v5.795a.156.156 0 0 1-.154.155zm-2.59 0H1.582a.156.156 0 0 1-.156-.155v-4.622c0-.085.061-.156.156-.156h1.063c.093 0 .154.073.154.156v4.622a.156.156 0 0 1-.154.155zm-2.578-.234H.024A.022.022 0 0 1 0 17.144v-3.946c0-.013.005-.02.018-.022h.044c.013 0 .018.009.018.022v3.946a.022.022 0 0 1-.018.022z"
+        />
+    </svg>
+);
+
 const SoundCloudMinimalPlayer = ({
     playlistUrl = DEFAULT_PLAYLIST_URL,
 }: SoundCloudMinimalPlayerProps) => {
@@ -191,6 +215,29 @@ const SoundCloudMinimalPlayer = ({
             >
                 <SkipForward className="w-3 h-3" aria-hidden="true" />
             </button>
+
+            {/* SoundCloud attribution mark — Day 58+ (Sasha 2026-05-03):
+                tiny SC cloud, opens the playlist on soundcloud.com in
+                a new tab. Satisfies the attribution clause in
+                SoundCloud's Developer Terms (since the default
+                in-widget logo isn't visible — iframe is hidden) while
+                staying in the rail's editorial register. SoundCloud
+                orange (#ff5500) at low opacity so it reads as a
+                whisper, not a brand badge. */}
+            <a
+                href={playlistUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Listen on SoundCloud"
+                title="Listen on SoundCloud"
+                className="flex-shrink-0 inline-flex items-center justify-center transition-opacity duration-200 hover:opacity-100"
+                style={{
+                    color: "#ff5500",
+                    opacity: 0.55,
+                }}
+            >
+                <SoundCloudGlyph />
+            </a>
 
             {/* Hidden SoundCloud iframe — drives playback, never seen.
                 We can't use display:none because some browsers / the
