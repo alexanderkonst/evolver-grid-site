@@ -705,7 +705,7 @@ const AppleseedDisplay = ({
                                 color: "rgba(122, 81, 8, 0.85)",
                             }}
                         >
-                            Deeper layers unfold · 7 min of recognition + 5 min of guided meditation
+                            Deeper layers unfold · 7 min of recognition + 6 min of guided meditation
                         </p>
 
                         <p

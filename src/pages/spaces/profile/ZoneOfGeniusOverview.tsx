@@ -259,10 +259,10 @@ const ZoneOfGeniusOverview = () => {
                     .eq("id", profileData.last_zog_snapshot_id)
                     .single();
 
-                const apple = (snapshotData?.appleseed_data ?? null) as
+                const apple = (snapshotData?.appleseed_data ?? null) as unknown as
                     | FullAppleseedData
                     | null;
-                const excalibur = (snapshotData?.excalibur_data ?? null) as
+                const excalibur = (snapshotData?.excalibur_data ?? null) as unknown as
                     | ExcaliburData
                     | null;
                 const archetypeTitle = (snapshotData?.archetype_title as
