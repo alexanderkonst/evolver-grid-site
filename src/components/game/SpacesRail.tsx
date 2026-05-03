@@ -552,6 +552,34 @@ const SpacesRail = ({
                             "linear-gradient(90deg, transparent 0%, rgba(212, 175, 55, 0.22) 50%, transparent 100%)",
                     }}
                 />
+                {/* Day 58+ (Sasha 2026-05-03): SoundCloud playlist embed —
+                    `findyourtoptalent.com` playlist. Sits ABOVE "chat
+                    with us" in the bottom utility row (per Sasha — was
+                    briefly between chat-with-us and settings). Compact
+                    list mode (`visual=false`), gold accent, no autoplay,
+                    no comments / user / reposts / teaser, hide_related —
+                    minimum chrome. Hidden on mobile (`md:block` only)
+                    because the rail collapses to icons-only at <md and
+                    an iframe doesn't fit there. */}
+                <div className="hidden md:block px-1 py-1 mb-1">
+                    <iframe
+                        title="findyourtoptalent.com playlist"
+                        width="100%"
+                        height="200"
+                        scrolling="no"
+                        frameBorder={0}
+                        allow="autoplay"
+                        loading="lazy"
+                        src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/alexander-konstantinov-976475588/sets/findyourtoptalent-com-playlist&color=%23d4af37&visual=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&auto_play=false"
+                        style={{
+                            border: "0.5px solid rgba(244, 212, 114, 0.22)",
+                            borderRadius: "10px",
+                            opacity: 0.92,
+                            display: "block",
+                        }}
+                    />
+                </div>
+
                 {/* Day 51 (Sasha 2026-04-25): Request Guidance — direct
                     Telegram DM to Aleksandr. Zero backend, zero widget.
                     Aligned with Holonic Commons: open access, no SaaS.
@@ -591,33 +619,6 @@ const SpacesRail = ({
                         chat with us
                     </span>
                 </a>
-                {/* Day 58+ (Sasha 2026-05-03): SoundCloud playlist embed —
-                    `findyourtoptalent.com` playlist. Sits between "chat
-                    with us" and "settings" in the bottom utility row.
-                    Compact list mode (`visual=false`), gold accent,
-                    no autoplay, no comments / user / reposts / teaser,
-                    hide_related — minimum chrome. Hidden on mobile
-                    (`md:block` only) because the rail collapses to
-                    icons-only at <md and an iframe doesn't fit there. */}
-                <div className="hidden md:block px-1 py-1 mt-1">
-                    <iframe
-                        title="findyourtoptalent.com playlist"
-                        width="100%"
-                        height="200"
-                        scrolling="no"
-                        frameBorder={0}
-                        allow="autoplay"
-                        loading="lazy"
-                        src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/alexander-konstantinov-976475588/sets/findyourtoptalent-com-playlist&color=%23d4af37&visual=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&auto_play=false"
-                        style={{
-                            border: "0.5px solid rgba(244, 212, 114, 0.22)",
-                            borderRadius: "10px",
-                            opacity: 0.92,
-                            display: "block",
-                        }}
-                    />
-                </div>
-
                 {/* Day 48 iter 9 (Sasha): Settings chip upgraded to match
                     the chip register — rounded-2xl, Cormorant Garamond
                     uppercase tracked. Kept dimmer (white/45) so the
