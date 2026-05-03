@@ -22,32 +22,10 @@ const WIDGET_API_SRC = "https://w.soundcloud.com/player/api.js";
 const DEFAULT_PLAYLIST_URL =
     "https://soundcloud.com/alexander-konstantinov-976475588/sets/findyourtoptalent-com-playlist";
 
-interface SCWidget {
-    bind: (event: string, handler: (...args: unknown[]) => void) => void;
-    play: () => void;
-    pause: () => void;
-    toggle: () => void;
-    next: () => void;
-    getCurrentSound: (cb: (sound: { title?: string; user?: { username?: string } } | null) => void) => void;
-}
-
-interface SCWidgetEvents {
-    READY: string;
-    PLAY: string;
-    PAUSE: string;
-    FINISH: string;
-    PLAY_PROGRESS: string;
-}
-
-declare global {
-    interface Window {
-        SC?: {
-            Widget: ((iframe: HTMLIFrameElement | string) => SCWidget) & {
-                Events: SCWidgetEvents;
-            };
-        };
-    }
-}
+// SoundCloud Widget API types live in src/types/soundcloud.d.ts —
+// consolidated there so MusicPlayer + SoundCloudMinimalPlayer share
+// one declaration of `window.SC` (two parallel `declare global`
+// blocks were merging incompatibly).
 
 /**
  * Load the SoundCloud Widget API once (idempotent). Returns a promise
