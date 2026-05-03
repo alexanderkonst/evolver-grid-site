@@ -166,7 +166,8 @@ export const PLAYBOOK_STEPS: PlaybookStep[] = [
     slug: "package",
     appName: "PACKAGE",
     subtitle: "Articulate it with Precision",
-    transformationalResult: "I can describe my business in one sentence.",
+    transformationalResult:
+      "I can describe my top talent in a crystal clear one sentence that lands visceral, and is emotive.",
     neonHsl: "hsl(248, 85%, 68%)",
     neonRgb: "110, 100, 240",
     labelLines: ["Articulate it", "with Precision"],
