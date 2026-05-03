@@ -6200,3 +6200,158 @@ Unchanged. Press send Friday's DMs. Day 54 is apparatus-tightening, not a stage 
 ---
 
 *Day 54: AI OS becomes substrate, not stop. MIT becomes the license for the scaffold. The merkaba spins on desktop. Definition of Done becomes a chat artifact, not a post-mortem.*
+
+---
+
+## Day 58 — Top Talent surface deep restructure + Activation product crystallized (May 2, 2026)
+
+**Holomap center:** Codification → leaning into **Crystallization** (Day 51 → progressing). Day 58 was a single-day megapush across the whole Top Talent surface — free reveal, paid Activation product, deep profile, prompts, PDF, audio. The activation product is now coherent as a transmission, not just a checkout.
+
+### What shipped (one-day megaday)
+
+**Free reveal restructure (`AppleseedDisplay` + `RevelatoryHero`):**
+- Three-Lenses inner-card retired (Top Actions / Prime Driver / Archetype). Sasha: *"every phrase was already a packed thought form."*
+- Top Shadow synthesized one-sentence promoted into the free reveal — the highest-leverage emotional payload (Sasha: *"this is the one that hits hardest"*).
+- Archetype name shifted from actor noun ("Forger") → gerund ("Forging") so it reads grammatically as the complement of *"My top talent is ___"*.
+- Decorative glyphs (✦) stripped from archetype names at render via `stripDecorativeGlyphs()`.
+- Bullseye sentence rendered in editorial sentence case via `formatBullseye()` (lowercased, trailing period dropped).
+- Dodecahedron icon: gold halo + 60s slow rotation. Outer card: subtle gold border + stronger ambient halo (`50px/0.32 + 100px/0.16`).
+- Eyebrows: `MY TOP TALENT IS` (replaced "MY GENIUS IS TO BE A") above archetype, `MY TOP SHADOW IS` above the synthesized shadow line.
+- New small-caps teaser line under the $37 Activate CTA: `DEEPER LAYERS UNFOLD · 7 MIN OF RECOGNITION + 5 MIN OF GUIDED MEDITATION` — names the transformational result + the time investment in one parallel-structure breath. ("Recognition" replaced "read" because reading carries school-day-resistance baggage; recognition matches the platform's existing register.)
+- Coupon `guerishenko`: subtle `Have a code?` expander beneath the $37 CTA → frontend-only bypass that navigates straight to `/game/me/zone-of-genius/start-here`. For exceptional / testing access.
+
+**ME space (paid post-Activation) restructure (`ZoneOfGeniusOverview` + `ZoGPerspectiveView` + `SectionsPanel`):**
+- Side-nav header renamed `Top Talent` → `My Top Talent`.
+- Sub-pane restructured to **10 subpages, new order**: 1·Start Here · 2·Overview · 3·How It Shows Up · 4·Three Key Talents · 5·Top Shadow · 6·Path of Mastery · 7·One Action · 8·Ideal Environments · 9·Complementary Partner · 10·Monetization. Removed: Bullseye Sentence (folded into hero), Vibrational Key (folded into hero), Three Lenses (redundant), Appreciated For (Sasha: *"let's just delete it"*), Life Scene (replaced by How It Shows Up). Renamed: Mastery Stages → Path of Mastery; Roles & Environments → Ideal Environments (content swapped to `topTalentProfile.ideal_environments`).
+- **Start Here** = first subpage = activation home. Same content as the post-payment `/activate/welcome` page via the shared `<ActivationSteps />` component, so users can return anytime. Subtle persistent gold glow in the side-nav so it reads as the home node.
+- **Overview hero compressed** to fit one viewport: dodecahedron removed, padding tightened (`p-7 sm:p-10` → `p-6 sm:p-8`), `core_pattern` paragraph moved out into its own quiet liquid-glass card directly below the hero, `<GameShellV2 hideLogo>` to remove the rotating top-right home glyph that was crowding the top of the pane.
+- **Top Shadow subpage** renders both the synthesized one-sentence (with `MY TOP SHADOW IS` eyebrow in a gold-tinted accent card) AND the full `edge_and_traps` paragraph below.
+- **Monetization subpage**: each sub-section (Avenues / Career Sweet Spots) wrapped in its own bordered cream container with a clear gold hairline + heading, fixing the gold-on-gold illegibility against the aurora page tint.
+- **Read Next Section button** at the bottom of the Overview AND every subpage — sequential navigator across `ZOG_SUBPAGE_ORDER`. Renders nothing on the last subpage. Helper + button live in `src/components/profile/ReadNextSectionButton.tsx`.
+- Side-nav editorial: numbered gold pips, Cormorant labels, ornament glyph instead of Lucide icons in the perspective view header.
+- Mobile pass on trinity cards: `p-7` → `p-5 sm:p-7` for breathing room at 375px.
+
+**Activation flow (`/activate/welcome` → `/game/me/zone-of-genius/start-here`):**
+- `/activate/welcome` and `/activate` routes now redirect to the in-shell `start-here` (`<Navigate replace />`) — kept as a safety net while the Stripe payment-link redirect is updated to the new URL. Sasha confirmed Stripe updated mid-session; redirects can be deleted in a future cleanup.
+- Shared `<ActivationSteps />` component is the single source of truth for the activation body — one edit propagates to both surfaces. Three moves: **1 · Read** (CTA → /game/me/zone-of-genius), **2 · Guided Meditation** (`<MeditationPlayer>` + instruction block), **3 · Next step (optional)** (soft sales bridge to `/ignite#pricing-section`).
+- Step 2 instruction block (Sasha's verbatim copy): *"Before you press play, go back to your profile. Find the one sentence that made you pause — the one that felt like 'that's me.' Bring that sentence with you into the audio. During the activation, you'll return to it — and step into the feeling of what it's like to live it. No need to analyze anything. Just follow it."*
+- **Audio file** at `/public/audio/activation-meditation.m4a` — Sasha's v1.1 guided meditation, extracted from `.mov` source via ffmpeg, **re-encoded ALAC → AAC at 128 kbps mono** (ALAC is Safari-only; AAC plays in Chrome/Firefox/Edge). Final: 5.2 MB, 5:11 duration. Download button under the player (`<a download>`).
+- Step 3 (next step) copy: *"If that sentence felt true, you now have something most people never get: A clear articulation of what you do — in a way people recognize. That's what people pay for. If you want to take the next step: Turn your top talent into a business people buy →"*
+
+**Prompt upgrades — `ZONE_OF_GENIUS_PROMPT` (user-facing) + `OUTPUT_FORMAT` (server-side, `appleseedGenerator.ts`):**
+- **Deep `topTalentProfile` schema MERGED** into the main appleseed prompt — single Lovable call now produces all 20 fields (was previously dependent on user pasting structured JSON; Sasha: *"build a bigger plan while avoiding the one paid ask"* — the architectural inverse Sasha caught). Server-side generation makes the deep profile available for ALL users, not just JSON-pasters.
+- **Best Lovable model switch** (Sasha did this in the Lovable dashboard, swapping `google/gemini-2.5-flash-lite` → strongest available). Cost offset by Activation conversions.
+- **SECOND-PERSON register** for all `topTalentProfile.*` fields. Original third-person ("they/their") was reframed to second-person ("you/your") mid-day per Sasha: *"This is not just reading. This is recognition."* Calibration example for Aleksandr re-baked with second-person voice. Bullseye + elevator pitch are the only first-person fields; everything else addresses the reader directly.
+- **NO INSIDER JARGON** rule baked into `LANGUAGE_GUIDELINES` + reinforced in `ROASTING_INSTRUCTIONS` ROUND 1. Specifically forbids invented capitalized product names ("Signal Snapshot," "Compression Capsule," "Architecture Session") — caught from a Sasha test run that produced *"Run one paid Signal Snapshot each workday"* which broke trust because the reader has no context for "Signal Snapshot." Worked example included in the prompt: clean vs broken side-by-side.
+- **Universal-relatability** rule applied to `top_shadow_one_sentence` examples. Original "Refining the cathedral while buyers wait for a doorway" was too archetype-specific (architects only). Replaced with three domain-spanning examples covering seers / teachers / healers.
+- **Top Shadow framing per Law of Recursive Shadow** (per `unique_business_playbook.md` lines 1272-1287) — the gift's structurally-inverted form. New `top_shadow_one_sentence` field synthesizes the full `edge_and_traps` paragraph into one punchy gerund noun phrase with explicit signal-to-noise principle: *"preserve signal-to-noise ratio — minimal signal loss, minimal noise introduction. Sharper than the paragraph, NOT more abstract."*
+- **Gerund-form archetype titles** required across both `vibrationalKey.name` AND `topTalentProfile.archetype_title` — explicitly forbids actor nouns ("Forger", "Architect") that break the grammar of *"My top talent is ___"*.
+- **Aleksandr calibration baked in** with Sasha's actual generated outputs (Signal-to-Path Shaping, the 7 mastery stages, etc.) — converted to second-person voice, with a new Life Scene that fits the Path Shaping archetype.
+- Mirror `ZONE_OF_GENIUS_PROMPT` updates to user-facing prompt: same gerund-form archetype, same second-person voice, same no-jargon rule.
+
+**PDF revamp (`generateZogPdf.ts` — full rewrite):**
+- **A4** size (was Letter equivalent). **Cream page background** (no white sterility). Solid cream cards + 0.5pt gold hairline (the "easy way out" for glassmorphism — emulates the editorial aesthetic, no `backdrop-filter` attempts).
+- **Editorial header** replaces the navy banner: vector-drawn gold-circle ornament between thin gold rules → small-caps eyebrow "MY TOP TALENT IS" → archetype title in Cormorant (decorative glyphs stripped).
+- **Chapter order mirrors the ME-space side-nav**: Hero → How It Shows Up → Three Key Talents → Top Shadow (synthesized + paragraph) → Path of Mastery → One Action → Ideal Environments → Complementary Partner → Monetization.
+- **Fonts**: Cormorant Garamond + Source Serif 4 fetched from publisher repos (CatharsisFonts/Cormorant, adobe-fonts/source-serif) and dropped in `/public/fonts/`. Loaded at runtime via `pdf.addFileToVFS` + `pdf.addFont`. Graceful fallback to Times when missing. **Total ~2.7 MB** of static font assets.
+- **CTA cleanup**: "Accelerate your path of mastery — book a session **with Aleksandr**" → "...book a session" (per Sasha — "let's not say with Alexander").
+- **Loading state** on the Download Full PDF button: spinner + *"Preparing your PDF…"* copy (font fetch + html2canvas takes 1-3s and the silent wait was triggering double-clicks).
+- **Filename**: `<archetype-slug>-top-talent-profile.pdf`.
+- **Bug fixes during build**: title overlap with eyebrow (jsPDF baseline alignment — fixed by padding y by cap-height before drawing); ✦ glyph not rendering in fallback fonts (replaced with vector circle).
+
+**Bugs caught and fixed:**
+- **Backtick-in-template-literal bug × 3** — references like `` `vibrationalKey.name` `` inside the OUTPUT_FORMAT/ZONE_OF_GENIUS_PROMPT template literals terminated the strings prematurely. Caught by `tsc --noEmit`. Lesson: never use backticks inside backtick-delimited template strings; use single quotes or just plain identifiers.
+- **My Top Talent dropdown wouldn't collapse** — auto-expand `useEffect` dependency `[location.pathname, spaceData]` re-fired on every render because `getSections()` returns a new reference each call, forcing re-expansion. Two fixes: dropped `spaceData` from deps; switched `isExpanded` to `expandedSections[id] ?? hasActiveChild` so the dropdown also auto-opens synchronously on first render.
+- **Overview always lit up in the side-nav** — `isActive(path)` did `pathname.startsWith(path + "/")` and Overview's path IS the parent path, so every sub-route triggered it. Fix: sub-items now use exact pathname match only.
+- **`/game/me/zone-of-genius/start-here` "broke the website"** for users without a saved appleseed snapshot — `ZoGPerspectiveView` had a `if (!appleseedData) return "no data"` gate that fired for every perspective. Fix: `PERSPECTIVES_WITHOUT_DATA = ["start-here"]` exemption list — start-here renders the static `<ActivationSteps />` regardless of data state.
+- **Duplicate logo at top of `/activate/welcome` (and start-here)** — global `<SiteLogo>` was leaking through when GameShellV2's `hideLogo` prop suppressed only the top-right glyph. Fix: added `/activate` to SiteLogo's hidden-paths whitelist.
+- **ALAC audio silent in Chrome** — `ffmpeg -c:a copy` from `.mov` preserved the lossless ALAC codec, which only Safari plays. Fix: re-encoded with `-c:a aac -b:a 128k -ar 44100 -ac 1`. File shrunk 15 MB → 5.2 MB.
+- **Third-person leak on existing snapshots** — Sasha's saved snapshot was generated when the prompt asked for third-person ("they/their"). Render-time band-aid `flipToSecondPerson()` helper applied surgically to fields where pronouns ALWAYS refer to the subject (`core_pattern`, `how_genius_shows_up`, `edge_and_traps`, `masteryStages.description`). NOT applied to fields where "their/they" can refer to other people (`flywheel_action`, `career_sweet_spots`, `complementaryPartner.synergy` after first sentence).
+- **Reveal-card box not fitting one viewport** — addressed in two passes: padding tightened, dodecahedron removed from Overview hero, core_pattern moved out, hideLogo on the shell.
+
+**Process / operating-manual artifacts:**
+- **Long-task recipe documented in `.agent/session-protocol.md`** — Sasha confirmed the master-DoD + sister-DoDs + Q-block + sign-off-prompt pattern is his preferred shape. Added a "Long-task recipe" subsection so the recipe is reusable for future complex requests.
+- **Three new project memories created**: `feedback_emojis_welcome.md` (emojis welcome as accents 🤍 ✨ — Sasha doesn't suppress them), `project_promote_most_resonant_to_free_box.md` (after Sasha self-tests, identify the single most-resonant deep field and consider promoting to free reveal — already partially executed today by promoting Top Shadow), `project_use_sasha_outputs_as_calibration.md` (his real outputs are the strongest possible model anchor — already executed today).
+- **Anti-AI-style rule corrected** in `.agent/anti-ai-style.md`: the old rule *"No emojis unless Sasha uses them first"* was wrong. Sasha actively encourages emojis in chat; UI iconography stays SVG (separate concern).
+- **`FunnelStep` enum extended** with `activate_click`, `activate_coupon_redeemed`, `activate_welcome` — silenced lurking type errors from earlier coupon work.
+
+**Re-routes:**
+- `/activate/welcome` → `<Navigate to="/game/me/zone-of-genius/start-here" replace />`
+- `/activate` → same redirect (any inbound path resolves)
+- Stripe redirect target updated to `https://findyourtoptalent.com/game/me/zone-of-genius/start-here` (Sasha did this in the Stripe dashboard mid-session)
+- Coupon `guerishenko` navigates to the same in-shell start-here
+
+### Files touched (~22)
+
+**Page surfaces:**
+- `src/pages/spaces/profile/ZoneOfGeniusOverview.tsx` — eyebrow text, hero compression, core_pattern moved out, Read Next button, Download PDF loading state, hideLogo
+- `src/pages/spaces/profile/ZoGPerspectiveView.tsx` — perspective registry restructure (delete 3 + add 4 + rename 2 + reorder), start-here exemption from data-gate, Read Next button at bottom, ornament-only header, second-person flip helper applied
+- `src/pages/ActivateWelcome.tsx` — refactored to use shared `<ActivationSteps />`, eventually deprecated as the route is now redirected
+- `src/pages/MyResult.tsx` — RevelatoryHero prop migration (threeLenses retired, topShadow added)
+
+**Components:**
+- `src/components/game/RevelatoryHero.tsx` — Three-Lenses retired, Top Shadow added with ornament + eyebrow, dodecahedron rotation + glow, palette pruned of dead fields
+- `src/components/ActivationSteps.tsx` — NEW shared body of activation flow (3 moves: Read · Guided Meditation · Next step)
+- `src/components/profile/ReadNextSectionButton.tsx` — NEW sequential navigator + `ZOG_SUBPAGE_ORDER` canonical list
+- `src/components/SiteLogo.tsx` — `/activate` added to hidden paths
+- `src/components/game/SectionsPanel.tsx` — side-nav restructure (10-item subSection list + Start Here glow + label rename + dropdown bug fix + sub-item exact-match fix)
+- `src/components/game/GameShellV2.tsx` — only via the hideLogo prop usage on Overview (no internal change)
+
+**Modules / data / prompts:**
+- `src/modules/zone-of-genius/AppleseedDisplay.tsx` — coupon UI, teaser line, Top Shadow prop wiring, route migration
+- `src/modules/zone-of-genius/appleseedGenerator.ts` — OUTPUT_FORMAT extended with full `topTalentProfile` schema, LANGUAGE_GUIDELINES gained NO INSIDER JARGON + SECOND-PERSON REGISTER blocks, ROASTING_INSTRUCTIONS gained jargon check, CALIBRATION_EXAMPLES rewritten with Sasha's actual data in second-person, parser updated for new optional field, post-gen logic switched to model-canonical with rawSignal-extraction as fallback only
+- `src/modules/zone-of-genius/generateZogPdf.ts` — full rewrite (chapter reorder, A4, cream/gold register, vector ornament, font load with Times fallback, drop "with Aleksandr", title cap-height padding fix)
+- `src/prompts/user/zoneOfGeniusPrompt.ts` — mirror updates: gerund archetype, second-person voice, no-jargon rule, Top Shadow recursion-shadow framing, new `top_shadow_one_sentence` field
+- `src/lib/resonanceMatrix.ts` — appleseed.resonant rewritten ("Congrats with receiving the gift of self-knowledge 💗  Many possibilities open for you now. Read on."), partial + off rewritten with synthesized copy + real coach + tool links to playbook
+- `src/lib/zogProfileVoice.ts` — NEW `flipToSecondPerson()` band-aid helper for legacy snapshots
+- `src/lib/funnelAnalytics.ts` — extended `FunnelStep` enum
+- `src/components/ui/ResonanceRating.tsx` — react-markdown rendering for the new long-form resonance copy with inline links
+
+**Routing / shell:**
+- `src/App.tsx` — `/activate/welcome` and `/activate` redirected to in-shell start-here; `ActivateWelcome` import retired
+
+**Static assets:**
+- `public/fonts/CormorantGaramond-Regular.ttf` (1.0 MB)
+- `public/fonts/CormorantGaramond-Bold.ttf` (1.0 MB)
+- `public/fonts/SourceSerif4-Regular.ttf` (256 KB)
+- `public/fonts/SourceSerif4-Italic.ttf` (183 KB)
+- `public/fonts/SourceSerif4-Bold.ttf` (265 KB)
+- `public/audio/activation-meditation.m4a` (5.2 MB, AAC 128 kbps mono)
+
+**Process / agent:**
+- `.agent/session-protocol.md` — added "Long-task recipe" subsection (master-DoD + sister-DoDs + Q-block + sign-off-prompt pattern)
+- `.agent/anti-ai-style.md` — emoji rule corrected
+- `~/.claude/projects/.../memory/feedback_emojis_welcome.md` — NEW
+- `~/.claude/projects/.../memory/project_promote_most_resonant_to_free_box.md` — NEW
+- `~/.claude/projects/.../memory/project_use_sasha_outputs_as_calibration.md` — NEW
+- `~/.claude/projects/.../memory/MEMORY.md` — index updated
+
+### Lessons logged
+
+1. **The architectural invert Sasha caught.** The original design had two separate paths to the deep profile: server-side appleseed (12 fields) + client-side JSON-paste extraction (8 fields). Sasha's question — *"why would we add complexity and split deep profile creation into two parts awkwardly stitched together?"* — exposed the design as an artifact of historical accretion, not a deliberate choice. The fix: merge the deep schema into the appleseed prompt, single call, every user gets the deep profile. This is the same pattern as the licensing decoupling on Day 54 — when an architecture has accidental complexity, the right move is to surface and remove it, not to optimize around it.
+
+2. **Voice register matters MORE than I initially treated it.** The mid-day flip from third-person → second-person came from Sasha noticing *"They listen through messy stories"* reads as someone else, not himself. The fix was a global prompt rewrite + a render-time band-aid for legacy snapshots + a calibration re-bake. The instinct to default to "objective third-person" because it sounds editorial was wrong — for a profile of YOU, second-person ("you listen…") is the only register that lands. School-of-AI third-person trains on academic writing where the subject isn't the reader; for personal-mirror surfaces the reader IS the subject and second-person is correct.
+
+3. **"Reading" carries baggage; "recognition" is the right word.** Sasha's reframe of *"5 min read"* → *"7 min of recognition"* was a register-fix that named what's actually happening: the reader isn't extracting information, they're meeting themselves in the words. Same activity, different framing, different emotional response. Worth remembering for any other "user reads X" copy across the funnel.
+
+4. **Insider jargon is a trust-break, not a stylistic preference.** The "Run one paid Signal Snapshot each workday" output failed not because it was bad advice but because *"Signal Snapshot"* was an undefined capitalized term the reader had no context for. The reader's instant question *"am I supposed to know what this is?"* breaks the recognition contract. The prompt rule baked into both surfaces: NEVER invent capitalized product/service/offering names; NEVER carry over the user's private vocabulary into the rendered output without translation. Same risk class as the third-person voice — the AI defaults to a register that's clinically correct but viscerally wrong for personal-mirror work.
+
+5. **Master-DoD recipe confirmed by Sasha.** When a single request lands with multiple distinct surfaces of work + non-trivial latitude, the right shape is: master DoD table with rows-as-waves → per-wave sister DoDs → numbered Q-block where every judgment call I'd otherwise make silently is stated with my pick → minimal-effort sign-off prompt ("just reply 'go'" or "point at the row number"). Sasha: *"LOVE how you approached this!!! Removes cognitive load from me."* Documented as reusable pattern in `.agent/session-protocol.md`.
+
+6. **Codec choice matters for cross-browser audio.** ALAC plays in Safari only; AAC plays everywhere. When extracting audio from `.mov` for web playback, default to `-c:a aac -b:a 128k` (re-encode), not `-c:a copy` (preserve whatever was in the container). Spoken-word at 128 kbps mono is plenty.
+
+7. **`tsc --noEmit` after every prompt edit.** Backtick-inside-template-literal bugs caught by `tsc` three separate times today during prompt-instruction edits. Cheap insurance.
+
+### Si–Do
+
+Unchanged. **Press send Friday's DMs.** The activation product is now coherent enough to receive a paying stranger; the audio plays in every browser; the deep profile is generated server-side every time; the second-person voice lands the recognition. The first $555 stranger remains the unfired Si–Do — but the apparatus is now substantially more ready to receive them when they arrive.
+
+### What's pending (Sasha's final-pass to-dos)
+
+- Sasha re-runs the assessment on himself with the upgraded prompt + best Lovable model so his stored snapshot updates from third-person → second-person natively (the band-aid handles render-time but the underlying data is still the old shape until re-run)
+- Stripe payment-link redirect target update — DONE mid-session
+- Walk through all pathways one more time
+
+---
+
+*Day 58: The Activation product becomes a transmission. Voice flips to second-person. Deep profile generates server-side every time. Audio plays in every browser. The reveal card sells without describing. The mirror lands.*

@@ -4,6 +4,11 @@ import GameShellV2 from "@/components/game/GameShellV2";
 import { supabase } from "@/integrations/supabase/client";
 import { getOrCreateGameProfileId } from "@/lib/gameProfile";
 import { AppleseedData } from "@/modules/zone-of-genius/appleseedGenerator";
+import type { ExcaliburData } from "@/modules/zone-of-genius/excaliburGenerator";
+import {
+    getCachedZogSnapshot,
+    setCachedZogSnapshot,
+} from "@/lib/zogSnapshotCache";
 import { GOLD_TEXT_STYLE, Ornament } from "@/lib/landingDesign";
 import ActivationSteps from "@/components/ActivationSteps";
 import ReadNextSectionButton from "@/components/profile/ReadNextSectionButton";
@@ -713,14 +718,26 @@ const PERSPECTIVES: Partial<Record<PerspectiveId, PerspectiveConfig>> = {
 const ZoGPerspectiveView = () => {
     const { perspectiveId } = useParams<{ perspectiveId: PerspectiveId }>();
     const location = useLocation();
-    const [loading, setLoading] = useState(true);
-    const [appleseedData, setAppleseedData] = useState<AppleseedData | null>(null);
+    // Day 60 (Sasha 2026-05-03): seed state from the module-level cache so
+    // navigating between Top Talent perspectives (or Overview ↔ Perspective)
+    // is instant after the first fetch. Loading is only true if the cache
+    // misses — otherwise we paint the real content on first frame.
+    const cachedSnapshot = getCachedZogSnapshot();
+    const [loading, setLoading] = useState(!cachedSnapshot);
+    const [appleseedData, setAppleseedData] = useState<AppleseedData | null>(
+        cachedSnapshot?.appleseedData ?? null,
+    );
+    // Tracks whether the fetch confirmed there's no snapshot (so we can
+    // show the empty-state copy AFTER the load completes — never during).
+    const [snapshotMissing, setSnapshotMissing] = useState(false);
 
     useEffect(() => {
+        if (cachedSnapshot) return;
         const loadData = async () => {
             try {
                 const profileId = await getOrCreateGameProfileId();
                 if (!profileId) {
+                    setSnapshotMissing(true);
                     setLoading(false);
                     return;
                 }
@@ -732,21 +749,34 @@ const ZoGPerspectiveView = () => {
                     .single();
 
                 if (!profileData?.last_zog_snapshot_id) {
+                    setSnapshotMissing(true);
                     setLoading(false);
                     return;
                 }
 
                 const { data: snapshotData } = await supabase
                     .from("zog_snapshots")
-                    .select("appleseed_data")
+                    .select("appleseed_data, excalibur_data, archetype_title, core_pattern, top_three_talents")
                     .eq("id", profileData.last_zog_snapshot_id)
                     .single();
 
-                if (snapshotData?.appleseed_data) {
-                    setAppleseedData(snapshotData.appleseed_data as unknown as AppleseedData);
+                const apple = (snapshotData?.appleseed_data ?? null) as AppleseedData | null;
+                if (apple) {
+                    setAppleseedData(apple);
+                } else {
+                    setSnapshotMissing(true);
                 }
+                setCachedZogSnapshot({
+                    profileId,
+                    appleseedData: apple,
+                    excaliburData: (snapshotData?.excalibur_data ?? null) as ExcaliburData | null,
+                    archetypeTitle: (snapshotData?.archetype_title as string | null) ?? null,
+                    corePattern: (snapshotData?.core_pattern as string | null) ?? null,
+                    topThreeTalents: (snapshotData?.top_three_talents as string[] | null) ?? null,
+                });
             } catch (err) {
                 console.error("Error loading perspective data:", err);
+                setSnapshotMissing(true);
             } finally {
                 setLoading(false);
             }
@@ -756,15 +786,14 @@ const ZoGPerspectiveView = () => {
 
     const config = perspectiveId ? PERSPECTIVES[perspectiveId] : null;
 
-    if (loading) {
+    // Unknown perspective is a synchronous decision — no need to wait on
+    // any data fetch. Show the minimal "not found" surface immediately.
+    if (!config) {
         return (
             <GameShellV2>
-                <div className="flex items-center justify-center min-h-[60vh]">
-                    <p
-                        className="italic"
-                        style={mutedStyle}
-                    >
-                        Loading…
+                <div className="max-w-2xl mx-auto px-5 py-10 text-center">
+                    <p className="italic" style={mutedStyle}>
+                        Unknown perspective.
                     </p>
                 </div>
             </GameShellV2>
@@ -777,18 +806,47 @@ const ZoGPerspectiveView = () => {
     // user completes the assessment.
     const PERSPECTIVES_WITHOUT_DATA: PerspectiveId[] = ["start-here"];
     const needsData = !PERSPECTIVES_WITHOUT_DATA.includes(perspectiveId as PerspectiveId);
-    if (!config || (needsData && !appleseedData)) {
-        return (
-            <GameShellV2>
-                <div className="max-w-2xl mx-auto px-5 py-10 text-center">
-                    <p className="italic" style={mutedStyle}>
-                        {!config
-                            ? "Unknown perspective."
-                            : "No Top Talent data found yet. Complete the assessment first."}
-                    </p>
-                </div>
-            </GameShellV2>
+
+    // Body content resolution — order matters:
+    //   1. Page chrome (header) is ALWAYS rendered first so the page is
+    //      scrollable from frame 1, even during the network fetch
+    //      (Day 60 — Sasha: "make it scrollable while it loads").
+    //   2. While loading, body slot shows a soft pulse skeleton.
+    //   3. After loading, either the empty-state copy or the real render.
+    let body: React.ReactNode;
+    if (needsData && !appleseedData && loading) {
+        body = (
+            <div
+                aria-hidden="true"
+                className="space-y-4"
+                style={{ minHeight: "40vh" }}
+            >
+                <div
+                    className="rounded-2xl animate-pulse"
+                    style={{ ...cardSurface, height: "8rem" }}
+                />
+                <div
+                    className="rounded-2xl animate-pulse"
+                    style={{ ...cardSurface, height: "8rem", opacity: 0.7 }}
+                />
+                <div
+                    className="rounded-2xl animate-pulse"
+                    style={{ ...cardSurface, height: "8rem", opacity: 0.5 }}
+                />
+            </div>
         );
+    } else if (needsData && !appleseedData) {
+        body = (
+            <div className="text-center py-10">
+                <p className="italic" style={mutedStyle}>
+                    {snapshotMissing
+                        ? "No Top Talent data found yet. Complete the assessment first."
+                        : "Loading…"}
+                </p>
+            </div>
+        );
+    } else {
+        body = config.render(appleseedData!);
     }
 
     return (
@@ -820,14 +878,7 @@ const ZoGPerspectiveView = () => {
                     </p>
                 </header>
 
-                {/* Content */}
-                <div>
-                    {/* appleseedData is non-null here for every perspective
-                        EXCEPT start-here (which is exempt — see gate above)
-                        and start-here's render ignores data anyway. The `!`
-                        is safe given the gate. */}
-                    {config.render(appleseedData!)}
-                </div>
+                <div>{body}</div>
 
                 {/* Read Next Section — Day 58 (Sasha 2026-05-02 evening):
                     appended at the bottom of every My Top Talent subpage

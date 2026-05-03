@@ -25,6 +25,10 @@ import { getOrCreateGameProfileId } from "@/lib/gameProfile";
 import { generateZogPdf } from "@/modules/zone-of-genius/generateZogPdf";
 import type { AppleseedData as FullAppleseedData } from "@/modules/zone-of-genius/appleseedGenerator";
 import type { ExcaliburData } from "@/modules/zone-of-genius/excaliburGenerator";
+import {
+    getCachedZogSnapshot,
+    setCachedZogSnapshot,
+} from "@/lib/zogSnapshotCache";
 import { CTA_SMALL_CAPS_STYLE, igniteLogo } from "@/lib/landingDesign";
 import CardActions from "@/components/sharing/CardActions";
 import ReadNextSectionButton from "@/components/profile/ReadNextSectionButton";
@@ -172,10 +176,37 @@ const parseMonetizationAvenue = (
 const ZoneOfGeniusOverview = () => {
     const navigate = useNavigate();
     const heroCardRef = useRef<HTMLElement | null>(null);
-    const [loading, setLoading] = useState(true);
-    const [appleseedData, setAppleseedData] = useState<AppleseedData | null>(null);
-    const [fullAppleseed, setFullAppleseed] = useState<FullAppleseedData | null>(null);
-    const [excaliburData, setExcaliburData] = useState<ExcaliburData | null>(null);
+    // Day 60 (Sasha 2026-05-03): seed state from the module-level cache so
+    // the Overview is instant after any other Top Talent perspective has
+    // already fetched it (and vice versa). Only loading=true on a true
+    // cache miss; otherwise the page paints real content on first frame.
+    const cachedSnapshot = getCachedZogSnapshot();
+    const [loading, setLoading] = useState(!cachedSnapshot);
+    const [appleseedData, setAppleseedData] = useState<AppleseedData | null>(
+        (cachedSnapshot?.appleseedData as AppleseedData | null) ??
+            (cachedSnapshot && cachedSnapshot.archetypeTitle
+                ? {
+                      vibrationalKey: {
+                          name: cachedSnapshot.archetypeTitle,
+                          essence: cachedSnapshot.corePattern || "",
+                      },
+                      bullseyeSentence: cachedSnapshot.corePattern || undefined,
+                      threeLenses: (cachedSnapshot.topThreeTalents?.length ?? 0) > 0
+                          ? {
+                                actions: cachedSnapshot.topThreeTalents!,
+                                primeDriver: "",
+                                archetype: cachedSnapshot.archetypeTitle,
+                            }
+                          : undefined,
+                  }
+                : null),
+    );
+    const [fullAppleseed, setFullAppleseed] = useState<FullAppleseedData | null>(
+        (cachedSnapshot?.appleseedData as FullAppleseedData | null) ?? null,
+    );
+    const [excaliburData, setExcaliburData] = useState<ExcaliburData | null>(
+        cachedSnapshot?.excaliburData ?? null,
+    );
     // Day 58 (Sasha 2026-05-02): the PDF generation is async (font fetch
     // + html2canvas) and takes 1-3 seconds with no visible feedback —
     // users were clicking again, thinking it was broken. This flag
@@ -194,6 +225,7 @@ const ZoneOfGeniusOverview = () => {
     };
 
     useEffect(() => {
+        if (cachedSnapshot) return;
         const loadData = async () => {
             try {
                 const resolvedProfileId = await getOrCreateGameProfileId();
@@ -209,6 +241,14 @@ const ZoneOfGeniusOverview = () => {
                     .single();
 
                 if (!profileData?.last_zog_snapshot_id) {
+                    setCachedZogSnapshot({
+                        profileId: resolvedProfileId,
+                        appleseedData: null,
+                        excaliburData: null,
+                        archetypeTitle: null,
+                        corePattern: null,
+                        topThreeTalents: null,
+                    });
                     setLoading(false);
                     return;
                 }
@@ -219,29 +259,53 @@ const ZoneOfGeniusOverview = () => {
                     .eq("id", profileData.last_zog_snapshot_id)
                     .single();
 
-                if (snapshotData?.appleseed_data) {
-                    setAppleseedData(snapshotData.appleseed_data as unknown as AppleseedData);
-                    setFullAppleseed(snapshotData.appleseed_data as unknown as FullAppleseedData);
-                } else if (snapshotData?.archetype_title) {
+                const apple = (snapshotData?.appleseed_data ?? null) as
+                    | FullAppleseedData
+                    | null;
+                const excalibur = (snapshotData?.excalibur_data ?? null) as
+                    | ExcaliburData
+                    | null;
+                const archetypeTitle = (snapshotData?.archetype_title as
+                    | string
+                    | null) ?? null;
+                const corePattern = (snapshotData?.core_pattern as
+                    | string
+                    | null) ?? null;
+                const topThreeTalents = (snapshotData?.top_three_talents as
+                    | string[]
+                    | null) ?? null;
+
+                if (apple) {
+                    setAppleseedData(apple as unknown as AppleseedData);
+                    setFullAppleseed(apple);
+                } else if (archetypeTitle) {
                     // Fallback: minimal appleseed from basic snapshot fields
-                    const talents = (snapshotData.top_three_talents as unknown as string[]) || [];
+                    const talents = topThreeTalents || [];
                     const fallback: AppleseedData = {
                         vibrationalKey: {
-                            name: snapshotData.archetype_title,
-                            essence: snapshotData.core_pattern || "",
+                            name: archetypeTitle,
+                            essence: corePattern || "",
                         },
-                        bullseyeSentence: snapshotData.core_pattern || undefined,
+                        bullseyeSentence: corePattern || undefined,
                         threeLenses: talents.length > 0 ? {
                             actions: talents,
                             primeDriver: "",
-                            archetype: snapshotData.archetype_title,
+                            archetype: archetypeTitle,
                         } : undefined,
                     };
                     setAppleseedData(fallback);
                 }
-                if (snapshotData?.excalibur_data) {
-                    setExcaliburData(snapshotData.excalibur_data as unknown as ExcaliburData);
+                if (excalibur) {
+                    setExcaliburData(excalibur);
                 }
+                setCachedZogSnapshot({
+                    profileId: resolvedProfileId,
+                    appleseedData: apple,
+                    excaliburData: excalibur,
+                    archetypeTitle,
+                    corePattern,
+                    topThreeTalents,
+                });
             } catch (err) {
                 console.error("Error loading Top Talent data:", err);
             } finally {
@@ -251,11 +315,53 @@ const ZoneOfGeniusOverview = () => {
         loadData();
     }, []);
 
+    // Day 60 (Sasha 2026-05-03): the loading state used to short-circuit
+    // the entire return with a 60vh centered "Loading…" — meaning the
+    // page literally had no scrollable content for the 1–3s the snapshot
+    // fetch took. New rule: render a tall scrollable scaffold during the
+    // load so the user can scroll, then the real reveal lands in place.
     if (loading) {
         return (
             <GameShellV2>
-                <div className="flex items-center justify-center min-h-[60vh]">
-                    <div className="animate-pulse text-sm" style={{ color: INK_MUTED }}>Loading…</div>
+                <div
+                    className="max-w-3xl mx-auto px-5 py-8 lg:py-10 space-y-6"
+                    aria-hidden="true"
+                >
+                    <div
+                        className="rounded-2xl animate-pulse"
+                        style={{
+                            background: "rgba(255, 255, 255, 0.55)",
+                            border: "0.5px solid rgba(212, 175, 55, 0.32)",
+                            height: "16rem",
+                        }}
+                    />
+                    <div
+                        className="rounded-2xl animate-pulse"
+                        style={{
+                            background: "rgba(255, 255, 255, 0.5)",
+                            border: "0.5px solid rgba(212, 175, 55, 0.28)",
+                            height: "10rem",
+                            opacity: 0.85,
+                        }}
+                    />
+                    <div
+                        className="rounded-2xl animate-pulse"
+                        style={{
+                            background: "rgba(255, 255, 255, 0.45)",
+                            border: "0.5px solid rgba(212, 175, 55, 0.24)",
+                            height: "12rem",
+                            opacity: 0.7,
+                        }}
+                    />
+                    <div
+                        className="rounded-2xl animate-pulse"
+                        style={{
+                            background: "rgba(255, 255, 255, 0.4)",
+                            border: "0.5px solid rgba(212, 175, 55, 0.2)",
+                            height: "14rem",
+                            opacity: 0.55,
+                        }}
+                    />
                 </div>
             </GameShellV2>
         );
