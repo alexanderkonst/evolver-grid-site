@@ -577,20 +577,21 @@ const AppleseedDisplay = ({
                             border: '1px solid rgba(26,30,58,0.06)',
                         }}
                     >
-                        {/* Day 61 (Sasha 2026-05-04 11:30) copy + legibility revamp:
-                            • Eyebrow flipped from negative to positive — "If you don't want to build
-                              your business yet" → "If you'd like to begin lighter" (parallel register
-                              to Card A's "If you're ready to act"; equal dignity, different door).
-                            • Title compressed — "Find Out How to Use & Monetize Your Top Talent"
-                              (8 words, transactional & buzzfeed-y) → "Activate Your Top Talent"
-                              (4 words, gerund-companion to "Build a Business From It").
-                            • Button verb changed — "Leverage" (corporate-speak) → "Activate"
-                              (matches the title + the methodology).
-                            • Footer drops "somatically" (jargon, fails the 5-second-friend test) and
-                              lifts from text-[10px] uppercase muted to text-sm sentence-case —
-                              actually readable now.
-                            • Button text size + weight bumped (text-sm → text-base, font-medium →
-                              font-semibold). */}
+                        {/* Day 61 (Sasha 2026-05-04 11:30): EXISTING COPY
+                            RESTORED. Sasha called out that "Activate Your
+                            Top Talent" / "begin lighter" / etc. were
+                            shipped without his vetting — those are
+                            conversion-surface copy decisions and need
+                            explicit sign-off, not a Claude-decides
+                            shortcut. Reverting the four strings to their
+                            previous state.
+                            Legibility-only bumps that don't depend on
+                            the new copy form are kept: button stays at
+                            text-base/lg + font-semibold + 1.5px border;
+                            footer keeps the original DM Sans gold
+                            uppercase register but bumped from
+                            text-[10px]/[11px] to text-xs/sm so it's
+                            actually scannable. */}
                         <p
                             className="text-base italic leading-snug"
                             style={{
@@ -599,7 +600,7 @@ const AppleseedDisplay = ({
                                 color: "var(--skin-text-muted, rgba(11,42,90,0.86))",
                             }}
                         >
-                            If you'd like to begin lighter:
+                            If you don't want to build your business yet:
                         </p>
                         <h3
                             className="leading-[1.15] tracking-[-0.005em]"
@@ -610,7 +611,7 @@ const AppleseedDisplay = ({
                                 color: "var(--skin-text-primary, #0a1628)",
                             }}
                         >
-                            Activate Your Top Talent
+                            Find Out How to Use &amp; Monetize Your Top Talent
                         </h3>
 
                         <a
@@ -627,7 +628,7 @@ const AppleseedDisplay = ({
                             }}
                         >
                             <span style={CTA_SMALL_CAPS_STYLE}>
-                                Activate your top talent — $37
+                                Leverage your top talent — $37
                             </span>
                             <ArrowRight
                                 aria-hidden="true"
@@ -636,14 +637,14 @@ const AppleseedDisplay = ({
                         </a>
 
                         <p
-                            className="text-sm sm:text-[15px] leading-relaxed pt-1"
+                            className="text-xs sm:text-sm font-semibold uppercase leading-relaxed pt-1"
                             style={{
-                                fontFamily: "'Source Serif 4', Georgia, serif",
-                                fontWeight: 500,
-                                color: "var(--skin-text-strong, rgba(11,42,90,0.95))",
+                                fontFamily: "'DM Sans', system-ui, sans-serif",
+                                letterSpacing: "0.18em",
+                                color: "rgba(122, 81, 8, 0.95)",
                             }}
                         >
-                            13 minutes — see the value you bring, then feel it in your body.
+                            7 min of understanding the value you bring + 6 min of guided meditation to connect with your talent somatically
                         </p>
 
                         {/* Coupon bypass — Day 58 (Sasha 2026-05-02).
