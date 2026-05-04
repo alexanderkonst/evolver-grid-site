@@ -1,5 +1,5 @@
 import { useEffect, useState, type ReactNode } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import { Sparkles } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import GameShellV2 from "@/components/game/GameShellV2";
