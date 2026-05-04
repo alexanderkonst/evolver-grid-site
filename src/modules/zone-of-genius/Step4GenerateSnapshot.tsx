@@ -190,7 +190,12 @@ const Step4GenerateSnapshot = () => {
 
       const generatedText = data?.generatedText || "";
       setSnapshotMarkdown(generatedText);
-      toast.success("Your Top Talent Snapshot is ready!");
+      // Day 61 (Sasha 2026-05-04 21:00): "Snapshot is ready" toast
+      // killed — redundant with the page itself rendering the result
+      // (the user is literally LOOKING at the snapshot when this would
+      // fire). Per "only keep one" instruction, the canonical
+      // post-completion toast is "Your Top Talent has been saved!"
+      // (in saveSnapshotToDatabase below).
 
       await saveSnapshotToDatabase(generatedText);
     } catch (err) {
@@ -294,7 +299,12 @@ ${snapshotText}`;
             .update({ xp_awarded: true })
             .eq('id', snapshotData.id);
 
-          toast.success("🎉 +100 XP (Genius)");
+          // Day 61 (Sasha 2026-05-04 21:00): XP toast killed.
+          // Per "only keep one popup" instruction. XP is still
+          // awarded server-side (the data update above persists);
+          // only the visual notification is suppressed. If gamification
+          // visibility is wanted later, surface XP in the persistent
+          // header/profile UI instead of as an interruptive toast.
         }
       } else {
         await supabase
