@@ -670,7 +670,7 @@ const ZoneOfGeniusOverview = () => {
 
                     {/* PRIMARY — Productize Yourself Session */}
                     <a
-                        href="/ignite#pricing-section"
+                        href="/ignite"
                         className="group liquid-glass-dark cta-breath w-full rounded-full inline-flex items-center justify-center gap-2 sm:gap-2.5 px-4 sm:px-6 py-3 sm:py-3.5 max-w-full text-sm sm:text-base font-semibold transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
                         style={{
                             fontFamily: "'Cormorant Garamond', serif",

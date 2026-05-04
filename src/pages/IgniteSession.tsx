@@ -282,14 +282,16 @@ const IgniteSession = () => {
                 "0 0 30px rgba(255,255,255,0.20), 0 0 60px rgba(255,255,255,0.08)",
             }}
           >
-            Walk out with a one-sentence business.
+            Walk out with a one-sentence business
           </h1>
 
           <p
             className="text-base sm:text-lg italic text-white/70 max-w-md mx-auto leading-relaxed"
             style={{ fontFamily: "'Source Serif 4', serif" }}
           >
-            In 2 hours. Or you don't pay.
+            In 2 hours
+            <br />
+            Or you don't pay
           </p>
 
           <div className="flex flex-col items-center gap-3 pt-4">
@@ -383,12 +385,6 @@ const IgniteSession = () => {
             </div>
             <p className="text-xs text-white/60">
               2 hours · with a self-productization coach
-            </p>
-            <p
-              className="text-[11px] text-white/45 italic"
-              style={{ fontFamily: "'Source Serif 4', serif" }}
-            >
-              Initiated by Aleksandr Konstantinov
             </p>
           </div>
 
