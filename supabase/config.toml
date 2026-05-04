@@ -105,3 +105,12 @@ verify_jwt = true
 
 [functions.auth-email-hook]
 verify_jwt = false
+
+# Day 61 (Sasha 2026-05-04): backs the "Delete My Account" button in
+# /game/settings → Danger Zone. Requires the caller's bearer token
+# (verify_jwt = true) so we can resolve the user_id from the JWT and
+# delete only their own data + their own auth user — not someone
+# else's. Service-role key inside the function is used to call
+# auth.admin.deleteUser, which can't run from the client.
+[functions.delete-account]
+verify_jwt = true

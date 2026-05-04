@@ -621,32 +621,68 @@ const ProfileSettingsSection = () => {
                                         .eq('id', profile.id);
                                     if (profileError) throw profileError;
 
-                                    // Delete actual snapshot rows. Excalibur
-                                    // lives inside zog_snapshots.excalibur_data,
-                                    // so it goes with this delete — no separate
+                                    // Day 61 bug-sweep (Sasha 2026-05-04 18:30):
+                                    // each delete is now error-checked and the
+                                    // failures are accumulated. Previously
+                                    // these were fire-and-forget — if RLS
+                                    // denied any single delete the function
+                                    // continued silently, returning the user
+                                    // to a "Progress Reset" toast while the
+                                    // data lingered. That was the original
+                                    // bug Sasha reported. Defensive: this
+                                    // also future-proofs against RLS policy
+                                    // tightening that could re-introduce
+                                    // silent failures.
+                                    //
+                                    // Excalibur lives inside
+                                    // zog_snapshots.excalibur_data, so it
+                                    // goes with this delete — no separate
                                     // table to wipe.
-                                    await supabase.from('zog_snapshots').delete().eq('profile_id', profile.id);
-                                    await supabase.from('qol_snapshots').delete().eq('profile_id', profile.id);
+                                    const deleteFailures: string[] = [];
+                                    const wipe = async (
+                                        table: string,
+                                        column: string,
+                                        value: string,
+                                    ) => {
+                                        const { error } = await supabase
+                                            .from(table)
+                                            .delete()
+                                            .eq(column, value);
+                                        if (error) {
+                                            console.warn(
+                                                `[reset] ${table} delete failed (${column}=${value}): ${error.message}`,
+                                            );
+                                            deleteFailures.push(table);
+                                        }
+                                    };
+
+                                    await wipe('zog_snapshots', 'profile_id', profile.id);
+                                    await wipe('qol_snapshots', 'profile_id', profile.id);
 
                                     // UBB canvas + visibility settings key on
                                     // auth.user.id, not game_profiles.id.
                                     if (userId) {
-                                        await supabase.from('user_business_artifacts').delete().eq('user_id', userId);
-                                        await supabase.from('visibility_settings').delete().eq('user_id', userId);
+                                        await wipe('user_business_artifacts', 'user_id', userId);
+                                        await wipe('visibility_settings', 'user_id', userId);
                                     }
 
-                                    // Existing — preserved.
-                                    await supabase.from('player_upgrades').delete().eq('profile_id', profile.id);
-                                    await supabase.from('vector_progress').delete().eq('profile_id', profile.id);
+                                    await wipe('player_upgrades', 'profile_id', profile.id);
+                                    await wipe('vector_progress', 'profile_id', profile.id);
 
                                     // Wipe the snapshot cache so the next ME-
                                     // space render doesn't read stale data
-                                    // from sessionStorage. Without this, the
-                                    // user would have to hard-reload the tab
-                                    // to see the empty state.
+                                    // from sessionStorage.
                                     clearCachedZogSnapshot();
 
-                                    toast({ title: "Progress Reset", description: "Your journey has been restarted." });
+                                    if (deleteFailures.length > 0) {
+                                        toast({
+                                            title: "Progress reset (partial)",
+                                            description: `Some tables couldn't be cleared: ${deleteFailures.join(', ')}. You may see remnants — try again or contact support.`,
+                                            variant: "destructive",
+                                        });
+                                    } else {
+                                        toast({ title: "Progress Reset", description: "Your journey has been restarted." });
+                                    }
                                     navigate('/');
                                 } catch {
                                     toast({
@@ -701,14 +737,24 @@ const ProfileSettingsSection = () => {
                             onClick={async () => {
                                 if (!profile) return;
                                 if (!confirm("This will PERMANENTLY delete your account, all your data, and your login credentials. You will not be able to log back in with this email. Continue?")) return;
-                                const typed = window.prompt('Type DELETE (all caps) to confirm permanent account deletion:');
-                                if (typed !== "DELETE") {
-                                    if (typed !== null) {
-                                        toast({
-                                            title: "Cancelled",
-                                            description: "Account deletion cancelled — you didn't type DELETE.",
-                                        });
-                                    }
+                                // Day 61 bug-sweep: trim whitespace and
+                                // accept case-insensitively so a user typing
+                                // "DELETE " (trailing space) or "delete"
+                                // doesn't get rejected. The two-stage
+                                // confirm() above already does the heavy
+                                // lifting on intent verification — this
+                                // prompt is the typed-acknowledgment, no
+                                // need for it to be pedantically strict.
+                                const typed = window.prompt('Type DELETE to confirm permanent account deletion:');
+                                if (typed === null) {
+                                    // user cancelled — silent bail
+                                    return;
+                                }
+                                if (typed.trim().toUpperCase() !== "DELETE") {
+                                    toast({
+                                        title: "Cancelled",
+                                        description: "Account deletion cancelled — you didn't type DELETE.",
+                                    });
                                     return;
                                 }
                                 setIsLoading(true);
