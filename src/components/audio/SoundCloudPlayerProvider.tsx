@@ -62,21 +62,18 @@ const DEFAULT_PLAYLIST_URL =
  * Music-allowed-route detection — should the player be active on
  * this pathname?
  *
- * Day 60+ rev (Sasha 2026-05-04): inverted from a small allow-list
- * (game / ai-os / ubb / dashboard) to a small DENY-list. The rail
- * renders on far more routes than the original allow-list assumed —
- * /playbook, /path, /library, /settings, /feedback, etc. all wrap
- * themselves in GameShellV2 from inside the page component. The
- * tight allow-list was hiding the player UI on every one of those
- * pages. Inverting fixes that AND makes new app pages default to
- * music-allowed instead of needing to be added to a list each time.
+ * Day 60+ rev2 (Sasha 2026-05-04): tightened the deny-list per
+ * Sasha's correction. Earlier rev incorrectly excluded `/` (landing)
+ * and `/zone-of-genius/*` (assessment funnel) — Sasha clarified
+ * those SHOULD have music. The actual no-music surfaces are the
+ * pure-sales / pure-task ones where ambient music would compete
+ * with the call-to-action.
  *
  * Music is DENIED on the following surfaces (everything else allows):
- *   • /                       — landing / hero
  *   • /ignite, /ignite/*      — primary sales surface ($555 session)
- *   • /zone-of-genius, /...   — pre-purchase assessment funnel
  *   • /auth, /auth/*          — sign-in / sign-up / reset-password
- *   • /activations, /...      — marketing landings for activations
+ *   • /activations, /...      — marketing landings for individual
+ *                                workshop purchases (Stripe checkout)
  *
  * Used both to lazy-mount the engine (boots on first allowed-route
  * entry) AND to auto-pause when the user crosses into denied
@@ -85,9 +82,7 @@ const DEFAULT_PLAYLIST_URL =
 function isShellRoute(pathname: string): boolean {
     // Hard-deny list of "no music" surfaces — every other route is
     // music-allowed by default. New routes don't need any change here.
-    if (pathname === "/") return false;
     if (pathname === "/ignite" || pathname.startsWith("/ignite/")) return false;
-    if (pathname === "/zone-of-genius" || pathname.startsWith("/zone-of-genius/")) return false;
     if (pathname === "/auth" || pathname.startsWith("/auth/")) return false;
     if (pathname === "/activations" || pathname.startsWith("/activations/")) return false;
     return true;
