@@ -1076,25 +1076,12 @@ ${snapshotText}`;
                     <Share2 className="w-3.5 h-3.5" />
                     <span>Share this reveal</span>
                   </button>
-                  <span style={{ color: "var(--skin-text-hint, rgba(26,30,58,0.2))" }}>·</span>
-                  <button
-                    type="button"
-                    onClick={handleBack}
-                    className="inline-flex items-center gap-1.5 transition-colors hover:underline"
-                    style={{ color: "var(--skin-text-muted-soft, rgba(26,30,58,0.6))" }}
-                  >
-                    <ArrowLeft className="w-3 h-3" />
-                    <span>Back</span>
-                  </button>
-                  <span style={{ color: "var(--skin-text-hint, rgba(26,30,58,0.2))" }}>·</span>
-                  <button
-                    type="button"
-                    onClick={handleStartNew}
-                    className="transition-colors hover:underline"
-                    style={{ color: "var(--skin-text-muted-soft, rgba(26,30,58,0.6))" }}
-                  >
-                    Start Over
-                  </button>
+                  {/* Day 61 (Sasha 2026-05-04 23:10): Back + Start Over
+                      buttons removed — redundant. The user can reload
+                      the page to start over; back-navigation is the
+                      browser's job. handleBack + handleStartNew remain
+                      in the file for potential reuse, just not surfaced
+                      in the footer. */}
                 </div>
               </div>
             </div>
