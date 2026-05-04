@@ -16,6 +16,16 @@ interface RevelatoryHeroProps {
      * sentence, sharp.
      */
     topShadow?: string;
+    /**
+     * Day 61 (Sasha 2026-05-04): the three top talents in compact
+     * gerund + concrete object form (e.g., "Sensing the unspoken",
+     * "Softening the wound", "Blessing the threshold"). Sourced from
+     * `topTalentProfile.top_three_talents_compact`. Rendered between
+     * the bullseye and the top-shadow block as a stacked triplet
+     * under a "MY THREE TALENTS" eyebrow. Optional — when absent
+     * (pre-Day-61 snapshots), the section hides cleanly.
+     */
+    topThreeTalents?: string[];
     tagline?: string;
     children?: ReactNode;
     darkMode?: boolean;
@@ -48,10 +58,18 @@ const formatBullseye = (sentence: string): string =>
 const buildShareTextFor = (
     title: string,
     actionStatement: string | undefined,
+    topThreeTalents: string[] | undefined,
 ): string => {
     let text = `My top talent is ${stripDecorativeGlyphs(title)}.\n\n`;
     if (actionStatement) {
         text += `I ${formatBullseye(actionStatement)}.\n\n`;
+    }
+    // Day 61 (Sasha 2026-05-04): include the compact three talents in
+    // the shared text — adds shareable specificity ("yes, that's me")
+    // without spilling the heavier shadow line. Bullet-separated single
+    // line keeps the share message scannable on social previews.
+    if (topThreeTalents && topThreeTalents.length > 0) {
+        text += `My three talents: ${topThreeTalents.join(" · ")}.\n\n`;
     }
     text += `Curious what you see.\n\n→ FindYourTopTalent.Com`;
     return text;
@@ -80,6 +98,7 @@ const RevelatoryHero = ({
     title,
     actionStatement,
     topShadow,
+    topThreeTalents,
     tagline,
     children,
     darkMode = false,
@@ -122,7 +141,15 @@ const RevelatoryHero = ({
     // serialize what the user sees, including the breathing-card glow
     // and the gradient backdrop.
     const cardRef = useRef<HTMLDivElement>(null);
-    const shareText = buildShareTextFor(title, actionStatement);
+    const shareText = buildShareTextFor(title, actionStatement, topThreeTalents);
+
+    // Day 61 (Sasha 2026-05-04): defensive filter — drop empty strings,
+    // limit to 3 entries (in case the model over-generates) so the
+    // reveal block always renders predictably.
+    const compactTalents = topThreeTalents
+        ?.map((t) => (typeof t === "string" ? t.trim() : ""))
+        .filter(Boolean)
+        .slice(0, 3);
 
     const cleanTitle = stripDecorativeGlyphs(title);
 
@@ -225,6 +252,52 @@ const RevelatoryHero = ({
                     >
                         "{subtitle}"
                     </p>
+                )}
+
+                {/* My Three Talents — Day 61 (Sasha 2026-05-04).
+                    Compact gerund-+-concrete-object form (e.g.,
+                    "Sensing the unspoken / Softening the wound /
+                    Blessing the threshold"), three lines stacked.
+                    Sourced from `topTalentProfile.top_three_talents_compact`.
+                    Sits between the bullseye and the top-shadow block —
+                    the natural narrative arc is: identity (top talent
+                    name) → action (bullseye) → three facets → inversion
+                    (shadow). Each line gets a subtle gold pip so the
+                    triplet reads as a sacred-pattern signal without
+                    competing with the headline. Hides cleanly when the
+                    field is absent (pre-Day-61 snapshots). */}
+                {compactTalents && compactTalents.length > 0 && (
+                    <>
+                        <Ornament className="mt-6 mb-4" />
+
+                        <p
+                            className={`text-[10px] sm:text-xs uppercase tracking-[0.28em] ${palette.textMuted} mb-3`}
+                        >
+                            My three talents
+                        </p>
+
+                        <ul className="max-w-2xl mx-auto space-y-1.5">
+                            {compactTalents.map((talent, i) => (
+                                <li
+                                    key={i}
+                                    className={`font-display text-base sm:text-lg md:text-xl italic ${palette.textPrimary} leading-snug`}
+                                    style={{
+                                        textShadow: `0 0 32px ${palette.glowColor}, 0 0 10px rgba(255,255,255,0.10)`,
+                                        fontWeight: 500,
+                                    }}
+                                >
+                                    <span
+                                        aria-hidden="true"
+                                        className={`mr-2 not-italic ${palette.textMuted}`}
+                                        style={{ fontSize: "0.85em" }}
+                                    >
+                                        ✦
+                                    </span>
+                                    {talent}
+                                </li>
+                            ))}
+                        </ul>
+                    </>
                 )}
 
                 {/* Top Shadow — Day 58 (Sasha 2026-05-02). Synthesized

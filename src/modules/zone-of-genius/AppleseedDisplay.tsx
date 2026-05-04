@@ -371,6 +371,7 @@ const AppleseedDisplay = ({
                         title={appleseed.vibrationalKey.name}
                         tagline="My top talent is"
                         actionStatement={appleseed.bullseyeSentence}
+                        topThreeTalents={appleseed.topTalentProfile?.top_three_talents_compact}
                         topShadow={flipToFirstPersonReflexive(appleseed.topTalentProfile?.top_shadow_one_sentence)}
                         darkMode={useDarkHero}
                     />

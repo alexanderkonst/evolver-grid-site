@@ -24,6 +24,14 @@ import { GOLD_TEXT_STYLE, Ornament } from "@/lib/landingDesign";
  * On success the existing anonymous profile (localStorage
  * `game_profile_id`) is attached to the new user via
  * getOrCreateGameProfileId() — no data lost.
+ *
+ * Post-auth side effects (claim-anonymous-zog → promote anonymous
+ * snapshot to a real zog_snapshots row, plus snapshot-cache
+ * invalidation) are NOT handled here. They live in the global
+ * SIGNED_IN listener at `src/lib/postAuthSideEffects.ts`, which
+ * fires for any auth entry point (this component, AuthCallback's
+ * magic-link flow, future paths) so the same side effects can't
+ * drift between forms. See that file for the architectural rationale.
  */
 // Temporary lock — Sasha is polishing the Me space. Flip to `false`
 // (or delete this block + the early return below) to unlock.
