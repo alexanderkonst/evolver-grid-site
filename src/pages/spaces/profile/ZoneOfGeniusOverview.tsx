@@ -577,6 +577,7 @@ const ZoneOfGeniusOverview = () => {
                                     fullAppleseed?.topTalentProfile?.top_three_talents_compact,
                                 )}
                                 darkMode={false}
+                                captureWidth={480}
                             />
                         </div>
                     </article>
