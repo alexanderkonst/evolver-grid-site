@@ -119,6 +119,27 @@ const CardActions = ({
             // discarded after capture — original card is untouched).
             // Solid background so the PNG isn't transparent on socials
             // that render PNGs over black (X/Twitter, dark Telegram).
+            //
+            // Day 61 (Sasha 2026-05-04 17:15): hard kill on Save —
+            // "Failed to execute 'addColorStop' on 'CanvasGradient':
+            // The provided double value is non-finite." This is
+            // html2canvas choking on a gradient stop calculation.
+            // Hypothesis: the brand torus's `filter: drop-shadow(...)`
+            // (added Day 61 12:45 for the in-card brand footer) is
+            // cascading into a NaN in html2canvas's filter+gradient
+            // rasterization path. Extending the scrubber to ALSO strip
+            // `filter` and `-webkit-filter` in the cloned DOM. Visual
+            // cost: the captured PNG loses the soft glow on the brand
+            // torus. Visual gain: every user who hits Save actually
+            // gets a PNG instead of a destructive-toast dead-end.
+            // Trade is correct — Save MUST work.
+            //
+            // SHIPPED, AWAITING SASHA VERIFICATION. If the addColorStop
+            // error persists after deploy, the cause is NOT the torus
+            // drop-shadow and we need to escalate to stripping more
+            // (transforms, box-shadow, gradient backgrounds on
+            // zero-sized elements). Test path: take quiz → reveal →
+            // click Save → PNG downloads cleanly to ~/Downloads.
             const canvas = await html2canvas(el, {
                 scale: 2,
                 useCORS: true,
@@ -133,6 +154,8 @@ const CardActions = ({
                             transition: none !important;
                             backdrop-filter: none !important;
                             -webkit-backdrop-filter: none !important;
+                            filter: none !important;
+                            -webkit-filter: none !important;
                         }
                     `;
                     clonedDoc.head.appendChild(styleTag);

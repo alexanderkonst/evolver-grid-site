@@ -158,17 +158,110 @@ const ZoneOfGeniusEntry = () => {
     // Load saved data on mount
     useEffect(() => {
         const loadExisting = async () => {
+            const urlParams = new URLSearchParams(window.location.search);
+
+            // ─────────────────────────────────────────────────────────
+            // Day 61 (Sasha 2026-05-04 15:30) — Reveal-Anchored Funnel
+            // ─────────────────────────────────────────────────────────
+            //
+            // TWO new entry modes added at the top of this effect, both
+            // bypass the choice/quiz flow and jump straight to the
+            // appleseed-result step. Both render the SAME component as
+            // the live funnel — no replica page, no drift.
+            //
+            // Reference: docs/02-strategy/unique-businesses/alexanders_unique_business.md
+            // → "Lived User Journey — Reveal-Anchored Funnel"
+            //
+            // ENTRY MODE A — Token URL (?result=<access_token>)
+            //   The deposit-slip email from save-zog-result contains a
+            //   token URL pointing here. We look up game_profiles by
+            //   access_token, fetch the linked zog_snapshot, render the
+            //   reveal. No auth required — the token IS the access.
+            //   Replaces the legacy /my-result page (now deleted).
+            //
+            // ENTRY MODE B — Authed user landing here with no token
+            //   The save-anonymous-zog magic-link flow (and AuthCallback
+            //   default) lands authed users on /zone-of-genius after
+            //   claim-anonymous-zog has promoted their snapshot. We
+            //   detect them, fetch their game_profile snapshot, render
+            //   the same reveal. Skips the existing hasReturnParam gate
+            //   that previously kept them on the choice screen.
+            //
+            // ENTRY MODE C — Existing live-funnel logic, preserved below
+            //   Quiz-takers, redo flows, onboarding paths — untouched.
+            //   Bug-blast radius for the new modes is bounded to
+            //   modes A + B; mode C is the same code that's been live.
+
+            // ─── Mode A: token URL ───────────────────────────────────
+            const resultToken = urlParams.get("result");
+            if (resultToken) {
+                try {
+                    // game_profiles.access_token query — same pattern
+                    // the legacy MyResult.tsx page used. Cast to `any`
+                    // because access_token isn't in generated types yet.
+                    const { data: profile } = await (supabase as any)
+                        .from("game_profiles")
+                        .select("id, last_zog_snapshot_id")
+                        .eq("access_token", resultToken)
+                        .maybeSingle();
+
+                    if (profile?.last_zog_snapshot_id) {
+                        const { data: snapshot } = await supabase
+                            .from("zog_snapshots")
+                            .select("appleseed_data")
+                            .eq("id", profile.last_zog_snapshot_id)
+                            .maybeSingle();
+
+                        if (snapshot?.appleseed_data) {
+                            setAppleseed(snapshot.appleseed_data as unknown as AppleseedData);
+                            setStep("appleseed-result");
+                            return; // entry mode handled, skip the rest
+                        }
+                    }
+                    // If lookup fails (bad token, missing snapshot),
+                    // fall through to live-funnel behavior — user sees
+                    // the choice screen and can retake. Better than
+                    // a hard error.
+                } catch (err) {
+                    console.error("[ZoneOfGeniusEntry] token lookup failed", err);
+                    // Fall through to live-funnel behavior
+                }
+            }
+
+            // ─── Mode B: authed user, no token, has saved snapshot ──
+            // Don't run if onboarding/redo (those override below). We
+            // peek at user auth + DB-saved snapshot. If both present,
+            // render the reveal directly — the user came back via
+            // magic-link or post-auth navigation expecting to see
+            // their result, not the choice screen.
+            const isInOnboarding = returnPath === "/start" || returnPath.includes("/start");
+            const isRedoing = urlParams.get("redo") === "true";
+            if (!isInOnboarding && !isRedoing) {
+                const { data: { user } } = await supabase.auth.getUser();
+                if (user) {
+                    const { appleseed: dbAppleseed, excalibur: dbExcalibur } = await loadSavedData();
+                    if (dbAppleseed) {
+                        setAppleseed(dbAppleseed);
+                        if (dbExcalibur) {
+                            setExcalibur(dbExcalibur);
+                            setStep("excalibur-result");
+                        } else {
+                            setStep("appleseed-result");
+                        }
+                        return; // entry mode handled, skip the rest
+                    }
+                }
+            }
+
+            // ─── Mode C: existing live-funnel behavior, preserved ───
             // When in onboarding flow (/start), always start fresh from "choice"
             // Don't auto-restore saved data or redirect
-            const isInOnboarding = returnPath === "/start" || returnPath.includes("/start");
             if (isInOnboarding) {
                 // User is doing fresh onboarding, start from choice screen
                 return;
             }
 
             // Check if user is intentionally visiting to redo
-            const urlParams = new URLSearchParams(window.location.search);
-            const isRedoing = urlParams.get("redo") === "true";
             const hasReturnParam = urlParams.has("return");
 
             // If doing a redo, clear localStorage to start fresh

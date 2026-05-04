@@ -875,7 +875,37 @@ const ZoGPerspectiveView = () => {
                     .eq("id", profileId)
                     .single();
 
-                if (!profileData?.last_zog_snapshot_id) {
+                // Day 61 (Sasha 2026-05-04 16:45): same defensive
+                // fallback as ZoneOfGeniusOverview. See full rationale
+                // in that file. Short version: if the pointer is NULL
+                // we re-query by profile_id for the most recent
+                // snapshot, then heal the pointer for next read. Stops
+                // the "Loading..." spinner-of-doom on perspective
+                // pages (How It Shows Up, Three Talents in Depth, etc.)
+                // when the user genuinely has data but the pointer is
+                // stale. Backfill migration
+                // (20260504200000_backfill_last_zog_snapshot_id.sql)
+                // fixes existing affected profiles in one shot.
+                let snapshotId = profileData?.last_zog_snapshot_id as string | null | undefined;
+                if (!snapshotId) {
+                    const { data: latest } = await supabase
+                        .from("zog_snapshots")
+                        .select("id")
+                        .eq("profile_id", profileId)
+                        .order("created_at", { ascending: false })
+                        .limit(1)
+                        .maybeSingle();
+                    snapshotId = latest?.id;
+
+                    if (snapshotId) {
+                        void supabase
+                            .from("game_profiles")
+                            .update({ last_zog_snapshot_id: snapshotId })
+                            .eq("id", profileId);
+                    }
+                }
+
+                if (!snapshotId) {
                     setSnapshotMissing(true);
                     setLoading(false);
                     return;
@@ -884,7 +914,7 @@ const ZoGPerspectiveView = () => {
                 const { data: snapshotData } = await supabase
                     .from("zog_snapshots")
                     .select("appleseed_data, excalibur_data, archetype_title, core_pattern, top_three_talents")
-                    .eq("id", profileData.last_zog_snapshot_id)
+                    .eq("id", snapshotId)
                     .single();
 
                 const apple = (snapshotData?.appleseed_data ?? null) as unknown as AppleseedData | null;
