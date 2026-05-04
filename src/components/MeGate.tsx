@@ -101,22 +101,32 @@ const MeGate = ({ children }: { children: ReactNode }) => {
                     } catch {
                         // non-fatal — shell will reload profile via auth listener
                     }
-                    // Day 60+ (Sasha 2026-05-04): the post-auth side
-                    // effects (claim-anonymous-zog + snapshot cache
-                    // invalidation) are NO LONGER called here. They're
-                    // handled by the global SIGNED_IN listener installed
-                    // in src/lib/postAuthSideEffects.ts — single source
-                    // of truth that covers this path AND AuthCallback's
-                    // magic-link path AND any future auth entry points.
-                    //
-                    // Day 61 (Sasha 2026-05-04): redirect changed from
-                    // `location.pathname` (whatever the user was hitting
-                    // when they encountered the gate, often /game/me
-                    // which routes to Overview) to the canonical Start
-                    // Here activation home. First-time users always
-                    // land in the right place. Returning users can
-                    // navigate from there to anywhere else in the
-                    // shell.
+                    // Day 61 (Sasha 2026-05-04): explicit awaited claim
+                    // RESTORED here too. Same regression as AuthCallback:
+                    // the Day 60 centralization moved the claim to the
+                    // global SIGNED_IN listener (fire-and-forget), so
+                    // the navigate below ran before the claim completed,
+                    // landing the user on /start-here while their
+                    // anonymous snapshot was still being attached. Page
+                    // read `last_zog_snapshot_id`, saw null, spun on
+                    // "Loading…" forever. Awaiting the claim before
+                    // navigate restores the pre-Day-60 working behavior.
+                    // The global listener still fires (idempotent — dedup
+                    // set in postAuthSideEffects prevents duplicate work).
+                    try {
+                        const { error } = await supabase.functions.invoke("claim-anonymous-zog");
+                        if (error) {
+                            console.warn("[MeGate] claim-anonymous-zog returned error", error);
+                        }
+                    } catch (err) {
+                        console.warn("[MeGate] claim-anonymous-zog threw", err);
+                    }
+                    // Day 61 (Sasha 2026-05-04): always navigate to the
+                    // canonical Start Here activation home (was: back to
+                    // wherever the user hit the gate, which often
+                    // resolved to Overview). First-time users land in
+                    // the right place; returning users can navigate
+                    // anywhere from there.
                     void location;
                     navigate("/game/me/zone-of-genius/start-here", { replace: true });
                 }}
