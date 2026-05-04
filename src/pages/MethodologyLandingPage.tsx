@@ -123,10 +123,12 @@ const MethodologyLandingPage = () => {
             Yourself.
           </p>
 
-          <p className="text-xl sm:text-2xl md:text-[1.75rem] font-medium leading-[1.4] tracking-[-0.005em]">
-            Build it. Launch it.
-          </p>
-
+          {/* Day 58+ (Sasha 2026-05-03): "Build it. Launch it." line
+              retired from the hero stack — the three-line cadence
+              (Find Your Top Talent / Productize Yourself / Scale your
+              Revenue and Impact) reads cleaner without the
+              imperative-pair interruption between the gerund-form
+              promise lines. */}
           <p className="text-xl sm:text-2xl md:text-[1.75rem] font-medium leading-[1.4] tracking-[-0.005em]">
             <span
               className="bg-clip-text text-transparent"
