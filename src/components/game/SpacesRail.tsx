@@ -566,11 +566,13 @@ const SpacesRail = ({
                     title + skip) that hides the iframe off-screen and
                     drives playback via the SC Widget JS API. No
                     SoundCloud chrome, no privacy-policy link, no
-                    waveform — just our own register. Hidden on mobile
-                    because the rail collapses to icons-only at <md. */}
-                <div className="hidden md:block">
-                    <SoundCloudMinimalPlayer />
-                </div>
+                    waveform — just our own register.
+                    Sasha 2026-05-03 iter 2: now renders at all widths.
+                    On mobile (<md), the rail collapses to icons-only
+                    and the player itself hides its title / skip /
+                    attribution glyph internally, leaving just the
+                    gold play button centered in the 72px column. */}
+                <SoundCloudMinimalPlayer />
 
                 {/* Day 51 (Sasha 2026-04-25): Request Guidance — direct
                     Telegram DM to Aleksandr. Zero backend, zero widget.
