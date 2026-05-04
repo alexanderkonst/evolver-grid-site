@@ -511,9 +511,19 @@ const SaveProfileCard = ({ onSuccess }: { onSuccess: () => void }) => {
                         border: "1px solid hsla(228, 30%, 18%, 0.20)",
                     }}
                 >
+                    {/* Day 61 (Sasha 2026-05-04 21:15): tabs were
+                        rendering "off" — both tabs had the same
+                        transparent background, only a tiny shadow
+                        differentiated active. Result: no clear "you
+                        are here" affordance, particularly in Safari
+                        where shadow rendering is more subtle. Fix:
+                        active tab gets a clear white pill background
+                        + subtle gold border so the selected state
+                        reads instantly. Pattern matches Shadcn's
+                        default Tabs aesthetic. */}
                     <TabsTrigger
                         value="save"
-                        className="rounded-full min-h-[44px] text-base font-semibold data-[state=active]:shadow-sm transition-all"
+                        className="rounded-full min-h-[44px] text-base font-semibold transition-all data-[state=active]:bg-white data-[state=active]:shadow-md"
                         style={{
                             fontFamily: "'Cormorant Garamond', serif",
                             fontWeight: 600,
@@ -524,7 +534,7 @@ const SaveProfileCard = ({ onSuccess }: { onSuccess: () => void }) => {
                     </TabsTrigger>
                     <TabsTrigger
                         value="return"
-                        className="rounded-full min-h-[44px] text-base font-semibold data-[state=active]:shadow-sm transition-all"
+                        className="rounded-full min-h-[44px] text-base font-semibold transition-all data-[state=active]:bg-white data-[state=active]:shadow-md"
                         style={{
                             fontFamily: "'Cormorant Garamond', serif",
                             fontWeight: 600,

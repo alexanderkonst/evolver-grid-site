@@ -141,9 +141,15 @@ const Step2SelectTop3CoreTalents = () => {
                   <Check size={12} className="text-white" />
                 </div>
               )}
+              {/* Day 61 (Sasha 2026-05-04 21:25): see Step1 fix —
+                  emphatic name (Cormorant + bold + larger) over
+                  small sans description. */}
               <h3
-                className="text-sm font-semibold mb-1 pr-7"
-                style={{ color: "var(--skin-text-primary, #0a1628)" }}
+                className="text-base font-bold leading-tight mb-1.5 pr-7"
+                style={{
+                    color: "var(--skin-text-primary, #0a1628)",
+                    fontFamily: "'Cormorant Garamond', serif",
+                }}
               >
                 {talent.name}
               </h3>

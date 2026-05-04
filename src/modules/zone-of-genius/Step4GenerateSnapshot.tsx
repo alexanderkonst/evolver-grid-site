@@ -22,6 +22,11 @@ import { getZogAssessmentBasePath, getZogStepPath } from "./zogRoutes";
 // `RevealCTASection` component to eliminate this drift risk.
 import { CTA_SMALL_CAPS_STYLE, igniteLogo } from "@/lib/landingDesign";
 import { trackCTAClick } from "@/lib/funnelAnalytics";
+// Day 61 (Sasha 2026-05-04 21:30): RevelatoryHero imported to unify
+// the assessment-path reveal with the AI-path reveal (single render
+// component, single artifact shape, no drift). Replaces the prior
+// 3-box layout (hero + character card + superpowers).
+import RevelatoryHero from "@/components/game/RevelatoryHero";
 
 // Stripe checkout link for the $37 Activation product. Mirrors
 // AppleseedDisplay.STRIPE_ACTIVATE_LINK — keep in sync.
@@ -519,143 +524,62 @@ ${snapshotText}`;
         {/* Day 47: redundant "STEP 5 OF 5 · LIFELINE SNAPSHOT" eyebrow removed —
             the parent AssessmentLayout already renders the step progress pills. */}
 
-        {/* Hero: Result reveal — Day 47 late pass: dark text + Apple Liquid Glass */}
-        <section
-          className="liquid-glass rounded-3xl px-6 py-12 sm:px-12 sm:py-16 text-center mb-12"
-        >
-          <p
-            className="text-sm uppercase tracking-widest mb-4"
-            style={{ color: "var(--skin-text-faint, rgba(26,30,58,0.55))" }}
-          >
-            Your Top Talent
-          </p>
-          {parsedSnapshot ? (
-            <>
-              <h1
-                className="text-3xl sm:text-4xl lg:text-5xl font-bold"
-                style={{
-                  fontFamily: "'Cormorant Garamond', serif",
-                  color: "var(--skin-text-primary, #0a1628)",
-                  textShadow: "0 0 22px rgba(255,255,255,0.6), 0 1px 2px rgba(255,255,255,0.8), 0 2px 12px rgba(26,30,58,0.15)",
-                }}
-              >
-                You are a {cleanedArchetypeTitle}
-              </h1>
-              <p
-                className="mt-4 text-lg sm:text-xl max-w-2xl mx-auto font-medium"
-                style={{
-                  color: "var(--skin-text-muted, rgba(26,30,58,0.75))",
-                  textShadow: "0 1px 2px rgba(255,255,255,0.6)",
-                }}
-              >
-                Now you have words for what makes you, you.
-              </p>
-            </>
-          ) : (
-            <h1
-              className="text-3xl sm:text-4xl lg:text-5xl font-bold"
-              style={{
-                fontFamily: "'Cormorant Garamond', serif",
-                color: "var(--skin-text-primary, #0a1628)",
-                textShadow: "0 0 22px rgba(255,255,255,0.6), 0 1px 2px rgba(255,255,255,0.75)",
-              }}
-            >
-              Discovering Your Top Talent...
-            </h1>
-          )}
-          <p
-            className="mt-4 text-sm max-w-2xl mx-auto"
-            style={{ color: "var(--skin-text-faint, rgba(26,30,58,0.55))" }}
-          >
-            This is your current character card — a starting point, not a final verdict.
-          </p>
-        </section>
+        {/* Day 61 (Sasha 2026-05-04 21:30): MERGED 3-box layout into
+            ONE unified reveal box using RevelatoryHero (the same
+            component the AI-path AppleseedDisplay uses). Single
+            render path = no drift between AI and assessment paths;
+            same dodecahedron, same editorial typography, same
+            in-card brand footer + QR + Save/Share buttons.
+            Loading state preserved via PremiumLoader.
 
-        {/* Loading State */}
+            Data mapping:
+              archetypeTitle (parsed from AI snapshot) → title
+              description (parsed) → actionStatement (bullseye)
+              superpowers (parsed bullet list) → topThreeTalents
+                array (sliced to first 3 phrases). Per Sasha: the
+                "Three Talents" in the merged box are these
+                superpowers (NOT the user's picked top3Talents).
+              topShadow → undefined (assessment doesn't generate
+                shadow data; per Sasha: skip if not there).
+              darkMode → false (assessment uses light skin).
+
+            CTA boxes (Card A $555, Card B $37, etc.) follow below
+            unchanged in this turn — they're the next sprint item
+            (B4, CTA sequence). */}
         {isGenerating ? (
           <div className="flex flex-col items-center justify-center py-16 space-y-4">
-            <PremiumLoader size="lg" text="Generating your personalized snapshot..." />
+            <PremiumLoader size="lg" text="Discovering your Top Talent..." />
           </div>
         ) : parsedSnapshot ? (
           <>
-            {/* Day 47 very-late pass (Sasha): single-column flow matching the
-                AI-lane AppleseedDisplay. Removed: InviteFriendPrompt (bulky,
-                low-value at peak engagement), two-column aside layout, separate
-                "If This Hit Home" card (consolidated into primary CTA below),
-                "Save & Continue" button (was routing to auth). Added: save-pill
-                email capture + a single prominent commercial CTA. Demoted:
-                Download PDF → small footer link. */}
             <div className="max-w-2xl mx-auto space-y-6">
-              {/* Character Card */}
-              <article className="liquid-glass-strong rounded-3xl p-8 sm:p-10">
-                <p className="text-xs uppercase tracking-widest mb-1" style={{ color: "var(--skin-text-faint, rgba(26,30,58,0.55))" }}>
-                  Top Talent Character Card
-                </p>
-                <p className="text-xs mb-6" style={{ color: "var(--skin-text-faint, rgba(26,30,58,0.55))" }}>
-                  Generated on: {currentDate}
-                </p>
-
-                <h2
-                  className="text-2xl sm:text-3xl font-bold text-center mb-6"
-                  style={{
-                    fontFamily: "'Cormorant Garamond', serif",
-                    color: "var(--skin-text-primary, #0a1628)",
-                    textShadow: "0 1px 2px rgba(255,255,255,0.7)",
-                  }}
-                >
-                  {cleanedArchetypeTitle}
-                </h2>
-
-                <div className="mb-6">
-                  <p
-                    className="text-sm sm:text-base leading-relaxed"
-                    style={{ color: "var(--skin-text-strong, rgba(26,30,58,0.88))" }}
-                  >
-                    {parsedSnapshot.description}
-                  </p>
-                </div>
-
-                <div
-                  className="flex flex-wrap justify-center gap-2 pt-4"
-                  style={{ borderTop: "1px solid rgba(26,30,58,0.1)" }}
-                >
-                  {top3Talents.map(talent => (
-                    <span
-                      key={talent.id}
-                      className="inline-flex items-center rounded-full px-4 py-2 text-xs sm:text-sm font-medium"
-                      style={{
-                        // Day 48 iter 7 (Sasha): migrated violet → gold for funnel coherence.
-                        backgroundColor: "rgba(212,175,55,0.18)",
-                        color: "#7a5108",
-                      }}
-                    >
-                      {talent.name}
-                    </span>
-                  ))}
-                </div>
-              </article>
-
-              {/* Panel A: Superpowers in Action */}
-              <article className="liquid-glass rounded-2xl p-6">
-                <h3
-                  className="text-lg font-semibold mb-2"
-                  style={{
-                    fontFamily: "'Cormorant Garamond', serif",
-                    color: "var(--skin-text-primary, #0a1628)",
-                  }}
-                >
-                  Superpowers in Action
-                </h3>
-                <p className="text-xs mb-3" style={{ color: "var(--skin-text-muted-soft, rgba(26,30,58,0.65))" }}>
-                  How this genius tends to show up when you are on.
-                </p>
-                <ul
-                  className="space-y-2 text-sm list-disc list-inside"
-                  style={{ color: "var(--skin-text-strong, rgba(26,30,58,0.88))" }}
-                >
-                  {formatBullets(parsedSnapshot.superpowers)}
-                </ul>
-              </article>
+              {/* Unified reveal artifact */}
+              <div
+                style={{
+                  borderRadius: '24px',
+                  boxShadow:
+                    '0 0 50px rgba(240, 194, 127, 0.32), 0 0 100px rgba(212, 175, 55, 0.16)',
+                }}
+              >
+                <RevelatoryHero
+                  type="appleseed"
+                  title={cleanedArchetypeTitle}
+                  tagline="My top talent"
+                  actionStatement={parsedSnapshot.description}
+                  topThreeTalents={
+                    parsedSnapshot.superpowers
+                      ? parsedSnapshot.superpowers
+                          .split('\n')
+                          .filter(line => line.trim())
+                          .map(line => line.replace(/^[-–•]\s*/, '').trim())
+                          .filter(Boolean)
+                          .slice(0, 3)
+                      : []
+                  }
+                  topShadow={undefined}
+                  darkMode={false}
+                />
+              </div>
 
               {/* Day 61+ (Sasha 2026-05-04): Edge / Thrives / Mastery
                   Action panels REMOVED. Karime walkthrough showed
@@ -951,19 +875,65 @@ ${snapshotText}`;
                 </div>
               </div>
 
+              {/* CTA 3 — Day 61 (Sasha 2026-05-04 22:00): playbook card
+                  added to complete the canonical 4-CTA sequence (Sasha:
+                  CTA 1 = $555, CTA 2 = $37, CTA 3 = playbook, CTA 4 =
+                  email-me). Same card style as AI-path AppleseedDisplay
+                  for visual consistency across both reveal pages. */}
+              <div className="max-w-md mx-auto pt-4">
+                <a
+                  href="/playbook"
+                  className="block rounded-2xl liquid-glass p-6 text-center transition-all duration-300 hover:scale-[1.01] active:scale-[0.99]"
+                  style={{
+                    border: "1px solid rgba(26,30,58,0.12)",
+                  }}
+                >
+                  <p
+                    className="text-xs uppercase tracking-[0.18em] mb-2"
+                    style={{ color: "var(--skin-text-muted, rgba(122,81,8,0.85))" }}
+                  >
+                    Or build it yourself
+                  </p>
+                  <h3
+                    className="text-xl sm:text-2xl"
+                    style={{
+                      fontFamily: "'Cormorant Garamond', serif",
+                      fontWeight: 600,
+                      color: "var(--skin-text-primary, #0a1628)",
+                    }}
+                  >
+                    Take the exact end-to-end playbook →
+                  </h3>
+                </a>
+              </div>
+
               {/* ═══════════════════════════════════════════════════════
-                  SAVE PILL — matches AI-lane pattern. On submit, fires
-                  save-zog-result which creates a silent account, saves
-                  the snapshot, sends a magic-link email, and enqueues the
-                  3-email nurture sequence.
+                  CTA 4 — SAVE PILL — matches AI-lane pattern. On submit,
+                  fires save-zog-result which creates a silent account,
+                  saves the snapshot, sends the deposit-slip email
+                  (deposit-slip pattern post Day 61).
                   ═══════════════════════════════════════════════════════ */}
               <div className="max-w-md mx-auto pt-2 space-y-2">
                 {/* Day 53 (Sasha): "Activate your full Genius Profile" CTA
                     temporarily hidden — /game/me surface is being polished.
                     Users still receive the magic-link email to enter later. */}
                 {saveState === "saved" ? (
-                  <p className="text-center text-xs" style={{ color: "var(--skin-text-muted-soft, rgba(26,30,58,0.6))" }}>
-                    ✓ Saved. We sent your Top Talent to your inbox so you can come back to it.
+                  // Day 61 (Sasha 2026-05-04 22:00): copy aligned with
+                  // AI-path's CTA 4 success state. The previous "We
+                  // sent your Top Talent to your inbox..." was the
+                  // funnel-killer language Sasha asked us to kill
+                  // (pushes attention OFF the page when nothing more
+                  // sits below CTA 4 anyway). Quiet "Saved ✓" matches
+                  // editorial register.
+                  <p
+                    className="text-center text-base sm:text-lg italic"
+                    style={{
+                      color: "var(--skin-text-muted, rgba(122,81,8,0.95))",
+                      fontFamily: "'Cormorant Garamond', serif",
+                      fontWeight: 500,
+                    }}
+                  >
+                    Saved ✓
                   </p>
                 ) : !saveExpanded ? (
                   <button
@@ -1016,26 +986,15 @@ ${snapshotText}`;
                 style={{ borderTop: "1px solid rgba(26,30,58,0.1)" }}
               >
                 <div className="flex flex-wrap items-center justify-center gap-4 text-xs">
-                  <button
-                    type="button"
-                    onClick={handleDownloadPDF}
-                    disabled={isDownloading}
-                    className="inline-flex items-center gap-1.5 transition-colors hover:underline"
-                    style={{ color: "var(--skin-text-muted-soft, rgba(26,30,58,0.6))" }}
-                  >
-                    {isDownloading ? (
-                      <>
-                        <span className="premium-spinner w-3 h-3" />
-                        <span>Generating PDF…</span>
-                      </>
-                    ) : (
-                      <>
-                        <Download className="w-3.5 h-3.5" />
-                        <span>Download PDF</span>
-                      </>
-                    )}
-                  </button>
-                  <span style={{ color: "var(--skin-text-hint, rgba(26,30,58,0.2))" }}>·</span>
+                  {/* Day 61 (Sasha 2026-05-04 21:20): PDF download
+                      removed from the reveal-page footer per Sasha
+                      ("legacy thing that doesn't belong"). The PNG
+                      save (image of the result card) is the
+                      canonical "save this artifact" surface, not a
+                      PDF document. handleDownloadPDF function +
+                      jsPDF import remain in the file for now (dead
+                      code, harmless) — future cleanup pass can
+                      remove them. */}
                   <button
                     type="button"
                     onClick={() => {

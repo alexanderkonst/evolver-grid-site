@@ -149,9 +149,21 @@ const Step1SelectTop10Talents = () => {
                   <Check size={12} className="text-white" />
                 </div>
               )}
+              {/* Day 61 (Sasha 2026-05-04 21:25): name made
+                  emphatic — bumped to text-base, weight 700, and
+                  Cormorant Garamond serif (matches the brand's
+                  editorial register from the reveal page).
+                  Description stays text-xs sans for clear hierarchy.
+                  Name is now visually dominant, description is
+                  subordinate — the user scan-reads names first, then
+                  descriptions if curious. Same fix applied across
+                  Step 1/2/3 for consistency. */}
               <h3
-                className="text-sm font-semibold mb-1 pr-7"
-                style={{ color: "var(--skin-text-primary, #0a1628)" }}
+                className="text-base font-bold leading-tight mb-1.5 pr-7"
+                style={{
+                    color: "var(--skin-text-primary, #0a1628)",
+                    fontFamily: "'Cormorant Garamond', serif",
+                }}
               >
                 {talent.name}
               </h3>

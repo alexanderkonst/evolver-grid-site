@@ -175,7 +175,16 @@ const Step3OrderTalents = () => {
               >
                 {rankLabels[index]}
               </p>
-              <h3 className="text-sm font-semibold" style={{ color: "var(--skin-text-primary, #0a1628)" }}>
+              {/* Day 61 (Sasha 2026-05-04 21:25): see Step1 fix —
+                  emphatic name (Cormorant + bold + larger) over
+                  small sans description. */}
+              <h3
+                className="text-base font-bold leading-tight"
+                style={{
+                    color: "var(--skin-text-primary, #0a1628)",
+                    fontFamily: "'Cormorant Garamond', serif",
+                }}
+              >
                 {talent.name}
               </h3>
               <p className="text-xs truncate" style={{ color: "var(--skin-text-muted, rgba(26,30,58,0.75))" }}>

@@ -190,6 +190,11 @@ const AppleseedDisplay = ({
     const [email, setEmail] = useState('');
     const [emailUnlocked, setEmailUnlocked] = useState(false);
     const [emailSaving, setEmailSaving] = useState(false);
+    // Day 61 (Sasha 2026-05-04 22:00): bottom CTA 4 toggle state.
+    // When false: shows "Or just email me my result" button.
+    // When true: reveals the OwnershipSection email form.
+    // Matches assessment-path pattern (Step4GenerateSnapshot's saveExpanded).
+    const [bottomEmailExpanded, setBottomEmailExpanded] = useState(false);
 
     // Activation coupon bypass — exceptional / testing path. Subtle
     // collapsed link below the $37 CTA; click to reveal a single input;
@@ -423,42 +428,14 @@ const AppleseedDisplay = ({
                     />
                 )}
 
-                {/* INLINE SAVE BLOCK — Day 61 (Sasha 2026-05-04 16:00).
-                    Moved UP from the QUIET FOOTER (was below the offer
-                    cards) to right here — right after the resonance
-                    affirmation. Logic: the resonance check is the
-                    explicit "yes this sounds like me" commitment moment;
-                    placing the save right after lets us lock in their
-                    email at peak affirmation, without interrupting the
-                    pre-affirmation read. After save, the inline
-                    confirmation ("Saved ✓ — there's more ↓") points
-                    DOWN at the bridge + offer cards that follow,
-                    naturally guiding attention to the booking decision.
-                    Reference: docs/02-strategy/unique-businesses/alexanders_unique_business.md
-                    → "Lived User Journey — Reveal-Anchored Funnel"
-                    Day 1 steps 5–9. */}
-                <div className="max-w-md mx-auto space-y-3 pt-2">
-                    {!emailUnlocked && !isSaved && (
-                        <p
-                            className="text-center text-sm italic"
-                            style={{
-                                color: "var(--skin-text-muted, rgba(11,42,90,0.86))",
-                                fontFamily: "'Source Serif 4', serif",
-                                fontWeight: 500,
-                            }}
-                        >
-                            Save it to your inbox so you can come back to it.
-                        </p>
-                    )}
-                    <OwnershipSection
-                        emailUnlocked={emailUnlocked}
-                        isSaved={isSaved}
-                        email={email}
-                        setEmail={setEmail}
-                        emailSaving={emailSaving}
-                        handleEmailSubmit={handleEmailSubmit}
-                    />
-                </div>
+                {/* Day 61 (Sasha 2026-05-04 22:00): inline save block
+                    REMOVED from after-resonance position. Per Sasha's
+                    "CTA sequence on both reveal pages" instruction:
+                    email-save now lives at the BOTTOM as CTA 4, in
+                    button-to-input pattern (matches the assessment
+                    path's "Or just email me my result"). The
+                    OwnershipSection component is now invoked from
+                    the bottom CTA 4 position only. */}
 
                 {/* BRIDGE LINE — Day 58+ (Sasha 2026-05-03).
                     The 9-line poetic recognition block was replaced with
@@ -790,33 +767,77 @@ const AppleseedDisplay = ({
 
                 </div>
 
-                {/* QUIET FOOTER — Day 61 (Sasha 2026-05-04 16:00).
-                    Email-save block MOVED UP to right after the
-                    resonance check (above). Only the secondary
-                    playbook link remains here — a calm tertiary path
-                    for users who want the deeper read before any
-                    purchase decision. */}
-                <div className="max-w-md mx-auto pt-6">
-                    <p
-                        className="text-center text-sm"
+                {/* Day 61 (Sasha 2026-05-04 22:00): CTA 3 + CTA 4 added
+                    to complete the canonical 4-CTA sequence. Per Sasha:
+                    the same sequence appears on BOTH reveal pages
+                    (AI path here + assessment path Step4GenerateSnapshot):
+                      CTA 1: Build a business ($555) — Card A above
+                      CTA 2: Leverage top talent ($37) — Card B above
+                      CTA 3: Build it yourself with the playbook (THIS)
+                      CTA 4: Or just email me my result (button-to-input,
+                             same pattern as assessment path). */}
+
+                {/* CTA 3 — playbook card */}
+                <div className="max-w-md mx-auto pt-4">
+                    <a
+                        href="/playbook"
+                        className="block rounded-2xl liquid-glass p-6 text-center transition-all duration-300 hover:scale-[1.01] active:scale-[0.99]"
                         style={{
-                            fontFamily: "'Source Serif 4', serif",
-                            fontWeight: 500,
-                            color: "var(--skin-text-muted, rgba(11,42,90,0.86))",
+                            border: "1px solid rgba(26,30,58,0.12)",
                         }}
                     >
-                        Or read the exact playbook first →{" "}
-                        <a
-                            href="/playbook"
-                            className="underline underline-offset-2 transition-colors hover:opacity-80"
+                        <p
+                            className="text-xs uppercase tracking-[0.18em] mb-2"
+                            style={{ color: "var(--skin-text-muted, rgba(122,81,8,0.85))" }}
+                        >
+                            Or build it yourself
+                        </p>
+                        <h3
+                            className="text-xl sm:text-2xl"
                             style={{
-                                color: "var(--skin-text-primary, rgba(10,22,40,0.85))",
-                                textDecorationColor: "rgba(26,30,58,0.3)",
+                                fontFamily: "'Cormorant Garamond', serif",
+                                fontWeight: 600,
+                                color: "var(--skin-text-primary, #0a1628)",
                             }}
                         >
-                            the playbook
-                        </a>
-                    </p>
+                            Take the exact end-to-end playbook →
+                        </h3>
+                    </a>
+                </div>
+
+                {/* CTA 4 — Or just email me my result (button-to-input pattern) */}
+                <div className="max-w-md mx-auto pt-4 pb-2">
+                    {emailUnlocked || isSaved ? (
+                        <p
+                            className="text-center text-base sm:text-lg italic"
+                            style={{
+                                color: "var(--skin-text-muted, rgba(122,81,8,0.95))",
+                                fontFamily: "'Cormorant Garamond', serif",
+                                fontWeight: 500,
+                            }}
+                        >
+                            Saved ✓
+                        </p>
+                    ) : !bottomEmailExpanded ? (
+                        <button
+                            type="button"
+                            onClick={() => setBottomEmailExpanded(true)}
+                            className="w-full flex items-center justify-center gap-2 p-3 rounded-full liquid-glass hover:scale-[1.015] active:scale-[0.985] transition-all duration-300 text-sm"
+                            style={{ color: "var(--skin-text-muted, rgba(26,30,58,0.7))" }}
+                        >
+                            <Mail className="w-4 h-4" />
+                            <span>Or just email me my result</span>
+                        </button>
+                    ) : (
+                        <OwnershipSection
+                            emailUnlocked={emailUnlocked}
+                            isSaved={isSaved}
+                            email={email}
+                            setEmail={setEmail}
+                            emailSaving={emailSaving}
+                            handleEmailSubmit={handleEmailSubmit}
+                        />
+                    )}
                 </div>
             </div>
 
