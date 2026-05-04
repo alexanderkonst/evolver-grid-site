@@ -242,7 +242,10 @@ serve(async (req) => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            from: "Aleksandr Konstantinov <aleksandr@notify.aleksandrkonstantinov.com>",
+            // Day 58+ (Sasha 2026-05-03): swapped from personal name +
+            // domain to brand identity. Karime walkthrough surfaced the
+            // mismatch.
+            from: "Find Your Top Talent <hello@notify.findyourtoptalent.com>",
             to: [normalizedEmail],
             subject: `Your Top Talent: ${appleseedData.vibrationalKey?.name || "Saved"}`,
             html: `

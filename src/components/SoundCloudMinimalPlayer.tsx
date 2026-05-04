@@ -1,69 +1,37 @@
 /**
- * SoundCloudMinimalPlayer — a custom, in-register SoundCloud playlist
- * player that replaces SoundCloud's full widget chrome with a single
- * gold play/pause button + a small Cormorant track title.
+ * SoundCloudMinimalPlayer — visible UI for the SoundCloud playlist
+ * player. A thin consumer of `SoundCloudPlayerProvider` — the audio
+ * engine + iframe + widget API live there, mounted at App root.
  *
- * Day 58+ (Sasha 2026-05-03): the default SoundCloud iframe ships with
- * waveform + track length + privacy-policy link + SoundCloud branding
- * that doesn't blend with our navy/gold rail. This component hides the
- * iframe entirely (off-screen, 0×0, aria-hidden) and drives playback
- * via the SoundCloud Widget JavaScript API. The visible UI is just
- * what we render — total control over the editorial register.
+ * Day 58+ (Sasha 2026-05-03): originally this component owned its
+ * own iframe + widget bindings. That meant when SpacesRail was
+ * remounted on route change (which happens on every navigation —
+ * GameShellV2 wraps each route inline), the iframe was destroyed
+ * and playback stopped. Karime walkthrough exposed this. The fix
+ * was architectural: the engine moved to App-root in
+ * `SoundCloudPlayerProvider`. This component is now just the
+ * visible UI: it reads `playing / trackTitle / trackArtist / ready`
+ * from context and calls `toggle()` / `next()` to drive playback.
+ * Mount it anywhere — playback isn't affected by its lifecycle.
  *
  * Public Widget API docs: https://developers.soundcloud.com/docs/api/html5-widget
  */
 
-import { useEffect, useRef, useState } from "react";
 import { Play, Pause, SkipForward } from "lucide-react";
-
-const WIDGET_API_SRC = "https://w.soundcloud.com/player/api.js";
-
-// Default playlist — Sasha's findyourtoptalent.com SoundCloud playlist.
-const DEFAULT_PLAYLIST_URL =
-    "https://soundcloud.com/alexander-konstantinov-976475588/sets/findyourtoptalent-com-playlist";
-
-// SoundCloud Widget API types live in src/types/soundcloud.d.ts —
-// consolidated there so MusicPlayer + SoundCloudMinimalPlayer share
-// one declaration of `window.SC` (two parallel `declare global`
-// blocks were merging incompatibly).
-
-/**
- * Load the SoundCloud Widget API once (idempotent). Returns a promise
- * that resolves when window.SC.Widget is available.
- */
-function loadWidgetApi(): Promise<void> {
-    if (typeof window === "undefined") return Promise.resolve();
-    if (window.SC?.Widget) return Promise.resolve();
-    const existing = document.querySelector(`script[src="${WIDGET_API_SRC}"]`);
-    if (existing) {
-        return new Promise((resolve) => {
-            existing.addEventListener("load", () => resolve(), { once: true });
-        });
-    }
-    return new Promise((resolve, reject) => {
-        const script = document.createElement("script");
-        script.src = WIDGET_API_SRC;
-        script.async = true;
-        script.onload = () => resolve();
-        script.onerror = () => reject(new Error("Failed to load SoundCloud Widget API"));
-        document.head.appendChild(script);
-    });
-}
-
-interface SoundCloudMinimalPlayerProps {
-    /** Defaults to the findyourtoptalent.com playlist. */
-    playlistUrl?: string;
-}
+import { useSoundCloudPlayer } from "@/components/audio/SoundCloudPlayerProvider";
 
 /**
  * Tiny inline SoundCloud cloud mark — used as the attribution glyph
  * required by SoundCloud's Developer Terms of Use (the iframe is
  * hidden so the default in-widget logo isn't visible; a small mark
  * here keeps us clean). Path is the canonical SC cloud silhouette.
- * Sasha 2026-05-03: rendered tiny (h:10px) and at reduced opacity so
- * it reads as editorial attribution, not a brand badge competing
- * with the rail's gold register. Clicking opens the playlist on
- * SoundCloud in a new tab — doubles as a useful affordance.
+ * Sasha 2026-05-03 iter 2: rendered tiny and at reduced opacity in
+ * dim white — sits cleanly with the rail's monochrome icon family
+ * (chat / settings) instead of competing as a brand-color accent.
+ * Monochrome-on-dark is sanctioned by SC's branding guidelines for
+ * cases where the brand orange would clash with the host palette.
+ * Clicking opens the playlist on SoundCloud in a new tab — doubles
+ * as a useful affordance.
  */
 const SoundCloudGlyph = () => (
     <svg
@@ -79,87 +47,20 @@ const SoundCloudGlyph = () => (
     </svg>
 );
 
-const SoundCloudMinimalPlayer = ({
-    playlistUrl = DEFAULT_PLAYLIST_URL,
-}: SoundCloudMinimalPlayerProps) => {
-    const iframeRef = useRef<HTMLIFrameElement | null>(null);
-    const widgetRef = useRef<SCWidget | null>(null);
-    const [ready, setReady] = useState(false);
-    const [playing, setPlaying] = useState(false);
-    const [trackTitle, setTrackTitle] = useState<string>("");
-    // Day 58+ (Sasha 2026-05-03): also surface the artist (SC username
-    // of the uploader) — a song without an artist credit reads as
-    // mystery-meat. Title and artist render as "Title · Artist" on a
-    // single truncated line; if either is missing, we gracefully fall
-    // back to whichever exists.
-    const [trackArtist, setTrackArtist] = useState<string>("");
+const SoundCloudMinimalPlayer = () => {
+    const player = useSoundCloudPlayer();
 
-    useEffect(() => {
-        let cancelled = false;
-        // Helper — read current sound and fan out to both title + artist
-        // setters. Keeps the two bind handlers below DRY and avoids the
-        // bug where one handler updates title and the other forgets.
-        const readCurrentInto = (widget: SCWidget) => {
-            widget.getCurrentSound((sound) => {
-                if (cancelled) return;
-                if (sound?.title) setTrackTitle(sound.title);
-                if (sound?.user?.username) setTrackArtist(sound.user.username);
-            });
-        };
-        loadWidgetApi()
-            .then(() => {
-                if (cancelled) return;
-                const iframe = iframeRef.current;
-                if (!iframe || !window.SC) return;
-                const widget = window.SC.Widget(iframe);
-                widgetRef.current = widget;
-                const Events = window.SC.Widget.Events;
+    // Provider not mounted — render nothing. Defensive: prevents the
+    // app from crashing if this component is dropped somewhere outside
+    // the provider tree, and keeps the rail clean if the engine
+    // hasn't been wired up.
+    if (!player) return null;
 
-                widget.bind(Events.READY, () => {
-                    if (cancelled) return;
-                    setReady(true);
-                    readCurrentInto(widget);
-                });
-                widget.bind(Events.PLAY, () => {
-                    if (cancelled) return;
-                    setPlaying(true);
-                    readCurrentInto(widget);
-                });
-                widget.bind(Events.PAUSE, () => {
-                    if (!cancelled) setPlaying(false);
-                });
-                widget.bind(Events.FINISH, () => {
-                    if (!cancelled) setPlaying(false);
-                });
-            })
-            .catch((err) => {
-                console.warn("[SoundCloudMinimalPlayer] widget API load failed:", err);
-            });
-        return () => {
-            cancelled = true;
-        };
-    }, []);
+    const { ready, playing, trackTitle, trackArtist, toggle, next, playlistUrl } = player;
 
-    const handleToggle = () => {
-        if (!ready || !widgetRef.current) return;
-        widgetRef.current.toggle();
-    };
-
-    const handleNext = () => {
-        if (!ready || !widgetRef.current) return;
-        widgetRef.current.next();
-    };
-
-    // Build the widget URL with all chrome stripped — we only need the
-    // playback engine, not the visual UI (which we hide off-screen).
-    const widgetSrc = `https://w.soundcloud.com/player/?url=${encodeURIComponent(
-        playlistUrl,
-    )}&visual=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&auto_play=false&buying=false&sharing=false&download=false&show_artwork=false&show_playcount=false`;
-
-    // Day 58+ (Sasha 2026-05-03): compose the visible label as
-    // "Title · Artist". Either side falls back gracefully if missing,
-    // and we keep it on a single truncated line so the rail width
-    // stays disciplined.
+    // Compose visible label as "Title · Artist". Either side falls back
+    // gracefully if missing, on a single truncated line so the rail
+    // width stays disciplined.
     const labelText = trackTitle && trackArtist
         ? `${trackTitle} · ${trackArtist}`
         : trackTitle || trackArtist || (ready ? "playlist" : "loading…");
@@ -193,7 +94,7 @@ const SoundCloudMinimalPlayer = ({
             {/* Play / Pause */}
             <button
                 type="button"
-                onClick={handleToggle}
+                onClick={toggle}
                 disabled={!ready}
                 aria-label={playing ? "Pause playlist" : "Play playlist"}
                 title={playing ? "Pause" : "Play"}
@@ -220,8 +121,8 @@ const SoundCloudMinimalPlayer = ({
                 )}
             </button>
 
-            {/* Track label "Title · Artist" — Cormorant, small,
-                tracked. Hidden on mobile (rail is icon-only at <md). */}
+            {/* Track label "Title · Artist" — Cormorant, small, tracked.
+                Hidden on mobile (rail is icon-only at <md). */}
             <span
                 className="flex-1 truncate hidden md:block"
                 style={{
@@ -241,7 +142,7 @@ const SoundCloudMinimalPlayer = ({
                 and only the play button needs to fit). */}
             <button
                 type="button"
-                onClick={handleNext}
+                onClick={next}
                 disabled={!ready}
                 aria-label="Next track"
                 title="Next"
@@ -253,19 +154,15 @@ const SoundCloudMinimalPlayer = ({
                 <SkipForward className="w-3 h-3" aria-hidden="true" />
             </button>
 
-            {/* SoundCloud attribution mark — Day 58+ (Sasha 2026-05-03):
-                tiny SC cloud, opens the playlist on soundcloud.com in
-                a new tab. Satisfies the attribution clause in
-                SoundCloud's Developer Terms (the default in-widget
-                logo isn't visible — iframe is hidden).
-                Sasha 2026-05-03 iter 2: dropped the SoundCloud orange
-                in favor of dim white — sits cleanly with the rest of
-                the rail's monochrome icon family (chat / settings)
-                instead of competing as a brand-color accent.
-                Monochrome-on-dark is sanctioned by SC's branding
-                guidelines for cases where the brand color clashes
-                with the host palette. Hidden on mobile alongside
-                skip — only the play button shows in the 72px column. */}
+            {/* SoundCloud attribution mark — tiny SC cloud, opens the
+                playlist on soundcloud.com in a new tab. Satisfies the
+                attribution clause in SoundCloud's Developer Terms (the
+                default in-widget logo isn't visible — iframe is hidden
+                at App root). Monochrome-on-dark is sanctioned by SC's
+                branding guidelines for cases where the brand orange
+                would clash with the host palette. Hidden on mobile
+                alongside skip — only the play button shows in the
+                72px column. */}
             <a
                 href={playlistUrl}
                 target="_blank"
@@ -280,28 +177,6 @@ const SoundCloudMinimalPlayer = ({
             >
                 <SoundCloudGlyph />
             </a>
-
-            {/* Hidden SoundCloud iframe — drives playback, never seen.
-                We can't use display:none because some browsers / the
-                Widget API need the iframe in the layout tree to init.
-                Pin off-screen with 0 dimensions instead. */}
-            <iframe
-                ref={iframeRef}
-                title="findyourtoptalent.com playlist (hidden audio engine)"
-                src={widgetSrc}
-                allow="autoplay"
-                aria-hidden="true"
-                tabIndex={-1}
-                style={{
-                    position: "absolute",
-                    width: 0,
-                    height: 0,
-                    left: -9999,
-                    top: -9999,
-                    border: 0,
-                    pointerEvents: "none",
-                }}
-            />
         </div>
     );
 };

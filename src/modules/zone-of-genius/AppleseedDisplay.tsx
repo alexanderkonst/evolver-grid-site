@@ -14,6 +14,12 @@ import { useSkin } from "@/contexts/SkinContext";
 // as the same voice.
 import { CTA_SMALL_CAPS_STYLE, igniteLogo } from "@/lib/landingDesign";
 import { trackCTAClick } from "@/lib/funnelAnalytics";
+// Day 58+ (Sasha 2026-05-03): legacy snapshots shipped top_shadow_one_sentence
+// in second-person reflexive ("yourself") which reads broken under the
+// "MY TOP SHADOW IS" eyebrow. Render-time band-aid flips to first-person
+// reflexive ("myself") so existing users see the correct register without
+// re-running the assessment. New snapshots come out correct natively.
+import { flipToFirstPersonReflexive } from "@/lib/zogProfileVoice";
 
 // Stripe checkout link for the $37 Activation product. Day 57 (Sasha
 // 2026-05-01). Stripe redirects customers to /activate/welcome on
@@ -69,8 +75,6 @@ const OwnershipSection = ({
     emailSaving: boolean;
     handleEmailSubmit: (e: React.FormEvent) => void;
 }) => {
-    const [expanded, setExpanded] = useState(false);
-
     // Success state — quiet confirmation, no form.
     if (emailUnlocked || isSaved) {
         return (
@@ -82,57 +86,43 @@ const OwnershipSection = ({
         );
     }
 
+    // Day 58+ (Sasha 2026-05-03): expand-on-click pill retired. The form
+    // now renders directly so the layout matches Sasha's "[email field]
+    // [Save it]" pattern — one less click, one less moment of decision.
+    // The framing line above ("Email it to yourself, so you don't lose
+    // it.") is rendered by the parent.
     return (
-        <div className="max-w-md mx-auto space-y-2">
-            {/* Day 53 (Sasha): "Activate your full Genius Profile" CTA
-                temporarily hidden — /game/me surface is being polished.
-                Users still receive the magic-link email to enter later. */}
-            {!expanded ? (
+        <div className="max-w-md mx-auto">
+            <form
+                onSubmit={handleEmailSubmit}
+                className="flex items-center gap-2 p-2 rounded-full liquid-glass"
+            >
+                <Mail
+                    className="w-3.5 h-3.5 ml-2 flex-shrink-0"
+                    style={{ color: "var(--skin-text-hint, rgba(26,30,58,0.45))" }}
+                />
+                <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="your@email.com"
+                    className="flex-1 bg-transparent border-0 text-sm focus:outline-none min-w-0"
+                    style={{ color: "var(--skin-text-primary, #0a1628)" }}
+                    required
+                />
                 <button
-                    type="button"
-                    onClick={() => setExpanded(true)}
-                    className="w-full flex items-center justify-center gap-2 p-3
-                               rounded-full liquid-glass
-                               hover:scale-[1.015] active:scale-[0.985]
-                               transition-all duration-300 text-xs"
-                    style={{ color: "var(--skin-text-muted, rgba(26,30,58,0.7))" }}
+                    type="submit"
+                    disabled={emailSaving || !email.trim()}
+                    className="flex-shrink-0 rounded-full px-4 py-1.5 text-xs font-semibold text-white
+                               disabled:opacity-40 transition-colors"
+                    style={{
+                        backgroundImage:
+                            "linear-gradient(135deg, #a06d08 0%, #7a5108 45%, #6b4208 100%)",
+                    }}
                 >
-                    <Mail className="w-3.5 h-3.5" />
-                    <span>Or just email me my result</span>
+                    {emailSaving ? "Saving…" : "Save it"}
                 </button>
-            ) : (
-                <form
-                    onSubmit={handleEmailSubmit}
-                    className="flex items-center gap-2 p-2 rounded-full liquid-glass"
-                >
-                    <Mail className="w-3.5 h-3.5 ml-2 flex-shrink-0" style={{ color: "var(--skin-text-hint, rgba(26,30,58,0.45))" }} />
-                    <input
-                        type="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        placeholder="your@email.com"
-                        autoFocus
-                        className="flex-1 bg-transparent border-0 text-sm focus:outline-none min-w-0"
-                        style={{ color: "var(--skin-text-primary, #0a1628)" }}
-                        required
-                    />
-                    {/* Day 48 iter 7 (Sasha): save-email button migrated
-                        from violet (#8460ea) to the signature gold so
-                        it reads as the same family as the primary CTA. */}
-                    <button
-                        type="submit"
-                        disabled={emailSaving || !email.trim()}
-                        className="flex-shrink-0 rounded-full px-4 py-1.5 text-xs font-semibold text-white
-                                   disabled:opacity-40 transition-colors"
-                        style={{
-                            backgroundImage:
-                                "linear-gradient(135deg, #a06d08 0%, #7a5108 45%, #6b4208 100%)",
-                        }}
-                    >
-                        {emailSaving ? "Saving…" : "Send it"}
-                    </button>
-                </form>
-            )}
+            </form>
         </div>
     );
 };
@@ -398,7 +388,7 @@ const AppleseedDisplay = ({
                         title={appleseed.vibrationalKey.name}
                         tagline="My top talent is"
                         actionStatement={appleseed.bullseyeSentence}
-                        topShadow={appleseed.topTalentProfile?.top_shadow_one_sentence}
+                        topShadow={flipToFirstPersonReflexive(appleseed.topTalentProfile?.top_shadow_one_sentence)}
                         darkMode={useDarkHero}
                     />
                 </div>
@@ -414,70 +404,25 @@ const AppleseedDisplay = ({
                     />
                 )}
 
-                {/* RECOGNITION BLOCK — Day 57 (Sasha 2026-05-01).
-                    Replaces the prior Bridge ("What if shining...") and the
-                    Gap pain-chain. Holds the moment steady; no coercion;
-                    true → clear → usable. */}
+                {/* BRIDGE LINE — Day 58+ (Sasha 2026-05-03).
+                    The 9-line poetic recognition block was replaced with
+                    a single bridge that hands the user directly to the
+                    two action paths below. The artifact box above carries
+                    the confirmation; this line carries the agency. */}
                 <div
-                    className="py-10 max-w-lg mx-auto text-center space-y-7"
+                    className="py-10 max-w-lg mx-auto text-center"
                     style={{
-                        fontFamily: "'Source Serif 4', serif",
+                        fontFamily: "'Cormorant Garamond', serif",
                         color: "var(--skin-text-primary, #0a1628)",
                         textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.7))",
                     }}
                 >
-                    <div className="space-y-2">
-                        <p className="text-lg md:text-xl leading-relaxed" style={{ fontWeight: 600 }}>
-                            You felt that.
-                        </p>
-                        <p className="text-lg md:text-xl leading-relaxed" style={{ fontWeight: 500 }}>
-                            That's your pattern.
-                        </p>
-                        <p
-                            className="text-base leading-relaxed pt-1"
-                            style={{ color: "var(--skin-link-secondary, rgba(26,30,58,0.78))" }}
-                        >
-                            Not something added.
-                        </p>
-                        <p
-                            className="text-base leading-relaxed"
-                            style={{ color: "var(--skin-link-secondary, rgba(26,30,58,0.78))" }}
-                        >
-                            Something that's already been there.
-                        </p>
-                    </div>
-
-                    <div className="space-y-2">
-                        <p className="text-base md:text-lg leading-relaxed" style={{ fontWeight: 500 }}>
-                            Right now, you can see it.
-                        </p>
-                        <p
-                            className="text-base leading-relaxed"
-                            style={{ color: "var(--skin-link-secondary, rgba(26,30,58,0.78))" }}
-                        >
-                            And usually, this is where people pause.
-                        </p>
-                        <p
-                            className="text-base leading-relaxed italic"
-                            style={{ color: "var(--skin-link-secondary, rgba(26,30,58,0.78))" }}
-                        >
-                            They recognize it…
-                            <br />
-                            and then drift back into working the same way as before.
-                        </p>
-                    </div>
-
-                    <div className="space-y-1 pt-2">
-                        <p
-                            className="text-base leading-relaxed"
-                            style={{ color: "var(--skin-link-secondary, rgba(26,30,58,0.78))" }}
-                        >
-                            So the question is simple:
-                        </p>
-                        <p className="text-xl md:text-2xl leading-relaxed" style={{ fontWeight: 600 }}>
-                            What do you want to do with it?
-                        </p>
-                    </div>
+                    <p
+                        className="text-xl md:text-2xl leading-relaxed"
+                        style={{ fontWeight: 500 }}
+                    >
+                        Now the question becomes: what do you want to do with your top talent knowledge?
+                    </p>
                 </div>
 
                 {/* THREE OPTIONS — Day 57 (Sasha 2026-05-01).
@@ -531,7 +476,7 @@ const AppleseedDisplay = ({
                                 fontWeight: 500,
                             }}
                         >
-                            Take this exact pattern and shape it into something clear and sellable.
+                            Turn your top talent into a clear and sellable business offer.
                         </p>
                         <p
                             className="text-sm leading-relaxed"
@@ -613,11 +558,24 @@ const AppleseedDisplay = ({
                             border: '1px solid rgba(26,30,58,0.06)',
                         }}
                     >
-                        {/* Day 58 (Sasha 2026-05-02): numbered eyebrow
-                            ("2 — Activate it") retired. Per Sasha's
-                            spec, Option 2 is title-alone — no lead-in,
-                            no number — letting the editorial title carry
-                            the weight against the heavier Option 1. */}
+                        {/* Day 58+ (Sasha 2026-05-03): Card B simplified
+                            per the "transformational result" pattern —
+                            italic eyebrow lead-in (parallel to Card A's
+                            "If you're ready to act:") + a result-named
+                            title; body paragraphs retired (the title is
+                            the value statement, no further setup needed);
+                            CTA uses CTA_SMALL_CAPS_STYLE in uppercase
+                            tracked register matching Card A; "Most people
+                            start here" footer line retired. */}
+                        <p
+                            className="text-sm sm:text-base italic leading-snug"
+                            style={{
+                                fontFamily: "'Source Serif 4', serif",
+                                color: "var(--skin-text-muted, rgba(26,30,58,0.7))",
+                            }}
+                        >
+                            If you don't want to build your business yet:
+                        </p>
                         <h3
                             className="leading-[1.15] tracking-[-0.005em]"
                             style={{
@@ -627,48 +585,15 @@ const AppleseedDisplay = ({
                                 color: "var(--skin-text-primary, #0a1628)",
                             }}
                         >
-                            Activate Your Top Talent
+                            Find Out How to Use &amp; Monetize Your Top Talent
                         </h3>
-                        <div className="space-y-2">
-                            <p
-                                className="text-base leading-relaxed"
-                                style={{
-                                    fontFamily: "'Source Serif 4', serif",
-                                    color: "var(--skin-link-secondary, rgba(26,30,58,0.78))",
-                                }}
-                            >
-                                Right now, you can recognize it.
-                            </p>
-                            <p
-                                className="text-base sm:text-lg leading-relaxed"
-                                style={{
-                                    fontFamily: "'Source Serif 4', serif",
-                                    color: "var(--skin-text-primary, #0a1628)",
-                                    fontWeight: 500,
-                                }}
-                            >
-                                Activation is where you start working from it.
-                            </p>
-                            <p
-                                className="text-sm leading-relaxed"
-                                style={{
-                                    fontFamily: "'Source Serif 4', serif",
-                                    color: "var(--skin-text-muted, rgba(26,30,58,0.72))",
-                                }}
-                            >
-                                You see how it actually moves — in decisions, in output, in real situations.
-                            </p>
-                        </div>
 
-                        {/* Secondary CTA — hover swaps idle label for action label.
-                            Idle: "Let it become usable — $37"
-                            Hover: "Activate your top talent" */}
                         <a
                             href={STRIPE_ACTIVATE_LINK}
                             target="_blank"
                             rel="noopener noreferrer"
                             onClick={() => trackCTAClick('activate_click', 'appleseed_option2')}
-                            className="group liquid-glass relative w-full rounded-full inline-flex items-center justify-center px-5 py-3 text-sm sm:text-base font-medium transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+                            className="group liquid-glass relative w-full rounded-full inline-flex items-center justify-center gap-2 px-5 py-3 text-sm sm:text-base font-medium transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
                             style={{
                                 fontFamily: "'Cormorant Garamond', serif",
                                 color: "var(--skin-text-primary, #0a1628)",
@@ -676,27 +601,15 @@ const AppleseedDisplay = ({
                                 textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
                             }}
                         >
-                            <span className="relative inline-block">
-                                <span className="block transition-opacity duration-300 group-hover:opacity-0">
-                                    Let it become usable — $37
-                                </span>
-                                <span className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100 whitespace-nowrap">
-                                    Activate your top talent
-                                </span>
+                            <span style={CTA_SMALL_CAPS_STYLE}>
+                                Leverage your top talent — $37
                             </span>
+                            <ArrowRight
+                                aria-hidden="true"
+                                className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 flex-shrink-0"
+                            />
                         </a>
 
-                        {/* Day 58 (Sasha 2026-05-02 late evening): teaser
-                            line right under the Activate CTA. Reframed
-                            "5 min read" → "7 min of recognition" per
-                            Sasha — these are bite-sized thoughts people
-                            re-read, and "reading" carries school-day
-                            resistance baggage. "Recognition" matches
-                            the platform's existing register ("That's
-                            your pattern", "the gift of self-knowledge")
-                            and names what is actually happening: meeting
-                            yourself in the words. Visually harmonious
-                            with the CTA's small-caps register. */}
                         <p
                             className="text-[10px] sm:text-[11px] font-semibold uppercase leading-relaxed pt-1"
                             style={{
@@ -705,17 +618,7 @@ const AppleseedDisplay = ({
                                 color: "rgba(122, 81, 8, 0.85)",
                             }}
                         >
-                            Deeper layers unfold · 7 min of recognition + 6 min of guided meditation
-                        </p>
-
-                        <p
-                            className="text-xs italic"
-                            style={{
-                                fontFamily: "'Source Serif 4', serif",
-                                color: "var(--skin-text-muted-soft, rgba(26,30,58,0.6))",
-                            }}
-                        >
-                            Most people start here.
+                            7 min of understanding the value you bring + 6 min of guided meditation to connect with your talent somatically
                         </p>
 
                         {/* Coupon bypass — Day 58 (Sasha 2026-05-02).
@@ -784,69 +687,15 @@ const AppleseedDisplay = ({
                         )}
                     </div>
 
-                    {/* OPTION 3 — Playbook (tertiary, free).
-                        Day 58 (Sasha 2026-05-02): wrapped in a quieter
-                        liquid-glass card — same shape as Options 1 & 2,
-                        less visual weight. Box continuity preserved
-                        across the trinity. */}
-                    <div
-                        className="liquid-glass rounded-3xl p-6 space-y-3 text-center"
-                        style={{
-                            backgroundColor: 'rgba(255, 255, 255, 0.04)',
-                            border: '1px solid rgba(26,30,58,0.04)',
-                        }}
-                    >
-                        {/* Day 58 (Sasha 2026-05-02): numbered eyebrow
-                            ("3 — See the playbook") retired. Replaced
-                            with the italic lead-in + Cormorant title
-                            pair, parallel structure with Option 1. */}
-                        <p
-                            className="text-sm sm:text-base italic leading-snug"
-                            style={{
-                                fontFamily: "'Source Serif 4', serif",
-                                color: "var(--skin-text-muted, rgba(26,30,58,0.7))",
-                            }}
-                        >
-                            Use the exact playbook we use to DIY:
-                        </p>
-                        <h3
-                            className="leading-[1.15] tracking-[-0.005em]"
-                            style={{
-                                fontFamily: "'Cormorant Garamond', serif",
-                                fontSize: "clamp(1.5rem, 4vw, 1.85rem)",
-                                fontWeight: 600,
-                                color: "var(--skin-text-primary, #0a1628)",
-                            }}
-                        >
-                            Use The Playbook
-                        </h3>
-                        <p
-                            className="text-sm italic leading-relaxed"
-                            style={{
-                                fontFamily: "'Source Serif 4', serif",
-                                color: "var(--skin-text-muted, rgba(26,30,58,0.72))",
-                            }}
-                        >
-                            Pattern → clarity → business.
-                        </p>
-                        <a
-                            href="/playbook"
-                            className="inline-block text-sm underline underline-offset-4 transition-colors hover:opacity-80"
-                            style={{
-                                fontFamily: "'Cormorant Garamond', serif",
-                                color: "var(--skin-text-primary, #0a1628)",
-                                textDecorationColor: "rgba(26,30,58,0.3)",
-                            }}
-                        >
-                            Monetize Your Top Talent Playbook → See the playbook
-                        </a>
-                    </div>
                 </div>
 
-                {/* SAVE LINE + OwnershipSection — quiet escape hatch.
-                    Day 57 (Sasha 2026-05-01): added the framing line above
-                    the email pill. */}
-                <div className="max-w-md mx-auto space-y-3 pt-6">
+                {/* QUIET FOOTER — Day 58+ (Sasha 2026-05-03):
+                    consolidated email-save + secondary playbook link
+                    into one calm footer block. The full liquid-glass
+                    playbook card (formerly Option 3) collapsed into a
+                    single text link here — kept available, no longer
+                    visually competing with the two action paths above. */}
+                <div className="max-w-md mx-auto space-y-4 pt-6">
                     <p
                         className="text-center text-xs italic"
                         style={{
@@ -854,7 +703,7 @@ const AppleseedDisplay = ({
                             fontFamily: "'Source Serif 4', serif",
                         }}
                     >
-                        Or just send this to yourself and come back to it.
+                        Email it to yourself, so you don't lose it.
                     </p>
                     <OwnershipSection
                         emailUnlocked={emailUnlocked}
@@ -864,6 +713,25 @@ const AppleseedDisplay = ({
                         emailSaving={emailSaving}
                         handleEmailSubmit={handleEmailSubmit}
                     />
+                    <p
+                        className="text-center text-xs"
+                        style={{
+                            fontFamily: "'Source Serif 4', serif",
+                            color: "var(--skin-text-muted-soft, rgba(26,30,58,0.6))",
+                        }}
+                    >
+                        Or read the exact playbook first →{" "}
+                        <a
+                            href="/playbook"
+                            className="underline underline-offset-2 transition-colors hover:opacity-80"
+                            style={{
+                                color: "var(--skin-text-primary, rgba(10,22,40,0.85))",
+                                textDecorationColor: "rgba(26,30,58,0.3)",
+                            }}
+                        >
+                            the playbook
+                        </a>
+                    </p>
                 </div>
             </div>
 

@@ -36,3 +36,45 @@ export function flipToSecondPerson(text: string | null | undefined): string {
         .replace(/\bThemselves\b/g, "Yourself")
         .replace(/\bthemselves\b/g, "yourself");
 }
+
+/**
+ * flipToFirstPersonReflexive — sister band-aid for fields rendered
+ * under "MY TOP X IS" eyebrows (today: top_shadow_one_sentence on the
+ * reveal card). The Day-58 prompt-register bug shipped second-person
+ * reflexives ("yourself / your own / yours") in a slot that reads as
+ * the user speaking ABOUT themselves — Karime hit it as
+ * "MY TOP SHADOW IS … delaying being fully seen YOURSELF" which
+ * grammatically reads as broken / impersonal.
+ *
+ * Sasha 2026-05-03: prompt now demands first-person reflexives for
+ * `top_shadow_one_sentence` going forward. This helper flips legacy
+ * snapshots at render time so existing users see the correct
+ * register without re-running the assessment.
+ *
+ * SCOPE: ONLY apply to "MY X IS"–framed slots — never to body
+ * fields in the ME-space "your profile" surfaces (those keep the
+ * second-person register). Today the only consumer is the
+ * reveal-card top_shadow_one_sentence; if more "MY X IS" slots get
+ * added, route their text through this helper too.
+ *
+ * Conservative substitution: only flips reflexive / possessive
+ * forms ("yourself / your own / yours"), not bare "you" or "your".
+ * Bare "you" can still appear correctly inside a first-person
+ * shadow phrase as a generic ("the work you do" → ambiguous), so
+ * leaving it untouched is safer than over-flipping.
+ */
+export function flipToFirstPersonReflexive(text: string | null | undefined): string {
+    if (!text) return "";
+    return text
+        .replace(/\bYourself\b/g, "Myself")
+        .replace(/\byourself\b/g, "myself")
+        // "your own" → "my own" (carries possessive force; the prompt
+        // examples explicitly use "my own stays unnamed" so we mirror
+        // that idiom)
+        .replace(/\bYour own\b/g, "My own")
+        .replace(/\byour own\b/g, "my own")
+        // Standalone "yours" (the absolute possessive — "no one holds yours")
+        // → "mine" so it reads naturally
+        .replace(/\bYours\b/g, "Mine")
+        .replace(/\byours\b/g, "mine");
+}

@@ -16,8 +16,11 @@ const corsHeaders = {
     "authorization, x-client-info, apikey, content-type",
 };
 
+// Day 58+ (Sasha 2026-05-03): swapped from personal name + domain to
+// brand identity. All transactional / nurture mail now reads as
+// "Find Your Top Talent" — never the founder's personal name.
 const FROM_ADDRESS =
-  "Aleksandr Konstantinov <aleksandr@notify.aleksandrkonstantinov.com>";
+  "Find Your Top Talent <hello@notify.findyourtoptalent.com>";
 
 const BATCH_SIZE = 25;
 const MAX_ATTEMPTS = 3;

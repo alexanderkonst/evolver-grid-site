@@ -133,6 +133,8 @@ ROUND 1 — IDENTIFY THE GENERIC. For every field, ask:
 - Does the Prime Driver describe a real action that produces a real effect, or is it a vibe ("Inspire others," "Build community")? Make it surgical.
 - Do the Monetization Avenues contain LinkedIn-clichés ("1:1 coaching", "group program", "online course", "mastermind", "membership community", "VIP day", "consulting package", "speaking engagements", "ebook")? If yes, REJECT and rewrite each as a specific deliverable that names what is BEING PRODUCED — not the format wrapper.
 - Day 58 (2026-05-02) JARGON CHECK: does ANY field — especially flywheel_action, top_three_talents, how_genius_shows_up — contain an invented capitalized product name ("Signal Snapshot," "Compression Capsule," "Architecture Session") or insider vocabulary the reader hasn't been introduced to ("compression," "distillation" used as nouns without translation)? REJECT and rewrite in plain everyday English. The reader has zero context for jargon — every undefined term breaks trust.
+- Day 58 (2026-05-03) VOICE-REGISTER CHECK: does top_shadow_one_sentence contain ANY second-person reflexive ("yourself," "your own," "yours")? If yes, REJECT — this field renders under "MY TOP SHADOW IS" so reflexives MUST be first-person ("myself," "my own," "mine"). Rewrite. Same check applies to bullseyeSentence and elevatorPitch (also "MY X IS"–framed surfaces): no "you / your / yourself" allowed, only "I / my / myself."
+- Day 58 (2026-05-03) ABSTRACT-COMPOUND-NOUN CHECK: scan EVERY field — especially vibrationalKey.name, topTalentProfile.archetype_title, bullseyeSentence, top_shadow_one_sentence — for the banned patterns (Inner X, Felt X, Safe X, Sacred X, Deep X, True X, Pure X, Whole X, Authentic X, and any compound where the adjective doesn't ground the noun in something concrete). If found, REJECT and rewrite as a concrete particular. THE 5-SECOND-FRIEND TEST: a smart friend outside personal-development should grok the phrase in 5 seconds without having to ask "what does that mean?" — if not, rewrite. Karime walkthrough (2026-05-03) shipped "Inner-Belonging Restoring / inner belonging / safe truth" — all three were in this category, and the resonance score dropped accordingly.
 Mark every weak field. Do not skip this round.
 
 ROUND 2 — TEST FOR SIGNAL. For every salvaged field, ask:
@@ -182,15 +184,45 @@ NO INSIDER JARGON, ANYWHERE (Day 58, 2026-05-02):
 - Use ordinary verbs (talk to, write, send, make, run) and ordinary nouns (a person, a page, a message, a post, a session). The reader should understand every word without having to ask "what does that mean?".
 - If a phrase would require an insider footnote to land, rewrite the phrase.
 
-SECOND-PERSON REGISTER for the deep profile (Day 58, 2026-05-02 late — supersedes the earlier third-person rule):
-- ALL topTalentProfile.* fields (core_pattern, top_three_talents, how_genius_shows_up, edge_and_traps, top_shadow_one_sentence, ideal_environments, career_sweet_spots, flywheel_action) MUST address the reader directly in SECOND-PERSON voice — "you / your / yours."
-- NEVER use "I, me, my, mine" (first person).
-- NEVER use "they, their, them" (third person) when referring to the SUBJECT (the reader). "They/their/them" is fine when referring to OTHER people the reader is acting on (e.g., "name their core message" = the client's, not the reader's).
-- The text should read like an editorial observer speaking to the reader directly, naming what is structurally true about them — not a clinical write-up.
-- Example WRONG (first person): "My gift generates its inverse — my own value stays invisible to me."
-- Example WRONG (third person): "Their gift generates its inverse — their own value stays invisible to them."
-- Example RIGHT (second person): "Your gift, making the invisible visible, comes paired with a shadow — your own value tends to stay invisible to you."
-- The bullseyeSentence (rendered as "I [verb]…" on the hero) and the elevator pitch are the ONLY first-person fields. Everything inside topTalentProfile is second-person.
+NO ABSTRACT COMPOUND NOUNS (Day 58, 2026-05-03 — added after Karime walkthrough surfaced 'Inner-Belonging Restoring' / 'felt love' / 'safe truth' as broken phrasing):
+- A "compound noun" here means an adjective+noun pair where the adjective (a) doesn't ground the noun in anything concrete and (b) the pair carries no meaning the reader can act on. Banned patterns include but aren't limited to:
+  • 'Inner X' — inner belonging, inner truth, inner knowing, inner alignment, inner work, inner voice. Too abstract to land. The reader can't picture what "inner belonging" looks like in their actual day.
+  • 'Felt X' — felt love, felt sense, felt experience, felt safety. Same problem.
+  • 'Safe X' — safe truth, safe love, safe space, safe presence. Vague comfort-language with no concrete edge.
+  • 'Sacred X' — sacred work, sacred space, sacred truth. Reads as spiritual-bypass fluff.
+  • 'Deep X' — deep listening, deep knowing, deep alignment. Used as vague intensifier, doesn't add signal.
+  • 'True X' / 'Pure X' / 'Whole X' — true self, pure presence, whole being. New-age register, no traction.
+  • 'Authentic X' — authentic voice, authentic self. Burned-out coach-speak.
+- THE 5-SECOND-FRIEND TEST: read the phrase out loud to a smart friend who isn't in the personal-development world. If they would have to ask "what does that mean?" or "can you give an example?", REWRITE in concrete language.
+- The cure is concrete particulars: what does the person actually DO, with WHOM, in what SITUATION, producing what RESULT? "Inner-Belonging Restoring" → could be 'Helping people stop feeling like outsiders in their own teams' or 'Naming the unspoken thing that makes a room feel like home'. Either is recognizable; the original isn't.
+- This applies to ALL rendered fields, especially archetype_title (vibrationalKey.name + topTalentProfile.archetype_title) and bullseyeSentence — those two carry the most weight on the reveal card and a single abstract compound there sinks the whole resonance score.
+
+VOICE REGISTER — TWO BUCKETS (Day 58, 2026-05-03 — supersedes the blanket second-person rule):
+
+There are TWO distinct surfaces and they take TWO distinct voices. Mixing them up creates jarring reads (e.g., "MY top shadow IS … delaying being fully seen YOURSELF" — which is what shipped before this fix).
+
+Bucket A — FIRST PERSON ("I / me / my / mine / myself"):
+  Fields rendered under "MY TOP X IS" eyebrows on the reveal card. The reader is speaking ABOUT THEMSELVES; reflexives must point back at the speaker.
+  • bullseyeSentence — rendered as "I [verb] …" on the hero
+  • top_shadow_one_sentence — rendered raw under "MY TOP SHADOW IS" → reflexives MUST be first-person ("myself", "my own"), NEVER second-person ("yourself", "your own")
+  • elevatorPitch — first-person summary
+
+Bucket B — SECOND PERSON ("you / your / yours / yourself"):
+  All other topTalentProfile.* body fields (core_pattern, top_three_talents, how_genius_shows_up, edge_and_traps, ideal_environments, career_sweet_spots, flywheel_action). These render in the ME-space "your profile" surfaces, where an editorial observer is naming what's structurally true about the reader.
+  • NEVER first person ("I / my") — that breaks the editorial register.
+  • NEVER third person ("they / their") when referring to the reader (the SUBJECT). "They/their/them" is fine when referring to OTHER people the reader is acting on (e.g., "name their core message" = the client's, not the reader's).
+
+Examples for top_shadow_one_sentence (Bucket A — first person):
+  ✓ RIGHT: "Naming everyone else's gift while my own stays unnamed."
+  ✓ RIGHT: "Teaching the language I won't speak about myself."
+  ✓ RIGHT: "Holding space for everyone while no one holds mine."
+  ✗ WRONG: "Naming everyone else's gift while your own stays unnamed." (second-person under a "MY shadow IS" eyebrow reads broken)
+  ✗ WRONG: "Making love safe for others while delaying being fully seen yourself." (same issue — should end "myself")
+
+Examples for body fields (Bucket B — second person):
+  ✓ RIGHT: "Your gift, making the invisible visible, comes paired with a shadow — your own value tends to stay invisible to you."
+  ✗ WRONG (first person): "My gift generates its inverse — my own value stays invisible to me."
+  ✗ WRONG (third person): "Their gift generates its inverse — their own value stays invisible to them."
 `;
 
 // ---------------------------------------------------------------------------
@@ -200,9 +232,9 @@ SECOND-PERSON REGISTER for the deep profile (Day 58, 2026-05-02 late — superse
 export const OUTPUT_FORMAT = `
 Return a JSON object with this exact structure:
 {
-  "bullseyeSentence": "string - one phrase essence starting with a present tense VERB (e.g. 'architect nested systems...' NOT 'architecting...'). This will be displayed as 'I [bullseySentence]' so the verb must be in first-person present tense.",
+  "bullseyeSentence": "string - one phrase essence starting with a present tense VERB (e.g. 'architect nested systems...' NOT 'architecting...'). This will be displayed as 'I [bullseySentence]' so the verb must be in first-person present tense. NO ABSTRACT COMPOUND NOUNS in the object — REJECT phrases like 'restore inner belonging through felt love and safe truth' (Karime walkthrough 2026-05-03 — the entire sentence was unparseable to a smart friend). The verb's object must be CONCRETE: name what (a thing, a person, a situation) and to/for whom. Apply the 5-second-friend test.",
   "vibrationalKey": {
-    "name": "string — 2-4 word GERUND-form name of the talent itself, NOT an actor noun. Reads naturally inside the sentence 'My top talent is ___' (e.g. 'Signal-to-Form Forging', 'Constellation Mapping', 'Heart Bridging', 'Pattern Architecting'). NEVER 'Forger', 'Mapper', 'Bridger', 'Architect' (actor nouns) — those break the grammar of the surrounding card. Compound forms ('Noun-to-Noun Verbing') are welcome when they carry signal. Do NOT wrap in decorative glyphs (✦, ✧, etc.) — the UI strips them.",
+    "name": "string — 2-4 word GERUND-form name of the talent itself, NOT an actor noun. Reads naturally inside the sentence 'My top talent is ___' (e.g. 'Signal-to-Form Forging', 'Constellation Mapping', 'Heart Bridging', 'Pattern Architecting'). NEVER 'Forger', 'Mapper', 'Bridger', 'Architect' (actor nouns) — those break the grammar of the surrounding card. Compound forms ('Noun-to-Noun Verbing') are welcome when they carry signal. Do NOT wrap in decorative glyphs (✦, ✧, etc.) — the UI strips them. CRITICAL — NO ABSTRACT COMPOUND NOUNS (Day 58, 2026-05-03): the noun half of the gerund must be CONCRETE. Banned: 'Inner X', 'Felt X', 'Safe X', 'Sacred X', 'Deep X', 'True X', 'Pure X', 'Whole X', 'Authentic X' (e.g. 'Inner-Belonging Restoring', 'Felt-Love Holding', 'Safe-Truth Speaking' — all REJECT). The smart-friend test: if a non-coach friend would have to ask 'what does that mean?' the name has failed and you must rewrite into something they'd nod at instantly. Concrete winners pull from the real domain of action — what the person actually DOES, with WHAT, in WHAT WORLD.",
     "tagline": "string — one prophetic third-person sentence that captures the gift in mythic register, e.g. 'He who finds the hidden pulse, gives it shape, and charts the definitive course.'",
     "tagline_simple": "string — one sentence anyone can understand"
   },
@@ -261,7 +293,7 @@ Return a JSON object with this exact structure:
   "elevatorPitch": "string - no filler words",
 
   "topTalentProfile": {
-    "archetype_title": "string — 2-4 word GERUND-form name of the talent itself (e.g., 'Signal-to-Form Forging', 'Pattern Architecting', 'Constellation Mapping'). Reads naturally inside 'My top talent is ___'. NEVER an actor noun ('Forger', 'Architect', 'Mapper') — those break the grammar of the surrounding UI. Match the same value as vibrationalKey.name. Do NOT wrap in decorative glyphs (no '✦', '✧', etc.) — the UI strips them anyway.",
+    "archetype_title": "string — 2-4 word GERUND-form name of the talent itself (e.g., 'Signal-to-Form Forging', 'Pattern Architecting', 'Constellation Mapping'). Reads naturally inside 'My top talent is ___'. NEVER an actor noun ('Forger', 'Architect', 'Mapper') — those break the grammar of the surrounding UI. Match the same value as vibrationalKey.name. Do NOT wrap in decorative glyphs (no '✦', '✧', etc.) — the UI strips them anyway. NO ABSTRACT COMPOUND NOUNS — banned: 'Inner X / Felt X / Safe X / Sacred X / Deep X / True X / Pure X / Whole X / Authentic X' (e.g. 'Inner-Belonging Restoring' is REJECT). Apply the 5-second-friend test before returning.",
     "core_pattern": "string — 2-3 sentence paragraph describing my fundamental operating pattern. Names the signature, not the category. This is the bullseye opened up into prose. Specific to me, not aspirational.",
     "top_three_talents": [
       "string — Talent 1, brief, specific to how it manifests in me (not generic strengths-finder language)",
@@ -270,7 +302,7 @@ Return a JSON object with this exact structure:
     ],
     "how_genius_shows_up": "string — paragraph describing how these talents manifest in my daily work and interactions. Cite real patterns from rawSignal — concrete, not abstract.",
     "edge_and_traps": "string — paragraph naming the structural shadow my gift generates — the OTHER SIDE OF THE COIN, not a list of weaknesses. A unique gift always produces a structurally identical limiting belief, but inverted. Name (a) the inverted form of my gift (e.g., 'I help others articulate their uniqueness' → 'my own uniqueness remains unarticulated'), (b) the limiting belief this inversion whispers in my own life ('I need a better X before I can act'), (c) one short observation about how this looks in motion (the recursive trap when I forget my gift is for outward use, not inward use). Specific to me. Same length as how_genius_shows_up. Do not soften or moralize.",
-    "top_shadow_one_sentence": "string — synthesize the edge_and_traps paragraph above into ONE punchy sentence (max ~16 words). CRITICAL synthesis principle: preserve signal-to-noise ratio — minimal signal loss, minimal noise introduction. The reader should feel the same recursive-shadow recognition in this single sentence as in the full paragraph. Sharper than the paragraph, NOT more abstract. Phrased as a NOUN PHRASE / GERUND so it reads naturally inside 'My top shadow is ___' (parallel to the 'My top talent is ___' convention). UNIVERSALLY RELATABLE register — avoid metaphors so domain-specific they only fit one archetype (e.g. 'cathedral' for architects, 'symphony' for composers). Examples that span different gift-domains: 'Naming everyone else's gift while my own stays unnamed' (the seer's shadow), 'Teaching the language I won't speak about myself' (the teacher's shadow), 'Holding space for everyone while no one holds mine' (the healer's shadow). Match the user's ACTUAL gift, not these examples. Do not soften, do not generalize.",
+    "top_shadow_one_sentence": "string — synthesize the edge_and_traps paragraph above into ONE punchy sentence (max ~16 words). CRITICAL synthesis principle: preserve signal-to-noise ratio — minimal signal loss, minimal noise introduction. The reader should feel the same recursive-shadow recognition in this single sentence as in the full paragraph. Sharper than the paragraph, NOT more abstract. Phrased as a NOUN PHRASE / GERUND so it reads naturally inside 'My top shadow is ___' (parallel to the 'My top talent is ___' convention). FIRST-PERSON REFLEXIVES ONLY — this field renders under a 'MY TOP SHADOW IS' eyebrow, so reflexives MUST be 'myself / my own / mine', NEVER 'yourself / your own / yours' (those create a broken read like 'MY shadow IS … fully seen yourself'). UNIVERSALLY RELATABLE register — avoid metaphors so domain-specific they only fit one archetype (e.g. 'cathedral' for architects, 'symphony' for composers). Examples that span different gift-domains: 'Naming everyone else's gift while my own stays unnamed' (the seer's shadow), 'Teaching the language I won't speak about myself' (the teacher's shadow), 'Holding space for everyone while no one holds mine' (the healer's shadow). Match the user's ACTUAL gift, not these examples. Do not soften, do not generalize.",
     "ideal_environments": [
       "string — specific environment where this archetype is most at home",
       "string — second one, same standard of specificity",

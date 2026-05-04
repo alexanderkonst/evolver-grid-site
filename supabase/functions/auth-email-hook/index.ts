@@ -169,11 +169,24 @@ const EMAIL_TEMPLATES: Record<string, React.ComponentType<any>> = {
 }
 
 // Configuration
-const SITE_NAME = "Aleksandr Konstantinov"
-const FROM_LOCAL_PART = "aleksandr"
-const SENDER_DOMAIN = "notify.aleksandrkonstantinov.com"
-const ROOT_DOMAIN = "aleksandrkonstantinov.com"
-const FROM_DOMAIN = "notify.aleksandrkonstantinov.com" // Domain shown in From address (may be root or sender subdomain)
+// Day 58+ (Sasha 2026-05-03): swapped from "Aleksandr Konstantinov" /
+// "aleksandrkonstantinov.com" to the brand identity. Karime walkthrough:
+// her confirmation email arrived from "Aleksandr Konstantinov" with a
+// "alexandrkonstantinov.com" reference — broke trust and confused the
+// "what site am I confirming?" moment. Sender + visible domain now
+// match the user-facing brand.
+//
+// IMPORTANT — DNS/Resend setup required: this assumes the domain
+// `notify.findyourtoptalent.com` is verified in Resend (or whichever
+// SMTP/email provider is connected) and DKIM/SPF records are set on
+// the DNS side. Without that, mail will be rejected. If the verified
+// sender subdomain is something else, change FROM_DOMAIN /
+// SENDER_DOMAIN below to match what's verified in the provider.
+const SITE_NAME = "Find Your Top Talent"
+const FROM_LOCAL_PART = "hello"
+const SENDER_DOMAIN = "notify.findyourtoptalent.com"
+const ROOT_DOMAIN = "findyourtoptalent.com"
+const FROM_DOMAIN = "notify.findyourtoptalent.com" // Domain shown in From address (may be root or sender subdomain)
 
 // Sample data for preview mode ONLY (not used in actual email sending).
 // URLs are baked in at scaffold time from the project's real data.
