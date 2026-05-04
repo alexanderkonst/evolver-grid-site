@@ -19,7 +19,7 @@
  *     shared component remains the source of truth in case we
  *     restore a standalone page later.
  */
-import { ArrowRight, Download } from "lucide-react";
+import { ArrowRight, ArrowDown, Download } from "lucide-react";
 import { Link } from "react-router-dom";
 import MeditationPlayer from "@/components/MeditationPlayer";
 
@@ -81,13 +81,18 @@ export default function ActivationSteps({ showHeading = true }: ActivationStepsP
                 </div>
             )}
 
-            {/* Step 1 — See it. Day 61 (Sasha 2026-05-04 12:30):
-                renamed from "Read" → "See it" per Sasha's copy. Body
-                expanded to name what the deep-view IS (how you think,
-                work, create) and what it carries (excitement + actual
-                results). CTA label changed to "Deep View of Your Top
-                Talent"; link target preserved (/game/me/zone-of-genius
-                — the Overview page IS the deep view). */}
+            {/* Step 1 — See it. Day 61 (Sasha 2026-05-04 13:00):
+                body tightened — "deep top talent view is now open"
+                → "deep talent view is open" + dropped "now" since
+                the user just unlocked it; second paragraph split
+                into two short statements ("What excites you." +
+                "What's been driving your best results all along.")
+                so each lands on its own beat. CTA label changed
+                from "Deep View of Your Top Talent" → "See you at
+                your best" (Sasha's directive — more inviting,
+                first-person register, less feature-y). Link target
+                preserved (/game/me/zone-of-genius — Overview is the
+                deep view). */}
             <section className="space-y-4 text-center">
                 <p
                     className="text-[11px] sm:text-xs font-semibold tracking-[0.28em] uppercase"
@@ -100,11 +105,13 @@ export default function ActivationSteps({ showHeading = true }: ActivationStepsP
                     style={inkPrimaryStyle}
                 >
                     <p>
-                        Your deep top talent view is now open —<br />
-                        how you naturally think, work, and create.
+                        Your deep talent view is open —<br />
+                        it shows how you naturally think, work, and create.
                     </p>
                     <p>
-                        It's what excites you, and what's actually been driving your best results.
+                        What excites you.
+                        <br />
+                        What's been driving your best results all along.
                     </p>
                 </div>
                 <div className="pt-2">
@@ -113,7 +120,7 @@ export default function ActivationSteps({ showHeading = true }: ActivationStepsP
                         className="group liquid-glass-dark cta-breath rounded-full inline-flex items-center justify-center gap-2 sm:gap-2.5 px-6 sm:px-7 py-3 sm:py-3.5 text-sm sm:text-base font-semibold transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
                         style={ctaButtonStyle}
                     >
-                        <span style={{ letterSpacing: "0.02em" }}>Deep View of Your Top Talent</span>
+                        <span style={{ letterSpacing: "0.02em" }}>See you at your best</span>
                         <ArrowRight
                             aria-hidden="true"
                             className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 flex-shrink-0"
@@ -147,6 +154,15 @@ export default function ActivationSteps({ showHeading = true }: ActivationStepsP
                     <p>Pick one sentence that felt most accurate.</p>
                 </div>
 
+                {/* Day 61 (Sasha 2026-05-04 13:00): demoted from
+                    dark-glass CTA pill to plain italic text — Sasha:
+                    "second CTA is redundant, make it into a text, not
+                    button, and point down to the actual sound player."
+                    Player is right below this line, so the pill was
+                    competing visually with the play affordance. Now
+                    renders as a soft italic anchor with ↓ pointing
+                    down. Smooth-scroll behavior preserved (cheap, no
+                    harm if player already in view). */}
                 <div className="flex justify-center pt-1">
                     <a
                         href="#activation-meditation-player"
@@ -157,13 +173,13 @@ export default function ActivationSteps({ showHeading = true }: ActivationStepsP
                                 target.scrollIntoView({ behavior: "smooth", block: "center" });
                             }
                         }}
-                        className="group liquid-glass-dark cta-breath rounded-full inline-flex items-center justify-center gap-2 sm:gap-2.5 px-6 sm:px-7 py-3 sm:py-3.5 text-sm sm:text-base font-semibold transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
-                        style={ctaButtonStyle}
+                        className="group inline-flex items-center justify-center gap-1.5 text-base md:text-lg italic transition-opacity duration-200 hover:opacity-80"
+                        style={inkSecondaryStyle}
                     >
-                        <span style={{ letterSpacing: "0.02em" }}>Begin the 6-min guided meditation</span>
-                        <ArrowRight
+                        <span>Begin the 6-min guided meditation</span>
+                        <ArrowDown
                             aria-hidden="true"
-                            className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 flex-shrink-0"
+                            className="w-4 h-4 flex-shrink-0 transition-transform duration-300 group-hover:translate-y-0.5"
                         />
                     </a>
                 </div>
