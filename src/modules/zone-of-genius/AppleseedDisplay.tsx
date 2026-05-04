@@ -28,14 +28,24 @@ const STRIPE_ACTIVATE_LINK = "https://buy.stripe.com/00w6oH7wo21R41XaDedEs0H";
 
 const STRIPE_PAYMENT_LINK = "https://buy.stripe.com/9B6dR9bME6i71TP7r2dEs0A";
 
-// Activation coupon — exceptional cases / testing only. Day 58 (Sasha
-// 2026-05-02). To rotate or revoke, change/remove this constant.
-// Comparison is case-insensitive. No backend validation: this is a
-// frontend bypass that skips the Stripe checkout and lands the user
-// directly on /game/me/zone-of-genius/start-here — the activation home
-// (Day 58 evening: /activate/welcome retired in favor of the in-shell
-// surface so the user can return to it anytime).
-const ACTIVATION_COUPON_CODE = "guerishenko";
+// Activation coupons — exceptional cases / testing only. Day 58 (Sasha
+// 2026-05-02). Refactored to a Set on Day 60 (Sasha 2026-05-04) so
+// multiple codes can coexist without the comparison branching.
+// Comparison is case-insensitive (entries below MUST be lowercase).
+// No backend validation: these are frontend bypasses that skip the
+// Stripe checkout and land the user directly on
+// /game/me/zone-of-genius/start-here — the activation home.
+//
+// To revoke a code: remove its entry. To rotate: replace the string.
+// To add: append another string. Code names are memorable English /
+// methodology references chosen so a holder can type them quickly:
+//   • guerishenko — original code, personal handle
+//   • appleseed   — the methodology artifact this activation unlocks
+//                   (the Appleseed → Top Talent reveal)
+const ACTIVATION_COUPON_CODES = new Set([
+    "guerishenko",
+    "appleseed",
+]);
 
 interface AppleseedDisplayProps {
     appleseed: AppleseedData;
@@ -168,7 +178,7 @@ const AppleseedDisplay = ({
     const handleCouponSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         const entered = couponInput.trim().toLowerCase();
-        if (entered === ACTIVATION_COUPON_CODE) {
+        if (ACTIVATION_COUPON_CODES.has(entered)) {
             trackCTAClick('activate_coupon_redeemed', 'appleseed_option2');
             navigate('/game/me/zone-of-genius/start-here');
         } else {
