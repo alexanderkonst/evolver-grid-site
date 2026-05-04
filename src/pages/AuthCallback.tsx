@@ -29,22 +29,34 @@ const AuthCallback = () => {
       handledRef.current = true;
       if (timeoutId) window.clearTimeout(timeoutId);
 
-      // Day 60+ (Sasha 2026-05-04): explicit `claim-anonymous-zog`
-      // invocation REMOVED. The claim is now fired by the global
-      // SIGNED_IN listener in src/lib/postAuthSideEffects.ts (which
-      // also covers MeGate's password-signup path AND any future
-      // auth entry points — eliminates the per-form drift that
-      // orphaned Karime's snapshot). Removing the explicit call here
-      // also removes the duplicate-snapshot race that would happen
-      // if both this and the global listener fired claim concurrently
-      // for the same user.
+      // Day 61 (Sasha 2026-05-04): explicit awaited claim RESTORED.
+      // The Day 60 "centralization" that moved this to the global
+      // SIGNED_IN listener in postAuthSideEffects.ts was fire-and-
+      // forget — AuthCallback navigated immediately while the claim
+      // was still in flight. The destination is now
+      // /game/me/zone-of-genius/* which renders snapshot pages
+      // directly, creating a race: page reads `last_zog_snapshot_id`
+      // before the claim completes, sees null, spins on "Loading…"
+      // forever (or shows empty state). The Day 60 comment claimed
+      // "the destination doesn't render the user's snapshot
+      // directly" — that was true for the old /playbook/discover
+      // default but FALSE for the current Top Talent flow.
       //
-      // The destination (`/playbook/discover` by default) doesn't
-      // render the user's snapshot directly, so there's no
-      // page-paint timing issue from not awaiting the claim here.
-      // By the time the user navigates to a snapshot-rendering page
-      // (e.g., /game/me/zone-of-genius/overview), the global
-      // listener's claim has long since settled.
+      // Awaiting the claim before navigate restores the working
+      // pre-Day-60 behavior. The global listener still fires too
+      // (idempotent — claim returns `{ claimed: false }` if no row
+      // to claim), serving as a safety net for any future entry
+      // point that forgets to await explicitly. Dedup set in
+      // postAuthSideEffects prevents duplicate work for the same
+      // user.
+      try {
+        const { error } = await supabase.functions.invoke("claim-anonymous-zog");
+        if (error) {
+          console.warn("[AuthCallback] claim-anonymous-zog returned error", error);
+        }
+      } catch (err) {
+        console.warn("[AuthCallback] claim-anonymous-zog threw", err);
+      }
 
       if (typeof window !== "undefined") {
         window.sessionStorage.removeItem(PENDING_CLAIM_EMAIL_KEY);
