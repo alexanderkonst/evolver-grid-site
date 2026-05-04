@@ -86,10 +86,20 @@ const OwnershipSection = ({
     handleEmailSubmit: (e: React.FormEvent) => void;
 }) => {
     // Success state — quiet confirmation, no form.
+    // Day 61 (Sasha 2026-05-04): legibility — text-xs → text-sm and
+    // muted-soft → muted so the saved-confirmation reads after Sasha
+    // pointed out the reveal arc was too thin/pale.
     if (emailUnlocked || isSaved) {
         return (
             <div className="text-center py-2">
-                <p className="text-xs" style={{ color: "var(--skin-text-muted-soft, rgba(26,30,58,0.6))" }}>
+                <p
+                    className="text-sm"
+                    style={{
+                        color: "var(--skin-text-muted, rgba(11,42,90,0.86))",
+                        fontFamily: "'Source Serif 4', serif",
+                        fontWeight: 500,
+                    }}
+                >
                     ✓ Saved. We sent your top talent to your inbox so you can come back to it.
                 </p>
             </div>
@@ -320,11 +330,16 @@ const AppleseedDisplay = ({
                     saved appleseed (isReturning captured at mount). */}
                 {isReturning && (
                     <div className="text-center pt-1 -mb-2">
+                        {/* Day 61 (Sasha 2026-05-04): legibility — bumped
+                            from text-xs italic to text-sm italic + explicit
+                            weight 500 + lifted muted alpha so the return-
+                            visit greeting actually reads. */}
                         <p
-                            className="text-xs italic"
+                            className="text-sm italic"
                             style={{
-                                color: "var(--skin-text-muted-soft, rgba(26,30,58,0.6))",
+                                color: "var(--skin-text-muted, rgba(11,42,90,0.86))",
                                 fontFamily: "'Source Serif 4', serif",
+                                fontWeight: 500,
                             }}
                         >
                             Your pattern is still here.
@@ -664,11 +679,17 @@ const AppleseedDisplay = ({
                     single text link here — kept available, no longer
                     visually competing with the two action paths above. */}
                 <div className="max-w-md mx-auto space-y-4 pt-6">
+                    {/* Day 61 (Sasha 2026-05-04): legibility — both
+                        footer micro-lines (the email-save framing and
+                        the playbook bridge) bumped from text-xs to
+                        text-sm + Source Serif weight 500 + lifted to
+                        muted (was muted-soft). */}
                     <p
-                        className="text-center text-xs italic"
+                        className="text-center text-sm italic"
                         style={{
-                            color: "var(--skin-text-muted-soft, rgba(26,30,58,0.6))",
+                            color: "var(--skin-text-muted, rgba(11,42,90,0.86))",
                             fontFamily: "'Source Serif 4', serif",
+                            fontWeight: 500,
                         }}
                     >
                         Email it to yourself, so you don't lose it.
@@ -682,10 +703,11 @@ const AppleseedDisplay = ({
                         handleEmailSubmit={handleEmailSubmit}
                     />
                     <p
-                        className="text-center text-xs"
+                        className="text-center text-sm"
                         style={{
                             fontFamily: "'Source Serif 4', serif",
-                            color: "var(--skin-text-muted-soft, rgba(26,30,58,0.6))",
+                            fontWeight: 500,
+                            color: "var(--skin-text-muted, rgba(11,42,90,0.86))",
                         }}
                     >
                         Or read the exact playbook first →{" "}

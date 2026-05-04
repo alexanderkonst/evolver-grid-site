@@ -65,8 +65,15 @@ interface PerspectiveConfig {
 
 // ─── Shared editorial style fragments ─────────────────────────────────
 
+// Day 61 (Sasha 2026-05-04): legibility pass — explicit fontWeight: 500
+// on every reveal-arc style fragment so the global Cormorant/Source-Serif
+// weight bump can never be lost to inheritance edge cases. Fallback
+// alphas in mutedStyle updated to match the bumped --skin-text-muted
+// (was 0.65, now 0.86) so the inline fallback no longer tells a stale
+// story even if the var lookup somehow fails.
 const titleStyle: React.CSSProperties = {
     fontFamily: "'Cormorant Garamond', serif",
+    fontWeight: 500,
     color: "var(--skin-text-primary, #0b2a5a)",
     textShadow:
         "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.7))",
@@ -74,6 +81,7 @@ const titleStyle: React.CSSProperties = {
 
 const bodyStyle: React.CSSProperties = {
     fontFamily: "'Cormorant Garamond', serif",
+    fontWeight: 500,
     color: "var(--skin-text-primary, #0b2a5a)",
     textShadow:
         "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
@@ -82,7 +90,8 @@ const bodyStyle: React.CSSProperties = {
 const mutedStyle: React.CSSProperties = {
     fontFamily: "'Source Serif 4', serif",
     fontStyle: "italic",
-    color: "var(--skin-text-muted, rgba(11, 42, 90, 0.65))",
+    fontWeight: 500,
+    color: "var(--skin-text-muted, rgba(11, 42, 90, 0.86))",
 };
 
 const eyebrowStyle: React.CSSProperties = {

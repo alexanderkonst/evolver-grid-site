@@ -1,8 +1,7 @@
 import { createRoot } from "react-dom/client";
 import App from "./App.tsx";
 import "./index.css";
-import { supabase } from "@/integrations/supabase/client";
-import { clearCachedZogSnapshot } from "@/lib/zogSnapshotCache";
+import { installPostAuthSideEffects } from "@/lib/postAuthSideEffects";
 
 // Day 58+ (Sasha 2026-05-03): defensive service-worker cleanup. The
 // Karime walkthrough hit a stale "Dashboard / Playbook / Path" UI
@@ -37,25 +36,12 @@ if (typeof window !== "undefined" && "serviceWorker" in navigator) {
         });
 }
 
-// Day 60+ (Sasha 2026-05-04 audit): clear the ZoG snapshot cache on
-// SIGNED_OUT so user A's data can't leak to user B if they log in
-// on the same browser/tab. Earlier today's cache upgrade (in-memory →
-// in-memory + sessionStorage) made this a real risk: sessionStorage
-// persists across reloads within the same tab, so without explicit
-// cleanup user A's profile could survive past their logout.
-//
-// The `getCachedZogSnapshot()` callers (ZoneOfGeniusOverview,
-// ZoGPerspectiveView) call without a profileId argument because they
-// don't know the user's profileId at seed time, so the cache can't
-// validate per-call — clearing on auth change is the right hook.
-//
-// Listener lives for the entire session; we never unsubscribe (no
-// component lifecycle to tie it to). Idempotent — clearCachedZogSnapshot
-// is a no-op when the cache is already empty.
-supabase.auth.onAuthStateChange((event) => {
-    if (event === "SIGNED_OUT") {
-        clearCachedZogSnapshot();
-    }
-});
+// Day 60+ (Sasha 2026-05-04): single global auth-state listener that
+// runs the canonical post-auth side effects (claim-anonymous-zog +
+// snapshot-cache invalidation) on SIGNED_IN and SIGNED_OUT — replaces
+// the earlier per-form pattern that drifted (AuthCallback called the
+// claim function; MeGate did not, orphaning Karime's snapshot). See
+// src/lib/postAuthSideEffects.ts for the architectural rationale.
+installPostAuthSideEffects();
 
 createRoot(document.getElementById("root")!).render(<App />);

@@ -300,7 +300,7 @@ const Settings = () => {
                             className="text-lg sm:text-xl md:text-2xl leading-[1.32] tracking-[-0.005em] italic"
                             style={{
                                 fontFamily: "'Cormorant Garamond', serif",
-                                fontWeight: 400,
+                                fontWeight: 500,
                                 color: "var(--skin-text-muted, rgba(26,30,58,0.7))",
                                 textShadow:
                                     "var(--skin-text-halo-subtle, 0 0 18px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.75))",

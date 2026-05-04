@@ -217,7 +217,7 @@ const VentureDashboard = () => {
 
           <p
             className="text-lg sm:text-xl md:text-2xl leading-[1.25] tracking-[-0.005em] italic max-w-xl mx-auto"
-            style={{ ...serif, fontWeight: 400, ...textMuted, ...haloSubtle }}
+            style={{ ...serif, fontWeight: 500, ...textMuted, ...haloSubtle }}
           >
             Built in the open. Paid in the open. Open-source methodology.
           </p>
@@ -250,7 +250,7 @@ const VentureDashboard = () => {
               </div>
               <p
                 className="text-base sm:text-lg leading-[1.55] tracking-[-0.005em] italic"
-                style={{ ...serif, fontWeight: 400, ...textPrimary, ...haloSubtle }}
+                style={{ ...serif, fontWeight: 500, ...textPrimary, ...haloSubtle }}
               >
                 The state of the venture, and the state of the founders building their{" "}
                 <span className="bg-clip-text text-transparent" style={GOLD_TEXT_STYLE}>
@@ -267,7 +267,7 @@ const VentureDashboard = () => {
               </div>
               <p
                 className="text-base sm:text-lg leading-[1.55] tracking-[-0.005em] italic"
-                style={{ ...serif, fontWeight: 400, ...textPrimary, ...haloSubtle }}
+                style={{ ...serif, fontWeight: 500, ...textPrimary, ...haloSubtle }}
               >
                 Founders who advance through the journey will be able to{" "}
                 <span className="bg-clip-text text-transparent" style={GOLD_TEXT_STYLE}>

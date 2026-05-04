@@ -93,7 +93,21 @@ const MeGate = ({ children }: { children: ReactNode }) => {
                     } catch {
                         // non-fatal — shell will reload profile via auth listener
                     }
-                    // Stay on the route they were trying to reach
+                    // Day 60+ (Sasha 2026-05-04): the post-auth side
+                    // effects (claim-anonymous-zog + snapshot cache
+                    // invalidation) are NO LONGER called here. They're
+                    // handled by the global SIGNED_IN listener installed
+                    // in src/lib/postAuthSideEffects.ts — single source
+                    // of truth that covers this path AND AuthCallback's
+                    // magic-link path AND any future auth entry points.
+                    // See that file for the architectural rationale.
+                    //
+                    // We DO still call getOrCreateGameProfileId() above
+                    // because it's a different concern (ensuring the
+                    // game_profiles row exists for this user-id; not
+                    // tied to an auth event but to a per-form action).
+                    //
+                    // Stay on the route they were trying to reach.
                     navigate(location.pathname + location.search, { replace: true });
                 }}
             />
