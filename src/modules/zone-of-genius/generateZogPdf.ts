@@ -37,7 +37,15 @@ import { ExcaliburData } from "./excaliburGenerator";
 // Day 58+ (Sasha 2026-05-03): legacy snapshots shipped top_shadow_one_sentence
 // in second-person reflexive ("yourself") which reads broken under the
 // "MY TOP SHADOW IS" sub-eyebrow in the PDF. Render-time flip to first-person.
-import { flipToFirstPersonReflexive } from "@/lib/zogProfileVoice";
+//
+// Day 60+ (Sasha 2026-05-04 audit): also applying flipToSecondPerson to the
+// PDF body paragraphs (core_pattern, how_genius_shows_up, edge_and_traps,
+// flywheel_action). Screen-side ZoGPerspectiveView already does this; the
+// PDF was missing it, so legacy snapshots printed "their gift / they
+// listen…" in third person while the same data on screen rendered as
+// "your gift / you listen…" in second person. New snapshots are already
+// second-person from the prompt, so the flip is a no-op for them.
+import { flipToFirstPersonReflexive, flipToSecondPerson } from "@/lib/zogProfileVoice";
 
 // ─────────────────────────────────────────────────────────────────────
 // Page geometry — A4 (mm)
