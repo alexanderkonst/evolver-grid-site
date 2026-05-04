@@ -199,9 +199,9 @@ const ZoneOfGeniusOverview = () => {
                           essence: cachedSnapshot.corePattern || "",
                       },
                       bullseyeSentence: cachedSnapshot.corePattern || undefined,
-                      threeLenses: (cachedSnapshot.topThreeTalents?.length ?? 0) > 0
+                      threeLenses: (cachedSnapshot.topThreeTalentsLong?.length ?? 0) > 0
                           ? {
-                                actions: cachedSnapshot.topThreeTalents!,
+                                actions: cachedSnapshot.topThreeTalentsLong!,
                                 primeDriver: "",
                                 archetype: cachedSnapshot.archetypeTitle,
                             }
@@ -255,7 +255,7 @@ const ZoneOfGeniusOverview = () => {
                         excaliburData: null,
                         archetypeTitle: null,
                         corePattern: null,
-                        topThreeTalents: null,
+                        topThreeTalentsLong: null,
                     });
                     setLoading(false);
                     return;
@@ -312,7 +312,12 @@ const ZoneOfGeniusOverview = () => {
                     excaliburData: excalibur,
                     archetypeTitle,
                     corePattern,
-                    topThreeTalents,
+                    // Day 61 (Sasha 2026-05-04): cache field renamed
+                    // from `topThreeTalents` to disambiguate from the
+                    // new compact reveal-box field. Local var is still
+                    // the legacy long-form sentences from the
+                    // top_three_talents Supabase column.
+                    topThreeTalentsLong: topThreeTalents,
                 });
             } catch (err) {
                 console.error("Error loading Top Talent data:", err);

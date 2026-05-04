@@ -36,7 +36,15 @@ export interface CachedZogSnapshot {
     excaliburData: ExcaliburData | null;
     archetypeTitle: string | null;
     corePattern: string | null;
-    topThreeTalents: string[] | null;
+    /**
+     * Day 61 (Sasha 2026-05-04): renamed from `topThreeTalents` to
+     * disambiguate from the new `topTalentProfile.top_three_talents_compact`
+     * field (which lives inside `appleseedData`). This one is the
+     * legacy LONG-form sentences from the `top_three_talents` Supabase
+     * column — different shape, different render target. The new
+     * reveal-box section uses the compact field via appleseedData.
+     */
+    topThreeTalentsLong: string[] | null;
 }
 
 // sessionStorage key — namespaced so it can't collide with anything

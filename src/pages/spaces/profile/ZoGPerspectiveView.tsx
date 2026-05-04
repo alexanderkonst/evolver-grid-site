@@ -787,7 +787,7 @@ const ZoGPerspectiveView = () => {
                     excaliburData: (snapshotData?.excalibur_data ?? null) as unknown as ExcaliburData | null,
                     archetypeTitle: (snapshotData?.archetype_title as string | null) ?? null,
                     corePattern: (snapshotData?.core_pattern as string | null) ?? null,
-                    topThreeTalents: (snapshotData?.top_three_talents as string[] | null) ?? null,
+                    topThreeTalentsLong: (snapshotData?.top_three_talents as string[] | null) ?? null,
                 });
             } catch (err) {
                 console.error("Error loading perspective data:", err);
