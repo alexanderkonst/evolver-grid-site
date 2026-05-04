@@ -355,7 +355,7 @@ const PathPage = () => {
               </Link>
 
               <Link
-                to="/ignite#pricing-section"
+                to="/ignite"
                 className="w-full max-w-[420px] relative rounded-full px-6 py-4 text-sm sm:text-base font-medium tracking-wide transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] liquid-glass inline-flex items-center justify-center gap-3"
                 style={{
                   color: "var(--skin-link-secondary, rgba(26,30,58,0.85))",

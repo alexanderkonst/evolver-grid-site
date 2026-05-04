@@ -240,7 +240,7 @@ export default function ActivationSteps({ showHeading = true }: ActivationStepsP
                 </div>
                 <div className="pt-2">
                     <Link
-                        to="/ignite#pricing-section"
+                        to="/ignite"
                         className="group liquid-glass-dark cta-breath rounded-full inline-flex items-center justify-center gap-2 sm:gap-2.5 px-6 sm:px-7 py-3 sm:py-3.5 text-sm sm:text-base font-semibold transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
                         style={ctaButtonStyle}
                     >

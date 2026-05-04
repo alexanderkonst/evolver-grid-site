@@ -204,6 +204,29 @@ const CardActions = ({
                             clonedEl.style.maxWidth = `${captureWidth}px`;
                         }
                     }
+
+                    // Day 61 (Sasha 2026-05-04 19:45): reveal
+                    // capture-only elements (e.g., QR code in
+                    // RevelatoryHero brand footer). These elements
+                    // live in the DOM positioned offscreen +
+                    // visibility-hidden so they don't show in the
+                    // live page, but ARE rendered with full layout
+                    // (so html2canvas can capture them after this
+                    // reset). Resetting position/visibility brings
+                    // them back into the inline flow inside the
+                    // captured clone — they appear in the saved PNG,
+                    // never on the live page.
+                    const captureOnlyEls = clonedDoc.querySelectorAll(
+                        "[data-capture-only-qr]",
+                    );
+                    captureOnlyEls.forEach((el) => {
+                        const html = el as HTMLElement;
+                        html.style.position = "static";
+                        html.style.visibility = "visible";
+                        html.style.left = "auto";
+                        html.style.top = "auto";
+                        html.style.marginTop = "0.5rem";
+                    });
                 },
             });
             const dataUrl = canvas.toDataURL("image/png");

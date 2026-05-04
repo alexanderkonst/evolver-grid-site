@@ -358,8 +358,20 @@ const RevelatoryHero = ({
                     in italic Cormorant. The shadow IS the gift inverted
                     — naming it grammatically as a noun phrase (per
                     prompt instruction) so it reads as identity. */}
+                {/* Day 61 (Sasha 2026-05-04 19:45): top shadow section
+                    DROPPED from the captured PNG via data-html2canvas-ignore.
+                    Two reasons: (1) Sasha's earlier explicit intent
+                    ("Top shadow stays OFF the image — heavy/private,
+                    people share what looks good, not what confesses").
+                    (2) Top shadow is the longest text block on the
+                    card; dropping it shrinks the captured PNG height
+                    significantly (closer to Instagram-feed friendly
+                    aspect, rather than a billboard-tall artifact).
+                    Live page rendering is unaffected — shadow still
+                    visible to the user; only the saved/shared PNG
+                    excludes it. */}
                 {topShadow && (
-                    <>
+                    <div data-html2canvas-ignore="true">
                         <Ornament className="mt-6 mb-4" />
 
                         <p
@@ -376,7 +388,7 @@ const RevelatoryHero = ({
                         >
                             {topShadow}
                         </p>
-                    </>
+                    </div>
                 )}
 
                 {/* Children (optional extra content) */}
@@ -426,22 +438,34 @@ const RevelatoryHero = ({
                         → get yours · <span style={{ fontWeight: 600 }}>findyourtoptalent.com</span>
                     </p>
 
-                    {/* QR code — Day 61 (Sasha 2026-05-04 17:45).
-                        Friction-killer for word-of-mouth: people who see
-                        the shared/saved PNG can SCAN to take the quiz
-                        themselves, no typing required. White bg + dark
-                        fg = universal scannability standard (works in
-                        both Aurora light and Navy+Gold dark skins
-                        without color contortions). 60px is the sweet
-                        spot — readable by phone cameras at typical
-                        social-feed image sizes (~1080px wide), small
-                        enough not to compete with the brand torus +
-                        URL composition above. UTM tags so we can
-                        attribute QR-driven traffic separately from
-                        link-clicks in analytics. */}
+                    {/* QR code — Day 61 (Sasha 2026-05-04 19:45).
+                        ONLY shows in the saved/shared PNG, NOT in the
+                        live page view. In live view: position absolute
+                        + visibility hidden (rendered offscreen, takes
+                        no visual space). In captured PNG (onclone in
+                        CardActions resets these styles): visible inline
+                        in the brand footer.
+                        Why this approach: html2canvas has a known
+                        limitation where `display: none → display: block`
+                        in onclone doesn't render the element (no
+                        layout was ever computed). Visibility-hidden +
+                        absolute keeps the element rendered with
+                        layout, just invisible — onclone's reset
+                        produces a properly-rendered QR in the capture.
+                        Friction-killer for word-of-mouth virality:
+                        people who see the shared PNG can SCAN to take
+                        the quiz themselves, no typing required. */}
                     <div
-                        className="mt-2 p-1.5 rounded-md"
-                        style={{ backgroundColor: "#ffffff" }}
+                        data-capture-only-qr
+                        className="p-1.5 rounded-md"
+                        style={{
+                            backgroundColor: "#ffffff",
+                            position: "absolute",
+                            visibility: "hidden",
+                            pointerEvents: "none",
+                            left: "-9999px",
+                            top: "-9999px",
+                        }}
                     >
                         <QRCodeCanvas
                             value="https://findyourtoptalent.com?utm_source=qr&utm_medium=image&utm_campaign=top_talent_reveal"

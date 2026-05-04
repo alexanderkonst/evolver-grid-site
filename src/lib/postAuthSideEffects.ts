@@ -47,6 +47,7 @@
  */
 import { supabase } from "@/integrations/supabase/client";
 import { clearCachedZogSnapshot } from "@/lib/zogSnapshotCache";
+import { migrateGuestDataToProfile } from "@/modules/zone-of-genius/saveToDatabase";
 
 // Track which user IDs have had `claim-anonymous-zog` invoked for them
 // in this browser session. Prevents redundant calls when SIGNED_IN
@@ -141,13 +142,49 @@ export function installPostAuthSideEffects(): void {
             if (claimAttemptedFor.has(userId)) return;
             claimAttemptedFor.add(userId);
 
-            // Fire-and-forget — the listener callback itself stays
-            // synchronous so we don't block other auth listeners.
-            // attemptClaimWithRetry handles its own retries + cleanup.
-            attemptClaimWithRetry(userId);
+            // Day 61 (Sasha 2026-05-04 20:00): MIGRATE guest data
+            // BEFORE claim. Closes Case 2 from the edge-case audit:
+            // user took quiz unauthed → guest_appleseed_data lives in
+            // localStorage → user signs in via ANY path (signup,
+            // magic-link recovery for already-registered email,
+            // password). Without this hook, only MeGate.onSuccess
+            // (fresh signup) called migrateGuestDataToProfile —
+            // every other sign-in path orphaned the localStorage
+            // data, and the user's NEW quiz results were silently
+            // lost in favor of their OLD existing snapshot.
+            //
+            // Sequencing: migrate FIRST (awaited), claim SECOND.
+            // Why: claim-anonymous-zog INSERTs blindly when it
+            // finds an unclaimed anonymous_genius_results row.
+            // Migrate uses getOrCreateSnapshot (SELECT-then-UPDATE-
+            // or-INSERT). If both fired in parallel, both might
+            // INSERT and create duplicate snapshots. Sequencing
+            // means by the time claim runs, the snapshot row from
+            // migrate already exists — claim will still create one
+            // for the rare overlap user (had BOTH localStorage AND
+            // anonymous_genius_results) but that's an acceptable
+            // edge case (getOrCreateSnapshot returns most recent;
+            // user sees their data correctly).
+            //
+            // Async IIFE so the listener callback itself returns
+            // synchronously (doesn't block other listeners).
+            // claimAttemptedFor dedup at top of block prevents
+            // double-firing if SIGNED_IN repeats for same user.
+            void (async () => {
+                try {
+                    await migrateGuestDataToProfile();
+                } catch (err) {
+                    console.warn(
+                        "[postAuthSideEffects] migrateGuestDataToProfile failed:",
+                        err,
+                    );
+                }
+                // attemptClaimWithRetry handles its own retries + cleanup.
+                attemptClaimWithRetry(userId);
+            })();
 
-            // Cache invalidation is decoupled from claim success.
-            // Even if claim is still in flight (or fails permanently),
+            // Cache invalidation is decoupled from migrate/claim success.
+            // Even if either is still in flight (or fails permanently),
             // the user's auth state is now canonical — any cached
             // snapshot tied to their pre-auth anon profileId is no
             // longer the right thing to serve.

@@ -506,7 +506,7 @@ const Step2Essay = (_: { neonHsl: string; neonRgb: string }) => {
       <p>The more people get there, the easier it becomes for the next.</p>
 
       <p>
-        <a href="/ignite#pricing-section" style={linkStyle}>
+        <a href="/ignite" style={linkStyle}>
           Book a session
         </a>{" "}
         if you'd like to take the shortcut.
