@@ -27,7 +27,7 @@ import GameShellV2 from "../components/game/GameShellV2";
 // attribution line; clarity-call CTAs no longer use the speech-bubble
 // glyph (now plain italic underline links); DivineTimingCapture
 // removed (called trackFunnelEvent for the divine_timing event).
-import { useState, useRef, useEffect, useCallback } from "react";
+import { useState, useRef, useEffect } from "react";
 import Hls from "hls.js";
 import geniusLogo from "@/assets/ignite-logo.png";
 import { supabase } from "@/integrations/supabase/client";
