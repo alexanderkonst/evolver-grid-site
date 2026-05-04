@@ -15,6 +15,25 @@ import { getOrCreateGameProfileId } from "@/lib/gameProfile";
 import { logActionEvent } from "@/lib/actionEvents";
 import { getPostZogRedirect } from "@/lib/onboardingRouting";
 import { getZogAssessmentBasePath, getZogStepPath } from "./zogRoutes";
+// Day 61+ (Sasha 2026-05-04): the CTA section below mirrors the
+// AppleseedDisplay reveal so both lanes (manual assessment + AI
+// reveal) hand the user the same offer artifact. See AppleseedDisplay
+// for the canonical version. Roadmap item: extract a shared
+// `RevealCTASection` component to eliminate this drift risk.
+import { CTA_SMALL_CAPS_STYLE, igniteLogo } from "@/lib/landingDesign";
+import { trackCTAClick } from "@/lib/funnelAnalytics";
+
+// Stripe checkout link for the $37 Activation product. Mirrors
+// AppleseedDisplay.STRIPE_ACTIVATE_LINK — keep in sync.
+const STRIPE_ACTIVATE_LINK = "https://buy.stripe.com/00w6oH7wo21R41XaDedEs0H";
+
+// Activation coupons — exceptional cases / testing only. Mirrors
+// AppleseedDisplay.ACTIVATION_COUPON_CODES — keep in sync. Codes are
+// stored lowercase; comparison is case-insensitive.
+const ACTIVATION_COUPON_CODES = new Set([
+    "guerishenko",
+    "appleseed",
+]);
 
 const Step4GenerateSnapshot = () => {
   const navigate = useNavigate();
@@ -44,6 +63,29 @@ const Step4GenerateSnapshot = () => {
   const [saveExpanded, setSaveExpanded] = useState(false);
   const [saveEmail, setSaveEmail] = useState("");
   const [saveState, setSaveState] = useState<"idle" | "saving" | "saved">("idle");
+
+  // Day 61+ (Sasha 2026-05-04): activation coupon state — mirrors the
+  // AppleseedDisplay reveal so both lanes (manual + AI) accept the
+  // same codes for testing/exceptional access. On valid match, sets
+  // the `coupon_activated` sessionStorage flag and routes to the
+  // activation home (MeGate honors the flag for unauthed visitors).
+  const [couponOpen, setCouponOpen] = useState(false);
+  const [couponInput, setCouponInput] = useState("");
+  const [couponError, setCouponError] = useState(false);
+
+  const handleCouponSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const entered = couponInput.trim().toLowerCase();
+    if (ACTIVATION_COUPON_CODES.has(entered)) {
+      trackCTAClick("activate_coupon_redeemed", "step4_option2");
+      if (typeof window !== "undefined") {
+        window.sessionStorage.setItem("coupon_activated", "true");
+      }
+      navigate("/game/me/zone-of-genius/start-here");
+    } else {
+      setCouponError(true);
+    }
+  };
 
   // Parse the snapshot sections
   const parsedSnapshot = snapshotMarkdown ? parseSnapshotSections(snapshotMarkdown) : null;
@@ -271,17 +313,34 @@ ${snapshotText}`;
       if (redirectPath) {
         setTimeout(() => navigate(redirectPath), 800);
       }
-      await logActionEvent({
-        actionId: `zog-snapshot:${snapshotData.id}`,
-        profileId,
-        source: "src/modules/zone-of-genius/Step4GenerateSnapshot.tsx",
-        loop: "profile",
-        selectedAt: new Date().toISOString(),
-        metadata: {
-          intent: "zog_snapshot_saved",
-        },
-      });
+      // Day 61+ (Sasha 2026-05-04): logActionEvent is best-effort
+      // telemetry — wrap in its own try/catch so a failure here can't
+      // bubble to the outer catch and trigger the error toast AFTER
+      // the success toast. Karime / step-4 walkthrough hit this:
+      // snapshot saved correctly, success toast fired, then
+      // logActionEvent rejected (or some downstream issue) and the
+      // error toast fired right on top. The user saw "Failed to save
+      // your snapshot" even though the snapshot was fine.
+      try {
+        await logActionEvent({
+          actionId: `zog-snapshot:${snapshotData.id}`,
+          profileId,
+          source: "src/modules/zone-of-genius/Step4GenerateSnapshot.tsx",
+          loop: "profile",
+          selectedAt: new Date().toISOString(),
+          metadata: {
+            intent: "zog_snapshot_saved",
+          },
+        });
+      } catch (telemetryErr) {
+        console.warn("[Step4] logActionEvent failed (non-fatal):", telemetryErr);
+      }
     } catch (err) {
+      // Only fires if the actual snapshot insert/update or profile
+      // update threw — those are the load-bearing operations. Best-
+      // effort cleanup (telemetry, redirect) is wrapped above and
+      // can't reach here.
+      console.error("[Step4] Snapshot save failed:", err);
       toast.error("Failed to save your snapshot. Your progress is still shown, but may not persist.");
     }
   };
@@ -588,152 +647,299 @@ ${snapshotText}`;
                 </ul>
               </article>
 
-              {/* Panel B: Your Edge */}
-              <article className="liquid-glass rounded-2xl p-6">
-                <h3
-                  className="text-lg font-semibold mb-2"
+              {/* Day 61+ (Sasha 2026-05-04): Edge / Thrives / Mastery
+                  Action panels REMOVED. Karime walkthrough showed
+                  step-4 was giving away too much depth before the
+                  user committed — those three sections are part of
+                  the deeper profile that lives behind the activation
+                  paywall. Step-4 now mirrors the AI-lane reveal: a
+                  punchy archetype card + Superpowers preview, then a
+                  clean two-CTA bridge to action. The deeper content
+                  remains in the saved snapshot for post-purchase
+                  reveal in the ME space. */}
+
+              {/* ═══════════════════════════════════════════════════════
+                  BRIDGE LINE + TWO OPTIONS — mirrors the AI-lane
+                  AppleseedDisplay reveal (lines ~469-784). Both
+                  funnels (manual assessment + AI reveal) hand the
+                  user the same offer artifact, same visual register,
+                  same coupon path. Roadmap item: extract this whole
+                  block into a shared `RevealCTASection` component to
+                  eliminate the duplication / drift risk.
+                  ═══════════════════════════════════════════════════════ */}
+
+              {/* Bridge — sets up the choice as a question of action */}
+              <div
+                className="py-10 max-w-lg mx-auto text-center space-y-4"
+                style={{
+                  fontFamily: "'Cormorant Garamond', serif",
+                  color: "var(--skin-text-primary, #0a1628)",
+                  textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.7))",
+                }}
+              >
+                <p
+                  className="text-xl md:text-2xl leading-relaxed"
+                  style={{ fontWeight: 500 }}
+                >
+                  Now the question becomes:
+                </p>
+                <p
+                  className="text-2xl md:text-3xl italic leading-snug"
+                  style={{ fontWeight: 500 }}
+                >
+                  What do you want to{" "}
+                  <em
+                    className="not-italic"
+                    style={{
+                      fontWeight: 700,
+                      fontStyle: "italic",
+                      textDecoration: "underline",
+                      textDecorationColor: "var(--skin-accent-gold, #b8860b)",
+                      textDecorationThickness: "1.5px",
+                      textUnderlineOffset: "5px",
+                    }}
+                  >
+                    do
+                  </em>{" "}
+                  with your top talent?
+                </p>
+              </div>
+
+              <div className="space-y-8 max-w-lg mx-auto">
+                {/* OPTION 1 — Build a business ($555, primary, large) */}
+                <div
+                  className="liquid-glass-strong rounded-3xl p-6 sm:p-7 space-y-4 text-center"
                   style={{
-                    fontFamily: "'Cormorant Garamond', serif",
-                    color: "var(--skin-text-primary, #0a1628)",
+                    boxShadow: "0 10px 32px -12px rgba(10,22,40,0.18), inset 0 1px 0 rgba(255,255,255,0.15)",
+                    border: "1px solid rgba(26,30,58,0.08)",
                   }}
                 >
-                  Your Edge (Where You Trip Yourself Up)
-                </h3>
-                <p className="text-xs mb-3" style={{ color: "var(--skin-text-muted-soft, rgba(26,30,58,0.65))" }}>
-                  Your supershadow — the flip side of your gift. Growth happens here.
-                </p>
-                <ul
-                  className="space-y-2 text-sm list-disc list-inside"
-                  style={{ color: "var(--skin-text-strong, rgba(26,30,58,0.88))" }}
-                >
-                  {formatBullets(parsedSnapshot.edge)}
-                </ul>
-              </article>
-
-              {/* Panel C: Where This Genius Thrives */}
-              <article className="liquid-glass rounded-2xl p-6">
-                <h3
-                  className="text-lg font-semibold mb-2"
-                  style={{
-                    fontFamily: "'Cormorant Garamond', serif",
-                    color: "var(--skin-text-primary, #0a1628)",
-                  }}
-                >
-                  Where This Genius Thrives
-                </h3>
-                <p className="text-xs mb-3" style={{ color: "var(--skin-text-muted-soft, rgba(26,30,58,0.65))" }}>
-                  Environments and roles where this pattern tends to shine.
-                </p>
-                <ul
-                  className="space-y-2 text-sm list-disc list-inside"
-                  style={{ color: "var(--skin-text-strong, rgba(26,30,58,0.88))" }}
-                >
-                  {formatBullets(parsedSnapshot.thrives)}
-                </ul>
-              </article>
-
-              {/* Panel D: Mastery Action */}
-              {parsedSnapshot.masteryAction && (
-                <article className="liquid-glass-strong rounded-2xl p-6">
+                  <p
+                    className="text-sm sm:text-base italic leading-snug"
+                    style={{
+                      fontFamily: "'Source Serif 4', serif",
+                      color: "var(--skin-text-muted, rgba(26,30,58,0.7))",
+                    }}
+                  >
+                    If you're ready to act:
+                  </p>
                   <h3
-                    className="text-lg font-semibold mb-2"
+                    className="leading-[1.15] tracking-[-0.005em]"
                     style={{
                       fontFamily: "'Cormorant Garamond', serif",
+                      fontSize: "clamp(1.5rem, 4vw, 1.85rem)",
+                      fontWeight: 600,
                       color: "var(--skin-text-primary, #0a1628)",
                     }}
                   >
-                    🔁 Your Mastery Action
+                    Build a Business From It
                   </h3>
-                  <p className="text-xs mb-3" style={{ color: "var(--skin-text-muted-soft, rgba(26,30,58,0.65))" }}>
-                    One repeatable action that builds mastery over time.
-                  </p>
                   <p
-                    className="text-base font-medium leading-relaxed"
-                    style={{ color: "var(--skin-text-primary, #0a1628)" }}
-                  >
-                    {parsedSnapshot.masteryAction}
-                  </p>
-                </article>
-              )}
-
-              {/* ═══════════════════════════════════════════════════════
-                  PRIMARY CTA — consolidated commercial bridge (replaces
-                  the former "If This Hit Home" right-column card). Same
-                  destination as AI-lane primary CTA: /ignite#pricing-section.
-                  ═══════════════════════════════════════════════════════ */}
-              <article className="liquid-glass-strong rounded-2xl p-6 sm:p-8 text-center mt-10">
-                <p
-                  className="text-xs uppercase tracking-[0.2em] mb-3"
-                  style={{ color: "var(--skin-text-muted-soft, rgba(26,30,58,0.6))" }}
-                >
-                  The next step
-                </p>
-                <h3
-                  className="text-xl sm:text-2xl font-semibold mb-3"
-                  style={{
-                    fontFamily: "'Cormorant Garamond', serif",
-                    color: "var(--skin-text-primary, #0a1628)",
-                    textShadow: "0 1px 2px rgba(255,255,255,0.7)",
-                  }}
-                >
-                  Ready to turn this into a business?
-                </h3>
-                <p
-                  className="text-sm mb-5 max-w-lg mx-auto leading-relaxed"
-                  style={{ color: "var(--skin-text-muted, rgba(26,30,58,0.78))" }}
-                >
-                  You've named your Top Talent. The next step is structuring
-                  it into something people can buy. Aleksandr runs a focused
-                  Productize Yourself Session to compile your entire unique
-                  business on one page.
-                </p>
-                <p
-                  className="text-sm font-semibold mb-5"
-                  style={{ color: "var(--skin-text-primary, #0a1628)" }}
-                >
-                  $555 · 2 hours · Money-back guarantee
-                </p>
-                <a
-                  href="/ignite#pricing-section"
-                  className="inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold liquid-glass-strong transition-all hover:scale-[1.02] active:scale-95"
-                  style={{
-                    color: "var(--skin-text-primary, #0a1628)",
-                    textShadow: "0 1px 2px rgba(255,255,255,0.6)",
-                  }}
-                >
-                  Book your Productize Yourself Session
-                  <ArrowRight className="w-4 h-4 opacity-70" />
-                </a>
-                {/* Day 50 (Sasha): UBB v2 secondary CTA — DIY path next to the
-                    facilitated Ignite primary. Lets the user start building
-                    the unique business themselves with the Improve loop. */}
-                <div className="mt-4">
-                  <button
-                    type="button"
-                    onClick={() => navigate("/ubb")}
-                    className="inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-xs font-medium transition-all hover:scale-[1.02] active:scale-95"
+                    className="text-base sm:text-lg leading-relaxed"
                     style={{
-                      color: "var(--skin-text-muted, rgba(26,30,58,0.72))",
-                      backgroundColor: "rgba(255,255,255,0.35)",
-                      border: "0.5px solid rgba(132,96,234,0.35)",
-                      backdropFilter: "blur(8px)",
+                      fontFamily: "'Source Serif 4', serif",
+                      color: "var(--skin-text-primary, #0a1628)",
+                      fontWeight: 500,
                     }}
                   >
-                    <span
-                      className="text-[9px] font-bold uppercase tracking-widest px-1.5 py-0.5 rounded"
+                    Turn your top talent into a clear and sellable business offer.
+                  </p>
+                  <p
+                    className="text-sm leading-relaxed"
+                    style={{
+                      fontFamily: "'Source Serif 4', serif",
+                      color: "var(--skin-text-muted, rgba(26,30,58,0.7))",
+                    }}
+                  >
+                    We do it together in 2 hours.
+                  </p>
+                  <blockquote
+                    className="text-sm italic leading-relaxed pt-1"
+                    style={{
+                      fontFamily: "'Source Serif 4', serif",
+                      color: "var(--skin-text-primary, #0a1628)",
+                    }}
+                  >
+                    "Everything clicks." — <strong className="not-italic">Sergey Jay Makarov</strong>
+                  </blockquote>
+
+                  <a
+                    href="/ignite"
+                    className="group liquid-glass-dark cta-breath relative w-full rounded-full inline-flex items-center justify-center gap-2 sm:gap-2.5 px-4 sm:px-6 py-3 sm:py-3.5 text-sm sm:text-base font-semibold transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+                    style={{
+                      fontFamily: "'Cormorant Garamond', serif",
+                      color: "var(--skin-cta-text, rgba(245,245,250,0.98))",
+                      backgroundImage:
+                        "var(--skin-cta-bg, linear-gradient(135deg, rgba(10,22,40,0.72) 0%, rgba(26,30,58,0.62) 50%, rgba(10,22,40,0.72) 100%))",
+                      boxShadow:
+                        "var(--skin-cta-shadow, 0 0 18px -4px rgba(240,194,127,0.45), 0 10px 24px -10px rgba(10,22,40,0.5))",
+                      textShadow:
+                        "var(--skin-cta-text-shadow, 0 0 16px rgba(240,194,127,0.25), 0 1px 2px rgba(0,0,0,0.35))",
+                    }}
+                  >
+                    <img
+                      src={igniteLogo}
+                      alt=""
+                      aria-hidden="true"
+                      className="h-4 w-auto opacity-80 transition-opacity group-hover:opacity-100 flex-shrink-0"
                       style={{
-                        backgroundColor: "rgba(132,96,234,0.22)",
-                        color: "#5a3fc7",
-                        border: "0.5px solid rgba(132,96,234,0.4)",
+                        filter: "drop-shadow(0 0 6px rgba(244, 212, 114, 0.45))",
+                        animation: "gentle-spin 60s linear infinite",
+                        willChange: "transform",
+                        transformOrigin: "center",
+                      }}
+                      draggable={false}
+                    />
+                    <span className="relative inline-block">
+                      <span
+                        style={CTA_SMALL_CAPS_STYLE}
+                        className="block transition-opacity duration-300 group-hover:opacity-0"
+                      >
+                        Build a business from your top talent — $555
+                      </span>
+                      <span
+                        style={CTA_SMALL_CAPS_STYLE}
+                        className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100 whitespace-nowrap"
+                      >
+                        Turn this into an offer
+                      </span>
+                    </span>
+                    <ArrowRight
+                      aria-hidden="true"
+                      className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 flex-shrink-0"
+                    />
+                  </a>
+                </div>
+
+                {/* OPTION 2 — Activate ($37, secondary, medium) */}
+                <div
+                  className="liquid-glass rounded-3xl p-6 sm:p-7 space-y-4 text-center"
+                  style={{
+                    border: "1px solid rgba(26,30,58,0.06)",
+                  }}
+                >
+                  <p
+                    className="text-base italic leading-snug"
+                    style={{
+                      fontFamily: "'Source Serif 4', serif",
+                      fontWeight: 500,
+                      color: "var(--skin-text-muted, rgba(11,42,90,0.86))",
+                    }}
+                  >
+                    If you don't want to build your business yet:
+                  </p>
+                  <h3
+                    className="leading-[1.15] tracking-[-0.005em]"
+                    style={{
+                      fontFamily: "'Cormorant Garamond', serif",
+                      fontSize: "clamp(1.5rem, 4vw, 1.85rem)",
+                      fontWeight: 600,
+                      color: "var(--skin-text-primary, #0a1628)",
+                    }}
+                  >
+                    Find Out How to Use &amp; Monetize Your Top Talent
+                  </h3>
+
+                  <a
+                    href={STRIPE_ACTIVATE_LINK}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => trackCTAClick("activate_click", "step4_option2")}
+                    className="group liquid-glass relative w-full rounded-full inline-flex items-center justify-center gap-2 px-5 py-3.5 text-base sm:text-lg font-semibold transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+                    style={{
+                      fontFamily: "'Cormorant Garamond', serif",
+                      color: "var(--skin-text-primary, #0a1628)",
+                      border: "1.5px solid rgba(11,42,90,0.32)",
+                      textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
+                    }}
+                  >
+                    <span style={CTA_SMALL_CAPS_STYLE}>
+                      Leverage your top talent — $37
+                    </span>
+                    <ArrowRight
+                      aria-hidden="true"
+                      className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 flex-shrink-0"
+                    />
+                  </a>
+
+                  <p
+                    className="text-xs sm:text-sm font-semibold uppercase leading-relaxed pt-1"
+                    style={{
+                      fontFamily: "'DM Sans', system-ui, sans-serif",
+                      letterSpacing: "0.18em",
+                      color: "rgba(122, 81, 8, 0.95)",
+                    }}
+                  >
+                    7 min of understanding the value you bring + 6 min of guided meditation to connect with your talent somatically
+                  </p>
+
+                  {/* Coupon bypass — collapsed by default */}
+                  {!couponOpen ? (
+                    <button
+                      type="button"
+                      onClick={() => setCouponOpen(true)}
+                      className="text-sm underline underline-offset-4 transition-opacity duration-200 hover:opacity-100"
+                      style={{
+                        fontFamily: "'Source Serif 4', serif",
+                        fontWeight: 500,
+                        color: "var(--skin-text-muted, rgba(11,42,90,0.86))",
+                        textDecorationColor: "rgba(11,42,90,0.35)",
+                        opacity: 0.95,
                       }}
                     >
-                      v2
-                    </span>
-                    Build your unique business
-                    <ArrowRight className="w-3.5 h-3.5 opacity-70" />
-                  </button>
+                      Have a code?
+                    </button>
+                  ) : (
+                    <form onSubmit={handleCouponSubmit} className="space-y-1.5 pt-1">
+                      <div className="flex items-center gap-2">
+                        <input
+                          type="text"
+                          value={couponInput}
+                          onChange={(e) => {
+                            setCouponInput(e.target.value);
+                            if (couponError) setCouponError(false);
+                          }}
+                          autoFocus
+                          placeholder="Code"
+                          aria-label="Activation code"
+                          className="flex-1 min-w-0 rounded-full px-3.5 py-2 text-xs bg-white/70 border outline-none focus:ring-2 focus:ring-[hsla(40,70%,55%,0.45)]"
+                          style={{
+                            fontFamily: "'Source Serif 4', serif",
+                            color: "var(--skin-text-primary, #0a1628)",
+                            borderColor: couponError
+                              ? "rgba(180, 50, 50, 0.55)"
+                              : "rgba(26,30,58,0.18)",
+                          }}
+                        />
+                        <button
+                          type="submit"
+                          disabled={!couponInput.trim()}
+                          className="rounded-full px-3.5 py-2 text-xs font-semibold transition-all duration-200 hover:scale-[1.03] active:scale-[0.97] disabled:opacity-50 disabled:cursor-not-allowed"
+                          style={{
+                            fontFamily: "'Cormorant Garamond', serif",
+                            background: "linear-gradient(135deg, hsla(40, 75%, 60%, 0.32) 0%, hsla(40, 65%, 50%, 0.18) 100%)",
+                            border: "1px solid hsla(40, 70%, 55%, 0.50)",
+                            color: "#5d4307",
+                          }}
+                        >
+                          Apply
+                        </button>
+                      </div>
+                      {couponError && (
+                        <p
+                          className="text-[10.5px] text-left pl-1"
+                          style={{
+                            fontFamily: "'Source Serif 4', serif",
+                            color: "rgba(180, 50, 50, 0.85)",
+                          }}
+                        >
+                          Invalid code.
+                        </p>
+                      )}
+                    </form>
+                  )}
                 </div>
-              </article>
+              </div>
 
               {/* ═══════════════════════════════════════════════════════
                   SAVE PILL — matches AI-lane pattern. On submit, fires
