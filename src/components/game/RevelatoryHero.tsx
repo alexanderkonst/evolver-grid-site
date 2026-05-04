@@ -276,7 +276,14 @@ const RevelatoryHero = ({
                             My three talents
                         </p>
 
-                        <ul className="max-w-2xl mx-auto space-y-1.5">
+                        {/* Day 61 (Sasha 2026-05-04 11:30 update):
+                            ✦ glyphs replaced with numerals 1/2/3 — the
+                            triplet now reads as an ordered list, easier
+                            to reference ("my second talent is..."). The
+                            numerals carry the same gold-eyebrow color
+                            so they read as part of the editorial
+                            register, not as ordinary digits. */}
+                        <ol className="max-w-2xl mx-auto space-y-1.5">
                             {compactTalents.map((talent, i) => (
                                 <li
                                     key={i}
@@ -289,14 +296,18 @@ const RevelatoryHero = ({
                                     <span
                                         aria-hidden="true"
                                         className={`mr-2 not-italic ${palette.textMuted}`}
-                                        style={{ fontSize: "0.85em" }}
+                                        style={{
+                                            fontSize: "0.85em",
+                                            fontVariantNumeric: "tabular-nums lining-nums",
+                                            fontWeight: 600,
+                                        }}
                                     >
-                                        ✦
+                                        {i + 1}.
                                     </span>
                                     {talent}
                                 </li>
                             ))}
-                        </ul>
+                        </ol>
                     </>
                 )}
 
@@ -316,7 +327,7 @@ const RevelatoryHero = ({
                         <p
                             className={`text-[10px] sm:text-xs uppercase tracking-[0.28em] ${palette.textMuted} mb-2`}
                         >
-                            My top shadow is
+                            My top shadow
                         </p>
 
                         <p

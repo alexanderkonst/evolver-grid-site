@@ -369,7 +369,7 @@ const AppleseedDisplay = ({
                     <RevelatoryHero
                         type="appleseed"
                         title={appleseed.vibrationalKey.name}
-                        tagline="My top talent is"
+                        tagline="My top talent"
                         actionStatement={appleseed.bullseyeSentence}
                         topThreeTalents={appleseed.topTalentProfile?.top_three_talents_compact}
                         topShadow={flipToFirstPersonReflexive(appleseed.topTalentProfile?.top_shadow_one_sentence)}
@@ -393,8 +393,16 @@ const AppleseedDisplay = ({
                     a single bridge that hands the user directly to the
                     two action paths below. The artifact box above carries
                     the confirmation; this line carries the agency. */}
+                {/* Day 61 (Sasha 2026-05-04 11:30): bridge line split
+                    into two beats. The setup ("Now the question
+                    becomes:") sits on its own line so the question
+                    lands with weight. "Knowledge" dropped — the
+                    question is about action, not information. "DO"
+                    italicized within the already-italic line via a
+                    `not-italic` flip + bolder weight, so it reads as
+                    the load-bearing verb. */}
                 <div
-                    className="py-10 max-w-lg mx-auto text-center"
+                    className="py-10 max-w-lg mx-auto text-center space-y-4"
                     style={{
                         fontFamily: "'Cormorant Garamond', serif",
                         color: "var(--skin-text-primary, #0a1628)",
@@ -405,7 +413,27 @@ const AppleseedDisplay = ({
                         className="text-xl md:text-2xl leading-relaxed"
                         style={{ fontWeight: 500 }}
                     >
-                        Now the question becomes: what do you want to do with your top talent knowledge?
+                        Now the question becomes:
+                    </p>
+                    <p
+                        className="text-2xl md:text-3xl italic leading-snug"
+                        style={{ fontWeight: 500 }}
+                    >
+                        What do you want to{" "}
+                        <em
+                            className="not-italic"
+                            style={{
+                                fontWeight: 700,
+                                fontStyle: "italic",
+                                textDecoration: "underline",
+                                textDecorationColor: "var(--skin-accent-gold, #b8860b)",
+                                textDecorationThickness: "1.5px",
+                                textUnderlineOffset: "5px",
+                            }}
+                        >
+                            do
+                        </em>{" "}
+                        with your top talent?
                     </p>
                 </div>
 
@@ -483,9 +511,16 @@ const AppleseedDisplay = ({
 
                         {/* Primary CTA — hover swaps idle label for action label.
                             Idle: "Build a business from your top talent — $555"
-                            Hover: "Turn this into an offer" */}
+                            Hover: "Turn this into an offer"
+                            Day 61 (Sasha 2026-05-04 11:30): href changed
+                            from `/ignite#pricing-section` to `/ignite`
+                            (top of page). Skipping straight to pricing
+                            jumped past the persuasion the page is built
+                            to do. The visitor reads top-to-bottom and
+                            the pricing block sits where the page
+                            naturally lands them. */}
                         <a
-                            href="/ignite#pricing-section"
+                            href="/ignite"
                             className="group liquid-glass-dark cta-breath relative w-full rounded-full inline-flex items-center justify-center gap-2 sm:gap-2.5 px-4 sm:px-6 py-3 sm:py-3.5 text-sm sm:text-base font-semibold transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
                             style={{
                                 fontFamily: "'Cormorant Garamond', serif",
@@ -542,23 +577,29 @@ const AppleseedDisplay = ({
                             border: '1px solid rgba(26,30,58,0.06)',
                         }}
                     >
-                        {/* Day 58+ (Sasha 2026-05-03): Card B simplified
-                            per the "transformational result" pattern —
-                            italic eyebrow lead-in (parallel to Card A's
-                            "If you're ready to act:") + a result-named
-                            title; body paragraphs retired (the title is
-                            the value statement, no further setup needed);
-                            CTA uses CTA_SMALL_CAPS_STYLE in uppercase
-                            tracked register matching Card A; "Most people
-                            start here" footer line retired. */}
+                        {/* Day 61 (Sasha 2026-05-04 11:30) copy + legibility revamp:
+                            • Eyebrow flipped from negative to positive — "If you don't want to build
+                              your business yet" → "If you'd like to begin lighter" (parallel register
+                              to Card A's "If you're ready to act"; equal dignity, different door).
+                            • Title compressed — "Find Out How to Use & Monetize Your Top Talent"
+                              (8 words, transactional & buzzfeed-y) → "Activate Your Top Talent"
+                              (4 words, gerund-companion to "Build a Business From It").
+                            • Button verb changed — "Leverage" (corporate-speak) → "Activate"
+                              (matches the title + the methodology).
+                            • Footer drops "somatically" (jargon, fails the 5-second-friend test) and
+                              lifts from text-[10px] uppercase muted to text-sm sentence-case —
+                              actually readable now.
+                            • Button text size + weight bumped (text-sm → text-base, font-medium →
+                              font-semibold). */}
                         <p
-                            className="text-sm sm:text-base italic leading-snug"
+                            className="text-base italic leading-snug"
                             style={{
                                 fontFamily: "'Source Serif 4', serif",
-                                color: "var(--skin-text-muted, rgba(26,30,58,0.7))",
+                                fontWeight: 500,
+                                color: "var(--skin-text-muted, rgba(11,42,90,0.86))",
                             }}
                         >
-                            If you don't want to build your business yet:
+                            If you'd like to begin lighter:
                         </p>
                         <h3
                             className="leading-[1.15] tracking-[-0.005em]"
@@ -569,7 +610,7 @@ const AppleseedDisplay = ({
                                 color: "var(--skin-text-primary, #0a1628)",
                             }}
                         >
-                            Find Out How to Use &amp; Monetize Your Top Talent
+                            Activate Your Top Talent
                         </h3>
 
                         <a
@@ -577,16 +618,16 @@ const AppleseedDisplay = ({
                             target="_blank"
                             rel="noopener noreferrer"
                             onClick={() => trackCTAClick('activate_click', 'appleseed_option2')}
-                            className="group liquid-glass relative w-full rounded-full inline-flex items-center justify-center gap-2 px-5 py-3 text-sm sm:text-base font-medium transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+                            className="group liquid-glass relative w-full rounded-full inline-flex items-center justify-center gap-2 px-5 py-3.5 text-base sm:text-lg font-semibold transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
                             style={{
                                 fontFamily: "'Cormorant Garamond', serif",
                                 color: "var(--skin-text-primary, #0a1628)",
-                                border: '1px solid rgba(26,30,58,0.2)',
+                                border: '1.5px solid rgba(11,42,90,0.32)',
                                 textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
                             }}
                         >
                             <span style={CTA_SMALL_CAPS_STYLE}>
-                                Leverage your top talent — $37
+                                Activate your top talent — $37
                             </span>
                             <ArrowRight
                                 aria-hidden="true"
@@ -595,14 +636,14 @@ const AppleseedDisplay = ({
                         </a>
 
                         <p
-                            className="text-[10px] sm:text-[11px] font-semibold uppercase leading-relaxed pt-1"
+                            className="text-sm sm:text-[15px] leading-relaxed pt-1"
                             style={{
-                                fontFamily: "'DM Sans', system-ui, sans-serif",
-                                letterSpacing: "0.18em",
-                                color: "rgba(122, 81, 8, 0.85)",
+                                fontFamily: "'Source Serif 4', Georgia, serif",
+                                fontWeight: 500,
+                                color: "var(--skin-text-strong, rgba(11,42,90,0.95))",
                             }}
                         >
-                            7 min of understanding the value you bring + 6 min of guided meditation to connect with your talent somatically
+                            13 minutes — see the value you bring, then feel it in your body.
                         </p>
 
                         {/* Coupon bypass — Day 58 (Sasha 2026-05-02).
@@ -612,10 +653,13 @@ const AppleseedDisplay = ({
                             <button
                                 type="button"
                                 onClick={() => setCouponOpen(true)}
-                                className="text-[11px] underline-offset-2 hover:underline transition-opacity duration-200 opacity-60 hover:opacity-90"
+                                className="text-sm underline underline-offset-4 transition-opacity duration-200 hover:opacity-100"
                                 style={{
                                     fontFamily: "'Source Serif 4', serif",
-                                    color: "var(--skin-text-muted-soft, rgba(26,30,58,0.55))",
+                                    fontWeight: 500,
+                                    color: "var(--skin-text-muted, rgba(11,42,90,0.86))",
+                                    textDecorationColor: "rgba(11,42,90,0.35)",
+                                    opacity: 0.95,
                                 }}
                             >
                                 Have a code?
