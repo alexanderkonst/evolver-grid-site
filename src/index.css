@@ -792,6 +792,28 @@ All colors MUST be HSL.
     letter-spacing: -0.02em;
   }
 
+  /* Day 61 (Sasha 2026-05-04): legibility pass — global default weight
+     bump for Cormorant Garamond used in BODY contexts (not h1–h6,
+     which already get 500 above). At 400 the strokes are too thin
+     against cream/navy backdrops; at 500 they keep the editorial
+     grace but actually read at body sizes. The attribute selector
+     matches the inline `style={{ fontFamily: "'Cormorant Garamond'..."
+     }}` pattern used across ~220 components, plus any class with the
+     same family. Specificity equals a single class — explicit
+     `fontWeight` (inline or via Tailwind utility) wins. */
+  [style*="Cormorant Garamond"] {
+    font-weight: 500;
+  }
+
+  /* Source Serif 4 used as body face — same logic. The display weight
+     of Source Serif 4 ships at 400 and reads thin at 14–17px on
+     cream. Bumping the default to 500 gains visible stroke without
+     pushing into "bold" register. Variable-font and static-font
+     fallbacks both honor 500. */
+  [style*="Source Serif 4"] {
+    font-weight: 500;
+  }
+
   /* Navigation link underline animation */
   .nav-link {
     @apply relative;
