@@ -81,28 +81,39 @@ export default function ActivationSteps({ showHeading = true }: ActivationStepsP
                 </div>
             )}
 
-            {/* Step 1 — Read */}
+            {/* Step 1 — See it. Day 61 (Sasha 2026-05-04 12:30):
+                renamed from "Read" → "See it" per Sasha's copy. Body
+                expanded to name what the deep-view IS (how you think,
+                work, create) and what it carries (excitement + actual
+                results). CTA label changed to "Deep View of Your Top
+                Talent"; link target preserved (/game/me/zone-of-genius
+                — the Overview page IS the deep view). */}
             <section className="space-y-4 text-center">
                 <p
                     className="text-[11px] sm:text-xs font-semibold tracking-[0.28em] uppercase"
                     style={eyebrowStyle}
                 >
-                    1 · Read
+                    1 · See it
                 </p>
-                <p
-                    className="text-base md:text-lg leading-relaxed max-w-md mx-auto"
+                <div
+                    className="space-y-4 max-w-md mx-auto text-base md:text-lg leading-relaxed"
                     style={inkPrimaryStyle}
                 >
-                    Your full profile is open —<br />
-                    pattern, language, edges, the way you actually work.
-                </p>
+                    <p>
+                        Your deep top talent view is now open —<br />
+                        how you naturally think, work, and create.
+                    </p>
+                    <p>
+                        It's what excites you, and what's actually been driving your best results.
+                    </p>
+                </div>
                 <div className="pt-2">
                     <Link
                         to="/game/me/zone-of-genius"
                         className="group liquid-glass-dark cta-breath rounded-full inline-flex items-center justify-center gap-2 sm:gap-2.5 px-6 sm:px-7 py-3 sm:py-3.5 text-sm sm:text-base font-semibold transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
                         style={ctaButtonStyle}
                     >
-                        <span style={{ letterSpacing: "0.02em" }}>Read your profile</span>
+                        <span style={{ letterSpacing: "0.02em" }}>Deep View of Your Top Talent</span>
                         <ArrowRight
                             aria-hidden="true"
                             className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 flex-shrink-0"
@@ -111,42 +122,58 @@ export default function ActivationSteps({ showHeading = true }: ActivationStepsP
                 </div>
             </section>
 
-            {/* Step 2 — Guided Meditation. Day 58 (Sasha 2026-05-02
-                late): renamed from "Listen" to "Guided Meditation" so
-                the user knows exactly what they're sitting with — no
-                ambiguity about whether this is music, a podcast, or
-                something else. Removes a small but real friction. */}
+            {/* Step 2 — Activation. Day 61 (Sasha 2026-05-04 12:30):
+                tightened from a 5-paragraph guidance block to two
+                short lines per Sasha's copy. Eyebrow renamed from
+                "Guided Meditation" → "Activation". The CTA "Begin
+                the 6-min guided meditation" sits ABOVE the embedded
+                player and smooth-scrolls to it on click — keeps
+                Sasha's CTA shape (matches Step 1 + Step 3 visual
+                rhythm: eyebrow → body → CTA pill) while preserving
+                the player as the actual play surface below. */}
             <section className="space-y-5">
                 <p
                     className="text-[11px] sm:text-xs font-semibold tracking-[0.28em] uppercase text-center"
                     style={eyebrowStyle}
                 >
-                    2 · Guided Meditation
+                    2 · Activation
                 </p>
 
                 <div
-                    className="space-y-4 max-w-md mx-auto text-center text-sm md:text-base leading-relaxed"
+                    className="space-y-4 max-w-md mx-auto text-center text-base md:text-lg leading-relaxed"
                     style={inkPrimaryStyle}
                 >
-                    <p>Before you press play, go back to your profile.</p>
-                    <p>
-                        Find the one sentence that made you pause —<br />
-                        the one that felt like <em>"that's me."</em>
-                    </p>
-                    <p>Bring that sentence with you into the audio.</p>
-                    <p>
-                        During the activation, you'll return to it —<br />
-                        and step into the feeling of what it's like to live it.
-                    </p>
-                    <p style={inkSecondaryStyle} className="italic pt-1">
-                        No need to analyze anything. Just follow it.
-                    </p>
+                    <p>Before you press play—</p>
+                    <p>Pick one sentence that felt most accurate.</p>
                 </div>
 
-                <MeditationPlayer
-                    src={AUDIO_SRC}
-                    title="The Activation"
-                />
+                <div className="flex justify-center pt-1">
+                    <a
+                        href="#activation-meditation-player"
+                        onClick={(e) => {
+                            e.preventDefault();
+                            const target = document.getElementById("activation-meditation-player");
+                            if (target) {
+                                target.scrollIntoView({ behavior: "smooth", block: "center" });
+                            }
+                        }}
+                        className="group liquid-glass-dark cta-breath rounded-full inline-flex items-center justify-center gap-2 sm:gap-2.5 px-6 sm:px-7 py-3 sm:py-3.5 text-sm sm:text-base font-semibold transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+                        style={ctaButtonStyle}
+                    >
+                        <span style={{ letterSpacing: "0.02em" }}>Begin the 6-min guided meditation</span>
+                        <ArrowRight
+                            aria-hidden="true"
+                            className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 flex-shrink-0"
+                        />
+                    </a>
+                </div>
+
+                <div id="activation-meditation-player">
+                    <MeditationPlayer
+                        src={AUDIO_SRC}
+                        title="The Activation"
+                    />
+                </div>
 
                 {/* Download button — Day 58 (Sasha 2026-05-02 late):
                     let people take the meditation with them. Native

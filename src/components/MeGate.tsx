@@ -9,6 +9,7 @@ import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useToast } from "@/hooks/use-toast";
 import { getOrCreateGameProfileId } from "@/lib/gameProfile";
+import { migrateGuestDataToProfile } from "@/modules/zone-of-genius/saveToDatabase";
 import { GOLD_TEXT_STYLE, Ornament } from "@/lib/landingDesign";
 
 /**
@@ -101,18 +102,44 @@ const MeGate = ({ children }: { children: ReactNode }) => {
                     } catch {
                         // non-fatal — shell will reload profile via auth listener
                     }
-                    // Day 61 (Sasha 2026-05-04): explicit awaited claim
-                    // RESTORED here too. Same regression as AuthCallback:
-                    // the Day 60 centralization moved the claim to the
-                    // global SIGNED_IN listener (fire-and-forget), so
-                    // the navigate below ran before the claim completed,
-                    // landing the user on /start-here while their
-                    // anonymous snapshot was still being attached. Page
-                    // read `last_zog_snapshot_id`, saw null, spun on
-                    // "Loading…" forever. Awaiting the claim before
-                    // navigate restores the pre-Day-60 working behavior.
-                    // The global listener still fires (idempotent — dedup
-                    // set in postAuthSideEffects prevents duplicate work).
+                    // Day 61 (Sasha 2026-05-04 12:30): THE BUG FIX.
+                    //
+                    // Anonymous users take the ZoG quiz and the appleseed
+                    // payload lives ONLY in localStorage as
+                    // `guest_appleseed_data` (no DB row anywhere — no
+                    // `zog_snapshots`, no `game_profiles` row, no
+                    // `anonymous_genius_results` row, because guests don't
+                    // hit any of the save paths until they explicitly type
+                    // an email). When such a user signs up via this gate,
+                    // their localStorage data MUST be promoted into a
+                    // real `zog_snapshots` row tied to the new account —
+                    // otherwise the destination page reads
+                    // `last_zog_snapshot_id` → NULL → renders "Take the
+                    // assessment" instead of their result.
+                    //
+                    // `migrateGuestDataToProfile()` does exactly this. It
+                    // existed in `saveToDatabase.ts` and was wired into
+                    // the OLD `SignupModal.tsx`. When this MeGate replaced
+                    // SignupModal as the primary signup gate, the migration
+                    // call was never ported — that's the regression.
+                    //
+                    // The previous "fix" (just calling claim-anonymous-zog)
+                    // only works for users who came via /auth?claim=true
+                    // and entered their email DURING the anonymous flow
+                    // (which writes anonymous_genius_results). For users
+                    // who just took the quiz, viewed the reveal, and hit
+                    // ME → that table has nothing to claim. Hence this
+                    // localStorage-side migration is the actual fix.
+                    try {
+                        await migrateGuestDataToProfile();
+                    } catch (err) {
+                        console.warn("[MeGate] migrateGuestDataToProfile failed", err);
+                    }
+                    // Backup path: claim-anonymous-zog handles the OTHER
+                    // pathway (user arrived via /auth?claim=true with
+                    // email captured server-side via save-anonymous-zog).
+                    // Idempotent + no-op when there's nothing to claim, so
+                    // safe to call regardless of which path the user took.
                     try {
                         const { error } = await supabase.functions.invoke("claim-anonymous-zog");
                         if (error) {

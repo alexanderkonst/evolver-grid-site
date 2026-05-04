@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams, useLocation } from "react-router-dom";
+import { useParams, useLocation, Link } from "react-router-dom";
 import GameShellV2 from "@/components/game/GameShellV2";
 import { supabase } from "@/integrations/supabase/client";
 import { getOrCreateGameProfileId } from "@/lib/gameProfile";
@@ -13,7 +13,7 @@ import { GOLD_TEXT_STYLE, Ornament } from "@/lib/landingDesign";
 import ActivationSteps from "@/components/ActivationSteps";
 import ReadNextSectionButton from "@/components/profile/ReadNextSectionButton";
 import { flipToSecondPerson, flipToFirstPersonReflexive } from "@/lib/zogProfileVoice";
-import { Target, Sparkles, Users, TrendingUp, Briefcase, DollarSign, Eye, Palette, MessageSquare, Heart, Zap, Quote } from "lucide-react";
+import { Target, Sparkles, Users, TrendingUp, Briefcase, DollarSign, Eye, Palette, MessageSquare, Heart, Zap, Quote, ArrowRight } from "lucide-react";
 
 // Day 54+ (Sasha 2026-04-28 night): full restyle of the ME · Top Talent
 // perspective views. Was a violet/purple palette (#8460ea, #a4a3d0,
@@ -721,6 +721,72 @@ const PERSPECTIVES: Partial<Record<PerspectiveId, PerspectiveConfig>> = {
             );
         },
     },
+    // Day 61 (Sasha 2026-05-04 12:00): "What's Next?" — closing
+    // subpage. Same copy as the Step 3 section on Start Here, surfaced
+    // as its own page so the deep-journey reader has a dedicated
+    // landing point at the end. CTA target preserved as
+    // /ignite#pricing-section (matches the Step 3 CTA on Start Here).
+    "whats-next": {
+        title: "What's Next?",
+        subtitle: "From recognition to action",
+        icon: Sparkles,
+        render: () => (
+            <div className="space-y-6 text-center">
+                <div
+                    className="rounded-2xl px-6 py-7 sm:px-8 sm:py-9 space-y-5"
+                    style={accentCardSurface}
+                >
+                    <p
+                        className="text-base sm:text-lg leading-relaxed"
+                        style={{
+                            fontFamily: "'Source Serif 4', Georgia, serif",
+                            fontWeight: 500,
+                            color: "var(--skin-text-primary, #0b2a5a)",
+                            textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
+                        }}
+                    >
+                        You're more in touch with your top talent.
+                    </p>
+                    <p
+                        className="text-base sm:text-lg leading-relaxed"
+                        style={{
+                            fontFamily: "'Source Serif 4', Georgia, serif",
+                            fontWeight: 500,
+                            color: "var(--skin-text-primary, #0b2a5a)",
+                            textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
+                        }}
+                    >
+                        Use it in your work—
+                        <br />
+                        or turn it into a business only you can build.
+                    </p>
+                </div>
+                <div className="pt-2">
+                    <Link
+                        to="/ignite#pricing-section"
+                        className="group liquid-glass-dark cta-breath rounded-full inline-flex items-center justify-center gap-2 sm:gap-2.5 px-6 sm:px-7 py-3 sm:py-3.5 text-sm sm:text-base font-semibold transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+                        style={{
+                            fontFamily: "'Cormorant Garamond', serif",
+                            color: "var(--skin-cta-text, rgba(245,245,250,0.98))",
+                            backgroundImage:
+                                "var(--skin-cta-bg, linear-gradient(135deg, rgba(10,22,40,0.92) 0%, rgba(26,30,58,0.85) 50%, rgba(10,22,40,0.92) 100%))",
+                            boxShadow:
+                                "var(--skin-cta-shadow, 0 0 18px -4px rgba(240,194,127,0.45), 0 10px 24px -10px rgba(10,22,40,0.5))",
+                            textShadow:
+                                "var(--skin-cta-text-shadow, 0 0 16px rgba(240,194,127,0.25), 0 1px 2px rgba(0,0,0,0.35))",
+                            letterSpacing: "0.02em",
+                        }}
+                    >
+                        <span>Turn it into a business</span>
+                        <ArrowRight
+                            aria-hidden="true"
+                            className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 flex-shrink-0"
+                        />
+                    </Link>
+                </div>
+            </div>
+        ),
+    },
     "life-scene": {
         title: "Life Scene",
         subtitle: "Sensory embodiment in flow",
@@ -865,7 +931,11 @@ const ZoGPerspectiveView = () => {
     // (its render is the static ActivationSteps component) — exempt it
     // from the no-data gate so the page renders cleanly even before the
     // user completes the assessment.
-    const PERSPECTIVES_WITHOUT_DATA: PerspectiveId[] = ["start-here"];
+    // Day 61 (Sasha 2026-05-04 12:00): "whats-next" added — like
+    // start-here, its render is a static next-step CTA that doesn't
+    // touch appleseed data, so it should render even before the user
+    // has completed the assessment.
+    const PERSPECTIVES_WITHOUT_DATA: PerspectiveId[] = ["start-here", "whats-next"];
     const needsData = !PERSPECTIVES_WITHOUT_DATA.includes(perspectiveId as PerspectiveId);
 
     // Body content resolution — order matters:
