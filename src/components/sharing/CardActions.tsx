@@ -25,6 +25,18 @@ interface CardActionsProps {
     shareText: string;
     /** Subdued (true) for placement inside light cards; otherwise white-on-dark. */
     darkMode?: boolean;
+    /**
+     * Day 61 (Sasha 2026-05-04 17:45): force a fixed pixel width on
+     * the captured element during PNG export → produces a portrait
+     * 9:16-ish PNG appropriate for Stories / Reels / TikTok regardless
+     * of viewport. Without this, the captured card adopts whatever
+     * width the live page provides (wide on desktop, narrow on mobile),
+     * yielding inconsistent share artifacts. Recommended value: 480px.
+     * Width is restored after capture in a try/finally — there's a
+     * brief on-screen flash during the capture moment, acceptable for
+     * the consistency win.
+     */
+    captureWidth?: number;
 }
 
 /**
@@ -48,6 +60,7 @@ const CardActions = ({
     fileName = "my-top-talent",
     shareText,
     darkMode = false,
+    captureWidth,
 }: CardActionsProps) => {
     const { toast } = useToast();
     const [saving, setSaving] = useState(false);
@@ -111,6 +124,20 @@ const CardActions = ({
             return;
         }
         setSaving(true);
+
+        // Day 61 (Sasha 2026-05-04 17:45): force narrow width during
+        // capture for vertical 9:16-ish PNG output. Save originals so
+        // we can restore in finally — must restore even on error so
+        // the live card doesn't stay narrow if html2canvas throws.
+        let originalWidth: string | null = null;
+        let originalMaxWidth: string | null = null;
+        if (captureWidth) {
+            originalWidth = el.style.width;
+            originalMaxWidth = el.style.maxWidth;
+            el.style.width = `${captureWidth}px`;
+            el.style.maxWidth = `${captureWidth}px`;
+        }
+
         try {
             // Day 51 night fix #2 (Sasha): html2canvas was throwing on
             // `backdrop-filter` (used by `breathing-card backdrop-blur-md`)
@@ -177,6 +204,13 @@ const CardActions = ({
                 variant: "destructive",
             });
         } finally {
+            // Restore the live card's width regardless of capture
+            // success/failure. Without this, a thrown html2canvas
+            // would leave the card visibly narrow on the page.
+            if (captureWidth) {
+                el.style.width = originalWidth ?? "";
+                el.style.maxWidth = originalMaxWidth ?? "";
+            }
             setSaving(false);
         }
     };

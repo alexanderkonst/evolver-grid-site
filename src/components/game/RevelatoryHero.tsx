@@ -1,5 +1,6 @@
 import { ReactNode, useRef } from "react";
 import CardActions from "@/components/sharing/CardActions";
+import { QRCodeCanvas } from "qrcode.react";
 import { Ornament } from "@/lib/landingDesign";
 // Day 61 (Sasha 2026-05-04 12:45): brand torus mark used in the
 // in-card footer so the saved/shared image carries identifiable
@@ -415,17 +416,48 @@ const RevelatoryHero = ({
                     >
                         → get yours · <span style={{ fontWeight: 600 }}>findyourtoptalent.com</span>
                     </p>
+
+                    {/* QR code — Day 61 (Sasha 2026-05-04 17:45).
+                        Friction-killer for word-of-mouth: people who see
+                        the shared/saved PNG can SCAN to take the quiz
+                        themselves, no typing required. White bg + dark
+                        fg = universal scannability standard (works in
+                        both Aurora light and Navy+Gold dark skins
+                        without color contortions). 60px is the sweet
+                        spot — readable by phone cameras at typical
+                        social-feed image sizes (~1080px wide), small
+                        enough not to compete with the brand torus +
+                        URL composition above. UTM tags so we can
+                        attribute QR-driven traffic separately from
+                        link-clicks in analytics. */}
+                    <div
+                        className="mt-2 p-1.5 rounded-md"
+                        style={{ backgroundColor: "#ffffff" }}
+                    >
+                        <QRCodeCanvas
+                            value="https://findyourtoptalent.com?utm_source=qr&utm_medium=image&utm_campaign=top_talent_reveal"
+                            size={60}
+                            bgColor="#ffffff"
+                            fgColor="#0a1628"
+                            level="M"
+                            includeMargin={false}
+                        />
+                    </div>
                 </div>
 
                 {/* Save · Share — kept; one-click PNG capture + socials
                     popover. Share text now drops the retired Three-Lenses
-                    block; carries archetype + bullseye + invite. */}
+                    block; carries archetype + bullseye + invite.
+                    Day 61 (Sasha 2026-05-04 17:45): captureWidth=480
+                    forces vertical 9:16-ish PNG output suitable for
+                    Stories / Reels / TikTok. */}
                 <div className="mt-5 text-center">
                     <CardActions
                         captureRef={cardRef}
                         fileName={`${cleanTitle.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "my-top-talent"}-find-your-top-talent`}
                         shareText={shareText}
                         darkMode={darkMode}
+                        captureWidth={480}
                     />
                 </div>
             </div>

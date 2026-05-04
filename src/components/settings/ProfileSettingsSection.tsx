@@ -17,6 +17,12 @@ import { Badge } from "@/components/ui/badge";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { useStripePortal } from "@/hooks/use-stripe-portal";
+// Day 61 (Sasha 2026-05-04 17:00): Reset Progress wipes the
+// snapshot cache too — without this, the in-memory + sessionStorage
+// cache returns stale Top Talent data even after the DB rows are
+// deleted, so the ME space surfaces (Overview, deep perspectives)
+// continue rendering the old reveal until a hard reload.
+import { clearCachedZogSnapshot } from "@/lib/zogSnapshotCache";
 // Day 48 iter 12 (Sasha): shared design language for the landing-CTA
 // signature (glass-dark pill + ignite emblem + small-caps + breath).
 import { CTA_SMALL_CAPS_STYLE, igniteLogo } from "@/lib/landingDesign";
@@ -545,6 +551,47 @@ const ProfileSettingsSection = () => {
                                 if (!profile || !confirm("Are you sure? This will wipe ALL your progress, XP, and unlocked upgrades. This cannot be undone.")) return;
                                 setIsLoading(true);
                                 try {
+                                    // Day 61 (Sasha 2026-05-04 17:00): full
+                                    // wipe rewrite. Sasha report: "When I press
+                                    // reset game progress, the contents of the
+                                    // ME space (specifically the top talent
+                                    // deep profile DO NOT get deleted)."
+                                    //
+                                    // Root cause: the previous handler nulled
+                                    // `last_zog_snapshot_id` on game_profiles
+                                    // but left the actual zog_snapshots row
+                                    // intact, AND didn't touch:
+                                    //   • the zogSnapshotCache (in-memory +
+                                    //     sessionStorage) → ME-space surfaces
+                                    //     kept rendering stale data
+                                    //   • the `onboarding_stage` field → space
+                                    //     unlock gates stayed unlocked
+                                    //   • orphan rows in zog_snapshots,
+                                    //     qol_snapshots, user_business_artifacts,
+                                    //     visibility_settings
+                                    //
+                                    // New order:
+                                    //   1. Fetch auth user (need user_id for
+                                    //      user_business_artifacts + visibility
+                                    //      cleanup — those tables key on
+                                    //      auth.user.id, not game_profiles.id).
+                                    //   2. Update game_profiles — adds
+                                    //      `onboarding_stage: 'new'` to the
+                                    //      existing field set; nulls the FKs
+                                    //      first so subsequent snapshot deletes
+                                    //      can't trip a constraint.
+                                    //   3. Delete the actual snapshot rows so
+                                    //      no orphans linger.
+                                    //   4. Delete UBB artifacts + visibility.
+                                    //   5. Existing player_upgrades +
+                                    //      vector_progress deletes preserved.
+                                    //   6. clearCachedZogSnapshot() — wipes the
+                                    //      in-memory cache + the sessionStorage
+                                    //      key so the next page render hits a
+                                    //      true empty state.
+                                    const { data: { user } } = await supabase.auth.getUser();
+                                    const userId = user?.id;
+
                                     const { error: profileError } = await supabase
                                         .from('game_profiles')
                                         .update({
@@ -563,12 +610,42 @@ const ProfileSettingsSection = () => {
                                             zone_of_genius_completed: false,
                                             total_quests_completed: 0,
                                             onboarding_completed: false,
-                                            onboarding_step: 0
+                                            onboarding_step: 0,
+                                            // Day 61 — added: without this the
+                                            // SpacesRail unlock gates stayed at
+                                            // zog_complete (or wherever the
+                                            // user was) so LEARN/MEET/ME-deep
+                                            // remained accessible after reset.
+                                            onboarding_stage: 'new',
                                         })
                                         .eq('id', profile.id);
                                     if (profileError) throw profileError;
+
+                                    // Delete actual snapshot rows. Excalibur
+                                    // lives inside zog_snapshots.excalibur_data,
+                                    // so it goes with this delete — no separate
+                                    // table to wipe.
+                                    await supabase.from('zog_snapshots').delete().eq('profile_id', profile.id);
+                                    await supabase.from('qol_snapshots').delete().eq('profile_id', profile.id);
+
+                                    // UBB canvas + visibility settings key on
+                                    // auth.user.id, not game_profiles.id.
+                                    if (userId) {
+                                        await supabase.from('user_business_artifacts').delete().eq('user_id', userId);
+                                        await supabase.from('visibility_settings').delete().eq('user_id', userId);
+                                    }
+
+                                    // Existing — preserved.
                                     await supabase.from('player_upgrades').delete().eq('profile_id', profile.id);
                                     await supabase.from('vector_progress').delete().eq('profile_id', profile.id);
+
+                                    // Wipe the snapshot cache so the next ME-
+                                    // space render doesn't read stale data
+                                    // from sessionStorage. Without this, the
+                                    // user would have to hard-reload the tab
+                                    // to see the empty state.
+                                    clearCachedZogSnapshot();
+
                                     toast({ title: "Progress Reset", description: "Your journey has been restarted." });
                                     navigate('/');
                                 } catch {
