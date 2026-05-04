@@ -49,17 +49,24 @@ OUTPUT:
 Write plain text (no markdown headings) with the following clearly labeled sections, in this exact order:
 
 Archetype Title:
-– 1 short phrase that names their Top Talent archetype. It should be 6 words or fewer, easy to say out loud, and feel like a character name (e.g., 'Ethical Architect of Systems').
+– A SINGLE GERUND or short gerund phrase that names their Top Talent as an active verb-form (not a noun phrase).
+– Examples (good): 'Forging', 'Translating Pattern into Path', 'Holding Space for Emergence', 'Architecting Systems'.
+– Counter-examples (bad — these are noun phrases, do NOT use this shape): 'Ethical Architect of Systems', 'Heartful Harmonizer', 'Visionary Guide'.
+– 1–4 words. Easy to say. Feels like an identity-as-action.
 
-Your Top Talent Description (3–4 rich sentences):
-– What this genius naturally seeks or does when active.
-– How it shows up when they are at their best.
-– The unique value they bring to environments.
-– Make this feel like a fuller character description, not just a summary.
+Your Top Talent Description (1 sentence, first-person verb-form):
+– Output a SINGLE sentence in first-person verb-form, written so it reads naturally when prefixed with "I" (the rendering surface prepends "I").
+– Examples (good): 'shape conviction in others through clear contrast and fresh framing', 'turn messy ideas into one-page systems anyone can act on'.
+– Counter-examples (bad — these are second-person and break when prefixed with "I"): 'You naturally seek...', 'Your essence is...', 'When you are at your best...'.
+– Start with a verb (shape, turn, weave, etc.). Do NOT start with "You".
+– 12–20 words.
 
-Superpowers in Action (3 bullets max):
-– Each bullet 1 sentence.
-– Describe concrete ways this pattern shows up in daily life and work when they are at their best.
+Superpowers in Action (exactly 3 bullets):
+– Each bullet is a COMPACT phrase (3–6 words), NOT a full sentence.
+– Each phrase starts with a gerund or short verb form. Do NOT start with "You".
+– Examples (good): 'Translating tension into clarity', 'Naming what others avoid', 'Spotting fragile assumptions'.
+– Counter-examples (bad): 'You instinctively identify and refine inefficiencies in processes, making them flow smoothly.', '* You create organized systems that are intuitive and a pleasure to use.'.
+– Use plain bullet markers (- or no marker), NOT markdown asterisks (*).
 
 Your Edge (3 bullets max):
 – This is their supershadow — the flip side of their gift where growth happens.
@@ -82,7 +89,7 @@ GENERAL STYLE RULES:
 – Use clear, simple language a smart 15-year-old could understand.
 – No paragraphs longer than 2 sentences in the description section.
 – No more than 20 words per sentence.
-– Speak directly to 'you'.
+– Speak directly to 'you' EXCEPT for the Top Talent Description and Superpowers sections, which use first-person verb-form per the per-section instructions above (the rendering surface prepends "I" / treats those as the user's own voice).
 – Avoid generic self-help clichés. Make it feel tailored, precise, and surprising.
 – For Your Edge: be honest and sharp, but not cruel. Frame as "working skillfully with your own pattern."`.trim();
 };
