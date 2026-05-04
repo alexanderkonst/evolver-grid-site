@@ -449,8 +449,15 @@ const RevelatoryHero = ({
                     block; carries archetype + bullseye + invite.
                     Day 61 (Sasha 2026-05-04 17:45): captureWidth=480
                     forces vertical 9:16-ish PNG output suitable for
-                    Stories / Reels / TikTok. */}
-                <div className="mt-5 text-center">
+                    Stories / Reels / TikTok.
+                    Day 61 (Sasha 2026-05-04 18:15): data-html2canvas-ignore
+                    excludes the Save · Share buttons from the captured
+                    PNG. Without it, "⬇ SAVE · ⬆ SHARE" appeared at the
+                    bottom of every saved/shared image — UI controls
+                    leaking into the artifact. html2canvas reads this
+                    attribute natively and skips the element + subtree
+                    during rasterization. */}
+                <div className="mt-5 text-center" data-html2canvas-ignore="true">
                     <CardActions
                         captureRef={cardRef}
                         fileName={`${cleanTitle.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "my-top-talent"}-find-your-top-talent`}
