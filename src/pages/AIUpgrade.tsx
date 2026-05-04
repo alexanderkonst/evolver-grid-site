@@ -796,13 +796,16 @@ const AIUpgrade = () => {
                 </button>
               ))}
 
-              {/* Telegram Contact Button */}
+              {/* Telegram Contact Button — Day 58+ (Sasha 2026-05-03):
+                  copy harmonized with the playbook footer CTA — "us"
+                  (collective method + collective brand) instead of "me"
+                  (founder-as-individual). Telegram link unchanged. */}
               <button
                 onClick={handleTelegramContact}
                 className="w-full py-4 px-6 rounded-xl font-semibold text-white transition-all hover:scale-[1.02] hover:shadow-lg active:scale-[0.98]"
                 style={{ backgroundColor: '#0A2342' }}
               >
-                Contact me on Telegram
+                Contact us on Telegram
               </button>
             </div>
           </div>
