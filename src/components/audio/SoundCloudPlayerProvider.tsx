@@ -59,30 +59,38 @@ const DEFAULT_PLAYLIST_URL =
     "https://soundcloud.com/alexander-konstantinov-976475588/sets/findyourtoptalent-com-playlist";
 
 /**
- * Shell-route detection — does this pathname live inside one of the
- * authed-app shells (where SpacesRail and the player UI exist)?
+ * Music-allowed-route detection — should the player be active on
+ * this pathname?
  *
- * Sales / landing / funnel routes are explicitly NOT shell routes:
- *   • /                (landing)
- *   • /ignite          (sales)
- *   • /zone-of-genius  (assessment funnel)
- *   • /auth*           (auth pages)
- *   • all the public marketing / activation / dossier / profile
- *     routes — anything that isn't game / ai-os / ubb / dashboard
+ * Day 60+ rev (Sasha 2026-05-04): inverted from a small allow-list
+ * (game / ai-os / ubb / dashboard) to a small DENY-list. The rail
+ * renders on far more routes than the original allow-list assumed —
+ * /playbook, /path, /library, /settings, /feedback, etc. all wrap
+ * themselves in GameShellV2 from inside the page component. The
+ * tight allow-list was hiding the player UI on every one of those
+ * pages. Inverting fixes that AND makes new app pages default to
+ * music-allowed instead of needing to be added to a list each time.
  *
- * Used both to lazy-mount the engine (only after first entry) AND
- * to auto-pause when the user crosses back out into sales territory.
+ * Music is DENIED on the following surfaces (everything else allows):
+ *   • /                       — landing / hero
+ *   • /ignite, /ignite/*      — primary sales surface ($555 session)
+ *   • /zone-of-genius, /...   — pre-purchase assessment funnel
+ *   • /auth, /auth/*          — sign-in / sign-up / reset-password
+ *   • /activations, /...      — marketing landings for activations
+ *
+ * Used both to lazy-mount the engine (boots on first allowed-route
+ * entry) AND to auto-pause when the user crosses into denied
+ * territory (e.g., navigates from /game/me → /ignite).
  */
 function isShellRoute(pathname: string): boolean {
-    // Match exact roots OR `${root}/` prefixes — never `${root}X` patterns
-    // (so a hypothetical /ai-os-archive route wouldn't falsely trigger
-    // music). Day 60+ audit: tightened from `startsWith("/ai-os")` etc.
-    return (
-        pathname === "/game" || pathname.startsWith("/game/") ||
-        pathname === "/ai-os" || pathname.startsWith("/ai-os/") ||
-        pathname === "/ubb" || pathname.startsWith("/ubb/") ||
-        pathname === "/dashboard" || pathname.startsWith("/dashboard/")
-    );
+    // Hard-deny list of "no music" surfaces — every other route is
+    // music-allowed by default. New routes don't need any change here.
+    if (pathname === "/") return false;
+    if (pathname === "/ignite" || pathname.startsWith("/ignite/")) return false;
+    if (pathname === "/zone-of-genius" || pathname.startsWith("/zone-of-genius/")) return false;
+    if (pathname === "/auth" || pathname.startsWith("/auth/")) return false;
+    if (pathname === "/activations" || pathname.startsWith("/activations/")) return false;
+    return true;
 }
 
 // SoundCloud Widget API types live in src/types/soundcloud.d.ts.
