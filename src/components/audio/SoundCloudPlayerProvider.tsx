@@ -197,20 +197,46 @@ export function SoundCloudPlayerProvider({
 
                 widget.bind(Events.READY, () => {
                     if (cancelled) return;
+                    console.log("[SC] READY");
                     setReady(true);
                     readCurrentInto(widget);
                 });
                 widget.bind(Events.PLAY, () => {
                     if (cancelled) return;
+                    // Debug — Day 58+ (Sasha 2026-05-03): Sasha reported
+                    // rapid track-skipping on first press of play (settles
+                    // on track ~3-4). My initial auto-skip-unplayable
+                    // hypothesis was wrong — all tracks are playable. So
+                    // we need actual data: log every PLAY event + the
+                    // current track's title/index. Next walkthrough,
+                    // open DevTools Console and share what these print.
+                    widget.getCurrentSound((sound) => {
+                        console.log("[SC] PLAY", { title: sound?.title, artist: sound?.user?.username });
+                    });
                     setPlaying(true);
                     readCurrentInto(widget);
                 });
                 widget.bind(Events.PAUSE, () => {
-                    if (!cancelled) setPlaying(false);
+                    if (cancelled) return;
+                    console.log("[SC] PAUSE");
+                    setPlaying(false);
                 });
                 widget.bind(Events.FINISH, () => {
-                    if (!cancelled) setPlaying(false);
+                    if (cancelled) return;
+                    console.log("[SC] FINISH");
+                    setPlaying(false);
                 });
+                // Some SoundCloud Widget builds expose an ERROR event
+                // for unplayable tracks / network failures. Listen so
+                // we'd see it if it fires.
+                try {
+                    widget.bind("error", (err: unknown) => {
+                        if (!cancelled) console.warn("[SC] ERROR", err);
+                    });
+                } catch {
+                    // bind() may throw if the event name isn't recognized
+                    // by this widget version — silently ignore.
+                }
             })
             .catch((err) => {
                 console.warn("[SoundCloudPlayerProvider] widget API load failed:", err);
