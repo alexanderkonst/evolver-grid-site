@@ -1,0 +1,30 @@
+
+-- Delete all data for karimekurit@gmail.com (user 81167ae8-dde6-434c-81ea-84b174e06a01, profile 3825766d-3124-420d-8e96-b48af2430e51)
+DELETE FROM public.action_events WHERE profile_id='3825766d-3124-420d-8e96-b48af2430e51';
+DELETE FROM public.player_upgrades WHERE profile_id='3825766d-3124-420d-8e96-b48af2430e51';
+DELETE FROM public.zog_snapshots WHERE profile_id='3825766d-3124-420d-8e96-b48af2430e51';
+DELETE FROM public.first_time_actions WHERE profile_id='3825766d-3124-420d-8e96-b48af2430e51';
+DELETE FROM public.qol_snapshots WHERE profile_id='3825766d-3124-420d-8e96-b48af2430e51';
+DELETE FROM public.missions WHERE profile_id='3825766d-3124-420d-8e96-b48af2430e51';
+DELETE FROM public.quests WHERE profile_id='3825766d-3124-420d-8e96-b48af2430e51';
+DELETE FROM public.canvas_snapshots WHERE profile_id='3825766d-3124-420d-8e96-b48af2430e51' OR user_id='81167ae8-dde6-434c-81ea-84b174e06a01';
+DELETE FROM public.entitlement_grants WHERE profile_id='3825766d-3124-420d-8e96-b48af2430e51';
+DELETE FROM public.mission_participants WHERE user_id='81167ae8-dde6-434c-81ea-84b174e06a01';
+DELETE FROM public.multiple_intelligences_results WHERE user_id='81167ae8-dde6-434c-81ea-84b174e06a01';
+DELETE FROM public.genius_offer_requests WHERE user_id='81167ae8-dde6-434c-81ea-84b174e06a01';
+DELETE FROM public.genius_offer_wizard_progress WHERE user_id='81167ae8-dde6-434c-81ea-84b174e06a01';
+DELETE FROM public.product_builder_snapshots WHERE user_id='81167ae8-dde6-434c-81ea-84b174e06a01';
+DELETE FROM public.marketplace_products WHERE user_id='81167ae8-dde6-434c-81ea-84b174e06a01';
+DELETE FROM public.ai_boost_purchases WHERE user_id='81167ae8-dde6-434c-81ea-84b174e06a01';
+DELETE FROM public.connections WHERE requester_id='81167ae8-dde6-434c-81ea-84b174e06a01' OR receiver_id='81167ae8-dde6-434c-81ea-84b174e06a01';
+DELETE FROM public.event_rsvps WHERE user_id='81167ae8-dde6-434c-81ea-84b174e06a01';
+DELETE FROM public.events WHERE created_by='81167ae8-dde6-434c-81ea-84b174e06a01';
+DELETE FROM public.artifact_improvements WHERE user_id='81167ae8-dde6-434c-81ea-84b174e06a01';
+DELETE FROM public.anonymous_genius_results WHERE claimed_user_id='81167ae8-dde6-434c-81ea-84b174e06a01' OR lower(email)='karimekurit@gmail.com';
+DELETE FROM public.nurture_email_queue WHERE lower(email)='karimekurit@gmail.com' OR profile_id='3825766d-3124-420d-8e96-b48af2430e51';
+DELETE FROM public.nurture_opt_outs WHERE lower(email)='karimekurit@gmail.com';
+DELETE FROM public.email_send_log WHERE lower(recipient_email)='karimekurit@gmail.com';
+DELETE FROM public.email_unsubscribe_tokens WHERE lower(email)='karimekurit@gmail.com';
+DELETE FROM public.user_roles WHERE user_id='81167ae8-dde6-434c-81ea-84b174e06a01';
+DELETE FROM public.game_profiles WHERE id='3825766d-3124-420d-8e96-b48af2430e51';
+DELETE FROM auth.users WHERE id='81167ae8-dde6-434c-81ea-84b174e06a01';
