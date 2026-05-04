@@ -167,7 +167,7 @@ export const PLAYBOOK_STEPS: PlaybookStep[] = [
     appName: "PACKAGE",
     subtitle: "Articulate it with Precision",
     transformationalResult:
-      "I can describe my top talent in a crystal clear one sentence that lands visceral, and is emotive.",
+      "I can describe my top talent in a crystal clear one sentence that lands visceral and emotive.",
     neonHsl: "hsl(248, 85%, 68%)",
     neonRgb: "110, 100, 240",
     labelLines: ["Articulate it", "with Precision"],

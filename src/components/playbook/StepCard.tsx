@@ -329,21 +329,26 @@ const Step2Essay = (_: { neonHsl: string; neonRgb: string }) => {
         The Secret to Productizing Yourself
       </h2>
 
-      {/* The three voices that promise but don't deliver: startup
-          influencers, social media influencers, and the personality-
-          test + purpose-coach industry. Then the "Why?" hook. */}
-      <p>Startup influencers tell others "Productize yourself".</p>
+      {/* Day 60+ (Sasha 2026-05-03 evening rewrite): opening reshaped.
+          The two influencer paragraphs are now followed by an
+          explicit gap-naming pair ("Most don't tell us HOW" +
+          "Existing playbooks only work for a small percentage of
+          people.") before the personality-tests-and-coaches sentence
+          and the "Why?" hook. The Tier-2 secret tease gains "hidden"
+          for register weight ("a hidden secret" reads less casual
+          than "a secret"). */}
+      <p>Startup influencers say "Productize yourself".</p>
 
       <p>
-        Social media influencers say "monetize who you are", "build your authentic brand".
+        Social media influencers suggest to "monetize who you are", and to "build an authentic brand".
       </p>
 
-      <p>
-        They don't tell us HOW and if they do, it is either too fluffy or too specific to them to work for us.
-      </p>
+      <p>Most don't tell us HOW to do that.</p>
+
+      <p>Existing playbooks only work for a small percentage of people.</p>
 
       <p>
-        Personality tests and purpose coaches promise to solve it but rarely bring aligned paying clients.
+        Personality tests and purpose coaches promise a solution but rarely lead to aligned paying clients.
       </p>
 
       <p>Why?</p>
@@ -364,14 +369,20 @@ const Step2Essay = (_: { neonHsl: string; neonRgb: string }) => {
             "var(--skin-text-halo-subtle, 0 1px 2px rgba(255,255,255,0.7))",
         }}
       >
-        There is a secret to productizing yourself.
+        There is a hidden secret to productizing yourself.
       </p>
 
-      <p>It is not just knowing what you do vaguely.</p>
+      <p>Knowing what you do vaguely is simply not enough.</p>
 
       {/* ── Tier 1 emphasis: THE punchline.
           Gold-rule blockquote, elevated weight, slightly larger. The
-          single load-bearing claim of the whole step. */}
+          single load-bearing claim of the whole step. Day 60+ rewrite:
+          the previous "Success is proportional to the degree of
+          SPECIFICITY of articulation of what you do." was a clean
+          maxim but didn't name WHO realizes it (or doesn't). The new
+          form puts the reader in the seat of the "most people who
+          don't realize" group, which lands harder as a recognition
+          trigger. */}
       <blockquote
         className="my-2 pl-4 py-2 border-l-[3px]"
         style={{
@@ -381,11 +392,11 @@ const Step2Essay = (_: { neonHsl: string; neonRgb: string }) => {
           color: "var(--skin-text-primary, #0a1628)",
         }}
       >
-        Success is proportional to the degree of SPECIFICITY of articulation of what you do.
+        What most people don't realize is that productizing oneself REQUIRES A VERY HIGH SPECIFICITY of articulation of what you do.
       </blockquote>
 
       <p>
-        The catch is that there is a looong way from the vague "I help people to get better results in life and business" to a 9/10 CRISP SPECIFICITY of what you do.
+        There is a long way from the vague "I help people to get better results in life and business" to a 9/10 CRISP SPECIFICITY of what you do.
       </p>
 
       <p>Here is an example of a business offer sentence at a ~10/10 precision:</p>
@@ -400,12 +411,23 @@ const Step2Essay = (_: { neonHsl: string; neonRgb: string }) => {
         "I assist conscious aspiring impact founders turn their top talent into a growing scalable business in flow."
       </p>
 
-      <p>
-        It is sufficiently SPECIFIC, which then makes the entire business offer have that same specificity.
-      </p>
+      <p>This one is sufficiently SPECIFIC.</p>
+
+      {/* Day 60+ (Sasha 2026-05-03 evening): four-line "EASY" cascade
+          added — names the four downstream domains (product /
+          packaging / distribution / clients) that high specificity
+          unlocks. Reads as a four-beat staircase before the pivot
+          back to the reader's question. */}
+      <p>Such high level of specificity makes building your business EASY.</p>
+
+      <p>Product building becomes easy.</p>
+
+      <p>Packaging, copy, and comms become straightforward.</p>
+
+      <p>Distribution & outreach become fun and easy.</p>
 
       <p>
-        This level of clarity turned into copy specificity pulls in highly aligned clients, and repels others.
+        High clarity turns into copy and pulls in highly aligned clients while repelling everyone else.
       </p>
 
       <p>So how do YOU get YOUR top talent to that level of specificity?</p>
