@@ -497,15 +497,20 @@ function renderTopShadow(b: PdfBuilder, appleseed: AppleseedData) {
 function renderOneAction(b: PdfBuilder, appleseed: AppleseedData) {
     const text = appleseed.topTalentProfile?.flywheel_action;
     if (!text) return;
-    // Day 60+ audit: flip third-person legacy snapshots to second-person
-    // for the PDF (mirror of the screen-side ZoGPerspectiveView fix). New
-    // snapshots already come back second-person from the prompt, so the
-    // helper is a no-op for them.
-    const flipped = flipToSecondPerson(text);
+    // NOTE — Day 60+ audit (Sasha 2026-05-04): an earlier audit pass
+    // tried to apply flipToSecondPerson here for parity with the
+    // screen-side fix, but that's UNSAFE for this field specifically.
+    // flywheel_action commonly contains "they/their" referring to
+    // OTHER people the reader is acting on (e.g., "help one founder
+    // name what THEY actually do"). Flipping those to "you" would be
+    // wrong. The original zogProfileVoice.ts comment lists the
+    // safe-to-flip fields explicitly: core_pattern,
+    // how_genius_shows_up, edge_and_traps, masteryStages.description.
+    // flywheel_action is NOT on that list. Render raw.
     b.sectionRule();
     b.eyebrow("One Action — repeat this");
     b.y += 1;
-    b.cardBody(flipped, { tinted: true });
+    b.cardBody(text, { tinted: true });
     b.sectionGap();
 }
 
@@ -521,8 +526,11 @@ function renderPathOfMastery(b: PdfBuilder, appleseed: AppleseedData) {
     b.y += 1;
     stages.forEach((stage) => {
         const num = stage.stage || 1;
+        // Flip stage.description for legacy third-person snapshots — mirrors
+        // the screen-side ZoGPerspectiveView treatment. New snapshots already
+        // come back second-person; helper is a no-op for them.
         const text = stage.description
-            ? `${stage.name} — ${stage.description}`
+            ? `${stage.name} — ${flipToSecondPerson(stage.description)}`
             : stage.name;
         b.numberedCard(num, text);
     });
