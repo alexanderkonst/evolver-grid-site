@@ -111,6 +111,13 @@ import AppleseedView from "./pages/AppleseedView";
 import ExcaliburView from "./pages/ExcaliburView";
 import ZoGPerspectiveView from "./pages/spaces/profile/ZoGPerspectiveView";
 import NotFound from "./pages/NotFound";
+// Day 61 (Sasha 2026-05-04 17:30): MyResult.tsx is now a LEGACY page,
+// kept alive ONLY to honor historical inbox links of the form
+// /my-result?token=<access_token>. New deposit-slip emails (from
+// save-zog-result post-Wave-2) point at /zone-of-genius?result=<token>
+// instead — that's the canonical returning-user surface (same component
+// as the live funnel, one render path, no drift). MyResult can be
+// deleted once the historical-link tail decays (months out).
 import MyResult from "./pages/MyResult";
 import OnboardingPage from "./pages/OnboardingPage";
 // Space pages for the Game Shell
@@ -281,6 +288,10 @@ const App = () => (
                       a duplicate public page (Sasha 2026-04-26). */}
                   <Route path="/reveal" element={<Navigate to="/" replace />} />
                   <Route path="/reveal/:slug" element={<Navigate to="/" replace />} />
+                  {/* Day 61 (Sasha 2026-05-04): /my-result is LEGACY —
+                      preserved for historical inbox links carrying
+                      ?token=<access_token>. New emails (post-Wave-2)
+                      use /zone-of-genius?result=<token> instead. */}
                   <Route path="/my-result" element={<MyResult />} />
                   {/* Day 47 late pass (Sasha): /integral_theory_upgrade1 renamed to /27.
                       Old path kept as redirect so any shared links stay alive. */}
