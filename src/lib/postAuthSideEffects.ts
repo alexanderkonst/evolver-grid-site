@@ -45,6 +45,7 @@
  * explicit calls in AuthCallback / MeGate were removed when this
  * module was introduced.
  */
+import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { clearCachedZogSnapshot } from "@/lib/zogSnapshotCache";
 
@@ -94,6 +95,17 @@ export function installPostAuthSideEffects(): void {
                     "[postAuthSideEffects] claim-anonymous-zog failed:",
                     err,
                 );
+                // Day 60+ (Sasha 2026-05-04): surface failure to the
+                // user so they have a path forward. Without this, the
+                // failure is silent and the user lands on an empty Top
+                // Talent page with no idea why their snapshot didn't
+                // appear. Sonner's `toast` works from non-React
+                // contexts since the <Sonner /> Toaster mounts at App
+                // root and renders via portal.
+                toast.error("We couldn't link your Top Talent to your account.", {
+                    description: "Try signing out and back in. If the issue persists, your snapshot is safe — contact us via the chat in the rail.",
+                    duration: 8000,
+                });
                 // Allow retry on the next SIGNED_IN for this user
                 // (e.g., they sign out + back in to recover).
                 claimAttemptedFor.delete(userId);

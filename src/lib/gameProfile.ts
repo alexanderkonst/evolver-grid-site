@@ -115,7 +115,22 @@ export async function getOrCreateGameProfileId(): Promise<string> {
       }
     }
 
-    // Create a new profile for this user (with names from metadata)
+    // Create a new profile for this user (with names from metadata).
+    //
+    // Day 60+ (Sasha 2026-05-04): defensive `unique_violation` handling.
+    // The post-auth listener (src/lib/postAuthSideEffects.ts) calls
+    // `claim-anonymous-zog` which on the server side ALSO calls
+    // getOrCreateGameProfileId — concurrently with this client-side
+    // call from MeGate / GameShellV2 / etc. Without coordination, both
+    // can SELECT → none → INSERT → duplicate `game_profiles` rows.
+    //
+    // The proper fix is a Supabase migration adding `UNIQUE (user_id)`
+    // on `game_profiles` (see roadmap). Once that lands, the second
+    // concurrent INSERT fails with PostgreSQL error 23505. This catch
+    // block converts that into a graceful re-query for the row that
+    // the OTHER caller just inserted, so the user never sees an
+    // error. Until the migration ships, this catch is a no-op (no
+    // 23505 errors raised by the unconstrained table).
     const { data, error } = await supabase
       .from('game_profiles')
       .insert({
@@ -127,6 +142,20 @@ export async function getOrCreateGameProfileId(): Promise<string> {
       .single();
 
     if (error) {
+      // Postgres unique_violation — another caller raced us and
+      // inserted first. Re-query to find their row.
+      if (error.code === '23505') {
+        const { data: raceWinner, error: requeryError } = await supabase
+          .from('game_profiles')
+          .select('id')
+          .eq('user_id', user.id)
+          .maybeSingle();
+        if (requeryError) throw requeryError;
+        if (raceWinner) return raceWinner.id as string;
+        // Fall through — re-query found nothing, which means the
+        // race winner's row was deleted between INSERT and SELECT.
+        // Vanishingly rare; throw the original to surface it.
+      }
       throw error;
     }
 

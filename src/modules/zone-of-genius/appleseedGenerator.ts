@@ -61,6 +61,10 @@ Output:
       "1. Hearing the real point under the story — pulling the one thread that explains the whole person or project."
       "2. Building nested clarity — turning scattered ideas into a clean sequence with levels, steps, and decision rules."
       "3. Making usable artifacts — pages, decks, messages, and onboarding that still work when you are not in the room."
+    top_three_talents_compact:  // 1:1 with long form above. 2-4 words. Gerund + concrete object. Passes 5-second-friend test. Distinct verbs.
+      "1. Hearing the real point"
+      "2. Building nested clarity"
+      "3. Making usable artifacts"
     how_genius_shows_up: "Your genius shows up when the work is potent but foggy: big ideas, half-built systems, strong methods trapped in someone's head, or narratives that change depending on the audience. You can take raw material — notes, conversations, drafts, visuals — and reduce it to the central signal, then rebuild it as a path someone can follow: a clear offer, a clean landing page outline, a pitch story that holds, or a simple operating flow a team can run. People experience this as inevitability: after you name it, the next steps feel obvious and the noise stops arguing."
     edge_and_traps: "Your gift — turning chaos into a clear path — creates an inverted shadow: building ever-bigger structure while the doorway stays too hard to enter. The limiting belief whispers that one more layer — language, framework, aesthetics, or a more complete system — must be finished before asking for money or feedback. In motion, it looks like refining the map while avoiding the simple market test: one paid conversation, one page sent, one offer made to one high-fit person. Your other trap is over-giving — delivering the breakthrough before the price, boundaries, or agreement are strong enough to hold it."
     top_shadow_one_sentence: "Building a bigger plan while avoiding the one paid ask that would prove it."  // synthesized — gerund noun phrase, neutral (works in second-person context)
@@ -96,6 +100,10 @@ Output:
 - Prime Driver: Restore Feminine Coherence
 - Archetype: Sacred Feminine Midwife — Empath-Integrator
 - Life Scene: A woman arrives with cracked heart and tired smile. Slowly, armor softens. She weeps, not from pain, but because she remembers: I am held. I am loved. I am home.
+- topTalentProfile.top_three_talents_compact:  // template: gerund + concrete object, 2-4 words, plain English, distinct verbs
+    "1. Sensing the unspoken"
+    "2. Bonding the disconnected"
+    "3. Harmonizing the field"
 
 EXAMPLE 3: TRACEY
 Input: Maps communities, individuals, events. Uplifts people, connects them. Gives personalized readings on personality types. Meta-intention: leaders on purpose, plugged in.
@@ -132,7 +140,8 @@ ROUND 1 — IDENTIFY THE GENERIC. For every field, ask:
 - Does the Elevator Pitch contain filler ("passionate about," "deeply committed to," "helps people," "empowers," "transforms")? Strip every filler word.
 - Does the Prime Driver describe a real action that produces a real effect, or is it a vibe ("Inspire others," "Build community")? Make it surgical.
 - Do the Monetization Avenues contain LinkedIn-clichés ("1:1 coaching", "group program", "online course", "mastermind", "membership community", "VIP day", "consulting package", "speaking engagements", "ebook")? If yes, REJECT and rewrite each as a specific deliverable that names what is BEING PRODUCED — not the format wrapper.
-- Day 58 (2026-05-02) JARGON CHECK: does ANY field — especially flywheel_action, top_three_talents, how_genius_shows_up — contain an invented capitalized product name ("Signal Snapshot," "Compression Capsule," "Architecture Session") or insider vocabulary the reader hasn't been introduced to ("compression," "distillation" used as nouns without translation)? REJECT and rewrite in plain everyday English. The reader has zero context for jargon — every undefined term breaks trust.
+- Day 58 (2026-05-02) JARGON CHECK: does ANY field — especially flywheel_action, top_three_talents, top_three_talents_compact, how_genius_shows_up — contain an invented capitalized product name ("Signal Snapshot," "Compression Capsule," "Architecture Session") or insider vocabulary the reader hasn't been introduced to ("compression," "distillation" used as nouns without translation)? REJECT and rewrite in plain everyday English. The reader has zero context for jargon — every undefined term breaks trust.
+- Day 61 (2026-05-04) COMPACT-TALENTS SYNTHESIS CHECK: top_three_talents_compact is shown on the FIRST REVEAL card, three lines stacked. Each entry must (a) be 2-4 words, (b) be a GERUND + CONCRETE OBJECT ("Sensing the unspoken", NOT "Sensing inner truth"), (c) preserve the signal of the matching long form in top_three_talents with ZERO noise added — sharper than the long form, NOT more abstract, (d) pass the 5-second-friend test (a smart friend with no personal-development context groks it instantly), (e) use a DISTINCT verb from the other two entries. REJECT any entry that drifts into abstract compound nouns ("Inner X / Sacred X / Deep X / True X") — same banned patterns as elsewhere in topTalentProfile. NO machine-speak, NO fluff, NO decorative adjectives, NO trailing period.
 - Day 58 (2026-05-03) VOICE-REGISTER CHECK: does top_shadow_one_sentence contain ANY second-person reflexive ("yourself," "your own," "yours")? If yes, REJECT — this field renders under "MY TOP SHADOW IS" so reflexives MUST be first-person ("myself," "my own," "mine"). Rewrite. Same check applies to bullseyeSentence and elevatorPitch (also "MY X IS"–framed surfaces): no "you / your / yourself" allowed, only "I / my / myself."
 - Day 58 (2026-05-03) ABSTRACT-COMPOUND-NOUN CHECK: scan EVERY field — especially vibrationalKey.name, topTalentProfile.archetype_title, bullseyeSentence, top_shadow_one_sentence — for the banned patterns (Inner X, Felt X, Safe X, Sacred X, Deep X, True X, Pure X, Whole X, Authentic X, and any compound where the adjective doesn't ground the noun in something concrete). If found, REJECT and rewrite as a concrete particular. THE 5-SECOND-FRIEND TEST: a smart friend outside personal-development should grok the phrase in 5 seconds without having to ask "what does that mean?" — if not, rewrite. Karime walkthrough (2026-05-03) shipped "Inner-Belonging Restoring / inner belonging / safe truth" — all three were in this category, and the resonance score dropped accordingly.
 Mark every weak field. Do not skip this round.
@@ -299,6 +308,11 @@ Return a JSON object with this exact structure:
       "string — Talent 1, brief, specific to how it manifests in me (not generic strengths-finder language)",
       "string — Talent 2, same",
       "string — Talent 3, same"
+    ],
+    "top_three_talents_compact": [
+      "string — Talent 1 in COMPACT form: 2-4 words, GERUND + concrete object (e.g., 'Sensing the unspoken', 'Softening the wound', 'Blessing the threshold'). 1:1 mapping with top_three_talents above — same talent, distilled. Renders on the FIRST REVEAL card under a 'MY THREE TALENTS' eyebrow, three of them stacked, so each must read as a complete thought standing alone. CRITICAL synthesis principle (same as top_shadow_one_sentence): preserve maximum signal from the long form, introduce zero noise — sharper than the long form, NOT more abstract. UNIVERSALLY RELATABLE + GROKABLE — a smart friend outside personal-development should grok the phrase in 5 seconds without asking 'what does that mean?'. NO abstract compound nouns (banned: 'Inner X / Felt X / Safe X / Sacred X / Deep X / True X / Pure X / Whole X / Authentic X' as adjective+noun pairs — same ban as the rest of topTalentProfile). NO machine-speak, no insider jargon, no fluff, no decorative adjectives. Plain ordinary English with one concrete object. NO period at the end. The three entries must use DISTINCT verbs (no 'sensing / sensing / sensing' — each verb names a different motion). The verb stem may be reused from threeLenses.actions where the fit is clean, but the gerund + object form here is mandatory.",
+      "string — Talent 2, same standard",
+      "string — Talent 3, same standard"
     ],
     "how_genius_shows_up": "string — paragraph describing how these talents manifest in my daily work and interactions. Cite real patterns from rawSignal — concrete, not abstract.",
     "edge_and_traps": "string — paragraph naming the structural shadow my gift generates — the OTHER SIDE OF THE COIN, not a list of weaknesses. A unique gift always produces a structurally identical limiting belief, but inverted. Name (a) the inverted form of my gift (e.g., 'I help others articulate their uniqueness' → 'my own uniqueness remains unarticulated'), (b) the limiting belief this inversion whispers in my own life ('I need a better X before I can act'), (c) one short observation about how this looks in motion (the recursive trap when I forget my gift is for outward use, not inward use). Specific to me. Same length as how_genius_shows_up. Do not soften or moralize.",
@@ -498,6 +512,16 @@ export interface TopTalentProfile {
   archetype_title: string;
   core_pattern: string;
   top_three_talents: string[];
+  /**
+   * Day 61 (Sasha 2026-05-04): compact 2-4 word "gerund + concrete object"
+   * form of each talent — 1:1 with `top_three_talents` above. Renders on
+   * the FIRST REVEAL card under the "MY THREE TALENTS" eyebrow as three
+   * stacked lines. The long form keeps powering the deep "Three Key
+   * Talents" perspective sub-page; this compact form is for the reveal
+   * box only. Optional for back-compat with pre-Day-61 snapshots — when
+   * absent, the reveal block hides cleanly.
+   */
+  top_three_talents_compact?: string[];
   how_genius_shows_up: string;
   edge_and_traps: string;
   /**
@@ -625,6 +649,12 @@ const tryExtractTopTalentProfile = (rawSignal: string): TopTalentProfile | undef
     archetype_title: String(parsed.archetype_title || ""),
     core_pattern: String(parsed.core_pattern || ""),
     top_three_talents: parsed.top_three_talents.map((t: unknown) => String(t)).filter(Boolean),
+    // Day 61 (Sasha 2026-05-04): compact form for the FIRST REVEAL card.
+    // Optional — pre-Day-61 snapshots don't have it; the reveal block
+    // hides cleanly when undefined.
+    top_three_talents_compact: Array.isArray(parsed.top_three_talents_compact)
+        ? parsed.top_three_talents_compact.map((t: unknown) => String(t)).filter(Boolean)
+        : undefined,
     how_genius_shows_up: String(parsed.how_genius_shows_up || ""),
     edge_and_traps: String(parsed.edge_and_traps || ""),
     // Day 58 (Sasha 2026-05-02): synthesized form is optional in the

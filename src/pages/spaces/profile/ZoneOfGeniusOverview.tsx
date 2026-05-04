@@ -58,10 +58,18 @@ const buildOverviewShareText = (
     archetype: string,
     bullseye: string | undefined,
     corePattern: string | undefined,
+    topThreeTalents: string[] | undefined,
 ): string => {
     let text = `This is how I naturally create value:\n\n`;
     text += `${archetype}\n`;
     if (bullseye) text += `I ${formatBullseye(bullseye)}\n\n`;
+    // Day 61 (Sasha 2026-05-04): include the compact three talents in
+    // the share text so the saved Top Talent page shares the same
+    // shape as the post-assessment reveal. Bullet-separated single
+    // line keeps it scannable in social previews.
+    if (topThreeTalents && topThreeTalents.length > 0) {
+        text += `My three talents: ${topThreeTalents.join(" · ")}.\n\n`;
+    }
     if (corePattern) text += `${corePattern}\n\n`;
     text += `Curious what you see.\n\n→ FindYourTopTalent.Com`;
     return text;
@@ -455,6 +463,56 @@ const ZoneOfGeniusOverview = () => {
                             </p>
                         )}
 
+                        {/* My Three Talents — Day 61 (Sasha 2026-05-04).
+                            Compact gerund-+-concrete-object form sourced
+                            from `topTalentProfile.top_three_talents_compact`.
+                            Mirrors the matching block on the post-
+                            assessment reveal (RevelatoryHero) so the
+                            saved Top Talent page reads as the same
+                            artifact at a calmer register. Hides cleanly
+                            for pre-Day-61 snapshots that lack the
+                            field. */}
+                        {fullAppleseed?.topTalentProfile?.top_three_talents_compact &&
+                            fullAppleseed.topTalentProfile.top_three_talents_compact.length > 0 && (
+                            <div className="pt-2">
+                                <p
+                                    className="text-[10px] uppercase tracking-[0.32em] font-medium mb-2"
+                                    style={{ color: "var(--skin-accent-gold, #b8860b)" }}
+                                >
+                                    My three talents
+                                </p>
+                                <ul className="mx-auto max-w-[34ch] space-y-1">
+                                    {fullAppleseed.topTalentProfile.top_three_talents_compact
+                                        .slice(0, 3)
+                                        .map((talent, i) => (
+                                            <li
+                                                key={i}
+                                                className="italic leading-snug"
+                                                style={{
+                                                    fontFamily: "'Cormorant Garamond', serif",
+                                                    fontWeight: 500,
+                                                    fontSize: "clamp(1rem, 2vw, 1.15rem)",
+                                                    color: INK,
+                                                    textShadow: HALO_SOFT,
+                                                }}
+                                            >
+                                                <span
+                                                    aria-hidden="true"
+                                                    className="not-italic mr-2"
+                                                    style={{
+                                                        color: "var(--skin-accent-gold, #b8860b)",
+                                                        fontSize: "0.85em",
+                                                    }}
+                                                >
+                                                    ✦
+                                                </span>
+                                                {talent}
+                                            </li>
+                                        ))}
+                                </ul>
+                            </div>
+                        )}
+
                         <div className="pt-1">
                             <CardActions
                                 captureRef={heroCardRef as React.RefObject<HTMLElement>}
@@ -462,7 +520,8 @@ const ZoneOfGeniusOverview = () => {
                                 shareText={buildOverviewShareText(
                                     stripDecorativeGlyphs(vk.name),
                                     appleseedData.bullseyeSentence,
-                                    fullAppleseed?.topTalentProfile?.core_pattern
+                                    fullAppleseed?.topTalentProfile?.core_pattern,
+                                    fullAppleseed?.topTalentProfile?.top_three_talents_compact,
                                 )}
                                 darkMode={false}
                             />

@@ -442,6 +442,28 @@ function renderHero(b: PdfBuilder, appleseed: AppleseedData) {
         b.y += 2;
     }
 
+    // Day 61 (Sasha 2026-05-04): My Three Talents — compact form, three
+    // stacked lines under a small "MY THREE TALENTS" eyebrow. Mirrors
+    // the on-screen reveal block in RevelatoryHero so the saved PDF
+    // carries the same artifact shape. Hides cleanly when the field is
+    // absent (pre-Day-61 snapshots).
+    const compactThree = appleseed.topTalentProfile?.top_three_talents_compact;
+    if (compactThree && compactThree.length > 0) {
+        b.y += 2;
+        b.eyebrow("My Three Talents", { center: true });
+        b.y += 1;
+        b.doc.setFont(b.fonts.serif, "italic");
+        b.doc.setFontSize(12);
+        b.doc.setTextColor(...C.ink);
+        compactThree.slice(0, 3).forEach((talent) => {
+            b.ensureSpace(7);
+            const line = `✦  ${talent}`;
+            b.doc.text(line, PAGE_W / 2, b.y, { align: "center" });
+            b.y += 6;
+        });
+        b.y += 2;
+    }
+
     if (appleseed.topTalentProfile?.core_pattern) {
         b.body(flipToSecondPerson(appleseed.topTalentProfile.core_pattern), { center: true });
     }

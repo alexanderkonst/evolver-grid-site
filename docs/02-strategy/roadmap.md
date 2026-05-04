@@ -309,6 +309,8 @@
 | Remove `/game` prefix from URLs | Infra | Backlog |
 | Module versioning + user artifact versioning | Infra | Backlog |
 | Backend-validated activation coupons (Supabase table + RLS + signed-token edge fn, replaces frontend `Set` in `AppleseedDisplay.tsx`) | Infra | When wider distribution outgrows trusted-audience use |
+| Supabase migration: `UNIQUE (user_id)` constraint on `game_profiles` + cleanup of any existing duplicate rows. Eliminates the post-auth race where two concurrent `getOrCreateGameProfileId()` callers both `INSERT` and create duplicate profiles. Client-side defensive `23505` handling already shipped in `lib/gameProfile.ts` (Day 60+) — safe to ship migration anytime. | Infra | Next Lovable migration window |
+| Atomic `claim-anonymous-zog` edge function: replace the SELECT-then-INSERT-then-UPDATE pattern with a single Postgres function (or `FOR UPDATE SKIP LOCKED` row lock) so concurrent claims from multi-tab signins can't create duplicate `zog_snapshots` rows for the same anonymous-source. Lower priority than the `game_profiles` constraint (multi-tab signin is rare). | Infra | After the `game_profiles` constraint ships |
 | Token economics (XP, reputation) | Econ | MVP has XP |
 | Equilibrium v2 conceptual refinement | Product | Backlog |
 | Community leader value prop | Strategy | Backlog |
