@@ -308,6 +308,7 @@
 | Admin panel & dashboard | Feature | Future |
 | Remove `/game` prefix from URLs | Infra | Backlog |
 | Module versioning + user artifact versioning | Infra | Backlog |
+| Backend-validated activation coupons (Supabase table + RLS + signed-token edge fn, replaces frontend `Set` in `AppleseedDisplay.tsx`) | Infra | When wider distribution outgrows trusted-audience use |
 | Token economics (XP, reputation) | Econ | MVP has XP |
 | Equilibrium v2 conceptual refinement | Product | Backlog |
 | Community leader value prop | Strategy | Backlog |
