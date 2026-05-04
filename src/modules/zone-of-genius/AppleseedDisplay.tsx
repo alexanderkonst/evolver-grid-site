@@ -202,6 +202,18 @@ const AppleseedDisplay = ({
         const entered = couponInput.trim().toLowerCase();
         if (ACTIVATION_COUPON_CODES.has(entered)) {
             trackCTAClick('activate_coupon_redeemed', 'appleseed_option2');
+            // Day 61 (Sasha 2026-05-04 18:30): MeGate retirement (also
+            // shipped today) redirects unauth'd visitors to
+            // /game/me/* back to /zone-of-genius. The coupon path is
+            // an exceptional/testing bypass — user is not authed but
+            // SHOULD be granted entry. Set a sessionStorage flag here
+            // and have MeGate honor it. Flag lives only for the
+            // current tab session — closing the tab revokes access
+            // (slight friction is acceptable for the testing path,
+            // and real $37 buyers pay via Stripe → real auth).
+            if (typeof window !== "undefined") {
+                window.sessionStorage.setItem("coupon_activated", "true");
+            }
             navigate('/game/me/zone-of-genius/start-here');
         } else {
             setCouponError(true);
@@ -319,11 +331,15 @@ const AppleseedDisplay = ({
         }
         setEmailUnlocked(true);
         setEmailSaving(false);
-        toast({
-            title: "✓ Saved",
-            description: "You can come back to this anytime.",
-        });
-    }, [email, toast, appleseed]);
+        // Day 61 (Sasha 2026-05-04 18:30): toast KILLED. The
+        // previous "✓ Saved / You can come back to this anytime"
+        // toast was the funnel-killer Sasha called out — it pulled
+        // attention OFF the page right when the offer cards were
+        // about to land. Confirmation now happens INLINE via
+        // OwnershipSection's success state ("Saved ✓ — there's
+        // more ↓"), pointing the user DOWN at the offers instead
+        // of OUT of the page.
+    }, [email, appleseed]);
 
     return (
         <>

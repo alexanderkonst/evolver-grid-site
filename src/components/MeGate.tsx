@@ -92,6 +92,19 @@ const MeGate = ({ children }: { children: ReactNode }) => {
 
     if (status === "authed") return <>{children}</>;
 
+    // Day 61 (Sasha 2026-05-04 18:30): coupon-activated bypass.
+    // The /zone-of-genius reveal page has an "Activation coupon"
+    // path (handleCouponSubmit in AppleseedDisplay.tsx) for
+    // exceptional/testing access without payment. That path sets
+    // sessionStorage `coupon_activated=true` before navigating to
+    // /game/me/*. We honor it here so unauth'd-but-coupon-redeemed
+    // visitors can enter the platform. Flag scope is the browser
+    // tab — closing the tab revokes access. Real $37 buyers pay via
+    // Stripe and get real auth; this flag covers the bypass case.
+    if (typeof window !== "undefined" && window.sessionStorage.getItem("coupon_activated") === "true") {
+        return <>{children}</>;
+    }
+
     // Day 61 (Sasha 2026-05-04 17:30): MeGate retired as a signup gate.
     //
     // The whole inline "Save Your Profile" form below has been the

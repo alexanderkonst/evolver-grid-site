@@ -400,8 +400,14 @@ const RevelatoryHero = ({
                     in italic Cormorant. The torus alone (no wordmark)
                     so the footer reads as a glyph + tagline, not a
                     heavy lockup. */}
-                <Ornament className="mt-6 mb-4" />
-                <div className="flex flex-col items-center gap-2.5 mt-1 mb-2">
+                {/* Day 61 (Sasha 2026-05-04 18:30): redundant Ornament
+                    separator removed. Earlier composition stacked star-
+                    ornament rules between every section (top shadow,
+                    brand footer) which read as fussy. The brand footer
+                    now flows naturally below the top shadow without an
+                    additional rule — cleaner vertical rhythm, less
+                    visual noise in the captured PNG. */}
+                <div className="flex flex-col items-center gap-2.5 mt-6 mb-2">
                     {/* Day 61 (Sasha 2026-05-04 18:00): brand torus
                         DROPPED from the footer composition. The QR
                         code + URL line below already do the brand-mark
