@@ -326,6 +326,50 @@
 | Quiz-to-Ignite bridge optimization | Funnel | After traffic data |
 | Pricing section self-diagnostic | Funnel | After drop-off data |
 | NotebookLM video series (36 episodes) | Content | After first paying client |
+| Soul-color dodecahedron glow on the reveal page | Funnel/Brand | After core funnel monogamy ships |
+| Re-enable Day-1/2/8 nurture email sequence | Funnel | After consent / GDPR / spam-policy decision |
+
+---
+
+### Parked (with current best approach captured) — Soul-color dodecahedron glow on reveal
+*Captured 2026-05-04 (Day 61)*
+
+**Why it matters:** The reveal page is the primary viral surface — every saved/shared PNG is a billboard for the brand. Today the dodecahedron uses a single gold halo. Personalizing the glow with the user's "soul color palette" (3–5 hex codes derived from their archetype + bullseye + talents by AI) turns each shared image into a distinct visual artifact instead of a template. Sasha has corroborated the AI's color-matching against multiple subjects and reports it works.
+
+**What already exists in the codebase (verified 2026-05-04):**
+- `supabase/functions/generate-soul-colors/index.ts` — full edge function. Takes `archetype + topTalents + corePattern`, prompts Gemini 2.5 Flash Lite via Lovable AI gateway, returns 3–5 hex codes. Persists to `game_profiles.soul_colors`.
+- `supabase/migrations/20251209110000_add_soul_colors.sql` — `soul_colors TEXT[]` column on `game_profiles`.
+- `src/components/SoulDodecahedron.tsx` — renders the dodecahedron with a `soulColors` prop driving ring color, ambient particle palette, and backgroundColor.
+- `src/pages/CharacterHub.tsx` — live wiring: reads `soul_colors` from game_profile on mount, calls the edge function if missing, passes to `<SoulDodecahedron>`. Working today on `/character-hub`.
+
+**Gap:** the soul-color path is NOT wired into the AppleseedDisplay reveal page. The reveal uses `RevelatoryHero` which has its own dodecahedron with a fixed gold glow.
+
+**Current best approach for the implementation (when un-parked):**
+- For **authenticated returning users** (`/my-result?token=...` or post-login reveal): read `soul_colors` from `game_profiles`, pass into `RevelatoryHero` either by (a) swapping its dodecahedron for `<SoulDodecahedron>` or (b) accepting a new `glowColors` prop and converting the existing single-color glow into a gradient.
+- For **anonymous pre-signup users**: two paths considered, both with real tradeoffs:
+  - **Path (a)** — relax auth on the edge function + add a deterministic cache (`soul_color_cache` keyed by hash of inputs) + IP rate-limit on cache misses. Anonymous users get personalized colors → maximum viral payload. ~4–6 hrs work.
+  - **Path (b)** — skip soul colors for anonymous users, default gold glow until they save. Personalized colors only kick in post-save. Loses some virality but ships in 30 min. **Currently the recommended path** because it keeps the edge function authenticated and avoids opening a public AI endpoint.
+- Subtle per-render randomness (gradient direction / intensity) on top of the soul-color palette so each render feels alive, not template-y.
+
+**Why parked:** core funnel monogamy work (magic link → `/my-result`, MeGate retirement, save-block placement) is higher leverage. Soul colors are polish on top of that architecture, not a precondition for it.
+
+---
+
+### Parked (awaiting policy decision) — Day-1 / 2 / 8 nurture email sequence
+*Captured 2026-05-04 (Day 61)*
+
+**Status as of Day 61:** **KILLED in code.** Both the enqueue path (`save-zog-result` Step 6) and the dispatcher (`process-nurture-emails`) are gated by hard-coded constants (`NURTURE_EMAILS_KILLED = true`, `NURTURE_DISPATCH_KILLED = true`). No new sequences enqueue, no in-flight rows dispatch.
+
+**Why killed:** Sasha is reconsidering the consent / GDPR / anti-spam tradeoffs. Stated intent: *"don't want to spam anybody."* The Day-1/2/8 sequence was added Day 47 as a default-on follow-up — but never had explicit opt-in framing on the reveal save form, so the legal posture under GDPR is shaky and the brand posture under the editorial register is questionable.
+
+**What's preserved in code (for revival):**
+- All three email templates (Day-1, Day-2, Day-8 renderers in `process-nurture-emails`)
+- Payload shape (archetype, bullseye, top_talents, prime_driver, archetype_lens)
+- Schedule logic (24h / 48h / 8d offsets)
+- Opt-out infrastructure (`nurture_opt_outs` table)
+- pg_cron schedule (the cron still fires every 10 min, just gets a 200 `skipped` response from the dispatcher)
+
+**To revive:** flip both `NURTURE_EMAILS_KILLED` and `NURTURE_DISPATCH_KILLED` to `false`. AND add explicit consent UI (checkbox or transparency line) on the save form. AND audit any rows in `nurture_email_queue` with stale `scheduled_for` (the "due" backlog grows while killed).
 
 ---
 
