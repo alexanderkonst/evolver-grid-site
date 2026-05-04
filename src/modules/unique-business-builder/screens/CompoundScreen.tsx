@@ -190,7 +190,7 @@ export default function CompoundScreen() {
                     color: "var(--skin-text-muted, rgba(11, 42, 90, 0.62))",
                     textTransform: "none",
                     letterSpacing: 0,
-                    fontWeight: 400,
+                    fontWeight: 500,
                   }}
                 >
                   Next:&nbsp;

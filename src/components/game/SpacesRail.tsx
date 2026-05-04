@@ -522,7 +522,7 @@ const SpacesRail = ({
                                             className="text-[13px] italic leading-snug"
                                             style={{
                                                 fontFamily: "'Cormorant Garamond', serif",
-                                                fontWeight: 400,
+                                                fontWeight: 500,
                                                 color: "rgba(245, 241, 232, 0.92)",
                                             }}
                                         >

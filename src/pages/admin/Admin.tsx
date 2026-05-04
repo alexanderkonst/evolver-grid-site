@@ -1289,7 +1289,7 @@ function AdminPageInner() {
             fontStyle: "italic",
             fontSize: "clamp(15px, 1.6vw, 19px)",
             lineHeight: 1.5,
-            fontWeight: 400,
+            fontWeight: 500,
             color: "var(--skin-text-muted, rgba(11, 42, 90, 0.78))",
             textShadow:
               "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",

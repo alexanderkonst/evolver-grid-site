@@ -592,9 +592,17 @@ const ZoneOfGeniusOverview = () => {
                         />
                     </a>
 
+                    {/* Day 61 (Sasha 2026-05-04): legibility — text-xs
+                        italic → text-sm italic + muted (was muted-soft)
+                        + Source Serif at weight 500 so the methodology
+                        bridge actually reads. */}
                     <p
-                        className="text-center text-xs italic"
-                        style={{ color: "var(--skin-text-muted-soft, rgba(26,30,58,0.62))" }}
+                        className="text-center text-sm italic"
+                        style={{
+                            color: "var(--skin-text-muted, rgba(11,42,90,0.86))",
+                            fontFamily: "'Source Serif 4', serif",
+                            fontWeight: 500,
+                        }}
                     >
                         Or read the methodology first:
                     </p>

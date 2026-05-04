@@ -29,17 +29,22 @@ const AuthCallback = () => {
       handledRef.current = true;
       if (timeoutId) window.clearTimeout(timeoutId);
 
-      // Attach the anonymous ZoG result to this user (if we saved one earlier).
-      // We fire-and-forget: claim failures shouldn't block the user from
-      // landing on /playbook/discover — they can always re-take the assessment.
-      try {
-        const { error } = await supabase.functions.invoke("claim-anonymous-zog");
-        if (error) {
-          console.warn("[AuthCallback] claim-anonymous-zog returned error", error);
-        }
-      } catch (err) {
-        console.warn("[AuthCallback] claim-anonymous-zog threw", err);
-      }
+      // Day 60+ (Sasha 2026-05-04): explicit `claim-anonymous-zog`
+      // invocation REMOVED. The claim is now fired by the global
+      // SIGNED_IN listener in src/lib/postAuthSideEffects.ts (which
+      // also covers MeGate's password-signup path AND any future
+      // auth entry points — eliminates the per-form drift that
+      // orphaned Karime's snapshot). Removing the explicit call here
+      // also removes the duplicate-snapshot race that would happen
+      // if both this and the global listener fired claim concurrently
+      // for the same user.
+      //
+      // The destination (`/playbook/discover` by default) doesn't
+      // render the user's snapshot directly, so there's no
+      // page-paint timing issue from not awaiting the claim here.
+      // By the time the user navigates to a snapshot-rendering page
+      // (e.g., /game/me/zone-of-genius/overview), the global
+      // listener's claim has long since settled.
 
       if (typeof window !== "undefined") {
         window.sessionStorage.removeItem(PENDING_CLAIM_EMAIL_KEY);

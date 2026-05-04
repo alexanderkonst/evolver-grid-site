@@ -478,7 +478,7 @@ const Auth = () => {
               className="mt-3 text-base sm:text-lg italic leading-snug"
               style={{
                 fontFamily: "'Cormorant Garamond', serif",
-                fontWeight: 400,
+                fontWeight: 500,
                 color: "var(--skin-text-muted, rgba(26,30,58,0.7))",
                 textShadow:
                   "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
