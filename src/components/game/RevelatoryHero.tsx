@@ -7,7 +7,11 @@ import { Ornament } from "@/lib/landingDesign";
 // branding + the source URL. The torus IS the brand mark; we use
 // it without the wordmark so the footer reads as a glyph + tagline,
 // not a heavy lockup.
-import brandTorus from "@/assets/find-your-top-talent-torus.png";
+// Day 61 (Sasha 2026-05-04 18:00): brandTorus import retired — the
+// torus img element was dropped from the in-card brand footer (the
+// QR + URL line cover the brand-mark + way-back jobs together).
+// Asset file kept in /assets for future reuse / other surfaces.
+// import brandTorus from "@/assets/find-your-top-talent-torus.png";
 
 interface RevelatoryHeroProps {
     type: "appleseed" | "excalibur";

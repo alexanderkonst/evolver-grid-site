@@ -125,17 +125,22 @@ const CardActions = ({
         }
         setSaving(true);
 
-        // Day 61 (Sasha 2026-05-04 17:45): force narrow width during
-        // capture for vertical 9:16-ish PNG output. Save originals so
-        // we can restore in finally — must restore even on error so
-        // the live card doesn't stay narrow if html2canvas throws.
-        let originalWidth: string | null = null;
-        let originalMaxWidth: string | null = null;
-        if (captureWidth) {
-            originalWidth = el.style.width;
-            originalMaxWidth = el.style.maxWidth;
-            el.style.width = `${captureWidth}px`;
-            el.style.maxWidth = `${captureWidth}px`;
+        // Day 61 (Sasha 2026-05-04 18:15): clone-only width mutation.
+        //
+        // Previous approach mutated the LIVE element's width during
+        // capture — produced a brief on-screen "flash" as the card
+        // briefly snapped to 480px and back. This version tags the
+        // live element with a unique data attribute, then uses
+        // html2canvas's onclone callback to find the CLONED version
+        // (rendered offscreen, invisible to the user) and mutate the
+        // clone's width. The live element's CSS is never touched —
+        // no flash, no layout shift on screen. The data attribute is
+        // removed from the live element after capture (cleanup).
+        const captureToken = captureWidth
+            ? `cap-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`
+            : null;
+        if (captureToken) {
+            el.setAttribute("data-capture-token", captureToken);
         }
 
         try {
@@ -186,6 +191,19 @@ const CardActions = ({
                         }
                     `;
                     clonedDoc.head.appendChild(styleTag);
+
+                    // Apply forced width to the CLONED element only
+                    // (offscreen, invisible to user) → no on-screen
+                    // flash, vertical PNG output preserved.
+                    if (captureToken && captureWidth) {
+                        const clonedEl = clonedDoc.querySelector(
+                            `[data-capture-token="${captureToken}"]`,
+                        ) as HTMLElement | null;
+                        if (clonedEl) {
+                            clonedEl.style.width = `${captureWidth}px`;
+                            clonedEl.style.maxWidth = `${captureWidth}px`;
+                        }
+                    }
                 },
             });
             const dataUrl = canvas.toDataURL("image/png");
@@ -204,12 +222,12 @@ const CardActions = ({
                 variant: "destructive",
             });
         } finally {
-            // Restore the live card's width regardless of capture
-            // success/failure. Without this, a thrown html2canvas
-            // would leave the card visibly narrow on the page.
-            if (captureWidth) {
-                el.style.width = originalWidth ?? "";
-                el.style.maxWidth = originalMaxWidth ?? "";
+            // Cleanup: remove the capture-token marker from the live
+            // element regardless of capture success/failure. The
+            // attribute is benign (empty data-* with no styling
+            // attached) but tidiness matters.
+            if (captureToken) {
+                el.removeAttribute("data-capture-token");
             }
             setSaving(false);
         }
