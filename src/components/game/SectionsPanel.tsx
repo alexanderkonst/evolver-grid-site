@@ -159,6 +159,15 @@ const SPACE_SECTIONS: SpaceSections = {
                     { id: "tt-roles", label: "Ideal Environments", path: "/game/me/zone-of-genius/roles" },
                     { id: "tt-partner", label: "Complementary Partner", path: "/game/me/zone-of-genius/partner" },
                     { id: "tt-monetization", label: "Monetization", path: "/game/me/zone-of-genius/monetization" },
+                    // Day 61 (Sasha 2026-05-04 12:00): "What's Next?"
+                    // added as the closing subpage — same content as
+                    // the Step 3 section on Start Here (the "next move"
+                    // moment), surfaced as its own page so the user
+                    // who's read all the way through still has a
+                    // dedicated landing point at the end. UI-emphasized
+                    // equally to Start Here via isHomeNode below — both
+                    // are the bookends of this section's reading order.
+                    { id: "tt-whats-next", label: "What's Next?", path: "/game/me/zone-of-genius/whats-next" },
                 ],
             },
         ],
@@ -1069,7 +1078,14 @@ const SectionsPanel = ({
                                         // when not active — it's the activation
                                         // home, so the side-nav signals "this is
                                         // where you return to."
-                                        const isHomeNode = sub.id === "tt-start-here";
+                                        // Day 61 (Sasha 2026-05-04 12:00):
+                                        // "What's Next?" added as the second
+                                        // emphasized node — bookend treatment.
+                                        // Start Here = where you arrive; What's
+                                        // Next? = where you decide to act.
+                                        const isHomeNode =
+                                            sub.id === "tt-start-here" ||
+                                            sub.id === "tt-whats-next";
                                         return (
                                             <div
                                                 key={sub.id}

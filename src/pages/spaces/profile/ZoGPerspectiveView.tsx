@@ -45,6 +45,9 @@ type PerspectiveId =
     | "roles"
     | "partner"
     | "monetization"
+    // Day 61 (Sasha 2026-05-04 12:00): closing subpage. Same content
+    // as the Step 3 section on Start Here, surfaced as its own page.
+    | "whats-next"
     // Legacy — no side-nav entry but still resolvable by URL:
     | "bullseye"
     | "vibrational-key"
