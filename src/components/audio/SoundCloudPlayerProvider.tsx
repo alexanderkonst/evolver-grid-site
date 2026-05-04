@@ -124,6 +124,17 @@ interface SoundCloudPlayerContextValue {
     next: () => void;
     /** The playlist URL the engine is bound to. */
     playlistUrl: string;
+    /**
+     * True when the user's current route is a shell route — the only
+     * place the visible player UI should render. The Karime walkthrough
+     * (Sasha 2026-05-04) hit a stuck "loading…" on the landing page
+     * because the rail (and therefore the player UI) renders there, but
+     * the engine doesn't mount on non-shell routes per the Path B
+     * privacy rule. UI consumers should hide themselves when this is
+     * false so users on sales / landing pages see nothing rather than
+     * a forever-loading widget.
+     */
+    currentRouteIsShell: boolean;
 }
 
 const SoundCloudPlayerContext = createContext<SoundCloudPlayerContextValue | null>(null);
@@ -270,9 +281,14 @@ export function SoundCloudPlayerProvider({
         [playlistUrl],
     );
 
+    // Live shell-route flag — recomputed on each location change so
+    // the UI consumer can hide itself the moment the user navigates
+    // off a shell route (no debounce, no transition flash).
+    const currentRouteIsShell = isShellRoute(location.pathname);
+
     const contextValue = useMemo<SoundCloudPlayerContextValue>(
-        () => ({ ready, playing, trackTitle, trackArtist, toggle, next, playlistUrl }),
-        [ready, playing, trackTitle, trackArtist, toggle, next, playlistUrl],
+        () => ({ ready, playing, trackTitle, trackArtist, toggle, next, playlistUrl, currentRouteIsShell }),
+        [ready, playing, trackTitle, trackArtist, toggle, next, playlistUrl, currentRouteIsShell],
     );
 
     return (
