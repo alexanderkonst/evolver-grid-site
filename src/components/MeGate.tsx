@@ -99,10 +99,69 @@ const MeGate = ({ children }: { children: ReactNode }) => {
     // sessionStorage `coupon_activated=true` before navigating to
     // /game/me/*. We honor it here so unauth'd-but-coupon-redeemed
     // visitors can enter the platform. Flag scope is the browser
-    // tab — closing the tab revokes access. Real $37 buyers pay via
-    // Stripe and get real auth; this flag covers the bypass case.
+    // tab — closing the tab revokes access. Real $37 buyers go
+    // through the post-Stripe-payment path below.
     if (typeof window !== "undefined" && window.sessionStorage.getItem("coupon_activated") === "true") {
         return <>{children}</>;
+    }
+
+    // Day 61 (Sasha 2026-05-04 19:00): POST-STRIPE-PAYMENT BRIDGE.
+    //
+    // CRITICAL: the Stripe Payment Link's success_url (configured in
+    // the Stripe Dashboard) points at /game/me/zone-of-genius/start-here.
+    // Stripe doesn't carry Supabase auth cookies — the buyer arrives
+    // here as an UNAUTHENTICATED guest with payment-success query
+    // params. The OLD MeGate's SaveProfileCard signup form WAS the
+    // historical bridge: paid → land here → sign up → enter. The
+    // earlier MeGate retirement (this turn) accidentally removed that
+    // bridge — every $37 buyer was bouncing to /zone-of-genius after
+    // payment, losing their access. This block restores the bridge
+    // but ONLY for the narrow post-payment case, preserving funnel
+    // monogamy for everyone else.
+    //
+    // Detection: Stripe's success_url is built by create-step-checkout
+    // as `<returnUrl>?payment=success&step=<slug>&session_id=<SID>` —
+    // and the Stripe-Dashboard-configured Payment Link uses the same
+    // `?payment=success` convention. Any URL bearing `?payment=success`
+    // → this is a paid buyer who needs to create their account.
+    //
+    // Once they sign up, the SaveProfileCard's onSuccess flow attaches
+    // any guest-localStorage data, claims any anonymous snapshot, and
+    // navigates them to /start-here — they enter the platform with
+    // their account properly set up. Funnel monogamy intact for
+    // everyone else (coupon flow handled above; guests with no payment
+    // → redirect to /zone-of-genius below).
+    const isPostStripePayment = () => {
+        if (typeof window === "undefined") return false;
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get("payment") === "success";
+    };
+    if (isPostStripePayment()) {
+        return (
+            <GameShellV2>
+                <SaveProfileCard
+                    onSuccess={async () => {
+                        try {
+                            await getOrCreateGameProfileId();
+                        } catch {
+                            // non-fatal
+                        }
+                        try {
+                            await migrateGuestDataToProfile();
+                        } catch (err) {
+                            console.warn("[MeGate post-payment] migrateGuestDataToProfile failed", err);
+                        }
+                        try {
+                            const { error } = await supabase.functions.invoke("claim-anonymous-zog");
+                            if (error) console.warn("[MeGate post-payment] claim-anonymous-zog returned error", error);
+                        } catch (err) {
+                            console.warn("[MeGate post-payment] claim-anonymous-zog threw", err);
+                        }
+                        navigate("/game/me/zone-of-genius/start-here", { replace: true });
+                    }}
+                />
+            </GameShellV2>
+        );
     }
 
     // Day 61 (Sasha 2026-05-04 17:30): MeGate retired as a signup gate.
