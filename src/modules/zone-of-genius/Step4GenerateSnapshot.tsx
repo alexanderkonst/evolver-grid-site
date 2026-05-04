@@ -175,6 +175,13 @@ const Step4GenerateSnapshot = () => {
 
   const handleGenerate = async () => {
     setIsGenerating(true);
+    // Day 61 (Sasha 2026-05-04 22:30): same false-alarm guard as
+    // saveSnapshotToDatabase — flag whether the generation actually
+    // succeeded. If it did (text returned, snapshot rendering),
+    // any subsequent error is a side-effect — don't alarm the user
+    // with a misleading "Failed to generate" toast on top of a
+    // perfectly visible result.
+    let generateSucceeded = false;
     try {
       const prompt = buildPrompt();
 
@@ -195,16 +202,19 @@ const Step4GenerateSnapshot = () => {
 
       const generatedText = data?.generatedText || "";
       setSnapshotMarkdown(generatedText);
-      // Day 61 (Sasha 2026-05-04 21:00): "Snapshot is ready" toast
-      // killed — redundant with the page itself rendering the result
-      // (the user is literally LOOKING at the snapshot when this would
-      // fire). Per "only keep one" instruction, the canonical
-      // post-completion toast is "Your Top Talent has been saved!"
-      // (in saveSnapshotToDatabase below).
+      generateSucceeded = true;
 
       await saveSnapshotToDatabase(generatedText);
     } catch (err) {
-      toast.error("Failed to generate snapshot. Please try again.");
+      if (generateSucceeded) {
+        console.warn(
+          "[Step4] Post-generate error caught (snapshot text was generated; error happened after):",
+          err,
+        );
+      } else {
+        console.error("[Step4] Generation failed:", err);
+        toast.error("Failed to generate snapshot. Please try again.");
+      }
     } finally {
       setIsGenerating(false);
     }
@@ -215,6 +225,20 @@ const Step4GenerateSnapshot = () => {
       toast.error("Failed to save your snapshot. Please reload and try again.");
       return;
     }
+
+    // Day 61 (Sasha 2026-05-04 22:30): false-alarm guard. The outer
+    // catch was previously hardened around `logActionEvent` (Karime's
+    // walkthrough). Sasha hit the same symptom again — error toast
+    // firing AFTER success toast even though everything generated +
+    // saved correctly. Some other call between the success toast and
+    // the end of the try block is throwing intermittently.
+    //
+    // Diagnosis-resilient fix: flag whether success already fired. If
+    // it did, the snapshot WAS saved (we wouldn't have reached line
+    // 326+ otherwise) — so any subsequent error is a side-effect
+    // issue, not a save failure. Log it (debug visibility), don't
+    // alarm the user with a misleading "save failed" toast.
+    let successToastFired = false;
 
     try {
       const parsed = parseSnapshotSections(snapshotText);
@@ -324,6 +348,7 @@ ${snapshotText}`;
       }
 
       toast.success("Your Top Talent has been saved!");
+      successToastFired = true;
       const redirectPath = getPostZogRedirect(returnTo);
       if (redirectPath) {
         setTimeout(() => navigate(redirectPath), 800);
@@ -351,12 +376,23 @@ ${snapshotText}`;
         console.warn("[Step4] logActionEvent failed (non-fatal):", telemetryErr);
       }
     } catch (err) {
-      // Only fires if the actual snapshot insert/update or profile
-      // update threw — those are the load-bearing operations. Best-
-      // effort cleanup (telemetry, redirect) is wrapped above and
-      // can't reach here.
-      console.error("[Step4] Snapshot save failed:", err);
-      toast.error("Failed to save your snapshot. Your progress is still shown, but may not persist.");
+      if (successToastFired) {
+        // The snapshot WAS saved (we showed the success toast before
+        // reaching this point in the try). Whatever threw after that
+        // is a side-effect issue — log for debugging, don't alarm
+        // the user with a misleading "save failed" toast.
+        console.warn(
+          "[Step4] Post-success error caught (snapshot is saved; error happened after the success toast):",
+          err,
+        );
+      } else {
+        // Genuine save failure — fired before we could even claim
+        // success. Tell the user.
+        console.error("[Step4] Snapshot save failed:", err);
+        toast.error(
+          "Failed to save your snapshot. Your progress is still shown, but may not persist.",
+        );
+      }
     }
   };
 
