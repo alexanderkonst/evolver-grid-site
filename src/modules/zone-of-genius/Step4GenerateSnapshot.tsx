@@ -601,13 +601,38 @@ ${snapshotText}`;
                   type="appleseed"
                   title={cleanedArchetypeTitle}
                   tagline="My top talent"
-                  actionStatement={parsedSnapshot.description}
+                  /* Day 61 (Sasha 2026-05-04 23:00): defensive prefix
+                     strips. The assessment prompt currently outputs
+                     second-person ("You naturally seek..."), but
+                     RevelatoryHero prepends "I" assuming first-person
+                     verb form (matches AI-path bullseye shape). Result
+                     was nonsensical "I you naturally seek...". Strip
+                     leading "you " (case-insensitive) so the rendered
+                     output reads "I naturally seek..." until the prompt
+                     itself is updated to first-person verb form. */
+                  actionStatement={
+                    parsedSnapshot.description
+                      ? parsedSnapshot.description.replace(/^you\s+/i, "").trim()
+                      : undefined
+                  }
+                  /* Day 61 (Sasha 2026-05-04 23:00): added `*` to the
+                     bullet-marker character class (assessment prompt
+                     was emitting markdown-style `*` bullets that
+                     leaked through as visible asterisks). Also strip
+                     "You " prefix per bullet so each phrase reads as
+                     a compact talent statement, matching AI path's
+                     top_three_talents_compact format. */
                   topThreeTalents={
                     parsedSnapshot.superpowers
                       ? parsedSnapshot.superpowers
                           .split('\n')
                           .filter(line => line.trim())
-                          .map(line => line.replace(/^[-–•]\s*/, '').trim())
+                          .map(line =>
+                            line
+                              .replace(/^[-–•*]\s*/, '')
+                              .replace(/^you\s+/i, '')
+                              .trim()
+                          )
                           .filter(Boolean)
                           .slice(0, 3)
                       : []
