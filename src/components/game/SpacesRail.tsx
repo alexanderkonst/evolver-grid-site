@@ -558,20 +558,23 @@ const SpacesRail = ({
                             "linear-gradient(90deg, transparent 0%, rgba(212, 175, 55, 0.22) 50%, transparent 100%)",
                     }}
                 />
-                {/* Day 58+ (Sasha 2026-05-03): SoundCloud playlist —
-                    `findyourtoptalent.com`. Sits ABOVE "chat with us"
-                    in the utility row. Initially shipped as a full
-                    SoundCloud iframe; now replaced with a custom
-                    in-register player (gold play/pause + Cormorant
-                    title + skip) that hides the iframe off-screen and
-                    drives playback via the SC Widget JS API. No
-                    SoundCloud chrome, no privacy-policy link, no
-                    waveform — just our own register.
-                    Sasha 2026-05-03 iter 2: now renders at all widths.
-                    On mobile (<md), the rail collapses to icons-only
-                    and the player itself hides its title / skip /
-                    attribution glyph internally, leaving just the
-                    gold play button centered in the 72px column. */}
+                {/* Day 58+ (Sasha 2026-05-03 → 2026-05-04): SoundCloud
+                    playlist — `findyourtoptalent.com`. Sits ABOVE
+                    "chat with us" in the utility row when visible.
+                    Custom in-register player: gold play/pause +
+                    Cormorant title + skip + tiny SC attribution mark.
+                    The audio engine lives in SoundCloudPlayerProvider
+                    at App root (not in this component) so playback
+                    persists across navigation; this component is a
+                    thin context consumer.
+                    Visibility rules (handled inside the component):
+                      • Hidden entirely on non-shell routes (landing /
+                        ignite / zone-of-genius funnel / auth) — no
+                        stuck-loading state on sales pages, honors the
+                        "no music on sales pages" rule visually.
+                      • On shell mobile (<md), only the play button
+                        renders centered in the 72px icon column;
+                        title / skip / attribution glyph are hidden. */}
                 <SoundCloudMinimalPlayer />
 
                 {/* Day 51 (Sasha 2026-04-25): Request Guidance — direct
