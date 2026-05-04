@@ -1,8 +1,8 @@
-import { ArrowRight, Mail, X } from "lucide-react";
+import { ArrowRight, Mail } from "lucide-react";
 import RevelatoryHero from "@/components/game/RevelatoryHero";
 import ResonanceRating from "@/components/ui/ResonanceRating";
 import { AppleseedData } from "./appleseedGenerator";
-import { useState, useCallback, useEffect, useRef } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
@@ -177,13 +177,16 @@ const AppleseedDisplay = ({
     };
 
     // Day 57 (Sasha 2026-05-01): post-reveal page upgrade — recognition →
-    // three options layout, fade-in timing, scroll bar, exit-intent modal.
+    // three options layout, fade-in timing, scroll bar.
+    // Day 60 (Sasha 2026-05-03): exit-intent modal removed — Sasha:
+    // "this pop-up was a bad idea, almost impossible to time it
+    // properly." Mouseleave trigger, modal JSX, handleModalSubmit, and
+    // all modal-only state (showExitModal/modalEmail/modalSubmitting/
+    // exitShownRef) removed wholesale. The page-resident CTAs (save +
+    // activate at the bottom of the reveal) carry the same job without
+    // the interruption.
     const [ctasVisible, setCtasVisible] = useState(false);
     const [floatBarVisible, setFloatBarVisible] = useState(false);
-    const [showExitModal, setShowExitModal] = useState(false);
-    const [modalEmail, setModalEmail] = useState('');
-    const [modalSubmitting, setModalSubmitting] = useState(false);
-    const exitShownRef = useRef(false);
     // Captured at mount: if isSaved was already true, this is a return visit.
     // Drives the "Your pattern is still here." top greeting.
     const [isReturning] = useState(() => isSaved);
@@ -250,54 +253,9 @@ const AppleseedDisplay = ({
         };
     }, []);
 
-    // Exit-intent — desktop mouseleave from top of viewport, fires once per
-    // session, suppressed if the user has already saved.
-    useEffect(() => {
-        const handleMouseLeave = (e: MouseEvent) => {
-            if (exitShownRef.current) return;
-            if (emailUnlocked || isSaved) return;
-            if (e.clientY <= 0 && (e.relatedTarget === null || (e.relatedTarget as Element)?.nodeName === 'HTML')) {
-                exitShownRef.current = true;
-                setShowExitModal(true);
-            }
-        };
-        document.addEventListener('mouseleave', handleMouseLeave);
-        return () => document.removeEventListener('mouseleave', handleMouseLeave);
-    }, [emailUnlocked, isSaved]);
-
-    const handleModalSubmit = useCallback(async (e: React.FormEvent) => {
-        e.preventDefault();
-        if (!modalEmail.trim() || !modalEmail.includes('@')) return;
-        setModalSubmitting(true);
-        try {
-            const { data, error } = await supabase.functions.invoke('save-zog-result', {
-                body: {
-                    email: modalEmail.trim(),
-                    appleseedData: appleseed,
-                    source: 'zog_exit_intent_save',
-                },
-            });
-            if (error) {
-                console.error('[modal save] Edge function error:', error);
-                await (supabase as any).from('divine_timing_leads').insert({
-                    email: modalEmail.trim(),
-                    source: 'zog_exit_intent_fallback',
-                    created_at: new Date().toISOString(),
-                });
-            } else {
-                console.log('[modal save] Success:', data);
-            }
-        } catch {
-            // Silently continue — UI should never break on save failure
-        }
-        setEmailUnlocked(true);
-        setModalSubmitting(false);
-        setShowExitModal(false);
-        toast({
-            title: "✓ Saved",
-            description: "You can come back to this anytime.",
-        });
-    }, [modalEmail, appleseed, toast]);
+    // Day 60 (Sasha 2026-05-03): exit-intent mouseleave handler +
+    // handleModalSubmit removed alongside the modal. See note above on
+    // ctasVisible state for context.
 
     const handleEmailSubmit = useCallback(async (e: React.FormEvent) => {
         e.preventDefault();
@@ -768,115 +726,9 @@ const AppleseedDisplay = ({
                 </a>
             </div>
 
-            {/* EXIT INTENT MODAL — Day 57 (Sasha 2026-05-01).
-                Desktop mouseleave-from-top, fires once per session, suppressed
-                if the user has already saved. No guilt — just preservation. */}
-            {showExitModal && (
-                <div
-                    className="fixed inset-0 z-[100] flex items-center justify-center p-4"
-                    style={{ backgroundColor: "rgba(10,22,40,0.42)", backdropFilter: "blur(6px)", WebkitBackdropFilter: "blur(6px)" }}
-                    onClick={() => setShowExitModal(false)}
-                    role="dialog"
-                    aria-modal="true"
-                >
-                    <div
-                        className="rounded-3xl max-w-sm w-full p-6 sm:p-7 space-y-4 relative animate-in zoom-in-95 fade-in duration-200"
-                        onClick={(e) => e.stopPropagation()}
-                        style={{
-                            backgroundImage: 'linear-gradient(180deg, rgba(255,255,255,0.97), rgba(255,255,255,0.90))',
-                            boxShadow: '0 30px 60px -20px rgba(10,22,40,0.35), 0 1px 0 rgba(255,255,255,0.6) inset',
-                            border: '1px solid rgba(26,30,58,0.10)',
-                        }}
-                    >
-                        <button
-                            type="button"
-                            className="absolute top-3 right-3 p-1.5 rounded-full hover:bg-black/5 transition-colors"
-                            onClick={() => setShowExitModal(false)}
-                            aria-label="Close"
-                        >
-                            <X className="w-4 h-4" style={{ color: "var(--skin-text-muted, rgba(26,30,58,0.7))" }} />
-                        </button>
-                        <p
-                            className="text-[10px] sm:text-xs font-semibold tracking-[0.22em] uppercase"
-                            style={{ color: "var(--skin-text-muted, rgba(26,30,58,0.65))" }}
-                        >
-                            Before you go—
-                        </p>
-                        <p
-                            className="text-xl sm:text-2xl font-medium leading-snug"
-                            style={{
-                                fontFamily: "'Cormorant Garamond', serif",
-                                color: "var(--skin-text-primary, #0a1628)",
-                            }}
-                        >
-                            Do you want to keep this?
-                        </p>
-                        <form onSubmit={handleModalSubmit} className="space-y-3 pt-1">
-                            <div
-                                className="flex items-center gap-2 p-2 rounded-full"
-                                style={{
-                                    backgroundColor: "rgba(255,255,255,0.5)",
-                                    border: '1px solid rgba(26,30,58,0.16)',
-                                }}
-                            >
-                                <Mail
-                                    className="w-3.5 h-3.5 ml-2 flex-shrink-0"
-                                    style={{ color: "var(--skin-text-hint, rgba(26,30,58,0.45))" }}
-                                />
-                                <input
-                                    type="email"
-                                    value={modalEmail}
-                                    onChange={(e) => setModalEmail(e.target.value)}
-                                    placeholder="your@email.com"
-                                    autoFocus
-                                    className="flex-1 bg-transparent border-0 text-sm focus:outline-none min-w-0"
-                                    style={{ color: "var(--skin-text-primary, #0a1628)" }}
-                                    required
-                                />
-                                <button
-                                    type="submit"
-                                    disabled={modalSubmitting || !modalEmail.trim()}
-                                    className="flex-shrink-0 rounded-full px-4 py-1.5 text-xs font-semibold text-white disabled:opacity-40 transition-colors"
-                                    style={{
-                                        backgroundImage:
-                                            "linear-gradient(135deg, #a06d08 0%, #7a5108 45%, #6b4208 100%)",
-                                    }}
-                                >
-                                    {modalSubmitting ? "Saving…" : "Email my result"}
-                                </button>
-                            </div>
-                            <p
-                                className="text-center text-[11px] italic"
-                                style={{
-                                    color: "var(--skin-text-muted-soft, rgba(26,30,58,0.55))",
-                                    fontFamily: "'Source Serif 4', serif",
-                                }}
-                            >
-                                — or —
-                            </p>
-                            <a
-                                href={STRIPE_ACTIVATE_LINK}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                onClick={() => {
-                                    trackCTAClick('activate_click', 'appleseed_exit_modal');
-                                    setShowExitModal(false);
-                                }}
-                                className="w-full liquid-glass-dark cta-breath rounded-full inline-flex items-center justify-center px-5 py-3 text-sm sm:text-base font-semibold transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
-                                style={{
-                                    fontFamily: "'Cormorant Garamond', serif",
-                                    color: "var(--skin-cta-text, rgba(245,245,250,0.98))",
-                                    backgroundImage:
-                                        "var(--skin-cta-bg, linear-gradient(135deg, rgba(10,22,40,0.72) 0%, rgba(26,30,58,0.62) 50%, rgba(10,22,40,0.72) 100%))",
-                                    textShadow: "var(--skin-cta-text-shadow, 0 0 16px rgba(240,194,127,0.25))",
-                                }}
-                            >
-                                Activate it — $37
-                            </a>
-                        </form>
-                    </div>
-                </div>
-            )}
+            {/* Day 60 (Sasha 2026-05-03): exit-intent modal removed.
+                The page-resident CTAs above (save by email + activate)
+                carry the same job without the interruption. */}
         </>
     );
 };
