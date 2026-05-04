@@ -308,7 +308,24 @@ serve(async (req) => {
     //
     // UNIQUE(profile_id, email_type) index prevents double-enqueue if a
     // user saves twice, re-takes the assessment, etc.
-    try {
+    //
+    // Day 61 (Sasha 2026-05-04 14:30): KILLED. Sasha is reconsidering
+    // the consent / GDPR / spam-risk tradeoffs of the unsolicited
+    // Day-1/2/8 sequence. Until he's settled on the right policy
+    // ("don't want to spam anybody"), no new rows get enqueued from
+    // this signup path. The block below stays in code (preserves
+    // template + payload shape for future revival) but is gated by
+    // this single constant. Flip to `false` to revive.
+    // PAIRED with a matching kill in process-nurture-emails so any
+    // already-queued rows from prior signups also stop dispatching.
+    const NURTURE_EMAILS_KILLED = true;
+    if (NURTURE_EMAILS_KILLED) {
+      console.log(
+        "[save-zog-result] Nurture-email enqueue is DISABLED (NURTURE_EMAILS_KILLED=true). Skipping Day-1/2/8 schedule for:",
+        normalizedEmail,
+      );
+    } else {
+     try {
       // Skip enqueue if the user has opted out previously.
       const { data: optOut } = await supabase
         .from("nurture_opt_outs")
@@ -350,8 +367,9 @@ serve(async (req) => {
       } else {
         console.log("[save-zog-result] User previously opted out — skipping nurture enqueue:", normalizedEmail);
       }
-    } catch (nurtureErr) {
+     } catch (nurtureErr) {
       console.error("[save-zog-result] Nurture enqueue failed (non-fatal):", nurtureErr);
+     }
     }
 
     // ── Step 7: Also save to divine_timing_leads for backwards compat ──
