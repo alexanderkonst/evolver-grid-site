@@ -183,43 +183,86 @@ const PERSPECTIVES: Partial<Record<PerspectiveId, PerspectiveConfig>> = {
         ),
     },
     "three-key-talents": {
-        title: "Three Key Talents",
-        subtitle: "What you bring, every time",
+        // Day 61 (Sasha 2026-05-04): renamed "Three Key Talents" →
+        // "Three Talents in Depth" to differentiate from the new compact
+        // "MY THREE TALENTS" section on the reveal box. The slug
+        // ("three-key-talents") stays — preserves existing inbound URLs
+        // and the side-nav stable identity.
+        //
+        // Card structure revamped: each talent now shows the COMPACT
+        // form first (matching the reveal box exactly, so the user
+        // sees the same handle they recognize) and the LONG form
+        // underneath as the unfolded explanation. Compact form is
+        // optional — for pre-Day-61 snapshots that don't have it, only
+        // the long form renders (back-compat).
+        title: "Three Talents in Depth",
+        subtitle: "Each talent — the handle from your reveal, then unfolded",
         icon: Sparkles,
-        render: (data) => (
-            <ol className="space-y-4">
-                {data.topTalentProfile?.top_three_talents?.map((talent, i) => (
-                    <li
-                        key={i}
-                        className="rounded-2xl px-6 py-5 sm:px-7 sm:py-6 flex gap-4"
-                        style={cardSurface}
-                    >
-                        <span
-                            className="flex-shrink-0 w-8 h-8 rounded-full text-sm font-semibold flex items-center justify-center"
-                            style={{
-                                background: "linear-gradient(135deg, rgba(244, 212, 114, 0.95) 0%, rgba(212, 175, 55, 0.78) 100%)",
-                                color: "#0a1628",
-                                fontFamily: "'DM Sans', system-ui, sans-serif",
-                                fontVariantNumeric: "tabular-nums lining-nums",
-                                border: "0.5px solid rgba(122, 81, 8, 0.45)",
-                            }}
-                        >
-                            {i + 1}
-                        </span>
-                        <p
-                            className="text-base leading-relaxed flex-1 pt-0.5"
-                            style={{
-                                fontFamily: "'Source Serif 4', Georgia, serif",
-                                color: "var(--skin-text-primary, #0b2a5a)",
-                                textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
-                            }}
-                        >
-                            {talent}
-                        </p>
-                    </li>
-                ))}
-            </ol>
-        ),
+        render: (data) => {
+            const longForms = data.topTalentProfile?.top_three_talents ?? [];
+            const compactForms = data.topTalentProfile?.top_three_talents_compact ?? [];
+            if (longForms.length === 0) return null;
+            return (
+                <ol className="space-y-4">
+                    {longForms.map((talent, i) => {
+                        const compact = compactForms[i];
+                        return (
+                            <li
+                                key={i}
+                                className="rounded-2xl px-6 py-5 sm:px-7 sm:py-6 flex gap-4"
+                                style={cardSurface}
+                            >
+                                <span
+                                    className="flex-shrink-0 w-8 h-8 rounded-full text-sm font-semibold flex items-center justify-center"
+                                    style={{
+                                        background: "linear-gradient(135deg, rgba(244, 212, 114, 0.95) 0%, rgba(212, 175, 55, 0.78) 100%)",
+                                        color: "#0a1628",
+                                        fontFamily: "'DM Sans', system-ui, sans-serif",
+                                        fontVariantNumeric: "tabular-nums lining-nums",
+                                        border: "0.5px solid rgba(122, 81, 8, 0.45)",
+                                    }}
+                                >
+                                    {i + 1}
+                                </span>
+                                <div className="flex-1 pt-0.5 space-y-2">
+                                    {/* Compact form — Cormorant italic,
+                                        slightly larger, matches the
+                                        reveal box's typographic register
+                                        so the user reads it as the same
+                                        handle they just saw. */}
+                                    {compact && (
+                                        <p
+                                            className="text-lg sm:text-xl italic leading-snug"
+                                            style={{
+                                                fontFamily: "'Cormorant Garamond', serif",
+                                                fontWeight: 500,
+                                                color: "var(--skin-text-primary, #0b2a5a)",
+                                                textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
+                                            }}
+                                        >
+                                            {compact}
+                                        </p>
+                                    )}
+                                    {/* Long form — Source Serif body,
+                                        the unfolded explanation. */}
+                                    <p
+                                        className="text-base leading-relaxed"
+                                        style={{
+                                            fontFamily: "'Source Serif 4', Georgia, serif",
+                                            fontWeight: 500,
+                                            color: "var(--skin-text-body, rgba(11,42,90,0.92))",
+                                            textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
+                                        }}
+                                    >
+                                        {talent}
+                                    </p>
+                                </div>
+                            </li>
+                        );
+                    })}
+                </ol>
+            );
+        },
     },
     "top-shadow": {
         title: "Top Shadow",

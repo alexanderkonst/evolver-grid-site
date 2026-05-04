@@ -493,7 +493,11 @@ function renderThreeKeyTalents(b: PdfBuilder, appleseed: AppleseedData) {
     const talents = appleseed.topTalentProfile?.top_three_talents;
     if (!talents || talents.length === 0) return;
     b.sectionRule();
-    b.eyebrow("Three Key Talents");
+    // Day 61 (Sasha 2026-05-04): renamed eyebrow to match the on-screen
+    // deep-page revamp ("Three Talents in Depth"). The on-screen page
+    // shows compact-then-long per talent; the PDF keeps long-form
+    // numbered cards (denser, fits the print register).
+    b.eyebrow("Three Talents in Depth");
     b.y += 1;
     talents.forEach((talent, i) => b.numberedCard(i + 1, talent));
     b.sectionGap();

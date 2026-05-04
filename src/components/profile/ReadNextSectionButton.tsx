@@ -21,7 +21,7 @@ export const ZOG_SUBPAGE_ORDER: Array<{ path: string; label: string }> = [
     { path: "/game/me/zone-of-genius/start-here", label: "Start Here" },
     { path: "/game/me/zone-of-genius", label: "Overview" },
     { path: "/game/me/zone-of-genius/how-it-shows-up", label: "How It Shows Up" },
-    { path: "/game/me/zone-of-genius/three-key-talents", label: "Three Key Talents" },
+    { path: "/game/me/zone-of-genius/three-key-talents", label: "Three Talents in Depth" },
     { path: "/game/me/zone-of-genius/top-shadow", label: "Top Shadow" },
     { path: "/game/me/zone-of-genius/mastery", label: "Path of Mastery" },
     { path: "/game/me/zone-of-genius/one-action", label: "One Action" },

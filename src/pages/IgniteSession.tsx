@@ -15,17 +15,21 @@
  *     "Build a business off your top talent" → /ignite#pricing-section
  *   - AppleseedDisplay reveal → primary CTA → here
  */
-import { ArrowRight, Check, ShieldCheck, MessageCircle, ChevronDown } from "lucide-react";
-import { trackPageView, trackCTAClick, trackFunnelEvent } from "@/lib/funnelAnalytics";
+import { ArrowRight, Check, ShieldCheck, ChevronDown } from "lucide-react";
+import { trackPageView, trackCTAClick } from "@/lib/funnelAnalytics";
 import { ExpandableTestimonial } from "@/components/ExpandableTestimonial";
 import type { TestimonialData } from "@/components/ExpandableTestimonial";
 import { useLocation } from "react-router-dom";
 import GameShellV2 from "../components/game/GameShellV2";
 // SiteLogo import removed Day 47 late pass — GameShellV2 now owns the logo.
+// aleksandrPhoto + MessageCircle + trackFunnelEvent imports removed Day 61
+// (Sasha 2026-05-04) — about-section photo collapsed to a single
+// attribution line; clarity-call CTAs no longer use the speech-bubble
+// glyph (now plain italic underline links); DivineTimingCapture
+// removed (called trackFunnelEvent for the divine_timing event).
 import { useState, useRef, useEffect, useCallback } from "react";
 import Hls from "hls.js";
 import geniusLogo from "@/assets/ignite-logo.png";
-import aleksandrPhoto from "@/assets/aleksandr-photo.jpeg";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import BoldText from "@/components/BoldText";
@@ -139,25 +143,6 @@ const LazyYouTube = ({ id, title }: { id: string; title: string }) => {
   );
 };
 
-/* ─── Primary CTA Button ──────────────────── */
-const PrimaryCTA = ({ id, label = "Book Your Session", showPrice = true }: { id: string; label?: string; showPrice?: boolean }) => (
-  <Button
-    size="lg"
-    asChild
-  >
-    <a
-      href={STRIPE_PAYMENT_LINK}
-      target="_blank"
-      rel="noopener noreferrer"
-      id={id}
-      onClick={() => trackCTAClick('booking_click', id)}
-    >
-      <BoldText className="uppercase">{`${label}${showPrice ? " — $555" : ""}`}</BoldText>
-      <ArrowRight className="w-4 h-4 ml-1" />
-    </a>
-  </Button>
-);
-
 /* ─── Already Paid → Book ─────────────────── */
 const AlreadyPaidLink = () => (
   <Button variant="outline" size="sm" asChild>
@@ -172,109 +157,15 @@ const AlreadyPaidLink = () => (
   </Button>
 );
 
-/* ─── Divine Timing Email Capture ────────────────────────── */
-const DivineTimingCapture = () => {
-  const [state, setState] = useState<'idle' | 'input' | 'saving' | 'saved'>('idle');
-  const [email, setEmail] = useState('');
-
-  const handleSubmit = useCallback(async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!email.trim() || !email.includes('@')) return;
-    setState('saving');
-    try {
-      await (supabase as any).from('divine_timing_leads').insert({
-        email: email.trim(),
-        source: 'ignite_page',
-        created_at: new Date().toISOString(),
-      });
-    } catch {
-      // Silently continue
-    }
-    setState('saved');
-    trackFunnelEvent({ step: 'divine_timing', source: 'ignite_page' });
-  }, [email]);
-
-  if (state === 'saved') {
-    return (
-      <p className="text-[10px] text-white/40 italic mt-2 animate-pulse">
-        ✨ Saved. We'll reach out when the timing is right.
-      </p>
-    );
-  }
-
-  if (state === 'input' || state === 'saving') {
-    return (
-      <form onSubmit={handleSubmit} className="flex flex-col items-center gap-2 mt-2 max-w-xs mx-auto">
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="Your email — I'll check in about a month"
-          className="w-full px-4 py-2 rounded-full bg-white/5 border border-white/10 text-xs text-white/70 placeholder:text-white/25 focus:outline-none focus:border-white/30 transition-colors font-sans"
-          autoFocus
-          required
-        />
-        <button
-          type="submit"
-          disabled={state === 'saving'}
-          className="text-[9px] text-white/40 hover:text-white/60 transition-colors uppercase tracking-[0.15em] underline underline-offset-4 decoration-white/10 disabled:opacity-50"
-        >
-          {state === 'saving' ? 'Saving...' : 'Hold this space for me'}
-        </button>
-      </form>
-    );
-  }
-
-  return (
-    <button
-      onClick={() => setState('input')}
-      className="text-[9px] text-white/20 hover:text-white/40 transition-colors uppercase tracking-[0.2em] mt-2 underline underline-offset-4 decoration-white/10"
-    >
-      Not right now, but maybe in a month
-    </button>
-  );
-};
-
-/* ─── Micro-Commitment Block ─── */
-const MicroCommitmentBlock = () => {
-  const [selected, setSelected] = useState<number | null>(null);
-
-  const options = [
-    "I struggle to explain what I do",
-    "People get value but don't pay",
-    "I've tried multiple directions",
-    "I know I'm close but can't land it",
-  ];
-
-  return (
-    <section className="space-y-4 max-w-md mx-auto" aria-label="Self-diagnostic">
-      <p className="text-sm text-white/60 text-center font-medium font-serif uppercase tracking-wide">
-        Which of these feels most true right now?
-      </p>
-      <p className="text-[10px] text-white/25 text-center">Just one question:</p>
-      <div className="space-y-2">
-        {options.map((opt, i) => (
-          <button
-            key={i}
-            onClick={() => setSelected(i)}
-            className={`w-full text-left px-4 py-3 rounded-xl text-sm transition-all duration-200 font-sans ${
-              selected === i
-                ? "liquid-glass-strong ring-1 ring-[#8460ea]/40 text-white/90 shadow-[0_0_15px_rgba(132,96,234,0.15)]"
-                : "liquid-glass ring-1 ring-white/5 text-white/50 hover:text-white/70 hover:ring-white/15"
-            }`}
-          >
-            {opt}
-          </button>
-        ))}
-      </div>
-      {selected !== null && (
-        <p className="text-xs text-white/55 text-center font-medium animate-in fade-in slide-in-from-bottom-2 duration-300">
-          Good. That's exactly what we solve in the session.
-        </p>
-      )}
-    </section>
-  );
-};
+/* Day 61 (Sasha 2026-05-04): retired components.
+   – PrimaryCTA helper (replaced by inline <Button> calls so each
+     site gets its own tracked id + label).
+   – DivineTimingCapture (the "maybe in a month" email-grab) — added
+     friction without conversion lift; the clarity-call CTA does the
+     "not now" job better.
+   – MicroCommitmentBlock (the "Which of these feels most true" 4-
+     button self-diagnostic) — qualifier work belongs upstream on the
+     reveal page, not here. */
 
 const IgniteSession = () => {
   const location = useLocation();
@@ -348,401 +239,273 @@ const IgniteSession = () => {
       {/* CONTENT LAYER */}
       <div className="relative z-10 max-w-2xl mx-auto px-4 md:px-6 py-16 space-y-14">
 
-        {/* S1: HERO */}
+        {/* Day 61 (Sasha 2026-05-04): major copy + structure pass per
+            Sasha's "transformational result + button + confirmation"
+            principle. Distilled from ~80+ lines of body copy across 10
+            sections to ~25 lines across 4 blocks: hero (promise + CTA)
+            → what you leave with (deliverable + repeat CTA) → proof +
+            price + guarantee (booking) → quiet footer (alternates +
+            FAQ + methodology video).
+
+            Methodology video preserved with id="hero-video" anchor —
+            external links from GeniusQuiz.tsx and MyResult.tsx point
+            here, must keep working. The section just lives in a
+            quieter position (below FAQ) instead of right under hero.
+
+            Dropped: pain pre-amble, "we take what you do" bullets,
+            "you're not far off" reframe, DivineTimingCapture email
+            grab, S2 Qualifier (5 italic objection bullets), S4 How It
+            Works (3 emoji cards), S5 About full block (collapsed to
+            single attribution line under price), MicroCommitmentBlock,
+            "More time isn't what's missing", "We fix this in 2 hours.
+            Or you don't pay." (redundant with the guarantee box), 3
+            of 4 FAQs (kept "Don't know my top talent" + new "No actual
+            business" pair), and the entire emotional close. */}
+
+        {/* BLOCK 1 — HERO (promise + immediate CTA) */}
         <header className="text-center space-y-6 pt-4 pb-2" id="ignite-hero">
           <img
             src={geniusLogo}
             alt="Genius Business"
-            className="w-[160px] h-auto mx-auto opacity-80"
+            className="w-[140px] h-auto mx-auto opacity-80"
           />
 
-          <h1 className="text-2xl md:text-3xl lg:text-4xl font-medium uppercase tracking-[0.15em] text-white leading-[1.3] max-w-2xl mx-auto font-serif">
-            <span className="text-white/60">You can't clearly explain what you do</span>
-            <br />
-            <span className="inline-block w-12 h-px bg-white/40 my-4" />
-            <br />
-            <span className="text-white" style={{ textShadow: "0 0 30px rgba(255,255,255,0.4), 0 0 60px rgba(255,255,255,0.1)" }}>
-              That's why it's not turning into something people buy
-            </span>
+          <h1
+            className="font-serif max-w-2xl mx-auto"
+            style={{
+              fontSize: "clamp(1.85rem, 5vw, 2.75rem)",
+              fontWeight: 600,
+              lineHeight: 1.15,
+              letterSpacing: "-0.018em",
+              color: "rgba(255,255,255,0.96)",
+              textShadow:
+                "0 0 30px rgba(255,255,255,0.20), 0 0 60px rgba(255,255,255,0.08)",
+            }}
+          >
+            Walk out with a one-sentence business.
           </h1>
 
-          <p className="text-base md:text-lg text-white/80 max-w-md mx-auto leading-relaxed">
-            In 2 hours, we take what you already do —<br/>
-            and turn it into:
-          </p>
-          <div className="text-sm text-white/70 max-w-sm mx-auto leading-relaxed space-y-1">
-            <p>→ a clear one-sentence business</p>
-            <p>→ a real offer</p>
-            <p>→ something people understand — and pay for</p>
-          </div>
-
-          {/* Proximity reframe */}
-          <p className="text-sm text-white/50 max-w-sm mx-auto leading-relaxed mt-2">
-            You're not far off.
-          </p>
-          <p className="text-sm text-white/65 font-medium max-w-sm mx-auto">
-            You're one structural layer away from something that works.
+          <p
+            className="text-base sm:text-lg italic text-white/70 max-w-md mx-auto leading-relaxed"
+            style={{ fontFamily: "'Source Serif 4', serif" }}
+          >
+            In 2 hours. Or you don't pay.
           </p>
 
-
-
-          <div className="flex flex-col items-center gap-4 pt-6">
-            {/* Paid path: Productize Yourself Session */}
+          <div className="flex flex-col items-center gap-3 pt-4">
             <Button size="lg" asChild>
               <a
                 href={STRIPE_PAYMENT_LINK}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => trackCTAClick('booking_click', 'hero-cta')}
               >
-                <BoldText className="uppercase">Turn this into something real — $555</BoldText>
+                <BoldText className="uppercase">Get my one-sentence business — $555</BoldText>
                 <ArrowRight className="w-4 h-4 ml-1" />
               </a>
             </Button>
 
-            {/* Free path: clarity call */}
-            <Button variant="outline" size="sm" asChild>
-              <a
-                href={CALCOM_CLARITY_LINK}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <MessageCircle className="w-3.5 h-3.5 opacity-70" />
-                Not sure yet? Let's talk for 15 min — free
-              </a>
-            </Button>
-            <p className="text-[10px] text-white/30 max-w-xs mx-auto">
-              No convincing. No persuasion. Just clarity on your situation, your top talent, and your unique business.
-            </p>
-          </div>
-
-          <div className="pt-8 space-y-4">
-            <a href="#hero-video" className="text-sm font-medium text-white/50 hover:text-white transition-colors underline underline-offset-4 decoration-white/20 hover:decoration-white/50">
-              See why this hasn't worked yet (6 min)
+            <a
+              href={CALCOM_CLARITY_LINK}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs text-white/55 hover:text-white/85 italic underline underline-offset-4 decoration-white/15 hover:decoration-white/40 transition-colors"
+              onClick={() => trackCTAClick('clarity_call_click', 'hero-quiet-link')}
+            >
+              Not sure yet? Take 20 min — a first read on your situation, free →
             </a>
-            <div className="flex flex-col items-center justify-center gap-1 pt-2">
-              <DivineTimingCapture />
-            </div>
           </div>
         </header>
 
-        {/* S1.5: VIDEO */}
-        <section id="hero-video" aria-label="Methodology video" className="space-y-5">
-          <div className="liquid-glass rounded-2xl p-1">
-            <LazyYouTube id="afWWcXUqnLI" title="The Productize Yourself Session — Methodology Overview" />
-          </div>
-          <p className="text-xs text-white/45 text-center italic">
-            If you're still thinking about this after watching… you already know.
+        {/* BLOCK 2 — WHAT YOU LEAVE WITH */}
+        <section className="space-y-5 max-w-md mx-auto" aria-label="What you leave with">
+          <p className="text-[10px] text-white/45 uppercase tracking-[0.28em] text-center font-medium">
+            What you leave with
           </p>
-
-          {/* Post-video CTA */}
-          <div className="flex flex-col items-center gap-3 pt-2">
+          <div className="space-y-2.5 text-left">
+            {[
+              "A one-sentence business you recognize as yours",
+              "The audience it's actually for",
+              "The reason they'll pay",
+              "A single landing page that holds it all",
+            ].map((item, i) => (
+              <div key={i} className="flex items-baseline gap-2.5">
+                <span className="text-white/40 text-sm">→</span>
+                <span className="text-sm sm:text-base text-white/85 leading-relaxed">{item}</span>
+              </div>
+            ))}
+          </div>
+          <p
+            className="text-xs text-white/55 italic text-center leading-relaxed pt-1 max-w-sm mx-auto"
+            style={{ fontFamily: "'Source Serif 4', serif" }}
+          >
+            NOT a sales call for a "long-term coaching engagement." A 2-hour working session that produces a landing page for your business.
+          </p>
+          <div className="flex justify-center pt-2">
             <Button size="lg" asChild>
               <a
                 href={STRIPE_PAYMENT_LINK}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => trackCTAClick('booking_click', 'block2-cta')}
               >
-                <BoldText className="uppercase">Turn this into something real — $555</BoldText>
+                <BoldText className="uppercase">Get my one-sentence business — $555</BoldText>
                 <ArrowRight className="w-4 h-4 ml-1" />
               </a>
             </Button>
           </div>
         </section>
 
-        {/* S2: QUALIFIER */}
-        <section className="space-y-5" id="qualifier" aria-label="Who this session is for">
-          <h2 className="text-xl font-serif font-semibold text-white/90 text-center uppercase tracking-[0.1em]">
-            <BoldText>This Is For You If</BoldText>
-          </h2>
-          <p className="text-sm text-white/55 text-center max-w-md mx-auto leading-relaxed">
-            What is yours to build?
-          </p>
-          <div className="space-y-2 max-w-md mx-auto">
-            {[
-              '"Why is this still so hard to say?"',
-              '"I\'m a mix of things and none of the labels fit"',
-              '"I know I should charge more but I can\'t afford to lose the few clients I have"',
-              '"Something fundamental is off but I can\'t see what"',
-              '"I\'m so much more capable than my results show"',
-            ].map((item, i) => (
-              <div
-                key={i}
-                className="liquid-glass rounded-xl px-4 py-3 text-sm text-white/70 italic"
-              >
-                {item}
-              </div>
-            ))}
-          </div>
-        </section>
-
-
-        {/* S4: HOW IT WORKS */}
-        <section className="space-y-5" id="how-it-works" aria-label="How it works">
-          <h2 className="text-xl font-serif font-semibold text-white/90 text-center uppercase tracking-[0.1em]">
-            <BoldText>What Happens In 2 Hours</BoldText>
-          </h2>
-          <p className="text-xs text-white/45 text-center">This is not coaching. You leave with a document, not a feeling.</p>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-            {[
-              {
-                emoji: "🔮",
-                step: "1",
-                title: "We name what you already do — clearly",
-                desc: "We look at what's already there — but invisible to you. We land it in one top talent any teenager understands. And you feel as yours.",
-              },
-              {
-                emoji: "📦",
-                step: "2",
-                title: "We structure it into something people can buy",
-                desc: "That sentence trickles down into a clear offer, a defined audience, a real problem, a real outcome. No guessing. Things make sense.",
-              },
-              {
-                emoji: "🚀",
-                step: "3",
-                title: "You leave with a one-page offer",
-                desc: "AI compiles everything live into one page: what you do, who it's for, why they pay, and what follows.",
-              },
-            ].map((item, i) => (
-              <div
-                key={i}
-                className="liquid-glass rounded-3xl p-5 text-center space-y-3 hover:scale-105 transition-transform duration-200"
-              >
-                <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center mx-auto text-xl">
-                  <span aria-hidden="true">{item.emoji}</span>
-                </div>
-                <p className="text-xs text-white/60 font-medium uppercase tracking-widest">Step {item.step}</p>
-                <p className="text-sm text-white font-medium leading-snug">{item.title}</p>
-                {item.desc && <p className="text-xs text-white/55 leading-relaxed">{item.desc}</p>}
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* S5: ABOUT
-            Day 48 iter 3 (Sasha): TWO fixes on this section only.
-            1. The photo had `opacity-90` + sat halfway over the glass
-               card's top edge (`-mt-10`). The 10% transparency caused
-               the card's rim highlight to bleed through the photo as
-               a visible horizontal line crossing the face. Setting
-               opacity to full hides the line — the photo itself now
-               occludes the card edge behind it.
-            2. Text was too close to the bottom of the photo. Bumped
-               `pt-14` → `pt-20` so the first paragraph has a proper
-               breath below the circular portrait. */}
-        <section id="about-section" aria-label="About Aleksandr" className="relative pt-8">
-          <img
-            src={aleksandrPhoto}
-            alt="Aleksandr Konstantinov"
-            className="w-20 h-20 rounded-full object-cover mx-auto relative z-10 border-2 border-white/10"
-          />
-          <div className="liquid-glass rounded-3xl p-6 md:p-8 pt-20 -mt-10 text-center space-y-3">
-            <p className="text-sm text-white/70 leading-relaxed">
-              I spent years in the loop myself. Building startups that didn't stick. Consulting. Coaching friends for free. Circling the same question everyone in this situation circles:
-            </p>
-            <p className="text-sm text-white/80 leading-relaxed italic">
-              "What is mine to build?"
-            </p>
-            <p className="text-sm text-white/70 leading-relaxed mt-1">
-              What I do now is simple: I sit with someone for 2 hours, hear what they've been saying for years, and hand them back the one sentence they couldn't see from inside themselves. Then AI compiles their entire business on one page before the session ends.
-            </p>
-            <p className="text-xs text-white/55 mt-4">
-              — <em>Aleksandr Konstantinov</em>
-            </p>
-          </div>
-        </section>
-
-        {/* S6: TESTIMONIALS */}
-        <section className="space-y-3" id="testimonials" aria-label="Client testimonials">
-          <h2 className="text-xl font-serif font-semibold text-white/90 text-center uppercase tracking-[0.1em] mb-3">
-            <BoldText>What They Said After</BoldText>
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-            {testimonials.map((t, i) => (
-              <ExpandableTestimonial key={i} t={t} variant="dark" />
-            ))}
-          </div>
-        </section>
-
-        {/* MICRO-COMMITMENT */}
-        <MicroCommitmentBlock />
-
-        {/* S7: BOOKING */}
-        <section className="liquid-glass-strong rounded-[2.5rem] p-8 md:p-10 text-center space-y-6" id="pricing-section" aria-label="Book your session">
+        {/* BLOCK 3 — PROOF + PRICE + GUARANTEE (booking section) */}
+        <section
+          className="liquid-glass-strong rounded-[2.5rem] p-7 md:p-9 text-center space-y-6"
+          id="pricing-section"
+          aria-label="Book your session"
+        >
           <div id="booking" className="sr-only" aria-hidden="true" />
 
-          <div className="space-y-3 max-w-sm mx-auto">
-            <p className="text-xl font-serif font-semibold text-white/90 text-center uppercase tracking-[0.1em]">
-              <BoldText>One Session. One Clear Business.</BoldText>
-            </p>
-            <p className="text-xs text-white/45 text-center leading-relaxed">
-              If you don't turn this into something concrete:
-            </p>
-            <div className="text-xs text-white/50 space-y-1 text-center">
-              <p>→ it stays something people benefit from — but don't pay for</p>
-              <p>→ you keep circling the same question</p>
-              <p>→ nothing fundamentally changes</p>
-            </div>
-            <p className="text-xs text-white/40 uppercase tracking-widest text-center pt-2">In 2 hours</p>
-            <div className="space-y-2 text-left">
-              {[
-                { arrow: "We define", result: "exactly what you do" },
-                { arrow: "Who", result: "it's for" },
-                { arrow: "Why", result: "they pay" },
-                { arrow: "How to", result: "express it simply" },
-              ].map((item, i) => (
-                <div key={i} className="flex items-baseline gap-2">
-                  <span className="text-xs text-white/50">{item.arrow} →</span>
-                  <span className="text-sm text-white/90 font-medium">{item.result}</span>
-                </div>
-              ))}
-            </div>
+          {/* Compact testimonials — all of them, expandable single-liners */}
+          <div className="space-y-1 max-w-md mx-auto text-left" id="testimonials">
+            {testimonials.map((t, i) => (
+              <ExpandableTestimonial key={i} t={t} variant="dark" compact />
+            ))}
           </div>
 
-          {/* Price */}
-          <div>
-            <div className="flex items-baseline justify-center gap-1 mb-4">
-              <span className="text-5xl md:text-6xl font-medium text-white tracking-tight font-serif">$555</span>
+          {/* Price + attribution */}
+          <div className="space-y-2">
+            <div className="flex items-baseline justify-center gap-1">
+              <span
+                className="text-5xl md:text-6xl text-white tracking-tight font-serif"
+                style={{ fontWeight: 500 }}
+              >
+                $555
+              </span>
             </div>
-            <p className="text-xs text-white/55">In 2 hours</p>
+            <p className="text-xs text-white/60">
+              2 hours · with a self-productization coach
+            </p>
+            <p
+              className="text-[11px] text-white/45 italic"
+              style={{ fontFamily: "'Source Serif 4', serif" }}
+            >
+              Initiated by Aleksandr Konstantinov
+            </p>
           </div>
 
           {/* Guarantee */}
           <div className="px-4 py-3 max-w-sm mx-auto rounded-xl border border-white/10">
             <div className="flex items-center justify-center gap-2 mb-2">
-              <ShieldCheck className="w-5 h-5 text-white/50" aria-hidden="true" />
+              <ShieldCheck className="w-5 h-5 text-white/55" aria-hidden="true" />
             </div>
             <p className="text-sm text-white/90 leading-relaxed font-medium">
               If you don't leave with a one-sentence business you recognize as yours: you don't pay.
             </p>
           </div>
 
-          {/* Micro social proof */}
-          <div className="space-y-1.5 max-w-sm mx-auto">
-            {[
-              { quote: "\"I've never been able to say it like that before.\"", name: "Oyi" },
-              { quote: "\"It's uplifting me so much. It's a real breakthrough.\"", name: "Sandra" },
-              { quote: "\"I was applying force, but the vector was wrong.\"", name: "Sergey" },
-            ].map((t, i) => (
-              <p key={i} className="text-xs text-white/40 italic text-center">
-                {t.quote} <span className="not-italic text-white/55">— {t.name}</span>
-              </p>
-            ))}
-          </div>
-
-          {/* Final decision */}
-          <p className="text-xs text-white/55 font-medium">
-            More time isn't what's missing.<br/>
-            The decision is the move.
+          {/* Resonance permission */}
+          <p
+            className="text-[11px] text-white/50 italic max-w-xs mx-auto leading-relaxed"
+            style={{ fontFamily: "'Source Serif 4', serif" }}
+          >
+            If your heart isn't resonating with this, don't sign up. This works because people come when they're ready — not when they're pressured or manipulated.
           </p>
 
-          {/* Resonance Permission */}
-          <p className="text-[10px] text-white/35 italic max-w-xs mx-auto leading-relaxed">
-            If your heart isn't resonating with this, don't sign up. This works because people come when they're ready — not when they're pressured.
-          </p>
-
-          {/* Framing above primary CTA — Day 47 iter 10 (GFOA v2.0):
-              Short, declarative, guarantee-compressed. Lives above the
-              existing guarantee block — doesn't replace it, reinforces entry. */}
-          <div className="space-y-1 pt-2">
-            <p className="text-base md:text-lg text-white font-medium tracking-wide">
-              We fix this in 2 hours.
-            </p>
-            <p className="text-base md:text-lg text-white font-medium tracking-wide">
-              Or you don't pay.
-            </p>
-          </div>
-
-          {/* CTA */}
-          <PrimaryCTA id="book-session-btn" label="Book Your Session" showPrice={false} />
-
-          {/* Secondary Actions */}
-          <div className="flex flex-col items-center gap-3 pt-3">
-            <Button variant="outline" size="sm" asChild>
+          {/* Final CTA */}
+          <div className="pt-2">
+            <Button size="lg" asChild>
               <a
-                href={CALCOM_CLARITY_LINK}
+                href={STRIPE_PAYMENT_LINK}
                 target="_blank"
                 rel="noopener noreferrer"
+                id="book-session-btn"
+                onClick={() => trackCTAClick('booking_click', 'pricing-cta')}
               >
-                <MessageCircle className="w-3.5 h-3.5 opacity-70" />
-                Have a question? Let's chat for 15 mins
+                <BoldText className="uppercase">Book my session — $555</BoldText>
+                <ArrowRight className="w-4 h-4 ml-1" />
               </a>
             </Button>
-            <p className="text-[10px] text-white/30 max-w-xs mx-auto">
-              No convincing. No persuasion. Just clarity.
-            </p>
+          </div>
+
+          {/* Already-paid escape hatch (kept inline near booking CTA) */}
+          <div className="pt-1">
             <AlreadyPaidLink />
           </div>
         </section>
 
-        {/* S8: FAQ */}
-        <section className="space-y-2" id="faq-section" aria-label="Frequently asked questions">
-          <h2 className="text-xl font-serif font-semibold text-white/90 text-center uppercase tracking-[0.1em] mb-4">
-            <BoldText>Questions</BoldText>
-          </h2>
-          {[
-            {
-              q: "What if I don't know my genius yet?",
-              a: "You do. You just can't see it from inside. That's literally why this works."
-            },
-            {
-              q: "What if I already have a business?",
-              a: "Then we sharpen it until it actually fits YOU—not a template someone else made."
-            },
-            {
-              q: "Is this coaching?",
-              a: "No. This is a working session that produces output. You leave with a document, not a feeling."
-            },
-            {
-              q: "What if this doesn't work for me?",
-              a: "Then you don't pay."
-            },
-          ].map((faq, i) => (
-            <div key={i} className="liquid-glass rounded-2xl">
-              <button
-                className="w-full p-4 flex items-center justify-between text-left cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-white/50 rounded-2xl"
-                onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                aria-expanded={openFaq === i}
-                aria-controls={`faq-answer-${i}`}
-              >
-                <p className="text-sm text-white/75 font-medium">{faq.q}</p>
-                <ChevronDown className={`w-4 h-4 text-white/45 transition-transform duration-200 flex-shrink-0 ml-2 ${openFaq === i ? "rotate-180" : ""}`} aria-hidden="true" />
-              </button>
-              <div
-                id={`faq-answer-${i}`}
-                role="region"
-                className={`overflow-hidden transition-all duration-200 ${openFaq === i ? "max-h-40 opacity-100" : "max-h-0 opacity-0"}`}
-              >
-                <div className="px-4 pb-4">
-                  <p className="text-xs text-white/50 leading-relaxed">{faq.a}</p>
+        {/* BLOCK 4 — QUIET FOOTER (alternates + 2 FAQs + methodology video) */}
+        <section className="space-y-6 pt-2" aria-label="Alternates and FAQ">
+          {/* Alternates — two thin links stacked */}
+          <div className="flex flex-col items-center gap-3 text-center">
+            <a
+              href={CALCOM_CLARITY_LINK}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs text-white/55 hover:text-white/85 italic underline underline-offset-4 decoration-white/15 hover:decoration-white/40 transition-colors"
+              onClick={() => trackCTAClick('clarity_call_click', 'footer-quiet-link')}
+            >
+              Not sure yet? 20 min — a first read on your situation, free. →
+            </a>
+          </div>
+
+          {/* TWO FAQs only — self concern + business concern */}
+          <div className="space-y-2 max-w-lg mx-auto" id="faq-section">
+            {[
+              {
+                q: "What if I don't know my top talent yet?",
+                a: "Everyone has one. You can't see yours because it's been YOU your whole life — too natural to notice. The session names what's already there and turns it into a one-sentence business people will actually pay for.",
+              },
+              {
+                q: "What if there's no actual business in what I do?",
+                a: "Every top talent is monetizable — nature doesn't waste them. If yours exists, it's because it's useful, helpful, and valuable to other people. The only question is how it translates into something they'll pay for. The session names the three pieces (what you do, who pays for it, why) and pulls them into one sentence. If we don't find it in 2 hours, you don't pay.",
+              },
+            ].map((faq, i) => (
+              <div key={i} className="liquid-glass rounded-2xl">
+                <button
+                  className="w-full p-4 flex items-center justify-between text-left cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-white/50 rounded-2xl"
+                  onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                  aria-expanded={openFaq === i}
+                  aria-controls={`faq-answer-${i}`}
+                >
+                  <p className="text-sm text-white/80 font-medium">{faq.q}</p>
+                  <ChevronDown
+                    className={`w-4 h-4 text-white/45 transition-transform duration-200 flex-shrink-0 ml-2 ${openFaq === i ? "rotate-180" : ""}`}
+                    aria-hidden="true"
+                  />
+                </button>
+                <div
+                  id={`faq-answer-${i}`}
+                  role="region"
+                  className={`overflow-hidden transition-all duration-200 ${openFaq === i ? "max-h-60 opacity-100" : "max-h-0 opacity-0"}`}
+                >
+                  <div className="px-4 pb-4">
+                    <p className="text-xs text-white/55 leading-relaxed">{faq.a}</p>
+                  </div>
                 </div>
               </div>
+            ))}
+          </div>
+
+          {/* Methodology video — quiet, below FAQ. PRESERVES id="hero-video"
+              so external links from GeniusQuiz.tsx and MyResult.tsx
+              (and any other route pointing to /ignite#hero-video)
+              continue to land on this exact section. The section just
+              lives in a quieter position now. */}
+          <section
+            id="hero-video"
+            aria-label="Methodology video"
+            className="space-y-3 pt-4"
+          >
+            <p className="text-[10px] text-white/40 uppercase tracking-[0.28em] text-center font-medium">
+              Methodology overview · 6 min
+            </p>
+            <div className="liquid-glass rounded-2xl p-1">
+              <LazyYouTube
+                id="afWWcXUqnLI"
+                title="The Productize Yourself Session — Methodology Overview"
+              />
             </div>
-          ))}
+          </section>
         </section>
-
-        {/* EMOTIONAL CLOSE */}
-        <div className="text-center space-y-4 pt-2" id="final-close">
-          <p className="text-sm text-white/55 max-w-sm mx-auto leading-relaxed">
-            You've been carrying something real.
-          </p>
-          <p className="text-sm text-white/50 max-w-sm mx-auto leading-relaxed">
-            That's not the problem.
-          </p>
-          <p className="text-sm text-white/80 font-medium max-w-sm mx-auto leading-relaxed">
-            The problem is it hasn't been turned into something people can say yes to.
-          </p>
-          <p className="text-xs text-white/50 italic max-w-sm mx-auto">
-            This is where that changes.
-          </p>
-
-          {/* Final Collapse Line */}
-          <p className="text-sm text-white/60 font-medium max-w-sm mx-auto pt-2">
-            It can become something real now —<br/>
-            or stay something you keep thinking about.
-          </p>
-
-          <PrimaryCTA id="final-close-btn" showPrice={false} />
-        </div>
 
         {/* Bottom spacing */}
         <div className="h-8" />

@@ -45,7 +45,6 @@
  * explicit calls in AuthCallback / MeGate were removed when this
  * module was introduced.
  */
-import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { clearCachedZogSnapshot } from "@/lib/zogSnapshotCache";
 
@@ -54,10 +53,64 @@ import { clearCachedZogSnapshot } from "@/lib/zogSnapshotCache";
 // fires multiple times for the same user (which can happen on token
 // refresh in some supabase-js versions). Cleared on SIGNED_OUT so the
 // next sign-in (potentially a different user on a shared browser) is
-// processed fresh.
+// processed fresh. Also cleared per-user when claim exhausts retries
+// so a future SIGNED_IN can re-attempt.
 const claimAttemptedFor = new Set<string>();
 
 let installed = false;
+
+/**
+ * Self-healing claim with one auto-retry on transient failure. Why
+ * not surface failures to the user? Three reasons:
+ *
+ *   1. The user's snapshot is SAFE either way — it lives in
+ *      `anonymous_genius_results` marked unclaimed until promoted
+ *      into a `zog_snapshots` row. Nothing is lost on failure.
+ *   2. Most failures are transient (cold-start latency, network
+ *      blips). One retry after a brief delay catches them.
+ *   3. For permanent failures, there's nothing the USER can do to
+ *      recover — the system has to handle it. Their next sign-in
+ *      (or magic-link click, or page reload that re-fires SIGNED_IN)
+ *      automatically re-attempts. Showing a toast that says "try
+ *      signing out and back in" puts work on them for a system
+ *      problem.
+ *
+ * On final failure: clear the dedup-set entry so the next SIGNED_IN
+ * for this user retries cleanly. console.error surfaces in dev for
+ * debugging; for prod observability, edge-function logs in the
+ * Supabase dashboard show failure rates.
+ */
+async function attemptClaimWithRetry(userId: string): Promise<void> {
+    const MAX_ATTEMPTS = 2;
+    const RETRY_DELAY_MS = 1500;
+
+    for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
+        try {
+            await supabase.functions.invoke("claim-anonymous-zog");
+            return; // success — done
+        } catch (err) {
+            console.warn(
+                `[postAuthSideEffects] claim attempt ${attempt}/${MAX_ATTEMPTS} failed:`,
+                err,
+            );
+            if (attempt < MAX_ATTEMPTS) {
+                await new Promise((resolve) =>
+                    setTimeout(resolve, RETRY_DELAY_MS),
+                );
+            }
+        }
+    }
+
+    // All attempts exhausted. Clear the dedup-set entry so the next
+    // SIGNED_IN for this user (next session, magic-link click, manual
+    // sign-out + sign-in) re-attempts cleanly. The unclaimed row in
+    // `anonymous_genius_results` is preserved server-side, so eventual
+    // success is just a matter of one more SIGNED_IN happening.
+    console.error(
+        "[postAuthSideEffects] claim exhausted retries — will retry on next sign-in. Snapshot data is preserved server-side.",
+    );
+    claimAttemptedFor.delete(userId);
+}
 
 /**
  * Install the global auth-state listener. Call once from main.tsx
@@ -67,7 +120,7 @@ export function installPostAuthSideEffects(): void {
     if (installed) return;
     installed = true;
 
-    supabase.auth.onAuthStateChange(async (event, session) => {
+    supabase.auth.onAuthStateChange((event, session) => {
         // SIGNED_OUT — clear cache, reset dedup set so next sign-in
         // (potentially a different user on a shared browser) is
         // processed fresh.
@@ -88,32 +141,16 @@ export function installPostAuthSideEffects(): void {
             if (claimAttemptedFor.has(userId)) return;
             claimAttemptedFor.add(userId);
 
-            try {
-                await supabase.functions.invoke("claim-anonymous-zog");
-            } catch (err) {
-                console.warn(
-                    "[postAuthSideEffects] claim-anonymous-zog failed:",
-                    err,
-                );
-                // Day 60+ (Sasha 2026-05-04): surface failure to the
-                // user so they have a path forward. Without this, the
-                // failure is silent and the user lands on an empty Top
-                // Talent page with no idea why their snapshot didn't
-                // appear. Sonner's `toast` works from non-React
-                // contexts since the <Sonner /> Toaster mounts at App
-                // root and renders via portal.
-                toast.error("We couldn't link your Top Talent to your account.", {
-                    description: "Try signing out and back in. If the issue persists, your snapshot is safe — contact us via the chat in the rail.",
-                    duration: 8000,
-                });
-                // Allow retry on the next SIGNED_IN for this user
-                // (e.g., they sign out + back in to recover).
-                claimAttemptedFor.delete(userId);
-            }
-            // Always clear the cache after an auth transition — even
-            // if claim was a no-op (returning user, nothing to claim),
-            // we want the next page paint to refetch fresh data
-            // tied to the now-authenticated user.
+            // Fire-and-forget — the listener callback itself stays
+            // synchronous so we don't block other auth listeners.
+            // attemptClaimWithRetry handles its own retries + cleanup.
+            attemptClaimWithRetry(userId);
+
+            // Cache invalidation is decoupled from claim success.
+            // Even if claim is still in flight (or fails permanently),
+            // the user's auth state is now canonical — any cached
+            // snapshot tied to their pre-auth anon profileId is no
+            // longer the right thing to serve.
             clearCachedZogSnapshot();
         }
     });
