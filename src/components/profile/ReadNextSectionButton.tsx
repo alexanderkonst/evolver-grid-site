@@ -28,6 +28,11 @@ export const ZOG_SUBPAGE_ORDER: Array<{ path: string; label: string }> = [
     { path: "/game/me/zone-of-genius/roles", label: "Ideal Environments" },
     { path: "/game/me/zone-of-genius/partner", label: "Complementary Partner" },
     { path: "/game/me/zone-of-genius/monetization", label: "Monetization" },
+    // Day 61 (Sasha 2026-05-04 12:00): "What's Next?" appended as the
+    // closing subpage. The reader who's gone through all 10 deep pages
+    // lands here for the next-step CTA. Renders the same content as
+    // Step 3 on Start Here, surfaced as its own page.
+    { path: "/game/me/zone-of-genius/whats-next", label: "What's Next?" },
 ];
 
 /**
