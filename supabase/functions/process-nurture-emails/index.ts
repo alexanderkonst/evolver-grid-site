@@ -151,9 +151,30 @@ const subjectsByType: Record<string, (p: Payload) => string> = {
 };
 
 // ── Handler ────────────────────────────────────────────────────────
+// Day 61 (Sasha 2026-05-04 14:30): KILLED. The Day-1/2/8 nurture
+// sequence is shut down while Sasha settles on the right consent /
+// GDPR / spam-risk policy. This kill drains in-flight rows too —
+// any emails already queued from prior signups will NOT be sent.
+// PAIRED with NURTURE_EMAILS_KILLED in save-zog-result which stops
+// new enqueues. To revive: flip both constants to `false` (here and
+// in save-zog-result) AND audit any rows in nurture_email_queue with
+// scheduled_for in the past — the "due" window grows while killed.
+const NURTURE_DISPATCH_KILLED = true;
+
 serve(async (req) => {
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
+  }
+
+  if (NURTURE_DISPATCH_KILLED) {
+    return new Response(
+      JSON.stringify({
+        skipped: true,
+        reason: "NURTURE_DISPATCH_KILLED",
+        note: "Nurture-email dispatch is disabled by code constant. Flip in process-nurture-emails to revive.",
+      }),
+      { status: 200, headers: { ...corsHeaders, "Content-Type": "application/json" } },
+    );
   }
 
   const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
