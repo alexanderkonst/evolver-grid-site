@@ -280,9 +280,13 @@
   /* ── Expanded tokens — autonomous night pass (Day 47 very-late-night).
      Added to support migration of Step cards, Path page, ZoG flow,
      Settings, /ignite, and Auth forms to the skin system. */
-  --skin-text-strong: rgba(26, 30, 58, 0.88);   /* dense editorial prose */
-  --skin-text-faint:  rgba(26, 30, 58, 0.5);    /* captions, footnotes */
-  --skin-text-hint:   rgba(26, 30, 58, 0.4);    /* placeholder, disabled */
+  /* Day 61 (Sasha 2026-05-04): legibility pass — strong/faint also
+     lifted; faint was the worst offender on captions ("almost
+     invisible on cream"). Hint stays low — it's intentionally
+     disabled-looking on placeholder copy. */
+  --skin-text-strong: rgba(26, 30, 58, 0.95);   /* dense editorial prose */
+  --skin-text-faint:  rgba(26, 30, 58, 0.7);    /* captions, footnotes */
+  --skin-text-hint:   rgba(26, 30, 58, 0.55);   /* placeholder, disabled */
 
   --skin-rule-strong:   rgba(26, 30, 58, 0.25); /* blockquote left-rule */
   --skin-rule-medium:   rgba(26, 30, 58, 0.15); /* section dividers */
@@ -348,11 +352,15 @@
 
 /* ── Navy + Gold — premium editorial alternate ───────────────────────── */
 [data-skin="navy-gold"] {
-  /* Text — cream/ivory on deep navy. Warm not cold. */
+  /* Text — cream/ivory on deep navy. Warm not cold.
+     Day 61 (Sasha 2026-05-04): Navy+Gold legibility pass mirrors
+     Aurora — body 0.85→0.94, muted 0.62→0.82, muted-soft 0.48→0.68.
+     Cream-on-navy needs even more contrast headroom than navy-on-cream
+     because of the dark backdrop's optical pull. */
   --skin-text-primary: #f5f1e8;
-  --skin-text-body: rgba(245, 241, 232, 0.85);
-  --skin-text-muted: rgba(245, 241, 232, 0.62);
-  --skin-text-muted-soft: rgba(245, 241, 232, 0.48);
+  --skin-text-body: rgba(245, 241, 232, 0.94);
+  --skin-text-muted: rgba(245, 241, 232, 0.82);
+  --skin-text-muted-soft: rgba(245, 241, 232, 0.68);
 
   /* Halos swap from white → warm gold glow behind text */
   --skin-text-halo-strong: 0 0 22px rgba(212,175,55,0.18), 0 1px 2px rgba(245,241,232,0.2), 0 2px 12px rgba(0,0,0,0.55);
@@ -414,9 +422,11 @@
      in the autonomous night pass (Day 47 very-late-night).
      Note: selector-scoped overrides for .liquid-glass-dark + .liquid-glass
      follow the token block (outside this rule). */
-  --skin-text-strong: rgba(245, 241, 232, 0.92);
-  --skin-text-faint:  rgba(245, 241, 232, 0.42);
-  --skin-text-hint:   rgba(245, 241, 232, 0.32);
+  /* Day 61 (Sasha 2026-05-04): legibility pass — strong/faint
+     bumped on Navy+Gold. Hint stays dim — placeholder copy only. */
+  --skin-text-strong: rgba(245, 241, 232, 0.97);
+  --skin-text-faint:  rgba(245, 241, 232, 0.62);
+  --skin-text-hint:   rgba(245, 241, 232, 0.48);
 
   /* Rules — warm gold lines on dark, subtle */
   --skin-rule-strong:   rgba(212, 175, 55, 0.35);
