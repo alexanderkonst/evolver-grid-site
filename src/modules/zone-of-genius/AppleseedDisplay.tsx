@@ -202,19 +202,26 @@ const AppleseedDisplay = ({
         const entered = couponInput.trim().toLowerCase();
         if (ACTIVATION_COUPON_CODES.has(entered)) {
             trackCTAClick('activate_coupon_redeemed', 'appleseed_option2');
-            // Day 61 (Sasha 2026-05-04 18:30): MeGate retirement (also
-            // shipped today) redirects unauth'd visitors to
-            // /game/me/* back to /zone-of-genius. The coupon path is
-            // an exceptional/testing bypass — user is not authed but
-            // SHOULD be granted entry. Set a sessionStorage flag here
-            // and have MeGate honor it. Flag lives only for the
-            // current tab session — closing the tab revokes access
-            // (slight friction is acceptable for the testing path,
-            // and real $37 buyers pay via Stripe → real auth).
-            if (typeof window !== "undefined") {
-                window.sessionStorage.setItem("coupon_activated", "true");
-            }
-            navigate('/game/me/zone-of-genius/start-here');
+            // Day 61 (Sasha 2026-05-04 19:30): coupon path now converges
+            // on the SAME post-payment bridge as Stripe ($37 buyers).
+            //
+            // Earlier today this path set sessionStorage `coupon_activated`
+            // and let MeGate render children directly — bypassing the
+            // signup form entirely. That meant coupon users got into
+            // /game/me/* without an account, so they could never come
+            // BACK to their purchase next session. The whole point of
+            // signup is being able to return.
+            //
+            // New shape: append `?payment=success` to the navigate URL.
+            // MeGate's post-payment branch fires → renders SaveProfileCard
+            // → user signs up → real account created → permanent return
+            // path. Identical UX to a real $37 Stripe buyer. The coupon
+            // grants FREE ACCESS to the product, not BYPASS of auth.
+            //
+            // The legacy `coupon_activated` sessionStorage flag and
+            // MeGate's bypass check are now unused but kept in place
+            // (smallest-diff: don't delete unrelated code in a bug fix).
+            navigate('/game/me/zone-of-genius/start-here?payment=success');
         } else {
             setCouponError(true);
         }
