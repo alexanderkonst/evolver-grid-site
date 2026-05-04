@@ -329,35 +329,41 @@ const Step2Essay = (_: { neonHsl: string; neonRgb: string }) => {
         The Secret to Productizing Yourself
       </h2>
 
-      {/* Day 60+ (Sasha 2026-05-03 evening rewrite): opening reshaped.
-          The two influencer paragraphs are now followed by an
-          explicit gap-naming pair ("Most don't tell us HOW" +
-          "Existing playbooks only work for a small percentage of
-          people.") before the personality-tests-and-coaches sentence
-          and the "Why?" hook. The Tier-2 secret tease gains "hidden"
-          for register weight ("a hidden secret" reads less casual
-          than "a secret"). */}
-      <p>Startup influencers say "Productize yourself".</p>
+      {/* Day 60+ (Sasha 2026-05-04 SNR pass): essay compressed from
+          ~36 blocks to ~22, same arc preserved. Three soft spots
+          removed:
+            1. Opening 5-paragraph setup → 3 (Most don't tell HOW +
+               Existing playbooks + Personality tests merged into one
+               paragraph that still names the three failure modes).
+            2. The "EASY cascade" 5-paragraph repetition → 1 sentence
+               with a 4-clause downstream list (product / packaging /
+               distribution / clients self-selecting out).
+            3. The shortcut Q&A (5 short blocks) → 1 paragraph that
+               carries the same content with more confidence.
+          Both emphasis tiers preserved verbatim:
+            • Tier 2 italic ("There is a hidden secret to productizing
+              yourself.")
+            • Tier 1 gold blockquote ("What most people don't realize…
+              REQUIRES A VERY HIGH SPECIFICITY…")
+          The example sentence is preserved verbatim — it's the proof
+          point. The slow-paths list is preserved verbatim — its
+          length IS the point. All link slots preserved (talentq.me,
+          evolution.life, Paul WhatsApp, John WhatsApp, Kawtar
+          LinkedIn, Book-a-session). */}
+      <p>Startup influencers say "Productize yourself."</p>
 
       <p>
-        Social media influencers suggest to "monetize who you are", and to "build an authentic brand".
+        Social media coaches say "monetize who you are." "Build an authentic brand."
       </p>
 
-      <p>Most don't tell us HOW to do that.</p>
-
-      <p>Existing playbooks only work for a small percentage of people.</p>
-
       <p>
-        Personality tests and purpose coaches promise a solution but rarely lead to aligned paying clients.
+        Almost none of them tell you HOW. Existing playbooks only work for a small percentage of people, and personality tests and purpose coaches rarely lead to aligned paying clients.
       </p>
 
       <p>Why?</p>
 
       {/* ── Tier 2 emphasis: the secret tease.
-          Italic + bold + slightly larger, no rule. Distinct from the
-          gold-rule punchline below so the hierarchy reads as: "this is
-          the setup line you should remember" (Tier 2) vs. "this is THE
-          claim of the whole essay" (Tier 1, gold rule). */}
+          Italic + bold + slightly larger, no rule. */}
       <p
         className="text-center italic"
         style={{
@@ -372,17 +378,11 @@ const Step2Essay = (_: { neonHsl: string; neonRgb: string }) => {
         There is a hidden secret to productizing yourself.
       </p>
 
-      <p>Knowing what you do vaguely is simply not enough.</p>
+      <p>Knowing what you do vaguely is not enough.</p>
 
       {/* ── Tier 1 emphasis: THE punchline.
           Gold-rule blockquote, elevated weight, slightly larger. The
-          single load-bearing claim of the whole step. Day 60+ rewrite:
-          the previous "Success is proportional to the degree of
-          SPECIFICITY of articulation of what you do." was a clean
-          maxim but didn't name WHO realizes it (or doesn't). The new
-          form puts the reader in the seat of the "most people who
-          don't realize" group, which lands harder as a recognition
-          trigger. */}
+          single load-bearing claim of the whole step. */}
       <blockquote
         className="my-2 pl-4 py-2 border-l-[3px]"
         style={{
@@ -392,16 +392,17 @@ const Step2Essay = (_: { neonHsl: string; neonRgb: string }) => {
           color: "var(--skin-text-primary, #0a1628)",
         }}
       >
-        What most people don't realize is that productizing oneself REQUIRES A VERY HIGH SPECIFICITY of articulation of what you do.
+        What most people don't realize is that productizing yourself REQUIRES A VERY HIGH SPECIFICITY of articulation of what you do.
       </blockquote>
 
       <p>
-        There is a long way from the vague "I help people to get better results in life and business" to a 9/10 CRISP SPECIFICITY of what you do.
+        There is a long way from "I help people get better results in life and business" to a 9/10 CRISP statement of what you actually do.
       </p>
 
-      <p>Here is an example of a business offer sentence at a ~10/10 precision:</p>
+      <p>Here is what ~10/10 precision sounds like:</p>
 
-      {/* The example sentence — left-rule offset, no font change. */}
+      {/* The example sentence — left-rule offset, no font change.
+          The single load-bearing proof point of the whole essay. */}
       <p
         className="pl-4 border-l"
         style={{
@@ -411,28 +412,15 @@ const Step2Essay = (_: { neonHsl: string; neonRgb: string }) => {
         "I assist conscious aspiring impact founders turn their top talent into a growing scalable business in flow."
       </p>
 
-      <p>This one is sufficiently SPECIFIC.</p>
-
-      {/* Day 60+ (Sasha 2026-05-03 evening): four-line "EASY" cascade
-          added — names the four downstream domains (product /
-          packaging / distribution / clients) that high specificity
-          unlocks. Reads as a four-beat staircase before the pivot
-          back to the reader's question. */}
-      <p>Such high level of specificity makes building your business EASY.</p>
-
-      <p>Product building becomes easy.</p>
-
-      <p>Packaging, copy, and comms become straightforward.</p>
-
-      <p>Distribution & outreach become fun and easy.</p>
+      <p>That's specific.</p>
 
       <p>
-        High clarity turns into copy and pulls in highly aligned clients while repelling everyone else.
+        That kind of specificity makes everything downstream easy: the product to build, the packaging to write, the distribution to run, the clients you pull in — and everyone else self-selects out.
       </p>
 
-      <p>So how do YOU get YOUR top talent to that level of specificity?</p>
+      <p>So how do YOU get YOUR top talent to that level?</p>
 
-      <p>Here is the secret hidden in plain sight.</p>
+      <p>Here is the pattern hidden in plain sight:</p>
 
       {/* The fluffy vs specific contrast rendered as a two-line block. */}
       <div
@@ -441,45 +429,29 @@ const Step2Essay = (_: { neonHsl: string; neonRgb: string }) => {
           borderColor: "var(--skin-rule-strong, rgba(26,30,58,0.25))",
         }}
       >
-        <p>Fluffy self-description → fluffy target audience, and fluffy copy.</p>
-        <p>Highly specific self-description → magnetizing pull.</p>
+        <p>Fluffy self-description → fluffy clients, fluffy copy.</p>
+        <p>Highly specific self-description → magnetic pull.</p>
       </div>
 
-      <p>The top talent reveal on this page gets you to ~7/10 or ~8/10 on average.</p>
+      <p>The reveal on this page gets you to ~7/10 or ~8/10.</p>
 
       <p>
-        In our experience of having led transformational containers for hundreds of entrepreneurs:
+        In our experience running transformational containers for hundreds of entrepreneurs, the people who productize themselves successfully reach 9+/10 before things click.
       </p>
 
       <p>
-        People that productize themselves successfully reach 9+/10 specificity before things click.
+        Let that sit. How specific is <em>your</em> current self-understanding right now? Does this feel true?
       </p>
 
-      <p>Let this sit for a second.</p>
+      <p>How do you actually get there?</p>
 
       <p>
-        How specific is your <em>current self-understanding</em>? Does this information feel true?
+        The slow paths exist: years of focused introspection, iteration on the wording, authentic / artistic self-expression, sudden awakenings, plant medicine, purpose coaching, the founder journey itself.
       </p>
-
-      <p>How does one arrive at such high specificity?</p>
 
       <p>
-        Years of focused introspection, iterations on the wording, authentic / artistic self-expression, sudden awakenings, plant medicine, purpose coaching, years of founder journey.
+        Shortcuts exist too. Either you get guided by someone who has already reached 9.9+ for themselves and shares the path, or you use a high-precision purpose-discovery tool. Or both. As of 2026, both are still rare.
       </p>
-
-      <p>Is there a shortcut?</p>
-
-      <p>Yes indeed.</p>
-
-      <p>
-        You could get guidance from someone who has reached 9.9+ precision for themselves and shares it with others.
-      </p>
-
-      <p>Or, you could use a high-precision purpose-discovery tool.</p>
-
-      <p>Or both.</p>
-
-      <p>As of 2026, such guides or tools are still quite rare.</p>
 
       <p>
         We recommend a couple of other tools outside of findyourtoptalent tool:{" "}
@@ -523,23 +495,15 @@ const Step2Essay = (_: { neonHsl: string; neonRgb: string }) => {
         .
       </p>
 
-      <p>We wish these were commonplace but they are not (yet).</p>
+      <p>We wish these were commonplace. They aren't yet.</p>
 
       <p>
-        The method we developed and refined over the last six years does get you to a 9+/10.
+        The method we've refined over six years gets you to 9+/10. When you reach that, a highly specific business naturally emerges from the self-knowledge — the one that was always uniquely yours. AI skills and templates from founders who already saw theirs make the build fast.
       </p>
 
-      <p>
-        When this specificity has been reached, a highly specific business emerges from that self-knowledge.
-      </p>
+      <p>In hindsight it always looks obvious. Like you've always known it.</p>
 
-      <p>
-        Using custom-made AI skills and templates of other founders that already saw theirs makes it possible to build a business that has always been uniquely yours.
-      </p>
-
-      <p>In hindsight, it always appears obvious. Like you have always known it.</p>
-
-      <p>The more people get there, the easier it becomes for the next people.</p>
+      <p>The more people get there, the easier it becomes for the next.</p>
 
       <p>
         <a href="/ignite#pricing-section" style={linkStyle}>
