@@ -443,7 +443,7 @@ function renderHero(b: PdfBuilder, appleseed: AppleseedData) {
     }
 
     if (appleseed.topTalentProfile?.core_pattern) {
-        b.body(appleseed.topTalentProfile.core_pattern, { center: true });
+        b.body(flipToSecondPerson(appleseed.topTalentProfile.core_pattern), { center: true });
     }
     b.y += 4;
 }
@@ -454,7 +454,7 @@ function renderHowItShowsUp(b: PdfBuilder, appleseed: AppleseedData) {
     b.sectionRule();
     b.eyebrow("How It Shows Up");
     b.y += 1;
-    b.cardBody(text);
+    b.cardBody(flipToSecondPerson(text));
     b.sectionGap();
 }
 
@@ -480,13 +480,16 @@ function renderTopShadow(b: PdfBuilder, appleseed: AppleseedData) {
     // Day 58 (Sasha 2026-05-02 evening): mirror the ME-space subpage —
     // synthesized one-sentence at top (in a tinted card with a "MY TOP
     // SHADOW IS" sub-eyebrow), full paragraph below.
+    // Day 60+ audit: oneSentence = first-person reflexive (renders under
+    // "MY TOP SHADOW IS"); paragraph = second-person body. Two surfaces,
+    // two registers — same data, different framing.
     if (oneSentence) {
         b.eyebrow("My top shadow is");
         b.y -= 1;
         b.cardBody(oneSentence, { tinted: true, italic: true });
     }
     if (paragraph) {
-        b.cardBody(paragraph);
+        b.cardBody(flipToSecondPerson(paragraph));
     }
     b.sectionGap();
 }
@@ -494,10 +497,15 @@ function renderTopShadow(b: PdfBuilder, appleseed: AppleseedData) {
 function renderOneAction(b: PdfBuilder, appleseed: AppleseedData) {
     const text = appleseed.topTalentProfile?.flywheel_action;
     if (!text) return;
+    // Day 60+ audit: flip third-person legacy snapshots to second-person
+    // for the PDF (mirror of the screen-side ZoGPerspectiveView fix). New
+    // snapshots already come back second-person from the prompt, so the
+    // helper is a no-op for them.
+    const flipped = flipToSecondPerson(text);
     b.sectionRule();
     b.eyebrow("One Action — repeat this");
     b.y += 1;
-    b.cardBody(text, { tinted: true });
+    b.cardBody(flipped, { tinted: true });
     b.sectionGap();
 }
 
