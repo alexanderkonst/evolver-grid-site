@@ -169,24 +169,25 @@ const EMAIL_TEMPLATES: Record<string, React.ComponentType<any>> = {
 }
 
 // Configuration
-// Day 58+ (Sasha 2026-05-03): swapped from "Aleksandr Konstantinov" /
-// "aleksandrkonstantinov.com" to the brand identity. Karime walkthrough:
-// her confirmation email arrived from "Aleksandr Konstantinov" with a
-// "alexandrkonstantinov.com" reference — broke trust and confused the
-// "what site am I confirming?" moment. Sender + visible domain now
-// match the user-facing brand.
+// Day 58+ (Sasha 2026-05-03): only the DISPLAY NAME changed to brand
+// identity. Technical sender domain stays on the already-verified
+// Resend domain (notify.aleksandrkonstantinov.com) to avoid a DNS
+// re-verification cycle. Karime walkthrough surfaced "Aleksandr
+// Konstantinov" as the visible sender — that's the part that breaks
+// trust. The technical address only appears in "show details" panels
+// that ~5% of recipients ever open.
 //
-// IMPORTANT — DNS/Resend setup required: this assumes the domain
-// `notify.findyourtoptalent.com` is verified in Resend (or whichever
-// SMTP/email provider is connected) and DKIM/SPF records are set on
-// the DNS side. Without that, mail will be rejected. If the verified
-// sender subdomain is something else, change FROM_DOMAIN /
-// SENDER_DOMAIN below to match what's verified in the provider.
+// To later upgrade to a brand-domain sender end-to-end:
+//   1. Add `notify.findyourtoptalent.com` in Resend dashboard
+//   2. Add the DKIM + SPF DNS records Resend gives you
+//   3. Once verified (~5min DNS propagation + Resend check), flip
+//      SENDER_DOMAIN / FROM_DOMAIN / ROOT_DOMAIN below + the FROM
+//      addresses in save-zog-result and process-nurture-emails.
 const SITE_NAME = "Find Your Top Talent"
-const FROM_LOCAL_PART = "hello"
-const SENDER_DOMAIN = "notify.findyourtoptalent.com"
-const ROOT_DOMAIN = "findyourtoptalent.com"
-const FROM_DOMAIN = "notify.findyourtoptalent.com" // Domain shown in From address (may be root or sender subdomain)
+const FROM_LOCAL_PART = "aleksandr"
+const SENDER_DOMAIN = "notify.aleksandrkonstantinov.com"
+const ROOT_DOMAIN = "aleksandrkonstantinov.com"
+const FROM_DOMAIN = "notify.aleksandrkonstantinov.com" // Domain shown in From address (may be root or sender subdomain)
 
 // Sample data for preview mode ONLY (not used in actual email sending).
 // URLs are baked in at scaffold time from the project's real data.

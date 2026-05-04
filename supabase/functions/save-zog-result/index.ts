@@ -242,10 +242,12 @@ serve(async (req) => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            // Day 58+ (Sasha 2026-05-03): swapped from personal name +
-            // domain to brand identity. Karime walkthrough surfaced the
-            // mismatch.
-            from: "Find Your Top Talent <hello@notify.findyourtoptalent.com>",
+            // Day 58+ (Sasha 2026-05-03): only the DISPLAY NAME changed
+            // to brand identity. Technical address stays on the
+            // already-verified Resend domain to avoid DNS re-verification.
+            // The "From" name "Find Your Top Talent" is what Karime
+            // (and any recipient) sees in their inbox sender column.
+            from: "Find Your Top Talent <aleksandr@notify.aleksandrkonstantinov.com>",
             to: [normalizedEmail],
             subject: `Your Top Talent: ${appleseedData.vibrationalKey?.name || "Saved"}`,
             html: `
