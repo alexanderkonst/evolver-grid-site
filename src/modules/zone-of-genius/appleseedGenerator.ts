@@ -61,10 +61,7 @@ Output:
       "1. Hearing the real point under the story — pulling the one thread that explains the whole person or project."
       "2. Building nested clarity — turning scattered ideas into a clean sequence with levels, steps, and decision rules."
       "3. Making usable artifacts — pages, decks, messages, and onboarding that still work when you are not in the room."
-    top_three_talents_compact:  // 1:1 with long form above. 2-4 words. Gerund + concrete object. Passes 5-second-friend test. Distinct verbs.
-      "1. Hearing the real point"
-      "2. Building nested clarity"
-      "3. Making usable artifacts"
+    // top_three_talents_compact:  see EXAMPLE 2 (Karime) below — that triplet is the CANONICAL template for the compact form. Aleksandr's compact form will be regenerated and added back as a second template once it passes the 5-second-friend test cleanly.
     how_genius_shows_up: "Your genius shows up when the work is potent but foggy: big ideas, half-built systems, strong methods trapped in someone's head, or narratives that change depending on the audience. You can take raw material — notes, conversations, drafts, visuals — and reduce it to the central signal, then rebuild it as a path someone can follow: a clear offer, a clean landing page outline, a pitch story that holds, or a simple operating flow a team can run. People experience this as inevitability: after you name it, the next steps feel obvious and the noise stops arguing."
     edge_and_traps: "Your gift — turning chaos into a clear path — creates an inverted shadow: building ever-bigger structure while the doorway stays too hard to enter. The limiting belief whispers that one more layer — language, framework, aesthetics, or a more complete system — must be finished before asking for money or feedback. In motion, it looks like refining the map while avoiding the simple market test: one paid conversation, one page sent, one offer made to one high-fit person. Your other trap is over-giving — delivering the breakthrough before the price, boundaries, or agreement are strong enough to hold it."
     top_shadow_one_sentence: "Building a bigger plan while avoiding the one paid ask that would prove it."  // synthesized — gerund noun phrase, neutral (works in second-person context)
@@ -100,7 +97,7 @@ Output:
 - Prime Driver: Restore Feminine Coherence
 - Archetype: Sacred Feminine Midwife — Empath-Integrator
 - Life Scene: A woman arrives with cracked heart and tired smile. Slowly, armor softens. She weeps, not from pain, but because she remembers: I am held. I am loved. I am home.
-- topTalentProfile.top_three_talents_compact:  // template: gerund + concrete object, 2-4 words, plain English, distinct verbs
+- topTalentProfile.top_three_talents_compact:  // ★ CANONICAL TEMPLATE for the compact-three field. Each entry: gerund + concrete object, 2-4 words, plain English, distinct verbs, passes the 5-second-friend test cleanly. NOT abstract ("Sensing the unspoken" passes; "Sensing inner truth" or "Sensing nested signal" would FAIL — too abstract). Use this triplet's shape as the bar.
     "1. Sensing the unspoken"
     "2. Bonding the disconnected"
     "3. Harmonizing the field"

@@ -15,17 +15,96 @@ export interface TestimonialData {
  * Glass-style expandable testimonial card.
  * variant="light" → LandingPage (light bg)
  * variant="dark"  → IgniteSession (dark / glass bg)
+ *
+ * Day 61 (Sasha 2026-05-04): added `compact` prop. When true, renders
+ * the testimonial as a single inline line (quote + name + chevron) by
+ * default; click expands to the full quote. Used on /ignite where the
+ * booking section needs a tight stack of all 6 testimonials without
+ * the full card height per row.
  */
 export const ExpandableTestimonial = ({
   t,
   variant = "dark",
+  compact = false,
 }: {
   t: TestimonialData;
   variant?: "light" | "dark";
+  compact?: boolean;
 }) => {
   const [open, setOpen] = useState(false);
 
   const isLight = variant === "light";
+
+  // Day 61 (Sasha 2026-05-04): compact rendering — single-line default,
+  // expand to full quote. Skips the "before" label and "after" line
+  // (those belong to the heavier card variant).
+  if (compact) {
+    return (
+      <button
+        type="button"
+        onClick={() => setOpen((o) => !o)}
+        className={`w-full text-left rounded-lg px-3 py-2 transition-all duration-200 cursor-pointer group ${
+          isLight
+            ? "hover:bg-white/40"
+            : "hover:bg-white/[0.04]"
+        } ${open ? (isLight ? "bg-white/40" : "bg-white/[0.04]") : ""}`}
+      >
+        <div className="flex items-baseline justify-between gap-2">
+          <p
+            className={`text-xs leading-snug italic flex-1 min-w-0 ${
+              isLight ? "text-[#2c3150]/60" : "text-white/55"
+            }`}
+            style={
+              !isLight
+                ? { fontFamily: "'Source Serif 4', serif" }
+                : undefined
+            }
+          >
+            "{t.shortQuote}"{" "}
+            <span
+              className={`not-italic ${
+                isLight ? "text-[#2c3150]/75" : "text-white/70"
+              }`}
+            >
+              — {t.name}
+            </span>
+          </p>
+          <ChevronDown
+            className={`w-3 h-3 flex-shrink-0 transition-transform duration-200 ${
+              open ? "rotate-180" : ""
+            } ${isLight ? "text-[#2c3150]/35" : "text-white/30"}`}
+            aria-hidden="true"
+          />
+        </div>
+
+        {/* Full quote — expandable */}
+        <div
+          className={`grid transition-all duration-200 ${
+            open
+              ? "grid-rows-[1fr] opacity-100 mt-2"
+              : "grid-rows-[0fr] opacity-0"
+          }`}
+        >
+          <div className="overflow-hidden">
+            <p
+              className={`text-xs leading-relaxed italic whitespace-pre-line pt-2 ${
+                isLight
+                  ? "border-t border-[#2c3150]/8 text-[#2c3150]/55"
+                  : "border-t border-white/10 text-white/55"
+              }`}
+              style={
+                !isLight
+                  ? { fontFamily: "'Source Serif 4', serif" }
+                  : undefined
+              }
+            >
+              "{t.fullQuote}"
+            </p>
+          </div>
+        </div>
+      </button>
+    );
+  }
 
   return (
     <button
