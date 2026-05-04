@@ -212,29 +212,15 @@ export function SoundCloudPlayerProvider({
 
                 widget.bind(Events.READY, () => {
                     if (cancelled) return;
-                    // Day 60++ (Sasha 2026-05-04): Sasha confirmed all
-                    // playlist tracks are playable, so the "skip 2 → land
-                    // on track ~3" symptom isn't auto-skip-unplayable.
-                    // Most likely remaining cause: SoundCloud's widget
-                    // remembers playback position via cookies on its own
-                    // origin (w.soundcloud.com). If a previous session
-                    // played up to track 3, the widget can resume there
-                    // when re-instantiated — and pressing play would
-                    // start from track 3 with title flicker as the
-                    // widget restores state.
-                    //
-                    // Defensive force-to-track-0: on every fresh READY,
-                    // log the playlist contents + current index, then if
-                    // current index isn't 0, skip(0) to neutralize any
-                    // cached resume state. New listeners always start at
-                    // track 1 of the playlist, deterministically.
-                    widget.getSounds((sounds) => {
-                        console.log("[SC] PLAYLIST", sounds.map((s, i) => `${i}: ${s?.title ?? "?"}`));
-                    });
+                    // Defensive force-to-track-0: SoundCloud's widget can
+                    // resume from a cached playback position via cookies
+                    // on the w.soundcloud.com origin. We always want a
+                    // fresh listener to start at track 1 of the playlist,
+                    // so on every READY we check the current index and
+                    // skip(0) if it's not already there. No-op in the
+                    // common case (idx === 0).
                     widget.getCurrentSoundIndex((idx) => {
-                        console.log("[SC] READY at index", idx);
-                        if (idx !== 0) {
-                            console.log("[SC] forcing skip(0) to neutralize cached state");
+                        if (idx !== 0 && !cancelled) {
                             widget.skip(0);
                         }
                     });
@@ -243,40 +229,31 @@ export function SoundCloudPlayerProvider({
                 });
                 widget.bind(Events.PLAY, () => {
                     if (cancelled) return;
-                    // Capture both title AND playlist-index on every PLAY
-                    // event. Index is the diagnostic: if PLAY fires with
-                    // index 0, then 1, then 2 in rapid succession, the
-                    // widget IS skipping tracks. If only one PLAY fires
-                    // but the title shown is wrong, the bug is on our
-                    // render side. Two completely different fix paths.
-                    widget.getCurrentSoundIndex((idx) => {
-                        widget.getCurrentSound((sound) => {
-                            console.log("[SC] PLAY", {
-                                index: idx,
-                                title: sound?.title,
-                                artist: sound?.user?.username,
-                            });
-                        });
-                    });
                     setPlaying(true);
                     readCurrentInto(widget);
                 });
                 widget.bind(Events.PAUSE, () => {
-                    if (cancelled) return;
-                    console.log("[SC] PAUSE");
-                    setPlaying(false);
+                    if (!cancelled) setPlaying(false);
                 });
                 widget.bind(Events.FINISH, () => {
-                    if (cancelled) return;
-                    console.log("[SC] FINISH");
-                    setPlaying(false);
+                    if (!cancelled) setPlaying(false);
                 });
-                // Some SoundCloud Widget builds expose an ERROR event
-                // for unplayable tracks / network failures. Listen so
-                // we'd see it if it fires.
+                // ERROR event — kept as a permanent observability hook.
+                // Day-60 diagnostic session (Sasha 2026-05-04) confirmed
+                // SoundCloud's auto-skip-on-stream-404 behavior is the
+                // primary failure mode: tracks that are public on SC.com
+                // but not embed-permitted return 404 on their stream URL,
+                // and the widget silently auto-advances. The ERROR event
+                // gives us a clean log when this happens, in place of the
+                // noisy XHR stack trace from SC's internal fetch code.
                 try {
                     widget.bind("error", (err: unknown) => {
-                        if (!cancelled) console.warn("[SC] ERROR", err);
+                        if (!cancelled) {
+                            console.warn(
+                                "[SC] track unplayable in embed (likely rights-restricted) — auto-skipping:",
+                                err,
+                            );
+                        }
                     });
                 } catch {
                     // bind() may throw if the event name isn't recognized
@@ -297,18 +274,11 @@ export function SoundCloudPlayerProvider({
 
     const toggle = useCallback(() => {
         if (!ready || !widgetRef.current) return;
-        // Debug — log every toggle invocation. If user reports "I pressed
-        // play once but it skipped songs," and Console shows multiple
-        // [SC] toggle() lines, the click handler is firing multiple times.
-        // If only ONE [SC] toggle() but multiple [SC] PLAY events follow,
-        // the widget itself is doing the skipping internally.
-        console.log("[SC] toggle()");
         widgetRef.current.toggle();
     }, [ready]);
 
     const next = useCallback(() => {
         if (!ready || !widgetRef.current) return;
-        console.log("[SC] next()");
         widgetRef.current.next();
     }, [ready]);
 
@@ -342,7 +312,15 @@ export function SoundCloudPlayerProvider({
                 session — survives every route change.
                 We can't use display:none because some browsers / the
                 Widget API need the iframe in the layout tree to init.
-                Pin off-screen with 0 dimensions instead. */}
+                Pin off-screen instead.
+                Day-60 (Sasha 2026-05-04): sized 1×1 instead of 0×0
+                because SoundCloud's widget tries to render its visual
+                waveform onto a canvas-with-pattern, and 0-dimension
+                canvases throw `InvalidStateError: createPattern …
+                width or height of 0` on every animation frame.
+                Harmless functionally (audio plays fine) but spammed
+                the console. 1×1 satisfies the canvas API; the iframe
+                is still imperceptible at -9999/-9999. */}
             {engineMounted && (
                 <iframe
                     ref={iframeRef}
@@ -353,8 +331,8 @@ export function SoundCloudPlayerProvider({
                     tabIndex={-1}
                     style={{
                         position: "fixed",
-                        width: 0,
-                        height: 0,
+                        width: 1,
+                        height: 1,
                         left: -9999,
                         top: -9999,
                         border: 0,
