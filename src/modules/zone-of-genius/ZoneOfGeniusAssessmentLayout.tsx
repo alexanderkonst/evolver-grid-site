@@ -21,6 +21,14 @@ const ZoneOfGeniusAssessmentLayout = ({
   const activeStep = currentStepIndex >= 0 ? currentStepIndex + 1 : 1;
   const progress = (activeStep / steps.length) * 100;
 
+  // Day 61 (Sasha 2026-05-04 23:15): hide the step-progress indicator
+  // on the final reveal step (step 4). The user has completed the
+  // sequence — showing "Step 4 of 4 / progress / pills" above the
+  // result is visual noise that pulls attention from the actual reveal
+  // (the unified RevelatoryHero box below). The indicator still
+  // renders on steps 1–3 where progress feedback is meaningful.
+  const isResultStep = location.pathname.includes("/step-4");
+
   const stepIndicator = (
     <div className="text-center mb-8">
       {/* Logo — Day 47 very-late pass (Sasha): 2.5× larger (48px → 120px).
