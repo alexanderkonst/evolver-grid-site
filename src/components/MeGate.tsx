@@ -92,6 +92,39 @@ const MeGate = ({ children }: { children: ReactNode }) => {
 
     if (status === "authed") return <>{children}</>;
 
+    // Day 61 (Sasha 2026-05-04 17:30): MeGate retired as a signup gate.
+    //
+    // The whole inline "Save Your Profile" form below has been the
+    // source of repeated regressions all day (missing migration call,
+    // password rejection collision, silent-account password collision,
+    // race conditions). It also contradicts the funnel-monogamy
+    // principle: free users should never enter `/game/me/*`. The
+    // canonical save surface is now the editorial save block on the
+    // reveal page (AppleseedDisplay → OwnershipSection, after the
+    // resonance check). The canonical platform-entry surface is
+    // post-purchase (verbal magic-link activation at end of paid
+    // session, or immediate post-checkout for the $37 activation).
+    //
+    // Behavior change: guest visitors to `/game/me/*` now redirect
+    // to `/zone-of-genius` (the public reveal). They've come to a
+    // door that shouldn't be open to them yet. Send them where the
+    // value lives + the offer cards live, instead of a signup form
+    // that lets them sneak in for free.
+    //
+    // The SaveProfileCard component below is now DEAD CODE. Kept in
+    // the file for a single follow-up cleanup pass — removing it now
+    // would mean ripping out a chunk of mixed imports + types that
+    // adds risk for no behavioral gain. Future sweep: delete
+    // SaveProfileCard + its imports + clean unused-warnings.
+    //
+    // Reference: docs/02-strategy/unique-businesses/alexanders_unique_business.md
+    // → "Lived User Journey — Reveal-Anchored Funnel" (no MeGate intent).
+    void location;
+    return <Navigate to="/zone-of-genius" replace />;
+
+    // ── EVERYTHING BELOW THIS POINT IS LEGACY DEAD CODE ─────────────
+    // Preserved for safe future deletion. Not reachable from runtime.
+    // eslint-disable-next-line no-unreachable
     return (
         <GameShellV2>
             <SaveProfileCard
