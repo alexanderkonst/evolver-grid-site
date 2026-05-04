@@ -152,7 +152,7 @@ const SPACE_SECTIONS: SpaceSections = {
                     { id: "tt-start-here", label: "Start Here", path: "/game/me/zone-of-genius/start-here" },
                     { id: "tt-overview", label: "Overview", path: "/game/me/zone-of-genius" },
                     { id: "tt-how-it-shows-up", label: "How It Shows Up", path: "/game/me/zone-of-genius/how-it-shows-up" },
-                    { id: "tt-three-key-talents", label: "Three Key Talents", path: "/game/me/zone-of-genius/three-key-talents" },
+                    { id: "tt-three-key-talents", label: "Three Talents in Depth", path: "/game/me/zone-of-genius/three-key-talents" },
                     { id: "tt-top-shadow", label: "Top Shadow", path: "/game/me/zone-of-genius/top-shadow" },
                     { id: "tt-mastery", label: "Path of Mastery", path: "/game/me/zone-of-genius/mastery" },
                     { id: "tt-one-action", label: "One Action", path: "/game/me/zone-of-genius/one-action" },
