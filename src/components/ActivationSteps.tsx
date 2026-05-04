@@ -171,35 +171,28 @@ export default function ActivationSteps({ showHeading = true }: ActivationStepsP
                 </div>
             </section>
 
-            {/* Step 3 — Next step (optional) */}
+            {/* Step 3 — What's next? — Day 61 (Sasha 2026-05-04 12:00):
+                long 5-paragraph "next step (optional)" body collapsed
+                to two short lines per Sasha's pasted copy. The CTA
+                shortened from "Turn your top talent into a business
+                people buy" to "Turn it into a business" (the antecedent
+                "it" reads cleanly given the line above frames it).
+                Same target (/ignite#pricing-section) preserved. */}
             <section className="space-y-4 text-center">
                 <p
                     className="text-[11px] sm:text-xs font-semibold tracking-[0.28em] uppercase"
                     style={eyebrowStyle}
                 >
-                    3 · Next step (optional)
+                    3 · What's next?
                 </p>
                 <div
                     className="space-y-4 max-w-md mx-auto text-base md:text-lg leading-relaxed"
                     style={inkPrimaryStyle}
                 >
+                    <p>You're more in touch with your top talent.</p>
                     <p>
-                        You've come into closer touch with your top talent —<br />
-                        and through this activation, you've turned it on.
-                    </p>
-                    <p>
-                        It will start shaping your professional life:<br />
-                        the projects you choose, the tasks you say yes to,<br />
-                        the work that brings more fulfillment, excitement,
-                        and productive output.
-                    </p>
-                    <p style={{ fontWeight: 500 }}>
-                        The next obvious step is to monetize that top talent —<br />
-                        through a unique business.
-                    </p>
-                    <p style={inkSecondaryStyle}>That's what people pay for.</p>
-                    <p style={inkSecondaryStyle} className="italic pt-1">
-                        If you want to take the next step:
+                        Use it in your work—<br />
+                        or turn it into a business only you can build.
                     </p>
                 </div>
                 <div className="pt-2">
@@ -209,7 +202,7 @@ export default function ActivationSteps({ showHeading = true }: ActivationStepsP
                         style={ctaButtonStyle}
                     >
                         <span style={{ letterSpacing: "0.02em" }}>
-                            Turn your top talent into a business people buy
+                            Turn it into a business
                         </span>
                         <ArrowRight
                             aria-hidden="true"

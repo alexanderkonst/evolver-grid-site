@@ -184,11 +184,34 @@ const SaveProfileCard = ({ onSuccess }: { onSuccess: () => void }) => {
             });
             onSuccess();
         } catch (err: any) {
-            toast({
-                title: "Couldn't save",
-                description: err.message,
-                variant: "destructive",
-            });
+            // Day 61 (Sasha 2026-05-04 12:00): friendly error mapping.
+            // Supabase's HIBP "weak_password" rejection used to show as
+            // "Couldn't save / Password is known to be weak and easy to
+            // guess" — alarmist and unactionable (the user reads it as
+            // "the system broke"). Map it to a calm, specific instruction
+            // and keep the field state intact so they can just edit.
+            // The HIBP toggle SHOULD be off project-wide, but if the
+            // setting hasn't propagated or somehow re-enables itself,
+            // this keeps users moving.
+            const raw = String(err?.message || "");
+            const code = String(err?.code || err?.error_code || "");
+            const isWeakPassword =
+                code === "weak_password" ||
+                /known to be weak|pwned|breach/i.test(raw);
+            if (isWeakPassword) {
+                toast({
+                    title: "That password's been seen in a public breach somewhere",
+                    description:
+                        "Add a number or symbol to make it unique to you, then try again.",
+                    variant: "destructive",
+                });
+            } else {
+                toast({
+                    title: "Couldn't save",
+                    description: raw,
+                    variant: "destructive",
+                });
+            }
         } finally {
             setLoading(false);
         }
