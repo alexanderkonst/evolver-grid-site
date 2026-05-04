@@ -42,7 +42,7 @@ export const RecoveryEmail = ({
     <Body style={main}>
       <Container style={container}>
         <Section style={header}>
-          <Text style={brandMark}>Genius Business</Text>
+          <Text style={brandMark}>Find Your Top Talent</Text>
         </Section>
         <Section style={body}>
           <Heading style={h1}>Reset your password</Heading>

@@ -185,9 +185,13 @@ const SaveProfileCard = ({ onSuccess }: { onSuccess: () => void }) => {
     // MethodologyLandingPage and the AppleseedDisplay reveal.
     const editorialInputClass =
         "bg-white/85 border border-[hsla(228,30%,18%,0.18)] text-[#0a1628] placeholder:text-[hsla(228,30%,18%,0.40)] focus-visible:ring-2 focus-visible:ring-[hsla(40,70%,55%,0.50)] focus-visible:border-[hsla(40,70%,55%,0.55)]";
+    // Day 58 (Sasha 2026-05-03): label contrast + size bumped — was
+    // 0.7 opacity at text-sm, reading as washed out on the cream
+    // background. Now 0.92 opacity, weight 500, base size — readable.
     const editorialLabelStyle = {
         fontFamily: "'Cormorant Garamond', serif",
-        color: "var(--skin-text-muted, rgba(26,30,58,0.7))",
+        fontWeight: 500,
+        color: "var(--skin-text-primary, rgba(10,22,40,0.92))",
         textShadow:
             "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
     } as const;
@@ -207,30 +211,22 @@ const SaveProfileCard = ({ onSuccess }: { onSuccess: () => void }) => {
     return (
         <div className="max-w-[640px] mx-auto px-5 py-8 sm:py-10 md:py-12">
             {/* ═══════ HEADER — editorial register ═══════ */}
+            {/* Day 58 (Sasha 2026-05-03):
+                – Sparkle icon medallion retired (visual noise, doesn't add
+                  meaning at this stage of the funnel).
+                – Headline reframed: "Save your profile" → "Save Your
+                  Results"; gold accent removed (all caps-y emphasis
+                  unnecessary here — this is a utility moment, not a
+                  brand moment).
+                – Headline + echo flow as one continuous statement, no
+                  full stop between them.
+                – Body copy contrast bumped (0.72 → 0.92 opacity, weight
+                  500) so the explanation actually reads on the cream
+                  wash. Same for the italic echo (0.7 → 0.92 + weight
+                  500). */}
             <header className="text-center">
-                <div className="flex justify-center mb-5">
-                    <div
-                        className="w-12 h-12 rounded-full flex items-center justify-center"
-                        style={{
-                            background:
-                                "linear-gradient(135deg, hsla(40, 70%, 65%, 0.18) 0%, hsla(40, 60%, 50%, 0.10) 100%)",
-                            border: "1px solid hsla(40, 70%, 65%, 0.35)",
-                            boxShadow:
-                                "0 0 20px -4px hsla(40, 70%, 55%, 0.30), inset 0 1px 0 hsla(0, 0%, 100%, 0.20)",
-                        }}
-                    >
-                        <Sparkles
-                            className="w-5 h-5"
-                            style={{
-                                color: "hsl(40 70% 50%)",
-                                filter: "drop-shadow(0 0 6px hsla(40, 70%, 55%, 0.5))",
-                            }}
-                        />
-                    </div>
-                </div>
-
                 <h1
-                    className="text-3xl sm:text-4xl md:text-[2.75rem] font-semibold leading-[1.15] tracking-[-0.018em] mb-4 sm:mb-5"
+                    className="text-3xl sm:text-4xl md:text-[2.75rem] font-semibold leading-[1.15] tracking-[-0.018em] mb-3 sm:mb-4"
                     style={{
                         fontFamily: "'Cormorant Garamond', serif",
                         color: "var(--skin-text-primary, #0a1628)",
@@ -238,35 +234,30 @@ const SaveProfileCard = ({ onSuccess }: { onSuccess: () => void }) => {
                             "var(--skin-text-halo-strong, 0 0 22px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.8), 0 2px 12px rgba(26,30,58,0.15))",
                     }}
                 >
-                    Save your{" "}
-                    <span
-                        className="bg-clip-text text-transparent"
-                        style={GOLD_TEXT_STYLE}
-                    >
-                        profile
-                    </span>
+                    Save Your Results
                 </h1>
 
                 <p
                     className="text-base sm:text-lg md:text-xl leading-[1.4] tracking-[-0.005em] italic max-w-[480px] mx-auto"
                     style={{
                         fontFamily: "'Cormorant Garamond', serif",
-                        fontWeight: 400,
-                        color: "var(--skin-text-muted, rgba(26,30,58,0.7))",
+                        fontWeight: 500,
+                        color: "var(--skin-text-primary, rgba(10,22,40,0.92))",
                         textShadow:
                             "var(--skin-text-halo-subtle, 0 0 18px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.75))",
                     }}
                 >
-                    So it's here when you come back.
+                    so they're here when you come back
                 </p>
 
                 <Ornament className="my-6 sm:my-7" />
 
                 <p
-                    className="text-sm sm:text-[15px] leading-relaxed max-w-[460px] mx-auto mb-6 sm:mb-8"
+                    className="text-[15px] sm:text-base leading-relaxed max-w-[460px] mx-auto mb-6 sm:mb-8"
                     style={{
                         fontFamily: "'Source Serif 4', Georgia, serif",
-                        color: "var(--skin-text-muted, rgba(26,30,58,0.72))",
+                        fontWeight: 500,
+                        color: "var(--skin-text-primary, rgba(10,22,40,0.92))",
                         textShadow:
                             "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
                     }}
@@ -313,7 +304,7 @@ const SaveProfileCard = ({ onSuccess }: { onSuccess: () => void }) => {
                         <div className="space-y-1.5">
                             <Label
                                 htmlFor="me-firstname"
-                                className="text-sm italic"
+                                className="text-base italic"
                                 style={editorialLabelStyle}
                             >
                                 Your name
@@ -330,7 +321,7 @@ const SaveProfileCard = ({ onSuccess }: { onSuccess: () => void }) => {
                         <div className="space-y-1.5">
                             <Label
                                 htmlFor="me-email"
-                                className="text-sm italic"
+                                className="text-base italic"
                                 style={editorialLabelStyle}
                             >
                                 Email
@@ -348,7 +339,7 @@ const SaveProfileCard = ({ onSuccess }: { onSuccess: () => void }) => {
                         <div className="space-y-1.5">
                             <Label
                                 htmlFor="me-password"
-                                className="text-sm italic"
+                                className="text-base italic"
                                 style={editorialLabelStyle}
                             >
                                 A password (so only you can open it)
@@ -380,7 +371,7 @@ const SaveProfileCard = ({ onSuccess }: { onSuccess: () => void }) => {
                         <div className="space-y-1.5">
                             <Label
                                 htmlFor="me-email-r"
-                                className="text-sm italic"
+                                className="text-base italic"
                                 style={editorialLabelStyle}
                             >
                                 Email
@@ -398,7 +389,7 @@ const SaveProfileCard = ({ onSuccess }: { onSuccess: () => void }) => {
                         <div className="space-y-1.5">
                             <Label
                                 htmlFor="me-password-r"
-                                className="text-sm italic"
+                                className="text-base italic"
                                 style={editorialLabelStyle}
                             >
                                 Password

@@ -37,7 +37,7 @@ export const ReauthenticationEmail = ({ token }: ReauthenticationEmailProps) => 
     <Body style={main}>
       <Container style={container}>
         <Section style={header}>
-          <Text style={brandMark}>Genius Business</Text>
+          <Text style={brandMark}>Find Your Top Talent</Text>
         </Section>
         <Section style={body}>
           <Heading style={h1}>Confirm it's you</Heading>
@@ -49,7 +49,7 @@ export const ReauthenticationEmail = ({ token }: ReauthenticationEmailProps) => 
           </Text>
         </Section>
         <Section style={footerWrap}>
-          <Text style={footer}>Genius Business — your unique business, decoded.</Text>
+          <Text style={footer}>Find Your Top Talent — the unique gift only you can deliver.</Text>
         </Section>
       </Container>
     </Body>

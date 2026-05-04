@@ -34,6 +34,10 @@
 import jsPDF from "jspdf";
 import { AppleseedData } from "./appleseedGenerator";
 import { ExcaliburData } from "./excaliburGenerator";
+// Day 58+ (Sasha 2026-05-03): legacy snapshots shipped top_shadow_one_sentence
+// in second-person reflexive ("yourself") which reads broken under the
+// "MY TOP SHADOW IS" sub-eyebrow in the PDF. Render-time flip to first-person.
+import { flipToFirstPersonReflexive } from "@/lib/zogProfileVoice";
 
 // ─────────────────────────────────────────────────────────────────────
 // Page geometry — A4 (mm)
@@ -457,7 +461,9 @@ function renderThreeKeyTalents(b: PdfBuilder, appleseed: AppleseedData) {
 }
 
 function renderTopShadow(b: PdfBuilder, appleseed: AppleseedData) {
-    const oneSentence = appleseed.topTalentProfile?.top_shadow_one_sentence?.trim();
+    const oneSentence = flipToFirstPersonReflexive(
+        appleseed.topTalentProfile?.top_shadow_one_sentence?.trim(),
+    );
     const paragraph = appleseed.topTalentProfile?.edge_and_traps?.trim();
     if (!oneSentence && !paragraph) return;
     b.sectionRule();

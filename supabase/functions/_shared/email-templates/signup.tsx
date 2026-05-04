@@ -48,7 +48,7 @@ export const SignupEmail = ({
     <Body style={main}>
       <Container style={container}>
         <Section style={header}>
-          <Text style={brandMark}>Genius Business</Text>
+          <Text style={brandMark}>Find Your Top Talent</Text>
         </Section>
         <Section style={body}>
           <Heading style={h1}>Welcome. Let's confirm it's you.</Heading>

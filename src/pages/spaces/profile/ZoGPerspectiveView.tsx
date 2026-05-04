@@ -12,7 +12,7 @@ import {
 import { GOLD_TEXT_STYLE, Ornament } from "@/lib/landingDesign";
 import ActivationSteps from "@/components/ActivationSteps";
 import ReadNextSectionButton from "@/components/profile/ReadNextSectionButton";
-import { flipToSecondPerson } from "@/lib/zogProfileVoice";
+import { flipToSecondPerson, flipToFirstPersonReflexive } from "@/lib/zogProfileVoice";
 import { Target, Sparkles, Users, TrendingUp, Briefcase, DollarSign, Eye, Palette, MessageSquare, Heart, Zap, Quote } from "lucide-react";
 
 // Day 54+ (Sasha 2026-04-28 night): full restyle of the ME · Top Talent
@@ -221,7 +221,13 @@ const PERSPECTIVES: Partial<Record<PerspectiveId, PerspectiveConfig>> = {
         // sentence is the punchy headline; the paragraph is the
         // structural unfolding. Reveal card shows only the sentence.
         render: (data) => {
-            const oneSentence = data.topTalentProfile?.top_shadow_one_sentence;
+            // Day 58+ (Sasha 2026-05-03): top_shadow_one_sentence renders
+            // under "MY TOP SHADOW IS" eyebrow → first-person reflexive
+            // ("myself"). edge_and_traps renders as a body paragraph in
+            // the editorial-observer voice → second-person ("you"). Two
+            // surfaces, two registers — same data field needs different
+            // pronoun handling depending on the framing eyebrow.
+            const oneSentence = flipToFirstPersonReflexive(data.topTalentProfile?.top_shadow_one_sentence);
             const fullParagraph = data.topTalentProfile?.edge_and_traps
                 ? flipToSecondPerson(data.topTalentProfile.edge_and_traps)
                 : undefined;

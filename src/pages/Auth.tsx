@@ -42,6 +42,13 @@ const Auth = () => {
   const mode = searchParams.get("mode"); // signup, login, or null
   const isOnboardingFlow = mode === "signup" || claimMode; // tinted UI
   const defaultTab = mode === "signup" ? "signup" : "login";
+  // Day 58+ (Sasha 2026-05-03): Tabs converted from uncontrolled to
+  // controlled so the cross-device email-confirmation flow can flip
+  // the user from Sign Up → Log In automatically when we detect they
+  // already have an account (Karime walkthrough hit this — confirmed
+  // on mobile, came to desktop, hit Sign Up, got a destructive
+  // "already registered" toast with no path forward).
+  const [tab, setTab] = useState<string>(defaultTab);
 
   // Read both ?next= (spec) and ?redirect= (legacy). Default depends on flow.
   const queryNext = searchParams.get("next") || searchParams.get("redirect");
@@ -144,13 +151,28 @@ const Auth = () => {
 
       if (error) throw error;
 
-      // Case 2: existing email — identities array empty
+      // Case 2: existing email — identities array empty.
+      // Day 58+ (Sasha 2026-05-03): Karime walkthrough — she confirmed
+      // her email on her PHONE (where she received the confirmation
+      // link), then came back to the DESKTOP browser to keep using the
+      // site. On desktop she had no session (different device storage),
+      // so she clicked "Sign Up" again with the same email — Supabase
+      // returns success with empty `identities` (security feature: don't
+      // leak whether an email exists). Old toast copy "This email is
+      // already registered" felt accusatory and gave her no path
+      // forward.
+      // Two improvements:
+      //   1. Empathetic copy that names the cross-device case explicitly
+      //   2. Auto-flip to the Log In tab so the email she just typed is
+      //      preserved and she lands directly on the form she needs
+      //      (the "Forgot password?" link is now prominent — Item 6 —
+      //      so if she doesn't remember her password the path is clear)
       if (data.user && (data.user.identities?.length ?? 0) === 0) {
+        setTab("login");
         toast({
-          title: "This email is already registered",
+          title: "Looks like you already have an account",
           description:
-            "Try logging in instead, or use 'Forgot password?' to reset it.",
-          variant: "destructive",
+            "If you just confirmed your email on another device, log in here. Forgot your password? Use the link above.",
         });
         return;
       }
@@ -470,7 +492,7 @@ const Auth = () => {
           <Ornament className="my-6" />
 
           {/* Tabs */}
-          <Tabs defaultValue={defaultTab} className="w-full">
+          <Tabs value={tab} onValueChange={setTab} className="w-full">
             <TabsList
               className="grid w-full grid-cols-2 mb-6 rounded-full p-1"
               style={{
@@ -530,13 +552,21 @@ const Auth = () => {
                     >
                       Password
                     </Label>
+                    {/* Day 58+ (Sasha 2026-05-03): bumped from 11px italic-
+                        muted-no-underline to 12.5px non-italic underlined-
+                        always. Karime walkthrough: she literally could not
+                        find this link — the previous styling read as a
+                        Label sub-decoration, not as a clickable affordance.
+                        Now reads unmistakably as a link without competing
+                        with the "Log In" button below. */}
                     <button
                       type="button"
                       onClick={() => setShowForgotPassword(true)}
-                      className="text-[11px] italic underline-offset-4 hover:underline"
+                      className="text-[12.5px] underline underline-offset-4 decoration-[1px] hover:decoration-[1.5px] transition-all"
                       style={{
                         fontFamily: "'Cormorant Garamond', serif",
-                        color: "var(--skin-link-secondary, rgba(26,30,58,0.7))",
+                        fontWeight: 500,
+                        color: "var(--skin-link-secondary, rgba(26,30,58,0.85))",
                       }}
                     >
                       Forgot password?

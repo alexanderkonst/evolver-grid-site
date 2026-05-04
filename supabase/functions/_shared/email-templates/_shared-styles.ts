@@ -1,5 +1,7 @@
-// Shared brand styles for Genius Business auth emails
-// Dark marine blue background, gold accents, white body for deliverability
+// Shared brand styles for Find Your Top Talent auth emails.
+// Dark marine blue background, gold accents, white body for deliverability.
+// (Day 58+ Sasha 2026-05-03: brand mark unified across all transactional
+// surfaces — was "Genius Business", now "Find Your Top Talent".)
 
 export const main = {
   backgroundColor: '#ffffff',

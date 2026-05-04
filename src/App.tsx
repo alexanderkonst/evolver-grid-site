@@ -18,6 +18,16 @@ import { SkinProvider } from "@/contexts/SkinContext";
 import SkinPreview from "./pages/SkinPreview";
 import PreviewBanner from "@/components/skin/PreviewBanner";
 import MusicPlayer from "@/components/MusicPlayer";
+// Day 58+ (Sasha 2026-05-03): App-root mount for the SoundCloud
+// playlist audio engine. SoundCloudMinimalPlayer used to own its
+// own iframe inside SpacesRail, but SpacesRail lives inside
+// GameShellV2 which is wrapped per-route — every navigation
+// destroyed the iframe and killed playback. The provider below
+// owns the iframe at App root (lazy-mounted on first shell entry,
+// auto-paused on sales-page entry); the rail's player is now a
+// thin UI consumer that reads state via context. See
+// SoundCloudPlayerProvider.tsx for the full architecture rationale.
+import { SoundCloudPlayerProvider } from "@/components/audio/SoundCloudPlayerProvider";
 import LandingPage from "./pages/LandingPage";
 import FeedbackPage from "./pages/FeedbackPage";
 import ContactNew from "./pages/ContactNew";
@@ -254,6 +264,7 @@ const App = () => (
               while we iterate. Flip MusicPlayer's enabled gate to
               default-true when ready to launch for everyone. */}
           <MusicPlayer />
+          <SoundCloudPlayerProvider>
           <ErrorBoundary>
             <Suspense fallback={<PageLoader />}>
               <PageTransition>
@@ -613,6 +624,7 @@ const App = () => (
               </PageTransition>
             </Suspense>
           </ErrorBoundary>
+          </SoundCloudPlayerProvider>
         </BrowserRouter>
       </TooltipProvider>
       </SkinProvider>

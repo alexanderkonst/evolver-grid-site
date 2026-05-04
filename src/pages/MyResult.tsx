@@ -4,6 +4,11 @@ import { supabase } from "@/integrations/supabase/client";
 import RevelatoryHero from "@/components/game/RevelatoryHero";
 import { AppleseedData } from "@/modules/zone-of-genius/appleseedGenerator";
 import { Loader2 } from "lucide-react";
+// Day 58+ (Sasha 2026-05-03): legacy snapshots shipped top_shadow_one_sentence
+// in second-person reflexive ("yourself") which reads broken under the
+// "MY TOP SHADOW IS" eyebrow on the reveal card. Render-time flip to
+// first-person reflexive for legacy data.
+import { flipToFirstPersonReflexive } from "@/lib/zogProfileVoice";
 
 /**
  * MyResult — Standalone dark glass result page for magic link access.
@@ -125,7 +130,7 @@ const MyResult = () => {
                             title={appleseed.vibrationalKey.name}
                             tagline="My top talent is"
                             actionStatement={appleseed.bullseyeSentence}
-                            topShadow={appleseed.topTalentProfile?.top_shadow_one_sentence}
+                            topShadow={flipToFirstPersonReflexive(appleseed.topTalentProfile?.top_shadow_one_sentence)}
                             darkMode
                         />
 
