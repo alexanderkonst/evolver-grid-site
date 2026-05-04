@@ -61,24 +61,51 @@ const formatBullseye = (sentence: string): string =>
  * NOT shared — it's heavy/private; people share what looks good, not
  * what confesses. Keep the share light: archetype + bullseye + invite.
  */
+// Day 61 (Sasha 2026-05-04 14:00) — three share-text fixes shipped together:
+//
+// (1) URL is now `https://findyourtoptalent.com` (with protocol) so platforms
+//     auto-linkify it. The previous `→ FindYourTopTalent.Com` was plaintext —
+//     readers had to manually type it into a browser. Auto-link = one click.
+//
+// (2) UTM params attached so analytics can attribute traffic to social shares
+//     specifically. Invisible to the clicker (they just see the same page),
+//     visible to us in GA / any analytics tool: utm_source=share,
+//     utm_medium=social, utm_campaign=top_talent_reveal. Per-platform source
+//     could come later (utm_source=whatsapp/twitter/etc) if we want to A/B
+//     channels — for now a single attribution bucket.
+//
+// (3) Length safeguard for X (Twitter, 280-char cap). If the full message
+//     would overflow ~260 chars, we drop the three-talents line first
+//     (least-essential of the three content blocks) so the URL — the thing
+//     we MUST keep — stays. Bullseye + archetype are core; talents are
+//     specificity bonus. Threshold is 260 not 280 to leave a few chars of
+//     headroom for the user's potential added comment.
+const SHARE_URL = "https://findyourtoptalent.com?utm_source=share&utm_medium=social&utm_campaign=top_talent_reveal";
+const TWITTER_SOFT_CAP = 260;
+
 const buildShareTextFor = (
     title: string,
     actionStatement: string | undefined,
     topThreeTalents: string[] | undefined,
 ): string => {
-    let text = `My top talent is ${stripDecorativeGlyphs(title)}.\n\n`;
-    if (actionStatement) {
-        text += `I ${formatBullseye(actionStatement)}.\n\n`;
+    const titleLine = `My top talent is ${stripDecorativeGlyphs(title)}.\n\n`;
+    const bullseyeLine = actionStatement
+        ? `I ${formatBullseye(actionStatement)}.\n\n`
+        : "";
+    const talentsLine =
+        topThreeTalents && topThreeTalents.length > 0
+            ? `My three talents: ${topThreeTalents.join(" · ")}.\n\n`
+            : "";
+    const closingLine = `Curious what you see.\n\n→ ${SHARE_URL}`;
+
+    const fullText = `${titleLine}${bullseyeLine}${talentsLine}${closingLine}`;
+
+    // If we'd overflow the soft cap, drop the talents line — the bullseye
+    // and the URL are non-negotiable.
+    if (fullText.length > TWITTER_SOFT_CAP && talentsLine) {
+        return `${titleLine}${bullseyeLine}${closingLine}`;
     }
-    // Day 61 (Sasha 2026-05-04): include the compact three talents in
-    // the shared text — adds shareable specificity ("yes, that's me")
-    // without spilling the heavier shadow line. Bullet-separated single
-    // line keeps the share message scannable on social previews.
-    if (topThreeTalents && topThreeTalents.length > 0) {
-        text += `My three talents: ${topThreeTalents.join(" · ")}.\n\n`;
-    }
-    text += `Curious what you see.\n\n→ FindYourTopTalent.Com`;
-    return text;
+    return fullText;
 };
 
 /**

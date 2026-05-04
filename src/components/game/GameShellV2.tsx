@@ -127,6 +127,27 @@ const JOURNEY_SECTION_LABELS: Array<{ path: string; label: string }> = [
     { path: "/", label: "Start by finding your top talent" },
 ];
 
+// ─── Feature flags — hide-until-ready ────────────────────────────────
+// Day 61 (Sasha 2026-05-04 14:30): LEARN and MEET are kept hidden
+// from the SpacesRail until their content is launch-ready. Per
+// Sasha's testing of `konst@alum.mit.edu`: the spaces were unlocking
+// at zog_complete (alongside ME) per the unlock matrix below, but
+// they're not yet content-ready, so showing them empty was worse
+// than not showing them at all.
+//
+// To unhide: flip the corresponding constant to `true`. The unlock
+// matrix below AND's the flag into the existing zogComplete check —
+// so flipping a flag back to `true` restores the original "unlocks
+// after Step 1" behavior (no other code changes needed). Flag off →
+// space is always locked → lands in `hiddenSpaces` → disappears
+// from the rail entirely.
+//
+// Same flag pattern as MeGate.tsx's `ME_SPACE_LOCKED` and
+// StepCard.tsx's `SHOW_UBB_BRIDGE` — single-constant feature gates,
+// no env vars, no admin UI; flip + ship.
+const LEARN_VISIBLE = false;
+const MEET_VISIBLE = false;
+
 interface GameShellV2Props {
     children: ReactNode;
     /** Force hide navigation panels (for onboarding flows) */
@@ -518,9 +539,14 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
             "journey": true,                                    // Always open — the front door
             "next-move": zogComplete,                           // After Step 1
             "grow": zogComplete,                                // ME — visible always, locked until ZoG done (Sasha, 2026-04-21)
-            "learn": zogComplete,                               // After Step 1 — growth material
+            // Day 61 (Sasha 2026-05-04 14:30): LEARN + MEET gated
+            // by feature flag (see top of file). When flag is false
+            // (default), unlock = false unconditionally → lands in
+            // hiddenSpaces → invisible in rail. When flipped to
+            // true, restores the previous "After Step 1" behavior.
+            "learn": LEARN_VISIBLE && zogComplete,              // After Step 1 — growth material (currently flag-gated off)
             "build": ignitionComplete,                          // After Step 2 — business canvas
-            "meet": zogComplete,                                // After Step 1 — community events
+            "meet": MEET_VISIBLE && zogComplete,                // After Step 1 — community events (currently flag-gated off)
             "collaborate": ignitionComplete,                    // After Step 2 — needs a business first
             "buysell": ignitionComplete,                        // After Step 2 — needs offers to sell
         }
