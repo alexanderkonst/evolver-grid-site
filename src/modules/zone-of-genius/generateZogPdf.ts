@@ -447,8 +447,19 @@ function renderHero(b: PdfBuilder, appleseed: AppleseedData) {
     // the on-screen reveal block in RevelatoryHero so the saved PDF
     // carries the same artifact shape. Hides cleanly when the field is
     // absent (pre-Day-61 snapshots).
+    //
+    // No decorative glyphs (✦ etc.) in PDF — jsPDF's default font may
+    // not carry the codepoints, and Sasha's call: "abstain from glyphs
+    // in the PDF, they don't render well or look odd." Plain centered
+    // italic lines only.
+    //
+    // Wrapped in a single ensureSpace() so the eyebrow + 3 lines never
+    // orphan-split across a page break.
     const compactThree = appleseed.topTalentProfile?.top_three_talents_compact;
     if (compactThree && compactThree.length > 0) {
+        const lineCount = Math.min(compactThree.length, 3);
+        // 4 (gap) + 6 (eyebrow) + 1 (gap) + 6*lineCount (lines) + 4 (trailing) = budget
+        b.ensureSpace(15 + 6 * lineCount);
         b.y += 2;
         b.eyebrow("My Three Talents", { center: true });
         b.y += 1;
@@ -456,9 +467,7 @@ function renderHero(b: PdfBuilder, appleseed: AppleseedData) {
         b.doc.setFontSize(12);
         b.doc.setTextColor(...C.ink);
         compactThree.slice(0, 3).forEach((talent) => {
-            b.ensureSpace(7);
-            const line = `✦  ${talent}`;
-            b.doc.text(line, PAGE_W / 2, b.y, { align: "center" });
+            b.doc.text(talent, PAGE_W / 2, b.y, { align: "center" });
             b.y += 6;
         });
         b.y += 2;

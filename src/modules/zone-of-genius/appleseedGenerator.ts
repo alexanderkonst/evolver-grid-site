@@ -649,9 +649,26 @@ const tryExtractTopTalentProfile = (rawSignal: string): TopTalentProfile | undef
     // Day 61 (Sasha 2026-05-04): compact form for the FIRST REVEAL card.
     // Optional — pre-Day-61 snapshots don't have it; the reveal block
     // hides cleanly when undefined.
-    top_three_talents_compact: Array.isArray(parsed.top_three_talents_compact)
-        ? parsed.top_three_talents_compact.map((t: unknown) => String(t)).filter(Boolean)
-        : undefined,
+    //
+    // Day 61 (post-roast): warn loudly when the long form is present
+    // but the compact form isn't or is wrong-shape — that's the model
+    // partially complying with the new schema, and the operator
+    // wondering "why isn't the new section showing up after a re-run?"
+    // wants to see this in the console.
+    top_three_talents_compact: (() => {
+        if (Array.isArray(parsed.top_three_talents_compact)) {
+            return parsed.top_three_talents_compact.map((t: unknown) => String(t)).filter(Boolean);
+        }
+        if (Array.isArray(parsed.top_three_talents) && parsed.top_three_talents.length > 0) {
+            console.warn(
+                "[appleseedGenerator] top_three_talents_compact missing or invalid — " +
+                "model returned the long form but skipped the compact form. " +
+                "The MY THREE TALENTS reveal block will not render for this snapshot.",
+                { received: parsed.top_three_talents_compact }
+            );
+        }
+        return undefined;
+    })(),
     how_genius_shows_up: String(parsed.how_genius_shows_up || ""),
     edge_and_traps: String(parsed.edge_and_traps || ""),
     // Day 58 (Sasha 2026-05-02): synthesized form is optional in the
