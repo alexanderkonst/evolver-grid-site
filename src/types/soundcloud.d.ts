@@ -27,6 +27,8 @@ interface SCWidget {
     skip: (index: number) => void;
     getSounds: (cb: (sounds: SCSound[]) => void) => void;
     getCurrentSound: (cb: (sound: SCSound | null) => void) => void;
+    /** Index (0-based) of the currently selected sound in the playlist. */
+    getCurrentSoundIndex: (cb: (index: number) => void) => void;
 }
 
 interface SCWidgetEvents {

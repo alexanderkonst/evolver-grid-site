@@ -212,21 +212,51 @@ export function SoundCloudPlayerProvider({
 
                 widget.bind(Events.READY, () => {
                     if (cancelled) return;
-                    console.log("[SC] READY");
+                    // Day 60++ (Sasha 2026-05-04): Sasha confirmed all
+                    // playlist tracks are playable, so the "skip 2 → land
+                    // on track ~3" symptom isn't auto-skip-unplayable.
+                    // Most likely remaining cause: SoundCloud's widget
+                    // remembers playback position via cookies on its own
+                    // origin (w.soundcloud.com). If a previous session
+                    // played up to track 3, the widget can resume there
+                    // when re-instantiated — and pressing play would
+                    // start from track 3 with title flicker as the
+                    // widget restores state.
+                    //
+                    // Defensive force-to-track-0: on every fresh READY,
+                    // log the playlist contents + current index, then if
+                    // current index isn't 0, skip(0) to neutralize any
+                    // cached resume state. New listeners always start at
+                    // track 1 of the playlist, deterministically.
+                    widget.getSounds((sounds) => {
+                        console.log("[SC] PLAYLIST", sounds.map((s, i) => `${i}: ${s?.title ?? "?"}`));
+                    });
+                    widget.getCurrentSoundIndex((idx) => {
+                        console.log("[SC] READY at index", idx);
+                        if (idx !== 0) {
+                            console.log("[SC] forcing skip(0) to neutralize cached state");
+                            widget.skip(0);
+                        }
+                    });
                     setReady(true);
                     readCurrentInto(widget);
                 });
                 widget.bind(Events.PLAY, () => {
                     if (cancelled) return;
-                    // Debug — Day 58+ (Sasha 2026-05-03): Sasha reported
-                    // rapid track-skipping on first press of play (settles
-                    // on track ~3-4). My initial auto-skip-unplayable
-                    // hypothesis was wrong — all tracks are playable. So
-                    // we need actual data: log every PLAY event + the
-                    // current track's title/index. Next walkthrough,
-                    // open DevTools Console and share what these print.
-                    widget.getCurrentSound((sound) => {
-                        console.log("[SC] PLAY", { title: sound?.title, artist: sound?.user?.username });
+                    // Capture both title AND playlist-index on every PLAY
+                    // event. Index is the diagnostic: if PLAY fires with
+                    // index 0, then 1, then 2 in rapid succession, the
+                    // widget IS skipping tracks. If only one PLAY fires
+                    // but the title shown is wrong, the bug is on our
+                    // render side. Two completely different fix paths.
+                    widget.getCurrentSoundIndex((idx) => {
+                        widget.getCurrentSound((sound) => {
+                            console.log("[SC] PLAY", {
+                                index: idx,
+                                title: sound?.title,
+                                artist: sound?.user?.username,
+                            });
+                        });
                     });
                     setPlaying(true);
                     readCurrentInto(widget);
@@ -267,11 +297,18 @@ export function SoundCloudPlayerProvider({
 
     const toggle = useCallback(() => {
         if (!ready || !widgetRef.current) return;
+        // Debug — log every toggle invocation. If user reports "I pressed
+        // play once but it skipped songs," and Console shows multiple
+        // [SC] toggle() lines, the click handler is firing multiple times.
+        // If only ONE [SC] toggle() but multiple [SC] PLAY events follow,
+        // the widget itself is doing the skipping internally.
+        console.log("[SC] toggle()");
         widgetRef.current.toggle();
     }, [ready]);
 
     const next = useCallback(() => {
         if (!ready || !widgetRef.current) return;
+        console.log("[SC] next()");
         widgetRef.current.next();
     }, [ready]);
 
