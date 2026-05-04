@@ -170,15 +170,26 @@ const SoundCloudMinimalPlayer = ({
         // `gap-3 px-3 py-2.5 rounded-2xl w-full` so the play button's
         // left edge sits at the exact x-position as the chat-with-us
         // / settings icons (and the JOURNEY / AI OS / ME chip icons
-        // above). Was `gap-2.5 px-3 py-2` without `w-full` —
-        // content-sized container caused the play button to drift
-        // visually right of the icon column.
+        // above).
         //
         // `justify-center md:justify-start` matches every other rail
         // chip: at <md the rail is icon-only (72px wide) and we
         // center the play button in its column; at md+ the rail
         // expands and we left-align with the title to its right.
-        <div className="flex items-center gap-3 px-3 py-2.5 rounded-2xl w-full justify-center md:justify-start transition-all duration-300 hover:bg-white/[0.04]">
+        //
+        // `md:pl-1.5` (Sasha 2026-05-03 iter 3): empirical desktop-only
+        // alignment correction. With identical classes to the sibling
+        // chat-with-us anchor, the play button STILL renders ~6 CSS px
+        // to the right of where the chat MessageCircle icon renders —
+        // suspected sub-pixel quirk from `<button>` (with inline-flex
+        // + border + boxShadow) vs bare lucide `<svg>` (which gets
+        // `display: block` from Tailwind preflight). This override
+        // overrides `pl-3` (12px) with `pl-1.5` (6px) at md+ only,
+        // shifting all player content 6px left so the play button's
+        // left edge aligns with the rest of the rail's icon column.
+        // Mobile keeps symmetric `px-3` so `justify-center` still
+        // centers the play button cleanly in the 72px column.
+        <div className="flex items-center gap-3 px-3 md:pl-1.5 py-2.5 rounded-2xl w-full justify-center md:justify-start transition-all duration-300 hover:bg-white/[0.04]">
             {/* Play / Pause */}
             <button
                 type="button"
