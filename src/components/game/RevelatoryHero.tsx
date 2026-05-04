@@ -398,15 +398,14 @@ const RevelatoryHero = ({
                     heavy lockup. */}
                 <Ornament className="mt-6 mb-4" />
                 <div className="flex flex-col items-center gap-2.5 mt-1 mb-2">
-                    <img
-                        src={brandTorus}
-                        alt="Find Your Top Talent"
-                        className="w-9 h-9 sm:w-10 sm:h-10 object-contain"
-                        draggable={false}
-                        style={{
-                            filter: "drop-shadow(0 0 8px rgba(244, 212, 114, 0.35))",
-                        }}
-                    />
+                    {/* Day 61 (Sasha 2026-05-04 18:00): brand torus
+                        DROPPED from the footer composition. The QR
+                        code + URL line below already do the brand-mark
+                        + way-back jobs the torus was carrying — three
+                        brand elements in one footer felt busy. The
+                        torus image import + its drop-shadow filter
+                        (which was the suspected html2canvas trigger)
+                        are now both gone from the captured tree. */}
                     <p
                         className={`font-display text-sm sm:text-base italic ${palette.textPrimary} leading-snug`}
                         style={{

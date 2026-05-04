@@ -661,6 +661,113 @@ const ProfileSettingsSection = () => {
                             Reset My Progress
                         </Button>
                     </div>
+
+                    {/* Day 61 (Sasha 2026-05-04 17:30): Delete Account
+                        added per Sasha's request. Sits inside the same
+                        Danger Zone card, BELOW Reset — visual hierarchy
+                        signals "more drastic = lower." Reset = wipe data,
+                        keep identity. Delete = wipe data + remove auth
+                        user; user can't log back in with this email.
+
+                        Safety pattern (irreversible action):
+                          1. confirm() — strong language about
+                             irreversibility.
+                          2. prompt() requiring the user to type "DELETE"
+                             exactly. Cancel/empty/wrong input bails.
+                          3. Edge function call — needs Supabase service
+                             role (admin.deleteUser), so it CAN'T live in
+                             the client. The function name agreed-upon
+                             with the backend is `delete-account` (see
+                             the Lovable prompt accompanying this PR).
+                          4. On success: clear cache + signOut + navigate
+                             to landing.
+
+                        Failure modes handled:
+                          • Edge function not yet deployed — the invoke
+                            errors; user sees a clear toast and the
+                            account stays intact.
+                          • Auth user already deleted (race) — same
+                            handling; toast + bail. */}
+                    <div className="flex items-center justify-between mt-6 pt-6 border-t border-red-200">
+                        <div>
+                            <p className="font-medium text-red-900">Delete Account</p>
+                            <p className="text-sm text-red-700">
+                                Permanently delete your account, your data, and your login. <em>Cannot be undone.</em>
+                            </p>
+                        </div>
+                        <Button
+                            variant="destructive"
+                            className="bg-red-900 hover:bg-red-950"
+                            onClick={async () => {
+                                if (!profile) return;
+                                if (!confirm("This will PERMANENTLY delete your account, all your data, and your login credentials. You will not be able to log back in with this email. Continue?")) return;
+                                const typed = window.prompt('Type DELETE (all caps) to confirm permanent account deletion:');
+                                if (typed !== "DELETE") {
+                                    if (typed !== null) {
+                                        toast({
+                                            title: "Cancelled",
+                                            description: "Account deletion cancelled — you didn't type DELETE.",
+                                        });
+                                    }
+                                    return;
+                                }
+                                setIsLoading(true);
+                                try {
+                                    const { error } = await supabase.functions.invoke('delete-account', {
+                                        body: {},
+                                    });
+                                    if (error) throw error;
+
+                                    // Wipe the snapshot cache so this
+                                    // tab doesn't render anything stale
+                                    // before the redirect lands.
+                                    clearCachedZogSnapshot();
+
+                                    // Sign the user out — at this point
+                                    // their auth.user is gone server-side,
+                                    // so signOut here is mostly a local
+                                    // session cleanup. Errors here are
+                                    // non-fatal (the auth row is already
+                                    // gone; the local session will fail
+                                    // its next refresh anyway).
+                                    try {
+                                        await supabase.auth.signOut();
+                                    } catch {
+                                        // non-fatal
+                                    }
+
+                                    // Clear the anonymous-profile linker
+                                    // in localStorage so the same browser
+                                    // doesn't carry orphan IDs into a
+                                    // future signup attempt.
+                                    try {
+                                        localStorage.removeItem('game_profile_id');
+                                    } catch {
+                                        // private mode / disabled storage — non-fatal
+                                    }
+
+                                    toast({
+                                        title: "Account deleted",
+                                        description: "Your account and all your data are gone. Goodbye.",
+                                    });
+                                    // Hard redirect (not navigate) so any
+                                    // in-memory React state from the now-
+                                    // dead session is cleared.
+                                    window.location.href = '/';
+                                } catch (err: any) {
+                                    console.error('[delete-account] failed:', err);
+                                    toast({
+                                        title: "Couldn't delete account",
+                                        description: err?.message || "Please try again, or contact support.",
+                                        variant: "destructive",
+                                    });
+                                    setIsLoading(false);
+                                }
+                            }}
+                        >
+                            Delete My Account
+                        </Button>
+                    </div>
                 </CardContent>
             </Card>
         </div>
