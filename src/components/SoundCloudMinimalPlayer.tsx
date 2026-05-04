@@ -87,9 +87,25 @@ const SoundCloudMinimalPlayer = ({
     const [ready, setReady] = useState(false);
     const [playing, setPlaying] = useState(false);
     const [trackTitle, setTrackTitle] = useState<string>("");
+    // Day 58+ (Sasha 2026-05-03): also surface the artist (SC username
+    // of the uploader) — a song without an artist credit reads as
+    // mystery-meat. Title and artist render as "Title · Artist" on a
+    // single truncated line; if either is missing, we gracefully fall
+    // back to whichever exists.
+    const [trackArtist, setTrackArtist] = useState<string>("");
 
     useEffect(() => {
         let cancelled = false;
+        // Helper — read current sound and fan out to both title + artist
+        // setters. Keeps the two bind handlers below DRY and avoids the
+        // bug where one handler updates title and the other forgets.
+        const readCurrentInto = (widget: SCWidget) => {
+            widget.getCurrentSound((sound) => {
+                if (cancelled) return;
+                if (sound?.title) setTrackTitle(sound.title);
+                if (sound?.user?.username) setTrackArtist(sound.user.username);
+            });
+        };
         loadWidgetApi()
             .then(() => {
                 if (cancelled) return;
@@ -102,18 +118,12 @@ const SoundCloudMinimalPlayer = ({
                 widget.bind(Events.READY, () => {
                     if (cancelled) return;
                     setReady(true);
-                    widget.getCurrentSound((sound) => {
-                        if (cancelled) return;
-                        if (sound?.title) setTrackTitle(sound.title);
-                    });
+                    readCurrentInto(widget);
                 });
                 widget.bind(Events.PLAY, () => {
                     if (cancelled) return;
                     setPlaying(true);
-                    widget.getCurrentSound((sound) => {
-                        if (cancelled) return;
-                        if (sound?.title) setTrackTitle(sound.title);
-                    });
+                    readCurrentInto(widget);
                 });
                 widget.bind(Events.PAUSE, () => {
                     if (!cancelled) setPlaying(false);
@@ -146,16 +156,29 @@ const SoundCloudMinimalPlayer = ({
         playlistUrl,
     )}&visual=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&auto_play=false&buying=false&sharing=false&download=false&show_artwork=false&show_playcount=false`;
 
+    // Day 58+ (Sasha 2026-05-03): compose the visible label as
+    // "Title · Artist". Either side falls back gracefully if missing,
+    // and we keep it on a single truncated line so the rail width
+    // stays disciplined.
+    const labelText = trackTitle && trackArtist
+        ? `${trackTitle} · ${trackArtist}`
+        : trackTitle || trackArtist || (ready ? "playlist" : "loading…");
+
     return (
         // Day 58+ (Sasha 2026-05-03): structurally mirror the
         // chat-with-us anchor and settings button below — same
-        // `gap-3 px-3 py-2.5 rounded-2xl w-full justify-start` so
-        // the play button's left edge sits at the exact x-position
-        // as the chat-with-us / settings icons (and the JOURNEY/
-        // AI OS / ME chip icons above). Was `gap-2.5 px-3 py-2`
-        // without `w-full` — content-sized container caused the
-        // play button to drift visually right of the icon column.
-        <div className="flex items-center gap-3 px-3 py-2.5 rounded-2xl w-full justify-start transition-all duration-300 hover:bg-white/[0.04]">
+        // `gap-3 px-3 py-2.5 rounded-2xl w-full` so the play button's
+        // left edge sits at the exact x-position as the chat-with-us
+        // / settings icons (and the JOURNEY / AI OS / ME chip icons
+        // above). Was `gap-2.5 px-3 py-2` without `w-full` —
+        // content-sized container caused the play button to drift
+        // visually right of the icon column.
+        //
+        // `justify-center md:justify-start` matches every other rail
+        // chip: at <md the rail is icon-only (72px wide) and we
+        // center the play button in its column; at md+ the rail
+        // expands and we left-align with the title to its right.
+        <div className="flex items-center gap-3 px-3 py-2.5 rounded-2xl w-full justify-center md:justify-start transition-all duration-300 hover:bg-white/[0.04]">
             {/* Play / Pause */}
             <button
                 type="button"
@@ -186,7 +209,8 @@ const SoundCloudMinimalPlayer = ({
                 )}
             </button>
 
-            {/* Track title — Cormorant, small, lowercase tracking matching the rail */}
+            {/* Track label "Title · Artist" — Cormorant, small,
+                tracked. Hidden on mobile (rail is icon-only at <md). */}
             <span
                 className="flex-1 truncate hidden md:block"
                 style={{
@@ -196,19 +220,21 @@ const SoundCloudMinimalPlayer = ({
                     letterSpacing: "0.04em",
                     color: "rgba(255, 255, 255, 0.55)",
                 }}
-                title={trackTitle || undefined}
+                title={labelText}
             >
-                {trackTitle || (ready ? "playlist" : "loading…")}
+                {labelText}
             </span>
 
-            {/* Skip / Next track — same dim register as the title; subtle on hover */}
+            {/* Skip / Next track — same dim register as the title.
+                Hidden on mobile (rail collapses to a 72px icon column
+                and only the play button needs to fit). */}
             <button
                 type="button"
                 onClick={handleNext}
                 disabled={!ready}
                 aria-label="Next track"
                 title="Next"
-                className="flex-shrink-0 inline-flex items-center justify-center w-6 h-6 rounded-full transition-all duration-200 hover:scale-[1.10] active:scale-[0.94] disabled:opacity-30 disabled:cursor-not-allowed"
+                className="flex-shrink-0 hidden md:inline-flex items-center justify-center w-6 h-6 rounded-full transition-all duration-200 hover:scale-[1.10] active:scale-[0.94] disabled:opacity-30 disabled:cursor-not-allowed"
                 style={{
                     color: "rgba(255, 255, 255, 0.45)",
                 }}
@@ -219,21 +245,26 @@ const SoundCloudMinimalPlayer = ({
             {/* SoundCloud attribution mark — Day 58+ (Sasha 2026-05-03):
                 tiny SC cloud, opens the playlist on soundcloud.com in
                 a new tab. Satisfies the attribution clause in
-                SoundCloud's Developer Terms (since the default
-                in-widget logo isn't visible — iframe is hidden) while
-                staying in the rail's editorial register. SoundCloud
-                orange (#ff5500) at low opacity so it reads as a
-                whisper, not a brand badge. */}
+                SoundCloud's Developer Terms (the default in-widget
+                logo isn't visible — iframe is hidden).
+                Sasha 2026-05-03 iter 2: dropped the SoundCloud orange
+                in favor of dim white — sits cleanly with the rest of
+                the rail's monochrome icon family (chat / settings)
+                instead of competing as a brand-color accent.
+                Monochrome-on-dark is sanctioned by SC's branding
+                guidelines for cases where the brand color clashes
+                with the host palette. Hidden on mobile alongside
+                skip — only the play button shows in the 72px column. */}
             <a
                 href={playlistUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Listen on SoundCloud"
                 title="Listen on SoundCloud"
-                className="flex-shrink-0 inline-flex items-center justify-center transition-opacity duration-200 hover:opacity-100"
+                className="flex-shrink-0 hidden md:inline-flex items-center justify-center transition-opacity duration-200 hover:opacity-100"
                 style={{
-                    color: "#ff5500",
-                    opacity: 0.55,
+                    color: "rgba(255, 255, 255, 0.45)",
+                    opacity: 0.65,
                 }}
             >
                 <SoundCloudGlyph />
