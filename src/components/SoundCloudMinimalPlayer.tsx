@@ -56,6 +56,16 @@ const SoundCloudMinimalPlayer = () => {
     // hasn't been wired up.
     if (!player) return null;
 
+    // Sasha 2026-05-04: hide the player UI on non-shell routes (landing,
+    // sales pages, funnel pages, etc.). The rail itself renders on /
+    // (because JourneyPage wraps in GameShellV2), which means without
+    // this guard the player UI was visible there too — but the engine
+    // is lazy-mounted on first shell entry per Path B (privacy rule),
+    // so on landing the UI sat forever in "loading…". Hiding the UI
+    // on non-shell routes keeps Sasha's "no music on sales pages" rule
+    // visually consistent with the engine's actual behavior.
+    if (!player.currentRouteIsShell) return null;
+
     const { ready, playing, trackTitle, trackArtist, toggle, next, playlistUrl } = player;
 
     // Compose visible label as "Title · Artist". Either side falls back
