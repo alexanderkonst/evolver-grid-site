@@ -151,7 +151,12 @@ const handler = async (req: Request): Promise<Response> => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            from: "Alexander Konstantinov <onboarding@resend.dev>",
+            // Day 60+ (Sasha 2026-05-04 audit): swapped from personal
+            // name to brand identity, matching the Day-58 sender-name
+            // unification across auth-email-hook + save-zog-result +
+            // process-nurture-emails. Technical address stays on the
+            // resend.dev sandbox sender (no DNS dependency).
+            from: "Find Your Top Talent <onboarding@resend.dev>",
             to: [founder.email],
             subject: `${founder.name}, the other canvases are ready`,
             html: buildEmail(founder, founders),
