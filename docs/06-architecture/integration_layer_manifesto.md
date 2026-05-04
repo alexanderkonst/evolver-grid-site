@@ -10,7 +10,6 @@ Across Network School, conscious tech, and the broader coordination space, a pat
 
 | Builder | Language | Vision |
 |---------|----------|--------|
-| Compart | "Operating system for human potential" | Profile-based coordination |
 | Planetary OS | "Coordination infrastructure" | Genius-based matching |
 | [Other builders] | Similar words | Similar goals |
 
@@ -35,8 +34,8 @@ The default solution is "federation" — let each platform exist, then connect t
 ┌────────────────────────────────────────────────────────────┐
 │                    LAYER 3: BRANDING                       │
 │                                                            │
-│   Compart        Planetary OS       [Other Communities]   │
-│   (his words)    (our words)        (their resonance)     │
+│   [Other Builder]  Planetary OS     [Other Communities]   │
+│   (their words)    (our words)      (their resonance)     │
 │                                                            │
 │   → Community attracts people who resonate with messaging  │
 ├────────────────────────────────────────────────────────────┤
@@ -215,7 +214,6 @@ When one tribe is thriving and measurable, that's proof of elephant.
 
 | Project | Builder(s) | Piece of the Elephant |
 |---|---|---|
-| **Compart** | Nabadi (Jacob Griscom) | Profile-based coordination, human potential OS (closed-source) |
 | **Symbiosis** | Jan Andrea Jamako | Coordination platform — one of the clearest seers of the whole |
 | **Core Nexus** | Adam Apollo | Integral tech coordination |
 | **Gaia Union / Gaia Hub** | Felipe Leal, Silvana Ravine | Global coordination hub |
@@ -252,7 +250,7 @@ New: Build our unique modules (ZoG, Canvas, Matchmaking) → Import their module
 
 **Prerequisite:** Open-source code or open APIs from partner platforms.
 
-**Current status:** Nabadi (Compart) = first contact. Currently closed-source. Seed planted.
+**Current status:** Nabadi = first contact. Currently closed-source. Seed planted.
 
 ---
 

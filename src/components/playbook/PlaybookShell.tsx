@@ -262,7 +262,7 @@ const PlaybookShell = ({
               color: "var(--skin-link-secondary, rgba(26,30,58,0.85))",
             }}
           >
-            Contact me on Telegram →
+            Contact us →
           </a>
         </p>
       </div>
