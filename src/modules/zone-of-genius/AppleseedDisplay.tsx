@@ -85,22 +85,34 @@ const OwnershipSection = ({
     emailSaving: boolean;
     handleEmailSubmit: (e: React.FormEvent) => void;
 }) => {
-    // Success state — quiet confirmation, no form.
-    // Day 61 (Sasha 2026-05-04): legibility — text-xs → text-sm and
-    // muted-soft → muted so the saved-confirmation reads after Sasha
-    // pointed out the reveal arc was too thin/pale.
+    // Success state — quiet inline confirmation that points DOWN at
+    // the next content (offer cards). No toast, no popup, no
+    // "check your inbox" instruction — those would push attention OFF
+    // the page when the page is doing its persuasive work. The arrow
+    // does the directional cue without imperative language.
+    //
+    // Day 61 (Sasha 2026-05-04 16:00): copy shifted from
+    // "✓ Saved. We sent your top talent to your inbox so you can come
+    // back to it." → "Saved ✓ — there's more ↓". Reasons:
+    //   • "We sent..." was a soft instruction to leave the page → killed
+    //   • "Saved ✓" is quiet affirmation, peer voice
+    //   • "— there's more" is observation, not command
+    //   • "↓" is the directional cue, points at offers below
+    //   • Italic Cormorant + soft gold matches editorial register
+    // Reference: docs/02-strategy/unique-businesses/alexanders_unique_business.md
+    // → Day 1 step 7 of the Lived User Journey.
     if (emailUnlocked || isSaved) {
         return (
             <div className="text-center py-2">
                 <p
-                    className="text-sm"
+                    className="text-base sm:text-lg italic"
                     style={{
-                        color: "var(--skin-text-muted, rgba(11,42,90,0.86))",
-                        fontFamily: "'Source Serif 4', serif",
+                        color: "var(--skin-text-muted, rgba(122,81,8,0.95))",
+                        fontFamily: "'Cormorant Garamond', serif",
                         fontWeight: 500,
                     }}
                 >
-                    ✓ Saved. We sent your top talent to your inbox so you can come back to it.
+                    Saved ✓ — there's more ↓
                 </p>
             </div>
         );
@@ -387,6 +399,43 @@ const AppleseedDisplay = ({
                         onRate={onResonanceRating}
                     />
                 )}
+
+                {/* INLINE SAVE BLOCK — Day 61 (Sasha 2026-05-04 16:00).
+                    Moved UP from the QUIET FOOTER (was below the offer
+                    cards) to right here — right after the resonance
+                    affirmation. Logic: the resonance check is the
+                    explicit "yes this sounds like me" commitment moment;
+                    placing the save right after lets us lock in their
+                    email at peak affirmation, without interrupting the
+                    pre-affirmation read. After save, the inline
+                    confirmation ("Saved ✓ — there's more ↓") points
+                    DOWN at the bridge + offer cards that follow,
+                    naturally guiding attention to the booking decision.
+                    Reference: docs/02-strategy/unique-businesses/alexanders_unique_business.md
+                    → "Lived User Journey — Reveal-Anchored Funnel"
+                    Day 1 steps 5–9. */}
+                <div className="max-w-md mx-auto space-y-3 pt-2">
+                    {!emailUnlocked && !isSaved && (
+                        <p
+                            className="text-center text-sm italic"
+                            style={{
+                                color: "var(--skin-text-muted, rgba(11,42,90,0.86))",
+                                fontFamily: "'Source Serif 4', serif",
+                                fontWeight: 500,
+                            }}
+                        >
+                            Save it to your inbox so you can come back to it.
+                        </p>
+                    )}
+                    <OwnershipSection
+                        emailUnlocked={emailUnlocked}
+                        isSaved={isSaved}
+                        email={email}
+                        setEmail={setEmail}
+                        emailSaving={emailSaving}
+                        handleEmailSubmit={handleEmailSubmit}
+                    />
+                </div>
 
                 {/* BRIDGE LINE — Day 58+ (Sasha 2026-05-03).
                     The 9-line poetic recognition block was replaced with
@@ -718,36 +767,13 @@ const AppleseedDisplay = ({
 
                 </div>
 
-                {/* QUIET FOOTER — Day 58+ (Sasha 2026-05-03):
-                    consolidated email-save + secondary playbook link
-                    into one calm footer block. The full liquid-glass
-                    playbook card (formerly Option 3) collapsed into a
-                    single text link here — kept available, no longer
-                    visually competing with the two action paths above. */}
-                <div className="max-w-md mx-auto space-y-4 pt-6">
-                    {/* Day 61 (Sasha 2026-05-04): legibility — both
-                        footer micro-lines (the email-save framing and
-                        the playbook bridge) bumped from text-xs to
-                        text-sm + Source Serif weight 500 + lifted to
-                        muted (was muted-soft). */}
-                    <p
-                        className="text-center text-sm italic"
-                        style={{
-                            color: "var(--skin-text-muted, rgba(11,42,90,0.86))",
-                            fontFamily: "'Source Serif 4', serif",
-                            fontWeight: 500,
-                        }}
-                    >
-                        Email it to yourself, so you don't lose it.
-                    </p>
-                    <OwnershipSection
-                        emailUnlocked={emailUnlocked}
-                        isSaved={isSaved}
-                        email={email}
-                        setEmail={setEmail}
-                        emailSaving={emailSaving}
-                        handleEmailSubmit={handleEmailSubmit}
-                    />
+                {/* QUIET FOOTER — Day 61 (Sasha 2026-05-04 16:00).
+                    Email-save block MOVED UP to right after the
+                    resonance check (above). Only the secondary
+                    playbook link remains here — a calm tertiary path
+                    for users who want the deeper read before any
+                    purchase decision. */}
+                <div className="max-w-md mx-auto pt-6">
                     <p
                         className="text-center text-sm"
                         style={{

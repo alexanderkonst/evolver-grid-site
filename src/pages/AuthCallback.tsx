@@ -19,7 +19,16 @@ const AuthCallback = () => {
   const [status, setStatus] = useState<"loading" | "error">("loading");
   const handledRef = useRef(false);
 
-  const next = searchParams.get("next") || "/playbook/discover";
+  // Day 61 (Sasha 2026-05-04 15:15): default `next` shifted from
+  // `/playbook/discover` (a platform-adjacent page that pulled free
+  // auth'd users INTO platform exploration) to `/zone-of-genius` —
+  // the canonical reveal. ZoneOfGeniusEntry's authed-user mode picks
+  // up the just-claimed snapshot from `game_profile.last_zog_snapshot_id`
+  // and renders the reveal directly (same artifact, no platform leak).
+  // Callers can still override via the `?next=` query param when they
+  // genuinely need to land somewhere else (paid post-session activation,
+  // admin links, etc.).
+  const next = searchParams.get("next") || "/zone-of-genius";
 
   useEffect(() => {
     let timeoutId: number | undefined;

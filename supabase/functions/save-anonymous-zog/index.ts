@@ -142,9 +142,19 @@ Deno.serve(async (req) => {
     // when the user entered their email on /auth?claim=true, but that
     // happens BEFORE the result exists. This second link fires AFTER the
     // payload is safely in the DB — whichever link they click first works.
+    //
+    // Day 61 (Sasha 2026-05-04 15:15): redirect target shifted from
+    // `/playbook/discover` (a platform page that leaked free users
+    // into `/game/me/*` territory) to `/zone-of-genius` — the canonical
+    // reveal page. After auth + `claim-anonymous-zog` runs, the user
+    // lands here. `ZoneOfGeniusEntry`'s authed-user mode (Wave 2)
+    // detects them, fetches their just-promoted `zog_snapshots` row
+    // via `game_profile`, and renders the SAME reveal artifact they
+    // would have seen had they stayed in the original tab.
+    // Funnel monogamy intact — every entry point lands on the reveal.
     const siteUrl = Deno.env.get("SITE_URL") ??
       Deno.env.get("PUBLIC_SITE_URL") ?? "";
-    const redirectTo = `${siteUrl}/auth/callback?next=${encodeURIComponent("/playbook/discover")}`;
+    const redirectTo = `${siteUrl}/auth/callback?next=${encodeURIComponent("/zone-of-genius")}`;
 
     try {
       const { error: linkError } = await admin.auth.admin.generateLink({

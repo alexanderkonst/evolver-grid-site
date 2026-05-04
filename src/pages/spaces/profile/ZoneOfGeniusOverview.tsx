@@ -248,7 +248,47 @@ const ZoneOfGeniusOverview = () => {
                     .eq("id", resolvedProfileId)
                     .single();
 
-                if (!profileData?.last_zog_snapshot_id) {
+                // Day 61 (Sasha 2026-05-04 16:45): defensive fallback.
+                // The historical assumption was `last_zog_snapshot_id`
+                // is always set when a snapshot exists. That broke for
+                // any user whose pointer was NULL (legacy paths, races,
+                // the silent save-zog-result account-creation path).
+                // Symptom: this page showed "Take the assessment" CTA
+                // even though the user already had a snapshot. The
+                // public reveal page (ZoneOfGeniusEntry Mode B) used
+                // `loadSavedData()` which queries by profile_id directly
+                // and worked — proving the data WAS there, just not
+                // reachable via the pointer. A backfill migration
+                // (20260504200000_backfill_last_zog_snapshot_id.sql)
+                // fixes existing affected profiles. This code-side
+                // fallback prevents recurrence at THIS read site for
+                // any future write path that forgets to update the
+                // pointer — when the pointer is NULL we re-query for
+                // the most recent snapshot tied to the profile, same
+                // pattern `loadSavedData()` uses.
+                let snapshotId = profileData?.last_zog_snapshot_id as string | null | undefined;
+                if (!snapshotId) {
+                    const { data: latest } = await supabase
+                        .from("zog_snapshots")
+                        .select("id")
+                        .eq("profile_id", resolvedProfileId)
+                        .order("created_at", { ascending: false })
+                        .limit(1)
+                        .maybeSingle();
+                    snapshotId = latest?.id;
+
+                    // Heal the pointer for next read — best-effort,
+                    // ignore failures (the fallback above keeps working).
+                    if (snapshotId) {
+                        void supabase
+                            .from("game_profiles")
+                            .update({ last_zog_snapshot_id: snapshotId })
+                            .eq("id", resolvedProfileId);
+                    }
+                }
+
+                if (!snapshotId) {
+                    // Genuinely no snapshot — empty state is correct.
                     setCachedZogSnapshot({
                         profileId: resolvedProfileId,
                         appleseedData: null,
@@ -264,7 +304,7 @@ const ZoneOfGeniusOverview = () => {
                 const { data: snapshotData } = await supabase
                     .from("zog_snapshots")
                     .select("appleseed_data, excalibur_data, archetype_title, core_pattern, top_three_talents")
-                    .eq("id", profileData.last_zog_snapshot_id)
+                    .eq("id", snapshotId)
                     .single();
 
                 const apple = (snapshotData?.appleseed_data ?? null) as unknown as

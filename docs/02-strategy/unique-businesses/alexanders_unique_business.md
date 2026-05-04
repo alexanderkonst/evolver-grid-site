@@ -85,6 +85,68 @@ Step 1 free · Steps 2+3 **$555** · Step 4 **$1,111** · Step 5 **$333** · Ste
 - **Wednesday launch** (April 22, 2026) — Aurora skin, full funnel live, nurture emails automated.
 - **First $555 stranger pays** = the P27 Si-Do shock still open.
 
+### Lived User Journey — Reveal-Anchored Funnel (Day 61, May 4, 2026)
+
+The funnel after the Top Talent reveal is **monogamous to the reveal page**. Every entry point — first visit, returning via email, future revisits — lands on the SAME reveal artifact (one component, one render path: `ZoneOfGeniusEntry` with `?result=<token>` mode for returnees). The reveal carries the only two paid CTAs. The platform (`/game/me/*`) is purchase-gated; free users never enter it.
+
+**Architectural principle:** ONE render path for the reveal. Live-quiz visit and return-via-email visit are different *entry modes* on the same component. No replica pages. No drift between "first time" and "coming back."
+
+#### Day 1 — Karime takes the quiz (anonymous)
+
+1. Lands on `findyourtoptalent.com` from Aleksandr's WhatsApp share
+2. Hits "Find My Top Talent" → 15-min assessment
+3. Reveal page renders: dodecahedron · "My top talent is Forging" · bullseye sentence · three talents · top shadow
+4. Reads it, scrolls to the resonance check, taps "Yes, this sounds like me"
+5. Sees the **inline editorial save block** right after the resonance: *"Save it to your inbox so you can come back to it."* Optional. One email field, one button.
+6. Types `karime@gmail.com`, clicks Save
+7. **Inline confirmation** — no toast, no popup. The save form replaces itself with one italic line in soft gold: *"Saved ✓ — read on ↓"*. Same vertical space, no layout shift. The arrow points to the next section.
+8. Her eyes drop to the offer cards immediately below: **$37 Top Talent Activation** and **$555 Top Talent Business Session**
+9. She's not ready yet, closes the tab. (The page did its job: removed the "what if I lose this" friction, then handed her attention to the offer.)
+
+#### Within a minute — she gets a deposit-slip email
+
+10. Subject: *"Your Top Talent — saved"* (no archetype name in subject — preserves the curiosity hook for the return click)
+11. Body: minimal. *"Your Top Talent profile is saved. Open it any time."* + one CTA button: *"Open my saved result →"* (links to the website at `/zone-of-genius?result=<token>`)
+12. Quiet sign-off: *"— Aleksandr, FindYourTopTalent.com"*
+13. **Crucially: no archetype, no bullseye, no result content in the email.** The email is a deposit slip, not a delivery vehicle. Its only job is to bring her back to the website.
+
+#### Day 5 — Karime wants to look at her result again
+
+14. Opens the email from Day 1, clicks *"Open my saved result →"*
+15. Browser opens `findyourtoptalent.com/zone-of-genius?result=abc123`
+16. **No login. No "verify your email." No password.** The page loads. The token IS the access.
+17. She sees the **same reveal page she saw Day 1** — same dodecahedron, same archetype, same bullseye, same three talents, same top shadow, same resonance check, same offer cards. Literally the same component renders, just with `appleseed_data` loaded from the DB instead of generated fresh.
+18. The save block is gone (already saved — no need to re-show)
+19. She can save the image, share to socials (vertical 9:16 PNG with brand torus + URL + QR — Wave 3), or click into a paid CTA
+
+#### Day 12 — Karime decides to invest, two branches
+
+**Branch A — full session ($555):**
+- Clicks "See why this hasn't turned into income" on the reveal → lands on `/ignite`
+- Books the Top Talent Business Session, pays $555
+- **At the end of the paid session**, Aleksandr verbally activates her platform access (magic-link → `/game/me/zone-of-genius/start-here`)
+
+**Branch B — smaller investment first ($37):**
+- On the reveal page, clicks "Find Out How to Use & Monetize Your Top Talent — $37"
+- Pays $37 for the Top Talent Activation
+- **Immediate post-purchase**: routed to `/game/me/zone-of-genius/start-here` (the activation home)
+- Three Talents in Depth, How It Shows Up, Path of Mastery, etc. — all unlock for her
+
+Both branches: paid → platform access. Free → reveal page only. **Funnel monogamy holds in both directions.**
+
+#### What's deliberately out of this flow
+
+- **No nurture email sequence** (Day-1/2/8 follow-ups KILLED in code as of Day 61 — both the enqueue in `save-zog-result` and the dispatcher in `process-nurture-emails` are gated by `NURTURE_*_KILLED` constants. Awaiting consent / GDPR / spam-policy decision before revival.)
+- **No MeGate / "Save Your Profile" gate inside `/game/me`.** With email captured at the reveal save block, MeGate has no purpose. To be retired in Wave 2.
+- **No platform exposure to free users.** `/game/me/*` is purchase-gated (entitlement check redirects unpaid auth users back to `/zone-of-genius`).
+- **No "check your inbox" confirmation language.** That would push attention OFF the page when the page is doing its persuasive work.
+
+#### Out-of-sprint (parked, captured in roadmap)
+
+- Soul-color dodecahedron glow (verified-existing infra: `generate-soul-colors` edge function + `soul_colors` column + `SoulDodecahedron` component already shipped to `/character-hub`; just not wired into the reveal). Wave-3 polish, not core funnel.
+- Re-enable nurture sequence with proper consent UX (whenever Aleksandr settles the policy)
+- Public/anonymous soul-color generation (path-a — needs cache + IP rate-limit on the edge function)
+
 ---
 
 ## Table of Contents
