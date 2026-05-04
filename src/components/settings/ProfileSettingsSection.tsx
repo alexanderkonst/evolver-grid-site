@@ -232,7 +232,7 @@ const ProfileSettingsSection = () => {
                                     className="mt-1 text-base"
                                     style={{
                                         fontFamily: "'Cormorant Garamond', serif",
-                                        fontWeight: 400,
+                                        fontWeight: 500,
                                         fontStyle: "italic",
                                     }}
                                 >
@@ -296,7 +296,7 @@ const ProfileSettingsSection = () => {
                                     className="text-base mt-0.5"
                                     style={{
                                         fontFamily: "'Cormorant Garamond', serif",
-                                        fontWeight: 400,
+                                        fontWeight: 500,
                                         fontStyle: "italic",
                                     }}
                                 >
@@ -459,7 +459,7 @@ const ProfileSettingsSection = () => {
                                 className="text-base text-muted-foreground mt-0.5"
                                 style={{
                                     fontFamily: "'Cormorant Garamond', serif",
-                                    fontWeight: 400,
+                                    fontWeight: 500,
                                     fontStyle: "italic",
                                 }}
                             >
@@ -522,7 +522,7 @@ const ProfileSettingsSection = () => {
                                 className="text-base text-red-700 mt-0.5"
                                 style={{
                                     fontFamily: "'Cormorant Garamond', serif",
-                                    fontWeight: 400,
+                                    fontWeight: 500,
                                     fontStyle: "italic",
                                 }}
                             >
