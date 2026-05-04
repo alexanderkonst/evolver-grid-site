@@ -74,13 +74,14 @@ const DEFAULT_PLAYLIST_URL =
  * to auto-pause when the user crosses back out into sales territory.
  */
 function isShellRoute(pathname: string): boolean {
+    // Match exact roots OR `${root}/` prefixes — never `${root}X` patterns
+    // (so a hypothetical /ai-os-archive route wouldn't falsely trigger
+    // music). Day 60+ audit: tightened from `startsWith("/ai-os")` etc.
     return (
-        pathname.startsWith("/game/") ||
-        pathname === "/game" ||
-        pathname.startsWith("/ai-os") ||
-        pathname.startsWith("/ubb") ||
-        pathname === "/dashboard" ||
-        pathname.startsWith("/dashboard/")
+        pathname === "/game" || pathname.startsWith("/game/") ||
+        pathname === "/ai-os" || pathname.startsWith("/ai-os/") ||
+        pathname === "/ubb" || pathname.startsWith("/ubb/") ||
+        pathname === "/dashboard" || pathname.startsWith("/dashboard/")
     );
 }
 
