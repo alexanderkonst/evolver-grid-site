@@ -189,13 +189,38 @@ const SaveProfileCard = ({ onSuccess }: { onSuccess: () => void }) => {
             if (error) throw error;
             // Edge case: signup with an already-registered email returns no
             // error but a fake user with empty identities[] and no session.
-            // Tell the user plainly and switch them toward the return tab.
+            //
+            // Day 61 (Sasha 2026-05-04 13:00): the OLD message ("Use the
+            // 'Coming back' tab with your password") was misleading for
+            // users whose existing account was created SILENTLY by
+            // save-zog-result (random UUID password the user never saw).
+            // Telling them to use a password they don't have was a dead
+            // end. New behavior: send a magic link so they can get into
+            // their existing account without needing a password they were
+            // never given. Lands them on /start-here just like fresh
+            // signup. AuthCallback's claim-anonymous-zog then attaches
+            // any pending data as a backstop.
             const identities = (data.user as any)?.identities;
             if (data.user && Array.isArray(identities) && identities.length === 0) {
-                toast({
-                    title: "Looks like you've been here before",
-                    description: "Use the 'Coming back' tab with your password to open your profile.",
-                });
+                try {
+                    const { error: otpError } = await supabase.auth.signInWithOtp({
+                        email: email.trim(),
+                        options: {
+                            emailRedirectTo: `${window.location.origin}/game/me/zone-of-genius/start-here`,
+                        },
+                    });
+                    if (otpError) throw otpError;
+                    toast({
+                        title: "Welcome back — check your email",
+                        description: "We sent a one-click sign-in link to your inbox.",
+                    });
+                } catch (otpErr) {
+                    console.warn("[MeGate] magic-link recovery failed", otpErr);
+                    toast({
+                        title: "Looks like you've been here before",
+                        description: "Try the 'Coming back' tab — or check your email for a previous sign-in link.",
+                    });
+                }
                 return;
             }
             if (!data.session) {

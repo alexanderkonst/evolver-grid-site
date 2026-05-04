@@ -1,6 +1,12 @@
 import { ReactNode, useRef } from "react";
 import CardActions from "@/components/sharing/CardActions";
 import { Ornament } from "@/lib/landingDesign";
+// Day 61 (Sasha 2026-05-04 12:45): brand torus mark used in the
+// in-card footer so the saved/shared image carries identifiable
+// branding + the source URL. The torus IS the brand mark; we use
+// it without the wordmark so the footer reads as a glyph + tagline,
+// not a heavy lockup.
+import brandTorus from "@/assets/find-your-top-talent-torus.png";
 
 interface RevelatoryHeroProps {
     type: "appleseed" | "excalibur";
@@ -349,6 +355,40 @@ const RevelatoryHero = ({
                         </div>
                     </div>
                 )}
+
+                {/* Brand footer — Day 61 (Sasha 2026-05-04 12:45).
+                    The saved/shared PNG was rendering naked (no source
+                    URL, no brand mark), so the recipient had no path
+                    back. Footer sits INSIDE cardRef → it gets captured
+                    by html2canvas and travels with the image.
+                    Position: above Save · Share so the saved image
+                    reads sensibly: content → brand → actions.
+                    Composition: subtle ornament rule → small torus
+                    glyph → "→ get yours · findyourtoptalent.com" line
+                    in italic Cormorant. The torus alone (no wordmark)
+                    so the footer reads as a glyph + tagline, not a
+                    heavy lockup. */}
+                <Ornament className="mt-6 mb-4" />
+                <div className="flex flex-col items-center gap-2.5 mt-1 mb-2">
+                    <img
+                        src={brandTorus}
+                        alt="Find Your Top Talent"
+                        className="w-9 h-9 sm:w-10 sm:h-10 object-contain"
+                        draggable={false}
+                        style={{
+                            filter: "drop-shadow(0 0 8px rgba(244, 212, 114, 0.35))",
+                        }}
+                    />
+                    <p
+                        className={`font-display text-sm sm:text-base italic ${palette.textPrimary} leading-snug`}
+                        style={{
+                            fontWeight: 500,
+                            textShadow: `0 0 24px ${palette.glowColor}`,
+                        }}
+                    >
+                        → get yours · <span style={{ fontWeight: 600 }}>findyourtoptalent.com</span>
+                    </p>
+                </div>
 
                 {/* Save · Share — kept; one-click PNG capture + socials
                     popover. Share text now drops the retired Three-Lenses
