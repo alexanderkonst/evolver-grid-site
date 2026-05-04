@@ -108,15 +108,17 @@ const MeGate = ({ children }: { children: ReactNode }) => {
                     // in src/lib/postAuthSideEffects.ts — single source
                     // of truth that covers this path AND AuthCallback's
                     // magic-link path AND any future auth entry points.
-                    // See that file for the architectural rationale.
                     //
-                    // We DO still call getOrCreateGameProfileId() above
-                    // because it's a different concern (ensuring the
-                    // game_profiles row exists for this user-id; not
-                    // tied to an auth event but to a per-form action).
-                    //
-                    // Stay on the route they were trying to reach.
-                    navigate(location.pathname + location.search, { replace: true });
+                    // Day 61 (Sasha 2026-05-04): redirect changed from
+                    // `location.pathname` (whatever the user was hitting
+                    // when they encountered the gate, often /game/me
+                    // which routes to Overview) to the canonical Start
+                    // Here activation home. First-time users always
+                    // land in the right place. Returning users can
+                    // navigate from there to anywhere else in the
+                    // shell.
+                    void location;
+                    navigate("/game/me/zone-of-genius/start-here", { replace: true });
                 }}
             />
         </GameShellV2>
@@ -138,7 +140,12 @@ const SaveProfileCard = ({ onSuccess }: { onSuccess: () => void }) => {
                 email: email.trim(),
                 password,
                 options: {
-                    emailRedirectTo: `${window.location.origin}/game/me`,
+                    // Day 61 (Sasha 2026-05-04): redirect target changed
+                    // from /game/me (which routes to Overview by default
+                    // and confused first-time users who landed in the
+                    // middle of the ME shell) to the canonical Start Here
+                    // activation home. New users always begin there.
+                    emailRedirectTo: `${window.location.origin}/game/me/zone-of-genius/start-here`,
                     data: { first_name: firstName.trim() || null },
                 },
             });
@@ -186,7 +193,7 @@ const SaveProfileCard = ({ onSuccess }: { onSuccess: () => void }) => {
                 password,
             });
             if (error) throw error;
-            toast({ title: "Welcome back." });
+            toast({ title: "You're in." });
             onSuccess();
         } catch (err: any) {
             toast({
@@ -205,15 +212,19 @@ const SaveProfileCard = ({ onSuccess }: { onSuccess: () => void }) => {
     // a violet/dark-glass card that read as a different product. Now
     // uses the same `@/lib/landingDesign` tokens as
     // MethodologyLandingPage and the AppleseedDisplay reveal.
+    // Day 61 (Sasha 2026-05-04 11:30): legibility hard-push.
+    // Inputs: bumped border opacity 0.18 → 0.32 (the field edge was
+    // washed out on cream), placeholder opacity 0.40 → 0.55, text size
+    // bumped to text-base + medium weight so typed input reads
+    // substantial.
     const editorialInputClass =
-        "bg-white/85 border border-[hsla(228,30%,18%,0.18)] text-[#0a1628] placeholder:text-[hsla(228,30%,18%,0.40)] focus-visible:ring-2 focus-visible:ring-[hsla(40,70%,55%,0.50)] focus-visible:border-[hsla(40,70%,55%,0.55)]";
-    // Day 58 (Sasha 2026-05-03): label contrast + size bumped — was
-    // 0.7 opacity at text-sm, reading as washed out on the cream
-    // background. Now 0.92 opacity, weight 500, base size — readable.
+        "bg-white/90 border-[1.5px] border-[hsla(228,30%,18%,0.32)] text-[#0a1628] text-base font-medium placeholder:text-[hsla(228,30%,18%,0.55)] focus-visible:ring-2 focus-visible:ring-[hsla(40,70%,55%,0.55)] focus-visible:border-[hsla(40,70%,55%,0.65)]";
+    // Form labels — bumped weight 500 → 600 so the italic Cormorant
+    // labels don't blend into the surrounding cream.
     const editorialLabelStyle = {
         fontFamily: "'Cormorant Garamond', serif",
-        fontWeight: 500,
-        color: "var(--skin-text-primary, rgba(10,22,40,0.92))",
+        fontWeight: 600,
+        color: "var(--skin-text-primary, #0b2a5a)",
         textShadow:
             "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
     } as const;
@@ -274,12 +285,17 @@ const SaveProfileCard = ({ onSuccess }: { onSuccess: () => void }) => {
 
                 <Ornament className="my-6 sm:my-7" />
 
+                {/* Day 61 (Sasha 2026-05-04 11:30): real legibility
+                    push — body paragraph bumped from text-[15px]/base
+                    weight-500 to text-base/text-lg weight-600. Now
+                    actually substantial against the cream wash, not
+                    just nominally darker. */}
                 <p
-                    className="text-[15px] sm:text-base leading-relaxed max-w-[460px] mx-auto mb-6 sm:mb-8"
+                    className="text-base sm:text-lg leading-relaxed max-w-[480px] mx-auto mb-6 sm:mb-8"
                     style={{
                         fontFamily: "'Source Serif 4', Georgia, serif",
-                        fontWeight: 500,
-                        color: "var(--skin-text-primary, rgba(10,22,40,0.92))",
+                        fontWeight: 600,
+                        color: "var(--skin-text-primary, #0b2a5a)",
                         textShadow:
                             "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
                     }}
@@ -291,30 +307,38 @@ const SaveProfileCard = ({ onSuccess }: { onSuccess: () => void }) => {
             </header>
 
             {/* ═══════ FORM — editorial Tabs + inputs ═══════ */}
+            {/* Day 61 (Sasha 2026-05-04 11:30): tabs lifted out of
+                the muted register — text-sm weight-default at 0.6
+                opacity was pale on cream. Now text-base weight-600 at
+                full primary navy. Container border bumped from 0.10
+                to 0.20 so the pill itself reads as a structural
+                element. */}
             <Tabs defaultValue="save" className="w-full">
                 <TabsList
-                    className="grid w-full grid-cols-2 p-1 rounded-full"
+                    className="grid w-full grid-cols-2 p-1.5 rounded-full"
                     style={{
-                        background: "hsla(228, 30%, 18%, 0.06)",
-                        border: "1px solid hsla(228, 30%, 18%, 0.10)",
+                        background: "hsla(228, 30%, 18%, 0.08)",
+                        border: "1px solid hsla(228, 30%, 18%, 0.20)",
                     }}
                 >
                     <TabsTrigger
                         value="save"
-                        className="rounded-full min-h-[44px] text-sm data-[state=active]:shadow-sm transition-all"
+                        className="rounded-full min-h-[44px] text-base font-semibold data-[state=active]:shadow-sm transition-all"
                         style={{
                             fontFamily: "'Cormorant Garamond', serif",
-                            color: "var(--skin-text-muted, rgba(26,30,58,0.6))",
+                            fontWeight: 600,
+                            color: "var(--skin-text-primary, #0b2a5a)",
                         }}
                     >
                         First time
                     </TabsTrigger>
                     <TabsTrigger
                         value="return"
-                        className="rounded-full min-h-[44px] text-sm data-[state=active]:shadow-sm transition-all"
+                        className="rounded-full min-h-[44px] text-base font-semibold data-[state=active]:shadow-sm transition-all"
                         style={{
                             fontFamily: "'Cormorant Garamond', serif",
-                            color: "var(--skin-text-muted, rgba(26,30,58,0.6))",
+                            fontWeight: 600,
+                            color: "var(--skin-text-primary, #0b2a5a)",
                         }}
                     >
                         Coming back
@@ -326,7 +350,7 @@ const SaveProfileCard = ({ onSuccess }: { onSuccess: () => void }) => {
                         <div className="space-y-1.5">
                             <Label
                                 htmlFor="me-firstname"
-                                className="text-base italic"
+                                className="text-lg italic"
                                 style={editorialLabelStyle}
                             >
                                 Your name
@@ -343,7 +367,7 @@ const SaveProfileCard = ({ onSuccess }: { onSuccess: () => void }) => {
                         <div className="space-y-1.5">
                             <Label
                                 htmlFor="me-email"
-                                className="text-base italic"
+                                className="text-lg italic"
                                 style={editorialLabelStyle}
                             >
                                 Email
@@ -361,26 +385,25 @@ const SaveProfileCard = ({ onSuccess }: { onSuccess: () => void }) => {
                         <div className="space-y-1.5">
                             <Label
                                 htmlFor="me-password"
-                                className="text-base italic"
+                                className="text-lg italic"
                                 style={editorialLabelStyle}
                             >
-                                A password (so only you can open it)
+                                Password
                             </Label>
                             <Input
                                 id="me-password"
                                 type="password"
-                                placeholder="At least 6 characters"
+                                placeholder="Make one up"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                                 required
-                                minLength={6}
                                 className={editorialInputClass}
                             />
                         </div>
                         <Button
                             type="submit"
                             disabled={loading}
-                            className="w-full mt-3 rounded-full py-6 text-sm font-semibold transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+                            className="w-full mt-3 rounded-full py-6 text-base font-bold transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
                             style={ctaButtonStyle}
                         >
                             {loading ? "Saving…" : "Save my profile"}
@@ -393,7 +416,7 @@ const SaveProfileCard = ({ onSuccess }: { onSuccess: () => void }) => {
                         <div className="space-y-1.5">
                             <Label
                                 htmlFor="me-email-r"
-                                className="text-base italic"
+                                className="text-lg italic"
                                 style={editorialLabelStyle}
                             >
                                 Email
@@ -411,7 +434,7 @@ const SaveProfileCard = ({ onSuccess }: { onSuccess: () => void }) => {
                         <div className="space-y-1.5">
                             <Label
                                 htmlFor="me-password-r"
-                                className="text-base italic"
+                                className="text-lg italic"
                                 style={editorialLabelStyle}
                             >
                                 Password
@@ -428,7 +451,7 @@ const SaveProfileCard = ({ onSuccess }: { onSuccess: () => void }) => {
                         <Button
                             type="submit"
                             disabled={loading}
-                            className="w-full mt-3 rounded-full py-6 text-sm font-semibold transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+                            className="w-full mt-3 rounded-full py-6 text-base font-bold transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
                             style={ctaButtonStyle}
                         >
                             {loading ? "Opening…" : "Open my profile"}

@@ -440,7 +440,7 @@ const ZoneOfGeniusOverview = () => {
                             className="text-[10px] uppercase tracking-[0.32em] font-medium"
                             style={{ color: "var(--skin-accent-gold, #b8860b)" }}
                         >
-                            My top talent is
+                            My top talent
                         </p>
                         <h1
                             className="leading-[1.1] tracking-[-0.01em]"
@@ -486,7 +486,13 @@ const ZoneOfGeniusOverview = () => {
                                 >
                                     My three talents
                                 </p>
-                                <ul className="mx-auto max-w-[34ch] space-y-1">
+                                {/* Day 61 (Sasha 2026-05-04 11:30): ✦
+                                    glyphs replaced with 1/2/3 — mirrors
+                                    the same change on the post-assessment
+                                    reveal (RevelatoryHero) so the saved
+                                    Top Talent page reads as the same
+                                    artifact. */}
+                                <ol className="mx-auto max-w-[34ch] space-y-1">
                                     {fullAppleseed.topTalentProfile.top_three_talents_compact
                                         .slice(0, 3)
                                         .map((talent, i) => (
@@ -507,14 +513,16 @@ const ZoneOfGeniusOverview = () => {
                                                     style={{
                                                         color: "var(--skin-accent-gold, #b8860b)",
                                                         fontSize: "0.85em",
+                                                        fontVariantNumeric: "tabular-nums lining-nums",
+                                                        fontWeight: 600,
                                                     }}
                                                 >
-                                                    ✦
+                                                    {i + 1}.
                                                 </span>
                                                 {talent}
                                             </li>
                                         ))}
-                                </ul>
+                                </ol>
                             </div>
                         )}
 

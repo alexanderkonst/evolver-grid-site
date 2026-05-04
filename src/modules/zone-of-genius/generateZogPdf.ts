@@ -419,7 +419,7 @@ function renderHero(b: PdfBuilder, appleseed: AppleseedData) {
     b.ornament();
     b.y += 3;
 
-    b.eyebrow("My Top Talent Is", { center: true });
+    b.eyebrow("My Top Talent", { center: true });
     b.y += 1;
 
     b.title(stripDecorativeGlyphs(appleseed.vibrationalKey.name), {
@@ -519,7 +519,7 @@ function renderTopShadow(b: PdfBuilder, appleseed: AppleseedData) {
     // "MY TOP SHADOW IS"); paragraph = second-person body. Two surfaces,
     // two registers — same data, different framing.
     if (oneSentence) {
-        b.eyebrow("My top shadow is");
+        b.eyebrow("My top shadow");
         b.y -= 1;
         b.cardBody(oneSentence, { tinted: true, italic: true });
     }
