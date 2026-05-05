@@ -6355,3 +6355,111 @@ Unchanged. **Press send Friday's DMs.** The activation product is now coherent e
 ---
 
 *Day 58: The Activation product becomes a transmission. Voice flips to second-person. Deep profile generates server-side every time. Audio plays in every browser. The reveal card sells without describing. The mirror lands.*
+
+---
+
+## Day 61-62 — Auth Regression Hunt + Funnel Monogamy Architecture + Legibility Master Parameter (May 4-5, 2026)
+
+**12+ hours across two days. Three intertwined sprints.** A revenue-blocking auth regression that surfaced as "Loading…" spinner-of-doom and "Take the assessment" CTA on already-completed accounts triggered a cascade: diagnose, fix, audit. The fix exposed funnel architecture inconsistencies (free users leaking into platform, email content competing with website, multiple save mechanisms drifting). Architecture work surfaced visual artifact issues (PNG too tall, QR placement, html2canvas filter crash). Visual work surfaced recurring "hard to read" user feedback that turned into a structured Legibility Master Parameter framework codified in the playbook.
+
+### Themes
+
+**Auth + data layer (revenue-critical bugs):**
+- MeGate signup missing `migrateGuestDataToProfile()` call → orphaned anonymous quiz data → "Take the assessment" empty state for users who already completed it
+- AuthCallback + MeGate fire-and-forget claim-anonymous-zog → race → "Loading…" forever
+- MeGate signup with already-registered email → magic-link recovery (silent save-zog-result accounts had random UUID password)
+- HIBP "weak password" rejection → friendly error mapper
+- `last_zog_snapshot_id` NULL while snapshots exist → backfill migration + defensive read fallback (heal-on-read pattern)
+- Stripe payment success URL bouncing to /zone-of-genius after MeGate retirement → bridge restored via `?payment=success` detection
+- Coupon flow bypassing signup → no returnable account → coupon now navigates with `?payment=success` so it converges on SaveProfileCard
+- Case 2 edge case: magic-link recovery skipped `migrateGuestDataToProfile()` → added to `postAuthSideEffects` SIGNED_IN listener (sequenced before claim)
+
+**Funnel architecture (monogamy preserved):**
+- MeGate retired as general signup gate (guests redirect to `/zone-of-genius`)
+- Email rewrite: deposit-slip pattern. Result content stripped. Single CTA back to `/zone-of-genius?result=<token>`. Email is a deposit slip, not a delivery vehicle.
+- ZoneOfGeniusEntry gained Mode A (token URL) + Mode B (authed user) — same component handles live-quiz, return-via-email, post-magic-link. No replica page; `MyResult.tsx` kept as legacy URL handler.
+- AuthCallback default `next` and save-anonymous-zog redirect both shifted to `/zone-of-genius` (was `/playbook/discover` — platform leak)
+- Save block on AppleseedDisplay reorganized into 4-CTA bottom sequence: $555 → $37 → playbook card → "Or just email me my result" button-to-input. Both reveal pages share the canonical sequence.
+- Save toast killed: "✓ Saved / We sent your top talent to your inbox" → inline "Saved ✓ — there's more ↓" only
+- Day-1/2/8 nurture sequence KILLED in code (`NURTURE_EMAILS_KILLED` + `NURTURE_DISPATCH_KILLED`) pending consent / GDPR policy
+
+**Assessment path overhaul (parity with AI path):**
+- Three result boxes merged into ONE `RevelatoryHero` (same component as AI path). No more drift.
+- Talent name visual hierarchy upgraded across Step 1/2/3 (Cormorant + bold + larger; descriptions stay subordinate)
+- "Step 4 of 4" indicator hidden on result step
+- Tab label "Your Zone of Genius Snapshot" → "Your Top Talent"
+- Multiple post-completion popups → ONE ("Your Top Talent has been saved!"); `successToastFired` / `generateSucceeded` flag pattern on outer catches kills false-alarm "Failed to save" toasts that fired AFTER successful render
+- Assessment prompt rewritten: gerund Archetype Title, first-person verb-form Description, compact Superpowers (3–6 words, no asterisks)
+- Defensive parsing strips `*` and "you " prefix in legacy snapshots
+- PDF download removed from reveal footer; Back + Start Over buttons removed
+- CTA 3 (playbook card) added to both reveal pages
+
+**Visual artifact (the social PNG):**
+- html2canvas Save crash (`addColorStop` non-finite) fixed: onclone scrubber now strips `filter` + `-webkit-filter`
+- Vertical 9:16-ish PNG via `captureWidth=480` (clone-only mutation via `data-capture-token` — no on-screen flash)
+- QR code added to brand footer; visibility-hidden in live, revealed in onclone (appears in saved PNG, never on live page)
+- Save + Share buttons excluded from PNG via `data-html2canvas-ignore`
+- Brand torus dropped from footer (QR + URL line cover the brand-mark + way-back jobs); the drop-shadow that was crashing html2canvas is gone with it
+- Share text URL: clickable `https://findyourtoptalent.com` + UTMs + Twitter-length safeguard
+
+**The Legibility Master Parameter (the documentation crystallization):**
+- Three legibility passes converged into a structured concept: every legibility surface has a master parameter expressing how aggressively the cocktail levers are applied
+- Three named levels: Subtle (1.0×) / Standard (1.25×) / **Strong (1.5×) — de-facto default**, arrived at through user feedback
+- Five levers: weight bump, muted-alpha lift, halo-deep token (white lift + navy under-stroke for variable-luminance bg), italic letter-spacing, backdrop scrim (escalation only)
+- New CSS token `--skin-text-halo-deep`; light-skin muted alphas bumped 0.95/0.92/0.85 → 0.97/0.93/0.88
+- Strong cocktail propagated to: landing hero, AppleseedDisplay bridge line + saved-state inline confirmations, Step4 saved state, PathPage hero, playbook secret-tease, ZoneOfGeniusOverview archetype name, ZoGPerspectiveView shared `titleStyle` + `bodyStyle` (propagates to all 10+ perspective sub-pages) + inline italic Cormorant fragments
+- Codified in `ui_playbook.md` Part VIII
+
+### Files touched (~25)
+
+**Page surfaces:** `MethodologyLandingPage.tsx`, `AuthCallback.tsx`, `PathPage.tsx`, `ZoneOfGeniusOverview.tsx`, `ZoGPerspectiveView.tsx`, `IgniteSession.tsx`
+
+**Components:** `MeGate.tsx`, `CardActions.tsx`, `RevelatoryHero.tsx`, `ActivationSteps.tsx`, `StepCard.tsx`, `ProfileSettingsSection.tsx`
+
+**Modules:** `AppleseedDisplay.tsx`, `ZoneOfGeniusEntry.tsx`, `Step4GenerateSnapshot.tsx`, `ZoneOfGeniusAssessmentLayout.tsx`, `Step1/2/3SelectTalents.tsx`, `zogSnapshotPrompt.ts`, `zogRoutes.ts`
+
+**Edge functions:** `save-zog-result/index.ts` (deposit-slip rewrite + nurture kill), `save-anonymous-zog/index.ts` (redirect target), `process-nurture-emails/index.ts` (dispatcher kill)
+
+**Lib / global:** `postAuthSideEffects.ts` (Case 2 fix), `index.css` (skin tokens + halo-deep)
+
+**Migrations:** `20260504200000_backfill_last_zog_snapshot_id.sql` (heals existing affected accounts)
+
+**Infra:** `package.json` (qrcode.react)
+
+**Routing:** `App.tsx` (`MyResult` legacy mark; 5 `/ignite#pricing-section` → `/ignite` callsites)
+
+**Docs:** `roadmap.md` (parked entries — soul colors + nurture revival), `alexanders_unique_business.md` (Lived User Journey section), `ui_playbook.md` (Part VIII Legibility section + Master Parameter subsection)
+
+### Lessons logged
+
+1. **The "ROOT CAUSE FOUND" pattern is an epistemic error.** Multiple "found the root cause" declarations during the auth-bug hunt — each REAL but partial. Sasha named it: *"that's what you said numerous times today."* The pattern isn't being wrong; it's being confident before verification. Worse than wrong because it eats trust on top of time. New language: **Hypothesis** before shipping; **Shipped, awaiting verification** when code lands; **Confirmed by your test** only after production check.
+
+2. **The "while I'm here" anti-pattern eats verification.** When Sasha reported bug A, I'd notice B, C, D + architectural issue E and ship A+B+C+D+E in one wave. Verification becomes impossible. Sasha named it: *"we would fix not what actually broke it but some adjacent stuff and many edge cases."* New protocol: smallest possible diff per fix; adjacent stuff goes on a "saw these too, NOT shipping" list, not into the commit.
+
+3. **External-config dependencies are an audit blind spot.** MeGate retirement broke the Stripe $37 flow because Stripe Payment Link's `success_url` (configured in Stripe Dashboard, NOT in code) depended on MeGate's signup form. My code audits had a blind spot for configuration outside the code. Going forward: before retiring any auth/access mechanism, explicitly ask *"What lands users at this URL from outside the codebase?"*
+
+4. **Architectural complexity from accidental accretion vs. deliberate choice.** `MyResult.tsx` was a duplicate of the live reveal. Sasha's question — *"the solution you proposed creates a replica, or shows the ACTUAL same page?"* — exposed that I was about to formalize a duplicate. The cleaner architecture: ONE component, ONE render, populated differently per entry mode. Same lesson as Day 58 (server-side appleseed unification): when an architecture has accidental complexity, surface and remove it, don't optimize around it.
+
+5. **The deposit-slip email principle.** *"I don't think we put the result INTO the email. We want her to come back to the WEBSITE, right?"* If the email contains the full result, we've handed the user an off-platform alternative competing with the website visit. Email becomes a deposit slip — its only job: bring her back to where the persuasion lives. Logged as the canonical pattern for any "saved your X" email.
+
+6. **Confirmation language pushing attention OFF the page is a silent business killer.** The toast *"✓ Saved. Check your inbox in a moment."* told the user to leave right when offer cards were about to land. Sasha caught it: *"That's a CTA. Misleading. THAT's a silent business killer!"* Replaced with inline *"Saved ✓ — there's more ↓"* (same vertical space, arrow points down at offers). Pattern: confirmation for save-actions on persuasive pages must point ATTENTION DOWN, never OUT.
+
+7. **Two-direction text-shadow for variable-luminance backgrounds.** Standard white-halo text-shadow lifts text off cream pixels but adds nothing on bright sun-glare pixels. Fix: 4-layer shadow combining white halo (lift on cream) + navy stroke (deepen on bright spots). Invisible on uniform bg, only kicks in where needed. Codified as `--skin-text-halo-deep`.
+
+8. **The Master Legibility Parameter — a single intensity dial.** Three legibility passes converged on the structured concept (Subtle / Standard / Strong, default = Strong = 1.5×). Codified in playbook so future surfaces don't rediscover values.
+
+9. **Defensive heal-on-read for orphaned data pointers.** `last_zog_snapshot_id` NULL bug fixed two-layered: backfill migration (heals existing affected accounts at deploy) + each read site falls back to "find most recent snapshot" + heals pointer in-place if missing. Pattern: backfill + defensive fallback together for any "read by foreign-key pointer" surface.
+
+10. **`successFired` flag pattern for false-alarm guards.** False "Failed to save" toast firing AFTER a successful render — caused by post-success operations throwing into the outer catch. Fix: track whether success already fired; if yes, log post-success errors silently (snapshot WAS saved); only show error toast if success hasn't fired yet. Pattern: any operation with multiple side effects after primary success.
+
+### What this means for the funnel
+
+The reveal page is now **the single anchor**. Email → reveal. Coupon → reveal (then signup-or-pay path). Magic link → reveal. Stripe payment → MeGate bridge → signup → platform. Free users never enter `/game/me/*`. Every entry point lands on the same RevelatoryHero artifact (one render path, no drift). The save mechanism is one button at the bottom of every reveal, deposit-slip email back to the website, no off-platform competition. The legibility cocktail at Strong is the documented default for any text on variable-luminance bg.
+
+### Si–Do
+
+Unchanged. **Press send Friday's DMs.** The architecture is now clean enough that real $37 buyers can pay and reach their content; real $555 bookings can pay and reach their session; real free traffic lands on the reveal and either books, buys, reads the playbook, or saves via deposit-slip email — every path coherent. The first stranger paying remains the unfired Si–Do; the apparatus is substantially more ready.
+
+---
+
+*Day 61-62: The funnel becomes monogamous. The reveal page becomes the anchor. The save email becomes a deposit slip. The legibility cocktail becomes a documented Master Parameter at Strong (1.5×). The auth flow heals itself on read. The user's recognition lands on a single coherent artifact, every time.*
