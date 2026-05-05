@@ -278,7 +278,7 @@ export default function CanvasOverviewScreen() {
                 color: "var(--skin-text-muted, rgba(11, 42, 90, 0.55))",
               }}
             >
-              What's ahead
+              What the AI composes for you
             </div>
             <ol
               className="mx-auto max-w-xl space-y-2 text-center"
