@@ -676,6 +676,22 @@ export function UniqueBusinessProvider({ children }: { children: ReactNode }) {
     const random = Math.random().toString(36).slice(2, 8);
     const slug = `l-${random}-v${landing.version}`;
     const snapshot = buildArtifactSnapshot();
+    // Day 62 (Sasha 2026-05-05) BUG FIX — second source-of-truth mismatch.
+    // `buildArtifactSnapshot()` uses `latestLocked ?? latest` for every key
+    // (correct for sibling artifacts, which are CONTEXT for this publish).
+    // But the `landing_page` row inside the snapshot IS what
+    // PublicLandingPage actually renders — so it must mirror what we
+    // promised in the URL slug, not the older locked version. Without this
+    // override, the slug correctly said "v7" but PublicLandingPage kept
+    // showing the locked v3 content because the snapshot still pulled v3.
+    // Override only the landing_page row with the same `landing` we used
+    // for the slug — sibling artifacts retain their locked-preferred
+    // semantics for the dossier context.
+    snapshot.landing_page = {
+      version: landing.version,
+      content: landing.content,
+      specificity_score: landing.specificity_score,
+    };
 
     const { data, error } = await (supabase as any)
       .from("unique_business_dossiers")
