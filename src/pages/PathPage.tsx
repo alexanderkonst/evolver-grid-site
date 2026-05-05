@@ -113,13 +113,16 @@ const PathPage = () => {
                 render as neutral dark navy, letting the 3 accents do
                 the lifting. Color regains meaning by scarcity. */}
             <section className="mb-14">
+              {/* Day 62 (Sasha 2026-05-05): Strong legibility cocktail
+                  per ui_playbook.md Part VIII — weight 600→700,
+                  halo-strong→halo-deep. Same pattern as landing hero. */}
               <h1
-                className="text-3xl sm:text-4xl md:text-5xl font-semibold leading-[1.2] tracking-[-0.01em] mb-4"
+                className="text-3xl sm:text-4xl md:text-5xl font-bold leading-[1.2] tracking-[-0.01em] mb-4"
                 style={{
                   fontFamily: "'Cormorant Garamond', serif",
                   color: "var(--skin-text-primary, #0a1628)",
                   textShadow:
-                    "var(--skin-text-halo-strong, 0 0 22px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.8), 0 2px 12px rgba(26,30,58,0.15))",
+                    "var(--skin-text-halo-deep, 0 0 28px rgba(255,255,255,0.85), 0 1px 2px rgba(255,255,255,0.95), 0 0 1px rgba(11,42,90,0.65), 0 1px 0 rgba(11,42,90,0.45))",
                 }}
               >
                 Solid Founder-Market Fit. Early{" "}
@@ -151,13 +154,14 @@ const PathPage = () => {
                 .
               </h1>
 
+              {/* Day 62 (Sasha 2026-05-05): Strong legibility cocktail. */}
               <h2
-                className="text-2xl sm:text-3xl md:text-4xl font-semibold leading-[1.2] tracking-[-0.01em] mb-2"
+                className="text-2xl sm:text-3xl md:text-4xl font-bold leading-[1.2] tracking-[-0.01em] mb-2"
                 style={{
                   fontFamily: "'Cormorant Garamond', serif",
                   color: "var(--skin-text-primary, #0a1628)",
                   textShadow:
-                    "var(--skin-text-halo-subtle, 0 0 20px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.75))",
+                    "var(--skin-text-halo-deep, 0 0 28px rgba(255,255,255,0.85), 0 1px 2px rgba(255,255,255,0.95), 0 0 1px rgba(11,42,90,0.65), 0 1px 0 rgba(11,42,90,0.45))",
                 }}
               >
                 In 6–8 Weeks.

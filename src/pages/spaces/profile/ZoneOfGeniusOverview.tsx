@@ -482,14 +482,20 @@ const ZoneOfGeniusOverview = () => {
                         >
                             My top talent
                         </p>
+                        {/* Day 62 (Sasha 2026-05-05): Strong legibility
+                            cocktail per ui_playbook.md Part VIII —
+                            archetype name H1 bumped weight 600→700,
+                            halo upgraded to halo-deep (white lift + navy
+                            stroke for variable-luminance bg). Same
+                            pattern as landing hero. */}
                         <h1
                             className="leading-[1.1] tracking-[-0.01em]"
                             style={{
                                 fontFamily: "'Cormorant Garamond', serif",
-                                fontWeight: 600,
+                                fontWeight: 700,
                                 fontSize: "clamp(1.75rem, 5vw, 2.5rem)",
                                 color: INK,
-                                textShadow: HALO_SOFT,
+                                textShadow: "var(--skin-text-halo-deep, 0 0 28px rgba(255,255,255,0.85), 0 1px 2px rgba(255,255,255,0.95), 0 0 1px rgba(11,42,90,0.65), 0 1px 0 rgba(11,42,90,0.45))",
                             }}
                         >
                             {stripDecorativeGlyphs(vk.name)}
