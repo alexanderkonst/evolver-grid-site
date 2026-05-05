@@ -80,7 +80,7 @@ export default function CanvasOverviewScreen() {
             textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.7))",
           }}
         >
-          Your Unique Business Canvas
+          Autonomous AI Venture Builder
         </h1>
         <p
           className="max-w-3xl"
@@ -92,9 +92,7 @@ export default function CanvasOverviewScreen() {
             color: "var(--skin-text-body, rgba(11, 42, 90, 0.85))",
           }}
         >
-          {totalArtifacts} artifacts. Press <span className="not-italic">✦&nbsp;Improve</span> on each
-          until specificity feels enough. Every improvement becomes a new
-          version — nothing is ever lost.
+          No human in the loop. The AI extracts your uniqueness, composes {totalArtifacts} artifacts of a complete business, and ships them as a live venture. You press <span className="not-italic">✦&nbsp;Improve</span> when something doesn't yet sound like only you. Every pass becomes a new version — nothing is ever lost.
         </p>
 
         {/* Glance row — DM Sans tabular-nums for digits */}
