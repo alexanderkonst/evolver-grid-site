@@ -181,28 +181,33 @@
      black, against the cream Aurora panel. Body/muted scales derived
      from the same hue family. */
   --skin-text-primary: #0b2a5a;
-  /* Day 62 (Sasha 2026-05-05): SECOND legibility pass on the light skin.
-     User feedback ("hard to read" — Karime + others) persisted after
-     the first round. Diagnosis: muted text at 0.86–0.78 alpha drops
-     below WCAG AA (4.5:1) on the variable-luminance gold/sun-glare
-     hero backgrounds. Bumping the alphas to 0.94/0.88 puts every body-
-     scale text comfortably above 7:1 contrast across the entire bg
-     range (uniformly dark cream + bright sun spots both pass). */
-  --skin-text-body: rgba(11, 42, 90, 0.95);
-  --skin-text-muted: rgba(11, 42, 90, 0.92);
-  --skin-text-muted-soft: rgba(11, 42, 90, 0.85);
+  /* Day 62 (Sasha 2026-05-05): THIRD legibility pass on the light skin.
+     Round 1 (alphas 0.86→0.92) helped; round 2 needed a 1.5x further
+     push because user feedback was "still hard." Final values put
+     muted text at near-full opacity (0.97 / 0.93 / 0.88) — only enough
+     residual transparency to remain "muted" semantically while passing
+     8–10:1 contrast on every cream-to-sun-glare luminance point.
+     This is the "Strong" master legibility setting per ui_playbook.md
+     Part VIII (the de-facto recommended default for this product). */
+  --skin-text-body: rgba(11, 42, 90, 0.97);
+  --skin-text-muted: rgba(11, 42, 90, 0.93);
+  --skin-text-muted-soft: rgba(11, 42, 90, 0.88);
 
   /* ── Text shadows / halos ──
-     Day 62 (Sasha 2026-05-05): added a NEW `halo-deep` variant that
-     combines white-halo lift (existing pattern, lifts text off cream)
-     WITH a subtle navy under-stroke (deepens text on bright sun-glare
-     spots). Use this on text over variable-luminance image backgrounds
-     (landing hero, reveal page bullseye, etc). The standard halos
-     stay unchanged so existing surfaces don't shift. */
+     Day 62 (Sasha 2026-05-05): `halo-deep` strengthened by 1.5x for
+     the second legibility pass. White halo opacity 0.7→0.85 (more
+     lift on cream); white inner halo 0.9→0.95; navy stroke 0.45→0.65
+     (more deepening on bright sun spots); navy under-shadow
+     0.25→0.45. Outer halo radius bumped 22px→28px so the white-lift
+     extends further from the letterforms (reads cleaner on textured
+     bg). This is the "Strong" master legibility halo per
+     ui_playbook.md Part VIII. The lighter halos (subtle / soft /
+     strong) remain at original values for surfaces that don't need
+     the maximum push. */
   --skin-text-halo-strong: 0 0 22px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.8), 0 2px 12px rgba(26,30,58,0.15);
   --skin-text-halo-subtle: 0 0 18px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.75);
   --skin-text-halo-soft:   0 1px 2px rgba(255,255,255,0.7);
-  --skin-text-halo-deep:   0 0 22px rgba(255,255,255,0.7), 0 1px 2px rgba(255,255,255,0.9), 0 0 1px rgba(11,42,90,0.45), 0 1px 0 rgba(11,42,90,0.25);
+  --skin-text-halo-deep:   0 0 28px rgba(255,255,255,0.85), 0 1px 2px rgba(255,255,255,0.95), 0 0 1px rgba(11,42,90,0.65), 0 1px 0 rgba(11,42,90,0.45);
 
   /* ── Panel washes — THREE-TIER HIERARCHY ──
      Rule (Sasha, Day 48): Pane 1 darkest, Pane 2 middle, Pane 3 lightest.

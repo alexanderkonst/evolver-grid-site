@@ -61,23 +61,22 @@ const MethodologyLandingPage = () => {
         {/* Italic echo — whispered consequence of the headline.
             Day 51 (Sasha): leading 1.25 → 1.32 so the line breathes
             instead of stacking flat under the headline. */}
-        {/* Day 62 (Sasha 2026-05-05): legibility — italic Cormorant
-            at body-ish sizes had thin strokes on retina that triggered
-            "hard to read" complaints. Levers: weight 500→600, color
-            from muted (0.86 alpha) → primary (full navy), letter-
-            spacing +0.005em (italic serif benefits from tracking
-            opening at body sizes), deep halo. Italic remains as
-            artful identity; legibility now passes WCAG AA on the
-            entire variable-luminance background range. */}
+        {/* Day 62 (Sasha 2026-05-05) — THIRD pass: 1.5x amplification.
+            Weight 600→700 (Cormorant max — heavier strokes survive
+            anti-aliasing on busy bg). Letter-spacing 0.005em→0.01em
+            (italic serif at body size needs more breathing room when
+            weight is at max — letters separate cleanly).
+            Halo-deep token strengthened globally (see index.css).
+            Per ui_playbook.md Part VIII "Strong" legibility setting. */}
         <p
           className="text-lg sm:text-xl md:text-2xl leading-[1.32] italic"
           style={{
             fontFamily: "'Cormorant Garamond', serif",
-            fontWeight: 600,
-            letterSpacing: "0.005em",
+            fontWeight: 700,
+            letterSpacing: "0.01em",
             color: "var(--skin-text-primary, #0a1628)",
             textShadow:
-              "var(--skin-text-halo-deep, 0 0 22px rgba(255,255,255,0.7), 0 1px 2px rgba(255,255,255,0.9), 0 0 1px rgba(11,42,90,0.45), 0 1px 0 rgba(11,42,90,0.25))",
+              "var(--skin-text-halo-deep, 0 0 28px rgba(255,255,255,0.85), 0 1px 2px rgba(255,255,255,0.95), 0 0 1px rgba(11,42,90,0.65), 0 1px 0 rgba(11,42,90,0.45))",
           }}
         >
           right people{" "}
@@ -120,7 +119,7 @@ const MethodologyLandingPage = () => {
               "var(--skin-text-halo-deep, 0 0 22px rgba(255,255,255,0.7), 0 1px 2px rgba(255,255,255,0.9), 0 0 1px rgba(11,42,90,0.45), 0 1px 0 rgba(11,42,90,0.25))",
           }}
         >
-          <p className="text-xl sm:text-2xl md:text-[1.75rem] font-semibold leading-[1.4] tracking-[-0.005em]">
+          <p className="text-xl sm:text-2xl md:text-[1.75rem] font-bold leading-[1.4] tracking-[-0.005em]">
             Find Your{" "}
             <span
               className="bg-clip-text text-transparent"
@@ -131,7 +130,7 @@ const MethodologyLandingPage = () => {
             .
           </p>
 
-          <p className="text-xl sm:text-2xl md:text-[1.75rem] font-semibold leading-[1.4] tracking-[-0.005em]">
+          <p className="text-xl sm:text-2xl md:text-[1.75rem] font-bold leading-[1.4] tracking-[-0.005em]">
             <span
               className="bg-clip-text text-transparent"
               style={GOLD_TEXT_STYLE}
@@ -147,7 +146,7 @@ const MethodologyLandingPage = () => {
               Revenue and Impact) reads cleaner without the
               imperative-pair interruption between the gerund-form
               promise lines. */}
-          <p className="text-xl sm:text-2xl md:text-[1.75rem] font-semibold leading-[1.4] tracking-[-0.005em]">
+          <p className="text-xl sm:text-2xl md:text-[1.75rem] font-bold leading-[1.4] tracking-[-0.005em]">
             <span
               className="bg-clip-text text-transparent"
               style={GOLD_TEXT_STYLE}

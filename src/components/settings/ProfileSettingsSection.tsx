@@ -683,7 +683,23 @@ const ProfileSettingsSection = () => {
                                     } else {
                                         toast({ title: "Progress Reset", description: "Your journey has been restarted." });
                                     }
-                                    navigate('/');
+                                    // Day 62 (Sasha 2026-05-05): stay on /game/settings
+                                    // after reset instead of navigate('/'). Sasha's
+                                    // bug report: post-reset, the page sometimes
+                                    // routed to /auth?redirect=/game/settings (the
+                                    // guest-state Log In button URL is the only
+                                    // unencoded match in the codebase). Likely
+                                    // chain: navigate('/') → cross-route re-mount
+                                    // → some intermediate state surfaces the
+                                    // guest-state path. Solution: don't leave
+                                    // /game/settings. Reload the user data in
+                                    // place so the form refreshes with the
+                                    // zeroed profile, and the toast confirms
+                                    // success. User stays authenticated, no
+                                    // cross-route navigation, no exposure to the
+                                    // bug. They can navigate elsewhere on their
+                                    // own when ready.
+                                    await loadUserData();
                                 } catch {
                                     toast({
                                         title: "Error",
