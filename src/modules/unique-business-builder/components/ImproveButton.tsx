@@ -31,7 +31,8 @@ export function ImproveButton({ artifactKey, disabled, className, size = "lg" }:
   const anyImproving = isImproving !== null;
   const hasContent = !!artifacts[artifactKey]?.latest;
 
-  const isDisabled = disabled || thisIsImproving || anyImproving || !hasContent;
+  const atCeiling = (artifacts[artifactKey]?.latest?.specificity_score ?? 0) >= 10;
+  const isDisabled = disabled || thisIsImproving || anyImproving || !hasContent || atCeiling;
 
   const padding = size === "lg" ? "px-6 py-3" : "px-5 py-2.5";
 
