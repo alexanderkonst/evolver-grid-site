@@ -189,17 +189,28 @@ const CardActions = ({
                             filter: none !important;
                             -webkit-filter: none !important;
                         }
-                        /* Day 62 (Sasha 2026-05-05): html2canvas v1.4.1
-                           crashes on radial-gradient(ellipse at <pos>, ...)
-                           with no explicit size keyword — produces NaN in
-                           CanvasGradient.addColorStop and aborts Save.
-                           Strip background-image on Tailwind arbitrary
-                           gradient utilities inside the captured subtree
-                           only. Live page untouched. */
-                        [data-capture-token] [class*="bg-[radial-gradient"],
-                        [data-capture-token] [class*="bg-[linear-gradient"] {
+                        /* Day 62 (Sasha 2026-05-05 10:30): html2canvas v1.4.1
+                           crashes on any gradient where it can't resolve a
+                           finite stop position — radial-gradient(ellipse at …)
+                           without an explicit size, or a linear-gradient on a
+                           pseudo-element whose layout box measures zero on a
+                           given axis (NaN → addColorStop). Earlier pass only
+                           stripped Tailwind arbitrary `bg-[…gradient…]` utility
+                           classes; CSS-defined gradients on .liquid-glass-strong
+                           ::before (border ring) and similar surfaces still
+                           reached the rasterizer and aborted Save. Nuke
+                           background-image on every descendant + every pseudo-
+                           element within the captured subtree. Live page is
+                           untouched (this only runs in the cloned DOM). */
+                        [data-capture-token],
+                        [data-capture-token] *,
+                        [data-capture-token]::before,
+                        [data-capture-token]::after,
+                        [data-capture-token] *::before,
+                        [data-capture-token] *::after {
                             background-image: none !important;
-                            background: transparent !important;
+                            mask-image: none !important;
+                            -webkit-mask-image: none !important;
                         }
                     `;
                     clonedDoc.head.appendChild(styleTag);
