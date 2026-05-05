@@ -644,7 +644,7 @@ const ProfileSettingsSection = () => {
                                         column: string,
                                         value: string,
                                     ) => {
-                                        const { error } = await supabase
+                                        const { error } = await (supabase as any)
                                             .from(table)
                                             .delete()
                                             .eq(column, value);
