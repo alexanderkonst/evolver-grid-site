@@ -104,12 +104,16 @@ const OwnershipSection = ({
     if (emailUnlocked || isSaved) {
         return (
             <div className="text-center py-2">
+                {/* Day 62 (Sasha 2026-05-05): Strong legibility cocktail
+                    per ui_playbook.md Part VIII. */}
                 <p
                     className="text-base sm:text-lg italic"
                     style={{
-                        color: "var(--skin-text-muted, rgba(122,81,8,0.95))",
+                        color: "var(--skin-text-primary, #0a1628)",
                         fontFamily: "'Cormorant Garamond', serif",
-                        fontWeight: 500,
+                        fontWeight: 700,
+                        letterSpacing: "0.01em",
+                        textShadow: "var(--skin-text-halo-deep, 0 0 28px rgba(255,255,255,0.85), 0 1px 2px rgba(255,255,255,0.95), 0 0 1px rgba(11,42,90,0.65), 0 1px 0 rgba(11,42,90,0.45))",
                     }}
                 >
                     Saved ✓ — there's more ↓
@@ -813,12 +817,16 @@ const AppleseedDisplay = ({
                 {/* CTA 4 — Or just email me my result (button-to-input pattern) */}
                 <div className="max-w-md mx-auto pt-4 pb-2">
                     {emailUnlocked || isSaved ? (
+                        // Day 62 (Sasha 2026-05-05): Strong legibility cocktail
+                        // per ui_playbook.md Part VIII.
                         <p
                             className="text-center text-base sm:text-lg italic"
                             style={{
-                                color: "var(--skin-text-muted, rgba(122,81,8,0.95))",
+                                color: "var(--skin-text-primary, #0a1628)",
                                 fontFamily: "'Cormorant Garamond', serif",
-                                fontWeight: 500,
+                                fontWeight: 700,
+                                letterSpacing: "0.01em",
+                                textShadow: "var(--skin-text-halo-deep, 0 0 28px rgba(255,255,255,0.85), 0 1px 2px rgba(255,255,255,0.95), 0 0 1px rgba(11,42,90,0.65), 0 1px 0 rgba(11,42,90,0.45))",
                             }}
                         >
                             Saved ✓

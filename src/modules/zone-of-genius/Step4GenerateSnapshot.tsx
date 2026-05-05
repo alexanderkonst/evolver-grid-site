@@ -1040,12 +1040,16 @@ ${snapshotText}`;
                   // (pushes attention OFF the page when nothing more
                   // sits below CTA 4 anyway). Quiet "Saved ✓" matches
                   // editorial register.
+                  {/* Day 62 (Sasha 2026-05-05): Strong legibility
+                      cocktail per ui_playbook.md Part VIII. */}
                   <p
                     className="text-center text-base sm:text-lg italic"
                     style={{
-                      color: "var(--skin-text-muted, rgba(122,81,8,0.95))",
+                      color: "var(--skin-text-primary, #0a1628)",
                       fontFamily: "'Cormorant Garamond', serif",
-                      fontWeight: 500,
+                      fontWeight: 700,
+                      letterSpacing: "0.01em",
+                      textShadow: "var(--skin-text-halo-deep, 0 0 28px rgba(255,255,255,0.85), 0 1px 2px rgba(255,255,255,0.95), 0 0 1px rgba(11,42,90,0.65), 0 1px 0 rgba(11,42,90,0.45))",
                     }}
                   >
                     Saved ✓

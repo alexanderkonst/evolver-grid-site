@@ -68,26 +68,32 @@ interface PerspectiveConfig {
 
 // ─── Shared editorial style fragments ─────────────────────────────────
 
-// Day 61 (Sasha 2026-05-04): legibility pass — explicit fontWeight: 500
-// on every reveal-arc style fragment so the global Cormorant/Source-Serif
-// weight bump can never be lost to inheritance edge cases. Fallback
-// alphas in mutedStyle updated to match the bumped --skin-text-muted
-// (was 0.65, now 0.86) so the inline fallback no longer tells a stale
-// story even if the var lookup somehow fails.
+// Day 62 (Sasha 2026-05-05): SECOND legibility pass on perspective
+// views. These shared style constants drive titles + body across all
+// 10+ deep top talent sub-pages (Start Here, How It Shows Up, Three
+// Talents in Depth, Top Shadow, Path of Mastery, One Action, Ideal
+// Environments, Complementary Partner, Monetization, What's Next).
+//
+// titleStyle gets the full Strong cocktail per ui_playbook.md Part VIII
+// (weight 700, halo-deep). bodyStyle gets a moderate bump (weight 600,
+// halo-deep) — full 700 on long body paragraphs reads as oppressive
+// in upright Cormorant; 600 with deep halo is the right balance for
+// running text. mutedStyle untouched (Source Serif 4, different
+// typeface, deliberately quieter register).
 const titleStyle: React.CSSProperties = {
     fontFamily: "'Cormorant Garamond', serif",
-    fontWeight: 500,
+    fontWeight: 700,
     color: "var(--skin-text-primary, #0b2a5a)",
     textShadow:
-        "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.7))",
+        "var(--skin-text-halo-deep, 0 0 28px rgba(255,255,255,0.85), 0 1px 2px rgba(255,255,255,0.95), 0 0 1px rgba(11,42,90,0.65), 0 1px 0 rgba(11,42,90,0.45))",
 };
 
 const bodyStyle: React.CSSProperties = {
     fontFamily: "'Cormorant Garamond', serif",
-    fontWeight: 500,
+    fontWeight: 600,
     color: "var(--skin-text-primary, #0b2a5a)",
     textShadow:
-        "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
+        "var(--skin-text-halo-deep, 0 0 28px rgba(255,255,255,0.85), 0 1px 2px rgba(255,255,255,0.95), 0 0 1px rgba(11,42,90,0.65), 0 1px 0 rgba(11,42,90,0.45))",
 };
 
 const mutedStyle: React.CSSProperties = {
@@ -233,14 +239,19 @@ const PERSPECTIVES: Partial<Record<PerspectiveId, PerspectiveConfig>> = {
                                         reveal box's typographic register
                                         so the user reads it as the same
                                         handle they just saw. */}
+                                    {/* Day 62 (Sasha 2026-05-05): Strong
+                                        legibility cocktail per ui_playbook.md
+                                        Part VIII — italic Cormorant body
+                                        compact form on variable-luminance bg. */}
                                     {compact && (
                                         <p
                                             className="text-lg sm:text-xl italic leading-snug"
                                             style={{
                                                 fontFamily: "'Cormorant Garamond', serif",
-                                                fontWeight: 500,
+                                                fontWeight: 700,
+                                                letterSpacing: "0.01em",
                                                 color: "var(--skin-text-primary, #0b2a5a)",
-                                                textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
+                                                textShadow: "var(--skin-text-halo-deep, 0 0 28px rgba(255,255,255,0.85), 0 1px 2px rgba(255,255,255,0.95), 0 0 1px rgba(11,42,90,0.65), 0 1px 0 rgba(11,42,90,0.45))",
                                             }}
                                         >
                                             {compact}
@@ -295,14 +306,18 @@ const PERSPECTIVES: Partial<Record<PerspectiveId, PerspectiveConfig>> = {
                             style={accentCardSurface}
                         >
                             <p style={eyebrowStyle} className="mb-3">My top shadow is</p>
+                            {/* Day 62 (Sasha 2026-05-05): Strong legibility
+                                cocktail per ui_playbook.md Part VIII — italic
+                                Cormorant body callout on variable-luminance bg. */}
                             <p
                                 className="italic leading-snug"
                                 style={{
                                     fontFamily: "'Cormorant Garamond', serif",
                                     fontSize: "clamp(1.25rem, 3vw, 1.6rem)",
-                                    fontWeight: 500,
+                                    fontWeight: 700,
+                                    letterSpacing: "0.01em",
                                     color: "var(--skin-text-primary, #0b2a5a)",
-                                    textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
+                                    textShadow: "var(--skin-text-halo-deep, 0 0 28px rgba(255,255,255,0.85), 0 1px 2px rgba(255,255,255,0.95), 0 0 1px rgba(11,42,90,0.65), 0 1px 0 rgba(11,42,90,0.45))",
                                 }}
                             >
                                 {oneSentence}

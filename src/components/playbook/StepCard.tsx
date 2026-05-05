@@ -363,16 +363,20 @@ const Step2Essay = (_: { neonHsl: string; neonRgb: string }) => {
       <p>Why?</p>
 
       {/* ── Tier 2 emphasis: the secret tease.
-          Italic + bold + slightly larger, no rule. */}
+          Italic + bold + slightly larger, no rule.
+          Day 62 (Sasha 2026-05-05): Strong legibility cocktail per
+          ui_playbook.md Part VIII — weight 600→700, +letter-spacing,
+          halo-subtle→halo-deep. Same pattern as landing italic echo. */}
       <p
         className="text-center italic"
         style={{
           fontFamily: "'Cormorant Garamond', serif",
           fontSize: "1.18em",
-          fontWeight: 600,
+          fontWeight: 700,
+          letterSpacing: "0.01em",
           color: "var(--skin-text-primary, #0a1628)",
           textShadow:
-            "var(--skin-text-halo-subtle, 0 1px 2px rgba(255,255,255,0.7))",
+            "var(--skin-text-halo-deep, 0 0 28px rgba(255,255,255,0.85), 0 1px 2px rgba(255,255,255,0.95), 0 0 1px rgba(11,42,90,0.65), 0 1px 0 rgba(11,42,90,0.45))",
         }}
       >
         There is a hidden secret to productizing yourself.
