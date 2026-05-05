@@ -1452,6 +1452,109 @@ Before shipping any screen to production:
 
 ---
 
+# Part VIII: Legibility — When Brand Meets Readability
+
+> *Captured Day 62 (May 5, 2026) after recurring "hard to read" feedback (Karime + multiple visitors) on landing hero copy. The fix preserves the editorial italic-Cormorant identity AND meets WCAG 2.2 AA across variable-luminance backgrounds.*
+
+## The principle
+
+**Brand voice and legibility are not opposed.** The cause of "hard to read" is almost never "we used italic Cormorant" — it's that we used italic Cormorant *without compensating for the conditions that make any italic serif harder to read at body sizes on busy backgrounds.* Compensate, and the brand stays.
+
+**Conditions that fight legibility:**
+
+| Condition | Why it fights reading |
+|---|---|
+| Italic serif at body size (16–20px) | Stroke contrast is high; thin parts can drop to <0.5 device px on retina, blurring during anti-aliasing. |
+| Variable-luminance background (gold particles, sun glare, photo overlays) | Contrast ratio shifts across the same paragraph — passes WCAG on dark cream pixels, fails on bright sun-glare pixels. |
+| Muted-alpha colors (rgba navy at 0.6–0.85) | Editorial "ethereal" feel costs ~2:1 of contrast budget. Acceptable on uniform bg, hostile on variable bg. |
+| Default font weight (400–500) | Anti-aliasing on retina + non-retina renders thicker strokes more reliably than thin ones. |
+| White-only halo text-shadow | Lifts text off light bg but adds nothing on bright bg patches where text is already lighter than its surround. |
+
+## The five legibility levers
+
+Apply these on text that fights with its background. Don't apply blindly to every piece of text — apply *where the conditions above hold.*
+
+| Lever | Implementation | Trade-off |
+|---|---|---|
+| **1. Bump weight 500→600** (or 600→700 for headlines) | `font-weight: 600` (or Tailwind `font-semibold` / `font-bold`) | Aesthetic shift toward "more print-quality." Reads as more editorial, not less. |
+| **2. Lift muted-alpha colors** | Use `var(--skin-text-primary)` (full color) instead of `var(--skin-text-muted)` (0.86 alpha) on body text over busy bg | Slight loss of "ethereal" feel. |
+| **3. Deep halo (white lift + navy stroke)** | Use `var(--skin-text-halo-deep)` instead of `--skin-text-halo-strong`. White halo lifts off cream; navy under-stroke deepens text on bright spots. | None — stroke is invisible on uniform bg, only kicks in on bright pixels. |
+| **4. Letter-spacing +0.005em on italic body** | `letter-spacing: 0.005em` on italic Cormorant at body sizes (16–24px) | None — italic letterforms separate cleanly. |
+| **5. Backdrop scrim** *(escalation only)* | Subtle white-to-transparent gradient behind text block when 1–4 don't suffice | Creates "text in a container" feel. Aesthetic compromise. **Use only when the bg is so variable that 1–4 leave failures.** |
+
+## The halo-deep token
+
+Defined in `src/index.css`:
+
+```css
+--skin-text-halo-deep:
+    0 0 22px rgba(255,255,255,0.7),       /* outer white halo (lift) */
+    0 1px 2px rgba(255,255,255,0.9),      /* inner white halo (lift) */
+    0 0 1px rgba(11,42,90,0.45),          /* navy stroke (deepen) */
+    0 1px 0 rgba(11,42,90,0.25);          /* navy under-shadow (deepen) */
+```
+
+The two-direction shadow (lift + deepen) means the same token works against both light bg patches (white halo lifts) and bright sun-glare patches (navy stroke deepens). One token, all backgrounds.
+
+## When to use which halo
+
+| Surface | Halo |
+|---|---|
+| Pure cream / pearl background, uniform | `--skin-text-halo-soft` or `--skin-text-halo-subtle` |
+| Cream-with-mild-image background | `--skin-text-halo-strong` |
+| Variable-luminance bg (gold particles, photos, sun glare, video overlays) | **`--skin-text-halo-deep`** |
+| Dark surface (Navy+Gold skin) | dark-skin variants of the same tokens (already defined under `.skin-navy-gold`) |
+
+## The legibility cocktail (canonical pattern)
+
+For italic Cormorant body text on variable-luminance background, apply all four:
+
+```tsx
+<p
+  style={{
+    fontFamily: "'Cormorant Garamond', serif",
+    fontWeight: 600,                              // ← lever 1
+    letterSpacing: "0.005em",                     // ← lever 4
+    color: "var(--skin-text-primary, #0a1628)",   // ← lever 2 (was --skin-text-muted)
+    textShadow: "var(--skin-text-halo-deep)",     // ← lever 3
+  }}
+  className="text-lg sm:text-xl italic"
+>
+  …copy…
+</p>
+```
+
+Headlines: same pattern but bump weight to 700 (`font-bold` in Tailwind) and use `text-3xl` or larger.
+
+## Anti-patterns
+
+| ❌ Don't | ✅ Do |
+|---|---|
+| Italic Cormorant at weight 400 over a busy bg | Italic Cormorant at weight 600+ with deep halo |
+| `text-muted-foreground` on landing/reveal copy | `var(--skin-text-primary)` directly — preserve the brand color, just at full alpha |
+| White-only `text-shadow` over photo backgrounds | `--skin-text-halo-deep` (two-direction lift + deepen) |
+| Italic Cormorant for paragraph-length body copy on photo bg | Reserve italic for one-line emphasis. Use upright Cormorant or DM Sans for paragraphs. |
+| Adding a backdrop scrim to every text block | Only use scrim when levers 1–4 don't suffice. Most cases don't need it. |
+
+## Pre-ship legibility checklist
+
+For every text element on a variable-luminance background:
+
+- [ ] Weight is 600+ (italic body) or 700+ (headline)
+- [ ] Color is `--skin-text-primary` (not muted) when contrast matters
+- [ ] `text-shadow: var(--skin-text-halo-deep)` (not the lighter halos)
+- [ ] Italic body text has `letter-spacing: 0.005em`
+- [ ] Tested at 200% zoom — does the page hold?
+- [ ] Checked DevTools contrast on at least 3 background luminance points (uniform dark, mid, bright sun-glare)
+- [ ] Read the page on mobile in direct sunlight — does it still hold?
+
+## Related
+
+- WCAG 2.2 AA contrast standards — Part IV above
+- Anti-AI-slop typography (avoiding "consumer SaaS" feel while staying readable) — `.agent/skills/frontend-design/SKILL.md`
+
+---
+
 # Agent Skills Reference (Optional Enhancements)
 
 > **Note:** The playbook above is the ground truth. These skills are supplementary resources for AI agents — use them for inspiration, not as dogma.

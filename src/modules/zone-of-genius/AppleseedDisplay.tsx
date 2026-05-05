@@ -450,23 +450,29 @@ const AppleseedDisplay = ({
                     italicized within the already-italic line via a
                     `not-italic` flip + bolder weight, so it reads as
                     the load-bearing verb. */}
+                {/* Day 62 (Sasha 2026-05-05): legibility cocktail —
+                    container shadow upgraded soft → deep (white lift +
+                    navy stroke for variable-luminance bg). Both lines
+                    bumped weight 500 → 600. Italic line gets
+                    +0.005em letter-spacing per the Legibility section
+                    of ui_playbook.md. */}
                 <div
                     className="py-10 max-w-lg mx-auto text-center space-y-4"
                     style={{
                         fontFamily: "'Cormorant Garamond', serif",
                         color: "var(--skin-text-primary, #0a1628)",
-                        textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.7))",
+                        textShadow: "var(--skin-text-halo-deep, 0 0 22px rgba(255,255,255,0.7), 0 1px 2px rgba(255,255,255,0.9), 0 0 1px rgba(11,42,90,0.45), 0 1px 0 rgba(11,42,90,0.25))",
                     }}
                 >
                     <p
                         className="text-xl md:text-2xl leading-relaxed"
-                        style={{ fontWeight: 500 }}
+                        style={{ fontWeight: 600 }}
                     >
                         Now the question becomes:
                     </p>
                     <p
                         className="text-2xl md:text-3xl italic leading-snug"
-                        style={{ fontWeight: 500 }}
+                        style={{ fontWeight: 600, letterSpacing: "0.005em" }}
                     >
                         What do you want to{" "}
                         <em
