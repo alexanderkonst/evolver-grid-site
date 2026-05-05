@@ -107,10 +107,11 @@ verify_jwt = true
 verify_jwt = false
 
 # Day 61 (Sasha 2026-05-04): backs the "Delete My Account" button in
-# /game/settings → Danger Zone. Requires the caller's bearer token
-# (verify_jwt = true) so we can resolve the user_id from the JWT and
-# delete only their own data + their own auth user — not someone
-# else's. Service-role key inside the function is used to call
-# auth.admin.deleteUser, which can't run from the client.
+# /game/settings → Danger Zone. Day 62 (2026-05-05): verify_jwt is now
+# false because the function validates the bearer token internally and
+# we need full control over CORS + structured error responses. Without
+# this, modern @supabase/functions-js extra headers (x-supabase-client-*)
+# could be blocked at the gateway and surface as "Failed to send a
+# request to the Edge Function" with no useful diagnostics.
 [functions.delete-account]
-verify_jwt = true
+verify_jwt = false
