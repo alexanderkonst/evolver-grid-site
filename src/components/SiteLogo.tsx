@@ -40,8 +40,12 @@ const SiteLogo = () => {
         // leaking through and showing a duplicate brand mark above the
         // hero. Suppress here so only the SpacesRail wordmark shows.
         "/activate",
+        // /ubb lives in GameShellV2 with hideLogo; suppress the global
+        // SiteLogo too so the wordmark doesn't double up across all
+        // sub-routes (canvas, artifacts, session, dossier, etc.).
+        "/ubb",
     ];
-    const exactHidden = ["/", "/ignite", "/my-result", "/path", "/auth", "/dashboard", "/ai-os", "/library", "/prompt"];
+    const exactHidden = ["/", "/ignite", "/my-result", "/path", "/auth", "/dashboard", "/ai-os", "/library", "/prompt", "/ubb"];
     if (hidden.some(p => location.pathname.startsWith(p)) || exactHidden.includes(location.pathname)) return null;
 
     return (
