@@ -322,7 +322,7 @@ export default function CanvasOverviewScreen() {
                 color: "var(--skin-text-muted, rgba(11, 42, 90, 0.5))",
               }}
             >
-              The grid view returns the moment you generate your first artifact.
+              Next version adds License and Business Model. The grid view returns the moment the first artifact lands.
             </p>
           </div>
         </section>
