@@ -78,6 +78,15 @@ const Step4GenerateSnapshot = () => {
   const [couponInput, setCouponInput] = useState("");
   const [couponError, setCouponError] = useState(false);
 
+  // Day 62+ (Sasha 2026-05-05): floating Activate $37 pill that appears
+  // ~halfway down the page and disappears near the bottom — mirrors the
+  // AppleseedDisplay pattern so both reveal lanes have the same quiet
+  // shortcut to the $37 entry point. Uses `passive: true` per the
+  // responsiveness playbook (Part IX) so scroll never blocks on this
+  // handler. setState is cheap (boolean, React bails out when value
+  // unchanged) so no rAF coalesce needed.
+  const [floatBarVisible, setFloatBarVisible] = useState(false);
+
   const handleCouponSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const entered = couponInput.trim().toLowerCase();
@@ -106,6 +115,51 @@ const Step4GenerateSnapshot = () => {
       .catch(err => {
         setIsLoadingProfile(false);
       });
+  }, []);
+
+  // Day 62+ (Sasha 2026-05-05): floating-pill scroll watcher — mirrors
+  // AppleseedDisplay (lines ~273-310). Listens to BOTH window AND the
+  // GameShellV2 inner scroll container (`.mobile-content-scroll` on
+  // phones, `.ai-os-desktop-content-scroll` on desktop) because window
+  // scroll events alone miss the inner scroller's events on those
+  // layouts. Pill shows between 45% and 95% scroll progress.
+  useEffect(() => {
+    const findScroller = (): HTMLElement | null => {
+      return (
+        document.querySelector<HTMLElement>(
+          ".mobile-content-scroll, .ai-os-desktop-content-scroll",
+        ) ||
+        (document.scrollingElement as HTMLElement | null) ||
+        document.documentElement
+      );
+    };
+    const handleScroll = () => {
+      const scroller = findScroller();
+      const scrolled = scroller?.scrollTop ?? window.scrollY;
+      const total =
+        (scroller?.scrollHeight ?? document.documentElement.scrollHeight) -
+        (scroller?.clientHeight ?? window.innerHeight);
+      if (total <= 0) {
+        setFloatBarVisible(false);
+        return;
+      }
+      const ratio = scrolled / total;
+      setFloatBarVisible(ratio >= 0.45 && ratio < 0.95);
+    };
+    const scroller = findScroller();
+    const isInnerScroller =
+      scroller && scroller !== document.documentElement && scroller !== document.body;
+    if (isInnerScroller) {
+      scroller!.addEventListener("scroll", handleScroll, { passive: true });
+    }
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+    return () => {
+      if (isInnerScroller) {
+        scroller!.removeEventListener("scroll", handleScroll);
+      }
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
   const basePath = getZogAssessmentBasePath(location.pathname);
