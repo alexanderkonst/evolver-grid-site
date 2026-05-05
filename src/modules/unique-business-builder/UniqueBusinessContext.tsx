@@ -427,6 +427,10 @@ export function UniqueBusinessProvider({ children }: { children: ReactNode }) {
     if (!current) return;
 
     const newVersion = nextVersionString(String(current.version ? `v${current.version}` : "v1"));
+    // DB CHECK constraint caps specificity_score at 10. Clamp to avoid 23514 violations
+    // when the model returns e.g. 10.2 on top of an already-10.0 artifact.
+    const clampedScore = Math.min(10, Math.max(0, Number(result.specificity_score) || 0));
+    const clampedDelta = Number((clampedScore - (current.specificity_score ?? 0)).toFixed(1));
     try {
       const { data: inserted, error: insertError } = await (supabase as any)
         .from("user_business_artifacts")
@@ -435,7 +439,7 @@ export function UniqueBusinessProvider({ children }: { children: ReactNode }) {
           artifact_key,
           version: newVersion,
           content_json: result.improved_content,
-          specificity_score: result.specificity_score,
+          specificity_score: clampedScore,
           parent_version_id: current.id,
           roast_findings: result.roast_findings,
           what_changed: result.what_changed,
