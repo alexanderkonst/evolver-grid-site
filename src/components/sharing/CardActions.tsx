@@ -252,13 +252,28 @@ const CardActions = ({
                     });
                 },
             });
-            const dataUrl = canvas.toDataURL("image/png");
+            // Day 62 (Sasha 2026-05-05): switched from data-URL anchor
+            // download to Blob + object URL. Large PNGs (scale:2 hero
+            // card) produce data URLs in the multi-MB range; Chrome &
+            // Safari silently truncate downloads from oversized
+            // `href="data:"` anchors → user gets a 0-byte file with no
+            // error. Blob URLs have no size cap, so Save reliably
+            // produces a real PNG even for tall portrait captures.
+            const blob: Blob | null = await new Promise((resolve) =>
+                canvas.toBlob((b) => resolve(b), "image/png"),
+            );
+            if (!blob) {
+                throw new Error("Canvas produced no image data");
+            }
+            const objectUrl = URL.createObjectURL(blob);
             const link = document.createElement("a");
-            link.href = dataUrl;
+            link.href = objectUrl;
             link.download = `${fileName}.png`;
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
+            // Revoke after the browser has had a tick to start the download.
+            window.setTimeout(() => URL.revokeObjectURL(objectUrl), 1000);
             toast({ title: "Saved to Downloads" });
         } catch (err) {
             console.error("[CardActions] save failed:", err);
