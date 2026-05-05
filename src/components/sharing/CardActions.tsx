@@ -195,7 +195,7 @@ const CardActions = ({
                            without an explicit size, or a linear-gradient on a
                            pseudo-element whose layout box measures zero on a
                            given axis (NaN → addColorStop). Earlier pass only
-                           stripped Tailwind arbitrary `bg-[…gradient…]` utility
+                           stripped Tailwind arbitrary bg-gradient utility
                            classes; CSS-defined gradients on .liquid-glass-strong
                            ::before (border ring) and similar surfaces still
                            reached the rasterizer and aborted Save. Nuke
