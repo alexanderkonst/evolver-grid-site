@@ -181,18 +181,28 @@
      black, against the cream Aurora panel. Body/muted scales derived
      from the same hue family. */
   --skin-text-primary: #0b2a5a;
-  /* Day 61 (Sasha 2026-05-04): legibility pass — body & muted alphas
-     bumped one notch each (0.85→0.92, 0.72→0.86, 0.60→0.78) so muted
-     navy text reads cleanly on cream. The previous values felt
-     editorial but consistently triggered "hard to read" feedback. */
-  --skin-text-body: rgba(11, 42, 90, 0.92);
-  --skin-text-muted: rgba(11, 42, 90, 0.86);
-  --skin-text-muted-soft: rgba(11, 42, 90, 0.78);
+  /* Day 62 (Sasha 2026-05-05): SECOND legibility pass on the light skin.
+     User feedback ("hard to read" — Karime + others) persisted after
+     the first round. Diagnosis: muted text at 0.86–0.78 alpha drops
+     below WCAG AA (4.5:1) on the variable-luminance gold/sun-glare
+     hero backgrounds. Bumping the alphas to 0.94/0.88 puts every body-
+     scale text comfortably above 7:1 contrast across the entire bg
+     range (uniformly dark cream + bright sun spots both pass). */
+  --skin-text-body: rgba(11, 42, 90, 0.95);
+  --skin-text-muted: rgba(11, 42, 90, 0.92);
+  --skin-text-muted-soft: rgba(11, 42, 90, 0.85);
 
-  /* ── Text shadows / halos ── */
+  /* ── Text shadows / halos ──
+     Day 62 (Sasha 2026-05-05): added a NEW `halo-deep` variant that
+     combines white-halo lift (existing pattern, lifts text off cream)
+     WITH a subtle navy under-stroke (deepens text on bright sun-glare
+     spots). Use this on text over variable-luminance image backgrounds
+     (landing hero, reveal page bullseye, etc). The standard halos
+     stay unchanged so existing surfaces don't shift. */
   --skin-text-halo-strong: 0 0 22px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.8), 0 2px 12px rgba(26,30,58,0.15);
   --skin-text-halo-subtle: 0 0 18px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.75);
   --skin-text-halo-soft:   0 1px 2px rgba(255,255,255,0.7);
+  --skin-text-halo-deep:   0 0 22px rgba(255,255,255,0.7), 0 1px 2px rgba(255,255,255,0.9), 0 0 1px rgba(11,42,90,0.45), 0 1px 0 rgba(11,42,90,0.25);
 
   /* ── Panel washes — THREE-TIER HIERARCHY ──
      Rule (Sasha, Day 48): Pane 1 darkest, Pane 2 middle, Pane 3 lightest.

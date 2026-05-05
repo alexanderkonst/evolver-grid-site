@@ -29,6 +29,39 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=Poppins:wght@300;400;500;600;700&family=Source+Serif+4:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+
+    <!-- Day 62 (Sasha 2026-05-05): responsiveness pass — early hints for
+         third-party origins hit during initial page life. The browser
+         starts the DNS+TLS handshake in parallel with HTML/JS parsing
+         instead of serially when the request actually fires, saving
+         100-300ms on the first request to each origin. -->
+
+    <!-- Supabase: auth.getSession() and the post-auth listener fire on
+         App mount. `crossorigin` because Supabase fetches with
+         credentials (auth headers + cookies for RLS). -->
+    <link rel="preconnect" href="https://jypjttotvastdhanwvrx.supabase.co" crossorigin>
+
+    <!-- SoundCloud Widget API: loaded by SoundCloudPlayerProvider
+         when the user enters a music-allowed route (`/`, `/game/*`,
+         `/ai-os/*`, etc.). No `crossorigin` because the widget JS is
+         fetched same-origin INSIDE the iframe, not by our parent
+         document. -->
+    <link rel="preconnect" href="https://w.soundcloud.com">
+
+    <!-- DNS-only prefetch (cheaper than full preconnect — DNS only,
+         no TCP/TLS) for SC origins that may be hit later: media
+         stream + artwork CDN. -->
+    <link rel="dns-prefetch" href="https://api-widget.soundcloud.com">
+    <link rel="dns-prefetch" href="https://i1.sndcdn.com">
+
+    <!-- Mux: HLS video background mounted by GameShellV2 (renders on
+         /, /ai-os, /game/*, etc. — every shell-rendering route). The
+         hls.js library (~80KB) is dynamically imported AFTER React
+         mounts, then fetches the manifest from stream.mux.com, then
+         segments from cdn.mux.com. Preconnect saves the handshake on
+         each leg of that chain. -->
+    <link rel="preconnect" href="https://stream.mux.com" crossorigin>
+    <link rel="dns-prefetch" href="https://cdn.mux.com">
   </head>
 
   <body>

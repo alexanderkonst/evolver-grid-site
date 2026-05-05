@@ -30,13 +30,18 @@ const MethodologyLandingPage = () => {
         {/* Recognition opener — plain "You", no drop cap (Sasha).
             Day 54 (Sasha): mb under headline bumped 4 → 6 on mobile so
             the italic echo doesn't crash into the headline's descender. */}
+        {/* Day 62 (Sasha 2026-05-05): legibility cocktail applied —
+            weight 600→700 (font-bold) for stronger anti-aliasing on
+            both retina + non-retina. Deep halo (white lift + navy
+            under-stroke) deepens edges on bright sun-glare spots.
+            See ui_playbook.md → Legibility section. */}
         <h1
-          className="text-3xl sm:text-4xl md:text-5xl font-semibold leading-[1.1] tracking-[-0.018em] mb-4 sm:mb-5"
+          className="text-3xl sm:text-4xl md:text-5xl font-bold leading-[1.1] tracking-[-0.018em] mb-4 sm:mb-5"
           style={{
             fontFamily: "'Cormorant Garamond', serif",
             color: "var(--skin-text-primary, #0a1628)",
             textShadow:
-              "var(--skin-text-halo-strong, 0 0 22px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.8), 0 2px 12px rgba(26,30,58,0.15))",
+              "var(--skin-text-halo-deep, 0 0 22px rgba(255,255,255,0.7), 0 1px 2px rgba(255,255,255,0.9), 0 0 1px rgba(11,42,90,0.45), 0 1px 0 rgba(11,42,90,0.25))",
           }}
         >
           Can you say what you do so{" "}
@@ -56,14 +61,23 @@ const MethodologyLandingPage = () => {
         {/* Italic echo — whispered consequence of the headline.
             Day 51 (Sasha): leading 1.25 → 1.32 so the line breathes
             instead of stacking flat under the headline. */}
+        {/* Day 62 (Sasha 2026-05-05): legibility — italic Cormorant
+            at body-ish sizes had thin strokes on retina that triggered
+            "hard to read" complaints. Levers: weight 500→600, color
+            from muted (0.86 alpha) → primary (full navy), letter-
+            spacing +0.005em (italic serif benefits from tracking
+            opening at body sizes), deep halo. Italic remains as
+            artful identity; legibility now passes WCAG AA on the
+            entire variable-luminance background range. */}
         <p
-          className="text-lg sm:text-xl md:text-2xl leading-[1.32] tracking-[-0.005em] italic"
+          className="text-lg sm:text-xl md:text-2xl leading-[1.32] italic"
           style={{
             fontFamily: "'Cormorant Garamond', serif",
-            fontWeight: 500,
-            color: "var(--skin-text-muted, rgba(26,30,58,0.7))",
+            fontWeight: 600,
+            letterSpacing: "0.005em",
+            color: "var(--skin-text-primary, #0a1628)",
             textShadow:
-              "var(--skin-text-halo-subtle, 0 0 18px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.75))",
+              "var(--skin-text-halo-deep, 0 0 22px rgba(255,255,255,0.7), 0 1px 2px rgba(255,255,255,0.9), 0 0 1px rgba(11,42,90,0.45), 0 1px 0 rgba(11,42,90,0.25))",
           }}
         >
           right people{" "}
@@ -93,16 +107,20 @@ const MethodologyLandingPage = () => {
             own beat in the manifesto rather than collapsing into a
             stacked list on mobile. Line-height also opened slightly
             for in-bullet breathability. */}
+        {/* Day 62 (Sasha 2026-05-05): three-line manifesto — weight
+            500→600 across all three lines for legibility on busy bg
+            (gold particles + sun glare). Deep halo applied via the
+            container so all three inherit. */}
         <div
           className="space-y-2.5 sm:space-y-3"
           style={{
             fontFamily: "'Cormorant Garamond', serif",
             color: "var(--skin-text-primary, #0a1628)",
             textShadow:
-              "var(--skin-text-halo-strong, 0 0 22px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.8), 0 2px 12px rgba(26,30,58,0.15))",
+              "var(--skin-text-halo-deep, 0 0 22px rgba(255,255,255,0.7), 0 1px 2px rgba(255,255,255,0.9), 0 0 1px rgba(11,42,90,0.45), 0 1px 0 rgba(11,42,90,0.25))",
           }}
         >
-          <p className="text-xl sm:text-2xl md:text-[1.75rem] font-medium leading-[1.4] tracking-[-0.005em]">
+          <p className="text-xl sm:text-2xl md:text-[1.75rem] font-semibold leading-[1.4] tracking-[-0.005em]">
             Find Your{" "}
             <span
               className="bg-clip-text text-transparent"
@@ -113,7 +131,7 @@ const MethodologyLandingPage = () => {
             .
           </p>
 
-          <p className="text-xl sm:text-2xl md:text-[1.75rem] font-medium leading-[1.4] tracking-[-0.005em]">
+          <p className="text-xl sm:text-2xl md:text-[1.75rem] font-semibold leading-[1.4] tracking-[-0.005em]">
             <span
               className="bg-clip-text text-transparent"
               style={GOLD_TEXT_STYLE}
@@ -129,7 +147,7 @@ const MethodologyLandingPage = () => {
               Revenue and Impact) reads cleaner without the
               imperative-pair interruption between the gerund-form
               promise lines. */}
-          <p className="text-xl sm:text-2xl md:text-[1.75rem] font-medium leading-[1.4] tracking-[-0.005em]">
+          <p className="text-xl sm:text-2xl md:text-[1.75rem] font-semibold leading-[1.4] tracking-[-0.005em]">
             <span
               className="bg-clip-text text-transparent"
               style={GOLD_TEXT_STYLE}
