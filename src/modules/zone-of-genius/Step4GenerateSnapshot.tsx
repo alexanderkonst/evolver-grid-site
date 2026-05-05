@@ -1249,6 +1249,44 @@ ${snapshotText}`;
           </>
         ) : null}
       </main>
+
+      {/* Day 62+ (Sasha 2026-05-05): floating Activate $37 pill —
+          mirrors AppleseedDisplay's reveal-page pattern so both lanes
+          (manual assessment + AI reveal) carry the same quiet shortcut
+          to the $37 entry. Appears at ~45% scroll, hides past 95% (the
+          inline Option-2 CTA already covers the bottom of the page).
+          Compact right-anchored glass pill, never a full-width banner.
+          Hidden via opacity + pointer-events so the transition stays
+          smooth without layout reflow. */}
+      <div
+        className={`fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40 transition-all duration-500 ${
+          floatBarVisible
+            ? "opacity-100 translate-y-0"
+            : "opacity-0 translate-y-4 pointer-events-none"
+        }`}
+        aria-hidden={!floatBarVisible}
+      >
+        <a
+          href={STRIPE_ACTIVATE_LINK}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={() => trackCTAClick("activate_click", "step4_floating_bar")}
+          className="inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium whitespace-nowrap transition-all duration-300 hover:scale-[1.04] active:scale-[0.97]"
+          style={{
+            fontFamily: "'Cormorant Garamond', serif",
+            color: "var(--skin-text-primary, #0a1628)",
+            backgroundImage:
+              "linear-gradient(180deg, rgba(255,255,255,0.97), rgba(255,255,255,0.90))",
+            border: "1px solid rgba(122, 81, 8, 0.32)",
+            boxShadow:
+              "0 10px 28px -10px rgba(10,22,40,0.22), 0 0 18px -2px rgba(244,212,114,0.45), inset 0 1px 0 rgba(255,255,255,0.7)",
+            backdropFilter: "blur(10px)",
+            WebkitBackdropFilter: "blur(10px)",
+          }}
+        >
+          Activate — $37 →
+        </a>
+      </div>
     </div>
   );
 };
