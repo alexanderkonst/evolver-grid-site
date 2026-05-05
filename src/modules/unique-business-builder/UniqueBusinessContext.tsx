@@ -380,8 +380,15 @@ export function UniqueBusinessProvider({ children }: { children: ReactNode }) {
     async (key: ArtifactKey) => {
       if (!userId) return;
       const current = artifacts[key]?.latest;
-      if (!current) {
+       if (!current) {
         toast.error("Generate a first version before improving.");
+        return;
+      }
+      // Specificity is hard-capped at 10 (DB CHECK constraint). Once an
+      // artifact reaches the ceiling, further improvement is meaningless —
+      // skip the AI round-trip entirely and tell the founder cleanly.
+      if ((current.specificity_score ?? 0) >= 10) {
+        toast.message("This artifact is already at maximum specificity (10/10). Sharpen a sibling artifact, then revisit.");
         return;
       }
       setIsImproving(key);
