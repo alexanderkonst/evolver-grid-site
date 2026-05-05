@@ -141,6 +141,7 @@ ROUND 1 — IDENTIFY THE GENERIC. For every field, ask:
 - Day 61 (2026-05-04) COMPACT-TALENTS SYNTHESIS CHECK: top_three_talents_compact is shown on the FIRST REVEAL card, three lines stacked. Each entry must (a) be 2-4 words, (b) be a GERUND + CONCRETE OBJECT ("Sensing the unspoken", NOT "Sensing inner truth"), (c) preserve the signal of the matching long form in top_three_talents with ZERO noise added — sharper than the long form, NOT more abstract, (d) pass the 5-second-friend test (a smart friend with no personal-development context groks it instantly), (e) use a DISTINCT verb from the other two entries. REJECT any entry that drifts into abstract compound nouns ("Inner X / Sacred X / Deep X / True X") — same banned patterns as elsewhere in topTalentProfile. NO machine-speak, NO fluff, NO decorative adjectives, NO trailing period.
 - Day 58 (2026-05-03) VOICE-REGISTER CHECK: does top_shadow_one_sentence contain ANY second-person reflexive ("yourself," "your own," "yours")? If yes, REJECT — this field renders under "MY TOP SHADOW IS" so reflexives MUST be first-person ("myself," "my own," "mine"). Rewrite. Same check applies to bullseyeSentence and elevatorPitch (also "MY X IS"–framed surfaces): no "you / your / yourself" allowed, only "I / my / myself."
 - Day 58 (2026-05-03) ABSTRACT-COMPOUND-NOUN CHECK: scan EVERY field — especially vibrationalKey.name, topTalentProfile.archetype_title, bullseyeSentence, top_shadow_one_sentence — for the banned patterns (Inner X, Felt X, Safe X, Sacred X, Deep X, True X, Pure X, Whole X, Authentic X, and any compound where the adjective doesn't ground the noun in something concrete). If found, REJECT and rewrite as a concrete particular. THE 5-SECOND-FRIEND TEST: a smart friend outside personal-development should grok the phrase in 5 seconds without having to ask "what does that mean?" — if not, rewrite. Karime walkthrough (2026-05-03) shipped "Inner-Belonging Restoring / inner belonging / safe truth" — all three were in this category, and the resonance score dropped accordingly.
+- Day 62 (2026-05-05) DUAL-ACTOR PRONOUN CHECK: scan every Bucket B field (core_pattern, how_genius_shows_up, edge_and_traps, flywheel_action, career_sweet_spots, complementaryPartner.synergy, masteryStages.description, ideal_environments, appreciatedFor.scene). For each "you / your" in the text, ask: does this "you" refer to THE SUBJECT, or could it refer to an OTHER PERSON in the scene (a founder, a client, someone, a team)? If the "you" could plausibly point at the other actor, REJECT and rewrite that pronoun as "they / them / their". Quick test: substitute the noun antecedent ("the founder", "the client", "someone") for the "you" — if the sentence now reads more correctly, the original "you" was wrong. The bug pattern Sasha caught Day 62: "Your genius shows up when someone is circling what YOU mean — YOU talk in paragraphs" (the first three "you"s actually refer to the someone, not the subject; correct is "what THEY mean — THEY talk in paragraphs… YOU don't let the conversation stay loose"). This is the most common LLM failure mode in this prompt — flag it ruthlessly.
 Mark every weak field. Do not skip this round.
 
 ROUND 2 — TEST FOR SIGNAL. For every salvaged field, ask:
@@ -229,6 +230,43 @@ Examples for body fields (Bucket B — second person):
   ✓ RIGHT: "Your gift, making the invisible visible, comes paired with a shadow — your own value tends to stay invisible to you."
   ✗ WRONG (first person): "My gift generates its inverse — my own value stays invisible to me."
   ✗ WRONG (third person): "Their gift generates its inverse — their own value stays invisible to them."
+
+DUAL-ACTOR DISCIPLINE (Day 62, 2026-05-05 — added after Sasha caught a pronoun-collapse bug in how_genius_shows_up):
+
+Many Bucket B fields describe SCENES with TWO distinct actors:
+  • THE SUBJECT (the reader) — always "you / your / yours / yourself"
+  • THE OTHER PERSON the subject is acting on / helping / clarifying / sensing —
+    always "they / them / their / themselves" (or a noun like "the founder",
+    "the client", "the person")
+
+These two MUST stay grammatically distinct. Collapsing the OTHER PERSON into
+"you" creates an instantly-broken read where the reader can't tell who is doing
+what to whom. Most common in fields that name a SITUATION ("Your genius shows
+up WHEN…", "The work flows BEST WHEN…", "You thrive AROUND…").
+
+Worked example (the exact bug Sasha caught):
+  ✗ WRONG: "Your genius shows up when someone is circling what YOU mean but
+    can't land it: YOU talk in paragraphs, qualifiers, and half-decisions.
+    YOU don't let the conversation stay loose — you define terms…"
+    (the first three "you"s actually refer to the OTHER PERSON who is doing
+    the circling and qualifying — not the subject. The subject is the one
+    who comes in AFTER and defines the terms. Reader can't parse who's who.)
+
+  ✓ RIGHT: "Your genius shows up when someone is circling what THEY mean but
+    can't land it: THEY talk in paragraphs, qualifiers, and half-decisions.
+    YOU don't let the conversation stay loose — you define terms, set
+    constraints, and aim at an output that can be used outside the room."
+    (Now the dual cast is clear: someone arrives unclear → YOU clarify them.)
+
+Quick test before returning any sentence with "you" in it:
+  Substitute the noun antecedent — "someone", "the founder", "the client",
+  "people" — for the "you" and re-read. If the sentence now makes more sense,
+  the "you" was wrong; flip it back to "they / them / their".
+
+Apply to: how_genius_shows_up, core_pattern, edge_and_traps, flywheel_action,
+career_sweet_spots, complementaryPartner.synergy, masteryStages.description,
+ideal_environments, appreciatedFor.scene. Anywhere a scene with two actors
+might appear.
 `;
 
 // ---------------------------------------------------------------------------
@@ -254,7 +292,7 @@ Return a JSON object with this exact structure:
   "appreciatedFor": [
     {
       "effect": "string - what happens",
-      "scene": "string - the situation",
+      "scene": "string - the situation. SECOND-PERSON addressing the subject; OTHER PEOPLE in the scene (founder, client, teammate, the room) stay \"they / them / their\" — never collapse them into \"you\".",
       "outcome": "string - the result"
     }
   ],
@@ -262,7 +300,7 @@ Return a JSON object with this exact structure:
     {
       "stage": 1,
       "name": "string",
-      "description": "string"
+      "description": "string — SECOND-PERSON (\"You learn to…\", \"You start naming…\"). DUAL-ACTOR DISCIPLINE: when the description names what happens with OTHER PEOPLE (notes, founders, teams), they stay \"they / them / their\" — never collapse the other person into \"you\"."
     }
   ],
   "professionalActivities": [
@@ -279,7 +317,7 @@ Return a JSON object with this exact structure:
     "environment": "string"
   },
   "complementaryPartner": {
-    "synergy": "string — ONE tight prose paragraph (3-5 sentences) describing the complementary partner this archetype most needs. Fuse three layers into continuous flow, not labeled sections: skills the partner brings (what they execute that this person doesn't), genius they bring (how they sense, see, or create — their irreducible signature), and archetype they embody (their being-pattern). Then close with the synergy: what the two of them, together, produce that neither alone could. Read like a paragraph in a profile, not a four-row table. No bullet lists. No headings. No 'Skills-wise…, Genius-wise…' labels. One continuous read.",
+    "synergy": "string — ONE tight prose paragraph (3-5 sentences) describing the complementary partner this archetype most needs. Fuse three layers into continuous flow, not labeled sections: skills the partner brings (what they execute that this person doesn't), genius they bring (how they sense, see, or create — their irreducible signature), and archetype they embody (their being-pattern). Then close with the synergy: what the two of them, together, produce that neither alone could. Read like a paragraph in a profile, not a four-row table. No bullet lists. No headings. No 'Skills-wise…, Genius-wise…' labels. One continuous read. SECOND-PERSON addressing the subject (\"your best partner is…\"). DUAL-ACTOR DISCIPLINE: the PARTNER stays \"they / them / their\" throughout — never collapse the partner into \"you\". (Bug example to avoid: \"Your best partner loves finishing what YOU started\" — that second \"you\" is fine if it really is the subject's work; but \"a partner who senses what YOU will say yes to\" when meaning the partner senses what BUYERS will say yes to is wrong → \"what THEY will say yes to\".)",
     "skillsWise": "string — OPTIONAL one-line supporting note. Leave empty if synergy paragraph already covers it.",
     "geniusWise": "string — OPTIONAL one-line supporting note. Leave empty if synergy paragraph already covers it.",
     "archetypeWise": "string — OPTIONAL one-line supporting note. Leave empty if synergy paragraph already covers it."
@@ -300,7 +338,7 @@ Return a JSON object with this exact structure:
 
   "topTalentProfile": {
     "archetype_title": "string — 2-4 word GERUND-form name of the talent itself (e.g., 'Signal-to-Form Forging', 'Pattern Architecting', 'Constellation Mapping'). Reads naturally inside 'My top talent is ___'. NEVER an actor noun ('Forger', 'Architect', 'Mapper') — those break the grammar of the surrounding UI. Match the same value as vibrationalKey.name. Do NOT wrap in decorative glyphs (no '✦', '✧', etc.) — the UI strips them anyway. NO ABSTRACT COMPOUND NOUNS — banned: 'Inner X / Felt X / Safe X / Sacred X / Deep X / True X / Pure X / Whole X / Authentic X' (e.g. 'Inner-Belonging Restoring' is REJECT). Apply the 5-second-friend test before returning.",
-    "core_pattern": "string — 2-3 sentence paragraph describing my fundamental operating pattern. Names the signature, not the category. This is the bullseye opened up into prose. Specific to me, not aspirational.",
+    "core_pattern": "string — 2-3 sentence paragraph describing my fundamental operating pattern. Names the signature, not the category. This is the bullseye opened up into prose. Specific to me, not aspirational. SECOND-PERSON register (\"you / your\"). DUAL-ACTOR DISCIPLINE: when the sentence describes a scene with both the subject AND someone the subject acts on, the subject is \"you\" and the other person is \"they / them / their\" — never collapse the other into \"you\". (Bug example: \"You listen until you can name the real point\" is fine; \"You listen until someone hears what YOU mean\" is wrong — that second \"you\" should be \"they\".)",
     "top_three_talents": [
       "string — Talent 1, brief, specific to how it manifests in me (not generic strengths-finder language)",
       "string — Talent 2, same",
@@ -311,8 +349,8 @@ Return a JSON object with this exact structure:
       "string — Talent 2, same standard",
       "string — Talent 3, same standard"
     ],
-    "how_genius_shows_up": "string — paragraph describing how these talents manifest in my daily work and interactions. Cite real patterns from rawSignal — concrete, not abstract.",
-    "edge_and_traps": "string — paragraph naming the structural shadow my gift generates — the OTHER SIDE OF THE COIN, not a list of weaknesses. A unique gift always produces a structurally identical limiting belief, but inverted. Name (a) the inverted form of my gift (e.g., 'I help others articulate their uniqueness' → 'my own uniqueness remains unarticulated'), (b) the limiting belief this inversion whispers in my own life ('I need a better X before I can act'), (c) one short observation about how this looks in motion (the recursive trap when I forget my gift is for outward use, not inward use). Specific to me. Same length as how_genius_shows_up. Do not soften or moralize.",
+    "how_genius_shows_up": "string — paragraph describing how these talents manifest in my daily work and interactions. Cite real patterns from rawSignal — concrete, not abstract. SECOND-PERSON register (\"you / your\"). DUAL-ACTOR DISCIPLINE — CRITICAL FOR THIS FIELD: this paragraph almost always describes a SCENE with two actors — the subject AND the OTHER PERSON the subject is acting on (a founder, a client, someone, a team). The subject is ALWAYS \"you / your\". The other person is ALWAYS \"they / them / their\" (or a noun like \"the founder\"). Bug pattern to avoid (Sasha Day 62): \"Your genius shows up when someone is circling what YOU mean but can't land it: YOU talk in paragraphs…\" — the first three \"you\"s actually refer to the OTHER PERSON who is circling and qualifying. Correct: \"…what THEY mean but can't land it: THEY talk in paragraphs… YOU don't let the conversation stay loose — you define terms.\" Quick test: substitute the noun (\"the founder\") for any \"you\" and re-read; if the sentence now makes more sense, that \"you\" was wrong — flip to \"they\".",
+    "edge_and_traps": "string — paragraph naming the structural shadow my gift generates — the OTHER SIDE OF THE COIN, not a list of weaknesses. A unique gift always produces a structurally identical limiting belief, but inverted. Name (a) the inverted form of my gift (e.g., 'I help others articulate their uniqueness' → 'my own uniqueness remains unarticulated'), (b) the limiting belief this inversion whispers in my own life ('I need a better X before I can act'), (c) one short observation about how this looks in motion (the recursive trap when I forget my gift is for outward use, not inward use). Specific to me. Same length as how_genius_shows_up. Do not soften or moralize. SECOND-PERSON register (\"you / your\"). DUAL-ACTOR DISCIPLINE: when contrasting what the subject does FOR OTHERS vs. for themselves, OTHERS are \"they / them / their\" and the subject is \"you / your / yourself\" — never collapse the two.",
     "top_shadow_one_sentence": "string — synthesize the edge_and_traps paragraph above into ONE punchy sentence (max ~16 words). CRITICAL synthesis principle: preserve signal-to-noise ratio — minimal signal loss, minimal noise introduction. The reader should feel the same recursive-shadow recognition in this single sentence as in the full paragraph. Sharper than the paragraph, NOT more abstract. Phrased as a NOUN PHRASE / GERUND so it reads naturally inside 'My top shadow is ___' (parallel to the 'My top talent is ___' convention). FIRST-PERSON REFLEXIVES ONLY — this field renders under a 'MY TOP SHADOW IS' eyebrow, so reflexives MUST be 'myself / my own / mine', NEVER 'yourself / your own / yours' (those create a broken read like 'MY shadow IS … fully seen yourself'). UNIVERSALLY RELATABLE register — avoid metaphors so domain-specific they only fit one archetype (e.g. 'cathedral' for architects, 'symphony' for composers). Examples that span different gift-domains: 'Naming everyone else's gift while my own stays unnamed' (the seer's shadow), 'Teaching the language I won't speak about myself' (the teacher's shadow), 'Holding space for everyone while no one holds mine' (the healer's shadow). Match the user's ACTUAL gift, not these examples. Do not soften, do not generalize.",
     "ideal_environments": [
       "string — specific environment where this archetype is most at home",
@@ -324,7 +362,7 @@ Return a JSON object with this exact structure:
       "string — second one",
       "string — third one"
     ],
-    "flywheel_action": "string — the ONE action that, repeated as a flywheel, optimally advances me on my path of mastery. Specific enough to start today. Not advice — an instruction. CRITICAL: write in plain everyday language only. Use ordinary verbs (talk to, write, send, make, run) and ordinary objects (a person, a page, a message, a post). NEVER invent capitalized product or service names ('Signal Snapshot', 'Compression Capsule', 'Architecture Session') — those imply a packaged offering the reader has no context for and immediately break trust. NEVER use insider jargon from the user's own world ('compression', 'distillation', 'capsule') without translation. Example of clean: 'Spend the first hour each morning helping one founder name what they actually do, then publish what surprised you.' Example of broken: 'Run one paid Signal Snapshot per workday, ship one artifact in 24 hours, post the compression visual.' Same action, very different reader experience."
+    "flywheel_action": "string — the ONE action that, repeated as a flywheel, optimally advances me on my path of mastery. Specific enough to start today. Not advice — an instruction. CRITICAL: write in plain everyday language only. Use ordinary verbs (talk to, write, send, make, run) and ordinary objects (a person, a page, a message, a post). NEVER invent capitalized product or service names ('Signal Snapshot', 'Compression Capsule', 'Architecture Session') — those imply a packaged offering the reader has no context for and immediately break trust. NEVER use insider jargon from the user's own world ('compression', 'distillation', 'capsule') without translation. SECOND-PERSON IMPERATIVE register addressing the subject (\"do X\", \"call Y\"). DUAL-ACTOR DISCIPLINE: the OTHER PERSON the subject is acting on stays \"they / them / their\" — the subject's actions stay implicit-imperative or \"you\". Example clean: 'Spend the first hour each morning helping one founder name what THEY actually do, then publish what surprised YOU.' Example broken (pronoun collapse): 'Spend the first hour helping one founder name what YOU actually do' — the second \"you\" should be \"they\"."
   }
 }
 `;

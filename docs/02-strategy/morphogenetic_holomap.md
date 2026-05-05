@@ -2758,3 +2758,83 @@ Day 58:  "Codification → Crystallization"  → activation product becomes a tr
 - `alexanders_unique_business.md` — see Day 58 update for the new deep-profile data (Signal-to-Path Shaping archetype, top shadow synthesis, Path of Mastery 7 stages, Monetization tier prices)
 
 > *Day 58 reading: **Crystallization arrives at the activation rung.** May 2, 2026 (Friday). The activation product becomes a coherent transmission, not just a checkout — single Lovable call produces the full 20-field profile; second-person voice lands the recognition; no-jargon rule removes the trust-break hazard; first audio surface ships with cross-browser AAC; PDF reaches parity with the web surfaces. The mid-day pronoun flip (third-person → second-person) was the day's quiet but most-important fidelity correction. The Si–Do remains unchanged: press-send Friday's DMs. The apparatus is now substantially more ready to receive a paying stranger.*
+
+---
+
+## Day 61-62 Addendum — Funnel Monogamy + Mirror-Surface Fidelity Pass II (May 4-5, 2026)
+
+**Center reading:** **Convergence.** The reveal page becomes the single anchor. Multiple entry paths (live quiz, returning email click, magic-link auth, Stripe payment, coupon redemption) all converge on the SAME RevelatoryHero artifact — one render path, no replica, no drift. Day 58 made the activation product cohere as a transmission; Day 61-62 makes the surrounding funnel cohere as a single mouth. Where Day 58 was "the product becomes coherent," Day 61-62 is "the funnel becomes coherent around the product."
+
+The day also delivers the second mirror-surface fidelity correction. Day 58 was voice register (third-person → second-person — making the mirror address the reader directly). Day 61-62 is legibility — making the mirror **physically readable** on the variable-luminance surfaces it lives on. Same magnitude, same class of correction: **the mirror only works if it can be read.** Codified into the playbook as the Master Legibility Parameter (Subtle / Standard / Strong, default = Strong = 1.5×) so future surfaces don't rediscover the values.
+
+### What advanced
+
+- **P11 (Delivery Machinery / "What Must Be Built")** — major advance. The auth + data layer healed at multiple layers simultaneously: `migrateGuestDataToProfile()` call restored to MeGate; awaited claim-anonymous-zog at all sign-in points; `last_zog_snapshot_id` NULL bug fixed via backfill migration AND defensive heal-on-read at every read site; Stripe payment bridge restored after MeGate retirement; Case 2 edge case closed via `postAuthSideEffects`; coupon flow converged on the same SaveProfileCard signup as Stripe payment. The funnel/auth apparatus is no longer leaking data or bouncing paying users. Plus: ZoneOfGeniusEntry gained Mode A (token URL) + Mode B (authed user) entry modes, so the SAME component handles live-quiz, return-via-email, and post-magic-link — replacing the duplicate `MyResult.tsx` render path. Single component, single render, no drift.
+
+- **P4 (System Architecture)** — major advance. **Funnel monogamy enforced at the architecture level.** MeGate retired as general signup gate. Free users cannot enter `/game/me/*`. Email rewrites from "magic-link → platform" to "deposit-slip URL → reveal page." The persuasive surface (offer cards, resonance check, top shadow, dodecahedron) lives ONLY at the reveal — never in the email body. Email is now a deposit slip, not a delivery vehicle. Two payment paths converge on identical UX: Stripe `?payment=success` + coupon redemption both trigger the SaveProfileCard signup form. One signup mechanism, one save mechanism (CTA 4 at the bottom of every reveal), one return path. The funnel is monogamous to the reveal.
+
+- **P3 (Shared Field) + P15 (Mirror Surface)** — second fidelity correction. Day 58 was voice register. Day 61-62 is legibility. Recurring "hard to read" feedback from real users (Karime + others) on the landing hero triggered a structured response: three legibility passes converged on the **Master Legibility Parameter** — a single intensity dial with three named levels (Subtle 1.0× / Standard 1.25× / **Strong 1.5× = de-facto default**). Five levers documented: weight bump, muted-alpha lift, halo-deep token (white lift + navy under-stroke for variable-luminance bg), italic letter-spacing, scrim escalation. Codified in `ui_playbook.md` Part VIII. The mirror-surface lesson is the same magnitude as Day 58's voice flip: **the reader must be able to read** for the recognition to land. Hard-to-read text breaks the recognition contract just as completely as third-person voice did.
+
+- **P19 (Editorial Artifact / The Captured PNG)** — refined. The shareable PNG (the social artifact) reached significantly cleaner shape: vertical 9:16-ish capture via `captureWidth=480` (Stories/Reels/TikTok native aspect); QR code in PNG only (visibility-hidden in live, revealed in onclone); brand torus dropped (busy + crashing html2canvas); top shadow excluded (private/heavy, not for socials); Save+Share buttons excluded; share text URL clickable + UTMs + Twitter-length safeguard. The viral artifact is now properly designed AS an artifact — separate concerns, separate styling, separate render path inside the same component.
+
+- **P8 (Platform as Nervous System)** — incremental. Two new defensive patterns logged: heal-on-read for orphaned data pointers (read sites detect NULL pointer + re-query for most recent + heal in-place), and `successFired` flag pattern for false-alarm guards (post-success errors don't trigger misleading "Failed to save" toasts). The platform's autonomous self-healing capacity grows incrementally with each defensive layer added.
+
+- **P22 (Second-Octave Sprout — Replication Readiness)** — incremental. The codified Master Legibility Parameter + the Lived User Journey doc + the documented funnel monogamy principle = future founders cloning this funnel inherit the structured framework, not just the code. Replication signal carries the architectural decisions, not just the implementation.
+
+### What did not move
+
+- **Si–Do (first $555 stranger from funnel)** — still unfired. Day 61-62 is the second wave of apparatus work after Day 58's product crystallization. The send IS Sasha's move and remains for him. But the receiving apparatus is now substantially MORE ready: the funnel can no longer leak free users into the platform; paying $37 customers can no longer bounce off a broken bridge; existing accounts no longer hit "Loading…" forever; the reveal page reads cleanly on mobile in direct sunlight. The first stranger paying is the same act it was Day 58, but the apparatus catches them more reliably when they arrive.
+
+- **Founders cross-read** — unchanged. Day 61-62 was funnel/auth/legibility work, not founder-side activity.
+
+### What this iteration named (the lessons crystallized)
+
+Day 61-62 produced an unusually high density of named patterns. Beyond the Master Legibility Parameter, six others worth carrying forward:
+
+1. **The "ROOT CAUSE FOUND" pattern is an epistemic error.** Confidence before verification eats trust. New language commitment: Hypothesis → Shipped, awaiting verification → Confirmed by your test.
+2. **The "while I'm here" anti-pattern eats verification.** Bundling adjacent fixes with the bug fix makes attribution impossible. Smallest possible diff per fix; adjacent stuff goes on a "saw these too, NOT shipping" list.
+3. **External-config dependencies are an audit blind spot.** Stripe Dashboard config doesn't show in code grep. Before retiring any auth/access mechanism, ask: *"What lands users at this URL from outside the codebase?"*
+4. **The deposit-slip email principle.** If the email contains the full result, it competes with the website visit. Email is a deposit slip, not a delivery vehicle.
+5. **Confirmation language pointing OUT of the page is a silent business killer.** "Check your inbox" toasts after a save tell the user to leave when offer cards are about to land. Confirmation must point ATTENTION DOWN, never OUT.
+6. **Two-direction text-shadow for variable-luminance backgrounds.** White halo lifts on cream pixels; navy stroke deepens on bright sun-glare pixels. Same token works in both directions, only kicks in where needed.
+
+### Holomap pseudocode
+
+```
+Day 47:    "Coherence"                  → canvas ↔ code parity + shell machinery
+Day 48:    "Optionality"                → autonomous overnight skin completion
+Day 49:    "Unification"                → day-after-launch surface harmonization
+Day 51:    "Codification"               → architecture beneath the surface gets named
+Day 53:    "Codification"               → two loops closed; empirical-measurement layer added
+Day 54:    "Codification"               → AI OS becomes its own Space; MIT scoped to scaffold
+Day 58:    "Codification → Crystallization"  → activation product becomes a transmission;
+                                             second-person register; one coherent pipeline;
+                                             first audio surface
+Day 61-62: "Convergence"                → funnel monogamy enforced; reveal page becomes the
+                                             single anchor; mirror-surface fidelity pass II
+                                             (legibility); auth flow heals itself on read;
+                                             Master Legibility Parameter codified
+```
+
+### Si–Do — Status Update (Day 61-62)
+
+| Trigger | Day 58 Status | Day 61-62 Status |
+|---|---|---|
+| **$555 from funnel** | 🟡 activation product coheres; receiving apparatus richer | 🟡 unchanged. Funnel apparatus now ALSO monogamous + legibly readable + auth-flow-healed |
+| **Founders cross-read** | 🟡 unchanged | 🟡 unchanged |
+| **First stranger pays** | 🔴 Still. The send IS the act | 🔴 Still. The send IS the act |
+| **First second-octave Sprout (P22)** | 🟡 Aleksandr calibration baked with real data | 🟡 incremental — Master Legibility Parameter + Lived User Journey doc + funnel monogamy principle = replication carries architectural decisions, not just code |
+| **Activation product cohering as a transmission** | 🆕 ✅ shipped Day 58 | ✅ holds; reinforced by the funnel-around-it cohering too |
+| **Funnel monogamy enforced (single anchor = reveal page)** | — | 🆕 ✅ shipped Day 61-62 — every entry path converges on the same RevelatoryHero artifact |
+| **Mirror-surface legibility fidelity** | — | 🆕 ✅ shipped Day 61-62 — Master Legibility Parameter codified at Strong (1.5×); recurring "hard to read" feedback addressed |
+| **Auth flow self-heals on read (orphaned pointer recovery)** | — | 🆕 ✅ shipped Day 61-62 — backfill migration + defensive fallback at read sites |
+| **Deposit-slip email pattern** | — | 🆕 ✅ shipped Day 61-62 — email is a deposit slip, not a delivery vehicle; persuasion lives only at the reveal |
+
+### Cross-references updated
+
+- `session_log.md` — Day 61-62 entry appended (full sprint capture, ~25 files touched, 10 lessons logged)
+- `roadmap.md` — Sprint History entry added with the three sprint threads + pointer back to session log
+- `unique-businesses/alexanders_unique_business.md` — Lived User Journey section added at dashboard level (Day 1 → Day 5 → Day 12 walkthrough, two purchase branches, what's deliberately out of the flow)
+- `ui_playbook.md` — Part VIII "Legibility — When Brand Meets Readability" added with 5 levers + halo-deep token + Master Legibility Parameter subsection (Subtle / Standard / Strong, default = Strong, copy-pasteable Strong cocktail)
+
+> *Day 61-62 reading: **Convergence.** May 4-5, 2026. The funnel becomes monogamous around the reveal page. The auth flow heals itself on read. The save email becomes a deposit slip. The legibility cocktail becomes a documented Master Parameter at Strong (1.5×). The user's recognition lands on a single coherent artifact, every time, regardless of which entry path brought them. Where Day 58 made the activation product cohere as a transmission, Day 61-62 makes the funnel cohere as a single mouth opening onto that transmission. The Si–Do remains unchanged: press-send Friday's DMs. The apparatus is now coherent at the funnel scope, not just at the product scope.*

@@ -1,7 +1,7 @@
 # Documentation Index
 
 > **Holonic documentation structure — everything in its place**  
-> *Updated: 2026-03-12*
+> *Updated: 2026-05-05 (Day 62 — added Master Legibility Parameter to ui_playbook Part VIII; Lived User Journey to alexanders_unique_business; Day 61-62 entries to session_log + holomap + roadmap; architectural decisions to decision_log)*
 
 ---
 
@@ -75,7 +75,7 @@ docs/
 | [action_mapping.md](./02-strategy/action_mapping.md) | Action-to-outcome mapping |
 | [impact_mapping.md](./02-strategy/impact_mapping.md) | Impact measurement |
 | [alexanders_operating_system.md](./02-strategy/alexanders_operating_system.md) | Founder's operating system |
-| [alexanders_unique_business.md](./02-strategy/alexanders_unique_business.md) | Alexander's Unique Business Canvas + Venture Architecture |
+| [alexanders_unique_business.md](./02-strategy/alexanders_unique_business.md) | Alexander's Unique Business Canvas + Venture Architecture. Includes **Lived User Journey — Reveal-Anchored Funnel** section (Day 61) at dashboard level |
 | [oyis_unique_business.md](./02-strategy/oyis_unique_business.md) | Oyi's Unique Business Canvas (9.9 precision) |
 | [sergeys_unique_business.md](./02-strategy/sergeys_unique_business.md) | Sergey's Unique Business Canvas (in progress) |
 | [unique_business_canvas_template.md](./02-strategy/unique_business_canvas_template.md) | Canvas template v5.0 (session-tested) |
@@ -104,7 +104,7 @@ docs/
 | Doc | Purpose |
 |-----|---------|
 | [ux_playbook.md](./03-playbooks/ux_playbook.md) | UX principles & flows |
-| [ui_playbook.md](./03-playbooks/ui_playbook.md) | Design tokens, components, patterns |
+| [ui_playbook.md](./03-playbooks/ui_playbook.md) | Design tokens, components, patterns. **Part VIII: Legibility — Master Legibility Parameter** (Subtle / Standard / Strong, default = Strong 1.5×) added Day 62 |
 | [software_architecture_playbook.md](./03-playbooks/software_architecture_playbook.md) | Architecture patterns |
 | [product_playbook.md](./03-playbooks/product_playbook.md) | Master Result → Screens → Content |
 | [integrated_product_building_workflow.md](./03-playbooks/integrated_product_building_workflow.md) | **Meta SOP** — orchestrates Path A |

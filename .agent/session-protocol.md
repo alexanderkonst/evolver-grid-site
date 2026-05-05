@@ -160,7 +160,7 @@ A numbered table, four columns:
 5. **Sign off with evidence.** Each ✅ row has a concrete artifact attached. URL, screenshot, file:line, command output.
 6. **Stop, don't defer.** When something feels mid, the move is to STOP and reconfirm scope with Sasha — not to push through and label it "Phase 2." Only Sasha decides what's deferred.
 
-### Anti-patterns (we debugged these on Day 54)
+### Anti-patterns (we debugged these on Day 54, expanded Day 61-62)
 
 | Pattern | What it hides | Replace with |
 |---|---|---|
@@ -170,6 +170,8 @@ A numbered table, four columns:
 | "Done with my slice" | Slice ≠ task | Re-read original request, expand DoD |
 | Restating intent as evidence | "I changed the file" instead of "the file at line 42 now reads X" | Concrete artifact in evidence column |
 | Verifying after declaring done | Sequence reversal — "done" is the conclusion of verification, not its precursor | Verify first, declare second |
+| **"Found the root cause"** (Day 61-62) | Confidence before verification. Each declaration is REAL but partial. Eats trust on top of time when the next layer surfaces. | **"Hypothesis: X is the cause"** before shipping → **"Shipped, awaiting your verification"** when code lands → **"Confirmed by your test: bug fixed"** ONLY after Sasha tests in production. |
+| **"While I'm here, let me also fix B, C, D"** (Day 61-62) | Bundling adjacent fixes with the requested bug fix → verification becomes impossible (if a new bug appears, it can't be attributed to any single fix). | **Smallest possible diff per fix.** Adjacent observations go on a "saw these too, NOT shipping" list in the response, not into the commit. Sasha picks what to address next. |
 
 ### When NOT to use a DoD table
 

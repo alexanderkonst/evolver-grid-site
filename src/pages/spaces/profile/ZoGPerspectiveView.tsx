@@ -205,7 +205,12 @@ const PERSPECTIVES: Partial<Record<PerspectiveId, PerspectiveConfig>> = {
         // optional — for pre-Day-61 snapshots that don't have it, only
         // the long form renders (back-compat).
         title: "Three Talents in Depth",
-        subtitle: "Each talent — the handle from your reveal, then unfolded",
+        // Day 62 (Sasha 2026-05-05): subtitle was "Each talent — the
+        // handle from your reveal, then unfolded" — too poetic, didn't
+        // name what the user gets. Replaced with a direct statement of
+        // the transformational result: reading this page, you
+        // understand what each of your three talents actually means.
+        subtitle: "What each of your three talents really means.",
         icon: Sparkles,
         render: (data) => {
             const longForms = data.topTalentProfile?.top_three_talents ?? [];
