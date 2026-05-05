@@ -479,13 +479,13 @@ export function UniqueBusinessProvider({ children }: { children: ReactNode }) {
         what_changed: result.what_changed,
         crystallized_action: result.crystallized_action,
         specificity_before: current.specificity_score,
-        specificity_after: result.specificity_score,
-        specificity_delta: result.specificity_delta,
+        specificity_after: clampedScore,
+        specificity_delta: clampedDelta,
         accepted: true,
         diminishing_returns: false,
       });
 
-      toast.success(`${artifact_key}: specificity +${result.specificity_delta.toFixed(1)}`);
+      toast.success(`${artifact_key}: specificity +${clampedDelta.toFixed(1)}`);
     } catch (e: any) {
       console.error("acceptImprovement failed:", e);
       toast.error("Couldn't save the improvement. Please retry.");
