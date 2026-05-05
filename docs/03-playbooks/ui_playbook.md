@@ -1526,6 +1526,100 @@ For italic Cormorant body text on variable-luminance background, apply all four:
 
 Headlines: same pattern but bump weight to 700 (`font-bold` in Tailwind) and use `text-3xl` or larger.
 
+## The Master Legibility Parameter
+
+> *Captured Day 62 (May 5, 2026) after a third legibility pass on the landing hero. The first round used the cocktail at moderate values; user feedback was "better, but still hard." The second round bumped each lever 1.5x. This codifies the concept so future surfaces don't need to rediscover the values.*
+
+### The principle
+
+**Every legibility surface has a master parameter — a single intensity dial that controls how aggressively the cocktail levers are applied.** Not every surface needs maximum legibility help; not every surface can survive on the lightest settings. Picking the right level matters.
+
+The parameter has three named values:
+
+| Level | Use case | When |
+|---|---|---|
+| **Subtle** (1.0×) | Uniform-luminance backgrounds (clean cream, solid dark navy) | Most internal pages, settings screens, modal bodies — backgrounds the designer fully controls |
+| **Standard** (1.0–1.25×) | Mild luminance variation (gentle gradients, soft photo overlays at low opacity) | Card-on-pearl-skin layouts, most reveal pages with mild backgrounds |
+| **Strong** (1.5×) | High luminance variation (gold particles, sun glare, video backgrounds, brand photo overlays) | Landing hero, RevelatoryHero on photo bg, any surface that has triggered "hard to read" feedback |
+
+**The default recommended value for this product is `Strong` (1.5×).** This was the de-facto value arrived at through user feedback — the legibility ceiling the brand needed to stop generating "hard to read" complaints from real users.
+
+### How the parameter manifests across the cocktail levers
+
+Each lever has values keyed to the parameter:
+
+| Lever | Subtle (1.0×) | Standard (1.25×) | **Strong (1.5×) — default** |
+|---|---|---|---|
+| Italic body weight | 400 (regular) | 500 (medium) | **600–700 (semibold–bold)** |
+| Headline weight | 500–600 | 600 | **700 (bold)** |
+| Italic letter-spacing | 0 | +0.005em | **+0.01em** |
+| Color alpha (muted text) | 0.78–0.85 | 0.86–0.92 | **0.93–0.97** |
+| `text-shadow` halo | `--skin-text-halo-soft` | `--skin-text-halo-strong` | **`--skin-text-halo-deep`** |
+| Backdrop scrim | none | none | **none unless still failing** |
+
+### The "Strong" cocktail (the de-facto default — copy-pasteable)
+
+```tsx
+{/* For italic Cormorant body text on variable-luminance background. */}
+<p
+  style={{
+    fontFamily: "'Cormorant Garamond', serif",
+    fontWeight: 700,                              // ← lever 1 at Strong
+    letterSpacing: "0.01em",                      // ← lever 4 at Strong
+    color: "var(--skin-text-primary, #0a1628)",   // ← lever 2 (full color, not muted)
+    textShadow: "var(--skin-text-halo-deep)",     // ← lever 3 at Strong
+  }}
+  className="text-lg sm:text-xl italic"
+>
+  …copy…
+</p>
+
+{/* For headlines, same cocktail with text-3xl+ size. */}
+<h1
+  style={{
+    fontFamily: "'Cormorant Garamond', serif",
+    color: "var(--skin-text-primary, #0a1628)",
+    textShadow: "var(--skin-text-halo-deep)",
+  }}
+  className="text-3xl sm:text-4xl md:text-5xl font-bold leading-[1.1] tracking-[-0.018em]"
+>
+  …headline…
+</h1>
+```
+
+### `--skin-text-halo-deep` token at Strong (1.5×)
+
+```css
+--skin-text-halo-deep:
+    0 0 28px rgba(255,255,255,0.85),       /* outer white halo (lift on cream) */
+    0 1px 2px rgba(255,255,255,0.95),      /* inner white halo (lift on cream) */
+    0 0 1px rgba(11,42,90,0.65),           /* navy stroke (deepen on bright spots) */
+    0 1px 0 rgba(11,42,90,0.45);           /* navy under-shadow (deepen on bright spots) */
+```
+
+The two-direction shadow remains the design pattern — white halo lifts on cream pixels, navy stroke deepens on bright sun-glare pixels. The Strong setting amplifies both directions: white halo radius/opacity go up (more lift) AND navy stroke opacity goes up (more deepen).
+
+### Color alphas at Strong (1.5×)
+
+```css
+--skin-text-body: rgba(11, 42, 90, 0.97);
+--skin-text-muted: rgba(11, 42, 90, 0.93);
+--skin-text-muted-soft: rgba(11, 42, 90, 0.88);
+```
+
+At these alphas, "muted" remains semantically muted (slightly less than full color) but contrast passes 8–10:1 across the entire variable-luminance background range. Below 0.92, contrast drops noticeably on bright background patches.
+
+### How to change the level for a specific surface
+
+Most surfaces use `Strong` by default. If you find a surface that's overstyled (too heavy on a uniform-bg context where the strength isn't needed), drop it down:
+
+- Use `--skin-text-halo-strong` (the lighter halo) instead of `--skin-text-halo-deep`
+- Use `--skin-text-muted` directly (now at 0.93) — it's still slightly softer than primary
+- Drop weight to 500–600
+- Remove letter-spacing override
+
+**Default to Strong.** Only step down when you have a specific reason.
+
 ## Anti-patterns
 
 | ❌ Don't | ✅ Do |
