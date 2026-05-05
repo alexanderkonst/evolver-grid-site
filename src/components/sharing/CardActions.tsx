@@ -189,6 +189,18 @@ const CardActions = ({
                             filter: none !important;
                             -webkit-filter: none !important;
                         }
+                        /* Day 62 (Sasha 2026-05-05): html2canvas v1.4.1
+                           crashes on radial-gradient(ellipse at <pos>, ...)
+                           with no explicit size keyword — produces NaN in
+                           CanvasGradient.addColorStop and aborts Save.
+                           Strip background-image on Tailwind arbitrary
+                           gradient utilities inside the captured subtree
+                           only. Live page untouched. */
+                        [data-capture-token] [class*="bg-[radial-gradient"],
+                        [data-capture-token] [class*="bg-[linear-gradient"] {
+                            background-image: none !important;
+                            background: transparent !important;
+                        }
                     `;
                     clonedDoc.head.appendChild(styleTag);
 
