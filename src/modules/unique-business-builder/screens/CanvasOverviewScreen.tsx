@@ -251,7 +251,7 @@ export default function CanvasOverviewScreen() {
                       textShadow: "var(--skin-cta-text-shadow, 0 0 16px rgba(240,194,127,0.28))",
                     }}
                   >
-                    Begin with Uniqueness
+                    Seed the Venture
                   </span>
                   <span
                     aria-hidden="true"
