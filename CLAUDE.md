@@ -76,6 +76,8 @@ The **Morphogenetic Navigation Holo Map** is how Sasha reads the structural stat
 
 When Sasha says **"update the holomap"**, I follow that protocol precisely. The holomap being current means AI can look proactively from his life's-work perspective and be more agentic about it.
 
+**Companion-file rule (Day 62):** after writing the new addendum to the holomap, also **rewrite** (not append) `~/.claude/projects/-Users-alexanderkonst-evolver-grid-site/memory/holomap_state.md` so it reflects the NEW center reading + perspective advances + Si–Do status. The holomap holds the full lineage (append-only addenda); the memory companion holds only the latest snapshot — that file gets auto-loaded into every fresh session via `MEMORY.md`, so it must point at *current* truth, not stale state. Two-file pattern: holomap = full history; memory companion = current orientation pointer.
+
 ---
 
 ## The integrated method: `docs/03-playbooks/unique_business_playbook.md`

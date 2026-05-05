@@ -6463,3 +6463,31 @@ Unchanged. **Press send Friday's DMs.** The architecture is now clean enough tha
 ---
 
 *Day 61-62: The funnel becomes monogamous. The reveal page becomes the anchor. The save email becomes a deposit slip. The legibility cocktail becomes a documented Master Parameter at Strong (1.5×). The auth flow heals itself on read. The user's recognition lands on a single coherent artifact, every time.*
+
+---
+
+## Day 62 (late) — /ubb output-ownership terms shipped (May 5, 2026)
+
+Sasha asked: *"Please study /ubb page, and suggest what licensing framework is most optimal to choose for this module."*
+
+**Diagnosis:** the existing license stack already covers /ubb's code (PolyForm NC 1.0.0), methodology (CC BY-NC-SA 4.0), and commercial use (subscription tier OR Distributor Agreement). The single gap was *who owns the artifacts users generate via /ubb* — canvases, offer copy, blueprints. The Generated Output question was unspecified.
+
+**Recommendation:** don't invent a /ubb-specific license. Add a short three-rule section to the existing Distributor Agreement:
+1. User owns their outputs.
+2. Commercial use of outputs follows their tier (Tasting/Builder = personal; Locked-in/Founders 50/Ignition = commercial; Distributor Instance = rev-share governs).
+3. Methodology *shape* (taxonomy, prompts, sequencing) stays licensed — outputs flow out, structures don't.
+
+**Shipped:**
+- `DISTRIBUTOR_AGREEMENT.md` — new **§15 Generated Outputs** (own outputs · tier-gated commercial use · methodology shape stays licensed). Bumped to v0.3 (Day 62). Spirit of This Agreement renumbered §15 → §16.
+- `LICENSE.md` — added **Generated Outputs** bullet between NonCommercial and ShareAlike, deep-linking to `DISTRIBUTOR_AGREEMENT.md#15-generated-outputs`.
+- `src/modules/unique-business-builder/UniqueBusinessLayout.tsx` — added a footer line at the bottom of the /ubb shell: *"Your outputs are yours. Commercial use of outputs follows your subscription tier — see [Output Terms]."* Sized at 11px / muted-foreground/80 so it sits as a quiet anchor without competing with artifact content. Footer first verified for token correctness (initial draft used non-existent `text-skin-muted`/`border-skin-line`; corrected to standard `text-muted-foreground`/`border-border` after grep showed only the new file used the missing tokens).
+
+**Why this lean:** the Day 54 MIT carve-out for `.agent/skills/` set the precedent that module-specific licensing is possible when there's a real reason — Anthropic-upstream code that's *expected* to be redistributable. /ubb is the opposite: maximum-uniqueness surface. Loosening its license would dissolve the Locked-in $99/mo tier into a convenience fee. The existing two-path structure already covers /ubb completely once output-ownership is named.
+
+**Files touched:** `DISTRIBUTOR_AGREEMENT.md`, `LICENSE.md`, `src/modules/unique-business-builder/UniqueBusinessLayout.tsx`. No code-license change. No methodology-license change. No new file.
+
+**Cross-refs:** `decision_log.md` (a future entry can capture this if Sasha wants the canonical record); `morphogenetic_holomap.md` Day 62 addendum optional — the licensing ship is operational, not architectural — the architecture was already there.
+
+### Si–Do
+
+Unchanged. The licensing edges are now sharper for `/ubb`, but Si–Do is still *first $555 stranger from funnel*. This was a clarification ship, not a send.

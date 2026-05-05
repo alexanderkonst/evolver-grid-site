@@ -35,6 +35,22 @@ export default function UniqueBusinessLayout() {
           GenericArtifactScreen: max-w-2xl; Compound: max-w-4xl). */}
       <div className="px-6 py-4">
         <Outlet />
+        {/* Day 62 (Sasha 2026-05-05): Output-ownership footer. /ubb is
+            fundamentally a generator — users need a clear, low-friction
+            statement of what they own and what their tier permits. Links
+            into DISTRIBUTOR_AGREEMENT.md §15 for full terms. */}
+        <footer className="mt-10 pt-6 pb-2 border-t border-border/40 text-[11px] text-muted-foreground/80 leading-relaxed text-center">
+          Your outputs are yours. Commercial use of outputs follows your subscription tier — see{" "}
+          <a
+            href="https://github.com/alexanderkonst/evolver-grid-site/blob/main/DISTRIBUTOR_AGREEMENT.md#15-generated-outputs"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline underline-offset-2 hover:text-foreground transition-colors"
+          >
+            Output Terms
+          </a>
+          .
+        </footer>
       </div>
       <ImproveReviewDrawer />
     </UniqueBusinessProvider>
