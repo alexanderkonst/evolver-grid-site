@@ -3052,8 +3052,30 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
                     
                     return (
                       <RevealSection key={prompt.id} delay={cardIndex * 60}>
+                        {/* Day 62 (Sasha 2026-05-05): premium/recommended
+                            prompt cards downgraded from `liquid-glass-strong`
+                            (50px backdrop blur) to `liquid-glass` (4px). With
+                            many such cards visible at once, the GPU was
+                            compositing 30-50+ heavy backdrop blurs every
+                            frame on /ai-os, causing the page to feel
+                            unresponsive on initial load. Cost scales with
+                            blur-radius squared, so 4px is ~156× cheaper per
+                            pixel than 50px.
+                            The premium feel survives via SIX other visual
+                            layers that aren't blur:
+                              • bigger padding (px-7 py-7 vs px-5 py-5)
+                              • bigger text (text-base sm:text-lg vs text-sm)
+                              • full-white label color vs muted 90%
+                              • shimmer-border animation
+                              • gradient background (inline below)
+                              • outer glow box-shadow (inline below)
+                              • slightly stronger border (inline below)
+                            The Suites nav card above (line ~2928) is the
+                            only `liquid-glass-strong` surface we keep on
+                            this page — single instance, hero element.
+                            See ui_playbook.md Part IX for the cost model. */}
                         <div className={`rounded-2xl transition-all duration-300 ${hoverGlowClass} ${
-                            isRec || isPremiumPrompt ? `liquid-glass-strong px-7 py-7 ${!isLocked ? 'shimmer-border' : ''}` : "liquid-glass px-5 py-5"
+                            isRec || isPremiumPrompt ? `liquid-glass px-7 py-7 ${!isLocked ? 'shimmer-border' : ''}` : "liquid-glass px-5 py-5"
                           }`}
                           style={{ 
                             ...(isRec && { background: 'linear-gradient(135deg, hsl(242 40% 20% / 0.35) 0%, hsl(290 30% 18% / 0.25) 50%, hsl(242 30% 15% / 0.3) 100%)', boxShadow: '0 0 30px hsl(242 40% 70% / 0.25), 0 0 70px hsl(290 30% 70% / 0.12), inset 0 1px 0 hsl(242 40% 80% / 0.2)', border: '1px solid hsl(242 40% 70% / 0.3)' }),

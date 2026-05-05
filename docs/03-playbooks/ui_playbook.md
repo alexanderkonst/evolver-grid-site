@@ -1975,10 +1975,10 @@ Before merging any change to a landing or high-traffic route:
 - **Resource hints in `index.html`**: preconnect to Supabase + SoundCloud + Mux; dns-prefetch to SC stream/artwork CDN + Mux CDN
 - **`CustomCursor`**: skip mount entirely on touch devices; rAF-coalesce position updates (240/sec → 60/sec re-renders)
 - **`SoundCloudPlayerProvider`**: lazy-mount iframe only on first shell-route entry (Day 58+) — engine doesn't load for users who never enter the app shell
+- **`/ai-os` prompt cards downgraded `liquid-glass-strong` → `liquid-glass`**: premium/recommended prompt cards moved from 50px backdrop blur to 4px (~156× cheaper per pixel due to Gaussian convolution scaling). The single Suites navigation card above the prompt list is the only `liquid-glass-strong` surface kept on `/ai-os` — single instance, hero element only. Premium feel preserved through six other visual layers (padding, text size, shimmer-border, gradient bg, outer glow, brighter text) — none of which touch the GPU compositor.
 
 ## Known Outstanding Items (require sign-off — Medium-risk)
 
-- **`/ai-os` prompt list `liquid-glass-strong` cost** — many simultaneous backdrop blurs above the fold; needs `content-visibility: auto` + Intersection Observer or downgrade to `liquid-glass` (4px). Visual identity sensitive.
 - **`MuxVideoBackground` mounts immediately on every shell-rendering route** — could defer first segment fetch by 1-2s after FCP via `requestIdleCallback`. Brand-feel sensitive (the video IS the atmosphere).
 - **`SoundCloudPlayerProvider` iframe loads on first shell route** — could defer to `requestIdleCallback` so the iframe init isn't on the critical path. Cost: 1-2s delay before music can be played on first session.
 
