@@ -202,7 +202,7 @@ export default function CanvasOverviewScreen() {
                   textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.7))",
                 }}
               >
-                Start with your Uniqueness
+                One seed. A whole venture, autonomously composed.
               </h2>
               <p
                 className="mx-auto max-w-xl"
@@ -214,8 +214,7 @@ export default function CanvasOverviewScreen() {
                   color: "var(--skin-text-body, rgba(11, 42, 90, 0.85))",
                 }}
               >
-                Every artifact downstream — your tribe, your promise, your offer, your landing page — flows from how clearly you can name what only you do.
-                The first version comes from your Top Talent. You sharpen it from there.
+                Name your Uniqueness once. The AI takes it from there — tribe, pain, promise, offer, lead magnet, value ladder, first session, marketing, distribution, communications, landing page. End-to-end. No human in the loop. You stay the editor: press ✦ Improve on anything that doesn't yet sound like only you.
               </p>
               <div className="pt-2">
                 <button
