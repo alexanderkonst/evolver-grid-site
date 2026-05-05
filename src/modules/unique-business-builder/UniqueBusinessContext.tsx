@@ -648,8 +648,23 @@ export function UniqueBusinessProvider({ children }: { children: ReactNode }) {
 
   const publishLandingPage = useCallback(async (): Promise<LandingPagePublication> => {
     if (!userId) throw new Error("Please sign in first.");
-    const landing = artifacts.landing_page?.latestLocked ?? artifacts.landing_page?.latest;
-    if (!landing) throw new Error("Generate and lock a Landing Page first.");
+    // Day 62 (Sasha 2026-05-05) BUG FIX — source-of-truth mismatch with the
+    // button label. The button on LandingPageScreen reads
+    // `landing.latest.version` ("Publish v7"); the OLD code here read
+    // `latestLocked ?? latest`, so once a user had ANY locked version, every
+    // subsequent publish silently republished THAT locked version at a new
+    // random URL — even after they'd improved 4 times beyond it. Sasha hit
+    // this on his own canvas: button promised v7, function shipped v3, URL
+    // looked "stuck at v3" because every click really WAS v3.
+    //
+    // The lock is editorial-only (the on-screen tip says "lock first if you
+    // want this version to feel final" — i.e., locking is OPTIONAL). Publish
+    // = "ship what you see" = the current working version = `latest`. If a
+    // user wants to publish a stable older version, they can roll back via
+    // the version history first; the publish action itself should always
+    // mirror the visible button promise.
+    const landing = artifacts.landing_page?.latest;
+    if (!landing) throw new Error("Generate a Landing Page first.");
 
     const random = Math.random().toString(36).slice(2, 8);
     const slug = `l-${random}-v${landing.version}`;
