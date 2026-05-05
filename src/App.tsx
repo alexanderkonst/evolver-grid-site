@@ -539,7 +539,7 @@ const App = () => (
                       wizards. UniqueBusinessLayout strips its own chrome
                       (header, progress bar, max-w wrapper) since the shell
                       provides those affordances. */}
-                  <Route path="/ubb" element={<RequireAuth><GameShellV2><UniqueBusinessLayout /></GameShellV2></RequireAuth>}>
+                  <Route path="/ubb" element={<RequireAuth><GameShellV2 hideLogo><UniqueBusinessLayout /></GameShellV2></RequireAuth>}>
                     <Route index element={<CanvasOverviewScreen />} />
                     <Route path="uniqueness" element={<GenericArtifactScreen />} />
                     <Route path="myth" element={<GenericArtifactScreen />} />

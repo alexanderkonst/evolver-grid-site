@@ -80,7 +80,7 @@ export default function CanvasOverviewScreen() {
             textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.7))",
           }}
         >
-          Your Unique Business Canvas
+          Autonomous AI Venture Builder
         </h1>
         <p
           className="max-w-3xl"
@@ -92,9 +92,7 @@ export default function CanvasOverviewScreen() {
             color: "var(--skin-text-body, rgba(11, 42, 90, 0.85))",
           }}
         >
-          {totalArtifacts} artifacts. Press <span className="not-italic">✦&nbsp;Improve</span> on each
-          until specificity feels enough. Every improvement becomes a new
-          version — nothing is ever lost.
+          No human in the loop. The AI extracts your uniqueness, composes {totalArtifacts} artifacts of a complete business, and ships them as a live venture. You press <span className="not-italic">✦&nbsp;Improve</span> when something doesn't yet sound like only you. Every pass becomes a new version — nothing is ever lost.
         </p>
 
         {/* Glance row — DM Sans tabular-nums for digits */}
@@ -204,7 +202,7 @@ export default function CanvasOverviewScreen() {
                   textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.7))",
                 }}
               >
-                Start with your Uniqueness
+                One seed. A whole venture, autonomously composed.
               </h2>
               <p
                 className="mx-auto max-w-xl"
@@ -216,8 +214,7 @@ export default function CanvasOverviewScreen() {
                   color: "var(--skin-text-body, rgba(11, 42, 90, 0.85))",
                 }}
               >
-                Every artifact downstream — your tribe, your promise, your offer, your landing page — flows from how clearly you can name what only you do.
-                The first version comes from your Top Talent. You sharpen it from there.
+                Name your Uniqueness once. The AI takes it from there — tribe, pain, promise, offer, lead magnet, value ladder, first session, marketing, distribution, communications, landing page. End-to-end. No human in the loop. You stay the editor: press ✦ Improve on anything that doesn't yet sound like only you.
               </p>
               <div className="pt-2">
                 <button
@@ -254,7 +251,7 @@ export default function CanvasOverviewScreen() {
                       textShadow: "var(--skin-cta-text-shadow, 0 0 16px rgba(240,194,127,0.28))",
                     }}
                   >
-                    Begin with Uniqueness
+                    Seed the Venture
                   </span>
                   <span
                     aria-hidden="true"
@@ -281,7 +278,7 @@ export default function CanvasOverviewScreen() {
                 color: "var(--skin-text-muted, rgba(11, 42, 90, 0.55))",
               }}
             >
-              What's ahead
+              What the AI composes for you
             </div>
             <ol
               className="mx-auto max-w-xl space-y-2 text-center"
@@ -325,7 +322,7 @@ export default function CanvasOverviewScreen() {
                 color: "var(--skin-text-muted, rgba(11, 42, 90, 0.5))",
               }}
             >
-              The grid view returns the moment you generate your first artifact.
+              Next version adds License and Business Model. The grid view returns the moment the first artifact lands.
             </p>
           </div>
         </section>
