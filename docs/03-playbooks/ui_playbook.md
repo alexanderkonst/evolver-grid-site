@@ -1555,6 +1555,341 @@ For every text element on a variable-luminance background:
 
 ---
 
+# Part IX: Responsiveness & Performance
+
+> *"A page that paints in 1 second but doesn't respond to clicks for 5 seconds is BROKEN, no matter how beautiful it is."*
+
+> **Rule:** Speed is UX. Slow = bad UX, no matter how beautiful the pixels. This part captures the patterns and traps specific to keeping our pages **interactive**, not just visually present. Captured Day 62 (May 5, 2026) after recurring "page feels frozen on first load" feedback on `/` and `/ai-os`.
+
+## Core Web Vitals (Updated for 2024+)
+
+Google's Core Web Vitals shifted in March 2024. **FID is gone, INP is the new responsiveness metric.** Optimizing for FID alone is a 2023 mistake — INP measures the WORST interaction across the whole page lifecycle, not just the first one.
+
+| Metric | What it measures | Target | What hurts it |
+|---|---|---|---|
+| **LCP** (Largest Contentful Paint) | Time until the largest visible element is painted | < 2.5s | Heavy hero images, render-blocking JS, slow font swap |
+| **INP** (Interaction to Next Paint) — *replaced FID in 2024* | Worst-case latency from user input to visual response | < 200ms | Long Tasks (>50ms) on main thread, expensive React re-renders, untoggled animations |
+| **CLS** (Cumulative Layout Shift) | Sum of unexpected layout shifts | < 0.1 | Late-loading fonts, late-resizing images, content injected above current scroll |
+| **TBT** (Total Blocking Time) — lab metric, predicts INP | Sum of time the main thread was blocked > 50ms | < 200ms | Same as INP — heavy JS, long tasks |
+| **FCP** (First Contentful Paint) | Time until any content paints | < 1.8s | Render-blocking CSS/JS, no resource hints |
+
+### The Long Task rule
+
+The single most important concept for INP: **a Long Task is any uninterrupted main-thread work > 50ms.** During a Long Task, the browser CANNOT respond to clicks, taps, scroll, or keyboard input. The page LOOKS alive but FEELS frozen.
+
+**Common Long Task culprits in this codebase:**
+- React re-renders triggered by mouse-move handlers (every pixel)
+- Third-party iframe initialization (SoundCloud, Mux HLS init)
+- Backdrop-filter blur on large surfaces (continuous repaints)
+- Heavy synchronous list renders
+- `getComputedStyle()` calls in event handlers (forced layout)
+
+**The breakdown rule:** If any single task takes > 50ms, BREAK IT UP. Use `requestIdleCallback`, `requestAnimationFrame`, `scheduler.yield()`, or chunked rendering.
+
+---
+
+## Resource Hints (`<link rel="preconnect" / "dns-prefetch" / "preload">`)
+
+The cheapest perf win you can ship. **DNS+TLS handshakes for third-party origins happen serially during the request itself unless you hint earlier.** A single preconnect saves 100-300ms.
+
+| Hint | Use for | Cost | Example |
+|---|---|---|---|
+| `preconnect` | Origins you WILL hit (fonts, Supabase, third-party iframes) | Cheap — DNS+TCP+TLS handshake upfront | `<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>` |
+| `dns-prefetch` | Origins you MAY hit (CDN backups, optional features) | Cheaper — DNS only | `<link rel="dns-prefetch" href="https://i1.sndcdn.com">` |
+| `preload` | Critical resources you KNOW you need (LCP image, hero font) | Most expensive — actually fetches | `<link rel="preload" as="image" href="/hero.webp" fetchpriority="high">` |
+
+**`crossorigin` rule:**
+- Add `crossorigin` if the origin will be hit with credentials (Supabase, fonts, fetch with `credentials: include`)
+- Omit it if the origin is hit by an iframe `src=` or normal `<img>` (no credentials)
+- Wrong attribute = duplicate handshake (one with, one without). Use sparingly and correctly.
+
+**See `index.html` for the canonical set** (Day 62 pass added Supabase, SoundCloud, Mux preconnects).
+
+---
+
+## Lazy Mounting Heavy Components
+
+The biggest win for landing-page responsiveness: **don't mount what you don't need yet.**
+
+### Pattern 1: Route-based lazy import (`React.lazy`)
+
+```tsx
+import { lazy, Suspense } from "react";
+
+const HeavyDashboard = lazy(() => import("./HeavyDashboard"));
+
+<Route path="/dashboard" element={
+  <Suspense fallback={<PageLoader />}>
+    <HeavyDashboard />
+  </Suspense>
+} />
+```
+
+Use for: routes that aren't on the user's first navigation path. Already used for `FoundersIndex`, `FounderDetail`, `AdminPage`.
+
+### Pattern 2: Idle-time mount (`requestIdleCallback`)
+
+```tsx
+const [mounted, setMounted] = useState(false);
+useEffect(() => {
+  const cb = () => setMounted(true);
+  if ("requestIdleCallback" in window) {
+    const id = window.requestIdleCallback(cb, { timeout: 2000 });
+    return () => window.cancelIdleCallback(id);
+  }
+  // Fallback for Safari (no rIC support)
+  const t = window.setTimeout(cb, 1500);
+  return () => window.clearTimeout(t);
+}, []);
+{mounted && <NonCriticalThing />}
+```
+
+Use for: third-party iframes, analytics widgets, anything visible but not interactive on first paint.
+
+### Pattern 3: Intersection-based mount (Intersection Observer)
+
+```tsx
+const ref = useRef<HTMLDivElement>(null);
+const [visible, setVisible] = useState(false);
+useEffect(() => {
+  const obs = new IntersectionObserver(([entry]) => {
+    if (entry.isIntersecting) {
+      setVisible(true);
+      obs.disconnect();
+    }
+  }, { rootMargin: "200px" });
+  if (ref.current) obs.observe(ref.current);
+  return () => obs.disconnect();
+}, []);
+return <div ref={ref}>{visible && <BelowFoldComponent />}</div>;
+```
+
+Use for: below-the-fold components that are never seen by ~70% of users (long landing pages, footer modules).
+
+### Pattern 4: Touch-device opt-out
+
+```tsx
+const [isTouch] = useState(() =>
+  window.matchMedia?.("(hover: none) and (pointer: coarse)").matches ?? false
+);
+if (isTouch) return null; // skip mount entirely
+```
+
+Use for: mouse-only effects (custom cursor, hover-only tooltips, parallax on cursor position). The component does literally nothing useful on touch — don't pay the cost.
+
+**Already applied to `CustomCursor` (Day 62).**
+
+---
+
+## Event Handler Throttling
+
+### The mouse-move trap
+
+**Anti-pattern (kills INP):**
+```tsx
+const updatePosition = (e: MouseEvent) => {
+  setPosition({ x: e.clientX, y: e.clientY }); // re-render on every pixel
+};
+window.addEventListener("mousemove", updatePosition);
+```
+
+A high-Hz mouse fires `mousemove` 120-240 times/sec during rapid motion. Each `setState` triggers a React re-render. Each re-render commits to the DOM. The main thread is saturated; clicks elsewhere on the page are queued behind the renders.
+
+**Fix — rAF coalesce:**
+```tsx
+const pendingPosRef = useRef<{x: number; y: number} | null>(null);
+const rafIdRef = useRef<number | null>(null);
+
+const flushPosition = () => {
+  rafIdRef.current = null;
+  if (pendingPosRef.current) {
+    setPosition(pendingPosRef.current);
+    pendingPosRef.current = null;
+  }
+};
+
+const updatePosition = (e: MouseEvent) => {
+  pendingPosRef.current = { x: e.clientX, y: e.clientY };
+  if (rafIdRef.current === null) {
+    rafIdRef.current = window.requestAnimationFrame(flushPosition);
+  }
+};
+```
+
+Now we coalesce N mousemove events per frame into 1 `setState`. Cuts re-renders from 240/sec to 60/sec (or whatever the screen refresh rate is). Visually identical; main thread freed up.
+
+**Already applied to `CustomCursor` (Day 62).**
+
+### Other handlers to throttle / debounce
+
+| Handler | Pattern | Why |
+|---|---|---|
+| `scroll` | rAF coalesce or `passive: true` | Fires very frequently; `passive: true` lets browser scroll without waiting for handler |
+| `resize` | debounce 100-200ms | User finishes resizing in bursts; one update per burst is enough |
+| `input` (search) | debounce 300ms | Avoid querying on every keystroke |
+| `mousemove` | rAF coalesce | See above |
+
+### `getComputedStyle()` in handlers — force-layout trap
+
+`window.getComputedStyle(element).<anything>` triggers a forced layout recalculation if the layout is dirty. Calling it inside an event handler (especially mousemove or scroll) is a guaranteed jank source. Cache the value, or compute it once on mount.
+
+---
+
+## Backdrop-Filter Blur — Use Sparingly
+
+`backdrop-filter: blur(...)` is one of the most expensive CSS properties. The GPU has to:
+1. Render everything BEHIND the element
+2. Run a Gaussian blur on those pixels
+3. Composite the blurred backdrop with the element's own content
+
+For each frame. For each blurred element on the page. With overlapping blurred elements, the cost compounds.
+
+**Performance tiers (in this codebase):**
+
+| Class | Blur radius | Cost | Use case |
+|---|---|---|---|
+| `liquid-glass` | 4px | Low | Cards, sections, pills, option buttons |
+| `liquid-glass-dark` | 4px (variant) | Low | Dark-tinted version of above |
+| `liquid-glass-strong` | **50px** | **High** | CTAs, hero buttons, pricing panels |
+
+**Rules:**
+1. **Reserve `liquid-glass-strong` for ≤ 5 elements per page above the fold.** More than that = noticeable jank on lower-end devices.
+2. **Never put `liquid-glass-strong` inside a long scrollable list** (every visible card = blur composite). Use `liquid-glass` instead, or use Intersection Observer to only apply blur when in viewport.
+3. **Pair with `contain: paint`** when feasible — limits the blur recompute area when content inside the element changes.
+
+**Outstanding issue (May 2026):** `/ai-os` prompt list applies `liquid-glass-strong` to every premium/recommended card. With many cards in the list, GPU has to composite many backdrop blurs simultaneously. Roadmap candidate: convert to `liquid-glass` (4px) or apply `content-visibility: auto` on each card so off-screen cards skip the blur.
+
+---
+
+## `content-visibility: auto` — Skip Off-Screen Render Cost
+
+Modern browsers support `content-visibility: auto`, which tells the renderer to skip layout, style, and paint for elements outside the viewport. The browser only does the work when the element is about to scroll into view.
+
+**Pattern:**
+```css
+.long-section {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 800px; /* hint at the height to prevent scroll jank */
+}
+```
+
+**When to use:**
+- Long below-the-fold sections (article body, FAQ, footer)
+- Lists with many off-screen items
+- Large image galleries
+
+**When NOT to use:**
+- Above-the-fold content (defeats the point)
+- Elements that are URL-fragment scroll targets (`/page#section`) — browser may not jump correctly to skipped sections
+- Elements with internal focus management (modals, accordions that need keyboard focus across off-screen items)
+- Anything with `position: sticky` inside
+
+**`contain-intrinsic-size` is critical** — without it, the browser reserves 0×0 for skipped sections, which causes massive scroll-jump as content scrolls in. Always provide an estimate.
+
+---
+
+## CSS Animation Hygiene
+
+### `will-change` is not a free win
+
+`will-change: transform` tells the browser to promote an element to its own composite layer. Sounds great, but:
+- Each layer costs GPU memory
+- Too many layers = GPU runs out, falls back to CPU, ruins everything
+- Browsers heuristically promote layers anyway when they detect animation
+
+**Rule:** Only add `will-change` to elements that are CURRENTLY animating. Remove it after the animation completes (via JS or by toggling a class).
+
+### `prefers-reduced-motion` is non-negotiable
+
+Every animation must respect:
+```css
+@media (prefers-reduced-motion: reduce) {
+  .breathing-card,
+  .alive-card,
+  .aurora-gradient,
+  .aurora-text,
+  .glowing-card {
+    animation: none !important;
+  }
+}
+```
+
+Already in place for our animation classes. Apply the same rule to any new animation you add.
+
+### Animation main-thread cost
+
+GPU-accelerated properties (free):
+- `transform`
+- `opacity`
+- `filter` (cheap variants — drop-shadow, blur < 10px)
+
+Main-thread properties (expensive — avoid for animation):
+- `width`, `height`, `top`, `left`, `margin`, `padding` — trigger layout
+- `background-color`, `color` — trigger paint
+- `box-shadow` — triggers paint (expensive when blurred)
+
+If you must animate one of the expensive ones, wrap in `contain: paint` to limit invalidation.
+
+---
+
+## Audit Workflow
+
+### Manual responsiveness check
+
+1. Open the page in Chrome DevTools → Performance tab
+2. Click record → reload page → click around for 5 seconds → stop
+3. Look at the **Long Tasks** marker (red bars in the timeline)
+4. Any task > 50ms = jank. Click it to see the call stack.
+5. Common stacks: `setState` from mousemove, iframe init, video decode, blur composite
+
+### Lighthouse audit (lab measurement)
+
+```bash
+npx lighthouse https://findyourtoptalent.com/ --view --preset=desktop
+npx lighthouse https://findyourtoptalent.com/ --view --preset=mobile
+```
+
+Targets:
+- Performance score ≥ 85 (mobile), ≥ 95 (desktop)
+- LCP < 2.5s
+- TBT < 200ms
+- CLS < 0.1
+
+### Real-User Monitoring (RUM)
+
+For real INP measurements (lab metrics under-predict INP for users on slower devices), use the `web-vitals` npm package or Chrome's CrUX dataset.
+
+---
+
+## Pre-Ship Performance Checklist
+
+Before merging any change to a landing or high-traffic route:
+
+- [ ] **No new `mousemove` / `scroll` handler without rAF or `passive: true`**
+- [ ] **No new `getComputedStyle()` call inside an event handler**
+- [ ] **No new `backdrop-filter: blur(...)` on a list-rendered element** (or it's gated by Intersection Observer)
+- [ ] **No new third-party iframe / script mounted before user interaction** (use lazy-mount pattern)
+- [ ] **Any new animation respects `prefers-reduced-motion`**
+- [ ] **Any new long below-fold section has `content-visibility: auto` + `contain-intrinsic-size`** (when the page allows)
+- [ ] **Any new third-party origin gets a `preconnect` or `dns-prefetch` in `index.html`**
+- [ ] **Manual: open Chrome Performance tab, reload the touched route, confirm no Long Tasks > 100ms in the first 3 seconds after load**
+
+---
+
+## Patterns Already Applied (Day 62 Pass — May 5, 2026)
+
+- **Resource hints in `index.html`**: preconnect to Supabase + SoundCloud + Mux; dns-prefetch to SC stream/artwork CDN + Mux CDN
+- **`CustomCursor`**: skip mount entirely on touch devices; rAF-coalesce position updates (240/sec → 60/sec re-renders)
+- **`SoundCloudPlayerProvider`**: lazy-mount iframe only on first shell-route entry (Day 58+) — engine doesn't load for users who never enter the app shell
+
+## Known Outstanding Items (require sign-off — Medium-risk)
+
+- **`/ai-os` prompt list `liquid-glass-strong` cost** — many simultaneous backdrop blurs above the fold; needs `content-visibility: auto` + Intersection Observer or downgrade to `liquid-glass` (4px). Visual identity sensitive.
+- **`MuxVideoBackground` mounts immediately on every shell-rendering route** — could defer first segment fetch by 1-2s after FCP via `requestIdleCallback`. Brand-feel sensitive (the video IS the atmosphere).
+- **`SoundCloudPlayerProvider` iframe loads on first shell route** — could defer to `requestIdleCallback` so the iframe init isn't on the critical path. Cost: 1-2s delay before music can be played on first session.
+
+---
+
 # Agent Skills Reference (Optional Enhancements)
 
 > **Note:** The playbook above is the ground truth. These skills are supplementary resources for AI agents — use them for inspiration, not as dogma.
