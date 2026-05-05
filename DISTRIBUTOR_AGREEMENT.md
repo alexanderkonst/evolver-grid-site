@@ -1,6 +1,6 @@
 # Distributor Agreement
 
-**Version 0.2 · April 27, 2026 (Day 53)**
+**Version 0.3 · May 5, 2026 (Day 62)**
 *This is a draft. The intent is binding; the legal language will tighten with counsel review before any first signature.*
 
 ---
@@ -246,7 +246,37 @@ The Licensor may update this agreement to clarify language, add new optional con
 
 ---
 
-## 15. Spirit of This Agreement
+## 15. Generated Outputs
+
+This section governs the *artifacts you produce* through the Platform — your canvases, offer copy, landing-page text, blueprints, and the rest of the 18-artifact corpus generated via `/ubb` and adjacent surfaces. It applies whether you reach the Platform via Path A (hosted subscription) or Path B (Distributor Instance).
+
+### 15.1 You own your outputs
+
+The artifacts you generate are **yours**. You retain full ownership of the *content* — the words, the strategy, the positioning, the canvas. You can keep them, edit them outside the Platform, paste them onto your website, and treat them as your own work product. The Licensor claims no ownership over what you produce.
+
+### 15.2 Commercial use of outputs follows your tier
+
+The right to use your outputs *commercially* tracks the same two-path structure as the rest of this agreement:
+
+- **Tasting / Builder** — outputs are for **your own one business** only. You may build, refine, and ship YOUR offer using them. They are NOT licensed for delivery as paid client work, packaging into a commercial program you sell, or use inside an agency engagement billed to a third party. Upgrading the tier at any time retroactively grants commercial rights to outputs already produced.
+- **Locked-in / Founders 50 / Ignition** — outputs may be used commercially in your own work *and* in client work, with no rev-share. Your subscription IS the commercial license for the outputs.
+- **Distributor Instance (Path B)** — outputs generated through your forked instance are part of the Platform Revenue surface and are governed by the rev-share, reporting, and other obligations of this agreement.
+
+### 15.3 Methodology shape stays licensed
+
+What you own is the *output*. What remains licensed under CC BY-NC-SA 4.0 is the *shape that produced it* — the artifact taxonomy, the prompt sequences, the phase-group ordering, the monotonic Improve loop. You may not extract those structures from the Platform and ship them as a competing tool, course, or framework, regardless of subscription tier. You are free to internalize the methodology in your own thinking — that is the point. You are not free to repackage and redistribute it.
+
+### 15.4 In short
+
+| You may | You may not |
+|---|---|
+| Use, edit, publish, and own the outputs you generate | Re-publish the prompts, taxonomies, or sequencing as your own framework |
+| Upgrade tiers and retroactively gain commercial rights to existing outputs | Sell client deliverables produced on Tasting or Builder tiers |
+| Apply the methodology in your own thinking and offers | Operate a Distributor Instance commercially without the rev-share obligations of §3 |
+
+---
+
+## 16. Spirit of This Agreement
 
 If a situation arises that this document does not address, the spirit to apply is:
 
@@ -258,6 +288,8 @@ If a situation arises that this document does not address, the spirit to apply i
 When in doubt, talk to the Licensor directly: [Telegram](https://t.me/integralevolution).
 
 ---
+
+*v0.3 · May 5, 2026 (Day 62) · Added §15 "Generated Outputs" to formalize ownership and commercial-use terms for artifacts produced via `/ubb` and adjacent generators. User owns the outputs; commercial rights track tier; methodology shape stays licensed. Spirit of This Agreement renumbered to §16. Drafted by [Alexander Konstantinov](https://aleksandrkonstantinov.com) with AI assistance.*
 
 *v0.2 · April 27, 2026 (Day 53) · Two-paths preface added so visitors aren't dropped into fork-scale legal text when they want the hosted subscription. Path A (hosted Builder/Locked-in/Founders 50/Ignition tiers) clarified as the default-recommended commercial path; Path B (fork + self-host with 10% rev-share above $1K/mo) preserved for the rare cases that need it. Drafted by [Alexander Konstantinov](https://aleksandrkonstantinov.com) with AI assistance. Pending v1.0 finalization with legal counsel review.*
 

@@ -17,6 +17,8 @@
 > Both files already get updated every session. No extra work needed. The holomap reads what already exists.
 >
 > **Rule-based update scope (policy-bound):** advancing `►` markers, updating `✓` completions, refreshing timing overlays 🐢/🎯/⚡, bumping version + date, adding a new dated addendum block. Topology changes (axes, stages, perspective count) and synthesis-heavy reframings are NOT auto-updatable — they require Sasha. See `.agent/auto-execute-policy.md` §2.3.
+>
+> **Companion file — `memory/holomap_state.md` (Day 62 addition):** after writing the new addendum to this file, **rewrite** (not append) `memory/holomap_state.md` so it reflects the NEW center reading + advances + Si–Do status. That file is auto-loaded into every fresh session via `MEMORY.md`, so it must point at *current* truth, not stale state. Lineage lives here in this holomap (append-only addenda); the memory file holds only the latest snapshot. The two-file pattern: holomap = full history; memory companion = current orientation pointer.
 
 ---
 

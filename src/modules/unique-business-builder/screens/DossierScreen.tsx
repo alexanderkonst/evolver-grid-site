@@ -18,18 +18,25 @@
 
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Copy, Loader2 } from "lucide-react";
+import { Copy, Download, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import { useUniqueBusiness } from "../UniqueBusinessContext";
 import { SpecificityBadge } from "../components/SpecificityBadge";
 import { ARTIFACT_LABELS, UBB_ROOT, ARTIFACT_URL_SLUGS, phaseOf, PHASE_LABELS } from "../constants";
 import { ALL_ARTIFACT_KEYS } from "../types";
 import type { ArtifactKey } from "../types";
+import { generateUbbPdf } from "../generateUbbPdf";
 
 export default function DossierScreen() {
   const { artifacts, lockedCount, avgSpecificity, publishDossier } = useUniqueBusiness();
   const [isPublishing, setIsPublishing] = useState(false);
   const [publishedUrl, setPublishedUrl] = useState<string | null>(null);
+  // Day 62 (Sasha 2026-05-05): downloadable PDF companion to the
+  // on-screen dossier. Same editorial cream/gold register as the Top
+  // Talent PDF; writes all 19 artifacts grouped by phase. Independent
+  // from publish — works at any stage of completeness (gaps render as
+  // amber "Gap" rows so the architectural shape is always visible).
+  const [isDownloadingPdf, setIsDownloadingPdf] = useState(false);
 
   const totalArtifacts = ALL_ARTIFACT_KEYS.length;
   const remainingToLock = totalArtifacts - lockedCount;
@@ -51,6 +58,17 @@ export default function DossierScreen() {
     if (publishedUrl) {
       navigator.clipboard.writeText(publishedUrl);
       toast.success("URL copied.");
+    }
+  };
+
+  const handleDownloadPdf = async () => {
+    setIsDownloadingPdf(true);
+    try {
+      await generateUbbPdf({ artifacts, lockedCount, avgSpecificity });
+    } catch (e: any) {
+      toast.error(e?.message || "Couldn't generate the PDF. Try again.");
+    } finally {
+      setIsDownloadingPdf(false);
     }
   };
 
@@ -273,6 +291,54 @@ export default function DossierScreen() {
               <>
                 <span aria-hidden="true" style={ceremonialIcon}>✦</span>
                 <span style={ceremonialLabel}>Publish Dossier</span>
+              </>
+            )}
+          </button>
+        </div>
+
+        {/* Day 62 (Sasha 2026-05-05): Download PDF — secondary action.
+            Visually subordinate to the ceremonial Publish pill above
+            (Publish is the moment; PDF is the takeaway). Same editorial
+            register: Cormorant tracked uppercase, gold hairline,
+            cream-glass surface. Sits on its own row so on narrow
+            viewports it doesn't compete with the Publish CTA's wrap. */}
+        <div className="flex items-center justify-between gap-3 pt-1">
+          <p
+            style={{
+              fontFamily: "'Source Serif 4', serif",
+              fontStyle: "italic",
+              fontSize: "12.5px",
+              lineHeight: 1.5,
+              color: "var(--skin-text-muted, rgba(11, 42, 90, 0.62))",
+            }}
+          >
+            Or take it offline — every artifact, in print.
+          </p>
+          <button
+            onClick={handleDownloadPdf}
+            disabled={isDownloadingPdf}
+            className="group inline-flex items-center gap-2 rounded-full px-4 py-2 transition-all duration-300 hover:translate-y-[-0.5px] disabled:cursor-not-allowed disabled:opacity-50"
+            style={{
+              fontFamily: "'Cormorant Garamond', serif",
+              fontWeight: 600,
+              letterSpacing: "0.14em",
+              textTransform: "uppercase",
+              fontSize: "11px",
+              color: "var(--skin-text-primary, #0b2a5a)",
+              background: "rgba(255, 255, 255, 0.72)",
+              border: "0.5px solid rgba(212, 175, 55, 0.55)",
+              boxShadow: "0 0 12px -4px rgba(212, 175, 55, 0.25)",
+            }}
+          >
+            {isDownloadingPdf ? (
+              <>
+                <Loader2 className="h-3.5 w-3.5 animate-spin" />
+                Preparing PDF…
+              </>
+            ) : (
+              <>
+                <Download className="h-3.5 w-3.5" style={{ color: "var(--skin-accent-gold, #b8860b)" }} />
+                Download PDF
               </>
             )}
           </button>
