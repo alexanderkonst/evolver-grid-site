@@ -1033,15 +1033,10 @@ ${snapshotText}`;
                     temporarily hidden — /game/me surface is being polished.
                     Users still receive the magic-link email to enter later. */}
                 {saveState === "saved" ? (
-                  // Day 61 (Sasha 2026-05-04 22:00): copy aligned with
-                  // AI-path's CTA 4 success state. The previous "We
-                  // sent your Top Talent to your inbox..." was the
-                  // funnel-killer language Sasha asked us to kill
-                  // (pushes attention OFF the page when nothing more
-                  // sits below CTA 4 anyway). Quiet "Saved ✓" matches
-                  // editorial register.
-                  {/* Day 62 (Sasha 2026-05-05): Strong legibility
-                      cocktail per ui_playbook.md Part VIII. */}
+                  // Day 61 (Sasha 2026-05-04 22:00): "Saved ✓" reveal — quiet
+                  // editorial register, replaces the old funnel-killer copy.
+                  // Day 62 (Sasha 2026-05-05): legibility cocktail per
+                  // ui_playbook.md Part VIII.
                   <p
                     className="text-center text-base sm:text-lg italic"
                     style={{
