@@ -240,9 +240,26 @@ const navPillStyleStrong: React.CSSProperties = {
 /* ─── Sub-artifact card ──────────────────────────────────────────── */
 
 function SubArtifactCard({ artifactKey }: { artifactKey: ArtifactKey }) {
-  const { artifacts, generateArtifact, isGenerating, updateArtifactScore } = useUniqueBusiness();
+  // Day 62 (Sasha 2026-05-05) BUG FIX — compound sub-artifacts had no
+  // Lock UI. Generated content lived on `latest`, but `latestLocked`
+  // stayed null forever because there was no button to flip
+  // `is_locked = true`. As a result:
+  //   • DossierScreen rendered every compound row as "Gap — not yet
+  //     locked" (it reads `latestLocked` as the source of truth).
+  //   • The pane-2 build navigation showed Marketing 0/3, Distribution
+  //     0/3, Communications 0/3, 1st Session 0/1 — even after the
+  //     founder had improved each artifact several times.
+  //   • The dossier's avg specificity / locked count derived metrics
+  //     ignored compound work entirely.
+  // The data was correct all along; the UI just had no way to lock.
+  // Mirroring the Lock & Unlock pattern from GenericArtifactScreen's
+  // ArtifactView (single-artifact route) restores parity. After this
+  // ships, Sasha clicks Lock on each of his existing 10 compound
+  // sub-artifacts once and the counters/dossier update correctly.
+  const { artifacts, generateArtifact, isGenerating, lockArtifact, unlockArtifact, updateArtifactScore } = useUniqueBusiness();
   const state = artifacts[artifactKey];
   const latest = state?.latest;
+  const isLocked = !!state?.latestLocked;
   const thisIsGenerating = isGenerating === artifactKey;
 
   return (
@@ -362,8 +379,48 @@ function SubArtifactCard({ artifactKey }: { artifactKey: ArtifactKey }) {
             >
               <CompactContent content={latest.content} />
             </div>
-            <div className="flex items-center justify-end">
+            {/* Day 62 (Sasha 2026-05-05): Action row — Improve · Lock.
+                Was previously just <ImproveButton/> end-justified, with
+                no Lock affordance. Now mirrors GenericArtifactScreen's
+                Improve-Lock pair (Continue lives at the compound-level
+                Next button at the bottom of the screen, not per-card —
+                multiple sub-artifacts per screen, so Continue is the
+                whole-compound's job). */}
+            <div className="flex flex-wrap items-center justify-between gap-3 pt-1">
               <ImproveButton artifactKey={artifactKey} size="default" />
+              {!isLocked ? (
+                <button
+                  onClick={() => lockArtifact(artifactKey)}
+                  className="inline-flex items-center gap-2 rounded-full px-5 py-2.5 transition-all duration-200 hover:translate-y-[-0.5px]"
+                  style={{
+                    fontFamily: "'Cormorant Garamond', serif",
+                    fontWeight: 600,
+                    letterSpacing: "0.14em",
+                    textTransform: "uppercase",
+                    fontSize: "12px",
+                    color: "var(--skin-text-primary, #0b2a5a)",
+                    background: "rgba(255, 255, 255, 0.68)",
+                    border: "0.5px solid rgba(212, 175, 55, 0.55)",
+                    boxShadow: "0 0 14px -4px rgba(212, 175, 55, 0.32)",
+                  }}
+                >
+                  <span aria-hidden="true" style={{ color: "var(--skin-accent-gold, #b8860b)" }}>✓</span>
+                  Lock
+                </button>
+              ) : (
+                <button
+                  onClick={() => unlockArtifact(artifactKey)}
+                  className="text-xs underline transition-colors duration-200 hover:no-underline"
+                  style={{
+                    fontFamily: "'Source Serif 4', serif",
+                    fontStyle: "italic",
+                    fontSize: "12.5px",
+                    color: "var(--skin-text-muted, rgba(11, 42, 90, 0.62))",
+                  }}
+                >
+                  Unlock to improve again
+                </button>
+              )}
             </div>
           </>
         )}
