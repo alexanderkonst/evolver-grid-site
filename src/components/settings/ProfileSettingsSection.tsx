@@ -775,33 +775,43 @@ const ProfileSettingsSection = () => {
                                 }
                                 setIsLoading(true);
                                 try {
-                                    const { error } = await supabase.functions.invoke('delete-account', {
+                                    // Day 62 (Sasha 2026-05-05): explicitly fetch the
+                                    // session so we can (a) bail early with a clear
+                                    // message if the user has no token, and (b) pass
+                                    // the bearer header explicitly so the request
+                                    // does not silently fall back to the anon key.
+                                    const { data: sessionData } = await supabase.auth.getSession();
+                                    const accessToken = sessionData?.session?.access_token;
+                                    if (!accessToken) {
+                                        toast({
+                                            title: "Session expired",
+                                            description: "Please sign in again, then retry account deletion.",
+                                            variant: "destructive",
+                                        });
+                                        setIsLoading(false);
+                                        return;
+                                    }
+
+                                    const { data, error } = await supabase.functions.invoke('delete-account', {
                                         body: {},
+                                        headers: { Authorization: `Bearer ${accessToken}` },
                                     });
                                     if (error) throw error;
+                                    if ((data as any)?.error) {
+                                        throw new Error((data as any).detail || (data as any).error);
+                                    }
 
                                     // Wipe the snapshot cache so this
                                     // tab doesn't render anything stale
                                     // before the redirect lands.
                                     clearCachedZogSnapshot();
 
-                                    // Sign the user out — at this point
-                                    // their auth.user is gone server-side,
-                                    // so signOut here is mostly a local
-                                    // session cleanup. Errors here are
-                                    // non-fatal (the auth row is already
-                                    // gone; the local session will fail
-                                    // its next refresh anyway).
                                     try {
                                         await supabase.auth.signOut();
                                     } catch {
                                         // non-fatal
                                     }
 
-                                    // Clear the anonymous-profile linker
-                                    // in localStorage so the same browser
-                                    // doesn't carry orphan IDs into a
-                                    // future signup attempt.
                                     try {
                                         localStorage.removeItem('game_profile_id');
                                     } catch {
@@ -812,15 +822,25 @@ const ProfileSettingsSection = () => {
                                         title: "Account deleted",
                                         description: "Your account and all your data are gone. Goodbye.",
                                     });
-                                    // Hard redirect (not navigate) so any
-                                    // in-memory React state from the now-
-                                    // dead session is cleared.
                                     window.location.href = '/';
                                 } catch (err: any) {
                                     console.error('[delete-account] failed:', err);
+                                    // Try to surface the structured backend error if present.
+                                    let detail = err?.message || "Please try again, or contact support.";
+                                    try {
+                                        const ctx = err?.context;
+                                        if (ctx && typeof ctx.json === "function") {
+                                            const body = await ctx.json();
+                                            if (body?.detail || body?.error) {
+                                                detail = body.detail || body.error;
+                                            }
+                                        }
+                                    } catch {
+                                        // ignore parse failures
+                                    }
                                     toast({
                                         title: "Couldn't delete account",
-                                        description: err?.message || "Please try again, or contact support.",
+                                        description: detail,
                                         variant: "destructive",
                                     });
                                     setIsLoading(false);
