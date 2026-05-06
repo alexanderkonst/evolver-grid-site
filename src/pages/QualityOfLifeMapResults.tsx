@@ -3,8 +3,42 @@ import { useRef, useState, useEffect } from "react";
 import type { FC } from "react";
 import { Button } from "@/components/ui/button";
 import ShareQol from "@/components/sharing/ShareQol";
-import { useQolAssessment } from "@/modules/quality-of-life-map/QolAssessmentContext";
+import { useQolAssessment, type Answers } from "@/modules/quality-of-life-map/QolAssessmentContext";
 import { DOMAINS } from "@/modules/quality-of-life-map/qolConfig";
+
+/**
+ * Day 63 (Sasha 2026-05-06): cell-by-cell match between current answers
+ * and the most recent saved snapshot. Used as the idempotency guard
+ * before inserting a new qol_snapshots row. Without this, every visit
+ * to the Results page (refresh, navigate-back, anything that remounts
+ * the component) inserted another duplicate snapshot — the local
+ * `isSaved` flag resets per mount, so the previous guard couldn't see
+ * across mounts.
+ */
+function answersMatchSnapshot(
+  answers: Answers,
+  snapshot: {
+    wealth_stage: number;
+    health_stage: number;
+    happiness_stage: number;
+    love_relationships_stage: number;
+    impact_stage: number;
+    growth_stage: number;
+    social_ties_stage: number;
+    home_stage: number;
+  }
+): boolean {
+  return (
+    answers.wealth === snapshot.wealth_stage &&
+    answers.health === snapshot.health_stage &&
+    answers.happiness === snapshot.happiness_stage &&
+    answers.love === snapshot.love_relationships_stage &&
+    answers.impact === snapshot.impact_stage &&
+    answers.growth === snapshot.growth_stage &&
+    answers.socialTies === snapshot.social_ties_stage &&
+    answers.home === snapshot.home_stage
+  );
+}
 import { RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, ResponsiveContainer } from "recharts";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
@@ -55,6 +89,32 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
     if (!profileId) return;
 
     try {
+      // Day 63 (Sasha 2026-05-06): idempotency guard. Read the most
+      // recent saved snapshot first; if its 8 stage values match the
+      // current answers exactly, no-op and mark saved. This makes
+      // results-page revisits idempotent (refresh, navigate-back, etc.)
+      // while still producing a fresh row when the user actually
+      // retakes with new answers.
+      const { data: lastProfile } = await supabase
+        .from('game_profiles')
+        .select('last_qol_snapshot_id')
+        .eq('id', profileId)
+        .maybeSingle();
+
+      if (lastProfile?.last_qol_snapshot_id) {
+        const { data: prior } = await supabase
+          .from('qol_snapshots')
+          .select('wealth_stage, health_stage, happiness_stage, love_relationships_stage, impact_stage, growth_stage, social_ties_stage, home_stage')
+          .eq('id', lastProfile.last_qol_snapshot_id)
+          .maybeSingle();
+
+        if (prior && answersMatchSnapshot(answers, prior)) {
+          // Same answers as last save — no-op
+          setIsSaved(true);
+          return;
+        }
+      }
+
       const snapshotInsert = {
         profile_id: profileId,
         wealth_stage: (answers.wealth ?? 1) as number,
@@ -123,7 +183,18 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
         metadata: { intent: "qol_snapshot_saved" },
       });
     } catch (err) {
-      // Silent fail
+      // Day 63 (Sasha 2026-05-06): was a silent catch. Without logging
+      // and a user-visible signal, save failures left the user looking
+      // at "results saved" UI while no row hit the DB — they'd come
+      // back next week, find nothing in their history, and have no
+      // idea why. Now we surface both a console error (for diagnostics)
+      // and a destructive toast (so the user knows to retry).
+      console.error('[QoL] Failed to save snapshot:', err);
+      toast({
+        title: 'Could not save your results',
+        description: 'Your answers are still on this page. Try again or refresh.',
+        variant: 'destructive',
+      });
     }
   };
 
@@ -153,7 +224,12 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
 
   const handleRetake = () => {
     reset();
-    navigate("/quality-of-life-map/assessment");
+    // Day 63 (Sasha 2026-05-06): `?fresh=true` tells QolAssessmentProvider
+    // to skip the DB-load on (re)mount. Without this, any provider
+    // remount during the retake (refresh, navigate-away-and-back) re-
+    // populated `answers` from the saved snapshot, silently reverting
+    // the retake to "review previous answers".
+    navigate("/quality-of-life-map/assessment?fresh=true");
   };
 
   const handlePriorities = () => {

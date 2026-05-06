@@ -29,6 +29,16 @@ const QualityOfLifeMapAssessment = ({
     window.scrollTo(0, 0);
   }, []);
 
+  // Day 63 (Sasha 2026-05-06): scroll-to-top on every domain step,
+  // not just on initial mount. Without this, clicking Previous keeps
+  // the page scrolled to wherever the user landed last (the auto-
+  // advance handler already does its own smooth-scroll on forward
+  // motion, but Previous didn't). Skip during the intro screen.
+  useEffect(() => {
+    if (showIntro) return;
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [currentIndex, showIntro]);
+
   const domain = DOMAINS[currentIndex];
   const isLastDomain = currentIndex === DOMAINS.length - 1;
   const hasAnswer = answers[domain.id] !== null;
@@ -56,7 +66,11 @@ const QualityOfLifeMapAssessment = ({
   const handleNext = () => {
     if (isLastDomain) {
       if (renderMode === "embedded") {
-        navigate("/game/transformation/qol-results");
+        // Day 63 (Sasha 2026-05-06): /game/transformation/* was retired
+        // in favor of /game/learn/* (App.tsx:489-490 redirects). The
+        // old path bounced embedded-mode users to the Library instead
+        // of the Results page when they finished the assessment.
+        navigate("/game/learn/qol-results");
       } else {
         navigate(buildQolResultsPath(returnTo));
       }
@@ -142,13 +156,25 @@ const QualityOfLifeMapAssessment = ({
         </div>
 
         {/* Stages Grid */}
-        <div className="grid gap-4 mb-12">
+        {/*
+          Day 63 (Sasha 2026-05-06): aria-pressed added to each stage
+          button. Stages are mutually exclusive (one selected per
+          domain), but we use aria-pressed (toggle button) rather than
+          role="radio" because the latter requires full WAI-ARIA
+          radiogroup keyboard semantics (arrow-key navigation, single
+          tab stop) that this list doesn't yet implement. aria-pressed
+          gives screen readers a clear "selected"/"not selected" hint
+          without the obligation to deliver radio-group keyboard
+          contract — lower risk than partial radio implementation.
+        */}
+        <div className="grid gap-4 mb-12" aria-label={`${domain.name} stages`}>
           {domain.stages.map((stage) => {
             const isSelected = selectedStageId === stage.id;
             return (
               <button
                 key={stage.id}
                 onClick={() => handleStageSelect(stage.id)}
+                aria-pressed={isSelected}
                 className={cn(
                   "relative p-6 rounded-2xl text-left transition-all duration-200",
                   "border-2 hover:scale-[1.02]",
@@ -218,7 +244,16 @@ const QualityOfLifeMapAssessment = ({
         </div>
 
         {/* Mobile Bottom Bar */}
-        <div className="sm:hidden fixed bottom-0 left-0 right-0 bg-white/90 backdrop-blur-md border-t border-[var(--wabi-text-muted)]/10 p-4 shadow-lg z-above">
+        {/*
+          Day 63 (Sasha 2026-05-06): paddingBottom uses safe-area-inset
+          so the bar doesn't sit under the iPhone home indicator /
+          notch. max(16px, env(...)) ensures non-iOS browsers still get
+          the original 16px padding when env() resolves to 0.
+        */}
+        <div
+          className="sm:hidden fixed bottom-0 left-0 right-0 bg-white/90 backdrop-blur-md border-t border-[var(--wabi-text-muted)]/10 px-4 pt-4 shadow-lg z-above"
+          style={{ paddingBottom: "max(16px, env(safe-area-inset-bottom))" }}
+        >
           <div className="flex items-center justify-between gap-3">
             {currentIndex > 0 && (
               <button

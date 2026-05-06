@@ -162,6 +162,32 @@
 
 ---
 
+## 2026-05-06 (Day 63)
+
+### D-2026-05-06-01 — Idempotency at the data layer beats `isSaved` flags at the component layer
+
+**Decision:** When a `useEffect` fires on remount and produces a write side-effect, dedup must read shared state (DB or sessionStorage), not local component state. Codified in the QoL Results page: before inserting a new `qol_snapshots` row, query the most recent snapshot via `last_qol_snapshot_id` and compare cell-by-cell to the current answers. If they match exactly, no-op and mark saved. Generalize: any component-level "did we save this already?" flag that resets per mount is insufficient for a save-on-mount effect — the dedup question must be answerable from data the component doesn't own.
+
+**Rationale:** The QoL Results page had a local `useState` flag (`isSaved`) that was supposed to prevent duplicate inserts. It worked WITHIN a mount but resets on every remount (refresh, navigate-away-and-back, double-mount in Strict Mode). Result: every visit produced another row in `qol_snapshots`. The XP-award guard (`xp_awarded` boolean on each row) prevented double-XP correctly, but no row-level dedup existed. Cell-by-cell comparison is the cheapest correct dedup that requires no schema change. Pattern applies to any save-on-mount effect anywhere in the codebase: `acceptImprovement` (UBB) is similar but uses explicit user click as the trigger, so doesn't have the same risk; `saveSnapshotToDatabase` (QoL) had the issue because the trigger was an effect-on-state-change.
+
+**Reversibility:** The idempotency check is ~15 lines + a helper function. Removing it restores the previous (buggy) behavior. No schema change to revert.
+
+**Cross-references:** `QualityOfLifeMapResults.tsx` `answersMatchSnapshot` helper + idempotency block · `session_log.md` Day 63 (continued) entry · related pattern: `successFired` flag in `Step4GenerateSnapshot.tsx` (Day 61-62 D-2026-05-05-08 — false-alarm guard, different shape, similar lesson)
+
+---
+
+### D-2026-05-06-02 — `?fresh=true` URL param as the cross-mount "skip the load" signal
+
+**Decision:** When a context provider's mount-effect populates state from a DB read, and the user has an action that genuinely wants to bypass that read (e.g., "Retake Assessment"), use a URL search param read at provider-mount time as the skip signal. Implementation: navigate to the entry route with `?fresh=true`; the provider's load effect checks `URLSearchParams(location.search).get("fresh") === "true"` and short-circuits (sets `isLoading: false`, returns). Captured at mount only — subsequent URL changes within the same mount don't re-trigger.
+
+**Rationale:** The QoL "Retake" button was silently lying. `reset()` cleared local answers, but on any provider remount during the retake (refresh, navigate-away-and-back), the load effect re-fired and re-populated the answers from the saved snapshot. Three options considered: (A) delete the snapshot row (destructive — loses retake-from-X-to-Y telemetry potential), (B) sessionStorage flag (works cross-tab, risks staleness), (C) URL param (declarative, debuggable, scoped to the navigation event). Picked C. The URL captures the user's intent — "I'm retaking, skip the load" — and travels with refreshes and bookmarks. Subsequent navigation within the retake (Assessment → Results → Priorities) clears the param naturally; the next normal mount loads from DB as expected.
+
+**Reversibility:** ~6 lines added to the provider effect; ~5 chars added to one navigate call. Trivial revert.
+
+**Cross-references:** `QolAssessmentContext.tsx` load effect with `?fresh=true` check · `QualityOfLifeMapResults.tsx` `handleRetake` navigate call · `session_log.md` Day 63 (continued) entry
+
+---
+
 ## How to read entries above
 
 Each decision is reasoned at the time and shipped. If a decision is later reversed (new evidence, principle shift, scope change), the new entry references the old one explicitly — *"Supersedes D-YYYY-MM-DD-NN."* This is an append-only log; old entries don't get edited. Reading top-to-bottom traces the architectural lineage. Reading bottom-to-top traces the architectural state.

@@ -6607,3 +6607,68 @@ Clean (`npx tsc --noEmit` no output).
 ### Si–Do
 
 Unchanged. The Journey path now visibly continues past asset-mapping — *"there's more methodology ahead, the further you look the less is yet visible"* (the fog-of-war intent). When the QoL chip eventually unlocks, no re-wiring is needed: the path is already there, the click handler already routes when `locked: false`. One boolean flip ships the unlock.
+
+---
+
+## Day 63 (continued) — QoL Map module: 12 of 18 documented bugs fixed (May 6, 2026)
+
+After adding the QoL chip to Journey pane 2, Sasha asked: *"check that every feature works and overall give me your critical analysis and roasting of how this module is."* Roast surfaced 18 bugs across 4 severity levels. Sasha approved shipping all of them, then constrained: *"make sure not to touch anything where the risk of breaking anything is beyond low."* Re-evaluated each fix against the bar; shipped 12 (low/very-low risk), deferred 4 (medium+ risk).
+
+### Bugs fixed (12)
+
+| # | Severity | Fix | Files |
+|---|---|---|---|
+| 1 | 🔴 P0 | Stale `/game/transformation/qol-results` route → `/game/learn/qol-results` (the old path redirected to `/game/learn`, bouncing embedded-mode users to the Library instead of Results) | Assessment.tsx:59 |
+| 2 | 🔴 P0 | Duplicate `qol_snapshots` insert on every results-page mount → idempotency check via `last_qol_snapshot_id` content compare. Cell-by-cell answer match means revisits are no-ops; only genuine retake (different answers) inserts a new row | Results.tsx + new `answersMatchSnapshot` helper |
+| 3 | 🔴 P0 | `useMemo` with `setState` side-effect (React anti-pattern; risks infinite loops in Strict Mode) → `useEffect` | Priorities.tsx |
+| 4 | 🔴 P0 | "Retake" silently reverted to saved snapshot on provider remount → `?fresh=true` URL param skips the DB-load when navigation arrives from explicit retake | Results.tsx (handleRetake) + Context.tsx (load effect) |
+| 5 | 🟠 P0 | Two silent catches in QoL flow (Context load fail, Results save fail) → `console.warn` for load (graceful degradation preserved); `console.error` + destructive toast for save (user now knows to retry instead of seeing fake "saved" UI) | Context.tsx + Results.tsx |
+| 7 | 🟠 P1 | Skip→`/game` (retired URL, redirects to public marketing landing) → `/game/journey` (mid-flow exit inside the platform) | Priorities.tsx + GrowthRecipe.tsx |
+| 8 | 🟡 P1 | Drag-and-drop priorities had no keyboard alternative (WCAG 2.1.1 fail) → `tabIndex={0}`, `role="button"`, `aria-label`, `onKeyDown` with ArrowUp/ArrowDown reorder. Drag-drop untouched (parallel input modality) | Priorities.tsx |
+| 11 | 🟢 P2 | Stage selection had no a11y signal for "selected" state → `aria-pressed={isSelected}` on each button. Downgraded from `role="radio"` because that requires full WAI-ARIA radiogroup keyboard contract (not yet implemented = medium risk) | Assessment.tsx |
+| 13 | 🟢 P3 | Mobile fixed bottom-bar overlapped iPhone home indicator → `paddingBottom: max(16px, env(safe-area-inset-bottom))` | Assessment.tsx |
+| 14 | 🟢 P3 | `isLoading` not handled in Priorities → loading skeleton branch before the `!isComplete` check, prevents fresh deep-link mounts from briefly flashing "Complete your assessment" while DB load is in flight | Priorities.tsx |
+| 15 | 🟢 P3 | `scrollTo(0,0)` only on initial mount; clicking Previous between domains kept the page scrolled to the previous position → `useEffect` on `currentIndex` change | Assessment.tsx |
+| 16 | 🟢 P3 | Hardcoded "Top 3" / `slice(0, 3)` / `index < 3` in two files → `TOP_PRIORITIES_COUNT` constant exported from `qolConfig.ts`, imported and used in both Priorities and GrowthRecipe | qolConfig.ts + Priorities.tsx + GrowthRecipe.tsx |
+
+### Deferred (4) — risk exceeded the bar
+
+| # | Severity | Fix | Why deferred |
+|---|---|---|---|
+| 6 | 🟡 P1 | Three conflicting shell wrappings (Assessment uses `<Navigation>`, Results/Priorities/GrowthRecipe use `<GameShellV2>`, `QolLayout` renders `<OnboardingProgress>` outside both) → unify on GameShellV2 by moving it into QolLayout, removing per-page wrappers | Touches 5 files, changes the rendered tree fundamentally; risk of layout shifts, missed wrapper removal causing double-shell nesting, breaking embedded mode (TransformationQol\* uses its own GameShellV2 wrapping). **Medium-high risk.** Documented for a dedicated visual-verification turn. |
+| 9 | 🟢 P2 | Hardcoded hex colors (`#8460ea`, `#a4a3d0`, `#2c3150`, `#f5f4f1`) → wabi/skin tokens | Many small replacements; uncertain mapping between hex and existing tokens (close-but-not-identical visual values). Visual regression risk. **Medium risk.** |
+| 10 | 🟢 P2 | Mixed button systems (shadcn `<Button>` + raw `<button>` + `<Button variant="wabi-*">`) → unify on wabi-* | The wabi-\* variants have specific gradient + shadow treatments. Replacing default shadcn Button with wabi-primary changes visuals significantly. **Medium risk.** |
+| 12 | 🟢 P3 | `overall_score` saved to DB but not loaded back into context | Re-classified as drift not bug — client recomputes correctly from individual stages on every render, so missing load creates no user-visible inconsistency. Skipped. |
+
+### Files touched (6)
+
+- `src/modules/quality-of-life-map/qolConfig.ts` — `TOP_PRIORITIES_COUNT` export
+- `src/modules/quality-of-life-map/QolAssessmentContext.tsx` — `?fresh=true` skip + `console.warn` on load fail + `useLocation` import
+- `src/pages/QualityOfLifeMapAssessment.tsx` — route fix, scroll-on-domain-change, `aria-pressed` on stage buttons, safe-area inset on mobile bar
+- `src/pages/QualityOfLifeMapResults.tsx` — `answersMatchSnapshot` helper + idempotency check + `console.error` + destructive toast on save fail + `?fresh=true` on retake
+- `src/pages/QualityOfLifePriorities.tsx` — `useEffect` (was useMemo), `TOP_PRIORITIES_COUNT`, keyboard reorder + ARIA, `isLoading` branch, skip route fix
+- `src/pages/QualityOfLifeGrowthRecipe.tsx` — `TOP_PRIORITIES_COUNT`, skip route fix
+
+### Verification
+
+- `npx tsc --noEmit` — clean
+- 223 insertions, 22 deletions across 6 files
+- All edits additive or surgical replacements; no architectural changes (deferred to dedicated turn)
+
+### Lessons logged
+
+1. **Idempotency at the data layer beats `isSaved` flags at the component layer.** The duplicate-snapshot bug came from trusting a local `useState` flag (`isSaved`) to dedupe across mounts. Local state resets per mount; only DB-side comparison (or a session-persistent flag) survives navigation. Pattern: when a useEffect can fire on remount and produces a side effect, the dedup must read shared state (DB, sessionStorage, etc.), not local state.
+
+2. **`useMemo` with `setState` is always wrong.** It looks like "memoize-and-sync state" but is actually "compute on render and trigger re-render." React docs explicitly forbid it. Quick scan rule for any future code review: if `useMemo`'s callback includes a `setX(...)` call, replace with `useEffect`.
+
+3. **Silent catches steal time later.** Both QoL silent catches (load + save) hid bugs that surfaced months later as "the module is broken." Cost of `console.warn` is zero. Default rule: every catch block either re-throws, logs, or surfaces user-visible feedback. Empty catches are an anti-pattern.
+
+4. **Risk-bar discipline preserves momentum.** Sasha's mid-task constraint *"don't touch anything where risk is beyond low"* let me ship 12 fixes safely while flagging 4 for dedicated turns. Without the constraint, I'd have shipped the shell unification — which would have introduced visual regression risk during a session focused on data-integrity. Accepting the constraint as scope-shaping (not scope-shrinking) means the deferred items are documented and ready, not lost.
+
+### Should the chip stay locked?
+
+**Still yes, until the deferred 4 ship.** The data-integrity floor is now solid (no more duplicate inserts, retake works, errors surface, route-redirects don't drop users on marketing pages). The visual layer is still off — three shells, hex colors, mixed buttons. Unlocking now would route users into a module that works but reads as a different product. Schedule a dedicated visual-coherence turn for the deferred 4, then flip the boolean.
+
+### Si–Do
+
+Unchanged. QoL module's data integrity is now real; visual coherence is the remaining work before unlock.
