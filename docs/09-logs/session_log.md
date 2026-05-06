@@ -6491,3 +6491,84 @@ Sasha asked: *"Please study /ubb page, and suggest what licensing framework is m
 ### Si–Do
 
 Unchanged. The licensing edges are now sharper for `/ubb`, but Si–Do is still *first $555 stranger from funnel*. This was a clarification ship, not a send.
+
+---
+
+## Day 62 (late evening) — Karime MYTH leak fix + V1 restore + Stage 0 distillation field (May 5, 2026)
+
+After the licensing ship, four parallel work streams landed in one wave:
+
+### 1 · Karime MYTH contamination — root cause + fix + mitigation
+
+Sasha caught that Karime's MYTH artifact (her domain: quantum medicine / love-and-life) contained the literal phrase *"top talent"* — framework jargon from Sasha's own ZoG/Top-Talent product, completely foreign to her domain.
+
+**Root cause:** `_shared/ubb-prompts.ts` line 61 — the UNIQUENESS prompt's `generationGuidance` literally said *"Use the ZoG top talent and archetype as seed."* This seeded framework vocabulary into UNIQUENESS for every founder. MYTH derives from UNIQUENESS (line 79: *"Find the photon of truth under the founder's uniqueness"*) and inherits the leak. ZoG already has a strong NO INSIDER JARGON guard in `src/prompts/user/zoneOfGeniusPrompt.ts` lines 45/54; UBB had no symmetric inward-facing guard, so jargon flowed in via ZoG outputs unchallenged.
+
+**Three-layer fix shipped:**
+1. Line 61 rewrite — instructs the model to TRANSLATE framework jargon (`'top talent'`, `'archetype'`, `'zone of genius'`) into the founder's own domain language. Output uses founder's vocabulary, not the assessment framework's.
+2. New `UBB_LANGUAGE_GUIDELINES` constant added at the top of `_shared/ubb-prompts.ts` — four rules forbidding (a) framework vocabulary into outputs, (b) calibration vocabulary into outputs, (c) sourcing voice from anywhere except founder's own context, (d) sanity-check before returning. Prepended to every system prompt in `generate-artifact/index.ts` and `improve-artifact/index.ts`.
+3. Sasha's regen of Karime's MYTH after deploy = verification gate (his action).
+
+### 2 · V1 restore feature — append-only revert per artifact
+
+User-facing button: *"↺ Return to v1"* in each artifact's metadata row (e.g. `v3 · 5 versions · ↺ Return to v1`). Hidden when `latest.version === 1`; disabled while an Improve is in flight. Confirms via `window.confirm` before firing.
+
+**Architecture (Option B / α / v>1):**
+- New `restoreToV1(key)` action in `UniqueBusinessContext.tsx` — fetches v1 row directly from DB (doesn't depend on lazy-loaded `versionHistory`), inserts a new version row whose `content_json` + `specificity_score` copy v1's, with `parent_version_id` pointing at current latest, `what_changed: "Restored from v1"`. Append-only — preserves the full version chain per the paramount invariant.
+- New action wired through `types.ts` `UniqueBusinessActions` interface and the context value object.
+- UI link in `GenericArtifactScreen.tsx` metadata row.
+
+Zero schema changes. Trivial revert if needed.
+
+### 3 · Stage 0 distillation field — every artifact gets a one-sentence headline
+
+Sasha's ask: every artifact needs a single hand-editable distillation sentence on top, self-sustainable, and that sentence becomes the propagation atom into the markdown export (Stage 1, next wave).
+
+**Schema additions (19 artifacts):**
+Every entry in `ARTIFACT_CONFIGS` now has `"distillation"` as the FIRST field in its `outputSchema`. Description: *"one self-sustainable sentence carrying this artifact's essence in the founder's own domain language"*.
+
+**New directive constant:**
+`UBB_DISTILLATION_DIRECTIVE` added to `_shared/ubb-prompts.ts`, prepended to both edge functions' system prompts. Five rules: ONE sentence, self-sustainable, founder-domain-language only, MAY equal a headline-equivalent field if one exists, sticky-note test before returning.
+
+**UI rendering:**
+New `DistillationBlock` component in `GenericArtifactScreen.tsx` renders the distillation as a Cormorant-italic gold-accented blockquote sitting at the top of every artifact card. `ArtifactContentView` peels the field off the top of any object content and renders it featured; the remaining sub-fields render below as before. Specificity Matrix branch handled. Missing distillation on legacy artifacts shows a quiet *"Distillation not yet generated — Improve to add"* hint in the same slot.
+
+**Public surface mirror:**
+`PublicDossier.tsx` `ContentRenderer` peels distillation the same way and renders the featured blockquote. Public surfaces lead with the founder's distillation, not a generic field list. PublicLandingPage skipped — its custom marketing layout (headline/subheadline/cta) already serves the same role.
+
+### 4 · Markdown export — full plan locked, Stage 0 prep complete
+
+Living-chronicle architecture confirmed:
+- Filename: `{email-slugified}_unique_business.md` (e.g. `karime-medez-gmail-com_unique_business.md`) — no `@` or `.` in storage paths.
+- Hand-edit scope: only the topmost distillation per artifact. Once a new version lands, the previously-top distillation slides down and becomes immutable history. Hand-edits become part of the founder's evolution chronicle.
+- Renderer semantics: APPEND-ON-TOP, not REWRITE. Parser reads existing file → finds each artifact's top-version-number → prepends only DB versions newer than file's top.
+- Public via slug, mirroring Dossier.
+- File→DB round-trip deferred to Stage 5 (only ships if Stage 4 surfaces real demand).
+
+Stage 1 (renderer) starts in next session, now unblocked by Stage 0.
+
+### Files touched
+
+- `supabase/functions/_shared/ubb-prompts.ts` (Karime fix + Stage 0)
+- `supabase/functions/generate-artifact/index.ts` (Karime + Stage 0)
+- `supabase/functions/improve-artifact/index.ts` (Karime + Stage 0)
+- `src/modules/unique-business-builder/types.ts` (V1 action signature)
+- `src/modules/unique-business-builder/UniqueBusinessContext.tsx` (V1 action implementation)
+- `src/modules/unique-business-builder/screens/GenericArtifactScreen.tsx` (V1 button + Stage 0 distillation rendering)
+- `src/pages/PublicDossier.tsx` (Stage 0 distillation rendering on public surface)
+
+10 files total across the day's two ships. Project type-check clean throughout.
+
+### Lessons logged
+
+1. **Symmetric language guards.** ZoG protected itself from inventing jargon outward; UBB needed a symmetric inward guard so it doesn't ABSORB jargon from its upstream context. Pattern: any prompt that consumes another prompt's output needs a vocabulary-translation rule, not just the upstream prompt's no-jargon rule.
+
+2. **Calibration leak as architecture-level concern.** A single calibration example (Sasha's master holon matrix) can leak its domain into every founder's output unless the consuming prompt has explicit "translate, don't copy" instructions. The fix isn't per-artifact — it's a shared LANGUAGE_GUIDELINES block prepended once, enforced everywhere.
+
+3. **Append-on-top for chronological projection files.** When the DB is append-only and the markdown is a projection of the DB, the markdown should ALSO be append-only. Rewriting from DB on every change loses hand-edits; appending preserves them as history. Slightly more complex (parse + diff + prepend) but the only way to honor "topmost is editable, everything below is permanent" semantics.
+
+4. **Distillation as the propagation atom.** When data has many shapes (per-artifact custom JSON), one shared field (the distillation) becomes the "what does this artifact MEAN" atom that propagates everywhere — UI top, public surface top, markdown export top. The schema gets a single new mandatory field; everything downstream lights up.
+
+### Si–Do
+
+Unchanged. The platform is now noticeably better for any founder who runs even one Improve on each artifact (distillation surfaces visually). The Si–Do remains: **first $555 stranger from the funnel.** Today was apparatus work — the apparatus is sharper. The send is still the move.
