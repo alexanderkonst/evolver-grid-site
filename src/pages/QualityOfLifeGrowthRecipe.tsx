@@ -143,19 +143,43 @@ const QualityOfLifeGrowthRecipe = () => {
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-[60vh]">
-        <div className="text-[#a4a3d0]">Loading growth recipe...</div>
+        <div className="text-[var(--wabi-text-muted)]">Loading growth recipe...</div>
       </div>
     );
   }
 
   return (
     <div className="max-w-2xl mx-auto p-4 lg:p-6 space-y-6">
-        {/* Header */}
+        {/* Header
+            Day 63 (Sasha 2026-05-06): Cormorant editorial H1 + Source
+            Serif 4 italic body subhead — matches landing's typographic
+            register. */}
         <div className="text-center">
           <BookOpen className="w-10 h-10 mx-auto text-[var(--depth-violet)] mb-2" />
-          <h1 className="text-2xl font-bold text-[var(--wabi-text-primary)] mb-2">Your Growth Recipe</h1>
-          <p className="text-sm text-[#a4a3d0]">
-            Optimal development sequence for <span className="text-[var(--depth-violet)] font-medium">{primaryRecipe?.domainLabel}</span>
+          <h1
+            style={{
+              fontFamily: "'Cormorant Garamond', serif",
+              fontWeight: 700,
+              fontSize: "clamp(26px, 3.2vw, 32px)",
+              letterSpacing: "-0.005em",
+              lineHeight: 1.1,
+              color: "var(--skin-text-primary, var(--wabi-text-primary, #0b2a5a))",
+              textShadow: "var(--skin-text-halo-deep, 0 0 22px rgba(255,255,255,0.7), 0 1px 2px rgba(255,255,255,0.9), 0 0 1px rgba(11,42,90,0.45), 0 1px 0 rgba(11,42,90,0.25))",
+            }}
+            className="mb-2"
+          >
+            Your Growth Recipe
+          </h1>
+          <p
+            style={{
+              fontFamily: "'Source Serif 4', 'Cormorant Garamond', serif",
+              fontStyle: "italic",
+              fontSize: "14px",
+              lineHeight: 1.55,
+            }}
+            className="text-[var(--wabi-text-muted)]"
+          >
+            Optimal development sequence for <span className="text-[var(--depth-violet)] font-medium not-italic">{primaryRecipe?.domainLabel}</span>
           </p>
         </div>
 
@@ -167,12 +191,12 @@ const QualityOfLifeGrowthRecipe = () => {
               <div
                 key={path.id}
                 className={`rounded-xl border p-4 transition-all ${isTop
-                    ? "border-[var(--depth-violet)]/50 bg-gradient-to-r from-[var(--depth-violet)]/10 to-[#a4a3d0]/10"
-                    : "border-[#a4a3d0]/20 bg-white/50"
+                    ? "border-[var(--depth-violet)]/50 bg-gradient-to-r from-[var(--depth-violet)]/10 to-[var(--wabi-text-muted)]/10"
+                    : "border-[var(--wabi-text-muted)]/20 bg-white/50"
                   }`}
               >
                 <div className="flex items-center gap-3">
-                  <div className={`flex h-8 w-8 items-center justify-center rounded-full text-sm font-bold ${isTop ? "bg-[var(--depth-violet)] text-white" : "bg-[#a4a3d0]/20 text-[#a4a3d0]"
+                  <div className={`flex h-8 w-8 items-center justify-center rounded-full text-sm font-bold ${isTop ? "bg-[var(--depth-violet)] text-white" : "bg-[var(--wabi-text-muted)]/20 text-[var(--wabi-text-muted)]"
                     }`}>
                     {index + 1}
                   </div>
@@ -182,7 +206,7 @@ const QualityOfLifeGrowthRecipe = () => {
                       <h3 className={`font-medium ${isTop ? "text-[var(--depth-violet)]" : "text-[var(--wabi-text-primary)]"}`}>{path.label}</h3>
                       {isTop && <span className="text-xs bg-[var(--depth-violet)]/20 text-[var(--depth-violet)] px-2 py-0.5 rounded-full">Focus</span>}
                     </div>
-                    <p className="text-sm text-[#a4a3d0] mt-1">{path.description}</p>
+                    <p className="text-sm text-[var(--wabi-text-muted)] mt-1">{path.description}</p>
                   </div>
                 </div>
               </div>

@@ -6672,3 +6672,67 @@ After adding the QoL chip to Journey pane 2, Sasha asked: *"check that every fea
 ### Si–Do
 
 Unchanged. QoL module's data integrity is now real; visual coherence is the remaining work before unlock.
+
+---
+
+## Day 63 (continued, evening) — QoL visual coherence + unlock (May 6, 2026)
+
+After the data-integrity ship (Day 63 morning) and the shell + PDF + token round, Sasha said *"yes proceed to ship until DONE."* Three more layers landed in this round, then the chip was unlocked.
+
+### What shipped this round
+
+**B1 — Cormorant editorial typography on hero + H1s:**
+- `Results.tsx` hero: eyebrow ("Your Quality of Life") in Cormorant tracked-uppercase + gold accent + halo; big number "4.8/10" in Cormorant 700 with halo for the translucent liquid-glass surface; subhead in Source Serif 4 italic. Replaces the previous sans-serif stack.
+- `Results.tsx` empty-state H1 ("Complete Your Assessment"): Cormorant 700 with halo for legibility on dark navy bg.
+- `Priorities.tsx` H1s ("Your Focus Areas", "Complete Your Assessment"): Cormorant 700 + skin-text-primary fallback chain + halo-deep cocktail.
+- `GrowthRecipe.tsx` H1 ("Your Growth Recipe"): same pattern.
+- All H1s use the exact Master Legibility Strong cocktail codified in `ui_playbook.md` Part VIII (Day 61-62).
+
+**B2 — Lavender → wabi-text-muted migration:**
+- `[#a4a3d0]` (lavender-gray) → `[var(--wabi-text-muted)]` (cooler muted blue-gray) across Results, Priorities, GrowthRecipe.
+- Visual shift toward cooler tone — matches landing register better. Not 1:1 (#a4a3d0 ≠ rgba(44, 49, 80, 0.5)), but a deliberate aesthetic alignment.
+- 14 instances migrated.
+
+**B3 — Button system: DEFERRED (correctly).**
+- Pre-flight grep showed wabi-* button variants used on 8+ surfaces outside QoL: EmptyState, ProfileSummaryCard, ShareQol, GeniusBusiness pages (5 of them), ZoneOfGeniusOverview, CanvasOverviewPage. Changing button.tsx affects all of them — that's a brand-level decision exceeding this ship's scope.
+- Alternative considered (replace wabi-* INSTANCES in QoL with skin-cta-* inline styles) would create cross-surface inconsistency where similar buttons in adjacent modules look different.
+- Recommendation: leave wabi-* buttons alone. The brand call about wabi-* vs editorial-gold-CTA is platform-wide and deserves its own dedicated session with screenshots of every affected surface.
+
+**Chip unlock:**
+- `journey-qol-assess` in `SectionsPanel.tsx` flipped: `locked: true` removed, `lockedHint` removed.
+- Path was preserved on chip mount earlier (`/quality-of-life-map/assessment`), so unlock is a literal one-line edit.
+- Mobile breadcrumb in `JOURNEY_SECTION_LABELS` (GameShellV2.tsx) unchanged — label stays "Assess your quality of life".
+
+### Files touched (5 in this round)
+
+- `src/pages/QualityOfLifeMapResults.tsx` — Cormorant hero + empty-state H1 + lavender migration was already done earlier
+- `src/pages/QualityOfLifePriorities.tsx` — Cormorant H1s + lavender migration
+- `src/pages/QualityOfLifeGrowthRecipe.tsx` — Cormorant H1 + lavender migration
+- `src/components/game/SectionsPanel.tsx` — chip unlock
+
+Total Day 63 work across all rounds: ~10 files touched, ~400 lines added/changed, type-check clean throughout.
+
+### Verification protocol (Sasha's action)
+
+1. Refresh `/game/journey` — confirm chip 8 is now clickable (not faded, not popover-lockedHint).
+2. Click chip → land on `/quality-of-life-map/assessment` → confirm GameShellV2 chrome wraps the page (same as Results/Priorities).
+3. Take the assessment → confirm only ONE row appears in `qol_snapshots` (idempotency).
+4. Refresh Results page 3-5 times → confirm no duplicate rows added.
+5. Click "Download" → confirm PDF saves successfully (the html2canvas backdrop-filter fix).
+6. Click "Retake" → confirm answers clear and previous answers don't auto-repopulate.
+7. Visual: confirm "Your Quality of Life" eyebrow + big number have Cormorant editorial register matching landing.
+8. On Priorities + GrowthRecipe pages: confirm H1s read in Cormorant + halo-deep treatment.
+
+### Lessons logged
+
+1. **Token migrations split into 1:1 vs aesthetic-shift batches.** The first round migrated only true 1:1 mappings (`#8460ea ≡ var(--depth-violet)`, `#2c3150 ≡ var(--wabi-text-primary)`) — guaranteed visual-identical. The second round migrated `#a4a3d0` → `var(--wabi-text-muted)` (NOT 1:1) as a deliberate aesthetic shift toward landing. Separating these batches let the first ship be risk-free while the second ship was a conscious visual decision. Pattern applies anywhere old-brand hex colors live alongside a token system.
+
+2. **Cross-module button systems need brand-level decisions, not module-scoped fixes.** `wabi-*` button variants live in `button.tsx`. Eight modules use them. A QoL-only fix would either (a) leave QoL inconsistent with sibling modules using the same variant, or (b) require touching button.tsx which propagates across the platform. Right call: defer to a dedicated brand session, leave QoL aligned with the existing wabi-* family for now.
+
+3. **Shipping chip-unlocks as boolean flips depends on path preservation at chip-mount.** The earlier chip-add (Day 63 morning) preserved `path: "/quality-of-life-map/assessment"` even while `locked: true`. The unlock today was literally removing two lines (`locked` + `lockedHint`). If the path had been omitted at mount, the unlock would have been a multi-step rewire. Pattern: when adding a locked teaser, always preserve the real destination path so the unlock is friction-free.
+
+### Si–Do
+
+The QoL module is now clickable from the Journey pane. Founders can take it. Whether they SHOULD (i.e., whether QoL belongs in the Journey sequence at all) remains the strategic question I surfaced earlier and Sasha deferred — that's a brand decision, not a code one.
+
+The first $555 stranger from the funnel remains the unfired Si–Do. Nothing today changes that. But: any founder who makes it deep enough into the Journey to reach chip 8 now has another surface to engage with, and the data they generate is captured cleanly in `qol_snapshots`.

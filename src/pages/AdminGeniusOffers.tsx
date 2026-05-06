@@ -74,7 +74,7 @@ const AdminGeniusOffers = () => {
   const [selectedRequest, setSelectedRequest] = useState<GeniusOfferRequest | null>(null);
 
   // Admin check by email (simpler than RPC which may not exist)
-  const ADMIN_EMAILS = ['alexanderkonst@gmail.com', 'alex@evolvergrid.com'];
+  const ADMIN_EMAILS = ['alexanderkonst@gmail.com'];
 
   const checkAdminRole = async (userEmail: string | undefined): Promise<boolean> => {
     if (!userEmail) return false;

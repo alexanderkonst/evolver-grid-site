@@ -115,7 +115,7 @@ const QualityOfLifePriorities = () => {
   if (isLoading) {
     return (
       <div className="flex items-center justify-center min-h-[60vh]">
-        <div className="text-[#a4a3d0] animate-pulse">Loading your priorities...</div>
+        <div className="text-[var(--wabi-text-muted)] animate-pulse">Loading your priorities...</div>
       </div>
     );
   }
@@ -124,9 +124,26 @@ const QualityOfLifePriorities = () => {
   if (!isComplete) {
     return (
       <div className="max-w-2xl mx-auto p-6 text-center">
-        <Target className="w-16 h-16 mx-auto text-[#a4a3d0] mb-4" />
-        <h1 className="text-2xl font-bold text-[var(--wabi-text-primary)] mb-4">Complete Your Assessment</h1>
-        <p className="text-[#a4a3d0] mb-6">Finish the QoL assessment to set priorities.</p>
+        <Target className="w-16 h-16 mx-auto text-[var(--wabi-text-muted)] mb-4" />
+        <h1
+          // Day 63 (Sasha 2026-05-06): Cormorant editorial register on H1
+          // to match landing. Halo-deep textShadow + skin-text-primary
+          // fallback chain (skin → wabi → hex) for legibility on either
+          // surface theme.
+          style={{
+            fontFamily: "'Cormorant Garamond', serif",
+            fontWeight: 700,
+            fontSize: "clamp(24px, 3vw, 30px)",
+            letterSpacing: "-0.005em",
+            lineHeight: 1.1,
+            color: "var(--skin-text-primary, var(--wabi-text-primary, #0b2a5a))",
+            textShadow: "var(--skin-text-halo-deep, 0 0 22px rgba(255,255,255,0.7), 0 1px 2px rgba(255,255,255,0.9), 0 0 1px rgba(11,42,90,0.45), 0 1px 0 rgba(11,42,90,0.25))",
+          }}
+          className="mb-4"
+        >
+          Complete Your Assessment
+        </h1>
+        <p className="text-[var(--wabi-text-muted)] mb-6">Finish the QoL assessment to set priorities.</p>
         <Button variant="wabi-primary" onClick={() => navigate("/quality-of-life-map/assessment")}>
           Start Assessment
         </Button>
@@ -136,13 +153,38 @@ const QualityOfLifePriorities = () => {
 
   return (
     <div className="max-w-2xl mx-auto p-4 lg:p-6 space-y-6">
-        {/* Header */}
+        {/* Header
+            Day 63 (Sasha 2026-05-06): Cormorant editorial H1 + Source
+            Serif 4 italic body subhead — matches landing's typographic
+            register. Halo-deep textShadow keeps the headline legible on
+            cream-wash surfaces. */}
         <div className="text-center">
-          <h1 className="text-2xl font-bold text-[var(--wabi-text-primary)] mb-2">Your Focus Areas</h1>
-          <p className="text-sm text-[#a4a3d0]">
+          <h1
+            style={{
+              fontFamily: "'Cormorant Garamond', serif",
+              fontWeight: 700,
+              fontSize: "clamp(26px, 3.2vw, 32px)",
+              letterSpacing: "-0.005em",
+              lineHeight: 1.1,
+              color: "var(--skin-text-primary, var(--wabi-text-primary, #0b2a5a))",
+              textShadow: "var(--skin-text-halo-deep, 0 0 22px rgba(255,255,255,0.7), 0 1px 2px rgba(255,255,255,0.9), 0 0 1px rgba(11,42,90,0.45), 0 1px 0 rgba(11,42,90,0.25))",
+            }}
+            className="mb-2"
+          >
+            Your Focus Areas
+          </h1>
+          <p
+            style={{
+              fontFamily: "'Source Serif 4', 'Cormorant Garamond', serif",
+              fontStyle: "italic",
+              fontSize: "14px",
+              lineHeight: 1.55,
+            }}
+            className="text-[var(--wabi-text-muted)]"
+          >
             💡 Lowest areas often hold your biggest breakthroughs
           </p>
-          <p className="text-xs text-[#a4a3d0] mt-1">
+          <p className="text-xs text-[var(--wabi-text-muted)] mt-1">
             Drag to reorder if you'd like. Top 3 become your focus areas.
           </p>
         </div>
@@ -167,17 +209,17 @@ const QualityOfLifePriorities = () => {
                 onDragOver={(e) => e.preventDefault()}
                 onDrop={() => handleDrop(domainId)}
                 className={`flex items-center gap-3 rounded-xl border px-4 py-3 transition cursor-grab active:cursor-grabbing focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--depth-violet)]/50 ${isTop
-                  ? "border-[var(--depth-violet)]/50 bg-gradient-to-r from-[var(--depth-violet)]/10 to-[#a4a3d0]/10"
-                  : "border-[#a4a3d0]/20 bg-white/50"
+                  ? "border-[var(--depth-violet)]/50 bg-gradient-to-r from-[var(--depth-violet)]/10 to-[var(--wabi-text-muted)]/10"
+                  : "border-[var(--wabi-text-muted)]/20 bg-white/50"
                   }`}
               >
-                <GripVertical className="h-5 w-5 text-[#a4a3d0]" />
+                <GripVertical className="h-5 w-5 text-[var(--wabi-text-muted)]" />
                 <div className="flex-1">
                   <div className="flex items-center gap-2">
                     <p className={`font-medium ${isTop ? "text-[var(--depth-violet)]" : "text-[var(--wabi-text-primary)]"}`}>
                       {QOL_LABELS[domainId]}
                     </p>
-                    <span className={`px-2 py-0.5 rounded-full text-xs font-bold ${isTop ? "bg-[var(--depth-violet)] text-white" : "bg-[#a4a3d0]/20 text-[#a4a3d0]"
+                    <span className={`px-2 py-0.5 rounded-full text-xs font-bold ${isTop ? "bg-[var(--depth-violet)] text-white" : "bg-[var(--wabi-text-muted)]/20 text-[var(--wabi-text-muted)]"
                       }`}>
                       {score}/10
                     </span>

@@ -11,7 +11,6 @@
  */
 export const ADMIN_EMAILS: readonly string[] = [
   "alexanderkonst@gmail.com",
-  "alex@evolvergrid.com",
 ];
 
 export function isAdminEmail(email: string | null | undefined): boolean {

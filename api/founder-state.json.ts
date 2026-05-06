@@ -18,7 +18,6 @@
 
 const ADMIN_EMAILS = new Set([
     "alexanderkonst@gmail.com",
-    "alex@evolvergrid.com",
 ]);
 
 type VercelRequest = {

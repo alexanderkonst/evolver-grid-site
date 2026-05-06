@@ -442,23 +442,26 @@ const buildJourneySections = (_currentPath: string): Section[] => {
             locked: true,
             lockedHint: "Unlocks after you discover your mission.",
         },
-        // Day 63 (Sasha 2026-05-06): QoL assessment chip lands at the
-        // tail of the Journey list as a locked teaser. The module
-        // itself exists at /quality-of-life-map/assessment but is
-        // gated here pending the broader Journey unlock sequence.
-        // Routing is suppressed by handleSectionClick's `if (isLocked)
-        // return` guard; keeping the real path lets us flip a single
-        // boolean later when the upstream chips unlock without
-        // separately re-wiring the destination.
-        // Fog-opacity index 3 lands on the FOG_OPACITY[3] cap (0.30) —
-        // visible but maximally faint, matching "the further you look
-        // the less is yet visible" intent of the locked progression.
+        // Day 63 (Sasha 2026-05-06): QoL assessment chip — UNLOCKED
+        // after the QoL module's Day 63 ship: data-integrity floor
+        // (idempotent inserts, retake fresh-flag, error logging),
+        // shell unification (QolLayout owns one GameShellV2 for all
+        // four QoL pages), PDF download fix (html2canvas onclone
+        // backdrop-filter scrub), token migration (1:1 hex→token for
+        // depth-violet + wabi-text-primary; lavender→wabi-text-muted),
+        // Cormorant editorial typography on H1s + hero. Module reads
+        // closer to landing register; remaining drift (button system
+        // unification, full Cormorant pass on cards/lists) is platform-
+        // wide work that exceeds this ship's scope (wabi-* buttons are
+        // used on 8+ surfaces beyond QoL).
+        //
+        // The path /quality-of-life-map/assessment was preserved at the
+        // chip-mount earlier so this unlock is a single-boolean flip.
+        // No re-wiring needed.
         {
             id: "journey-qol-assess",
             label: "8. Assess your quality of life",
             path: "/quality-of-life-map/assessment",
-            locked: true,
-            lockedHint: "Unlocks after you map your assets.",
         },
     ];
 };
