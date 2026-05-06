@@ -6736,3 +6736,41 @@ Total Day 63 work across all rounds: ~10 files touched, ~400 lines added/changed
 The QoL module is now clickable from the Journey pane. Founders can take it. Whether they SHOULD (i.e., whether QoL belongs in the Journey sequence at all) remains the strategic question I surfaced earlier and Sasha deferred — that's a brand decision, not a code one.
 
 The first $555 stranger from the funnel remains the unfired Si–Do. Nothing today changes that. But: any founder who makes it deep enough into the Journey to reach chip 8 now has another surface to engage with, and the data they generate is captured cleanly in `qol_snapshots`.
+
+---
+
+## Day 63 (continued, late evening) — QoL re-locked + layout collisions fixed (May 6, 2026)
+
+After the Day 63 unlock, Sasha visited `/quality-of-life-map/assessment` in production-preview and surfaced two visible bugs that were invisible from code review alone:
+
+### Bug 1 — OnboardingProgress collided with GameShellV2 brand wordmark
+
+`QolLayout` rendered `<OnboardingProgress current={N} total={4} />` as the FIRST child of `<GameShellV2>`, in normal DOM flow at the top of pane 3. But GameShellV2's brand wordmark ("FIND YOUR TOP TALENT") sits at the top of pane 3 with absolute/fixed positioning. The two collided visually — Sasha's screenshot showed "Step 1 of 4" rendering at the same Y coordinate as the logo wordmark.
+
+**Fix:** Removed `OnboardingProgress` from `QolLayout` entirely. The Assessment page already has its own per-domain progress indicator (the 8-dot row + "1 of 8" text in the content section), which is the more useful granularity. Removing the outer 4-step indicator: zero UX loss, eliminates the collision. `OnboardingProgress` import retired from `QolLayout`.
+
+### Bug 2 — `min-h-dvh flex flex-col items-center justify-center` forced viewport-fill centering inside GameShell
+
+The `introScreen` and per-domain `content` sections both used `min-h-dvh flex flex-col items-center justify-center bg-gradient-to-b from-white to-[var(--wabi-pearl)]`. This was correct for the OLD standalone-page treatment (full viewport `<div className="min-h-dvh"><Navigation />...</div>`) but wrong for inside-GameShell rendering: GameShellV2's main pane is already viewport-sized, so `min-h-dvh` inside it forces the section to fill the pane AND apply flex centering, producing the awkward icon-then-big-gap-then-headline layout Sasha screenshotted. The bg-gradient was also covering the cinematic GameShell background unevenly.
+
+**Fix:** Stripped `min-h-dvh` + `flex flex-col items-center justify-center` from both `introScreen` and `content`. Reduced `py-24` to `py-12 sm:py-16` (intro) / `py-8 sm:py-12` (content) — natural top-aligned flow with reasonable padding. The GameShell bg now shows through where there's no content. The introScreen also got the editorial register applied (Cormorant Garamond H1 + Source Serif 4 italic subhead + Cormorant tracked-uppercase + gold-accent eyebrow) to match the rest of the QoL flow.
+
+### Bug 3 — chip was unlocked while these layout bugs were live
+
+The unlock earlier in the day was premature. The bugs above weren't visible from code-only review; they only surfaced when Sasha viewed the page in preview. **Re-locked** the chip with `lockedHint: "In refinement — unlocks after the next polish pass."`
+
+### Files touched (3)
+
+- `src/components/game/SectionsPanel.tsx` — re-lock with updated comment block
+- `src/modules/quality-of-life-map/QolLayout.tsx` — OnboardingProgress removed; layout simplified to `<QolAssessmentProvider><GameShellV2><Outlet /></GameShellV2></QolAssessmentProvider>`
+- `src/pages/QualityOfLifeMapAssessment.tsx` — introScreen rebuilt with editorial register; content section's viewport-fill stripped
+
+### Lesson logged
+
+**Code-review can't catch shell-collision bugs.** Day 63's earlier ship looked clean: shell unification + token migration + Cormorant typography + chip unlock all type-checked, all internally coherent. But two of the changes interacted visually in a way invisible from code: `OnboardingProgress` rendered ABOVE GameShell's main content area in DOM, but GameShell's brand wordmark sat at the same Y position via absolute positioning. Only live preview surfaced the collision.
+
+Pattern for future shell-architecture work: any time you change what wraps a page (shell unification, layout restructure, fixed/absolute positioning changes), the verification step MUST include live screenshot before declaring done. Type-check is necessary but not sufficient. The "verify visually" line in the original DoD wasn't enforced rigorously — it should be a hard gate, not a checkbox.
+
+### Si–Do
+
+Re-locked. The QoL module's chip is back to gated state until the next polish pass surfaces the residual bugs (or confirms none remain). The foundational fixes from earlier today (data integrity, idempotency, retake-fresh-flag, PDF download, token migration, Cormorant typography) all stay shipped — those are independently sound. Only the chip-unlock + the layout-collision pair are reverted.

@@ -1,38 +1,36 @@
-import { Outlet, useLocation } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import { QolAssessmentProvider } from "./QolAssessmentContext";
-import OnboardingProgress from "@/components/OnboardingProgress";
 import GameShellV2 from "@/components/game/GameShellV2";
 
 /**
  * Day 63 (Sasha 2026-05-06): Shell unification. Previously the QoL
  * pages each wrapped their own `<GameShellV2>` (Results, Priorities,
  * GrowthRecipe) while Assessment used a standalone `<Navigation />`
- * top-bar — three different shell treatments inside one module. The
- * `OnboardingProgress` lived OUTSIDE all of them in this layout, so
- * the progress indicator visually orphaned above the GameShell.
+ * top-bar — three different shell treatments inside one module.
  *
  * Now: QolLayout owns the shell. All four QoL pages render their
- * content directly; the GameShellV2 + OnboardingProgress wrap them
- * once at the layout level. The per-page wrappers were removed in
- * this same Day 63 commit — search for "Day 63 (Sasha 2026-05-06):
- * shell removed" in Results/Priorities/GrowthRecipe/Assessment.
+ * content directly; the GameShellV2 wraps them once at the layout
+ * level. The per-page wrappers were removed in this same Day 63
+ * commit.
+ *
+ * Day 63 evening (Sasha 2026-05-06): OnboardingProgress removed from
+ * this layout. It was rendering ABOVE GameShellV2's main pane in DOM
+ * order, but GameShellV2's brand wordmark sits at the top of pane 3
+ * with absolute/fixed positioning — the two collided visually
+ * ("Step 1 of 4" rendered at the same Y as "FIND YOUR TOP TALENT").
+ * The Assessment page already has its own per-domain progress
+ * indicator (1 of 8 dots row), which is the more useful granularity.
+ * Removing the outer 4-step indicator: zero UX loss, eliminates the
+ * collision. Surfaced via live preview, not code review.
  *
  * Embedded mode (TransformationQolAssessment, TransformationQolResults
  * at /game/learn/qol-*) is unaffected — those routes never mount
  * QolLayout; they wrap the page in their own GameShellV2 directly.
  */
 const QolLayout = () => {
-  const location = useLocation();
-  const steps = ["assessment", "results", "priorities", "growth-recipe"];
-  const activeIndex = steps.findIndex((step) => location.pathname.includes(step));
-  const currentStep = activeIndex >= 0 ? activeIndex + 1 : 1;
-
   return (
     <QolAssessmentProvider>
       <GameShellV2>
-        <div className="px-4 pt-6">
-          <OnboardingProgress current={currentStep} total={steps.length} />
-        </div>
         <Outlet />
       </GameShellV2>
     </QolAssessmentProvider>

@@ -442,26 +442,33 @@ const buildJourneySections = (_currentPath: string): Section[] => {
             locked: true,
             lockedHint: "Unlocks after you discover your mission.",
         },
-        // Day 63 (Sasha 2026-05-06): QoL assessment chip — UNLOCKED
-        // after the QoL module's Day 63 ship: data-integrity floor
-        // (idempotent inserts, retake fresh-flag, error logging),
-        // shell unification (QolLayout owns one GameShellV2 for all
-        // four QoL pages), PDF download fix (html2canvas onclone
-        // backdrop-filter scrub), token migration (1:1 hex→token for
-        // depth-violet + wabi-text-primary; lavender→wabi-text-muted),
-        // Cormorant editorial typography on H1s + hero. Module reads
-        // closer to landing register; remaining drift (button system
-        // unification, full Cormorant pass on cards/lists) is platform-
-        // wide work that exceeds this ship's scope (wabi-* buttons are
-        // used on 8+ surfaces beyond QoL).
+        // Day 63 (Sasha 2026-05-06, evening) — RE-LOCKED. Sasha visited
+        // /quality-of-life-map/assessment in production-preview and
+        // surfaced visible bugs: (1) OnboardingProgress in QolLayout was
+        // colliding with GameShellV2's brand wordmark at the top of
+        // pane 3 (the "Step 1 of 4" text rendered at the same Y as
+        // "FIND YOUR TOP TALENT"); (2) introScreen's `min-h-dvh flex
+        // flex-col items-center justify-center` was forcing viewport-
+        // fill centering inside GameShell's main area, producing the
+        // awkward icon-then-big-gap-then-headline layout. The chip is
+        // re-locked while these get fixed in this same Day 63 evening
+        // session — search for "Sasha 2026-05-06, evening" in
+        // QolLayout.tsx + QualityOfLifeMapAssessment.tsx for the
+        // companion fixes.
         //
-        // The path /quality-of-life-map/assessment was preserved at the
-        // chip-mount earlier so this unlock is a single-boolean flip.
-        // No re-wiring needed.
+        // Earlier history (left for context): the data-integrity floor
+        // (idempotent inserts, retake fresh-flag, error logging),
+        // shell unification, PDF download fix, token migration, and
+        // Cormorant editorial typography pass were all completed in
+        // the morning + afternoon of the same Day 63. The unlock was
+        // premature — the layout collisions weren't visible from code
+        // alone; needed live preview to surface.
         {
             id: "journey-qol-assess",
             label: "8. Assess your quality of life",
             path: "/quality-of-life-map/assessment",
+            locked: true,
+            lockedHint: "In refinement — unlocks after the next polish pass.",
         },
     ];
 };

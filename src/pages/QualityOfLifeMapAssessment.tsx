@@ -81,12 +81,34 @@ const QualityOfLifeMapAssessment = ({
     }
   };
 
-  // UX Playbook: Start Screen
+  // Day 63 evening (Sasha 2026-05-06): rebuilt for inside-GameShell
+  // rendering. Previous version used `min-h-dvh flex flex-col items-
+  // center justify-center` which forced viewport-fill centering inside
+  // GameShellV2's main pane — producing the awkward icon-then-big-gap-
+  // then-headline layout Sasha screenshotted. The bg-gradient was
+  // covering the cinematic background unevenly. Now: natural top-
+  // aligned flow with reasonable padding; cream-wash applied via a
+  // contained surface (not full viewport); editorial typography
+  // matches the rest of QoL (Cormorant H1 + Source Serif 4 italic
+  // subhead + Cormorant tracked-uppercase eyebrow).
   const introScreen = (
-    <section
-      className="py-24 px-6 min-h-dvh flex flex-col items-center justify-center bg-gradient-to-b from-white to-[var(--wabi-pearl)]"
-    >
-      <div className="text-center max-w-2xl mx-auto space-y-8">
+    <section className="px-6 py-12 sm:py-16 mx-auto max-w-2xl">
+      <div className="text-center space-y-6">
+        {/* Eyebrow — Cormorant tracked-uppercase + gold accent */}
+        <p
+          style={{
+            fontFamily: "'Cormorant Garamond', serif",
+            fontSize: "11px",
+            fontWeight: 600,
+            letterSpacing: "0.20em",
+            textTransform: "uppercase",
+            color: "rgba(184, 134, 11, 1)",
+            textShadow: "0 0 12px rgba(244, 212, 114, 0.18)",
+          }}
+        >
+          Quality of Life Map
+        </p>
+
         {/* Dodecahedron Icon */}
         <div className="flex items-center justify-center">
           <div className="w-20 h-20 rounded-3xl bg-gradient-to-br from-[var(--wabi-aqua)] to-[var(--depth-violet)] flex items-center justify-center shadow-lg">
@@ -97,15 +119,36 @@ const QualityOfLifeMapAssessment = ({
             />
           </div>
         </div>
-        <p className="text-sm uppercase tracking-wide text-[var(--depth-violet)]">
-          Quality of Life Map
-        </p>
-        <h1 className="text-3xl md:text-4xl font-bold text-[var(--wabi-text-primary)]">
+
+        {/* Headline — Cormorant editorial */}
+        <h1
+          style={{
+            fontFamily: "'Cormorant Garamond', serif",
+            fontWeight: 700,
+            fontSize: "clamp(28px, 4vw, 42px)",
+            letterSpacing: "-0.005em",
+            lineHeight: 1.1,
+            color: "var(--skin-text-primary, var(--wabi-text-primary, #0b2a5a))",
+            textShadow: "var(--skin-text-halo-deep, 0 0 22px rgba(255,255,255,0.7), 0 1px 2px rgba(255,255,255,0.9), 0 0 1px rgba(11,42,90,0.45), 0 1px 0 rgba(11,42,90,0.25))",
+          }}
+        >
           Rate 8 life areas
         </h1>
-        <p className="text-lg text-[var(--wabi-text-secondary)]">
+
+        {/* Subhead — Source Serif 4 italic */}
+        <p
+          style={{
+            fontFamily: "'Source Serif 4', 'Cormorant Garamond', serif",
+            fontStyle: "italic",
+            fontSize: "16px",
+            lineHeight: 1.6,
+            color: "var(--wabi-text-secondary)",
+          }}
+        >
           See where you're thriving and where to grow.
         </p>
+
+        {/* CTA — wabi-primary retained for cross-module consistency */}
         <Button
           size="lg"
           onClick={() => setShowIntro(false)}
@@ -117,10 +160,13 @@ const QualityOfLifeMapAssessment = ({
     </section>
   );
 
+  // Day 63 evening (Sasha 2026-05-06): stripped `min-h-dvh` and the
+  // bg-gradient that was forcing viewport-fill behavior inside
+  // GameShellV2's main pane (same fix shape as introScreen above).
+  // Natural top-aligned flow with reasonable padding now; the GameShell
+  // bg shows through where there's no content.
   const content = (
-    <section
-      className="py-24 px-6 min-h-dvh bg-gradient-to-b from-white to-[var(--wabi-pearl)]"
-    >
+    <section className="px-6 py-8 sm:py-12">
       <div className="container mx-auto max-w-4xl">
         {/* Progress Indicator */}
         <div className="text-center mb-8">
