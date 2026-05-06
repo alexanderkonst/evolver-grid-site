@@ -316,7 +316,7 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
       <div ref={snapshotRef} className="rounded-2xl liquid-glass ring-1 ring-white/10 p-6 space-y-5">
         {/* Title with Value Statement */}
         <div className="text-center">
-          <p className="text-sm text-[#8460ea] mb-1">Your Quality of Life</p>
+          <p className="text-sm text-[var(--depth-violet)] mb-1">Your Quality of Life</p>
           <div className="inline-flex items-center gap-3">
             <span className="text-5xl font-bold text-white">{overallStageRounded}</span>
             <span className="text-white/30 text-lg">/10</span>
@@ -341,23 +341,23 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
         {/* Growth & Strengths */}
         <div className="grid gap-4 sm:grid-cols-2">
           <div className="rounded-xl liquid-glass ring-1 ring-white/10 p-4">
-            <p className="text-xs uppercase tracking-wide text-[#8460ea] mb-3">🌱 Growth Areas</p>
+            <p className="text-xs uppercase tracking-wide text-[var(--depth-violet)] mb-3">🌱 Growth Areas</p>
             <div className="space-y-2">
               {growthDomains.map(({ domain, stageValue }) => (
                 <div key={domain.id} className="flex items-center justify-between">
                   <span className="text-sm text-white/70">{domain.name}</span>
-                  <span className="text-sm font-semibold text-[#8460ea]">{stageValue}</span>
+                  <span className="text-sm font-semibold text-[var(--depth-violet)]">{stageValue}</span>
                 </div>
               ))}
             </div>
           </div>
           <div className="rounded-xl liquid-glass ring-1 ring-white/10 p-4">
-            <p className="text-xs uppercase tracking-wide text-[#8460ea] mb-3">💪 Strengths</p>
+            <p className="text-xs uppercase tracking-wide text-[var(--depth-violet)] mb-3">💪 Strengths</p>
             <div className="space-y-2">
               {strengthDomains.map(({ domain, stageValue }) => (
                 <div key={domain.id} className="flex items-center justify-between">
                   <span className="text-sm text-white/70">{domain.name}</span>
-                  <span className="text-sm font-semibold text-[#8460ea]">{stageValue}</span>
+                  <span className="text-sm font-semibold text-[var(--depth-violet)]">{stageValue}</span>
                 </div>
               ))}
             </div>
