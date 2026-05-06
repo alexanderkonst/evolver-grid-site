@@ -79,11 +79,12 @@ export default function GenericArtifactScreen() {
 }
 
 export function ArtifactView({ artifactKey }: { artifactKey: ArtifactKey }) {
-  const { artifacts, generateArtifact, isGenerating, lockArtifact, unlockArtifact, updateArtifactScore, isInitializing } = useUniqueBusiness();
+  const { artifacts, generateArtifact, isGenerating, isImproving, lockArtifact, unlockArtifact, updateArtifactScore, restoreToV1, isInitializing } = useUniqueBusiness();
   const state = artifacts[artifactKey];
   const latest = state?.latest;
   const isLocked = !!state?.latestLocked;
   const thisIsGenerating = isGenerating === artifactKey;
+  const thisIsImproving = isImproving === artifactKey;
 
   const nextKey = findNextUnlocked(artifactKey, artifacts);
 
@@ -189,6 +190,43 @@ export function ArtifactView({ artifactKey }: { artifactKey: ArtifactKey }) {
                     <>
                       {" · "}
                       <span style={{ color: "var(--skin-accent-gold, #b8860b)" }}>locked</span>
+                    </>
+                  )}
+                  {/* Day 62 (Sasha 2026-05-05): Return to v1. Appears only
+                      when the artifact has been iterated past v1 (the seeded
+                      baseline is worth recovering as an anchor). Disabled
+                      while an Improve is in flight to avoid race conditions
+                      between the two writes. Append-only restore preserves
+                      history per the paramount invariant. */}
+                  {latest.version > 1 && (
+                    <>
+                      {" · "}
+                      <button
+                        type="button"
+                        onClick={() => {
+                          if (window.confirm("Restore this artifact to its v1 content? This adds a new version (history is preserved).")) {
+                            restoreToV1(artifactKey);
+                          }
+                        }}
+                        disabled={thisIsImproving}
+                        title="Append a new version with v1's content. History is preserved; nothing is lost."
+                        style={{
+                          background: "transparent",
+                          border: "none",
+                          padding: 0,
+                          margin: 0,
+                          font: "inherit",
+                          letterSpacing: "inherit",
+                          textTransform: "inherit",
+                          color: "inherit",
+                          cursor: thisIsImproving ? "not-allowed" : "pointer",
+                          opacity: thisIsImproving ? 0.4 : 1,
+                          textDecoration: "underline",
+                          textUnderlineOffset: "2px",
+                        }}
+                      >
+                        ↺ Return to v1
+                      </button>
                     </>
                   )}
                 </div>
