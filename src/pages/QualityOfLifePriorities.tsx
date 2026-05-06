@@ -125,7 +125,7 @@ const QualityOfLifePriorities = () => {
     return (
       <div className="max-w-2xl mx-auto p-6 text-center">
         <Target className="w-16 h-16 mx-auto text-[#a4a3d0] mb-4" />
-        <h1 className="text-2xl font-bold text-[#2c3150] mb-4">Complete Your Assessment</h1>
+        <h1 className="text-2xl font-bold text-[var(--wabi-text-primary)] mb-4">Complete Your Assessment</h1>
         <p className="text-[#a4a3d0] mb-6">Finish the QoL assessment to set priorities.</p>
         <Button variant="wabi-primary" onClick={() => navigate("/quality-of-life-map/assessment")}>
           Start Assessment
@@ -138,7 +138,7 @@ const QualityOfLifePriorities = () => {
     <div className="max-w-2xl mx-auto p-4 lg:p-6 space-y-6">
         {/* Header */}
         <div className="text-center">
-          <h1 className="text-2xl font-bold text-[#2c3150] mb-2">Your Focus Areas</h1>
+          <h1 className="text-2xl font-bold text-[var(--wabi-text-primary)] mb-2">Your Focus Areas</h1>
           <p className="text-sm text-[#a4a3d0]">
             💡 Lowest areas often hold your biggest breakthroughs
           </p>
@@ -166,24 +166,24 @@ const QualityOfLifePriorities = () => {
                 onDragStart={() => handleDragStart(domainId)}
                 onDragOver={(e) => e.preventDefault()}
                 onDrop={() => handleDrop(domainId)}
-                className={`flex items-center gap-3 rounded-xl border px-4 py-3 transition cursor-grab active:cursor-grabbing focus:outline-none focus-visible:ring-2 focus-visible:ring-[#8460ea]/50 ${isTop
-                  ? "border-[#8460ea]/50 bg-gradient-to-r from-[#8460ea]/10 to-[#a4a3d0]/10"
+                className={`flex items-center gap-3 rounded-xl border px-4 py-3 transition cursor-grab active:cursor-grabbing focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--depth-violet)]/50 ${isTop
+                  ? "border-[var(--depth-violet)]/50 bg-gradient-to-r from-[var(--depth-violet)]/10 to-[#a4a3d0]/10"
                   : "border-[#a4a3d0]/20 bg-white/50"
                   }`}
               >
                 <GripVertical className="h-5 w-5 text-[#a4a3d0]" />
                 <div className="flex-1">
                   <div className="flex items-center gap-2">
-                    <p className={`font-medium ${isTop ? "text-[#8460ea]" : "text-[#2c3150]"}`}>
+                    <p className={`font-medium ${isTop ? "text-[var(--depth-violet)]" : "text-[var(--wabi-text-primary)]"}`}>
                       {QOL_LABELS[domainId]}
                     </p>
-                    <span className={`px-2 py-0.5 rounded-full text-xs font-bold ${isTop ? "bg-[#8460ea] text-white" : "bg-[#a4a3d0]/20 text-[#a4a3d0]"
+                    <span className={`px-2 py-0.5 rounded-full text-xs font-bold ${isTop ? "bg-[var(--depth-violet)] text-white" : "bg-[#a4a3d0]/20 text-[#a4a3d0]"
                       }`}>
                       {score}/10
                     </span>
                   </div>
                   {isTop && (
-                    <p className="text-xs text-[#8460ea]">Priority #{index + 1}</p>
+                    <p className="text-xs text-[var(--depth-violet)]">Priority #{index + 1}</p>
                   )}
                 </div>
               </div>
