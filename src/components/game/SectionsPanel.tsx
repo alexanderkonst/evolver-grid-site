@@ -442,6 +442,24 @@ const buildJourneySections = (_currentPath: string): Section[] => {
             locked: true,
             lockedHint: "Unlocks after you discover your mission.",
         },
+        // Day 63 (Sasha 2026-05-06): QoL assessment chip lands at the
+        // tail of the Journey list as a locked teaser. The module
+        // itself exists at /quality-of-life-map/assessment but is
+        // gated here pending the broader Journey unlock sequence.
+        // Routing is suppressed by handleSectionClick's `if (isLocked)
+        // return` guard; keeping the real path lets us flip a single
+        // boolean later when the upstream chips unlock without
+        // separately re-wiring the destination.
+        // Fog-opacity index 3 lands on the FOG_OPACITY[3] cap (0.30) —
+        // visible but maximally faint, matching "the further you look
+        // the less is yet visible" intent of the locked progression.
+        {
+            id: "journey-qol-assess",
+            label: "8. Assess your quality of life",
+            path: "/quality-of-life-map/assessment",
+            locked: true,
+            lockedHint: "Unlocks after you map your assets.",
+        },
     ];
 };
 

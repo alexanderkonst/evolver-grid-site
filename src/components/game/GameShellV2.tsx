@@ -115,6 +115,13 @@ const MuxVideoBackground = () => {
 // promises across the site. Mobile breadcrumb mirrors SectionsPanel
 // labels exactly so the user sees the same language across surfaces.
 const JOURNEY_SECTION_LABELS: Array<{ path: string; label: string }> = [
+    // Day 63 (Sasha 2026-05-06): QoL assessment added to Journey pane 2 as
+    // a locked tail item. Path lives at top of this list per the file's
+    // longest-path-first sort rule (no `/quality-of-life-map` prefix
+    // collisions with anything else, but the rule keeps the file
+    // self-consistent). Mirror entry in SectionsPanel.tsx
+    // `buildJourneySections` — keep both in sync.
+    { path: "/quality-of-life-map/assessment", label: "Assess your quality of life" },
     { path: "/mission-discovery", label: "Discover your mission" },
     { path: "/asset-mapping", label: "Map your assets" },
     { path: "/playbook", label: "Take the exact playbook" },
