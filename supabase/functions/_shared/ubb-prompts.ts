@@ -42,6 +42,28 @@ LANGUAGE GUARDRAILS — apply to EVERY artifact:
 4. SANITY CHECK before returning: would this sentence read naturally to someone in the founder's actual domain? If a doctor's myth contains startup jargon, or a founder's offer contains medical jargon, the language has bled — rewrite.
 `.trim();
 
+/**
+ * Day 62 (Sasha 2026-05-05): Distillation requirement, prepended to every
+ * generate + improve system prompt. Pairs with the new `distillation` field
+ * present in every artifact's outputSchema. The distillation is what gets
+ * read most: it sits at the top of the artifact card in the UI, and it's
+ * the one line that propagates into the founder's living unique-business
+ * canvas markdown (each new version's distillation appended on top of the
+ * previous one).
+ */
+export const UBB_DISTILLATION_DIRECTIVE = `
+DISTILLATION FIELD — required on every artifact:
+
+Every artifact MUST include a "distillation" field as a single self-sustainable sentence that carries the artifact's key info. Reading the distillation alone — without the structured sub-fields — must convey what THIS artifact IS for THIS founder.
+
+Rules:
+1. ONE sentence. No semicolon-stuffed run-ons.
+2. Self-sustainable: a reader who never sees the structured sub-fields still understands the artifact.
+3. Founder-domain language only (per LANGUAGE GUARDRAILS rule 1 — no framework vocabulary, no calibration vocabulary).
+4. If the artifact already has a headline-equivalent field (e.g. uniqueness.sentence, myth.photon, promise.promise_sentence), the distillation MAY equal that field, OR you may produce a tighter synthesis that captures both the headline AND its essential context.
+5. Test before returning: would this single sentence stand on a sticky note as the answer to "what is this artifact for this founder?"
+`.trim();
+
 export type ArtifactKey =
   | "uniqueness"
   | "myth"
@@ -81,6 +103,7 @@ export const ARTIFACT_CONFIGS: Record<ArtifactKey, ArtifactConfig> = {
       "The key_phrase is irreducible (can't be split)",
     ],
     outputSchema: `{
+      "distillation": "one self-sustainable sentence carrying this artifact's essence in the founder's own domain language",
       "sentence": "one sentence naming what the founder does in their zone of genius",
       "key_phrase": "the irreducible phrase at the heart of it",
       "why_this_names_it": "one sentence explaining why this phrasing works"
@@ -96,6 +119,7 @@ export const ARTIFACT_CONFIGS: Record<ArtifactKey, ArtifactConfig> = {
       "At least one layer feels inevitable after reading",
     ],
     outputSchema: `{
+      "distillation": "one self-sustainable sentence carrying this artifact's essence in the founder's own domain language",
       "photon": "one sentence that can't be broken down further",
       "three_layers": {
         "attack": "what's wrong with the status quo",
@@ -114,6 +138,7 @@ export const ARTIFACT_CONFIGS: Record<ArtifactKey, ArtifactConfig> = {
       "Anti-tribe named cleanly",
     ],
     outputSchema: `{
+      "distillation": "one self-sustainable sentence carrying this artifact's essence in the founder's own domain language",
       "situational_description": "the tribe described as a situation, not a label",
       "lived_experience_markers": ["5-10 things the tribe carries in their body"],
       "anti_tribe": "who this is NOT for — named cleanly"
@@ -130,6 +155,7 @@ export const ARTIFACT_CONFIGS: Record<ArtifactKey, ArtifactConfig> = {
       "Root cause is what they can't name themselves",
     ],
     outputSchema: `{
+      "distillation": "one self-sustainable sentence carrying this artifact's essence in the founder's own domain language",
       "pressure": "the daily felt experience",
       "consequences": "what keeps happening because this isn't solved",
       "stakes": "what's at risk if this continues",
@@ -147,6 +173,7 @@ export const ARTIFACT_CONFIGS: Record<ArtifactKey, ArtifactConfig> = {
       "If guarantee present, it's time-bound and specific",
     ],
     outputSchema: `{
+      "distillation": "one self-sustainable sentence carrying this artifact's essence in the founder's own domain language",
       "point_a": "current state — restated in their exact pain language",
       "point_b": "transformed state — in their exact dream-outcome language",
       "promise_sentence": "'From [A] to [B]' as one deliverable sentence",
@@ -166,6 +193,7 @@ export const ARTIFACT_CONFIGS: Record<ArtifactKey, ArtifactConfig> = {
       "Each waypoint in the sequence corresponds to a reveal moment that mirrors the user back to themselves (matrix-shaped, even if not literally a matrix artifact)",
     ],
     outputSchema: `{
+      "distillation": "one self-sustainable sentence carrying this artifact's essence in the founder's own domain language",
       "format": "e.g. PDF playbook, assessment, audit, tool",
       "artifact_description": "what the tribe receives",
       "recognition_trigger": "what the tribe will recognize about themselves",
@@ -190,6 +218,7 @@ Use the Specificity Loop framework (Principle 15) when articulating the transfor
       "Slack adjuster (if present) is anchor, not volume",
     ],
     outputSchema: `{
+      "distillation": "one self-sustainable sentence carrying this artifact's essence in the founder's own domain language",
       "rungs": [
         { "name": "string", "price": "number or 'free'", "outcome": "what buyer walks away with", "acquisition_room": "number — acceptable CAC" }
       ],
@@ -213,6 +242,7 @@ Use the Specificity Loop framework (Principle 15) when articulating the transfor
       "No cell instructs the user, thanks the user, or centers the founder",
     ],
     outputSchema: `{
+      "distillation": "one self-sustainable sentence carrying this artifact's essence in the founder's own domain language",
       "meta_question": "the single question every reveal asks beneath the surface — usually 'How specific to what you know about you is this articulation?' or a founder-voiced equivalent",
       "voice_signature": "one sentence naming the tonal signature of these messages — drawn from the founder's uniqueness + myth",
       "stages": {
@@ -261,6 +291,7 @@ This artifact is also the framework that informs improvements to lead_magnet —
       "Founder can deliver this tomorrow",
     ],
     outputSchema: `{
+      "distillation": "one self-sustainable sentence carrying this artifact's essence in the founder's own domain language",
       "transformational_result": "A→B sentence (derived from pain + promise)",
       "trinity_sub_results": [
         { "mini_a": "start state", "mini_b": "end state", "felt_win_name": "3 words or less" }
@@ -281,6 +312,7 @@ This artifact is also the framework that informs improvements to lead_magnet —
       "Filter test executable — can be applied to any marketing decision",
     ],
     outputSchema: `{
+      "distillation": "one self-sustainable sentence carrying this artifact's essence in the founder's own domain language",
       "we_believe_statement": "We believe that...",
       "what_we_are_for": "string",
       "what_we_are_against": "string",
@@ -296,6 +328,7 @@ This artifact is also the framework that informs improvements to lead_magnet —
       "One-liner: [Product] helps [who] [do what] so they can [transformation]",
     ],
     outputSchema: `{
+      "distillation": "one self-sustainable sentence carrying this artifact's essence in the founder's own domain language",
       "format_ladder": [
         { "tier": "free/low/mid/high", "format": "what it looks like", "artifact": "what the buyer receives" }
       ],
@@ -313,6 +346,7 @@ This artifact is also the framework that informs improvements to lead_magnet —
       "All 4 controlled-collapse elements present and tribe-specific",
     ],
     outputSchema: `{
+      "distillation": "one self-sustainable sentence carrying this artifact's essence in the founder's own domain language",
       "price_anchoring": { "dissimilar_anchor": "anchor from a different category entirely" },
       "objections_answered": [ { "objection": "string", "answer": "string" } ],
       "one_click_mechanism": "Stripe/Cal.com/custom",
@@ -334,6 +368,7 @@ This artifact is also the framework that informs improvements to lead_magnet —
       "Cold-start path realistic",
     ],
     outputSchema: `{
+      "distillation": "one self-sustainable sentence carrying this artifact's essence in the founder's own domain language",
       "upstream_partners": [
         { "type": "string", "named_examples": ["string"], "what_they_deliver": "string", "their_wall": "where their work ends and ours begins" }
       ],
@@ -350,6 +385,7 @@ This artifact is also the framework that informs improvements to lead_magnet —
       "Friction audit: each step has a concrete fix, not just a problem",
     ],
     outputSchema: `{
+      "distillation": "one self-sustainable sentence carrying this artifact's essence in the founder's own domain language",
       "lean_stack": {
         "landing": "URL",
         "payment": "Stripe/other",
@@ -375,6 +411,7 @@ This artifact is also the framework that informs improvements to lead_magnet —
       "Algorithmic signals listed with expected amplification",
     ],
     outputSchema: `{
+      "distillation": "one self-sustainable sentence carrying this artifact's essence in the founder's own domain language",
       "shareable_output": "what user shares — personal, not an ad",
       "referral_mechanics": "how enthusiastic clients become referrers",
       "viral_coefficient": {
@@ -395,6 +432,7 @@ This artifact is also the framework that informs improvements to lead_magnet —
       "Action needed concrete",
     ],
     outputSchema: `{
+      "distillation": "one self-sustainable sentence carrying this artifact's essence in the founder's own domain language",
       "surfaces": [
         { "name": "string", "subscriber_count": "number", "tier": "static_billboard|warm_broadcast|targeted_strike", "leverage_score": "number 0-10", "action_needed": "string" }
       ]
@@ -411,6 +449,7 @@ This artifact is also the framework that informs improvements to lead_magnet —
       "Founder reads aloud and says 'yes, that's what I'd actually say'",
     ],
     outputSchema: `{
+      "distillation": "one self-sustainable sentence carrying this artifact's essence in the founder's own domain language",
       "tuning_fork_text": "the full broadcast text",
       "three_beats": {
         "declaration": "life update",
@@ -431,6 +470,7 @@ This artifact is also the framework that informs improvements to lead_magnet —
       "Feels good to send even with zero response",
     ],
     outputSchema: `{
+      "distillation": "one self-sustainable sentence carrying this artifact's essence in the founder's own domain language",
       "golden_dm_text": "the seed DM — founder WILL edit before sending",
       "dinner_table_test_notes": "would I say this at a dinner table?",
       "purity_check": {
@@ -452,6 +492,7 @@ This artifact is also the framework that informs improvements to lead_magnet —
       "Meta is set — shareable on any surface",
     ],
     outputSchema: `{
+      "distillation": "one self-sustainable sentence carrying this artifact's essence in the founder's own domain language",
       "headline": "stop-the-scroll headline",
       "subheadline": "supporting one-liner",
       "pain_section": "the consequence block",

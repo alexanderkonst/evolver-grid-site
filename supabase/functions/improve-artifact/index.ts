@@ -14,6 +14,7 @@ import {
   ROAST_PROTOCOL,
   SYNTHESIS_PROTOCOL_PROMPT,
   UBB_LANGUAGE_GUIDELINES,
+  UBB_DISTILLATION_DIRECTIVE,
   MODEL,
   AI_GATEWAY_URL,
   type ArtifactKey,
@@ -84,6 +85,10 @@ serve(async (req) => {
 
     // Build the system + user prompts
     const systemPrompt = `${UBB_LANGUAGE_GUIDELINES}
+
+---
+
+${UBB_DISTILLATION_DIRECTIVE}
 
 ---
 

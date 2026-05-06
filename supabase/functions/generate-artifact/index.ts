@@ -12,6 +12,7 @@ import {
   ARTIFACT_CONFIGS,
   SYNTHESIS_PROTOCOL_PROMPT,
   UBB_LANGUAGE_GUIDELINES,
+  UBB_DISTILLATION_DIRECTIVE,
   MODEL,
   AI_GATEWAY_URL,
   type ArtifactKey,
@@ -67,6 +68,10 @@ serve(async (req) => {
     }
 
     const systemPrompt = `${UBB_LANGUAGE_GUIDELINES}
+
+---
+
+${UBB_DISTILLATION_DIRECTIVE}
 
 ---
 
