@@ -2080,6 +2080,7 @@ export type Database = {
           id: string
           mastery_action: string | null
           profile_id: string | null
+          resonance_rating: number | null
           share_slug: string | null
           top_ten_talents: Json
           top_three_talents: Json
@@ -2097,6 +2098,7 @@ export type Database = {
           id?: string
           mastery_action?: string | null
           profile_id?: string | null
+          resonance_rating?: number | null
           share_slug?: string | null
           top_ten_talents: Json
           top_three_talents: Json
@@ -2114,6 +2116,7 @@ export type Database = {
           id?: string
           mastery_action?: string | null
           profile_id?: string | null
+          resonance_rating?: number | null
           share_slug?: string | null
           top_ten_talents?: Json
           top_three_talents?: Json
@@ -2131,6 +2134,30 @@ export type Database = {
       }
     }
     Views: {
+      founder_state_v1: {
+        Row: {
+          current_step: number | null
+          days_to_first_paid: number | null
+          display_name: string | null
+          email: string | null
+          has_build: boolean | null
+          has_ignition: boolean | null
+          has_paid: boolean | null
+          has_top_talent: boolean | null
+          joined_at: string | null
+          last_touch_at: string | null
+          latest_qol_snapshot_at: string | null
+          latest_zog_snapshot_at: string | null
+          latest_zog_top_talent: string | null
+          nurture_status: string | null
+          onboarding_stage: string | null
+          revenue_total_usd: number | null
+          slug: string | null
+          top_talent_resonance: number | null
+          user_id: string | null
+        }
+        Relationships: []
+      }
       mission_participants_public: {
         Row: {
           challenge_id: string | null
