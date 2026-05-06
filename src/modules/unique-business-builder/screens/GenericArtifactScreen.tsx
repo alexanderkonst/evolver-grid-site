@@ -492,6 +492,53 @@ function renderValue(v: unknown): React.ReactNode {
   return <span>{String(v)}</span>;
 }
 
+// Day 62 (Sasha 2026-05-05): Featured distillation block. Every artifact's
+// outputSchema now requires a `distillation` field — one self-sustainable
+// sentence carrying the artifact's essence (UBB_DISTILLATION_DIRECTIVE in
+// _shared/ubb-prompts.ts). This block renders it as a Cormorant-italic
+// gold-accented blockquote, sitting at the top of every artifact card.
+// Missing distillation on legacy artifacts (generated before the directive)
+// shows a quiet "Improve to generate" hint in the same slot.
+function DistillationBlock({ value }: { value: unknown }) {
+  if (!value || typeof value !== "string" || !value.trim()) {
+    return (
+      <div
+        style={{
+          fontFamily: "'Source Serif 4', serif",
+          fontStyle: "italic",
+          fontSize: "13px",
+          lineHeight: 1.55,
+          color: "var(--skin-text-muted, rgba(11, 42, 90, 0.55))",
+          padding: "10px 14px",
+          borderLeft: "0.5px solid var(--skin-rule-medium, rgba(26, 30, 58, 0.15))",
+          background: "rgba(255, 255, 255, 0.32)",
+        }}
+      >
+        Distillation not yet generated. Improve this artifact to add the one-sentence synthesis that lands at the top.
+      </div>
+    );
+  }
+  return (
+    <blockquote
+      style={{
+        fontFamily: "'Cormorant Garamond', serif",
+        fontStyle: "italic",
+        fontWeight: 500,
+        fontSize: "clamp(20px, 2.4vw, 26px)",
+        lineHeight: 1.35,
+        color: "var(--skin-text-primary, #0b2a5a)",
+        padding: "18px 22px",
+        borderLeft: "2px solid var(--skin-accent-gold, #b8860b)",
+        background: "var(--skin-tint-gold-soft, rgba(212, 175, 55, 0.06))",
+        margin: 0,
+        textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.7))",
+      }}
+    >
+      {value}
+    </blockquote>
+  );
+}
+
 function ArtifactContentView({ content }: { content: unknown }) {
   if (content === null || content === undefined) {
     return <div style={italicMuted}>(empty)</div>;
@@ -511,28 +558,45 @@ function ArtifactContentView({ content }: { content: unknown }) {
       </div>
     );
   }
-  if (isSpecificityMatrix(content)) {
-    return <SpecificityMatrixView content={content} />;
-  }
-  if (typeof content === "object") {
+  if (typeof content === "object" && content !== null) {
+    // Day 62: peel `distillation` off the top of any object content. The
+    // remaining fields render below as before. Matrix artifacts get the
+    // distillation above the matrix table.
+    const obj = content as Record<string, unknown>;
+    const { distillation, ...rest } = obj;
+
+    if (isSpecificityMatrix(content)) {
+      return (
+        <div className="space-y-6">
+          <DistillationBlock value={distillation} />
+          <SpecificityMatrixView content={content as MatrixContent} />
+        </div>
+      );
+    }
+
     return (
-      <div className="space-y-4">
-        {Object.entries(content as Record<string, unknown>).map(([k, v]) => (
-          <div key={k}>
-            <div style={sectionLabel}>{k.replace(/[_-]+/g, " ")}</div>
-            <div
-              className="mt-1.5"
-              style={{
-                fontFamily: "'Source Serif 4', serif",
-                fontSize: "15px",
-                lineHeight: 1.6,
-                color: "var(--skin-text-body, rgba(11, 42, 90, 0.85))",
-              }}
-            >
-              {renderValue(v)}
-            </div>
+      <div className="space-y-6">
+        <DistillationBlock value={distillation} />
+        {Object.keys(rest).length > 0 && (
+          <div className="space-y-4">
+            {Object.entries(rest).map(([k, v]) => (
+              <div key={k}>
+                <div style={sectionLabel}>{k.replace(/[_-]+/g, " ")}</div>
+                <div
+                  className="mt-1.5"
+                  style={{
+                    fontFamily: "'Source Serif 4', serif",
+                    fontSize: "15px",
+                    lineHeight: 1.6,
+                    color: "var(--skin-text-body, rgba(11, 42, 90, 0.85))",
+                  }}
+                >
+                  {renderValue(v)}
+                </div>
+              </div>
+            ))}
           </div>
-        ))}
+        )}
       </div>
     );
   }
