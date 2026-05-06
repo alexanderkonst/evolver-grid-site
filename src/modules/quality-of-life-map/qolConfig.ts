@@ -141,6 +141,9 @@ export const DOMAINS: Domain[] = [
       { id: 10, title: "Universal Harmony", description: "Social influence transcends cultures and countries, fostering a sense of interconnectedness with all beings." }
     ]
   },
+  // Day 63 (Sasha 2026-05-06): TOP_PRIORITIES_COUNT below — added late in
+  // the file to avoid disturbing the DOMAINS array literal. See export
+  // statement after the const closes.
   {
     id: "home",
     name: "Home",
@@ -159,3 +162,11 @@ export const DOMAINS: Domain[] = [
     ]
   }
 ];
+
+/**
+ * Day 63 (Sasha 2026-05-06): focus-area count surfaced as a constant.
+ * Prevents drift between Priorities (UI label "Top 3 become your focus
+ * areas", isTop = index < 3) and GrowthRecipe (.slice(0, 3) when reading
+ * qol_priorities back from the DB). One number, one source of truth.
+ */
+export const TOP_PRIORITIES_COUNT = 3;

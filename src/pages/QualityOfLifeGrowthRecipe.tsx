@@ -4,7 +4,7 @@ import { ArrowRight, BookOpen } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
 import { getOrCreateGameProfileId } from "@/lib/gameProfile";
-import { type DomainId } from "@/modules/quality-of-life-map/qolConfig";
+import { TOP_PRIORITIES_COUNT, type DomainId } from "@/modules/quality-of-life-map/qolConfig";
 import GameShellV2 from "@/components/game/GameShellV2";
 
 type GrowthPath = {
@@ -128,7 +128,7 @@ const QualityOfLifeGrowthRecipe = () => {
       const priorities = Array.isArray(data?.qol_priorities) ? data.qol_priorities : [];
       const validPriorities = priorities
         .filter((entry: unknown) => typeof entry === 'string' && isDomainId(entry))
-        .slice(0, 3) as DomainId[];
+        .slice(0, TOP_PRIORITIES_COUNT) as DomainId[];
       setTopThreeDomains(validPriorities.length > 0 ? validPriorities : ["growth"]);
       setLoading(false);
     };
@@ -162,7 +162,7 @@ const QualityOfLifeGrowthRecipe = () => {
         {/* Path Cards */}
         <div className="space-y-3">
           {primaryRecipe?.paths.map((path, index) => {
-            const isTop = index < 3;
+            const isTop = index < TOP_PRIORITIES_COUNT;
             return (
               <div
                 key={path.id}
@@ -194,7 +194,10 @@ const QualityOfLifeGrowthRecipe = () => {
         <Button
           variant="wabi-primary"
           className="w-full"
-          onClick={() => navigate(returnTo === "/start" ? "/game" : returnTo || "/game")}
+          // Day 63 (Sasha 2026-05-06): /game retired (App.tsx:431
+          // redirects to /game/journey). Mirror the same fix applied
+          // to QualityOfLifePriorities's Skip button.
+          onClick={() => navigate(returnTo === "/start" ? "/game/journey" : returnTo || "/game/journey")}
         >
           Start Improving <ArrowRight className="w-4 h-4 ml-2" />
         </Button>

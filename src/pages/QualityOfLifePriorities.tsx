@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { ArrowRight, GripVertical, Target } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -7,7 +7,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { getOrCreateGameProfileId } from "@/lib/gameProfile";
 import { buildQolGrowthRecipePath } from "@/lib/onboardingRouting";
 import { useQolAssessment } from "@/modules/quality-of-life-map/QolAssessmentContext";
-import { DOMAINS, type DomainId } from "@/modules/quality-of-life-map/qolConfig";
+import { DOMAINS, TOP_PRIORITIES_COUNT, type DomainId } from "@/modules/quality-of-life-map/qolConfig";
 import GameShellV2 from "@/components/game/GameShellV2";
 
 const QOL_LABELS: Record<DomainId, string> = {
@@ -26,7 +26,7 @@ const QualityOfLifePriorities = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const returnTo = searchParams.get("return");
-  const { answers, isComplete } = useQolAssessment();
+  const { answers, isComplete, isLoading } = useQolAssessment();
   const { toast } = useToast();
 
   // Sort domains by score ascending (lowest first)
@@ -43,7 +43,11 @@ const QualityOfLifePriorities = () => {
   const [draggedId, setDraggedId] = useState<DomainId | null>(null);
   const [isSaving, setIsSaving] = useState(false);
 
-  useMemo(() => {
+  // Day 63 (Sasha 2026-05-06): was useMemo with setState side-effect — a
+  // React anti-pattern that risks infinite re-render loops in Strict
+  // Mode. useEffect is the correct hook for "run on dep change" side
+  // effects.
+  useEffect(() => {
     setDomainOrder(domainScores.map(({ domain }) => domain.id));
   }, [domainScores]);
 
@@ -58,11 +62,28 @@ const QualityOfLifePriorities = () => {
     setDraggedId(null);
   };
 
+  // Day 63 (Sasha 2026-05-06): keyboard alternative to drag-and-drop.
+  // Tab to a row, then ArrowUp / ArrowDown moves it. Drag-and-drop is
+  // unchanged — this adds a parallel input modality so keyboard users
+  // (and mobile users with inconsistent HTML5-DnD support) can reorder.
+  // WCAG 2.1.1 (keyboard) compliance.
+  const handleKeyReorder = (id: DomainId, e: React.KeyboardEvent) => {
+    const idx = domainOrder.indexOf(id);
+    if (idx === -1) return;
+    if (e.key === "ArrowUp" && idx > 0) {
+      e.preventDefault();
+      setDomainOrder(reorder(domainOrder, idx, idx - 1));
+    } else if (e.key === "ArrowDown" && idx < domainOrder.length - 1) {
+      e.preventDefault();
+      setDomainOrder(reorder(domainOrder, idx, idx + 1));
+    }
+  };
+
   const handleSave = async () => {
     setIsSaving(true);
     try {
       const profileId = await getOrCreateGameProfileId();
-      const topThree = domainOrder.slice(0, 3);
+      const topThree = domainOrder.slice(0, TOP_PRIORITIES_COUNT);
       const { error } = await supabase
         .from("game_profiles")
         .update({ qol_priorities: topThree })
@@ -81,6 +102,21 @@ const QualityOfLifePriorities = () => {
       setIsSaving(false);
     }
   };
+
+  // Day 63 (Sasha 2026-05-06): isLoading branch. Without this, a fresh
+  // mount that hits this page directly (e.g., bookmark, deep-link)
+  // briefly showed "Complete your assessment" before the DB load
+  // completed and answers populated — confusing for users who DO have
+  // a saved assessment.
+  if (isLoading) {
+    return (
+      <GameShellV2>
+        <div className="flex items-center justify-center min-h-[60vh]">
+          <div className="text-[#a4a3d0] animate-pulse">Loading your priorities...</div>
+        </div>
+      </GameShellV2>
+    );
+  }
 
   // Not complete state
   if (!isComplete) {
@@ -118,16 +154,20 @@ const QualityOfLifePriorities = () => {
             const domain = DOMAINS.find((item) => item.id === domainId);
             const scoreEntry = domainScores.find(s => s.domain.id === domainId);
             const score = scoreEntry?.stageValue ?? 0;
-            const isTop = index < 3;
+            const isTop = index < TOP_PRIORITIES_COUNT;
 
             return (
               <div
                 key={domainId}
                 draggable
+                tabIndex={0}
+                role="button"
+                aria-label={`${QOL_LABELS[domainId]}, position ${index + 1} of ${domainOrder.length}. Use Arrow Up or Arrow Down to reorder.`}
+                onKeyDown={(e) => handleKeyReorder(domainId, e)}
                 onDragStart={() => handleDragStart(domainId)}
                 onDragOver={(e) => e.preventDefault()}
                 onDrop={() => handleDrop(domainId)}
-                className={`flex items-center gap-3 rounded-xl border px-4 py-3 transition cursor-grab active:cursor-grabbing ${isTop
+                className={`flex items-center gap-3 rounded-xl border px-4 py-3 transition cursor-grab active:cursor-grabbing focus:outline-none focus-visible:ring-2 focus-visible:ring-[#8460ea]/50 ${isTop
                   ? "border-[#8460ea]/50 bg-gradient-to-r from-[#8460ea]/10 to-[#a4a3d0]/10"
                   : "border-[#a4a3d0]/20 bg-white/50"
                   }`}
@@ -160,7 +200,11 @@ const QualityOfLifePriorities = () => {
           <Button
             variant="wabi-ghost"
             className="w-full"
-            onClick={() => navigate(returnTo === "/start" ? "/game" : returnTo || "/game")}
+            // Day 63 (Sasha 2026-05-06): /game retired (App.tsx:431
+            // redirects to /game/journey). Skip should land the founder
+            // back inside the platform on their journey, not on the
+            // public marketing landing.
+            onClick={() => navigate(returnTo === "/start" ? "/game/journey" : returnTo || "/game/journey")}
           >
             Skip for now
           </Button>

@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, ReactNode, useMemo, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import { DOMAINS, DomainId } from "./qolConfig";
 import { supabase } from "@/integrations/supabase/client";
 import { getOrCreateGameProfileId } from "@/lib/gameProfile";
@@ -26,9 +27,39 @@ const createInitialAnswers = (): Answers => {
 export const QolAssessmentProvider = ({ children }: { children: ReactNode }) => {
   const [answers, setAnswers] = useState<Answers>(createInitialAnswers());
   const [isLoading, setIsLoading] = useState(true);
+  const location = useLocation();
 
-  // Load saved QoL data from database on mount
+  // Load saved QoL data from database on mount.
+  //
+  // Day 63 (Sasha 2026-05-06): two changes to the original.
+  //
+  // (1) `?fresh=true` URL param skips the DB load. Without this, the
+  // "Retake" button on the Results page silently reverted: reset()
+  // cleared local answers, navigation moved to /assessment, but on
+  // any provider remount (refresh, navigation back from outside
+  // QolLayout) the load effect re-fired and re-populated the answers
+  // from the most recent saved snapshot — making "Retake" a lie.
+  // Now: handleRetake navigates with `?fresh=true`, the load is
+  // skipped, the user genuinely retakes.
+  //
+  // (2) The previously silent catch now console.warns. Returning users
+  // whose saved data fails to load (network, RLS, etc.) silently
+  // started fresh with zero observability. Logging surfaces the
+  // failure without changing user-visible behavior (still falls
+  // through to empty answers — the existing graceful-degradation
+  // contract is preserved).
+  //
+  // Deps array intentionally empty: we want the load to fire once per
+  // provider mount with the URL captured at mount time. Subsequent
+  // URL changes within the same mount don't re-trigger (which would
+  // clobber in-progress answers).
   useEffect(() => {
+    const isFresh = new URLSearchParams(location.search).get("fresh") === "true";
+    if (isFresh) {
+      setIsLoading(false);
+      return;
+    }
+
     const loadFromDatabase = async () => {
       try {
         const profileId = await getOrCreateGameProfileId();
@@ -60,8 +91,9 @@ export const QolAssessmentProvider = ({ children }: { children: ReactNode }) => 
             });
           }
         }
-      } catch {
-        // Silently fail - will use empty answers
+      } catch (err) {
+        console.warn("[QoL] Failed to load saved data:", err);
+        // Falls through to empty answers — graceful degradation preserved.
       } finally {
         setIsLoading(false);
       }

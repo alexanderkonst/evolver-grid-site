@@ -42,6 +42,10 @@ import { toast as sonnerToast } from "sonner";
 
 import { AdminGate } from "./AdminGate";
 import { useFounderStates, type FounderState } from "./useFounderStates";
+import { FounderDetailDrawer } from "./FounderDetailDrawer";
+import { BulkEmailComposer } from "./BulkEmailComposer";
+import { SentCampaignsSection } from "./SentCampaignsSection";
+import { Mail } from "lucide-react";
 import { PremiumLoader } from "@/components/ui/PremiumLoader";
 import { useToast } from "@/hooks/use-toast";
 import GameShellV2 from "@/components/game/GameShellV2";
@@ -201,6 +205,134 @@ function aggregate(founders: FounderState[]) {
 }
 
 // ─────────────────────────────────────────────────────────────────────
+// Day 62 (2026-05-05): Per-row signal badges from founder_state_v1 v2.
+//
+// Only renders meaningful signals — empty badges read as visual noise
+// in a list of 50+ founders. Resonance only shows when self-rated
+// (non-null). Payment shows only when paid. Nurture status shows only
+// when terminal (opted_out) or noteworthy (all_sent / queued); the
+// 'never_queued' case is the default and stays silent.
+// ─────────────────────────────────────────────────────────────────────
+
+const badgeBase: React.CSSProperties = {
+  fontFamily: "'DM Sans', system-ui, sans-serif",
+  fontWeight: 500,
+  fontSize: "10px",
+  letterSpacing: "0.06em",
+  padding: "1px 6px",
+  borderRadius: "999px",
+  border: "0.5px solid",
+  fontVariantNumeric: "tabular-nums lining-nums",
+  whiteSpace: "nowrap" as const,
+};
+
+function FounderSignalBadges({ founder: f }: { founder: FounderState }) {
+  // Resonance — color-graded by signal quality.
+  // 8-10 = green (reveal landed), 5-7 = neutral, 1-4 = amber (review)
+  const resonanceTone = (() => {
+    if (f.top_talent_resonance === null) return null;
+    const r = f.top_talent_resonance;
+    if (r >= 8)
+      return {
+        color: "rgba(20, 130, 70, 0.95)",
+        bg: "rgba(20, 130, 70, 0.08)",
+        border: "rgba(20, 130, 70, 0.35)",
+      };
+    if (r <= 4)
+      return {
+        color: "rgba(184, 92, 11, 0.95)",
+        bg: "rgba(184, 92, 11, 0.10)",
+        border: "rgba(184, 92, 11, 0.40)",
+      };
+    return {
+      color: "var(--skin-text-muted, rgba(11, 42, 90, 0.62))",
+      bg: "rgba(11, 42, 90, 0.05)",
+      border: "rgba(11, 42, 90, 0.18)",
+    };
+  })();
+
+  return (
+    <span className="inline-flex flex-wrap items-baseline gap-1.5">
+      {resonanceTone && (
+        <span
+          title={`Self-reported Top Talent resonance: ${f.top_talent_resonance}/10`}
+          style={{
+            ...badgeBase,
+            color: resonanceTone.color,
+            background: resonanceTone.bg,
+            borderColor: resonanceTone.border,
+          }}
+        >
+          ✦ {f.top_talent_resonance}/10
+        </span>
+      )}
+      {f.has_paid && (
+        <span
+          title={
+            f.days_to_first_paid !== null
+              ? `Paid ${f.days_to_first_paid}d after joining`
+              : "Paid (entitlement grant or subscription)"
+          }
+          style={{
+            ...badgeBase,
+            color: "var(--skin-goldDeep, #5d4307)",
+            background: "var(--skin-goldFill, rgba(251, 243, 219, 0.85))",
+            borderColor: "rgba(212, 175, 55, 0.55)",
+          }}
+        >
+          $ paid
+          {f.days_to_first_paid !== null && (
+            <span style={{ opacity: 0.7 }}>
+              {" · "}
+              {f.days_to_first_paid}d
+            </span>
+          )}
+        </span>
+      )}
+      {f.nurture_status === "opted_out" && (
+        <span
+          title="Unsubscribed from nurture sequence — exclude from bulk emails"
+          style={{
+            ...badgeBase,
+            color: "rgba(140, 60, 60, 0.85)",
+            background: "rgba(140, 60, 60, 0.06)",
+            borderColor: "rgba(140, 60, 60, 0.30)",
+          }}
+        >
+          opted out
+        </span>
+      )}
+      {f.nurture_status === "all_sent" && (
+        <span
+          title="All 3 nurture emails sent (Day 1, 2, 8)"
+          style={{
+            ...badgeBase,
+            color: "var(--skin-text-muted, rgba(11, 42, 90, 0.55))",
+            background: "rgba(11, 42, 90, 0.04)",
+            borderColor: "rgba(11, 42, 90, 0.15)",
+          }}
+        >
+          nurture 3/3
+        </span>
+      )}
+      {f.nurture_status === "queued" && (
+        <span
+          title="Nurture emails queued, none sent yet"
+          style={{
+            ...badgeBase,
+            color: "var(--skin-text-muted, rgba(11, 42, 90, 0.55))",
+            background: "rgba(11, 42, 90, 0.04)",
+            borderColor: "rgba(11, 42, 90, 0.15)",
+          }}
+        >
+          nurture queued
+        </span>
+      )}
+    </span>
+  );
+}
+
+// ─────────────────────────────────────────────────────────────────────
 // Section: Recent founders + Send link (the end-of-session priority surface)
 // ─────────────────────────────────────────────────────────────────────
 
@@ -295,8 +427,97 @@ function SendLinkButton({ founder }: { founder: FounderState }) {
   );
 }
 
-function RecentFoundersSection({ founders }: { founders: FounderState[] }) {
+// Day 62 (Sasha 2026-05-05): segment-filter chips for the Recent Founders
+// table. Each segment is a pure function from the v2 founder_state_v1
+// columns — no extra DB calls, all client-side filtering on the row set
+// already loaded by useFounderStates(). Adding a segment = add one entry
+// to this array.
+type SegmentDef = {
+  id: string;
+  label: string;
+  predicate: (f: FounderState) => boolean;
+  hint: string; // tooltip describing why this segment matters
+};
+
+const SEGMENTS: SegmentDef[] = [
+  {
+    id: "all",
+    label: "All",
+    predicate: () => true,
+    hint: "Every founder in the platform.",
+  },
+  {
+    id: "took_tt",
+    label: "Took Top Talent",
+    predicate: (f) => f.has_top_talent,
+    hint: "Anyone who has at least one zog_snapshot — completed the assessment.",
+  },
+  {
+    id: "tt_high_resonance",
+    label: "TT · high resonance (≥8)",
+    predicate: (f) => f.has_top_talent && (f.top_talent_resonance ?? 0) >= 8,
+    hint: "Reveal landed. Highest-leverage list for one-to-one outreach.",
+  },
+  {
+    id: "tt_low_resonance",
+    label: "TT · low resonance (≤4)",
+    predicate: (f) =>
+      f.has_top_talent &&
+      f.top_talent_resonance !== null &&
+      f.top_talent_resonance <= 4,
+    hint: "Prompt mis-read. Worth a personal note from Sasha, not a template.",
+  },
+  {
+    id: "tt_paid",
+    label: "TT + paid",
+    predicate: (f) => f.has_top_talent && f.has_paid,
+    hint: "Activated through to payment. Active container clients.",
+  },
+  {
+    id: "tt_unpaid_7d",
+    label: "TT, no payment, 7d+",
+    predicate: (f) => {
+      if (!f.has_top_talent || f.has_paid) return false;
+      if (!f.latest_zog_snapshot_at) return false;
+      const ageMs = Date.now() - new Date(f.latest_zog_snapshot_at).getTime();
+      return ageMs > 7 * DAY_MS;
+    },
+    hint: "Lapsed activation candidates. Took TT a week+ ago, never paid.",
+  },
+  {
+    id: "stale_14d",
+    label: "Stale 14d+",
+    predicate: (f) =>
+      Date.now() - new Date(f.last_touch_at).getTime() > 14 * DAY_MS,
+    hint: "No platform touch in 2+ weeks. Re-engage or let go.",
+  },
+  {
+    id: "opted_out",
+    label: "Opted out",
+    predicate: (f) => f.nurture_status === "opted_out",
+    hint: "Unsubscribed from nurture. Do not bulk-email.",
+  },
+];
+
+function RecentFoundersSection({
+  founders,
+  adminEmail,
+  onCampaignSent,
+}: {
+  founders: FounderState[];
+  adminEmail: string | null;
+  onCampaignSent: () => void;
+}) {
   const [showAll, setShowAll] = useState(false);
+  const [activeSegment, setActiveSegment] = useState<string>("all");
+  // Day 62 (Wave 1b): drawer state. Clicking a row stores the founder
+  // here; the drawer is mounted at the section level so it can open
+  // for any visible row without remounting per-row.
+  const [drawerFounder, setDrawerFounder] = useState<FounderState | null>(null);
+  // Day 62 (Wave 2): bulk-email composer state. Opens with the active
+  // segment's recipients pre-resolved. After a successful send, calls
+  // onCampaignSent so the parent's SentCampaignsSection refreshes.
+  const [composerOpen, setComposerOpen] = useState(false);
 
   const sorted = useMemo(() => {
     const copy = [...founders];
@@ -307,7 +528,22 @@ function RecentFoundersSection({ founders }: { founders: FounderState[] }) {
     return copy;
   }, [founders]);
 
-  const visible = showAll ? sorted : sorted.slice(0, 8);
+  // Per-segment counts for the chip badges. Computed once from the full
+  // sorted set, then the active segment is applied for the visible list.
+  const segmentCounts = useMemo(() => {
+    const counts: Record<string, number> = {};
+    for (const seg of SEGMENTS) {
+      counts[seg.id] = sorted.filter(seg.predicate).length;
+    }
+    return counts;
+  }, [sorted]);
+
+  const filtered = useMemo(() => {
+    const seg = SEGMENTS.find((s) => s.id === activeSegment) ?? SEGMENTS[0];
+    return sorted.filter(seg.predicate);
+  }, [sorted, activeSegment]);
+
+  const visible = showAll ? filtered : filtered.slice(0, 8);
 
   return (
     <section className="rounded-2xl px-6 py-6" style={cardSurface}>
@@ -331,11 +567,101 @@ function RecentFoundersSection({ founders }: { founders: FounderState[] }) {
           fontFamily: "'Source Serif 4', serif",
           fontSize: "13.5px",
           color: "var(--skin-text-muted, rgba(11, 42, 90, 0.62))",
-          marginBottom: "16px",
+          marginBottom: "12px",
         }}
       >
         End-of-session: tap <em>Send link</em> on the founder you just had a session with — fresh magic link to their inbox, lands them on <code>/game/me</code> with their Canvas pre-populated.
       </p>
+
+      {/* Day 62 (2026-05-05): segment chips. Each chip filters the table
+          below by a derived predicate from founder_state_v1 v2 columns
+          (took TT? high-resonance? paid? stale? opted out?). Chips show
+          live counts so the operator can scan-and-act. */}
+      <div className="flex flex-wrap items-center justify-between gap-2 mb-4">
+        <div className="flex flex-wrap gap-1.5">
+          {SEGMENTS.map((seg) => {
+          const count = segmentCounts[seg.id] ?? 0;
+          const isActive = seg.id === activeSegment;
+          return (
+            <button
+              key={seg.id}
+              onClick={() => setActiveSegment(seg.id)}
+              title={seg.hint}
+              className="inline-flex items-center gap-1.5 rounded-full px-3 py-1 transition-all duration-200 hover:translate-y-[-0.5px]"
+              style={{
+                fontFamily: "'Cormorant Garamond', serif",
+                fontWeight: 600,
+                letterSpacing: "0.10em",
+                textTransform: "uppercase",
+                fontSize: "10.5px",
+                color: isActive
+                  ? "var(--skin-text-primary, #0b2a5a)"
+                  : "var(--skin-text-muted, rgba(11, 42, 90, 0.62))",
+                background: isActive
+                  ? "rgba(255, 255, 255, 0.85)"
+                  : "rgba(255, 255, 255, 0.40)",
+                border: isActive
+                  ? "0.5px solid rgba(212, 175, 55, 0.65)"
+                  : "0.5px solid var(--skin-rule-hairline, rgba(26, 30, 58, 0.10))",
+                boxShadow: isActive
+                  ? "0 0 10px -3px rgba(212, 175, 55, 0.35)"
+                  : "none",
+              }}
+            >
+              <span>{seg.label}</span>
+              <span
+                style={{
+                  fontFamily: "'DM Sans', system-ui, sans-serif",
+                  fontSize: "10px",
+                  fontWeight: 500,
+                  fontVariantNumeric: "tabular-nums lining-nums",
+                  letterSpacing: 0,
+                  color: isActive
+                    ? "var(--skin-accent-gold, #b8860b)"
+                    : "var(--skin-text-muted, rgba(11, 42, 90, 0.45))",
+                }}
+              >
+                {count}
+              </span>
+            </button>
+          );
+        })}
+        </div>
+
+        {/* Day 62 Wave 2: "Email this segment" — opens BulkEmailComposer
+            with the active segment's filtered recipients. Disabled when
+            the active segment is empty or 'opted_out' (sending to opted-
+            out users would be auto-suppressed anyway). */}
+        <button
+          onClick={() => setComposerOpen(true)}
+          disabled={
+            filtered.length === 0 || activeSegment === "opted_out"
+          }
+          title={
+            activeSegment === "opted_out"
+              ? "Can't email opted-out users."
+              : `Send email to ${filtered.length} recipient${filtered.length === 1 ? "" : "s"}`
+          }
+          className="inline-flex items-center gap-1.5 rounded-full px-3.5 py-1.5 transition-all duration-200 hover:translate-y-[-0.5px] disabled:opacity-50 disabled:cursor-not-allowed flex-shrink-0"
+          style={{
+            fontFamily: "'Cormorant Garamond', serif",
+            fontWeight: 600,
+            letterSpacing: "0.14em",
+            textTransform: "uppercase",
+            fontSize: "10.5px",
+            color: "var(--skin-text-primary, #0b2a5a)",
+            background: "rgba(255, 255, 255, 0.72)",
+            border: "0.5px solid rgba(212, 175, 55, 0.55)",
+            boxShadow: "0 0 12px -4px rgba(212, 175, 55, 0.30)",
+          }}
+        >
+          <Mail
+            className="h-3 w-3"
+            style={{ color: "var(--skin-accent-gold, #b8860b)" }}
+          />
+          Email this segment ({filtered.length})
+        </button>
+      </div>
 
       {sorted.length === 0 ? (
         <p
@@ -353,15 +679,25 @@ function RecentFoundersSection({ founders }: { founders: FounderState[] }) {
             {visible.map((f) => (
               <div
                 key={f.user_id}
-                className="flex items-center gap-3 px-3.5 py-2.5 rounded-xl transition-colors"
+                onClick={() => setDrawerFounder(f)}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    setDrawerFounder(f);
+                  }
+                }}
+                className="flex items-center gap-3 px-3.5 py-2.5 rounded-xl transition-colors cursor-pointer hover:bg-white/70"
                 style={{
                   background: "rgba(255, 255, 255, 0.55)",
                   border:
                     "0.5px solid var(--skin-rule-hairline, rgba(26, 30, 58, 0.08))",
                 }}
+                title="Click for full founder details"
               >
                 <div className="flex-1 min-w-0">
-                  <div className="flex items-baseline gap-2">
+                  <div className="flex items-baseline gap-2 flex-wrap">
                     <span
                       style={{
                         fontFamily: "'DM Sans', system-ui, sans-serif",
@@ -383,6 +719,10 @@ function RecentFoundersSection({ founders }: { founders: FounderState[] }) {
                     >
                       {f.email}
                     </span>
+                    {/* Day 62: per-row signal badges. Compact, only render
+                        when the signal is meaningful (no badge for null /
+                        zero / never_queued — those would be noise). */}
+                    <FounderSignalBadges founder={f} />
                   </div>
                   <div
                     style={{
@@ -392,13 +732,29 @@ function RecentFoundersSection({ founders }: { founders: FounderState[] }) {
                     }}
                   >
                     Step {f.current_step} · {relativeTime(f.last_touch_at)}
+                    {f.latest_zog_top_talent && (
+                      <span
+                        title="Top Talent archetype"
+                        style={{
+                          color: "var(--skin-accent-gold, #b8860b)",
+                        }}
+                      >
+                        {" · "}
+                        {f.latest_zog_top_talent}
+                      </span>
+                    )}
                   </div>
                 </div>
-                <SendLinkButton founder={f} />
+                {/* Stop the click from bubbling to the row's onClick
+                    (which would open the drawer). Send-link is a
+                    distinct action; the row is for "open detail." */}
+                <div onClick={(e) => e.stopPropagation()}>
+                  <SendLinkButton founder={f} />
+                </div>
               </div>
             ))}
           </div>
-          {sorted.length > 8 && (
+          {filtered.length > 8 && (
             <button
               onClick={() => setShowAll((v) => !v)}
               className="mt-3 transition-colors hover:opacity-80"
@@ -410,11 +766,69 @@ function RecentFoundersSection({ founders }: { founders: FounderState[] }) {
                 color: "var(--skin-text-muted, rgba(11, 42, 90, 0.62))",
               }}
             >
-              {showAll ? "Show fewer" : `Show all ${sorted.length}`}
+              {showAll ? "Show fewer" : `Show all ${filtered.length}`}
             </button>
+          )}
+          {/* Day 62: when a segment yields zero rows, show a small italic
+              note instead of an empty list. The total founder count stays
+              visible in the segment chips so the operator knows it's a
+              filter mismatch, not "no founders at all." */}
+          {filtered.length === 0 && (
+            <p
+              className="italic"
+              style={{
+                fontFamily: "'Source Serif 4', serif",
+                fontSize: "13px",
+                color: "var(--skin-text-muted, rgba(11, 42, 90, 0.55))",
+              }}
+            >
+              No founders match this segment yet.
+            </p>
           )}
         </>
       )}
+
+      {/* Day 62 Wave 1b — per-founder deep-dive drawer. Mounted at the
+          section level so opening for any row doesn't remount per-row.
+          Keyed off drawerFounder; closed via setDrawerFounder(null). */}
+      <FounderDetailDrawer
+        founder={drawerFounder}
+        open={drawerFounder !== null}
+        onOpenChange={(o) => {
+          if (!o) setDrawerFounder(null);
+        }}
+        onSendMagicLink={async (f) => {
+          // Mirrors SendLinkButton's edge-fn call. Keep the side-effect
+          // logic local rather than threading a ref to the row's
+          // button — fewer moving parts.
+          try {
+            const { data, error } = await supabase.functions.invoke(
+              "admin-send-magic-link",
+              { body: { user_id: f.user_id, redirect_path: "/game/me" } },
+            );
+            if (error) throw error;
+            const sentTo = (data as { sent_to?: string } | null)?.sent_to ?? f.email;
+            sonnerToast.success(`Magic link sent to ${sentTo}`);
+          } catch (e: any) {
+            sonnerToast.error(e?.message || "Couldn't send magic link.");
+          }
+        }}
+      />
+
+      {/* Day 62 Wave 2 — bulk email composer. Opens with the active
+          segment's filtered recipients. After a successful send, calls
+          onCampaignSent (parent bumps the SentCampaignsSection's
+          refreshKey so the audit log re-fetches). */}
+      <BulkEmailComposer
+        open={composerOpen}
+        onOpenChange={setComposerOpen}
+        recipients={filtered}
+        segmentLabel={
+          SEGMENTS.find((s) => s.id === activeSegment)?.label ?? "All"
+        }
+        adminEmail={adminEmail}
+        onSent={onCampaignSent}
+      />
     </section>
   );
 }
@@ -1239,6 +1653,22 @@ function SpecializedAdminLinksSection() {
 
 function AdminPageInner() {
   const { loading, error, founders } = useFounderStates();
+  // Day 62 Wave 2: admin's own email (for "Send preview to me") +
+  // a refreshKey that bumps after each campaign send so
+  // SentCampaignsSection re-fetches its log.
+  const [adminEmail, setAdminEmail] = useState<string | null>(null);
+  const [campaignRefreshKey, setCampaignRefreshKey] = useState(0);
+
+  useEffect(() => {
+    let cancelled = false;
+    supabase.auth.getUser().then(({ data }) => {
+      if (cancelled) return;
+      setAdminEmail(data.user?.email ?? null);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   return (
     <div className="mx-auto max-w-5xl space-y-12 px-5 py-10 md:py-14">
@@ -1317,7 +1747,16 @@ function AdminPageInner() {
         </p>
       ) : (
         <>
-          <RecentFoundersSection founders={founders} />
+          <RecentFoundersSection
+            founders={founders}
+            adminEmail={adminEmail}
+            onCampaignSent={() => setCampaignRefreshKey((k) => k + 1)}
+          />
+          <Ornament className="my-2" />
+          {/* Day 62 Wave 2: bulk-email audit log. Refresh key bumps
+              after each composer send so the operator sees the new
+              campaign land within the same page load. */}
+          <SentCampaignsSection refreshKey={campaignRefreshKey} />
           <Ornament className="my-2" />
           <EntitlementGrantsSection />
           <Ornament className="my-2" />
