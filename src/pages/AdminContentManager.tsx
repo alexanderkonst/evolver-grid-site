@@ -86,7 +86,7 @@ const TABS: { id: TabId; label: string; icon: React.ReactNode }[] = [
   { id: "contacts", label: "Contacts", icon: <Contact className="w-4 h-4" /> },
 ];
 
-const ADMIN_EMAILS = ['alexanderkonst@gmail.com', 'alex@evolvergrid.com'];
+const ADMIN_EMAILS = ['alexanderkonst@gmail.com'];
 
 // ─── Testimonials Tab ───────────────────────────────────────────────────────────
 

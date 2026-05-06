@@ -300,8 +300,26 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
   if (!isComplete) {
     return (
       <div className="max-w-2xl mx-auto p-6 text-center">
-        <Map className="w-16 h-16 mx-auto text-[#a4a3d0] mb-4" />
-        <h1 className="text-2xl font-bold text-white mb-4">Complete Your Assessment</h1>
+        <Map className="w-16 h-16 mx-auto text-[var(--wabi-text-muted)] mb-4" />
+        <h1
+          // Day 63 (Sasha 2026-05-06): Cormorant editorial register on
+          // empty-state H1 to match landing's typographic register.
+          // Halo-deep textShadow lifts the headline cleanly off either
+          // light or dark surfaces (the var() resolves to halo cocktails
+          // appropriate to skin context).
+          style={{
+            fontFamily: "'Cormorant Garamond', serif",
+            fontWeight: 700,
+            fontSize: "clamp(24px, 3vw, 30px)",
+            letterSpacing: "-0.005em",
+            lineHeight: 1.1,
+            color: "rgba(255, 255, 255, 0.92)",
+            textShadow: "0 0 16px rgba(0,0,0,0.4), 0 1px 2px rgba(0,0,0,0.5)",
+          }}
+          className="mb-4"
+        >
+          Complete Your Assessment
+        </h1>
         <p className="text-white/50 mb-6">Answer all 8 domains to see your results.</p>
         <Button variant="wabi-primary" onClick={() => navigate("/quality-of-life-map/assessment")}>
           Start Assessment
@@ -314,14 +332,60 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
     <div className="max-w-2xl mx-auto p-4 lg:p-6 space-y-6">
       {/* Hero Section */}
       <div ref={snapshotRef} className="rounded-2xl liquid-glass ring-1 ring-white/10 p-6 space-y-5">
-        {/* Title with Value Statement */}
-        <div className="text-center">
-          <p className="text-sm text-[var(--depth-violet)] mb-1">Your Quality of Life</p>
-          <div className="inline-flex items-center gap-3">
-            <span className="text-5xl font-bold text-white">{overallStageRounded}</span>
-            <span className="text-white/30 text-lg">/10</span>
+        {/* Title with Value Statement
+            Day 63 (Sasha 2026-05-06): editorial hero treatment to match
+            landing register — Cormorant Garamond on the eyebrow + big
+            number, Source Serif 4 italic on the subhead, gold accent on
+            the eyebrow, halo on the number for legibility on the
+            translucent liquid-glass surface. */}
+        <div className="text-center space-y-3">
+          <p
+            style={{
+              fontFamily: "'Cormorant Garamond', serif",
+              fontSize: "11px",
+              fontWeight: 600,
+              letterSpacing: "0.20em",
+              textTransform: "uppercase",
+              color: "rgba(244, 212, 114, 0.88)",
+              textShadow: "0 0 12px rgba(244, 212, 114, 0.35)",
+            }}
+          >
+            Your Quality of Life
+          </p>
+          <div className="inline-flex items-baseline gap-2">
+            <span
+              style={{
+                fontFamily: "'Cormorant Garamond', serif",
+                fontWeight: 700,
+                fontSize: "clamp(56px, 8vw, 80px)",
+                lineHeight: 1,
+                letterSpacing: "-0.02em",
+                color: "rgba(255, 255, 255, 0.96)",
+                textShadow: "0 0 28px rgba(255,255,255,0.45), 0 1px 2px rgba(0,0,0,0.35)",
+              }}
+            >
+              {overallStageRounded}
+            </span>
+            <span
+              style={{
+                fontFamily: "'Cormorant Garamond', serif",
+                fontWeight: 500,
+                fontSize: "20px",
+                color: "rgba(255, 255, 255, 0.4)",
+              }}
+            >
+              / 10
+            </span>
           </div>
-          <p className="mt-3 text-sm text-white/50 font-medium">
+          <p
+            style={{
+              fontFamily: "'Source Serif 4', 'Cormorant Garamond', serif",
+              fontStyle: "italic",
+              fontSize: "15px",
+              lineHeight: 1.55,
+              color: "rgba(255, 255, 255, 0.7)",
+            }}
+          >
             Now you know where to focus your growth.
           </p>
         </div>
