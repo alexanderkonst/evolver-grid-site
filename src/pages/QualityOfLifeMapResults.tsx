@@ -49,7 +49,8 @@ import { logActionEvent } from "@/lib/actionEvents";
 import { awardXp } from "@/lib/xpSystem";
 import { awardFirstTimeBonus, getFirstTimeActionLabel } from "@/lib/xpService";
 import { buildQolPrioritiesPath, shouldUnlockAfterQol } from "@/lib/onboardingRouting";
-import GameShellV2 from "@/components/game/GameShellV2";
+// Day 63 (Sasha 2026-05-06): GameShellV2 import removed — shell now
+// owned by QolLayout, not per-page.
 import { Map, ArrowRight, Download, RefreshCw } from "lucide-react";
 
 interface QualityOfLifeMapResultsProps {
@@ -284,30 +285,28 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
     }
   };
 
+  // Day 63 (Sasha 2026-05-06): shell removed — QolLayout now wraps in
+  // GameShellV2 once for all four QoL pages.
   // Loading state
   if (isLoading) {
     return (
-      <GameShellV2>
-        <div className="flex items-center justify-center min-h-[60vh]">
-          <div className="text-white/30 animate-pulse">Loading your results...</div>
-        </div>
-    </GameShellV2>
+      <div className="flex items-center justify-center min-h-[60vh]">
+        <div className="text-white/30 animate-pulse">Loading your results...</div>
+      </div>
     );
   }
 
   // Not complete
   if (!isComplete) {
     return (
-      <GameShellV2>
-        <div className="max-w-2xl mx-auto p-6 text-center">
-          <Map className="w-16 h-16 mx-auto text-[#a4a3d0] mb-4" />
-          <h1 className="text-2xl font-bold text-white mb-4">Complete Your Assessment</h1>
-          <p className="text-white/50 mb-6">Answer all 8 domains to see your results.</p>
-          <Button variant="wabi-primary" onClick={() => navigate("/quality-of-life-map/assessment")}>
-            Start Assessment
-          </Button>
-        </div>
-      </GameShellV2>
+      <div className="max-w-2xl mx-auto p-6 text-center">
+        <Map className="w-16 h-16 mx-auto text-[#a4a3d0] mb-4" />
+        <h1 className="text-2xl font-bold text-white mb-4">Complete Your Assessment</h1>
+        <p className="text-white/50 mb-6">Answer all 8 domains to see your results.</p>
+        <Button variant="wabi-primary" onClick={() => navigate("/quality-of-life-map/assessment")}>
+          Start Assessment
+        </Button>
+      </div>
     );
   }
 
@@ -395,11 +394,9 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
     return <div className="py-4">{content}</div>;
   }
 
-  return (
-    <GameShellV2>
-      {content}
-    </GameShellV2>
-  );
+  // Day 63 (Sasha 2026-05-06): shell removed — QolLayout wraps in
+  // GameShellV2 once for the standalone /quality-of-life-map/* routes.
+  return content;
 };
 
 export default QualityOfLifeMapResults;

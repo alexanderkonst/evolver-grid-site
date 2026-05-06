@@ -24,11 +24,17 @@
 --     derives from `onboarding_stage`, a UI flag the client sets). The
 --     existing `has_ignition` column STAYS for back-compat (it's read by
 --     the existing /admin Action List). The new `has_paid` column is the
---     authoritative payment signal, derived from real DB state:
---       - entitlement_grants row exists (admin gifted access), OR
---       - premium_subscriptions row exists with status='active'.
---     Stripe-checkout flow currently writes to premium_subscriptions on
---     successful checkout (see metaprompt_commercial migration).
+--     authoritative payment signal — currently derived from
+--     entitlement_grants only (admin gifted access, Founders 50,
+--     Ignition).
+--
+--     STRIPE LEDGER NOTE: an earlier repo migration (20260424000001)
+--     creates a `premium_subscriptions` table for Stripe webhook writes,
+--     but Lovable confirmed that table doesn't exist in the live DB
+--     (repo↔prod drift, separate ticket). Until it lands AND a webhook
+--     is wired to populate it, has_paid is entitlement-grant-only. When
+--     the Stripe ledger surface is confirmed, extend the first_paid CTE
+--     below to UNION ALL the table — single-line change.
 --
 -- (3) `nurture_status` is a denormalized aggregate so the admin UI doesn't
 --     need to do the N+1 client-side join. Five values:
@@ -43,6 +49,25 @@
 --     migration. CREATE OR REPLACE VIEW would work for column appends,
 --     but the explicit drop is more legible and lets us reorder/rename
 --     in future passes without surprise.
+
+-- ── Prerequisite (Day 62 follow-up): land the resonance column ──────
+--
+-- Lovable confirmed during the first apply attempt that
+-- `zog_snapshots.resonance_rating` doesn't exist in the live DB,
+-- despite the repo carrying migration 20260419193206 that adds it.
+-- Either that migration was tracked-but-not-executed, or it was
+-- rolled back at some point. Idempotent ALTER below is safe to run
+-- whether or not the column exists. Same shape as the original (1-10
+-- check, nullable for back-compat). Once any user submits a resonance
+-- rating via the existing ResonanceRating component, this column
+-- starts populating immediately.
+
+ALTER TABLE public.zog_snapshots
+  ADD COLUMN IF NOT EXISTS resonance_rating INTEGER
+    CHECK (resonance_rating IS NULL OR (resonance_rating >= 1 AND resonance_rating <= 10));
+
+COMMENT ON COLUMN public.zog_snapshots.resonance_rating IS
+  '1-10 self-reported resonance after Top Talent reveal. Captured via ResonanceRating component. Nullable (skipped or pre-Day-44 row).';
 
 -- ── View ────────────────────────────────────────────────────────────
 
@@ -70,23 +95,19 @@ latest_qol AS (
   WHERE gp.user_id IS NOT NULL
   ORDER BY gp.user_id, q.created_at DESC
 ),
--- Earliest paid signal per user, across BOTH grants and Stripe subs.
--- LEAST() handles nulls correctly when only one path exists.
+-- Earliest paid signal per user. Day 62: derives from entitlement_grants
+-- only (admin gifts, Founders 50, Ignition). Stripe-side detection via
+-- premium_subscriptions deferred until that table is confirmed in the
+-- live DB and a webhook is wired — see header note (2). When that
+-- lands, UNION ALL the Stripe rows here in one place.
 first_paid AS (
   SELECT
-    user_paid.user_id,
-    MIN(user_paid.paid_at) AS first_paid_at
-  FROM (
-    SELECT gp.user_id, eg.created_at AS paid_at
-    FROM public.entitlement_grants eg
-    JOIN public.game_profiles gp ON gp.id = eg.profile_id
-    WHERE gp.user_id IS NOT NULL
-    UNION ALL
-    SELECT ps.user_id, ps.created_at AS paid_at
-    FROM public.premium_subscriptions ps
-    WHERE ps.status = 'active'
-  ) AS user_paid
-  GROUP BY user_paid.user_id
+    gp.user_id,
+    MIN(eg.created_at) AS first_paid_at
+  FROM public.entitlement_grants eg
+  JOIN public.game_profiles gp ON gp.id = eg.profile_id
+  WHERE gp.user_id IS NOT NULL
+  GROUP BY gp.user_id
 ),
 -- Nurture aggregate per profile_id. Five-state classification matches
 -- the (4) note above. Reads `nurture_email_queue` once per user to
