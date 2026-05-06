@@ -527,6 +527,94 @@ export function UniqueBusinessProvider({ children }: { children: ReactNode }) {
     }
   }, [pendingImprovement, userId, artifacts]);
 
+  // Day 62 (Sasha 2026-05-05): restore an artifact to its v1 content.
+  // Append-only — fetches v1 from DB and inserts a new row whose
+  // content/score copies v1, with parent_version_id pointing at the
+  // current latest. Preserves the full version chain (per the paramount
+  // append-only invariant). No-op if already at v1.
+  const restoreToV1 = useCallback(
+    async (key: ArtifactKey) => {
+      if (!userId) {
+        toast.error("Please sign in first.");
+        return;
+      }
+      const current = artifacts[key]?.latest;
+      if (!current) {
+        toast.error("Generate this artifact first.");
+        return;
+      }
+      if (current.version === 1) {
+        toast.message("Already at v1 — nothing to restore.");
+        return;
+      }
+
+      try {
+        // Fetch v1 directly from DB — don't depend on lazy versionHistory.
+        const { data: v1Row, error: v1Error } = await (supabase as any)
+          .from("user_business_artifacts")
+          .select("*")
+          .eq("user_id", userId)
+          .eq("artifact_key", key)
+          .eq("version", "v1")
+          .maybeSingle();
+
+        if (v1Error) {
+          console.error("restoreToV1: v1 lookup failed", v1Error);
+          toast.error("Couldn't find v1 — please retry.");
+          return;
+        }
+        if (!v1Row) {
+          toast.error("No v1 exists for this artifact.");
+          return;
+        }
+
+        const v1 = rowToVersion(v1Row as DbRow);
+        const newVersion = nextVersionString(`v${current.version}`);
+
+        const { data: inserted, error: insertError } = await (supabase as any)
+          .from("user_business_artifacts")
+          .insert({
+            user_id: userId,
+            artifact_key: key,
+            version: newVersion,
+            content_json: v1.content,
+            specificity_score: v1.specificity_score,
+            parent_version_id: current.id,
+            what_changed: "Restored from v1",
+            step_number: current.version + 1,
+            is_locked: false,
+          })
+          .select("*")
+          .single();
+        if (insertError) throw insertError;
+
+        // Optimistic local update — same pattern as acceptImprovement.
+        if (inserted) {
+          setArtifacts((prev) => {
+            const next = { ...prev };
+            const newRow = rowToVersion(inserted as DbRow);
+            const existing = next[key];
+            next[key] = {
+              key,
+              latest: newRow,
+              latestLocked: existing?.latestLocked ?? null,
+              versionCount: (existing?.versionCount ?? 0) + 1,
+              isStale: false,
+              staleReason: undefined,
+            };
+            return next;
+          });
+        }
+
+        toast.success(`${key}: restored to v1 content (now v${current.version + 1}).`);
+      } catch (e: any) {
+        console.error("restoreToV1 failed:", e);
+        toast.error(e?.message || "Couldn't restore to v1 — please retry.");
+      }
+    },
+    [userId, artifacts]
+  );
+
   // Day 51 (Sasha 2026-04-25): human-override for AI-suggested specificity
   // score. AI suggests, human can adjust via the badge in the UI. Stores
   // the human-chosen value back in `specificity_score` (single source of
@@ -773,6 +861,7 @@ export function UniqueBusinessProvider({ children }: { children: ReactNode }) {
     publishLandingPage,
     publishDossier,
     updateArtifactScore,
+    restoreToV1,
   };
 
   return (

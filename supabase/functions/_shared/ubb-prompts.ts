@@ -15,6 +15,33 @@
  *   - supabase/functions/improve-artifact/index.ts
  */
 
+/**
+ * Day 62 (Sasha 2026-05-05): Cross-artifact language guard. Prepended to
+ * every generate + improve system prompt. Closes the Karime MYTH bug where
+ * the literal phrase "top talent" appeared in a quantum-medicine founder's
+ * MYTH artifact because it leaked from the UNIQUENESS prompt's seed
+ * instruction (which used "ZoG top talent and archetype" verbatim) and
+ * downstream into MYTH (which derives from UNIQUENESS).
+ *
+ * Pattern mirrors the NO INSIDER JARGON guard already in
+ * `src/prompts/user/zoneOfGeniusPrompt.ts` (lines 45/54). ZoG protected
+ * itself from inventing jargon outward; UBB now protects itself from
+ * absorbing jargon inward.
+ */
+export const UBB_LANGUAGE_GUIDELINES = `
+LANGUAGE GUARDRAILS — apply to EVERY artifact:
+
+1. NEVER carry FRAMEWORK VOCABULARY into the founder's outputs. The following are platform/assessment-framework terms, NOT founder-domain terms:
+   "top talent", "archetype", "zone of genius", "ZoG", "appleseed", "excalibur", "specificity matrix", "holon", "monotonic improve loop"
+   When you encounter any of these in upstream context (ZoG snapshot, sibling artifacts, calibration examples), TRANSLATE them into language native to the founder's actual domain. A doctor's myth uses doctor-domain words. A wellness practitioner's myth uses wellness-domain words. NEVER let assessment-framework jargon survive into the artifact text.
+
+2. NEVER carry VOCABULARY FROM CALIBRATION EXAMPLES or other founders' canvases into THIS founder's output. Examples and few-shot references show SHAPE and FREQUENCY only — never copy their words, their domain, or their phrases.
+
+3. SOURCE OF VOICE: The founder's voice is sourced ONLY from THEIR ZoG snapshot content (translated per rule 1) + THEIR canvas + THEIR pasted texts. If the upstream context is sparse, the artifact will be sparse — that is correct. Do not pad with framework language.
+
+4. SANITY CHECK before returning: would this sentence read naturally to someone in the founder's actual domain? If a doctor's myth contains startup jargon, or a founder's offer contains medical jargon, the language has bled — rewrite.
+`.trim();
+
 export type ArtifactKey =
   | "uniqueness"
   | "myth"
@@ -58,7 +85,7 @@ export const ARTIFACT_CONFIGS: Record<ArtifactKey, ArtifactConfig> = {
       "key_phrase": "the irreducible phrase at the heart of it",
       "why_this_names_it": "one sentence explaining why this phrasing works"
     }`,
-    generationGuidance: "Name what the founder does when they're fully in their zone of genius. Use the ZoG top talent and archetype as seed. The sentence should make a stranger say 'Oh — you do THAT.'",
+    generationGuidance: "Read the founder's ZoG snapshot for what they actually DO when fully in their gift, but TRANSLATE framework jargon ('top talent', 'archetype', 'zone of genius') into the founder's own domain language. The output uses the founder's vocabulary, not the assessment framework's. Make a stranger say 'Oh — you do THAT.'",
   },
   myth: {
     label: "The Photon of Truth",

@@ -13,6 +13,7 @@ import {
   ARTIFACT_CONFIGS,
   ROAST_PROTOCOL,
   SYNTHESIS_PROTOCOL_PROMPT,
+  UBB_LANGUAGE_GUIDELINES,
   MODEL,
   AI_GATEWAY_URL,
   type ArtifactKey,
@@ -82,7 +83,11 @@ serve(async (req) => {
     }
 
     // Build the system + user prompts
-    const systemPrompt = `You are applying the 27-perspective holonic roast to a unique business artifact.
+    const systemPrompt = `${UBB_LANGUAGE_GUIDELINES}
+
+---
+
+You are applying the 27-perspective holonic roast to a unique business artifact.
 Your goal: identify what the current version is missing, and produce an improved version that holds MORE specificity.
 
 Specificity means: the version reads less like something generic and more like something only THIS founder, for THIS tribe, at THIS moment, could have said. Specificity is distinguishability from noise.

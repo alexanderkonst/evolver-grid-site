@@ -248,4 +248,11 @@ export type UniqueBusinessActions = {
   publishDossier: () => Promise<{ slug: string }>;
   /** Day 51 (Sasha 2026-04-25): human-override for AI-suggested score. */
   updateArtifactScore: (key: ArtifactKey, newScore: number) => Promise<void>;
+  /**
+   * Day 62 (Sasha 2026-05-05): restore the artifact to its v1 content.
+   * Append-only — creates a new version row whose content is a copy of
+   * v1's content_json + specificity_score. Preserves history (per the
+   * paramount invariant). No-op if already at v1 or if v1 is missing.
+   */
+  restoreToV1: (key: ArtifactKey) => Promise<void>;
 };

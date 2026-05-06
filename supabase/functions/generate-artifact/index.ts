@@ -11,6 +11,7 @@ import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import {
   ARTIFACT_CONFIGS,
   SYNTHESIS_PROTOCOL_PROMPT,
+  UBB_LANGUAGE_GUIDELINES,
   MODEL,
   AI_GATEWAY_URL,
   type ArtifactKey,
@@ -65,7 +66,11 @@ serve(async (req) => {
       throw new Error("LOVABLE_API_KEY is not configured");
     }
 
-    const systemPrompt = `You are generating the FIRST version of a unique business artifact for a founder.
+    const systemPrompt = `${UBB_LANGUAGE_GUIDELINES}
+
+---
+
+You are generating the FIRST version of a unique business artifact for a founder.
 
 Your output is a working draft — not a polished final. It's meant to be read and then refined via the Improve loop (which applies a 27-perspective holonic roast). Aim for initial specificity in the 5–7 range. The Improve loop will iterate it up from there.
 
