@@ -239,8 +239,30 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
   const handleDownloadPdf = async () => {
     if (!snapshotRef.current) return;
     try {
+      // Day 63 (Sasha 2026-05-06): same html2canvas scrubber pattern as
+      // the Top Talent reveal PNG capture (Day 61-62 lesson). The
+      // snapshotRef container uses `liquid-glass` which applies
+      // backdrop-filter heavily — html2canvas's gradient rasterizer
+      // chokes on backdrop-filter and throws NaN inside its addColorStop
+      // call, surfacing as "Download Failed: Could not generate PDF".
+      // Scrubbing backdrop-filter / filter / animations / transitions on
+      // the cloned tree (NOT the live page) makes rasterization stable.
       const canvas = await html2canvas(snapshotRef.current, {
-        scale: 2, backgroundColor: '#f5f4f1', logging: false, useCORS: true,
+        scale: 2,
+        backgroundColor: '#f5f4f1',
+        logging: false,
+        useCORS: true,
+        onclone: (clonedDoc) => {
+          const allElements = clonedDoc.querySelectorAll<HTMLElement>('*');
+          allElements.forEach((el) => {
+            el.style.backdropFilter = 'none';
+            (el.style as CSSStyleDeclaration & { webkitBackdropFilter?: string }).webkitBackdropFilter = 'none';
+            el.style.filter = 'none';
+            (el.style as CSSStyleDeclaration & { webkitFilter?: string }).webkitFilter = 'none';
+            el.style.animation = 'none';
+            el.style.transition = 'none';
+          });
+        },
       });
       const pdf = new jsPDF("p", "mm", "a4");
       const pdfWidth = pdf.internal.pageSize.getWidth() - 20;
@@ -248,8 +270,17 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
       pdf.addImage(canvas.toDataURL("image/png"), "PNG", 10, 10, pdfWidth, imgHeight);
       pdf.save(`quality-of-life-${new Date().toISOString().slice(0, 10)}.pdf`);
       toast({ title: "PDF Downloaded", description: "Your snapshot has been saved." });
-    } catch {
-      toast({ title: "Download Failed", description: "Could not generate PDF.", variant: "destructive" });
+    } catch (err) {
+      // Day 63 (Sasha 2026-05-06): replace silent catch with logging.
+      // Without this, when html2canvas/jsPDF errors surfaced as the
+      // generic "Download Failed" toast, there was no diagnostic in
+      // the console to debug the cause.
+      console.error('[QoL] PDF generation failed:', err);
+      toast({
+        title: "Download Failed",
+        description: "Could not generate PDF. Try refreshing the page.",
+        variant: "destructive",
+      });
     }
   };
 
