@@ -5,7 +5,8 @@ import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
 import { getOrCreateGameProfileId } from "@/lib/gameProfile";
 import { TOP_PRIORITIES_COUNT, type DomainId } from "@/modules/quality-of-life-map/qolConfig";
-import GameShellV2 from "@/components/game/GameShellV2";
+// Day 63 (Sasha 2026-05-06): GameShellV2 import removed — shell now
+// owned by QolLayout, not per-page.
 
 type GrowthPath = {
   id: "uniqueness" | "mind" | "spirit" | "emotions" | "body";
@@ -137,19 +138,18 @@ const QualityOfLifeGrowthRecipe = () => {
 
   const primaryRecipe = topThreeDomains[0] ? DOMAIN_RECIPES[topThreeDomains[0]] : null;
 
+  // Day 63 (Sasha 2026-05-06): shell removed — QolLayout now wraps in
+  // GameShellV2 once for all four QoL pages.
   if (loading) {
     return (
-      <GameShellV2>
-        <div className="flex items-center justify-center min-h-[60vh]">
-          <div className="text-[#a4a3d0]">Loading growth recipe...</div>
-        </div>
-      </GameShellV2>
+      <div className="flex items-center justify-center min-h-[60vh]">
+        <div className="text-[#a4a3d0]">Loading growth recipe...</div>
+      </div>
     );
   }
 
   return (
-    <GameShellV2>
-      <div className="max-w-2xl mx-auto p-4 lg:p-6 space-y-6">
+    <div className="max-w-2xl mx-auto p-4 lg:p-6 space-y-6">
         {/* Header */}
         <div className="text-center">
           <BookOpen className="w-10 h-10 mx-auto text-[#8460ea] mb-2" />
@@ -202,7 +202,6 @@ const QualityOfLifeGrowthRecipe = () => {
           Start Improving <ArrowRight className="w-4 h-4 ml-2" />
         </Button>
       </div>
-    </GameShellV2>
   );
 };
 

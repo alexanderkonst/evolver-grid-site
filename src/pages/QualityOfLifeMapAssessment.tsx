@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { ArrowLeft, ArrowRight, Check } from "lucide-react";
-import Navigation from "@/components/Navigation";
+// Day 63 (Sasha 2026-05-06): Navigation import removed — shell now
+// owned by QolLayout (provides GameShellV2 chrome). The standalone
+// wrap-in-Navigation pattern from earlier brand era is retired.
 import BoldText from "@/components/BoldText";
 import { Button } from "@/components/ui/button";
 import { useQolAssessment } from "@/modules/quality-of-life-map/QolAssessmentContext";
@@ -293,22 +295,23 @@ const QualityOfLifeMapAssessment = ({
     return <div className="py-8">{showIntro ? introScreen : content}</div>;
   }
 
-  // Show intro screen first (no nav bar for cleaner entry experience)
+  // Day 63 (Sasha 2026-05-06): standalone wrappers removed. Previously
+  // this page wrapped itself in `<div className="min-h-dvh"><Navigation
+  // />...</div>` — its own top-bar shell that conflicted with the rest
+  // of the QoL flow (Results/Priorities/GrowthRecipe used GameShellV2).
+  // Now QolLayout owns GameShellV2 for all four pages; Assessment just
+  // returns its content (intro or domain steps) directly. The pt-24
+  // padding (which compensated for the now-retired fixed Navigation
+  // height) was removed; the back button sits inside the new shell's
+  // own top spacing.
   if (showIntro) {
-    return (
-      <div className="min-h-dvh">
-        <Navigation />
-        {introScreen}
-      </div>
-    );
+    return introScreen;
   }
 
   return (
-    <div className="min-h-dvh">
-      <Navigation />
-
+    <>
       {/* Back Button */}
-      <div className="pt-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-white to-transparent">
+      <div className="px-4 sm:px-6 lg:px-8 pt-2">
         <div className="container mx-auto max-w-4xl">
           <button
             onClick={() => currentIndex === 0 ? setShowIntro(true) : handlePrevious()}
@@ -322,7 +325,7 @@ const QualityOfLifeMapAssessment = ({
 
       {/* Assessment Content */}
       {content}
-    </div>
+    </>
   );
 };
 

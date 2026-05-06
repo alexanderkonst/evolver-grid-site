@@ -8,7 +8,8 @@ import { getOrCreateGameProfileId } from "@/lib/gameProfile";
 import { buildQolGrowthRecipePath } from "@/lib/onboardingRouting";
 import { useQolAssessment } from "@/modules/quality-of-life-map/QolAssessmentContext";
 import { DOMAINS, TOP_PRIORITIES_COUNT, type DomainId } from "@/modules/quality-of-life-map/qolConfig";
-import GameShellV2 from "@/components/game/GameShellV2";
+// Day 63 (Sasha 2026-05-06): GameShellV2 import removed — shell now
+// owned by QolLayout, not per-page.
 
 const QOL_LABELS: Record<DomainId, string> = {
   wealth: "💰 Wealth", health: "💪 Health", happiness: "😊 Happiness", love: "❤️ Love",
@@ -108,35 +109,33 @@ const QualityOfLifePriorities = () => {
   // briefly showed "Complete your assessment" before the DB load
   // completed and answers populated — confusing for users who DO have
   // a saved assessment.
+  //
+  // Shell removed at the same time — QolLayout now wraps in GameShellV2
+  // once for all four QoL pages.
   if (isLoading) {
     return (
-      <GameShellV2>
-        <div className="flex items-center justify-center min-h-[60vh]">
-          <div className="text-[#a4a3d0] animate-pulse">Loading your priorities...</div>
-        </div>
-      </GameShellV2>
+      <div className="flex items-center justify-center min-h-[60vh]">
+        <div className="text-[#a4a3d0] animate-pulse">Loading your priorities...</div>
+      </div>
     );
   }
 
   // Not complete state
   if (!isComplete) {
     return (
-      <GameShellV2>
-        <div className="max-w-2xl mx-auto p-6 text-center">
-          <Target className="w-16 h-16 mx-auto text-[#a4a3d0] mb-4" />
-          <h1 className="text-2xl font-bold text-[#2c3150] mb-4">Complete Your Assessment</h1>
-          <p className="text-[#a4a3d0] mb-6">Finish the QoL assessment to set priorities.</p>
-          <Button variant="wabi-primary" onClick={() => navigate("/quality-of-life-map/assessment")}>
-            Start Assessment
-          </Button>
-        </div>
-      </GameShellV2>
+      <div className="max-w-2xl mx-auto p-6 text-center">
+        <Target className="w-16 h-16 mx-auto text-[#a4a3d0] mb-4" />
+        <h1 className="text-2xl font-bold text-[#2c3150] mb-4">Complete Your Assessment</h1>
+        <p className="text-[#a4a3d0] mb-6">Finish the QoL assessment to set priorities.</p>
+        <Button variant="wabi-primary" onClick={() => navigate("/quality-of-life-map/assessment")}>
+          Start Assessment
+        </Button>
+      </div>
     );
   }
 
   return (
-    <GameShellV2>
-      <div className="max-w-2xl mx-auto p-4 lg:p-6 space-y-6">
+    <div className="max-w-2xl mx-auto p-4 lg:p-6 space-y-6">
         {/* Header */}
         <div className="text-center">
           <h1 className="text-2xl font-bold text-[#2c3150] mb-2">Your Focus Areas</h1>
@@ -210,7 +209,6 @@ const QualityOfLifePriorities = () => {
           </Button>
         </div>
       </div>
-    </GameShellV2>
   );
 };
 
