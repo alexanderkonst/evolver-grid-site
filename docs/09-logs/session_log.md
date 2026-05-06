@@ -6572,3 +6572,38 @@ Stage 1 (renderer) starts in next session, now unblocked by Stage 0.
 ### Si–Do
 
 Unchanged. The platform is now noticeably better for any founder who runs even one Improve on each artifact (distillation surfaces visually). The Si–Do remains: **first $555 stranger from the funnel.** Today was apparatus work — the apparatus is sharper. The send is still the move.
+
+---
+
+## Day 63 — Journey pane 2: QoL chip added as locked tail item (May 6, 2026)
+
+Sasha's ask: surface the existing Quality of Life Map module as a teaser at the tail of Journey pane 2, locked (no routing yet), so the next phase of the founder's path is visible-but-gated. Method: integrated product building workflow (`docs/03-playbooks/integrated_product_building_workflow.md`) — DoD at entry, UI pass at exit.
+
+### Diagnosis
+
+Journey pane 2 already has a polished locked-item architecture (Day 50–55 work): `locked: true` + `lockedHint`, fog-of-war opacity gradient (`[0.85, 0.60, 0.40, 0.30]`), shared TooltipProvider for popover hints, click suppressed at `handleSectionClick` (line 786 `if (isLocked) return`), `aria-disabled` for screen readers. Three locked items already live there (build-business, mission-discovery, asset-mapping). Adding a fourth = same pattern, smallest diff possible.
+
+### Edits (2 files, 13 lines added)
+
+1. `src/components/game/SectionsPanel.tsx` `buildJourneySections` — appended `journey-qol-assess` chip after `journey-asset-mapper` with `locked: true`, `lockedHint: "Unlocks after you map your assets."`, `path: "/quality-of-life-map/assessment"` (real path preserved so the unlock flip is a single-boolean change later).
+2. `src/components/game/GameShellV2.tsx` `JOURNEY_SECTION_LABELS` — mirrored the entry at the top of the array (longest-path-first sort rule), label without numeric prefix per the file's convention.
+
+### Why this is a 13-line edit, not a module build
+
+The QoL Map module ITSELF has been live for months at `/quality-of-life-map/assessment` (and `/results`, `/priorities`, `/growth-recipe`). The work today is purely surfacing it as a Journey-space teaser. No new screens, no new routes, no new data, no new components. The integrated-workflow ceremony (DoD start + UI pass end) was applied to a single-chip diff because Sasha named it explicitly — discipline doesn't scale down to nothing, but every substantive surface change deserves the framing.
+
+### UI pass (Phase 3 subset)
+
+Reviewed: visual rules (inherits), building blocks (inherits), layout (4th locked = fog index 3 = opacity 0.30, the cap), brandbook voice (action+outcome pattern matches siblings), accessibility (`aria-disabled` pre-wired), Nielsen heuristics (visibility + consistency + recognition + help all pass). No issues.
+
+### Bottom-of-pane safety
+
+The Day 52 retirement of the bottom fade gradient (line 676–681 in SectionsPanel) was specifically motivated by locked items at the tail being "double-erased" by gradient × fog-opacity multiplication. With that removed, the new 4th locked item ends cleanly inside the ScrollArea — no visual cliff, matches what the existing 3 locked items render today.
+
+### Type-check
+
+Clean (`npx tsc --noEmit` no output).
+
+### Si–Do
+
+Unchanged. The Journey path now visibly continues past asset-mapping — *"there's more methodology ahead, the further you look the less is yet visible"* (the fog-of-war intent). When the QoL chip eventually unlocks, no re-wiring is needed: the path is already there, the click handler already routes when `locked: false`. One boolean flip ships the unlock.
