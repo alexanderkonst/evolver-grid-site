@@ -410,30 +410,58 @@ function ContentRenderer({ content }: { content: unknown }) {
       </div>
     );
   }
-  if (typeof content === "object") {
+  if (typeof content === "object" && content !== null) {
+    // Day 62 (Sasha 2026-05-05): peel `distillation` off the top and render
+    // it as a featured Cormorant-italic gold-accented blockquote. Mirrors
+    // the treatment on /ubb's GenericArtifactScreen so public surfaces lead
+    // with the founder's one-sentence synthesis. Skip silently if the field
+    // is missing (legacy artifacts generated before the directive landed).
+    const obj = content as Record<string, unknown>;
+    const { distillation, ...rest } = obj;
     return (
-      <div className="space-y-4">
-        {Object.entries(content as Record<string, unknown>).map(([k, v]) => {
-          // Skip protocol tracer fields (synthesis protocol audit trail)
-          if (k.startsWith("_")) return null;
-          return (
-            <div key={k}>
-              <div
-                style={{
-                  fontFamily: "'Cormorant Garamond', serif",
-                  fontWeight: 600,
-                  fontSize: "11px",
-                  letterSpacing: "0.20em",
-                  textTransform: "uppercase",
-                  color: "#b8860b",
-                }}
-              >
-                {k.replace(/[_-]+/g, " ")}
+      <div className="space-y-6">
+        {distillation && typeof distillation === "string" && distillation.trim() && (
+          <blockquote
+            style={{
+              fontFamily: "'Cormorant Garamond', serif",
+              fontStyle: "italic",
+              fontWeight: 500,
+              fontSize: "clamp(20px, 2.4vw, 26px)",
+              lineHeight: 1.35,
+              color: "#0b2a5a",
+              padding: "18px 22px",
+              borderLeft: "2px solid #b8860b",
+              background: "rgba(212, 175, 55, 0.06)",
+              margin: 0,
+              textShadow: "0 1px 2px rgba(255,255,255,0.7)",
+            }}
+          >
+            {distillation}
+          </blockquote>
+        )}
+        <div className="space-y-4">
+          {Object.entries(rest).map(([k, v]) => {
+            // Skip protocol tracer fields (synthesis protocol audit trail)
+            if (k.startsWith("_")) return null;
+            return (
+              <div key={k}>
+                <div
+                  style={{
+                    fontFamily: "'Cormorant Garamond', serif",
+                    fontWeight: 600,
+                    fontSize: "11px",
+                    letterSpacing: "0.20em",
+                    textTransform: "uppercase",
+                    color: "#b8860b",
+                  }}
+                >
+                  {k.replace(/[_-]+/g, " ")}
+                </div>
+                <div className="mt-1.5">{renderValue(v)}</div>
               </div>
-              <div className="mt-1.5">{renderValue(v)}</div>
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
       </div>
     );
   }

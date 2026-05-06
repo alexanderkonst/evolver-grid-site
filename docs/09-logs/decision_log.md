@@ -124,6 +124,44 @@
 
 ---
 
+## 2026-05-05 (Day 62 late evening)
+
+### D-2026-05-05-10 — `UBB_LANGUAGE_GUIDELINES` as cross-artifact vocabulary guard
+
+**Decision:** Every UBB generate + improve system prompt is prepended with a shared `UBB_LANGUAGE_GUIDELINES` constant (defined in `supabase/functions/_shared/ubb-prompts.ts`). The guidelines forbid four classes of leak: (1) framework vocabulary into outputs (`"top talent"`, `"archetype"`, `"zone of genius"`, `"ZoG"`, `"appleseed"`, `"excalibur"`, `"specificity matrix"`, `"holon"`, `"monotonic improve loop"`); (2) calibration-example or other-founder-canvas vocabulary into the current founder's output; (3) sourcing voice from anywhere except the founder's own ZoG snapshot + canvas + pasted texts (translated per rule 1); (4) sanity-check before returning that the sentence reads naturally to someone in the founder's actual domain.
+
+**Rationale:** The Karime MYTH bug surfaced on Day 62 — her artifact contained the literal phrase *"top talent"* despite her domain being quantum medicine. Root cause: the UNIQUENESS prompt (line 61 of `ubb-prompts.ts`) seeded with `"ZoG top talent and archetype"` literally, leaking framework vocabulary into UNIQUENESS for every founder. MYTH derives from UNIQUENESS and inherited the leak. ZoG already had a NO INSIDER JARGON guard (in `src/prompts/user/zoneOfGeniusPrompt.ts` lines 45/54) protecting itself from inventing jargon outward; UBB had no symmetric inward-facing guard, so jargon flowed back in via ZoG outputs unchallenged. Single point of enforcement (one constant, prepended once) prevents this from recurring across 19 artifacts and any future ones added.
+
+**Reversibility:** Single constant in one file. Edge function imports are 1-line. Trivial revert.
+
+**Cross-references:** `_shared/ubb-prompts.ts` `UBB_LANGUAGE_GUIDELINES` constant · `generate-artifact/index.ts` + `improve-artifact/index.ts` system prompt prepend · `session_log.md` Day 62 (late evening) entry
+
+---
+
+### D-2026-05-05-11 — `distillation` as required field on every artifact (the propagation atom)
+
+**Decision:** Every artifact in `ARTIFACT_CONFIGS` has a required `"distillation"` field as the first key in its `outputSchema`. Description: *"one self-sustainable sentence carrying this artifact's essence in the founder's own domain language."* A new `UBB_DISTILLATION_DIRECTIVE` constant (5 rules) is prepended to every generate + improve system prompt to enforce: ONE sentence, self-sustainable, founder-domain-language, may equal a headline-equivalent field if one exists, sticky-note test before returning. The distillation becomes the headline of every artifact card in `/ubb` (rendered as Cormorant-italic gold-accented blockquote via new `DistillationBlock` component) and on `PublicDossier`. It is also designated as the propagation atom for the upcoming markdown export (each new version's distillation appended on top of previous versions in the founder's living unique-business canvas markdown).
+
+**Rationale:** Sasha needed (a) a single hand-editable sentence per artifact for the markdown export's living-chronicle architecture, (b) a way to emphasize the artifact's essence visually at the top of every card, (c) a normalized field across all 19 artifacts (their content shapes vary; many had no headline-equivalent; even those that did — `uniqueness.sentence`, `myth.photon`, `promise.promise_sentence` — had no shared name). Adding ONE shared mandatory field with a strong directive solves all three at once. The distillation may equal a pre-existing headline OR be a tighter synthesis — the model decides.
+
+**Reversibility:** Schema additions are non-breaking (JSONB content accepts arbitrary shape). Removing the directive would leave existing distillations in DB unchanged but stop new ones being generated. UI component reverts cleanly.
+
+**Cross-references:** `_shared/ubb-prompts.ts` `UBB_DISTILLATION_DIRECTIVE` + 19 `outputSchema` updates · `screens/GenericArtifactScreen.tsx` `DistillationBlock` + `ArtifactContentView` peel logic · `pages/PublicDossier.tsx` matching peel + render · `session_log.md` Day 62 (late evening) entry · `markdown_sync_spec.md` (Stage 1 of the markdown export will read this field as the propagation atom)
+
+---
+
+### D-2026-05-05-12 — V1 restore as append-only operation
+
+**Decision:** "Return to v1" creates a new version row whose `content_json` + `specificity_score` are copies of v1's, with `parent_version_id` pointing at the current latest, `what_changed: "Restored from v1"`. Append-only — never overwrites or deletes existing rows. UI surface: `↺ Return to v1` link in the artifact metadata row of `GenericArtifactScreen`, hidden when `latest.version === 1`, disabled while an Improve is in flight, requires `window.confirm` before firing.
+
+**Rationale:** Founders need a recoverable anchor — Day 51's bulk-seed shipped 16/18 artifacts as locked v1 @ specificity 9.5, and these v1s are real, considered baselines worth preserving. Three options were considered: (A) hard overwrite (deletes v2…vN and restores v1 as canonical — loses history, violates the paramount append-only invariant), (B) new version = copy of v1 (preserves history, no schema change), (C) pointer swap (cleanest semantically but requires schema change to add `current_version_id` column). Sasha approved B. Smallest schema change (none), preserves the entire iteration chain (re-restorable if user wants the iterations back), familiar mental model (Improve adds versions; Restore adds a version).
+
+**Reversibility:** Single context method (~80 lines), single UI link (~30 lines). Trivial revert per surface.
+
+**Cross-references:** `UniqueBusinessContext.tsx` `restoreToV1` action · `screens/GenericArtifactScreen.tsx` UI link · `types.ts` `UniqueBusinessActions.restoreToV1` signature · `session_log.md` Day 62 (late evening) entry
+
+---
+
 ## How to read entries above
 
 Each decision is reasoned at the time and shipped. If a decision is later reversed (new evidence, principle shift, scope change), the new entry references the old one explicitly — *"Supersedes D-YYYY-MM-DD-NN."* This is an append-only log; old entries don't get edited. Reading top-to-bottom traces the architectural lineage. Reading bottom-to-top traces the architectural state.
