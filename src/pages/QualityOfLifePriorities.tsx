@@ -216,16 +216,41 @@ const QualityOfLifePriorities = () => {
                 <GripVertical className="h-5 w-5 text-[var(--wabi-text-muted)]" />
                 <div className="flex-1">
                   <div className="flex items-center gap-2">
-                    <p className={`font-medium ${isTop ? "text-[var(--depth-violet)]" : "text-[var(--wabi-text-primary)]"}`}>
+                    {/* Day 63 (Sasha 2026-05-06): domain label in Source
+                        Serif 4 to match editorial register; score badge
+                        stays sans for data-feel; "Priority #N" subtext in
+                        Cormorant tracked-uppercase as a gold-accent
+                        eyebrow. */}
+                    <p
+                      style={{
+                        fontFamily: "'Source Serif 4', serif",
+                        fontWeight: 500,
+                        fontSize: "15px",
+                      }}
+                      className={isTop ? "text-[var(--depth-violet)]" : "text-[var(--wabi-text-primary)]"}
+                    >
                       {QOL_LABELS[domainId]}
                     </p>
-                    <span className={`px-2 py-0.5 rounded-full text-xs font-bold ${isTop ? "bg-[var(--depth-violet)] text-white" : "bg-[var(--wabi-text-muted)]/20 text-[var(--wabi-text-muted)]"
-                      }`}>
+                    <span
+                      className={`px-2 py-0.5 rounded-full text-xs font-bold ${isTop ? "bg-[var(--depth-violet)] text-white" : "bg-[var(--wabi-text-muted)]/20 text-[var(--wabi-text-muted)]"}`}
+                      style={{ fontVariantNumeric: "tabular-nums" }}
+                    >
                       {score}/10
                     </span>
                   </div>
                   {isTop && (
-                    <p className="text-xs text-[var(--depth-violet)]">Priority #{index + 1}</p>
+                    <p
+                      style={{
+                        fontFamily: "'Cormorant Garamond', serif",
+                        fontWeight: 600,
+                        fontSize: "10.5px",
+                        letterSpacing: "0.18em",
+                        textTransform: "uppercase",
+                        color: "var(--depth-violet)",
+                      }}
+                    >
+                      Priority {index + 1}
+                    </p>
                   )}
                 </div>
               </div>

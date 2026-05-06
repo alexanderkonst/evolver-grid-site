@@ -185,6 +185,10 @@ const QualityOfLifeGrowthRecipe = () => {
 
         {/* Path Cards */}
         <div className="space-y-3">
+          {/* Day 63 (Sasha 2026-05-06): path labels in Cormorant; FOCUS
+              tag in Cormorant tracked-uppercase + gold accent; description
+              in Source Serif 4 italic. Numbered badge stays sans for
+              data-feel. */}
           {primaryRecipe?.paths.map((path, index) => {
             const isTop = index < TOP_PRIORITIES_COUNT;
             return (
@@ -196,17 +200,53 @@ const QualityOfLifeGrowthRecipe = () => {
                   }`}
               >
                 <div className="flex items-center gap-3">
-                  <div className={`flex h-8 w-8 items-center justify-center rounded-full text-sm font-bold ${isTop ? "bg-[var(--depth-violet)] text-white" : "bg-[var(--wabi-text-muted)]/20 text-[var(--wabi-text-muted)]"
-                    }`}>
+                  <div
+                    className={`flex h-8 w-8 items-center justify-center rounded-full text-sm font-bold ${isTop ? "bg-[var(--depth-violet)] text-white" : "bg-[var(--wabi-text-muted)]/20 text-[var(--wabi-text-muted)]"}`}
+                    style={{ fontVariantNumeric: "tabular-nums" }}
+                  >
                     {index + 1}
                   </div>
                   <div className="flex-1">
                     <div className="flex items-center gap-2">
                       <span>{path.emoji}</span>
-                      <h3 className={`font-medium ${isTop ? "text-[var(--depth-violet)]" : "text-[var(--wabi-text-primary)]"}`}>{path.label}</h3>
-                      {isTop && <span className="text-xs bg-[var(--depth-violet)]/20 text-[var(--depth-violet)] px-2 py-0.5 rounded-full">Focus</span>}
+                      <h3
+                        style={{
+                          fontFamily: "'Cormorant Garamond', serif",
+                          fontWeight: 600,
+                          fontSize: "17px",
+                          letterSpacing: "-0.005em",
+                        }}
+                        className={isTop ? "text-[var(--depth-violet)]" : "text-[var(--wabi-text-primary)]"}
+                      >
+                        {path.label}
+                      </h3>
+                      {isTop && (
+                        <span
+                          style={{
+                            fontFamily: "'Cormorant Garamond', serif",
+                            fontWeight: 600,
+                            fontSize: "10px",
+                            letterSpacing: "0.20em",
+                            textTransform: "uppercase",
+                            color: "rgba(184, 134, 11, 1)",
+                          }}
+                          className="bg-[var(--depth-violet)]/15 px-2 py-0.5 rounded-full"
+                        >
+                          Focus
+                        </span>
+                      )}
                     </div>
-                    <p className="text-sm text-[var(--wabi-text-muted)] mt-1">{path.description}</p>
+                    <p
+                      style={{
+                        fontFamily: "'Source Serif 4', serif",
+                        fontStyle: "italic",
+                        fontSize: "14px",
+                        lineHeight: 1.5,
+                      }}
+                      className="text-[var(--wabi-text-muted)] mt-1"
+                    >
+                      {path.description}
+                    </p>
                   </div>
                 </div>
               </div>

@@ -402,26 +402,71 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
           </ResponsiveContainer>
         </div>
 
-        {/* Growth & Strengths */}
+        {/* Growth & Strengths
+            Day 63 (Sasha 2026-05-06): card eyebrows in Cormorant tracked
+            uppercase + gold accent (matches the editorial card-label
+            register from /ubb GenericArtifactScreen.tsx). Domain names
+            in Source Serif 4 for editorial weight; numeric values stay
+            sans for the data-feel. */}
         <div className="grid gap-4 sm:grid-cols-2">
           <div className="rounded-xl liquid-glass ring-1 ring-white/10 p-4">
-            <p className="text-xs uppercase tracking-wide text-[var(--depth-violet)] mb-3">🌱 Growth Areas</p>
+            <p
+              style={{
+                fontFamily: "'Cormorant Garamond', serif",
+                fontWeight: 600,
+                fontSize: "11px",
+                letterSpacing: "0.20em",
+                textTransform: "uppercase",
+                color: "rgba(244, 212, 114, 0.85)",
+              }}
+              className="mb-3"
+            >
+              🌱 Growth Areas
+            </p>
             <div className="space-y-2">
               {growthDomains.map(({ domain, stageValue }) => (
                 <div key={domain.id} className="flex items-center justify-between">
-                  <span className="text-sm text-white/70">{domain.name}</span>
-                  <span className="text-sm font-semibold text-[var(--depth-violet)]">{stageValue}</span>
+                  <span
+                    style={{
+                      fontFamily: "'Source Serif 4', serif",
+                      fontSize: "14px",
+                      color: "rgba(255, 255, 255, 0.72)",
+                    }}
+                  >
+                    {domain.name}
+                  </span>
+                  <span className="text-sm font-semibold text-[var(--depth-violet)]" style={{ fontVariantNumeric: "tabular-nums" }}>{stageValue}</span>
                 </div>
               ))}
             </div>
           </div>
           <div className="rounded-xl liquid-glass ring-1 ring-white/10 p-4">
-            <p className="text-xs uppercase tracking-wide text-[var(--depth-violet)] mb-3">💪 Strengths</p>
+            <p
+              style={{
+                fontFamily: "'Cormorant Garamond', serif",
+                fontWeight: 600,
+                fontSize: "11px",
+                letterSpacing: "0.20em",
+                textTransform: "uppercase",
+                color: "rgba(244, 212, 114, 0.85)",
+              }}
+              className="mb-3"
+            >
+              💪 Strengths
+            </p>
             <div className="space-y-2">
               {strengthDomains.map(({ domain, stageValue }) => (
                 <div key={domain.id} className="flex items-center justify-between">
-                  <span className="text-sm text-white/70">{domain.name}</span>
-                  <span className="text-sm font-semibold text-[var(--depth-violet)]">{stageValue}</span>
+                  <span
+                    style={{
+                      fontFamily: "'Source Serif 4', serif",
+                      fontSize: "14px",
+                      color: "rgba(255, 255, 255, 0.72)",
+                    }}
+                  >
+                    {domain.name}
+                  </span>
+                  <span className="text-sm font-semibold text-[var(--depth-violet)]" style={{ fontVariantNumeric: "tabular-nums" }}>{stageValue}</span>
                 </div>
               ))}
             </div>
