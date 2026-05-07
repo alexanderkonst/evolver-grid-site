@@ -44,6 +44,16 @@ const SiteLogo = () => {
         // SiteLogo too so the wordmark doesn't double up across all
         // sub-routes (canvas, artifacts, session, dossier, etc.).
         "/ubb",
+        // Day 64 (Sasha 2026-05-07): /quality-of-life-map lives in
+        // GameShellV2 (via QolLayout) with hideLogo. Same fix shape
+        // as /ubb above — without this, the global SiteLogo wordmark
+        // ("FIND YOUR TOP TALENT" lockup top-center) renders ON TOP
+        // of pane 3, doubling up with the SpacesRail wordmark in
+        // pane 1. Sasha's Day 64 screenshot showed the duplicate.
+        // Covers /quality-of-life-map/* (assessment, results) — the
+        // ME-space subpage at /game/me/quality-of-life is already
+        // covered by the /game prefix earlier in this list.
+        "/quality-of-life-map",
     ];
     const exactHidden = ["/", "/ignite", "/my-result", "/path", "/auth", "/dashboard", "/ai-os", "/library", "/prompt", "/ubb"];
     if (hidden.some(p => location.pathname.startsWith(p)) || exactHidden.includes(location.pathname)) return null;
