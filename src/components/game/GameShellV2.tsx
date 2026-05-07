@@ -286,7 +286,12 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
         // and SPACE_SECTIONS["ai-os"] in SectionsPanel.tsx). The fallback
         // at the bottom of this effect resolves /ai-os and all sub-routes
         // to the "ai-os" space via SPACES.find startsWith match.
-        const journeyPaths = ["/", "/playbook", "/path", "/my-artifacts", "/zone-of-genius", "/game/settings", "/dashboard", "/ignite"];
+        // Day 64 (Sasha 2026-05-07): /quality-of-life-map added to journeyPaths
+        // so SectionsPanel pane 2 renders the Journey items when on QoL routes.
+        // Without this, activeSpaceId stays null on /quality-of-life-map/*,
+        // pane 2 is empty, user sees only the SpacesRail (pane 1) + content
+        // (pane 3) — they lose the contextual navigation.
+        const journeyPaths = ["/", "/playbook", "/path", "/my-artifacts", "/zone-of-genius", "/game/settings", "/dashboard", "/ignite", "/quality-of-life-map"];
         const isJourneyFamily = journeyPaths.some(
             (p) => location.pathname === p || location.pathname.startsWith(p + "/"),
         );

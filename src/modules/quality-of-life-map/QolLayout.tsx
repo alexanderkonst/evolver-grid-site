@@ -30,7 +30,12 @@ import GameShellV2 from "@/components/game/GameShellV2";
 const QolLayout = () => {
   return (
     <QolAssessmentProvider>
-      <GameShellV2>
+      {/* Day 64 (Sasha 2026-05-07): hideLogo passed to GameShellV2.
+          The "FIND YOUR TOP TALENT" wordmark in pane 3 was redundant on
+          QoL pages — duplicated the SpacesRail brand presence and competed
+          with the QoL hero's own visual. Pattern matches Day 58's hideLogo
+          treatment on the ME-space Overview hero. */}
+      <GameShellV2 hideLogo>
         <Outlet />
       </GameShellV2>
     </QolAssessmentProvider>

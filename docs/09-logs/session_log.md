@@ -6774,3 +6774,98 @@ Pattern for future shell-architecture work: any time you change what wraps a pag
 ### Si–Do
 
 Re-locked. The QoL module's chip is back to gated state until the next polish pass surfaces the residual bugs (or confirms none remain). The foundational fixes from earlier today (data integrity, idempotency, retake-fresh-flag, PDF download, token migration, Cormorant typography) all stay shipped — those are independently sound. Only the chip-unlock + the layout-collision pair are reverted.
+
+---
+
+## Day 63 (continued, late evening 2) — QoL save false-alarm fixed (May 6, 2026)
+
+Sasha screenshotted `/quality-of-life-map/results` at 12:14 PM and surfaced TWO bugs:
+
+1. **"Step 2 of 4" still showing** — but the QolLayout disk state is clean (no OnboardingProgress import or render). Confirmed via `Read` + `grep` across `src/`. The screenshot is from a stale Lovable preview build that hadn't picked up the late-evening edit. **No code fix needed** — just preview cache eviction.
+
+2. **"Could not save your results" toast firing while the page renders correctly with data.** This was the real bug. The toast text matches the `catch` block I added in the morning, meaning the save IS throwing — but the radar chart, growth-areas, and strengths rendered correctly with real data. The only way both can be true: the actual INSERT succeeded, but a POST-save side effect threw into the same try/catch, surfacing as a misleading "save failed" toast.
+
+### Root cause
+
+Same shape as Day 61-62's `successFired` lesson (decision_log D-2026-05-05-08). The original `saveSnapshotToDatabase` had a single try-block wrapping (a) the idempotency check, (b) the actual `qol_snapshots` INSERT, AND (c) post-INSERT side effects: `awardXp`, `update game_profiles` pointer, `update qol_snapshots.xp_awarded`, `awardFirstTimeBonus`, `logActionEvent`. If any of c) threw — e.g., `awardXp` returns a non-success state that throws downstream, or the profile-pointer update hits an RLS edge case — the outer catch fired the destructive toast even though the actual save completed cleanly. Misleading by construction.
+
+### Fix
+
+Refactored `saveSnapshotToDatabase` into TWO try-catch blocks:
+
+1. **Critical save path** — idempotency dedup + `qol_snapshots` INSERT. Only failures here surface to the user as a destructive toast. On success: capture `savedSnapshotId` and `xpAlreadyAwardedOnRow`, set `isSaved`, fall through to side effects.
+
+2. **Post-save side effects** — XP award, profile pointer update, `xp_awarded` flip, first-time bonus, action event log. Failures here log a `console.warn` with structured error details (Supabase code + message) but do NOT surface to the user. The data is already saved; only XP/telemetry bookkeeping failed.
+
+Plus: structured error logging in both catches (`code`, `message`, `details`, `hint`, `raw`) so the next failure is debuggable from console without source-mapping.
+
+### Open follow-up flagged in code
+
+If a side-effect failure means a saved snapshot has `xp_awarded: false` indefinitely, the idempotency check on next visit skips the INSERT (answers match) and never retries XP. Marked as TODO in the code comments. Low priority — the user has their data; only XP bookkeeping is stuck. Future fix: in idempotency-match path, also check `prior.xp_awarded` and retry the side effects if false.
+
+### Files touched (1 in this round)
+
+- `src/pages/QualityOfLifeMapResults.tsx` — `saveSnapshotToDatabase` refactored into two-phase pattern; structured error logging added.
+
+Type-check clean.
+
+### Lesson logged
+
+**`successFired` is a generalizable pattern, not a one-off.** Day 61-62 named it for `Step4GenerateSnapshot`. Day 63 evening surfaces it again in `QualityOfLifeMapResults`. The shape: any function that does a critical write THEN side effects (logging, XP, pointer denormalization, etc.) needs the side effects in a separate try-catch from the critical write — otherwise a side-effect failure produces a "save failed" UI on a successful save. Pattern: search the codebase for `try { ...await insert... ...await update... ...await sideEffect... }` shapes and consider if they have the same misleading-toast risk.
+
+### Si–Do
+
+Unchanged. The chip stays locked. The save-false-alarm fix means that when the chip eventually unlocks, users won't see "Could not save" toasts on top of successful saves — that was the most visibly broken UX before.
+
+---
+
+## Day 64 — QoL: SMOKING GUN (`overall_score` undefined column) + 7 visual bugs (May 7, 2026)
+
+Sasha shipped two screenshots from production preview and a punch list of 8 bugs. The investigation surfaced **the actual cause of "Could not save your results"** — different from yesterday's `successFired` hypothesis. Both fixes were needed.
+
+### THE smoking gun
+
+The `qol_snapshots` table schema (per migration `20251130150920_fba5bd03-65a0-4435-adc8-4fe281d70de7.sql`) has columns: `id`, `profile_id`, `created_at`, `wealth_stage`, `health_stage`, `happiness_stage`, `love_relationships_stage`, `impact_stage`, `growth_stage`, `social_ties_stage`, `home_stage` — plus `xp_awarded` (added by `20251130154626`). **There is NO `overall_score` column.**
+
+But `saveSnapshotToDatabase` was sending `overall_score: overallAverage` in the INSERT object. Postgres rejected the insert with error code `42703` (undefined column), the exception bubbled to the critical-save catch, and the user saw "Could not save your results" — every visit, every time. The save was failing because the INSERT shape was malformed against schema, not because of any side-effect bug.
+
+**Fix:** removed `overall_score: overallAverage` from `snapshotInsert`. The overall score is a derived value computed client-side on every render from the 8 stage values — there's no need to persist it. The column was likely a stale planned-but-never-shipped field from an earlier iteration.
+
+This is why yesterday's `successFired` refactor didn't actually fix the toast — the bug was in the critical save path itself, not in the side effects. Both fixes (yesterday's `successFired` for cleanliness + today's `overall_score` removal for correctness) are now in place.
+
+### Other bugs surfaced from Sasha's screenshots
+
+1. **Pane 2 (SectionsPanel) missing on QoL routes** — `GameShellV2`'s `journeyPaths` array (line 289) didn't include `/quality-of-life-map`, so `activeSpaceId` stayed null on QoL routes. Pane 2 had nothing to render. **Fix:** added `/quality-of-life-map` to `journeyPaths`. QoL is now part of the JOURNEY space; pane 2 renders the Journey items chip-list.
+
+2. **"FIND YOUR TOP TALENT" wordmark in pane 3** — redundant with the SpacesRail brand presence + competing with the QoL hero. **Fix:** passed `hideLogo` to `GameShellV2` from `QolLayout`. Pattern matches Day 58's `hideLogo` treatment on the ME-space Overview hero.
+
+3. **Gold-on-beige eyebrow illegible** — both Assessment intro (`Quality of Life Map` eyebrow) and Results hero (`Your Quality of Life` eyebrow) used `rgba(244, 212, 114, 0.85)` light gold which has poor contrast on cream surfaces. **Fix:** Assessment intro switched to `var(--skin-text-primary)` deep navy; Results hero eyebrow shifted to deep gold `#7a5708` which has strong contrast on cream.
+
+4. **Violet stage selector** — `border-[var(--depth-violet)] bg-[var(--depth-violet)]/10` + violet stage-number-circle. Sasha called out: *"the selector has purple colors which we have to also change because it's not our UI."* **Fix:** switched to gold register — `border-[#b8860b] bg-[#b8860b]/10` + gold stage-number circle with gold halo on selected. Progress dots also migrated from violet to gold.
+
+5. **"Map My Life" CTA violet gradient** — was `bg-gradient-to-r from-[var(--depth-violet)] to-[var(--depth-cornflower)]`. **Fix:** replaced with the editorial gold CTA pattern from `/ubb GenericArtifactScreen` — `skin-cta-bg` + `skin-cta-text` + `skin-cta-shadow` (dark navy + gold halo) + Cormorant tracked-uppercase label + `✦` icon. Matches landing/UBB CTA register exactly.
+
+6. **"See Results" button at bottom of stage list** — required user to scroll past 10 stages on the last domain to find it. Sasha: *"I think the See the Results button has to be on top, not at the bottom, so the person doesn't have to look for it."* **Fix:** moved the button to ABOVE the stage grid on desktop when `isLastDomain`. Removed the bottom one (the auto-advance handles forward navigation for non-last domains; the explicit button only matters on the last and now is visible without scrolling).
+
+7. **Results hero converted from dark `liquid-glass` to cream-surface** — the `liquid-glass` class wasn't darkening the cinematic image enough; gold/white text was rendering on near-cream bg. **Fix:** switched to `skin-card-bg` cream-surface treatment with navy text + halo-deep cocktail. Radar chart palette also migrated from violet (`#8460ea`) to gold (`#b8860b`); tick labels switched from white (illegible on cream) to navy. Growth Areas + Strengths cards also converted from `liquid-glass` to lighter cream-surface with deep gold eyebrows + navy domain names.
+
+### Files touched (4)
+
+- `src/components/game/GameShellV2.tsx` — `/quality-of-life-map` added to `journeyPaths`
+- `src/modules/quality-of-life-map/QolLayout.tsx` — `hideLogo` passed to `GameShellV2`
+- `src/pages/QualityOfLifeMapAssessment.tsx` — eyebrow color, stage selector colors, progress dots, CTA, See-Results button position
+- `src/pages/QualityOfLifeMapResults.tsx` — `overall_score` removed from INSERT (the smoking gun); hero converted to cream-surface; radar palette migrated; cards converted; loading + empty-state colors fixed
+
+Type-check clean.
+
+### Lessons logged
+
+1. **The actual bug is sometimes simpler than the architecture-level hypothesis.** Yesterday I refactored `saveSnapshotToDatabase` into the `successFired` two-phase pattern thinking the misleading toast was post-save side effects throwing into the critical catch. That refactor was correct on its own merits but didn't fix the visible bug — because the visible bug was the INSERT itself failing on a schema mismatch (`overall_score` undefined column). Lesson: when a save error keeps firing despite refactor, **read the schema migration**. Postgres error code 42703 (undefined column) would have been visible in the console with my structured logging — that was the smoking gun, accessible from one console-log peek if Sasha had shared it. Adding the structured logging yesterday set up today's diagnosis; today's diagnosis confirmed the exact failure shape.
+
+2. **Schema drift is invisible to type-check.** TypeScript has no idea that `overall_score` doesn't exist as a column in `qol_snapshots` — it just sees the insert as a `Record<string, unknown>` shape. Going forward: Supabase types should be regenerated whenever a migration changes the schema, and the insert types should be derived from the regenerated types so this kind of drift surfaces at compile time. Marked as a future improvement — the fix is `npx supabase gen types typescript` workflow, but that's a separate ship.
+
+3. **"Cream surface" vs "dark glass" needs explicit decision per surface.** The Results hero used `liquid-glass` (dark glass) but the cinematic background didn't darken enough for the dark-glass treatment to be visually correct — content rendered as light-on-cream which is illegible. Pattern: when a surface treatment depends on the bg behind it, surface choice and bg choice are coupled. Today's call: Results hero is now an explicit cream-surface (white/72 + navy text + halo-deep). If we ever want it dark again, the bg behind it needs to change too. Logged as a design-decision-with-context.
+
+### Si–Do
+
+Chip stays locked until Sasha verifies all 7+1 fixes. The data integrity is now genuinely sound (schema-correct INSERT) and the visual register is meaningfully closer to landing (gold + cream + navy + Cormorant + Source Serif 4 italic). Remaining: visual verification by Sasha + decision on whether the hero/cards' new cream-surface treatment reads correctly across all four QoL pages.

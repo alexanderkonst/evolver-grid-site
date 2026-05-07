@@ -94,16 +94,21 @@ const QualityOfLifeMapAssessment = ({
   const introScreen = (
     <section className="px-6 py-12 sm:py-16 mx-auto max-w-2xl">
       <div className="text-center space-y-6">
-        {/* Eyebrow — Cormorant tracked-uppercase + gold accent */}
+        {/* Eyebrow — Cormorant tracked-uppercase. Day 64 (Sasha
+            2026-05-07): color shifted from gold (rgba(244,212,114,0.85))
+            to deep skin-text-primary navy. Gold-on-cream had poor
+            contrast — Sasha called it illegible from the production
+            screenshot. Navy + halo-soft is the landing-register
+            equivalent for cream surfaces. */}
         <p
           style={{
             fontFamily: "'Cormorant Garamond', serif",
             fontSize: "11px",
             fontWeight: 600,
-            letterSpacing: "0.20em",
+            letterSpacing: "0.22em",
             textTransform: "uppercase",
-            color: "rgba(184, 134, 11, 1)",
-            textShadow: "0 0 12px rgba(244, 212, 114, 0.18)",
+            color: "var(--skin-text-primary, var(--wabi-text-primary, #0b2a5a))",
+            textShadow: "0 1px 2px rgba(255,255,255,0.6)",
           }}
         >
           Quality of Life Map
@@ -148,14 +153,32 @@ const QualityOfLifeMapAssessment = ({
           See where you're thriving and where to grow.
         </p>
 
-        {/* CTA — wabi-primary retained for cross-module consistency */}
-        <Button
-          size="lg"
+        {/* CTA — Day 64 (Sasha 2026-05-07): editorial gold pattern
+            from /ubb GenericArtifactScreen replacing the violet gradient
+            wabi-primary. Sasha called out "the colors are not the
+            colors that we use in our UI" — landing register uses
+            dark-navy CTA with gold halo, not violet→cornflower. */}
+        <button
           onClick={() => setShowIntro(false)}
-          className="w-full max-w-sm h-14 text-base font-semibold rounded-xl bg-gradient-to-r from-[var(--depth-violet)] to-[var(--depth-cornflower)] hover:opacity-90 transition-all duration-200 shadow-lg hover:shadow-xl"
+          className="group relative inline-flex items-center justify-center gap-2 w-full max-w-sm h-14 rounded-xl transition-all duration-300 hover:translate-y-[-1px]"
+          style={{
+            background: "var(--skin-cta-bg, linear-gradient(135deg, rgba(10,22,40,0.92) 0%, rgba(18,28,56,0.85) 50%, rgba(10,22,40,0.92) 100%))",
+            color: "var(--skin-cta-text, rgba(245, 245, 250, 0.98))",
+            border: "0.5px solid var(--skin-cta-border, rgba(255, 255, 255, 0.14))",
+            boxShadow: "var(--skin-cta-shadow, 0 0 0 1px rgba(212, 175, 55, 0.32), 0 0 22px -4px rgba(240, 194, 127, 0.45), 0 0 48px -10px rgba(212, 175, 55, 0.32))",
+            backdropFilter: "blur(14px) saturate(160%)",
+            WebkitBackdropFilter: "blur(14px) saturate(160%)",
+            fontFamily: "'Cormorant Garamond', serif",
+            fontWeight: 600,
+            letterSpacing: "0.14em",
+            textTransform: "uppercase",
+            fontSize: "14px",
+            textShadow: "var(--skin-cta-text-shadow, 0 0 16px rgba(240,194,127,0.28))",
+          }}
         >
+          <span aria-hidden="true" style={{ color: "var(--skin-cta-icon, rgba(244, 212, 114, 0.98))", textShadow: "0 0 12px rgba(244,212,114,0.8)", fontSize: "16px" }}>✦</span>
           Map My Life
-        </Button>
+        </button>
       </div>
     </section>
   );
@@ -175,6 +198,9 @@ const QualityOfLifeMapAssessment = ({
             total={DOMAINS.length}
             className="text-[var(--wabi-text-muted)]"
           />
+          {/* Day 64 (Sasha 2026-05-07): progress dots shifted from
+              violet to landing-register gold for visual coherence with
+              the rest of the QoL flow. */}
           <div className="flex gap-2 justify-center">
             {DOMAINS.map((_, idx) => (
               <div
@@ -183,9 +209,9 @@ const QualityOfLifeMapAssessment = ({
                   "h-2 rounded-full transition-all",
                   idx === currentIndex ? "w-8" : "w-2",
                   idx < currentIndex
-                    ? "bg-[var(--depth-violet)]"
+                    ? "bg-[#b8860b]"
                     : idx === currentIndex
-                      ? "bg-[var(--depth-violet)]/60"
+                      ? "bg-[#b8860b]/60"
                       : "bg-[var(--wabi-text-muted)]/20"
                 )}
               />
@@ -203,18 +229,43 @@ const QualityOfLifeMapAssessment = ({
           </p>
         </div>
 
-        {/* Stages Grid */}
-        {/*
-          Day 63 (Sasha 2026-05-06): aria-pressed added to each stage
-          button. Stages are mutually exclusive (one selected per
-          domain), but we use aria-pressed (toggle button) rather than
-          role="radio" because the latter requires full WAI-ARIA
-          radiogroup keyboard semantics (arrow-key navigation, single
-          tab stop) that this list doesn't yet implement. aria-pressed
-          gives screen readers a clear "selected"/"not selected" hint
-          without the obligation to deliver radio-group keyboard
-          contract — lower risk than partial radio implementation.
-        */}
+        {/* Day 64 (Sasha 2026-05-07): "See Results" button moved ABOVE
+            the stage grid on the last domain so the user doesn't have
+            to scroll past 10 stages to find it. Sasha's screenshot
+            feedback: "the See the Results button has to be on top, not
+            at the bottom, so the person doesn't have to look for it." */}
+        {isLastDomain && (
+          <div className="hidden sm:flex justify-end mb-6">
+            <button
+              onClick={handleNext}
+              disabled={!hasAnswer}
+              className="group relative inline-flex items-center gap-2 px-8 py-3 rounded-full transition-all duration-300 hover:translate-y-[-1px] disabled:cursor-not-allowed disabled:opacity-40"
+              style={{
+                background: "var(--skin-cta-bg, linear-gradient(135deg, rgba(10,22,40,0.92) 0%, rgba(18,28,56,0.85) 50%, rgba(10,22,40,0.92) 100%))",
+                color: "var(--skin-cta-text, rgba(245, 245, 250, 0.98))",
+                border: "0.5px solid var(--skin-cta-border, rgba(255, 255, 255, 0.14))",
+                boxShadow: "var(--skin-cta-shadow, 0 0 0 1px rgba(212, 175, 55, 0.32), 0 0 22px -4px rgba(240, 194, 127, 0.45))",
+                fontFamily: "'Cormorant Garamond', serif",
+                fontWeight: 600,
+                letterSpacing: "0.14em",
+                textTransform: "uppercase",
+                fontSize: "13px",
+              }}
+            >
+              See Results
+              <ArrowRight className="ml-1 h-4 w-4" />
+            </button>
+          </div>
+        )}
+
+        {/* Stages Grid
+            Day 63: aria-pressed for screen-reader semantics.
+            Day 64 (Sasha 2026-05-07): violet→gold register migration.
+            "Selected" state was border-violet + bg-violet/10 + violet
+            stage-number circle — Sasha called out "selector has purple
+            colors which we have to also change because it's not our
+            UI." Now: gold accent + warm cream bg, matching landing
+            register. */}
         <div className="grid gap-4 mb-12" aria-label={`${domain.name} stages`}>
           {domain.stages.map((stage) => {
             const isSelected = selectedStageId === stage.id;
@@ -227,8 +278,8 @@ const QualityOfLifeMapAssessment = ({
                   "relative p-6 rounded-2xl text-left transition-all duration-200",
                   "border-2 hover:scale-[1.02]",
                   isSelected
-                    ? "border-[var(--depth-violet)] bg-[var(--depth-violet)]/10"
-                    : "border-[var(--wabi-text-muted)]/20 bg-white/60 hover:border-[var(--depth-violet)]/40"
+                    ? "border-[#b8860b] bg-[#b8860b]/10"
+                    : "border-[var(--wabi-text-muted)]/20 bg-white/60 hover:border-[#b8860b]/40"
                 )}
               >
                 <div className="flex items-start gap-4">
@@ -237,7 +288,7 @@ const QualityOfLifeMapAssessment = ({
                     className={cn(
                       "flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center font-bold text-lg transition-all",
                       isSelected
-                        ? "bg-[var(--depth-violet)] text-white"
+                        ? "bg-[#b8860b] text-white shadow-[0_0_18px_-4px_rgba(184,134,11,0.55)]"
                         : "bg-[var(--wabi-text-muted)]/10 text-[var(--wabi-text-muted)]"
                     )}
                   >
@@ -274,21 +325,10 @@ const QualityOfLifeMapAssessment = ({
             Previous
           </Button>
 
-          {/* Only show explicit button on last domain */}
-          {isLastDomain && (
-            <Button
-              onClick={handleNext}
-              disabled={!hasAnswer}
-              size="lg"
-              className={cn(
-                "text-lg px-8 bg-gradient-to-r from-[var(--depth-violet)] to-[var(--depth-cornflower)] text-white",
-                !hasAnswer && "opacity-50"
-              )}
-            >
-              See Results
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
-          )}
+          {/* Day 64 (Sasha 2026-05-07): bottom "See Results" button
+              removed — the same action now lives ABOVE the grid (line
+              ~145 area) per Sasha's feedback that the user shouldn't
+              have to scroll past 10 stages to find it. */}
         </div>
 
         {/* Mobile Bottom Bar */}
