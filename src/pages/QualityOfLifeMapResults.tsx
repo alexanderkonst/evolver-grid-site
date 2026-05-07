@@ -490,6 +490,22 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
           title: "Download Failed",
           description: `Couldn't generate PDF: ${e?.message?.slice(0, 60) ?? 'unknown error'}. Open browser DevTools → Console for details.`,
           variant: "destructive",
+        });
+        return;
+      }
+    }
+
+    // pdf is non-null at this point — either rasterized or fallback.
+    try {
+      pdf.save(`quality-of-life-${new Date().toISOString().slice(0, 10)}.pdf`);
+      toast({ title: "PDF Downloaded", description: "Your snapshot has been saved." });
+    } catch (err) {
+      const e = err as { message?: string };
+      console.error('[QoL] PDF save (browser download) failed:', err);
+      toast({
+        title: "Download Failed",
+        description: `Save error: ${e?.message?.slice(0, 60) ?? 'unknown'}.`,
+        variant: "destructive",
       });
     }
   };
