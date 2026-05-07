@@ -333,48 +333,109 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
   const generateFallbackPdf = (): jsPDF => {
     const pdf = new jsPDF("p", "mm", "a4");
     const pageWidth = pdf.internal.pageSize.getWidth();
-    const margin = 20;
-    let y = 30;
+    const pageHeight = pdf.internal.pageSize.getHeight();
+    const margin = 25;
 
-    // Title
-    pdf.setFontSize(22);
-    pdf.setTextColor(10, 22, 40);
-    pdf.text("Your Quality of Life", pageWidth / 2, y, { align: "center" });
-    y += 12;
+    // Day 64 (Sasha 2026-05-07): aesthetic pass on the fallback PDF.
+    // Sasha liked the simplicity of the previous text-only version —
+    // we keep its restraint and add UI-aligned typographic polish:
+    //   • Times (serif) for the editorial title + score, mirroring
+    //     Cormorant Garamond's role in the live UI.
+    //   • Helvetica for body text, matching the live skin's secondary
+    //     register.
+    //   • Gold hairline rules (#b8860b) replacing visual hierarchy
+    //     that would otherwise need heavier type or color.
+    //   • Tracked small-caps section header for editorial rhythm.
+    //   • Brand line at footer to close the page.
+    // Title renamed: "Your Quality of Life" → "Quality of Life"
+    // (matches the ME pane row "Quality of Life" — same noun across
+    // surfaces).
 
-    // Date
-    pdf.setFontSize(10);
-    pdf.setTextColor(120, 120, 130);
-    pdf.text(new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" }), pageWidth / 2, y, { align: "center" });
-    y += 18;
+    // Color tokens — hardcoded RGB equivalents of the skin variables.
+    const NAVY: [number, number, number] = [10, 22, 40];
+    const GOLD: [number, number, number] = [184, 134, 11];
+    const MUTED: [number, number, number] = [120, 120, 130];
 
-    // Overall score
-    pdf.setFontSize(48);
-    pdf.setTextColor(10, 22, 40);
-    pdf.text(`${overallStageRounded} / 10`, pageWidth / 2, y, { align: "center" });
-    y += 18;
+    let y = 32;
 
-    // Subtitle
-    pdf.setFontSize(11);
-    pdf.setTextColor(120, 120, 130);
-    pdf.text("Now you know where to focus your growth.", pageWidth / 2, y, { align: "center" });
-    y += 18;
+    // ─── Title (Times serif, navy) ─────────────────────────────────
+    pdf.setFont("times", "normal");
+    pdf.setFontSize(26);
+    pdf.setTextColor(...NAVY);
+    pdf.text("Quality of Life", pageWidth / 2, y, { align: "center" });
+    y += 5;
 
-    // 8 domains
-    pdf.setFontSize(13);
-    pdf.setTextColor(10, 22, 40);
-    pdf.text("8 Life Areas", margin, y);
+    // Hairline gold rule, centered, short — masthead accent
+    pdf.setDrawColor(...GOLD);
+    pdf.setLineWidth(0.3);
+    pdf.line(pageWidth / 2 - 18, y, pageWidth / 2 + 18, y);
     y += 8;
+
+    // ─── Date (helvetica, italic, muted) ───────────────────────────
+    pdf.setFont("helvetica", "italic");
+    pdf.setFontSize(10);
+    pdf.setTextColor(...MUTED);
+    pdf.text(
+      new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" }),
+      pageWidth / 2,
+      y,
+      { align: "center" }
+    );
+    y += 22;
+
+    // ─── Overall score (Times serif, navy, large) ──────────────────
+    pdf.setFont("times", "normal");
+    pdf.setFontSize(56);
+    pdf.setTextColor(...NAVY);
+    pdf.text(`${overallStageRounded} / 10`, pageWidth / 2, y, { align: "center" });
+    y += 16;
+
+    // ─── Subtitle (italic muted, editorial) ────────────────────────
+    pdf.setFont("helvetica", "italic");
+    pdf.setFontSize(11);
+    pdf.setTextColor(...MUTED);
+    pdf.text("Now you know where to focus your growth.", pageWidth / 2, y, { align: "center" });
+    y += 22;
+
+    // ─── Section divider — full-width hairline ─────────────────────
+    pdf.setDrawColor(...GOLD);
+    pdf.setLineWidth(0.2);
+    pdf.line(margin, y, pageWidth - margin, y);
+    y += 7;
+
+    // ─── Section header — tracked small caps in gold ───────────────
+    pdf.setFont("helvetica", "bold");
+    pdf.setFontSize(9);
+    pdf.setTextColor(...GOLD);
+    // jsPDF CharSpace adds tracking — gives the eyebrow that "tracked
+    // uppercase" feel used throughout the live UI's section headers.
+    pdf.setCharSpace(0.6);
+    pdf.text("EIGHT LIFE AREAS", margin, y);
+    pdf.setCharSpace(0);
+    y += 9;
+
+    // ─── Domain rows (sorted weakest-first) ────────────────────────
+    pdf.setFont("helvetica", "normal");
     pdf.setFontSize(11);
     [...domainResults]
       .sort((a, b) => a.stageValue - b.stageValue)
       .forEach(({ domain, stageValue }) => {
-        pdf.setTextColor(10, 22, 40);
+        pdf.setTextColor(...NAVY);
         pdf.text(domain.name, margin, y);
-        pdf.setTextColor(184, 134, 11);
+        pdf.setTextColor(...GOLD);
         pdf.text(String(stageValue), pageWidth - margin, y, { align: "right" });
-        y += 7;
+        y += 8;
       });
+
+    // ─── Footer — bottom hairline + brand attribution ──────────────
+    const footerY = pageHeight - 18;
+    pdf.setDrawColor(...GOLD);
+    pdf.setLineWidth(0.2);
+    pdf.line(margin, footerY - 6, pageWidth - margin, footerY - 6);
+    pdf.setFont("helvetica", "italic");
+    pdf.setFontSize(8);
+    pdf.setTextColor(...MUTED);
+    pdf.text("findyourtoptalent.com", pageWidth / 2, footerY, { align: "center" });
 
     return pdf;
   };
@@ -645,7 +706,7 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
         className="liquid-glass rounded-3xl p-6 sm:p-8 space-y-6"
       >
         <div className="text-center space-y-3">
-          <p style={heroEyebrowStyle}>Your Quality of Life</p>
+          <p style={heroEyebrowStyle}>Quality of Life</p>
           <div className="inline-flex items-baseline gap-2">
             <span
               style={{
