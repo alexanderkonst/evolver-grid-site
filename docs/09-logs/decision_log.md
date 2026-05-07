@@ -188,6 +188,63 @@
 
 ---
 
+## 2026-05-07 (Day 64)
+
+### D-2026-05-07-01 — Trace-every-surface rule (operating protocol)
+
+**Decision:** When a user-visible symptom is reported, trace EVERY surface that could contribute to it BEFORE claiming the fix is shipped. Three concrete symptom classes have been documented in `.agent/session-protocol.md` with the surfaces to trace for each: (1) **duplicate brand-mark / logo / wordmark** — `GameShellV2.hideLogo` + `SiteLogo` global + page-internal lockups + every brand-asset import; (2) **database save / "Could not save" toasts** — schema migration first, then application insert, then RLS, then post-insert side effects; (3) **rasterization / html2canvas / PDF generation** — inline styles + parent classes + `::before`/`::after` pseudo-elements + properties html2canvas can't rasterize (`mask-composite`, `backdrop-filter`, `filter`, `clip-path`, CSS variables in offscreen render context). Operating rule: *"if you can't enumerate the surfaces traced, the fix isn't ready to ship."* Response template: *"I traced [N] surfaces: [A, B, C]. Cause is [specific]. Fix: [diff]. Other [N-1] surfaces were [clean / also-fixing]."*
+
+**Rationale:** Across the QoL module thread (Days 63–64), my fixes were repeatedly CORRECT but PARTIAL. I'd identify ONE contributing cause, ship the fix, claim done, and Sasha would still see the symptom because OTHER contributing causes remained. Examples: the duplicate logo had TWO different elements at similar Y positions (`GameShellV2`'s top-right home icon controlled by `hideLogo`, AND the `SiteLogo` global wordmark with its own opt-in suppression list); the "Could not save" toast was a schema mismatch (`overall_score` undefined column) but my first fix was an architecture-level refactor; the PDF download was THREE-layer: backdrop-filter scrub (Day 63) + CSS-var resolution (Day 64 first pass) + `::before` pseudo-element with `mask-composite: exclude` strip (Day 64 second pass). Codifying the rule transforms what was a recurring pattern of "found the fix → ship → still broken" into "trace surfaces → enumerate → fix is comprehensive." The rule was applied in real-time the same day a `/asset-mapping` entry was added to `SiteLogo.tsx`'s hidden array — applying the rule across the codebase, not just to QoL.
+
+**Reversibility:** Codified as an anti-pattern + checklist in session-protocol.md. Removable by editing that file. The pattern itself (multi-surface symptoms requiring multi-surface fixes) is real regardless of whether the rule is documented; the doc just makes it explicit and reusable.
+
+**Cross-references:** `.agent/session-protocol.md` "Trace-every-surface checklist" section · `session_log.md` Day 64 (final pass) entry · related lessons logged in earlier session_log entries (D-2026-05-05-08 `successFired` flag pattern, D-2026-05-06-01 idempotency-at-data-layer)
+
+---
+
+### D-2026-05-07-02 — `mask-composite` pseudo-element strip in html2canvas onclone
+
+**Decision:** When rasterizing any subtree that uses Apple iOS 26 Liquid Glass treatment (`.liquid-glass` / `.liquid-glass-strong` per `docs/03-playbooks/glassmorphism_blueprint.md`), the html2canvas `onclone` callback MUST inject a `<style>` tag that overrides those classes with solid backgrounds AND hides their `::before` pseudo-elements. The `::before` uses `mask-composite: exclude` for the asymmetric edge-light effect — html2canvas can't rasterize mask-composite, which produces black/empty/glitched output and surfaces as "Could not generate PDF" failure. The override pattern:
+
+```typescript
+const styleOverride = clonedDoc.createElement('style');
+styleOverride.textContent = `
+  .liquid-glass, .liquid-glass-strong {
+    background: rgba(255, 255, 255, 0.94) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border: 0.5px solid rgba(26, 30, 58, 0.12) !important;
+    box-shadow: 0 4px 16px -4px rgba(10, 22, 40, 0.08), 0 16px 40px -20px rgba(10, 22, 40, 0.16) !important;
+  }
+  .liquid-glass::before, .liquid-glass-strong::before {
+    display: none !important;
+  }
+`;
+clonedDoc.head.appendChild(styleOverride);
+```
+
+The live UI is untouched; only the cloned doc gets the override. The PDF reads as a clean printable card.
+
+**Rationale:** The QoL Results page used `liquid-glass` per the glassmorphism blueprint. PDF download kept failing despite (a) Day 63's backdrop-filter scrub, (b) Day 64's CSS-var resolution. The actual blocker was the `::before` pseudo-element. Pattern applies to ANY rasterization of liquid-glass surfaces (Top Talent reveal, /ubb dossier, future modules using the playbook).
+
+**Reversibility:** Self-contained in the onclone callback. Removing it just restores the broken behavior — easy to revert if liquid-glass styling changes such that the strip becomes unnecessary.
+
+**Cross-references:** `src/pages/QualityOfLifeMapResults.tsx` `handleDownloadPdf` onclone · `docs/03-playbooks/glassmorphism_blueprint.md` (the spec that defines the `::before` mask-composite trick) · `session_log.md` Day 64 (final pass) entry
+
+---
+
+### D-2026-05-07-03 — Schema-correct INSERT (the `overall_score` smoking gun)
+
+**Decision:** `qol_snapshots` table schema (per migration `20251130150920_fba5bd03-65a0-4435-adc8-4fe281d70de7.sql`) has columns: `id`, `profile_id`, `created_at`, 8 `*_stage` SMALLINTs, plus `xp_awarded` BOOLEAN (added by `20251130154626`). There is NO `overall_score` column. The application code was sending `overall_score: overallAverage` in the INSERT payload, which Postgres rejected with error code 42703 (undefined column). Removed the field from the insert; overall is computed client-side on render.
+
+**Rationale:** The QoL Results page's "Could not save your results" toast was firing on every visit. Day 63 evening I refactored `saveSnapshotToDatabase` into the two-phase pattern (`successFired` discipline) thinking the toast was post-save side effects throwing into the same try/catch as the actual write. The architecture was correct but the bug was simpler — the INSERT itself was malformed against schema. Reading the migration file FIRST would have surfaced the cause in 30 seconds (this is now codified as part of D-2026-05-07-01's "schema-before-architecture" rule).
+
+**Reversibility:** Removing one field from the insert payload; trivial to revert if `overall_score` is ever added as a real column via migration.
+
+**Cross-references:** `src/pages/QualityOfLifeMapResults.tsx` `saveSnapshotToDatabase` · `supabase/migrations/20251130150920_fba5bd03-65a0-4435-adc8-4fe281d70de7.sql` (the actual schema) · `session_log.md` Day 64 morning entry
+
+---
+
 ## How to read entries above
 
 Each decision is reasoned at the time and shipped. If a decision is later reversed (new evidence, principle shift, scope change), the new entry references the old one explicitly — *"Supersedes D-YYYY-MM-DD-NN."* This is an append-only log; old entries don't get edited. Reading top-to-bottom traces the architectural lineage. Reading bottom-to-top traces the architectural state.
