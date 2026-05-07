@@ -467,12 +467,18 @@ const AssetMappingLanding = () => {
                         title: name,
                         description: asset.description || asset.details || asset.summary || undefined,
                         leverageScore: asset.leverage_score || asset.leverageScore || undefined,
-                        leverageReason: asset.leverage_reason || asset.leverageReason || undefined,
-                        // Day 63 v3 — new strategic dimensions from prompt upgrade.
-                        // Pre-Day-63 AI outputs won't carry these; absence falls
-                        // through to undefined and the UI degrades gracefully.
+                        leverageReason: asset.leverage_reason || asset.leverageReason || asset.why_value || undefined,
+                        // Day 63 v3 strategic dimensions. Pre-v3 outputs lack
+                        // these; undefined fall-through is fine — UI hides
+                        // each badge unless the field is present.
                         maturity: isMaturity(asset.maturity) ? asset.maturity : undefined,
-                        horizon: isHorizon(asset.horizon) ? asset.horizon : undefined,
+                        horizon: normalizeHorizon(asset.horizon),
+                        nature: isNature(asset.nature) ? asset.nature : undefined,
+                        expressesRoot:
+                            typeof asset.expresses_root === "string"
+                                ? asset.expresses_root.trim() || undefined
+                                : undefined,
+                        isOffer: asset.is_offer === true || asset.isOffer === true,
                         isPowerNode: asset.is_power_node === true || asset.isPowerNode === true,
                     });
                 }
@@ -829,9 +835,99 @@ const AssetMappingLanding = () => {
                             </p>
                         </div>
 
-                        {matchedAssets.length > 0 && (
-                            <div className="space-y-3 max-h-[480px] overflow-y-auto pr-1">
-                                {matchedAssets.map((asset, i) => (
+                        {matchedAssets.length > 0 && (() => {
+                            // Day 63 v3 — Center of Gravity gets a separate hero
+                            // treatment above the rest. The first array entry is
+                            // the root field-function per the prompt; we lift it
+                            // out so it doesn't visually compete with downstream
+                            // expressions. If for some reason it's not present
+                            // (e.g. v2 output coming back through), the rest of
+                            // the list renders unchanged.
+                            const cog = matchedAssets.find(
+                                (a) => a.typeTitle === "Center of Gravity",
+                            );
+                            const others = matchedAssets.filter(
+                                (a) => a.typeTitle !== "Center of Gravity",
+                            );
+                            return (
+                                <div className="space-y-4">
+                                    {cog && (
+                                        <div
+                                            className="rounded-2xl px-5 py-5"
+                                            style={{
+                                                background:
+                                                    "linear-gradient(135deg, rgba(244,212,114,0.22) 0%, rgba(255,255,255,0.65) 60%)",
+                                                border: "0.5px solid rgba(212, 175, 55, 0.65)",
+                                                boxShadow:
+                                                    "0 0 24px -6px rgba(212, 175, 55, 0.45), 0 16px 40px -20px rgba(10, 22, 40, 0.18)",
+                                            }}
+                                        >
+                                            <div
+                                                style={{
+                                                    fontFamily:
+                                                        "'Cormorant Garamond', serif",
+                                                    fontWeight: 600,
+                                                    letterSpacing: "0.18em",
+                                                    textTransform: "uppercase",
+                                                    fontSize: "11px",
+                                                    color:
+                                                        "var(--skin-goldDeep, #5d4307)",
+                                                    marginBottom: "8px",
+                                                }}
+                                            >
+                                                ✦ Center of Gravity — Root Capacity
+                                            </div>
+                                            <p
+                                                style={{
+                                                    fontFamily:
+                                                        "'Cormorant Garamond', serif",
+                                                    fontWeight: 700,
+                                                    fontSize: "18px",
+                                                    lineHeight: 1.35,
+                                                    color:
+                                                        "var(--skin-text-primary, #0b2a5a)",
+                                                    textShadow: legibleHeadlineHalo,
+                                                }}
+                                            >
+                                                {cog.title}
+                                            </p>
+                                            {cog.description && (
+                                                <p
+                                                    className="mt-2 italic"
+                                                    style={{
+                                                        fontFamily:
+                                                            "'Source Serif 4', serif",
+                                                        fontStyle: "italic",
+                                                        fontWeight: 600,
+                                                        fontSize: "13.5px",
+                                                        lineHeight: 1.5,
+                                                        color:
+                                                            "var(--skin-text-primary, #0b2a5a)",
+                                                    }}
+                                                >
+                                                    {cog.description}
+                                                </p>
+                                            )}
+                                            {cog.leverageReason && (
+                                                <p
+                                                    className="mt-2 italic"
+                                                    style={{
+                                                        fontFamily:
+                                                            "'Source Serif 4', serif",
+                                                        fontStyle: "italic",
+                                                        fontSize: "12.5px",
+                                                        lineHeight: 1.5,
+                                                        color:
+                                                            "var(--skin-goldDeep, #5d4307)",
+                                                    }}
+                                                >
+                                                    {cog.leverageReason}
+                                                </p>
+                                            )}
+                                        </div>
+                                    )}
+                                    <div className="space-y-3 max-h-[480px] overflow-y-auto pr-1">
+                                        {others.map((asset, i) => (
                                     <div
                                         key={i}
                                         className="rounded-xl px-4 py-3.5"
@@ -998,13 +1094,33 @@ const AssetMappingLanding = () => {
                                                 {asset.leverageReason}
                                             </p>
                                         )}
-                                        {/* Day 63 v3: maturity + horizon footer
-                                            chips. Surfaces the strategic
-                                            dimensions the Divine Roast called
-                                            out as missing. Renders only when
-                                            the AI returned them — pre-Day-63
-                                            data degrades gracefully (no chips). */}
-                                        {(asset.maturity || asset.horizon) && (
+                                        {/* Day 63 v3 — expresses_root: 1-line
+                                            connecting this asset back to the
+                                            Center of Gravity. Italic, muted-gold,
+                                            sits between description and the
+                                            badges so the hierarchy reads as
+                                            essence → expression → metadata. */}
+                                        {asset.expressesRoot && asset.typeTitle !== "Center of Gravity" && (
+                                            <p
+                                                className="mt-2 italic"
+                                                style={{
+                                                    fontFamily: "'Source Serif 4', serif",
+                                                    fontStyle: "italic",
+                                                    fontSize: "12px",
+                                                    lineHeight: 1.4,
+                                                    color: "var(--skin-goldDeep, #5d4307)",
+                                                    opacity: 0.85,
+                                                }}
+                                            >
+                                                ↳ {asset.expressesRoot}
+                                            </p>
+                                        )}
+                                        {/* Day 63 v3: maturity / horizon / nature
+                                            badges. Nature is the new dimension —
+                                            ontological tag preserving symbolic
+                                            and mythic capacity. Renders only when
+                                            the AI returned each field. */}
+                                        {(asset.maturity || asset.horizon || asset.nature || asset.isOffer) && (
                                             <div className="flex flex-wrap items-baseline gap-1.5 mt-2.5">
                                                 {asset.maturity && (
                                                     <MaturityBadge maturity={asset.maturity} />
@@ -1012,6 +1128,10 @@ const AssetMappingLanding = () => {
                                                 {asset.horizon && (
                                                     <HorizonBadge horizon={asset.horizon} />
                                                 )}
+                                                {asset.nature && (
+                                                    <NatureBadge nature={asset.nature} />
+                                                )}
+                                                {asset.isOffer && <OfferBadge />}
                                             </div>
                                         )}
                                     </div>
@@ -1161,32 +1281,105 @@ function MaturityBadge({ maturity }: { maturity: AssetMaturity }) {
     );
 }
 
+// Day 63 v3: horizon expanded to 4 values (added civilization_scale).
 const HORIZON_LABEL: Record<AssetHorizon, string> = {
     now: "Now",
-    next: "Next 6mo",
-    later: "Later",
+    near: "Near (6-18mo)",
+    long_term: "Long-term",
+    civilization_scale: "Civilization-scale",
 };
 
 const HORIZON_HINT: Record<AssetHorizon, string> = {
     now: "Activate this quarter for income, credibility, or distribution.",
-    next: "Package or position in the next 6 months — sequenced after Now items.",
-    later: "Civilization-scale or strategic-north-star. Belongs for orientation, not this month's plan.",
+    near: "Package or position in the next 6-18 months.",
+    long_term: "Multi-year strategic asset that matures over 2-5 years.",
+    civilization_scale: "Generational, strategic-north-star. Belongs for orientation, not for this month's plan.",
 };
 
 function HorizonBadge({ horizon }: { horizon: AssetHorizon }) {
     // Subtler than maturity — horizon is timing context, not strategic
-    // judgement. Single muted-navy palette with weight signaling.
+    // judgment. Single muted-navy palette weighted by proximity.
     const accent = horizon === "now"
         ? { color: "var(--skin-text-primary, #0b2a5a)", background: "rgba(11, 42, 90, 0.08)", borderColor: "rgba(11, 42, 90, 0.25)" }
-        : horizon === "next"
+        : horizon === "near"
         ? { color: "var(--skin-text-body, rgba(11, 42, 90, 0.78))", background: "rgba(11, 42, 90, 0.05)", borderColor: "rgba(11, 42, 90, 0.18)" }
-        : { color: "var(--skin-text-muted, rgba(11, 42, 90, 0.55))", background: "rgba(11, 42, 90, 0.03)", borderColor: "rgba(11, 42, 90, 0.12)" };
+        : horizon === "long_term"
+        ? { color: "var(--skin-text-muted, rgba(11, 42, 90, 0.55))", background: "rgba(11, 42, 90, 0.03)", borderColor: "rgba(11, 42, 90, 0.12)" }
+        : { color: "var(--skin-text-muted, rgba(11, 42, 90, 0.50))", background: "rgba(11, 42, 90, 0.025)", borderColor: "rgba(11, 42, 90, 0.10)" };
     return (
         <span
             title={HORIZON_HINT[horizon]}
             style={{ ...badgeBaseStyle, ...accent }}
         >
             {HORIZON_LABEL[horizon]}
+        </span>
+    );
+}
+
+// Day 63 v3 — NATURE badge. The ontological dimension that lets
+// symbolic/mythic capacity coexist with operational deployability
+// without flattening either. Color-graded by domain, not by quality —
+// every nature is dignified.
+const NATURE_LABEL: Record<AssetNature, string> = {
+    practical: "Practical",
+    relational: "Relational",
+    symbolic: "Symbolic",
+    infrastructural: "Infrastructural",
+    mythic: "Mythic",
+    intellectual: "Intellectual",
+    economic: "Economic",
+};
+
+const NATURE_HINT: Record<AssetNature, string> = {
+    practical: "Concrete skills, tools, deliverables, artifacts — things you can pick up and use.",
+    relational: "Trust, connections, warm bonds, shared history with specific people.",
+    symbolic: "Meaning-making, narrative coherence, brand essence, archetypal resonance — upstream of much else.",
+    infrastructural: "Systems, platforms, distribution rails, operational scaffolding.",
+    mythic: "Origin stories, sacred lineage, cross-domain synthesis that organizes worldview.",
+    intellectual: "Frameworks, methodologies, structured thought, IP.",
+    economic: "Commercial offers, financial instruments, productized services.",
+};
+
+function NatureBadge({ nature }: { nature: AssetNature }) {
+    // Distinct color per nature — each domain dignified equally. No
+    // hierarchy implied by color (all are valid; quality is signaled
+    // separately via leverage_score + maturity). Saturation level low
+    // so the badge reads as a quiet domain marker, not a banner.
+    const tone: Record<AssetNature, { color: string; background: string; borderColor: string }> = {
+        practical:       { color: "rgba(20, 90, 130, 0.95)",  background: "rgba(20, 90, 130, 0.07)",  borderColor: "rgba(20, 90, 130, 0.32)" },
+        relational:      { color: "rgba(150, 60, 110, 0.95)", background: "rgba(150, 60, 110, 0.07)", borderColor: "rgba(150, 60, 110, 0.32)" },
+        symbolic:        { color: "rgba(120, 70, 160, 0.95)", background: "rgba(120, 70, 160, 0.07)", borderColor: "rgba(120, 70, 160, 0.32)" },
+        infrastructural: { color: "rgba(60, 100, 80, 0.95)",  background: "rgba(60, 100, 80, 0.07)",  borderColor: "rgba(60, 100, 80, 0.32)" },
+        mythic:          { color: "rgba(160, 100, 30, 0.95)", background: "rgba(160, 100, 30, 0.07)", borderColor: "rgba(160, 100, 30, 0.32)" },
+        intellectual:    { color: "rgba(40, 70, 130, 0.95)",  background: "rgba(40, 70, 130, 0.07)",  borderColor: "rgba(40, 70, 130, 0.32)" },
+        economic:        { color: "rgba(20, 110, 60, 0.95)",  background: "rgba(20, 110, 60, 0.07)",  borderColor: "rgba(20, 110, 60, 0.32)" },
+    };
+    return (
+        <span
+            title={NATURE_HINT[nature]}
+            style={{ ...badgeBaseStyle, ...tone[nature] }}
+        >
+            {NATURE_LABEL[nature]}
+        </span>
+    );
+}
+
+// Day 63 v3 — OFFER flag. Productized services (paid sessions, cohorts,
+// retainers) get this so they're distinguishable from the underlying IP
+// they deploy. Small gold-rim chip.
+function OfferBadge() {
+    return (
+        <span
+            title="Productized offer — a paid service or named instrument, distinct from the underlying methodology it deploys."
+            style={{
+                ...badgeBaseStyle,
+                color: "var(--skin-goldDeep, #5d4307)",
+                background:
+                    "linear-gradient(135deg, rgba(244,212,114,0.18) 0%, rgba(212,175,55,0.10) 100%)",
+                borderColor: "rgba(212, 175, 55, 0.50)",
+            }}
+        >
+            ✦ Offer
         </span>
     );
 }
