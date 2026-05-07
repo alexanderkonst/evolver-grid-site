@@ -2460,10 +2460,23 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
   // scroller; the classic white scrollbar track then cuts the right edge of
   // /ai-os overlays. The class is route-scoped and removed on unmount.
   useEffect(() => {
-    const prevBodyBg = document.body.style.backgroundColor;
-    const prevHtmlBg = document.documentElement.style.backgroundColor;
-    const prevBodyOverflow = document.body.style.overflow;
-    const prevHtmlOverflow = document.documentElement.style.overflow;
+    // Day 63 night (Sasha 2026-05-07) BUG FIX: this effect used to
+    // capture `prevBodyOverflow` / `prevHtmlOverflow` and restore them
+    // on unmount. That pattern silently poisoned the body overflow:
+    // any second mount of AiOsPage (suite sub-routes, strict-mode
+    // double invoke, hot reload) captured "hidden" — set by the first
+    // mount — as its "previous." On final unmount, body.overflow was
+    // restored to "hidden" instead of being cleared. Result:
+    // /game/settings (and every other route) couldn't scroll until the
+    // user refreshed. Sasha caught this on /game/settings tonight.
+    //
+    // Fix: cleanup CLEARS the inline style instead of restoring a
+    // captured previous. Body/html have no CSS-level overflow rule, so
+    // cleared = visible = document scroll works. Nothing else in the
+    // codebase sets body.style.overflow, so the "preserve external
+    // setter" intent the previous code attempted is unneeded — and the
+    // ratcheting hazard outweighs it. Same fix shape applied to bg
+    // color (cleared, not restored) for symmetry.
     document.body.style.backgroundColor = '#08101f';
     document.documentElement.style.backgroundColor = '#08101f';
     document.body.style.overflow = 'hidden';
@@ -2471,10 +2484,10 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
     document.body.classList.add('ai-os-hide-root-scrollbar');
     document.documentElement.classList.add('ai-os-hide-root-scrollbar');
     return () => {
-      document.body.style.backgroundColor = prevBodyBg;
-      document.documentElement.style.backgroundColor = prevHtmlBg;
-      document.body.style.overflow = prevBodyOverflow;
-      document.documentElement.style.overflow = prevHtmlOverflow;
+      document.body.style.backgroundColor = '';
+      document.documentElement.style.backgroundColor = '';
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
       document.body.classList.remove('ai-os-hide-root-scrollbar');
       document.documentElement.classList.remove('ai-os-hide-root-scrollbar');
     };
