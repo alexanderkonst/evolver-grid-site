@@ -64,12 +64,40 @@ export const QolAssessmentProvider = ({ children }: { children: ReactNode }) => 
       try {
         const profileId = await getOrCreateGameProfileId();
 
-        // Get the profile's last QoL snapshot
+        // Day 64 evening (Sasha 2026-05-07): heal-on-read pattern per
+        // decision_log D-2026-05-06 (the same pattern applied to
+        // last_zog_snapshot_id Day 61-62). Two-step:
+        //   (a) Read game_profiles.last_qol_snapshot_id (the canonical
+        //       pointer). If set, load that specific snapshot.
+        //   (b) FALLBACK: if pointer is null but a snapshot exists for
+        //       this profile_id (orphaned data), load the most recent
+        //       one AND heal the pointer (write back to game_profiles)
+        //       so future visits skip the fallback.
+        //
+        // Why: today's bug — the pointer-update was gated inside
+        // `if (xpResult.success)` in saveSnapshotToDatabase. Any XP
+        // failure orphaned the user's snapshot. Sasha hit this:
+        // completed the assessment, came back to /results, saw the
+        // empty state. Snapshot was in qol_snapshots but the pointer
+        // was null. Fix above (in saveSnapshotToDatabase) ungates the
+        // pointer update for new saves. This heal-on-read recovers
+        // existing orphaned data without forcing a retake.
         const { data: profile } = await supabase
           .from("game_profiles")
           .select("last_qol_snapshot_id")
           .eq("id", profileId)
           .maybeSingle();
+
+        let snapshotData: {
+          wealth_stage: number;
+          health_stage: number;
+          happiness_stage: number;
+          love_relationships_stage: number;
+          impact_stage: number;
+          growth_stage: number;
+          social_ties_stage: number;
+          home_stage: number;
+        } | null = null;
 
         if (profile?.last_qol_snapshot_id) {
           const { data: snapshot } = await supabase
@@ -77,19 +105,49 @@ export const QolAssessmentProvider = ({ children }: { children: ReactNode }) => 
             .select("wealth_stage, health_stage, happiness_stage, love_relationships_stage, impact_stage, growth_stage, social_ties_stage, home_stage")
             .eq("id", profile.last_qol_snapshot_id)
             .maybeSingle();
+          snapshotData = snapshot;
+        }
 
-          if (snapshot) {
-            setAnswers({
-              wealth: snapshot.wealth_stage,
-              health: snapshot.health_stage,
-              happiness: snapshot.happiness_stage,
-              love: snapshot.love_relationships_stage,
-              impact: snapshot.impact_stage,
-              growth: snapshot.growth_stage,
-              socialTies: snapshot.social_ties_stage,
-              home: snapshot.home_stage,
-            });
+        // Heal-on-read fallback. If the pointer was null OR the
+        // pointed-to row didn't load, look up the most recent snapshot
+        // for this profile_id directly. If found, also heal the
+        // pointer so the next read takes the fast path.
+        if (!snapshotData) {
+          const { data: orphaned } = await supabase
+            .from("qol_snapshots")
+            .select("id, wealth_stage, health_stage, happiness_stage, love_relationships_stage, impact_stage, growth_stage, social_ties_stage, home_stage")
+            .eq("profile_id", profileId)
+            .order("created_at", { ascending: false })
+            .limit(1)
+            .maybeSingle();
+          if (orphaned) {
+            snapshotData = orphaned;
+            // Best-effort heal — write the pointer back. If this fails,
+            // the user still gets their data; next visit just runs the
+            // fallback again.
+            try {
+              await supabase
+                .from("game_profiles")
+                .update({ last_qol_snapshot_id: orphaned.id, updated_at: new Date().toISOString() })
+                .eq("id", profileId);
+              console.info("[QoL] Healed orphaned snapshot pointer for profile", profileId);
+            } catch (healErr) {
+              console.warn("[QoL] Snapshot recovered but pointer heal failed:", healErr);
+            }
           }
+        }
+
+        if (snapshotData) {
+          setAnswers({
+            wealth: snapshotData.wealth_stage,
+            health: snapshotData.health_stage,
+            happiness: snapshotData.happiness_stage,
+            love: snapshotData.love_relationships_stage,
+            impact: snapshotData.impact_stage,
+            growth: snapshotData.growth_stage,
+            socialTies: snapshotData.social_ties_stage,
+            home: snapshotData.home_stage,
+          });
         }
       } catch (err) {
         console.warn("[QoL] Failed to load saved data:", err);

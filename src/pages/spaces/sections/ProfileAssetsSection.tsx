@@ -199,7 +199,32 @@ const ProfileAssetsSection = () => {
                         <div className="flex flex-wrap items-center gap-2">
                             {hasAssets && (
                                 <button
-                                    onClick={() => navigate("/game/collaborate/matches")}
+                                    onClick={() => {
+                                        // Day 63 night (Sasha 2026-05-07):
+                                        // Find Matches IS the explicit moment
+                                        // the user requests collaboration —
+                                        // unlock COLLABORATE in the rail at
+                                        // exactly this click, then navigate.
+                                        // localStorage flag is read by
+                                        // GameShellV2's unlockStatus on next
+                                        // mount; the custom event prompts the
+                                        // currently-mounted shell to re-read
+                                        // immediately so the rail chip
+                                        // appears without a refresh.
+                                        try {
+                                            window.localStorage.setItem(
+                                                "fytt:collaborate-unlocked",
+                                                "true",
+                                            );
+                                            window.dispatchEvent(
+                                                new Event("fytt:collaborate-unlocked"),
+                                            );
+                                        } catch {
+                                            // localStorage disabled — navigation still works,
+                                            // user just won't have rail unlock until next reload
+                                        }
+                                        navigate("/game/collaborate/matches");
+                                    }}
                                     className="group inline-flex items-center gap-2 rounded-full px-5 py-2.5 transition-all duration-300 hover:translate-y-[-0.5px]"
                                     style={ceremonialPillPrimary}
                                 >
