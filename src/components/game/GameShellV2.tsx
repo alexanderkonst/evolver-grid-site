@@ -344,10 +344,29 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
             } else {
                 setHasGeniusOffer(false);
             }
+
+            // Day 63 evening: probe asset count for COLLABORATE gating.
+            // Single-row HEAD query (count='exact', limit 1) so this is
+            // cheap. If user_assets table doesn't exist yet (older
+            // projects), fall back to false silently.
+            try {
+                const { count, error: assetErr } = await (supabase as any)
+                    .from("user_assets")
+                    .select("id", { count: "exact", head: true })
+                    .eq("user_id", userId);
+                if (assetErr) {
+                    setHasAssets(false);
+                } else {
+                    setHasAssets((count ?? 0) > 0);
+                }
+            } catch {
+                setHasAssets(false);
+            }
         } catch (error) {
             console.error("Failed to load profile:", error);
             setProfile(null);
             setHasGeniusOffer(false);
+            setHasAssets(false);
         } finally {
             setProfileLoaded(true);
         }
