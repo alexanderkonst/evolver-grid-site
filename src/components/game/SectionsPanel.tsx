@@ -494,12 +494,23 @@ const buildJourneySections = (_currentPath: string): Section[] => {
         // the morning + afternoon of the same Day 63. The unlock was
         // premature — the layout collisions weren't visible from code
         // alone; needed live preview to surface.
+        // Day 64 (Sasha 2026-05-07, late) — UNLOCKED after Sasha's
+        // visual verification on the rebuilt preview. The QoL module
+        // shipped in landing register: liquid-glass cards, Cormorant
+        // editorial + Source Serif 4 + halo cocktail (per
+        // glassmorphism_blueprint.md + ui_playbook.md Part VIII),
+        // single 8-domain list sorted ascending, ME-space subpage at
+        // /game/me/quality-of-life for return visits, PDF download
+        // working (mask-composite ::before stripped in onclone), XP
+        // toasts silenced, page wash applied for legibility, duplicate
+        // SiteLogo suppressed, schema-correct INSERT (the overall_score
+        // smoking gun fixed Day 64 morning).
+        //
+        // Re-lock by re-adding `locked: true` + `lockedHint` if needed.
         {
             id: "journey-qol-assess",
             label: "8. Assess your quality of life",
             path: "/quality-of-life-map/assessment",
-            locked: true,
-            lockedHint: "In refinement — unlocks after the next polish pass.",
         },
     ];
 };
