@@ -21,6 +21,7 @@ import aiOsHomeIcon from "@/assets/mc-merkaba.png";
 import brandMark from "@/assets/find-your-top-talent-torus.png";
 import SpacesRail, { SPACES } from "./SpacesRail";
 import SectionsPanel, { SPACE_SECTIONS } from "./SectionsPanel";
+import { useDeepProfileActivated } from "@/hooks/useDeepProfileActivated";
 import PlayerStatsBadge from "./PlayerStatsBadge";
 import KeyboardShortcuts from "@/components/KeyboardShortcuts";
 import SiteLogo from "@/components/SiteLogo";
@@ -603,12 +604,22 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
     const zogComplete = ["zog_complete", "qol_started", "qol_complete", "offer_complete", "recipe_complete", "unlocked"].includes(stage);
     const ignitionComplete = ["offer_complete", "recipe_complete", "unlocked"].includes(stage) || hasGeniusOffer;
 
+    // Day 64 (Sasha 2026-05-07): BUILD space gated on the deeper-Top-
+    // Talent-view boundary, same gate that opens JOURNEY rail item #5.
+    // Replaces the prior `ignitionComplete` rule — paying for the
+    // session (or entering the activation code) is the single funnel
+    // boundary that opens the build path. Hook returns isLoading so we
+    // can defer the unlock map until both the profile fetch AND the
+    // entitlement read have resolved (no chip-flicker on first paint).
+    const { activated: deepProfileActivated, isLoading: deepProfileLoading } = useDeepProfileActivated();
+
     // NOTE: until `profileLoaded === true`, we intentionally emit an empty map.
     // `SpacesRail` only marks an item as locked when `unlockStatus[id] === false`;
     // `undefined` means "don't render a lock." So we render a neutral rail during
     // the profile fetch, then flip to the real lock state on first real value —
     // no visible lock-then-unlock flicker on ME/LEARN/MEET.
-    const unlockStatus: Record<string, boolean> = profileLoaded
+    const gatesReady = profileLoaded && !deepProfileLoading;
+    const unlockStatus: Record<string, boolean> = gatesReady
         ? {
             "journey": true,                                    // Always open — the front door
             "next-move": zogComplete,                           // After Step 1
@@ -619,7 +630,7 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
             // hiddenSpaces → invisible in rail. When flipped to
             // true, restores the previous "After Step 1" behavior.
             "learn": LEARN_VISIBLE && zogComplete,              // After Step 1 — growth material (currently flag-gated off)
-            "build": ignitionComplete,                          // After Step 2 — business canvas
+            "build": deepProfileActivated,                      // Day 64: deeper-Top-Talent-view gate (paid OR coupon) — same as JOURNEY #5
             "meet": MEET_VISIBLE && zogComplete,                // After Step 1 — community events (currently flag-gated off)
             // Day 63 night (Sasha 2026-05-07): COLLABORATE gate is now
             // `collaborateUnlocked` — flipped to true the moment the
@@ -641,7 +652,7 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
         "next-move": "Unlocks after Step 1",
         "grow": "Unlocks after your Find Your Top Talent Reveal.",
         "learn": "Unlocks after Step 1",
-        "build": "Unlocks after Step 2",
+        "build": "Unlocks after activation.",
         "meet": "Unlocks after Step 1",
         "collaborate": "Unlocks after you map your first asset.",
         "buysell": "Unlocks after Step 2",
@@ -658,10 +669,10 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
     // rail. Anywhere in the app, if a space isn't unlocked, hide it entirely —
     // it reveals itself when the user earns it. JOURNEY and ME are always on.
     const GATED_SPACES = ["next-move", "learn", "meet", "collaborate", "build", "buysell"] as const;
-    const hiddenSpaces: string[] = profileLoaded
+    const hiddenSpaces: string[] = gatesReady
         ? GATED_SPACES.filter((id) => unlockStatus[id] === false)
-        : // During the profile fetch, default to hiding gated spaces so there's
-          // no lock-then-hide flicker on first load.
+        : // During the profile + entitlement fetch, default to hiding gated
+          // spaces so there's no lock-then-hide flicker on first load.
           [...GATED_SPACES];
 
     // Navigation handlers
