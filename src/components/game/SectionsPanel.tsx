@@ -182,6 +182,19 @@ const SPACE_SECTIONS: SpaceSections = {
                 label: "My Quality of Life",
                 path: "/game/me/quality-of-life",
             },
+            // Day 63 (Sasha 2026-05-07): "My Assets" added as a THIRD
+            // top-level ME-space section, mirroring QoL's pattern —
+            // single landing surface, no subsections. Routes to the
+            // existing /game/me/assets page (ProfileAssetsSection.tsx,
+            // also reskinned today to Aurora register). Companion to
+            // the JOURNEY pane row #7 "Map your assets": the JOURNEY row
+            // is the ACTION surface (entry into the mapping flow); this
+            // ME row is the STORAGE surface (the saved-assets library).
+            {
+                id: "me-assets",
+                label: "My Assets",
+                path: "/game/me/assets",
+            },
         ],
     },
     // LEARN Space
