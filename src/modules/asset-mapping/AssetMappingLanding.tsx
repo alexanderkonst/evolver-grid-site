@@ -747,10 +747,54 @@ const AssetMappingLanding = () => {
                                     <div
                                         key={i}
                                         className="rounded-xl px-4 py-3.5"
-                                        style={parchmentCardSubtle}
+                                        style={
+                                            // Day 63 v3: power nodes (top 5-7 by AI's
+                                            // Divine-Roast rubric) get the parchment-strong
+                                            // surface — gold hairline + soft halo —
+                                            // visually separating them from the supporting
+                                            // material below. Symbolic-only items get a
+                                            // dimmer treatment so they're honestly
+                                            // de-emphasized without being hidden.
+                                            asset.isPowerNode
+                                                ? {
+                                                    background: "var(--skin-card-bg, rgba(255, 255, 255, 0.72))",
+                                                    border: "0.5px solid rgba(212, 175, 55, 0.55)",
+                                                    boxShadow:
+                                                        "0 0 18px -6px rgba(212, 175, 55, 0.35), 0 12px 32px -16px rgba(10, 22, 40, 0.18)",
+                                                }
+                                                : asset.maturity === "symbolic_only"
+                                                ? {
+                                                    background: "rgba(255, 255, 255, 0.30)",
+                                                    border: "0.5px solid var(--skin-rule-hairline, rgba(26, 30, 58, 0.06))",
+                                                    boxShadow: "none",
+                                                    opacity: 0.78,
+                                                }
+                                                : parchmentCardSubtle
+                                        }
                                     >
                                         <div className="flex items-start justify-between gap-2 mb-2">
                                             <div className="flex flex-wrap items-baseline gap-1.5">
+                                                {asset.isPowerNode && (
+                                                    <span
+                                                        title="Power node — one of the top 5-7 assets that hold most of the leverage"
+                                                        style={{
+                                                            fontFamily: "'Cormorant Garamond', serif",
+                                                            fontWeight: 600,
+                                                            letterSpacing: "0.16em",
+                                                            textTransform: "uppercase",
+                                                            fontSize: "9.5px",
+                                                            color: "var(--skin-goldDeep, #5d4307)",
+                                                            background:
+                                                                "linear-gradient(135deg, rgba(244,212,114,0.30) 0%, rgba(212,175,55,0.18) 100%)",
+                                                            border: "0.5px solid rgba(212, 175, 55, 0.65)",
+                                                            padding: "1px 7px",
+                                                            borderRadius: "999px",
+                                                            textShadow: "0 0 8px rgba(244, 212, 114, 0.40)",
+                                                        }}
+                                                    >
+                                                        ✦ Power node
+                                                    </span>
+                                                )}
                                                 <span
                                                     style={{
                                                         ...labelMuted,
@@ -865,6 +909,22 @@ const AssetMappingLanding = () => {
                                             >
                                                 {asset.leverageReason}
                                             </p>
+                                        )}
+                                        {/* Day 63 v3: maturity + horizon footer
+                                            chips. Surfaces the strategic
+                                            dimensions the Divine Roast called
+                                            out as missing. Renders only when
+                                            the AI returned them — pre-Day-63
+                                            data degrades gracefully (no chips). */}
+                                        {(asset.maturity || asset.horizon) && (
+                                            <div className="flex flex-wrap items-baseline gap-1.5 mt-2.5">
+                                                {asset.maturity && (
+                                                    <MaturityBadge maturity={asset.maturity} />
+                                                )}
+                                                {asset.horizon && (
+                                                    <HorizonBadge horizon={asset.horizon} />
+                                                )}
+                                            </div>
                                         )}
                                     </div>
                                 ))}
