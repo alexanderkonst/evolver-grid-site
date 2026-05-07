@@ -5,6 +5,17 @@ import { Button } from "@/components/ui/button";
 import ShareQol from "@/components/sharing/ShareQol";
 import { useQolAssessment, type Answers } from "@/modules/quality-of-life-map/QolAssessmentContext";
 import { DOMAINS } from "@/modules/quality-of-life-map/qolConfig";
+// Day 64 (Sasha 2026-05-07): Results page revamp — see
+// docs/specs/quality-of-life-map/results_revamp_spec.md for the full
+// design rationale. Summary of this round:
+//   - Cards use `.liquid-glass` per docs/03-playbooks/glassmorphism_blueprint.md
+//   - Single 8-domain list (sorted ascending) replaces Growth/Strengths split
+//   - "See My Profile" button removed (priorities page deleted)
+//   - Action row simplified to Retake / Download PDF (two equal buttons)
+//   - PDF onclone resolves CSS vars to computed values (the html2canvas
+//     can't-resolve-var fix)
+//   - Page accessible from BOTH /quality-of-life-map/results AND
+//     /game/me/quality-of-life (ME-space subpage for return visits)
 
 /**
  * Day 63 (Sasha 2026-05-06): cell-by-cell match between current answers
@@ -48,10 +59,12 @@ import { getOrCreateGameProfileId } from "@/lib/gameProfile";
 import { logActionEvent } from "@/lib/actionEvents";
 import { awardXp } from "@/lib/xpSystem";
 import { awardFirstTimeBonus, getFirstTimeActionLabel } from "@/lib/xpService";
-import { buildQolPrioritiesPath, shouldUnlockAfterQol } from "@/lib/onboardingRouting";
+import { shouldUnlockAfterQol } from "@/lib/onboardingRouting";
+// Day 64 (Sasha 2026-05-07): buildQolPrioritiesPath import removed —
+// the priorities page itself has been retired in this revamp.
 // Day 63 (Sasha 2026-05-06): GameShellV2 import removed — shell now
 // owned by QolLayout, not per-page.
-import { Map, ArrowRight, Download, RefreshCw } from "lucide-react";
+import { Map, Download, RefreshCw } from "lucide-react";
 
 interface QualityOfLifeMapResultsProps {
   renderMode?: "standalone" | "embedded";
@@ -284,21 +297,25 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
     navigate("/quality-of-life-map/assessment?fresh=true");
   };
 
-  const handlePriorities = () => {
-    navigate(buildQolPrioritiesPath(returnTo));
-  };
+  // Day 64 (Sasha 2026-05-07): handlePriorities removed. The priorities
+  // page itself was retired in this revamp; "See My Profile" CTA gone
+  // from the action row.
 
   const handleDownloadPdf = async () => {
     if (!snapshotRef.current) return;
     try {
-      // Day 63 (Sasha 2026-05-06): same html2canvas scrubber pattern as
-      // the Top Talent reveal PNG capture (Day 61-62 lesson). The
-      // snapshotRef container uses `liquid-glass` which applies
-      // backdrop-filter heavily — html2canvas's gradient rasterizer
-      // chokes on backdrop-filter and throws NaN inside its addColorStop
-      // call, surfacing as "Download Failed: Could not generate PDF".
-      // Scrubbing backdrop-filter / filter / animations / transitions on
-      // the cloned tree (NOT the live page) makes rasterization stable.
+      // Day 64 (Sasha 2026-05-07): expanded onclone scrubber.
+      // Day 63 base: strip backdrop-filter/filter/animation/transition on
+      // cloned tree (the html2canvas-backdrop-filter rasterization bug).
+      // Day 64 addition: ALSO resolve CSS variables (var(--skin-*),
+      // var(--wabi-*), var(--depth-*)) on the snapshot subtree by reading
+      // computed styles from the LIVE element and writing them as inline
+      // styles on the CLONE. Without this, html2canvas's offscreen render
+      // can't resolve the var() chains and the resulting canvas is
+      // empty/black/glitched — surfacing as "Download Failed" toast.
+      // Walk live + clone trees in parallel; for each pair, copy
+      // resolved values for properties known to use var() in the QoL UI.
+      const liveRef = snapshotRef.current;
       const canvas = await html2canvas(snapshotRef.current, {
         scale: 2,
         backgroundColor: '#f5f4f1',
@@ -314,6 +331,38 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
             el.style.animation = 'none';
             el.style.transition = 'none';
           });
+
+          // Resolve CSS vars by walking live + clone subtrees in lockstep.
+          // We mirror only the snapshot subtree (not the whole document)
+          // to keep the cost bounded.
+          const RESOLVE_PROPS = [
+            'background', 'backgroundColor', 'backgroundImage',
+            'color', 'borderColor', 'borderTopColor', 'borderRightColor',
+            'borderBottomColor', 'borderLeftColor',
+            'boxShadow', 'textShadow', 'fill', 'stroke',
+          ] as const;
+          const resolveTree = (live: Element, clone: Element) => {
+            if (!(live instanceof HTMLElement) || !(clone instanceof HTMLElement)) return;
+            const computed = window.getComputedStyle(live);
+            RESOLVE_PROPS.forEach((prop) => {
+              const value = computed.getPropertyValue(prop);
+              if (value && value !== '' && value !== 'none' && value !== 'rgba(0, 0, 0, 0)') {
+                (clone.style as unknown as Record<string, string>)[prop] = value;
+              }
+            });
+            for (let i = 0; i < live.children.length; i++) {
+              const liveChild = live.children[i];
+              const cloneChild = clone.children[i];
+              if (liveChild && cloneChild) resolveTree(liveChild, cloneChild);
+            }
+          };
+          // The cloned snapshot ref is the FIRST element with the same
+          // structure. We find it by tag + class match isn't reliable;
+          // simpler: walk from clonedDoc root and find the matching
+          // bounding-box-ish anchor via data-qol-snapshot attribute we
+          // set on the live ref div (see hero card JSX below).
+          const cloneRoot = clonedDoc.querySelector<HTMLElement>('[data-qol-snapshot]');
+          if (cloneRoot) resolveTree(liveRef, cloneRoot);
         },
       });
       const pdf = new jsPDF("p", "mm", "a4");
@@ -376,44 +425,36 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
     );
   }
 
+  // Day 64 (Sasha 2026-05-07): full revamp per
+  // docs/specs/quality-of-life-map/results_revamp_spec.md. Cards use
+  // .liquid-glass (Apple iOS 26 register from glassmorphism_blueprint.md)
+  // — light glass + dark navy text + halo cocktail. Single 8-domain
+  // list replaces Growth/Strengths split. "See My Profile" gone (no
+  // priorities page). Action row simplified to Retake / Download PDF.
+  const sortedAscending = [...domainResults].sort((a, b) => a.stageValue - b.stageValue);
+  const heroEyebrowStyle: React.CSSProperties = {
+    fontFamily: "'Cormorant Garamond', serif",
+    fontSize: "11px",
+    fontWeight: 600,
+    letterSpacing: "0.22em",
+    textTransform: "uppercase",
+    color: "#0a1628",
+    textShadow: "0 1px 2px rgba(255,255,255,0.85)",
+  };
+  const haloDeep =
+    "0 0 22px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.8), 0 2px 12px rgba(26,30,58,0.15)";
   const content = (
     <div className="max-w-2xl mx-auto p-4 lg:p-6 space-y-6">
-      {/* Hero Section */}
-      {/* Hero Section
-          Day 64 (Sasha 2026-05-07): converted from dark `liquid-glass`
-          surface to landing-register cream-wash card. Sasha's screenshot
-          showed gold-on-cream eyebrow + white-on-cream "2.0" — both
-          illegible because `liquid-glass` wasn't darkening the cinematic
-          bg enough to read white/light gold against. Switching to a
-          true cream-surface treatment (white/72 bg + navy text + halo-
-          deep cocktail) matches landing's cornerstone register and is
-          legible regardless of what shows through. Radar palette also
-          migrated from violet to gold. */}
+      {/* Hero — liquid-glass per glassmorphism_blueprint.md.
+          `data-qol-snapshot` attribute is the anchor html2canvas onclone
+          uses to find the cloned hero subtree for CSS-var resolution. */}
       <div
         ref={snapshotRef}
-        className="rounded-2xl p-6 space-y-5"
-        style={{
-          background: "var(--skin-card-bg, rgba(255, 255, 255, 0.72))",
-          border: "0.5px solid var(--skin-card-border, rgba(26, 30, 58, 0.10))",
-          boxShadow: "var(--skin-card-shadow, 0 4px 16px -8px rgba(10, 22, 40, 0.12), 0 16px 40px -20px rgba(10, 22, 40, 0.18))",
-          backdropFilter: "blur(8px) saturate(140%)",
-          WebkitBackdropFilter: "blur(8px) saturate(140%)",
-        }}
+        data-qol-snapshot
+        className="liquid-glass rounded-3xl p-6 sm:p-8 space-y-6"
       >
         <div className="text-center space-y-3">
-          <p
-            style={{
-              fontFamily: "'Cormorant Garamond', serif",
-              fontSize: "11px",
-              fontWeight: 600,
-              letterSpacing: "0.22em",
-              textTransform: "uppercase",
-              color: "#7a5708",
-              textShadow: "0 1px 2px rgba(255,255,255,0.6)",
-            }}
-          >
-            Your Quality of Life
-          </p>
+          <p style={heroEyebrowStyle}>Your Quality of Life</p>
           <div className="inline-flex items-baseline gap-2">
             <span
               style={{
@@ -422,8 +463,8 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
                 fontSize: "clamp(56px, 8vw, 80px)",
                 lineHeight: 1,
                 letterSpacing: "-0.02em",
-                color: "var(--skin-text-primary, var(--wabi-text-primary, #0b2a5a))",
-                textShadow: "var(--skin-text-halo-deep, 0 0 22px rgba(255,255,255,0.7), 0 1px 2px rgba(255,255,255,0.9), 0 0 1px rgba(11,42,90,0.45), 0 1px 0 rgba(11,42,90,0.25))",
+                color: "#0a1628",
+                textShadow: haloDeep,
               }}
             >
               {overallStageRounded}
@@ -433,7 +474,7 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
                 fontFamily: "'Cormorant Garamond', serif",
                 fontWeight: 500,
                 fontSize: "20px",
-                color: "var(--wabi-text-muted)",
+                color: "rgba(26,30,58,0.5)",
               }}
             >
               / 10
@@ -445,122 +486,74 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
               fontStyle: "italic",
               fontSize: "15px",
               lineHeight: 1.55,
-              color: "var(--wabi-text-secondary)",
+              color: "rgba(26,30,58,0.78)",
             }}
           >
             Now you know where to focus your growth.
           </p>
         </div>
 
-        {/* Radar Chart — Day 64 (Sasha 2026-05-07): violet (#8460ea) →
-            gold (#b8860b) for landing-register coherence. Tick labels
-            switched from white (illegible on cream) to navy. */}
-        <div className="h-48">
+        {/* Radar Chart — gold palette */}
+        <div className="h-56">
           <ResponsiveContainer width="100%" height="100%">
             <RadarChart data={radarData}>
-              <PolarGrid stroke="rgba(184, 134, 11, 0.22)" />
-              <PolarAngleAxis dataKey="domain" tick={{ fill: 'rgba(11,42,90,0.7)', fontSize: 14 }} />
-              <PolarRadiusAxis angle={90} domain={[0, 10]} tick={{ fill: 'rgba(11,42,90,0.4)', fontSize: 10 }} tickCount={6} />
+              <PolarGrid stroke="rgba(184, 134, 11, 0.28)" />
+              <PolarAngleAxis dataKey="domain" tick={{ fill: 'rgba(10,22,40,0.78)', fontSize: 14 }} />
+              <PolarRadiusAxis angle={90} domain={[0, 10]} tick={{ fill: 'rgba(10,22,40,0.45)', fontSize: 10 }} tickCount={6} />
               <Radar dataKey="value" stroke="#b8860b" fill="#b8860b" fillOpacity={0.32} strokeWidth={2} />
             </RadarChart>
           </ResponsiveContainer>
         </div>
+      </div>
 
-        {/* Growth & Strengths
-            Day 64 (Sasha 2026-05-07): converted from dark liquid-glass
-            cards to nested cream-surface (slightly darker than parent
-            hero card for hierarchy). Eyebrows in deep gold (#7a5708),
-            domain names in navy via skin-text-primary, numeric values
-            in deep gold accent. Matches landing card register. */}
-        <div className="grid gap-4 sm:grid-cols-2">
-          <div
-            className="rounded-xl p-4"
-            style={{
-              background: "rgba(255, 255, 255, 0.5)",
-              border: "0.5px solid rgba(184, 134, 11, 0.18)",
-            }}
-          >
-            <p
-              style={{
-                fontFamily: "'Cormorant Garamond', serif",
-                fontWeight: 600,
-                fontSize: "11px",
-                letterSpacing: "0.22em",
-                textTransform: "uppercase",
-                color: "#7a5708",
-              }}
-              className="mb-3"
-            >
-              🌱 Growth Areas
-            </p>
-            <div className="space-y-2">
-              {growthDomains.map(({ domain, stageValue }) => (
-                <div key={domain.id} className="flex items-center justify-between">
+      {/* All 8 Life Areas — single list, sorted ascending (lowest first
+          = where to grow). No tagging / highlighting per row — let the
+          numbers speak. */}
+      <div className="liquid-glass rounded-3xl p-6 sm:p-8">
+        <p style={heroEyebrowStyle} className="mb-5">
+          8 Life Areas
+        </p>
+        <div className="space-y-3">
+          {sortedAscending.map(({ domain, stageValue }) => {
+            const emoji = domainAbbreviations[domain.name] || "·";
+            return (
+              <div
+                key={domain.id}
+                className="flex items-center justify-between py-2 border-b last:border-b-0"
+                style={{ borderColor: "rgba(26,30,58,0.08)" }}
+              >
+                <span className="flex items-center gap-3">
+                  <span aria-hidden="true" style={{ fontSize: "18px" }}>{emoji}</span>
                   <span
                     style={{
                       fontFamily: "'Source Serif 4', serif",
-                      fontSize: "14px",
-                      color: "var(--skin-text-primary, var(--wabi-text-primary, #0b2a5a))",
+                      fontSize: "16px",
+                      fontWeight: 500,
+                      color: "rgba(26,30,58,0.88)",
+                      textShadow: "0 1px 2px rgba(255,255,255,0.6)",
                     }}
                   >
                     {domain.name}
                   </span>
-                  <span
-                    className="text-sm font-semibold"
-                    style={{ fontVariantNumeric: "tabular-nums", color: "#b8860b" }}
-                  >
-                    {stageValue}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </div>
-          <div
-            className="rounded-xl p-4"
-            style={{
-              background: "rgba(255, 255, 255, 0.5)",
-              border: "0.5px solid rgba(184, 134, 11, 0.18)",
-            }}
-          >
-            <p
-              style={{
-                fontFamily: "'Cormorant Garamond', serif",
-                fontWeight: 600,
-                fontSize: "11px",
-                letterSpacing: "0.22em",
-                textTransform: "uppercase",
-                color: "#7a5708",
-              }}
-              className="mb-3"
-            >
-              💪 Strengths
-            </p>
-            <div className="space-y-2">
-              {strengthDomains.map(({ domain, stageValue }) => (
-                <div key={domain.id} className="flex items-center justify-between">
-                  <span
-                    style={{
-                      fontFamily: "'Source Serif 4', serif",
-                      fontSize: "14px",
-                      color: "var(--skin-text-primary, var(--wabi-text-primary, #0b2a5a))",
-                    }}
-                  >
-                    {domain.name}
-                  </span>
-                  <span
-                    className="text-sm font-semibold"
-                    style={{ fontVariantNumeric: "tabular-nums", color: "#b8860b" }}
-                  >
-                    {stageValue}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </div>
+                </span>
+                <span
+                  style={{
+                    fontFamily: "'DM Sans', system-ui, sans-serif",
+                    fontWeight: 600,
+                    fontSize: "17px",
+                    color: "#b8860b",
+                    fontVariantNumeric: "tabular-nums",
+                  }}
+                >
+                  {stageValue}
+                </span>
+              </div>
+            );
+          })}
         </div>
       </div>
 
-      {/* Share */}
+      {/* Share — kept (existing collapsible component) */}
       <ShareQol
         overallStage={overallStageRounded}
         growthDomains={growthDomains}
@@ -568,19 +561,41 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
         profileId={profileId ?? undefined}
       />
 
-      {/* Actions - UX Playbook aligned */}
-      <div className="space-y-3">
-        <Button variant="wabi-primary" className="w-full" onClick={handlePriorities}>
-          See My Profile <ArrowRight className="w-4 h-4 ml-2" />
-        </Button>
-        <div className="grid grid-cols-2 gap-3">
-          <Button variant="wabi-secondary" onClick={handleDownloadPdf}>
-            <Download className="w-4 h-4 mr-2" /> Download
-          </Button>
-          <Button variant="wabi-ghost" onClick={handleRetake}>
-            <RefreshCw className="w-4 h-4 mr-2" /> Retake
-          </Button>
-        </div>
+      {/* Action row — Retake / Download PDF (two equal buttons). Each
+          uses liquid-glass-strong from the playbook for prominence. */}
+      <div className="grid grid-cols-2 gap-3">
+        <button
+          onClick={handleRetake}
+          className="liquid-glass-strong rounded-2xl px-5 py-4 inline-flex items-center justify-center gap-2 hover:scale-[1.02] active:scale-95 transition-all duration-300"
+          style={{
+            fontFamily: "'Cormorant Garamond', serif",
+            fontWeight: 600,
+            letterSpacing: "0.16em",
+            textTransform: "uppercase",
+            fontSize: "13px",
+            color: "#0a1628",
+            textShadow: "0 1px 2px rgba(255,255,255,0.7)",
+          }}
+        >
+          <RefreshCw className="w-4 h-4" />
+          Retake
+        </button>
+        <button
+          onClick={handleDownloadPdf}
+          className="liquid-glass-strong rounded-2xl px-5 py-4 inline-flex items-center justify-center gap-2 hover:scale-[1.02] active:scale-95 transition-all duration-300"
+          style={{
+            fontFamily: "'Cormorant Garamond', serif",
+            fontWeight: 600,
+            letterSpacing: "0.16em",
+            textTransform: "uppercase",
+            fontSize: "13px",
+            color: "#0a1628",
+            textShadow: "0 1px 2px rgba(255,255,255,0.7)",
+          }}
+        >
+          <Download className="w-4 h-4" style={{ color: "#b8860b" }} />
+          Download PDF
+        </button>
       </div>
     </div>
   );
