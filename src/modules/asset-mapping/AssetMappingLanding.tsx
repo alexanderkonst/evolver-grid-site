@@ -1135,9 +1135,11 @@ const AssetMappingLanding = () => {
                                             </div>
                                         )}
                                     </div>
-                                ))}
-                            </div>
-                        )}
+                                        ))}
+                                    </div>
+                                </div>
+                            );
+                        })()}
 
                         <div className="flex flex-wrap items-center gap-3 pt-1">
                             <button
