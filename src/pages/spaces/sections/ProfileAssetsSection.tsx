@@ -11,9 +11,9 @@
  *   • AppleseedDisplay — header + italic echo + ornament rhythm
  */
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Boxes, ChevronDown, ChevronUp, Users, Plus, ArrowRight } from "lucide-react";
+import { Boxes, ChevronDown, ChevronUp, Users, Plus, ArrowRight, RefreshCw, Loader2 } from "lucide-react";
 import GameShellV2 from "@/components/game/GameShellV2";
 import { supabase } from "@/integrations/supabase/client";
 import { ASSET_TYPES } from "@/modules/asset-mapping/data/assetTypes";
@@ -25,16 +25,34 @@ import { GOLD_TEXT_STYLE, Ornament } from "@/lib/landingDesign";
 // Aurora style atoms — same family used across /admin, /game/me/*, etc.
 // ─────────────────────────────────────────────────────────────────────
 
+// Day 63 (Sasha 2026-05-07 evening) — LEGIBILITY PASS per
+// docs/03-playbooks/ui_playbook.md Part VIII. Strong cocktail (1.5×).
+// Same atom upgrades as the Landing + Wizard files — kept in lockstep.
 const cormorantTitle: React.CSSProperties = {
     fontFamily: "'Cormorant Garamond', serif",
-    fontWeight: 600,
+    fontWeight: 700,                                     // ← lever 1 (Strong)
     letterSpacing: "-0.005em",
-    color: "var(--skin-text-primary, #0b2a5a)",
+    color: "var(--skin-text-primary, #0b2a5a)",          // ← lever 2 (full color)
+    textShadow:
+        "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.7))", // ← lever 3 (soft baseline)
 };
 
 const sourceSerifBody: React.CSSProperties = {
     fontFamily: "'Source Serif 4', serif",
-    color: "var(--skin-text-body, rgba(11, 42, 90, 0.85))",
+    fontWeight: 600,                                     // ← lever 1 (Strong)
+    color: "var(--skin-text-primary, #0b2a5a)",          // ← lever 2 (full color, was 0.85α)
+};
+
+const legibleHeadlineHalo =
+    "var(--skin-text-halo-deep, 0 0 28px rgba(255,255,255,0.85), 0 1px 2px rgba(255,255,255,0.95), 0 0 1px rgba(11,42,90,0.65), 0 1px 0 rgba(11,42,90,0.45))";
+
+const legibleItalicEcho: React.CSSProperties = {
+    fontFamily: "'Cormorant Garamond', serif",
+    fontStyle: "italic",
+    fontWeight: 700,
+    letterSpacing: "0.01em",
+    color: "var(--skin-text-primary, #0a1628)",
+    textShadow: legibleHeadlineHalo,
 };
 
 const labelMuted: React.CSSProperties = {
@@ -83,6 +101,33 @@ const ProfileAssetsSection = () => {
     const navigate = useNavigate();
     const [savedAssets, setSavedAssets] = useState<SavedAsset[]>([]);
     const [showAssets, setShowAssets] = useState(false);
+    // Day 63 (Sasha 2026-05-07 evening) — assets-just-saved propagation
+    // hint. Sasha hit a real ~2-minute delay between Save-on-Asset-Mapping
+    // and assets appearing here. Root cause is most likely Lovable preview
+    // env DB-write latency + a race between localStorage write completing
+    // and the next page's useEffect firing (the merge in loadAndSyncAssets
+    // only catches localStorage assets if both pages share the same
+    // user.id resolution timing). UX fix while we leave the underlying
+    // sync code alone:
+    //   1. Auto-refresh once when the tab regains focus (covers the
+    //      "I came back from /asset-mapping" case without polling).
+    //   2. Manual Refresh button next to the count + brief italic note
+    //      on the empty state: "If you just saved assets, give it a
+    //      moment — tap Refresh."
+    //   3. Show a small loading dot while reload is in flight.
+    const [isReloading, setIsReloading] = useState(false);
+
+    const reload = useCallback(async () => {
+        setIsReloading(true);
+        try {
+            const { data: { user } } = await supabase.auth.getUser();
+            if (!user) return;
+            const assets = await loadAndSyncAssets(user.id);
+            setSavedAssets(assets);
+        } finally {
+            setIsReloading(false);
+        }
+    }, []);
 
     useEffect(() => {
         let isMounted = true;
@@ -96,10 +141,20 @@ const ProfileAssetsSection = () => {
         };
 
         load();
+
+        // Auto-refresh when the tab regains focus. Covers the common case
+        // where the user came from /asset-mapping (different tab/route)
+        // and the just-saved assets need a fresh DB read.
+        const onFocus = () => {
+            if (isMounted) reload();
+        };
+        window.addEventListener("focus", onFocus);
+
         return () => {
             isMounted = false;
+            window.removeEventListener("focus", onFocus);
         };
-    }, []);
+    }, [reload]);
 
     const getAssetTypeName = (typeId: string) => {
         return ASSET_TYPES.find(t => t.id === typeId)?.title || typeId;
@@ -124,10 +179,10 @@ const ProfileAssetsSection = () => {
                         <h1
                             className="text-3xl sm:text-4xl leading-[1.1] tracking-[-0.018em]"
                             style={{
+                                // Strong cocktail — page-level Cormorant headline on cream wash.
                                 ...cormorantTitle,
                                 fontWeight: 700,
-                                textShadow:
-                                    "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.7))",
+                                textShadow: legibleHeadlineHalo,
                             }}
                         >
                             Saved{" "}
@@ -174,11 +229,10 @@ const ProfileAssetsSection = () => {
                     <p
                         className="italic mt-2"
                         style={{
-                            fontFamily: "'Source Serif 4', serif",
-                            fontStyle: "italic",
-                            fontSize: "15px",
+                            // Strong cocktail — page-level italic echo on cream wash.
+                            ...legibleItalicEcho,
+                            fontSize: "16px",
                             lineHeight: 1.5,
-                            color: "var(--skin-text-muted, rgba(11, 42, 90, 0.62))",
                         }}
                     >
                         The skills, tools, and resources you've mapped — yours to leverage with the right collaborator.
@@ -194,11 +248,15 @@ const ProfileAssetsSection = () => {
                     className="rounded-2xl overflow-hidden"
                     style={parchmentCard}
                 >
-                    <button
-                        onClick={() => setShowAssets(!showAssets)}
-                        className="w-full flex items-center justify-between gap-3 px-5 py-4 transition-colors hover:bg-white/40 focus-visible:outline-none focus-visible:bg-white/40"
-                    >
-                        <div className="flex items-baseline gap-3">
+                    {/* Day 63 evening: Refresh button moved OUT of the
+                        toggle-row's button so it doesn't toggle the
+                        collapsible when clicked. Sibling element to the
+                        toggle button — wrapped in a flex row. */}
+                    <div className="w-full flex items-center justify-between gap-3 px-5 py-4">
+                        <button
+                            onClick={() => setShowAssets(!showAssets)}
+                            className="flex items-baseline gap-3 transition-colors hover:opacity-80 focus-visible:outline-none"
+                        >
                             <Boxes
                                 className="w-5 h-5 align-[-3px]"
                                 style={{ color: "var(--skin-accent-gold, #b8860b)" }}
@@ -222,19 +280,46 @@ const ProfileAssetsSection = () => {
                             >
                                 ({savedAssets.length})
                             </span>
+                        </button>
+                        <div className="flex items-center gap-3">
+                            {/* Manual refresh — UX hint for the
+                                propagation delay between Save-on-mapping
+                                and the assets surfacing here. */}
+                            <button
+                                onClick={reload}
+                                disabled={isReloading}
+                                className="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 transition-all duration-200 hover:translate-y-[-0.5px] disabled:opacity-50 disabled:cursor-not-allowed"
+                                style={{
+                                    fontFamily: "'DM Sans', system-ui, sans-serif",
+                                    fontSize: "11px",
+                                    letterSpacing: "0.10em",
+                                    textTransform: "uppercase",
+                                    color: "var(--skin-text-muted, rgba(11, 42, 90, 0.62))",
+                                    background: "rgba(255, 255, 255, 0.55)",
+                                    border: "0.5px solid var(--skin-rule-hairline, rgba(26, 30, 58, 0.10))",
+                                }}
+                                title="Just saved assets and don't see them yet? Tap Refresh."
+                            >
+                                {isReloading ? (
+                                    <Loader2 className="w-3 h-3 animate-spin" />
+                                ) : (
+                                    <RefreshCw className="w-3 h-3" />
+                                )}
+                                {isReloading ? "Refreshing" : "Refresh"}
+                            </button>
+                            <button
+                                onClick={() => setShowAssets(!showAssets)}
+                                className="text-[var(--skin-text-muted,rgba(11,42,90,0.55))] hover:opacity-80"
+                                aria-label={showAssets ? "Collapse" : "Expand"}
+                            >
+                                {showAssets ? (
+                                    <ChevronUp className="w-4 h-4" />
+                                ) : (
+                                    <ChevronDown className="w-4 h-4" />
+                                )}
+                            </button>
                         </div>
-                        {showAssets ? (
-                            <ChevronUp
-                                className="w-4 h-4"
-                                style={{ color: "var(--skin-text-muted, rgba(11, 42, 90, 0.55))" }}
-                            />
-                        ) : (
-                            <ChevronDown
-                                className="w-4 h-4"
-                                style={{ color: "var(--skin-text-muted, rgba(11, 42, 90, 0.55))" }}
-                            />
-                        )}
-                    </button>
+                    </div>
 
                     {showAssets && (
                         <div
@@ -243,18 +328,46 @@ const ProfileAssetsSection = () => {
                                 borderColor: "var(--skin-rule-hairline, rgba(26, 30, 58, 0.10))",
                             }}
                         >
+                            {/* Day 63 evening: added the just-saved propagation
+                                hint above the empty-state copy. Sasha hit a real
+                                2-minute delay between Save-on-mapping and assets
+                                surfacing here; this gives the user a clear
+                                refresh path while we leave the underlying sync
+                                code alone. */}
                             {savedAssets.length === 0 ? (
-                                /* Empty state — italic editorial copy + ceremonial CTA.
-                                   Day 63: was generic shadcn EmptyState. */
                                 <div className="px-5 py-8 text-center space-y-4">
+                                    <div
+                                        className="mx-auto rounded-xl px-4 py-3 max-w-sm"
+                                        style={{
+                                            background: "rgba(212, 175, 55, 0.08)",
+                                            border: "0.5px solid rgba(212, 175, 55, 0.30)",
+                                        }}
+                                    >
+                                        <p
+                                            className="italic"
+                                            style={{
+                                                fontFamily: "'Source Serif 4', serif",
+                                                fontStyle: "italic",
+                                                fontSize: "13px",
+                                                lineHeight: 1.5,
+                                                color: "var(--skin-goldDeep, #5d4307)",
+                                            }}
+                                        >
+                                            Just saved assets and don't see them yet? They can take up to a minute to sync — tap{" "}
+                                            <strong style={{ fontStyle: "normal" }}>Refresh</strong>{" "}
+                                            above.
+                                        </p>
+                                    </div>
                                     <p
                                         className="italic"
                                         style={{
+                                            // sourceSerifBody now carries weight 600 + text-primary.
+                                            // Empty state lives inside the parchment-card, so soft
+                                            // halo treatment is sufficient (uniform bg).
                                             ...sourceSerifBody,
                                             fontStyle: "italic",
                                             fontSize: "15px",
                                             lineHeight: 1.55,
-                                            color: "var(--skin-text-muted, rgba(11, 42, 90, 0.62))",
                                         }}
                                     >
                                         Nothing here yet.

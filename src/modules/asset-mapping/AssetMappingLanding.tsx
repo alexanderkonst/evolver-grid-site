@@ -43,7 +43,21 @@ type AssetMaturity =
     | "latent"
     | "aspirational"
     | "symbolic_only";
-type AssetHorizon = "now" | "next" | "later";
+// Day 63 v3 — horizon expanded from 3 → 4 values. v2 strings ("next",
+// "later") map forward to "near" / "long_term" via the helpers below.
+type AssetHorizon = "now" | "near" | "long_term" | "civilization_scale";
+// Day 63 v3 — NATURE: ontological dimension. Lets symbolic/mythic
+// capacity coexist with operational deployability without flattening
+// either. Honors that some highest-leverage assets are upstream-
+// generative (meaning-making, mythic coherence, deep trust fields).
+type AssetNature =
+    | "practical"
+    | "relational"
+    | "symbolic"
+    | "infrastructural"
+    | "mythic"
+    | "intellectual"
+    | "economic";
 
 type MatchedAsset = {
     typeTitle: string;
@@ -54,9 +68,17 @@ type MatchedAsset = {
     description?: string;
     leverageScore?: number;
     leverageReason?: string;
+    // Day 63 v3 — strategic dimensions
     maturity?: AssetMaturity;
     horizon?: AssetHorizon;
+    nature?: AssetNature;
+    expressesRoot?: string;
     isPowerNode?: boolean;
+    isOffer?: boolean;
+    // The Center of Gravity meta-asset (root field-function) is the
+    // first array entry per v3. Identified by typeTitle === "Center
+    // of Gravity" — rendered with a special hero card at the top of
+    // the matched list.
 };
 
 const MATURITY_VALUES: AssetMaturity[] = [
@@ -66,12 +88,34 @@ const MATURITY_VALUES: AssetMaturity[] = [
     "aspirational",
     "symbolic_only",
 ];
-const HORIZON_VALUES: AssetHorizon[] = ["now", "next", "later"];
+const HORIZON_VALUES: AssetHorizon[] = ["now", "near", "long_term", "civilization_scale"];
+const NATURE_VALUES: AssetNature[] = [
+    "practical",
+    "relational",
+    "symbolic",
+    "infrastructural",
+    "mythic",
+    "intellectual",
+    "economic",
+];
 
 const isMaturity = (v: unknown): v is AssetMaturity =>
     typeof v === "string" && (MATURITY_VALUES as string[]).includes(v);
-const isHorizon = (v: unknown): v is AssetHorizon =>
-    typeof v === "string" && (HORIZON_VALUES as string[]).includes(v);
+const isHorizon = (v: unknown): v is AssetHorizon => {
+    if (typeof v !== "string") return false;
+    if ((HORIZON_VALUES as string[]).includes(v)) return true;
+    return false;
+};
+// v2 → v3 horizon back-compat — accept "next"/"later" from older models.
+const normalizeHorizon = (v: unknown): AssetHorizon | undefined => {
+    if (typeof v !== "string") return undefined;
+    if ((HORIZON_VALUES as string[]).includes(v)) return v as AssetHorizon;
+    if (v === "next") return "near";
+    if (v === "later") return "long_term";
+    return undefined;
+};
+const isNature = (v: unknown): v is AssetNature =>
+    typeof v === "string" && (NATURE_VALUES as string[]).includes(v);
 
 // Map category strings to our taxonomy
 const CATEGORY_MAP: Record<string, string> = {
@@ -114,10 +158,13 @@ const fetchAssetMatches = async (text: string): Promise<MatchedAsset[] | null> =
             name?: string;
             description?: string;
             why_value?: string;
-            // Day 63 v3 — new strategic dimensions from match-assets prompt upgrade.
+            // Day 63 v3 strategic dimensions.
             maturity?: string;
             horizon?: string;
+            nature?: string;
+            expresses_root?: string;
             leverage_score?: number;
+            is_offer?: boolean;
             is_power_node?: boolean;
         };
         const matches = (data.matches as EdgeMatch[])
@@ -187,17 +234,46 @@ const parchmentCardSubtle: React.CSSProperties = {
     boxShadow: "0 4px 16px -8px rgba(10, 22, 40, 0.10)",
 };
 
-// Editorial typography tokens — same family the rest of the platform uses.
+// Day 63 (Sasha 2026-05-07 evening) — LEGIBILITY PASS per
+// docs/03-playbooks/ui_playbook.md Part VIII. The "Strong" cocktail (1.5×
+// — the de-facto default for variable-luminance backgrounds: cream wash,
+// gold particles, sun glare). Levers applied here:
+//   • Cormorant headings: weight 600 → 700, soft halo added
+//   • Source Serif body: weight 400→600 added, color bumped from
+//     text-body (0.85α) to text-primary (full color)
+// Page-level usages additionally apply var(--skin-text-halo-deep) inline
+// at the call site (per the playbook — don't apply halo-deep blindly to
+// every text element, only the ones on variable-luminance bg).
 const cormorantTitle: React.CSSProperties = {
     fontFamily: "'Cormorant Garamond', serif",
-    fontWeight: 600,
+    fontWeight: 700,                                     // ← lever 1 (Strong)
     letterSpacing: "-0.005em",
-    color: "var(--skin-text-primary, #0b2a5a)",
+    color: "var(--skin-text-primary, #0b2a5a)",          // ← lever 2 (full color)
+    textShadow:
+        "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.7))", // ← lever 3 (soft baseline)
 };
 
 const sourceSerifBody: React.CSSProperties = {
     fontFamily: "'Source Serif 4', serif",
-    color: "var(--skin-text-body, rgba(11, 42, 90, 0.85))",
+    fontWeight: 600,                                     // ← lever 1 (Strong)
+    color: "var(--skin-text-primary, #0b2a5a)",          // ← lever 2 (full color, was 0.85α)
+};
+
+// Strong-cocktail headline halo for page-level text on the cream wash
+// (variable luminance). Applied inline on h1/h2 over the page bg.
+const legibleHeadlineHalo =
+    "var(--skin-text-halo-deep, 0 0 28px rgba(255,255,255,0.85), 0 1px 2px rgba(255,255,255,0.95), 0 0 1px rgba(11,42,90,0.65), 0 1px 0 rgba(11,42,90,0.45))";
+
+// Strong-cocktail italic body — lever 4 (italic letter-spacing +0.01em)
+// + lever 1 (weight 700). Use for italic Cormorant echoes on page-level
+// busy backgrounds.
+const legibleItalicEcho: React.CSSProperties = {
+    fontFamily: "'Cormorant Garamond', serif",
+    fontStyle: "italic",
+    fontWeight: 700,
+    letterSpacing: "0.01em",
+    color: "var(--skin-text-primary, #0a1628)",
+    textShadow: legibleHeadlineHalo,
 };
 
 const eyebrowSmall: React.CSSProperties = {
@@ -519,9 +595,9 @@ const AssetMappingLanding = () => {
                         <p
                             className="text-center"
                             style={{
-                                ...sourceSerifBody,
-                                fontStyle: "italic",
-                                fontSize: "16px",
+                                // Strong cocktail — page-level italic echo on cream wash.
+                                ...legibleItalicEcho,
+                                fontSize: "17px",
                                 lineHeight: 1.55,
                             }}
                         >
@@ -549,11 +625,13 @@ const AssetMappingLanding = () => {
                                 </h3>
                                 <p
                                     style={{
+                                        // Strong cocktail @ card-level — sourceSerifBody now
+                                        // carries weight 600 + text-primary; we drop the muted
+                                        // override so contrast holds against the parchment bg.
                                         ...sourceSerifBody,
                                         fontStyle: "italic",
                                         fontSize: "14px",
                                         lineHeight: 1.5,
-                                        color: "var(--skin-text-muted, rgba(11, 42, 90, 0.62))",
                                     }}
                                 >
                                     Paste an AI's read of your assets and we'll match them to the taxonomy.
@@ -580,11 +658,13 @@ const AssetMappingLanding = () => {
                                 </h3>
                                 <p
                                     style={{
+                                        // Strong cocktail @ card-level — sourceSerifBody now
+                                        // carries weight 600 + text-primary; we drop the muted
+                                        // override so contrast holds against the parchment bg.
                                         ...sourceSerifBody,
                                         fontStyle: "italic",
                                         fontSize: "14px",
                                         lineHeight: 1.5,
-                                        color: "var(--skin-text-muted, rgba(11, 42, 90, 0.62))",
                                     }}
                                 >
                                     Walk the categories and add each asset one at a time.
@@ -613,7 +693,6 @@ const AssetMappingLanding = () => {
                                             ...sourceSerifBody,
                                             fontStyle: "italic",
                                             fontSize: "13px",
-                                            color: "var(--skin-text-muted, rgba(11, 42, 90, 0.62))",
                                         }}
                                     >
                                         Copy this and ask the AI you talk to most.
@@ -721,7 +800,13 @@ const AssetMappingLanding = () => {
                     <div className="space-y-6">
                         <div className="text-center">
                             <h2
-                                style={{ ...cormorantTitle, fontSize: "26px", fontWeight: 600 }}
+                                style={{
+                                    // Strong cocktail — page-level Cormorant headline.
+                                    ...cormorantTitle,
+                                    fontSize: "28px",
+                                    fontWeight: 700,
+                                    textShadow: legibleHeadlineHalo,
+                                }}
                                 className="leading-[1.2] mb-2"
                             >
                                 {matchedAssets.length > 0 ? `Found ${matchedAssets.length} assets` : "No exact matches"}
@@ -729,9 +814,9 @@ const AssetMappingLanding = () => {
                             <p
                                 className="italic"
                                 style={{
-                                    ...sourceSerifBody,
-                                    fontStyle: "italic",
-                                    fontSize: "15px",
+                                    // Strong cocktail — page-level italic echo.
+                                    ...legibleItalicEcho,
+                                    fontSize: "16px",
                                     lineHeight: 1.5,
                                 }}
                             >

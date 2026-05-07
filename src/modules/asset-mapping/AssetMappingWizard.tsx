@@ -34,16 +34,35 @@ type Step = 'type' | 'subtype' | 'category' | 'details' | 'done';
 const WASH_BG =
     "radial-gradient(ellipse 95% 105% at 95% 5%, rgba(255, 200, 130, 0.55) 0%, rgba(255, 218, 170, 0.45) 18%, rgba(252, 232, 200, 0.75) 38%, rgba(248, 240, 220, 0.92) 65%, rgba(245, 242, 235, 0.98) 88%)";
 
+// Day 63 (Sasha 2026-05-07 evening) — LEGIBILITY PASS per
+// docs/03-playbooks/ui_playbook.md Part VIII. Strong cocktail (1.5×).
+// Same atom upgrades as Landing.tsx — kept in lockstep so the two
+// surfaces read as one editorial family.
 const cormorantTitle: React.CSSProperties = {
     fontFamily: "'Cormorant Garamond', serif",
-    fontWeight: 600,
+    fontWeight: 700,                                     // ← lever 1 (Strong)
     letterSpacing: "-0.005em",
-    color: "var(--skin-text-primary, #0b2a5a)",
+    color: "var(--skin-text-primary, #0b2a5a)",          // ← lever 2 (full color)
+    textShadow:
+        "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.7))", // ← lever 3 (soft baseline)
 };
 
 const sourceSerifBody: React.CSSProperties = {
     fontFamily: "'Source Serif 4', serif",
-    color: "var(--skin-text-body, rgba(11, 42, 90, 0.85))",
+    fontWeight: 600,                                     // ← lever 1 (Strong)
+    color: "var(--skin-text-primary, #0b2a5a)",          // ← lever 2 (full color, was 0.85α)
+};
+
+const legibleHeadlineHalo =
+    "var(--skin-text-halo-deep, 0 0 28px rgba(255,255,255,0.85), 0 1px 2px rgba(255,255,255,0.95), 0 0 1px rgba(11,42,90,0.65), 0 1px 0 rgba(11,42,90,0.45))";
+
+const legibleItalicEcho: React.CSSProperties = {
+    fontFamily: "'Cormorant Garamond', serif",
+    fontStyle: "italic",
+    fontWeight: 700,
+    letterSpacing: "0.01em",
+    color: "var(--skin-text-primary, #0a1628)",
+    textShadow: legibleHeadlineHalo,
 };
 
 const eyebrowSmall: React.CSSProperties = {
@@ -345,7 +364,12 @@ const AssetMappingWizard = () => {
                     <div>
                         <StepIndicator step={step} />
                         <h2
-                            style={{ ...cormorantTitle, fontSize: "22px" }}
+                            style={{
+                                // Strong cocktail — page-level Cormorant headline.
+                                ...cormorantTitle,
+                                fontSize: "24px",
+                                textShadow: legibleHeadlineHalo,
+                            }}
                             className="text-center mb-1.5"
                         >
                             What type of asset?
@@ -353,10 +377,9 @@ const AssetMappingWizard = () => {
                         <p
                             className="italic text-center mb-5"
                             style={{
-                                ...sourceSerifBody,
-                                fontStyle: "italic",
-                                fontSize: "14.5px",
-                                color: "var(--skin-text-muted, rgba(11, 42, 90, 0.62))",
+                                // Strong cocktail — page-level italic echo on cream wash.
+                                ...legibleItalicEcho,
+                                fontSize: "16px",
                             }}
                         >
                             Pick the category that best holds this resource.
@@ -384,11 +407,12 @@ const AssetMappingWizard = () => {
                                     </div>
                                     <p
                                         style={{
+                                            // Strong cocktail @ card-level — sourceSerifBody now
+                                            // weight 600 + text-primary; muted override dropped.
                                             ...sourceSerifBody,
                                             fontStyle: "italic",
                                             fontSize: "13.5px",
                                             lineHeight: 1.5,
-                                            color: "var(--skin-text-muted, rgba(11, 42, 90, 0.62))",
                                         }}
                                     >
                                         {type.description}
@@ -599,7 +623,13 @@ const AssetMappingWizard = () => {
                 {step === 'done' && (
                     <div className="text-center">
                         <h2
-                            style={{ ...cormorantTitle, fontSize: "30px", fontWeight: 700 }}
+                            style={{
+                                // Strong cocktail — Done-state page-level hero.
+                                ...cormorantTitle,
+                                fontSize: "32px",
+                                fontWeight: 700,
+                                textShadow: legibleHeadlineHalo,
+                            }}
                             className="leading-[1.15] mb-2"
                         >
                             Asset{" "}
@@ -613,9 +643,9 @@ const AssetMappingWizard = () => {
                         <p
                             className="italic mb-7"
                             style={{
-                                ...sourceSerifBody,
-                                fontStyle: "italic",
-                                fontSize: "15.5px",
+                                // Strong cocktail — page-level italic echo on cream wash.
+                                ...legibleItalicEcho,
+                                fontSize: "16px",
                                 lineHeight: 1.55,
                             }}
                         >

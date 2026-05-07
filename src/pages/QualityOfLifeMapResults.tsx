@@ -311,20 +311,79 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
   // page itself was retired in this revamp; "See My Profile" CTA gone
   // from the action row.
 
+  // Day 64 (Sasha 2026-05-07, FOURTH pass): comprehensive PDF fix.
+  // Prior attempts kept failing because I was patching ONE surface
+  // at a time:
+  //   - Day 63: strip backdrop-filter (necessary, insufficient)
+  //   - Day 64 first pass: resolve CSS vars (also insufficient)
+  //   - Day 64 second pass: override .liquid-glass classes via style
+  //     injection (still insufficient if html2canvas doesn't apply
+  //     dynamically-injected styles to the offscreen render)
+  // This pass: REMOVE the .liquid-glass classes entirely from the
+  // cloned tree (no class = no ::before pseudo-element, period) AND
+  // wrap each step in its own try/catch so the actual failure point
+  // is surfaced AND fall back to a plain-jsPDF text PDF if rasterization
+  // genuinely can't work in this environment.
+  //
+  // The fallback PDF won't have the radar chart visual — just titled
+  // text content (overall score + 8 domain rows + date). Functional
+  // for "I want a record of my snapshot at this time" use case, even
+  // if it's less fancy than the rasterized version.
+  const generateFallbackPdf = (): jsPDF => {
+    const pdf = new jsPDF("p", "mm", "a4");
+    const pageWidth = pdf.internal.pageSize.getWidth();
+    const margin = 20;
+    let y = 30;
+
+    // Title
+    pdf.setFontSize(22);
+    pdf.setTextColor(10, 22, 40);
+    pdf.text("Your Quality of Life", pageWidth / 2, y, { align: "center" });
+    y += 12;
+
+    // Date
+    pdf.setFontSize(10);
+    pdf.setTextColor(120, 120, 130);
+    pdf.text(new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" }), pageWidth / 2, y, { align: "center" });
+    y += 18;
+
+    // Overall score
+    pdf.setFontSize(48);
+    pdf.setTextColor(10, 22, 40);
+    pdf.text(`${overallStageRounded} / 10`, pageWidth / 2, y, { align: "center" });
+    y += 18;
+
+    // Subtitle
+    pdf.setFontSize(11);
+    pdf.setTextColor(120, 120, 130);
+    pdf.text("Now you know where to focus your growth.", pageWidth / 2, y, { align: "center" });
+    y += 18;
+
+    // 8 domains
+    pdf.setFontSize(13);
+    pdf.setTextColor(10, 22, 40);
+    pdf.text("8 Life Areas", margin, y);
+    y += 8;
+    pdf.setFontSize(11);
+    [...domainResults]
+      .sort((a, b) => a.stageValue - b.stageValue)
+      .forEach(({ domain, stageValue }) => {
+        pdf.setTextColor(10, 22, 40);
+        pdf.text(domain.name, margin, y);
+        pdf.setTextColor(184, 134, 11);
+        pdf.text(String(stageValue), pageWidth - margin, y, { align: "right" });
+        y += 7;
+      });
+
+    return pdf;
+  };
+
   const handleDownloadPdf = async () => {
     if (!snapshotRef.current) return;
+    let pdf: jsPDF | null = null;
+
+    // ─── Attempt 1: rasterize via html2canvas ───────────────────────
     try {
-      // Day 64 (Sasha 2026-05-07): expanded onclone scrubber.
-      // Day 63 base: strip backdrop-filter/filter/animation/transition on
-      // cloned tree (the html2canvas-backdrop-filter rasterization bug).
-      // Day 64 addition: ALSO resolve CSS variables (var(--skin-*),
-      // var(--wabi-*), var(--depth-*)) on the snapshot subtree by reading
-      // computed styles from the LIVE element and writing them as inline
-      // styles on the CLONE. Without this, html2canvas's offscreen render
-      // can't resolve the var() chains and the resulting canvas is
-      // empty/black/glitched — surfacing as "Download Failed" toast.
-      // Walk live + clone trees in parallel; for each pair, copy
-      // resolved values for properties known to use var() in the QoL UI.
       const liveRef = snapshotRef.current;
       const canvas = await html2canvas(snapshotRef.current, {
         scale: 2,
@@ -332,31 +391,23 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
         logging: false,
         useCORS: true,
         onclone: (clonedDoc) => {
-          // Day 64 (Sasha 2026-05-07, second pass): override the
-          // .liquid-glass / .liquid-glass-strong classes with explicit
-          // solid styling for PDF rasterization. The original classes
-          // use a ::before pseudo-element with `mask-composite: exclude`
-          // for the asymmetric edge-light effect — html2canvas can't
-          // rasterize mask-composite, which is why the previous CSS-var
-          // resolution fix wasn't enough. Injecting a <style> override
-          // into the cloned doc head replaces the glass treatment with
-          // a solid card style for the snapshot only; the live UI is
-          // untouched. The PDF reads as a clean printable card.
-          const styleOverride = clonedDoc.createElement('style');
-          styleOverride.textContent = `
-            .liquid-glass, .liquid-glass-strong {
-              background: rgba(255, 255, 255, 0.94) !important;
-              backdrop-filter: none !important;
-              -webkit-backdrop-filter: none !important;
-              border: 0.5px solid rgba(26, 30, 58, 0.12) !important;
-              box-shadow: 0 4px 16px -4px rgba(10, 22, 40, 0.08), 0 16px 40px -20px rgba(10, 22, 40, 0.16) !important;
-            }
-            .liquid-glass::before, .liquid-glass-strong::before {
-              display: none !important;
-            }
-          `;
-          clonedDoc.head.appendChild(styleOverride);
+          // Step 1: strip the .liquid-glass / .liquid-glass-strong
+          // classes ENTIRELY from the cloned tree. No class → no
+          // ::before pseudo-element with mask-composite, period.
+          // More reliable than overriding via injected stylesheet.
+          const glassEls = clonedDoc.querySelectorAll<HTMLElement>('.liquid-glass, .liquid-glass-strong');
+          glassEls.forEach((el) => {
+            el.classList.remove('liquid-glass', 'liquid-glass-strong');
+            el.style.background = 'rgba(255, 255, 255, 0.94)';
+            el.style.backdropFilter = 'none';
+            (el.style as CSSStyleDeclaration & { webkitBackdropFilter?: string }).webkitBackdropFilter = 'none';
+            el.style.border = '0.5px solid rgba(26, 30, 58, 0.12)';
+            el.style.boxShadow = '0 4px 16px -4px rgba(10, 22, 40, 0.08), 0 16px 40px -20px rgba(10, 22, 40, 0.16)';
+          });
 
+          // Step 2: belt-and-suspenders — strip all backdrop-filter /
+          // filter / animation / transition across the entire cloned
+          // tree.
           const allElements = clonedDoc.querySelectorAll<HTMLElement>('*');
           allElements.forEach((el) => {
             el.style.backdropFilter = 'none';
@@ -400,22 +451,45 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
           if (cloneRoot) resolveTree(liveRef, cloneRoot);
         },
       });
-      const pdf = new jsPDF("p", "mm", "a4");
+
+      // Try to convert the canvas to an image data URL. This is where
+      // CORS-tainted canvases throw a SecurityError ("Tainted canvases
+      // may not be exported"). If the cinematic background image
+      // bleeds into the snapshot via backdrop-filter and the image
+      // lacks proper CORS headers, this step fails.
+      const imgData = canvas.toDataURL("image/png");
+      pdf = new jsPDF("p", "mm", "a4");
       const pdfWidth = pdf.internal.pageSize.getWidth() - 20;
       const imgHeight = (canvas.height * pdfWidth) / canvas.width;
-      pdf.addImage(canvas.toDataURL("image/png"), "PNG", 10, 10, pdfWidth, imgHeight);
-      pdf.save(`quality-of-life-${new Date().toISOString().slice(0, 10)}.pdf`);
-      toast({ title: "PDF Downloaded", description: "Your snapshot has been saved." });
+      pdf.addImage(imgData, "PNG", 10, 10, pdfWidth, imgHeight);
     } catch (err) {
-      // Day 63 (Sasha 2026-05-06): replace silent catch with logging.
-      // Without this, when html2canvas/jsPDF errors surfaced as the
-      // generic "Download Failed" toast, there was no diagnostic in
-      // the console to debug the cause.
-      console.error('[QoL] PDF generation failed:', err);
-      toast({
-        title: "Download Failed",
-        description: "Could not generate PDF. Try refreshing the page.",
-        variant: "destructive",
+      // Rasterization failed — fall through to the text-PDF fallback
+      // below. Log the actual error message so future debugging has
+      // a real signal (not the generic "Download Failed" toast we
+      // used to ship).
+      const e = err as { message?: string; name?: string };
+      console.warn('[QoL] html2canvas rasterization failed; falling back to text PDF:', {
+        name: e?.name,
+        message: e?.message,
+        raw: err,
+      });
+      pdf = null;
+    }
+
+    // ─── Attempt 2: text-only fallback PDF ──────────────────────────
+    // If the rasterization path didn't produce a PDF, generate a clean
+    // text-only PDF directly via jsPDF. Less fancy but reliable —
+    // user gets their snapshot data as a saveable artifact.
+    if (!pdf) {
+      try {
+        pdf = generateFallbackPdf();
+      } catch (err) {
+        const e = err as { message?: string };
+        console.error('[QoL] Fallback text-PDF generation also failed:', err);
+        toast({
+          title: "Download Failed",
+          description: `Couldn't generate PDF: ${e?.message?.slice(0, 60) ?? 'unknown error'}. Open browser DevTools → Console for details.`,
+          variant: "destructive",
       });
     }
   };
@@ -424,11 +498,23 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
   // GameShellV2 once for all four QoL pages.
   // Day 64 (Sasha 2026-05-07): loading + empty state colors switched
   // from white-on-cream-illegible to skin-text-primary navy.
-  // Loading state
+  // Loading state — Day 64 (third pass): halo + Source Serif 4 italic
+  // for legibility on the cinematic bg.
   if (isLoading) {
     return (
       <div className="flex items-center justify-center min-h-[60vh]">
-        <div className="text-[var(--wabi-text-muted)] animate-pulse">Loading your results...</div>
+        <div
+          style={{
+            fontFamily: "'Source Serif 4', serif",
+            fontStyle: "italic",
+            fontSize: "15px",
+            color: "rgba(11, 42, 90, 0.78)",
+            textShadow: "0 1px 2px rgba(255,255,255,0.7)",
+          }}
+          className="animate-pulse"
+        >
+          Loading your results...
+        </div>
       </div>
     );
   }
@@ -476,7 +562,9 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
             fontStyle: "italic",
             fontSize: "15px",
             lineHeight: 1.55,
-            color: "rgba(26,30,58,0.78)",
+            // Day 64 (third pass): muted-alpha lift 0.78 → 0.88 + halo-soft.
+            color: "rgba(11, 42, 90, 0.88)",
+            textShadow: "0 1px 2px rgba(255,255,255,0.7)",
           }}
           className="mb-7"
         >
@@ -656,18 +744,21 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
 
       {/* Action row — Retake / Download PDF (two equal buttons). Each
           uses liquid-glass-strong from the playbook for prominence. */}
+      {/* Action row — Day 64 (third pass): fontWeight 600→700 + halo
+          cocktail strengthened to landing-register Strong on button
+          labels for legibility against liquid-glass-strong surface. */}
       <div className="grid grid-cols-2 gap-3">
         <button
           onClick={handleRetake}
           className="liquid-glass-strong rounded-2xl px-5 py-4 inline-flex items-center justify-center gap-2 hover:scale-[1.02] active:scale-95 transition-all duration-300"
           style={{
             fontFamily: "'Cormorant Garamond', serif",
-            fontWeight: 600,
-            letterSpacing: "0.16em",
+            fontWeight: 700,
+            letterSpacing: "0.18em",
             textTransform: "uppercase",
             fontSize: "13px",
             color: "#0a1628",
-            textShadow: "0 1px 2px rgba(255,255,255,0.7)",
+            textShadow: "0 1px 2px rgba(255,255,255,0.9), 0 0 1px rgba(11,42,90,0.5)",
           }}
         >
           <RefreshCw className="w-4 h-4" />
@@ -678,12 +769,12 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
           className="liquid-glass-strong rounded-2xl px-5 py-4 inline-flex items-center justify-center gap-2 hover:scale-[1.02] active:scale-95 transition-all duration-300"
           style={{
             fontFamily: "'Cormorant Garamond', serif",
-            fontWeight: 600,
-            letterSpacing: "0.16em",
+            fontWeight: 700,
+            letterSpacing: "0.18em",
             textTransform: "uppercase",
             fontSize: "13px",
             color: "#0a1628",
-            textShadow: "0 1px 2px rgba(255,255,255,0.7)",
+            textShadow: "0 1px 2px rgba(255,255,255,0.9), 0 0 1px rgba(11,42,90,0.5)",
           }}
         >
           <Download className="w-4 h-4" style={{ color: "#b8860b" }} />

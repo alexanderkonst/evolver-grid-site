@@ -163,16 +163,25 @@ serve(async (req) => {
       `- ${a.type} > ${a.subType} > ${a.title}`
     ).join("\n");
 
-    // Day 63 (Sasha 2026-05-07) v3 prompt — aligned with the user-facing
-    // ASSET_MAPPING_PROMPT upgrade (src/prompts/extraction/assetMappingPrompt.ts).
-    // Same five new dimensions: maturity (5-value enum), horizon (now/next/later),
-    // is_power_node (boolean), tightened leverage_score rubric (10 = revenue
-    // ALMOST IMMEDIATELY if acted on), and explicit "things-touched ≠
-    // deployable assets" filter. Driven by the "Divine Roast" feedback —
-    // the prior prompt produced a flattering inventory rather than an
-    // operational power map. Both extractors (this AI gateway path and
-    // the user-AI paste path) now produce one consistent shape so the
-    // client doesn't have to fork on which extractor ran.
+    // Day 63 evening (Sasha 2026-05-07) v3 prompt — aligned with the
+    // user-facing ASSET_MAPPING_PROMPT v3 upgrade. Adds three things on
+    // top of the morning's v2:
+    //   1. NATURE field (7-value enum: practical | relational | symbolic
+    //      | infrastructural | mythic | intellectual | economic) so
+    //      symbolic/mythic capacity isn't amputated as "symbolic_only."
+    //   2. HORIZON expanded from 3 values to 4 (added civilization_scale).
+    //   3. CENTER OF GRAVITY meta-asset as the FIRST array entry: a
+    //      named root field-function the user runs on the world; every
+    //      subsequent asset has `expresses_root` linking back to it.
+    //   4. is_offer boolean to distinguish productized services from
+    //      the underlying IP they deploy.
+    //   5. Leverage rubric recalibrated — load-bearing matters more
+    //      than commercial-actionable-now. Symbolic capacity that holds
+    //      up everything else can score 9 honestly.
+    //   6. Power-law distribution enforced — at most ~5 assets at 8+.
+    // Both extractors (this AI gateway path and the user-AI paste path)
+    // produce one consistent shape so the client doesn't have to fork
+    // on which extractor ran.
     const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
       method: "POST",
       headers: {
@@ -184,78 +193,108 @@ serve(async (req) => {
         messages: [
           {
             role: "system",
-            content: `You are a strategic asset extraction assistant. Given a user's description of their resources, you map their DEPLOYABLE POWER — not their biography.
+            content: `You are a strategic asset extraction assistant. Given a user's description of their resources, you map their DEPLOYABLE POWER AND UPSTREAM-GENERATIVE CAPACITY across four simultaneous dimensions: leverage, maturity, time horizon, and nature.
 
-THE CENTRAL FILTER: A real asset is something that can be activated, transferred, trusted, sold, scaled, or compounded. Things-touched ≠ deployable assets. If an item cannot move reality this month, it is either symbolic, aspirational, or latent — and you must tag it accordingly, not pretend it's a weapon.
+CRITICAL — DO NOT amputate symbolic / mythic / meaning-making layers. Some of the highest-leverage assets a human owns are NOT directly monetizable: meaning-making capacity, mythic coherence, cross-domain synthesis, deep trust fields, embodied worldview architecture. These are upstream generators of downstream reality. Tag them with nature: symbolic / mythic and let them score high on leverage when they hold up everything else.
 
-For every candidate, ask:
-1. Is it real now (not a plan, not an intention)?
-2. Owned by the user (vs. relational, borrowed, aspirational)?
-3. Can it create value this month?
-4. Can someone else understand it cold?
-5. Can someone buy it, share it, fund it, or build with it?
+FIRST — name the user's CENTER OF GRAVITY (root capacity).
+Before listing assets, articulate the deeper field-function the user runs on the world. This is usually a verb-phrase capacity, not a noun. The Center of Gravity is the FIRST entry in the array, with type: "Center of Gravity", category: "Root Capacity", subtype: null. Its name IS the field-function articulation in one sentence.
 
-Return a JSON array. Every asset MUST have all 7 fields:
-- "category": Best match from the provided list, format "Type > SubType > Title". If genuinely deployable but no fit, use "Other > Other > Other" and explain in description.
-- "name": Specific, concrete asset name (3-7 words).
-- "description": 1-2 sentences. What it actually IS, in plain language.
-- "why_value": 1 sentence. What it can produce; who would buy / share / fund / build with it.
-- "maturity": One of "monetizable_now" | "usable_but_needs_packaging" | "latent" | "aspirational" | "symbolic_only".
-- "horizon": One of "now" | "next" | "later".
+Return a JSON array. Every asset MUST have all 11 fields:
+- "category": Best match from the provided list as "Type > SubType > Title". For Center of Gravity entry: "Center of Gravity > Root Capacity > <short label>". If a real asset doesn't fit, use "Other > Other > Other" and explain in description.
+- "name": Specific, concrete asset name (3-7 words). For Center of Gravity, the field-function articulation as one sentence.
+- "description": 1-2 sentences. What it actually IS, in plain language that preserves relational texture (no LinkedIn copy, no "social proof generator" labels).
+- "why_value": 1 sentence. What it can produce; what it holds up. For symbolic/mythic items, why_value means upstream-generative force, not commercial revenue.
+- "expresses_root": 1 line — how this asset expresses or branches from the Center of Gravity. Empty string for the Center of Gravity entry itself.
+- "maturity": "monetizable_now" | "usable_but_needs_packaging" | "latent" | "aspirational" | "symbolic_only".
+- "horizon": "now" | "near" | "long_term" | "civilization_scale".
+- "nature": "practical" | "relational" | "symbolic" | "infrastructural" | "mythic" | "intellectual" | "economic".
 - "leverage_score": 1-10.
-- "is_power_node": boolean. True ONLY for the 5-7 assets that hold most of the leverage. Default false.
+- "is_offer": boolean. True only for productized offers (paid sessions, cohorts, retainers, named services). False for the underlying IP they deploy.
+- "is_power_node": boolean. True only for the 3-7 assets where, if removed, most of the leverage collapses.
 
-MATURITY RUBRIC:
-- monetizable_now: documented, deliverable, priced — could produce revenue THIS MONTH.
-- usable_but_needs_packaging: real and proven, but lives in user's head or scattered artifacts. Two weeks of packaging from sellable.
-- latent: potential real but unproven in market.
-- aspirational: relational / networked / intended access. Door exists, not yet opened for value.
-- symbolic_only: mythic / biographical / sacred fuel. Real but operationally inert today. Tag honestly.
+MATURITY (UNCHANGED — about deployment readiness, NOT about value):
+- monetizable_now / usable_but_needs_packaging / latent / aspirational / symbolic_only
 
-HORIZON:
+HORIZON (4 VALUES):
 - now: activate this quarter.
-- next: package in 6 months once "now" items are running.
-- later: strategic-north-star or civilization-scale. Belongs for orientation, not this month's plan.
+- near: package in 6-18 months.
+- long_term: 2-5 year strategic asset.
+- civilization_scale: generational, north-star. Doesn't compete with money-now items.
 
-LEVERAGE_SCORE (HARSH):
-- 10: revenue / credibility / strategic compounding ALMOST IMMEDIATELY if acted on. Reserve for very few.
-- 8-9: proven and near. Has produced value before or one packaging-step away.
-- 5-7: real but needs documentation, distribution, or proof.
-- 3-4: latent or symbolic. Not currently moving reality.
+NATURE (7 VALUES — the ontological dimension):
+- practical: concrete skills/tools/deliverables.
+- relational: trust, connections, warm bonds, shared history.
+- symbolic: meaning-making, narrative coherence, brand essence, archetypal resonance. (HIGH-LEVERAGE in its own right.)
+- infrastructural: systems, platforms, distribution rails, operational scaffolding.
+- mythic: origin stories, sacred lineage, cross-domain synthesis that organizes worldview.
+- intellectual: frameworks, methodologies, structured thought, IP.
+- economic: commercial offers, financial instruments, productized services.
+
+LEVERAGE_SCORE (RECALIBRATED):
+"Value" includes ALL of: revenue, credibility, strategic position, generative force, audience trust, mythic coherence. A symbolic asset that holds up an entire worldview is high-leverage.
+- 10: load-bearing; if removed, much collapses.
+- 8-9: proven and producing value, OR upstream of multiple other assets.
+- 5-7: real but mid-tier — needs distribution OR moderate generative.
+- 3-4: latent or low-activation symbolic.
 - 1-2: present but operationally inert.
 
-If more than ~5 items hit 8+, you are inflating. Re-score. The scoreboard should look like a power law, not a participation trophy.
+POWER-LAW DISTRIBUTION (HARD GUARD):
+Most assets land 3-5. A few at 7. One or two at 9. AT MOST ~5 ASSETS HIT 8+. If you find more than 5 at 8+, you are inflating — re-score harshly.
 
-IS_POWER_NODE: true only for items where, if removed, most of the leverage collapses. Most users have a small handful. Be ruthless.
+IS_POWER_NODE: true only for the 3-7 load-bearing assets. Center of Gravity is automatically a power node.
 
-Sort the final array by: power nodes first (desc leverage_score), then monetizable_now (desc), then everything else (desc), with symbolic_only LAST regardless of score.
+IS_OFFER: true for productized offers; false for the IP/methodology they deploy. Don't shove offers into Methodology tags — flag them with is_offer instead.
+
+RELATIONAL DE-DUPLICATION:
+The relationship IS the asset. Testimonials, referral counts, social proof are EXPRESSIONS of the relationship — fold them into the relationship's description, do not list separately. Same for: methodology vs. session that uses it, audience vs. broadcast that reached them.
+
+TRIBAL RECOGNITION:
+For each entry, ask: would the people NAMED recognize themselves in how they're described? "Social proof generator" / "referral source" framing strips relational texture and ruptures trust. Name people by name with one human texture-word ("warm," "cracked-open," "in motion") not generic function labels.
+
+SORTING:
+1. Center of Gravity entry FIRST.
+2. Then power nodes (desc leverage_score).
+3. Then maturity=monetizable_now (desc).
+4. Then everything else (desc).
+5. maturity=symbolic_only LAST regardless of score.
 
 Rules:
-- Never empty name or description.
-- Plain language a curious 15-year-old could grok. No jargon.
-- Return ONLY a JSON array, no markdown, no preamble.
+- Never empty name, description, expresses_root (except Center of Gravity), or why_value.
+- Plain English with concrete particulars; preserve user's relational texture.
+- Return ONLY the JSON array, no markdown, no preamble.
 
-Example output:
+Example output (excerpt — first 2 entries):
 [
   {
-    "category": "Intellectual Property > Methodologies > Frameworks",
-    "name": "Top Talent Method (named-gift → session)",
-    "description": "A 4-step assessment that names a person's irreducible signature talent and turns it into a sellable session offer.",
-    "why_value": "The user can run a paid 90-min session next week using the existing prompt + reveal page.",
+    "category": "Center of Gravity > Root Capacity > Essence-naming field-function",
+    "name": "The capacity to perceive latent essence in people and systems, articulate it clearly, and reorganize reality around it.",
+    "description": "The user's deeper field-function: not a noun-asset but a verb-capacity that runs upstream of everything they make.",
+    "why_value": "Every other asset in the map is a downstream expression of this; if absent, none of the others would coalesce.",
+    "expresses_root": "",
     "maturity": "monetizable_now",
-    "horizon": "now",
+    "horizon": "long_term",
+    "nature": "intellectual",
     "leverage_score": 10,
-    "is_power_node": true
+    "is_offer": false,
+    "is_power_node": true,
+    "type": "Center of Gravity",
+    "subtype": null
   },
   {
-    "category": "Influence > Industry Recognition > Awards",
-    "name": "MIT credibility line",
-    "description": "Educational credential that opens doors with founders, investors, and corporate partners.",
-    "why_value": "Compounds with every public mention; near-zero marginal cost to deploy.",
+    "category": "Intellectual Property > Methodologies > Frameworks",
+    "name": "Top Talent Method",
+    "description": "A 4-step assessment that names a person's irreducible signature talent and articulates it into productized form.",
+    "why_value": "Direct downstream expression of the field-function; can become a signed paid session next week.",
+    "expresses_root": "Operationalizes the essence-naming capacity into a repeatable artifact.",
     "maturity": "monetizable_now",
     "horizon": "now",
+    "nature": "intellectual",
     "leverage_score": 9,
-    "is_power_node": true
+    "is_offer": false,
+    "is_power_node": true,
+    "type": "Intellectual Property",
+    "subtype": "Methodologies"
   }
 ]`
           },
@@ -302,8 +341,16 @@ Example output:
       description: string;
       why_value: string;
       maturity?: "monetizable_now" | "usable_but_needs_packaging" | "latent" | "aspirational" | "symbolic_only";
-      horizon?: "now" | "next" | "later";
+      // Day 63 v3 — horizon expanded from 3 values to 4. v2's "next" still
+      // accepted via legacy mapping below for backwards compat with any
+      // model that hasn't picked up the new prompt yet.
+      horizon?: "now" | "near" | "long_term" | "civilization_scale" | "next" | "later";
+      // Day 63 v3 — nature ontological tag (7 values) preserves symbolic /
+      // mythic capacity dignity instead of v2's flatten-to-symbolic_only.
+      nature?: "practical" | "relational" | "symbolic" | "infrastructural" | "mythic" | "intellectual" | "economic";
+      expresses_root?: string;
       leverage_score?: number;
+      is_offer?: boolean;
       is_power_node?: boolean;
     };
 
@@ -319,7 +366,11 @@ Example output:
     }
 
     // Allowed enum values — drop unknown values to undefined so the
-    // client doesn't render a garbage badge.
+    // client doesn't render a garbage badge. Day 63 v3 adds NATURE
+    // (7 values) and expands HORIZON to 4 values. Legacy v2 horizon
+    // values (next/later) are mapped forward to v3 equivalents so
+    // models that haven't picked up the new prompt still produce
+    // valid output.
     const MATURITY_VALUES = new Set([
       "monetizable_now",
       "usable_but_needs_packaging",
@@ -327,7 +378,30 @@ Example output:
       "aspirational",
       "symbolic_only",
     ]);
-    const HORIZON_VALUES = new Set(["now", "next", "later"]);
+    const HORIZON_VALUES = new Set([
+      "now",
+      "near",
+      "long_term",
+      "civilization_scale",
+    ]);
+    const NATURE_VALUES = new Set([
+      "practical",
+      "relational",
+      "symbolic",
+      "infrastructural",
+      "mythic",
+      "intellectual",
+      "economic",
+    ]);
+    // v2 → v3 horizon back-compat mapping. Older models may still emit
+    // "next" or "later"; we map them forward to keep validation passing.
+    const mapLegacyHorizon = (h: string | undefined): string | undefined => {
+      if (!h) return undefined;
+      if (HORIZON_VALUES.has(h)) return h;
+      if (h === "next") return "near";
+      if (h === "later") return "long_term";
+      return undefined;
+    };
 
     const validatedMatches = matches
       .filter((m) => m.category && m.name && m.description && m.why_value)
@@ -336,14 +410,18 @@ Example output:
         name: m.name,
         description: m.description,
         why_value: m.why_value,
+        expresses_root:
+          typeof m.expresses_root === "string" ? m.expresses_root.trim() || undefined : undefined,
         maturity: m.maturity && MATURITY_VALUES.has(m.maturity) ? m.maturity : undefined,
-        horizon: m.horizon && HORIZON_VALUES.has(m.horizon) ? m.horizon : undefined,
+        horizon: mapLegacyHorizon(m.horizon),
+        nature: m.nature && NATURE_VALUES.has(m.nature) ? m.nature : undefined,
         leverage_score:
           typeof m.leverage_score === "number" &&
           m.leverage_score >= 1 &&
           m.leverage_score <= 10
             ? Math.round(m.leverage_score)
             : undefined,
+        is_offer: typeof m.is_offer === "boolean" ? m.is_offer : false,
         is_power_node: typeof m.is_power_node === "boolean" ? m.is_power_node : false,
       }));
 
