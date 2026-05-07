@@ -589,7 +589,13 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
             "learn": LEARN_VISIBLE && zogComplete,              // After Step 1 — growth material (currently flag-gated off)
             "build": ignitionComplete,                          // After Step 2 — business canvas
             "meet": MEET_VISIBLE && zogComplete,                // After Step 1 — community events (currently flag-gated off)
-            "collaborate": ignitionComplete,                    // After Step 2 — needs a business first
+            // Day 63 evening (Sasha 2026-05-07): COLLABORATE gate
+            // shifted from `ignitionComplete` to `hasAssets`. The
+            // collaboration matching surface needs the user's actual
+            // mapped resources to produce meaningful matches — without
+            // assets, Genius Match has nothing to compute against. Ties
+            // the unlock to the truer prerequisite.
+            "collaborate": hasAssets,                           // After mapping ≥1 asset
             "buysell": ignitionComplete,                        // After Step 2 — needs offers to sell
         }
         : {};
