@@ -613,8 +613,15 @@ const App = () => (
                   <Route path="/mission-discovery" element={<RequireAuth><MissionDiscoveryLanding /></RequireAuth>} />
                   <Route path="/mission-discovery/wizard" element={<RequireAuth><MissionDiscoveryWizard /></RequireAuth>} />
                   {/* Asset Mapping */}
-                  <Route path="/asset-mapping" element={<RequireAuth><AssetMappingLanding /></RequireAuth>} />
-                  <Route path="/asset-mapping/wizard" element={<RequireAuth><AssetMappingWizard /></RequireAuth>} />
+                  {/* Day 63 (Sasha 2026-05-07): wrapped in GameShellV2 so the
+                      JOURNEY left rail + pane-2 nav appear consistently with
+                      other in-shell pages. The page-level WASH_BG was also
+                      removed from the inner components (shell provides the
+                      cream wash). SiteLogo's hidden-paths list also updated
+                      so the global top-center wordmark doesn't double-up
+                      with the SpacesRail wordmark. */}
+                  <Route path="/asset-mapping" element={<RequireAuth><GameShellV2><AssetMappingLanding /></GameShellV2></RequireAuth>} />
+                  <Route path="/asset-mapping/wizard" element={<RequireAuth><GameShellV2><AssetMappingWizard /></GameShellV2></RequireAuth>} />
                   {/* Product Builder - Legacy redirect to GameShell version */}
                   <Route path="/product-builder" element={<Navigate to="/game/build/product-builder" replace />} />
                   <Route path="/product-builder/*" element={<Navigate to="/game/build/product-builder" replace />} />

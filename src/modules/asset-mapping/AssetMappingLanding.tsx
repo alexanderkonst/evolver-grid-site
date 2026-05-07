@@ -32,6 +32,19 @@ import {
 } from "@/components/ui/tooltip";
 
 type Step = "choice" | "has-ai" | "paste-response" | "matched";
+// Day 63 (Sasha 2026-05-07) v3: extended with three new dimensions from the
+// Divine-Roast prompt upgrade — `maturity` (5-value enum), `horizon` (now/
+// next/later), and `isPowerNode` (top 5-7 assets). All optional for back-
+// compat with pre-Day-63 AI responses; UI conditionally renders each badge
+// only when present, so legacy snapshots degrade gracefully.
+type AssetMaturity =
+    | "monetizable_now"
+    | "usable_but_needs_packaging"
+    | "latent"
+    | "aspirational"
+    | "symbolic_only";
+type AssetHorizon = "now" | "next" | "later";
+
 type MatchedAsset = {
     typeTitle: string;
     subTypeTitle?: string;
@@ -41,7 +54,24 @@ type MatchedAsset = {
     description?: string;
     leverageScore?: number;
     leverageReason?: string;
+    maturity?: AssetMaturity;
+    horizon?: AssetHorizon;
+    isPowerNode?: boolean;
 };
+
+const MATURITY_VALUES: AssetMaturity[] = [
+    "monetizable_now",
+    "usable_but_needs_packaging",
+    "latent",
+    "aspirational",
+    "symbolic_only",
+];
+const HORIZON_VALUES: AssetHorizon[] = ["now", "next", "later"];
+
+const isMaturity = (v: unknown): v is AssetMaturity =>
+    typeof v === "string" && (MATURITY_VALUES as string[]).includes(v);
+const isHorizon = (v: unknown): v is AssetHorizon =>
+    typeof v === "string" && (HORIZON_VALUES as string[]).includes(v);
 
 // Map category strings to our taxonomy
 const CATEGORY_MAP: Record<string, string> = {
@@ -84,12 +114,20 @@ const fetchAssetMatches = async (text: string): Promise<MatchedAsset[] | null> =
             name?: string;
             description?: string;
             why_value?: string;
+            // Day 63 v3 — new strategic dimensions from match-assets prompt upgrade.
+            maturity?: string;
+            horizon?: string;
+            leverage_score?: number;
+            is_power_node?: boolean;
         };
         const matches = (data.matches as EdgeMatch[])
             .map((match): MatchedAsset | null => {
                 const name = match.name?.trim();
                 if (!name) return null;
                 // "Type > SubType > Title" → split on " > " and trim each piece.
+                // "Other" is now a valid type (when AI couldn't fit a real
+                // asset into the schema cleanly). Filter only on Unknown
+                // (which would mean a totally malformed category string).
                 const parts = (match.category ?? "")
                     .split(/\s*>\s*/)
                     .map((p) => p.trim())
@@ -103,6 +141,15 @@ const fetchAssetMatches = async (text: string): Promise<MatchedAsset[] | null> =
                     title: name,
                     description: match.description?.trim() || undefined,
                     leverageReason: match.why_value?.trim() || undefined,
+                    maturity: isMaturity(match.maturity) ? match.maturity : undefined,
+                    horizon: isHorizon(match.horizon) ? match.horizon : undefined,
+                    leverageScore:
+                        typeof match.leverage_score === "number" &&
+                        match.leverage_score >= 1 &&
+                        match.leverage_score <= 10
+                            ? Math.round(match.leverage_score)
+                            : undefined,
+                    isPowerNode: match.is_power_node === true,
                 };
             })
             .filter((m): m is MatchedAsset => m !== null);
@@ -342,6 +389,12 @@ const AssetMappingLanding = () => {
                         description: asset.description || asset.details || asset.summary || undefined,
                         leverageScore: asset.leverage_score || asset.leverageScore || undefined,
                         leverageReason: asset.leverage_reason || asset.leverageReason || undefined,
+                        // Day 63 v3 — new strategic dimensions from prompt upgrade.
+                        // Pre-Day-63 AI outputs won't carry these; absence falls
+                        // through to undefined and the UI degrades gracefully.
+                        maturity: isMaturity(asset.maturity) ? asset.maturity : undefined,
+                        horizon: isHorizon(asset.horizon) ? asset.horizon : undefined,
+                        isPowerNode: asset.is_power_node === true || asset.isPowerNode === true,
                     });
                 }
             } else {
@@ -412,8 +465,12 @@ const AssetMappingLanding = () => {
     };
 
     return (
-        <div className="min-h-dvh" style={{ background: WASH_BG }}>
-            <div className="max-w-2xl mx-auto px-5 py-10 sm:py-12">
+        // Day 63 (Sasha 2026-05-07): wrapper no longer paints WASH_BG —
+        // the GameShellV2 wrap (in App.tsx) provides the cream wash.
+        // Painting it here too created a double-wash slightly off-color
+        // from the shell's gradient. Inner content unchanged.
+        <div className="px-5 py-10 sm:py-12">
+            <div className="max-w-2xl mx-auto">
                 {/* ═══════ HEADER — Cormorant + ornament + italic echo ═══════ */}
                 {/* Day 63 (Sasha 2026-05-07): replaced Boxes circular medallion
                     + plain font-display H1 with the canonical Aurora editorial

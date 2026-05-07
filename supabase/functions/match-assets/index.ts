@@ -163,6 +163,16 @@ serve(async (req) => {
       `- ${a.type} > ${a.subType} > ${a.title}`
     ).join("\n");
 
+    // Day 63 (Sasha 2026-05-07) v3 prompt — aligned with the user-facing
+    // ASSET_MAPPING_PROMPT upgrade (src/prompts/extraction/assetMappingPrompt.ts).
+    // Same five new dimensions: maturity (5-value enum), horizon (now/next/later),
+    // is_power_node (boolean), tightened leverage_score rubric (10 = revenue
+    // ALMOST IMMEDIATELY if acted on), and explicit "things-touched ≠
+    // deployable assets" filter. Driven by the "Divine Roast" feedback —
+    // the prior prompt produced a flattering inventory rather than an
+    // operational power map. Both extractors (this AI gateway path and
+    // the user-AI paste path) now produce one consistent shape so the
+    // client doesn't have to fork on which extractor ran.
     const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
       method: "POST",
       headers: {
@@ -174,44 +184,84 @@ serve(async (req) => {
         messages: [
           {
             role: "system",
-            content: `You are an asset extraction assistant. Given a user's description of their assets, skills, or resources, extract each distinct asset and categorize it.
+            content: `You are a strategic asset extraction assistant. Given a user's description of their resources, you map their DEPLOYABLE POWER — not their biography.
 
-When identifying assets, prioritize those that:
-- Enable immediate collaboration or exchange
-- Can be monetized or provide clear value to others
-- Are most "liquid" (easy to share, access, or leverage)
+THE CENTRAL FILTER: A real asset is something that can be activated, transferred, trusted, sold, scaled, or compounded. Things-touched ≠ deployable assets. If an item cannot move reality this month, it is either symbolic, aspirational, or latent — and you must tag it accordingly, not pretend it's a weapon.
 
-Specifically look for:
-- Communities/audiences (size, profile, what they need)
-- Products/services (who is the ideal customer?)
-- Skills that can be immediately applied
-- Connections to key people or networks
-- Distribution channels (newsletters, podcasts, social reach)
+For every candidate, ask:
+1. Is it real now (not a plan, not an intention)?
+2. Owned by the user (vs. relational, borrowed, aspirational)?
+3. Can it create value this month?
+4. Can someone else understand it cold?
+5. Can someone buy it, share it, fund it, or build with it?
 
-For EACH asset mentioned, return a structured object with:
-- "category": The best matching category from the provided list (use the format "Type > SubType > Title")
-- "name": A concise asset name (3-6 words). If input has "Asset: X", use X. Otherwise derive from first clause.
-- "description": 1-2 sentences describing what this asset is or does.
-- "why_value": 1 sentence explaining why this asset is valuable or how it can be leveraged.
+Return a JSON array. Every asset MUST have all 7 fields:
+- "category": Best match from the provided list, format "Type > SubType > Title". If genuinely deployable but no fit, use "Other > Other > Other" and explain in description.
+- "name": Specific, concrete asset name (3-7 words).
+- "description": 1-2 sentences. What it actually IS, in plain language.
+- "why_value": 1 sentence. What it can produce; who would buy / share / fund / build with it.
+- "maturity": One of "monetizable_now" | "usable_but_needs_packaging" | "latent" | "aspirational" | "symbolic_only".
+- "horizon": One of "now" | "next" | "later".
+- "leverage_score": 1-10.
+- "is_power_node": boolean. True ONLY for the 5-7 assets that hold most of the leverage. Default false.
+
+MATURITY RUBRIC:
+- monetizable_now: documented, deliverable, priced — could produce revenue THIS MONTH.
+- usable_but_needs_packaging: real and proven, but lives in user's head or scattered artifacts. Two weeks of packaging from sellable.
+- latent: potential real but unproven in market.
+- aspirational: relational / networked / intended access. Door exists, not yet opened for value.
+- symbolic_only: mythic / biographical / sacred fuel. Real but operationally inert today. Tag honestly.
+
+HORIZON:
+- now: activate this quarter.
+- next: package in 6 months once "now" items are running.
+- later: strategic-north-star or civilization-scale. Belongs for orientation, not this month's plan.
+
+LEVERAGE_SCORE (HARSH):
+- 10: revenue / credibility / strategic compounding ALMOST IMMEDIATELY if acted on. Reserve for very few.
+- 8-9: proven and near. Has produced value before or one packaging-step away.
+- 5-7: real but needs documentation, distribution, or proof.
+- 3-4: latent or symbolic. Not currently moving reality.
+- 1-2: present but operationally inert.
+
+If more than ~5 items hit 8+, you are inflating. Re-score. The scoreboard should look like a power law, not a participation trophy.
+
+IS_POWER_NODE: true only for items where, if removed, most of the leverage collapses. Most users have a small handful. Be ruthless.
+
+Sort the final array by: power nodes first (desc leverage_score), then monetizable_now (desc), then everything else (desc), with symbolic_only LAST regardless of score.
 
 Rules:
-- Never return empty name or description fields.
-- Each asset must have all 4 fields.
-- Return ONLY a JSON array, no markdown.
+- Never empty name or description.
+- Plain language a curious 15-year-old could grok. No jargon.
+- Return ONLY a JSON array, no markdown, no preamble.
 
 Example output:
 [
   {
-    "category": "Material Resources > Digital Assets > Digital Content Libraries",
-    "name": "Content + distribution channels",
-    "description": "Multi-channel distribution strategy for short-form and long-form content across YouTube, Instagram, X, Telegram, WhatsApp, FB.",
-    "why_value": "Built-in go-to-market rails for funnels, launches, and community onboarding."
+    "category": "Intellectual Property > Methodologies > Frameworks",
+    "name": "Top Talent Method (named-gift → session)",
+    "description": "A 4-step assessment that names a person's irreducible signature talent and turns it into a sellable session offer.",
+    "why_value": "The user can run a paid 90-min session next week using the existing prompt + reveal page.",
+    "maturity": "monetizable_now",
+    "horizon": "now",
+    "leverage_score": 10,
+    "is_power_node": true
+  },
+  {
+    "category": "Influence > Industry Recognition > Awards",
+    "name": "MIT credibility line",
+    "description": "Educational credential that opens doors with founders, investors, and corporate partners.",
+    "why_value": "Compounds with every public mention; near-zero marginal cost to deploy.",
+    "maturity": "monetizable_now",
+    "horizon": "now",
+    "leverage_score": 9,
+    "is_power_node": true
   }
 ]`
           },
           {
             role: "user",
-            content: `Extract and categorize the assets from this text:\n\n"${text}"\n\nAvailable categories:\n${categoryList}\n\nReturn up to ${limit} extracted assets as a JSON array.`
+            content: `Extract and map the user's deployable assets from this text:\n\n"${text}"\n\nAvailable categories:\n${categoryList}\n\nReturn up to ${limit} extracted assets as a JSON array, sorted per the rubric above.`
           }
         ],
         temperature: 0.3,
@@ -240,8 +290,24 @@ Example output:
     const aiResult = await response.json();
     const content = aiResult.choices?.[0]?.message?.content || "[]";
 
-    // Parse the AI response - extract JSON from potential markdown
-    let matches: Array<{ category: string; name: string; description: string; why_value: string }> = [];
+    // Day 63 (Sasha 2026-05-07): response shape extended with the new
+    // dimensions from the v3 prompt — maturity, horizon, leverage_score,
+    // is_power_node. The first four core fields stay required; the new
+    // fields are passed through when present (graceful for any model
+    // that drops a field). Validation rejects anything missing the four
+    // core fields so the client can still render meaningful cards.
+    type EdgeMatchOut = {
+      category: string;
+      name: string;
+      description: string;
+      why_value: string;
+      maturity?: "monetizable_now" | "usable_but_needs_packaging" | "latent" | "aspirational" | "symbolic_only";
+      horizon?: "now" | "next" | "later";
+      leverage_score?: number;
+      is_power_node?: boolean;
+    };
+
+    let matches: EdgeMatchOut[] = [];
     try {
       const jsonMatch = content.match(/\[[\s\S]*\]/);
       if (jsonMatch) {
@@ -252,14 +318,33 @@ Example output:
       matches = [];
     }
 
-    // Validate and filter matches - ensure all required fields are present
+    // Allowed enum values — drop unknown values to undefined so the
+    // client doesn't render a garbage badge.
+    const MATURITY_VALUES = new Set([
+      "monetizable_now",
+      "usable_but_needs_packaging",
+      "latent",
+      "aspirational",
+      "symbolic_only",
+    ]);
+    const HORIZON_VALUES = new Set(["now", "next", "later"]);
+
     const validatedMatches = matches
-      .filter(m => m.category && m.name && m.description && m.why_value)
-      .map(m => ({
+      .filter((m) => m.category && m.name && m.description && m.why_value)
+      .map((m) => ({
         category: m.category,
         name: m.name,
         description: m.description,
         why_value: m.why_value,
+        maturity: m.maturity && MATURITY_VALUES.has(m.maturity) ? m.maturity : undefined,
+        horizon: m.horizon && HORIZON_VALUES.has(m.horizon) ? m.horizon : undefined,
+        leverage_score:
+          typeof m.leverage_score === "number" &&
+          m.leverage_score >= 1 &&
+          m.leverage_score <= 10
+            ? Math.round(m.leverage_score)
+            : undefined,
+        is_power_node: typeof m.is_power_node === "boolean" ? m.is_power_node : false,
       }));
 
     return new Response(

@@ -54,6 +54,13 @@ const SiteLogo = () => {
         // ME-space subpage at /game/me/quality-of-life is already
         // covered by the /game prefix earlier in this list.
         "/quality-of-life-map",
+        // Day 63 (Sasha 2026-05-07): /asset-mapping wrapped in
+        // GameShellV2 today (and /asset-mapping/wizard via startsWith).
+        // Without this entry, the global SiteLogo wordmark renders
+        // top-center and doubles up with the SpacesRail wordmark in
+        // pane 1. Sasha called this out explicitly with the directive
+        // to comprehensively trace EVERY brand-mark surface.
+        "/asset-mapping",
     ];
     const exactHidden = ["/", "/ignite", "/my-result", "/path", "/auth", "/dashboard", "/ai-os", "/library", "/prompt", "/ubb"];
     if (hidden.some(p => location.pathname.startsWith(p)) || exactHidden.includes(location.pathname)) return null;
