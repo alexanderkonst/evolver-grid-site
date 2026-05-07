@@ -91,84 +91,92 @@ const QualityOfLifeMapAssessment = ({
   // contained surface (not full viewport); editorial typography
   // matches the rest of QoL (Cormorant H1 + Source Serif 4 italic
   // subhead + Cormorant tracked-uppercase eyebrow).
+  // Day 64 evening (Sasha 2026-05-07): editorial typography-first hero
+  // redesign. Removed the 80×80 purple gradient icon container with
+  // diamond clip-art (a wabi-era leftover that competed with the
+  // headline and didn't match landing register). Replaced with a
+  // single small gold ✦ ornament above the eyebrow — the editorial
+  // anchor pattern used across landing/playbook/path. Tightened
+  // spacing rhythm: small gap after ornament, generous gap before
+  // CTA. Headline scale bumped up for hero impact (clamp now reaches
+  // 56px on wide screens). CTA proportions widened. All typography
+  // at Strong 1.5× per ui_playbook.md Part VIII (Cormorant 700 +
+  // halo-deep cocktail matching MethodologyLandingPage.tsx).
   const introScreen = (
-    <section className="px-6 py-12 sm:py-16 mx-auto max-w-2xl">
-      <div className="text-center space-y-6">
-        {/* Eyebrow — Day 64 (third pass, Sasha 2026-05-07): full halo-
-            deep cocktail (4-layer: 28px white halo + white near-stroke
-            + 2× navy under-stroke) per ui_playbook.md Part VIII Master
-            Legibility Strong. Matches landing page exactly. The earlier
-            single-white-stroke cocktail was the weak version and left
-            the eyebrow faint on the cream cinematic sections. Bumped
-            fontWeight 600→700 (Cormorant max). */}
+    <section className="px-6 py-16 sm:py-24 mx-auto max-w-2xl">
+      <div className="text-center flex flex-col items-center">
+        {/* Editorial anchor — small gold ✦ ornament. Same pattern as
+            landing CTAs and /ubb improve buttons. Replaces the heavy
+            purple icon block. */}
+        <div
+          aria-hidden="true"
+          style={{
+            fontSize: "28px",
+            color: "rgba(244, 212, 114, 0.95)",
+            textShadow: "0 0 18px rgba(244,212,114,0.55), 0 0 6px rgba(212,175,55,0.85)",
+            lineHeight: 1,
+            marginBottom: "20px",
+          }}
+        >
+          ✦
+        </div>
+
+        {/* Eyebrow — Strong cocktail. */}
         <p
           style={{
             fontFamily: "'Cormorant Garamond', serif",
             fontSize: "11px",
             fontWeight: 700,
-            letterSpacing: "0.22em",
+            letterSpacing: "0.24em",
             textTransform: "uppercase",
             color: "var(--skin-text-primary, #0a1628)",
             textShadow: "var(--skin-text-halo-deep, 0 0 28px rgba(255,255,255,0.85), 0 1px 2px rgba(255,255,255,0.95), 0 0 1px rgba(11,42,90,0.65), 0 1px 0 rgba(11,42,90,0.45))",
+            marginBottom: "16px",
           }}
         >
           Quality of Life Map
         </p>
 
-        {/* Dodecahedron Icon */}
-        <div className="flex items-center justify-center">
-          <div className="w-20 h-20 rounded-3xl bg-gradient-to-br from-[var(--wabi-aqua)] to-[var(--depth-violet)] flex items-center justify-center shadow-lg">
-            <img
-              src="/dodecahedron.png"
-              alt="Quality of Life"
-              className="w-12 h-12 object-contain"
-            />
-          </div>
-        </div>
-
-        {/* Headline — Cormorant editorial. Day 64 (third pass): halo-
-            deep cocktail strengthened to the deepest variant (28px
-            halo + 0.95 white near-stroke + 0.65/0.45 navy under-strokes)
-            matching MethodologyLandingPage.tsx line 79 exactly. */}
+        {/* Headline — bumped scale for hero impact (was clamp 28-42px,
+            now 32-56px). Strong cocktail. */}
         <h1
           style={{
             fontFamily: "'Cormorant Garamond', serif",
             fontWeight: 700,
-            fontSize: "clamp(28px, 4vw, 42px)",
-            letterSpacing: "-0.005em",
-            lineHeight: 1.1,
+            fontSize: "clamp(32px, 5.5vw, 56px)",
+            letterSpacing: "-0.01em",
+            lineHeight: 1.05,
             color: "var(--skin-text-primary, #0a1628)",
             textShadow: "var(--skin-text-halo-deep, 0 0 28px rgba(255,255,255,0.85), 0 1px 2px rgba(255,255,255,0.95), 0 0 1px rgba(11,42,90,0.65), 0 1px 0 rgba(11,42,90,0.45))",
+            marginBottom: "20px",
+            maxWidth: "20ch",
           }}
         >
           Rate 8 life areas
         </h1>
 
-        {/* Subhead — Day 64 (third pass): muted-alpha lifted from 0.78
-            (wabi-text-secondary) to 0.88 + halo-soft for legibility on
-            variable-luminance bg. Per ui_playbook.md Part VIII lever 2
-            (muted-alpha lift). */}
+        {/* Subhead — Source Serif 4 italic, alpha 0.88 (Strong), halo-soft. */}
         <p
           style={{
             fontFamily: "'Source Serif 4', 'Cormorant Garamond', serif",
             fontStyle: "italic",
-            fontSize: "16px",
-            lineHeight: 1.6,
+            fontSize: "17px",
+            lineHeight: 1.55,
             color: "rgba(11, 42, 90, 0.88)",
             textShadow: "0 1px 2px rgba(255,255,255,0.7)",
+            maxWidth: "32ch",
+            marginBottom: "44px",
           }}
         >
           See where you're thriving and where to grow.
         </p>
 
-        {/* CTA — Day 64 (Sasha 2026-05-07): editorial gold pattern
-            from /ubb GenericArtifactScreen replacing the violet gradient
-            wabi-primary. Sasha called out "the colors are not the
-            colors that we use in our UI" — landing register uses
-            dark-navy CTA with gold halo, not violet→cornflower. */}
+        {/* CTA — editorial gold pattern. Widened proportions (max-w-md,
+            h-16) for hero presence. Hover: subtle lift + brighter gold
+            halo. */}
         <button
           onClick={() => setShowIntro(false)}
-          className="group relative inline-flex items-center justify-center gap-2 w-full max-w-sm h-14 rounded-xl transition-all duration-300 hover:translate-y-[-1px]"
+          className="group relative inline-flex items-center justify-center gap-2.5 w-full max-w-md h-16 rounded-2xl transition-all duration-300 hover:translate-y-[-1px] active:translate-y-0"
           style={{
             background: "var(--skin-cta-bg, linear-gradient(135deg, rgba(10,22,40,0.92) 0%, rgba(18,28,56,0.85) 50%, rgba(10,22,40,0.92) 100%))",
             color: "var(--skin-cta-text, rgba(245, 245, 250, 0.98))",
@@ -177,14 +185,23 @@ const QualityOfLifeMapAssessment = ({
             backdropFilter: "blur(14px) saturate(160%)",
             WebkitBackdropFilter: "blur(14px) saturate(160%)",
             fontFamily: "'Cormorant Garamond', serif",
-            fontWeight: 600,
-            letterSpacing: "0.14em",
+            fontWeight: 700,
+            letterSpacing: "0.18em",
             textTransform: "uppercase",
             fontSize: "14px",
             textShadow: "var(--skin-cta-text-shadow, 0 0 16px rgba(240,194,127,0.28))",
           }}
         >
-          <span aria-hidden="true" style={{ color: "var(--skin-cta-icon, rgba(244, 212, 114, 0.98))", textShadow: "0 0 12px rgba(244,212,114,0.8)", fontSize: "16px" }}>✦</span>
+          <span
+            aria-hidden="true"
+            style={{
+              color: "var(--skin-cta-icon, rgba(244, 212, 114, 0.98))",
+              textShadow: "0 0 12px rgba(244,212,114,0.8)",
+              fontSize: "17px",
+            }}
+          >
+            ✦
+          </span>
           Map My Life
         </button>
       </div>
