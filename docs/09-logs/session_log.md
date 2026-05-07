@@ -6941,3 +6941,63 @@ Type-check clean.
 ### Si–Do
 
 Chip stays locked. The Results page is now coherent with landing register, the PDF download path has the explicit CSS-var resolution fix, the ME-space integration is wired, and Priorities + Growth Recipe pages are off the routing surface. **Sasha's verification protocol:** take the assessment → land on results → confirm liquid-glass register reads correctly → click Download PDF → confirm a real PDF saves → click ME chip in pane 1 → confirm "My Quality of Life" appears as a sub-item → click → confirm same Results page renders. If all five pass, the chip is ready to flip from `locked: true` → `locked: false`.
+
+---
+
+## Day 64 (verification pass) — pre-existing TransformationQol* provider bug found + fixed (May 7, 2026)
+
+After the Day 64 evening revamp shipped, Sasha asked for a verification pass — "check for bugs, make another pass, please go ahead and do that. Let's make sure it actually works." Walked through the 14-item DoD systematically.
+
+### What the verification found
+
+13 of 14 DoD items confirmed clean:
+- All imports used; no unused
+- No orphan refs to retired helpers (`buildQolPrioritiesPath` / `buildQolGrowthRecipePath`) outside the dead-code Priorities page (which is itself unrouted)
+- ShareQol prop signature matches Results' usage exactly (`overallStage`, `growthDomains`, `strengthDomains`, `profileId`)
+- Embedded mode `renderMode === "embedded"` branch preserved post-rewrite
+- `/game/me/quality-of-life` route correctly wraps `QolLayout` + `RequireAuth`; ME-space activation works via `SPACES.find(s => location.pathname.startsWith(s.path))` matching `/game/me`
+- Assessment's `handleNext` for embedded mode still routes to `/game/learn/qol-results` (Day 63 fix preserved)
+- `npx tsc --noEmit` clean
+- `npm run build` succeeded in 7.45s — no errors, only pre-existing chunk-size warnings unrelated to QoL
+- `data-qol-snapshot` attribute present on the snapshot ref div for html2canvas onclone resolution
+- `domainAbbreviations` map renders correctly per domain in the new 8-Life-Areas list
+- No stale comments referencing the now-retired cream-surface treatment
+- Empty-state + not-complete branches in Results still render correctly with Cormorant + halo
+
+### The 14th item — pre-existing latent bug
+
+`TransformationQolAssessment` and `TransformationQolResults` (the embedded-mode wrappers at `/game/learn/qol-*`) mount the QoL pages WITHOUT wrapping them in `QolAssessmentProvider`. The QoL pages call `useQolAssessment()` which throws *"useQolAssessment must be used within a QolAssessmentProvider"* if the context is missing.
+
+The standalone path (`/quality-of-life-map/*`) gets the provider via `QolLayout`. The embedded path was missing it — anyone hitting `/game/learn/qol-assessment` or `/game/learn/qol-results` would see a runtime crash.
+
+This bug **predates Day 64** — likely existed since the Transformation* wrappers were authored. It went unsurfaced because (a) the embedded routes are rarely accessed, (b) TypeScript doesn't model the runtime-throw of `useContext`, (c) no tests covered the routes.
+
+**Fix:** wrapped both Transformation* components in `QolAssessmentProvider`:
+
+```tsx
+<GameShellV2>
+  <QolAssessmentProvider>
+    <QualityOfLifeMapResults renderMode="embedded" />
+  </QolAssessmentProvider>
+</GameShellV2>
+```
+
+### Bonus cleanup
+
+- Marked `buildQolPrioritiesPath` + `buildQolGrowthRecipePath` in `onboardingRouting.ts` with JSDoc `@deprecated` so future developers don't reach for them. The functions stay for the dead-code Priorities page's internal use; deletion is safe once the dead pages are truly removed.
+
+### Files touched (3 in this verification round)
+
+- `src/lib/onboardingRouting.ts` — `@deprecated` JSDoc on retired helpers
+- `src/pages/spaces/transformation/TransformationQolAssessment.tsx` — wrapped in `QolAssessmentProvider`
+- `src/pages/spaces/transformation/TransformationQolResults.tsx` — same fix
+
+Type-check + build still clean.
+
+### Lesson logged
+
+**`useContext`-with-runtime-throw is invisible to type-check.** The QolAssessment context's `useQolAssessment()` hook throws if the context is undefined at runtime, but TypeScript's narrowing treats the early `if (context === undefined) throw` as making the rest of the function safe — there's no compile-time enforcement that callers wrap in the provider. Pattern: any time you author a `useFooContext` that throws on missing provider, also document the wrapping requirement at the call sites. The TransformationQol* wrappers were written without QolAssessmentProvider because the requirement wasn't visible from the call site. A `// MUST be inside QolAssessmentProvider` comment on the export, or a CodeQL rule, or a runtime test of every routed component would catch this kind of latent bug.
+
+### Si–Do
+
+Verification pass closed cleanly. The QoL module's data integrity, routing, ME-space integration, PDF capture, and embedded-mode wrappers are all sound. Chip stays locked until Sasha runs the visual verification protocol; no remaining code-level concerns surfaced.
