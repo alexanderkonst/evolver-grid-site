@@ -58,25 +58,57 @@ const CATEGORY_MAP: Record<string, string> = {
 
 const normalizeText = (value?: string) => value?.trim().toLowerCase() || "";
 
-// AI matching function — UNCHANGED from prior version.
+// AI matching function — Day 63 (Sasha 2026-05-07) BUG FIX: response-shape
+// alignment with the actual edge function. The edge function at
+// supabase/functions/match-assets/index.ts returns rows shaped
+//   { category: "Type > SubType > Title", name, description, why_value }
+// but the previous client read fields like `match.type / match.subType /
+// match.title / match.asset_id / match.score` — none of which exist in
+// that response. Result: every AI-match call returned 'Unknown', got
+// filtered out, and the function returned null — silently making the
+// entire AI-matching path dead code (always falling through to the local
+// regex parser). Now we parse the "Type > SubType > Title" string into
+// the three taxonomy levels and map name/description/why_value correctly.
+// `leverage_score` is NOT returned by the edge fn (only the local-parser
+// path captures it from the user's AI response), so we leave it
+// undefined here — the UI handles a missing score gracefully.
 const fetchAssetMatches = async (text: string): Promise<MatchedAsset[] | null> => {
     try {
         const { data, error } = await supabase.functions.invoke("match-assets", {
             body: { text, limit: 8 },
         });
         if (error || !data?.matches) return null;
-        const matches = (data.matches as Array<{ asset_id: string; score: number; type?: string; subType?: string; title?: string }>)
-            .map((match) => ({
-                typeTitle: match.type || 'Unknown',
-                subTypeTitle: match.subType,
-                categoryTitle: match.title,
-                categoryId: match.asset_id,
-                title: match.title || 'Unknown Asset',
-                leverageScore: Math.round(match.score * 10),
-            }))
-            .filter(m => m.typeTitle !== 'Unknown');
+
+        type EdgeMatch = {
+            category?: string;
+            name?: string;
+            description?: string;
+            why_value?: string;
+        };
+        const matches = (data.matches as EdgeMatch[])
+            .map((match): MatchedAsset | null => {
+                const name = match.name?.trim();
+                if (!name) return null;
+                // "Type > SubType > Title" → split on " > " and trim each piece.
+                const parts = (match.category ?? "")
+                    .split(/\s*>\s*/)
+                    .map((p) => p.trim())
+                    .filter(Boolean);
+                const typeTitle = parts[0] || "Unknown";
+                if (typeTitle === "Unknown") return null;
+                return {
+                    typeTitle,
+                    subTypeTitle: parts[1] || undefined,
+                    categoryTitle: parts[2] || undefined,
+                    title: name,
+                    description: match.description?.trim() || undefined,
+                    leverageReason: match.why_value?.trim() || undefined,
+                };
+            })
+            .filter((m): m is MatchedAsset => m !== null);
         return matches.length > 0 ? matches : null;
     } catch (err) {
+        console.warn("[fetchAssetMatches] edge function call failed:", err);
         return null;
     }
 };
@@ -367,6 +399,10 @@ const AssetMappingLanding = () => {
                 }
             }
         } catch (e) {
+            // Local parser failures are non-fatal — we fall through to the
+            // sort+slice below and the user just sees an empty matched list.
+            // Logged so debugging in prod doesn't have to guess what happened.
+            console.warn("[handleMatchAssets] local parser threw:", e);
         }
 
         setIsMatching(false);
