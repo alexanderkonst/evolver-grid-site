@@ -53,7 +53,15 @@ const PlaybookShell = ({
     getStepState ? getStepState(s) : defaultStateFor(s, currentSlug);
 
   return (
-    <div className="w-full max-w-[960px] mx-auto px-4 sm:px-6 pt-6 pb-20">
+    // Day 64 (Sasha 2026-05-07): `min-h-[calc(100dvh+4rem)]` guarantees the
+    // shell is always ≥64px taller than the viewport. The desktop `<main>`
+    // (GameShellV2) is `min-h-dvh` — on tall displays Step 1's content (~1215px)
+    // can fit entirely inside `min-h-dvh`, leaving zero document overflow and
+    // making the page feel "stuck" on first load. Forcing the shell past
+    // viewport restores reliable scroll headroom on every step regardless of
+    // content length. 4rem is enough to register as "this scrolls" without
+    // visibly padding the GitHub/Contact footer off-screen.
+    <div className="w-full max-w-[960px] mx-auto px-4 sm:px-6 pt-6 pb-20 min-h-[calc(100dvh+4rem)]">
       {/* ═══════ BACK (→ "/" Start Here) ═══════ */}
       {/* Day 47 later-same-day (Sasha): "BACK TO LANDING" → just "BACK".
           Destination unchanged — still navigates to "/" (Start Here).

@@ -129,46 +129,18 @@ const SPACE_SECTIONS: SpaceSections = {
         sections: [
             {
                 id: "top-talent",
-                label: "My Top Talent",
+                label: "Top Talent",
                 path: "/game/me/zone-of-genius",
-                // Day 58 (Sasha 2026-05-02): full sub-pane restructure.
-                // Removed: bullseye / vibrational-key / three-lenses / life-scene
-                //   (their content folded into the rebuilt overview hero).
-                // Added: how-it-shows-up / three-key-talents / top-shadow / one-action
-                //   (sourced from the deep topTalentProfile fields).
-                // Renamed: mastery → "Path of Mastery"; roles → "Ideal Environments"
-                //   (paths preserved — inbound URLs still resolve).
-                // Order: Overview → How It Shows Up → Three Key Talents → Top Shadow
-                //   → One Action → Appreciated For → Path of Mastery → Ideal
-                //   Environments → Complementary Partner → Monetization (10 total).
-                subSections: [
-                    // Day 58 (Sasha 2026-05-02): "Start Here" added as
-                    // the FIRST subsection — the activation home the
-                    // user can return to anytime to complete their
-                    // three-step activation. Same content as the
-                    // post-payment /activate/welcome page (shared
-                    // <ActivationSteps /> component) so the user can
-                    // come back to it from inside the ME shell.
-                    { id: "tt-start-here", label: "Start Here", path: "/game/me/zone-of-genius/start-here" },
-                    { id: "tt-overview", label: "Overview", path: "/game/me/zone-of-genius" },
-                    { id: "tt-how-it-shows-up", label: "How It Shows Up", path: "/game/me/zone-of-genius/how-it-shows-up" },
-                    { id: "tt-three-key-talents", label: "Three Talents in Depth", path: "/game/me/zone-of-genius/three-key-talents" },
-                    { id: "tt-top-shadow", label: "Top Shadow", path: "/game/me/zone-of-genius/top-shadow" },
-                    { id: "tt-mastery", label: "Path of Mastery", path: "/game/me/zone-of-genius/mastery" },
-                    { id: "tt-one-action", label: "One Action", path: "/game/me/zone-of-genius/one-action" },
-                    { id: "tt-roles", label: "Ideal Environments", path: "/game/me/zone-of-genius/roles" },
-                    { id: "tt-partner", label: "Complementary Partner", path: "/game/me/zone-of-genius/partner" },
-                    { id: "tt-monetization", label: "Monetization", path: "/game/me/zone-of-genius/monetization" },
-                    // Day 61 (Sasha 2026-05-04 12:00): "What's Next?"
-                    // added as the closing subpage — same content as
-                    // the Step 3 section on Start Here (the "next move"
-                    // moment), surfaced as its own page so the user
-                    // who's read all the way through still has a
-                    // dedicated landing point at the end. UI-emphasized
-                    // equally to Start Here via isHomeNode below — both
-                    // are the bookends of this section's reading order.
-                    { id: "tt-whats-next", label: "What's Next?", path: "/game/me/zone-of-genius/whats-next" },
-                ],
+                // Day 64 (Sasha 2026-05-07): subSections retired from pane 2.
+                // Clicking "My Top Talent" now navigates straight to the
+                // overview (/game/me/zone-of-genius) instead of expanding a
+                // dropdown of 11 subpages. The subpage routes (start-here,
+                // how-it-shows-up, three-key-talents, top-shadow, mastery,
+                // one-action, roles, partner, monetization, whats-next)
+                // remain wired in App.tsx — they're navigable from within
+                // the page, just not surfaced as pane-2 disclosure children.
+                // Pattern matches the sister rows below (My Quality of Life,
+                // My Assets) — flat single-landing-surface rows.
             },
             // Day 64 (Sasha 2026-05-07): "My Quality of Life" added as a
             // SECOND top-level ME-space section. Single landing surface
@@ -179,7 +151,7 @@ const SPACE_SECTIONS: SpaceSections = {
             // docs/specs/quality-of-life-map/results_revamp_spec.md.
             {
                 id: "qol-results",
-                label: "My Quality of Life",
+                label: "Quality of Life",
                 path: "/game/me/quality-of-life",
             },
             // Day 63 (Sasha 2026-05-07): "My Assets" added as a THIRD
@@ -192,7 +164,7 @@ const SPACE_SECTIONS: SpaceSections = {
             // ME row is the STORAGE surface (the saved-assets library).
             {
                 id: "me-assets",
-                label: "My Assets",
+                label: "Assets",
                 path: "/game/me/assets",
             },
         ],
