@@ -162,7 +162,7 @@ const ZoneOfGeniusAssessmentLayout = ({
   // "the legacy shell" — a visual fork from the rest of the journey. Removed.
   return (
     <ZoneOfGeniusProvider>
-      <GameShellV2 hideLogo>
+      <GameShellV2 hideLogo hideNavigation>
         <div
           className="relative z-10 flex-1 px-4 sm:px-6 lg:px-8 pt-16 pb-16"
           style={{ fontFamily: "'Poppins', sans-serif" }}
