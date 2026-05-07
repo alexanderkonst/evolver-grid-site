@@ -291,7 +291,13 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
         // Without this, activeSpaceId stays null on /quality-of-life-map/*,
         // pane 2 is empty, user sees only the SpacesRail (pane 1) + content
         // (pane 3) — they lose the contextual navigation.
-        const journeyPaths = ["/", "/playbook", "/path", "/my-artifacts", "/zone-of-genius", "/game/settings", "/dashboard", "/ignite", "/quality-of-life-map"];
+        // Day 63 (Sasha 2026-05-07 evening): /asset-mapping added so pane 2
+        // renders the JOURNEY items (with the now-unlocked "7. Map your
+        // assets" row highlighted as the active section). Without this,
+        // activeSpaceId stayed on the default "next-move" space — which
+        // has no pane-2 content — and Sasha got pane 1 + pane 3 only,
+        // no contextual nav. Same shape of fix as the Day 64 QoL entry.
+        const journeyPaths = ["/", "/playbook", "/path", "/my-artifacts", "/zone-of-genius", "/game/settings", "/dashboard", "/ignite", "/quality-of-life-map", "/asset-mapping"];
         const isJourneyFamily = journeyPaths.some(
             (p) => location.pathname === p || location.pathname.startsWith(p + "/"),
         );
