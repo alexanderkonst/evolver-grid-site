@@ -170,6 +170,18 @@ const SPACE_SECTIONS: SpaceSections = {
                     { id: "tt-whats-next", label: "What's Next?", path: "/game/me/zone-of-genius/whats-next" },
                 ],
             },
+            // Day 64 (Sasha 2026-05-07): "My Quality of Life" added as a
+            // SECOND top-level ME-space section. Single landing surface
+            // (no subsections) — clicking the row routes to the Results
+            // page, which renders the latest qol_snapshot. User downloads
+            // PDFs over time as their personal historical record (no
+            // in-app history view yet — keep simple). See
+            // docs/specs/quality-of-life-map/results_revamp_spec.md.
+            {
+                id: "qol-results",
+                label: "My Quality of Life",
+                path: "/game/me/quality-of-life",
+            },
         ],
     },
     // LEARN Space

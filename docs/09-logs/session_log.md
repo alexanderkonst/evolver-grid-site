@@ -6869,3 +6869,75 @@ Type-check clean.
 ### Si–Do
 
 Chip stays locked until Sasha verifies all 7+1 fixes. The data integrity is now genuinely sound (schema-correct INSERT) and the visual register is meaningfully closer to landing (gold + cream + navy + Cormorant + Source Serif 4 italic). Remaining: visual verification by Sasha + decision on whether the hero/cards' new cream-surface treatment reads correctly across all four QoL pages.
+
+---
+
+## Day 64 (continued, evening) — QoL Results revamp + ME-space integration (May 7, 2026)
+
+After the Day 64 morning fixes, Sasha shipped two more screenshots showing remaining issues + a punch list:
+
+1. Results page barely legible (gold-on-cream eyebrow + violet remnants + faded cards)
+2. Show ALL 8 results, not just lowest 3 / highest 3
+3. Remove **Growth Recipe** page — doesn't make sense in simplified flow
+4. Remove **Priorities** page — unnecessary
+5. Restore PDF download (failing again — the inline-styled cream-surface I shipped earlier didn't render through html2canvas)
+6. **NEW ASK:** integrate Results into ME space so users can return to it; track snapshots over time via downloaded PDFs (each retake = new DB row + new PDF)
+7. Use the playbooks (`ui_playbook.md` + `glassmorphism_blueprint.md`) for visual register
+
+Sasha approved a proposal in advance and asked the design to live in a doc.
+
+### What shipped
+
+**(1) Spec doc:** `docs/specs/quality-of-life-map/results_revamp_spec.md` (new) — captures the design rationale, structure, file changes, verification protocol. Cross-references `glassmorphism_blueprint.md` for the liquid-glass treatment, `ui_playbook.md` Part VIII for legibility cocktails.
+
+**(2) Results page rewrite** (`QualityOfLifeMapResults.tsx`):
+- Cards switched from inline-styled cream-surface to canonical `.liquid-glass` class (10% white tint + 24px blur + 180% saturate + asymmetric edge highlight + layered drop shadow per the playbook's Apple iOS 26 recipe).
+- Hero: Cormorant 700 big number on dark navy `#0a1628` with halo-deep cocktail; Cormorant tracked-uppercase eyebrow in same dark navy (was illegible faded gold); Source Serif 4 italic subhead.
+- Single **"8 Life Areas"** card replaces the Growth Areas / Strengths split. All 8 domains sorted ascending (lowest first = where to grow). Each row: emoji + Source Serif 4 domain name + DM Sans tabular gold score. No special tagging — let the numbers speak.
+- Action row simplified to two equal `liquid-glass-strong` buttons: **Retake** + **Download PDF**. "See My Profile" CTA removed (no priorities page to navigate to).
+- ShareQol component kept (existing collapsible accordion above the action row).
+- Radar chart palette migrated violet → gold; tick labels → navy for legibility.
+- Empty-state H1 also updated to Cormorant + halo cocktail + skin-text-primary.
+
+**(3) PDF download fix** — html2canvas onclone callback expanded:
+- Day 63 base: strip `backdrop-filter`, `filter`, animations, transitions on cloned tree.
+- Day 64 addition: walk live + cloned subtrees in lockstep, copy resolved CSS-var values (`background`, `color`, `borderColor`, `boxShadow`, etc.) from `getComputedStyle(liveElement)` to inline styles on the clone. Without this, html2canvas's offscreen render couldn't resolve `var(--skin-card-bg)` etc. and produced empty/black output. The snapshot subtree is anchored via a `data-qol-snapshot` attribute on the hero card div.
+
+**(4) ME-space integration:**
+- New `SectionsPanel.tsx` entry under the `grow` (ME) space: `{ id: "qol-results", label: "My Quality of Life", path: "/game/me/quality-of-life" }`. Single row, no subsections (mirrors the simple shape of My Top Talent's hero subsection).
+- New route in `App.tsx`: `/game/me/quality-of-life` → wraps `QolLayout` (provides `QolAssessmentProvider` + GameShellV2) → renders `QualityOfLifeMapResults`. Same component, return-able from the ME space.
+- The user's mental model: ME space = "my profile / my data." QoL results now live there alongside Top Talent. Click "My Quality of Life" → see latest snapshot anytime.
+
+**(5) Routes retired:**
+- `/quality-of-life-map/priorities` — removed from `App.tsx` route block. `QualityOfLifePriorities.tsx` preserved with `// DEAD CODE` header.
+- `/quality-of-life-map/growth-recipe` — same treatment.
+- Imports for both retired components also removed from `App.tsx`.
+
+**(6) Multi-snapshot tracking via PDF (Sasha's call):**
+- Each genuine retake (different answers) creates a new `qol_snapshots` row (idempotency check from Day 63 prevents duplicates of same answers).
+- User downloads PDFs over time — each PDF includes ISO date stamp in filename (`quality-of-life-2026-05-07.pdf`).
+- No in-app history view — keep simple. Future enhancement if users ask.
+- DB rows accumulate (visible to admin queries / future telemetry) but the user UI stays terminal: assessment → results → done.
+
+### Files touched (6)
+
+- `docs/specs/quality-of-life-map/results_revamp_spec.md` (new — full design rationale)
+- `src/pages/QualityOfLifeMapResults.tsx` (rewrite of content + PDF onclone + imports)
+- `src/App.tsx` (routes + imports retired; new ME route added)
+- `src/components/game/SectionsPanel.tsx` (My Quality of Life ME-space entry)
+- `src/pages/QualityOfLifePriorities.tsx` (dead-code header)
+- `src/pages/QualityOfLifeGrowthRecipe.tsx` (dead-code header)
+
+Type-check clean.
+
+### Lessons logged
+
+1. **The playbook is the source of truth for register decisions.** Earlier I went back and forth between dark-glass (liquid-glass) and inline-cream-surface treatments based on what looked legible-enough in screenshots. `docs/03-playbooks/glassmorphism_blueprint.md` explicitly specifies: light glass + dark text OR dark glass + light text — pick ONE direction per page; bg-white/0.10 + blur 24px + halo cocktail is the canonical Apple iOS 26 recipe. Trusting the playbook over real-time reasoning produces faster, more coherent ships.
+
+2. **CSS-var resolution is an html2canvas blind spot.** The library copies the DOM but doesn't always resolve CSS custom properties in the offscreen render context. Pattern for any future on-page rasterization: walk live + cloned subtrees, mirror computed-style values for color-related properties on the clone. Codify the prop list (`background`, `backgroundColor`, `backgroundImage`, `color`, `borderColor` × 4, `boxShadow`, `textShadow`, `fill`, `stroke`). Use a `data-*` attribute to anchor the subtree (finding the cloned root by tag/class is brittle).
+
+3. **Append-only data + downloadable artifacts = MVP "track over time".** No in-app history view yet. Each retake creates a new `qol_snapshots` row (already in DB), each download produces a dated PDF (the user's personal record), and the user surface stays terminal. This is a deliberate "ship the simplest" call — the in-app comparison view can come later if usage pattern justifies it. Pattern applies to any "user wants to track changes over time" feature: ship downloadable artifacts first; build in-app comparison only after observed demand.
+
+### Si–Do
+
+Chip stays locked. The Results page is now coherent with landing register, the PDF download path has the explicit CSS-var resolution fix, the ME-space integration is wired, and Priorities + Growth Recipe pages are off the routing surface. **Sasha's verification protocol:** take the assessment → land on results → confirm liquid-glass register reads correctly → click Download PDF → confirm a real PDF saves → click ME chip in pane 1 → confirm "My Quality of Life" appears as a sub-item → click → confirm same Results page renders. If all five pass, the chip is ready to flip from `locked: true` → `locked: false`.
