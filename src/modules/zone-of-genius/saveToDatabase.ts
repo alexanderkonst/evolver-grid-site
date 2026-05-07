@@ -4,6 +4,17 @@ import { awardFirstTimeBonus } from "@/lib/xpService";
 import { getOrCreateGameProfileId } from "@/lib/gameProfile";
 import { AppleseedData } from "./appleseedGenerator";
 import { ExcaliburData } from "./excaliburGenerator";
+// Day 62 (Sasha 2026-05-05): cache invalidation on every successful
+// snapshot write. The zogSnapshotCache (in-memory + sessionStorage,
+// see src/lib/zogSnapshotCache.ts) was added Day 60 to make
+// /game/me/zone-of-genius surfaces paint instantly. But saveAppleseed
+// + saveExcalibur weren't clearing the cache after writing fresh
+// data — so the deeper-view tab kept rendering the pre-save snapshot
+// from sessionStorage even though Supabase had the new data. Sasha's
+// friend's "two different appleseeds" bug. Clearing the cache here
+// makes the next read on any surface miss the cache, hit Supabase,
+// and pick up the just-written row.
+import { clearCachedZogSnapshot } from "@/lib/zogSnapshotCache";
 
 // LocalStorage keys for guest data
 const GUEST_APPLESEED_KEY = "guest_appleseed_data";
@@ -252,6 +263,14 @@ export const saveAppleseed = async (
       }
     }
 
+    // Day 62 (Sasha 2026-05-05): cache invalidation. Without this,
+    // tabs that already loaded /game/me/zone-of-genius would keep
+    // rendering the pre-save snapshot from sessionStorage. Next read
+    // on any surface now misses the cache → hits Supabase → picks up
+    // the row we just wrote. See import comment for the full bug
+    // story.
+    clearCachedZogSnapshot();
+
     return { success: true, snapshotId: snapshot.id, xpAwarded, firstTimeBonus };
   } catch (err) {
     return {
@@ -322,6 +341,10 @@ export const saveExcalibur = async (
         })
         .eq("id", profileId);
 
+      // Day 62 (Sasha 2026-05-05): cache invalidation. See top-of-
+      // file import comment for the full bug story.
+      clearCachedZogSnapshot();
+
       return { success: true, xpAwarded: 0, firstTimeBonus: 0 };
     }
 
@@ -358,6 +381,10 @@ export const saveExcalibur = async (
         }
       }
     }
+
+    // Day 62 (Sasha 2026-05-05): cache invalidation. See top-of-file
+    // import comment for the full bug story.
+    clearCachedZogSnapshot();
 
     return { success: true, xpAwarded, firstTimeBonus };
   } catch (err) {
