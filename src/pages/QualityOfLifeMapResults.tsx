@@ -222,17 +222,27 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
             .update({ xp_awarded: true })
             .eq('id', savedSnapshotId);
 
-          toast({
-            title: "🎉 +100 XP (Mind)",
-            description: "Quality of Life snapshot saved.",
-          });
+          // Day 64 (Sasha 2026-05-07): toasts disabled per Sasha's
+          // feedback ("disable the XP thing… another popup"). The
+          // underlying XP award + DB writes still fire so game state
+          // stays consistent; only the user-facing toast notifications
+          // are suppressed. This also silences the "Quality of Life
+          // snapshot saved" confirmation that was bundled with the XP
+          // message. Re-enable by uncommenting if/when XP gamification
+          // is added back to the QoL flow.
+          // toast({
+          //   title: "🎉 +100 XP (Mind)",
+          //   description: "Quality of Life snapshot saved.",
+          // });
 
           const bonusResult = await awardFirstTimeBonus(profileId, "first_qol_complete", 100, 2, "mind");
           if (bonusResult.awarded) {
-            toast({
-              title: "🎉 FIRST TIME BONUS!",
-              description: `+${bonusResult.xp} XP for your first ${getFirstTimeActionLabel("first_qol_complete")}!`,
-            });
+            // Day 64 (Sasha 2026-05-07): First Time Bonus toast also
+            // disabled. Award still fires in DB.
+            // toast({
+            //   title: "🎉 FIRST TIME BONUS!",
+            //   description: `+${bonusResult.xp} XP for your first ${getFirstTimeActionLabel("first_qol_complete")}!`,
+            // });
           }
         }
       }
@@ -322,6 +332,31 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
         logging: false,
         useCORS: true,
         onclone: (clonedDoc) => {
+          // Day 64 (Sasha 2026-05-07, second pass): override the
+          // .liquid-glass / .liquid-glass-strong classes with explicit
+          // solid styling for PDF rasterization. The original classes
+          // use a ::before pseudo-element with `mask-composite: exclude`
+          // for the asymmetric edge-light effect — html2canvas can't
+          // rasterize mask-composite, which is why the previous CSS-var
+          // resolution fix wasn't enough. Injecting a <style> override
+          // into the cloned doc head replaces the glass treatment with
+          // a solid card style for the snapshot only; the live UI is
+          // untouched. The PDF reads as a clean printable card.
+          const styleOverride = clonedDoc.createElement('style');
+          styleOverride.textContent = `
+            .liquid-glass, .liquid-glass-strong {
+              background: rgba(255, 255, 255, 0.94) !important;
+              backdrop-filter: none !important;
+              -webkit-backdrop-filter: none !important;
+              border: 0.5px solid rgba(26, 30, 58, 0.12) !important;
+              box-shadow: 0 4px 16px -4px rgba(10, 22, 40, 0.08), 0 16px 40px -20px rgba(10, 22, 40, 0.16) !important;
+            }
+            .liquid-glass::before, .liquid-glass-strong::before {
+              display: none !important;
+            }
+          `;
+          clonedDoc.head.appendChild(styleOverride);
+
           const allElements = clonedDoc.querySelectorAll<HTMLElement>('*');
           allElements.forEach((el) => {
             el.style.backdropFilter = 'none';

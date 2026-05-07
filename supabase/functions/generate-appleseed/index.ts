@@ -33,26 +33,27 @@ serve(async (req) => {
       },
       body: JSON.stringify({
         model: "openai/gpt-5.2",
-        // Day 62 (Sasha 2026-05-05): temperature pinned to 0 for
+        // Day 62 (Sasha 2026-05-05): temperature pinned LOW for
         // determinism. Backstory: Sasha's friend hit a divergence
         // bug — the post-assessment reveal showed one archetype, the
         // /game/me/zone-of-genius deeper view showed a different one
         // (different archetype name, different talents, different
-        // bullseye). Two amplifiers in play: (1) auto-save wasn't
-        // happening on generation, so the in-memory reveal could be
-        // newer than the saved DB row, AND (2) the LLM was returning
-        // slightly-different output across calls because no
-        // temperature was set (defaults to ~1.0 on this gateway).
-        // Auto-save fixes (1) — see ZoneOfGeniusEntry.tsx
-        // handleGenerateAppleseed. This change fixes (2): same
-        // input → same output, every time. Reduces user surprise on
-        // re-generation and makes any future "I redid this and now
-        // it reads slightly different" reports much rarer.
-        // Acceptable for this surface because the prompt is
-        // highly structured (JSON schema with calibration examples)
-        // — creative variety isn't the goal here, the goal is a
-        // precise, repeatable distillation.
-        temperature: 0,
+        // bullseye). Two amplifiers in play: (1) cache wasn't being
+        // invalidated on save (fixed in saveToDatabase.ts), AND
+        // (2) the LLM was returning wildly-different output across
+        // calls because no temperature was set (defaults to ~1.0 on
+        // this gateway). This change fixes (2).
+        //
+        // Day 62 update: started at 0 for full determinism, switched
+        // to 0.3 as a hedge — some newer reasoning-class models
+        // reject temperature=0 outright (400 error). 0.3 is widely
+        // accepted across model families AND still produces near-
+        // identical output for structured tasks like this one. If
+        // we ever confirm gpt-5.2 accepts 0 cleanly, we can drop it
+        // back. Acceptable register because the prompt is highly
+        // structured (JSON schema + calibration examples) — creative
+        // variety isn't the goal, repeatable distillation is.
+        temperature: 0.3,
         messages: [
           {
             role: "system",
