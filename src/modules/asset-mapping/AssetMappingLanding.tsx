@@ -148,8 +148,14 @@ const normalizeText = (value?: string) => value?.trim().toLowerCase() || "";
 // undefined here — the UI handles a missing score gracefully.
 const fetchAssetMatches = async (text: string): Promise<MatchedAsset[] | null> => {
     try {
+        // Day 63 (Sasha 2026-05-07 evening) BUG FIX: limit was hardcoded
+        // to 8, so users who pasted 20+ assets got truncated to 8. The
+        // local-parser fallback already supported up to 50 (slice cap
+        // below), so the edge-fn path was the bottleneck. Bumped to 50
+        // to match the local cap; the user's actual asset count drives
+        // the result, not an arbitrary client-side ceiling.
         const { data, error } = await supabase.functions.invoke("match-assets", {
-            body: { text, limit: 8 },
+            body: { text, limit: 50 },
         });
         if (error || !data?.matches) return null;
 
