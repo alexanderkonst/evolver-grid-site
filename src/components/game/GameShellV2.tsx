@@ -346,12 +346,14 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
             }
 
             // Day 63 evening: probe asset count for COLLABORATE gating.
-            // Single-row HEAD query (count='exact', limit 1) so this is
-            // cheap. If user_assets table doesn't exist yet (older
-            // projects), fall back to false silently.
+            // HEAD query (count='exact', no rows) is cheap. If user_assets
+            // table isn't generated into the typed client (older project
+            // state), the runtime call still works — silent fallback to
+            // false on any error keeps this non-blocking.
             try {
-                const { count, error: assetErr } = await (supabase as any)
-                    .from("user_assets")
+                const { count, error: assetErr } = await supabase
+                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                    .from("user_assets" as any)
                     .select("id", { count: "exact", head: true })
                     .eq("user_id", userId);
                 if (assetErr) {
@@ -392,10 +394,17 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
             } else {
                 setHasGeniusOffer(false);
             }
+
+            // Anonymous profile path doesn't have a user_id to query
+            // user_assets against — leave hasAssets at default false.
+            // COLLABORATE stays locked until the user authenticates and
+            // maps assets, which is correct.
+            setHasAssets(false);
         } catch (error) {
             console.error("Failed to load profile by ID:", error);
             setProfile(null);
             setHasGeniusOffer(false);
+            setHasAssets(false);
         } finally {
             setProfileLoaded(true);
         }
@@ -611,7 +620,7 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
         "learn": "Unlocks after Step 1",
         "build": "Unlocks after Step 2",
         "meet": "Unlocks after Step 1",
-        "collaborate": "Unlocks after Step 2",
+        "collaborate": "Unlocks after you map your first asset.",
         "buysell": "Unlocks after Step 2",
     };
 

@@ -224,13 +224,39 @@ const SPACE_SECTIONS: SpaceSections = {
         ],
     },
     // COLLABORATE Space (was Teams)
+    // Day 63 evening (Sasha 2026-05-07): Connections / People Directory /
+    // Mission Groups locked. The reasoning: Genius Match is the working
+    // surface today; the other three are aspirational containers that
+    // need their own maturation before they earn user attention. Locked
+    // rows render dimmed with the fog-of-war pattern + tooltip hint.
+    // Genius Match is unlocked at the SPACE level by hasAssets gating
+    // (see GameShellV2.tsx unlockStatus). Within an unlocked space, only
+    // Genius Match is currently usable.
     collaborate: {
         title: "COLLABORATE",
         sections: [
             { id: "genius-match", label: "Genius Match", path: "/game/collaborate" },
-            { id: "connections", label: "Connections", path: "/game/collaborate/connections" },
-            { id: "people", label: "People Directory", path: "/game/collaborate/people" },
-            { id: "mission", label: "Mission Groups", path: "/game/collaborate/mission" },
+            {
+                id: "connections",
+                label: "Connections",
+                path: "/game/collaborate/connections",
+                locked: true,
+                lockedHint: "Coming soon — connection-tracking surface in progress.",
+            },
+            {
+                id: "people",
+                label: "People Directory",
+                path: "/game/collaborate/people",
+                locked: true,
+                lockedHint: "Coming soon — directory needs profile permissions before it ships.",
+            },
+            {
+                id: "mission",
+                label: "Mission Groups",
+                path: "/game/collaborate/mission",
+                locked: true,
+                lockedHint: "Coming soon — group-formation flow not yet ready.",
+            },
         ],
     },
     // BUILD Space (was Coop/Incubator)
