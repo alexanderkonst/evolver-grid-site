@@ -36,7 +36,19 @@ const QolLayout = () => {
           with the QoL hero's own visual. Pattern matches Day 58's hideLogo
           treatment on the ME-space Overview hero. */}
       <GameShellV2 hideLogo>
-        <Outlet />
+        {/* Day 64 (Sasha 2026-05-07, second pass): apply playbook's
+            "Light look" page wash per docs/03-playbooks/glassmorphism_blueprint.md
+            line 108: `bg-white/[0.18]` wash → Panel 3 reads as daylight,
+            dark text is readable. This wash sits between GameShellV2's
+            cinematic bg and the QoL content's liquid-glass cards,
+            brightening the underlying surface so the cards' navy text
+            on light glass reads cleanly. Fixes the "barely legible"
+            issue Sasha called out — without this wash, the cinematic
+            sky's bright sections washed out the liquid-glass card
+            content. */}
+        <div className="bg-white/[0.18] min-h-full">
+          <Outlet />
+        </div>
       </GameShellV2>
     </QolAssessmentProvider>
   );
