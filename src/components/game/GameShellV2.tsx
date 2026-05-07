@@ -187,11 +187,26 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
         current_streak_days?: number | null;
     } | null>(null);
     const [hasGeniusOffer, setHasGeniusOffer] = useState(false);
-    // Day 63 (Sasha 2026-05-07 evening): COLLABORATE space gating shifted
-    // from "ignition complete" to "has ≥1 saved asset." The premise: a
-    // user can't meaningfully match with collaborators until they've
-    // actually mapped what they bring. Asset count is the truer gate.
-    const [hasAssets, setHasAssets] = useState(false);
+    // Day 63 (Sasha 2026-05-07 night): COLLABORATE space gating moved
+    // from "has ≥1 saved asset" → "user pressed Find Matches button."
+    // Reasoning: pressing Find Matches IS the explicit moment the user
+    // requests collaboration matching — that's when the space earns its
+    // place in the rail. Doing it on asset-count was too eager (showed
+    // the space the moment any asset was mapped, even if user hadn't
+    // intended matching).
+    //
+    // Persistence: localStorage key `fytt:collaborate-unlocked`. Cheap,
+    // instant unlock, browser-local. If user switches devices they
+    // re-click the button on the new device. We listen to the `storage`
+    // event so other tabs/windows of the SAME browser unlock together.
+    const [collaborateUnlocked, setCollaborateUnlocked] = useState<boolean>(() => {
+        if (typeof window === "undefined") return false;
+        try {
+            return window.localStorage.getItem("fytt:collaborate-unlocked") === "true";
+        } catch {
+            return false;
+        }
+    });
     // Prevents the SpacesRail lock-flicker: while the profile is still being
     // fetched, `stage` would default to "new" and render ME/LEARN/MEET as
     // locked for a beat — then flip unlocked when the profile arrives. We
@@ -248,6 +263,14 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
         // so a public visitor sees the same pane 2 navigation as an authed
         // user inside /game/learn/library.
         if (pathname === "/library" || pathname.startsWith("/library/")) return "learn";
+        // Day 63 (Sasha 2026-05-07 night): /asset-mapping belongs to JOURNEY
+        // (it's step #7 in the journey sequence per SectionsPanel's
+        // buildJourneySections). Mapping it here in addition to the
+        // journeyPaths check below — so even if reconciliation order
+        // changes, the space resolves correctly. Without this, /asset-mapping
+        // could fall through to the default "next-move" space which has
+        // no pane-2 sections — pane 2 collapses and Sasha sees pane 1 + 3 only.
+        if (pathname === "/asset-mapping" || pathname.startsWith("/asset-mapping/")) return "journey";
         const match = pathname.match(/^\/game\/([^/]+)/);
         if (!match) return undefined;
         const space = match[1];
@@ -345,30 +368,10 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                 setHasGeniusOffer(false);
             }
 
-            // Day 63 evening: probe asset count for COLLABORATE gating.
-            // HEAD query (count='exact', no rows) is cheap. If user_assets
-            // table isn't generated into the typed client (older project
-            // state), the runtime call still works — silent fallback to
-            // false on any error keeps this non-blocking.
-            try {
-                const { count, error: assetErr } = await supabase
-                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                    .from("user_assets" as any)
-                    .select("id", { count: "exact", head: true })
-                    .eq("user_id", userId);
-                if (assetErr) {
-                    setHasAssets(false);
-                } else {
-                    setHasAssets((count ?? 0) > 0);
-                }
-            } catch {
-                setHasAssets(false);
-            }
         } catch (error) {
             console.error("Failed to load profile:", error);
             setProfile(null);
             setHasGeniusOffer(false);
-            setHasAssets(false);
         } finally {
             setProfileLoaded(true);
         }
@@ -395,16 +398,10 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                 setHasGeniusOffer(false);
             }
 
-            // Anonymous profile path doesn't have a user_id to query
-            // user_assets against — leave hasAssets at default false.
-            // COLLABORATE stays locked until the user authenticates and
-            // maps assets, which is correct.
-            setHasAssets(false);
         } catch (error) {
             console.error("Failed to load profile by ID:", error);
             setProfile(null);
             setHasGeniusOffer(false);
-            setHasAssets(false);
         } finally {
             setProfileLoaded(true);
         }
@@ -463,6 +460,32 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
     // stale "closed" from a previous session no longer bleeds across
     // routes. User's in-page toggle still works — it just resets to
     // the per-page default on the next navigation.
+
+    // Day 63 night (Sasha 2026-05-07): listen for COLLABORATE unlock
+    // event so the rail updates the moment the user presses Find
+    // Matches in another tab, without needing to refresh. Works across
+    // tabs of the same browser via `storage` event; same-tab writes
+    // need a manual `dispatchEvent` since `storage` only fires
+    // cross-tab — see ProfileAssetsSection's button handler.
+    useEffect(() => {
+        const onStorage = (e: StorageEvent) => {
+            if (e.key === "fytt:collaborate-unlocked") {
+                setCollaborateUnlocked(e.newValue === "true");
+            }
+        };
+        const onCustomUnlock = () => {
+            setCollaborateUnlocked(
+                typeof window !== "undefined" &&
+                    window.localStorage.getItem("fytt:collaborate-unlocked") === "true",
+            );
+        };
+        window.addEventListener("storage", onStorage);
+        window.addEventListener("fytt:collaborate-unlocked", onCustomUnlock);
+        return () => {
+            window.removeEventListener("storage", onStorage);
+            window.removeEventListener("fytt:collaborate-unlocked", onCustomUnlock);
+        };
+    }, []);
 
     // Keyboard shortcut: Cmd/Ctrl + B to toggle sections panel
     useEffect(() => {
@@ -598,13 +621,13 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
             "learn": LEARN_VISIBLE && zogComplete,              // After Step 1 — growth material (currently flag-gated off)
             "build": ignitionComplete,                          // After Step 2 — business canvas
             "meet": MEET_VISIBLE && zogComplete,                // After Step 1 — community events (currently flag-gated off)
-            // Day 63 evening (Sasha 2026-05-07): COLLABORATE gate
-            // shifted from `ignitionComplete` to `hasAssets`. The
-            // collaboration matching surface needs the user's actual
-            // mapped resources to produce meaningful matches — without
-            // assets, Genius Match has nothing to compute against. Ties
-            // the unlock to the truer prerequisite.
-            "collaborate": hasAssets,                           // After mapping ≥1 asset
+            // Day 63 night (Sasha 2026-05-07): COLLABORATE gate is now
+            // `collaborateUnlocked` — flipped to true the moment the
+            // user presses the "Find Matches" button on /game/me/assets
+            // (writes localStorage `fytt:collaborate-unlocked`). The
+            // earlier asset-count gate was too eager; this aligns the
+            // unlock to the user's explicit intent moment.
+            "collaborate": collaborateUnlocked,                 // After Find Matches pressed
             "buysell": ignitionComplete,                        // After Step 2 — needs offers to sell
         }
         : {};

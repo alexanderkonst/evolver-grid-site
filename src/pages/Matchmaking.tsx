@@ -1,13 +1,70 @@
 import { useEffect, useMemo, useState } from "react";
-import { MapPin, Users, Languages, Boxes } from "lucide-react";
+import { MapPin, Users, Languages } from "lucide-react";
 import GameShellV2 from "@/components/game/GameShellV2";
-import { Badge } from "@/components/ui/badge";
 import { Switch } from "@/components/ui/switch";
-import EmptyState from "@/components/ui/EmptyState";
 import { supabase } from "@/integrations/supabase/client";
 import { AppleseedData } from "@/modules/zone-of-genius/appleseedGenerator";
 import { areComplementary, getComplementarityLabel } from "@/lib/archetypeMatching";
 import MatchCard from "@/components/matchmaking/MatchCard";
+import { GOLD_TEXT_STYLE, Ornament } from "@/lib/landingDesign";
+
+// ─────────────────────────────────────────────────────────────────────
+// Day 63 night (Sasha 2026-05-07) — Aurora register reskin + Strong
+// cocktail legibility per docs/03-playbooks/ui_playbook.md Part VIII.
+// Page-level surfaces (the cream wash from GameShellV2) get halo-deep
+// + weight 700; card-level surfaces (parchment) get halo-soft + weight
+// 600. No more `text-white/40` muted on busy bg — that's the v1 → v2
+// fight the playbook resolves.
+// ─────────────────────────────────────────────────────────────────────
+
+const cormorantTitle: React.CSSProperties = {
+    fontFamily: "'Cormorant Garamond', serif",
+    fontWeight: 700,
+    letterSpacing: "-0.005em",
+    color: "var(--skin-text-primary, #0b2a5a)",
+    textShadow:
+        "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.7))",
+};
+
+const sourceSerifBody: React.CSSProperties = {
+    fontFamily: "'Source Serif 4', serif",
+    fontWeight: 600,
+    color: "var(--skin-text-primary, #0b2a5a)",
+};
+
+const legibleHeadlineHalo =
+    "var(--skin-text-halo-deep, 0 0 28px rgba(255,255,255,0.85), 0 1px 2px rgba(255,255,255,0.95), 0 0 1px rgba(11,42,90,0.65), 0 1px 0 rgba(11,42,90,0.45))";
+
+const legibleItalicEcho: React.CSSProperties = {
+    fontFamily: "'Cormorant Garamond', serif",
+    fontStyle: "italic",
+    fontWeight: 700,
+    letterSpacing: "0.01em",
+    color: "var(--skin-text-primary, #0a1628)",
+    textShadow: legibleHeadlineHalo,
+};
+
+const eyebrowSmall: React.CSSProperties = {
+    fontFamily: "'DM Sans', system-ui, sans-serif",
+    fontWeight: 500,
+    fontSize: "10.5px",
+    letterSpacing: "0.16em",
+    textTransform: "uppercase",
+    color: "var(--skin-accent-gold, #b8860b)",
+};
+
+const parchmentCard: React.CSSProperties = {
+    background: "var(--skin-card-bg, rgba(255, 255, 255, 0.68))",
+    border: "0.5px solid rgba(212, 175, 55, 0.45)",
+    boxShadow:
+        "0 0 22px -8px rgba(212, 175, 55, 0.25), 0 16px 40px -20px rgba(10, 22, 40, 0.18)",
+};
+
+const parchmentCardSubtle: React.CSSProperties = {
+    background: "rgba(255, 255, 255, 0.55)",
+    border: "0.5px solid var(--skin-rule-hairline, rgba(26, 30, 58, 0.10))",
+    boxShadow: "0 4px 16px -8px rgba(10, 22, 40, 0.10)",
+};
 
 interface MatchCandidate {
   id: string;
@@ -142,8 +199,16 @@ const Matchmaking = () => {
   // Track hidden profiles
   const [hiddenProfiles, setHiddenProfiles] = useState<Set<string>>(new Set());
 
+  // Day 63 night: Skeleton bg matched to parchment-card surface so the
+  // shimmer reads against the cream wash, not against an inverted dark.
   const Skeleton = ({ className }: { className?: string }) => (
-    <div className={`animate-pulse bg-white/10 rounded-xl ${className || ""}`} />
+    <div
+      className={`animate-pulse rounded-2xl ${className || ""}`}
+      style={{
+        background: "rgba(255, 255, 255, 0.45)",
+        border: "0.5px solid var(--skin-rule-hairline, rgba(26, 30, 58, 0.08))",
+      }}
+    />
   );
 
   useEffect(() => {
@@ -432,34 +497,127 @@ const Matchmaking = () => {
   };
 
   const renderMatch = (match: MatchCandidate) => (
-    <div key={match.id} className="rounded-2xl liquid-glass ring-1 ring-white/10 p-4">
+    <div
+      key={match.id}
+      className="rounded-2xl p-4"
+      style={parchmentCardSubtle}
+    >
       <div className="flex items-start justify-between gap-3">
-        <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-full overflow-hidden bg-white/5 flex items-center justify-center ring-1 ring-white/10 flex-shrink-0">
+        <div className="flex items-center gap-3 min-w-0">
+          <div
+            className="w-10 h-10 rounded-full overflow-hidden flex items-center justify-center flex-shrink-0"
+            style={{
+              background: "rgba(212, 175, 55, 0.10)",
+              border: "0.5px solid rgba(212, 175, 55, 0.45)",
+            }}
+          >
             {match.avatarUrl ? (
               <img src={match.avatarUrl} alt={match.name} className="w-full h-full object-cover" />
             ) : (
-              <span className="text-sm text-white/30">{match.name.charAt(0)}</span>
+              <span
+                style={{
+                  fontFamily: "'Cormorant Garamond', serif",
+                  fontWeight: 700,
+                  fontSize: "16px",
+                  color: "var(--skin-goldDeep, #5d4307)",
+                }}
+              >
+                {match.name.charAt(0)}
+              </span>
             )}
           </div>
-          <div>
-            <h3 className="text-sm font-semibold text-white">{match.name}</h3>
-            <p className="text-xs text-white/40">{stripSymbols(match.archetype)}</p>
+          <div className="min-w-0">
+            <h3
+              style={{
+                ...cormorantTitle,
+                fontSize: "15px",
+                fontWeight: 700,
+              }}
+              className="truncate"
+            >
+              {match.name}
+            </h3>
+            <p
+              style={{
+                fontFamily: "'Source Serif 4', serif",
+                fontStyle: "italic",
+                fontWeight: 600,
+                fontSize: "12.5px",
+                color: "var(--skin-text-primary, #0b2a5a)",
+              }}
+              className="truncate"
+            >
+              {stripSymbols(match.archetype)}
+            </p>
           </div>
         </div>
-        <Badge className="bg-white/5 text-white/40 ring-1 ring-white/10 text-[10px]">
+        <span
+          style={{
+            fontFamily: "'DM Sans', system-ui, sans-serif",
+            fontSize: "10.5px",
+            fontWeight: 500,
+            fontVariantNumeric: "tabular-nums lining-nums",
+            padding: "2px 8px",
+            borderRadius: "999px",
+            color: "var(--skin-goldDeep, #5d4307)",
+            background: "rgba(212, 175, 55, 0.10)",
+            border: "0.5px solid rgba(212, 175, 55, 0.40)",
+            flexShrink: 0,
+          }}
+        >
           {match.similarityScore}%
-        </Badge>
+        </span>
       </div>
       {match.matchReason && (
-        <p className="text-xs text-white/40 mt-2">{match.matchReason}</p>
+        <p
+          className="mt-2 italic"
+          style={{
+            fontFamily: "'Source Serif 4', serif",
+            fontStyle: "italic",
+            fontWeight: 500,
+            fontSize: "12.5px",
+            lineHeight: 1.5,
+            color: "var(--skin-text-body, rgba(11, 42, 90, 0.85))",
+          }}
+        >
+          {match.matchReason}
+        </p>
       )}
     </div>
   );
 
   return (
     <GameShellV2>
-      <div className="p-6 lg:p-8 max-w-3xl mx-auto space-y-8">
+      <div className="p-6 lg:p-8 max-w-3xl mx-auto">
+
+        {/* ═══════ HEADER — Aurora editorial register ═══════ */}
+        {/* Cormorant headline with GOLD_TEXT_STYLE accent + italic echo
+            + Ornament — same rhythm as `/`, `/zone-of-genius`, dossier. */}
+        <header className="text-center mb-8">
+          <h1
+            className="text-3xl sm:text-4xl md:text-5xl font-bold leading-[1.1] tracking-[-0.018em] mb-3 sm:mb-4"
+            style={{
+              fontFamily: "'Cormorant Garamond', serif",
+              color: "var(--skin-text-primary, #0a1628)",
+              textShadow: legibleHeadlineHalo,
+            }}
+          >
+            Genius{" "}
+            <span className="bg-clip-text text-transparent" style={GOLD_TEXT_STYLE}>
+              Matches
+            </span>
+          </h1>
+          <p
+            className="text-lg sm:text-xl md:text-2xl leading-[1.32]"
+            style={{
+              ...legibleItalicEcho,
+              fontSize: "clamp(16px, 1.7vw, 20px)",
+            }}
+          >
+            People whose work resonates with yours
+          </p>
+          <Ornament className="my-6 sm:my-7" />
+        </header>
 
         {/* Loading */}
         {loading && (
@@ -471,43 +629,116 @@ const Matchmaking = () => {
 
         {/* Error */}
         {!loading && error && (
-          <div className="rounded-xl liquid-glass ring-1 ring-red-500/20 p-6 text-center">
-            <p className="text-red-300">{error}</p>
+          <div
+            className="rounded-2xl px-5 py-5 text-center"
+            style={{
+              background: "rgba(184, 60, 60, 0.06)",
+              border: "0.5px solid rgba(184, 60, 60, 0.30)",
+              boxShadow: "0 4px 16px -8px rgba(184, 60, 60, 0.18)",
+            }}
+          >
+            <p
+              style={{
+                fontFamily: "'Source Serif 4', serif",
+                fontStyle: "italic",
+                fontWeight: 600,
+                fontSize: "15px",
+                color: "rgba(140, 60, 60, 0.95)",
+              }}
+            >
+              {error}
+            </p>
           </div>
         )}
 
-        {/* Filter warnings */}
+        {/* Filter warnings — gold-tinted parchment */}
         {!loading && !error && (locationBlocked || languageBlocked) && (
-          <div className="rounded-xl liquid-glass ring-1 ring-amber-500/20 p-4 text-sm text-amber-200">
-            {locationBlocked && "Add your location in your profile to use the location filter. "}
-            {languageBlocked && "Add spoken languages in your profile to use the language filter."}
+          <div
+            className="rounded-2xl px-5 py-4 mb-6"
+            style={{
+              background: "rgba(212, 175, 55, 0.08)",
+              border: "0.5px solid rgba(212, 175, 55, 0.40)",
+            }}
+          >
+            <p
+              className="italic"
+              style={{
+                fontFamily: "'Source Serif 4', serif",
+                fontStyle: "italic",
+                fontWeight: 600,
+                fontSize: "13.5px",
+                lineHeight: 1.55,
+                color: "var(--skin-goldDeep, #5d4307)",
+              }}
+            >
+              {locationBlocked && "Add your location in your profile to use the location filter. "}
+              {languageBlocked && "Add spoken languages in your profile to use the language filter."}
+            </p>
           </div>
         )}
 
-        {/* No matches */}
+        {/* No-matches state — Aurora ceremonial empty */}
         {!loading && !error && !hasAnyMatches && (
-          <div className="rounded-xl liquid-glass ring-1 ring-white/10 p-8">
-            <EmptyState
-              icon={<Users className="w-6 h-6 text-white/30" />}
-              title="No matches yet"
-              description="Complete your Zone of Genius to find your people."
-            />
+          <div
+            className="rounded-2xl px-6 py-10 text-center"
+            style={parchmentCard}
+          >
+            <h2
+              style={{
+                ...cormorantTitle,
+                fontSize: "22px",
+                fontWeight: 700,
+                textShadow: legibleHeadlineHalo,
+              }}
+              className="mb-2"
+            >
+              No matches yet
+            </h2>
+            <p
+              className="italic"
+              style={{
+                ...legibleItalicEcho,
+                fontSize: "16px",
+                lineHeight: 1.55,
+              }}
+            >
+              Complete your Top Talent reveal so the right people can find you.
+            </p>
           </div>
         )}
 
         {!loading && !error && hasAnyMatches && (
-          <>
+          <div className="space-y-10">
             {/* ═════════════════════════════════════════
                 SECTION 1: AI-POWERED MATCHES (TOP)
                 Tinder-style: one profile at a time
                 ═════════════════════════════════════════ */}
             <section>
-              <div className="mb-4">
-                <div className="flex items-center gap-2 mb-1">
-                  <Boxes className="w-5 h-5 text-primary" />
-                  <h2 className="text-lg font-semibold text-white">AI-Powered Matches</h2>
+              <div className="mb-5">
+                <div style={eyebrowSmall} className="mb-2">
+                  ✦ AI-Powered Matches
                 </div>
-                <p className="text-sm text-white/40">Win-win collaboration proposals powered by your full profile.</p>
+                <h2
+                  style={{
+                    ...cormorantTitle,
+                    fontSize: "26px",
+                    fontWeight: 700,
+                    textShadow: legibleHeadlineHalo,
+                  }}
+                  className="leading-[1.2] mb-1"
+                >
+                  Collaboration Proposals
+                </h2>
+                <p
+                  className="italic"
+                  style={{
+                    ...legibleItalicEcho,
+                    fontSize: "15px",
+                    lineHeight: 1.55,
+                  }}
+                >
+                  Win-win collaboration proposals powered by your full profile.
+                </p>
               </div>
 
               {assetMatchesLoading ? (
@@ -539,10 +770,25 @@ const Matchmaking = () => {
                   onNext={() => setCurrentAiMatchIndex(Math.min(visibleAiMatches.length - 1, clampedIndex + 1))}
                 />
               ) : (
-                <div className="rounded-xl liquid-glass ring-1 ring-white/10 p-6 text-sm text-white/40 text-center">
-                  {assetMatches.length > 0
-                    ? "You've reviewed all AI matches. New ones will appear as more people join."
-                    : "Complete your Zone of Genius and map your assets to unlock AI-powered matching."}
+                <div
+                  className="rounded-2xl px-5 py-6 text-center"
+                  style={parchmentCardSubtle}
+                >
+                  <p
+                    className="italic"
+                    style={{
+                      fontFamily: "'Source Serif 4', serif",
+                      fontStyle: "italic",
+                      fontWeight: 600,
+                      fontSize: "14px",
+                      lineHeight: 1.55,
+                      color: "var(--skin-text-primary, #0b2a5a)",
+                    }}
+                  >
+                    {assetMatches.length > 0
+                      ? "You've reviewed all AI matches. New ones will appear as more people join."
+                      : "Complete your Top Talent reveal and map your assets to unlock AI-powered matching."}
+                  </p>
                 </div>
               )}
             </section>
@@ -552,22 +798,62 @@ const Matchmaking = () => {
                 Category-based list view
                 ═════════════════════════════════════════ */}
             <section>
-              <div className="mb-4">
-                <div className="flex items-center gap-2 mb-1">
-                  <Users className="w-5 h-5 text-primary" />
-                  <h2 className="text-lg font-semibold text-white">Your Genius Matches</h2>
+              <div className="mb-5">
+                <div style={eyebrowSmall} className="mb-2">
+                  <Users className="w-3.5 h-3.5 inline-block mr-1.5 align-[-2px]" />
+                  Your network
                 </div>
-                <p className="text-sm text-white/40">People in the network whose Zone of Genius complements yours.</p>
+                <h2
+                  style={{
+                    ...cormorantTitle,
+                    fontSize: "26px",
+                    fontWeight: 700,
+                    textShadow: legibleHeadlineHalo,
+                  }}
+                  className="leading-[1.2] mb-1"
+                >
+                  Genius Matches
+                </h2>
+                <p
+                  className="italic"
+                  style={{
+                    ...legibleItalicEcho,
+                    fontSize: "15px",
+                    lineHeight: 1.55,
+                  }}
+                >
+                  People in the network whose Top Talent complements yours.
+                </p>
               </div>
 
-              {/* Filters */}
-              <div className="rounded-xl liquid-glass ring-1 ring-white/10 p-4 mb-6">
+              {/* Filters — parchment with editorial labels */}
+              <div
+                className="rounded-2xl px-5 py-4 mb-6"
+                style={parchmentCard}
+              >
                 <div className="flex flex-wrap items-center gap-6">
                   <div className="flex items-center gap-3">
-                    <MapPin className="w-4 h-4 text-white/30" />
+                    <MapPin className="w-4 h-4" style={{ color: "var(--skin-accent-gold, #b8860b)" }} />
                     <div>
-                      <p className="text-sm font-medium text-white/70">Same location</p>
-                      <p className="text-xs text-white/30">
+                      <p
+                        style={{
+                          fontFamily: "'DM Sans', system-ui, sans-serif",
+                          fontWeight: 500,
+                          fontSize: "11px",
+                          letterSpacing: "0.16em",
+                          textTransform: "uppercase",
+                          color: "var(--skin-text-muted, rgba(11, 42, 90, 0.62))",
+                        }}
+                      >
+                        Same location
+                      </p>
+                      <p
+                        style={{
+                          ...sourceSerifBody,
+                          fontSize: "13px",
+                          lineHeight: 1.45,
+                        }}
+                      >
                         {currentProfile?.location ? currentProfile.location : "Add your location to enable"}
                       </p>
                     </div>
@@ -578,10 +864,27 @@ const Matchmaking = () => {
                     />
                   </div>
                   <div className="flex items-center gap-3">
-                    <Languages className="w-4 h-4 text-white/30" />
+                    <Languages className="w-4 h-4" style={{ color: "var(--skin-accent-gold, #b8860b)" }} />
                     <div>
-                      <p className="text-sm font-medium text-white/70">Same language</p>
-                      <p className="text-xs text-white/30">
+                      <p
+                        style={{
+                          fontFamily: "'DM Sans', system-ui, sans-serif",
+                          fontWeight: 500,
+                          fontSize: "11px",
+                          letterSpacing: "0.16em",
+                          textTransform: "uppercase",
+                          color: "var(--skin-text-muted, rgba(11, 42, 90, 0.62))",
+                        }}
+                      >
+                        Same language
+                      </p>
+                      <p
+                        style={{
+                          ...sourceSerifBody,
+                          fontSize: "13px",
+                          lineHeight: 1.45,
+                        }}
+                      >
                         {currentProfile?.spokenLanguages?.length
                           ? currentProfile.spokenLanguages.join(", ")
                           : "Add languages to enable"}
@@ -596,49 +899,73 @@ const Matchmaking = () => {
                 </div>
               </div>
 
-              {/* Similar Genius */}
-              <div className="mb-6">
-                <h3 className="text-sm font-semibold text-white/60 mb-2">Similar Genius</h3>
-                <p className="text-xs text-white/30 mb-3">People who think and operate like you.</p>
-                <div className="grid gap-3 md:grid-cols-2">
-                  {filteredGroups.similarGenius.map(renderMatch)}
-                  {filteredGroups.similarGenius.length === 0 && (
-                    <div className="rounded-xl liquid-glass ring-1 ring-white/5 p-4 text-sm text-white/30">
-                      No similar genius matches yet.
-                    </div>
-                  )}
+              {/* Three sub-groups — Similar / Complementary / Similar Mission */}
+              {([
+                {
+                  title: "Similar Genius",
+                  copy: "People who think and operate like you.",
+                  matches: filteredGroups.similarGenius,
+                  empty: "No similar genius matches yet.",
+                },
+                {
+                  title: "Complementary Genius",
+                  copy: "Great co-founder or collaborator fit.",
+                  matches: filteredGroups.complementaryGenius,
+                  empty: "No complementary matches yet.",
+                },
+                {
+                  title: "Similar Mission",
+                  copy: "People aligned with your current mission.",
+                  matches: filteredGroups.similarMission,
+                  empty: "No mission matches yet.",
+                },
+              ] as const).map((group) => (
+                <div key={group.title} className="mb-6 last:mb-0">
+                  <div className="mb-3">
+                    <h3
+                      style={{
+                        ...cormorantTitle,
+                        fontSize: "18px",
+                        fontWeight: 700,
+                      }}
+                    >
+                      {group.title}
+                    </h3>
+                    <p
+                      className="italic"
+                      style={{
+                        fontFamily: "'Source Serif 4', serif",
+                        fontStyle: "italic",
+                        fontWeight: 500,
+                        fontSize: "13px",
+                        color: "var(--skin-text-muted, rgba(11, 42, 90, 0.62))",
+                      }}
+                    >
+                      {group.copy}
+                    </p>
+                  </div>
+                  <div className="grid gap-3 md:grid-cols-2">
+                    {group.matches.map(renderMatch)}
+                    {group.matches.length === 0 && (
+                      <div
+                        className="rounded-2xl px-4 py-3.5 italic"
+                        style={{
+                          ...parchmentCardSubtle,
+                          fontFamily: "'Source Serif 4', serif",
+                          fontStyle: "italic",
+                          fontWeight: 500,
+                          fontSize: "13.5px",
+                          color: "var(--skin-text-muted, rgba(11, 42, 90, 0.62))",
+                        }}
+                      >
+                        {group.empty}
+                      </div>
+                    )}
+                  </div>
                 </div>
-              </div>
-
-              {/* Complementary Genius */}
-              <div className="mb-6">
-                <h3 className="text-sm font-semibold text-white/60 mb-2">Complementary Genius</h3>
-                <p className="text-xs text-white/30 mb-3">Great co-founder or collaborator fit.</p>
-                <div className="grid gap-3 md:grid-cols-2">
-                  {filteredGroups.complementaryGenius.map(renderMatch)}
-                  {filteredGroups.complementaryGenius.length === 0 && (
-                    <div className="rounded-xl liquid-glass ring-1 ring-white/5 p-4 text-sm text-white/30">
-                      No complementary matches yet.
-                    </div>
-                  )}
-                </div>
-              </div>
-
-              {/* Similar Mission */}
-              <div>
-                <h3 className="text-sm font-semibold text-white/60 mb-2">Similar Mission</h3>
-                <p className="text-xs text-white/30 mb-3">People aligned with your current mission.</p>
-                <div className="grid gap-3 md:grid-cols-2">
-                  {filteredGroups.similarMission.map(renderMatch)}
-                  {filteredGroups.similarMission.length === 0 && (
-                    <div className="rounded-xl liquid-glass ring-1 ring-white/5 p-4 text-sm text-white/30">
-                      No mission matches yet.
-                    </div>
-                  )}
-                </div>
-              </div>
+              ))}
             </section>
-          </>
+          </div>
         )}
       </div>
     </GameShellV2>

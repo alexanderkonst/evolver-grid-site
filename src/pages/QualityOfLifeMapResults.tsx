@@ -197,57 +197,58 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
     }
 
     // ─── Post-save side effects ─────────────────────────────────────
-    // XP award, profile pointer update, telemetry. ANY failure here
-    // logs only — the user's data is already saved (the row is in
-    // qol_snapshots; the only thing that could fail now is the XP
-    // bookkeeping or the profile-pointer denormalization). Pattern
-    // mirrors `successFired` from Day 61-62 (D-2026-05-05-08).
+    // Day 64 evening (Sasha 2026-05-07): SEPARATED into two concerns:
+    //   1. PROFILE POINTER UPDATE — this is the user's data record.
+    //      Critical: without it, next visit to /results can't find the
+    //      saved snapshot (load effect reads `game_profiles.last_qol_snapshot_id`
+    //      → returns null → answers stay all null → empty state shows
+    //      "Complete Your Assessment" even though the qol_snapshots
+    //      row exists). MUST run regardless of XP success.
+    //   2. XP / GAMIFICATION — bookkeeping, separate concern. Best-effort.
+    //
+    // The previous code gated BOTH inside `if (xpResult.success)` which
+    // meant any XP failure (gateway down, race, etc.) orphaned the
+    // user's snapshot. Sasha hit this on Day 64 evening — completed
+    // the assessment, came back to /results, saw the empty state.
+    // Snapshot existed in qol_snapshots; pointer in game_profiles
+    // was null because XP had failed earlier.
     try {
-      if (!xpAlreadyAwardedOnRow && savedSnapshotId) {
+      if (savedSnapshotId) {
+        // ALWAYS update the pointer — this is the user's data, not
+        // gamification.
         const shouldUnlock = shouldUnlockAfterQol(returnTo);
-        const xpResult = await awardXp(profileId, 100, "mind");
-        if (xpResult.success) {
-          await supabase
-            .from('game_profiles')
-            .update({
-              last_qol_snapshot_id: savedSnapshotId,
-              onboarding_stage: shouldUnlock ? "unlocked" : "qol_complete",
-              onboarding_completed: shouldUnlock,
-              updated_at: new Date().toISOString(),
-            })
-            .eq('id', profileId);
+        await supabase
+          .from('game_profiles')
+          .update({
+            last_qol_snapshot_id: savedSnapshotId,
+            onboarding_stage: shouldUnlock ? "unlocked" : "qol_complete",
+            onboarding_completed: shouldUnlock,
+            updated_at: new Date().toISOString(),
+          })
+          .eq('id', profileId);
 
-          await supabase
-            .from('qol_snapshots')
-            .update({ xp_awarded: true })
-            .eq('id', savedSnapshotId);
+        // XP / gamification — separate, best-effort.
+        if (!xpAlreadyAwardedOnRow) {
+          const xpResult = await awardXp(profileId, 100, "mind");
+          if (xpResult.success) {
+            await supabase
+              .from('qol_snapshots')
+              .update({ xp_awarded: true })
+              .eq('id', savedSnapshotId);
 
-          // Day 64 (Sasha 2026-05-07): toasts disabled per Sasha's
-          // feedback ("disable the XP thing… another popup"). The
-          // underlying XP award + DB writes still fire so game state
-          // stays consistent; only the user-facing toast notifications
-          // are suppressed. This also silences the "Quality of Life
-          // snapshot saved" confirmation that was bundled with the XP
-          // message. Re-enable by uncommenting if/when XP gamification
-          // is added back to the QoL flow.
-          // toast({
-          //   title: "🎉 +100 XP (Mind)",
-          //   description: "Quality of Life snapshot saved.",
-          // });
+            // Day 64 (Sasha 2026-05-07): toasts disabled per Sasha's
+            // feedback. Underlying awards still fire; only user-facing
+            // toast notifications suppressed.
+            // toast({ title: "🎉 +100 XP (Mind)", ... });
 
-          const bonusResult = await awardFirstTimeBonus(profileId, "first_qol_complete", 100, 2, "mind");
-          if (bonusResult.awarded) {
-            // Day 64 (Sasha 2026-05-07): First Time Bonus toast also
-            // disabled. Award still fires in DB.
-            // toast({
-            //   title: "🎉 FIRST TIME BONUS!",
-            //   description: `+${bonusResult.xp} XP for your first ${getFirstTimeActionLabel("first_qol_complete")}!`,
-            // });
+            const bonusResult = await awardFirstTimeBonus(profileId, "first_qol_complete", 100, 2, "mind");
+            if (bonusResult.awarded) {
+              // toast({ title: "🎉 FIRST TIME BONUS!", ... });
+            }
           }
         }
-      }
 
-      if (savedSnapshotId) {
+        // Telemetry — separate, best-effort.
         await logActionEvent({
           actionId: `qol-snapshot:${savedSnapshotId}`,
           profileId,
