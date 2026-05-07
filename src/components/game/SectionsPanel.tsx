@@ -10,6 +10,7 @@ import { GROWTH_STEPS } from "@/modules/library/growthSteps";
 // Hook returns null when not on /ubb*, so this import is free on every
 // other route — the hook is the gate, not a wrapper.
 import { useCanvasProgressLite } from "@/modules/unique-business-builder/useCanvasProgressLite";
+import { useDeepProfileActivated } from "@/hooks/useDeepProfileActivated";
 import {
     TooltipProvider,
 } from "@/components/ui/tooltip";
@@ -232,14 +233,49 @@ const SPACE_SECTIONS: SpaceSections = {
         ],
     },
     // BUILD Space (was Coop/Incubator)
+    // Day 64 (Sasha 2026-05-07): UBB moved to position 1 — it is the
+    // canonical BUILD experience. The four predecessors (canvas,
+    // product-builder, my-business, refine) are flat-locked as
+    // retired stubs: their /game/build/* routes still resolve via
+    // direct URL (RequireAuth gated) so any deep links don't 404,
+    // but the rail signals clearly that they've been replaced. No
+    // dynamic gate on these four — the lock is unconditional.
+    // (BUILD pane 2 swaps to UBB phase navigation when the user is
+    // actually inside /ubb*, see the activeSpaceId === "build" branch
+    // in getSections — these five items are what shows when BUILD is
+    // active but the user is on a /game/build/* legacy path.)
     build: {
         title: "BUILD",
         sections: [
-            { id: "canvas", label: "Unique Business Canvas", path: "/game/build/canvas" },
             { id: "ubb-v2", label: "Unique Business Builder", path: "/ubb", badge: "v2" },
-            { id: "product-builder", label: "Product Builder", path: "/game/build/product-builder" },
-            { id: "my-business", label: "My Genius Business", path: "/game/build/my-business" },
-            { id: "refine", label: "Refine My Business", path: "/game/build/refine" },
+            {
+                id: "canvas",
+                label: "Unique Business Canvas",
+                path: "/game/build/canvas",
+                locked: true,
+                lockedHint: "Retired — Unique Business Builder is the canonical path.",
+            },
+            {
+                id: "product-builder",
+                label: "Product Builder",
+                path: "/game/build/product-builder",
+                locked: true,
+                lockedHint: "Retired — Unique Business Builder is the canonical path.",
+            },
+            {
+                id: "my-business",
+                label: "My Genius Business",
+                path: "/game/build/my-business",
+                locked: true,
+                lockedHint: "Retired — Unique Business Builder is the canonical path.",
+            },
+            {
+                id: "refine",
+                label: "Refine My Business",
+                path: "/game/build/refine",
+                locked: true,
+                lockedHint: "Retired — Unique Business Builder is the canonical path.",
+            },
         ],
     },
     // OFFER Space (was Marketplace)
@@ -403,7 +439,10 @@ const buildLearnSections = (pathBase: "/library" | "/game/learn/library"): Secti
     return [...stepRows, ...pathRows];
 };
 
-const buildJourneySections = (_currentPath: string): Section[] => {
+const buildJourneySections = (
+    _currentPath: string,
+    deepProfileActivated: boolean,
+): Section[] => {
     // Day 50 late (Sasha): five permanent rail items, no hide gating.
     // The rail is the same on every Journey-family page — including
     // the landing — so nothing appears/disappears as the user navigates.
@@ -417,18 +456,17 @@ const buildJourneySections = (_currentPath: string): Section[] => {
     // /ubb. All three trailing items (#6, #7, #8) are LOCKED and rendered
     // with graduated opacity to create a "fog of war" effect: the rail
     // visually conveys that there is more methodology ahead, with the
-    // further items receding into fainter visibility. Hints sequence the
-    // unlocks along the Integrated Stack (Domain 83) arc:
-    //   6 → after Top Talent reaches 9+ specificity
-    //   7 → after Build a business
-    //   8 → after Mission Discovery
+    // further items receding into fainter visibility.
     //
-    // Eventual behavior (when UBB is production-ready): #6 becomes a
-    // SOFT lock — visible and active for anyone authed with a Top Talent
-    // saved (it's the natural next step in the linear walk). Hard-locked
-    // here for now because the Builder is not yet shipped to public users.
-    // To switch over: gate the `locked` field on the user's Top Talent
-    // state instead of hardcoding `true`.
+    // Day 64 (Sasha 2026-05-07): item #5 ("Build a business off your top
+    // talent") moved from hardcoded lock to a dynamic gate. It now
+    // unlocks the moment the user has activated their deeper Top Talent
+    // view — same gate that opens the rest of the platform: either a
+    // paid/gifted entitlement_tier (anything other than "tasting") OR
+    // the sessionStorage `coupon_activated` flag set by the activation-
+    // code path on the reveal page. While `useEntitlement` is loading,
+    // we keep the row locked to avoid an unlock→relock flicker on first
+    // paint. Items #6 and #7 stay sequenced behind their own arc.
     // Day 54 (Sasha 2026-04-28): AI OS removed from this list — elevated
     // to its own Space (see SPACES array in SpacesRail.tsx and the
     // SPACE_SECTIONS["ai-os"] config above). Items 5-8 renumbered to 4-7.
@@ -448,8 +486,8 @@ const buildJourneySections = (_currentPath: string): Section[] => {
             id: "journey-build-business",
             label: "5. Build a business off your top talent",
             path: "/ubb",
-            locked: true,
-            lockedHint: "Unlocks after your Top Talent reaches 9+ specificity.",
+            locked: !deepProfileActivated,
+            lockedHint: "Unlocks after activation.",
         },
         {
             id: "journey-mission-discovery",
@@ -530,6 +568,12 @@ const SectionsPanel = ({
     // each UBB phase row.
     const ubbProgress = useCanvasProgressLite();
 
+    // Day 64 (Sasha 2026-05-07): deeper-Top-Talent-view gate for the
+    // JOURNEY #5 ("Build a business off your top talent") soft-lock.
+    // Same hook is consumed by GameShellV2 to gate the BUILD space
+    // chip — single source of truth across the funnel boundary.
+    const { activated: deepProfileActivated } = useDeepProfileActivated();
+
     // Day 55 (Sasha 2026-04-29): touch detection for locked-row popover
     // side switch. Desktop → "right" (popover floats into pane 3's
     // empty area, escaping pane 2's overflow via Popover's built-in
@@ -564,7 +608,7 @@ const SectionsPanel = ({
         if (activeSpaceId === "journey") {
             return {
                 ...baseData,
-                sections: buildJourneySections(location.pathname),
+                sections: buildJourneySections(location.pathname, deepProfileActivated),
             };
         }
 
