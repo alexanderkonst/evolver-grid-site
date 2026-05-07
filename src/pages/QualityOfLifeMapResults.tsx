@@ -89,13 +89,26 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
   const saveSnapshotToDatabase = async () => {
     if (!profileId) return;
 
+    let savedSnapshotId: string | null = null;
+    let xpAlreadyAwardedOnRow = false;
+
+    // ─── Critical save path ─────────────────────────────────────────
+    // Day 63 evening (Sasha 2026-05-06): SEPARATED from post-save
+    // side effects. Same lesson as Day 61-62's `successFired` flag
+    // pattern (D-2026-05-05-08): when post-success operations (XP
+    // award, profile pointer update, telemetry) throw into the same
+    // try/catch as the actual INSERT, the user sees a misleading
+    // "Could not save your results" toast even when the data IS saved.
+    // Now: only failures in the critical save below surface to the
+    // user; side-effect failures log silently and the user keeps the
+    // success state. Reproduced bug from the screenshot Sasha
+    // shipped at 12:14 PM.
     try {
-      // Day 63 (Sasha 2026-05-06): idempotency guard. Read the most
-      // recent saved snapshot first; if its 8 stage values match the
-      // current answers exactly, no-op and mark saved. This makes
-      // results-page revisits idempotent (refresh, navigate-back, etc.)
-      // while still producing a fresh row when the user actually
-      // retakes with new answers.
+      // Idempotency guard. Read the most recent saved snapshot first.
+      // If its 8 stage values match the current answers exactly, no-op
+      // and mark saved. Makes results-page revisits idempotent
+      // (refresh, navigate-back, etc.) while still producing a fresh
+      // row when the user actually retakes with new answers.
       const { data: lastProfile } = await supabase
         .from('game_profiles')
         .select('last_qol_snapshot_id')
@@ -116,6 +129,14 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
         }
       }
 
+      // Day 64 (Sasha 2026-05-07): SMOKING GUN. The table schema (per
+      // migration 20251130150920) has only 8 stage columns + xp_awarded
+      // + standard id/profile_id/created_at. There is NO `overall_score`
+      // column. Sending it caused Postgres error 42703 (undefined
+      // column), throwing into the critical-save catch and surfacing as
+      // the "Could not save your results" toast Sasha was seeing
+      // repeatedly. The overall score is a derived value computed
+      // client-side from the 8 stages — no need to persist it.
       const snapshotInsert = {
         profile_id: profileId,
         wealth_stage: (answers.wealth ?? 1) as number,
@@ -126,7 +147,6 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
         growth_stage: (answers.growth ?? 1) as number,
         social_ties_stage: (answers.socialTies ?? 1) as number,
         home_stage: (answers.home ?? 1) as number,
-        overall_score: overallAverage,
         xp_awarded: false,
       };
 
@@ -137,18 +157,47 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
         .single();
 
       if (snapshotError) throw snapshotError;
+      if (!newSnapshot) throw new Error('qol_snapshots insert returned no data');
 
+      savedSnapshotId = newSnapshot.id;
+      xpAlreadyAwardedOnRow = !!newSnapshot.xp_awarded;
       setIsSaved(true);
+    } catch (err) {
+      // Critical save failed — the data is NOT in the DB. Show the
+      // destructive toast so the user knows to retry. Log structured
+      // error details (Supabase error code + message + hint) so the
+      // next failure is debuggable.
+      const e = err as { code?: string; message?: string; details?: string; hint?: string };
+      console.error('[QoL] Failed to save snapshot:', {
+        code: e?.code,
+        message: e?.message,
+        details: e?.details,
+        hint: e?.hint,
+        raw: err,
+      });
+      toast({
+        title: 'Could not save your results',
+        description: 'Your answers are still on this page. Try again or refresh.',
+        variant: 'destructive',
+      });
+      return;
+    }
 
-      const shouldUnlock = shouldUnlockAfterQol(returnTo);
-
-      if (!newSnapshot.xp_awarded) {
+    // ─── Post-save side effects ─────────────────────────────────────
+    // XP award, profile pointer update, telemetry. ANY failure here
+    // logs only — the user's data is already saved (the row is in
+    // qol_snapshots; the only thing that could fail now is the XP
+    // bookkeeping or the profile-pointer denormalization). Pattern
+    // mirrors `successFired` from Day 61-62 (D-2026-05-05-08).
+    try {
+      if (!xpAlreadyAwardedOnRow && savedSnapshotId) {
+        const shouldUnlock = shouldUnlockAfterQol(returnTo);
         const xpResult = await awardXp(profileId, 100, "mind");
         if (xpResult.success) {
           await supabase
             .from('game_profiles')
             .update({
-              last_qol_snapshot_id: newSnapshot.id,
+              last_qol_snapshot_id: savedSnapshotId,
               onboarding_stage: shouldUnlock ? "unlocked" : "qol_complete",
               onboarding_completed: shouldUnlock,
               updated_at: new Date().toISOString(),
@@ -158,7 +207,7 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
           await supabase
             .from('qol_snapshots')
             .update({ xp_awarded: true })
-            .eq('id', newSnapshot.id);
+            .eq('id', savedSnapshotId);
 
           toast({
             title: "🎉 +100 XP (Mind)",
@@ -175,26 +224,28 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
         }
       }
 
-      await logActionEvent({
-        actionId: `qol-snapshot:${newSnapshot.id}`,
-        profileId,
-        source: "src/pages/QualityOfLifeMapResults.tsx",
-        loop: "profile",
-        selectedAt: new Date().toISOString(),
-        metadata: { intent: "qol_snapshot_saved" },
-      });
+      if (savedSnapshotId) {
+        await logActionEvent({
+          actionId: `qol-snapshot:${savedSnapshotId}`,
+          profileId,
+          source: "src/pages/QualityOfLifeMapResults.tsx",
+          loop: "profile",
+          selectedAt: new Date().toISOString(),
+          metadata: { intent: "qol_snapshot_saved" },
+        });
+      }
     } catch (err) {
-      // Day 63 (Sasha 2026-05-06): was a silent catch. Without logging
-      // and a user-visible signal, save failures left the user looking
-      // at "results saved" UI while no row hit the DB — they'd come
-      // back next week, find nothing in their history, and have no
-      // idea why. Now we surface both a console error (for diagnostics)
-      // and a destructive toast (so the user knows to retry).
-      console.error('[QoL] Failed to save snapshot:', err);
-      toast({
-        title: 'Could not save your results',
-        description: 'Your answers are still on this page. Try again or refresh.',
-        variant: 'destructive',
+      // Side-effect failure — the data IS saved; only XP/telemetry
+      // bookkeeping failed. Log a warning (not error) so this surfaces
+      // in console but doesn't trigger user-facing alerts. The next
+      // visit's idempotency check will skip the INSERT (matching
+      // answers), so XP retry is a TODO if a user is observed to have
+      // saved snapshots with `xp_awarded: false` long-term.
+      const e = err as { code?: string; message?: string };
+      console.warn('[QoL] Post-save side effect failed (data IS saved):', {
+        code: e?.code,
+        message: e?.message,
+        raw: err,
       });
     }
   };
@@ -287,11 +338,13 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
 
   // Day 63 (Sasha 2026-05-06): shell removed — QolLayout now wraps in
   // GameShellV2 once for all four QoL pages.
+  // Day 64 (Sasha 2026-05-07): loading + empty state colors switched
+  // from white-on-cream-illegible to skin-text-primary navy.
   // Loading state
   if (isLoading) {
     return (
       <div className="flex items-center justify-center min-h-[60vh]">
-        <div className="text-white/30 animate-pulse">Loading your results...</div>
+        <div className="text-[var(--wabi-text-muted)] animate-pulse">Loading your results...</div>
       </div>
     );
   }
@@ -302,25 +355,20 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
       <div className="max-w-2xl mx-auto p-6 text-center">
         <Map className="w-16 h-16 mx-auto text-[var(--wabi-text-muted)] mb-4" />
         <h1
-          // Day 63 (Sasha 2026-05-06): Cormorant editorial register on
-          // empty-state H1 to match landing's typographic register.
-          // Halo-deep textShadow lifts the headline cleanly off either
-          // light or dark surfaces (the var() resolves to halo cocktails
-          // appropriate to skin context).
           style={{
             fontFamily: "'Cormorant Garamond', serif",
             fontWeight: 700,
             fontSize: "clamp(24px, 3vw, 30px)",
             letterSpacing: "-0.005em",
             lineHeight: 1.1,
-            color: "rgba(255, 255, 255, 0.92)",
-            textShadow: "0 0 16px rgba(0,0,0,0.4), 0 1px 2px rgba(0,0,0,0.5)",
+            color: "var(--skin-text-primary, var(--wabi-text-primary, #0b2a5a))",
+            textShadow: "var(--skin-text-halo-deep, 0 0 22px rgba(255,255,255,0.7), 0 1px 2px rgba(255,255,255,0.9), 0 0 1px rgba(11,42,90,0.45), 0 1px 0 rgba(11,42,90,0.25))",
           }}
           className="mb-4"
         >
           Complete Your Assessment
         </h1>
-        <p className="text-white/50 mb-6">Answer all 8 domains to see your results.</p>
+        <p className="text-[var(--wabi-text-secondary)] mb-6">Answer all 8 domains to see your results.</p>
         <Button variant="wabi-primary" onClick={() => navigate("/quality-of-life-map/assessment")}>
           Start Assessment
         </Button>
@@ -331,23 +379,37 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
   const content = (
     <div className="max-w-2xl mx-auto p-4 lg:p-6 space-y-6">
       {/* Hero Section */}
-      <div ref={snapshotRef} className="rounded-2xl liquid-glass ring-1 ring-white/10 p-6 space-y-5">
-        {/* Title with Value Statement
-            Day 63 (Sasha 2026-05-06): editorial hero treatment to match
-            landing register — Cormorant Garamond on the eyebrow + big
-            number, Source Serif 4 italic on the subhead, gold accent on
-            the eyebrow, halo on the number for legibility on the
-            translucent liquid-glass surface. */}
+      {/* Hero Section
+          Day 64 (Sasha 2026-05-07): converted from dark `liquid-glass`
+          surface to landing-register cream-wash card. Sasha's screenshot
+          showed gold-on-cream eyebrow + white-on-cream "2.0" — both
+          illegible because `liquid-glass` wasn't darkening the cinematic
+          bg enough to read white/light gold against. Switching to a
+          true cream-surface treatment (white/72 bg + navy text + halo-
+          deep cocktail) matches landing's cornerstone register and is
+          legible regardless of what shows through. Radar palette also
+          migrated from violet to gold. */}
+      <div
+        ref={snapshotRef}
+        className="rounded-2xl p-6 space-y-5"
+        style={{
+          background: "var(--skin-card-bg, rgba(255, 255, 255, 0.72))",
+          border: "0.5px solid var(--skin-card-border, rgba(26, 30, 58, 0.10))",
+          boxShadow: "var(--skin-card-shadow, 0 4px 16px -8px rgba(10, 22, 40, 0.12), 0 16px 40px -20px rgba(10, 22, 40, 0.18))",
+          backdropFilter: "blur(8px) saturate(140%)",
+          WebkitBackdropFilter: "blur(8px) saturate(140%)",
+        }}
+      >
         <div className="text-center space-y-3">
           <p
             style={{
               fontFamily: "'Cormorant Garamond', serif",
               fontSize: "11px",
               fontWeight: 600,
-              letterSpacing: "0.20em",
+              letterSpacing: "0.22em",
               textTransform: "uppercase",
-              color: "rgba(244, 212, 114, 0.88)",
-              textShadow: "0 0 12px rgba(244, 212, 114, 0.35)",
+              color: "#7a5708",
+              textShadow: "0 1px 2px rgba(255,255,255,0.6)",
             }}
           >
             Your Quality of Life
@@ -360,8 +422,8 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
                 fontSize: "clamp(56px, 8vw, 80px)",
                 lineHeight: 1,
                 letterSpacing: "-0.02em",
-                color: "rgba(255, 255, 255, 0.96)",
-                textShadow: "0 0 28px rgba(255,255,255,0.45), 0 1px 2px rgba(0,0,0,0.35)",
+                color: "var(--skin-text-primary, var(--wabi-text-primary, #0b2a5a))",
+                textShadow: "var(--skin-text-halo-deep, 0 0 22px rgba(255,255,255,0.7), 0 1px 2px rgba(255,255,255,0.9), 0 0 1px rgba(11,42,90,0.45), 0 1px 0 rgba(11,42,90,0.25))",
               }}
             >
               {overallStageRounded}
@@ -371,7 +433,7 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
                 fontFamily: "'Cormorant Garamond', serif",
                 fontWeight: 500,
                 fontSize: "20px",
-                color: "rgba(255, 255, 255, 0.4)",
+                color: "var(--wabi-text-muted)",
               }}
             >
               / 10
@@ -383,41 +445,49 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
               fontStyle: "italic",
               fontSize: "15px",
               lineHeight: 1.55,
-              color: "rgba(255, 255, 255, 0.7)",
+              color: "var(--wabi-text-secondary)",
             }}
           >
             Now you know where to focus your growth.
           </p>
         </div>
 
-        {/* Radar Chart */}
+        {/* Radar Chart — Day 64 (Sasha 2026-05-07): violet (#8460ea) →
+            gold (#b8860b) for landing-register coherence. Tick labels
+            switched from white (illegible on cream) to navy. */}
         <div className="h-48">
           <ResponsiveContainer width="100%" height="100%">
             <RadarChart data={radarData}>
-              <PolarGrid stroke="rgba(132, 96, 234, 0.2)" />
-              <PolarAngleAxis dataKey="domain" tick={{ fill: 'rgba(255,255,255,0.6)', fontSize: 14 }} />
-              <PolarRadiusAxis angle={90} domain={[0, 10]} tick={{ fill: 'rgba(255,255,255,0.3)', fontSize: 10 }} tickCount={6} />
-              <Radar dataKey="value" stroke="#8460ea" fill="#8460ea" fillOpacity={0.4} strokeWidth={2} />
+              <PolarGrid stroke="rgba(184, 134, 11, 0.22)" />
+              <PolarAngleAxis dataKey="domain" tick={{ fill: 'rgba(11,42,90,0.7)', fontSize: 14 }} />
+              <PolarRadiusAxis angle={90} domain={[0, 10]} tick={{ fill: 'rgba(11,42,90,0.4)', fontSize: 10 }} tickCount={6} />
+              <Radar dataKey="value" stroke="#b8860b" fill="#b8860b" fillOpacity={0.32} strokeWidth={2} />
             </RadarChart>
           </ResponsiveContainer>
         </div>
 
         {/* Growth & Strengths
-            Day 63 (Sasha 2026-05-06): card eyebrows in Cormorant tracked
-            uppercase + gold accent (matches the editorial card-label
-            register from /ubb GenericArtifactScreen.tsx). Domain names
-            in Source Serif 4 for editorial weight; numeric values stay
-            sans for the data-feel. */}
+            Day 64 (Sasha 2026-05-07): converted from dark liquid-glass
+            cards to nested cream-surface (slightly darker than parent
+            hero card for hierarchy). Eyebrows in deep gold (#7a5708),
+            domain names in navy via skin-text-primary, numeric values
+            in deep gold accent. Matches landing card register. */}
         <div className="grid gap-4 sm:grid-cols-2">
-          <div className="rounded-xl liquid-glass ring-1 ring-white/10 p-4">
+          <div
+            className="rounded-xl p-4"
+            style={{
+              background: "rgba(255, 255, 255, 0.5)",
+              border: "0.5px solid rgba(184, 134, 11, 0.18)",
+            }}
+          >
             <p
               style={{
                 fontFamily: "'Cormorant Garamond', serif",
                 fontWeight: 600,
                 fontSize: "11px",
-                letterSpacing: "0.20em",
+                letterSpacing: "0.22em",
                 textTransform: "uppercase",
-                color: "rgba(244, 212, 114, 0.85)",
+                color: "#7a5708",
               }}
               className="mb-3"
             >
@@ -430,25 +500,36 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
                     style={{
                       fontFamily: "'Source Serif 4', serif",
                       fontSize: "14px",
-                      color: "rgba(255, 255, 255, 0.72)",
+                      color: "var(--skin-text-primary, var(--wabi-text-primary, #0b2a5a))",
                     }}
                   >
                     {domain.name}
                   </span>
-                  <span className="text-sm font-semibold text-[var(--depth-violet)]" style={{ fontVariantNumeric: "tabular-nums" }}>{stageValue}</span>
+                  <span
+                    className="text-sm font-semibold"
+                    style={{ fontVariantNumeric: "tabular-nums", color: "#b8860b" }}
+                  >
+                    {stageValue}
+                  </span>
                 </div>
               ))}
             </div>
           </div>
-          <div className="rounded-xl liquid-glass ring-1 ring-white/10 p-4">
+          <div
+            className="rounded-xl p-4"
+            style={{
+              background: "rgba(255, 255, 255, 0.5)",
+              border: "0.5px solid rgba(184, 134, 11, 0.18)",
+            }}
+          >
             <p
               style={{
                 fontFamily: "'Cormorant Garamond', serif",
                 fontWeight: 600,
                 fontSize: "11px",
-                letterSpacing: "0.20em",
+                letterSpacing: "0.22em",
                 textTransform: "uppercase",
-                color: "rgba(244, 212, 114, 0.85)",
+                color: "#7a5708",
               }}
               className="mb-3"
             >
@@ -461,12 +542,17 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
                     style={{
                       fontFamily: "'Source Serif 4', serif",
                       fontSize: "14px",
-                      color: "rgba(255, 255, 255, 0.72)",
+                      color: "var(--skin-text-primary, var(--wabi-text-primary, #0b2a5a))",
                     }}
                   >
                     {domain.name}
                   </span>
-                  <span className="text-sm font-semibold text-[var(--depth-violet)]" style={{ fontVariantNumeric: "tabular-nums" }}>{stageValue}</span>
+                  <span
+                    className="text-sm font-semibold"
+                    style={{ fontVariantNumeric: "tabular-nums", color: "#b8860b" }}
+                  >
+                    {stageValue}
+                  </span>
                 </div>
               ))}
             </div>
