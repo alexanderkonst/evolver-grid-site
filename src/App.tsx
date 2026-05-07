@@ -95,8 +95,9 @@ import CharacterSnapshot from "./pages/CharacterSnapshot";
 import ResourcesZogIntroVideo from "./pages/ResourcesZogIntroVideo";
 import ResourcesPersonalityTests from "./pages/ResourcesPersonalityTests";
 import QualityOfLifeMapAssessment from "./pages/QualityOfLifeMapAssessment";
-import QualityOfLifePriorities from "./pages/QualityOfLifePriorities";
-import QualityOfLifeGrowthRecipe from "./pages/QualityOfLifeGrowthRecipe";
+// Day 64 (Sasha 2026-05-07): QualityOfLifePriorities + QualityOfLifeGrowthRecipe
+// imports retired — pages no longer routed (see route block below). Files
+// preserved in src/pages/ as dead code.
 import QolLayout from "./modules/quality-of-life-map/QolLayout";
 import ZoneOfGeniusLandingPage from "./modules/zone-of-genius/ZoneOfGeniusLandingPage";
 import ZoneOfGeniusAssessmentLayout from "./modules/zone-of-genius/ZoneOfGeniusAssessmentLayout";
@@ -571,11 +572,25 @@ const App = () => (
                   <Route path="/growth-paths" element={<RequireAuth><GrowthPathsPage /></RequireAuth>} />
                   <Route path="/resources/zog-intro-video" element={<RequireAuth><ResourcesZogIntroVideo /></RequireAuth>} />
                   <Route path="/resources/personality-tests" element={<RequireAuth><ResourcesPersonalityTests /></RequireAuth>} />
+                  {/* Day 64 (Sasha 2026-05-07): /priorities and /growth-recipe
+                      retired per the Results page revamp. The page components
+                      (QualityOfLifePriorities, QualityOfLifeGrowthRecipe) are
+                      preserved in src/pages/ as dead code — quick to revive
+                      if the call is reversed. Old URL hits 404 (handled by
+                      the catch-all <NotFound /> below); could be made into
+                      redirects to /quality-of-life-map/results if Sasha sees
+                      stale links in the wild. */}
                   <Route path="/quality-of-life-map" element={<RequireAuth><QolLayout /></RequireAuth>}>
                     <Route path="assessment" element={<QualityOfLifeMapAssessment />} />
                     <Route path="results" element={<QualityOfLifeMapResults />} />
-                    <Route path="priorities" element={<QualityOfLifePriorities />} />
-                    <Route path="growth-recipe" element={<QualityOfLifeGrowthRecipe />} />
+                  </Route>
+                  {/* Day 64 (Sasha 2026-05-07): ME-space subpage rendering
+                      the same Results component. Lets the user revisit their
+                      latest snapshot from the ME pane any time. The QolLayout
+                      wraps the route so QolAssessmentProvider mounts and the
+                      latest snapshot loads from DB on entry. */}
+                  <Route path="/game/me/quality-of-life" element={<RequireAuth><QolLayout /></RequireAuth>}>
+                    <Route index element={<QualityOfLifeMapResults />} />
                   </Route>
                   <Route path="/zone-of-genius" element={<RequireAuth><ZoneOfGeniusLandingPage /></RequireAuth>} />
                   <Route path="/zone-of-genius/appleseed" element={<RequireAuth><AppleseedView /></RequireAuth>} />

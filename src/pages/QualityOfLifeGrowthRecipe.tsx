@@ -1,3 +1,13 @@
+// =============================================================================
+// DEAD CODE — Day 64 (Sasha 2026-05-07)
+// =============================================================================
+// This component is no longer routed. The /quality-of-life-map/growth-recipe
+// route was retired in the Day 64 Results revamp (see
+// docs/specs/quality-of-life-map/results_revamp_spec.md). The file is
+// preserved in place — quick to revive if the call is reversed. Nothing
+// in the running app imports this component.
+// =============================================================================
+
 import { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { ArrowRight, BookOpen } from "lucide-react";
