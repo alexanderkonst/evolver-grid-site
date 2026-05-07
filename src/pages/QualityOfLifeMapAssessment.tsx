@@ -227,12 +227,40 @@ const QualityOfLifeMapAssessment = ({
           </div>
         </div>
 
-        {/* Domain Heading */}
+        {/* Domain Heading — Day 64 (third pass, Sasha 2026-05-07):
+            comprehensive legibility migration to Master Legibility
+            Strong (1.5×) per ui_playbook.md Part VIII. Was using
+            Tailwind utility `font-bold text-[var(--wabi-text-primary)]`
+            with NO halo cocktail, NO Cormorant, NO surface treatment —
+            sat on bare cinematic bg, illegible on cream sections.
+            Now: Cormorant 700 + full halo-deep cocktail (4-layer)
+            matching MethodologyLandingPage.tsx. Subtitle gets Source
+            Serif 4 italic + alpha 0.88 + halo-soft. */}
         <div className="text-center mb-12">
-          <h1 className="text-3xl sm:text-4xl font-bold mb-4 text-[var(--wabi-text-primary)]">
-            <BoldText>{domain.name.toUpperCase()}</BoldText>
+          <h1
+            style={{
+              fontFamily: "'Cormorant Garamond', serif",
+              fontWeight: 700,
+              fontSize: "clamp(32px, 5vw, 48px)",
+              letterSpacing: "0.04em",
+              lineHeight: 1.1,
+              color: "var(--skin-text-primary, #0a1628)",
+              textShadow: "var(--skin-text-halo-deep, 0 0 28px rgba(255,255,255,0.85), 0 1px 2px rgba(255,255,255,0.95), 0 0 1px rgba(11,42,90,0.65), 0 1px 0 rgba(11,42,90,0.45))",
+            }}
+            className="mb-4"
+          >
+            {domain.name.toUpperCase()}
           </h1>
-          <p className="text-lg text-[var(--wabi-text-secondary)]">
+          <p
+            style={{
+              fontFamily: "'Source Serif 4', 'Cormorant Garamond', serif",
+              fontStyle: "italic",
+              fontSize: "16px",
+              lineHeight: 1.55,
+              color: "rgba(11, 42, 90, 0.88)",
+              textShadow: "0 1px 2px rgba(255,255,255,0.7)",
+            }}
+          >
             Select the stage that best represents your current state in this domain.
           </p>
         </div>
@@ -287,7 +315,7 @@ const QualityOfLifeMapAssessment = ({
                   "border-2 hover:scale-[1.02]",
                   isSelected
                     ? "border-[#b8860b] bg-[#b8860b]/10"
-                    : "border-[var(--wabi-text-muted)]/20 bg-white/60 hover:border-[#b8860b]/40"
+                    : "border-[var(--wabi-text-muted)]/20 bg-white/[0.85] hover:border-[#b8860b]/40"
                 )}
               >
                 <div className="flex items-start gap-4">
@@ -303,12 +331,34 @@ const QualityOfLifeMapAssessment = ({
                     {isSelected ? <Check className="w-6 h-6" /> : stage.id}
                   </div>
 
-                  {/* Stage Content */}
+                  {/* Stage Content — Day 64 (third pass): halo cocktail
+                      + Cormorant on title, Source Serif 4 on description,
+                      alpha lift on muted text. Cards already have
+                      bg-white/60; halo lifts text cleanly off the
+                      semi-transparent surface. */}
                   <div className="flex-1">
-                    <h3 className="text-xl font-bold text-[var(--wabi-text-primary)] mb-2">
-                      <BoldText>{stage.title}</BoldText>
+                    <h3
+                      style={{
+                        fontFamily: "'Cormorant Garamond', serif",
+                        fontWeight: 700,
+                        fontSize: "20px",
+                        letterSpacing: "-0.005em",
+                        lineHeight: 1.2,
+                        color: "var(--skin-text-primary, #0a1628)",
+                        textShadow: "0 1px 2px rgba(255,255,255,0.85), 0 0 1px rgba(11,42,90,0.4)",
+                      }}
+                      className="mb-2"
+                    >
+                      {stage.title}
                     </h3>
-                    <p className="text-[var(--wabi-text-secondary)] leading-relaxed">
+                    <p
+                      style={{
+                        fontFamily: "'Source Serif 4', serif",
+                        fontSize: "15px",
+                        lineHeight: 1.55,
+                        color: "rgba(11, 42, 90, 0.85)",
+                      }}
+                    >
                       {stage.description}
                     </p>
                   </div>
