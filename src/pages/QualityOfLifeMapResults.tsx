@@ -398,29 +398,71 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
     );
   }
 
-  // Not complete
+  // Not complete state — Day 64 (Sasha 2026-05-07): empty-state CTA
+  // migrated from wabi-primary violet to liquid-glass-strong editorial
+  // pattern matching the assessment intro's "Map My Life" treatment.
+  // Per Sasha's screenshot feedback: the violet button was inconsistent
+  // with the rest of the QoL UI's gold-on-cream register.
   if (!isComplete) {
     return (
-      <div className="max-w-2xl mx-auto p-6 text-center">
-        <Map className="w-16 h-16 mx-auto text-[var(--wabi-text-muted)] mb-4" />
+      <div className="liquid-glass rounded-3xl p-8 sm:p-10 max-w-2xl mx-auto text-center my-8">
+        <Map className="w-16 h-16 mx-auto text-[var(--wabi-text-muted)] mb-5" />
+        <p
+          style={{
+            fontFamily: "'Cormorant Garamond', serif",
+            fontSize: "11px",
+            fontWeight: 600,
+            letterSpacing: "0.22em",
+            textTransform: "uppercase",
+            color: "#0a1628",
+            textShadow: "0 1px 2px rgba(255,255,255,0.85)",
+          }}
+          className="mb-3"
+        >
+          Quality of Life Map
+        </p>
         <h1
           style={{
             fontFamily: "'Cormorant Garamond', serif",
             fontWeight: 700,
-            fontSize: "clamp(24px, 3vw, 30px)",
+            fontSize: "clamp(28px, 3.5vw, 36px)",
             letterSpacing: "-0.005em",
             lineHeight: 1.1,
-            color: "var(--skin-text-primary, var(--wabi-text-primary, #0b2a5a))",
-            textShadow: "var(--skin-text-halo-deep, 0 0 22px rgba(255,255,255,0.7), 0 1px 2px rgba(255,255,255,0.9), 0 0 1px rgba(11,42,90,0.45), 0 1px 0 rgba(11,42,90,0.25))",
+            color: "#0a1628",
+            textShadow: "0 0 22px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.85), 0 2px 12px rgba(26,30,58,0.18)",
           }}
-          className="mb-4"
+          className="mb-3"
         >
           Complete Your Assessment
         </h1>
-        <p className="text-[var(--wabi-text-secondary)] mb-6">Answer all 8 domains to see your results.</p>
-        <Button variant="wabi-primary" onClick={() => navigate("/quality-of-life-map/assessment")}>
+        <p
+          style={{
+            fontFamily: "'Source Serif 4', 'Cormorant Garamond', serif",
+            fontStyle: "italic",
+            fontSize: "15px",
+            lineHeight: 1.55,
+            color: "rgba(26,30,58,0.78)",
+          }}
+          className="mb-7"
+        >
+          Answer all 8 domains to see your results.
+        </p>
+        <button
+          onClick={() => navigate("/quality-of-life-map/assessment")}
+          className="liquid-glass-strong rounded-2xl px-8 py-4 inline-flex items-center justify-center gap-2 hover:scale-[1.02] active:scale-95 transition-all duration-300"
+          style={{
+            fontFamily: "'Cormorant Garamond', serif",
+            fontWeight: 600,
+            letterSpacing: "0.16em",
+            textTransform: "uppercase",
+            fontSize: "13px",
+            color: "#0a1628",
+            textShadow: "0 1px 2px rgba(255,255,255,0.7)",
+          }}
+        >
+          <span aria-hidden="true" style={{ color: "#b8860b", fontSize: "16px", textShadow: "0 0 12px rgba(244,212,114,0.6)" }}>✦</span>
           Start Assessment
-        </Button>
+        </button>
       </div>
     );
   }

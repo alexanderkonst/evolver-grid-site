@@ -448,11 +448,17 @@ const buildJourneySections = (_currentPath: string): Section[] => {
             lockedHint: "Unlocks after you build a business off your top talent.",
         },
         {
+            // Day 63 (Sasha 2026-05-07): unlocked. The Aurora reskin +
+            // Round-2 functional bug-fix pass landed today (fetchAssetMatches
+            // shape mismatch fixed; AI-extract path actually works again;
+            // return-path threading correct from /game/me/assets). Module
+            // is production-ready — Sasha wants it live to dogfood the
+            // flow himself. If we later want to gate it behind a
+            // prerequisite (e.g. mission-discovery), add `locked: true`
+            // and `lockedHint` back.
             id: "journey-asset-mapper",
             label: "7. Map your assets",
             path: "/asset-mapping",
-            locked: true,
-            lockedHint: "Unlocks after you discover your mission.",
         },
         // Day 63 (Sasha 2026-05-06, evening) — RE-LOCKED. Sasha visited
         // /quality-of-life-map/assessment in production-preview and
