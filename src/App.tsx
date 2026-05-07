@@ -539,8 +539,17 @@ const App = () => (
                       the 6 phase-group navigation; pane 3 hosts the artifacts +
                       wizards. UniqueBusinessLayout strips its own chrome
                       (header, progress bar, max-w wrapper) since the shell
-                      provides those affordances. */}
-                  <Route path="/ubb" element={<RequireAuth><GameShellV2 hideLogo><UniqueBusinessLayout /></GameShellV2></RequireAuth>}>
+                      provides those affordances.
+                      Day 64 (Sasha 2026-05-07): gate switched from RequireAuth
+                      to MeGate so the deeper-Top-Talent-view contract is
+                      consistent end-to-end — same gate that opens /game/me/*.
+                      RequireAuth bounced coupon-redeemers (unauthed +
+                      sessionStorage `coupon_activated`) to /auth, breaking
+                      the JOURNEY rail unlock for that path. MeGate honors
+                      both the auth session AND the coupon flag, and falls
+                      back to /zone-of-genius for unauthed-no-coupon visitors
+                      (funnel-monogamy-aligned — they need the reveal first). */}
+                  <Route path="/ubb" element={<MeGate><GameShellV2 hideLogo><UniqueBusinessLayout /></GameShellV2></MeGate>}>
                     <Route index element={<CanvasOverviewScreen />} />
                     <Route path="uniqueness" element={<GenericArtifactScreen />} />
                     <Route path="myth" element={<GenericArtifactScreen />} />
