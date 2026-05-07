@@ -997,3 +997,108 @@ const AssetMappingLanding = () => {
 };
 
 export default AssetMappingLanding;
+
+// ─────────────────────────────────────────────────────────────────────
+// Day 63 v3 — strategic-dimension badges. Color-graded so the operator
+// can see at a glance where each asset sits on the maturity ladder + the
+// time horizon. Tooltip-on-hover via native title attribute (no extra
+// Radix overhead — the badges are dense, the explanation is short).
+// ─────────────────────────────────────────────────────────────────────
+
+const badgeBaseStyle: React.CSSProperties = {
+    fontFamily: "'DM Sans', system-ui, sans-serif",
+    fontWeight: 500,
+    fontSize: "10px",
+    letterSpacing: "0.10em",
+    textTransform: "uppercase",
+    padding: "1.5px 7px",
+    borderRadius: "999px",
+    border: "0.5px solid",
+    whiteSpace: "nowrap" as const,
+    cursor: "help",
+};
+
+const MATURITY_LABEL: Record<AssetMaturity, string> = {
+    monetizable_now: "Monetizable now",
+    usable_but_needs_packaging: "Needs packaging",
+    latent: "Latent",
+    aspirational: "Aspirational",
+    symbolic_only: "Symbolic only",
+};
+
+const MATURITY_HINT: Record<AssetMaturity, string> = {
+    monetizable_now: "Documented, deliverable, priced — could produce revenue this month if activated.",
+    usable_but_needs_packaging: "Real and proven, but lives in your head or scattered artifacts. Two weeks of packaging from sellable.",
+    latent: "Potential is real but unproven in the market. Untested or undocumented.",
+    aspirational: "Relational / networked / intended access. The door exists; you have not opened it for revenue or distribution yet.",
+    symbolic_only: "Mythic, biographical, or sacred fuel. Real, but operationally inert today.",
+};
+
+function MaturityBadge({ maturity }: { maturity: AssetMaturity }) {
+    // Color-graded: green when monetizable now (ready to deploy), gold for
+    // packaging-step-away (high-promise, near-ready), neutral for latent /
+    // aspirational (real but not yet acting), dim for symbolic_only
+    // (honest acknowledgement, not an action item).
+    const tone =
+        maturity === "monetizable_now"
+            ? {
+                color: "rgba(20, 130, 70, 0.95)",
+                background: "rgba(20, 130, 70, 0.08)",
+                borderColor: "rgba(20, 130, 70, 0.35)",
+            }
+            : maturity === "usable_but_needs_packaging"
+            ? {
+                color: "var(--skin-goldDeep, #5d4307)",
+                background: "rgba(212, 175, 55, 0.10)",
+                borderColor: "rgba(212, 175, 55, 0.40)",
+            }
+            : maturity === "symbolic_only"
+            ? {
+                color: "var(--skin-text-muted, rgba(11, 42, 90, 0.50))",
+                background: "rgba(11, 42, 90, 0.04)",
+                borderColor: "rgba(11, 42, 90, 0.12)",
+            }
+            : {
+                color: "var(--skin-text-muted, rgba(11, 42, 90, 0.62))",
+                background: "rgba(11, 42, 90, 0.06)",
+                borderColor: "rgba(11, 42, 90, 0.18)",
+            };
+    return (
+        <span
+            title={MATURITY_HINT[maturity]}
+            style={{ ...badgeBaseStyle, ...tone }}
+        >
+            {MATURITY_LABEL[maturity]}
+        </span>
+    );
+}
+
+const HORIZON_LABEL: Record<AssetHorizon, string> = {
+    now: "Now",
+    next: "Next 6mo",
+    later: "Later",
+};
+
+const HORIZON_HINT: Record<AssetHorizon, string> = {
+    now: "Activate this quarter for income, credibility, or distribution.",
+    next: "Package or position in the next 6 months — sequenced after Now items.",
+    later: "Civilization-scale or strategic-north-star. Belongs for orientation, not this month's plan.",
+};
+
+function HorizonBadge({ horizon }: { horizon: AssetHorizon }) {
+    // Subtler than maturity — horizon is timing context, not strategic
+    // judgement. Single muted-navy palette with weight signaling.
+    const accent = horizon === "now"
+        ? { color: "var(--skin-text-primary, #0b2a5a)", background: "rgba(11, 42, 90, 0.08)", borderColor: "rgba(11, 42, 90, 0.25)" }
+        : horizon === "next"
+        ? { color: "var(--skin-text-body, rgba(11, 42, 90, 0.78))", background: "rgba(11, 42, 90, 0.05)", borderColor: "rgba(11, 42, 90, 0.18)" }
+        : { color: "var(--skin-text-muted, rgba(11, 42, 90, 0.55))", background: "rgba(11, 42, 90, 0.03)", borderColor: "rgba(11, 42, 90, 0.12)" };
+    return (
+        <span
+            title={HORIZON_HINT[horizon]}
+            style={{ ...badgeBaseStyle, ...accent }}
+        >
+            {HORIZON_LABEL[horizon]}
+        </span>
+    );
+}
