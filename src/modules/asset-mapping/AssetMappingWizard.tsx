@@ -276,8 +276,12 @@ const AssetMappingWizard = () => {
     };
 
     return (
-        <div className="min-h-dvh" style={{ background: WASH_BG }}>
-            <div className="max-w-2xl mx-auto px-5 py-8 sm:py-10">
+        // Day 63 (Sasha 2026-05-07): wrapper no longer paints WASH_BG —
+        // the GameShellV2 wrap (in App.tsx) provides the cream wash.
+        // Same fix as the Landing surface; both files dropped their
+        // self-painted backgrounds the same day.
+        <div className="px-5 py-8 sm:py-10">
+            <div className="max-w-2xl mx-auto">
                 {/* ═══════ HEADER — Aurora editorial ═══════ */}
                 {/* Day 63: was a sticky bg-white border-b utility header. Now:
                     centered Cormorant title + italic echo + Ornament — same

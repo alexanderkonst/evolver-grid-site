@@ -509,17 +509,26 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
   // list replaces Growth/Strengths split. "See My Profile" gone (no
   // priorities page). Action row simplified to Retake / Download PDF.
   const sortedAscending = [...domainResults].sort((a, b) => a.stageValue - b.stageValue);
+  // Day 64 (third pass): full halo-deep cocktail per docs/03-playbooks/
+  // ui_playbook.md Part VIII Master Legibility Strong (1.5×). 4-layer:
+  // 28px white halo (lift on cream) + 1-2px white near-stroke (max
+  // contrast on light bg) + 1px navy under-stroke × 2 (sharp navy
+  // backing for variable-luminance backdrops — the cinematic image's
+  // bright/dark variations). Same exact cocktail as
+  // MethodologyLandingPage.tsx line 79. Replaces the weaker single-
+  // white-stroke cocktail that left text looking faint on the cream
+  // sections of the cinematic bg.
+  const haloDeep =
+    "0 0 28px rgba(255,255,255,0.85), 0 1px 2px rgba(255,255,255,0.95), 0 0 1px rgba(11,42,90,0.65), 0 1px 0 rgba(11,42,90,0.45)";
   const heroEyebrowStyle: React.CSSProperties = {
     fontFamily: "'Cormorant Garamond', serif",
     fontSize: "11px",
-    fontWeight: 600,
+    fontWeight: 700, // Cormorant max — heaviest stroke for small uppercase tracking
     letterSpacing: "0.22em",
     textTransform: "uppercase",
     color: "#0a1628",
-    textShadow: "0 1px 2px rgba(255,255,255,0.85)",
+    textShadow: haloDeep,
   };
-  const haloDeep =
-    "0 0 22px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.8), 0 2px 12px rgba(26,30,58,0.15)";
   const content = (
     <div className="max-w-2xl mx-auto p-4 lg:p-6 space-y-6">
       {/* Hero — liquid-glass per glassmorphism_blueprint.md.
@@ -563,7 +572,10 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
               fontStyle: "italic",
               fontSize: "15px",
               lineHeight: 1.55,
-              color: "rgba(26,30,58,0.78)",
+              // Day 64 (third pass): muted-alpha lifted 0.78 → 0.88 + halo-soft
+              // per ui_playbook.md Part VIII Strong cocktail lever 2.
+              color: "rgba(11, 42, 90, 0.88)",
+              textShadow: "0 1px 2px rgba(255,255,255,0.7)",
             }}
           >
             Now you know where to focus your growth.
@@ -605,9 +617,13 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
                     style={{
                       fontFamily: "'Source Serif 4', serif",
                       fontSize: "16px",
-                      fontWeight: 500,
-                      color: "rgba(26,30,58,0.88)",
-                      textShadow: "0 1px 2px rgba(255,255,255,0.6)",
+                      // Day 64 (third pass): weight 500→600 + alpha 0.88→0.94
+                      // + halo-soft strengthened per Strong cocktail. Domain
+                      // names now read cleanly against the cinematic bg's
+                      // bright sections.
+                      fontWeight: 600,
+                      color: "rgba(11, 42, 90, 0.94)",
+                      textShadow: "0 1px 2px rgba(255,255,255,0.85), 0 0 1px rgba(11,42,90,0.4)",
                     }}
                   >
                     {domain.name}

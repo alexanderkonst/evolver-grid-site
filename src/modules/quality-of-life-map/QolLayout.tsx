@@ -35,20 +35,18 @@ const QolLayout = () => {
           QoL pages — duplicated the SpacesRail brand presence and competed
           with the QoL hero's own visual. Pattern matches Day 58's hideLogo
           treatment on the ME-space Overview hero. */}
+      {/* Day 64 (Sasha 2026-05-07, third pass): the bg-white/0.18 wash
+          I added in the second pass was creating a visible seam where
+          its container ended (Sasha called it "poorly applied overlay").
+          GameShellV2 already provides a pane 3 wash via its skin-panel-
+          wash token (see GameShellV2.tsx ~line 869). Stacking my wash
+          on top was double-washing and made the seam visible. Reverted
+          to plain Outlet — relying on GameShellV2's natural wash + the
+          full halo-deep legibility cocktail on every QoL text element
+          (per docs/03-playbooks/ui_playbook.md Part VIII Master
+          Legibility Strong 1.5×) to handle contrast. */}
       <GameShellV2 hideLogo>
-        {/* Day 64 (Sasha 2026-05-07, second pass): apply playbook's
-            "Light look" page wash per docs/03-playbooks/glassmorphism_blueprint.md
-            line 108: `bg-white/[0.18]` wash → Panel 3 reads as daylight,
-            dark text is readable. This wash sits between GameShellV2's
-            cinematic bg and the QoL content's liquid-glass cards,
-            brightening the underlying surface so the cards' navy text
-            on light glass reads cleanly. Fixes the "barely legible"
-            issue Sasha called out — without this wash, the cinematic
-            sky's bright sections washed out the liquid-glass card
-            content. */}
-        <div className="bg-white/[0.18] min-h-full">
-          <Outlet />
-        </div>
+        <Outlet />
       </GameShellV2>
     </QolAssessmentProvider>
   );

@@ -172,6 +172,23 @@ A numbered table, four columns:
 | Verifying after declaring done | Sequence reversal — "done" is the conclusion of verification, not its precursor | Verify first, declare second |
 | **"Found the root cause"** (Day 61-62) | Confidence before verification. Each declaration is REAL but partial. Eats trust on top of time when the next layer surfaces. | **"Hypothesis: X is the cause"** before shipping → **"Shipped, awaiting your verification"** when code lands → **"Confirmed by your test: bug fixed"** ONLY after Sasha tests in production. |
 | **"While I'm here, let me also fix B, C, D"** (Day 61-62) | Bundling adjacent fixes with the requested bug fix → verification becomes impossible (if a new bug appears, it can't be attributed to any single fix). | **Smallest possible diff per fix.** Adjacent observations go on a "saw these too, NOT shipping" list in the response, not into the commit. Sasha picks what to address next. |
+| **"Fixed the symptom by patching ONE surface"** (Day 64) | Most user-visible symptoms have multiple contributing surfaces. Patching one and shipping leaves the symptom partially visible — Sasha sees "the same state" and loses trust in the fix. | **Trace EVERY surface that could contribute to the symptom before shipping.** Three concrete failure modes from Day 64 below. |
+
+### Trace-every-surface checklist (Day 64 — operationalized after the QoL module thread)
+
+When Sasha calls out a symptom, do this BEFORE claiming the fix is shipped:
+
+| Symptom class | Surfaces to trace | Day 64 example that surfaced this rule |
+|---|---|---|
+| **Duplicate brand-mark / logo / wordmark** | (1) `GameShellV2`'s `hideLogo` prop (top-right home icon) · (2) `SiteLogo` global component in `App.tsx` (top-center wordmark) · (3) Page-internal lockups · (4) Any component importing brand logo assets (`grep -rn "brandLogo\|find-your-top-talent-logo" src/`) | Sasha's QoL-page screenshot showed "FIND YOUR TOP TALENT" wordmark top-center. I set `hideLogo` on `GameShellV2` (controls TOP-RIGHT icon). The TOP-CENTER wordmark was a separate `SiteLogo` component with its own opt-in suppression list. Two different elements at similar Y positions. |
+| **Database save / "Could not save" toasts** | (1) Schema migration files (`supabase/migrations/*.sql`) — read the actual `CREATE TABLE` + any `ALTER TABLE` to know the column shape · (2) Application insert payload — match cell-by-cell · (3) RLS policies if applicable · (4) Post-insert side effects (XP, telemetry, profile pointers) — separate try-catch from the critical write per the `successFired` pattern | Day 63 evening I refactored `saveSnapshotToDatabase` into the two-phase pattern thinking the toast was post-save side effects throwing. Architecture was correct but the bug was that `overall_score` was sent in the INSERT and the column doesn't exist (Postgres 42703). Reading the migration FIRST would have surfaced it in 30 seconds. |
+| **Rasterization / html2canvas / PDF generation** | (1) Inline styles on the snapshot ref · (2) Parent CSS classes — including `::before`/`::after` pseudo-elements · (3) Properties that html2canvas can't rasterize: `mask-composite`, `backdrop-filter`, `filter`, `clip-path`, CSS variables in offscreen render context · (4) SVG attribute resolution (recharts, etc.) | Day 63 I scrubbed `backdrop-filter` in onclone (necessary). Day 64 I added CSS-var resolution (also necessary). Both right but insufficient. The actual blocker was `liquid-glass`'s `::before` pseudo-element with `mask-composite: exclude` — html2canvas can't rasterize that. Inline-style scrubbing covered parent but not the pseudo-element decoration. |
+
+**Operating rule:** for any of these symptom classes, the response template is:
+
+> *"I traced [N] surfaces that could contribute: [A, B, C]. The cause is [specific surface]. Fix: [diff]. The other [N-1] surfaces I checked were [clean / also-contributing-here-too — fixing both]."*
+
+If you can't enumerate the surfaces traced, the fix isn't ready to ship.
 
 ### When NOT to use a DoD table
 

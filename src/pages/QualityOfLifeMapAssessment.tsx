@@ -94,21 +94,22 @@ const QualityOfLifeMapAssessment = ({
   const introScreen = (
     <section className="px-6 py-12 sm:py-16 mx-auto max-w-2xl">
       <div className="text-center space-y-6">
-        {/* Eyebrow — Cormorant tracked-uppercase. Day 64 (Sasha
-            2026-05-07): color shifted from gold (rgba(244,212,114,0.85))
-            to deep skin-text-primary navy. Gold-on-cream had poor
-            contrast — Sasha called it illegible from the production
-            screenshot. Navy + halo-soft is the landing-register
-            equivalent for cream surfaces. */}
+        {/* Eyebrow — Day 64 (third pass, Sasha 2026-05-07): full halo-
+            deep cocktail (4-layer: 28px white halo + white near-stroke
+            + 2× navy under-stroke) per ui_playbook.md Part VIII Master
+            Legibility Strong. Matches landing page exactly. The earlier
+            single-white-stroke cocktail was the weak version and left
+            the eyebrow faint on the cream cinematic sections. Bumped
+            fontWeight 600→700 (Cormorant max). */}
         <p
           style={{
             fontFamily: "'Cormorant Garamond', serif",
             fontSize: "11px",
-            fontWeight: 600,
+            fontWeight: 700,
             letterSpacing: "0.22em",
             textTransform: "uppercase",
-            color: "var(--skin-text-primary, var(--wabi-text-primary, #0b2a5a))",
-            textShadow: "0 1px 2px rgba(255,255,255,0.6)",
+            color: "var(--skin-text-primary, #0a1628)",
+            textShadow: "var(--skin-text-halo-deep, 0 0 28px rgba(255,255,255,0.85), 0 1px 2px rgba(255,255,255,0.95), 0 0 1px rgba(11,42,90,0.65), 0 1px 0 rgba(11,42,90,0.45))",
           }}
         >
           Quality of Life Map
@@ -125,7 +126,10 @@ const QualityOfLifeMapAssessment = ({
           </div>
         </div>
 
-        {/* Headline — Cormorant editorial */}
+        {/* Headline — Cormorant editorial. Day 64 (third pass): halo-
+            deep cocktail strengthened to the deepest variant (28px
+            halo + 0.95 white near-stroke + 0.65/0.45 navy under-strokes)
+            matching MethodologyLandingPage.tsx line 79 exactly. */}
         <h1
           style={{
             fontFamily: "'Cormorant Garamond', serif",
@@ -133,21 +137,25 @@ const QualityOfLifeMapAssessment = ({
             fontSize: "clamp(28px, 4vw, 42px)",
             letterSpacing: "-0.005em",
             lineHeight: 1.1,
-            color: "var(--skin-text-primary, var(--wabi-text-primary, #0b2a5a))",
-            textShadow: "var(--skin-text-halo-deep, 0 0 22px rgba(255,255,255,0.7), 0 1px 2px rgba(255,255,255,0.9), 0 0 1px rgba(11,42,90,0.45), 0 1px 0 rgba(11,42,90,0.25))",
+            color: "var(--skin-text-primary, #0a1628)",
+            textShadow: "var(--skin-text-halo-deep, 0 0 28px rgba(255,255,255,0.85), 0 1px 2px rgba(255,255,255,0.95), 0 0 1px rgba(11,42,90,0.65), 0 1px 0 rgba(11,42,90,0.45))",
           }}
         >
           Rate 8 life areas
         </h1>
 
-        {/* Subhead — Source Serif 4 italic */}
+        {/* Subhead — Day 64 (third pass): muted-alpha lifted from 0.78
+            (wabi-text-secondary) to 0.88 + halo-soft for legibility on
+            variable-luminance bg. Per ui_playbook.md Part VIII lever 2
+            (muted-alpha lift). */}
         <p
           style={{
             fontFamily: "'Source Serif 4', 'Cormorant Garamond', serif",
             fontStyle: "italic",
             fontSize: "16px",
             lineHeight: 1.6,
-            color: "var(--wabi-text-secondary)",
+            color: "rgba(11, 42, 90, 0.88)",
+            textShadow: "0 1px 2px rgba(255,255,255,0.7)",
           }}
         >
           See where you're thriving and where to grow.
