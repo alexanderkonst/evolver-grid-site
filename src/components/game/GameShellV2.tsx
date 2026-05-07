@@ -187,6 +187,11 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
         current_streak_days?: number | null;
     } | null>(null);
     const [hasGeniusOffer, setHasGeniusOffer] = useState(false);
+    // Day 63 (Sasha 2026-05-07 evening): COLLABORATE space gating shifted
+    // from "ignition complete" to "has ≥1 saved asset." The premise: a
+    // user can't meaningfully match with collaborators until they've
+    // actually mapped what they bring. Asset count is the truer gate.
+    const [hasAssets, setHasAssets] = useState(false);
     // Prevents the SpacesRail lock-flicker: while the profile is still being
     // fetched, `stage` would default to "new" and render ME/LEARN/MEET as
     // locked for a beat — then flip unlocked when the profile arrives. We
