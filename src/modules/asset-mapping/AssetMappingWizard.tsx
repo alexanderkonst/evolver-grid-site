@@ -646,14 +646,15 @@ const AssetMappingWizard = () => {
                                 <div style={eyebrowSmall} className="text-center mb-3">
                                     Added this session
                                 </div>
+                                {/* Day 63 round-2: borders set per-li below
+                                    so the `divide-y` Tailwind class isn't
+                                    actually doing anything — removed it
+                                    along with the dead `--tw-divide-opacity`
+                                    custom-property override that needed an
+                                    @ts-expect-error suppression. */}
                                 <ul
-                                    className="rounded-xl divide-y"
-                                    style={{
-                                        ...parchmentCardSubtle,
-                                        // @ts-expect-error — divide-y reads CSS var
-                                        "--tw-divide-opacity": 1,
-                                        borderColor: "var(--skin-rule-hairline, rgba(26, 30, 58, 0.10))",
-                                    }}
+                                    className="rounded-xl"
+                                    style={parchmentCardSubtle}
                                 >
                                     {addedAssets.map((asset, i) => (
                                         <li

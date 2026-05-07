@@ -409,11 +409,21 @@ const ZoneOfGeniusEntry = () => {
             // Auto-save to localStorage for guests (will be migrated after signup)
             saveAppleseedToLocalStorage(result, aiResponse);
 
+            // Auto-save for AUTHED users is handled by the existing
+            // useEffect at line ~322 (fires on step → "appleseed-result").
+            // Tried adding a redundant in-handler call here; reverted —
+            // it would have caused a double-write to the same row.
+            // The actual divergence-bug Sasha's friend hit is fixed at
+            // the saveToDatabase.ts layer: saveAppleseed now invalidates
+            // the zogSnapshotCache after a successful write, so the
+            // /game/me/zone-of-genius "deeper view" can't keep
+            // returning the pre-save snapshot from sessionStorage.
+            // Day 62 (Sasha 2026-05-05).
             setStep("appleseed-result");
         } catch (err) {
             const errorMsg = err instanceof Error ? err.message : 'Something went wrong';
-            setError(errorMsg.includes('try again') 
-              ? errorMsg 
+            setError(errorMsg.includes('try again')
+              ? errorMsg
               : 'Something went wrong generating your profile. Please try again — it usually works on retry.');
             setStep("paste-response");
         } finally {
