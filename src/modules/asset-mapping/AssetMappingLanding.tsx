@@ -189,13 +189,16 @@ const fetchAssetMatches = async (text: string): Promise<MatchedAsset[] | null> =
                     description: match.description?.trim() || undefined,
                     leverageReason: match.why_value?.trim() || undefined,
                     maturity: isMaturity(match.maturity) ? match.maturity : undefined,
-                    horizon: isHorizon(match.horizon) ? match.horizon : undefined,
+                    horizon: normalizeHorizon(match.horizon),
+                    nature: isNature(match.nature) ? match.nature : undefined,
+                    expressesRoot: match.expresses_root?.trim() || undefined,
                     leverageScore:
                         typeof match.leverage_score === "number" &&
                         match.leverage_score >= 1 &&
                         match.leverage_score <= 10
                             ? Math.round(match.leverage_score)
                             : undefined,
+                    isOffer: match.is_offer === true,
                     isPowerNode: match.is_power_node === true,
                 };
             })
