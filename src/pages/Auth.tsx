@@ -447,9 +447,23 @@ const Auth = () => {
     </>
   );
 
-  const subtitleText = isOnboardingFlow
-    ? "Save your Top Talent. Unlock your unique business."
-    : "Pick up where you left off — your Top Talent and progress are waiting.";
+  // Day 65 (Sasha 2026-05-08): contextual subtitle based on the
+  // redirect target. When a user lands on /auth from QoL (/quality-of-
+  // life-map/* OR /game/me/quality-of-life), they're hitting the auth
+  // wall having tried to access their Quality of Life Map. The subtitle
+  // tells them WHY they need to sign in — saving + retaking + tracking
+  // over time. Without this contextual cue, they see the generic Top
+  // Talent messaging and may bounce, not realizing the assessment
+  // requires an account to save. Pattern can be extended for other
+  // gated surfaces.
+  const isQolRedirect =
+    nextPath.startsWith("/quality-of-life-map") ||
+    nextPath.startsWith("/game/me/quality-of-life");
+  const subtitleText = isQolRedirect
+    ? "Sign in to save your Quality of Life Map. Retake anytime — track your growth over time."
+    : isOnboardingFlow
+      ? "Save your Top Talent. Unlock your unique business."
+      : "Pick up where you left off — your Top Talent and progress are waiting.";
 
   return (
     <GameShellV2 hideLogo>
