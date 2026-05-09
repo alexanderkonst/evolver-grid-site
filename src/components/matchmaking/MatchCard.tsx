@@ -60,11 +60,21 @@ const eyebrowGold: React.CSSProperties = {
   color: "var(--skin-accent-gold, #b8860b)",
 };
 
+// Day 65 (Sasha 2026-05-09) — parchment opacity bumped 0.68 → 0.92 because
+// the underlying GameShellV2 video background hits bright sun-glare frames
+// where 0.68α lets too much luminance bleed through, washing out navy text
+// rendered ON the card. Per ui_playbook Part VIII: when the bg is variable-
+// luminance, EITHER the cocktail levers compensate OR the card carries
+// enough alpha to neutralize the bg behind text. Pulled the latter (the
+// card IS now the surface, the video sits behind it) so text contrast is
+// computed against parchment, not against bleeding sun-glare. Kept gold
+// hairline + soft shadow so the card still reads as parchment, not as a
+// flat opaque slab.
 const parchmentCard: React.CSSProperties = {
-  background: "var(--skin-card-bg, rgba(255, 255, 255, 0.68))",
-  border: "0.5px solid rgba(212, 175, 55, 0.45)",
+  background: "var(--skin-card-bg, rgba(255, 252, 245, 0.92))",
+  border: "0.5px solid rgba(212, 175, 55, 0.55)",
   boxShadow:
-    "0 0 22px -8px rgba(212, 175, 55, 0.25), 0 16px 40px -20px rgba(10, 22, 40, 0.18)",
+    "0 0 22px -8px rgba(212, 175, 55, 0.30), 0 16px 40px -20px rgba(10, 22, 40, 0.22)",
 };
 
 const ceremonialPrimary: React.CSSProperties = {
@@ -209,26 +219,36 @@ const MatchCard = ({
             )}
           </div>
 
+          {/* Day 65 (Sasha 2026-05-09) — name + archetype upgraded to
+              halo-deep + Strong cocktail. Sasha's screenshot showed Val
+              Bul / Architect of Coherent Worlds as washed-out white-on-
+              gold. The card itself is now opaque (parchment 0.92), but
+              text was using halo-soft which leaves bright sun-glare
+              underneath unaccounted for. Halo-deep adds the navy under-
+              stroke that grounds text on bright pixels. */}
           <h2
             style={{
               ...cormorantTitle,
-              fontSize: "22px",
+              fontSize: "24px",
               fontWeight: 700,
               textShadow:
-                "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.7))",
+                "var(--skin-text-halo-deep, 0 0 28px rgba(255,255,255,0.85), 0 1px 2px rgba(255,255,255,0.95), 0 0 1px rgba(11,42,90,0.65), 0 1px 0 rgba(11,42,90,0.45))",
             }}
             className="leading-[1.2]"
           >
             {user.firstName} {user.lastName}
           </h2>
           <p
-            className="mt-1"
+            className="mt-1.5 italic"
             style={{
               fontFamily: "'Source Serif 4', serif",
               fontStyle: "italic",
-              fontWeight: 600,
-              fontSize: "14px",
+              fontWeight: 700,
+              letterSpacing: "0.005em",
+              fontSize: "14.5px",
               color: "var(--skin-text-primary, #0b2a5a)",
+              textShadow:
+                "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.7))",
             }}
           >
             {cleanArchetype}
@@ -259,10 +279,13 @@ const MatchCard = ({
               style={{
                 fontFamily: "'Source Serif 4', serif",
                 fontStyle: "italic",
-                fontWeight: 500,
-                fontSize: "13.5px",
-                lineHeight: 1.5,
-                color: "var(--skin-text-body, rgba(11, 42, 90, 0.97))",
+                fontWeight: 600,
+                letterSpacing: "0.005em",
+                fontSize: "14px",
+                lineHeight: 1.55,
+                color: "var(--skin-text-primary, #0b2a5a)",
+                textShadow:
+                  "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.7))",
               }}
             >
               "{user.tagline}"
@@ -284,8 +307,9 @@ const MatchCard = ({
             <p
               style={{
                 ...sourceSerifBody,
-                fontSize: "14px",
-                lineHeight: 1.55,
+                fontSize: "14.5px",
+                lineHeight: 1.6,
+                fontWeight: 600,
               }}
             >
               {matchReason}
@@ -305,8 +329,9 @@ const MatchCard = ({
               <p
                 style={{
                   ...sourceSerifBody,
-                  fontSize: "13.5px",
-                  lineHeight: 1.55,
+                  fontSize: "14px",
+                  lineHeight: 1.6,
+                  fontWeight: 600,
                 }}
               >
                 {secondaryReason}
