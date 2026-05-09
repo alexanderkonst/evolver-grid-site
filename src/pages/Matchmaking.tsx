@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { MapPin, Users, Languages } from "lucide-react";
+import { toast } from "sonner";
 import GameShellV2 from "@/components/game/GameShellV2";
 import { Switch } from "@/components/ui/switch";
 import { supabase } from "@/integrations/supabase/client";
