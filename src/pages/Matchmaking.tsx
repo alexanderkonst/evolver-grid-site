@@ -577,7 +577,7 @@ const Matchmaking = () => {
             fontWeight: 500,
             fontSize: "12.5px",
             lineHeight: 1.5,
-            color: "var(--skin-text-body, rgba(11, 42, 90, 0.85))",
+            color: "var(--skin-text-body, rgba(11, 42, 90, 0.97))",
           }}
         >
           {match.matchReason}
@@ -842,7 +842,7 @@ const Matchmaking = () => {
                           fontSize: "11px",
                           letterSpacing: "0.16em",
                           textTransform: "uppercase",
-                          color: "var(--skin-text-muted, rgba(11, 42, 90, 0.62))",
+                          color: "var(--skin-text-muted, rgba(11, 42, 90, 0.93))",
                         }}
                       >
                         Same location
@@ -873,7 +873,7 @@ const Matchmaking = () => {
                           fontSize: "11px",
                           letterSpacing: "0.16em",
                           textTransform: "uppercase",
-                          color: "var(--skin-text-muted, rgba(11, 42, 90, 0.62))",
+                          color: "var(--skin-text-muted, rgba(11, 42, 90, 0.93))",
                         }}
                       >
                         Same language
@@ -938,7 +938,7 @@ const Matchmaking = () => {
                         fontStyle: "italic",
                         fontWeight: 500,
                         fontSize: "13px",
-                        color: "var(--skin-text-muted, rgba(11, 42, 90, 0.62))",
+                        color: "var(--skin-text-muted, rgba(11, 42, 90, 0.93))",
                       }}
                     >
                       {group.copy}
@@ -955,7 +955,7 @@ const Matchmaking = () => {
                           fontStyle: "italic",
                           fontWeight: 500,
                           fontSize: "13.5px",
-                          color: "var(--skin-text-muted, rgba(11, 42, 90, 0.62))",
+                          color: "var(--skin-text-muted, rgba(11, 42, 90, 0.93))",
                         }}
                       >
                         {group.empty}

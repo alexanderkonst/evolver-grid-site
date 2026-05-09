@@ -300,7 +300,7 @@ const labelMuted: React.CSSProperties = {
     fontSize: "11px",
     letterSpacing: "0.14em",
     textTransform: "uppercase",
-    color: "var(--skin-text-muted, rgba(11, 42, 90, 0.55))",
+    color: "var(--skin-text-muted, rgba(11, 42, 90, 0.93))",
 };
 
 // Ceremonial primary CTA — mirrors DossierScreen "Publish" + Admin "Grant"
@@ -341,7 +341,7 @@ const tertiaryPill: React.CSSProperties = {
     background: "rgba(255, 255, 255, 0.55)",
     border: "0.5px solid var(--skin-rule-medium, rgba(26, 30, 58, 0.15))",
     boxShadow: "none",
-    color: "var(--skin-text-muted, rgba(11, 42, 90, 0.62))",
+    color: "var(--skin-text-muted, rgba(11, 42, 90, 0.93))",
 };
 
 const AssetMappingLanding = () => {
@@ -799,7 +799,7 @@ const AssetMappingLanding = () => {
                                 style={{
                                     fontFamily: "'Source Serif 4', serif",
                                     fontSize: "13px",
-                                    color: "var(--skin-text-muted, rgba(11, 42, 90, 0.55))",
+                                    color: "var(--skin-text-muted, rgba(11, 42, 90, 0.93))",
                                     textDecoration: "underline",
                                     textUnderlineOffset: "3px",
                                 }}
@@ -1003,7 +1003,7 @@ const AssetMappingLanding = () => {
                                                             fontFamily: "'Source Serif 4', serif",
                                                             fontStyle: "italic",
                                                             fontSize: "12px",
-                                                            color: "var(--skin-text-muted, rgba(11, 42, 90, 0.55))",
+                                                            color: "var(--skin-text-muted, rgba(11, 42, 90, 0.93))",
                                                         }}
                                                     >
                                                         → {asset.subTypeTitle}
@@ -1015,7 +1015,7 @@ const AssetMappingLanding = () => {
                                                             fontFamily: "'Source Serif 4', serif",
                                                             fontStyle: "italic",
                                                             fontSize: "12px",
-                                                            color: "var(--skin-text-muted, rgba(11, 42, 90, 0.55))",
+                                                            color: "var(--skin-text-muted, rgba(11, 42, 90, 0.93))",
                                                         }}
                                                     >
                                                         → {asset.categoryTitle}
@@ -1094,7 +1094,7 @@ const AssetMappingLanding = () => {
                                                     fontStyle: "italic",
                                                     fontSize: "12.5px",
                                                     lineHeight: 1.5,
-                                                    color: "var(--skin-text-muted, rgba(11, 42, 90, 0.55))",
+                                                    color: "var(--skin-text-muted, rgba(11, 42, 90, 0.93))",
                                                 }}
                                             >
                                                 {asset.leverageReason}
@@ -1197,7 +1197,7 @@ const AssetMappingLanding = () => {
                                 style={{
                                     fontFamily: "'Source Serif 4', serif",
                                     fontSize: "13px",
-                                    color: "var(--skin-text-muted, rgba(11, 42, 90, 0.55))",
+                                    color: "var(--skin-text-muted, rgba(11, 42, 90, 0.93))",
                                     textDecoration: "underline",
                                     textUnderlineOffset: "3px",
                                 }}
@@ -1270,12 +1270,12 @@ function MaturityBadge({ maturity }: { maturity: AssetMaturity }) {
             }
             : maturity === "symbolic_only"
             ? {
-                color: "var(--skin-text-muted, rgba(11, 42, 90, 0.50))",
+                color: "var(--skin-text-muted, rgba(11, 42, 90, 0.93))",
                 background: "rgba(11, 42, 90, 0.04)",
                 borderColor: "rgba(11, 42, 90, 0.12)",
             }
             : {
-                color: "var(--skin-text-muted, rgba(11, 42, 90, 0.62))",
+                color: "var(--skin-text-muted, rgba(11, 42, 90, 0.93))",
                 background: "rgba(11, 42, 90, 0.06)",
                 borderColor: "rgba(11, 42, 90, 0.18)",
             };
@@ -1310,10 +1310,10 @@ function HorizonBadge({ horizon }: { horizon: AssetHorizon }) {
     const accent = horizon === "now"
         ? { color: "var(--skin-text-primary, #0b2a5a)", background: "rgba(11, 42, 90, 0.08)", borderColor: "rgba(11, 42, 90, 0.25)" }
         : horizon === "near"
-        ? { color: "var(--skin-text-body, rgba(11, 42, 90, 0.78))", background: "rgba(11, 42, 90, 0.05)", borderColor: "rgba(11, 42, 90, 0.18)" }
+        ? { color: "var(--skin-text-body, rgba(11, 42, 90, 0.97))", background: "rgba(11, 42, 90, 0.05)", borderColor: "rgba(11, 42, 90, 0.18)" }
         : horizon === "long_term"
-        ? { color: "var(--skin-text-muted, rgba(11, 42, 90, 0.55))", background: "rgba(11, 42, 90, 0.03)", borderColor: "rgba(11, 42, 90, 0.12)" }
-        : { color: "var(--skin-text-muted, rgba(11, 42, 90, 0.50))", background: "rgba(11, 42, 90, 0.025)", borderColor: "rgba(11, 42, 90, 0.10)" };
+        ? { color: "var(--skin-text-muted, rgba(11, 42, 90, 0.93))", background: "rgba(11, 42, 90, 0.03)", borderColor: "rgba(11, 42, 90, 0.12)" }
+        : { color: "var(--skin-text-muted, rgba(11, 42, 90, 0.93))", background: "rgba(11, 42, 90, 0.025)", borderColor: "rgba(11, 42, 90, 0.10)" };
     return (
         <span
             title={HORIZON_HINT[horizon]}

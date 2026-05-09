@@ -87,7 +87,7 @@ const tertiaryPill: React.CSSProperties = {
   letterSpacing: "0.14em",
   textTransform: "uppercase",
   fontSize: "11px",
-  color: "var(--skin-text-muted, rgba(11, 42, 90, 0.62))",
+  color: "var(--skin-text-muted, rgba(11, 42, 90, 0.93))",
   background: "rgba(255, 255, 255, 0.55)",
   border: "0.5px solid var(--skin-rule-medium, rgba(26, 30, 58, 0.15))",
 };
@@ -95,7 +95,7 @@ const tertiaryPill: React.CSSProperties = {
 const navButton: React.CSSProperties = {
   background: "rgba(255, 255, 255, 0.55)",
   border: "0.5px solid var(--skin-rule-hairline, rgba(26, 30, 58, 0.10))",
-  color: "var(--skin-text-muted, rgba(11, 42, 90, 0.62))",
+  color: "var(--skin-text-muted, rgba(11, 42, 90, 0.93))",
 };
 
 const MatchCard = ({
@@ -148,7 +148,7 @@ const MatchCard = ({
                 fontVariantNumeric: "tabular-nums lining-nums",
                 fontSize: "12px",
                 fontWeight: 500,
-                color: "var(--skin-text-muted, rgba(11, 42, 90, 0.62))",
+                color: "var(--skin-text-muted, rgba(11, 42, 90, 0.93))",
               }}
             >
               {currentIndex + 1}/{totalCount}
@@ -262,7 +262,7 @@ const MatchCard = ({
                 fontWeight: 500,
                 fontSize: "13.5px",
                 lineHeight: 1.5,
-                color: "var(--skin-text-body, rgba(11, 42, 90, 0.85))",
+                color: "var(--skin-text-body, rgba(11, 42, 90, 0.97))",
               }}
             >
               "{user.tagline}"
@@ -336,7 +336,7 @@ const MatchCard = ({
                   fontWeight: 500,
                   fontSize: "13.5px",
                   lineHeight: 1.55,
-                  color: "var(--skin-text-body, rgba(11, 42, 90, 0.85))",
+                  color: "var(--skin-text-body, rgba(11, 42, 90, 0.97))",
                 }}
               >
                 {tertiaryReason}
