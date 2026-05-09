@@ -498,10 +498,52 @@ const Matchmaking = () => {
     }
   };
 
-  const handleAiConnect = () => {
-    // For now just advance to next profile
-    if (clampedIndex < visibleAiMatches.length - 1) {
-      setCurrentAiMatchIndex(clampedIndex + 1);
+  // Day 65 (Sasha 2026-05-09): Add Connection actually creates a
+  // connection now. Was: just advanced the index — no DB write, button
+  // had no real effect. Mirrors the TeamsSpace pattern (insert into
+  // `connections` table with requester_id + receiver_id), then hides
+  // the matched profile from the deck, advances to next, toasts success.
+  // Errors are toasted with a friendly fallback message; common case
+  // (already connected) is detected by the unique-violation code (23505)
+  // and surfaces as an info toast rather than a destructive one.
+  const handleAiConnect = async () => {
+    if (!currentAiMatch) return;
+    try {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) {
+        toast.error("Sign in to send connection requests.");
+        return;
+      }
+      const { error: insertError } = await supabase
+        .from("connections")
+        .insert({
+          requester_id: user.id,
+          receiver_id: currentAiMatch.userId,
+          message: null,
+        });
+      if (insertError) {
+        // Postgres unique_violation (already connected to this person)
+        if ((insertError as { code?: string }).code === "23505") {
+          toast.info(`You're already connected with ${currentAiMatch.firstName}.`);
+        } else {
+          throw insertError;
+        }
+      } else {
+        toast.success(
+          `Connection request sent to ${currentAiMatch.firstName}.`,
+        );
+      }
+      // Hide the matched profile from the deck so it doesn't reappear,
+      // then let the clamped index slide into the next profile (same
+      // logic the Pass button uses).
+      setHiddenProfiles((prev) => new Set([...prev, currentAiMatch.userId]));
+      if (clampedIndex >= visibleAiMatches.length - 1) {
+        setCurrentAiMatchIndex(Math.max(0, clampedIndex - 1));
+      }
+    } catch (err) {
+      const message =
+        err instanceof Error ? err.message : "Couldn't send the connection request.";
+      toast.error(message);
     }
   };
 
@@ -723,18 +765,34 @@ const Matchmaking = () => {
                 Tinder-style: one profile at a time
                 ═════════════════════════════════════════ */}
             <section>
+              {/* Day 65 (Sasha 2026-05-09): eyebrow + intro copy bumped
+                  for legibility — was reading as "small / barely visible
+                  on background" against the bright sun-glare frames of
+                  the GameShellV2 video. Eyebrow: 10.5px → 12px, weight
+                  500 → 700, halo-soft added. Intro italic: 15px → 17px,
+                  lineHeight 1.55 → 1.5. */}
               <div className="mb-5">
-                <div style={eyebrowSmall} className="mb-2">
+                <div
+                  style={{
+                    ...eyebrowSmall,
+                    fontSize: "12px",
+                    fontWeight: 700,
+                    color: "var(--skin-goldDeep, #5d4307)",
+                    textShadow:
+                      "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.7))",
+                  }}
+                  className="mb-2"
+                >
                   ✦ AI-Powered Matches
                 </div>
                 <h2
                   style={{
                     ...cormorantTitle,
-                    fontSize: "26px",
+                    fontSize: "28px",
                     fontWeight: 700,
                     textShadow: legibleHeadlineHalo,
                   }}
-                  className="leading-[1.2] mb-1"
+                  className="leading-[1.2] mb-1.5"
                 >
                   Collaboration Proposals
                 </h2>
@@ -742,8 +800,8 @@ const Matchmaking = () => {
                   className="italic"
                   style={{
                     ...legibleItalicEcho,
-                    fontSize: "15px",
-                    lineHeight: 1.55,
+                    fontSize: "17px",
+                    lineHeight: 1.5,
                   }}
                 >
                   Win-win collaboration proposals powered by your full profile.
@@ -807,19 +865,31 @@ const Matchmaking = () => {
                 Category-based list view
                 ═════════════════════════════════════════ */}
             <section>
+              {/* Day 65 (Sasha 2026-05-09): same eyebrow + intro bumps as
+                  Section 1 above for legibility consistency. */}
               <div className="mb-5">
-                <div style={eyebrowSmall} className="mb-2">
+                <div
+                  style={{
+                    ...eyebrowSmall,
+                    fontSize: "12px",
+                    fontWeight: 700,
+                    color: "var(--skin-goldDeep, #5d4307)",
+                    textShadow:
+                      "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.7))",
+                  }}
+                  className="mb-2"
+                >
                   <Users className="w-3.5 h-3.5 inline-block mr-1.5 align-[-2px]" />
                   Your network
                 </div>
                 <h2
                   style={{
                     ...cormorantTitle,
-                    fontSize: "26px",
+                    fontSize: "28px",
                     fontWeight: 700,
                     textShadow: legibleHeadlineHalo,
                   }}
-                  className="leading-[1.2] mb-1"
+                  className="leading-[1.2] mb-1.5"
                 >
                   Genius Matches
                 </h2>
@@ -827,8 +897,8 @@ const Matchmaking = () => {
                   className="italic"
                   style={{
                     ...legibleItalicEcho,
-                    fontSize: "15px",
-                    lineHeight: 1.55,
+                    fontSize: "17px",
+                    lineHeight: 1.5,
                   }}
                 >
                   People in the network whose Top Talent complements yours.
