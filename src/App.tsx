@@ -496,7 +496,16 @@ const App = () => (
                   <Route path="/game/marketplace/browse" element={<Navigate to="/game/marketplace" replace />} />
                   <Route path="/game/marketplace/ignite" element={<RequireAuth><IgniteSession /></RequireAuth>} />
                   {/* COLLABORATE Space (was Teams/Discover) */}
-                  <Route path="/game/collaborate" element={<RequireAuth><CollaborateSpace /></RequireAuth>} />
+                  {/* Day 65 (Sasha 2026-05-09): /game/collaborate landing
+                      retired in favor of routing straight to /matches.
+                      The TeamsSpace landing was a separate surface that
+                      overlapped with the matches page and confused users.
+                      Redirect preserves any direct links (rail chip,
+                      bookmarks, /game/teams legacy redirect, etc.). The
+                      CollaborateSpace component is kept imported but no
+                      longer mounted — preserved as dead code in case we
+                      revive a landing surface later. */}
+                  <Route path="/game/collaborate" element={<Navigate to="/game/collaborate/matches" replace />} />
                   <Route path="/game/collaborate/matches" element={<RequireAuth><Matchmaking /></RequireAuth>} />
                   <Route path="/game/collaborate/connections" element={<RequireAuth><Connections /></RequireAuth>} />
                   <Route path="/game/collaborate/mission" element={<RequireAuth><MissionSelection /></RequireAuth>} />

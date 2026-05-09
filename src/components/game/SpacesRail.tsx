@@ -161,10 +161,17 @@ const SPACES: SpaceItem[] = [
         path: "/game/meet",
     },
     {
+        // Day 65 (Sasha 2026-05-09): COLLABORATE chip now routes
+        // directly to the matches surface (was: /game/collaborate, the
+        // TeamsSpace landing — a separate page that overlapped with
+        // /game/collaborate/matches and confused users). The COLLABORATE
+        // value proposition IS the matches; the landing was a stale
+        // intermediate. /game/collaborate route also redirects to the
+        // matches surface as a safety net (see App.tsx).
         id: "collaborate",
         label: "COLLABORATE",
         icon: <GlyphIcon glyph="⇶" color="hsl(325, 65%, 65%)" />,
-        path: "/game/collaborate",
+        path: "/game/collaborate/matches",
     },
     {
         id: "build",
