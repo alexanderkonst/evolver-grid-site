@@ -477,25 +477,21 @@ const buildJourneySections = (
     // where they'll land. Order preserved — Dashboard sits at #4 as the
     // last unlocked item before the locked progression (5–7), keeping
     // the fog-of-war fade intact.
+    // Day 64 (Sasha 2026-05-07, evening): personal-discovery items
+    // ("Map your assets", "Assess your quality of life") moved to
+    // positions 5 and 6 — directly after the public/free top-of-funnel
+    // (1-4: find talent, playbook, path, dashboard). The heavier
+    // commitment items ("Build a business", "Discover your mission")
+    // shifted down to positions 7 and 8. Rationale: lighter discovery
+    // surfaces sit between the marketing-tier and the activation-tier,
+    // giving the user low-friction inventory tools (assets, QoL) before
+    // the deeper-Top-Talent commitment (UBB) and the post-business
+    // arc (mission). Numbering in labels updated accordingly.
     return [
         { id: "journey-start-here",        label: "1. Start by finding your top talent", path: "/" },
         { id: "journey-the-playbook",      label: "2. Take the exact playbook",          path: "/playbook" },
         { id: "journey-the-path",          label: "3. See the shortcut path to your business", path: "/path" },
         { id: "journey-dashboard",         label: "4. See how we're building this",      path: "/dashboard" },
-        {
-            id: "journey-build-business",
-            label: "5. Build a business off your top talent",
-            path: "/ubb",
-            locked: !deepProfileActivated,
-            lockedHint: "Unlocks after activation.",
-        },
-        {
-            id: "journey-mission-discovery",
-            label: "6. Discover your mission",
-            path: "/mission-discovery",
-            locked: true,
-            lockedHint: "Unlocks after you build a business off your top talent.",
-        },
         {
             // Day 63 (Sasha 2026-05-07): unlocked. The Aurora reskin +
             // Round-2 functional bug-fix pass landed today (fetchAssetMatches
@@ -506,7 +502,7 @@ const buildJourneySections = (
             // prerequisite (e.g. mission-discovery), add `locked: true`
             // and `lockedHint` back.
             id: "journey-asset-mapper",
-            label: "7. Map your assets",
+            label: "5. Map your assets",
             path: "/asset-mapping",
         },
         // Day 63 (Sasha 2026-05-06, evening) — RE-LOCKED. Sasha visited
@@ -545,8 +541,22 @@ const buildJourneySections = (
         // Re-lock by re-adding `locked: true` + `lockedHint` if needed.
         {
             id: "journey-qol-assess",
-            label: "8. Assess your quality of life",
+            label: "6. Assess your quality of life",
             path: "/quality-of-life-map/assessment",
+        },
+        {
+            id: "journey-build-business",
+            label: "7. Build a business off your top talent",
+            path: "/ubb",
+            locked: !deepProfileActivated,
+            lockedHint: "Unlocks after activation.",
+        },
+        {
+            id: "journey-mission-discovery",
+            label: "8. Discover your mission",
+            path: "/mission-discovery",
+            locked: true,
+            lockedHint: "Unlocks after you build a business off your top talent.",
         },
     ];
 };
