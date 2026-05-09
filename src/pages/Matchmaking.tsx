@@ -498,14 +498,19 @@ const Matchmaking = () => {
     }
   };
 
-  // Day 65 (Sasha 2026-05-09): Add Connection actually creates a
-  // connection now. Was: just advanced the index — no DB write, button
-  // had no real effect. Mirrors the TeamsSpace pattern (insert into
-  // `connections` table with requester_id + receiver_id), then hides
-  // the matched profile from the deck, advances to next, toasts success.
-  // Errors are toasted with a friendly fallback message; common case
-  // (already connected) is detected by the unique-violation code (23505)
-  // and surfaces as an info toast rather than a destructive one.
+  // Day 65 (Sasha 2026-05-09): Add Connection now does TWO things:
+  //   (1) Inserts into the `connections` table (requester_id +
+  //       receiver_id). Mirrors the TeamsSpace pattern.
+  //   (2) Calls send-connection-intro-email so the receiver gets an
+  //       Aurora-register intro email with the AI's collaboration
+  //       proposal + a magic-link CTA into their Connections surface.
+  //       Email failure does NOT undo the connection — the row is
+  //       already in the DB and the receiver can still see the request
+  //       in their Connections page on next visit. We just surface a
+  //       gentler toast in that case.
+  //
+  // Both steps are best-effort + the UI stays responsive: profile is
+  // hidden from the deck and pager advances regardless.
   const handleAiConnect = async () => {
     if (!currentAiMatch) return;
     try {
@@ -514,6 +519,8 @@ const Matchmaking = () => {
         toast.error("Sign in to send connection requests.");
         return;
       }
+
+      // (1) Connection row
       const { error: insertError } = await supabase
         .from("connections")
         .insert({
@@ -521,21 +528,61 @@ const Matchmaking = () => {
           receiver_id: currentAiMatch.userId,
           message: null,
         });
+      let alreadyConnected = false;
       if (insertError) {
         // Postgres unique_violation (already connected to this person)
         if ((insertError as { code?: string }).code === "23505") {
-          toast.info(`You're already connected with ${currentAiMatch.firstName}.`);
+          alreadyConnected = true;
         } else {
           throw insertError;
         }
+      }
+
+      // (2) Intro email — fire only on a fresh connection. Skipping
+      // for already-connected so we don't re-spam the receiver.
+      let emailSent = false;
+      if (!alreadyConnected) {
+        try {
+          const { error: emailErr } = await supabase.functions.invoke(
+            "send-connection-intro-email",
+            {
+              body: {
+                receiver_user_id: currentAiMatch.userId,
+                collaboration_proposal: currentAiMatch.collaborationProposal,
+                alignment_note: [
+                  currentAiMatch.alignment,
+                  currentAiMatch.complementarity,
+                ]
+                  .filter(Boolean)
+                  .join(" ")
+                  .trim(),
+              },
+            },
+          );
+          if (emailErr) throw emailErr;
+          emailSent = true;
+        } catch (emailErr) {
+          // Connection row IS already in the DB — log but don't fail
+          // the user-visible flow. They'll see a softer toast.
+          console.warn("[handleAiConnect] intro email failed:", emailErr);
+        }
+      }
+
+      // Toast — calibrated to actual outcome
+      if (alreadyConnected) {
+        toast.info(`You're already connected with ${currentAiMatch.firstName}.`);
+      } else if (emailSent) {
+        toast.success(
+          `Connection request sent — ${currentAiMatch.firstName} will receive an introduction email.`,
+        );
       } else {
         toast.success(
-          `Connection request sent to ${currentAiMatch.firstName}.`,
+          `Connection request sent to ${currentAiMatch.firstName}. They'll see it next time they sign in.`,
         );
       }
-      // Hide the matched profile from the deck so it doesn't reappear,
-      // then let the clamped index slide into the next profile (same
-      // logic the Pass button uses).
+
+      // Hide the matched profile + advance the deck regardless of email
+      // outcome — the connection itself succeeded.
       setHiddenProfiles((prev) => new Set([...prev, currentAiMatch.userId]));
       if (clampedIndex >= visibleAiMatches.length - 1) {
         setCurrentAiMatchIndex(Math.max(0, clampedIndex - 1));
