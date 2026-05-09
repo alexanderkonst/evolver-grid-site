@@ -80,7 +80,7 @@ const labelMuted: React.CSSProperties = {
     fontSize: "11px",
     letterSpacing: "0.14em",
     textTransform: "uppercase",
-    color: "var(--skin-text-muted, rgba(11, 42, 90, 0.55))",
+    color: "var(--skin-text-muted, rgba(11, 42, 90, 0.93))",
 };
 
 const parchmentCard: React.CSSProperties = {
@@ -116,7 +116,7 @@ const tertiaryPill: React.CSSProperties = {
     letterSpacing: "0.14em",
     textTransform: "uppercase",
     fontSize: "11.5px",
-    color: "var(--skin-text-muted, rgba(11, 42, 90, 0.62))",
+    color: "var(--skin-text-muted, rgba(11, 42, 90, 0.93))",
     background: "rgba(255, 255, 255, 0.55)",
     border: "0.5px solid var(--skin-rule-medium, rgba(26, 30, 58, 0.15))",
 };
@@ -173,7 +173,7 @@ function StepIndicator({ step }: { step: Step }) {
                     fontSize: "10.5px",
                     letterSpacing: "0.18em",
                     textTransform: "uppercase",
-                    color: "var(--skin-text-muted, rgba(11, 42, 90, 0.55))",
+                    color: "var(--skin-text-muted, rgba(11, 42, 90, 0.93))",
                     fontVariantNumeric: "tabular-nums lining-nums",
                 }}
             >
@@ -428,7 +428,7 @@ const AssetMappingWizard = () => {
                                 style={{
                                     fontFamily: "'Source Serif 4', serif",
                                     fontSize: "13px",
-                                    color: "var(--skin-text-muted, rgba(11, 42, 90, 0.55))",
+                                    color: "var(--skin-text-muted, rgba(11, 42, 90, 0.93))",
                                     textDecoration: "underline",
                                     textUnderlineOffset: "3px",
                                 }}
@@ -717,7 +717,7 @@ const AssetMappingWizard = () => {
                                                     fontFamily: "'Source Serif 4', serif",
                                                     fontStyle: "italic",
                                                     fontSize: "12.5px",
-                                                    color: "var(--skin-text-muted, rgba(11, 42, 90, 0.55))",
+                                                    color: "var(--skin-text-muted, rgba(11, 42, 90, 0.93))",
                                                 }}
                                             >
                                                 {asset.type}

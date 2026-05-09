@@ -61,7 +61,7 @@ const labelMuted: React.CSSProperties = {
     fontSize: "10.5px",
     letterSpacing: "0.16em",
     textTransform: "uppercase",
-    color: "var(--skin-text-muted, rgba(11, 42, 90, 0.55))",
+    color: "var(--skin-text-muted, rgba(11, 42, 90, 0.93))",
 };
 
 const parchmentCard: React.CSSProperties = {
@@ -300,7 +300,7 @@ const ProfileAssetsSection = () => {
                                     fontFamily: "'DM Sans', system-ui, sans-serif",
                                     fontVariantNumeric: "tabular-nums lining-nums",
                                     fontSize: "13px",
-                                    color: "var(--skin-text-muted, rgba(11, 42, 90, 0.55))",
+                                    color: "var(--skin-text-muted, rgba(11, 42, 90, 0.93))",
                                 }}
                             >
                                 ({savedAssets.length})
@@ -319,7 +319,7 @@ const ProfileAssetsSection = () => {
                                     fontSize: "11px",
                                     letterSpacing: "0.10em",
                                     textTransform: "uppercase",
-                                    color: "var(--skin-text-muted, rgba(11, 42, 90, 0.62))",
+                                    color: "var(--skin-text-muted, rgba(11, 42, 90, 0.93))",
                                     background: "rgba(255, 255, 255, 0.55)",
                                     border: "0.5px solid var(--skin-rule-hairline, rgba(26, 30, 58, 0.10))",
                                 }}
@@ -334,7 +334,7 @@ const ProfileAssetsSection = () => {
                             </button>
                             <button
                                 onClick={() => setShowAssets(!showAssets)}
-                                className="text-[var(--skin-text-muted,rgba(11,42,90,0.55))] hover:opacity-80"
+                                className="text-[var(--skin-text-muted,rgba(11,42,90,0.93))] hover:opacity-80"
                                 aria-label={showAssets ? "Collapse" : "Expand"}
                             >
                                 {showAssets ? (
@@ -442,7 +442,7 @@ const ProfileAssetsSection = () => {
                                                         fontFamily: "'Source Serif 4', serif",
                                                         fontStyle: "italic",
                                                         fontSize: "12px",
-                                                        color: "var(--skin-text-muted, rgba(11, 42, 90, 0.55))",
+                                                        color: "var(--skin-text-muted, rgba(11, 42, 90, 0.93))",
                                                     }}
                                                 >
                                                     → {getAssetSubTypeName(asset.subTypeId)}
