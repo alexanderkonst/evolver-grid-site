@@ -9,6 +9,11 @@ import { User, CreditCard, Check, Edit2, X, AlertTriangle, ArrowRight } from "lu
 import { EntitlementBadge } from "@/components/EntitlementBadge";
 import { useEntitlement, tierLabel } from "@/hooks/useEntitlement";
 import { PremiumLoader } from "@/components/ui/PremiumLoader";
+// Day 66 (Sasha 2026-05-09): profile photo upload added to Personal
+// Information. Reuses the existing ProfilePictureUpload component
+// (handles the file picker, square-crop, Supabase Storage upload to
+// the `avatars` bucket, and the game_profiles.avatar_url update).
+import ProfilePictureUpload from "@/components/profile/ProfilePictureUpload";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -45,6 +50,7 @@ interface UserProfile {
     first_name: string | null;
     last_name: string | null;
     spoken_languages: string[] | null;
+    avatar_url: string | null;
 }
 
 interface Purchase {
@@ -102,7 +108,7 @@ const ProfileSettingsSection = () => {
         setUser(user);
         const { data: profileData } = await supabase
             .from("game_profiles")
-            .select("id, first_name, last_name, spoken_languages")
+            .select("id, first_name, last_name, spoken_languages, avatar_url")
             .eq("user_id", user.id)
             .maybeSingle();
         if (profileData) {
@@ -318,6 +324,29 @@ const ProfileSettingsSection = () => {
                     </div>
                 </CardHeader>
                 <CardContent>
+                    {/* Day 66 (Sasha 2026-05-09): profile photo lives at the
+                        top of Personal Information — visible AND uploadable
+                        in both view and edit modes. Changing the photo is
+                        its own micro-interaction (file picker + crop +
+                        upload), distinct from editing name/languages, so
+                        it doesn't require pressing "Edit" first. The
+                        ProfilePictureUpload's own Camera button + "Change
+                        photo" pill make the affordance clear. On upload,
+                        we sync local profile state so the new picture
+                        renders immediately without a refetch. */}
+                    <div className="flex justify-center mb-6">
+                        <ProfilePictureUpload
+                            userId={user.id}
+                            avatarUrl={profile?.avatar_url}
+                            displayName={[profile?.first_name, profile?.last_name].filter(Boolean).join(" ") || user.email}
+                            size={120}
+                            onUpload={(url) => {
+                                if (profile) {
+                                    setProfile({ ...profile, avatar_url: url });
+                                }
+                            }}
+                        />
+                    </div>
                     {isEditing ? (
                         <div className="space-y-4">
                             <div className="grid grid-cols-2 gap-4">
