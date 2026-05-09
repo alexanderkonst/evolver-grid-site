@@ -91,21 +91,28 @@ const ceremonialPrimary: React.CSSProperties = {
     "var(--skin-cta-shadow, 0 0 0 1px rgba(212, 175, 55, 0.28), 0 0 18px -4px rgba(240, 194, 127, 0.45), 0 0 40px -8px rgba(212, 175, 55, 0.28))",
 };
 
+// Day 65 (Sasha 2026-05-09) — bumped tertiary pill + nav button bg from
+// 0.55 → 0.85 alpha + text from muted → primary. The buttons sit on the
+// SAME variable-luminance bg as the card (above it in the JSX, no
+// parchment behind), so without the surface alpha lift, "Don't show
+// again" / "1/8" rendered as faded text on bright sun-glare patches.
 const tertiaryPill: React.CSSProperties = {
   fontFamily: "'Cormorant Garamond', serif",
-  fontWeight: 600,
+  fontWeight: 700,
   letterSpacing: "0.14em",
   textTransform: "uppercase",
   fontSize: "11px",
-  color: "var(--skin-text-muted, rgba(11, 42, 90, 0.93))",
-  background: "rgba(255, 255, 255, 0.55)",
-  border: "0.5px solid var(--skin-rule-medium, rgba(26, 30, 58, 0.15))",
+  color: "var(--skin-text-primary, #0b2a5a)",
+  background: "rgba(255, 252, 245, 0.85)",
+  border: "0.5px solid rgba(212, 175, 55, 0.45)",
+  boxShadow: "0 4px 16px -8px rgba(10, 22, 40, 0.18)",
 };
 
 const navButton: React.CSSProperties = {
-  background: "rgba(255, 255, 255, 0.55)",
-  border: "0.5px solid var(--skin-rule-hairline, rgba(26, 30, 58, 0.10))",
-  color: "var(--skin-text-muted, rgba(11, 42, 90, 0.93))",
+  background: "rgba(255, 252, 245, 0.85)",
+  border: "0.5px solid rgba(212, 175, 55, 0.40)",
+  color: "var(--skin-text-primary, #0b2a5a)",
+  boxShadow: "0 4px 16px -8px rgba(10, 22, 40, 0.18)",
 };
 
 const MatchCard = ({
@@ -156,9 +163,11 @@ const MatchCard = ({
               style={{
                 fontFamily: "'DM Sans', system-ui, sans-serif",
                 fontVariantNumeric: "tabular-nums lining-nums",
-                fontSize: "12px",
-                fontWeight: 500,
-                color: "var(--skin-text-muted, rgba(11, 42, 90, 0.93))",
+                fontSize: "13px",
+                fontWeight: 600,
+                color: "var(--skin-text-primary, #0b2a5a)",
+                textShadow:
+                  "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.7))",
               }}
             >
               {currentIndex + 1}/{totalCount}
@@ -358,10 +367,10 @@ const MatchCard = ({
               <p
                 style={{
                   fontFamily: "'Source Serif 4', serif",
-                  fontWeight: 500,
-                  fontSize: "13.5px",
-                  lineHeight: 1.55,
-                  color: "var(--skin-text-body, rgba(11, 42, 90, 0.97))",
+                  fontWeight: 600,
+                  fontSize: "14px",
+                  lineHeight: 1.6,
+                  color: "var(--skin-text-primary, #0b2a5a)",
                 }}
               >
                 {tertiaryReason}

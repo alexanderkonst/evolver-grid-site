@@ -53,17 +53,25 @@ const eyebrowSmall: React.CSSProperties = {
     color: "var(--skin-accent-gold, #b8860b)",
 };
 
+// Day 65 (Sasha 2026-05-09) — bumped both parchment surfaces from
+// 0.68 / 0.55 → 0.92 / 0.82 because GameShellV2's video bg can hit
+// bright sun-glare frames. At those frames, low-alpha parchment lets
+// the bright luminance bleed through and washes out navy text rendered
+// ON the card. Per ui_playbook Part VIII: text contrast must hold
+// against the card surface, not the bleed. Also strengthened gold
+// hairline + shadow so the card still reads as parchment, not a flat
+// opaque slab.
 const parchmentCard: React.CSSProperties = {
-    background: "var(--skin-card-bg, rgba(255, 255, 255, 0.68))",
-    border: "0.5px solid rgba(212, 175, 55, 0.45)",
+    background: "var(--skin-card-bg, rgba(255, 252, 245, 0.92))",
+    border: "0.5px solid rgba(212, 175, 55, 0.55)",
     boxShadow:
-        "0 0 22px -8px rgba(212, 175, 55, 0.25), 0 16px 40px -20px rgba(10, 22, 40, 0.18)",
+        "0 0 22px -8px rgba(212, 175, 55, 0.30), 0 16px 40px -20px rgba(10, 22, 40, 0.22)",
 };
 
 const parchmentCardSubtle: React.CSSProperties = {
-    background: "rgba(255, 255, 255, 0.55)",
-    border: "0.5px solid var(--skin-rule-hairline, rgba(26, 30, 58, 0.10))",
-    boxShadow: "0 4px 16px -8px rgba(10, 22, 40, 0.10)",
+    background: "rgba(255, 252, 245, 0.82)",
+    border: "0.5px solid rgba(212, 175, 55, 0.30)",
+    boxShadow: "0 6px 20px -10px rgba(10, 22, 40, 0.16)",
 };
 
 interface MatchCandidate {
@@ -574,10 +582,10 @@ const Matchmaking = () => {
           style={{
             fontFamily: "'Source Serif 4', serif",
             fontStyle: "italic",
-            fontWeight: 500,
-            fontSize: "12.5px",
-            lineHeight: 1.5,
-            color: "var(--skin-text-body, rgba(11, 42, 90, 0.97))",
+            fontWeight: 600,
+            fontSize: "13px",
+            lineHeight: 1.55,
+            color: "var(--skin-text-primary, #0b2a5a)",
           }}
         >
           {match.matchReason}
