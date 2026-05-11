@@ -1611,7 +1611,7 @@ It should be recorded as a core principle and followed continuously.`,
     label: "🌐 FIDELITY TRANSLATE",
     description: "Higher-quality translations. Captures the original's full meaning, not just the literal words.",
     category: "clarity",
-    content: `Please create a high-energy fidelity-translation (high STN ratio of delivering on the original's holonic message behind the lines).`,
+    content: `Please create a high-energy fidelity-translation (high STN ratio of delivering the behind the lines of the original message).`,
   },
   {
     id: "step-by-step",
