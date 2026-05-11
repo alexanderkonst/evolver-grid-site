@@ -1607,6 +1607,13 @@ It should be recorded as a core principle and followed continuously.`,
     content: `...What's the essence, heart of the matter, the root cause at play, a key insight so simple people overlook? (i.e. the soul, the heart of it — ❤️ Heart / Middle Dantian: Being before interpretation). What's the illuminating significance of it? (i.e. the mind, the lightning bolt of clarity — 🧠 Mind / Upper Dantian: what understanding does it yield). What are the n-degree practical & pragmatic consequences — ripples that manifest from this seeing? (i.e. the body, the gut, the landing of it — 🔥 Gut / Hara / Lower Dantian: what inevitably results). These three depths exhaust all possible depths of penetration. Every knowing passes through being, understanding, and consequence.`,
   },
   {
+    id: "fidelity-translate",
+    label: "🌐 FIDELITY TRANSLATE",
+    description: "Translation that holds the holon. Carries the original's voice and the message behind the lines — not just the words — at full signal-to-noise.",
+    category: "clarity",
+    content: `Please create a high-energy fidelity-translation (high STN ratio of delivering on the original's holonic message behind the lines).`,
+  },
+  {
     id: "step-by-step",
     label: "STEP-BY-STEP INSTRUCTIONS",
     description: "Get absurdly simple, teenager-friendly instructions for literally any result. No jargon, no assumptions — just 'do this, then this, done.'",
