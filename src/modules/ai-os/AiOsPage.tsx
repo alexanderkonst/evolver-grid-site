@@ -1609,7 +1609,7 @@ It should be recorded as a core principle and followed continuously.`,
   {
     id: "fidelity-translate",
     label: "🌐 FIDELITY TRANSLATE",
-    description: "Translation that holds the holon. Carries the original's voice and the message behind the lines — not just the words — at full signal-to-noise.",
+    description: "Translation that doesn't lose the soul. Carries the original's voice, intent, and energy across languages — not just the literal words.",
     category: "clarity",
     content: `Please create a high-energy fidelity-translation (high STN ratio of delivering on the original's holonic message behind the lines).`,
   },
