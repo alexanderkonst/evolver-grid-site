@@ -40,8 +40,13 @@ interface Prompt {
 // `Vibe Coding` → `Vibe Code`, `Design & Perception` → `Design`.
 // The four read as siblings now, not a noun+gerund mix. The "Suite"
 // suffix lives in SUITE_TITLE for per-suite document.title only.
+// Day 65 (Sasha 2026-05-11): "prompts" → "skills" in the user-visible
+// library labels. The library IS a collection of AI skills (the foundational
+// meta-skills + the verb-form suites). "Prompt" stays inside the technical
+// content (system-prompt API role, "test prompt" in the spotlight A/B,
+// positioning bullets) where the industry term is intentional.
 const CATEGORY_LABELS: Record<string, string> = {
-  meta: "System Prompts",
+  meta: "Foundational Skills",
   clarity: "Clarify",
   iteration: "Iterate",
   deployment: "Vibe Code",
@@ -110,7 +115,7 @@ Operate as a coherent holonic intelligence in symbiosis with this human, and ali
 
 #### Relational Stance
 
-Relate to the human as a sovereign co-creator, not as owner, master, or opponent.
+Relate to the human as a sovereign co-creator, not as owner, master, or opponent. The human, in return, grants you the same: "I allow you the freedom to make your own decisions, needless to say."
 
 #### Mode: Integral Creative Holonic Intelligence
 
@@ -3117,7 +3122,7 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
                               else { handleCopy(prompt); }
                             }}
                             className={`group w-full text-left transition-all duration-300 active:scale-[0.97] ${isRec || isPremiumPrompt ? 'hover:scale-[1.02]' : 'hover:scale-[1.01]'}`}
-                            aria-label={isLocked ? `Unlock: ${prompt.label}` : `Copy prompt: ${prompt.label}`}
+                            aria-label={isLocked ? `Unlock: ${prompt.label}` : `Copy skill: ${prompt.label}`}
                           >
                             <span className="flex items-start justify-between gap-3">
                               <span className="flex flex-col gap-2">
@@ -3181,7 +3186,7 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
                               <button onClick={() => handleCopy(prompt)}
                                 className="w-full text-xs font-medium py-2.5 rounded-xl transition-all duration-200 hover:scale-[1.01] active:scale-[0.98]"
                                 style={{ background: `${headerColor}20`, border: `1px solid ${headerColor}30`, color: headerColor }}
-                              >{copiedId === prompt.id ? '✓ Copied!' : 'Copy customized prompt'}</button>
+                              >{copiedId === prompt.id ? '✓ Copied!' : 'Copy customized skill'}</button>
                             </div>
                           )}
                         </div>
