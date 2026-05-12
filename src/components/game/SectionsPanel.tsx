@@ -87,7 +87,7 @@ const SPACE_SECTIONS: SpaceSections = {
             },
             {
                 id: "ai-os-suites",
-                label: "Prompt Suites",
+                label: "AI Skills",
                 // Parent path is intentionally a non-resolved sentinel —
                 // clicks toggle expand/collapse rather than navigating.
                 // The sub-sections own the real routes.
