@@ -4,6 +4,7 @@ import { Card } from "@/components/ui/card";
 import { toast } from "@/hooks/use-toast";
 import { Copy, Check, Send, Loader2, Youtube, Lock, ExternalLink, ArrowRight, Heart } from "lucide-react";
 import StarryBackground from "./components/StarryBackground";
+import SEO from "@/components/SEO";
 import aiOsBgPoster from "@/assets/ai-os-bg-poster.webp";
 import AiOsSpotlight from "./components/AiOsSpotlight";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
