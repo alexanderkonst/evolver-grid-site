@@ -1,11 +1,11 @@
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
 import { ArrowLeft, ExternalLink, Compass, Layers, MessageSquare } from "lucide-react";
 // Day 54+ (Sasha 2026-04-28): hero medallion swapped from the legacy
 // FYTT torus (logo.jpg) to the merkaba — same icon as the AI OS Space
 // in the rail. Page-level visual coherence: AI OS = merkaba everywhere.
 import logoImg from "@/assets/mc-merkaba.png";
 import StarryBackground from "../components/StarryBackground";
+import SEO from "@/components/SEO";
 
 // Holonic Commons pricing page — Day 51 (Sasha 2026-04-24).
 // Replaces the prior 4-tier SaaS pricing (Personal/Commercial × Monthly/Yearly).
