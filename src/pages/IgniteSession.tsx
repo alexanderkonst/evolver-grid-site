@@ -513,7 +513,26 @@ const IgniteSession = () => {
   // only wrapped when URL started with /game/. Now /ignite is part of the
   // unified journey shell. `hideLogo` because shell's top-right logo tile
   // would double-up with the genius-business logo we render in the hero.
-  return <GameShellV2 hideLogo>{content}</GameShellV2>;
+  return (
+    <>
+      <SEO
+        title="Productize Yourself Session — $555"
+        description="A 90-minute 1:1 with Aleksandr. Name your craft, design the business built on who you already are, and walk out with the first easy move to your first paying client. Money-back guarantee."
+        path="/ignite"
+        ogTitle="You've been giving your best work away for free."
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "Service",
+          name: "Productize Yourself Session",
+          provider: { "@type": "Person", name: "Alexander Konstantinov" },
+          areaServed: "Worldwide",
+          description: "90-minute 1:1 session to name your craft and design the business built on it. $555 with money-back guarantee.",
+          offers: { "@type": "Offer", price: "555", priceCurrency: "USD" },
+        }}
+      />
+      <GameShellV2 hideLogo>{content}</GameShellV2>
+    </>
+  );
 };
 
 export default IgniteSession;
