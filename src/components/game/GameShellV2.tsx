@@ -734,6 +734,17 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
         path === "/ai-os/design" ||
         path === "/codex" || // /codex routes through ai-os
         path === "/ai-os/benchmark"; // Day 52: benchmark page owns its own dark canvas
+    // Day 65 (Sasha 2026-05-14): /ignite is an immersive dark page that
+    // mounts its own full-bleed HLS video + dark wash. On mobile, the
+    // shell's <main> previously painted a 16px cream `pt-4` strip + ~55%
+    // cream background that peeked above the page's own video, reading
+    // as a stray light bar between the navy mobile header and the dark
+    // page. We don't want to add /ignite to `pageOwnsBackground` (that
+    // flag also restyles SpacesRail + SectionsPanel, which is /ai-os
+    // specific). Instead, a tighter mobile-only flag suppresses just
+    // the cream pt-4 + main background for immersive dark routes —
+    // panel chrome stays unchanged.
+    const isImmersiveDarkRoute = path === "/ignite";
     const isWorkingRoute =
         path.startsWith("/playbook") ||
         path.startsWith("/path") ||
