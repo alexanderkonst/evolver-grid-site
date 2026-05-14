@@ -1212,6 +1212,7 @@ const ZoneOfGeniusEntry = () => {
                 onSuccess={handleSignupSuccess}
             />
         </GameShellV2>
+        </>
     );
 
 };
