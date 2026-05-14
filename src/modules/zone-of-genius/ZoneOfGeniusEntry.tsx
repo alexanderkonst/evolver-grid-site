@@ -696,6 +696,12 @@ const ZoneOfGeniusEntry = () => {
     }
 
     return (
+        <>
+        <SEO
+            title="Top Talent Reveal — Free in 5 minutes"
+            description="A guided reveal that names your top talent with a specificity higher than any personality test. Free, takes 5 minutes, runs in your AI."
+            path="/zone-of-genius"
+        />
         <GameShellV2 hideNavigation={hideNav} hideLogo>
             {/*
               HLS video background only renders when we're NOT inside the
