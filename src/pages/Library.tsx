@@ -210,24 +210,46 @@ const StepContent = ({ step }: { step: GrowthStep }) => {
           </div>
         )}
 
-        {/* Article link (scientific materialism) */}
+        {/* Article link (scientific materialism antidote — external Medium post) */}
         {step.content === "article-link" && (
           <div className="flex flex-col items-center">
-            <div
-              className="liquid-glass-strong rounded-2xl p-8 text-center max-w-md mx-auto"
-              style={{ boxShadow: "0 8px 30px -10px rgba(10,22,40,0.2), 0 0 0 1px rgba(212,175,55,0.22)" }}
+            <a
+              href="https://medium.com/@alexanderkonstantinov/consciousness-meets-science-how-inner-experiences-and-science-co-reveal-the-nature-of-reality-67a008d288e8?postPublishedType=repub"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="liquid-glass-strong rounded-2xl p-8 text-center max-w-md mx-auto hover:scale-[1.015] transition-all duration-300 group/card w-full block"
+              style={{
+                boxShadow:
+                  "0 12px 36px -12px rgba(10,22,40,0.22), 0 0 0 1px rgba(212,175,55,0.3)",
+              }}
             >
               <BookOpen
-                className="w-8 h-8 mx-auto mb-4"
-                style={{ color: "var(--skin-text-muted, rgba(26,30,58,0.5))" }}
+                className="w-9 h-9 mx-auto mb-4"
+                style={{ color: "rgba(160, 109, 8, 0.88)" }}
               />
-              <h3 className="text-xl font-semibold mb-2" style={TITLE_STYLE}>
-                Coming Soon
+              <h3 className="text-xl font-semibold mb-1" style={TITLE_STYLE}>
+                Consciousness Meets{" "}
+                <span className="bg-clip-text text-transparent" style={GOLD_TEXT_STYLE}>
+                  Science
+                </span>
               </h3>
-              <p className="text-sm italic" style={BODY_STYLE}>
-                The scientific materialism antidote article is being prepared.
+              <p className="text-sm italic mb-5" style={BODY_STYLE}>
+                How inner experiences and science co-reveal the nature of reality.
               </p>
-            </div>
+              <div
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300"
+                style={{
+                  background: "rgba(212, 175, 55, 0.16)",
+                  border: "1px solid rgba(212, 175, 55, 0.55)",
+                  color: "#7a5108",
+                  fontFamily: "'Cormorant Garamond', serif",
+                  letterSpacing: "0.04em",
+                }}
+              >
+                Read on Medium
+                <ArrowRight className="w-4 h-4 group-hover/card:translate-x-1 transition-transform duration-300" />
+              </div>
+            </a>
           </div>
         )}
 
