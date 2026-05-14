@@ -684,8 +684,7 @@ const AssetMappingWizard = () => {
                                     so the `divide-y` Tailwind class isn't
                                     actually doing anything — removed it
                                     along with the dead `--tw-divide-opacity`
-                                    custom-property override that needed an
-                                    @ts-expect-error suppression. */}
+                                    custom-property override. */}
                                 <ul
                                     className="rounded-xl"
                                     style={parchmentCardSubtle}
