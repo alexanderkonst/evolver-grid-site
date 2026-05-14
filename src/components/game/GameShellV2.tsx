@@ -734,6 +734,17 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
         path === "/ai-os/design" ||
         path === "/codex" || // /codex routes through ai-os
         path === "/ai-os/benchmark"; // Day 52: benchmark page owns its own dark canvas
+    // Day 65 (Sasha 2026-05-14): /ignite is an immersive dark page that
+    // mounts its own full-bleed HLS video + dark wash. On mobile, the
+    // shell's <main> previously painted a 16px cream `pt-4` strip + ~55%
+    // cream background that peeked above the page's own video, reading
+    // as a stray light bar between the navy mobile header and the dark
+    // page. We don't want to add /ignite to `pageOwnsBackground` (that
+    // flag also restyles SpacesRail + SectionsPanel, which is /ai-os
+    // specific). Instead, a tighter mobile-only flag suppresses just
+    // the cream pt-4 + main background for immersive dark routes —
+    // panel chrome stays unchanged.
+    const isImmersiveDarkRoute = path === "/ignite";
     const isWorkingRoute =
         path.startsWith("/playbook") ||
         path.startsWith("/path") ||
@@ -1240,13 +1251,13 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                     <main
                         className={cn(
                             "mobile-content-scroll flex-1 overflow-y-auto overflow-x-hidden scrollbar-hide relative [&::-webkit-scrollbar]:hidden",
-                            pageOwnsBackground ? "" : "pt-4"
+                            (pageOwnsBackground || isImmersiveDarkRoute) ? "" : "pt-4"
                         )}
                         style={{
                             paddingBottom: 'env(safe-area-inset-bottom)',
                             scrollbarWidth: 'none',
                             msOverflowStyle: 'none',
-                            background: pageOwnsBackground
+                            background: (pageOwnsBackground || isImmersiveDarkRoute)
                                 ? undefined
                                 : isWorkingRoute
                                     ? "var(--skin-panel-wash-quiet, rgba(248, 246, 240, 0.98))"

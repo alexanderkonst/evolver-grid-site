@@ -77,15 +77,16 @@ export const ExpandableTestimonial = ({
           />
         </div>
 
-        {/* Full quote — expandable */}
-        <div
-          className={`grid transition-all duration-200 ${
-            open
-              ? "grid-rows-[1fr] opacity-100 mt-2"
-              : "grid-rows-[0fr] opacity-0"
-          }`}
-        >
-          <div className="overflow-hidden">
+        {/* Full quote — conditionally rendered so closed rows reserve
+            zero extra height. Day 65 (Sasha 2026-05-14): the previous
+            grid-rows-[0fr]→[1fr] pattern was reserving the open height
+            in the closed state on mobile (each compact row left a
+            quote-sized empty band underneath). For compact mode we
+            don't need the height transition — a clean conditional
+            render gives a tight stack of single-line rows that only
+            grow when explicitly opened. */}
+        {open && (
+          <div className="overflow-hidden mt-2">
             <p
               className={`text-xs leading-relaxed italic whitespace-pre-line pt-2 ${
                 isLight
@@ -101,7 +102,7 @@ export const ExpandableTestimonial = ({
               "{t.fullQuote}"
             </p>
           </div>
-        </div>
+        )}
       </button>
     );
   }
