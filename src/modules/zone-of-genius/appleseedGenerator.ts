@@ -543,6 +543,58 @@ Return ONLY the JSON object. No explanation. No preamble.`;
  * snapshots populate it via tryExtractTopTalentProfile() when rawSignal
  * is the structured JSON output of the prompt.
  */
+/**
+ * Unifying Role Profile — Day 66 (Sasha 2026-05-12): a NEW aspect-form
+ * perspective on the same unique gift. Where Top Talent Profile names
+ * WHAT the person uniquely does (the irreducible signature pattern),
+ * Unifying Role names WHAT THEY ARE in the relational/social field —
+ * the structural function their being performs in the larger meshwork:
+ * the split they heal, the two realms they bridge, the holonic position
+ * they hold.
+ *
+ * Sibling perspective to TopTalentProfile, NOT a sub-field of it. Lives
+ * directly on AppleseedData. Generated separately by the Unifying Role
+ * prompt (parked in chat as v1.0; not yet productized to src/prompts —
+ * Wave 2 of the rollout). Until Wave 3 (auto-generation) ships, only
+ * Sasha himself has data — the perspective view falls back to a clean
+ * empty-state ("opens after your first session") for every other user.
+ *
+ * Full DoD: see roadmap entry "Unifying Role subpage" (Day 66).
+ */
+export interface UnifyingRoleProfile {
+  /** 2-5 word noun phrase. The function, not the actor. Reads inside
+   * "My unifying role is ___" (e.g. "The Bridge From Who You Are to
+   * What You Sell"). NOT a gerund — that's TopTalent's grammar. */
+  unifying_role_title: string;
+  /** ONE sentence naming the structural fracture this person's
+   * presence integrates. Concrete, plain language. */
+  the_split_you_heal: string;
+  /** Exactly 2 entries — the two realms in genuine tension that the
+   * person stands between. Concrete particulars, not abstractions. */
+  the_two_poles: string[];
+  /** Paragraph (3-5 sentences) describing HOW the person performs the
+   * unification — the signature move that closes the gap. */
+  the_signature_integration: string;
+  /** Paragraph naming what specifically suffers in the world when this
+   * unification doesn't happen. Concrete real-world consequences. */
+  what_breaks_when_you_are_absent: string;
+  /** Paragraph describing what becomes possible when the unification
+   * lands. Same scene, opposite side of the bridge. */
+  what_lands_when_you_are_present: string;
+  /** 3 entries — specific environments / situations where this
+   * unification is most needed. */
+  where_this_role_matters_most: string[];
+  /** Paragraph describing the constituency: who recognizes the
+   * unifying role as their missing piece on first contact. */
+  the_tribe_that_recognizes_you: string;
+  /** ONE sentence naming the larger pattern this role serves in
+   * the noosphere / market / culture. The dharma-level statement. */
+  the_civilizational_function: string;
+  /** Compact synth — reads naturally inside "My unifying role is ___".
+   * Max ~20 words. First-person reflexives only (never "yourself"). */
+  unifying_role_one_sentence: string;
+}
+
 export interface TopTalentProfile {
   archetype_title: string;
   core_pattern: string;
@@ -631,6 +683,16 @@ export interface AppleseedData {
    * Renders the activation-level surface on `/game/me/zone-of-genius`.
    */
   topTalentProfile?: TopTalentProfile;
+  /**
+   * Day 66 (Sasha 2026-05-12): Unifying Role — sibling perspective to
+   * TopTalentProfile that names the structural function the person's
+   * gift performs in the larger relational/social field. Optional;
+   * pre-Day-66 snapshots and any user without a session-generated
+   * unifying role won't have it (the perspective view falls back to a
+   * clean empty-state). Renders at /game/me/zone-of-genius/unifying-role.
+   * See UnifyingRoleProfile interface above for field-by-field shape.
+   */
+  unifyingRole?: UnifyingRoleProfile;
 }
 
 // ---------------------------------------------------------------------------

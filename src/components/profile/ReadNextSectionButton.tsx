@@ -28,6 +28,14 @@ export const ZOG_SUBPAGE_ORDER: Array<{ path: string; label: string }> = [
     { path: "/game/me/zone-of-genius/roles", label: "Ideal Environments" },
     { path: "/game/me/zone-of-genius/partner", label: "Complementary Partner" },
     { path: "/game/me/zone-of-genius/monetization", label: "Monetization" },
+    // Day 66 (Sasha 2026-05-12): Unifying Role inserted between
+    // monetization and whats-next. The order tells a story: how your
+    // gift WORKS (talents/shadow/mastery) → how it PAYS (monetization)
+    // → what STRUCTURAL ROLE you play in the larger field (unifying
+    // role) → what to DO next (whats-next CTA). The strategic-
+    // positioning view sits right before the action prompt so the
+    // closing CTA lands with deeper ground under it.
+    { path: "/game/me/zone-of-genius/unifying-role", label: "Your Unifying Role" },
     // Day 61 (Sasha 2026-05-04 12:00): "What's Next?" appended as the
     // closing subpage. The reader who's gone through all 10 deep pages
     // lands here for the next-step CTA. Renders the same content as
