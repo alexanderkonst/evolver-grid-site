@@ -2708,7 +2708,23 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
     if (btn) requestAnimationFrame(() => btn.blur());
   }, []);
 
+  const seoMeta = (() => {
+    switch (focusCategory) {
+      case "clarity":
+        return { title: "AI OS — Clarity prompts", path: "/ai-os/clarity", description: "Free, curated AI prompts for clarity. The Holonic Commons library." };
+      case "iteration":
+        return { title: "AI OS — Iteration prompts", path: "/ai-os/iteration", description: "Free, curated AI prompts for iteration and refinement." };
+      case "deployment":
+        return { title: "AI OS — Vibe Code prompts", path: "/ai-os/vibe-code", description: "Free, curated AI prompts for shipping. The Holonic Commons library." };
+      case "design":
+        return { title: "AI OS — Design prompts", path: "/ai-os/design", description: "Free, curated AI prompts for design work." };
+      default:
+        return { title: "AI OS — The Holonic Commons", path: "/ai-os", description: "A free, curated library of AI prompts for solo founders. Holonic Commons. Aleksandr's curatorship is the paid layer." };
+    }
+  })();
   return (
+    <>
+      <SEO {...seoMeta} />
     <div data-ai-os className="ai-os-root">
       {/* Day 51 (Sasha 2026-04-25 r5): /ai-os HLS stream restored as bg
           (different from GameShell's animated bg). Gradient lighter at top
