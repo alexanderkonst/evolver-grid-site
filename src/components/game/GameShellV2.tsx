@@ -1251,13 +1251,13 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                     <main
                         className={cn(
                             "mobile-content-scroll flex-1 overflow-y-auto overflow-x-hidden scrollbar-hide relative [&::-webkit-scrollbar]:hidden",
-                            pageOwnsBackground ? "" : "pt-4"
+                            (pageOwnsBackground || isImmersiveDarkRoute) ? "" : "pt-4"
                         )}
                         style={{
                             paddingBottom: 'env(safe-area-inset-bottom)',
                             scrollbarWidth: 'none',
                             msOverflowStyle: 'none',
-                            background: pageOwnsBackground
+                            background: (pageOwnsBackground || isImmersiveDarkRoute)
                                 ? undefined
                                 : isWorkingRoute
                                     ? "var(--skin-panel-wash-quiet, rgba(248, 246, 240, 0.98))"
