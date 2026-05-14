@@ -132,16 +132,27 @@ const SPACE_SECTIONS: SpaceSections = {
                 id: "top-talent",
                 label: "Top Talent",
                 path: "/game/me/zone-of-genius",
-                // Day 64 (Sasha 2026-05-07): subSections retired from pane 2.
-                // Clicking "My Top Talent" now navigates straight to the
-                // overview (/game/me/zone-of-genius) instead of expanding a
-                // dropdown of 11 subpages. The subpage routes (start-here,
-                // how-it-shows-up, three-key-talents, top-shadow, mastery,
-                // one-action, roles, partner, monetization, whats-next)
-                // remain wired in App.tsx — they're navigable from within
-                // the page, just not surfaced as pane-2 disclosure children.
-                // Pattern matches the sister rows below (My Quality of Life,
-                // My Assets) — flat single-landing-surface rows.
+                // Day 65 (Sasha 2026-05-14): subSections RESTORED on pane 2.
+                // Mobile users had no way to discover the 11 deep subpages —
+                // the only entry point was in-page navigation that's hidden
+                // until you scroll. Restoring the disclosure dropdown so the
+                // ME · Top Talent surface is the same on desktop and mobile.
+                // Order mirrors ZOG_SUBPAGE_ORDER in
+                // src/components/profile/ReadNextSectionButton.tsx — keep
+                // these two lists in sync.
+                subSections: [
+                    { id: "tt-start-here", label: "Start Here", path: "/game/me/zone-of-genius/start-here" },
+                    { id: "tt-overview", label: "Overview", path: "/game/me/zone-of-genius" },
+                    { id: "tt-how-it-shows-up", label: "How It Shows Up", path: "/game/me/zone-of-genius/how-it-shows-up" },
+                    { id: "tt-three-key-talents", label: "Three Talents in Depth", path: "/game/me/zone-of-genius/three-key-talents" },
+                    { id: "tt-top-shadow", label: "Top Shadow", path: "/game/me/zone-of-genius/top-shadow" },
+                    { id: "tt-mastery", label: "Path of Mastery", path: "/game/me/zone-of-genius/mastery" },
+                    { id: "tt-one-action", label: "One Action", path: "/game/me/zone-of-genius/one-action" },
+                    { id: "tt-roles", label: "Ideal Environments", path: "/game/me/zone-of-genius/roles" },
+                    { id: "tt-partner", label: "Complementary Partner", path: "/game/me/zone-of-genius/partner" },
+                    { id: "tt-monetization", label: "Monetization", path: "/game/me/zone-of-genius/monetization" },
+                    { id: "tt-whats-next", label: "What's Next?", path: "/game/me/zone-of-genius/whats-next" },
+                ],
             },
             // Day 64 (Sasha 2026-05-07): "My Quality of Life" added as a
             // SECOND top-level ME-space section. Single landing surface
