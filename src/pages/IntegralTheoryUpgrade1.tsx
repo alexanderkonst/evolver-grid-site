@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import SEO from "@/components/SEO";
 
 type Lang = 'en' | 'ru';
 
