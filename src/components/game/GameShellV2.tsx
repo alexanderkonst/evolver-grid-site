@@ -250,6 +250,17 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
     });
     const [shortcutsOpen, setShortcutsOpen] = useState(false);
 
+    // Day 65 (Sasha 2026-05-14) BUG FIX: this hook must be called
+    // unconditionally on every render — including the early-return
+    // `hideNavigation` branch below. Previously declared at line ~614
+    // (after `if (hideNavigation) return …`), which violated the
+    // rules-of-hooks: any route that flipped between nav-hidden and
+    // nav-shown produced "Rendered fewer hooks than expected" and
+    // crashed the page (caught by ErrorBoundary on
+    // /game/me/zone-of-genius). Hoisting it here keeps the hook order
+    // stable across both render paths.
+    const { activated: deepProfileActivated, isLoading: deepProfileLoading } = useDeepProfileActivated();
+
     const getSpaceFromPath = (pathname: string): string | undefined => {
         // Day 52 (Sasha 2026-04-26): /ubb (Unique Business Builder)
         // belongs to the BUILD space. When the user clicks "Build a
