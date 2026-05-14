@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { PremiumButton } from "@/components/ui/PremiumButton";
 import { Textarea } from "@/components/ui/textarea";
 import GameShellV2 from "@/components/game/GameShellV2";
+import SEO from "@/components/SEO";
 import { ZONE_OF_GENIUS_PROMPT } from "@/prompts";
 // Day 48 (Sasha): primary CTA icon across the ZoG flow uses the
 // ignite logo asset — rendered small + light so it reads as a
