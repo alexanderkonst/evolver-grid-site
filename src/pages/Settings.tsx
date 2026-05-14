@@ -236,8 +236,13 @@ const Settings = () => {
         setSearchParams(tab === "profile" ? {} : { tab }, { replace: true });
     };
 
+    // Day 65 (Sasha 2026-05-14): forceShowNavigation. Settings is account
+    // management — it must always render with the shell rail. Without this,
+    // a user who just hit "Reset Progress" (which flips onboarding_stage →
+    // 'new') is stranded on a navless page with no way back to the app,
+    // since /game/settings isn't in isPublicSurface.
     return (
-        <GameShellV2>
+        <GameShellV2 showNavigation>
             <div className="min-h-dvh">
                 {/* Day 56 (Sasha 2026-05-02): container narrowed and
                     rhythm tightened to match MethodologyLandingPage's
