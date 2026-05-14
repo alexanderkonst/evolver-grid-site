@@ -242,7 +242,7 @@ const Settings = () => {
     // 'new') is stranded on a navless page with no way back to the app,
     // since /game/settings isn't in isPublicSurface.
     return (
-        <GameShellV2 forceShowNavigation>
+        <GameShellV2 showNavigation>
             <div className="min-h-dvh">
                 {/* Day 56 (Sasha 2026-05-02): container narrowed and
                     rhythm tightened to match MethodologyLandingPage's
