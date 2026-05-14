@@ -368,6 +368,56 @@ This pattern appears at every scale:
 
 ---
 
+## The Capture Buffer — Receiving Practice at Lifetime Scale
+
+> *May 12, 2026 — recognized after years of running it implicitly.*
+
+> *"The chat is not a notes app. It is a low-friction landing strip for what wants to be born — across days, weeks, months — before it knows what it is."*
+
+### Discovery
+
+The Sprint Integration Protocol (above) catches what surfaces *inside* a working session. But Manifestor + Emotional Authority + 6/2 hermit means realizations arrive at all hours — mid-walk, mid-conversation, mid-shower, mid-dream. Many are not "session insights." They are potent realizations across categories: technologies, psycho-technologies, universal ontologies, founder wisdom, startup playbooks, personal recognitions, perspective shifts. If there is no low-friction landing strip, they get lost. If the landing strip has too much structure *at the moment of capture*, the wave of arrival is interrupted and the signal degrades.
+
+### The Instrument
+
+A chat with yourself in Telegram (saved messages or a self-DM). Always on, in the pocket, no app-switching, no tagging, no categories. The friction floor is **open phone → type → send.** Timestamps automatic. Order chronological — the order of *reception*, which is itself signal (when did this arrive? in what state? next to what other arrival?).
+
+### The Protocol
+
+| Step | What | When | Friction |
+|------|------|------|----------|
+| 1 | **Capture raw on arrival.** Fragment, full paragraph, voice note, screenshot, link — whatever form it takes. NO categories at capture. NO editing for clarity. | The moment a potent realization lands | Open phone → type → send |
+| 2 | **Let it sit.** No re-reading, no organizing. The point is to clear the wave so the next one can land cleanly. | Same minute | Zero |
+| 3 | **Monthly triage pass** — one AI sweep with full corpus context, producing a triage table per entry: `promote-to-corpus (specific destination)` · `publish-as-content` · `seed-of-new-module` · `part-of-recurring-pattern` · `not-ripe-stays-in-buffer` · `archive`. | Once per lunar cycle, Week 4 (Air / receiving phase) | One sitting |
+| 4 | **You make the final calls.** AI does the triage labor. You confirm destinations, edit ripe entries into their corpus homes, queue publish-able ones for content, name the recurring patterns. | After the AI triage delivers | One sitting |
+
+Triage protocol + the prompt itself lives in [capture_buffer_triage_protocol.md](../05-reference/capture_buffer_triage_protocol.md).
+
+### The Principles That Make This Work
+
+- **No categories at capture.** Categories are *interpretation*; capture is *reception*. A category imposed at capture is a verdict pronounced before the evidence is in. Most note-systems fail here — too many folders, too much pre-classification, the friction kills the practice.
+- **Time-ordered, not topic-ordered.** Reception order *is* signal. The arrival of insight X right after experience Y often reveals a connection neither alone shows. Topic-folders destroy this; chronology preserves it.
+- **The chat IS the buffer.** Not a "notes app." A buffer is a holding zone — temporary, low-stakes, expected to drain. Notes feel permanent and demand organization; the buffer drains monthly into the corpus and stays loose.
+- **AI does the triage; you do the seeing.** You are the source of judgment about what is ripe, where it belongs, what is a pattern. AI handles the labor of reading, summarizing, proposing destinations. Both move at full speed.
+- **Trust the wave.** Single Definition + Emotional Authority means clarity about whether an entry is corpus-worthy or buffer-worthy is *already coming* — but on its own timetable. Monthly triage is the moment to ask. The capture moment is too early.
+
+### Sibling to Sprint Integration Protocol
+
+| Scale | Protocol | Function |
+|-------|----------|----------|
+| **Within a sprint** | Integration walk + voice note (Sprint Integration Protocol) | Glue between sprints in the same flow |
+| **Across days / weeks / months** | Capture Buffer + monthly triage | Long memory of the receiving practice |
+
+Both share one principle: **what arrives doesn't need to be processed at the moment of arrival. It needs to be CAUGHT cleanly, then digested on a later, slower rhythm.**
+
+### Why This Is Methodology, Not Just a Habit
+
+This is Signal-to-Path Shaping applied to the river of one's own incoming signal — the gift turned inward, mask-on-first. Tribe members (Awakened Practitioners Who Can't Name Their Fire) almost universally lose realizations the same way: to context switching, to over-organizing too early, to scribbles that disappear. They need this protocol. Codifying it transforms a private practice into a transmissible technology — eventually a playbook chapter, a platform tool, a teachable artifact.
+
+The recursion is the proof: a methodology for catching one's own signal, articulated, becomes one more entry in the buffer it describes.
+
+---
+
 ## The Month — Lunar Holon Cycle
 
 > *February 22, 2026 — the Holon Cycle mapped onto the 27-day lunar cycle*
