@@ -735,5 +735,6 @@ export default function IntegralTheoryUpgrade1() {
         </footer>
       </div>
     </div>
+    </>
   );
 }
