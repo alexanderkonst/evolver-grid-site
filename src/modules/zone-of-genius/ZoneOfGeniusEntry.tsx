@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { PremiumButton } from "@/components/ui/PremiumButton";
 import { Textarea } from "@/components/ui/textarea";
 import GameShellV2 from "@/components/game/GameShellV2";
+import SEO from "@/components/SEO";
 import { ZONE_OF_GENIUS_PROMPT } from "@/prompts";
 // Day 48 (Sasha): primary CTA icon across the ZoG flow uses the
 // ignite logo asset — rendered small + light so it reads as a
@@ -696,6 +697,12 @@ const ZoneOfGeniusEntry = () => {
     }
 
     return (
+        <>
+        <SEO
+            title="Top Talent Reveal — Free in 5 minutes"
+            description="A guided reveal that names your top talent with a specificity higher than any personality test. Free, takes 5 minutes, runs in your AI."
+            path="/zone-of-genius"
+        />
         <GameShellV2 hideNavigation={hideNav} hideLogo>
             {/*
               HLS video background only renders when we're NOT inside the
@@ -1206,6 +1213,7 @@ const ZoneOfGeniusEntry = () => {
                 onSuccess={handleSignupSuccess}
             />
         </GameShellV2>
+        </>
     );
 
 };
