@@ -10,20 +10,35 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Find Your Top Talent</title>
-    <meta name="description" content="In 90 minutes, we name your craft, discover the business built on who you already are, and get you the first easy move to your first paying client. $555 with money-back guarantee." />
+    <meta name="theme-color" content="#041a2f" />
+    <title>Find Your Top Talent · Genius Business</title>
+    <meta name="description" content="In 90 minutes, name your craft, discover the business built on who you already are, and get the first easy move to your first paying client. $555 with money-back guarantee." />
     <meta name="author" content="Alexander Konstantinov" />
 
+    <!-- Day 65 (Sasha 2026-05-14): canonical link removed from index.html.
+         Per-route canonicals are owned by the <SEO> component
+         (src/components/SEO.tsx) via react-helmet-async; keeping a static
+         canonical here would ship two <link rel="canonical"> tags on
+         every Helmet-using route (invalid SEO). -->
+
     <meta property="og:title" content="You've been giving your best work away for free." />
-    <meta property="og:description" content="In 90 minutes, we name your craft, discover the business built on who you already are, and get you the first easy move to your first paying client." />
+    <meta property="og:description" content="In 90 minutes, name your craft, discover the business built on who you already are, and get the first easy move to your first paying client." />
     <meta property="og:type" content="website" />
     <meta property="og:image" content="https://findyourtoptalent.com/opengraph-image.png" />
     <meta property="og:url" content="https://findyourtoptalent.com/" />
-    <link rel="canonical" href="https://findyourtoptalent.com/" />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@alexanderconstantinov" />
     <meta name="twitter:image" content="https://findyourtoptalent.com/opengraph-image.png" />
+
+    <!-- Organization + WebSite JSON-LD: sitewide identity. Per-page
+         Article/Service/Person schema is injected by <SEO>. -->
+    <script type="application/ld+json">
+      {"@context":"https://schema.org","@type":"Organization","name":"Genius Business","alternateName":"Find Your Top Talent","url":"https://findyourtoptalent.com","founder":{"@type":"Person","name":"Alexander Konstantinov","sameAs":["https://t.me/integralevolution","https://www.youtube.com/@IntegralEvolution"]},"logo":"https://findyourtoptalent.com/apple-touch-icon.png"}
+    </script>
+    <script type="application/ld+json">
+      {"@context":"https://schema.org","@type":"WebSite","name":"Find Your Top Talent","url":"https://findyourtoptalent.com","potentialAction":{"@type":"SearchAction","target":"https://findyourtoptalent.com/?q={search_term_string}","query-input":"required name=search_term_string"}}
+    </script>
     
     <!-- Google Fonts: Cormorant Garamond (inscribed/etched headlines) + DM Sans (minimal body) + Poppins + Source Serif 4 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">

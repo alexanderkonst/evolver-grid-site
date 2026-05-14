@@ -1,5 +1,6 @@
 import PlaybookHero from "@/components/playbook/PlaybookHero";
 import { GOLD_TEXT_STYLE, Ornament } from "@/lib/landingDesign";
+import SEO from "@/components/SEO";
 
 /**
  * MethodologyLandingPage — the pane-3 content of the JOURNEY space on `/`
@@ -17,13 +18,13 @@ import { GOLD_TEXT_STYLE, Ornament } from "@/lib/landingDesign";
  */
 const MethodologyLandingPage = () => {
   return (
-    /* Day 54 (Sasha 2026-04-28): mobile breath pass. The above-the-fold
-       was reading as too packed — eight visual blocks stacked into one
-       phone viewport with sub-24px gaps between them. The CTA-above-the-
-       fold rule was driving an over-tight `py-6`; trading 8-12px below
-       the fold for a much calmer reading rhythm. Container vertical
-       padding, headline → italic gap, ornament margin, manifesto bullet
-       gaps, and the CTA-cluster offset all bumped one notch on mobile. */
+    <>
+      <SEO
+        title="Find Your Top Talent"
+        description="In 90 minutes, name your craft, discover the business built on who you already are, and get the first easy move to your first paying client. $555 with money-back guarantee."
+        path="/"
+        ogTitle="You've been giving your best work away for free."
+      />
     <div className="max-w-[720px] mx-auto px-5 py-8 sm:py-9 md:py-10">
       {/* ═══════ NAME ═══════ */}
       <header className="text-center">
@@ -167,6 +168,7 @@ const MethodologyLandingPage = () => {
         <PlaybookHero />
       </div>
     </div>
+    </>
   );
 };
 
