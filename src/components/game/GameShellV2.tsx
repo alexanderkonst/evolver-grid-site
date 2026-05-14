@@ -250,6 +250,17 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
     });
     const [shortcutsOpen, setShortcutsOpen] = useState(false);
 
+    // Day 65 (Sasha 2026-05-14) BUG FIX: this hook must be called
+    // unconditionally on every render — including the early-return
+    // `hideNavigation` branch below. Previously declared at line ~614
+    // (after `if (hideNavigation) return …`), which violated the
+    // rules-of-hooks: any route that flipped between nav-hidden and
+    // nav-shown produced "Rendered fewer hooks than expected" and
+    // crashed the page (caught by ErrorBoundary on
+    // /game/me/zone-of-genius). Hoisting it here keeps the hook order
+    // stable across both render paths.
+    const { activated: deepProfileActivated, isLoading: deepProfileLoading } = useDeepProfileActivated();
+
     const getSpaceFromPath = (pathname: string): string | undefined => {
         // Day 52 (Sasha 2026-04-26): /ubb (Unique Business Builder)
         // belongs to the BUILD space. When the user clicks "Build a
@@ -604,14 +615,9 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
     const zogComplete = ["zog_complete", "qol_started", "qol_complete", "offer_complete", "recipe_complete", "unlocked"].includes(stage);
     const ignitionComplete = ["offer_complete", "recipe_complete", "unlocked"].includes(stage) || hasGeniusOffer;
 
-    // Day 64 (Sasha 2026-05-07): BUILD space gated on the deeper-Top-
-    // Talent-view boundary, same gate that opens JOURNEY rail item #5.
-    // Replaces the prior `ignitionComplete` rule — paying for the
-    // session (or entering the activation code) is the single funnel
-    // boundary that opens the build path. Hook returns isLoading so we
-    // can defer the unlock map until both the profile fetch AND the
-    // entitlement read have resolved (no chip-flicker on first paint).
-    const { activated: deepProfileActivated, isLoading: deepProfileLoading } = useDeepProfileActivated();
+    // Day 65: hook moved to top of component (see comment near
+    // shortcutsOpen) to satisfy rules-of-hooks across the
+    // `hideNavigation` early return. Variables consumed below.
 
     // NOTE: until `profileLoaded === true`, we intentionally emit an empty map.
     // `SpacesRail` only marks an item as locked when `unlockStatus[id] === false`;
