@@ -568,6 +568,20 @@ export default function IntegralTheoryUpgrade1() {
   }, [lang]);
 
   return (
+    <>
+      <SEO
+        title="27-Perspective Vision — Integral Theory Upgrade"
+        description="A 27-perspective vision derived from the Four Quadrants of Integral Theory and the three dantians of Daoist philosophy. By Aleksandr Konstantinov."
+        path="/27"
+        ogType="article"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "Article",
+          headline: "27-Perspective Vision",
+          author: { "@type": "Person", name: "Alexander Konstantinov" },
+          datePublished: "2026-04-16",
+        }}
+      />
     <div className="min-h-screen relative" style={{ background: 'linear-gradient(180deg, #080818 0%, #0c1025 30%, #0f0f2a 60%, #0a0a1a 100%)' }}>
       {/* Ambient glow */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden">
