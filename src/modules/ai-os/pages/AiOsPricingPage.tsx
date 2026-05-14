@@ -23,14 +23,13 @@ const ALEKSANDR_TELEGRAM_URL = "https://t.me/integralevolution";
 const Pricing = () => {
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const prev = document.title;
-    document.title = "Work with us — AI OS";
-    return () => { document.title = prev; };
-  }, []);
-
   return (
     <>
+      <SEO
+        title="Work With Us — AI OS"
+        description="Holonic Commons. AI OS is free for everyone. The paid layer is Aleksandr's curatorship — work with us directly."
+        path="/ai-os/work-with-us"
+      />
       <div className="fixed inset-0 z-0" style={{ background: 'linear-gradient(180deg, rgba(30,67,116,0.35) 0%, rgba(44,49,80,0.55) 50%, rgba(0,0,0,0.85) 100%)' }} />
       <StarryBackground />
 
