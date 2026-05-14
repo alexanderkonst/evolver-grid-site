@@ -1,5 +1,6 @@
 import PlaybookHero from "@/components/playbook/PlaybookHero";
 import { GOLD_TEXT_STYLE, Ornament } from "@/lib/landingDesign";
+import SEO from "@/components/SEO";
 
 /**
  * MethodologyLandingPage — the pane-3 content of the JOURNEY space on `/`
