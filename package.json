@@ -6,8 +6,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "prebuild": "node scripts/emit-crm-snapshot.mjs",
+    "predev": "bunx tsx scripts/generate-sitemap.ts",
+    "prebuild": "node scripts/emit-crm-snapshot.mjs && bunx tsx scripts/generate-sitemap.ts",
     "build": "vite build",
+    "sitemap:generate": "bunx tsx scripts/generate-sitemap.ts",
     "crm:snapshot": "node scripts/emit-crm-snapshot.mjs",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
