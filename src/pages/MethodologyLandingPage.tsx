@@ -168,6 +168,7 @@ const MethodologyLandingPage = () => {
         <PlaybookHero />
       </div>
     </div>
+    </>
   );
 };
 
