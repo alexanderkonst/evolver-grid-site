@@ -21,6 +21,7 @@ import { ExpandableTestimonial } from "@/components/ExpandableTestimonial";
 import type { TestimonialData } from "@/components/ExpandableTestimonial";
 import { useLocation } from "react-router-dom";
 import GameShellV2 from "../components/game/GameShellV2";
+import SEO from "@/components/SEO";
 // SiteLogo import removed Day 47 late pass — GameShellV2 now owns the logo.
 // aleksandrPhoto + MessageCircle + trackFunnelEvent imports removed Day 61
 // (Sasha 2026-05-04) — about-section photo collapsed to a single
