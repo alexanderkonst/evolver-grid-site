@@ -48,9 +48,20 @@ const ADMIN_EMAILS = new Set<string>([
 ]);
 
 interface SendMagicLinkPayload {
+  /**
+   * Preferred identifier — the admin lists in /admin already carry
+   * `user_id` for each founder row, so the UI passes that without
+   * needing the email separately. Resolved to an email server-side
+   * via `auth.admin.getUserById`.
+   */
   user_id?: string;
+  /** Fallback identifier when the caller only knows the email. */
   email?: string;
-  /** Where the user lands after clicking. Defaults to /game/me. */
+  /**
+   * Path the user lands on after clicking the magic link.
+   * Defaults to /game/me. Combined with SITE_URL to form the
+   * full redirect URL passed to Supabase's generateLink.
+   */
   redirect_path?: string;
 }
 
@@ -106,19 +117,52 @@ Deno.serve(async (req) => {
       return json({ error: "Forbidden: admin role required" }, 403);
     }
 
-    let body: { email?: string; redirectTo?: string };
+    let body: SendMagicLinkPayload;
     try {
       body = await req.json();
     } catch {
       return json({ error: "Invalid JSON body" }, 400);
     }
 
-    const email = (body.email ?? "").trim().toLowerCase();
-    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      return json({ error: "Valid 'email' is required" }, 400);
+    // ─── Resolve target email ──────────────────────────────────────
+    // Day 67 (Sasha 2026-05-09): function was half-refactored — header
+    // doc says "Looks up the target user by user_id (preferred) or
+    // email" but the implementation only honored `body.email`. The
+    // admin UI (Admin.tsx SendLinkButton + FounderDetailDrawer's
+    // onSendMagicLink) sends `{ user_id, redirect_path }`, so every
+    // click returned 400 "Valid 'email' is required" — which the
+    // Supabase JS client surfaces as "Edge Function returned a
+    // non-2xx status code." Restored full contract here.
+    let email = (body.email ?? "").trim().toLowerCase();
+    const userId = (body.user_id ?? "").trim();
+
+    if (!email && userId) {
+      const { data: userData, error: lookupErr } =
+        await admin.auth.admin.getUserById(userId);
+      if (lookupErr || !userData?.user?.email) {
+        console.error("getUserById error", lookupErr, {
+          user_id_hint: userId.slice(0, 8),
+        });
+        return json(
+          { error: "Could not resolve user_id to an email" },
+          404,
+        );
+      }
+      email = userData.user.email.trim().toLowerCase();
     }
 
-    const redirectTo = body.redirectTo ?? SITE_URL;
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      return json({ error: "Valid 'email' or 'user_id' is required" }, 400);
+    }
+
+    // ─── Build redirect URL ────────────────────────────────────────
+    // Client sends `redirect_path` (a path like "/game/me"). Combine
+    // with SITE_URL to form the absolute redirect target Supabase
+    // expects.
+    const path = (body.redirect_path ?? "/game/me").trim();
+    const redirectTo = path.startsWith("http")
+      ? path
+      : `${SITE_URL.replace(/\/$/, "")}${path.startsWith("/") ? path : `/${path}`}`;
 
     const { data, error } = await admin.auth.admin.generateLink({
       type: "magiclink",
@@ -131,8 +175,14 @@ Deno.serve(async (req) => {
       return json({ error: error.message }, 500);
     }
 
+    // ─── Response shape ────────────────────────────────────────────
+    // UI reads `data.sent_to` to display "Magic link sent to <email>".
+    // `email` and `action_link` retained for backward compatibility /
+    // debugging. Don't break either field name — both call sites
+    // (SendLinkButton + FounderDetailDrawer) read `sent_to`.
     return json({
       ok: true,
+      sent_to: email,
       email,
       action_link: data.properties?.action_link ?? null,
     });
