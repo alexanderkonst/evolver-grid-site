@@ -11,6 +11,7 @@ import { GROWTH_STEPS } from "@/modules/library/growthSteps";
 // other route — the hook is the gate, not a wrapper.
 import { useCanvasProgressLite } from "@/modules/unique-business-builder/useCanvasProgressLite";
 import { useDeepProfileActivated } from "@/hooks/useDeepProfileActivated";
+import { useJourneyProgress, type JourneyProgress } from "@/hooks/useJourneyProgress";
 import {
     TooltipProvider,
 } from "@/components/ui/tooltip";
@@ -44,6 +45,16 @@ interface Section {
     subSections?: SubSection[];
     locked?: boolean;
     lockedHint?: string;
+    /**
+     * Day 65 (Sasha 2026-05-15): when true, the row renders with
+     * a gentle-but-very-visible strikethrough — the user has
+     * accomplished this step. Currently set only for JOURNEY items
+     * whose game_profiles signal exists (top-talent reveal, asset
+     * mapping, QoL assessment, mission discovery). Other panes
+     * (BUILD, ME, AI OS, etc.) don't use this field — its absence
+     * is harmless.
+     */
+    completed?: boolean;
     /**
      * Day 53 night iter 3 (Sasha 2026-04-27): right-aligned progress
      * fraction for UBB phase rows ("6/7", "0/3"). When set, the row
@@ -463,6 +474,7 @@ const buildLearnSections = (pathBase: "/library" | "/game/learn/library"): Secti
 const buildJourneySections = (
     _currentPath: string,
     deepProfileActivated: boolean,
+    journeyProgress: JourneyProgress = {},
 ): Section[] => {
     // Day 50 late (Sasha): five permanent rail items, no hide gating.
     // The rail is the same on every Journey-family page — including
@@ -509,7 +521,12 @@ const buildJourneySections = (
     // the deeper-Top-Talent commitment (UBB) and the post-business
     // arc (mission). Numbering in labels updated accordingly.
     return [
-        { id: "journey-start-here",        label: "1. Start by finding your top talent", path: "/" },
+        {
+            id: "journey-start-here",
+            label: "1. Start by finding your top talent",
+            path: "/",
+            completed: !!journeyProgress["journey-start-here"],
+        },
         { id: "journey-the-playbook",      label: "2. Take the exact playbook",          path: "/playbook" },
         { id: "journey-the-path",          label: "3. See the shortcut path to your business", path: "/path" },
         { id: "journey-dashboard",         label: "4. See how we're building this",      path: "/dashboard" },
@@ -525,6 +542,7 @@ const buildJourneySections = (
             id: "journey-asset-mapper",
             label: "5. Map your assets",
             path: "/asset-mapping",
+            completed: !!journeyProgress["journey-asset-mapper"],
         },
         // Day 63 (Sasha 2026-05-06, evening) — RE-LOCKED. Sasha visited
         // /quality-of-life-map/assessment in production-preview and
@@ -564,13 +582,17 @@ const buildJourneySections = (
             id: "journey-qol-assess",
             label: "6. Assess your quality of life",
             path: "/quality-of-life-map/assessment",
+            completed: !!journeyProgress["journey-qol-assess"],
         },
         {
             id: "journey-build-business",
             label: "7. Build a business off your top talent",
             path: "/ubb",
             locked: !deepProfileActivated,
-            lockedHint: "Unlocks after activation.",
+            // Day 65 (Sasha 2026-05-15): hint now matches the broadened
+            // gate. Anyone with a saved Top Talent reveal passes —
+            // tasting tier included. Paid + coupon paths still work.
+            lockedHint: "Unlocks after you find your top talent.",
         },
         {
             id: "journey-mission-discovery",
@@ -578,6 +600,7 @@ const buildJourneySections = (
             path: "/mission-discovery",
             locked: true,
             lockedHint: "Unlocks after you build a business off your top talent.",
+            completed: !!journeyProgress["journey-mission-discovery"],
         },
     ];
 };
@@ -604,6 +627,14 @@ const SectionsPanel = ({
     // Same hook is consumed by GameShellV2 to gate the BUILD space
     // chip — single source of truth across the funnel boundary.
     const { activated: deepProfileActivated } = useDeepProfileActivated();
+
+    // Day 65 (Sasha 2026-05-15): per-item progress for the JOURNEY pane.
+    // Drives the strikethrough on rows the user has accomplished
+    // (Top Talent reveal, asset mapping, QoL assessment, mission
+    // discovery — items with clear data signals in game_profiles).
+    // Items without a signal (Playbook, Path, Dashboard view pages,
+    // and UBB's 18-artifact completion arc) simply never strike through.
+    const { progress: journeyProgress } = useJourneyProgress();
 
     // Day 55 (Sasha 2026-04-29): touch detection for locked-row popover
     // side switch. Desktop → "right" (popover floats into pane 3's
@@ -639,7 +670,7 @@ const SectionsPanel = ({
         if (activeSpaceId === "journey") {
             return {
                 ...baseData,
-                sections: buildJourneySections(location.pathname, deepProfileActivated),
+                sections: buildJourneySections(location.pathname, deepProfileActivated, journeyProgress),
             };
         }
 
@@ -1042,6 +1073,23 @@ const SectionsPanel = ({
                                     fontFamily: "'Cormorant Garamond', serif",
                                     fontWeight: sectionActive && !isLocked ? 700 : 600,
                                     letterSpacing: "0.012em",
+                                    // Day 65 (Sasha 2026-05-15): "gently but very
+                                    // visibly cross out" accomplished items.
+                                    // Line is gold-tinted to harmonize with the
+                                    // active-row gold register; thickness bumped
+                                    // to 1.5px so it reads at typical pane-2
+                                    // distance, not as a hairline. Text color
+                                    // drops to 70% so the strikethrough leads
+                                    // the read but the words stay legible.
+                                    ...(section.completed
+                                        ? {
+                                              textDecoration: "line-through",
+                                              textDecorationColor: "rgba(212, 175, 55, 0.65)",
+                                              textDecorationThickness: "1.5px",
+                                              textUnderlineOffset: "0.05em",
+                                              color: "rgba(255, 255, 255, 0.70)",
+                                          }
+                                        : {}),
                                 }}
                             >
                                 {sectionText}

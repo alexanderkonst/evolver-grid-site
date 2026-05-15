@@ -658,7 +658,7 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
         "next-move": "Unlocks after Step 1",
         "grow": "Unlocks after your Find Your Top Talent Reveal.",
         "learn": "Unlocks after Step 1",
-        "build": "Unlocks after activation.",
+        "build": "Unlocks after you find your top talent.",
         "meet": "Unlocks after Step 1",
         "collaborate": "Unlocks after you map your first asset.",
         "buysell": "Unlocks after Step 2",
