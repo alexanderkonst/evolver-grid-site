@@ -104,7 +104,7 @@ export function useJourneyProgress(): { progress: JourneyProgress; isLoading: bo
         const { data, error } = await (supabase as any)
           .from("game_profiles")
           .select(
-            "last_zog_snapshot_id, resources_mapped_at, last_qol_snapshot_id, mission_discovered_at, playbook_visited_at, path_visited_at, dashboard_visited_at",
+            "id, last_zog_snapshot_id, resources_mapped_at, last_qol_snapshot_id, mission_discovered_at, playbook_visited_at, path_visited_at, dashboard_visited_at",
           )
           .eq("user_id", uid)
           .maybeSingle();
@@ -119,45 +119,91 @@ export function useJourneyProgress(): { progress: JourneyProgress; isLoading: bo
           return;
         }
 
-        // Day 65 wave 3 (Sasha 2026-05-15): UBB completion check.
-        // "Build a business off your top talent" is marked done when
-        // every artifact in ALL_ARTIFACT_KEYS has been created at
-        // least once (any row exists for that artifact_key under
-        // this user_id — locked or not). Strict definition per
-        // Sasha's spec: "all artifacts have been created at least
-        // once." A row in user_business_artifacts is the proof of
-        // creation; is_locked is a separate concern (commit state).
+        const profileId: string | undefined = data?.id;
+
+        // Day 65 wave 5 (Sasha 2026-05-15): defensive fallback queries.
+        // The denormalized pointer columns (last_zog_snapshot_id,
+        // resources_mapped_at, last_qol_snapshot_id) on game_profiles
+        // were not reliably populated by every save flow — Sasha
+        // observed the strikethrough missing on items #1 and #5
+        // despite having both completed. So in parallel with the
+        // pointer read above, we also probe the source-of-truth
+        // tables (zog_snapshots, qol_snapshots, user_assets,
+        // user_business_artifacts) for any row matching this user.
+        // Completion = pointer OR source row exists. The pointer
+        // path stays as the fast hint; the source query catches the
+        // misses. All four probes run in parallel, all are silent
+        // on error (nice-to-have, not load-blocking).
+        const probe = async <T,>(p: Promise<T>): Promise<T | null> => {
+          try { return await p; } catch { return null; }
+        };
+
+        const [zogProbe, qolProbe, assetProbe, ubbProbe] = await Promise.all([
+          profileId
+            ? probe(
+                (supabase as any)
+                  .from("zog_snapshots")
+                  .select("id")
+                  .eq("profile_id", profileId)
+                  .limit(1)
+                  .maybeSingle(),
+              )
+            : Promise.resolve(null),
+          profileId
+            ? probe(
+                (supabase as any)
+                  .from("qol_snapshots")
+                  .select("id")
+                  .eq("profile_id", profileId)
+                  .limit(1)
+                  .maybeSingle(),
+              )
+            : Promise.resolve(null),
+          probe(
+            (supabase as any)
+              .from("user_assets")
+              .select("id")
+              .eq("user_id", uid)
+              .limit(1)
+              .maybeSingle(),
+          ),
+          probe(
+            (supabase as any)
+              .from("user_business_artifacts")
+              .select("artifact_key")
+              .eq("user_id", uid),
+          ),
+        ]);
+
+        const hasZogRow = !!(zogProbe as any)?.data?.id;
+        const hasQolRow = !!(qolProbe as any)?.data?.id;
+        const hasAssetRow = !!(assetProbe as any)?.data?.id;
+
+        // UBB completion = every artifact_key in ALL_ARTIFACT_KEYS has
+        // ≥1 row in user_business_artifacts for this user (locked or
+        // not). Strict per Sasha's spec.
         let ubbAllCreated = false;
-        try {
-          const { data: artifactRows, error: artErr } = await (supabase as any)
-            .from("user_business_artifacts")
-            .select("artifact_key")
-            .eq("user_id", uid);
-          if (!artErr && Array.isArray(artifactRows)) {
-            const distinctKeys = new Set<string>(
-              artifactRows.map((r: { artifact_key: string }) => r.artifact_key),
-            );
-            ubbAllCreated = ALL_ARTIFACT_KEYS.every((k) => distinctKeys.has(k));
-          }
-        } catch {
-          // Fall through with ubbAllCreated=false. Same nice-to-have
-          // failure mode as the rest of this hook.
+        const artifactRows = (ubbProbe as any)?.data;
+        if (Array.isArray(artifactRows)) {
+          const distinctKeys = new Set<string>(
+            artifactRows.map((r: { artifact_key: string }) => r.artifact_key),
+          );
+          ubbAllCreated = ALL_ARTIFACT_KEYS.every((k) => distinctKeys.has(k));
         }
 
         const progress: JourneyProgress = {
           ...visitFlags,
-          "journey-start-here": !!data?.last_zog_snapshot_id,
-          "journey-asset-mapper": !!data?.resources_mapped_at,
-          "journey-qol-assess": !!data?.last_qol_snapshot_id,
+          // Pointer OR source row — covers cases where the
+          // denormalized column on game_profiles was never set.
+          "journey-start-here": !!data?.last_zog_snapshot_id || hasZogRow,
+          "journey-asset-mapper": !!data?.resources_mapped_at || hasAssetRow,
+          "journey-qol-assess": !!data?.last_qol_snapshot_id || hasQolRow,
+          // Mission has no separate source table I can probe, so
+          // pointer-only stays — flag follow-up if mission flows
+          // don't reliably set this column.
           "journey-mission-discovery": !!data?.mission_discovered_at,
           "journey-build-business": ubbAllCreated,
-          // Day 65 wave 4 (Sasha 2026-05-15): cross-device sync.
-          // OR the DB column with the localStorage flag from
-          // `visitFlags` above — either source counts. The DB
-          // column will be NULL until the migration runs +
-          // markJourneyVisited() fires once with an authed user,
-          // so during transition the localStorage path keeps
-          // working unaffected.
+          // Day 65 wave 4: cross-device sync.
           "journey-the-playbook":
             !!visitFlags["journey-the-playbook"] || !!data?.playbook_visited_at,
           "journey-the-path":
