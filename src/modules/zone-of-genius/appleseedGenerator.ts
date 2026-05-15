@@ -141,7 +141,9 @@ ROUND 1 — IDENTIFY THE GENERIC. For every field, ask:
 - Day 61 (2026-05-04) COMPACT-TALENTS SYNTHESIS CHECK: top_three_talents_compact is shown on the FIRST REVEAL card, three lines stacked. Each entry must (a) be 2-4 words, (b) be a GERUND + CONCRETE OBJECT ("Sensing the unspoken", NOT "Sensing inner truth"), (c) preserve the signal of the matching long form in top_three_talents with ZERO noise added — sharper than the long form, NOT more abstract, (d) pass the 5-second-friend test (a smart friend with no personal-development context groks it instantly), (e) use a DISTINCT verb from the other two entries. REJECT any entry that drifts into abstract compound nouns ("Inner X / Sacred X / Deep X / True X") — same banned patterns as elsewhere in topTalentProfile. NO machine-speak, NO fluff, NO decorative adjectives, NO trailing period.
 - Day 58 (2026-05-03) VOICE-REGISTER CHECK: does top_shadow_one_sentence contain ANY second-person reflexive ("yourself," "your own," "yours")? If yes, REJECT — this field renders under "MY TOP SHADOW IS" so reflexives MUST be first-person ("myself," "my own," "mine"). Rewrite. Same check applies to bullseyeSentence and elevatorPitch (also "MY X IS"–framed surfaces): no "you / your / yourself" allowed, only "I / my / myself."
 - Day 58 (2026-05-03) ABSTRACT-COMPOUND-NOUN CHECK: scan EVERY field — especially vibrationalKey.name, topTalentProfile.archetype_title, bullseyeSentence, top_shadow_one_sentence — for the banned patterns (Inner X, Felt X, Safe X, Sacred X, Deep X, True X, Pure X, Whole X, Authentic X, and any compound where the adjective doesn't ground the noun in something concrete). If found, REJECT and rewrite as a concrete particular. THE 5-SECOND-FRIEND TEST: a smart friend outside personal-development should grok the phrase in 5 seconds without having to ask "what does that mean?" — if not, rewrite. Karime walkthrough (2026-05-03) shipped "Inner-Belonging Restoring / inner belonging / safe truth" — all three were in this category, and the resonance score dropped accordingly.
-- Day 62 (2026-05-05) DUAL-ACTOR PRONOUN CHECK: scan every Bucket B field (core_pattern, how_genius_shows_up, edge_and_traps, flywheel_action, career_sweet_spots, complementaryPartner.synergy, masteryStages.description, ideal_environments, appreciatedFor.scene). For each "you / your" in the text, ask: does this "you" refer to THE SUBJECT, or could it refer to an OTHER PERSON in the scene (a founder, a client, someone, a team)? If the "you" could plausibly point at the other actor, REJECT and rewrite that pronoun as "they / them / their". Quick test: substitute the noun antecedent ("the founder", "the client", "someone") for the "you" — if the sentence now reads more correctly, the original "you" was wrong. The bug pattern Sasha caught Day 62: "Your genius shows up when someone is circling what YOU mean — YOU talk in paragraphs" (the first three "you"s actually refer to the someone, not the subject; correct is "what THEY mean — THEY talk in paragraphs… YOU don't let the conversation stay loose"). This is the most common LLM failure mode in this prompt — flag it ruthlessly.
+- Day 67 (2026-05-13) DUAL-ACTOR PRONOUN CHECK (universalized — no field list, applies to EVERY Bucket B body field): for each "you / your" in the text, ask: does this "you" refer to THE USER (the reader of their own profile), or could it refer to AN OTHER PERSON in the scene (a founder, a client, someone, a team, people)? If the "you" could plausibly point at anyone other than the user, REJECT and rewrite that pronoun as "they / them / their" (or a noun: "the founder", "the client"). The CANONICAL RULE (Sasha 2026-05-13): the passage speaks TO THE USER (2nd person) ABOUT THEIR CLIENTS / GIFT RECIPIENTS / COLLABORATORS (3rd person). These two never collapse. Quick test: substitute the noun antecedent ("the founder", "the client", "someone", "people") for the "you" — if the sentence now reads more correctly, the original "you" was wrong. Two bug patterns to ruthlessly flag: (Day 67 talent paragraph) "People feel obvious to YOURSELF because you turn YOUR OWN stories into a map YOU can follow" → "People feel obvious to YOU because you've turned your own stories into a map THEY can follow"; (Day 67 how_genius_shows_up) "Your genius shows up when YOU feel overloaded… YOU bring a tangle… you leave behind a structure YOU can act on" → "Your genius shows up when SOMEONE feels overloaded… THEY bring a tangle… you leave behind a structure THEY can act on." THIS is the most common LLM failure mode in this prompt — apply the substitution test to every "you / your" in every Bucket B sentence before returning.
+- Day 67 (2026-05-13) REFLEXIVE-PRONOUN CHECK: scan every Bucket B field for "yourself / yourselves." Reflexive is grammatical ONLY when "you" is the SUBJECT of the same clause AND the action loops back. If the clause's subject is anyone else (people, the founder, they, someone), the pronoun is "you" — NEVER "yourself." Bug to flag: "People feel obvious to YOURSELF" / "Clients leave feeling seen by YOURSELF" / "The founder thanks YOURSELF." Correct: "People feel obvious to YOU" / "Clients leave feeling seen by YOU" / "The founder thanks YOU." When in doubt: if you can replace "yourself" with the noun ("people", "the client") and the sentence reads more correctly, "yourself" was wrong — flip to "you."
+- Day 67 (2026-05-13) SCENE-STRUCTURE CHECK (for any field describing "when your genius shows up / when the work flows / what people experience / how it lands / people feel / they thrive"): does sentence 1 START by naming the OTHER ACTOR'S state ("When someone…" / "When the work is…" / "When a founder arrives with…" / "People feel…") — or does it incorrectly start with the user's state ("When YOU feel…" / "When YOU bring…")? If it starts with "you," REJECT — the user is not the person in the problem state; the user is the one who resolves it. Restructure: other actor first, then user's response. The Day 67 how_genius_shows_up bug ("Your genius shows up when YOU feel overloaded") was an OPENING-SENTENCE failure — the entire paragraph collapsed because sentence 1 mis-cast who is in the scene.
 Mark every weak field. Do not skip this round.
 
 ROUND 2 — TEST FOR SIGNAL. For every salvaged field, ask:
@@ -204,9 +206,9 @@ NO ABSTRACT COMPOUND NOUNS (Day 58, 2026-05-03 — added after Karime walkthroug
 - The cure is concrete particulars: what does the person actually DO, with WHOM, in what SITUATION, producing what RESULT? "Inner-Belonging Restoring" → could be 'Helping people stop feeling like outsiders in their own teams' or 'Naming the unspoken thing that makes a room feel like home'. Either is recognizable; the original isn't.
 - This applies to ALL rendered fields, especially archetype_title (vibrationalKey.name + topTalentProfile.archetype_title) and bullseyeSentence — those two carry the most weight on the reveal card and a single abstract compound there sinks the whole resonance score.
 
-VOICE REGISTER — TWO BUCKETS (Day 58, 2026-05-03 — supersedes the blanket second-person rule):
+VOICE REGISTER — TWO BUCKETS + EDITORIAL DISCIPLINE (Day 67, 2026-05-13 — strengthened after two pronoun-collapse regressions caught in production on the live platform):
 
-There are TWO distinct surfaces and they take TWO distinct voices. Mixing them up creates jarring reads (e.g., "MY top shadow IS … delaying being fully seen YOURSELF" — which is what shipped before this fix).
+There are TWO surfaces, and each takes a distinct voice. Mixing them creates broken reads on the reveal card (Day 58 bug) AND broken body paragraphs (Day 67 bugs in talent long-form + how_genius_shows_up).
 
 Bucket A — FIRST PERSON ("I / me / my / mine / myself"):
   Fields rendered under "MY TOP X IS" eyebrows on the reveal card. The reader is speaking ABOUT THEMSELVES; reflexives must point back at the speaker.
@@ -214,59 +216,102 @@ Bucket A — FIRST PERSON ("I / me / my / mine / myself"):
   • top_shadow_one_sentence — rendered raw under "MY TOP SHADOW IS" → reflexives MUST be first-person ("myself", "my own"), NEVER second-person ("yourself", "your own")
   • elevatorPitch — first-person summary
 
-Bucket B — SECOND PERSON ("you / your / yours / yourself"):
-  All other topTalentProfile.* body fields (core_pattern, top_three_talents, how_genius_shows_up, edge_and_traps, ideal_environments, career_sweet_spots, flywheel_action). These render in the ME-space "your profile" surfaces, where an editorial observer is naming what's structurally true about the reader.
-  • NEVER first person ("I / my") — that breaks the editorial register.
-  • NEVER third person ("they / their") when referring to the reader (the SUBJECT). "They/their/them" is fine when referring to OTHER people the reader is acting on (e.g., "name their core message" = the client's, not the reader's).
+──────────────────────────────────────────────────────────────────────
+Bucket B — EDITORIAL OBSERVER (the canonical rule, Sasha 2026-05-13):
+──────────────────────────────────────────────────────────────────────
 
-Examples for top_shadow_one_sentence (Bucket A — first person):
-  ✓ RIGHT: "Naming everyone else's gift while my own stays unnamed."
-  ✓ RIGHT: "Teaching the language I won't speak about myself."
-  ✓ RIGHT: "Holding space for everyone while no one holds mine."
-  ✗ WRONG: "Naming everyone else's gift while your own stays unnamed." (second-person under a "MY shadow IS" eyebrow reads broken)
-  ✗ WRONG: "Making love safe for others while delaying being fully seen yourself." (same issue — should end "myself")
+  Speaks TO THE USER (reader of their own profile) → 2nd person ALWAYS:
+    "you / your / yours"
 
-Examples for body fields (Bucket B — second person):
-  ✓ RIGHT: "Your gift, making the invisible visible, comes paired with a shadow — your own value tends to stay invisible to you."
-  ✗ WRONG (first person): "My gift generates its inverse — my own value stays invisible to me."
-  ✗ WRONG (third person): "Their gift generates its inverse — their own value stays invisible to them."
+  Speaks ABOUT the user's CLIENTS, GIFT RECIPIENTS, COLLABORATORS, OR
+  ANYONE ELSE in the scene → 3rd person ALWAYS:
+    "they / them / their / themselves" (or a noun: "the founder",
+    "a client", "someone", "people")
 
-DUAL-ACTOR DISCIPLINE (Day 62, 2026-05-05 — added after Sasha caught a pronoun-collapse bug in how_genius_shows_up):
+  These two NEVER collapse. The most common failure mode (caught
+  twice in May 2026) is using "you" or "yourself" to refer to BOTH
+  actors at once — the reader cannot tell who is doing what to whom,
+  and the sentence reads broken.
 
-Many Bucket B fields describe SCENES with TWO distinct actors:
-  • THE SUBJECT (the reader) — always "you / your / yours / yourself"
-  • THE OTHER PERSON the subject is acting on / helping / clarifying / sensing —
-    always "they / them / their / themselves" (or a noun like "the founder",
-    "the client", "the person")
+  NEVER first person ("I / my") — that breaks the editorial register.
 
-These two MUST stay grammatically distinct. Collapsing the OTHER PERSON into
-"you" creates an instantly-broken read where the reader can't tell who is doing
-what to whom. Most common in fields that name a SITUATION ("Your genius shows
-up WHEN…", "The work flows BEST WHEN…", "You thrive AROUND…").
+REFLEXIVE-PRONOUN DISCIPLINE (Day 67, 2026-05-13 — codified after the "obvious to yourself" regression):
 
-Worked example (the exact bug Sasha caught):
-  ✗ WRONG: "Your genius shows up when someone is circling what YOU mean but
-    can't land it: YOU talk in paragraphs, qualifiers, and half-decisions.
-    YOU don't let the conversation stay loose — you define terms…"
-    (the first three "you"s actually refer to the OTHER PERSON who is doing
-    the circling and qualifying — not the subject. The subject is the one
-    who comes in AFTER and defines the terms. Reader can't parse who's who.)
+  "yourself / yourselves" is grammatical ONLY when "you" is the
+  SUBJECT of the same clause AND the action loops back to "you."
+  If the clause's subject is anyone else (people, the founder, they,
+  someone), the second-person pronoun is "you" — NEVER "yourself."
 
-  ✓ RIGHT: "Your genius shows up when someone is circling what THEY mean but
-    can't land it: THEY talk in paragraphs, qualifiers, and half-decisions.
-    YOU don't let the conversation stay loose — you define terms, set
-    constraints, and aim at an output that can be used outside the room."
-    (Now the dual cast is clear: someone arrives unclear → YOU clarify them.)
+    ✓ "You see yourself in their face."           (subject = you; loops back)
+    ✗ "People see yourself in their work."        → "People see you in their work."
+    ✗ "People feel obvious to yourself."          → "People feel obvious to you."
+    ✗ "Clients leave feeling seen by yourself."   → "Clients leave feeling seen by you."
 
-Quick test before returning any sentence with "you" in it:
-  Substitute the noun antecedent — "someone", "the founder", "the client",
-  "people" — for the "you" and re-read. If the sentence now makes more sense,
-  the "you" was wrong; flip it back to "they / them / their".
+UNIVERSALIZE — applies to EVERY Bucket B body field that could
+plausibly describe a scene with both you and another person — which
+is most of them. The list below is ILLUSTRATIVE, NOT EXHAUSTIVE.
+Adding new fields does NOT require updating the rule; the rule
+applies by default:
 
-Apply to: how_genius_shows_up, core_pattern, edge_and_traps, flywheel_action,
-career_sweet_spots, complementaryPartner.synergy, masteryStages.description,
-ideal_environments, appreciatedFor.scene. Anywhere a scene with two actors
-might appear.
+  top_three_talents · top_three_talents_compact · core_pattern ·
+  how_genius_shows_up · edge_and_traps · flywheel_action ·
+  career_sweet_spots · complementaryPartner.synergy ·
+  masteryStages.description · ideal_environments ·
+  appreciatedFor.scene · lifeScene · any future Bucket B field.
+
+SCENE-STRUCTURE TEMPLATE (mandatory for any field describing "when
+your genius shows up / when the work flows / what people experience /
+how it lands / people feel" — i.e., any consequence- or situation-
+naming field):
+
+  Sentence 1 MUST start by naming the OTHER ACTOR'S state, NOT
+  the user's state. Choose one of:
+    "When someone…" / "When the work is…" / "When a founder
+    arrives with…" / "People feel…" / "When clients are…"
+
+  NEVER start with "When YOU feel…" or "When YOU bring…" — the
+  user is not the person in the problem state; the user is the
+  one who resolves it.
+
+  Sentence 2+ describes the user's action in response. THIS is
+  where "you" enters.
+
+WORKED EXAMPLES (the regression bugs that triggered this codification):
+
+Bucket A bug — Day 58 (reveal-card "MY top shadow IS"):
+  ✗ "Naming everyone else's gift while your own stays unnamed."
+  ✓ "Naming everyone else's gift while my own stays unnamed."
+
+Bucket B bug — Day 67 (top_three_talents long form, "Building the map"):
+  ✗ "You take scattered potential and you find the one pattern… People feel obvious to yourself because you turn your own stories into a map you can follow."
+  ✓ "You take scattered potential and you find the one pattern… People feel obvious to you because you've turned your own stories into a map THEY can follow."
+  (Two bugs stacked: "yourself" is reflexive misuse — "people" is the subject, so the pronoun is "you," not "yourself." "you can follow" is dual-actor collapse — you BUILT the map FROM your own stories, but THEY (the people) are the ones who FOLLOW it.)
+
+Bucket B bug — Day 67 (how_genius_shows_up):
+  ✗ "Your genius shows up when YOU feel overloaded, fragmented, or unable to explain what YOU sense. YOU bring a tangle: business goals mixed with identity shifts… you leave behind a structure YOU can act on."
+  ✓ "Your genius shows up when SOMEONE feels overloaded, fragmented, or unable to explain what THEY sense. THEY bring a tangle: business goals mixed with identity shifts… you leave behind a structure THEY can act on."
+  (The first three "you"s collapsed the OTHER PERSON — the one bringing the tangle — into the subject. The final "you" collapsed the OTHER PERSON — the one acting on the structure you built — into the subject. Reader can't parse who's overloaded, who's tangled, who built the structure, who executes on it.)
+
+Bucket B bug — Day 62 (how_genius_shows_up, prior):
+  ✗ "Your genius shows up when someone is circling what YOU mean… YOU talk in paragraphs, qualifiers, and half-decisions… YOU don't let the conversation stay loose."
+  ✓ "Your genius shows up when someone is circling what THEY mean… THEY talk in paragraphs, qualifiers, and half-decisions… YOU don't let the conversation stay loose — you define terms."
+
+QUICK SUBSTITUTION TEST (mandatory pre-output check on every Bucket B sentence):
+
+  For every "you / your / yourself" in the text: substitute the
+  noun antecedent ("the founder", "a client", "someone", "people")
+  for the pronoun and re-read. If the sentence makes MORE sense
+  with the noun, that pronoun was wrong — flip to "they / them /
+  their / themselves."
+
+  Worked example: "you leave behind a structure YOU can act on
+  immediately" → substitute "people" for the second YOU → "you
+  leave behind a structure PEOPLE can act on immediately" → reads
+  better → original "you" was wrong → flip to "they."
+
+  Run this test on EVERY sentence containing "you" before returning
+  the JSON. If the test fires, the field is broken — rewrite, do
+  not ship.
 `;
 
 // ---------------------------------------------------------------------------
@@ -340,16 +385,16 @@ Return a JSON object with this exact structure:
     "archetype_title": "string — 2-4 word GERUND-form name of the talent itself (e.g., 'Signal-to-Form Forging', 'Pattern Architecting', 'Constellation Mapping'). Reads naturally inside 'My top talent is ___'. NEVER an actor noun ('Forger', 'Architect', 'Mapper') — those break the grammar of the surrounding UI. Match the same value as vibrationalKey.name. Do NOT wrap in decorative glyphs (no '✦', '✧', etc.) — the UI strips them anyway. NO ABSTRACT COMPOUND NOUNS — banned: 'Inner X / Felt X / Safe X / Sacred X / Deep X / True X / Pure X / Whole X / Authentic X' (e.g. 'Inner-Belonging Restoring' is REJECT). Apply the 5-second-friend test before returning.",
     "core_pattern": "string — 2-3 sentence paragraph describing my fundamental operating pattern. Names the signature, not the category. This is the bullseye opened up into prose. Specific to me, not aspirational. SECOND-PERSON register (\"you / your\"). DUAL-ACTOR DISCIPLINE: when the sentence describes a scene with both the subject AND someone the subject acts on, the subject is \"you\" and the other person is \"they / them / their\" — never collapse the other into \"you\". (Bug example: \"You listen until you can name the real point\" is fine; \"You listen until someone hears what YOU mean\" is wrong — that second \"you\" should be \"they\".)",
     "top_three_talents": [
-      "string — Talent 1, brief, specific to how it manifests in me (not generic strengths-finder language)",
-      "string — Talent 2, same",
-      "string — Talent 3, same"
+      "string — Talent 1, brief, specific to how it manifests in me (not generic strengths-finder language). 2-3 sentences. SECOND-PERSON register addressing the user (\"You take… you find… you build…\"). DUAL-ACTOR DISCIPLINE — CRITICAL: this paragraph almost always describes a SCENE with two actors — the USER AND the OTHER PERSON / CLIENTS / GIFT RECIPIENTS the user is acting on. The user is ALWAYS \"you / your.\" The OTHER PERSON is ALWAYS \"they / them / their / themselves\" (or a noun: \"people,\" \"a founder,\" \"a client,\" \"someone\"). NEVER collapse the two. NEVER use \"yourself\" to refer to anyone but the user (and only when \"you\" is also the clause's subject). Bug to avoid (Day 67): \"You take scattered potential and you find the one pattern… People feel obvious to YOURSELF because you turn YOUR OWN stories into a map YOU can follow.\" Two errors: (a) \"yourself\" — \"people\" is the subject, so it must be \"you\"; (b) \"a map you can follow\" — the map is for the OTHER PEOPLE, so it must be \"a map THEY can follow.\" Correct: \"…People feel obvious to YOU because you've turned your own stories into a map THEY can follow.\" Apply the SUBSTITUTION TEST before returning: for each \"you / your / yourself,\" substitute the noun antecedent (\"people,\" \"a client\") and re-read — if it reads better with the noun, the pronoun was wrong, flip to \"they.\"",
+      "string — Talent 2, same standard, same dual-actor discipline.",
+      "string — Talent 3, same standard, same dual-actor discipline."
     ],
     "top_three_talents_compact": [
       "string — Talent 1 in COMPACT form: 2-4 words, GERUND + concrete object (e.g., 'Sensing the unspoken', 'Softening the wound', 'Blessing the threshold'). 1:1 mapping with top_three_talents above — same talent, distilled. Renders on the FIRST REVEAL card under a 'MY THREE TALENTS' eyebrow, three of them stacked, so each must read as a complete thought standing alone. CRITICAL synthesis principle (same as top_shadow_one_sentence): preserve maximum signal from the long form, introduce zero noise — sharper than the long form, NOT more abstract. UNIVERSALLY RELATABLE + GROKABLE — a smart friend outside personal-development should grok the phrase in 5 seconds without asking 'what does that mean?'. NO abstract compound nouns (banned: 'Inner X / Felt X / Safe X / Sacred X / Deep X / True X / Pure X / Whole X / Authentic X' as adjective+noun pairs — same ban as the rest of topTalentProfile). NO machine-speak, no insider jargon, no fluff, no decorative adjectives. Plain ordinary English with one concrete object. NO period at the end. The three entries must use DISTINCT verbs (no 'sensing / sensing / sensing' — each verb names a different motion). The verb stem may be reused from threeLenses.actions where the fit is clean, but the gerund + object form here is mandatory.",
       "string — Talent 2, same standard",
       "string — Talent 3, same standard"
     ],
-    "how_genius_shows_up": "string — paragraph describing how these talents manifest in my daily work and interactions. Cite real patterns from rawSignal — concrete, not abstract. SECOND-PERSON register (\"you / your\"). DUAL-ACTOR DISCIPLINE — CRITICAL FOR THIS FIELD: this paragraph almost always describes a SCENE with two actors — the subject AND the OTHER PERSON the subject is acting on (a founder, a client, someone, a team). The subject is ALWAYS \"you / your\". The other person is ALWAYS \"they / them / their\" (or a noun like \"the founder\"). Bug pattern to avoid (Sasha Day 62): \"Your genius shows up when someone is circling what YOU mean but can't land it: YOU talk in paragraphs…\" — the first three \"you\"s actually refer to the OTHER PERSON who is circling and qualifying. Correct: \"…what THEY mean but can't land it: THEY talk in paragraphs… YOU don't let the conversation stay loose — you define terms.\" Quick test: substitute the noun (\"the founder\") for any \"you\" and re-read; if the sentence now makes more sense, that \"you\" was wrong — flip to \"they\".",
+    "how_genius_shows_up": "string — paragraph describing how these talents manifest in the user's daily work and interactions. Cite real patterns from rawSignal — concrete, not abstract. SECOND-PERSON register addressing the user (\"you / your\"). DUAL-ACTOR DISCIPLINE — CRITICAL FOR THIS FIELD: this paragraph almost always describes a SCENE with two actors — the USER AND the OTHER PERSON / CLIENTS / GIFT RECIPIENTS the user is acting on (a founder, a client, someone, a team, people). The user is ALWAYS \"you / your.\" The OTHER PERSON is ALWAYS \"they / them / their / themselves\" (or a noun like \"the founder,\" \"a client,\" \"someone,\" \"people\"). Never collapse the two. SCENE-STRUCTURE TEMPLATE (mandatory): sentence 1 MUST start by naming the OTHER ACTOR'S state, NOT the user's state — choose one of: \"When someone…\" / \"When the work is…\" / \"When a founder arrives with…\" / \"People feel…\" / \"When clients are…\" NEVER start with \"When YOU feel…\" or \"When YOU bring…\" — the user is not the person in the problem state; the user is the one who resolves it. Sentence 2+ describes the user's action in response — THIS is where \"you\" enters. Bug to avoid (Sasha Day 67): \"Your genius shows up when YOU feel overloaded, fragmented, or unable to explain what YOU sense. YOU bring a tangle: business goals mixed with identity shifts… you leave behind a structure YOU can act on.\" Two layers of collapse: (a) the first three \"you\"s should be \"someone / they / they\" — the OTHER PERSON brings the tangle, not the user; (b) the final \"you\" should be \"they\" — the user BUILT the structure, the OTHER PERSON acts on it. Correct: \"Your genius shows up when SOMEONE feels overloaded, fragmented, or unable to explain what THEY sense. THEY bring a tangle: business goals mixed with identity shifts… you leave behind a structure THEY can act on.\" Older bug to avoid (Day 62): \"Your genius shows up when someone is circling what YOU mean but can't land it: YOU talk in paragraphs…\" — the first three \"you\"s refer to the OTHER PERSON. Correct: \"…what THEY mean but can't land it: THEY talk in paragraphs… YOU don't let the conversation stay loose — you define terms.\" SUBSTITUTION TEST: substitute the noun (\"the founder,\" \"people,\" \"a client\") for any \"you\" and re-read; if the sentence now makes more sense, that \"you\" was wrong — flip to \"they / them / their.\" Run this test on every \"you\" in the paragraph before returning.",
     "edge_and_traps": "string — paragraph naming the structural shadow my gift generates — the OTHER SIDE OF THE COIN, not a list of weaknesses. A unique gift always produces a structurally identical limiting belief, but inverted. Name (a) the inverted form of my gift (e.g., 'I help others articulate their uniqueness' → 'my own uniqueness remains unarticulated'), (b) the limiting belief this inversion whispers in my own life ('I need a better X before I can act'), (c) one short observation about how this looks in motion (the recursive trap when I forget my gift is for outward use, not inward use). Specific to me. Same length as how_genius_shows_up. Do not soften or moralize. SECOND-PERSON register (\"you / your\"). DUAL-ACTOR DISCIPLINE: when contrasting what the subject does FOR OTHERS vs. for themselves, OTHERS are \"they / them / their\" and the subject is \"you / your / yourself\" — never collapse the two.",
     "top_shadow_one_sentence": "string — synthesize the edge_and_traps paragraph above into ONE punchy sentence (max ~16 words). CRITICAL synthesis principle: preserve signal-to-noise ratio — minimal signal loss, minimal noise introduction. The reader should feel the same recursive-shadow recognition in this single sentence as in the full paragraph. Sharper than the paragraph, NOT more abstract. Phrased as a NOUN PHRASE / GERUND so it reads naturally inside 'My top shadow is ___' (parallel to the 'My top talent is ___' convention). FIRST-PERSON REFLEXIVES ONLY — this field renders under a 'MY TOP SHADOW IS' eyebrow, so reflexives MUST be 'myself / my own / mine', NEVER 'yourself / your own / yours' (those create a broken read like 'MY shadow IS … fully seen yourself'). UNIVERSALLY RELATABLE register — avoid metaphors so domain-specific they only fit one archetype (e.g. 'cathedral' for architects, 'symphony' for composers). Examples that span different gift-domains: 'Naming everyone else's gift while my own stays unnamed' (the seer's shadow), 'Teaching the language I won't speak about myself' (the teacher's shadow), 'Holding space for everyone while no one holds mine' (the healer's shadow). Match the user's ACTUAL gift, not these examples. Do not soften, do not generalize.",
     "ideal_environments": [
