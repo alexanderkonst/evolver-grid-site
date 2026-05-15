@@ -21,9 +21,18 @@
  *                                ("Assess your quality of life")
  *     - mission_discovered_at  → "journey-mission-discovery"
  *                                ("Discover your mission")
+ *   FROM user_business_artifacts (second fetch, Day 65 wave 3):
+ *     - distinct artifact_keys count === ALL_ARTIFACT_KEYS.length
+ *       → "journey-build-business"
+ *       ("Build a business off your top talent" — user has
+ *        created every UBB artifact at least once)
  *   FROM localStorage:
  *     - journey:visited:journey-the-playbook  → "journey-the-playbook"
  *       (set by PlaybookPage on mount — Day 65 wave 2)
+ *     - journey:visited:journey-the-path      → "journey-the-path"
+ *       (set by PathPage on mount — Day 65 wave 3)
+ *     - journey:visited:journey-dashboard     → "journey-dashboard"
+ *       (set by VentureDashboard on mount — Day 65 wave 3)
  *
  * Returns a record keyed on the section `id` used inside
  * `buildJourneySections`. Lookup is `progress[itemId] === true`
@@ -36,6 +45,7 @@
 
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
+import { ALL_ARTIFACT_KEYS } from "@/modules/unique-business-builder/types";
 
 export type JourneyProgress = Record<string, boolean>;
 
@@ -59,6 +69,12 @@ export function useJourneyProgress(): { progress: JourneyProgress; isLoading: bo
         return {
           "journey-the-playbook": !!window.localStorage.getItem(
             "journey:visited:journey-the-playbook",
+          ),
+          "journey-the-path": !!window.localStorage.getItem(
+            "journey:visited:journey-the-path",
+          ),
+          "journey-dashboard": !!window.localStorage.getItem(
+            "journey:visited:journey-dashboard",
           ),
         };
       } catch {
@@ -95,12 +111,38 @@ export function useJourneyProgress(): { progress: JourneyProgress; isLoading: bo
           return;
         }
 
+        // Day 65 wave 3 (Sasha 2026-05-15): UBB completion check.
+        // "Build a business off your top talent" is marked done when
+        // every artifact in ALL_ARTIFACT_KEYS has been created at
+        // least once (any row exists for that artifact_key under
+        // this user_id — locked or not). Strict definition per
+        // Sasha's spec: "all artifacts have been created at least
+        // once." A row in user_business_artifacts is the proof of
+        // creation; is_locked is a separate concern (commit state).
+        let ubbAllCreated = false;
+        try {
+          const { data: artifactRows, error: artErr } = await (supabase as any)
+            .from("user_business_artifacts")
+            .select("artifact_key")
+            .eq("user_id", uid);
+          if (!artErr && Array.isArray(artifactRows)) {
+            const distinctKeys = new Set<string>(
+              artifactRows.map((r: { artifact_key: string }) => r.artifact_key),
+            );
+            ubbAllCreated = ALL_ARTIFACT_KEYS.every((k) => distinctKeys.has(k));
+          }
+        } catch {
+          // Fall through with ubbAllCreated=false. Same nice-to-have
+          // failure mode as the rest of this hook.
+        }
+
         const progress: JourneyProgress = {
           ...visitFlags,
           "journey-start-here": !!data?.last_zog_snapshot_id,
           "journey-asset-mapper": !!data?.resources_mapped_at,
           "journey-qol-assess": !!data?.last_qol_snapshot_id,
           "journey-mission-discovery": !!data?.mission_discovered_at,
+          "journey-build-business": ubbAllCreated,
         };
 
         setState({ progress, isLoading: false });
