@@ -56,14 +56,39 @@ export function useDeepProfileActivated(): DeepProfileState {
         }
         const { data } = await (supabase as any)
           .from("game_profiles")
-          .select("last_zog_snapshot_id")
+          .select("id, last_zog_snapshot_id")
           .eq("user_id", uid)
           .maybeSingle();
         if (cancelled) return;
-        setRevealState({
-          hasReveal: !!data?.last_zog_snapshot_id,
-          loading: false,
-        });
+
+        // Fast path: pointer is set.
+        if (data?.last_zog_snapshot_id) {
+          setRevealState({ hasReveal: true, loading: false });
+          return;
+        }
+
+        // Day 65 wave 5 (Sasha 2026-05-15): pointer fallback. The
+        // denormalized `last_zog_snapshot_id` column wasn't always
+        // populated by save flows — so if it's null, also check
+        // whether any zog_snapshot row exists for this profile_id.
+        // Either signal = "has done the deeper Top Talent view."
+        if (data?.id) {
+          try {
+            const { data: zogRow } = await (supabase as any)
+              .from("zog_snapshots")
+              .select("id")
+              .eq("profile_id", data.id)
+              .limit(1)
+              .maybeSingle();
+            if (cancelled) return;
+            setRevealState({ hasReveal: !!zogRow?.id, loading: false });
+            return;
+          } catch {
+            // Fall through to "no reveal" below.
+          }
+        }
+
+        setRevealState({ hasReveal: false, loading: false });
       } catch (e) {
         console.warn("[useDeepProfileActivated] reveal read failed:", e);
         if (!cancelled) setRevealState({ hasReveal: false, loading: false });
