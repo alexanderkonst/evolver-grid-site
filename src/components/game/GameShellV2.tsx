@@ -945,7 +945,13 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                         isAiOsRoute
                             ? "ai-os-desktop-content-scroll h-dvh min-h-0 overflow-y-auto overflow-x-hidden scrollbar-hide"
                             : "min-h-dvh",
-                        pageOwnsBackground ? "" : "pt-4"
+                        // Day 65 (Sasha 2026-05-15): /ignite is also pane-3-owned
+                        // on desktop. Without this, main got pt-4 (16px) AND a
+                        // cream wash absolute inset-0, which painted a redundant
+                        // horizontal strip above #ignite-page's own dark HLS
+                        // background. Mirror the mobile-only `isImmersiveDarkRoute`
+                        // suppression here.
+                        (pageOwnsBackground || isImmersiveDarkRoute) ? "" : "pt-4"
                     )}
                 >
                     {/* Pane-3 wash — moved here from the shell-wide
@@ -953,9 +959,9 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                         bleeds behind pane 1 / pane 2. Working routes
                         get the heavy calm wash; landing routes get the
                         light atmospheric wash over the shell video.
-                        Page-owned-bg routes (/ai-os, /codex) skip this
-                        entirely so the page's own video is unobstructed. */}
-                    {!pageOwnsBackground && (
+                        Page-owned-bg routes (/ai-os, /codex) and
+                        immersive dark routes (/ignite) skip this entirely. */}
+                    {!pageOwnsBackground && !isImmersiveDarkRoute && (
                       <div
                         aria-hidden="true"
                         className="absolute inset-0 pointer-events-none -z-10"

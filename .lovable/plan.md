@@ -1,52 +1,57 @@
-## Root cause
+## What I found
 
-The Top Talent assessment route `/zone-of-genius/assessment/*` mounts `ZoneOfGeniusAssessmentLayout`, which renders inside `<GameShellV2 hideLogo>` — but does **not** pass `hideNavigation`. The shell then decides whether to show or hide its panes based on the user's `onboarding_stage`, which is fetched async after mount. This produces the flicker the user is seeing.
+The top horizontal strip is real and reproducible on `/ignite` at the current 1088px preview width. It is not a browser chrome issue and not a console/runtime crash.
 
-Sequence for a logged-in user with `onboarding_stage = "new"` or `"zog_started"` (the typical assessment-taker):
+The likely cause is layout ownership conflict:
 
 ```text
-t0  Mount → profile = null
-    isPublicSurface = false  (assessment path is NOT in the allowlist:
-                              "/", "/ai-os*", "/codex", "/playbook*",
-                              "/path", "/dashboard")
-    earlyOnboardingHide = false (profile not loaded yet)
-    hideNavigation = false      → FULL shell renders (Pane 1 + Pane 2 visible)
-                                   ← screenshot #2 shows this state
-
-t1  Profile fetch resolves, stage = "new" / "zog_started"
-    earlyOnboardingHide = true  → hideNavigation = true
-                                → Navless render path (logo only)
-                                   ← shell "disappears"
-
-t2  Auth state listener fires again on tab focus / token refresh
-    → setProfile(null) momentarily during reload
-    → earlyOnboardingHide flips back to false → shell reappears
-    → fetch completes again → hides again
+GameShellV2 desktop main
+  adds top padding / shell wash for normal routes
+  wraps page in .page-transition-enter
+    IgniteSession
+      owns its own absolute HLS background + dark wash
 ```
 
-The Day-47 comment in `GameShellV2.tsx` (line 457) explicitly states the design intent: *"forceHideNavigation (set explicitly by assessment Step1‑4 pages) still wins — those pages truly need full focus."* But `ZoneOfGeniusAssessmentLayout` never sets that prop, so the intent was never wired through after the layout was migrated to `GameShellV2`.
+There is already an attempted `/ignite` special-case, but it only fully handles the mobile content path. On desktop, `/ignite` is still treated as a normal non-page-owned route in key places, so shell-level chrome/wash can peek above the page-owned background as a redundant bar.
 
-## Fix
+## Debugging strategy
 
-One-line change in `src/modules/zone-of-genius/ZoneOfGeniusAssessmentLayout.tsx`:
+1. Inspect the exact element stack at the strip
+   - Use browser tooling at `/ignite` to identify what is painted at `y=0..25`.
+   - Confirm whether the visible strip is coming from shell `<main>` padding/wash, shell background video, `#ignite-page`, or the page transition wrapper.
 
-```tsx
-<GameShellV2 hideLogo hideNavigation>
-```
+2. Fix ownership, not symptoms
+   - Treat `/ignite` as a page-owned immersive route in `GameShellV2` for pane 3 background/padding decisions.
+   - Do not change SpacesRail or SectionsPanel visual behavior unless testing shows that `pageOwnsBackground` would unintentionally restyle them.
+   - Prefer a narrowly named flag, e.g. `pane3OwnsBackground`, instead of forcing `/ignite` into the AI OS-specific `pageOwnsBackground` path.
 
-This:
-1. Restores the documented "focus mode" for the 4-step assessment funnel.
-2. Eliminates the flicker — `hideNavigation` is now decided synchronously from props, not from an async profile fetch.
-3. Removes the dependency on `onboarding_stage` for this route entirely, so guests, half-onboarded users, and fully-unlocked users all see the same calm assessment surface.
+3. Make the Ignite page fill pane 3 from pixel 0
+   - Ensure desktop `<main>` does not add `pt-4` for `/ignite`.
+   - Ensure the pane-3 wash is skipped for `/ignite`.
+   - Ensure `#ignite-page` and its absolute video/wash begin at the top of the content column.
 
-## Verification
+4. Regression test the notorious cases
+   - `/ignite` desktop: no top strip, content starts flush inside pane 3.
+   - `/ignite` mobile: previous mobile strip fix remains intact.
+   - `/game/journey` or `/`: shell still has expected pane behavior.
+   - `/ai-os`: no regression to the special app-shell behavior.
 
-After the change, on `/zone-of-genius/assessment/step-1`:
-- No Pane 1 / Pane 2 ever render.
-- No flicker on initial load, on tab refocus, or after auth token refresh.
-- Step indicator + talent grid render immediately on the cream surface.
-- Other routes (`/`, `/playbook`, `/path`, `/game/*`) are unaffected.
+## Files to change after approval
 
-## Files touched
+- `src/components/game/GameShellV2.tsx`
+  - Refactor the current `/ignite` special-case into a pane-3 background ownership flag used consistently by desktop and mobile.
+  - Keep navigation/rail semantics unchanged.
 
-- `src/modules/zone-of-genius/ZoneOfGeniusAssessmentLayout.tsx` — add `hideNavigation` prop to the `GameShellV2` wrapper (1 line).
+Potentially only if browser inspection proves it necessary:
+
+- `src/pages/IgniteSession.tsx`
+  - Tighten the root wrapper/background fill so its absolute background reliably covers the full pane from the first pixel.
+
+## Definition of done
+
+| # | Evidence | Status |
+|---|---|---|
+| 1 | `/ignite` screenshot at 1088px shows no redundant top horizontal strip | Pending implementation |
+| 2 | Browser element stack confirms pane 3 is painted by Ignite background from top edge | Pending implementation |
+| 3 | `/ignite` mobile still has no cream/top shell strip | Pending implementation |
+| 4 | `/ai-os` and `/` shell behavior unchanged visually | Pending implementation |
