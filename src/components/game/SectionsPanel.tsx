@@ -527,7 +527,14 @@ const buildJourneySections = (
             path: "/",
             completed: !!journeyProgress["journey-start-here"],
         },
-        { id: "journey-the-playbook",      label: "2. Take the exact playbook",          path: "/playbook" },
+        {
+            id: "journey-the-playbook",
+            label: "2. Take the exact playbook",
+            path: "/playbook",
+            // Day 65 wave 2 (Sasha 2026-05-15): visited-tracked via
+            // localStorage flag set on first /playbook mount.
+            completed: !!journeyProgress["journey-the-playbook"],
+        },
         { id: "journey-the-path",          label: "3. See the shortcut path to your business", path: "/path" },
         { id: "journey-dashboard",         label: "4. See how we're building this",      path: "/dashboard" },
         {
