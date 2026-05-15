@@ -262,34 +262,40 @@ const SPACE_SECTIONS: SpaceSections = {
     build: {
         title: "BUILD",
         sections: [
-            { id: "ubb-v2", label: "Unique Business Builder", path: "/ubb", badge: "v2" },
+            // Day 64 wave 5 (Sasha 2026-05-07): label renamed
+            // "Unique Business Builder" → "Automated Venture Builder."
+            // Positioning is stronger: this is the venture-level builder,
+            // not a generic business canvas. URL stays /ubb, enum stays
+            // ubb-v2, badge stays "v2" — internal name is preserved as
+            // genealogy; only the user-facing label changes.
+            { id: "ubb-v2", label: "Automated Venture Builder", path: "/ubb", badge: "v2" },
             {
                 id: "canvas",
                 label: "Unique Business Canvas",
                 path: "/game/build/canvas",
                 locked: true,
-                lockedHint: "Retired — Unique Business Builder is the canonical path.",
+                lockedHint: "Retired — Automated Venture Builder is the canonical path.",
             },
             {
                 id: "product-builder",
                 label: "Product Builder",
                 path: "/game/build/product-builder",
                 locked: true,
-                lockedHint: "Retired — Unique Business Builder is the canonical path.",
+                lockedHint: "Retired — Automated Venture Builder is the canonical path.",
             },
             {
                 id: "my-business",
                 label: "My Genius Business",
                 path: "/game/build/my-business",
                 locked: true,
-                lockedHint: "Retired — Unique Business Builder is the canonical path.",
+                lockedHint: "Retired — Automated Venture Builder is the canonical path.",
             },
             {
                 id: "refine",
                 label: "Refine My Business",
                 path: "/game/build/refine",
                 locked: true,
-                lockedHint: "Retired — Unique Business Builder is the canonical path.",
+                lockedHint: "Retired — Automated Venture Builder is the canonical path.",
             },
         ],
     },
