@@ -11,15 +11,19 @@
  * for v1 — they require either page-visit tracking or a richer
  * progress-aggregation hook, both flagged as follow-ups.
  *
- * Signals consumed (all from `game_profiles`, single fetch):
- *   - last_zog_snapshot_id   → item "journey-start-here"
- *                              ("Start by finding your top talent")
- *   - resources_mapped_at    → item "journey-asset-mapper"
- *                              ("Map your assets")
- *   - last_qol_snapshot_id   → item "journey-qol-assess"
- *                              ("Assess your quality of life")
- *   - mission_discovered_at  → item "journey-mission-discovery"
- *                              ("Discover your mission")
+ * Signals consumed:
+ *   FROM game_profiles (single fetch):
+ *     - last_zog_snapshot_id   → "journey-start-here"
+ *                                ("Start by finding your top talent")
+ *     - resources_mapped_at    → "journey-asset-mapper"
+ *                                ("Map your assets")
+ *     - last_qol_snapshot_id   → "journey-qol-assess"
+ *                                ("Assess your quality of life")
+ *     - mission_discovered_at  → "journey-mission-discovery"
+ *                                ("Discover your mission")
+ *   FROM localStorage:
+ *     - journey:visited:journey-the-playbook  → "journey-the-playbook"
+ *       (set by PlaybookPage on mount — Day 65 wave 2)
  *
  * Returns a record keyed on the section `id` used inside
  * `buildJourneySections`. Lookup is `progress[itemId] === true`
@@ -45,12 +49,32 @@ export function useJourneyProgress(): { progress: JourneyProgress; isLoading: bo
 
   useEffect(() => {
     let cancelled = false;
+
+    // Read localStorage-backed visit flags up front — works for
+    // both authed and unauth users. Each entry is the ISO timestamp
+    // of first visit; presence is what matters.
+    const readVisitFlags = (): JourneyProgress => {
+      if (typeof window === "undefined") return {};
+      try {
+        return {
+          "journey-the-playbook": !!window.localStorage.getItem(
+            "journey:visited:journey-the-playbook",
+          ),
+        };
+      } catch {
+        return {};
+      }
+    };
+
     (async () => {
       try {
+        const visitFlags = readVisitFlags();
+
         const { data: userRes } = await supabase.auth.getUser();
         const uid = userRes.user?.id;
         if (!uid) {
-          if (!cancelled) setState({ progress: EMPTY, isLoading: false });
+          // Unauth: only localStorage signals apply.
+          if (!cancelled) setState({ progress: visitFlags, isLoading: false });
           return;
         }
         const { data, error } = await (supabase as any)
@@ -67,11 +91,12 @@ export function useJourneyProgress(): { progress: JourneyProgress; isLoading: bo
           // Defensive: if any field doesn't exist yet (pre-migration), bail
           // silently. Strikethrough is a nice-to-have, not load-blocking.
           console.warn("[useJourneyProgress] read failed:", error.message);
-          setState({ progress: EMPTY, isLoading: false });
+          setState({ progress: visitFlags, isLoading: false });
           return;
         }
 
         const progress: JourneyProgress = {
+          ...visitFlags,
           "journey-start-here": !!data?.last_zog_snapshot_id,
           "journey-asset-mapper": !!data?.resources_mapped_at,
           "journey-qol-assess": !!data?.last_qol_snapshot_id,
