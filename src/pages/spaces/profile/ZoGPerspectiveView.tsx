@@ -13,7 +13,7 @@ import { GOLD_TEXT_STYLE, Ornament } from "@/lib/landingDesign";
 import ActivationSteps from "@/components/ActivationSteps";
 import ReadNextSectionButton from "@/components/profile/ReadNextSectionButton";
 import { flipToSecondPerson, flipToFirstPersonReflexive } from "@/lib/zogProfileVoice";
-import { Target, Sparkles, Users, TrendingUp, Briefcase, DollarSign, Eye, Palette, MessageSquare, Heart, Zap, Quote, ArrowRight } from "lucide-react";
+import { Target, Sparkles, Users, TrendingUp, Briefcase, DollarSign, Eye, Palette, MessageSquare, Heart, Zap, Quote, ArrowRight, ChevronDown } from "lucide-react";
 
 // Day 54+ (Sasha 2026-04-28 night): full restyle of the ME · Top Talent
 // perspective views. Was a violet/purple palette (#8460ea, #a4a3d0,
@@ -206,16 +206,351 @@ const SASHA_UNIFYING_ROLE: UnifyingRoleProfile = {
 /**
  * Resolve the unifying role for a given snapshot. Order:
  *   1. data.unifyingRole if present (Wave 3 onward — auto-generated)
- *   2. SASHA_UNIFYING_ROLE if vibrationalKey.name matches his archetype
- *      (Wave 1 dogfood fallback)
- *   3. null → empty-state ("opens after your first session")
+ *   2. SASHA_UNIFYING_ROLE if user email matches Sasha's (Wave 1 dogfood
+ *      fallback — Day 68 hardened: was matching by vibrationalKey.name,
+ *      which broke the moment Sasha re-ran appleseed and the prompt
+ *      produced a slightly different gerund. Email is invariant across
+ *      regens.)
+ *   3. SASHA_UNIFYING_ROLE if vibrationalKey.name still matches the
+ *      original "Signal-to-Path Shaping" — kept as a defensive
+ *      secondary fallback for when email isn't available (cache hit
+ *      before auth.getUser() resolves, or any other race).
+ *   4. null → empty-state (no Unifying Role; Book CTA is the only path)
  */
-const getUnifyingRoleData = (data: AppleseedData): UnifyingRoleProfile | null => {
+const getUnifyingRoleData = (
+    data: AppleseedData,
+    userEmail: string | null,
+): UnifyingRoleProfile | null => {
     if (data.unifyingRole) return data.unifyingRole;
+    if (userEmail === "alexanderkonst@gmail.com") return SASHA_UNIFYING_ROLE;
     if (data.vibrationalKey?.name === "Signal-to-Path Shaping") {
         return SASHA_UNIFYING_ROLE;
     }
     return null;
+};
+
+/**
+ * UnifyingRoleSection — full render of the unifying-role perspective body.
+ *
+ * Day 68 (Sasha 2026-05-15) layout: editorial intro panel + Book CTA show
+ * ALWAYS (the marketing/explanatory frame). When the user actually has
+ * unifying-role data (via Wave 3 generation OR the Sasha email fallback),
+ * a closed-by-default disclosure labeled "Reveal My Unifying Role" appears
+ * BELOW the Book CTA. Expanding it shows the full profile (the rich
+ * render: title eyebrow + one-sentence + split + two poles + signature
+ * integration + before/after diptych + where-it-matters + tribe +
+ * civilizational closer).
+ *
+ * Why this hybrid: keeps the editorial frame visible (the user sees what
+ * the view IS before they see content), preserves funnel-monogamy on the
+ * Book CTA (still the lead action for users without data), AND lets Sasha
+ * dogfood his profile + demo it to clients without the page looking like
+ * a generic locked teaser.
+ *
+ * Extracted as a sub-component so it can use hooks (useState for the
+ * disclosure open state, useEffect for the user-email fetch). The
+ * PERSPECTIVES dict's render function just returns <UnifyingRoleSection
+ * data={data} />.
+ */
+const UnifyingRoleSection = ({ data }: { data: AppleseedData }) => {
+    const [userEmail, setUserEmail] = useState<string | null>(null);
+    const [isOpen, setIsOpen] = useState(false);
+
+    useEffect(() => {
+        supabase.auth.getUser().then(({ data: { user } }) => {
+            setUserEmail(user?.email ?? null);
+        });
+    }, []);
+
+    const role = getUnifyingRoleData(data, userEmail);
+
+    return (
+        <div className="space-y-5">
+            {/* ─── Editorial intro panel — always visible ─── */}
+            <div
+                className="rounded-2xl px-6 py-7 sm:px-8 sm:py-9 text-center space-y-4"
+                style={cardSurface}
+            >
+                <p
+                    className="italic text-base sm:text-lg leading-relaxed"
+                    style={mutedStyle}
+                >
+                    Your Unifying Role profile is generated during your Top Talent Business Session.
+                </p>
+                <p
+                    className="text-sm sm:text-base leading-relaxed"
+                    style={{
+                        fontFamily: "'Source Serif 4', Georgia, serif",
+                        color: "var(--skin-text-primary, #0b2a5a)",
+                        textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
+                    }}
+                >
+                    Where your Top Talent names <em>what you do</em>, your Unifying Role names <em>what you are</em> — the structural function your gift performs in the larger field: the split you heal, the two realms you bridge, the position you hold in the meshwork.
+                </p>
+            </div>
+
+            {/* ─── Book CTA — always visible ─── */}
+            <div className="pt-1 flex justify-center">
+                <Link
+                    to="/ignite"
+                    className="group liquid-glass-dark cta-breath rounded-full inline-flex items-center justify-center gap-2 sm:gap-2.5 px-6 sm:px-7 py-3 sm:py-3.5 text-sm sm:text-base font-semibold transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+                    style={{
+                        fontFamily: "'Cormorant Garamond', serif",
+                        color: "var(--skin-cta-text, rgba(245,245,250,0.98))",
+                        backgroundImage:
+                            "var(--skin-cta-bg, linear-gradient(135deg, rgba(10,22,40,0.92) 0%, rgba(26,30,58,0.85) 50%, rgba(10,22,40,0.92) 100%))",
+                        boxShadow:
+                            "var(--skin-cta-shadow, 0 0 18px -4px rgba(240,194,127,0.45), 0 10px 24px -10px rgba(10,22,40,0.5))",
+                        textShadow:
+                            "var(--skin-cta-text-shadow, 0 0 16px rgba(240,194,127,0.25), 0 1px 2px rgba(0,0,0,0.35))",
+                        letterSpacing: "0.02em",
+                    }}
+                >
+                    <span>Book your session to generate it</span>
+                    <ArrowRight
+                        aria-hidden="true"
+                        className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 flex-shrink-0"
+                    />
+                </Link>
+            </div>
+
+            {/* ─── Reveal disclosure — only when role data is resolved ─── */}
+            {role && (
+                <div className="pt-3">
+                    <button
+                        type="button"
+                        onClick={() => setIsOpen((v) => !v)}
+                        aria-expanded={isOpen}
+                        aria-controls="unifying-role-disclosure"
+                        className="w-full rounded-2xl px-5 py-4 sm:px-6 sm:py-5 flex items-center justify-between gap-3 transition-all duration-300 hover:scale-[1.005] active:scale-[0.995]"
+                        style={{
+                            ...accentCardSurface,
+                            cursor: "pointer",
+                        }}
+                    >
+                        <span className="flex items-center gap-3">
+                            <span style={eyebrowStyle}>{isOpen ? "Hide" : "Reveal"}</span>
+                            <span
+                                className="text-base sm:text-lg italic"
+                                style={{
+                                    fontFamily: "'Cormorant Garamond', serif",
+                                    fontWeight: 600,
+                                    color: "var(--skin-text-primary, #0b2a5a)",
+                                    textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
+                                }}
+                            >
+                                My Unifying Role
+                            </span>
+                        </span>
+                        <ChevronDown
+                            aria-hidden="true"
+                            className={`w-5 h-5 flex-shrink-0 transition-transform duration-300 ${isOpen ? "rotate-180" : "rotate-0"}`}
+                            style={{ color: "var(--skin-accent-gold, #b8860b)" }}
+                        />
+                    </button>
+
+                    {isOpen && (
+                        <div id="unifying-role-disclosure" className="mt-4 space-y-5">
+                            {/* Big role title — accent card with eyebrow */}
+                            <div
+                                className="rounded-2xl px-6 py-7 sm:px-8 sm:py-8 text-center"
+                                style={accentCardSurface}
+                            >
+                                <p style={eyebrowStyle} className="mb-3">My unifying role is</p>
+                                <p
+                                    className="leading-snug"
+                                    style={{
+                                        fontFamily: "'Cormorant Garamond', serif",
+                                        fontSize: "clamp(1.4rem, 3.4vw, 1.85rem)",
+                                        fontWeight: 700,
+                                        letterSpacing: "0.005em",
+                                        color: "var(--skin-text-primary, #0b2a5a)",
+                                        textShadow: "var(--skin-text-halo-deep, 0 0 28px rgba(255,255,255,0.85), 0 1px 2px rgba(255,255,255,0.95), 0 0 1px rgba(11,42,90,0.65), 0 1px 0 rgba(11,42,90,0.45))",
+                                    }}
+                                >
+                                    {role.unifying_role_title}
+                                </p>
+                            </div>
+
+                            {/* One-sentence synth */}
+                            <div
+                                className="rounded-2xl px-6 py-5 sm:px-7 sm:py-6 text-center"
+                                style={cardSurface}
+                            >
+                                <p style={eyebrowStyle} className="mb-2">In one line</p>
+                                <p
+                                    className="italic leading-snug"
+                                    style={{
+                                        fontFamily: "'Cormorant Garamond', serif",
+                                        fontSize: "clamp(1.05rem, 2.4vw, 1.25rem)",
+                                        fontWeight: 600,
+                                        color: "var(--skin-text-primary, #0b2a5a)",
+                                        textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
+                                    }}
+                                >
+                                    {role.unifying_role_one_sentence}
+                                </p>
+                            </div>
+
+                            {/* The split you heal */}
+                            <FieldCard label="The Split You Heal">
+                                <p
+                                    style={{
+                                        fontFamily: "'Source Serif 4', Georgia, serif",
+                                        lineHeight: "1.7",
+                                    }}
+                                >
+                                    {role.the_split_you_heal}
+                                </p>
+                            </FieldCard>
+
+                            {/* Two poles diptych */}
+                            {role.the_two_poles && role.the_two_poles.length === 2 && (
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div className="rounded-2xl px-5 py-5" style={cardSurface}>
+                                        <p style={eyebrowStyle} className="mb-2">Pole 1</p>
+                                        <p
+                                            className="leading-relaxed"
+                                            style={{
+                                                fontFamily: "'Source Serif 4', Georgia, serif",
+                                                color: "var(--skin-text-primary, #0b2a5a)",
+                                                textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
+                                            }}
+                                        >
+                                            {role.the_two_poles[0]}
+                                        </p>
+                                    </div>
+                                    <div className="rounded-2xl px-5 py-5" style={cardSurface}>
+                                        <p style={eyebrowStyle} className="mb-2">Pole 2</p>
+                                        <p
+                                            className="leading-relaxed"
+                                            style={{
+                                                fontFamily: "'Source Serif 4', Georgia, serif",
+                                                color: "var(--skin-text-primary, #0b2a5a)",
+                                                textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
+                                            }}
+                                        >
+                                            {role.the_two_poles[1]}
+                                        </p>
+                                    </div>
+                                </div>
+                            )}
+
+                            {/* Signature integration */}
+                            <FieldCard label="How You Perform the Unification">
+                                <p
+                                    style={{
+                                        fontFamily: "'Source Serif 4', Georgia, serif",
+                                        fontSize: "1rem",
+                                        lineHeight: "1.75",
+                                    }}
+                                >
+                                    {role.the_signature_integration}
+                                </p>
+                            </FieldCard>
+
+                            {/* Before/After diptych */}
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div className="rounded-2xl px-5 py-5" style={cardSurface}>
+                                    <p style={eyebrowStyle} className="mb-2">Without You in the Room</p>
+                                    <p
+                                        className="leading-relaxed"
+                                        style={{
+                                            fontFamily: "'Source Serif 4', Georgia, serif",
+                                            color: "var(--skin-text-primary, #0b2a5a)",
+                                            textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
+                                        }}
+                                    >
+                                        {role.what_breaks_when_you_are_absent}
+                                    </p>
+                                </div>
+                                <div className="rounded-2xl px-5 py-5" style={accentCardSurface}>
+                                    <p style={eyebrowStyle} className="mb-2">When You Are Present</p>
+                                    <p
+                                        className="leading-relaxed"
+                                        style={{
+                                            fontFamily: "'Source Serif 4', Georgia, serif",
+                                            color: "var(--skin-text-primary, #0b2a5a)",
+                                            textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
+                                        }}
+                                    >
+                                        {role.what_lands_when_you_are_present}
+                                    </p>
+                                </div>
+                            </div>
+
+                            {/* Where this role matters most */}
+                            {role.where_this_role_matters_most && role.where_this_role_matters_most.length > 0 && (
+                                <div className="space-y-3">
+                                    <p style={eyebrowStyle} className="px-1">Where This Role Matters Most</p>
+                                    <ul className="space-y-3">
+                                        {role.where_this_role_matters_most.map((env, i) => (
+                                            <li
+                                                key={i}
+                                                className="rounded-2xl px-6 py-5 flex gap-3"
+                                                style={cardSurface}
+                                            >
+                                                <span
+                                                    aria-hidden="true"
+                                                    className="flex-shrink-0 mt-1 text-base"
+                                                    style={{ color: "var(--skin-accent-gold, #b8860b)" }}
+                                                >
+                                                    ✦
+                                                </span>
+                                                <p
+                                                    className="text-base leading-relaxed flex-1"
+                                                    style={{
+                                                        fontFamily: "'Source Serif 4', Georgia, serif",
+                                                        color: "var(--skin-text-primary, #0b2a5a)",
+                                                        textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
+                                                    }}
+                                                >
+                                                    {env}
+                                                </p>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            )}
+
+                            {/* The tribe that recognizes you */}
+                            <FieldCard label="The Tribe That Recognizes You">
+                                <p
+                                    style={{
+                                        fontFamily: "'Source Serif 4', Georgia, serif",
+                                        lineHeight: "1.75",
+                                    }}
+                                >
+                                    {role.the_tribe_that_recognizes_you}
+                                </p>
+                            </FieldCard>
+
+                            {/* Civilizational function — closing accent */}
+                            <div
+                                className="rounded-2xl px-6 py-7 sm:px-8 sm:py-8 text-center"
+                                style={accentCardSurface}
+                            >
+                                <p style={eyebrowStyle} className="mb-3">Civilizational Function</p>
+                                <p
+                                    className="leading-relaxed"
+                                    style={{
+                                        fontFamily: "'Cormorant Garamond', serif",
+                                        fontSize: "clamp(1.1rem, 2.4vw, 1.3rem)",
+                                        fontStyle: "italic",
+                                        fontWeight: 600,
+                                        color: "var(--skin-text-primary, #0b2a5a)",
+                                        textShadow: "var(--skin-text-halo-deep, 0 0 28px rgba(255,255,255,0.85), 0 1px 2px rgba(255,255,255,0.95), 0 0 1px rgba(11,42,90,0.65), 0 1px 0 rgba(11,42,90,0.45))",
+                                    }}
+                                >
+                                    {role.the_civilizational_function}
+                                </p>
+                            </div>
+                        </div>
+                    )}
+                </div>
+            )}
+        </div>
+    );
 };
 
 // Day 58 (Sasha 2026-05-02): switched to Partial<Record> so retired
@@ -829,260 +1164,11 @@ const PERSPECTIVES: Partial<Record<PerspectiveId, PerspectiveConfig>> = {
         title: "Your Unifying Role",
         subtitle: "The split you heal. The crossing you are.",
         icon: Users,
-        render: (data) => {
-            const role = getUnifyingRoleData(data);
-            if (!role) {
-                // Empty state — clean explanatory panel, NOT a fogged
-                // tease. Memory: ME = profile/storage, populated or
-                // empty, never locked with fog-of-war.
-                return (
-                    <div className="space-y-5">
-                        <div
-                            className="rounded-2xl px-6 py-7 sm:px-8 sm:py-9 text-center space-y-4"
-                            style={cardSurface}
-                        >
-                            <p
-                                className="italic text-base sm:text-lg leading-relaxed"
-                                style={mutedStyle}
-                            >
-                                Your Unifying Role profile is generated during your Top Talent Business Session.
-                            </p>
-                            <p
-                                className="text-sm sm:text-base leading-relaxed"
-                                style={{
-                                    fontFamily: "'Source Serif 4', Georgia, serif",
-                                    color: "var(--skin-text-primary, #0b2a5a)",
-                                    textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
-                                }}
-                            >
-                                Where your Top Talent names <em>what you do</em>, your Unifying Role names <em>what you are</em> — the structural function your gift performs in the larger field: the split you heal, the two realms you bridge, the position you hold in the meshwork.
-                            </p>
-                        </div>
-                        <div className="pt-1 flex justify-center">
-                            <Link
-                                to="/ignite"
-                                className="group liquid-glass-dark cta-breath rounded-full inline-flex items-center justify-center gap-2 sm:gap-2.5 px-6 sm:px-7 py-3 sm:py-3.5 text-sm sm:text-base font-semibold transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
-                                style={{
-                                    fontFamily: "'Cormorant Garamond', serif",
-                                    color: "var(--skin-cta-text, rgba(245,245,250,0.98))",
-                                    backgroundImage:
-                                        "var(--skin-cta-bg, linear-gradient(135deg, rgba(10,22,40,0.92) 0%, rgba(26,30,58,0.85) 50%, rgba(10,22,40,0.92) 100%))",
-                                    boxShadow:
-                                        "var(--skin-cta-shadow, 0 0 18px -4px rgba(240,194,127,0.45), 0 10px 24px -10px rgba(10,22,40,0.5))",
-                                    textShadow:
-                                        "var(--skin-cta-text-shadow, 0 0 16px rgba(240,194,127,0.25), 0 1px 2px rgba(0,0,0,0.35))",
-                                    letterSpacing: "0.02em",
-                                }}
-                            >
-                                <span>Book your session to generate it</span>
-                                <ArrowRight
-                                    aria-hidden="true"
-                                    className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 flex-shrink-0"
-                                />
-                            </Link>
-                        </div>
-                    </div>
-                );
-            }
-            return (
-                <div className="space-y-5">
-                    {/* Big role title — accent card with eyebrow */}
-                    <div
-                        className="rounded-2xl px-6 py-7 sm:px-8 sm:py-8 text-center"
-                        style={accentCardSurface}
-                    >
-                        <p style={eyebrowStyle} className="mb-3">My unifying role is</p>
-                        <p
-                            className="leading-snug"
-                            style={{
-                                fontFamily: "'Cormorant Garamond', serif",
-                                fontSize: "clamp(1.4rem, 3.4vw, 1.85rem)",
-                                fontWeight: 700,
-                                letterSpacing: "0.005em",
-                                color: "var(--skin-text-primary, #0b2a5a)",
-                                textShadow: "var(--skin-text-halo-deep, 0 0 28px rgba(255,255,255,0.85), 0 1px 2px rgba(255,255,255,0.95), 0 0 1px rgba(11,42,90,0.65), 0 1px 0 rgba(11,42,90,0.45))",
-                            }}
-                        >
-                            {role.unifying_role_title}
-                        </p>
-                    </div>
-
-                    {/* One-sentence synth — softer card */}
-                    <div
-                        className="rounded-2xl px-6 py-5 sm:px-7 sm:py-6 text-center"
-                        style={cardSurface}
-                    >
-                        <p style={eyebrowStyle} className="mb-2">In one line</p>
-                        <p
-                            className="italic leading-snug"
-                            style={{
-                                fontFamily: "'Cormorant Garamond', serif",
-                                fontSize: "clamp(1.05rem, 2.4vw, 1.25rem)",
-                                fontWeight: 600,
-                                color: "var(--skin-text-primary, #0b2a5a)",
-                                textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
-                            }}
-                        >
-                            {role.unifying_role_one_sentence}
-                        </p>
-                    </div>
-
-                    {/* The split you heal */}
-                    <FieldCard label="The Split You Heal">
-                        <p
-                            style={{
-                                fontFamily: "'Source Serif 4', Georgia, serif",
-                                lineHeight: "1.7",
-                            }}
-                        >
-                            {role.the_split_you_heal}
-                        </p>
-                    </FieldCard>
-
-                    {/* Two poles diptych */}
-                    {role.the_two_poles && role.the_two_poles.length === 2 && (
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div className="rounded-2xl px-5 py-5" style={cardSurface}>
-                                <p style={eyebrowStyle} className="mb-2">Pole 1</p>
-                                <p
-                                    className="leading-relaxed"
-                                    style={{
-                                        fontFamily: "'Source Serif 4', Georgia, serif",
-                                        color: "var(--skin-text-primary, #0b2a5a)",
-                                        textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
-                                    }}
-                                >
-                                    {role.the_two_poles[0]}
-                                </p>
-                            </div>
-                            <div className="rounded-2xl px-5 py-5" style={cardSurface}>
-                                <p style={eyebrowStyle} className="mb-2">Pole 2</p>
-                                <p
-                                    className="leading-relaxed"
-                                    style={{
-                                        fontFamily: "'Source Serif 4', Georgia, serif",
-                                        color: "var(--skin-text-primary, #0b2a5a)",
-                                        textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
-                                    }}
-                                >
-                                    {role.the_two_poles[1]}
-                                </p>
-                            </div>
-                        </div>
-                    )}
-
-                    {/* Signature integration */}
-                    <FieldCard label="How You Perform the Unification">
-                        <p
-                            style={{
-                                fontFamily: "'Source Serif 4', Georgia, serif",
-                                fontSize: "1rem",
-                                lineHeight: "1.75",
-                            }}
-                        >
-                            {role.the_signature_integration}
-                        </p>
-                    </FieldCard>
-
-                    {/* Before/After diptych — what breaks vs what lands */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div className="rounded-2xl px-5 py-5" style={cardSurface}>
-                            <p style={eyebrowStyle} className="mb-2">Without You in the Room</p>
-                            <p
-                                className="leading-relaxed"
-                                style={{
-                                    fontFamily: "'Source Serif 4', Georgia, serif",
-                                    color: "var(--skin-text-primary, #0b2a5a)",
-                                    textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
-                                }}
-                            >
-                                {role.what_breaks_when_you_are_absent}
-                            </p>
-                        </div>
-                        <div className="rounded-2xl px-5 py-5" style={accentCardSurface}>
-                            <p style={eyebrowStyle} className="mb-2">When You Are Present</p>
-                            <p
-                                className="leading-relaxed"
-                                style={{
-                                    fontFamily: "'Source Serif 4', Georgia, serif",
-                                    color: "var(--skin-text-primary, #0b2a5a)",
-                                    textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
-                                }}
-                            >
-                                {role.what_lands_when_you_are_present}
-                            </p>
-                        </div>
-                    </div>
-
-                    {/* Where this role matters most — list */}
-                    {role.where_this_role_matters_most && role.where_this_role_matters_most.length > 0 && (
-                        <div className="space-y-3">
-                            <p style={eyebrowStyle} className="px-1">Where This Role Matters Most</p>
-                            <ul className="space-y-3">
-                                {role.where_this_role_matters_most.map((env, i) => (
-                                    <li
-                                        key={i}
-                                        className="rounded-2xl px-6 py-5 flex gap-3"
-                                        style={cardSurface}
-                                    >
-                                        <span
-                                            aria-hidden="true"
-                                            className="flex-shrink-0 mt-1 text-base"
-                                            style={{ color: "var(--skin-accent-gold, #b8860b)" }}
-                                        >
-                                            ✦
-                                        </span>
-                                        <p
-                                            className="text-base leading-relaxed flex-1"
-                                            style={{
-                                                fontFamily: "'Source Serif 4', Georgia, serif",
-                                                color: "var(--skin-text-primary, #0b2a5a)",
-                                                textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
-                                            }}
-                                        >
-                                            {env}
-                                        </p>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                    )}
-
-                    {/* The tribe that recognizes you */}
-                    <FieldCard label="The Tribe That Recognizes You">
-                        <p
-                            style={{
-                                fontFamily: "'Source Serif 4', Georgia, serif",
-                                lineHeight: "1.75",
-                            }}
-                        >
-                            {role.the_tribe_that_recognizes_you}
-                        </p>
-                    </FieldCard>
-
-                    {/* Civilizational function — closing accent */}
-                    <div
-                        className="rounded-2xl px-6 py-7 sm:px-8 sm:py-8 text-center"
-                        style={accentCardSurface}
-                    >
-                        <p style={eyebrowStyle} className="mb-3">Civilizational Function</p>
-                        <p
-                            className="leading-relaxed"
-                            style={{
-                                fontFamily: "'Cormorant Garamond', serif",
-                                fontSize: "clamp(1.1rem, 2.4vw, 1.3rem)",
-                                fontStyle: "italic",
-                                fontWeight: 600,
-                                color: "var(--skin-text-primary, #0b2a5a)",
-                                textShadow: "var(--skin-text-halo-deep, 0 0 28px rgba(255,255,255,0.85), 0 1px 2px rgba(255,255,255,0.95), 0 0 1px rgba(11,42,90,0.65), 0 1px 0 rgba(11,42,90,0.45))",
-                            }}
-                        >
-                            {role.the_civilizational_function}
-                        </p>
-                    </div>
-                </div>
-            );
-        },
+        // Day 68 (Sasha 2026-05-15): rendering moved into its own component
+        // (UnifyingRoleSection above) so we can use hooks for the user-email
+        // fetch + the disclosure open/close state. Render below collapsed
+        // to a single line; the entire body lives in the sub-component.
+        render: (data) => <UnifyingRoleSection data={data} />,
     },
     // Day 61 (Sasha 2026-05-04 12:00): "What's Next?" — closing
     // subpage. Same copy as the Step 3 section on Start Here, surfaced

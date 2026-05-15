@@ -151,6 +151,10 @@ const SPACE_SECTIONS: SpaceSections = {
                     { id: "tt-roles", label: "Ideal Environments", path: "/game/me/zone-of-genius/roles" },
                     { id: "tt-partner", label: "Complementary Partner", path: "/game/me/zone-of-genius/partner" },
                     { id: "tt-monetization", label: "Monetization", path: "/game/me/zone-of-genius/monetization" },
+                    // Day 68 (Sasha 2026-05-15): Unifying Role added between
+                    // Monetization and What's Next. Mirrors ZOG_SUBPAGE_ORDER
+                    // in src/components/profile/ReadNextSectionButton.tsx.
+                    { id: "tt-unifying-role", label: "Your Unifying Role", path: "/game/me/zone-of-genius/unifying-role" },
                     { id: "tt-whats-next", label: "What's Next?", path: "/game/me/zone-of-genius/whats-next" },
                 ],
             },
