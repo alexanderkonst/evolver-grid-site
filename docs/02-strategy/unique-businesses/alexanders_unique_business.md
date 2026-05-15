@@ -103,6 +103,50 @@ Step 1 free · Steps 2+3 **$555** · Step 4 **$1,111** · Step 5 **$333** · Ste
 
 > **✦ Canonical product name (Day 53, April 27, 2026):** the $555 Steps 2+3 product is now called the **Top Talent Business Session.** Naming evolution: *Ignition Session* (v1.0, March 5) → *Productize Yourself Session* (Day 47, April 21) → **Top Talent Business Session** (Day 53). Older SOPs in this doc still use "Ignition Session" — those are dated artifacts of evolution, preserved as genealogy. New copy + active surfaces should use Top Talent Business Session. URL stays `/ignite#pricing-section`.
 
+### Platform Access Pricing v3.0 — One-Time, Not Subscription (Day 64, May 7, 2026)
+
+The platform (UBB module at `/ubb` + deeper Top Talent profile at `/game/me/*`) is a **one-time purchase, not a subscription.** The system was built — the user pays once for access. Token throughput (a real cost on every UBB Improve/Generate call) is metered separately as a monthly budget per tier, but the *access itself* doesn't churn.
+
+**Why one-time, not subscription:**
+- The system isn't a stream of new content (like ChatGPT, Midjourney, Netflix) — it's a finished methodology. Subscription pricing assumes ongoing delivery; one-time pricing matches finite delivery.
+- First-use is disproportionately high-value: ~80% of the value lands in the first session. Subsequent uses are important but incremental. Subscription forces the user to keep paying for something they already got most of.
+- Lifetime ownership reads as confidence in the artifact, not as a hedge.
+- Pattern parallels FounderOS ($197 one-time) — a different methodology, same conviction about pricing.
+
+**The platform tier ladder** (matches `entitlement_tier` enum in Supabase exactly):
+
+| Tier (enum) | Price | Grants | Target buyer |
+|---|---|---|---|
+| `tasting` | **Free** | Top Talent reveal at `/` (15-min assessment, dodecahedron, archetype, bullseye, three talents, top shadow) | Anyone — funnel front door |
+| (Top Talent Activation) | **$37** | Deeper profile: Three Talents in Depth, How It Shows Up, Path of Mastery, Roles, Partner, Monetization, What's Next. Unlocks `/game/me/*`. *(Existing $37 product — not a separate tier in the DB; sets `tasting → builder` if bundled with platform access, or stays `tasting` if standalone reveal-only.)* | Curious — wants the full reveal without 1:1 |
+| `builder` | **$197** | Lifetime UBB module access at `/ubb` (Canvas · Session · Marketing · Distribution · Communications · Landing Page). Personal use only. Standard token budget. | Self-serve solo founder who wants to run the methodology on their own business |
+| `locked_in` | **$497** | Builder + commercial license (use UBB for client work) + 5× token budget | Self-serve consultant / coach who plans to build for paying clients |
+| `gifted_builder` | $0 | Same as Builder, admin-granted | Trial / friend / strategic gift |
+| `gifted_locked_in` | $0 | Same as Locked-in, admin-granted | Strategic gift with commercial rights (e.g., key collaborator) |
+| `founders_50` | **$197** | Locked-in tier permanently. **Audit-cohort marker for the first 50 buyers** — once 50 sold, the tier closes and Locked-in reverts to $497. Distinct enum value so the founder cohort is greppable in `entitlement_grants` forever. | Day-1 buyers — gets Locked-in at Builder price; signals commitment to the long arc |
+| `ignition` | **$555** | Locked-in + **1:1 Top Talent Business Session with Sasha** (custom calibration, live build of the user's myth/tribe/promise) + commercial license. | High-touch — wants the human catalyst on top of the platform |
+
+**The naming is intentional:**
+- *Builder* — what the user is doing inside the platform (building their business). Verb-first.
+- *Locked-in* — has decided to commit fully (commercial use, real client work).
+- *Founders 50* — cohort name + scarcity hard-cap. The "50" is the cap, not a discount percentage.
+- *Ignition* — keeps the original session product name in the tier ladder (renamed in marketing to "Top Talent Business Session," but the tier enum preserves genealogy).
+- *Tasting / Gifted_** — descriptive; mirror the access model in plain English.
+
+**Token tracking (planned, not yet shipped):**
+Every UBB Improve or Generate call hits Gemini 2.5 Flash via an edge function. Each response carries a usage object (`{ promptTokens, completionTokens }`). To enforce the monthly budget cap per tier, we'll add a `token_usage` table keyed on `(user_id, year_month)` and increment it on every edge-function return path. Educated-estimation fallback for any path that doesn't return usage: average tokens per artifact type × call count. Soft cap (warn) at 80%, hard cap (block + upgrade CTA) at 100%. Out of scope for this iteration — flagged in the roadmap.
+
+**How the cohort math compounds:**
+| Outcome | What it buys |
+|---|---|
+| 50 × $197 Founders 50 sold | $9,850 — closes the cohort, validates the price point, generates the first audit cohort to study |
+| Then 50 × $497 Locked-in sold | $24,850 — pure platform revenue with no Sasha hours spent |
+| Plus N × $555 Ignition sold | Hours-bound product — the only tier that's rate-limited by Sasha's calendar; everything else scales |
+
+The platform is the leverage. Ignition is the human core. Founders 50 is the wedge that lights both. Total value-at-list-price for the platform alone (Locked-in: lifetime UBB + commercial use) is conservatively **20–50× the price** when measured against either (a) hiring a consultant for one engagement or (b) the methodology development time saved. The $497 / $197 / $555 ladder is intentionally a *digital-product discount* — the same principle Matt's FounderOS uses to frame the $197 price: it costs this much because it's a digital product, not because the value is small.
+
+> **Re-pricing protocol:** when Founders 50 closes (cohort #50 paid), open a new migration that retires `founders_50` as a settable tier (keep it readable for audit), and update marketing copy. Locked-in stays at $497 forever; future cohort markers (e.g., `bridge_100` for buyers 51–150 at $297) can be added as new enum values via additional migrations.
+
 ### Current State (snapshot)
 - **7 founders** (Alexander · Oyi · Sergey · Alexa · Sandra · Karime · Kirill) co-identifying as a collective.
 - **$1,931 total** (cash + in-kind + rev-share contracts through Day 47).
