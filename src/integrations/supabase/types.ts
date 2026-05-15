@@ -467,6 +467,151 @@ export type Database = {
           },
         ]
       }
+      equilibrium_focus: {
+        Row: {
+          position: number
+          promoted_at: string
+          task_id: string
+          user_id: string
+        }
+        Insert: {
+          position: number
+          promoted_at?: string
+          task_id: string
+          user_id: string
+        }
+        Update: {
+          position?: number
+          promoted_at?: string
+          task_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "equilibrium_focus_task_id_fkey"
+            columns: ["task_id"]
+            isOneToOne: false
+            referencedRelation: "equilibrium_tasks"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      equilibrium_state: {
+        Row: {
+          last_synthesis_at: string | null
+          last_synthesis_text: string | null
+          mission_override_text: string | null
+          moon_focus_text: string | null
+          role_override_text: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          last_synthesis_at?: string | null
+          last_synthesis_text?: string | null
+          mission_override_text?: string | null
+          moon_focus_text?: string | null
+          role_override_text?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          last_synthesis_at?: string | null
+          last_synthesis_text?: string | null
+          mission_override_text?: string | null
+          moon_focus_text?: string | null
+          role_override_text?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      equilibrium_strategies: {
+        Row: {
+          position: number
+          set_at: string
+          text: string
+          user_id: string
+        }
+        Insert: {
+          position: number
+          set_at?: string
+          text: string
+          user_id: string
+        }
+        Update: {
+          position?: number
+          set_at?: string
+          text?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      equilibrium_synthesis_log: {
+        Row: {
+          cycle_snapshot_json: Json
+          generated_at: string
+          id: string
+          reading_text: string
+          user_id: string
+        }
+        Insert: {
+          cycle_snapshot_json: Json
+          generated_at?: string
+          id?: string
+          reading_text: string
+          user_id: string
+        }
+        Update: {
+          cycle_snapshot_json?: Json
+          generated_at?: string
+          id?: string
+          reading_text?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      equilibrium_tasks: {
+        Row: {
+          created_at: string
+          do_now_at: string | null
+          done_at: string | null
+          id: string
+          position: number
+          status: string
+          text: string
+          workstream_id: string
+        }
+        Insert: {
+          created_at?: string
+          do_now_at?: string | null
+          done_at?: string | null
+          id?: string
+          position: number
+          status?: string
+          text: string
+          workstream_id: string
+        }
+        Update: {
+          created_at?: string
+          do_now_at?: string | null
+          done_at?: string | null
+          id?: string
+          position?: number
+          status?: string
+          text?: string
+          workstream_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "equilibrium_tasks_workstream_id_fkey"
+            columns: ["workstream_id"]
+            isOneToOne: false
+            referencedRelation: "equilibrium_workstreams"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       equilibrium_users: {
         Row: {
           birthday: string
@@ -488,6 +633,33 @@ export type Database = {
           created_at?: string
           id?: string
           timezone?: number | null
+        }
+        Relationships: []
+      }
+      equilibrium_workstreams: {
+        Row: {
+          archived_at: string | null
+          created_at: string
+          id: string
+          position: number
+          title: string
+          user_id: string
+        }
+        Insert: {
+          archived_at?: string | null
+          created_at?: string
+          id?: string
+          position: number
+          title: string
+          user_id: string
+        }
+        Update: {
+          archived_at?: string | null
+          created_at?: string
+          id?: string
+          position?: number
+          title?: string
+          user_id?: string
         }
         Relationships: []
       }
@@ -2260,6 +2432,7 @@ export type Database = {
         Args: { payload: Json; queue_name: string }
         Returns: number
       }
+      eq_complete_task: { Args: { p_task_id: string }; Returns: undefined }
       get_public_zog_snapshot: {
         Args: { p_slug: string }
         Returns: {
