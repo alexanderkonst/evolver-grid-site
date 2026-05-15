@@ -4,6 +4,7 @@ import GameShellV2 from "@/components/game/GameShellV2";
 import PlaybookShell from "@/components/playbook/PlaybookShell";
 import StepCard from "@/components/playbook/StepCard";
 import { getStepBySlug, PLAYBOOK_STEPS } from "@/data/playbookSteps";
+import { markJourneyVisited } from "@/lib/journeyVisits";
 
 /**
  * PlaybookPage — the full methodology playbook.
@@ -23,24 +24,16 @@ const PlaybookPage = () => {
   const resolvedSlug = slug ?? "discover";
   const step = getStepBySlug(resolvedSlug);
 
-  // Day 65 (Sasha 2026-05-15): mark this JOURNEY item visited on
-  // first landing so the corresponding row gets strikethrough
-  // treatment in pane 2. localStorage chosen over DB on purpose —
-  // /playbook is read-only content with no auth gate, and a
-  // browser-local "have you been here yet" flag is enough for the
-  // visual feedback. Idempotent: re-writes are harmless. Read
-  // side lives in `useJourneyProgress`. Same one-line pattern
-  // extends to /path and /dashboard if those should also get the
-  // visited-strikethrough treatment.
+  // Day 65 wave 4 (Sasha 2026-05-15): cross-device visit tracking.
+  // markJourneyVisited writes localStorage (fast, pre-auth-safe)
+  // AND, if authed, the matching first-visit timestamp on
+  // game_profiles. Either source unlocks the strikethrough — so
+  // a sign-in on a fresh device still shows the row as done.
   useEffect(() => {
-    try {
-      window.localStorage.setItem(
-        "journey:visited:journey-the-playbook",
-        new Date().toISOString(),
-      );
-    } catch {
-      // localStorage unavailable (SSR / privacy mode) — silent no-op.
-    }
+    markJourneyVisited({
+      itemId: "journey-the-playbook",
+      dbColumn: "playbook_visited_at",
+    });
   }, []);
 
   if (!step) {

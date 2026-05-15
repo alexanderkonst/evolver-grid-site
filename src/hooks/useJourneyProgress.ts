@@ -26,13 +26,21 @@
  *       → "journey-build-business"
  *       ("Build a business off your top talent" — user has
  *        created every UBB artifact at least once)
+ *   FROM game_profiles (continued, Day 65 wave 4 — cross-device sync):
+ *     - playbook_visited_at    → "journey-the-playbook"
+ *     - path_visited_at        → "journey-the-path"
+ *     - dashboard_visited_at   → "journey-dashboard"
+ *     (Written by markJourneyVisited() on page mount for authed
+ *      users. Read here so a fresh-device sign-in shows the same
+ *      strikethrough state as the device that first visited the
+ *      page. OR'd with the localStorage flags below.)
  *   FROM localStorage:
  *     - journey:visited:journey-the-playbook  → "journey-the-playbook"
- *       (set by PlaybookPage on mount — Day 65 wave 2)
  *     - journey:visited:journey-the-path      → "journey-the-path"
- *       (set by PathPage on mount — Day 65 wave 3)
  *     - journey:visited:journey-dashboard     → "journey-dashboard"
- *       (set by VentureDashboard on mount — Day 65 wave 3)
+ *     (Same itemIds as the DB columns; OR'd together — either
+ *      source counts. Provides instant pre-auth strikethrough on
+ *      a single device; the DB layer above provides cross-device.)
  *
  * Returns a record keyed on the section `id` used inside
  * `buildJourneySections`. Lookup is `progress[itemId] === true`
@@ -96,7 +104,7 @@ export function useJourneyProgress(): { progress: JourneyProgress; isLoading: bo
         const { data, error } = await (supabase as any)
           .from("game_profiles")
           .select(
-            "last_zog_snapshot_id, resources_mapped_at, last_qol_snapshot_id, mission_discovered_at",
+            "last_zog_snapshot_id, resources_mapped_at, last_qol_snapshot_id, mission_discovered_at, playbook_visited_at, path_visited_at, dashboard_visited_at",
           )
           .eq("user_id", uid)
           .maybeSingle();
@@ -143,6 +151,19 @@ export function useJourneyProgress(): { progress: JourneyProgress; isLoading: bo
           "journey-qol-assess": !!data?.last_qol_snapshot_id,
           "journey-mission-discovery": !!data?.mission_discovered_at,
           "journey-build-business": ubbAllCreated,
+          // Day 65 wave 4 (Sasha 2026-05-15): cross-device sync.
+          // OR the DB column with the localStorage flag from
+          // `visitFlags` above — either source counts. The DB
+          // column will be NULL until the migration runs +
+          // markJourneyVisited() fires once with an authed user,
+          // so during transition the localStorage path keeps
+          // working unaffected.
+          "journey-the-playbook":
+            !!visitFlags["journey-the-playbook"] || !!data?.playbook_visited_at,
+          "journey-the-path":
+            !!visitFlags["journey-the-path"] || !!data?.path_visited_at,
+          "journey-dashboard":
+            !!visitFlags["journey-dashboard"] || !!data?.dashboard_visited_at,
         };
 
         setState({ progress, isLoading: false });

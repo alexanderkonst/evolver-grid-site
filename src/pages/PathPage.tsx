@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import GameShellV2 from "@/components/game/GameShellV2";
+import { markJourneyVisited } from "@/lib/journeyVisits";
 
 /**
  * PathPage — a one-page view of the full 7-step path, commercial layer included.
@@ -76,19 +77,13 @@ const LADDER: LadderRow[] = [
 // ─── Component ──────────────────────────────────────────────────────────────
 
 const PathPage = () => {
-  // Day 65 wave 3 (Sasha 2026-05-15): mark JOURNEY item #3 visited.
-  // Same localStorage-flag pattern as PlaybookPage — read side in
-  // `useJourneyProgress`, render side via `section.completed` in
-  // SectionsPanel.
+  // Day 65 wave 4 (Sasha 2026-05-15): cross-device visit tracking
+  // via shared helper. See src/lib/journeyVisits.ts.
   useEffect(() => {
-    try {
-      window.localStorage.setItem(
-        "journey:visited:journey-the-path",
-        new Date().toISOString(),
-      );
-    } catch {
-      // localStorage unavailable — silent no-op.
-    }
+    markJourneyVisited({
+      itemId: "journey-the-path",
+      dbColumn: "path_visited_at",
+    });
   }, []);
 
   return (

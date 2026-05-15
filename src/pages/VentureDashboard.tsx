@@ -14,6 +14,7 @@ import {
   CartesianGrid,
 } from "recharts";
 import { GOLD_TEXT_STYLE, Ornament } from "@/lib/landingDesign";
+import { markJourneyVisited } from "@/lib/journeyVisits";
 
 // ─── Revenue Timeline Data ──────────────────────────────────────────────────
 
@@ -190,17 +191,13 @@ const VentureDashboard = () => {
   const totalRevShare = REVENUE_BREAKDOWN.reduce((s, r) => s + r.revShare, 0);
   const totalAll = totalCash + totalInKind + totalRevShare;
 
-  // Day 65 wave 3 (Sasha 2026-05-15): mark JOURNEY item #4 visited.
-  // Same localStorage-flag pattern as PlaybookPage / PathPage.
+  // Day 65 wave 4 (Sasha 2026-05-15): cross-device visit tracking
+  // via shared helper. See src/lib/journeyVisits.ts.
   useEffect(() => {
-    try {
-      window.localStorage.setItem(
-        "journey:visited:journey-dashboard",
-        new Date().toISOString(),
-      );
-    } catch {
-      // localStorage unavailable — silent no-op.
-    }
+    markJourneyVisited({
+      itemId: "journey-dashboard",
+      dbColumn: "dashboard_visited_at",
+    });
   }, []);
 
   const textPrimary = { color: "var(--skin-text-primary, #0b2a5a)" };
