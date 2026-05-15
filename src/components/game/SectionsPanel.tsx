@@ -535,8 +535,20 @@ const buildJourneySections = (
             // localStorage flag set on first /playbook mount.
             completed: !!journeyProgress["journey-the-playbook"],
         },
-        { id: "journey-the-path",          label: "3. See the shortcut path to your business", path: "/path" },
-        { id: "journey-dashboard",         label: "4. See how we're building this",      path: "/dashboard" },
+        {
+            id: "journey-the-path",
+            label: "3. See the shortcut path to your business",
+            path: "/path",
+            // Day 65 wave 3: visited-tracked via localStorage flag.
+            completed: !!journeyProgress["journey-the-path"],
+        },
+        {
+            id: "journey-dashboard",
+            label: "4. See how we're building this",
+            path: "/dashboard",
+            // Day 65 wave 3: visited-tracked via localStorage flag.
+            completed: !!journeyProgress["journey-dashboard"],
+        },
         {
             // Day 63 (Sasha 2026-05-07): unlocked. The Aurora reskin +
             // Round-2 functional bug-fix pass landed today (fetchAssetMatches
@@ -600,6 +612,10 @@ const buildJourneySections = (
             // gate. Anyone with a saved Top Talent reveal passes —
             // tasting tier included. Paid + coupon paths still work.
             lockedHint: "Unlocks after you find your top talent.",
+            // Day 65 wave 3: completion when every artifact in
+            // ALL_ARTIFACT_KEYS has been created at least once
+            // (any row in user_business_artifacts for that key).
+            completed: !!journeyProgress["journey-build-business"],
         },
         {
             id: "journey-mission-discovery",

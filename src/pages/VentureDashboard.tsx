@@ -190,6 +190,19 @@ const VentureDashboard = () => {
   const totalRevShare = REVENUE_BREAKDOWN.reduce((s, r) => s + r.revShare, 0);
   const totalAll = totalCash + totalInKind + totalRevShare;
 
+  // Day 65 wave 3 (Sasha 2026-05-15): mark JOURNEY item #4 visited.
+  // Same localStorage-flag pattern as PlaybookPage / PathPage.
+  useEffect(() => {
+    try {
+      window.localStorage.setItem(
+        "journey:visited:journey-dashboard",
+        new Date().toISOString(),
+      );
+    } catch {
+      // localStorage unavailable — silent no-op.
+    }
+  }, []);
+
   const textPrimary = { color: "var(--skin-text-primary, #0b2a5a)" };
   const textMuted = { color: "var(--skin-text-muted, rgba(11,42,90,0.72))" };
   const textMutedSoft = { color: "var(--skin-text-muted-soft, rgba(11,42,90,0.6))" };

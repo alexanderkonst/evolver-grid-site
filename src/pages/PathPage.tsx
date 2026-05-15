@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import GameShellV2 from "@/components/game/GameShellV2";
@@ -75,6 +76,21 @@ const LADDER: LadderRow[] = [
 // ─── Component ──────────────────────────────────────────────────────────────
 
 const PathPage = () => {
+  // Day 65 wave 3 (Sasha 2026-05-15): mark JOURNEY item #3 visited.
+  // Same localStorage-flag pattern as PlaybookPage — read side in
+  // `useJourneyProgress`, render side via `section.completed` in
+  // SectionsPanel.
+  useEffect(() => {
+    try {
+      window.localStorage.setItem(
+        "journey:visited:journey-the-path",
+        new Date().toISOString(),
+      );
+    } catch {
+      // localStorage unavailable — silent no-op.
+    }
+  }, []);
+
   return (
     <GameShellV2 hideLogo>
       <div
