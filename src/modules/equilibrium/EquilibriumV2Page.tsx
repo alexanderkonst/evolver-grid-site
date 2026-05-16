@@ -1,11 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
-import { Info } from "lucide-react";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
+import { InfoPopover } from "./components/InfoPopover";
+import { BirthdayPrompt } from "./components/BirthdayPrompt";
 import { getAllCyclesV2, type AllCyclesV2 } from "@/lib/equilibrium-cycles";
 import { CycleEnergyBar } from "./components/CycleEnergyBar";
 import { SolarCycleBar } from "./components/SolarCycleBar";
@@ -75,6 +70,12 @@ export const EquilibriumV2Page = () => {
 
   return (
     <main className="mx-auto w-full max-w-2xl px-4 py-8 sm:px-6 sm:py-12">
+      <BirthdayPrompt
+        birthday={eq.birthday}
+        loading={eq.loading}
+        userId={eq.user?.id ?? null}
+        onSaved={() => void eq.refresh()}
+      />
       <header className="mb-8 text-center">
         <h1 className="eq-text-halo font-serif text-3xl font-semibold text-[#0a1628] sm:text-4xl">
           "Equilibrium" Biologic Watch
@@ -248,6 +249,7 @@ export const EquilibriumV2Page = () => {
             }
             onPromoteToDoNow={(id) => eq.promoteToDoNow(id)}
             onCompleteTask={eq.completeTask}
+            onUncompleteTask={eq.uncompleteTask}
           />
         </EquilibriumSectionCard>
 
@@ -280,24 +282,7 @@ const SectionHeader = ({
 }) => (
   <div className="flex items-center gap-2">
     <h2 className="eq-text-halo font-serif text-xl font-semibold text-[#0a1628] sm:text-2xl">{title}</h2>
-    {infoIconCopy && (
-      <TooltipProvider>
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <button
-              type="button"
-              aria-label={infoIconCopy}
-              className="text-[#0a1628]/95 hover:text-[#0a1628]/90"
-            >
-              <Info size={14} />
-            </button>
-          </TooltipTrigger>
-          <TooltipContent side="top" className="max-w-xs">
-            {infoIconCopy}
-          </TooltipContent>
-        </Tooltip>
-      </TooltipProvider>
-    )}
+    {infoIconCopy && <InfoPopover content={infoIconCopy} label={infoIconCopy} />}
   </div>
 );
 
