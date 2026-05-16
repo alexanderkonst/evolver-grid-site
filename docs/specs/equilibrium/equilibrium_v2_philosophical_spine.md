@@ -428,20 +428,28 @@ external solar phase visible — Sasha's exact insight made readable.
 
 ---
 
-## 11 · The Mode Toggle — ACT and ATTUNE
+## 11 · The Mode Toggle — ACT and ACT + ATTUNE (additive)
 
 Sasha 2026-05-16: *"The Equilibrium watch could really be just
-downsized to just the moon cycle, just the lunar cycle, and just the
-intention, strategies, work streams, tasks doing now. The mission, the
-role, the lunar cycle, the zodiac cycles, those are larger-scale
-influences. We don't want them to add noise to our signal."*
+downsized to just the moon cycle, the intention, strategies, work
+streams, tasks doing now. The mission, the role, the zodiac cycles —
+those are larger-scale influences. We don't want them to add noise to
+our signal."*
 
 Sasha 2026-05-16 (round 2): *"I actually love it! Let's have a toggle
 for this. Don't ask me, just implement this, and then I will see the
 name of the toggles and I'll give you my feedback if any."*
 
+Sasha 2026-05-16 (round 3 — critical clarification): *"The shorter one
+is the ACT mode, and the longer one is not only ACT mode, it's both ACT
+and ATTUNE mode."*
+
+This is **additive**, not mutually exclusive. The depth toggle doesn't
+*switch* between ACT and ATTUNE — it *adds* attunement surfaces on top
+of the existing action surfaces.
+
 Implemented as a two-pill toggle near the watch header. Persisted in
-`localStorage` as `equilibrium_v2_watch_mode`. Default mode: **ACT**.
+`localStorage` as `equilibrium_v2_watch_mode`. Default: **ACT MODE**.
 
 ### ACT mode — "I'm here to do the right thing now"
 
@@ -456,14 +464,15 @@ Implemented as a two-pill toggle near the watch header. Persisted in
 
 The functional watch. Operational. Glance-and-go. Used 80%+ of the time.
 
-### ATTUNE mode — "I'm here to attune to all the cycles"
+### ACT + ATTUNE mode — "I'm here to act AND attune to all the cycles"
 
-All 11 sections in original order. The full biologic instrument. Used
-for weekly review, recalibration, deeper context-setting — sessions
-where the larger cycles (mission, role, solar, zodiac, weekday)
-deserve attention.
+All 11 sections. **Every ACT section is still there** + 5 attunement
+surfaces are added on top (Mission · Role · Solar · Zodiac ·
+Day-of-Week). Used for weekly review, recalibration, deeper
+context-setting — sessions where the larger cycles deserve attention
+alongside the action.
 
-| Box | Section | ACT | ATTUNE |
+| Box | Section | ACT MODE | ACT + ATTUNE MODE |
 |---|---|:-:|:-:|
 | 1 | Synthesis Reading | ✓ | ✓ |
 | 2 | Mission |  | ✓ |
@@ -477,6 +486,9 @@ deserve attention.
 | 10 | Intuitive Tasks | ✓ | ✓ |
 | 11 | DO NOW | ✓ | ✓ |
 
+Note: every row that's checked in ACT MODE is also checked in ACT +
+ATTUNE MODE. The right column is a strict superset.
+
 ### Why these names
 
 Both are **verbs** that name the *function* the user opens the watch
@@ -484,9 +496,13 @@ FOR — not mechanical labels like "full / partial":
 
 - **ACT** — connects to the existing DO NOW spine. The user is here to
   *act* on what the moment calls for. Direct.
-- **ATTUNE** — captures listening to the larger cycles without
-  collapsing into wellness-fluff. The user is here to *attune* the
-  whole self to the full biologic field.
+- **ATTUNE** (added on top in the second mode) — captures listening to
+  the larger cycles without collapsing into wellness-fluff. When this
+  mode is on, the user is acting AND attuning at once.
+
+Internal state names stay `"act"` and `"attune"` for brevity; the
+display labels are the more accurate `ACT MODE` and `ACT + ATTUNE MODE`
+so the additive nature is visible.
 
 Open for Sasha's rename — these are first-cut names, not locked. The
 toggle behavior + section split is the locked piece.

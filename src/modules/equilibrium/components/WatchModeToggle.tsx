@@ -10,16 +10,18 @@ interface WatchModeToggleProps {
 /**
  * Two-pill toggle for the Equilibrium watch viewing mode.
  *
- *   ACT mode    — slim 6-section view (Synthesis · Lunar · Current Strategy ·
- *                 Workstreams · Intuitive Tasks · DO NOW). The functional watch
- *                 used for daily glance + action.
- *   ATTUNE mode — full 11-section view, adds Mission · Role · Solar · Zodiac ·
- *                 Day-of-Week. Used for weekly review + recalibration.
+ *   ACT mode          — slim 6-section view (Synthesis · Lunar · Current
+ *                       Strategy · Workstreams · Intuitive Tasks · DO NOW).
+ *                       The functional watch used for daily glance + action.
+ *   ACT + ATTUNE mode — full 11-section view. EVERY ACT section is still
+ *                       there + 5 attunement surfaces on top (Mission ·
+ *                       Role · Solar · Zodiac · Day-of-Week). Act AND
+ *                       attune at once. Used for weekly review + recalibration.
  *
- * Per philosophical spine §11. Names are verbs that communicate the function
- * the user opens the watch FOR (Sasha 2026-05-16: "something functional that
- * communicates the functionality" — rejected mechanical labels like
- * "full / partial").
+ * Per philosophical spine §11. The depth toggle is ADDITIVE — it doesn't
+ * replace the action surfaces, it adds the attunement surfaces. Internal
+ * state names stay "act" / "attune" for brevity; display labels are
+ * "ACT MODE" and "ACT + ATTUNE MODE" so users see the additive nature.
  */
 export const WatchModeToggle = ({ mode, onChange }: WatchModeToggleProps) => {
   return (
@@ -36,8 +38,8 @@ export const WatchModeToggle = ({ mode, onChange }: WatchModeToggleProps) => {
       />
       <ModePill
         active={mode === "attune"}
-        label="ATTUNE MODE"
-        title="ATTUNE mode — full. The watch you open to attune to all the cycles."
+        label="ACT + ATTUNE MODE"
+        title="ACT + ATTUNE mode — full. All action surfaces stay; mission, role, solar, zodiac, and day-of-week are added on top."
         onClick={() => onChange("attune")}
       />
     </div>
