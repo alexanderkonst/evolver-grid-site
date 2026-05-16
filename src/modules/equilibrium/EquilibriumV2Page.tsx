@@ -6,10 +6,10 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { PremiumCard } from "@/components/ui/PremiumCard";
 import { getAllCyclesV2, type AllCyclesV2 } from "@/lib/equilibrium-cycles";
 import { CycleEnergyBar } from "./components/CycleEnergyBar";
 import { SolarCycleBar } from "./components/SolarCycleBar";
+import { EquilibriumSectionCard } from "./components/EquilibriumSectionCard";
 import { MissionSection } from "./components/MissionSection";
 import { RoleSection } from "./components/RoleSection";
 import { MoonFocusInput } from "./components/MoonFocusInput";
@@ -18,6 +18,7 @@ import { WorkstreamsSection } from "./components/WorkstreamsSection";
 import { SmartGoalsSection } from "./components/SmartGoalsSection";
 import { DoNowSection } from "./components/DoNowSection";
 import { SynthesisCard } from "./components/SynthesisCard";
+import { SectionAnchorNav } from "./components/SectionAnchorNav";
 import { useEquilibriumV2 } from "./hooks/useEquilibriumV2";
 import {
   DAY_OF_WEEK_SEGMENTS,
@@ -80,12 +81,13 @@ export const EquilibriumV2Page = () => {
         </h1>
       </header>
 
+      <SectionAnchorNav />
+
       <div className="flex flex-col gap-6">
         {/* ─── BOX 1: Synthesis ──────────────────────────────────── */}
-        <PremiumCard
-          variant="glass-strong"
-          size="md"
-          className="scroll-mt-24"
+        <EquilibriumSectionCard
+          id={SECTION_IDS.synthesis}
+          emphasized
         >
           <SectionHeader title="1. Synthesis Reading" subResult="Centered" />
           <SynthesisCard
@@ -98,13 +100,11 @@ export const EquilibriumV2Page = () => {
             onPersist={eq.setLastSynthesis}
             disabled={eq.loading}
           />
-        </PremiumCard>
+        </EquilibriumSectionCard>
 
         {/* ─── BOX 2: Mission ────────────────────────────────────── */}
-        <PremiumCard
-          variant="glass"
-          size="md"
-          className="scroll-mt-24"
+        <EquilibriumSectionCard
+          id={SECTION_IDS.mission}
         >
           <SectionHeader title="2. Mission" subResult="Centered" />
           <MissionSection
@@ -112,13 +112,11 @@ export const EquilibriumV2Page = () => {
             loading={eq.loading}
             onSetOverride={eq.setMissionOverride}
           />
-        </PremiumCard>
+        </EquilibriumSectionCard>
 
         {/* ─── BOX 3: Role ───────────────────────────────────────── */}
-        <PremiumCard
-          variant="glass"
-          size="md"
-          className="scroll-mt-24"
+        <EquilibriumSectionCard
+          id={SECTION_IDS.role}
         >
           <SectionHeader title="3. Role" subResult="Centered" />
           <RoleSection
@@ -126,13 +124,11 @@ export const EquilibriumV2Page = () => {
             loading={eq.loading}
             onSetOverride={eq.setRoleOverride}
           />
-        </PremiumCard>
+        </EquilibriumSectionCard>
 
         {/* ─── BOX 4: Solar Energy ───────────────────────────────── */}
-        <PremiumCard
-          variant="glass"
-          size="md"
-          className="scroll-mt-24"
+        <EquilibriumSectionCard
+          id={SECTION_IDS.solar}
         >
           <SectionHeader title="4. Solar Energy" subResult="In Rhythm" />
           <div className="mt-4">
@@ -149,13 +145,11 @@ export const EquilibriumV2Page = () => {
               nextLabel={cycles.solar.nextLabel}
             />
           </div>
-        </PremiumCard>
+        </EquilibriumSectionCard>
 
         {/* ─── BOX 5: Zodiac Energy ──────────────────────────────── */}
-        <PremiumCard
-          variant="glass"
-          size="md"
-          className="scroll-mt-24"
+        <EquilibriumSectionCard
+          id={SECTION_IDS.zodiac}
         >
           <SectionHeader title="5. Zodiac Energy" subResult="In Rhythm" />
           <div className="mt-4">
@@ -168,13 +162,11 @@ export const EquilibriumV2Page = () => {
               nextLabel={cycles.zodiac.nextLabel}
             />
           </div>
-        </PremiumCard>
+        </EquilibriumSectionCard>
 
         {/* ─── BOX 6: Lunar Energy + Moon Focus ──────────────────── */}
-        <PremiumCard
-          variant="glass"
-          size="md"
-          className="scroll-mt-24"
+        <EquilibriumSectionCard
+          id={SECTION_IDS.lunar}
         >
           <SectionHeader title="6. Lunar Energy" subResult="In Rhythm" />
           <div className="mt-4">
@@ -192,13 +184,11 @@ export const EquilibriumV2Page = () => {
             loading={eq.loading}
             onSave={eq.setMoonFocus}
           />
-        </PremiumCard>
+        </EquilibriumSectionCard>
 
         {/* ─── BOX 7: Day-of-Week Energy ─────────────────────────── */}
-        <PremiumCard
-          variant="glass"
-          size="md"
-          className="scroll-mt-24"
+        <EquilibriumSectionCard
+          id={SECTION_IDS.dayOfWeek}
         >
           <SectionHeader title="7. Day-of-Week Energy" subResult="In Rhythm" />
           <div className="mt-4">
@@ -211,13 +201,11 @@ export const EquilibriumV2Page = () => {
               nextLabel={cycles.dayOfWeek.nextLabel}
             />
           </div>
-        </PremiumCard>
+        </EquilibriumSectionCard>
 
         {/* ─── BOX 8: 3 Strategies ───────────────────────────────── */}
-        <PremiumCard
-          variant="glass"
-          size="md"
-          className="scroll-mt-24"
+        <EquilibriumSectionCard
+          id={SECTION_IDS.strategies}
         >
           <SectionHeader
             title="8. 3 Current Strategies"
@@ -229,13 +217,11 @@ export const EquilibriumV2Page = () => {
             loading={eq.loading}
             onUpsert={eq.upsertStrategy}
           />
-        </PremiumCard>
+        </EquilibriumSectionCard>
 
         {/* ─── BOX 9: Workstreams ────────────────────────────────── */}
-        <PremiumCard
-          variant="glass"
-          size="md"
-          className="scroll-mt-24"
+        <EquilibriumSectionCard
+          id={SECTION_IDS.workstreams}
         >
           <SectionHeader title="9. Workstreams" subResult="Directed" />
           <WorkstreamsSection
@@ -248,13 +234,11 @@ export const EquilibriumV2Page = () => {
             onDelete={eq.deleteWorkstream}
             onReorder={eq.reorderWorkstreams}
           />
-        </PremiumCard>
+        </EquilibriumSectionCard>
 
         {/* ─── BOX 10: SMART Goals ───────────────────────────────── */}
-        <PremiumCard
-          variant="glass"
-          size="md"
-          className="scroll-mt-24"
+        <EquilibriumSectionCard
+          id={SECTION_IDS.goals}
         >
           <SectionHeader
             title="10. Intuitive S.M.A.R.T. Goals"
@@ -273,16 +257,15 @@ export const EquilibriumV2Page = () => {
             onReorderTasks={(ids) =>
               activeWorkstream && eq.reorderTasks(activeWorkstream.id, ids)
             }
-            onPromoteToDoNow={(id) => { void eq.promoteToDoNow(id); }}
+            onPromoteToDoNow={(id) => eq.promoteToDoNow(id)}
             onCompleteTask={eq.completeTask}
           />
-        </PremiumCard>
+        </EquilibriumSectionCard>
 
         {/* ─── BOX 11: DO NOW ────────────────────────────────────── */}
-        <PremiumCard
-          variant="glass-strong"
-          size="md"
-          className="scroll-mt-24"
+        <EquilibriumSectionCard
+          id={SECTION_IDS.doNow}
+          emphasized
         >
           <SectionHeader title="11. DO NOW" subResult="Chosen + Executed" />
           <DoNowSection
@@ -291,7 +274,7 @@ export const EquilibriumV2Page = () => {
             loading={eq.loading}
             onCompleteTask={eq.completeTask}
           />
-        </PremiumCard>
+        </EquilibriumSectionCard>
       </div>
     </main>
   );
