@@ -215,7 +215,6 @@ export const EquilibriumV2Page = () => {
 
         {/* ─── BOX 8: 3 Strategies ───────────────────────────────── */}
         <PremiumCard
-          id={SECTION_IDS.strategies}
           variant="glass"
           size="md"
           className="scroll-mt-24"
