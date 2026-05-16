@@ -361,7 +361,7 @@ export const EquilibriumV2Page = () => {
               onReorderTasks={(ids) =>
                 activeWorkstream && eq.reorderTasks(activeWorkstream.id, ids)
               }
-              onPromoteToDoNow={(id) => eq.promoteToDoNow(id)}
+              onPromoteToDoNow={(id) => { void eq.promoteToDoNow(id); }}
               onCompleteTask={eq.completeTask}
               onUncompleteTask={eq.uncompleteTask}
             />
