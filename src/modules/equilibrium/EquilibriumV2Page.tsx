@@ -19,7 +19,6 @@ import { DoNowSection } from "./components/DoNowSection";
 import { SynthesisCard } from "./components/SynthesisCard";
 import { SectionAnchorNav } from "./components/SectionAnchorNav";
 import { WatchModeToggle, type WatchMode } from "./components/WatchModeToggle";
-import { AttunementBand } from "./components/AttunementBand";
 import { useEquilibriumV2 } from "./hooks/useEquilibriumV2";
 import {
   DAY_OF_WEEK_SEGMENTS,
@@ -61,15 +60,17 @@ function formatPhaseEndsAt(phaseEndMs: number, daysRemaining: number): string {
 
 /**
  * Watch mode persisted in localStorage so the user's preferred view sticks
- * across sessions. Default = ACT (slim) per philosophical spine §11.
+ * across sessions. Default = ATTUNE per philosophical spine §11 — the
+ * natural sequence is attune-then-act, so first-ever load lands on the
+ * reading. After that, the user's last-used mode persists.
  */
 const WATCH_MODE_KEY = "equilibrium_v2_watch_mode";
 
 function useWatchMode(): [WatchMode, (m: WatchMode) => void] {
   const [mode, setModeState] = useState<WatchMode>(() => {
-    if (typeof window === "undefined") return "act";
+    if (typeof window === "undefined") return "attune";
     const saved = window.localStorage.getItem(WATCH_MODE_KEY);
-    return saved === "attune" ? "attune" : "act";
+    return saved === "act" ? "act" : "attune";
   });
   const setMode = (next: WatchMode) => {
     setModeState(next);
@@ -102,27 +103,6 @@ export const EquilibriumV2Page = () => {
   const cycles = useCycles(eq.birthday ?? undefined);
   const [mode, setMode] = useWatchMode();
   const isAttune = mode === "attune";
-
-  /**
-   * AttunementBand expand handler — flip to ATTUNE mode, then (after the
-   * new sections mount) scroll the requested section into view. A small
-   * setTimeout lets React commit the mode flip and mount the section
-   * before scrollIntoView runs.
-   */
-  const expandToAttune = (sectionId: string) => {
-    setMode("attune");
-    window.setTimeout(() => {
-      const el = document.getElementById(sectionId);
-      if (!el) return;
-      const reduceMotion = window.matchMedia(
-        "(prefers-reduced-motion: reduce)",
-      ).matches;
-      el.scrollIntoView({
-        behavior: reduceMotion ? "auto" : "smooth",
-        block: "start",
-      });
-    }, 100);
-  };
 
   const activeWorkstream =
     eq.workstreams.find((w) => w.id === eq.activeWorkstreamId) ?? null;
@@ -159,83 +139,49 @@ export const EquilibriumV2Page = () => {
 
       <SectionAnchorNav mode={mode} />
 
+      {/*
+        Two modes, binary toggle. Spine §11 (round 5 clean binary):
+          ATTUNE = feminine, energetic reading — Synthesis · Solar ·
+            Zodiac · Lunar+MoonFocus · Day-of-Week
+          ACT    = masculine, working tool with North Stars on top —
+            Mission · Role · Strategy · Workstreams · Tasks · DO NOW
+        Sequence is in the user's hands: attune first, then flip to act.
+      */}
       <div className="flex flex-col gap-6">
-        {/* ─── BOX 1: Synthesis ──────────────────────────────────── */}
-        <EquilibriumSectionCard
-          id={SECTION_IDS.synthesis}
-          emphasized
-        >
-          <SectionHeader title="1. Synthesis Reading" />
-          <SynthesisCard
-            cycles={cycles}
-            mission={eq.missionDisplay}
-            role={eq.roleDisplay}
-            moonFocus={eq.state?.moon_focus_text ?? null}
-            cachedReading={eq.state?.last_synthesis_text ?? null}
-            cachedAt={eq.state?.last_synthesis_at ?? null}
-            onPersist={eq.setLastSynthesis}
-            disabled={eq.loading}
-          />
-        </EquilibriumSectionCard>
+        {/* ════════════ ATTUNE MODE ═════════════════════════════════ */}
 
-        {/* ─── ATTUNEMENT BAND (ACT mode only) ───────────────────── */}
-        {/*
-          The compressed attunement strip. Sits between Synthesis (the
-          act/attune meeting point) and the explicit sections. Makes the
-          larger cycles glanceable in ACT mode without bringing in their
-          full surfaces; tap any pip to expand into ACT + ATTUNE mode
-          and scroll to that section. Hidden in ACT + ATTUNE mode
-          because the full surfaces take over. Spine §11.
-        */}
-        {!isAttune && (
-          <AttunementBand cycles={cycles} onExpand={expandToAttune} />
-        )}
-
-        {/* ─── BOX 2: Mission (ATTUNE only) ──────────────────────── */}
+        {/* Synthesis Reading — the energetic reading */}
         {isAttune && (
           <EquilibriumSectionCard
-            id={SECTION_IDS.mission}
+            id={SECTION_IDS.synthesis}
+            emphasized
           >
-            <SectionHeader title="2. Mission" />
-            <MissionSection
-              missionDisplay={eq.missionDisplay}
-              loading={eq.loading}
-              onSetOverride={eq.setMissionOverride}
+            <SectionHeader title="Synthesis Reading" />
+            <SynthesisCard
+              cycles={cycles}
+              mission={eq.missionDisplay}
+              role={eq.roleDisplay}
+              moonFocus={eq.state?.moon_focus_text ?? null}
+              cachedReading={eq.state?.last_synthesis_text ?? null}
+              cachedAt={eq.state?.last_synthesis_at ?? null}
+              onPersist={eq.setLastSynthesis}
+              disabled={eq.loading}
             />
           </EquilibriumSectionCard>
         )}
 
-        {/* ─── BOX 3: Role (ATTUNE only) ─────────────────────────── */}
-        {isAttune && (
-          <EquilibriumSectionCard
-            id={SECTION_IDS.role}
-          >
-            <SectionHeader title="3. Role" />
-            <RoleSection
-              roleDisplay={eq.roleDisplay}
-              loading={eq.loading}
-              onSetOverride={eq.setRoleOverride}
-            />
-          </EquilibriumSectionCard>
-        )}
-
-        {/* ─── BOX 4: Solar Energy (ATTUNE only) ─────────────────── */}
+        {/* Solar Energy */}
         {isAttune && (
           <EquilibriumSectionCard
             id={SECTION_IDS.solar}
           >
-            <SectionHeader title="4. Solar Energy" />
+            <SectionHeader title="Solar Energy" />
             <div className="mt-4">
               {/*
                 Solar uses its own visual (4-segment tube + golden orb + fractional
                 "LEFT" checkpoints) — fundamentally different from the orb-arc used
-                by lunar/zodiac/week. Reference: docs/specs/equilibrium/equilibrium_v2_spec.md §3.1
-                "Locked visual references" — solar mock supplied 2026-05-15.
-
-                Pill labels are birthday-anchored phases (Surge moment · Spend ·
-                Sustain · Begin closing · Wind down) per philosophical spine §4 —
-                NOT calendar seasons. Equilibrium is a personal operating surface;
-                the user's solar terrain runs birthday → next birthday, not Jan → Dec.
+                by lunar/zodiac/week. Pill labels are birthday-anchored phases per
+                philosophical spine §4 — NOT calendar seasons.
               */}
               {(() => {
                 const { prev, current, next } = getBirthdayArcPhaseNeighbors(
@@ -254,12 +200,12 @@ export const EquilibriumV2Page = () => {
           </EquilibriumSectionCard>
         )}
 
-        {/* ─── BOX 5: Zodiac Energy (ATTUNE only) ────────────────── */}
+        {/* Zodiac Energy */}
         {isAttune && (
           <EquilibriumSectionCard
             id={SECTION_IDS.zodiac}
           >
-            <SectionHeader title="5. Zodiac Energy" />
+            <SectionHeader title="Zodiac Energy" />
             <div className="mt-4">
               <CycleEnergyBar
                 segments={ZODIAC_SEGMENTS}
@@ -273,46 +219,43 @@ export const EquilibriumV2Page = () => {
           </EquilibriumSectionCard>
         )}
 
-        {/* ─── BOX 6: Lunar Energy + Moon Focus ──────────────────── */}
-        <EquilibriumSectionCard
-          id={SECTION_IDS.lunar}
-        >
-          <SectionHeader title="6. Lunar Energy" />
-          <div className="mt-4">
-            <CycleEnergyBar
-              segments={LUNAR_SEGMENTS}
-              currentIndex={cycles.lunar.segmentIndex}
-              progress={cycles.lunar.progress}
-              prevLabel={cycles.lunar.prevLabel}
-              currentLabel={cycles.lunar.currentLabel}
-              nextLabel={cycles.lunar.nextLabel}
-              // Umbrella eyebrow = the element emoji ONLY (Sasha
-              // 2026-05-16): holonic name and element word stay internal
-              // — the emoji is enough signal for users moving from
-              // degree 2 → degree 3 to see the structure, without
-              // confusing the rest. Tooltip surfaces the element word.
-              eyebrow={cycles.lunar.holonicPhase.elementEmoji}
-              eyebrowTooltip={`${cycles.lunar.holonicPhase.element} — the umbrella for ${cycles.lunar.phase.name}`}
-              activePillSubLabel={formatPhaseEndsAt(
-                cycles.lunar.phaseEndMs,
-                cycles.lunar.daysRemainingInPhase,
-              )}
-              glanceableGuidance={cycles.lunar.phase.guidance}
+        {/* Lunar Energy + Moon Focus */}
+        {isAttune && (
+          <EquilibriumSectionCard
+            id={SECTION_IDS.lunar}
+          >
+            <SectionHeader title="Lunar Energy" />
+            <div className="mt-4">
+              <CycleEnergyBar
+                segments={LUNAR_SEGMENTS}
+                currentIndex={cycles.lunar.segmentIndex}
+                progress={cycles.lunar.progress}
+                prevLabel={cycles.lunar.prevLabel}
+                currentLabel={cycles.lunar.currentLabel}
+                nextLabel={cycles.lunar.nextLabel}
+                eyebrow={cycles.lunar.holonicPhase.elementEmoji}
+                eyebrowTooltip={`${cycles.lunar.holonicPhase.element} — the umbrella for ${cycles.lunar.phase.name}`}
+                activePillSubLabel={formatPhaseEndsAt(
+                  cycles.lunar.phaseEndMs,
+                  cycles.lunar.daysRemainingInPhase,
+                )}
+                glanceableGuidance={cycles.lunar.phase.guidance}
+              />
+            </div>
+            <MoonFocusInput
+              value={eq.state?.moon_focus_text ?? null}
+              loading={eq.loading}
+              onSave={eq.setMoonFocus}
             />
-          </div>
-          <MoonFocusInput
-            value={eq.state?.moon_focus_text ?? null}
-            loading={eq.loading}
-            onSave={eq.setMoonFocus}
-          />
-        </EquilibriumSectionCard>
+          </EquilibriumSectionCard>
+        )}
 
-        {/* ─── BOX 7: Day-of-Week Energy (ATTUNE only) ───────────── */}
+        {/* Day-of-Week Energy */}
         {isAttune && (
           <EquilibriumSectionCard
             id={SECTION_IDS.dayOfWeek}
           >
-            <SectionHeader title="7. Day-of-Week Energy" />
+            <SectionHeader title="Day-of-Week Energy" />
             <div className="mt-4">
               <CycleEnergyBar
                 segments={DAY_OF_WEEK_SEGMENTS}
@@ -326,75 +269,114 @@ export const EquilibriumV2Page = () => {
           </EquilibriumSectionCard>
         )}
 
-        {/* ─── BOX 8: 3 Strategies ───────────────────────────────── */}
-        <EquilibriumSectionCard
-          id={SECTION_IDS.strategies}
-        >
-          <SectionHeader title="8. Current Strategy"
-            infoIconCopy="Set when you have clarity" />
-          <StrategiesSection
-            strategies={eq.strategies}
-            loading={eq.loading}
-            onUpsert={eq.upsertStrategy}
-          />
-        </EquilibriumSectionCard>
+        {/* ════════════ ACT MODE ════════════════════════════════════ */}
 
-        {/* ─── BOX 9: Workstreams ────────────────────────────────── */}
-        <EquilibriumSectionCard
-          id={SECTION_IDS.workstreams}
-        >
-          <SectionHeader title="9. Workstreams" />
-          <WorkstreamsSection
-            workstreams={eq.workstreams}
-            archivedWorkstreams={eq.archivedWorkstreams}
-            activeId={eq.activeWorkstreamId}
-            loading={eq.loading}
-            onSelect={eq.setActiveWorkstreamId}
-            onAdd={eq.addWorkstream}
-            onRename={eq.renameWorkstream}
-            onDelete={eq.deleteWorkstream}
-            onRestore={eq.restoreWorkstream}
-            onReorder={eq.reorderWorkstreams}
-          />
-        </EquilibriumSectionCard>
+        {/* Mission — North Star (Sasha 2026-05-16 round 5: Mission and
+            Role belong with action, they're the North Stars for the work) */}
+        {!isAttune && (
+          <EquilibriumSectionCard
+            id={SECTION_IDS.mission}
+          >
+            <SectionHeader title="Mission" />
+            <MissionSection
+              missionDisplay={eq.missionDisplay}
+              loading={eq.loading}
+              onSetOverride={eq.setMissionOverride}
+            />
+          </EquilibriumSectionCard>
+        )}
 
-        {/* ─── BOX 10: SMART Goals ───────────────────────────────── */}
-        <EquilibriumSectionCard
-          id={SECTION_IDS.goals}
-        >
-          <SectionHeader title="10. Intuitive Tasks" />
-          <SmartGoalsSection
-            workstreamTitle={activeWorkstream?.title ?? null}
-            tasks={activeTasks}
-            focusedTaskIds={eq.focusedTaskIds}
-            loading={eq.loading}
-            onAddTask={(text) =>
-              activeWorkstream && eq.addTask(activeWorkstream.id, text)
-            }
-            onRenameTask={eq.renameTask}
-            onDeleteTask={eq.deleteTask}
-            onReorderTasks={(ids) =>
-              activeWorkstream && eq.reorderTasks(activeWorkstream.id, ids)
-            }
-            onPromoteToDoNow={(id) => eq.promoteToDoNow(id)}
-            onCompleteTask={eq.completeTask}
-            onUncompleteTask={eq.uncompleteTask}
-          />
-        </EquilibriumSectionCard>
+        {/* Role — North Star */}
+        {!isAttune && (
+          <EquilibriumSectionCard
+            id={SECTION_IDS.role}
+          >
+            <SectionHeader title="Role" />
+            <RoleSection
+              roleDisplay={eq.roleDisplay}
+              loading={eq.loading}
+              onSetOverride={eq.setRoleOverride}
+            />
+          </EquilibriumSectionCard>
+        )}
 
-        {/* ─── BOX 11: DO NOW ────────────────────────────────────── */}
-        <EquilibriumSectionCard
-          id={SECTION_IDS.doNow}
-          emphasized
-        >
-          <SectionHeader title="11. DO NOW" />
-          <DoNowSection
-            focusedTaskIds={eq.focusedTaskIds}
-            taskById={taskById}
-            loading={eq.loading}
-            onCompleteTask={eq.completeTask}
-          />
-        </EquilibriumSectionCard>
+        {/* Current Strategy */}
+        {!isAttune && (
+          <EquilibriumSectionCard
+            id={SECTION_IDS.strategies}
+          >
+            <SectionHeader title="Current Strategy"
+              infoIconCopy="Set when you have clarity" />
+            <StrategiesSection
+              strategies={eq.strategies}
+              loading={eq.loading}
+              onUpsert={eq.upsertStrategy}
+            />
+          </EquilibriumSectionCard>
+        )}
+
+        {/* Workstreams */}
+        {!isAttune && (
+          <EquilibriumSectionCard
+            id={SECTION_IDS.workstreams}
+          >
+            <SectionHeader title="Workstreams" />
+            <WorkstreamsSection
+              workstreams={eq.workstreams}
+              archivedWorkstreams={eq.archivedWorkstreams}
+              activeId={eq.activeWorkstreamId}
+              loading={eq.loading}
+              onSelect={eq.setActiveWorkstreamId}
+              onAdd={eq.addWorkstream}
+              onRename={eq.renameWorkstream}
+              onDelete={eq.deleteWorkstream}
+              onRestore={eq.restoreWorkstream}
+              onReorder={eq.reorderWorkstreams}
+            />
+          </EquilibriumSectionCard>
+        )}
+
+        {/* Intuitive Tasks */}
+        {!isAttune && (
+          <EquilibriumSectionCard
+            id={SECTION_IDS.goals}
+          >
+            <SectionHeader title="Intuitive Tasks" />
+            <SmartGoalsSection
+              workstreamTitle={activeWorkstream?.title ?? null}
+              tasks={activeTasks}
+              focusedTaskIds={eq.focusedTaskIds}
+              loading={eq.loading}
+              onAddTask={(text) =>
+                activeWorkstream && eq.addTask(activeWorkstream.id, text)
+              }
+              onRenameTask={eq.renameTask}
+              onDeleteTask={eq.deleteTask}
+              onReorderTasks={(ids) =>
+                activeWorkstream && eq.reorderTasks(activeWorkstream.id, ids)
+              }
+              onPromoteToDoNow={(id) => eq.promoteToDoNow(id)}
+              onCompleteTask={eq.completeTask}
+              onUncompleteTask={eq.uncompleteTask}
+            />
+          </EquilibriumSectionCard>
+        )}
+
+        {/* DO NOW */}
+        {!isAttune && (
+          <EquilibriumSectionCard
+            id={SECTION_IDS.doNow}
+            emphasized
+          >
+            <SectionHeader title="DO NOW" />
+            <DoNowSection
+              focusedTaskIds={eq.focusedTaskIds}
+              taskById={taskById}
+              loading={eq.loading}
+              onCompleteTask={eq.completeTask}
+            />
+          </EquilibriumSectionCard>
+        )}
       </div>
     </main>
   );

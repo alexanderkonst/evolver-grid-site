@@ -8,20 +8,25 @@ interface WatchModeToggleProps {
 }
 
 /**
- * Two-pill toggle for the Equilibrium watch viewing mode.
+ * Two-pill binary toggle for the Equilibrium watch.
  *
- *   ACT mode          — slim 6-section view (Synthesis · Lunar · Current
- *                       Strategy · Workstreams · Intuitive Tasks · DO NOW).
- *                       The functional watch used for daily glance + action.
- *   ACT + ATTUNE mode — full 11-section view. EVERY ACT section is still
- *                       there + 5 attunement surfaces on top (Mission ·
- *                       Role · Solar · Zodiac · Day-of-Week). Act AND
- *                       attune at once. Used for weekly review + recalibration.
+ *   ATTUNE mode (feminine, reading)  — Synthesis · Solar · Zodiac ·
+ *                                       Lunar + Moon Focus · Day-of-Week.
+ *                                       The energetic reading. The user
+ *                                       opens this to TUNE into the cycles
+ *                                       before working.
+ *   ACT mode    (masculine, working) — Mission · Role · Current Strategy ·
+ *                                       Workstreams · Intuitive Tasks ·
+ *                                       DO NOW. The working tool — used
+ *                                       as Trello. Mission + Role sit on
+ *                                       top as the North Stars.
  *
- * Per philosophical spine §11. The depth toggle is ADDITIVE — it doesn't
- * replace the action surfaces, it adds the attunement surfaces. Internal
- * state names stay "act" / "attune" for brevity; display labels are
- * "ACT MODE" and "ACT + ATTUNE MODE" so users see the additive nature.
+ * Per philosophical spine §11 (round 5 — clean binary, no "compressed
+ * attune in act" framing). The sequence is in the user's hands: attune
+ * first, then flip to act. The toggle IS the transition ritual.
+ *
+ * ATTUNE comes first in the pill order (left) because the natural sequence
+ * is attune-then-act. Default state for first-ever load = ATTUNE.
  */
 export const WatchModeToggle = ({ mode, onChange }: WatchModeToggleProps) => {
   return (
@@ -31,16 +36,16 @@ export const WatchModeToggle = ({ mode, onChange }: WatchModeToggleProps) => {
       className="liquid-glass inline-flex rounded-full p-1"
     >
       <ModePill
-        active={mode === "act"}
-        label="ACT MODE"
-        title="ACT mode — slim. The watch you open to act on what the moment calls for."
-        onClick={() => onChange("act")}
+        active={mode === "attune"}
+        label="ATTUNE"
+        title="ATTUNE mode — feminine. The energetic reading. Synthesis, solar, zodiac, lunar, day-of-week."
+        onClick={() => onChange("attune")}
       />
       <ModePill
-        active={mode === "attune"}
-        label="ACT + ATTUNE MODE"
-        title="ACT + ATTUNE mode — full. All action surfaces stay; mission, role, solar, zodiac, and day-of-week are added on top."
-        onClick={() => onChange("attune")}
+        active={mode === "act"}
+        label="ACT"
+        title="ACT mode — masculine. The working tool. Mission and role on top as North Stars, then strategy, workstreams, tasks, DO NOW."
+        onClick={() => onChange("act")}
       />
     </div>
   );
