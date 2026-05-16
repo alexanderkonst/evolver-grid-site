@@ -6,31 +6,32 @@ import type { WatchMode } from "./WatchModeToggle";
 /**
  * Floating section-anchor nav for the Biologic Watch page (mobile only).
  *
- * Phase 3.3 carryover — addresses long-scroll fatigue across 11 sections.
- * Anchor set adapts to the active watch mode (philosophical spine §11):
- *   ACT mode:    Read · Lunar · Direction · Streams · Now
- *   ATTUNE mode: Read · Identity · Rhythms · Direction · Streams · Now
+ * Anchor set adapts to the active watch mode (philosophical spine §11
+ * round 5 — clean binary):
+ *   ATTUNE mode: Read · Solar · Zodiac · Lunar · Week
+ *   ACT mode:    Mission · Strategy · Streams · Now
+ *
+ * Each anchor points at a section that ACTUALLY EXISTS in the current
+ * mode — never to a hidden section.
  *
  * Glass-treatment pill, bottom-center on mobile, hidden on desktop (where
  * the SectionsPanel already provides nav).
  */
 
+// ATTUNE mode shows: Synthesis, Solar, Zodiac, Lunar+MoonFocus, Day-of-Week.
 const ATTUNE_ANCHORS: { id: string; label: string }[] = [
   { id: SECTION_IDS.synthesis, label: "Read" },
-  { id: SECTION_IDS.mission, label: "Identity" },
-  { id: SECTION_IDS.solar, label: "Rhythms" },
-  { id: SECTION_IDS.strategies, label: "Direction" },
-  { id: SECTION_IDS.workstreams, label: "Streams" },
-  { id: SECTION_IDS.doNow, label: "Now" },
+  { id: SECTION_IDS.solar, label: "Solar" },
+  { id: SECTION_IDS.zodiac, label: "Zodiac" },
+  { id: SECTION_IDS.lunar, label: "Lunar" },
+  { id: SECTION_IDS.dayOfWeek, label: "Week" },
 ];
 
-// In ACT mode, identity (Mission/Role) and the bigger-cycle rhythms
-// (Solar/Zodiac/Weekday) are hidden, so their anchors disappear. Lunar
-// gets its own pill since it's the primary rhythm in ACT mode.
+// ACT mode shows: Mission, Role, Strategy, Workstreams, Tasks, DO NOW.
+// "Mission" anchor covers the North Star block (Mission + Role at top).
 const ACT_ANCHORS: { id: string; label: string }[] = [
-  { id: SECTION_IDS.synthesis, label: "Read" },
-  { id: SECTION_IDS.lunar, label: "Lunar" },
-  { id: SECTION_IDS.strategies, label: "Direction" },
+  { id: SECTION_IDS.mission, label: "Mission" },
+  { id: SECTION_IDS.strategies, label: "Strategy" },
   { id: SECTION_IDS.workstreams, label: "Streams" },
   { id: SECTION_IDS.doNow, label: "Now" },
 ];

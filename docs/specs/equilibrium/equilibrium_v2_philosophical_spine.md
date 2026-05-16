@@ -428,71 +428,107 @@ external solar phase visible — Sasha's exact insight made readable.
 
 ---
 
-## 11 · ACT and ATTUNE are One — Masculine and Feminine
+## 11 · The Mode Toggle — ATTUNE and ACT (clean binary)
 
-Sasha 2026-05-16 (round 4): *"In order to act, one needs to attune.
-Alone is not enough — it's both, the masculine and feminine. How do we
-show them?"*
+Sasha 2026-05-16 (round 5 — locked): *"Two modes: feminine and
+masculine. Attune and act. The simplest logic — let's show attune and
+let's show act, and people can switch between them."*
 
-The deepest framing: **ACT and ATTUNE aren't two products. They're two
-faces of one biologic instrument.** Masculine and feminine of the same
-watch. The masculine cuts/decides/ships; the feminine receives/listens/
-calibrates. Neither alone is enough.
+The watch is a **binary toggle between two focused modes**. Sequence is
+in the user's hands: attune first (read the energies), then flip to act
+(work the tool). The toggle IS the transition ritual.
 
-The watch is the union.
+Earlier drafts tried to be clever about "ACT mode already contains
+compressed ATTUNE." Sasha rejected this. Each mode is purely what it
+is. No mixing.
 
-### How the implementation reflects this
+### ATTUNE mode — feminine, reading the energies (5 sections)
 
-**ACT mode already contains ATTUNE.** Look at what's in ACT mode:
-- **Synthesis Reading** — IS the meeting point. Reads all four cycles
-  (the full feminine attunement) and renders them into one cut sentence
-  (the masculine action-naming). The Synthesis is where act and attune
-  meet.
-- **Lunar Energy + Moon Focus** — kept always-visible because lunar IS
-  the driver. Still attunement, still always there in ACT mode.
+1. **Synthesis Reading** — the cycle-compression sentence
+2. **Solar Energy** — birthday-anchored personal year arc
+3. **Zodiac Energy** — current sign and its quality
+4. **Lunar Energy + Moon Focus** — current lunar phase + cycle intent
+5. **Day-of-Week Energy** — today's planetary day
 
-So ACT mode is NOT pure action. It's: **action + essential attune
-(Synthesis-as-compression + Lunar-as-driver)**. The attune is *present
-in compressed form* even when the user is in their daily glance.
+The energetic reading. *"The tune is more like a reading, an energetic
+reading."*
 
-**ACT + ATTUNE mode expands the attune.** Same action layer; the deeper
-rhythms (Mission · Role · Solar · Zodiac · Weekday) become explicit
-surfaces. The toggle is a **depth dial on attunement**, not a switch
-between two separate things.
+### ACT mode — masculine, working the tool (6 sections)
 
-### How the UI shows the union
+1. **Mission** — North Star (Sasha 2026-05-16 round 5: *"mission and
+   role belong to ACT because they're like a North Star"*)
+2. **Role** — North Star
+3. **Current Strategy** — the chosen direction
+4. **Workstreams** — the streams of work
+5. **Intuitive Tasks** — the chosen tasks
+6. **DO NOW** — the executed
 
-1. **The Synthesis card** — visually the largest, top of every mode,
-   carrying the compressed reading of all cycles. The Synthesis IS the
-   union made visible.
-2. **The AttunementBand** (added 2026-05-16) — a thin compressed-
-   attunement strip rendered in ACT MODE only, between Synthesis and
-   Lunar. Shows tiny pips for solar phase + zodiac element + weekday
-   planet. Tap any pip to expand into ACT + ATTUNE mode and scroll
-   to that section. Makes the larger cycles glanceable in compressed
-   form so the user can see "the attune IS here, just compressed."
-3. **The element-emoji umbrella above Lunar pills** — already shows the
-   holonic quadrant of the lunar moment. Another always-visible attune
-   trace in ACT mode.
+The working tool. Used as Trello for daily glance.
 
-The user never sees a "pure act" watch. Every mode is the union — just
-in different degrees of compression.
+### Section-by-section split
 
-### The toggle (continued — same mechanics as round 3)
+| Section | ATTUNE | ACT |
+|---|:-:|:-:|
+| Synthesis Reading | ✓ |  |
+| Mission |  | ✓ |
+| Role |  | ✓ |
+| Solar Energy | ✓ |  |
+| Zodiac Energy | ✓ |  |
+| Lunar Energy + Moon Focus | ✓ |  |
+| Day-of-Week Energy | ✓ |  |
+| Current Strategy |  | ✓ |
+| Workstreams |  | ✓ |
+| Intuitive Tasks |  | ✓ |
+| DO NOW |  | ✓ |
 
-Sasha 2026-05-16: *"The Equilibrium watch could really be just
-downsized to just the moon cycle, the intention, strategies, work
-streams, tasks doing now. The mission, the role, the zodiac cycles —
-those are larger-scale influences. We don't want them to add noise to
-our signal."*
+No overlap. Each section belongs to exactly one mode.
 
-Sasha 2026-05-16 (round 3 — critical clarification): *"The shorter one
-is the ACT mode, and the longer one is not only ACT mode, it's both ACT
-and ATTUNE mode."*
+### Default behavior
 
-This is **additive**, not mutually exclusive. The depth toggle doesn't
-*switch* between ACT and ATTUNE — it *adds* attunement surfaces on top
-of the existing action surfaces.
+- **First-ever load**: lands in **ATTUNE** (the natural sequence starts
+  with reading).
+- **After first toggle**: the user's choice persists in `localStorage`
+  as `equilibrium_v2_watch_mode`. Monday morning: ATTUNE for the
+  reading; flip to ACT for the day's work; stays in ACT until the user
+  chooses to re-attune.
+
+### Toggle UI
+
+Two-pill binary: **`ATTUNE | ACT`**. ATTUNE on the left to mirror the
+sequence (left-to-right = attune-then-act). Tooltip on each pill
+surfaces the function ("ATTUNE mode — feminine. The energetic
+reading." / "ACT mode — masculine. The working tool.").
+
+The mobile floating SectionAnchorNav adapts:
+- ATTUNE: Read · Solar · Zodiac · Lunar · Week (5 anchors, one per section)
+- ACT: Mission · Strategy · Streams · Now (4 anchors covering the action chain)
+
+### Why these names
+
+Both are verbs that name the *function*:
+
+- **ATTUNE** — listening, reading, calibrating. The feminine posture.
+- **ACT** — choosing, executing, shipping. The masculine posture.
+
+Together, with the sequence respected, they form the full daily ritual.
+Apart in two modes (vs. mixed in one), each can be focused.
+
+### Drift history (don't repeat)
+
+- **Round 2**: pill labels were `ACT MODE` / `ATTUNE MODE` mutually
+  exclusive — close, but split was wrong (Synthesis and Lunar were in
+  ACT; Mission and Role were in ATTUNE).
+- **Round 3**: tried `ACT MODE` / `ACT + ATTUNE MODE` (additive) —
+  Sasha confirmed additivity, but the framing was still off.
+- **Round 4**: I added an "AttunementBand" + claimed "ACT mode already
+  contains ATTUNE in compressed form." Sasha rejected: *"What kind of
+  logic is that, man?"* The cleverness was forcing a unity he didn't
+  ask for.
+- **Round 5 (this one)**: clean binary. Mission + Role move to ACT
+  (North Stars). Synthesis + Lunar move to ATTUNE (energetic readings).
+  No mixing. No bands. No compression gymnastics.
+
+Locked.
 
 Sasha 2026-05-16: *"The Equilibrium watch could really be just
 downsized to just the moon cycle, the intention, strategies, work
