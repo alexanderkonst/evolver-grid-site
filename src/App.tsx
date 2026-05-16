@@ -178,7 +178,6 @@ import ArtGallery from "./pages/art/ArtGallery";
 import ArtPortfolio from "./pages/art/ArtPortfolio";
 import Settings from "./pages/Settings";
 import Transcriber from "./pages/Transcriber";
-import EquilibriumPage from "./pages/EquilibriumPage";
 import { EquilibriumV2Page } from "./modules/equilibrium";
 import ArtPage from "./pages/game/ArtPiecePage";
 import FounderMarketFit from "./pages/FounderMarketFit";
@@ -653,8 +652,9 @@ const App = () => (
                   </Route>
                   {/* Tools */}
                   <Route path="/transcriber" element={<RequireAuth><Transcriber /></RequireAuth>} />
-                  {/* Equilibrium — Standalone Living Clock (v1.x — Vite app) */}
-                  <Route path="/equilibrium" element={<RequireAuth><EquilibriumPage /></RequireAuth>} />
+                  {/* Equilibrium v1.x clock retired in favor of v2 — redirect.
+                      Sasha 2026-05-15: cut-over confirmed; bookmarks land on v2. */}
+                  <Route path="/equilibrium" element={<Navigate to="/build/equilibrium" replace />} />
                   {/* Equilibrium v2 — Biologic Watch (platform-resident, BUILD space) */}
                   <Route path="/build/equilibrium" element={<MeGate><GameShellV2 hideLogo><EquilibriumV2Page /></GameShellV2></MeGate>} />
                   {/* TEMP: unguarded preview route for visual verification — REMOVE or convert to auth-gated after Sasha sign-off */}

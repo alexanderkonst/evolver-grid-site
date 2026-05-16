@@ -144,7 +144,7 @@ export function useEquilibriumV2(): EquilibriumV2Data {
         .maybeSingle(),
       supabase
         .from("game_profiles")
-        .select("id")
+        .select("id, birthday, last_zog_snapshot_id")
         .eq("user_id", user.id)
         .maybeSingle(),
       eqAny.from("equilibrium_strategies").select("*").eq("user_id", user.id),
@@ -161,9 +161,46 @@ export function useEquilibriumV2(): EquilibriumV2Data {
       setMissionStatement(null);
     }
 
-    // game_profiles does not store birthday or last_zog_snapshot_id in this schema
-    setBirthday(null);
-    setTopTalentTitle(null);
+    const profile = profileRes.data as
+      | { id?: string; birthday?: string | null; last_zog_snapshot_id?: string | null }
+      | null;
+    setBirthday(profile?.birthday ?? null);
+
+    // Top Talent — try last_zog_snapshot_id first; fall back to latest snapshot
+    // by created_at (some users have ZoG done but the pointer was never set).
+    // Then read archetype_title; fall back to bullseyeSentence for pre-Day-58
+    // snapshots that don't have the topTalentProfile sub-object.
+    let snapData: { appleseed_data?: unknown } | null = null;
+    if (profile?.last_zog_snapshot_id) {
+      const { data } = await supabase
+        .from("zog_snapshots")
+        .select("appleseed_data")
+        .eq("id", profile.last_zog_snapshot_id)
+        .maybeSingle();
+      snapData = data;
+    }
+    if (!snapData && profile?.id) {
+      const { data } = await supabase
+        .from("zog_snapshots")
+        .select("appleseed_data")
+        .eq("profile_id", profile.id)
+        .order("created_at", { ascending: false })
+        .limit(1)
+        .maybeSingle();
+      snapData = data;
+    }
+    const appleseed = snapData?.appleseed_data as
+      | {
+          topTalentProfile?: { archetype_title?: string };
+          bullseyeSentence?: string;
+        }
+      | null
+      | undefined;
+    setTopTalentTitle(
+      appleseed?.topTalentProfile?.archetype_title ??
+        appleseed?.bullseyeSentence ??
+        null,
+    );
 
     setStrategies(
       ((strategiesRes.data as EquilibriumStrategy[] | null) ?? []).sort(
