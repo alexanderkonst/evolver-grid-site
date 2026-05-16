@@ -627,9 +627,16 @@ const App = () => (
                   <Route path="/m/:slug" element={<RequireAuth><ModuleDetail /></RequireAuth>} />
                   <Route path="/modules" element={<RequireAuth><HolonicModulesPage /></RequireAuth>} />
                   <Route path="/modules/:slug" element={<RequireAuth><ModuleLandingPage /></RequireAuth>} />
-                  {/* Mission Discovery */}
-                  <Route path="/mission-discovery" element={<RequireAuth><MissionDiscoveryLanding /></RequireAuth>} />
-                  <Route path="/mission-discovery/wizard" element={<RequireAuth><MissionDiscoveryWizard /></RequireAuth>} />
+                  {/* Mission Discovery
+                      Day 65 wave 8 (Sasha 2026-05-15): wrapped in GameShellV2
+                      so the SPACES rail + ME pane appear consistently with
+                      the rest of the platform (was previously a full-bleed
+                      orphan). activeSpaceId resolves to "grow" (ME) at
+                      /mission-discovery* — see the path mapping in
+                      GameShellV2's location-effect. JOURNEY pane item #8
+                      links here too; the module itself lives under ME. */}
+                  <Route path="/mission-discovery" element={<RequireAuth><GameShellV2><MissionDiscoveryLanding /></GameShellV2></RequireAuth>} />
+                  <Route path="/mission-discovery/wizard" element={<RequireAuth><GameShellV2><MissionDiscoveryWizard /></GameShellV2></RequireAuth>} />
                   {/* Asset Mapping */}
                   {/* Day 63 (Sasha 2026-05-07): wrapped in GameShellV2 so the
                       JOURNEY left rail + pane-2 nav appear consistently with

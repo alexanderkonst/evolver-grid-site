@@ -74,6 +74,29 @@ const CommitFlow = ({ mission, missionContext, returnPath, onAddSubMissions }: C
                 .eq("mission_id", mission.id);
 
             if (updateError) {
+                console.warn("[CommitFlow] mission_participants update failed:", updateError.message);
+            }
+
+            // Day 65 wave 8 (Sasha 2026-05-15): mark the JOURNEY item #8
+            // ("Discover your mission") complete. Writes
+            // `game_profiles.mission_discovered_at` the first time this
+            // user commits to any mission. Idempotent — the
+            // `.is("mission_discovered_at", null)` filter means only the
+            // first commit lands the timestamp; subsequent commits to
+            // different missions don't overwrite the original discovery
+            // moment. Also stamps `mission_id` so the user's primary
+            // mission is queryable directly from game_profiles.
+            try {
+                await (supabase as any)
+                    .from("game_profiles")
+                    .update({
+                        mission_discovered_at: new Date().toISOString(),
+                        mission_id: mission.id,
+                    })
+                    .eq("user_id", user.id)
+                    .is("mission_discovered_at", null);
+            } catch (err) {
+                console.warn("[CommitFlow] mission_discovered_at update failed:", err);
             }
 
             localStorage.setItem(`mission_connection_${user.id}`, JSON.stringify({

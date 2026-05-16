@@ -617,8 +617,14 @@ const buildJourneySections = (
             id: "journey-mission-discovery",
             label: "8. Discover your mission",
             path: "/mission-discovery",
-            locked: true,
-            lockedHint: "Unlocks after you build a business off your top talent.",
+            // Day 65 wave 8 (Sasha 2026-05-15): unlocked under the
+            // same gate as #7 (deeper-Top-Talent-view active). Mission
+            // Discovery is conceptually the NEXT step after the reveal,
+            // not the LAST step after UBB-completion — gating it behind
+            // 19-artifact creation buries it. Anyone who has activated
+            // their deeper profile can find their mission.
+            locked: !deepProfileActivated,
+            lockedHint: "Unlocks after you find your top talent.",
             completed: !!journeyProgress["journey-mission-discovery"],
         },
     ];

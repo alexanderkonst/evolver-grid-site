@@ -32,6 +32,31 @@ interface DbAsset {
 
 const getLocalStorageKey = (userId: string) => `user_assets_${userId}`;
 
+/**
+ * Day 65 wave 8 (Sasha 2026-05-15): mark `game_profiles.resources_mapped_at`
+ * the first time a user successfully writes an asset to the DB. Drives
+ * JOURNEY item #5 ("Map your assets") strikethrough plus any other
+ * downstream "user has mapped" gates.
+ *
+ * Idempotent: the `.is("resources_mapped_at", null)` filter means only
+ * the first call actually writes; subsequent calls match zero rows.
+ * Silent on error — pointer is nice-to-have, not load-blocking; the
+ * client-side fallback in useJourneyProgress probes `user_assets`
+ * directly if this column is null, so a failed pointer write still
+ * shows up as a struck-through row (just with an extra round trip).
+ */
+const markResourcesMapped = async (userId: string): Promise<void> => {
+  try {
+    await (supabase as any)
+      .from("game_profiles")
+      .update({ resources_mapped_at: new Date().toISOString() })
+      .eq("user_id", userId)
+      .is("resources_mapped_at", null);
+  } catch {
+    // silent — see comment above.
+  }
+};
+
 /** Read assets from localStorage */
 export const readLocalAssets = (userId: string): SavedAsset[] => {
   try {
@@ -109,7 +134,15 @@ export const loadAndSyncAssets = async (userId: string): Promise<SavedAsset[]> =
 
     if (insertError) {
       console.warn("Failed to sync localStorage assets to DB:", insertError.message);
+    } else {
+      // First-write-wins pointer for JOURNEY item #5 strikethrough.
+      await markResourcesMapped(userId);
     }
+  } else if (dbAssets.length > 0) {
+    // Existing assets in DB but no pointer write happened. Backfills
+    // pointer for legacy accounts that may have inserted before this
+    // helper existed. Idempotent.
+    await markResourcesMapped(userId);
   }
 
   // Merge and deduplicate
@@ -153,6 +186,8 @@ export const saveAsset = async (userId: string, asset: SavedAsset): Promise<bool
     return false;
   }
 
+  // First-write-wins pointer for JOURNEY item #5 strikethrough.
+  await markResourcesMapped(userId);
   return true;
 };
 
@@ -194,6 +229,9 @@ export const saveAssets = async (userId: string, assets: SavedAsset[]): Promise<
 
   if (error) {
     console.warn("Failed to save assets to DB:", error.message);
+  } else {
+    // First-write-wins pointer for JOURNEY item #5 strikethrough.
+    await markResourcesMapped(userId);
   }
 
   return { saved: newAssets.length, skipped };
