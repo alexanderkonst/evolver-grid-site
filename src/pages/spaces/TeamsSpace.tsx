@@ -255,19 +255,29 @@ const TeamsSpace = () => {
                 }
             });
 
-            const { data: connections } = await supabase
-                .from("connections")
-                .select("requester_id, receiver_id")
-                .or(`requester_id.eq.${user.id},receiver_id.eq.${user.id}`);
+            // Day 66 wave §8 (Sasha 2026-05-16): migrated from
+            // legacy `connections` table → match_intros + match_interests.
+            // We exclude users we're already (a) mutually introduced to
+            // and (b) have expressed interest in — both signals mean
+            // "don't surface this match again on the discovery deck."
+            const [introsRes, interestsRes] = await Promise.all([
+                (supabase as any)
+                    .from("match_intros")
+                    .select("user_a_id, user_b_id")
+                    .or(`user_a_id.eq.${user.id},user_b_id.eq.${user.id}`),
+                (supabase as any)
+                    .from("match_interests")
+                    .select("to_user_id")
+                    .eq("from_user_id", user.id),
+            ]);
 
             const connectedIds = new Set<string>();
-            connections?.forEach((row) => {
-                if (row.requester_id && row.requester_id !== user.id) {
-                    connectedIds.add(row.requester_id);
-                }
-                if (row.receiver_id && row.receiver_id !== user.id) {
-                    connectedIds.add(row.receiver_id);
-                }
+            (introsRes.data as Array<{ user_a_id: string; user_b_id: string }> | null)?.forEach((row) => {
+                const otherId = row.user_a_id === user.id ? row.user_b_id : row.user_a_id;
+                if (otherId) connectedIds.add(otherId);
+            });
+            (interestsRes.data as Array<{ to_user_id: string }> | null)?.forEach((row) => {
+                if (row.to_user_id) connectedIds.add(row.to_user_id);
             });
 
             let currentUserArchetype = "";
@@ -387,12 +397,19 @@ const TeamsSpace = () => {
             const { data: { user } } = await supabase.auth.getUser();
             if (!user) throw new Error("Not authenticated");
 
-            const { error: insertError } = await supabase
-                .from("connections")
+            // Day 66 wave §8 (Sasha 2026-05-16): migrated from
+            // legacy `connections.insert` → match_interests.insert.
+            // This records the from-direction interest only; the
+            // mutual-detection + intro-email flow lives on the
+            // /matchmaking surface, not here. TeamsSpace continues
+            // to be a "find people" discovery deck; deeper mechanics
+            // live on the dedicated matchmaking page.
+            const { error: insertError } = await (supabase as any)
+                .from("match_interests")
                 .insert({
-                    requester_id: user.id,
-                    receiver_id: selectedMatch.id,
-                    message: connectMessage || null,
+                    from_user_id: user.id,
+                    to_user_id: selectedMatch.id,
+                    ai_why_text: connectMessage || null,
                 });
 
             if (insertError) {

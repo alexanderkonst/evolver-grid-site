@@ -1,5 +1,24 @@
 import { memo } from "react";
-import { X, UserPlus, Sparkles, ChevronLeft, ChevronRight } from "lucide-react";
+import { X, UserPlus, Sparkles, ChevronLeft, ChevronRight, Check, Mail } from "lucide-react";
+
+/**
+ * Day 66 wave §8 (Sasha 2026-05-16): match-mechanic interaction state.
+ *
+ *   "default"            — user has not yet expressed interest in this
+ *                          person. Show Pass + "I'd like to meet" CTAs.
+ *   "interest-expressed" — user has clicked "I'd like to meet" and the
+ *                          other side hasn't reciprocated yet. Show a
+ *                          calm "Your interest is recorded — we'll
+ *                          introduce you if they agree" status.
+ *   "mutual"             — both sides have opted in; the intro email
+ *                          has fired. Show a celebratory banner +
+ *                          "Check your inbox" affordance.
+ *
+ * Optional callback `onWithdraw` for the interest-expressed state:
+ * letting the user un-express interest. v1 of the page may not pass
+ * this — in which case the Pass button stays hidden in that state.
+ */
+export type MatchInteractionState = "default" | "interest-expressed" | "mutual";
 
 interface MatchCardProps {
   user: {
@@ -25,6 +44,13 @@ interface MatchCardProps {
   totalCount?: number;
   onPrev?: () => void;
   onNext?: () => void;
+  /** Day 66 §8: which interaction state this card is in. Default
+   * "default" — backward-compatible for callers that haven't wired
+   * the mutual-opt-in mechanic. */
+  interactionState?: MatchInteractionState;
+  /** Day 66 §8: optional un-express-interest callback. Only meaningful
+   * in the "interest-expressed" state. */
+  onWithdraw?: () => void;
 }
 
 /** Strip ✦ symbols from archetype strings */
@@ -131,23 +157,41 @@ const MatchCard = ({
   totalCount,
   onPrev,
   onNext,
+  interactionState = "default",
+  onWithdraw,
 }: MatchCardProps) => {
   const cleanArchetype = stripSymbols(user.archetype);
 
   return (
     <div className="w-full max-w-lg mx-auto">
-      {/* ─── Action Buttons (TOP) — Pass / Pager / Connect ─── */}
+      {/* ─── Action Buttons (TOP) — varies by interactionState ─── */}
       <div className="flex items-center justify-between gap-3 mb-4 flex-wrap">
-        <button
-          onClick={onPass}
-          className="flex items-center gap-2 px-4 py-2 rounded-full transition-all duration-200 hover:translate-y-[-0.5px]"
-          style={tertiaryPill}
-        >
-          <X className="w-3.5 h-3.5" />
-          Don't show again
-        </button>
+        {/* Left affordance: Pass / Withdraw / hidden depending on state */}
+        {interactionState === "default" ? (
+          <button
+            onClick={onPass}
+            className="flex items-center gap-2 px-4 py-2 rounded-full transition-all duration-200 hover:translate-y-[-0.5px]"
+            style={tertiaryPill}
+          >
+            <X className="w-3.5 h-3.5" />
+            Don't show again
+          </button>
+        ) : interactionState === "interest-expressed" && onWithdraw ? (
+          <button
+            onClick={onWithdraw}
+            className="flex items-center gap-2 px-4 py-2 rounded-full transition-all duration-200 hover:translate-y-[-0.5px]"
+            style={tertiaryPill}
+            aria-label="Withdraw interest"
+          >
+            <X className="w-3.5 h-3.5" />
+            Withdraw
+          </button>
+        ) : (
+          // Reserve the slot so the pager stays centered.
+          <span aria-hidden="true" className="w-[1px]" />
+        )}
 
-        {/* Navigation indicator */}
+        {/* Navigation indicator (same in all states) */}
         {typeof currentIndex === "number" && typeof totalCount === "number" && (
           <div className="flex items-center gap-2">
             <button
@@ -184,18 +228,121 @@ const MatchCard = ({
           </div>
         )}
 
-        <button
-          onClick={onConnect}
-          className="group inline-flex items-center gap-2 rounded-full px-5 py-2.5 transition-all duration-300 hover:translate-y-[-1px]"
-          style={ceremonialPrimary}
-        >
-          <UserPlus
-            className="w-3.5 h-3.5"
-            style={{ color: "var(--skin-cta-icon, rgba(244, 212, 114, 0.98))" }}
-          />
-          {connectLabel || "Connect"}
-        </button>
+        {/* Right affordance: "I'd like to meet" / interest pill / mutual banner */}
+        {interactionState === "default" ? (
+          <button
+            onClick={onConnect}
+            className="group inline-flex items-center gap-2 rounded-full px-5 py-2.5 transition-all duration-300 hover:translate-y-[-1px]"
+            style={ceremonialPrimary}
+            aria-label="Express interest in meeting this person"
+          >
+            <UserPlus
+              className="w-3.5 h-3.5"
+              style={{ color: "var(--skin-cta-icon, rgba(244, 212, 114, 0.98))" }}
+            />
+            {connectLabel || "I'd like to meet"}
+          </button>
+        ) : interactionState === "interest-expressed" ? (
+          <div
+            className="inline-flex items-center gap-2 rounded-full px-4 py-2"
+            style={{
+              fontFamily: "'DM Sans', system-ui, sans-serif",
+              fontSize: "12px",
+              fontWeight: 600,
+              letterSpacing: "0.04em",
+              color: "var(--skin-accent-gold, #b8860b)",
+              background: "rgba(212, 175, 55, 0.10)",
+              border: "0.5px solid rgba(212, 175, 55, 0.40)",
+            }}
+            role="status"
+            aria-live="polite"
+          >
+            <Check className="w-3.5 h-3.5" />
+            Interest recorded
+          </div>
+        ) : (
+          <div
+            className="inline-flex items-center gap-2 rounded-full px-4 py-2"
+            style={{
+              fontFamily: "'DM Sans', system-ui, sans-serif",
+              fontSize: "12px",
+              fontWeight: 700,
+              letterSpacing: "0.06em",
+              textTransform: "uppercase",
+              color: "rgba(20, 130, 70, 0.98)",
+              background: "rgba(20, 130, 70, 0.10)",
+              border: "0.5px solid rgba(20, 130, 70, 0.45)",
+              boxShadow: "0 0 16px -4px rgba(20, 130, 70, 0.32)",
+            }}
+            role="status"
+            aria-live="polite"
+          >
+            <Mail className="w-3.5 h-3.5" />
+            Introduction sent
+          </div>
+        )}
       </div>
+
+      {/* ─── State banner (above the profile card) for interest/mutual ─── */}
+      {interactionState === "interest-expressed" && (
+        <div
+          className="rounded-xl px-4 py-3 mb-4"
+          style={{
+            background: "rgba(212, 175, 55, 0.08)",
+            border: "0.5px solid rgba(212, 175, 55, 0.35)",
+          }}
+          role="status"
+        >
+          <p
+            style={{
+              fontFamily: "'Source Serif 4', serif",
+              fontWeight: 600,
+              fontSize: "13.5px",
+              lineHeight: 1.55,
+              color: "var(--skin-text-primary, #0b2a5a)",
+              fontStyle: "italic",
+            }}
+          >
+            Your interest is recorded — we'll introduce you both if {user.firstName} says yes.
+          </p>
+        </div>
+      )}
+      {interactionState === "mutual" && (
+        <div
+          className="rounded-xl px-4 py-3 mb-4"
+          style={{
+            background: "rgba(20, 130, 70, 0.06)",
+            border: "0.5px solid rgba(20, 130, 70, 0.40)",
+            boxShadow: "0 0 24px -8px rgba(20, 130, 70, 0.35)",
+          }}
+          role="status"
+        >
+          <p
+            style={{
+              fontFamily: "'Cormorant Garamond', serif",
+              fontWeight: 700,
+              fontSize: "16px",
+              lineHeight: 1.4,
+              color: "var(--skin-text-primary, #0b2a5a)",
+            }}
+            className="mb-1"
+          >
+            ✦ Mutual interest — you both said yes.
+          </p>
+          <p
+            style={{
+              fontFamily: "'Source Serif 4', serif",
+              fontWeight: 500,
+              fontSize: "13.5px",
+              lineHeight: 1.55,
+              color: "var(--skin-text-primary, #0b2a5a)",
+              fontStyle: "italic",
+            }}
+          >
+            We sent the introduction to both of your inboxes. Take it from there.
+          </p>
+        </div>
+      )}
 
       {/* ─── Profile Card — parchment surface, Aurora editorial ─── */}
       <div className="rounded-2xl overflow-hidden" style={parchmentCard}>
@@ -395,7 +542,8 @@ const areEqual = (prev: MatchCardProps, next: MatchCardProps) => (
   prev.tertiaryReason === next.tertiaryReason &&
   prev.connectLabel === next.connectLabel &&
   prev.matchTypeBadge === next.matchTypeBadge &&
-  prev.currentIndex === next.currentIndex
+  prev.currentIndex === next.currentIndex &&
+  prev.interactionState === next.interactionState
 );
 
 export default memo(MatchCard, areEqual);
