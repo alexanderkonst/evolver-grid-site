@@ -165,18 +165,37 @@ quadrant framework. Both views matter:
   element emoji**, not as text (Sasha 2026-05-16: invented quarter
   names would only confuse the user).
 
-### Locked mapping
+### Locked mapping (corrected 2026-05-16 round 3)
 
-| Holonic Quadrant | Element (UI emoji) | Phases inside | What this half-week is for |
+| Holonic Quadrant | Element (UI emoji) | Phases inside | Solar equivalent (NH) |
 |---|---|---|---|
-| **Will** | Fire 🔥 | Harvesting · Celebrating | Reap, ship, announce, thank. |
-| **Emanation** | Water 💧 | Planning · Planting | Receive the next intention; the strategies reveal. |
-| **Digestion** | Earth 🌍 | Clearing · Gathering | Release fear; say yes to what arrives. |
-| **Enrichment** | Air 🌬️ | Seeing · Leading | The how reveals; prep for harvest. |
+| **Will** | Fire 🔥 | Planning · Planting | Winter Solstice → Spring Equinox |
+| **Emanation** | Water 💧 | Clearing · Gathering | Spring Equinox → Summer Solstice |
+| **Digestion** | Earth 🌍 | Seeing · Leading | Summer Solstice → Autumn Equinox |
+| **Enrichment** | Air 🌬️ | Harvesting · Celebrating | Autumn Equinox → Winter Solstice |
+
+### Reading the mapping
+
+- **Will (Fire)** is the *seed-igniting in apparent dormancy*. Not the
+  visible peak fire of summer. The inner fire of intention surfacing
+  under the cold dark surface. The next intention surfaces; the
+  strategies reveal.
+- **Emanation (Water)** is the *fluid receptivity emerging from dark*.
+  Release fear (the resistance to the new intention); say yes to what
+  arrives.
+- **Digestion (Earth)** is *results appearing, body building*. The how
+  becomes visible; prep for harvest.
+- **Enrichment (Air)** is *clarity at max, harvest visible*. The cycle
+  CLOSES here: reap, ship, announce, thank. Then the wheel resets to
+  Will.
+
+The harvest is the END of the cycle (Enrichment), not the beginning.
+The new wheel starts post-celebration with the quiet inner fire of the
+next intention.
 
 The watch shows the element emoji as a small umbrella ABOVE the pills,
 the specific phase as the active pill. A tooltip on the emoji surfaces
-the element name + the phase ("Earth — the umbrella for Clearing").
+the element name + the phase ("Fire — the umbrella for Planting").
 
 ### Why no invented quarter names
 
@@ -329,57 +348,66 @@ time.
 
 ## 10 · The Solar Holonic Quarters
 
-Sasha 2026-05-16 (clarification, round 2): *"The deepest cycle that
-exists is the Holonic cycle. Everything follows that. The Sun is not an
-exception. Nothing in this universe is an exception, because the entire
-universe has that pattern. What are the first, second, third, and fourth
-quarters of the solar cycle where the wheel starts after the potential
-has been harvested as it ripened?"*
+Sasha 2026-05-16 (clarification, round 3): *"It starts at the winter
+solstice. The harvest is usually in August and September, and then there
+are preparations and the celebration begins. It is clearly the winter
+solstice because that is where the will starts, and the next intention
+and attention surface from realized potential."*
 
-That reframes the question correctly. Earlier draft of this section
-hedged between Winter Solstice (rebirth) and Spring Equinox
-(astrological year start) — but the holonic logic gives one answer.
+### Correction history (don't repeat the mistake)
+
+The round-2 draft said the wheel starts at the **Autumn Equinox**. That
+was wrong. The Autumn Equinox is when the harvest itself (Enrichment /
+Full Moon equivalent) is at its peak — the OLD cycle's clarity, not the
+NEW cycle's beginning. The wheel starts at the **Winter Solstice**, post
+the celebration phase (Autumn Equinox → Winter Solstice = the prep +
+celebration window).
+
+The same applies to the lunar cycle: the Full Moon is the
+autumn-equinox-equivalent (the harvest), and the Last Quarter is the
+winter-solstice-equivalent (where Will starts).
 
 ### Locked mapping (Northern Hemisphere)
 
-The wheel **starts at the Autumn Equinox** — right after the potential
-of the previous cycle has been realized and harvested.
+The wheel **starts at the Winter Solstice** — post-celebration, where
+the inner fire of the next intention begins to surface.
 
 | Quarter | Element (emoji) | Solar phase | NH calendar window |
 |---|---|---|---|
-| **Q1 Will** | Fire 🔥 | Post-harvest — the next intention surfaces from realized potential; seed-igniting in apparent dormancy | Autumn Equinox → Winter Solstice (~Sep 22 – Dec 21) |
-| **Q2 Emanation** | Water 💧 | Deepest creation — strategies reveal underground; water-darkness holds the seed | Winter Solstice → Spring Equinox (~Dec 21 – Mar 20) |
-| **Q3 Digestion** | Earth 🌍 | Results appear — plants emerge, growth visible, the field receives | Spring Equinox → Summer Solstice (~Mar 20 – Jun 21) |
-| **Q4 Enrichment** | Air 🌬️ | Peak growth, fruits ripen, prep for harvest, clarity at max — ends at the next harvest | Summer Solstice → Autumn Equinox (~Jun 21 – Sep 22) |
+| **Q1 Will** | Fire 🔥 | Post-celebration seed-igniting — the next intention surfaces from realized potential; inner fire in apparent dormancy | Winter Solstice → Spring Equinox (~Dec 21 – Mar 20) |
+| **Q2 Emanation** | Water 💧 | Fluid receptivity emerging from dark — life starts visibly returning, strategies translate into directions | Spring Equinox → Summer Solstice (~Mar 20 – Jun 21) |
+| **Q3 Digestion** | Earth 🌍 | Results appear — growth visible, body building, prep for harvest | Summer Solstice → Autumn Equinox (~Jun 21 – Sep 22) |
+| **Q4 Enrichment** | Air 🌬️ | Peak clarity, fruits ripen, the **harvest itself** (Aug–Sep), then **prep + celebration**; the cycle CLOSES here | Autumn Equinox → Winter Solstice (~Sep 22 – Dec 21) |
 
 ### Southern Hemisphere
 
-Flip every date by ~6 months. SH harvest happens at the SH Autumn
-Equinox (~Mar 21). So:
-- SH Q1 Will ≈ Mar 21 → Jun 21
-- SH Q2 Emanation ≈ Jun 21 → Sep 22
-- SH Q3 Digestion ≈ Sep 22 → Dec 21
-- SH Q4 Enrichment ≈ Dec 21 → Mar 21
+Flip every date by ~6 months. SH Winter Solstice ≈ Jun 21. So:
+- SH Q1 Will ≈ Jun 21 → Sep 22
+- SH Q2 Emanation ≈ Sep 22 → Dec 21
+- SH Q3 Digestion ≈ Dec 21 → Mar 21
+- SH Q4 Enrichment ≈ Mar 21 → Jun 21
 
 ### Why this resolves the "solar birthday" question
 
-The "birthday of the solar year" by holonic logic = **the Autumn
-Equinox**. That's the pivot where the previous cycle's harvest closes
-and the new wheel begins. Not Winter Solstice (mid-Q1), not Spring
-Equinox (Q3 start) — those moments are notable *inside* the wheel, but
-the wheel itself starts at the harvest.
+The "birthday of the solar year" by holonic logic = **the Winter
+Solstice**. That's the pivot where the previous cycle's
+harvest-and-celebration close and the new wheel begins. The Autumn
+Equinox is the harvest moment (mid-Q4); the Winter Solstice is the
+wheel-restart.
 
 ### What this means for personal birthdays
 
-Sasha (early January, NH) lands in **early Q2 Emanation (Water)** —
-the deepest creation phase, when strategies reveal underground. His high
-energy in NH winter (when external nature is "hibernating") tracks: he's
-in sync with the cycle's *deepest creative phase*, which is invisible
-externally but maximally active internally.
+Sasha (early January, NH) lands in **early Q1 Will (Fire)** — born
+right at the START of the wheel, just past Winter Solstice. The inner
+fire of intention surfacing from realized potential. His high energy in
+NH winter (when external nature is dormant) is the *literal description*
+of where he sits in the planet's solar cycle: the seed-igniting phase.
 
-A summer-born NH person (e.g., July) lands in Q4 Enrichment (Air) — peak
-external growth, clarity, fruits ripening. A spring-born person (April)
-lands in Q3 Digestion (Earth) — receiving, results appearing.
+A summer-born NH person (e.g., July) lands in Q3 Digestion (Earth) —
+results appearing, body building. A spring-born person (April) lands in
+Q2 Emanation (Water) — fluid receptivity, life translating into
+visible form. An autumn-born person (October) lands in Q4 Enrichment
+(Air) — clarity at max, harvest visible.
 
 Everyone's personal year + the planet's solar year are *both* running
 the same holonic cycle, just offset. The interplay between where the
@@ -392,7 +420,7 @@ The Equilibrium solar bar should ideally show **both**:
 1. The user's personal year (birthday-anchored — Surge moment · Spend
    the energy · Sustain · Begin closing · Wind down) — already
    implemented.
-2. The planet's solar year (autumn-equinox-anchored — Will · Emanation ·
+2. The planet's solar year (Winter-Solstice-anchored — Will · Emanation ·
    Digestion · Enrichment with element emoji) — future enhancement.
 
 This makes the "in sync / out of sync" between personal energy and

@@ -30,13 +30,13 @@ export const WatchModeToggle = ({ mode, onChange }: WatchModeToggleProps) => {
     >
       <ModePill
         active={mode === "act"}
-        label="ACT"
+        label="ACT MODE"
         title="ACT mode — slim. The watch you open to act on what the moment calls for."
         onClick={() => onChange("act")}
       />
       <ModePill
         active={mode === "attune"}
-        label="ATTUNE"
+        label="ATTUNE MODE"
         title="ATTUNE mode — full. The watch you open to attune to all the cycles."
         onClick={() => onChange("attune")}
       />
