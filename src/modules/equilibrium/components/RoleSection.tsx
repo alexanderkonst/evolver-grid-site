@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { InlineEditableText } from "./InlineEditableText";
+import { SectionSkeleton } from "./SectionSkeleton";
 
 interface RoleSectionProps {
   roleDisplay: string | null;
@@ -24,7 +25,11 @@ export const RoleSection = ({
 }: RoleSectionProps) => {
   const navigate = useNavigate();
 
-  if (!loading && !roleDisplay) {
+  if (loading) {
+    return <SectionSkeleton lines={1} />;
+  }
+
+  if (!roleDisplay) {
     return (
       <button
         type="button"
