@@ -273,51 +273,13 @@ const SPACE_SECTIONS: SpaceSections = {
     build: {
         title: "BUILD",
         sections: [
-            // Equilibrium v2 ("Biologic Watch") — ungated, surfaces before UBB.
-            // Per Sasha 2026-05-15: BUILD chip visibility decouples from UBB's gate;
-            // Equilibrium entry is always visible and triggers auth on entry.
-            { id: "equilibrium-v2", label: "Equilibrium", path: "/build/equilibrium", badge: "v2" },
-            // Day 64 wave 5 (Sasha 2026-05-07): label renamed
-            // "Unique Business Builder" → "Automated Venture Builder."
-            // Positioning is stronger: this is the venture-level builder,
-            // not a generic business canvas. URL stays /ubb, enum stays
-            // ubb-v2, badge stays "v2" — internal name is preserved as
-            // genealogy; only the user-facing label changes.
-            { id: "ubb-v2", label: "Automated Venture Builder", path: "/ubb", badge: "v2" },
-            // Day 65 wave 6 (Sasha 2026-05-15): Equilibrium added as
-            // the second BUILD pane row alongside AVB. Sibling product,
-            // also a build-side surface. Appears here in the static
-            // BUILD list AND inside buildUbbSections (when at /ubb*)
-            // so the two top-level rows are visible in both contexts.
-            { id: "equilibrium", label: "Equilibrium", path: "/equilibrium" },
-            {
-                id: "canvas",
-                label: "Unique Business Canvas",
-                path: "/game/build/canvas",
-                locked: true,
-                lockedHint: "Retired — Automated Venture Builder is the canonical path.",
-            },
-            {
-                id: "product-builder",
-                label: "Product Builder",
-                path: "/game/build/product-builder",
-                locked: true,
-                lockedHint: "Retired — Automated Venture Builder is the canonical path.",
-            },
-            {
-                id: "my-business",
-                label: "My Genius Business",
-                path: "/game/build/my-business",
-                locked: true,
-                lockedHint: "Retired — Automated Venture Builder is the canonical path.",
-            },
-            {
-                id: "refine",
-                label: "Refine My Business",
-                path: "/game/build/refine",
-                locked: true,
-                lockedHint: "Retired — Automated Venture Builder is the canonical path.",
-            },
+            // Sasha 2026-05-15 dogfood cleanup: dropped v2 badges (internal
+            // versioning shouldn't leak to the nav), removed duplicate
+            // /equilibrium row (legacy path now redirects to /build/equilibrium),
+            // and removed the four retired locked stubs (canvas, product-builder,
+            // my-business, refine) — clutter, no longer relevant.
+            { id: "equilibrium-v2", label: "Equilibrium", path: "/build/equilibrium" },
+            { id: "ubb-v2", label: "Automated Venture Builder", path: "/ubb" },
         ],
     },
     // OFFER Space (was Marketplace)
@@ -437,7 +399,7 @@ const buildUbbSections = (
         {
             id: "equilibrium",
             label: "Equilibrium",
-            path: "/equilibrium",
+            path: "/build/equilibrium",
         },
     ];
 };
