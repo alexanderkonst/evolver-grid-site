@@ -90,6 +90,15 @@ const getPillarColor = (pillarId?: string) => {
     return colors[pillarId || ''] || 'bg-muted text-foreground';
 };
 
+// Day 65 wave 9 (Sasha 2026-05-15): editorial-register tokens
+// mirroring ZoneOfGeniusOverview / QoL Results (per ui_playbook.md).
+// Dark ink on light glass, Cormorant for hero, Source Serif for body.
+const INK = "#0a1628";
+const INK_BODY = "rgba(26,30,58,0.78)";
+const INK_MUTED = "rgba(26,30,58,0.55)";
+const HALO_SOFT =
+    "0 0 22px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.8), 0 2px 12px rgba(26,30,58,0.15)";
+
 const fetchEmbeddingMatches = async (text: string): Promise<MatchResult[] | null> => {
     try {
         const { data, error } = await supabase.functions.invoke("match-missions", {
@@ -256,16 +265,40 @@ const MissionDiscoveryLanding = () => {
     };
 
     return (
-        <div className="min-h-dvh bg-white">
-            <div className="max-w-3xl mx-auto px-4 py-12">
-                {/* Header */}
-                <div className="text-center mb-12">
-                    <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-muted mb-4">
-                        <Sparkles className="w-8 h-8 text-foreground" />
-                    </div>
-                    <h1 className="text-4xl font-bold font-display aurora-text mb-3">Mission Discovery</h1>
-                    <p className="text-lg text-muted-foreground">Find your contribution to the planet</p>
+        <div className="max-w-3xl mx-auto px-4 py-10 sm:py-12">
+            {/* Hero — Day 65 wave 9: editorial register mirroring
+                ZoneOfGeniusOverview. Cormorant headline + Source Serif
+                subtitle on dark-ink/halo treatment for legibility over
+                the shell's video backdrop. Glass-strong card on hero
+                only; secondary content uses liquid-glass. */}
+            <section className="text-center mb-10 sm:mb-12">
+                <div className="inline-flex items-center justify-center w-14 h-14 rounded-full liquid-glass mb-5">
+                    <Sparkles className="w-7 h-7" style={{ color: "var(--skin-accent-gold, #b8860b)" }} />
                 </div>
+                <h1
+                    className="leading-[1.1] tracking-[-0.01em] mb-3"
+                    style={{
+                        fontFamily: "'Cormorant Garamond', serif",
+                        fontWeight: 700,
+                        fontSize: "clamp(2rem, 5vw, 2.75rem)",
+                        color: INK,
+                        textShadow: HALO_SOFT,
+                    }}
+                >
+                    Mission Discovery
+                </h1>
+                <p
+                    className="italic leading-relaxed mx-auto max-w-[40ch]"
+                    style={{
+                        fontFamily: "'Source Serif 4', Georgia, serif",
+                        fontWeight: 300,
+                        fontSize: "clamp(1rem, 2vw, 1.18rem)",
+                        color: INK_BODY,
+                    }}
+                >
+                    Find your contribution to the planet.
+                </p>
+            </section>
 
                 {/* Step: Matches */}
                 {matches && matches.length > 0 && (
@@ -276,7 +309,7 @@ const MissionDiscoveryLanding = () => {
                         </div>
                         <div className="space-y-4">
                             {matches.map(match => (
-                                <div key={match.mission.id} className="rounded-xl border border-border bg-white/85 backdrop-blur-sm p-5 hover:border-border transition-colors shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
+                                <div key={match.mission.id} className="liquid-glass rounded-2xl p-5 sm:p-6 hover:translate-y-[-1px] transition-all duration-300">
                                     <div className="mb-4">
                                         {/* Pillar + Focus Area pills */}
                                         <div className="flex flex-wrap gap-2 mb-3">
@@ -349,7 +382,15 @@ const MissionDiscoveryLanding = () => {
                 {/* Step: Clarity Check */}
                 {step === "clarity-check" && !matches && (
                     <div className="space-y-4">
-                        <p className="text-center text-lg text-foreground mb-6">
+                        <p
+                            className="text-center mb-6 italic leading-relaxed"
+                            style={{
+                                fontFamily: "'Source Serif 4', Georgia, serif",
+                                fontWeight: 300,
+                                fontSize: "clamp(1rem, 2vw, 1.18rem)",
+                                color: INK_BODY,
+                            }}
+                        >
                             Do you already have clarity on your mission or purpose?
                         </p>
 
@@ -359,20 +400,36 @@ const MissionDiscoveryLanding = () => {
                                 <button
                                     onClick={handleMatchFromExcalibur}
                                     disabled={isMatchingFromExcalibur}
-                                    className="p-6 rounded-xl border-2 border-primary/30 bg-primary/5 hover:border-primary transition-colors text-left group sm:col-span-2"
+                                    className="liquid-glass-strong p-6 rounded-2xl text-left transition-all duration-300 hover:translate-y-[-1px] hover:scale-[1.005] active:scale-[0.99] disabled:opacity-60 disabled:cursor-wait sm:col-span-2"
+                                    style={{ border: "1px solid rgba(212, 175, 55, 0.32)" }}
                                 >
                                     <div className="flex items-center gap-3">
                                         {isMatchingFromExcalibur ? (
                                             <span className="premium-spinner w-6 h-6" />
                                         ) : (
-                                            <Sword className="w-6 h-6 text-primary" />
+                                            <Sword className="w-6 h-6" style={{ color: "var(--skin-accent-gold, #b8860b)" }} />
                                         )}
                                         <div>
-                                            <h3 className="font-semibold text-foreground mb-1">
-                                                {isMatchingFromExcalibur ? 'Finding your missions...' : 'Suggest from my Excalibur'}
+                                            <h3
+                                                className="mb-1"
+                                                style={{
+                                                    fontFamily: "'Cormorant Garamond', serif",
+                                                    fontWeight: 600,
+                                                    fontSize: "1.25rem",
+                                                    color: INK,
+                                                }}
+                                            >
+                                                {isMatchingFromExcalibur ? 'Finding your missions…' : 'Suggest from my Excalibur'}
                                             </h3>
-                                            <p className="text-sm text-muted-foreground">
-                                                AI will match your Unique Offer to the most aligned missions
+                                            <p
+                                                className="text-sm"
+                                                style={{
+                                                    fontFamily: "'Source Serif 4', Georgia, serif",
+                                                    fontWeight: 300,
+                                                    color: INK_BODY,
+                                                }}
+                                            >
+                                                AI will match your Unique Offer to the most aligned missions.
                                             </p>
                                         </div>
                                     </div>
@@ -381,20 +438,58 @@ const MissionDiscoveryLanding = () => {
 
                             <button
                                 onClick={() => setStep("has-ai")}
-                                className="p-6 rounded-xl border-2 border-border hover:border-primary hover:bg-primary/5 transition-colors text-left group"
+                                className="liquid-glass p-6 rounded-2xl text-left transition-all duration-300 hover:translate-y-[-1px] hover:scale-[1.005] active:scale-[0.99]"
                             >
-                                <Check className="w-6 h-6 text-blue-500 mb-3" />
-                                <h3 className="font-semibold text-foreground mb-1">Yes, I have clarity</h3>
-                                <p className="text-sm text-muted-foreground">I know what I'm here to do</p>
+                                <Check className="w-6 h-6 mb-3" style={{ color: "var(--skin-accent-gold, #b8860b)" }} />
+                                <h3
+                                    className="mb-1"
+                                    style={{
+                                        fontFamily: "'Cormorant Garamond', serif",
+                                        fontWeight: 600,
+                                        fontSize: "1.18rem",
+                                        color: INK,
+                                    }}
+                                >
+                                    Yes, I have clarity
+                                </h3>
+                                <p
+                                    className="text-sm"
+                                    style={{
+                                        fontFamily: "'Source Serif 4', Georgia, serif",
+                                        fontWeight: 300,
+                                        color: INK_BODY,
+                                    }}
+                                >
+                                    I know what I'm here to do.
+                                </p>
                             </button>
 
                             <button
                                 onClick={handleGoToWizard}
-                                className="p-6 rounded-xl border-2 border-border hover:border-primary hover:bg-primary/5 transition-colors text-left group"
+                                className="liquid-glass p-6 rounded-2xl text-left transition-all duration-300 hover:translate-y-[-1px] hover:scale-[1.005] active:scale-[0.99]"
                             >
-                                <HelpCircle className="w-6 h-6 text-blue-500 mb-3" />
-                                <h3 className="font-semibold text-foreground mb-1">I need to discover it</h3>
-                                <p className="text-sm text-muted-foreground">Take me through the wizard</p>
+                                <HelpCircle className="w-6 h-6 mb-3" style={{ color: "var(--skin-accent-gold, #b8860b)" }} />
+                                <h3
+                                    className="mb-1"
+                                    style={{
+                                        fontFamily: "'Cormorant Garamond', serif",
+                                        fontWeight: 600,
+                                        fontSize: "1.18rem",
+                                        color: INK,
+                                    }}
+                                >
+                                    I need to discover it
+                                </h3>
+                                <p
+                                    className="text-sm"
+                                    style={{
+                                        fontFamily: "'Source Serif 4', Georgia, serif",
+                                        fontWeight: 300,
+                                        color: INK_BODY,
+                                    }}
+                                >
+                                    Take me through the wizard.
+                                </p>
                             </button>
                         </div>
 
@@ -407,33 +502,80 @@ const MissionDiscoveryLanding = () => {
                 {/* Step: Has AI */}
                 {step === "has-ai" && !matches && (
                     <div className="space-y-4">
-                        <p className="text-center text-foreground mb-6">
+                        <p
+                            className="text-center mb-6 italic leading-relaxed mx-auto max-w-[40ch]"
+                            style={{
+                                fontFamily: "'Source Serif 4', Georgia, serif",
+                                fontWeight: 300,
+                                fontSize: "clamp(1rem, 1.6vw, 1.1rem)",
+                                color: INK_BODY,
+                            }}
+                        >
                             Do you have an AI model (ChatGPT, Claude, etc.) that you've discussed your mission with?
                         </p>
 
                         <div className="grid gap-4 sm:grid-cols-2">
                             <button
                                 onClick={() => setStep("paste-response")}
-                                className="p-6 rounded-xl border-2 border-border hover:border-primary hover:bg-primary/5 transition-colors text-left"
+                                className="liquid-glass p-6 rounded-2xl text-left transition-all duration-300 hover:translate-y-[-1px] hover:scale-[1.005] active:scale-[0.99]"
                             >
-                                <Brain className="w-6 h-6 text-primary mb-3" />
-                                <h3 className="font-semibold text-foreground mb-1">Yes, I have an AI</h3>
-                                <p className="text-sm text-muted-foreground">I'll paste its response</p>
+                                <Brain className="w-6 h-6 mb-3" style={{ color: "var(--skin-accent-gold, #b8860b)" }} />
+                                <h3
+                                    className="mb-1"
+                                    style={{
+                                        fontFamily: "'Cormorant Garamond', serif",
+                                        fontWeight: 600,
+                                        fontSize: "1.18rem",
+                                        color: INK,
+                                    }}
+                                >
+                                    Yes, I have an AI
+                                </h3>
+                                <p
+                                    className="text-sm"
+                                    style={{
+                                        fontFamily: "'Source Serif 4', Georgia, serif",
+                                        fontWeight: 300,
+                                        color: INK_BODY,
+                                    }}
+                                >
+                                    I'll paste its response.
+                                </p>
                             </button>
 
                             <button
                                 onClick={() => setStep("type-manually")}
-                                className="p-6 rounded-xl border-2 border-border hover:border-primary hover:bg-primary/5 transition-colors text-left"
+                                className="liquid-glass p-6 rounded-2xl text-left transition-all duration-300 hover:translate-y-[-1px] hover:scale-[1.005] active:scale-[0.99]"
                             >
-                                <ListChecks className="w-6 h-6 text-primary mb-3" />
-                                <h3 className="font-semibold text-foreground mb-1">No, I'll type it</h3>
-                                <p className="text-sm text-muted-foreground">Write my mission manually</p>
+                                <ListChecks className="w-6 h-6 mb-3" style={{ color: "var(--skin-accent-gold, #b8860b)" }} />
+                                <h3
+                                    className="mb-1"
+                                    style={{
+                                        fontFamily: "'Cormorant Garamond', serif",
+                                        fontWeight: 600,
+                                        fontSize: "1.18rem",
+                                        color: INK,
+                                    }}
+                                >
+                                    No, I'll type it
+                                </h3>
+                                <p
+                                    className="text-sm"
+                                    style={{
+                                        fontFamily: "'Source Serif 4', Georgia, serif",
+                                        fontWeight: 300,
+                                        color: INK_BODY,
+                                    }}
+                                >
+                                    Write my mission manually.
+                                </p>
                             </button>
                         </div>
 
                         <button
                             onClick={() => setStep("clarity-check")}
-                            className="w-full text-sm text-muted-foreground hover:text-foreground mt-4"
+                            className="w-full text-sm mt-4 transition-colors"
+                            style={{ color: INK_MUTED }}
                         >
                             ← Go back
                         </button>
@@ -540,7 +682,6 @@ const MissionDiscoveryLanding = () => {
                         </div>
                     </div>
                 )}
-            </div>
         </div>
     );
 };
