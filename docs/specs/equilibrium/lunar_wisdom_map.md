@@ -13,7 +13,7 @@ Quarter** is the inner/seed half ("the How is none of your business"),
 and **First Quarter → Full Moon → Last Quarter** is the outer/manifest
 half (the How reveals, the work happens, the harvest celebrates).
 
-### The 4-Quarter Umbrella — Holonic Quadrants (locked 2026-05-16)
+### The 4-Quarter Umbrella — Holonic Quadrants (corrected 2026-05-16 round 3)
 
 The 8 phases nest inside 4 holonic quadrants — Sasha's named correspondence
 that links each pair of phases to an element. Quadrant NAMES stay
@@ -21,23 +21,42 @@ internal (won't confuse the user); only the **element emoji** surfaces in
 the UI as a quiet umbrella above the pills. Users moving from degree 2 →
 degree 3 see the structure without being lectured to.
 
-| Holonic Quadrant | Element (UI emoji) | Phases inside | What this half-week is for |
+| Holonic Quadrant | Element (UI emoji) | Phases inside | What this half-cycle is for |
 |---|---|---|---|
-| **Will** | Fire 🔥 | Harvesting · Celebrating | Reap, ship, announce, thank. |
-| **Emanation** | Water 💧 | Planning · Planting | Receive the next intention; the strategies reveal. |
-| **Digestion** | Earth 🌍 | Clearing · Gathering | Release fear; say yes to what arrives. |
-| **Enrichment** | Air 🌬️ | Seeing · Leading | The how reveals; prep for harvest. |
+| **Will** | Fire 🔥 | Planning · Planting | The next intention surfaces; the strategies reveal. (Winter-Solstice equivalent — the seed-igniting in apparent dormancy.) |
+| **Emanation** | Water 💧 | Clearing · Gathering | Release fear; say yes to what arrives. (Spring-Equinox equivalent — fluid receptivity emerging from dark.) |
+| **Digestion** | Earth 🌍 | Seeing · Leading | The how reveals; prep for harvest. (Summer-Solstice equivalent — results emerging, body building.) |
+| **Enrichment** | Air 🌬️ | Harvesting · Celebrating | Reap, ship, announce, thank. (Autumn-Equinox equivalent — clarity at max, harvest visible.) |
+
+### Correction history (don't repeat the mistake)
+
+The first version of this table (2026-05-16 round 2) placed **Will** at
+Harvesting + Celebrating — i.e., the harvest was treated as the start of
+the new cycle. Sasha corrected this:
+
+> *"The Full Moon is not the beginning of the new cycle. The Full Moon
+> is the autumnal equinox in this example, and the winter solstice is
+> the phase AFTER the celebration phase. That's what's really going on
+> here."*
+
+The harvest is the OLD cycle closing (Enrichment / Air / clarity at
+max). The new wheel begins post-celebration, in apparent dormancy, with
+the inner fire of the next intention. Same logic as the planet's solar
+year: the wheel starts at Winter Solstice, not at Autumn Equinox. The
+equinox/full-moon is the harvest moment that closes the previous wheel.
+
+### Why this is the umbrella (not invented words)
+
+Sasha already has the holonic framework. The mapping is also tied to the
+element correspondences that show up across cycles (weekday planetary
+days, zodiac elements). Inventing parallel vocabulary (like "CLEAR /
+ORIENT / BUILD / RESEED" — earlier rejected draft) would fragment the
+framework. The emoji-only surface keeps the depth available without
+forcing the user to learn new words.
 
 In code, each `MoonPhaseInfo` declares its `holonicQuadrant`. The
 LunarState pulls the `elementEmoji` from the holonic phase info and
 passes it to the UI as the eyebrow above the pill stack.
-
-Why this is the umbrella (not invented words like "CLEAR / ORIENT /
-BUILD / RESEED"): the holonic mapping is Sasha's existing framework. It's
-also tied to the element correspondences that show up across cycles
-(weekday planetary days, zodiac elements). Inventing parallel
-vocabulary would fragment the framework. The emoji-only surface keeps
-the depth available without forcing the user to learn new words.
 
 ```
                         Harvesting

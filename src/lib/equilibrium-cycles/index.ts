@@ -332,10 +332,17 @@ export interface MoonPhaseInfo {
   energy: string;
   /**
    * Holonic quadrant this phase sits inside.
-   *   "will"        Fire 🔥  → Harvesting + Celebrating
-   *   "emanation"   Water 💧 → Planning + Planting
-   *   "digestion"   Earth 🌍 → Clearing + Gathering
-   *   "enrichment"  Air 🌬️  → Seeing + Leading
+   *   "will"        Fire 🔥  → Planning + Planting     (post-celebration, seed-igniting)
+   *   "emanation"   Water 💧 → Clearing + Gathering    (dark/receiving, deepest creation)
+   *   "digestion"   Earth 🌍 → Seeing + Leading        (results appearing, body building)
+   *   "enrichment"  Air 🌬️  → Harvesting + Celebrating (clarity at max, harvest visible)
+   *
+   * CORRECTED 2026-05-16 (round 3) per Sasha: Will starts at the
+   * Winter-Solstice equivalent — Last Quarter (Planning), NOT at the
+   * Full Moon. The Full Moon is the harvest moment (Autumn Equinox
+   * equivalent), which closes the OLD cycle in Enrichment. Will is the
+   * INNER fire of the seed under apparent dormancy — not the visible
+   * peak fire of harvest.
    *
    * Per Sasha 2026-05-16: holonic NAMES stay internal (won't confuse the
    * user). Only the element EMOJI surfaces in the UI as a quiet umbrella
@@ -392,7 +399,7 @@ export const MOON_PHASES: MoonPhaseInfo[] = [
     start: 0,
     end: 1.85,
     energy: "Clearing · Release fear · Cry, don't complain · The how is not yours yet",
-    holonicQuadrant: "digestion",
+    holonicQuadrant: "emanation",
     guidance:
       "The mind freaks out about the how — that's the resistance to release. Cry, don't complain. Don't form limiting beliefs.",
   },
@@ -405,7 +412,7 @@ export const MOON_PHASES: MoonPhaseInfo[] = [
     start: 1.85,
     end: 5.53,
     energy: "Gathering · Say yes · Take meetings · Receive resources",
-    holonicQuadrant: "digestion",
+    holonicQuadrant: "emanation",
     guidance:
       "Say yes to whatever arrives — meetings, resources, opportunities. The how is still not yours.",
   },
@@ -417,7 +424,7 @@ export const MOON_PHASES: MoonPhaseInfo[] = [
     start: 5.53,
     end: 9.22,
     energy: "Seeing · The how reveals · Write it down · Capture before it drifts",
-    holonicQuadrant: "enrichment",
+    holonicQuadrant: "digestion",
     guidance:
       "The how you couldn't see now becomes obvious. Write it down before the clarity drifts.",
   },
@@ -430,7 +437,7 @@ export const MOON_PHASES: MoonPhaseInfo[] = [
     start: 9.22,
     end: 12.91,
     energy: "Leading · Prep for harvest · Set up infrastructure · Get the help",
-    holonicQuadrant: "enrichment",
+    holonicQuadrant: "digestion",
     guidance:
       "Prepare the system for the upcoming harvest — what tools, helpers, and storage need to be in place?",
   },
@@ -443,7 +450,7 @@ export const MOON_PHASES: MoonPhaseInfo[] = [
     start: 12.91,
     end: 16.61,
     energy: "Harvesting · Reap what's ripe · Cut · Receive the fruits of labor",
-    holonicQuadrant: "will",
+    holonicQuadrant: "enrichment",
     guidance:
       "Reap what's ripe. Cut what's ready. Receive the fruits of labor — both work and reception.",
   },
@@ -456,7 +463,7 @@ export const MOON_PHASES: MoonPhaseInfo[] = [
     start: 16.61,
     end: 20.30,
     energy: "Celebrating · Announce the harvest · Thank · Feel the gratitude",
-    holonicQuadrant: "will",
+    holonicQuadrant: "enrichment",
     guidance:
       "Announce the harvest. Thank what made it possible. Gratitude is the emotional fuel for the next cycle.",
   },
@@ -469,7 +476,7 @@ export const MOON_PHASES: MoonPhaseInfo[] = [
     start: 20.30,
     end: 23.99,
     energy: "Planning · The next intention surfaces · Receive it · Name it",
-    holonicQuadrant: "emanation",
+    holonicQuadrant: "will",
     guidance:
       "The next intention surfaces from the just-finished harvest. Notice it. Name it. Don't engineer it.",
   },
@@ -482,7 +489,7 @@ export const MOON_PHASES: MoonPhaseInfo[] = [
     start: 23.99,
     end: 29.53,
     energy: "Planting · The 1–3 strategies reveal · Write them down",
-    holonicQuadrant: "emanation",
+    holonicQuadrant: "will",
     guidance:
       "The 1–3 strategies that translate the intention into directions reveal themselves. Capture them as they arrive.",
   },
@@ -514,14 +521,27 @@ export interface LunarState extends CycleSegmentState<string> {
 /**
  * Lunar position from synodic cycle (29.53 days from new moon to new moon).
  *
- * Holonic mapping (Sasha's Lunar Holon Cycle, 2026-02-22):
- *   Full Moon → Last Quarter = WILL (Fire) — inner fire, seed igniting
- *   Last Quarter → New Moon   = EMANATION (Water) — creative flow, deepest creation
- *   New Moon → First Quarter  = DIGESTION (Earth) — results appearing, growth
- *   First Quarter → Full Moon = ENRICHMENT (Air) — receiving abundance, new clarity
+ * Holonic mapping (corrected 2026-05-16 round 3 per Sasha):
+ *   Last Quarter → New Moon   = WILL (Fire) — Planning + Planting; the
+ *                               post-celebration phase where the next
+ *                               intention surfaces from realized potential
+ *                               (Winter-Solstice equivalent)
+ *   New Moon → First Quarter  = EMANATION (Water) — Clearing + Gathering;
+ *                               dark/receiving, deepest creation
+ *                               (Spring-Equinox equivalent)
+ *   First Quarter → Full Moon = DIGESTION (Earth) — Seeing + Leading;
+ *                               results appearing, body building, prep
+ *                               for harvest (Summer-Solstice equivalent)
+ *   Full Moon → Last Quarter  = ENRICHMENT (Air) — Harvesting + Celebrating;
+ *                               clarity at max, harvest visible, the
+ *                               cycle's CLOSING (Autumn-Equinox equivalent)
  *
- * Full Moon is at ~44% of synodic cycle; we shift progress so Full Moon = 0
- * for the holonic mapping.
+ * Prior versions placed Will at Full Moon (the harvest). That was wrong —
+ * the harvest is the OLD cycle CLOSING. The new wheel starts at Last
+ * Quarter (post-celebration), the way the planet's solar year starts at
+ * Winter Solstice (not Autumn Equinox). The holonic quadrant for each
+ * phase is now authored directly on MoonPhaseInfo.holonicQuadrant; this
+ * function just resolves the HolonicPhaseInfo for the current phase.
  */
 export function getLunarState(now: number): LunarState {
   const daysSince = (now - KNOWN_NEW_MOON_MS) / 86_400_000;
