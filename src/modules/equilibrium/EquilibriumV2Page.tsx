@@ -196,7 +196,6 @@ export const EquilibriumV2Page = () => {
 
         {/* ─── BOX 7: Day-of-Week Energy ─────────────────────────── */}
         <PremiumCard
-          id={SECTION_IDS.dayOfWeek}
           variant="glass"
           size="md"
           className="scroll-mt-24"
