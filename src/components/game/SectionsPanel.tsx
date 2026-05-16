@@ -617,14 +617,15 @@ const buildJourneySections = (
             id: "journey-mission-discovery",
             label: "8. Discover your mission",
             path: "/mission-discovery",
-            // Day 65 wave 8 (Sasha 2026-05-15): unlocked under the
-            // same gate as #7 (deeper-Top-Talent-view active). Mission
-            // Discovery is conceptually the NEXT step after the reveal,
-            // not the LAST step after UBB-completion — gating it behind
-            // 19-artifact creation buries it. Anyone who has activated
-            // their deeper profile can find their mission.
-            locked: !deepProfileActivated,
-            lockedHint: "Unlocks after you find your top talent.",
+            // Day 66 wave M+2 (Sasha 2026-05-16): gate REMOVED. Item now
+            // parallels QoL (#6) and Assets (#5) — open to any
+            // authenticated user, no deep-Top-Talent-view requirement.
+            // Sasha's framing: Mission Discovery shouldn't be gated
+            // behind paid/coupon when QoL and Assets aren't. UBB (#7)
+            // intentionally stays gated — that's the funnel-monogamy
+            // boundary, kept as-is. The route itself remains under
+            // RequireAuth + GameShellV2 (no MeGate wrapper) so
+            // unauth visitors still bounce to /auth.
             completed: !!journeyProgress["journey-mission-discovery"],
         },
     ];
