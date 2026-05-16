@@ -450,6 +450,7 @@ Sasha asked: "How do people solve for version history of these things? We're cre
 - [x] Logos (platform + modules)
 - [x] Daily use case (Learn/Meet/Build)
 - [x] Integrated product building workflow — roast enhancement
+- [x] **Match Interaction Mechanic — double-opt-in v1** (2026-05-16, Day 66) — the asymmetric Connect button is retired; `/matchmaking` now ships the full double-opt-in flow per `matchmaking_strategy.md` §8. Two new tables: `match_interests` (per-direction "I'd like to meet," UNIQUE(from,to), participant-RLS) and `match_intros` (mutual events, canonical pair ordering user_a_id < user_b_id, one row per intro fired). `MatchCard` gains three interaction states (default / interest-expressed / mutual) with ARIA live regions. Bilateral intro email (`send-mutual-intro-email`, Aurora register, both addresses in `to:`, reply-thread = action surface, no magic-link CTA, JWT-validated caller). Legacy `connections` table refactored out of `Matchmaking`, `Connections`, `TeamsSpace`, `delete-account` then dropped via Lovable SQL. 4 phases × 4 Roast Gates × Debug DoD 10/10. Tracker: `docs/specs/match-mechanic/match-mechanic_tracker.md`. Commits `f63c84b5` + `6eec3fe3` + `dcdc2f51` on `main`. The mechanic that produces the high-trust feedback events for the engine — the `match_intros` row, the artifact that distinguishes "match" from "introduction" — is now real in the database, not theoretical.
 
 ### Documentation & Intelligence
 - [x] Planetary OS Assembly v1.1 (4 transcripts integrated)
