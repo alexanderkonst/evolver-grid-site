@@ -469,7 +469,7 @@ The sidereal lunar cycle is 27.3 days — not 28, not 30. The Pattern of 27 (3³
 3D space IS the third power. The trinity applied to itself three times fills all three spatial dimensions. At 27, the descent through dimensions is complete.
 
 > *See [universal_ontology.md](../01-vision/universal_ontology.md) — §7 The Holon Cycle*
-> *See [equilibrium_v6_spec.md](../specs/equilibrium/equilibrium_v6_spec.md) — Moon Ring*
+> *See [equilibrium_v1.6_spec.md](../specs/equilibrium/equilibrium_v1.6_spec.md) — Moon Ring*
 
 ## The Concentric Domains — February 2026
 

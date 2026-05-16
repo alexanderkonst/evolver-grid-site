@@ -5,7 +5,7 @@
 > **v6 makes it useful.** A clock you can't read is art. A clock you set intentions on is a companion.
 
 **Started:** 2026-02-11
-**Previous versions:** [v1 spec](./equilibrium_product_spec.md) · [v2 spec](./equilibrium_v2_product_spec.md)
+**Previous versions:** [v1.1 spec](./equilibrium_v1.1_product_spec.md) · [v1.2 spec](./equilibrium_v1.2_product_spec.md)
 
 ---
 

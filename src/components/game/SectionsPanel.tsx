@@ -273,6 +273,10 @@ const SPACE_SECTIONS: SpaceSections = {
     build: {
         title: "BUILD",
         sections: [
+            // Equilibrium v2 ("Biologic Watch") — ungated, surfaces before UBB.
+            // Per Sasha 2026-05-15: BUILD chip visibility decouples from UBB's gate;
+            // Equilibrium entry is always visible and triggers auth on entry.
+            { id: "equilibrium-v2", label: "Equilibrium", path: "/build/equilibrium", badge: "v2" },
             // Day 64 wave 5 (Sasha 2026-05-07): label renamed
             // "Unique Business Builder" → "Automated Venture Builder."
             // Positioning is stronger: this is the venture-level builder,
