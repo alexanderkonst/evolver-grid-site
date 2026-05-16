@@ -1095,17 +1095,32 @@ const SectionsPanel = ({
                                     <span
                                         className="inline-flex items-center justify-center w-[22px] h-[22px] rounded-full text-[11px] font-semibold transition-all duration-200"
                                         style={{
+                                            // Day 67 (Sasha 2026-05-16, bug fix):
+                                            // completed pip dimmed aggressively so it
+                                            // reads "settled / quest done." Previously
+                                            // the pip stayed bright gold on completed
+                                            // rows, making the strikethrough look like
+                                            // a glitch instead of a state. Precedence:
+                                            // locked > active > completed > default.
                                             background: isLocked
                                                 ? "rgba(212, 175, 55, 0.14)"
                                                 : sectionActive && !hasSubSections
                                                     ? "linear-gradient(135deg, rgba(244, 212, 114, 0.55) 0%, rgba(212, 175, 55, 0.32) 100%)"
-                                                    : "linear-gradient(135deg, rgba(244, 212, 114, 0.34) 0%, rgba(212, 175, 55, 0.20) 100%)",
-                                            color: isLocked ? "rgba(244, 212, 114, 0.70)" : "#f4d472",
+                                                    : section.completed
+                                                        ? "linear-gradient(135deg, rgba(244, 212, 114, 0.10) 0%, rgba(212, 175, 55, 0.05) 100%)"
+                                                        : "linear-gradient(135deg, rgba(244, 212, 114, 0.34) 0%, rgba(212, 175, 55, 0.20) 100%)",
+                                            color: isLocked
+                                                ? "rgba(244, 212, 114, 0.70)"
+                                                : section.completed && !sectionActive
+                                                    ? "rgba(244, 212, 114, 0.50)"
+                                                    : "#f4d472",
                                             border: isLocked
                                                 ? "0.5px solid rgba(212, 175, 55, 0.40)"
                                                 : sectionActive && !hasSubSections
                                                     ? "0.5px solid rgba(212, 175, 55, 0.95)"
-                                                    : "0.5px solid rgba(212, 175, 55, 0.70)",
+                                                    : section.completed
+                                                        ? "0.5px solid rgba(212, 175, 55, 0.25)"
+                                                        : "0.5px solid rgba(212, 175, 55, 0.70)",
                                             // Day 51 night (Sasha 2026-04-25): pip digits switched
                                             // from Cormorant Garamond to DM Sans (same family used
                                             // for the Venture Growth Dashboard KPI numbers).
@@ -1120,8 +1135,12 @@ const SectionsPanel = ({
                                                 ? undefined
                                                 : sectionActive && !hasSubSections
                                                     ? "0 0 14px -2px rgba(244, 212, 114, 0.55), inset 0 0 8px -2px rgba(244, 212, 114, 0.35)"
-                                                    : "0 0 8px -2px rgba(244, 212, 114, 0.32), inset 0 0 6px -2px rgba(244, 212, 114, 0.22)",
-                                            textShadow: isLocked
+                                                    : section.completed
+                                                        // No halo on completed — pip should
+                                                        // sit quietly in the row, not glow.
+                                                        ? undefined
+                                                        : "0 0 8px -2px rgba(244, 212, 114, 0.32), inset 0 0 6px -2px rgba(244, 212, 114, 0.22)",
+                                            textShadow: isLocked || (section.completed && !sectionActive)
                                                 ? undefined
                                                 : "0 0 6px rgba(244, 212, 114, 0.35)",
                                         }}
@@ -1132,35 +1151,39 @@ const SectionsPanel = ({
                             </span>
                             {section.icon}
                             <span
-                                className="flex-1 text-[18px] leading-snug relative"
+                                className="flex-1 text-[18px] leading-snug"
                                 style={{
                                     fontFamily: "'Cormorant Garamond', serif",
                                     fontWeight: sectionActive && !isLocked ? 700 : 600,
                                     letterSpacing: "0.012em",
-                                    // Day 65 (Sasha 2026-05-15) + Day 66 wave M:
-                                    // accomplished items get a gold-tinted bar
-                                    // overlaid on the text via the
-                                    // .fytt-strikethrough span (positioned
-                                    // absolutely beneath this relative parent).
-                                    // The bar renders statically for items
-                                    // already completed at mount and animates
-                                    // in (draw-from-left) for items that flip
-                                    // false→true during the session. Text
-                                    // color drops to 70% on completed so the
-                                    // bar leads the read.
-                                    color: section.completed ? "rgba(255, 255, 255, 0.70)" : undefined,
+                                    // Day 67 (Sasha 2026-05-16, bug fix): completed
+                                    // rows use native text-decoration (per-line strike)
+                                    // instead of the .fytt-strikethrough overlay span.
+                                    // The overlay used `top: 55%` which sits BETWEEN
+                                    // the two lines of a wrapped label — Sasha:
+                                    // "if the text is in two lines, then it crosses
+                                    // in a weird way that doesn't look like a crossing."
+                                    // Text-decoration cleanly strikes each line on its
+                                    // own center, regardless of wrap. Color tuned to
+                                    // gold so the strike reads as decisive at 1.5px.
+                                    // Label color also pushed harder (was 0.70 → 0.40)
+                                    // so the row reads as "quest done" not "minor tint."
+                                    color: section.completed && !sectionActive
+                                        ? "rgba(255, 255, 255, 0.40)"
+                                        : undefined,
+                                    textDecorationLine: section.completed && !sectionActive
+                                        ? "line-through"
+                                        : undefined,
+                                    textDecorationColor: section.completed && !sectionActive
+                                        ? "rgba(244, 212, 114, 0.75)"
+                                        : undefined,
+                                    textDecorationThickness: section.completed && !sectionActive
+                                        ? "1.5px"
+                                        : undefined,
+                                    textUnderlineOffset: "auto",
                                 }}
                             >
                                 {sectionText}
-                                {section.completed && (
-                                    <span
-                                        className={cn(
-                                            "fytt-strikethrough",
-                                            animatingIds.has(section.id) && "fytt-strikethrough--animating",
-                                        )}
-                                        aria-hidden="true"
-                                    />
-                                )}
                             </span>
                             {section.badge && (
                                 <span
