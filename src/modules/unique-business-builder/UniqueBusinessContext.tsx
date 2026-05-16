@@ -225,9 +225,28 @@ export function UniqueBusinessProvider({ children }: { children: ReactNode }) {
     };
   }, []);
 
-  // Realtime: when a new row arrives for this user, refresh that artifact's state
+  // Realtime: when a new row arrives for this user, refresh that artifact's state.
+  // Day 66 (Sasha 2026-05-16) — Wave B2: ALSO refetch on tab focus +
+  // visibility change. The realtime channel is best-effort — if the
+  // websocket drops mid-edit (network blip, sleeping laptop, etc.)
+  // and the client misses a postgres_changes event, local state
+  // diverges from the DB until the user manually reloads. Refetching
+  // on focus/visibility makes the canvas self-heal: any time the tab
+  // becomes visible, we re-sync with the source of truth.
   useEffect(() => {
     if (!userId) return;
+
+    const refetch = async () => {
+      const { data: rows, error } = await (supabase as any)
+        .from("user_business_artifacts")
+        .select("*")
+        .eq("user_id", userId)
+        .in("artifact_key", ALL_ARTIFACT_KEYS as unknown as string[]);
+      if (!error) {
+        setArtifacts(buildArtifactStates((rows || []) as DbRow[]));
+      }
+    };
+
     const channel = (supabase as any)
       .channel(`uba:${userId}`)
       .on(
@@ -238,20 +257,25 @@ export function UniqueBusinessProvider({ children }: { children: ReactNode }) {
           table: "user_business_artifacts",
           filter: `user_id=eq.${userId}`,
         },
-        async () => {
-          // Reload on any change (simple + correct)
-          const { data: rows } = await (supabase as any)
-            .from("user_business_artifacts")
-            .select("*")
-            .eq("user_id", userId)
-            .in("artifact_key", ALL_ARTIFACT_KEYS as unknown as string[]);
-          setArtifacts(buildArtifactStates((rows || []) as DbRow[]));
-        }
+        refetch,
       )
       .subscribe();
 
+    // Focus / visibility refetch. Two listeners for full coverage:
+    //  - `focus` fires when the window regains focus (mac cmd-tab, etc.)
+    //  - `visibilitychange` fires when the tab is hidden→visible
+    //    (browser tab switches, mobile background→foreground)
+    const onFocus = () => { void refetch(); };
+    const onVisibility = () => {
+      if (document.visibilityState === "visible") void refetch();
+    };
+    window.addEventListener("focus", onFocus);
+    document.addEventListener("visibilitychange", onVisibility);
+
     return () => {
       (supabase as any).removeChannel(channel);
+      window.removeEventListener("focus", onFocus);
+      document.removeEventListener("visibilitychange", onVisibility);
     };
   }, [userId]);
 

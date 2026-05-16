@@ -93,15 +93,29 @@ const CommitFlow = ({ mission, missionContext, returnPath, onAddSubMissions }: C
             // different missions don't overwrite the original discovery
             // moment. Also stamps `mission_id` so the user's primary
             // mission is queryable directly from game_profiles.
+            //
+            // Day 66 (Sasha 2026-05-16) — Wave B3: surface a subtle
+            // confirmation toast ONLY on the first-discovery moment
+            // (rows affected > 0). Subsequent mission commits no-op the
+            // pointer write (filter matches zero rows) and stay silent
+            // — they don't deserve a "marked discovered" message
+            // because the user already passed that milestone.
             try {
-                await (supabase as any)
+                const { data: updatedRows } = await (supabase as any)
                     .from("game_profiles")
                     .update({
                         mission_discovered_at: new Date().toISOString(),
                         mission_id: mission.id,
                     })
                     .eq("user_id", user.id)
-                    .is("mission_discovered_at", null);
+                    .is("mission_discovered_at", null)
+                    .select("id");
+                if (Array.isArray(updatedRows) && updatedRows.length > 0) {
+                    toast({
+                        title: "Marked discovered in your profile",
+                        description: "Your JOURNEY now shows this step as complete.",
+                    });
+                }
             } catch (err) {
                 console.warn("[CommitFlow] mission_discovered_at update failed:", err);
             }
