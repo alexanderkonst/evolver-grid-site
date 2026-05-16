@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { InlineEditableText } from "./InlineEditableText";
+import { SectionSkeleton } from "./SectionSkeleton";
 
 interface MissionSectionProps {
   missionDisplay: string | null;
@@ -25,7 +26,11 @@ export const MissionSection = ({
 }: MissionSectionProps) => {
   const navigate = useNavigate();
 
-  if (!loading && !missionDisplay) {
+  if (loading) {
+    return <SectionSkeleton lines={2} />;
+  }
+
+  if (!missionDisplay) {
     return (
       <button
         type="button"
