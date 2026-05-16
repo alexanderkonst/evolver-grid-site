@@ -68,7 +68,7 @@ export const SmartGoalsSection = ({
 
   if (!workstreamTitle) {
     return (
-      <p className="mt-3 rounded-md border border-dashed border-[#0a1628]/10 px-4 py-6 text-center text-sm text-[#0a1628]/40">
+      <p className="mt-3 rounded-md border border-dashed border-[#0a1628]/10 px-4 py-6 text-center text-sm text-[#0a1628]/85">
         {/* Empty-state copy: TBD — Sasha to supply */}
         Open a workstream above to see its tasks.
       </p>
@@ -87,7 +87,7 @@ export const SmartGoalsSection = ({
 
   return (
     <div className="mt-2">
-      <p className="mb-2 px-1 text-xs uppercase tracking-wider text-[#0a1628]/40">
+      <p className="mb-2 px-1 text-xs uppercase tracking-wider text-[#0a1628]/85">
         {workstreamTitle}
       </p>
 
@@ -118,7 +118,7 @@ export const SmartGoalsSection = ({
       </DndContext>
 
       {atCap ? (
-        <p className="mt-3 px-2 text-xs italic text-[#0a1628]/55">
+        <p className="mt-3 px-2 text-xs italic text-[#0a1628]/90">
           group your tasks to avoid very high context switching costs
         </p>
       ) : (
@@ -127,7 +127,7 @@ export const SmartGoalsSection = ({
 
       {done.length > 0 && (
         <>
-          <div className="mt-4 mb-2 flex items-center gap-2 px-2 text-xs uppercase tracking-wider text-[#0a1628]/30">
+          <div className="mt-4 mb-2 flex items-center gap-2 px-2 text-xs uppercase tracking-wider text-[#0a1628]/95">
             <span>completed</span>
             <span className="flex-1 border-t border-[#0a1628]/10" />
           </div>
@@ -135,7 +135,7 @@ export const SmartGoalsSection = ({
             {done.map((t) => (
               <li
                 key={t.id}
-                className="flex items-center gap-3 rounded-lg bg-white/30 px-4 py-2.5 text-[#0a1628]/40 line-through"
+                className="flex items-center gap-3 rounded-lg bg-white/30 px-4 py-2.5 text-[#0a1628]/85 line-through"
               >
                 <Check size={14} className="text-emerald-500/70" />
                 <span className="flex-1">{t.text}</span>
@@ -193,7 +193,7 @@ const SortableTaskBar = ({
       >
         <Check
           size={14}
-          className="text-[#0a1628]/0 transition group-hover:text-[#0a1628]/40"
+          className="text-[#0a1628]/0 transition group-hover:text-[#0a1628]/85"
         />
       </button>
 
@@ -226,7 +226,7 @@ const SortableTaskBar = ({
         type="button"
         aria-label="Delete task"
         onClick={onDelete}
-        className="rounded p-2 text-[#0a1628]/30 opacity-0 transition hover:text-red-500 group-hover:opacity-100"
+        className="rounded p-2 text-[#0a1628]/95 opacity-0 transition hover:text-red-500 group-hover:opacity-100"
       >
         <Trash2 size={14} />
       </button>
@@ -234,7 +234,7 @@ const SortableTaskBar = ({
       <button
         type="button"
         aria-label="Drag to reorder"
-        className="cursor-grab touch-none p-2 mr-1 text-[#0a1628]/30 hover:text-[#0a1628]/60 active:cursor-grabbing"
+        className="cursor-grab touch-none p-2 mr-1 text-[#0a1628]/95 hover:text-[#0a1628]/90 active:cursor-grabbing"
         {...attributes}
         {...listeners}
       >
@@ -269,7 +269,7 @@ const AddTaskRow = ({
         type="button"
         disabled={disabled}
         onClick={() => setAdding(true)}
-        className="mt-2 flex w-full items-center justify-center gap-2 rounded-xl border border-dashed border-[#0a1628]/15 bg-white/20 py-2.5 text-sm text-[#0a1628]/45 transition hover:bg-white/50"
+        className="mt-2 flex w-full items-center justify-center gap-2 rounded-xl border border-dashed border-[#0a1628]/15 bg-white/20 py-2.5 text-sm text-[#0a1628]/85 transition hover:bg-white/50"
       >
         <Plus size={14} />
         add task
@@ -279,7 +279,7 @@ const AddTaskRow = ({
 
   return (
     <div className="mt-2 flex items-center gap-2 rounded-xl border border-[#0a1628]/20 bg-white/70 px-3 py-2">
-      <Plus size={14} className="shrink-0 text-[#0a1628]/40" />
+      <Plus size={14} className="shrink-0 text-[#0a1628]/85" />
       <input
         autoFocus
         type="text"
@@ -296,7 +296,7 @@ const AddTaskRow = ({
         }}
         onBlur={() => void commit()}
         placeholder="task description"
-        className="flex-1 bg-transparent text-base text-[#0a1628] outline-none placeholder:text-[#0a1628]/30"
+        className="flex-1 bg-transparent text-base text-[#0a1628] outline-none placeholder:text-[#0a1628]/95"
       />
     </div>
   );

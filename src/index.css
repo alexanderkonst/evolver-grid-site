@@ -1312,6 +1312,17 @@ All colors MUST be HSL.
    kept separate so the editorial dividers have their own tempo). */
 
 /* ──────────────────────────────────────────────────────────────────
+   Equilibrium v2 — Master Legibility Parameter at Strong (1.5×)
+   Per docs/03-playbooks/ui_playbook.md Part VIII: cards floating over
+   the Mux video background are variable-luminance — body text needs
+   the deep halo to stay legible across bright + dark patches of the
+   backdrop. Apply .eq-text-halo to any text that sits on glass.
+   ────────────────────────────────────────────────────────────── */
+.eq-text-halo {
+  text-shadow: var(--skin-text-halo-deep);
+}
+
+/* ──────────────────────────────────────────────────────────────────
    Equilibrium v2 — Synthesis card "stale" pulse-breath
    Gated to fire only when last_synthesis_at > 4 hours old (see
    SynthesisCard.tsx). prefers-reduced-motion strips it cleanly.

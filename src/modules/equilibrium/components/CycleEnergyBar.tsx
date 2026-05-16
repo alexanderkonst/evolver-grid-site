@@ -155,11 +155,11 @@ export const CycleEnergyBar = ({
 
 const DimPill = ({ children }: { children: ReactNode }) => (
   <div
-    className="rounded-full px-6 py-2 text-center text-sm text-[#0a1628]/40"
+    className="eq-text-halo rounded-full px-6 py-2 text-center text-sm font-medium text-[#0a1628]/95"
     style={{
-      background: "rgba(255,255,255,0.45)",
+      background: "rgba(255,255,255,0.65)",
       backdropFilter: "blur(6px)",
-      border: "1px solid rgba(255,255,255,0.4)",
+      border: "1px solid rgba(255,255,255,0.5)",
     }}
   >
     {children}
@@ -168,10 +168,10 @@ const DimPill = ({ children }: { children: ReactNode }) => (
 
 const ActivePill = ({ children }: { children: ReactNode }) => (
   <div
-    className="rounded-full px-6 py-3 text-center text-base font-medium text-[#0a1628]"
+    className="eq-text-halo rounded-full px-6 py-3 text-center text-base font-semibold text-[#0a1628]"
     style={{
       background:
-        "linear-gradient(135deg, rgba(252,231,197,0.85) 0%, rgba(212,212,255,0.85) 50%, rgba(224,197,252,0.85) 100%)",
+        "linear-gradient(135deg, rgba(252,231,197,0.92) 0%, rgba(212,212,255,0.92) 50%, rgba(224,197,252,0.92) 100%)",
       backdropFilter: "blur(8px)",
       border: "1px solid rgba(255,255,255,0.7)",
       boxShadow:

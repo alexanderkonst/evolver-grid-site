@@ -95,7 +95,7 @@ export const WorkstreamsSection = ({
       </DndContext>
 
       {atCap ? (
-        <p className="mt-3 px-2 text-xs italic text-[#0a1628]/55">
+        <p className="mt-3 px-2 text-xs italic text-[#0a1628]/90">
           group your workstreams to avoid very high context switching costs
         </p>
       ) : (
@@ -147,7 +147,7 @@ const SortableWorkstreamChip = ({
       <button
         type="button"
         aria-label="Drag to reorder"
-        className="cursor-grab touch-none p-2 text-[#0a1628]/30 hover:text-[#0a1628]/60 active:cursor-grabbing"
+        className="cursor-grab touch-none p-2 text-[#0a1628]/95 hover:text-[#0a1628]/90 active:cursor-grabbing"
         {...attributes}
         {...listeners}
       >
@@ -157,7 +157,7 @@ const SortableWorkstreamChip = ({
       <button
         type="button"
         onClick={onSelect}
-        className="flex-shrink-0 select-none font-serif text-base text-[#0a1628]/50"
+        className="flex-shrink-0 select-none font-serif text-base text-[#0a1628]/90"
       >
         {index + 1}.
       </button>
@@ -176,7 +176,7 @@ const SortableWorkstreamChip = ({
         type="button"
         aria-label="Archive workstream"
         onClick={onDelete}
-        className="rounded p-2 text-[#0a1628]/30 opacity-0 transition hover:text-red-500 group-hover:opacity-100"
+        className="rounded p-2 text-[#0a1628]/95 opacity-0 transition hover:text-red-500 group-hover:opacity-100"
       >
         <Trash2 size={14} />
       </button>
@@ -209,7 +209,7 @@ const AddWorkstreamRow = ({
         type="button"
         disabled={disabled}
         onClick={() => setAdding(true)}
-        className="mt-2 flex w-full items-center justify-center gap-2 rounded-xl border border-dashed border-[#0a1628]/15 bg-white/30 py-2.5 text-sm text-[#0a1628]/50 transition hover:bg-white/50"
+        className="mt-2 flex w-full items-center justify-center gap-2 rounded-xl border border-dashed border-[#0a1628]/15 bg-white/30 py-2.5 text-sm text-[#0a1628]/90 transition hover:bg-white/50"
       >
         <Plus size={14} />
         add workstream
@@ -219,7 +219,7 @@ const AddWorkstreamRow = ({
 
   return (
     <div className="mt-2 flex items-center gap-2 rounded-xl border border-[#0a1628]/20 bg-white/70 px-3 py-2">
-      <Plus size={14} className="shrink-0 text-[#0a1628]/40" />
+      <Plus size={14} className="shrink-0 text-[#0a1628]/85" />
       <input
         autoFocus
         type="text"
@@ -236,7 +236,7 @@ const AddWorkstreamRow = ({
         }}
         onBlur={() => void commit()}
         placeholder="workstream name"
-        className="flex-1 bg-transparent text-base text-[#0a1628] outline-none placeholder:text-[#0a1628]/30"
+        className="flex-1 bg-transparent text-base text-[#0a1628] outline-none placeholder:text-[#0a1628]/95"
       />
     </div>
   );

@@ -32,7 +32,7 @@ export const MissionSection = ({
         onClick={() =>
           navigate("/mission-discovery?returnTo=/build/equilibrium")
         }
-        className="mt-2 w-full rounded-md border border-dashed border-[#0a1628]/15 px-4 py-6 text-left text-sm text-[#0a1628]/60 transition hover:bg-white/50"
+        className="mt-2 w-full rounded-md border border-dashed border-[#0a1628]/15 px-4 py-6 text-left text-sm text-[#0a1628]/90 transition hover:bg-white/50"
       >
         {/* Empty-state copy: TBD — Sasha to supply */}
         Set your mission →
