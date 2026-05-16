@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 
 interface BirthdayPromptProps {
-  /** Currently-known BD from game_profiles. When null, the prompt renders. */
+  /** Currently-known BD from equilibrium_state. When null, the prompt renders. */
   birthday: string | null;
   /** True while initial fetch is in flight — prevents flashing the prompt before we know. */
   loading: boolean;
@@ -21,7 +21,15 @@ interface BirthdayPromptProps {
  * /equilibrium/ static app, not in the React shell.
  *
  * Shows when: authed user + birthday is null + initial fetch resolved.
- * Persists to game_profiles.birthday on save (YYYY-MM-DD).
+ *
+ * Persists to **`equilibrium_state.birthday`** on save (YYYY-MM-DD).
+ *
+ * History: originally targeted `game_profiles.birthday` — but that column
+ * doesn't exist (only `equilibrium_users.birthday` exists on the v1.x
+ * Telegram-bot table). Moved to `equilibrium_state` 2026-05-16 since
+ * birthday is v2-specific user state and that's where the v2 state lives.
+ * Requires the migration in
+ *   `supabase/migrations/20260516000000_add_birthday_to_equilibrium_state.sql`.
  */
 export const BirthdayPrompt = ({
   birthday,
@@ -49,12 +57,21 @@ export const BirthdayPrompt = ({
     if (!value || saving) return;
     setSaving(true);
     setError(null);
-    const { error: err } = await supabase
-      .from("game_profiles")
-      .update({ birthday: value })
-      .eq("user_id", userId);
+    // UPSERT — equilibrium_state may not yet have a row for this user
+    // (it's lazily created the first time any v2 surface writes). Using
+    // `eqAny` cast because the generated types haven't been regenerated
+    // since the 2026-05-16 migration that added the column.
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const eqAny = supabase as any;
+    const { error: err } = await eqAny
+      .from("equilibrium_state")
+      .upsert(
+        { user_id: userId, birthday: value, updated_at: new Date().toISOString() },
+        { onConflict: "user_id" },
+      );
     setSaving(false);
     if (err) {
+      console.error("BirthdayPrompt save error:", err);
       setError("Couldn't save — try again.");
       return;
     }

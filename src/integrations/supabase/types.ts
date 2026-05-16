@@ -498,6 +498,7 @@ export type Database = {
       }
       equilibrium_state: {
         Row: {
+          birthday: string | null
           last_synthesis_at: string | null
           last_synthesis_text: string | null
           mission_override_text: string | null
@@ -507,6 +508,7 @@ export type Database = {
           user_id: string
         }
         Insert: {
+          birthday?: string | null
           last_synthesis_at?: string | null
           last_synthesis_text?: string | null
           mission_override_text?: string | null
@@ -516,6 +518,7 @@ export type Database = {
           user_id: string
         }
         Update: {
+          birthday?: string | null
           last_synthesis_at?: string | null
           last_synthesis_text?: string | null
           mission_override_text?: string | null

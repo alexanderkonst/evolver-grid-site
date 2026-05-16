@@ -150,9 +150,14 @@ export function useEquilibriumV2(): EquilibriumV2Data {
         .order("created_at", { ascending: false })
         .limit(1)
         .maybeSingle(),
+      // NOTE: `birthday` lives on `equilibrium_state` (v2-specific user
+      // state), NOT on `game_profiles`. Previously this select asked for
+      // `game_profiles.birthday` which doesn't exist — the SELECT errored
+      // silently, birthday stayed null forever, BD prompt always appeared
+      // and Update always failed ("Couldn't save"). Fixed 2026-05-16.
       supabase
         .from("game_profiles")
-        .select("id, birthday, last_zog_snapshot_id")
+        .select("id, last_zog_snapshot_id")
         .eq("user_id", user.id)
         .maybeSingle(),
       eqAny.from("equilibrium_strategies").select("*").eq("user_id", user.id),
@@ -160,7 +165,10 @@ export function useEquilibriumV2(): EquilibriumV2Data {
       eqAny.from("equilibrium_focus").select("*").eq("user_id", user.id),
     ]);
 
-    setState((stateRes.data as EquilibriumState | null) ?? null);
+    const stateRow = (stateRes.data as
+      | (EquilibriumState & { birthday?: string | null })
+      | null) ?? null;
+    setState(stateRow);
 
     if (participantRes.data?.mission_id) {
       const mission = MISSIONS.find((m) => m.id === participantRes.data!.mission_id);
@@ -170,9 +178,11 @@ export function useEquilibriumV2(): EquilibriumV2Data {
     }
 
     const profile = profileRes.data as
-      | { id?: string; birthday?: string | null; last_zog_snapshot_id?: string | null }
+      | { id?: string; last_zog_snapshot_id?: string | null }
       | null;
-    setBirthday(profile?.birthday ?? null);
+    // Birthday is sourced from equilibrium_state (v2 user state), not from
+    // game_profiles. Schema migration: 20260516000000_add_birthday_to_equilibrium_state.sql
+    setBirthday(stateRow?.birthday ?? null);
 
     // Top Talent — try last_zog_snapshot_id first; fall back to latest snapshot
     // by created_at (some users have ZoG done but the pointer was never set).
