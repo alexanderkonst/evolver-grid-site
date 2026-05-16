@@ -674,7 +674,12 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
     // Hide-don't-lock (Sasha, 2026-04-21): a locked space just clutters the
     // rail. Anywhere in the app, if a space isn't unlocked, hide it entirely —
     // it reveals itself when the user earns it. JOURNEY and ME are always on.
-    const GATED_SPACES = ["next-move", "learn", "meet", "collaborate", "build", "buysell"] as const;
+    //
+    // BUILD exception (Sasha, 2026-05-15): BUILD chip surfaces immediately
+    // because Equilibrium (Biologic Watch) is now a daily-companion entry
+    // point inside BUILD that doesn't require funnel progression. UBB itself
+    // retains its existing gate via MeGate at the /ubb route level.
+    const GATED_SPACES = ["next-move", "learn", "meet", "collaborate", "buysell"] as const;
     const hiddenSpaces: string[] = gatesReady
         ? GATED_SPACES.filter((id) => unlockStatus[id] === false)
         : // During the profile + entitlement fetch, default to hiding gated

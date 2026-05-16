@@ -118,7 +118,8 @@ Concept  Prototype  PoC   Alpha   MVP  Commercial
 | **System** | Dashboard | 0.5 | PoC | `/dashboard` |
 | **Special** | Onboarding | 0.7 | Alpha | `/start` |
 | **Special** | Tour | 0.5 | PoC | (within onboarding) |
-| **Standalone** | Equilibrium (Web) | 0.9 | MVP | `/equilibrium` |
+| **BUILD** | "Equilibrium" Biologic Watch (v2) | 1.0 | Implementation Complete | `/build/equilibrium` |
+| **Standalone** | Equilibrium v1.x Clock (Web) | 0.9 | MVP, parallel-running | `/equilibrium` |
 | **Standalone** | Equilibrium (Bot) | 0.9 | MVP | Telegram |
 | **Standalone** | FMF Session | 0.5 | PoC | `/fmf` |
 | **Standalone** | Art | 0.5 | PoC | `/art` |
@@ -631,8 +632,8 @@ Concept  Prototype  PoC   Alpha   MVP  Commercial
 | Dependencies | None (standalone, future Evolver integration) |
 | Tech | Vite + TypeScript, Vanilla CSS, localStorage, no backend |
 | Source | [Holonic Cycles Synthesis](file:///Users/alexanderkonst/evolver-grid-site/docs/01-vision/holonic_cycles.md) |
-| Spec | [Product Spec](file:///Users/alexanderkonst/evolver-grid-site/docs/specs/equilibrium/equilibrium_product_spec.md) |
-| Tracker | [Progress Tracker](file:///Users/alexanderkonst/evolver-grid-site/docs/specs/equilibrium/equilibrium_tracker.md) |
+| Spec | [Product Spec](file:///Users/alexanderkonst/evolver-grid-site/docs/specs/equilibrium/equilibrium_v1.1_product_spec.md) |
+| Tracker | [Progress Tracker](file:///Users/alexanderkonst/evolver-grid-site/docs/specs/equilibrium/equilibrium_v1.1_tracker.md) |
 | Code | `equilibrium/` |
 
 > **Essence:** Replaces mechanical clock with biological clock. Your breath is the clock.

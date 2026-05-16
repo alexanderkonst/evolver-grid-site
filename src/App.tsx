@@ -179,6 +179,7 @@ import ArtPortfolio from "./pages/art/ArtPortfolio";
 import Settings from "./pages/Settings";
 import Transcriber from "./pages/Transcriber";
 import EquilibriumPage from "./pages/EquilibriumPage";
+import { EquilibriumV2Page } from "./modules/equilibrium";
 import ArtPage from "./pages/game/ArtPiecePage";
 import FounderMarketFit from "./pages/FounderMarketFit";
 import TheOriginalsPage from "./pages/TheOriginalsPage";
@@ -652,8 +653,12 @@ const App = () => (
                   </Route>
                   {/* Tools */}
                   <Route path="/transcriber" element={<RequireAuth><Transcriber /></RequireAuth>} />
-                  {/* Equilibrium — Standalone Living Clock */}
+                  {/* Equilibrium — Standalone Living Clock (v1.x — Vite app) */}
                   <Route path="/equilibrium" element={<RequireAuth><EquilibriumPage /></RequireAuth>} />
+                  {/* Equilibrium v2 — Biologic Watch (platform-resident, BUILD space) */}
+                  <Route path="/build/equilibrium" element={<MeGate><GameShellV2 hideLogo><EquilibriumV2Page /></GameShellV2></MeGate>} />
+                  {/* TEMP: unguarded preview route for visual verification — REMOVE or convert to auth-gated after Sasha sign-off */}
+                  <Route path="/preview/equilibrium-v2" element={<GameShellV2 hideLogo><EquilibriumV2Page /></GameShellV2>} />
                   {/* Founder-Market Fit Landing Page */}
                   <Route path="/founder-market-fit" element={<RequireAuth><FounderMarketFit /></RequireAuth>} />
                   <Route path="/fmf" element={<RequireAuth><FounderMarketFit /></RequireAuth>} />

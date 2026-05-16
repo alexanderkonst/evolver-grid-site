@@ -6,7 +6,7 @@
 
 **Started:** 2026-02-11
 **Source:** [Holonic Cycles Synthesis](file:///Users/alexanderkonst/evolver-grid-site/docs/01-vision/holonic_cycles.md)
-**v1 Spec:** [equilibrium_product_spec.md](./equilibrium_product_spec.md)
+**v1.1 Spec:** [equilibrium_v1.1_product_spec.md](./equilibrium_v1.1_product_spec.md)
 
 ---
 

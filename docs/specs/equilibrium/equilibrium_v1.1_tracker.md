@@ -2,7 +2,7 @@
 
 **Started:** 2026-02-10 16:30
 **Status:** ✅ ALL PHASES COMPLETE
-**Spec:** [equilibrium_product_spec.md](./equilibrium_product_spec.md)
+**Spec:** [equilibrium_v1.1_product_spec.md](./equilibrium_v1.1_product_spec.md)
 
 ---
 
@@ -141,7 +141,7 @@
 
 ## OUTPUT
 
-- [x] User Journey (spec) — `equilibrium_product_spec.md`
+- [x] User Journey (spec) — `equilibrium_v1.1_product_spec.md`
 - [x] UX/UI (components) — `style.css`, `clock.ts`, `guidance.ts`
 - [x] Software Architecture (routes, data) — `cycles.ts`, `main.ts`, localStorage
 - [x] Working Code (verified) — TypeScript clean, browser tested
