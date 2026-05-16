@@ -214,10 +214,19 @@ export const saveAppleseed = async (
     // Authenticated user - save to database
     const profileId = await getProfileId();
     if (!profileId) {
-      // Profile not found - fallback to localStorage
-      console.warn("[saveToDatabase] Profile not found for authenticated user, falling back to localStorage");
+      // Day 66 (Sasha 2026-05-16) — Wave A1 fix. Was: silently fall back
+      // to localStorage and return success=true. Authed users seeing
+      // "saved" toast while DB was empty was the smoking gun behind the
+      // "two different appleseeds in two tabs" class of bugs. Now we
+      // still buffer to localStorage (defensive recovery in case the
+      // user retries), but return success=false with a specific error
+      // so the caller's catch surfaces a destructive toast.
+      console.warn("[saveToDatabase] Profile not found for authenticated user");
       saveAppleseedToLocalStorage(appleseed, aiResponseRaw);
-      return { success: true };
+      return {
+        success: false,
+        error: "Profile not found — your data is buffered locally; please retry.",
+      };
     }
 
     const snapshot = await getOrCreateSnapshot(profileId);
@@ -238,8 +247,13 @@ export const saveAppleseed = async (
 
     if (error) throw error;
 
-    // Update game_profile to point to this snapshot
-    await supabase
+    // Day 66 (Sasha 2026-05-16) — Wave A2 fix. Pointer UPDATE now captures
+    // its error and throws — was silently swallowed (the Supabase client
+    // resolves with `{ data, error }`, doesn't throw on its own). Before
+    // this, a failed pointer write left the snapshot row in place but
+    // `last_zog_snapshot_id` null, and the user saw "saved" — exactly the
+    // same class of bug we fixed in the QoL save flow in wave 8.
+    const { error: pointerError } = await supabase
       .from("game_profiles")
       .update({
         last_zog_snapshot_id: snapshot.id,
@@ -248,6 +262,7 @@ export const saveAppleseed = async (
         updated_at: new Date().toISOString(),
       })
       .eq("id", profileId);
+    if (pointerError) throw pointerError;
 
     let xpAwarded = 0;
     let firstTimeBonus = 0;
@@ -300,10 +315,15 @@ export const saveExcalibur = async (
 
     const profileId = await getProfileId();
     if (!profileId) {
-      // Profile not found - fallback to localStorage
-      console.warn("[saveToDatabase] Profile not found for authenticated user, falling back to localStorage for Excalibur");
+      // Day 66 (Sasha 2026-05-16) — same fix as saveAppleseed. Buffer to
+      // localStorage but return success=false so the caller surfaces a
+      // destructive toast instead of pretending all is well.
+      console.warn("[saveToDatabase] Profile not found for authenticated user (Excalibur)");
       saveExcaliburToLocalStorage(excalibur);
-      return { success: true };
+      return {
+        success: false,
+        error: "Profile not found — your data is buffered locally; please retry.",
+      };
     }
 
     // Get latest snapshot
@@ -331,8 +351,8 @@ export const saveExcalibur = async (
 
       if (error) throw error;
 
-      // Update game_profile
-      await supabase
+      // Day 66 (Sasha 2026-05-16) — capture pointer-write error.
+      const { error: pointerError } = await supabase
         .from("game_profiles")
         .update({
           onboarding_stage: "offer_complete",
@@ -340,6 +360,7 @@ export const saveExcalibur = async (
           updated_at: new Date().toISOString(),
         })
         .eq("id", profileId);
+      if (pointerError) throw pointerError;
 
       // Day 62 (Sasha 2026-05-05): cache invalidation. See top-of-
       // file import comment for the full bug story.
@@ -359,8 +380,10 @@ export const saveExcalibur = async (
 
     if (error) throw error;
 
-    // Update game_profile with onboarding stage
-    await supabase
+    // Day 66 (Sasha 2026-05-16) — capture pointer-write error so a failed
+    // game_profiles update raises the destructive toast instead of being
+    // silently swallowed by the .update() resolution.
+    const { error: pointerError } = await supabase
       .from("game_profiles")
       .update({
         onboarding_stage: "offer_complete",
@@ -368,6 +391,7 @@ export const saveExcalibur = async (
         updated_at: new Date().toISOString(),
       })
       .eq("id", profileId);
+    if (pointerError) throw pointerError;
 
     let xpAwarded = 0;
     let firstTimeBonus = 0;
@@ -388,11 +412,21 @@ export const saveExcalibur = async (
 
     return { success: true, xpAwarded, firstTimeBonus };
   } catch (err) {
+    // Day 66 (Sasha 2026-05-16) — Wave A1 + A3 fix. Was: silently fall
+    // back to localStorage and return success=true ("so user doesn't
+    // see error"). That comment was the bug — it hid every DB failure
+    // (RLS denial, network drop, schema mismatch, pointer-write
+    // error) from the user. They'd see the saved toast, navigate, and
+    // on next device sign-in find their Excalibur gone. Now: still
+    // buffer to localStorage as a defensive recovery (so the data
+    // isn't lost in the user's session), but return success=false
+    // with the actual error so the caller raises a destructive toast.
     console.error("[saveToDatabase] saveExcalibur error:", err);
-    // Fallback to localStorage on any error
     saveExcaliburToLocalStorage(excalibur);
-    console.log("[saveToDatabase] Fallback to localStorage after error");
-    return { success: true }; // Return success so user doesn't see error
+    return {
+      success: false,
+      error: err instanceof Error ? err.message : "Failed to save Excalibur",
+    };
   }
 };
 

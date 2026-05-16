@@ -365,7 +365,15 @@ ${snapshotText}`;
           const newXpTotal = profileData.xp_total + 100;
           const newLevel = Math.floor(newXpTotal / 100) + 1;
 
-          await supabase
+          // Day 66 (Sasha 2026-05-16) — Wave A4 fix. Pointer UPDATE
+          // now captures the error and throws. Previously: silently
+          // swallowed (Supabase client resolves with `{ error }` but
+          // doesn't throw on its own). A failed pointer write left
+          // the snapshot row in place but `last_zog_snapshot_id`
+          // null — the user saw "Top Talent saved" and on next-device
+          // sign-in the deeper view was empty. Same bug class as the
+          // saveToDatabase.ts and QoL Day 65 fixes.
+          const { error: pointerError } = await supabase
             .from('game_profiles')
             .update({
               last_zog_snapshot_id: snapshotData.id,
@@ -376,6 +384,7 @@ ${snapshotText}`;
               updated_at: new Date().toISOString(),
             })
             .eq('id', profileId);
+          if (pointerError) throw pointerError;
 
           await supabase
             .from('zog_snapshots')
@@ -390,7 +399,10 @@ ${snapshotText}`;
           // header/profile UI instead of as an interruptive toast.
         }
       } else {
-        await supabase
+        // Day 66 (Sasha 2026-05-16) — Wave A4: pointer error captured
+        // (was silently swallowed). Same fix as the XP-path branch
+        // above. See that comment for the full rationale.
+        const { error: pointerError } = await supabase
           .from('game_profiles')
           .update({
             last_zog_snapshot_id: snapshotData.id,
@@ -399,6 +411,7 @@ ${snapshotText}`;
             updated_at: new Date().toISOString(),
           })
           .eq('id', profileId);
+        if (pointerError) throw pointerError;
       }
 
       toast.success("Your Top Talent has been saved!");

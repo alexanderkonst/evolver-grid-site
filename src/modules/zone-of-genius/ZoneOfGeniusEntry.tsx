@@ -319,17 +319,39 @@ const ZoneOfGeniusEntry = () => {
         return () => subscription.unsubscribe();
     }, []);
 
-    // Auto-save appleseed for auth users (silent)
+    // Auto-save appleseed for auth users (silent on success, loud on failure)
+    // Day 66 (Sasha 2026-05-16) — Wave A3 fix. Previously this ignored the
+    // result entirely and called setIsSaved(true) unconditionally — even
+    // when saveAppleseed returned success=false (e.g., RLS denial, pointer
+    // write failure, missing profile). Combined with the silent localStorage
+    // fallback in saveToDatabase.ts, that meant the user saw "saved" and
+    // navigated away while the DB was actually empty. Now: check
+    // result.success; on failure, raise the destructive toast so the user
+    // knows to retry. The await also catches thrown errors as before.
     useEffect(() => {
         if (step === "appleseed-result" && appleseed && !isGuest && !hasSavedAppleseed.current) {
             hasSavedAppleseed.current = true;
             (async () => {
                 try {
-                    await saveAppleseed(appleseed, aiResponse);
-                    setIsSaved(true);
-                    console.log("[ZoneOfGeniusEntry] Auto-saved appleseed for auth user");
+                    const result = await saveAppleseed(appleseed, aiResponse);
+                    if (result.success) {
+                        setIsSaved(true);
+                        console.log("[ZoneOfGeniusEntry] Auto-saved appleseed for auth user");
+                    } else {
+                        console.error("[ZoneOfGeniusEntry] Auto-save returned failure:", result.error);
+                        toast({
+                            title: "Save Failed",
+                            description: result.error || "Your Top Talent couldn't be saved. Tap Save to retry.",
+                            variant: "destructive",
+                        });
+                    }
                 } catch (err) {
-                    console.error("[ZoneOfGeniusEntry] Auto-save failed:", err);
+                    console.error("[ZoneOfGeniusEntry] Auto-save threw:", err);
+                    toast({
+                        title: "Save Failed",
+                        description: err instanceof Error ? err.message : "Tap Save to retry.",
+                        variant: "destructive",
+                    });
                 }
             })();
         }
