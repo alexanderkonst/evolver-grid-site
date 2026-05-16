@@ -83,7 +83,6 @@ export const EquilibriumV2Page = () => {
       <div className="flex flex-col gap-6">
         {/* ─── BOX 1: Synthesis ──────────────────────────────────── */}
         <PremiumCard
-          id={SECTION_IDS.synthesis}
           variant="glass-strong"
           size="md"
           className="scroll-mt-24"
@@ -103,7 +102,6 @@ export const EquilibriumV2Page = () => {
 
         {/* ─── BOX 2: Mission ────────────────────────────────────── */}
         <PremiumCard
-          id={SECTION_IDS.mission}
           variant="glass"
           size="md"
           className="scroll-mt-24"
@@ -118,7 +116,6 @@ export const EquilibriumV2Page = () => {
 
         {/* ─── BOX 3: Role ───────────────────────────────────────── */}
         <PremiumCard
-          id={SECTION_IDS.role}
           variant="glass"
           size="md"
           className="scroll-mt-24"
@@ -133,7 +130,6 @@ export const EquilibriumV2Page = () => {
 
         {/* ─── BOX 4: Solar Energy ───────────────────────────────── */}
         <PremiumCard
-          id={SECTION_IDS.solar}
           variant="glass"
           size="md"
           className="scroll-mt-24"
@@ -157,7 +153,6 @@ export const EquilibriumV2Page = () => {
 
         {/* ─── BOX 5: Zodiac Energy ──────────────────────────────── */}
         <PremiumCard
-          id={SECTION_IDS.zodiac}
           variant="glass"
           size="md"
           className="scroll-mt-24"
@@ -177,7 +172,6 @@ export const EquilibriumV2Page = () => {
 
         {/* ─── BOX 6: Lunar Energy + Moon Focus ──────────────────── */}
         <PremiumCard
-          id={SECTION_IDS.lunar}
           variant="glass"
           size="md"
           className="scroll-mt-24"
