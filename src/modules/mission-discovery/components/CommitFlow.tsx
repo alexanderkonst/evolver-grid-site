@@ -6,6 +6,13 @@ import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import type { Mission } from "@/modules/mission-discovery/types";
 
+// Day 65 wave 9 (Sasha 2026-05-15): editorial-register tokens
+// mirroring ZoneOfGeniusOverview / QoL Results per ui_playbook.md.
+const INK = "#0a1628";
+const INK_BODY = "rgba(26,30,58,0.78)";
+const HALO_SOFT =
+    "0 0 22px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.8), 0 2px 12px rgba(26,30,58,0.15)";
+
 type CommitStep = "celebration" | "connect" | "notifications" | "submissions";
 
 interface CommitFlowProps {
@@ -142,9 +149,30 @@ const CommitFlow = ({ mission, missionContext, returnPath, onAddSubMissions }: C
                     <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-emerald-500 mb-6 animate-pulse">
                         <PartyPopper className="w-10 h-10 text-white" />
                     </div>
-                    <h2 className="text-3xl font-bold text-foreground mb-3">You committed to this mission!</h2>
+                    {/* Day 65 wave 9: editorial register on the celebration
+                        headline — Cormorant Garamond hero + Source Serif
+                        body, matching ZoneOfGeniusOverview. */}
+                    <h2
+                        className="leading-[1.15] tracking-[-0.01em] mb-3"
+                        style={{
+                            fontFamily: "'Cormorant Garamond', serif",
+                            fontWeight: 700,
+                            fontSize: "clamp(1.75rem, 4.5vw, 2.25rem)",
+                            color: INK,
+                            textShadow: HALO_SOFT,
+                        }}
+                    >
+                        You committed to this mission!
+                    </h2>
                     <p className="text-xl text-emerald-600 font-medium mb-2">{mission.title}</p>
-                    <p className="text-muted-foreground max-w-md mx-auto mb-8">
+                    <p
+                        className="max-w-md mx-auto mb-8 italic leading-relaxed"
+                        style={{
+                            fontFamily: "'Source Serif 4', Georgia, serif",
+                            fontWeight: 300,
+                            color: INK_BODY,
+                        }}
+                    >
                         {mission.statement}
                     </p>
 
