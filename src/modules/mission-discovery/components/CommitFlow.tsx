@@ -4,6 +4,7 @@ import { Users, Bell, Layers, ArrowRight, PartyPopper } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
+import { withRetry } from "@/lib/withRetry";
 import type { Mission } from "@/modules/mission-discovery/types";
 
 // Day 65 wave 9 (Sasha 2026-05-15): editorial-register tokens
@@ -68,20 +69,25 @@ const CommitFlow = ({ mission, missionContext, returnPath, onAddSubMissions }: C
                 return;
             }
 
-            const { error: updateError } = await supabase
-                .from("mission_participants")
-                .update({
-                    share_consent: shareConsent,
-                    wants_to_lead: wantsToLead,
-                    wants_to_integrate: wantsToIntegrate,
-                    notify_level: wantsNotifications ? notifyLevel : null,
-                    email_frequency: wantsNotifications ? 'weekly' : null,
-                })
-                .eq("user_id", user.id)
-                .eq("mission_id", mission.id);
+            // Day 66 wave C2 (Sasha 2026-05-16): withRetry wrap so a
+            // transient blip on the participant update doesn't leave
+            // the user's preferences un-persisted.
+            const { error: updateError } = await withRetry(() =>
+                supabase
+                    .from("mission_participants")
+                    .update({
+                        share_consent: shareConsent,
+                        wants_to_lead: wantsToLead,
+                        wants_to_integrate: wantsToIntegrate,
+                        notify_level: wantsNotifications ? notifyLevel : null,
+                        email_frequency: wantsNotifications ? 'weekly' : null,
+                    })
+                    .eq("user_id", user.id)
+                    .eq("mission_id", mission.id),
+            );
 
             if (updateError) {
-                console.warn("[CommitFlow] mission_participants update failed:", updateError.message);
+                console.warn("[CommitFlow] mission_participants update failed:", (updateError as any)?.message);
             }
 
             // Day 65 wave 8 (Sasha 2026-05-15): mark the JOURNEY item #8
