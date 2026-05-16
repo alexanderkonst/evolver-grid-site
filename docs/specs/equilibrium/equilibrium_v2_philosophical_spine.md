@@ -327,112 +327,141 @@ time.
 
 ---
 
-## 10 · Sasha's Question — "What is the planet's solar birthday?"
+## 10 · The Solar Holonic Quarters
 
-Sasha asked (2026-05-16): if a person is born early January (Capricorn,
-Northern Hemisphere), they're born in winter — which is "hibernation"
-externally — but their personal energy is at its highest. What's the
-*equivalent of one's birthday* for the planet's solar cycle? Winter
-solstice? Spring equinox? Summer? Fall?
+Sasha 2026-05-16 (clarification, round 2): *"The deepest cycle that
+exists is the Holonic cycle. Everything follows that. The Sun is not an
+exception. Nothing in this universe is an exception, because the entire
+universe has that pattern. What are the first, second, third, and fourth
+quarters of the solar cycle where the wheel starts after the potential
+has been harvested as it ripened?"*
 
-### Short answer
+That reframes the question correctly. Earlier draft of this section
+hedged between Winter Solstice (rebirth) and Spring Equinox
+(astrological year start) — but the holonic logic gives one answer.
 
-Most ancient traditions had **two different answers**, ~3 months apart,
-mapping to conception vs. birth:
+### Locked mapping (Northern Hemisphere)
 
-- **Winter Solstice (~Dec 21 NH / Jun 21 SH)** — **the "rebirth of the
-  sun."** The longest night; from here, daylight starts growing again.
-  Sol Invictus, Yule, Mithras, Saturnalia, and (via calendar drift)
-  Christmas. The sun is *reborn* — its life begins again.
-- **Spring Equinox (~Mar 20 NH / Sep 22 SH)** — **the start of the
-  astrological year.** Sun enters Aries (the first sign). Light overtakes
-  darkness. Persian Nowruz, Hindu solar new year, many Indo-European
-  traditional new-year markers. The sun *begins acting* — life visibly
-  emerges.
+The wheel **starts at the Autumn Equinox** — right after the potential
+of the previous cycle has been realized and harvested.
 
-The deepest framing: Winter Solstice = **conception** of the solar year
-(seed point). Spring Equinox = **birth/surge** of the solar year (active
-life begins). About 3 months apart — same proportion as conception →
-birth for humans.
+| Quarter | Element (emoji) | Solar phase | NH calendar window |
+|---|---|---|---|
+| **Q1 Will** | Fire 🔥 | Post-harvest — the next intention surfaces from realized potential; seed-igniting in apparent dormancy | Autumn Equinox → Winter Solstice (~Sep 22 – Dec 21) |
+| **Q2 Emanation** | Water 💧 | Deepest creation — strategies reveal underground; water-darkness holds the seed | Winter Solstice → Spring Equinox (~Dec 21 – Mar 20) |
+| **Q3 Digestion** | Earth 🌍 | Results appear — plants emerge, growth visible, the field receives | Spring Equinox → Summer Solstice (~Mar 20 – Jun 21) |
+| **Q4 Enrichment** | Air 🌬️ | Peak growth, fruits ripen, prep for harvest, clarity at max — ends at the next harvest | Summer Solstice → Autumn Equinox (~Jun 21 – Sep 22) |
 
-### For Sasha specifically (early January, NH)
+### Southern Hemisphere
 
-Born just past Winter Solstice = born *right at the moment the year is
-being born*. Inner energy aligns with the rebirth of the sun rather than
-fighting hibernation. That's why his energy runs high in NH winter when
-others are running low — he's in sync with the solar conception
-moment, not with the external (visible) growing season.
+Flip every date by ~6 months. SH harvest happens at the SH Autumn
+Equinox (~Mar 21). So:
+- SH Q1 Will ≈ Mar 21 → Jun 21
+- SH Q2 Emanation ≈ Jun 21 → Sep 22
+- SH Q3 Digestion ≈ Sep 22 → Dec 21
+- SH Q4 Enrichment ≈ Dec 21 → Mar 21
 
-In Southern Hemisphere this flips: January is summer, but the SH solar
-rebirth is in June. Someone born early January in SH is born at peak
-external life but *out of phase* with their hemisphere's solar rebirth
-— different dynamic.
+### Why this resolves the "solar birthday" question
+
+The "birthday of the solar year" by holonic logic = **the Autumn
+Equinox**. That's the pivot where the previous cycle's harvest closes
+and the new wheel begins. Not Winter Solstice (mid-Q1), not Spring
+Equinox (Q3 start) — those moments are notable *inside* the wheel, but
+the wheel itself starts at the harvest.
+
+### What this means for personal birthdays
+
+Sasha (early January, NH) lands in **early Q2 Emanation (Water)** —
+the deepest creation phase, when strategies reveal underground. His high
+energy in NH winter (when external nature is "hibernating") tracks: he's
+in sync with the cycle's *deepest creative phase*, which is invisible
+externally but maximally active internally.
+
+A summer-born NH person (e.g., July) lands in Q4 Enrichment (Air) — peak
+external growth, clarity, fruits ripening. A spring-born person (April)
+lands in Q3 Digestion (Earth) — receiving, results appearing.
+
+Everyone's personal year + the planet's solar year are *both* running
+the same holonic cycle, just offset. The interplay between where the
+user is in their personal cycle and where the planet is in its solar
+cycle is the deeper signal — future enhancement queued.
 
 ### Product implication
 
-For now, Equilibrium's solar bar is **birthday-anchored only** (the
-user's personal year — Surge moment · Spend the energy · Sustain · Begin
-closing · Wind down). That's the dominant signal.
+The Equilibrium solar bar should ideally show **both**:
+1. The user's personal year (birthday-anchored — Surge moment · Spend
+   the energy · Sustain · Begin closing · Wind down) — already
+   implemented.
+2. The planet's solar year (autumn-equinox-anchored — Will · Emanation ·
+   Digestion · Enrichment with element emoji) — future enhancement.
 
-Future option (queued, not built): a secondary thin indicator showing
-the user's *hemisphere solar phase* — where the planet's solar year is
-relative to the user. Useful to surface Sasha's exact insight: *"my
-inner energy and the external solar year are in sync / out of sync."*
-
-Open decision: whether this is worth adding given the active push to
-*reduce* noise on the watch (see §11).
+This makes the "in sync / out of sync" between personal energy and
+external solar phase visible — Sasha's exact insight made readable.
 
 ---
 
-## 11 · Open Architectural Question — Should the Watch Be Downsized?
+## 11 · The Mode Toggle — ACT and ATTUNE
 
 Sasha 2026-05-16: *"The Equilibrium watch could really be just
 downsized to just the moon cycle, just the lunar cycle, and just the
 intention, strategies, work streams, tasks doing now. The mission, the
 role, the lunar cycle, the zodiac cycles, those are larger-scale
-influences. We don't want them to add noise to our signal, because
-really the lunar cycle is what drives all these things."*
+influences. We don't want them to add noise to our signal."*
 
-### The proposed slimmer watch
+Sasha 2026-05-16 (round 2): *"I actually love it! Let's have a toggle
+for this. Don't ask me, just implement this, and then I will see the
+name of the toggles and I'll give you my feedback if any."*
 
-| Box | Section | Status |
-|---|---|---|
-| 1 | Synthesis Reading | KEEP — the daily reading |
-| ~~2~~ | ~~Mission~~ | REMOVE — larger-scale, adds noise |
-| ~~3~~ | ~~Role~~ | REMOVE — larger-scale, adds noise |
-| ~~4~~ | ~~Solar Energy~~ | REMOVE? — larger-scale, adds noise |
-| ~~5~~ | ~~Zodiac Energy~~ | REMOVE? — larger-scale, adds noise |
-| 6 | Lunar Energy + Moon Focus | KEEP — the actual driver |
-| ~~7~~ | ~~Day-of-Week Energy~~ | KEEP? — fine-grained, fits daily glance |
-| 8 | Current Strategy | KEEP — the 1–3 strategies surfaced in Planting |
-| 9 | Workstreams | KEEP |
-| 10 | Intuitive Tasks | KEEP |
-| 11 | DO NOW | KEEP |
+Implemented as a two-pill toggle near the watch header. Persisted in
+`localStorage` as `equilibrium_v2_watch_mode`. Default mode: **ACT**.
 
-### Reasoning for / against
+### ACT mode — "I'm here to do the right thing now"
 
-**For (slim it):** the lunar cycle IS the driver. Solar/zodiac/mission
-add noise that obscures the lunar signal. The watch becomes more
-actionable when fewer things compete for attention.
+6 sections, in this order:
 
-**Against (keep it):** the four cycles compose into the Synthesis
-Reading; removing cycles weakens that reading. Mission and Role anchor
-the strategic spine (Directed sub-result stage); without them the watch
-becomes purely tactical.
+1. Synthesis Reading
+2. Lunar Energy + Moon Focus
+3. Current Strategy
+4. Workstreams
+5. Intuitive Tasks
+6. DO NOW
 
-### Proposed compromise (queued for decision)
+The functional watch. Operational. Glance-and-go. Used 80%+ of the time.
 
-Two surfaces:
-- **Watch (default view):** Synthesis · Lunar · Current Strategy ·
-  Workstreams · Tasks · DO NOW. Six boxes. Glanceable.
-- **Watch (depth view, opt-in toggle):** Add Mission · Role · Solar ·
-  Zodiac · Day-of-Week. The fuller eleven-box view for periodic
-  context-resetting (weekly review, planning sessions, etc.).
+### ATTUNE mode — "I'm here to attune to all the cycles"
 
-This preserves the depth without making it the always-on noise floor.
+All 11 sections in original order. The full biologic instrument. Used
+for weekly review, recalibration, deeper context-setting — sessions
+where the larger cycles (mission, role, solar, zodiac, weekday)
+deserve attention.
 
-Decision held by Sasha — not implemented yet. Captured here so the
-question isn't lost.
+| Box | Section | ACT | ATTUNE |
+|---|---|:-:|:-:|
+| 1 | Synthesis Reading | ✓ | ✓ |
+| 2 | Mission |  | ✓ |
+| 3 | Role |  | ✓ |
+| 4 | Solar Energy |  | ✓ |
+| 5 | Zodiac Energy |  | ✓ |
+| 6 | Lunar Energy + Moon Focus | ✓ | ✓ |
+| 7 | Day-of-Week Energy |  | ✓ |
+| 8 | Current Strategy | ✓ | ✓ |
+| 9 | Workstreams | ✓ | ✓ |
+| 10 | Intuitive Tasks | ✓ | ✓ |
+| 11 | DO NOW | ✓ | ✓ |
+
+### Why these names
+
+Both are **verbs** that name the *function* the user opens the watch
+FOR — not mechanical labels like "full / partial":
+
+- **ACT** — connects to the existing DO NOW spine. The user is here to
+  *act* on what the moment calls for. Direct.
+- **ATTUNE** — captures listening to the larger cycles without
+  collapsing into wellness-fluff. The user is here to *attune* the
+  whole self to the full biologic field.
+
+Open for Sasha's rename — these are first-cut names, not locked. The
+toggle behavior + section split is the locked piece.
 
 ---
 

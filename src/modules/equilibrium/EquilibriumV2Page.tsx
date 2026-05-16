@@ -18,6 +18,7 @@ import { SmartGoalsSection } from "./components/SmartGoalsSection";
 import { DoNowSection } from "./components/DoNowSection";
 import { SynthesisCard } from "./components/SynthesisCard";
 import { SectionAnchorNav } from "./components/SectionAnchorNav";
+import { WatchModeToggle, type WatchMode } from "./components/WatchModeToggle";
 import { useEquilibriumV2 } from "./hooks/useEquilibriumV2";
 import {
   DAY_OF_WEEK_SEGMENTS,
@@ -57,6 +58,29 @@ function formatPhaseEndsAt(phaseEndMs: number, daysRemaining: number): string {
   return `ends ${day} · ${days}`;
 }
 
+/**
+ * Watch mode persisted in localStorage so the user's preferred view sticks
+ * across sessions. Default = ACT (slim) per philosophical spine §11.
+ */
+const WATCH_MODE_KEY = "equilibrium_v2_watch_mode";
+
+function useWatchMode(): [WatchMode, (m: WatchMode) => void] {
+  const [mode, setModeState] = useState<WatchMode>(() => {
+    if (typeof window === "undefined") return "act";
+    const saved = window.localStorage.getItem(WATCH_MODE_KEY);
+    return saved === "attune" ? "attune" : "act";
+  });
+  const setMode = (next: WatchMode) => {
+    setModeState(next);
+    try {
+      window.localStorage.setItem(WATCH_MODE_KEY, next);
+    } catch {
+      /* localStorage unavailable — silent fallback to in-memory only. */
+    }
+  };
+  return [mode, setMode];
+}
+
 /** Cycle math updates once per minute — cycles change too slowly to need finer. */
 function useCycles(birthday?: string): AllCyclesV2 {
   const [cycles, setCycles] = useState<AllCyclesV2>(() =>
@@ -75,6 +99,8 @@ function useCycles(birthday?: string): AllCyclesV2 {
 export const EquilibriumV2Page = () => {
   const eq = useEquilibriumV2();
   const cycles = useCycles(eq.birthday ?? undefined);
+  const [mode, setMode] = useWatchMode();
+  const isAttune = mode === "attune";
 
   const activeWorkstream =
     eq.workstreams.find((w) => w.id === eq.activeWorkstreamId) ?? null;
@@ -104,9 +130,12 @@ export const EquilibriumV2Page = () => {
         <h1 className="eq-text-halo font-serif text-3xl font-semibold text-[#0a1628] sm:text-4xl">
           "Equilibrium" Biologic Watch
         </h1>
+        <div className="mt-4 flex justify-center">
+          <WatchModeToggle mode={mode} onChange={setMode} />
+        </div>
       </header>
 
-      <SectionAnchorNav />
+      <SectionAnchorNav mode={mode} />
 
       <div className="flex flex-col gap-6">
         {/* ─── BOX 1: Synthesis ──────────────────────────────────── */}
@@ -127,79 +156,87 @@ export const EquilibriumV2Page = () => {
           />
         </EquilibriumSectionCard>
 
-        {/* ─── BOX 2: Mission ────────────────────────────────────── */}
-        <EquilibriumSectionCard
-          id={SECTION_IDS.mission}
-        >
-          <SectionHeader title="2. Mission" />
-          <MissionSection
-            missionDisplay={eq.missionDisplay}
-            loading={eq.loading}
-            onSetOverride={eq.setMissionOverride}
-          />
-        </EquilibriumSectionCard>
-
-        {/* ─── BOX 3: Role ───────────────────────────────────────── */}
-        <EquilibriumSectionCard
-          id={SECTION_IDS.role}
-        >
-          <SectionHeader title="3. Role" />
-          <RoleSection
-            roleDisplay={eq.roleDisplay}
-            loading={eq.loading}
-            onSetOverride={eq.setRoleOverride}
-          />
-        </EquilibriumSectionCard>
-
-        {/* ─── BOX 4: Solar Energy ───────────────────────────────── */}
-        <EquilibriumSectionCard
-          id={SECTION_IDS.solar}
-        >
-          <SectionHeader title="4. Solar Energy" />
-          <div className="mt-4">
-            {/*
-              Solar uses its own visual (4-segment tube + golden orb + fractional
-              "LEFT" checkpoints) — fundamentally different from the orb-arc used
-              by lunar/zodiac/week. Reference: docs/specs/equilibrium/equilibrium_v2_spec.md §3.1
-              "Locked visual references" — solar mock supplied 2026-05-15.
-
-              Pill labels are birthday-anchored phases (Surge moment · Spend ·
-              Sustain · Begin closing · Wind down) per philosophical spine §4 —
-              NOT calendar seasons. Equilibrium is a personal operating surface;
-              the user's solar terrain runs birthday → next birthday, not Jan → Dec.
-            */}
-            {(() => {
-              const { prev, current, next } = getBirthdayArcPhaseNeighbors(
-                cycles.solar.personalProgress,
-              );
-              return (
-                <SolarCycleBar
-                  progress={cycles.solar.personalProgress}
-                  prevLabel={prev}
-                  currentLabel={current}
-                  nextLabel={next}
-                />
-              );
-            })()}
-          </div>
-        </EquilibriumSectionCard>
-
-        {/* ─── BOX 5: Zodiac Energy ──────────────────────────────── */}
-        <EquilibriumSectionCard
-          id={SECTION_IDS.zodiac}
-        >
-          <SectionHeader title="5. Zodiac Energy" />
-          <div className="mt-4">
-            <CycleEnergyBar
-              segments={ZODIAC_SEGMENTS}
-              currentIndex={cycles.zodiac.segmentIndex}
-              progress={cycles.zodiac.progress}
-              prevLabel={cycles.zodiac.prevLabel}
-              currentLabel={cycles.zodiac.currentLabel}
-              nextLabel={cycles.zodiac.nextLabel}
+        {/* ─── BOX 2: Mission (ATTUNE only) ──────────────────────── */}
+        {isAttune && (
+          <EquilibriumSectionCard
+            id={SECTION_IDS.mission}
+          >
+            <SectionHeader title="2. Mission" />
+            <MissionSection
+              missionDisplay={eq.missionDisplay}
+              loading={eq.loading}
+              onSetOverride={eq.setMissionOverride}
             />
-          </div>
-        </EquilibriumSectionCard>
+          </EquilibriumSectionCard>
+        )}
+
+        {/* ─── BOX 3: Role (ATTUNE only) ─────────────────────────── */}
+        {isAttune && (
+          <EquilibriumSectionCard
+            id={SECTION_IDS.role}
+          >
+            <SectionHeader title="3. Role" />
+            <RoleSection
+              roleDisplay={eq.roleDisplay}
+              loading={eq.loading}
+              onSetOverride={eq.setRoleOverride}
+            />
+          </EquilibriumSectionCard>
+        )}
+
+        {/* ─── BOX 4: Solar Energy (ATTUNE only) ─────────────────── */}
+        {isAttune && (
+          <EquilibriumSectionCard
+            id={SECTION_IDS.solar}
+          >
+            <SectionHeader title="4. Solar Energy" />
+            <div className="mt-4">
+              {/*
+                Solar uses its own visual (4-segment tube + golden orb + fractional
+                "LEFT" checkpoints) — fundamentally different from the orb-arc used
+                by lunar/zodiac/week. Reference: docs/specs/equilibrium/equilibrium_v2_spec.md §3.1
+                "Locked visual references" — solar mock supplied 2026-05-15.
+
+                Pill labels are birthday-anchored phases (Surge moment · Spend ·
+                Sustain · Begin closing · Wind down) per philosophical spine §4 —
+                NOT calendar seasons. Equilibrium is a personal operating surface;
+                the user's solar terrain runs birthday → next birthday, not Jan → Dec.
+              */}
+              {(() => {
+                const { prev, current, next } = getBirthdayArcPhaseNeighbors(
+                  cycles.solar.personalProgress,
+                );
+                return (
+                  <SolarCycleBar
+                    progress={cycles.solar.personalProgress}
+                    prevLabel={prev}
+                    currentLabel={current}
+                    nextLabel={next}
+                  />
+                );
+              })()}
+            </div>
+          </EquilibriumSectionCard>
+        )}
+
+        {/* ─── BOX 5: Zodiac Energy (ATTUNE only) ────────────────── */}
+        {isAttune && (
+          <EquilibriumSectionCard
+            id={SECTION_IDS.zodiac}
+          >
+            <SectionHeader title="5. Zodiac Energy" />
+            <div className="mt-4">
+              <CycleEnergyBar
+                segments={ZODIAC_SEGMENTS}
+                currentIndex={cycles.zodiac.segmentIndex}
+                progress={cycles.zodiac.progress}
+                prevLabel={cycles.zodiac.prevLabel}
+                currentLabel={cycles.zodiac.currentLabel}
+                nextLabel={cycles.zodiac.nextLabel}
+              />
+            </div>
+          </EquilibriumSectionCard>
+        )}
 
         {/* ─── BOX 6: Lunar Energy + Moon Focus ──────────────────── */}
         <EquilibriumSectionCard
@@ -235,22 +272,24 @@ export const EquilibriumV2Page = () => {
           />
         </EquilibriumSectionCard>
 
-        {/* ─── BOX 7: Day-of-Week Energy ─────────────────────────── */}
-        <EquilibriumSectionCard
-          id={SECTION_IDS.dayOfWeek}
-        >
-          <SectionHeader title="7. Day-of-Week Energy" />
-          <div className="mt-4">
-            <CycleEnergyBar
-              segments={DAY_OF_WEEK_SEGMENTS}
-              currentIndex={cycles.dayOfWeek.segmentIndex}
-              progress={cycles.dayOfWeek.progress}
-              prevLabel={cycles.dayOfWeek.prevLabel}
-              currentLabel={cycles.dayOfWeek.currentLabel}
-              nextLabel={cycles.dayOfWeek.nextLabel}
-            />
-          </div>
-        </EquilibriumSectionCard>
+        {/* ─── BOX 7: Day-of-Week Energy (ATTUNE only) ───────────── */}
+        {isAttune && (
+          <EquilibriumSectionCard
+            id={SECTION_IDS.dayOfWeek}
+          >
+            <SectionHeader title="7. Day-of-Week Energy" />
+            <div className="mt-4">
+              <CycleEnergyBar
+                segments={DAY_OF_WEEK_SEGMENTS}
+                currentIndex={cycles.dayOfWeek.segmentIndex}
+                progress={cycles.dayOfWeek.progress}
+                prevLabel={cycles.dayOfWeek.prevLabel}
+                currentLabel={cycles.dayOfWeek.currentLabel}
+                nextLabel={cycles.dayOfWeek.nextLabel}
+              />
+            </div>
+          </EquilibriumSectionCard>
+        )}
 
         {/* ─── BOX 8: 3 Strategies ───────────────────────────────── */}
         <EquilibriumSectionCard
