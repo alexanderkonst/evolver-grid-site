@@ -115,7 +115,7 @@ user through all five.
 |---|---|---|---|
 | **Centered** | Stops the grind-momentum. Pulls attention from outside (calendar / messages / urgency) to inside (whole-self check-in). | User shifts from reactive → present. The body lands in the chair. | Opening the page itself; the Synthesis reading. |
 | **In Rhythm** | Names today's natural terrain across solar/zodiac/lunar/week so internal weather becomes readable, not personal. | User drops the shame loop. Internal state is reframed as terrain, not defect. (Degree-2 hand-off.) | The four cycle bars in ATTUNE mode. |
-| **Directed** | Surfaces the strategic spine — Mission, Role, the chosen Current Strategy — so motion has a target. | User stops "just doing tasks" and starts moving in a chosen direction. | Mission · Role · Current Strategy (ACT mode). |
+| **Directed** | Surfaces the strategic spine — Lifelong Dedication, Role, the chosen Current Strategy — so motion has a target. | User stops "just doing tasks" and starts moving in a chosen direction. | Lifelong Dedication · Role · Current Strategy (ACT mode). |
 | **Chosen** | Forces a single intuitive selection from the field of possible work, given the moment's terrain + direction. | User exits paralysis-by-choice. ONE thing claims the present. | Workstreams · Intuitive Tasks → DO NOW (ACT mode). |
 | **Executed** | Closes the cycle. The chosen action gets done and acknowledged. | User experiences completion. The next watch-use cycle starts cleaner. | DO NOW + the complete checkbox. |
 
@@ -357,17 +357,17 @@ in the user's hands: attune first (read the energies), then flip to act
 5. Day-of-Week Energy — today's planetary day
 
 **ACT mode** — masculine, working the tool (6 sections):
-1. Mission — North Star
-2. Role — North Star
-3. Current Strategy — the chosen direction
-4. Workstreams — the streams of work
-5. Intuitive Tasks — the chosen tasks
-6. DO NOW — the executed
+1. **Lifelong Dedication** — North Star (see §11.1 — renamed from "Mission")
+2. **Role** — North Star
+3. **Current Strategy** — the chosen direction
+4. **Workstreams** — the streams of work
+5. **Intuitive Tasks** — the chosen tasks
+6. **DO NOW** — the executed
 
 | Section | ATTUNE | ACT |
 |---|:-:|:-:|
 | Synthesis Reading | ✓ |  |
-| Mission |  | ✓ |
+| Lifelong Dedication |  | ✓ |
 | Role |  | ✓ |
 | Solar Energy | ✓ |  |
 | Zodiac Energy | ✓ |  |
@@ -378,13 +378,48 @@ in the user's hands: attune first (read the energies), then flip to act
 | Intuitive Tasks |  | ✓ |
 | DO NOW |  | ✓ |
 
+#### §11.1 · Why "Lifelong Dedication" (not "Mission")
+
+Sasha 2026-05-16 (round 6 — locked): *"Purpose and mission are
+orthogonal. Purpose is being — to be the being you are, authentically.
+Mission is doing — what you go out there and do. Most people collapse
+them and we're not in the business of promoting that confusion."*
+
+Then, naming the essence: *"Doing at life scale. That's really what
+it is. Lifelong dedication captures it energetically."*
+
+The word **Mission** carries too much baggage (corporate mission
+statements, military missions, missionary work) AND gets routinely
+confused with Purpose. **Dedication** names the energy cleanly:
+
+- It's the verb-form of being — the sustained chosen doing that flows
+  out of authentic being.
+- "Lifelong" is implicit in the word itself: you don't *do* a
+  dedication once, you *are* dedicated across time.
+- It's secular without being flat. Religious "devotion" was ruled out;
+  "vocation" was too old-school; "calling" carried religious echo;
+  "practice" wouldn't land in plain English on first read; "craft" lived
+  in the purpose domain (mastery, honing).
+- It's contrastable with Purpose without confusion: Purpose = being;
+  Dedication = doing-at-life-scale.
+
+**Surface uses the full form** ("Lifelong Dedication") in section
+headers + info popovers. Anchor-nav pills use the short form
+("Dedication") because horizontal space is tight.
+
+**Engineering identifiers preserved:** `mission_id`,
+`mission_participants` table, Mission Discovery module name, the rest
+of the platform's "mission" surfaces. Only the Equilibrium ACT-mode
+user-facing copy renames. This avoids cascading cross-platform churn
+while we test whether "Lifelong Dedication" lands for the user.
+
 **Default behavior:** first-ever load lands in ATTUNE. After first
 toggle, persists in `localStorage` as `equilibrium_v2_watch_mode`.
 
 **Toggle UI:** two-pill binary `ATTUNE | ACT`. ATTUNE on the left to
 mirror the sequence (left-to-right = attune-then-act). The mobile
 SectionAnchorNav adapts per mode (ATTUNE: Read · Solar · Zodiac · Lunar
-· Week; ACT: Mission · Strategy · Streams · Now).
+· Week; ACT: Dedication · Strategy · Streams · Now).
 
 **Drift history (don't repeat):**
 - Round 2: pill labels were ACT MODE / ATTUNE MODE mutually exclusive —
@@ -435,6 +470,9 @@ Examples:
   open for design pass.
 - The solar holonic quarters (§10) — locked.
 - The ACT | ATTUNE binary toggle + section split (§11) — locked.
+- "Lifelong Dedication" replaces "Mission" in user-facing ACT-mode
+  copy (§11.1) — locked. Engineering identifiers (mission_id,
+  mission_participants, Mission Discovery module) stay as-is.
 - The meta-rule "catch AI-drift before shipping" (§12) — locked.
 
 **Open:**

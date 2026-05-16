@@ -27,10 +27,13 @@ const ATTUNE_ANCHORS: { id: string; label: string }[] = [
   { id: SECTION_IDS.dayOfWeek, label: "Week" },
 ];
 
-// ACT mode shows: Mission, Role, Strategy, Workstreams, Tasks, DO NOW.
-// "Mission" anchor covers the North Star block (Mission + Role at top).
+// ACT mode shows: Lifelong Dedication, Role, Strategy, Workstreams,
+// Tasks, DO NOW. "Dedication" anchor covers the North Star block
+// (Lifelong Dedication + Role at top). Pill kept short for the
+// floating nav; full form "Lifelong Dedication" lives in the section
+// header itself.
 const ACT_ANCHORS: { id: string; label: string }[] = [
-  { id: SECTION_IDS.mission, label: "Mission" },
+  { id: SECTION_IDS.mission, label: "Dedication" },
   { id: SECTION_IDS.strategies, label: "Strategy" },
   { id: SECTION_IDS.workstreams, label: "Streams" },
   { id: SECTION_IDS.doNow, label: "Now" },

@@ -9,15 +9,15 @@ interface MissionSectionProps {
 }
 
 /**
- * Box 2 — Mission.
+ * "Lifelong Dedication" section in ACT mode (Sasha 2026-05-16 round 6:
+ * surface renamed from "Mission" to "Lifelong Dedication"; engineering
+ * names like `mission_id`, `mission_participants`, Mission Discovery
+ * module stay as-is for cross-platform consistency).
  *
  * Per Sasha's mega-prompt + 1.5 sync behavior:
  *   • Auto-renders the upstream Mission Discovery statement (or override).
  *   • Inline-editable. Save on blur / Enter.
  *   • If no upstream + no override → redirect CTA to /mission-discovery.
- *
- * Voice-laden empty-state CTA copy is TBD by Sasha; using a mechanical
- * placeholder for now.
  */
 export const MissionSection = ({
   missionDisplay,
@@ -39,8 +39,7 @@ export const MissionSection = ({
         }
         className="mt-2 w-full rounded-md border border-dashed border-[#0a1628]/15 px-4 py-6 text-left text-sm text-[#0a1628]/90 transition hover:bg-white/50"
       >
-        {/* Empty-state copy: TBD — Sasha to supply */}
-        Set your mission →
+        Name your lifelong dedication →
       </button>
     );
   }
