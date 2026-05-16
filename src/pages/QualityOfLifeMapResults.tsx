@@ -212,6 +212,15 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
       if (pointerError) throw pointerError;
 
       setIsSaved(true);
+
+      // Day 67 (Sasha 2026-05-16, bug fix): tell the JOURNEY pane that
+      // item 6 ("Assess your quality of life") just flipped to completed.
+      // Without this, useJourneyProgress only re-reads on mount — the
+      // pane stayed stale until a page reload. Same pattern Mission
+      // Discovery already uses (MissionDiscoveryLanding line 273).
+      if (typeof window !== "undefined") {
+        window.dispatchEvent(new CustomEvent("fytt:refresh-journey-progress"));
+      }
     } catch (err) {
       // Critical save failed — the data is NOT in the DB. Show the
       // destructive toast so the user knows to retry. Log structured
@@ -828,44 +837,31 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
         profileId={profileId ?? undefined}
       />
 
-      {/* Action row — Retake / Download PDF (two equal buttons). Each
-          uses liquid-glass-strong from the playbook for prominence. */}
-      {/* Action row — Day 64 (third pass): fontWeight 600→700 + halo
-          cocktail strengthened to landing-register Strong on button
-          labels for legibility against liquid-glass-strong surface. */}
+      {/* Action row — Retake / Download PDF (two equal secondary CTAs).
+          Day 67 (Sasha 2026-05-16): migrated from inline liquid-glass-
+          strong rectangles to <EditorialCta variant="secondary"> so all
+          buttons across the platform sing in one family. Pills, not
+          rectangles. Cormorant tracked small-caps. Custom icons replace
+          the default ignite-logo glyph; the → arrow is suppressed via
+          rightIcon={null} since these are utility actions, not "go
+          forward" CTAs. Same hover-scale + cta-breath rest behavior. */}
       <div className="grid grid-cols-2 gap-3">
-        <button
+        <EditorialCta
+          variant="secondary"
+          label="Retake"
           onClick={handleRetake}
-          className="liquid-glass-strong rounded-2xl px-5 py-4 inline-flex items-center justify-center gap-2 hover:scale-[1.02] active:scale-95 transition-all duration-300"
-          style={{
-            fontFamily: "'Cormorant Garamond', serif",
-            fontWeight: 700,
-            letterSpacing: "0.18em",
-            textTransform: "uppercase",
-            fontSize: "13px",
-            color: "#0a1628",
-            textShadow: "0 1px 2px rgba(255,255,255,0.9), 0 0 1px rgba(11,42,90,0.5)",
-          }}
-        >
-          <RefreshCw className="w-4 h-4" />
-          Retake
-        </button>
-        <button
+          icon={<RefreshCw className="w-4 h-4" style={{ color: "#b8860b" }} />}
+          rightIcon={null}
+          className="w-full"
+        />
+        <EditorialCta
+          variant="secondary"
+          label="Download PDF"
           onClick={handleDownloadPdf}
-          className="liquid-glass-strong rounded-2xl px-5 py-4 inline-flex items-center justify-center gap-2 hover:scale-[1.02] active:scale-95 transition-all duration-300"
-          style={{
-            fontFamily: "'Cormorant Garamond', serif",
-            fontWeight: 700,
-            letterSpacing: "0.18em",
-            textTransform: "uppercase",
-            fontSize: "13px",
-            color: "#0a1628",
-            textShadow: "0 1px 2px rgba(255,255,255,0.9), 0 0 1px rgba(11,42,90,0.5)",
-          }}
-        >
-          <Download className="w-4 h-4" style={{ color: "#b8860b" }} />
-          Download PDF
-        </button>
+          icon={<Download className="w-4 h-4" style={{ color: "#b8860b" }} />}
+          rightIcon={null}
+          className="w-full"
+        />
       </div>
     </div>
   );
