@@ -49,7 +49,7 @@ const LADDER: LadderRow[] = [
   },
   {
     step: "Step 4",
-    title: "Build your First Unique Product",
+    title: "Build Your Product, Package it, Strategize Distribution, Create Comms Kit, Pick a Business Model & License, Rehearse, Pass the \"Founder Consciousness Adjustment\", Add Leverage & Virality",
     duration: "3 weeks, alongside other conscious impact entrepreneurs",
     price: "$1,111",
   },

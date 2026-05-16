@@ -2,6 +2,11 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import { useRef, useState, useEffect } from "react";
 import type { FC } from "react";
 import { Button } from "@/components/ui/button";
+// Day 67 (Sasha 2026-05-10): empty-state CTA migrated to shared
+// editorial pattern — same dark glass pill with breathing gold halo
+// + rotating ignite-logo emblem as the landing's primary CTA.
+// One source of truth: src/components/ui/editorial-cta.tsx.
+import { EditorialCta } from "@/components/ui/editorial-cta";
 import ShareQol from "@/components/sharing/ShareQol";
 import { useQolAssessment, type Answers } from "@/modules/quality-of-life-map/QolAssessmentContext";
 import { DOMAINS } from "@/modules/quality-of-life-map/qolConfig";
@@ -656,22 +661,17 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
         >
           Answer all 8 domains to see your results.
         </p>
-        <button
+        {/* Day 67 (Sasha 2026-05-10): the old liquid-glass-strong
+            rectangle with the lone ✦ glyph was a different CTA dialect
+            from the landing — dialect drift Sasha flagged in the
+            screenshot review. Now using the canonical `<EditorialCta>`
+            so this surface inherits the landing's exact pixels: dark
+            glass pill, rotating ignite-logo emblem, small-caps tracked
+            label, → arrow, gold-halo breath animation. */}
+        <EditorialCta
+          label="Start Assessment"
           onClick={() => navigate("/quality-of-life-map/assessment")}
-          className="liquid-glass-strong rounded-2xl px-8 py-4 inline-flex items-center justify-center gap-2 hover:scale-[1.02] active:scale-95 transition-all duration-300"
-          style={{
-            fontFamily: "'Cormorant Garamond', serif",
-            fontWeight: 600,
-            letterSpacing: "0.16em",
-            textTransform: "uppercase",
-            fontSize: "13px",
-            color: "#0a1628",
-            textShadow: "0 1px 2px rgba(255,255,255,0.7)",
-          }}
-        >
-          <span aria-hidden="true" style={{ color: "#b8860b", fontSize: "16px", textShadow: "0 0 12px rgba(244,212,114,0.6)" }}>✦</span>
-          Start Assessment
-        </button>
+        />
       </div>
     );
   }

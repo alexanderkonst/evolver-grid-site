@@ -1,9 +1,13 @@
 import { useNavigate } from "react-router-dom";
 import { cn } from "@/lib/utils";
-// Day 48 (Sasha): primary CTA icon switched from the ✦ glyph to the
-// ignite-logo asset. Rendered small + light-opacity so it reads as a
-// subtle emblem rather than dominating the pill.
-import igniteLogo from "@/assets/ignite-logo.png";
+// Day 67 (Sasha 2026-05-10): primary CTA extracted to shared
+// `<EditorialCta>` component (src/components/ui/editorial-cta.tsx).
+// Same pattern — rotating ignite-logo emblem, small-caps tracked label,
+// → arrow, dark glass pill with breathing gold halo — sourced from one
+// place so back-of-funnel surfaces (QoL empty state, etc.) inherit
+// instead of inventing. Visual output identical to the previous inline
+// button. Roast P22 (Scaffold Engineering as Standard).
+import { EditorialCta } from "@/components/ui/editorial-cta";
 
 /**
  * PlaybookHero — the CTAs below the landing's headline.
@@ -57,65 +61,10 @@ const PlaybookHero = () => {
               breath — signals "alive, waiting" without shouting. Pauses
               on hover / focus (so the button's own hover feedback is
               read cleanly). Respects prefers-reduced-motion. */}
-        <button
-          type="button"
+        <EditorialCta
+          label="Find your top talent"
           onClick={() => navigate("/zone-of-genius")}
-          className={cn(
-            "group liquid-glass-dark cta-breath rounded-full",
-            "inline-flex items-center justify-center gap-2 sm:gap-2.5",
-            // Day 48 iter 15 (Sasha): `whitespace-nowrap` retired so the
-            // label can wrap cleanly on very narrow viewports if needed.
-            // Padding tightened on mobile (px-4 → px-6 at sm+) so the
-            // pill hugs the label without overflowing.
-            "px-4 sm:px-6 py-3 max-w-full",
-            "text-sm sm:text-base font-semibold",
-            "transition-all duration-300 hover:scale-[1.03] active:scale-[0.97]",
-            "focus-visible:ring-2 focus-visible:ring-white/40 outline-none",
-          )}
-          style={{
-            fontFamily: "'Cormorant Garamond', serif",
-            color: "var(--skin-cta-text, rgba(245,245,250,0.98))",
-            backgroundImage:
-              "var(--skin-cta-bg, linear-gradient(135deg, rgba(10,22,40,0.72) 0%, rgba(26,30,58,0.62) 50%, rgba(10,22,40,0.72) 100%))",
-            boxShadow:
-              "var(--skin-cta-shadow, 0 0 18px -4px rgba(240,194,127,0.45), 0 10px 24px -10px rgba(10,22,40,0.5))",
-            textShadow:
-              "var(--skin-cta-text-shadow, 0 0 16px rgba(240,194,127,0.25), 0 1px 2px rgba(0,0,0,0.35))",
-          }}
-        >
-          {/* Day 48 iter 14 (Sasha): CTA emblem rotation applied as
-              inline style so the cascade can't strip it. 60s linear
-              infinite — the site-wide tempo. */}
-          <img
-            src={igniteLogo}
-            alt=""
-            aria-hidden="true"
-            className="h-4 w-auto opacity-80 transition-opacity group-hover:opacity-100"
-            style={{
-              filter:
-                "drop-shadow(0 0 6px rgba(244, 212, 114, 0.45))",
-              animation: "gentle-spin 60s linear infinite",
-              willChange: "transform",
-              transformOrigin: "center",
-            }}
-            draggable={false}
-          />
-          <span
-            style={{
-              textTransform: "uppercase",
-              letterSpacing: "0.14em",
-              fontSize: "0.88em",
-            }}
-          >
-            Find your top talent
-          </span>
-          <span
-            aria-hidden="true"
-            className="transition-transform duration-300 group-hover:translate-x-0.5 text-[0.95em]"
-          >
-            →
-          </span>
-        </button>
+        />
 
         {/* Meta line — Day 48 iter 2: small-caps editorial eyebrow.
             "TAKES 3 MINUTES · NO SIGNUP" with tracked letter-spacing
