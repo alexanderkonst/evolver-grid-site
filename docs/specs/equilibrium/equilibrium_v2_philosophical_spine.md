@@ -428,7 +428,71 @@ external solar phase visible — Sasha's exact insight made readable.
 
 ---
 
-## 11 · The Mode Toggle — ACT and ACT + ATTUNE (additive)
+## 11 · ACT and ATTUNE are One — Masculine and Feminine
+
+Sasha 2026-05-16 (round 4): *"In order to act, one needs to attune.
+Alone is not enough — it's both, the masculine and feminine. How do we
+show them?"*
+
+The deepest framing: **ACT and ATTUNE aren't two products. They're two
+faces of one biologic instrument.** Masculine and feminine of the same
+watch. The masculine cuts/decides/ships; the feminine receives/listens/
+calibrates. Neither alone is enough.
+
+The watch is the union.
+
+### How the implementation reflects this
+
+**ACT mode already contains ATTUNE.** Look at what's in ACT mode:
+- **Synthesis Reading** — IS the meeting point. Reads all four cycles
+  (the full feminine attunement) and renders them into one cut sentence
+  (the masculine action-naming). The Synthesis is where act and attune
+  meet.
+- **Lunar Energy + Moon Focus** — kept always-visible because lunar IS
+  the driver. Still attunement, still always there in ACT mode.
+
+So ACT mode is NOT pure action. It's: **action + essential attune
+(Synthesis-as-compression + Lunar-as-driver)**. The attune is *present
+in compressed form* even when the user is in their daily glance.
+
+**ACT + ATTUNE mode expands the attune.** Same action layer; the deeper
+rhythms (Mission · Role · Solar · Zodiac · Weekday) become explicit
+surfaces. The toggle is a **depth dial on attunement**, not a switch
+between two separate things.
+
+### How the UI shows the union
+
+1. **The Synthesis card** — visually the largest, top of every mode,
+   carrying the compressed reading of all cycles. The Synthesis IS the
+   union made visible.
+2. **The AttunementBand** (added 2026-05-16) — a thin compressed-
+   attunement strip rendered in ACT MODE only, between Synthesis and
+   Lunar. Shows tiny pips for solar phase + zodiac element + weekday
+   planet. Tap any pip to expand into ACT + ATTUNE mode and scroll
+   to that section. Makes the larger cycles glanceable in compressed
+   form so the user can see "the attune IS here, just compressed."
+3. **The element-emoji umbrella above Lunar pills** — already shows the
+   holonic quadrant of the lunar moment. Another always-visible attune
+   trace in ACT mode.
+
+The user never sees a "pure act" watch. Every mode is the union — just
+in different degrees of compression.
+
+### The toggle (continued — same mechanics as round 3)
+
+Sasha 2026-05-16: *"The Equilibrium watch could really be just
+downsized to just the moon cycle, the intention, strategies, work
+streams, tasks doing now. The mission, the role, the zodiac cycles —
+those are larger-scale influences. We don't want them to add noise to
+our signal."*
+
+Sasha 2026-05-16 (round 3 — critical clarification): *"The shorter one
+is the ACT mode, and the longer one is not only ACT mode, it's both ACT
+and ATTUNE mode."*
+
+This is **additive**, not mutually exclusive. The depth toggle doesn't
+*switch* between ACT and ATTUNE — it *adds* attunement surfaces on top
+of the existing action surfaces.
 
 Sasha 2026-05-16: *"The Equilibrium watch could really be just
 downsized to just the moon cycle, the intention, strategies, work

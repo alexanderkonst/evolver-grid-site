@@ -19,6 +19,7 @@ import { DoNowSection } from "./components/DoNowSection";
 import { SynthesisCard } from "./components/SynthesisCard";
 import { SectionAnchorNav } from "./components/SectionAnchorNav";
 import { WatchModeToggle, type WatchMode } from "./components/WatchModeToggle";
+import { AttunementBand } from "./components/AttunementBand";
 import { useEquilibriumV2 } from "./hooks/useEquilibriumV2";
 import {
   DAY_OF_WEEK_SEGMENTS,
@@ -102,6 +103,27 @@ export const EquilibriumV2Page = () => {
   const [mode, setMode] = useWatchMode();
   const isAttune = mode === "attune";
 
+  /**
+   * AttunementBand expand handler — flip to ATTUNE mode, then (after the
+   * new sections mount) scroll the requested section into view. A small
+   * setTimeout lets React commit the mode flip and mount the section
+   * before scrollIntoView runs.
+   */
+  const expandToAttune = (sectionId: string) => {
+    setMode("attune");
+    window.setTimeout(() => {
+      const el = document.getElementById(sectionId);
+      if (!el) return;
+      const reduceMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+      ).matches;
+      el.scrollIntoView({
+        behavior: reduceMotion ? "auto" : "smooth",
+        block: "start",
+      });
+    }, 100);
+  };
+
   const activeWorkstream =
     eq.workstreams.find((w) => w.id === eq.activeWorkstreamId) ?? null;
   const activeTasks =
@@ -155,6 +177,19 @@ export const EquilibriumV2Page = () => {
             disabled={eq.loading}
           />
         </EquilibriumSectionCard>
+
+        {/* ─── ATTUNEMENT BAND (ACT mode only) ───────────────────── */}
+        {/*
+          The compressed attunement strip. Sits between Synthesis (the
+          act/attune meeting point) and the explicit sections. Makes the
+          larger cycles glanceable in ACT mode without bringing in their
+          full surfaces; tap any pip to expand into ACT + ATTUNE mode
+          and scroll to that section. Hidden in ACT + ATTUNE mode
+          because the full surfaces take over. Spine §11.
+        */}
+        {!isAttune && (
+          <AttunementBand cycles={cycles} onExpand={expandToAttune} />
+        )}
 
         {/* ─── BOX 2: Mission (ATTUNE only) ──────────────────────── */}
         {isAttune && (
