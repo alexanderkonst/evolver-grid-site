@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Plus, GripVertical, Trash2 } from "lucide-react";
+import { Plus, GripVertical, Check, ArrowDown, RotateCcw } from "lucide-react";
 import {
   closestCenter,
   DndContext,
@@ -24,35 +24,46 @@ import { InlineEditableText } from "./InlineEditableText";
 
 interface WorkstreamsSectionProps {
   workstreams: EquilibriumWorkstream[];
+  archivedWorkstreams: EquilibriumWorkstream[];
   activeId: string | null;
   loading: boolean;
   onSelect: (id: string) => void;
   onAdd: (title: string) => Promise<void> | void;
   onRename: (id: string, title: string) => Promise<void> | void;
+  /** Soft-archive ("complete") — preserves data, reversible via onRestore. */
   onDelete: (id: string) => Promise<void> | void;
+  /** Restore a completed workstream back to active. */
+  onRestore: (id: string) => Promise<void> | void;
   onReorder: (orderedIds: string[]) => Promise<void> | void;
 }
 
 /**
  * Box 9 — Workstreams.
  *
- * Drag-reorderable chips. Click to set active (drives Box 10's task list).
- * Inline-editable titles. Cap at 7 with the verbatim mega-prompt warning copy.
+ * Drag-reorderable chips. Click to set ACTIVE — drives Box 10's task list +
+ * smooth-scrolls Box 10 into view (Sasha 2026-05-16: selection UX was unclear).
+ *
+ * "Complete" action soft-archives a workstream — data preserved, restorable
+ * from the completed pile below.
  */
 export const WorkstreamsSection = ({
   workstreams,
+  archivedWorkstreams,
   activeId,
   loading,
   onSelect,
   onAdd,
   onRename,
   onDelete,
+  onRestore,
   onReorder,
 }: WorkstreamsSectionProps) => {
   const sensors = useSensors(
     useSensor(PointerSensor, { activationConstraint: { distance: 4 } }),
     useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates }),
   );
+
+  const [showCompleted, setShowCompleted] = useState(false);
 
   const handleDragEnd = (event: DragEndEvent) => {
     const { active, over } = event;
@@ -64,10 +75,34 @@ export const WorkstreamsSection = ({
     void onReorder(reordered.map((w) => w.id));
   };
 
+  /** Selection handler: set active + smooth-scroll Goals into view. */
+  const handleSelect = (id: string) => {
+    onSelect(id);
+    // Small delay so the SmartGoalsSection has time to re-render its title.
+    setTimeout(() => {
+      const goalsEl = document.getElementById("goals");
+      if (!goalsEl) return;
+      const prefersReduced = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+      ).matches;
+      goalsEl.scrollIntoView({
+        behavior: prefersReduced ? "auto" : "smooth",
+        block: "start",
+      });
+    }, 80);
+  };
+
   const atCap = workstreams.length >= MAX_WORKSTREAMS;
+  const hasNoActive = workstreams.length > 0 && !activeId;
 
   return (
     <div className="mt-2">
+      {hasNoActive && (
+        <p className="mb-2 px-2 text-xs italic text-[#0a1628]/70">
+          Click a workstream to open its tasks below ↓
+        </p>
+      )}
+
       <DndContext
         sensors={sensors}
         collisionDetection={closestCenter}
@@ -85,7 +120,7 @@ export const WorkstreamsSection = ({
                 index={idx}
                 isActive={w.id === activeId}
                 loading={loading}
-                onSelect={() => onSelect(w.id)}
+                onSelect={() => handleSelect(w.id)}
                 onRename={(title) => onRename(w.id, title)}
                 onDelete={() => onDelete(w.id)}
               />
@@ -100,6 +135,44 @@ export const WorkstreamsSection = ({
         </p>
       ) : (
         <AddWorkstreamRow onAdd={onAdd} disabled={loading} />
+      )}
+
+      {archivedWorkstreams.length > 0 && (
+        <div className="mt-4">
+          <button
+            type="button"
+            onClick={() => setShowCompleted((v) => !v)}
+            className="flex w-full items-center gap-2 px-2 text-xs uppercase tracking-wider text-[#0a1628]/60 transition hover:text-[#0a1628]/90"
+          >
+            <span>completed</span>
+            <span className="text-[#0a1628]/40">({archivedWorkstreams.length})</span>
+            <span className="flex-1 border-t border-[#0a1628]/10" />
+            <span aria-hidden="true">{showCompleted ? "−" : "+"}</span>
+          </button>
+
+          {showCompleted && (
+            <ul className="mt-2 flex flex-col gap-1">
+              {archivedWorkstreams.map((w) => (
+                <li
+                  key={w.id}
+                  className="group/done flex items-center gap-3 rounded-lg bg-white/25 px-4 py-2 text-sm text-[#0a1628]/80 line-through transition hover:bg-white/45"
+                >
+                  <Check size={14} className="shrink-0 text-emerald-600/70" />
+                  <span className="flex-1 truncate">{w.title}</span>
+                  <button
+                    type="button"
+                    aria-label="Restore to active"
+                    onClick={() => onRestore(w.id)}
+                    className="flex items-center gap-1 rounded-full px-2 py-1 text-[10px] uppercase tracking-wider text-emerald-700/70 opacity-0 transition hover:bg-emerald-50 hover:text-emerald-700 group-hover/done:opacity-100"
+                  >
+                    <RotateCcw size={11} />
+                    restore
+                  </button>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
       )}
     </div>
   );
@@ -137,17 +210,20 @@ const SortableWorkstreamChip = ({
         transition,
       }}
       className={cn(
-        "group relative flex items-center gap-2 rounded-xl border bg-white/60 backdrop-blur-sm transition",
+        "group relative flex items-center gap-2 rounded-xl border-2 transition",
         isActive
-          ? "border-[#0a1628]/30 shadow-md"
-          : "border-white/40 hover:bg-white/75",
+          ? "border-emerald-400/60 bg-white/85 shadow-[0_0_20px_rgba(74,222,128,0.18)]"
+          : "border-white/40 bg-white/55 hover:border-white/70 hover:bg-white/75",
         isDragging && "z-10 opacity-90 shadow-lg",
       )}
     >
       <button
         type="button"
         onClick={onSelect}
-        className="flex-shrink-0 select-none pl-3 font-serif text-base text-[#0a1628]/90"
+        className={cn(
+          "flex-shrink-0 select-none pl-3 font-serif text-base",
+          isActive ? "text-[#0a1628] font-semibold" : "text-[#0a1628]/90",
+        )}
       >
         {index + 1}.
       </button>
@@ -162,20 +238,34 @@ const SortableWorkstreamChip = ({
         />
       </div>
 
+      {/* Active indicator — visible breadcrumb to the SMART Goals section below. */}
+      {isActive && (
+        <button
+          type="button"
+          onClick={onSelect}
+          aria-label="Jump to tasks"
+          className="eq-text-halo flex items-center gap-1 rounded-full bg-emerald-50/80 px-2 py-1 text-[10px] uppercase tracking-wider text-emerald-700"
+        >
+          <ArrowDown size={12} />
+          tasks
+        </button>
+      )}
+
       <button
         type="button"
-        aria-label="Archive workstream"
+        aria-label="Complete workstream"
+        title="Mark complete (preserved in completed pile)"
         onClick={onDelete}
-        className="rounded p-2 text-[#0a1628]/95 opacity-0 transition hover:text-red-500 group-hover:opacity-100"
+        className="rounded p-2 text-[#0a1628]/40 opacity-0 transition hover:text-emerald-600 group-hover:opacity-100"
       >
-        <Trash2 size={14} />
+        <Check size={14} />
       </button>
 
       {/* Drag handle on the RIGHT to match SmartGoalsSection (Sasha 2026-05-16). */}
       <button
         type="button"
         aria-label="Drag to reorder"
-        className="cursor-grab touch-none p-2 mr-1 text-[#0a1628]/95 hover:text-[#0a1628]/90 active:cursor-grabbing"
+        className="cursor-grab touch-none p-2 mr-1 text-[#0a1628]/40 hover:text-[#0a1628]/80 active:cursor-grabbing"
         {...attributes}
         {...listeners}
       >

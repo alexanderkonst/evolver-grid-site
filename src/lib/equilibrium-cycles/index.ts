@@ -259,16 +259,50 @@ export interface MoonPhaseInfo {
   energy: string;
 }
 
-// 8 phases × ~3.69 days each = 29.53 day synodic cycle. Ported from v1.x.
+// 8 phases × ~3.69 days each = 29.53 day synodic cycle.
+//
+// Energy strings updated 2026-05-16 per Sasha's Lunar Cycle infographic
+// (Tamyris Garcia map) — wisdom-preserving distillation. Full teaching for
+// each phase preserved in docs/specs/equilibrium/lunar_wisdom_map.md.
+// Voice rules:
+//   • Lead with the Phase NAME (Planning/Planting/Clearing/etc.) — strong
+//     identity word, action-oriented.
+//   • Center dot separator.
+//   • 2–4 word verb-forward distillation.
+//   • No "energy/ethereal/vibration" language.
+//
+// The cycle reads counterclockwise per the source (Last Quarter is Phase 1,
+// not Phase 7 as a calendar would suggest) — but the array order here stays
+// astronomically-sorted (New Moon = index 0) for runtime simplicity. The
+// "phase number" annotation in each entry maps back to Sasha's 1-8.
 export const MOON_PHASES: MoonPhaseInfo[] = [
-  { name: "New Moon", symbol: "🌑", start: 0, end: 1.85, energy: "🌍 Materialization · Results appearing" },
-  { name: "Waxing Crescent", symbol: "🌒", start: 1.85, end: 5.53, energy: "🌍 Growth spurt · Assist, polish, land it" },
-  { name: "First Quarter", symbol: "🌓", start: 5.53, end: 9.22, energy: "🌬️ Harvest begins · Receive what's growing" },
-  { name: "Waxing Gibbous", symbol: "🌔", start: 9.22, end: 12.91, energy: "🌬️ Abundance arriving · Winds of change" },
-  { name: "Full Moon", symbol: "🌕", start: 12.91, end: 16.61, energy: "🔥 Harvest peak · Rejoice · New intention forming" },
-  { name: "Waning Gibbous", symbol: "🌖", start: 16.61, end: 20.30, energy: "🔥 Inner fire ignites · Let the seed will itself" },
-  { name: "Last Quarter", symbol: "🌗", start: 20.30, end: 23.99, energy: "💧 Creative flow · Let it flow freely" },
-  { name: "Waning Crescent", symbol: "🌘", start: 23.99, end: 29.53, energy: "💧 Deepest creation · No visibility, no interference" },
+  // Phase 3 in Sasha's map. Dumping. Banishing ritual. Time to cry,
+  // no complaining. Fear and drama surface to be cleared.
+  { name: "New Moon", symbol: "🌑", start: 0, end: 1.85, energy: "Clearing · Dump, banish, cry it out" },
+  // Phase 4. Receiving energy. "Yes" ritual. Talk sweet. Be open to
+  // possibilities. Law of attraction in receiving mode. Raw resources arrive.
+  // "The How is still none of your business."
+  { name: "Waxing Crescent", symbol: "🌒", start: 1.85, end: 5.53, energy: "Gathering · Yes ritual · Receive resources" },
+  // Phase 5. The "How" is revealed. Telescope vision. Ah-Ha moment.
+  // The path you couldn't see during Planting/Gathering now appears.
+  { name: "First Quarter", symbol: "🌓", start: 5.53, end: 9.22, energy: "Seeing · The How is revealed · Ah-Ha" },
+  // Phase 6. Administration & organization phase. 90% admin, 10% work.
+  // Orchestrate the sequence, prepare the field for Doing.
+  { name: "Waxing Gibbous", symbol: "🌔", start: 9.22, end: 12.91, energy: "Leading · 90% admin, 10% work" },
+  // Phase 7. Doing. 100% physical execution ("100% gangsta" in source).
+  // High-energy GTD. Harvest and cut sweaty.
+  { name: "Full Moon", symbol: "🌕", start: 12.91, end: 16.61, energy: "Doing · 100% physical · Harvest & cut" },
+  // Phase 8. Celebrate. Party. Gratitude. Show off. Brag. Honor others' wins.
+  // The "rinse" before the "repeat."
+  { name: "Waning Gibbous", symbol: "🌖", start: 16.61, end: 20.30, energy: "Celebrating · Gratitude · Honor others' wins" },
+  // Phase 1. The planning phase opens the next cycle. 2 goals. Engineer,
+  // architect, decide, liberate. Fill the goals with emotion — felt, not
+  // just thought.
+  { name: "Last Quarter", symbol: "🌗", start: 20.30, end: 23.99, energy: "Planning · Engineer 2 goals · Fill with emotion" },
+  // Phase 2. Planting. Impregnate the universe with the goals you just
+  // architected. Memorize them. Daily meditate / visualize / movie them.
+  // "The How is none of your business."
+  { name: "Waning Crescent", symbol: "🌘", start: 23.99, end: 29.53, energy: "Planting · Memorize, visualize, surrender" },
 ];
 
 const SYNODIC_MONTH_DAYS = 29.53058770576;

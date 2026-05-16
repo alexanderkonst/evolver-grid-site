@@ -90,9 +90,14 @@ export const SmartGoalsSection = ({
 
   return (
     <div className="mt-2">
-      <p className="mb-2 px-1 text-xs uppercase tracking-wider text-[#0a1628]/85">
-        {workstreamTitle}
-      </p>
+      <div className="mb-3 flex items-center gap-2 rounded-lg bg-emerald-50/40 px-3 py-2">
+        <span className="text-[10px] uppercase tracking-wider text-emerald-700/70">
+          Tasks for
+        </span>
+        <span className="eq-text-halo flex-1 truncate font-serif text-base font-semibold text-[#0a1628]">
+          {workstreamTitle}
+        </span>
+      </div>
 
       <DndContext
         sensors={sensors}

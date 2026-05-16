@@ -219,12 +219,14 @@ export const EquilibriumV2Page = () => {
           <SectionHeader title="9. Workstreams" />
           <WorkstreamsSection
             workstreams={eq.workstreams}
+            archivedWorkstreams={eq.archivedWorkstreams}
             activeId={eq.activeWorkstreamId}
             loading={eq.loading}
             onSelect={eq.setActiveWorkstreamId}
             onAdd={eq.addWorkstream}
             onRename={eq.renameWorkstream}
             onDelete={eq.deleteWorkstream}
+            onRestore={eq.restoreWorkstream}
             onReorder={eq.reorderWorkstreams}
           />
         </EquilibriumSectionCard>
