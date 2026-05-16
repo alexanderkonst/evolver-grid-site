@@ -271,13 +271,19 @@ export const EquilibriumV2Page = () => {
 
         {/* ════════════ ACT MODE ════════════════════════════════════ */}
 
-        {/* Mission — North Star (Sasha 2026-05-16 round 5: Mission and
-            Role belong with action, they're the North Stars for the work) */}
+        {/* Lifelong Dedication — North Star (Sasha 2026-05-16 round 6:
+            "Mission" renamed to "Lifelong Dedication" in Equilibrium UI
+            only. Backend identifiers stay `mission_*` for cross-platform
+            engineering consistency. Purpose = being; Dedication = doing
+            at life scale — the verb-form of being. Spec → Spine §11.) */}
         {!isAttune && (
           <EquilibriumSectionCard
             id={SECTION_IDS.mission}
           >
-            <SectionHeader title="Mission" />
+            <SectionHeader
+              title="Lifelong Dedication"
+              infoIconCopy="Your lifelong dedication. What you keep doing with your life-energy — the chosen direction your action keeps taking, at life scale."
+            />
             <MissionSection
               missionDisplay={eq.missionDisplay}
               loading={eq.loading}
