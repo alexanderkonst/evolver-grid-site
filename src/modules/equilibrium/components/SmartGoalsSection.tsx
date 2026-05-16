@@ -33,6 +33,8 @@ interface SmartGoalsSectionProps {
   onReorderTasks: (orderedIds: string[]) => Promise<void> | void;
   onPromoteToDoNow: (id: string) => Promise<void> | void;
   onCompleteTask: (id: string) => Promise<void> | void;
+  /** Restore a "done" task back to active (Sasha 2026-05-16: completions must be reversible). */
+  onUncompleteTask: (id: string) => Promise<void> | void;
 }
 
 /**
@@ -56,6 +58,7 @@ export const SmartGoalsSection = ({
   onReorderTasks,
   onPromoteToDoNow,
   onCompleteTask,
+  onUncompleteTask,
 }: SmartGoalsSectionProps) => {
   const sensors = useSensors(
     useSensor(PointerSensor, { activationConstraint: { distance: 4 } }),
@@ -135,10 +138,21 @@ export const SmartGoalsSection = ({
             {done.map((t) => (
               <li
                 key={t.id}
-                className="flex items-center gap-3 rounded-lg bg-white/30 px-4 py-2.5 text-[#0a1628]/85 line-through"
+                className="group/done flex items-center gap-3 rounded-lg bg-white/30 px-4 py-2.5 text-[#0a1628]/85 line-through transition hover:bg-white/55"
               >
-                <Check size={14} className="text-emerald-500/70" />
+                <button
+                  type="button"
+                  aria-label="Restore to active"
+                  onClick={() => onUncompleteTask(t.id)}
+                  className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-emerald-400/50 bg-emerald-50/70 transition hover:border-emerald-500 hover:bg-emerald-100"
+                  title="Restore"
+                >
+                  <Check size={12} className="text-emerald-600 transition group-hover/done:opacity-0" />
+                </button>
                 <span className="flex-1">{t.text}</span>
+                <span className="text-[10px] uppercase tracking-wider text-emerald-700/60 opacity-0 transition group-hover/done:opacity-100">
+                  click to restore
+                </span>
               </li>
             ))}
           </ul>

@@ -73,6 +73,8 @@ export interface EquilibriumV2Data {
   promoteToDoNow: (taskId: string) => Promise<{ replacedOldest: boolean }>;
   /** Marks task done + removes from focus (transactional via eq_complete_task RPC). */
   completeTask: (taskId: string) => Promise<void>;
+  /** Reverses a completed task back to active (clears done_at). */
+  uncompleteTask: (taskId: string) => Promise<void>;
 
   refresh: () => Promise<void>;
 }
@@ -609,6 +611,36 @@ export function useEquilibriumV2(): EquilibriumV2Data {
     [user, focus],
   );
 
+  const uncompleteTask = useCallback(
+    async (taskId: string) => {
+      // Reverse a "done" task back to active. Append to end of active list
+      // (don't try to restore original position — the user likely wants it
+      // visible right now, not buried in old position).
+      const target = tasks.find((t) => t.id === taskId);
+      if (!target) return;
+      const siblingActive = tasks.filter(
+        (t) => t.workstream_id === target.workstream_id && t.status === "active",
+      );
+      const newPosition = siblingActive.length;
+      const res = await eqAny
+        .from("equilibrium_tasks")
+        .update({ status: "active", done_at: null, position: newPosition })
+        .eq("id", taskId);
+      if (res.error) {
+        toast.error("Couldn't restore — try again.");
+        return;
+      }
+      setTasks((prev) =>
+        prev.map((t) =>
+          t.id === taskId
+            ? { ...t, status: "active", done_at: null, position: newPosition }
+            : t,
+        ),
+      );
+    },
+    [tasks],
+  );
+
   const completeTask = useCallback(
     async (taskId: string) => {
       // Optimistic: mark done in local state immediately so cascade animation can run.
@@ -697,6 +729,7 @@ export function useEquilibriumV2(): EquilibriumV2Data {
     reorderTasks,
     promoteToDoNow,
     completeTask,
+    uncompleteTask,
     refresh: fetchAll,
   };
 }

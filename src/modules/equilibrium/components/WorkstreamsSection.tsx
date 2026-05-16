@@ -146,18 +146,8 @@ const SortableWorkstreamChip = ({
     >
       <button
         type="button"
-        aria-label="Drag to reorder"
-        className="cursor-grab touch-none p-2 text-[#0a1628]/95 hover:text-[#0a1628]/90 active:cursor-grabbing"
-        {...attributes}
-        {...listeners}
-      >
-        <GripVertical size={16} />
-      </button>
-
-      <button
-        type="button"
         onClick={onSelect}
-        className="flex-shrink-0 select-none font-serif text-base text-[#0a1628]/90"
+        className="flex-shrink-0 select-none pl-3 font-serif text-base text-[#0a1628]/90"
       >
         {index + 1}.
       </button>
@@ -179,6 +169,17 @@ const SortableWorkstreamChip = ({
         className="rounded p-2 text-[#0a1628]/95 opacity-0 transition hover:text-red-500 group-hover:opacity-100"
       >
         <Trash2 size={14} />
+      </button>
+
+      {/* Drag handle on the RIGHT to match SmartGoalsSection (Sasha 2026-05-16). */}
+      <button
+        type="button"
+        aria-label="Drag to reorder"
+        className="cursor-grab touch-none p-2 mr-1 text-[#0a1628]/95 hover:text-[#0a1628]/90 active:cursor-grabbing"
+        {...attributes}
+        {...listeners}
+      >
+        <GripVertical size={16} />
       </button>
     </li>
   );

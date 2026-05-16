@@ -1,10 +1,4 @@
-import { Info } from "lucide-react";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
+import { InfoPopover } from "./InfoPopover";
 import { InlineEditableText } from "./InlineEditableText";
 
 interface MoonFocusInputProps {
@@ -16,8 +10,12 @@ interface MoonFocusInputProps {
 /**
  * Box 6 subtitle — Moon Focus.
  *
- * Per Sasha's mega-prompt §12 + Sasha-approved info-icon copy:
- *   "1–3 words for this moon cycle's intent."
+ * Sasha-approved info-icon copy: "1–3 words for this moon cycle's intent."
+ * Layout centered per dogfood feedback 2026-05-16.
+ *
+ * Neumorphic surround on the container (soft inset) so the input reads as
+ * a recessed groove inside the lunar card — gentle visual differentiation
+ * from the parent glass card.
  */
 export const MoonFocusInput = ({
   value,
@@ -25,11 +23,18 @@ export const MoonFocusInput = ({
   onSave,
 }: MoonFocusInputProps) => {
   return (
-    <div className="mt-4 flex items-center gap-2 rounded-md bg-white/40 px-3 py-2">
-      <span className="text-xs uppercase tracking-wider text-[#0a1628]/90">
+    <div
+      className="mt-6 flex items-center justify-center gap-2 rounded-2xl px-4 py-3 mx-auto max-w-md"
+      style={{
+        background: "rgba(255,255,255,0.35)",
+        boxShadow:
+          "inset 0 2px 4px rgba(10,22,40,0.08), inset 0 -1px 0 rgba(255,255,255,0.6), 0 1px 2px rgba(10,22,40,0.04)",
+      }}
+    >
+      <span className="eq-text-halo shrink-0 text-xs uppercase tracking-wider text-[#0a1628]/90">
         Focus:
       </span>
-      <div className="flex-1">
+      <div className="flex-1 min-w-0 text-center">
         <InlineEditableText
           value={value}
           size="body"
@@ -38,21 +43,7 @@ export const MoonFocusInput = ({
           onSave={onSave}
         />
       </div>
-      <TooltipProvider>
-        <Tooltip>
-          <TooltipTrigger
-            asChild
-            className="shrink-0 text-[#0a1628]/85 hover:text-[#0a1628]/95"
-          >
-            <button type="button" aria-label="What is this?">
-              <Info size={14} />
-            </button>
-          </TooltipTrigger>
-          <TooltipContent side="left" className="max-w-xs">
-            1–3 words for this moon cycle's intent.
-          </TooltipContent>
-        </Tooltip>
-      </TooltipProvider>
+      <InfoPopover content="1–3 words for this moon cycle's intent." />
     </div>
   );
 };
