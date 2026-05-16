@@ -6,6 +6,32 @@
 
 ---
 
+## 0. Civilizational anchoring
+
+The matching engine is not a feature. It is the **operational substrate of the platform's lifelong dedication**: *assist humanity evolve into a consciously coordinated civilization by awakening individual genius, integrating consciousness with technology, and architecting systems that transform human potential into coherent collective flourishing.*
+
+Conscious coordination at civilizational scale happens through real collaborations between consciously developed humans. The platform's developmental work (Top Talent reveal, mission discovery, asset mapping, QoL, UBB) wakes up the individual genius. The matching engine is the gravitational force that connects those awakened individuals into coherent networks. Without matching, the platform produces transformed individuals who don't find each other. With matching, the transformed individuals form the conscious-coordination layer the lifelong dedication aims at.
+
+Every design decision in the rest of this document is downstream of this anchor. When trade-offs arise (privacy vs. discoverability, monetization vs. accessibility, scope of who-matches-whom), the tiebreaker is: *does this produce more real collaborations between consciously developed people, or fewer?*
+
+---
+
+## 0.5. The data moat
+
+The engine's quality is directly downstream of input quality. The matching code itself — scoring functions, opt-in mechanic, intro emails — can be replicated by any competent team. **What can't be replicated is the data the engine queries against.** FYTT's profile primitives (six of them, each with developmental depth) are richer than anything available on the market:
+
+| Platform | Matching substrate |
+|---|---|
+| LinkedIn | Job titles, employer, connection graph |
+| Bordy AI | Stated interests + brief calendar context |
+| Co-founder matching apps (YC etc.) | Skills + sector + stage |
+| Most dating apps | Selected traits + photos |
+| **FYTT** | **Top Talent (with discrete applications) + mission + assets + QoL stage + DoB-derived mystic data + 18-artifact business profile + (soon) wants/needs** |
+
+This is the moat. The matching engine's job is to deserve the data — produce match quality proportional to the input richness. Any future strategic decision (open API, partnership, acquisition offer) should be evaluated against whether it preserves or dilutes this data moat. The data wasn't accumulated by chance; it was built through the developmental work the rest of the platform does, deliberately and over time. The engine compounds it.
+
+---
+
 ## 1. What we're building, why it matters
 
 ### The matching engine is the platform's center
@@ -381,6 +407,7 @@ Still genuinely open:
 - **v1 (March 31, 2026):** Trojan Horse + 5-match-type framing in this file. Pulled the engine up into strategy. Preserved here as foundational concepts that v2 didn't replace.
 - **v2 (May 16, 2026, Day 66):** primitive-driven holarchic engine download. Reframed match-types as compounds of primitives; added wants/needs dimension; added holarchy; added scoring sketches.
 - **v2.1 (May 16, 2026, Day 66 — same day):** Sasha-reviewed synthesis. Wants/needs reframed from "load-bearing precondition" to "one valuable primitive among many." QoL-as-multiplier deferred (not wiring yet). Project-leader-proxy critique retracted (every project has an ultimate decision-maker per decision context; project profiles will exist independently when built). User scope locked as "person" for v1; matching engine pricing locked as "free for v1." Added §8: Match interaction mechanic spec — the Bordy-style double-opt-in flow, intro email, recorded success event as the feedback loop, mutual-opt-in as the v1 trust filter.
+- **v2.2 (May 16, 2026, Day 66 — same day, later):** Added §0 (Civilizational anchoring — the engine as operational substrate of the platform's lifelong dedication) and §0.5 (Data moat — input quality is the platform's true differentiator; the matching code is replicable, the developmental-depth primitives aren't). The "Beneficial → 10" jump from the rigor re-run.
 - **Synthesized (May 16, 2026):** the version that integrated v1 strategic framing (Trojan Horse, community phasing, scale architecture, MVP scope) with v2 engine theory (primitives, wants/needs, compounds, holarchy, scoring). Superseded by v2.1.
 
 **Anti-pattern note for v3:** edit this document in place. Do not stack v2-style appendices or create sibling docs. Document-creep is the explicit anti-pattern.
