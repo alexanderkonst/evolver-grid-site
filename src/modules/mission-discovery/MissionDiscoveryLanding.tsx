@@ -1,214 +1,144 @@
-import { useState, useEffect } from "react";
+/**
+ * Mission Discovery — radically streamlined (Day 66 wave M, Sasha 2026-05-16).
+ *
+ * Single-screen flow. Three states:
+ *
+ *   1. PROMPT — show the user the prompt to copy to their own AI
+ *      (ChatGPT / Claude / Gemini / etc.) + a textarea to paste the
+ *      AI's response back. One button: "Find my mission".
+ *
+ *   2. CONFIRM — extracted one-sentence synthesis pre-filled in an
+ *      editable textarea. User can edit before saving. One button:
+ *      "Save my mission".
+ *
+ *   3. SAVED — confirmation that the mission lives on the profile.
+ *      JOURNEY pane 2 is auto-opened + active space switched to
+ *      JOURNEY so the user can SEE item #8 freshly struck through
+ *      (with the draw-in animation in SectionsPanel) plus continue
+ *      to the next available step.
+ *
+ * Removed in this rewrite (was in the prior ~550-line version):
+ *   - "Suggest from my Excalibur" entry path
+ *   - "Yes, I have clarity" → has-AI → paste/type-manually paths
+ *   - "I need to discover it" → Wizard (4-column selector)
+ *   - 4-step CommitFlow ceremony (celebration / connect / notifications / submissions)
+ *   - Matching against the static 583-mission MISSIONS array
+ *   - Multiple-missions / holonic-structure output
+ *
+ * Persistence: writes `mission_statement` (the sentence) and
+ * `mission_discovered_at` (timestamp) to `game_profiles`. Both via
+ * `withRetry` so transient network blips don't surface as failure.
+ *
+ * Post-save side effects: dispatches three custom events so the
+ * shell + sections panel react without prop drilling:
+ *   - fytt:refresh-journey-progress  → useJourneyProgress refetches
+ *   - fytt:open-sections-panel       → GameShellV2 opens pane 2
+ *   - fytt:set-active-space          → GameShellV2 switches to JOURNEY
+ *
+ * The strikethrough animation on JOURNEY item #8 is driven from
+ * SectionsPanel itself — it watches for completion state transitions
+ * (false → true) and animates the draw-in.
+ */
+
+import { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import {
-    ArrowRight,
-    Sparkles,
-    Brain,
-    ListChecks,
-    Clipboard,
-    Check,
-    HelpCircle,
-    BookOpen,
-    Sword
-} from "lucide-react";
+import { ArrowRight, Clipboard, Check, Sparkles, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { supabase } from "@/integrations/supabase/client";
-import { MISSIONS } from "@/modules/mission-discovery/data/missions";
-import { DESIRED_OUTCOMES } from "@/modules/mission-discovery/data/outcomes";
-import { KEY_CHALLENGES } from "@/modules/mission-discovery/data/challenges";
-import { FOCUS_AREAS } from "@/modules/mission-discovery/data/focusAreas";
-import { PILLARS } from "@/modules/mission-discovery/data/pillars";
-import type { Mission } from "@/modules/mission-discovery/types";
 import { MISSION_DISCOVERY_PROMPT } from "@/prompts";
 import { getOrCreateGameProfileId } from "@/lib/gameProfile";
+import { withRetry } from "@/lib/withRetry";
+import { useToast } from "@/hooks/use-toast";
 
-/**
- * Mission Discovery Landing Page
- *
- * Flow options:
- * 1. "I have clarity" → AI paste OR type manually → Match to missions
- * 2. "I need to discover" → Go to wizard
- *
- * Also handles: "Do you have an AI that knows your mission?"
- */
-
-type Step = "clarity-check" | "has-ai" | "paste-response" | "type-manually";
-type MatchContext = {
-    pillar?: string;
-    focusArea?: string;
-    challenge?: string;
-    outcome?: string;
-    pillarId?: string;
-};
-type MatchResult = {
-    mission: Mission;
-    score: number;
-    context: MatchContext;
-    matchedKeywords?: string[];
-};
-
-const STOP_WORDS = new Set([
-    "the", "and", "for", "with", "that", "this", "from", "into", "your", "you",
-    "are", "was", "were", "our", "their", "them", "they", "his", "her", "she",
-    "him", "its", "about", "over", "under", "here", "there", "then", "than",
-    "what", "when", "where", "which", "who", "whom", "why", "how", "a", "an",
-    "to", "of", "in", "on", "at", "by", "as", "or", "be", "is"
-]);
-
-const tokenize = (text: string) =>
-    text
-        .toLowerCase()
-        .replace(/[^a-z0-9\s]/g, " ")
-        .split(/\s+/)
-        .filter(token => token.length > 2 && !STOP_WORDS.has(token));
-
-const buildMissionContext = (mission: Mission) => {
-    const outcome = DESIRED_OUTCOMES.find(o => o.id === mission.outcomeId);
-    const challenge = outcome ? KEY_CHALLENGES.find(c => c.id === outcome.challengeId) : undefined;
-    const focusArea = challenge ? FOCUS_AREAS.find(f => f.id === challenge.focusAreaId) : undefined;
-    const pillar = focusArea ? PILLARS.find(p => p.id === focusArea.pillarId) : undefined;
-
-    return {
-        pillar: pillar?.title,
-        focusArea: focusArea?.title,
-        challenge: challenge?.title,
-        outcome: outcome?.title,
-        pillarId: pillar?.id,
-    };
-};
-
-// Get pillar color for UI
-const getPillarColor = (pillarId?: string) => {
-    const colors: Record<string, string> = {
-        'meta': 'bg-purple-100 text-purple-700',
-        'infra': 'bg-blue-100 text-blue-700',
-        'gov': 'bg-amber-100 text-amber-700',
-        'env': 'bg-emerald-100 text-emerald-700',
-        'culture': 'bg-pink-100 text-pink-700',
-    };
-    return colors[pillarId || ''] || 'bg-muted text-foreground';
-};
-
-// Day 65 wave 9 (Sasha 2026-05-15): editorial-register tokens
-// mirroring ZoneOfGeniusOverview / QoL Results (per ui_playbook.md).
-// Dark ink on light glass, Cormorant for hero, Source Serif for body.
+// ─── Editorial-register tokens (per docs/03-playbooks/ui_playbook.md) ──
+// Mirror ZoneOfGeniusOverview / QoL Results. Dark ink on light glass,
+// Cormorant for hero, Source Serif for body.
 const INK = "#0a1628";
 const INK_BODY = "rgba(26,30,58,0.78)";
 const INK_MUTED = "rgba(26,30,58,0.55)";
 const HALO_SOFT =
     "0 0 22px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.8), 0 2px 12px rgba(26,30,58,0.15)";
 
-const fetchEmbeddingMatches = async (text: string): Promise<MatchResult[] | null> => {
-    try {
-        const { data, error } = await supabase.functions.invoke("match-missions", {
-            body: { text, limit: 6 },
-        });
-        if (error || !data?.matches) return null;
-        const matches = (data.matches as Array<{ mission_id: string; score: number }>).map((match) => {
-            const mission = MISSIONS.find(m => m.id === match.mission_id);
-            if (!mission) return null;
-            return {
-                mission,
-                score: match.score,
-                context: buildMissionContext(mission),
-            } as MatchResult;
-        }).filter(Boolean) as MatchResult[];
-        return matches.length > 0 ? matches : null;
-    } catch (err) {
-        return null;
+// ─── One-sentence-synthesis extractor ──────────────────────────────────
+//
+// The prompt mandates the AI ends its response with a single line:
+//   1 sentence synthesis: <sentence>
+//
+// Real-world responses include emphasis variants like:
+//   **1 sentence synthesis:** <sentence>
+//   One-sentence synthesis: <sentence>
+//   1-sentence synthesis: <sentence>
+//
+// The regex is intentionally tolerant. If extraction fails we surface
+// the whole paste in the editable textarea so the user can manually
+// distill — never blocks.
+
+const SYNTHESIS_REGEX =
+    /(?:\*{0,2})\s*(?:1|one)[\s\-–]?sentence\s+synthesis\s*[:\-—]\s*(?:\*{0,2})\s*(.+?)\s*(?:\*{0,2})\s*$/im;
+
+const extractOneSentence = (raw: string): string | null => {
+    if (!raw) return null;
+    const trimmed = raw.trim();
+    // Pass 1: search the canonical marker.
+    const match = trimmed.match(SYNTHESIS_REGEX);
+    if (match?.[1]) {
+        return match[1].trim().replace(/^[\s>*]+|[\s>*]+$/g, "");
     }
+    // Pass 2: try the last non-empty line that doesn't look like a list
+    // bullet — graceful degradation when the AI half-followed the format.
+    const lines = trimmed.split(/\n+/).map((l) => l.trim()).filter(Boolean);
+    for (let i = lines.length - 1; i >= 0; i--) {
+        const line = lines[i];
+        if (/^[-*•>\d.]/.test(line)) continue;
+        if (line.length > 30 && line.length < 600) {
+            return line.replace(/^[\s>*]+|[\s>*]+$/g, "");
+        }
+    }
+    return null;
 };
+
+type State = "prompt" | "confirm" | "saved";
 
 const MissionDiscoveryLanding = () => {
     const navigate = useNavigate();
     const [searchParams] = useSearchParams();
-    const returnPath = searchParams.get("return") || "/game/me";
+    const returnPath = searchParams.get("return") || "/";
+    const { toast } = useToast();
 
-    const [step, setStep] = useState<Step>("clarity-check");
+    const [state, setState] = useState<State>("prompt");
     const [aiResponse, setAiResponse] = useState("");
-    const [manualMission, setManualMission] = useState("");
-    const [isMatching, setIsMatching] = useState(false);
+    const [sentence, setSentence] = useState("");
     const [copied, setCopied] = useState(false);
-    const [matches, setMatches] = useState<MatchResult[] | null>(null);
+    const [isSaving, setIsSaving] = useState(false);
 
-    // Excalibur state
-    const [excaliburData, setExcaliburData] = useState<any>(null);
-    const [isLoadingExcalibur, setIsLoadingExcalibur] = useState(true);
-    const [isMatchingFromExcalibur, setIsMatchingFromExcalibur] = useState(false);
-
-    // Load Excalibur on mount
+    // On mount, check whether a mission_statement already exists on the
+    // user's profile — if so, skip straight to the saved state (so a
+    // returning user sees their saved mission, not the empty paste form).
     useEffect(() => {
-        const loadExcalibur = async () => {
+        let cancelled = false;
+        (async () => {
             try {
-                const profileId = await getOrCreateGameProfileId();
-                const { data: profile } = await supabase
-                    .from('game_profiles')
-                    .select('last_zog_snapshot_id')
-                    .eq('id', profileId)
-                    .single();
-
-                if (profile?.last_zog_snapshot_id) {
-                    const { data: zog } = await supabase
-                        .from('zog_snapshots')
-                        .select('excalibur_data')
-                        .eq('id', profile.last_zog_snapshot_id)
-                        .single();
-
-                    if (zog?.excalibur_data) {
-                        setExcaliburData(zog.excalibur_data);
-                    }
+                const { data: userRes } = await supabase.auth.getUser();
+                if (!userRes.user?.id || cancelled) return;
+                const { data } = await (supabase as any)
+                    .from("game_profiles")
+                    .select("mission_statement")
+                    .eq("user_id", userRes.user.id)
+                    .maybeSingle();
+                if (cancelled) return;
+                if (data?.mission_statement) {
+                    setSentence(data.mission_statement);
+                    setState("saved");
                 }
-            } catch (err) {
-                console.error('Failed to load excalibur:', err);
-            } finally {
-                setIsLoadingExcalibur(false);
+            } catch {
+                // Silent — landing on the prompt state is the safe default.
             }
+        })();
+        return () => {
+            cancelled = true;
         };
-        loadExcalibur();
     }, []);
-
-    // Match missions from Excalibur
-    const handleMatchFromExcalibur = async () => {
-        if (!excaliburData) return;
-        setIsMatchingFromExcalibur(true);
-        setMatches(null);
-
-        try {
-            // Send Excalibur + first 200 missions to AI
-            const missionsForMatching = MISSIONS.slice(0, 200).map(m => ({
-                id: m.id,
-                title: m.title,
-                statement: m.statement
-            }));
-
-            const { data, error } = await supabase.functions.invoke('match-mission-to-excalibur', {
-                body: { excalibur: excaliburData, missions: missionsForMatching }
-            });
-
-            if (error) throw error;
-
-            if (data?.matches && Array.isArray(data.matches)) {
-                const results: MatchResult[] = data.matches.map((match: any) => {
-                    const mission = MISSIONS.find(m => m.id === match.missionId);
-                    if (!mission) return null;
-                    return {
-                        mission,
-                        score: match.resonanceScore || 5,
-                        context: buildMissionContext(mission),
-                        matchedKeywords: [match.reason]
-                    };
-                }).filter(Boolean) as MatchResult[];
-
-                setMatches(results.length > 0 ? results : []);
-            }
-        } catch (err) {
-            console.error('Excalibur matching failed:', err);
-            setMatches([]);
-        } finally {
-            setIsMatchingFromExcalibur(false);
-        }
-    };
 
     const handleCopyPrompt = async () => {
         await navigator.clipboard.writeText(MISSION_DISCOVERY_PROMPT);
@@ -216,61 +146,102 @@ const MissionDiscoveryLanding = () => {
         setTimeout(() => setCopied(false), 2000);
     };
 
-    const handleMatchMission = async () => {
-        setIsMatching(true);
-        const textToMatch = step === "paste-response" ? aiResponse : manualMission;
-        setMatches(null);
+    const handleExtract = () => {
+        const extracted = extractOneSentence(aiResponse);
+        if (extracted) {
+            setSentence(extracted);
+        } else {
+            // Couldn't find the marker — fall back to the whole paste.
+            // The user can edit it down to one sentence themselves.
+            setSentence(aiResponse.trim());
+            toast({
+                title: "Couldn't auto-extract a single sentence",
+                description: "Edit the text below to your one-sentence mission, then save.",
+            });
+        }
+        setState("confirm");
+    };
 
-        const embeddingMatches = await fetchEmbeddingMatches(textToMatch);
-        if (embeddingMatches) {
-            setIsMatching(false);
-            setMatches(embeddingMatches);
+    const handleSave = async () => {
+        const finalSentence = sentence.trim();
+        if (!finalSentence) {
+            toast({
+                title: "Add your mission sentence",
+                description: "The mission field can't be empty.",
+                variant: "destructive",
+            });
             return;
         }
+        setIsSaving(true);
+        try {
+            const profileId = await getOrCreateGameProfileId();
+            if (!profileId) {
+                toast({
+                    title: "Couldn't find your profile",
+                    description: "Please refresh and try again.",
+                    variant: "destructive",
+                });
+                return;
+            }
 
-        const tokens = tokenize(textToMatch);
-        const tokenSet = new Set(tokens);
-        const scored = MISSIONS.map((mission) => {
-            const corpus = `${mission.title} ${mission.statement}`;
-            const missionTokens = tokenize(corpus);
-            const overlap = missionTokens.reduce((count, token) => count + (tokenSet.has(token) ? 1 : 0), 0);
-            return {
-                mission,
-                score: overlap,
-                context: buildMissionContext(mission),
-            };
-        })
-            .filter(result => result.score > 0)
-            .sort((a, b) => b.score - a.score)
-            .slice(0, 6);
+            // Single update: write the sentence AND stamp the
+            // discovered-at timestamp (idempotent — only stamps on
+            // first save; subsequent saves only update the text).
+            const { error: updateError } = await withRetry(() =>
+                (supabase as any)
+                    .from("game_profiles")
+                    .update({
+                        mission_statement: finalSentence,
+                        // COALESCE-style: only set if currently null.
+                        // We do that by NOT touching it here and running
+                        // a second targeted update below that filters
+                        // on `is null` for the timestamp.
+                        updated_at: new Date().toISOString(),
+                    })
+                    .eq("id", profileId),
+            );
+            if (updateError) throw updateError;
 
-        await new Promise(resolve => setTimeout(resolve, 1000));
-        setIsMatching(false);
+            // First-write-wins timestamp for the JOURNEY item #8
+            // strikethrough trigger. Subsequent edits to the sentence
+            // don't move this date — preserves the "moment of discovery."
+            await withRetry(() =>
+                (supabase as any)
+                    .from("game_profiles")
+                    .update({ mission_discovered_at: new Date().toISOString() })
+                    .eq("id", profileId)
+                    .is("mission_discovered_at", null),
+            );
 
-        setMatches(scored.length > 0 ? scored : []);
-    };
+            setState("saved");
 
-    const handleGoToWizard = () => {
-        navigate(`/mission-discovery/wizard?from=game&return=${encodeURIComponent(returnPath)}`);
-    };
-
-    // Direct commit - goes to wizard with directCommit flag
-    const handleCommitMission = (mission: Mission) => {
-        navigate(`/mission-discovery/wizard?from=game&return=${encodeURIComponent(returnPath)}&missionId=${mission.id}&directCommit=true`);
-    };
-
-    // Learn more - opens wizard in read-only mode
-    const handleLearnMore = (mission: Mission) => {
-        navigate(`/mission-discovery/wizard?from=game&return=${encodeURIComponent(returnPath)}&missionId=${mission.id}&readOnly=true`);
+            // ── Post-save side effects ──
+            // 1. Tell useJourneyProgress instances to refetch so JOURNEY
+            //    item #8 picks up the new `mission_discovered_at`.
+            // 2. Tell GameShellV2 to switch active space to JOURNEY so
+            //    pane 2 shows the JOURNEY rail (where item #8 lives).
+            // 3. Tell GameShellV2 to ensure pane 2 is open so the user
+            //    sees the strikethrough animation + the next step.
+            window.dispatchEvent(new CustomEvent("fytt:refresh-journey-progress"));
+            window.dispatchEvent(
+                new CustomEvent("fytt:set-active-space", { detail: { spaceId: "journey" } }),
+            );
+            window.dispatchEvent(new CustomEvent("fytt:open-sections-panel"));
+        } catch (err) {
+            console.error("[MissionDiscovery] save failed:", err);
+            toast({
+                title: "Couldn't save your mission",
+                description: err instanceof Error ? err.message : "Please try again.",
+                variant: "destructive",
+            });
+        } finally {
+            setIsSaving(false);
+        }
     };
 
     return (
         <div className="max-w-3xl mx-auto px-4 py-10 sm:py-12">
-            {/* Hero — Day 65 wave 9: editorial register mirroring
-                ZoneOfGeniusOverview. Cormorant headline + Source Serif
-                subtitle on dark-ink/halo treatment for legibility over
-                the shell's video backdrop. Glass-strong card on hero
-                only; secondary content uses liquid-glass. */}
+            {/* ── Hero ── */}
             <section className="text-center mb-10 sm:mb-12">
                 <div className="inline-flex items-center justify-center w-14 h-14 rounded-full liquid-glass mb-5">
                     <Sparkles className="w-7 h-7" style={{ color: "var(--skin-accent-gold, #b8860b)" }} />
@@ -285,162 +256,30 @@ const MissionDiscoveryLanding = () => {
                         textShadow: HALO_SOFT,
                     }}
                 >
-                    Mission Discovery
+                    {state === "saved" ? "My Mission" : "Discover Your Mission"}
                 </h1>
-                <p
-                    className="italic leading-relaxed mx-auto max-w-[40ch]"
-                    style={{
-                        fontFamily: "'Source Serif 4', Georgia, serif",
-                        fontWeight: 300,
-                        fontSize: "clamp(1rem, 2vw, 1.18rem)",
-                        color: INK_BODY,
-                    }}
-                >
-                    Find your contribution to the planet.
-                </p>
+                {state === "prompt" && (
+                    <p
+                        className="italic leading-relaxed mx-auto max-w-[42ch]"
+                        style={{
+                            fontFamily: "'Source Serif 4', Georgia, serif",
+                            fontWeight: 300,
+                            fontSize: "clamp(1rem, 2vw, 1.18rem)",
+                            color: INK_BODY,
+                        }}
+                    >
+                        Paste your AI's analysis below. We'll capture the one sentence that lands.
+                    </p>
+                )}
             </section>
 
-                {/* Step: Matches */}
-                {matches && matches.length > 0 && (
-                    <div className="space-y-6">
-                        <div className="text-center">
-                            <h2 className="text-2xl font-semibold text-foreground">Top mission matches</h2>
-                            <p className="text-base text-muted-foreground">Choose a mission that resonates with you.</p>
-                        </div>
-                        <div className="space-y-4">
-                            {matches.map(match => (
-                                <div key={match.mission.id} className="liquid-glass rounded-2xl p-5 sm:p-6 hover:translate-y-[-1px] transition-all duration-300">
-                                    <div className="mb-4">
-                                        {/* Pillar + Focus Area pills */}
-                                        <div className="flex flex-wrap gap-2 mb-3">
-                                            {match.context.pillar && (
-                                                <span className={`text-xs font-medium px-2 py-1 rounded-full ${getPillarColor(match.context.pillarId)}`}>
-                                                    {match.context.pillar}
-                                                </span>
-                                            )}
-                                            {match.context.focusArea && (
-                                                <span className="text-xs font-medium px-2 py-1 rounded-full bg-muted text-muted-foreground">
-                                                    {match.context.focusArea}
-                                                </span>
-                                            )}
-                                        </div>
-                                        {/* Title */}
-                                        <h3 className="text-lg font-semibold text-foreground mb-1">{match.mission.title}</h3>
-                                        {/* Statement (only if different from title) */}
-                                        {match.mission.statement !== match.mission.title && (
-                                            <p className="text-sm text-muted-foreground">{match.mission.statement}</p>
-                                        )}
-                                        {/* Challenge + Outcome context */}
-                                        {(match.context.challenge || match.context.outcome) && (
-                                            <p className="text-xs text-muted-foreground mt-2">
-                                                {[match.context.challenge, match.context.outcome].filter(Boolean).join(' → ')}
-                                            </p>
-                                        )}
-                                    </div>
-
-                                    {/* Two buttons */}
-                                    <div className="flex flex-wrap gap-3">
-                                        <Button
-                                            onClick={() => handleCommitMission(match.mission)}
-                                            className="flex-1 ring-2 ring-emerald-400/50 ring-offset-2 bg-emerald-600 hover:bg-emerald-700"
-                                        >
-                                            <Check className="w-4 h-4 mr-2" />
-                                            Commit and Add to my profile
-                                        </Button>
-                                        <Button
-                                            variant="outline"
-                                            onClick={() => handleLearnMore(match.mission)}
-                                            className="flex-1"
-                                        >
-                                            <BookOpen className="w-4 h-4 mr-2" />
-                                            Learn more about this mission
-                                        </Button>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                        <div className="flex flex-wrap gap-3">
-                            <Button variant="outline" onClick={() => setMatches(null)}>Back</Button>
-                            <Button onClick={handleGoToWizard}>Open full wizard</Button>
-                        </div>
-                    </div>
-                )}
-
-                {matches && matches.length === 0 && (
-                    <div className="space-y-6">
-                        <div className="text-center">
-                            <h2 className="text-xl font-semibold text-foreground">No strong matches yet</h2>
-                            <p className="text-sm text-muted-foreground">Try adding more detail or use the full wizard.</p>
-                        </div>
-                        <div className="flex flex-wrap gap-3 justify-center">
-                            <Button variant="outline" onClick={() => setMatches(null)}>Back</Button>
-                            <Button onClick={handleGoToWizard}>Open full wizard</Button>
-                        </div>
-                    </div>
-                )}
-
-                {/* Step: Clarity Check */}
-                {step === "clarity-check" && !matches && (
-                    <div className="space-y-4">
-                        <p
-                            className="text-center mb-6 italic leading-relaxed"
-                            style={{
-                                fontFamily: "'Source Serif 4', Georgia, serif",
-                                fontWeight: 300,
-                                fontSize: "clamp(1rem, 2vw, 1.18rem)",
-                                color: INK_BODY,
-                            }}
-                        >
-                            Do you already have clarity on your mission or purpose?
-                        </p>
-
-                        <div className="grid gap-4 sm:grid-cols-2">
-                            {/* Option: Suggest from Excalibur */}
-                            {excaliburData && (
-                                <button
-                                    onClick={handleMatchFromExcalibur}
-                                    disabled={isMatchingFromExcalibur}
-                                    className="liquid-glass-strong p-6 rounded-2xl text-left transition-all duration-300 hover:translate-y-[-1px] hover:scale-[1.005] active:scale-[0.99] disabled:opacity-60 disabled:cursor-wait sm:col-span-2"
-                                    style={{ border: "1px solid rgba(212, 175, 55, 0.32)" }}
-                                >
-                                    <div className="flex items-center gap-3">
-                                        {isMatchingFromExcalibur ? (
-                                            <span className="premium-spinner w-6 h-6" />
-                                        ) : (
-                                            <Sword className="w-6 h-6" style={{ color: "var(--skin-accent-gold, #b8860b)" }} />
-                                        )}
-                                        <div>
-                                            <h3
-                                                className="mb-1"
-                                                style={{
-                                                    fontFamily: "'Cormorant Garamond', serif",
-                                                    fontWeight: 600,
-                                                    fontSize: "1.25rem",
-                                                    color: INK,
-                                                }}
-                                            >
-                                                {isMatchingFromExcalibur ? 'Finding your missions…' : 'Suggest from my Excalibur'}
-                                            </h3>
-                                            <p
-                                                className="text-sm"
-                                                style={{
-                                                    fontFamily: "'Source Serif 4', Georgia, serif",
-                                                    fontWeight: 300,
-                                                    color: INK_BODY,
-                                                }}
-                                            >
-                                                AI will match your Unique Offer to the most aligned missions.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </button>
-                            )}
-
-                            <button
-                                onClick={() => setStep("has-ai")}
-                                className="liquid-glass p-6 rounded-2xl text-left transition-all duration-300 hover:translate-y-[-1px] hover:scale-[1.005] active:scale-[0.99]"
-                            >
-                                <Check className="w-6 h-6 mb-3" style={{ color: "var(--skin-accent-gold, #b8860b)" }} />
+            {/* ── State 1: Prompt + paste ── */}
+            {state === "prompt" && (
+                <div className="space-y-6">
+                    {/* The prompt to copy */}
+                    <div className="liquid-glass rounded-2xl p-5 sm:p-6">
+                        <div className="flex items-start justify-between mb-3 gap-3">
+                            <div>
                                 <h3
                                     className="mb-1"
                                     style={{
@@ -450,238 +289,181 @@ const MissionDiscoveryLanding = () => {
                                         color: INK,
                                     }}
                                 >
-                                    Yes, I have clarity
+                                    Prompt for your AI
                                 </h3>
-                                <p
-                                    className="text-sm"
-                                    style={{
-                                        fontFamily: "'Source Serif 4', Georgia, serif",
-                                        fontWeight: 300,
-                                        color: INK_BODY,
-                                    }}
-                                >
-                                    I know what I'm here to do.
+                                <p className="text-xs" style={{ color: INK_MUTED }}>
+                                    Copy this. Paste it into ChatGPT, Claude, or whichever AI knows you best.
                                 </p>
-                            </button>
-
-                            <button
-                                onClick={handleGoToWizard}
-                                className="liquid-glass p-6 rounded-2xl text-left transition-all duration-300 hover:translate-y-[-1px] hover:scale-[1.005] active:scale-[0.99]"
-                            >
-                                <HelpCircle className="w-6 h-6 mb-3" style={{ color: "var(--skin-accent-gold, #b8860b)" }} />
-                                <h3
-                                    className="mb-1"
-                                    style={{
-                                        fontFamily: "'Cormorant Garamond', serif",
-                                        fontWeight: 600,
-                                        fontSize: "1.18rem",
-                                        color: INK,
-                                    }}
-                                >
-                                    I need to discover it
-                                </h3>
-                                <p
-                                    className="text-sm"
-                                    style={{
-                                        fontFamily: "'Source Serif 4', Georgia, serif",
-                                        fontWeight: 300,
-                                        color: INK_BODY,
-                                    }}
-                                >
-                                    Take me through the wizard.
-                                </p>
-                            </button>
-                        </div>
-
-                        <p className="text-center text-xs text-muted-foreground mt-6">
-                            You can add more missions later — start with the one you're most excited about!
-                        </p>
-                    </div>
-                )}
-
-                {/* Step: Has AI */}
-                {step === "has-ai" && !matches && (
-                    <div className="space-y-4">
-                        <p
-                            className="text-center mb-6 italic leading-relaxed mx-auto max-w-[40ch]"
-                            style={{
-                                fontFamily: "'Source Serif 4', Georgia, serif",
-                                fontWeight: 300,
-                                fontSize: "clamp(1rem, 1.6vw, 1.1rem)",
-                                color: INK_BODY,
-                            }}
-                        >
-                            Do you have an AI model (ChatGPT, Claude, etc.) that you've discussed your mission with?
-                        </p>
-
-                        <div className="grid gap-4 sm:grid-cols-2">
-                            <button
-                                onClick={() => setStep("paste-response")}
-                                className="liquid-glass p-6 rounded-2xl text-left transition-all duration-300 hover:translate-y-[-1px] hover:scale-[1.005] active:scale-[0.99]"
-                            >
-                                <Brain className="w-6 h-6 mb-3" style={{ color: "var(--skin-accent-gold, #b8860b)" }} />
-                                <h3
-                                    className="mb-1"
-                                    style={{
-                                        fontFamily: "'Cormorant Garamond', serif",
-                                        fontWeight: 600,
-                                        fontSize: "1.18rem",
-                                        color: INK,
-                                    }}
-                                >
-                                    Yes, I have an AI
-                                </h3>
-                                <p
-                                    className="text-sm"
-                                    style={{
-                                        fontFamily: "'Source Serif 4', Georgia, serif",
-                                        fontWeight: 300,
-                                        color: INK_BODY,
-                                    }}
-                                >
-                                    I'll paste its response.
-                                </p>
-                            </button>
-
-                            <button
-                                onClick={() => setStep("type-manually")}
-                                className="liquid-glass p-6 rounded-2xl text-left transition-all duration-300 hover:translate-y-[-1px] hover:scale-[1.005] active:scale-[0.99]"
-                            >
-                                <ListChecks className="w-6 h-6 mb-3" style={{ color: "var(--skin-accent-gold, #b8860b)" }} />
-                                <h3
-                                    className="mb-1"
-                                    style={{
-                                        fontFamily: "'Cormorant Garamond', serif",
-                                        fontWeight: 600,
-                                        fontSize: "1.18rem",
-                                        color: INK,
-                                    }}
-                                >
-                                    No, I'll type it
-                                </h3>
-                                <p
-                                    className="text-sm"
-                                    style={{
-                                        fontFamily: "'Source Serif 4', Georgia, serif",
-                                        fontWeight: 300,
-                                        color: INK_BODY,
-                                    }}
-                                >
-                                    Write my mission manually.
-                                </p>
-                            </button>
-                        </div>
-
-                        <button
-                            onClick={() => setStep("clarity-check")}
-                            className="w-full text-sm mt-4 transition-colors"
-                            style={{ color: INK_MUTED }}
-                        >
-                            ← Go back
-                        </button>
-                    </div>
-                )}
-
-                {/* Step: Paste AI Response */}
-                {step === "paste-response" && !matches && (
-                    <div className="space-y-6">
-                        <div className="bg-muted/40 rounded-xl p-4 border border-border">
-                            <div className="flex items-start justify-between mb-2">
-                                <div>
-                                    <h3 className="font-semibold text-foreground text-sm">Prompt for your AI</h3>
-                                    <p className="text-xs text-muted-foreground">Copy this and ask your AI model</p>
-                                </div>
-                                <Button
-                                    variant="outline"
-                                    size="sm"
-                                    onClick={handleCopyPrompt}
-                                    className="shrink-0"
-                                >
-                                    {copied ? <Check className="w-4 h-4 mr-1" /> : <Clipboard className="w-4 h-4 mr-1" />}
-                                    {copied ? "Copied!" : "Copy"}
-                                </Button>
                             </div>
-                            <pre className="text-xs whitespace-pre-wrap bg-white p-3 rounded-lg border border-border/10 max-h-32 overflow-y-auto prompt-barely-visible">
-                                {MISSION_DISCOVERY_PROMPT}
-                            </pre>
-                        </div>
-
-                        <div>
-                            <label className="block text-sm font-medium text-foreground mb-2">
-                                Paste AI's response here
-                            </label>
-                            <Textarea
-                                value={aiResponse}
-                                onChange={(e) => setAiResponse(e.target.value)}
-                                placeholder="Paste the AI's response about your mission..."
-                                className="min-h-[200px]"
-                            />
-                        </div>
-
-                        <div className="flex gap-3">
                             <Button
                                 variant="outline"
-                                onClick={() => setStep("has-ai")}
+                                size="sm"
+                                onClick={handleCopyPrompt}
+                                className="shrink-0"
                             >
-                                ← Back
-                            </Button>
-                            <Button
-                                className="flex-1"
-                                onClick={handleMatchMission}
-                                disabled={!aiResponse.trim() || isMatching}
-                            >
-                                {isMatching ? "Matching..." : "Find Matching Missions"}
-                                <ArrowRight className="w-4 h-4 ml-2" />
+                                {copied ? <Check className="w-4 h-4 mr-1" /> : <Clipboard className="w-4 h-4 mr-1" />}
+                                {copied ? "Copied" : "Copy"}
                             </Button>
                         </div>
+                        <pre
+                            className="text-xs whitespace-pre-wrap p-3 rounded-lg max-h-40 overflow-y-auto"
+                            style={{
+                                fontFamily: "'JetBrains Mono', ui-monospace, monospace",
+                                backgroundColor: "rgba(255, 255, 255, 0.45)",
+                                color: INK_MUTED,
+                                border: "0.5px solid rgba(11,42,90,0.10)",
+                            }}
+                        >
+                            {MISSION_DISCOVERY_PROMPT}
+                        </pre>
                     </div>
-                )}
 
-                {/* Step: Type Manually */}
-                {step === "type-manually" && !matches && (
-                    <div className="space-y-6">
-                        <div>
-                            <label className="block text-sm font-medium text-foreground mb-2">
-                                Describe your mission
-                            </label>
-                            <Textarea
-                                value={manualMission}
-                                onChange={(e) => setManualMission(e.target.value)}
-                                placeholder="What is your contribution to the planet? What change do you want to create?"
-                                className="min-h-[200px]"
-                            />
-                            <p className="text-xs text-muted-foreground mt-2">
-                                Be specific about the problems you want to solve and the impact you want to have.
-                            </p>
-                        </div>
-
-                        <div className="flex gap-3">
-                            <Button
-                                variant="outline"
-                                onClick={() => setStep("has-ai")}
-                            >
-                                ← Back
-                            </Button>
-                            <Button
-                                className="flex-1"
-                                onClick={handleMatchMission}
-                                disabled={!manualMission.trim() || isMatching}
-                            >
-                                {isMatching ? "Matching..." : "Find Matching Missions"}
-                                <ArrowRight className="w-4 h-4 ml-2" />
-                            </Button>
-                        </div>
-
-                        <div className="text-center">
-                            <button
-                                onClick={handleGoToWizard}
-                                className="text-sm text-muted-foreground hover:text-foreground"
-                            >
-                                Or take the guided wizard instead →
-                            </button>
-                        </div>
+                    {/* Paste back */}
+                    <div>
+                        <label
+                            className="block mb-2"
+                            style={{
+                                fontFamily: "'Cormorant Garamond', serif",
+                                fontWeight: 600,
+                                fontSize: "1.05rem",
+                                color: INK,
+                            }}
+                        >
+                            Paste your AI's response
+                        </label>
+                        <Textarea
+                            value={aiResponse}
+                            onChange={(e) => setAiResponse(e.target.value)}
+                            placeholder="Paste the full response — including the '1 sentence synthesis:' line at the end."
+                            className="min-h-[220px]"
+                            style={{
+                                fontFamily: "'Source Serif 4', Georgia, serif",
+                                color: INK,
+                            }}
+                        />
                     </div>
-                )}
+
+                    <div className="flex justify-center">
+                        <Button
+                            size="lg"
+                            onClick={handleExtract}
+                            disabled={!aiResponse.trim()}
+                            className="ring-2 ring-[#d4af37]/40 ring-offset-2"
+                        >
+                            Find my mission
+                            <ArrowRight className="w-4 h-4 ml-2" />
+                        </Button>
+                    </div>
+                </div>
+            )}
+
+            {/* ── State 2: Confirm ── */}
+            {state === "confirm" && (
+                <div className="space-y-6">
+                    <div className="liquid-glass-strong rounded-2xl p-6 sm:p-8 text-center"
+                         style={{ border: "1px solid rgba(212, 175, 55, 0.32)" }}>
+                        <p
+                            className="text-[10px] uppercase tracking-[0.32em] font-medium mb-4"
+                            style={{ color: "var(--skin-accent-gold, #b8860b)" }}
+                        >
+                            One sentence
+                        </p>
+                        <Textarea
+                            value={sentence}
+                            onChange={(e) => setSentence(e.target.value)}
+                            className="min-h-[120px] text-center border-none bg-transparent focus-visible:ring-0 resize-none"
+                            style={{
+                                fontFamily: "'Cormorant Garamond', serif",
+                                fontWeight: 600,
+                                fontSize: "clamp(1.15rem, 2.4vw, 1.5rem)",
+                                color: INK,
+                                lineHeight: 1.4,
+                            }}
+                        />
+                        <p
+                            className="mt-3 italic"
+                            style={{
+                                fontFamily: "'Source Serif 4', Georgia, serif",
+                                fontWeight: 300,
+                                fontSize: "0.95rem",
+                                color: INK_MUTED,
+                            }}
+                        >
+                            Edit if you want. This is what gets saved to your profile.
+                        </p>
+                    </div>
+
+                    <div className="flex flex-wrap gap-3 justify-center">
+                        <Button
+                            variant="outline"
+                            onClick={() => {
+                                setState("prompt");
+                            }}
+                            disabled={isSaving}
+                        >
+                            ← Back
+                        </Button>
+                        <Button
+                            size="lg"
+                            onClick={handleSave}
+                            disabled={isSaving || !sentence.trim()}
+                            className="ring-2 ring-emerald-400/50 ring-offset-2 bg-emerald-600 hover:bg-emerald-700"
+                        >
+                            <Check className="w-4 h-4 mr-2" />
+                            {isSaving ? "Saving…" : "Save my mission"}
+                        </Button>
+                    </div>
+                </div>
+            )}
+
+            {/* ── State 3: Saved ── */}
+            {state === "saved" && (
+                <div className="space-y-6">
+                    <div className="liquid-glass-strong rounded-2xl p-6 sm:p-8 text-center"
+                         style={{ border: "1px solid rgba(212, 175, 55, 0.32)" }}>
+                        <p
+                            className="text-[10px] uppercase tracking-[0.32em] font-medium mb-4"
+                            style={{ color: "var(--skin-accent-gold, #b8860b)" }}
+                        >
+                            My mission
+                        </p>
+                        <p
+                            className="mx-auto max-w-[40ch]"
+                            style={{
+                                fontFamily: "'Cormorant Garamond', serif",
+                                fontWeight: 600,
+                                fontSize: "clamp(1.15rem, 2.4vw, 1.5rem)",
+                                color: INK,
+                                lineHeight: 1.4,
+                                textShadow: HALO_SOFT,
+                            }}
+                        >
+                            {sentence}
+                        </p>
+                    </div>
+
+                    <div className="flex flex-wrap gap-3 justify-center">
+                        <Button
+                            variant="outline"
+                            onClick={() => {
+                                // Lets the user revise. Drops back into the
+                                // confirm state pre-filled with the saved
+                                // sentence so they can edit and re-save.
+                                setState("confirm");
+                            }}
+                        >
+                            Edit
+                        </Button>
+                        <Button
+                            onClick={() => navigate(returnPath)}
+                            className="ring-2 ring-[#d4af37]/40 ring-offset-2"
+                        >
+                            Back to journey
+                            <ChevronRight className="w-4 h-4 ml-1" />
+                        </Button>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };
