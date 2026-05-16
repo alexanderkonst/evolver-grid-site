@@ -14,19 +14,25 @@
 
 export type HolonicPhase = "will" | "emanation" | "digestion" | "enrichment";
 
+export type HolonicElement = "Fire" | "Water" | "Earth" | "Air";
+
 export interface HolonicPhaseInfo {
   id: HolonicPhase;
   label: string;
   emoji: string;
   color: string;
   action: string;
+  /** Element correspondence (Sasha's holonic mapping, 2026-02-22). */
+  element: HolonicElement;
+  /** Emoji for the element — used as user-facing umbrella above lunar pills. */
+  elementEmoji: string;
 }
 
 export const HOLONIC_PHASES: HolonicPhaseInfo[] = [
-  { id: "will", label: "PLANNING", emoji: "🎯", color: "#e07040", action: "Set intention · Define the target" },
-  { id: "emanation", label: "BUILDING", emoji: "🔨", color: "#5090c0", action: "Build · Create · Execute" },
-  { id: "digestion", label: "COMMUNICATING", emoji: "📡", color: "#60a060", action: "Share · Polish · Ship" },
-  { id: "enrichment", label: "INTEGRATING", emoji: "🌀", color: "#a080c0", action: "Integrate · Reflect · Rest" },
+  { id: "will", label: "PLANNING", emoji: "🎯", color: "#e07040", action: "Set intention · Define the target", element: "Fire", elementEmoji: "🔥" },
+  { id: "emanation", label: "BUILDING", emoji: "🔨", color: "#5090c0", action: "Build · Create · Execute", element: "Water", elementEmoji: "💧" },
+  { id: "digestion", label: "COMMUNICATING", emoji: "📡", color: "#60a060", action: "Share · Polish · Ship", element: "Earth", elementEmoji: "🌍" },
+  { id: "enrichment", label: "INTEGRATING", emoji: "🌀", color: "#a080c0", action: "Integrate · Reflect · Rest", element: "Air", elementEmoji: "🌬️" },
 ];
 
 export function getHolonicPhase(progress: number): HolonicPhaseInfo {
@@ -70,6 +76,70 @@ const SOLAR_SEGMENTS = [
 
 export type SolarSegmentLabel = (typeof SOLAR_SEGMENTS)[number];
 
+/**
+ * Birthday-arc phases (personal year, locked 2026-05-16).
+ *
+ * Calendar seasons are universal; birthday phases are personal. The
+ * Equilibrium Solar bar is birthday-anchored — what matters is where
+ * the user is in *their* year, not where the calendar is.
+ *
+ * Boundaries (fraction of personal year from last birthday):
+ *   0.00–0.04  Surge moment   (~first 2 weeks)
+ *   0.04–0.25  Spend the energy
+ *   0.25–0.75  Sustain
+ *   0.75–0.92  Begin closing
+ *   0.92–1.00  Wind down       (last ~30 days)
+ *
+ * See docs/specs/equilibrium/equilibrium_v2_philosophical_spine.md §4.
+ */
+export type BirthdayArcPhase =
+  | "Surge moment"
+  | "Spend the energy"
+  | "Sustain"
+  | "Begin closing"
+  | "Wind down";
+
+const BIRTHDAY_ARC_BOUNDARIES: { end: number; phase: BirthdayArcPhase }[] = [
+  { end: 0.04, phase: "Surge moment" },
+  { end: 0.25, phase: "Spend the energy" },
+  { end: 0.75, phase: "Sustain" },
+  { end: 0.92, phase: "Begin closing" },
+  { end: 1.01, phase: "Wind down" },
+];
+
+export function getBirthdayArcPhase(personalProgress: number): BirthdayArcPhase {
+  const p = Math.max(0, Math.min(1, personalProgress));
+  for (const b of BIRTHDAY_ARC_BOUNDARIES) {
+    if (p < b.end) return b.phase;
+  }
+  return "Wind down";
+}
+
+/** Birthday-arc phase ordering, for prev/next lookup. */
+const BIRTHDAY_ARC_ORDER: BirthdayArcPhase[] = [
+  "Surge moment",
+  "Spend the energy",
+  "Sustain",
+  "Begin closing",
+  "Wind down",
+];
+
+export function getBirthdayArcPhaseNeighbors(personalProgress: number): {
+  prev: BirthdayArcPhase;
+  current: BirthdayArcPhase;
+  next: BirthdayArcPhase;
+} {
+  const current = getBirthdayArcPhase(personalProgress);
+  const idx = BIRTHDAY_ARC_ORDER.indexOf(current);
+  // Cycle wraps: after Wind down comes Surge moment (next birthday).
+  const prev =
+    BIRTHDAY_ARC_ORDER[
+      (idx + BIRTHDAY_ARC_ORDER.length - 1) % BIRTHDAY_ARC_ORDER.length
+    ];
+  const next = BIRTHDAY_ARC_ORDER[(idx + 1) % BIRTHDAY_ARC_ORDER.length];
+  return { prev, current, next };
+}
+
 export interface SolarState extends CycleSegmentState<SolarSegmentLabel> {
   /** Calendar-year progress (0-1). */
   yearProgress: number;
@@ -79,6 +149,8 @@ export interface SolarState extends CycleSegmentState<SolarSegmentLabel> {
   holonicPhase: HolonicPhaseInfo;
   /** Holonic phase from personal year (if birthday set). */
   personalHolonicPhase: HolonicPhaseInfo;
+  /** Current birthday-arc phase (personal year). */
+  birthdayArcPhase: BirthdayArcPhase;
 }
 
 /**
@@ -128,6 +200,7 @@ export function getSolarState(now: number, birthday?: string): SolarState {
     nextLabel: SOLAR_SEGMENTS[nextIdx],
     holonicPhase: getHolonicPhase(yearProgress),
     personalHolonicPhase: getHolonicPhase(personalProgress),
+    birthdayArcPhase: getBirthdayArcPhase(personalProgress),
   };
 }
 
@@ -255,54 +328,164 @@ export interface MoonPhaseInfo {
   start: number;
   /** Days into the synodic cycle when this phase ends. */
   end: number;
-  /** Energy descriptor (v1.x voice, preserved). */
+  /** Pill-label distillation (verb-forward, concrete, 2–4 actions). */
   energy: string;
+  /**
+   * Holonic quadrant this phase sits inside.
+   *   "will"        Fire 🔥  → Harvesting + Celebrating
+   *   "emanation"   Water 💧 → Planning + Planting
+   *   "digestion"   Earth 🌍 → Clearing + Gathering
+   *   "enrichment"  Air 🌬️  → Seeing + Leading
+   *
+   * Per Sasha 2026-05-16: holonic NAMES stay internal (won't confuse the
+   * user). Only the element EMOJI surfaces in the UI as a quiet umbrella
+   * above the pills. The 8-phase pill stays primary; the holonic quadrant
+   * is the umbrella for users moving from degree 2 → degree 3.
+   */
+  holonicQuadrant: HolonicPhase;
+  /** Ultra-concise inline guidance — one short sentence, glanceable. */
+  guidance: string;
 }
 
 // 8 phases × ~3.69 days each = 29.53 day synodic cycle.
 //
-// Energy strings updated 2026-05-16 per Sasha's Lunar Cycle infographic
-// (Tamyris Garcia map) — wisdom-preserving distillation. Full teaching for
-// each phase preserved in docs/specs/equilibrium/lunar_wisdom_map.md.
-// Voice rules:
-//   • Lead with the Phase NAME (Planning/Planting/Clearing/etc.) — strong
+// Pill strings re-locked 2026-05-16 (round 2) per Sasha's deep wisdom
+// pass. Voice rules:
+//
+//   • Lead with the Phase NAME (Clearing/Gathering/Seeing/etc.) — strong
 //     identity word, action-oriented.
-//   • Center dot separator.
-//   • 2–4 word verb-forward distillation.
-//   • No "energy/ethereal/vibration" language.
+//   • Center dot separator (·).
+//   • 2–4 CONCRETE actions. Apply the "what does that even mean?" test
+//     before shipping any phrase. Every verb must point at a specific
+//     action the user can take. (See .agent/anti-ai-style.md.)
+//   • Banned words: "energy", "alignment", "flow", "vibration", "vibes",
+//     "manifest", "abundance", "the universe".
+//
+// Key corrections vs round 1:
+//   • Planning is NOT "architect goals" — it's where the next INTENTION
+//     SURFACES from the just-completed harvest. Receptive, not engineered.
+//   • Planting is NOT "memorize goals" — it's where the 1–3 STRATEGIES
+//     that translate the intention into directions reveal themselves.
+//     Capture them.
+//   • Clearing: "the how is not yours yet" hits hardest HERE because the
+//     mind freaks out trying to figure out how the new intention will be
+//     realized, and that's when limiting beliefs reinforce.
+//   • Doing → "Harvesting" — Sasha's preferred framing. It fuses doing
+//     and reaping ("doing your harvesting"). Pinnacle of reception:
+//     fruits of labor.
+//   • Celebrating: gratitude is the EMOTIONAL FUEL for the next cycle.
+//     Add "thank" — without it, the next Planning lacks fuel.
+//
+// Full teaching for each phase: docs/specs/equilibrium/lunar_wisdom_map.md.
 //
 // The cycle reads counterclockwise per the source (Last Quarter is Phase 1,
 // not Phase 7 as a calendar would suggest) — but the array order here stays
 // astronomically-sorted (New Moon = index 0) for runtime simplicity. The
 // "phase number" annotation in each entry maps back to Sasha's 1-8.
 export const MOON_PHASES: MoonPhaseInfo[] = [
-  // Phase 3 in Sasha's map. Dumping. Banishing ritual. Time to cry,
-  // no complaining. Fear and drama surface to be cleared.
-  { name: "New Moon", symbol: "🌑", start: 0, end: 1.85, energy: "Clearing · Dump, banish, cry it out" },
-  // Phase 4. Receiving energy. "Yes" ritual. Talk sweet. Be open to
-  // possibilities. Law of attraction in receiving mode. Raw resources arrive.
-  // "The How is still none of your business."
-  { name: "Waxing Crescent", symbol: "🌒", start: 1.85, end: 5.53, energy: "Gathering · Yes ritual · Receive resources" },
-  // Phase 5. The "How" is revealed. Telescope vision. Ah-Ha moment.
-  // The path you couldn't see during Planting/Gathering now appears.
-  { name: "First Quarter", symbol: "🌓", start: 5.53, end: 9.22, energy: "Seeing · The How is revealed · Ah-Ha" },
-  // Phase 6. Administration & organization phase. 90% admin, 10% work.
-  // Orchestrate the sequence, prepare the field for Doing.
-  { name: "Waxing Gibbous", symbol: "🌔", start: 9.22, end: 12.91, energy: "Leading · 90% admin, 10% work" },
-  // Phase 7. Doing. 100% physical execution ("100% gangsta" in source).
-  // High-energy GTD. Harvest and cut sweaty.
-  { name: "Full Moon", symbol: "🌕", start: 12.91, end: 16.61, energy: "Doing · 100% physical · Harvest & cut" },
-  // Phase 8. Celebrate. Party. Gratitude. Show off. Brag. Honor others' wins.
-  // The "rinse" before the "repeat."
-  { name: "Waning Gibbous", symbol: "🌖", start: 16.61, end: 20.30, energy: "Celebrating · Gratitude · Honor others' wins" },
-  // Phase 1. The planning phase opens the next cycle. 2 goals. Engineer,
-  // architect, decide, liberate. Fill the goals with emotion — felt, not
-  // just thought.
-  { name: "Last Quarter", symbol: "🌗", start: 20.30, end: 23.99, energy: "Planning · Engineer 2 goals · Fill with emotion" },
-  // Phase 2. Planting. Impregnate the universe with the goals you just
-  // architected. Memorize them. Daily meditate / visualize / movie them.
-  // "The How is none of your business."
-  { name: "Waning Crescent", symbol: "🌘", start: 23.99, end: 29.53, energy: "Planting · Memorize, visualize, surrender" },
+  // Phase 3 in Sasha's map. The mind freaks out about HOW the new
+  // intention will be realized — limiting beliefs reinforce, doubt forms.
+  // The work: release fear, cry don't complain, don't engineer the how.
+  {
+    name: "New Moon",
+    symbol: "🌑",
+    start: 0,
+    end: 1.85,
+    energy: "Clearing · Release fear · Cry, don't complain · The how is not yours yet",
+    holonicQuadrant: "digestion",
+    guidance:
+      "The mind freaks out about the how — that's the resistance to release. Cry, don't complain. Don't form limiting beliefs.",
+  },
+  // Phase 4. Earth-element quadrant. Resources, meetings, opportunities
+  // arrive. The work is to receive them, even when "receiving" requires
+  // action. The how is still hidden.
+  {
+    name: "Waxing Crescent",
+    symbol: "🌒",
+    start: 1.85,
+    end: 5.53,
+    energy: "Gathering · Say yes · Take meetings · Receive resources",
+    holonicQuadrant: "digestion",
+    guidance:
+      "Say yes to whatever arrives — meetings, resources, opportunities. The how is still not yours.",
+  },
+  // Phase 5. The how reveals — the path you couldn't see through Planting
+  // and Gathering now becomes obvious. Capture it before it drifts.
+  {
+    name: "First Quarter",
+    symbol: "🌓",
+    start: 5.53,
+    end: 9.22,
+    energy: "Seeing · The how reveals · Write it down · Capture before it drifts",
+    holonicQuadrant: "enrichment",
+    guidance:
+      "The how you couldn't see now becomes obvious. Write it down before the clarity drifts.",
+  },
+  // Phase 6. Prep the life-system for the upcoming harvest. Like a farmer
+  // before harvest: storage, instruments, helpers. What infrastructure
+  // does the harvest you're about to do require?
+  {
+    name: "Waxing Gibbous",
+    symbol: "🌔",
+    start: 9.22,
+    end: 12.91,
+    energy: "Leading · Prep for harvest · Set up infrastructure · Get the help",
+    holonicQuadrant: "enrichment",
+    guidance:
+      "Prepare the system for the upcoming harvest — what tools, helpers, and storage need to be in place?",
+  },
+  // Phase 7. RENAMED Doing → Harvesting (Sasha 2026-05-16): fuses work
+  // and reception. Pinnacle of the cycle. Reap what's ripe; receive the
+  // fruits of labor. Both physical work AND collecting what's earned.
+  {
+    name: "Full Moon",
+    symbol: "🌕",
+    start: 12.91,
+    end: 16.61,
+    energy: "Harvesting · Reap what's ripe · Cut · Receive the fruits of labor",
+    holonicQuadrant: "will",
+    guidance:
+      "Reap what's ripe. Cut what's ready. Receive the fruits of labor — both work and reception.",
+  },
+  // Phase 8. Announce the harvest. THANK what made it possible. Gratitude
+  // is the emotional fuel for the next Planning — skip this phase and the
+  // next cycle lacks propellant.
+  {
+    name: "Waning Gibbous",
+    symbol: "🌖",
+    start: 16.61,
+    end: 20.30,
+    energy: "Celebrating · Announce the harvest · Thank · Feel the gratitude",
+    holonicQuadrant: "will",
+    guidance:
+      "Announce the harvest. Thank what made it possible. Gratitude is the emotional fuel for the next cycle.",
+  },
+  // Phase 1. The next intention SURFACES from the just-finished harvest.
+  // Not engineered — received. The harvest realized potential; from that
+  // realized potential, the next will emerges. Receptive, not designer.
+  {
+    name: "Last Quarter",
+    symbol: "🌗",
+    start: 20.30,
+    end: 23.99,
+    energy: "Planning · The next intention surfaces · Receive it · Name it",
+    holonicQuadrant: "emanation",
+    guidance:
+      "The next intention surfaces from the just-finished harvest. Notice it. Name it. Don't engineer it.",
+  },
+  // Phase 2. The 1–3 STRATEGIES that translate the intention into
+  // directions reveal themselves. This is strategy revelation, not
+  // goal-memorization. Capture them as they arrive.
+  {
+    name: "Waning Crescent",
+    symbol: "🌘",
+    start: 23.99,
+    end: 29.53,
+    energy: "Planting · The 1–3 strategies reveal · Write them down",
+    holonicQuadrant: "emanation",
+    guidance:
+      "The 1–3 strategies that translate the intention into directions reveal themselves. Capture them as they arrive.",
+  },
 ];
 
 const SYNODIC_MONTH_DAYS = 29.53058770576;
@@ -313,7 +496,19 @@ export interface LunarState extends CycleSegmentState<string> {
   phase: MoonPhaseInfo;
   /** Days into current synodic cycle. */
   day: number;
+  /**
+   * Holonic phase info for this lunar moment (id, element, elementEmoji).
+   * The `elementEmoji` is what surfaces in the UI as the umbrella above
+   * the pills. The holonic name itself stays internal per Sasha
+   * 2026-05-16 ("won't confuse the user").
+   */
   holonicPhase: HolonicPhaseInfo;
+  /** Days remaining in current phase. */
+  daysRemainingInPhase: number;
+  /** When the current phase ends (ms timestamp). */
+  phaseEndMs: number;
+  /** Name of the NEXT phase (for "ends X · then Seeing" display). */
+  nextPhaseName: string;
 }
 
 /**
@@ -347,9 +542,16 @@ export function getLunarState(now: number): LunarState {
   const prevIdx = (segmentIndex + MOON_PHASES.length - 1) % MOON_PHASES.length;
   const nextIdx = (segmentIndex + 1) % MOON_PHASES.length;
 
-  // Lunar Holon Cycle: shift so Full Moon = start of WILL (Fire).
-  const fullMoonOffset = 12.91 / SYNODIC_MONTH_DAYS; // ~0.437
-  const lunarHolonProgress = (progress + (1 - fullMoonOffset)) % 1;
+  // Holonic phase resolved DIRECTLY from the phase's authored mapping
+  // (more deterministic than progress-bucket math at phase boundaries).
+  const holonicPhase =
+    HOLONIC_PHASES.find((h) => h.id === phase.holonicQuadrant) ??
+    HOLONIC_PHASES[0];
+
+  // Time-to-next-phase. The current phase ends at `phase.end` days into
+  // the cycle; convert that to a ms timestamp by walking forward from `now`.
+  const daysRemainingInPhase = phase.end - day;
+  const phaseEndMs = now + daysRemainingInPhase * 86_400_000;
 
   return {
     phase,
@@ -360,7 +562,10 @@ export function getLunarState(now: number): LunarState {
     prevLabel: MOON_PHASES[prevIdx].energy,
     currentLabel: phase.energy,
     nextLabel: MOON_PHASES[nextIdx].energy,
-    holonicPhase: getHolonicPhase(lunarHolonProgress),
+    holonicPhase,
+    daysRemainingInPhase,
+    phaseEndMs,
+    nextPhaseName: MOON_PHASES[nextIdx].name,
   };
 }
 
