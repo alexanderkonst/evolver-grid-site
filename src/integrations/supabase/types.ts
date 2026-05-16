@@ -285,36 +285,6 @@ export type Database = {
           },
         ]
       }
-      connections: {
-        Row: {
-          created_at: string | null
-          id: string
-          message: string | null
-          receiver_id: string
-          requester_id: string
-          responded_at: string | null
-          status: string | null
-        }
-        Insert: {
-          created_at?: string | null
-          id?: string
-          message?: string | null
-          receiver_id: string
-          requester_id: string
-          responded_at?: string | null
-          status?: string | null
-        }
-        Update: {
-          created_at?: string | null
-          id?: string
-          message?: string | null
-          receiver_id?: string
-          requester_id?: string
-          responded_at?: string | null
-          status?: string | null
-        }
-        Relationships: []
-      }
       email_send_log: {
         Row: {
           created_at: string
@@ -1255,6 +1225,66 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      match_interests: {
+        Row: {
+          ai_why_text: string | null
+          compound_type: string | null
+          created_at: string
+          from_user_id: string
+          id: string
+          match_score: number | null
+          to_user_id: string
+        }
+        Insert: {
+          ai_why_text?: string | null
+          compound_type?: string | null
+          created_at?: string
+          from_user_id: string
+          id?: string
+          match_score?: number | null
+          to_user_id: string
+        }
+        Update: {
+          ai_why_text?: string | null
+          compound_type?: string | null
+          created_at?: string
+          from_user_id?: string
+          id?: string
+          match_score?: number | null
+          to_user_id?: string
+        }
+        Relationships: []
+      }
+      match_intros: {
+        Row: {
+          ai_why_text: string | null
+          compound_type: string | null
+          id: string
+          intro_sent_at: string
+          match_score: number | null
+          user_a_id: string
+          user_b_id: string
+        }
+        Insert: {
+          ai_why_text?: string | null
+          compound_type?: string | null
+          id?: string
+          intro_sent_at?: string
+          match_score?: number | null
+          user_a_id: string
+          user_b_id: string
+        }
+        Update: {
+          ai_why_text?: string | null
+          compound_type?: string | null
+          id?: string
+          intro_sent_at?: string
+          match_score?: number | null
+          user_a_id?: string
+          user_b_id?: string
+        }
+        Relationships: []
       }
       mission_challenges: {
         Row: {
