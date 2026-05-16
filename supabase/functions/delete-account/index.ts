@@ -165,20 +165,47 @@ Deno.serve(async (req) => {
             await wipe(table, column, userId);
         }
 
-        // connections — two-column user reference
-        try {
-            const { error } = await admin
-                .from("connections")
-                .delete()
-                .or(`requester_id.eq.${userId},receiver_id.eq.${userId}`);
-            if (error) {
-                console.warn(`[delete-account] connections delete failed: ${error.message}`);
-                warnings.push({ step: "wipe", table: "connections", detail: error.message });
+        // Day 66 wave §8 (Sasha 2026-05-16): legacy `connections` table
+        // was replaced by match_interests + match_intros (double-opt-in
+        // matching). Both new tables use ON DELETE CASCADE against
+        // auth.users(id), so the user-row deletion below will cascade
+        // those rows for us — no explicit wipe needed.
+        //
+        // Defensive cleanup of either-direction rows still runs in case
+        // RLS or constraint state leaves orphans:
+        const wipeMatchTables = async () => {
+            try {
+                const { error: interestsErr } = await admin
+                    .from("match_interests")
+                    .delete()
+                    .or(`from_user_id.eq.${userId},to_user_id.eq.${userId}`);
+                if (interestsErr) {
+                    warnings.push({ step: "wipe", table: "match_interests", detail: interestsErr.message });
+                }
+            } catch (err) {
+                warnings.push({
+                    step: "wipe",
+                    table: "match_interests",
+                    detail: err instanceof Error ? err.message : String(err),
+                });
             }
-        } catch (err) {
-            const msg = err instanceof Error ? err.message : String(err);
-            warnings.push({ step: "wipe", table: "connections", detail: msg });
-        }
+            try {
+                const { error: introsErr } = await admin
+                    .from("match_intros")
+                    .delete()
+                    .or(`user_a_id.eq.${userId},user_b_id.eq.${userId}`);
+                if (introsErr) {
+                    warnings.push({ step: "wipe", table: "match_intros", detail: introsErr.message });
+                }
+            } catch (err) {
+                warnings.push({
+                    step: "wipe",
+                    table: "match_intros",
+                    detail: err instanceof Error ? err.message : String(err),
+                });
+            }
+        };
+        await wipeMatchTables();
 
         // anonymous_genius_results.claimed_user_id is ON DELETE SET NULL,
         // but unlink explicitly so the row no longer ties back to this person.
