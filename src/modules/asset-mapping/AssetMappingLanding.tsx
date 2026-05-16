@@ -424,7 +424,22 @@ const AssetMappingLanding = () => {
             }
 
             // Save via sync layer (localStorage + DB)
+            // Day 66 (Sasha 2026-05-16) — Wave B1 fix. Check result.success
+            // to distinguish DB-success from localStorage-only-success. Was:
+            // reported saved count regardless of DB outcome, so a DB failure
+            // looked like a success to the user.
             const result = await saveAssets(user.id, toSave);
+
+            if (!result.success) {
+                toast({
+                    title: "Couldn't save to your profile",
+                    description: result.error
+                        ? `Your assets are buffered locally — please retry. (${result.error})`
+                        : "Your assets are buffered locally; please retry to sync.",
+                    variant: "destructive",
+                });
+                return;
+            }
 
             setHasSaved(true);
             const totalSkipped = skippedCount + result.skipped;

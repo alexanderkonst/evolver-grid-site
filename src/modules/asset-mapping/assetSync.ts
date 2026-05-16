@@ -193,8 +193,18 @@ export const saveAsset = async (userId: string, asset: SavedAsset): Promise<bool
 
 /**
  * Save multiple assets to both localStorage and DB.
+ *
+ * Day 66 (Sasha 2026-05-16) — return shape extended with `success`
+ * and `error` so callers can surface DB failures to the user. Was:
+ * just `{ saved, skipped }` — which reported localStorage count
+ * regardless of DB outcome, hiding DB errors from the UI. The
+ * Wave A audit found that asset save flows had no visible feedback
+ * on DB failure; this fixes that contract.
  */
-export const saveAssets = async (userId: string, assets: SavedAsset[]): Promise<{ saved: number; skipped: number }> => {
+export const saveAssets = async (
+  userId: string,
+  assets: SavedAsset[],
+): Promise<{ saved: number; skipped: number; success: boolean; error?: string }> => {
   const existing = readLocalAssets(userId);
   const existingTitles = new Set(
     existing.map(a => a.title.trim().toLowerCase())
@@ -214,7 +224,7 @@ export const saveAssets = async (userId: string, assets: SavedAsset[]): Promise<
   }
 
   if (newAssets.length === 0) {
-    return { saved: 0, skipped };
+    return { saved: 0, skipped, success: true };
   }
 
   // Save to localStorage
@@ -229,10 +239,15 @@ export const saveAssets = async (userId: string, assets: SavedAsset[]): Promise<
 
   if (error) {
     console.warn("Failed to save assets to DB:", error.message);
-  } else {
-    // First-write-wins pointer for JOURNEY item #5 strikethrough.
-    await markResourcesMapped(userId);
+    return {
+      saved: newAssets.length,
+      skipped,
+      success: false,
+      error: error.message,
+    };
   }
 
-  return { saved: newAssets.length, skipped };
+  // First-write-wins pointer for JOURNEY item #5 strikethrough.
+  await markResourcesMapped(userId);
+  return { saved: newAssets.length, skipped, success: true };
 };
