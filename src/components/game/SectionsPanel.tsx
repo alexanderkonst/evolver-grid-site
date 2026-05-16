@@ -399,7 +399,7 @@ interface SectionsPanelProps {
  * the row labels honest if `ALL_ARTIFACT_KEYS` ever shifts.
  */
 const buildUbbSections = (
-    _progress: ReturnType<typeof useCanvasProgressLite>,
+    progress: ReturnType<typeof useCanvasProgressLite>,
 ): Section[] => {
     // Day 65 wave 6 (Sasha 2026-05-15): BUILD pane 2 restructured.
     // The six phase groups are no longer top-level rows — they're now
@@ -408,19 +408,23 @@ const buildUbbSections = (
     // and AI OS → Prompt Suites). Equilibrium joins as the second
     // top-level row alongside AVB.
     //
-    // Trade-off: per-phase progress fractions (the "0/8", "0/3"
-    // right-aligned counts) don't render on sub-items in the current
-    // SubSection type. The overall "N of 19 locked" count is already
-    // shown at the top of the /ubb canvas page itself, so the
-    // per-phase counts in pane 2 were redundant signal anyway. If we
-    // want them back on sub-items, the SubSection interface needs
-    // a `progress` field and the sub-row render needs the same
-    // progress-bar treatment as the (former) top-level rows.
+    // Day 65 wave 7 (Sasha 2026-05-15): per-phase progress fractions
+    // (the "0/8", "0/3" right-aligned counts that used to render on
+    // each phase row) are now consolidated onto the AVB parent row
+    // as a single overall fraction (e.g., "3/19"). One signal at the
+    // level that matters; sub-rows stay clean. Total comes from
+    // useCanvasProgressLite's totalLocked + total.
+    const totalProgress =
+        progress && !progress.isLoading && progress.total > 0
+            ? { locked: progress.totalLocked, total: progress.total }
+            : undefined;
+
     return [
         {
             id: "ubb-builder",
             label: "Automated Venture Builder",
             path: "/ubb",
+            progress: totalProgress,
             subSections: [
                 { id: "ubb-canvas",         label: "Canvas",         path: "/ubb" },
                 { id: "ubb-session",        label: "1st Session",    path: "/ubb/session" },
