@@ -233,7 +233,6 @@ export const EquilibriumV2Page = () => {
 
         {/* ─── BOX 9: Workstreams ────────────────────────────────── */}
         <PremiumCard
-          id={SECTION_IDS.workstreams}
           variant="glass"
           size="md"
           className="scroll-mt-24"
