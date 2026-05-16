@@ -281,6 +281,27 @@
 
 When a JOURNEY pane item gets crossed out (e.g., after Mission Discovery save → item #8 strikethrough), the **next available step in the sequence** should also be visually emphasized — a subtle pulse / gold halo / "next" affordance — so the user sees not just "I did this" but also "and here's what's next." Idea surfaced when designing the post-save flow on `/mission-discovery`; deemed overkill for the v1 of that flow but worth doing eventually. Where: `src/components/game/SectionsPanel.tsx` rendering loop; the "next item" can be derived from the same `useJourneyProgress` map by finding the first un-completed un-locked item after the just-completed one. Animation primitive: similar to the `.fytt-strikethrough--animating` pattern but applied as a brief glow / pulse on the next row's pill.
 
+### Parked (2026-05-16, Day 66 wave M — surfaced by roast) — `mission_participants` orphan-data audit
+
+The streamlined Mission Discovery flow (single-screen paste-and-extract) replaces the prior wizard + CommitFlow ceremony that wrote rows to `mission_participants`. Those rows from the prior flow now exist as **orphaned data** — no UI surfaces them, no save path touches them, no migration cleans them up. Worth a 30-minute audit before community/matching features that read from this table land:
+- Count: `SELECT COUNT(*) FROM mission_participants;`
+- Decision tree:
+  - If <50 rows → manual review, decide per-user
+  - If 50+ rows → migration: map each `(user_id, mission_id)` to `game_profiles.mission_statement` by joining against the static MISSIONS array (title field), preserving the prior preferences (share_consent etc.) for the future community features
+  - Or: keep the table as-is; future "people on the same mission" features may still want the slug-based mission_id matching alongside the free-form statements
+
+### Parked (2026-05-16, Day 66 wave M — surfaced by roast) — Few-shot example diversity in MISSION_DISCOVERY_PROMPT
+
+The current `MISSION_DISCOVERY_PROMPT` embeds Sasha's own mission read as a single few-shot example. It anchors the AI well on depth, format, and register for users with sophisticated, civilizational-scale missions (other founders Sasha works with directly). **Risk:** for a hardware-founder type, a coach, a tradesperson — the example's planetary/integration language may inflate the AI's response toward Sasha-flavored cosmic stakes that don't match the user's actual scale. **Sasha's note (May 16):** *"This is going to be very important — making a mental note to add it whenever I have it."* When the time is right, the move is to add a second (and possibly third) few-shot example to the prompt covering a smaller-scale, more grounded mission — e.g., a hardware founder, a regional coach, a craftsperson. The AI then has a range to interpolate from, not a single point to mimic. The prompt becomes harder to format but produces wider-fit output. Where to add: `src/prompts/user/missionDiscoveryPrompt.ts`. When ready: drop in a 2-3 paragraph alternate example with its own `1 sentence synthesis:` line beneath Sasha's, with a brief "EXAMPLE 2 — a different shape of mission" header between them.
+
+### Parked (2026-05-16, Day 66 wave M — Sasha's architectural question) — Version history for the personal-data profile
+
+Sasha asked: "How do people solve for version history of these things? We're creating the most powerful profiles available on the planet, and then matching them." Existing platform uses the **per-artifact version table** pattern (`zog_snapshots`, `qol_snapshots`, `user_business_artifacts.version`) for some surfaces, but Mission Discovery and Asset Mapping currently store only current state. To unlock cross-time matching, evolution analytics, audit trails, and "see how I've changed" surfaces, the next architectural pass should:
+1. Extend the per-artifact-version pattern to `mission_statement_versions` (and similar for `quality_of_life_versions`, `user_assets_versions` if they don't already track every edit)
+2. Add a `change_reason` text column on each version table — `'user_save'` / `'ai_suggestion'` / `'system_migration'` / `'reverted'` so the history is explainable
+3. Decide app-layer vs. Postgres-trigger: app-layer is simpler and keeps logic visible; triggers are bulletproof and zero-impact on application code, at the cost of opaqueness
+4. Build a "your profile over time" surface — pane-3 component on `/game/me/zone-of-genius/evolution` (or similar) that visualizes the trajectory. Most powerful for matching: shows not just current state but *velocity and direction*. See companion architectural note below this section for the full options write-up.
+
 ### Decision (parked) — Platform Onboarding Pathway
 *Captured 2026-04-28 (Day 54)*
 
