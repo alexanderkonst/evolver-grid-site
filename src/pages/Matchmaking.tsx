@@ -208,6 +208,21 @@ const Matchmaking = () => {
   // Track hidden profiles
   const [hiddenProfiles, setHiddenProfiles] = useState<Set<string>>(new Set());
 
+  // Day 66 wave §8 (Sasha 2026-05-16): match-mechanic state.
+  //
+  //   interestedUserIds — userIds the current user has expressed interest
+  //   in (from-direction match_interests rows). Drives the
+  //   "interest-expressed" state on the MatchCard.
+  //
+  //   mutualUserIds — userIds that are in a match_intros row with the
+  //   current user (either canonical direction). Drives the "mutual"
+  //   state on the MatchCard.
+  //
+  //   These get loaded on mount and updated locally on every successful
+  //   interest click (avoiding a roundtrip per re-render).
+  const [interestedUserIds, setInterestedUserIds] = useState<Set<string>>(new Set());
+  const [mutualUserIds, setMutualUserIds] = useState<Set<string>>(new Set());
+
   // Day 63 night: Skeleton bg matched to parchment-card surface so the
   // shimmer reads against the cream wash, not against an inverted dark.
   const Skeleton = ({ className }: { className?: string }) => (
@@ -447,6 +462,49 @@ const Matchmaking = () => {
     loadAssetMatches();
   }, []);
 
+  // Day 66 wave §8 (Sasha 2026-05-16): load the current user's
+  // match-mechanic state — which userIds they've expressed interest in
+  // (match_interests.from_user_id = me) and which they're in a mutual
+  // intro with (match_intros where either user_a_id or user_b_id = me).
+  // Used to drive the MatchCard's interactionState.
+  useEffect(() => {
+    const loadMatchState = async () => {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) return;
+
+      try {
+        // Interest the current user has expressed (from-direction only)
+        const { data: interestRows, error: interestErr } = await (supabase as any)
+          .from("match_interests")
+          .select("to_user_id")
+          .eq("from_user_id", user.id);
+        if (!interestErr && Array.isArray(interestRows)) {
+          setInterestedUserIds(
+            new Set(interestRows.map((r: { to_user_id: string }) => r.to_user_id))
+          );
+        }
+
+        // Mutual intros (either side)
+        const { data: introRows, error: introErr } = await (supabase as any)
+          .from("match_intros")
+          .select("user_a_id, user_b_id")
+          .or(`user_a_id.eq.${user.id},user_b_id.eq.${user.id}`);
+        if (!introErr && Array.isArray(introRows)) {
+          const otherIds = new Set<string>();
+          for (const row of introRows as Array<{ user_a_id: string; user_b_id: string }>) {
+            otherIds.add(row.user_a_id === user.id ? row.user_b_id : row.user_a_id);
+          }
+          setMutualUserIds(otherIds);
+        }
+      } catch (err) {
+        // Tables may not exist yet (pre-migration). Silent — UI falls
+        // back to "default" state on all cards.
+        console.warn("[Matchmaking] match-state load failed (pre-migration?):", err);
+      }
+    };
+    loadMatchState();
+  }, []);
+
   const locationBlocked = sameLocationOnly && !currentProfile?.location;
   const languageBlocked = sameLanguageOnly && (!currentProfile || currentProfile.spokenLanguages.length === 0);
 
@@ -498,99 +556,166 @@ const Matchmaking = () => {
     }
   };
 
-  // Day 65 (Sasha 2026-05-09): Add Connection now does TWO things:
-  //   (1) Inserts into the `connections` table (requester_id +
-  //       receiver_id). Mirrors the TeamsSpace pattern.
-  //   (2) Calls send-connection-intro-email so the receiver gets an
-  //       Aurora-register intro email with the AI's collaboration
-  //       proposal + a magic-link CTA into their Connections surface.
-  //       Email failure does NOT undo the connection — the row is
-  //       already in the DB and the receiver can still see the request
-  //       in their Connections page on next visit. We just surface a
-  //       gentler toast in that case.
+  // Day 66 wave §8 (Sasha 2026-05-16): Express Interest replaces the
+  // prior single-side Add Connection. New flow:
   //
-  // Both steps are best-effort + the UI stays responsive: profile is
-  // hidden from the deck and pager advances regardless.
-  const handleAiConnect = async () => {
+  //   1. INSERT into match_interests (from = me, to = match.userId,
+  //      with score / compound / why-text from the AI engine output).
+  //   2. SELECT match_interests reverse direction (from = them, to = me).
+  //   3. If found → mutual interest. INSERT match_intros (canonical
+  //      ordering) + call send-mutual-intro-email (both A and B as
+  //      recipients of equal standing).
+  //   4. If not found → quiet "interest recorded" state. They'll see
+  //      this user's interest in their own match feed; if they opt in,
+  //      the mutual-intro fires at that point.
+  //
+  // Card stays in view through state transitions — no profile-hiding,
+  // no pager advance. The user can see what just happened.
+  //
+  // Legacy `connections` table no longer written by this flow; the
+  // matchmaking schema migration drops that table (Day 66 wave §8 deploy).
+  const handleExpressInterest = async () => {
     if (!currentAiMatch) return;
     try {
       const { data: { user } } = await supabase.auth.getUser();
       if (!user) {
-        toast.error("Sign in to send connection requests.");
+        toast.error("Sign in to express interest in a match.");
         return;
       }
 
-      // (1) Connection row
-      const { error: insertError } = await supabase
-        .from("connections")
+      const targetUserId = currentAiMatch.userId;
+      const whyText = [
+        currentAiMatch.collaborationProposal,
+        currentAiMatch.alignment,
+        currentAiMatch.complementarity,
+      ]
+        .filter(Boolean)
+        .join(" ")
+        .trim();
+      const compoundType = currentAiMatch.matchType || null;
+
+      // (1) Insert match_interests (from = me, to = target).
+      const { error: insertError } = await (supabase as any)
+        .from("match_interests")
         .insert({
-          requester_id: user.id,
-          receiver_id: currentAiMatch.userId,
-          message: null,
+          from_user_id: user.id,
+          to_user_id: targetUserId,
+          match_score: currentAiMatch.resonanceScore ?? null,
+          compound_type: compoundType,
+          ai_why_text: whyText,
         });
-      let alreadyConnected = false;
+
       if (insertError) {
-        // Postgres unique_violation (already connected to this person)
-        if ((insertError as { code?: string }).code === "23505") {
-          alreadyConnected = true;
-        } else {
+        // 23505 = unique_violation = already expressed interest.
+        // Surface a gentle confirmation but don't fail.
+        if ((insertError as { code?: string }).code !== "23505") {
           throw insertError;
         }
       }
 
-      // (2) Intro email — fire only on a fresh connection. Skipping
-      // for already-connected so we don't re-spam the receiver.
-      let emailSent = false;
-      if (!alreadyConnected) {
-        try {
-          const { error: emailErr } = await supabase.functions.invoke(
-            "send-connection-intro-email",
-            {
-              body: {
-                receiver_user_id: currentAiMatch.userId,
-                collaboration_proposal: currentAiMatch.collaborationProposal,
-                alignment_note: [
-                  currentAiMatch.alignment,
-                  currentAiMatch.complementarity,
-                ]
-                  .filter(Boolean)
-                  .join(" ")
-                  .trim(),
-              },
+      // Local state: this user is now "interest-expressed."
+      setInterestedUserIds((prev) => new Set([...prev, targetUserId]));
+
+      // (2) Reverse-direction check: did they already express interest
+      // in me?
+      const { data: reverseRow } = await (supabase as any)
+        .from("match_interests")
+        .select("ai_why_text, compound_type, match_score")
+        .eq("from_user_id", targetUserId)
+        .eq("to_user_id", user.id)
+        .maybeSingle();
+
+      if (!reverseRow) {
+        // (3a) One-sided: their interest hasn't been expressed yet.
+        toast.success(
+          `Interest in ${currentAiMatch.firstName} recorded. We'll introduce you both if they say yes.`,
+        );
+        return;
+      }
+
+      // (3b) Mutual! Insert match_intros + fire the bilateral intro email.
+      const userA = user.id < targetUserId ? user.id : targetUserId;
+      const userB = user.id < targetUserId ? targetUserId : user.id;
+      const introWhyText = (reverseRow as { ai_why_text: string | null }).ai_why_text || whyText;
+      const introCompound =
+        (reverseRow as { compound_type: string | null }).compound_type || compoundType;
+      const introScore =
+        (reverseRow as { match_score: number | null }).match_score ??
+        currentAiMatch.resonanceScore ?? null;
+
+      const { error: introInsertError } = await (supabase as any)
+        .from("match_intros")
+        .insert({
+          user_a_id: userA,
+          user_b_id: userB,
+          match_score: introScore,
+          compound_type: introCompound,
+          ai_why_text: introWhyText,
+        });
+      // Tolerate unique_violation on intros (the other side may have
+      // raced us to the same insert in a different tab).
+      if (introInsertError && (introInsertError as { code?: string }).code !== "23505") {
+        console.warn("[handleExpressInterest] match_intros insert failed:", introInsertError);
+      }
+
+      // Local state: this is now "mutual."
+      setMutualUserIds((prev) => new Set([...prev, targetUserId]));
+
+      // (4) Fire the bilateral intro email — best-effort. The intro
+      // record exists in the DB regardless; email is the user-visible
+      // artifact, the row is the engine-facing artifact.
+      try {
+        const { error: emailErr } = await supabase.functions.invoke(
+          "send-mutual-intro-email",
+          {
+            body: {
+              user_a_id: userA,
+              user_b_id: userB,
+              ai_why_text: introWhyText,
             },
-          );
-          if (emailErr) throw emailErr;
-          emailSent = true;
-        } catch (emailErr) {
-          // Connection row IS already in the DB — log but don't fail
-          // the user-visible flow. They'll see a softer toast.
-          console.warn("[handleAiConnect] intro email failed:", emailErr);
-        }
-      }
-
-      // Toast — calibrated to actual outcome
-      if (alreadyConnected) {
-        toast.info(`You're already connected with ${currentAiMatch.firstName}.`);
-      } else if (emailSent) {
-        toast.success(
-          `Connection request sent — ${currentAiMatch.firstName} will receive an introduction email.`,
+          },
         );
-      } else {
+        if (emailErr) throw emailErr;
         toast.success(
-          `Connection request sent to ${currentAiMatch.firstName}. They'll see it next time they sign in.`,
+          `Mutual interest with ${currentAiMatch.firstName}. Introduction sent to both your inboxes.`,
         );
-      }
-
-      // Hide the matched profile + advance the deck regardless of email
-      // outcome — the connection itself succeeded.
-      setHiddenProfiles((prev) => new Set([...prev, currentAiMatch.userId]));
-      if (clampedIndex >= visibleAiMatches.length - 1) {
-        setCurrentAiMatchIndex(Math.max(0, clampedIndex - 1));
+      } catch (emailErr) {
+        console.warn("[handleExpressInterest] mutual intro email failed:", emailErr);
+        toast.success(
+          `Mutual interest with ${currentAiMatch.firstName}! (Intro email may be delayed; the match is recorded.)`,
+        );
       }
     } catch (err) {
       const message =
-        err instanceof Error ? err.message : "Couldn't send the connection request.";
+        err instanceof Error ? err.message : "Couldn't record your interest.";
       toast.error(message);
+    }
+  };
+
+  // Day 66 wave §8: withdraw expressed interest. Deletes the from→to
+  // row in match_interests so the card returns to "default" state.
+  // Does NOT delete any existing match_intros (the mutual event, if
+  // already fired, stands as a recorded event).
+  const handleWithdrawInterest = async () => {
+    if (!currentAiMatch) return;
+    try {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) return;
+      const { error } = await (supabase as any)
+        .from("match_interests")
+        .delete()
+        .eq("from_user_id", user.id)
+        .eq("to_user_id", currentAiMatch.userId);
+      if (error) throw error;
+      setInterestedUserIds((prev) => {
+        const next = new Set(prev);
+        next.delete(currentAiMatch.userId);
+        return next;
+      });
+      toast.info(`Withdrew your interest in ${currentAiMatch.firstName}.`);
+    } catch (err) {
+      console.warn("[handleWithdrawInterest] failed:", err);
+      toast.error("Couldn't withdraw interest. Try again.");
     }
   };
 
@@ -875,9 +1000,17 @@ const Matchmaking = () => {
                   secondaryReason={`${currentAiMatch.alignment} ${currentAiMatch.complementarity}`}
                   tertiaryLabel={currentAiMatch.friction !== "None identified" ? "Watch out for" : undefined}
                   tertiaryReason={currentAiMatch.friction !== "None identified" ? currentAiMatch.friction : undefined}
-                  connectLabel="Add Connection"
+                  connectLabel="I'd like to meet"
                   onPass={handleAiPass}
-                  onConnect={handleAiConnect}
+                  onConnect={handleExpressInterest}
+                  onWithdraw={handleWithdrawInterest}
+                  interactionState={
+                    mutualUserIds.has(currentAiMatch.userId)
+                      ? "mutual"
+                      : interestedUserIds.has(currentAiMatch.userId)
+                        ? "interest-expressed"
+                        : "default"
+                  }
                   currentIndex={clampedIndex}
                   totalCount={visibleAiMatches.length}
                   onPrev={() => setCurrentAiMatchIndex(Math.max(0, clampedIndex - 1))}
