@@ -144,7 +144,7 @@ export function useEquilibriumV2(): EquilibriumV2Data {
         .maybeSingle(),
       supabase
         .from("game_profiles")
-        .select("birthday, last_zog_snapshot_id")
+        .select("id")
         .eq("user_id", user.id)
         .maybeSingle(),
       eqAny.from("equilibrium_strategies").select("*").eq("user_id", user.id),

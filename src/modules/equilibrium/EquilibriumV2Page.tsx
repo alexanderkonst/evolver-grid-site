@@ -252,7 +252,6 @@ export const EquilibriumV2Page = () => {
 
         {/* ─── BOX 10: SMART Goals ───────────────────────────────── */}
         <PremiumCard
-          id={SECTION_IDS.goals}
           variant="glass"
           size="md"
           className="scroll-mt-24"
@@ -274,14 +273,13 @@ export const EquilibriumV2Page = () => {
             onReorderTasks={(ids) =>
               activeWorkstream && eq.reorderTasks(activeWorkstream.id, ids)
             }
-            onPromoteToDoNow={(id) => eq.promoteToDoNow(id)}
+            onPromoteToDoNow={(id) => { void eq.promoteToDoNow(id); }}
             onCompleteTask={eq.completeTask}
           />
         </PremiumCard>
 
         {/* ─── BOX 11: DO NOW ────────────────────────────────────── */}
         <PremiumCard
-          id={SECTION_IDS.doNow}
           variant="glass-strong"
           size="md"
           className="scroll-mt-24"
