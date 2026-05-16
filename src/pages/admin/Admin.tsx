@@ -95,7 +95,7 @@ const TIER_OPTIONS: { value: EntitlementTier; label: string; hint: string }[] = 
   { value: "gifted_builder", label: "Gifted Builder", hint: "Builder access on the house" },
   { value: "gifted_locked_in", label: "Gifted Locked-in", hint: "Commercial access on the house" },
   { value: "founders_50", label: "Founders 50", hint: "$555 lifetime · first 50 buyers" },
-  { value: "ignition", label: "Ignition", hint: "$5,555 · commercial + 1:1 coaching with Sasha" },
+  { value: "ignition", label: "Ignition", hint: "$555 · commercial + 1:1 coaching with Sasha" },
 ];
 
 type GrantRow = {
