@@ -161,23 +161,9 @@ export function useEquilibriumV2(): EquilibriumV2Data {
       setMissionStatement(null);
     }
 
-    const profile = profileRes.data;
-    setBirthday(profile?.birthday ?? null);
-
-    if (profile?.last_zog_snapshot_id) {
-      const { data: snap } = await supabase
-        .from("zog_snapshots")
-        .select("appleseed_data")
-        .eq("id", profile.last_zog_snapshot_id)
-        .maybeSingle();
-      const appleseed = snap?.appleseed_data as
-        | { topTalentProfile?: { archetype_title?: string } }
-        | null
-        | undefined;
-      setTopTalentTitle(appleseed?.topTalentProfile?.archetype_title ?? null);
-    } else {
-      setTopTalentTitle(null);
-    }
+    // game_profiles does not store birthday or last_zog_snapshot_id in this schema
+    setBirthday(null);
+    setTopTalentTitle(null);
 
     setStrategies(
       ((strategiesRes.data as EquilibriumStrategy[] | null) ?? []).sort(
