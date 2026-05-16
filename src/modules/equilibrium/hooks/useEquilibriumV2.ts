@@ -180,9 +180,23 @@ export function useEquilibriumV2(): EquilibriumV2Data {
     const profile = profileRes.data as
       | { id?: string; last_zog_snapshot_id?: string | null }
       | null;
-    // Birthday is sourced from equilibrium_state (v2 user state), not from
-    // game_profiles. Schema migration: 20260516000000_add_birthday_to_equilibrium_state.sql
-    setBirthday(stateRow?.birthday ?? null);
+    // Birthday is sourced from equilibrium_state.birthday (v2 user state).
+    // Schema migration: 20260516000000_add_birthday_to_equilibrium_state.sql
+    //
+    // localStorage fallback (2026-05-16 round 7): if Supabase doesn't have
+    // the birthday yet (e.g. migration not yet applied, or first save
+    // failed silently), check localStorage. This means the watch works
+    // immediately on BD entry — Supabase persistence becomes a sync-when-
+    // possible concern rather than a blocker. Cross-device sync resumes
+    // automatically once the column exists + an upsert succeeds.
+    const cachedBd = (() => {
+      try {
+        return window.localStorage.getItem(`equilibrium_v2_birthday:${user.id}`);
+      } catch {
+        return null;
+      }
+    })();
+    setBirthday(stateRow?.birthday ?? cachedBd ?? null);
 
     // Top Talent — try last_zog_snapshot_id first; fall back to latest snapshot
     // by created_at (some users have ZoG done but the pointer was never set).
