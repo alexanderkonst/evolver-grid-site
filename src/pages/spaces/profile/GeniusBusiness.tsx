@@ -4,6 +4,7 @@ import GameShellV2 from "@/components/game/GameShellV2";
 import { Button } from "@/components/ui/button";
 import { Users, Target, Radio, Telescope, Sparkles, Sword } from "lucide-react";
 import { useExcaliburData } from "@/hooks/useExcaliburData";
+import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 
 /**
@@ -17,6 +18,7 @@ import { supabase } from "@/integrations/supabase/client";
  */
 const GeniusBusiness = () => {
     const navigate = useNavigate();
+    const { toast } = useToast();
     const { loading, excaliburData, hasAppleseed, snapshotId } = useExcaliburData();
     const [isGenerating, setIsGenerating] = useState(false);
 
@@ -104,14 +106,26 @@ const GeniusBusiness = () => {
                 const excalibur = await generateExcalibur(snapshot.appleseed_data as any);
 
                 // Save Excalibur to snapshot
+                // Day 66 (Sasha 2026-05-16) — check result.success.
+                // Previously: silent on failure → reload showed empty
+                // overview indefinitely. Now: surface failure cleanly.
                 const { saveExcalibur } = await import("@/modules/zone-of-genius/saveToDatabase");
-                await saveExcalibur(excalibur);
+                const saveResult = await saveExcalibur(excalibur);
+                if (!saveResult.success) {
+                    throw new Error(saveResult.error || "Could not save your Unique Offer");
+                }
 
                 // Reload page to show the full overview
                 window.location.reload();
             } catch (err) {
                 console.error("Failed to generate Genius Business:", err);
                 setIsGenerating(false);
+                // Day 66: surface to user instead of stalling silently.
+                toast({
+                    title: "Generation Failed",
+                    description: err instanceof Error ? err.message : "Please try again.",
+                    variant: "destructive",
+                });
             }
         };
 
