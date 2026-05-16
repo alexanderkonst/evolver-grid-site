@@ -624,8 +624,31 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
     // `undefined` means "don't render a lock." So we render a neutral rail during
     // the profile fetch, then flip to the real lock state on first real value —
     // no visible lock-then-unlock flicker on ME/LEARN/MEET.
-    const gatesReady = profileLoaded && !deepProfileLoading;
-    const unlockStatus: Record<string, boolean> = gatesReady
+    //
+    // Day 65 wave 7 (Sasha 2026-05-15) — REGRESSION FIX. Earlier wave 3
+    // tightened this gate to `profileLoaded && !deepProfileLoading` so
+    // the BUILD chip wouldn't flicker while the deep-profile read
+    // resolved. That was fine when BUILD was in GATED_SPACES — both
+    // reads needed to be done before the rail rendered, period. But
+    // the BUILD-exception change (BUILD removed from GATED_SPACES so
+    // Equilibrium is always reachable) made the tight gate
+    // counter-productive: while `deepProfileLoading` is true (now
+    // ~300–600ms thanks to the wave 5 source-table fallback in
+    // useDeepProfileActivated), the empty unlockStatus map causes
+    // EVERY gated chip — COLLABORATE, OFFER, ME, etc. — to also
+    // disappear, because hiddenSpaces falls through to "[...GATED_SPACES]".
+    // Sasha saw COLLABORATE missing on /game/me/zone-of-genius for
+    // exactly this reason.
+    //
+    // Fix: gate unlockStatus on `profileLoaded` only (the old behavior).
+    // BUILD's lock indicator transitions optimistically during the
+    // deep-profile read — when `deepProfileLoading` is true, treat it
+    // as "no lock yet shown" (true). Once the read resolves, the real
+    // value (deepProfileActivated) lands. The chip is always visible
+    // anyway (BUILD-exception), so the only visible effect is a
+    // possible brief "no-lock → locked-then-unlocked" transition on
+    // accounts that haven't activated. Acceptable trade-off.
+    const unlockStatus: Record<string, boolean> = profileLoaded
         ? {
             "journey": true,                                    // Always open — the front door
             "next-move": zogComplete,                           // After Step 1
@@ -636,7 +659,9 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
             // hiddenSpaces → invisible in rail. When flipped to
             // true, restores the previous "After Step 1" behavior.
             "learn": LEARN_VISIBLE && zogComplete,              // After Step 1 — growth material (currently flag-gated off)
-            "build": deepProfileActivated,                      // Day 64: deeper-Top-Talent-view gate (paid OR coupon) — same as JOURNEY #5
+            // BUILD: optimistic during deepProfileLoading (treat as unlocked
+            // so no lock-indicator flash), real value once resolved.
+            "build": deepProfileLoading ? true : deepProfileActivated,
             "meet": MEET_VISIBLE && zogComplete,                // After Step 1 — community events (currently flag-gated off)
             // Day 63 night (Sasha 2026-05-07): COLLABORATE gate is now
             // `collaborateUnlocked` — flipped to true the moment the
@@ -680,10 +705,11 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
     // point inside BUILD that doesn't require funnel progression. UBB itself
     // retains its existing gate via MeGate at the /ubb route level.
     const GATED_SPACES = ["next-move", "learn", "meet", "collaborate", "buysell"] as const;
-    const hiddenSpaces: string[] = gatesReady
+    const hiddenSpaces: string[] = profileLoaded
         ? GATED_SPACES.filter((id) => unlockStatus[id] === false)
-        : // During the profile + entitlement fetch, default to hiding gated
-          // spaces so there's no lock-then-hide flicker on first load.
+        : // During the profile fetch, default to hiding gated spaces so
+          // there's no lock-then-hide flicker on first load. (No longer
+          // waits on deepProfileLoading — see the wave 7 comment above.)
           [...GATED_SPACES];
 
     // Navigation handlers
