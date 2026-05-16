@@ -1311,9 +1311,23 @@ All colors MUST be HSL.
 /* 4. Ornament centerpiece already spins via `ornament-spin` (48s,
    kept separate so the editorial dividers have their own tempo). */
 
+/* ──────────────────────────────────────────────────────────────────
+   Equilibrium v2 — Synthesis card "stale" pulse-breath
+   Gated to fire only when last_synthesis_at > 4 hours old (see
+   SynthesisCard.tsx). prefers-reduced-motion strips it cleanly.
+   ────────────────────────────────────────────────────────────── */
+@keyframes eq-synth-pulse-breath {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.005); opacity: 0.96; }
+}
+.eq-synth-pulse {
+  animation: eq-synth-pulse-breath 4s ease-in-out infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .gentle-spin,
-  .cta-breath img {
+  .cta-breath img,
+  .eq-synth-pulse {
     animation: none !important;
   }
   /* `.gentle-spin-always` deliberately re-asserts its animation here
