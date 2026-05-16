@@ -1,7 +1,11 @@
 import { useEffect, useMemo, useState } from "react";
 import { InfoPopover } from "./components/InfoPopover";
 import { BirthdayPrompt } from "./components/BirthdayPrompt";
-import { getAllCyclesV2, type AllCyclesV2 } from "@/lib/equilibrium-cycles";
+import {
+  getAllCyclesV2,
+  getBirthdayArcPhaseNeighbors,
+  type AllCyclesV2,
+} from "@/lib/equilibrium-cycles";
 import { CycleEnergyBar } from "./components/CycleEnergyBar";
 import { SolarCycleBar } from "./components/SolarCycleBar";
 import { EquilibriumSectionCard } from "./components/EquilibriumSectionCard";
@@ -32,6 +36,26 @@ import { SECTION_IDS } from "./types";
  * `<CycleEnergyBar>` canonical visual. Other sections render placeholders;
  * subsequent waves wire them up + the Supabase-backed sections.
  */
+
+/**
+ * Format the time-to-next-phase sub-label for the lunar pill stack.
+ * "ends Tue May 19 · 2.3 days left"
+ *
+ * Locked 2026-05-16 per philosophical spine §6 — turns "a vibe" into
+ * "a window." Users can schedule into the remainder of a phase.
+ */
+function formatPhaseEndsAt(phaseEndMs: number, daysRemaining: number): string {
+  const end = new Date(phaseEndMs);
+  const day = end.toLocaleDateString(undefined, {
+    weekday: "short",
+    month: "short",
+    day: "numeric",
+  });
+  const days = daysRemaining < 1
+    ? `${Math.max(0, Math.round(daysRemaining * 24))}h left`
+    : `${daysRemaining.toFixed(1)} days left`;
+  return `ends ${day} · ${days}`;
+}
 
 /** Cycle math updates once per minute — cycles change too slowly to need finer. */
 function useCycles(birthday?: string): AllCyclesV2 {
@@ -138,8 +162,25 @@ export const EquilibriumV2Page = () => {
               "LEFT" checkpoints) — fundamentally different from the orb-arc used
               by lunar/zodiac/week. Reference: docs/specs/equilibrium/equilibrium_v2_spec.md §3.1
               "Locked visual references" — solar mock supplied 2026-05-15.
+
+              Pill labels are birthday-anchored phases (Surge moment · Spend ·
+              Sustain · Begin closing · Wind down) per philosophical spine §4 —
+              NOT calendar seasons. Equilibrium is a personal operating surface;
+              the user's solar terrain runs birthday → next birthday, not Jan → Dec.
             */}
-            <SolarCycleBar progress={cycles.solar.personalProgress} />
+            {(() => {
+              const { prev, current, next } = getBirthdayArcPhaseNeighbors(
+                cycles.solar.personalProgress,
+              );
+              return (
+                <SolarCycleBar
+                  progress={cycles.solar.personalProgress}
+                  prevLabel={prev}
+                  currentLabel={current}
+                  nextLabel={next}
+                />
+              );
+            })()}
           </div>
         </EquilibriumSectionCard>
 
@@ -173,6 +214,18 @@ export const EquilibriumV2Page = () => {
               prevLabel={cycles.lunar.prevLabel}
               currentLabel={cycles.lunar.currentLabel}
               nextLabel={cycles.lunar.nextLabel}
+              // Umbrella eyebrow = the element emoji ONLY (Sasha
+              // 2026-05-16): holonic name and element word stay internal
+              // — the emoji is enough signal for users moving from
+              // degree 2 → degree 3 to see the structure, without
+              // confusing the rest. Tooltip surfaces the element word.
+              eyebrow={cycles.lunar.holonicPhase.elementEmoji}
+              eyebrowTooltip={`${cycles.lunar.holonicPhase.element} — the umbrella for ${cycles.lunar.phase.name}`}
+              activePillSubLabel={formatPhaseEndsAt(
+                cycles.lunar.phaseEndMs,
+                cycles.lunar.daysRemainingInPhase,
+              )}
+              glanceableGuidance={cycles.lunar.phase.guidance}
             />
           </div>
           <MoonFocusInput
@@ -203,7 +256,7 @@ export const EquilibriumV2Page = () => {
         <EquilibriumSectionCard
           id={SECTION_IDS.strategies}
         >
-          <SectionHeader title="8. 3 Current Strategies"
+          <SectionHeader title="8. Current Strategy"
             infoIconCopy="Set when you have clarity" />
           <StrategiesSection
             strategies={eq.strategies}
@@ -235,7 +288,7 @@ export const EquilibriumV2Page = () => {
         <EquilibriumSectionCard
           id={SECTION_IDS.goals}
         >
-          <SectionHeader title="10. Intuitive S.M.A.R.T. Goals" />
+          <SectionHeader title="10. Intuitive Tasks" />
           <SmartGoalsSection
             workstreamTitle={activeWorkstream?.title ?? null}
             tasks={activeTasks}

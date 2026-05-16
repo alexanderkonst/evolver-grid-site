@@ -44,29 +44,29 @@ Return JSON: { "reading": "your one sentence" }
 
 EXAMPLES — input → output (showing the grounded, practical voice):
 
-Input: solar="Late Spring", zodiac="Taurus / Embodiment & Stability", lunar="Waning Crescent / Planting · Memorize, visualize, surrender", dayOfWeek="Wednesday Mercury / Clarity & Communication", mission=null, role=null, moonFocus=null
-Output: { "reading": "A day for plain words and quiet patience — say the goals you've been holding, then let the next cycle gather them." }
+Input: solar="Late Spring", zodiac="Taurus / Embodiment & Stability", lunar="Waning Crescent / Planting · The 1–3 strategies reveal · Write them down", dayOfWeek="Wednesday Mercury / Clarity & Communication", mission=null, role=null, moonFocus=null
+Output: { "reading": "A day to write down the strategies that have been quietly revealing themselves — plain words, before the next cycle reshuffles them." }
 
-Input: solar="Late Autumn", zodiac="Scorpio / Depth & Transformation", lunar="Full Moon / Doing · 100% physical · Harvest & cut", dayOfWeek="Saturday Saturn / Structure & Grounding", mission="Synthesize existing frameworks and methods.", role=null, moonFocus=null
-Output: { "reading": "A pure execution day — the synthesis you've been building is ready to be cut into something shippable before sundown." }
+Input: solar="Late Autumn", zodiac="Scorpio / Depth & Transformation", lunar="Full Moon / Harvesting · Reap what's ripe · Cut · Receive the fruits of labor", dayOfWeek="Saturday Saturn / Structure & Grounding", mission="Synthesize existing frameworks and methods.", role=null, moonFocus=null
+Output: { "reading": "A pure harvest day — the synthesis you've been building is ready to be cut into something shippable before sundown." }
 
-Input: solar="Early Spring", zodiac="Aries / Initiation & Spark", lunar="New Moon / Clearing · Dump, banish, cry it out", dayOfWeek="Tuesday Mars / Action & Courage", mission="Synthesize existing frameworks.", role="Signal-to-Path Shaping", moonFocus=null
-Output: { "reading": "A clearing day with action under the surface — dump what's done from last cycle so the next path has room to show." }
+Input: solar="Early Spring", zodiac="Aries / Initiation & Spark", lunar="New Moon / Clearing · Release fear · Cry, don't complain · The how is not yours yet", dayOfWeek="Tuesday Mars / Action & Courage", mission="Synthesize existing frameworks.", role="Signal-to-Path Shaping", moonFocus=null
+Output: { "reading": "A clearing day with action under the surface — let the resistance about the how move through, then act on what's already clear." }
 
-Input: solar="Late Summer", zodiac="Virgo / Refinement & Service", lunar="Waning Gibbous / Celebrating · Gratitude · Honor others' wins", dayOfWeek="Friday Venus / Beauty & Harmony", mission="...", role="Signal-to-Path Shaping", moonFocus="Ship the funnel"
-Output: { "reading": "A day to send the polished thing out and name it well — gratitude, not grinding, carries the funnel forward today." }
+Input: solar="Late Summer", zodiac="Virgo / Refinement & Service", lunar="Waning Gibbous / Celebrating · Announce the harvest · Thank · Feel the gratitude", dayOfWeek="Friday Venus / Beauty & Harmony", mission="...", role="Signal-to-Path Shaping", moonFocus="Ship the funnel"
+Output: { "reading": "A day to send the polished thing out and thank what carried it — gratitude is the fuel the next cycle will spend." }
 
-Input: solar="Late Spring", zodiac="Gemini / Curiosity & Connection", lunar="First Quarter / Seeing · The How is revealed", dayOfWeek="Wednesday Mercury / Clarity & Communication", mission=null, role="Signal-to-Path Shaping", moonFocus="Ship the funnel"
-Output: { "reading": "An ah-ha day for the funnel — write the words that just got clear, before the clarity drifts." }
+Input: solar="Late Spring", zodiac="Gemini / Curiosity & Connection", lunar="First Quarter / Seeing · The how reveals · Write it down · Capture before it drifts", dayOfWeek="Wednesday Mercury / Clarity & Communication", mission=null, role="Signal-to-Path Shaping", moonFocus="Ship the funnel"
+Output: { "reading": "The how for the funnel is showing — write the words while they're clear, before the clarity drifts." }
 
-Input: solar="Late Autumn", zodiac="Sagittarius / Vision & Quest", lunar="Full Moon / Doing · 100% physical · Harvest & cut", dayOfWeek="Monday Moon / Intuition & Emotional Depth", mission=null, role=null, moonFocus=null
-Output: { "reading": "Full-execution day inside a quiet Monday — listen for what wants harvesting first, then move fast on it." }
+Input: solar="Late Autumn", zodiac="Sagittarius / Vision & Quest", lunar="Full Moon / Harvesting · Reap what's ripe · Cut · Receive the fruits of labor", dayOfWeek="Monday Moon / Intuition & Emotional Depth", mission=null, role=null, moonFocus=null
+Output: { "reading": "A harvest day inside a quiet Monday — listen for what's ripe first, then cut it cleanly." }
 
-Input: solar="Early Winter", zodiac="Capricorn / Discipline & Mastery", lunar="Waxing Crescent / Gathering · Yes ritual · Receive resources", dayOfWeek="Thursday Jupiter / Expansion & Wisdom", mission=null, role=null, moonFocus=null
-Output: { "reading": "A day to say yes to what's arriving — book the introductions, accept the resources, the work itself comes later." }
+Input: solar="Early Winter", zodiac="Capricorn / Discipline & Mastery", lunar="Waxing Crescent / Gathering · Say yes · Take meetings · Receive resources", dayOfWeek="Thursday Jupiter / Expansion & Wisdom", mission=null, role=null, moonFocus=null
+Output: { "reading": "A day to say yes to what's arriving — book the introductions, accept the resources, the how comes later." }
 
-Input: solar="Early Summer", zodiac="Cancer / Nurture & Reflection", lunar="Waxing Gibbous / Leading · 90% admin, 10% work", dayOfWeek="Sunday Sun / Illumination & Celebration", mission=null, role=null, moonFocus=null
-Output: { "reading": "An admin Sunday — sequence next week before it starts, then close the laptop and rest in plain sight." }`;
+Input: solar="Early Summer", zodiac="Cancer / Nurture & Reflection", lunar="Waxing Gibbous / Leading · Prep for harvest · Set up infrastructure · Get the help", dayOfWeek="Sunday Sun / Illumination & Celebration", mission=null, role=null, moonFocus=null
+Output: { "reading": "A prep-for-harvest Sunday — line up tools and helpers before the next phase asks for execution." }`;
 
 function fmtCycle(name: string, fields: Record<string, unknown>): string {
   const pairs = Object.entries(fields)

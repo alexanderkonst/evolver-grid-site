@@ -40,6 +40,43 @@
 - **Rhetorical questions used as filler.** "What does this mean for you?" — skip it and answer.
 - **"Not just X, but Y"** construction used more than once per document.
 
+## The "what does that even mean?" test (added 2026-05-16)
+
+**Before shipping any phrase that sounds poetic or wise — apply this test:
+read it back and ask "what does that even mean? what specifically does
+the user do?"** If the phrase can't be answered concretely in one breath,
+it's fluff dressed up as wisdom. Cut it.
+
+### Worked examples — fluff vs. concrete
+
+- ❌ *"Plant goals daily in the dark."* — Which dark? How does one "plant"
+  a goal? Why daily? What does "hold the goals" look like?
+- ✅ *"The 1–3 strategies that translate the intention reveal themselves —
+  write them down."* — Concrete: there is a thing that surfaces; you
+  capture it in writing.
+
+- ❌ *"Empty out."* — Empty what? Out of where? What does the user do?
+- ✅ *"Release fear. Cry, don't complain. Don't form limiting beliefs."*
+  — Concrete: each phrase names a specific internal/external action.
+
+- ❌ *"Telescope vision."* — What is a telescope doing? What does the user
+  see? How is this an instruction?
+- ✅ *"The how reveals — write it down before the clarity drifts."* —
+  Concrete: clarity arrives; capture it within hours.
+
+### Sasha's framing (2026-05-16)
+
+> *"I want you to catch those drifts where it starts to become abstractly
+> poetically dull and fluffy. Catch that. It's really easy. 'Plant them
+> in the dark' — which dark? How does one plant goals? How does one hold
+> goals? Why daily? Why goals? What do we mean by goals? It's so
+> dangerously fluffy."*
+
+This is the biggest AI-drift hazard. Human-AI collaboration requires
+holding each other accountable for it — catch it BEFORE shipping. Every
+verb must point at a specific action the user can take. Every noun must
+name a specific thing the user can find.
+
 ## Register rules
 
 - **Chat in Russian** when Sasha writes Russian. **Chat in English** when Sasha writes English.

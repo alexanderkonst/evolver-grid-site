@@ -35,6 +35,27 @@ export interface CycleEnergyBarProps {
   prevLabel: string;
   currentLabel: string;
   nextLabel: string;
+  /**
+   * Optional small umbrella eyebrow above the pill stack. For lunar
+   * (Sasha 2026-05-16) this is the ELEMENT EMOJI only — the holonic
+   * quadrant name (Will/Emanation/Digestion/Enrichment) stays internal.
+   * Rendered larger than the other meta-labels since it's meant to read
+   * as a signal, not a caption.
+   */
+  eyebrow?: string;
+  /** Optional native tooltip text shown on hover/long-press of the eyebrow. */
+  eyebrowTooltip?: string;
+  /**
+   * Optional small line directly UNDER the active pill, e.g.
+   * "ends Tue May 19 · 2.3 days remaining". Turns a vibe into a window.
+   */
+  activePillSubLabel?: string;
+  /**
+   * Optional ultra-concise inline guidance below the pill stack — one
+   * short sentence (10–18 words). Watches are glanced; this is the
+   * middle path between abstract pills and a paragraph.
+   */
+  glanceableGuidance?: string;
   /** Override container className. */
   className?: string;
 }
@@ -46,6 +67,10 @@ export const CycleEnergyBar = ({
   prevLabel,
   currentLabel,
   nextLabel,
+  eyebrow,
+  eyebrowTooltip,
+  activePillSubLabel,
+  glanceableGuidance,
   className,
 }: CycleEnergyBarProps) => {
   const gradId = `eq-arc-grad-${useId().replace(/:/g, "")}`;
@@ -143,12 +168,45 @@ export const CycleEnergyBar = ({
         </div>
       </div>
 
+      {/* Eyebrow — element-emoji umbrella (lunar: Will/Emanation/Digestion/
+          Enrichment surface as 🔥/💧/🌍/🌬️). Holonic NAMES stay internal. */}
+      {eyebrow && (
+        <div
+          className="mt-5 select-none text-2xl leading-none opacity-80"
+          title={eyebrowTooltip}
+          aria-label={eyebrowTooltip ?? eyebrow}
+          role="img"
+        >
+          {eyebrow}
+        </div>
+      )}
+
       {/* Pill stack: prev (dim) / current (elevated) / next (dim) */}
-      <div className="mt-6 flex w-full max-w-xs flex-col items-stretch gap-2">
+      <div
+        className={cn(
+          "flex w-full max-w-xs flex-col items-stretch gap-2",
+          eyebrow ? "mt-1" : "mt-6",
+        )}
+      >
         <DimPill>{prevLabel}</DimPill>
         <ActivePill>{currentLabel}</ActivePill>
+
+        {/* Time-to-next-phase sub-label (sits flush under active pill) */}
+        {activePillSubLabel && (
+          <div className="-mt-1 px-3 text-center text-[11px] font-medium uppercase tracking-wider text-[#0a1628]/75 eq-text-halo">
+            {activePillSubLabel}
+          </div>
+        )}
+
         <DimPill>{nextLabel}</DimPill>
       </div>
+
+      {/* Glanceable inline guidance — one short sentence, plain voice */}
+      {glanceableGuidance && (
+        <p className="eq-text-halo mt-4 max-w-md px-3 text-center text-sm italic text-[#0a1628]/90">
+          {glanceableGuidance}
+        </p>
+      )}
     </div>
   );
 };
