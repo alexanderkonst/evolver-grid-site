@@ -115,7 +115,7 @@ function isRetryable(err: unknown): boolean {
 }
 
 export async function withRetry<T>(
-  fn: () => Promise<SupabaseResult<T>>,
+  fn: () => PromiseLike<SupabaseResult<T>>,
   options: RetryOptions = {},
 ): Promise<SupabaseResult<T>> {
   const attempts = Math.max(1, options.attempts ?? 3);
