@@ -88,13 +88,18 @@ type EntitlementTier =
   | "founders_50"
   | "ignition";
 
+// Day 65 wave 6 (Sasha 2026-05-15): tier hints aligned to the
+// Pricing v3.0 doc — one-time payments, not subscription. See
+// docs/02-strategy/unique-businesses/alexanders_unique_business.md
+// → "Platform Access Pricing v3.0 — One-Time, Not Subscription"
+// for the canonical price source and rationale.
 const TIER_OPTIONS: { value: EntitlementTier; label: string; hint: string }[] = [
-  { value: "tasting", label: "Tasting", hint: "Free trial · 25 generations · no save" },
-  { value: "builder", label: "Builder", hint: "$22/mo · personal use · 1 founder" },
-  { value: "locked_in", label: "Locked-in", hint: "$99/mo · commercial license · build for clients" },
+  { value: "tasting", label: "Tasting", hint: "Free · Top Talent reveal at /" },
+  { value: "builder", label: "Builder", hint: "$197 one-time · UBB lifetime · personal use" },
+  { value: "locked_in", label: "Locked-in", hint: "$497 one-time · UBB + commercial license + 5× tokens" },
   { value: "gifted_builder", label: "Gifted Builder", hint: "Builder access on the house" },
   { value: "gifted_locked_in", label: "Gifted Locked-in", hint: "Commercial access on the house" },
-  { value: "founders_50", label: "Founders 50", hint: "$555 lifetime · first 50 buyers" },
+  { value: "founders_50", label: "Founders 50", hint: "$197 one-time · Locked-in tier · first 50 buyers only" },
   { value: "ignition", label: "Ignition", hint: "$555 · commercial + 1:1 coaching with Sasha" },
 ];
 

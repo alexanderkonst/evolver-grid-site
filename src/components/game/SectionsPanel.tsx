@@ -280,6 +280,12 @@ const SPACE_SECTIONS: SpaceSections = {
             // ubb-v2, badge stays "v2" — internal name is preserved as
             // genealogy; only the user-facing label changes.
             { id: "ubb-v2", label: "Automated Venture Builder", path: "/ubb", badge: "v2" },
+            // Day 65 wave 6 (Sasha 2026-05-15): Equilibrium added as
+            // the second BUILD pane row alongside AVB. Sibling product,
+            // also a build-side surface. Appears here in the static
+            // BUILD list AND inside buildUbbSections (when at /ubb*)
+            // so the two top-level rows are visible in both contexts.
+            { id: "equilibrium", label: "Equilibrium", path: "/equilibrium" },
             {
                 id: "canvas",
                 label: "Unique Business Canvas",
@@ -389,22 +395,42 @@ interface SectionsPanelProps {
  * the row labels honest if `ALL_ARTIFACT_KEYS` ever shifts.
  */
 const buildUbbSections = (
-    progress: ReturnType<typeof useCanvasProgressLite>,
+    _progress: ReturnType<typeof useCanvasProgressLite>,
 ): Section[] => {
-    const get = (phaseKey: string): { locked: number; total: number } | undefined => {
-        if (!progress || progress.isLoading) return undefined;
-        const p = progress.perPhase[phaseKey];
-        // Don't render the bar if total is zero (would imply taxonomy drift)
-        if (!p || p.total === 0) return undefined;
-        return { locked: p.locked, total: p.total };
-    };
+    // Day 65 wave 6 (Sasha 2026-05-15): BUILD pane 2 restructured.
+    // The six phase groups are no longer top-level rows — they're now
+    // sub-items disclosed under a single parent row "Automated Venture
+    // Builder" (matching the dropdown pattern used by ME → Top Talent
+    // and AI OS → Prompt Suites). Equilibrium joins as the second
+    // top-level row alongside AVB.
+    //
+    // Trade-off: per-phase progress fractions (the "0/8", "0/3"
+    // right-aligned counts) don't render on sub-items in the current
+    // SubSection type. The overall "N of 19 locked" count is already
+    // shown at the top of the /ubb canvas page itself, so the
+    // per-phase counts in pane 2 were redundant signal anyway. If we
+    // want them back on sub-items, the SubSection interface needs
+    // a `progress` field and the sub-row render needs the same
+    // progress-bar treatment as the (former) top-level rows.
     return [
-        { id: "ubb-canvas",         label: "1. Canvas",            path: "/ubb",                progress: get("canvas") },
-        { id: "ubb-session",        label: "2. 1st Session",       path: "/ubb/session",        progress: get("session") },
-        { id: "ubb-marketing",      label: "3. Marketing",         path: "/ubb/marketing",      progress: get("marketing") },
-        { id: "ubb-distribution",   label: "4. Distribution",      path: "/ubb/distribution",   progress: get("distribution") },
-        { id: "ubb-communications", label: "5. Communications",    path: "/ubb/communications", progress: get("communications") },
-        { id: "ubb-landing",        label: "6. Landing Page",      path: "/ubb/landing-page",   progress: get("publication") },
+        {
+            id: "ubb-builder",
+            label: "Automated Venture Builder",
+            path: "/ubb",
+            subSections: [
+                { id: "ubb-canvas",         label: "Canvas",         path: "/ubb" },
+                { id: "ubb-session",        label: "1st Session",    path: "/ubb/session" },
+                { id: "ubb-marketing",      label: "Marketing",      path: "/ubb/marketing" },
+                { id: "ubb-distribution",   label: "Distribution",   path: "/ubb/distribution" },
+                { id: "ubb-communications", label: "Communications", path: "/ubb/communications" },
+                { id: "ubb-landing",        label: "Landing Page",   path: "/ubb/landing-page" },
+            ],
+        },
+        {
+            id: "equilibrium",
+            label: "Equilibrium",
+            path: "/equilibrium",
+        },
     ];
 };
 
