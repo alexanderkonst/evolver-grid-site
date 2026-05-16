@@ -90,7 +90,7 @@ export type SolarSegmentLabel = (typeof SOLAR_SEGMENTS)[number];
  *   0.75–0.92  Begin closing
  *   0.92–1.00  Wind down       (last ~30 days)
  *
- * See docs/specs/equilibrium/equilibrium_v2_philosophical_spine.md §4.
+ * See docs/specs/equilibrium/equilibrium_v2_spec.md → Philosophical Spine §4.
  */
 export type BirthdayArcPhase =
   | "Surge moment"
