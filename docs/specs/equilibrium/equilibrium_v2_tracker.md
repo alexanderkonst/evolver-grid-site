@@ -324,25 +324,25 @@ prompt + examples will be supplied later.
 - Cut-over decision for legacy `/equilibrium` route (separate Sasha sign-off)
 
 **Three Degrees of Consciousness onboarding (queued 2026-05-16):**
-- Build 3-screen first-open carousel per philosophical_spine §9 (Degree 1
-  "Where most people live" → Degree 2 "What the watch shows you" →
-  Degree 3 "What changes over time")
+- Build 3-screen first-open carousel per spec → Philosophical Spine §9
+  (Degree 1 "Where most people live" → Degree 2 "What the watch shows
+  you" → Degree 3 "What changes over time")
 - Persist `equilibrium_v2_onboarded = true` in user settings; never re-show
 - Static `/build/equilibrium/about` page that embeds the same three
   screens permanently — readable any time
 - Design pass on the three infographics (open for visual treatment;
-  copy + structure locked in spine §9)
-- Decide carousel surface: full-screen overlay vs in-pane sheet (UR
-  decision — probably overlay since it's pre-watch context-setting)
+  copy + structure locked in Spine §9)
+- Decide carousel surface: full-screen overlay vs in-pane sheet
 
-**Dogfood feedback locked into philosophical_spine.md (2026-05-16):**
-- Pill-label voice rules — verb-forward, professional, plain, time-to-act
-- Lunar quarter umbrella (CLEAR · ORIENT · BUILD · RESEED) above pills
+**Dogfood feedback locked into equilibrium_v2_spec.md → Philosophical Spine (2026-05-16):**
+- Pill-label voice rules — verb-forward, professional, plain, concrete
+- Lunar holonic-quadrant umbrella as element emoji ONLY (no invented words)
 - Time-to-next-phase sub-label ("ends Tue May 19 · 2.3 days left")
 - Ultra-concise inline guidance — one short sentence under active pill
 - Solar bar uses birthday-arc phases (Surge moment · Spend the energy ·
   Sustain · Begin closing · Wind down), NOT calendar seasons
 - Section copy: "Current Strategy" (singular) and "Intuitive Tasks"
+- ATTUNE | ACT binary mode toggle with Mission + Role as ACT North Stars
 
 ---
 
