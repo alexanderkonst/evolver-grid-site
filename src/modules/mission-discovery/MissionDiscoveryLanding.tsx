@@ -69,31 +69,38 @@ const HALO_SOFT =
 //   **1 sentence synthesis:** <sentence>
 //   One-sentence synthesis: <sentence>
 //   1-sentence synthesis: <sentence>
+//   > 1 sentence synthesis: <sentence>   (markdown blockquote)
 //
-// The regex is intentionally tolerant. If extraction fails we surface
-// the whole paste in the editable textarea so the user can manually
-// distill — never blocks.
+// The regex is intentionally tolerant.
+//
+// We use the GLOBAL flag and take the LAST match because the prompt
+// itself now embeds Sasha's example (which contains the marker), and
+// the AI may echo that example's marker line earlier in its response
+// before producing its own. The LAST occurrence is always the AI's
+// final synthesis for the user.
+//
+// If extraction fails we leave the editable textarea empty + toast
+// asks the user to type their one sentence. Never blocks the save.
 
 const SYNTHESIS_REGEX =
-    /(?:\*{0,2})\s*(?:1|one)[\s\-–]?sentence\s+synthesis\s*[:\-—]\s*(?:\*{0,2})\s*(.+?)\s*(?:\*{0,2})\s*$/im;
+    /(?:\*{0,2})\s*(?:1|one)[\s\-–]?sentence\s+synthesis\s*[:\-—]\s*(?:\*{0,2})\s*(.+?)\s*(?:\*{0,2})\s*$/gim;
+
+const stripMarkdown = (s: string): string =>
+    s.trim().replace(/^[\s>*]+|[\s>*]+$/g, "");
 
 const extractOneSentence = (raw: string): string | null => {
     if (!raw) return null;
     const trimmed = raw.trim();
-    // Pass 1: search the canonical marker.
-    const match = trimmed.match(SYNTHESIS_REGEX);
-    if (match?.[1]) {
-        return match[1].trim().replace(/^[\s>*]+|[\s>*]+$/g, "");
+    // Find ALL matches, take the LAST — the AI's actual final synthesis,
+    // not an echo of the prompt example.
+    SYNTHESIS_REGEX.lastIndex = 0;
+    const matches: string[] = [];
+    let m: RegExpExecArray | null;
+    while ((m = SYNTHESIS_REGEX.exec(trimmed)) !== null) {
+        if (m[1]) matches.push(m[1]);
     }
-    // Pass 2: try the last non-empty line that doesn't look like a list
-    // bullet — graceful degradation when the AI half-followed the format.
-    const lines = trimmed.split(/\n+/).map((l) => l.trim()).filter(Boolean);
-    for (let i = lines.length - 1; i >= 0; i--) {
-        const line = lines[i];
-        if (/^[-*•>\d.]/.test(line)) continue;
-        if (line.length > 30 && line.length < 600) {
-            return line.replace(/^[\s>*]+|[\s>*]+$/g, "");
-        }
+    if (matches.length > 0) {
+        return stripMarkdown(matches[matches.length - 1]);
     }
     return null;
 };
@@ -151,12 +158,15 @@ const MissionDiscoveryLanding = () => {
         if (extracted) {
             setSentence(extracted);
         } else {
-            // Couldn't find the marker — fall back to the whole paste.
-            // The user can edit it down to one sentence themselves.
-            setSentence(aiResponse.trim());
+            // No marker found. Empty sentence; ask the user to type the
+            // one sentence they want to save. We deliberately do NOT
+            // pre-fill with the full paste — that would dump a long
+            // multi-paragraph essay into a textarea sized for one
+            // sentence and force the user to delete most of it.
+            setSentence("");
             toast({
-                title: "Couldn't auto-extract a single sentence",
-                description: "Edit the text below to your one-sentence mission, then save.",
+                title: "Couldn't find a single-sentence summary",
+                description: "Type your one-sentence mission below, then save.",
             });
         }
         setState("confirm");
