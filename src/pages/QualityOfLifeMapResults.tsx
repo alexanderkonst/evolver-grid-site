@@ -60,6 +60,7 @@ import { logActionEvent } from "@/lib/actionEvents";
 import { awardXp } from "@/lib/xpSystem";
 import { awardFirstTimeBonus, getFirstTimeActionLabel } from "@/lib/xpService";
 import { shouldUnlockAfterQol } from "@/lib/onboardingRouting";
+import { withRetry } from "@/lib/withRetry";
 // Day 64 (Sasha 2026-05-07): buildQolPrioritiesPath import removed —
 // the priorities page itself has been retired in this revamp.
 // Day 63 (Sasha 2026-05-06): GameShellV2 import removed — shell now
@@ -163,11 +164,17 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
         xp_awarded: false,
       };
 
-      const { data: newSnapshot, error: snapshotError } = await supabase
-        .from('qol_snapshots')
-        .insert(snapshotInsert)
-        .select('id, xp_awarded')
-        .single();
+      // Day 66 wave C2 (Sasha 2026-05-16): withRetry wrap on both
+      // critical writes — transient network blips no longer surface
+      // as "Could not save your results" toasts on what would have
+      // succeeded with one retry.
+      const { data: newSnapshot, error: snapshotError } = await withRetry(() =>
+        supabase
+          .from('qol_snapshots')
+          .insert(snapshotInsert)
+          .select('id, xp_awarded')
+          .single(),
+      );
 
       if (snapshotError) throw snapshotError;
       if (!newSnapshot) throw new Error('qol_snapshots insert returned no data');
@@ -186,15 +193,17 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
       // matching the contract that "save success ↔ data is queryable
       // by next visit."
       const shouldUnlock = shouldUnlockAfterQol(returnTo);
-      const { error: pointerError } = await supabase
-        .from('game_profiles')
-        .update({
-          last_qol_snapshot_id: savedSnapshotId,
-          onboarding_stage: shouldUnlock ? "unlocked" : "qol_complete",
-          onboarding_completed: shouldUnlock,
-          updated_at: new Date().toISOString(),
-        })
-        .eq('id', profileId);
+      const { error: pointerError } = await withRetry(() =>
+        supabase
+          .from('game_profiles')
+          .update({
+            last_qol_snapshot_id: savedSnapshotId,
+            onboarding_stage: shouldUnlock ? "unlocked" : "qol_complete",
+            onboarding_completed: shouldUnlock,
+            updated_at: new Date().toISOString(),
+          })
+          .eq('id', profileId),
+      );
       if (pointerError) throw pointerError;
 
       setIsSaved(true);

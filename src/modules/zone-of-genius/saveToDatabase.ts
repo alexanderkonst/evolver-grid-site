@@ -2,6 +2,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { awardXp } from "@/lib/xpSystem";
 import { awardFirstTimeBonus } from "@/lib/xpService";
 import { getOrCreateGameProfileId } from "@/lib/gameProfile";
+import { withRetry } from "@/lib/withRetry";
 import { AppleseedData } from "./appleseedGenerator";
 import { ExcaliburData } from "./excaliburGenerator";
 // Day 62 (Sasha 2026-05-05): cache invalidation on every successful
@@ -231,19 +232,23 @@ export const saveAppleseed = async (
 
     const snapshot = await getOrCreateSnapshot(profileId);
 
-    // Update snapshot with Appleseed data
-    const { error } = await supabase
-      .from("zog_snapshots")
-      .update({
-        appleseed_data: JSON.parse(JSON.stringify(appleseed)),
-        appleseed_generated_at: new Date().toISOString(),
-        ai_response_raw: aiResponseRaw || null,
-        // Also update archetype from Appleseed
-        archetype_title: appleseed.vibrationalKey.name,
-        core_pattern: appleseed.bullseyeSentence,
-        top_three_talents: appleseed.threeLenses.actions.slice(0, 3),
-      })
-      .eq("id", snapshot.id);
+    // Update snapshot with Appleseed data. Day 66 wave C2 (Sasha
+    // 2026-05-16): wrapped in withRetry — transient network blips
+    // mid-save now retry up to 3 times before surfacing failure.
+    const { error } = await withRetry(() =>
+      supabase
+        .from("zog_snapshots")
+        .update({
+          appleseed_data: JSON.parse(JSON.stringify(appleseed)),
+          appleseed_generated_at: new Date().toISOString(),
+          ai_response_raw: aiResponseRaw || null,
+          // Also update archetype from Appleseed
+          archetype_title: appleseed.vibrationalKey.name,
+          core_pattern: appleseed.bullseyeSentence,
+          top_three_talents: appleseed.threeLenses.actions.slice(0, 3),
+        })
+        .eq("id", snapshot.id),
+    );
 
     if (error) throw error;
 
@@ -253,15 +258,18 @@ export const saveAppleseed = async (
     // this, a failed pointer write left the snapshot row in place but
     // `last_zog_snapshot_id` null, and the user saw "saved" — exactly the
     // same class of bug we fixed in the QoL save flow in wave 8.
-    const { error: pointerError } = await supabase
-      .from("game_profiles")
-      .update({
-        last_zog_snapshot_id: snapshot.id,
-        zone_of_genius_completed: true,
-        onboarding_stage: "zog_complete",
-        updated_at: new Date().toISOString(),
-      })
-      .eq("id", profileId);
+    // Wave C2 (Day 66): also wrapped in withRetry.
+    const { error: pointerError } = await withRetry(() =>
+      supabase
+        .from("game_profiles")
+        .update({
+          last_zog_snapshot_id: snapshot.id,
+          zone_of_genius_completed: true,
+          onboarding_stage: "zog_complete",
+          updated_at: new Date().toISOString(),
+        })
+        .eq("id", profileId),
+    );
     if (pointerError) throw pointerError;
 
     let xpAwarded = 0;
@@ -340,26 +348,30 @@ export const saveExcalibur = async (
       console.log("[saveToDatabase] No snapshot found, creating one for Excalibur save");
       const newSnapshot = await getOrCreateSnapshot(profileId);
 
-      // Update with Excalibur data
-      const { error } = await supabase
-        .from("zog_snapshots")
-        .update({
-          excalibur_data: JSON.parse(JSON.stringify(excalibur)),
-          excalibur_generated_at: new Date().toISOString(),
-        })
-        .eq("id", newSnapshot.id);
+      // Update with Excalibur data. Wave C2 (Day 66): withRetry wrap.
+      const { error } = await withRetry(() =>
+        supabase
+          .from("zog_snapshots")
+          .update({
+            excalibur_data: JSON.parse(JSON.stringify(excalibur)),
+            excalibur_generated_at: new Date().toISOString(),
+          })
+          .eq("id", newSnapshot.id),
+      );
 
       if (error) throw error;
 
-      // Day 66 (Sasha 2026-05-16) — capture pointer-write error.
-      const { error: pointerError } = await supabase
-        .from("game_profiles")
-        .update({
-          onboarding_stage: "offer_complete",
-          excalibur_data: JSON.parse(JSON.stringify(excalibur)),
-          updated_at: new Date().toISOString(),
-        })
-        .eq("id", profileId);
+      // Day 66 (Sasha 2026-05-16) — capture pointer-write error + retry.
+      const { error: pointerError } = await withRetry(() =>
+        supabase
+          .from("game_profiles")
+          .update({
+            onboarding_stage: "offer_complete",
+            excalibur_data: JSON.parse(JSON.stringify(excalibur)),
+            updated_at: new Date().toISOString(),
+          })
+          .eq("id", profileId),
+      );
       if (pointerError) throw pointerError;
 
       // Day 62 (Sasha 2026-05-05): cache invalidation. See top-of-
@@ -369,28 +381,32 @@ export const saveExcalibur = async (
       return { success: true, xpAwarded: 0, firstTimeBonus: 0 };
     }
 
-    // Update snapshot with Excalibur data
-    const { error } = await supabase
-      .from("zog_snapshots")
-      .update({
-        excalibur_data: JSON.parse(JSON.stringify(excalibur)),
-        excalibur_generated_at: new Date().toISOString(),
-      })
-      .eq("id", snapshot.id);
+    // Update snapshot with Excalibur data. Wave C2 (Day 66): withRetry.
+    const { error } = await withRetry(() =>
+      supabase
+        .from("zog_snapshots")
+        .update({
+          excalibur_data: JSON.parse(JSON.stringify(excalibur)),
+          excalibur_generated_at: new Date().toISOString(),
+        })
+        .eq("id", snapshot.id),
+    );
 
     if (error) throw error;
 
     // Day 66 (Sasha 2026-05-16) — capture pointer-write error so a failed
     // game_profiles update raises the destructive toast instead of being
-    // silently swallowed by the .update() resolution.
-    const { error: pointerError } = await supabase
-      .from("game_profiles")
-      .update({
-        onboarding_stage: "offer_complete",
-        excalibur_data: JSON.parse(JSON.stringify(excalibur)),
-        updated_at: new Date().toISOString(),
-      })
-      .eq("id", profileId);
+    // silently swallowed by the .update() resolution. Wave C2: retry wrap.
+    const { error: pointerError } = await withRetry(() =>
+      supabase
+        .from("game_profiles")
+        .update({
+          onboarding_stage: "offer_complete",
+          excalibur_data: JSON.parse(JSON.stringify(excalibur)),
+          updated_at: new Date().toISOString(),
+        })
+        .eq("id", profileId),
+    );
     if (pointerError) throw pointerError;
 
     let xpAwarded = 0;

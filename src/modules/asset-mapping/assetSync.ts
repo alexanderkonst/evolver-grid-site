@@ -7,6 +7,7 @@
  */
 
 import { supabase } from "@/integrations/supabase/client";
+import { withRetry } from "@/lib/withRetry";
 
 export interface SavedAsset {
   typeId: string;
@@ -175,14 +176,19 @@ export const saveAsset = async (userId: string, asset: SavedAsset): Promise<bool
     writeLocalAssets(userId, existing);
   }
 
-  // Save to DB (upsert to handle unique constraint gracefully)
-  const { error } = await (supabase as any)
-    .from("user_assets")
-    .upsert(localToDb(asset, userId), { ignoreDuplicates: true });
+  // Save to DB (upsert to handle unique constraint gracefully).
+  // Day 66 wave C2 (Sasha 2026-05-16): withRetry wrap so transient
+  // network blips don't surface a "couldn't save your asset" toast
+  // when one retry would have succeeded.
+  const { error } = await withRetry(() =>
+    (supabase as any)
+      .from("user_assets")
+      .upsert(localToDb(asset, userId), { ignoreDuplicates: true }),
+  );
 
   if (error) {
     // DB might not be available yet; localStorage is the fallback
-    console.warn("Failed to save asset to DB:", error.message);
+    console.warn("Failed to save asset to DB:", (error as any)?.message);
     return false;
   }
 
@@ -231,19 +237,23 @@ export const saveAssets = async (
   const updated = [...existing, ...newAssets];
   writeLocalAssets(userId, updated);
 
-  // Save to DB (upsert to handle unique constraint gracefully)
+  // Save to DB (upsert to handle unique constraint gracefully).
+  // Day 66 wave C2: withRetry wrap.
   const inserts = newAssets.map(a => localToDb(a, userId));
-  const { error } = await (supabase as any)
-    .from("user_assets")
-    .upsert(inserts, { ignoreDuplicates: true });
+  const { error } = await withRetry(() =>
+    (supabase as any)
+      .from("user_assets")
+      .upsert(inserts, { ignoreDuplicates: true }),
+  );
 
   if (error) {
-    console.warn("Failed to save assets to DB:", error.message);
+    const errMsg = (error as any)?.message ?? String(error);
+    console.warn("Failed to save assets to DB:", errMsg);
     return {
       saved: newAssets.length,
       skipped,
       success: false,
-      error: error.message,
+      error: errMsg,
     };
   }
 
