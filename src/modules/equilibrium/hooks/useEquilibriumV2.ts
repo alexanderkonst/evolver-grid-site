@@ -43,6 +43,8 @@ export interface EquilibriumV2Data {
   // ─── Intent / execution layer ──────────────────────────
   strategies: EquilibriumStrategy[];
   workstreams: EquilibriumWorkstream[];
+  /** Workstreams the user has marked complete (archived). Newest first. */
+  archivedWorkstreams: EquilibriumWorkstream[];
   tasksByWorkstream: Record<string, EquilibriumTask[]>;
   focusedTaskIds: string[];
 
@@ -61,7 +63,10 @@ export interface EquilibriumV2Data {
 
   addWorkstream: (title: string) => Promise<void>;
   renameWorkstream: (id: string, title: string) => Promise<void>;
+  /** Soft-archive (workstream marked complete; data preserved + restorable). */
   deleteWorkstream: (id: string) => Promise<void>;
+  /** Restore an archived workstream back to active. */
+  restoreWorkstream: (id: string) => Promise<void>;
   reorderWorkstreams: (orderedIds: string[]) => Promise<void>;
 
   addTask: (workstreamId: string, text: string) => Promise<void>;
@@ -90,6 +95,7 @@ export function useEquilibriumV2(): EquilibriumV2Data {
 
   const [strategies, setStrategies] = useState<EquilibriumStrategy[]>([]);
   const [workstreams, setWorkstreams] = useState<EquilibriumWorkstream[]>([]);
+  const [archivedWorkstreams, setArchivedWorkstreams] = useState<EquilibriumWorkstream[]>([]);
   const [tasks, setTasks] = useState<EquilibriumTask[]>([]);
   const [focus, setFocus] = useState<EquilibriumFocus[]>([]);
   const [activeWorkstreamId, setActiveWorkstreamId] = useState<string | null>(null);
@@ -210,10 +216,19 @@ export function useEquilibriumV2(): EquilibriumV2Data {
       ),
     );
 
-    const wsList = ((workstreamsRes.data as EquilibriumWorkstream[] | null) ?? [])
+    const allWs = ((workstreamsRes.data as EquilibriumWorkstream[] | null) ?? []);
+    const wsList = allWs
       .filter((w) => !w.archived_at)
       .sort((a, b) => a.position - b.position);
+    const wsArchived = allWs
+      .filter((w) => w.archived_at)
+      .sort(
+        (a, b) =>
+          new Date(b.archived_at ?? 0).getTime() -
+          new Date(a.archived_at ?? 0).getTime(),
+      );
     setWorkstreams(wsList);
+    setArchivedWorkstreams(wsArchived);
 
     // Fetch tasks for all workstreams (one query, filtered by workstream_id IN ...).
     if (wsList.length > 0) {
@@ -398,13 +413,17 @@ export function useEquilibriumV2(): EquilibriumV2Data {
         return;
       }
       setWorkstreams((prev) => prev.filter((w) => w.id !== id));
+      const archivedAt = new Date().toISOString();
+      setArchivedWorkstreams((prev) =>
+        [{ ...target, archived_at: archivedAt }, ...prev],
+      );
       // Tasks remain in local state — they're not deleted from DB by archive.
       if (activeWorkstreamId === id) {
         setActiveWorkstreamId(workstreams.find((w) => w.id !== id)?.id ?? null);
       }
 
       // Undo affordance — restore by clearing archived_at.
-      toast.success(`Archived "${target.title}"`, {
+      toast.success(`Completed "${target.title}"`, {
         duration: 5000,
         action: {
           label: "Undo",
@@ -422,11 +441,36 @@ export function useEquilibriumV2(): EquilibriumV2Data {
                 (a, b) => a.position - b.position,
               ),
             );
+            setArchivedWorkstreams((prev) =>
+              prev.filter((w) => w.id !== id),
+            );
           },
         },
       });
     },
     [activeWorkstreamId, workstreams],
+  );
+
+  const restoreWorkstream = useCallback(
+    async (id: string) => {
+      const target = archivedWorkstreams.find((w) => w.id === id);
+      if (!target) return;
+      const res = await eqAny
+        .from("equilibrium_workstreams")
+        .update({ archived_at: null })
+        .eq("id", id);
+      if (res.error) {
+        toast.error("Couldn't restore workstream — try again.");
+        return;
+      }
+      setArchivedWorkstreams((prev) => prev.filter((w) => w.id !== id));
+      setWorkstreams((prev) =>
+        [...prev, { ...target, archived_at: null }].sort(
+          (a, b) => a.position - b.position,
+        ),
+      );
+    },
+    [archivedWorkstreams],
   );
 
   const reorderWorkstreams = useCallback(
@@ -710,6 +754,7 @@ export function useEquilibriumV2(): EquilibriumV2Data {
     roleDisplay,
     strategies,
     workstreams,
+    archivedWorkstreams,
     tasksByWorkstream,
     focusedTaskIds,
     activeWorkstreamId,
@@ -722,6 +767,7 @@ export function useEquilibriumV2(): EquilibriumV2Data {
     addWorkstream,
     renameWorkstream,
     deleteWorkstream,
+    restoreWorkstream,
     reorderWorkstreams,
     addTask,
     renameTask,
