@@ -269,6 +269,12 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
         // re-resolves to BUILD's section list. The UBB nav itself
         // becoming pane 2 (deeper integration) is a separate refactor.
         if (pathname === "/ubb" || pathname.startsWith("/ubb/")) return "build";
+        // Day 65 (Sasha 2026-05-15): /build/equilibrium added — Equilibrium
+        // v2 ("Biologic Watch") is a sibling entry in BUILD-space pane 2
+        // alongside Automated Venture Builder. Without this mapping pane 2
+        // collapsed on /build/equilibrium because the path didn't resolve
+        // to any known space.
+        if (pathname === "/build" || pathname.startsWith("/build/")) return "build";
         // Day 56 (Sasha 2026-04-28): /library is the public face of LEARN.
         // Mapping it here lights up the LEARN chip in pane 1 and renders
         // LEARN's section list (the 6 Growth Sequence steps) in pane 2 —

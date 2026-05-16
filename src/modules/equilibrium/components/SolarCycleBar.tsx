@@ -19,9 +19,15 @@ import { cn } from "@/lib/utils";
 export interface SolarCycleBarProps {
   /** Year progress 0-1 (elapsed). Fill width = (1 - progress) of the arc. */
   progress: number;
-  prevLabel: string;
-  currentLabel: string;
-  nextLabel: string;
+  /**
+   * Optional pill-stack labels. Sasha 2026-05-15: solar visual is
+   * self-explanatory (the orb + filled tube + LEFT checkpoints already
+   * communicate the position) — pills omitted by default. Pass any of these
+   * to opt in.
+   */
+  prevLabel?: string;
+  currentLabel?: string;
+  nextLabel?: string;
   className?: string;
 }
 
@@ -212,12 +218,15 @@ export const SolarCycleBar = ({
         </div>
       </div>
 
-      {/* Pill stack — same pattern as CycleEnergyBar for visual continuity */}
-      <div className="mt-8 flex w-full max-w-xs flex-col items-stretch gap-2">
-        <DimPill>{prevLabel}</DimPill>
-        <ActivePill>{currentLabel}</ActivePill>
-        <DimPill>{nextLabel}</DimPill>
-      </div>
+      {/* Pill stack — opt-in. Solar's visual is self-explanatory; only render
+          if the caller explicitly passes labels. */}
+      {(prevLabel || currentLabel || nextLabel) && (
+        <div className="mt-8 flex w-full max-w-xs flex-col items-stretch gap-2">
+          {prevLabel && <DimPill>{prevLabel}</DimPill>}
+          {currentLabel && <ActivePill>{currentLabel}</ActivePill>}
+          {nextLabel && <DimPill>{nextLabel}</DimPill>}
+        </div>
+      )}
     </div>
   );
 };

@@ -89,7 +89,7 @@ export const EquilibriumV2Page = () => {
           id={SECTION_IDS.synthesis}
           emphasized
         >
-          <SectionHeader title="1. Synthesis Reading" subResult="Centered" />
+          <SectionHeader title="1. Synthesis Reading" />
           <SynthesisCard
             cycles={cycles}
             mission={eq.missionDisplay}
@@ -106,7 +106,7 @@ export const EquilibriumV2Page = () => {
         <EquilibriumSectionCard
           id={SECTION_IDS.mission}
         >
-          <SectionHeader title="2. Mission" subResult="Centered" />
+          <SectionHeader title="2. Mission" />
           <MissionSection
             missionDisplay={eq.missionDisplay}
             loading={eq.loading}
@@ -118,7 +118,7 @@ export const EquilibriumV2Page = () => {
         <EquilibriumSectionCard
           id={SECTION_IDS.role}
         >
-          <SectionHeader title="3. Role" subResult="Centered" />
+          <SectionHeader title="3. Role" />
           <RoleSection
             roleDisplay={eq.roleDisplay}
             loading={eq.loading}
@@ -130,7 +130,7 @@ export const EquilibriumV2Page = () => {
         <EquilibriumSectionCard
           id={SECTION_IDS.solar}
         >
-          <SectionHeader title="4. Solar Energy" subResult="In Rhythm" />
+          <SectionHeader title="4. Solar Energy" />
           <div className="mt-4">
             {/*
               Solar uses its own visual (4-segment tube + golden orb + fractional
@@ -138,12 +138,7 @@ export const EquilibriumV2Page = () => {
               by lunar/zodiac/week. Reference: docs/specs/equilibrium/equilibrium_v2_spec.md §3.1
               "Locked visual references" — solar mock supplied 2026-05-15.
             */}
-            <SolarCycleBar
-              progress={cycles.solar.personalProgress}
-              prevLabel={cycles.solar.prevLabel}
-              currentLabel={cycles.solar.currentLabel}
-              nextLabel={cycles.solar.nextLabel}
-            />
+            <SolarCycleBar progress={cycles.solar.personalProgress} />
           </div>
         </EquilibriumSectionCard>
 
@@ -151,7 +146,7 @@ export const EquilibriumV2Page = () => {
         <EquilibriumSectionCard
           id={SECTION_IDS.zodiac}
         >
-          <SectionHeader title="5. Zodiac Energy" subResult="In Rhythm" />
+          <SectionHeader title="5. Zodiac Energy" />
           <div className="mt-4">
             <CycleEnergyBar
               segments={ZODIAC_SEGMENTS}
@@ -168,7 +163,7 @@ export const EquilibriumV2Page = () => {
         <EquilibriumSectionCard
           id={SECTION_IDS.lunar}
         >
-          <SectionHeader title="6. Lunar Energy" subResult="In Rhythm" />
+          <SectionHeader title="6. Lunar Energy" />
           <div className="mt-4">
             <CycleEnergyBar
               segments={LUNAR_SEGMENTS}
@@ -190,7 +185,7 @@ export const EquilibriumV2Page = () => {
         <EquilibriumSectionCard
           id={SECTION_IDS.dayOfWeek}
         >
-          <SectionHeader title="7. Day-of-Week Energy" subResult="In Rhythm" />
+          <SectionHeader title="7. Day-of-Week Energy" />
           <div className="mt-4">
             <CycleEnergyBar
               segments={DAY_OF_WEEK_SEGMENTS}
@@ -207,11 +202,8 @@ export const EquilibriumV2Page = () => {
         <EquilibriumSectionCard
           id={SECTION_IDS.strategies}
         >
-          <SectionHeader
-            title="8. 3 Current Strategies"
-            subResult="Directed"
-            infoIconCopy="Set when you have clarity"
-          />
+          <SectionHeader title="8. 3 Current Strategies"
+            infoIconCopy="Set when you have clarity" />
           <StrategiesSection
             strategies={eq.strategies}
             loading={eq.loading}
@@ -223,7 +215,7 @@ export const EquilibriumV2Page = () => {
         <EquilibriumSectionCard
           id={SECTION_IDS.workstreams}
         >
-          <SectionHeader title="9. Workstreams" subResult="Directed" />
+          <SectionHeader title="9. Workstreams" />
           <WorkstreamsSection
             workstreams={eq.workstreams}
             activeId={eq.activeWorkstreamId}
@@ -240,10 +232,7 @@ export const EquilibriumV2Page = () => {
         <EquilibriumSectionCard
           id={SECTION_IDS.goals}
         >
-          <SectionHeader
-            title="10. Intuitive S.M.A.R.T. Goals"
-            subResult="Chosen"
-          />
+          <SectionHeader title="10. Intuitive S.M.A.R.T. Goals" />
           <SmartGoalsSection
             workstreamTitle={activeWorkstream?.title ?? null}
             tasks={activeTasks}
@@ -267,7 +256,7 @@ export const EquilibriumV2Page = () => {
           id={SECTION_IDS.doNow}
           emphasized
         >
-          <SectionHeader title="11. DO NOW" subResult="Chosen + Executed" />
+          <SectionHeader title="11. DO NOW" />
           <DoNowSection
             focusedTaskIds={eq.focusedTaskIds}
             taskById={taskById}
@@ -284,38 +273,31 @@ export const EquilibriumV2Page = () => {
 
 const SectionHeader = ({
   title,
-  subResult,
   infoIconCopy,
 }: {
   title: string;
-  subResult: string;
   infoIconCopy?: string;
 }) => (
-  <div className="flex items-baseline justify-between gap-4">
-    <div className="flex items-center gap-2">
-      <h2 className="font-serif text-xl text-[#0a1628] sm:text-2xl">{title}</h2>
-      {infoIconCopy && (
-        <TooltipProvider>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <button
-                type="button"
-                aria-label={infoIconCopy}
-                className="text-[#0a1628]/30 hover:text-[#0a1628]/60"
-              >
-                <Info size={14} />
-              </button>
-            </TooltipTrigger>
-            <TooltipContent side="top" className="max-w-xs">
-              {infoIconCopy}
-            </TooltipContent>
-          </Tooltip>
-        </TooltipProvider>
-      )}
-    </div>
-    <span className="text-xs uppercase tracking-wider text-[#0a1628]/40">
-      {subResult}
-    </span>
+  <div className="flex items-center gap-2">
+    <h2 className="font-serif text-xl text-[#0a1628] sm:text-2xl">{title}</h2>
+    {infoIconCopy && (
+      <TooltipProvider>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <button
+              type="button"
+              aria-label={infoIconCopy}
+              className="text-[#0a1628]/30 hover:text-[#0a1628]/60"
+            >
+              <Info size={14} />
+            </button>
+          </TooltipTrigger>
+          <TooltipContent side="top" className="max-w-xs">
+            {infoIconCopy}
+          </TooltipContent>
+        </Tooltip>
+      </TooltipProvider>
+    )}
   </div>
 );
 
