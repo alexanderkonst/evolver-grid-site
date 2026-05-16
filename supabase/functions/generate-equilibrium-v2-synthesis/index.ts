@@ -13,12 +13,13 @@ const corsHeaders = {
  * (solar, zodiac, lunar, day-of-week) optionally layered with personal context
  * (mission, role, moon focus).
  *
- * Distinct from v1.6's `generate-equilibrium-insight`: v1.6 told the user what
- * to DO (because v1.6 had no DO NOW box). v2 has DO NOW as a separate section,
- * so Synthesis is pure READING — a weather report for the soul. Action lives
- * elsewhere on the page.
+ * Voice update 2026-05-16 per Sasha dogfood feedback: less Yoda/abstract,
+ * more grounded/practical. References concrete activity-types ("a day to
+ * clear," "a day for plain speech," "an admin day") instead of pure mystical
+ * qualities. Still a reading — not a coach.
  *
  * Tone reference: docs/specs/equilibrium/equilibrium_v2_spec.md §1.7
+ * Lunar phase mapping: docs/specs/equilibrium/lunar_wisdom_map.md
  */
 
 const SYSTEM_PROMPT = `You are a Biologic Watch reader for Equilibrium. The user has just opened their watch — they're checking the time of their whole self.
@@ -67,7 +68,6 @@ Output: { "reading": "A day to say yes to what's arriving — book the introduct
 Input: solar="Early Summer", zodiac="Cancer / Nurture & Reflection", lunar="Waxing Gibbous / Leading · 90% admin, 10% work", dayOfWeek="Sunday Sun / Illumination & Celebration", mission=null, role=null, moonFocus=null
 Output: { "reading": "An admin Sunday — sequence next week before it starts, then close the laptop and rest in plain sight." }`;
 
-/** Compact, LLM-readable single-line summary of one cycle. */
 function fmtCycle(name: string, fields: Record<string, unknown>): string {
   const pairs = Object.entries(fields)
     .filter(([, v]) => v !== undefined && v !== null && v !== "")
