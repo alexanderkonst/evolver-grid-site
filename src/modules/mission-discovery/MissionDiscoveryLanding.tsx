@@ -45,6 +45,16 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import { ArrowRight, Clipboard, Check, Sparkles, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
+import {
+    AlertDialog,
+    AlertDialogAction,
+    AlertDialogCancel,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
 import { supabase } from "@/integrations/supabase/client";
 import { MISSION_DISCOVERY_PROMPT } from "@/prompts";
 import { getOrCreateGameProfileId } from "@/lib/gameProfile";
@@ -118,6 +128,15 @@ const MissionDiscoveryLanding = () => {
     const [sentence, setSentence] = useState("");
     const [copied, setCopied] = useState(false);
     const [isSaving, setIsSaving] = useState(false);
+    // Day 66 wave M+1 (Sasha 2026-05-16): edit-friction state.
+    // savedAt holds the original mission_discovered_at timestamp so
+    // the confirmation dialog can name the moment ("you saved this on
+    // May 16"). editDialogOpen drives the AlertDialog visibility.
+    // The friction matters because a mission is meaningful — a daily-
+    // edit-flow would dilute it. The dialog is a gentle pause, not
+    // a hard block.
+    const [savedAt, setSavedAt] = useState<string | null>(null);
+    const [editDialogOpen, setEditDialogOpen] = useState(false);
 
     // On mount, check whether a mission_statement already exists on the
     // user's profile — if so, skip straight to the saved state (so a
@@ -130,12 +149,13 @@ const MissionDiscoveryLanding = () => {
                 if (!userRes.user?.id || cancelled) return;
                 const { data } = await (supabase as any)
                     .from("game_profiles")
-                    .select("mission_statement")
+                    .select("mission_statement, mission_discovered_at")
                     .eq("user_id", userRes.user.id)
                     .maybeSingle();
                 if (cancelled) return;
                 if (data?.mission_statement) {
                     setSentence(data.mission_statement);
+                    setSavedAt(data?.mission_discovered_at ?? null);
                     setState("saved");
                 }
             } catch {
@@ -222,6 +242,24 @@ const MissionDiscoveryLanding = () => {
                     .eq("id", profileId)
                     .is("mission_discovered_at", null),
             );
+
+            // Day 66 wave M+1: refresh savedAt so a same-session Edit →
+            // Save cycle shows the correct date in the confirmation
+            // dialog the NEXT time the user clicks Edit. Re-fetch
+            // mission_discovered_at — preserves first-write-wins (i.e.,
+            // the original moment, not the latest edit moment).
+            try {
+                const { data: refreshed } = await (supabase as any)
+                    .from("game_profiles")
+                    .select("mission_discovered_at")
+                    .eq("id", profileId)
+                    .maybeSingle();
+                if (refreshed?.mission_discovered_at) {
+                    setSavedAt(refreshed.mission_discovered_at);
+                }
+            } catch {
+                // Non-fatal — dialog falls back to the generic phrasing.
+            }
 
             setState("saved");
 
@@ -455,12 +493,7 @@ const MissionDiscoveryLanding = () => {
                     <div className="flex flex-wrap gap-3 justify-center">
                         <Button
                             variant="outline"
-                            onClick={() => {
-                                // Lets the user revise. Drops back into the
-                                // confirm state pre-filled with the saved
-                                // sentence so they can edit and re-save.
-                                setState("confirm");
-                            }}
+                            onClick={() => setEditDialogOpen(true)}
                         >
                             Edit
                         </Button>
@@ -474,6 +507,52 @@ const MissionDiscoveryLanding = () => {
                     </div>
                 </div>
             )}
+
+            {/* Day 66 wave M+1 (Sasha 2026-05-16): edit-friction dialog.
+                Mission is a meaningful artifact; clicking Edit shouldn't
+                feel like editing a tweet. The pause asks the user to
+                acknowledge that the original moment of discovery won't
+                be preserved (version history is parked in the roadmap —
+                until that lands, every save overwrites the previous
+                sentence). Phrasing avoids guilt; just clarifies what
+                happens. */}
+            <AlertDialog open={editDialogOpen} onOpenChange={setEditDialogOpen}>
+                <AlertDialogContent>
+                    <AlertDialogHeader>
+                        <AlertDialogTitle
+                            style={{
+                                fontFamily: "'Cormorant Garamond', serif",
+                                fontWeight: 700,
+                                color: INK,
+                            }}
+                        >
+                            Change your mission?
+                        </AlertDialogTitle>
+                        <AlertDialogDescription
+                            style={{
+                                fontFamily: "'Source Serif 4', Georgia, serif",
+                                fontWeight: 300,
+                                color: INK_BODY,
+                            }}
+                        >
+                            {savedAt
+                                ? `You saved this on ${new Date(savedAt).toLocaleDateString(undefined, { month: "long", day: "numeric", year: "numeric" })}. Editing replaces it — the original sentence won't be preserved (version history is on the roadmap).`
+                                : "Editing replaces your saved mission. The original sentence won't be preserved (version history is on the roadmap)."}
+                        </AlertDialogDescription>
+                    </AlertDialogHeader>
+                    <AlertDialogFooter>
+                        <AlertDialogCancel>Keep it as is</AlertDialogCancel>
+                        <AlertDialogAction
+                            onClick={() => {
+                                setEditDialogOpen(false);
+                                setState("confirm");
+                            }}
+                        >
+                            Yes, let me edit
+                        </AlertDialogAction>
+                    </AlertDialogFooter>
+                </AlertDialogContent>
+            </AlertDialog>
         </div>
     );
 };
