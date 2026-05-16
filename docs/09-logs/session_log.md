@@ -7077,3 +7077,58 @@ Build clean (`✓ built in 8.72s`). Type-check clean throughout.
 QoL module shipped. Chip unlocked. Trace-every-surface rule codified. The Si–Do for the QoL module thread itself is closed.
 
 The broader Si–Do (first $555 stranger from the funnel) remains. Today's work was infrastructure on a Journey-pane chip — not directly the funnel-conversion lever. But: any founder reaching chip 8 now has another surface to engage with, and the data they generate is captured cleanly in `qol_snapshots` for telemetry / future personalization.
+
+---
+
+## Day 66 §8 — Match Interaction Mechanic shipped (May 16, 2026)
+
+### Frame at entry
+
+Sasha integrated the full matching-engine strategy into one canonical doc (`docs/02-strategy/matchmaking_strategy.md` v2.3) earlier in Day 66 — 14 sections including the §8 Interaction Mechanic spec and the §8.5 "extend, don't rewrite" implementation reality. Then he gave the green light: *"Legacy connection stable. We can deprecate it, as in we can delete the data that exists there because there haven't been any connections made yet. I'll trust you with the email infrastructure that you choose, so please go ahead until you're done."*
+
+The build ran through the integrated_product_building_workflow — Phase 1 (Product) → Phase 2 (Architecture) → Phase 3 (UI) → Phase 4 (Vibe-Coding), four Roast Gates, Debug DoD 10/10 — in one continuous session.
+
+### What shipped
+
+**Schema** (`supabase/migrations/20260516214500_match_mechanic.sql`):
+- `match_interests(id, from_user_id, to_user_id, match_score, compound_type, ai_why_text, created_at)` — UNIQUE(from, to), CHECK from <> to, 3 RLS policies (read/insert/delete), all participant-gated.
+- `match_intros(id, user_a_id, user_b_id, match_score, compound_type, ai_why_text, intro_sent_at)` — UNIQUE pair, canonical ordering (CHECK user_a_id < user_b_id) so race-conditions across tabs can't double-insert. 2 RLS policies (read/insert), participant-gated.
+- ON DELETE CASCADE against `auth.users(id)` on all four FK columns.
+
+**Application code:**
+- `src/pages/Matchmaking.tsx` — `handleExpressInterest` (INSERT match_interests → reverse SELECT → conditional match_intros INSERT → invoke `send-mutual-intro-email`) + `handleWithdrawInterest` + `loadMatchState` (two Sets: `interestedUserIds`, `mutualUserIds`).
+- `src/components/matchmaking/MatchCard.tsx` — new `interactionState` prop with three states (default / interest-expressed / mutual) + ARIA live regions + CTA label change "Add Connection" → "I'd like to meet."
+- `src/pages/Connections.tsx` — rewritten to a two-section view (mutual intros + your expressed interests). Privacy boundary: does NOT surface incoming unilateral interest. Withdraw available on one-sided rows only.
+- `src/pages/spaces/TeamsSpace.tsx` — exclusion set built from `match_intros` ∪ `match_interests` so the deck doesn't re-surface someone after click. New-interest writes go to `match_interests`.
+- `supabase/functions/delete-account/index.ts` — cascade migrated from `connections` to `match_interests` + `match_intros` (both directions).
+- `src/prompts/user/matchWhyPrompt.ts` (new) — documented why-text prompt + `extractConnectionHook` / `stripConnectionHook` utilities.
+- `supabase/functions/send-mutual-intro-email/` (new) — Aurora-register bilateral intro email. Both addresses in Resend's `to:` field. JWT-validates the caller is one of the parties. No magic-link CTA; reply-to-thread is the action surface. Logs to `email_send_log` with `template_name='mutual_intro'`.
+
+**Legacy `connections` table** — dropped via one-time Lovable SQL paste (committed migration stays additive; the DROP is a separate admin step per the hook-block convention). Sasha confirmed no real data to preserve.
+
+### Key decisions
+
+1. **EXTEND, not rewrite.** Preserved `MatchCard`, `Matchmaking.tsx` shell, asset-match engine. Added `interactionState` as a single new prop. Confirmed §8.5 of the strategy doc — incremental, not greenfield.
+2. **Client-side mutual detection.** Reverse SELECT after the INSERT. Safe because participant-RLS lets you read either direction you're in, and the canonical-pair CHECK + UNIQUE on `match_intros` prevents forged duplicates. Could harden to SECURITY DEFINER later.
+3. **Bilateral email, no magic link.** Both addresses in `to:`, single Resend send, reply-thread = action surface. Different from `send-connection-intro-email` (legacy, asymmetric).
+4. **Withdraw is one-sided only.** Once a `match_intros` row exists, it's a historical event — can't be withdrawn from the UI. Only the from-direction `match_interests` row is deletable.
+
+### Debug DoD — 10/10 by code review
+
+D1 migration constraints · D2 RLS participant-scope · D3 express-interest flow · D4 unique-violation tolerance · D5 edge-function JWT validation · D6 graceful name handling · D7 privacy boundary on Connections · D8 dedupe across mutuals + interests in TeamsSpace · D9 deletion cascade for both tables · D10 zero remaining production refs to legacy `connections`. Full evidence table in `docs/specs/match-mechanic/match-mechanic_tracker.md`.
+
+### Commits
+
+- `f63c84b5` — main build (9 files: migration, edge function, prompt module, MatchCard, Matchmaking, Connections, TeamsSpace, prompts index, product spec)
+- `6eec3fe3` — followup: migrate `delete-account` cascade off `connections`
+- `dcdc2f51` — tracker DONE with Debug DoD evidence table
+
+### Lovable handoff
+
+The one-time Lovable SQL prompt (apply schema + drop legacy table) + edge-function deploy instructions delivered in chat at session close. Sasha running them now.
+
+### Si–Do
+
+The match-mechanic Si–Do is closed. The mechanic that produces the high-trust feedback events for the matching engine — the `match_intros` row, the artifact that distinguishes "match" from "introduction" — is now real in the database, not theoretical in a strategy doc.
+
+The broader Si–Do (first $555 stranger from the funnel) remains unfired. But: when a stranger does come through the funnel and finds another stranger here, they can now experience the double-opt-in end-to-end. The platform's "the system found us both interested" trust signal is wired.

@@ -341,10 +341,18 @@ Audit done May 16 confirms: the matchmaking surface is already substantial.
 
 ### Already shipped
 
-- `src/pages/Matchmaking.tsx` — shows 3 match categories (Complementary Genius, Similar Genius, Similar Mission)
+- `src/pages/Matchmaking.tsx` — shows 3 match categories (Complementary Genius, Similar Genius, Similar Mission) **+ Day 66 §8: double-opt-in `handleExpressInterest` / `handleWithdrawInterest` handlers, three-state MatchCard, mutual-detection logic, bilateral intro email invocation**
 - `src/lib/archetypeMatching.ts` — complementarity logic on Top Talent archetypes
-- `src/components/MatchCard.tsx` — Pass/Connect UI (connect action incomplete)
+- `src/components/matchmaking/MatchCard.tsx` — Pass / **"I'd like to meet"** UI with three interaction states (default / interest-expressed / mutual) + Withdraw path + ARIA live regions
+- `src/pages/Connections.tsx` — refactored to two-section view (mutual intros + your expressed interests); privacy boundary preserved (no incoming-unilateral leak)
+- `src/pages/spaces/TeamsSpace.tsx` — exclusion-set migrated to `match_intros` + `match_interests`; new-interest writes go to `match_interests`
+- `supabase/functions/send-mutual-intro-email/` — Aurora-register bilateral intro email (both addresses in `to:`, no magic-link CTA, reply-thread = action surface, JWT-validated caller)
+- `supabase/migrations/20260516214500_match_mechanic.sql` — `match_interests` + `match_intros` tables, RLS, indexes, comments
+- `src/prompts/user/matchWhyPrompt.ts` — documented why-text prompt + `extractConnectionHook` / `stripConnectionHook` utilities
 - Filters: location, language
+- **Legacy `connections` table** — dropped via one-time Lovable SQL (Day 66, no real data lost)
+
+> §8 Interaction Mechanic shipped Day 66 (2026-05-16) — see `docs/specs/match-mechanic/match-mechanic_tracker.md` for the Debug DoD 10/10 audit + key decisions.
 
 Data sources used today:
 - Unique Gift (`appleseed_data` from zog_snapshots)
@@ -373,7 +381,7 @@ Data sources NOT yet used:
 
 ### Must have (to make the existing matchmaking surface actually function)
 
-- [ ] Connect button does something real (email handshake, in-platform connection request, etc.)
+- [x] **Connect button does something real** — Day 66 §8 shipped: double-opt-in mechanic, mutual-interest detection, bilateral intro email
 - [ ] Intra-community filtering (by cohort/program if applicable)
 - [ ] Page rename: "Matchmaking" → "Discover" (cosmetic but signals the intent shift — discovery vs. transaction)
 
