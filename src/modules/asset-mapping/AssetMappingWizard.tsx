@@ -259,7 +259,19 @@ const AssetMappingWizard = () => {
                 source: "manual" as const,
             };
 
-            await saveAsset(user.id, asset);
+            // Day 66 (Sasha 2026-05-16) — Wave B1 fix. Check the boolean
+            // return from saveAsset. Was: ignored; user saw "Asset added"
+            // toast even if the DB write failed (localStorage-only). Now:
+            // false → destructive toast and return without advancing.
+            const saved = await saveAsset(user.id, asset);
+            if (!saved) {
+                toast({
+                    title: "Couldn't save your asset",
+                    description: "Your asset is buffered locally; please retry to sync.",
+                    variant: "destructive",
+                });
+                return;
+            }
 
             setAddedAssets(prev => [...prev, { title: asset.title, type: selectedType?.title || '' }]);
 
