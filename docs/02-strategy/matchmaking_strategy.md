@@ -53,13 +53,13 @@ What the platform collects from / produces for each user. These are the inputs t
 | **Date of birth** | Mystic-knowledge layer — astrology / numerology / Human Design / personal year. Not yet a matching input. | Captured on signup. |
 | **Unique business artifacts** | What they're producing or offering commercially — the 18 UBB artifacts (uniqueness, myth, tribe, pain, promise, lead-magnet, value-ladder, etc.). Tribe-shape, offer-shape, value-shape descriptors. | UBB module. DB-persisted. |
 
-### Dimension B — Wants and needs (the optimization goal)
+### Dimension B — Wants and needs (an additional primitive, not a precondition)
 
-Wants/needs are *what we're matching FOR*. The primitives are what each user IS; wants/needs are what they're LOOKING FOR. Without wants/needs, the engine knows the supply side but not the demand side — it can rank by similarity/complementarity but can't focus on what the user actually wants to find right now.
+Wants/needs is *another profile primitive*, capturing what each user is looking for right now. Adds a demand-side signal alongside the supply-side primitives in Dimension A. **Important: the engine works without it.** The other primitives (Top Talent, mission, assets, QoL, DoB, UBB artifacts) generate matches on their own; wants/needs enriches those matches by aligning them to expressed intent. Valuable, not load-bearing.
 
-**Key claim:** at higher consciousness levels, wants and needs converge. The more developed a person is, the more "what they want" aligns with "what they actually need." This means the wants/needs primitive is more reliable for high-consciousness users; for less-developed users, wants/needs may diverge from what would actually serve them, and the engine should weight other primitives more heavily.
+**The convergence claim:** at higher consciousness levels, wants and needs converge — the more developed a person, the more "what they want" aligns with "what they actually need." Implication for the engine: weight wants/needs more heavily for users where the convergence holds, less for users where wants are surface-noise. How the engine *infers* that convergence — open implementation question (§12).
 
-**Status:** **Not yet captured.** This is the biggest gap. The next leveraged platform addition is a wants/needs surface — paste-AI-response pattern parallel to Mission Discovery, with a structured wants/needs blob saved to the profile. *This is the precondition for the matching engine to fire on intent, not just supply.*
+**Status:** **Not yet captured.** Worth building, but other primitives keep the engine functional in the meantime. Schema sketch: paste-AI-response surface parallel to Mission Discovery, with a single text field on `game_profiles` (`wants_and_needs TEXT`) OR two separate fields (`wants TEXT`, `needs TEXT`). Splitting in the prompt vs. asking the AI to handle both as one blob — open question (§12).
 
 ---
 
@@ -100,7 +100,7 @@ The reasoning: people at very different QoL stages experience sustained collabor
 
 **Implication for the engine:** QoL never adds a match — it can only reduce one. A 0.9 similarity-on-primitives match between QoL-divergent people gets multiplied down to 0.5; the engine surfaces other matches first.
 
-**Caveat / blind spot (flagged for validation):** this is currently Sasha's working hypothesis backed by his lived experience with the 7-founder collective, not empirically validated across a larger user base. Worth treating as `assumption-to-test` until match outcomes can be tracked against QoL stage divergence.
+**Status note:** QoL is **not being wired into the engine yet.** This section captures the design intent for when it is. Validation against actual match outcomes happens later, once the engine has match-success data to analyze (see §8 mechanic).
 
 ---
 
@@ -160,11 +160,117 @@ project ↔ ecosystem
 ecosystem ↔ ecosystem
 ```
 
-**Project-leader as proxy** for v1 of project-matching: until project profiles exist, match the leader-person and treat the project as their extended hand. Workable for most cases (every founder-led startup has one ultimate decision-maker). **Caveat / blind spot** (flagged for the assumption): not all projects have a single leader — DAOs, true co-CEO arrangements, partnerships of equals — and projects have NEEDS that aren't the leader's needs (a startup needs a CTO; the founder doesn't personally). The leader-proxy works as a v1 shortcut; it doesn't replace true project profiles.
+**Project profiles will exist** when the project layer is built — they aren't reducible to the leader-person's profile. Every project (including DAO circles, co-CEO arrangements, partnerships) does have an ultimate decision-maker for any given decision context, so the LEADER question is settled — but the PROJECT itself has its own profile primitives (its mission, its needed roles, its assets, its bandwidth) that are distinct from any single member's. The project layer is parked until person-to-person matching is producing real collaborations.
 
 ---
 
-## 8. Implementation status
+## 8. Match interaction mechanic — the double-opt-in spec (v1)
+
+**Design principle:** how would matching want to be in a high-consciousness, high-vibration platform? Both sides choose. AI provides the *why*. Privacy is respected. Trust is earned by mutual interest, not by reputation theater.
+
+**Reference model:** [Bordy AI](https://bordy.ai/) and similar high-signal intro-matching systems (Lunchclub, etc.). The pattern: surface the *why* in advance; require mutual yes for any meeting to happen; let the system itself (not vouching, not credentials) be the trust layer via the mutual-interest filter.
+
+### The flow
+
+```
+1. User A opens /matchmaking and sees a card for User B
+   ↓
+   The card shows B's profile + an AI-generated "why you should meet
+   B" paragraph: what the collaboration would be, what the knowledge
+   exchange could surface, what the complementary assets might
+   produce. The text describes the MATCH, not the person.
+
+2. A clicks "I'd like to meet" → records A's interest in B
+   ↓
+   System checks: has B already expressed interest in A?
+     NO  → save A's interest; B will see A surfaced in their
+            matches with the same AI-generated "why."
+     YES → both sides have opted in; trigger the intro email
+            (step 4).
+
+3. (Parallel) B opens /matchmaking later. Sees A surfaced. Reads the
+   AI-generated "why." Either yes or no.
+     NO  → A is told nothing (no rejection notification). The match
+            stays in A's history as "no mutual interest yet" —
+            potentially re-surfacable later if B's profile evolves.
+     YES → both sides have opted in; trigger the intro email.
+
+4. THE INTRO EMAIL — single email, both A and B in To:
+   Subject: "Sasha — meet your match." (or similar)
+   Body:    "A and B, you've both expressed interest in meeting
+            each other. Here's why the platform thought you'd
+            connect: [the AI-generated 'why' paragraph]. Take
+            it from here." + light suggested next-step (schedule
+            a call / pick a time / send a hello).
+
+5. The intro email firing is the **high-trust event** recorded in
+   the system as a successful match — feeds the feedback loop
+   that tunes the engine over time.
+```
+
+### Privacy & assets handling
+
+- Profile details visible on the match card: everything the user already chose to surface on `/game/me/*` (their Top Talent, public mission, public assets). Private data (raw QoL scores, DoB-derived signals, draft UBB artifacts) stays internal to the engine's scoring — not displayed on cards.
+- Assets: if a user added an asset to their profile, it's surfaceable in match context (the "complementary assets" line in the AI-generated why). Users can mark assets private or delete them anytime; private assets still factor into matching but aren't named in the why-text.
+- The AI-generated *why* describes the MATCH (what could come of A+B), not the PERSON in a profile-reveal sense. This is the difference between Tinder (here's a person, decide) and Bordy (here's a connection-shape, decide).
+
+### Trust + verification via mutual opt-in
+
+Mutual interest IS the trust filter. A user gaming their profile to appear in front of high-value users only succeeds in surfacing in matches — they still don't get the intro email unless the other side independently opts in. This naturally throttles abuse without needing identity verification, vouching, or reputation scores as a v1.
+
+(Future layer: reputation built from intro emails that led to actual collaborations — but that's downstream; the v1 mechanic is robust on its own.)
+
+### The feedback loop signal
+
+Every intro email fired is a **success event**: two people who saw each other's profile + the AI-generated why both said yes. That's a much higher-signal data point than a single-side click. Recorded as a `match_intros` row with `(user_a, user_b, match_score, ai_why_text, created_at)`. Over time, the engine learns:
+- Which AI-generated whys produced mutual opt-ins → better why-generation
+- Which primitive compounds produced the most mutual opt-ins → better scoring weights
+- Which user types match well together → personalization
+
+Followup signal (post-intro, harder to capture but valuable): did the intro lead to actual collaboration? Optional self-report form sent 30 days post-intro, or organic mention captured via Asset Mapping ("collaborated with @user on X"). v1: not required; v2+: a real source of engine improvement.
+
+### Schema sketch
+
+```sql
+-- Records every "I'd like to meet" click, both directions
+CREATE TABLE match_interests (
+  id              UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  from_user_id    UUID NOT NULL REFERENCES auth.users(id),
+  to_user_id      UUID NOT NULL REFERENCES auth.users(id),
+  match_score     NUMERIC,
+  ai_why_text     TEXT,         -- the why shown to from_user at time of click
+  created_at      TIMESTAMPTZ DEFAULT now(),
+  UNIQUE (from_user_id, to_user_id)
+);
+
+-- Records the moment both sides have opted in → intro email fires
+CREATE TABLE match_intros (
+  id              UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  user_a_id       UUID NOT NULL REFERENCES auth.users(id),
+  user_b_id       UUID NOT NULL REFERENCES auth.users(id),
+  match_score     NUMERIC,
+  ai_why_text     TEXT,
+  intro_sent_at   TIMESTAMPTZ DEFAULT now(),
+  CHECK (user_a_id < user_b_id)  -- canonical ordering to dedupe
+);
+```
+
+The trigger: when a row is inserted into `match_interests` and there's already a row with `(from, to)` reversed → insert into `match_intros` + fire the intro email via the existing magic-link / nurture email infrastructure. Database-level via trigger, OR application-level via the click handler — either works for v1.
+
+### What's NOT in v1 (parked)
+
+- Reputation / vouching layer
+- Scheduling integration (intro email points to "schedule a call" but doesn't book it)
+- Match outcome capture beyond the intro-sent event
+- Filtering by user-set preferences (location, language, etc. — those exist on the page but aren't wired into the mechanic)
+- Paid match-volume tiers
+- Inter-community vs. intra-community filtering
+
+These are all sound moves for later; the v1 mechanic is functional without them.
+
+---
+
+## 9. Implementation status
 
 ### Already shipped
 
@@ -196,7 +302,7 @@ Data sources NOT yet used:
 
 ---
 
-## 9. MVP scope (current sprint priorities)
+## 10. MVP scope (current sprint priorities)
 
 ### Must have (to make the existing matchmaking surface actually function)
 
@@ -222,7 +328,7 @@ Data sources NOT yet used:
 
 ---
 
-## 10. Community phasing — complementary to the holarchy
+## 11. Community phasing — complementary to the holarchy
 
 The holarchy in §7 describes WHAT layers exist (person / project / ecosystem). The community phasing is a separate cut: HOW MANY communities the platform serves at once.
 
@@ -236,36 +342,45 @@ The holarchy (§7) and the community phasing here are orthogonal — Phase 1/Pha
 
 ---
 
-## 11. Three pragmatic next moves (priority-ordered)
+## 12. Three pragmatic next moves (priority-ordered)
 
-1. **Build the wants/needs primitive.** Paste-AI-response surface parallel to Mission Discovery. Save as `wants_and_needs TEXT` (or two columns, `wants TEXT` + `needs TEXT`, structured) on `game_profiles`. Unlocks demand-side matching. Smaller than Mission Discovery was; ~2 hours of implementation. **Status: parked for prioritization.**
+1. **Implement the match interaction mechanic from §8** — the double-opt-in flow with AI-generated "why" text. This is what makes existing matches *actionable* (the current Connect button is the gap). Two new tables (`match_interests`, `match_intros`), one trigger or app-layer handler, one intro email template. Unlocks the feedback loop in the same move (every intro fired = a recorded success event the engine can learn from).
 
-2. **Promote Top Talent applications to a first-class queryable surface.** Schema: `top_talent_applications(id, user_id, application_label, context_tags, valence, source, created_at)`. Surface on `/game/me/zone-of-genius/applications`. Becomes the JOIN key for role-similarity AND role-complementarity matching. **Status: parked for prioritization.**
+2. **Promote Top Talent applications to a first-class queryable surface.** Schema: `top_talent_applications(id, user_id, application_label, context_tags, valence, source, created_at)`. Surface on `/game/me/zone-of-genius/applications`. Becomes the JOIN key for role-similarity AND role-complementarity matching. Without it, role-based matching runs on coarse archetype labels rather than the fine-grained applications the user actually performs.
 
-3. **Add asset-complementarity scoring + wire it into the matching engine.** DB-persisted assets exist (Day 65). What's missing: the scoring function (`asset_plug_and_play(A, B)`) and the match-surface that displays "your community + their product = a thing" matches. **Status: parked for prioritization.**
+3. **Build the wants/needs primitive.** Paste-AI-response surface parallel to Mission Discovery. Save as `wants_and_needs TEXT` (or split: `wants TEXT` + `needs TEXT`, see §13). Enriches matches with demand-side signal. Not a precondition — the engine works without it — but adds signal that the other primitives can't surface.
 
----
-
-## 12. Open questions
-
-Carried forward from v2 + surfaced during synthesis:
-
-- **QoL filter behavior** — hard cutoff (block matches below threshold) or soft multiplier (down-rank but still show)? Soft is safer for v1; hard requires more confidence in the QoL signal.
-- **Mystic / DoB weighting** — probably off-by-default for v1, on by default in a future "deep matching" tier. Trust implications — many users will be skeptical; surface this layer openly, not silently.
-- **Wants/needs schema shape** — free-text sentence (one extracted line) vs. structured array (top-3 wants + top-3 needs vs. tagged categories). Free-text first probably; structured emerges from analysis later.
-- **Project layer hand-off** — when does the project-leader proxy break down and require true project profiles? Probably when a multi-founder project sets matching preferences that diverge from any single co-founder's preferences.
-- **Romantic / platonic boundaries** — the primitives largely apply to romantic matching too. The platform explicitly excludes this for v2 (professional focus). Will users self-divert anyway? Should the system route those signals elsewhere?
-- **Trust + safety + abuse prevention** — gap in both v1 and v2. People will game profiles to surface in front of high-value users. Reputation, verification, blocking — all out of scope today; all real questions at scale.
-- **The "connect" action mechanic** — Pass/Connect UI exists, but what does Connect actually DO? Email? In-platform request? Direct intro? Unspecified in both v1 and v2.
-- **Match outcome feedback loop** — did surfaced matches lead to actual collaboration? Without measurement, the engine can't improve. Out of scope today; required for the engine to mature.
+(Asset-complementarity scoring is in the engine's compound table and DB-ready; wiring it into the actual scoring function is implementation work that lands naturally alongside #1 when the match-surface gets its real Connect mechanic. Not listed separately above because it's the same code path.)
 
 ---
 
-## 13. Genealogy
+## 13. Open questions
+
+Settled in this synthesis (no longer open):
+
+- ~~The "connect" action mechanic~~ → settled in §8: double-opt-in, intro email, recorded as success event for the feedback loop.
+- ~~Match outcome feedback loop~~ → settled in §8: every intro-sent fire is the high-trust signal recorded for engine improvement.
+- ~~Trust + safety + abuse prevention~~ → mutual-opt-in IS the v1 trust filter (gaming a profile to surface in front of someone still doesn't fire an intro email unless the other side independently agrees).
+- ~~User definition for v1~~ → person. Project profiles come later but won't be reducible to leader-person.
+- ~~Pricing of matching surface~~ → free for v1. Premium tiers are a future move once free engine produces real collaborations.
+
+Still genuinely open:
+
+- **Wants/needs schema shape — single TEXT field or split into `wants` + `needs`?** Sasha's lean: either works for v1; might be cleaner to ask the AI for both in the prompt and store separately, but also fine to let the AI handle both in one paragraph. Decide at build time of the wants/needs surface.
+- **QoL filter behavior (for whenever we wire it)** — hard cutoff or soft multiplier? Not wiring QoL into the engine yet; revisit when that work is scheduled.
+- **Mystic / DoB weighting** — off-by-default for v1, on by default in a future "deep matching" tier. Trust implications — many users will be skeptical; surface this layer openly, not silently.
+- **Wants-vs-needs convergence inference** — how does the engine know which users to weight wants/needs more heavily for? §2B sketches the convergence-with-consciousness idea but doesn't propose a mechanism. Open implementation question.
+- **Romantic / platonic boundaries** — the primitives largely apply to romantic matching too. The platform explicitly excludes this for v2 (professional focus). Will users self-divert anyway? Should the system route those signals elsewhere? Not urgent until usage signal forces it.
+- **Post-intro outcome capture** — did the intro lead to actual collaboration? §8 mentions optional self-report 30 days post-intro and organic capture via Asset Mapping. Decide which (or both) when match volume justifies the build.
+
+---
+
+## 14. Genealogy
 
 - **v0 (Feb 17, 2026):** original matchmaking docs at `docs/00-intro kit/archived/matchmaking_strategy.md`, `docs/06-architecture/matchmaking_architecture.md`, `docs/07-technology/matchmaking_engine.md`. Engineering-leaning; subordinated to v1's strategic framing.
 - **v1 (March 31, 2026):** Trojan Horse + 5-match-type framing in this file. Pulled the engine up into strategy. Preserved here as foundational concepts that v2 didn't replace.
 - **v2 (May 16, 2026, Day 66):** primitive-driven holarchic engine download. Reframed match-types as compounds of primitives; added wants/needs dimension; added holarchy; added scoring sketches.
-- **Synthesized (May 16, 2026):** this version. v1 strategic framing (Trojan Horse, community phasing, scale architecture, MVP scope) integrated with v2 engine theory (primitives, wants/needs, compounds, holarchy, scoring).
+- **v2.1 (May 16, 2026, Day 66 — same day):** Sasha-reviewed synthesis. Wants/needs reframed from "load-bearing precondition" to "one valuable primitive among many." QoL-as-multiplier deferred (not wiring yet). Project-leader-proxy critique retracted (every project has an ultimate decision-maker per decision context; project profiles will exist independently when built). User scope locked as "person" for v1; matching engine pricing locked as "free for v1." Added §8: Match interaction mechanic spec — the Bordy-style double-opt-in flow, intro email, recorded success event as the feedback loop, mutual-opt-in as the v1 trust filter.
+- **Synthesized (May 16, 2026):** the version that integrated v1 strategic framing (Trojan Horse, community phasing, scale architecture, MVP scope) with v2 engine theory (primitives, wants/needs, compounds, holarchy, scoring). Superseded by v2.1.
 
 **Anti-pattern note for v3:** edit this document in place. Do not stack v2-style appendices or create sibling docs. Document-creep is the explicit anti-pattern.
