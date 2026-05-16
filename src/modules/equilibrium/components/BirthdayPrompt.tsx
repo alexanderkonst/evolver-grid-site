@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
+import { cn } from "@/lib/utils";
 
 interface BirthdayPromptProps {
   /** Currently-known BD from equilibrium_state. When null, the prompt renders. */
@@ -39,7 +40,6 @@ export const BirthdayPrompt = ({
 }: BirthdayPromptProps) => {
   const [value, setValue] = useState("");
   const [saving, setSaving] = useState(false);
-  const [error, setError] = useState<string | null>(null);
 
   // Lock body scroll while open.
   useEffect(() => {
@@ -56,11 +56,26 @@ export const BirthdayPrompt = ({
   const save = async () => {
     if (!value || saving) return;
     setSaving(true);
-    setError(null);
-    // UPSERT — equilibrium_state may not yet have a row for this user
-    // (it's lazily created the first time any v2 surface writes). Using
-    // `eqAny` cast because the generated types haven't been regenerated
-    // since the 2026-05-16 migration that added the column.
+
+    // 1) ALWAYS write to localStorage first. This unblocks the user
+    //    immediately — the cycle math reads from this on next render via
+    //    useEquilibriumV2's localStorage fallback. The watch works even
+    //    if the Supabase migration hasn't been applied yet (or fails for
+    //    any other reason).
+    try {
+      window.localStorage.setItem(
+        `equilibrium_v2_birthday:${userId}`,
+        value,
+      );
+    } catch {
+      /* localStorage unavailable; we'll still try the server. */
+    }
+
+    // 2) Try Supabase upsert. UPSERT pattern because equilibrium_state
+    //    may not yet have a row for this user (it's lazily created the
+    //    first time any v2 surface writes). `eqAny` cast because the
+    //    generated types haven't been regenerated since the 2026-05-16
+    //    migration that added the column.
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const eqAny = supabase as any;
     const { error: err } = await eqAny
@@ -70,17 +85,35 @@ export const BirthdayPrompt = ({
         { onConflict: "user_id" },
       );
     setSaving(false);
+
     if (err) {
-      console.error("BirthdayPrompt save error:", err);
-      setError("Couldn't save — try again.");
-      return;
+      // Server save failed (likely: migration not yet applied, RLS
+      // mismatch, or transient network issue). DON'T block the user —
+      // localStorage already has the value and the watch will use it.
+      // Log for debugging; user proceeds.
+      console.warn(
+        "[BirthdayPrompt] Supabase save failed; using localStorage fallback. Error:",
+        err,
+      );
     }
+
+    // Proceed regardless — localStorage always has the value at this
+    // point. Cross-device sync resumes once the column exists + an
+    // upsert succeeds on a later session.
     onSaved(value);
   };
 
   return (
     <div
-      className="fixed inset-0 z-[100] flex items-center justify-center p-4"
+      className={cn(
+        // Bounded to the 3rd pane on desktop — offset for SpacesRail
+        // (280px) + SectionsPanel (260px) = 540px. On mobile the rails
+        // collapse/overlay so we cover the full viewport. Sasha
+        // 2026-05-16: modal should center within content pane, not full
+        // window.
+        "fixed top-0 right-0 bottom-0 left-0 lg:left-[540px]",
+        "z-[100] flex items-center justify-center p-4",
+      )}
       style={{
         background: "rgba(10, 22, 40, 0.55)",
         backdropFilter: "blur(8px)",
@@ -120,10 +153,6 @@ export const BirthdayPrompt = ({
               "inset 0 2px 4px rgba(10,22,40,0.08), inset 0 -1px 0 rgba(255,255,255,0.8)",
           }}
         />
-
-        {error && (
-          <p className="mb-3 text-sm text-red-600">{error}</p>
-        )}
 
         <button
           type="button"
