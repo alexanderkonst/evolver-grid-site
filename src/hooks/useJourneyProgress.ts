@@ -68,6 +68,21 @@ export function useJourneyProgress(): { progress: JourneyProgress; isLoading: bo
   useEffect(() => {
     let cancelled = false;
 
+    // Day 66 wave M (Sasha 2026-05-16): listen for an external
+    // refresh signal so save flows in other components (e.g., Mission
+    // Discovery) can trigger an immediate refetch without a remount
+    // or page navigation. The fytt:refresh-journey-progress custom
+    // event is dispatched from MissionDiscoveryLanding after a
+    // successful save — the listener calls the same loader the
+    // initial mount uses, so the refresh path matches first-load
+    // semantics exactly.
+    const onRefresh = () => {
+      if (!cancelled) void load();
+    };
+    if (typeof window !== "undefined") {
+      window.addEventListener("fytt:refresh-journey-progress", onRefresh);
+    }
+
     // Read localStorage-backed visit flags up front — works for
     // both authed and unauth users. Each entry is the ISO timestamp
     // of first visit; presence is what matters.
@@ -90,7 +105,7 @@ export function useJourneyProgress(): { progress: JourneyProgress; isLoading: bo
       }
     };
 
-    (async () => {
+    const load = async () => {
       try {
         const visitFlags = readVisitFlags();
 
@@ -217,10 +232,15 @@ export function useJourneyProgress(): { progress: JourneyProgress; isLoading: bo
         console.warn("[useJourneyProgress] unexpected:", e);
         if (!cancelled) setState({ progress: EMPTY, isLoading: false });
       }
-    })();
+    };
+
+    void load();
 
     return () => {
       cancelled = true;
+      if (typeof window !== "undefined") {
+        window.removeEventListener("fytt:refresh-journey-progress", onRefresh);
+      }
     };
   }, []);
 

@@ -277,6 +277,10 @@
 
 ## 🔮 Parked / Future
 
+### Parked (2026-05-16, Day 66 wave M) — Emphasize the next available JOURNEY step
+
+When a JOURNEY pane item gets crossed out (e.g., after Mission Discovery save → item #8 strikethrough), the **next available step in the sequence** should also be visually emphasized — a subtle pulse / gold halo / "next" affordance — so the user sees not just "I did this" but also "and here's what's next." Idea surfaced when designing the post-save flow on `/mission-discovery`; deemed overkill for the v1 of that flow but worth doing eventually. Where: `src/components/game/SectionsPanel.tsx` rendering loop; the "next item" can be derived from the same `useJourneyProgress` map by finding the first un-completed un-locked item after the just-completed one. Animation primitive: similar to the `.fytt-strikethrough--animating` pattern but applied as a brief glow / pulse on the next row's pill.
+
 ### Decision (parked) — Platform Onboarding Pathway
 *Captured 2026-04-28 (Day 54)*
 

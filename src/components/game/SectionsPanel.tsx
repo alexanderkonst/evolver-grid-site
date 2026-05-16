@@ -1,4 +1,4 @@
-import { ReactNode, memo, useEffect, useState } from "react";
+import { ReactNode, memo, useEffect, useRef, useState } from "react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { useLocation } from "react-router-dom";
 import { ChevronRight, ChevronDown, X } from "lucide-react";
@@ -661,6 +661,44 @@ const SectionsPanel = ({
     // and UBB's 18-artifact completion arc) simply never strike through.
     const { progress: journeyProgress } = useJourneyProgress();
 
+    // Day 66 wave M (Sasha 2026-05-16): draw-in animation for items
+    // that JUST flipped from un-completed to completed during this
+    // session (e.g., after the user saves their mission, item #8's
+    // strikethrough animates in). Rows already-completed-on-mount
+    // render with the static strikethrough — no animation, no
+    // distraction. Track the previous progress map in a ref and
+    // diff on every update; any id whose `completed` flipped
+    // false→true gets added to `animatingIds` for a short window.
+    const prevProgressRef = useRef<JourneyProgress>({});
+    const [animatingIds, setAnimatingIds] = useState<Set<string>>(new Set());
+    useEffect(() => {
+        const prev = prevProgressRef.current;
+        const justCompleted: string[] = [];
+        for (const id of Object.keys(journeyProgress)) {
+            if (journeyProgress[id] && !prev[id]) justCompleted.push(id);
+        }
+        // Skip the initial-mount diff — `prev` is empty, so every
+        // already-completed item would falsely appear "just completed."
+        // The check below: only animate if prev had at least one entry
+        // (meaning a previous render happened — this is a real transition).
+        const isInitialDiff = Object.keys(prev).length === 0;
+        prevProgressRef.current = journeyProgress;
+        if (isInitialDiff || justCompleted.length === 0) return;
+        setAnimatingIds((current) => {
+            const next = new Set(current);
+            justCompleted.forEach((id) => next.add(id));
+            return next;
+        });
+        const timer = window.setTimeout(() => {
+            setAnimatingIds((current) => {
+                const next = new Set(current);
+                justCompleted.forEach((id) => next.delete(id));
+                return next;
+            });
+        }, 1000); // animation duration + small buffer
+        return () => window.clearTimeout(timer);
+    }, [journeyProgress]);
+
     // Day 55 (Sasha 2026-04-29): touch detection for locked-row popover
     // side switch. Desktop → "right" (popover floats into pane 3's
     // empty area, escaping pane 2's overflow via Popover's built-in
@@ -1093,31 +1131,35 @@ const SectionsPanel = ({
                             </span>
                             {section.icon}
                             <span
-                                className="flex-1 text-[18px] leading-snug"
+                                className="flex-1 text-[18px] leading-snug relative"
                                 style={{
                                     fontFamily: "'Cormorant Garamond', serif",
                                     fontWeight: sectionActive && !isLocked ? 700 : 600,
                                     letterSpacing: "0.012em",
-                                    // Day 65 (Sasha 2026-05-15): "gently but very
-                                    // visibly cross out" accomplished items.
-                                    // Line is gold-tinted to harmonize with the
-                                    // active-row gold register; thickness bumped
-                                    // to 1.5px so it reads at typical pane-2
-                                    // distance, not as a hairline. Text color
-                                    // drops to 70% so the strikethrough leads
-                                    // the read but the words stay legible.
-                                    ...(section.completed
-                                        ? {
-                                              textDecoration: "line-through",
-                                              textDecorationColor: "rgba(212, 175, 55, 0.65)",
-                                              textDecorationThickness: "1.5px",
-                                              textUnderlineOffset: "0.05em",
-                                              color: "rgba(255, 255, 255, 0.70)",
-                                          }
-                                        : {}),
+                                    // Day 65 (Sasha 2026-05-15) + Day 66 wave M:
+                                    // accomplished items get a gold-tinted bar
+                                    // overlaid on the text via the
+                                    // .fytt-strikethrough span (positioned
+                                    // absolutely beneath this relative parent).
+                                    // The bar renders statically for items
+                                    // already completed at mount and animates
+                                    // in (draw-from-left) for items that flip
+                                    // false→true during the session. Text
+                                    // color drops to 70% on completed so the
+                                    // bar leads the read.
+                                    color: section.completed ? "rgba(255, 255, 255, 0.70)" : undefined,
                                 }}
                             >
                                 {sectionText}
+                                {section.completed && (
+                                    <span
+                                        className={cn(
+                                            "fytt-strikethrough",
+                                            animatingIds.has(section.id) && "fytt-strikethrough--animating",
+                                        )}
+                                        aria-hidden="true"
+                                    />
+                                )}
                             </span>
                             {section.badge && (
                                 <span

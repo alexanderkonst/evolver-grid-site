@@ -461,6 +461,26 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
         return () => subscription.unsubscribe();
     }, []);
 
+    // Day 66 wave M (Sasha 2026-05-16): listen for module-level
+    // requests to open pane 2 and/or switch active space. Used by
+    // Mission Discovery on save-success to surface the JOURNEY rail
+    // (with item #8 freshly struck through) without forcing a route
+    // change. Window-event mechanism keeps the contract decoupled —
+    // any future module can dispatch these without prop drilling.
+    useEffect(() => {
+        const onOpenPanel = () => setSectionsPanelOpen(true);
+        const onSetSpace = (evt: Event) => {
+            const detail = (evt as CustomEvent).detail as { spaceId?: string } | undefined;
+            if (detail?.spaceId) setActiveSpaceId(detail.spaceId);
+        };
+        window.addEventListener("fytt:open-sections-panel", onOpenPanel);
+        window.addEventListener("fytt:set-active-space", onSetSpace);
+        return () => {
+            window.removeEventListener("fytt:open-sections-panel", onOpenPanel);
+            window.removeEventListener("fytt:set-active-space", onSetSpace);
+        };
+    }, []);
+
     // Onboarding redirect — send incomplete users to /start
     // EXCEPT on /game/journey/* (public front door + ZoG flow) or
     // /game/settings (Day 48 Sasha: Settings is a public utility page;

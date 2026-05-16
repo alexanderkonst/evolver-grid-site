@@ -141,9 +141,10 @@ import MissionSelection from "./pages/MissionSelection";
 import PublicProfile from "./pages/PublicProfile";
 // Core Loop
 import CoreLoopHome from "./pages/CoreLoopHome";
-// Mission Discovery
+// Mission Discovery — Day 66 wave M (Sasha 2026-05-16): Wizard
+// retired from active code (component stays in tree as genealogy;
+// /mission-discovery/wizard route now redirects to the landing).
 import MissionDiscoveryLanding from "./modules/mission-discovery/MissionDiscoveryLanding";
-import MissionDiscoveryWizard from "./modules/mission-discovery/MissionDiscoveryWizard";
 // Asset Mapping
 import AssetMappingLanding from "./modules/asset-mapping/AssetMappingLanding";
 import AssetMappingWizard from "./modules/asset-mapping/AssetMappingWizard";
@@ -634,9 +635,17 @@ const App = () => (
                       orphan). activeSpaceId resolves to "grow" (ME) at
                       /mission-discovery* — see the path mapping in
                       GameShellV2's location-effect. JOURNEY pane item #8
-                      links here too; the module itself lives under ME. */}
+                      links here too; the module itself lives under ME.
+
+                      Day 66 wave M (Sasha 2026-05-16): the 4-column Wizard
+                      retired — single paste-and-extract flow is the only
+                      Mission Discovery surface now. The /wizard route
+                      redirects to the landing so any legacy bookmarks or
+                      deep links don't 404; the MissionDiscoveryWizard +
+                      CommitFlow components stay in the tree as genealogy
+                      but are no longer reachable from active code. */}
                   <Route path="/mission-discovery" element={<RequireAuth><GameShellV2><MissionDiscoveryLanding /></GameShellV2></RequireAuth>} />
-                  <Route path="/mission-discovery/wizard" element={<RequireAuth><GameShellV2><MissionDiscoveryWizard /></GameShellV2></RequireAuth>} />
+                  <Route path="/mission-discovery/wizard" element={<Navigate to="/mission-discovery" replace />} />
                   {/* Asset Mapping */}
                   {/* Day 63 (Sasha 2026-05-07): wrapped in GameShellV2 so the
                       JOURNEY left rail + pane-2 nav appear consistently with
