@@ -289,6 +289,13 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
         // could fall through to the default "next-move" space which has
         // no pane-2 sections — pane 2 collapses and Sasha sees pane 1 + 3 only.
         if (pathname === "/asset-mapping" || pathname.startsWith("/asset-mapping/")) return "journey";
+        // Day 65 wave 8 (Sasha 2026-05-15): Mission Discovery lives in ME
+        // space. The module itself (landing + wizard + commit ceremony)
+        // is a deeper personal-development surface — alongside Top Talent,
+        // Quality of Life, and Assets. JOURNEY pane item #8 links here as
+        // an entry point, but the active SPACE while inside the module
+        // is ME ("grow"), so pane 2 shows the ME sections.
+        if (pathname === "/mission-discovery" || pathname.startsWith("/mission-discovery/")) return "grow";
         const match = pathname.match(/^\/game\/([^/]+)/);
         if (!match) return undefined;
         const space = match[1];

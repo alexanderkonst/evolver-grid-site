@@ -174,6 +174,29 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
 
       savedSnapshotId = newSnapshot.id;
       xpAlreadyAwardedOnRow = !!newSnapshot.xp_awarded;
+
+      // Day 65 wave 8 (Sasha 2026-05-15): pointer update moved INTO
+      // the critical-save try/catch. Before today, the pointer
+      // (`last_qol_snapshot_id`) was written in a separate side-effects
+      // block — if that block threw, the qol_snapshots row existed
+      // but `game_profiles.last_qol_snapshot_id` stayed null. Three
+      // profiles leaked under that pattern (backfilled separately).
+      // Now the pointer write is part of the critical save: if it
+      // fails, the user sees the destructive toast and can retry,
+      // matching the contract that "save success ↔ data is queryable
+      // by next visit."
+      const shouldUnlock = shouldUnlockAfterQol(returnTo);
+      const { error: pointerError } = await supabase
+        .from('game_profiles')
+        .update({
+          last_qol_snapshot_id: savedSnapshotId,
+          onboarding_stage: shouldUnlock ? "unlocked" : "qol_complete",
+          onboarding_completed: shouldUnlock,
+          updated_at: new Date().toISOString(),
+        })
+        .eq('id', profileId);
+      if (pointerError) throw pointerError;
+
       setIsSaved(true);
     } catch (err) {
       // Critical save failed — the data is NOT in the DB. Show the
@@ -197,37 +220,13 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
     }
 
     // ─── Post-save side effects ─────────────────────────────────────
-    // Day 64 evening (Sasha 2026-05-07): SEPARATED into two concerns:
-    //   1. PROFILE POINTER UPDATE — this is the user's data record.
-    //      Critical: without it, next visit to /results can't find the
-    //      saved snapshot (load effect reads `game_profiles.last_qol_snapshot_id`
-    //      → returns null → answers stay all null → empty state shows
-    //      "Complete Your Assessment" even though the qol_snapshots
-    //      row exists). MUST run regardless of XP success.
-    //   2. XP / GAMIFICATION — bookkeeping, separate concern. Best-effort.
-    //
-    // The previous code gated BOTH inside `if (xpResult.success)` which
-    // meant any XP failure (gateway down, race, etc.) orphaned the
-    // user's snapshot. Sasha hit this on Day 64 evening — completed
-    // the assessment, came back to /results, saw the empty state.
-    // Snapshot existed in qol_snapshots; pointer in game_profiles
-    // was null because XP had failed earlier.
+    // Day 65 wave 8 (Sasha 2026-05-15): pointer update moved up into
+    // the critical-save try/catch. Block below is now XP + telemetry
+    // only — pure best-effort gamification bookkeeping. Failure here
+    // doesn't orphan user data.
     try {
       if (savedSnapshotId) {
-        // ALWAYS update the pointer — this is the user's data, not
-        // gamification.
-        const shouldUnlock = shouldUnlockAfterQol(returnTo);
-        await supabase
-          .from('game_profiles')
-          .update({
-            last_qol_snapshot_id: savedSnapshotId,
-            onboarding_stage: shouldUnlock ? "unlocked" : "qol_complete",
-            onboarding_completed: shouldUnlock,
-            updated_at: new Date().toISOString(),
-          })
-          .eq('id', profileId);
-
-        // XP / gamification — separate, best-effort.
+        // XP / gamification — best-effort.
         if (!xpAlreadyAwardedOnRow) {
           const xpResult = await awardXp(profileId, 100, "mind");
           if (xpResult.success) {
