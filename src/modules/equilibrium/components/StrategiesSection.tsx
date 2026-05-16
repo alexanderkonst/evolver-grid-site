@@ -29,7 +29,7 @@ export const StrategiesSection = ({
     <ol className="mt-2 flex flex-col gap-2">
       {([1, 2, 3] as const).map((position) => (
         <li key={position} className="flex items-start gap-3">
-          <span className="mt-3 select-none font-serif text-base text-[#0a1628]/40">
+          <span className="mt-3 select-none font-serif text-base text-[#0a1628]/85">
             {position}.
           </span>
           <div className="flex-1">

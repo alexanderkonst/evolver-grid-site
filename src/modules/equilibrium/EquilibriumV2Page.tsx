@@ -76,7 +76,7 @@ export const EquilibriumV2Page = () => {
   return (
     <main className="mx-auto w-full max-w-2xl px-4 py-8 sm:px-6 sm:py-12">
       <header className="mb-8 text-center">
-        <h1 className="font-serif text-3xl text-[#0a1628] sm:text-4xl">
+        <h1 className="eq-text-halo font-serif text-3xl font-semibold text-[#0a1628] sm:text-4xl">
           "Equilibrium" Biologic Watch
         </h1>
       </header>
@@ -279,7 +279,7 @@ const SectionHeader = ({
   infoIconCopy?: string;
 }) => (
   <div className="flex items-center gap-2">
-    <h2 className="font-serif text-xl text-[#0a1628] sm:text-2xl">{title}</h2>
+    <h2 className="eq-text-halo font-serif text-xl font-semibold text-[#0a1628] sm:text-2xl">{title}</h2>
     {infoIconCopy && (
       <TooltipProvider>
         <Tooltip>
@@ -287,7 +287,7 @@ const SectionHeader = ({
             <button
               type="button"
               aria-label={infoIconCopy}
-              className="text-[#0a1628]/30 hover:text-[#0a1628]/60"
+              className="text-[#0a1628]/95 hover:text-[#0a1628]/90"
             >
               <Info size={14} />
             </button>
@@ -302,7 +302,7 @@ const SectionHeader = ({
 );
 
 const Placeholder = ({ hint }: { hint: string }) => (
-  <div className="mt-4 rounded-lg border border-dashed border-[#0a1628]/10 px-4 py-6 text-center text-xs uppercase tracking-wider text-[#0a1628]/30">
+  <div className="mt-4 rounded-lg border border-dashed border-[#0a1628]/10 px-4 py-6 text-center text-xs uppercase tracking-wider text-[#0a1628]/95">
     {hint}
   </div>
 );

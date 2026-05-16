@@ -26,7 +26,7 @@ export const MoonFocusInput = ({
 }: MoonFocusInputProps) => {
   return (
     <div className="mt-4 flex items-center gap-2 rounded-md bg-white/40 px-3 py-2">
-      <span className="text-xs uppercase tracking-wider text-[#0a1628]/50">
+      <span className="text-xs uppercase tracking-wider text-[#0a1628]/90">
         Focus:
       </span>
       <div className="flex-1">
@@ -42,7 +42,7 @@ export const MoonFocusInput = ({
         <Tooltip>
           <TooltipTrigger
             asChild
-            className="shrink-0 text-[#0a1628]/40 hover:text-[#0a1628]/70"
+            className="shrink-0 text-[#0a1628]/85 hover:text-[#0a1628]/95"
           >
             <button type="button" aria-label="What is this?">
               <Info size={14} />

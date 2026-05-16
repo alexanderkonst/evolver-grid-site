@@ -82,7 +82,7 @@ export const SectionAnchorNav = () => {
                   "rounded-full px-3 py-1.5 text-xs font-medium transition-all",
                   isActive
                     ? "bg-[#0a1628] text-white"
-                    : "text-[#0a1628]/60 hover:text-[#0a1628]",
+                    : "text-[#0a1628]/90 hover:text-[#0a1628]",
                 )}
               >
                 {label}

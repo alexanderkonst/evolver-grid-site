@@ -73,8 +73,8 @@ export const InlineEditableText = ({
 
   const textClass =
     size === "display"
-      ? "font-serif text-lg text-[#0a1628]"
-      : "text-base text-[#0a1628]/80";
+      ? "eq-text-halo font-serif text-lg font-medium text-[#0a1628]"
+      : "eq-text-halo text-base font-medium text-[#0a1628]";
 
   if (editing) {
     return (
@@ -105,7 +105,7 @@ export const InlineEditableText = ({
             onClick={() => void commit()}
             disabled={saving}
             aria-label="Save"
-            className="rounded-md p-1.5 text-[#0a1628]/60 hover:bg-white/60 hover:text-[#0a1628]"
+            className="rounded-md p-1.5 text-[#0a1628]/90 hover:bg-white/60 hover:text-[#0a1628]"
           >
             <Check size={16} />
           </button>
@@ -114,7 +114,7 @@ export const InlineEditableText = ({
             onClick={cancel}
             disabled={saving}
             aria-label="Cancel"
-            className="rounded-md p-1.5 text-[#0a1628]/60 hover:bg-white/60 hover:text-[#0a1628]"
+            className="rounded-md p-1.5 text-[#0a1628]/90 hover:bg-white/60 hover:text-[#0a1628]"
           >
             <X size={16} />
           </button>
@@ -138,12 +138,12 @@ export const InlineEditableText = ({
         className,
       )}
     >
-      <span className={cn("flex-1", textClass, isEmpty && "text-[#0a1628]/40")}>
+      <span className={cn("flex-1", textClass, isEmpty && "text-[#0a1628]/85")}>
         {displayValue}
       </span>
       <Pencil
         size={14}
-        className="mt-1 shrink-0 text-[#0a1628]/30 opacity-0 transition group-hover:opacity-100 group-focus:opacity-100"
+        className="mt-1 shrink-0 text-[#0a1628]/95 opacity-0 transition group-hover:opacity-100 group-focus:opacity-100"
       />
     </button>
   );

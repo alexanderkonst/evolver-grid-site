@@ -28,7 +28,7 @@ export const DoNowSection = ({
 }: DoNowSectionProps) => {
   if (focusedTaskIds.length === 0) {
     return (
-      <p className="mt-3 rounded-md border border-dashed border-[#0a1628]/10 px-4 py-6 text-center text-sm text-[#0a1628]/40">
+      <p className="mt-3 rounded-md border border-dashed border-[#0a1628]/10 px-4 py-6 text-center text-sm text-[#0a1628]/85">
         {/* Empty-state copy: TBD — Sasha to supply */}
         Promote a task from your goals — what's the one thing now?
       </p>
@@ -72,7 +72,7 @@ export const DoNowSection = ({
       </ul>
 
       {focusedTaskIds.length >= 2 && (
-        <p className="mt-3 px-2 text-xs italic text-[#0a1628]/55">
+        <p className="mt-3 px-2 text-xs italic text-[#0a1628]/90">
           For optimal results, we recommend to have only ONE task in this section
           most of the time.
         </p>

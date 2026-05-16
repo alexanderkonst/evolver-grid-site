@@ -167,12 +167,12 @@ export const SynthesisCard = ({
       <div className="flex items-start gap-3">
         <span
           className={cn(
-            "flex-1 font-serif text-xl leading-relaxed text-[#0a1628] sm:text-2xl",
+            "eq-text-halo flex-1 font-serif text-xl font-medium leading-relaxed text-[#0a1628] sm:text-2xl",
             loading && "opacity-60",
           )}
         >
           {reading ?? (
-            <span className="text-[#0a1628]/30 italic">
+            <span className="text-[#0a1628]/95 italic">
               {loading ? "reading the moment…" : "tap to read"}
             </span>
           )}
@@ -180,18 +180,18 @@ export const SynthesisCard = ({
         <RotateCcw
           size={18}
           className={cn(
-            "mt-2 shrink-0 text-[#0a1628]/30 transition group-hover:text-[#0a1628]/60",
+            "mt-2 shrink-0 text-[#0a1628]/95 transition group-hover:text-[#0a1628]/90",
             loading && "animate-spin",
           )}
         />
       </div>
 
       {error && (
-        <p className="mt-2 flex items-center justify-between text-xs italic text-[#0a1628]/40">
+        <p className="mt-2 flex items-center justify-between text-xs italic text-[#0a1628]/85">
           <span>fallback reading — synthesis unavailable</span>
           <span
             aria-hidden="true"
-            className="not-italic font-mono text-[10px] text-[#0a1628]/30"
+            className="not-italic font-mono text-[10px] text-[#0a1628]/95"
           >
             press R to retry
           </span>
