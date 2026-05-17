@@ -40,11 +40,15 @@
  * (false → true) and animates the draw-in.
  */
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { ArrowRight, Clipboard, Check, Sparkles, ChevronRight } from "lucide-react";
+import { ArrowRight, Clipboard, Check, ChevronRight, Pencil } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
+// Day 67 (Sasha 2026-05-16): page-wide editorial CTA migration. Buttons
+// previously used shadcn-ui + emerald-bg + gold-ring; now they sing in
+// one editorial family with the landing CTA via the shared component.
+import { EditorialCta } from "@/components/ui/editorial-cta";
 import {
     AlertDialog,
     AlertDialogAction,
@@ -138,6 +142,15 @@ const MissionDiscoveryLanding = () => {
     const [savedAt, setSavedAt] = useState<string | null>(null);
     const [editDialogOpen, setEditDialogOpen] = useState(false);
 
+    // Day 67 (Sasha 2026-05-16): paste-back textarea ref + just-copied
+    // pulse flag — Sasha flagged that "there is no continuation after
+    // copying the prompt." The paste-back card was below the fold and
+    // the user thought the flow dead-ended. Now Copy → smooth-scroll to
+    // step 2 + the textarea pulses briefly in the gold register so the
+    // "what's next" question answers itself.
+    const pasteSectionRef = useRef<HTMLDivElement>(null);
+    const [pulsePasteCard, setPulsePasteCard] = useState(false);
+
     // On mount, check whether a mission_statement already exists on the
     // user's profile — if so, skip straight to the saved state (so a
     // returning user sees their saved mission, not the empty paste form).
@@ -171,6 +184,19 @@ const MissionDiscoveryLanding = () => {
         await navigator.clipboard.writeText(MISSION_DISCOVERY_PROMPT);
         setCopied(true);
         setTimeout(() => setCopied(false), 2000);
+
+        // Day 67 (Sasha 2026-05-16): scroll the paste-back card into view
+        // + briefly pulse it so the next-step path is undeniable. Uses
+        // requestAnimationFrame to let React commit the copied state
+        // before the scroll fires (smoother visual sequencing).
+        requestAnimationFrame(() => {
+            pasteSectionRef.current?.scrollIntoView({
+                behavior: "smooth",
+                block: "center",
+            });
+            setPulsePasteCard(true);
+            setTimeout(() => setPulsePasteCard(false), 1400);
+        });
     };
 
     const handleExtract = () => {
@@ -290,10 +316,13 @@ const MissionDiscoveryLanding = () => {
     return (
         <div className="max-w-3xl mx-auto px-4 py-10 sm:py-12">
             {/* ── Hero ── */}
+            {/* Day 67 (Sasha 2026-05-16): Sparkles glass-pill ornament
+                removed — Sasha flagged it as redundant ornamentation
+                above the headline. The pane-3 wordmark is also gone
+                (set via hideLogo on the route in App.tsx). The h1 stands
+                alone now, which is the editorial register the playbook
+                calls for. */}
             <section className="text-center mb-10 sm:mb-12">
-                <div className="inline-flex items-center justify-center w-14 h-14 rounded-full liquid-glass mb-5">
-                    <Sparkles className="w-7 h-7" style={{ color: "var(--skin-accent-gold, #b8860b)" }} />
-                </div>
                 <h1
                     className="leading-[1.1] tracking-[-0.01em] mb-3"
                     style={{
@@ -321,13 +350,32 @@ const MissionDiscoveryLanding = () => {
                 )}
             </section>
 
-            {/* ── State 1: Prompt + paste ── */}
+            {/* ── State 1: Prompt + paste ──
+                Day 67 (Sasha 2026-05-16): the two cards are now explicitly
+                numbered (1. Copy prompt · 2. Paste response). Before the
+                numbering, Sasha hit Copy and thought the flow ended — the
+                paste-back was below the fold and the next-step path was
+                invisible. Now Copy → smooth-scroll to the numbered card
+                #2 + the card pulses gold briefly (see pulsePasteCard). */}
             {state === "prompt" && (
                 <div className="space-y-6">
-                    {/* The prompt to copy */}
+                    {/* ─ Step 1: copy the prompt ─ */}
                     <div className="liquid-glass rounded-2xl p-5 sm:p-6">
                         <div className="flex items-start justify-between mb-3 gap-3">
                             <div>
+                                <p
+                                    className="mb-1"
+                                    style={{
+                                        fontFamily: "'Cormorant Garamond', serif",
+                                        fontWeight: 700,
+                                        fontSize: "11px",
+                                        letterSpacing: "0.22em",
+                                        textTransform: "uppercase",
+                                        color: "var(--skin-accent-gold, #b8860b)",
+                                    }}
+                                >
+                                    Step 1
+                                </p>
                                 <h3
                                     className="mb-1"
                                     style={{
@@ -337,21 +385,36 @@ const MissionDiscoveryLanding = () => {
                                         color: INK,
                                     }}
                                 >
-                                    Prompt for your AI
+                                    Copy the prompt
                                 </h3>
                                 <p className="text-xs" style={{ color: INK_MUTED }}>
-                                    Copy this. Paste it into ChatGPT, Claude, or whichever AI knows you best.
+                                    Paste it into ChatGPT, Claude, or whichever AI knows you best.
                                 </p>
                             </div>
-                            <Button
-                                variant="outline"
-                                size="sm"
+                            {/* Editorial Copy pill — gold-accent inline button
+                                in the same family as the rest of the gold UI.
+                                EditorialCta would be too big for an in-card
+                                corner button; custom-styled tight pill instead. */}
+                            <button
+                                type="button"
                                 onClick={handleCopyPrompt}
-                                className="shrink-0"
+                                className="shrink-0 inline-flex items-center gap-1.5 rounded-full transition-all duration-300 hover:scale-[1.03] active:scale-[0.97]"
+                                style={{
+                                    fontFamily: "'Cormorant Garamond', serif",
+                                    fontWeight: 600,
+                                    fontSize: "12px",
+                                    letterSpacing: "0.14em",
+                                    textTransform: "uppercase",
+                                    padding: "8px 14px",
+                                    color: INK,
+                                    background: "linear-gradient(135deg, rgba(244,212,114,0.22) 0%, rgba(212,175,55,0.12) 100%)",
+                                    border: "0.5px solid rgba(212,175,55,0.55)",
+                                    boxShadow: "0 0 10px -2px rgba(244,212,114,0.35), inset 0 0 6px -2px rgba(244,212,114,0.20)",
+                                }}
                             >
-                                {copied ? <Check className="w-4 h-4 mr-1" /> : <Clipboard className="w-4 h-4 mr-1" />}
+                                {copied ? <Check className="w-3.5 h-3.5" /> : <Clipboard className="w-3.5 h-3.5" />}
                                 {copied ? "Copied" : "Copy"}
-                            </Button>
+                            </button>
                         </div>
                         <pre
                             className="text-xs whitespace-pre-wrap p-3 rounded-lg max-h-40 overflow-y-auto"
@@ -366,14 +429,39 @@ const MissionDiscoveryLanding = () => {
                         </pre>
                     </div>
 
-                    {/* Paste back */}
-                    <div>
+                    {/* ─ Step 2: paste the response ─
+                        Wrapped in liquid-glass so it visually rhymes with
+                        step 1's card. Holds the ref for the Copy-triggered
+                        smooth-scroll + a brief gold pulse outline (see
+                        boxShadow transition when pulsePasteCard is true). */}
+                    <div
+                        ref={pasteSectionRef}
+                        className="liquid-glass rounded-2xl p-5 sm:p-6 transition-shadow duration-700"
+                        style={{
+                            boxShadow: pulsePasteCard
+                                ? "0 0 0 2px rgba(244,212,114,0.55), 0 0 32px -4px rgba(244,212,114,0.45)"
+                                : undefined,
+                        }}
+                    >
+                        <p
+                            className="mb-1"
+                            style={{
+                                fontFamily: "'Cormorant Garamond', serif",
+                                fontWeight: 700,
+                                fontSize: "11px",
+                                letterSpacing: "0.22em",
+                                textTransform: "uppercase",
+                                color: "var(--skin-accent-gold, #b8860b)",
+                            }}
+                        >
+                            Step 2
+                        </p>
                         <label
-                            className="block mb-2"
+                            className="block mb-3"
                             style={{
                                 fontFamily: "'Cormorant Garamond', serif",
                                 fontWeight: 600,
-                                fontSize: "1.05rem",
+                                fontSize: "1.18rem",
                                 color: INK,
                             }}
                         >
@@ -392,15 +480,17 @@ const MissionDiscoveryLanding = () => {
                     </div>
 
                     <div className="flex justify-center">
-                        <Button
-                            size="lg"
-                            onClick={handleExtract}
-                            disabled={!aiResponse.trim()}
-                            className="ring-2 ring-[#d4af37]/40 ring-offset-2"
-                        >
-                            Find my mission
-                            <ArrowRight className="w-4 h-4 ml-2" />
-                        </Button>
+                        <EditorialCta
+                            variant="primary"
+                            label="Find my mission"
+                            onClick={() => {
+                                // Guard inline (EditorialCta has no disabled
+                                // prop). Empty paste = no-op; we don't even
+                                // visit handleExtract.
+                                if (aiResponse.trim()) handleExtract();
+                            }}
+                            rightIcon={<ArrowRight className="w-4 h-4" />}
+                        />
                     </div>
                 </div>
             )}
@@ -442,24 +532,28 @@ const MissionDiscoveryLanding = () => {
                     </div>
 
                     <div className="flex flex-wrap gap-3 justify-center">
-                        <Button
-                            variant="outline"
+                        {/* Day 67: Back + Save both migrated to EditorialCta.
+                            Emerald-bg dropped — the gold register from the
+                            landing CTA is the canonical "primary" treatment.
+                            isSaving gates handleSave inline. */}
+                        <EditorialCta
+                            variant="secondary"
+                            label="Back"
                             onClick={() => {
-                                setState("prompt");
+                                if (!isSaving) setState("prompt");
                             }}
-                            disabled={isSaving}
-                        >
-                            ← Back
-                        </Button>
-                        <Button
-                            size="lg"
-                            onClick={handleSave}
-                            disabled={isSaving || !sentence.trim()}
-                            className="ring-2 ring-emerald-400/50 ring-offset-2 bg-emerald-600 hover:bg-emerald-700"
-                        >
-                            <Check className="w-4 h-4 mr-2" />
-                            {isSaving ? "Saving…" : "Save my mission"}
-                        </Button>
+                            icon={<span aria-hidden="true">←</span>}
+                            rightIcon={null}
+                        />
+                        <EditorialCta
+                            variant="primary"
+                            label={isSaving ? "Saving…" : "Save my mission"}
+                            onClick={() => {
+                                if (!isSaving && sentence.trim()) handleSave();
+                            }}
+                            icon={<Check className="w-4 h-4" />}
+                            rightIcon={null}
+                        />
                     </div>
                 </div>
             )}
@@ -491,19 +585,24 @@ const MissionDiscoveryLanding = () => {
                     </div>
 
                     <div className="flex flex-wrap gap-3 justify-center">
-                        <Button
-                            variant="outline"
+                        {/* Day 67: saved-state actions also editorial.
+                            Edit goes through the friction dialog (so the
+                            secondary register matches its "soft pause"
+                            role); Back to journey is the primary CTA
+                            (matching the landing pattern). */}
+                        <EditorialCta
+                            variant="secondary"
+                            label="Edit"
                             onClick={() => setEditDialogOpen(true)}
-                        >
-                            Edit
-                        </Button>
-                        <Button
+                            icon={<Pencil className="w-4 h-4" />}
+                            rightIcon={null}
+                        />
+                        <EditorialCta
+                            variant="primary"
+                            label="Back to journey"
                             onClick={() => navigate(returnPath)}
-                            className="ring-2 ring-[#d4af37]/40 ring-offset-2"
-                        >
-                            Back to journey
-                            <ChevronRight className="w-4 h-4 ml-1" />
-                        </Button>
+                            rightIcon={<ChevronRight className="w-4 h-4" />}
+                        />
                     </div>
                 </div>
             )}
