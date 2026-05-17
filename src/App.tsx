@@ -644,7 +644,7 @@ const App = () => (
                       deep links don't 404; the MissionDiscoveryWizard +
                       CommitFlow components stay in the tree as genealogy
                       but are no longer reachable from active code. */}
-                  <Route path="/mission-discovery" element={<RequireAuth><GameShellV2><MissionDiscoveryLanding /></GameShellV2></RequireAuth>} />
+                  <Route path="/mission-discovery" element={<RequireAuth><GameShellV2 hideLogo><MissionDiscoveryLanding /></GameShellV2></RequireAuth>} />
                   <Route path="/mission-discovery/wizard" element={<Navigate to="/mission-discovery" replace />} />
                   {/* Asset Mapping */}
                   {/* Day 63 (Sasha 2026-05-07): wrapped in GameShellV2 so the
