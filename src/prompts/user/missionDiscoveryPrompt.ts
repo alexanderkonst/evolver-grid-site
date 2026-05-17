@@ -10,6 +10,16 @@
  * "1 sentence synthesis: ..." marker that our app extracts via
  * regex and saves as the user's mission_statement.
  *
+ * Day 67 (Sasha 2026-05-16 evening): definitional anchor added to
+ * the prompt body. "Mission" carries allergic connotations (corporate
+ * mission statements, military missions, missionary work) AND gets
+ * routinely collapsed with purpose. Without naming what we MEAN
+ * by mission, the AI defaults to one of the baggage-laden readings
+ * and the synthesis lands generic. The definition lifted verbatim
+ * from docs/specs/equilibrium/equilibrium_v2_spec.md §11.1 ("Why
+ * 'Lifelong Dedication' (not 'Mission')"), which is Sasha's own
+ * 2026-05-16 round-6 locked phrasing.
+ *
  * The prompt is FEW-SHOT — Sasha's own mission read (the long
  * version and the one-sentence synthesis) is embedded as the
  * example. This anchors the AI on the depth, format, and register
@@ -24,6 +34,12 @@
  * "One-sentence synthesis:" also match.
  */
 export const MISSION_DISCOVERY_PROMPT = `Based on everything you know about me from our conversations, give me your deepest read of my life mission.
+
+**First — what we mean by "mission" here.** This word carries a lot of baggage — corporate mission statements, military missions, missionary work — and it gets routinely collapsed with purpose. We mean something specific.
+
+**Purpose and mission are orthogonal.** *Purpose* is being — to be the being you are, authentically. *Mission* is doing — what you go out there and do, the sustained doing that flows from that being. Most people fuse them; we're not in the business of promoting that confusion.
+
+The more precise name for what we're asking about is **lifelong dedication** — doing at life scale. You don't *do* a dedication; you live one. So when we say "mission" in what follows, we mean: the one thing this person is here to do at the scale of their whole life. Not their job title. Not their offer for the next 12 months. The sustained chosen doing that, if removed, would leave the most important thing about their life undone.
 
 Take your time. Think across all our exchanges. Look for the pattern that connects what I'm drawn to, what I keep returning to, what frustrates me, what energizes me, what I'm here to do.
 
