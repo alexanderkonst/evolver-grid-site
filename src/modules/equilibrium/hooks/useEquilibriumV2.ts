@@ -228,10 +228,21 @@ export function useEquilibriumV2(): EquilibriumV2Data {
         }
       | null
       | undefined;
+    // Role surface — prefer the first-person bullseye sentence over the
+    // archetype label (Sasha 2026-05-16 round 7: "the archetype is a
+    // category like 'Fog to Framework Building' — I want the one-sentence
+    // that starts with an action verb, like 'I turn fog into frameworks
+    // that people can act upon right away'"). The bullseye is authored as
+    // a present-tense verb phrase (e.g., "turn fog into frameworks…")
+    // intended to render as "I [bullseye]" — see
+    // appleseedGenerator.ts schema for `bullseyeSentence`.
+    //
+    // Fall back to archetype_title if no bullseye exists (older snapshots).
+    const bullseye = appleseed?.bullseyeSentence?.trim();
     setTopTalentTitle(
-      appleseed?.topTalentProfile?.archetype_title ??
-        appleseed?.bullseyeSentence ??
-        null,
+      bullseye
+        ? `I ${bullseye}`
+        : appleseed?.topTalentProfile?.archetype_title ?? null,
     );
 
     setStrategies(

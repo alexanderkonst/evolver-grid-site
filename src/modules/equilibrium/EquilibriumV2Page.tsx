@@ -129,10 +129,27 @@ export const EquilibriumV2Page = () => {
         onSaved={() => void eq.refresh()}
       />
       <header className="mb-8 text-center">
-        <h1 className="eq-text-halo font-serif text-3xl font-semibold text-[#0a1628] sm:text-4xl">
-          "Equilibrium" Biologic Watch
+        {/*
+          Title + subtitle (Sasha 2026-05-16 round 7):
+          • Drop the quotes around Equilibrium — it stands as the title.
+          • Subtitle "Biologic Watch and Task Manager" — what this thing
+            actually is, in plain words.
+          • Title gets a brighter halo + larger size + tracking;
+            subtitle quieter underneath.
+        */}
+        <h1
+          className="eq-text-halo font-serif text-4xl font-semibold tracking-tight text-[#0a1628] sm:text-5xl"
+          style={{
+            textShadow:
+              "0 0 18px rgba(255,255,255,0.55), 0 0 6px rgba(255,255,255,0.4)",
+          }}
+        >
+          Equilibrium
         </h1>
-        <div className="mt-4 flex justify-center">
+        <p className="eq-text-halo mt-2 font-serif text-base text-[#0a1628]/85 sm:text-lg">
+          Biologic Watch and Task Manager
+        </p>
+        <div className="mt-5 flex justify-center">
           <WatchModeToggle mode={mode} onChange={setMode} />
         </div>
       </header>

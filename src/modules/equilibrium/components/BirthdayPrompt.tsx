@@ -41,13 +41,19 @@ export const BirthdayPrompt = ({
   const [value, setValue] = useState("");
   const [saving, setSaving] = useState(false);
 
-  // Lock body scroll while open.
+  // Lock body scroll while open. Defensive cleanup (2026-05-16 round 7,
+  // Sasha bug report): page wasn't scrolling after BD save. Root cause —
+  // restoring `prev` could carry forward a stale "hidden" value captured
+  // mid-cycle, leaving the body locked even after the prompt closed.
+  // Fix: unconditionally CLEAR the inline overflow on cleanup so the body
+  // returns to its CSS default (scrollable). The lock is purely a modal-
+  // ergonomics concern; no other code in the app relies on us preserving
+  // the previous inline value.
   useEffect(() => {
     if (loading || !userId || birthday) return;
-    const prev = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     return () => {
-      document.body.style.overflow = prev;
+      document.body.style.overflow = "";
     };
   }, [loading, userId, birthday]);
 
