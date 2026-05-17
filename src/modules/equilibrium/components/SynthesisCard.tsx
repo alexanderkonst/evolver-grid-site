@@ -82,8 +82,8 @@ export const SynthesisCard = ({
     const payload = {
       cycles: {
         solar: {
-          // Birthday-arc phase (Surge moment · Spend the energy · Sustain ·
-          // Begin closing · Wind down) — the user's PERSONAL solar year.
+          // Birthday-arc phase (Fresh start · Big push · Steady stretch ·
+          // Harvest time · Wind down) — the user's PERSONAL solar year.
           phase: birthdayArcPhase,
           personalYearProgress: cycles.solar.personalProgress,
         },
