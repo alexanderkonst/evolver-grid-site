@@ -2,7 +2,10 @@ import { useEffect, useRef, useState } from "react";
 import { RotateCcw } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { supabase } from "@/integrations/supabase/client";
-import type { AllCyclesV2 } from "@/lib/equilibrium-cycles";
+import {
+  getBirthdayArcPhase,
+  type AllCyclesV2,
+} from "@/lib/equilibrium-cycles";
 
 interface SynthesisCardProps {
   /** Live cycle state — passed as part of the regenerate payload. */
@@ -70,29 +73,42 @@ export const SynthesisCard = ({
     setLoading(true);
     setError(false);
 
+    // Solar phase is the BIRTHDAY-ANCHORED arc phase (Sasha 2026-05-16
+    // round 8: previously this sent `currentLabel` which is the
+    // CALENDAR-anchored season name like "Early Spring" — stale leak
+    // since the surface uses birthday-arc phases instead). Send what
+    // the user actually sees on the watch.
+    const birthdayArcPhase = getBirthdayArcPhase(cycles.solar.personalProgress);
     const payload = {
       cycles: {
         solar: {
-          phase: cycles.solar.currentLabel,
+          // Birthday-arc phase (Surge moment · Spend the energy · Sustain ·
+          // Begin closing · Wind down) — the user's PERSONAL solar year.
+          phase: birthdayArcPhase,
           personalYearProgress: cycles.solar.personalProgress,
-          energy: cycles.solar.currentLabel,
         },
         zodiac: {
           sign: cycles.zodiac.current.sign,
           progress: cycles.zodiac.progress,
-          energy: cycles.zodiac.current.energy,
+          quality: cycles.zodiac.current.energy,
         },
         lunar: {
-          phase: cycles.lunar.phase.name,
-          day: cycles.lunar.day,
-          holonic: cycles.lunar.holonicPhase.label,
-          energy: cycles.lunar.phase.energy,
+          // Astronomical name (New Moon, Waxing Crescent, etc.) — useful
+          // for the model to know which phase, but the prompt forbids
+          // echoing back; it must translate to activity-type.
+          phaseName: cycles.lunar.phase.name,
+          // The activity-type line ("Clearing · Release fear · ..."): this
+          // is what the model should TRANSLATE INTO concrete language,
+          // not echo back.
+          phaseActivities: cycles.lunar.phase.energy,
+          dayInCycle: cycles.lunar.day,
+          holonicQuadrant: cycles.lunar.holonicPhase.label,
         },
         dayOfWeek: {
           name: cycles.dayOfWeek.day.name,
-          planet: cycles.dayOfWeek.day.planet,
-          energy: cycles.dayOfWeek.day.energy,
-          holonic: cycles.dayOfWeek.holonicPhase.label,
+          // Quality ("Action & Courage", "Clarity & Communication"): the
+          // model uses this as the day's flavor.
+          quality: cycles.dayOfWeek.day.energy,
         },
       },
       context: { mission, role, moonFocus },
