@@ -77,33 +77,37 @@ const SOLAR_SEGMENTS = [
 export type SolarSegmentLabel = (typeof SOLAR_SEGMENTS)[number];
 
 /**
- * Birthday-arc phases (personal year, locked 2026-05-16).
+ * Birthday-arc phases (personal year, renamed 2026-05-16 round 9).
  *
  * Calendar seasons are universal; birthday phases are personal. The
  * Equilibrium Solar bar is birthday-anchored — what matters is where
  * the user is in *their* year, not where the calendar is.
  *
+ * Names pass the smart-friend grok-in-5-seconds test (Sasha 2026-05-16:
+ * "Surge moment" failed the test — too abstract). Prior names were
+ * Surge moment / Spend the energy / Sustain / Begin closing / Wind down.
+ *
  * Boundaries (fraction of personal year from last birthday):
- *   0.00–0.04  Surge moment   (~first 2 weeks)
- *   0.04–0.25  Spend the energy
- *   0.25–0.75  Sustain
- *   0.75–0.92  Begin closing
- *   0.92–1.00  Wind down       (last ~30 days)
+ *   0.00–0.04  Fresh start     (~first 2 weeks after birthday)
+ *   0.04–0.25  Big push        (the year's biggest output)
+ *   0.25–0.75  Steady stretch  (long middle, rhythm > spike)
+ *   0.75–0.92  Harvest time    (show the work, close projects)
+ *   0.92–1.00  Wind down       (last ~30 days, resolve loose ends)
  *
  * See docs/specs/equilibrium/equilibrium_v2_spec.md → Philosophical Spine §4.
  */
 export type BirthdayArcPhase =
-  | "Surge moment"
-  | "Spend the energy"
-  | "Sustain"
-  | "Begin closing"
+  | "Fresh start"
+  | "Big push"
+  | "Steady stretch"
+  | "Harvest time"
   | "Wind down";
 
 const BIRTHDAY_ARC_BOUNDARIES: { end: number; phase: BirthdayArcPhase }[] = [
-  { end: 0.04, phase: "Surge moment" },
-  { end: 0.25, phase: "Spend the energy" },
-  { end: 0.75, phase: "Sustain" },
-  { end: 0.92, phase: "Begin closing" },
+  { end: 0.04, phase: "Fresh start" },
+  { end: 0.25, phase: "Big push" },
+  { end: 0.75, phase: "Steady stretch" },
+  { end: 0.92, phase: "Harvest time" },
   { end: 1.01, phase: "Wind down" },
 ];
 
@@ -117,10 +121,10 @@ export function getBirthdayArcPhase(personalProgress: number): BirthdayArcPhase 
 
 /** Birthday-arc phase ordering, for prev/next lookup. */
 const BIRTHDAY_ARC_ORDER: BirthdayArcPhase[] = [
-  "Surge moment",
-  "Spend the energy",
-  "Sustain",
-  "Begin closing",
+  "Fresh start",
+  "Big push",
+  "Steady stretch",
+  "Harvest time",
   "Wind down",
 ];
 
@@ -131,7 +135,7 @@ export function getBirthdayArcPhaseNeighbors(personalProgress: number): {
 } {
   const current = getBirthdayArcPhase(personalProgress);
   const idx = BIRTHDAY_ARC_ORDER.indexOf(current);
-  // Cycle wraps: after Wind down comes Surge moment (next birthday).
+  // Cycle wraps: after Wind down comes Fresh start (next birthday).
   const prev =
     BIRTHDAY_ARC_ORDER[
       (idx + BIRTHDAY_ARC_ORDER.length - 1) % BIRTHDAY_ARC_ORDER.length
