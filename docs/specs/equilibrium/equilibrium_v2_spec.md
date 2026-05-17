@@ -131,22 +131,34 @@ seasons of the *year* are not the seasons of the *person*. The user's
 personal year — birthday → next birthday — has its own arc, and it
 matters more than January–December for personal terrain.
 
-The five birthday-relative phases:
+The five birthday-relative phases (locked round 9, renamed 2026-05-16
+after "Surge moment" failed the smart-friend test):
 
-1. **Wind down** — the final ~30 days before birthday. Last stretch of
-   the closing year. Resolve loose ends. Don't start big things.
-2. **Surge moment** — birthday + first ~2 weeks. The year's solar energy
-   ignites. New cycle. Maximum potential, minimum proof.
-3. **Spend the energy** — Q2 of personal year (~days 14–90). Translate
-   the surge into output. The year's biggest pushes belong here.
-4. **Sustain** — Q3 (~days 90–270). Plateau. Maintenance work. The
-   long middle where rhythm matters more than spike.
-5. **Begin closing** — Q4 (~days 270–335). Harvest. Show the work.
-   Close projects before the next Wind down.
+1. **Fresh start** — birthday + first ~2 weeks. The new personal year
+   just opened. Maximum potential, minimum proof. Open road ahead.
+2. **Big push** — Q2 of personal year (~days 14–90). The year's biggest
+   output belongs here. Translate the fresh start into shipped work.
+3. **Steady stretch** — Q3 (~days 90–270). Long middle. Maintenance,
+   rhythm, sustained engagement. Less spike, more cadence.
+4. **Harvest time** — Q4 (~days 270–335). Reap what the year produced.
+   Show the work. Close projects. Announce the wins.
+5. **Wind down** — the final ~30 days before next birthday. Last
+   stretch of the closing year. Resolve loose ends. Don't start big
+   things — the new year is about to open.
 
-The solar bar's pill labels reflect these phases — *not* "Early Winter /
-Late Spring." Calendar seasons are universal; birthday phases are
+Names pass the universal-relatability bar: every smart friend with no
+context groks each phrase in 5 seconds and knows what KIND of phase
+they're in.
+
+The solar bar's pill labels reflect these phases — *not* "Early Winter
+/ Late Spring." Calendar seasons are universal; birthday phases are
 personal. Equilibrium is a personal operating surface.
+
+Prior draft (rejected 2026-05-16): Surge moment / Spend the energy /
+Sustain / Begin closing / Wind down. "Surge moment" was abstract
+jargon ("what the heck is surge moment?"); "Spend the energy" used the
+banned word "energy"; "Sustain" and "Begin closing" were OK but
+unevocative.
 
 ### Spine §5 · Weekly Planetary Frame — "Honor Each At Least A Little"
 

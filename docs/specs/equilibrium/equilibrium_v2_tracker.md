@@ -339,8 +339,8 @@ prompt + examples will be supplied later.
 - Lunar holonic-quadrant umbrella as element emoji ONLY (no invented words)
 - Time-to-next-phase sub-label ("ends Tue May 19 · 2.3 days left")
 - Ultra-concise inline guidance — one short sentence under active pill
-- Solar bar uses birthday-arc phases (Surge moment · Spend the energy ·
-  Sustain · Begin closing · Wind down), NOT calendar seasons
+- Solar bar uses birthday-arc phases (Fresh start · Big push · Steady
+  stretch · Harvest time · Wind down), NOT calendar seasons
 - Section copy: "Current Strategy" (singular) and "Intuitive Tasks"
 - ATTUNE | ACT binary mode toggle with Mission + Role as ACT North Stars
 
