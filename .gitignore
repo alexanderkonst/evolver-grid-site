@@ -27,3 +27,11 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Claude Code auto-created session worktrees. Each new "Local Code
+# Session" in the Claude Mac app spawns a worktree under
+# .claude/worktrees/<random-name>/ — these are personal, ephemeral
+# checkouts that should never enter git's index. Without this rule
+# the worktree dirs register as gitlinks (mode 160000) and the
+# auto-deploy script keeps churning "deploy" commits as they change.
+.claude/worktrees/
