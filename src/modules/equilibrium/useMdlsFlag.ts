@@ -1,57 +1,40 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 /**
- * MDLS feature flag.
+ * MDLS feature flag — URL-only (Sasha 2026-05-18).
  *
- * Resolves to `true` when either:
- *   1. URL contains `?mdls=1` (single-session preview, easy to share)
- *   2. localStorage key `equilibrium_mdls` is `"true"` (persisted across sessions)
+ * Previously persisted to localStorage, which left users "stuck" on MDLS
+ * after a single visit with `?mdls=1`. Sasha hit it and couldn't get
+ * back to legacy without knowing to visit `?mdls=0`. Now ephemeral:
+ * present iff the URL has `?mdls=1` on this page load; gone on next
+ * navigation.
  *
- * URL param takes precedence and persists itself to localStorage so a fresh
- * load on the same browser keeps the flag. `?mdls=0` clears the flag.
+ * Also clears any pre-existing localStorage value on first read so users
+ * who previously had the flag persisted automatically revert to legacy
+ * on next page load.
  *
- * Default: `false` (legacy Equilibrium remains the production default).
+ * Default: `false`. Legacy Equilibrium is the production surface.
  */
 const MDLS_KEY = "equilibrium_mdls";
 
 function readInitial(): boolean {
   if (typeof window === "undefined") return false;
-  const params = new URLSearchParams(window.location.search);
-  const urlValue = params.get("mdls");
-  if (urlValue === "1") {
-    try {
-      window.localStorage.setItem(MDLS_KEY, "true");
-    } catch {
-      /* ignore */
-    }
-    return true;
-  }
-  if (urlValue === "0") {
-    try {
-      window.localStorage.setItem(MDLS_KEY, "false");
-    } catch {
-      /* ignore */
-    }
-    return false;
-  }
+
+  // One-time migration: clear any pre-existing persisted flag so users
+  // who turned MDLS on under the old logic don't stay stuck on it.
   try {
-    return window.localStorage.getItem(MDLS_KEY) === "true";
+    if (window.localStorage.getItem(MDLS_KEY) !== null) {
+      window.localStorage.removeItem(MDLS_KEY);
+    }
   } catch {
-    return false;
+    /* localStorage unavailable; nothing to clean up. */
   }
+
+  const params = new URLSearchParams(window.location.search);
+  return params.get("mdls") === "1";
 }
 
 export function useMdlsFlag(): boolean {
-  const [flag, setFlag] = useState<boolean>(() => readInitial());
-
-  useEffect(() => {
-    // Re-evaluate on storage events (cross-tab toggling).
-    const handler = (e: StorageEvent) => {
-      if (e.key === MDLS_KEY) setFlag(e.newValue === "true");
-    };
-    window.addEventListener("storage", handler);
-    return () => window.removeEventListener("storage", handler);
-  }, []);
-
+  const [flag] = useState<boolean>(() => readInitial());
   return flag;
 }
