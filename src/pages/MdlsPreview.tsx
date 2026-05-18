@@ -199,23 +199,35 @@ const MdlsPreview = () => {
         {/* §6 · Sculpted Silk Section ──────────────────────────────── */}
         <Section
           title="SculptedSilkSection"
-          spec="§4.3 · organic curving form. Three blob variants. Used for workstream territories, section dividers, brand backdrops."
+          spec="§4.3 · organic curving form. Three blob variants. Used for workstream territories, section dividers, brand backdrops. (v1.1: aspect-square constraint so the blob curves read.)"
         >
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 py-8">
-            <div>
-              <SculptedSilkSection hue={15} blobVariant="a" className="h-48 flex items-center justify-center">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 py-8 justify-items-center">
+            <div className="w-full max-w-[260px]">
+              <SculptedSilkSection
+                hue={15}
+                blobVariant="a"
+                className="aspect-square flex items-center justify-center"
+              >
                 <span className="text-sm font-medium text-[#0a1628]/70">Workstream A</span>
               </SculptedSilkSection>
               <Caption>hue 15 (rose) · blob a</Caption>
             </div>
-            <div>
-              <SculptedSilkSection hue={195} blobVariant="b" className="h-48 flex items-center justify-center">
+            <div className="w-full max-w-[260px]">
+              <SculptedSilkSection
+                hue={195}
+                blobVariant="b"
+                className="aspect-square flex items-center justify-center"
+              >
                 <span className="text-sm font-medium text-[#0a1628]/70">Workstream B</span>
               </SculptedSilkSection>
               <Caption>hue 195 (aqua) · blob b</Caption>
             </div>
-            <div>
-              <SculptedSilkSection hue={85} blobVariant="c" className="h-48 flex items-center justify-center">
+            <div className="w-full max-w-[260px]">
+              <SculptedSilkSection
+                hue={85}
+                blobVariant="c"
+                className="aspect-square flex items-center justify-center"
+              >
                 <span className="text-sm font-medium text-[#0a1628]/70">Workstream C</span>
               </SculptedSilkSection>
               <Caption>hue 85 (sage) · blob c</Caption>
