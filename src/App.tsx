@@ -180,6 +180,7 @@ import ArtPortfolio from "./pages/art/ArtPortfolio";
 import Settings from "./pages/Settings";
 import Transcriber from "./pages/Transcriber";
 import { EquilibriumV2Page } from "./modules/equilibrium";
+import MdlsPreview from "./pages/MdlsPreview";
 import ArtPage from "./pages/game/ArtPiecePage";
 import FounderMarketFit from "./pages/FounderMarketFit";
 import TheOriginalsPage from "./pages/TheOriginalsPage";
@@ -675,6 +676,11 @@ const App = () => (
                   <Route path="/build/equilibrium" element={<MeGate><GameShellV2 hideLogo><EquilibriumV2Page /></GameShellV2></MeGate>} />
                   {/* TEMP: unguarded preview route for visual verification — REMOVE or convert to auth-gated after Sasha sign-off */}
                   <Route path="/preview/equilibrium-v2" element={<GameShellV2 hideLogo><EquilibriumV2Page /></GameShellV2>} />
+                  {/* MDLS Preview · /mdls-preview · 2026-05-18 · ungated.
+                      Shows every MDLS primitive in isolation per the
+                      equilibrium_mdls_style_guide.md spec. Dev-only — remove
+                      or guard before public launch. */}
+                  <Route path="/mdls-preview" element={<MdlsPreview />} />
                   {/* Founder-Market Fit Landing Page */}
                   <Route path="/founder-market-fit" element={<RequireAuth><FounderMarketFit /></RequireAuth>} />
                   <Route path="/fmf" element={<RequireAuth><FounderMarketFit /></RequireAuth>} />

@@ -2029,3 +2029,389 @@ form.liquid-glass input:-webkit-autofill:active {
   caret-color: var(--skin-text-primary, #0a1628);
   transition: background-color 5000s ease-in-out 0s;
 }
+
+/* ==========================================================================
+   MDLS — Multi-Dimensional Living Surface (Stage 8)
+   ==========================================================================
+   Created 2026-05-18 during the Equilibrium MDLS recompile.
+   See: docs/specs/equilibrium/equilibrium_mdls_style_guide.md
+   Additive only — preserves .liquid-glass / .liquid-glass-dark / .liquid-glass-strong.
+   All MDLS classes prefixed `.mdls-` to avoid collision.
+   ========================================================================== */
+
+:root {
+  /* Coral functional accent — halo / glow / rim ONLY, never solid fill. */
+  --mdls-coral: hsl(15 88% 60%);
+  --mdls-coral-soft: hsl(15 88% 60% / 0.45);
+  --mdls-coral-rim: hsl(15 88% 60% / 0.85);
+  --mdls-coral-halo: hsl(15 88% 60% / 0.25);
+
+  /* Substrate cream for matte-polymer */
+  --mdls-cream: rgba(252, 248, 244, 0.96);
+  --mdls-cream-dark: rgba(20, 28, 44, 0.94);
+
+  /* Soul-orb library (12 signatures — center→rim hues) */
+  --mdls-orb-1-c: 28 78% 76%;   --mdls-orb-1-r: 18 70% 54%;   /* aurora-warm */
+  --mdls-orb-2-c: 8 78% 74%;    --mdls-orb-2-r: 6 65% 56%;    /* aurora-coral */
+  --mdls-orb-3-c: 350 70% 80%;  --mdls-orb-3-r: 340 50% 60%;  /* aurora-rose */
+  --mdls-orb-4-c: 295 50% 76%;  --mdls-orb-4-r: 285 40% 60%;  /* aurora-orchid */
+  --mdls-orb-5-c: 255 50% 78%;  --mdls-orb-5-r: 250 38% 58%;  /* aurora-violet */
+  --mdls-orb-6-c: 220 50% 78%;  --mdls-orb-6-r: 220 38% 52%;  /* aurora-indigo */
+  --mdls-orb-7-c: 195 55% 78%;  --mdls-orb-7-r: 195 38% 50%;  /* aurora-aqua */
+  --mdls-orb-8-c: 160 38% 76%;  --mdls-orb-8-r: 158 30% 56%;  /* aurora-mint */
+  --mdls-orb-9-c: 85 30% 76%;   --mdls-orb-9-r: 80 22% 56%;   /* aurora-sage */
+  --mdls-orb-10-c: 45 50% 72%;  --mdls-orb-10-r: 40 50% 52%;  /* aurora-ochre */
+  --mdls-orb-11-c: 38 70% 76%;  --mdls-orb-11-r: 32 60% 56%;  /* aurora-amber */
+  --mdls-orb-12-c: 18 70% 72%;  --mdls-orb-12-r: 12 60% 52%;  /* aurora-ember */
+}
+
+@layer components {
+  /* ──────────────────────────────────────────────────────────────────
+     §4.2 MATTE-POLYMER — daily UI card. Opaque-soft, not translucent.
+     ──────────────────────────────────────────────────────────────── */
+  .mdls-matte-polymer {
+    background: var(--mdls-cream);
+    border: 0.5px solid rgba(10, 18, 34, 0.06);
+    border-radius: 24px;
+    box-shadow:
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.85),
+      0 2px 8px -2px rgba(10, 18, 34, 0.05),
+      0 16px 40px -16px rgba(10, 18, 34, 0.10);
+    position: relative;
+  }
+  .mdls-matte-polymer--dark {
+    background: var(--mdls-cream-dark);
+    border-color: rgba(255, 255, 255, 0.08);
+    box-shadow:
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.10),
+      0 4px 12px -2px rgba(0, 0, 0, 0.30),
+      0 24px 56px -20px rgba(0, 0, 0, 0.45);
+  }
+  .mdls-matte-polymer--emphasized {
+    box-shadow:
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.95),
+      0 4px 14px -2px rgba(10, 18, 34, 0.08),
+      0 28px 64px -20px rgba(10, 18, 34, 0.14);
+  }
+
+  /* ──────────────────────────────────────────────────────────────────
+     §4.1 AURORA-GLASS-ORB — luminous-cosmic centerpiece.
+     Color enters from within (Principle 1). The form is round.
+     ──────────────────────────────────────────────────────────────── */
+  .mdls-aurora-glass-orb {
+    background:
+      radial-gradient(circle at 50% 55%,
+        hsl(28 90% 76%) 0%,
+        hsl(15 85% 70%) 25%,
+        hsl(280 60% 70%) 55%,
+        hsl(200 70% 78%) 85%,
+        hsl(200 50% 88%) 100%);
+    box-shadow:
+      inset 0 2px 8px 0 rgba(255, 255, 255, 0.45),
+      inset 0 -2px 8px 0 rgba(10, 18, 34, 0.10),
+      0 8px 32px -4px rgba(240, 140, 60, 0.18),
+      0 24px 64px -16px rgba(40, 50, 100, 0.24);
+    border-radius: 50%;
+    position: relative;
+    overflow: hidden;
+    animation: mdls-aurora-drift 22s ease-in-out infinite alternate;
+  }
+  .mdls-aurora-glass-orb--dark {
+    background:
+      radial-gradient(circle at 50% 55%,
+        hsl(20 75% 50%) 0%,
+        hsl(355 60% 36%) 30%,
+        hsl(280 45% 24%) 60%,
+        hsl(220 50% 18%) 100%);
+    box-shadow:
+      inset 0 2px 8px 0 rgba(255, 255, 255, 0.20),
+      inset 0 -2px 8px 0 rgba(0, 0, 0, 0.30),
+      0 12px 32px -4px rgba(240, 140, 60, 0.22),
+      0 28px 72px -16px rgba(0, 0, 0, 0.55);
+  }
+
+  /* ──────────────────────────────────────────────────────────────────
+     §4.3 SCULPTED-SILK — organic curving form. Soft-Sculptural register.
+     Three pre-rendered blob variants via border-radius asymmetry.
+     ──────────────────────────────────────────────────────────────── */
+  .mdls-sculpted-silk {
+    background: linear-gradient(135deg,
+      hsl(var(--mdls-silk-hue, 15) 50% 88%) 0%,
+      hsl(var(--mdls-silk-hue, 15) 60% 80%) 55%,
+      hsl(var(--mdls-silk-hue, 15) 65% 73%) 100%);
+    filter: drop-shadow(0 8px 24px hsl(var(--mdls-silk-hue, 15) 40% 60% / 0.18));
+    position: relative;
+  }
+  .mdls-sculpted-silk--a { border-radius: 60% 40% 50% 50% / 50% 60% 40% 50%; }
+  .mdls-sculpted-silk--b { border-radius: 45% 55% 60% 40% / 60% 45% 55% 40%; }
+  .mdls-sculpted-silk--c { border-radius: 55% 45% 40% 60% / 40% 55% 45% 60%; }
+
+  /* ──────────────────────────────────────────────────────────────────
+     §4.4 SOUL-ORB — small circular marker, 12 color signatures via CSS var.
+     Set --mdls-orb-c / --mdls-orb-r to point at the library values.
+     ──────────────────────────────────────────────────────────────── */
+  .mdls-soul-orb {
+    background: radial-gradient(circle at 35% 35%,
+      hsl(var(--mdls-orb-c, 195 55% 78%)) 0%,
+      hsl(var(--mdls-orb-c, 195 55% 78%)) 30%,
+      hsl(var(--mdls-orb-r, 195 38% 50%)) 100%);
+    box-shadow:
+      inset 0 4px 8px 0 rgba(255, 255, 255, 0.35),
+      0 6px 16px -4px hsl(var(--mdls-orb-r, 195 38% 50%) / 0.30);
+    border-radius: 50%;
+    transition: transform 800ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .mdls-soul-orb:hover {
+    transform: scale(1.08) rotate(-2deg);
+  }
+  .mdls-soul-orb--completed {
+    opacity: 0.4;
+    filter: grayscale(0.6);
+  }
+
+  /* ──────────────────────────────────────────────────────────────────
+     §4.5 TACTILE-CERAMIC — granular matte material with subtle grain.
+     Reserved; not used in Equilibrium v1.0.
+     ──────────────────────────────────────────────────────────────── */
+  .mdls-tactile-ceramic {
+    background: hsl(210 18% 72%);
+    background-image:
+      radial-gradient(circle at 1px 1px, rgba(10, 18, 34, 0.04) 1px, transparent 0);
+    background-size: 3px 3px;
+    border-radius: 28px;
+    box-shadow:
+      inset 0 2px 4px 0 rgba(255, 255, 255, 0.18),
+      inset 0 -2px 4px 0 rgba(10, 18, 34, 0.06),
+      0 10px 28px -8px rgba(10, 18, 34, 0.18);
+  }
+
+  /* ──────────────────────────────────────────────────────────────────
+     EMBER-BREATH — backlit warm-amber under-glow.
+     New primitive crossing Motion × Light. The active-state signature.
+     Applied via wrapper element OR ::before pseudo-element.
+     ──────────────────────────────────────────────────────────────── */
+  .mdls-ember-breath {
+    position: relative;
+    isolation: isolate;
+  }
+  .mdls-ember-breath::after {
+    content: '';
+    position: absolute;
+    inset: -4px -4px -20px -4px;
+    background: radial-gradient(ellipse at 50% 100%,
+      hsl(28 95% 65% / 0.40) 0%,
+      hsl(28 95% 65% / 0.18) 35%,
+      transparent 70%);
+    filter: blur(20px);
+    z-index: -1;
+    pointer-events: none;
+    animation: mdls-ember-breath 6s ease-in-out infinite;
+  }
+  .mdls-ember-breath--off::after {
+    animation: none;
+    opacity: 0;
+  }
+
+  /* ──────────────────────────────────────────────────────────────────
+     CORAL-HALO — active-state halo for controls (toggle pills, etc.)
+     Rule: coral as halo only, never fill.
+     ──────────────────────────────────────────────────────────────── */
+  .mdls-coral-halo {
+    position: relative;
+  }
+  .mdls-coral-halo::before {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    border-radius: inherit;
+    box-shadow: 0 0 12px 2px var(--mdls-coral-soft);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 240ms ease-out;
+  }
+  .mdls-coral-halo[data-active="true"]::before {
+    opacity: 1;
+  }
+  .mdls-coral-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--mdls-coral);
+    box-shadow: 0 0 8px var(--mdls-coral-rim);
+    display: inline-block;
+  }
+
+  /* ──────────────────────────────────────────────────────────────────
+     TOGGLE-GLASS-DUAL — binary toggle with sliding indicator.
+     Used by ATTUNE | ACT replacement.
+     ──────────────────────────────────────────────────────────────── */
+  .mdls-toggle-glass-dual {
+    display: inline-flex;
+    position: relative;
+    padding: 4px;
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, 0.55);
+    border: 0.5px solid rgba(10, 18, 34, 0.08);
+    box-shadow:
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.85),
+      0 1px 4px -1px rgba(10, 18, 34, 0.06);
+    backdrop-filter: blur(12px) saturate(160%);
+    -webkit-backdrop-filter: blur(12px) saturate(160%);
+  }
+  .mdls-toggle-glass-dual--dark {
+    background: rgba(20, 28, 44, 0.55);
+    border-color: rgba(255, 255, 255, 0.10);
+    box-shadow:
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.15),
+      0 2px 6px -1px rgba(0, 0, 0, 0.30);
+  }
+  .mdls-toggle-glass-dual__indicator {
+    position: absolute;
+    top: 4px;
+    bottom: 4px;
+    width: calc(50% - 4px);
+    border-radius: 9999px;
+    background: #0a1628;
+    box-shadow:
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.18),
+      0 2px 6px -1px rgba(0, 0, 0, 0.30);
+    transition: transform 240ms cubic-bezier(0.34, 1.56, 0.64, 1);
+    z-index: 0;
+  }
+  .mdls-toggle-glass-dual__indicator--right {
+    transform: translateX(calc(100% + 0px));
+  }
+  .mdls-toggle-glass-dual__option {
+    position: relative;
+    z-index: 1;
+    padding: 6px 18px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(10, 18, 34, 0.65);
+    background: transparent;
+    border: none;
+    border-radius: 9999px;
+    cursor: pointer;
+    transition: color 240ms ease-out;
+    min-width: 72px;
+  }
+  .mdls-toggle-glass-dual__option[data-active="true"] {
+    color: white;
+  }
+  .mdls-toggle-glass-dual--dark .mdls-toggle-glass-dual__option {
+    color: rgba(255, 255, 255, 0.55);
+  }
+  .mdls-toggle-glass-dual--dark .mdls-toggle-glass-dual__option[data-active="true"] {
+    color: white;
+  }
+
+  /* ──────────────────────────────────────────────────────────────────
+     SEAL-MEDALLION — small sacred-seal SVG stamp. Sized via prop.
+     Static; no animation. Pure decorative-semantic.
+     ──────────────────────────────────────────────────────────────── */
+  .mdls-seal-medallion {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(10, 18, 34, 0.30);
+    opacity: 0.55;
+  }
+  .mdls-seal-medallion svg { width: 100%; height: 100%; }
+
+  /* ──────────────────────────────────────────────────────────────────
+     HERO-HEADLINE — page title pattern (serif variant by default).
+     ──────────────────────────────────────────────────────────────── */
+  .mdls-hero-headline {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 600;
+    line-height: 1.05;
+    letter-spacing: -0.015em;
+    color: #0a1628;
+    text-shadow:
+      0 0 22px rgba(255, 255, 255, 0.55),
+      0 1px 2px rgba(255, 255, 255, 0.8),
+      0 2px 12px rgba(26, 30, 58, 0.15);
+  }
+  .mdls-hero-headline__subtitle {
+    margin-top: 0.5rem;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(1rem, 1.6vw, 1.25rem);
+    font-weight: 400;
+    color: rgba(10, 22, 40, 0.85);
+    text-shadow:
+      0 0 18px rgba(255, 255, 255, 0.45),
+      0 1px 2px rgba(255, 255, 255, 0.6);
+  }
+}
+
+/* ==========================================================================
+   MDLS — Animations
+   ========================================================================== */
+
+@keyframes mdls-ember-breath {
+  0%, 100% {
+    opacity: 0.55;
+    transform: scaleY(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scaleY(1.08);
+  }
+}
+
+@keyframes mdls-aurora-drift {
+  0% {
+    background-position: 0% 50%;
+    filter: hue-rotate(0deg) saturate(1);
+  }
+  100% {
+    background-position: 100% 50%;
+    filter: hue-rotate(12deg) saturate(1.1);
+  }
+}
+
+@keyframes mdls-tilt-settle {
+  0% { transform: scale(1) rotate(0deg); }
+  60% { transform: scale(1.08) rotate(-2deg); }
+  100% { transform: scale(1.04) rotate(-1deg); }
+}
+
+/* ──────────────────────────────────────────────────────────────────
+   Motion safety — honor prefers-reduced-motion.
+   Replaces all MDLS animations with static end-states.
+   ──────────────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .mdls-ember-breath::after {
+    animation: none;
+    opacity: 0.7;
+  }
+  .mdls-aurora-glass-orb {
+    animation: none;
+  }
+  .mdls-soul-orb {
+    transition: none;
+  }
+  .mdls-soul-orb:hover {
+    transform: none;
+  }
+  .mdls-toggle-glass-dual__indicator {
+    transition: none;
+  }
+}
+
+/* ──────────────────────────────────────────────────────────────────
+   iOS GPU fallback parity (per existing pattern for .liquid-glass)
+   ──────────────────────────────────────────────────────────────── */
+@media (pointer: coarse), (max-width: 1023px) {
+  .mdls-toggle-glass-dual {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: rgba(255, 255, 255, 0.78);
+  }
+  .mdls-toggle-glass-dual--dark {
+    background: rgba(20, 28, 44, 0.85);
+  }
+}
