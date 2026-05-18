@@ -39,11 +39,12 @@ export const SealMedallion = ({
   </span>
 );
 
+// MDLS v1.1: stroke widths nudged up for visibility while staying restrained.
 const MandalaSvg = () => (
   <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="16" cy="16" r="15" stroke="currentColor" strokeWidth="0.6" />
-    <circle cx="16" cy="16" r="10" stroke="currentColor" strokeWidth="0.5" />
-    <circle cx="16" cy="16" r="5" stroke="currentColor" strokeWidth="0.5" />
+    <circle cx="16" cy="16" r="15" stroke="currentColor" strokeWidth="0.85" />
+    <circle cx="16" cy="16" r="10" stroke="currentColor" strokeWidth="0.7" />
+    <circle cx="16" cy="16" r="5" stroke="currentColor" strokeWidth="0.7" />
     {[0, 1, 2, 3, 4, 5].map((i) => {
       const angle = (i * Math.PI) / 3;
       const x1 = 16 + Math.cos(angle) * 5;
@@ -58,17 +59,17 @@ const MandalaSvg = () => (
           x2={x2}
           y2={y2}
           stroke="currentColor"
-          strokeWidth="0.4"
+          strokeWidth="0.6"
         />
       );
     })}
-    <circle cx="16" cy="16" r="1.5" fill="currentColor" opacity="0.6" />
+    <circle cx="16" cy="16" r="1.8" fill="currentColor" opacity="0.7" />
   </svg>
 );
 
 const FlowerSvg = () => (
   <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="16" cy="16" r="5" stroke="currentColor" strokeWidth="0.5" />
+    <circle cx="16" cy="16" r="5" stroke="currentColor" strokeWidth="0.75" />
     {[0, 1, 2, 3, 4, 5].map((i) => {
       const angle = (i * Math.PI) / 3;
       const cx = 16 + Math.cos(angle) * 5;
@@ -80,8 +81,8 @@ const FlowerSvg = () => (
           cy={cy}
           r="5"
           stroke="currentColor"
-          strokeWidth="0.4"
-          opacity="0.6"
+          strokeWidth="0.6"
+          opacity="0.75"
         />
       );
     })}
@@ -96,7 +97,7 @@ const SpiralSvg = () => (
          M 9.5 16 a 7 7 0 1 1 14 0
          M 23.5 16 a 11 11 0 1 0 -22 0"
       stroke="currentColor"
-      strokeWidth="0.5"
+      strokeWidth="0.75"
       strokeLinecap="round"
       fill="none"
     />
