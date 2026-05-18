@@ -136,8 +136,32 @@ Candidates so far (to refine together):
     - Typeface lean stays DM Sans heavy + Cormorant sacred; Aeonik logged as aspirational benchmark (paid font, not adopted)
     - The MDLS trinity (luminosity + physicality + editorial refinement) gets named explicitly in Style Guide §Direction
   - **Register classes growing to 4:** Luminous-Cosmic · Premium-Restrained · Soft-Sculptural · **Ascetic Minimal** (new from X5)
-- [ ] **Batch 4 of 4** — TBD
-- [ ] **Cumulative synthesis** — adoption + rejection decisions across all 20 images
+- [x] **Batch 4 of 4 — Material × Components × Style-Guide-as-Document** (5 images: fable ceramic · Dark UI Tokens · White neumorphism + glow · "3 Elements" spread · Foundations physical samples) · 2026-05-18
+  - **Meta-insight (the through-line):** three of the five (Y2, Y4, Y5) are reference points not for UI surfaces but for **what the MDLS Style Guide document itself should look like as a polished artifact** — editorial-book-design quality, not a wiki page.
+  - **New sub-primitives adopted:**
+    - **Tactile Ceramic** material (granular, sculptural, sandstone-soft) — 5th material variant alongside aurora-glass, matte-polymer, sculpted-silk, soul-orb
+    - **Debossed Wordmark** typography (text pressed INTO substrate, not painted on top) — for brand-mark stamps, signature applications, sealed identity moments
+  - **Cross-cutting rules confirmed:**
+    - **Active state via halo-glow, never fill-change** — coral plays the role purple/orange play in references (substrate-consistent halo, never a coral fill on active elements). Connects to Ember Breath from Batch 1.
+  - **Style guide document format reference locked** (from Y2 + Y4):
+    - Editorial-book-design quality
+    - Numbered chapters / sections
+    - Color swatches with HEX values adjacent
+    - Shadow specs as concrete pixel values + rendered swatches
+    - Token sidebar with all numerical scales (Radius, Border, Shadow, Icon Size, Spacing)
+    - Annotation arrows in plain language explaining each pattern
+    - Component examples shown in ALL states
+  - **Stretch goal logged** (from Y5): for MDLS Style Guide v2.0, render materials as physical objects via AI image gen (like the aurō device) rather than flat screen tiles. Optional for v1.0; required for v2.0.
+
+- [x] **Cumulative synthesis — all 4 batches** · 2026-05-18
+  - **20 images ingested** across 4 batches (Motion · Typography · Cross-category · Material/Doc).
+  - **5 material variants** locked: aurora-glass · matte-polymer · sculpted-silk · soul-orb · tactile-ceramic
+  - **5 motion sub-primitives** locked: state-change · ember breath · implied trajectory · tilt-and-settle · commit press
+  - **8 typography sub-primitives** locked: calm authority · number-as-protagonist · hero-title pairing · number+word unit · stacked overlap · numeric dignity · debossed wordmark · hero editorial heading pattern
+  - **4 register classes** locked: Luminous-Cosmic · Premium-Restrained · Soft-Sculptural · Ascetic Minimal
+  - **5 cross-cutting rules** locked: dark-mode parity · re-substrating to cream+aurora · active-state via halo not fill · coral budget 1–2 per surface · trinity (luminosity + physicality + editorial refinement)
+  - **Singular embodied reference:** the **aurō device** — physical object + aurora face + refined wordmark in calm zone — is THE single visual reference for what MDLS surfaces should feel like.
+  - **Pre-Phase mood-board ingestion: COMPLETE.** Ready to move to Direction Memo + 5–7 Design Principles co-draft, then MDLS Style Guide v1.0 fragment for Equilibrium.
 
 ### Goal-primitive vocabulary
 
