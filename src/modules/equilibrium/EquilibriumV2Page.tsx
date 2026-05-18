@@ -328,8 +328,36 @@ export const EquilibriumV2Page = () => {
           <EquilibriumSectionCard
             id={SECTION_IDS.strategies}
           >
-            <SectionHeader title="Current Strategy"
-              infoIconCopy="Set when you have clarity" />
+            <div className="flex items-center gap-2">
+              <SectionHeader title="Current Strategy"
+                infoIconCopy="Set when you have clarity" />
+              {/*
+                Score button — runs alignment scoring against the user's
+                "highest expression" (Lifelong Dedication + Role) via the
+                score-equilibrium-strategies edge function. Disabled if
+                there are no filled strategies OR if neither identity
+                anchor is set (scoring needs at least one). Sasha 2026-05-17.
+              */}
+              <button
+                type="button"
+                onClick={() => void eq.scoreStrategies()}
+                disabled={
+                  eq.scoringStrategies ||
+                  eq.strategies.length === 0 ||
+                  (!eq.missionDisplay && !eq.roleDisplay)
+                }
+                title={
+                  eq.strategies.length === 0
+                    ? "Add a strategy first"
+                    : !eq.missionDisplay && !eq.roleDisplay
+                      ? "Set your Lifelong Dedication or Role first"
+                      : "Score each strategy 0–100 on alignment with your Lifelong Dedication + Role"
+                }
+                className="ml-auto rounded-full bg-[#0a1628] px-3 py-1.5 text-xs font-semibold uppercase tracking-wider text-white transition hover:bg-[#0a1628]/85 disabled:cursor-not-allowed disabled:opacity-40"
+              >
+                {eq.scoringStrategies ? "Scoring…" : "Score alignment"}
+              </button>
+            </div>
             <StrategiesSection
               strategies={eq.strategies}
               loading={eq.loading}

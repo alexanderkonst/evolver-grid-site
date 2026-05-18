@@ -160,6 +160,21 @@ const SortableStrategyRow = ({
           onSave={onSave}
         />
       </div>
+
+      {/*
+        Alignment score badge — visible when strategy has been scored.
+        Sasha 2026-05-17: "compare strategies on alignment with my highest
+        expression so that I can myself see the score to then prioritize."
+        Hover reveals the one-sentence reasoning via native title tooltip
+        so it stays glanceable.
+      */}
+      {typeof strategy.alignment_score === "number" && (
+        <ScoreBadge
+          score={strategy.alignment_score}
+          reasoning={strategy.alignment_reasoning ?? undefined}
+        />
+      )}
+
       <button
         type="button"
         aria-label="Drag to reorder"
@@ -199,5 +214,40 @@ const EmptyStrategyRow = ({
     </div>
   </li>
 );
+
+// ─── Score badge ──────────────────────────────────────────────────
+
+/**
+ * Compact alignment-score chip. Color steps with the band:
+ *   80-100 = strong green   (high alignment with highest expression)
+ *   50-79  = neutral amber  (medium alignment, has some translation distance)
+ *   0-49   = soft red       (low alignment — strategy doesn't engage the gift)
+ *
+ * Hover (desktop) / long-press (mobile) shows the one-sentence reasoning
+ * via the native title tooltip.
+ */
+const ScoreBadge = ({ score, reasoning }: { score: number; reasoning?: string }) => {
+  const tone =
+    score >= 80
+      ? { bg: "bg-emerald-100", border: "border-emerald-300", text: "text-emerald-800" }
+      : score >= 50
+        ? { bg: "bg-amber-100", border: "border-amber-300", text: "text-amber-800" }
+        : { bg: "bg-rose-100", border: "border-rose-300", text: "text-rose-800" };
+  return (
+    <span
+      role="img"
+      aria-label={`Alignment score ${score}${reasoning ? ` — ${reasoning}` : ""}`}
+      title={reasoning ?? `Alignment score: ${score}/100`}
+      className={cn(
+        "mt-2 inline-flex h-7 min-w-[2.25rem] select-none items-center justify-center rounded-full border px-2 text-xs font-semibold tabular-nums",
+        tone.bg,
+        tone.border,
+        tone.text,
+      )}
+    >
+      {score}
+    </span>
+  );
+};
 
 export default StrategiesSection;
