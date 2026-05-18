@@ -501,18 +501,27 @@ export type Database = {
       }
       equilibrium_strategies: {
         Row: {
+          alignment_reasoning: string | null
+          alignment_score: number | null
+          alignment_scored_at: string | null
           position: number
           set_at: string
           text: string
           user_id: string
         }
         Insert: {
+          alignment_reasoning?: string | null
+          alignment_score?: number | null
+          alignment_scored_at?: string | null
           position: number
           set_at?: string
           text: string
           user_id: string
         }
         Update: {
+          alignment_reasoning?: string | null
+          alignment_score?: number | null
+          alignment_scored_at?: string | null
           position?: number
           set_at?: string
           text?: string

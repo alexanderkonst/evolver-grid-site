@@ -26,6 +26,18 @@ export interface EquilibriumStrategy {
   position: 1 | 2 | 3;
   text: string;
   set_at: string;
+  /**
+   * Alignment score (0-100) with the user's Lifelong Dedication + Role.
+   * Cached from the `score-equilibrium-strategies` edge function. User
+   * triggers re-scoring explicitly via a button. Null = not yet scored.
+   * Sasha 2026-05-17. Migration:
+   *   supabase/migrations/20260517000000_add_alignment_score_to_equilibrium_strategies.sql
+   */
+  alignment_score?: number | null;
+  /** One-sentence plain-language reasoning for the score. */
+  alignment_reasoning?: string | null;
+  /** When this strategy was last scored. Stale after text/dedication/role edit. */
+  alignment_scored_at?: string | null;
 }
 
 // ─── Workstreams (up to 7 active per user) ─────────────────────────────

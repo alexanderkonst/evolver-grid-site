@@ -67,6 +67,16 @@ export interface EquilibriumV2Data {
    * null is deleted. Sasha 2026-05-17.
    */
   reorderStrategies: (orderedTexts: [string | null, string | null, string | null]) => Promise<void>;
+  /**
+   * Score each filled strategy 0-100 against the user's "highest
+   * expression" (Lifelong Dedication + Role). Calls the
+   * score-equilibrium-strategies edge function, caches scores +
+   * reasoning per strategy row. Returns true on success, false on
+   * failure (toast shown either way). Sasha 2026-05-17.
+   */
+  scoreStrategies: () => Promise<boolean>;
+  /** True while the alignment scoring round-trip is in flight. */
+  scoringStrategies: boolean;
 
   addWorkstream: (title: string) => Promise<void>;
   renameWorkstream: (id: string, title: string) => Promise<void>;
@@ -106,6 +116,7 @@ export function useEquilibriumV2(): EquilibriumV2Data {
   const [tasks, setTasks] = useState<EquilibriumTask[]>([]);
   const [focus, setFocus] = useState<EquilibriumFocus[]>([]);
   const [activeWorkstreamId, setActiveWorkstreamId] = useState<string | null>(null);
+  const [scoringStrategies, setScoringStrategies] = useState(false);
 
   // ─── Auth subscription ─────────────────────────────────
 
@@ -814,6 +825,87 @@ export function useEquilibriumV2(): EquilibriumV2Data {
     [state?.role_override_text, topTalentTitle],
   );
 
+  /**
+   * Score filled strategies against the user's "highest expression"
+   * (Lifelong Dedication + Role) via the score-equilibrium-strategies
+   * edge function. Returns true on success.
+   *
+   * Defined here (after the displays) so it can close over the latest
+   * memoed values. Optimistic + persistent: scores update local state
+   * immediately, then upsert to equilibrium_strategies in parallel.
+   */
+  const scoreStrategies = useCallback(async (): Promise<boolean> => {
+    if (!user) return false;
+    const filled = strategies.filter((s) => s.text?.trim());
+    if (filled.length === 0) {
+      toast.error("No strategies to score yet.");
+      return false;
+    }
+    if (!missionDisplay && !roleDisplay) {
+      toast.error("Set Lifelong Dedication or Role first.");
+      return false;
+    }
+
+    setScoringStrategies(true);
+    try {
+      const { data, error } = await supabase.functions.invoke<{
+        scores: { score: number; reasoning: string }[];
+      }>("score-equilibrium-strategies", {
+        body: {
+          lifelong_dedication: missionDisplay,
+          role: roleDisplay,
+          strategies: filled.map((s) => s.text),
+        },
+      });
+      if (error || !data?.scores) throw error ?? new Error("no scores returned");
+
+      const now = new Date().toISOString();
+      // Build updated row set: scores aligned with filled-strategy order.
+      const updatedFilled = filled.map((row, i) => {
+        const s = data.scores[i];
+        return {
+          ...row,
+          alignment_score: s?.score ?? null,
+          alignment_reasoning: s?.reasoning ?? null,
+          alignment_scored_at: now,
+        };
+      });
+
+      // Optimistic state: keep all strategies, replace updated ones by position.
+      setStrategies((prev) =>
+        prev.map((s) => {
+          const upd = updatedFilled.find((u) => u.position === s.position);
+          return upd ?? s;
+        }),
+      );
+
+      // Persist updates in parallel. Update by (user_id, position) so we
+      // don't overwrite the text/set_at fields.
+      await Promise.all(
+        updatedFilled.map((row) =>
+          eqAny
+            .from("equilibrium_strategies")
+            .update({
+              alignment_score: row.alignment_score,
+              alignment_reasoning: row.alignment_reasoning,
+              alignment_scored_at: row.alignment_scored_at,
+            })
+            .eq("user_id", row.user_id)
+            .eq("position", row.position),
+        ),
+      );
+
+      toast.success("Strategies scored.");
+      return true;
+    } catch (e) {
+      console.warn("[equilibrium_v2] score strategies failed", e);
+      toast.error("Couldn't score strategies — try again.");
+      return false;
+    } finally {
+      setScoringStrategies(false);
+    }
+  }, [user, strategies, missionDisplay, roleDisplay]);
+
   const tasksByWorkstream = useMemo(() => {
     const map: Record<string, EquilibriumTask[]> = {};
     for (const t of tasks) {
@@ -863,6 +955,8 @@ export function useEquilibriumV2(): EquilibriumV2Data {
     setLastSynthesis,
     upsertStrategy,
     reorderStrategies,
+    scoreStrategies,
+    scoringStrategies,
     addWorkstream,
     renameWorkstream,
     deleteWorkstream,
