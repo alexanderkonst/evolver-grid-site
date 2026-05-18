@@ -221,7 +221,8 @@ export const EquilibriumMDLSPage = () => {
             <div className="mt-4">
               <CycleEnergyBar
                 segments={LUNAR_SEGMENTS}
-                currentIndex={cycles.lunar.segmentIndex}
+                // Rotated display: Full Moon = position 0 (Sasha 2026-05-18).
+                currentIndex={lunarDisplayIndex(cycles.lunar.segmentIndex)}
                 progress={cycles.lunar.progress}
                 prevLabel={cycles.lunar.prevLabel}
                 currentLabel={cycles.lunar.currentLabel}
