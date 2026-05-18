@@ -2142,22 +2142,32 @@ form.liquid-glass input:-webkit-autofill:active {
     filter: drop-shadow(0 8px 24px hsl(var(--mdls-silk-hue, 15) 40% 60% / 0.18));
     position: relative;
   }
-  .mdls-sculpted-silk--a { border-radius: 60% 40% 50% 50% / 50% 60% 40% 50%; }
-  .mdls-sculpted-silk--b { border-radius: 45% 55% 60% 40% / 60% 45% 55% 40%; }
-  .mdls-sculpted-silk--c { border-radius: 55% 45% 40% 60% / 40% 55% 45% 60%; }
+  /* MDLS v1.1 (2026-05-18): pushed asymmetry to ≥70% extremes so blobs read
+     as organic curving forms — not just rounded rectangles — even at wider
+     aspect ratios. Cards should still be roughly square (1:1 → 4:3) for the
+     blob to read; very wide cards flatten the curve regardless. */
+  .mdls-sculpted-silk--a { border-radius: 76% 24% 58% 42% / 38% 64% 36% 62%; }
+  .mdls-sculpted-silk--b { border-radius: 38% 62% 70% 30% / 56% 32% 68% 44%; }
+  .mdls-sculpted-silk--c { border-radius: 64% 36% 32% 68% / 28% 56% 44% 72%; }
 
   /* ──────────────────────────────────────────────────────────────────
      §4.4 SOUL-ORB — small circular marker, 12 color signatures via CSS var.
      Set --mdls-orb-c / --mdls-orb-r to point at the library values.
      ──────────────────────────────────────────────────────────────── */
   .mdls-soul-orb {
-    background: radial-gradient(circle at 35% 35%,
-      hsl(var(--mdls-orb-c, 195 55% 78%)) 0%,
-      hsl(var(--mdls-orb-c, 195 55% 78%)) 30%,
-      hsl(var(--mdls-orb-r, 195 38% 50%)) 100%);
+    /* MDLS v1.1: richer luminosity — specular highlight at upper-left now
+       carries more visible light, plus subtle outer halo in the orb's own
+       hue so the orb reads as "lit from within" rather than flat. */
+    background: radial-gradient(circle at 32% 30%,
+      hsl(var(--mdls-orb-c, 195 55% 78%) / 1) 0%,
+      hsl(var(--mdls-orb-c, 195 55% 78%) / 0.92) 22%,
+      hsl(var(--mdls-orb-r, 195 38% 50%) / 0.95) 78%,
+      hsl(var(--mdls-orb-r, 195 38% 50%) / 1) 100%);
     box-shadow:
-      inset 0 4px 8px 0 rgba(255, 255, 255, 0.35),
-      0 6px 16px -4px hsl(var(--mdls-orb-r, 195 38% 50%) / 0.30);
+      inset 0 5px 10px 0 rgba(255, 255, 255, 0.55),         /* upper highlight */
+      inset 0 -3px 6px 0 hsl(var(--mdls-orb-r, 195 38% 50%) / 0.35),  /* lower rim */
+      0 4px 12px -2px hsl(var(--mdls-orb-r, 195 38% 50%) / 0.30),    /* near drop */
+      0 0 24px -2px hsl(var(--mdls-orb-c, 195 55% 78%) / 0.35);      /* outer aura in hue */
     border-radius: 50%;
     transition: transform 800ms cubic-bezier(0.22, 1, 0.36, 1);
   }
@@ -2312,11 +2322,14 @@ form.liquid-glass input:-webkit-autofill:active {
      Static; no animation. Pure decorative-semantic.
      ──────────────────────────────────────────────────────────────── */
   .mdls-seal-medallion {
+    /* MDLS v1.1: bumped opacity 0.55 → 0.72 and ink 0.30 → 0.45 so the seal
+       reads as a present sacred-stamp, not a ghost. Still restrained — never
+       fights the section title; settles as a visible-but-quiet artifact. */
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    color: rgba(10, 18, 34, 0.30);
-    opacity: 0.55;
+    color: rgba(10, 18, 34, 0.45);
+    opacity: 0.72;
   }
   .mdls-seal-medallion svg { width: 100%; height: 100%; }
 
