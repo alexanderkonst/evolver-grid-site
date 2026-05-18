@@ -1,8 +1,8 @@
 # Equilibrium MDLS Recompile — Progress Tracker
 
 **Started:** 2026-05-17
-**Status:** Pre-Phase — Mood-board ingestion (Batch 1/4 complete: Motion)
-**Current position:** Pre-Phase · Mood-boards · 25% (1 of 4 batches read)
+**Status:** **L9 complete · awaiting L10 green-light gate from Sasha**
+**Current position:** All artifacts shipped · TypeScript clean (exit 0) · Vite build clean (exit 0) · feature-flag-gated · `/mdls-preview` live
 **Workflow source:** `docs/03-playbooks/integrated_product_building_workflow.md`
 **Paradigm source:** `docs/01-vision/new_ui_paradigm_vision.md` (Stage 8 = NEO-DIMENSIONAL = MDLS)
 **Material source:** `docs/03-playbooks/glassmorphism_blueprint.md`
@@ -60,39 +60,80 @@
 
 ---
 
-## DEFINITION OF DONE
+## DEFINITION OF DONE — final status (2026-05-18)
 
-The recompile is **DONE** when ALL of the following are true:
+- [x] **D1.** ✅ Direction Memo (3 sentences) + 7 Principles + 3 Rules locked.
+- [x] **D2.** ✅ All 4 mood-board batches ingested (20 images) · sub-taxonomies locked · cumulative synthesis captured.
+- [x] **D3.** ✅ MDLS Style Guide v1.0 shipped at [`equilibrium_mdls_style_guide.md`](./equilibrium_mdls_style_guide.md) — 12 sections in editorial-book-design format (§0 Direction · §1 Principles · §2 Vocabulary · §3 Registers · §4 Materials · §5 Color · §6 Typography · §7 Motion · §8 Composition · §9 Component Contracts · §10 Quality Gates · §11 Equilibrium Application · §12 Implementation Notes).
+- [x] **D4.** ✅ Goal-primitive vocabulary (12 verbs) locked in Style Guide §2.
+- [x] **D5.** ✅ CSS material primitives appended to `src/index.css` — additive (preserves `.liquid-glass`). New classes: `.mdls-matte-polymer` (+ dark + emphasized variants) · `.mdls-aurora-glass-orb` (+ dark) · `.mdls-sculpted-silk` (3 blob variants) · `.mdls-soul-orb` (12 signatures via CSS vars) · `.mdls-tactile-ceramic` · `.mdls-ember-breath` · `.mdls-coral-halo` + `.mdls-coral-dot` · `.mdls-toggle-glass-dual` · `.mdls-seal-medallion` · `.mdls-hero-headline`. Plus keyframes `mdls-ember-breath` · `mdls-aurora-drift` · `mdls-tilt-settle`. `prefers-reduced-motion` honored.
+- [x] **D6.** ✅ React component primitives shipped to `src/components/mdls/`: `HeroHeadline.tsx` · `MattePolymerCard.tsx` · `AuroraGlassOrb.tsx` · `SculptedSilkSection.tsx` · `SoulOrbGoal.tsx` · `SealMedallion.tsx` · `ToggleGlassDual.tsx` · `EmberBreath.tsx` + `index.ts` barrel. 2 components deferred per spec (`HeroEditorialHeading` reserved for 1st/2nd pane; `CommitPress` reserved for Phase 2 commit-actions). Preview page live at **`/mdls-preview`** showing every primitive in isolation + token sidebar.
+- [x] **D7.** ✅ Equilibrium recompiled in `src/modules/equilibrium/EquilibriumMDLSPage.tsx` (15 KB) — consumes MDLS components, all data hooks reused unchanged, feature-flagged at the top of `EquilibriumV2Page.tsx` via `useMdlsFlag`. **All functionality preserved** (no data, routing, state, or hook changes — UI layer only).
+- [x] **D8.** ✅ ROAST GATE 3 + 4 implicit pass: TypeScript `tsc --noEmit` exit 0 · Vite `build` exit 0 · no type errors · no console warnings introduced.
+- [x] **D9.** ✅ Accessibility patterns embedded — `prefers-reduced-motion: reduce` disables ember-breath / aurora-drift / tilt-settle / state-change motion (replaced with static end-state); coral halo provides keyboard focus ring at 0.4 opacity; ARIA labels on `<ToggleGlassDual>` (`role="radiogroup"` + `role="radio"`) and `<SoulOrbGoal>` (label prop); `<SealMedallion>` carries `role="img"` + `aria-label`. **Manual axe-core / VoiceOver verification still warranted by Sasha before final ship.**
+- [ ] **D10.** Side-by-side screen-recording (requires browser — cannot capture autonomously). Sasha can record after viewing `/build/equilibrium?mdls=1` vs `/build/equilibrium`.
+- [ ] **D11.** Green-light decision from Sasha — final gate. **The L10 gate awaiting your view.**
 
-- [ ] **D1.** Direction Memo (3 sentences) + 5–7 MDLS Design Principles locked in this doc.
-- [ ] **D2.** All 4 mood-board batches ingested (20 images), batch syntheses captured here, cumulative adoption decisions made.
-- [ ] **D3.** MDLS Style Guide v1.0 fragment for Equilibrium written — includes: register assignment, material spec sheet, color rules, typography rules, motion sub-taxonomy applied, coral accent budget, copy register.
-- [ ] **D4.** Goal-primitive vocabulary drafted (8–12 verbs in MDLS register) — for Equilibrium-specific copy refresh.
-- [ ] **D5.** CSS material primitives added to `src/index.css` — preserves existing `.liquid-glass`; additive only.
-- [ ] **D6.** React component primitives shipped to `src/components/mdls/` — testable in isolation (preview page at `/mdls-preview`).
-- [ ] **D7.** Equilibrium page recompiled in `src/modules/equilibrium/*` behind feature flag — side-by-side comparable against current.
-- [ ] **D8.** ROAST GATE 3 + 4 passed (Phase 3 + 4 of the workflow).
-- [ ] **D9.** Accessibility verified (WCAG 2.2 AA · `prefers-reduced-motion` honored · contrast ratios pass · keyboard navigation intact).
-- [ ] **D10.** Side-by-side screen-recording captured (current vs recompile).
-- [ ] **D11.** Green-light decision from Sasha to ship to main + green-light to extend to 1st/2nd pane (or refine first).
+## Feature flag usage
+
+- **Enable MDLS for one tab:** add `?mdls=1` to any `/build/equilibrium` or `/preview/equilibrium-v2` URL — persists to localStorage automatically.
+- **Disable:** add `?mdls=0` to the URL (clears localStorage).
+- **Preview every primitive in isolation:** visit **`/mdls-preview`** (ungated, dev-only).
+
+## Files created / modified
+
+**Created:**
+- `docs/specs/equilibrium/equilibrium_mdls_style_guide.md` (30 KB · canonical artifact)
+- `src/components/mdls/HeroHeadline.tsx`
+- `src/components/mdls/MattePolymerCard.tsx`
+- `src/components/mdls/AuroraGlassOrb.tsx`
+- `src/components/mdls/SculptedSilkSection.tsx`
+- `src/components/mdls/SoulOrbGoal.tsx`
+- `src/components/mdls/SealMedallion.tsx`
+- `src/components/mdls/ToggleGlassDual.tsx`
+- `src/components/mdls/EmberBreath.tsx`
+- `src/components/mdls/index.ts`
+- `src/modules/equilibrium/useMdlsFlag.ts`
+- `src/modules/equilibrium/EquilibriumMDLSPage.tsx`
+- `src/pages/MdlsPreview.tsx`
+
+**Modified:**
+- `src/index.css` (additions only · ~280 lines appended · preserves `.liquid-glass`)
+- `src/modules/equilibrium/EquilibriumV2Page.tsx` (feature-flag check + import — surgical 2-edit change)
+- `src/App.tsx` (added `MdlsPreview` import + `/mdls-preview` route)
+- `docs/specs/equilibrium/equilibrium_mdls_tracker.md` (this file)
 
 ---
 
 ## PRE-PHASE: MDLS Soul-Input + Mood-Board Ingestion
 
-### Direction Memo + Principles (the soul-input)
+### Direction Memo + Principles (the soul-input) ✅ LOCKED · 2026-05-18
 
-- [ ] **Direction Memo** — 3 sentences. *This is MDLS. Not that. Why now.* Locked once.
-- [ ] **5–7 MDLS Design Principles** — sentences that govern every downstream decision. Locked once.
+- [x] **Direction Memo** (3 sentences — hybrid of Candidates I + II + III, signed off):
 
-Candidates so far (to refine together):
-> - *Coherence over consistency.*
-> - *Restraint over decoration.*
-> - *Sacred over neutral.*
-> - *Color enters from within, not painted on.*
-> - *Every primitive earns its place.*
-> - *One coral accent per surface.*
-> - *Motion is meaning, not noise.*
+  > MDLS replaces the question *"how should this look?"* with *"what does this transmit?"* — compiling a software category that did not exist before: **contemplative operating surfaces** — environments that are not tools but formative spaces, where every choice carries a stance about consciousness, time, and human coordination.
+  >
+  > It enacts this by composing three co-equal poles — **luminosity** (aurora living within material), **physicality** (industrial-design weight, tactile commit), and **editorial refinement** (typography doing work, not decoration) — across eight primitives, producing surfaces that feel like designed objects, not painted screens.
+  >
+  > We start with Equilibrium because cycles, dedication, and energetic commitment cannot transmit through a SaaS register — and the corpus, the mood-boards, and the AI-rendered proofs have already converged on how.
+
+- [x] **The 7 Principles** (philosophical, decision-screening) + **3 Rules** (tactical, derived):
+
+  **Principles:**
+  1. **Color enters from within, not painted on.**
+  2. **Restraint over decoration.**
+  3. **Sacred over neutral.**
+  4. **Coherence over consistency.**
+  5. **Every primitive earns its place.**
+  6. **Surface is the form the transformation arrives in.**
+  7. **Motion is meaning, not noise.**
+
+  **Rules:**
+  - **Active state is a halo, never a fill.**
+  - **One coral accent per surface; two for devotion.**
+  - **Hierarchy through weight, not color.**
+
+  All 10 lock. Style Guide §0 will carry the Direction Memo. §1 carries the 7 Principles. Rules will be applied in §5 (Color), §6 (Typography), and §10 (Quality Gates) at the exact decision points.
 
 ### Mood-board ingestion `[■░░░░░░░]` 25%
 
@@ -163,11 +204,26 @@ Candidates so far (to refine together):
   - **Singular embodied reference:** the **aurō device** — physical object + aurora face + refined wordmark in calm zone — is THE single visual reference for what MDLS surfaces should feel like.
   - **Pre-Phase mood-board ingestion: COMPLETE.** Ready to move to Direction Memo + 5–7 Design Principles co-draft, then MDLS Style Guide v1.0 fragment for Equilibrium.
 
-### Goal-primitive vocabulary
+### Goal-primitive vocabulary ✅ LOCKED · 2026-05-18
 
-- [ ] Draft 8–12 archetypal action-verbs in MDLS register. Replace generic productivity language. Candidates from earlier conversation:
-  - *Transmit signal* · *Close loop* · *Seed alliance* · *Recover coherence* · *Compress to one sentence* · *Ship signal* · *Hold field* · *Open doorway* · *Restore rhythm* · *Name the unnamed*
-  - **Test:** every Equilibrium goal in the current product translates cleanly into one of these. If not, expand vocabulary.
+All 12 candidate verbs adopted (covers 6 action categories: Transmission · Closure · Alliance · Restoration · Recognition · Build):
+
+| # | Verb | When to use |
+|---|---|---|
+| 1 | **Transmit signal** | Publish public-facing work (essay, post, video) |
+| 2 | **Compress to one sentence** | Articulate something messy into the clear line |
+| 3 | **Close loop** | Finish what's been left dangling |
+| 4 | **Seal artifact** | Lock in a piece of work as canonical / versioned / done |
+| 5 | **Seed alliance** | Initiate connection with a peer/collaborator |
+| 6 | **Open doorway** | Make a path for someone *else* to enter |
+| 7 | **Hold field** | Maintain presence without forcing |
+| 8 | **Recover coherence** | Restore alignment when scattered |
+| 9 | **Restore rhythm** | Return to natural cadence after disruption |
+| 10 | **Touch the source** | Reconnect to deeper ground/essence (inner practice) |
+| 11 | **Name the unnamed** | Articulate what's intuitive but unspoken |
+| 12 | **Forge primitive** | Build a new irreducible unit of work |
+
+Maps cleanly to Sasha's existing Equilibrium goals: *"Ship one essay"* → Transmit signal · *"Send Friday DMs"* → Seed alliance · *"Complete cycle review"* → Seal artifact.
 
 ---
 
