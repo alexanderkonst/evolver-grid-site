@@ -60,6 +60,13 @@ export interface EquilibriumV2Data {
   setLastSynthesis: (text: string, at: string) => Promise<void>;
 
   upsertStrategy: (position: 1 | 2 | 3, text: string | null) => Promise<void>;
+  /**
+   * Reorder strategies by swapping texts between positions. Takes the
+   * NEW ordering as a 3-tuple of texts (null = empty slot at that
+   * position). Each non-null text is upserted at its new position; each
+   * null is deleted. Sasha 2026-05-17.
+   */
+  reorderStrategies: (orderedTexts: [string | null, string | null, string | null]) => Promise<void>;
 
   addWorkstream: (title: string) => Promise<void>;
   renameWorkstream: (id: string, title: string) => Promise<void>;
@@ -383,6 +390,62 @@ export function useEquilibriumV2(): EquilibriumV2Data {
           (a, b) => a.position - b.position,
         );
       });
+    },
+    [user],
+  );
+
+  /**
+   * Reorder strategies. The 3-tuple represents the NEW state at
+   * positions 1, 2, 3. Each non-null text is upserted at that position;
+   * each null position has its row deleted. Texts may have moved between
+   * positions — composite key (user_id, position) absorbs that
+   * automatically since we just overwrite each slot.
+   */
+  const reorderStrategies = useCallback(
+    async (orderedTexts: [string | null, string | null, string | null]) => {
+      if (!user) return;
+      const now = new Date().toISOString();
+
+      // Optimistic state update.
+      const newRows: EquilibriumStrategy[] = [];
+      orderedTexts.forEach((text, i) => {
+        if (text && text.trim()) {
+          newRows.push({
+            user_id: user.id,
+            position: (i + 1) as 1 | 2 | 3,
+            text: text.trim(),
+            set_at: now,
+          } as EquilibriumStrategy);
+        }
+      });
+      setStrategies(newRows);
+
+      // Persist each slot. Run in parallel — composite key (user_id,
+      // position) absorbs text swaps cleanly.
+      await Promise.all(
+        orderedTexts.map((text, i) => {
+          const position = (i + 1) as 1 | 2 | 3;
+          if (text && text.trim()) {
+            return eqAny
+              .from("equilibrium_strategies")
+              .upsert(
+                {
+                  user_id: user.id,
+                  position,
+                  text: text.trim(),
+                  set_at: now,
+                },
+                { onConflict: "user_id,position" },
+              );
+          }
+          // Empty slot — delete the row if any exists.
+          return eqAny
+            .from("equilibrium_strategies")
+            .delete()
+            .eq("user_id", user.id)
+            .eq("position", position);
+        }),
+      );
     },
     [user],
   );
@@ -799,6 +862,7 @@ export function useEquilibriumV2(): EquilibriumV2Data {
     setMoonFocus,
     setLastSynthesis,
     upsertStrategy,
+    reorderStrategies,
     addWorkstream,
     renameWorkstream,
     deleteWorkstream,
