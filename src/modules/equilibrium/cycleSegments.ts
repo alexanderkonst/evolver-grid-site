@@ -22,12 +22,52 @@ import type { CycleSegmentSpec } from "./components/CycleEnergyBar";
 const LUNAR_ACCENT = "#a080c0"; // Lunar Violet (v1.6 palette)
 const LUNAR_LANDMARK_PHASES = new Set(["New Moon", "Full Moon"]);
 
-export const LUNAR_SEGMENTS: CycleSegmentSpec[] = MOON_PHASES.map((phase) => ({
-  icon: phase.symbol,
-  label: phase.name,
-  identityColor: LUNAR_ACCENT,
-  isLandmark: LUNAR_LANDMARK_PHASES.has(phase.name),
-}));
+/**
+ * Sasha's preferred visual order (2026-05-18 mockup): the bar starts at
+ * FULL MOON (cycle apex / harvest) on the left, wanes through to New
+ * Moon in the middle, then waxes back to Full on the right. This is the
+ * natural night-to-night visual progression of how the moon shrinks and
+ * grows.
+ *
+ * Internally MOON_PHASES is still ordered astronomically (New Moon = 0)
+ * because cycle math uses `days from New Moon` as the origin. The
+ * display rotation is purely visual — `lunarDisplayIndex()` below
+ * converts the astronomical `segmentIndex` returned by `getLunarState()`
+ * into the rotated display index used by the orb row.
+ *
+ * Mapping (astronomical → display):
+ *   New Moon (0)         → 4
+ *   Waxing Crescent (1)  → 5
+ *   First Quarter (2)    → 6
+ *   Waxing Gibbous (3)   → 7
+ *   Full Moon (4)        → 0   ← display origin
+ *   Waning Gibbous (5)   → 1
+ *   Last Quarter (6)     → 2
+ *   Waning Crescent (7)  → 3
+ *
+ * Closed form: `displayIdx = (astronomicalIdx + 4) % 8`
+ */
+const LUNAR_DISPLAY_TO_ASTRONOMICAL = [4, 5, 6, 7, 0, 1, 2, 3] as const;
+
+export const LUNAR_SEGMENTS: CycleSegmentSpec[] = LUNAR_DISPLAY_TO_ASTRONOMICAL.map(
+  (i) => {
+    const phase = MOON_PHASES[i];
+    return {
+      icon: phase.symbol,
+      label: phase.name,
+      identityColor: LUNAR_ACCENT,
+      isLandmark: LUNAR_LANDMARK_PHASES.has(phase.name),
+    };
+  },
+);
+
+/**
+ * Convert a `getLunarState().segmentIndex` (astronomical, New Moon = 0)
+ * into the display index used by LUNAR_SEGMENTS (Full Moon = 0).
+ */
+export function lunarDisplayIndex(astronomicalIdx: number): number {
+  return (astronomicalIdx + 4) % 8;
+}
 
 // ─── DAY-OF-WEEK (7 planets) ──────────────────────────────────
 

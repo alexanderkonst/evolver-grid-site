@@ -23,6 +23,7 @@ import {
   LUNAR_SEGMENTS,
   SOLAR_SEGMENTS,
   ZODIAC_SEGMENTS,
+  lunarDisplayIndex,
 } from "./cycleSegments";
 import { SECTION_IDS } from "./types";
 import type { WatchMode } from "./components/WatchModeToggle";

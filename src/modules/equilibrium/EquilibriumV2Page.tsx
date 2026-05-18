@@ -27,6 +27,7 @@ import {
   LUNAR_SEGMENTS,
   SOLAR_SEGMENTS,
   ZODIAC_SEGMENTS,
+  lunarDisplayIndex,
 } from "./cycleSegments";
 import { SECTION_IDS } from "./types";
 
@@ -157,7 +158,7 @@ export const EquilibriumV2Page = () => {
           Equilibrium
         </h1>
         <p className="eq-text-halo mt-2 font-serif text-base text-[#0a1628]/85 sm:text-lg">
-          Biologic Watch and Task Manager
+          Biologic Watch and Action Compass
         </p>
         <div className="mt-5 flex justify-center">
           <WatchModeToggle mode={mode} onChange={setMode} />
@@ -255,7 +256,10 @@ export const EquilibriumV2Page = () => {
             <div className="mt-4">
               <CycleEnergyBar
                 segments={LUNAR_SEGMENTS}
-                currentIndex={cycles.lunar.segmentIndex}
+                // Rotated display: Full Moon = position 0 (Sasha 2026-05-18
+                // mockup). Cycle math returns astronomical index from New
+                // Moon = 0; lunarDisplayIndex shifts by +4 mod 8.
+                currentIndex={lunarDisplayIndex(cycles.lunar.segmentIndex)}
                 progress={cycles.lunar.progress}
                 prevLabel={cycles.lunar.prevLabel}
                 currentLabel={cycles.lunar.currentLabel}
