@@ -334,6 +334,7 @@ export const EquilibriumV2Page = () => {
               strategies={eq.strategies}
               loading={eq.loading}
               onUpsert={eq.upsertStrategy}
+              onReorder={eq.reorderStrategies}
             />
           </EquilibriumSectionCard>
         )}
