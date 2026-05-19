@@ -558,12 +558,17 @@
   --skin-text-halo-soft: none;
   --skin-text-halo-deep: none;
 
-  /* Panel washes — monochrome three-tier.
-     Pane 1: near-black rail. Pane 2: charcoal. Pane 3: pure white. */
-  --skin-panel-1-bg: rgba(10, 10, 10, 0.98);
-  --skin-panel-2-bg: rgb(28, 28, 28);
+  /* Panel washes — V2 INVERSION (Sasha 2026-05-19): NS is all-white,
+     pane hierarchy comes from hairline dividers + typography, not from
+     background tone. v1 mapped Pane 1 to near-black on the (incorrect)
+     assumption that 3-pane shells need dark-rail depth. NS doesn't have
+     a rail at all — but our shell does, so we keep it WHITE and let the
+     border-right hairline + the SPACES nav labels do the separation work.
+     Pane 1 = white. Pane 2 = white. Pane 3 = white. */
+  --skin-panel-1-bg: #ffffff;
+  --skin-panel-2-bg: #ffffff;
   --skin-panel-wash: rgba(255, 255, 255, 1);
-  --skin-panel-wash-quiet: rgba(252, 252, 252, 1);
+  --skin-panel-wash-quiet: rgba(255, 255, 255, 1);
 
   /* Ornaments — solid black, no glow. */
   --skin-ornament-rule:  rgba(10, 10, 10, 0.15);
@@ -768,6 +773,126 @@
 [data-skin="network-school"] [class*="shadow-[0_0_16px_-4px_rgba(244,212,114"] {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06) !important;
 }
+
+/* ──────────────────────────────────────────────────────────────────────
+   NS V2 (Sasha 2026-05-19) — white-on-white pane structure.
+   Hierarchy via hairlines + typography, not background contrast.
+   ────────────────────────────────────────────────────────────────────── */
+
+/* Pane 1 (SpacesRail) — right-edge hairline so it reads as a distinct
+   surface against Pane 2's white. */
+[data-skin="network-school"] .liquid-glass.h-dvh {
+  border-right: 1px solid rgba(10, 10, 10, 0.07) !important;
+}
+
+/* Pane 2 (SectionsPanel) — right-edge hairline against Pane 3.
+   The SectionsPanel container varies by route but consistently uses
+   width classes + h-dvh / min-h-dvh patterns under GameShellV2. */
+[data-skin="network-school"] aside[data-pane="2"],
+[data-skin="network-school"] .sections-panel-container,
+[data-skin="network-school"] [class*="border-r"][class*="border-white"] {
+  border-right-color: rgba(10, 10, 10, 0.07) !important;
+}
+
+/* Active item indicator — black left-bar (inset shadow, no layout shift)
+   on any element whose inline style references --skin-selected-bg.
+   Hits both SpacesRail JOURNEY/AI OS/ME/BUILD chips AND SectionsPanel
+   row cards because both set backgroundColor: var(--skin-selected-bg). */
+[data-skin="network-school"] [style*="--skin-selected-bg"] {
+  box-shadow: inset 3px 0 0 0 #0a0a0a !important;
+}
+
+/* Rail (Pane 1) text was `text-white` everywhere — invisible on the
+   v2 white background. Cascade convert to near-black inside the rail.
+   Also covers the SectionsPanel rows (Pane 2) which use white-with-
+   opacity text classes. */
+[data-skin="network-school"] .liquid-glass.h-dvh,
+[data-skin="network-school"] .liquid-glass.h-dvh [class*="text-white"] {
+  color: #0a0a0a !important;
+}
+[data-skin="network-school"] .liquid-glass.h-dvh [class*="bg-white\\/\\["],
+[data-skin="network-school"] .liquid-glass.h-dvh [class*="bg-white/["] {
+  background-color: transparent !important;
+}
+/* Pane 2 — same conversion for text + the bg-white/[0.04] etc. baseline. */
+[data-skin="network-school"] [data-pane="2"] [class*="text-white"],
+[data-skin="network-school"] [data-pane="2"] {
+  color: #0a0a0a !important;
+}
+/* Catch-all for SectionsPanel rows whose container isn't yet tagged
+   with data-pane — they're identifiable by the rounded-2xl + group +
+   mx-2 pattern with bg-white/[0.05] background. */
+[data-skin="network-school"] .group[class*="bg-white\\/\\[0.05\\]"],
+[data-skin="network-school"] .group[class*="bg-white/[0.05]"],
+[data-skin="network-school"] .group[class*="bg-white\\/\\[0.04\\]"],
+[data-skin="network-school"] .group[class*="bg-white/[0.04]"] {
+  background-color: transparent !important;
+  color: #0a0a0a !important;
+}
+
+/* Kill the gold halo + ring on the active SectionsPanel card. The class
+   patterns include the literal `[#d4af37]` and the rgba(244,212,114,...)
+   shadow — both targeted via attribute substring selector so the rule
+   catches every variant. */
+[data-skin="network-school"] [class*="ring-[#d4af37"] {
+  --tw-ring-color: transparent !important;
+}
+[data-skin="network-school"] [class*="rgba(244,212,114"],
+[data-skin="network-school"] [class*="rgba(212,175,55"] {
+  box-shadow: none !important;
+}
+/* Re-assert the black left-bar after the shadow nuke above (specificity
+   tie — last wins). */
+[data-skin="network-school"] [style*="--skin-selected-bg"][class*="ring-[#d4af37"],
+[data-skin="network-school"] [style*="--skin-selected-bg"][class*="rgba(244,212,114"] {
+  box-shadow: inset 3px 0 0 0 #0a0a0a !important;
+}
+
+/* Tailwind-arbitrary `bg-[#0a1628]` (deep navy) is used by the
+   Equilibrium WatchModeToggle ACTIVE pill + SectionAnchorNav active
+   chip + SectionSkeleton. Under NS we want near-black, not navy. */
+[data-skin="network-school"] .bg-\[\#0a1628\] {
+  background-color: #0a0a0a !important;
+}
+[data-skin="network-school"] [class*="bg-[#0a1628]/"] {
+  background-color: rgba(10, 10, 10, 0.10) !important;
+}
+
+/* `text-[#0a1628]/85` — Equilibrium subtitle "Biologic Watch and Action
+   Compass" uses this. Under NS render as body text, not faded navy. */
+[data-skin="network-school"] [class*="text-[#0a1628]"] {
+  color: var(--skin-text-body, rgba(10, 10, 10, 0.92)) !important;
+}
+
+/* Playbook step-name span — h1 inline-styled `color: color-mix(neonHsl, ...)`
+   reads purple/violet/etc. on each step under default skin. Per the
+   "rainbow round steps stay" rule above, the CIRCLES preserve their
+   color — but the long-form step-name text should match NS register.
+   Target the h1 > span pattern inside the playbook article. */
+[data-skin="network-school"] article.liquid-glass-strong h1 > span {
+  color: var(--skin-text-primary, #0a0a0a) !important;
+  text-shadow: none !important;
+}
+/* Same step has a transformationalResult quote with a neon left-rule.
+   Convert to a neutral hairline under NS. */
+[data-skin="network-school"] article.liquid-glass-strong header p {
+  border-left-color: var(--skin-rule-strong, rgba(10, 10, 10, 0.18)) !important;
+}
+
+/* Substep numbered chips inside StepCard use inline backgroundImage
+   with the step's neon radial gradient + color-mixed text. Under NS:
+   plain hairline circle with black numeral. */
+[data-skin="network-school"] article.liquid-glass-strong button[class*="rounded-full"] {
+  background-image: none !important;
+  background-color: #ffffff !important;
+  border: 1px solid var(--skin-rule-strong, rgba(10, 10, 10, 0.18)) !important;
+  color: var(--skin-text-primary, #0a0a0a) !important;
+}
+
+/* SectionAnchorNav (Equilibrium internal section nav) — non-active
+   chips were `bg-[#0a1628]/10`-ish; covered by the arbitrary-class
+   rule above. Active chip is white-text-on-navy → invert to
+   white-text-on-black under NS. The bg-[#0a1628] rule handles it. */
 
 /* Definition of the design system. All colors, gradients, fonts, etc should be defined here.
 All colors MUST be HSL.

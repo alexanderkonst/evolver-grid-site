@@ -29,6 +29,11 @@ import SoundCloudMinimalPlayer from "@/components/SoundCloudMinimalPlayer";
 // mark-only asset is cleaner.
 import brandLogo from "@/assets/find-your-top-talent-logo.png";
 import brandMark from "@/assets/find-your-top-talent-torus.png";
+import { useSkin } from "@/contexts/SkinContext";
+// White-label demo (2026-05-19, Sasha): when skin is `network-school`,
+// the rail brand mark swaps to the official NS flag asset hosted on
+// ns-assets.com. Sasha provided the URL directly — no local copy.
+const NS_LOGO_URL = "https://ns-assets.com/auth-privy/network-school-black-flag-white-background-privy.png";
 // Day 48 iter 7 (Sasha): JOURNEY + ME spaces now render with custom
 // image assets (gold-tinted) instead of typographic glyphs — keeps
 // them coherent with the gold-signature identity while the other
@@ -235,6 +240,8 @@ const SpacesRail = ({
     const location = useLocation();
     const navigate = useNavigate();
     const { toast } = useToast();
+    const { skin } = useSkin();
+    const isNS = skin === "network-school";
 
     // Day 54+++ (Sasha 2026-04-28 night): backdrop-filter disabled on touch
     // devices. iOS WebKit's backdrop-filter on a full-viewport-height region
@@ -360,22 +367,29 @@ const SpacesRail = ({
                         the wordmark-cropping bug on a 72px rail.
                         Day 48 iter 7 (Sasha): torus now carries BOTH a
                         slow 60s rotation and a gentle 6s breath so the
-                        rail feels like a living object, not a nav bar. */}
+                        rail feels like a living object, not a nav bar.
+                        NS skin (2026-05-19): swap to the NS flag, no
+                        rotation (editorial register doesn't breathe). */}
                     <img
-                        src={brandMark}
-                        alt="Find Your Top Talent"
-                        className="md:hidden w-10 h-10 mx-auto object-contain brand-spin-slow"
+                        src={isNS ? NS_LOGO_URL : brandMark}
+                        alt={isNS ? "Network School" : "Find Your Top Talent"}
+                        className={isNS
+                            ? "md:hidden w-10 h-10 mx-auto object-contain"
+                            : "md:hidden w-10 h-10 mx-auto object-contain brand-spin-slow"}
                         draggable={false}
                     />
                     {/* Desktop: full wordmark — breath only (no rotation,
                         since spinning text reads as broken). The 6s
                         scale pulse adds depth without compromising the
-                        wordmark's legibility. */}
+                        wordmark's legibility. NS skin: NS flag, no
+                        breath animation. */}
                     <img
-                        src={brandLogo}
-                        alt="Find Your Top Talent"
-                        className="hidden md:block h-auto object-contain brand-breath"
-                        style={{ width: "89%" }}
+                        src={isNS ? NS_LOGO_URL : brandLogo}
+                        alt={isNS ? "Network School" : "Find Your Top Talent"}
+                        className={isNS
+                            ? "hidden md:block h-auto object-contain mx-auto"
+                            : "hidden md:block h-auto object-contain brand-breath"}
+                        style={isNS ? { width: "60%", maxHeight: 56 } : { width: "89%" }}
                         draggable={false}
                     />
                 </Link>

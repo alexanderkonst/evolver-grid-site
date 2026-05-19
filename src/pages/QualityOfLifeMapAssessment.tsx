@@ -112,8 +112,8 @@ const QualityOfLifeMapAssessment = ({
           aria-hidden="true"
           style={{
             fontSize: "28px",
-            color: "rgba(244, 212, 114, 0.95)",
-            textShadow: "0 0 18px rgba(244,212,114,0.55), 0 0 6px rgba(212,175,55,0.85)",
+            color: "var(--skin-ornament-star, rgba(244, 212, 114, 0.95))",
+            textShadow: "var(--skin-ornament-shadow, 0 0 18px rgba(244,212,114,0.55), 0 0 6px rgba(212,175,55,0.85))",
             lineHeight: 1,
             marginBottom: "20px",
           }}
@@ -162,8 +162,8 @@ const QualityOfLifeMapAssessment = ({
             fontStyle: "italic",
             fontSize: "17px",
             lineHeight: 1.55,
-            color: "rgba(11, 42, 90, 0.88)",
-            textShadow: "0 1px 2px rgba(255,255,255,0.7)",
+            color: "var(--skin-text-body, rgba(11, 42, 90, 0.88))",
+            textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.7))",
             maxWidth: "32ch",
             marginBottom: "44px",
           }}
