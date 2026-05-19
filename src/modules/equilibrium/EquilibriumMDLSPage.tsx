@@ -162,7 +162,7 @@ export const EquilibriumMDLSPage = () => {
 
         {isAttune && (
           <EmberBreath active>
-            <MattePolymerCard id={SECTION_IDS.synthesis} emphasized>
+            <MattePolymerCard variant="translucent" id={SECTION_IDS.synthesis} emphasized>
               <SectionHeader title="Synthesis Reading" />
               <SynthesisCard
                 cycles={cycles}
@@ -179,7 +179,7 @@ export const EquilibriumMDLSPage = () => {
         )}
 
         {isAttune && (
-          <MattePolymerCard id={SECTION_IDS.solar}>
+          <MattePolymerCard variant="translucent" id={SECTION_IDS.solar}>
             <SectionHeader title="Solar Energy" />
             <div className="mt-4">
               {(() => {
@@ -200,7 +200,7 @@ export const EquilibriumMDLSPage = () => {
         )}
 
         {isAttune && (
-          <MattePolymerCard id={SECTION_IDS.zodiac}>
+          <MattePolymerCard variant="translucent" id={SECTION_IDS.zodiac}>
             <SectionHeader title="Zodiac Energy" />
             <div className="mt-4">
               <CycleEnergyBar
@@ -216,7 +216,7 @@ export const EquilibriumMDLSPage = () => {
         )}
 
         {isAttune && (
-          <MattePolymerCard id={SECTION_IDS.lunar}>
+          <MattePolymerCard variant="translucent" id={SECTION_IDS.lunar}>
             <SectionHeader title="Lunar Energy" />
             <div className="mt-4">
               <CycleEnergyBar
@@ -245,7 +245,7 @@ export const EquilibriumMDLSPage = () => {
         )}
 
         {isAttune && (
-          <MattePolymerCard id={SECTION_IDS.dayOfWeek}>
+          <MattePolymerCard variant="translucent" id={SECTION_IDS.dayOfWeek}>
             <SectionHeader title="Day-of-Week Energy" />
             <div className="mt-4">
               <CycleEnergyBar
@@ -263,7 +263,7 @@ export const EquilibriumMDLSPage = () => {
         {/* ════════════ ACT MODE ════════════════════════════════════ */}
 
         {!isAttune && (
-          <MattePolymerCard id={SECTION_IDS.mission}>
+          <MattePolymerCard variant="translucent" id={SECTION_IDS.mission}>
             <div className="flex items-start gap-3">
               <SealMedallion size={32} variant="mandala" ariaLabel="Lifelong Dedication seal" />
               <div className="flex-1">
@@ -282,7 +282,7 @@ export const EquilibriumMDLSPage = () => {
         )}
 
         {!isAttune && (
-          <MattePolymerCard id={SECTION_IDS.role}>
+          <MattePolymerCard variant="translucent" id={SECTION_IDS.role}>
             <SectionHeader title="Role" />
             <RoleSection
               roleDisplay={eq.roleDisplay}
@@ -293,7 +293,7 @@ export const EquilibriumMDLSPage = () => {
         )}
 
         {!isAttune && (
-          <MattePolymerCard id={SECTION_IDS.strategies}>
+          <MattePolymerCard variant="translucent" id={SECTION_IDS.strategies}>
             <div className="flex items-center gap-2">
               <SectionHeader
                 title="Current Strategy"
@@ -329,7 +329,7 @@ export const EquilibriumMDLSPage = () => {
         )}
 
         {!isAttune && (
-          <MattePolymerCard id={SECTION_IDS.workstreams}>
+          <MattePolymerCard variant="translucent" id={SECTION_IDS.workstreams}>
             <SectionHeader title="Workstreams" />
             <WorkstreamsSection
               workstreams={eq.workstreams}
@@ -347,7 +347,7 @@ export const EquilibriumMDLSPage = () => {
         )}
 
         {!isAttune && (
-          <MattePolymerCard id={SECTION_IDS.goals}>
+          <MattePolymerCard variant="translucent" id={SECTION_IDS.goals}>
             <SectionHeader title="Intuitive Tasks" />
             <SmartGoalsSection
               workstreamTitle={activeWorkstream?.title ?? null}
@@ -373,7 +373,7 @@ export const EquilibriumMDLSPage = () => {
 
         {!isAttune && (
           <EmberBreath active>
-            <MattePolymerCard id={SECTION_IDS.doNow} emphasized>
+            <MattePolymerCard variant="translucent" id={SECTION_IDS.doNow} emphasized>
               <SectionHeader title="DO NOW" />
               <DoNowSection
                 focusedTaskIds={eq.focusedTaskIds}
