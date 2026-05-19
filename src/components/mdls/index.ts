@@ -10,6 +10,7 @@
 export { HeroHeadline } from "./HeroHeadline";
 export { MattePolymerCard } from "./MattePolymerCard";
 export { AuroraGlassOrb } from "./AuroraGlassOrb";
+export { AuroraCycleDisc } from "./AuroraCycleDisc";
 export { SculptedSilkSection } from "./SculptedSilkSection";
 export { SoulOrbGoal } from "./SoulOrbGoal";
 export { SealMedallion } from "./SealMedallion";
