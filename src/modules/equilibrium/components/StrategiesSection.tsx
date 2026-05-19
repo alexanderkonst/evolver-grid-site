@@ -158,6 +158,10 @@ const SortableStrategyRow = ({
           disabled={loading}
           emptyPlaceholder="—"
           onSave={onSave}
+          // Phase C: advisory hint — strategies are direction-choices,
+          // not paragraphs. One sentence each, action-oriented.
+          wordLimit={25}
+          wordLimitHint="try one sentence, action verb first — direction, not detail"
         />
       </div>
 

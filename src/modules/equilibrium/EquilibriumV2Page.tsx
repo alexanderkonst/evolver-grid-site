@@ -144,7 +144,7 @@ export const EquilibriumV2Page = () => {
         {/*
           Title + subtitle (Sasha 2026-05-16 round 7):
           • Drop the quotes around Equilibrium — it stands as the title.
-          • Subtitle "Biologic Watch and Task Manager" — what this thing
+          • Subtitle "Biologic Watch and Action Compass" — what this thing
             actually is, in plain words.
           • Title gets a brighter halo + larger size + tracking;
             subtitle quieter underneath.
@@ -367,7 +367,7 @@ export const EquilibriumV2Page = () => {
           >
             <div className="flex items-center gap-2">
               <SectionHeader title="Current Strategy"
-                infoIconCopy="Set when you have clarity" />
+                infoIconCopy="The 1–3 directions translating your Lifelong Dedication into action. One sentence each, action verb first. Set when you have clarity." />
               {/*
                 Score button — runs alignment scoring against the user's
                 "highest expression" (Lifelong Dedication + Role) via the

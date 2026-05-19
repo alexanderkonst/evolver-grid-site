@@ -2175,53 +2175,46 @@ form.liquid-glass input:-webkit-autofill:active {
      consistent with rest of MDLS). Stronger cast shadow.
      ──────────────────────────────────────────────────────────────── */
   .mdls-sculpted-silk {
+    /* v1.5: saturation 55-72% → 38-48% to land in the mockup's pastel
+       range. Lighter top + softer mid-tone + gentler shadow. */
     background-image:
       /* Specular highlight at upper-left — light catching the silk */
-      radial-gradient(ellipse at 28% 24%,
-        hsl(var(--mdls-silk-hue, 15) 70% 94%) 0%,
-        hsl(var(--mdls-silk-hue, 15) 65% 88%) 18%,
-        transparent 50%),
-      /* Main drape gradient — light upper-left → deeper lower-right */
+      radial-gradient(ellipse at 28% 22%,
+        hsl(var(--mdls-silk-hue, 15) 55% 94%) 0%,
+        hsl(var(--mdls-silk-hue, 15) 45% 88%) 22%,
+        transparent 52%),
+      /* Main drape gradient — light upper-left → softer lower-right */
       linear-gradient(140deg,
-        hsl(var(--mdls-silk-hue, 15) 55% 86%) 0%,
-        hsl(var(--mdls-silk-hue, 15) 62% 78%) 38%,
-        hsl(var(--mdls-silk-hue, 15) 70% 68%) 70%,
-        hsl(var(--mdls-silk-hue, 15) 72% 60%) 100%);
-    filter: drop-shadow(4px 8px 18px hsl(var(--mdls-silk-hue, 15) 50% 50% / 0.22))
-            drop-shadow(2px 4px 6px hsl(var(--mdls-silk-hue, 15) 40% 55% / 0.12));
+        hsl(var(--mdls-silk-hue, 15) 38% 86%) 0%,
+        hsl(var(--mdls-silk-hue, 15) 42% 78%) 38%,
+        hsl(var(--mdls-silk-hue, 15) 46% 68%) 70%,
+        hsl(var(--mdls-silk-hue, 15) 48% 60%) 100%);
+    filter: drop-shadow(3px 6px 14px hsl(var(--mdls-silk-hue, 15) 40% 50% / 0.18))
+            drop-shadow(1px 3px 5px hsl(var(--mdls-silk-hue, 15) 35% 55% / 0.10));
     position: relative;
   }
-  /* MDLS v1.3 (2026-05-18): blob shapes via SVG mask-image instead of
-     border-radius percentages. The percentages flattened at wider
-     aspect ratios (v1.1 mitigation didn't go far enough). SVG masks
-     keep the shape organic regardless of element dimensions. Three
-     hand-crafted blob paths, asymmetric, with mass shifted off-center
-     to read as natural-grown rather than geometric. */
+  /* MDLS v1.5 (2026-05-18): SVG mask-image silently failed across browsers
+     in screenshots — blobs stayed rectangular. Switching to clip-path
+     with url() reference to inline-SVG <clipPath> defs (clipPathUnits=
+     'objectBoundingBox' so paths scale 0-1 and work at any size).
+     The defs are rendered by <MdlsClipPathDefs /> at the top of pages
+     that use these primitives. Three asymmetric blob paths.
+
+     Also v1.5: silk saturation tuned down 55-72% → 38-48% per mockup
+     pastel range. Pushed values into the shared gradient definitions. */
   .mdls-sculpted-silk--a {
-    -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200' preserveAspectRatio='none'><path d='M 100,10 C 155,5 188,38 192,90 C 196,142 165,182 110,194 C 55,202 12,168 8,108 C 4,52 45,15 100,10 Z' fill='black'/></svg>");
-    -webkit-mask-size: 100% 100%;
-    -webkit-mask-repeat: no-repeat;
-    mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200' preserveAspectRatio='none'><path d='M 100,10 C 155,5 188,38 192,90 C 196,142 165,182 110,194 C 55,202 12,168 8,108 C 4,52 45,15 100,10 Z' fill='black'/></svg>");
-    mask-size: 100% 100%;
-    mask-repeat: no-repeat;
+    clip-path: url(#mdls-silk-blob-a);
+    -webkit-clip-path: url(#mdls-silk-blob-a);
     border-radius: 0;
   }
   .mdls-sculpted-silk--b {
-    -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200' preserveAspectRatio='none'><path d='M 96,6 C 152,10 186,52 190,108 C 194,164 152,194 92,192 C 32,190 10,148 12,96 C 14,44 40,2 96,6 Z' fill='black'/></svg>");
-    -webkit-mask-size: 100% 100%;
-    -webkit-mask-repeat: no-repeat;
-    mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200' preserveAspectRatio='none'><path d='M 96,6 C 152,10 186,52 190,108 C 194,164 152,194 92,192 C 32,190 10,148 12,96 C 14,44 40,2 96,6 Z' fill='black'/></svg>");
-    mask-size: 100% 100%;
-    mask-repeat: no-repeat;
+    clip-path: url(#mdls-silk-blob-b);
+    -webkit-clip-path: url(#mdls-silk-blob-b);
     border-radius: 0;
   }
   .mdls-sculpted-silk--c {
-    -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200' preserveAspectRatio='none'><path d='M 104,8 C 162,4 196,46 194,104 C 192,162 148,196 92,194 C 36,192 6,150 10,90 C 14,38 50,12 104,8 Z' fill='black'/></svg>");
-    -webkit-mask-size: 100% 100%;
-    -webkit-mask-repeat: no-repeat;
-    mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200' preserveAspectRatio='none'><path d='M 104,8 C 162,4 196,46 194,104 C 192,162 148,196 92,194 C 36,192 6,150 10,90 C 14,38 50,12 104,8 Z' fill='black'/></svg>");
-    mask-size: 100% 100%;
-    mask-repeat: no-repeat;
+    clip-path: url(#mdls-silk-blob-c);
+    -webkit-clip-path: url(#mdls-silk-blob-c);
     border-radius: 0;
   }
 
