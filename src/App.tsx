@@ -17,6 +17,7 @@ import { ThemeProvider } from "@/contexts/ThemeContext";
 import { SkinProvider } from "@/contexts/SkinContext";
 import SkinPreview from "./pages/SkinPreview";
 import PreviewBanner from "@/components/skin/PreviewBanner";
+import NSScopeLock from "@/components/skin/NSScopeLock";
 import MusicPlayer from "@/components/MusicPlayer";
 // Day 58+ (Sasha 2026-05-03): App-root mount for the SoundCloud
 // playlist audio engine. SoundCloudMinimalPlayer used to own its
@@ -224,6 +225,26 @@ const HolonicModulesPage = lazy(() => import("./pages/HolonicModulesPage"));
 
 const queryClient = new QueryClient();
 
+/**
+ * /ns/* white-label scope detection (2026-05-18, Sasha).
+ *
+ * Evaluated ONCE at module load from the initial URL. When the URL is
+ * under `/ns`, React Router's `basename` is set to `/ns` so the entire
+ * existing route tree resolves transparently under the prefix —
+ * `<Link to="/zone-of-genius">` becomes `/ns/zone-of-genius`,
+ * `useLocation().pathname` returns the post-strip path. Zero route
+ * duplication. The `data-skin` attribute is set synchronously here so
+ * the first paint already lands in network-school register (no Aurora
+ * flash). `<NSScopeLock />` then takes over via React state.
+ */
+const isNSScope =
+  typeof window !== "undefined" &&
+  (window.location.pathname === "/ns" || window.location.pathname.startsWith("/ns/"));
+const nsBasename = isNSScope ? "/ns" : undefined;
+if (typeof document !== "undefined" && isNSScope) {
+  document.documentElement.setAttribute("data-skin", "network-school");
+}
+
 const TitleManager = () => {
   const location = useLocation();
 
@@ -261,7 +282,8 @@ const App = () => (
         <Sonner />
         {/* AnimatedBackground removed for minimal SaaS design */}
         <CustomCursor />
-        <BrowserRouter>
+        <BrowserRouter basename={nsBasename}>
+          {isNSScope && <NSScopeLock />}
           <SiteLogo />
           <TitleManager />
           <ScrollRestoration />

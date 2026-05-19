@@ -1,4 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap');
+/* Source Serif Pro — used by the network-school skin (white-label NS demo).
+   Editorial transitional serif, close cousin of Tiempos / NS's display face.
+   Loaded only once; skin token swap activates it under [data-skin="network-school"]. */
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -531,6 +535,240 @@
     0 32px 64px -24px rgba(0, 0, 0, 0.58);
 }
 
+/* ==========================================================================
+   NETWORK-SCHOOL SKIN — white-label demo register (2026-05-18).
+   ==========================================================================
+   Editorial monochrome — Network States of the Internet aesthetic.
+   Pure black on white, transitional serif headlines (Source Serif Pro),
+   clean sans body (Inter), no glow, no gradients, no animated bg.
+   Activated by `<html data-skin="network-school">` (set by NSScopeLock
+   inside the `/ns/*` route prefix).
+   ========================================================================== */
+
+[data-skin="network-school"] {
+  /* ── Text — pure editorial black on white. */
+  --skin-text-primary: #0a0a0a;
+  --skin-text-body: rgba(10, 10, 10, 0.92);
+  --skin-text-muted: rgba(10, 10, 10, 0.62);
+  --skin-text-muted-soft: rgba(10, 10, 10, 0.48);
+
+  /* Halos flat — no glow in editorial register. */
+  --skin-text-halo-strong: none;
+  --skin-text-halo-subtle: none;
+  --skin-text-halo-soft: none;
+  --skin-text-halo-deep: none;
+
+  /* Panel washes — monochrome three-tier.
+     Pane 1: near-black rail. Pane 2: charcoal. Pane 3: pure white. */
+  --skin-panel-1-bg: rgba(10, 10, 10, 0.98);
+  --skin-panel-2-bg: rgb(28, 28, 28);
+  --skin-panel-wash: rgba(255, 255, 255, 1);
+  --skin-panel-wash-quiet: rgba(252, 252, 252, 1);
+
+  /* Ornaments — solid black, no glow. */
+  --skin-ornament-rule:  rgba(10, 10, 10, 0.15);
+  --skin-ornament-star:  #0a0a0a;
+  --skin-ornament-shadow: none;
+
+  /* Primary CTA — pure black pill, white text, minimal shadow. */
+  --skin-cta-bg: #0a0a0a;
+  --skin-cta-text: #ffffff;
+  --skin-cta-border: transparent;
+  --skin-cta-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+  --skin-cta-text-shadow: none;
+  --skin-cta-icon: #ffffff;
+  --skin-cta-icon-shadow: none;
+
+  /* Gradient accents — monochrome black (no rainbow, no metallic).
+     Held as flat gradients so consumers that apply via `background-image`
+     keep working (a solid hex isn't valid as background-image). */
+  --skin-accent-1-bg: linear-gradient(135deg, #0a0a0a 0%, #0a0a0a 100%);
+  --skin-accent-1-glow: none;
+  --skin-accent-2-bg: linear-gradient(135deg, #1c1c1c 0%, #1c1c1c 100%);
+  --skin-accent-2-glow: none;
+  --skin-accent-3-bg: linear-gradient(135deg, #2a2a2a 0%, #2a2a2a 100%);
+  --skin-accent-3-glow: none;
+
+  --skin-link-secondary: rgba(10, 10, 10, 0.72);
+
+  /* Editorial prose density. */
+  --skin-text-strong: rgba(10, 10, 10, 0.96);
+  --skin-text-faint:  rgba(10, 10, 10, 0.55);
+  --skin-text-hint:   rgba(10, 10, 10, 0.40);
+
+  /* Rules — hairline grays only. */
+  --skin-rule-strong:   rgba(10, 10, 10, 0.18);
+  --skin-rule-medium:   rgba(10, 10, 10, 0.12);
+  --skin-rule-hairline: rgba(10, 10, 10, 0.07);
+  --skin-rule-faint:    rgba(10, 10, 10, 0.04);
+
+  /* Links — editorial black with quiet underline. */
+  --skin-link-color:        #0a0a0a;
+  --skin-link-hover:        rgba(10, 10, 10, 0.65);
+  --skin-link-underline:    rgba(10, 10, 10, 0.35);
+
+  /* Cards — white surface, hairline border, minimal shadow. */
+  --skin-card-bg:       #ffffff;
+  --skin-card-border:   rgba(10, 10, 10, 0.08);
+  --skin-card-shadow:   0 1px 3px rgba(0, 0, 0, 0.04), 0 8px 24px -12px rgba(0, 0, 0, 0.08);
+
+  /* Tints — minimal gray washes (no violet, no gold). */
+  --skin-tint-violet-soft: linear-gradient(135deg, rgba(0,0,0,0.02), rgba(0,0,0,0.005));
+  --skin-tint-gold-soft:   linear-gradient(135deg, rgba(0,0,0,0.02), rgba(0,0,0,0.005));
+
+  /* Single accent — pure black, no glow. */
+  --skin-accent-gold:        #0a0a0a;
+  --skin-accent-gold-glow:   none;
+
+  /* Selected state — light gray, no color. */
+  --skin-selected-bg:     rgba(10, 10, 10, 0.06);
+  --skin-selected-border: rgba(10, 10, 10, 0.25);
+  --skin-selected-text:   #0a0a0a;
+
+  /* Form inputs — white, hairline border, black text. */
+  --skin-input-bg:      #ffffff;
+  --skin-input-border:  rgba(10, 10, 10, 0.18);
+  --skin-input-text:    #0a0a0a;
+  --skin-input-placeholder: rgba(10, 10, 10, 0.40);
+
+  /* Darkroom — pure black with white text (NS hero pattern). */
+  --skin-darkroom-bg:     rgba(10, 10, 10, 0.96);
+  --skin-darkroom-text:   rgba(255, 255, 255, 0.96);
+  --skin-darkroom-muted:  rgba(255, 255, 255, 0.72);
+  --skin-darkroom-border: rgba(255, 255, 255, 0.12);
+
+  /* Callout — flat black gradient (used by GOLD_GRADIENT helper which
+     applies via background-image; needs a gradient, not solid hex). */
+  --skin-callout-bg:     linear-gradient(135deg, #0a0a0a 0%, #0a0a0a 100%);
+  --skin-callout-glow:   none;
+}
+
+/* Font swap — NS uses Source Serif Pro for display, Inter for body. */
+[data-skin="network-school"] .font-display,
+[data-skin="network-school"] .font-serif,
+[data-skin="network-school"] h1,
+[data-skin="network-school"] h2,
+[data-skin="network-school"] h3,
+[data-skin="network-school"] h4 {
+  font-family: "Source Serif Pro", "Source Serif 4", Georgia, serif !important;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+[data-skin="network-school"] body,
+[data-skin="network-school"] .font-sans,
+[data-skin="network-school"] p,
+[data-skin="network-school"] button,
+[data-skin="network-school"] input,
+[data-skin="network-school"] textarea,
+[data-skin="network-school"] select,
+[data-skin="network-school"] label {
+  font-family: "Inter", "DM Sans", system-ui, sans-serif;
+}
+
+/* Liquid-glass effects flattened — NS is editorial, no glassmorphism. */
+[data-skin="network-school"] .liquid-glass,
+[data-skin="network-school"] .liquid-glass-strong {
+  background: #ffffff;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border: 1px solid rgba(10, 10, 10, 0.08);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 8px 24px -12px rgba(0, 0, 0, 0.08);
+}
+[data-skin="network-school"] .liquid-glass::before,
+[data-skin="network-school"] .liquid-glass-strong::before {
+  display: none;
+}
+[data-skin="network-school"] .liquid-glass-dark {
+  background: #0a0a0a;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border: 1px solid #0a0a0a;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+  color: #ffffff;
+}
+[data-skin="network-school"] .liquid-glass-dark::before {
+  display: none;
+}
+
+/* Kill the Mux HLS video background — NS is clean, no motion. */
+[data-skin="network-school"] video[autoplay][muted],
+[data-skin="network-school"] video.absolute,
+[data-skin="network-school"] [data-mux-background],
+[data-skin="network-school"] video[playsinline] {
+  display: none !important;
+}
+
+/* Logo treatment — convert the gold-glow brand mark to pure black silhouette. */
+[data-skin="network-school"] img[alt="Find Your Top Talent"] {
+  filter: brightness(0) saturate(100%) !important;
+}
+
+/* Strip residual gold/violet drop-shadows on logo wrappers. */
+[data-skin="network-school"] a[aria-label*="home"] img,
+[data-skin="network-school"] a[aria-label*="Home"] img {
+  filter: brightness(0) saturate(100%) !important;
+}
+
+/* Body background — pure white, no cream tint. */
+[data-skin="network-school"] body {
+  background: #ffffff;
+  color: #0a0a0a;
+}
+
+/* Day 75 (Sasha 2026-05-18): the Tailwind-arbitrary `bg-[#0a0a1a]` cosmic
+   page background reads as deep indigo on every shell route (App.tsx
+   loader, RequireAuth, MeGate, GameShellV2 outer wrap, GeniusQuiz,
+   ZoneOfGeniusEntry). Override to pure white under network-school so
+   the editorial register holds end-to-end without per-component refactor.
+   Catches the opacity variants (`/65`, `/80`, etc.) via attribute substring. */
+[data-skin="network-school"] [class*="bg-[#0a0a1a]"] {
+  background-color: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+[data-skin="network-school"] .bg-\[\#0a0a1a\] {
+  background-color: #ffffff !important;
+}
+
+/* Same for the cosmic loader spinner border on dark backdrops. */
+[data-skin="network-school"] .border-white\/30 {
+  border-color: rgba(10, 10, 10, 0.25) !important;
+}
+
+/* Gold "spine" right-edge accent on SpacesRail — kill the gold drop-shadow
+   that the rail applies inline (Day 48 iter 7, see SpacesRail.tsx). */
+[data-skin="network-school"] aside[role="navigation"],
+[data-skin="network-school"] [class*="liquid-glass"][class*="h-dvh"] {
+  box-shadow: none !important;
+}
+
+/* Ornament emblem (ignite-logo, gold by default) — render as flat black
+   silhouette under NS skin. Drop-shadows that the Ornament inlines also
+   get neutralized so no warm glow leaks into the editorial register. */
+[data-skin="network-school"] .ornament-spin {
+  filter: brightness(0) saturate(0) !important;
+}
+
+/* CTA pill — the primary button mounts ignite-logo as a star/emblem
+   inside it. Same brightness-zero treatment so the emblem reads white
+   inside the black pill via CSS invert. */
+[data-skin="network-school"] button img.ornament-spin,
+[data-skin="network-school"] a img.ornament-spin {
+  filter: brightness(0) invert(1) !important;
+}
+
+/* Hover/focus ring leaks — kill gold rings, glows, and tinted shadows
+   on interactive surfaces under NS. They reappear under any other
+   skin because the rules are scoped to [data-skin="network-school"]. */
+[data-skin="network-school"] [class*="ring-[#d4af37"],
+[data-skin="network-school"] [class*="ring-[#f4d472"] {
+  --tw-ring-color: rgba(10, 10, 10, 0.18) !important;
+}
+[data-skin="network-school"] [class*="shadow-[0_0_16px_-4px_rgba(244,212,114"] {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06) !important;
+}
+
 /* Definition of the design system. All colors, gradients, fonts, etc should be defined here.
 All colors MUST be HSL.
 */
@@ -706,6 +944,29 @@ All colors MUST be HSL.
     --input: 220 20% 14%;
     --ring: 45 75% 55%;
   }
+
+  /* Network-School — pure editorial monochrome. Black/white shadcn palette
+     so Cards, Inputs, Buttons, etc. auto-adapt without per-component branches.
+     Activated by `/ns/*` route prefix via NSScopeLock. */
+  [data-skin="network-school"] {
+    --background: 0 0% 100%;           /* pure white page */
+    --foreground: 0 0% 4%;             /* near-black text */
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 4%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 4%;
+    --primary: 0 0% 4%;                /* black primary */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 4%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 42%;
+    --accent: 0 0% 4%;                 /* black accent */
+    --accent-foreground: 0 0% 100%;
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 0 0% 4%;
+  }
 }
 
 /* Day 48 (Sasha): the `@media (prefers-color-scheme: dark)` block that
@@ -794,6 +1055,14 @@ All colors MUST be HSL.
     mix-blend-mode: screen;
     opacity: 0.05;
     background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.96  0 0 0 0 0.95  0 0 0 0 0.91  0 0 0 1 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  }
+  /* Network-School: editorial flat — no paper grain, no texture, no glow. */
+  [data-skin="network-school"] body::before {
+    display: none;
+  }
+  [data-skin="network-school"] ::selection {
+    background: rgba(10, 10, 10, 0.18);
+    color: #0a0a0a;
   }
 
   h1,
