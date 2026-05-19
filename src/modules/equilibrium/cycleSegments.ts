@@ -23,39 +23,86 @@ const LUNAR_ACCENT = "#a080c0"; // Lunar Violet (v1.6 palette)
 const LUNAR_LANDMARK_PHASES = new Set(["New Moon", "Full Moon"]);
 
 /**
- * Sasha's preferred visual order (2026-05-18 mockup): the bar starts at
- * FULL MOON (cycle apex / harvest) on the left, wanes through to New
- * Moon in the middle, then waxes back to Full on the right. This is the
- * natural night-to-night visual progression of how the moon shrinks and
- * grows.
+ * Sasha's preferred visual order (2026-05-18 round 2): the bar starts
+ * at WANING GIBBOUS — the phase immediately AFTER Full Moon. Reasoning
+ * (Sasha 2026-05-18): "Full Moon is still celebration happening, so
+ * it's really the closure more than it is the opening. And Waning
+ * Gibbous is the opening." This matches the start of the Holonic Will
+ * (Fire) quadrant — the seed-fire of the next intention igniting just
+ * after the visible peak.
  *
- * Internally MOON_PHASES is still ordered astronomically (New Moon = 0)
+ * Visual sequence (left → right):
+ *   0: Waning Gibbous   (start of Will — opening)
+ *   1: Last Quarter
+ *   2: Waning Crescent
+ *   3: New Moon
+ *   4: Waxing Crescent
+ *   5: First Quarter
+ *   6: Waxing Gibbous
+ *   7: Full Moon        (closure — loops back to Waning Gibbous)
+ *
+ * Internally MOON_PHASES stays astronomically ordered (New Moon = 0)
  * because cycle math uses `days from New Moon` as the origin. The
- * display rotation is purely visual — `lunarDisplayIndex()` below
- * converts the astronomical `segmentIndex` returned by `getLunarState()`
- * into the rotated display index used by the orb row.
+ * rotation is purely visual.
  *
  * Mapping (astronomical → display):
- *   New Moon (0)         → 4
- *   Waxing Crescent (1)  → 5
- *   First Quarter (2)    → 6
- *   Waxing Gibbous (3)   → 7
- *   Full Moon (4)        → 0   ← display origin
- *   Waning Gibbous (5)   → 1
- *   Last Quarter (6)     → 2
- *   Waning Crescent (7)  → 3
+ *   Waning Gibbous (5)   → 0   ← display origin
+ *   Last Quarter (6)     → 1
+ *   Waning Crescent (7)  → 2
+ *   New Moon (0)         → 3
+ *   Waxing Crescent (1)  → 4
+ *   First Quarter (2)    → 5
+ *   Waxing Gibbous (3)   → 6
+ *   Full Moon (4)        → 7
  *
- * Closed form: `displayIdx = (astronomicalIdx + 4) % 8`
+ * Closed form: `displayIdx = (astronomicalIdx + 3) % 8`
+ *
+ * Round-1 version (2026-05-18 earlier) placed Full Moon at display 0;
+ * Sasha caught this as wrong same-day. The full-moon-celebration is
+ * closure of the OLD wheel, not the opening of the NEW one.
  */
-const LUNAR_DISPLAY_TO_ASTRONOMICAL = [4, 5, 6, 7, 0, 1, 2, 3] as const;
+const LUNAR_DISPLAY_TO_ASTRONOMICAL = [5, 6, 7, 0, 1, 2, 3, 4] as const;
+
+/**
+ * Per-position liquid-glass gradient (Sasha 2026-05-18 design brief).
+ *
+ * The 8 phases progress through a natural prism-refraction rainbow —
+ * how light actually refracts in real life. Each gradient pair takes
+ * the orb's surrounding liquid-glass and lights it with that band of
+ * the spectrum, so the user reads cycle position by glance: where in
+ * the rainbow am I?
+ *
+ * Index is DISPLAY position (0 = Waning Gibbous, ... 7 = Full Moon).
+ *
+ * Brief verbatim:
+ *   1: dark ruby/terracotta → red
+ *   2: red → orange
+ *   3: orange → yellow
+ *   4: yellow → green
+ *   5: green → blue
+ *   6: blue → purple
+ *   7: purple → soft pink
+ *   8: completing the loop (pink → ruby)
+ */
+const LUNAR_LIT_GRADIENTS: { from: string; to: string }[] = [
+  { from: "#b91c4a", to: "#dc2626" }, // ruby → red
+  { from: "#dc2626", to: "#ea580c" }, // red → orange
+  { from: "#ea580c", to: "#facc15" }, // orange → yellow
+  { from: "#facc15", to: "#4ade80" }, // yellow → green
+  { from: "#4ade80", to: "#3b82f6" }, // green → blue
+  { from: "#3b82f6", to: "#a855f7" }, // blue → purple
+  { from: "#a855f7", to: "#ec4899" }, // purple → pink
+  { from: "#ec4899", to: "#b91c4a" }, // pink → ruby (loop close)
+];
 
 export const LUNAR_SEGMENTS: CycleSegmentSpec[] = LUNAR_DISPLAY_TO_ASTRONOMICAL.map(
-  (i) => {
+  (i, displayIdx) => {
     const phase = MOON_PHASES[i];
     return {
       icon: phase.symbol,
       label: phase.name,
       identityColor: LUNAR_ACCENT,
+      litGradient: LUNAR_LIT_GRADIENTS[displayIdx],
       isLandmark: LUNAR_LANDMARK_PHASES.has(phase.name),
     };
   },
@@ -63,10 +110,10 @@ export const LUNAR_SEGMENTS: CycleSegmentSpec[] = LUNAR_DISPLAY_TO_ASTRONOMICAL.
 
 /**
  * Convert a `getLunarState().segmentIndex` (astronomical, New Moon = 0)
- * into the display index used by LUNAR_SEGMENTS (Full Moon = 0).
+ * into the display index used by LUNAR_SEGMENTS (Waning Gibbous = 0).
  */
 export function lunarDisplayIndex(astronomicalIdx: number): number {
-  return (astronomicalIdx + 4) % 8;
+  return (astronomicalIdx + 3) % 8;
 }
 
 // ─── DAY-OF-WEEK (7 planets) ──────────────────────────────────

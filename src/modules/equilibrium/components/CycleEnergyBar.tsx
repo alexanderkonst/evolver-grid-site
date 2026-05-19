@@ -14,10 +14,23 @@ import { cn } from "@/lib/utils";
 export interface CycleSegmentSpec {
   /** Emoji or symbol rendered inside the orb. */
   icon: string;
-  /** Hex color used for the orb's glow when current. */
+  /** Hex color used for the orb's glow when current (fallback when no gradient). */
   identityColor: string;
   /** Accessible label for the orb (announced + tooltip). */
   label: string;
+  /**
+   * Optional per-position liquid-glass gradient (Sasha 2026-05-18 brief).
+   * When provided, the orb's liquid-glass backdrop is painted with this
+   * gradient instead of the flat identityColor. Lit-up orbs (this and
+   * all prior in display order) render full saturation; orbs AFTER
+   * `currentIndex` render in grayscale (the cycle hasn't reached them
+   * yet). Glow stays contained inside the orb — no bloom.
+   *
+   * Lunar palette progresses through the natural prism-refraction
+   * sequence: ruby → red → orange → yellow → green → blue → purple →
+   * pink, closing the loop back to ruby.
+   */
+  litGradient?: { from: string; to: string };
   /**
    * Optional — when true, the orb remains subtly lit even when not current
    * (used for cycle landmarks like Full Moon).
@@ -131,11 +144,54 @@ export const CycleEnergyBar = ({
           />
         </svg>
 
-        {/* Orbs below arc */}
+        {/* Orbs below arc.
+            Sasha 2026-05-18 design brief — per-position liquid-glass:
+            • Orbs at display index ≤ currentIndex are LIT with their
+              `litGradient` (the prism-refraction palette for lunar; flat
+              identityColor for cycles without a gradient).
+            • Orbs AFTER currentIndex are grayed — the cycle hasn't
+              reached them yet.
+            • Glow is CONTAINED inside the orb shell (inset shadows +
+              ring); no large bloom to background. */}
         <div className="-mt-3 flex w-full items-center justify-between px-1 sm:px-2">
           {segments.map((seg, i) => {
             const isCurrent = i === currentIndex;
+            const isLit = i <= currentIndex;
             const isLandmark = seg.isLandmark;
+
+            // Liquid-glass background:
+            // • lit + has gradient  → render the gradient
+            // • lit, no gradient    → glassy white (legacy look)
+            // • unlit (after cur)   → cool gray (cycle not reached)
+            const background = !isLit
+              ? "linear-gradient(135deg, rgba(180,184,196,0.45), rgba(160,165,180,0.55))"
+              : seg.litGradient
+                ? `linear-gradient(135deg, ${seg.litGradient.from}, ${seg.litGradient.to})`
+                : isCurrent
+                  ? "rgba(255,255,255,0.95)"
+                  : "rgba(255,255,255,0.65)";
+
+            // Glow contained INSIDE the orb (Sasha's brief: "light not
+            // to come out of the liquid glass"). The current orb gets
+            // an extra bright inset rim + ring; non-current lit orbs
+            // glow softly inside; unlit orbs are flat.
+            const boxShadow = isCurrent
+              ? [
+                  "inset 0 0 14px 2px rgba(255,255,255,0.55)",
+                  "inset 0 1px 0 0 rgba(255,255,255,0.9)",
+                  "0 0 0 2px rgba(255,255,255,0.85)",
+                  "0 4px 14px rgba(0,0,0,0.10)",
+                ].join(", ")
+              : isLit
+                ? [
+                    "inset 0 0 8px 1px rgba(255,255,255,0.35)",
+                    "inset 0 1px 0 0 rgba(255,255,255,0.7)",
+                    "0 2px 6px rgba(0,0,0,0.06)",
+                  ].join(", ")
+                : isLandmark
+                  ? "inset 0 1px 0 0 rgba(255,255,255,0.5), 0 1px 3px rgba(0,0,0,0.04)"
+                  : "inset 0 1px 0 0 rgba(255,255,255,0.5), 0 1px 3px rgba(0,0,0,0.04)";
+
             return (
               <div
                 key={i}
@@ -143,23 +199,31 @@ export const CycleEnergyBar = ({
                 aria-label={`${seg.label}${isCurrent ? " — current" : ""}`}
                 className={cn(
                   "relative flex items-center justify-center rounded-full",
+                  "overflow-hidden",  // glow contained
                   "transition-all duration-300",
                   "w-9 h-9 sm:w-11 sm:h-11",
                 )}
                 style={{
-                  background: isCurrent
-                    ? "rgba(255,255,255,0.95)"
-                    : "rgba(255,255,255,0.65)",
+                  background,
                   backdropFilter: "blur(8px)",
-                  border: "1px solid rgba(255,255,255,0.6)",
-                  boxShadow: isCurrent
-                    ? `0 0 24px 4px ${seg.identityColor}, inset 0 1px 0 0 rgba(255,255,255,0.8), 0 4px 12px rgba(0,0,0,0.08)`
-                    : isLandmark
-                      ? `0 0 12px 1px ${seg.identityColor}88, inset 0 1px 0 0 rgba(255,255,255,0.7), 0 2px 6px rgba(0,0,0,0.05)`
-                      : "inset 0 1px 0 0 rgba(255,255,255,0.7), 0 2px 6px rgba(0,0,0,0.05)",
+                  border: "1px solid rgba(255,255,255,0.55)",
+                  boxShadow,
                 }}
               >
-                <span className="text-sm sm:text-base leading-none select-none">
+                <span
+                  className={cn(
+                    "text-sm sm:text-base leading-none select-none",
+                    !isLit && "opacity-60",
+                  )}
+                  style={{
+                    // White text-shadow keeps the moon glyph legible on
+                    // the colored liquid-glass background, especially the
+                    // warmer (red/orange) and cooler (blue/purple) bands.
+                    textShadow: isLit
+                      ? "0 0 6px rgba(255,255,255,0.6), 0 1px 2px rgba(0,0,0,0.15)"
+                      : "0 1px 2px rgba(0,0,0,0.1)",
+                  }}
+                >
                   {seg.icon}
                 </span>
               </div>

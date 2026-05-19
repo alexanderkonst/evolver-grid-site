@@ -336,22 +336,28 @@ export interface MoonPhaseInfo {
   energy: string;
   /**
    * Holonic quadrant this phase sits inside.
-   *   "will"        Fire 🔥  → Planning + Planting     (post-celebration, seed-igniting)
-   *   "emanation"   Water 💧 → Clearing + Gathering    (dark/receiving, deepest creation)
-   *   "digestion"   Earth 🌍 → Seeing + Leading        (results appearing, body building)
-   *   "enrichment"  Air 🌬️  → Harvesting + Celebrating (clarity at max, harvest visible)
+   *   "will"        Fire 🔥  → Celebrating + Planning  (post-peak opening, seed-fire igniting)
+   *   "emanation"   Water 💧 → Planting + Clearing     (dark gestation, deepest creation)
+   *   "digestion"   Earth 🌍 → Gathering + Seeing      (resources received, results appearing)
+   *   "enrichment"  Air 🌬️  → Leading + Harvesting    (prep + visible peak clarity)
    *
-   * CORRECTED 2026-05-16 (round 3) per Sasha: Will starts at the
-   * Winter-Solstice equivalent — Last Quarter (Planning), NOT at the
-   * Full Moon. The Full Moon is the harvest moment (Autumn Equinox
-   * equivalent), which closes the OLD cycle in Enrichment. Will is the
-   * INNER fire of the seed under apparent dormancy — not the visible
-   * peak fire of harvest.
+   * REFINED 2026-05-18 (round 4) per Sasha: Will starts at WANING
+   * GIBBOUS (Celebrating), not Last Quarter (Planning). Reasoning:
+   * "Full Moon is still celebration happening, so it's really the
+   * closure more than it is the opening. And Waning Gibbous is the
+   * opening." The seed-fire of the new wheel ignites just after the
+   * visible peak (Full Moon ends Enrichment / Air); Celebrating
+   * carries forward into the new wheel as the first expression of
+   * Will (acknowledgment of the realized potential generates the
+   * propellant for what comes next).
    *
-   * Per Sasha 2026-05-16: holonic NAMES stay internal (won't confuse the
-   * user). Only the element EMOJI surfaces in the UI as a quiet umbrella
-   * above the pills. The 8-phase pill stays primary; the holonic quadrant
-   * is the umbrella for users moving from degree 2 → degree 3.
+   * Each pair stays clean: Will = Celebrating+Planning (forward-
+   * facing); Emanation = Planting+Clearing (interior); Digestion =
+   * Gathering+Seeing (receiving+recognizing); Enrichment = Leading+
+   * Harvesting (preparation+peak).
+   *
+   * Holonic NAMES stay internal. Only the element EMOJI surfaces in
+   * the UI as the umbrella above the pills.
    */
   holonicQuadrant: HolonicPhase;
   /** Ultra-concise inline guidance — one short sentence, glanceable. */
@@ -403,7 +409,7 @@ export const MOON_PHASES: MoonPhaseInfo[] = [
     start: 0,
     end: 1.85,
     energy: "Clearing · Release fear · Cry, don't complain · The how is not yours yet",
-    holonicQuadrant: "emanation",
+    holonicQuadrant: "emanation", // unchanged (still in Water)
     guidance:
       "The mind freaks out about the how — that's the resistance to release. Cry, don't complain. Don't form limiting beliefs.",
   },
@@ -416,7 +422,7 @@ export const MOON_PHASES: MoonPhaseInfo[] = [
     start: 1.85,
     end: 5.53,
     energy: "Gathering · Say yes · Take meetings · Receive resources",
-    holonicQuadrant: "emanation",
+    holonicQuadrant: "digestion", // shifted: emanation → digestion (Earth, receiving)
     guidance:
       "Say yes to whatever arrives — meetings, resources, opportunities. The how is still not yours.",
   },
@@ -428,7 +434,7 @@ export const MOON_PHASES: MoonPhaseInfo[] = [
     start: 5.53,
     end: 9.22,
     energy: "Seeing · The how reveals · Write it down · Capture before it drifts",
-    holonicQuadrant: "digestion",
+    holonicQuadrant: "digestion", // unchanged (still in Earth)
     guidance:
       "The how you couldn't see now becomes obvious. Write it down before the clarity drifts.",
   },
@@ -441,7 +447,7 @@ export const MOON_PHASES: MoonPhaseInfo[] = [
     start: 9.22,
     end: 12.91,
     energy: "Leading · Prep for harvest · Set up infrastructure · Get the help",
-    holonicQuadrant: "digestion",
+    holonicQuadrant: "enrichment", // shifted: digestion → enrichment (Air, prep for visible peak)
     guidance:
       "Prepare the system for the upcoming harvest — what tools, helpers, and storage need to be in place?",
   },
@@ -454,7 +460,7 @@ export const MOON_PHASES: MoonPhaseInfo[] = [
     start: 12.91,
     end: 16.61,
     energy: "Harvesting · Reap what's ripe · Cut · Receive the fruits of labor",
-    holonicQuadrant: "enrichment",
+    holonicQuadrant: "enrichment", // unchanged (still in Air — peak clarity, harvest visible)
     guidance:
       "Reap what's ripe. Cut what's ready. Receive the fruits of labor — both work and reception.",
   },
@@ -467,7 +473,7 @@ export const MOON_PHASES: MoonPhaseInfo[] = [
     start: 16.61,
     end: 20.30,
     energy: "Celebrating · Announce the harvest · Thank · Feel the gratitude",
-    holonicQuadrant: "enrichment",
+    holonicQuadrant: "will", // shifted: enrichment → will (Fire, the seed-fire of the new wheel ignites post-peak)
     guidance:
       "Announce the harvest. Thank what made it possible. Gratitude is the emotional fuel for the next cycle.",
   },
@@ -480,7 +486,7 @@ export const MOON_PHASES: MoonPhaseInfo[] = [
     start: 20.30,
     end: 23.99,
     energy: "Planning · The next intention surfaces · Receive it · Name it",
-    holonicQuadrant: "will",
+    holonicQuadrant: "will", // unchanged (still in Fire)
     guidance:
       "The next intention surfaces from the just-finished harvest. Notice it. Name it. Don't engineer it.",
   },
@@ -493,7 +499,7 @@ export const MOON_PHASES: MoonPhaseInfo[] = [
     start: 23.99,
     end: 29.53,
     energy: "Planting · The 1–3 strategies reveal · Write them down",
-    holonicQuadrant: "will",
+    holonicQuadrant: "emanation", // shifted: will → emanation (Water, dark gestation continues)
     guidance:
       "The 1–3 strategies that translate the intention into directions reveal themselves. Capture them as they arrive.",
   },
