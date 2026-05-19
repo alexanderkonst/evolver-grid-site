@@ -17,7 +17,18 @@ import { cn } from "@/lib/utils";
  */
 interface EquilibriumSectionCardProps {
   id?: string;
+  /**
+   * Visual weight up — used for DO NOW (heaviest, glance-anchor) and
+   * Synthesis Reading (the daily reading). Uses `liquid-glass-strong`.
+   */
   emphasized?: boolean;
+  /**
+   * Visual weight down — used for the North Star sections at the
+   * BOTTOM of ACT mode (Role, Lifelong Dedication). Smaller padding +
+   * lighter glass treatment so they ground without dominating.
+   * Phase D (Sasha 2026-05-18).
+   */
+  compact?: boolean;
   children: ReactNode;
   className?: string;
 }
@@ -25,6 +36,7 @@ interface EquilibriumSectionCardProps {
 export const EquilibriumSectionCard = ({
   id,
   emphasized,
+  compact,
   children,
   className,
 }: EquilibriumSectionCardProps) => (
@@ -32,7 +44,8 @@ export const EquilibriumSectionCard = ({
     id={id}
     className={cn(
       emphasized ? "liquid-glass-strong" : "liquid-glass",
-      "rounded-3xl p-6 sm:p-8 scroll-mt-24 transition-all duration-300",
+      compact ? "rounded-2xl p-4 sm:p-5 opacity-90" : "rounded-3xl p-6 sm:p-8",
+      "scroll-mt-24 transition-all duration-300",
       className,
     )}
   >
