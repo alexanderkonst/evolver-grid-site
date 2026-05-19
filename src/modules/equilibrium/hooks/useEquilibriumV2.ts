@@ -93,6 +93,13 @@ export interface EquilibriumV2Data {
 
   /** Returns `{ replacedOldest }` so UI can show toast when oldest was kicked. */
   promoteToDoNow: (taskId: string) => Promise<{ replacedOldest: boolean }>;
+  /**
+   * Remove a task from DOING NOW focus without completing it (Sasha
+   * 2026-05-19: "the currently focused task can only exit focus via
+   * completion — add a demote affordance"). The task stays active in
+   * Intuitive Tasks; only the focus row is dropped.
+   */
+  demoteFromDoNow: (taskId: string) => Promise<void>;
   /** Marks task done + removes from focus (transactional via eq_complete_task RPC). */
   completeTask: (taskId: string) => Promise<void>;
   /** Reverses a completed task back to active (clears done_at). */
@@ -764,6 +771,32 @@ export function useEquilibriumV2(): EquilibriumV2Data {
     [user, focus],
   );
 
+  /**
+   * Demote a task out of DOING NOW without completing it. Just deletes
+   * the equilibrium_focus row by task_id. The task stays active in
+   * Intuitive Tasks; the user can re-promote it later. Sasha 2026-05-19
+   * — added because "the currently focused task can only exit focus
+   * via completion" was a forced choice the user didn't always want.
+   */
+  const demoteFromDoNow = useCallback(
+    async (taskId: string) => {
+      if (!user) return;
+      // Optimistic: remove from focus locally first so the UI feels instant.
+      setFocus((prev) => prev.filter((f) => f.task_id !== taskId));
+
+      const res = await eqAny
+        .from("equilibrium_focus")
+        .delete()
+        .eq("user_id", user.id)
+        .eq("task_id", taskId);
+      if (res.error) {
+        console.warn("[equilibrium_v2] demote DO NOW failed; refetching", res.error);
+        void fetchAll();
+      }
+    },
+    [user, fetchAll],
+  );
+
   const uncompleteTask = useCallback(
     async (taskId: string) => {
       // Reverse a "done" task back to active. Append to end of active list
@@ -967,6 +1000,7 @@ export function useEquilibriumV2(): EquilibriumV2Data {
     deleteTask,
     reorderTasks,
     promoteToDoNow,
+    demoteFromDoNow,
     completeTask,
     uncompleteTask,
     refresh: fetchAll,

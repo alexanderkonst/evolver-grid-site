@@ -1,4 +1,4 @@
-import { Check } from "lucide-react";
+import { Check, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { EquilibriumTask } from "../types";
 
@@ -8,14 +8,19 @@ interface DoNowSectionProps {
   taskById: Record<string, EquilibriumTask | undefined>;
   loading: boolean;
   onCompleteTask: (id: string) => Promise<void> | void;
+  /**
+   * Demote a task OUT of DOING NOW without completing it (Sasha
+   * 2026-05-19). Renders an X icon next to each focused task.
+   */
+  onDemoteFromDoNow: (id: string) => Promise<void> | void;
 }
 
 /**
- * Box 11 — DO NOW.
+ * Box 11 — DOING NOW (renamed 2026-05-19 from "DO NOW").
  *
- * Active focus slots (≤3 — recommended 1). Visible warning when ≥3 used.
- * Checkbox click → completeTask() which marks done + removes from focus +
- * cascades to Box 10's done-pile via the eq_complete_task RPC.
+ * Active focus slots (≤3 — recommended 1). Two exits from focus:
+ *   • Checkbox → completeTask() (cascades to done pile)
+ *   • X icon   → demoteFromDoNow() (keeps task active, just drops focus)
  *
  * The "gentle warning at 4th" rule is enforced by the hook's promoteToDoNow
  * (replaces oldest). Visible note when ≥2 active appears here.
@@ -25,11 +30,11 @@ export const DoNowSection = ({
   taskById,
   loading,
   onCompleteTask,
+  onDemoteFromDoNow,
 }: DoNowSectionProps) => {
   if (focusedTaskIds.length === 0) {
     return (
       <p className="mt-3 rounded-md border border-dashed border-[#0a1628]/10 px-4 py-6 text-center text-sm text-[#0a1628]/85">
-        {/* Empty-state copy: TBD — Sasha to supply */}
         Promote a task from your goals — what's the one thing now?
       </p>
     );
@@ -45,7 +50,7 @@ export const DoNowSection = ({
             <li
               key={id}
               className={cn(
-                "flex items-center gap-3 rounded-xl border bg-white/80 px-3 py-3 transition",
+                "group/doing flex items-center gap-3 rounded-xl border bg-white/80 px-3 py-3 transition",
                 idx === 0
                   ? "border-emerald-300/70 shadow-[0_0_24px_rgba(74,222,128,0.18)]"
                   : "border-white/60",
@@ -57,6 +62,7 @@ export const DoNowSection = ({
                 onClick={() => onCompleteTask(id)}
                 disabled={loading}
                 className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[#0a1628]/30 bg-white transition hover:border-emerald-500 hover:bg-emerald-50"
+                title="Complete this task"
               >
                 <Check
                   size={16}
@@ -66,6 +72,21 @@ export const DoNowSection = ({
               <span className="flex-1 font-serif text-lg text-[#0a1628]">
                 {task.text}
               </span>
+              {/* Demote affordance (Sasha 2026-05-19) — pulls the task
+                  out of focus without marking it complete. Hidden until
+                  the row is hovered/focused so it doesn't clutter the
+                  primary action; always visible on touch (no hover
+                  state). */}
+              <button
+                type="button"
+                aria-label="Remove from DOING NOW (keep task active)"
+                onClick={() => onDemoteFromDoNow(id)}
+                disabled={loading}
+                className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-[#0a1628]/45 transition opacity-0 group-hover/doing:opacity-100 focus:opacity-100 hover:bg-[#0a1628]/5 hover:text-[#0a1628]/80 sm:opacity-0 max-sm:opacity-60"
+                title="Remove from DOING NOW (keep task active)"
+              >
+                <X size={14} />
+              </button>
             </li>
           );
         })}

@@ -132,11 +132,30 @@ const PLANET_COLORS: Record<string, string> = {
   Sun: "#ea580c", // fiery gold
 };
 
+/**
+ * Day-of-week orbs (Monday-first per Sasha 2026-05-19). Each orb gets
+ * a 3-letter caption (Mon/Tue/.../Sun) shown UNDER the planet emoji —
+ * "the day name is needed for grok-ability, even with planet emojis."
+ *
+ * PLANETARY_DAYS is now Monday-first, so iterating it in order yields
+ * the correct visual sequence Mon→Sun.
+ */
+const SHORT_DAY_NAMES: Record<string, string> = {
+  Monday: "Mon",
+  Tuesday: "Tue",
+  Wednesday: "Wed",
+  Thursday: "Thu",
+  Friday: "Fri",
+  Saturday: "Sat",
+  Sunday: "Sun",
+};
+
 export const DAY_OF_WEEK_SEGMENTS: CycleSegmentSpec[] = PLANETARY_DAYS.map(
   (d) => ({
     icon: d.emoji,
     label: `${d.name} — ${d.planet}`,
     identityColor: PLANET_COLORS[d.planet] ?? "#94a3b8",
+    caption: SHORT_DAY_NAMES[d.name] ?? d.name.slice(0, 3),
   }),
 );
 

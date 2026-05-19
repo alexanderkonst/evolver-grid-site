@@ -119,25 +119,21 @@ export const CycleEnergyBar = ({
 }: CycleEnergyBarProps) => {
   const gradId = `eq-arc-grad-${useId().replace(/:/g, "")}`;
 
-  // Sasha 2026-05-19: bar fill is anchored to the CURRENT ORB position
-  // (display order), not raw cycle progress. The fill reaches the
-  // CENTER of the current orb so users read "how many phases have been
-  // activated" by glance. Sub-phase progress (within current orb) is
-  // optionally added — capped at the orb's right edge so the fill
-  // never spills past the active orb.
-  const segmentCount = segments.length;
+  // Sasha 2026-05-19: bar fill is ANCHORED to the current orb's
+  // display-order position, not raw cycle progress. Reading it: "how
+  // many phases have been activated" — N orbs lit = fill reaches the
+  // Nth orb's center. Phases are unevenly weighted in real time (e.g.
+  // New Moon is short, Waning Crescent is long), so trying to interpolate
+  // sub-phase progress through `progress` desyncs the bar from the orbs.
+  // Anchoring to orb-center keeps the visual gestalt honest: orbs ARE
+  // the units of progress, the bar simply shows how many you've crossed.
+  const segmentCount = Math.max(1, segments.length);
   const safeIndex = Math.max(0, Math.min(segmentCount - 1, currentIndex));
-  const orbCenter = (safeIndex + 0.5) / segmentCount; // 0-1 along the path
-  const halfSlot = 0.5 / segmentCount;
-  // Add up to ±halfSlot of sub-phase progress (computed from caller's
-  // `progress`) so the fill creeps toward the next orb across days, but
-  // never crosses the current orb's right edge.
-  const subPhaseProgress = Math.max(
-    -halfSlot,
-    Math.min(halfSlot, (progress % (1 / segmentCount)) - halfSlot),
-  );
-  const fillPosition = Math.max(0, Math.min(1, orbCenter + subPhaseProgress * 0.9));
+  const fillPosition = (safeIndex + 0.5) / segmentCount;
   const dashLength = fillPosition * 100;
+  // `progress` retained for future use (transitional sub-phase pulse);
+  // suppress unused-var warning.
+  void progress;
 
   return (
     <div className={cn("flex flex-col items-center w-full", className)}>

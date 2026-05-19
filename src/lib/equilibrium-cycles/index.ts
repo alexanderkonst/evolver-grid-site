@@ -613,18 +613,24 @@ export interface PlanetaryDayInfo {
   description: string;
 }
 
-// Ported from v1.x. Voice in `energy`/`description` is Sasha's existing v1.x copy.
+/**
+ * Planetary days, Monday-first (Sasha 2026-05-19: "days of week start
+ * with Sunday, should start with Monday"). Internal `dayOfWeek` field
+ * still carries the JS Date.getDay() value (0=Sun, 6=Sat) so cycle math
+ * can look up the right day from a Date — but the array order itself
+ * is the display order Mon→Sun.
+ *
+ * Emoji updates (Sasha 2026-05-19):
+ *   • Thursday Jupiter: ✨ → 🦉 (owl reads as Expansion & Wisdom, where
+ *     "Jupiter's light" was unclear — Sasha called this out as misleading).
+ *   • Saturday Saturn: 🪐 → ⛰️ (mountain reads as Structure & Grounding
+ *     cleanly; a ringed planet is the planet itself, not its energy).
+ *
+ * `shortName` is the 3-letter caption shown UNDER each orb in the bar
+ * (Sasha 2026-05-19: "show the day name — even with planet emojis, the
+ * name is needed for grok-ability").
+ */
 export const PLANETARY_DAYS: PlanetaryDayInfo[] = [
-  {
-    dayOfWeek: 0,
-    name: "Sunday",
-    planet: "Sun",
-    symbol: "☉",
-    emoji: "☀️",
-    energy: "Illumination & Celebration",
-    intelligence: "Spiritual (SQ)",
-    description: "Vision, purpose, creative self-expression. Celebrate what you've built.",
-  },
   {
     dayOfWeek: 1,
     name: "Monday",
@@ -660,7 +666,7 @@ export const PLANETARY_DAYS: PlanetaryDayInfo[] = [
     name: "Thursday",
     planet: "Jupiter",
     symbol: "♃",
-    emoji: "✨",
+    emoji: "🦉",
     energy: "Expansion & Wisdom",
     intelligence: "Vision-Logic",
     description: "Big-picture thinking, teaching, strategic planning. Expand horizons.",
@@ -680,12 +686,45 @@ export const PLANETARY_DAYS: PlanetaryDayInfo[] = [
     name: "Saturday",
     planet: "Saturn",
     symbol: "♄",
-    emoji: "🪐",
+    emoji: "⛰️",
     energy: "Structure & Grounding",
     intelligence: "Moral & Logical",
     description: "Discipline, organizing, completing. Review the week, ground the gains.",
   },
+  {
+    dayOfWeek: 0,
+    name: "Sunday",
+    planet: "Sun",
+    symbol: "☉",
+    emoji: "☀️",
+    energy: "Illumination & Celebration",
+    intelligence: "Spiritual (SQ)",
+    description: "Vision, purpose, creative self-expression. Celebrate what you've built.",
+  },
 ];
+
+/**
+ * Look up a PlanetaryDayInfo by JS dayOfWeek (0=Sun, 6=Sat). Use this
+ * everywhere code needs to translate `Date.getDay()` into an entry —
+ * the PLANETARY_DAYS array order is now display-order (Mon-first), not
+ * `getDay()`-order, so direct indexing breaks.
+ */
+export function getPlanetaryDayByJsDow(jsDow: number): PlanetaryDayInfo {
+  return (
+    PLANETARY_DAYS.find((d) => d.dayOfWeek === jsDow) ??
+    PLANETARY_DAYS[0]
+  );
+}
+
+/**
+ * Convert a JS Date.getDay() value (0=Sun, 6=Sat) to the Monday-first
+ * display index (0=Mon, 6=Sun). The Equilibrium watch reads cycle
+ * position as "how many phases activated," which requires Monday-first
+ * ordering to match Sasha's holonic model (Mon=Plan starts the week).
+ */
+export function jsDowToMondayIndex(jsDow: number): number {
+  return jsDow === 0 ? 6 : jsDow - 1;
+}
 
 export interface DayOfWeekState extends CycleSegmentState<string> {
   day: PlanetaryDayInfo;
@@ -702,34 +741,38 @@ export interface DayOfWeekState extends CycleSegmentState<string> {
  */
 export function getDayOfWeekState(now: number): DayOfWeekState {
   const d = new Date(now);
-  const dow = d.getDay();
-  const day = PLANETARY_DAYS[dow];
+  const jsDow = d.getDay();
+  const day = getPlanetaryDayByJsDow(jsDow);
+
+  // Monday-first index: Mon=0 ... Sun=6. Drives segmentIndex into
+  // PLANETARY_DAYS (now Monday-first).
+  const mondayBased = jsDowToMondayIndex(jsDow);
 
   // Week-progress: Monday = 0, Sunday = ~1.0.
-  const mondayBased = dow === 0 ? 6 : dow - 1;
   const weekProgress =
     (mondayBased * 1440 + d.getHours() * 60 + d.getMinutes()) / (7 * 1440);
 
   // Holonic mapping (Mon=Plan, Tue=Build, Wed=Communicate, Thu-Sun=Integrate).
   let holonicPhase: HolonicPhaseInfo;
-  if (dow === 1) holonicPhase = HOLONIC_PHASES[0];
-  else if (dow === 2) holonicPhase = HOLONIC_PHASES[1];
-  else if (dow === 3) holonicPhase = HOLONIC_PHASES[2];
+  if (jsDow === 1) holonicPhase = HOLONIC_PHASES[0];
+  else if (jsDow === 2) holonicPhase = HOLONIC_PHASES[1];
+  else if (jsDow === 3) holonicPhase = HOLONIC_PHASES[2];
   else holonicPhase = HOLONIC_PHASES[3];
 
-  // Prev / next day-of-week (wrap Sun → Sat / Mon).
-  const prevDow = (dow + 6) % 7;
-  const nextDow = (dow + 1) % 7;
+  // Prev / next via Monday-first wrap. PLANETARY_DAYS is Monday-first
+  // so we can index it directly.
+  const prevMondayIdx = (mondayBased + 6) % 7;
+  const nextMondayIdx = (mondayBased + 1) % 7;
 
   return {
     day,
     weekProgress,
     progress: weekProgress,
-    segmentIndex: dow,
+    segmentIndex: mondayBased,
     segmentCount: 7,
-    prevLabel: PLANETARY_DAYS[prevDow].energy,
-    currentLabel: PLANETARY_DAYS[dow].energy,
-    nextLabel: PLANETARY_DAYS[nextDow].energy,
+    prevLabel: PLANETARY_DAYS[prevMondayIdx].energy,
+    currentLabel: PLANETARY_DAYS[mondayBased].energy,
+    nextLabel: PLANETARY_DAYS[nextMondayIdx].energy,
     holonicPhase,
   };
 }
