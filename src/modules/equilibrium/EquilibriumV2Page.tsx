@@ -300,109 +300,33 @@ export const EquilibriumV2Page = () => {
           </EquilibriumSectionCard>
         )}
 
-        {/* ════════════ ACT MODE ════════════════════════════════════ */}
+        {/* ════════════ ACT MODE ════════════════════════════════════
+          New order (Sasha 2026-05-18 Phase A — IA flip):
+            DO NOW → Intuitive Tasks → Workstreams → Current Strategy
+            → Role → Lifelong Dedication
+          The user opens ACT for "what's the move now?" — so DO NOW is
+          the first thing they see. Identity anchors (Role + Lifelong
+          Dedication) are present but at the bottom: they ground the
+          action without dominating the screen.
+        */}
 
-        {/* Lifelong Dedication — North Star (Sasha 2026-05-16 round 6:
-            "Mission" renamed to "Lifelong Dedication" in Equilibrium UI
-            only. Backend identifiers stay `mission_*` for cross-platform
-            engineering consistency. Purpose = being; Dedication = doing
-            at life scale — the verb-form of being. Spec → Spine §11.) */}
+        {/* DO NOW — the chosen action (always rendered first in ACT) */}
         {!isAttune && (
           <EquilibriumSectionCard
-            id={SECTION_IDS.mission}
+            id={SECTION_IDS.doNow}
+            emphasized
           >
-            <SectionHeader
-              title="Lifelong Dedication"
-              infoIconCopy="Your lifelong dedication. What you keep doing with your life-energy — the chosen direction your action keeps taking, at life scale."
-            />
-            <MissionSection
-              missionDisplay={eq.missionDisplay}
+            <SectionHeader title="DO NOW" />
+            <DoNowSection
+              focusedTaskIds={eq.focusedTaskIds}
+              taskById={taskById}
               loading={eq.loading}
-              onSetOverride={eq.setMissionOverride}
+              onCompleteTask={eq.completeTask}
             />
           </EquilibriumSectionCard>
         )}
 
-        {/* Role — North Star */}
-        {!isAttune && (
-          <EquilibriumSectionCard
-            id={SECTION_IDS.role}
-          >
-            <SectionHeader title="Role" />
-            <RoleSection
-              roleDisplay={eq.roleDisplay}
-              loading={eq.loading}
-              onSetOverride={eq.setRoleOverride}
-            />
-          </EquilibriumSectionCard>
-        )}
-
-        {/* Current Strategy */}
-        {!isAttune && (
-          <EquilibriumSectionCard
-            id={SECTION_IDS.strategies}
-          >
-            <div className="flex items-center gap-2">
-              <SectionHeader title="Current Strategy"
-                infoIconCopy="Set when you have clarity" />
-              {/*
-                Score button — runs alignment scoring against the user's
-                "highest expression" (Lifelong Dedication + Role) via the
-                score-equilibrium-strategies edge function. Disabled if
-                there are no filled strategies OR if neither identity
-                anchor is set (scoring needs at least one). Sasha 2026-05-17.
-              */}
-              <button
-                type="button"
-                onClick={() => void eq.scoreStrategies()}
-                disabled={
-                  eq.scoringStrategies ||
-                  eq.strategies.length === 0 ||
-                  (!eq.missionDisplay && !eq.roleDisplay)
-                }
-                title={
-                  eq.strategies.length === 0
-                    ? "Add a strategy first"
-                    : !eq.missionDisplay && !eq.roleDisplay
-                      ? "Set your Lifelong Dedication or Role first"
-                      : "Score each strategy 0–100 on alignment with your Lifelong Dedication + Role"
-                }
-                className="ml-auto rounded-full bg-[#0a1628] px-3 py-1.5 text-xs font-semibold uppercase tracking-wider text-white transition hover:bg-[#0a1628]/85 disabled:cursor-not-allowed disabled:opacity-40"
-              >
-                {eq.scoringStrategies ? "Scoring…" : "Score alignment"}
-              </button>
-            </div>
-            <StrategiesSection
-              strategies={eq.strategies}
-              loading={eq.loading}
-              onUpsert={eq.upsertStrategy}
-              onReorder={eq.reorderStrategies}
-            />
-          </EquilibriumSectionCard>
-        )}
-
-        {/* Workstreams */}
-        {!isAttune && (
-          <EquilibriumSectionCard
-            id={SECTION_IDS.workstreams}
-          >
-            <SectionHeader title="Workstreams" />
-            <WorkstreamsSection
-              workstreams={eq.workstreams}
-              archivedWorkstreams={eq.archivedWorkstreams}
-              activeId={eq.activeWorkstreamId}
-              loading={eq.loading}
-              onSelect={eq.setActiveWorkstreamId}
-              onAdd={eq.addWorkstream}
-              onRename={eq.renameWorkstream}
-              onDelete={eq.deleteWorkstream}
-              onRestore={eq.restoreWorkstream}
-              onReorder={eq.reorderWorkstreams}
-            />
-          </EquilibriumSectionCard>
-        )}
-
-        {/* Intuitive Tasks */}
+        {/* Intuitive Tasks — tasks under the active workstream */}
         {!isAttune && (
           <EquilibriumSectionCard
             id={SECTION_IDS.goals}
@@ -428,18 +352,105 @@ export const EquilibriumV2Page = () => {
           </EquilibriumSectionCard>
         )}
 
-        {/* DO NOW */}
+        {/* Workstreams */}
         {!isAttune && (
           <EquilibriumSectionCard
-            id={SECTION_IDS.doNow}
-            emphasized
+            id={SECTION_IDS.workstreams}
           >
-            <SectionHeader title="DO NOW" />
-            <DoNowSection
-              focusedTaskIds={eq.focusedTaskIds}
-              taskById={taskById}
+            <SectionHeader title="Workstreams" />
+            <WorkstreamsSection
+              workstreams={eq.workstreams}
+              archivedWorkstreams={eq.archivedWorkstreams}
+              activeId={eq.activeWorkstreamId}
               loading={eq.loading}
-              onCompleteTask={eq.completeTask}
+              onSelect={eq.setActiveWorkstreamId}
+              onAdd={eq.addWorkstream}
+              onRename={eq.renameWorkstream}
+              onDelete={eq.deleteWorkstream}
+              onRestore={eq.restoreWorkstream}
+              onReorder={eq.reorderWorkstreams}
+            />
+          </EquilibriumSectionCard>
+        )}
+
+        {/* Current Strategy */}
+        {!isAttune && (
+          <EquilibriumSectionCard
+            id={SECTION_IDS.strategies}
+          >
+            <div className="flex items-center gap-2">
+              <SectionHeader title="Current Strategy"
+                infoIconCopy="Set when you have clarity" />
+              {/*
+                Score button — runs alignment scoring against the user's
+                "highest expression" (Lifelong Dedication + Role) via the
+                score-equilibrium-strategies edge function. Disabled if
+                there are no filled strategies OR if neither identity
+                anchor is set (scoring needs at least one).
+                Phase D restyle (2026-05-18): glass-pill, lighter visual
+                weight so it doesn't compete with the section title.
+              */}
+              <button
+                type="button"
+                onClick={() => void eq.scoreStrategies()}
+                disabled={
+                  eq.scoringStrategies ||
+                  eq.strategies.length === 0 ||
+                  (!eq.missionDisplay && !eq.roleDisplay)
+                }
+                title={
+                  eq.strategies.length === 0
+                    ? "Add a strategy first"
+                    : !eq.missionDisplay && !eq.roleDisplay
+                      ? "Set your Lifelong Dedication or Role first"
+                      : "Score each strategy 0–100 on alignment with your Lifelong Dedication + Role"
+                }
+                className="ml-auto rounded-full border border-[#0a1628]/15 bg-white/60 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-wider text-[#0a1628]/85 backdrop-blur-sm transition hover:bg-white/85 hover:text-[#0a1628] disabled:cursor-not-allowed disabled:opacity-40"
+              >
+                {eq.scoringStrategies ? "Scoring…" : "Score alignment"}
+              </button>
+            </div>
+            <StrategiesSection
+              strategies={eq.strategies}
+              loading={eq.loading}
+              onUpsert={eq.upsertStrategy}
+              onReorder={eq.reorderStrategies}
+            />
+          </EquilibriumSectionCard>
+        )}
+
+        {/* Role — North Star (compact, end-of-ACT) */}
+        {!isAttune && (
+          <EquilibriumSectionCard
+            id={SECTION_IDS.role}
+            compact
+          >
+            <SectionHeader title="Role" />
+            <RoleSection
+              roleDisplay={eq.roleDisplay}
+              loading={eq.loading}
+              onSetOverride={eq.setRoleOverride}
+            />
+          </EquilibriumSectionCard>
+        )}
+
+        {/* Lifelong Dedication — North Star (compact, end-of-ACT)
+            "Mission" renamed to "Lifelong Dedication" in Equilibrium UI
+            only (backend stays mission_*). Purpose = being; Dedication =
+            doing at life scale — the verb-form of being. Spec → Spine §11. */}
+        {!isAttune && (
+          <EquilibriumSectionCard
+            id={SECTION_IDS.mission}
+            compact
+          >
+            <SectionHeader
+              title="Lifelong Dedication"
+              infoIconCopy="ONE sentence starting with 'I'. Verb-form, concrete, life-scale. Example: 'I turn fog into frameworks people can act on right away.'"
+            />
+            <MissionSection
+              missionDisplay={eq.missionDisplay}
+              loading={eq.loading}
+              onSetOverride={eq.setMissionOverride}
             />
           </EquilibriumSectionCard>
         )}

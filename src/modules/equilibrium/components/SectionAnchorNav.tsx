@@ -27,16 +27,18 @@ const ATTUNE_ANCHORS: { id: string; label: string }[] = [
   { id: SECTION_IDS.dayOfWeek, label: "Week" },
 ];
 
-// ACT mode shows: Lifelong Dedication, Role, Strategy, Workstreams,
-// Tasks, DO NOW. "Dedication" anchor covers the North Star block
-// (Lifelong Dedication + Role at top). Pill kept short for the
-// floating nav; full form "Lifelong Dedication" lives in the section
-// header itself.
+// ACT mode shows (Phase A reorder 2026-05-18): DO NOW first, then
+// Intuitive Tasks, Workstreams, Strategy, then the North Stars
+// (Role + Lifelong Dedication) grouped as "Self" at the bottom.
+// Anchor order mirrors the new render order so the floating-nav reads
+// like the user's natural attention path: Now → Tasks → Streams →
+// Strategy → Self.
 const ACT_ANCHORS: { id: string; label: string }[] = [
-  { id: SECTION_IDS.mission, label: "Dedication" },
-  { id: SECTION_IDS.strategies, label: "Strategy" },
-  { id: SECTION_IDS.workstreams, label: "Streams" },
   { id: SECTION_IDS.doNow, label: "Now" },
+  { id: SECTION_IDS.goals, label: "Tasks" },
+  { id: SECTION_IDS.workstreams, label: "Streams" },
+  { id: SECTION_IDS.strategies, label: "Strategy" },
+  { id: SECTION_IDS.mission, label: "Self" },
 ];
 
 interface SectionAnchorNavProps {
