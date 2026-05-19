@@ -2106,6 +2106,37 @@ form.liquid-glass input:-webkit-autofill:active {
       10px 30px 68px -20px rgba(10, 18, 34, 0.16);
   }
 
+  /* v1.6 (2026-05-18): TRANSLUCENT variant — for cards that sit over
+     an atmospheric backdrop (e.g., sunset video on Equilibrium). The
+     opaque matte-polymer blocked the video; the translucent variant
+     lets warmth wrap INTO the card while still reading as matte-polymer
+     (not liquid-glass — the substrate is cream-tinted, not white).
+     Pairs with the existing `eq-text-halo` rule on Equilibrium for
+     legibility over varied video brightness. */
+  .mdls-matte-polymer--translucent {
+    background-color: hsla(38, 38%, 96%, 0.62);
+    background-image:
+      /* grain still present but lighter for translucency clarity */
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='4' height='4'><circle cx='1' cy='1' r='0.5' fill='%23000' fill-opacity='0.025'/></svg>");
+    background-size: 4px 4px;
+    backdrop-filter: blur(18px) saturate(165%);
+    -webkit-backdrop-filter: blur(18px) saturate(165%);
+    border: 0.5px solid rgba(255, 255, 255, 0.42);
+    box-shadow:
+      inset 1px 1px 0 0 rgba(255, 255, 255, 0.55),
+      inset 0 -1px 0 0 rgba(10, 18, 34, 0.05),
+      4px 6px 16px -3px rgba(10, 18, 34, 0.08),
+      8px 24px 48px -16px rgba(10, 18, 34, 0.14);
+  }
+  .mdls-matte-polymer--translucent.mdls-matte-polymer--emphasized {
+    background-color: hsla(38, 42%, 97%, 0.72);
+    box-shadow:
+      inset 1px 1px 0 0 rgba(255, 255, 255, 0.75),
+      inset 0 -1px 0 0 rgba(10, 18, 34, 0.06),
+      6px 8px 20px -3px rgba(10, 18, 34, 0.12),
+      10px 30px 60px -20px rgba(10, 18, 34, 0.18);
+  }
+
   /* ──────────────────────────────────────────────────────────────────
      §4.1 AURORA-GLASS-ORB — luminous-cosmic centerpiece.
      Color enters from within (Principle 1). The form is round.
@@ -2511,6 +2542,18 @@ form.liquid-glass input:-webkit-autofill:active {
   }
   .mdls-toggle-glass-dual--dark {
     background: rgba(20, 28, 44, 0.85);
+  }
+  /* v1.6: translucent matte-polymer mobile fallback — drop the
+     backdrop-blur (GPU tile-memory expensive) and step up bg opacity
+     to compensate. Card still reads as matte-cream, just slightly
+     more opaque on touch devices. */
+  .mdls-matte-polymer--translucent {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background-color: hsla(38, 38%, 96%, 0.82);
+  }
+  .mdls-matte-polymer--translucent.mdls-matte-polymer--emphasized {
+    background-color: hsla(38, 42%, 97%, 0.88);
   }
 }
 
