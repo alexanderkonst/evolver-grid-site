@@ -501,6 +501,111 @@ Examples:
 
 ---
 
+## Visual Design Brief — Cycle Bars (locked 2026-05-18)
+
+> Sasha shared a long AI design conversation 2026-05-18 with explicit
+> specifications for the lunar and solar cycle bars. **Decoded and
+> committed here so it doesn't get re-decoded next round.**
+>
+> Core intent (verbatim spirit): *"I want the person to glance at it
+> and understand the reading."* Radically simple. Geometry teaches
+> itself. No "AI-generated pretty UI" — sacred technology / consciousness
+> OS / luxury EV dashboard aesthetic.
+
+### Lunar bar — locked design intent
+
+1. **Glance-readable infographic.** Look once → know where you are.
+2. **Rainbow as cycle position.** Real prism-refraction colors (ruby →
+   red → orange → yellow → green → blue → purple → pink, closing back
+   to ruby), in this exact progression. Not arbitrary palette.
+3. **Grayed continuation after current.** The unreached portion of
+   the cycle is muted — the lit part shows where you've been + where
+   you are.
+4. **8 moons, photographic appearance.** Gray celestial body, lit
+   part = yellowish (sun reflection — same yellow across all moons
+   because one sun), unlit part = dark gray. The glyphs **literally
+   show how the moon looks in the sky** — NOT emoji.
+5. **Curved bar; moons follow the curvature** (along the rainbow arc).
+6. **Per-moon liquid-glass gradient.** Each orb's surrounding liquid-
+   glass is lit by its position's gradient pair:
+
+   | Display position | Phase | Gradient |
+   |---|---|---|
+   | 0 | Waning Gibbous (Celebrating) | dark ruby/terracotta → red |
+   | 1 | Last Quarter (Planning)      | red → orange |
+   | 2 | Waning Crescent (Planting)   | orange → yellow |
+   | 3 | New Moon (Clearing)          | yellow → green |
+   | 4 | Waxing Crescent (Gathering)  | green → blue |
+   | 5 | First Quarter (Seeing)       | blue → purple |
+   | 6 | Waxing Gibbous (Leading)     | purple → pink |
+   | 7 | Full Moon (Harvesting)       | pink → ruby (loops back) |
+
+7. **Glow CONTAINED inside the liquid glass.** No bloom into the
+   surrounding background. The light is held by the orb shell.
+8. **Pill stack below: vertical, no "previous/current/next" labels.**
+   Just the phase title (2–4 words). Liquid-glass treatment.
+9. **Style stance.** Don't multiply elements. The geometry should
+   teach itself. Calm, spacious, minimal. Apple liquid glass + soft
+   neumorphism + cinematic realism.
+
+### Solar bar — locked design intent
+
+1. **Thick translucent liquid-glass reserve tube** spanning the upper
+   half of the composition.
+2. **Semantic direction.** LEFT = depleted, RIGHT = full reserve. The
+   reserve drains **right → left** as the year progresses (so when
+   `1/4 LEFT`, only the leftmost quarter holds remaining solar energy).
+3. **Glow contained inside the tube** — minimal bloom.
+4. **Four equal structural quarters**, separated by three subtle
+   fused-glass marks embedded INTO the tube. NOT chart-ticks or
+   neon dividers — softly refractive, structural, integrated.
+5. **Labels above the arc, left → right**:
+   `1/8 LEFT · 1/4 LEFT · 1/2 LEFT · 3/4 LEFT`.
+   The `1/8 LEFT` is a floating reserve indicator near the depleted
+   far-left zone — no separator mark for it.
+6. **Center element: luminous liquid-glass sphere** with realistic
+   sun texture, suspended below the tube. **Subordinate** to the tube
+   (less bright; the tube is the primary reading).
+7. **Bottom: stacked translucent selector card** — prev faded / current
+   active / next faded. Vertical (no horizontal pill row). Subtle
+   spectral liquid-glass diffusion.
+8. **Overall feel.** Premium energetic interface. Sacred technology.
+   Consciousness OS. Luxury EV dashboard. Contained life-force
+   reserve. Minimal but emotionally alive.
+
+### Current implementation gap (as of 2026-05-18)
+
+**Lunar (shipped in this round):**
+- ✅ Rotation: Waning Gibbous at position 0
+- ✅ Per-position rainbow gradient on lit orbs
+- ✅ Lit-before-current; grayed-after pattern
+- ✅ Glow contained inside orb (inset shadows + ring, no large bloom)
+- ✅ Vertical pill stack, no prev/current/next labels
+- ⏳ DEFERRED: real photographic moon glyphs (need assets — current
+  uses emoji 🌑🌒🌓...)
+- ⏳ DEFERRED: orbs following the arc curvature exactly (currently
+  positioned in a flat row beneath the arc)
+
+**Solar (current state vs brief):**
+- ✅ Curved liquid-glass tube
+- ✅ LEFT-depletion semantic
+- ✅ Four structural quarter marks
+- ✅ Fractional `LEFT` labels above
+- ✅ Subordinate central sun sphere
+- ✅ Vertical pill stack
+- Minor refinements possible (fuse separators more, soften typography
+  contrast 5–10%) — not blocking.
+
+### What this section locks
+
+The decoded specs above are the source of truth for cycle-bar visuals.
+Any future iteration on these bars should test against this brief
+before adding/removing visual elements. The phrase the user types into
+an AI to generate a new mockup is captured verbatim in commit history;
+this section is the maintained operational reference.
+
+---
+
 ## Source Material — Mega-Prompt of 2026-05-15
 
 > [!IMPORTANT]
