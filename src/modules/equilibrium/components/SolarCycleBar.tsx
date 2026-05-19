@@ -159,7 +159,10 @@ export const SolarCycleBar = ({
             );
           })}
 
-          {/* Fractional "X LEFT" labels */}
+          {/* Fractional checkpoint labels — just the fraction (Sasha
+              2026-05-19: the parent section is already named "Yearly
+              Solar Energy Left", so the inline "LEFT" word repeats and
+              clutters the curve). */}
           {FRACTIONAL_LABELS.map(({ t, label }) => {
             const pos = pointOnArc(t);
             return (
@@ -182,17 +185,6 @@ export const SolarCycleBar = ({
                   style={{ fontFamily: "ui-serif, Georgia, serif" }}
                 >
                   {label}
-                </text>
-                <text
-                  x={pos.x + 14}
-                  y={pos.y - 36}
-                  textAnchor="start"
-                  fontSize="8"
-                  letterSpacing="1"
-                  fill="rgba(120,90,40,0.55)"
-                  style={{ fontFamily: "ui-sans-serif, system-ui, sans-serif" }}
-                >
-                  LEFT
                 </text>
               </g>
             );

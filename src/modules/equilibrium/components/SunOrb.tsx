@@ -32,13 +32,20 @@ export const SunOrb = ({ size = 64, className }: SunOrbProps) => {
         filter: "drop-shadow(0 0 14px rgba(251, 146, 60, 0.35))",
       }}
     >
-      {/* Inner glass-rim highlight + photo */}
+      {/* Inner glass-rim highlight + photo.
+          Sasha 2026-05-19: the source JPG has thin black letterbox bars
+          baked at top + bottom (telescope-photo aspect ratio); when the
+          orb cropped at `backgroundSize: cover` you could see slivers of
+          the letterbox at the orb's top/bottom edge. Zooming the
+          background to 138% center-positions only the sun's disk inside
+          the circular mask, hiding the bars outside the visible orb. */}
       <div
         className="absolute inset-0 rounded-full overflow-hidden"
         style={{
           backgroundImage: `url("${SUN_PHOTO_URL}")`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
+          backgroundSize: "138% auto",
+          backgroundPosition: "center center",
+          backgroundRepeat: "no-repeat",
           // Inner shadow gives the sphere subtle volumetric depth.
           boxShadow: [
             // Top-left specular sheen (glass capsule effect)
