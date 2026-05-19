@@ -1,5 +1,6 @@
 import { useId, type ReactNode } from "react";
 import { cn } from "@/lib/utils";
+import { MoonOrb } from "./MoonOrb";
 
 /**
  * Canonical visual for v2 cycle sections (boxes 4-7):
@@ -12,7 +13,7 @@ import { cn } from "@/lib/utils";
  */
 
 export interface CycleSegmentSpec {
-  /** Emoji or symbol rendered inside the orb. */
+  /** Emoji or symbol rendered inside the orb (fallback when no custom renderer). */
   icon: string;
   /** Hex color used for the orb's glow when current (fallback when no gradient). */
   identityColor: string;
@@ -31,6 +32,13 @@ export interface CycleSegmentSpec {
    * pink, closing the loop back to ruby.
    */
   litGradient?: { from: string; to: string };
+  /**
+   * For lunar: astronomical phase index (0-7) so the orb renders the
+   * REAL photographic moon with phase-correct illumination via
+   * `<MoonOrb>`. When undefined, the orb falls back to the emoji glyph
+   * stored in `icon` (used by zodiac, day-of-week, etc.).
+   */
+  moonPhaseIndex?: number;
   /**
    * Optional — when true, the orb remains subtly lit even when not current
    * (used for cycle landmarks like Full Moon).
@@ -210,22 +218,32 @@ export const CycleEnergyBar = ({
                   boxShadow,
                 }}
               >
-                <span
-                  className={cn(
-                    "text-sm sm:text-base leading-none select-none",
-                    !isLit && "opacity-60",
-                  )}
-                  style={{
-                    // White text-shadow keeps the moon glyph legible on
-                    // the colored liquid-glass background, especially the
-                    // warmer (red/orange) and cooler (blue/purple) bands.
-                    textShadow: isLit
-                      ? "0 0 6px rgba(255,255,255,0.6), 0 1px 2px rgba(0,0,0,0.15)"
-                      : "0 1px 2px rgba(0,0,0,0.1)",
-                  }}
-                >
-                  {seg.icon}
-                </span>
+                {seg.moonPhaseIndex !== undefined ? (
+                  // Real photographic moon with phase-correct illumination
+                  // (Sasha 2026-05-18 brief — replaces the emoji glyph).
+                  <div
+                    className={cn(
+                      "flex items-center justify-center",
+                      !isLit && "opacity-50",
+                    )}
+                  >
+                    <MoonOrb phaseIndex={seg.moonPhaseIndex} size={36} />
+                  </div>
+                ) : (
+                  <span
+                    className={cn(
+                      "text-sm sm:text-base leading-none select-none",
+                      !isLit && "opacity-60",
+                    )}
+                    style={{
+                      textShadow: isLit
+                        ? "0 0 6px rgba(255,255,255,0.6), 0 1px 2px rgba(0,0,0,0.15)"
+                        : "0 1px 2px rgba(0,0,0,0.1)",
+                    }}
+                  >
+                    {seg.icon}
+                  </span>
+                )}
               </div>
             );
           })}
