@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
+import { cn } from "@/lib/utils";
 import { InfoPopover } from "./components/InfoPopover";
 import { BirthdayPrompt } from "./components/BirthdayPrompt";
 import { useMdlsFlag } from "./useMdlsFlag";
@@ -133,7 +134,7 @@ export const EquilibriumV2Page = () => {
   }, [eq.tasksByWorkstream]);
 
   return (
-    <main className="mx-auto w-full max-w-2xl px-4 py-8 sm:px-6 sm:py-12">
+    <main className="eq-v2-page mx-auto w-full max-w-2xl px-4 py-8 sm:px-6 sm:py-12">
       <BirthdayPrompt
         birthday={eq.birthday}
         loading={eq.loading}
@@ -150,11 +151,7 @@ export const EquilibriumV2Page = () => {
             subtitle quieter underneath.
         */}
         <h1
-          className="eq-text-halo font-serif text-4xl font-semibold tracking-tight text-[#0a1628] sm:text-5xl"
-          style={{
-            textShadow:
-              "0 0 18px rgba(255,255,255,0.55), 0 0 6px rgba(255,255,255,0.4)",
-          }}
+          className="eq-equilibrium-title eq-text-halo font-serif text-4xl font-semibold tracking-tight text-[#0a1628] sm:text-5xl"
         >
           Equilibrium
         </h1>
@@ -170,20 +167,41 @@ export const EquilibriumV2Page = () => {
 
       {/*
         Two modes, binary toggle. Spine §11 (round 5 clean binary):
-          ATTUNE = feminine, energetic reading — Synthesis · Solar ·
-            Zodiac · Lunar+MoonFocus · Day-of-Week
+          ATTUNE = feminine, energetic reading — Synthesis → Lunar →
+            Day-of-Week → Solar → Zodiac
           ACT    = masculine, working tool with North Stars on top —
-            Mission · Role · Strategy · Workstreams · Tasks · DO NOW
+            Mission · Role · Strategy · Workstreams · Tasks · DOING NOW
         Sequence is in the user's hands: attune first, then flip to act.
+
+        Sasha 2026-05-19 — ATTUNE order locked: Synthesis (one-glance
+        read) → Current Lunar Energy → Current Day-of-Week Energy →
+        Yearly Solar Energy Left → Current Zodiac Energy. Names lead
+        with "Current" so each box reads as a present-tense reading
+        rather than a generic cycle label.
       */}
-      <div className="flex flex-col gap-6">
+      <div
+        className={cn(
+          "flex flex-col gap-6 transition-opacity duration-300",
+          // Animation on ATTUNE↔ACT mode toggle (Sasha 2026-05-19).
+          // Mode toggles re-key the wrapper so children remount with a
+          // fresh fade-in. Keeps the cross-fade light — no layout shift.
+        )}
+        key={mode}
+        style={{
+          animation: "eq-mode-fade 320ms ease-out",
+        }}
+      >
         {/* ════════════ ATTUNE MODE ═════════════════════════════════ */}
 
-        {/* Synthesis Reading — the energetic reading */}
+        {/* Synthesis Reading — the energetic reading. Emphasized as the
+            one-thing-you-need-to-know glance read (Sasha 2026-05-19).
+            Gets an extra `eq-synthesis-emphasis` outer halo + accent
+            ring on top of the `emphasized` (liquid-glass-strong) base. */}
         {isAttune && (
           <EquilibriumSectionCard
             id={SECTION_IDS.synthesis}
             emphasized
+            className="eq-synthesis-emphasis"
           >
             <SectionHeader title="Synthesis Reading" />
             <SynthesisCard
@@ -199,16 +217,77 @@ export const EquilibriumV2Page = () => {
           </EquilibriumSectionCard>
         )}
 
-        {/* Solar Energy */}
+        {/* Current Lunar Energy + Moon Focus */}
+        {isAttune && (
+          <EquilibriumSectionCard
+            id={SECTION_IDS.lunar}
+          >
+            <SectionHeader title="Current Lunar Energy" />
+            <div className="mt-4">
+              <CycleEnergyBar
+                segments={LUNAR_SEGMENTS}
+                // Rotated display: Waning Gibbous = position 0 (Sasha
+                // 2026-05-18 round 2). Cycle math returns astronomical
+                // index from New Moon = 0; lunarDisplayIndex shifts by
+                // +3 mod 8.
+                currentIndex={lunarDisplayIndex(cycles.lunar.segmentIndex)}
+                progress={cycles.lunar.progress}
+                prevLabel={cycles.lunar.prevLabel}
+                currentLabel={cycles.lunar.currentLabel}
+                nextLabel={cycles.lunar.nextLabel}
+                // Element emoji moves INTO the active pill, preceding
+                // the text (Sasha 2026-05-19). Pass it as `activePillEmoji`
+                // — the eyebrow umbrella is retired since the element
+                // now lives where the user reads the current state.
+                activePillEmoji={cycles.lunar.holonicPhase.elementEmoji}
+                activePillEmojiTooltip={`${cycles.lunar.holonicPhase.element} — the umbrella for ${cycles.lunar.phase.name}`}
+                activePillSubLabel={formatPhaseEndsAt(
+                  cycles.lunar.phaseEndMs,
+                  cycles.lunar.daysRemainingInPhase,
+                )}
+                // Repetition between pill and `glanceableGuidance` was
+                // resolved by collapsing the guidance into the pill
+                // (Sasha 2026-05-19: "decide one home for the content").
+                // No more separate guidance line below the pill stack.
+              />
+            </div>
+            <MoonFocusInput
+              value={eq.state?.moon_focus_text ?? null}
+              loading={eq.loading}
+              onSave={eq.setMoonFocus}
+            />
+          </EquilibriumSectionCard>
+        )}
+
+        {/* Current Day-of-Week Energy */}
+        {isAttune && (
+          <EquilibriumSectionCard
+            id={SECTION_IDS.dayOfWeek}
+          >
+            <SectionHeader title="Current Day-of-Week Energy" />
+            <div className="mt-4">
+              <CycleEnergyBar
+                segments={DAY_OF_WEEK_SEGMENTS}
+                currentIndex={cycles.dayOfWeek.segmentIndex}
+                progress={cycles.dayOfWeek.progress}
+                prevLabel={cycles.dayOfWeek.prevLabel}
+                currentLabel={cycles.dayOfWeek.currentLabel}
+                nextLabel={cycles.dayOfWeek.nextLabel}
+              />
+            </div>
+          </EquilibriumSectionCard>
+        )}
+
+        {/* Yearly Solar Energy Left */}
         {isAttune && (
           <EquilibriumSectionCard
             id={SECTION_IDS.solar}
           >
-            <SectionHeader title="Solar Energy" />
+            <SectionHeader title="Yearly Solar Energy Left" />
             <div className="mt-4">
               {/*
                 Solar uses its own visual (4-segment tube + golden orb + fractional
-                "LEFT" checkpoints) — fundamentally different from the orb-arc used
+                checkpoints) — fundamentally different from the orb-arc used
                 by lunar/zodiac/week. Pill labels are birthday-anchored phases per
                 philosophical spine §4 — NOT calendar seasons.
               */}
@@ -229,12 +308,12 @@ export const EquilibriumV2Page = () => {
           </EquilibriumSectionCard>
         )}
 
-        {/* Zodiac Energy */}
+        {/* Current Zodiac Energy */}
         {isAttune && (
           <EquilibriumSectionCard
             id={SECTION_IDS.zodiac}
           >
-            <SectionHeader title="Zodiac Energy" />
+            <SectionHeader title="Current Zodiac Energy" />
             <div className="mt-4">
               <CycleEnergyBar
                 segments={ZODIAC_SEGMENTS}
@@ -243,59 +322,6 @@ export const EquilibriumV2Page = () => {
                 prevLabel={cycles.zodiac.prevLabel}
                 currentLabel={cycles.zodiac.currentLabel}
                 nextLabel={cycles.zodiac.nextLabel}
-              />
-            </div>
-          </EquilibriumSectionCard>
-        )}
-
-        {/* Lunar Energy + Moon Focus */}
-        {isAttune && (
-          <EquilibriumSectionCard
-            id={SECTION_IDS.lunar}
-          >
-            <SectionHeader title="Lunar Energy" />
-            <div className="mt-4">
-              <CycleEnergyBar
-                segments={LUNAR_SEGMENTS}
-                // Rotated display: Full Moon = position 0 (Sasha 2026-05-18
-                // mockup). Cycle math returns astronomical index from New
-                // Moon = 0; lunarDisplayIndex shifts by +4 mod 8.
-                currentIndex={lunarDisplayIndex(cycles.lunar.segmentIndex)}
-                progress={cycles.lunar.progress}
-                prevLabel={cycles.lunar.prevLabel}
-                currentLabel={cycles.lunar.currentLabel}
-                nextLabel={cycles.lunar.nextLabel}
-                eyebrow={cycles.lunar.holonicPhase.elementEmoji}
-                eyebrowTooltip={`${cycles.lunar.holonicPhase.element} — the umbrella for ${cycles.lunar.phase.name}`}
-                activePillSubLabel={formatPhaseEndsAt(
-                  cycles.lunar.phaseEndMs,
-                  cycles.lunar.daysRemainingInPhase,
-                )}
-                glanceableGuidance={cycles.lunar.phase.guidance}
-              />
-            </div>
-            <MoonFocusInput
-              value={eq.state?.moon_focus_text ?? null}
-              loading={eq.loading}
-              onSave={eq.setMoonFocus}
-            />
-          </EquilibriumSectionCard>
-        )}
-
-        {/* Day-of-Week Energy */}
-        {isAttune && (
-          <EquilibriumSectionCard
-            id={SECTION_IDS.dayOfWeek}
-          >
-            <SectionHeader title="Day-of-Week Energy" />
-            <div className="mt-4">
-              <CycleEnergyBar
-                segments={DAY_OF_WEEK_SEGMENTS}
-                currentIndex={cycles.dayOfWeek.segmentIndex}
-                progress={cycles.dayOfWeek.progress}
-                prevLabel={cycles.dayOfWeek.prevLabel}
-                currentLabel={cycles.dayOfWeek.currentLabel}
-                nextLabel={cycles.dayOfWeek.nextLabel}
               />
             </div>
           </EquilibriumSectionCard>
@@ -365,18 +391,21 @@ export const EquilibriumV2Page = () => {
           <EquilibriumSectionCard
             id={SECTION_IDS.strategies}
           >
-            <div className="flex items-center gap-2">
-              <SectionHeader title="Current Strategy"
-                infoIconCopy="The 1–3 directions translating your Lifelong Dedication into action. One sentence each, action verb first. Set when you have clarity." />
-              {/*
-                Score button — runs alignment scoring against the user's
-                "highest expression" (Lifelong Dedication + Role) via the
-                score-equilibrium-strategies edge function. Disabled if
-                there are no filled strategies OR if neither identity
-                anchor is set (scoring needs at least one).
-                Phase D restyle (2026-05-18): glass-pill, lighter visual
-                weight so it doesn't compete with the section title.
-              */}
+            {/* Centered title (Sasha 2026-05-19: all box titles centered). */}
+            <SectionHeader
+              title="Current Strategy"
+              infoIconCopy="The 1–3 directions translating your Lifelong Dedication into action. One sentence each, action verb first. Set when you have clarity."
+            />
+            {/*
+              Score button — runs alignment scoring against the user's
+              "highest expression" (Lifelong Dedication + Role) via the
+              score-equilibrium-strategies edge function. Disabled if
+              there are no filled strategies OR if neither identity
+              anchor is set. Now sits on its own line BELOW the
+              centered title so the title stays centered (Sasha
+              2026-05-19), right-aligned.
+            */}
+            <div className="mt-2 flex justify-end">
               <button
                 type="button"
                 onClick={() => void eq.scoreStrategies()}
@@ -392,7 +421,7 @@ export const EquilibriumV2Page = () => {
                       ? "Set your Lifelong Dedication or Role first"
                       : "Score each strategy 0–100 on alignment with your Lifelong Dedication + Role"
                 }
-                className="ml-auto rounded-full border border-[#0a1628]/15 bg-white/60 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-wider text-[#0a1628]/85 backdrop-blur-sm transition hover:bg-white/85 hover:text-[#0a1628] disabled:cursor-not-allowed disabled:opacity-40"
+                className="rounded-full border border-[#0a1628]/15 bg-white/60 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-wider text-[#0a1628]/85 backdrop-blur-sm transition hover:bg-white/85 hover:text-[#0a1628] disabled:cursor-not-allowed disabled:opacity-40"
               >
                 {eq.scoringStrategies ? "Scoring…" : "Score alignment"}
               </button>
@@ -453,18 +482,24 @@ export const EquilibriumV2Page = () => {
           </EquilibriumSectionCard>
         )}
 
-        {/* DO NOW — last section, full controls */}
+        {/* DOING NOW — last section, full controls. Sasha 2026-05-19:
+            renamed from "DO NOW" to "DOING NOW" everywhere it describes
+            the CURRENT state (the banner heading + this section). The
+            per-task promote button on Intuitive Tasks rows keeps "DO NOW"
+            because that button is the COMMAND to start (you press it to
+            activate). State vs. command — different verbs. */}
         {!isAttune && (
           <EquilibriumSectionCard
             id={SECTION_IDS.doNow}
             emphasized
           >
-            <SectionHeader title="DO NOW" />
+            <SectionHeader title="DOING NOW" />
             <DoNowSection
               focusedTaskIds={eq.focusedTaskIds}
               taskById={taskById}
               loading={eq.loading}
               onCompleteTask={eq.completeTask}
+              onDemoteFromDoNow={eq.demoteFromDoNow}
             />
           </EquilibriumSectionCard>
         )}
@@ -475,14 +510,34 @@ export const EquilibriumV2Page = () => {
 
 // ─── Helpers ───────────────────────────────────────────────────
 
+/**
+ * SectionHeader — centered box title.
+ *
+ * Sasha 2026-05-19: "Center all box titles" — Lunar, Solar, Zodiac,
+ * Day-of-Week, Synthesis, DOING NOW, and the ACT-mode boxes. The
+ * info-icon, when present, floats next to the centered title without
+ * pushing it off-axis.
+ *
+ * The Strategy box has its own header (title + Score-alignment button)
+ * that consumes this component but extends it inline; it stays
+ * left-aligned by necessity (button on the right). Everything else
+ * uses this centered default.
+ */
 const SectionHeader = ({
   title,
   infoIconCopy,
+  align = "center",
 }: {
   title: string;
   infoIconCopy?: string;
+  align?: "center" | "left";
 }) => (
-  <div className="flex items-center gap-2">
+  <div
+    className={cn(
+      "flex items-center gap-2",
+      align === "center" ? "justify-center" : "",
+    )}
+  >
     <h2 className="eq-text-halo font-serif text-xl font-semibold text-[#0a1628] sm:text-2xl">{title}</h2>
     {infoIconCopy && <InfoPopover content={infoIconCopy} label={infoIconCopy} />}
   </div>

@@ -4,12 +4,32 @@ import { MoonOrb } from "./MoonOrb";
 
 /**
  * Canonical visual for v2 cycle sections (boxes 4-7):
- *   • Rainbow arc (red→violet) — fill % = cycle progress %
+ *   • Rainbow arc (red→violet) — fill % = display-aligned position
  *   • Row of orbs underneath (variable count: 8 lunar / 7 week / 12 zodiac / 8 solar)
  *   • Current orb glows in its own identity color (NOT arc-position color)
  *   • Three-pill stack below: prev / current / next, current elevated and rainbow-glowed
  *
- * See docs/specs/equilibrium/equilibrium_v2_spec.md §3.1 (visual reference + canonical behavior).
+ * Sasha 2026-05-19 — major refactor against the design wall:
+ *   1. **Progress bar fill is DISPLAY-aligned** (not raw cycle progress).
+ *      The fill reaches the center of the current orb, so users read
+ *      "how many phases have been activated" by glance. For cycles like
+ *      lunar that rotate the display order vs. astronomical order, the
+ *      fill matches the visual orb sequence, not the underlying math.
+ *   2. **Active pill carries the FULL active state**: emoji + phase name
+ *      + description, in one place. The separate "glanceable guidance"
+ *      line below the pill stack is retired — repetition with the pill
+ *      created cognitive friction (Sasha: "decide one home for the
+ *      content").
+ *   3. **Phase NAME is visually distinct from description**: bold serif
+ *      for the name; lighter weight for the description; `·` between
+ *      them. So "Gathering" reads as the identity, the verb list reads
+ *      as the unpack.
+ *   4. **Prev / next pills dimmer + further back**: lighter text + lower
+ *      opacity so the active pill dominates the read.
+ *   5. **Orbs no longer overlap the arc**: vertical spacing bumped so
+ *      the arc lives above the orbs cleanly.
+ *
+ * See docs/specs/equilibrium/equilibrium_v2_spec.md §3.1.
  */
 
 export interface CycleSegmentSpec {
@@ -44,39 +64,43 @@ export interface CycleSegmentSpec {
    * (used for cycle landmarks like Full Moon).
    */
   isLandmark?: boolean;
+  /**
+   * Optional caption rendered under each orb. Used for day-of-week to
+   * show "Mon", "Tue", ... so the planet emoji isn't asked to do the
+   * whole job (Sasha 2026-05-19: "show the day name — even with planet
+   * emojis, the name is needed for grok-ability").
+   */
+  caption?: string;
 }
 
 export interface CycleEnergyBarProps {
   segments: CycleSegmentSpec[];
-  /** Zero-based index of the segment currently active. */
+  /** Zero-based index of the segment currently active (display order). */
   currentIndex: number;
-  /** Progress through the full cycle, 0–1. Controls the rainbow arc fill. */
+  /**
+   * Progress through the full cycle, 0–1. Used only as a fallback for
+   * sub-phase progress; the bar fill itself is now ANCHORED to the
+   * current orb's display position (Sasha 2026-05-19: "lunar progress
+   * bar must correspond to how many phases have been activated").
+   */
   progress: number;
-  /** Pill labels — `current` is elevated and rainbow-glowed. */
+  /** Pill labels — `current` is elevated and glowed. */
   prevLabel: string;
   currentLabel: string;
   nextLabel: string;
   /**
-   * Optional small umbrella eyebrow above the pill stack. For lunar
-   * (Sasha 2026-05-16) this is the ELEMENT EMOJI only — the holonic
-   * quadrant name (Will/Emanation/Digestion/Enrichment) stays internal.
-   * Rendered larger than the other meta-labels since it's meant to read
-   * as a signal, not a caption.
+   * Optional emoji rendered INSIDE the active pill, preceding the title
+   * (Sasha 2026-05-19: element emoji belongs IN the middle pill so it
+   * reads with the active state, not as a detached eyebrow).
    */
-  eyebrow?: string;
-  /** Optional native tooltip text shown on hover/long-press of the eyebrow. */
-  eyebrowTooltip?: string;
+  activePillEmoji?: string;
+  /** Optional tooltip on the active-pill emoji. */
+  activePillEmojiTooltip?: string;
   /**
    * Optional small line directly UNDER the active pill, e.g.
    * "ends Tue May 19 · 2.3 days remaining". Turns a vibe into a window.
    */
   activePillSubLabel?: string;
-  /**
-   * Optional ultra-concise inline guidance below the pill stack — one
-   * short sentence (10–18 words). Watches are glanced; this is the
-   * middle path between abstract pills and a paragraph.
-   */
-  glanceableGuidance?: string;
   /** Override container className. */
   className?: string;
 }
@@ -88,20 +112,39 @@ export const CycleEnergyBar = ({
   prevLabel,
   currentLabel,
   nextLabel,
-  eyebrow,
-  eyebrowTooltip,
+  activePillEmoji,
+  activePillEmojiTooltip,
   activePillSubLabel,
-  glanceableGuidance,
   className,
 }: CycleEnergyBarProps) => {
   const gradId = `eq-arc-grad-${useId().replace(/:/g, "")}`;
-  const clampedProgress = Math.max(0, Math.min(1, progress));
-  const dashLength = clampedProgress * 100;
+
+  // Sasha 2026-05-19: bar fill is anchored to the CURRENT ORB position
+  // (display order), not raw cycle progress. The fill reaches the
+  // CENTER of the current orb so users read "how many phases have been
+  // activated" by glance. Sub-phase progress (within current orb) is
+  // optionally added — capped at the orb's right edge so the fill
+  // never spills past the active orb.
+  const segmentCount = segments.length;
+  const safeIndex = Math.max(0, Math.min(segmentCount - 1, currentIndex));
+  const orbCenter = (safeIndex + 0.5) / segmentCount; // 0-1 along the path
+  const halfSlot = 0.5 / segmentCount;
+  // Add up to ±halfSlot of sub-phase progress (computed from caller's
+  // `progress`) so the fill creeps toward the next orb across days, but
+  // never crosses the current orb's right edge.
+  const subPhaseProgress = Math.max(
+    -halfSlot,
+    Math.min(halfSlot, (progress % (1 / segmentCount)) - halfSlot),
+  );
+  const fillPosition = Math.max(0, Math.min(1, orbCenter + subPhaseProgress * 0.9));
+  const dashLength = fillPosition * 100;
 
   return (
     <div className={cn("flex flex-col items-center w-full", className)}>
-      {/* Arc on top */}
-      <div className="relative w-full max-w-md">
+      {/* Arc on top — extra bottom padding (mb-3) so orbs sit clean below
+          the arc with no overlap (Sasha 2026-05-19: "zodiac bar overlaps
+          with blobs"). */}
+      <div className="relative w-full max-w-md mb-2">
         <svg
           viewBox="0 0 200 50"
           preserveAspectRatio="none"
@@ -130,16 +173,17 @@ export const CycleEnergyBar = ({
 
           {/* Background arc (clear glass track) */}
           <path
-            d="M 10 45 Q 100 -5 190 45"
+            d="M 10 40 Q 100 -10 190 40"
             fill="none"
             stroke="rgba(255,255,255,0.35)"
             strokeWidth="5"
             strokeLinecap="round"
           />
 
-          {/* Filled portion — rainbow gradient revealed by stroke-dasharray */}
+          {/* Filled portion — rainbow gradient. dashLength now anchored to
+              the current orb's display position (see fillPosition above). */}
           <path
-            d="M 10 45 Q 100 -5 190 45"
+            d="M 10 40 Q 100 -10 190 40"
             fill="none"
             stroke={`url(#${gradId})`}
             strokeWidth="5"
@@ -148,20 +192,14 @@ export const CycleEnergyBar = ({
             strokeDasharray={`${dashLength} 100`}
             style={{
               filter: "drop-shadow(0 0 6px rgba(255,255,255,0.4))",
+              transition: "stroke-dasharray 400ms ease-out",
             }}
           />
         </svg>
 
-        {/* Orbs below arc.
-            Sasha 2026-05-18 design brief — per-position liquid-glass:
-            • Orbs at display index ≤ currentIndex are LIT with their
-              `litGradient` (the prism-refraction palette for lunar; flat
-              identityColor for cycles without a gradient).
-            • Orbs AFTER currentIndex are grayed — the cycle hasn't
-              reached them yet.
-            • Glow is CONTAINED inside the orb shell (inset shadows +
-              ring); no large bloom to background. */}
-        <div className="-mt-3 flex w-full items-center justify-between px-1 sm:px-2">
+        {/* Orbs below arc. Spaced ABOVE the orbs so the arc and orbs read
+            as two distinct layers (Sasha 2026-05-19: no overlap). */}
+        <div className="mt-1 flex w-full items-end justify-between px-1 sm:px-2">
           {segments.map((seg, i) => {
             const isCurrent = i === currentIndex;
             const isLit = i <= currentIndex;
@@ -179,10 +217,6 @@ export const CycleEnergyBar = ({
                   ? "rgba(255,255,255,0.95)"
                   : "rgba(255,255,255,0.65)";
 
-            // Glow contained INSIDE the orb (Sasha's brief: "light not
-            // to come out of the liquid glass"). The current orb gets
-            // an extra bright inset rim + ring; non-current lit orbs
-            // glow softly inside; unlit orbs are flat.
             const boxShadow = isCurrent
               ? [
                   "inset 0 0 14px 2px rgba(255,255,255,0.55)",
@@ -201,47 +235,63 @@ export const CycleEnergyBar = ({
                   : "inset 0 1px 0 0 rgba(255,255,255,0.5), 0 1px 3px rgba(0,0,0,0.04)";
 
             return (
-              <div
-                key={i}
-                role="img"
-                aria-label={`${seg.label}${isCurrent ? " — current" : ""}`}
-                className={cn(
-                  "relative flex items-center justify-center rounded-full",
-                  "overflow-hidden",  // glow contained
-                  "transition-all duration-300",
-                  "w-9 h-9 sm:w-11 sm:h-11",
-                )}
-                style={{
-                  background,
-                  backdropFilter: "blur(8px)",
-                  border: "1px solid rgba(255,255,255,0.55)",
-                  boxShadow,
-                }}
-              >
-                {seg.moonPhaseIndex !== undefined ? (
-                  // Real photographic moon with phase-correct illumination
-                  // (Sasha 2026-05-18 brief — replaces the emoji glyph).
-                  <div
-                    className={cn(
-                      "flex items-center justify-center",
-                      !isLit && "opacity-50",
-                    )}
-                  >
-                    <MoonOrb phaseIndex={seg.moonPhaseIndex} size={36} />
-                  </div>
-                ) : (
+              <div key={i} className="flex flex-col items-center gap-1">
+                <div
+                  role="img"
+                  aria-label={`${seg.label}${isCurrent ? " — current" : ""}`}
+                  className={cn(
+                    "relative flex items-center justify-center rounded-full",
+                    "overflow-hidden",  // glow contained
+                    "transition-all duration-300",
+                    "w-9 h-9 sm:w-11 sm:h-11",
+                  )}
+                  style={{
+                    background,
+                    backdropFilter: "blur(8px)",
+                    border: "1px solid rgba(255,255,255,0.55)",
+                    boxShadow,
+                  }}
+                >
+                  {seg.moonPhaseIndex !== undefined ? (
+                    // Real photographic moon with phase-correct illumination
+                    // (Sasha 2026-05-18 brief — replaces the emoji glyph).
+                    <div
+                      className={cn(
+                        "flex items-center justify-center",
+                        !isLit && "opacity-50",
+                      )}
+                    >
+                      <MoonOrb phaseIndex={seg.moonPhaseIndex} size={36} />
+                    </div>
+                  ) : (
+                    <span
+                      className={cn(
+                        "text-sm sm:text-base leading-none select-none",
+                        !isLit && "opacity-60",
+                      )}
+                      style={{
+                        textShadow: isLit
+                          ? "0 0 6px rgba(255,255,255,0.6), 0 1px 2px rgba(0,0,0,0.15)"
+                          : "0 1px 2px rgba(0,0,0,0.1)",
+                      }}
+                    >
+                      {seg.icon}
+                    </span>
+                  )}
+                </div>
+                {/* Caption under each orb (day-of-week shows "Mon"/"Tue"/... here). */}
+                {seg.caption && (
                   <span
                     className={cn(
-                      "text-sm sm:text-base leading-none select-none",
-                      !isLit && "opacity-60",
+                      "eq-text-halo select-none text-[10px] font-semibold uppercase tracking-wider transition",
+                      isCurrent
+                        ? "text-[#0a1628]"
+                        : isLit
+                          ? "text-[#0a1628]/70"
+                          : "text-[#0a1628]/40",
                     )}
-                    style={{
-                      textShadow: isLit
-                        ? "0 0 6px rgba(255,255,255,0.6), 0 1px 2px rgba(0,0,0,0.15)"
-                        : "0 1px 2px rgba(0,0,0,0.1)",
-                    }}
                   >
-                    {seg.icon}
+                    {seg.caption}
                   </span>
                 )}
               </div>
@@ -250,28 +300,18 @@ export const CycleEnergyBar = ({
         </div>
       </div>
 
-      {/* Eyebrow — element-emoji umbrella (lunar: Will/Emanation/Digestion/
-          Enrichment surface as 🔥/💧/🌍/🌬️). Holonic NAMES stay internal. */}
-      {eyebrow && (
-        <div
-          className="mt-5 select-none text-2xl leading-none opacity-80"
-          title={eyebrowTooltip}
-          aria-label={eyebrowTooltip ?? eyebrow}
-          role="img"
-        >
-          {eyebrow}
-        </div>
-      )}
-
-      {/* Pill stack: prev (dim) / current (elevated) / next (dim) */}
-      <div
-        className={cn(
-          "flex w-full max-w-xs flex-col items-stretch gap-2",
-          eyebrow ? "mt-1" : "mt-6",
-        )}
-      >
+      {/* Pill stack: prev (dim) / active (loud) / next (dim).
+          Sasha 2026-05-19: prev/next pulled WAY back so the active pill
+          owns the visual hierarchy. Active pill carries emoji + name +
+          description in one place (no separate guidance line beneath). */}
+      <div className="mt-6 flex w-full max-w-sm flex-col items-stretch gap-2">
         <DimPill>{prevLabel}</DimPill>
-        <ActivePill>{currentLabel}</ActivePill>
+        <ActivePill
+          emoji={activePillEmoji}
+          emojiTooltip={activePillEmojiTooltip}
+        >
+          {currentLabel}
+        </ActivePill>
 
         {/* Time-to-next-phase sub-label (sits flush under active pill) */}
         {activePillSubLabel && (
@@ -282,44 +322,92 @@ export const CycleEnergyBar = ({
 
         <DimPill>{nextLabel}</DimPill>
       </div>
-
-      {/* Glanceable inline guidance — one short sentence, plain voice */}
-      {glanceableGuidance && (
-        <p className="eq-text-halo mt-4 max-w-md px-3 text-center text-sm italic text-[#0a1628]/90">
-          {glanceableGuidance}
-        </p>
-      )}
     </div>
   );
 };
 
+/**
+ * Dimmer prev/next pill (Sasha 2026-05-19: "make prev/next text more
+ * opaque so the middle stands out"). Background quieter, text quieter,
+ * border lighter — they recede into the visual background.
+ */
 const DimPill = ({ children }: { children: ReactNode }) => (
   <div
-    className="eq-text-halo rounded-full px-6 py-2 text-center text-sm font-medium text-[#0a1628]/95"
+    className="eq-text-halo rounded-full px-6 py-1.5 text-center text-xs font-medium text-[#0a1628]/55"
     style={{
-      background: "rgba(255,255,255,0.65)",
-      backdropFilter: "blur(6px)",
-      border: "1px solid rgba(255,255,255,0.5)",
+      background: "rgba(255,255,255,0.30)",
+      backdropFilter: "blur(4px)",
+      border: "1px solid rgba(255,255,255,0.30)",
     }}
   >
     {children}
   </div>
 );
 
-const ActivePill = ({ children }: { children: ReactNode }) => (
-  <div
-    className="eq-text-halo rounded-full px-6 py-3 text-center text-base font-semibold text-[#0a1628]"
-    style={{
-      background:
-        "linear-gradient(135deg, rgba(252,231,197,0.92) 0%, rgba(212,212,255,0.92) 50%, rgba(224,197,252,0.92) 100%)",
-      backdropFilter: "blur(8px)",
-      border: "1px solid rgba(255,255,255,0.7)",
-      boxShadow:
-        "0 0 20px rgba(212,180,255,0.45), inset 0 1px 0 0 rgba(255,255,255,0.85), 0 4px 14px rgba(0,0,0,0.06)",
-    }}
-  >
-    {children}
-  </div>
-);
+/**
+ * Active pill — the loud one. Carries the FULL current state in one
+ * place: optional element emoji, phase NAME (bold), description (lighter).
+ *
+ * Sasha 2026-05-19 voice rules:
+ *   • Format: `[emoji] NAME · description`
+ *   • NAME bold serif larger; description smaller + softer
+ *   • Splits on the FIRST " · " when the children is a string (lunar
+ *     case). When no separator, the whole label renders as the title
+ *     (zodiac/day-of-week case where labels are 2-word energies like
+ *     "Curiosity & Connection").
+ */
+const ActivePill = ({
+  children,
+  emoji,
+  emojiTooltip,
+}: {
+  children: ReactNode;
+  emoji?: string;
+  emojiTooltip?: string;
+}) => {
+  // Split label into name + description when a " · " separator exists.
+  let name: ReactNode = children;
+  let description: ReactNode = null;
+  if (typeof children === "string" && children.includes(" · ")) {
+    const idx = children.indexOf(" · ");
+    name = children.slice(0, idx);
+    description = children.slice(idx + 3);
+  }
+
+  return (
+    <div
+      className="eq-text-halo rounded-2xl px-5 py-3 text-center text-[#0a1628]"
+      style={{
+        background:
+          "linear-gradient(135deg, rgba(252,231,197,0.94) 0%, rgba(212,212,255,0.94) 50%, rgba(224,197,252,0.94) 100%)",
+        backdropFilter: "blur(8px)",
+        border: "1px solid rgba(255,255,255,0.75)",
+        boxShadow:
+          "0 0 24px rgba(212,180,255,0.50), inset 0 1px 0 0 rgba(255,255,255,0.90), 0 4px 14px rgba(0,0,0,0.08)",
+      }}
+    >
+      <div className="flex items-baseline justify-center gap-2">
+        {emoji && (
+          <span
+            role="img"
+            aria-label={emojiTooltip ?? emoji}
+            title={emojiTooltip}
+            className="select-none text-lg leading-none"
+          >
+            {emoji}
+          </span>
+        )}
+        <span className="font-serif text-lg font-semibold sm:text-xl">
+          {name}
+        </span>
+      </div>
+      {description && (
+        <div className="mt-1 text-sm font-normal text-[#0a1628]/80">
+          {description}
+        </div>
+      )}
+    </div>
+  );
+};
 
 export default CycleEnergyBar;

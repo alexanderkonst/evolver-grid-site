@@ -66,8 +66,18 @@ const SiteLogo = () => {
         // Composed Surface Demo at the top. The global SiteLogo wordmark
         // was overlapping the demo at top-center, killing the layout.
         "/mdls-preview",
+        // Day 75 (Sasha 2026-05-19): /build/equilibrium lives in
+        // GameShellV2 with hideLogo, but the global SiteLogo wordmark
+        // was still leaking through top-center over pane 3 — Sasha
+        // called this out repeatedly ("don't make me repeat this
+        // instruction yet again"). Suppress here so only the SpacesRail
+        // wordmark in pane 1 carries the brand on Equilibrium. Also
+        // covers /equilibrium (legacy redirect) and /preview/equilibrium-v2.
+        "/build/equilibrium",
+        "/equilibrium",
+        "/preview/equilibrium-v2",
     ];
-    const exactHidden = ["/", "/ignite", "/my-result", "/path", "/auth", "/dashboard", "/ai-os", "/library", "/prompt", "/ubb", "/mdls-preview"];
+    const exactHidden = ["/", "/ignite", "/my-result", "/path", "/auth", "/dashboard", "/ai-os", "/library", "/prompt", "/ubb", "/mdls-preview", "/build/equilibrium", "/equilibrium", "/preview/equilibrium-v2"];
     if (hidden.some(p => location.pathname.startsWith(p)) || exactHidden.includes(location.pathname)) return null;
 
     return (

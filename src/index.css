@@ -25,7 +25,13 @@
    ========================================================================== */
 
 @layer components {
-  /* LIGHT GLASS — cards, sections, pills, chips. */
+  /* LIGHT GLASS — cards, sections, pills, chips.
+     Sasha 2026-05-19: tightened on Equilibrium specifically. Default
+     liquid-glass everywhere else stays at 0.10 white tint; on
+     /build/equilibrium, where multiple cards sit against the Mux video
+     backdrop, the cards needed more weight to read as "frosted glass"
+     rather than translucent overlay. The scoped override lives below
+     (see [data-eq-v2] selectors); the global rule stays light. */
   .liquid-glass {
     background: rgba(255, 255, 255, 0.10);
     backdrop-filter: blur(24px) saturate(180%);
@@ -1791,7 +1797,9 @@ All colors MUST be HSL.
 @media (prefers-reduced-motion: reduce) {
   .gentle-spin,
   .cta-breath img,
-  .eq-synth-pulse {
+  .eq-synth-pulse,
+  .eq-equilibrium-title,
+  .eq-synthesis-emphasis {
     animation: none !important;
   }
   /* `.gentle-spin-always` deliberately re-asserts its animation here
@@ -1799,6 +1807,114 @@ All colors MUST be HSL.
      see definition above for full rationale. */
   .gentle-spin-always {
     animation: gentle-spin 60s linear infinite !important;
+  }
+}
+
+/* ──────────────────────────────────────────────────────────────────
+   Equilibrium v2 — Glass tightening (Sasha 2026-05-19)
+   "Glass-morphic boxes too transparent — need MORE glass effect."
+   Scoped to `.eq-v2-page` so the rest of the app keeps its default
+   light glass. On Equilibrium, bump the white tint + add a touch more
+   saturation so each card reads as a frosted card sitting OVER the
+   backdrop, not a translucent veil.
+   ────────────────────────────────────────────────────────────── */
+.eq-v2-page .liquid-glass {
+  background: rgba(255, 255, 255, 0.32);
+  backdrop-filter: blur(28px) saturate(190%);
+  -webkit-backdrop-filter: blur(28px) saturate(190%);
+  border-color: rgba(255, 255, 255, 0.45);
+}
+.eq-v2-page .liquid-glass-strong {
+  background: rgba(255, 255, 255, 0.42);
+  backdrop-filter: blur(34px) saturate(200%);
+  -webkit-backdrop-filter: blur(34px) saturate(200%);
+  border-color: rgba(255, 255, 255, 0.55);
+}
+@media (pointer: coarse), (max-width: 1023px) {
+  /* Mobile / touch fallback (no backdrop-filter): push background
+     opacity up further to compensate for the lost blur. */
+  .eq-v2-page .liquid-glass {
+    background: rgba(255, 255, 255, 0.50);
+  }
+  .eq-v2-page .liquid-glass-strong {
+    background: rgba(255, 255, 255, 0.62);
+  }
+}
+
+/* ──────────────────────────────────────────────────────────────────
+   Equilibrium v2 — Title emphatic glow (Sasha 2026-05-19)
+   The "Equilibrium" word at the top of /build/equilibrium gets a
+   layered text-shadow halo that breathes slowly. Pairs with the
+   serif typography to feel like an anchor, not a heading. The breath
+   is gated by prefers-reduced-motion above; static layers stay.
+   ────────────────────────────────────────────────────────────── */
+@keyframes eq-title-breath {
+  0%, 100% {
+    text-shadow:
+      0 0 24px rgba(255, 255, 255, 0.55),
+      0 0 12px rgba(255, 255, 255, 0.40),
+      0 0 48px rgba(244, 212, 114, 0.28);
+  }
+  50% {
+    text-shadow:
+      0 0 36px rgba(255, 255, 255, 0.75),
+      0 0 16px rgba(255, 255, 255, 0.55),
+      0 0 64px rgba(244, 212, 114, 0.42);
+  }
+}
+.eq-equilibrium-title {
+  text-shadow:
+    0 0 24px rgba(255, 255, 255, 0.55),
+    0 0 12px rgba(255, 255, 255, 0.40),
+    0 0 48px rgba(244, 212, 114, 0.28);
+  animation: eq-title-breath 6s ease-in-out infinite;
+}
+
+/* ──────────────────────────────────────────────────────────────────
+   Equilibrium v2 — Synthesis Reading emphasis (Sasha 2026-05-19)
+   "Make sure that Synthesis Reading is emphasized as the one-glance
+   read." Layered over `liquid-glass-strong` so the box reads as the
+   primary anchor of ATTUNE mode. Adds an accent gold ring + an outer
+   glow that pulls the eye on landing.
+   ────────────────────────────────────────────────────────────── */
+.eq-synthesis-emphasis {
+  position: relative;
+  box-shadow:
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.80),
+    inset 0 -1px 0 0 rgba(0, 0, 0, 0.10),
+    0 8px 28px -4px rgba(244, 212, 114, 0.22),
+    0 36px 72px -24px rgba(0, 0, 0, 0.32),
+    0 0 0 1px rgba(244, 212, 114, 0.28);
+}
+.eq-synthesis-emphasis::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(
+    circle at 50% 0%,
+    rgba(244, 212, 114, 0.18) 0%,
+    rgba(244, 212, 114, 0.0) 60%
+  );
+  z-index: -1;
+}
+
+/* ──────────────────────────────────────────────────────────────────
+   Equilibrium v2 — ATTUNE↔ACT mode fade (Sasha 2026-05-19)
+   Toggling the mode swaps a whole column of sections; without a
+   transition the swap feels abrupt. A short opacity+translate fade
+   smooths the transition while keeping the layout stable.
+   ────────────────────────────────────────────────────────────── */
+@keyframes eq-mode-fade {
+  0% { opacity: 0; transform: translateY(4px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  /* Strip the cross-fade for reduced-motion users — the layout swap
+     still happens, just instantly. */
+  [style*="eq-mode-fade"] {
+    animation: none !important;
   }
 }
 
