@@ -99,10 +99,14 @@ export const LUNAR_SEGMENTS: CycleSegmentSpec[] = LUNAR_DISPLAY_TO_ASTRONOMICAL.
   (i, displayIdx) => {
     const phase = MOON_PHASES[i];
     return {
-      icon: phase.symbol,
+      icon: phase.symbol, // emoji fallback (won't be used while MoonOrb is wired)
       label: phase.name,
       identityColor: LUNAR_ACCENT,
       litGradient: LUNAR_LIT_GRADIENTS[displayIdx],
+      // Astronomical phase index — drives MoonOrb's phase-correct
+      // illumination (Sasha 2026-05-18: replaces emoji with real
+      // photographic moon).
+      moonPhaseIndex: i,
       isLandmark: LUNAR_LANDMARK_PHASES.has(phase.name),
     };
   },
