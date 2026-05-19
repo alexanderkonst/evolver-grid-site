@@ -13,37 +13,41 @@ Quarter** is the inner/seed half ("the How is none of your business"),
 and **First Quarter → Full Moon → Last Quarter** is the outer/manifest
 half (the How reveals, the work happens, the harvest celebrates).
 
-### The 4-Quarter Umbrella — Holonic Quadrants (corrected 2026-05-16 round 3)
+### The 4-Quarter Umbrella — Holonic Quadrants (refined 2026-05-18 round 4)
 
-The 8 phases nest inside 4 holonic quadrants — Sasha's named correspondence
-that links each pair of phases to an element. Quadrant NAMES stay
-internal (won't confuse the user); only the **element emoji** surfaces in
-the UI as a quiet umbrella above the pills. Users moving from degree 2 →
-degree 3 see the structure without being lectured to.
+The 8 phases nest inside 4 holonic quadrants. Quadrant NAMES stay
+internal; only the **element emoji** surfaces in the UI as a quiet
+umbrella above the pills.
 
 | Holonic Quadrant | Element (UI emoji) | Phases inside | What this half-cycle is for |
 |---|---|---|---|
-| **Will** | Fire 🔥 | Planning · Planting | The next intention surfaces; the strategies reveal. (Winter-Solstice equivalent — the seed-igniting in apparent dormancy.) |
-| **Emanation** | Water 💧 | Clearing · Gathering | Release fear; say yes to what arrives. (Spring-Equinox equivalent — fluid receptivity emerging from dark.) |
-| **Digestion** | Earth 🌍 | Seeing · Leading | The how reveals; prep for harvest. (Summer-Solstice equivalent — results emerging, body building.) |
-| **Enrichment** | Air 🌬️ | Harvesting · Celebrating | Reap, ship, announce, thank. (Autumn-Equinox equivalent — clarity at max, harvest visible.) |
+| **Will** | Fire 🔥 | Celebrating · Planning | Acknowledge the realized potential; the next intention surfaces. (Post-peak opening — the seed-fire ignites just after the visible apex.) |
+| **Emanation** | Water 💧 | Planting · Clearing | Strategies reveal in the dark; release fear. (Deep gestation, interior work.) |
+| **Digestion** | Earth 🌍 | Gathering · Seeing | Receive resources; the how reveals. (Body building, results emerging.) |
+| **Enrichment** | Air 🌬️ | Leading · Harvesting | Prep the field; reap what's ripe. (Preparation peaking into visible harvest.) |
 
-### Correction history (don't repeat the mistake)
+### Correction history (don't repeat the mistakes)
 
-The first version of this table (2026-05-16 round 2) placed **Will** at
-Harvesting + Celebrating — i.e., the harvest was treated as the start of
-the new cycle. Sasha corrected this:
+**Round 1 (2026-05-16):** Will placed at Harvesting + Celebrating — i.e.,
+the harvest was treated as the start of the new cycle. Sasha rejected:
+the Full Moon is *closure*, not opening.
 
-> *"The Full Moon is not the beginning of the new cycle. The Full Moon
-> is the autumnal equinox in this example, and the winter solstice is
-> the phase AFTER the celebration phase. That's what's really going on
-> here."*
+**Round 3 (2026-05-16 later):** Will shifted to Planning + Planting (Last
+Quarter + Waning Crescent). Reasoning: "the winter solstice is the
+phase AFTER the celebration phase. That's what's really going on here."
+This put the wheel-start at Winter Solstice equivalent.
 
-The harvest is the OLD cycle closing (Enrichment / Air / clarity at
-max). The new wheel begins post-celebration, in apparent dormancy, with
-the inner fire of the next intention. Same logic as the planet's solar
-year: the wheel starts at Winter Solstice, not at Autumn Equinox. The
-equinox/full-moon is the harvest moment that closes the previous wheel.
+**Round 4 (2026-05-18 — current):** Will refined further to **Celebrating
++ Planning** (Waning Gibbous + Last Quarter). Sasha: *"Full Moon is still
+celebration happening, so it's really the closure more than it is the
+opening. And Waning Gibbous is the opening."* The seed-fire of the new
+wheel ignites IMMEDIATELY after the visible peak — Celebrating carries
+forward into the new wheel as the first expression of Will (gratitude
+generates the propellant for what comes next).
+
+This places Full Moon at the END of Enrichment (Air, peak clarity =
+visible harvest), and Waning Gibbous at the START of Will (Fire,
+seed-fire under the still-visible glow). Each pair stays clean.
 
 ### Why this is the umbrella (not invented words)
 

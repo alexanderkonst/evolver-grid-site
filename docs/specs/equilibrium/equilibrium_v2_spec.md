@@ -192,12 +192,17 @@ quadrant framework. Both views matter:
   that spans two consecutive phases. Surfaces in the UI as **just the
   element emoji**, not as text (invented quarter names confuse users).
 
-| Holonic Quadrant | Element (UI emoji) | Phases inside | Solar equivalent (NH) |
-|---|---|---|---|
-| **Will** | Fire 🔥 | Planning · Planting | Winter Solstice → Spring Equinox |
-| **Emanation** | Water 💧 | Clearing · Gathering | Spring Equinox → Summer Solstice |
-| **Digestion** | Earth 🌍 | Seeing · Leading | Summer Solstice → Autumn Equinox |
-| **Enrichment** | Air 🌬️ | Harvesting · Celebrating | Autumn Equinox → Winter Solstice |
+| Holonic Quadrant | Element (UI emoji) | Phases inside |
+|---|---|---|
+| **Will** | Fire 🔥 | Celebrating · Planning |
+| **Emanation** | Water 💧 | Planting · Clearing |
+| **Digestion** | Earth 🌍 | Gathering · Seeing |
+| **Enrichment** | Air 🌬️ | Leading · Harvesting |
+
+Refined 2026-05-18 round 4 (see lunar_wisdom_map.md for full history).
+The wheel starts at WANING GIBBOUS (Celebrating, first phase of Will)
+— immediately after the Full Moon's visible peak (which is Enrichment's
+closure). The seed-fire ignites under the still-visible glow.
 
 **Reading the mapping:**
 - **Will (Fire)** = seed-igniting in apparent dormancy. Not the visible
