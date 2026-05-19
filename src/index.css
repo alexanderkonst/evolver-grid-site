@@ -2428,3 +2428,89 @@ form.liquid-glass input:-webkit-autofill:active {
     background: rgba(20, 28, 44, 0.85);
   }
 }
+
+/* ==========================================================================
+   MDLS — Atmospheric backdrop + device frame (v1.2, 2026-05-18)
+   ==========================================================================
+   Two utilities that make a page READ as an MDLS surface in itself:
+
+   .mdls-page-atmosphere — layered radial gradients in cream + warm-amber +
+     cool-aurora, so the substrate is alive rather than flat. Replaces a
+     bare cream background; everything floats inside an ambient field.
+
+   .mdls-device-frame — a wrapping container with subtle 3D isometric tilt
+     and layered drop shadow, so the framed content reads as a "held device"
+     rather than a webpage. Tilt is very subtle (~1.5°) to keep interactive
+     content usable.
+
+   See: docs/specs/equilibrium/equilibrium_mdls_style_guide.md (v1.2)
+   ========================================================================== */
+
+.mdls-page-atmosphere {
+  background-color: hsl(38 38% 95%);
+  background-image:
+    /* Warm-amber wash from upper-left — "morning light from window" */
+    radial-gradient(ellipse 60% 50% at 12% 8%,
+      hsl(28 80% 88% / 0.55) 0%,
+      hsl(28 80% 88% / 0.20) 35%,
+      transparent 65%),
+    /* Cool-aurora wash from lower-right — "the cosmic edge" */
+    radial-gradient(ellipse 70% 60% at 92% 96%,
+      hsl(220 60% 90% / 0.45) 0%,
+      hsl(220 60% 90% / 0.18) 40%,
+      transparent 70%),
+    /* Subtle violet hint mid-page — "the soul-color undertone" */
+    radial-gradient(ellipse 50% 40% at 50% 55%,
+      hsl(290 30% 92% / 0.30) 0%,
+      transparent 60%);
+  min-height: 100vh;
+}
+
+.mdls-page-atmosphere--dark {
+  background-color: hsl(225 40% 6%);
+  background-image:
+    radial-gradient(ellipse 60% 50% at 12% 8%,
+      hsl(28 90% 55% / 0.18) 0%,
+      transparent 60%),
+    radial-gradient(ellipse 70% 60% at 92% 96%,
+      hsl(220 70% 50% / 0.18) 0%,
+      transparent 65%),
+    radial-gradient(ellipse 50% 40% at 50% 55%,
+      hsl(290 60% 40% / 0.15) 0%,
+      transparent 60%);
+}
+
+.mdls-device-frame {
+  /* The held-device feel: subtle isometric tilt + layered floating shadow.
+     Tilt is very gentle so interactive content stays usable; 1.5° on X
+     gives the sense of "looking at it slightly from above" without
+     distorting hit targets. */
+  transform: perspective(2400px) rotateX(1.5deg) rotateY(-0.5deg);
+  transform-origin: center top;
+  border-radius: 36px;
+  background:
+    /* Cream substrate with very subtle gradient — the device "face" */
+    linear-gradient(180deg,
+      hsl(38 38% 97%) 0%,
+      hsl(38 38% 94%) 100%);
+  box-shadow:
+    /* Outer specular highlight on top */
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.95),
+    /* Inner rim shadow */
+    inset 0 -1px 0 0 rgba(10, 18, 34, 0.04),
+    /* Two-layer floating shadow */
+    0 20px 60px -20px rgba(10, 18, 34, 0.18),
+    0 60px 140px -40px rgba(10, 18, 34, 0.20);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* No motion for the device tilt — it's a static transform anyway, no animation. */
+}
+
+@media (max-width: 768px) {
+  .mdls-device-frame {
+    /* Mobile: drop the tilt entirely so layout stays usable on small screens. */
+    transform: none;
+    border-radius: 24px;
+  }
+}

@@ -14,6 +14,8 @@ interface SculptedSilkSectionProps {
   saturation?: number;     // HSL saturation %
   blobVariant?: "a" | "b" | "c";
   className?: string;
+  /** Additional inline styles. Merged onto the CSS-variable style block. */
+  style?: CSSProperties;
   children?: ReactNode;
 }
 
@@ -22,19 +24,22 @@ export const SculptedSilkSection = ({
   saturation = 50,
   blobVariant = "a",
   className,
+  style,
   children,
 }: SculptedSilkSectionProps) => (
   <div
     className={cn(
       "mdls-sculpted-silk",
       `mdls-sculpted-silk--${blobVariant}`,
-      "px-8 py-10",
+      // Default padding only applies if no inline width/height; the composer can override.
+      !style?.width && !style?.height && "px-8 py-10",
       className,
     )}
     style={
       {
         "--mdls-silk-hue": hue,
         "--mdls-silk-sat": `${saturation}%`,
+        ...style,
       } as CSSProperties
     }
   >
