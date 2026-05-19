@@ -1151,7 +1151,7 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                             paddingTop: 'calc(env(safe-area-inset-top) + 0.5rem)',
                             paddingBottom: '0.5rem',
                             minHeight: '3.5rem',
-                            backgroundColor: 'rgba(10, 22, 50, 0.96)',
+                            backgroundColor: 'var(--skin-panel-1-bg, rgba(10, 22, 50, 0.96))',
                             backdropFilter: 'blur(14px)',
                             WebkitBackdropFilter: 'blur(14px)',
                             boxShadow: 'inset 0 -1px 0 rgba(212, 175, 55, 0.32), 0 8px 22px -12px rgba(244, 212, 114, 0.25)',

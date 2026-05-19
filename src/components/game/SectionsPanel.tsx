@@ -1059,7 +1059,7 @@ const SectionsPanel = ({
                             )}
                             style={
                                 sectionActive && !hasSubSections && !isLocked
-                                    ? { backgroundColor: "rgba(212, 175, 55, 0.08)" }
+                                    ? { backgroundColor: "var(--skin-selected-bg, rgba(212, 175, 55, 0.08))" }
                                     : isLocked
                                         ? { opacity: fogOpacity }
                                         : undefined
@@ -1382,7 +1382,7 @@ const SectionsPanel = ({
                                                 )}
                                                 style={
                                                     subActive
-                                                        ? { backgroundColor: "rgba(212, 175, 55, 0.08)" }
+                                                        ? { backgroundColor: "var(--skin-selected-bg, rgba(212, 175, 55, 0.08))" }
                                                         : undefined
                                                 }
                                                 onClick={() => onSectionSelect?.(sub.path)}

@@ -306,8 +306,8 @@ const SpacesRail = ({
                 // from a backdrop-filter (which has been retired entirely
                 // — see below).
                 backgroundColor: pageOwnsBackground
-                    ? "rgba(10, 22, 48, 0.96)"
-                    : "rgba(10, 22, 50, 0.98)",
+                    ? "var(--skin-panel-1-bg, rgba(10, 22, 48, 0.96))"
+                    : "var(--skin-panel-1-bg, rgba(10, 22, 50, 0.98))",
                 // Day 55 (Sasha 2026-04-29): backdrop-filter retired entirely
                 // (was already off on touch). On Chrome desktop too, the
                 // viewport-tall blurred backdrop region was contributing to
@@ -434,7 +434,7 @@ const SpacesRail = ({
                             )}
                             style={
                                 active
-                                    ? { backgroundColor: "rgba(212, 175, 55, 0.08)" }
+                                    ? { backgroundColor: "var(--skin-selected-bg, rgba(212, 175, 55, 0.08))" }
                                     : undefined
                             }
                             // Day 48 iter 16: native `title` attribute retired for

@@ -20,21 +20,23 @@
 
 import igniteLogo from "@/assets/ignite-logo.png";
 
-// ── Signature gold, legible on cream ──
-// All three stops sit in the deep antique-gold / bronze band so the
-// gradient reads as a single dark-gold color with micro-shine, not
-// a pale highlight sweep. Holds ~5.5:1 contrast against cream Aurora
-// panel wash — comfortably past AA for large text.
+// ── Signature gradient — skin-aware ──
+// Reads from CSS custom property so each skin's callout color flows
+// through. Aurora fallback = deep antique-gold (the original lockup);
+// Navy+Gold overrides to bright metallic; Network-School overrides to
+// flat black (white-label demo).
+//
+// Day 75 (Sasha 2026-05-18): white-label skin (network-school) lands
+// today — switching from hard-coded gold literal to skin token here
+// is what lets the NS skin paint these spans editorial-black instead
+// of antique-gold without per-component branching.
 export const GOLD_GRADIENT =
-  "linear-gradient(135deg, #a06d08 0%, #7a5108 45%, #6b4208 100%)";
+  "var(--skin-callout-bg, linear-gradient(135deg, #a06d08 0%, #7a5108 45%, #6b4208 100%))";
 
-// Subtle edge glow only — not a diffused halo. A prior experiment
-// used a 10px drop-shadow which bled the stroke ~3px and read as
-// "slightly out of focus" on text. This glow is tight + near-crisp.
 export const GOLD_GLOW =
-  "drop-shadow(0 0 1px rgba(212, 175, 55, 0.6)) drop-shadow(0 1px 0 rgba(255,255,255,0.35))";
+  "var(--skin-callout-glow, drop-shadow(0 0 1px rgba(212, 175, 55, 0.6)) drop-shadow(0 1px 0 rgba(255,255,255,0.35)))";
 
-// Inline style object for gold-gradient text spans.
+// Inline style object for gradient text spans.
 // Usage:
 //   <span className="bg-clip-text text-transparent" style={GOLD_TEXT_STYLE}>
 //     Top Talent
