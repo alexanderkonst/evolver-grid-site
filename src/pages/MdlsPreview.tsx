@@ -60,19 +60,13 @@ const MdlsPreview = () => {
 
   return (
     <main className="mdls-page-atmosphere">
-      <div className="mx-auto max-w-5xl px-4 sm:px-8 py-12 sm:py-16">
+      <div className="mx-auto max-w-5xl px-4 sm:px-8 py-10 sm:py-14">
         {/* ╔═══════════════════════════════════════════════════════════════╗
-            ║  PART 1 — COMPOSED SURFACE DEMO                                 ║
-            ║  The cornerstone: primitives working together in one surface.   ║
-            ║  Inside a device-frame so it reads as a held object.            ║
+            ║  PART 1 — COMPOSED SURFACE DEMO (the cornerstone, shown first) ║
+            ║  Mobile-frame proportions, device-framed, on the atmospheric   ║
+            ║  backdrop. This is the first thing visible — the felt-quality  ║
+            ║  of MDLS expressed as one held object.                          ║
             ╚═══════════════════════════════════════════════════════════════╝ */}
-        <header className="mb-8 text-center">
-          <HeroHeadline
-            title="MDLS"
-            subtitle="Multi-Dimensional Living Surface · v1.2 · composed surface demo + primitives catalog"
-            variant="serif"
-          />
-        </header>
 
         <ComposedSurfaceDemo
           demoMode={demoMode}
@@ -83,12 +77,20 @@ const MdlsPreview = () => {
           }
         />
 
+        {/* Short intro caption AFTER the demo, not before — so the demo
+            is the felt-experience first, the words explain after. */}
+        <div className="mt-12 mb-4 text-center max-w-xl mx-auto">
+          <p className="font-serif italic text-base text-[#0a1628]/65">
+            Multi-Dimensional Living Surface · v1.3 · the trinity of <em>luminosity</em>, <em>physicality</em>, and <em>editorial refinement</em> composed into a single contemplative surface.
+          </p>
+        </div>
+
         {/* ╔═══════════════════════════════════════════════════════════════╗
             ║  PART 2 — PRIMITIVES CATALOG                                    ║
             ║  Each primitive in isolation, with annotations.                 ║
             ╚═══════════════════════════════════════════════════════════════╝ */}
 
-        <div className="mt-24 mb-12 text-center">
+        <div className="mt-20 mb-10 text-center">
           <h2 className="font-serif text-3xl text-[#0a1628]">Primitives Catalog</h2>
           <p className="mt-2 text-sm text-[#0a1628]/60 italic">
             Each MDLS primitive shown in isolation, with annotations and states.
@@ -355,32 +357,38 @@ const ComposedSurfaceDemo = ({
   onToggleDemoGoal,
 }: ComposedSurfaceDemoProps) => {
   return (
-    <div className="my-16">
-      <div className="text-center mb-8">
-        <h2 className="font-serif text-2xl text-[#0a1628]">Composed Surface Demo</h2>
-        <p className="mt-2 text-sm text-[#0a1628]/60 italic max-w-2xl mx-auto">
-          The primitives working together as one surface — wrapped in a device frame, sitting on the atmospheric backdrop. This is what an Equilibrium-MDLS surface aims to feel like.
-        </p>
-      </div>
-
-      {/* Device frame — subtle isometric tilt + cream substrate + floating shadow */}
-      <div className="mdls-device-frame mx-auto max-w-md px-8 py-10">
+    <div className="pt-8 pb-4">
+      {/*
+        Device frame — mobile-phone proportions (max-width 400px) so the
+        composed surface reads as ONE held object, not a desktop dashboard.
+        Tighter padding + tighter vertical rhythm + larger AuroraCycleDisc
+        proportional to the frame to mirror the AI mockup geometry.
+      */}
+      <div
+        className="mdls-device-frame mx-auto px-6 py-8 sm:px-7 sm:py-9"
+        style={{ maxWidth: 400 }}
+      >
         {/* Hero title + mode toggle */}
         <div className="text-center">
-          <h3
-            className="font-serif text-3xl text-[#0a1628]"
+          <h1
+            className="font-serif text-[36px] sm:text-[40px] text-[#0a1628]"
             style={{
               textShadow:
                 "0 0 18px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.8)",
-              letterSpacing: "-0.01em",
+              letterSpacing: "-0.015em",
+              lineHeight: 1.05,
+              fontWeight: 500,
             }}
           >
             Equilibrium
-          </h3>
-          <p className="mt-1 font-serif text-sm text-[#0a1628]/70">
+          </h1>
+          <p
+            className="mt-1.5 font-serif text-[14px] text-[#0a1628]/70"
+            style={{ letterSpacing: "0.005em" }}
+          >
             Biologic Watch and Task Manager
           </p>
-          <div className="mt-4 flex justify-center">
+          <div className="mt-5 flex justify-center">
             <ToggleGlassDual
               options={[
                 { value: "attune", label: "ATTUNE" },
@@ -395,10 +403,11 @@ const ComposedSurfaceDemo = ({
           </div>
         </div>
 
-        {/* Aurora Cycle Disc — the hero centerpiece */}
-        <div className="mt-8 flex justify-center">
+        {/* Aurora Cycle Disc — larger now, fills more of the device frame
+            (270px in a ~400px frame = mockup-grade proportions). */}
+        <div className="mt-6 flex justify-center">
           <AuroraCycleDisc
-            size={240}
+            size={272}
             currentDay={73}
             currentDayLabel="DAY 73"
             variant="light"
@@ -408,23 +417,25 @@ const ComposedSurfaceDemo = ({
         </div>
 
         {/* Lifelong Dedication card — matte polymer with medallion + ember breath */}
-        <div className="mt-8">
+        <div className="mt-6">
           <EmberBreath active>
             <MattePolymerCard emphasized>
               <div className="flex items-start gap-3">
-                <SealMedallion
-                  size={32}
-                  variant="mandala"
-                  ariaLabel="Lifelong Dedication seal"
-                />
+                <div className="pt-0.5">
+                  <SealMedallion
+                    size={30}
+                    variant="mandala"
+                    ariaLabel="Lifelong Dedication seal"
+                  />
+                </div>
                 <div className="flex-1">
                   <p
-                    className="font-serif text-base text-[#0a1628] leading-snug"
+                    className="font-serif text-[15px] text-[#0a1628] leading-[1.35]"
                     style={{ letterSpacing: "-0.005em" }}
                   >
                     Assist humanity evolve into a consciously coordinated civilization.
                   </p>
-                  <p className="mt-2 text-[10px] uppercase tracking-[0.18em] text-[#0a1628]/55">
+                  <p className="mt-2 text-[9px] uppercase tracking-[0.18em] text-[#0a1628]/55">
                     Lifelong Dedication · Day 73
                   </p>
                 </div>
@@ -433,19 +444,19 @@ const ComposedSurfaceDemo = ({
           </EmberBreath>
         </div>
 
-        {/* Three sculpted-silk workstream blobs — overlapping */}
-        <div className="mt-8">
-          <p className="text-center text-[10px] uppercase tracking-[0.18em] text-[#0a1628]/55 mb-3">
+        {/* Three sculpted-silk workstream blobs — overlapping organic forms */}
+        <div className="mt-7">
+          <p className="text-center text-[9px] uppercase tracking-[0.20em] text-[#0a1628]/55 mb-3">
             Workstreams
           </p>
-          <div className="relative h-32 flex items-center justify-center">
+          <div className="relative h-[124px] flex items-center justify-center">
             <SculptedSilkSection
               hue={15}
               blobVariant="a"
               className="absolute z-10 flex items-center justify-center"
-              style={{ width: 110, height: 110, left: "calc(50% - 130px)" }}
+              style={{ width: 116, height: 116, left: "calc(50% - 142px)" }}
             >
-              <span className="text-[10px] font-medium uppercase tracking-wider text-[#0a1628]/70">
+              <span className="text-[9.5px] font-medium uppercase tracking-[0.06em] text-[#0a1628]/72 text-center px-2 leading-tight">
                 Planetary OS
               </span>
             </SculptedSilkSection>
@@ -453,9 +464,9 @@ const ComposedSurfaceDemo = ({
               hue={210}
               blobVariant="b"
               className="absolute z-20 flex items-center justify-center"
-              style={{ width: 120, height: 120, left: "calc(50% - 60px)" }}
+              style={{ width: 128, height: 128, left: "calc(50% - 64px)" }}
             >
-              <span className="text-[10px] font-medium uppercase tracking-wider text-[#0a1628]/70">
+              <span className="text-[9.5px] font-medium uppercase tracking-[0.06em] text-[#0a1628]/72 text-center px-2 leading-tight">
                 Venture Studio
               </span>
             </SculptedSilkSection>
@@ -463,9 +474,9 @@ const ComposedSurfaceDemo = ({
               hue={85}
               blobVariant="c"
               className="absolute z-10 flex items-center justify-center"
-              style={{ width: 110, height: 110, left: "calc(50% + 20px)" }}
+              style={{ width: 116, height: 116, left: "calc(50% + 26px)" }}
             >
-              <span className="text-[10px] font-medium uppercase tracking-wider text-[#0a1628]/70">
+              <span className="text-[9.5px] font-medium uppercase tracking-[0.06em] text-[#0a1628]/72 text-center px-2 leading-tight">
                 Founder Forge
               </span>
             </SculptedSilkSection>
@@ -473,11 +484,11 @@ const ComposedSurfaceDemo = ({
         </div>
 
         {/* Soul-orb goals — three energetic commitments */}
-        <div className="mt-8">
-          <p className="text-center text-[10px] uppercase tracking-[0.18em] text-[#0a1628]/55 mb-4">
+        <div className="mt-6">
+          <p className="text-center text-[9px] uppercase tracking-[0.20em] text-[#0a1628]/55 mb-3">
             Today's commitments
           </p>
-          <div className="grid grid-cols-3 gap-4 justify-items-center">
+          <div className="grid grid-cols-3 gap-3 justify-items-center">
             {[
               { orbId: 7, label: "Transmit signal", sub: "Ship one essay" },
               { orbId: 2, label: "Seed alliance", sub: "Send Friday DMs" },
@@ -486,12 +497,12 @@ const ComposedSurfaceDemo = ({
               <div key={i} className="text-center">
                 <SoulOrbGoal
                   orbId={goal.orbId}
-                  size={56}
+                  size={52}
                   completed={completedDemoGoals.has(i)}
                   onClick={() => onToggleDemoGoal(i)}
                   label={goal.label}
                 />
-                <div className="mt-2 text-[10px] font-medium text-[#0a1628]/85 leading-tight">
+                <div className="mt-1.5 text-[10px] font-medium text-[#0a1628]/85 leading-tight">
                   {goal.label}
                 </div>
                 <div className="text-[9px] text-[#0a1628]/50 leading-tight">
@@ -503,14 +514,10 @@ const ComposedSurfaceDemo = ({
         </div>
 
         {/* Footer attribution */}
-        <div className="mt-10 text-center text-[9px] uppercase tracking-[0.18em] text-[#0a1628]/35">
-          MDLS v1.2 · contemplative operating surface
+        <div className="mt-8 text-center text-[8.5px] uppercase tracking-[0.22em] text-[#0a1628]/30">
+          MDLS · contemplative operating surface
         </div>
       </div>
-
-      <p className="mt-6 text-center text-xs text-[#0a1628]/55 italic max-w-xl mx-auto">
-        ↑ Subtle isometric tilt · atmospheric backdrop · trinity of luminosity / physicality / editorial refinement. Tap the toggle, tap the soul-orbs.
-      </p>
     </div>
   );
 };
