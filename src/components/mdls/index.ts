@@ -16,3 +16,4 @@ export { SoulOrbGoal } from "./SoulOrbGoal";
 export { SealMedallion } from "./SealMedallion";
 export { ToggleGlassDual } from "./ToggleGlassDual";
 export { EmberBreath } from "./EmberBreath";
+export { MdlsClipPathDefs } from "./MdlsClipPathDefs";

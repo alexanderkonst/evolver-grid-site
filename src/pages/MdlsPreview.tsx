@@ -9,6 +9,7 @@ import {
   SealMedallion,
   ToggleGlassDual,
   EmberBreath,
+  MdlsClipPathDefs,
 } from "@/components/mdls";
 
 /**
@@ -60,6 +61,9 @@ const MdlsPreview = () => {
 
   return (
     <main className="mdls-page-atmosphere">
+      {/* Inline SVG clip-path defs for sculpted-silk blob shapes — must
+          live in the page tree once for `clip-path: url(#...)` to resolve. */}
+      <MdlsClipPathDefs />
       <div className="mx-auto max-w-5xl px-4 sm:px-8 py-10 sm:py-14">
         {/* ╔═══════════════════════════════════════════════════════════════╗
             ║  PART 1 — COMPOSED SURFACE DEMO (the cornerstone, shown first) ║
@@ -444,40 +448,52 @@ const ComposedSurfaceDemo = ({
           </EmberBreath>
         </div>
 
-        {/* Three sculpted-silk workstream blobs — overlapping organic forms */}
+        {/* Three sculpted-silk workstream blobs — overlapping organic forms.
+            v1.5: labels positioned in the NON-OVERLAPPING zone of each
+            blob (left blob's label shifts left; right blob's label shifts
+            right). This was the second visible gap from v1.4 screenshots
+            — centered labels got eaten by the middle blob's overlap. */}
         <div className="mt-7">
           <p className="text-center text-[9px] uppercase tracking-[0.20em] text-[#0a1628]/55 mb-3">
             Workstreams
           </p>
-          <div className="relative h-[124px] flex items-center justify-center">
+          <div className="relative h-[128px] flex items-center justify-center">
             <SculptedSilkSection
               hue={15}
               blobVariant="a"
-              className="absolute z-10 flex items-center justify-center"
-              style={{ width: 116, height: 116, left: "calc(50% - 142px)" }}
+              className="absolute z-10 flex items-center"
+              style={{ width: 122, height: 122, left: "calc(50% - 154px)" }}
             >
-              <span className="text-[9.5px] font-medium uppercase tracking-[0.06em] text-[#0a1628]/72 text-center px-2 leading-tight">
-                Planetary OS
+              {/* Label anchored to the LEFT half (non-overlap zone) */}
+              <span
+                className="text-[9.5px] font-medium uppercase tracking-[0.06em] text-[#0a1628]/75 leading-tight"
+                style={{ paddingLeft: 14, paddingRight: 40, textAlign: "left" }}
+              >
+                Planetary<br />OS
               </span>
             </SculptedSilkSection>
             <SculptedSilkSection
               hue={210}
               blobVariant="b"
               className="absolute z-20 flex items-center justify-center"
-              style={{ width: 128, height: 128, left: "calc(50% - 64px)" }}
+              style={{ width: 134, height: 134, left: "calc(50% - 67px)" }}
             >
-              <span className="text-[9.5px] font-medium uppercase tracking-[0.06em] text-[#0a1628]/72 text-center px-2 leading-tight">
-                Venture Studio
+              <span className="text-[9.5px] font-medium uppercase tracking-[0.06em] text-[#0a1628]/75 text-center px-3 leading-tight">
+                Venture<br />Studio
               </span>
             </SculptedSilkSection>
             <SculptedSilkSection
               hue={85}
               blobVariant="c"
-              className="absolute z-10 flex items-center justify-center"
-              style={{ width: 116, height: 116, left: "calc(50% + 26px)" }}
+              className="absolute z-10 flex items-center"
+              style={{ width: 122, height: 122, left: "calc(50% + 32px)" }}
             >
-              <span className="text-[9.5px] font-medium uppercase tracking-[0.06em] text-[#0a1628]/72 text-center px-2 leading-tight">
-                Founder Forge
+              {/* Label anchored to the RIGHT half (non-overlap zone) */}
+              <span
+                className="text-[9.5px] font-medium uppercase tracking-[0.06em] text-[#0a1628]/75 leading-tight w-full"
+                style={{ paddingRight: 14, paddingLeft: 40, textAlign: "right" }}
+              >
+                Founder<br />Forge
               </span>
             </SculptedSilkSection>
           </div>
