@@ -2115,21 +2115,37 @@ form.liquid-glass input:-webkit-autofill:active {
      Larger hot spot at the center; cooler edge only at the rim.
      ──────────────────────────────────────────────────────────────── */
   .mdls-aurora-glass-orb {
-    background:
-      /* Layered: warm core + cool corona */
+    /* v1.4 (2026-05-18) — multi-layer background:
+       1. Top layer: specular highlight at upper-left (light catching the orb)
+       2. Mid layer: subtle inner grain (tactile feel)
+       3. Base layer: main aurora gradient — near-white hot core, warm
+          amber → deep coral → rose → violet → indigo-aqua → cool rim
+       Combined: photographic-luminous quality instead of flat radial. */
+    background-image:
+      /* Specular highlight — light source upper-left */
+      radial-gradient(circle at 30% 24%,
+        rgba(255, 250, 240, 0.55) 0%,
+        rgba(255, 250, 240, 0.18) 14%,
+        transparent 26%),
+      /* Subtle inner grain — tactile not digital */
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='3' height='3'><circle cx='1' cy='1' r='0.4' fill='%23fff' fill-opacity='0.06'/></svg>"),
+      /* Main aurora — hot warm core dominant; cool rim accent */
       radial-gradient(circle at 50% 58%,
-        hsl(38 95% 80%) 0%,           /* warm amber core — biggest mass */
-        hsl(28 88% 72%) 18%,
-        hsl(15 78% 66%) 38%,           /* coral mid */
-        hsl(285 50% 68%) 62%,          /* violet thinner band */
-        hsl(220 55% 78%) 84%,          /* aqua approaching rim */
-        hsl(200 50% 88%) 100%);
+        hsl(45 100% 90%) 0%,           /* near-white hot core */
+        hsl(36 100% 78%) 9%,            /* bright amber */
+        hsl(22 92% 70%) 22%,            /* warm amber-coral */
+        hsl(8 80% 64%) 38%,             /* deep coral */
+        hsl(345 55% 60%) 52%,           /* rose */
+        hsl(285 50% 60%) 66%,            /* violet */
+        hsl(232 60% 70%) 82%,            /* indigo */
+        hsl(200 55% 84%) 100%);          /* cool rim */
+    background-size: 100% 100%, 3px 3px, 100% 100%;
     box-shadow:
-      inset 0 2px 8px 0 rgba(255, 255, 255, 0.45),
-      inset 0 -2px 8px 0 rgba(10, 18, 34, 0.10),
-      /* Warm outer glow — emphasizes the "lit from within" feel */
-      0 8px 32px -4px hsl(28 95% 65% / 0.30),
-      0 24px 64px -16px hsl(40 80% 60% / 0.20);
+      inset 0 3px 10px 0 rgba(255, 255, 255, 0.50),
+      inset 0 -3px 10px 0 rgba(10, 18, 34, 0.12),
+      /* Warm outer glow — emphasizes "lit from within"; stronger on lower-right */
+      6px 12px 38px -4px hsl(28 95% 65% / 0.32),
+      10px 28px 72px -16px hsl(40 80% 60% / 0.22);
     border-radius: 50%;
     position: relative;
     overflow: hidden;
@@ -2152,14 +2168,27 @@ form.liquid-glass input:-webkit-autofill:active {
 
   /* ──────────────────────────────────────────────────────────────────
      §4.3 SCULPTED-SILK — organic curving form. Soft-Sculptural register.
-     Three pre-rendered blob variants via border-radius asymmetry.
+     Three blob variants via SVG mask-image (v1.3).
+
+     v1.4 (2026-05-18): richer internal gradient suggesting drape/light.
+     Specular highlight at upper-left of each blob (light source
+     consistent with rest of MDLS). Stronger cast shadow.
      ──────────────────────────────────────────────────────────────── */
   .mdls-sculpted-silk {
-    background: linear-gradient(135deg,
-      hsl(var(--mdls-silk-hue, 15) 50% 88%) 0%,
-      hsl(var(--mdls-silk-hue, 15) 60% 80%) 55%,
-      hsl(var(--mdls-silk-hue, 15) 65% 73%) 100%);
-    filter: drop-shadow(0 8px 24px hsl(var(--mdls-silk-hue, 15) 40% 60% / 0.18));
+    background-image:
+      /* Specular highlight at upper-left — light catching the silk */
+      radial-gradient(ellipse at 28% 24%,
+        hsl(var(--mdls-silk-hue, 15) 70% 94%) 0%,
+        hsl(var(--mdls-silk-hue, 15) 65% 88%) 18%,
+        transparent 50%),
+      /* Main drape gradient — light upper-left → deeper lower-right */
+      linear-gradient(140deg,
+        hsl(var(--mdls-silk-hue, 15) 55% 86%) 0%,
+        hsl(var(--mdls-silk-hue, 15) 62% 78%) 38%,
+        hsl(var(--mdls-silk-hue, 15) 70% 68%) 70%,
+        hsl(var(--mdls-silk-hue, 15) 72% 60%) 100%);
+    filter: drop-shadow(4px 8px 18px hsl(var(--mdls-silk-hue, 15) 50% 50% / 0.22))
+            drop-shadow(2px 4px 6px hsl(var(--mdls-silk-hue, 15) 40% 55% / 0.12));
     position: relative;
   }
   /* MDLS v1.3 (2026-05-18): blob shapes via SVG mask-image instead of
@@ -2201,19 +2230,28 @@ form.liquid-glass input:-webkit-autofill:active {
      Set --mdls-orb-c / --mdls-orb-r to point at the library values.
      ──────────────────────────────────────────────────────────────── */
   .mdls-soul-orb {
-    /* MDLS v1.1: richer luminosity — specular highlight at upper-left now
-       carries more visible light, plus subtle outer halo in the orb's own
-       hue so the orb reads as "lit from within" rather than flat. */
-    background: radial-gradient(circle at 32% 30%,
-      hsl(var(--mdls-orb-c, 195 55% 78%) / 1) 0%,
-      hsl(var(--mdls-orb-c, 195 55% 78%) / 0.92) 22%,
-      hsl(var(--mdls-orb-r, 195 38% 50%) / 0.95) 78%,
-      hsl(var(--mdls-orb-r, 195 38% 50%) / 1) 100%);
+    /* v1.4 (2026-05-18): glass-marble quality — multi-layer background
+       with a small bright specular highlight at upper-left (instead of
+       diffuse top-half wash). Stronger outer warm aura. Inner rim
+       shadow on lower-right gives depth and physicality.
+       Consistent with the single-light-source discipline (upper-left). */
+    background-image:
+      /* Small bright specular — light catching the glass marble */
+      radial-gradient(circle at 30% 26%,
+        rgba(255, 255, 255, 0.88) 0%,
+        rgba(255, 255, 255, 0.32) 9%,
+        transparent 22%),
+      /* Main orb gradient — slightly brighter center, deeper rim */
+      radial-gradient(circle at 35% 35%,
+        hsl(var(--mdls-orb-c, 195 55% 78%)) 0%,
+        hsl(var(--mdls-orb-c, 195 55% 78%)) 28%,
+        hsl(var(--mdls-orb-r, 195 38% 50%) / 0.96) 80%,
+        hsl(var(--mdls-orb-r, 195 38% 50%)) 100%);
     box-shadow:
-      inset 0 5px 10px 0 rgba(255, 255, 255, 0.55),         /* upper highlight */
-      inset 0 -3px 6px 0 hsl(var(--mdls-orb-r, 195 38% 50%) / 0.35),  /* lower rim */
-      0 4px 12px -2px hsl(var(--mdls-orb-r, 195 38% 50%) / 0.30),    /* near drop */
-      0 0 24px -2px hsl(var(--mdls-orb-c, 195 55% 78%) / 0.35);      /* outer aura in hue */
+      inset 0 3px 6px 0 rgba(255, 255, 255, 0.35),
+      inset 0 -4px 8px 0 hsl(var(--mdls-orb-r, 195 38% 50%) / 0.55),
+      3px 6px 12px -2px hsl(var(--mdls-orb-r, 195 38% 50%) / 0.42),
+      0 0 28px -2px hsl(var(--mdls-orb-c, 195 55% 78%) / 0.55);
     border-radius: 50%;
     transition: transform 800ms cubic-bezier(0.22, 1, 0.36, 1);
   }
@@ -2253,14 +2291,21 @@ form.liquid-glass input:-webkit-autofill:active {
   .mdls-ember-breath::after {
     content: '';
     position: absolute;
-    inset: -4px -4px -20px -4px;
-    background: radial-gradient(ellipse at 50% 100%,
-      hsl(28 95% 65% / 0.40) 0%,
-      hsl(28 95% 65% / 0.18) 35%,
-      transparent 70%);
-    filter: blur(20px);
+    /* v1.4: glow now wraps around the card edges, not just below.
+       Negative insets extend the glow in all 4 directions; the radial
+       center sits below-center so the warmest bloom is underneath
+       while a softer aura wraps the sides + top. */
+    inset: -16px -20px -28px -20px;
+    background:
+      radial-gradient(ellipse at 50% 100%,
+        hsl(28 100% 64% / 0.55) 0%,
+        hsl(28 95% 65% / 0.32) 28%,
+        hsl(28 90% 70% / 0.14) 55%,
+        transparent 78%);
+    filter: blur(24px);
     z-index: -1;
     pointer-events: none;
+    border-radius: 36px;
     animation: mdls-ember-breath 6s ease-in-out infinite;
   }
   .mdls-ember-breath--off::after {
