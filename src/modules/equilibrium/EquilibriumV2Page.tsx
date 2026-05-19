@@ -349,6 +349,7 @@ export const EquilibriumV2Page = () => {
             taskById={taskById}
             loading={eq.loading}
             onCompleteTask={eq.completeTask}
+            onDemoteFromDoNow={eq.demoteFromDoNow}
           />
         )}
 

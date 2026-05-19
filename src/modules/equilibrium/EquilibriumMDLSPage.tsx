@@ -227,13 +227,12 @@ export const EquilibriumMDLSPage = () => {
                 prevLabel={cycles.lunar.prevLabel}
                 currentLabel={cycles.lunar.currentLabel}
                 nextLabel={cycles.lunar.nextLabel}
-                eyebrow={cycles.lunar.holonicPhase.elementEmoji}
-                eyebrowTooltip={`${cycles.lunar.holonicPhase.element} — the umbrella for ${cycles.lunar.phase.name}`}
+                activePillEmoji={cycles.lunar.holonicPhase.elementEmoji}
+                activePillEmojiTooltip={`${cycles.lunar.holonicPhase.element} — the umbrella for ${cycles.lunar.phase.name}`}
                 activePillSubLabel={formatPhaseEndsAt(
                   cycles.lunar.phaseEndMs,
                   cycles.lunar.daysRemainingInPhase,
                 )}
-                glanceableGuidance={cycles.lunar.phase.guidance}
               />
             </div>
             <MoonFocusInput
@@ -374,12 +373,13 @@ export const EquilibriumMDLSPage = () => {
         {!isAttune && (
           <EmberBreath active>
             <MattePolymerCard variant="translucent" id={SECTION_IDS.doNow} emphasized>
-              <SectionHeader title="DO NOW" />
+              <SectionHeader title="DOING NOW" />
               <DoNowSection
                 focusedTaskIds={eq.focusedTaskIds}
                 taskById={taskById}
                 loading={eq.loading}
                 onCompleteTask={eq.completeTask}
+                onDemoteFromDoNow={eq.demoteFromDoNow}
               />
             </MattePolymerCard>
           </EmberBreath>

@@ -90,13 +90,25 @@ export const SmartGoalsSection = ({
 
   return (
     <div className="mt-2">
-      <div className="mb-3 flex items-center gap-2 rounded-lg bg-emerald-50/40 px-3 py-2">
-        <span className="text-[10px] uppercase tracking-wider text-emerald-700/70">
+      {/*
+        Sub-header "Tasks for <workstream>" — Sasha 2026-05-19: the
+        prior treatment (single emerald row) read as a TASK itself, not
+        as a header for the list below. Lift it visually:
+          • Two-line stack (eyebrow above, name below) — clearly a label
+          • Centered, all small-caps eyebrow, larger serif name underneath
+          • Bottom-divider line so it visibly anchors the list that follows
+          • No row chrome — it sits in the negative space, not in a row
+        So "Tasks for / Balaji reachout" can never be misread as one
+        more checkbox row in the list.
+      */}
+      <div className="mb-4 text-center">
+        <div className="text-[10px] font-semibold uppercase tracking-[0.18em] text-emerald-700/70">
           Tasks for
-        </span>
-        <span className="eq-text-halo flex-1 truncate font-serif text-base font-semibold text-[#0a1628]">
+        </div>
+        <div className="eq-text-halo mt-0.5 font-serif text-lg font-semibold text-[#0a1628]">
           {workstreamTitle}
-        </span>
+        </div>
+        <div className="mx-auto mt-2 h-px w-16 bg-emerald-700/25" aria-hidden="true" />
       </div>
 
       <DndContext

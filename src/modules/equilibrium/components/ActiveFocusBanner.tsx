@@ -1,4 +1,4 @@
-import { Check } from "lucide-react";
+import { Check, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { EquilibriumTask } from "../types";
 import { SECTION_IDS } from "../types";
@@ -8,6 +8,11 @@ interface ActiveFocusBannerProps {
   taskById: Record<string, EquilibriumTask | undefined>;
   loading: boolean;
   onCompleteTask: (id: string) => Promise<void> | void;
+  /**
+   * Demote a task from focus without completing it (Sasha 2026-05-19).
+   * Pulls the row out of DOING NOW; task stays active in Intuitive Tasks.
+   */
+  onDemoteFromDoNow: (id: string) => Promise<void> | void;
 }
 
 /**
@@ -36,6 +41,7 @@ export const ActiveFocusBanner = ({
   taskById,
   loading,
   onCompleteTask,
+  onDemoteFromDoNow,
 }: ActiveFocusBannerProps) => {
   if (focusedTaskIds.length === 0) return null;
 
@@ -78,13 +84,13 @@ export const ActiveFocusBanner = ({
             aria-hidden="true"
             className="inline-block h-2 w-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.6)]"
           />
-          DO NOW
+          DOING NOW
         </h2>
         <button
           type="button"
           onClick={jumpToDoNow}
           className="text-[10px] font-semibold uppercase tracking-wider text-[#0a1628]/55 transition hover:text-[#0a1628]"
-          title="Jump to DO NOW section for promote / demote / complete controls"
+          title="Jump to DOING NOW section for promote / demote / complete controls"
         >
           edit ↓
         </button>
@@ -94,7 +100,7 @@ export const ActiveFocusBanner = ({
         {tasks.map((task) => (
           <li
             key={task.id}
-            className="flex items-center gap-3 rounded-xl border border-emerald-200/50 bg-white/75 px-3 py-2.5 backdrop-blur-sm transition hover:bg-white/90"
+            className="group/doing flex items-center gap-3 rounded-xl border border-emerald-200/50 bg-white/75 px-3 py-2.5 backdrop-blur-sm transition hover:bg-white/90"
           >
             <button
               type="button"
@@ -111,6 +117,19 @@ export const ActiveFocusBanner = ({
             <span className="flex-1 font-serif text-base text-[#0a1628]">
               {task.text}
             </span>
+            {/* Demote affordance — X icon removes the task from focus
+                without completing it (Sasha 2026-05-19). Visible on
+                hover (desktop) and always on touch. */}
+            <button
+              type="button"
+              aria-label={`Remove from DOING NOW: ${task.text}`}
+              onClick={() => onDemoteFromDoNow(task.id)}
+              disabled={loading}
+              className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-[#0a1628]/45 transition opacity-0 group-hover/doing:opacity-100 focus:opacity-100 hover:bg-[#0a1628]/5 hover:text-[#0a1628]/80 max-sm:opacity-60"
+              title="Remove from DOING NOW (keep task active)"
+            >
+              <X size={12} />
+            </button>
           </li>
         ))}
       </ul>
