@@ -199,59 +199,16 @@ export const SolarCycleBar = ({
           })}
         </svg>
 
-        {/* Central golden orb suspended below the curve — layered for a 3D
-            plasma feel (per the mock: glowing sun-like sphere with internal
-            depth, not a flat ball). Three layers stacked: outer atmospheric
-            glow, glass capsule, inner plasma orb with highlight + rim. */}
+        {/* Central solar sphere suspended below the curve — real
+            photographic sun (Sasha 2026-05-18 brief). Subordinate to
+            the reserve tube: smaller, calmer, less bright than the
+            tube glow. Replaces the prior radial-gradient simulation. */}
         <div
           className="pointer-events-none absolute left-1/2 -translate-x-1/2"
           style={{ top: "60%" }}
-          aria-label="Current solar energy"
-          role="img"
         >
-          {/* Outer atmospheric glow halo */}
-          <div
-            className="relative h-16 w-16 sm:h-20 sm:w-20"
-            style={{
-              background:
-                "radial-gradient(circle, rgba(251,191,36,0.45) 0%, rgba(251,191,36,0.15) 40%, transparent 70%)",
-              filter: "blur(4px)",
-            }}
-          >
-            {/* Glass capsule wrapper — frosted ring */}
-            <div
-              className="absolute inset-1 rounded-full"
-              style={{
-                background:
-                  "radial-gradient(circle at 30% 25%, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.1) 30%, rgba(255,255,255,0.05) 50%, transparent 70%)",
-                backdropFilter: "blur(2px)",
-                border: "0.5px solid rgba(255,255,255,0.5)",
-              }}
-            >
-              {/* Inner plasma orb — multi-stop radial for depth + texture */}
-              <div
-                className="absolute inset-1.5 rounded-full"
-                style={{
-                  background: [
-                    // Bright top-left highlight (specular)
-                    "radial-gradient(circle at 32% 28%, rgba(255,255,255,0.85) 0%, transparent 18%)",
-                    // Plasma core — yellow to orange to deep amber
-                    "radial-gradient(circle at 50% 50%, #fef3c7 0%, #fde047 12%, #facc15 28%, #f59e0b 52%, #d97706 78%, #b45309 100%)",
-                  ].join(", "),
-                  boxShadow: [
-                    // Inner rim shadow — gives volume
-                    "inset 0 -4px 8px rgba(180,83,9,0.45)",
-                    "inset 0 -10px 16px rgba(120,53,15,0.35)",
-                    // Inner top sheen — accentuates the highlight
-                    "inset 0 3px 6px rgba(254,243,199,0.6)",
-                    // Outer glow — sun corona
-                    "0 0 24px 4px rgba(251,191,36,0.45)",
-                    "0 0 48px 8px rgba(251,146,60,0.25)",
-                  ].join(", "),
-                }}
-              />
-            </div>
-          </div>
+          <SunOrb size={64} className="sm:hidden" />
+          <SunOrb size={72} className="hidden sm:block" />
         </div>
       </div>
 
