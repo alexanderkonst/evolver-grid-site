@@ -61,8 +61,13 @@ const SiteLogo = () => {
         // pane 1. Sasha called this out explicitly with the directive
         // to comprehensively trace EVERY brand-mark surface.
         "/asset-mapping",
+        // Day 74 (2026-05-18): /mdls-preview is the MDLS primitives
+        // showcase — its own atmospheric backdrop + device-framed
+        // Composed Surface Demo at the top. The global SiteLogo wordmark
+        // was overlapping the demo at top-center, killing the layout.
+        "/mdls-preview",
     ];
-    const exactHidden = ["/", "/ignite", "/my-result", "/path", "/auth", "/dashboard", "/ai-os", "/library", "/prompt", "/ubb"];
+    const exactHidden = ["/", "/ignite", "/my-result", "/path", "/auth", "/dashboard", "/ai-os", "/library", "/prompt", "/ubb", "/mdls-preview"];
     if (hidden.some(p => location.pathname.startsWith(p)) || exactHidden.includes(location.pathname)) return null;
 
     return (
