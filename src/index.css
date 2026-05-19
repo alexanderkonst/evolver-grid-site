@@ -894,6 +894,34 @@
    rule above. Active chip is white-text-on-navy → invert to
    white-text-on-black under NS. The bg-[#0a1628] rule handles it. */
 
+/* SectionsPanel number chips (Pane 2 step badges) — heavily inline-styled
+   with gold gradients. Catch all of them via attribute substring match on
+   the gold rgba literal that appears in every variant. */
+[data-skin="network-school"] [style*="rgba(244, 212, 114"],
+[data-skin="network-school"] [style*="rgba(212, 175, 55"] {
+  background: transparent !important;
+  background-image: none !important;
+  color: var(--skin-text-primary, #0a0a0a) !important;
+  border-color: var(--skin-rule-strong, rgba(10, 10, 10, 0.18)) !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+}
+
+/* Tailwind arbitrary `bg-[#d4af37]` (gold solid) — used by the active-row
+   left-pill marker in SectionsPanel. Under NS render as solid black. */
+[data-skin="network-school"] .bg-\[\#d4af37\] {
+  background-color: #0a0a0a !important;
+  box-shadow: none !important;
+}
+
+/* Pane 2 active-row halo (the giant gold radial shadow). Killed by the
+   shadow-[..rgba(244,212,114..]  rule above, but reassert for variants
+   that use rgba(212,175,55,…) too. */
+[data-skin="network-school"] [class*="shadow-\[0_0_22px"],
+[data-skin="network-school"] [class*="shadow-[0_0_22px"] {
+  box-shadow: none !important;
+}
+
 /* Definition of the design system. All colors, gradients, fonts, etc should be defined here.
 All colors MUST be HSL.
 */
