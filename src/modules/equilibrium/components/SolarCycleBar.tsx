@@ -1,5 +1,6 @@
 import { useId, type ReactNode } from "react";
 import { cn } from "@/lib/utils";
+import { SunOrb } from "./SunOrb";
 
 /**
  * Solar / Yearly cycle visual — distinct from `<CycleEnergyBar>`.
