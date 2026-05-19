@@ -25,6 +25,16 @@ export interface InlineEditableTextProps {
   onSave: (text: string | null) => Promise<void> | void;
   /** Disable editing (e.g., while loading). */
   disabled?: boolean;
+  /**
+   * Optional advisory word-count hint. When set, while editing, the
+   * component renders a small advisory line under the textarea if the
+   * draft exceeds `wordLimit` words. Purely advisory — does not block
+   * save. Sasha 2026-05-18 Phase C: nudges Lifelong Dedication +
+   * Strategy toward short concrete sentences.
+   */
+  wordLimit?: number;
+  /** Copy shown when over the word limit. Required if wordLimit is set. */
+  wordLimitHint?: string;
   className?: string;
 }
 
@@ -34,6 +44,8 @@ export const InlineEditableText = ({
   size = "body",
   onSave,
   disabled,
+  wordLimit,
+  wordLimitHint,
   className,
 }: InlineEditableTextProps) => {
   const [editing, setEditing] = useState(false);
@@ -77,48 +89,60 @@ export const InlineEditableText = ({
       : "eq-text-halo text-base font-medium text-[#0a1628]";
 
   if (editing) {
+    const wordCount = draft.trim().split(/\s+/).filter(Boolean).length;
+    const overLimit =
+      wordLimit !== undefined && wordCount > wordLimit && !!wordLimitHint;
     return (
-      <div className={cn("flex items-start gap-2", className)}>
-        <textarea
-          ref={inputRef}
-          value={draft}
-          onChange={(e) => setDraft(e.target.value)}
-          onKeyDown={(e) => {
-            if (e.key === "Enter" && !e.shiftKey) {
-              e.preventDefault();
-              void commit();
-            } else if (e.key === "Escape") {
-              cancel();
-            }
-          }}
-          onBlur={() => void commit()}
-          rows={2}
-          disabled={saving}
-          className={cn(
-            "flex-1 resize-none rounded-md border border-[#0a1628]/15 bg-white/70 px-3 py-2 outline-none focus:border-[#0a1628]/40",
-            textClass,
-          )}
-        />
-        <div className="flex flex-col gap-1">
-          <button
-            type="button"
-            onClick={() => void commit()}
+      <div className={cn("flex flex-col gap-1.5", className)}>
+        <div className="flex items-start gap-2">
+          <textarea
+            ref={inputRef}
+            value={draft}
+            onChange={(e) => setDraft(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" && !e.shiftKey) {
+                e.preventDefault();
+                void commit();
+              } else if (e.key === "Escape") {
+                cancel();
+              }
+            }}
+            onBlur={() => void commit()}
+            rows={2}
             disabled={saving}
-            aria-label="Save"
-            className="rounded-md p-1.5 text-[#0a1628]/90 hover:bg-white/60 hover:text-[#0a1628]"
-          >
-            <Check size={16} />
-          </button>
-          <button
-            type="button"
-            onClick={cancel}
-            disabled={saving}
-            aria-label="Cancel"
-            className="rounded-md p-1.5 text-[#0a1628]/90 hover:bg-white/60 hover:text-[#0a1628]"
-          >
-            <X size={16} />
-          </button>
+            className={cn(
+              "flex-1 resize-none rounded-md border border-[#0a1628]/15 bg-white/70 px-3 py-2 outline-none focus:border-[#0a1628]/40",
+              textClass,
+            )}
+          />
+          <div className="flex flex-col gap-1">
+            <button
+              type="button"
+              onClick={() => void commit()}
+              disabled={saving}
+              aria-label="Save"
+              className="rounded-md p-1.5 text-[#0a1628]/90 hover:bg-white/60 hover:text-[#0a1628]"
+            >
+              <Check size={16} />
+            </button>
+            <button
+              type="button"
+              onClick={cancel}
+              disabled={saving}
+              aria-label="Cancel"
+              className="rounded-md p-1.5 text-[#0a1628]/90 hover:bg-white/60 hover:text-[#0a1628]"
+            >
+              <X size={16} />
+            </button>
+          </div>
         </div>
+        {/* Advisory word-count hint — appears when over the limit. Not
+            blocking; just a nudge toward concise voice. */}
+        {overLimit && (
+          <p className="px-2 text-xs italic text-amber-700/85">
+            {wordCount} words — {wordLimitHint}
+          </p>
+        )}
       </div>
     );
   }

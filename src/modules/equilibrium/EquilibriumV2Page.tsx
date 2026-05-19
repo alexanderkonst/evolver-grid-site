@@ -21,6 +21,7 @@ import { DoNowSection } from "./components/DoNowSection";
 import { SynthesisCard } from "./components/SynthesisCard";
 import { SectionAnchorNav } from "./components/SectionAnchorNav";
 import { WatchModeToggle, type WatchMode } from "./components/WatchModeToggle";
+import { ActiveFocusBanner } from "./components/ActiveFocusBanner";
 import { useEquilibriumV2 } from "./hooks/useEquilibriumV2";
 import {
   DAY_OF_WEEK_SEGMENTS,
@@ -301,74 +302,60 @@ export const EquilibriumV2Page = () => {
         )}
 
         {/* ════════════ ACT MODE ════════════════════════════════════
-          New order (Sasha 2026-05-18 Phase A — IA flip):
-            DO NOW → Intuitive Tasks → Workstreams → Current Strategy
-            → Role → Lifelong Dedication
-          The user opens ACT for "what's the move now?" — so DO NOW is
-          the first thing they see. Identity anchors (Role + Lifelong
-          Dedication) are present but at the bottom: they ground the
-          action without dominating the screen.
+          Section ORDER unchanged (Sasha 2026-05-18: "I want to make the
+          section calls"). Original spine order preserved:
+            Lifelong Dedication → Role → Strategy → Workstreams →
+            Intuitive Tasks → DO NOW.
+
+          NEW (2026-05-18 Phase A revised): an `ActiveFocusBanner`
+          slim mirror of DO NOW renders ABOVE Lifelong Dedication, only
+          when there's something actively in focus. The 1–3 focused
+          tasks "replicate up" so the user sees their priority on
+          landing without losing the narrative top-down order.
         */}
 
-        {/* DO NOW — the chosen action (always rendered first in ACT) */}
+        {/* Active Focus Banner — slim mirror of DO NOW pinned at top.
+            Renders only when focusedTaskIds.length > 0. The full DO NOW
+            section at the bottom keeps all the controls. */}
+        {!isAttune && eq.focusedTaskIds.length > 0 && (
+          <ActiveFocusBanner
+            focusedTaskIds={eq.focusedTaskIds}
+            taskById={taskById}
+            loading={eq.loading}
+            onCompleteTask={eq.completeTask}
+          />
+        )}
+
+        {/* Lifelong Dedication — North Star (first in ACT order)
+            "Mission" renamed to "Lifelong Dedication" in Equilibrium UI
+            only (backend stays mission_*). Purpose = being; Dedication =
+            doing at life scale — the verb-form of being. Spec → Spine §11. */}
         {!isAttune && (
           <EquilibriumSectionCard
-            id={SECTION_IDS.doNow}
-            emphasized
+            id={SECTION_IDS.mission}
           >
-            <SectionHeader title="DO NOW" />
-            <DoNowSection
-              focusedTaskIds={eq.focusedTaskIds}
-              taskById={taskById}
+            <SectionHeader
+              title="Lifelong Dedication"
+              infoIconCopy="ONE sentence starting with 'I'. Verb-form, concrete, life-scale. Example: 'I turn fog into frameworks people can act on right away.'"
+            />
+            <MissionSection
+              missionDisplay={eq.missionDisplay}
               loading={eq.loading}
-              onCompleteTask={eq.completeTask}
+              onSetOverride={eq.setMissionOverride}
             />
           </EquilibriumSectionCard>
         )}
 
-        {/* Intuitive Tasks — tasks under the active workstream */}
+        {/* Role — North Star */}
         {!isAttune && (
           <EquilibriumSectionCard
-            id={SECTION_IDS.goals}
+            id={SECTION_IDS.role}
           >
-            <SectionHeader title="Intuitive Tasks" />
-            <SmartGoalsSection
-              workstreamTitle={activeWorkstream?.title ?? null}
-              tasks={activeTasks}
-              focusedTaskIds={eq.focusedTaskIds}
+            <SectionHeader title="Role" />
+            <RoleSection
+              roleDisplay={eq.roleDisplay}
               loading={eq.loading}
-              onAddTask={(text) =>
-                activeWorkstream && eq.addTask(activeWorkstream.id, text)
-              }
-              onRenameTask={eq.renameTask}
-              onDeleteTask={eq.deleteTask}
-              onReorderTasks={(ids) =>
-                activeWorkstream && eq.reorderTasks(activeWorkstream.id, ids)
-              }
-              onPromoteToDoNow={(id) => { void eq.promoteToDoNow(id); }}
-              onCompleteTask={eq.completeTask}
-              onUncompleteTask={eq.uncompleteTask}
-            />
-          </EquilibriumSectionCard>
-        )}
-
-        {/* Workstreams */}
-        {!isAttune && (
-          <EquilibriumSectionCard
-            id={SECTION_IDS.workstreams}
-          >
-            <SectionHeader title="Workstreams" />
-            <WorkstreamsSection
-              workstreams={eq.workstreams}
-              archivedWorkstreams={eq.archivedWorkstreams}
-              activeId={eq.activeWorkstreamId}
-              loading={eq.loading}
-              onSelect={eq.setActiveWorkstreamId}
-              onAdd={eq.addWorkstream}
-              onRename={eq.renameWorkstream}
-              onDelete={eq.deleteWorkstream}
-              onRestore={eq.restoreWorkstream}
-              onReorder={eq.reorderWorkstreams}
+              onSetOverride={eq.setRoleOverride}
             />
           </EquilibriumSectionCard>
         )}
@@ -419,38 +406,65 @@ export const EquilibriumV2Page = () => {
           </EquilibriumSectionCard>
         )}
 
-        {/* Role — North Star (compact, end-of-ACT) */}
+        {/* Workstreams */}
         {!isAttune && (
           <EquilibriumSectionCard
-            id={SECTION_IDS.role}
-            compact
+            id={SECTION_IDS.workstreams}
           >
-            <SectionHeader title="Role" />
-            <RoleSection
-              roleDisplay={eq.roleDisplay}
+            <SectionHeader title="Workstreams" />
+            <WorkstreamsSection
+              workstreams={eq.workstreams}
+              archivedWorkstreams={eq.archivedWorkstreams}
+              activeId={eq.activeWorkstreamId}
               loading={eq.loading}
-              onSetOverride={eq.setRoleOverride}
+              onSelect={eq.setActiveWorkstreamId}
+              onAdd={eq.addWorkstream}
+              onRename={eq.renameWorkstream}
+              onDelete={eq.deleteWorkstream}
+              onRestore={eq.restoreWorkstream}
+              onReorder={eq.reorderWorkstreams}
             />
           </EquilibriumSectionCard>
         )}
 
-        {/* Lifelong Dedication — North Star (compact, end-of-ACT)
-            "Mission" renamed to "Lifelong Dedication" in Equilibrium UI
-            only (backend stays mission_*). Purpose = being; Dedication =
-            doing at life scale — the verb-form of being. Spec → Spine §11. */}
+        {/* Intuitive Tasks */}
         {!isAttune && (
           <EquilibriumSectionCard
-            id={SECTION_IDS.mission}
-            compact
+            id={SECTION_IDS.goals}
           >
-            <SectionHeader
-              title="Lifelong Dedication"
-              infoIconCopy="ONE sentence starting with 'I'. Verb-form, concrete, life-scale. Example: 'I turn fog into frameworks people can act on right away.'"
-            />
-            <MissionSection
-              missionDisplay={eq.missionDisplay}
+            <SectionHeader title="Intuitive Tasks" />
+            <SmartGoalsSection
+              workstreamTitle={activeWorkstream?.title ?? null}
+              tasks={activeTasks}
+              focusedTaskIds={eq.focusedTaskIds}
               loading={eq.loading}
-              onSetOverride={eq.setMissionOverride}
+              onAddTask={(text) =>
+                activeWorkstream && eq.addTask(activeWorkstream.id, text)
+              }
+              onRenameTask={eq.renameTask}
+              onDeleteTask={eq.deleteTask}
+              onReorderTasks={(ids) =>
+                activeWorkstream && eq.reorderTasks(activeWorkstream.id, ids)
+              }
+              onPromoteToDoNow={(id) => { void eq.promoteToDoNow(id); }}
+              onCompleteTask={eq.completeTask}
+              onUncompleteTask={eq.uncompleteTask}
+            />
+          </EquilibriumSectionCard>
+        )}
+
+        {/* DO NOW — last section, full controls */}
+        {!isAttune && (
+          <EquilibriumSectionCard
+            id={SECTION_IDS.doNow}
+            emphasized
+          >
+            <SectionHeader title="DO NOW" />
+            <DoNowSection
+              focusedTaskIds={eq.focusedTaskIds}
+              taskById={taskById}
+              loading={eq.loading}
+              onCompleteTask={eq.completeTask}
             />
           </EquilibriumSectionCard>
         )}
