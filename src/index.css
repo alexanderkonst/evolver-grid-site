@@ -1018,24 +1018,16 @@
   display: none !important;
 }
 
-/* V3 logo (Sasha 2026-05-19) — the NS asset is wide and dark. Constrain
-   to the rail's natural width and let aspect-ratio handle the rest.
-   Also kill any inherited animations / drop-shadows on the NS logo. */
+/* V6 (Sasha 2026-05-19) — logo now lives in the SAME chip-shape wrapper
+   as the SPACES nav items (`flex items-center gap-3 px-3 py-2.5`), so
+   the flag center auto-aligns with the JOURNEY/AI OS/ME/BUILD icon
+   column. Tailwind `w-7 h-7` on the <img> sets the 28×28 footprint —
+   we only need to kill the inherited drop-shadow + animation. The old
+   V3 width:64% / max-height:80px rule is retired (it was inflating the
+   image to ~154×77, breaking the chip-column alignment). */
 [data-skin="network-school"] .liquid-glass.h-dvh img[alt="Network School"] {
-  width: 64% !important;
-  height: auto !important;
-  max-height: 80px !important;
-  object-fit: contain !important;
   filter: none !important;
   animation: none !important;
-}
-/* Mobile rail (72px column) — show the NS asset at icon scale. */
-@media (max-width: 767px) {
-  [data-skin="network-school"] .liquid-glass.h-dvh img[alt="Network School"] {
-    width: 32px !important;
-    height: 32px !important;
-    max-height: 32px !important;
-  }
 }
 
 /* V4 (Sasha 2026-05-19) — neutralize the SPACE chip icons to grayscale
