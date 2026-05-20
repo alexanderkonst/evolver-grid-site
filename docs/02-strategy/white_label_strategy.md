@@ -244,6 +244,16 @@ Components that hardcode colors and need either patching or skin-scoped CSS over
 - **UI chrome and body content want different font families.** Rail/Pane 2 chips + form controls + buttons → clean grotesque sans (Inter). Headlines + body prose → editorial serif (Newsreader). Mixing them is correct; matching them is wrong.
 - **Newsreader > Source Serif Pro for NS-style editorial.** Higher contrast, modern transitional voice. Both are free Google Fonts.
 
+#### From v3 → v4
+
+- **Brand wordmark is more than the flag.** v3 used just the NS flag PNG as the rail logo — read as a tiny black square. v4 composes the lockup in-source: flag PNG + "ns.com" text rendered in Newsreader serif side-by-side, matching the canonical NS header treatment. When the source brand's logo is a wordmark lockup, recreate the lockup rather than ship the icon alone.
+- **The preview banner is debug chrome — strip it on demo surfaces.** The skin preview banner is useful internally but reads as "this is a test page" to an external evaluator. Add an explicit `if (skin === '<slug>') return null` to the banner component for any skin being shown to outsiders.
+- **Icon color identity ≠ chrome identity.** Aurora gives each SPACES chip its own colored icon (JOURNEY gold star, AI OS rainbow merkaba, etc.). Under NS the icons should be grayscale — NS uses no color in UI chrome. Per-icon `filter: grayscale(1) brightness(0.55) contrast(0.95)` under `[data-skin="<slug>"]` does it.
+- **Audit utility-row uniformity once per skin.** Log Out, music player, chat-with-us, settings all sit in the rail's bottom utility row. If any one has different padding/radius/icon-size/hover-color, the row reads as inconsistent. Lock them to the same chip shape with the same hover register. Pink/red hovers especially break the editorial calm.
+- **The X-to-close in Pane 2 is invisible by default on inverted skins.** It uses `text-white/50` which assumed a dark Pane 2. Under NS (white Pane 2) it disappears. Skin-scoped color override is the right fix.
+- **Tokenize music-player colors as part of the per-community spec.** The play-button bg/border/shadow + track-text + skip-icon colors all carry the brand register. v3 missed them entirely. Add `--skin-music-play-bg`, `--skin-music-icon`, `--skin-music-text`, `--skin-music-meta` to the spec so the next skin doesn't repeat this.
+- **Platform-wide UI fixes vs skin-scoped overrides — know which is which.** v4 standardized rail-item widths, shrank the AI OS icon slightly, and tightened the logo top-padding ACROSS the platform (not just under NS) — Sasha called those out as canonical chrome bugs to fix everywhere. By contrast, the icon grayscale and pane-2-close visibility are NS-only. The rule: if a brand asks for the change, check whether the request describes the canonical surface or just their skin variant. Bake into the spec.
+
 ### Forms / inputs / segmented controls — captured for future surfaces (not yet built)
 
 Most forms in the platform are auth-walled (UBB artifact entry, Settings, ZoG assessment). When we build form-skin coverage for NS, the recipe is:
@@ -261,5 +271,5 @@ When V4 brings forms into the NS surface, scope the changes to `[data-skin="netw
 
 ---
 
-*White-Label Strategy v1.2*
-*Created: 2025-01-04 · Updated: 2026-05-19 (V3 lessons + form spec added after `network-school` v3 ship)*
+*White-Label Strategy v1.3*
+*Created: 2025-01-04 · Updated: 2026-05-19 (V4 lessons added after `network-school` v4 ship — logo lockup, banner-hide, icon grayscale, utility-row uniformity, music-player tokens, platform-vs-skin split)*
