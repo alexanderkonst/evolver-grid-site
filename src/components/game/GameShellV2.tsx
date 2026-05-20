@@ -861,6 +861,17 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
     // the cream pt-4 + main background for immersive dark routes —
     // panel chrome stays unchanged.
     const isImmersiveDarkRoute = path === "/ignite";
+    // Day 75 (Sasha 2026-05-20): Equilibrium gets a clean static backdrop
+    // instead of the Mux cosmic-sunset video. The video was doing ~70% of
+    // the chroma work and reading as "yellow on yellow" — Sasha's call:
+    // "remove the background video for Equilibrium and we keep it clean.
+    // We keep it clean, and we just add more glass or morphism." Same
+    // shell otherwise (rails, panels, logo); just kill the video. Below,
+    // we render a calm cool gradient in its place.
+    const isEquilibriumRoute =
+        path === "/build/equilibrium" ||
+        path === "/equilibrium" ||
+        path === "/preview/equilibrium-v2";
     const isWorkingRoute =
         path.startsWith("/playbook") ||
         path.startsWith("/path") ||
@@ -877,7 +888,7 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
     // feel for content; pane 2 finally has the animated dust to peek
     // through. Only page-owned-bg routes still suppress the shell
     // video (they render their own).
-    const suppressShellBackground = pageOwnsBackground;
+    const suppressShellBackground = pageOwnsBackground || isEquilibriumRoute;
 
     // Day 56 (Sasha 2026-04-29): /ai-os ships as a real app-shell on desktop.
     // The earlier sticky-pane-on-document-scroll layout kept producing
@@ -899,6 +910,25 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                 only in the content column on working routes. */}
             <div className="fixed inset-0 z-0">
                 {!suppressShellBackground && <MuxVideoBackground />}
+                {/*
+                  Equilibrium clean backdrop (Sasha 2026-05-20). When
+                  the Mux video is suppressed for /build/equilibrium,
+                  this calm cool gradient takes its place — soft slate
+                  → ivory → soft lavender, low chroma so the cards
+                  (frosted glass) read clearly over it without picking
+                  up any warm dominance. Replaces "yellow on yellow"
+                  with "frost on a quiet wash."
+                */}
+                {isEquilibriumRoute && (
+                  <div
+                    aria-hidden="true"
+                    className="absolute inset-0"
+                    style={{
+                      background:
+                        "radial-gradient(ellipse 120% 100% at 50% 0%, #f1f5fb 0%, #e5e9f2 45%, #dfe3ec 100%)",
+                    }}
+                  />
+                )}
                 {/*
                   Base wash USED to live here as `absolute inset-0` —
                   which stretched the cream gradient across the whole

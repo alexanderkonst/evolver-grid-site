@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Plus, GripVertical, Check, ArrowDown, RotateCcw } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { Plus, GripVertical, Check, ArrowDown, RotateCcw, Pencil, X } from "lucide-react";
 import {
   closestCenter,
   DndContext,
@@ -20,7 +20,9 @@ import { CSS } from "@dnd-kit/utilities";
 import { cn } from "@/lib/utils";
 import type { EquilibriumWorkstream } from "../types";
 import { MAX_WORKSTREAMS } from "../hooks/useEquilibriumV2";
-import { InlineEditableText } from "./InlineEditableText";
+// InlineEditableText retired here 2026-05-20 — chip now has its own
+// inline editor (textarea + Check/X) so the activation surface (the
+// whole row) doesn't collide with the title button.
 
 interface WorkstreamsSectionProps {
   workstreams: EquilibriumWorkstream[];
@@ -204,6 +206,30 @@ interface SortableWorkstreamChipProps {
   onDelete: () => Promise<void> | void;
 }
 
+/**
+ * Workstream chip — activation + editing UX (Sasha 2026-05-20).
+ *
+ * Two intents, two distinct affordances, zero collision:
+ *
+ *   • ACTIVATION (set as current, scroll to its tasks)
+ *     → The ENTIRE chip body is the click surface. Click anywhere on
+ *       the row that isn't an explicit child control → activate.
+ *       That's intuitive — the user reads "this row is a thing I
+ *       can pick" and clicking it picks it.
+ *
+ *   • EDITING (rename the title)
+ *     → Dedicated, always-visible pencil icon next to the title.
+ *       Click the pencil → switch the row into edit mode (textarea +
+ *       save/cancel). Editing is in-place, the row stops being
+ *       clickable-to-activate while editing.
+ *
+ * Child controls (pencil, complete check, drag handle, TASKS pill)
+ * each stop propagation so they don't trigger the row's onClick.
+ *
+ * Previous design used InlineEditableText, which was its own button
+ * that absorbed clicks and prevented "click whole row" activation.
+ * Replaced inline with a small textarea + check/cancel buttons.
+ */
 const SortableWorkstreamChip = ({
   workstream,
   index,
@@ -216,6 +242,63 @@ const SortableWorkstreamChip = ({
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } =
     useSortable({ id: workstream.id });
 
+  const [editing, setEditing] = useState(false);
+  const [draft, setDraft] = useState(workstream.title);
+  const [saving, setSaving] = useState(false);
+  const inputRef = useRef<HTMLTextAreaElement>(null);
+
+  // Keep draft in sync if the title changes upstream (e.g., after save).
+  useEffect(() => {
+    if (!editing) setDraft(workstream.title);
+  }, [workstream.title, editing]);
+
+  // Focus + select-all when entering edit mode.
+  useEffect(() => {
+    if (editing && inputRef.current) {
+      inputRef.current.focus();
+      inputRef.current.select();
+    }
+  }, [editing]);
+
+  const startEdit = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (loading) return;
+    setEditing(true);
+  };
+
+  const commitEdit = async () => {
+    if (saving) return;
+    const trimmed = draft.trim();
+    const next = trimmed === "" ? "Untitled" : trimmed;
+    if (next === workstream.title) {
+      setEditing(false);
+      return;
+    }
+    setSaving(true);
+    try {
+      await onRename(next);
+    } finally {
+      setSaving(false);
+      setEditing(false);
+    }
+  };
+
+  const cancelEdit = () => {
+    setDraft(workstream.title);
+    setEditing(false);
+  };
+
+  // Row click → activate (only when NOT editing). Children with their
+  // own onClick stopPropagation so they don't double-fire.
+  const handleRowClick = () => {
+    if (editing || loading) return;
+    onSelect();
+  };
+
+  // Helper: any click on an inner button stops propagation. Use this
+  // on every interactive child so it doesn't trigger the row activator.
+  const stop = (e: React.MouseEvent) => e.stopPropagation();
+
   return (
     <li
       ref={setNodeRef}
@@ -223,90 +306,168 @@ const SortableWorkstreamChip = ({
         transform: CSS.Transform.toString(transform),
         transition,
       }}
+      onClick={handleRowClick}
+      role={editing ? undefined : "button"}
+      tabIndex={editing ? -1 : 0}
+      aria-label={
+        editing
+          ? `Editing workstream ${index + 1}`
+          : isActive
+            ? `Workstream ${index + 1} (active) — click to scroll to its tasks`
+            : `Activate workstream ${index + 1}: ${workstream.title}`
+      }
+      onKeyDown={(e) => {
+        // Keyboard activation parity with the row click.
+        if (editing) return;
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          onSelect();
+        }
+      }}
       className={cn(
         "group relative flex items-center gap-2 rounded-xl border-2 transition",
-        isActive
-          ? "border-emerald-400/60 bg-white/85 shadow-[0_0_20px_rgba(74,222,128,0.18)]"
-          : "border-white/40 bg-white/55 hover:border-white/70 hover:bg-white/75",
+        editing
+          ? "border-[#0a1628]/30 bg-white cursor-text"
+          : isActive
+            ? "border-emerald-400/60 bg-white/85 shadow-[0_0_20px_rgba(74,222,128,0.18)] cursor-pointer"
+            : "border-white/40 bg-white/65 hover:border-emerald-300/60 hover:bg-white/85 cursor-pointer",
         isDragging && "z-10 opacity-90 shadow-lg",
       )}
     >
-      {/*
-        Sasha 2026-05-20 bug fix: the chip number is the dedicated
-        "activate this workstream" affordance. Hit area widened
-        (pl-3 → px-4 py-2) so it's a comfortable tap target on its own.
-
-        The title wrapper used to ALSO carry `onClick={onSelect}` —
-        which fired alongside InlineEditableText's own click-to-edit
-        handler (click bubbled through). The result: clicking the
-        title opened the editor, but ~80ms later the page scrolled
-        down to Intuitive Tasks (per handleSelect's setTimeout),
-        moving the textarea off-screen and dropping focus. User
-        couldn't edit the title at all. Removing the bubbling
-        onClick keeps title clicks dedicated to editing.
-
-        Activation surfaces remaining: chip number (left), TASKS
-        pill (right, when active), or just typing into the title
-        which doesn't need activation anyway.
-      */}
-      <button
-        type="button"
-        onClick={onSelect}
-        aria-label={isActive ? `Workstream ${index + 1} (active)` : `Activate workstream ${index + 1}`}
-        title={isActive ? "Already active" : "Click to activate · scroll to its tasks"}
+      {/* Chip number — visual only, the WHOLE row activates so we
+          don't need an explicit number-button. Stays as a span. */}
+      <span
         className={cn(
-          "flex-shrink-0 select-none px-4 py-2 font-serif text-base transition",
-          isActive
-            ? "text-[#0a1628] font-semibold"
-            : "text-[#0a1628]/90 hover:text-[#0a1628]",
+          "flex-shrink-0 select-none pl-4 pr-1 py-2 font-serif text-base",
+          isActive ? "text-[#0a1628] font-semibold" : "text-[#0a1628]/90",
         )}
       >
         {index + 1}.
-      </button>
+      </span>
 
-      <div className="flex-1 min-w-0">
-        <InlineEditableText
-          value={workstream.title}
-          size="body"
-          disabled={loading}
-          emptyPlaceholder="—"
-          onSave={(text) => onRename(text ?? "Untitled")}
-        />
-      </div>
+      {/* Title — plain text in display mode, textarea in edit mode. */}
+      {editing ? (
+        <div className="flex-1 min-w-0 flex items-start gap-2 py-1.5 pr-1">
+          <textarea
+            ref={inputRef}
+            value={draft}
+            onChange={(e) => setDraft(e.target.value)}
+            onClick={stop}
+            onKeyDown={(e) => {
+              e.stopPropagation();
+              if (e.key === "Enter" && !e.shiftKey) {
+                e.preventDefault();
+                void commitEdit();
+              } else if (e.key === "Escape") {
+                e.preventDefault();
+                cancelEdit();
+              }
+            }}
+            rows={1}
+            disabled={saving}
+            className="flex-1 resize-none rounded-md border border-[#0a1628]/15 bg-white/95 px-3 py-1.5 text-base font-medium text-[#0a1628] outline-none focus:border-[#0a1628]/40"
+          />
+          <button
+            type="button"
+            onClick={(e) => {
+              stop(e);
+              void commitEdit();
+            }}
+            disabled={saving}
+            aria-label="Save"
+            className="rounded-md p-1.5 text-emerald-700 hover:bg-emerald-50"
+            title="Save"
+          >
+            <Check size={16} />
+          </button>
+          <button
+            type="button"
+            onClick={(e) => {
+              stop(e);
+              cancelEdit();
+            }}
+            disabled={saving}
+            aria-label="Cancel"
+            className="rounded-md p-1.5 text-[#0a1628]/70 hover:bg-[#0a1628]/5"
+            title="Cancel"
+          >
+            <X size={16} />
+          </button>
+        </div>
+      ) : (
+        <div className="flex-1 min-w-0 flex items-center gap-2 py-2">
+          <span className="flex-1 truncate font-medium text-[#0a1628]">
+            {workstream.title}
+          </span>
+          {/* Pencil — dedicated edit affordance. Always discoverable on
+              the active row + visible on hover for inactive rows so it
+              doesn't clutter the resting list. */}
+          <button
+            type="button"
+            onClick={startEdit}
+            disabled={loading}
+            aria-label={`Rename workstream ${index + 1}`}
+            title="Rename"
+            className={cn(
+              "shrink-0 rounded p-1.5 text-[#0a1628]/55 transition hover:bg-[#0a1628]/5 hover:text-[#0a1628]",
+              isActive ? "opacity-100" : "opacity-0 group-hover:opacity-100 focus-visible:opacity-100",
+            )}
+          >
+            <Pencil size={13} />
+          </button>
+        </div>
+      )}
 
-      {/* Active indicator — visible breadcrumb to the SMART Goals section below. */}
-      {isActive && (
+      {/* "↓ TASKS" pill — visible breadcrumb to Intuitive Tasks below.
+          Only renders when this workstream is active. Click also fires
+          onSelect (which scrolls). Sasha 2026-05-20: kept as an
+          explicit affordance even though the whole row already
+          activates — confirms the active state and gives an obvious
+          "go to my tasks" target on the right side. */}
+      {!editing && isActive && (
         <button
           type="button"
-          onClick={onSelect}
+          onClick={(e) => {
+            stop(e);
+            onSelect();
+          }}
           aria-label="Jump to tasks"
-          className="eq-text-halo flex items-center gap-1 rounded-full bg-emerald-50/80 px-2 py-1 text-[10px] uppercase tracking-wider text-emerald-700"
+          className="flex items-center gap-1 rounded-full bg-emerald-50/85 px-2 py-1 text-[10px] uppercase tracking-wider text-emerald-700 hover:bg-emerald-100"
         >
           <ArrowDown size={12} />
           tasks
         </button>
       )}
 
-      <button
-        type="button"
-        aria-label="Complete workstream"
-        title="Mark complete (preserved in completed pile)"
-        onClick={onDelete}
-        className="rounded p-2 text-[#0a1628]/40 opacity-0 transition hover:text-emerald-600 group-hover:opacity-100"
-      >
-        <Check size={14} />
-      </button>
+      {!editing && (
+        <button
+          type="button"
+          aria-label="Complete workstream"
+          title="Mark complete (preserved in completed pile)"
+          onClick={(e) => {
+            stop(e);
+            void onDelete();
+          }}
+          className="rounded p-2 text-[#0a1628]/40 opacity-0 transition hover:text-emerald-600 group-hover:opacity-100"
+        >
+          <Check size={14} />
+        </button>
+      )}
 
-      {/* Drag handle on the RIGHT to match SmartGoalsSection (Sasha 2026-05-16). */}
-      <button
-        type="button"
-        aria-label="Drag to reorder"
-        className="cursor-grab touch-none p-2 mr-1 text-[#0a1628]/40 hover:text-[#0a1628]/80 active:cursor-grabbing"
-        {...attributes}
-        {...listeners}
-      >
-        <GripVertical size={16} />
-      </button>
+      {/* Drag handle on the RIGHT. Hidden during edit (no reorder
+          while typing — avoids accidental drags grabbing focus). */}
+      {!editing && (
+        <button
+          type="button"
+          aria-label="Drag to reorder"
+          onClick={stop}
+          className="cursor-grab touch-none p-2 mr-1 text-[#0a1628]/40 hover:text-[#0a1628]/80 active:cursor-grabbing"
+          {...attributes}
+          {...listeners}
+        >
+          <GripVertical size={16} />
+        </button>
+      )}
     </li>
   );
 };

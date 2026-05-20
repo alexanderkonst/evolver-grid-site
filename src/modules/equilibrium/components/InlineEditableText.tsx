@@ -35,6 +35,14 @@ export interface InlineEditableTextProps {
   wordLimit?: number;
   /** Copy shown when over the word limit. Required if wordLimit is set. */
   wordLimitHint?: string;
+  /**
+   * Text alignment. Default `left`. Sasha 2026-05-20: Lifelong
+   * Dedication + Role bodies center to match their centered titles
+   * (they're identity-anchor sentences that benefit from symmetry).
+   * List-based sections (Strategy / Workstreams / Intuitive Tasks /
+   * DOING NOW) stay left-aligned.
+   */
+  align?: "left" | "center";
   className?: string;
 }
 
@@ -46,6 +54,7 @@ export const InlineEditableText = ({
   disabled,
   wordLimit,
   wordLimitHint,
+  align = "left",
   className,
 }: InlineEditableTextProps) => {
   const [editing, setEditing] = useState(false);
@@ -113,6 +122,7 @@ export const InlineEditableText = ({
             className={cn(
               "flex-1 resize-none rounded-md border border-[#0a1628]/15 bg-white/70 px-3 py-2 outline-none focus:border-[#0a1628]/40",
               textClass,
+              align === "center" && "text-center",
             )}
           />
           <div className="flex flex-col gap-1">
@@ -156,13 +166,21 @@ export const InlineEditableText = ({
       onClick={() => !disabled && setEditing(true)}
       disabled={disabled}
       className={cn(
-        "group flex w-full items-start gap-2 rounded-md px-2 py-2 text-left transition",
+        "group flex w-full items-start gap-2 rounded-md px-2 py-2 transition",
+        align === "center" ? "text-center" : "text-left",
         "hover:bg-white/50 focus:bg-white/50 focus:outline-none",
         disabled && "cursor-default opacity-60",
         className,
       )}
     >
-      <span className={cn("flex-1", textClass, isEmpty && "text-[#0a1628]/85")}>
+      <span
+        className={cn(
+          "flex-1",
+          align === "center" && "text-center",
+          textClass,
+          isEmpty && "text-[#0a1628]/85",
+        )}
+      >
         {displayValue}
       </span>
       <Pencil
