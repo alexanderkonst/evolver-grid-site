@@ -189,7 +189,7 @@ const MdlsPreview = () => {
           </p>
         </motion.div>
         <div className="relative mt-20 text-center text-[10px] uppercase tracking-[0.28em] text-[#0a1628]/40" style={{ zIndex: 1 }}>
-          Multi-Dimensional Living Surface · the codex · v2.5 — material truth + cinematic
+          Multi-Dimensional Living Surface · the codex · v2.6 — code-split + mobile
         </div>
       </section>
 
