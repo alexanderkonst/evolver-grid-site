@@ -429,7 +429,7 @@ The terms are radically simple:
 - **Optional brand attribution** — *"Powered by Find Your Top Talent"* in the footer if you choose, removable.
 - **Opt-in commons** — you choose which of your community's anonymized data flows into the public commons that benefits every distributor.
 
-You keep 90%. You operate under your own brand. You serve your own tribe. The 10% is a tithe to the commons that grew you and continues to grow because you joined.
+You keep 90%. You operate under your own brand. You serve your own tribe. The 10% is a revenue share that sustains the shared apparatus and, at Phase 2 threshold (~25 active distributors), flows into a governed purpose entity that cannot be sold — see [`docs/02-strategy/commons_treasury_evolution.md`](./docs/02-strategy/commons_treasury_evolution.md).
 
 See [`DISTRIBUTOR_AGREEMENT.md`](./DISTRIBUTOR_AGREEMENT.md) for the full terms.
 
@@ -437,7 +437,7 @@ See [`DISTRIBUTOR_AGREEMENT.md`](./DISTRIBUTOR_AGREEMENT.md) for the full terms.
 
 - **MIT** would let anyone close the code and resell — extracts value, gives nothing back.
 - **AGPL-3.0** keeps the code open but allows commercial use without compensation — disrespects the years of methodology development.
-- **PolyForm NC + 10% rev-share** treats every commercial fork as a partner: they distribute under their brand, they keep most of the value they create, and a small tithe sustains the commons that all forks share. The pattern: **fractal sovereignty with proportional contribution** — sometimes called *the Sovereign Network* as a soft brand handle.
+- **PolyForm NC + 10% rev-share** treats every commercial fork as a partner: they distribute under their brand, they keep most of the value they create, and a small revenue share sustains the shared apparatus and (at Phase 2 threshold) flows into a governed purpose entity that cannot be sold. The pattern: **fractal sovereignty with proportional contribution** — sometimes called *the Sovereign Network* as a soft brand handle. Full treasury trajectory: [`docs/02-strategy/commons_treasury_evolution.md`](./docs/02-strategy/commons_treasury_evolution.md).
 
 For dual-licensing (organizations that want a private commercial license without the rev-share structure), contact Alexander Konstantinov.
 

@@ -1,7 +1,9 @@
 # Distributor Agreement
 
-**Version 0.3 · May 5, 2026 (Day 62)**
+**Version 0.4 · May 19, 2026 (Day 76)**
 *This is a draft. The intent is binding; the legal language will tighten with counsel review before any first signature.*
+
+> **On where the 10% goes (v0.1 transparency note).** The revenue share defined in §3 currently routes to Alexander Konstantinov personally as **founder steward** — covering years of unpaid R&D, apparatus operating costs (Supabase, AI APIs, hosting, code maintenance), and founder compensation during bootstrap. This is the *founder-steward phase* of a declared three-phase trajectory toward a **governed purpose entity that cannot be sold**. The full evolution — threshold-triggered transition at ~25 active distributors, declared allocation buckets, distributor council governance at Phase 3 — is documented in [`docs/02-strategy/commons_treasury_evolution.md`](./docs/02-strategy/commons_treasury_evolution.md). When this doc says "Commons" in §7 it refers to the *data commons* (opt-in anonymized artifacts); the *revenue commons* is the trajectory described in the treasury evolution doc.
 
 ---
 
@@ -280,7 +282,7 @@ What you own is the *output*. What remains licensed under CC BY-NC-SA 4.0 is the
 
 If a situation arises that this document does not address, the spirit to apply is:
 
-- **Distributors are partners, not licensees.** The 10% is a tithe that grows the commons that grows everyone.
+- **Distributors are partners, not licensees.** The 10% is a revenue share that sustains the apparatus all distributors use and, at Phase 2 threshold, flows into a governed purpose entity that cannot be sold (see [`commons_treasury_evolution.md`](./docs/02-strategy/commons_treasury_evolution.md)).
 - **Friction is the enemy.** The simplest interpretation that honors both parties wins.
 - **Trust by default, audit by exception.** Most Distributors will be honest. The agreement is structured for that majority.
 - **The Commons is the long game.** Small short-term decisions should favor the long-term health of the shared dataset and the network of holons.
@@ -288,6 +290,8 @@ If a situation arises that this document does not address, the spirit to apply i
 When in doubt, talk to the Licensor directly: [Telegram](https://t.me/integralevolution).
 
 ---
+
+*v0.4 · May 19, 2026 (Day 76) · Added preamble transparency note naming where the 10% revenue share currently routes (founder steward, v0.1) and cross-linking the new [`commons_treasury_evolution.md`](./docs/02-strategy/commons_treasury_evolution.md) — the three-phase trajectory toward a governed purpose entity that cannot be sold. §16 spirit clause updated: "tithe" → "revenue share"; added link to the treasury evolution doc. Drafted by [Alexander Konstantinov](https://aleksandrkonstantinov.com) with AI assistance.*
 
 *v0.3 · May 5, 2026 (Day 62) · Added §15 "Generated Outputs" to formalize ownership and commercial-use terms for artifacts produced via `/ubb` and adjacent generators. User owns the outputs; commercial rights track tier; methodology shape stays licensed. Spirit of This Agreement renumbered to §16. Drafted by [Alexander Konstantinov](https://aleksandrkonstantinov.com) with AI assistance.*
 
