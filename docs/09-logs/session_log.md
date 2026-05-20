@@ -7249,3 +7249,21 @@ Sasha's v2.1 feedback (with screenshots): page jittery, aurora gradients jump, m
 Commit: `dbc64300` (pushed to origin/main).
 
 Version label: v2.1 photo-real → v2.2 fidelity + perf pass.
+
+### Day 74 Wave 7 — Codex v2.3 material truth (N1+N2+N3+N4, N5 skipped)
+
+Sasha green-lit the next-improvements list with one exclusion: N5 (sound layer) — "I already have the sound layer on the platform." Four upgrades shipped:
+
+**N1 — MdlsAuroraOrb3D (new primitive):** Replaces AuroraGlassOrb CSS gradient. R3F sphere with `MeshPhysicalMaterial.transmission` (translucent glass) + inner point light at (0,-0.25,0.3). Light is EMITTED through the material, not painted onto it. Four hue presets. Bloom for the inner-light bleed.
+
+**N2 — SculptedSilkSection v2.0:** 5-layer gradient shimmer. Was 2 gradients; now 1 linear (6 stops) + 4 radials at calibrated positions (UL primary specular, mid secondary catch with +12° hue shift for silk iridescence, lower-left bounce, lower-right crease shadow). Silk reads as having thickness and fold structure — WebGL mesh-shader quality in pure SVG.
+
+**N3 — Matte-Polymer paper-fiber grain:** Replaced 4px speck-grid background-image with SVG `feTurbulence` fractal noise blended overlay over a tri-gradient wash. Reads as actual paper fiber, not dot grid. Same turbulence technique as MdlsCeramicSurface — register coherence across materials.
+
+**N4 — Hero 3D CAMERA parallax:** Was DOM-level translateY on the 3D canvas wrapper. Now `cameraOffsetY` MotionValue prop on MdlsSacred3D, consumed by an internal `CameraScrollController` that reads the value in `useFrame()` and updates `camera.position.y` per frame. As user scrolls 0→1, R3F camera glides up 0→0.9 units. Real 3D depth parallax: perspective foreshortening shifts as the camera moves.
+
+**N5 — SKIPPED** per Sasha's directive.
+
+Commit: `d16512ac` (pushed to origin/main). Bundle: +1KB gzipped.
+
+Version label: v2.2 → v2.3 material truth. Equilibrium stays parked.
