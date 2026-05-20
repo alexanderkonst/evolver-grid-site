@@ -538,8 +538,16 @@ const AddWorkstreamRow = ({
     );
   }
 
+  // Sasha 2026-05-20: explicit Add (✓) + Cancel (✕) buttons. See
+  // AddTaskRow in SmartGoalsSection for the rationale — same fix.
+  const handleCancel = () => {
+    setDraft("");
+    setAdding(false);
+  };
+  const hasDraft = draft.trim().length > 0;
+
   return (
-    <div className="mt-2 flex items-center gap-2 rounded-xl border border-[#0a1628]/20 bg-white/70 px-3 py-2">
+    <div className="mt-2 flex items-center gap-1.5 rounded-xl border border-[#0a1628]/20 bg-white/85 px-3 py-2">
       <Plus size={14} className="shrink-0 text-[#0a1628]/85" />
       <input
         autoFocus
@@ -551,14 +559,39 @@ const AddWorkstreamRow = ({
             e.preventDefault();
             void commit();
           } else if (e.key === "Escape") {
-            setDraft("");
-            setAdding(false);
+            handleCancel();
           }
         }}
         onBlur={() => void commit()}
         placeholder="workstream name"
         className="flex-1 bg-transparent text-base text-[#0a1628] outline-none placeholder:text-[#0a1628]/95"
       />
+      <button
+        type="button"
+        aria-label="Add workstream"
+        title="Add workstream (Enter)"
+        onMouseDown={(e) => e.preventDefault()}
+        onClick={() => void commit()}
+        disabled={!hasDraft}
+        className={cn(
+          "flex h-9 w-9 shrink-0 items-center justify-center rounded-md border-2 transition",
+          hasDraft
+            ? "border-emerald-500 bg-emerald-500 text-white hover:bg-emerald-600 hover:border-emerald-600"
+            : "border-[#0a1628]/15 bg-white/40 text-[#0a1628]/35 cursor-not-allowed",
+        )}
+      >
+        <Check size={16} />
+      </button>
+      <button
+        type="button"
+        aria-label="Cancel"
+        title="Cancel (Esc)"
+        onMouseDown={(e) => e.preventDefault()}
+        onClick={handleCancel}
+        className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md text-[#0a1628]/55 transition hover:bg-[#0a1628]/5 hover:text-[#0a1628]"
+      >
+        <X size={16} />
+      </button>
     </div>
   );
 };
