@@ -7132,3 +7132,56 @@ The one-time Lovable SQL prompt (apply schema + drop legacy table) + edge-functi
 The match-mechanic Si–Do is closed. The mechanic that produces the high-trust feedback events for the matching engine — the `match_intros` row, the artifact that distinguishes "match" from "introduction" — is now real in the database, not theoretical in a strategy doc.
 
 The broader Si–Do (first $555 stranger from the funnel) remains unfired. But: when a stranger does come through the funnel and finds another stranger here, they can now experience the double-opt-in end-to-end. The platform's "the system found us both interested" trust signal is wired.
+
+---
+
+## Day 74 — MDLS octave shift: WebGL mesh + R3F 3D + neumorphism + motion vocabulary (May 19, 2026)
+
+Sasha's call: "we're in the kindergarten of the new educational paradigm — we need an octave register shift. Browse the internet for the right libraries." Research → critique → confirmed stack → executed 4 waves.
+
+### Stack adopted (all MIT, $0)
+
+| Library | Role |
+|---|---|
+| `@paper-design/shaders-react` | WebGL mesh-gradient atmosphere (replaces flat CSS gradients) |
+| `@react-three/fiber` + `drei` + `postprocessing` | 3D dodecahedron with bloom (the sacred-object register) |
+| `framer-motion` | Reveal animations + scroll-coupled rotateX/Y tilt |
+| `lenis` | Smooth scroll (the polish layer ~90% of Awwwards sites use) |
+| `gsap` | Installed as back-pocket — not yet used; reserved for complex scroll choreography when FM hits a wall |
+
+Critically pruned BEFORE adopting: Spline (vendor lock + bundle weight), GlassyUI (redundant), Rive (premature complexity). Aceternity/Magic UI/Motion-Primitives held as reference libraries — cherry-pick specific components, do not adopt wholesale (their default aesthetic skews dark-SaaS-startup, opposite of our editorial-restrained register).
+
+### Five new primitives shipped
+
+- `MdlsMeshBackground` — WebGL mesh atmosphere, 4 register palettes (luminous/restrained/sculptural/ascetic)
+- `MdlsExtrudedSurface` — soft-extruded neumorphism (raised/pressed/floating), warm cream substrate, optional coral active under-glow. The "new-morphism" Sasha named as missing.
+- `MdlsSacred3D` — R3F dodecahedron, warm-aurora metallic, idle slow-rotate, bloom postprocessing. 12 faces = 12-orb soul library + 12-month aurora cycle.
+- `MdlsRevealSection` — Framer Motion viewport fade-up with spring physics. The motion vocabulary that was missing.
+- `MdlsScrollTilt` — scroll-coupled rotateX/Y, max 4°. Makes the composed surface demo read as a held object, not a flat screenshot.
+
+Every primitive respects `prefers-reduced-motion` and is lazy-mounted.
+
+### Surfaces upgraded
+
+- `/mdls-preview` (Codex): WebGL mesh hero atmosphere, scroll-tilt on composed surface demo, Framer reveals on every section, 2 new entries in Materials Gallery (Extruded-Surface + Sacred-3D)
+- `/build/equilibrium?mdls=1`: Lenis smooth scroll + Framer reveal on header + card stack. 3D primitive intentionally NOT placed here (would be performance overhead at icon size — bloom + lighting pay back only at 200px+, which would crowd the page). The 3D lives on Codex as the showcase.
+
+### Honest critique-pass that shaped the stack
+
+Sasha asked for a critical second look at my first stack proposal. Caught and fixed:
+1. Aceternity is aesthetic-mismatched as a wholesale adoption (its purple/cyan dark-SaaS aesthetic is the opposite of our warm/editorial register) → demoted to "reference library, cherry-pick only"
+2. Spline has vendor lock + bundle weight → swapped for R3F-direct
+3. GlassyUI is redundant — neumorphism is a different problem and 10 lines of multi-shadow CSS solves it
+4. Rive adds toolchain complexity without a concrete use case yet → dropped
+5. Lenis was missing — that's the polish layer most premium sites lean on
+6. GSAP became 100% free under Webflow in late 2024 — added as back-pocket
+
+### Commit
+
+- `46884c25` — Day 74: MDLS octave shift (9 files, +626 / -36)
+
+### Si–Do
+
+The Stage-8 paradigm now has its own component library, not just a CSS layer. /mdls-preview is the manifesto-grade showcase; /build/equilibrium proves it ships as a working tool. Both surfaces respect motion accessibility. The "kindergarten → next octave" jump is real in code — next iteration cycle can build ON this foundation rather than rolling more CSS by hand.
+
+The broader Si–Do (first $555 stranger from the funnel) remains unfired.
