@@ -238,7 +238,7 @@ const Connections = () => {
   return (
     <GameShellV2>
       <div className="p-6 lg:p-8 max-w-4xl mx-auto">
-        <BackButton to="/matchmaking" className="mb-6" />
+        <BackButton to="/game/collaborate/matches" className="mb-6" />
 
         <div className="flex items-center gap-3 mb-6">
           <UserPlus className="w-6 h-6 text-foreground" />
@@ -253,7 +253,7 @@ const Connections = () => {
               description="Express interest in a match to start building your network. Introductions fire when both sides say yes."
               action={{
                 label: "Find Matches",
-                onClick: () => navigate("/matchmaking"),
+                onClick: () => navigate("/game/collaborate/matches"),
               }}
             />
           </div>

@@ -537,6 +537,7 @@ const App = () => (
                   {/* Legacy redirects */}
                   <Route path="/game/teams" element={<Navigate to="/game/collaborate" replace />} />
                   <Route path="/game/matches" element={<Navigate to="/game/collaborate/matches" replace />} />
+                  <Route path="/matchmaking" element={<Navigate to="/game/collaborate/matches" replace />} />
                   <Route path="/connections" element={<Navigate to="/game/collaborate/connections" replace />} />
                   <Route path="/game/mission" element={<Navigate to="/game/collaborate/mission" replace />} />
                   <Route path="/community/people" element={<Navigate to="/game/collaborate/people" replace />} />
