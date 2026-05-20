@@ -19,7 +19,7 @@ import MdlsExtrudedSurface from "@/components/mdls/MdlsExtrudedSurface";
 import MdlsSacred3D from "@/components/mdls/MdlsSacred3D";
 import MdlsRevealSection from "@/components/mdls/MdlsRevealSection";
 import MdlsScrollTilt from "@/components/mdls/MdlsScrollTilt";
-import MdlsHoverTilt from "@/components/mdls/MdlsHoverTilt";
+import MdlsCeramicSurface from "@/components/mdls/MdlsCeramicSurface";
 
 /**
  * MDLS Codex · /mdls-preview (URL kept; content evolved 2026-05-19)
@@ -99,9 +99,11 @@ const MdlsPreview = () => {
       {/* the hero. Living color volume instead of banded planes.           */}
       {/* ═══════════════════════════════════════════════════════════════ */}
       <section ref={heroRef} className="relative min-h-[100vh] flex flex-col justify-center px-6 sm:px-12 lg:px-20 py-20 overflow-hidden">
-        {/* WAVE 5: 8-color smooth mesh + parallax. Background moves slowest. */}
+        {/* WAVE 6: hero keeps pixelRatio=2 (showcase quality) but speed
+            stays at the new default 0.18. Only the hero pays the 2x DPR
+            cost — body sections use pixelRatio 1. */}
         <motion.div style={{ y: meshParallaxY, position: "absolute", inset: 0 }}>
-          <MdlsMeshBackground register="luminous" />
+          <MdlsMeshBackground register="luminous" pixelRatio={2} />
         </motion.div>
         {/* WAVE 5 (5.7): 3D centerpiece in its own parallax layer — moves
             faster than the background but slower than the prose, creating
@@ -160,7 +162,7 @@ const MdlsPreview = () => {
           </p>
         </motion.div>
         <div className="relative mt-20 text-center text-[10px] uppercase tracking-[0.28em] text-[#0a1628]/40" style={{ zIndex: 1 }}>
-          Multi-Dimensional Living Surface · the codex · v2.1 — photo-real manifestation
+          Multi-Dimensional Living Surface · the codex · v2.2 — fidelity + perf pass
         </div>
       </section>
 
@@ -173,15 +175,18 @@ const MdlsPreview = () => {
         <section className="py-12 sm:py-16">
           <div className="max-w-5xl mx-auto px-4 sm:px-8">
             <SectionEyebrow>One composed surface</SectionEyebrow>
+            {/* WAVE 6: removed MdlsHoverTilt + MdlsExtrudedSurface "floating"
+                plinth wrap. The plinth was creating a visible white pill
+                under the device; the hover-tilt was a third transform on
+                top of scroll-tilt + parallax, contributing to jitter.
+                Scroll-tilt alone gives the held-object feel. */}
             <MdlsScrollTilt>
-              <MdlsHoverTilt>
-                <ComposedSurfaceDemo
-                  demoMode={demoMode}
-                  onDemoModeChange={setDemoMode}
-                  completedDemoGoals={completedDemoGoals}
-                  onToggleDemoGoal={toggleDemoGoal}
-                />
-              </MdlsHoverTilt>
+              <ComposedSurfaceDemo
+                demoMode={demoMode}
+                onDemoModeChange={setDemoMode}
+                completedDemoGoals={completedDemoGoals}
+                onToggleDemoGoal={toggleDemoGoal}
+              />
             </MdlsScrollTilt>
             <p className="mt-10 text-center max-w-xl mx-auto font-serif italic text-[#0a1628]/60 text-base sm:text-lg leading-relaxed">
               Trinity of luminosity, physicality, editorial refinement — composed into one
@@ -193,18 +198,12 @@ const MdlsPreview = () => {
 
       {/* ═══════════════════════════════════════════════════════════════ */}
       {/* §3 · PRINCIPLES + RULES                                          */}
-      {/* POLISH: restrained mesh accent + extruded surface for principles  */}
+      {/* WAVE 6: mesh background REMOVED for scroll perf. The extruded     */}
+      {/* surfaces carry the visual register here without GPU shader cost.  */}
       {/* ═══════════════════════════════════════════════════════════════ */}
       <MdlsRevealSection>
-      <section className="relative py-24 px-6 sm:px-12 overflow-hidden">
-        <MdlsMeshBackground
-          register="restrained"
-          distortion={0.4}
-          swirl={0.08}
-          speed={0.12}
-          style={{ opacity: 0.55 }}
-        />
-        <div className="relative max-w-4xl mx-auto" style={{ zIndex: 1 }}>
+      <section className="relative py-24 px-6 sm:px-12">
+        <div className="relative max-w-4xl mx-auto">
           <SectionEyebrow>Seven principles, three rules</SectionEyebrow>
 
           <MdlsExtrudedSurface
@@ -260,18 +259,15 @@ const MdlsPreview = () => {
 
       {/* ═══════════════════════════════════════════════════════════════ */}
       {/* §4 · MATERIALS GALLERY — each in hero context                    */}
-      {/* POLISH: sculptural mesh accent — feels like a textile showroom    */}
+      {/* WAVE 6: kept mesh (textile-showroom feel needed) but at default   */}
+      {/* pixelRatio 1 + opacity 0.35. overflow-hidden contains the         */}
+      {/* SculptedSilkSection shadow-bleed artifact that was rendering as   */}
+      {/* ghost blobs below adjacent material entries.                      */}
       {/* ═══════════════════════════════════════════════════════════════ */}
       <MdlsRevealSection>
       <section className="relative py-24 px-4 sm:px-12 overflow-hidden">
-        <MdlsMeshBackground
-          register="sculptural"
-          distortion={0.5}
-          swirl={0.12}
-          speed={0.15}
-          style={{ opacity: 0.4 }}
-        />
-        <div className="relative max-w-5xl mx-auto" style={{ zIndex: 1 }}>
+        <MdlsMeshBackground register="sculptural" style={{ opacity: 0.35 }} />
+        <div className="relative max-w-5xl mx-auto overflow-hidden" style={{ zIndex: 1 }}>
           <SectionEyebrow>The materials</SectionEyebrow>
 
           <div className="mt-16 space-y-32">
@@ -350,10 +346,28 @@ const MdlsPreview = () => {
 
             <MaterialFeature
               name="Tactile-Ceramic"
-              register="(reserved · sacred-object surfaces)"
-              description="Granular, sculptural, sandstone-soft. For ritual artifacts and brand-stamp containers. Not in active production use; activates when matte-polymer feels insufficient for gravitas."
+              register="Sacred-object surfaces · matte ceramic"
+              description="Granular, sculptural, fired-clay surface. SVG turbulence grain + warm-cool tri-gradient + multi-stop edge AO. The primitive Sasha flagged as 'we haven't touched yet' — now uses MdlsCeramicSurface with two tone variants visible."
               feature={
-                <div className="mdls-tactile-ceramic mx-auto" style={{ width: 240, height: 180 }} />
+                <div className="flex gap-5 justify-center items-center">
+                  <MdlsCeramicSurface
+                    tone="warm-cream"
+                    style={{ width: 150, height: 150 }}
+                  >
+                    <div className="h-full flex items-center justify-center">
+                      <SealMedallion size={36} variant="mandala" />
+                    </div>
+                  </MdlsCeramicSurface>
+                  <MdlsCeramicSurface
+                    tone="sand-warm"
+                    ember
+                    style={{ width: 150, height: 150 }}
+                  >
+                    <div className="h-full flex items-center justify-center text-[10px] uppercase tracking-[0.18em] text-[#0a1628]/55">
+                      ember
+                    </div>
+                  </MdlsCeramicSurface>
+                </div>
               }
             />
 
@@ -395,18 +409,11 @@ const MdlsPreview = () => {
 
       {/* ═══════════════════════════════════════════════════════════════ */}
       {/* §5 · REGISTERS — four classes side-by-side                       */}
-      {/* POLISH: ascetic mesh accent + extruded register cards             */}
+      {/* WAVE 6: mesh background REMOVED for scroll perf.                  */}
       {/* ═══════════════════════════════════════════════════════════════ */}
       <MdlsRevealSection>
-      <section className="relative py-24 px-6 sm:px-12 overflow-hidden">
-        <MdlsMeshBackground
-          register="ascetic"
-          distortion={0.35}
-          swirl={0.06}
-          speed={0.1}
-          style={{ opacity: 0.5 }}
-        />
-        <div className="relative max-w-5xl mx-auto" style={{ zIndex: 1 }}>
+      <section className="relative py-24 px-6 sm:px-12">
+        <div className="relative max-w-5xl mx-auto">
           <SectionEyebrow>Four registers, one language</SectionEyebrow>
 
           <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -461,18 +468,11 @@ const MdlsPreview = () => {
 
       {/* ═══════════════════════════════════════════════════════════════ */}
       {/* §6 · TYPOGRAPHY — at scale, with real prose                      */}
-      {/* POLISH: restrained mesh — cream-paper atmosphere for editorial    */}
+      {/* WAVE 6: mesh background REMOVED for scroll perf.                  */}
       {/* ═══════════════════════════════════════════════════════════════ */}
       <MdlsRevealSection>
-      <section className="relative py-24 px-6 sm:px-12 overflow-hidden">
-        <MdlsMeshBackground
-          register="restrained"
-          distortion={0.32}
-          swirl={0.05}
-          speed={0.1}
-          style={{ opacity: 0.5 }}
-        />
-        <div className="relative max-w-4xl mx-auto" style={{ zIndex: 1 }}>
+      <section className="relative py-24 px-6 sm:px-12">
+        <div className="relative max-w-4xl mx-auto">
           <SectionEyebrow>Typography</SectionEyebrow>
 
           <div className="mt-12 space-y-14">
@@ -537,18 +537,12 @@ const MdlsPreview = () => {
 
       {/* ═══════════════════════════════════════════════════════════════ */}
       {/* §7 · VOCABULARY + CLOSING                                        */}
-      {/* POLISH: luminous closing — page begins AND ends in the aurora     */}
-      {/* register; sets up the closing manifesto as a sacred moment.       */}
+      {/* WAVE 6: kept luminous mesh (page bookends in aurora register)     */}
+      {/* but at default pixelRatio 1 + slow speed for scroll perf.         */}
       {/* ═══════════════════════════════════════════════════════════════ */}
       <MdlsRevealSection>
       <section className="relative py-24 px-6 sm:px-12 overflow-hidden">
-        <MdlsMeshBackground
-          register="luminous"
-          distortion={0.45}
-          swirl={0.15}
-          speed={0.18}
-          style={{ opacity: 0.6 }}
-        />
+        <MdlsMeshBackground register="luminous" style={{ opacity: 0.5 }} />
         <div className="relative max-w-4xl mx-auto" style={{ zIndex: 1 }}>
           <SectionEyebrow>Twelve verbs, one register</SectionEyebrow>
 
@@ -754,15 +748,10 @@ const ComposedSurfaceDemo = ({
 }: ComposedSurfaceDemoProps) => {
   return (
     <div className="mt-10">
-      {/* POLISH (Day 74): the device frame now sits on a floating extruded
-          plinth — the demo reads as a held object on a soft pedestal, not
-          a screenshot pasted on a page. Pair with MdlsScrollTilt (outer)
-          for the felt-weight effect. */}
-      <MdlsExtrudedSurface
-        variant="floating"
-        className="mx-auto"
-        style={{ maxWidth: 440, padding: "1.25rem" }}
-      >
+      {/* WAVE 6 (Day 74 evening): removed the MdlsExtrudedSurface "floating"
+          plinth wrap. It was creating a visible white pill under the
+          device — Sasha flagged it as the "strange shadow." The device
+          frame's own shadow + the outer scroll-tilt are sufficient. */}
       <div
         className="mdls-device-frame mx-auto px-6 py-8 sm:px-7 sm:py-9"
         style={{ maxWidth: 400 }}
@@ -906,7 +895,6 @@ const ComposedSurfaceDemo = ({
           MDLS · contemplative operating surface
         </div>
       </div>
-      </MdlsExtrudedSurface>
     </div>
   );
 };

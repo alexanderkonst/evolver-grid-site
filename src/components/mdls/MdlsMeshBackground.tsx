@@ -33,12 +33,14 @@ interface MdlsMeshBackgroundProps {
   distortion?: number;
   /** Power of vortex distortion (0–1). Default 0.22. */
   swirl?: number;
-  /** Animation speed multiplier. Default 0.42 (slow + alive). 0 = static. */
+  /** Animation speed multiplier. Default 0.18 (slow drift). 0 = static. */
   speed?: number;
   /** Post-processing grain overlay (0–1). Default 0.03 (very fine paper texture). */
   grain?: number;
   /** Soft edge feather opacity (0–1). 0 = no fade. Default 0 (no vignette). */
   fade?: number;
+  /** DPR for the shader canvas. Default 1 (cheap). Set 2 for hero showcase. */
+  pixelRatio?: 1 | 2;
   className?: string;
   style?: CSSProperties;
 }
@@ -98,9 +100,10 @@ export const MdlsMeshBackground = ({
   register = "luminous",
   distortion = 0.85,
   swirl = 0.22,
-  speed = 0.42,
+  speed = 0.18,
   grain = 0.03,
   fade = 0,
+  pixelRatio = 1,
   className,
   style,
 }: MdlsMeshBackgroundProps) => {
@@ -124,10 +127,10 @@ export const MdlsMeshBackground = ({
         swirl={swirl}
         speed={speed}
         grainOverlay={grain}
-        // minPixelRatio 2 — render at 2x even on 1x displays to kill aliasing
-        // bands. Cost: ~4x fragment-shader work; acceptable for a hero
-        // atmosphere on a Stage-8 showcase page.
-        minPixelRatio={2}
+        // pixelRatio 1 default = ~4x cheaper fragment work than pixelRatio 2.
+        // Pages opt hero into pixelRatio 2 for showcase quality; body
+        // sections stay at 1 to keep scroll smooth.
+        minPixelRatio={pixelRatio}
         style={{ width: "100%", height: "100%" }}
       />
       {fade > 0 && (

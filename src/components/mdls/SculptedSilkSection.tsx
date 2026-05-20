@@ -77,10 +77,15 @@ export const SculptedSilkSection = ({
           inset: 0,
           width: "100%",
           height: "100%",
-          overflow: "visible",
+          // Wave 6 (Day 74 evening): was overflow:visible — the drop-shadow
+          // filter was bleeding past the SVG bounds and rendering ghost
+          // blobs below adjacent material entries. Tight overflow keeps
+          // the shadow inside the SVG box, even at the cost of slightly
+          // less feathered edges.
+          overflow: "hidden",
           filter:
-            `drop-shadow(3px 6px 14px hsl(${hue} ${satMid}% 50% / 0.20)) ` +
-            `drop-shadow(1px 3px 5px hsl(${hue} ${satLight}% 55% / 0.10))`,
+            `drop-shadow(2px 4px 8px hsl(${hue} ${satMid}% 50% / 0.15)) ` +
+            `drop-shadow(1px 2px 3px hsl(${hue} ${satLight}% 55% / 0.08))`,
           pointerEvents: "none",
         }}
       >
