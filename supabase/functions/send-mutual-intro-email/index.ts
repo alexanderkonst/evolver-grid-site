@@ -6,15 +6,15 @@
 // distinction; both are recipients of equal standing. The platform
 // is the introducer.
 //
-// Triggered by the client immediately after a `match_intros` row is
-// inserted (the client-side mutual-detection step in Matchmaking.tsx).
-// In a v1 the client fires the email; if the client fails to fire it
-// for any reason, the row in match_intros records the success of the
-// match-event itself — the email is the user-facing artifact, the row
-// is the engine-facing artifact.
+// Day 67 §8.6 (Sasha 2026-05-19): voice rewritten from engine register
+// ("the engine paired you") to human-matchmaker voice ("I thought you
+// two could hit it off on..."). Trigger changed: now invoked from the
+// match-consent edge function on Yes click (not from client).
 //
 // AUTH: caller MUST be one of the two parties (their JWT identifies
-// them; we check user.id is user_a_id OR user_b_id).
+// them) — OR the service role for internal invocation from match-consent
+// (the consent flow is the new canonical trigger, validated by HMAC
+// token, so service-role internal calls are trusted).
 //
 // What it does:
 //   1. Validates caller's session + that caller is one of the parties.
@@ -70,6 +70,24 @@ const escapeHtml = (s: string): string =>
 
 const stripGlyphs = (s: string) => s.replace(/[✦★☆✧⬥◇◆⟐]/g, "").trim();
 
+// Day 67 §8.6: split the AI-why text into up to 3 bullet points so the
+// intro email reads like a real matchmaker enumerating reasons, not a
+// monolithic paragraph. Falls back to single block if we can't extract
+// 3 clean sentences.
+const splitWhyIntoBullets = (whyText: string): string[] => {
+  if (!whyText) return [];
+  const cleaned = whyText.trim();
+  // Split on sentence-end punctuation followed by space.
+  // Try `. `, `? `, `! ` — pick first 3 sentences.
+  const parts = cleaned
+    .split(/(?<=[.!?])\s+/)
+    .map((s) => s.trim())
+    .filter((s) => s.length > 12); // discard tiny fragments
+  if (parts.length >= 3) return parts.slice(0, 3);
+  if (parts.length === 2) return parts;
+  return [cleaned]; // single block
+};
+
 const renderEmail = ({
   firstNameA,
   firstNameB,
@@ -90,14 +108,29 @@ const renderEmail = ({
   const aArch = escapeHtml(stripGlyphs(archetypeA || ""));
   const bArch = escapeHtml(stripGlyphs(archetypeB || ""));
 
-  // Build the greeting from whichever names exist. If we have both,
-  // join with "and"; if one is missing, use the available name.
-  let greeting = "Hi,";
-  if (aName && bName) {
-    greeting = `${aName} and ${bName},`;
-  } else if (aName || bName) {
-    greeting = `Hi ${aName || bName},`;
-  }
+  // Day 67 §8.6: human-matchmaker voice. "Hey Alex and Sasha — I thought
+  // you two could hit it off on..." Three bullets when we can extract
+  // them; one block otherwise.
+  const headline =
+    aName && bName
+      ? `Meet ${aName}. Meet ${bName}.`
+      : `An introduction.`;
+  const greeting =
+    aName && bName
+      ? `Hey ${aName} and ${bName},`
+      : aName || bName
+        ? `Hey ${aName || bName},`
+        : "Hey there,";
+
+  const bullets = splitWhyIntoBullets(whyText);
+  const bulletsHtml =
+    bullets.length > 1
+      ? `<ul style="margin:0 0 24px 0; padding-left:22px; font-family: 'Source Serif 4', Georgia, serif; font-weight: 500; font-size: 15px; line-height: 1.65; color: #0b2a5a;">
+           ${bullets.map((b) => `<li style="margin-bottom:8px;">${escapeHtml(b)}</li>`).join("")}
+         </ul>`
+      : `<p style="margin:0 0 24px 0; font-family: 'Source Serif 4', Georgia, serif; font-weight: 500; font-size: 15px; line-height: 1.65; color: #0b2a5a;">
+           ${escapeHtml(whyText)}
+         </p>`;
 
   return `
 <!DOCTYPE html>
@@ -105,7 +138,7 @@ const renderEmail = ({
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>You've both said yes — meet each other</title>
+  <title>${headline}</title>
 </head>
 <body style="margin:0; padding:0; background:#f5f1e8; font-family: 'Source Serif 4', Georgia, serif;">
   <div style="max-width:600px; margin:0 auto; padding:40px 24px;">
@@ -113,14 +146,12 @@ const renderEmail = ({
 
       <!-- Eyebrow -->
       <p style="margin:0 0 14px 0; font-family: 'DM Sans', system-ui, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #5d4307;">
-        ✦ Mutual interest — introduction
+        ✦ An introduction
       </p>
 
       <!-- Headline -->
-      <h1 style="margin:0 0 18px 0; font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 700; font-size: 28px; line-height: 1.2; color: #0b2a5a; letter-spacing: -0.005em;">
-        ${aName && bName
-          ? `${aName} and ${bName}, you've both said yes.`
-          : `You've both said yes.`}
+      <h1 style="margin:0 0 22px 0; font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 700; font-size: 28px; line-height: 1.2; color: #0b2a5a; letter-spacing: -0.005em;">
+        ${headline}
       </h1>
 
       <!-- Greeting -->
@@ -128,9 +159,9 @@ const renderEmail = ({
         ${greeting}
       </p>
 
-      <!-- Intro -->
-      <p style="margin:0 0 22px 0; font-family: 'Source Serif 4', Georgia, serif; font-weight: 500; font-size: 15px; line-height: 1.65; color: rgba(11, 42, 90, 0.92);">
-        You both saw each other on Find Your Top Talent and independently said "I'd like to meet." The platform is introducing you because the engine found a connection-shape worth your time.
+      <!-- Matchmaker intro line -->
+      <p style="margin:0 0 18px 0; font-family: 'Source Serif 4', Georgia, serif; font-weight: 500; font-size: 15px; line-height: 1.65; color: rgba(11, 42, 90, 0.92);">
+        I thought you two could hit it off. Here's what I saw between you:
       </p>
 
       <!-- Two-up identity cards -->
@@ -156,20 +187,12 @@ const renderEmail = ({
         ` : ""}
       </div>` : ""}
 
-      <!-- AI-generated why-text -->
-      <p style="margin:0 0 8px 0; font-family: 'DM Sans', system-ui, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #5d4307;">
-        Why the engine paired you
-      </p>
-      <p style="margin:0 0 26px 0; font-family: 'Source Serif 4', Georgia, serif; font-weight: 600; font-size: 15px; line-height: 1.65; color: #0b2a5a;">
-        ${escapeHtml(whyText)}
-      </p>
+      <!-- AI why-text — as bullets when possible -->
+      ${bulletsHtml}
 
-      <!-- Closing -->
-      <p style="margin:0 0 8px 0; font-family: 'DM Sans', system-ui, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #5d4307;">
-        Take it from here
-      </p>
+      <!-- Closing — leave it up to them -->
       <p style="margin:0 0 24px 0; font-family: 'Source Serif 4', Georgia, serif; font-weight: 500; font-style: italic; font-size: 14.5px; line-height: 1.65; color: rgba(11, 42, 90, 0.92);">
-        Reply to this email to find a time. You're both already in this thread.
+        Leave it up to you guys to make the connection and follow up if you still want to. You both said yes.
       </p>
 
       <!-- Signoff -->
@@ -187,6 +210,60 @@ const renderEmail = ({
   </div>
 </body>
 </html>`;
+};
+
+// Plain-text version of the matchmaker intro — used as the alternate
+// part so plain-text readers / aggressive spam filters get the same
+// content in clean form.
+const renderEmailPlainText = ({
+  firstNameA,
+  firstNameB,
+  archetypeA,
+  archetypeB,
+  whyText,
+  siteUrl,
+}: {
+  firstNameA: string;
+  firstNameB: string;
+  archetypeA: string;
+  archetypeB: string;
+  whyText: string;
+  siteUrl: string;
+}) => {
+  const aName = firstNameA || "";
+  const bName = firstNameB || "";
+  const aArch = stripGlyphs(archetypeA || "");
+  const bArch = stripGlyphs(archetypeB || "");
+  const headline =
+    aName && bName ? `Meet ${aName}. Meet ${bName}.` : `An introduction.`;
+  const greeting =
+    aName && bName
+      ? `Hey ${aName} and ${bName},`
+      : aName || bName
+        ? `Hey ${aName || bName},`
+        : "Hey there,";
+  const bullets = splitWhyIntoBullets(whyText);
+  const bulletsTxt =
+    bullets.length > 1
+      ? bullets.map((b) => `  • ${b}`).join("\n")
+      : `  ${whyText}`;
+  const identity =
+    aName || aArch || bName || bArch
+      ? `\n${aName || "User A"}${aArch ? ` — ${aArch}` : ""}\n${bName || "User B"}${bArch ? ` — ${bArch}` : ""}\n`
+      : "";
+  return `${headline}
+
+${greeting}
+
+I thought you two could hit it off. Here's what I saw between you:
+${identity}
+${bulletsTxt}
+
+Leave it up to you guys to make the connection and follow up if you still want to. You both said yes.
+
+— Find Your Top Talent
+${siteUrl}
+`;
 };
 
 Deno.serve(async (req) => {
@@ -208,20 +285,33 @@ Deno.serve(async (req) => {
     }
 
     // ── Caller auth ─────────────────────────────────────────────
+    // Two acceptable callers:
+    //   1. A regular user JWT — must be one of the two parties.
+    //   2. The match-consent edge function calling internally with
+    //      the service-role key (marked by x-internal-caller header).
     const authHeader = req.headers.get("Authorization") ?? "";
+    const internalCaller = req.headers.get("x-internal-caller") ?? "";
+    const isInternal =
+      internalCaller === "match-consent" &&
+      authHeader === `Bearer ${SUPABASE_SERVICE_ROLE_KEY}`;
+
     if (!authHeader.startsWith("Bearer ")) {
       return json({ error: "Missing Authorization bearer token" }, 401);
     }
 
-    const userClient = createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
-      global: { headers: { Authorization: authHeader } },
-    });
-    const {
-      data: { user: caller },
-      error: userErr,
-    } = await userClient.auth.getUser();
-    if (userErr || !caller) {
-      return json({ error: "Invalid or expired session" }, 401);
+    let callerId: string | null = null;
+    if (!isInternal) {
+      const userClient = createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
+        global: { headers: { Authorization: authHeader } },
+      });
+      const {
+        data: { user: caller },
+        error: userErr,
+      } = await userClient.auth.getUser();
+      if (userErr || !caller) {
+        return json({ error: "Invalid or expired session" }, 401);
+      }
+      callerId = caller.id;
     }
 
     // ── Parse + validate ───────────────────────────────────────
@@ -241,8 +331,13 @@ Deno.serve(async (req) => {
       return json({ error: "'ai_why_text' is required" }, 400);
     }
 
-    // Caller must be one of the two parties.
-    if (caller.id !== body.user_a_id && caller.id !== body.user_b_id) {
+    // For user-JWT callers, caller must be one of the two parties.
+    // Internal service-role calls (match-consent) bypass this check.
+    if (
+      !isInternal &&
+      callerId !== body.user_a_id &&
+      callerId !== body.user_b_id
+    ) {
       return json(
         { error: "Caller is not one of the parties in this intro" },
         403,
@@ -300,27 +395,33 @@ Deno.serve(async (req) => {
     ]);
 
     // ── Subject line ───────────────────────────────────────────
+    // Day 67 §8.6: matchmaker voice — "Meet ${name}" lands warmer than
+    // "Mutual interest — introduction from Find Your Top Talent."
     const hook = body.connection_hook?.trim();
     let subject: string;
     if (profileA.firstName && profileB.firstName) {
       subject = hook
         ? `${profileA.firstName} ↔ ${profileB.firstName}: ${hook}`
-        : `${profileA.firstName} and ${profileB.firstName} — meet each other`;
+        : `Meet ${profileA.firstName} and ${profileB.firstName}`;
+    } else if (profileA.firstName || profileB.firstName) {
+      subject = `Meet ${profileA.firstName || profileB.firstName}`;
     } else {
       subject = hook
-        ? `Mutual interest: ${hook}`
-        : "Mutual interest — introduction from Find Your Top Talent";
+        ? `An introduction: ${hook}`
+        : "An introduction from Find Your Top Talent";
     }
 
     // ── Render + send ──────────────────────────────────────────
-    const html = renderEmail({
+    const renderArgs = {
       firstNameA: profileA.firstName,
       firstNameB: profileB.firstName,
       archetypeA: profileA.archetype,
       archetypeB: profileB.archetype,
       whyText: body.ai_why_text.trim(),
       siteUrl: SITE_URL,
-    });
+    };
+    const html = renderEmail(renderArgs);
+    const text = renderEmailPlainText(renderArgs);
 
     const resendRes = await fetch("https://api.resend.com/emails", {
       method: "POST",
@@ -333,6 +434,7 @@ Deno.serve(async (req) => {
         to: [emailA, emailB],
         subject,
         html,
+        text,
       }),
     });
 

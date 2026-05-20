@@ -257,8 +257,8 @@ const MatchCard = ({
             role="status"
             aria-live="polite"
           >
-            <Check className="w-3.5 h-3.5" />
-            Interest recorded
+            <Mail className="w-3.5 h-3.5" />
+            Heads-up email sent
           </div>
         ) : (
           <div
@@ -303,7 +303,7 @@ const MatchCard = ({
               fontStyle: "italic",
             }}
           >
-            Your interest is recorded — we'll introduce you both if {user.firstName} says yes.
+            A heads-up email is on its way to {user.firstName}. We'll send you both an intro the moment they say yes — and leave it quiet if they don't.
           </p>
         </div>
       )}

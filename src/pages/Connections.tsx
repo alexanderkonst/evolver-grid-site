@@ -218,7 +218,7 @@ const Connections = () => {
           <div>
             <p className="font-semibold text-foreground">{name}</p>
             <p className="text-xs text-muted-foreground mt-0.5">
-              Interest expressed {new Date(row.created_at).toLocaleDateString()} — waiting for them
+              Heads-up email sent {new Date(row.created_at).toLocaleDateString()} — waiting for them to respond
             </p>
           </div>
           <Button
