@@ -27,11 +27,12 @@
 
 | | |
 |---|---|
-| **What** | One sentence that can't be broken down further. The atom. If true, everything downstream is self-evident. |
+| **What** | A falsifiable claim about THE WORLD (not the founder, not the client) that the founder's entire business depends on — if disproved, the business collapses. The right people self-select into the tribe by recognizing themselves inside the claim. |
 | **Input** | `uniqueness` + ZoG pattern |
-| **Output shape** | `{ photon: string, three_layers: { attack: string, reframe: string, invitation: string } }` |
-| **Specificity rises when** | The photon survives the irreducibility test — cannot be split into two. The three layers hold independently. At least one layer feels inevitable after reading. |
-| **Source** | `marketing_playbook.md` Phase 0 Step 0.4 (Myth as Resonance Filter) |
+| **Output shape** | `{ photon: string, three_layers: { attack: string, reframe: string, invitation: string } }` — where `photon` is the single falsifiable world-claim; `attack` names what is structurally wrong with the dominant paradigm (makes enemies, NOT "you struggle with X"); `reframe` is a structural inversion of the paradigm (NOT a personal-coaching reframe); `invitation` is the line that CREATES THE TRIBE through self-selection (NOT a CTA, NOT a service offer, NOT "I'll help you…"). |
+| **Specificity rises when** | (1) Photon is a claim about THE WORLD, not the founder or client — falsifiable cosmology, not personal counsel. (2) **Collapse Test passes** — if the photon is disproved, the business collapses (Nike: if human potential is NOT unlimited → just shoes). (3) Three layers hold independently and pass distinct tests: attack makes ENEMIES, reframe inverts the PARADIGM, invitation creates the TRIBE. (4) Voice is world-claim, NOT founder-claim — zero "I architect / I help / I transform / for [client type]" shapes (those are mission statements). (5) **Master Lie ↔ Master Belief polarity** is structurally present (lie the world runs on / truth the business is built on); for Teal/consciousness-domain founders, **Paradox Reframe variant** applies — two sides of one paradox, not enemy-vs-truth. (6) Photon survives irreducibility — cannot be split into two sentences without losing the claim. |
+| **What a myth is NOT** | Not a tagline (a tagline sells; a myth recruits). Not a mission statement (a mission describes what you DO; a myth describes what is WRONG with the world). Not advice ("follow your passion" is advice; "human potential is unlimited" is a myth). Not about the individual (anything addressed to YOU as a client is COUNSEL, not COSMOLOGY). |
+| **Source** | `unique_business_playbook.md` — The Myth: Anatomy of a World-Changing Claim (canonical) · `marketing_playbook.md` Phase 0 Step 0.4 (legacy ref) |
 
 ### 3. `tribe` — Who This Is For
 
@@ -221,3 +222,9 @@ Per-artifact specificity criteria are externalized to:
 Edge functions load this JSON at cold start and inject the matching block into the prompt per call.
 
 Rationale: keep content out of code. When the playbooks evolve, the JSON is updated without touching the edge function.
+
+---
+
+## ⚠️ Dual-source notice (2026-05-19)
+
+**Live source of truth:** `supabase/functions/_shared/ubb-prompts.ts`. Sync drift detected 2026-05-19 — see myth entry. Future: consider eliminating this spec doc in favor of code-as-source.
