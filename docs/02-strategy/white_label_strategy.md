@@ -225,14 +225,41 @@ Components that hardcode colors and need either patching or skin-scoped CSS over
 
 ---
 
-### Lessons learned from `network-school` v1 → v2 (2026-05-18 → 2026-05-19)
+### Lessons learned from `network-school` v1 → v2 → v3 (2026-05-18 → 2026-05-19)
+
+#### From v1 → v2
 
 - **Don't assume "dark rail = premium."** NS rejects the dark-rail convention — its register is white-on-white with hairline dividers. The first NS pass mapped Pane 1 to near-black on the assumption that a 3-pane shell needs visual depth via background contrast. Wrong: NS achieves pane separation via hairline borders + typographic hierarchy, not background tone. Confirm pane-bg color from the source brand FIRST, not from intuition.
 - **Inline-styled inline-styles are the silent killer.** `style={{ backgroundColor: "rgba(212,175,55,0.08)" }}` scattered across 6 components is invisible to token swaps. Grep for hardcoded color literals at inventory time — don't discover them in QA.
 - **The `bg-[#0a0a1a]` Tailwind arbitrary pattern is everywhere.** It's the project's cosmic-bg signature. Skin-scoped CSS override is the right answer (one rule kills all occurrences) — don't try to refactor every component.
 - **The skin infrastructure (SkinProvider, CSS variables, data-skin attr) was production-ready before the first real skin needed it.** This is what made the first NS pass possible in one focused session. The 2-3 day budget I drafted assumed building the infrastructure. Reality: ~4 hours including investigation, because Sasha had already done the load-bearing work in January.
 
+#### From v2 → v3
+
+- **Body font matters as much as display font.** v2 used Source Serif Pro for headlines and Inter for body — that broke the editorial spell. NS uses serif for body too; sans-body reads as "modern SaaS app," not "editorial publication." When the source brand is editorial, body type must match.
+- **Pure-white-on-white panes collapse the rail.** v2 had all three panes pure white with hairlines, and the rail visually merged into Pane 2. Fix: Pane 1 → barely-perceptible off-white (`#fafafa`) so it reads as a "nav surface" without going dark. Pane 2 + Pane 3 stay pure white. Hairlines bumped to 0.10 alpha (from 0.07) so all three boundaries register.
+- **Pill buttons read "app," tight-radius rectangles read "publication."** NS's APPLY button is ~8px radius, not `rounded-full`. The single CSS override `[data-skin="<slug>"] .rounded-full { border-radius: 8px }` flips the register instantly.
+- **Editorial buttons have no decorative ornaments inside them.** Our default CTA carries an ✦ ignite-logo prefix; NS strips it. Hide via `[data-skin="<slug>"] button img:first-of-type { display: none }`.
+- **The brand asset's intrinsic dimensions matter.** First NS-logo render was tiny because the asset is wide and we inherited the wordmark's width math. Force explicit `width: 64%; max-height: 80px; object-fit: contain` for proper aspect handling. Mobile rail (72px column) needs an icon-scale clamp.
+- **UI chrome and body content want different font families.** Rail/Pane 2 chips + form controls + buttons → clean grotesque sans (Inter). Headlines + body prose → editorial serif (Newsreader). Mixing them is correct; matching them is wrong.
+- **Newsreader > Source Serif Pro for NS-style editorial.** Higher contrast, modern transitional voice. Both are free Google Fonts.
+
+### Forms / inputs / segmented controls — captured for future surfaces (not yet built)
+
+Most forms in the platform are auth-walled (UBB artifact entry, Settings, ZoG assessment). When we build form-skin coverage for NS, the recipe is:
+
+| Element | NS pattern |
+|---|---|
+| **Text input** | White bg, 1px solid hairline border (`rgba(0,0,0,0.18)`), ~10px radius, generous height (44–56px), label above in small bold sans, faint serif placeholder |
+| **Select dropdown** | Same as text input + chevron icon right-aligned |
+| **Radio cards (side-by-side options)** | Rectangular cards with hairline border, circle radio inside left, label sans text right, active state = subtle gray fill (`#f5f5f5`) + dark border |
+| **Segmented control (tab-style)** | Three pills inline, active = white bg + black text + 1px border, inactive = transparent bg + muted text |
+| **Submit button** | Tight-radius rectangle, black bg, white sans text uppercase letter-spaced 0.08em, arrow optional |
+| **Form sections** | Generous vertical padding (32–48px between groups), small-caps section headers in bold sans |
+
+When V4 brings forms into the NS surface, scope the changes to `[data-skin="network-school"] input`, `[data-skin="network-school"] select`, `[data-skin="network-school"] [role="radiogroup"]` and pattern after this table.
+
 ---
 
-*White-Label Strategy v1.1*
-*Created: 2025-01-04 · Updated: 2026-05-19 (Per-Community Skin Spec added after `network-school` v1 ship)*
+*White-Label Strategy v1.2*
+*Created: 2025-01-04 · Updated: 2026-05-19 (V3 lessons + form spec added after `network-school` v3 ship)*
