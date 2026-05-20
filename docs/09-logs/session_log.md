@@ -7279,3 +7279,19 @@ Sasha v2.3 feedback (screenshots): Matte-Polymer "looks like a dotted surface" (
 Commit: `2c8f2744` (pushed to origin/main).
 
 Version: v2.3 → v2.4 polymer truth + neumorphic device. Equilibrium stays parked.
+
+### Day 74 Wave 9 — Codex v2.5 (M1+M2+M3+M4 shipped)
+
+Sasha's "ship all four" green-light. Four new things landed:
+
+**M1 — MdlsSoulOrbField3D:** Replaces 12 CSS-gradient SoulOrbGoal circles in the Materials gallery with a SINGLE R3F Canvas containing 12 translucent glass spheres in a 4×3 grid. `meshPhysicalMaterial.transmission 0.75` + per-orb point light + `attenuationColor` tied to identity hue. Each orb GLOWS with its identity color through the translucent shell. 12 hue presets matching `--mdls-orb-N` CSS vars. Each orb rotates at a slightly different rate so the field reads alive without synchronized-clock feel.
+
+**M2 — AuroraCycleDisc `use3D` mode:** New prop swaps the center CSS gradient for a real MdlsAuroraOrb3D. HTML text label overlays the canvas (`pointer-events:none`) so WINTER · WILL-BUILDING reads on top. All surrounding chrome (month labels, day-N dot, ticks) unchanged. Applied to the Composed Surface Demo — the biologic-watch centerpiece now has a real translucent glass center.
+
+**M3 — MdlsSealMedallion3D:** R3F sacred-stamp form. Cylinder body + 4 concentric torus rings simulating mandala emboss + center sphere boss + outer rim torus. Bronze / gold / iron tone presets. 3-point industrial-design lighting. Compound figure-8 sway (coin feels HELD, not on a turntable). ContactShadows + Bloom. Replaces SealMedallion in the Tactile-Ceramic material entry — clay slabs now hold real bronze + gold seals.
+
+**M4 — MdlsPageProgress + cinematic orchestration:** Fixed-right vertical dot indicator. IntersectionObserver tracks current section, click-to-navigate via scrollIntoView (Lenis smooths it). Hover labels appear to the left. Hidden on mobile. Added IDs to all 7 main sections — `mdls-hero / composed / principles / materials / registers / typography / vocabulary`. The Codex now reads as a chapter book.
+
+Commit: `025dfd77` (pushed to origin/main).
+
+Version: v2.4 → v2.5 material truth + cinematic. Equilibrium stays parked.
