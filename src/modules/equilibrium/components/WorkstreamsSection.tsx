@@ -1,5 +1,14 @@
 import { useEffect, useRef, useState } from "react";
-import { Plus, GripVertical, Check, ArrowDown, RotateCcw, Pencil, X } from "lucide-react";
+import {
+  Plus,
+  GripVertical,
+  Check,
+  ArrowDown,
+  RotateCcw,
+  Pencil,
+  Trash2,
+  X,
+} from "lucide-react";
 import {
   closestCenter,
   DndContext,
@@ -439,18 +448,33 @@ const SortableWorkstreamChip = ({
         </button>
       )}
 
+      {/*
+        Delete workstream — HARD delete (Sasha 2026-05-20).
+        Was an archive button that moved the row into a "completed
+        pile"; Sasha: "I actually want to delete it, not complete it,
+        because otherwise it just stays there forever." Now permanently
+        removes the workstream + its tasks + any focus rows via FK
+        cascade.
+
+        Confirm prompt before firing because the action is irreversible.
+        Resting state at /50 rose so it's discoverable but doesn't
+        scream "danger"; on hover goes full red to communicate destruction.
+      */}
       {!editing && (
         <button
           type="button"
-          aria-label="Complete workstream"
-          title="Mark complete (preserved in completed pile)"
+          aria-label="Delete workstream"
+          title={`Delete "${workstream.title}" permanently (tasks under it will also be removed)`}
           onClick={(e) => {
             stop(e);
-            void onDelete();
+            const confirmed = window.confirm(
+              `Delete "${workstream.title}"?\n\nThis permanently removes the workstream and all tasks under it. This can't be undone.`,
+            );
+            if (confirmed) void onDelete();
           }}
-          className="rounded p-2 text-[#0a1628]/40 opacity-0 transition hover:text-emerald-600 group-hover:opacity-100"
+          className="shrink-0 rounded-full p-1.5 text-rose-500/55 transition hover:bg-rose-50 hover:text-rose-600"
         >
-          <Check size={14} />
+          <Trash2 size={16} />
         </button>
       )}
 
