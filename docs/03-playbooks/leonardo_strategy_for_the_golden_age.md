@@ -150,23 +150,17 @@ The Hermes signature: arrives warmed, bears craft-object, opens secrets, makes m
 
 ---
 
-## Worked example: the Balaji letter (May 2026)
+## Live patron instances
 
-**Patron:** Balaji Srinivasan. De facto sovereign of the Network State movement.
+Each patron-fit address gets its own **living instance file** in `leonardo_strategy_instances/`. These track the full arc: sovereign read, two wounds, warming, the letter(s), send plan, post-send protocol, outcome, and lessons learned. The master playbook above is the canonical method; the instance files are the practice.
 
-**Two wounds:**
-- *Urgent fire:* coordination at scale among high-agency people in AI-native conditions. He has named the question publicly: "AI makes everyone a CEO."
-- *Legacy hunger:* the legitimacy of network states as actually operational civilization, rather than discourse / vibe / Twitter-adjacent culture. He has worked on this for years and needs primitives that make NS *concretely capable* of being civilization.
+**Current instances:**
 
-**Warming:** prior physical presence at NS in January; demonstrated ground without status-dropping intros.
+- **[`leonardo_strategy_instances/balaji_srinivasan.md`](leonardo_strategy_instances/balaji_srinivasan.md)** — *Sending May 19, 2026.* Patron: Balaji Srinivasan, *de facto* sovereign of the Network State movement. Urgent fire: coordination at scale among high-agency people in AI-native conditions ("AI makes everyone a CEO" → "*CEO of what, exactly?*"). Bronze horse: legitimacy of network states as operational polity rather than discourse. Crown jewel: *networks that can see and coordinate differentiated talent at this resolution will outperform networks that cannot.*
 
-**Craft-object:** the working prototype at findyourtoptalent.com (ideally NS-skinned for the send).
+- **[`leonardo_strategy_instances/foster_gamble.md`](leonardo_strategy_instances/foster_gamble.md)** — *Cancellation message sent May 18, 2026 as warming move; full letter held for when email channel opens.* Patron: Foster Gamble (with Kimberly Carter Gamble as co-CEO). Urgent fire: Thrive movement's 14-year gap between articulation and institutional realization. Bronze horse: counter-Gamble legacy as institutional form that outlasts him. Silver lyre: the torus drawings (uniquely Foster-resonant; cannot be faked).
 
-**Letter structure:** extends his own thesis ("CEO of what, exactly?") rather than introducing a new framework; diagnoses low-resolution allocation in current networks; names the missing primitive at higher resolution; inoculates against personality-typing without attacking Dalio-grade systems ("the shift is from category to resolution"); signals pattern recognition across frontier ecosystems without name-dropping; lands the crown jewel ("networks that can see and coordinate differentiated talent at this resolution will outperform networks that cannot"); plants the bronze horse quietly ("whether network states stay discourse or become operational depends partly on primitives like this being built early"); offers free pilot in his park; closes with sovereign non-clinging ("whether or not this specific implementation is the right one, the primitive itself increasingly looks inevitable").
-
-**Three-modality check:** ✓ pitch (the missing primitive), ✓ sell (free pilot, prototype link), ✓ partner (do-this-even-without-me framing).
-
-**Outcome:** TBD. Letter ready to send.
+**Lessons learned in each instance feed back into this master playbook over time.**
 
 ---
 
