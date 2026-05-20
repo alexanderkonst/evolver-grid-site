@@ -867,6 +867,59 @@
   padding-top: 2.5rem !important;
 }
 
+/* V8 (Sasha 2026-05-20): /ns/auth page styles its hero in inline
+   Cormorant + gold rgba. CSS !important beats non-!important inline
+   style by the cascade rules, so we can force the editorial register
+   here without editing every span in Auth.tsx. */
+[data-skin="network-school"] article.liquid-glass-strong h1,
+[data-skin="network-school"] article.liquid-glass-strong h1 *,
+[data-skin="network-school"] article.liquid-glass-strong p,
+[data-skin="network-school"] article.liquid-glass-strong label,
+[data-skin="network-school"] article.liquid-glass-strong button,
+[data-skin="network-school"] article.liquid-glass-strong input {
+  font-family: "Newsreader", "Source Serif Pro", Georgia, serif !important;
+}
+/* Tab list "Log In / Sign Up" gold-rgba surround → neutral hairline. */
+[data-skin="network-school"] article.liquid-glass-strong [role="tablist"] {
+  background-color: rgba(10, 10, 10, 0.04) !important;
+  border-color: rgba(10, 10, 10, 0.10) !important;
+}
+/* Active tab gold pill → near-black ink-on-white. */
+[data-skin="network-school"] article.liquid-glass-strong [role="tab"][data-state="active"] {
+  background-color: #ffffff !important;
+  color: #0a0a0a !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06) !important;
+}
+/* Inactive tab text. */
+[data-skin="network-school"] article.liquid-glass-strong [role="tab"]:not([data-state="active"]) {
+  color: rgba(10, 10, 10, 0.55) !important;
+}
+/* Article shadow gold halo → editorial neutral. */
+[data-skin="network-school"] article.liquid-glass-strong {
+  box-shadow:
+    0 4px 14px -6px rgba(0, 0, 0, 0.08),
+    0 24px 60px -24px rgba(0, 0, 0, 0.10),
+    0 0 0 1px rgba(10, 10, 10, 0.06) !important;
+}
+/* Inputs default to gold-tinted on Aurora; neutralize on NS. */
+[data-skin="network-school"] article.liquid-glass-strong input {
+  background-color: #ffffff !important;
+  border-color: rgba(10, 10, 10, 0.18) !important;
+  color: #0a0a0a !important;
+  font-family: "Inter", system-ui, sans-serif !important;
+}
+[data-skin="network-school"] article.liquid-glass-strong input::placeholder {
+  color: rgba(10, 10, 10, 0.40) !important;
+}
+/* Primary submit button (`Log In`/`Sign Up`) — was navy gradient. */
+[data-skin="network-school"] article.liquid-glass-strong form button[type="submit"] {
+  background: #0a0a0a !important;
+  color: #ffffff !important;
+  border-color: transparent !important;
+  font-family: "Inter", system-ui, sans-serif !important;
+  letter-spacing: 0.08em;
+}
+
 /* Active item indicator — black left-bar (inset shadow, no layout shift)
    on any element whose inline style references --skin-selected-bg.
    Hits both SpacesRail JOURNEY/AI OS/ME/BUILD chips AND SectionsPanel
