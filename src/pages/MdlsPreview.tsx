@@ -65,6 +65,19 @@ const ORB_NAMES = [
   "aurora-sage", "aurora-ochre", "aurora-amber", "aurora-ember",
 ];
 
+// WAVE 9 / M4 — Page navigation sections. Mirrors the section IDs added
+// to each <section> below. MdlsPageProgress reads this to render the
+// right-side dot indicator + handle scrollIntoView navigation.
+const CODEX_SECTIONS = [
+  { id: "mdls-hero",        label: "Direction Memo" },
+  { id: "mdls-composed",    label: "Composed Surface" },
+  { id: "mdls-principles",  label: "Principles + Rules" },
+  { id: "mdls-materials",   label: "Materials" },
+  { id: "mdls-registers",   label: "Registers" },
+  { id: "mdls-typography",  label: "Typography" },
+  { id: "mdls-vocabulary",  label: "Vocabulary" },
+];
+
 const MdlsPreview = () => {
   const [demoMode, setDemoMode] = useState<"attune" | "act">("act");
   const [completedDemoGoals, setCompletedDemoGoals] = useState<Set<number>>(new Set());
@@ -102,6 +115,10 @@ const MdlsPreview = () => {
     <LenisProvider>
     <main className="mdls-page-atmosphere relative">
       <MdlsClipPathDefs />
+      {/* WAVE 9 / M4 — fixed-right page-progress dots that show scroll
+          position + click-navigate. The "chapter book" cue that ties
+          sections into a sequence rather than independent blocks. */}
+      <MdlsPageProgress sections={CODEX_SECTIONS} />
 
       {/* ═══════════════════════════════════════════════════════════════ */}
       {/* §1 · HERO — Direction Memo                                       */}
@@ -172,7 +189,7 @@ const MdlsPreview = () => {
           </p>
         </motion.div>
         <div className="relative mt-20 text-center text-[10px] uppercase tracking-[0.28em] text-[#0a1628]/40" style={{ zIndex: 1 }}>
-          Multi-Dimensional Living Surface · the codex · v2.4 — polymer truth + neumorphic device
+          Multi-Dimensional Living Surface · the codex · v2.5 — material truth + cinematic
         </div>
       </section>
 
