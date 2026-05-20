@@ -108,25 +108,31 @@ const SoundCloudMinimalPlayer = () => {
                 disabled={!ready}
                 aria-label={playing ? "Pause playlist" : "Play playlist"}
                 title={playing ? "Pause" : "Play"}
-                className="flex-shrink-0 inline-flex items-center justify-center w-7 h-7 rounded-full transition-all duration-200 hover:scale-[1.06] active:scale-[0.94] disabled:opacity-50 disabled:cursor-wait"
+                className="flex-shrink-0 inline-flex items-center justify-center rounded-full transition-all duration-200 hover:scale-[1.06] active:scale-[0.94] disabled:opacity-50 disabled:cursor-wait"
                 style={{
+                    // V4 (Sasha 2026-05-19): play button shrunk from 28→22
+                    // so it matches the chat-with-us / settings / log-out
+                    // icon footprint exactly. Previously read as the largest
+                    // mark in the utility row.
+                    width: 22,
+                    height: 22,
                     background:
-                        "linear-gradient(135deg, rgba(244, 212, 114, 0.32) 0%, rgba(212, 175, 55, 0.18) 100%)",
-                    border: "0.5px solid rgba(212, 175, 55, 0.55)",
-                    boxShadow: "0 0 10px -2px rgba(244, 212, 114, 0.30)",
+                        "var(--skin-music-play-bg, linear-gradient(135deg, rgba(244, 212, 114, 0.32) 0%, rgba(212, 175, 55, 0.18) 100%))",
+                    border: "0.5px solid var(--skin-music-play-border, rgba(212, 175, 55, 0.55))",
+                    boxShadow: "var(--skin-music-play-shadow, 0 0 10px -2px rgba(244, 212, 114, 0.30))",
                 }}
             >
                 {playing ? (
                     <Pause
                         className="w-3 h-3"
                         aria-hidden="true"
-                        style={{ color: "#f4d472" }}
+                        style={{ color: "var(--skin-music-icon, #f4d472)" }}
                     />
                 ) : (
                     <Play
                         className="w-3 h-3 translate-x-[0.5px]"
                         aria-hidden="true"
-                        style={{ color: "#f4d472" }}
+                        style={{ color: "var(--skin-music-icon, #f4d472)" }}
                     />
                 )}
             </button>
@@ -140,7 +146,7 @@ const SoundCloudMinimalPlayer = () => {
                     fontWeight: 600,
                     fontSize: "0.78rem",
                     letterSpacing: "0.04em",
-                    color: "rgba(255, 255, 255, 0.55)",
+                    color: "var(--skin-music-text, rgba(255, 255, 255, 0.55))",
                 }}
                 title={labelText}
             >
@@ -158,7 +164,7 @@ const SoundCloudMinimalPlayer = () => {
                 title="Next"
                 className="flex-shrink-0 hidden md:inline-flex items-center justify-center w-6 h-6 rounded-full transition-all duration-200 hover:scale-[1.10] active:scale-[0.94] disabled:opacity-30 disabled:cursor-not-allowed"
                 style={{
-                    color: "rgba(255, 255, 255, 0.45)",
+                    color: "var(--skin-music-meta, rgba(255, 255, 255, 0.45))",
                 }}
             >
                 <SkipForward className="w-3 h-3" aria-hidden="true" />
@@ -181,7 +187,7 @@ const SoundCloudMinimalPlayer = () => {
                 title="Listen on SoundCloud"
                 className="flex-shrink-0 hidden md:inline-flex items-center justify-center transition-opacity duration-200 hover:opacity-100"
                 style={{
-                    color: "rgba(255, 255, 255, 0.45)",
+                    color: "var(--skin-music-meta, rgba(255, 255, 255, 0.45))",
                     opacity: 0.65,
                 }}
             >

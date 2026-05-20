@@ -60,10 +60,16 @@ const ImageIcon = ({
     src,
     alt,
     glow = false,
+    size = 28,
 }: {
     src: string;
     alt: string;
     glow?: boolean;
+    /** Override the default 28×28 footprint. Used by AI OS to render
+        slightly smaller (Sasha 2026-05-19) — the merkaba mark fills
+        its box more aggressively than the JOURNEY star / ME crystal,
+        which made it read as larger in the rail row. */
+    size?: number;
 }) => (
     // Day 48 iter 14 (Sasha): rotation is now applied via INLINE style
     // (in addition to the .gentle-spin class) — the class rule wasn't
@@ -82,8 +88,8 @@ const ImageIcon = ({
         // index.css for the full rationale and scope guidance.
         className="flex-shrink-0 select-none object-contain gentle-spin-always"
         style={{
-            width: 28,
-            height: 28,
+            width: size,
+            height: size,
             // Day 54+ (Sasha 2026-04-28 evening): glow softened. Was 8px@0.7 +
             // 2px@0.9 — too hot, the icons read as competing with the wordmark.
             // Now 5px@0.4 + 1px@0.55: the gold ring stays present (paired-set
@@ -134,7 +140,7 @@ const SPACES: SpaceItem[] = [
         // harmonic geometry already established elsewhere on site; gold
         // glow matches the JOURNEY + ME paired-set treatment so all
         // three foundational icons read as siblings.
-        icon: <ImageIcon src={aiOsIcon} alt="AI OS" glow />,
+        icon: <ImageIcon src={aiOsIcon} alt="AI OS" glow size={25} />,
         path: "/ai-os",
     },
     // Hidden until built — uncomment to re-enable
@@ -742,14 +748,36 @@ const SpacesRail = ({
                                     navigate("/");
                                 }}
                                 className={cn(
-                                    "flex items-center gap-3 px-3 py-2 rounded-xl transition-all w-full",
+                                    // V4 (Sasha 2026-05-19): standardize Log Out to match
+                                    // the chat-with-us / settings chip shape — same padding,
+                                    // radius, hover register, icon scale. Previous styling
+                                    // ("py-2 rounded-xl, red hover, w-4 icon") read as a
+                                    // foreign element in the utility row. Now matches the
+                                    // family. Pink → uniform light-gray hover for all rail
+                                    // items.
+                                    "flex items-center gap-3 px-3 py-2.5 rounded-2xl transition-all duration-300 w-full",
                                     "justify-center md:justify-start",
-                                    "text-white/30 hover:bg-red-500/20 hover:text-red-300"
+                                    "text-white/45 hover:bg-white/[0.04] hover:text-white/80 hover:translate-y-[-1px] active:translate-y-0"
                                 )}
                                 title="Log Out"
                             >
-                                <LogOut className="w-4 h-4 flex-shrink-0" />
-                                <span className="hidden md:block text-xs font-medium">Log Out</span>
+                                <LogOut
+                                    className="flex-shrink-0"
+                                    style={{ width: 22, height: 22, opacity: 0.8 }}
+                                    aria-hidden="true"
+                                />
+                                <span
+                                    className="hidden md:block truncate"
+                                    style={{
+                                        fontFamily: "'Cormorant Garamond', serif",
+                                        fontWeight: 600,
+                                        fontSize: "0.82rem",
+                                        letterSpacing: "0.06em",
+                                        textTransform: "lowercase",
+                                    }}
+                                >
+                                    log out
+                                </span>
                             </button>
                         );
                     }
