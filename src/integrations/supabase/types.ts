@@ -875,6 +875,8 @@ export type Database = {
           main_quest_stage: string
           main_quest_status: string
           main_quest_updated_at: string
+          match_explainer_seen_at: string | null
+          match_headsup_opt_out: boolean
           mission_discovered_at: string | null
           mission_id: string | null
           multiple_intelligences_completed: boolean | null
@@ -939,6 +941,8 @@ export type Database = {
           main_quest_stage?: string
           main_quest_status?: string
           main_quest_updated_at?: string
+          match_explainer_seen_at?: string | null
+          match_headsup_opt_out?: boolean
           mission_discovered_at?: string | null
           mission_id?: string | null
           multiple_intelligences_completed?: boolean | null
@@ -1003,6 +1007,8 @@ export type Database = {
           main_quest_stage?: string
           main_quest_status?: string
           main_quest_updated_at?: string
+          match_explainer_seen_at?: string | null
+          match_headsup_opt_out?: boolean
           mission_discovered_at?: string | null
           mission_id?: string | null
           multiple_intelligences_completed?: boolean | null
@@ -1242,8 +1248,13 @@ export type Database = {
         Row: {
           ai_why_text: string | null
           compound_type: string | null
+          consent_responded_at: string | null
+          consent_response: string | null
           created_at: string
           from_user_id: string
+          headsup_email_sent_at: string | null
+          headsup_email_status: string | null
+          headsup_sent_count: number
           id: string
           match_score: number | null
           to_user_id: string
@@ -1251,8 +1262,13 @@ export type Database = {
         Insert: {
           ai_why_text?: string | null
           compound_type?: string | null
+          consent_responded_at?: string | null
+          consent_response?: string | null
           created_at?: string
           from_user_id: string
+          headsup_email_sent_at?: string | null
+          headsup_email_status?: string | null
+          headsup_sent_count?: number
           id?: string
           match_score?: number | null
           to_user_id: string
@@ -1260,8 +1276,13 @@ export type Database = {
         Update: {
           ai_why_text?: string | null
           compound_type?: string | null
+          consent_responded_at?: string | null
+          consent_response?: string | null
           created_at?: string
           from_user_id?: string
+          headsup_email_sent_at?: string | null
+          headsup_email_status?: string | null
+          headsup_sent_count?: number
           id?: string
           match_score?: number | null
           to_user_id?: string
@@ -2378,6 +2399,37 @@ export type Database = {
           slug: string | null
           top_talent_resonance: number | null
           user_id: string | null
+        }
+        Relationships: []
+      }
+      match_active_declines: {
+        Row: {
+          consent_responded_at: string | null
+          from_user_id: string | null
+          to_user_id: string | null
+        }
+        Insert: {
+          consent_responded_at?: string | null
+          from_user_id?: string | null
+          to_user_id?: string | null
+        }
+        Update: {
+          consent_responded_at?: string | null
+          from_user_id?: string | null
+          to_user_id?: string | null
+        }
+        Relationships: []
+      }
+      match_consent_funnel: {
+        Row: {
+          bounced: number | null
+          consented: number | null
+          day: string | null
+          declined: number | null
+          expired: number | null
+          headsups_sent: number | null
+          opted_out_skips: number | null
+          pending: number | null
         }
         Relationships: []
       }
