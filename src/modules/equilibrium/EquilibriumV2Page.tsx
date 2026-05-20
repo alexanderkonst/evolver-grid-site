@@ -19,6 +19,7 @@ import { StrategiesSection } from "./components/StrategiesSection";
 import { WorkstreamsSection } from "./components/WorkstreamsSection";
 import { SmartGoalsSection } from "./components/SmartGoalsSection";
 import { DoNowSection } from "./components/DoNowSection";
+import { HarvestSection } from "./components/HarvestSection";
 import { SynthesisCard } from "./components/SynthesisCard";
 import { SectionAnchorNav } from "./components/SectionAnchorNav";
 import { WatchModeToggle, type WatchMode } from "./components/WatchModeToggle";

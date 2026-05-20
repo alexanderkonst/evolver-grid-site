@@ -109,6 +109,12 @@ export const SECTION_IDS = {
   workstreams: "workstreams",
   goals: "goals",
   doNow: "do-now",
+  // Sasha 2026-05-20: "Harvest" — a running celebration feed of
+  // completed tasks across all workstreams. Ties to the lunar
+  // Harvesting phase (Full Moon) in the spine — "reap what's ripe ·
+  // receive the fruits of labor." Replaces the per-workstream
+  // siloed done-piles for the cross-stream celebration view.
+  harvest: "harvest",
 } as const;
 
 export type SectionId = (typeof SECTION_IDS)[keyof typeof SECTION_IDS];
