@@ -7182,6 +7182,25 @@ Sasha asked for a critical second look at my first stack proposal. Caught and fi
 
 ### Si–Do
 
-The Stage-8 paradigm now has its own component library, not just a CSS layer. /mdls-preview is the manifesto-grade showcase; /build/equilibrium proves it ships as a working tool. Both surfaces respect motion accessibility. The "kindergarten → next octave" jump is real in code — next iteration cycle can build ON this foundation rather than rolling more CSS by hand.
+The Stage-8 paradigm now has its own component library, not just a CSS layer. /mdls-preview is the manifesto-grade showcase. The "kindergarten → next octave" jump is real in code — next iteration cycle can build ON this foundation rather than rolling more CSS by hand.
 
 The broader Si–Do (first $555 stranger from the funnel) remains unfired.
+
+### Day 74 polish — Equilibrium hands off, Codex v2.0
+
+Sasha's correction after first ship: **do NOT touch /build/equilibrium until the Codex is genuinely convincing.** Reverted Wave 4 changes (LenisProvider + MdlsRevealSection wrapping in EquilibriumMDLSPage). Equilibrium returns to pre-octave-shift state.
+
+Continued iteration on /mdls-preview only — polish pass that pushes the Codex from "primitives demonstrated" to "paradigm declared":
+- **Hero**: floating MdlsSacred3D dodecahedron above the manifesto prose
+- **§3 Principles**: principles list on a floating extruded plinth; 3 rules each on raised neumorphic cards
+- **§4 Materials**: mesh-sculptural atmosphere (textile-showroom feel)
+- **§5 Registers**: mesh-ascetic atmosphere
+- **§6 Typography**: mesh-restrained (editorial cream-paper wash)
+- **§7 Vocabulary + Closing**: mesh-luminous + closing 3D dodecahedron — page bookends in the aurora register
+- **Composed Surface Demo**: device frame now on a floating extruded plinth, paired with the existing scroll-tilt
+
+Every section now carries WebGL mesh atmosphere (not just the hero). Neumorphism appears in 4 places. 3D appears at hero + close. The "new morphism" Sasha called out as missing is now PRESENT throughout, not buried in one demo.
+
+Commit: `e7f05128`
+
+Status: Equilibrium recompile gated on Sasha's "we're ready" signal on the Codex. Until then, /build/equilibrium stays on v1.0 MDLS (matte-polymer translucent cards + sunset video atmosphere).
