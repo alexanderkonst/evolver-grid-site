@@ -136,9 +136,9 @@ Network School's real shape: ~150 monthly cohort members rotating through + ~150
 
 ### Cost & post-pilot pricing
 
-- **Pilot cost:** $2K total for 90 days *(or free first month, $1.5K for next 60 — make it functionally impossible to refuse)*
-- **Post-pilot:** $10/long-termer/mo + $5/cohort-member during their 30-day stay ≈ **~$2.25K/mo** at current NS scale
-- Rounding-error in NS budget. Massive ROI floor if even one collaboration produces a venture per quarter.
+- **Pilot:** free first phase. Make it functionally impossible to refuse.
+- **Post-pilot:** pricing bespoke, settled after the pilot reveals what the model should look like at NS scale. Directional shape: onboarding fee per new member + monthly per active member. Specific numbers held until the pilot data points at the right values.
+- **Frame to Balaji if he asks:** *"I'd rather let the pilot tell us what the right model is than guess. Whatever the numbers, they'll be a rounding error in NS's budget relative to the upside if even one collaboration becomes a venture per quarter."*
 
 ### Success metrics — agree upfront
 
@@ -153,9 +153,9 @@ Each new cohort member matched with a long-termer is more likely to convert to l
 
 ### Business model in his language
 
-- **Onboarding fee:** ~$30–50 per new member (one-time, on T-M-A-Q profile creation)
-- **Monthly:** ~$5–8 per active member (active = engaged with matching in the month)
-- Solves "value is mostly upfront" — onboarding captures the high-value moment, monthly captures the ongoing coordination substrate
+- **Directional shape:** onboarding fee per new member (one-time, on T-M-A-Q profile creation) + monthly per active member (engaged with matching in the month). Solves the "value is mostly upfront" inherent to matching products.
+- **Specific dollar amounts not locked yet** — bespoke per engagement at this stage. The NS pilot will reveal the right shape; everything calibrates from there.
+- If he presses on numbers, the honest line: *"I'd rather let the pilot reveal the right values than guess. The shape is clear; the magnitudes will calibrate."*
 
 ### Language for the Balaji audience (avoid web3 — he's beyond it)
 

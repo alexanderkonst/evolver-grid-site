@@ -7501,7 +7501,7 @@ Five crystallizations:
 
 1. **Matching is the product. Unique-business methodology is the engine underneath.** Same arc, different ends. Self-knowledge is the IP; precision matching is what the market buys; unique-business is the deeper premium layer for those who graduate from matching into venture-building.
 2. **Two-question framing (extension of Balaji's *"AI makes everyone a CEO"*):** WHO to work with → matching layer (broad — short-term collabs through long-term co-founders; straightforward mechanism, market ready). WHAT to build → unique-business methodology (novel mechanism, market needs education). Sasha addresses both: who first, what second.
-3. **Business model resolved:** onboarding fee (~$30–50/new member) + monthly subscription (~$5–8/active member). Solves the "value is mostly upfront" problem inherent to matching.
+3. **Business model — directional shape only (specific numbers deliberately unlocked):** onboarding fee per new member + monthly per active member. Solves the "value is mostly upfront" problem inherent to matching. Pricing remains bespoke per engagement — real pilots will reveal the right magnitudes. Day 77 explicitly chose NOT to lock specific dollar amounts in any commercial document.
 4. **Beachhead pivot:** community ecosystem path (B2B) leads; individual founder cold acquisition (B2C) is harder and deferred. Founders become customers downstream — they graduate from community-deployed matching into the venture studio premium tier after finding their co-founder.
 5. **Funnel architecture v2:** JOURNEY space reordered to 5 matching-first items (Talent → Mission → Assets → QoL → Build-bridge); BUILD space holds 3 venture-path items moved out (Path to Unique Business / See the Dashboard / Take the Exact Playbook). Post-Top-Talent CTA pivots from binary fork to continuous matching-onboarding flow. QoL upgraded from "optional context" to "match-quality resolution filter."
 
@@ -7516,7 +7516,7 @@ Five crystallizations:
 1. **Don't replace v6 Balaji letter.** It already captures the matching-as-product framing. Pilot details, business model, and traction answer live in *follow-up conversation*, not in the first message.
 2. **Skin yes, Loom no.** NS-skinned `findyourtoptalent.com` is the silver lyre. A Loom imposes narration on Balaji's sovereign evaluation — protocol misfit. Trust the artifact.
 3. **Lead with community ecosystem path.** Sasha has 10+ ecosystem-leader contacts reachable this week. Cold founder acquisition is harder and deferred.
-4. **Per-active-member pricing is the primary model.** The 10% rev-share Distributor Agreement stays for rare fork-and-self-host operators. Subscription is the main commercial channel for matching.
+4. **Per-active-member pricing is the directional model.** The 10% rev-share Distributor Agreement (Path B) stays for rare fork-and-self-host operators. Path A (hosted subscription) is the primary commercial channel for matching — but specific tiers were removed from the Distributor Agreement in v0.5 (Day 77 evening) because they were never enforced and pricing is still being arrived at. Pricing is currently bespoke per engagement.
 5. **QoL is load-bearing, not optional.** Consciousness-level mismatch is the silent collaboration killer. Members who skip get coarser matches — built-in completion incentive without coercion.
 
 ### Open threads

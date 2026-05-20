@@ -69,14 +69,18 @@ Sasha addresses both, in this order: **who first, what second.** Who is the univ
 - **Play #4 (Venture Studio)** deferred until matching is proven at scale.
 - **Play #6 (System License)** remains a Phase 4 maturity play.
 
-### Business model evolution (resolves open decisions on Plays #2 + #5 pricing)
+### Business model — directional shape (specific numbers TBD)
 
-- **Onboarding fee:** ~$30–50 per new member (one-time, on profile creation). Covers AI cost of generating Talent + Mission + Assets + QoL profile + first match wave.
-- **Monthly subscription:** ~$5–8 per active member. *Active* = made themselves matchable in the month (logged in / accepted-or-declined a match / updated profile).
+The directional model:
+
+- **Onboarding fee per new member** (one-time, on profile creation) — covers AI cost of generating Talent + Mission + Assets + QoL profile + first match wave, plus margin
+- **Monthly subscription per active member** — *active* = made themselves matchable in the month (logged in / accepted-or-declined a match / updated profile)
 
 Solves the "value is mostly upfront" problem inherent to matching products. Onboarding captures the high-value moment; monthly captures the ongoing coordination substrate.
 
-The existing 10% revenue-share Distributor Agreement stays in place for rare fork-and-self-host operators (Path B). The *primary* commercial model for the matching product is per-active-member subscription.
+**Specific dollar amounts are deliberately not locked.** Pricing is bespoke per engagement at this stage. Real pilots will reveal the right shape — commercial communities (venture studios, Network States, founder communities) can sustain higher pricing because their ROI math is clear (matched ventures → carry, equity, thesis validation). Conscious / non-commercial communities need a different shape (smaller fees, or flat community fee, or sliding-scale gift contribution).
+
+The existing 10% revenue-share Distributor Agreement (Path B) stays in place for rare fork-and-self-host operators. The *primary* commercial model for the matching product is hosted subscription (Path A) — per engagement, structurally per-active-member with onboarding fee.
 
 ### Parallel beachhead targets (run alongside NS pilot)
 
@@ -108,7 +112,7 @@ Avoid *"web3 networking"* — Balaji has moved past that framing. Better:
 - **Days 31–60:** monthly cohort layered in during standard NS intake
 - **Days 61–90:** full system + outcome measurement
 - **Success metric:** long-termer conversion uplift (tuned to existing NS KPI of ~10/mo), time-to-first-collaboration, ventures-formed
-- **Cost:** $2K total / free first month
+- **Cost:** free first phase; ongoing pricing bespoke (settled after the pilot reveals what the model should look like at NS scale)
 
 Full reply-ready arsenal: [`leonardo_strategy_instances/balaji_srinivasan.md` → Reply-Ready Arsenal](../03-playbooks/leonardo_strategy_instances/balaji_srinivasan.md).
 

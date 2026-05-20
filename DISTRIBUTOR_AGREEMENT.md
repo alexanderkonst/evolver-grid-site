@@ -1,6 +1,6 @@
 # Distributor Agreement
 
-**Version 0.4 · May 19, 2026 (Day 76)**
+**Version 0.5 · May 20, 2026 (Day 77)**
 *This is a draft. The intent is binding; the legal language will tighten with counsel review before any first signature.*
 
 > **On where the 10% goes (v0.1 transparency note).** The revenue share defined in §3 currently routes to Alexander Konstantinov personally as **founder steward** — covering years of unpaid R&D, apparatus operating costs (Supabase, AI APIs, hosting, code maintenance), and founder compensation during bootstrap. This is the *founder-steward phase* of a declared three-phase trajectory toward a **governed purpose entity that cannot be sold**. The full evolution — threshold-triggered transition at ~25 active distributors, declared allocation buckets, distributor council governance at Phase 3 — is documented in [`docs/02-strategy/commons_treasury_evolution.md`](./docs/02-strategy/commons_treasury_evolution.md). When this doc says "Commons" in §7 it refers to the *data commons* (opt-in anonymized artifacts); the *revenue commons* is the trajectory described in the treasury evolution doc.
@@ -15,19 +15,13 @@ If you want to USE the Platform commercially — to charge clients, sell session
 
 ### Path A — Subscribe to the hosted Platform (recommended for most)
 
-Subscribe to a tier that grants commercial rights at [findyourtoptalent.com](https://findyourtoptalent.com):
+Use the hosted Platform at [findyourtoptalent.com](https://findyourtoptalent.com) under a commercial subscription.
 
-| Tier | Price | What it grants commercially |
-|---|---|---|
-| **Tasting** | Free, 25 generations | Try the Platform. NOT a commercial license — no client work. |
-| **Builder** | $22/mo · $222/yr | Personal use. Build YOUR ONE business. NOT a license to build for paying clients. |
-| **Locked-in** | $99/mo · $999/yr | **Commercial license included.** Use the Platform to build canvases for paying clients (coach, consultant, agency). No further rev-share. The subscription IS your commercial license. |
-| **Founders 50** | $555 lifetime | Commercial license. First 50 buyers, then $999/yr. Lifetime grandfathered. |
-| **Ignition** | $5,555 (one-time) | Commercial license + 1:1 founder coaching from Alexander. |
+**Pricing is currently bespoke per engagement.** Published tiers will be defined as the model matures through real pilots and community deployments. Until then, contact Alexander Konstantinov directly to discuss commercial use under Path A — the specific shape (onboarding fee, monthly per active member, flat community fee, hybrid) is calibrated to your context: individual use, community deployment, venture-studio cohort, network-state pilot, etc.
 
-On Path A, you owe NOTHING beyond the subscription fee. The hosted Platform handles infrastructure, updates, AI gateway, billing — you just use it. No rev-share. No reporting. No audit. The subscription is the commercial license.
+On Path A, you owe NOTHING beyond the agreed subscription terms. The hosted Platform handles infrastructure, updates, AI gateway, billing — you just use it. No rev-share. No reporting. No audit. The subscription IS the commercial license.
 
-**Path A is the right path for ~95% of commercial use cases.** Path B exists for the rare situation where hosted constraints don't fit (regulated industry, white-label brand requirements, custom infrastructure, etc.).
+**Path A is the right path for ~95% of commercial use cases.** Path B exists for the rare situation where hosted constraints don't fit (regulated industry, white-label brand requirements, custom infrastructure, sovereignty-critical deployments, etc.).
 
 ### Path B — Fork and self-host (this document)
 
@@ -256,12 +250,11 @@ This section governs the *artifacts you produce* through the Platform — your c
 
 The artifacts you generate are **yours**. You retain full ownership of the *content* — the words, the strategy, the positioning, the canvas. You can keep them, edit them outside the Platform, paste them onto your website, and treat them as your own work product. The Licensor claims no ownership over what you produce.
 
-### 15.2 Commercial use of outputs follows your tier
+### 15.2 Commercial use of outputs follows your agreement
 
-The right to use your outputs *commercially* tracks the same two-path structure as the rest of this agreement:
+The right to use your outputs *commercially* tracks the path under which you're using the Platform:
 
-- **Tasting / Builder** — outputs are for **your own one business** only. You may build, refine, and ship YOUR offer using them. They are NOT licensed for delivery as paid client work, packaging into a commercial program you sell, or use inside an agency engagement billed to a third party. Upgrading the tier at any time retroactively grants commercial rights to outputs already produced.
-- **Locked-in / Founders 50 / Ignition** — outputs may be used commercially in your own work *and* in client work, with no rev-share. Your subscription IS the commercial license for the outputs.
+- **Path A (hosted subscription)** — commercial rights to outputs are defined in your specific subscription agreement with Alexander Konstantinov. Pricing and the exact scope of commercial use (personal use only / paid client work / agency / community deployment) are bespoke per engagement at this stage. Upgrading or extending the agreement at any time retroactively grants additional commercial rights to outputs already produced.
 - **Distributor Instance (Path B)** — outputs generated through your forked instance are part of the Platform Revenue surface and are governed by the rev-share, reporting, and other obligations of this agreement.
 
 ### 15.3 Methodology shape stays licensed
@@ -290,6 +283,8 @@ If a situation arises that this document does not address, the spirit to apply i
 When in doubt, talk to the Licensor directly: [Telegram](https://t.me/integralevolution).
 
 ---
+
+*v0.5 · May 20, 2026 (Day 77) · Removed the Path A subscription tier table (Tasting / Builder / Locked-in / Founders 50 / Ignition) — those tiers were a hypothesis, never actually enforced in practice, and pricing is still being arrived at through real pilots. Path A pricing is now stated as bespoke per engagement, published tiers to be defined as the model matures. §15.2 Generated Outputs updated to remove specific tier names; references the subscription agreement directly. Path B (10% rev-share fork-and-self-host) unchanged.*
 
 *v0.4 · May 19, 2026 (Day 76) · Added preamble transparency note naming where the 10% revenue share currently routes (founder steward, v0.1) and cross-linking the new [`commons_treasury_evolution.md`](./docs/02-strategy/commons_treasury_evolution.md) — the three-phase trajectory toward a governed purpose entity that cannot be sold. §16 spirit clause updated: "tithe" → "revenue share"; added link to the treasury evolution doc. Drafted by [Alexander Konstantinov](https://aleksandrkonstantinov.com) with AI assistance.*
 

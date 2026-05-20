@@ -449,16 +449,20 @@ const SortableWorkstreamChip = ({
       )}
 
       {/*
-        Delete workstream — HARD delete (Sasha 2026-05-20).
-        Was an archive button that moved the row into a "completed
-        pile"; Sasha: "I actually want to delete it, not complete it,
-        because otherwise it just stays there forever." Now permanently
-        removes the workstream + its tasks + any focus rows via FK
-        cascade.
+        Delete workstream — HARD delete with confirm.
 
-        Confirm prompt before firing because the action is irreversible.
-        Resting state at /50 rose so it's discoverable but doesn't
-        scream "danger"; on hover goes full red to communicate destruction.
+        Visibility rule (Sasha 2026-05-20, second pass): match the
+        pencil's behavior — always visible on the ACTIVE chip,
+        hover-revealed on inactive chips. Previously trash was
+        always visible at /55 opacity on every row, which made the
+        list visually noisier than the elegant "controls appear when
+        you need them" pattern Sasha wanted. Now the resting list
+        reads as just the workstream names; hover reveals the
+        controls, the active chip surfaces them by default so the
+        currently-selected stream feels "loaded with tools."
+
+        Confirm prompt fires before deletion because the action is
+        irreversible (no toast-undo for a cascade delete).
       */}
       {!editing && (
         <button
@@ -472,7 +476,12 @@ const SortableWorkstreamChip = ({
             );
             if (confirmed) void onDelete();
           }}
-          className="shrink-0 rounded-full p-1.5 text-rose-500/55 transition hover:bg-rose-50 hover:text-rose-600"
+          className={cn(
+            "shrink-0 rounded-full p-1.5 text-rose-500/70 transition hover:bg-rose-50 hover:text-rose-600",
+            isActive
+              ? "opacity-100"
+              : "opacity-0 group-hover:opacity-100 focus-visible:opacity-100",
+          )}
         >
           <Trash2 size={16} />
         </button>
