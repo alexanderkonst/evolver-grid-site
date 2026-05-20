@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { cn } from "@/lib/utils";
+import MdlsAuroraOrb3D from "./MdlsAuroraOrb3D";
 
 /**
  * MDLS · Aurora Cycle Disc
@@ -31,6 +32,10 @@ interface AuroraCycleDiscProps {
   /** Optional inner label slot — centered inside the orb. */
   children?: ReactNode;
   className?: string;
+  /** Use R3F translucent 3D sphere for the center orb instead of the CSS
+   *  radial-gradient. Wave 9 / M2 — gives the disc real depth at the
+   *  center, with the disc's tick ring + label ring around it. */
+  use3D?: boolean;
 }
 
 const DEFAULT_MONTHS = [
@@ -47,6 +52,7 @@ export const AuroraCycleDisc = ({
   currentDayLabel,
   children,
   className,
+  use3D = false,
 }: AuroraCycleDiscProps) => {
   // Disc dimensions
   const orbSize = size;
@@ -87,40 +93,74 @@ export const AuroraCycleDisc = ({
       className={cn("relative mx-auto", className)}
       style={{ width: wrapperSize, height: wrapperSize }}
     >
-      {/* The orb itself, centered */}
-      <div
-        className={cn(
-          "mdls-aurora-glass-orb absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2",
-          variant === "dark" && "mdls-aurora-glass-orb--dark",
-        )}
-        style={{ width: orbSize, height: orbSize }}
-        aria-hidden={children ? undefined : true}
-      >
-        {/* Inner label slot — centered inside the orb, above the gradient */}
-        {children && (
+      {/* The orb itself, centered. WAVE 9 / M2: when use3D, render the
+          R3F translucent sphere instead of the CSS gradient; the text
+          label is then overlaid as an HTML layer on top of the canvas. */}
+      {use3D ? (
+        <>
           <div
-            className="absolute inset-0 flex items-center justify-center text-center px-6"
-            style={{
-              color:
-                variant === "dark"
-                  ? "rgba(255, 255, 255, 0.92)"
-                  : "rgba(10, 18, 34, 0.85)",
-              textShadow:
-                variant === "dark"
-                  ? "0 1px 2px rgba(0,0,0,0.30), 0 0 24px rgba(255,200,160,0.25)"
-                  : "0 1px 2px rgba(255,255,255,0.65), 0 0 18px rgba(255,205,160,0.45)",
-              letterSpacing: "0.20em",
-              fontSize: Math.max(10, Math.round(orbSize * 0.038)),
-              fontWeight: 500,
-              textTransform: "uppercase",
-              fontFamily: "DM Sans, Inter, sans-serif",
-              lineHeight: 1.4,
-            }}
+            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+            style={{ width: orbSize, height: orbSize }}
+            aria-hidden={children ? undefined : true}
           >
-            {children}
+            <MdlsAuroraOrb3D size={orbSize} hue="warm" />
           </div>
-        )}
-      </div>
+          {children && (
+            <div
+              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center text-center px-6"
+              style={{
+                width: orbSize,
+                height: orbSize,
+                color: "rgba(255, 248, 236, 0.95)",
+                textShadow:
+                  "0 1px 3px rgba(0,0,0,0.45), 0 0 22px rgba(255,200,160,0.6)",
+                letterSpacing: "0.20em",
+                fontSize: Math.max(10, Math.round(orbSize * 0.038)),
+                fontWeight: 500,
+                textTransform: "uppercase",
+                fontFamily: "DM Sans, Inter, sans-serif",
+                lineHeight: 1.4,
+                pointerEvents: "none",
+              }}
+            >
+              {children}
+            </div>
+          )}
+        </>
+      ) : (
+        <div
+          className={cn(
+            "mdls-aurora-glass-orb absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2",
+            variant === "dark" && "mdls-aurora-glass-orb--dark",
+          )}
+          style={{ width: orbSize, height: orbSize }}
+          aria-hidden={children ? undefined : true}
+        >
+          {children && (
+            <div
+              className="absolute inset-0 flex items-center justify-center text-center px-6"
+              style={{
+                color:
+                  variant === "dark"
+                    ? "rgba(255, 255, 255, 0.92)"
+                    : "rgba(10, 18, 34, 0.85)",
+                textShadow:
+                  variant === "dark"
+                    ? "0 1px 2px rgba(0,0,0,0.30), 0 0 24px rgba(255,200,160,0.25)"
+                    : "0 1px 2px rgba(255,255,255,0.65), 0 0 18px rgba(255,205,160,0.45)",
+                letterSpacing: "0.20em",
+                fontSize: Math.max(10, Math.round(orbSize * 0.038)),
+                fontWeight: 500,
+                textTransform: "uppercase",
+                fontFamily: "DM Sans, Inter, sans-serif",
+                lineHeight: 1.4,
+              }}
+            >
+              {children}
+            </div>
+          )}
+        </div>
+      )}
 
       {/* Twelve labels positioned around the perimeter */}
       {labels.slice(0, 12).map((label, i) => {

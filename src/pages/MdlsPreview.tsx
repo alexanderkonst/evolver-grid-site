@@ -21,6 +21,9 @@ import MdlsRevealSection from "@/components/mdls/MdlsRevealSection";
 import MdlsScrollTilt from "@/components/mdls/MdlsScrollTilt";
 import MdlsCeramicSurface from "@/components/mdls/MdlsCeramicSurface";
 import MdlsAuroraOrb3D from "@/components/mdls/MdlsAuroraOrb3D";
+import MdlsSoulOrbField3D from "@/components/mdls/MdlsSoulOrbField3D";
+import MdlsSealMedallion3D from "@/components/mdls/MdlsSealMedallion3D";
+import MdlsPageProgress from "@/components/mdls/MdlsPageProgress";
 
 /**
  * MDLS Codex · /mdls-preview (URL kept; content evolved 2026-05-19)
@@ -106,7 +109,7 @@ const MdlsPreview = () => {
       {/* (Paper Shaders) replaces the flat CSS .mdls-page-atmosphere for   */}
       {/* the hero. Living color volume instead of banded planes.           */}
       {/* ═══════════════════════════════════════════════════════════════ */}
-      <section ref={heroRef} className="relative min-h-[100vh] flex flex-col justify-center px-6 sm:px-12 lg:px-20 py-20 overflow-hidden">
+      <section id="mdls-hero" ref={heroRef} className="relative min-h-[100vh] flex flex-col justify-center px-6 sm:px-12 lg:px-20 py-20 overflow-hidden">
         {/* WAVE 6: hero keeps pixelRatio=2 (showcase quality) but speed
             stays at the new default 0.18. Only the hero pays the 2x DPR
             cost — body sections use pixelRatio 1. */}
@@ -179,7 +182,7 @@ const MdlsPreview = () => {
       {/* as user scrolls past, reads as a held object, not a screenshot.  */}
       {/* ═══════════════════════════════════════════════════════════════ */}
       <MdlsRevealSection>
-        <section className="py-12 sm:py-16">
+        <section id="mdls-composed" className="py-12 sm:py-16">
           <div className="max-w-5xl mx-auto px-4 sm:px-8">
             <SectionEyebrow>One composed surface</SectionEyebrow>
             {/* WAVE 6: removed MdlsHoverTilt + MdlsExtrudedSurface "floating"
@@ -209,7 +212,7 @@ const MdlsPreview = () => {
       {/* surfaces carry the visual register here without GPU shader cost.  */}
       {/* ═══════════════════════════════════════════════════════════════ */}
       <MdlsRevealSection>
-      <section className="relative py-24 px-6 sm:px-12">
+      <section id="mdls-principles" className="relative py-24 px-6 sm:px-12">
         <div className="relative max-w-4xl mx-auto">
           <SectionEyebrow>Seven principles, three rules</SectionEyebrow>
 
@@ -272,7 +275,7 @@ const MdlsPreview = () => {
       {/* ghost blobs below adjacent material entries.                      */}
       {/* ═══════════════════════════════════════════════════════════════ */}
       <MdlsRevealSection>
-      <section className="relative py-24 px-4 sm:px-12 overflow-hidden">
+      <section id="mdls-materials" className="relative py-24 px-4 sm:px-12 overflow-hidden">
         <MdlsMeshBackground register="sculptural" style={{ opacity: 0.35 }} />
         <div className="relative max-w-5xl mx-auto overflow-hidden" style={{ zIndex: 1 }}>
           <SectionEyebrow>The materials</SectionEyebrow>
@@ -337,41 +340,32 @@ const MdlsPreview = () => {
 
             <MaterialFeature
               name="Soul-Orb Library"
-              register="all registers"
-              description="Twelve curated color signatures. Manual assignment to goals, workstreams, identities. No per-user derivation (parked). Each orb a glass marble."
-              feature={
-                <div className="grid grid-cols-4 sm:grid-cols-6 gap-x-6 gap-y-8 max-w-2xl mx-auto justify-items-center">
-                  {ORB_NAMES.map((name, i) => (
-                    <div key={i} className="text-center">
-                      <SoulOrbGoal orbId={i + 1} size={56} label={name} />
-                      <p className="mt-2 text-[9px] font-mono text-[#0a1628]/50">{name}</p>
-                    </div>
-                  ))}
-                </div>
-              }
+              register="all registers · translucent glass spheres"
+              description="Twelve curated color signatures. WAVE 9 / M1 upgrade: was 12 CSS-gradient circles; now a single R3F Canvas with 12 translucent glass spheres, each with its own inner point-light source. Each orb glows with its identity hue — paint became light."
+              feature={<MdlsSoulOrbField3D width={520} />}
             />
 
             <MaterialFeature
               name="Tactile-Ceramic"
               register="Sacred-object surfaces · matte ceramic"
-              description="Granular, sculptural, fired-clay surface. SVG turbulence grain + warm-cool tri-gradient + multi-stop edge AO. The primitive Sasha flagged as 'we haven't touched yet' — now uses MdlsCeramicSurface with two tone variants visible."
+              description="Granular, sculptural, fired-clay surface. SVG turbulence grain + warm-cool tri-gradient + multi-stop edge AO. Pairs with the R3F SealMedallion3D in this demo — clay slab holding a bronze seal."
               feature={
                 <div className="flex gap-5 justify-center items-center">
                   <MdlsCeramicSurface
                     tone="warm-cream"
-                    style={{ width: 150, height: 150 }}
+                    style={{ width: 180, height: 180 }}
                   >
                     <div className="h-full flex items-center justify-center">
-                      <SealMedallion size={36} variant="mandala" />
+                      <MdlsSealMedallion3D size={140} tone="bronze" />
                     </div>
                   </MdlsCeramicSurface>
                   <MdlsCeramicSurface
                     tone="sand-warm"
                     ember
-                    style={{ width: 150, height: 150 }}
+                    style={{ width: 180, height: 180 }}
                   >
-                    <div className="h-full flex items-center justify-center text-[10px] uppercase tracking-[0.18em] text-[#0a1628]/55">
-                      ember
+                    <div className="h-full flex items-center justify-center">
+                      <MdlsSealMedallion3D size={140} tone="gold" />
                     </div>
                   </MdlsCeramicSurface>
                 </div>
@@ -419,7 +413,7 @@ const MdlsPreview = () => {
       {/* WAVE 6: mesh background REMOVED for scroll perf.                  */}
       {/* ═══════════════════════════════════════════════════════════════ */}
       <MdlsRevealSection>
-      <section className="relative py-24 px-6 sm:px-12">
+      <section id="mdls-registers" className="relative py-24 px-6 sm:px-12">
         <div className="relative max-w-5xl mx-auto">
           <SectionEyebrow>Four registers, one language</SectionEyebrow>
 
@@ -478,7 +472,7 @@ const MdlsPreview = () => {
       {/* WAVE 6: mesh background REMOVED for scroll perf.                  */}
       {/* ═══════════════════════════════════════════════════════════════ */}
       <MdlsRevealSection>
-      <section className="relative py-24 px-6 sm:px-12">
+      <section id="mdls-typography" className="relative py-24 px-6 sm:px-12">
         <div className="relative max-w-4xl mx-auto">
           <SectionEyebrow>Typography</SectionEyebrow>
 
@@ -799,6 +793,7 @@ const ComposedSurfaceDemo = ({
             currentDay={73}
             currentDayLabel="DAY 73"
             variant="light"
+            use3D
           >
             WINTER · WILL-BUILDING
           </AuroraCycleDisc>
