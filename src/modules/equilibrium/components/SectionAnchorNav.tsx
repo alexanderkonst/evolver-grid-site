@@ -38,6 +38,8 @@ const ACT_ANCHORS: { id: string; label: string }[] = [
   { id: SECTION_IDS.strategies, label: "Strategy" },
   { id: SECTION_IDS.workstreams, label: "Streams" },
   { id: SECTION_IDS.doNow, label: "Now" },
+  // Sasha 2026-05-20: Harvest = cross-workstream celebration feed.
+  { id: SECTION_IDS.harvest, label: "Harvest" },
 ];
 
 interface SectionAnchorNavProps {
