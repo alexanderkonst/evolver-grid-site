@@ -19,6 +19,7 @@ import aiOsHomeIcon from "@/assets/mc-merkaba.png";
 // glyph in the mobile menu pill — pairs with the hamburger to read as
 // "your home + open menu" in one affordance.
 import brandMark from "@/assets/find-your-top-talent-torus.png";
+import { useSkin } from "@/contexts/SkinContext";
 import SpacesRail, { SPACES } from "./SpacesRail";
 import SectionsPanel, { SPACE_SECTIONS } from "./SectionsPanel";
 import { useDeepProfileActivated } from "@/hooks/useDeepProfileActivated";
@@ -173,6 +174,12 @@ interface GameShellV2Props {
  * Panel 3: Content area
  */
 export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, showNavigation: forceShowNavigation, hideLogo }: GameShellV2Props) => {
+    // V5 debug (Sasha 2026-05-19): mobile-header brand glyph needs to swap
+    // to the NS flag under network-school. Previously rendered the FYTT
+    // torus regardless of skin — mobile users on /ns saw the rainbow mark
+    // instead of the editorial black flag.
+    const { skin: __spaceShipSkin } = useSkin();
+    const __isNSShell = __spaceShipSkin === "network-school";
     const location = useLocation();
     const navigate = useNavigate();
 
@@ -1187,7 +1194,13 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                         <button
                             onClick={handleBackToNavigation}
                             className="min-h-[44px] inline-flex items-center gap-2 px-2.5 py-1.5 rounded-full transition-all relative hover:scale-[1.02] active:scale-[0.98]"
-                            style={{
+                            style={__isNSShell ? {
+                                color: '#0a0a0a',
+                                background: '#ffffff',
+                                border: '1px solid rgba(10,10,10,0.18)',
+                                filter: 'none',
+                                boxShadow: '0 1px 3px rgba(0,0,0,0.06)',
+                            } : {
                                 color: '#f4d472',
                                 background: 'rgba(244,212,114,0.08)',
                                 border: '1px solid rgba(244,212,114,0.30)',
@@ -1196,13 +1209,30 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                             }}
                             aria-label="Open menu"
                         >
-                            <img
-                                src={brandMark}
-                                alt=""
-                                aria-hidden="true"
-                                className="w-7 h-7 object-contain flex-shrink-0"
-                                draggable={false}
-                            />
+                            {__isNSShell ? (
+                                /* V5 debug: NS flag inline SVG so mobile + desktop
+                                   render the same editorial mark, no network round-trip. */
+                                <svg
+                                    width="22"
+                                    height="22"
+                                    viewBox="0 0 60 60"
+                                    fill="none"
+                                    aria-hidden="true"
+                                    className="flex-shrink-0"
+                                >
+                                    <rect width="60" height="60" fill="#0a0a0a" rx="2" />
+                                    <rect x="18" y="28" width="24" height="4" fill="#ffffff" />
+                                    <rect x="28" y="18" width="4" height="24" fill="#ffffff" />
+                                </svg>
+                            ) : (
+                                <img
+                                    src={brandMark}
+                                    alt=""
+                                    aria-hidden="true"
+                                    className="w-7 h-7 object-contain flex-shrink-0"
+                                    draggable={false}
+                                />
+                            )}
                             <Menu className="w-4 h-4 flex-shrink-0" aria-hidden="true" />
                         </button>
                         {/* Day 53 (Sasha 2026-04-27): mobile breadcrumb.
