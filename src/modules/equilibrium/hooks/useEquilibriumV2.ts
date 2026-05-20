@@ -46,6 +46,14 @@ export interface EquilibriumV2Data {
   /** Workstreams the user has marked complete (archived). Newest first. */
   archivedWorkstreams: EquilibriumWorkstream[];
   tasksByWorkstream: Record<string, EquilibriumTask[]>;
+  /**
+   * All completed tasks across every workstream, newest-completion
+   * first. Uncapped. Source for the Harvest celebration section
+   * (Sasha 2026-05-20). Each row keeps `created_at`, `do_now_at`,
+   * `done_at`, `workstream_id` so the UI can compute durations +
+   * workstream attribution.
+   */
+  completedTasksAll: EquilibriumTask[];
   focusedTaskIds: string[];
 
   /** Currently-open workstream (drives Box 10's task list). */
@@ -1011,6 +1019,25 @@ export function useEquilibriumV2(): EquilibriumV2Data {
     return map;
   }, [tasks]);
 
+  /**
+   * Cross-workstream done tasks — the data source for the Harvest
+   * section (Sasha 2026-05-20). All completed tasks across the whole
+   * system, newest-completion first, no cap. Each row carries the
+   * upstream task's `created_at`, `do_now_at`, `done_at` so the UI
+   * can compute "time in focus" + relative timestamps. UNLIKE the
+   * per-workstream `done` slice above which truncates to
+   * MAX_DONE_VISIBLE, this list is uncapped — the celebration feed
+   * is the place to see EVERY win.
+   */
+  const completedTasksAll = useMemo<EquilibriumTask[]>(() => {
+    return tasks
+      .filter((t) => t.status === "done" && t.done_at)
+      .sort(
+        (a, b) =>
+          new Date(b.done_at ?? 0).getTime() - new Date(a.done_at ?? 0).getTime(),
+      );
+  }, [tasks]);
+
   const focusedTaskIds = useMemo(
     () => focus.sort((a, b) => a.position - b.position).map((f) => f.task_id),
     [focus],
@@ -1029,6 +1056,7 @@ export function useEquilibriumV2(): EquilibriumV2Data {
     workstreams,
     archivedWorkstreams,
     tasksByWorkstream,
+    completedTasksAll,
     focusedTaskIds,
     activeWorkstreamId,
     setActiveWorkstreamId,

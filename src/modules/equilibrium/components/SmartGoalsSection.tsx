@@ -91,24 +91,29 @@ export const SmartGoalsSection = ({
   return (
     <div className="mt-2">
       {/*
-        Sub-header "Tasks for <workstream>" — Sasha 2026-05-19: the
-        prior treatment (single emerald row) read as a TASK itself, not
-        as a header for the list below. Lift it visually:
-          • Two-line stack (eyebrow above, name below) — clearly a label
-          • Centered, all small-caps eyebrow, larger serif name underneath
-          • Bottom-divider line so it visibly anchors the list that follows
-          • No row chrome — it sits in the negative space, not in a row
-        So "Tasks for / Balaji reachout" can never be misread as one
-        more checkbox row in the list.
+        Sub-header "Tasks for workstream: <name>" (Sasha 2026-05-20):
+        the prior treatment had the workstream name at text-lg, but
+        the task bodies below are text-base near-equal weight — the
+        visual hierarchy read INVERTED ("the parent label was smaller
+        than its children"). Fix:
+          • Eyebrow bumped: text-[10px] → text-xs, tracking widened
+          • Workstream name: text-lg → text-2xl, font-semibold → bold
+          • Eyebrow text changed: "Tasks for" → "Tasks for workstream"
+            so the relationship is explicit (Sasha's exact ask)
+          • Divider widened (w-16 → w-24) to match the bigger name
+          • Bottom spacing increased (mb-4 → mb-6) so the header sits
+            in its own block visually, not adjacent to row 1
+        Net effect: the workstream name is now clearly the dominant
+        element above its task list; tasks read as children of it.
       */}
-      <div className="mb-4 text-center">
-        <div className="text-[10px] font-semibold uppercase tracking-[0.18em] text-emerald-700/70">
-          Tasks for
+      <div className="mb-6 text-center">
+        <div className="text-xs font-semibold uppercase tracking-[0.22em] text-emerald-700">
+          Tasks for workstream
         </div>
-        <div className="eq-text-halo mt-0.5 font-serif text-lg font-semibold text-[#0a1628]">
+        <div className="mt-1 font-serif text-2xl font-bold leading-tight text-[#0a1628] sm:text-[28px]">
           {workstreamTitle}
         </div>
-        <div className="mx-auto mt-2 h-px w-16 bg-emerald-700/25" aria-hidden="true" />
+        <div className="mx-auto mt-3 h-px w-24 bg-emerald-700/30" aria-hidden="true" />
       </div>
 
       <DndContext
