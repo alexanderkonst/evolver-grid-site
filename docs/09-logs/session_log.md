@@ -7229,3 +7229,23 @@ Bundle: +170 KB gzipped from postprocessing — acceptable for the showcase page
 Commit: `59cb682a` (pushed to origin/main).
 
 Equilibrium remains untouched — per Sasha's directive, no recompile until the Codex earns "we're ready."
+
+### Day 74 Wave 6 — Codex v2.2 fidelity + perf pass
+
+Sasha's v2.1 feedback (with screenshots): page jittery, aurora gradients jump, matte surface still untouched, strange interface shadow, render artifact below objects. Equilibrium STAYS PARKED — "we're not ready, there is still a way to go, so don't push me towards that."
+
+**Performance (the jitter):**
+- Mesh-shader count 6 → 3 (hero + Materials + Closing only)
+- `pixelRatio` prop added — default 1, hero opts into 2 (was 2 everywhere; 4× cheaper fragment work on body sections)
+- Mesh speed default 0.42 → 0.18 — the high speed was the "jump" Sasha saw
+- Sacred3D: removed `<Float>` wrapper (two motion sources fighting for frame budget); postprocessing multisampling 4 → 0; N8AO quality medium → low; DPR [2,3] → [1,2] (~60% GPU save on canvas)
+
+**Fidelity (matte surface):** New `MdlsCeramicSurface` primitive replaces the flat `mdls-tactile-ceramic` CSS class. SVG turbulence noise layer (real ceramic micro-grain), warm-cool-warm tri-gradient (suggests curved surface), multi-stop inset AO ring around edges, four tone variants (warm-cream, stone-cool, sand-warm, ash-grey), optional ember under-glow.
+
+**Artifact fix:** `SculptedSilkSection` had `overflow:visible` on its SVG — the drop-shadow filter was bleeding past bounds and rendering as ghost blobs below adjacent Materials entries (visible in screenshots beneath Aurora-Glass-Orb + Tactile-Ceramic). Switched to `overflow:hidden` + tightened shadow magnitudes.
+
+**Interface shadow ("weird pill"):** Removed `MdlsExtrudedSurface` "floating" plinth wrap around the Composed Surface device. The plinth's soft white pill was visible below the device — Sasha flagged it as strange. Also removed `MdlsHoverTilt` from the demo (3rd transform on top of scroll-tilt + parallax).
+
+Commit: `dbc64300` (pushed to origin/main).
+
+Version label: v2.1 photo-real → v2.2 fidelity + perf pass.
