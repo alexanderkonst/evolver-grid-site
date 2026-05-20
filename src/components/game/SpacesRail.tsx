@@ -140,7 +140,7 @@ const SPACES: SpaceItem[] = [
         // harmonic geometry already established elsewhere on site; gold
         // glow matches the JOURNEY + ME paired-set treatment so all
         // three foundational icons read as siblings.
-        icon: <ImageIcon src={aiOsIcon} alt="AI OS" glow size={25} />,
+        icon: <ImageIcon src={aiOsIcon} alt="AI OS" glow size={22} />,
         path: "/ai-os",
     },
     // Hidden until built — uncomment to re-enable
@@ -187,7 +187,7 @@ const SPACES: SpaceItem[] = [
     {
         id: "build",
         label: "BUILD",
-        icon: <GlyphIcon glyph="⬢" color="hsl(45, 90%, 62%)" />,
+        icon: <GlyphIcon glyph="⬢" color="hsl(45, 90%, 62%)" size={32} />,
         // Day 52 (Sasha 2026-04-26): BUILD chip lands on the Unique
         // Business Builder. UBB is the canonical BUILD experience —
         // legacy /game/build/* paths still resolve for back-compat
@@ -376,34 +376,53 @@ const SpacesRail = ({
                 >
                     {isNS ? (
                         <>
-                            {/* NS mobile (72px rail) — flag-only at icon scale. */}
-                            <img
-                                src={NS_LOGO_URL}
-                                alt="Network School"
-                                className="md:hidden w-8 h-8 mx-auto object-contain"
-                                draggable={false}
-                            />
-                            {/* NS desktop — flag + ns.com wordmark lockup,
-                                matching the header NS uses on ns.com. The
-                                flag is the canonical ns-assets PNG; the
-                                wordmark is rendered in Newsreader serif
-                                to match NS's editorial display face. */}
-                            <div className="hidden md:flex items-center gap-2 pl-2">
-                                <img
-                                    src={NS_LOGO_URL}
-                                    alt=""
+                            {/* V5 (Sasha 2026-05-19): replaced the ns-assets.com
+                                PNG with an inline SVG of the NS flag — the
+                                hosted asset was rendering as a featureless
+                                black rectangle (load issue + aspect mismatch).
+                                Inline SVG is reliable, ships with the bundle,
+                                no third-party request, exact dimensions. */}
+                            {/* NS mobile (72px rail) — flag-only, icon scale. */}
+                            <svg
+                                className="md:hidden mx-auto"
+                                width="32"
+                                height="32"
+                                viewBox="0 0 60 60"
+                                fill="none"
+                                aria-label="Network School"
+                                role="img"
+                            >
+                                <rect width="60" height="60" fill="#0a0a0a" rx="2" />
+                                {/* White "+" centered on the flag. */}
+                                <rect x="18" y="28" width="24" height="4" fill="#ffffff" />
+                                <rect x="28" y="18" width="4" height="24" fill="#ffffff" />
+                            </svg>
+                            {/* NS desktop — flag + ns.com wordmark lockup.
+                                V5: wordmark size bumped from 22→28px (Sasha
+                                explicitly: "ns.com has to be a larger size
+                                font"). Flag SVG sized to match. */}
+                            <div className="hidden md:flex items-center gap-2.5 pl-2">
+                                <svg
+                                    width="36"
+                                    height="36"
+                                    viewBox="0 0 60 60"
+                                    fill="none"
                                     aria-hidden="true"
-                                    className="h-7 w-auto object-contain"
-                                    draggable={false}
-                                />
+                                    role="presentation"
+                                >
+                                    <rect width="60" height="60" fill="#0a0a0a" rx="2" />
+                                    <rect x="18" y="28" width="24" height="4" fill="#ffffff" />
+                                    <rect x="28" y="18" width="4" height="24" fill="#ffffff" />
+                                </svg>
                                 <span
                                     className="select-none"
                                     style={{
                                         fontFamily: '"Newsreader", "Source Serif Pro", Georgia, serif',
                                         fontWeight: 600,
-                                        fontSize: "22px",
+                                        fontSize: "28px",
+                                        lineHeight: 1,
                                         color: "#0a0a0a",
-                                        letterSpacing: "-0.01em",
+                                        letterSpacing: "-0.015em",
                                     }}
                                 >
                                     ns.com
