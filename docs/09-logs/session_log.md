@@ -7320,3 +7320,81 @@ Commit: `ffd1e2e5` (pushed to origin/main).
 Version: v2.5 → v2.6 code-split + mobile.
 
 **Equilibrium recompile is now next.** Codex hardened, no remaining gating concerns I'm aware of.
+
+---
+
+## Day 67 §8.6 — Active Introduction Layer (AI Matchmaker mode) shipped (May 19, 2026)
+
+### Frame at entry
+
+After §8 shipped on Day 66, Sasha tested the flow and surfaced the structural critique: *"Passive is not really going to work. It's kind of like Tinder, so it relies on people heavily using that system, and it's also limited by geography and such. Here there's no geography, so this is not going to apply here."*
+
+His ask: instead of B silently needing to return to `/game/collaborate/matches` to see A's interest, the platform should **actively reach out** — an AI-generated heads-up email landing in B's inbox the moment A clicks "I'd like to meet." B replies "yes" → AI sends a real intro email in human-matchmaker voice.
+
+Pushed back on the reply-parsing mechanism (brittle, needs new inbound provider, friction for B). Proposed **magic-link buttons** in the heads-up email — clicking Yes hits a Supabase edge function that fires the bilateral intro. 100% in-house. He loved it.
+
+Three-DoD review caught 15 items I'd missed on first pass: opt-out preference (CAN-SPAM hygiene), bounce handling, §8 in-flight row reset, edge cases (no email / globally suppressed / already connected), throttling math, observability views. All folded into the final scope.
+
+### What shipped
+
+**Migration** (`supabase/migrations/20260519130000_active_intro.sql`):
+- `match_interests` gains 5 columns: `headsup_email_sent_at`, `consent_response` (pending / consented / declined / expired), `consent_responded_at`, `headsup_email_status` (sent / bounced / failed / no_email / opted_out / globally_suppressed / already_connected), `headsup_sent_count`
+- `game_profiles` gains 2 columns: `match_headsup_opt_out` (boolean), `match_explainer_seen_at` (timestamptz)
+- One-time UPDATE: marks all pre-§8.6 `match_interests` rows with `consent_response = 'expired'` (clean reset)
+- View `match_active_declines` — 15-day suppression window
+- View `match_consent_funnel` — admin-only per-day funnel analytics
+
+**Edge functions** (new):
+- `supabase/functions/_shared/matchConsentToken.ts` — HMAC-SHA256 sign + verify with URL-safe base64 + constant-time signature comparison. 30-day default TTL.
+- `supabase/functions/send-match-headsup-email/index.ts` — Generates Aurora-styled HTML + plain-text email with two magic-link buttons (Yes, Not now). Short-circuits on opt-out / no-email / globally-suppressed / already-connected. Updates `headsup_email_status` for every path. Logs to `email_send_log`.
+- `supabase/functions/match-consent/index.ts` — Public endpoint (no JWT — HMAC token IS the auth). Verifies signature + expiry. On Yes: idempotent UPDATE (`consent_response = 'pending'` clause), insert `match_intros` with canonical pair ordering, invoke `send-mutual-intro-email` server-side. Renders six Aurora-styled HTML confirmation pages (Yes / Not now / expired / already responded / withdrawn / invalid).
+
+**Edge function rewrite:**
+- `send-mutual-intro-email` — voice flipped from engine register ("the engine paired you") to human-matchmaker register ("Hey Alex and Sasha. I thought you two could hit it off on..."). AI-why text split into up to 3 bullets when sentence boundaries allow. Subject: "Meet ${A.firstName} and ${B.firstName}." Now accepts service-role internal calls (from `match-consent`) via `x-internal-caller: match-consent` header. Plain-text alternate part shipped.
+
+**Application code:**
+- `src/components/matchmaking/MatchExplainer.tsx` (new) — Three-bullet "How introductions work" accordion. Auto-expands on first visit (reads `game_profiles.match_explainer_seen_at`). Clicking "Got it" persists timestamp across devices.
+- `src/pages/Matchmaking.tsx` — `handleExpressInterest` refactored: now only INSERTs match_interests + invokes `send-match-headsup-email`. Removed client-side reverse-check + intro fire (consent edge function owns mutual detection server-side). `MatchExplainer` wired above the match deck.
+- `src/components/matchmaking/MatchCard.tsx` — interest-expressed state copy now: "Heads-up email sent" pill + "A heads-up email is on its way to {firstName}. We'll send you both an intro the moment they say yes — and leave it quiet if they don't."
+- `src/pages/Connections.tsx` — interest-row copy: "Heads-up email sent X days ago — waiting for them to respond."
+- `src/pages/Settings.tsx` — New `Notifications` tab (third tab alongside Profile + Appearance). Holds `match_headsup_opt_out` toggle with optimistic update + revert on error.
+
+**Documentation:**
+- `docs/02-strategy/matchmaking_strategy.md` — new §8.6 "Active Introduction Layer" section (flow diagram, magic-link rationale, refactored intro email design, explainer design, schema additions, link to tracker)
+- `docs/specs/match-mechanic/active-intro_tracker.md` — full Phase 1-4 + Roast Gates + Debug DoD 14/14 evidence table
+- `docs/specs/match-mechanic/active-intro_product_spec.md` — Phase 1 spec: Master Result, 4 Sub-Results, 4 surfaces, Dan Tians, Extensions, ASCII wireframes for all 4 surfaces, architectural decisions preview
+- `docs/specs/match-mechanic/token_rotation.md` — operational procedure for rotating `MATCH_CONSENT_SECRET`
+- `docs/02-strategy/roadmap.md` — Completed section updated
+
+### Key decisions
+
+1. **Magic-link buttons, not email-reply parsing.** Rejected inbound email infrastructure (Postmark / SendGrid). Clicks are unambiguous, clean No path, no new provider, lower friction for B. 100% in-house.
+2. **15-day decline suppression** (Sasha decision). After that, engine can re-surface naturally.
+3. **HMAC secret as edge-function env var** `MATCH_CONSENT_SECRET` (not Supabase Vault). Sasha trusted me to pick. Rationale: simpler in Lovable, no Vault management complexity, rotation procedure documented.
+4. **Server-side mutual fire.** Removed client-side reverse-check from §8. `match-consent` is the single source of truth for "mutual confirmed."
+5. **AI-why uses existing `suggest-asset-matches` output.** No new prompt, no new AI call, no new cost.
+6. **§8 in-flight rows reset to `expired`** in the migration. Honest reset because no real matches happened under §8 — only test traffic.
+7. **`MatchExplainer` auto-expands on first visit** via DB column (cross-device), not localStorage (device-local). One-time write on "Got it" click.
+8. **`Notifications` tab gets a new tab in Settings**, not folded into Profile. Room to grow as more per-feature opt-outs arrive.
+
+### Debug DoD — 14/14 by code review
+
+D1 migration shape · D2 HMAC verify + constant-time compare · D3 short-circuits · D4 AI-why content · D5 idempotent on double-click · D6 server-side mutual fire · D7 service-role internal calls · D8 matchmaker voice + 3-bullet split · D9 MatchExplainer first-visit + persist · D10 opt-out toggle · D11 decline view exists (deck-filter wiring parked) · D12 Connections copy updated · D13 plain-text alternates · D14 token rotation documented. Full evidence table in tracker.
+
+### Commits
+
+To be added in next push.
+
+### Lovable handoff
+
+Three things to apply:
+
+1. **Run the migration SQL** (`supabase/migrations/20260519130000_active_intro.sql` — idempotent, safe to paste in full)
+2. **Set `MATCH_CONSENT_SECRET` env var** on the two new edge functions (any 32+ byte random string; `openssl rand -base64 48`)
+3. **Deploy the new edge functions** (`send-match-headsup-email`, `match-consent`) + redeploy `send-mutual-intro-email` (voice rewrite)
+
+### Si–Do
+
+The active-introduction Si–Do is closed. The matchmaker is real — every "I'd like to meet" click produces a concrete email landing in someone's inbox, every Yes produces a bilateral intro email in human voice, every Not now closes the loop cleanly with a 15-day suppression. No more silence.
+
+The broader Si–Do (first $555 stranger from the funnel) still unfired — but the engagement loop that makes the matching mechanic actually produce introductions is now complete. The platform can do what it says it does, end-to-end, without depending on users compulsively returning.

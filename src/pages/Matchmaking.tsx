@@ -7,6 +7,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { AppleseedData } from "@/modules/zone-of-genius/appleseedGenerator";
 import { areComplementary, getComplementarityLabel } from "@/lib/archetypeMatching";
 import MatchCard from "@/components/matchmaking/MatchCard";
+import MatchExplainer from "@/components/matchmaking/MatchExplainer";
 import { GOLD_TEXT_STYLE, Ornament } from "@/lib/landingDesign";
 
 // ─────────────────────────────────────────────────────────────────────
@@ -556,24 +557,22 @@ const Matchmaking = () => {
     }
   };
 
-  // Day 66 wave §8 (Sasha 2026-05-16): Express Interest replaces the
-  // prior single-side Add Connection. New flow:
+  // Day 67 §8.6 (Sasha 2026-05-19): Active Introduction layer.
   //
-  //   1. INSERT into match_interests (from = me, to = match.userId,
-  //      with score / compound / why-text from the AI engine output).
-  //   2. SELECT match_interests reverse direction (from = them, to = me).
-  //   3. If found → mutual interest. INSERT match_intros (canonical
-  //      ordering) + call send-mutual-intro-email (both A and B as
-  //      recipients of equal standing).
-  //   4. If not found → quiet "interest recorded" state. They'll see
-  //      this user's interest in their own match feed; if they opt in,
-  //      the mutual-intro fires at that point.
+  // The §8 client-side reverse-check + mutual-detection-on-click flow
+  // is replaced by the email-consent flow. New shape:
   //
-  // Card stays in view through state transitions — no profile-hiding,
-  // no pager advance. The user can see what just happened.
+  //   1. INSERT into match_interests (from = me, to = target).
+  //   2. INVOKE send-match-headsup-email — fires a heads-up email to
+  //      the other person with two magic-link buttons (Yes / Not now).
+  //   3. The match-consent edge function handles the click — it owns
+  //      mutual detection, match_intros insertion, and bilateral intro
+  //      email firing. Server-side, single source of truth.
   //
-  // Legacy `connections` table no longer written by this flow; the
-  // matchmaking schema migration drops that table (Day 66 wave §8 deploy).
+  // The card flips to "interest-expressed" state immediately. The
+  // "mutual" state arrives when (and if) the other party clicks Yes
+  // in their email — that happens out-of-band; the user can come
+  // back later to see the state has updated.
   const handleExpressInterest = async () => {
     if (!currentAiMatch) return;
     try {
@@ -594,8 +593,10 @@ const Matchmaking = () => {
         .trim();
       const compoundType = currentAiMatch.matchType || null;
 
-      // (1) Insert match_interests (from = me, to = target).
-      const { error: insertError } = await (supabase as any)
+      // (1) Insert match_interests (from = me, to = target). On
+      // unique_violation we treat it as "you already expressed interest
+      // — heads-up was sent before" and still surface the calm state.
+      const { data: insertedRow, error: insertError } = await (supabase as any)
         .from("match_interests")
         .insert({
           from_user_id: user.id,
@@ -603,12 +604,25 @@ const Matchmaking = () => {
           match_score: currentAiMatch.resonanceScore ?? null,
           compound_type: compoundType,
           ai_why_text: whyText,
-        });
+        })
+        .select("id")
+        .maybeSingle();
+
+      let matchInterestId: string | null =
+        (insertedRow as { id?: string } | null)?.id ?? null;
 
       if (insertError) {
-        // 23505 = unique_violation = already expressed interest.
-        // Surface a gentle confirmation but don't fail.
-        if ((insertError as { code?: string }).code !== "23505") {
+        if ((insertError as { code?: string }).code === "23505") {
+          // Already exists — fetch the existing row id so we can re-fire
+          // the heads-up if the prior one didn't reach its destination.
+          const { data: existing } = await (supabase as any)
+            .from("match_interests")
+            .select("id, headsup_email_status")
+            .eq("from_user_id", user.id)
+            .eq("to_user_id", targetUserId)
+            .maybeSingle();
+          matchInterestId = (existing as { id?: string } | null)?.id ?? null;
+        } else {
           throw insertError;
         }
       }
@@ -616,73 +630,27 @@ const Matchmaking = () => {
       // Local state: this user is now "interest-expressed."
       setInterestedUserIds((prev) => new Set([...prev, targetUserId]));
 
-      // (2) Reverse-direction check: did they already express interest
-      // in me?
-      const { data: reverseRow } = await (supabase as any)
-        .from("match_interests")
-        .select("ai_why_text, compound_type, match_score")
-        .eq("from_user_id", targetUserId)
-        .eq("to_user_id", user.id)
-        .maybeSingle();
-
-      if (!reverseRow) {
-        // (3a) One-sided: their interest hasn't been expressed yet.
+      // (2) Fire heads-up email — server handles all the gating
+      // (opt-out, suppression, no-email, already-connected, rate-limit).
+      if (matchInterestId) {
+        try {
+          const { error: headsupErr } = await supabase.functions.invoke(
+            "send-match-headsup-email",
+            { body: { match_interest_id: matchInterestId } },
+          );
+          if (headsupErr) throw headsupErr;
+          toast.success(
+            `Heads-up email sent to ${currentAiMatch.firstName}. We'll introduce you both if they say yes.`,
+          );
+        } catch (emailErr) {
+          console.warn("[handleExpressInterest] heads-up email failed:", emailErr);
+          toast.success(
+            `Interest in ${currentAiMatch.firstName} recorded. (Heads-up email may be delayed; we'll retry.)`,
+          );
+        }
+      } else {
         toast.success(
-          `Interest in ${currentAiMatch.firstName} recorded. We'll introduce you both if they say yes.`,
-        );
-        return;
-      }
-
-      // (3b) Mutual! Insert match_intros + fire the bilateral intro email.
-      const userA = user.id < targetUserId ? user.id : targetUserId;
-      const userB = user.id < targetUserId ? targetUserId : user.id;
-      const introWhyText = (reverseRow as { ai_why_text: string | null }).ai_why_text || whyText;
-      const introCompound =
-        (reverseRow as { compound_type: string | null }).compound_type || compoundType;
-      const introScore =
-        (reverseRow as { match_score: number | null }).match_score ??
-        currentAiMatch.resonanceScore ?? null;
-
-      const { error: introInsertError } = await (supabase as any)
-        .from("match_intros")
-        .insert({
-          user_a_id: userA,
-          user_b_id: userB,
-          match_score: introScore,
-          compound_type: introCompound,
-          ai_why_text: introWhyText,
-        });
-      // Tolerate unique_violation on intros (the other side may have
-      // raced us to the same insert in a different tab).
-      if (introInsertError && (introInsertError as { code?: string }).code !== "23505") {
-        console.warn("[handleExpressInterest] match_intros insert failed:", introInsertError);
-      }
-
-      // Local state: this is now "mutual."
-      setMutualUserIds((prev) => new Set([...prev, targetUserId]));
-
-      // (4) Fire the bilateral intro email — best-effort. The intro
-      // record exists in the DB regardless; email is the user-visible
-      // artifact, the row is the engine-facing artifact.
-      try {
-        const { error: emailErr } = await supabase.functions.invoke(
-          "send-mutual-intro-email",
-          {
-            body: {
-              user_a_id: userA,
-              user_b_id: userB,
-              ai_why_text: introWhyText,
-            },
-          },
-        );
-        if (emailErr) throw emailErr;
-        toast.success(
-          `Mutual interest with ${currentAiMatch.firstName}. Introduction sent to both your inboxes.`,
-        );
-      } catch (emailErr) {
-        console.warn("[handleExpressInterest] mutual intro email failed:", emailErr);
-        toast.success(
-          `Mutual interest with ${currentAiMatch.firstName}! (Intro email may be delayed; the match is recorded.)`,
+          `Interest in ${currentAiMatch.firstName} recorded.`,
         );
       }
     } catch (err) {
@@ -841,6 +809,10 @@ const Matchmaking = () => {
           </p>
           <Ornament className="my-6 sm:my-7" />
         </header>
+
+        {/* Day 67 §8.6: "How introductions work" explainer accordion.
+            Auto-expands on first visit, persists collapse via game_profiles. */}
+        <MatchExplainer />
 
         {/* Loading */}
         {loading && (

@@ -337,6 +337,115 @@ Audit done May 16 confirms: the matchmaking surface is already substantial.
 
 ---
 
+## 8.6. Active Introduction Layer — the AI matchmaker mode (Day 67, 2026-05-19)
+
+### Why this exists
+
+§8 shipped a clean double-opt-in mechanic but its activation model was **passive**: B had to organically return to `/game/collaborate/matches` to see and respond to A's interest. In a non-Tinder, no-geography product where engagement loops are weaker than dating apps, that means most interest dies in silence. §8.6 flips this to **active introduction** — the platform itself reaches out as a thoughtful matchmaker.
+
+### The flow
+
+```
+A clicks "I'd like to meet" on B
+  ▼
+match_interests row stored (§8 mechanic — unchanged)
+  ▼
+NEW Email #1 — heads-up to B (send-match-headsup-email)
+  • AI-generated body (uses existing suggest-asset-matches output —
+    no new prompt to write)
+  • Subject: "${A.firstName} wants to meet you — here's what we saw"
+  • Body: who A is + 3 concrete connection points +
+    1-2 collaboration possibilities
+  • Two magic-link buttons:
+      ┌──────────────────────┐  ┌────────────┐
+      │ Yes, introduce us    │  │  Not now   │
+      └──────────────────────┘  └────────────┘
+  • Footer: "We won't pester you. Stop notifying me → Settings"
+
+  ▼
+B's inbox. Three outcomes:
+
+  (a) B clicks Yes → match-consent edge function
+       → HMAC verifies token
+       → match_interests.consent_response = 'consented'
+       → match_intros row inserted
+       → invokes send-mutual-intro-email
+       → renders "Done. We're sending the intro now." page
+       → both A and B receive the bilateral intro email
+
+  (b) B clicks Not now → match-consent edge function
+       → match_interests.consent_response = 'declined'
+       → renders "Got it. We won't follow up." page
+       → A is suppressed from B's deck for 15 days
+
+  (c) B ignores → token expires after 30 days
+       → match_interests.consent_response = 'expired'
+       → no further action; A can withdraw or re-invite later
+```
+
+### Why magic-link buttons (not email-reply parsing)
+
+Considered: AI reads B's email reply and detects consent. Rejected because:
+- Requires inbound email infrastructure (Postmark / SendGrid / Cloudflare Worker)
+- Brittle (spam-filter mangling, threading weirdness, ambiguous replies)
+- Higher cognitive load on B (typing > clicking)
+- No clean "no" path — silence is the only signal
+
+Magic-link buttons keep everything in the existing Supabase + Resend stack, zero new providers, click = unambiguous signal, secured by HMAC-SHA256 signed tokens with 30-day expiry.
+
+### Refactored bilateral intro email
+
+The §8 intro email is rewritten in **human-matchmaker voice**, not engine voice:
+
+```
+Hey ${B.firstName}, meet ${A.firstName}.
+
+I thought you two could hit it off on:
+  • ${concrete_point_1}
+  • ${concrete_point_2}
+  • ${concrete_point_3}
+
+Leave it up to you guys to make the connection and follow up
+if you still want to. You both said yes.
+
+— Find Your Top Talent
+```
+
+No magic-link CTA. Reply-thread = action surface. Both addresses in `to:`. Same thread.
+
+### The "How it works" explainer
+
+Added to the top of the Genius Matches page: a `MatchExplainer` accordion, auto-expanded on first visit (tracked via `game_profiles.match_explainer_seen_at`), explaining in three sentences:
+
+1. **You click "I'd like to meet"** — Your interest stays private.
+2. **We send them a heads-up email** — They can say yes or not now in one click.
+3. **If they say yes** — We send you both an intro email in the same thread.
+
+Plus the safety line: *"If they don't respond, we leave it at that. You can withdraw anytime."*
+
+### Schema additions (§8.6 layer)
+
+```sql
+-- match_interests gains:
+headsup_email_sent_at   TIMESTAMPTZ
+consent_response         TEXT  -- 'pending' | 'consented' | 'declined' | 'expired'
+consent_responded_at     TIMESTAMPTZ
+headsup_email_status     TEXT  -- 'sent' | 'bounced' | 'failed' | 'no_email' |
+                                --  'opted_out' | 'globally_suppressed' |
+                                --  'already_connected'
+headsup_sent_count       INTEGER
+
+-- game_profiles gains:
+match_headsup_opt_out      BOOLEAN DEFAULT false
+match_explainer_seen_at    TIMESTAMPTZ
+```
+
+### Implementation status (§8.6)
+
+See [docs/specs/match-mechanic/active-intro_tracker.md](../specs/match-mechanic/active-intro_tracker.md) for the live build tracker + Debug DoD.
+
+---
+
 ## 9. Implementation status
 
 ### Already shipped

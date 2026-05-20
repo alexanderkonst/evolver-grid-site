@@ -1,10 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { ArrowLeft, Palette, User, Check } from "lucide-react";
+import { ArrowLeft, Bell, Palette, User, Check } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Switch } from "@/components/ui/switch";
 import GameShellV2 from "@/components/game/GameShellV2";
 import ProfileSettingsSection from "@/components/settings/ProfileSettingsSection";
 import { useSkin, type Skin } from "@/contexts/SkinContext";
+import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 import { cn } from "@/lib/utils";
 import { GOLD_TEXT_STYLE, Ornament } from "@/lib/landingDesign";
 
@@ -225,10 +228,163 @@ const AppearanceTab = () => {
     );
 };
 
+/**
+ * NotificationsTab — Day 67 §8.6 (Sasha 2026-05-19).
+ *
+ * Holds per-user notification preferences. v1 surfaces one toggle:
+ * `match_headsup_opt_out` — when true, the match heads-up email is
+ * not sent (the underlying interest is still recorded silently).
+ *
+ * Designed to grow: any future per-feature opt-out (intro nudges,
+ * weekly digests, etc.) goes here as additional rows.
+ */
+const NotificationsTab = () => {
+    const { toast } = useToast();
+    const [loading, setLoading] = useState(true);
+    const [saving, setSaving] = useState(false);
+    const [optOut, setOptOut] = useState(false);
+    const [userId, setUserId] = useState<string | null>(null);
+
+    useEffect(() => {
+        const load = async () => {
+            const { data: { user } } = await supabase.auth.getUser();
+            if (!user) {
+                setLoading(false);
+                return;
+            }
+            setUserId(user.id);
+            const { data } = await supabase
+                .from("game_profiles")
+                .select("match_headsup_opt_out")
+                .eq("user_id", user.id)
+                .maybeSingle();
+            const value = (data as { match_headsup_opt_out?: boolean } | null)?.match_headsup_opt_out;
+            setOptOut(!!value);
+            setLoading(false);
+        };
+        load();
+    }, []);
+
+    const handleToggle = async (next: boolean) => {
+        if (!userId) return;
+        const prev = optOut;
+        setOptOut(next); // optimistic
+        setSaving(true);
+        try {
+            const { error } = await supabase
+                .from("game_profiles")
+                .update({ match_headsup_opt_out: next } as never)
+                .eq("user_id", userId);
+            if (error) throw error;
+            toast({
+                title: next ? "Heads-ups paused" : "Heads-ups resumed",
+                description: next
+                    ? "We won't email you when someone wants to meet you. Their interest is still recorded silently."
+                    : "We'll email you when someone wants to meet you.",
+            });
+        } catch (err) {
+            setOptOut(prev); // revert on error
+            toast({
+                title: "Couldn't save",
+                description: err instanceof Error ? err.message : "Try again.",
+                variant: "destructive",
+            });
+        } finally {
+            setSaving(false);
+        }
+    };
+
+    return (
+        <div className="space-y-6">
+            <div
+                className="rounded-2xl p-5 sm:p-6 space-y-4"
+                style={{
+                    background: "rgba(255, 255, 255, 0.65)",
+                    border: "1px solid hsla(228, 30%, 18%, 0.10)",
+                    boxShadow:
+                        "0 4px 16px -8px hsla(228, 30%, 18%, 0.10), inset 0 1px 0 hsla(0, 0%, 100%, 0.50)",
+                    backdropFilter: "blur(8px)",
+                    WebkitBackdropFilter: "blur(8px)",
+                }}
+            >
+                <div className="flex items-start gap-3">
+                    <Bell className="w-5 h-5 mt-0.5 flex-shrink-0" style={{ color: "hsl(40 70% 45%)" }} />
+                    <div>
+                        <h2
+                            className="text-xl leading-tight"
+                            style={{
+                                fontFamily: "'Cormorant Garamond', serif",
+                                fontWeight: 600,
+                                color: "var(--skin-text-primary, #0a1628)",
+                            }}
+                        >
+                            Match heads-ups
+                        </h2>
+                        <p
+                            className="text-sm mt-1 leading-relaxed"
+                            style={{
+                                fontFamily: "'Source Serif 4', Georgia, serif",
+                                color: "var(--skin-text-muted, rgba(26,30,58,0.7))",
+                            }}
+                        >
+                            When someone expresses interest in meeting you, we send a heads-up email with two buttons:
+                            <em> Yes, introduce us </em>
+                            or
+                            <em> Not now</em>. You can pause these without disabling the rest of the platform.
+                        </p>
+                    </div>
+                </div>
+
+                <div
+                    className="flex items-center justify-between gap-4 rounded-xl p-4"
+                    style={{
+                        background: "rgba(212, 175, 55, 0.06)",
+                        border: "0.5px solid rgba(212, 175, 55, 0.30)",
+                    }}
+                >
+                    <div className="min-w-0">
+                        <p
+                            style={{
+                                fontFamily: "'Cormorant Garamond', serif",
+                                fontWeight: 600,
+                                fontSize: "15px",
+                                color: "var(--skin-text-primary, #0a1628)",
+                            }}
+                        >
+                            Pause heads-up emails
+                        </p>
+                        <p
+                            className="text-xs mt-1 leading-relaxed"
+                            style={{
+                                fontFamily: "'Source Serif 4', Georgia, serif",
+                                color: "var(--skin-text-muted, rgba(26,30,58,0.65))",
+                            }}
+                        >
+                            Interest will still be recorded; we just won't email you about it.
+                        </p>
+                    </div>
+                    <Switch
+                        checked={optOut}
+                        onCheckedChange={handleToggle}
+                        disabled={loading || saving}
+                        aria-label="Pause match heads-up emails"
+                    />
+                </div>
+            </div>
+        </div>
+    );
+};
+
 const Settings = () => {
     const navigate = useNavigate();
     const [searchParams, setSearchParams] = useSearchParams();
-    const initialTab = searchParams.get("tab") === "appearance" ? "appearance" : "profile";
+    const tabParam = searchParams.get("tab");
+    const initialTab =
+        tabParam === "appearance"
+            ? "appearance"
+            : tabParam === "notifications"
+                ? "notifications"
+                : "profile";
     const [activeTab, setActiveTab] = useState<string>(initialTab);
 
     const handleTabChange = (tab: string) => {
@@ -323,7 +479,7 @@ const Settings = () => {
                             base, Cormorant Garamond labels, gold tint
                             on active. */}
                         <TabsList
-                            className="mb-6 h-auto p-1 rounded-full grid w-full grid-cols-2"
+                            className="mb-6 h-auto p-1 rounded-full grid w-full grid-cols-3"
                             style={{
                                 background: "hsla(228, 30%, 18%, 0.06)",
                                 border: "1px solid hsla(228, 30%, 18%, 0.10)",
@@ -332,7 +488,7 @@ const Settings = () => {
                             <TabsTrigger
                                 value="profile"
                                 className={cn(
-                                    "gap-2 rounded-full min-h-[44px] px-5 py-2 transition-all",
+                                    "gap-2 rounded-full min-h-[44px] px-3 sm:px-5 py-2 transition-all",
                                     "data-[state=active]:bg-white data-[state=active]:shadow-sm",
                                     "data-[state=inactive]:text-muted-foreground",
                                 )}
@@ -352,9 +508,31 @@ const Settings = () => {
                                 Profile
                             </TabsTrigger>
                             <TabsTrigger
+                                value="notifications"
+                                className={cn(
+                                    "gap-2 rounded-full min-h-[44px] px-3 sm:px-5 py-2 transition-all",
+                                    "data-[state=active]:bg-white data-[state=active]:shadow-sm",
+                                    "data-[state=inactive]:text-muted-foreground",
+                                )}
+                                style={{
+                                    fontFamily: "'Cormorant Garamond', serif",
+                                    fontWeight: 600,
+                                    fontSize: "0.78rem",
+                                    letterSpacing: "0.14em",
+                                    textTransform: "uppercase",
+                                    color:
+                                        activeTab === "notifications"
+                                            ? "#7a5108"
+                                            : undefined,
+                                }}
+                            >
+                                <Bell className="w-3.5 h-3.5" />
+                                Notifications
+                            </TabsTrigger>
+                            <TabsTrigger
                                 value="appearance"
                                 className={cn(
-                                    "gap-2 rounded-full min-h-[44px] px-5 py-2 transition-all",
+                                    "gap-2 rounded-full min-h-[44px] px-3 sm:px-5 py-2 transition-all",
                                     "data-[state=active]:bg-white data-[state=active]:shadow-sm",
                                     "data-[state=inactive]:text-muted-foreground",
                                 )}
@@ -376,6 +554,9 @@ const Settings = () => {
                         </TabsList>
                         <TabsContent value="profile">
                             <ProfileSettingsSection />
+                        </TabsContent>
+                        <TabsContent value="notifications">
+                            <NotificationsTab />
                         </TabsContent>
                         <TabsContent value="appearance">
                             <AppearanceTab />
