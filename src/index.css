@@ -858,13 +858,13 @@
 }
 
 /* V7 (Sasha 2026-05-19): Pane 3 main content needs top padding under NS
-   so the hero h1 first line lands at the same vertical position as
-   Pane 1's JOURNEY chip + Pane 2's JOURNEY title + first row (which
-   are already aligned to each other). Default `pt-4` (16px) puts the
-   hero ~45px too high. Bumping to 5rem (80px) lands the h1 text
-   baseline in line with the Pane 2 first row's text baseline. */
+   so the hero h1 first line's text middle lands at the same vertical
+   position as the JOURNEY chip center in Pane 1 + Pane 2 JOURNEY title
+   center (both at y~105 at 1280px width). 2.5rem (40px) shifts the
+   default pt-4 (16px) into the right band for a 48px hero font — the
+   text middle sits within a few px of the chip centers. */
 [data-skin="network-school"] main.flex-1.min-h-dvh {
-  padding-top: 5rem !important;
+  padding-top: 2.5rem !important;
 }
 
 /* Active item indicator — black left-bar (inset shadow, no layout shift)
