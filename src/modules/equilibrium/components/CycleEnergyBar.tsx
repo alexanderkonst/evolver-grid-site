@@ -1,4 +1,4 @@
-import { useId, type ReactNode } from "react";
+import { memo, useId, type ReactNode } from "react";
 import { cn } from "@/lib/utils";
 import { MoonOrb } from "./MoonOrb";
 
@@ -105,7 +105,7 @@ export interface CycleEnergyBarProps {
   className?: string;
 }
 
-export const CycleEnergyBar = ({
+const CycleEnergyBarBase = ({
   segments,
   currentIndex,
   progress,
@@ -405,5 +405,14 @@ const ActivePill = ({
     </div>
   );
 };
+
+/**
+ * Memoized export — only re-renders when its primitive props change.
+ * Segments are module-level constants (LUNAR_SEGMENTS, ZODIAC_SEGMENTS,
+ * etc.) so their array reference is stable. Sasha 2026-05-19
+ * responsiveness pass: prevents cycle-tick state changes from
+ * re-rendering bars whose cycle didn't actually advance.
+ */
+export const CycleEnergyBar = memo(CycleEnergyBarBase);
 
 export default CycleEnergyBar;

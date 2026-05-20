@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { useNavigate } from "react-router-dom";
 import { InlineEditableText } from "./InlineEditableText";
 import { SectionSkeleton } from "./SectionSkeleton";
@@ -16,9 +17,12 @@ interface RoleSectionProps {
  *   • Inline-editable. Save on blur / Enter.
  *   • If no upstream + no override → redirect CTA to ZoG entry.
  *
- * Voice-laden empty-state copy is TBD by Sasha.
+ * Sasha 2026-05-19: wrapped in React.memo for the same reason as
+ * MissionSection — Role doesn't need to re-render on every cycle tick.
+ * The hook's onSetOverride is now stable across state changes (stateRef
+ * pattern), so memo is effective here.
  */
-export const RoleSection = ({
+const RoleSectionBase = ({
   roleDisplay,
   loading,
   onSetOverride,
@@ -54,5 +58,7 @@ export const RoleSection = ({
     </div>
   );
 };
+
+export const RoleSection = memo(RoleSectionBase);
 
 export default RoleSection;

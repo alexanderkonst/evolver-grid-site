@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import type { User } from "@supabase/supabase-js";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
@@ -126,14 +126,38 @@ export function useEquilibriumV2(): EquilibriumV2Data {
   const [scoringStrategies, setScoringStrategies] = useState(false);
 
   // ─── Auth subscription ─────────────────────────────────
-
+  //
+  // Sasha 2026-05-19: Mission / Role / etc. were re-rendering every
+  // time the user returned to the tab. Root cause: Supabase silently
+  // refreshes JWTs in the background and fires onAuthStateChange with a
+  // FRESH User object that has the same `id` but a new reference. The
+  // old setUser unconditionally swapped in the new object → `user`
+  // reference changed → `fetchAll` callback re-keyed → effect re-ran →
+  // `setLoading(true)` ran → every section flashed back through its
+  // skeleton state, refetched, and re-rendered.
+  //
+  // Fix: swap user reference ONLY when identity actually changed
+  // (sign-in / sign-out / different account). Same-id refreshes are
+  // no-ops at the React-state level — the existing object stays, no
+  // downstream re-render. Cuts a full refetch+re-render per tab focus.
   useEffect(() => {
     let mounted = true;
+
+    const applyUser = (next: User | null) => {
+      if (!mounted) return;
+      setUser((prev) => {
+        // Same id (or both null) → keep the existing reference. This is
+        // the critical line for the re-render fix.
+        if ((prev?.id ?? null) === (next?.id ?? null)) return prev;
+        return next;
+      });
+    };
+
     supabase.auth.getSession().then(({ data: { session } }) => {
-      if (mounted) setUser(session?.user ?? null);
+      applyUser(session?.user ?? null);
     });
     const { data: sub } = supabase.auth.onAuthStateChange((_evt, session) => {
-      if (mounted) setUser(session?.user ?? null);
+      applyUser(session?.user ?? null);
     });
     return () => {
       mounted = false;
@@ -322,13 +346,29 @@ export function useEquilibriumV2(): EquilibriumV2Data {
   }, [fetchAll]);
 
   // ─── State upsert helper ───────────────────────────────
+  //
+  // Sasha 2026-05-19 responsiveness pass: previously `upsertState`
+  // depended on `[user, state]`. Every state change → new upsertState
+  // identity → new setMissionOverride / setRoleOverride / setMoonFocus
+  // identities → every section that took those as props re-rendered.
+  // That made React.memo useless on MissionSection / RoleSection.
+  //
+  // Fix: keep the latest `state` in a ref so upsertState can read it
+  // synchronously without listing it as a dep. The function reference
+  // is now stable as long as `user` is stable, which the auth-id guard
+  // above ensures across tab refocus. Net effect: stable callbacks,
+  // stable downstream sections.
+  const stateRef = useRef(state);
+  useEffect(() => {
+    stateRef.current = state;
+  }, [state]);
 
   const upsertState = useCallback(
     async (patch: Partial<EquilibriumState>) => {
       if (!user) return;
       const row = {
         user_id: user.id,
-        ...state,
+        ...stateRef.current,
         ...patch,
         updated_at: new Date().toISOString(),
       };
@@ -347,7 +387,7 @@ export function useEquilibriumV2(): EquilibriumV2Data {
         updated_at: row.updated_at,
       } as EquilibriumState));
     },
-    [user, state],
+    [user],
   );
 
   const setMissionOverride = useCallback(
