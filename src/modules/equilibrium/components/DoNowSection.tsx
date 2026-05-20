@@ -68,12 +68,18 @@ export const DoNowSection = ({
                 aria-label="Complete task"
                 onClick={() => onCompleteTask(id)}
                 disabled={loading}
-                className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md border-2 border-[#0a1628]/40 bg-white transition hover:border-emerald-500 hover:bg-emerald-50"
+                className="group/check flex h-8 w-8 shrink-0 items-center justify-center rounded-md border-2 border-[#0a1628]/40 bg-white transition hover:border-emerald-500 hover:bg-emerald-50"
                 title="Complete this task"
               >
+                {/*
+                  Hide the Check via `opacity-0` (skin-invariant), not
+                  `text-color/0` — on the NS skin, color tokens inherit
+                  upstream and the icon was visible by default, making
+                  every task look pre-checked. Sasha 2026-05-20.
+                */}
                 <Check
                   size={16}
-                  className="text-[#0a1628]/0 transition hover:text-emerald-600"
+                  className="text-emerald-600 opacity-0 transition group-hover/check:opacity-100"
                 />
               </button>
               <span className="flex-1 font-serif text-lg text-[#0a1628]">

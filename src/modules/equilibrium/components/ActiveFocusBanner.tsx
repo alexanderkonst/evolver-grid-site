@@ -112,9 +112,11 @@ export const ActiveFocusBanner = ({
               disabled={loading}
               className="group/check flex h-7 w-7 shrink-0 items-center justify-center rounded-md border-2 border-[#0a1628]/40 bg-white transition hover:border-emerald-500 hover:bg-emerald-50"
             >
+              {/* opacity-0 (skin-invariant) — see DoNowSection comment.
+                  Sasha 2026-05-20 NS-skin bug fix. */}
               <Check
                 size={14}
-                className="text-[#0a1628]/0 transition group-hover/check:text-emerald-600"
+                className="text-emerald-600 opacity-0 transition group-hover/check:opacity-100"
               />
             </button>
             <span className="flex-1 font-serif text-base text-[#0a1628]">
