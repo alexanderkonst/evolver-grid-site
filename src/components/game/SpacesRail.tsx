@@ -393,15 +393,19 @@ const SpacesRail = ({
                                 <img
                                     src={NS_LOGO_URL}
                                     alt="Network School"
-                                    className="w-8 h-8 object-contain flex-shrink-0"
+                                    className="w-9 h-9 object-contain flex-shrink-0"
                                     draggable={false}
                                 />
                             </div>
+                            {/* V7 (Sasha 2026-05-19): flag bumped w-7 → w-8 (28 → 32px).
+                                Sasha called the v6 28px "a bit smaller than I want." 32px
+                                matches BUILD's GlyphIcon size and sits at the upper end of
+                                the chip-icon visual weight range (22–32). */}
                             <div className="hidden md:flex items-center gap-3 px-3 py-2.5">
                                 <img
                                     src={NS_LOGO_URL}
                                     alt="Network School"
-                                    className="w-7 h-7 object-contain flex-shrink-0"
+                                    className="w-8 h-8 object-contain flex-shrink-0"
                                     draggable={false}
                                 />
                                 <span
