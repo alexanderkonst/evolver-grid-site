@@ -609,6 +609,30 @@ export const EquilibriumV2Page = () => {
             />
           </EquilibriumSectionCard>
         )}
+
+        {/* Harvest — cross-workstream completed-task celebration feed
+            (Sasha 2026-05-20). Lives below DOING NOW: the eye flows
+            "what am I doing now → what have I reaped." The lunar
+            spine has Harvesting + Celebrating as the cycle's peak +
+            closure phases; this section makes those visible in the
+            ACT-mode reading. Hidden until there's at least one
+            completed task (then the section shows a quiet empty state
+            inviting the first reap). */}
+        {!isAttune && (
+          <EquilibriumSectionCard id={SECTION_IDS.harvest}>
+            <SectionHeader
+              title="Harvest"
+              infoIconCopy="What you've reaped. A running celebration of completed tasks across all workstreams, grouped by day. Each entry shows the workstream it came from, how long it was in focus, and when you completed it. Hover the check to restore a task if you closed it by accident."
+            />
+            <HarvestSection
+              completedTasks={eq.completedTasksAll}
+              workstreams={eq.workstreams}
+              archivedWorkstreams={eq.archivedWorkstreams}
+              loading={eq.loading}
+              onUncompleteTask={eq.uncompleteTask}
+            />
+          </EquilibriumSectionCard>
+        )}
       </div>
     </main>
   );
