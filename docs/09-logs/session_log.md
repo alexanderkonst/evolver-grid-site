@@ -7204,3 +7204,28 @@ Every section now carries WebGL mesh atmosphere (not just the hero). Neumorphism
 Commit: `e7f05128`
 
 Status: Equilibrium recompile gated on Sasha's "we're ready" signal on the Codex. Until then, /build/equilibrium stays on v1.0 MDLS (matte-polymer translucent cards + sunset video atmosphere).
+
+### Day 74 Wave 5 — Codex v2.1 photo-real manifestation
+
+Sasha's v2.0 feedback: "I love the 3D shape, where we can add some isometric motion and matte texture. Still looks very low fidelity, and the gradient kind of goes in mechanical steps." Diagnosed both as parameter-tuning issues (NOT hardware), shipped v2.1 with full upgrade.
+
+**MdlsMeshBackground v2.0:** 8-color palettes per register (was 4) + distortion 0.85 (was 0.6) + swirl 0.22 + speed 0.42 + grain 0.03 + minPixelRatio 2. Removed CSS vignette overlay (was causing the step-banding). Each register now has 8 hand-tuned stops with ≤12° hue distance between adjacent — guarantees smooth blends.
+
+**MdlsSacred3D v2.0 — matte ceramic, not mirror metal:**
+- Material: metalness 0.85 → 0.1, roughness 0.22 → 0.75
+- 3-point industrial-design photography lighting (key/rim/fill)
+- Compound rotation (Y constant + X/Z figure-8 wobble) — held ceramic, not turntable
+- N8AO ambient occlusion + Noise film grain + Bloom
+- ContactShadows anchor it to a surface
+
+**MdlsHoverTilt (new primitive):** Aceternity-style cursor-tracked 3D tilt. Composes with MdlsScrollTilt — scroll drives baseline, hover adds cursor layer on top.
+
+**Hero parallax:** 3 layers (mesh 40px / 3D 120px / prose 60px) — depth without disorientation.
+
+**Reference benchmark footer:** Names what we're calibrating against — Linear (motion+restraint), Apple HIG/Liquid Glass (material register), Spline community (3D craft). "If our surface falls below these, the paradigm isn't done yet."
+
+Bundle: +170 KB gzipped from postprocessing — acceptable for the showcase page.
+
+Commit: `59cb682a` (pushed to origin/main).
+
+Equilibrium remains untouched — per Sasha's directive, no recompile until the Codex earns "we're ready."
