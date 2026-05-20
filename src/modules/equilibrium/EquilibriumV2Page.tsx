@@ -420,9 +420,21 @@ export const EquilibriumV2Page = () => {
           <EquilibriumSectionCard
             id={SECTION_IDS.mission}
           >
+            {/*
+              Info copy revised 2026-05-19 (Sasha): the prior "ONE sentence
+              starting with 'I'" prescription was too narrow — his own
+              Lifelong Dedication ("Help humanity evolve into a consciously
+              coordinated civilization by awakening individual genius,
+              integrating consciousness with technology, and architecting
+              systems that transform human potential into coherent
+              collective flourishing.") is multi-clause and doesn't start
+              with 'I'. The user manual frames it as "the chosen direction
+              your action keeps taking, at life scale" — what / by what
+              means / toward what. The new copy invites that shape.
+            */}
             <SectionHeader
               title="Lifelong Dedication"
-              infoIconCopy="ONE sentence starting with 'I'. Verb-form, concrete, life-scale. Example: 'I turn fog into frameworks people can act on right away.'"
+              infoIconCopy="One sentence at life scale — the chosen direction your action keeps taking. WHAT you're devoted to · BY WHAT MEANS · TOWARD WHAT. Example: 'Help humanity evolve into a consciously coordinated civilization by awakening individual genius, integrating consciousness with technology, and architecting systems that transform human potential into coherent collective flourishing.'"
             />
             <MissionSection
               missionDisplay={eq.missionDisplay}
