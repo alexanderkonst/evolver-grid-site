@@ -1209,30 +1209,20 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                             }}
                             aria-label="Open menu"
                         >
-                            {__isNSShell ? (
-                                /* V5 debug: NS flag inline SVG so mobile + desktop
-                                   render the same editorial mark, no network round-trip. */
-                                <svg
-                                    width="22"
-                                    height="22"
-                                    viewBox="0 0 60 60"
-                                    fill="none"
-                                    aria-hidden="true"
-                                    className="flex-shrink-0"
-                                >
-                                    <rect width="60" height="60" fill="#0a0a0a" rx="2" />
-                                    <rect x="18" y="28" width="24" height="4" fill="#ffffff" />
-                                    <rect x="28" y="18" width="4" height="24" fill="#ffffff" />
-                                </svg>
-                            ) : (
-                                <img
-                                    src={brandMark}
-                                    alt=""
-                                    aria-hidden="true"
-                                    className="w-7 h-7 object-contain flex-shrink-0"
-                                    draggable={false}
-                                />
-                            )}
+                            <img
+                                /* V6 (Sasha 2026-05-19): use the canonical
+                                   NS wavy flag PNG on mobile too, not the
+                                   square inline SVG. Single asset across
+                                   desktop + mobile keeps the brand mark
+                                   consistent end-to-end. */
+                                src={__isNSShell
+                                    ? "https://ns-assets.com/auth-privy/network-school-black-flag-white-background-privy.png"
+                                    : brandMark}
+                                alt=""
+                                aria-hidden="true"
+                                className="w-7 h-7 object-contain flex-shrink-0"
+                                draggable={false}
+                            />
                             <Menu className="w-4 h-4 flex-shrink-0" aria-hidden="true" />
                         </button>
                         {/* Day 53 (Sasha 2026-04-27): mobile breadcrumb.
