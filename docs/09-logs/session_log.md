@@ -7489,3 +7489,46 @@ White-label strategy doc graduated v1.0 → v1.6 with seven distinct iteration l
 - Mobile audit is now a documented requirement; add it as a checklist item in the per-skin spec.
 - Auth flow audit (per-skin walkthrough) is documented as mandatory; codify into a brief test plan.
 
+---
+
+## Day 77 — Wednesday, May 20, 2026
+
+### Frame
+
+Day 76 closed the rhetorical gap between "commons" language and v0.1 legal reality (treasury evolution doc + tithe → revenue share rename). Day 77 broke open the bigger question: **what is the product actually, and who is it for?**
+
+Five crystallizations:
+
+1. **Matching is the product. Unique-business methodology is the engine underneath.** Same arc, different ends. Self-knowledge is the IP; precision matching is what the market buys; unique-business is the deeper premium layer for those who graduate from matching into venture-building.
+2. **Two-question framing (extension of Balaji's *"AI makes everyone a CEO"*):** WHO to build with → matching layer (straightforward, market ready). WHAT to build → unique-business methodology (novel, market needs education). Sasha addresses both: who first, what second.
+3. **Business model resolved:** onboarding fee (~$30–50/new member) + monthly subscription (~$5–8/active member). Solves the "value is mostly upfront" problem inherent to matching.
+4. **Beachhead pivot:** community ecosystem path (B2B) leads; individual founder cold acquisition (B2C) is harder and deferred. Founders become customers downstream — they graduate from community-deployed matching into the venture studio premium tier after finding their co-founder.
+5. **Funnel architecture v2:** JOURNEY space reordered to 5 matching-first items (Talent → Mission → Assets → QoL → Build-bridge); BUILD space holds 3 venture-path items moved out (Path to Unique Business / See the Dashboard / Take the Exact Playbook). Post-Top-Talent CTA pivots from binary fork to continuous matching-onboarding flow. QoL upgraded from "optional context" to "match-quality resolution filter."
+
+### What shipped (corpus updates)
+
+- **`docs/02-strategy/monetization_strategies.md`** — new *Strategic Crystallization (Day 76–77)* section: matching-as-product synthesis, two-question framing, business model evolution, parallel beachhead targets table, positioning lean toward community ecosystem path, Balaji-friendly language alternatives.
+- **`docs/02-strategy/unique-businesses/alexanders_unique_business.md`** — new *Funnel Architecture v2 — Matching-as-Hero* section: JOURNEY/BUILD split, post-Top-Talent CTA pivot, Ignite's new home, auto-propagation across skins, risks and migration considerations.
+- **`docs/03-playbooks/leonardo_strategy_instances/balaji_srinivasan.md`** — new *Reply-Ready Arsenal* section: 90-day pilot structure, sovereign traction answer, business model, ROI hook, Balaji-audience language, honest-gap acknowledgment, two-question framing for follow-up dialogue.
+
+### Key decisions
+
+1. **Don't replace v6 Balaji letter.** It already captures the matching-as-product framing. Pilot details, business model, and traction answer live in *follow-up conversation*, not in the first message.
+2. **Skin yes, Loom no.** NS-skinned `findyourtoptalent.com` is the silver lyre. A Loom imposes narration on Balaji's sovereign evaluation — protocol misfit. Trust the artifact.
+3. **Lead with community ecosystem path.** Sasha has 10+ ecosystem-leader contacts reachable this week. Cold founder acquisition is harder and deferred.
+4. **Per-active-member pricing is the primary model.** The 10% rev-share Distributor Agreement stays for rare fork-and-self-host operators. Subscription is the main commercial channel for matching.
+5. **QoL is load-bearing, not optional.** Consciousness-level mismatch is the silent collaboration killer. Members who skip get coarser matches — built-in completion incentive without coercion.
+
+### Open threads
+
+- **Founder cold-acquisition gap:** Sasha doesn't yet have a working path to convert strangers into venture-studio members. The community-ecosystem path defers this question. Probable answer: founders enter via community pilots, not cold landing.
+- **NS-skin completion:** "99.9% ready"; final mobile bugs being fixed today. Once live, Balaji message can ship.
+- **Landing page rebuild:** start in parallel after Balaji message goes out. Two paths: (a) replace public landing with matching-as-hero copy; (b) make labels/copy config-driven per skin so future Carolina / vnest deployments don't require manual updates.
+- **Founders-vs-aspiring-founders gap:** Sasha's six cohort members are deeper than aspiring-only but not yet revenue-earning. NS pilot would be the first proof point with the revenue-earning founder class.
+- **The 10 ecosystem-leader outreach round:** Carolina (Colombia/dance), vnest, Compart's circle, Adam Apollo (Core Nexus), Jacob Griscom, Jan Andrea, Holo Movement leadership, Felipe Leal — to be drafted and sent this week alongside Balaji.
+
+### Si–Do
+
+Strategic Si–Do shifted: the bottleneck is no longer *"figure out the venture studio funnel."* The bottleneck is now **first paid community pilot**. Balaji message + NS-skin + 9 other ecosystem-leader outreaches over the next 7–10 days are the surface area. First yes from any of those fires the Si–Do.
+
+The deeper Si–Do (first $555 stranger from funnel) remains technically open but is now structurally deprioritized — strangers no longer convert to $555 Ignition directly under the new architecture. The new Si–Do shape is **first community signs paid pilot.**
