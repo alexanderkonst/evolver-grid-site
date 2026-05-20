@@ -34,8 +34,6 @@ import {
   ToggleGlassDual,
   SealMedallion,
 } from "@/components/mdls";
-import LenisProvider from "@/components/mdls/LenisProvider";
-import MdlsRevealSection from "@/components/mdls/MdlsRevealSection";
 
 /**
  * Equilibrium MDLS variant — proof-of-paradigm recompile of EquilibriumV2Page
@@ -128,7 +126,6 @@ export const EquilibriumMDLSPage = () => {
   }, [eq.tasksByWorkstream]);
 
   return (
-    <LenisProvider>
     <main className="mx-auto w-full max-w-2xl px-4 py-8 sm:px-6 sm:py-12">
       <BirthdayPrompt
         birthday={eq.birthday}
@@ -137,11 +134,6 @@ export const EquilibriumMDLSPage = () => {
         onSaved={() => void eq.refresh()}
       />
 
-      {/* WAVE 4 (Day 74, 2026-05-19): MDLS octave shift applied.
-          - LenisProvider: smooth scroll for the page subtree
-          - MdlsRevealSection: each card fades up on viewport entry
-          - 3D + mesh atmosphere stay on /mdls-preview (overkill here) */}
-      <MdlsRevealSection>
       <header className="mb-10">
         <HeroHeadline
           title="Equilibrium"
@@ -162,11 +154,9 @@ export const EquilibriumMDLSPage = () => {
           />
         </div>
       </header>
-      </MdlsRevealSection>
 
       <SectionAnchorNav mode={mode} />
 
-      <MdlsRevealSection>
       <div className="flex flex-col gap-6">
         {/* ════════════ ATTUNE MODE ═════════════════════════════════ */}
 
@@ -395,14 +385,12 @@ export const EquilibriumMDLSPage = () => {
           </EmberBreath>
         )}
       </div>
-      </MdlsRevealSection>
 
       {/* MDLS attribution footer — dev-discoverable, prod-invisible. */}
       <div className="mt-12 text-center text-[10px] uppercase tracking-[0.18em] text-[#0a1628]/35">
-        MDLS v1.1 · contemplative operating surface · octave shift
+        MDLS v1.0 · contemplative operating surface
       </div>
     </main>
-    </LenisProvider>
   );
 };
 

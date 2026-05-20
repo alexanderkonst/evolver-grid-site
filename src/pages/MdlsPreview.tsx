@@ -83,8 +83,17 @@ const MdlsPreview = () => {
       {/* (Paper Shaders) replaces the flat CSS .mdls-page-atmosphere for   */}
       {/* the hero. Living color volume instead of banded planes.           */}
       {/* ═══════════════════════════════════════════════════════════════ */}
-      <section className="relative min-h-[88vh] flex flex-col justify-center px-6 sm:px-12 lg:px-20 py-20 overflow-hidden">
+      <section className="relative min-h-[100vh] flex flex-col justify-center px-6 sm:px-12 lg:px-20 py-20 overflow-hidden">
         <MdlsMeshBackground register="luminous" distortion={0.55} swirl={0.18} speed={0.22} />
+        {/* POLISH (Day 74, 2026-05-19): floating 3D dodecahedron centerpiece.
+            Sits above the manifesto prose. The sacred form Sasha pointed at —
+            12 pentagonal faces = 12-orb soul library × 12-month cycle. */}
+        <div
+          className="relative mx-auto"
+          style={{ zIndex: 1, marginBottom: "1.5rem" }}
+        >
+          <MdlsSacred3D size={220} hue="warm" />
+        </div>
         <div className="relative max-w-3xl mx-auto space-y-7" style={{ zIndex: 1 }}>
           <p
             className="font-serif text-[#0a1628]"
@@ -132,7 +141,7 @@ const MdlsPreview = () => {
           </p>
         </div>
         <div className="mt-20 text-center text-[10px] uppercase tracking-[0.28em] text-[#0a1628]/40">
-          Multi-Dimensional Living Surface · the codex · v1.8
+          Multi-Dimensional Living Surface · the codex · v2.0 — octave shift
         </div>
       </section>
 
@@ -163,34 +172,51 @@ const MdlsPreview = () => {
 
       {/* ═══════════════════════════════════════════════════════════════ */}
       {/* §3 · PRINCIPLES + RULES                                          */}
+      {/* POLISH: restrained mesh accent + extruded surface for principles  */}
       {/* ═══════════════════════════════════════════════════════════════ */}
       <MdlsRevealSection>
-      <section className="py-24 px-6 sm:px-12">
-        <div className="max-w-4xl mx-auto">
+      <section className="relative py-24 px-6 sm:px-12 overflow-hidden">
+        <MdlsMeshBackground
+          register="restrained"
+          distortion={0.4}
+          swirl={0.08}
+          speed={0.12}
+          style={{ opacity: 0.55 }}
+        />
+        <div className="relative max-w-4xl mx-auto" style={{ zIndex: 1 }}>
           <SectionEyebrow>Seven principles, three rules</SectionEyebrow>
 
-          <ul className="space-y-7 mt-12">
-            {[
-              { glyph: <GlyphAuroraDot />,           text: "Color enters from within, not painted on." },
-              { glyph: <GlyphOutlineCircle />,       text: "Restraint over decoration." },
-              { glyph: <SealMedallion size={32} variant="mandala" />, text: "Sacred over neutral." },
-              { glyph: <GlyphNestedRings />,         text: "Coherence over consistency." },
-              { glyph: <SoulOrbGoal orbId={7} size={32} />, text: "Every primitive earns its place." },
-              { glyph: <GlyphMatteCard />,           text: "Surface is the form the transformation arrives in." },
-              { glyph: <GlyphConcentric />,          text: "Motion is meaning, not noise." },
-            ].map((p, i) => (
-              <li key={i} className="flex items-center gap-5 sm:gap-7 py-3 border-b border-[#0a1628]/8">
-                <div className="shrink-0 w-10 h-10 flex items-center justify-center">{p.glyph}</div>
-                <p
-                  className="font-serif text-[#0a1628] flex-1"
-                  style={{ fontSize: "clamp(1.125rem, 2vw, 1.5rem)", lineHeight: 1.4, letterSpacing: "-0.005em" }}
+          <MdlsExtrudedSurface
+            variant="floating"
+            className="mt-12"
+            style={{ padding: "1.5rem 2rem" }}
+          >
+            <ul className="space-y-2">
+              {[
+                { glyph: <GlyphAuroraDot />,           text: "Color enters from within, not painted on." },
+                { glyph: <GlyphOutlineCircle />,       text: "Restraint over decoration." },
+                { glyph: <SealMedallion size={32} variant="mandala" />, text: "Sacred over neutral." },
+                { glyph: <GlyphNestedRings />,         text: "Coherence over consistency." },
+                { glyph: <SoulOrbGoal orbId={7} size={32} />, text: "Every primitive earns its place." },
+                { glyph: <GlyphMatteCard />,           text: "Surface is the form the transformation arrives in." },
+                { glyph: <GlyphConcentric />,          text: "Motion is meaning, not noise." },
+              ].map((p, i, arr) => (
+                <li
+                  key={i}
+                  className={`flex items-center gap-5 sm:gap-7 py-3 ${i < arr.length - 1 ? "border-b border-[#0a1628]/8" : ""}`}
                 >
-                  {p.text}
-                </p>
-                <span className="text-xs font-mono text-[#0a1628]/35 tabular-nums">{String(i + 1).padStart(2, "0")}</span>
-              </li>
-            ))}
-          </ul>
+                  <div className="shrink-0 w-10 h-10 flex items-center justify-center">{p.glyph}</div>
+                  <p
+                    className="font-serif text-[#0a1628] flex-1"
+                    style={{ fontSize: "clamp(1.125rem, 2vw, 1.5rem)", lineHeight: 1.4, letterSpacing: "-0.005em" }}
+                  >
+                    {p.text}
+                  </p>
+                  <span className="text-xs font-mono text-[#0a1628]/35 tabular-nums">{String(i + 1).padStart(2, "0")}</span>
+                </li>
+              ))}
+            </ul>
+          </MdlsExtrudedSurface>
 
           <div className="mt-16">
             <SectionEyebrow>Three operational rules</SectionEyebrow>
@@ -200,10 +226,10 @@ const MdlsPreview = () => {
                 { glyph: <GlyphCoralDot />,   text: "One coral accent per surface · two for devotion." },
                 { glyph: <GlyphTypeA />,      text: "Hierarchy through weight, not color." },
               ].map((r, i) => (
-                <div key={i} className="text-center">
+                <MdlsExtrudedSurface key={i} variant="raised" className="text-center" style={{ padding: "1.5rem 1rem" }}>
                   <div className="flex justify-center mb-4 h-10 items-center">{r.glyph}</div>
                   <p className="font-serif text-sm sm:text-base text-[#0a1628]/85 leading-snug">{r.text}</p>
-                </div>
+                </MdlsExtrudedSurface>
               ))}
             </div>
           </div>
@@ -213,10 +239,18 @@ const MdlsPreview = () => {
 
       {/* ═══════════════════════════════════════════════════════════════ */}
       {/* §4 · MATERIALS GALLERY — each in hero context                    */}
+      {/* POLISH: sculptural mesh accent — feels like a textile showroom    */}
       {/* ═══════════════════════════════════════════════════════════════ */}
       <MdlsRevealSection>
-      <section className="py-24 px-4 sm:px-12">
-        <div className="max-w-5xl mx-auto">
+      <section className="relative py-24 px-4 sm:px-12 overflow-hidden">
+        <MdlsMeshBackground
+          register="sculptural"
+          distortion={0.5}
+          swirl={0.12}
+          speed={0.15}
+          style={{ opacity: 0.4 }}
+        />
+        <div className="relative max-w-5xl mx-auto" style={{ zIndex: 1 }}>
           <SectionEyebrow>The materials</SectionEyebrow>
 
           <div className="mt-16 space-y-32">
@@ -340,10 +374,18 @@ const MdlsPreview = () => {
 
       {/* ═══════════════════════════════════════════════════════════════ */}
       {/* §5 · REGISTERS — four classes side-by-side                       */}
+      {/* POLISH: ascetic mesh accent + extruded register cards             */}
       {/* ═══════════════════════════════════════════════════════════════ */}
       <MdlsRevealSection>
-      <section className="py-24 px-6 sm:px-12">
-        <div className="max-w-5xl mx-auto">
+      <section className="relative py-24 px-6 sm:px-12 overflow-hidden">
+        <MdlsMeshBackground
+          register="ascetic"
+          distortion={0.35}
+          swirl={0.06}
+          speed={0.1}
+          style={{ opacity: 0.5 }}
+        />
+        <div className="relative max-w-5xl mx-auto" style={{ zIndex: 1 }}>
           <SectionEyebrow>Four registers, one language</SectionEyebrow>
 
           <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -398,10 +440,18 @@ const MdlsPreview = () => {
 
       {/* ═══════════════════════════════════════════════════════════════ */}
       {/* §6 · TYPOGRAPHY — at scale, with real prose                      */}
+      {/* POLISH: restrained mesh — cream-paper atmosphere for editorial    */}
       {/* ═══════════════════════════════════════════════════════════════ */}
       <MdlsRevealSection>
-      <section className="py-24 px-6 sm:px-12">
-        <div className="max-w-4xl mx-auto">
+      <section className="relative py-24 px-6 sm:px-12 overflow-hidden">
+        <MdlsMeshBackground
+          register="restrained"
+          distortion={0.32}
+          swirl={0.05}
+          speed={0.1}
+          style={{ opacity: 0.5 }}
+        />
+        <div className="relative max-w-4xl mx-auto" style={{ zIndex: 1 }}>
           <SectionEyebrow>Typography</SectionEyebrow>
 
           <div className="mt-12 space-y-14">
@@ -466,10 +516,19 @@ const MdlsPreview = () => {
 
       {/* ═══════════════════════════════════════════════════════════════ */}
       {/* §7 · VOCABULARY + CLOSING                                        */}
+      {/* POLISH: luminous closing — page begins AND ends in the aurora     */}
+      {/* register; sets up the closing manifesto as a sacred moment.       */}
       {/* ═══════════════════════════════════════════════════════════════ */}
       <MdlsRevealSection>
-      <section className="py-24 px-6 sm:px-12">
-        <div className="max-w-4xl mx-auto">
+      <section className="relative py-24 px-6 sm:px-12 overflow-hidden">
+        <MdlsMeshBackground
+          register="luminous"
+          distortion={0.45}
+          swirl={0.15}
+          speed={0.18}
+          style={{ opacity: 0.6 }}
+        />
+        <div className="relative max-w-4xl mx-auto" style={{ zIndex: 1 }}>
           <SectionEyebrow>Twelve verbs, one register</SectionEyebrow>
 
           <ul className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-1">
@@ -492,6 +551,12 @@ const MdlsPreview = () => {
           </ul>
 
           <div className="mt-28 text-center max-w-2xl mx-auto">
+            {/* Closing sacred moment — the dodecahedron returns at end.
+                Bookends the page: opens with it, closes with it.
+                The form repeated is the form remembered. */}
+            <div className="flex justify-center mb-10">
+              <MdlsSacred3D size={180} hue="warm" />
+            </div>
             <p
               className="font-serif italic text-[#0a1628]/75"
               style={{
@@ -650,6 +715,15 @@ const ComposedSurfaceDemo = ({
 }: ComposedSurfaceDemoProps) => {
   return (
     <div className="mt-10">
+      {/* POLISH (Day 74): the device frame now sits on a floating extruded
+          plinth — the demo reads as a held object on a soft pedestal, not
+          a screenshot pasted on a page. Pair with MdlsScrollTilt (outer)
+          for the felt-weight effect. */}
+      <MdlsExtrudedSurface
+        variant="floating"
+        className="mx-auto"
+        style={{ maxWidth: 440, padding: "1.25rem" }}
+      >
       <div
         className="mdls-device-frame mx-auto px-6 py-8 sm:px-7 sm:py-9"
         style={{ maxWidth: 400 }}
@@ -793,6 +867,7 @@ const ComposedSurfaceDemo = ({
           MDLS · contemplative operating surface
         </div>
       </div>
+      </MdlsExtrudedSurface>
     </div>
   );
 };
