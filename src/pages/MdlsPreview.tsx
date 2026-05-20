@@ -542,7 +542,7 @@ const MdlsPreview = () => {
       {/* but at default pixelRatio 1 + slow speed for scroll perf.         */}
       {/* ═══════════════════════════════════════════════════════════════ */}
       <MdlsRevealSection>
-      <section className="relative py-24 px-6 sm:px-12 overflow-hidden">
+      <section id="mdls-vocabulary" className="relative py-24 px-6 sm:px-12 overflow-hidden">
         <MdlsMeshBackground register="luminous" style={{ opacity: 0.5 }} />
         <div className="relative max-w-4xl mx-auto" style={{ zIndex: 1 }}>
           <SectionEyebrow>Twelve verbs, one register</SectionEyebrow>
