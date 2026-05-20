@@ -47,15 +47,24 @@ Two entry points, one product underneath.
 
 **Both paths converge into the same Top Talent assessment.** ~10–15 min. Same component, same flow, same outcome.
 
-**After the reveal, the post-Top-Talent CTA branches based on `?path=`:**
-- Match-path users see: *"Discover your mission — free, 10 minutes →"* (continues T-M-A-Q matching onboarding)
-- Build-path users see: *"Discover your mission — free, 10 minutes →"* as primary forward motion (the journey still flows the same way) — but with a more prominent secondary link to **"Or explore the BUILD space →"** for those who want to skip directly into venture-building content.
+**After the reveal, the post-Top-Talent CTA branches significantly based on `?path=`:**
 
-In both cases, the user continues into JOURNEY items 2 (Mission), 3 (Assets), 4 (QoL). After #3 they're **matchable**; the matching surface unlocks. Item #5 (Build a business) is a bridge into BUILD space.
+- **Match-path users (`?path=match`):**
+  - **PRIMARY CTA:** *"Discover your mission — free, 2 minutes →"* → routes to Mission Discovery (JOURNEY item 2)
+  - Secondary (less prominent): *"Unlock the full Top Talent profile"*
+  - The user continues through JOURNEY: Mission → Assets → QoL → matchable
+- **Build-path users (`?path=build` or no param):**
+  - **PRIMARY CTA:** *"Build a Business off your top talent →"* → routes **directly to BUILD space** (bypassing JOURNEY locks)
+  - Secondary (less prominent): *"Or discover your mission first — 2 min →"*
+  - The user enters BUILD immediately for venture-building content
+
+**The two flows DIFFER substantially after Top Talent.** Not just secondary-link emphasis (earlier draft had this wrong) — the PRIMARY CTA target is different. Match-path goes into JOURNEY; build-path goes into BUILD space.
+
+After landing in their chosen destination, both users have **full access to all modules** via direct navigation. JOURNEY locks are *advisory* (visual guidance), not access-gating. A build-path user who decides they want to be matchable can navigate to Mission Discovery anytime — JOURNEY just shows it as the visual "next step" only after Top Talent completion. A match-path user can peek into BUILD anytime via sidebar navigation.
 
 The BUILD space holds *The Path to Your Unique Business*, *See the Dashboard*, *Take the exact playbook*, and the Ignite Session for hands-on work with Alexander.
 
-**The same modules are accessible to every user via the same routes regardless of entry path.** Match-path users can navigate to BUILD whenever they want; build-path users can navigate to the matching surface after T-M-A. The path just colors the initial framing and the post-Top-Talent CTA emphasis.
+**Why this works as ONE product:** both users have access to everything. The path just colors which destination feels primary right after Top Talent. No one is locked out of anything. No mode toggle needed.
 
 ---
 
@@ -81,19 +90,21 @@ Created new. Same shell, layout, fonts, gradient backgrounds, component patterns
 |---|---|
 | **Eyebrow** | *"Precision matchmaking for collaboration"* |
 | **Hero (h1)** | *"Stop building alone."* |
-| **Sub paragraph** | *"Your people are already in this network. Ten minutes to be seen — we surface them. Real introductions follow."* |
+| **Sub paragraph** | *"Your people are already in this network. We surface them. Real introductions follow."* |
 | **Italic line** | *"You've met cool people. You still haven't found your people."* |
 | **CTA button** | *"Find your top talent →"* |
 | **CTA route** | `/start?path=match` |
 | **Founder testimonials** | NOT present (they're venture-outcome testimonials, not matching-outcome — stay on BuildLanding only) |
 | **Two-paths split** | NOT present (single CTA on this landing) |
 
+*Sub copy compressed: removed the "ten minutes" reference because Top Talent is ~10-15 min and Mission is 2 min — putting a single time on the landing risked misleading. The CTA itself tells the story (Find your top talent → leads to matches).*
+
 **Routing logic at `findyourtoptalent.com/`:**
 
 The root route (`/`) reads the `?path=` query parameter:
 - `?path=match` → renders `<MatchLanding />`
 - `?path=build` → renders `<LandingPage />` (the existing one)
-- No param → defaults to `<LandingPage />` (existing venture landing — preserves current behavior for organic / unparameterized traffic)
+- **No param → defaults to `<LandingPage />`** (existing venture landing) — **decision: BuildLanding is the default.** Rationale: preserves existing behavior for bookmarked / organic / search traffic; the matching audience always arrives via outreach links with `?path=match` explicitly. Reversible later if the strategic balance shifts.
 
 **For outreach:**
 - Balaji's Discord message: link to `findyourtoptalent.com/ns/?path=match` (NS skin + match landing)
@@ -143,6 +154,8 @@ This is ~20 lines of React. No external dependencies. Fully testable.
 
 **Matchable threshold:** user becomes matchable after #3 (Map your assets) is completed. T-M-A is the triad that opens the matching surface. QoL (#4) refines match precision but is not required for the first match wave.
 
+**Critical: JOURNEY locks are advisory, not access-gating.** The lock state controls how items render in the JOURNEY pane (crossed out vs. unlocked) — guidance. The actual routes (Mission Discovery, Asset Mapping, QoL, BUILD space, etc.) are NOT access-gated by JOURNEY. Any authenticated user can navigate directly to any of them anytime. This is what enables build-path users to go straight from Top Talent reveal → BUILD space via their primary CTA, without first completing Mission / Assets / QoL.
+
 **Removed from JOURNEY (moved to BUILD space — see §4.3):**
 - *Take the exact playbook* (was JOURNEY #2)
 - *See the shortcut path to your business* (was JOURNEY #3) — **renamed** to *"The Path to Your Unique Business"*
@@ -174,23 +187,29 @@ The BUILD space already exists in the codebase. This spec only changes:
 **Visual treatment of BUILD entry from JOURNEY:**
 - JOURNEY item #5 should feel like a doorway, not another sequential step. Subtle visual differentiation (badge, arrow, divider) so users understand they're transitioning surfaces.
 
-### 4.4 Post-Top-Talent CTA — conditional on `?path=`
+### 4.4 Post-Top-Talent CTA — branches significantly based on `?path=`
 
 **Current state:** After the Top Talent reveal page, the user sees a binary-fork screen: *Build a business / Unlock deeper profile / See the playbook.*
 
-**New state:** The post-Top-Talent screen reads the `?path=` query parameter (carried from the landing) and shows a continuous forward CTA, with secondary link emphasis depending on which path the user came through:
+**New state:** The post-Top-Talent screen reads the `?path=` value (from React context / sessionStorage, per §4.1 persistence approach) and shows DIFFERENT primary CTAs per flow. **This is a substantive branch, not just visual emphasis.**
 
 **Match-path users** (came in via `?path=match`):
-- **Primary:** *"Discover your mission — free, 10 minutes →"* (continues matching onboarding)
-- **Secondary (less prominent):** *"Unlock the full Top Talent profile"*
+- **PRIMARY CTA:** *"Discover your mission — free, 2 minutes →"*
+  - **Routes to:** Mission Discovery (JOURNEY item 2)
+  - **Why:** match-path users came to find collaborators; Mission is the next step toward becoming matchable
+- **Secondary (less prominent):** *"Unlock the full Top Talent profile"* — sidepath, not the primary forward motion
 
 **Build-path users** (came in via `?path=build` or no param):
-- **Primary:** *"Discover your mission — free, 10 minutes →"* (the JOURNEY flows the same way for everyone)
-- **Secondary (more prominent than for match-path):** *"Or explore the BUILD space →"* — direct access to venture-path content for users who want to skip ahead
+- **PRIMARY CTA:** *"Build a Business off your top talent →"*
+  - **Routes to:** BUILD space directly (bypasses JOURNEY locks)
+  - **Why:** build-path users came to build a venture from their unique talent; BUILD is the destination
+- **Secondary (less prominent):** *"Or discover your mission first — 2 min →"* — routes to Mission Discovery, for users who want to walk the matching foundation first
 
-**Note:** the primary CTA is the same for both paths because JOURNEY has ONE ordering and Mission is universally next. The branching is in the secondary link's prominence — build-path users see the BUILD space access more clearly, match-path users see the deeper-profile sidepath more clearly. Same primary, different secondary emphasis. Minimal branching.
+**Critical timing note:** Mission Discovery is **2 minutes** (not 10). The CTA copy must say 2 minutes. Even 1 minute is defensible — the step is genuinely fast.
 
-**Why minimal:** continuous matching-onboarding flow replaces decision fatigue. Most users follow the primary CTA. The secondary link is a discoverable side-door, not a competing forward motion.
+**Critical architecture note:** the build-path primary CTA bypasses JOURNEY's lock logic. JOURNEY items 2 (Mission), 3 (Assets), 4 (QoL) remain visually locked in the JOURNEY pane for that user until they choose to complete them. The user is in BUILD space; JOURNEY is just visually showing them what *would be* the matching path if they wanted it. They can come back to JOURNEY anytime — locks aren't access gates, they're guidance markers.
+
+**Why this branches substantively (not just secondary emphasis):** the two audiences want different things first. Match-path wants matches. Build-path wants venture. Giving them the SAME primary CTA would be a half-measure that serves neither well. The branch IS the product working for both audiences.
 
 ### 4.5 Founder testimonials — stay on BuildLanding only
 
@@ -344,7 +363,13 @@ Before merging:
 - [ ] JOURNEY space shows 5 items in the new order with correct lock/unlock visual treatment for: new user, user mid-onboarding, fully-completed user.
 - [ ] Item #5 (*Build a business*) navigates correctly into the BUILD space when clicked.
 - [ ] BUILD space contains the three moved items (*The Path to Your Unique Business*, *See the Dashboard*, *Take the exact playbook*) + Ignite Session option + `/path` value-ladder page.
-- [ ] Post-Top-Talent screen reads `?path=` (via context) and shows correct primary + secondary CTAs per §4.4 logic. Verified for both `?path=match` and `?path=build` flows.
+- [ ] Post-Top-Talent screen reads `?path=` (via context) and shows correct primary + secondary CTAs per §4.4 logic:
+  - Match-path: primary *"Discover your mission — free, 2 minutes →"* routes to Mission Discovery
+  - Build-path (and default): primary *"Build a Business off your top talent →"* routes directly to BUILD space
+  - Verified end-to-end for both paths.
+- [ ] **Time references use "2 minutes" for Mission Discovery** (not 10 minutes). Verified across CTAs, JOURNEY labels if any, and any progress copy.
+- [ ] **Build-path user can navigate directly to BUILD space from post-Top-Talent CTA without completing Mission/Assets/QoL.** JOURNEY items 2-5 remain visually locked in JOURNEY pane but BUILD route is fully accessible. Verified.
+- [ ] **JOURNEY locks are advisory, not enforced.** A user can navigate directly to `/mission-discovery`, `/asset-mapping`, `/quality-of-life-map`, `/build/*` at any time as authenticated user — regardless of JOURNEY lock state. Verified.
 - [ ] Existing users with partial progress under the old ordering retain their completion flags. Verified on at least one test account from the cohort.
 - [ ] Auth flow verified per skin (`/auth`, `/ns/auth`) — both read in their skin register.
 - [ ] **Entry-path analytics event fires** on landing impression with `landing_type` and `skin` and `path_param_present` (per §4.8).
@@ -361,7 +386,7 @@ These are deliberately left for the executing thread to resolve in conversation 
 1. **Visual treatment of JOURNEY item #5 as bridge into BUILD space:** subtle arrow / badge / divider — what's the design that signals "this is a doorway, not a step"?
 2. **Whether to include §4.7 (config-driven labels) in this build, or defer to the next-skin build:** strongly recommended now; depends on time pressure.
 3. **Whether the migration edge case (users with Assets but no Mission completed) needs an in-product notice, or whether the matching surface itself can just say "complete Mission to unlock matching."** Recommendation: the surface itself handles it; no separate notice needed.
-4. **Default behavior when no `?path=` param is present on `/`:** spec recommends defaulting to `<LandingPage />` (build landing) to preserve current organic-traffic behavior. Confirm or override.
+4. ✅ **Default landing when no `?path=` is present** — RESOLVED: BuildLanding is the default. See §4.1.
 5. **Whether `?path=` should be stripped from URL after the post-Top-Talent screen** to keep URLs clean post-onboarding, or persist until the user logs out. Recommendation: strip after post-Top-Talent (its job is done by then). Confirm.
 6. **Sasha's amendments to the Scope of Work** — to be added as he reviews this spec.
 
@@ -376,6 +401,8 @@ These are deliberately left for the executing thread to resolve in conversation 
 - Active-intro layer (already shipped — the matching mechanic this funnel feeds into): [`docs/specs/match-mechanic/active-intro_product_spec.md`](../match-mechanic/active-intro_product_spec.md)
 
 ---
+
+*v0.4 · May 20, 2026 (Day 77 night) · Sasha-correction pass. Critical fixes: (1) Post-Top-Talent CTAs branch SUBSTANTIVELY, not just by secondary emphasis. Match-path primary = "Discover your mission — 2 minutes" → Mission Discovery. Build-path primary = "Build a Business off your top talent" → BUILD space directly. (2) Mission time corrected from 10 min → 2 min across all references; sub-paragraph compressed to remove ambiguous "ten minutes" reference. (3) JOURNEY locks made explicitly advisory, not access-gating — build-path users can navigate directly to BUILD without completing T-M-A; routes are not gated by JOURNEY completion. (4) Default landing decision resolved: BuildLanding (preserves organic traffic, matching audience always uses ?path=match link). (5) DoD expanded with 4 new items covering the flow differences. Still LOW RISK, still ~1 day total. Ready for handoff.*
 
 *v0.3 · May 20, 2026 (Day 77 late evening) · Final scrutiny pass. Fixes from re-read: (1) Opening blockquote rewritten to reflect the two-landings architecture, not "text only / same shell." (2) Ignite contradiction resolved — BuildLanding loses its Direct-Ignite CTA (ONE surgical change), so the §1 principle that Ignite lives only inside BUILD is consistent across both landings. (3) Stale founder-testimonials row removed from §4.3 BUILD-space table (testimonials stay on BuildLanding per §4.5; the table previously contradicted this). (4) `?path=` persistence approach made explicit — React context + sessionStorage, ~20 lines. (5) NS-skin routing clarified: root-level routing component picks landing per `?path=`, auto-propagates to every skin. (6) New §4.8 added: entry-path analytics tracking + OG/share-preview metadata for the Balaji-message-link. (7) DoD expanded with seven new verification items covering the additions above. Still LOW RISK, still ~1 day total. Ready for handoff.*
 
