@@ -376,50 +376,40 @@ const SpacesRail = ({
                 >
                     {isNS ? (
                         <>
-                            {/* V5 (Sasha 2026-05-19): replaced the ns-assets.com
-                                PNG with an inline SVG of the NS flag — the
-                                hosted asset was rendering as a featureless
-                                black rectangle (load issue + aspect mismatch).
-                                Inline SVG is reliable, ships with the bundle,
-                                no third-party request, exact dimensions. */}
-                            {/* NS mobile (72px rail) — flag-only, icon scale. */}
-                            <svg
-                                className="md:hidden mx-auto"
-                                width="32"
-                                height="32"
-                                viewBox="0 0 60 60"
-                                fill="none"
-                                aria-label="Network School"
-                                role="img"
-                            >
-                                <rect width="60" height="60" fill="#0a0a0a" rx="2" />
-                                {/* White "+" centered on the flag. */}
-                                <rect x="18" y="28" width="24" height="4" fill="#ffffff" />
-                                <rect x="28" y="18" width="4" height="24" fill="#ffffff" />
-                            </svg>
-                            {/* NS desktop — flag + ns.com wordmark lockup.
-                                V5: wordmark size bumped from 22→28px (Sasha
-                                explicitly: "ns.com has to be a larger size
-                                font"). Flag SVG sized to match. */}
-                            <div className="hidden md:flex items-center gap-2.5 pl-2">
-                                <svg
-                                    width="36"
-                                    height="36"
-                                    viewBox="0 0 60 60"
-                                    fill="none"
-                                    aria-hidden="true"
-                                    role="presentation"
-                                >
-                                    <rect width="60" height="60" fill="#0a0a0a" rx="2" />
-                                    <rect x="18" y="28" width="24" height="4" fill="#ffffff" />
-                                    <rect x="28" y="18" width="4" height="24" fill="#ffffff" />
-                                </svg>
+                            {/* V6 (Sasha 2026-05-19): reverted to the actual
+                                NS PNG asset (the "wavy" black flag from
+                                ns-assets.com) per Sasha — the inline SVG was
+                                a simple square + cross which doesn't carry
+                                NS's actual brand mark. The PNG ships with the
+                                aspect/curvature of NS's real flag.
+
+                                Also restructured to reuse the SAME flex
+                                layout as the SPACES chip buttons below
+                                (`flex items-center gap-3 px-3 py-2.5`) so
+                                the flag's center auto-aligns with the
+                                JOURNEY/AI OS/ME/BUILD icon column — no
+                                hand-tuned padding required. */}
+                            <div className="md:hidden flex items-center justify-center px-3 py-2.5">
+                                <img
+                                    src={NS_LOGO_URL}
+                                    alt="Network School"
+                                    className="w-8 h-8 object-contain flex-shrink-0"
+                                    draggable={false}
+                                />
+                            </div>
+                            <div className="hidden md:flex items-center gap-3 px-3 py-2.5">
+                                <img
+                                    src={NS_LOGO_URL}
+                                    alt="Network School"
+                                    className="w-7 h-7 object-contain flex-shrink-0"
+                                    draggable={false}
+                                />
                                 <span
-                                    className="select-none"
+                                    className="select-none truncate"
                                     style={{
                                         fontFamily: '"Newsreader", "Source Serif Pro", Georgia, serif',
                                         fontWeight: 600,
-                                        fontSize: "28px",
+                                        fontSize: "26px",
                                         lineHeight: 1,
                                         color: "#0a0a0a",
                                         letterSpacing: "-0.015em",
@@ -450,6 +440,20 @@ const SpacesRail = ({
                     )}
                 </Link>
             </div>
+
+            {/* V6 (Sasha 2026-05-19): horizontal hairline separating the
+                logo block from the SPACES nav. Mirrors the existing rule
+                above the music player so the rail reads as three sections
+                top-to-bottom: brand → spaces → utility. Skin-aware via
+                the gold-by-default / neutral-on-NS color token. */}
+            <div
+                aria-hidden="true"
+                className="h-px mx-2 mb-1"
+                style={{
+                    backgroundImage:
+                        "linear-gradient(90deg, transparent 0%, var(--skin-rule-medium, rgba(212, 175, 55, 0.22)) 50%, transparent 100%)",
+                }}
+            />
 
             {/* Day 48 iter 8 (Sasha) — chip refinements:
                 • gap between chips bumped (gap-1 → gap-1.5) so the

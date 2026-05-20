@@ -838,11 +838,12 @@
    Hierarchy via hairlines + typography, not background contrast.
    ────────────────────────────────────────────────────────────────────── */
 
-/* Pane 1 (SpacesRail) — right-edge hairline (V3 stronger: 0.10).
-   With Pane 1 bg at #fafafa and Pane 2 at #ffffff, the surface change
-   reinforces the separation; the hairline locks it. */
+/* Pane 1 (SpacesRail) — V6 (Sasha 2026-05-19): right edge becomes a
+   double rule for editorial weight (two parallel hairlines with a thin
+   gap). `border-style: double` requires `border-width >= 3px` to render
+   as two lines instead of one. */
 [data-skin="network-school"] .liquid-glass.h-dvh {
-  border-right: 1px solid rgba(10, 10, 10, 0.10) !important;
+  border-right: 3px double rgba(10, 10, 10, 0.14) !important;
 }
 
 /* Pane 2 (SectionsPanel) — V3 (Sasha 2026-05-19): target the actual
@@ -871,6 +872,20 @@
 [data-skin="network-school"] .liquid-glass.h-dvh,
 [data-skin="network-school"] .liquid-glass.h-dvh [class*="text-white"] {
   color: #0a0a0a !important;
+}
+
+/* V6 (Sasha 2026-05-19) — visible hover shade on Pane 1 + Pane 2 items.
+   Default platform hover uses `bg-white/[0.04]` and `bg-white/[0.10]`
+   which read as near-invisible on the white NS background. Override to
+   a soft dark wash so the row tells the user it's interactive. */
+[data-skin="network-school"] .liquid-glass.h-dvh button:hover,
+[data-skin="network-school"] .liquid-glass.h-dvh a:hover,
+[data-skin="network-school"] .liquid-glass.h-dvh .group:hover {
+  background-color: rgba(10, 10, 10, 0.05) !important;
+}
+[data-skin="network-school"] [class*="w-[260px]"] .group:hover,
+[data-skin="network-school"] aside[data-pane="2"] .group:hover {
+  background-color: rgba(10, 10, 10, 0.05) !important;
 }
 [data-skin="network-school"] .liquid-glass.h-dvh [class*="bg-white\\/\\["],
 [data-skin="network-school"] .liquid-glass.h-dvh [class*="bg-white/["] {
