@@ -56,12 +56,19 @@ export const DoNowSection = ({
                   : "border-white/60",
               )}
             >
+              {/*
+                Square checkbox (Sasha 2026-05-19): "not round but
+                square, because that's how I want it to look like a
+                checkbox so that the person does not confuse it with
+                anything else." `rounded-md` keeps a subtle 6px corner
+                rounding — clearly a square, not a hard-edged box.
+              */}
               <button
                 type="button"
                 aria-label="Complete task"
                 onClick={() => onCompleteTask(id)}
                 disabled={loading}
-                className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[#0a1628]/30 bg-white transition hover:border-emerald-500 hover:bg-emerald-50"
+                className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md border-2 border-[#0a1628]/40 bg-white transition hover:border-emerald-500 hover:bg-emerald-50"
                 title="Complete this task"
               >
                 <Check

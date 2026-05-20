@@ -102,12 +102,15 @@ export const ActiveFocusBanner = ({
             key={task.id}
             className="group/doing flex items-center gap-3 rounded-xl border border-emerald-200/50 bg-white/75 px-3 py-2.5 backdrop-blur-sm transition hover:bg-white/90"
           >
+            {/* Square checkbox — matches the DOING NOW section
+                (Sasha 2026-05-19: "square so the person does not
+                confuse it with anything else"). */}
             <button
               type="button"
               aria-label={`Complete: ${task.text}`}
               onClick={() => onCompleteTask(task.id)}
               disabled={loading}
-              className="group/check flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-[#0a1628]/30 bg-white transition hover:border-emerald-500 hover:bg-emerald-50"
+              className="group/check flex h-7 w-7 shrink-0 items-center justify-center rounded-md border-2 border-[#0a1628]/40 bg-white transition hover:border-emerald-500 hover:bg-emerald-50"
             >
               <Check
                 size={14}
