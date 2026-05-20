@@ -296,5 +296,51 @@ When V4 brings forms into the NS surface, scope the changes to `[data-skin="netw
 
 ---
 
-*White-Label Strategy v1.6*
-*Created: 2025-01-04 · Updated: 2026-05-20 (V7→V8 lessons — mobile/desktop shell class parity, auth-page CSS-!important override pattern, mandatory auth-flow audit per skin)*
+---
+
+## Strategic Role in the Commercial Model (Day 77, May 20, 2026)
+
+White-label is no longer "an option we may pursue Phase 2." It's the **primary commercial channel** for the matching product going forward.
+
+### Why white-label became central
+
+The Day 76–77 strategic crystallization (see [`monetization_strategies.md` → Strategic Crystallization](./monetization_strategies.md#strategic-crystallization-day-7677-may-1920-2026)) repositioned the product:
+
+- **Matching is the product. Unique-business methodology is the engine underneath.**
+- The market that buys matching is **community ecosystem leaders**, not individual cold-traffic founders.
+- Each community wants their own brand on top of shared coordination infrastructure — white-label is the architectural fit.
+
+### The commercial flow
+
+1. Ecosystem leader (Balaji, Carolina, vnest, venture-studio operators) signs paid pilot
+2. Sasha deploys a community-specific skin (process documented in *Per-Community Skin Spec* above)
+3. Members onboard via JOURNEY: Top Talent → Mission → Assets → QoL → matching pool
+4. Community pays per-active-member (~$5–8/mo) + onboarding fee per new member (~$30–50)
+5. Cross-network commons compounds across all deployed skins (opt-in anonymized data, CC BY 4.0)
+
+### Why no competitor has shipped this
+
+- Mighty Networks, Circle, Skool, Heartbeat → no matching engine, no self-knowledge layer
+- YC Co-Founder Matching, Lunchclub → matching without per-community white-label
+- Vistage, EO, MasterMind → human-curated, doesn't scale
+- LinkedIn → surface social-graph matching, not depth
+
+The combination of **per-community white-label + AI-precision matching + self-knowledge depth + consent-bearing active intro** is currently unoccupied.
+
+### Throughput target
+
+Each skin should take **hours, not days** by the second deployment. V1–V8 of the NS skin (May 18–20) demonstrated the patterns; once `theme.config.ts` is codified per Phase 2 plan, the marginal cost of skin N+1 drops sharply.
+
+This is the load-bearing claim that makes the planetary-coordination-infrastructure play tractable: if skins are cheap, the network of communities scales; if skins are expensive, it doesn't.
+
+### Cross-references
+
+- Commercial framing + business model: [`monetization_strategies.md` → Strategic Crystallization](./monetization_strategies.md#strategic-crystallization-day-7677-may-1920-2026)
+- New funnel architecture each skin inherits: [`alexanders_unique_business.md` → Funnel Architecture v2](./unique-businesses/alexanders_unique_business.md#funnel-architecture-v2--matching-as-hero-day-77-may-20-2026)
+- Reply-ready content for the first commercial pilot (Balaji / NS): [`leonardo_strategy_instances/balaji_srinivasan.md` → Reply-Ready Arsenal](../03-playbooks/leonardo_strategy_instances/balaji_srinivasan.md#reply-ready-arsenal-day-77-may-20-2026)
+- Superseded early thinking: `community_whitelabel_spec.md` (Priroda-era draft, kept as historical record)
+
+---
+
+*White-Label Strategy v1.7*
+*Created: 2025-01-04 · Updated: 2026-05-20 (V7→V8 lessons — mobile/desktop shell class parity, auth-page CSS-!important override pattern, mandatory auth-flow audit per skin) · Strategic-role section added 2026-05-20 (Day 77 — white-label as primary commercial channel for the matching product, post-Day-77 crystallization)*

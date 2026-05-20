@@ -321,6 +321,65 @@ Both branches: paid → platform access. Free → reveal page only. **Funnel mon
 
 ---
 
+### Funnel Architecture v2 — Matching-as-Hero (Day 77, May 20, 2026)
+
+**The reframe:** the hero of the funnel is no longer *"build your unique business."* The hero is **find your collaborators**. The unique-business work becomes the premium layer for members who graduate from matching into venture-building inside Sasha's own community. See also: [`monetization_strategies.md` → Strategic Crystallization](../monetization_strategies.md#strategic-crystallization-day-7677-may-1920-2026).
+
+**The two-question framing** (extension of Balaji's *"AI makes everyone a CEO"*):
+
+1. **WHO to build with** → matching layer (straightforward mechanism; market ready)
+2. **WHAT to build** → unique-business methodology (novel mechanism; market needs education)
+
+Sasha addresses both, in this order: **who first, what second.** The matching layer is the universal product; the unique-business methodology is the deeper premium layer for those who emerge from matching into building.
+
+**JOURNEY space — 5 items (the matching onboarding + bridge):**
+
+1. Start by finding your top talent
+2. Discover your mission
+3. Map your assets
+4. Assess your quality of life
+5. Build a business off your top talent *(bridge → BUILD space)*
+
+**BUILD space — 3 items (the venture path, moved out of JOURNEY):**
+
+- The Path to Your Unique Business *(was: "See the Shortcut Path to Your Business")*
+- See the Dashboard *(was: "See How We're Building This")*
+- Take the exact playbook
+
+**Why this order:**
+
+- Items 1–3 (Talent + Mission + Assets) = the **matching-onboarding triad**. ~10–15 min total. Member becomes matchable after #3.
+- Item 4 (QoL) = consciousness-level / culture-fit **resolution filter**. Not optional context — load-bearing for match quality. Hypothesis: consciousness-level mismatch is the silent collaboration killer. Members who skip QoL get coarser matches. Built-in completion incentive.
+- Item 5 = bridge into the BUILD space for those who want the venture path after matching.
+
+**Post-Top-Talent CTA pivot:**
+
+- **Old:** choose between *Build a Business / Unlock Deep Profile / See the Playbook* (binary fork)
+- **New:** continuous forward motion → *"Discover your mission — free, 10 minutes."* The deeper Top Talent reveal becomes an optional sidepath, not the primary forward motion.
+
+**Where Ignite ($555) lives now:**
+
+- `/ignite` URL stays
+- No longer linked from public landing or post-Top-Talent screen
+- Accessible via JOURNEY item #5 → BUILD space
+- Strangers no longer convert to $555 directly
+- Ignite becomes a premium step *for founders who completed the matching triad and chose the venture path*
+
+**Auto-propagation across skins (NS, future Carolina / vnest / venture-studio instances):**
+
+- JOURNEY step order + labels + post-Top-Talent CTA logic → **auto-propagate** (shared components across all skins)
+- Skin-specific landing copy → currently **hardcoded** per skin; needs separate update per deployment
+- One-time fix to make labels + hero copy config-driven per skin: ~half a day's work, worth doing before adding additional skins beyond NS
+
+**Risks / migration considerations:**
+
+- Existing user state (members partway through current JOURNEY order, lock states on items 5–8) needs migration so progress flags don't reset
+- Founder testimonials (Oyi, Sergey, Sandra, Alexa, Karime, Kirill) stay framed as unique-business outcomes — they did the unique-business work, not matching. Move them to BUILD space or `/founders` sub-page, not on the new landing hero. *Don't re-narrate them — they didn't get matched to anyone yet.*
+- `/path` value-ladder page moves to BUILD space alongside the venture-path content
+- Public landing rewrite should not ship until **(a)** the path B audience (community ecosystem leaders) has a real destination — even a placeholder pilot-inquiry page — and **(b)** NS-skin is config-driven so changes propagate without manual re-skinning
+
+---
+
 ## Table of Contents
 
 ### I. Core Artifacts (The 14-Domain OS)

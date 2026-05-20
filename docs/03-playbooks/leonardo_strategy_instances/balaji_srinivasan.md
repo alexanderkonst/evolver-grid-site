@@ -112,6 +112,67 @@ I'd be glad to run a small free pilot with whichever NS cohort you'd most want p
 
 ---
 
+## Reply-Ready Arsenal (Day 77, May 20, 2026)
+
+Held in reserve for when Balaji responds. **Do not include in the first message** — the Leonardo strategy is *"no price quoted, no title requested"* at the door. These materials enter the conversation after he engages.
+
+### Traction answer — sovereign, not performed
+
+If asked *"what's the traction?"*, do NOT say *"running in multiple communities"* if that isn't deployed-and-live. Detection systems will flag it. The Leonardo move is craft-object + first-among-equals invitation:
+
+> *"Zero deployed pilots — by design. The prototype is live; I want NS to be the first deployment because the patterns it surfaces will inform everything downstream. I've spent a year at NS plus building the underlying methodology with six founders who've walked through it. The matchmaking layer is what the work pointed at next, and NS is the natural first context."*
+
+Clean, sovereign, stronger than performed traction. Balaji respects clean truth; he can smell the other thing.
+
+### 90-day NS pilot structure (tuned to NS's real topology)
+
+Network School's real shape: ~150 monthly cohort members rotating through + ~150 long-termers in residence + ~10/month cohort-to-long-termer conversion.
+
+**Days 1–30 — long-termers first.** Onboard 30–50 long-termer volunteers (10–15 min each: Talent + Mission + Assets + QoL profile). First match wave + intros begin firing. *Why first:* highest willingness, ongoing value, builds the scaffolding cohort members anchor into.
+
+**Days 31–60 — cohort layered in.** New monthly cohort onboards during standard NS intake (+10–15 min to existing flow). Two match streams per cohort member: matches with long-termers (anchoring) + matches with peers (project formation).
+
+**Days 61–90 — full system + measurement.** Second cohort arrives. Full pipeline running. Measure outcomes.
+
+### Cost & post-pilot pricing
+
+- **Pilot cost:** $2K total for 90 days *(or free first month, $1.5K for next 60 — make it functionally impossible to refuse)*
+- **Post-pilot:** $10/long-termer/mo + $5/cohort-member during their 30-day stay ≈ **~$2.25K/mo** at current NS scale
+- Rounding-error in NS budget. Massive ROI floor if even one collaboration produces a venture per quarter.
+
+### Success metrics — agree upfront
+
+- **Time-to-first-collaboration** (baseline vs. pilot)
+- **Long-termer conversion rate uplift** (vs. NS baseline of ~10/month) — directly tuned to NS's existing KPI
+- Attributed collaborations / projects / startups in formation
+- Member-reported *"I found my collaborators here"* survey
+
+### Strategic hook for the ROI conversation
+
+Each new cohort member matched with a long-termer is more likely to convert to long-termer themselves. **Collaborator-anchor = reason to stay.** The matching engine is directly tuned to Balaji's existing 10/month conversion KPI — he sees ROI in a dashboard he already reads, not a new metric he has to learn to care about.
+
+### Business model in his language
+
+- **Onboarding fee:** ~$30–50 per new member (one-time, on T-M-A-Q profile creation)
+- **Monthly:** ~$5–8 per active member (active = engaged with matching in the month)
+- Solves "value is mostly upfront" — onboarding captures the high-value moment, monthly captures the ongoing coordination substrate
+
+### Language for the Balaji audience (avoid web3 — he's beyond it)
+
+- *"Coordination infrastructure for high-agency networks"*
+- *"The discovery protocol your network never had"*
+- *"The primitive your network state thesis requires"*
+
+### Honest gap to acknowledge
+
+Sasha hasn't yet worked with revenue-earning founders at scale. The six cohort members are deeper than aspiring-only founders but not yet the revenue-earning founder class NS is full of. **NS pilot is the first proof point with that segment.** Don't pretend otherwise; Balaji can smell performed credibility. The honest framing IS the stronger one — *"this would be my first deployment with the founder class your network attracts"* — and it leans into the first-among-equals frame the letter already establishes.
+
+### Two-question framing for follow-up dialogue
+
+Extension of his own *"AI makes everyone a CEO"*: two questions emerge — **who to build with** and **what to build**. The matching layer answers "who" (straightforward mechanism, market ready). The unique-business methodology answers "what" (novel mechanism, takes time to educate the market). Sasha addresses both, in this order: **who first, what second.** Useful framing if the conversation moves to depth.
+
+---
+
 ## Version history — the letter
 
 Capturing the iteration arc that produced the send-ready version. Each version taught a lesson worth preserving for future patron addresses.
