@@ -327,7 +327,7 @@ Both branches: paid → platform access. Free → reveal page only. **Funnel mon
 
 **The two-question framing** (extension of Balaji's *"AI makes everyone a CEO"*):
 
-1. **WHO to build with** → matching layer (straightforward mechanism; market ready)
+1. **WHO to work with** → matching layer (straightforward mechanism; market ready). Broad — covers short-term collaborations through long-term co-founder relationships, mentors, advisors, project partners.
 2. **WHAT to build** → unique-business methodology (novel mechanism; market needs education)
 
 Sasha addresses both, in this order: **who first, what second.** The matching layer is the universal product; the unique-business methodology is the deeper premium layer for those who emerge from matching into building.

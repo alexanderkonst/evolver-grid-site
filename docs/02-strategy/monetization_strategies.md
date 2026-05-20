@@ -56,7 +56,7 @@ Not two products — the same arc seen from different ends. Self-knowledge is th
 
 When AI makes everyone a CEO (Balaji's framing), two questions emerge:
 
-1. **WHO to build with** → the matching layer answers this. Mechanism is straightforward; market is ready.
+1. **WHO to work with** → the matching layer answers this. Broad enough to cover short-term collabs through long-term co-founders. Mechanism is straightforward; market is ready.
 2. **WHAT to build** → the unique-business methodology answers this. Mechanism is novel; market needs education.
 
 Sasha addresses both, in this order: **who first, what second.** Who is the universal product. What is the deeper premium layer.

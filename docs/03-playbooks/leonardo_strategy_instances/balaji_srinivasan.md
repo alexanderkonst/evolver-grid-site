@@ -169,7 +169,7 @@ Sasha hasn't yet worked with revenue-earning founders at scale. The six cohort m
 
 ### Two-question framing for follow-up dialogue
 
-Extension of his own *"AI makes everyone a CEO"*: two questions emerge — **who to build with** and **what to build**. The matching layer answers "who" (straightforward mechanism, market ready). The unique-business methodology answers "what" (novel mechanism, takes time to educate the market). Sasha addresses both, in this order: **who first, what second.** Useful framing if the conversation moves to depth.
+Extension of his own *"AI makes everyone a CEO"*: two questions emerge — **who to work with** and **what to build**. The matching layer answers "who" — broad enough to cover short-term collaborations, project partners, advisors, and long-term co-founders alike (straightforward mechanism, market ready). The unique-business methodology answers "what" (novel mechanism, takes time to educate the market). Sasha addresses both, in this order: **who first, what second.** Useful framing if the conversation moves to depth — but **don't lead with both in the first message.** The bronze-horse principle: hold WHAT as quiet aside / follow-up beat, not foregrounded offer.
 
 ---
 
