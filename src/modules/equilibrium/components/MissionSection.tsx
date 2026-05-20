@@ -60,6 +60,9 @@ const MissionSectionBase = ({
         disabled={loading}
         emptyPlaceholder="—"
         onSave={onSetOverride}
+        // Centered body to match the centered section title.
+        // Sasha 2026-05-20.
+        align="center"
         // Advisory word-count hint. 2026-05-19: relaxed from "one
         // first-person sentence" → "one sentence at life scale". The
         // shape that resonates for Sasha is multi-clause: what / by

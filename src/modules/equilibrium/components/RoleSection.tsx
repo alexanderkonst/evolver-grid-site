@@ -54,6 +54,9 @@ const RoleSectionBase = ({
         disabled={loading}
         emptyPlaceholder="—"
         onSave={onSetOverride}
+        // Centered body to match the centered section title.
+        // Sasha 2026-05-20.
+        align="center"
       />
     </div>
   );
