@@ -554,57 +554,67 @@ export function useEquilibriumV2(): EquilibriumV2Data {
     [],
   );
 
+  /**
+   * Hard-delete a workstream (Sasha 2026-05-20).
+   *
+   * Was previously a soft-archive that stashed the workstream into a
+   * "completed pile" — Sasha: "I actually want to delete it, not
+   * complete it, because otherwise it just stays there forever."
+   *
+   * Now: real DELETE on equilibrium_workstreams.id. Schema cascades
+   * automatically:
+   *   • equilibrium_tasks.workstream_id → ON DELETE CASCADE
+   *   • equilibrium_focus.task_id      → ON DELETE CASCADE (via task)
+   * So one delete removes the workstream, its tasks, and any focus
+   * rows pointing at those tasks. Single round-trip, no orphans.
+   *
+   * The chip layer guards this with a window.confirm() — destructive
+   * action needs an explicit "are you sure" because there's no undo.
+   * (We dropped the 5-second toast-Undo pattern because reversing a
+   * cascade delete from local state is fragile — tasks were already
+   * gone server-side.)
+   *
+   * Existing archived workstreams (from the previous soft-archive
+   * behavior) remain in equilibrium_workstreams with `archived_at`
+   * set. The "completed pile" UI continues to render them with a
+   * Restore action; this hard-delete doesn't touch them.
+   */
   const deleteWorkstream = useCallback(
     async (id: string) => {
       const target = workstreams.find((w) => w.id === id);
       if (!target) return;
 
-      // Soft-archive (cascade deletes tasks via FK in schema).
-      const res = await eqAny
-        .from("equilibrium_workstreams")
-        .update({ archived_at: new Date().toISOString() })
-        .eq("id", id);
-      if (res.error) {
-        toast.error("Couldn't archive workstream — try again.");
-        return;
-      }
+      // Optimistic: drop from local state immediately. If the DELETE
+      // fails, we refetch to repair (rare; FKs make this delete
+      // straightforward).
       setWorkstreams((prev) => prev.filter((w) => w.id !== id));
-      const archivedAt = new Date().toISOString();
-      setArchivedWorkstreams((prev) =>
-        [{ ...target, archived_at: archivedAt }, ...prev],
+      setTasks((prev) => prev.filter((t) => t.workstream_id !== id));
+      setFocus((prev) =>
+        prev.filter((f) => {
+          // Drop any focus row whose task belonged to this workstream.
+          const task = target && tasks.find((t) => t.id === f.task_id);
+          return !task || task.workstream_id !== id;
+        }),
       );
-      // Tasks remain in local state — they're not deleted from DB by archive.
       if (activeWorkstreamId === id) {
-        setActiveWorkstreamId(workstreams.find((w) => w.id !== id)?.id ?? null);
+        setActiveWorkstreamId(
+          workstreams.find((w) => w.id !== id)?.id ?? null,
+        );
       }
 
-      // Undo affordance — restore by clearing archived_at.
-      toast.success(`Completed "${target.title}"`, {
-        duration: 5000,
-        action: {
-          label: "Undo",
-          onClick: async () => {
-            const undoRes = await eqAny
-              .from("equilibrium_workstreams")
-              .update({ archived_at: null })
-              .eq("id", id);
-            if (undoRes.error) {
-              toast.error("Couldn't undo — refresh to recover.");
-              return;
-            }
-            setWorkstreams((prev) =>
-              [...prev, { ...target, archived_at: null }].sort(
-                (a, b) => a.position - b.position,
-              ),
-            );
-            setArchivedWorkstreams((prev) =>
-              prev.filter((w) => w.id !== id),
-            );
-          },
-        },
-      });
+      const res = await eqAny
+        .from("equilibrium_workstreams")
+        .delete()
+        .eq("id", id);
+      if (res.error) {
+        toast.error("Couldn't delete workstream — refreshing.");
+        void fetchAll();
+        return;
+      }
+
+      toast.success(`Deleted "${target.title}"`);
     },
-    [activeWorkstreamId, workstreams],
+    [activeWorkstreamId, workstreams, tasks, fetchAll],
   );
 
   const restoreWorkstream = useCallback(
