@@ -167,14 +167,17 @@ export const SmartGoalsSection = ({
                 key={t.id}
                 className="group/done flex items-center gap-3 rounded-lg bg-white/55 px-4 py-2.5 text-[#0a1628]/95 transition hover:bg-white/80"
               >
+                {/* Square completed-state checkbox — visually matches
+                    the active-task checkbox above, but pre-checked.
+                    Click to restore (uncomplete). */}
                 <button
                   type="button"
                   aria-label="Restore to active"
                   onClick={() => onUncompleteTask(t.id)}
-                  className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-emerald-400/60 bg-emerald-50/85 transition hover:border-emerald-500 hover:bg-emerald-100"
+                  className="flex h-6 w-6 shrink-0 items-center justify-center rounded-md border-2 border-emerald-500/70 bg-emerald-50 transition hover:border-emerald-600 hover:bg-emerald-100"
                   title="Click to restore"
                 >
-                  <Check size={12} className="text-emerald-600" />
+                  <Check size={12} className="text-emerald-700" />
                 </button>
                 <span className="flex-1 line-through decoration-[#0a1628]/45">
                   {t.text}
@@ -228,11 +231,13 @@ const SortableTaskBar = ({
         isDragging && "z-10 opacity-90 shadow-lg",
       )}
     >
+      {/* Square checkbox — matches DOING NOW. Sasha 2026-05-19:
+          "checkboxes should look like checkboxes, not round." */}
       <button
         type="button"
         aria-label="Complete task"
         onClick={onComplete}
-        className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-[#0a1628]/20 bg-white/80 ml-2 transition hover:border-emerald-400 hover:bg-emerald-50"
+        className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md border-2 border-[#0a1628]/30 bg-white/85 ml-2 transition hover:border-emerald-400 hover:bg-emerald-50"
       >
         <Check
           size={14}

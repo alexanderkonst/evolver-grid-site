@@ -100,12 +100,12 @@ const SoundCloudMinimalPlayer = () => {
         // left edge aligns with the rest of the rail's icon column.
         // Mobile keeps symmetric `px-3` so `justify-center` still
         // centers the play button cleanly in the 72px column.
-        {/* V5 (Sasha 2026-05-19): removed the md:pl-1.5 override. The
-            previous 6px left-shift was meant to optically align the play
-            button with the chat-with-us text's letter strokes, but it
-            actually pulled the play button OUT of the icon column.
-            Restoring uniform px-3 so the play button sits at the same
-            x as JOURNEY / AI OS / chat / settings / log-out icons. */}
+        // V5 (Sasha 2026-05-19): removed the md:pl-1.5 override. The
+        // previous 6px left-shift was meant to optically align the play
+        // button with the chat-with-us text's letter strokes, but it
+        // actually pulled the play button OUT of the icon column.
+        // Restoring uniform px-3 so the play button sits at the same
+        // x as JOURNEY / AI OS / chat / settings / log-out icons.
         <div className="flex items-center gap-3 px-3 py-2.5 rounded-2xl w-full justify-center md:justify-start transition-all duration-300 hover:bg-white/[0.04]">
             {/* Play / Pause */}
             <button

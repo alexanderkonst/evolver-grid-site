@@ -60,12 +60,12 @@ const MissionSectionBase = ({
         disabled={loading}
         emptyPlaceholder="—"
         onSave={onSetOverride}
-        // Phase C: advisory word-count hint nudges toward the locked
-        // voice — one first-person sentence (Sasha: "I turn fog into
-        // frameworks people can act on right away"). Existing values
-        // over the limit are NOT blocked; this is purely a hint.
-        wordLimit={25}
-        wordLimitHint="try one sentence starting with 'I' — verb-form, concrete"
+        // Advisory word-count hint. 2026-05-19: relaxed from "one
+        // first-person sentence" → "one sentence at life scale". The
+        // shape that resonates for Sasha is multi-clause: what / by
+        // what means / toward what. 40 words gives enough room.
+        wordLimit={40}
+        wordLimitHint="one sentence at life scale — what · by what means · toward what"
       />
     </div>
   );

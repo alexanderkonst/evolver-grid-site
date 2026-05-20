@@ -449,7 +449,14 @@ export const EquilibriumV2Page = () => {
           <EquilibriumSectionCard
             id={SECTION_IDS.role}
           >
-            <SectionHeader title="Role" />
+            {/* Info copy 2026-05-19 — paraphrased from
+                docs/04-products/equilibrium_user_manual.md → "Role
+                (rarely changes). One sentence. Synced from ZoG / Top
+                Talent. Your current Top Talent in plain words." */}
+            <SectionHeader
+              title="Role"
+              infoIconCopy="One sentence — your current Top Talent in plain words. Rarely changes. Synced from Top Talent Discovery. The 'how I show up' that the Lifelong Dedication points through."
+            />
             <RoleSection
               roleDisplay={eq.roleDisplay}
               loading={eq.loading}
@@ -512,7 +519,14 @@ export const EquilibriumV2Page = () => {
           <EquilibriumSectionCard
             id={SECTION_IDS.workstreams}
           >
-            <SectionHeader title="Workstreams" />
+            {/* Info copy 2026-05-19 — paraphrased from
+                docs/04-products/equilibrium_user_manual.md → "Workstreams
+                — the streams of work the strategies open. Up to 7. Drag
+                to reorder." Phase note: surface during Seeing onward. */}
+            <SectionHeader
+              title="Workstreams"
+              infoIconCopy="The streams of work the strategies open. Up to 7. Drag to reorder. Capture during the Seeing phase (First Quarter) when the 'how' becomes obvious — write it down before clarity drifts."
+            />
             <WorkstreamsSection
               workstreams={eq.workstreams}
               archivedWorkstreams={eq.archivedWorkstreams}
@@ -533,7 +547,15 @@ export const EquilibriumV2Page = () => {
           <EquilibriumSectionCard
             id={SECTION_IDS.goals}
           >
-            <SectionHeader title="Intuitive Tasks" />
+            {/* Info copy 2026-05-19 — paraphrased from
+                docs/04-products/equilibrium_user_manual.md → "Intuitive
+                Tasks — the concrete moves under each workstream. Up to 7
+                per stream." Promote button surfaces the chosen one into
+                DOING NOW. */}
+            <SectionHeader
+              title="Intuitive Tasks"
+              infoIconCopy="The concrete moves under each workstream. Up to 7 per stream. Drag to reorder. Press DO NOW on a task to promote it into your active focus."
+            />
             <SmartGoalsSection
               workstreamTitle={activeWorkstream?.title ?? null}
               tasks={activeTasks}
@@ -565,7 +587,18 @@ export const EquilibriumV2Page = () => {
             id={SECTION_IDS.doNow}
             emphasized
           >
-            <SectionHeader title="DOING NOW" />
+            {/* Info copy 2026-05-19 — paraphrased from
+                docs/04-products/equilibrium_user_manual.md → "DO NOW
+                (Harvesting / any execution day). The chosen action
+                collapses everything above into one move. Up to 3 tasks.
+                1 is recommended. Each task on the Workstream list has a
+                DO NOW button — promote it here. Check the box →
+                animates complete, cascades to the workstream's
+                done-pile." */}
+            <SectionHeader
+              title="DOING NOW"
+              infoIconCopy="The chosen action — everything above collapses into one move. Up to 3 tasks, ONE recommended. Promote tasks here with the DO NOW button on a workstream task. Check the box to complete; it cascades back to the workstream's done-pile."
+            />
             <DoNowSection
               focusedTaskIds={eq.focusedTaskIds}
               taskById={taskById}
