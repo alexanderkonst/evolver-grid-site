@@ -1,6 +1,6 @@
 import { Suspense, useRef, useMemo } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { Environment, Float, ContactShadows } from "@react-three/drei";
+import { Environment, ContactShadows } from "@react-three/drei";
 import { EffectComposer, Bloom, N8AO, Noise } from "@react-three/postprocessing";
 import { BlendFunction } from "postprocessing";
 import * as THREE from "three";
@@ -86,33 +86,22 @@ const Dodecahedron = ({ hue, isStatic }: { hue: "warm" | "cool" | "neutral"; isS
     meshRef.current.rotation.z = Math.sin(t * 0.4 + Math.PI / 3) * 0.04;
   });
 
+  // Wave 6 (Day 74 evening): removed the <Float> wrapper. Float was adding
+  // an extra Y-bob on top of the compound rotation, which on slower hardware
+  // showed up as visible jitter — two motion sources fighting for the same
+  // frame budget. Compound rotation alone is enough "alive."
   return (
-    <Float
-      speed={isStatic ? 0 : 0.8}
-      rotationIntensity={0}
-      floatIntensity={isStatic ? 0 : 0.3}
-    >
-      <mesh ref={meshRef} castShadow receiveShadow>
-        {/* Dodecahedron with detail=0 (12 flat pentagonal faces, as
-            intended — corresponds to 12-orb library × 12-month cycle).
-            Slightly larger (1.15 vs 1.1) since the matte material reads
-            smaller than the shiny mirror did. */}
-        <dodecahedronGeometry args={[1.15, 0]} />
-        <meshStandardMaterial
-          color={palette.color}
-          emissive={palette.emissive}
-          emissiveIntensity={palette.emissiveIntensity}
-          // MATTE CERAMIC — this is the registration shift from "metal" to
-          // "clay/ceramic". Low metalness + high roughness = surface that
-          // scatters light evenly, reads as tactile, NOT mirror-finish.
-          metalness={0.1}
-          roughness={0.75}
-          // Slight flat-shading vibe via low envMapIntensity — the HDRI
-          // contributes ambience but doesn't dominate as reflection.
-          envMapIntensity={0.4}
-        />
-      </mesh>
-    </Float>
+    <mesh ref={meshRef} castShadow receiveShadow>
+      <dodecahedronGeometry args={[1.15, 0]} />
+      <meshStandardMaterial
+        color={palette.color}
+        emissive={palette.emissive}
+        emissiveIntensity={palette.emissiveIntensity}
+        metalness={0.1}
+        roughness={0.75}
+        envMapIntensity={0.4}
+      />
+    </mesh>
   );
 };
 
@@ -139,7 +128,7 @@ export const MdlsSacred3D = ({
       <Canvas
         camera={{ position: [0, 0.3, 3.4], fov: 42 }}
         gl={{ alpha: true, antialias: true }}
-        dpr={[2, 3]}
+        dpr={[1, 2]}
         shadows
       >
         {/* ─── 3-point industrial-design photography lighting ──────────
@@ -200,38 +189,29 @@ export const MdlsSacred3D = ({
           />
         </Suspense>
 
-        {/* Postprocessing stack — calibrated for "photographed" feel.
-            Skipped entirely when static (perf budget). */}
+        {/* Postprocessing stack — Wave 6 reduced cost for scroll smoothness.
+            Multisampling 0 (none) — was 4, big GPU saving.
+            N8AO quality "low" — was "medium". Visual diff is minimal at
+            our object scale; perf diff is significant. */}
         {!effectiveStatic && (
-          <EffectComposer multisampling={4}>
-            {/* N8AO — ambient occlusion. Darkens crevices and contact points
-                where geometry meets itself. THIS is what makes geometry feel
-                solid/heavy instead of paper-thin. Faster than vanilla SSAO. */}
+          <EffectComposer multisampling={0}>
             <N8AO
               aoRadius={0.5}
-              intensity={1.5}
-              quality="medium"
+              intensity={1.2}
+              quality="low"
               color="#2a1a08"
               distanceFalloff={1.0}
             />
-            {/* Bloom — light bleed on the bright highlights. Threshold high
-                so only the rim-light and specular highlights bloom, not
-                the whole object. */}
             <Bloom
-              intensity={0.5}
-              luminanceThreshold={0.55}
+              intensity={0.45}
+              luminanceThreshold={0.6}
               luminanceSmoothing={0.6}
               mipmapBlur
             />
-            {/* Noise — extremely subtle film grain. Authenticity layer —
-                same effect as analog film grain in product photography.
-                Without this, the render feels CLEAN; with it, it feels
-                photographed. Blend OVERLAY so it sits on top without
-                tinting. */}
             <Noise
               premultiply
               blendFunction={BlendFunction.OVERLAY}
-              opacity={0.12}
+              opacity={0.10}
             />
           </EffectComposer>
         )}
