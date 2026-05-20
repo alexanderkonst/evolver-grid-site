@@ -7440,3 +7440,52 @@ What didn't move today: the broader Si–Do (first $555 stranger from funnel). S
 - For Balaji conversation: lead with the treasury trajectory doc as proof of structural integrity, *before* the offer paragraph. It converts "who owns the platform" from objection to signal.
 - For Carolina pilot: draft the gift-pilot one-pager (free, 3–6 months, mutual termination, no commercial terms until both parties want them).
 
+---
+
+## Day 77 — Wednesday, May 20, 2026
+
+### Frame
+
+NS white-label skin spanned eight iterations across two days (Day 75–77). Started Day 75 as a "show Balaji what his platform could be" mockup ask. Ended as the **first real execution of `docs/02-strategy/white_label_strategy.md` Phase 2** — the theme-layer extraction the doc had been waiting on since January.
+
+`/ns/*` mounted via `BrowserRouter basename={"/ns"}`. Same React component tree, same data flow, same backend endpoints — only `[data-skin="network-school"]` token overrides + a handful of inline-style overrides distinguish the two surfaces. The skin infrastructure was already production-ready (Aurora + Navy+Gold already lived behind the same `data-skin` attribute); v1 just needed to add a third entry and exercise the seams.
+
+### What shipped (V1 → V8)
+
+- **V1 (Day 75):** `/ns/*` route prefix via basename. `NSScopeLock` component force-mounts the skin in scope. `[data-skin="network-school"]` token block + Source Serif Pro font + decoration overrides.
+- **V2:** Tone inversion — Pane 1 white, hairline dividers between panes, NS-correct radius on CTAs, rail icons grayscale.
+- **V3:** Typography overhaul — Newsreader display + serif body + Inter UI chrome. Tight letter-spacing on display, generous line-height on body.
+- **V4:** Logo lockup with "ns.com" wordmark, preview banner hidden, music-player tokens, utility-row uniformity, Pane 2 close button visibility.
+- **V5:** Inline SVG flag (later reverted to PNG), GlyphIcon `place-items: center` selector (catches inline-style-normalized-by-CSSOM colors), strikethrough position 55%→62% for lowercase, Pane 2 header height parity.
+- **V6:** PNG flag via chip-shape wrapper for auto-alignment, horizontal separator below logo, double-border between Pane 1↔2, visible hover shade under NS, PreviewBanner returned as legal disclaimer ("Demo · not affiliated with ns.com").
+- **V7:** Flag size 28→32px, Pane 3 hero pt 2.5rem so y=104 aligns with JOURNEY chip y=105 and Pane 2 title y=105 — pixel-perfect cross-pane alignment.
+- **V8 (Day 77):** Mobile drawer parity fix (className=`"h-dvh"` passed to mobile SpacesRail; CSS selectors were silently missing on mobile). `/ns/auth` skin overrides via `[data-skin="network-school"] article.liquid-glass-strong …` — CSS `!important` beats non-!important inline styles per cascade, no Auth.tsx edits needed.
+
+### Files touched
+
+`src/components/game/SpacesRail.tsx` · `src/components/game/SectionsPanel.tsx` · `src/components/game/GameShellV2.tsx` · `src/components/SoundCloudMinimalPlayer.tsx` · `src/components/skin/{NSScopeLock,PreviewBanner}.tsx` · `src/contexts/SkinContext.tsx` · `src/lib/landingDesign.tsx` · `src/pages/QualityOfLifeMapAssessment.tsx` · `src/App.tsx` · `src/index.css` (heavily) · `docs/02-strategy/white_label_strategy.md` (v1.0 → v1.6).
+
+### Key decisions
+
+1. **Path-based routing, not subdomain.** `/ns` ships today; `ns.findyourtoptalent.com` is a one-line trigger change later. Architecture is identical.
+2. **Inline SVG was wrong for NS.** Reverted to the canonical wavy-flag PNG from `ns-assets.com`. **Rule:** inline SVG is fine for purely geometric marks; for any brand mark with custom contour, use the source CDN's asset.
+3. **Preview banner returns under NS as a *disclaimer*, not debug chrome.** "Demo · not affiliated with ns.com" — legal honesty made part of the design.
+4. **Chip-shape wrapper for the brand logo** = auto-alignment with the SPACES nav column. No hand-tuned padding.
+5. **Pane 1 → off-white (#fafafa), not pure white.** Pure-white-on-pure-white collapsed the rail visually. SaaS-dashboard cue + hairline dividers do the separation work.
+6. **CSS `!important` beats non-`!important` inline styles.** This made auth-page-without-edits possible. Documented for future skins.
+
+### Si–Do
+
+Skin v8 lands on origin/main as `1543b8be deploy` (auth) + `c4debc94 deploy` (mobile drawer parity) + `300a47d6` (doc v1.6). Lovable preview rebuilds automatically. Cross-pane y-alignment from V7 holds in both viewports.
+
+**The actual Si–Do — first $555 stranger from funnel — remains unfired.** Sending Balaji `findyourtoptalent.com/ns` is the next concrete act that could move it. Sasha said "I'm happy to send it to him as is" → he's drafting the outreach himself.
+
+White-label strategy doc graduated v1.0 → v1.6 with seven distinct iteration lessons preserved. The second community skin (Priroda / Carolina-shaped community / whoever's next) follows the spec — should take ~hours, not days.
+
+### Open follow-ups
+
+- Once Balaji has clicked the link, capture his response into the corpus (whatever he says + whatever follow-up surface that opens). Treat as data on whether path-based skin demos read as serious.
+- When the second skin is ready, formalize `theme.config.ts` per `white_label_strategy.md` Phase 2 plan — V1-V8 demonstrated the patterns; codifying them removes the next skin's marginal cost.
+- Mobile audit is now a documented requirement; add it as a checklist item in the per-skin spec.
+- Auth flow audit (per-skin walkthrough) is documented as mandatory; codify into a brief test plan.
+
