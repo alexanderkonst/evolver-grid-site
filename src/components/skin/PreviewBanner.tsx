@@ -24,6 +24,10 @@ const PreviewBanner = () => {
   const navigate = useNavigate();
 
   if (skin === "aurora") return null;
+  // Hide on network-school skin — /ns is a public demo surface
+  // (Sasha 2026-05-19), the banner reads as a debug chip and breaks
+  // the pristine read for an external evaluator.
+  if (skin === "network-school") return null;
 
   const humanName =
     skin === "navy-gold" ? "Navy + Gold preview" : `${skin} preview`;

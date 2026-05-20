@@ -357,41 +357,72 @@ const SpacesRail = ({
                 broke that panel's design. Plan B: leave the wordmark
                 in its natural editorial position; align ONLY the two
                 flexible elements (pane 2 title + top-right logo). */}
-            <div className="p-2 md:p-3">
+            {/* V4 (Sasha 2026-05-19): logo wrapper padding reduced from
+                p-2/md:p-3 → p-1/md:p-1.5 to tighten vertical space
+                before the SPACES nav starts. Applies platform-wide
+                because Sasha asked for the change "not only in the
+                skin but also in the platform itself." */}
+            <div className="p-1 md:p-1.5">
                 <Link
                     to="/"
                     className="block group transition-all hover:opacity-90"
-                    aria-label="Find Your Top Talent — home"
+                    aria-label={isNS ? "Network School — home" : "Find Your Top Talent — home"}
                 >
-                    {/* Mobile: dedicated torus mark, no wordmark — avoids
-                        the wordmark-cropping bug on a 72px rail.
-                        Day 48 iter 7 (Sasha): torus now carries BOTH a
-                        slow 60s rotation and a gentle 6s breath so the
-                        rail feels like a living object, not a nav bar.
-                        NS skin (2026-05-19): swap to the NS flag, no
-                        rotation (editorial register doesn't breathe). */}
-                    <img
-                        src={isNS ? NS_LOGO_URL : brandMark}
-                        alt={isNS ? "Network School" : "Find Your Top Talent"}
-                        className={isNS
-                            ? "md:hidden w-10 h-10 mx-auto object-contain"
-                            : "md:hidden w-10 h-10 mx-auto object-contain brand-spin-slow"}
-                        draggable={false}
-                    />
-                    {/* Desktop: full wordmark — breath only (no rotation,
-                        since spinning text reads as broken). The 6s
-                        scale pulse adds depth without compromising the
-                        wordmark's legibility. NS skin: NS flag, no
-                        breath animation. */}
-                    <img
-                        src={isNS ? NS_LOGO_URL : brandLogo}
-                        alt={isNS ? "Network School" : "Find Your Top Talent"}
-                        className={isNS
-                            ? "hidden md:block h-auto object-contain mx-auto"
-                            : "hidden md:block h-auto object-contain brand-breath"}
-                        style={isNS ? { width: "60%", maxHeight: 56 } : { width: "89%" }}
-                        draggable={false}
-                    />
+                    {isNS ? (
+                        <>
+                            {/* NS mobile (72px rail) — flag-only at icon scale. */}
+                            <img
+                                src={NS_LOGO_URL}
+                                alt="Network School"
+                                className="md:hidden w-8 h-8 mx-auto object-contain"
+                                draggable={false}
+                            />
+                            {/* NS desktop — flag + ns.com wordmark lockup,
+                                matching the header NS uses on ns.com. The
+                                flag is the canonical ns-assets PNG; the
+                                wordmark is rendered in Newsreader serif
+                                to match NS's editorial display face. */}
+                            <div className="hidden md:flex items-center gap-2 pl-2">
+                                <img
+                                    src={NS_LOGO_URL}
+                                    alt=""
+                                    aria-hidden="true"
+                                    className="h-7 w-auto object-contain"
+                                    draggable={false}
+                                />
+                                <span
+                                    className="select-none"
+                                    style={{
+                                        fontFamily: '"Newsreader", "Source Serif Pro", Georgia, serif',
+                                        fontWeight: 600,
+                                        fontSize: "22px",
+                                        color: "#0a0a0a",
+                                        letterSpacing: "-0.01em",
+                                    }}
+                                >
+                                    ns.com
+                                </span>
+                            </div>
+                        </>
+                    ) : (
+                        <>
+                            {/* Mobile: torus mark, slow rotation + breath. */}
+                            <img
+                                src={brandMark}
+                                alt="Find Your Top Talent"
+                                className="md:hidden w-10 h-10 mx-auto object-contain brand-spin-slow"
+                                draggable={false}
+                            />
+                            {/* Desktop: full wordmark — breath only. */}
+                            <img
+                                src={brandLogo}
+                                alt="Find Your Top Talent"
+                                className="hidden md:block h-auto object-contain brand-breath"
+                                style={{ width: "89%" }}
+                                draggable={false}
+                            />
+                        </>
+                    )}
                 </Link>
             </div>
 
