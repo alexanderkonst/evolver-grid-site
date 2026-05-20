@@ -7398,3 +7398,45 @@ Three things to apply:
 The active-introduction Si–Do is closed. The matchmaker is real — every "I'd like to meet" click produces a concrete email landing in someone's inbox, every Yes produces a bilateral intro email in human voice, every Not now closes the loop cleanly with a 15-day suppression. No more silence.
 
 The broader Si–Do (first $555 stranger from the funnel) still unfired — but the engagement loop that makes the matching mechanic actually produce introductions is now complete. The platform can do what it says it does, end-to-end, without depending on users compulsively returning.
+
+---
+
+## Day 76 — Tuesday, May 19, 2026
+
+### Frame
+
+Started as a conversation about onboarding a friend's ecstatic dance community in Colombia. Turned into the first proper architectural pass on the *commons treasury* — the gap between "10% to commons" rhetoric in existing docs and the legal reality (10% routes to Alexander Konstantinov personally as Licensor in v0.1).
+
+Sasha named the unease directly: *"ALL communities pay 10% to ME? One person? I don't get it."* That sniff was structurally right. The docs were using Linus-shaped language ("commons") while the legal structure was Substack-shaped (founder receives the share). Two ways to resolve: be Substack honestly, or commit structurally to what the language already promises. Sasha chose the second — the Chouinard / Patagonia / Ecosia path: steward-ownership trajectory committed *from day 1* rather than after success.
+
+### What shipped
+
+- **New doc: [`docs/02-strategy/commons_treasury_evolution.md`](../02-strategy/commons_treasury_evolution.md)** — three-phase trajectory:
+  - Phase 1 (now, v0.1): founder steward; 10% routes to Alexander; honest.
+  - Phase 2 (~25 active Path B distributors): purpose entity formed; declared allocation buckets (40% founder steward / 40% operating treasury / 20% distributor commons fund); transparent annual report.
+  - Phase 3 (50+): distributor council co-governs; founder steward share declines on published schedule; anti-extraction clauses immutable.
+- **Distributor Agreement → v0.4** — preamble transparency note added; §16 "tithe" → "revenue share"; cross-link to treasury doc.
+- **`monetization_strategies.md` → v2.3** — all 9 "tithe" instances replaced; subtitle changed from *commons tithe* → *steward-owned commons*; cross-references threaded throughout.
+- **`README.md`** — both "tithe" instances replaced + cross-links added.
+
+### Key decisions
+
+1. **Trajectory committed in advance, not after success.** This is the structural differentiator from Substack/Patreon. The legal entity is designed to be unsellable from day 1; commitment is published; thresholds are declared (~25 distributors → Phase 2 / 50+ → Phase 3).
+2. **Sovereignty primitive consistent at every scale.** Consent token (user) → fork (distributor) → CC BY-NC-SA (methodology) → steward-ownership (network treasury). Same shape recursively. This closes the hole that was at the top of the holon stack.
+3. **Word "tithe" retired across all active docs.** Replaced by "revenue share" (the 10% mechanism) and "commons contribution" (the resulting purpose-entity flow). The metaphor was conflating *data commons* (§7 of DA, opt-in anonymized artifacts) with *revenue commons* (the purpose-entity treasury that didn't legally exist yet in v0.1).
+4. **Path A vs Path B distinction reinforced.** Most commercial use is Path A (hosted subscription, $22–$5,555); 10% rev-share applies only to Path B fork-and-self-host scale operators above $1K/month. The treasury trajectory applies to both flows (everything routes through the same destination).
+5. **Colombia pilot framed as gift, not commercial.** Carolina-shaped community onboarding stays free + time-bounded with mutual right to terminate; commercial terms (and the treasury trajectory question) don't arise until a paid agreement is mutually wanted.
+
+### Si–Do
+
+The *Linus-vs-Chouinard* question is resolved: this venture walks the Chouinard path, declared from day 1. The "commons" word in the existing docs now points at a legally trajectoried reality, not a rhetorical lift. Balaji's lawyers can read `commons_treasury_evolution.md` and verify the structure matches the language.
+
+What didn't move today: the broader Si–Do (first $555 stranger from funnel). Still unfired. Day 75's active-introduction layer awaits Lovable handoff (migration + edge functions + secrets). The treasury doc work is *not* on the Si–Do critical path — it's foundational repair done while the matchmaking mechanic ships through the Lovable pipeline.
+
+### Open follow-ups
+
+- When the first Path B distributor signs, refresh `commons_treasury_evolution.md` to v0.2 with the bootstrap reality made concrete (back-compensation formula begins to crystallize).
+- Counsel review at Phase 2 threshold: choose legal entity structure (steward-ownership LLC / perpetual purpose trust / B-Corp+PBC hybrid / foundation-owned LLC) and jurisdiction (Delaware / Germany / Wyoming / Switzerland / other).
+- For Balaji conversation: lead with the treasury trajectory doc as proof of structural integrity, *before* the offer paragraph. It converts "who owns the platform" from objection to signal.
+- For Carolina pilot: draft the gift-pilot one-pager (free, 3–6 months, mutual termination, no commercial terms until both parties want them).
+

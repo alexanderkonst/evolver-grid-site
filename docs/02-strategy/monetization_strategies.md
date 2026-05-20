@@ -1,6 +1,6 @@
 # Monetization Strategies
 
-> *Open-source platform · sovereign distributors · commons tithe · per-founder voice generation*
+> *Open-source platform · sovereign distributors · steward-owned commons · per-founder voice generation*
 
 > *© 2026 Alexander Konstantinov · [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)*
 
@@ -16,7 +16,7 @@
 
 > **PolyForm NC code + 10% rev-share license + forkable kit + opt-in commons + per-founder voice generation = the model.**
 >
-> A new commercial-decentralization pattern: forkable open-source apparatus + per-founder voice generation + opt-in shared commons + 10% tithe to the commons that grew the founder. Distributors become **sovereign nodes** operating under their own brand, contributing back through a transparent revenue share, and benefiting from a public dataset that compounds in value as the network grows. **Six commercial layers** sit on top of this foundation, sequenced across **four phases**, designed to compound rather than compete.
+> A new commercial-decentralization pattern: forkable open-source apparatus + per-founder voice generation + opt-in shared data commons + 10% revenue share that funds a governed purpose entity over time (see [`commons_treasury_evolution.md`](./commons_treasury_evolution.md)). Distributors become **sovereign nodes** operating under their own brand, contributing back through a transparent revenue share, and benefiting from a public dataset that compounds in value as the network grows. **Six commercial layers** sit on top of this foundation, sequenced across **four phases**, designed to compound rather than compete.
 >
 > Soft brand for marketing moments: **the Sovereign Network**. Otherwise the model is described by what it IS, not by a trade name.
 
@@ -30,7 +30,7 @@ This is the operational model that emerged on Day 51 from three converging needs
 2. **The reality of years of methodology work** — pure giveaway under MIT or AGPL leaves the founder uncompensated when the network scales.
 3. **The Specificity Loop discovery** ([Principle 15](../03-playbooks/unique_business_playbook.md)) — per-founder matrix generation became technically possible Day 51, which made true sovereignty of distributors operationally real.
 
-Combined, these three forces produced a model that doesn't fit cleanly into existing categories (open-source, franchise, cooperative, platform-as-a-service). The earlier brand name "Holonic Franchise" was retired Day 51 night for legal and accessibility reasons (see *On Naming* below). The model now travels by what it IS — *open-source platform with sovereign distributors and a 10% commons tithe* — with **the Sovereign Network** kept as a soft brand for marketing moments where a memorable phrase helps.
+Combined, these three forces produced a model that doesn't fit cleanly into existing categories (open-source, franchise, cooperative, platform-as-a-service). The earlier brand name "Holonic Franchise" was retired Day 51 night for legal and accessibility reasons (see *On Naming* below). The model now travels by what it IS — *open-source platform with sovereign distributors and a 10% revenue share that evolves into a governed purpose entity* — with **the Sovereign Network** kept as a soft brand for marketing moments where a memorable phrase helps.
 
 This doc serves five jobs:
 
@@ -168,7 +168,7 @@ Each play is described through the three-depths instrument: **❤️ Essence** (
 - **Pricing model — critically different from #3** because most coaches won't fork the codebase; they want to log into a hosted version with their client and run a session together. Three candidate models:
   - **Flat fee:** $99-299/month — simplest to scale, but doesn't align with the coach's actual usage economics
   - **Per-session pay:** ~$50 per ZoG generation — aligns better with their economics, but adds friction at the moment of use
-  - **Rev-share:** 10-20% on session revenue — aligns most with this model's commons-tithe philosophy, but hardest to enforce without integrated billing
+  - **Rev-share:** 10-20% on session revenue — aligns most with this model's steward-ownership philosophy (see [`commons_treasury_evolution.md`](./commons_treasury_evolution.md)), but hardest to enforce without integrated billing
 - **Critical decision (open):** is this a different commercial layer from the Distributor Agreement, or do coaches sign the same agreement at the lowest tier? Probably the former — it's a different *product* (use, not deploy)
 - **Infrastructure needed:** a "facilitator console" that doesn't exist yet — a logged-in surface where a coach can run a session for a client and see their results. Likely 1-2 weeks of focused build work
 - **Acquisition:** warm referrals from existing cohort + Sasha's network of integrative practitioners + the Knoware article reaching AI-curious coaches who haven't yet realized they want a system
@@ -180,7 +180,7 @@ Each play is described through the three-depths instrument: **❤️ Essence** (
 
 ### 3. Platform Distribution Play
 
-**❤️ Essence.** This is the foundational architecture itself made commercially explicit. Founders / orgs **fork the entire platform** under their own brand, on their own infrastructure, charge their own clients. They become **sovereign nodes** in the network. The 10% tithe to commons is the one structural commitment they make. Specificity Matrix in their voice means their funnel speaks like them, not like Sasha.
+**❤️ Essence.** This is the foundational architecture itself made commercially explicit. Founders / orgs **fork the entire platform** under their own brand, on their own infrastructure, charge their own clients. They become **sovereign nodes** in the network. The 10% revenue share (routed to the founder steward in v0.1, to a governed purpose entity at Phase 2 threshold — see [`commons_treasury_evolution.md`](./commons_treasury_evolution.md)) is the one structural commitment they make. Specificity Matrix in their voice means their funnel speaks like them, not like Sasha.
 
 **🧠 Significance.** This is **Step 11 of the [Assembly](./planetary_os_assembly.md)** — other communities adopting the tools — at the highest level of distributor sovereignty. It's the play that activates the fractal scaling mechanism. Each distributor is a complete holon. Theoretically infinite. The commons effect compounds: every distributor's anonymized contributions make the public dataset more valuable for every other distributor and any aligned external project. **This is the play that makes the [Integration Layer Manifesto](../06-architecture/integration_layer_manifesto.md) commercially real, not aspirational.**
 
@@ -207,7 +207,7 @@ The full pitch to a candidate distributor (Oyi, Sergey, Sandra, Kirill, Karime, 
 **Keep 90%:** they're owners of their venture, not licensees of someone else's product.
 **Optional dual-license path:** if enterprise clients require it later.
 
-What they trade for this: 10% of revenue once they cross $1K/month. That's the tithe.
+What they trade for this: 10% of revenue once they cross $1K/month. That's the revenue share — destined for the governed purpose entity at Phase 2 (see [`commons_treasury_evolution.md`](./commons_treasury_evolution.md)).
 
 ---
 
@@ -215,7 +215,7 @@ What they trade for this: 10% of revenue once they cross $1K/month. That's the t
 
 **❤️ Essence.** Sasha takes **equity or persistent rev share in the ventures themselves** that founders create using the platform. Sasha is not just renting tools or licensing methodology — he's a **structural co-creator** of every venture born here. The 10% (or 5%, or whatever number) follows the venture **after** they leave the platform, into their independent operations forever, because the venture wouldn't exist without the master holon.
 
-**🧠 Significance.** This is the **highest-upside play** by orders of magnitude. If even one founder using the platform builds a $10M ARR business, Sasha's 10% perpetual share is $1M/year from a single founder. That's bigger than 50 distributors paying tithe. It's also the play that aligns most with traditional venture economics — Sasha is an early co-creator and benefactor of value, he should share in the upside. And it captures value that #3 (platform distribution) misses entirely: someone who learns the methodology, leaves, and builds a $50M company under MIT-licensed code is structurally a free rider on Sasha's years of work; the venture studio play prevents that.
+**🧠 Significance.** This is the **highest-upside play** by orders of magnitude. If even one founder using the platform builds a $10M ARR business, the platform's 10% perpetual share is $1M/year from a single founder. That's bigger than 50 distributors paying revenue share. It's also the play that aligns most with traditional venture economics — Sasha is an early co-creator and benefactor of value, he should share in the upside. And it captures value that #3 (platform distribution) misses entirely: someone who learns the methodology, leaves, and builds a $50M company under MIT-licensed code is structurally a free rider on Sasha's years of work; the venture studio play prevents that.
 
 **🔥 Implications.**
 - **This is the most politically charged play.** Conscious entrepreneurs typically resist giving equity to a methodology provider — it feels like a startup tax. Compare to: *would you pay 10% of your venture forever to the person who taught you the Lean Startup methodology?* Most founders would say no — and the methodology there is more well-known than Sasha's.
@@ -446,7 +446,7 @@ The earlier brand name "Holonic Franchise" was retired same day for two real rea
 
 **2. Accessibility.** "Holonic" is a strong technical term inside Wilber/Koestler integral-theory circles and inaccessible outside them. A Y Combinator partner, a corporate L&D buyer, a counsel reviewing the Distributor Agreement — all hit "holonic" and either skim past or assume the work is too esoteric to take seriously. Distributors hear the phrase before they hear the substance.
 
-**The Path A decision (Sasha, Day 51 night):** drop the formal brand name. Describe the model functionally everywhere — *open-source platform with sovereign distributors and a 10% commons tithe*. Keep the soft brand handle **the Sovereign Network** in 1-2 evocative spots (README's *what it becomes when you fork* table, the distributor onboarding wizard's headline) for marketing moments where a memorable phrase helps.
+**The Path A decision (Sasha, Day 51 night):** drop the formal brand name. Describe the model functionally everywhere — *open-source platform with sovereign distributors and a 10% revenue share evolving into a governed purpose entity*. Keep the soft brand handle **the Sovereign Network** in 1-2 evocative spots (README's *what it becomes when you fork* table, the distributor onboarding wizard's headline) for marketing moments where a memorable phrase helps.
 
 This avoids the lock-in problem of branding a category before having sold one of it. It lets the right name emerge from real distributor conversations rather than be imposed. If "Sovereign Network" proves sticky in real deals, it gets promoted to the formal name in v3.0. If it doesn't, the model stays descriptive forever.
 
@@ -471,7 +471,7 @@ Strategically, this model converts Sasha's role from:
 
 **New:** master holon of a network of holons, each running the same apparatus in their own voice → growth proportional to the number of distributors, not to his hours
 
-The 10% tithe means his earnings scale with the network's success rather than with his personal labor. The per-founder Specificity Matrix means each distributor's success doesn't dilute his voice — they have their own. The commons means the value he created keeps compounding even when he's not actively building.
+The 10% revenue share means earnings scale with the network's success rather than with his personal labor. The per-founder Specificity Matrix means each distributor's success doesn't dilute his voice — they have their own. The commons means the value he created keeps compounding even when he's not actively building. The Phase 2/3 transition into a governed purpose entity (see [`commons_treasury_evolution.md`](./commons_treasury_evolution.md)) ensures the venture remains structurally unsellable as it scales — sovereignty intact at the network treasury layer, matching the consent-token sovereignty primitive at the user layer.
 
 This is **Big Idea #1 (master holon prototypes everything before the network) and Big Idea #2 (fractal + viral growth)** made into commercial reality.
 
@@ -481,7 +481,7 @@ This is **Big Idea #1 (master holon prototypes everything before the network) an
 
 ### v2.2 — April 25, 2026 (Day 51 night, third pass)
 - **Brand name "Holonic Franchise" retired (Path A).** Two reasons: legal exposure (calling the model a "franchise" can trigger US FTC Franchise Rule + state franchise statutes regardless of underlying economics) + accessibility ("holonic" is opaque outside Wilber/integral circles). Going forward: model described functionally; soft brand handle **the Sovereign Network** preserved in 1-2 evocative spots only.
-- Title changed: *Monetization Strategies — The Holonic Franchise* → *Monetization Strategies* (with subtitle: *open-source platform · sovereign distributors · commons tithe · per-founder voice generation*).
+- Title changed: *Monetization Strategies — The Holonic Franchise* → *Monetization Strategies* (with subtitle: *open-source platform · sovereign distributors · steward-owned commons · per-founder voice generation*).
 - *On Naming* section rewritten to capture the Path A rationale, names considered and rejected, and the principle of letting a brand emerge from real distributor conversations rather than imposing one before having sold one of these.
 - All inline mentions of "Holonic Franchise" replaced with functional descriptions ("the model", "this commercial-decentralization pattern", "the foundational architecture", etc.) — except in changelog entries and the *On Naming* section where the historical name is preserved as record.
 - Cross-references updated across the corpus: `unique_business_playbook.md` (Principle 15), `alexanders_unique_business.md`, `roadmap.md`, `session_log.md`, `morphogenetic_holomap.md`, `README.md`, `DISTRIBUTOR_AGREEMENT.md`, `AiOsPage.tsx`.
@@ -511,4 +511,13 @@ This is **Big Idea #1 (master holon prototypes everything before the network) an
 
 ---
 
-*v2.2 · April 25, 2026 (Day 51 night) · Single canonical doc for the dynamic, sequenced six-play monetization strategy and the foundational open-source-platform-with-commons-tithe architecture it operates within. Six plays. One foundation. Four phases. Sixteen open decisions tracked. The plays compound; they don't compete. Each phase mature before the next opens. Plays in later phases stay in pocket — not promises made. This document is the source of truth for how the venture earns money across all of its commercial layers, and the place where decisions get tracked as the strategy evolves. **Soft brand for marketing moments: the Sovereign Network.** Otherwise the model travels by what it IS.*
+### v2.3 — May 19, 2026 (Day 76)
+- **All "tithe" language replaced** with "revenue share" (the 10% mechanism) and "commons contribution" (the resulting purpose-entity flow). The metaphor was creating a conflation between the *data commons* (§7 of Distributor Agreement, opt-in anonymized artifacts) and a *revenue commons* (the purpose-entity treasury that didn't legally exist yet in v0.1).
+- **Companion doc created:** [`commons_treasury_evolution.md`](./commons_treasury_evolution.md). Declares the three-phase trajectory — founder steward (now, v0.1) → purpose entity at ~25 distributors → distributor council governance at 50+. Steward-ownership trajectory (Chouinard / Patagonia / Ecosia / Bosch family), not Linus path. Architecture committed to be structurally unsellable from the start.
+- **Distributor Agreement bumped to v0.4** — preamble transparency note added; §16 spirit clause updated; cross-link to treasury evolution doc.
+- **README updated** — same word replacements; cross-links added.
+- Subtitle changed: *commons tithe* → *steward-owned commons*.
+
+---
+
+*v2.3 · May 19, 2026 (Day 76) · Single canonical doc for the dynamic, sequenced six-play monetization strategy. Six plays. One foundation. Four phases. Sixteen open decisions tracked. The plays compound; they don't compete. The 10% revenue share is now explicitly trajectoried into a governed purpose entity at Phase 2 threshold (~25 distributors) — see companion doc [`commons_treasury_evolution.md`](./commons_treasury_evolution.md). Sovereignty primitive consistent at every scale: consent token (user) → fork (distributor) → CC BY-NC-SA (methodology) → steward-ownership (network treasury). **Soft brand for marketing moments: the Sovereign Network.** Otherwise the model travels by what it IS.*
