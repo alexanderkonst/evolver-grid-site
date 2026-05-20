@@ -112,6 +112,65 @@ I'd be glad to run a small free pilot with whichever NS cohort you'd most want p
 
 ---
 
+## Version history — the letter
+
+Capturing the iteration arc that produced the send-ready version. Each version taught a lesson worth preserving for future patron addresses.
+
+### v0 — Sasha's initial draft (worked with ChatGPT)
+
+> "Balaji — honored to reach out here. I spent January at NS and was around you several times, but I didn't show the prototype because it wasn't ready. I showed the early direction to Jackson and spoke with James; both said to show it when ready. You named the shift: AI makes people CEOs. The next problem is routing: what is each person actually CEO of? I built a working prototype of that layer…"
+
+**Strengths:** the core hook (*"AI makes CEOs → CEO of what?"*) was present from v0. *"Talent precision is not HR; it is coordination infrastructure"* was almost tweet-level good.
+
+**Lessons (from ChatGPT pass):**
+- *"Routing layer / unique value-creation pattern / value flows / belongs anywhere in the stack"* — phrases that *feel* intelligent but blur the object
+- Social proof through name-dropping (Jackson, James) reads as proximity-status seeking — cut
+- Vision-heavy / evidence-light: *"I built a working prototype"* needs ONE concrete sentence the brain can picture
+
+### v1 — ChatGPT's first tightening
+
+Trimmed name-drops; tightened cadence; added clarity about what the prototype actually does. Still had soft framings ("might be useful", "if interesting"); still slightly too "smart founder writing to smart founder."
+
+**Lesson:** compression alone isn't precision. Compression must reveal the object, not just shorten the prose.
+
+### v2 — Leonardo-strategy lens applied
+
+Reframed around the patron's wound rather than the founder's capability. *"I may have identified a missing coordination primitive"* replaced *"Look at my system."* Peer-with-secrets energy instead of applicant energy. The "silver lyre before the letter" principle pointed at: **the prototype itself matters more than the prose** — let it create intrigue, define the missing primitive, point to the artifact quickly, reduce cognitive load.
+
+**Lesson:** never sell depth directly. Attach your depth to the patron's urgent coordination problem.
+
+### v3 — Sasha's refinement (inevitability + competitive-advantage)
+
+Sasha added: *"sooner or later, someone will do this"* energy. *"You don't have to do it with me, but do it."* The bronze-horse-quiet move started landing. *"Networks that can see and coordinate differentiated talent precisely will outperform networks that cannot"* — the **crown jewel sentence** emerged here.
+
+**Lessons:**
+- The trust signal is not *"no pitch attached"* (frame fracture) — it is *"this problem is inevitable."*
+- Don't perform detachment ("I have no agenda") — the elite signal is *"my agenda is aligned enough with reality that I don't need to force it."*
+- The HNW / Leonardo signal: *"I'm not clinging, not trapped in extraction, I care about the emergence itself."*
+
+### v4 — Dalio-typing inoculation + "category to resolution"
+
+Caught the structural risk: Balaji likely indexes "personality typing for founders" against Ray Dalio's PrinciplesYou as state of the art. Direct attack would force worldview-defense response. Solution: **extend his current map until the next territory becomes visible.** *"The shift is from category to resolution"* — this phrase does double duty (inoculates against pop-typing dismissal without attacking Dalio-grade systems).
+
+**Lesson:** never invalidate the patron's current map directly. Frame existing systems as *first-generation / partial-resolution / early attempts*, not *wrong*. The real moat is **resolution density** in human capability articulation.
+
+### v5 — synthesis pass (Leonardo Strategy doc applied + tonal tightening)
+
+Final synthesis caught remaining issues:
+- Narrative wind-ups ("During January at NS, I became convinced…") — cut
+- Stacked dual asks (reaction + pilot) — collapsed to one sovereign offer
+- *"It may or may not matter yet"* hedging — removed (contradicts inevitability frame)
+- Bronze horse landed quietly at end (*"whether network states stay discourse or become operational depends partly on primitives like this being built early"*)
+- Closing: *"whether or not this specific implementation is the right one, the primitive itself increasingly looks inevitable"* — sovereign non-clinging without performing it
+
+### v6 — send-ready (current — May 18, 2026)
+
+This is the version inlined above in *The final letter (send-ready)*. ~310 words. All three modalities (pitch + sell + partner) integrated. All bronze-horse properties verified. Application checklist all green.
+
+**This is what gets sent tomorrow.**
+
+---
+
 ## Send plan
 
 1. **Pre-send:**

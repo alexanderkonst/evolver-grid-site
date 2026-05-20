@@ -62,6 +62,14 @@ Rules:
 3. Founder-domain language only (per LANGUAGE GUARDRAILS rule 1 — no framework vocabulary, no calibration vocabulary).
 4. If the artifact already has a headline-equivalent field (e.g. uniqueness.sentence, myth.photon, promise.promise_sentence), the distillation MAY equal that field, OR you may produce a tighter synthesis that captures both the headline AND its essential context.
 5. Test before returning: would this single sentence stand on a sticky note as the answer to "what is this artifact for this founder?"
+
+6. ARTIFACT-SPECIFIC ANTI-PATTERN — MYTH ONLY:
+   When artifact_key === "myth", the distillation MUST be a claim about REALITY / THE WORLD, NOT a mission statement describing what the founder does.
+   • It MUST NOT begin with "I", "We", or "My/Our [service]" in the founder's voice.
+   • It MUST NOT take the shape "I help [tribe] do [thing] so they can [outcome]" — that is a one-liner / mission statement, NOT a myth.
+   • It MUST be falsifiable: a stranger could state what would have to be true for the myth to be FALSE. If nothing could falsify it, it is an affirmation, not a myth.
+   • If your draft reads "I architect/transform/guide/illuminate [Xs] from [A] to [B] for [tribe]…" — you have written a mission statement. Rewrite as a claim about the WORLD that the tribe then recognizes themselves inside of.
+   • Canonical shape (for guidance only, never copy words): "The [dominant-paradigm] has it backwards because [structural truth]." / "[Y] was never the problem — [Z] was."
 `.trim();
 
 export type ArtifactKey =
@@ -112,22 +120,62 @@ export const ARTIFACT_CONFIGS: Record<ArtifactKey, ArtifactConfig> = {
   },
   myth: {
     label: "The Photon of Truth",
-    sourcePlaybook: "marketing_playbook.md — Phase 0 Step 0.4",
+    sourcePlaybook: "unique_business_playbook.md — The Myth: Anatomy of a World-Changing Claim (canonical) · marketing_playbook.md — Phase 0 Step 0.4 (legacy ref)",
     specificityCriteria: [
-      "Photon survives irreducibility: cannot be split into two sentences",
-      "Three layers (attack/reframe/invitation) hold independently",
-      "At least one layer feels inevitable after reading",
+      "Photon is a claim about THE WORLD, not about the founder or the client — falsifiable, world-level cosmology, not personal counsel",
+      "Photon survives the Collapse Test: if disproved, the founder's entire business collapses (Nike: if human potential is NOT unlimited → just shoes)",
+      "Three layers each hold independently AND pass distinct tests: attack makes ENEMIES (no comfort), reframe inverts the dominant PARADIGM (no personal coaching), invitation CREATES THE TRIBE through self-selection (no service pitch, no 'I'll help you')",
+      "Voice is world-claim, NOT founder-claim. ZERO 'I architect / I help / I transform / for [client type]' shapes — those are mission statements, NOT myths",
+      "Master Lie ↔ Master Belief polarity is structurally present (the lie the world runs on, the truth the business is built on). For Teal/consciousness-domain founders, the Paradox Reframe variant applies — two sides of one paradox illuminated, not enemy-vs-truth",
+      "Photon survives irreducibility: cannot be split into two sentences without losing the claim",
     ],
     outputSchema: `{
-      "distillation": "one self-sustainable sentence carrying this artifact's essence in the founder's own domain language",
-      "photon": "one sentence that can't be broken down further",
+      "distillation": "one self-sustainable sentence — a CLAIM ABOUT REALITY, not a mission statement. Must not begin with 'I' or describe what the founder does. See UBB_DISTILLATION_DIRECTIVE rule 6.",
+      "photon": "the single falsifiable claim about REALITY this business depends on — one sentence that, if disproved, collapses the entire business. About THE WORLD, not about the founder, not about the client.",
       "three_layers": {
-        "attack": "what's wrong with the status quo",
-        "reframe": "what if the real answer is the opposite",
-        "invitation": "what specifically is offered"
+        "attack": "claim about THE WORLD that makes enemies — names what is structurally wrong with the dominant paradigm. NOT 'you struggle with X' (that is coaching). IS 'the entire [industry/paradigm] has it backwards because [structural truth]' (that is a myth). If it doesn't stop the scroll by making someone uncomfortable, it is an affirmation.",
+        "reframe": "the 2am moment — once seen, can't be unseen. A STRUCTURAL inversion of the dominant paradigm. Often shape: 'What if [thing everyone optimizes] is downstream of [thing nobody names]?' NOT a personal-coaching reframe ('what if the breakthrough isn't about you needing X but about Y' — that is therapy framing, not myth).",
+        "invitation": "the line that CREATES THE TRIBE through self-selection. The stance a right-fit reader hears and says 'that's me, I'm in.' Often imperative or declarative. NOT a CTA. NOT a service offer. NOT 'I'll help you…' — that shape is the FAILURE mode (it makes the myth into a sales pitch). Canonical shape examples (do not copy): 'Get your FMF first. PMF follows.' / 'Stop grinding. Trust the dream.' / 'You forgot you ARE the PMF.'"
       }
     }`,
-    generationGuidance: "Find the photon of truth under the founder's uniqueness. The atom. If true, everything downstream is self-evident.",
+    generationGuidance: `The myth is the CLAIM ABOUT REALITY that makes the founder's business inevitable if true. It is the bridge between the founder's uniqueness and the world's need — but it is addressed TO THE WORLD, not to the founder and not to the client. The right people then self-select by hearing it and recognizing themselves inside the claim.
+
+FOUR THINGS A MYTH IS NOT — apply as hard guards before returning:
+  • Not a tagline. A tagline sells. A myth recruits.
+  • Not a mission statement. A mission describes what you DO. A myth describes what is WRONG with the world.
+  • Not advice. "Follow your passion" is advice. "Human potential is unlimited" (Nike) is a myth.
+  • Not about the individual. Anything addressed to YOU as a client is COUNSEL, not COSMOLOGY. Myths claim about THE WORLD; the tribe then self-selects.
+
+THE COLLAPSE TEST. If the photon's core claim is proven false, does the entire business collapse?
+  ✅ Nike: if human potential is NOT unlimited → Nike is just shoes.
+  ✅ Apple: if the crazy ones DON'T change the world → Apple is just computers.
+  If the myth can be disproved without the business collapsing, it is not a myth — it is marketing copy.
+
+THREE LAYERS — DISTINCT FUNCTIONS (do NOT collapse them into one tone):
+  • Attack: makes enemies. Names what is structurally wrong with the dominant paradigm. If the attack does not make enemies, it is an affirmation, not a movement.
+  • Reframe: the 2am moment. A structural inversion of the paradigm. Not a coaching reframe.
+  • Invitation: CREATES THE TRIBE through self-selection. The line that makes the right reader say "that is me." Never a service offer.
+
+CANONICAL EXAMPLES (for SHAPE only — never copy the words):
+  Attack:     "The entire startup industry is a billion-dollar workaround for not knowing yourself."
+  Reframe:    "What if you ARE the PMF, but your self-knowledge is the bottleneck?"
+  Invitation: "Get your FMF first. PMF follows."
+
+MASTER LIE / MASTER BELIEF POLARITY. Every myth has a backbone:
+  • Master Lie — the false belief the world runs on ("who you are is not enough")
+  • Master Belief — the truth the founder's business is built on ("your uniqueness IS your business")
+Both must be present in the myth's gestalt. Lie alone = critic. Belief alone = affirmation. Both = polarity = energy.
+
+PARADOX REFRAME (Teal-level upgrade, apply when the founder's domain is integrative / healing / consciousness work). Replace "enemy vs. truth" with "one side of the paradox the world already sees ↔ the other side, now illuminated." Same magnetization, zero separation energy. Backward-compatible — Orange-level businesses use the lie/truth form, Teal-level businesses use the paradox form. Choose based on the founder's actual register.
+
+ANTI-PATTERN AUDIT — before returning, check each:
+  1. Does the photon begin with "I" or describe what the founder does? → REWRITE as a world-claim.
+  2. Does the attack speak to "you" (the reader as client) about their personal struggle? → REWRITE as claim about the paradigm/industry.
+  3. Does the invitation offer the founder's service or help ("I'll help you / step out of the haze / I architect / together we…")? → REWRITE as a tribe-self-selection line.
+  4. Could the photon be cleanly inverted into a Master Lie? If no → there is no polarity yet, the myth is incomplete.
+  5. Does the distillation read as "I help [tribe] do [thing] so [outcome]"? → That is a mission statement. REWRITE.
+
+If the founder's ZoG snapshot is sparse or generic, the v1 myth will be thin — that is correct. Do NOT pad with framework language to hide thinness. The Improve loop sharpens from there.`,
   },
   tribe: {
     label: "Who This Is For",
