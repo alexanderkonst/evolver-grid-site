@@ -656,6 +656,15 @@
      applies via background-image; needs a gradient, not solid hex). */
   --skin-callout-bg:     linear-gradient(135deg, #0a0a0a 0%, #0a0a0a 100%);
   --skin-callout-glow:   none;
+
+  /* V4 (Sasha 2026-05-19) — music player tokens. Aurora/Navy-Gold fall
+     through to their hardcoded fallbacks; NS overrides to mono palette. */
+  --skin-music-play-bg:     transparent;
+  --skin-music-play-border: rgba(10, 10, 10, 0.25);
+  --skin-music-play-shadow: none;
+  --skin-music-icon:        #0a0a0a;
+  --skin-music-text:        rgba(10, 10, 10, 0.78);
+  --skin-music-meta:        rgba(10, 10, 10, 0.55);
 }
 
 /* V3 typography (Sasha 2026-05-19) — NS is editorial serif throughout
@@ -1006,6 +1015,52 @@
     height: 32px !important;
     max-height: 32px !important;
   }
+}
+
+/* V4 (Sasha 2026-05-19) — neutralize the SPACE chip icons (JOURNEY star,
+   AI OS merkaba, ME crystal, BUILD hexagon) to grayscale under NS.
+   NS doesn't use color in icons; the rainbow octave is preserved
+   elsewhere (Playbook step circles) per the prior rule. EXCLUDES the
+   brand logo lockup which must render as-is (black flag, no filter). */
+[data-skin="network-school"] .liquid-glass.h-dvh img[alt="Journey"],
+[data-skin="network-school"] .liquid-glass.h-dvh img[alt="AI OS"],
+[data-skin="network-school"] .liquid-glass.h-dvh img[alt="Me"],
+[data-skin="network-school"] .liquid-glass.h-dvh img[alt="Build"],
+[data-skin="network-school"] .liquid-glass.h-dvh img[src*="settings-icon"] {
+  filter: grayscale(1) brightness(0.55) contrast(0.95) !important;
+}
+
+/* Pane 2 close button (the X in the upper-right of Pane 2 header) —
+   was text-white/50 which is invisible on the V2 white Pane 2 bg.
+   Force near-black under NS. */
+[data-skin="network-school"] aside[data-pane="2"] button[aria-label="Hide sidebar"],
+[data-skin="network-school"] .liquid-glass.h-dvh + div[class*="w-[260px]"] button[aria-label="Hide sidebar"],
+[data-skin="network-school"] button[aria-label="Hide sidebar"] {
+  color: #0a0a0a !important;
+}
+[data-skin="network-school"] button[aria-label="Hide sidebar"]:hover {
+  background-color: rgba(10, 10, 10, 0.06) !important;
+}
+
+/* SPACES↔utility separator in Pane 1 — the gold gradient hairline
+   reads as gold under NS. Convert to a strong neutral hairline so
+   the "spaces ↑ / utility ↓" hierarchy still registers in editorial
+   register. Sasha asked for a more visible separator here. */
+[data-skin="network-school"] .liquid-glass.h-dvh .h-px[style*="rgba(212, 175, 55"] {
+  background-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(10, 10, 10, 0.18) 20%,
+    rgba(10, 10, 10, 0.18) 80%,
+    transparent 100%
+  ) !important;
+}
+
+/* Pane 2 top header (the bar with "JOURNEY" title + close button) —
+   border-bottom was gold gradient under Aurora. Neutralize under NS. */
+[data-skin="network-school"] aside[data-pane="2"] > div:first-child,
+[data-skin="network-school"] [class*="w-[260px]"] > div:first-child {
+  border-bottom-color: rgba(10, 10, 10, 0.08) !important;
 }
 
 /* Definition of the design system. All colors, gradients, fonts, etc should be defined here.
