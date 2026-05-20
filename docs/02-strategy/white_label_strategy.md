@@ -281,5 +281,5 @@ When V4 brings forms into the NS surface, scope the changes to `[data-skin="netw
 
 ---
 
-*White-Label Strategy v1.3*
-*Created: 2025-01-04 · Updated: 2026-05-19 (V4 lessons added after `network-school` v4 ship — logo lockup, banner-hide, icon grayscale, utility-row uniformity, music-player tokens, platform-vs-skin split)*
+*White-Label Strategy v1.4*
+*Created: 2025-01-04 · Updated: 2026-05-19 (V5 lessons added — inline SVG over CDN PNG, GlyphIcon attribute-substring CSS, lowercase strikethrough at 62%, mobile-pill skin awareness, JSX comment syntax pitfall, mandatory mobile audit after rail changes)*
