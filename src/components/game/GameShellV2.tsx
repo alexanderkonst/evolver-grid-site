@@ -1147,6 +1147,13 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                     style={{ paddingTop: 'env(safe-area-inset-top)', paddingBottom: 'env(safe-area-inset-bottom)' }}
                 >
                     {/* Panel 1: Spaces Rail */}
+                    {/* V8 (Sasha 2026-05-20): pass `h-dvh` on mobile too.
+                        The desktop branch already passes it via className;
+                        without it on mobile the rail's wrapper renders as
+                        just `.liquid-glass` and our NS-skin CSS selectors
+                        (which target `.liquid-glass.h-dvh`) silently miss.
+                        Result: chip icons stay in color, BUILD glyph stays
+                        yellow, separator missing — Sasha's mobile bugs. */}
                     <SpacesRail
                         activeSpaceId={activeSpaceId}
                         onSpaceSelect={handleSpaceSelect}
@@ -1159,6 +1166,7 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                         userAvatarUrl={profile?.avatar_url || undefined}
                         userLevel={profile?.level || undefined}
                         userXp={profile?.xp_total || undefined}
+                        className="h-dvh"
                     />
 
                     {/* Panel 2: Sections */}
