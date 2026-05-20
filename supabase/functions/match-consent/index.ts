@@ -167,16 +167,35 @@ const pageYes = (otherFirstName: string) =>
   renderPage({
     title: "Introduction sent",
     glyph: "✦",
-    headline: "Done. We're sending the intro now.",
+    headline: "Done. The intro is on its way.",
     body: `
       <p>
         You'll both receive an email in the same thread within a minute.
-        ${escapeHtml(otherFirstName) || "They"} doesn't know you clicked yes
-        until the intro arrives.
+        Take it from there — schedule a time, exchange context, whatever
+        feels right. We've made the introduction.
+      </p>
+      <p class="italic">
+        If you don't see ${escapeHtml(otherFirstName) || "their"} name in
+        your inbox within the hour, reply to this email and we'll look
+        into it.
+      </p>
+    `,
+  });
+
+const pageYesEmailDelayed = (otherFirstName: string) =>
+  renderPage({
+    title: "Introduction recorded",
+    glyph: "✦",
+    headline: "Your yes is recorded. The intro email is delayed.",
+    body: `
+      <p>
+        We saved your consent, but the bilateral intro email didn't
+        send cleanly. We'll retry within a few minutes.
       </p>
       <p>
-        Take it from there — schedule a time, exchange context,
-        whatever feels right. We've made the introduction.
+        If you don't see ${escapeHtml(otherFirstName) || "their"} name
+        in your inbox within an hour, reply to the heads-up email and
+        we'll send it manually.
       </p>
     `,
   });
@@ -229,11 +248,14 @@ const pageWithdrawn = (aFirstName: string) =>
   renderPage({
     title: "No longer pursuing",
     glyph: "✦",
-    headline: `${aFirstName || "They"} is no longer pursuing this.`,
+    headline: aFirstName
+      ? `${aFirstName} is no longer pursuing this.`
+      : "This invitation is no longer active.",
     body: `
       <p>
-        Your interest still matters — if the engine pairs you again,
-        you may see them later. No action needed right now.
+        The other side withdrew their interest before you responded.
+        No action needed — if the engine pairs you again later, you
+        may see them in your matches.
       </p>
     `,
   });
@@ -339,30 +361,54 @@ Deno.serve(async (req) => {
     const now = new Date().toISOString();
 
     if (action === "decline") {
-      await admin
+      // Day 67 §8.6 audit fix #2: race-safe UPDATE. Without the
+      // pending-clause, a Yes-then-No double-click could overwrite the
+      // committed Yes state to "declined" after the intro already fired.
+      const { error: declineErr, count: declineCount } = await admin
         .from("match_interests")
-        .update({
-          consent_response: "declined",
-          consent_responded_at: now,
-        } as never)
-        .eq("id", miRow.id);
+        .update(
+          {
+            consent_response: "declined",
+            consent_responded_at: now,
+          } as never,
+          { count: "exact" },
+        )
+        .eq("id", miRow.id)
+        .eq("consent_response", "pending");
+      if (declineErr) {
+        console.error("match_interests decline UPDATE failed", declineErr);
+        return htmlResponse(500, pageInvalid());
+      }
+      if (!declineCount || declineCount === 0) {
+        // Lost the race — another tab/click already set the response.
+        return htmlResponse(200, pageAlreadyResponded());
+      }
       return htmlResponse(200, pageNo(aFirstName));
     }
 
     // action === "consent"
-    // Update the row first (idempotent — if user double-clicks, second
-    // click renders "already responded" because consent_response is set).
-    const { error: updateErr } = await admin
+    // Day 67 §8.6 audit fix #2: race-safe UPDATE for Yes path. The
+    // `count: 'exact'` lets us detect when the row was already updated
+    // by a concurrent click (consent_response is no longer 'pending').
+    const { error: updateErr, count: updateCount } = await admin
       .from("match_interests")
-      .update({
-        consent_response: "consented",
-        consent_responded_at: now,
-      } as never)
+      .update(
+        {
+          consent_response: "consented",
+          consent_responded_at: now,
+        } as never,
+        { count: "exact" },
+      )
       .eq("id", miRow.id)
-      .eq("consent_response", "pending"); // optimistic concurrency
+      .eq("consent_response", "pending");
     if (updateErr) {
       console.error("match_interests update failed", updateErr);
       return htmlResponse(500, pageInvalid());
+    }
+    if (!updateCount || updateCount === 0) {
+      // Lost the race — show already-responded rather than firing a
+      // duplicate intro.
+      return htmlResponse(200, pageAlreadyResponded());
     }
 
     // Insert match_intros row with canonical ordering
@@ -390,49 +436,79 @@ Deno.serve(async (req) => {
       // existing is the eventual signal.
     }
 
-    // Invoke send-mutual-intro-email (best-effort).
-    // We use the service-role key to call the function from server side.
-    try {
-      const introRes = await fetch(
-        `${SUPABASE_URL}/functions/v1/send-mutual-intro-email`,
-        {
-          method: "POST",
-          headers: {
-            Authorization: `Bearer ${SUPABASE_SERVICE_ROLE_KEY}`,
-            "Content-Type": "application/json",
-            "x-internal-caller": "match-consent",
+    // Day 67 §8.6 audit fix #1: invoke send-mutual-intro-email WITH
+    // retry. The threshold ritual cannot ship "best effort" silent
+    // failure — if Resend hiccups on the first 10 intros, the trust
+    // ritual is broken. Retry twice with backoff before falling back
+    // to the "your yes is recorded, email is delayed" page.
+    const invokeIntroEmail = async (): Promise<boolean> => {
+      try {
+        const introRes = await fetch(
+          `${SUPABASE_URL}/functions/v1/send-mutual-intro-email`,
+          {
+            method: "POST",
+            headers: {
+              Authorization: `Bearer ${SUPABASE_SERVICE_ROLE_KEY}`,
+              "Content-Type": "application/json",
+              "x-internal-caller": "match-consent",
+            },
+            body: JSON.stringify({
+              user_a_id: userA,
+              user_b_id: userB,
+              ai_why_text: miRow.ai_why_text,
+            }),
           },
-          body: JSON.stringify({
-            user_a_id: userA,
-            user_b_id: userB,
-            ai_why_text: miRow.ai_why_text,
-          }),
-        },
-      );
-      if (!introRes.ok) {
-        const errText = await introRes.text();
-        console.warn(
-          "send-mutual-intro-email failed",
-          introRes.status,
-          errText,
         );
+        if (!introRes.ok) {
+          const errText = await introRes.text();
+          console.warn(
+            "send-mutual-intro-email failed",
+            introRes.status,
+            errText,
+          );
+          return false;
+        }
+        return true;
+      } catch (err) {
+        console.warn("send-mutual-intro-email invoke threw", err);
+        return false;
       }
-    } catch (err) {
-      console.warn("send-mutual-intro-email invoke threw", err);
-      // The match_intros row and consent_response are committed; the
-      // email failure is recoverable (admin can re-send if needed).
+    };
+
+    let introEmailSent = await invokeIntroEmail();
+    if (!introEmailSent) {
+      // First retry — short backoff
+      await new Promise((resolve) => setTimeout(resolve, 600));
+      introEmailSent = await invokeIntroEmail();
+    }
+    if (!introEmailSent) {
+      // Second retry — longer backoff
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+      introEmailSent = await invokeIntroEmail();
     }
 
-    // Look up B's first name for the Yes page
-    const { data: bProfile } = await admin
-      .from("game_profiles")
-      .select("first_name")
-      .eq("user_id", miRow.from_user_id)
-      .maybeSingle();
-    const bDisplayName =
-      (bProfile as { first_name?: string | null })?.first_name?.trim() || "";
+    // Log the outcome so admin can see at-a-glance via email_send_log
+    // whether the bilateral intro ever made it out for this pair.
+    if (!introEmailSent) {
+      await admin.from("email_send_log").insert({
+        template_name: "mutual_intro_invoke_failed",
+        recipient_email: "(internal-invoke)",
+        status: "failed",
+        error_message:
+          "match-consent could not invoke send-mutual-intro-email after 3 attempts",
+        metadata: {
+          match_interest_id: miRow.id,
+          user_a_id: userA,
+          user_b_id: userB,
+        },
+      });
+      return htmlResponse(200, pageYesEmailDelayed(aFirstName));
+    }
 
-    return htmlResponse(200, pageYes(bDisplayName));
+    // Day 67 §8.6 audit fix #3: variable naming. The "other" party
+    // from B's perspective IS A (from_user_id). aFirstName is the
+    // correct value to pass to pageYes.
+    return htmlResponse(200, pageYes(aFirstName));
   } catch (err) {
     console.error("match-consent error", err);
     return htmlResponse(500, pageInvalid());

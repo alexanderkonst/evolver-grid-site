@@ -113,6 +113,25 @@ Workflow reference: [`docs/03-playbooks/integrated_product_building_workflow.md`
 
 ---
 
+## Post-Roast Audit (2026-05-19, same session)
+
+Sasha named the failure mode: *"if this ships with a token-rotation bug, or the heads-up email doesn't land cleanly, the very first trust violation cascades into the fractal lane and poisons it. The threshold ritual must work perfectly the first ten times."*
+
+Triggered an adversarial audit of my own code. Found **6 real bugs** in the §8.6 ship, all fixed in the hardening commit. See [first_ten_ritual_gate.md](first_ten_ritual_gate.md) for the pre-production verification protocol.
+
+| # | Severity | Bug | Fix |
+|---|---|---|---|
+| H1 | 🔴 HIGH | Bilateral intro email fired best-effort with silent failure | Added 3-attempt retry (200/600/1500ms backoff) + dedicated `pageYesEmailDelayed` confirmation page when all retries fail. Failure logs to `email_send_log` with `template_name='mutual_intro_invoke_failed'`. |
+| H2 | 🔴 HIGH | Decline UPDATE had no optimistic concurrency check — Yes-then-Not-now race could overwrite consented state | Added `.eq("consent_response", "pending")` clause + `count: 'exact'` check on BOTH paths. Race-loser renders `pageAlreadyResponded`. |
+| H3 | 🟡 MED | Variable named `bDisplayName` actually held A's name (worked by accident; refactor-fragile) | Removed the redundant second profile load; use `aFirstName` directly. |
+| H4 | 🟡 MED | If sender had no first_name, email read "Someone wants to meet you" — fake-spam-looking | Heads-up function now refuses to send if `from_user.first_name` is empty. Logs `headsup_email_status='failed'` with explanatory message. |
+| H5 | 🟡 MED | `pageWithdrawn("")` rendered broken grammar ("is no longer pursuing this") | Graceful fallback to "This invitation is no longer active." when name unavailable. |
+| H6 | 🟡 MED | Subject `"X wants to meet you — here's what we saw"` reads dating-spam-ish | Rewritten to `"An introduction from {firstName} on Find Your Top Talent"`. Headline in body softened from "wants to meet" → "would like to meet." |
+
+The threshold ritual is now hardened. No real stranger sees §8.6 until Sasha personally runs the 10 rituals in `first_ten_ritual_gate.md`.
+
+---
+
 ## OUTPUT — 4/4 ✅
 
 - [x] **User Journey** — this tracker + [active-intro_product_spec.md](active-intro_product_spec.md)

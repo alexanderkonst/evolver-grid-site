@@ -93,7 +93,7 @@ const renderHeadsupHtml = ({
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>${aName} wants to meet you</title>
+  <title>An introduction from ${aName}</title>
 </head>
 <body style="margin:0; padding:0; background:#f5f1e8; font-family: 'Source Serif 4', Georgia, serif;">
   <div style="max-width:600px; margin:0 auto; padding:40px 24px;">
@@ -106,7 +106,7 @@ const renderHeadsupHtml = ({
 
       <!-- Headline -->
       <h1 style="margin:0 0 18px 0; font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 700; font-size: 28px; line-height: 1.2; color: #0b2a5a; letter-spacing: -0.005em;">
-        ${aName} wants to meet you.
+        ${aName} would like to meet you.
       </h1>
 
       <!-- Greeting -->
@@ -212,7 +212,7 @@ const renderHeadsupPlainText = ({
   const aArch = stripGlyphs(aArchetype || "");
   const greeting = bFirstName ? `Hi ${bFirstName},` : "Hi,";
 
-  return `${aName} wants to meet you.
+  return `${aName} would like to meet you.
 
 ${greeting}
 
@@ -407,9 +407,38 @@ Deno.serve(async (req) => {
       .select("first_name, last_zog_snapshot_id")
       .eq("user_id", fromUserId)
       .maybeSingle();
-    const fromFirstName =
-      (fromProfile as { first_name?: string | null })?.first_name?.trim() ||
-      "Someone";
+    const fromFirstNameRaw =
+      (fromProfile as { first_name?: string | null })?.first_name?.trim() || "";
+
+    // Day 67 §8.6 audit fix #4: refuse to send a heads-up that says
+    // "Someone wants to meet you." That reads like cold spam and breaks
+    // the threshold ritual on the first impression. If A has no
+    // first_name on their profile, fail the send and log it — A needs
+    // to complete their profile before they can send heads-ups.
+    if (!fromFirstNameRaw) {
+      await admin
+        .from("match_interests")
+        .update({ headsup_email_status: "failed" } as never)
+        .eq("id", miRow.id);
+      await admin.from("email_send_log").insert({
+        template_name: "match_headsup",
+        recipient_email: toEmail,
+        status: "failed",
+        error_message:
+          "from_user has no first_name on game_profiles — refusing to send a 'Someone wants to meet you' email.",
+        metadata: {
+          match_interest_id: miRow.id,
+          from_user_id: fromUserId,
+          to_user_id: toUserId,
+        },
+      });
+      return json({
+        ok: false,
+        status: "from_user_no_first_name",
+        skipped: true,
+      });
+    }
+    const fromFirstName = fromFirstNameRaw;
 
     let fromArchetype = "";
     const fromSnapshotId =
@@ -482,7 +511,11 @@ Deno.serve(async (req) => {
       settingsUrl,
     });
 
-    const subject = `${fromFirstName} wants to meet you — here's what we saw`;
+    // Day 67 §8.6 audit fix #6: subject line tuned to read less like
+    // dating spam and more like a thoughtful introduction. "Wants to
+    // meet you" is a known spam-filter trigger phrase; "would like an
+    // introduction" reads as platform-mediated and warm.
+    const subject = `An introduction from ${fromFirstName} on Find Your Top Talent`;
 
     const resendRes = await fetch("https://api.resend.com/emails", {
       method: "POST",
