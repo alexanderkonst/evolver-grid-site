@@ -231,18 +231,40 @@ const SortableWorkstreamChip = ({
         isDragging && "z-10 opacity-90 shadow-lg",
       )}
     >
+      {/*
+        Sasha 2026-05-20 bug fix: the chip number is the dedicated
+        "activate this workstream" affordance. Hit area widened
+        (pl-3 → px-4 py-2) so it's a comfortable tap target on its own.
+
+        The title wrapper used to ALSO carry `onClick={onSelect}` —
+        which fired alongside InlineEditableText's own click-to-edit
+        handler (click bubbled through). The result: clicking the
+        title opened the editor, but ~80ms later the page scrolled
+        down to Intuitive Tasks (per handleSelect's setTimeout),
+        moving the textarea off-screen and dropping focus. User
+        couldn't edit the title at all. Removing the bubbling
+        onClick keeps title clicks dedicated to editing.
+
+        Activation surfaces remaining: chip number (left), TASKS
+        pill (right, when active), or just typing into the title
+        which doesn't need activation anyway.
+      */}
       <button
         type="button"
         onClick={onSelect}
+        aria-label={isActive ? `Workstream ${index + 1} (active)` : `Activate workstream ${index + 1}`}
+        title={isActive ? "Already active" : "Click to activate · scroll to its tasks"}
         className={cn(
-          "flex-shrink-0 select-none pl-3 font-serif text-base",
-          isActive ? "text-[#0a1628] font-semibold" : "text-[#0a1628]/90",
+          "flex-shrink-0 select-none px-4 py-2 font-serif text-base transition",
+          isActive
+            ? "text-[#0a1628] font-semibold"
+            : "text-[#0a1628]/90 hover:text-[#0a1628]",
         )}
       >
         {index + 1}.
       </button>
 
-      <div className="flex-1 min-w-0" onClick={onSelect} role="button" tabIndex={-1}>
+      <div className="flex-1 min-w-0">
         <InlineEditableText
           value={workstream.title}
           size="body"
