@@ -12,6 +12,12 @@ import {
   EmberBreath,
   MdlsClipPathDefs,
 } from "@/components/mdls";
+import LenisProvider from "@/components/mdls/LenisProvider";
+import MdlsMeshBackground from "@/components/mdls/MdlsMeshBackground";
+import MdlsExtrudedSurface from "@/components/mdls/MdlsExtrudedSurface";
+import MdlsSacred3D from "@/components/mdls/MdlsSacred3D";
+import MdlsRevealSection from "@/components/mdls/MdlsRevealSection";
+import MdlsScrollTilt from "@/components/mdls/MdlsScrollTilt";
 
 /**
  * MDLS Codex · /mdls-preview (URL kept; content evolved 2026-05-19)
@@ -67,14 +73,19 @@ const MdlsPreview = () => {
   };
 
   return (
-    <main className="mdls-page-atmosphere">
+    <LenisProvider>
+    <main className="mdls-page-atmosphere relative">
       <MdlsClipPathDefs />
 
       {/* ═══════════════════════════════════════════════════════════════ */}
       {/* §1 · HERO — Direction Memo                                       */}
+      {/* WAVE 1 (Day 74, 2026-05-19): WebGL mesh-gradient atmosphere       */}
+      {/* (Paper Shaders) replaces the flat CSS .mdls-page-atmosphere for   */}
+      {/* the hero. Living color volume instead of banded planes.           */}
       {/* ═══════════════════════════════════════════════════════════════ */}
-      <section className="min-h-[88vh] flex flex-col justify-center px-6 sm:px-12 lg:px-20 py-20">
-        <div className="max-w-3xl mx-auto space-y-7">
+      <section className="relative min-h-[88vh] flex flex-col justify-center px-6 sm:px-12 lg:px-20 py-20 overflow-hidden">
+        <MdlsMeshBackground register="luminous" distortion={0.55} swirl={0.18} speed={0.22} />
+        <div className="relative max-w-3xl mx-auto space-y-7" style={{ zIndex: 1 }}>
           <p
             className="font-serif text-[#0a1628]"
             style={{
@@ -127,26 +138,33 @@ const MdlsPreview = () => {
 
       {/* ═══════════════════════════════════════════════════════════════ */}
       {/* §2 · COMPOSED SURFACE — the centerpiece (where MDLS is seen)     */}
+      {/* WAVE 3 (Day 74): wrapped in MdlsScrollTilt — device tilts subtly  */}
+      {/* as user scrolls past, reads as a held object, not a screenshot.  */}
       {/* ═══════════════════════════════════════════════════════════════ */}
-      <section className="py-12 sm:py-16">
-        <div className="max-w-5xl mx-auto px-4 sm:px-8">
-          <SectionEyebrow>One composed surface</SectionEyebrow>
-          <ComposedSurfaceDemo
-            demoMode={demoMode}
-            onDemoModeChange={setDemoMode}
-            completedDemoGoals={completedDemoGoals}
-            onToggleDemoGoal={toggleDemoGoal}
-          />
-          <p className="mt-10 text-center max-w-xl mx-auto font-serif italic text-[#0a1628]/60 text-base sm:text-lg leading-relaxed">
-            Trinity of luminosity, physicality, editorial refinement — composed into one
-            held object.
-          </p>
-        </div>
-      </section>
+      <MdlsRevealSection>
+        <section className="py-12 sm:py-16">
+          <div className="max-w-5xl mx-auto px-4 sm:px-8">
+            <SectionEyebrow>One composed surface</SectionEyebrow>
+            <MdlsScrollTilt>
+              <ComposedSurfaceDemo
+                demoMode={demoMode}
+                onDemoModeChange={setDemoMode}
+                completedDemoGoals={completedDemoGoals}
+                onToggleDemoGoal={toggleDemoGoal}
+              />
+            </MdlsScrollTilt>
+            <p className="mt-10 text-center max-w-xl mx-auto font-serif italic text-[#0a1628]/60 text-base sm:text-lg leading-relaxed">
+              Trinity of luminosity, physicality, editorial refinement — composed into one
+              held object.
+            </p>
+          </div>
+        </section>
+      </MdlsRevealSection>
 
       {/* ═══════════════════════════════════════════════════════════════ */}
       {/* §3 · PRINCIPLES + RULES                                          */}
       {/* ═══════════════════════════════════════════════════════════════ */}
+      <MdlsRevealSection>
       <section className="py-24 px-6 sm:px-12">
         <div className="max-w-4xl mx-auto">
           <SectionEyebrow>Seven principles, three rules</SectionEyebrow>
@@ -191,10 +209,12 @@ const MdlsPreview = () => {
           </div>
         </div>
       </section>
+      </MdlsRevealSection>
 
       {/* ═══════════════════════════════════════════════════════════════ */}
       {/* §4 · MATERIALS GALLERY — each in hero context                    */}
       {/* ═══════════════════════════════════════════════════════════════ */}
+      <MdlsRevealSection>
       <section className="py-24 px-4 sm:px-12">
         <div className="max-w-5xl mx-auto">
           <SectionEyebrow>The materials</SectionEyebrow>
@@ -281,13 +301,47 @@ const MdlsPreview = () => {
                 <div className="mdls-tactile-ceramic mx-auto" style={{ width: 240, height: 180 }} />
               }
             />
+
+            <MaterialFeature
+              name="Extruded-Surface"
+              register="Premium-Restrained · neumorphism"
+              description="Soft-extruded plastic surface — the new-morphism register. Multi-layer shadow with single light source upper-left, warm cream substrate, optional coral under-glow for active state. For UI controls that need to feel physical."
+              feature={
+                <div className="flex gap-6 items-center justify-center">
+                  <MdlsExtrudedSurface variant="raised" style={{ width: 110, height: 110 }}>
+                    <div className="h-full flex items-center justify-center">
+                      <SealMedallion size={32} variant="mandala" />
+                    </div>
+                  </MdlsExtrudedSurface>
+                  <MdlsExtrudedSurface variant="floating" active style={{ width: 130, height: 130 }}>
+                    <div className="h-full flex items-center justify-center">
+                      <SoulOrbGoal orbId={7} size={48} />
+                    </div>
+                  </MdlsExtrudedSurface>
+                  <MdlsExtrudedSurface variant="pressed" style={{ width: 110, height: 110 }}>
+                    <div className="h-full flex items-center justify-center text-[10px] uppercase tracking-[0.18em] text-[#0a1628]/55">
+                      pressed
+                    </div>
+                  </MdlsExtrudedSurface>
+                </div>
+              }
+            />
+
+            <MaterialFeature
+              name="Sacred-3D"
+              register="Luminous-Cosmic · real geometry"
+              description="WebGL-rendered dodecahedron — 12 pentagonal faces correspond to the 12-orb soul library and the 12-month aurora cycle. Bloom postprocessing + studio HDRI lighting gives the object the presence of a held artifact. Idle slow-rotate; pauses on prefers-reduced-motion."
+              feature={<MdlsSacred3D size={240} hue="warm" />}
+            />
           </div>
         </div>
       </section>
+      </MdlsRevealSection>
 
       {/* ═══════════════════════════════════════════════════════════════ */}
       {/* §5 · REGISTERS — four classes side-by-side                       */}
       {/* ═══════════════════════════════════════════════════════════════ */}
+      <MdlsRevealSection>
       <section className="py-24 px-6 sm:px-12">
         <div className="max-w-5xl mx-auto">
           <SectionEyebrow>Four registers, one language</SectionEyebrow>
@@ -340,10 +394,12 @@ const MdlsPreview = () => {
           </div>
         </div>
       </section>
+      </MdlsRevealSection>
 
       {/* ═══════════════════════════════════════════════════════════════ */}
       {/* §6 · TYPOGRAPHY — at scale, with real prose                      */}
       {/* ═══════════════════════════════════════════════════════════════ */}
+      <MdlsRevealSection>
       <section className="py-24 px-6 sm:px-12">
         <div className="max-w-4xl mx-auto">
           <SectionEyebrow>Typography</SectionEyebrow>
@@ -406,10 +462,12 @@ const MdlsPreview = () => {
           </div>
         </div>
       </section>
+      </MdlsRevealSection>
 
       {/* ═══════════════════════════════════════════════════════════════ */}
       {/* §7 · VOCABULARY + CLOSING                                        */}
       {/* ═══════════════════════════════════════════════════════════════ */}
+      <MdlsRevealSection>
       <section className="py-24 px-6 sm:px-12">
         <div className="max-w-4xl mx-auto">
           <SectionEyebrow>Twelve verbs, one register</SectionEyebrow>
@@ -451,6 +509,7 @@ const MdlsPreview = () => {
           </div>
         </div>
       </section>
+      </MdlsRevealSection>
 
       {/* ═══════════════════════════════════════════════════════════════ */}
       {/* §8 · TOKENS — dev appendix                                       */}
@@ -493,6 +552,7 @@ const MdlsPreview = () => {
         </p>
       </section>
     </main>
+    </LenisProvider>
   );
 };
 
