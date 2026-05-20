@@ -90,7 +90,16 @@ export const SculptedSilkSection = ({
         }}
       >
         <defs>
-          {/* Main drape gradient — light upper-left → deeper lower-right */}
+          {/* Wave 7 (Day 74 evening): silk-shimmer multi-stop gradients.
+              v1.7 used 1 linearGradient + 1 radialGradient = 2 light
+              sources, reads as "matte fabric blob." v2.0 (this) uses 1
+              linear + 3 radials at calibrated positions = 4 light sources,
+              reads as "silk catching light from multiple directions" —
+              the same texture quality as a WebGL mesh shader, achieved
+              in pure SVG. Same drop-shadow contained per Wave 6 fix. */}
+
+          {/* (1) Main drape — light upper-left → deeper lower-right.
+              6-stop instead of 4 for smoother volume falloff. */}
           <linearGradient
             id={`${uid}-drape`}
             x1="14%"
@@ -98,27 +107,57 @@ export const SculptedSilkSection = ({
             x2="86%"
             y2="89%"
           >
-            <stop offset="0%"   stopColor={`hsl(${hue}, ${satLight}%, 86%)`} />
-            <stop offset="38%"  stopColor={`hsl(${hue}, ${satMid}%,   78%)`} />
+            <stop offset="0%"   stopColor={`hsl(${hue}, ${satLight}%, 88%)`} />
+            <stop offset="22%"  stopColor={`hsl(${hue}, ${satMid}%,   82%)`} />
+            <stop offset="48%"  stopColor={`hsl(${hue}, ${satMid}%,   75%)`} />
             <stop offset="70%"  stopColor={`hsl(${hue}, ${satDeep}%,  68%)`} />
-            <stop offset="100%" stopColor={`hsl(${hue}, ${satDeep}%,  60%)`} />
+            <stop offset="88%"  stopColor={`hsl(${hue}, ${satDeep}%,  62%)`} />
+            <stop offset="100%" stopColor={`hsl(${hue}, ${satDeep}%,  58%)`} />
           </linearGradient>
-          {/* Upper-left specular — light catching the silk surface */}
-          <radialGradient
-            id={`${uid}-highlight`}
-            cx="28%"
-            cy="22%"
-            r="55%"
-          >
-            <stop offset="0%"  stopColor={`hsl(${hue}, ${satLight + 12}%, 94%)`} stopOpacity="0.85" />
-            <stop offset="22%" stopColor={`hsl(${hue}, ${satLight + 4}%,  88%)`} stopOpacity="0.45" />
-            <stop offset="55%" stopColor="white" stopOpacity="0" />
+
+          {/* (2) Upper-left specular — the primary light source highlight. */}
+          <radialGradient id={`${uid}-highlight1`} cx="28%" cy="22%" r="42%">
+            <stop offset="0%"  stopColor={`hsl(${hue}, ${satLight + 14}%, 96%)`} stopOpacity="0.9" />
+            <stop offset="35%" stopColor={`hsl(${hue}, ${satLight + 6}%,  90%)`} stopOpacity="0.4" />
+            <stop offset="70%" stopColor="white" stopOpacity="0" />
+          </radialGradient>
+
+          {/* (3) Right-mid sub-highlight — secondary catch, simulates how
+              silk's fibers reflect light at oblique angles. Different hue
+              shift (+12°) for the "silk iridescence" effect. */}
+          <radialGradient id={`${uid}-highlight2`} cx="72%" cy="45%" r="28%">
+            <stop offset="0%"  stopColor={`hsl(${(hue + 12) % 360}, ${satLight + 8}%, 88%)`} stopOpacity="0.4" />
+            <stop offset="50%" stopColor={`hsl(${hue}, ${satMid}%,  80%)`} stopOpacity="0.15" />
+            <stop offset="100%" stopColor="white" stopOpacity="0" />
+          </radialGradient>
+
+          {/* (4) Lower-left ambient bounce — soft fill from the surface
+              the silk sits on. Cooler tone (hue -8°) for atmospheric
+              perspective. */}
+          <radialGradient id={`${uid}-bounce`} cx="22%" cy="78%" r="38%">
+            <stop offset="0%"  stopColor={`hsl(${(hue + 348) % 360}, ${satMid}%, 78%)`} stopOpacity="0.35" />
+            <stop offset="60%" stopColor={`hsl(${hue}, ${satMid}%, 72%)`} stopOpacity="0.12" />
+            <stop offset="100%" stopColor="white" stopOpacity="0" />
+          </radialGradient>
+
+          {/* (5) Deep crease shadow — lower-right, the silk's deepest fold.
+              Pure darken layer, multiplies the drape darks for depth. */}
+          <radialGradient id={`${uid}-crease`} cx="82%" cy="82%" r="32%">
+            <stop offset="0%"  stopColor={`hsl(${hue}, ${satDeep}%, 42%)`} stopOpacity="0.35" />
+            <stop offset="60%" stopColor={`hsl(${hue}, ${satDeep}%, 50%)`} stopOpacity="0.10" />
+            <stop offset="100%" stopColor="white" stopOpacity="0" />
           </radialGradient>
         </defs>
-        {/* The silk shape — visible only inside the path. Two layers:
-            (1) main drape gradient, (2) specular highlight on top. */}
+
+        {/* Stack 5 fills on the same path — order matters: drape base
+            first (opaque), then crease/shadow (darkens), then the two
+            highlights, then the bounce. Result is a silk that reads as
+            having THICKNESS and FOLD STRUCTURE, not just a colored shape. */}
         <path d={path} fill={`url(#${uid}-drape)`} />
-        <path d={path} fill={`url(#${uid}-highlight)`} />
+        <path d={path} fill={`url(#${uid}-crease)`} />
+        <path d={path} fill={`url(#${uid}-highlight2)`} />
+        <path d={path} fill={`url(#${uid}-highlight1)`} />
+        <path d={path} fill={`url(#${uid}-bounce)`} />
       </svg>
       {/* Children render above the SVG (children layout uses normal flow
           on the wrapping div; the SVG is absolutely positioned underneath). */}
