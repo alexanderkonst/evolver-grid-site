@@ -18,13 +18,14 @@ import type { WatchMode } from "./WatchModeToggle";
  * the SectionsPanel already provides nav).
  */
 
-// ATTUNE mode shows: Synthesis, Solar, Zodiac, Lunar+MoonFocus, Day-of-Week.
+// ATTUNE mode shows (Sasha 2026-05-19 reorder):
+// Synthesis → Lunar → Day-of-Week → Solar → Zodiac.
 const ATTUNE_ANCHORS: { id: string; label: string }[] = [
   { id: SECTION_IDS.synthesis, label: "Read" },
-  { id: SECTION_IDS.solar, label: "Solar" },
-  { id: SECTION_IDS.zodiac, label: "Zodiac" },
   { id: SECTION_IDS.lunar, label: "Lunar" },
   { id: SECTION_IDS.dayOfWeek, label: "Week" },
+  { id: SECTION_IDS.solar, label: "Solar" },
+  { id: SECTION_IDS.zodiac, label: "Zodiac" },
 ];
 
 // ACT mode shows (original spine order; Sasha makes the section calls):

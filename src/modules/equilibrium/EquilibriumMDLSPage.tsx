@@ -180,7 +180,7 @@ export const EquilibriumMDLSPage = () => {
 
         {isAttune && (
           <MattePolymerCard variant="translucent" id={SECTION_IDS.solar}>
-            <SectionHeader title="Solar Energy" />
+            <SectionHeader title="Yearly Solar Energy Left" />
             <div className="mt-4">
               {(() => {
                 const { prev, current, next } = getBirthdayArcPhaseNeighbors(
@@ -201,7 +201,7 @@ export const EquilibriumMDLSPage = () => {
 
         {isAttune && (
           <MattePolymerCard variant="translucent" id={SECTION_IDS.zodiac}>
-            <SectionHeader title="Zodiac Energy" />
+            <SectionHeader title="Current Zodiac Energy" />
             <div className="mt-4">
               <CycleEnergyBar
                 segments={ZODIAC_SEGMENTS}
@@ -217,7 +217,7 @@ export const EquilibriumMDLSPage = () => {
 
         {isAttune && (
           <MattePolymerCard variant="translucent" id={SECTION_IDS.lunar}>
-            <SectionHeader title="Lunar Energy" />
+            <SectionHeader title="Current Lunar Energy" />
             <div className="mt-4">
               <CycleEnergyBar
                 segments={LUNAR_SEGMENTS}
@@ -245,7 +245,7 @@ export const EquilibriumMDLSPage = () => {
 
         {isAttune && (
           <MattePolymerCard variant="translucent" id={SECTION_IDS.dayOfWeek}>
-            <SectionHeader title="Day-of-Week Energy" />
+            <SectionHeader title="Current Day-of-Week Energy" />
             <div className="mt-4">
               <CycleEnergyBar
                 segments={DAY_OF_WEEK_SEGMENTS}
