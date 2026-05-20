@@ -1175,7 +1175,7 @@ const SectionsPanel = ({
                                         ? "line-through"
                                         : undefined,
                                     textDecorationColor: section.completed && !sectionActive
-                                        ? "rgba(244, 212, 114, 0.75)"
+                                        ? "var(--skin-strike-color, rgba(244, 212, 114, 0.75))"
                                         : undefined,
                                     textDecorationThickness: section.completed && !sectionActive
                                         ? "1.5px"
