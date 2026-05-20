@@ -1,8 +1,9 @@
 import { Suspense, useRef, useMemo } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
+import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { Environment, ContactShadows } from "@react-three/drei";
 import { EffectComposer, Bloom, N8AO, Noise } from "@react-three/postprocessing";
 import { BlendFunction } from "postprocessing";
+import { type MotionValue } from "framer-motion";
 import * as THREE from "three";
 
 /**
@@ -41,7 +42,28 @@ interface MdlsSacred3DProps {
   hue?: "warm" | "cool" | "neutral";
   /** Disable rotation animation. Default false. */
   static?: boolean;
+  /** Optional scroll-driven camera Y offset (Framer Motion value).
+   *  When provided, the R3F camera's Y position is animated by this
+   *  value — REAL 3D depth parallax instead of CSS translateY of a 3D
+   *  object. Wave 7 / N4. */
+  cameraOffsetY?: MotionValue<number>;
 }
+
+/**
+ * Internal — drives R3F camera position from a Framer Motion value.
+ * useThree() gives us camera access; useFrame reads the motion value
+ * each frame (60Hz) so the camera responds to scroll in real-time.
+ * Result: as user scrolls, the camera glides up/down within the scene
+ * relative to the object — true depth parallax, not 2D translate.
+ */
+const CameraScrollController = ({ offset }: { offset: MotionValue<number> }) => {
+  const { camera } = useThree();
+  useFrame(() => {
+    camera.position.y = 0.3 + offset.get();
+    camera.lookAt(0, 0, 0);
+  });
+  return null;
+};
 
 // Ceramic material presets — these are calibrated to look like glazed
 // ceramic clay, NOT polished metal. Low metalness + high roughness.
@@ -109,6 +131,7 @@ export const MdlsSacred3D = ({
   size = 240,
   hue = "warm",
   static: isStatic = false,
+  cameraOffsetY,
 }: MdlsSacred3DProps) => {
   const respectReducedMotion = useMemo(() => {
     if (typeof window === "undefined") return false;
@@ -131,6 +154,7 @@ export const MdlsSacred3D = ({
         dpr={[1, 2]}
         shadows
       >
+        {cameraOffsetY && <CameraScrollController offset={cameraOffsetY} />}
         {/* ─── 3-point industrial-design photography lighting ──────────
             This is the studio setup that makes objects READ as photographed
             rather than rendered. Three lights at calibrated positions: */}

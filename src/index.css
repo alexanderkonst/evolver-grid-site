@@ -2773,13 +2773,18 @@ form.liquid-glass input:-webkit-autofill:active {
      ──────────────────────────────────────────────────────────────── */
   .mdls-matte-polymer {
     background-color: var(--mdls-cream);
-    /* v1.3: subtle SVG grain noise — gives the surface tactile-not-digital
-       quality. Single-pixel speck at 4px grid, ~3% ink opacity. Cheap
-       to render (no actual SVG, just a 1px image) and respects the
-       cream substrate. */
+    /* Wave 7 (Day 74 evening): paper-fiber grain via SVG turbulence
+       noise, replacing the 4px speck grid. Real fractal noise pattern
+       (numOctaves=3) reads as actual paper texture rather than dot grid.
+       Sasha v2.2 feedback: "matte surface, we haven't touched it" — this
+       is the touch. Layered: turbulence noise + warm-cool tri-gradient
+       wash that suggests volume. */
     background-image:
-      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='4' height='4'><circle cx='1' cy='1' r='0.5' fill='%23000' fill-opacity='0.04'/></svg>");
-    background-size: 4px 4px;
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' seed='3'/><feColorMatrix values='0 0 0 0 0.35   0 0 0 0 0.28   0 0 0 0 0.18   0 0 0 0.40 0'/></filter><rect width='200' height='200' filter='url(%23n)' opacity='0.5'/></svg>"),
+      radial-gradient(ellipse at 26% 22%, hsla(28, 36%, 92%, 0.6) 0%, transparent 55%),
+      radial-gradient(ellipse at 74% 78%, hsla(34, 22%, 87%, 0.5) 0%, transparent 60%);
+    background-size: 220px 220px, 100% 100%, 100% 100%;
+    background-blend-mode: overlay, normal, normal;
     border: 0.5px solid rgba(10, 18, 34, 0.06);
     border-radius: 24px;
     box-shadow:

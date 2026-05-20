@@ -20,6 +20,7 @@ import MdlsSacred3D from "@/components/mdls/MdlsSacred3D";
 import MdlsRevealSection from "@/components/mdls/MdlsRevealSection";
 import MdlsScrollTilt from "@/components/mdls/MdlsScrollTilt";
 import MdlsCeramicSurface from "@/components/mdls/MdlsCeramicSurface";
+import MdlsAuroraOrb3D from "@/components/mdls/MdlsAuroraOrb3D";
 
 /**
  * MDLS Codex · /mdls-preview (URL kept; content evolved 2026-05-19)
@@ -65,17 +66,24 @@ const MdlsPreview = () => {
   const [demoMode, setDemoMode] = useState<"attune" | "act">("act");
   const [completedDemoGoals, setCompletedDemoGoals] = useState<Set<number>>(new Set());
 
-  // WAVE 5 (5.7): Hero parallax — three layers move at different speeds
-  // as the user scrolls. Strict small magnitudes (8/20/0 px) — depth
-  // without disorientation. Background moves slowest, 3D mid, prose
-  // stays anchored.
+  // WAVE 5 + WAVE 7 (N4) — Hero parallax with REAL 3D camera depth.
+  // The mesh background uses 2D translateY (it IS a 2D shader, so a 2D
+  // translate is correct).
+  // The 3D object uses CAMERA-Y motion — the R3F camera moves through
+  // the scene as the user scrolls, giving real 3D parallax that
+  // adjusts perspective + foreshortening as the camera moves, rather
+  // than just shifting a flat 2D crop of the canvas.
+  // The prose still uses translateY since it's flat DOM content.
   const heroRef = useRef<HTMLElement>(null);
   const { scrollYProgress: heroProgress } = useScroll({
     target: heroRef,
     offset: ["start start", "end start"],
   });
   const meshParallaxY = useTransform(heroProgress, [0, 1], [0, 40]);
-  const sacredParallaxY = useTransform(heroProgress, [0, 1], [0, 120]);
+  // 3D camera Y offset — moves up to 0.9 units in world space (small
+  // values; the scene is at z=3.4, fov=42°). The camera looks at (0,0,0)
+  // so as it moves up, the dodecahedron appears to drop down + tilt.
+  const sacredCameraY = useTransform(heroProgress, [0, 1], [0, 0.9]);
   const proseParallaxY = useTransform(heroProgress, [0, 1], [0, 60]);
 
   const toggleDemoGoal = (i: number) => {
@@ -105,16 +113,15 @@ const MdlsPreview = () => {
         <motion.div style={{ y: meshParallaxY, position: "absolute", inset: 0 }}>
           <MdlsMeshBackground register="luminous" pixelRatio={2} />
         </motion.div>
-        {/* WAVE 5 (5.7): 3D centerpiece in its own parallax layer — moves
-            faster than the background but slower than the prose, creating
-            true z-depth without disorientation. Matte ceramic material +
-            3-point lighting + AO + bloom (configured in MdlsSacred3D v2). */}
-        <motion.div
-          className="relative mx-auto"
-          style={{ zIndex: 2, marginBottom: "1.5rem", y: sacredParallaxY }}
-        >
-          <MdlsSacred3D size={260} hue="warm" />
-        </motion.div>
+        {/* WAVE 7 (N4): 3D centerpiece — now using R3F CAMERA parallax
+            instead of DOM translateY. As the user scrolls, the R3F camera
+            moves UP through the scene (sacredCameraY 0 → 0.9), causing
+            the dodecahedron to appear to drop down + change perspective
+            (foreshortening shifts). This is real 3D depth — the same
+            principle parallax barrier displays use. */}
+        <div className="relative mx-auto" style={{ zIndex: 2, marginBottom: "1.5rem" }}>
+          <MdlsSacred3D size={260} hue="warm" cameraOffsetY={sacredCameraY} />
+        </div>
         <motion.div className="relative max-w-3xl mx-auto space-y-7" style={{ zIndex: 1, y: proseParallaxY }}>
           <p
             className="font-serif text-[#0a1628]"
@@ -162,7 +169,7 @@ const MdlsPreview = () => {
           </p>
         </motion.div>
         <div className="relative mt-20 text-center text-[10px] uppercase tracking-[0.28em] text-[#0a1628]/40" style={{ zIndex: 1 }}>
-          Multi-Dimensional Living Surface · the codex · v2.2 — fidelity + perf pass
+          Multi-Dimensional Living Surface · the codex · v2.3 — material truth
         </div>
       </section>
 
@@ -273,9 +280,9 @@ const MdlsPreview = () => {
           <div className="mt-16 space-y-32">
             <MaterialFeature
               name="Aurora-Glass-Orb"
-              register="Luminous-Cosmic"
-              description="Color enters from within. The material holds light as substance, not paint. The form is round."
-              feature={<AuroraGlassOrb size={320} />}
+              register="Luminous-Cosmic · translucent glass"
+              description="Color enters from within. WAVE 7 upgrade: was a CSS radial gradient on a flat circle (paint pretending to be glass); now an R3F sphere with MeshPhysicalMaterial.transmission — REAL translucent glass holding an inner point light source. The aurora glows through the material, not painted onto its surface."
+              feature={<MdlsAuroraOrb3D size={300} hue="warm" />}
             />
 
             <MaterialFeature
@@ -421,7 +428,7 @@ const MdlsPreview = () => {
               name="Luminous-Cosmic"
               mood="charged · contemplative · sacred"
               whenToUse="Hero · ritual · revelation"
-              sample={<AuroraGlassOrb size={120} />}
+              sample={<MdlsAuroraOrb3D size={120} hue="warm" />}
             />
             <RegisterCard
               name="Premium-Restrained"
