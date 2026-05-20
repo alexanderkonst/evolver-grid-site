@@ -756,12 +756,40 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
     // point inside BUILD that doesn't require funnel progression. UBB itself
     // retains its existing gate via MeGate at the /ubb route level.
     const GATED_SPACES = ["next-move", "learn", "meet", "collaborate", "buysell"] as const;
+    // Day 75 (Sasha 2026-05-19) — COLLABORATE flicker fix.
+    //
+    // Sasha: "collaborate space on the first panel doesn't show sometimes,
+    // quite often actually, when I click on the Me space, AI OS space."
+    //
+    // Root cause: every route in App.tsx remounts <GameShellV2> fresh →
+    // `profileLoaded` resets to false → during the ~300-500ms profile
+    // fetch window, the catch-all `else [...GATED_SPACES]` branch below
+    // hid every gated space, including COLLABORATE.
+    //
+    // But COLLABORATE's unlock signal is LOCALSTORAGE-only
+    // (`fytt:collaborate-unlocked`, written when the user presses
+    // "Find Matches"). localStorage is synchronous + instant — there's
+    // no reason to wait for the profile fetch to decide its visibility.
+    // The other gated spaces (next-move/learn/meet/buysell) DO depend on
+    // profile-resolved values (zogComplete, ignitionComplete) and still
+    // correctly hide during the fetch to avoid flicker.
+    //
+    // Fix: extract COLLABORATE from the profile-gated branch and evaluate
+    // it on `collaborateUnlocked` regardless of `profileLoaded`. No
+    // flicker, no regression — other gated spaces' flicker-prevention is
+    // untouched.
+    const localStorageBackedHidden: string[] = collaborateUnlocked ? [] : ["collaborate"];
+    const profileBackedGated = GATED_SPACES.filter((id) => id !== "collaborate");
     const hiddenSpaces: string[] = profileLoaded
-        ? GATED_SPACES.filter((id) => unlockStatus[id] === false)
-        : // During the profile fetch, default to hiding gated spaces so
-          // there's no lock-then-hide flicker on first load. (No longer
-          // waits on deepProfileLoading — see the wave 7 comment above.)
-          [...GATED_SPACES];
+        ? [
+              ...profileBackedGated.filter((id) => unlockStatus[id] === false),
+              ...localStorageBackedHidden,
+          ]
+        : // During the profile fetch, hide the profile-backed gated
+          // spaces (so there's no lock-then-hide flicker), but evaluate
+          // COLLABORATE from localStorage since that signal is already
+          // resolved synchronously.
+          [...profileBackedGated, ...localStorageBackedHidden];
 
     // Navigation handlers
     const handleSpaceSelect = (spaceId: string) => {
