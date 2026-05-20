@@ -7267,3 +7267,15 @@ Sasha green-lit the next-improvements list with one exclusion: N5 (sound layer) 
 Commit: `d16512ac` (pushed to origin/main). Bundle: +1KB gzipped.
 
 Version label: v2.2 → v2.3 material truth. Equilibrium stays parked.
+
+### Day 74 Wave 8 — Codex v2.4 polymer truth + neumorphic device
+
+Sasha v2.3 feedback (screenshots): Matte-Polymer "looks like a dotted surface" (my Wave 7 SVG turbulence was tiling at 220px → visible dot pattern); Composite surface "shadow better but doesn't look neumorphic" (the device-frame CSS was generic white with downward-only shadow).
+
+**Matte-Polymer rewrite** — REMOVED visible turbulence background. Real matte polymer has NO visible texture; matte = light diffusion, not pattern. Now: tri-gradient subtle wash (warm UL + cool LR + vertical slab fade) + multi-layer edge highlights (top bezel catches light, sides thinner, bottom inset shadow) + 4-layer diffuse drop shadow stack (wide penumbra = matte). Imperceptible noise via ::before pseudo-element at 6% opacity, baseFrequency 0.18 (soft blobs, not dots), no tiling.
+
+**Device frame rewrite — NEUMORPHIC** — Removed the dot-grid background, replaced single-direction shadow with proper dual-shadow neumorphism (UL highlight + LR warm shadow magnitudes matched), inset bezel highlight on top edge + inset shadow on bottom edge. Kept the isometric tilt. Now reads as carved/raised from substrate, not floating.
+
+Commit: `2c8f2744` (pushed to origin/main).
+
+Version: v2.3 → v2.4 polymer truth + neumorphic device. Equilibrium stays parked.
