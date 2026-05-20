@@ -84,8 +84,6 @@ const HarvestSectionBase = ({
     return Array.from(buckets.entries());
   }, [completedTasks]);
 
-  const todayKey = formatDayKey(new Date());
-  const todayCount = grouped.find(([k]) => k === todayKey)?.[1]?.length ?? 0;
   const totalCount = completedTasks.length;
 
   // Empty state — quiet, no motivational pressure. The watch is for
@@ -98,57 +96,85 @@ const HarvestSectionBase = ({
     );
   }
 
+  // Sasha 2026-05-20 UI refinement — what changed vs. the v1:
+  //
+  //   • Top stat is now an ALL-TIME aggregate, not a duplicate of
+  //     the day eyebrow. When there's only "today" data, the day
+  //     eyebrow already says "Today · 2"; an identical "2 reaped
+  //     today" line above was pure redundancy. Now the top reads as
+  //     a momentum-pulse ("3 reaped this week · 47 all time").
+  //
+  //   • Day eyebrow loses the redundant "REAPED" word — just the
+  //     day name + count. Slimmer, less hectoring.
+  //
+  //   • Workstream attribution moves from a loud uppercase emerald
+  //     PILL → inline italic citation ("from Balaji reachout"). No
+  //     more ugly mid-word truncation; long names just wrap to the
+  //     next line of the metadata row. Reads as a reference, not a
+  //     system label.
+  //
+  //   • Row palette neutralized: white background + soft slate
+  //     border instead of emerald-everything. The CHECK stays
+  //     emerald — it's the symbol of accomplishment. Everything else
+  //     gets out of its way.
+  //
+  //   • Task text muted to /65 + strikethrough /30. Previously the
+  //     strikethrough fought full-strength dark text; now the line
+  //     reads "completed" via opacity + strike together, calmer.
+  //
+  // Computed: tasks reaped in the trailing 7 days (window for the
+  // "this week" stat). Today's count is already in the day eyebrow.
+  const sevenDaysAgo = Date.now() - 7 * 86_400_000;
+  const weekCount = completedTasks.filter(
+    (t) => t.done_at && new Date(t.done_at).getTime() >= sevenDaysAgo,
+  ).length;
+
+  // Top aggregate line — context-sensitive copy. If there's history
+  // beyond today, surface the wider window; otherwise stay on the
+  // simpler all-time tally so it doesn't feel cargo-cult.
+  const topLine = totalCount > weekCount
+    ? `${weekCount} this week · ${totalCount} all time`
+    : totalCount > 1
+      ? `${totalCount} reaped`
+      : `${totalCount} reaped — first of many`;
+
   return (
     <div className="mt-2">
-      {/*
-        Celebration eyebrow — adapts to current activity.
-        • Today has wins:   "✨ 3 tasks today — keep going."
-        • Today empty, recent wins: "✨ N reaped across all time"
-      */}
-      <div className="mb-5 flex items-center justify-center gap-2 text-sm text-[#0a1628]/85">
+      {/* Top aggregate — a calm pulse, not a duplicate of below. */}
+      <div className="mb-6 flex items-center justify-center gap-2 text-sm italic text-[#0a1628]/75">
         <Sparkles size={14} className="text-emerald-600" />
-        <span className="font-serif italic">
-          {todayCount > 0
-            ? `${todayCount} ${todayCount === 1 ? "task" : "tasks"} reaped today`
-            : `${totalCount} ${totalCount === 1 ? "task" : "tasks"} reaped so far`}
-        </span>
+        <span className="font-serif">{topLine}</span>
       </div>
 
       <div className="flex flex-col gap-5">
         {grouped.map(([dayKey, dayTasks]) => (
           <div key={dayKey}>
-            {/* Day group eyebrow */}
-            <div className="mb-2 flex items-center gap-2 px-1 text-xs font-semibold uppercase tracking-[0.18em] text-emerald-700/85">
+            {/* Day group eyebrow — day name + count, no "REAPED"
+                redundancy. Tighter tracking, calmer color. */}
+            <div className="mb-2 flex items-center gap-2 px-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-[#0a1628]/65">
               <span>{formatDayLabel(dayKey)}</span>
-              <span className="text-[#0a1628]/55">
-                · {dayTasks.length} {dayTasks.length === 1 ? "reaped" : "reaped"}
-              </span>
-              <span className="flex-1 border-t border-emerald-700/15" />
+              <span className="text-[#0a1628]/40">· {dayTasks.length}</span>
+              <span className="flex-1 border-t border-[#0a1628]/10" />
             </div>
 
             <ul className="flex flex-col gap-1.5">
               {dayTasks.map((task) => (
                 <li
                   key={task.id}
-                  className="group/harvest flex items-center gap-3 rounded-xl border border-emerald-200/40 bg-white/75 px-3 py-2.5 transition hover:bg-white/95"
+                  className="group/harvest flex items-start gap-3 rounded-xl border border-[#0a1628]/8 bg-white/80 px-3 py-2.5 transition hover:border-[#0a1628]/14 hover:bg-white/95"
                 >
-                  {/*
-                    Square check, pre-checked (the task IS done). Same
-                    visual language as the active-task checkbox so the
-                    user reads "this is just the checked state of the
-                    thing above." Click → restore.
-                  */}
+                  {/* Pre-checked square — visual symmetry with the
+                      active-task checkbox, plus the only emerald
+                      element in the row (it's the symbol of done).
+                      Hover swaps to the restore arrow. */}
                   <button
                     type="button"
                     aria-label={`Restore "${task.text}" to active`}
                     title="Restore to active"
                     disabled={loading}
                     onClick={() => onUncompleteTask(task.id)}
-                    className="group/check relative flex h-7 w-7 shrink-0 items-center justify-center rounded-md border-2 border-emerald-500/70 bg-emerald-50 transition hover:border-emerald-600 hover:bg-emerald-100"
+                    className="group/check relative mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-md border-2 border-emerald-500/70 bg-emerald-50 transition hover:border-emerald-600 hover:bg-emerald-100"
                   >
-                    {/* Default state: check visible (task complete).
-                        Hover: swap to restore arrow so the affordance
-                        is obvious without needing copy. */}
                     <Check
                       size={14}
                       className="absolute text-emerald-700 transition group-hover/check:opacity-0"
@@ -160,25 +186,31 @@ const HarvestSectionBase = ({
                   </button>
 
                   <div className="flex-1 min-w-0">
-                    <div className="font-serif text-[15px] text-[#0a1628]">
-                      <span className="line-through decoration-[#0a1628]/30">
-                        {task.text}
-                      </span>
+                    {/* Task text — muted /65 + strikethrough /30. Two
+                        soft signals add to "done"; neither has to
+                        shout on its own. */}
+                    <div className="font-serif text-[15px] leading-snug text-[#0a1628]/65 line-through decoration-[#0a1628]/30">
+                      {task.text}
                     </div>
-                    <div className="mt-1 flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px] text-[#0a1628]/70">
+                    {/* Metadata — single italic citation line. Long
+                        workstream names wrap; nothing truncates ugly. */}
+                    <div className="mt-1 flex flex-wrap items-center gap-x-2 gap-y-0.5 text-[11px] text-[#0a1628]/55">
                       {workstreamTitleById[task.workstream_id] && (
-                        <span
-                          className="inline-flex max-w-[200px] items-center truncate rounded-full bg-emerald-50 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-emerald-700"
-                          title={workstreamTitleById[task.workstream_id]}
-                        >
-                          {workstreamTitleById[task.workstream_id]}
-                        </span>
+                        <>
+                          <span className="italic">
+                            from{" "}
+                            <span className="font-medium not-italic text-[#0a1628]/75">
+                              {workstreamTitleById[task.workstream_id]}
+                            </span>
+                          </span>
+                          <span className="text-[#0a1628]/30">·</span>
+                        </>
                       )}
                       <span className="inline-flex items-center gap-1">
-                        <Clock size={11} className="text-[#0a1628]/55" />
+                        <Clock size={10} className="text-[#0a1628]/45" />
                         {formatDuration(focusDurationMs(task))}
                       </span>
-                      <span className="text-[#0a1628]/55">·</span>
+                      <span className="text-[#0a1628]/30">·</span>
                       <span>{formatRelativeTime(new Date(task.done_at!))}</span>
                     </div>
                   </div>

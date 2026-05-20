@@ -12,13 +12,13 @@
 
 ## 1. What we're doing
 
-We are reshaping the JOURNEY space and the public landing page so that **precision matchmaking for collaboration** is the hero of the funnel — replacing the previous hero, which was *"build your unique business."*
+We are reshaping the JOURNEY space and **adding a second landing page** so the platform serves two audiences cleanly: venture-building founders AND matching-seeking collaborators. ONE platform underneath, TWO landing pages on top, differentiated by a `?path=` query parameter. Per-skin mirroring stays trivial — each skin has its two landings configured the same way.
 
-The matching-onboarding sequence (Talent → Mission → Assets → QoL → bridge-to-Build) lives in the JOURNEY space and gates the user's path to becoming matchable. The unique-business / venture-building content (which used to live inside JOURNEY) moves into the BUILD space, where it becomes the deeper layer for members who graduate from matching into building.
+The matching-onboarding sequence (Talent → Mission → Assets → QoL → bridge-to-Build) becomes the single canonical JOURNEY space ordering for everyone. The unique-business / venture-building content (which used to live inside JOURNEY) moves into the BUILD space, where it becomes the deeper layer accessible to all users.
 
-The landing page keeps the same shell (layout, fonts, gradients, components, testimonial structure) but every line of text changes to reflect the matching-first frame.
+**Critical:** there is ONE platform with ONE journey sequence. The two landings are *two marketing entrances*, not two products. After a user passes through either landing into the assessment, they are in the same platform with the same modules accessible via the same routes. The only thing that varies post-landing is which CTA is foregrounded after the Top Talent reveal — driven by the `?path=` parameter the user carried in.
 
-Ignite Session ($555) is **no longer linked from the public landing or the post-Top-Talent screen.** It remains accessible at `/ignite` and is now surfaced only from inside the BUILD space, as the premium step for members who completed the matching triad and want hands-on venture-building work with Alexander.
+Ignite Session is **no longer linked from either public landing or the post-Top-Talent screen.** It remains accessible at `/ignite` and is surfaced only from inside the BUILD space, as the premium step for members who graduate into venture-building work with Alexander.
 
 ---
 
@@ -39,39 +39,70 @@ Full strategic context lives in three load-bearing docs:
 
 ## 3. The new user experience (narrative)
 
-A founder lands on `findyourtoptalent.com`. The hero says **"Stop building alone."** The page reads in under 30 seconds and ends with one CTA: *"Find your top talent →"*.
+Two entry points, one product underneath.
 
-The founder clicks. They walk through the Top Talent assessment (~10–15 min) and see their reveal. The post-reveal screen replaces the old binary fork (*Build / Unlock / Playbook*) with a single forward CTA: *"Discover your mission — free, 10 minutes."*
+**Match path entry:** A potential collaborator arrives via Balaji's Discord message at `findyourtoptalent.com/?path=match`. The matching-landing component renders. Hero says **"Stop building alone."** Eyebrow: *"Precision matchmaking for collaboration."* Single CTA: *"Find your top talent →"*.
 
-They continue into JOURNEY item #2 (Mission), then #3 (Assets). Each takes ~10 min. After completing #3, they are **matchable**. The matching surface unlocks. They can also see #4 (QoL — marked as *"Improve your match quality"*) and #5 (Build a business — a bridge into the BUILD space).
+**Build path entry:** An aspiring founder arrives via Alexander's existing venture-angle outreach at `findyourtoptalent.com/?path=build` (or just `/`, defaulting to build). The existing venture-landing component renders unchanged. Hero: *"Your genius is already there. It just hasn't been named."* The five-founder testimonials stay. Single CTA: *"Discover your genius first →"*.
 
-If they go into BUILD, they find the deeper venture-path content: *The Path to Your Unique Business*, *See the Dashboard*, *Take the exact playbook* — and the Ignite Session option for hands-on work with Alexander.
+**Both paths converge into the same Top Talent assessment.** ~10–15 min. Same component, same flow, same outcome.
 
-That's the entire user journey. Matching is the gravity well; venture-building is the deeper room for those who want it.
+**After the reveal, the post-Top-Talent CTA branches based on `?path=`:**
+- Match-path users see: *"Discover your mission — free, 10 minutes →"* (continues T-M-A-Q matching onboarding)
+- Build-path users see: *"Discover your mission — free, 10 minutes →"* as primary forward motion (the journey still flows the same way) — but with a more prominent secondary link to **"Or explore the BUILD space →"** for those who want to skip directly into venture-building content.
+
+In both cases, the user continues into JOURNEY items 2 (Mission), 3 (Assets), 4 (QoL). After #3 they're **matchable**; the matching surface unlocks. Item #5 (Build a business) is a bridge into BUILD space.
+
+The BUILD space holds *The Path to Your Unique Business*, *See the Dashboard*, *Take the exact playbook*, and the Ignite Session for hands-on work with Alexander.
+
+**The same modules are accessible to every user via the same routes regardless of entry path.** Match-path users can navigate to BUILD whenever they want; build-path users can navigate to the matching surface after T-M-A. The path just colors the initial framing and the post-Top-Talent CTA emphasis.
 
 ---
 
 ## 4. Specifications
 
-### 4.1 Landing page
+### 4.1 Landing pages — two of them, query-param routed
 
-**File:** `src/pages/LandingPage.tsx`
-**Change type:** text only. Shell, layout, fonts, gradients, components stay identical.
+**Two landing components, one router decision:**
 
-| Element | New copy |
+**(a) `src/pages/LandingPage.tsx` — the BUILD-path landing (existing, mostly unchanged)**
+
+The current venture-building landing stays. Copy stays. Hero (*"Your genius is already there. It just hasn't been named."*), five-founder testimonials, the existing two-paths split (Free ZoG / Direct Ignite) — all preserved. This is what existing venture-angle audiences see.
+
+**(b) `src/pages/MatchLanding.tsx` — the MATCH-path landing (new)**
+
+Created new. Same shell, layout, fonts, gradient backgrounds, component patterns as `LandingPage.tsx`. Different copy:
+
+| Element | Copy |
 |---|---|
 | **Eyebrow** | *"Precision matchmaking for collaboration"* |
 | **Hero (h1)** | *"Stop building alone."* |
 | **Sub paragraph** | *"Your people are already in this network. Ten minutes to be seen — we surface them. Real introductions follow."* |
 | **Italic line** | *"You've met cool people. You still haven't found your people."* |
 | **CTA button** | *"Find your top talent →"* |
-| **CTA route** | `/start` (unchanged — the ZoG entry) |
+| **CTA route** | `/start?path=match` |
+| **Founder testimonials** | NOT present (they're venture-outcome testimonials, not matching-outcome — stay on BuildLanding only) |
+| **Two-paths split** | NOT present (single CTA on this landing) |
 
-**Remove from the landing entirely:**
-- The two-paths split (free-ZoG / direct-Ignite) — collapse to a single CTA.
-- The five-founder testimonial section (Oyi, Sergey, Sandra, Alexa, Karime). These move to a new `/founders` sub-page or inside the BUILD space (see §4.5).
+**Routing logic at `findyourtoptalent.com/`:**
 
-**Why single CTA, not two paths:** funnel monogamy. One forward motion per stage. Strangers no longer convert to $555 Ignition directly; the only Day-1 conversion is *"start the matching onboarding."*
+The root route (`/`) reads the `?path=` query parameter:
+- `?path=match` → renders `<MatchLanding />`
+- `?path=build` → renders `<LandingPage />` (the existing one)
+- No param → defaults to `<LandingPage />` (existing venture landing — preserves current behavior for organic / unparameterized traffic)
+
+**For outreach:**
+- Balaji's Discord message: link to `findyourtoptalent.com/ns/?path=match` (NS skin + match landing)
+- Other ecosystem-leader outreaches: link to `/?path=match` or `/[skin]/?path=match` as appropriate
+- Sasha's existing venture-angle outreach / social audience: link to `/` (defaults to build landing) or `/?path=build` for explicit attribution
+
+**The query param's lifecycle:**
+- Held in URL on landing (drives which component renders)
+- Carried forward into the CTA route (`/start?path=match` or `/start?path=build`)
+- Read post-Top-Talent (drives CTA branching — see §4.4)
+- Not persisted to the database. No `preferred_path` column. The query param does its work in the URL during the onboarding flow and then disappears once the user is past the post-Top-Talent screen.
+
+**Why no DB persistence:** keeps complexity low; the path is just a marketing-entry signal, not a structural user attribute. All modules are accessible to all users via the same routes regardless of entry path. The path just colors the initial framing.
 
 ### 4.2 JOURNEY space — new sequence + lock logic
 
@@ -124,26 +155,36 @@ The BUILD space already exists in the codebase. This spec only changes:
 **Visual treatment of BUILD entry from JOURNEY:**
 - JOURNEY item #5 should feel like a doorway, not another sequential step. Subtle visual differentiation (badge, arrow, divider) so users understand they're transitioning surfaces.
 
-### 4.4 Post-Top-Talent CTA — replace the binary fork
+### 4.4 Post-Top-Talent CTA — conditional on `?path=`
 
-**Current state:** After the Top Talent reveal page, the user sees three options to choose from: *Build a business / Unlock deeper profile / See the playbook.* This is a binary-fork screen requiring user decision.
+**Current state:** After the Top Talent reveal page, the user sees a binary-fork screen: *Build a business / Unlock deeper profile / See the playbook.*
 
-**New state:** The post-Top-Talent screen presents a single continuous forward CTA:
+**New state:** The post-Top-Talent screen reads the `?path=` query parameter (carried from the landing) and shows a continuous forward CTA, with secondary link emphasis depending on which path the user came through:
 
-> *"Discover your mission — free, 10 minutes →"*
+**Match-path users** (came in via `?path=match`):
+- **Primary:** *"Discover your mission — free, 10 minutes →"* (continues matching onboarding)
+- **Secondary (less prominent):** *"Unlock the full Top Talent profile"*
 
-Plus one optional secondary link (smaller, less prominent):
-- *"Unlock the full Top Talent profile"* — sidepath, not the primary forward motion.
+**Build-path users** (came in via `?path=build` or no param):
+- **Primary:** *"Discover your mission — free, 10 minutes →"* (the JOURNEY flows the same way for everyone)
+- **Secondary (more prominent than for match-path):** *"Or explore the BUILD space →"* — direct access to venture-path content for users who want to skip ahead
 
-**Why:** continuous matching-onboarding flow replaces decision fatigue. Most users will follow the forward CTA. The deeper Top Talent profile is preserved for those who actively want it.
+**Note:** the primary CTA is the same for both paths because JOURNEY has ONE ordering and Mission is universally next. The branching is in the secondary link's prominence — build-path users see the BUILD space access more clearly, match-path users see the deeper-profile sidepath more clearly. Same primary, different secondary emphasis. Minimal branching.
 
-### 4.5 Founder testimonials — relocation
+**Why minimal:** continuous matching-onboarding flow replaces decision fatigue. Most users follow the primary CTA. The secondary link is a discoverable side-door, not a competing forward motion.
 
-**Current:** The five founders (Oyi, Sergey, Sandra, Alexa, Karime — plus Kirill if implemented) appear on the public landing as social proof for the unique-business framing.
+### 4.5 Founder testimonials — stay on BuildLanding only
 
-**Move to:** New `/founders` sub-page, OR inside the BUILD space as social proof for the venture-path tier.
+**The five-founder testimonials (Oyi, Sergey, Sandra, Alexa, Karime, optionally Kirill) STAY on `LandingPage.tsx` (the build-path landing) where they currently are.**
 
-**Do NOT re-narrate the testimonials.** They are true statements about the unique-business work those founders did with Alexander. They are not about matching outcomes. Keep their original framing intact in the new location.
+They are true statements about the unique-business work those founders did with Alexander. They are NOT matching-outcome testimonials. Their natural home is the venture-angle landing.
+
+**Do NOT:**
+- Move them off the build landing
+- Re-narrate them as matching outcomes
+- Put them on the new MatchLanding (it has no real social proof yet — accept that absence honestly)
+
+**The new MatchLanding has no testimonials** until real matching outcomes exist. Better to ship a landing with honest absence-of-proof than to misrepresent existing proof.
 
 ### 4.6 User state migration
 
@@ -185,18 +226,22 @@ Honest time estimates (most prompt-driven via Lovable + targeted review):
 
 | # | Item | Estimate |
 |---|---|---|
-| 1 | Landing page text rewrite (§4.1) — same shell, new copy | 30 min |
-| 2 | JOURNEY reorder + renames + lock logic (§4.2) in `SectionsPanel.tsx` | 1–2 hours |
-| 3 | BUILD space wiring (§4.3) — route items in, surface Ignite, link from JOURNEY #5 | ~1 hour |
-| 4 | Post-Top-Talent CTA change (§4.4) — binary fork → continuous forward | 1–2 hours |
-| 5 | Founder testimonials relocation (§4.5) — move off landing to `/founders` or BUILD | 30 min |
-| 6 | User state migration (§4.6) — verify completion-flag carryover; brief notice for edge case | ~1 hour |
-| 7 | Auth flow + mobile audits across skins (already-mandatory per [`white_label_strategy.md`](../../02-strategy/white_label_strategy.md)) | 30 min per skin |
-| 8 | (Optional but recommended) Labels + landing copy config-driven per skin (§4.7) | ~half a day |
+| 1 | Create `MatchLanding.tsx` (§4.1) — duplicate shell of `LandingPage.tsx`, swap copy per the table | 1 hour |
+| 2 | Root-route routing logic — read `?path=` and render the right landing | 15 min |
+| 3 | JOURNEY reorder + renames + lock logic (§4.2) in `SectionsPanel.tsx` | 1–2 hours |
+| 4 | BUILD space wiring (§4.3) — route items in, surface Ignite, link from JOURNEY #5 | ~1 hour |
+| 5 | Post-Top-Talent CTA (§4.4) — conditional secondary-link emphasis based on `?path=` | 1 hour |
+| 6 | Founder testimonials stay on BuildLanding (§4.5) — no relocation needed | 0 (no-op) |
+| 7 | User state migration (§4.6) — verify completion-flag carryover; brief notice for edge case | ~1 hour |
+| 8 | Auth flow + mobile audits across skins (already-mandatory per [`white_label_strategy.md`](../../02-strategy/white_label_strategy.md)) | 30 min per skin |
+| 9 | (Optional but recommended) Labels + landing copy config-driven per skin (§4.7) | ~half a day |
+| 10 | Verify NS skin auto-propagates: both landings render correctly under `/ns/?path=match` and `/ns/?path=build` | 30 min |
 
-**Total: ~1 day of focused work** without #8, ~1.5 days with #8.
+**Total: ~1 day of focused work** without #9, ~1.5 days with #9.
 
-Items #2 + #3 + #4 are the visible product change. Item #1 is the public-face change. Item #6 is the data-safety check. Items #7 + #8 are the cross-skin durability layer.
+Items #3 + #4 + #5 are the visible product change inside the platform. Items #1 + #2 + #10 are the public-face change. Item #7 is the data-safety check. Items #8 + #9 are the cross-skin durability layer.
+
+**No `preferred_path` column. No inside-platform mode toggle. No conditional JOURNEY ordering.** ONE platform, TWO landings, query-param routed. Simpler than the previous spec draft.
 
 ---
 
@@ -228,10 +273,13 @@ This is not part of the code build, but is a hard prerequisite for the pilot to 
 
 These are NOT part of this build:
 
-- **No new pages.** The BUILD space already exists. The `/founders` sub-page if created is trivial (a small static page).
+- **No `preferred_path` DB column.** Path is a marketing-entry signal carried in URL during the onboarding flow only. Not persisted as a user attribute. All modules accessible to all users via the same routes regardless of entry path.
+- **No inside-platform mode toggle.** ONE product, not two. Users who enter via build-path have full access to matching modules and vice versa. No toggle is needed because there's nothing to toggle between — it's all one platform.
+- **No conditional JOURNEY ordering.** Single canonical sequence (T-M-A-Q-Build) for everyone. The match path and build path do NOT see different JOURNEY orderings.
+- **No new pages.** The BUILD space already exists. `MatchLanding.tsx` is a new component, but it's just a duplicate shell of `LandingPage.tsx` with different copy — not architecturally a new page in the sense of new routes / new layouts.
 - **No backend / matching algorithm changes.** The matching infrastructure is already shipped (active-intro layer, consent tokens, `match-consent` edge function). This build is funnel + UI only.
 - **No new branding work for skins.** The NS skin is already 99.9% ready. This build does not introduce new skins.
-- **No pricing changes in code.** Per-active-member pricing exists in strategy docs; implementing payment rails is a separate downstream build.
+- **No pricing changes in code.** Pricing is currently bespoke per engagement; implementing payment rails is a separate downstream build.
 - **No ecosystem-leader landing pages.** Per Sasha's decision, ecosystem leaders (Balaji-type buyers) get personalized outreach (Discord, email — *"their landing page is my message to them"*), not a public landing. No B2B landing page is built here.
 
 ---
@@ -240,17 +288,19 @@ These are NOT part of this build:
 
 Before merging:
 
-- [ ] Public landing page renders new copy verbatim (eyebrow, hero, sub, italic, CTA) across desktop + mobile + every active skin (default, `/ns`).
+- [ ] **Both landings render correctly:** `/?path=match` shows `<MatchLanding />` with new copy verbatim; `/?path=build` and `/` (no param) show `<LandingPage />` unchanged from current behavior.
+- [ ] Match landing has NO founder testimonials, NO two-paths split. Build landing keeps the founder testimonials and existing structure.
+- [ ] Both landings work on desktop + mobile (375px width).
+- [ ] Both landings work under all active skins: `/?path=match` and `/ns/?path=match` both render the match landing in their respective skin registers.
 - [ ] JOURNEY space shows 5 items in the new order with correct lock/unlock visual treatment for: new user, user mid-onboarding, fully-completed user.
 - [ ] Item #5 (*Build a business*) navigates correctly into the BUILD space when clicked.
-- [ ] BUILD space contains the three moved items + Ignite Session option + (optionally) the founder testimonials and `/path`.
-- [ ] Post-Top-Talent screen shows single forward CTA (*"Discover your mission"*) + optional sidepath link (*"Unlock the full Top Talent profile"*). No binary fork remaining.
-- [ ] `/ignite` URL still resolves; not linked from landing or post-Top-Talent.
+- [ ] BUILD space contains the three moved items (*The Path to Your Unique Business*, *See the Dashboard*, *Take the exact playbook*) + Ignite Session option.
+- [ ] Post-Top-Talent screen reads `?path=` from URL and shows correct primary + secondary CTAs per §4.4 logic. Verified for both `?path=match` and `?path=build` flows.
+- [ ] `/ignite` URL still resolves; not linked from either landing or post-Top-Talent screen.
 - [ ] Existing users with partial progress under the old ordering retain their completion flags. Verified on at least one test account from the cohort.
-- [ ] Founder testimonials no longer appear on the public landing.
-- [ ] Mobile experience verified at 375px width: rail, JOURNEY, landing all render correctly.
 - [ ] Auth flow verified per skin (`/auth`, `/ns/auth`) — both read in their skin register.
 - [ ] If §4.7 is included: a new skin's labels + landing copy can be changed by editing the per-skin config, no source edits required.
+- [ ] NS-skinned match landing (`/ns/?path=match`) is the link that will be used in the Balaji Discord message — verified it lands correctly, looks editorial, and the CTA continues into the matching onboarding flow.
 
 ---
 
@@ -258,11 +308,12 @@ Before merging:
 
 These are deliberately left for the executing thread to resolve in conversation with Sasha:
 
-1. **Founder testimonials destination:** new `/founders` sub-page, OR inside the BUILD space, OR both. Recommendation: `/founders` sub-page (cleaner separation), linked from the BUILD space.
-2. **Visual treatment of JOURNEY item #5 as bridge:** subtle arrow / badge / divider — what's the design that signals "this is a doorway, not a step"?
-3. **Whether to include §4.7 (config-driven labels) in this build, or defer to the next-skin build:** strongly recommended now; depends on time pressure.
-4. **Whether the migration edge case (users with Assets but no Mission completed) needs an in-product notice, or whether the matching surface itself can just say "complete Mission to unlock matching."** Recommendation: the surface itself handles it; no separate notice needed.
-5. **Sasha's amendments to the Scope of Work** — to be added as he reviews this spec.
+1. **Visual treatment of JOURNEY item #5 as bridge into BUILD space:** subtle arrow / badge / divider — what's the design that signals "this is a doorway, not a step"?
+2. **Whether to include §4.7 (config-driven labels) in this build, or defer to the next-skin build:** strongly recommended now; depends on time pressure.
+3. **Whether the migration edge case (users with Assets but no Mission completed) needs an in-product notice, or whether the matching surface itself can just say "complete Mission to unlock matching."** Recommendation: the surface itself handles it; no separate notice needed.
+4. **Default behavior when no `?path=` param is present on `/`:** spec recommends defaulting to `<LandingPage />` (build landing) to preserve current organic-traffic behavior. Confirm or override.
+5. **Whether `?path=` should be stripped from URL after the post-Top-Talent screen** to keep URLs clean post-onboarding, or persist until the user logs out. Recommendation: strip after post-Top-Talent (its job is done by then). Confirm.
+6. **Sasha's amendments to the Scope of Work** — to be added as he reviews this spec.
 
 ---
 
@@ -275,5 +326,7 @@ These are deliberately left for the executing thread to resolve in conversation 
 - Active-intro layer (already shipped — the matching mechanic this funnel feeds into): [`docs/specs/match-mechanic/active-intro_product_spec.md`](../match-mechanic/active-intro_product_spec.md)
 
 ---
+
+*v0.2 · May 20, 2026 (Day 77 evening) · Simplified architecture: ONE platform, TWO landings (BuildLanding + MatchLanding), query-param routed via `?path=`. No `preferred_path` DB column. No inside-platform mode toggle. No conditional JOURNEY ordering — single canonical T-M-A-Q-Build sequence for everyone. Founder testimonials stay on BuildLanding (where they belong). Post-Top-Talent CTA branches only on secondary-link emphasis. Scope of Work updated to 10 items, ~1 day. LOW RISK: all standard React patterns, no new schema, no new auth flows, no experimental APIs.*
 
 *v0.1 · May 20, 2026 (Day 77) · Product spec for the matching-as-hero funnel reshape. Ready for execution. Sasha to amend Scope of Work per his review; executing thread to resolve §8 open decisions in dialogue.*
