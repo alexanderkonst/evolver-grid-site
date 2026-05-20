@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { useNavigate } from "react-router-dom";
 import { InlineEditableText } from "./InlineEditableText";
 import { SectionSkeleton } from "./SectionSkeleton";
@@ -18,8 +19,15 @@ interface MissionSectionProps {
  *   • Auto-renders the upstream Mission Discovery statement (or override).
  *   • Inline-editable. Save on blur / Enter.
  *   • If no upstream + no override → redirect CTA to /mission-discovery.
+ *
+ * Sasha 2026-05-19: wrapped in React.memo so the section doesn't
+ * re-render on EquilibriumV2Page's 60-second cycle tick (or any other
+ * unrelated parent re-render). It only re-renders when missionDisplay,
+ * loading, or onSetOverride change. The hook now keeps onSetOverride
+ * stable across state changes via the stateRef pattern, so memo is
+ * actually effective.
  */
-export const MissionSection = ({
+const MissionSectionBase = ({
   missionDisplay,
   loading,
   onSetOverride,
@@ -62,5 +70,7 @@ export const MissionSection = ({
     </div>
   );
 };
+
+export const MissionSection = memo(MissionSectionBase);
 
 export default MissionSection;

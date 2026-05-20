@@ -1,4 +1,4 @@
-import { useId, type ReactNode } from "react";
+import { memo, useId, type ReactNode } from "react";
 import { cn } from "@/lib/utils";
 import { SunOrb } from "./SunOrb";
 
@@ -56,7 +56,7 @@ const FRACTIONAL_LABELS: { t: number; label: string }[] = [
   { t: 0.75, label: "3/4" },
 ];
 
-export const SolarCycleBar = ({
+const SolarCycleBarBase = ({
   progress,
   prevLabel,
   currentLabel,
@@ -245,5 +245,11 @@ const ActivePill = ({ children }: { children: ReactNode }) => (
     {children}
   </div>
 );
+
+/**
+ * Memoized export — only re-renders when progress / labels change.
+ * Sasha 2026-05-19 responsiveness pass.
+ */
+export const SolarCycleBar = memo(SolarCycleBarBase);
 
 export default SolarCycleBar;

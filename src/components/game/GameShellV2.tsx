@@ -232,11 +232,22 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
         // navigation noise alongside the booking content. The user
         // arriving at /ignite has already chosen the next step; let
         // the page lead.
+        // Day 75 (Sasha 2026-05-19): /build/equilibrium added — the
+        // Biologic Watch is its own world (ATTUNE ↔ ACT toggle, cycle
+        // bars, identity sections), and pane 2 with the BUILD section
+        // list compresses the watch's reading width on desktop. Same
+        // shape as /ignite: pane 2 closes by default; user can still
+        // toggle it open if they want quick navigation. Also covers
+        // /equilibrium (legacy redirect) and /preview/equilibrium-v2.
         if (typeof window === 'undefined') return true;
         const p = window.location.pathname;
         const isLandingPage = p === '/' || p.startsWith('/game/journey');
         const isIgnitePage = p === '/ignite';
-        return !isLandingPage && !isIgnitePage;
+        const isEquilibriumPage =
+            p === '/build/equilibrium' ||
+            p === '/equilibrium' ||
+            p === '/preview/equilibrium-v2';
+        return !isLandingPage && !isIgnitePage && !isEquilibriumPage;
     });
     const [mobileView, setMobileView] = useState<"navigation" | "content">(() => {
         // Day 53 (Sasha 2026-04-27): mobile landing now defaults to CONTENT

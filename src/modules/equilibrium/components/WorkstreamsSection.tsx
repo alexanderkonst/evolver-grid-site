@@ -137,17 +137,28 @@ export const WorkstreamsSection = ({
         <AddWorkstreamRow onAdd={onAdd} disabled={loading} />
       )}
 
+      {/*
+        Completed-pile section header + list. Sasha 2026-05-19: prior
+        treatment was too faint to read against the glass backdrop —
+        text /60, count /40, item bg white/25, item text /80. Bumped
+        all of these so the section reads cleanly as "your archive".
+        Restore affordance is now ALWAYS visible (subtle, low-contrast)
+        instead of hover-only — the icon button still has the same
+        click target, just no longer hidden behind hover state.
+      */}
       {archivedWorkstreams.length > 0 && (
         <div className="mt-4">
           <button
             type="button"
             onClick={() => setShowCompleted((v) => !v)}
-            className="flex w-full items-center gap-2 px-2 text-xs uppercase tracking-wider text-[#0a1628]/60 transition hover:text-[#0a1628]/90"
+            className="flex w-full items-center gap-2 px-2 text-xs font-semibold uppercase tracking-wider text-[#0a1628]/85 transition hover:text-[#0a1628]"
           >
             <span>completed</span>
-            <span className="text-[#0a1628]/40">({archivedWorkstreams.length})</span>
-            <span className="flex-1 border-t border-[#0a1628]/10" />
-            <span aria-hidden="true">{showCompleted ? "−" : "+"}</span>
+            <span className="text-[#0a1628]/70">({archivedWorkstreams.length})</span>
+            <span className="flex-1 border-t border-[#0a1628]/25" />
+            <span aria-hidden="true" className="text-[#0a1628]/70">
+              {showCompleted ? "−" : "+"}
+            </span>
           </button>
 
           {showCompleted && (
@@ -155,15 +166,18 @@ export const WorkstreamsSection = ({
               {archivedWorkstreams.map((w) => (
                 <li
                   key={w.id}
-                  className="group/done flex items-center gap-3 rounded-lg bg-white/25 px-4 py-2 text-sm text-[#0a1628]/80 line-through transition hover:bg-white/45"
+                  className="group/done flex items-center gap-3 rounded-lg bg-white/55 px-4 py-2 text-sm text-[#0a1628]/95 transition hover:bg-white/75"
                 >
-                  <Check size={14} className="shrink-0 text-emerald-600/70" />
-                  <span className="flex-1 truncate">{w.title}</span>
+                  <Check size={14} className="shrink-0 text-emerald-600" />
+                  <span className="flex-1 truncate line-through decoration-[#0a1628]/45">
+                    {w.title}
+                  </span>
                   <button
                     type="button"
                     aria-label="Restore to active"
                     onClick={() => onRestore(w.id)}
-                    className="flex items-center gap-1 rounded-full px-2 py-1 text-[10px] uppercase tracking-wider text-emerald-700/70 opacity-0 transition hover:bg-emerald-50 hover:text-emerald-700 group-hover/done:opacity-100"
+                    className="flex items-center gap-1 rounded-full px-2 py-1 text-[10px] font-semibold uppercase tracking-wider text-emerald-700 transition hover:bg-emerald-50 hover:text-emerald-800"
+                    title="Restore to active"
                   >
                     <RotateCcw size={11} />
                     restore

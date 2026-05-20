@@ -145,29 +145,41 @@ export const SmartGoalsSection = ({
         <AddTaskRow onAdd={onAddTask} disabled={loading} />
       )}
 
+      {/*
+        Completed-tasks pile. Sasha 2026-05-19: prior treatment was too
+        faint to read (bg white/30, header alpha mismatch). Bumped:
+          • Header: bold, /85 text, /25 divider, count chip
+          • Items: bg white/55, text /95, strikethrough at /45 (line
+            still reads as "done" without erasing the text)
+          • Hover swap on the check button now keeps the icon visible
+            until pointer enters — was disappearing prematurely.
+      */}
       {done.length > 0 && (
         <>
-          <div className="mt-4 mb-2 flex items-center gap-2 px-2 text-xs uppercase tracking-wider text-[#0a1628]/95">
+          <div className="mt-4 mb-2 flex items-center gap-2 px-2 text-xs font-semibold uppercase tracking-wider text-[#0a1628]/85">
             <span>completed</span>
-            <span className="flex-1 border-t border-[#0a1628]/10" />
+            <span className="text-[#0a1628]/70">({done.length})</span>
+            <span className="flex-1 border-t border-[#0a1628]/25" />
           </div>
           <ul className="flex flex-col gap-1">
             {done.map((t) => (
               <li
                 key={t.id}
-                className="group/done flex items-center gap-3 rounded-lg bg-white/30 px-4 py-2.5 text-[#0a1628]/85 line-through transition hover:bg-white/55"
+                className="group/done flex items-center gap-3 rounded-lg bg-white/55 px-4 py-2.5 text-[#0a1628]/95 transition hover:bg-white/80"
               >
                 <button
                   type="button"
                   aria-label="Restore to active"
                   onClick={() => onUncompleteTask(t.id)}
-                  className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-emerald-400/50 bg-emerald-50/70 transition hover:border-emerald-500 hover:bg-emerald-100"
-                  title="Restore"
+                  className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-emerald-400/60 bg-emerald-50/85 transition hover:border-emerald-500 hover:bg-emerald-100"
+                  title="Click to restore"
                 >
-                  <Check size={12} className="text-emerald-600 transition group-hover/done:opacity-0" />
+                  <Check size={12} className="text-emerald-600" />
                 </button>
-                <span className="flex-1">{t.text}</span>
-                <span className="text-[10px] uppercase tracking-wider text-emerald-700/60 opacity-0 transition group-hover/done:opacity-100">
+                <span className="flex-1 line-through decoration-[#0a1628]/45">
+                  {t.text}
+                </span>
+                <span className="text-[10px] font-semibold uppercase tracking-wider text-emerald-700 opacity-0 transition group-hover/done:opacity-100">
                   click to restore
                 </span>
               </li>

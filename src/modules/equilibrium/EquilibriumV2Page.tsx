@@ -88,16 +88,75 @@ function useWatchMode(): [WatchMode, (m: WatchMode) => void] {
   return [mode, setMode];
 }
 
-/** Cycle math updates once per minute — cycles change too slowly to need finer. */
+/**
+ * Cycle math hook. Sasha 2026-05-19 responsiveness pass:
+ *
+ *   • Tick every 5 minutes (was 60s). Cycles change so slowly — the
+ *     fastest is day-of-week, which updates once per day — that
+ *     per-minute updates were pure overhead. 5 minutes = enough
+ *     resolution for "ends Tue · 2.3 days left" labels to feel live.
+ *
+ *   • Pause when the tab is hidden. `document.visibilityState` lets
+ *     browsers throttle hidden tabs anyway, but explicit pausing
+ *     prevents the queued-tick-fires-on-focus pattern that was making
+ *     the page feel like it "recalculates" on tab return.
+ *
+ *   • Recompute on visibility return. If the tab was hidden for hours,
+ *     cycle state could be stale — refresh once on focus, then resume
+ *     the 5-minute cadence.
+ *
+ *   • De-dupe identical states. If neither the orb position
+ *     (`segmentIndex`) nor the half-day remaining changed across all
+ *     four cycles, skip the setState. No state swap = no re-render
+ *     cascade for downstream sections.
+ */
+function cyclesShallowEqual(a: AllCyclesV2, b: AllCyclesV2): boolean {
+  const round = (n: number) => Math.floor(n * 10) / 10; // ~2.4h granularity
+  return (
+    a.solar.segmentIndex === b.solar.segmentIndex &&
+    a.zodiac.segmentIndex === b.zodiac.segmentIndex &&
+    a.lunar.segmentIndex === b.lunar.segmentIndex &&
+    a.dayOfWeek.segmentIndex === b.dayOfWeek.segmentIndex &&
+    round(a.lunar.daysRemainingInPhase) === round(b.lunar.daysRemainingInPhase) &&
+    round(a.solar.personalProgress * 100) === round(b.solar.personalProgress * 100)
+  );
+}
+
 function useCycles(birthday?: string): AllCyclesV2 {
   const [cycles, setCycles] = useState<AllCyclesV2>(() =>
     getAllCyclesV2(Date.now(), birthday),
   );
 
   useEffect(() => {
-    const tick = () => setCycles(getAllCyclesV2(Date.now(), birthday));
-    const id = window.setInterval(tick, 60_000);
-    return () => window.clearInterval(id);
+    let cancelled = false;
+
+    const refresh = () => {
+      if (cancelled) return;
+      const next = getAllCyclesV2(Date.now(), birthday);
+      setCycles((prev) => (cyclesShallowEqual(prev, next) ? prev : next));
+    };
+
+    const tick = () => {
+      if (typeof document !== "undefined" && document.hidden) return;
+      refresh();
+    };
+
+    const onVisible = () => {
+      if (typeof document !== "undefined" && !document.hidden) refresh();
+    };
+
+    const intervalId = window.setInterval(tick, 5 * 60_000);
+    document.addEventListener("visibilitychange", onVisible);
+
+    // Refresh immediately on mount (in case the user just landed and the
+    // initial state is older than a tick).
+    refresh();
+
+    return () => {
+      cancelled = true;
+      window.clearInterval(intervalId);
+      document.removeEventListener("visibilitychange", onVisible);
+    };
   }, [birthday]);
 
   return cycles;
