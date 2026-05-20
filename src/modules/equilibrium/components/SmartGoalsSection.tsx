@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Plus, GripVertical, Trash2, Check } from "lucide-react";
+import { Plus, GripVertical, Trash2, Check, X } from "lucide-react";
 import {
   closestCenter,
   DndContext,
@@ -335,8 +335,23 @@ const AddTaskRow = ({
     );
   }
 
+  // Sasha 2026-05-20: previous version had Enter-only commit, no
+  // mouse target. On mobile that's broken (no on-screen Enter on
+  // most keyboards in editing context). Now: explicit Add (✓) and
+  // Cancel (✕) buttons on the right. Both use onMouseDown +
+  // preventDefault so clicking them doesn't blur the input first
+  // (which would cascade into a double-commit via the blur handler).
+  // The blur-commit stays as a fallback for "click outside to save"
+  // — common ergonomic pattern.
+  const handleCancel = () => {
+    setDraft("");
+    setAdding(false);
+  };
+
+  const hasDraft = draft.trim().length > 0;
+
   return (
-    <div className="mt-2 flex items-center gap-2 rounded-xl border border-[#0a1628]/20 bg-white/70 px-3 py-2">
+    <div className="mt-2 flex items-center gap-1.5 rounded-xl border border-[#0a1628]/20 bg-white/85 px-3 py-2">
       <Plus size={14} className="shrink-0 text-[#0a1628]/85" />
       <input
         autoFocus
@@ -348,14 +363,46 @@ const AddTaskRow = ({
             e.preventDefault();
             void commit();
           } else if (e.key === "Escape") {
-            setDraft("");
-            setAdding(false);
+            handleCancel();
           }
         }}
         onBlur={() => void commit()}
         placeholder="task description"
         className="flex-1 bg-transparent text-base text-[#0a1628] outline-none placeholder:text-[#0a1628]/95"
       />
+      {/* Add button — primary, emerald. Disabled when draft is
+          empty so the affordance reflects state. preventDefault on
+          mousedown so the input doesn't blur first. 36px tap
+          target (h-9 w-9) for comfortable mobile use. */}
+      <button
+        type="button"
+        aria-label="Add task"
+        title="Add task (Enter)"
+        onMouseDown={(e) => e.preventDefault()}
+        onClick={() => void commit()}
+        disabled={!hasDraft}
+        className={cn(
+          "flex h-9 w-9 shrink-0 items-center justify-center rounded-md border-2 transition",
+          hasDraft
+            ? "border-emerald-500 bg-emerald-500 text-white hover:bg-emerald-600 hover:border-emerald-600"
+            : "border-[#0a1628]/15 bg-white/40 text-[#0a1628]/35 cursor-not-allowed",
+        )}
+      >
+        <Check size={16} />
+      </button>
+      {/* Cancel — neutral. preventDefault on mousedown so the
+          input's blur handler doesn't auto-commit BEFORE the
+          cancel click fires. */}
+      <button
+        type="button"
+        aria-label="Cancel"
+        title="Cancel (Esc)"
+        onMouseDown={(e) => e.preventDefault()}
+        onClick={handleCancel}
+        className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md text-[#0a1628]/55 transition hover:bg-[#0a1628]/5 hover:text-[#0a1628]"
+      >
+        <X size={16} />
+      </button>
     </div>
   );
 };
