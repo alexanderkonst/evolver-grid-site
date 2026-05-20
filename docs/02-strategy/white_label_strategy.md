@@ -288,7 +288,13 @@ Most forms in the platform are auth-walled (UBB artifact entry, Settings, ZoG as
 
 When V4 brings forms into the NS surface, scope the changes to `[data-skin="network-school"] input`, `[data-skin="network-school"] select`, `[data-skin="network-school"] [role="radiogroup"]` and pattern after this table.
 
+#### From v7 → v8
+
+- **Mobile/desktop shell class parity is non-obvious — and skin CSS depends on it.** GameShellV2 passes `className="h-dvh transform-gpu …"` to `<SpacesRail>` on desktop but NOT on mobile. My NS-skin CSS used `.liquid-glass.h-dvh` selectors, which silently missed on mobile. Result: mobile rail rendered with the old Aurora-colored icons. **Fix:** pass `className="h-dvh"` to the mobile SpacesRail too. **Lesson:** when adding skin CSS, eval the rail in mobile AND desktop to confirm the selectors match in both DOM trees. Don't trust that "rail is rail" — the shell wraps it differently per viewport.
+- **Auth pages need explicit per-page CSS overrides under each skin.** Our `/auth` route renders inside `GameShellV2` (so the shell chrome is skin-aware) BUT the page-level component uses **inline-styled** Cormorant fontFamily + gold rgba values that no skin-token selector reaches. CSS `!important` *does* beat non-!important inline styles per the cascade — so a block of `[data-skin="<slug>"] article.liquid-glass-strong h1 { font-family: ... !important }` flips the page without editing every inline-styled span. **Lesson:** auth/marketing/landing pages with heavy inline styling are the highest-traffic, most-customized surfaces. Audit them per-skin and use `!important` overrides targeted by a unique container class on the page (e.g. `.liquid-glass-strong`, the page-specific outermost class).
+- **Test the auth flow under each skin AT MINIMUM.** Auth is the doorway. If `/<slug>/auth` reverts to the canonical brand, an outsider clicking through your demo gets dropped out of the spell. Worth a 60-second walkthrough per skin: visit `/<slug>`, click any auth-requiring link, confirm `/auth` (or the resolved path) still reads in the skin's register.
+
 ---
 
-*White-Label Strategy v1.5*
-*Created: 2025-01-04 · Updated: 2026-05-19 (V5→V6 lessons — chip-shape wrapper for brand logo, double border requires 3px+, hover shade per-skin tuning, browser CSSOM normalizes hsl→rgb so use layout-fingerprint selectors not color selectors, preview banner returns as legal disclaimer with editorial copy)*
+*White-Label Strategy v1.6*
+*Created: 2025-01-04 · Updated: 2026-05-20 (V7→V8 lessons — mobile/desktop shell class parity, auth-page CSS-!important override pattern, mandatory auth-flow audit per skin)*
