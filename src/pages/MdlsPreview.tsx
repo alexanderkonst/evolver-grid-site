@@ -169,7 +169,7 @@ const MdlsPreview = () => {
           </p>
         </motion.div>
         <div className="relative mt-20 text-center text-[10px] uppercase tracking-[0.28em] text-[#0a1628]/40" style={{ zIndex: 1 }}>
-          Multi-Dimensional Living Surface · the codex · v2.3 — material truth
+          Multi-Dimensional Living Surface · the codex · v2.4 — polymer truth + neumorphic device
         </div>
       </section>
 

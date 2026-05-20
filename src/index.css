@@ -1051,15 +1051,15 @@
   filter: grayscale(1) brightness(0.55) contrast(0.95) !important;
 }
 
-/* V5 (Sasha 2026-05-19) — BUILD/LEARN/MEET/COLLABORATE/OFFER use
-   GlyphIcon (inline-styled <span>) with hsl() colors, which the alt=""
-   image filter above can't reach. Neutralize the inline color +
-   text-shadow when the rail is in NS scope. */
-[data-skin="network-school"] .liquid-glass.h-dvh span[style*="hsl(45,"],
-[data-skin="network-school"] .liquid-glass.h-dvh span[style*="hsl(210,"],
-[data-skin="network-school"] .liquid-glass.h-dvh span[style*="hsl(145,"],
-[data-skin="network-school"] .liquid-glass.h-dvh span[style*="hsl(325,"],
-[data-skin="network-school"] .liquid-glass.h-dvh span[style*="hsl(15,"] {
+/* V5/V6 (Sasha 2026-05-19) — BUILD/LEARN/MEET/COLLABORATE/OFFER use
+   GlyphIcon (inline-styled <span>) with hsl() colors. The hsl values
+   get normalized by browsers/React to `rgb(…)` in the style attribute,
+   so a `style*="hsl(…)"` substring selector misses them. V6 switches to
+   the GlyphIcon-uniqueness fingerprint: `place-items: center` is set
+   inline by GlyphIcon and by no other rail element. Catches all 5
+   variants in one rule regardless of color format. */
+[data-skin="network-school"] .liquid-glass.h-dvh span[style*="place-items: center"],
+[data-skin="network-school"] .liquid-glass.h-dvh span[style*="place-items:center"] {
   color: #0a0a0a !important;
   text-shadow: none !important;
 }
@@ -2788,27 +2788,61 @@ form.liquid-glass input:-webkit-autofill:active {
      ──────────────────────────────────────────────────────────────── */
   .mdls-matte-polymer {
     background-color: var(--mdls-cream);
-    /* Wave 7 (Day 74 evening): paper-fiber grain via SVG turbulence
-       noise, replacing the 4px speck grid. Real fractal noise pattern
-       (numOctaves=3) reads as actual paper texture rather than dot grid.
-       Sasha v2.2 feedback: "matte surface, we haven't touched it" — this
-       is the touch. Layered: turbulence noise + warm-cool tri-gradient
-       wash that suggests volume. */
+    /* Wave 8 (Day 74 late): REMOVED visible turbulence noise — Sasha
+       flagged it as a visible "dot pattern" (the 220px tile was creating
+       a regular repeat). Real matte polymer plastic has NO visible
+       surface texture — the matte quality comes from how light DIFFUSES
+       across the surface, not from pattern. So now we lean entirely on:
+         1. Subtle warm-cool radial gradients suggesting subtle curvature
+         2. Multi-layer EDGE HIGHLIGHTS (the polymer catches light at the
+            top edge — this is what real injection-molded plastic does)
+         3. Soft diffuse drop shadow stack (matte = light scatters, so
+            shadow penumbra is wide, not sharp)
+         4. Optional barely-perceptible grain via pseudo-element below
+       Result: surface reads as a solid extruded plastic plaque, not a
+       textured paper card. */
     background-image:
-      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' seed='3'/><feColorMatrix values='0 0 0 0 0.35   0 0 0 0 0.28   0 0 0 0 0.18   0 0 0 0.40 0'/></filter><rect width='200' height='200' filter='url(%23n)' opacity='0.5'/></svg>"),
-      radial-gradient(ellipse at 26% 22%, hsla(28, 36%, 92%, 0.6) 0%, transparent 55%),
-      radial-gradient(ellipse at 74% 78%, hsla(34, 22%, 87%, 0.5) 0%, transparent 60%);
-    background-size: 220px 220px, 100% 100%, 100% 100%;
-    background-blend-mode: overlay, normal, normal;
-    border: 0.5px solid rgba(10, 18, 34, 0.06);
+      /* Subtle warm wash from UL (where light comes from) */
+      radial-gradient(ellipse at 28% 22%, hsla(32, 38%, 96%, 0.85) 0%, transparent 58%),
+      /* Subtle cool shadow at LR (away from light) */
+      radial-gradient(ellipse at 76% 80%, hsla(28, 18%, 90%, 0.55) 0%, transparent 62%),
+      /* Vertical fade for sense of being a solid slab */
+      linear-gradient(178deg, hsla(38, 36%, 96%, 0.5) 0%, transparent 30%, transparent 70%, hsla(28, 16%, 88%, 0.4) 100%);
+    border: 0.5px solid rgba(10, 18, 34, 0.07);
     border-radius: 24px;
     box-shadow:
-      /* Light from upper-left: bright top-left inner highlight */
-      inset 1px 1px 0 0 rgba(255, 255, 255, 0.85),
-      /* Two-layer drop shadow — consistent down-right direction */
-      4px 6px 14px -3px rgba(10, 18, 34, 0.07),
-      8px 20px 44px -16px rgba(10, 18, 34, 0.12);
+      /* TOP EDGE HIGHLIGHT — what makes the polymer feel physical.
+         The top 2px catches light and reads as a polished bezel. */
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.95),
+      inset 0 2px 1px -1px rgba(255, 255, 255, 0.7),
+      /* SIDE EDGE HIGHLIGHTS — thinner, suggest the curvature */
+      inset 1px 0 0 0 rgba(255, 255, 255, 0.45),
+      inset -1px 0 0 0 rgba(28, 20, 10, 0.04),
+      /* BOTTOM EDGE — subtle inset shadow, lit from above */
+      inset 0 -1px 0 0 rgba(28, 20, 10, 0.06),
+      /* DIFFUSE DROP SHADOW STACK — matte = wide penumbra, low intensity.
+         Three soft layers approximate ambient occlusion + soft contact. */
+      0 1px 2px rgba(10, 18, 34, 0.04),
+      0 4px 10px rgba(10, 18, 34, 0.05),
+      0 12px 30px -2px rgba(10, 18, 34, 0.08),
+      0 24px 60px -8px rgba(10, 18, 34, 0.06);
     position: relative;
+  }
+  /* Imperceptible large-scale grain — low baseFrequency = soft blobs,
+     not dots. 6% opacity + soft-light blend = below conscious threshold
+     but adds a hint of "real matter, not pure flat color." Pseudo-element
+     so it scales 100% to each card (no tiling). */
+  .mdls-matte-polymer::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='800'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.18' numOctaves='2' seed='5'/><feColorMatrix values='0 0 0 0 0.35   0 0 0 0 0.28   0 0 0 0 0.20   0 0 0 0.6 0'/></filter><rect width='800' height='800' filter='url(%23n)'/></svg>");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    opacity: 0.06;
+    mix-blend-mode: soft-light;
+    pointer-events: none;
   }
   .mdls-matte-polymer--dark {
     background-color: var(--mdls-cream-dark);
@@ -3331,30 +3365,38 @@ form.liquid-glass input:-webkit-autofill:active {
 }
 
 .mdls-device-frame {
-  /* The held-device feel: isometric tilt + layered floating shadow.
-     v1.3: tilt strengthened (1.5°→3°) and Y rotation deepened
-     (-0.5°→-1.5°) so the device-quality reads clearly. Combined with
-     stronger shadow layers, the framed content lifts off the page. */
+  /* Wave 8 (Day 74 late): rewritten as NEUMORPHIC. Sasha v2.3 feedback:
+     "composite surface now has better shadow but doesn't look
+     neumorphic." Fixed by replacing the old generic white-card +
+     downward-only shadow with proper neumorphism — DUAL shadow (UL
+     highlight + LR shadow) so the device reads as soft-extruded FROM
+     the page, not floating ABOVE it.
+     Kept the isometric tilt (device held in hand) and removed the dot
+     grid background-image. */
   transform: perspective(2200px) rotateX(3deg) rotateY(-1.5deg);
   transform-origin: center top;
   border-radius: 36px;
-  /* Subtle vertical gradient + grain on the device "face" itself */
-  background-color: hsl(38 38% 97%);
-  background-image:
-    linear-gradient(180deg,
-      hsl(38 42% 98%) 0%,
-      hsl(38 38% 95%) 50%,
-      hsl(38 35% 92%) 100%),
-    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='4' height='4'><circle cx='1' cy='1' r='0.5' fill='%23000' fill-opacity='0.03'/></svg>");
-  background-size: 100% 100%, 4px 4px;
+  background:
+    /* Cream substrate with gentle 145° gradient — same warm-cool
+       suggestion as the new matte-polymer */
+    linear-gradient(145deg,
+      hsl(38 42% 97%) 0%,
+      hsl(34 36% 93%) 100%);
+  border: 0.5px solid rgba(10, 18, 34, 0.05);
   box-shadow:
-    /* Specular highlight on top — the "light catching the device edge" */
-    inset 0 2px 0 0 rgba(255, 255, 255, 0.95),
-    inset 0 -2px 0 0 rgba(10, 18, 34, 0.05),
-    /* Layered floating shadow — shifts to down-right per the v1.3
-       single-light-source discipline (upper-left light source) */
-    8px 24px 60px -16px rgba(10, 18, 34, 0.22),
-    16px 80px 160px -40px rgba(10, 18, 34, 0.24);
+    /* NEUMORPHIC DUAL SHADOW — the soft-extrusion signature.
+       UL: bright highlight (light source upper-left)
+       LR: warm shadow (light source = away from lower-right)
+       Magnitudes matched so they read as natural soft-extrude, not
+       harsh emboss. */
+    -10px -10px 24px rgba(255, 250, 238, 0.92),
+    10px 12px 28px rgba(166, 142, 110, 0.16),
+    /* Mid-distance grounding shadow */
+    4px 8px 16px rgba(166, 142, 110, 0.10),
+    /* Inset bezel highlight — top edge catches light */
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.6),
+    /* Inset bottom edge — slight shadow lift */
+    inset 0 -1px 0 0 rgba(166, 142, 110, 0.10);
 }
 
 @media (prefers-reduced-motion: reduce) {
