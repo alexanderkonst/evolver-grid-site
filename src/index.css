@@ -1962,6 +1962,22 @@ All colors MUST be HSL.
   text-shadow: var(--skin-text-halo-deep);
 }
 
+/* Tier-1 harmony pass (Sasha 2026-05-20): inside /build/equilibrium
+   specifically, the deep 28-pixel outer halo on every line of text
+   was reading as a "fuzzy" atmosphere. Now that the cards have a cool
+   blue-white frosted tint (see .eq-v2-page glass overrides above),
+   the card surface itself provides enough luminance contrast — we
+   don't need the wide halo for legibility. Trim to a tight 12-pixel
+   white inner glow + 1-pixel crisp sharpening. Text reads crisp on
+   the card; the halo doesn't pollute the surrounding atmosphere.
+   The global .eq-text-halo (above) stays untouched — other surfaces
+   (HeroHeadline, MDLS variant) keep the deep halo. */
+.eq-v2-page .eq-text-halo {
+  text-shadow:
+    0 0 12px rgba(255, 255, 255, 0.65),
+    0 1px 1px rgba(255, 255, 255, 0.85);
+}
+
 /* ──────────────────────────────────────────────────────────────────
    Equilibrium v2 — Synthesis card "stale" pulse-breath
    Gated to fire only when last_synthesis_at > 4 hours old (see
@@ -1998,27 +2014,34 @@ All colors MUST be HSL.
    light glass. On Equilibrium, bump the white tint + add a touch more
    saturation so each card reads as a frosted card sitting OVER the
    backdrop, not a translucent veil.
+
+   Tier-1 harmony pass (Sasha 2026-05-20): shift the tint from pure
+   white → cool blue-white (rgba 248,250,254). The cream Mux backdrop
+   was bleeding through pure white and the cards picked up the warmth
+   like a sponge. A 4-point blue shift reads as "frosted glass on a
+   sunset" instead of "glass that absorbed the sunset" — the cards
+   stop looking yellow without losing their luminous quality.
    ────────────────────────────────────────────────────────────── */
 .eq-v2-page .liquid-glass {
-  background: rgba(255, 255, 255, 0.32);
-  backdrop-filter: blur(28px) saturate(190%);
-  -webkit-backdrop-filter: blur(28px) saturate(190%);
+  background: rgba(248, 250, 254, 0.34);
+  backdrop-filter: blur(28px) saturate(170%);
+  -webkit-backdrop-filter: blur(28px) saturate(170%);
   border-color: rgba(255, 255, 255, 0.45);
 }
 .eq-v2-page .liquid-glass-strong {
-  background: rgba(255, 255, 255, 0.42);
-  backdrop-filter: blur(34px) saturate(200%);
-  -webkit-backdrop-filter: blur(34px) saturate(200%);
+  background: rgba(248, 250, 254, 0.44);
+  backdrop-filter: blur(34px) saturate(180%);
+  -webkit-backdrop-filter: blur(34px) saturate(180%);
   border-color: rgba(255, 255, 255, 0.55);
 }
 @media (pointer: coarse), (max-width: 1023px) {
   /* Mobile / touch fallback (no backdrop-filter): push background
      opacity up further to compensate for the lost blur. */
   .eq-v2-page .liquid-glass {
-    background: rgba(255, 255, 255, 0.50);
+    background: rgba(248, 250, 254, 0.54);
   }
   .eq-v2-page .liquid-glass-strong {
-    background: rgba(255, 255, 255, 0.62);
+    background: rgba(248, 250, 254, 0.64);
   }
 }
 
@@ -2028,26 +2051,31 @@ All colors MUST be HSL.
    layered text-shadow halo that breathes slowly. Pairs with the
    serif typography to feel like an anchor, not a heading. The breath
    is gated by prefers-reduced-motion above; static layers stay.
+
+   Tier-1 harmony pass (Sasha 2026-05-20): retired the outer gold
+   layer that was bleeding into the backdrop. The title now breathes
+   in pure white — luminous, not metallic — and stops competing with
+   the cosmic-gold Mux backdrop for chroma.
    ────────────────────────────────────────────────────────────── */
 @keyframes eq-title-breath {
   0%, 100% {
     text-shadow:
-      0 0 24px rgba(255, 255, 255, 0.55),
-      0 0 12px rgba(255, 255, 255, 0.40),
-      0 0 48px rgba(244, 212, 114, 0.28);
+      0 0 24px rgba(255, 255, 255, 0.62),
+      0 0 12px rgba(255, 255, 255, 0.45),
+      0 0 56px rgba(255, 255, 255, 0.28);
   }
   50% {
     text-shadow:
-      0 0 36px rgba(255, 255, 255, 0.75),
-      0 0 16px rgba(255, 255, 255, 0.55),
-      0 0 64px rgba(244, 212, 114, 0.42);
+      0 0 36px rgba(255, 255, 255, 0.80),
+      0 0 16px rgba(255, 255, 255, 0.60),
+      0 0 72px rgba(255, 255, 255, 0.42);
   }
 }
 .eq-equilibrium-title {
   text-shadow:
-    0 0 24px rgba(255, 255, 255, 0.55),
-    0 0 12px rgba(255, 255, 255, 0.40),
-    0 0 48px rgba(244, 212, 114, 0.28);
+    0 0 24px rgba(255, 255, 255, 0.62),
+    0 0 12px rgba(255, 255, 255, 0.45),
+    0 0 56px rgba(255, 255, 255, 0.28);
   animation: eq-title-breath 6s ease-in-out infinite;
 }
 
@@ -2055,17 +2083,24 @@ All colors MUST be HSL.
    Equilibrium v2 — Synthesis Reading emphasis (Sasha 2026-05-19)
    "Make sure that Synthesis Reading is emphasized as the one-glance
    read." Layered over `liquid-glass-strong` so the box reads as the
-   primary anchor of ATTUNE mode. Adds an accent gold ring + an outer
-   glow that pulls the eye on landing.
+   primary anchor of ATTUNE mode.
+
+   Tier-1 harmony pass (Sasha 2026-05-20): swap GOLD ring + glow to
+   cool ivory-lavender. Previous gold accents were stacking on top of
+   the gold Mux backdrop and reading as "yellow on yellow." Lavender
+   matches the existing ActivePill palette
+   (rgba(252,231,197) → rgba(212,212,255) → rgba(224,197,252)) so the
+   Synthesis card now visually rhymes with the active state, not the
+   backdrop. Pure white inner highlight stays as the luminous edge.
    ────────────────────────────────────────────────────────────── */
 .eq-synthesis-emphasis {
   position: relative;
   box-shadow:
-    inset 0 1px 0 0 rgba(255, 255, 255, 0.80),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.85),
     inset 0 -1px 0 0 rgba(0, 0, 0, 0.10),
-    0 8px 28px -4px rgba(244, 212, 114, 0.22),
+    0 8px 28px -4px rgba(212, 200, 255, 0.32),
     0 36px 72px -24px rgba(0, 0, 0, 0.32),
-    0 0 0 1px rgba(244, 212, 114, 0.28);
+    0 0 0 1px rgba(255, 255, 255, 0.55);
 }
 .eq-synthesis-emphasis::after {
   content: '';
@@ -2075,8 +2110,8 @@ All colors MUST be HSL.
   pointer-events: none;
   background: radial-gradient(
     circle at 50% 0%,
-    rgba(244, 212, 114, 0.18) 0%,
-    rgba(244, 212, 114, 0.0) 60%
+    rgba(224, 220, 255, 0.22) 0%,
+    rgba(224, 220, 255, 0.0) 60%
   );
   z-index: -1;
 }

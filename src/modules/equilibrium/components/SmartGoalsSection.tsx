@@ -232,7 +232,12 @@ const SortableTaskBar = ({
       )}
     >
       {/* Square checkbox — matches DOING NOW. Sasha 2026-05-19:
-          "checkboxes should look like checkboxes, not round." */}
+          "checkboxes should look like checkboxes, not round."
+          Sasha 2026-05-20: hide the Check icon via `opacity-0` not
+          `text-color/0`. On the NS skin (and other skins that override
+          inherited color tokens), `text-[#0a1628]/0` was getting
+          re-colored upstream and the checkmark appeared pre-checked,
+          confusing the user. Opacity is skin-invariant. */}
       <button
         type="button"
         aria-label="Complete task"
@@ -241,7 +246,7 @@ const SortableTaskBar = ({
       >
         <Check
           size={14}
-          className="text-[#0a1628]/0 transition group-hover:text-[#0a1628]/85"
+          className="text-[#0a1628]/85 opacity-0 transition group-hover:opacity-100"
         />
       </button>
 
