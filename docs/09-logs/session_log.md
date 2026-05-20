@@ -7295,3 +7295,28 @@ Sasha's "ship all four" green-light. Four new things landed:
 Commit: `025dfd77` (pushed to origin/main).
 
 Version: v2.4 → v2.5 material truth + cinematic. Equilibrium stays parked.
+
+### Day 74 Wave 10 — Codex v2.6 code-split + mobile fallbacks
+
+Sasha green-lit my recommendation to harden /mdls-preview for real-world conditions before the Equilibrium recompile.
+
+**Bundle code-split via React.lazy:** Each of the four heavy R3F primitives split into wrapper (lightweight, handles isMobile + Suspense) + Impl (heavy R3F, code-split chunk). Build output confirms:
+- `Bloom-*.js`: 944 KB → 257 KB gzipped (R3F + drei + postprocessing + three.js)
+- `MdlsSacred3DImpl`: 162 KB → 85 KB gzipped
+- Main bundle: 5.97 MB → 4.86 MB raw, 1.70 MB → 1.35 MB gzipped (**−350 KB first-paint**)
+
+**Mobile fallbacks:** Each wrapper checks `useIsMobile()` (<768px) and returns a lightweight fallback instead of triggering the lazy R3F import:
+- MdlsSacred3D → hand-drawn SVG dodecahedron with 3-tone shading
+- MdlsAuroraOrb3D → existing CSS-gradient AuroraGlassOrb
+- MdlsSoulOrbField3D → 4×3 grid of existing SoulOrbGoal CSS-gradient orbs
+- MdlsSealMedallion3D → existing SVG SealMedallion (mandala)
+
+Mobile NEVER fetches the Bloom chunk → **−257 KB gzipped on mobile** + zero GPU shader cost.
+
+Existing imports unchanged — wrappers preserve the original API. Audio cues intentionally skipped per Sasha's directive ("I already have the sound layer on the platform").
+
+Commit: `ffd1e2e5` (pushed to origin/main).
+
+Version: v2.5 → v2.6 code-split + mobile.
+
+**Equilibrium recompile is now next.** Codex hardened, no remaining gating concerns I'm aware of.
