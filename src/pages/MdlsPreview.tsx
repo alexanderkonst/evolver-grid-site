@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import type { ReactNode } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import {
   HeroHeadline,
   MattePolymerCard,
@@ -18,6 +19,7 @@ import MdlsExtrudedSurface from "@/components/mdls/MdlsExtrudedSurface";
 import MdlsSacred3D from "@/components/mdls/MdlsSacred3D";
 import MdlsRevealSection from "@/components/mdls/MdlsRevealSection";
 import MdlsScrollTilt from "@/components/mdls/MdlsScrollTilt";
+import MdlsHoverTilt from "@/components/mdls/MdlsHoverTilt";
 
 /**
  * MDLS Codex · /mdls-preview (URL kept; content evolved 2026-05-19)
@@ -63,6 +65,19 @@ const MdlsPreview = () => {
   const [demoMode, setDemoMode] = useState<"attune" | "act">("act");
   const [completedDemoGoals, setCompletedDemoGoals] = useState<Set<number>>(new Set());
 
+  // WAVE 5 (5.7): Hero parallax — three layers move at different speeds
+  // as the user scrolls. Strict small magnitudes (8/20/0 px) — depth
+  // without disorientation. Background moves slowest, 3D mid, prose
+  // stays anchored.
+  const heroRef = useRef<HTMLElement>(null);
+  const { scrollYProgress: heroProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"],
+  });
+  const meshParallaxY = useTransform(heroProgress, [0, 1], [0, 40]);
+  const sacredParallaxY = useTransform(heroProgress, [0, 1], [0, 120]);
+  const proseParallaxY = useTransform(heroProgress, [0, 1], [0, 60]);
+
   const toggleDemoGoal = (i: number) => {
     setCompletedDemoGoals((prev) => {
       const next = new Set(prev);
@@ -83,18 +98,22 @@ const MdlsPreview = () => {
       {/* (Paper Shaders) replaces the flat CSS .mdls-page-atmosphere for   */}
       {/* the hero. Living color volume instead of banded planes.           */}
       {/* ═══════════════════════════════════════════════════════════════ */}
-      <section className="relative min-h-[100vh] flex flex-col justify-center px-6 sm:px-12 lg:px-20 py-20 overflow-hidden">
-        <MdlsMeshBackground register="luminous" distortion={0.55} swirl={0.18} speed={0.22} />
-        {/* POLISH (Day 74, 2026-05-19): floating 3D dodecahedron centerpiece.
-            Sits above the manifesto prose. The sacred form Sasha pointed at —
-            12 pentagonal faces = 12-orb soul library × 12-month cycle. */}
-        <div
+      <section ref={heroRef} className="relative min-h-[100vh] flex flex-col justify-center px-6 sm:px-12 lg:px-20 py-20 overflow-hidden">
+        {/* WAVE 5: 8-color smooth mesh + parallax. Background moves slowest. */}
+        <motion.div style={{ y: meshParallaxY, position: "absolute", inset: 0 }}>
+          <MdlsMeshBackground register="luminous" />
+        </motion.div>
+        {/* WAVE 5 (5.7): 3D centerpiece in its own parallax layer — moves
+            faster than the background but slower than the prose, creating
+            true z-depth without disorientation. Matte ceramic material +
+            3-point lighting + AO + bloom (configured in MdlsSacred3D v2). */}
+        <motion.div
           className="relative mx-auto"
-          style={{ zIndex: 1, marginBottom: "1.5rem" }}
+          style={{ zIndex: 2, marginBottom: "1.5rem", y: sacredParallaxY }}
         >
-          <MdlsSacred3D size={220} hue="warm" />
-        </div>
-        <div className="relative max-w-3xl mx-auto space-y-7" style={{ zIndex: 1 }}>
+          <MdlsSacred3D size={260} hue="warm" />
+        </motion.div>
+        <motion.div className="relative max-w-3xl mx-auto space-y-7" style={{ zIndex: 1, y: proseParallaxY }}>
           <p
             className="font-serif text-[#0a1628]"
             style={{
@@ -139,9 +158,9 @@ const MdlsPreview = () => {
             We start with Equilibrium because cycles, dedication, and energetic commitment
             cannot transmit through a SaaS register.
           </p>
-        </div>
-        <div className="mt-20 text-center text-[10px] uppercase tracking-[0.28em] text-[#0a1628]/40">
-          Multi-Dimensional Living Surface · the codex · v2.0 — octave shift
+        </motion.div>
+        <div className="relative mt-20 text-center text-[10px] uppercase tracking-[0.28em] text-[#0a1628]/40" style={{ zIndex: 1 }}>
+          Multi-Dimensional Living Surface · the codex · v2.1 — photo-real manifestation
         </div>
       </section>
 
@@ -155,12 +174,14 @@ const MdlsPreview = () => {
           <div className="max-w-5xl mx-auto px-4 sm:px-8">
             <SectionEyebrow>One composed surface</SectionEyebrow>
             <MdlsScrollTilt>
-              <ComposedSurfaceDemo
-                demoMode={demoMode}
-                onDemoModeChange={setDemoMode}
-                completedDemoGoals={completedDemoGoals}
-                onToggleDemoGoal={toggleDemoGoal}
-              />
+              <MdlsHoverTilt>
+                <ComposedSurfaceDemo
+                  demoMode={demoMode}
+                  onDemoModeChange={setDemoMode}
+                  completedDemoGoals={completedDemoGoals}
+                  onToggleDemoGoal={toggleDemoGoal}
+                />
+              </MdlsHoverTilt>
             </MdlsScrollTilt>
             <p className="mt-10 text-center max-w-xl mx-auto font-serif italic text-[#0a1628]/60 text-base sm:text-lg leading-relaxed">
               Trinity of luminosity, physicality, editorial refinement — composed into one
@@ -615,6 +636,24 @@ const MdlsPreview = () => {
         <p className="mt-10 text-center text-[10px] uppercase tracking-[0.22em] text-[#0a1628]/35">
           Style Guide · docs/specs/equilibrium/equilibrium_mdls_style_guide.md
         </p>
+
+        {/* WAVE 5 (5.9): Reference benchmark — what we're calibrating
+            against. Public commitment to the bar; holds us accountable. */}
+        <aside className="mt-10 mx-auto max-w-3xl text-center">
+          <p className="text-[10px] uppercase tracking-[0.22em] text-[#0a1628]/35 mb-4">
+            Calibrated against
+          </p>
+          <div className="flex flex-wrap justify-center gap-x-8 gap-y-2 text-[11px] text-[#0a1628]/55 font-serif italic">
+            <span>Linear · motion + restraint</span>
+            <span>·</span>
+            <span>Apple HIG / Liquid Glass · material register</span>
+            <span>·</span>
+            <span>Spline community · 3D craft</span>
+          </div>
+          <p className="mt-4 text-[9px] uppercase tracking-[0.22em] text-[#0a1628]/30">
+            If our surface falls below these, the paradigm isn't done yet.
+          </p>
+        </aside>
       </section>
     </main>
     </LenisProvider>
