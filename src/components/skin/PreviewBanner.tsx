@@ -24,10 +24,32 @@ const PreviewBanner = () => {
   const navigate = useNavigate();
 
   if (skin === "aurora") return null;
-  // Hide on network-school skin — /ns is a public demo surface
-  // (Sasha 2026-05-19), the banner reads as a debug chip and breaks
-  // the pristine read for an external evaluator.
-  if (skin === "network-school") return null;
+
+  const isNS = skin === "network-school";
+
+  // V6 (Sasha 2026-05-19): restored banner under NS with disclaimer copy.
+  // V4 hid the banner entirely on NS (so it wouldn't read as debug chrome
+  // to an external evaluator). Sasha's call now: bring it back, but as
+  // a legal-ish disclaimer rather than a "preview" chip — makes the
+  // not-affiliated relationship explicit so the demo is honest.
+  if (isNS) {
+    return (
+      <div
+        className="fixed bottom-4 right-4 z-[9999] inline-flex items-center gap-2 rounded-md px-3 py-1.5 text-[11px] tracking-[0.04em] pointer-events-none select-none"
+        style={{
+          backgroundColor: "rgba(255, 255, 255, 0.96)",
+          color: "rgba(10, 10, 10, 0.78)",
+          border: "1px solid rgba(10, 10, 10, 0.10)",
+          fontFamily: '"Inter", system-ui, sans-serif',
+          fontWeight: 500,
+          boxShadow: "0 4px 14px -6px rgba(0, 0, 0, 0.10)",
+        }}
+        aria-label="Demo only. This platform is not affiliated with ns.com."
+      >
+        <span>Demo · not affiliated with ns.com</span>
+      </div>
+    );
+  }
 
   const humanName =
     skin === "navy-gold" ? "Navy + Gold preview" : `${skin} preview`;
