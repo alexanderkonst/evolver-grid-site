@@ -20,6 +20,10 @@ import {
     CTA_SMALL_CAPS_STYLE,
     igniteLogo,
 } from "@/lib/landingDesign";
+// Funnel v2 (Day 77, Sasha 2026-05-20): match-path conditional CTAs
+// below the Top Talent reveal. Renders null for build-path users so
+// AppleseedDisplay's existing CTAs are untouched.
+import MatchFlowCta from "@/components/landing/MatchFlowCta";
 import { generateAppleseed, AppleseedData } from "./appleseedGenerator";
 import { generateExcalibur, ExcaliburData } from "./excaliburGenerator";
 import { saveAppleseed, saveExcalibur, loadSavedData, saveAppleseedToLocalStorage } from "./saveToDatabase";
@@ -646,6 +650,11 @@ const ZoneOfGeniusEntry = () => {
                         saveResonanceRating(profileId, "appleseed", rating)
                     }
                 />
+                {/* Funnel v2 (§4.4.1): match-path "Discover your mission in
+                    1 minute →" CTA below the reveal. Renders nothing for
+                    build-path users — AppleseedDisplay's existing CTAs are
+                    the only thing they see. */}
+                <MatchFlowCta step="top-talent" />
             </GameShellV2>
         );
     }

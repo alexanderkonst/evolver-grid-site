@@ -238,4 +238,4 @@ This instance was the workshop where multiple integrity gates were *almost* viol
 
 ---
 
-*Last updated: May 18, 2026 (Day 74). Cancellation message sent ~[time]. Awaiting reply.*
+*Last updated: May 20, 2026 (Day 77). Cancellation message sent May 18. Day 2 of silence period; no reply yet. Next check-in window: ~June 1 (14-day mark) if still no response.*

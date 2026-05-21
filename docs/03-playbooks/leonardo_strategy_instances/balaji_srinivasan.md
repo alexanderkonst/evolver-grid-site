@@ -6,7 +6,7 @@
 
 ## Status
 
-**Sending: tomorrow (May 19, 2026).** Letter ready. NS-skin of findyourtoptalent.com: in progress / ideally live before send.
+**Send-ready as of May 20, 2026 (Day 77).** Channel: **Discord** (DM to Balaji). Message finalized at **v7** — Discord-adapted from email v6 (both preserved in Version history). NS-skin of findyourtoptalent.com: live (Discord renders the OG preview automatically). Reply-Ready Arsenal prepared and held for post-engagement (do NOT include in first message). Send when the moment is right.
 
 ---
 
@@ -39,43 +39,35 @@ This is the bronze horse. Placed quietly at the end of the letter — *"whether 
 
 ---
 
-## The final letter (send-ready)
+## The send-ready message (Discord, v7)
 
-**Subject:** *CEO of what, exactly?*
-
-(Alternates: *"A coordination primitive for NS"* / *"Following up from January"* — but the first is the hook.)
-
-**From:** [Sasha's sending address]
-
-**Body:**
+**Channel:** Discord — DM to Balaji.
+**Format:** ~260 words, ~1600 chars. Fits one Discord message under the 2000-char limit. Markdown `**bold**` renders.
+**Link:** NS-skinned URL of findyourtoptalent.com. Discord auto-renders the OG preview, so the prototype lands visually before he reads the close.
 
 ---
 
 Balaji —
 
-I was at NS in January but didn't reach out then; the prototype wasn't ready. It is now.
+Your frame: AI makes everyone a CEO. The unresolved layer underneath: **CEO of what, exactly?** Not the job-title sense — the specific problem-space where a given person's judgment, energy, and abilities compound rather than drain.
 
-Your frame: AI makes everyone a CEO. The unresolved layer underneath: **CEO of what, exactly?** Not the job-title sense. The specific problem-space where a given person's judgment, energy, and abilities compound rather than drain — what they are structurally unusual at metabolizing.
+Frontier networks currently route human potential through reputation, credentials, and chance interactions. Low-resolution allocation. Founders who should build together never meet. Asymmetric complementarities stay invisible. Ventures fail to crystallize.
 
-Frontier networks currently route human potential through reputation, credentials, and chance interactions. That is low-resolution allocation. Founders who should build together never meet. Asymmetric complementarities stay invisible. Ventures fail to crystallize because the structural visibility isn't there.
+I built a prototype that operates at higher resolution. Maps how a person actually creates value — the structural patterns under their decisions, collaborations, and outputs — and surfaces unusually strong alignments across collaborators, roles, missions, and emerging ventures. Less networking, more intelligent coordination.
 
-I built a prototype that operates at higher resolution. It maps how a person actually creates value — the structural patterns under their decisions, collaborations, and outputs — and surfaces unusually strong alignments across collaborators, roles, missions, and emerging ventures. Less networking, more intelligent coordination.
+Not personality typing in the consumer sense. Structural visibility into how differentiated people produce outcomes under real conditions. **The shift is from category to resolution.**
 
-This isn't personality typing in the consumer sense. It is structural visibility into how differentiated people produce outcomes under real conditions. **The shift is from category to resolution.**
+Same coordination bottleneck appears across several frontier ecosystems — internet-native, AI-native, web3-adjacent — each independently bumping into it.
 
-I'm seeing the same coordination bottleneck appear across several frontier ecosystems — internet-native, AI-native, web3-adjacent — each independently bumping into it. The pattern converges.
+**Networks that can see and coordinate differentiated talent at this resolution will outperform networks that cannot.** Infrastructure for any institution claiming to operate as a polity — and for NS in particular, where whether network states stay discourse or become operational depends partly on primitives like this being built early.
 
-The implication: **networks that can see and coordinate differentiated talent at this resolution will outperform networks that cannot.** This becomes infrastructure for any institution claiming to operate as a polity — and for NS in particular, where whether network states stay discourse or become operational depends partly on primitives like this being built early.
+[NS-skinned URL here]
 
-Prototype: [link — NS-skinned if ready]
-
-I'd be glad to run a small free pilot with whichever NS cohort you'd most want pressure-tested. Whether or not this specific implementation is the right one, the primitive itself increasingly looks inevitable — and NS is one of the few places where it could become visible in time to matter.
-
-— Sasha
+Was at NS in January but didn't show this then — wasn't ready. It is now. Happy to run a small free pilot with whichever cohort you'd most want pressure-tested. Whether or not this specific implementation is the right one, the primitive itself increasingly looks inevitable.
 
 ---
 
-~310 words. Reads in under a minute.
+~260 words. ~1600 chars. Reads in under a minute.
 
 ---
 
@@ -224,22 +216,36 @@ Final synthesis caught remaining issues:
 - Bronze horse landed quietly at end (*"whether network states stay discourse or become operational depends partly on primitives like this being built early"*)
 - Closing: *"whether or not this specific implementation is the right one, the primitive itself increasingly looks inevitable"* — sovereign non-clinging without performing it
 
-### v6 — send-ready (current — May 18, 2026)
+### v6 — send-ready, email form (May 18, 2026)
 
-This is the version inlined above in *The final letter (send-ready)*. ~310 words. All three modalities (pitch + sell + partner) integrated. All bronze-horse properties verified. Application checklist all green.
+The full email version (~310 words). All three modalities (pitch + sell + partner) integrated. All bronze-horse properties verified. Application checklist all green. Preserved as historical reference; sister to the Discord adaptation in v7.
 
-**This is what gets sent tomorrow.**
+### v7 — Discord adaptation (current — May 20, 2026)
+
+Same strategic spine as v6, modulated for Discord protocol:
+
+- **Subject line removed** (Discord has no subjects)
+- **Salutation kept** (*"Balaji —"* still functions as direct-address marker in Discord DMs)
+- **January context moved to the close** as logistical framing for the pilot offer — frees the *"CEO of what, exactly?"* extension to be the actual opening, which hits harder in chat than a contextual warm-up
+- **Verbal connectives trimmed:** *"It maps"* → *"Maps"*; *"I'm seeing"* → *"Same bottleneck appears"*; *"This becomes"* → *"Infrastructure for"*
+- **Link placed prominently** before the pilot offer so Discord's OG preview renders the prototype visually before he reads the close
+- **Formal signoff removed** (Discord shows username; *"— Sasha"* adds nothing)
+- ~260 words, ~1600 chars — fits one Discord message under the 2000-char limit
+
+**Lesson:** *court-fit to receiver protocol is real.* Same strategic content, different vehicle = different surface. The Leonardo principle (*"modulate the presentation to fit the receiver's protocol"*) shows up concretely here — the same address via email is well-formed; via Discord, it needs different rhythm. **Different protocols are different courts.**
+
+**This is what gets sent.**
 
 ---
 
 ## Send plan
 
 1. **Pre-send:**
-   - Confirm NS-skin of findyourtoptalent.com is live (or near-live) at the link in the letter
-   - Verify reply email on outbound address is one Sasha actually checks daily
-   - Drafted from a clean sending address; no signature block longer than name
-2. **Send:** tomorrow, May 19, 2026. Time-of-day: ideally Balaji's morning window (he reads in burst windows).
-3. **Confirmation:** screenshot of sent email saved to this file's `Post-send arc` section.
+   - Confirm NS-skin of findyourtoptalent.com is live (Discord renders the OG preview automatically — verify the preview looks right before sending)
+   - Confirm the Discord channel: **DM to Balaji directly** preferred over public NS server channel (public channel adds audience pressure that may distort response)
+   - Single message, ~1600 chars — well under Discord's 2000-char limit, no need to split
+2. **Send:** when the moment is right. Morning Balaji's TZ ideal — he reads Discord in burst windows.
+3. **Confirmation:** screenshot of sent Discord message saved to `Outcome / arc tracking` section.
 
 ---
 
@@ -260,7 +266,7 @@ This is the version inlined above in *The final letter (send-ready)*. ~310 words
 
 **Why:** collapses Balaji's friction to evaluate ("built for us, not retrofitted"); meta-demonstrates the coordination thesis by showing substrate-adaptation; doubles as a craft-object that exists in the world independently of the email.
 
-**Status:** TODO. Ideally before tomorrow's send. If not ready, link to generic version and note in cover (or hold the send until NS-skin lands).
+**Status:** ✓ Live as of May 19–20, 2026. Send uses the NS-skinned URL; Discord renders the OG preview automatically.
 
 ---
 
@@ -285,4 +291,4 @@ This is the version inlined above in *The final letter (send-ready)*. ~310 words
 
 ---
 
-*Last updated: May 18, 2026 (Day 74).*
+*Last updated: May 20, 2026 (Day 77). Discord adaptation (v7) added — channel pivot from email to Discord. NS-skin live. Send-ready via Discord.*

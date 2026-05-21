@@ -273,13 +273,24 @@ const SPACE_SECTIONS: SpaceSections = {
     build: {
         title: "BUILD",
         sections: [
-            // Sasha 2026-05-15 dogfood cleanup: dropped v2 badges (internal
-            // versioning shouldn't leak to the nav), removed duplicate
-            // /equilibrium row (legacy path now redirects to /build/equilibrium),
-            // and removed the four retired locked stubs (canvas, product-builder,
-            // my-business, refine) — clutter, no longer relevant.
-            { id: "equilibrium-v2", label: "Equilibrium", path: "/build/equilibrium" },
-            { id: "ubb-v2", label: "Automated Venture Builder", path: "/ubb" },
+            // Funnel v2 (Day 77, Sasha 2026-05-20): Path / Dashboard /
+            // Playbook moved out of JOURNEY into BUILD as venture-building
+            // infrastructure. The matching onboarding (T-M-A-Q) is now
+            // JOURNEY's full content; the venture-building methodology
+            // lives here as the deeper layer accessible to anyone. The
+            // existing routes (/path, /dashboard, /playbook, /ignite) are
+            // unchanged — only their navigation surface moves.
+            // Spec: docs/specs/funnel-v2/funnel-v2_product_spec.md §4.3.
+            { id: "build-path",       label: "The path to your unique business", path: "/path" },
+            { id: "build-dashboard",  label: "See the dashboard",                 path: "/dashboard" },
+            { id: "build-playbook",   label: "Take the exact playbook",           path: "/playbook" },
+            { id: "build-ignite",     label: "Productize Yourself Session",       path: "/ignite" },
+            // Existing BUILD-space modules — Equilibrium clock + the
+            // Unique Business Builder. Order preserved below the
+            // methodology rows so the methodology reads first, the
+            // tools follow.
+            { id: "equilibrium-v2",   label: "Equilibrium",                       path: "/build/equilibrium" },
+            { id: "ubb-v2",           label: "Automated Venture Builder",         path: "/ubb" },
         ],
     },
     // OFFER Space (was Marketplace)
@@ -469,164 +480,78 @@ const buildLearnSections = (pathBase: "/library" | "/game/learn/library"): Secti
 
 const buildJourneySections = (
     _currentPath: string,
-    deepProfileActivated: boolean,
+    _deepProfileActivated: boolean,
     journeyProgress: JourneyProgress = {},
 ): Section[] => {
-    // Day 50 late (Sasha): five permanent rail items, no hide gating.
-    // The rail is the same on every Journey-family page — including
-    // the landing — so nothing appears/disappears as the user navigates.
-    // Order: Start · Playbook · Path · AI OS · Dashboard.
-    // Day 50 later (Sasha): two locked teasers added at the tail —
-    // Mission Discovery (#6, unlocks after first session booking) and
-    // Asset Mapper (#7, sequenced after Mission Discovery). Locked rows
-    // render dimmed with a Radix tooltip showing the unlock hint.
-    // Day 52 (Sasha 2026-04-26): item #6 inserted — "Build a business off
-    // your top talent" — the bridge from JOURNEY into BUILD. Routes to
-    // /ubb. All three trailing items (#6, #7, #8) are LOCKED and rendered
-    // with graduated opacity to create a "fog of war" effect: the rail
-    // visually conveys that there is more methodology ahead, with the
-    // further items receding into fainter visibility.
+    // Funnel v2 (Day 77, Sasha 2026-05-20): JOURNEY restructured as the
+    // matching-onboarding sequence (T → M → A → Q → Build).
     //
-    // Day 64 (Sasha 2026-05-07): item #5 ("Build a business off your top
-    // talent") moved from hardcoded lock to a dynamic gate. It now
-    // unlocks the moment the user has activated their deeper Top Talent
-    // view — same gate that opens the rest of the platform: either a
-    // paid/gifted entitlement_tier (anything other than "tasting") OR
-    // the sessionStorage `coupon_activated` flag set by the activation-
-    // code path on the reveal page. While `useEntitlement` is loading,
-    // we keep the row locked to avoid an unlock→relock flicker on first
-    // paint. Items #6 and #7 stay sequenced behind their own arc.
-    // Day 54 (Sasha 2026-04-28): AI OS removed from this list — elevated
-    // to its own Space (see SPACES array in SpacesRail.tsx and the
-    // SPACE_SECTIONS["ai-os"] config above). Items 5-8 renumbered to 4-7.
-    // Day 55 (Sasha 2026-04-29): Journey pane 2 labels re-cast as
-    // action+outcome promises (was: short noun-tags). Pattern matches
-    // existing item 5 ("Build a business off your top talent"). Each
-    // row now teaches the user what they'll *get* by clicking, not just
-    // where they'll land. Order preserved — Dashboard sits at #4 as the
-    // last unlocked item before the locked progression (5–7), keeping
-    // the fog-of-war fade intact.
-    // Day 64 (Sasha 2026-05-07, evening): personal-discovery items
-    // ("Map your assets", "Assess your quality of life") moved to
-    // positions 5 and 6 — directly after the public/free top-of-funnel
-    // (1-4: find talent, playbook, path, dashboard). The heavier
-    // commitment items ("Build a business", "Discover your mission")
-    // shifted down to positions 7 and 8. Rationale: lighter discovery
-    // surfaces sit between the marketing-tier and the activation-tier,
-    // giving the user low-friction inventory tools (assets, QoL) before
-    // the deeper-Top-Talent commitment (UBB) and the post-business
-    // arc (mission). Numbering in labels updated accordingly.
+    //   1. Start by finding your top talent  — entry, always unlocked
+    //   2. Discover your mission             — locked until #1 completes
+    //   3. Map your assets                   — locked until #2 completes
+    //   4. Assess your quality of life       — locked until #3 completes
+    //                                          badge: "Improves match quality"
+    //   5. Build a business off your top talent — unlocked from the start
+    //                                             (decision §8.6 = b)
+    //
+    // Items previously living in JOURNEY (Playbook, Path, Dashboard) moved
+    // out into the BUILD space — see `SPACE_SECTIONS.build` below. The
+    // matching surface opens after #3 (T+M+A); QoL refines match precision
+    // but is not strictly required for the first match wave.
+    //
+    // Locks are advisory, not access-gating: any authenticated user can
+    // navigate directly to /mission-discovery, /asset-mapping,
+    // /quality-of-life-map, /ubb regardless of JOURNEY lock state. The
+    // lock state only colors the row in the pane (strikethrough + dim +
+    // popover hint).
+    //
+    // Spec: docs/specs/funnel-v2/funnel-v2_product_spec.md §4.2.
+    const topTalentDone = !!journeyProgress["journey-start-here"];
+    const missionDone = !!journeyProgress["journey-mission-discovery"];
+    const assetsDone = !!journeyProgress["journey-asset-mapper"];
+
     return [
         {
             id: "journey-start-here",
             label: "1. Start by finding your top talent",
             path: "/",
-            completed: !!journeyProgress["journey-start-here"],
-        },
-        {
-            id: "journey-the-playbook",
-            label: "2. Take the exact playbook",
-            path: "/playbook",
-            // Day 65 wave 2 (Sasha 2026-05-15): visited-tracked via
-            // localStorage flag set on first /playbook mount.
-            completed: !!journeyProgress["journey-the-playbook"],
-        },
-        {
-            id: "journey-the-path",
-            label: "3. See the shortcut path to your business",
-            path: "/path",
-            // Day 65 wave 3: visited-tracked via localStorage flag.
-            completed: !!journeyProgress["journey-the-path"],
-        },
-        {
-            id: "journey-dashboard",
-            label: "4. See how we're building this",
-            path: "/dashboard",
-            // Day 65 wave 3: visited-tracked via localStorage flag.
-            completed: !!journeyProgress["journey-dashboard"],
-        },
-        {
-            // Day 63 (Sasha 2026-05-07): unlocked. The Aurora reskin +
-            // Round-2 functional bug-fix pass landed today (fetchAssetMatches
-            // shape mismatch fixed; AI-extract path actually works again;
-            // return-path threading correct from /game/me/assets). Module
-            // is production-ready — Sasha wants it live to dogfood the
-            // flow himself. If we later want to gate it behind a
-            // prerequisite (e.g. mission-discovery), add `locked: true`
-            // and `lockedHint` back.
-            id: "journey-asset-mapper",
-            label: "5. Map your assets",
-            path: "/asset-mapping",
-            completed: !!journeyProgress["journey-asset-mapper"],
-        },
-        // Day 63 (Sasha 2026-05-06, evening) — RE-LOCKED. Sasha visited
-        // /quality-of-life-map/assessment in production-preview and
-        // surfaced visible bugs: (1) OnboardingProgress in QolLayout was
-        // colliding with GameShellV2's brand wordmark at the top of
-        // pane 3 (the "Step 1 of 4" text rendered at the same Y as
-        // "FIND YOUR TOP TALENT"); (2) introScreen's `min-h-dvh flex
-        // flex-col items-center justify-center` was forcing viewport-
-        // fill centering inside GameShell's main area, producing the
-        // awkward icon-then-big-gap-then-headline layout. The chip is
-        // re-locked while these get fixed in this same Day 63 evening
-        // session — search for "Sasha 2026-05-06, evening" in
-        // QolLayout.tsx + QualityOfLifeMapAssessment.tsx for the
-        // companion fixes.
-        //
-        // Earlier history (left for context): the data-integrity floor
-        // (idempotent inserts, retake fresh-flag, error logging),
-        // shell unification, PDF download fix, token migration, and
-        // Cormorant editorial typography pass were all completed in
-        // the morning + afternoon of the same Day 63. The unlock was
-        // premature — the layout collisions weren't visible from code
-        // alone; needed live preview to surface.
-        // Day 64 (Sasha 2026-05-07, late) — UNLOCKED after Sasha's
-        // visual verification on the rebuilt preview. The QoL module
-        // shipped in landing register: liquid-glass cards, Cormorant
-        // editorial + Source Serif 4 + halo cocktail (per
-        // glassmorphism_blueprint.md + ui_playbook.md Part VIII),
-        // single 8-domain list sorted ascending, ME-space subpage at
-        // /game/me/quality-of-life for return visits, PDF download
-        // working (mask-composite ::before stripped in onclone), XP
-        // toasts silenced, page wash applied for legibility, duplicate
-        // SiteLogo suppressed, schema-correct INSERT (the overall_score
-        // smoking gun fixed Day 64 morning).
-        //
-        // Re-lock by re-adding `locked: true` + `lockedHint` if needed.
-        {
-            id: "journey-qol-assess",
-            label: "6. Assess your quality of life",
-            path: "/quality-of-life-map/assessment",
-            completed: !!journeyProgress["journey-qol-assess"],
-        },
-        {
-            id: "journey-build-business",
-            label: "7. Build a business off your top talent",
-            path: "/ubb",
-            locked: !deepProfileActivated,
-            // Day 65 (Sasha 2026-05-15): hint now matches the broadened
-            // gate. Anyone with a saved Top Talent reveal passes —
-            // tasting tier included. Paid + coupon paths still work.
-            lockedHint: "Unlocks after you find your top talent.",
-            // Day 65 wave 3: completion when every artifact in
-            // ALL_ARTIFACT_KEYS has been created at least once
-            // (any row in user_business_artifacts for that key).
-            completed: !!journeyProgress["journey-build-business"],
+            completed: topTalentDone,
         },
         {
             id: "journey-mission-discovery",
-            label: "8. Discover your mission",
+            label: "2. Discover your mission",
             path: "/mission-discovery",
-            // Day 66 wave M+2 (Sasha 2026-05-16): gate REMOVED. Item now
-            // parallels QoL (#6) and Assets (#5) — open to any
-            // authenticated user, no deep-Top-Talent-view requirement.
-            // Sasha's framing: Mission Discovery shouldn't be gated
-            // behind paid/coupon when QoL and Assets aren't. UBB (#7)
-            // intentionally stays gated — that's the funnel-monogamy
-            // boundary, kept as-is. The route itself remains under
-            // RequireAuth + GameShellV2 (no MeGate wrapper) so
-            // unauth visitors still bounce to /auth.
-            completed: !!journeyProgress["journey-mission-discovery"],
+            locked: !topTalentDone,
+            lockedHint: "Unlocks after you find your top talent.",
+            completed: missionDone,
+        },
+        {
+            id: "journey-asset-mapper",
+            label: "3. Map your assets",
+            path: "/asset-mapping",
+            locked: !missionDone,
+            lockedHint: "Unlocks after you discover your mission.",
+            completed: assetsDone,
+        },
+        {
+            id: "journey-qol-assess",
+            label: "4. Assess your quality of life",
+            path: "/quality-of-life-map/assessment",
+            locked: !assetsDone,
+            lockedHint: "Unlocks after you map your assets.",
+            badge: "Improves match quality",
+            completed: !!journeyProgress["journey-qol-assess"],
+        },
+        {
+            // Decision §8.6 = (b): unlocked from start for everyone. Match-
+            // path users still walk T-M-A naturally via the post-Top-Talent
+            // CTAs; build-path users get earlier visual access. Costs
+            // nothing, less confusing for build-path users than seeing
+            // their destination locked indefinitely.
+            id: "journey-build-business",
+            label: "5. Build a business off your top talent",
+            path: "/ubb",
+            completed: !!journeyProgress["journey-build-business"],
         },
     ];
 };

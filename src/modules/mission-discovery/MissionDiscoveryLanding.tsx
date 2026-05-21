@@ -61,6 +61,9 @@ import {
 } from "@/components/ui/alert-dialog";
 import { supabase } from "@/integrations/supabase/client";
 import { MISSION_DISCOVERY_PROMPT } from "@/prompts";
+// Funnel v2 (Day 77, Sasha 2026-05-20): match-path conditional "Map your
+// assets →" CTA on the saved state. Returns null for build-path users.
+import MatchFlowCta from "@/components/landing/MatchFlowCta";
 import { getOrCreateGameProfileId } from "@/lib/gameProfile";
 import { withRetry } from "@/lib/withRetry";
 import { useToast } from "@/hooks/use-toast";
@@ -604,6 +607,11 @@ const MissionDiscoveryLanding = () => {
                             rightIcon={<ChevronRight className="w-4 h-4" />}
                         />
                     </div>
+
+                    {/* Funnel v2 (§4.4.2): match-path "Map your assets →"
+                        CTA below the existing actions. Build-path users
+                        see only the Edit + Back-to-journey row above. */}
+                    <MatchFlowCta step="mission" />
                 </div>
             )}
 

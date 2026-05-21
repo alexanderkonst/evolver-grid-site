@@ -71,6 +71,10 @@ import { withRetry } from "@/lib/withRetry";
 // Day 63 (Sasha 2026-05-06): GameShellV2 import removed — shell now
 // owned by QolLayout, not per-page.
 import { Map, Download, RefreshCw } from "lucide-react";
+// Funnel v2 (Day 77, Sasha 2026-05-20): match-path conditional
+// "See your refined matches →" CTA below the action row. Returns null
+// for build-path users.
+import MatchFlowCta from "@/components/landing/MatchFlowCta";
 
 interface QualityOfLifeMapResultsProps {
   renderMode?: "standalone" | "embedded";
@@ -863,6 +867,11 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
           className="w-full"
         />
       </div>
+
+      {/* Funnel v2 (§4.4.4): match-path "See your refined matches →"
+          CTA below the utility action row. Build-path users see only
+          Retake / Download PDF. */}
+      <MatchFlowCta step="qol" />
     </div>
   );
 

@@ -24,6 +24,10 @@ import { ASSET_CATEGORIES } from "./data/assetCategories";
 import { ASSET_MAPPING_PROMPT } from "@/prompts";
 import { saveAssets, type SavedAsset } from "./assetSync";
 import { Ornament, GOLD_TEXT_STYLE } from "@/lib/landingDesign";
+// Funnel v2 (Day 77, Sasha 2026-05-20): match-path conditional CTAs on
+// the post-save "matched" state — the unlock moment for collaboration
+// matches. Returns null for build-path users.
+import MatchFlowCta from "@/components/landing/MatchFlowCta";
 import {
     Tooltip,
     TooltipContent,
@@ -1220,6 +1224,16 @@ const AssetMappingLanding = () => {
                                 Add more manually →
                             </button>
                         </div>
+
+                        {/* Funnel v2 (§4.4.3): the unlock moment. Once
+                            assets are saved, match-path users get the
+                            "See your matches →" primary CTA + a
+                            secondary "Assess your quality of life →".
+                            Build-path users see only the action row
+                            above. Pre-save we render nothing extra so
+                            the user's attention stays on the matched
+                            list + Save button. */}
+                        {hasSaved && <MatchFlowCta step="assets" />}
                     </div>
                 )}
             </div>
