@@ -555,14 +555,24 @@ const buildJourneySections = (
             completed: !!journeyProgress["journey-qol-assess"],
         },
         {
-            // Decision §8.6 = (b): unlocked from start for everyone. Match-
-            // path users still walk T-M-A naturally via the post-Top-Talent
-            // CTAs; build-path users get earlier visual access. Costs
-            // nothing, less confusing for build-path users than seeing
-            // their destination locked indefinitely.
+            // Day 78 (Sasha 2026-05-21) — gated on `!topTalentDone`,
+            // matching item #2. Decision §8.6(b) had this unlocked from
+            // start for everyone, but for fresh guests landing on
+            // /zone-of-genius the only two visible items beneath the
+            // fog-of-war on items 2-4 were #1 and #5 — and the eye
+            // reads the bottom unlocked item as "ready to go" before
+            // the user has even done step 1. Locking #5 on Top Talent
+            // completion makes the rail tell the truth: one actionable
+            // item until the reveal is saved, then #2 + #5 unlock
+            // simultaneously (the matching arc and the build bridge
+            // both become reachable). Build-path users still hit #5
+            // the moment they save Top Talent — no functional
+            // regression, just a clearer fresh-state visual.
             id: "journey-build-business",
             label: "5. Build a business off your top talent",
             path: "/ubb",
+            locked: !topTalentDone,
+            lockedHint: "Unlocks after you find your top talent.",
             completed: !!journeyProgress["journey-build-business"],
         },
     ];

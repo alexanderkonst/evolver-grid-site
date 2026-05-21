@@ -171,7 +171,7 @@ const MatchHero = () => {
                 fontWeight: 500,
               }}
             >
-              <span>Free · 10–15 minutes · No signup to start</span>
+              <span>Free · 2 minutes · No signup to start</span>
             </div>
           </div>
         </div>
