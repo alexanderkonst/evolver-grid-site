@@ -16,7 +16,8 @@ import { ZONE_OF_GENIUS_PROMPT } from "@/prompts";
 // ornament helper live in @/lib/landingDesign. Editing that module
 // updates every funnel surface at once.
 import {
-    GOLD_TEXT_STYLE,
+    // Day 78: GOLD_TEXT_STYLE removed — was only used by the deleted
+    // "Why is it still so hard…" hero block.
     CTA_SMALL_CAPS_STYLE,
     igniteLogo,
 } from "@/lib/landingDesign";
@@ -95,7 +96,17 @@ const ZoneOfGeniusEntry = () => {
     const hideNav = false;
     const returnPath = searchParams.get("return") || "/";
 
-    const [step, setStep] = useState<Step>("choice");
+    // Day 78 (Sasha 2026-05-21): initial state moved from "choice" to
+    // "choice-route". The old "choice" step was a single-CTA intermediate
+    // screen (a redundant pitch above a "Find my top talent" button that
+    // just advanced to "choice-route"). The landing CTAs (both build-
+    // path and match-path) now drop users straight onto the AI-vs-Manual
+    // route selector — one screen saved, one click saved. See the deletion
+    // of the shared hero block + the `step === "choice"` render block
+    // below. Mode A (?result=token) and Mode B (authed with saved
+    // snapshot) overrides in the loadExisting effect still jump straight
+    // to the appleseed-result step — unaffected.
+    const [step, setStep] = useState<Step>("choice-route");
     const [aiResponse, setAiResponse] = useState("");
     const [copied, setCopied] = useState(false);
     const [isProcessing, setIsProcessing] = useState(false);
@@ -259,10 +270,12 @@ const ZoneOfGeniusEntry = () => {
             }
 
             // ─── Mode C: existing live-funnel behavior, preserved ───
-            // When in onboarding flow (/start), always start fresh from "choice"
-            // Don't auto-restore saved data or redirect
+            // When in onboarding flow (/start), always start fresh from
+            // the route-selector ("choice-route"). Don't auto-restore
+            // saved data or redirect. Day 78: was "choice" before the
+            // intermediate pitch screen got deleted.
             if (isInOnboarding) {
-                // User is doing fresh onboarding, start from choice screen
+                // User is doing fresh onboarding, start from route-selector.
                 return;
             }
 
@@ -274,7 +287,7 @@ const ZoneOfGeniusEntry = () => {
                 localStorage.removeItem("guest_excalibur_data");
                 localStorage.removeItem("guest_appleseed_data");
                 localStorage.removeItem("guest_ai_response");
-                return; // Start fresh from choice
+                return; // Start fresh from route-selector
             }
 
             const { appleseed: savedAppleseed, excalibur: savedExcalibur } = await loadSavedData();
@@ -760,137 +773,17 @@ const ZoneOfGeniusEntry = () => {
                     proper text legibility across the full Pane 3 area on
                     every route. No page-level wash needed here anymore. */}
 
-                {/* Header — Day 48 (Sasha): vertical rhythm compressed so hero +
-                    CTA fit on one viewport. Logo shrunk ~50% (20 → 10).
-                    Hero questions rewritten so the `?` stays attached to the
-                    last gradient word (no more orphaned "?" on its own line)
-                    and each question sits inside a text-balance block so the
-                    browser picks more even line lengths. */}
-                {/* Day 51 (Sasha 2026-04-25): legibility scrim added —
-                    the sparkle-rich background image varies in brightness
-                    from area to area, washing out dark navy text on the
-                    bright zones (right edge especially). Soft radial
-                    vignette behind the text block gives the words a
-                    consistent mid-tone backdrop without breaking the
-                    airy aesthetic. Combined with bumped halos on the
-                    headline + supporting copy. */}
-                <div className="relative text-center mb-6">
-                    <div
-                        aria-hidden="true"
-                        className="absolute inset-0 -inset-x-6 sm:-inset-x-10 -top-4 -bottom-4 pointer-events-none"
-                        style={{
-                            background:
-                                "radial-gradient(ellipse 70% 60% at 50% 45%, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0.32) 35%, rgba(255,255,255,0.12) 60%, rgba(255,255,255,0) 90%)",
-                            backdropFilter: "blur(2px)",
-                            WebkitBackdropFilter: "blur(2px)",
-                        }}
-                    />
-                    <div className="relative">
-                    {/* Dodecahedron — 50% smaller per Sasha */}
-                    <div className="inline-flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-full overflow-hidden mb-3 ring-1 ring-[#0a1628]/10 breathing-card">
-                        <img src="/dodecahedron.png" alt="" className="w-full h-full object-cover" aria-hidden="true" />
-                    </div>
-
-                    <h1
-                        className="text-2xl sm:text-3xl lg:text-4xl font-semibold leading-[1.2] max-w-2xl mx-auto mb-5 space-y-3"
-                        style={{
-                            fontFamily: "'Cormorant Garamond', serif",
-                            color: "var(--skin-text-primary, #0a1628)",
-                            // Day 51 (Sasha): stronger halo than the default
-                            // skin variable — the wider white glow keeps the
-                            // dark navy readable even where the sparkles are
-                            // brightest.
-                            textShadow:
-                                "0 0 36px rgba(255,255,255,0.85), 0 0 18px rgba(255,255,255,0.95), 0 1px 3px rgba(255,255,255,0.9), 0 2px 12px rgba(26,30,58,0.2)",
-                        }}
-                    >
-                        {/* Day 48 iter 7 (Sasha): both accent phrases unified
-                            to the signature deep-antique-gold used on the
-                            landing. The old violet + red gradients belonged
-                            to the playbook's rainbow octave — they don't
-                            belong on ZoG where gold is the single accent. */}
-                        <span className="block text-balance">
-                            Why is it still so hard to{" "}
-                            <span
-                                className="bg-clip-text text-transparent"
-                                style={GOLD_TEXT_STYLE}
-                            >
-                                explain what you do?
-                            </span>
-                        </span>
-                        <span className="block text-balance">
-                            And turn it into something people{" "}
-                            <span
-                                className="bg-clip-text text-transparent"
-                                style={GOLD_TEXT_STYLE}
-                            >
-                                actually pay for?
-                            </span>
-                        </span>
-                    </h1>
-
-                    {/* Recognition block — Day 48 tighten: spacing reduced so
-                        the full hero + CTA fit a single viewport without scroll. */}
-                    <div className="space-y-2 max-w-lg mx-auto">
-                        <p
-                            className="text-base sm:text-lg leading-snug"
-                            style={{
-                                fontFamily: "'Source Serif 4', serif",
-                                color: "var(--skin-text-primary, #0a1628)",
-                                // Day 51 (Sasha): bumped halo for sparkle bg legibility
-                                textShadow: "0 0 24px rgba(255,255,255,0.85), 0 1px 3px rgba(255,255,255,0.9)",
-                            }}
-                        >
-                            You already help people.
-                        </p>
-                        <p
-                            className="text-base sm:text-lg leading-snug"
-                            style={{
-                                fontFamily: "'Source Serif 4', serif",
-                                color: "var(--skin-link-secondary, rgba(26,30,58,0.85))",
-                                textShadow: "0 0 24px rgba(255,255,255,0.85), 0 1px 3px rgba(255,255,255,0.85)",
-                            }}
-                        >
-                            You just don't have a clear way to say what you do.
-                        </p>
-                    </div>
-
-                    {/* Recognition bullets — If this sounds familiar */}
-                    <div className="mt-5 max-w-lg mx-auto text-center">
-                        <p
-                            className="text-sm mb-3"
-                            style={{
-                                fontFamily: "'Source Serif 4', serif",
-                                color: "var(--skin-text-muted, rgba(26,30,58,0.75))",
-                                textShadow: "0 0 18px rgba(255,255,255,0.8), 0 1px 2px rgba(255,255,255,0.85)",
-                            }}
-                        >
-                            If this sounds familiar:
-                        </p>
-                        <ul
-                            className="space-y-1.5 text-sm sm:text-[15px] leading-snug"
-                            style={{
-                                fontFamily: "'Source Serif 4', serif",
-                                color: "var(--skin-link-secondary, rgba(26,30,58,0.85))",
-                                textShadow: "0 0 16px rgba(255,255,255,0.75), 0 1px 2px rgba(255,255,255,0.8)",
-                            }}
-                        >
-                            <li className="flex items-baseline justify-center gap-2">
-                                <span aria-hidden="true" style={{ color: "var(--skin-text-faint, rgba(26,30,58,0.55))" }}>•</span>
-                                <span>You've helped people — but don't have a clear offer.</span>
-                            </li>
-                            <li className="flex items-baseline justify-center gap-2">
-                                <span aria-hidden="true" style={{ color: "var(--skin-text-faint, rgba(26,30,58,0.55))" }}>•</span>
-                                <span>You over-explain what you do — and people get confused.</span>
-                            </li>
-                            <li className="flex items-baseline justify-center gap-2">
-                                <span aria-hidden="true" style={{ color: "var(--skin-text-faint, rgba(26,30,58,0.55))" }}>•</span>
-                                <span>You feel like something is there — but can't pin it down.</span>
-                            </li>
-                        </ul>
-                    </div>
-                    </div>
-                </div>
+                {/* Day 78 (Sasha 2026-05-21): redundant pitch hero
+                    removed. Was the dodecahedron + "Why is it still so
+                    hard to explain what you do? / And turn it into
+                    something people actually pay for?" + recognition
+                    bullets — pure pitch repetition above the route
+                    selector. The user already opted in by clicking
+                    "Find your top talent" on the landing; the next
+                    surface should ask one question, not pitch again.
+                    Each downstream step (choice-route / ai-prompt /
+                    paste-response) carries its own h2, so removing
+                    the shared hero leaves the layout self-contained. */}
 
                 {/* Error message */}
                 {error && (
@@ -905,50 +798,12 @@ const ZoneOfGeniusEntry = () => {
                     Matches /path and /playbook hero aesthetic.
                     ═══════════════════════════════════════════════════════ */}
 
-                {/* Step: Choice — Day 48 (Sasha): button reworked to the
-                    same style stack as the landing's primary CTA so the
-                    visual signature carries across pages. Dark-navy glass
-                    pill + gold ✦ + gold halo + Cormorant Garamond semibold. */}
-                {step === "choice" && (
-                    <div ref={stepContentRef} className="space-y-6 animate-in fade-in duration-500">
-                        <div className="text-center">
-                            {/* Day 48 iter 7 (Sasha): added .cta-breath
-                                (slow 3.2s gold-halo swell, pauses on hover)
-                                + small-caps label for the full landing-CTA
-                                signature. */}
-                            <button
-                                className="group liquid-glass-dark cta-breath rounded-full inline-flex items-center justify-center gap-2 sm:gap-2.5 px-4 sm:px-6 py-3 max-w-full text-sm sm:text-base font-semibold transition-all duration-300 hover:scale-[1.03] active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-white/40 outline-none"
-                                style={{
-                                    fontFamily: "'Cormorant Garamond', serif",
-                                    color: "var(--skin-cta-text, rgba(245,245,250,0.98))",
-                                    backgroundImage:
-                                        "var(--skin-cta-bg, linear-gradient(135deg, rgba(10,22,40,0.72) 0%, rgba(26,30,58,0.62) 50%, rgba(10,22,40,0.72) 100%))",
-                                    boxShadow:
-                                        "var(--skin-cta-shadow, 0 0 18px -4px rgba(240,194,127,0.45), 0 10px 24px -10px rgba(10,22,40,0.5))",
-                                    textShadow:
-                                        "var(--skin-cta-text-shadow, 0 0 16px rgba(240,194,127,0.25), 0 1px 2px rgba(0,0,0,0.35))",
-                                }}
-                                onClick={() => setStep("choice-route")}
-                            >
-                                <img
-                                    src={igniteLogo}
-                                    alt=""
-                                    aria-hidden="true"
-                                    className="h-4 w-auto opacity-80 transition-opacity group-hover:opacity-100"
-                                    style={{
-                                        filter: "drop-shadow(0 0 6px rgba(244, 212, 114, 0.45))",
-                                    }}
-                                    draggable={false}
-                                />
-                                <span style={CTA_SMALL_CAPS_STYLE}>Find my top talent</span>
-                                <ArrowRight
-                                    aria-hidden="true"
-                                    className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5"
-                                />
-                            </button>
-                        </div>
-                    </div>
-                )}
+                {/* Day 78 (Sasha 2026-05-21): "choice" render block
+                    removed — was a single-CTA intermediate that just
+                    advanced to "choice-route". Initial useState now
+                    starts at "choice-route" directly. No callers
+                    `setStep("choice")` anywhere in the codebase, so
+                    this is safe to drop. */}
 
                 {/* Step: Route Selection */}
                 {step === "choice-route" && (

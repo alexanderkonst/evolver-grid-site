@@ -7608,3 +7608,70 @@ Balaji's URL is operational: `findyourtoptalent.com/ns/?path=match` lands editor
 - **Build-path landing analytics** — only match-path fires entry events today (the build chain is the protected surface). Wiring a symmetric `zog_entry` fire would require editing the build hero or the route swap; deferred.
 - **Spec v0.8 in [`docs/specs/funnel-v2/funnel-v2_product_spec.md`](../specs/funnel-v2/funnel-v2_product_spec.md)** captures the implementation reality. Future-AI shouldn't need to re-discover the premise correction.
 
+---
+
+## Day 78 — Thursday, May 21, 2026 — UBB prompt deepening + code-as-source cleanup
+
+### Frame
+
+`/ubb` (Automated Venture Builder) artifact-generation prompts were not transmitting the playbook canon faithfully. Sasha caught the first instance — `myth` was producing mission statements ("I architect clarity from overwhelm…") instead of myths (claims about reality). Diagnostic root cause: the `invitation` schema field was canonically mislabeled (said "what specifically is offered" — should say "creates the tribe through self-selection"), the `generationGuidance` was one sentence with zero load-bearing constraints, and the `UBB_DISTILLATION_DIRECTIVE` had no artifact-specific anti-pattern for myth. Combined: the model defaulted to fluent-sounding mission-statement shapes.
+
+Sasha's directive: methodically work through ALL 19 artifacts, fix what needs fixing, ship without stopping.
+
+### What shipped
+
+**Morning — `myth` fix** ([`supabase/functions/_shared/ubb-prompts.ts`](../../supabase/functions/_shared/ubb-prompts.ts:113-180))
+- Rewrote `myth.outputSchema` field descriptions: `attack` makes enemies via paradigm-claim; `reframe` is structural 2am-moment (not personal coaching); `invitation` creates tribe via self-selection (NOT a service offer); `photon` is a falsifiable claim about reality.
+- Rewrote `myth.specificityCriteria` (6 items) + `myth.generationGuidance` (~50 lines) — quotes the playbook's four "what a myth IS NOT" rules verbatim ([`unique_business_playbook.md:928-933`](../03-playbooks/unique_business_playbook.md:928)), names the Master Lie/Master Belief polarity, the Paradox Reframe upgrade path for Teal-domain founders, the Collapse Test, the 3-Layer Depth Model with canonical Sasha-v2.1 examples.
+- Added myth-specific anti-pattern to `UBB_DISTILLATION_DIRECTIVE` rule 6 — bans "I architect/transform/guide…" shapes for myth specifically.
+
+**Afternoon — 18 remaining artifacts** ([`supabase/functions/_shared/ubb-prompts.ts`](../../supabase/functions/_shared/ubb-prompts.ts)) — 4 parallel research agents extracted the canonical definitions from `marketing_playbook.md` / `unique_business_playbook.md` / `distribution_playbook.md` / `communications_playbook.md` / `integrated_product_building_workflow.md` / `pain_theory_playbook.md` / `phase_shift_technology_library.md` (Domain 81). Per-artifact diagnosis then drove edits:
+- **4 deep REWRITES**: `pain` (Sandra Empathy Test + 3-frequency depth ladder + Recursive Shadow Pattern + Confabulation Layer + per-field construction Qs), `lead_magnet` (Playbook-as-Lead-Magnet canonical format — multi-slide carousel + 5-beat episodes + "jar can't read its own label" mechanism + assumption flip), `spread` (NO-LINK rule with 10x multiplier + 3-Stage Viral Loop + 60-day Referral Threshold diagnostic + tiered acknowledgment), `landing_page` (Pain-First Dual-Frequency + Situational Identity scrub + canonical sequence + Pressure Line shapes).
+- **11 TWEAKS**: `uniqueness` (service-trap test + load-bearing word test + Sasha's ~7-word canonical shape), `tribe` (chest-tightens test + label→situational translation table), `promise` (12-year-old test + inversion + canonical Alexa/Alexander shapes), `value_ladder` (Kennedy Transaction Size math + Dissimilar-Category Anchoring), `session_bridge` (Goldilocks rule + Proof-of-Concept principle + Sasha Ignition trinity SHAPE example), `core_belief` ("We believe that…" template + Apple/Nike/Evolver canonical shapes + myth-relationship note), `packaging` (FREE educates / PAID transforms + 4-tier ladder purposes), `frictionless_purchase` (Decision-vs-Curiosity language + dissimilar anchors + stable pricing for affluent), `reach` (visibility-not-desire framing + 80/20 cold start + where-they-spend vs where-they-decide), `tuning_fork` (3-beat canonical shapes + Sasha English master + belly-frequency rule), `golden_dm` (5 Purity Checks + Frankie Step 2 context + Dinner Table Test + ADDED `energy_test` to schema's purity_check).
+- **1 LIGHT TWEAK**: `specificity_matrix` — added the 2 missing canonical examples (`excalibur.resonant`, `icp.resonant`) from [`src/lib/resonanceMatrix.ts`](../../src/lib/resonanceMatrix.ts) so the few-shot block carries Sasha's full 6-stage master matrix.
+- **3 untouched** (canon faithful as-is): `delivery`, `surface_inventory`, and the schema-only structure of `specificity_matrix`.
+- **Shared**: `UBB_DISTILLATION_DIRECTIVE` rule 6 converted from myth-only into per-artifact anti-pattern table covering myth / uniqueness / tribe / pain / core_belief / tuning_fork.
+
+**Late afternoon — code-as-source cleanup**
+- Sasha pushed back: the live TypeScript prompt file IS what runs at runtime; the parallel spec docs (`artifact_prompts_spec.md`, `improve_roast_prompt.md`) were human-only descriptions that just kept drifting.
+- Deleted [`docs/specs/unique-business-builder/artifact_prompts_spec.md`](../specs/unique-business-builder/) (gone) and `improve_roast_prompt.md` (gone).
+- Updated 4 header comments: [`ubb-prompts.ts`](../../supabase/functions/_shared/ubb-prompts.ts) declares itself source of truth; [`generate-artifact/index.ts`](../../supabase/functions/generate-artifact/index.ts), [`improve-artifact/index.ts`](../../supabase/functions/improve-artifact/index.ts), and [`src/modules/unique-business-builder/types.ts`](../../src/modules/unique-business-builder/types.ts) point at the TS file.
+- Updated 5 cross-refs in 3 sibling spec docs ([tracker, product_spec, architecture_spec](../specs/unique-business-builder/)) — pointers now go to the live code.
+
+**Sub-conversation — staleness banner UX investigation**
+- Sasha noticed all 19 artifacts flashed "stale" on canvas overview. Walked through [`UniqueBusinessContext.tsx:101-116`](../../src/modules/unique-business-builder/UniqueBusinessContext.tsx:101) staleness compute (1-minute buffer comparing lock timestamps).
+- Diagnosed: legitimate by-design — when upstream lock bumps `created_at` past downstream by >60s, downstream flags stale. Not data corruption.
+- Spawned chip for follow-up work: hybrid staleness UX (bulk Improve button + re-derive-on-lock prompt + derivation-tree per-card hint + 5-min buffer) + Phase 2 prompt-version staleness axis (new `PROMPT_VERSION` constant + `prompt_version_at_lock` DB column + distinct staleness type so today's all-19-stale moment becomes legible).
+
+### Files touched
+
+- [`supabase/functions/_shared/ubb-prompts.ts`](../../supabase/functions/_shared/ubb-prompts.ts) — 698 → 1,193 lines (+667 ins, -171 del across two waves)
+- [`supabase/functions/generate-artifact/index.ts`](../../supabase/functions/generate-artifact/index.ts) — header comment only
+- [`supabase/functions/improve-artifact/index.ts`](../../supabase/functions/improve-artifact/index.ts) — header comment only
+- [`src/modules/unique-business-builder/types.ts`](../../src/modules/unique-business-builder/types.ts) — header comment only
+- [`docs/specs/unique-business-builder/unique-business-builder_tracker.md`](../specs/unique-business-builder/unique-business-builder_tracker.md) — replaced 2 dead links with single source-of-truth pointer
+- [`docs/specs/unique-business-builder/unique-business-builder_product_spec.md`](../specs/unique-business-builder/unique-business-builder_product_spec.md) — 2 cross-refs updated
+- [`docs/specs/unique-business-builder/unique-business-builder_architecture_spec.md`](../specs/unique-business-builder/unique-business-builder_architecture_spec.md) — 3 cross-refs updated
+- [DELETED] `docs/specs/unique-business-builder/artifact_prompts_spec.md`
+- [DELETED] `docs/specs/unique-business-builder/improve_roast_prompt.md`
+
+### Key decisions
+
+1. **Per-artifact anti-pattern table in `UBB_DISTILLATION_DIRECTIVE`** rather than a single blanket rule. Reason: myth/uniqueness/tribe/core_belief/tuning_fork must ban "I help X do Y so Z" shapes, but `packaging.one_liner` and `session_bridge.transformational_result` LITERALLY use that shape by design. Blanket ban would have broken those artifacts.
+2. **Code-as-source over parallel-doc**. Honors CLAUDE.md's "No parallel compressions" rule. The morning's spec-doc-sync chip Sasha had queued becomes obsolete (the doc no longer exists to sync). One source of truth = no drift risk.
+3. **REWRITE vs TWEAK vs OK-AS-IS triage**. Not every prompt needed deep surgery. Diagnosed each artifact's gap to canon, kept edits proportional. Heaviest interventions (pain, lead_magnet, spread, landing_page) were the artifacts most likely to fail silently because their default fluent output sounds right but misses the playbook's load-bearing mechanics.
+4. **Schema-stable except one additive field**. `golden_dm.purity_check.energy_test` is new; everything else preserves field names. Greppped to confirm no frontend reader breaks ([`grep purity_check`](../../src) returned only ubb-prompts.ts).
+5. **Don't touch already-locked artifacts**. The new prompts apply to fresh generations + future Improve loops. Existing locked rows are unaffected. Sasha can choose to re-Improve high-leverage artifacts (myth, pain, landing) to lift them to the new ceiling — but the canvas isn't broken if he doesn't.
+6. **Staleness UX is a real product gap, not a bug**. The current logic is correct-but-rough. Hybrid approach scoped (chip spawned).
+
+### Si–Do
+
+`/ubb` is now operationally higher-ceiling than yesterday. Users running fresh `/ubb` flows will get a materially higher specificity floor on v1 generation — less Improve iterations needed before a canvas locks. No direct conversion impact today; this is product-depth work that compounds slowly. Si–Do (first community member signs paid pilot) unchanged — but the AVB-as-deliverable is now sharper if a Day 78+ pilot uses it.
+
+### Open follow-ups
+
+- **Hybrid staleness UX chip** (spawned today) — bulk Improve button on canvas overview + re-derive-on-lock prompt + derivation-tree hint per card + 5-min buffer + Phase 2 prompt-version staleness axis.
+- **Morning's spec-doc-sync chip is obsolete** — the spec docs no longer exist to sync. Sasha to dismiss it from his chip queue at convenience.
+- **Re-Improving high-leverage artifacts under new prompts** — myth, pain, landing_page would benefit most from a single Improve cycle now. User-initiated, not automated.
+- **Pre-existing Deno-runtime tsc errors** in [`generate-artifact/index.ts`](../../supabase/functions/generate-artifact/index.ts) and [`improve-artifact/index.ts`](../../supabase/functions/improve-artifact/index.ts) — `Deno` global + `https://deno.land/...` imports don't resolve under Node tsc. Not from today's edits. If a future pass adds a Deno-aware tsconfig for the supabase/functions tree, those errors go away.
+
