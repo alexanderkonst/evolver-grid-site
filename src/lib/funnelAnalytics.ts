@@ -18,6 +18,7 @@ import { supabase } from "@/integrations/supabase/client";
 
 export type FunnelStep =
   | "zog_entry"         // Landing on /
+  | "match_landing_view" // Funnel v2 (Day 77): Landing on /?path=match (or /ns/?path=match)
   | "zog_choice_route"  // Clicked "Reveal" → chose AI or manual
   | "zog_ai_prompt"     // Copied prompt
   | "zog_copy_prompt"   // Actually copied the prompt text

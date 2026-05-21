@@ -29,7 +29,12 @@ import MusicPlayer from "@/components/MusicPlayer";
 // thin UI consumer that reads state via context. See
 // SoundCloudPlayerProvider.tsx for the full architecture rationale.
 import { SoundCloudPlayerProvider } from "@/components/audio/SoundCloudPlayerProvider";
-import LandingPage from "./pages/LandingPage";
+// Funnel v2 (Day 77, Sasha 2026-05-20): captures `?path=match` from the
+// URL on first hit and persists across the multi-step Top Talent / Mission /
+// Assets / QoL flow so each completion surface can render match-flavored
+// CTAs without the URL carrying state on every internal navigation.
+// Spec: docs/specs/funnel-v2/funnel-v2_product_spec.md §4.1.
+import { EntryPathProvider } from "@/contexts/EntryPathContext";
 import FeedbackPage from "./pages/FeedbackPage";
 import ContactNew from "./pages/ContactNew";
 import Library from "./pages/Library";
@@ -296,6 +301,7 @@ const App = () => (
               while we iterate. Flip MusicPlayer's enabled gate to
               default-true when ready to launch for everyone. */}
           <MusicPlayer />
+          <EntryPathProvider>
           <SoundCloudPlayerProvider>
           <ErrorBoundary>
             <Suspense fallback={<PageLoader />}>
@@ -725,6 +731,7 @@ const App = () => (
             </Suspense>
           </ErrorBoundary>
           </SoundCloudPlayerProvider>
+          </EntryPathProvider>
         </BrowserRouter>
       </TooltipProvider>
       </SkinProvider>

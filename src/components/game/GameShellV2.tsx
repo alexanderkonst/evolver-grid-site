@@ -710,9 +710,16 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
             // hiddenSpaces → invisible in rail. When flipped to
             // true, restores the previous "After Step 1" behavior.
             "learn": LEARN_VISIBLE && zogComplete,              // After Step 1 — growth material (currently flag-gated off)
-            // BUILD: optimistic during deepProfileLoading (treat as unlocked
-            // so no lock-indicator flash), real value once resolved.
-            "build": deepProfileLoading ? true : deepProfileActivated,
+            // BUILD: Funnel v2 (Day 77, Sasha 2026-05-20) — always
+            // unlocked. The BUILD space now hosts Path / Dashboard /
+            // Playbook / Ignite (moved out of JOURNEY) plus Equilibrium
+            // + the Automated Venture Builder. Per spec §4.3 + DoD: any
+            // authenticated user must be able to reach BUILD's contents
+            // via the sidebar regardless of T-M-A completion. The /ubb
+            // route itself retains its MeGate, so the AVB still needs
+            // an activated reveal to enter — this gate only controlled
+            // the chip's lock indicator, not the underlying gates.
+            "build": true,
             "meet": MEET_VISIBLE && zogComplete,                // After Step 1 — community events (currently flag-gated off)
             // Day 63 night (Sasha 2026-05-07): COLLABORATE gate is now
             // `collaborateUnlocked` — flipped to true the moment the
