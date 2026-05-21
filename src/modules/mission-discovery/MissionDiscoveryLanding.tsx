@@ -627,11 +627,21 @@ const MissionDiscoveryLanding = () => {
                     </div>
 
                     <div className="flex flex-wrap gap-3 justify-center">
-                        {/* Day 67: saved-state actions also editorial.
-                            Edit goes through the friction dialog (so the
-                            secondary register matches its "soft pause"
-                            role); Back to journey is the primary CTA
-                            (matching the landing pattern). */}
+                        {/* Day 77 (Sasha 2026-05-20): saved-state forward
+                            CTA is now path-aware.
+                              - Match-path: only "Edit" renders here;
+                                MatchFlowCta below carries the forward
+                                CTA ("Map your assets →"), so we don't
+                                want two primary pills competing.
+                              - Build-path: "Edit" + "See on profile"
+                                (routes to /game/me/mission, the new
+                                Mission section in the ME pane —
+                                Sasha's natural next step is "show me
+                                where this lives" rather than "back to
+                                journey").
+                            The Edit dialog (AlertDialog below) gates
+                            the destructive edit with a soft pause —
+                            kept identical to the prior behavior. */}
                         <EditorialCta
                             variant="secondary"
                             label="Edit"
@@ -639,17 +649,19 @@ const MissionDiscoveryLanding = () => {
                             icon={<Pencil className="w-4 h-4" />}
                             rightIcon={null}
                         />
-                        <EditorialCta
-                            variant="primary"
-                            label="Back to journey"
-                            onClick={() => navigate(returnPath)}
-                            rightIcon={<ChevronRight className="w-4 h-4" />}
-                        />
+                        {entryPath !== "match" && (
+                            <EditorialCta
+                                variant="primary"
+                                label="See on profile"
+                                onClick={() => navigate("/game/me/mission")}
+                                rightIcon={<ChevronRight className="w-4 h-4" />}
+                            />
+                        )}
                     </div>
 
                     {/* Funnel v2 (§4.4.2): match-path "Map your assets →"
                         CTA below the existing actions. Build-path users
-                        see only the Edit + Back-to-journey row above. */}
+                        see only the Edit + See-on-profile row above. */}
                     <MatchFlowCta step="mission" />
                 </div>
             )}
