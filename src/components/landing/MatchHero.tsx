@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { EditorialCta } from "@/components/ui/editorial-cta";
-import { GOLD_TEXT_STYLE, Ornament } from "@/lib/landingDesign";
+import { Ornament } from "@/lib/landingDesign";
 import SEO from "@/components/SEO";
 import { trackFunnelEvent } from "@/lib/funnelAnalytics";
 import { useSkin } from "@/contexts/SkinContext";
@@ -14,11 +14,23 @@ import { useSkin } from "@/contexts/SkinContext";
  * `MethodologyLandingPage` so the JOURNEY rail + spaces rail behave
  * identically; only the hero copy + CTA destination diverge.
  *
- *   - Eyebrow:       "Precision matchmaking for collaboration"
- *   - Hero (h1):     "Stop building alone."
- *   - Italic echo:   "You've met cool people. You still haven't found your people."
- *   - Sub paragraph: "Your people are already in this network. We surface them. Real introductions follow."
- *   - Single CTA:    "Find your top talent →" → /zone-of-genius?path=match
+ * Day 78 (Sasha 2026-05-21) copy + legibility pass:
+ *   - Eyebrow color: gold-on-cream was barely legible; promoted to the
+ *     `goldDeep` token (#5d4307) + soft halo so the small-caps still
+ *     read as gold but with real contrast against the bg.
+ *   - Stripped the uppercase-gold-gradient emphasis spans on the hero,
+ *     italic echo, and sub paragraph — Sasha's call: no single word
+ *     should be lifted out, the lines read as one breath each.
+ *   - Removed all sentence-final periods — dots act as full-stops to
+ *     readers and break momentum into the next line.
+ *   - Hero copy softened: "Stop building alone" felt directive /
+ *     preachy. Reframed as an empathic acknowledgment of the user's
+ *     state, not an order.
+ *   - "in this network" removed from the sub paragraph — implies the
+ *     visitor identifies with a specific network; the message should
+ *     work for anyone arriving via outreach.
+ *   - "We surface them" rephrased to "we surface the high-precision
+ *     matches" — clearer about what the system actually does.
  *
  * No testimonials, no two-paths split, no Ignite link — single CTA only,
  * per spec §4.1(b). Build-path users never see this hero.
@@ -50,14 +62,17 @@ const MatchHero = () => {
     <>
       <SEO
         title="Find Your Top Talent — Precision Matchmaking"
-        description="Your people are already in this network. We surface them. Real introductions follow."
+        description="Your people are already here — we surface the high-precision matches, real introductions follow"
         path="/?path=match"
-        ogTitle="Stop building alone."
+        ogTitle="You don't have to build alone"
       />
       <div className="max-w-[720px] mx-auto px-5 py-8 sm:py-9 md:py-10">
         <header className="text-center">
-          {/* Eyebrow — small-caps gold accent, mirrors the editorial register
-              of the other public surfaces. */}
+          {/* Eyebrow — small-caps gold accent. Day 78 (Sasha 2026-05-21):
+              promoted from `--skin-accent-gold` (#b8860b) to `goldDeep`
+              (#5d4307) + soft halo. The lighter gold was failing the
+              cream-on-cream contrast test in the Aurora skin. NS skin
+              cascade-overrides this to editorial black regardless. */}
           <p
             className="mb-4 sm:mb-5"
             style={{
@@ -66,15 +81,18 @@ const MatchHero = () => {
               fontSize: "11px",
               letterSpacing: "0.28em",
               textTransform: "uppercase",
-              color: "var(--skin-accent-gold, #b8860b)",
+              color: "var(--skin-goldDeep, #5d4307)",
+              textShadow:
+                "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.75), 0 0 8px rgba(255,255,255,0.55))",
             }}
           >
             Precision matchmaking for collaboration
           </p>
 
-          {/* Hero (h1) — same Strong-cocktail legibility cocktail as the
-              build-path landing (Cormorant 700 + deep halo) so a `?path=match`
-              entrant lands in the same editorial register as everyone else. */}
+          {/* Hero (h1) — Day 78 copy + treatment pass. No emphasized
+              word, no terminal period. Strong-cocktail legibility
+              (Cormorant 700 + deep halo) preserved for parity with the
+              build-path landing. */}
           <h1
             className="text-3xl sm:text-4xl md:text-5xl font-bold leading-[1.1] tracking-[-0.018em] mb-4 sm:mb-5"
             style={{
@@ -84,22 +102,12 @@ const MatchHero = () => {
                 "var(--skin-text-halo-deep, 0 0 22px rgba(255,255,255,0.7), 0 1px 2px rgba(255,255,255,0.9), 0 0 1px rgba(11,42,90,0.45), 0 1px 0 rgba(11,42,90,0.25))",
             }}
           >
-            Stop{" "}
-            <span
-              className="bg-clip-text text-transparent"
-              style={{
-                ...GOLD_TEXT_STYLE,
-                letterSpacing: "0.04em",
-                textTransform: "uppercase",
-                fontSize: "0.92em",
-              }}
-            >
-              building
-            </span>{" "}
-            alone.
+            You don't have to build alone
           </h1>
 
-          {/* Italic echo — the whispered consequence under the headline. */}
+          {/* Italic echo — the whispered consequence under the headline.
+              Day 78: no emphasized "your", no terminal period — reads as
+              one breath. */}
           <p
             className="text-lg sm:text-xl md:text-2xl leading-[1.32] italic"
             style={{
@@ -111,25 +119,15 @@ const MatchHero = () => {
                 "var(--skin-text-halo-deep, 0 0 28px rgba(255,255,255,0.85), 0 1px 2px rgba(255,255,255,0.95), 0 0 1px rgba(11,42,90,0.65), 0 1px 0 rgba(11,42,90,0.45))",
             }}
           >
-            You've met cool people. You still haven't found{" "}
-            <span
-              className="not-italic font-semibold bg-clip-text text-transparent"
-              style={{
-                ...GOLD_TEXT_STYLE,
-                letterSpacing: "0.04em",
-                textTransform: "uppercase",
-                fontSize: "0.92em",
-              }}
-            >
-              your
-            </span>{" "}
-            people.
+            You've met cool people, you still haven't found your people
           </p>
 
           <Ornament className="my-5 sm:my-6" />
 
-          {/* Sub paragraph — the promise. Mirrors the manifesto-row register
-              of the build-path landing (Cormorant 600+ on Strong cocktail). */}
+          {/* Sub paragraph — the promise. Day 78: "in this network"
+              dropped (implied the visitor self-identifies with a
+              network); "We surface them" rephrased; no emphasis, no
+              terminal periods. Manifesto-row register held. */}
           <p
             className="text-xl sm:text-2xl md:text-[1.75rem] font-bold leading-[1.4] tracking-[-0.005em]"
             style={{
@@ -139,14 +137,7 @@ const MatchHero = () => {
                 "var(--skin-text-halo-deep, 0 0 22px rgba(255,255,255,0.7), 0 1px 2px rgba(255,255,255,0.9), 0 0 1px rgba(11,42,90,0.45), 0 1px 0 rgba(11,42,90,0.25))",
             }}
           >
-            Your people are{" "}
-            <span
-              className="bg-clip-text text-transparent"
-              style={GOLD_TEXT_STYLE}
-            >
-              already
-            </span>{" "}
-            in this network. We surface them. Real introductions follow.
+            Your people are already here — we surface the high-precision matches, real introductions follow
           </p>
         </header>
 
