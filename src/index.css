@@ -970,6 +970,19 @@
   color: #0a0a0a !important;
 }
 
+/* Day 77 (Sasha 2026-05-20): the isHomeNode treatment for ME → Top
+   Talent sub-items ("Start Here", "What's Next?") uses
+   bg-[rgba(212,175,55,0.06)] + text-white/95 — the catch-all above
+   only matched bg-white/[0.0X] patterns, so the gold-tinted home
+   rows fell through to literal `color: rgba(255,255,255,0.95)` —
+   invisible against the NS white pane. Patch the cascade so home
+   rows also get dark text on NS, while letting the gold ring +
+   subtle gold tint remain for the editorial accent. */
+[data-skin="network-school"] .group[class*="bg-[rgba(212,175,55"],
+[data-skin="network-school"] .group[class*="bg-[rgba(212,175,55"] span {
+  color: #0a0a0a !important;
+}
+
 /* Kill the gold halo + ring on the active SectionsPanel card. The class
    patterns include the literal `[#d4af37]` and the rgba(244,212,114,...)
    shadow — both targeted via attribute substring selector so the rule

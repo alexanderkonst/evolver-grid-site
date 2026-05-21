@@ -894,28 +894,11 @@ const PERSPECTIVES: Partial<Record<PerspectiveId, PerspectiveConfig>> = {
                     </div>
                 ))}
 
-                {/* Day 58 (Sasha 2026-05-02): "Accelerate your path of
-                    mastery — book a session" CTA, lifted from the old
-                    overview surface. Phrasing dropped "with Aleksandr"
-                    per Sasha. */}
-                <a
-                    href={MASTERY_CTA_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block rounded-full px-5 py-3 mt-2 transition-all hover:scale-[1.01]"
-                    style={{
-                        background: "linear-gradient(135deg, hsla(40, 75%, 60%, 0.22) 0%, hsla(40, 65%, 50%, 0.10) 100%)",
-                        border: "1px solid hsla(40, 70%, 55%, 0.40)",
-                        boxShadow: "0 4px 14px -6px rgba(184,134,11,0.28)",
-                    }}
-                >
-                    <div className="flex items-center gap-3">
-                        <Sparkles className="h-4 w-4 flex-shrink-0" style={{ color: "#b8860b" }} />
-                        <span className="flex-1 text-sm font-medium" style={{ color: "#5d4307" }}>
-                            Accelerate your path of mastery — book a session
-                        </span>
-                    </div>
-                </a>
+                {/* Day 77 (Sasha 2026-05-20): "Accelerate your path of
+                    mastery — book a session" CTA removed. The Path of
+                    Mastery surface is now read-only depth (no inline
+                    sales hook). Funnel monogamy at this point in the
+                    journey lives elsewhere. */}
             </div>
         ),
     },

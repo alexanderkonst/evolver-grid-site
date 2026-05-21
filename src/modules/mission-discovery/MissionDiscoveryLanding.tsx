@@ -146,6 +146,15 @@ const MissionDiscoveryLanding = () => {
     // a hard block.
     const [savedAt, setSavedAt] = useState<string | null>(null);
     const [editDialogOpen, setEditDialogOpen] = useState(false);
+    // Day 77 (Sasha 2026-05-20): "start over" friction state. Distinct
+    // from Edit — Edit means "tweak my current sentence" (pre-fills the
+    // existing text in the confirm textarea); Start Over means "I want
+    // to run the AI prompt again with fresh input" (clears aiResponse,
+    // sentence, savedAt, and returns to prompt state). Both ultimately
+    // overwrite the saved row on next save, but the user mental models
+    // are different. The dialog mirrors the edit-friction dialog —
+    // gentle pause, no hard block.
+    const [startOverDialogOpen, setStartOverDialogOpen] = useState(false);
 
     // Day 67 (Sasha 2026-05-16): paste-back textarea ref + just-copied
     // pulse flag — Sasha flagged that "there is no continuation after
@@ -659,6 +668,30 @@ const MissionDiscoveryLanding = () => {
                         )}
                     </div>
 
+                    {/* Day 77 (Sasha 2026-05-20): tertiary "start over"
+                        link. Returning users who want a NEW mission (not
+                        a tweak of the current sentence) need a clear path
+                        that clears state and routes them back to the
+                        paste-the-prompt step. Underlined italic link in
+                        the muted register so it doesn't compete with the
+                        primary/secondary CTAs above. */}
+                    <div className="flex justify-center mt-2">
+                        <button
+                            type="button"
+                            onClick={() => setStartOverDialogOpen(true)}
+                            className="italic transition-opacity duration-200 hover:opacity-80"
+                            style={{
+                                fontFamily: "'Source Serif 4', Georgia, serif",
+                                fontSize: "13px",
+                                color: INK_MUTED,
+                                textDecoration: "underline",
+                                textUnderlineOffset: "3px",
+                            }}
+                        >
+                            Discover a new mission from scratch →
+                        </button>
+                    </div>
+
                     {/* Funnel v2 (§4.4.2): match-path "Map your assets →"
                         CTA below the existing actions. Build-path users
                         see only the Edit + See-on-profile row above. */}
@@ -707,6 +740,53 @@ const MissionDiscoveryLanding = () => {
                             }}
                         >
                             Yes, let me edit
+                        </AlertDialogAction>
+                    </AlertDialogFooter>
+                </AlertDialogContent>
+            </AlertDialog>
+
+            {/* Day 77 (Sasha 2026-05-20): start-over confirmation dialog.
+                Distinct from the edit-friction dialog — same gentle-
+                pause register, different intent. Clears all in-memory
+                mission state (aiResponse, sentence, savedAt) and routes
+                back to the prompt step so the user can paste a fresh
+                AI response. The DB row isn't deleted; it gets replaced
+                on next save. */}
+            <AlertDialog open={startOverDialogOpen} onOpenChange={setStartOverDialogOpen}>
+                <AlertDialogContent>
+                    <AlertDialogHeader>
+                        <AlertDialogTitle
+                            style={{
+                                fontFamily: "'Cormorant Garamond', serif",
+                                fontWeight: 700,
+                                color: INK,
+                            }}
+                        >
+                            Discover a new mission?
+                        </AlertDialogTitle>
+                        <AlertDialogDescription
+                            style={{
+                                fontFamily: "'Source Serif 4', Georgia, serif",
+                                fontWeight: 300,
+                                color: INK_BODY,
+                            }}
+                        >
+                            {savedAt
+                                ? `You saved your current mission on ${new Date(savedAt).toLocaleDateString(undefined, { month: "long", day: "numeric", year: "numeric" })}. Starting over routes you back to the AI prompt — your current mission stays on your profile until you save a new one.`
+                                : "Starting over routes you back to the AI prompt. Your current mission stays on your profile until you save a new one."}
+                        </AlertDialogDescription>
+                    </AlertDialogHeader>
+                    <AlertDialogFooter>
+                        <AlertDialogCancel>Keep my current mission</AlertDialogCancel>
+                        <AlertDialogAction
+                            onClick={() => {
+                                setStartOverDialogOpen(false);
+                                setAiResponse("");
+                                setSentence("");
+                                setState("prompt");
+                            }}
+                        >
+                            Yes, start fresh
                         </AlertDialogAction>
                     </AlertDialogFooter>
                 </AlertDialogContent>
