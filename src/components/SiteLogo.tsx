@@ -61,6 +61,15 @@ const SiteLogo = () => {
         // pane 1. Sasha called this out explicitly with the directive
         // to comprehensively trace EVERY brand-mark surface.
         "/asset-mapping",
+        // Day 77 (Sasha 2026-05-20): /mission-discovery wrapped in
+        // GameShellV2 with hideLogo, but the global SiteLogo wordmark
+        // was leaking through top-center on pane 3 — Sasha's screenshot
+        // on /ns/mission-discovery shows the "FIND YOUR TOP TALENT"
+        // lockup floating above the "Discover Your Mission" headline.
+        // The fix is universal (not skin-specific): SiteLogo doesn't
+        // read skin, so suppressing here covers default + NS + every
+        // future skin.
+        "/mission-discovery",
         // Day 74 (2026-05-18): /mdls-preview is the MDLS primitives
         // showcase — its own atmospheric backdrop + device-framed
         // Composed Surface Demo at the top. The global SiteLogo wordmark
