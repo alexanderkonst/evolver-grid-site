@@ -169,6 +169,20 @@ const SPACE_SECTIONS: SpaceSections = {
                     { id: "tt-whats-next", label: "What's Next?", path: "/game/me/zone-of-genius/whats-next" },
                 ],
             },
+            // Day 77 (Sasha 2026-05-20): "Mission" added as the SECOND
+            // top-level ME-space section, sitting between Top Talent and
+            // Quality of Life — mirrors JOURNEY's T-M-A-Q order so
+            // identity (Top Talent) → direction (Mission) → resources
+            // (Assets) → state (QoL) flows consistently across both
+            // panes. The route /game/me/mission renders
+            // ProfileMissionSection, which reads mission_statement from
+            // game_profiles (the canonical source the Day 66 wave-M
+            // Mission Discovery flow writes to).
+            {
+                id: "me-mission",
+                label: "Mission",
+                path: "/game/me/mission",
+            },
             // Day 64 (Sasha 2026-05-07): "My Quality of Life" added as a
             // SECOND top-level ME-space section. Single landing surface
             // (no subsections) — clicking the row routes to the Results
