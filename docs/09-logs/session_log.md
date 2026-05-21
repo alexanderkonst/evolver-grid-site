@@ -7532,3 +7532,79 @@ Five crystallizations:
 Strategic Si–Do shifted: the bottleneck is no longer *"figure out the venture studio funnel."* The bottleneck is now **first paid community pilot**. Balaji message + NS-skin + 9 other ecosystem-leader outreaches over the next 7–10 days are the surface area. First yes from any of those fires the Si–Do.
 
 The deeper Si–Do (first $555 stranger from funnel) remains technically open but is now structurally deprioritized — strangers no longer convert to $555 Ignition directly under the new architecture. The new Si–Do shape is **first community signs paid pilot.**
+
+---
+
+## Day 77 — Wednesday, May 20, 2026 (Evening) — Funnel v2 (Matching-as-Hero) implementation
+
+### Frame
+
+Day 77 morning produced the strategic crystallization (matching-as-product, community-ecosystem beachhead, JOURNEY/BUILD reshape). Day 77 evening shipped the platform code that makes the v6 Balaji message land cleanly. The work is the first concrete instance of the *funnel-v2* spec ([`docs/specs/funnel-v2/funnel-v2_product_spec.md`](../specs/funnel-v2/funnel-v2_product_spec.md)) — `findyourtoptalent.com/ns/?path=match` is now the exact URL Sasha can paste into Balaji's Discord.
+
+The build also surfaced and corrected a load-bearing premise mistake the spec carried through seven drafts.
+
+### Premise correction (caught at task open)
+
+Every spec draft (v0.1–v0.7) named `src/pages/LandingPage.tsx` as the production BuildLanding to "leave untouched." That file is **dead code** — imported in `src/App.tsx` but never rendered in JSX (verified by grep). The actual production landing at `/` is `MethodologyLandingPage` wrapped in `GameShellV2` via `JourneyPage`. The non-negotiable rule was reinterpreted to protect the actual live chain. Spec corrected to v0.8 with the implementation-reality note.
+
+### What shipped
+
+**New files**
+- [`src/contexts/EntryPathContext.tsx`](../../src/contexts/EntryPathContext.tsx) — React context provider (~80 lines). Captures `?path=match` on first hit, strips URL via `history.replaceState`, persists in sessionStorage so the multi-step assessment flow survives refresh / back-navigation without trailing the param on every internal URL. Mounted inside `BrowserRouter` so it can use `useLocation`.
+- [`src/components/landing/MatchHero.tsx`](../../src/components/landing/MatchHero.tsx) — match-path pane-3 content (Cormorant editorial register, eyebrow "Precision matchmaking for collaboration" + h1 "Stop building alone." + italic echo "You've met cool people. You still haven't found your people." + sub paragraph + single CTA "Find your top talent →" → `/zone-of-genius?path=match`). NO testimonials, NO two-paths split, NO Ignite link.
+- [`src/components/landing/MatchFlowCta.tsx`](../../src/components/landing/MatchFlowCta.tsx) — conditional CTA component, gated on `entryPath === "match"`. Renders the four match-flow forward CTAs (Top Talent reveal → Mission → Assets unlock → QoL) inserted one-liner into each completion surface.
+
+**Surgical edits**
+- [`src/pages/JourneyPage.tsx`](../../src/pages/JourneyPage.tsx) — 3-line conditional that swaps `<MatchHero />` for `<MethodologyLandingPage />` when `entryPath === "match"`. Build-path render is byte-for-byte identical.
+- [`src/App.tsx`](../../src/App.tsx) — wrapped routes in `<EntryPathProvider>` (one line).
+- [`src/components/game/SectionsPanel.tsx`](../../src/components/game/SectionsPanel.tsx) — JOURNEY pane rewritten to 5-item matching-onboarding sequence (Top Talent → Mission → Assets → QoL → Build-bridge); items 2-4 sequentially locked, item 5 unlocked from start; "Improves match quality" badge tried and then dropped per Sasha. BUILD pane reordered: Automated Venture Builder → The path → Take the exact playbook → See the dashboard → Productize Yourself Session → Equilibrium. ME pane gained a Mission row between Top Talent and Quality of Life.
+- [`src/components/game/GameShellV2.tsx:715`](../../src/components/game/GameShellV2.tsx:715) — BUILD chip in `SpacesRail` previously gated by `deepProfileActivated`; unlocked unconditionally because Path/Playbook/Dashboard moved out of JOURNEY into BUILD and must be reachable via sidebar for all auth users. The `/ubb` route's own `MeGate` still gates the actual Automated Venture Builder.
+- [`src/components/SiteLogo.tsx`](../../src/components/SiteLogo.tsx) — added `/mission-discovery` to the hidden-paths list. The "FIND YOUR TOP TALENT" wordmark was leaking through top-center over pane 3, doubling up with the SpacesRail wordmark. Universal fix (skin-agnostic — covers default + NS + every future skin).
+- [`src/lib/funnelAnalytics.ts`](../../src/lib/funnelAnalytics.ts) — new `match_landing_view` FunnelStep. Fires on `MatchHero` mount with `landing_type` / `skin` / `path_param_present` metadata.
+- [`src/index.css`](../../src/index.css) — NS skin cascade patched for ME → Top Talent home rows. The catch-all rule for sub-section text-color overrides only matched `bg-white/[0.0X]` patterns; the isHomeNode treatment uses `bg-[rgba(212,175,55,0.06)]` (gold tint), falling through with `text-white/95` literal — invisible on the NS white pane. New rule targets the gold-tint substring.
+
+**Mission Discovery hardening** (`src/modules/mission-discovery/MissionDiscoveryLanding.tsx`)
+- Saved-state CTAs path-aware: match-path renders only Edit (Map-your-assets carried by `MatchFlowCta` below); build-path renders Edit + "See on profile" → `/game/me/mission`.
+- Save error surfacing: Supabase errors are PostgrestError-shaped objects (not Error instances), so the previous `err instanceof Error` check fell through to a generic "Please try again." The actual `.message` / `.code` / `.details` / `.hint` are now extracted and shown in toast + logged to console as a structured object.
+- Confirm-state textarea visibility: `border-none bg-transparent focus-visible:ring-0` read as static text, not an input. New treatment is gold-rim border + cream background + visible focus ring + Pencil icon in the eyebrow + clarified copy ("Click the sentence above to edit").
+- Re-entry path: returning users with a saved mission had no clear way to discover a *new* mission (Edit pre-fills the old sentence; Back lands them on a prompt state with stale `aiResponse`). New tertiary "Discover a new mission from scratch →" link opens a confirmation dialog and on confirm clears `aiResponse` / `sentence` / state to "prompt" — clean re-entry.
+
+**ProfileMissionSection rewrite** ([`src/pages/spaces/sections/ProfileMissionSection.tsx`](../../src/pages/spaces/sections/ProfileMissionSection.tsx))
+- Previous version read from the legacy `mission_participants` table + localStorage — disconnected from the new `game_profiles.mission_statement` column the Day 66 wave-M flow writes to. So the ME → Mission card was always empty even seconds after a save.
+- Full rewrite reads from `game_profiles.mission_statement` + `mission_discovered_at`. Editorial Cormorant register, "Saved on …" timestamp, empty state with `Discover my mission` CTA, populated state with Edit pencil CTA.
+
+**Other small fixes**
+- [`src/pages/spaces/profile/ZoGPerspectiveView.tsx`](../../src/pages/spaces/profile/ZoGPerspectiveView.tsx) — removed the "Accelerate your path of mastery — book a session" CTA from the Top Talent → Path of Mastery surface. Read-only depth; funnel monogamy lives elsewhere now.
+- Match-flow CTAs inserted one-line at four completion surfaces:
+  - [`ZoneOfGeniusEntry.tsx`](../../src/modules/zone-of-genius/ZoneOfGeniusEntry.tsx) — below `AppleseedDisplay` in the appleseed-result step
+  - [`MissionDiscoveryLanding.tsx`](../../src/modules/mission-discovery/MissionDiscoveryLanding.tsx) — below the saved-state action row
+  - [`AssetMappingLanding.tsx`](../../src/modules/asset-mapping/AssetMappingLanding.tsx) — gated on `hasSaved`, the unlock moment
+  - [`QualityOfLifeMapResults.tsx`](../../src/pages/QualityOfLifeMapResults.tsx) — below the Retake / Download PDF action row
+
+### Files touched
+
+15 source files + 1 spec doc updated to v0.8.
+
+### Key decisions
+
+1. **MatchLanding ≠ a new page.** Spec called for `MatchLanding.tsx` as a separate page; implementation ships as `MatchHero.tsx` swapped inside the *same* `GameShellV2` via `JourneyPage`. Cleaner: shell stays identical (NS skin, mobile, JOURNEY rail) without per-route duplication.
+2. **CTA destination corrected.** Spec said MatchHero CTA → `/start?path=match`. `/start` is `RequireAuth`-gated and would wall cold Balaji traffic at the auth screen. Implementation routes to `/zone-of-genius?path=match` (the public assessment entry).
+3. **Decision §8.6(b) confirmed.** JOURNEY #5 ("Build a business off your top talent") unlocked from the start for everyone — less confusing for build-path users than seeing their destination locked indefinitely.
+4. **BUILD chip unlocked unconditionally.** Was gated by `deepProfileActivated`. The `/ubb` route still has its own MeGate, so the AVB itself is still gated — only the chip's lock indicator changed. Build-path users now see BUILD as a peer of JOURNEY rather than a locked door.
+5. **JOURNEY #4 "Improves match quality" badge tried and then dropped** at Sasha's call — redundant ornamentation; position in sequence signals the role.
+6. **BUILD pane order tried, then re-ordered** per Sasha: AVB first (the canonical builder), then methodology rows, Equilibrium last (sibling tool, not on the build arc).
+7. **NS-skin white-on-white** was a CSS specificity gap — the catch-all override targeted `bg-white/[0.0X]` patterns but missed the gold-tint home rows. Fixed by extending the selector to the `bg-[rgba(212,175,55…` pattern; no SectionsPanel edit needed.
+8. **Save-mission bug — diagnostics wired, root cause TBD.** Cannot fix without seeing the actual Supabase error. The next time Sasha retries on lovable preview the toast + console will show the real error code; one-shot fix from there.
+
+### Si–Do
+
+Balaji's URL is operational: `findyourtoptalent.com/ns/?path=match` lands editorial-black in the NS skin, with the match copy, single CTA, no playbook secondary, no testimonials. The matching-onboarding sequence (T-M-A-Q → matches) wires the post-CTA journey. The first $555 stranger from funnel remains structurally re-shaped: under the v2 funnel, strangers no longer convert to $555 Ignition directly — they convert into the community / matching tier first. The new Si–Do is **first community signs paid pilot** (per the Day 77 morning crystallization). The platform is now ready for Sasha to send the v6 Balaji message.
+
+### Open follow-ups
+
+- **Save-mission bug** — next retry on lovable surfaces the actual error; fix in one shot.
+- **Auth-walk verification** — Mission/Assets/QoL completion CTAs render only on auth-gated surfaces; couldn't be walked end-to-end without an account.
+- **`LandingPage.tsx` dead-code cleanup** — confirmed never rendered, safe to delete in a future pass.
+- **Build-path landing analytics** — only match-path fires entry events today (the build chain is the protected surface). Wiring a symmetric `zog_entry` fire would require editing the build hero or the route swap; deferred.
+- **Spec v0.8 in [`docs/specs/funnel-v2/funnel-v2_product_spec.md`](../specs/funnel-v2/funnel-v2_product_spec.md)** captures the implementation reality. Future-AI shouldn't need to re-discover the premise correction.
+
