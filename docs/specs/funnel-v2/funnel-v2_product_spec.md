@@ -68,24 +68,22 @@ The BUILD space holds *The Path to Your Unique Business*, *See the Dashboard*, *
 
 **Two landing components, one router decision:**
 
-**(a) `src/pages/LandingPage.tsx` — the BUILD-path landing (UNCHANGED)**
+**(a) The BUILD-path landing — `src/pages/MethodologyLandingPage.tsx` (inside `GameShellV2` via `JourneyPage.tsx`) — UNCHANGED**
 
-**The current venture-building landing stays exactly as it is in production. No changes. Do not touch this file.**
+> **Implementation-reality correction (Day 77, end-of-day):** earlier drafts of this spec named `src/pages/LandingPage.tsx` as the production BuildLanding. That file is **dead code** — imported but never rendered. The actual production landing at `/` is `MethodologyLandingPage` wrapped in `GameShellV2` via `JourneyPage` (`/` and `/game/journey` both render it). Day 75-iterated. The "do not touch" rule applies to **`MethodologyLandingPage.tsx` + `JourneyPage.tsx` + `GameShellV2.tsx` + `PlaybookHero.tsx`** — the chain that paints the current `/`. `LandingPage.tsx` itself can be safely deleted in a future cleanup pass.
 
-- All copy stays
-- All CTAs stay (including the Direct-Ignite path in the existing two-paths split)
-- Founder testimonials stay
-- Hero stays
-- Sub stays
-- Italic stays
-- Gradient, paper-grain, layout — all stay
+**The current venture-building landing stays exactly as it is in production. No changes to its pane-3 content.**
+
+- All copy stays (`MethodologyLandingPage.tsx` — Cormorant headline + manifesto + `PlaybookHero` CTAs)
+- All CTAs stay (Find Your Top Talent → `/zone-of-genius`; See the exact playbook → `/playbook`)
+- Hero, italic echo, ornament, manifesto rows — all stay
 - The entire downstream funnel from this landing stays unchanged
 
 This landing is what existing venture-angle audiences see, what bookmarked/organic/search traffic sees, what social-media followers see. It works in production. We are not modifying it.
 
-**(b) `src/pages/MatchLanding.tsx` — the MATCH-path landing (new)**
+**(b) The MATCH-path hero — `src/components/landing/MatchHero.tsx` (new, swapped inside the same `GameShellV2`)**
 
-Created new. Same shell, layout, fonts, gradient backgrounds, component patterns as `LandingPage.tsx`. Different copy:
+Created new as a hero component, NOT a separate page. `JourneyPage` reads `EntryPathContext.path` and renders either `<MethodologyLandingPage />` (default / `?path=build` / organic) or `<MatchHero />` (when `?path=match`). Shell stays identical — JOURNEY rail, spaces rail, NS-skin auto-propagation all behave the same; only the pane-3 hero swaps. Same shell tokens, layout family, fonts, gradient backgrounds as `MethodologyLandingPage`. Different copy:
 
 | Element | Copy |
 |---|---|
@@ -342,7 +340,7 @@ Honest time estimates (most prompt-driven via Lovable + targeted review):
 
 | # | Item | Estimate |
 |---|---|---|
-| 1 | Create `MatchLanding.tsx` (§4.1) — duplicate shell of `LandingPage.tsx`, swap copy per the table | 1 hour |
+| 1 | Create `MatchHero.tsx` (§4.1) — hero component matching `MethodologyLandingPage`'s shell tokens (Cormorant Garamond + GOLD_TEXT_STYLE + Ornament + EditorialCta), swap copy per the table. Swapped in via `JourneyPage` reading `EntryPathContext.path`. NOT a separate page — shell stays identical. | 1 hour |
 | 2 | Root-route routing logic — read `?path=` and render the right landing | 15 min |
 | 3 | JOURNEY reorder + renames + lock logic (§4.2) in `SectionsPanel.tsx` | 1–2 hours |
 | 4 | BUILD space wiring (§4.3) — route items in, surface Ignite, link from JOURNEY #5 | ~1 hour |
@@ -366,10 +364,10 @@ Items #3 + #4 + #5 are the visible product change inside the platform. Items #1 
 
 ## 5b. Rollback strategy
 
-The funnel reshape is non-destructive (no data is deleted, no schema is broken, `LandingPage.tsx` is not modified). Rollback path if the new funnel underperforms in the first 1–2 weeks of soft launch:
+The funnel reshape is non-destructive (no data is deleted, no schema is broken, `MethodologyLandingPage.tsx` is not modified). Rollback path if the new funnel underperforms in the first 1–2 weeks of soft launch:
 
-- Revert the component-level changes: `SectionsPanel.tsx` (JOURNEY reorder), the root routing component (the `?path=` switch), the new `MatchLanding.tsx` file (delete or unroute), the completion-page CTA additions (Top Talent reveal, Mission, Assets, QoL — wherever the conditional match-path CTAs were added) — single git revert per file.
-- **`LandingPage.tsx` was not modified, so nothing to revert there.**
+- Revert the component-level changes: `SectionsPanel.tsx` (JOURNEY reorder + BUILD additions), `JourneyPage.tsx` (the `?path=` hero swap), `App.tsx` (the `EntryPathProvider` wrap), `GameShellV2.tsx` (BUILD chip unlock), delete the new `EntryPathContext.tsx` / `MatchHero.tsx` / `MatchFlowCta.tsx`, and revert the four one-line `<MatchFlowCta />` insertions on completion surfaces — single git revert per file.
+- **`MethodologyLandingPage.tsx` was not modified, so nothing to revert there. The build-path pane-3 hero is untouched.**
 - User state migration is non-destructive — completion flags survive the revert.
 - BUILD space changes can stay (no harm in items being available there); JOURNEY just goes back to old ordering.
 
@@ -396,7 +394,7 @@ These are NOT part of this build:
 - **No `preferred_path` DB column.** Path is a marketing-entry signal carried in URL during the onboarding flow only. Not persisted as a user attribute. All modules accessible to all users via the same routes regardless of entry path.
 - **No inside-platform mode toggle.** ONE product, not two. Users who enter via build-path have full access to matching modules and vice versa. No toggle is needed because there's nothing to toggle between — it's all one platform.
 - **No conditional JOURNEY ordering.** Single canonical sequence (T-M-A-Q-Build) for everyone. The match path and build path do NOT see different JOURNEY orderings.
-- **No new pages.** The BUILD space already exists. `MatchLanding.tsx` is a new component, but it's just a duplicate shell of `LandingPage.tsx` with different copy — not architecturally a new page in the sense of new routes / new layouts.
+- **No new pages.** The BUILD space already exists. `MatchHero.tsx` is a new component, but it's a hero swap inside the same `GameShellV2` as the build-path landing — not a separate page, not a new route, not a new layout. `JourneyPage` picks which hero renders based on `EntryPathContext.path`.
 - **No backend / matching algorithm changes.** The matching infrastructure is already shipped (active-intro layer, consent tokens, `match-consent` edge function). This build is funnel + UI only.
 - **No new branding work for skins.** The NS skin is already 99.9% ready. This build does not introduce new skins.
 - **No pricing changes in code.** Pricing is currently bespoke per engagement; implementing payment rails is a separate downstream build.
@@ -409,7 +407,7 @@ These are NOT part of this build:
 Before merging:
 
 - [ ] **Both landings render correctly:** `/?path=match` shows `<MatchLanding />` with new copy verbatim; `/?path=build` and `/` (no param) show `<LandingPage />` exactly as it is in production today, with NO changes whatsoever to its copy, CTAs, testimonials, or structure.
-- [ ] **`<LandingPage />` (BuildLanding) file untouched.** Confirmed by git diff that no changes were made to `src/pages/LandingPage.tsx` other than (potentially) a small routing-context wrapper if needed for path persistence — but no content changes.
+- [ ] **`MethodologyLandingPage.tsx` (the actual production BuildLanding pane-3 content) untouched.** Confirmed by git diff that no changes were made to `src/pages/MethodologyLandingPage.tsx`. `JourneyPage.tsx` gained a 3-line conditional to swap the hero based on entry-path context, but `MethodologyLandingPage`'s render output is byte-for-byte identical for any non-match-path entry. (The legacy `src/pages/LandingPage.tsx` is dead code never rendered; it remains untouched too but is irrelevant to the live funnel.)
 - [ ] **Build-path users see the existing post-Top-Talent reveal screen with existing CTAs untouched.** No new CTAs, no changes to existing CTAs, no changes to existing copy. Verified end-to-end by walking the build flow.
 - [ ] Match landing has NO testimonials, NO two-paths split, NO Ignite link. Single CTA only.
 - [ ] Both landings work on desktop + mobile (375px width).
@@ -468,6 +466,8 @@ These are deliberately left for the executing thread to resolve in conversation 
 - Active-intro layer (already shipped — the matching mechanic this funnel feeds into): [`docs/specs/match-mechanic/active-intro_product_spec.md`](../match-mechanic/active-intro_product_spec.md)
 
 ---
+
+*v0.8 · May 20, 2026 (Day 77 end-of-day, IMPLEMENTATION SHIPPED) · Implementation-reality corrections rolled into the spec after the build landed. Specifically: (1) The "BuildLanding = `src/pages/LandingPage.tsx`" premise of every prior version was WRONG — that file is dead code, imported but never rendered. The actual production landing at `/` is `MethodologyLandingPage` wrapped in `GameShellV2` via `JourneyPage`. The "don't touch" rule was preserved by applying it to the actual live chain (`MethodologyLandingPage` + `JourneyPage` + `GameShellV2` + `PlaybookHero`) instead. (2) MatchLanding shipped as `MatchHero.tsx` — a hero-swap component inside the SAME `GameShellV2`, not a separate page. `JourneyPage` picks between `<MethodologyLandingPage />` and `<MatchHero />` based on `EntryPathContext.path`. Cleaner: shell stays identical (NS skin, mobile, JOURNEY rail) without per-route duplication. (3) `EntryPathContext.tsx` (new context provider, ~80 lines) captures `?path=match`, strips URL, persists via sessionStorage. Wraps app at the root inside `BrowserRouter`. (4) Four `<MatchFlowCta />` insertions on completion surfaces (one-line each, gated by `path === "match"`) — build-path users see nothing new. (5) BUILD chip in `SpacesRail` was previously gated by `deepProfileActivated`; unlocked unconditionally because Path/Playbook/Dashboard moved into BUILD and must be reachable via sidebar for all auth users (DoD requirement). `/ubb` route's own MeGate still gates the actual AVB. (6) MatchHero CTA routes to `/zone-of-genius?path=match` (the public assessment entry), NOT `/start?path=match` — `/start` is auth-gated and would have walled cold Balaji traffic. (7) `funnelAnalytics.ts` gained a new `match_landing_view` FunnelStep; fires on MatchHero mount with `landing_type` / `skin` / `path_param_present` metadata. Build-path analytics tracking remains absent (would have touched the protected build chain). Status: DOD §7 verified in browser preview (default + NS skins, desktop + mobile 375px, end-to-end `?path=match` persistence, all moved routes resolving 200, zero console errors). Auth-gated surfaces (Mission/Assets/QoL completion CTAs) code-verified but not yet walked end-to-end — requires an authed dogfood session.*
 
 *v0.7 · May 20, 2026 (Day 77 deep night, second debugging pass) · Four more issues caught: (1) `?path=build` is NOT carried forward — doing so would require modifying BuildLanding's CTAs, which is forbidden. Only `?path=match` is carried forward via MatchLanding's new CTA. The EntryPathProvider tracks a boolean ("did user enter via `?path=match`?"), not a two-valued state. (2) BUILD space sidebar entry — verified-or-created. Without it, build-path users and pre-T-M-A match-path users have no in-app navigation to BUILD other than completing T-M-A. New item #13 in Scope of Work. New DoD verification. (3) UX-shift acknowledgment added to §4.2: build-path users now see Mission/Assets/QoL in JOURNEY 2-4 instead of the items they used to see there (which are now in BUILD space). Real change, even though build funnel is untouched. (4) JOURNEY #5 lock for build-path users — they'd see "Build a business" (what they came for) as locked indefinitely. Added as open decision #6 with recommendation to unlock from start. Spec now self-consistent. Still LOW RISK, still ~1-1.5 days.*
 

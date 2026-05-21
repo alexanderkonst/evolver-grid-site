@@ -6,7 +6,7 @@
 
 ## Status
 
-**Send-ready as of May 20, 2026 (Day 77).** Channel: **Discord** (DM to Balaji). Message finalized at **v7** — Discord-adapted from email v6 (both preserved in Version history). NS-skin of findyourtoptalent.com: live (Discord renders the OG preview automatically). Reply-Ready Arsenal prepared and held for post-engagement (do NOT include in first message). Send when the moment is right.
+**Send-ready as of May 20, 2026 (Day 77).** Channel: **Discord** (DM to Balaji). Message finalized at **v8** — sharpened from v7 same-day after an energy-mapping pass surfaced six missing-but-wanted energies (acute member voice, *"who to build with"* opening reframe, *"community where founders actually find each other"* identity claim, pilot scope narrowed to a handful, de-polished prose for raw-cut sincerity, tighter Discord rhythm). v6 (email) and v7 (Discord) **both preserved in full** in Version history. NS-skin of findyourtoptalent.com: live (Discord renders the OG preview automatically). Reply-Ready Arsenal prepared and held for post-engagement (do NOT include in first message). Send when the moment is right.
 
 ---
 
@@ -39,35 +39,32 @@ This is the bronze horse. Placed quietly at the end of the letter — *"whether 
 
 ---
 
-## The send-ready message (Discord, v7)
+## The send-ready message (Discord, v8)
 
 **Channel:** Discord — DM to Balaji.
-**Format:** ~260 words, ~1600 chars. Fits one Discord message under the 2000-char limit. Markdown `**bold**` renders.
-**Link:** NS-skinned URL of findyourtoptalent.com. Discord auto-renders the OG preview, so the prototype lands visually before he reads the close.
+**Format:** ~195 words, ~1250 chars. Fits one Discord message well under the 2000-char limit. Markdown `**bold**` renders. Line breaks pace the read.
+**Link:** NS-skinned URL of findyourtoptalent.com (`/ns/?path=match`). Discord auto-renders the OG preview, so the prototype lands visually before he reads the close.
 
 ---
 
 Balaji —
 
-Your frame: AI makes everyone a CEO. The unresolved layer underneath: **CEO of what, exactly?** Not the job-title sense — the specific problem-space where a given person's judgment, energy, and abilities compound rather than drain.
+Your frame: AI makes everyone a CEO.
+The harder question underneath: **who to build with.**
 
-Frontier networks currently route human potential through reputation, credentials, and chance interactions. Low-resolution allocation. Founders who should build together never meet. Asymmetric complementarities stay invisible. Ventures fail to crystallize.
+Frontier networks route high-agency people through reputation, credentials, chance. Low-resolution allocation. Founders who should be building together never meet. *"I keep meeting cool people but can't find my person"* — every high-agency network has this voice.
 
-I built a prototype that operates at higher resolution. Maps how a person actually creates value — the structural patterns under their decisions, collaborations, and outputs — and surfaces unusually strong alignments across collaborators, roles, missions, and emerging ventures. Less networking, more intelligent coordination.
+I built a prototype that maps the structural patterns under how a person creates value, and surfaces unusually strong alignments — collaborators, missions, ventures forming. Less networking, more coordination. Not consumer typing — **the shift is from category to resolution.**
 
-Not personality typing in the consumer sense. Structural visibility into how differentiated people produce outcomes under real conditions. **The shift is from category to resolution.**
+[findyourtoptalent.com/ns/?path=match]
 
-Same coordination bottleneck appears across several frontier ecosystems — internet-native, AI-native, web3-adjacent — each independently bumping into it.
+Same bottleneck shows up across AI-native and web3-adjacent ecosystems, each bumping into it independently. **Networks that can see and coordinate differentiated talent at this resolution will outperform networks that cannot.** Infrastructure for any network operating as a polity. For NS — the community where founders actually find each other. Whether network states stay discourse or become operational depends partly on primitives like this being built early.
 
-**Networks that can see and coordinate differentiated talent at this resolution will outperform networks that cannot.** Infrastructure for any institution claiming to operate as a polity — and for NS in particular, where whether network states stay discourse or become operational depends partly on primitives like this being built early.
-
-[NS-skinned URL here]
-
-Was at NS in January but didn't show this then — wasn't ready. It is now. Happy to run a small free pilot with whichever cohort you'd most want pressure-tested. Whether or not this specific implementation is the right one, the primitive itself increasingly looks inevitable.
+Was at NS in January, didn't show it then — wasn't ready. It is now. Happy to run a free pilot with a handful of people you'd most want pressure-tested. Whether or not this specific implementation is right, the primitive itself looks inevitable.
 
 ---
 
-~260 words. ~1600 chars. Reads in under a minute.
+~195 words. ~1250 chars. Reads in under a minute.
 
 ---
 
@@ -220,7 +217,7 @@ Final synthesis caught remaining issues:
 
 The full email version (~310 words). All three modalities (pitch + sell + partner) integrated. All bronze-horse properties verified. Application checklist all green. Preserved as historical reference; sister to the Discord adaptation in v7.
 
-### v7 — Discord adaptation (current — May 20, 2026)
+### v7 — Discord adaptation (May 20, 2026, superseded same-day by v8)
 
 Same strategic spine as v6, modulated for Discord protocol:
 
@@ -233,6 +230,47 @@ Same strategic spine as v6, modulated for Discord protocol:
 - ~260 words, ~1600 chars — fits one Discord message under the 2000-char limit
 
 **Lesson:** *court-fit to receiver protocol is real.* Same strategic content, different vehicle = different surface. The Leonardo principle (*"modulate the presentation to fit the receiver's protocol"*) shows up concretely here — the same address via email is well-formed; via Discord, it needs different rhythm. **Different protocols are different courts.**
+
+**Full v7 text (preserved):**
+
+> Balaji —
+>
+> Your frame: AI makes everyone a CEO. The unresolved layer underneath: **CEO of what, exactly?** Not the job-title sense — the specific problem-space where a given person's judgment, energy, and abilities compound rather than drain.
+>
+> Frontier networks currently route human potential through reputation, credentials, and chance interactions. Low-resolution allocation. Founders who should build together never meet. Asymmetric complementarities stay invisible. Ventures fail to crystallize.
+>
+> I built a prototype that operates at higher resolution. Maps how a person actually creates value — the structural patterns under their decisions, collaborations, and outputs — and surfaces unusually strong alignments across collaborators, roles, missions, and emerging ventures. Less networking, more intelligent coordination.
+>
+> Not personality typing in the consumer sense. Structural visibility into how differentiated people produce outcomes under real conditions. **The shift is from category to resolution.**
+>
+> Same coordination bottleneck appears across several frontier ecosystems — internet-native, AI-native, web3-adjacent — each independently bumping into it.
+>
+> **Networks that can see and coordinate differentiated talent at this resolution will outperform networks that cannot.** Infrastructure for any institution claiming to operate as a polity — and for NS in particular, where whether network states stay discourse or become operational depends partly on primitives like this being built early.
+>
+> [NS-skinned URL here]
+>
+> Was at NS in January but didn't show this then — wasn't ready. It is now. Happy to run a small free pilot with whichever cohort you'd most want pressure-tested. Whether or not this specific implementation is the right one, the primitive itself increasingly looks inevitable.
+
+### v8 — energy-mapping sharpening pass (May 20, 2026, send-ready)
+
+After preparing v7, an energy-mapping pass (linguistic-energetic surgeon stance — list the energies present, the energies missing-but-wanted, then sequence) surfaced six missing-but-wanted energies. v8 integrates them while compressing toward Discord-native rhythm:
+
+- **Opening reframed:** *"CEO of what, exactly?"* → *"who to build with."* More SV-grounded, less philosophical, lands faster in chat register.
+- **Acute member voice added:** *"I keep meeting cool people but can't find my person"* — the wound put in members' own voice. v7 diagnosed from outside; v8 lets the buyer's language land directly.
+- **Community-identity claim folded into bronze horse:** *"For NS — the community where founders actually find each other."* Brand-equity surface sentence adjacent to the deeper *"discourse vs operational"* hook. Two altitudes of legacy in one beat.
+- **Pilot scope sharpened:** *"whichever cohort you'd most want pressure-tested"* → *"a handful of people you'd most want pressure-tested."* Matches the actual pilot intent (5–10 long-termers, not full 150-cohort). Smaller ask reads more sovereign.
+- **Prose de-polished for raw-cut sincerity:** cut *"asymmetric complementarities stay invisible"* (VC-deck register); cut *"not the job-title sense — the specific problem-space where..."* (philosophical wind-up); kept *"founders who should be building together never meet."* Less founder-deck, more friend-who-built-something.
+- **Discord rhythm tightened:** more single-line beats at the opening, fewer dense paragraphs, thought-by-thought pacing.
+
+**Three judgment calls resolved before drafting:**
+
+- **Price** → not quoted. Leonardo rule held; free pilot only. Specific pricing reserved for Reply-Ready once the pilot reveals the right shape.
+- **KPI tuning (10/month long-termer conversion)** → not quoted. First-message specificity tilts vendor-y. *"Operational"* carries the implicit gesture; explicit dashboard-tuning held for Reply-Ready.
+- **Product-naming** → described, not named. v7 already described without naming; v8 holds the same register. *Mystique > vendor-legibility* at the door.
+
+**Compression:** ~260 words → ~195 words (~25% shorter). All load-bearing energies preserved; decorative phrases dropped.
+
+**Lesson — the energy-map step is the surgical instrument.** Writing prose first leaves missing-but-wanted energies undetected. Mapping energies first (what's present? what's missing? what's decorative?), then resolving the judgment calls, then sequencing, then writing — produces a sharper artifact in one pass than three rounds of prose-iteration. Apply this method for the next ~10 ecosystem-leader outreaches in queue (Carolina · vnest · Compart's circle · Adam Apollo · Jacob Griscom · Jan Andrea · Holo Movement · Felipe Leal · +2).
 
 **This is what gets sent.**
 
