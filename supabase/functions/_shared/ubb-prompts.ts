@@ -1,14 +1,16 @@
 /**
  * Unique Business Builder v2.0 — shared prompt configs.
  *
- * Sourced from:
- *   - docs/specs/unique-business-builder/artifact_prompts_spec.md
- *   - docs/specs/unique-business-builder/improve_roast_prompt.md
+ * THIS FILE IS THE SOURCE OF TRUTH for UBB artifact-generation prompts.
+ * No parallel spec doc — the TypeScript below IS the spec. Each artifact
+ * config carries its own sourcePlaybook line pointing back at the canonical
+ * playbook section in docs/03-playbooks/.
  *
  * Each artifact has:
- *   - generationPrompt: instructions for v1 initial draft
+ *   - generationGuidance: instructions for v1 initial draft + Improve loop
  *   - specificityCriteria: what makes THIS artifact more distinguishable vs generic
  *   - outputSchema: JSON shape the model must return
+ *   - sourcePlaybook: pointer back to the canonical playbook section
  *
  * Used by:
  *   - supabase/functions/generate-artifact/index.ts

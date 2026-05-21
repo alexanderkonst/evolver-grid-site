@@ -3,7 +3,7 @@
  *
  * Produces v1 of an artifact from the ZoG seed + any locked sibling artifacts.
  *
- * Spec: docs/specs/unique-business-builder/artifact_prompts_spec.md
+ * Prompts (source of truth): ../_shared/ubb-prompts.ts (ARTIFACT_CONFIGS, etc.)
  * Model: google/gemini-2.5-flash via Lovable AI Gateway
  */
 
