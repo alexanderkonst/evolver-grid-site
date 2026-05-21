@@ -16,9 +16,9 @@ We are reshaping the JOURNEY space and **adding a second landing page** so the p
 
 The matching-onboarding sequence (Talent → Mission → Assets → QoL → bridge-to-Build) becomes the single canonical JOURNEY space ordering for everyone. The unique-business / venture-building content (which used to live inside JOURNEY) moves into the BUILD space, where it becomes the deeper layer accessible to all users.
 
-**Critical:** there is ONE platform with ONE journey sequence. The two landings are *two marketing entrances*, not two products. After a user passes through either landing into the assessment, they are in the same platform with the same modules accessible via the same routes. The only thing that varies post-landing is which CTA is foregrounded after the Top Talent reveal — driven by the `?path=` parameter the user carried in.
+**Critical:** there is ONE platform with ONE journey sequence. The two landings are *two marketing entrances*, not two products. After a user passes through either landing into the assessment, they are in the same platform with the same modules accessible via the same routes. The match path adds new conditional CTAs at four completion steps (Top Talent reveal, Mission, Assets, QoL) — surfaced only when `?path=match` is carried in context. The build path's existing flow is preserved without any changes.
 
-Ignite Session is **no longer linked from either public landing or the post-Top-Talent screen.** It remains accessible at `/ignite` and is surfaced only from inside the BUILD space, as the premium step for members who graduate into venture-building work with Alexander.
+**Ignite Session:** the existing Direct-Ignite CTA on BuildLanding stays untouched (build path's production flow is preserved as-is). The MatchLanding has no Ignite link. Inside the platform, Ignite is surfaced inside the BUILD space as the premium step for venture-building work.
 
 ---
 
@@ -52,7 +52,7 @@ Two entry points, one product underneath.
 - **Match-path users (`?path=match`):** see a NEW post-reveal CTA progression at each completion step (Top Talent → Mission → Assets → QoL). Details in §4.4.
 - **Build-path users (`?path=build` or no param):** see the **existing post-Top-Talent reveal screen with existing CTAs, unchanged.** They continue through the existing funnel exactly as it works in production today. No new behavior is added; no existing behavior is removed.
 
-The match-path CTAs (Mission "in 1 minute" → Map your assets → See your matches + Assess your quality of life as secondary) are conditionally rendered: shown only when the user carries `?path=match` in context. Build-path users never encounter them.
+The match-path CTAs at each step (Mission "in 1 minute" → Map your assets → See your matches + Assess your quality of life as secondary → See your refined matches) are conditionally rendered: shown only when the user carries `?path=match` in context. Build-path users never encounter them.
 
 After Mission/Assets/QoL completion, match-path users arrive at a matching surface (the matching mechanic is already shipped — active-intro layer, consent tokens, etc.). JOURNEY pane shows their progress accordingly.
 
@@ -155,7 +155,11 @@ This is ~20 lines of React. No external dependencies. Fully testable.
 
 **Matchable threshold:** user becomes matchable after #3 (Map your assets) is completed. T-M-A is the triad that opens the matching surface. QoL (#4) refines match precision but is not required for the first match wave.
 
-**Critical: JOURNEY locks are advisory, not access-gating.** The lock state controls how items render in the JOURNEY pane (crossed out vs. unlocked) — guidance. The actual routes (Mission Discovery, Asset Mapping, QoL, BUILD space, etc.) are NOT access-gated by JOURNEY. Any authenticated user can navigate directly to any of them anytime. This is what enables build-path users to go straight from Top Talent reveal → BUILD space via their primary CTA, without first completing Mission / Assets / QoL.
+**Critical: JOURNEY locks are advisory, not access-gating.** The lock state controls how items render in the JOURNEY pane (crossed out vs. unlocked) — guidance. The actual routes (Mission Discovery, Asset Mapping, QoL, BUILD space, `/path`, `/dashboard`, `/playbook`, `/ignite`, etc.) are NOT access-gated by JOURNEY. Any authenticated user can navigate directly to any of them anytime. This is critical because:
+
+- Build-path users may currently reach `/path`, `/dashboard`, `/playbook` via JOURNEY in production (those items are being MOVED out of JOURNEY into BUILD space in this build). The routes themselves must continue to resolve and render unchanged.
+- Build-path users' existing CTAs and existing flow continue to work — they may not need to interact with JOURNEY at all.
+- Match-path users walk T-M-A via JOURNEY items 1–3, then have BUILD space accessible via JOURNEY #5 (visually unlocked after #3) OR directly via sidebar.
 
 **Removed from JOURNEY (moved to BUILD space — see §4.3):**
 - *Take the exact playbook* (was JOURNEY #2)
@@ -176,14 +180,16 @@ The BUILD space already exists in the codebase. This spec only changes:
 | *The Path to Your Unique Business* | Renamed from JOURNEY's *"See the shortcut path to your business"* |
 | *See the Dashboard* | Renamed from JOURNEY's *"See how we're building this"* |
 | *Take the exact playbook* | Moved from JOURNEY |
-| *Ignite Session* (premium step) | Surfaced inside BUILD space — accessible to members who completed the matching triad |
-| `/path` value-ladder page | Moved from JOURNEY (where it was last item) |
+| *Ignite Session* (premium step) | Surfaced inside BUILD space as one access path. Note: the existing Direct-Ignite CTA on BuildLanding remains untouched as a separate access path for build-path users. |
+| `/path` value-ladder page (the existing soft-gated `/path` route, distinct from the renamed *"The Path to Your Unique Business"* item above) | Moved from JOURNEY (where it was the last item) into BUILD space |
 
-**Note on founder testimonials:** they STAY on BuildLanding (see §4.5). They are NOT moved into BUILD space. Earlier draft suggested moving them; that was retracted.
+**Note on founder testimonials:** they STAY on BuildLanding (see §4.5). They are NOT moved into BUILD space.
+
+**Note on existing routes:** `/path`, `/dashboard`, `/playbook`, `/ignite` all stay valid as URLs and continue to render their existing content unchanged. This build only changes WHICH NAVIGATION SURFACE points to them (JOURNEY pane → BUILD space for the items being moved). Direct links and any existing CTAs pointing at these routes continue to function.
 
 **Navigation in:**
 - From JOURNEY item #5 (*Build a business off your top talent*), clicking enters the BUILD space.
-- `/ignite` URL stays valid (direct links don't 404) but is **not linked from landing or post-Top-Talent screen.**
+- `/ignite` URL stays valid. NOT linked from MatchLanding. Existing Direct-Ignite CTA on BuildLanding stays (build path untouched). Also accessible from inside BUILD space.
 
 **Visual treatment of BUILD entry from JOURNEY:**
 - JOURNEY item #5 should feel like a doorway, not another sequential step. Subtle visual differentiation (badge, arrow, divider) so users understand they're transitioning surfaces.
@@ -342,21 +348,22 @@ Honest time estimates (most prompt-driven via Lovable + targeted review):
 | 11 | Verify NS skin auto-propagates: both landings render correctly under `/ns/?path=match` and `/ns/?path=build` | 30 min |
 | 12 | Analytics + OG metadata (§4.8) | ~30 min |
 
-**Total: ~1 day of focused work** without #9, ~1.5 days with #9.
+**Total: ~1 day of focused work** without #10, ~1.5 days with #10.
 
-Items #3 + #4 + #5 are the visible product change inside the platform. Items #1 + #2 + #10 are the public-face change. Item #7 is the data-safety check. Items #8 + #9 are the cross-skin durability layer.
+Items #3 + #4 + #5 are the visible product change inside the platform. Items #1 + #2 are the public-face change. Item #8 is the data-safety check. Items #9 + #11 are the cross-skin durability layer. Item #10 is the optional cross-skin config refactor.
 
-**No `preferred_path` column. No inside-platform mode toggle. No conditional JOURNEY ordering.** ONE platform, TWO landings, query-param routed. Simpler than the previous spec draft.
+**No `preferred_path` column. No inside-platform mode toggle. No conditional JOURNEY ordering. No changes to BuildLanding or to the build-path post-Top-Talent screen.** ONE platform, TWO landings, query-param routed.
 
 ---
 
 ## 5b. Rollback strategy
 
-The funnel reshape is non-destructive (no data is deleted, no schema is broken). Rollback path if the new funnel underperforms in the first 1–2 weeks of soft launch:
+The funnel reshape is non-destructive (no data is deleted, no schema is broken, `LandingPage.tsx` is not modified). Rollback path if the new funnel underperforms in the first 1–2 weeks of soft launch:
 
-- Revert the three component-level changes (`LandingPage.tsx`, `SectionsPanel.tsx`, post-Top-Talent screen) — single git revert per file
-- User state migration is non-destructive — completion flags survive the revert
-- BUILD space changes can stay (no harm in items being available there); JOURNEY just goes back to old ordering
+- Revert the component-level changes: `SectionsPanel.tsx` (JOURNEY reorder), the root routing component (the `?path=` switch), the new `MatchLanding.tsx` file (delete or unroute), the completion-page CTA additions (Top Talent reveal, Mission, Assets, QoL — wherever the conditional match-path CTAs were added) — single git revert per file.
+- **`LandingPage.tsx` was not modified, so nothing to revert there.**
+- User state migration is non-destructive — completion flags survive the revert.
+- BUILD space changes can stay (no harm in items being available there); JOURNEY just goes back to old ordering.
 
 **Recommended:** ship behind a feature flag (e.g., `FUNNEL_V2_ENABLED`) for the first 48–72 hours so the revert is a flag toggle, not a code revert. Flag can default ON for new users and OFF for existing users with old-ordering progress until manual cutover.
 
@@ -414,6 +421,8 @@ Before merging:
 - [ ] **CTA placement on each completion page approved by Sasha** (per §4.4b process). No CTAs shipped without visual sign-off.
 - [ ] **JOURNEY locks are advisory, not enforced.** A user can navigate directly to `/mission-discovery`, `/asset-mapping`, `/quality-of-life-map`, `/build/*` at any time as authenticated user — regardless of JOURNEY lock state. Verified.
 - [ ] Existing users with partial progress under the old ordering retain their completion flags. Verified on at least one test account from the cohort.
+- [ ] **Existing routes `/path`, `/dashboard`, `/playbook`, `/ignite` all resolve and render unchanged content.** These routes are not modified — only their navigation surface changes (moved from JOURNEY into BUILD space). Direct links from outside or from existing build-path CTAs continue to work. Verified.
+- [ ] **Build-path users' existing in-product flow still works end-to-end.** No regressions introduced by the JOURNEY pane reorder or the BUILD space relocation. Verified by walking the build flow from landing → Top Talent → existing post-reveal CTAs → wherever they currently lead.
 - [ ] Auth flow verified per skin (`/auth`, `/ns/auth`) — both read in their skin register.
 - [ ] **Entry-path analytics event fires** on landing impression with `landing_type` and `skin` and `path_param_present` (per §4.8).
 - [ ] **OG / share-preview metadata renders correctly** when pasting `findyourtoptalent.com/ns/?path=match` into Discord / Slack / Twitter (or at minimum, doesn't render a broken preview).
@@ -444,6 +453,8 @@ These are deliberately left for the executing thread to resolve in conversation 
 - Active-intro layer (already shipped — the matching mechanic this funnel feeds into): [`docs/specs/match-mechanic/active-intro_product_spec.md`](../match-mechanic/active-intro_product_spec.md)
 
 ---
+
+*v0.6 · May 20, 2026 (Day 77 deep night, debugging pass) · Stale references from the v0.4 build-path-changes draft cleaned. Specifically: (1) §1 line about "only CTA after Top Talent varies" updated to reflect that 4 completion steps vary, not 1. (2) §1 Ignite statement clarified: existing Direct-Ignite on BuildLanding stays untouched (build path preserved); only MatchLanding has no Ignite link. (3) §4.2 stale claim about "build-path users going straight from Top Talent reveal → BUILD space via their primary CTA" removed; build path has UNCHANGED CTAs, no such routing. (4) §4.3 Ignite gating note clarified: BUILD-space access is one path; existing BuildLanding Direct-Ignite is another path. (5) §4.3 disambiguation between "The Path to Your Unique Business" (renamed JOURNEY item) and `/path` (the soft-gated value-ladder route) — both live in BUILD space but they're different. (6) §5b rollback list corrected — LandingPage.tsx is NOT in the revert list (not modified). (7) §5 item-numbering references cleaned. (8) DoD: added verification that existing routes (/path, /dashboard, /playbook, /ignite) still resolve and render unchanged, and that the build-path end-to-end flow has no regressions. Still LOW RISK, still ~1 day. Spec is now self-consistent.*
 
 *v0.5 · May 20, 2026 (Day 77 night, second Sasha-correction pass) · CRITICAL: build-path is COMPLETELY UNTOUCHED. Previous draft incorrectly proposed modifications to BuildLanding (removing Direct-Ignite CTA) and to the post-Top-Talent reveal screen (new "Build a Business" CTA for build-path). Both were wrong and would have damaged a working production funnel. Reverted: BuildLanding stays as-is in every respect (copy, CTAs, testimonials, structure). Build-path users continue through their existing funnel unchanged. The match path is purely additive: new MatchLanding, plus new CTAs that render conditionally at each completion step (Top Talent reveal, Mission completion, Asset Mapping completion, QoL completion). Match-flow CTA progression: "Discover your mission in 1 minute" → "Map your assets" → "See your matches" (with unlock message) + "Assess your quality of life" (secondary) → "See your refined matches". Mission time corrected to 1 minute (was 2, originally was 10). New §4.4b added: process for identifying CTA placement on each completion page — must be walked with Sasha for visual sign-off before merge. Scope of Work updated to 12 items, still ~1 day. DoD updated to verify build path is untouched. Ready for handoff.*
 
