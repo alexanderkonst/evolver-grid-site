@@ -478,7 +478,7 @@ export type DossierSnapshot = {
 };
 ```
 
-Full shapes for each `ArtifactKey`'s content JSON live in `lib/artifact-schemas.ts` and match the output shapes in [`artifact_prompts_spec.md`](./artifact_prompts_spec.md).
+Full shapes for each `ArtifactKey`'s content JSON live in `lib/artifact-schemas.ts` and match the `outputSchema` strings inside `ARTIFACT_CONFIGS` in [`supabase/functions/_shared/ubb-prompts.ts`](../../../supabase/functions/_shared/ubb-prompts.ts) — source of truth.
 
 ---
 
