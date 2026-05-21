@@ -372,7 +372,7 @@ Every artifact screen has one button: **⚡ Improve**. Pure button. No note fiel
 
 **On click:**
 1. Client calls `improve-artifact` edge function with: current artifact + sibling locked artifacts + ZoG context + up to 3 prior versions.
-2. Edge function calls `openai/gpt-5.2` via Lovable AI Gateway with the 27-perspective roast prompt (see `improve_roast_prompt.md`).
+2. Edge function calls `openai/gpt-5.2` via Lovable AI Gateway with the 27-perspective roast prompt (see `ROAST_PROTOCOL` in `supabase/functions/_shared/ubb-prompts.ts` — source of truth).
 3. Model internally applies: 4 quadrants × 3 depths + 13th + depth check + 27th crystallization.
 4. Returns: improved content, roast findings, what changed, new specificity score + delta, crystallized action, `diminishing_returns` flag.
 5. UI opens **ImproveReviewScreen** showing diff + findings + specificity delta.
@@ -407,7 +407,7 @@ Every artifact screen has one button: **⚡ Improve**. Pure button. No note fiel
 - Route structure (flat `/ubb/*` vs nested)
 - Auth guards (likely: ZoG snapshot required)
 - State management (Context vs Zustand — v1.0 uses Context)
-- Edge function signatures (drafted in `artifact_prompts_spec.md`)
+- Edge function signatures (live: `ARTIFACT_CONFIGS` in `supabase/functions/_shared/ubb-prompts.ts`)
 - Exact publication URL patterns (`/ubl/{slug}-v{n}`? `/ubd/{slug}`?)
 - Whether v1.0's `marketplace_products` table is reused or bypassed for Landing Page publishing
 - Lovable AI Gateway 402 handling pattern (consistent across all v2.0 edge functions)

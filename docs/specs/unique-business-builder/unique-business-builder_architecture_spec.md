@@ -300,7 +300,7 @@ OR: { error: 'insufficient_credit' | 'model_error' }
 ### `improve-artifact`
 
 **Location:** `supabase/functions/improve-artifact/index.ts`
-**Prompt template:** see [`improve_roast_prompt.md`](./improve_roast_prompt.md)
+**Prompt template:** see `ROAST_PROTOCOL` in [`supabase/functions/_shared/ubb-prompts.ts`](../../../supabase/functions/_shared/ubb-prompts.ts) — source of truth.
 
 ```ts
 POST /functions/v1/improve-artifact
@@ -312,7 +312,7 @@ Body: {
   root_context: { zog_snapshot, excalibur_data? },
   previous_versions: Json[],  // up to 3 prior
 }
-Response: ImproveResult  // see improve_roast_prompt.md
+Response: ImproveResult  // shape defined inline in improve-artifact/index.ts; see ROAST_PROTOCOL in ubb-prompts.ts
 OR: { error: 'insufficient_credit' | 'model_error' }
 ```
 

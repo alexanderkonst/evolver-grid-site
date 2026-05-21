@@ -168,8 +168,7 @@ All decisions documented in [architecture spec](./unique-business-builder_archit
 - [unique-business-builder_product_spec.md](./unique-business-builder_product_spec.md) — Phase 1 output
 - [unique-business-builder_architecture_spec.md](./unique-business-builder_architecture_spec.md) — Phase 2 output
 - [unique-business-builder_ui_spec.md](./unique-business-builder_ui_spec.md) — Phase 3 output
-- [improve_roast_prompt.md](./improve_roast_prompt.md) — The Improve template
-- [artifact_prompts_spec.md](./artifact_prompts_spec.md) — 18 artifact generation + specificity criteria
+- **Live prompts (source of truth):** [`supabase/functions/_shared/ubb-prompts.ts`](../../../supabase/functions/_shared/ubb-prompts.ts) — `ARTIFACT_CONFIGS` (per-artifact generation + specificity criteria), `ROAST_PROTOCOL` (the Improve template), `UBB_DISTILLATION_DIRECTIVE`, `UBB_LANGUAGE_GUIDELINES`, `SYNTHESIS_PROTOCOL_PROMPT`. The TypeScript IS the spec — the parallel-compressed `artifact_prompts_spec.md` + `improve_roast_prompt.md` were deleted 2026-05-21 to eliminate drift.
 - [schema_delta.md](./schema_delta.md) — Supabase schema changes needed
 
 ---

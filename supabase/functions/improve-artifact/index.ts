@@ -4,7 +4,7 @@
  * Applies the 27-perspective holonic roast to a single artifact and returns
  * an improved version. Enforces the monotonic specificity invariant.
  *
- * Spec: docs/specs/unique-business-builder/improve_roast_prompt.md
+ * Prompts (source of truth): ../_shared/ubb-prompts.ts (ROAST_PROTOCOL, ARTIFACT_CONFIGS, etc.)
  * Model: google/gemini-2.5-flash via Lovable AI Gateway
  */
 

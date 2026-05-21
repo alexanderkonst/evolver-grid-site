@@ -3,7 +3,7 @@
  *
  * Derives from: docs/specs/unique-business-builder/unique-business-builder_product_spec.md
  *              + unique-business-builder_architecture_spec.md
- *              + artifact_prompts_spec.md
+ * Artifact output shapes: see supabase/functions/_shared/ubb-prompts.ts (source of truth).
  *
  * Paramount invariant: specificity is monotonic, versions are append-only.
  * An accepted Improve creates a new VersionRow; previous rows are never overwritten.
