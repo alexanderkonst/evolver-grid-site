@@ -64,6 +64,7 @@ import { MISSION_DISCOVERY_PROMPT } from "@/prompts";
 // Funnel v2 (Day 77, Sasha 2026-05-20): match-path conditional "Map your
 // assets →" CTA on the saved state. Returns null for build-path users.
 import MatchFlowCta from "@/components/landing/MatchFlowCta";
+import { useEntryPath } from "@/contexts/EntryPathContext";
 import { getOrCreateGameProfileId } from "@/lib/gameProfile";
 import { withRetry } from "@/lib/withRetry";
 import { useToast } from "@/hooks/use-toast";
@@ -129,6 +130,7 @@ const MissionDiscoveryLanding = () => {
     const [searchParams] = useSearchParams();
     const returnPath = searchParams.get("return") || "/";
     const { toast } = useToast();
+    const { path: entryPath } = useEntryPath();
 
     const [state, setState] = useState<State>("prompt");
     const [aiResponse, setAiResponse] = useState("");
@@ -305,10 +307,32 @@ const MissionDiscoveryLanding = () => {
             );
             window.dispatchEvent(new CustomEvent("fytt:open-sections-panel"));
         } catch (err) {
-            console.error("[MissionDiscovery] save failed:", err);
+            // Day 77 (Sasha 2026-05-20): surface the actual error.
+            // Supabase errors are PostgrestError-shaped plain objects
+            // (not Error instances), so the previous `err instanceof
+            // Error` check fell through to a generic "Please try again."
+            // and the real cause (RLS / column-missing / 401 / network)
+            // was invisible. Now we extract `.message` / `.code` /
+            // `.details` from whichever shape the error has and log the
+            // full payload to console for ops visibility.
+            const e: any = err;
+            const errMessage =
+                (e && typeof e === "object" && typeof e.message === "string" && e.message) ||
+                (typeof e === "string" && e) ||
+                "Please try again.";
+            const errCode = e && typeof e === "object" && typeof e.code === "string" ? e.code : undefined;
+            const errDetails = e && typeof e === "object" && typeof e.details === "string" ? e.details : undefined;
+            const errHint = e && typeof e === "object" && typeof e.hint === "string" ? e.hint : undefined;
+            console.error("[MissionDiscovery] save failed:", {
+                message: errMessage,
+                code: errCode,
+                details: errDetails,
+                hint: errHint,
+                raw: err,
+            });
             toast({
                 title: "Couldn't save your mission",
-                description: err instanceof Error ? err.message : "Please try again.",
+                description: errCode ? `${errMessage} (${errCode})` : errMessage,
                 variant: "destructive",
             });
         } finally {
@@ -504,21 +528,36 @@ const MissionDiscoveryLanding = () => {
                     <div className="liquid-glass-strong rounded-2xl p-6 sm:p-8 text-center"
                          style={{ border: "1px solid rgba(212, 175, 55, 0.32)" }}>
                         <p
-                            className="text-[10px] uppercase tracking-[0.32em] font-medium mb-4"
+                            className="text-[10px] uppercase tracking-[0.32em] font-medium mb-4 flex items-center justify-center gap-1.5"
                             style={{ color: "var(--skin-accent-gold, #b8860b)" }}
                         >
-                            One sentence
+                            <Pencil className="w-3 h-3" aria-hidden="true" />
+                            One sentence · editable
                         </p>
+                        {/* Day 77 (Sasha 2026-05-20): textarea was
+                            `border-none bg-transparent focus-visible:ring-0`
+                            — visually invisible, so users couldn't tell
+                            it was editable (Sasha's screenshot showed
+                            "Edit if you want" copy with no edit
+                            affordance). Now: subtle gold-rim border + cream
+                            background + stronger focus ring so the field
+                            reads as an input, not static text. Cursor stays
+                            visible whether or not the textarea is focused. */}
                         <Textarea
                             value={sentence}
                             onChange={(e) => setSentence(e.target.value)}
-                            className="min-h-[120px] text-center border-none bg-transparent focus-visible:ring-0 resize-none"
+                            placeholder="Type your one-sentence mission here…"
+                            className="min-h-[120px] text-center resize-none focus-visible:ring-2 focus-visible:ring-[#d4af37]/55 transition-shadow"
                             style={{
                                 fontFamily: "'Cormorant Garamond', serif",
                                 fontWeight: 600,
                                 fontSize: "clamp(1.15rem, 2.4vw, 1.5rem)",
                                 color: INK,
                                 lineHeight: 1.4,
+                                background: "rgba(255, 252, 245, 0.78)",
+                                border: "0.5px solid rgba(212, 175, 55, 0.45)",
+                                boxShadow: "inset 0 1px 2px rgba(10,22,40,0.06)",
+                                cursor: "text",
                             }}
                         />
                         <p
@@ -530,7 +569,7 @@ const MissionDiscoveryLanding = () => {
                                 color: INK_MUTED,
                             }}
                         >
-                            Edit if you want. This is what gets saved to your profile.
+                            Click the sentence above to edit. This is what gets saved to your profile.
                         </p>
                     </div>
 
