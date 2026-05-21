@@ -273,24 +273,20 @@ const SPACE_SECTIONS: SpaceSections = {
     build: {
         title: "BUILD",
         sections: [
-            // Funnel v2 (Day 77, Sasha 2026-05-20): Path / Dashboard /
-            // Playbook moved out of JOURNEY into BUILD as venture-building
-            // infrastructure. The matching onboarding (T-M-A-Q) is now
-            // JOURNEY's full content; the venture-building methodology
-            // lives here as the deeper layer accessible to anyone. The
-            // existing routes (/path, /dashboard, /playbook, /ignite) are
-            // unchanged — only their navigation surface moves.
+            // Funnel v2 (Day 77, Sasha 2026-05-20 evening): BUILD pane
+            // order per Sasha's call — AVB first (the canonical builder),
+            // then the methodology rows (Path / Playbook / Dashboard /
+            // Ignite), Equilibrium last (sibling tool, not on the build
+            // arc). Path / Playbook / Dashboard / Ignite moved here from
+            // JOURNEY when the funnel reshaped into matching-as-hero;
+            // their existing routes resolve unchanged.
             // Spec: docs/specs/funnel-v2/funnel-v2_product_spec.md §4.3.
-            { id: "build-path",       label: "The path to your unique business", path: "/path" },
-            { id: "build-dashboard",  label: "See the dashboard",                 path: "/dashboard" },
-            { id: "build-playbook",   label: "Take the exact playbook",           path: "/playbook" },
-            { id: "build-ignite",     label: "Productize Yourself Session",       path: "/ignite" },
-            // Existing BUILD-space modules — Equilibrium clock + the
-            // Unique Business Builder. Order preserved below the
-            // methodology rows so the methodology reads first, the
-            // tools follow.
-            { id: "equilibrium-v2",   label: "Equilibrium",                       path: "/build/equilibrium" },
             { id: "ubb-v2",           label: "Automated Venture Builder",         path: "/ubb" },
+            { id: "build-path",       label: "The path to your unique business", path: "/path" },
+            { id: "build-playbook",   label: "Take the exact playbook",           path: "/playbook" },
+            { id: "build-dashboard",  label: "See the dashboard",                 path: "/dashboard" },
+            { id: "build-ignite",     label: "Productize Yourself Session",       path: "/ignite" },
+            { id: "equilibrium-v2",   label: "Equilibrium",                       path: "/build/equilibrium" },
         ],
     },
     // OFFER Space (was Marketplace)
@@ -534,12 +530,14 @@ const buildJourneySections = (
             completed: assetsDone,
         },
         {
+            // Day 77 (Sasha 2026-05-20): "Improves match quality" badge
+            // removed — Sasha flagged it as redundant ornamentation.
+            // The position in the sequence already signals its role.
             id: "journey-qol-assess",
             label: "4. Assess your quality of life",
             path: "/quality-of-life-map/assessment",
             locked: !assetsDone,
             lockedHint: "Unlocks after you map your assets.",
-            badge: "Improves match quality",
             completed: !!journeyProgress["journey-qol-assess"],
         },
         {
