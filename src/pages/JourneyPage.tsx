@@ -1,7 +1,7 @@
+import { useLocation } from "react-router-dom";
 import GameShellV2 from "@/components/game/GameShellV2";
 import MethodologyLandingPage from "@/pages/MethodologyLandingPage";
 import MatchHero from "@/components/landing/MatchHero";
-import { useEntryPath } from "@/contexts/EntryPathContext";
 
 /**
  * JourneyPage — the JOURNEY space main page.
@@ -14,13 +14,24 @@ import { useEntryPath } from "@/contexts/EntryPathContext";
  * hero swaps. Build-path users (no param, `?path=build`, or organic
  * traffic) see MethodologyLandingPage byte-for-byte unchanged.
  *
+ * Day 78 (Sasha 2026-05-21) BUG FIX: previously the hero swap was driven
+ * by `useEntryPath()` which falls back to sessionStorage. Side effect:
+ * once a user had visited `/?path=match` in a tab, every subsequent
+ * visit to `/` in that tab kept rendering MatchHero — even when the URL
+ * had no param. The landing decision should be driven by the URL ONLY;
+ * sessionStorage stays for the downstream completion-page CTA branching
+ * (where the user is mid-flow). Visiting `/` with no param now always
+ * shows the build-path landing, regardless of session state.
+ *
  * Spec: docs/specs/funnel-v2/funnel-v2_product_spec.md §4.1.
  */
 const JourneyPage = () => {
-  const { path } = useEntryPath();
+  const location = useLocation();
+  const isMatch =
+    new URLSearchParams(location.search).get("path") === "match";
   return (
     <GameShellV2>
-      {path === "match" ? <MatchHero /> : <MethodologyLandingPage />}
+      {isMatch ? <MatchHero /> : <MethodologyLandingPage />}
     </GameShellV2>
   );
 };

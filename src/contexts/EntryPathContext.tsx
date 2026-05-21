@@ -48,17 +48,27 @@ export const EntryPathProvider = ({ children }: { children: ReactNode }) => {
   // Capture from URL on any SPA navigation that carries `?path=match`,
   // then strip the param from the visible URL so internal navigation
   // doesn't trail it forever. Context + sessionStorage own the state.
+  //
+  // Day 78 (Sasha 2026-05-21) BUG FIX: skip the URL strip on landing
+  // routes (`/`, `/game/journey`). The landing renders MatchHero vs
+  // MethodologyLandingPage purely from URL search params (see
+  // JourneyPage.tsx), so stripping the param on the landing would mean
+  // a refresh of `/?path=match` lands on `/` with build-path rendered.
+  // On non-landing routes the strip still fires — cleaner URLs while
+  // the user works through the assessment.
   useEffect(() => {
     if (typeof window === "undefined") return;
     const params = new URLSearchParams(location.search);
     const fromUrl = params.get("path");
-    if (fromUrl === "match") {
-      setPath("match");
-      params.delete("path");
-      const newSearch = params.toString();
-      const newUrl = `${location.pathname}${newSearch ? `?${newSearch}` : ""}${location.hash}`;
-      window.history.replaceState({}, "", newUrl);
-    }
+    if (fromUrl !== "match") return;
+    setPath("match");
+    const isLandingRoute =
+      location.pathname === "/" || location.pathname === "/game/journey";
+    if (isLandingRoute) return;
+    params.delete("path");
+    const newSearch = params.toString();
+    const newUrl = `${location.pathname}${newSearch ? `?${newSearch}` : ""}${location.hash}`;
+    window.history.replaceState({}, "", newUrl);
   }, [location.pathname, location.search, location.hash]);
 
   // Mirror state to sessionStorage so refresh / back-navigation survive.
