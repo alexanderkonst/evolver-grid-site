@@ -7675,3 +7675,84 @@ Sasha's directive: methodically work through ALL 19 artifacts, fix what needs fi
 - **Re-Improving high-leverage artifacts under new prompts** — myth, pain, landing_page would benefit most from a single Improve cycle now. User-initiated, not automated.
 - **Pre-existing Deno-runtime tsc errors** in [`generate-artifact/index.ts`](../../supabase/functions/generate-artifact/index.ts) and [`improve-artifact/index.ts`](../../supabase/functions/improve-artifact/index.ts) — `Deno` global + `https://deno.land/...` imports don't resolve under Node tsc. Not from today's edits. If a future pass adds a Deno-aware tsconfig for the supabase/functions tree, those errors go away.
 
+---
+
+## Day 80 §B — UBB staleness UX hybrid (Phase 1 + Phase 2) — Friday, May 22, 2026
+
+Closes the chip spawned at the end of Day 78. Two phases shipped end-to-end in one session: parent-aware staleness compute + bulk cascade UX (Phase 1), then prompt-version staleness axis with deterministic content-hashing (Phase 2). Parallel to today's Day 80 JOURNEY work — separate thread, separate surface (UBB canvas overview).
+
+### What landed — Phase 1 (commits [`940c1621`](https://github.com/alexanderkonst/evolver-grid-site/commit/940c1621) foundation, [`01542b11`](https://github.com/alexanderkonst/evolver-grid-site/commit/01542b11) UI cascade)
+
+**The bug Phase 1 fixed:** Day 78's prompt rewrite ([prior entry above](#day-78--thursday-may-21-2026--ubb-prompt-deepening--code-as-source-cleanup)) didn't trigger staleness — but locking ANY downstream artifact (e.g. `landing_page`) would falsely flash *every* upstream as stale. The cause was `latestSiblingLock` in [`UniqueBusinessContext.tsx:101–116`](../../src/modules/unique-business-builder/UniqueBusinessContext.tsx:101) computing a single global "most-recent lock across all 18 keys" with a 60s buffer hack — no awareness of which artifact actually derives from which.
+
+**Replaced with parent-aware compute.** New [`dependencyTree.ts`](../../src/modules/unique-business-builder/dependencyTree.ts) (~167 lines) encodes the canonical `PARENTS: Record<ArtifactKey, ArtifactKey[]>` for all 19 artifacts, grounded in [`ubb-prompts.ts`](../../supabase/functions/_shared/ubb-prompts.ts) — each edge cited by line ref (e.g. `session_bridge ← [pain, promise]` per L543's "Pain + Promise → Transformational Result"; `landing_page ← [frictionless_purchase, pain, promise, value_ladder, tuning_fork]` per L1000–L1001's explicit composition list). Derived `CHILDREN` + transitive `getDownstream` / `getUpstream` helpers + dev-only cycle and dangling-ref validators at module load. Two roots: `uniqueness` (derived from external ZoG snapshot) and `surface_inventory` (derived from the founder's actual deployed surfaces).
+
+**Staleness compute rewritten** — an artifact is now stale iff one of its DIRECT parents was relocked after this artifact's own `latestLocked.created_at`. The 60s buffer is gone (no longer needed once we only compare against actual parents). The `staleReason` copy names the parent: *"Tribe was updated — re-Improve to refresh."* Structured `stalenessSource: { type: 'parent_relocked', parent, parentLockedAt }` added to `ArtifactState` for downstream UIs.
+
+**UI cascade — the staleness banner became one-click.** The old flat list at [`CanvasOverviewScreen.tsx:331–363`](../../src/modules/unique-business-builder/screens/CanvasOverviewScreen.tsx:331) was replaced with [`BulkImprovePanel`](../../src/modules/unique-business-builder/components/BulkImprovePanel.tsx) (~300 lines, new). Renders nothing when no work to do. Otherwise: gold "Improve all N (~$0.00X · ~Ns)" CTA + expandable per-artifact reason list. While cascading: live "Cascading X of N · currently improving Pain" with a Stop button. Cost estimate via $0.0005/call midpoint of Lovable AI Gateway observed range; AI compute time at 7s/call (founder review time is the founder's, not ours to estimate).
+
+**Bulk Improve flow** — `startBulkImprove(keys)` in [`UniqueBusinessContext.tsx`](../../src/modules/unique-business-builder/UniqueBusinessContext.tsx) topologically sorts the input set (parents first, so each Improve sees the freshly-accepted upstream content), kicks off the queue. An advancement `useEffect` drives forward at every settled state (no AI call in flight, no pending review). Existing [`ImproveReviewDrawer`](../../src/modules/unique-business-builder/components/ImproveReviewDrawer.tsx) reused per-artifact — gains a *"step N of M"* gold chip when a cascade is active. `acceptImprovement` / `rejectImprovement` record outcomes on the bulk slice when `bulkImproveRef.current?.current` matches the artifact_key — clean separation, no public-action signature changes. Failures and skips (`max_specificity`, `diminishing_returns`) don't abort the queue; tallied + summarised via toast on completion.
+
+**Re-derive dialog on upstream lock.** New [`LockedCascadeDialog`](../../src/modules/unique-business-builder/components/LockedCascadeDialog.tsx) (~172 lines) fires after `lockArtifact` succeeds when transitive `getDownstream(key)` contains any locked descendant. Lists them by name with the `Re-derive all N` (kicks off `startBulkImprove`) or `Not now` choice. Dismissed prompts re-surface on next lock; the BulkImprovePanel banner remains as the always-available re-entry.
+
+**Per-card "derives from" hint + stale chip.** Under each artifact card on the canvas: a small italic tertiary line *"derives from Tribe · Talent Sentence"* (or *"derives from your Zone of Genius"* / *"derives from your live surfaces"* for roots) — so the founder intuits what cascades when they lock. When an artifact is locked AND stale, a small gold *"RE-DERIVE"* pill in the card's top-right with the staleReason as hover text — per-card affordance to navigate straight to the affected artifact without scanning the banner list.
+
+### What landed — Phase 2 (commits [`684d1681`](https://github.com/alexanderkonst/evolver-grid-site/commit/684d1681) foundation, [`ed6f5ec3`](https://github.com/alexanderkonst/evolver-grid-site/commit/ed6f5ec3) banner + chip copy)
+
+**The bug Phase 2 fixed:** Phase 1's compute only catches staleness via re-locks. Day 78's prompt rewrite changed the AI's ceiling for every artifact, but nothing flashed stale until someone manually re-locked. Phase 2 adds a second axis: detect when the prompt CODE itself changes.
+
+**Deterministic content-hashing.** Added [`ubbPromptHash`](../../supabase/functions/_shared/ubb-prompts.ts) (FNV-1a 64-bit, sync, BigInt-based, runtime-agnostic — same hex output in Deno and Vite) + [`PROMPT_VERSION: Record<ArtifactKey, string>`](../../supabase/functions/_shared/ubb-prompts.ts) computed at module load. Hash input per artifact: `generationGuidance + outputSchema + specificityCriteria` with explicit field-boundary separators. Output: 12 hex chars. Chose FNV-1a 64-bit over SHA256 because Web Crypto's `subtle.digest` is async — would have forced an async `PROMPT_VERSION` export with bad ergonomics for a constant.
+
+**DB migration: [`20260522222511_ubb_prompt_version_at_lock.sql`](../../supabase/migrations/20260522222511_ubb_prompt_version_at_lock.sql).** Adds nullable `prompt_version_at_lock TEXT` to `user_business_artifacts`. NULL = legacy row from before this column; treated as "unknown — don't flag prompt-stale" so the transition window produces zero false positives. No index — staleness is computed client-side from already-fetched rows; no query joins on this column.
+
+**Frontend mirror to avoid bundle bloat.** The full `ARTIFACT_CONFIGS` is ~1200 lines of prompt strings. Importing it into the Vite bundle just to read `PROMPT_VERSION` would add ~50–100KB pre-gzip for no runtime benefit. Solved with a hardcoded mirror at [`src/modules/unique-business-builder/promptVersions.ts`](../../src/modules/unique-business-builder/promptVersions.ts) + a Node script [`scripts/compute-ubb-prompt-versions.mjs`](../../scripts/compute-ubb-prompt-versions.mjs) that uses Deno to read the backend's computed map and rewrite the frontend file. Run after any prompt-field edit; commit the diff. Header comment in `promptVersions.ts` reminds anyone touching it.
+
+**Frontend writes the hash on insert.** Three insert paths in [`UniqueBusinessContext.tsx`](../../src/modules/unique-business-builder/UniqueBusinessContext.tsx) stamp `prompt_version_at_lock: PROMPT_VERSION[key]` — `generateArtifact` (v1), `acceptImprovement` (improved version), `restoreToV1` (v1-content-copy, stamped with CURRENT version because the row is born now, not when v1 was). Edge functions don't insert (they only return improved content); frontend owns the insert.
+
+**Two-axis staleness compute.** Updated [`buildArtifactStates`](../../src/modules/unique-business-builder/UniqueBusinessContext.tsx) to check prompt-stale FIRST (higher priority) then parent-stale. `prompt_changed` wins when both fire — re-Improving against the new prompt produces a fresh ceiling and any pending parent-cascade folds into the same call. Discriminated `stalenessSource` widened to `{ type: 'parent_relocked', ... } | { type: 'prompt_changed', lockedVersion, currentVersion }`. Phase 2 check is gated by `lockedPromptVer != null` so legacy NULL rows stay silent.
+
+**Type-aware UI copy.** Banner ([`BulkImprovePanel`](../../src/modules/unique-business-builder/components/BulkImprovePanel.tsx)) classifies the stale set by axis and surfaces three narratives: pure prompt-stale → *"Prompt updated — N artifacts below ceiling. Re-Improve to claim the new ceiling."* Pure parent-stale → original Phase 1 *"N artifacts may be stale · An upstream artifact was relocked"* copy. Mixed → *"N stale · X prompt · Y cascade"* with the breakdown CTA. Card chip ([`CanvasOverviewScreen`](../../src/modules/unique-business-builder/screens/CanvasOverviewScreen.tsx)) reads *"re-improve"* for prompt_changed and *"re-derive"* for parent_relocked — different actions, different chips, same gold-rim register.
+
+### Files touched (this session, both phases)
+
+- [`src/modules/unique-business-builder/dependencyTree.ts`](../../src/modules/unique-business-builder/dependencyTree.ts) — NEW (~167 lines, Phase 1)
+- [`src/modules/unique-business-builder/components/BulkImprovePanel.tsx`](../../src/modules/unique-business-builder/components/BulkImprovePanel.tsx) — NEW (~330 lines, Phase 1 + Phase 2 type-aware copy)
+- [`src/modules/unique-business-builder/components/LockedCascadeDialog.tsx`](../../src/modules/unique-business-builder/components/LockedCascadeDialog.tsx) — NEW (~172 lines, Phase 1)
+- [`src/modules/unique-business-builder/promptVersions.ts`](../../src/modules/unique-business-builder/promptVersions.ts) — NEW generated frontend mirror (~40 lines, Phase 2)
+- [`scripts/compute-ubb-prompt-versions.mjs`](../../scripts/compute-ubb-prompt-versions.mjs) — NEW recompute script (~90 lines, Phase 2)
+- [`supabase/migrations/20260522222511_ubb_prompt_version_at_lock.sql`](../../supabase/migrations/20260522222511_ubb_prompt_version_at_lock.sql) — NEW (Phase 2)
+- [`supabase/functions/_shared/ubb-prompts.ts`](../../supabase/functions/_shared/ubb-prompts.ts) — appended `ubbPromptHash` + `PROMPT_VERSION` (~80 lines added, Phase 2)
+- [`src/modules/unique-business-builder/UniqueBusinessContext.tsx`](../../src/modules/unique-business-builder/UniqueBusinessContext.tsx) — DbRow + rowToVersion + buildArtifactStates + 3 insert paths + bulkImprove slice + advancement effect + lockArtifact dialog trigger (~300 lines net across both phases)
+- [`src/modules/unique-business-builder/types.ts`](../../src/modules/unique-business-builder/types.ts) — VersionRow.prompt_version_at_lock + ArtifactState.stalenessSource discriminated union + BulkImproveProgress + lockedCascadePrompt + 3 new actions
+- [`src/modules/unique-business-builder/screens/CanvasOverviewScreen.tsx`](../../src/modules/unique-business-builder/screens/CanvasOverviewScreen.tsx) — derives-from hint + per-card stale chip with axis-aware text + replaced flat banner with BulkImprovePanel
+- [`src/modules/unique-business-builder/UniqueBusinessLayout.tsx`](../../src/modules/unique-business-builder/UniqueBusinessLayout.tsx) — mount LockedCascadeDialog
+- [`src/modules/unique-business-builder/components/ImproveReviewDrawer.tsx`](../../src/modules/unique-business-builder/components/ImproveReviewDrawer.tsx) — "step N of M" cascade chip when bulkImprove active
+
+### Key decisions
+
+1. **Parent-aware over flat-sibling-aware.** Phase 1's foundation rewrite is the load-bearing fix. Without it, "improve all stale" cascading would propagate spurious staleness through the dependency graph each round. Phase 1 makes the staleness signal trustworthy.
+
+2. **Hardcoded frontend mirror, not direct import.** Importing `ubb-prompts.ts` from the frontend would pull all 19 prompt configs (~1200 lines of strings) into the Vite bundle. The codegen-script pattern keeps the frontend bundle slim AND keeps a single source of truth on the backend. Drift risk mitigated by the header comment + the script being trivially re-runnable.
+
+3. **FNV-1a 64-bit over SHA256.** SHA256 via Web Crypto is async — would force `PROMPT_VERSION` to be a Promise<Record<…>> or computed lazily, both ugly. FNV-1a 64-bit is sync, deterministic, runs identically in Deno + Vite via native BigInt, and 12 hex chars (~16T combinations) is over-provisioned for 19 keys × rare prompt rewrites.
+
+4. **Prompt-stale > parent-stale priority.** When both fire on the same artifact, re-Improving against the new prompt produces a fresh ceiling and any pending parent-cascade folds into the same Improve call. The two banners (different copy) help the founder read the dominant signal.
+
+5. **Legacy NULL = unknown = silent.** The DB column defaults NULL on rows from before the migration; the Phase 2 check is gated by `lockedPromptVer != null`. Zero false positives during the transition window — every founder's pre-Day-80 locks stay quiet until they next Improve, which stamps the current hash.
+
+6. **Per-artifact review drawer, not Accept-all.** Sasha's call (DoD question answered before code touched). Aligns with his Top Talent shadow: he wants to read each version before it ships. The drawer walk-through pace (~30s/artifact) is the founder's part of the cascade; the AI compute time (~7s/artifact) is what the banner advertises.
+
+7. **Per-axis chip text on each card.** `re-derive` for parent_relocked, `re-improve` for prompt_changed. Subtle distinction but operationally meaningful — re-deriving carries an upstream change, re-Improving reaches for a higher AI ceiling. Same gold register; the verb tells the truth.
+
+### Si–Do
+
+`/ubb` becomes a self-aware methodology surface in a way it wasn't before. The founder no longer needs to track which artifacts went stale when; the canvas does it for them and offers a one-click cascade with cost transparency. The prompt-version axis means future prompt-improvement waves (like Day 78's) trigger an immediate signal — the iteration loop closes on itself. Si–Do (first $555 stranger from funnel) unchanged — this is product depth that compounds slowly. But the AVB-as-deliverable is now operationally robust, which matters for the eventual platform-replication phase.
+
+### Open follow-ups
+
+- **Deploy alias verification.** Smoke test (curl-only) of `findyourtoptalent.com/ubb` showed bundle hash `index-6Wpy4EvM.js` still serving pre-Phase-1 code despite Vercel reporting 3 successful deploys (3 projects: `evolver-grid`, `evolver-grid-site`, `evolver-grid-site-dnmh`). Sasha to verify which project owns the prod alias in the Vercel dashboard + promote the latest deploy if pinned to an older SHA. The alias-vs-deployment mismatch is operational, not a code bug.
+- **Prompt-version back-fill** (Phase 3 candidate). One-off script that hashes current prompts and stamps existing pre-migration locked rows so the "Prompt updated" UI starts from a known baseline rather than silent NULL. Useful if Sasha wants the next prompt edit to flag legacy rows.
+- **DB-level dependency tracking** (Phase 3 candidate). Move `dependencyTree.ts` (or just the edges) into Supabase so other surfaces (PDF exports, Dossier compose, NotebookLM ingestion) can reason about derivation without re-importing the TS module.
+- **Telemetry on cascade outcomes** (Phase 3 candidate). Log accepted/rejected/skipped per artifact during Bulk Improve so Sasha can see which artifacts consistently produce diminishing returns — signal for prompt redesign.
+- **Day-stamp inconsistency in code comments.** Phase 1/2 code comments stamped "Day 74 (Sasha 2026-05-22)" but the session-log calendar puts May 22 at Day 80. Comments are internal stamps, no user impact, not worth correcting; flagged for the corpus-discipline sweep if/when it happens.
+
