@@ -9,6 +9,44 @@
 
 # 🔄 FOUNDATIONAL PRINCIPLES
 
+## The Transformative-Result Pattern (most important UX principle)
+
+> *Day 80 (Sasha 2026-05-22) — formalized after the JOURNEY-homebase + celebration-modals discussion. This is the operating shape of every product surface, mandatory before any other Phase 1 work.*
+
+**Every product / module / step has TWO paired screens:**
+
+| Screen | Purpose | Anatomy |
+|---|---|---|
+| **Before-screen (Promise)** | Names the transformative result the user is about to get | Eyebrow / Headline that states the result · CTA whose label is the result, not the action ("Find My Top Talent," not "Continue") · Brief silhouette of what'll happen |
+| **After-screen (Confirmation)** | Confirms the transformative result happened, lands the felt sense, points to the next step | Celebration eyebrow ("Done · Your X is saved") · The result itself, displayed prominently · Where it lives ("Always in /game/me/...") · What it unlocks ("Your matches now use this") · Single forward CTA back to JOURNEY |
+
+**Why this exists:** without an explicit after-screen, the user has no felt sense that the transformative result was delivered. They click a CTA, get a toast, and the question hangs — *"what just happened? what did I get?"* The void poisons the trust loop.
+
+**Failure mode:** treating the after-screen as a confirmation toast or silent redirect. A toast is not a transformative-result delivery. The after-screen IS the deliverable.
+
+### Worked example (Mission Discovery, §8.6-adjacent)
+
+| Screen | What it says |
+|---|---|
+| Before | *"Discover Your Mission. Paste your AI's analysis — we'll capture the one sentence that lands."* CTA: *"Find my mission →"* |
+| After | *"My Mission. {sentence}. Always editable in ME. Your matches now use this." Continue your journey →"* |
+
+### Phase-1 enforcement
+
+- **1.1 Master Result** already encodes the transformative result. The before-screen lives or dies by whether its headline matches Master Result.
+- **1.4 Screen Details (Dan Tians)** — the Gut (CTA) must be the result-as-verb, not the action ("Find," not "Continue"). The Heart of the after-screen must include *"the transformative result is now real."*
+- **1.6 Wireframes** — every flow needs an explicit after-screen wireframe, not just a toast in the corner of the before-screen.
+
+### Anti-pattern
+
+A "Saved!" toast is NOT an after-screen. A page that auto-redirects on save is NOT an after-screen. The after-screen must be a stable surface the user lands on, sees the artifact, feels the win.
+
+### How this connects to JOURNEY
+
+In the Find Your Top Talent platform specifically: after-screens for the four primitives (Top Talent / Mission / Assets / QoL) end with a single CTA — *"Continue your journey →"* — pointing back to JOURNEY's pane 3 homebase. That makes JOURNEY the always-home and every step's after-screen the bridge.
+
+---
+
 ## Holonic Iteration Principle
 
 > **When Master Result improves — review the entire cycle.**
