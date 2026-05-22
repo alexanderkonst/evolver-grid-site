@@ -715,10 +715,14 @@ function ArtifactCard({ artifactKey }: { artifactKey: ArtifactKey }) {
           )}
           {/*
            * Day 74 (Sasha 2026-05-22): stale chip on the card itself.
-           * The banner already announces the cascade story; the chip is
-           * the per-card affordance so the user can navigate straight to
-           * the affected artifact. Gold against the locked ✓ register —
-           * "earned but now in motion again."
+           *
+           * Phase 1 axis (parent_relocked) → "re-derive" chip — a cascade
+           *   from an upstream lock; the founder rebuilds against new context.
+           * Phase 2 axis (prompt_changed) → "re-improve" chip — the AI's
+           *   ceiling moved; the founder reaches for a higher version.
+           *
+           * Both use the same gold register so the locked ✓ identity reads
+           * as "earned but now in motion again." Hover gives the full reason.
            */}
           {isStale && isLocked && (
             <span
@@ -738,7 +742,9 @@ function ArtifactCard({ artifactKey }: { artifactKey: ArtifactKey }) {
                 whiteSpace: "nowrap",
               }}
             >
-              re-derive
+              {state?.stalenessSource?.type === "prompt_changed"
+                ? "re-improve"
+                : "re-derive"}
             </span>
           )}
         </div>
