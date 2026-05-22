@@ -277,6 +277,22 @@
 
 ## 🔮 Parked / Future
 
+### Parked (2026-05-22, Day 78) — Appearance tab in Settings (skin chooser)
+
+**Status:** **disabled in production** as of Day 78. Component (`AppearanceTab`) + `?tab=appearance` route param + skin tokens all preserved — re-enable is a one-line revert.
+
+**Why parked:** the in-product skin chooser is not user-ready. Navy+Gold never finished its production QA pass (the v0 swatch on `/game/settings?tab=appearance` was labeled "Coming Soon" since Day 48 and stayed there). The V1→V8 NS skin work (May 18–22) proved the white-label spine — same component tree, same data flow, three skins driven by a single `data-skin` attribute — but the V1–V8 surface was Sasha-curated for one specific demo audience (Balaji / ns.com lockup), not a polished end-user chooser.
+
+**Restore conditions (when this comes back):**
+1. Navy+Gold receives a full QA pass: every page audited under `[data-skin="navy-gold"]`, every gold→cream override verified, no token leaks. Same end-to-end walkthrough we ran for NS.
+2. **OR** decide that Aurora is the canonical default permanently, retire Navy+Gold + Network-School from `SKIN_OPTIONS`, and remove the appearance tab definitively rather than hiding it.
+3. **OR** introduce a real second community skin (Priroda / other) — at that point the chooser graduates from "alternate aesthetic" into the actual white-label per-community surface, and `theme.config.ts` per `docs/02-strategy/white_label_strategy.md` Phase 2 ships.
+
+**Files involved (for future re-enable):**
+- `src/pages/Settings.tsx` — flip TabsList `grid-cols-2` → `grid-cols-3`, un-comment the Appearance `<TabsTrigger>`, restore `tabParam === "appearance"` branch in `initialTab`. All three changes carry Day 78 inline comments pointing at this roadmap entry.
+- `src/contexts/SkinContext.tsx` — already exposes `useSkin()` with all three skins, no changes needed.
+- `docs/02-strategy/white_label_strategy.md` — v1.6 captures the V1→V8 patterns the chooser would consume.
+
 ### Active priority (2026-05-22, Day 80) — JOURNEY Homebase pane 3 (the "game screen")
 
 **Status:** approved, parked for post-distribution sprint. **Build soon — one of the first things to ship after current distribution work lands.**
