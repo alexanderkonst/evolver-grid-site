@@ -36,8 +36,8 @@
  *       level instruction overriding the user's actual register
  *     Preserved as `_ASSET_MAPPING_PROMPT_V2` below for diff-ability.
  *
- *   v3 (Day 63 evening, 2026-05-07) — alive AND operational. Exported
- *     as the active `ASSET_MAPPING_PROMPT`.
+ *   v3 (Day 63 evening, 2026-05-07) — alive AND operational. Preserved
+ *     as `_ASSET_MAPPING_PROMPT_V3` below.
  *     KEY INSIGHTS DRIVING v3:
  *     1. FOUR DIMENSIONS, NOT ONE LADDER. Leverage / Maturity / Horizon
  *        / NATURE — kept distinct so symbolic-mythic capacity can score
@@ -73,11 +73,39 @@
  *     9. POWER-LAW DISTRIBUTION ENFORCED. Most assets 3-5; few 7s; one
  *        or two 9s. If more than ~5 hit 8+, you are inflating.
  *
+ *   v4 (Day 65, 2026-05-09) — Center of Gravity REMOVED. Exported as
+ *     the active `ASSET_MAPPING_PROMPT`.
+ *     WHY REMOVED (Sasha's call): the v3 Center-of-Gravity meta-asset
+ *     overlapped with two other surfaces in this product:
+ *       • Top Talent reveal — already produces the verb-phrase
+ *         field-function ("I [verb] [object]") as `bullseyeSentence`.
+ *       • Mission Discovery — articulates "what you are for."
+ *     The user's external AI doesn't have access to either of those
+ *     outputs, so any CoG it derived from conversation history was a
+ *     worse / contradictory restatement. v4 strips the CoG block
+ *     entirely; the asset map is now purely about deployable assets.
+ *     Hero-card position is now earned by the highest-leverage
+ *     `is_power_node` asset (more honest — most operationally
+ *     activatable, not a re-derived synthesis).
+ *     CHANGES vs v3:
+ *       • Removed the "FIRST — name my CENTER OF GRAVITY" intro block
+ *       • Removed "Center of Gravity" value from the `type` enum
+ *       • Removed `expresses_root` field from the output schema
+ *       • Removed "Center of Gravity is automatically a power node"
+ *       • Simplified SORTING rule (no CoG-first clause)
+ *       • Removed CoG row from the JSON example
+ *     KEPT FROM v3: nature enum (7), horizon enum (4 values incl.
+ *     civilization_scale), is_offer flag, recalibrated leverage rubric,
+ *     power-law guard, relational de-duplication, anti-LinkedIn voice,
+ *     symbolic/mythic dignity protection.
+ *
  * ════════════════════════════════════════════════════════════════════
  *
  * Companion: supabase/functions/match-assets/index.ts is updated the
- * same day to mirror the v3 schema. Both extractors (this user-paste
- * path AND the edge-fn path) produce one consistent shape.
+ * same day to mirror the v4 schema (CoG removed). The Matchmaking UI
+ * keeps a defensive fallback for any in-flight v3 cached responses
+ * (renders a CoG hero card if `typeTitle === "Center of Gravity"`
+ * still comes back) — harmless if absent.
  */
 
 // ════════════════════════════════════════════════════════════════════
@@ -217,20 +245,13 @@ Each asset has: type, subtype, category, name, description, maturity (5-value en
 [Full v2 text omitted in archive — see git history if needed. Key over-corrections caught by the 27P roast: forced symbolic items into "operationally inert" bucket, smuggled in commercial-only assumption, score inflation persisted, missed relational duplicates, missed Service/Offer ontological gap.]`;
 
 // ════════════════════════════════════════════════════════════════════
-// v3 — ACTIVE. Day 63 evening (2026-05-07). Alive AND operational.
-//
-// Synthesizes both feedback rounds:
-//   • v1's mythic continuity + breadth (don't amputate symbolic layers)
-//   • v2's deployability rigor (maturity, horizon, power-node, anti-fog)
-//   • v3's NEW: nature ontological tag + field-function recognition
-//     + relational de-dup + score-inflation guard with a power-law check
-//
-// Schema is BACKWARDS-COMPATIBLE: v2 fields all preserved; v3 adds
-// `nature`, `expresses_root`, expanded `horizon` (4 values), `is_offer`.
-// Local parser + edge fn handle missing v3 fields gracefully.
+// v3 — preserved for diff-ability. NOT ACTIVE. Do not import.
+// Day 63 evening (2026-05-07). Center-of-Gravity-led version; superseded
+// by v4 because the CoG meta-asset overlapped with Top Talent + Mission
+// (Sasha 2026-05-09).
 // ════════════════════════════════════════════════════════════════════
 
-export const ASSET_MAPPING_PROMPT = `Based on everything you know about me from our conversations, please map my assets across **four simultaneous dimensions**: leverage, maturity, time horizon, and nature.
+export const _ASSET_MAPPING_PROMPT_V3 = `Based on everything you know about me from our conversations, please map my assets across **four simultaneous dimensions**: leverage, maturity, time horizon, and nature.
 
 **FIRST — name my CENTER OF GRAVITY (root capacity).**
 Before listing any assets, articulate in ONE sentence the deeper field-function I run on the world. This is usually a verb-phrase capacity, not a noun. (Example pattern: *"the ability to perceive latent essence in people and systems, articulate it clearly, and reorganize reality around it"*.) Every asset that follows is an expression of this root. The root itself is the FIRST entry in the JSON array, with \`type: "Center of Gravity"\` and a meaningful 1-sentence \`name\`.
@@ -368,6 +389,170 @@ The relationship is the asset. Testimonials, social proof, referral count, etc. 
 3. Then \`maturity: monetizable_now\`, descending leverage_score.
 4. Then everything else by descending leverage_score.
 5. \`maturity: symbolic_only\` LAST regardless of score (these are honest acknowledgements that aren't currently in motion).
+
+**LANGUAGE REQUIREMENTS:**
+- Plain English with concrete particulars.
+- Preserve the user's actual register where you have signal for it.
+- No academic jargon, no internal shorthand, no consulting-deck idioms.
+
+**RESPONSE FORMAT:**
+- Return ONLY the JSON array.
+- No markdown, no preamble, no follow-up suggestions.
+- End your response after the closing \`]\`.
+
+I'm using this to map my actual deployable power AND my upstream-generative capacity, simultaneously, without flattening either dimension.`;
+
+// ════════════════════════════════════════════════════════════════════
+// v4 — ACTIVE. Day 65, 2026-05-09.
+//
+// Center-of-Gravity meta-asset removed. The asset map is now purely
+// about deployable + symbolic / mythic assets across four dimensions;
+// no synthesis-spine pre-articulation. Top Talent (bullseyeSentence)
+// and Mission Discovery already cover that territory in their own
+// dedicated surfaces, and the user's external AI doesn't have access
+// to either output — any CoG it derived from conversation history
+// was a worse / contradictory restatement of the real Top Talent.
+// Hero card position in the matched-list UI is now earned by the
+// highest-leverage power_node asset.
+//
+// All other v3 dimensions preserved: nature (7), horizon (4),
+// maturity (5), is_offer, is_power_node, recalibrated leverage rubric,
+// power-law guard, relational de-duplication, anti-LinkedIn voice.
+// ════════════════════════════════════════════════════════════════════
+
+export const ASSET_MAPPING_PROMPT = `Based on everything you know about me from our conversations, please map my assets across **four simultaneous dimensions**: leverage, maturity, time horizon, and nature.
+
+**TAXONOMY (PRECIOUS — DO NOT REWORD):**
+You must classify each asset into this 3-level taxonomy: **type → subtype → category**.
+
+Types:
+- Expertise
+  - Scientific & Technical: Professional, Life Sciences, Engineering, Information Technology, Mathematics
+  - Business & Economics: Management, Finance, Marketing, Entrepreneurship, Economics
+  - Arts & Humanities: Visual Arts, Performing Arts, Literature, Philosophy, History
+  - Social Sciences: Psychology, Sociology, Anthropology, Political Science, Education
+  - Applied Fields: Healthcare, Law, Environmental Studies, Urban Planning, Agriculture
+- Life Experiences
+  - Personal Growth: Self-discovery, Overcoming Challenges, Spiritual Journeys, Relationships, Health Transformations
+  - Cultural Immersion: Long-term Travel, Living Abroad, Language Acquisition, Cultural Studies, Intercultural Projects
+  - Humanitarian & Service: Volunteering, Social Work, Peace Corps, Disaster Relief, Community Building
+  - Nature & Adventure: Wilderness Expeditions, Environmental Conservation, Extreme Sports, Wildlife Interaction, Sustainable Living
+- Networks
+  - Professional: Industry Associations, Alumni Networks, Professional Societies, Mentorship Circles, Entrepreneurial Ecosystems
+  - Community: Local Organizations, Volunteer Groups, Spiritual Communities, Hobby Clubs, Neighborhood Associations
+  - Industry: Trade Groups, Research Consortiums, Standards Bodies, Innovation Hubs, Industry-Specific Forums
+  - Global: International NGOs, Cultural Exchange Programs, Global Think Tanks, Multinational Collaborations, Diaspora Networks
+- Material Resources
+  - Financial Capital: Liquid Savings, Investment Portfolio, Income Streams, Credit Access
+  - Digital Assets: Domains & Websites, Email Lists & Subscribers, Software & API Access, Digital Content Libraries
+  - Investment Interests: Angel Investing, Seed Funding, Series A-C, Growth Capital, Impact Investing, Philanthropy
+  - Physical Space: Offices, Workshops, Land, Venues, Retreat Centers
+  - Equipment: Technology, Machinery, Vehicles, Scientific Instruments, Artistic Tools
+  - Natural Resources: Water Sources, Energy Resources, Agricultural Land, Forests, Mineral Deposits
+- Intellectual Property
+  - Innovations: Patents, Inventions, Algorithms, Prototypes, Novel Applications
+  - Methodologies: Frameworks, Processes, Systems, Techniques, Approaches
+  - Creative Works: Writing, Artwork, Music, Software, Designs
+- Influence
+  - Thought Leadership: Publishing, Speaking, Consulting, Mentoring, Academic Influence
+  - Media Reach: Social Media, Traditional Media, Podcasts, Blogs, Video Platforms
+  - Industry Recognition: Awards, Board Positions, Expert Status, Patent Citation, Peer Recognition
+  - Community Impact: Local Leadership, Grassroots Organizing, Policy Influence, Social Movements, Philanthropy
+
+**WHEN A REAL ASSET DOESN'T FIT:** if an item is genuinely real but doesn't sit cleanly in any category, set \`category: "Other"\` and explain in description. Do NOT force-fit into the wrong slot. The taxonomy serves reality, not the other way around.
+
+**SERVICE/OFFER NOTE:** Productized offers (paid sessions, cohort programs, retainers, paid call formats, named services) carry \`nature: "economic"\` AND \`is_offer: true\`. They typically file under Influence > Thought Leadership > Consulting/Speaking/Mentoring or Intellectual Property > Methodologies > Frameworks. Do NOT shove offers into Methodologies and call them done — flag them with \`is_offer: true\` so they're distinguishable from the underlying IP they deploy.
+
+**THE FOUR DIMENSIONS:**
+
+1. **Leverage** — value-creation potential (1-10 score).
+2. **Maturity** — how real and deployed it is (5-value enum).
+3. **Horizon** — time at which this asset operates (4-value enum).
+4. **Nature** — what KIND of value this asset produces (7-value enum).
+
+These are independent dimensions — an asset can be high-leverage AND symbolic, high-leverage AND mythic, mid-leverage AND economic, etc. Do not collapse them into one ladder.
+
+**OUTPUT FORMAT (REQUIRED):**
+Return **only** a JSON array. Every entry must include all 10 fields:
+\`\`\`json
+[
+  {
+    "type": "Expertise | Life Experiences | Networks | Material Resources | Intellectual Property | Influence",
+    "subtype": "e.g. Business & Economics, Cultural Immersion — or null if Other",
+    "category": "e.g. Entrepreneurship, Language Acquisition — or 'Other'",
+    "name": "Specific asset name (3-7 words, concrete)",
+    "description": "1-2 sentences. What it actually IS, in plain language that preserves the user's actual register.",
+    "maturity": "monetizable_now | usable_but_needs_packaging | latent | aspirational | symbolic_only",
+    "horizon": "now | near | long_term | civilization_scale",
+    "nature": "practical | relational | symbolic | infrastructural | mythic | intellectual | economic",
+    "leverage_score": 1-10,
+    "leverage_reason": "1 sentence: why this score, what it can produce, who would buy/share/fund it. For symbolic/mythic items, leverage means upstream-generative force, not commercial revenue.",
+    "is_offer": true | false,
+    "is_power_node": true | false
+  }
+]
+\`\`\`
+
+**MATURITY RUBRIC:**
+- \`monetizable_now\` — documented, deliverable, priced — could produce revenue THIS MONTH if activated.
+- \`usable_but_needs_packaging\` — real and proven, but scattered or in your head. Two weeks of packaging from sellable.
+- \`latent\` — potential is real but unproven in market.
+- \`aspirational\` — relational/networked/intended access. Door exists, not yet opened for value.
+- \`symbolic_only\` — mythic/biographical/sacred fuel. Real, but operationally inert RIGHT NOW. (Note: this is different from \`nature: "symbolic"\` — see below.)
+
+**HORIZON RUBRIC:**
+- \`now\` — activate this quarter for income, credibility, distribution.
+- \`near\` — package or position in the next 6-18 months.
+- \`long_term\` — multi-year strategic asset; matures over 2-5 years.
+- \`civilization_scale\` — strategic-north-star, generational. Belongs for orientation, not for this month's plan. Does not compete with money-now items.
+
+**NATURE RUBRIC (the ontological dimension):**
+- \`practical\` — concrete skills, tools, deliverables, artifacts.
+- \`relational\` — trust, connections, warm bonds, shared history.
+- \`symbolic\` — meaning-making, narrative coherence, brand essence, archetypal resonance. (HIGH-LEVERAGE in its own right — these are upstream generators of downstream reality, NOT inert decoration.)
+- \`infrastructural\` — systems, platforms, distribution rails, operational scaffolding.
+- \`mythic\` — origin stories, sacred lineage, cross-domain synthesis that organizes worldview.
+- \`intellectual\` — frameworks, methodologies, structured thought, IP.
+- \`economic\` — commercial offers, financial instruments, productized services.
+
+**CRITICAL — DO NOT amputate symbolic/mythic layers.** Some of the highest-leverage assets a human owns are meaning-making capacity, mythic coherence, cross-domain synthesis, deep trust fields, embodied worldview architecture. These are NOT "symbolic_only" maturity — they may be very real and currently shaping everything around them. Use \`nature: "symbolic"\` or \`nature: "mythic"\` to honor what they are; use \`maturity\` separately to indicate whether they're deployed/usable/latent.
+
+**LEVERAGE_SCORE RUBRIC:**
+"Value" includes ALL of: revenue, credibility, strategic position, generative force, audience trust, mythic coherence. A symbolic asset that holds up your entire worldview is high-leverage. A monetizable asset that doesn't compound others is mid-leverage at best.
+- **10** — load-bearing for everything else; if removed, much collapses.
+- **8-9** — proven and producing value, OR upstream of multiple other assets.
+- **5-7** — real but needs documentation/distribution/proof OR mid-tier generative.
+- **3-4** — latent or symbolic without much downstream activation yet.
+- **1-2** — present but operationally inert.
+
+**POWER-LAW DISTRIBUTION (HARD GUARD AGAINST INFLATION):**
+Most assets should land 3-5. A few at 7. One or two at 9. **At most ~5 assets should hit 8 or higher.** If you find yourself rating more than 5 assets at 8+, you are inflating — re-score. The scoreboard should look like a power law, not a participation trophy.
+
+**IS_POWER_NODE RULE:**
+Mark \`is_power_node: true\` ONLY for the 3-7 assets where, if removed, most of the leverage collapses. Default false. Most users have a small handful of true power nodes. Be ruthless.
+
+**IS_OFFER RULE:**
+\`true\` only for productized offers (sessions, cohorts, retainers, named services with implicit/explicit price). False for the underlying IP, methodologies, or capacities they deploy.
+
+**TRIBAL RECOGNITION TEST (apply after writing each entry):**
+Read each \`name\` + \`description\` + \`leverage_reason\` aloud as if to the user's ideal client / aligned founder / closest collaborator. Two questions:
+1. Would they say *"this is exactly the person who can name what I can't"*?
+2. Would the people NAMED in any relational asset recognize themselves in how they're described — or would the description feel transactional ("social proof generator," "referral source") and rupture trust if they ever saw it?
+If either fails, REWRITE.
+
+**RELATIONAL DE-DUPLICATION:**
+The relationship is the asset. Testimonials, social proof, referral count, etc. are EXPRESSIONS of the relationship — not separate assets. Do NOT list both. Pick the deeper one (the relationship) and fold the expressions into its description. Same goes for: (a) the methodology vs. the productized session that uses it (mark the session \`is_offer: true\`, the methodology stays separate), (b) the audience vs. the broadcast that reached them (the audience is the asset; the broadcast is an event).
+
+**VOICE — preserve relational texture, no LinkedIn copy:**
+- Concrete > abstract. Plain English. A curious 15-year-old should grok the description.
+- BUT do NOT collapse all texture into the same uniform "polished AI" register. When listing networks, name people by name with one human texture-word ("warm," "cracked-open," "in motion") instead of generic functional labels. When listing offers, describe what it actually FEELS like to receive it, not just what it produces. The user's actual register matters more than the reading-level instruction.
+- Anti-pattern: descriptions that sound like landing-page copy, LinkedIn taglines, or coach-speak. If a sentence could appear on any consultant's website, rewrite it.
+
+**SORTING (HARD RULE):**
+1. Power nodes (\`is_power_node: true\`) FIRST, descending leverage_score.
+2. Then \`maturity: monetizable_now\`, descending leverage_score.
+3. Then everything else by descending leverage_score.
+4. \`maturity: symbolic_only\` LAST regardless of score (these are honest acknowledgements that aren't currently in motion).
 
 **LANGUAGE REQUIREMENTS:**
 - Plain English with concrete particulars.
