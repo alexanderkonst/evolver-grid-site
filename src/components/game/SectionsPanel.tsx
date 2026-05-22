@@ -618,6 +618,13 @@ const buildJourneySections = (
             // not the AppleseedDisplay anchor (which surrounds the
             // $37 offer with the $555 funnel + other CTAs).
             path: "/activate-top-talent",
+            // Day 80 Wave 2.8 (Sasha 2026-05-22): locked until Top
+            // Talent is articulated. Buying the deeper monetization
+            // product before the user has a Top Talent is nonsensical
+            // — there's nothing to deepen. Same lock pattern + popover
+            // hint as the other numbered steps.
+            locked: !topTalentDone,
+            lockedHint: "Articulate your top talent first.",
             completed: !!journeyProgress["journey-activation"],
         },
         {
@@ -1124,15 +1131,35 @@ const SectionsPanel = ({
                     //     1. Required step
                     //         ↳ optional sidequest
                     //     2. Required step
+                    //
+                    // Day 80 Wave 2.8 (Sasha 2026-05-22): sidequest now
+                    // honors locked state visually — dim text, no hover
+                    // lift, cursor-not-allowed. The Popover wrapper
+                    // (rowWithTooltip below) handles the click-hint
+                    // popover on hover/tap for both standard + sidequest
+                    // rows uniformly.
                     const isSidequest = section.variant === "sidequest";
                     const sidequestRowContent = isSidequest ? (
                         <div
                             className={cn(
-                                "group flex items-center gap-2.5 px-3 py-2 ml-8 mr-2 rounded-2xl transition-all duration-300 relative cursor-pointer",
+                                "group flex items-center gap-2.5 px-3 py-2 ml-8 mr-2 rounded-2xl transition-all duration-300 relative",
                                 "focus:outline-none focus-visible:ring-2 focus-visible:ring-[#d4af37]/40",
-                                "bg-white/[0.03] hover:bg-white/[0.06] hover:translate-y-[-1px] hover:shadow-[0_0_10px_-4px_rgba(244,212,114,0.25)]",
+                                isLocked
+                                    ? "cursor-not-allowed bg-white/[0.03] opacity-55"
+                                    : "cursor-pointer bg-white/[0.03] hover:bg-white/[0.06] hover:translate-y-[-1px] hover:shadow-[0_0_10px_-4px_rgba(244,212,114,0.25)]",
                             )}
                             onClick={handleSectionClick}
+                            aria-disabled={isLocked || undefined}
+                            onMouseEnter={
+                                isLocked && !isTouchDevice
+                                    ? () => setOpenLockedHintId(section.id)
+                                    : undefined
+                            }
+                            onMouseLeave={
+                                isLocked && !isTouchDevice
+                                    ? () => setOpenLockedHintId(null)
+                                    : undefined
+                            }
                         >
                             <span className="w-[22px] h-[22px] flex items-center justify-center flex-shrink-0">
                                 <span

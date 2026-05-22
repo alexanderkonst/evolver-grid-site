@@ -21,6 +21,10 @@ import {
     CTA_SMALL_CAPS_STYLE,
     igniteLogo,
 } from "@/lib/landingDesign";
+// Day 79 (Sasha 2026-05-22): EntryPath read here so the "choice-route"
+// step can show match-path users a "Step 1 of 2" orientation above the
+// Faster/Guided options. Build-path users see the screen unchanged.
+import { useEntryPath } from "@/contexts/EntryPathContext";
 // Funnel v2 (Day 77, Sasha 2026-05-20): match-path conditional CTAs
 // below the Top Talent reveal. Renders null for build-path users so
 // AppleseedDisplay's existing CTAs are untouched.
@@ -88,6 +92,14 @@ const ZoneOfGeniusEntry = () => {
     const location = useLocation();
     const { toast } = useToast();
     const [searchParams] = useSearchParams();
+    // Day 79 (Sasha 2026-05-22): match-path orientation gate. When the
+    // user arrived via `?path=match` (Balaji/ecosystem outreach), the
+    // choice-route screen shows a "Step 1 of 2" preamble above the
+    // Faster/Guided options so the user understands the Top Talent
+    // reveal is step 1 and the actual intros come after. Build-path
+    // users see the screen unchanged.
+    const { path: entryPath } = useEntryPath();
+    const isMatchPath = entryPath === "match";
 
     // Show the full platform shell everywhere (Sasha, 2026-04-21): the ZoG
     // reveal module now lives inside the JOURNEY shell regardless of route.
