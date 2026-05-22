@@ -520,16 +520,15 @@ const AppleseedDisplay = ({
                             transform: ctasVisible ? 'translateY(0)' : 'translateY(12px)',
                         }}
                     >
+                        {/* Day 80 Wave 2.7 (Sasha 2026-05-22): copy + glyph
+                            revision. Removed the ✦ eyebrow. Headline now
+                            celebrates the just-completed act; body names
+                            the why for the next act (meet people heading
+                            the same way) without methodology jargon. */}
                         <div
                             className="liquid-glass-strong rounded-3xl p-6 sm:p-8 text-center space-y-4"
                             style={{ border: '1px solid rgba(212, 175, 55, 0.32)' }}
                         >
-                            <p
-                                className="text-[10px] uppercase tracking-[0.32em] font-medium"
-                                style={{ color: 'var(--skin-accent-gold, #b8860b)' }}
-                            >
-                                ✦ Your Top Talent is articulated
-                            </p>
                             <h2
                                 className="leading-[1.15] tracking-[-0.005em]"
                                 style={{
@@ -539,7 +538,7 @@ const AppleseedDisplay = ({
                                     color: 'var(--skin-text-primary, #0a1628)',
                                 }}
                             >
-                                Next, give your matches direction.
+                                Congrats with articulating your top talent!
                             </h2>
                             <p
                                 className="italic text-base sm:text-lg leading-snug"
@@ -549,7 +548,7 @@ const AppleseedDisplay = ({
                                     color: 'var(--skin-text-muted, rgba(11,42,90,0.78))',
                                 }}
                             >
-                                Discover your mission so the matching engine knows where you're heading.
+                                Next, articulate where you're heading to meet people heading the same way.
                             </p>
                             <button
                                 type="button"
