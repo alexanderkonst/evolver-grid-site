@@ -601,6 +601,42 @@ const SectionsPanel = ({
     // chip — single source of truth across the funnel boundary.
     const { activated: deepProfileActivated } = useDeepProfileActivated();
 
+    // Day 79 (Sasha 2026-05-22): one-shot expansion of ME → Top Talent
+    // sub-list right after the user unlocks the deeper view.
+    // Default for top-talent is now collapsed (was: auto-expand
+    // whenever any sub-route was active). Sasha's call: the 12-item
+    // sub-list is visual noise on every ME visit; the only moment it
+    // should pop open is the first time after activation, when the
+    // user is meant to discover what they just gained access to.
+    // Sessionstorage flag survives navigation inside the tab but
+    // resets on a new tab / new session, so a second login session
+    // gets one fresh reveal too. User's explicit chevron toggle
+    // (recorded in `expandedSections`) always wins.
+    const TT_DROPDOWN_REVEALED_KEY = "fytt:tt-dropdown-revealed";
+    useEffect(() => {
+        if (typeof window === "undefined") return;
+        if (!deepProfileActivated) return;
+        if (activeSpaceId !== "grow") return;
+        try {
+            if (window.sessionStorage.getItem(TT_DROPDOWN_REVEALED_KEY) === "true") return;
+        } catch {
+            return;
+        }
+        setExpandedSections((prev) => {
+            // Respect explicit user toggle — only auto-expand if the
+            // user hasn't touched the chevron yet this session.
+            if (prev["top-talent"] !== undefined) return prev;
+            try {
+                window.sessionStorage.setItem(TT_DROPDOWN_REVEALED_KEY, "true");
+            } catch {
+                // localStorage / sessionStorage can throw in private mode —
+                // accept the flag won't persist and just expand once for
+                // this render cycle.
+            }
+            return { ...prev, "top-talent": true };
+        });
+    }, [deepProfileActivated, activeSpaceId]);
+
     // Day 65 (Sasha 2026-05-15): per-item progress for the JOURNEY pane.
     // Drives the strikethrough on rows the user has accomplished
     // (Top Talent reveal, asset mapping, QoL assessment, mission
@@ -932,7 +968,17 @@ const SectionsPanel = ({
                     // useEffect tick. The user's explicit toggle still wins
                     // (entry in `expandedSections` overrides the default).
                     const hasActiveChild = !!section.subSections?.some((sub) => isActive(sub.path));
-                    const isExpanded = expandedSections[section.id] ?? hasActiveChild;
+                    // Day 79 (Sasha 2026-05-22): top-talent defaults to
+                    // collapsed even when on a sub-route. The dropdown
+                    // is only auto-opened by the one-shot useEffect
+                    // above (first ME visit after deepProfileActivated
+                    // flips true). Other sections (AI OS Suites, UBB
+                    // phases, LEARN paths) keep the hasActiveChild
+                    // auto-expand so they pop open when the user lands
+                    // on a relevant sub-route.
+                    const defaultExpanded =
+                        section.id === "top-talent" ? false : hasActiveChild;
+                    const isExpanded = expandedSections[section.id] ?? defaultExpanded;
                     // Day 52 (Sasha 2026-04-26): when sibling sections share a
                     // common path prefix (e.g. UBB pane 2: /ubb, /ubb/session,
                     // /ubb/marketing, …), plain isActive() false-positives the
