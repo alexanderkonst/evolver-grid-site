@@ -277,6 +277,40 @@
 
 ## 🔮 Parked / Future
 
+### Active priority (2026-05-22, Day 80) — JOURNEY Homebase pane 3 (the "game screen")
+
+**Status:** approved, parked for post-distribution sprint. **Build soon — one of the first things to ship after current distribution work lands.**
+
+The 3rd pane of JOURNEY space should evolve from "landing hero forever" into a **path-aware homebase** for returning users. Inspired by game main screens + the user's own framing: *"the most important real estate, the game screen — the compendium of their self-knowledge."* First-time visitors still see the landing hero (marketing surface); returning users (any progress saved) see the homebase.
+
+**Anatomy** (per Day 80 synthesis):
+- **Digital twin section** — the user's accumulated self-knowledge at a glance: Soul (Top Talent archetype), Direction (Mission sentence), Capacity (Asset count), State (QoL summary), with Level + XP if we bring the legacy game-progression layer back
+- **Stepped path visualization** — horizontal or vertical progress strip showing 1→1.5→2→3→4→5 with strikethrough on completed, gold-ring on current, dim on future
+- **One primary CTA** — the next actionable step, large and obvious
+- **What this unlocks** — small reminder of the path-aware terminus ("Find collaborators" or "Build a business") with a tease for what completing the next step gives them
+- **Quiet ambient brand text** at the bottom — vision copy preserved, not the dominant signal
+
+**Open design questions for the spec:**
+- Does the homebase replace the landing hero for returners entirely, or render alongside as a stacked second section?
+- XP / Level system — bring back from legacy or keep flat for v1?
+- Digital-twin metaphor — abstract visualization or literal portrait + artifact tree?
+- Mobile layout — collapse to vertical strip + stacked sections
+
+**Build mode:** Phase-1 spec via integrated_product_building_workflow.md. New component `JourneyHomebase.tsx`. Conditional render in `JourneyPage.tsx` based on progress signals. ~300-500 lines of focused work. Should ship with the new transformative-result pattern + Continue-your-journey universal CTA + per-save celebration modals (the connecting tissue).
+
+### Parked (2026-05-22, Day 80) — Engineering Perceived Value practice doc
+
+Sasha's framing: *"the practice for engineering perceived value"* — the practitioner layer that translates ITFT physics (Attention + Pain + Purchasing Power) and Sacred Transaction Field energetics (13 factors across 3 tiers) into concrete UI/UX/copy moves per screen. Working title: `docs/01-vision/engineering_perceived_value.md`.
+
+**Current state:** we have the physics (ITFT) and the energetics (Sacred Transaction Field). We're missing the practitioner layer that maps the 13 factors to concrete moves with named patterns (value anchoring, sovereign invitation, pre-collapse seeding, gated reveal, identity snap, cost-signal fit). Also missing: anti-pattern documentation (e.g., the *"X% of your potential"* upsell framing I floated on Day 80, which conflated products and violated the Sales-as-Love field).
+
+**Scope when picked up:**
+1. Position — bridge between ITFT + STF + concrete product work
+2. 13-factor checklist applied to each paid surface ($37 Activation, $555 Top Talent Business Session, /path)
+3. Named patterns with worked examples from FYTT
+4. Anti-patterns documented with why they violate the field
+5. Applied audit of current paid surfaces with recommended changes
+
 ### Parked (2026-05-16, Day 66 wave M) — Emphasize the next available JOURNEY step
 
 When a JOURNEY pane item gets crossed out (e.g., after Mission Discovery save → item #8 strikethrough), the **next available step in the sequence** should also be visually emphasized — a subtle pulse / gold halo / "next" affordance — so the user sees not just "I did this" but also "and here's what's next." Idea surfaced when designing the post-save flow on `/mission-discovery`; deemed overkill for the v1 of that flow but worth doing eventually. Where: `src/components/game/SectionsPanel.tsx` rendering loop; the "next item" can be derived from the same `useJourneyProgress` map by finding the first un-completed un-locked item after the just-completed one. Animation primitive: similar to the `.fytt-strikethrough--animating` pattern but applied as a brief glow / pulse on the next row's pill.
