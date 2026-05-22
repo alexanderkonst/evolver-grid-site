@@ -7,6 +7,11 @@ import { useNavigate } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { useSkin } from "@/contexts/SkinContext";
+// Day 80 Wave 2.4 (Sasha 2026-05-22): match-path users get a clean
+// reveal page (celebration + Discover My Mission CTA only — no $555
+// funnel competing for attention). Build-path users keep the current
+// three-options + CTA-3 + CTA-4 layout.
+import { useEntryPath } from "@/contexts/EntryPathContext";
 // Day 48 iter 15 (Sasha): the "Turn My Top Talent into a Growing
 // Business" primary CTA migrated from the white-glass card to the
 // landing CTA signature (glass-dark pill + ignite emblem + small-caps
@@ -185,6 +190,11 @@ const AppleseedDisplay = ({
     const { toast } = useToast();
     const { skin } = useSkin();
     const navigate = useNavigate();
+    // Day 80 Wave 2.4: match-path users see a clean reveal with one
+    // forward CTA (Discover My Mission). Build-path users see the
+    // existing three-options layout unchanged.
+    const { path: entryPath } = useEntryPath();
+    const isMatchPath = entryPath === "match";
     // On Navy+Gold the light-cream reveal card reads as a bright slab on
     // dark panel. Use the hero's built-in `darkMode` palette (liquid-glass
     // body + cream text) so the card stays in the skin's family.
@@ -495,11 +505,80 @@ const AppleseedDisplay = ({
                     </p>
                 </div>
 
+                {/* Day 80 Wave 2.4 (Sasha 2026-05-22): match-path users
+                    get a CLEAN post-reveal — celebration + one Mission CTA.
+                    Build-path users keep the existing three-options layout
+                    (Build $555 / Activate $37 / Playbook / Email-me-result).
+                    The $555 Productize Yourself offer doesn't belong on the
+                    match-path reveal — that user came to find collaborators,
+                    not to build solo. Mission is their natural next step. */}
+                {isMatchPath && (
+                    <div
+                        className="space-y-6 max-w-lg mx-auto transition-all duration-700 ease-out"
+                        style={{
+                            opacity: ctasVisible ? 1 : 0,
+                            transform: ctasVisible ? 'translateY(0)' : 'translateY(12px)',
+                        }}
+                    >
+                        <div
+                            className="liquid-glass-strong rounded-3xl p-6 sm:p-8 text-center space-y-4"
+                            style={{ border: '1px solid rgba(212, 175, 55, 0.32)' }}
+                        >
+                            <p
+                                className="text-[10px] uppercase tracking-[0.32em] font-medium"
+                                style={{ color: 'var(--skin-accent-gold, #b8860b)' }}
+                            >
+                                ✦ Your Top Talent is articulated
+                            </p>
+                            <h2
+                                className="leading-[1.15] tracking-[-0.005em]"
+                                style={{
+                                    fontFamily: "'Cormorant Garamond', serif",
+                                    fontSize: 'clamp(1.5rem, 4vw, 1.95rem)',
+                                    fontWeight: 600,
+                                    color: 'var(--skin-text-primary, #0a1628)',
+                                }}
+                            >
+                                Next, give your matches direction.
+                            </h2>
+                            <p
+                                className="italic text-base sm:text-lg leading-snug"
+                                style={{
+                                    fontFamily: "'Source Serif 4', serif",
+                                    fontWeight: 500,
+                                    color: 'var(--skin-text-muted, rgba(11,42,90,0.78))',
+                                }}
+                            >
+                                Discover your mission so the matching engine knows where you're heading.
+                            </p>
+                            <button
+                                type="button"
+                                onClick={() => navigate('/mission-discovery')}
+                                className="liquid-glass-dark cta-breath w-full rounded-full inline-flex items-center justify-center gap-2 px-5 py-3.5 text-base sm:text-lg font-semibold transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] mt-2"
+                                style={{
+                                    fontFamily: "'Cormorant Garamond', serif",
+                                    color: 'var(--skin-cta-text, rgba(245,245,250,0.98))',
+                                    backgroundImage:
+                                        'var(--skin-cta-bg, linear-gradient(135deg, rgba(10,22,40,0.72) 0%, rgba(26,30,58,0.62) 50%, rgba(10,22,40,0.72) 100%))',
+                                    boxShadow:
+                                        'var(--skin-cta-shadow, 0 0 18px -4px rgba(240,194,127,0.45), 0 10px 24px -10px rgba(10,22,40,0.5))',
+                                }}
+                            >
+                                <span style={CTA_SMALL_CAPS_STYLE}>Discover My Mission</span>
+                                <ArrowRight aria-hidden="true" className="w-4 h-4 flex-shrink-0" />
+                            </button>
+                        </div>
+                    </div>
+                )}
+
                 {/* THREE OPTIONS — Day 57 (Sasha 2026-05-01).
                     Visual hierarchy is natural gravity, not pressure.
                     Primary = calm-solid dark glass. Secondary = soft outline.
                     Tertiary = text link. Fades in ~1.2s after the snapshot
-                    so the recognition lands first; choice arrives second. */}
+                    so the recognition lands first; choice arrives second.
+                    Day 80 Wave 2.4: build-path only — match-path renders
+                    the single Mission CTA above instead. */}
+                {!isMatchPath && (
                 <div
                     className="space-y-8 max-w-lg mx-auto transition-all duration-700 ease-out"
                     style={{
@@ -780,6 +859,8 @@ const AppleseedDisplay = ({
 
                 </div>
 
+                )}
+
                 {/* Day 61 (Sasha 2026-05-04 22:00): CTA 3 + CTA 4 added
                     to complete the canonical 4-CTA sequence. Per Sasha:
                     the same sequence appears on BOTH reveal pages
@@ -788,9 +869,14 @@ const AppleseedDisplay = ({
                       CTA 2: Leverage top talent ($37) — Card B above
                       CTA 3: Build it yourself with the playbook (THIS)
                       CTA 4: Or just email me my result (button-to-input,
-                             same pattern as assessment path). */}
+                             same pattern as assessment path).
+                    Day 80 Wave 2.4: CTA 3 hidden on match path (the
+                    playbook is build-path territory). CTA 4 still shows
+                    on both paths — it's a utility (email me my result /
+                    "Saved ✓"), not a sales offer. */}
 
                 {/* CTA 3 — playbook card */}
+                {!isMatchPath && (
                 <div className="max-w-md mx-auto pt-4">
                     <a
                         href="/playbook"
@@ -817,6 +903,7 @@ const AppleseedDisplay = ({
                         </h3>
                     </a>
                 </div>
+                )}
 
                 {/* CTA 4 — Or just email me my result (button-to-input pattern) */}
                 <div className="max-w-md mx-auto pt-4 pb-2">
@@ -863,7 +950,11 @@ const AppleseedDisplay = ({
                 replaced with a compact right-anchored glass pill so it
                 reads as a quiet shortcut, not a banner. Appears at ~50%
                 scroll, hides near the very bottom (where the inline CTAs
-                already cover the same offer). */}
+                already cover the same offer).
+                Day 80 Wave 2.4: hidden on match path. The pill points to
+                the $37 Activation product which doesn't belong on the
+                match-path reveal (they reach it via JOURNEY 1.5). */}
+            {!isMatchPath && (
             <div
                 className={`fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40 transition-all duration-500 ${
                     floatBarVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'

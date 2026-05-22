@@ -609,7 +609,10 @@ const buildJourneySections = (
             label: "Find out how to monetize your top talent",
             priceChip: "$37",
             variant: "sidequest",
-            path: "/zone-of-genius#activate",
+            // Day 80 Wave 2.4: route to the dedicated standalone page,
+            // not the AppleseedDisplay anchor (which surrounds the
+            // $37 offer with the $555 funnel + other CTAs).
+            path: "/activate-top-talent",
             completed: !!journeyProgress["journey-activation"],
         },
         {
@@ -1108,13 +1111,21 @@ const SectionsPanel = ({
                     // Result: a true sibling row with ✦ glyph, label
                     // (italic, slightly muted to differentiate from
                     // numbered steps), and right-aligned price chip.
+                    // Day 80 Wave 2.4 (Sasha 2026-05-22): indented LEFT
+                    // (ml-8) so the row reads as a CHILD/option of the
+                    // step above it, not an equal sibling row. Combined
+                    // with the smaller text size + italic register +
+                    // ✦ glyph, the visual hierarchy now reads as:
+                    //     1. Required step
+                    //         ↳ optional sidequest
+                    //     2. Required step
                     const isSidequest = section.variant === "sidequest";
                     const sidequestRowContent = isSidequest ? (
                         <div
                             className={cn(
-                                "group flex items-center gap-2.5 px-3 py-3 mx-2 rounded-2xl transition-all duration-300 relative cursor-pointer",
+                                "group flex items-center gap-2.5 px-3 py-2 ml-8 mr-2 rounded-2xl transition-all duration-300 relative cursor-pointer",
                                 "focus:outline-none focus-visible:ring-2 focus-visible:ring-[#d4af37]/40",
-                                "bg-white/[0.04] hover:bg-white/[0.08] hover:translate-y-[-1px] hover:shadow-[0_0_12px_-4px_rgba(244,212,114,0.30)]",
+                                "bg-white/[0.03] hover:bg-white/[0.06] hover:translate-y-[-1px] hover:shadow-[0_0_10px_-4px_rgba(244,212,114,0.25)]",
                             )}
                             onClick={handleSectionClick}
                         >
