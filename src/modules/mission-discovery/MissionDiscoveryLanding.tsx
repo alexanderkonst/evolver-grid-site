@@ -310,11 +310,27 @@ const MissionDiscoveryLanding = () => {
             //    pane 2 shows the JOURNEY rail (where item #8 lives).
             // 3. Tell GameShellV2 to ensure pane 2 is open so the user
             //    sees the strikethrough animation + the next step.
+            // 4. Day 80 Wave 2 (Sasha 2026-05-22): fire celebration modal
+            //    with the saved sentence. Once-per-primitive via the
+            //    listener's sessionStorage flag — re-saves don't re-fire.
             window.dispatchEvent(new CustomEvent("fytt:refresh-journey-progress"));
             window.dispatchEvent(
                 new CustomEvent("fytt:set-active-space", { detail: { spaceId: "journey" } }),
             );
             window.dispatchEvent(new CustomEvent("fytt:open-sections-panel"));
+            try {
+                window.dispatchEvent(
+                    new CustomEvent("fytt:celebrate", {
+                        detail: {
+                            primitive: "mission",
+                            variant: "regular",
+                            resultText: finalSentence,
+                        },
+                    }),
+                );
+            } catch {
+                // Defensive — never block save on celebration UX.
+            }
         } catch (err) {
             // Day 77 (Sasha 2026-05-20): surface the actual error.
             // Supabase errors are PostgrestError-shaped plain objects

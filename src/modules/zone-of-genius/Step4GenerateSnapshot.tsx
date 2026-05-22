@@ -416,6 +416,25 @@ ${snapshotText}`;
 
       toast.success("Your Top Talent has been saved!");
       successToastFired = true;
+
+      // Day 80 Wave 2 (Sasha 2026-05-22): fire celebration modal event.
+      // Listener (App.tsx) decides whether to show — once-per-primitive
+      // via sessionStorage. Variant is always 'regular' for Top Talent
+      // (graduation only fires after Assets save crosses T+M+A).
+      try {
+        window.dispatchEvent(
+          new CustomEvent("fytt:celebrate", {
+            detail: {
+              primitive: "talent",
+              variant: "regular",
+              resultText: cleanedArchetypeTitle || undefined,
+            },
+          }),
+        );
+      } catch {
+        // Defensive — never block save on celebration UX.
+      }
+
       const redirectPath = getPostZogRedirect(returnTo);
       if (redirectPath) {
         setTimeout(() => navigate(redirectPath), 800);
