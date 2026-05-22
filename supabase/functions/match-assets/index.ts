@@ -276,37 +276,20 @@ Example output (excerpt — first 2 entries):
     const aiResult = await response.json();
     const content = aiResult.choices?.[0]?.message?.content || "[]";
 
-    // Day 63 (Sasha 2026-05-07): response shape extended with the new
-    // dimensions from the v3 prompt — maturity, horizon, leverage_score,
-    // is_power_node. The first four core fields stay required; the new
-    // fields are passed through when present (graceful for any model
-    // that drops a field). Validation rejects anything missing the four
-    // core fields so the client can still render meaningful cards.
-    //
-    // Day 65 (Sasha 2026-05-09) v4: Center of Gravity removed. The
-    // `expresses_root` field is no longer requested from the model and
-    // is not surfaced to the client. Top Talent's bullseyeSentence and
-    // Mission Discovery already carry that semantic load — the asset
-    // map does a different job (strategic deployment, not self-
-    // understanding). Field is dropped from EdgeMatchOut and from the
-    // validatedMatches mapping; any v3-era cached model output that
-    // still includes it is silently ignored.
+    // Day 65 evening (Sasha 2026-05-09) v5: LEAN SCHEMA. The edge fn
+    // now returns exactly 3 fields per asset — category, description,
+    // maturity. Everything else (name, why_value, horizon, nature,
+    // leverage_score, is_power_node, is_offer) was retired in v5
+    // because the fields didn't earn their place: weird AI-generated
+    // names obscured assets, horizon/nature were unclear, leverage
+    // was being mis-read as "why this is here," power_node was fluffy,
+    // is_offer didn't drive any feature. Description carries whatever
+    // strategic context matters; client derives a title from the first
+    // sentence when saving.
     type EdgeMatchOut = {
       category: string;
-      name: string;
       description: string;
-      why_value: string;
       maturity?: "monetizable_now" | "usable_but_needs_packaging" | "latent" | "aspirational" | "symbolic_only";
-      // Day 63 v3 — horizon expanded from 3 values to 4. v2's "next" still
-      // accepted via legacy mapping below for backwards compat with any
-      // model that hasn't picked up the new prompt yet.
-      horizon?: "now" | "near" | "long_term" | "civilization_scale" | "next" | "later";
-      // Day 63 v3 — nature ontological tag (7 values) preserves symbolic /
-      // mythic capacity dignity instead of v2's flatten-to-symbolic_only.
-      nature?: "practical" | "relational" | "symbolic" | "infrastructural" | "mythic" | "intellectual" | "economic";
-      leverage_score?: number;
-      is_offer?: boolean;
-      is_power_node?: boolean;
     };
 
     let matches: EdgeMatchOut[] = [];
@@ -320,12 +303,8 @@ Example output (excerpt — first 2 entries):
       matches = [];
     }
 
-    // Allowed enum values — drop unknown values to undefined so the
-    // client doesn't render a garbage badge. Day 63 v3 adds NATURE
-    // (7 values) and expands HORIZON to 4 values. Legacy v2 horizon
-    // values (next/later) are mapped forward to v3 equivalents so
-    // models that haven't picked up the new prompt still produce
-    // valid output.
+    // Allowed maturity values — drop unknown to undefined so the client
+    // doesn't render a garbage badge. v5 is the only ranking signal left.
     const MATURITY_VALUES = new Set([
       "monetizable_now",
       "usable_but_needs_packaging",
@@ -333,49 +312,13 @@ Example output (excerpt — first 2 entries):
       "aspirational",
       "symbolic_only",
     ]);
-    const HORIZON_VALUES = new Set([
-      "now",
-      "near",
-      "long_term",
-      "civilization_scale",
-    ]);
-    const NATURE_VALUES = new Set([
-      "practical",
-      "relational",
-      "symbolic",
-      "infrastructural",
-      "mythic",
-      "intellectual",
-      "economic",
-    ]);
-    // v2 → v3 horizon back-compat mapping. Older models may still emit
-    // "next" or "later"; we map them forward to keep validation passing.
-    const mapLegacyHorizon = (h: string | undefined): string | undefined => {
-      if (!h) return undefined;
-      if (HORIZON_VALUES.has(h)) return h;
-      if (h === "next") return "near";
-      if (h === "later") return "long_term";
-      return undefined;
-    };
 
     const validatedMatches = matches
-      .filter((m) => m.category && m.name && m.description && m.why_value)
+      .filter((m) => m.category && m.description)
       .map((m) => ({
         category: m.category,
-        name: m.name,
         description: m.description,
-        why_value: m.why_value,
         maturity: m.maturity && MATURITY_VALUES.has(m.maturity) ? m.maturity : undefined,
-        horizon: mapLegacyHorizon(m.horizon),
-        nature: m.nature && NATURE_VALUES.has(m.nature) ? m.nature : undefined,
-        leverage_score:
-          typeof m.leverage_score === "number" &&
-          m.leverage_score >= 1 &&
-          m.leverage_score <= 10
-            ? Math.round(m.leverage_score)
-            : undefined,
-        is_offer: typeof m.is_offer === "boolean" ? m.is_offer : false,
-        is_power_node: typeof m.is_power_node === "boolean" ? m.is_power_node : false,
       }));
 
     return new Response(

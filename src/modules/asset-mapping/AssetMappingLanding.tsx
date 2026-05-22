@@ -36,53 +36,32 @@ import {
 } from "@/components/ui/tooltip";
 
 type Step = "choice" | "has-ai" | "paste-response" | "matched";
-// Day 63 (Sasha 2026-05-07) v3: extended with three new dimensions from the
-// Divine-Roast prompt upgrade — `maturity` (5-value enum), `horizon` (now/
-// next/later), and `isPowerNode` (top 5-7 assets). All optional for back-
-// compat with pre-Day-63 AI responses; UI conditionally renders each badge
-// only when present, so legacy snapshots degrade gracefully.
+
+// Day 65 evening (Sasha 2026-05-09) v5 lean schema. The asset map now
+// carries exactly the fields that earn their place: taxonomy breadcrumb
+// + description + maturity. The old v3/v4 dimensions (horizon, nature,
+// leverage_score, leverage_reason, is_power_node, is_offer, expresses_root,
+// AI-generated name) were all retired — see assetMappingPrompt.ts header
+// changelog for the rationale.
 type AssetMaturity =
     | "monetizable_now"
     | "usable_but_needs_packaging"
     | "latent"
     | "aspirational"
     | "symbolic_only";
-// Day 63 v3 — horizon expanded from 3 → 4 values. v2 strings ("next",
-// "later") map forward to "near" / "long_term" via the helpers below.
-type AssetHorizon = "now" | "near" | "long_term" | "civilization_scale";
-// Day 63 v3 — NATURE: ontological dimension. Lets symbolic/mythic
-// capacity coexist with operational deployability without flattening
-// either. Honors that some highest-leverage assets are upstream-
-// generative (meaning-making, mythic coherence, deep trust fields).
-type AssetNature =
-    | "practical"
-    | "relational"
-    | "symbolic"
-    | "infrastructural"
-    | "mythic"
-    | "intellectual"
-    | "economic";
 
 type MatchedAsset = {
     typeTitle: string;
     subTypeTitle?: string;
     categoryTitle?: string;
     categoryId?: string;
+    // Title is derived client-side from the first sentence of the
+    // description when the asset is saved — the v5 prompt no longer
+    // asks the AI to invent a name. May be empty in the fetched
+    // shape; `handleSaveAssets` derives a usable title at save time.
     title: string;
     description?: string;
-    leverageScore?: number;
-    leverageReason?: string;
-    // Day 63 v3 — strategic dimensions
     maturity?: AssetMaturity;
-    horizon?: AssetHorizon;
-    nature?: AssetNature;
-    expressesRoot?: string;
-    isPowerNode?: boolean;
-    isOffer?: boolean;
-    // The Center of Gravity meta-asset (root field-function) is the
-    // first array entry per v3. Identified by typeTitle === "Center
-    // of Gravity" — rendered with a special hero card at the top of
-    // the matched list.
 };
 
 const MATURITY_VALUES: AssetMaturity[] = [
@@ -92,34 +71,32 @@ const MATURITY_VALUES: AssetMaturity[] = [
     "aspirational",
     "symbolic_only",
 ];
-const HORIZON_VALUES: AssetHorizon[] = ["now", "near", "long_term", "civilization_scale"];
-const NATURE_VALUES: AssetNature[] = [
-    "practical",
-    "relational",
-    "symbolic",
-    "infrastructural",
-    "mythic",
-    "intellectual",
-    "economic",
-];
 
 const isMaturity = (v: unknown): v is AssetMaturity =>
     typeof v === "string" && (MATURITY_VALUES as string[]).includes(v);
-const isHorizon = (v: unknown): v is AssetHorizon => {
-    if (typeof v !== "string") return false;
-    if ((HORIZON_VALUES as string[]).includes(v)) return true;
-    return false;
+
+// Derive a clean asset title from the description's first sentence,
+// capped at 80 characters. The v5 prompt no longer asks the AI for
+// a name (AI-generated names like "burning conversion" obscured more
+// than they clarified); descriptions carry the actual semantic load,
+// and the saved-asset row still needs a short readable headline to
+// identify it by — so we extract it here at save time.
+const deriveTitleFromDescription = (
+    desc: string | undefined,
+    fallback: string | undefined,
+): string => {
+    const cleanDesc = desc?.trim();
+    if (cleanDesc) {
+        // Split on sentence terminator followed by whitespace, or on
+        // an em-dash flanked by spaces (often used as a sentence break
+        // in the user's register).
+        const firstSentence = cleanDesc.split(/(?<=[.!?])\s+|\s+—\s+/)[0]?.trim()
+            || cleanDesc;
+        if (firstSentence.length <= 80) return firstSentence;
+        return firstSentence.slice(0, 77).trimEnd() + "…";
+    }
+    return fallback?.trim() || "Untitled asset";
 };
-// v2 → v3 horizon back-compat — accept "next"/"later" from older models.
-const normalizeHorizon = (v: unknown): AssetHorizon | undefined => {
-    if (typeof v !== "string") return undefined;
-    if ((HORIZON_VALUES as string[]).includes(v)) return v as AssetHorizon;
-    if (v === "next") return "near";
-    if (v === "later") return "long_term";
-    return undefined;
-};
-const isNature = (v: unknown): v is AssetNature =>
-    typeof v === "string" && (NATURE_VALUES as string[]).includes(v);
 
 // Map category strings to our taxonomy
 const CATEGORY_MAP: Record<string, string> = {
