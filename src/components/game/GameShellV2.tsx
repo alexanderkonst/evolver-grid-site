@@ -375,7 +375,7 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
         // activeSpaceId stayed on the default "next-move" space — which
         // has no pane-2 content — and Sasha got pane 1 + pane 3 only,
         // no contextual nav. Same shape of fix as the Day 64 QoL entry.
-        const journeyPaths = ["/", "/playbook", "/path", "/my-artifacts", "/zone-of-genius", "/game/settings", "/dashboard", "/ignite", "/quality-of-life-map", "/asset-mapping"];
+        const journeyPaths = ["/", "/playbook", "/path", "/my-artifacts", "/zone-of-genius", "/game/settings", "/dashboard", "/ignite", "/quality-of-life-map", "/asset-mapping", "/activate-top-talent"];
         const isJourneyFamily = journeyPaths.some(
             (p) => location.pathname === p || location.pathname.startsWith(p + "/"),
         );

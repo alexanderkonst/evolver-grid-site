@@ -65,10 +65,10 @@ const MatchHero = () => {
   return (
     <>
       <SEO
-        title="Find Your Top Talent — Precision Matchmaking"
-        description="Create a profile in minutes using AI, get high-precision matches and intros"
+        title="Find Your Top Talent · Precision Intros for Entrepreneurs"
+        description="Describe yourself with our AI prompts; we'll make intros to the matching entrepreneurs, advisors, and operators."
         path="/?path=match"
-        ogTitle="You don't have to build alone"
+        ogTitle="Your co-creators are 10 minutes away"
       />
       <div className="max-w-[720px] mx-auto px-5 py-8 sm:py-9 md:py-10">
         <header className="text-center">
@@ -93,7 +93,7 @@ const MatchHero = () => {
                 "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.75), 0 0 8px rgba(255,255,255,0.55))",
             }}
           >
-            Precision matchmaking for collaboration
+            Precision intros for entrepreneurs
           </p>
 
           {/* Day 79: the setup line now LEADS the hero (was: italic
@@ -110,7 +110,7 @@ const MatchHero = () => {
                 "var(--skin-text-halo-deep, 0 0 28px rgba(255,255,255,0.85), 0 1px 2px rgba(255,255,255,0.95), 0 0 1px rgba(11,42,90,0.65), 0 1px 0 rgba(11,42,90,0.45))",
             }}
           >
-            Met many cool people but still haven't found people to build with?
+            Met many great people, but still a solopreneur?
           </p>
 
           {/* Hero (h1) — the answer to the setup above. Plain text,
@@ -125,7 +125,7 @@ const MatchHero = () => {
                 "var(--skin-text-halo-deep, 0 0 22px rgba(255,255,255,0.7), 0 1px 2px rgba(255,255,255,0.9), 0 0 1px rgba(11,42,90,0.45), 0 1px 0 rgba(11,42,90,0.25))",
             }}
           >
-            You don't have to build alone
+            You don't have to do it alone. Your co-creators are 10 minutes away.
           </h1>
 
           <Ornament className="my-5 sm:my-6" />
@@ -142,7 +142,7 @@ const MatchHero = () => {
                 "var(--skin-text-halo-deep, 0 0 22px rgba(255,255,255,0.7), 0 1px 2px rgba(255,255,255,0.9), 0 0 1px rgba(11,42,90,0.45), 0 1px 0 rgba(11,42,90,0.25))",
             }}
           >
-            Create a profile in minutes using AI, get high-precision matches and intros
+            Describe yourself with our AI prompts; we'll make intros to the matching entrepreneurs, advisors, and operators.
           </p>
         </header>
 
@@ -151,7 +151,7 @@ const MatchHero = () => {
         <div className="mt-7 sm:mt-8">
           <div className="flex flex-col items-center gap-4 px-4 text-center">
             <EditorialCta
-              label="Find your top talent"
+              label="Match me"
               onClick={() => navigate("/zone-of-genius?path=match")}
             />
 
