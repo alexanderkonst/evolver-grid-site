@@ -249,7 +249,7 @@ const SPACE_SECTIONS: SpaceSections = {
     collaborate: {
         title: "COLLABORATE",
         sections: [
-            { id: "genius-match", label: "Genius Match", path: "/game/collaborate" },
+            { id: "genius-match", label: "Find Collaborators", path: "/game/collaborate" },
             {
                 id: "connections",
                 label: "Connections",
