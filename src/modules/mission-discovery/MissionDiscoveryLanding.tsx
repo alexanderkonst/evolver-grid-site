@@ -324,6 +324,16 @@ const MissionDiscoveryLanding = () => {
             // was invisible. Now we extract `.message` / `.code` /
             // `.details` from whichever shape the error has and log the
             // full payload to console for ops visibility.
+            //
+            // Day 80 (Sasha 2026-05-22): special-case the schema-missing
+            // error class (Postgres 42703 = undefined_column / 42P01 =
+            // undefined_table). These mean a migration is missing in
+            // production — the user can't do anything, but the toast
+            // tells them clearly so they don't waste time retrying. Real
+            // root cause: 3 users hit "Couldn't save mission" on Day 80
+            // because the Day 66 mission_statement column migration was
+            // never applied to the live DB. Fixed by running the migration;
+            // this toast change makes future missed migrations obvious.
             const e: any = err;
             const errMessage =
                 (e && typeof e === "object" && typeof e.message === "string" && e.message) ||
@@ -339,9 +349,17 @@ const MissionDiscoveryLanding = () => {
                 hint: errHint,
                 raw: err,
             });
+
+            const isSchemaError = errCode === "42703" || errCode === "42P01" || errCode === "PGRST204";
             toast({
-                title: "Couldn't save your mission",
-                description: errCode ? `${errMessage} (${errCode})` : errMessage,
+                title: isSchemaError
+                    ? "Mission save is temporarily unavailable"
+                    : "Couldn't save your mission",
+                description: isSchemaError
+                    ? "The platform's database needs a one-time update. We're on it — please try again shortly."
+                    : errCode
+                        ? `${errMessage} (${errCode})`
+                        : errMessage,
                 variant: "destructive",
             });
         } finally {
