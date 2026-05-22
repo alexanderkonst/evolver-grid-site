@@ -1,32 +1,40 @@
 /**
- * CelebrationModal — Day 80 Wave 2 (Sasha 2026-05-22).
+ * CelebrationModal — Day 80 Wave 2 (Sasha 2026-05-22), copy revised
+ * Day 80 Wave 2.1 in Sasha's voice.
  *
  * Per-save celebration modal fired by Top Talent / Mission / Assets
  * after the user crystallizes a primitive. Implements the
  * Transformative-Result Pattern from
  * docs/03-playbooks/integrated_product_building_workflow.md:
- * the after-screen confirms the result, names where it lives,
- * names what it unlocks, gives ONE primary CTA back to JOURNEY.
+ * the after-screen confirms the result, names what was unlocked,
+ * nudges toward the next step (PS), gives ONE primary CTA for the
+ * next action + a subtle secondary text link back to JOURNEY.
  *
- * Two variants:
- *   - "regular"    — fires on Top Talent / Mission / Assets first saves
- *                    that don't yet complete the onboarding stack.
- *   - "graduation" — fires on the Assets save that LANDS T+M+A all
- *                    true. The "you're crystallized" milestone.
- *                    Primary CTA shifts from "Continue your journey"
- *                    to the path-aware opening — "Find Collaborators"
- *                    on match path, "Continue your journey" otherwise.
+ * Anatomy (universal across all 4 variants):
+ *   - Headline:   "Congrats — {what completed}!"
+ *   - Statement:  "You just unlocked {capability}!"
+ *   - PS line:    "PS: {next-step nudge}"
+ *   - Primary CTA button:  result-verb-noun for the next action
+ *                          (path-aware on graduation)
+ *   - Secondary text link: "Continue your journey →"
  *
- * Decoupled from save flows via custom event `fytt:celebrate`.
- * CelebrationModalListener (mounted in App.tsx) owns the modal state
- * and once-per-primitive enforcement via sessionStorage.
+ * Variants:
+ *   - "regular"    — Top Talent / Mission / Assets first saves that
+ *                    don't yet complete the onboarding stack.
+ *   - "graduation" — Assets save that LANDS T+M+A all true. The
+ *                    "you've crystallized your collaboration profile"
+ *                    milestone. Primary CTA path-aware: match path →
+ *                    Find Collaborators; build path → Build A Business.
+ *
+ * Decoupled from save flows via `fytt:celebrate` custom event.
+ * CelebrationModalListener (App.tsx) owns the modal state + once-
+ * per-primitive enforcement via sessionStorage flags.
  */
 
 import {
     Dialog,
     DialogContent,
     DialogDescription,
-    DialogFooter,
     DialogHeader,
     DialogTitle,
 } from "@/components/ui/dialog";
@@ -38,11 +46,9 @@ export type CelebrationPrimitive = "talent" | "mission" | "assets";
 export type CelebrationVariant = "regular" | "graduation";
 
 export interface CelebrationPayload {
-    /** Which primitive just crystallized */
     primitive: CelebrationPrimitive;
-    /** Variant — graduation only fires on Assets save that completes T+M+A */
     variant: CelebrationVariant;
-    /** The result text to surface in the body (archetype name, mission sentence, asset count summary) */
+    /** Optional surfaced result text (mission sentence, archetype name, asset count). */
     resultText?: string;
 }
 
@@ -52,33 +58,35 @@ interface CelebrationModalProps {
     onClose: () => void;
 }
 
-const PRIMITIVE_LABELS: Record<CelebrationPrimitive, {
-    eyebrow: string;
+type CopyBlock = {
     headline: string;
-    profilePath: string;
-    profileLabel: string;
-    unlocks: string;
-}> = {
+    statement: string;
+    ps: string;
+    primaryLabel: string;
+    primaryPath: string;
+};
+
+const REGULAR_COPY: Record<CelebrationPrimitive, CopyBlock> = {
     talent: {
-        eyebrow: "✦ YOUR TOP TALENT IS SAVED",
-        headline: "Your top talent lives on your profile.",
-        profilePath: "/game/me/zone-of-genius",
-        profileLabel: "See on profile →",
-        unlocks: "Your matches and collaborations now read from this.",
+        headline: "Congrats — your Top Talent is articulated!",
+        statement: "You just unlocked the foundation of your collaboration profile.",
+        ps: "PS: discovering your mission next gives your matches direction.",
+        primaryLabel: "Discover My Mission",
+        primaryPath: "/mission-discovery",
     },
     mission: {
-        eyebrow: "✦ YOUR MISSION IS SAVED",
-        headline: "Your mission lives on your profile.",
-        profilePath: "/game/me/mission",
-        profileLabel: "See on profile →",
-        unlocks: "Your collaborators are now paired against this sentence.",
+        headline: "Congrats — your Mission is named!",
+        statement: "You just unlocked direction in your collaboration profile.",
+        ps: "PS: mapping your assets next adds capacity to the signal.",
+        primaryLabel: "Map My Assets",
+        primaryPath: "/asset-mapping",
     },
     assets: {
-        eyebrow: "✦ YOUR ASSETS ARE SAVED",
-        headline: "Your assets live on your profile.",
-        profilePath: "/game/me/assets",
-        profileLabel: "See on profile →",
-        unlocks: "The matching engine now factors in what you bring.",
+        headline: "Congrats — your Assets are mapped!",
+        statement: "You just unlocked capacity in your collaboration profile.",
+        ps: "PS: discovering your mission completes your collaboration profile.",
+        primaryLabel: "Discover My Mission",
+        primaryPath: "/mission-discovery",
     },
 };
 
@@ -89,37 +97,30 @@ const CelebrationModal = ({ payload, open, onClose }: CelebrationModalProps) => 
     if (!payload) return null;
 
     const isGraduation = payload.variant === "graduation";
-    const labels = PRIMITIVE_LABELS[payload.primitive];
 
-    // Graduation overrides the regular labels.
-    const eyebrow = isGraduation ? "✦ YOU'RE CRYSTALLIZED" : labels.eyebrow;
-    const headline = isGraduation
-        ? "T+M+A complete. The world opens."
-        : labels.headline;
-    const body = isGraduation
-        ? "You've crystallized the three primitives the matching engine needs. Find Collaborators is now open. Quality of Life is optional — it refines match quality but isn't required."
-        : labels.unlocks;
-    const showResultBlock = !isGraduation && !!payload.resultText;
-
-    // Graduation primary CTA: route to /game/collaborate/matches on match path,
-    // else /game/journey. Regular always routes to /game/journey.
-    const primaryLabel = isGraduation
-        ? entryPath === "match"
-            ? "Find Collaborators →"
-            : "Continue your journey →"
-        : "Continue your journey →";
-    const primaryTarget = isGraduation && entryPath === "match"
-        ? "/game/collaborate/matches"
-        : "/game/journey";
+    // Graduation copy is verbatim from Sasha's Day 80 Wave 2.1 spec.
+    // Primary CTA is path-aware: match path → Find Collaborators;
+    // build path → Build A Business.
+    const copy: CopyBlock = isGraduation
+        ? {
+              headline: "Congrats with completing your collaboration profile!",
+              statement: "You just unlocked Collaborator Matching!",
+              ps: "PS: taking the optional Quality of Life assessment improves collaboration match quality.",
+              primaryLabel:
+                  entryPath === "match" ? "Find Collaborators" : "Build A Business",
+              primaryPath:
+                  entryPath === "match" ? "/game/collaborate/matches" : "/path",
+          }
+        : REGULAR_COPY[payload.primitive];
 
     const handlePrimary = () => {
         onClose();
-        navigate(primaryTarget);
+        navigate(copy.primaryPath);
     };
 
-    const handleSecondary = () => {
+    const handleContinue = () => {
         onClose();
-        navigate(labels.profilePath);
+        navigate("/game/journey");
     };
 
     return (
@@ -127,139 +128,122 @@ const CelebrationModal = ({ payload, open, onClose }: CelebrationModalProps) => 
             <DialogContent
                 className="max-w-md sm:max-w-lg"
                 style={{
-                    background: "rgba(255, 252, 245, 0.95)",
+                    background: "rgba(255, 252, 245, 0.96)",
                     border: "0.5px solid rgba(212, 175, 55, 0.55)",
                     boxShadow:
-                        "0 16px 40px -20px rgba(10, 22, 40, 0.20), 0 0 22px -8px rgba(212, 175, 55, 0.30)",
+                        "0 16px 40px -20px rgba(10, 22, 40, 0.22), 0 0 22px -8px rgba(212, 175, 55, 0.32)",
                 }}
             >
                 <DialogHeader className="text-center">
-                    <p
-                        style={{
-                            fontFamily: "'DM Sans', system-ui, sans-serif",
-                            fontSize: "11px",
-                            fontWeight: 700,
-                            letterSpacing: "0.18em",
-                            textTransform: "uppercase",
-                            color: "#5d4307",
-                            marginBottom: "12px",
-                        }}
-                    >
-                        {eyebrow}
-                    </p>
                     <DialogTitle
                         style={{
                             fontFamily: "'Cormorant Garamond', Georgia, serif",
                             fontWeight: 700,
                             fontSize: "26px",
-                            lineHeight: 1.2,
+                            lineHeight: 1.25,
                             color: "#0b2a5a",
                             letterSpacing: "-0.005em",
                             textAlign: "center",
+                            marginBottom: "10px",
                         }}
                     >
-                        {headline}
+                        {copy.headline}
                     </DialogTitle>
                 </DialogHeader>
 
-                {showResultBlock && payload.resultText && (
-                    <div
-                        className="mx-auto"
+                {/* The "you just unlocked X" statement — set apart so it
+                    lands as the moment of arrival. Gold-warm pill behind
+                    the text, Cormorant treatment matching the headline. */}
+                <div
+                    className="mx-auto"
+                    style={{
+                        background: "rgba(212, 175, 55, 0.08)",
+                        border: "0.5px solid rgba(212, 175, 55, 0.40)",
+                        borderRadius: "12px",
+                        padding: "14px 18px",
+                        margin: "4px 0 16px",
+                        maxWidth: "94%",
+                    }}
+                >
+                    <p
                         style={{
-                            background: "rgba(212, 175, 55, 0.06)",
-                            border: "0.5px solid rgba(212, 175, 55, 0.30)",
-                            borderRadius: "12px",
-                            padding: "14px 18px",
-                            margin: "8px 0 12px",
-                            maxWidth: "90%",
+                            fontFamily: "'Cormorant Garamond', Georgia, serif",
+                            fontWeight: 600,
+                            fontSize: "19px",
+                            lineHeight: 1.35,
+                            color: "#0b2a5a",
+                            textAlign: "center",
+                            margin: 0,
                         }}
                     >
-                        <p
-                            style={{
-                                fontFamily: "'Source Serif 4', Georgia, serif",
-                                fontWeight: 600,
-                                fontStyle: "italic",
-                                fontSize: "15px",
-                                lineHeight: 1.55,
-                                color: "#0b2a5a",
-                                textAlign: "center",
-                                margin: 0,
-                            }}
-                        >
-                            "{payload.resultText}"
-                        </p>
-                    </div>
-                )}
+                        {copy.statement}
+                    </p>
+                </div>
 
                 <DialogDescription asChild>
                     <p
                         style={{
                             fontFamily: "'Source Serif 4', Georgia, serif",
                             fontWeight: 500,
-                            fontSize: "14.5px",
-                            lineHeight: 1.6,
-                            color: "rgba(11, 42, 90, 0.85)",
+                            fontStyle: "italic",
+                            fontSize: "13.5px",
+                            lineHeight: 1.55,
+                            color: "rgba(11, 42, 90, 0.72)",
                             textAlign: "center",
-                            marginTop: "6px",
+                            marginTop: "2px",
                         }}
                     >
-                        {body}
+                        {copy.ps}
                     </p>
                 </DialogDescription>
 
-                {!isGraduation && (
-                    <p
-                        style={{
-                            fontFamily: "'Source Serif 4', Georgia, serif",
-                            fontStyle: "italic",
-                            fontSize: "13px",
-                            color: "rgba(11, 42, 90, 0.55)",
-                            textAlign: "center",
-                            marginTop: "-4px",
-                        }}
-                    >
-                        Always editable in your profile.
-                    </p>
-                )}
-
-                <DialogFooter className="sm:flex-row gap-2 sm:gap-3 sm:justify-center mt-4">
-                    <button
-                        type="button"
-                        onClick={handleSecondary}
-                        className="inline-flex items-center justify-center gap-1.5 rounded-full px-5 py-2.5 transition-all duration-200 hover:translate-y-[-0.5px]"
-                        style={{
-                            fontFamily: "'DM Sans', system-ui, sans-serif",
-                            fontSize: "12.5px",
-                            fontWeight: 600,
-                            letterSpacing: "0.10em",
-                            textTransform: "uppercase",
-                            color: "#0b2a5a",
-                            background: "transparent",
-                            border: "0.5px solid rgba(11, 42, 90, 0.30)",
-                        }}
-                    >
-                        {labels.profileLabel}
-                    </button>
+                {/* Primary action — large gold button, the next step.
+                    Secondary "Continue your journey →" sits below as a
+                    quieter text link, so the user always knows the
+                    homebase is one click away even when the recommended
+                    action is to keep moving forward. */}
+                <div className="flex flex-col items-center gap-3 mt-5">
                     <button
                         type="button"
                         onClick={handlePrimary}
-                        className="inline-flex items-center justify-center gap-1.5 rounded-full px-5 py-2.5 transition-all duration-200 hover:translate-y-[-1px]"
+                        className="inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 transition-all duration-200 hover:translate-y-[-1px]"
                         style={{
                             fontFamily: "'DM Sans', system-ui, sans-serif",
-                            fontSize: "12.5px",
+                            fontSize: "13px",
                             fontWeight: 700,
-                            letterSpacing: "0.10em",
+                            letterSpacing: "0.12em",
                             textTransform: "uppercase",
                             color: "#fffdf6",
                             background: "linear-gradient(135deg, #b8860b, #7a5108)",
                             border: "0.5px solid rgba(212, 175, 55, 0.55)",
-                            boxShadow: "0 6px 18px -6px rgba(122, 81, 8, 0.5)",
+                            boxShadow: "0 8px 22px -6px rgba(122, 81, 8, 0.55)",
+                            minWidth: "240px",
                         }}
                     >
-                        <Sparkles className="w-3.5 h-3.5" />
-                        {primaryLabel}
+                        <Sparkles className="w-4 h-4" aria-hidden="true" />
+                        {copy.primaryLabel}
                     </button>
-                </DialogFooter>
+
+                    <button
+                        type="button"
+                        onClick={handleContinue}
+                        className="inline-flex items-center gap-1 italic transition-opacity duration-200 hover:opacity-80"
+                        style={{
+                            fontFamily: "'Source Serif 4', Georgia, serif",
+                            fontWeight: 500,
+                            fontSize: "13px",
+                            color: "rgba(11, 42, 90, 0.62)",
+                            textDecoration: "underline",
+                            textUnderlineOffset: "3px",
+                            background: "transparent",
+                            border: "none",
+                            padding: "4px 8px",
+                            cursor: "pointer",
+                        }}
+                    >
+                        Continue your journey →
+                    </button>
+                </div>
             </DialogContent>
         </Dialog>
     );
