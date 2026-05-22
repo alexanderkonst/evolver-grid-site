@@ -606,8 +606,13 @@ const buildJourneySections = (
             //  - route swapped to /zone-of-genius#activate where the
             //    actual $37 CTA section lives in AppleseedDisplay
             //    (NOT /game/me/zone-of-genius which only has $555 CTAs)
-            label: "Find out how to monetize your top talent",
-            priceChip: "$37",
+            // Day 80 Wave 2.6 (Sasha 2026-05-22): price chip removed.
+            // The chip popped harder than warranted on what's mostly a
+            // free funnel — risked making the whole journey read as
+            // paid. Price is now ambient inside the label itself
+            // (muted dim text). Honest, present, but quieter — the
+            // numbered free steps stay the visual anchor.
+            label: "Find out how to monetize your top talent (optional, $37)",
             variant: "sidequest",
             // Day 80 Wave 2.4: route to the dedicated standalone page,
             // not the AppleseedDisplay anchor (which surrounds the
