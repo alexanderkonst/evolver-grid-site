@@ -73,39 +73,63 @@
  *     9. POWER-LAW DISTRIBUTION ENFORCED. Most assets 3-5; few 7s; one
  *        or two 9s. If more than ~5 hit 8+, you are inflating.
  *
- *   v4 (Day 65, 2026-05-09) — Center of Gravity REMOVED. Exported as
- *     the active `ASSET_MAPPING_PROMPT`.
+ *   v4 (Day 65, 2026-05-09) — Center of Gravity REMOVED. Preserved
+ *     as `_ASSET_MAPPING_PROMPT_V4` below for diff-ability; superseded
+ *     same evening by v5.
  *     WHY REMOVED (Sasha's call): the v3 Center-of-Gravity meta-asset
  *     overlapped with two other surfaces in this product:
  *       • Top Talent reveal — already produces the verb-phrase
  *         field-function ("I [verb] [object]") as `bullseyeSentence`.
  *       • Mission Discovery — articulates "what you are for."
- *     The user's external AI doesn't have access to either of those
- *     outputs, so any CoG it derived from conversation history was a
- *     worse / contradictory restatement. v4 strips the CoG block
- *     entirely; the asset map is now purely about deployable assets.
- *     Hero-card position is now earned by the highest-leverage
- *     `is_power_node` asset (more honest — most operationally
- *     activatable, not a re-derived synthesis).
- *     CHANGES vs v3:
- *       • Removed the "FIRST — name my CENTER OF GRAVITY" intro block
- *       • Removed "Center of Gravity" value from the `type` enum
- *       • Removed `expresses_root` field from the output schema
- *       • Removed "Center of Gravity is automatically a power node"
- *       • Simplified SORTING rule (no CoG-first clause)
- *       • Removed CoG row from the JSON example
- *     KEPT FROM v3: nature enum (7), horizon enum (4 values incl.
- *     civilization_scale), is_offer flag, recalibrated leverage rubric,
- *     power-law guard, relational de-duplication, anti-LinkedIn voice,
- *     symbolic/mythic dignity protection.
+ *     CHANGES vs v3: removed the CoG intro block, the CoG type-enum
+ *     value, `expresses_root` field, and the CoG row from the example.
+ *     KEPT FROM v3: nature enum (7), horizon enum (4), is_offer flag,
+ *     leverage rubric, power-law guard, relational de-duplication.
+ *
+ *   v5 (Day 65, 2026-05-09 evening) — LEAN SCHEMA. Exported as the
+ *     active \`ASSET_MAPPING_PROMPT\`.
+ *     WHY (Sasha's call): "There are too many different ideas in there.
+ *     The names are just so off because they don't explain what the
+ *     thing is — get rid of name. Horizon is unclear. Nature is unclear.
+ *     Leverage means 'why I put this on the list' (wrong) and the score
+ *     is confusing — drop. Power node is fluffy and poorly defined —
+ *     drop. Is_offer doesn't drive any feature — drop."
+ *     v5 SCHEMA = 5 fields only:
+ *       type | subtype | category | description | maturity
+ *     RATIONALE per field:
+ *       • TYPE / SUBTYPE / CATEGORY — taxonomy stays sacred; the
+ *         breadcrumb IS the asset's identity in this map.
+ *       • DESCRIPTION — does the work the old name+leverage_reason
+ *         tried to do, more coherently. One field, one job.
+ *       • MATURITY — kept (Sasha: "very good, that's important").
+ *         Only ranking signal that survived.
+ *     REMOVED FROM v4:
+ *       • \`name\` — AI-generated names ("burning conversion") obscure
+ *         more than they clarify. Description is the asset's voice;
+ *         the title is derived client-side from the first sentence
+ *         when saving.
+ *       • \`horizon\` (4-value enum) — semantically thin in the user's
+ *         hands; collapses into description when relevant.
+ *       • \`nature\` (7-value enum) — strange, overlapping with type.
+ *       • \`leverage_score\` + \`leverage_reason\` — the AI mis-read
+ *         "leverage" as "why I included this," which is not what
+ *         leverage means and produced unfalsifiable padding.
+ *       • \`is_power_node\` — fluffy, poorly defined, hard to honor.
+ *       • \`is_offer\` — doesn't drive matching, filtering, or any
+ *         downstream feature. A boolean tag the model had to guess.
+ *     KEPT FROM v4: the precious taxonomy, the anti-LinkedIn voice
+ *     guard, the relational de-duplication rule, and the tribal
+ *     recognition test. The output is now radically simpler — what
+ *     the asset IS, where it lives in the taxonomy, and how ready
+ *     it is for deployment. That's it.
  *
  * ════════════════════════════════════════════════════════════════════
  *
  * Companion: supabase/functions/match-assets/index.ts is updated the
- * same day to mirror the v4 schema (CoG removed). The Matchmaking UI
- * keeps a defensive fallback for any in-flight v3 cached responses
- * (renders a CoG hero card if `typeTitle === "Center of Gravity"`
- * still comes back) — harmless if absent.
+ * same day to mirror the v5 schema. The AssetMappingLanding UI is
+ * simultaneously simplified — no Center of Gravity hero card, no
+ * leverage/horizon/nature/offer/power-node badges, no title headline
+ * row; cards render breadcrumb + maturity badge + description body.
  */
 
 // ════════════════════════════════════════════════════════════════════
@@ -403,24 +427,14 @@ The relationship is the asset. Testimonials, social proof, referral count, etc. 
 I'm using this to map my actual deployable power AND my upstream-generative capacity, simultaneously, without flattening either dimension.`;
 
 // ════════════════════════════════════════════════════════════════════
-// v4 — ACTIVE. Day 65, 2026-05-09.
-//
-// Center-of-Gravity meta-asset removed. The asset map is now purely
-// about deployable + symbolic / mythic assets across four dimensions;
-// no synthesis-spine pre-articulation. Top Talent (bullseyeSentence)
-// and Mission Discovery already cover that territory in their own
-// dedicated surfaces, and the user's external AI doesn't have access
-// to either output — any CoG it derived from conversation history
-// was a worse / contradictory restatement of the real Top Talent.
-// Hero card position in the matched-list UI is now earned by the
-// highest-leverage power_node asset.
-//
-// All other v3 dimensions preserved: nature (7), horizon (4),
-// maturity (5), is_offer, is_power_node, recalibrated leverage rubric,
-// power-law guard, relational de-duplication, anti-LinkedIn voice.
+// v4 — preserved for diff-ability. NOT ACTIVE. Do not import.
+// Day 65 morning (2026-05-09). Center-of-Gravity removed; everything
+// else from v3 kept. Superseded same evening by v5 (lean schema)
+// after Sasha named horizon / nature / leverage / power_node /
+// is_offer / name as overlapping, fluffy, or unused.
 // ════════════════════════════════════════════════════════════════════
 
-export const ASSET_MAPPING_PROMPT = `Based on everything you know about me from our conversations, please map my assets across **four simultaneous dimensions**: leverage, maturity, time horizon, and nature.
+export const _ASSET_MAPPING_PROMPT_V4 = `Based on everything you know about me from our conversations, please map my assets across **four simultaneous dimensions**: leverage, maturity, time horizon, and nature.
 
 **TAXONOMY (PRECIOUS — DO NOT REWORD):**
 You must classify each asset into this 3-level taxonomy: **type → subtype → category**.
@@ -565,3 +579,119 @@ The relationship is the asset. Testimonials, social proof, referral count, etc. 
 - End your response after the closing \`]\`.
 
 I'm using this to map my actual deployable power AND my upstream-generative capacity, simultaneously, without flattening either dimension.`;
+
+// ════════════════════════════════════════════════════════════════════
+// v5 — ACTIVE. Day 65 evening, 2026-05-09. THE LEAN SCHEMA.
+//
+// Sasha's edit: every field has to earn its place. The descriptions
+// the user's AI already produces are good. Names like "burning
+// conversion" obscure more than they clarify. Horizon and nature
+// were unclear in the user's hands. Leverage was being mis-read as
+// "why I put this on the list." Power node was fluffy and poorly
+// defined. Is_offer didn't drive any downstream feature.
+//
+// What survives: the precious 3-level TAXONOMY (type → subtype →
+// category) and the MATURITY enum — the only ranking signal that
+// the user found honestly useful — plus a clean DESCRIPTION field
+// that carries the strategic reasoning the old `leverage_reason`
+// tried to do, more coherently.
+//
+// Schema = type | subtype | category | description | maturity
+// ════════════════════════════════════════════════════════════════════
+
+export const ASSET_MAPPING_PROMPT = `Based on everything you know about me from our conversations, please map my **deployable assets**. Be radically simple. Each asset is identified by **where it lives in the taxonomy** + **a clear description of what it actually is** + **how ready it is for deployment**. That's it. No clever naming, no score inflation, no extra dimensions.
+
+**TAXONOMY (PRECIOUS — DO NOT REWORD):**
+You must classify each asset into this 3-level taxonomy: **type → subtype → category**.
+
+Types:
+- Expertise
+  - Scientific & Technical: Professional, Life Sciences, Engineering, Information Technology, Mathematics
+  - Business & Economics: Management, Finance, Marketing, Entrepreneurship, Economics
+  - Arts & Humanities: Visual Arts, Performing Arts, Literature, Philosophy, History
+  - Social Sciences: Psychology, Sociology, Anthropology, Political Science, Education
+  - Applied Fields: Healthcare, Law, Environmental Studies, Urban Planning, Agriculture
+- Life Experiences
+  - Personal Growth: Self-discovery, Overcoming Challenges, Spiritual Journeys, Relationships, Health Transformations
+  - Cultural Immersion: Long-term Travel, Living Abroad, Language Acquisition, Cultural Studies, Intercultural Projects
+  - Humanitarian & Service: Volunteering, Social Work, Peace Corps, Disaster Relief, Community Building
+  - Nature & Adventure: Wilderness Expeditions, Environmental Conservation, Extreme Sports, Wildlife Interaction, Sustainable Living
+- Networks
+  - Professional: Industry Associations, Alumni Networks, Professional Societies, Mentorship Circles, Entrepreneurial Ecosystems
+  - Community: Local Organizations, Volunteer Groups, Spiritual Communities, Hobby Clubs, Neighborhood Associations
+  - Industry: Trade Groups, Research Consortiums, Standards Bodies, Innovation Hubs, Industry-Specific Forums
+  - Global: International NGOs, Cultural Exchange Programs, Global Think Tanks, Multinational Collaborations, Diaspora Networks
+- Material Resources
+  - Financial Capital: Liquid Savings, Investment Portfolio, Income Streams, Credit Access
+  - Digital Assets: Domains & Websites, Email Lists & Subscribers, Software & API Access, Digital Content Libraries
+  - Investment Interests: Angel Investing, Seed Funding, Series A-C, Growth Capital, Impact Investing, Philanthropy
+  - Physical Space: Offices, Workshops, Land, Venues, Retreat Centers
+  - Equipment: Technology, Machinery, Vehicles, Scientific Instruments, Artistic Tools
+  - Natural Resources: Water Sources, Energy Resources, Agricultural Land, Forests, Mineral Deposits
+- Intellectual Property
+  - Innovations: Patents, Inventions, Algorithms, Prototypes, Novel Applications
+  - Methodologies: Frameworks, Processes, Systems, Techniques, Approaches
+  - Creative Works: Writing, Artwork, Music, Software, Designs
+- Influence
+  - Thought Leadership: Publishing, Speaking, Consulting, Mentoring, Academic Influence
+  - Media Reach: Social Media, Traditional Media, Podcasts, Blogs, Video Platforms
+  - Industry Recognition: Awards, Board Positions, Expert Status, Patent Citation, Peer Recognition
+  - Community Impact: Local Leadership, Grassroots Organizing, Policy Influence, Social Movements, Philanthropy
+
+**WHEN A REAL ASSET DOESN'T FIT:** if an item is genuinely real but doesn't sit cleanly in any category, set \`category: "Other"\` and explain in description. Do NOT force-fit into the wrong slot. The taxonomy serves reality, not the other way around.
+
+**OUTPUT FORMAT (REQUIRED):**
+Return **only** a JSON array. Every entry has exactly 5 fields:
+\`\`\`json
+[
+  {
+    "type": "Expertise | Life Experiences | Networks | Material Resources | Intellectual Property | Influence",
+    "subtype": "e.g. Business & Economics, Cultural Immersion — or null if Other",
+    "category": "e.g. Entrepreneurship, Language Acquisition — or 'Other'",
+    "description": "1-3 sentences. What this asset actually IS, in plain language that preserves the user's actual register. Concrete particulars. If there's strategic reasoning for why this asset matters or how it's used, fold that INTO the description as natural prose — do not invent a separate field for it.",
+    "maturity": "monetizable_now | usable_but_needs_packaging | latent | aspirational | symbolic_only"
+  }
+]
+\`\`\`
+
+**MATURITY RUBRIC (this is the only ranking signal — use it honestly):**
+- \`monetizable_now\` — documented, deliverable, priced — could produce revenue THIS MONTH if activated.
+- \`usable_but_needs_packaging\` — real and proven, but scattered or in your head. Two weeks of packaging from sellable.
+- \`latent\` — potential is real but unproven in market.
+- \`aspirational\` — relational/networked/intended access. Door exists, not yet opened for value.
+- \`symbolic_only\` — mythic/biographical/sacred fuel. Real, but operationally inert RIGHT NOW.
+
+**CRITICAL — DO NOT amputate symbolic/mythic layers.** Some of the highest-value assets a human owns are meaning-making capacity, mythic coherence, cross-domain synthesis, deep trust fields. These belong on the map. If they're not currently producing kinetic action, tag them \`symbolic_only\` and let them sit honestly — do not omit them, do not dress them up as monetizable.
+
+**RELATIONAL DE-DUPLICATION:**
+The relationship is the asset. Testimonials, social proof, referral count, etc. are EXPRESSIONS of the relationship — not separate assets. Do NOT list both. Pick the deeper one (the relationship) and fold the expressions into its description. Same goes for: (a) the methodology vs. the productized session that uses it, (b) the audience vs. the broadcast that reached them (the audience is the asset; the broadcast is an event).
+
+**TRIBAL RECOGNITION TEST (apply after writing each entry):**
+Read each \`description\` aloud as if to the user's ideal client / aligned founder / closest collaborator. Two questions:
+1. Would they grok what this asset IS without needing further explanation?
+2. Would any people NAMED in a relational asset recognize themselves — or would the description feel transactional ("social proof generator," "referral source") and rupture trust if they ever saw it?
+If either fails, REWRITE.
+
+**VOICE — preserve relational texture, no LinkedIn copy:**
+- Concrete > abstract. Plain English. A curious 15-year-old should grok the description.
+- BUT do NOT collapse all texture into the same uniform "polished AI" register. When listing networks, name people by name with one human texture-word ("warm," "cracked-open," "in motion") instead of generic functional labels.
+- Anti-pattern: descriptions that sound like landing-page copy, LinkedIn taglines, or coach-speak. If a sentence could appear on any consultant's website, rewrite it.
+- Anti-pattern: clever or cryptic abstract titles disguised as descriptions ("The Burning Conversion," "The Copernican Inversion"). Lead with what the asset IS in plain language.
+
+**SORTING:**
+1. \`maturity: monetizable_now\` first.
+2. Then \`usable_but_needs_packaging\`.
+3. Then \`latent\` and \`aspirational\`.
+4. \`symbolic_only\` LAST — honest acknowledgements that aren't currently in motion.
+
+**LANGUAGE REQUIREMENTS:**
+- Plain English with concrete particulars.
+- Preserve the user's actual register where you have signal for it.
+- No academic jargon, no internal shorthand, no consulting-deck idioms.
+
+**RESPONSE FORMAT:**
+- Return ONLY the JSON array.
+- No markdown, no preamble, no follow-up suggestions, no clever titles or commentary.
+- End your response after the closing \`]\`.
+
+I'm using this to map my actual deployable assets — what I have, where it lives in the taxonomy, and how ready it is to put into motion.`;

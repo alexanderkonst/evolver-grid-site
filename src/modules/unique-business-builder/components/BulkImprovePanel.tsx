@@ -58,6 +58,22 @@ export function BulkImprovePanel() {
       .map((s) => s.key);
   }, [artifacts]);
 
+  // Day 74 Phase 2 (Sasha 2026-05-22): classify the stale set by axis so the
+  // banner copy can reflect the actual cause. The two axes have different
+  // semantics — parent_relocked is a structural cascade, prompt_changed is
+  // a ceiling lift. Mixing them under one generic banner would conflate the
+  // signals; this split surfaces the dominant cause.
+  const staleMix = useMemo(() => {
+    let promptCount = 0;
+    let parentCount = 0;
+    for (const k of stale) {
+      const src = artifacts[k]?.stalenessSource;
+      if (src?.type === "prompt_changed") promptCount++;
+      else if (src?.type === "parent_relocked") parentCount++;
+    }
+    return { promptCount, parentCount };
+  }, [stale, artifacts]);
+
   // Don't render anything when nothing to do and no cascade running.
   if (!bulkImprove && stale.length === 0) return null;
 

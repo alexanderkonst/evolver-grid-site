@@ -1191,3 +1191,82 @@ If they cannot, the synthesis was simplistic — return to it.
 
 export const MODEL = "google/gemini-2.5-flash-lite";
 export const AI_GATEWAY_URL = "https://ai.gateway.lovable.dev/v1/chat/completions";
+
+// ============================================================================
+// Prompt versioning — Day 74 (Sasha 2026-05-22), Phase 2 of the staleness UX.
+// ============================================================================
+//
+// PROMPT_VERSION is a deterministic content-hash of the three load-bearing
+// fields per artifact: generationGuidance · outputSchema · specificityCriteria.
+// It is auto-computed at module load. Whenever any of those three fields
+// change for an artifact, the hash changes for that artifact (and only that
+// one) — propagating to:
+//
+//   1. Every NEW insert into `user_business_artifacts` (frontend writes the
+//      current PROMPT_VERSION[key] into `prompt_version_at_lock` on insert).
+//   2. The staleness compute in `UniqueBusinessContext` — if a locked row's
+//      stored `prompt_version_at_lock` differs from the current PROMPT_VERSION
+//      for its key, the artifact is flagged "prompt-stale" with copy that
+//      reads "Prompt updated — re-Improve for a higher ceiling."
+//
+// Legacy rows from before this column existed carry NULL and are deliberately
+// treated as "unknown" (no false positives during the transition).
+//
+// The 2026-05-21 scenario this solves: Sasha rewrote all 18 prompts the day
+// before. Phase 1's parent-aware staleness only fires when a parent is
+// RE-LOCKED — so until the founder manually re-locks something, nothing
+// flags as stale even though every locked artifact is now sub-ceiling
+// relative to the new prompt. This axis catches that.
+//
+// Hash choice: FNV-1a 64-bit (sync, native BigInt, identical output across
+// Deno + browser/Vite), truncated to 12 hex chars. ~16T combinations is
+// massively over-provisioned for our 18 keys + rare prompt rewrites. We
+// chose it over SHA256 because the latter is async via Web Crypto and would
+// have forced an async PROMPT_VERSION export — bad ergonomics for a constant.
+
+const FNV_OFFSET_64 = 0xcbf29ce484222325n;
+const FNV_PRIME_64 = 0x100000001b3n;
+const FNV_MASK_64 = 0xffffffffffffffffn;
+
+/**
+ * Deterministic 64-bit FNV-1a content hash. Returns a 12-char hex string.
+ * Same input always produces the same output across runtimes (Deno + Vite).
+ */
+export function ubbPromptHash(canonical: string): string {
+  let h = FNV_OFFSET_64;
+  for (let i = 0; i < canonical.length; i++) {
+    h ^= BigInt(canonical.charCodeAt(i));
+    h = (h * FNV_PRIME_64) & FNV_MASK_64;
+  }
+  return h.toString(16).padStart(16, "0").slice(0, 12);
+}
+
+/**
+ * Build the canonical hash input for one artifact. The three fields are
+ * serialised with explicit separators that cannot appear in source content,
+ * so two different artifacts with the same concatenation of fields would
+ * still produce distinct canonicals via field boundaries.
+ */
+function canonicalisePromptInput(cfg: ArtifactConfig): string {
+  return [
+    "GG", cfg.generationGuidance,
+    "OS", cfg.outputSchema,
+    "SC", cfg.specificityCriteria.join(""),
+  ].join(" ");
+}
+
+/**
+ * Content-hashed version stamp per artifact, computed at module load.
+ * Stable across deploys when prompts don't change; flips for exactly the
+ * artifact(s) whose prompt fields drift.
+ */
+export const PROMPT_VERSION: Record<ArtifactKey, string> = (() => {
+  const out = {} as Record<ArtifactKey, string>;
+  // ALL_ARTIFACT_KEYS isn't exported from this file (it lives in the frontend
+  // types.ts); iterate via Object.keys on the configs, which has every key by
+  // construction (Record<ArtifactKey, ArtifactConfig> on line 127).
+  for (const k of Object.keys(ARTIFACT_CONFIGS) as ArtifactKey[]) {
+    out[k] = ubbPromptHash(canonicalisePromptInput(ARTIFACT_CONFIGS[k]));
+  }
+  return out;
+})();

@@ -163,26 +163,25 @@ serve(async (req) => {
       `- ${a.type} > ${a.subType} > ${a.title}`
     ).join("\n");
 
-    // Day 65 (Sasha 2026-05-09) v4 prompt — aligned with the user-facing
-    // ASSET_MAPPING_PROMPT v4 upgrade. Removes the v3 CENTER OF GRAVITY
-    // meta-asset + the `expresses_root` field (redundant with Top Talent
-    // bullseyeSentence and Mission Discovery, which both cover the
-    // root-capacity territory in their own dedicated surfaces).
+    // Day 65 evening (Sasha 2026-05-09) v5 prompt — THE LEAN SCHEMA.
+    // Aligned with the user-facing ASSET_MAPPING_PROMPT v5 upgrade.
     //
-    // What stays from v3:
-    //   • NATURE field (7-value enum: practical | relational | symbolic
-    //     | infrastructural | mythic | intellectual | economic)
-    //   • HORIZON 4 values (now / near / long_term / civilization_scale)
-    //   • is_offer boolean (productized offer flag)
-    //   • Recalibrated leverage rubric — load-bearing matters more than
-    //     commercial-actionable-now
-    //   • Power-law distribution guard — at most ~5 assets at 8+
-    //   • Symbolic / mythic dignity protection
-    //   • Relational de-duplication + tribal-recognition test
+    // Sasha's edit: every field has to earn its place. Names like
+    // "burning conversion" obscure more than they clarify; horizon /
+    // nature were unclear in the user's hands; leverage was being
+    // mis-read as "why I put this on the list"; power_node was fluffy
+    // and poorly defined; is_offer didn't drive any downstream feature.
     //
-    // Both extractors (this AI gateway path and the user-AI paste path)
-    // produce one consistent shape so the client doesn't have to fork
-    // on which extractor ran.
+    // v5 SCHEMA = 3 fields here (the edge fn collapses type/subtype/
+    // category into a single breadcrumb string for matching against
+    // the embedded taxonomy):
+    //   • category — "Type > SubType > Title" breadcrumb
+    //   • description — 1-3 sentences in plain English
+    //   • maturity — 5-value enum (the only ranking signal)
+    //
+    // REMOVED from v4: name, why_value, horizon, nature, leverage_score,
+    // is_offer, is_power_node. Client derives the asset title from the
+    // first sentence of the description when saving.
     const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
       method: "POST",
       headers: {
@@ -194,54 +193,21 @@ serve(async (req) => {
         messages: [
           {
             role: "system",
-            content: `You are a strategic asset extraction assistant. Given a user's description of their resources, you map their DEPLOYABLE POWER AND UPSTREAM-GENERATIVE CAPACITY across four simultaneous dimensions: leverage, maturity, time horizon, and nature.
+            content: `You are a strategic asset extraction assistant. Given a user's description of their resources, you map their DEPLOYABLE ASSETS into a simple, honest list. Be radically simple. Each asset is identified by **where it lives in the taxonomy** + **a clear description of what it actually is** + **how ready it is for deployment**. That's it. No clever naming, no score inflation, no extra dimensions.
 
-CRITICAL — DO NOT amputate symbolic / mythic / meaning-making layers. Some of the highest-leverage assets a human owns are NOT directly monetizable: meaning-making capacity, mythic coherence, cross-domain synthesis, deep trust fields, embodied worldview architecture. These are upstream generators of downstream reality. Tag them with nature: symbolic / mythic and let them score high on leverage when they hold up everything else.
+CRITICAL — DO NOT amputate symbolic / mythic / meaning-making layers. Some of the highest-value assets a human owns are meaning-making capacity, mythic coherence, cross-domain synthesis, deep trust fields. These belong on the map. If they're not currently producing kinetic action, tag them maturity: "symbolic_only" and let them sit honestly — do not omit them, do not dress them up as monetizable.
 
-Return a JSON array. Every asset MUST have all 10 fields:
+Return a JSON array. Every asset MUST have exactly these 3 fields:
 - "category": Best match from the provided list as "Type > SubType > Title". If a real asset doesn't fit, use "Other > Other > Other" and explain in description.
-- "name": Specific, concrete asset name (3-7 words).
-- "description": 1-2 sentences. What it actually IS, in plain language that preserves relational texture (no LinkedIn copy, no "social proof generator" labels).
-- "why_value": 1 sentence. What it can produce; what it holds up. For symbolic/mythic items, why_value means upstream-generative force, not commercial revenue.
+- "description": 1-3 sentences. What this asset actually IS, in plain language that preserves the user's actual register (no LinkedIn copy, no "social proof generator" labels). If there's strategic reasoning for why this asset matters or how it's used, fold that INTO the description as natural prose — do not invent a separate field.
 - "maturity": "monetizable_now" | "usable_but_needs_packaging" | "latent" | "aspirational" | "symbolic_only".
-- "horizon": "now" | "near" | "long_term" | "civilization_scale".
-- "nature": "practical" | "relational" | "symbolic" | "infrastructural" | "mythic" | "intellectual" | "economic".
-- "leverage_score": 1-10.
-- "is_offer": boolean. True only for productized offers (paid sessions, cohorts, retainers, named services). False for the underlying IP they deploy.
-- "is_power_node": boolean. True only for the 3-7 assets where, if removed, most of the leverage collapses.
 
-MATURITY (about deployment readiness, NOT about value):
-- monetizable_now / usable_but_needs_packaging / latent / aspirational / symbolic_only
-
-HORIZON (4 VALUES):
-- now: activate this quarter.
-- near: package in 6-18 months.
-- long_term: 2-5 year strategic asset.
-- civilization_scale: generational, north-star. Doesn't compete with money-now items.
-
-NATURE (7 VALUES — the ontological dimension):
-- practical: concrete skills/tools/deliverables.
-- relational: trust, connections, warm bonds, shared history.
-- symbolic: meaning-making, narrative coherence, brand essence, archetypal resonance. (HIGH-LEVERAGE in its own right.)
-- infrastructural: systems, platforms, distribution rails, operational scaffolding.
-- mythic: origin stories, sacred lineage, cross-domain synthesis that organizes worldview.
-- intellectual: frameworks, methodologies, structured thought, IP.
-- economic: commercial offers, financial instruments, productized services.
-
-LEVERAGE_SCORE:
-"Value" includes ALL of: revenue, credibility, strategic position, generative force, audience trust, mythic coherence. A symbolic asset that holds up an entire worldview is high-leverage.
-- 10: load-bearing; if removed, much collapses.
-- 8-9: proven and producing value, OR upstream of multiple other assets.
-- 5-7: real but mid-tier — needs distribution OR moderate generative.
-- 3-4: latent or low-activation symbolic.
-- 1-2: present but operationally inert.
-
-POWER-LAW DISTRIBUTION (HARD GUARD):
-Most assets land 3-5. A few at 7. One or two at 9. AT MOST ~5 ASSETS HIT 8+. If you find more than 5 at 8+, you are inflating — re-score harshly.
-
-IS_POWER_NODE: true only for the 3-7 load-bearing assets.
-
-IS_OFFER: true for productized offers; false for the IP/methodology they deploy. Don't shove offers into Methodology tags — flag them with is_offer instead.
+MATURITY RUBRIC (this is the only ranking signal — use it honestly):
+- monetizable_now — documented, deliverable, priced. Could produce revenue this month.
+- usable_but_needs_packaging — real and proven but scattered. Two weeks of packaging from sellable.
+- latent — potential is real but unproven in market.
+- aspirational — relational / networked / intended access. Door exists, not opened.
+- symbolic_only — mythic / biographical / sacred fuel. Real, but operationally inert RIGHT NOW.
 
 RELATIONAL DE-DUPLICATION:
 The relationship IS the asset. Testimonials, referral counts, social proof are EXPRESSIONS of the relationship — fold them into the relationship's description, do not list separately. Same for: methodology vs. session that uses it, audience vs. broadcast that reached them.
@@ -249,46 +215,33 @@ The relationship IS the asset. Testimonials, referral counts, social proof are E
 TRIBAL RECOGNITION:
 For each entry, ask: would the people NAMED recognize themselves in how they're described? "Social proof generator" / "referral source" framing strips relational texture and ruptures trust. Name people by name with one human texture-word ("warm," "cracked-open," "in motion") not generic function labels.
 
+VOICE — no LinkedIn copy:
+- Concrete > abstract. Plain English with concrete particulars.
+- Anti-pattern: descriptions that sound like landing-page copy, LinkedIn taglines, or coach-speak. If a sentence could appear on any consultant's website, rewrite it.
+- Anti-pattern: clever or cryptic abstract titles disguised as descriptions ("The Burning Conversion," "The Copernican Inversion"). Lead with what the asset IS in plain language.
+
 SORTING:
-1. Power nodes (is_power_node: true) FIRST, descending leverage_score.
-2. Then maturity=monetizable_now (desc).
-3. Then everything else (desc).
-4. maturity=symbolic_only LAST regardless of score.
+1. maturity=monetizable_now first.
+2. Then usable_but_needs_packaging.
+3. Then latent and aspirational.
+4. maturity=symbolic_only LAST.
 
 Rules:
-- Never empty name, description, or why_value.
+- Never empty description.
 - Plain English with concrete particulars; preserve user's relational texture.
-- Return ONLY the JSON array, no markdown, no preamble.
+- Return ONLY the JSON array, no markdown, no preamble, no commentary, no clever titles.
 
 Example output (excerpt — first 2 entries):
 [
   {
     "category": "Intellectual Property > Methodologies > Frameworks",
-    "name": "Top Talent Method",
-    "description": "A 4-step assessment that names a person's irreducible signature talent and articulates it into productized form.",
-    "why_value": "Direct downstream expression of the user's essence-naming capacity; can become a signed paid session next week.",
-    "maturity": "monetizable_now",
-    "horizon": "now",
-    "nature": "intellectual",
-    "leverage_score": 9,
-    "is_offer": false,
-    "is_power_node": true,
-    "type": "Intellectual Property",
-    "subtype": "Methodologies"
+    "description": "A 4-step assessment that names a person's irreducible signature talent and articulates it into a productized form they can charge for. Used as the lead conversion mechanism on the funnel; ready to deliver as a paid session.",
+    "maturity": "monetizable_now"
   },
   {
     "category": "Influence > Industry Recognition > Awards",
-    "name": "MIT credibility line",
-    "description": "Educational credential that opens doors with founders, investors, and corporate partners.",
-    "why_value": "Compounds with every public mention; near-zero marginal cost to deploy.",
-    "maturity": "monetizable_now",
-    "horizon": "now",
-    "nature": "intellectual",
-    "leverage_score": 8,
-    "is_offer": false,
-    "is_power_node": true,
-    "type": "Influence",
-    "subtype": "Industry Recognition"
+    "description": "An MIT educational credential that opens doors with founders, investors, and corporate partners. Compounds with every public mention; near-zero marginal cost to deploy.",
+    "maturity": "monetizable_now"
   }
 ]`
           },
