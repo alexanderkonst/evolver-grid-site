@@ -51,12 +51,13 @@ const SKIN_OPTIONS: SkinOption[] = [
         id: "navy-gold",
         label: "Navy + Gold",
         tagline: "Deep navy · gold · editorial dark",
-        // Day 48 iter 14 (Sasha): disabled pending a full QA pass on
-        // the Navy+Gold skin — Aurora is the only skin shipping at
-        // launch. Keeping the tile visible (muted, non-clickable,
-        // "Coming soon" label) signals the capability without
-        // letting users fall into a half-baked register.
-        disabled: true,
+        // Day 78 (Sasha 2026-05-22): "Coming Soon" gate retired. Navy+Gold
+        // shipped fully alongside the NS skin work (the same token
+        // infrastructure powers all three skins now), and Sasha has been
+        // using it via /preview for weeks. Marking it disabled was a
+        // launch-day caution that's no longer accurate — the tile now
+        // reads as a real, selectable option matching the canonical
+        // platform default.
         swatchBackground:
             "linear-gradient(135deg, #04081a 0%, #0a1628 55%, #142244 100%)",
         swatchOverlay: (
