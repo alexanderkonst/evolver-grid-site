@@ -80,16 +80,14 @@ const ActivateTopTalent = () => {
                             border: "1px solid rgba(26,30,58,0.06)",
                         }}
                     >
-                        <p
-                            className="text-base italic leading-snug"
-                            style={{
-                                fontFamily: "'Source Serif 4', serif",
-                                fontWeight: 500,
-                                color: "var(--skin-text-muted, rgba(11,42,90,0.86))",
-                            }}
-                        >
-                            If you don't want to build your business yet:
-                        </p>
+                        {/* Day 80 Wave 2.5 (Sasha 2026-05-22): "If you don't
+                            want to build your business yet:" eyebrow
+                            removed — that framing belongs on AppleseedDisplay
+                            (where the $37 sits below the $555 as an
+                            alternative). On this dedicated page the user
+                            is here specifically for the $37 offer; the
+                            "alternative-to-something-else" frame is
+                            irrelevant noise. The headline stands on its own. */}
                         <h1
                             className="leading-[1.15] tracking-[-0.005em]"
                             style={{
