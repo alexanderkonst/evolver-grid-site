@@ -36,6 +36,7 @@ import type {
 import { ALL_ARTIFACT_KEYS } from "./types";
 import { ARTIFACT_LABELS, ERROR_MESSAGES, nextVersionString } from "./constants";
 import { PARENTS, getDownstream } from "./dependencyTree";
+import { PROMPT_VERSION } from "./promptVersions";
 
 // ============================================================================
 // Helpers
@@ -56,6 +57,12 @@ type DbRow = {
   step_number: number | null;
   created_at: string;
   updated_at: string;
+  /**
+   * Day 74 Phase 2 (Sasha 2026-05-22): content-hash of the prompt that
+   * produced this row, stamped at insert time. NULL on legacy rows from
+   * before the migration — treated as "unknown" (no prompt-stale flag).
+   */
+  prompt_version_at_lock?: string | null;
 };
 
 function rowToVersion(row: DbRow): VersionRow {
@@ -71,6 +78,8 @@ function rowToVersion(row: DbRow): VersionRow {
     what_changed: row.what_changed,
     is_locked: !!row.is_locked,
     created_at: row.created_at,
+    // Day 74 Phase 2: defaults to null on legacy rows from before the migration.
+    prompt_version_at_lock: row.prompt_version_at_lock ?? null,
   };
 }
 
@@ -102,22 +111,48 @@ function buildArtifactStates(rows: DbRow[]): Partial<Record<ArtifactKey, Artifac
       staleReason: undefined,
     };
   }
-  // Parent-aware staleness compute (Day 74 — Sasha 2026-05-22).
+  // Two-axis staleness compute (Day 74 — Sasha 2026-05-22).
   //
-  // An artifact is stale iff one of its DIRECT PARENTS (per dependencyTree.ts)
-  // was last-locked AFTER this artifact's own latestLocked.created_at.
+  // PHASE 1 — parent_relocked: one of this artifact's DIRECT PARENTS (per
+  //   dependencyTree.ts) was last-locked AFTER this artifact's own
+  //   latestLocked.created_at. The user re-derived something upstream, so
+  //   what was generated against the older parent context is now stale.
   //
-  // Why this replaced the old flat sibling check: the previous logic compared
-  // every artifact against the global `latestSiblingLock` across all 18 keys,
-  // so locking `landing_page` (downstream of nearly everything) would falsely
-  // flash `uniqueness` as stale. The 60s buffer was a hack around that — it's
-  // unnecessary once we only compare against actual parents.
+  // PHASE 2 — prompt_changed: the prompt CODE (generationGuidance +
+  //   outputSchema + specificityCriteria) has been edited since this row was
+  //   locked. Detected by comparing the row's stamped `prompt_version_at_lock`
+  //   against the current PROMPT_VERSION[key]. Legacy rows with NULL stamps
+  //   are silent (treated as "unknown" — no false positives during the
+  //   migration window).
   //
-  // When multiple parents are newer than this artifact, the staleness pointer
-  // records the MOST RECENTLY relocked parent — that's the highest-leverage
-  // change to surface to the user.
+  // PRIORITY when both fire: prompt_changed wins. Re-Improving against the
+  // newer prompt produces a fresh ceiling, and any pending parent-cascade
+  // can be folded into the same improve call. Treating both as the same
+  // banner would conflate two separate signals; the founder reads the copy
+  // to decide which.
+  //
+  // Why we removed the old flat sibling check: it compared every artifact
+  // against the global `latestSiblingLock`, so locking `landing_page`
+  // (downstream of nearly everything) would falsely flash `uniqueness`
+  // stale. The 60s buffer was a hack around that. Both unnecessary now.
   for (const s of Object.values(states)) {
-    if (!s?.latestLocked) continue; // not yet locked → not stale
+    if (!s?.latestLocked) continue; // not yet locked → not stale on either axis
+
+    // Phase 2 — prompt-stale check (higher priority).
+    const lockedPromptVer = s.latestLocked.prompt_version_at_lock;
+    const currentPromptVer = PROMPT_VERSION[s.key];
+    if (lockedPromptVer != null && currentPromptVer && lockedPromptVer !== currentPromptVer) {
+      s.isStale = true;
+      s.staleReason = "Prompt updated — re-Improve for a higher ceiling.";
+      s.stalenessSource = {
+        type: "prompt_changed",
+        lockedVersion: lockedPromptVer,
+        currentVersion: currentPromptVer,
+      };
+      continue; // prompt_changed wins; don't overwrite with parent_relocked below
+    }
+
+    // Phase 1 — parent-stale check.
     const myLockMs = new Date(s.latestLocked.created_at).getTime();
     let newestParent: { key: ArtifactKey; lockedAt: string; lockedAtMs: number } | null = null;
     for (const parentKey of PARENTS[s.key]) {
@@ -412,6 +447,10 @@ export function UniqueBusinessProvider({ children }: { children: ReactNode }) {
             specificity_score: result.initial_specificity,
             step_number: 1,
             is_locked: false,
+            // Day 74 Phase 2 (Sasha 2026-05-22): stamp the prompt version
+            // alive at v1-generation time so future prompt edits can flag
+            // this row as "prompt-stale — re-Improve for the new ceiling."
+            prompt_version_at_lock: PROMPT_VERSION[key],
           })
           .select("*")
           .single();
@@ -547,6 +586,11 @@ export function UniqueBusinessProvider({ children }: { children: ReactNode }) {
           what_changed: result.what_changed,
           step_number: current.version ? current.version + 1 : 1,
           is_locked: false,
+          // Day 74 Phase 2 (Sasha 2026-05-22): stamp the prompt version this
+          // improvement was produced under. Re-Improving against a later
+          // prompt version flips the stamp; staleness compute uses the
+          // delta to flag "prompt-stale" rows.
+          prompt_version_at_lock: PROMPT_VERSION[artifact_key],
         })
         .select("*")
         .single();
@@ -709,6 +753,12 @@ export function UniqueBusinessProvider({ children }: { children: ReactNode }) {
             what_changed: "Restored from v1",
             step_number: current.version + 1,
             is_locked: false,
+            // Day 74 Phase 2 (Sasha 2026-05-22): stamp the CURRENT prompt
+            // version (not v1's original). The row was born now; staleness
+            // semantics are "is the content's prompt-of-record current?" —
+            // copying v1 content under today's prompt is, by definition,
+            // current. If the user wants a higher ceiling they can re-Improve.
+            prompt_version_at_lock: PROMPT_VERSION[key],
           })
           .select("*")
           .single();

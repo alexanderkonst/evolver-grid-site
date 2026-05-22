@@ -130,6 +130,13 @@ export type VersionRow<TContent = unknown> = {
   what_changed: string | null;
   is_locked: boolean;
   created_at: string; // ISO
+  /**
+   * Day 74 (Sasha 2026-05-22), Phase 2: 12-char content-hash of the prompt
+   * that produced this row (stamped at insert time). NULL on legacy rows
+   * from before the migration. Compared in the frontend against the current
+   * PROMPT_VERSION[artifact_key] to flag "prompt-stale" artifacts.
+   */
+  prompt_version_at_lock: string | null;
 };
 
 // ============================================================================
@@ -144,16 +151,33 @@ export type ArtifactState = {
   isStale: boolean; // a direct parent was relocked after this artifact's latestLocked
   staleReason?: string; // user-facing copy, e.g. "Tribe was updated — re-Improve to refresh"
   /**
-   * Day 74 (Sasha 2026-05-22): structured staleness pointer for the re-derive
-   * dialog + bulk Improve UX. When `isStale` is true, this names which direct
-   * parent triggered it. Phase 2 will widen this to also cover prompt-version
-   * staleness (`type: 'prompt_changed'`).
+   * Day 74 (Sasha 2026-05-22): structured staleness pointer.
+   *
+   * Phase 1 axis — `parent_relocked`: one of this artifact's direct parents
+   *   (per dependencyTree.ts) was re-locked after this artifact was locked.
+   *   Re-derive cascades down the dependency tree.
+   *
+   * Phase 2 axis — `prompt_changed` (Day 74 evening): the prompt code that
+   *   produced this artifact has been edited since it was locked. Surfaces
+   *   when the row's `prompt_version_at_lock` ≠ current PROMPT_VERSION[key].
+   *   Higher priority than `parent_relocked`: the founder's hand-tuned
+   *   content is fine, but the AI's ceiling moved.
+   *
+   * When both axes apply to the same artifact, `prompt_changed` wins —
+   * re-Improving against the new prompt produces a fresh ceiling, and a
+   * cascading parent change can be folded in by the same improve call.
    */
-  stalenessSource?: {
-    type: "parent_relocked";
-    parent: ArtifactKey;
-    parentLockedAt: string; // ISO
-  };
+  stalenessSource?:
+    | {
+        type: "parent_relocked";
+        parent: ArtifactKey;
+        parentLockedAt: string; // ISO
+      }
+    | {
+        type: "prompt_changed";
+        lockedVersion: string | null; // what was stamped at lock time (NULL = legacy)
+        currentVersion: string; // current PROMPT_VERSION[key]
+      };
 };
 
 // ============================================================================
