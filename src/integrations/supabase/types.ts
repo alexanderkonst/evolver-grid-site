@@ -879,6 +879,7 @@ export type Database = {
           match_headsup_opt_out: boolean
           mission_discovered_at: string | null
           mission_id: string | null
+          mission_statement: string | null
           multiple_intelligences_completed: boolean | null
           onboarding_completed: boolean
           onboarding_stage: string | null
@@ -945,6 +946,7 @@ export type Database = {
           match_headsup_opt_out?: boolean
           mission_discovered_at?: string | null
           mission_id?: string | null
+          mission_statement?: string | null
           multiple_intelligences_completed?: boolean | null
           onboarding_completed?: boolean
           onboarding_stage?: string | null
@@ -1011,6 +1013,7 @@ export type Database = {
           match_headsup_opt_out?: boolean
           mission_discovered_at?: string | null
           mission_id?: string | null
+          mission_statement?: string | null
           multiple_intelligences_completed?: boolean | null
           onboarding_completed?: boolean
           onboarding_stage?: string | null
