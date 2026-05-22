@@ -33,11 +33,28 @@ const QUADRANT_LABELS: Record<RoastQuadrant, string> = {
 };
 
 export function ImproveReviewDrawer() {
-  const { pendingImprovement, acceptImprovement, rejectImprovement, artifacts } = useUniqueBusiness();
+  const { pendingImprovement, acceptImprovement, rejectImprovement, artifacts, bulkImprove } =
+    useUniqueBusiness();
 
   const open = !!pendingImprovement;
   const pending = pendingImprovement;
   const current = pending ? artifacts[pending.artifact_key]?.latest : null;
+
+  // Day 74 (Sasha 2026-05-22): if this review is part of an active Bulk
+  // Improve cascade, surface that context so the founder knows accept/reject
+  // advances the queue. `step` is 1-indexed for the user; `total` is the
+  // original cascade size.
+  const cascadeContext = bulkImprove && pending && bulkImprove.current === pending.artifact_key
+    ? {
+        step:
+          bulkImprove.accepted.length +
+          bulkImprove.rejected.length +
+          bulkImprove.skipped.length +
+          bulkImprove.failed.length +
+          1,
+        total: bulkImprove.total,
+      }
+    : null;
 
   return (
     <Sheet
@@ -104,6 +121,28 @@ export function ImproveReviewDrawer() {
                   }}
                 >
                   {ARTIFACT_LABELS[pending.artifact_key]}
+                  {cascadeContext && (
+                    <span
+                      style={{
+                        marginLeft: "0.8em",
+                        fontFamily: "'DM Sans', system-ui, sans-serif",
+                        fontStyle: "normal",
+                        fontSize: "11px",
+                        fontWeight: 500,
+                        letterSpacing: "0.04em",
+                        textTransform: "uppercase",
+                        color: "rgba(244, 212, 114, 0.82)",
+                        background: "rgba(244, 212, 114, 0.12)",
+                        border: "0.5px solid rgba(212, 175, 55, 0.45)",
+                        borderRadius: "9999px",
+                        padding: "2px 8px",
+                        whiteSpace: "nowrap",
+                      }}
+                      title="This review is part of an active Bulk Improve cascade"
+                    >
+                      step {cascadeContext.step} of {cascadeContext.total}
+                    </span>
+                  )}
                 </div>
               </SheetDescription>
               <div className="pt-1">

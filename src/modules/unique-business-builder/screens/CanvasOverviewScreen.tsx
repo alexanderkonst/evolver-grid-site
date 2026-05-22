@@ -23,6 +23,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { BookOpen } from "lucide-react";
 import { useUniqueBusiness } from "../UniqueBusinessContext";
 import { SpecificityBadge } from "../components/SpecificityBadge";
+import { BulkImprovePanel } from "../components/BulkImprovePanel";
 import {
   ALL_ARTIFACT_KEYS,
   PHASE_A_CANVAS,
@@ -31,6 +32,7 @@ import {
   PHASE_D_PUBLICATION,
 } from "../types";
 import { ARTIFACT_LABELS, ARTIFACT_URL_SLUGS, UBB_ROOT, ROUTES } from "../constants";
+import { PARENTS } from "../dependencyTree";
 import type { ArtifactKey } from "../types";
 import { getStepForArtifact } from "@/data/playbookArtifactMap";
 // Day 53 night iter 4 (Sasha 2026-04-27): tier badge for gifted/paid users
@@ -328,39 +330,13 @@ export default function CanvasOverviewScreen() {
         </section>
       )}
 
-      {stalenessWarnings.length > 0 && (
-        <div
-          className="relative rounded-2xl p-4"
-          style={{
-            background: "var(--skin-tint-gold-soft, linear-gradient(135deg, rgba(212,175,55,0.08), rgba(212,175,55,0.02)))",
-            border: "0.5px solid rgba(212, 175, 55, 0.40)",
-            boxShadow: "0 4px 16px -8px rgba(212, 175, 55, 0.20)",
-          }}
-        >
-          <div
-            className="text-sm font-medium"
-            style={{
-              fontFamily: "'Cormorant Garamond', serif",
-              color: "var(--skin-text-primary, #0b2a5a)",
-              fontSize: "16px",
-              fontWeight: 600,
-            }}
-          >
-            Some artifacts may be stale
-          </div>
-          <ul className="mt-1.5 space-y-0.5 text-xs"
-              style={{
-                fontFamily: "'DM Sans', system-ui, sans-serif",
-                color: "var(--skin-text-muted, rgba(11, 42, 90, 0.62))",
-              }}>
-            {stalenessWarnings.map((w) => (
-              <li key={w.artifact}>
-                · {ARTIFACT_LABELS[w.artifact]} — {w.reason}
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
+      {/*
+       * Day 74 (Sasha 2026-05-22): the flat staleness list used to live here.
+       * Replaced by BulkImprovePanel — same slot, but now a one-click cascade
+       * action (with cost + AI-compute time estimate) instead of a passive
+       * warning. Renders nothing when no work to do AND no cascade running.
+       */}
+      <BulkImprovePanel />
 
       {/* ═══ Phase sections ═══ rendered only after the canvas has been started */}
       {hasStarted && (
@@ -633,10 +609,25 @@ function ArtifactCard({ artifactKey }: { artifactKey: ArtifactKey }) {
   const state = artifacts[artifactKey];
   const hasLatest = !!state?.latest;
   const isLocked = !!state?.latestLocked;
+  const isStale = !!state?.isStale;
   const latestSpec = state?.latest?.specificity_score;
   const versionCount = state?.versionCount;
 
   const href = `${UBB_ROOT}/${ARTIFACT_URL_SLUGS[artifactKey]}`;
+
+  // Day 74 (Sasha 2026-05-22): derivation hint — names the direct parents so
+  // the founder intuits what cascades downstream when they re-lock this card.
+  // Root artifacts (uniqueness, surface_inventory) show their seed source
+  // instead of leaving the line blank.
+  const parents = PARENTS[artifactKey];
+  const derivesFromLabel: string =
+    parents.length > 0
+      ? `derives from ${parents.map((p) => ARTIFACT_LABELS[p]).join(" · ")}`
+      : artifactKey === "uniqueness"
+        ? "derives from your Zone of Genius"
+        : artifactKey === "surface_inventory"
+          ? "derives from your live surfaces"
+          : "foundation";
 
   return (
     <Link
@@ -700,10 +691,57 @@ function ArtifactCard({ artifactKey }: { artifactKey: ArtifactKey }) {
               Not started
             </div>
           )}
+          {/*
+           * Day 74 (Sasha 2026-05-22): derivation hint. Tertiary text,
+           * sits one tier below the version/state line. Lets the founder
+           * intuit which upstream changes will cascade onto this card.
+           */}
+          <div
+            className="mt-1 italic truncate"
+            style={{
+              fontFamily: "'Source Serif 4', serif",
+              fontSize: "11.5px",
+              color: "var(--skin-text-muted, rgba(11, 42, 90, 0.45))",
+              letterSpacing: "0.005em",
+            }}
+            title={derivesFromLabel}
+          >
+            {derivesFromLabel}
+          </div>
         </div>
-        {typeof latestSpec === "number" && latestSpec > 0 && (
-          <SpecificityBadge score={latestSpec} size="sm" />
-        )}
+        <div className="flex flex-col items-end gap-1.5">
+          {typeof latestSpec === "number" && latestSpec > 0 && (
+            <SpecificityBadge score={latestSpec} size="sm" />
+          )}
+          {/*
+           * Day 74 (Sasha 2026-05-22): stale chip on the card itself.
+           * The banner already announces the cascade story; the chip is
+           * the per-card affordance so the user can navigate straight to
+           * the affected artifact. Gold against the locked ✓ register —
+           * "earned but now in motion again."
+           */}
+          {isStale && isLocked && (
+            <span
+              aria-label={state?.staleReason || "stale"}
+              title={state?.staleReason || "stale"}
+              style={{
+                fontFamily: "'DM Sans', system-ui, sans-serif",
+                fontSize: "10px",
+                fontWeight: 500,
+                letterSpacing: "0.04em",
+                textTransform: "uppercase",
+                color: "#9a7a1f",
+                background: "rgba(244, 212, 114, 0.18)",
+                border: "0.5px solid rgba(212, 175, 55, 0.55)",
+                borderRadius: "9999px",
+                padding: "2px 8px",
+                whiteSpace: "nowrap",
+              }}
+            >
+              re-derive
+            </span>
+          )}
+        </div>
       </div>
     </Link>
   );
