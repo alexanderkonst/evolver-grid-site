@@ -174,6 +174,31 @@ export function BulkImprovePanel() {
 
   // ─── Idle state with stale artifacts ────────────────────────────────
   const n = stale.length;
+
+  // Day 74 Phase 2: pick the banner narrative by which axis dominates.
+  // Pure prompt-stale → ceiling lift framing. Pure parent-stale → cascade
+  // framing (Phase 1 wording, preserved). Mixed → name both honestly so
+  // the founder reads the breakdown before clicking "Improve all."
+  const { promptCount, parentCount } = staleMix;
+  let headline = "";
+  let subhead = "";
+  if (promptCount > 0 && parentCount === 0) {
+    headline =
+      n === 1
+        ? "Prompt updated — 1 artifact below ceiling"
+        : `Prompt updated — ${n} artifacts below ceiling`;
+    subhead =
+      "The AI's prompt has been refined since these were locked. Re-Improve to claim the new ceiling.";
+  } else if (parentCount > 0 && promptCount === 0) {
+    headline = `${n} ${n === 1 ? "artifact" : "artifacts"} may be stale`;
+    subhead =
+      "An upstream artifact was relocked after these — re-Improving carries the change downstream.";
+  } else {
+    headline = `${n} stale · ${promptCount} prompt · ${parentCount} cascade`;
+    subhead =
+      "Prompt edits and upstream relocks both fired since these were locked. Open the list to see which is which.";
+  }
+
   return (
     <div
       className="relative rounded-2xl p-4"
@@ -194,7 +219,7 @@ export function BulkImprovePanel() {
               color: "var(--skin-text-primary, #0b2a5a)",
             }}
           >
-            {n} {n === 1 ? "artifact" : "artifacts"} may be stale
+            {headline}
           </div>
           <div
             className="mt-1"
@@ -205,8 +230,7 @@ export function BulkImprovePanel() {
               color: "var(--skin-text-muted, rgba(11, 42, 90, 0.65))",
             }}
           >
-            An upstream artifact was relocked after these — re-Improving carries
-            the change downstream.
+            {subhead}
           </div>
         </div>
         <button
