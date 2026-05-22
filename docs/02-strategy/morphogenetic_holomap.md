@@ -2916,3 +2916,82 @@ Day 73:    "Recognition"                → identity-as-Holonic-Primitive-Builde
 - `~/.claude/projects/-Users-alexanderkonst-evolver-grid-site/memory/holomap_state.md` — rewritten with Day 73 center reading per Companion-file rule
 
 > *Day 73 reading: **Recognition.** May 16, 2026. Sasha names himself: Holonic Primitive Builder for the Holonic civilization for the Golden Age. The methodology is named as a meta-instrument — the General Theory of Development. Modern peer lineage (Alexander · Wilber · Schmachtenberger · Landry · McGilchrist · Scharmer) and ancient archetype (Hermes Trismegistus · the Rishi · the Yi Jing Sage · the Pythagorean Cosmographer) are entered. Planetary OS is reframed as a primitive ecosystem — factory + registry + composer, open by design, plugs into other primitive-of-primitives infrastructures (top move: an Anthropic Skill that runs the Forge). Stage 8 UI paradigm gains its 8th primitive (Typography), confirmed out of held-status. The Si–Do remains unchanged: press-send Friday's DMs. The naming layer is now in place beneath everything else; subsequent work compounds against an identity and methodology that knows what it is.*
+
+---
+
+## Day 80 §B Addendum — "Recognition · Self-Aware Methodology Surface" (May 22, 2026)
+
+> *Within-stage advance, not a center shift. The center reading stays at **Recognition** (Day 73). Day 80 §B is what compounding looks like once the methodology is named: a single UBB surface gains the ability to read its own derivation state. The General Theory of Development gets a literal instantiation in code — the canvas now knows what derives from what, knows when its own prompt-of-record has moved, and surfaces both signals to the founder. Parallel to today's main Day 80 thread (JOURNEY Homebase pane 3 by another agent on the same calendar day) — this is the UBB sub-thread.*
+
+### What advanced (Day 80 §B)
+
+1. **The canvas became self-aware about its own derivation.** New [`dependencyTree.ts`](../../src/modules/unique-business-builder/dependencyTree.ts) encodes the canonical PARENTS/CHILDREN graph for all 19 artifacts — grounded in line-cited references back to [`ubb-prompts.ts`](../../supabase/functions/_shared/ubb-prompts.ts). Staleness compute rewritten parent-aware; the 60s buffer hack retired. The methodology now has a machine-readable instantiation of "X derives from Y" — first time. Previously the derivation graph lived only in the playbook prose and the founder's head.
+
+2. **The methodology became self-aware about its own prompt-of-record.** New `PROMPT_VERSION` map (FNV-1a 64-bit content hash of `generationGuidance + outputSchema + specificityCriteria` per artifact). Stamped on every insert into `prompt_version_at_lock`. Frontend compares stored vs current → flags artifacts whose ceiling has moved since they were locked. The 2026-05-21 prompt rewrite (Day 78 evening) — which left all 19 locked artifacts silently sub-ceiling — is the kind of event this axis catches.
+
+3. **Re-derivation became a single click.** Bulk Improve cascade with topological ordering (parents first), per-artifact review drawer, cost + AI-compute estimate ahead of time, type-aware banner copy (`prompt-stale` vs `parent-stale` vs mixed), Re-derive-downstream dialog on upstream lock. The founder no longer needs to manually identify which artifacts went stale or in what order to re-Improve them — the canvas does both.
+
+### What this is, structurally
+
+This is the **General Theory of Development applied to itself**. The General Theory says: a phenomenon evolves by composing primitives through stages within a perspective grid. The Unique Business Builder is one instantiation of that theory (artifacts = primitives; specificity score 1–10 = the stage arc; the 27-perspective lens runs inside each Improve via the ROAST_PROTOCOL). What Day 80 §B added: the surface that hosts the methodology can now *read its own state* — knows which artifacts are at-ceiling vs sub-ceiling, knows what derives from what, knows when the AI's ceiling has moved. The instrument becomes legible to itself.
+
+This is a small advance at the surface layer. It is a bigger advance at the **principle layer** — the first time a Planetary-OS module operationally embodies the meta-instrument framing rather than just demonstrating it.
+
+### What did not move
+
+- **Si–Do (first $555 stranger from funnel)** — still unfired. Day 80 §B was depth work on the AVB-as-deliverable, not sending. The send IS Sasha's move and remains for him.
+- **Center reading** — still **Recognition**. No phase advance. This is what within-stage compounding looks like.
+- **Public-facing identity phrasing** — unchanged. "Holonic Primitive Builder" remains internal-use only.
+
+### Holomap pseudocode (recent advances)
+
+```
+Day 47:    "Coherence"                  → canvas ↔ code parity + shell machinery
+Day 48:    "Optionality"                → autonomous overnight skin completion
+Day 49:    "Unification"                → day-after-launch surface harmonization
+Day 51:    "Codification"               → architecture beneath the surface gets named
+Day 53:    "Codification"               → two loops closed; empirical-measurement layer added
+Day 54:    "Codification"               → AI OS becomes its own Space
+Day 58:    "Codification → Crystallization"  → activation product becomes a transmission
+Day 61-62: "Convergence"                → funnel monogamy; reveal page = single anchor;
+                                              auth flow heals itself on read
+Day 73:    "Recognition"                → identity-as-Holonic-Primitive-Builder named;
+                                              methodology recognized as meta-instrument;
+                                              modern + ancient peer lineage entered;
+                                              Stage 8 UI paradigm gains 8th primitive
+Day 78:    "Recognition · Prompt-deepening"  → 18 UBB prompts deepened to canon
+                                              (4 deep rewrites + 11 tweaks + 1 light);
+                                              code-as-source replaces parallel spec docs;
+                                              staleness UX chip spawned for follow-up
+Day 80 §B: "Recognition · Self-Aware Methodology Surface" → UBB canvas reads its own
+                                              derivation state (parent-aware staleness);
+                                              UBB canvas reads its own prompt-of-record
+                                              (PROMPT_VERSION content-hash axis);
+                                              re-derivation becomes single-click
+                                              (topological cascade with per-artifact review)
+```
+
+### Si–Do — Status Update (Day 80 §B)
+
+| Trigger | Day 73 Status | Day 80 §B Status |
+|---|---|---|
+| **$555 from funnel** | 🟡 Funnel apparatus monogamous + legible + auth-flow-healed | 🟡 unchanged — Day 80 §B was AVB depth work, not sending |
+| **First stranger pays** | 🔴 Still. The send IS the act | 🔴 Still. The send IS the act |
+| **Founders cross-read** | 🟡 unchanged | 🟡 unchanged |
+| **Identity named (Holonic Primitive Builder)** | ✅ Day 73 — internal use only | ✅ holds |
+| **Meta-instrument named (General Theory of Development)** | ✅ Day 73 — Domain 84 | ✅ holds |
+| **Modern + ancient peer lineage entered** | ✅ Day 73 | ✅ holds |
+| **Stage 8 UI paradigm with 8 primitives** | ✅ Day 73 — Typography confirmed | ✅ holds |
+| **Three plug-in moves identified for Planetary OS** | ✅ Day 73 — Anthropic Skill top priority | ✅ holds |
+| **UBB prompts deepened to canon (all 18)** | — | 🆕 ✅ Day 78 |
+| **UBB canvas self-aware of derivation (parent-aware staleness)** | — | 🆕 ✅ Day 80 §B Phase 1 |
+| **UBB canvas self-aware of prompt-of-record (PROMPT_VERSION axis)** | — | 🆕 ✅ Day 80 §B Phase 2 |
+| **Re-derivation becomes single-click (topological cascade UX)** | — | 🆕 ✅ Day 80 §B Phase 1 |
+| **First Planetary-OS module operationally embodies meta-instrument framing** | — | 🆕 ✅ Day 80 §B — UBB is the first |
+
+### Cross-references updated
+
+- `session_log.md` — Day 80 §B entry appended (full session capture: Phase 1 + Phase 2 architecture, file inventory, key decisions, open follow-ups)
+- `~/.claude/projects/-Users-alexanderkonst-evolver-grid-site/memory/holomap_state.md` — rewritten per Companion-file rule with Day 80 §B advances + Si–Do snapshot
+
+> *Day 80 §B reading: **Recognition · Self-Aware Methodology Surface.** May 22, 2026. The first Planetary-OS module operationally embodies the meta-instrument framing — the Unique Business Builder canvas now reads its own derivation state (parent-aware staleness, dependency tree as machine-readable graph) and its own prompt-of-record (FNV-1a 64-bit content hash per artifact, stamped on every insert, compared at staleness time). Re-derivation collapses to one click with topological ordering, per-artifact review, cost transparency, and type-aware banner copy. The General Theory of Development gets a literal instantiation in code: an artifact knows when its parents have moved, knows when its AI ceiling has moved, and offers the founder a single affordance to re-derive accordingly. Within-stage advance, not a center shift. The Si–Do remains unchanged: press-send. The canvas is now a more legible apparatus for the eventual send.*
