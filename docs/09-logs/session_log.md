@@ -7756,3 +7756,56 @@ Closes the chip spawned at the end of Day 78. Two phases shipped end-to-end in o
 - **Telemetry on cascade outcomes** (Phase 3 candidate). Log accepted/rejected/skipped per artifact during Bulk Improve so Sasha can see which artifacts consistently produce diminishing returns — signal for prompt redesign.
 - **Day-stamp inconsistency in code comments.** Phase 1/2 code comments stamped "Day 74 (Sasha 2026-05-22)" but the session-log calendar puts May 22 at Day 80. Comments are internal stamps, no user impact, not worth correcting; flagged for the corpus-discipline sweep if/when it happens.
 
+---
+
+## Day 80 §C — Asset prompt v5: lean schema (Friday, May 22, 2026)
+
+Sasha auditing the matched-assets review screen ("Found 25 assets") caught a still-rendering Center of Gravity hero card, AI-generated names like *"burning conversion"* and *"The Copernican Inversion"* that obscured rather than clarified, and a thicket of secondary dimensions whose purpose he couldn't read off the screen. His call: every field has to earn its place. v5 strips the asset schema to **5 fields** in the prompt — `type`, `subtype`, `category`, `description`, `maturity` — and drops the rest.
+
+### What was cut
+
+- **`name`** — AI invented weird abstract titles; the description does the work.
+- **`horizon`** (4-value enum) — unclear in the user's hands.
+- **`nature`** (7-value enum) — strange/overlapping with type.
+- **`leverage_score` + `leverage_reason`** — the AI was treating *"leverage"* as *"why I put this on the list"* (not what leverage means); the score was unfalsifiable padding.
+- **`is_power_node`** — fluffy, poorly defined.
+- **`is_offer`** — didn't drive matching, filtering, or any downstream feature.
+- **Center of Gravity hero card** — defensive fallback from v4 retired in v5.
+
+### What survives
+
+- **The precious 3-level taxonomy** (type → subtype → category) — sacred, untouched.
+- **`description`** — promoted to do the work `leverage_reason` tried to do, more coherently.
+- **`maturity` (5-value enum)** — the only ranking signal Sasha found honestly useful.
+
+### Files touched
+
+- [`src/prompts/extraction/assetMappingPrompt.ts`](../../src/prompts/extraction/assetMappingPrompt.ts) — v4 archived as `_ASSET_MAPPING_PROMPT_V4`; new v5 active `ASSET_MAPPING_PROMPT` with the lean schema. Header changelog block documents v5 rationale per-field. v1–v5 all preserved in-file.
+- [`supabase/functions/match-assets/index.ts`](../../supabase/functions/match-assets/index.ts) — system prompt mirrored to v5; `EdgeMatchOut` type drops everything except `category`, `description`, `maturity`; validation map stripped to match.
+- [`src/modules/asset-mapping/AssetMappingLanding.tsx`](../../src/modules/asset-mapping/AssetMappingLanding.tsx) — **−430 / +94 lines.** CoG hero IIFE removed, AI title headline row removed, leverage chip + leverage_reason italic + expressesRoot italic removed, Power Node halo + badge removed, Horizon/Nature/Offer badges and their LABEL/HINT/tone tables and component definitions removed, dead helpers + types + Tooltip imports removed. `MatchedAsset` type now: `typeTitle` + `subTypeTitle` + `categoryTitle` + `title` (derived at save) + `description` + `maturity`.
+
+### Card shape after v5
+
+Each matched card is now: breadcrumb eyebrow (Type → Subtype → Category) on the left + maturity badge on the right + the description as body prose. `symbolic_only` items still get a quieter parchment surface so they sit honestly de-emphasized without being hidden. Sort key flipped from `leverage_score` → maturity rank (`monetizable_now` first, `symbolic_only` last).
+
+### Save-time title derivation
+
+v5 prompt no longer asks the AI for a name, but the saved-asset row in `assets` still needs a short readable headline for the user's library. `deriveTitleFromDescription` extracts the first sentence (split on `.` / `!` / `?` / em-dash), caps at 80 chars, falls back to `categoryTitle` for empty-description edge cases.
+
+### Commits
+
+- [`9310976e`](https://github.com/alexanderkonst/evolver-grid-site/commit/9310976e) — Day 65 v4 (CoG removed from prompt + edge fn). Earlier in session.
+- Auto-deploy round folded the v5 prompt + edge fn into Lovable's commit stream alongside Sasha's ongoing JOURNEY work.
+- [`970abcf9`](https://github.com/alexanderkonst/evolver-grid-site/commit/970abcf9) — Day 65 v5 client UI cleanup (the −430-line delete).
+
+### Key decisions
+
+1. **Lean schema over rich schema.** Per-field defense was the test: anything that couldn't pass *"this drives a real downstream decision the founder makes"* got cut. Five of the original twelve fields survived.
+2. **Title derived, not invented.** The "name" problem wasn't the field, it was the inviting-AI-to-be-clever pattern. Deriving title from the first sentence at save time gives a stable, founder-grokkable headline without any creative writing.
+3. **CoG hero card retired, not preserved as defensive fallback.** Day 65 morning v4 kept it as a fallback for v3-cached responses; Sasha's call now: kill it everywhere. Cleaner.
+4. **In-file prompt versioning continues.** v1, v2, v3, v4 all preserved as `_ASSET_MAPPING_PROMPT_V{N}` exports in the same file, with the active export as `ASSET_MAPPING_PROMPT`. The lineage is precious; the active export is unambiguous.
+
+### Si–Do
+
+The asset map is now operationally simpler than it has ever been. Three signals per asset (where it lives, what it is, how ready it is) — anything beyond that was the model's fluff confusing the founder's read of his own resources. Si–Do (first $555 stranger from funnel) unchanged. This was a precision pass on the methodology surface, not a sales-mechanism move.
+
