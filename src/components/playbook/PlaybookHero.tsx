@@ -33,8 +33,13 @@ import { EditorialCta } from "@/components/ui/editorial-cta";
  *    dimmer text color (hierarchy not scale).
  *
  *   [ ✦ Find your top talent →  ]  ← primary  (liquid-glass-dark)
- *          Takes 3 minutes. No signup.
+ *          Free · 2 minutes · No signup
  *   [ See the exact playbook    ]  ← secondary (liquid-glass)
+ *
+ * Day 79 (Sasha 2026-05-22): stale "3 minutes" references removed
+ * from the doc comments — rendered copy was already "2 minutes"
+ * (line 86) since Day 78, but the comments were misleading future-
+ * AI / future-Sasha into thinking the page still said 3.
  */
 
 const PlaybookHero = () => {
@@ -67,10 +72,11 @@ const PlaybookHero = () => {
         />
 
         {/* Meta line — Day 48 iter 2: small-caps editorial eyebrow.
-            "TAKES 3 MINUTES · NO SIGNUP" with tracked letter-spacing
+            "FREE · 2 MINUTES · NO SIGNUP" with tracked letter-spacing
             reads as a printed dateline sitting under the CTA rather
             than as a caption. The middle dot replaces the period to
-            echo the gold ornament above. */}
+            echo the gold ornament above. Day 79 (Sasha 2026-05-22):
+            comment refreshed to match the actual rendered copy. */}
         <div
           className="inline-flex items-center justify-center gap-2 max-w-[460px] mt-1"
           style={{
