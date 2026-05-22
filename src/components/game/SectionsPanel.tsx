@@ -47,6 +47,21 @@ interface Section {
     locked?: boolean;
     lockedHint?: string;
     /**
+     * Day 80 Wave 2.2 (Sasha 2026-05-22): visual variant.
+     *   - undefined / "default" — numbered step in the JOURNEY path.
+     *   - "sidequest"            — optional paid offering. Renders
+     *     without a number pip (uses a ✦ glyph), smaller height,
+     *     gold-tinted background, italic subtitle, right-aligned
+     *     price chip. Doesn't break the numbered 1→2→3→4→5 flow;
+     *     reads as "this exists alongside the path."
+     * Currently set only for the journey-activation row.
+     */
+    variant?: "sidequest";
+    /** Italic subtitle, sidequest variant only. */
+    subtitle?: string;
+    /** Right-aligned gold price chip, sidequest variant only. */
+    priceChip?: string;
+    /**
      * Day 65 (Sasha 2026-05-15): when true, the row renders with
      * a gentle-but-very-visible strikethrough — the user has
      * accomplished this step. Currently set only for JOURNEY items
@@ -565,27 +580,26 @@ const buildJourneySections = (
             completed: topTalentDone,
         },
         {
-            // Day 80 (Sasha 2026-05-22): optional $37 Top Talent
-            // Activation step. Per alexanders_unique_business.md
-            // Branch B: deeper digital profile (Three Talents in Depth,
-            // How It Shows Up, Path of Mastery, Roles, Partner,
-            // Monetization, What's Next).
+            // Day 80 Wave 2.2 (Sasha 2026-05-22): optional $37 Top Talent
+            // Activation step rendered as a "sidequest" variant — gold-
+            // accented, ✦ glyph (no number), italic subtitle, right-
+            // aligned price chip. Doesn't break the numbered 1→2→3→4→5
+            // path flow; reads as "this exists alongside, optional, paid."
             //
-            // Routes to /game/me/zone-of-genius (the user's existing
-            // Top Talent reveal in the platform shell), where the
-            // Activation CTA already lives in context. Sasha's call —
-            // "in-context deepening, not the /ignite sales page." The
-            // user clicking from JOURNEY 1.5 is already authenticated
-            // and has their reveal; landing them on the dedicated
-            // session-booking page would feel like a sales bait-and-
-            // switch. The contextual page reads as "deepen what you
-            // already see," matching the Sales-as-Love field quality.
+            // Per alexanders_unique_business.md Branch B: deeper digital
+            // profile (Three Talents in Depth, How It Shows Up, Path of
+            // Mastery, Roles, Partner, Monetization, What's Next).
             //
-            // No lock — optional means optional. No completion-progress
-            // impact on subsequent items; this is parallel deepening,
-            // not a sequence step. Same on both build + match paths.
+            // Routes to /game/me/zone-of-genius — the user's existing
+            // Top Talent reveal in the platform shell, where the
+            // Activation CTA lives in context (not the /ignite sales
+            // page). Sasha's call: "in-context deepening, not bait-
+            // and-switch to the booking page."
             id: "journey-activation",
-            label: "Activate your top talent ($37, optional)",
+            label: "Deepen your Top Talent",
+            subtitle: "How to use & monetize · optional",
+            priceChip: "$37",
+            variant: "sidequest",
             path: "/game/me/zone-of-genius",
             completed: !!journeyProgress["journey-activation"],
         },
@@ -1070,6 +1084,94 @@ const SectionsPanel = ({
                         }
                     };
 
+                    // Day 80 Wave 2.2 (Sasha 2026-05-22): sidequest variant
+                    // render branch. Optional paid offerings (today: the
+                    // $37 Activation step) get gold-tinted background,
+                    // ✦ glyph instead of a number, italic subtitle below
+                    // the title, right-aligned gold price chip, smaller
+                    // height (py-2 vs py-3). Doesn't interrupt the
+                    // numbered 1→2→3→4→5 path reading.
+                    const isSidequest = section.variant === "sidequest";
+                    const sidequestRowContent = isSidequest ? (
+                        <div
+                            className={cn(
+                                "group flex items-center gap-2.5 px-3 py-2 mx-2 rounded-2xl transition-all duration-300 relative cursor-pointer",
+                                "focus:outline-none focus-visible:ring-2 focus-visible:ring-[#d4af37]/40",
+                                "hover:translate-y-[-1px]",
+                            )}
+                            style={{
+                                background:
+                                    "linear-gradient(135deg, rgba(244,212,114,0.10) 0%, rgba(212,175,55,0.06) 100%)",
+                                border: "0.5px solid rgba(212, 175, 55, 0.42)",
+                                boxShadow:
+                                    "0 0 12px -4px rgba(244,212,114,0.30), inset 0 0 8px -2px rgba(244,212,114,0.18)",
+                            }}
+                            onClick={handleSectionClick}
+                        >
+                            <span
+                                className="inline-flex items-center justify-center w-[22px] h-[22px] flex-shrink-0"
+                                style={{
+                                    fontFamily: "'Cormorant Garamond', serif",
+                                    fontSize: "15px",
+                                    color: "#d4af37",
+                                    textShadow:
+                                        "0 0 8px rgba(244, 212, 114, 0.55)",
+                                }}
+                                aria-hidden="true"
+                            >
+                                ✦
+                            </span>
+                            <span className="flex-1 min-w-0">
+                                <span
+                                    className="block leading-snug"
+                                    style={{
+                                        fontFamily: "'Cormorant Garamond', serif",
+                                        fontWeight: 600,
+                                        fontSize: "16px",
+                                        letterSpacing: "0.012em",
+                                        color: "rgba(255, 255, 255, 0.94)",
+                                    }}
+                                >
+                                    {section.label}
+                                </span>
+                                {section.subtitle && (
+                                    <span
+                                        className="block mt-0.5 italic"
+                                        style={{
+                                            fontFamily: "'Source Serif 4', Georgia, serif",
+                                            fontWeight: 400,
+                                            fontSize: "11.5px",
+                                            color: "rgba(255, 255, 255, 0.58)",
+                                            letterSpacing: "0.01em",
+                                        }}
+                                    >
+                                        {section.subtitle}
+                                    </span>
+                                )}
+                            </span>
+                            {section.priceChip && (
+                                <span
+                                    className="ml-1 inline-flex items-center justify-center px-2 py-0.5 rounded-md flex-shrink-0"
+                                    style={{
+                                        fontFamily: "'DM Sans', system-ui, sans-serif",
+                                        fontVariantNumeric: "tabular-nums lining-nums",
+                                        fontSize: "11px",
+                                        fontWeight: 700,
+                                        letterSpacing: "0.04em",
+                                        color: "#5d4307",
+                                        background:
+                                            "linear-gradient(135deg, rgba(244,212,114,0.55) 0%, rgba(212,175,55,0.42) 100%)",
+                                        border: "0.5px solid rgba(212, 175, 55, 0.70)",
+                                        boxShadow:
+                                            "0 0 6px rgba(244, 212, 114, 0.30)",
+                                    }}
+                                >
+                                    {section.priceChip}
+                                </span>
+                            )}
+                        </div>
+                    ) : null;
+
                     // Day 50 later (Sasha): pane 2 rows now mirror the
                     // SPACES chips on pane 1 — rounded-2xl pill, bg-white/5
                     // baseline so each row reads as its own discrete
@@ -1078,7 +1180,7 @@ const SectionsPanel = ({
                     // absolute gold left-pill marker (matching pane 1's
                     // active treatment exactly). Locked rows: chip still
                     // visible but text dim + no hover lift.
-                    const rowContent = (
+                    const standardRowContent = (
                         <div
                             className={cn(
                                 "group flex items-center gap-2.5 px-3 py-3 mx-2 rounded-2xl transition-all duration-300 relative",
@@ -1273,6 +1375,13 @@ const SectionsPanel = ({
                             )}
                         </div>
                     );
+
+                    // Day 80 Wave 2.2: unify back into one rowContent so
+                    // the downstream PopoverTrigger and rowWithTooltip
+                    // ternary stay variant-agnostic.
+                    const rowContent = isSidequest
+                        ? sidequestRowContent
+                        : standardRowContent;
 
                     // Day 55 (Sasha 2026-04-29): locked-row hint popover.
                     // Controlled by `openLockedHintId` state — desktop
