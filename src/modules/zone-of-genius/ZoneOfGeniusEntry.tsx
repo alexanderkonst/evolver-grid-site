@@ -831,6 +831,39 @@ const ZoneOfGeniusEntry = () => {
                             >
                                 How do you want to reveal it?
                             </h2>
+
+                            {/* Day 79 (Sasha 2026-05-22): match-path orientation.
+                                Tells the user the Top Talent reveal is step 1 of
+                                the match journey, so they don't wonder where
+                                the matches are. Build-path users skip this. */}
+                            {isMatchPath && (
+                                <div
+                                    className="max-w-[560px] mx-auto mt-4 sm:mt-5 space-y-2"
+                                    style={{
+                                        fontFamily: "'Source Serif 4', serif",
+                                    }}
+                                >
+                                    <p
+                                        className="text-sm sm:text-base leading-relaxed"
+                                        style={{
+                                            color: "var(--skin-text-primary, #0a1628)",
+                                            textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.7))",
+                                        }}
+                                    >
+                                        <strong style={{ fontWeight: 700 }}>Step 1 of 2.</strong>{" "}
+                                        Reveal your top talent first. That&rsquo;s the signal we use to find your people.
+                                    </p>
+                                    <p
+                                        className="text-sm sm:text-base italic leading-relaxed"
+                                        style={{
+                                            color: "var(--skin-text-muted, rgba(26,30,58,0.7))",
+                                            textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
+                                        }}
+                                    >
+                                        Then we make intros to the matching entrepreneurs, advisors, and operators.
+                                    </p>
+                                </div>
+                            )}
                         </div>
 
                         {/* Day 48 (Sasha): selector cards re-skinned to the
