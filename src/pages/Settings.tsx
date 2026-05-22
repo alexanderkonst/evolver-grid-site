@@ -380,12 +380,16 @@ const Settings = () => {
     const navigate = useNavigate();
     const [searchParams, setSearchParams] = useSearchParams();
     const tabParam = searchParams.get("tab");
+    // Day 78 (Sasha 2026-05-22): Appearance tab hidden. The skin picker
+    // is incomplete — Navy+Gold never reached production-quality QA, and
+    // the V1→V8 NS work proved the white-label spine but didn't graduate
+    // an end-user-facing chooser. Component + route param preserved so
+    // re-enabling later is a one-line revert; for now any `?tab=appearance`
+    // visit (e.g. old bookmark) silently lands on Profile.
     const initialTab =
-        tabParam === "appearance"
-            ? "appearance"
-            : tabParam === "notifications"
-                ? "notifications"
-                : "profile";
+        tabParam === "notifications"
+            ? "notifications"
+            : "profile";
     const [activeTab, setActiveTab] = useState<string>(initialTab);
 
     const handleTabChange = (tab: string) => {
@@ -479,8 +483,13 @@ const Settings = () => {
                             with MeGate's editorial pill — light mute
                             base, Cormorant Garamond labels, gold tint
                             on active. */}
+                        {/* Day 78 (Sasha 2026-05-22): grid-cols-3 → grid-cols-2.
+                            Appearance trigger removed (skin chooser not ready
+                            for end users). When the appearance tab returns,
+                            flip back to grid-cols-3 + re-add the TabsTrigger
+                            below. */}
                         <TabsList
-                            className="mb-6 h-auto p-1 rounded-full grid w-full grid-cols-3"
+                            className="mb-6 h-auto p-1 rounded-full grid w-full grid-cols-2"
                             style={{
                                 background: "hsla(228, 30%, 18%, 0.06)",
                                 border: "1px solid hsla(228, 30%, 18%, 0.10)",
@@ -530,6 +539,15 @@ const Settings = () => {
                                 <Bell className="w-3.5 h-3.5" />
                                 Notifications
                             </TabsTrigger>
+                            {/* Day 78 (Sasha 2026-05-22): Appearance trigger
+                                hidden. Skin chooser is not user-ready —
+                                Navy+Gold never finished QA, NS skin is
+                                demo-scoped only. Tracked in roadmap as
+                                "Appearance tab — re-enable when skin
+                                chooser is production-ready." Restore by
+                                un-commenting + flipping TabsList back
+                                to grid-cols-3. */}
+                            {/*
                             <TabsTrigger
                                 value="appearance"
                                 className={cn(
@@ -552,6 +570,7 @@ const Settings = () => {
                                 <Palette className="w-3.5 h-3.5" />
                                 Appearance
                             </TabsTrigger>
+                            */}
                         </TabsList>
                         <TabsContent value="profile">
                             <ProfileSettingsSection />
