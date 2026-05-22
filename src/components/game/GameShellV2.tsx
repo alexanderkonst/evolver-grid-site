@@ -185,6 +185,13 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
 
     // User & profile state
     const [user, setUser] = useState<any>(null);
+    // Day 79 (Sasha 2026-05-22): tracks whether the initial Supabase
+    // auth check has resolved. We can't use `!user` alone to detect
+    // a guest because user starts at null pre-fetch — so we'd briefly
+    // misclassify authed users as guests during the ~ms-long auth
+    // round-trip, hiding most of the rail from them. `authChecked`
+    // flips to true once we know the answer either way.
+    const [authChecked, setAuthChecked] = useState(false);
     const [profile, setProfile] = useState<{
         first_name: string | null;
         last_name: string | null;
@@ -453,6 +460,7 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
     useEffect(() => {
         supabase.auth.getUser().then(async ({ data: { user } }) => {
             setUser(user);
+            setAuthChecked(true);
             if (user) {
                 loadProfile(user.id);
             } else {
@@ -467,6 +475,7 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
 
         const { data: { subscription } } = supabase.auth.onAuthStateChange((_, session) => {
             setUser(session?.user ?? null);
+            setAuthChecked(true);
             if (session?.user) {
                 loadProfile(session.user.id);
             } else {
@@ -787,7 +796,43 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
     // untouched.
     const localStorageBackedHidden: string[] = collaborateUnlocked ? [] : ["collaborate"];
     const profileBackedGated = GATED_SPACES.filter((id) => id !== "collaborate");
-    const hiddenSpaces: string[] = profileLoaded
+
+    // Day 79 (Sasha 2026-05-22): unauthed-guest visibility tightened.
+    // Only the genuinely public surfaces — JOURNEY (marketing entry)
+    // and AI OS (explicit "free Holonic Commons, no profile, no sign-in"
+    // per Day 53 — see /ai-os route comment in App.tsx) — show for
+    // visitors who aren't signed in. Everything else (ME / BUILD /
+    // LEARN / MEET / COLLABORATE / OFFER) has MeGate or RequireAuth
+    // downstream, so showing the chips just leads to redirect-bounces.
+    //
+    // The previous logic had two compounding leak paths for guests:
+    //   1. ME and BUILD weren't in GATED_SPACES (per the "hide-don't-
+    //      lock with ME-always-on" + Day 77 "BUILD-always-on for the
+    //      funnel-v2 sidebar entry" exceptions). Both were intended
+    //      for AUTHED users but never gated on auth state — so guests
+    //      saw both chips too.
+    //   2. COLLABORATE's `fytt:collaborate-unlocked` localStorage flag
+    //      persists per-browser. Guests with prior testing localStorage
+    //      saw COLLABORATE even when signed out.
+    //
+    // Both leaks closed by overriding hiddenSpaces when `authChecked &&
+    // !user`. The override fires only AFTER the auth check resolves —
+    // until then, the original logic runs so authed users don't flicker
+    // through a stripped rail during the auth fetch.
+    const NON_PUBLIC_SPACE_IDS = [
+        "next-move",
+        "grow",
+        "learn",
+        "meet",
+        "collaborate",
+        "build",
+        "buysell",
+    ];
+    const isGuest = authChecked && !user;
+
+    const hiddenSpaces: string[] = isGuest
+        ? [...NON_PUBLIC_SPACE_IDS]
+        : profileLoaded
         ? [
               ...profileBackedGated.filter((id) => unlockStatus[id] === false),
               ...localStorageBackedHidden,
