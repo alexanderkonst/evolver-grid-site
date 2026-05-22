@@ -51,10 +51,14 @@ const MatchHero = () => {
     const pathParamPresent =
       typeof window !== "undefined" &&
       new URLSearchParams(window.location.search).get("path") === "match";
-    trackFunnelEvent("match_landing_view", "match_hero", {
-      landing_type: "match",
-      skin,
-      path_param_present: pathParamPresent,
+    trackFunnelEvent({
+      step: "match_landing_view",
+      source: "match_hero",
+      metadata: {
+        landing_type: "match",
+        skin,
+        path_param_present: pathParamPresent,
+      },
     });
   }, [skin]);
 
