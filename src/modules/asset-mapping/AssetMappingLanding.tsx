@@ -28,12 +28,6 @@ import { Ornament, GOLD_TEXT_STYLE } from "@/lib/landingDesign";
 // the post-save "matched" state — the unlock moment for collaboration
 // matches. Returns null for build-path users.
 import MatchFlowCta from "@/components/landing/MatchFlowCta";
-import {
-    Tooltip,
-    TooltipContent,
-    TooltipProvider,
-    TooltipTrigger,
-} from "@/components/ui/tooltip";
 
 type Step = "choice" | "has-ai" | "paste-response" | "matched";
 
@@ -113,28 +107,19 @@ const CATEGORY_MAP: Record<string, string> = {
 
 const normalizeText = (value?: string) => value?.trim().toLowerCase() || "";
 
-// AI matching function — Day 63 (Sasha 2026-05-07) BUG FIX: response-shape
-// alignment with the actual edge function. The edge function at
-// supabase/functions/match-assets/index.ts returns rows shaped
-//   { category: "Type > SubType > Title", name, description, why_value }
-// but the previous client read fields like `match.type / match.subType /
-// match.title / match.asset_id / match.score` — none of which exist in
-// that response. Result: every AI-match call returned 'Unknown', got
-// filtered out, and the function returned null — silently making the
-// entire AI-matching path dead code (always falling through to the local
-// regex parser). Now we parse the "Type > SubType > Title" string into
-// the three taxonomy levels and map name/description/why_value correctly.
-// `leverage_score` is NOT returned by the edge fn (only the local-parser
-// path captures it from the user's AI response), so we leave it
-// undefined here — the UI handles a missing score gracefully.
+// AI matching function. Day 65 evening (Sasha 2026-05-09) v5: lean
+// schema alignment. The edge function at
+// supabase/functions/match-assets/index.ts now returns rows shaped
+//   { category: "Type > SubType > Title", description, maturity }
+// — name / why_value / horizon / nature / leverage_score / is_offer /
+// is_power_node were all retired in v5 (see assetMappingPrompt.ts
+// changelog). We extract a title at save time from the first sentence
+// of the description.
 const fetchAssetMatches = async (text: string): Promise<MatchedAsset[] | null> => {
     try {
         // Day 63 (Sasha 2026-05-07 evening) BUG FIX: limit was hardcoded
-        // to 8, so users who pasted 20+ assets got truncated to 8. The
-        // local-parser fallback already supported up to 50 (slice cap
-        // below), so the edge-fn path was the bottleneck. Bumped to 50
-        // to match the local cap; the user's actual asset count drives
-        // the result, not an arbitrary client-side ceiling.
+        // to 8, so users who pasted 20+ assets got truncated to 8. Bumped
+        // to 50 to match the local-parser cap.
         const { data, error } = await supabase.functions.invoke("match-assets", {
             body: { text, limit: 50 },
         });
@@ -142,26 +127,16 @@ const fetchAssetMatches = async (text: string): Promise<MatchedAsset[] | null> =
 
         type EdgeMatch = {
             category?: string;
-            name?: string;
             description?: string;
-            why_value?: string;
-            // Day 63 v3 strategic dimensions.
             maturity?: string;
-            horizon?: string;
-            nature?: string;
-            expresses_root?: string;
-            leverage_score?: number;
-            is_offer?: boolean;
-            is_power_node?: boolean;
         };
         const matches = (data.matches as EdgeMatch[])
             .map((match): MatchedAsset | null => {
-                const name = match.name?.trim();
-                if (!name) return null;
+                const description = match.description?.trim();
+                if (!description) return null;
                 // "Type > SubType > Title" → split on " > " and trim each piece.
-                // "Other" is now a valid type (when AI couldn't fit a real
-                // asset into the schema cleanly). Filter only on Unknown
-                // (which would mean a totally malformed category string).
+                // "Other" is a valid type (when AI couldn't fit cleanly).
+                // Filter only on Unknown (totally malformed category string).
                 const parts = (match.category ?? "")
                     .split(/\s*>\s*/)
                     .map((p) => p.trim())
@@ -172,21 +147,12 @@ const fetchAssetMatches = async (text: string): Promise<MatchedAsset[] | null> =
                     typeTitle,
                     subTypeTitle: parts[1] || undefined,
                     categoryTitle: parts[2] || undefined,
-                    title: name,
-                    description: match.description?.trim() || undefined,
-                    leverageReason: match.why_value?.trim() || undefined,
+                    // Title intentionally empty here — derived at save time
+                    // from the description's first sentence so the user's
+                    // asset library still has a readable headline.
+                    title: "",
+                    description,
                     maturity: isMaturity(match.maturity) ? match.maturity : undefined,
-                    horizon: normalizeHorizon(match.horizon),
-                    nature: isNature(match.nature) ? match.nature : undefined,
-                    expressesRoot: match.expresses_root?.trim() || undefined,
-                    leverageScore:
-                        typeof match.leverage_score === "number" &&
-                        match.leverage_score >= 1 &&
-                        match.leverage_score <= 10
-                            ? Math.round(match.leverage_score)
-                            : undefined,
-                    isOffer: match.is_offer === true,
-                    isPowerNode: match.is_power_node === true,
                 };
             })
             .filter((m): m is MatchedAsset => m !== null);
@@ -387,8 +353,17 @@ const AssetMappingLanding = () => {
                         ? ASSET_CATEGORIES.find((item) => item.subTypeId === subType.id)
                         : undefined;
 
-                const title = asset.title.trim();
-                if (!title) {
+                // v5: title is no longer required from the AI. Use
+                // whatever the AI returned if present, otherwise derive
+                // a readable headline from the description's first
+                // sentence (falling back to categoryTitle for the rare
+                // empty-description case). Only skip if BOTH description
+                // and title are empty — nothing to identify the asset by.
+                const rawTitle = asset.title?.trim();
+                const description = asset.description?.trim();
+                const title = rawTitle
+                    || deriveTitleFromDescription(description, asset.categoryTitle || type.title);
+                if (!title || (!description && !rawTitle)) {
                     skippedCount += 1;
                     continue;
                 }
@@ -398,7 +373,7 @@ const AssetMappingLanding = () => {
                     subTypeId: subType?.id,
                     categoryId: category?.id,
                     title,
-                    description: asset.description?.trim() || undefined,
+                    description: description || undefined,
                     savedAt: new Date().toISOString(),
                     source: "ai",
                 });
@@ -465,8 +440,13 @@ const AssetMappingLanding = () => {
         }
     };
 
-    // Parse response and extract assets - tries AI matching first, then falls back to parsing
-    // UNCHANGED from prior version.
+    // Parse response and extract assets — tries the edge function's
+    // AI matching first; falls back to local parsing of the user's
+    // pasted JSON if the edge call comes back empty. Day 65 v5 lean
+    // schema: only type/subtype/category + description + maturity
+    // survive; legacy fields (name / why_value / horizon / nature /
+    // leverage_score / expresses_root / is_offer / is_power_node)
+    // are silently ignored if the user's AI still emits them.
     const handleMatchAssets = async () => {
         setIsMatching(true);
 
@@ -490,28 +470,17 @@ const AssetMappingLanding = () => {
                     const typeTitle = CATEGORY_MAP[rawType.toLowerCase()] || rawType || 'Unknown';
                     const subTypeTitle = (asset.subtype || asset.subcategory || '').trim() || undefined;
                     const categoryTitle = (asset.category || '').trim() || undefined;
-                    const name = asset.name || asset.asset || asset.title || 'Unnamed Asset';
+                    const description = asset.description || asset.details || asset.summary || undefined;
 
                     extracted.push({
                         typeTitle,
                         subTypeTitle,
                         categoryTitle,
-                        title: name,
-                        description: asset.description || asset.details || asset.summary || undefined,
-                        leverageScore: asset.leverage_score || asset.leverageScore || undefined,
-                        leverageReason: asset.leverage_reason || asset.leverageReason || asset.why_value || undefined,
-                        // Day 63 v3 strategic dimensions. Pre-v3 outputs lack
-                        // these; undefined fall-through is fine — UI hides
-                        // each badge unless the field is present.
+                        // v5: title is no longer required from the AI; we
+                        // derive it from the description at save time.
+                        title: "",
+                        description,
                         maturity: isMaturity(asset.maturity) ? asset.maturity : undefined,
-                        horizon: normalizeHorizon(asset.horizon),
-                        nature: isNature(asset.nature) ? asset.nature : undefined,
-                        expressesRoot:
-                            typeof asset.expresses_root === "string"
-                                ? asset.expresses_root.trim() || undefined
-                                : undefined,
-                        isOffer: asset.is_offer === true || asset.isOffer === true,
-                        isPowerNode: asset.is_power_node === true || asset.isPowerNode === true,
                     });
                 }
             } else {
@@ -520,11 +489,9 @@ const AssetMappingLanding = () => {
                 for (const block of assetBlocks) {
                     if (!block.trim()) continue;
                     const categoryMatch = block.match(/\*\*Category:\*\*\s*([^\n*]+)/i);
-                    const assetMatch = block.match(/\*\*(?:Asset|Name|Title):\*\*\s*([^\n]+)/i);
                     const descMatch = block.match(/\*\*(?:Description|Details|Summary):\*\*\s*([^\n]+)/i);
-                    const valueMatch = block.match(/\*\*Why it'?s valuable:?\*\*\s*([^\n]+)/i);
 
-                    if (assetMatch) {
+                    if (descMatch) {
                         let typeTitle = 'Unknown';
                         if (categoryMatch) {
                             const rawCat = categoryMatch[1].trim().toLowerCase();
@@ -532,9 +499,8 @@ const AssetMappingLanding = () => {
                         }
                         extracted.push({
                             typeTitle,
-                            title: assetMatch[1].trim(),
-                            description: descMatch ? descMatch[1].trim() : undefined,
-                            leverageReason: valueMatch ? valueMatch[1].trim() : undefined,
+                            title: "",
+                            description: descMatch[1].trim(),
                         });
                     }
                 }
@@ -552,16 +518,13 @@ const AssetMappingLanding = () => {
                         const items = section.split(/(?=\*\s+\*\*)/);
 
                         for (const item of items) {
-                            const assetMatch = item.match(/\*\*(?:Asset|Name|Title):\*\*\s*([^\n]+)/i);
                             const descMatch = item.match(/\*\*(?:Description|Details|Summary):\*\*\s*([^\n]+)/i);
-                            const valueMatch = item.match(/\*\*Why it'?s valuable:?\*\*\s*([^\n]+)/i);
 
-                            if (assetMatch) {
+                            if (descMatch) {
                                 extracted.push({
                                     typeTitle,
-                                    title: assetMatch[1].trim(),
-                                    description: descMatch ? descMatch[1].trim() : undefined,
-                                    leverageReason: valueMatch ? valueMatch[1].trim() : undefined,
+                                    title: "",
+                                    description: descMatch[1].trim(),
                                 });
                             }
                         }
@@ -576,7 +539,21 @@ const AssetMappingLanding = () => {
         }
 
         setIsMatching(false);
-        const sorted = extracted.sort((a, b) => (b.leverageScore || 0) - (a.leverageScore || 0));
+        // v5: no leverage_score to sort by. Sort by maturity (monetizable
+        // assets first, symbolic_only last) so the most actionable items
+        // surface at the top of the review screen.
+        const maturityRank: Record<string, number> = {
+            monetizable_now: 0,
+            usable_but_needs_packaging: 1,
+            latent: 2,
+            aspirational: 3,
+            symbolic_only: 4,
+        };
+        const sorted = extracted.sort((a, b) => {
+            const ra = a.maturity ? maturityRank[a.maturity] ?? 5 : 5;
+            const rb = b.maturity ? maturityRank[b.maturity] ?? 5 : 5;
+            return ra - rb;
+        });
         setMatchedAssets(sorted.slice(0, 50));
         setStep("matched");
     };
@@ -867,118 +844,27 @@ const AssetMappingLanding = () => {
                             </p>
                         </div>
 
-                        {matchedAssets.length > 0 && (() => {
-                            // Day 63 v3 — Center of Gravity gets a separate hero
-                            // treatment above the rest. The first array entry is
-                            // the root field-function per the prompt; we lift it
-                            // out so it doesn't visually compete with downstream
-                            // expressions. If for some reason it's not present
-                            // (e.g. v2 output coming back through), the rest of
-                            // the list renders unchanged.
-                            const cog = matchedAssets.find(
-                                (a) => a.typeTitle === "Center of Gravity",
-                            );
-                            const others = matchedAssets.filter(
-                                (a) => a.typeTitle !== "Center of Gravity",
-                            );
-                            return (
-                                <div className="space-y-4">
-                                    {cog && (
-                                        <div
-                                            className="rounded-2xl px-5 py-5"
-                                            style={{
-                                                background:
-                                                    "linear-gradient(135deg, rgba(244,212,114,0.22) 0%, rgba(255,255,255,0.65) 60%)",
-                                                border: "0.5px solid rgba(212, 175, 55, 0.65)",
-                                                boxShadow:
-                                                    "0 0 24px -6px rgba(212, 175, 55, 0.45), 0 16px 40px -20px rgba(10, 22, 40, 0.18)",
-                                            }}
-                                        >
-                                            <div
-                                                style={{
-                                                    fontFamily:
-                                                        "'Cormorant Garamond', serif",
-                                                    fontWeight: 600,
-                                                    letterSpacing: "0.18em",
-                                                    textTransform: "uppercase",
-                                                    fontSize: "11px",
-                                                    color:
-                                                        "var(--skin-goldDeep, #5d4307)",
-                                                    marginBottom: "8px",
-                                                }}
-                                            >
-                                                ✦ Center of Gravity — Root Capacity
-                                            </div>
-                                            <p
-                                                style={{
-                                                    fontFamily:
-                                                        "'Cormorant Garamond', serif",
-                                                    fontWeight: 700,
-                                                    fontSize: "18px",
-                                                    lineHeight: 1.35,
-                                                    color:
-                                                        "var(--skin-text-primary, #0b2a5a)",
-                                                    textShadow: legibleHeadlineHalo,
-                                                }}
-                                            >
-                                                {cog.title}
-                                            </p>
-                                            {cog.description && (
-                                                <p
-                                                    className="mt-2 italic"
-                                                    style={{
-                                                        fontFamily:
-                                                            "'Source Serif 4', serif",
-                                                        fontStyle: "italic",
-                                                        fontWeight: 600,
-                                                        fontSize: "13.5px",
-                                                        lineHeight: 1.5,
-                                                        color:
-                                                            "var(--skin-text-primary, #0b2a5a)",
-                                                    }}
-                                                >
-                                                    {cog.description}
-                                                </p>
-                                            )}
-                                            {cog.leverageReason && (
-                                                <p
-                                                    className="mt-2 italic"
-                                                    style={{
-                                                        fontFamily:
-                                                            "'Source Serif 4', serif",
-                                                        fontStyle: "italic",
-                                                        fontSize: "12.5px",
-                                                        lineHeight: 1.5,
-                                                        color:
-                                                            "var(--skin-goldDeep, #5d4307)",
-                                                    }}
-                                                >
-                                                    {cog.leverageReason}
-                                                </p>
-                                            )}
-                                        </div>
-                                    )}
-                                    <div className="space-y-3 max-h-[480px] overflow-y-auto pr-1">
-                                        {others.map((asset, i) => (
+                        {matchedAssets.length > 0 && (
+                            // Day 65 evening (Sasha 2026-05-09) v5 lean render.
+                            // Center of Gravity hero card removed — CoG itself
+                            // was retired in the v4 prompt and the defensive
+                            // fallback was retired in v5. No more power-node
+                            // halo, no more leverage score chip, no more
+                            // expresses_root, no more horizon/nature/offer
+                            // badges, no more AI-generated title row.
+                            //
+                            // Each card is now: breadcrumb eyebrow (type →
+                            // subtype → category) + maturity badge + the
+                            // description as body copy. Symbolic-only items
+                            // still get a quieter surface so they sit
+                            // honestly de-emphasized without being hidden.
+                            <div className="space-y-3 max-h-[480px] overflow-y-auto pr-1">
+                                {matchedAssets.map((asset, i) => (
                                     <div
                                         key={i}
                                         className="rounded-xl px-4 py-3.5"
                                         style={
-                                            // Day 63 v3: power nodes (top 5-7 by AI's
-                                            // Divine-Roast rubric) get the parchment-strong
-                                            // surface — gold hairline + soft halo —
-                                            // visually separating them from the supporting
-                                            // material below. Symbolic-only items get a
-                                            // dimmer treatment so they're honestly
-                                            // de-emphasized without being hidden.
-                                            asset.isPowerNode
-                                                ? {
-                                                    background: "var(--skin-card-bg, rgba(255, 255, 255, 0.72))",
-                                                    border: "0.5px solid rgba(212, 175, 55, 0.55)",
-                                                    boxShadow:
-                                                        "0 0 18px -6px rgba(212, 175, 55, 0.35), 0 12px 32px -16px rgba(10, 22, 40, 0.18)",
-                                                }
-                                                : asset.maturity === "symbolic_only"
+                                            asset.maturity === "symbolic_only"
                                                 ? {
                                                     background: "rgba(255, 255, 255, 0.30)",
                                                     border: "0.5px solid var(--skin-rule-hairline, rgba(26, 30, 58, 0.06))",
@@ -990,27 +876,6 @@ const AssetMappingLanding = () => {
                                     >
                                         <div className="flex items-start justify-between gap-2 mb-2">
                                             <div className="flex flex-wrap items-baseline gap-1.5">
-                                                {asset.isPowerNode && (
-                                                    <span
-                                                        title="Power node — one of the top 5-7 assets that hold most of the leverage"
-                                                        style={{
-                                                            fontFamily: "'Cormorant Garamond', serif",
-                                                            fontWeight: 600,
-                                                            letterSpacing: "0.16em",
-                                                            textTransform: "uppercase",
-                                                            fontSize: "9.5px",
-                                                            color: "var(--skin-goldDeep, #5d4307)",
-                                                            background:
-                                                                "linear-gradient(135deg, rgba(244,212,114,0.30) 0%, rgba(212,175,55,0.18) 100%)",
-                                                            border: "0.5px solid rgba(212, 175, 55, 0.65)",
-                                                            padding: "1px 7px",
-                                                            borderRadius: "999px",
-                                                            textShadow: "0 0 8px rgba(244, 212, 114, 0.40)",
-                                                        }}
-                                                    >
-                                                        ✦ Power node
-                                                    </span>
-                                                )}
                                                 <span
                                                     style={{
                                                         ...labelMuted,
@@ -1048,130 +913,25 @@ const AssetMappingLanding = () => {
                                                     </span>
                                                 )}
                                             </div>
-                                            {asset.leverageScore !== undefined && (
-                                                <TooltipProvider>
-                                                    <Tooltip>
-                                                        <TooltipTrigger asChild>
-                                                            <span
-                                                                style={{
-                                                                    fontFamily: "'DM Sans', system-ui, sans-serif",
-                                                                    fontSize: "11px",
-                                                                    fontWeight: 500,
-                                                                    fontVariantNumeric: "tabular-nums lining-nums",
-                                                                    padding: "1px 8px",
-                                                                    borderRadius: "999px",
-                                                                    cursor: "help",
-                                                                    border: "0.5px solid",
-                                                                    ...(asset.leverageScore >= 8
-                                                                        ? {
-                                                                            color: "rgba(20, 130, 70, 0.95)",
-                                                                            background: "rgba(20, 130, 70, 0.08)",
-                                                                            borderColor: "rgba(20, 130, 70, 0.35)",
-                                                                        }
-                                                                        : asset.leverageScore >= 5
-                                                                            ? {
-                                                                                color: "var(--skin-goldDeep, #5d4307)",
-                                                                                background: "rgba(212, 175, 55, 0.10)",
-                                                                                borderColor: "rgba(212, 175, 55, 0.40)",
-                                                                            }
-                                                                            : {
-                                                                                color: "rgba(184, 92, 11, 0.95)",
-                                                                                background: "rgba(184, 92, 11, 0.08)",
-                                                                                borderColor: "rgba(184, 92, 11, 0.35)",
-                                                                            }),
-                                                                }}
-                                                            >
-                                                                ✦ {asset.leverageScore}/10
-                                                            </span>
-                                                        </TooltipTrigger>
-                                                        <TooltipContent side="left" className="max-w-[220px]">
-                                                            <p className="text-xs"><strong>Asset Strength</strong><br />How developed and leveraged this asset currently is (1-10).</p>
-                                                        </TooltipContent>
-                                                    </Tooltip>
-                                                </TooltipProvider>
+                                            {asset.maturity && (
+                                                <MaturityBadge maturity={asset.maturity} />
                                             )}
                                         </div>
-                                        <p
-                                            style={{
-                                                ...cormorantTitle,
-                                                fontSize: "17px",
-                                                fontWeight: 600,
-                                            }}
-                                        >
-                                            {asset.title}
-                                        </p>
                                         {asset.description && (
                                             <p
-                                                className="mt-1"
                                                 style={{
                                                     ...sourceSerifBody,
-                                                    fontSize: "13.5px",
-                                                    lineHeight: 1.5,
+                                                    fontSize: "14px",
+                                                    lineHeight: 1.55,
                                                 }}
                                             >
                                                 {asset.description}
                                             </p>
                                         )}
-                                        {asset.leverageReason && (
-                                            <p
-                                                className="mt-2 italic"
-                                                style={{
-                                                    fontFamily: "'Source Serif 4', serif",
-                                                    fontStyle: "italic",
-                                                    fontSize: "12.5px",
-                                                    lineHeight: 1.5,
-                                                    color: "var(--skin-text-muted, rgba(11, 42, 90, 0.93))",
-                                                }}
-                                            >
-                                                {asset.leverageReason}
-                                            </p>
-                                        )}
-                                        {/* Day 63 v3 — expresses_root: 1-line
-                                            connecting this asset back to the
-                                            Center of Gravity. Italic, muted-gold,
-                                            sits between description and the
-                                            badges so the hierarchy reads as
-                                            essence → expression → metadata. */}
-                                        {asset.expressesRoot && asset.typeTitle !== "Center of Gravity" && (
-                                            <p
-                                                className="mt-2 italic"
-                                                style={{
-                                                    fontFamily: "'Source Serif 4', serif",
-                                                    fontStyle: "italic",
-                                                    fontSize: "12px",
-                                                    lineHeight: 1.4,
-                                                    color: "var(--skin-goldDeep, #5d4307)",
-                                                    opacity: 0.85,
-                                                }}
-                                            >
-                                                ↳ {asset.expressesRoot}
-                                            </p>
-                                        )}
-                                        {/* Day 63 v3: maturity / horizon / nature
-                                            badges. Nature is the new dimension —
-                                            ontological tag preserving symbolic
-                                            and mythic capacity. Renders only when
-                                            the AI returned each field. */}
-                                        {(asset.maturity || asset.horizon || asset.nature || asset.isOffer) && (
-                                            <div className="flex flex-wrap items-baseline gap-1.5 mt-2.5">
-                                                {asset.maturity && (
-                                                    <MaturityBadge maturity={asset.maturity} />
-                                                )}
-                                                {asset.horizon && (
-                                                    <HorizonBadge horizon={asset.horizon} />
-                                                )}
-                                                {asset.nature && (
-                                                    <NatureBadge nature={asset.nature} />
-                                                )}
-                                                {asset.isOffer && <OfferBadge />}
-                                            </div>
-                                        )}
                                     </div>
-                                        ))}
-                                    </div>
-                                </div>
-                            );
-                        })()}
+                                ))}
+                            </div>
+                        )}
 
                         <div className="flex flex-wrap items-center gap-3 pt-1">
                             <button
@@ -1325,105 +1085,9 @@ function MaturityBadge({ maturity }: { maturity: AssetMaturity }) {
     );
 }
 
-// Day 63 v3: horizon expanded to 4 values (added civilization_scale).
-const HORIZON_LABEL: Record<AssetHorizon, string> = {
-    now: "Now",
-    near: "Near (6-18mo)",
-    long_term: "Long-term",
-    civilization_scale: "Civilization-scale",
-};
-
-const HORIZON_HINT: Record<AssetHorizon, string> = {
-    now: "Activate this quarter for income, credibility, or distribution.",
-    near: "Package or position in the next 6-18 months.",
-    long_term: "Multi-year strategic asset that matures over 2-5 years.",
-    civilization_scale: "Generational, strategic-north-star. Belongs for orientation, not for this month's plan.",
-};
-
-function HorizonBadge({ horizon }: { horizon: AssetHorizon }) {
-    // Subtler than maturity — horizon is timing context, not strategic
-    // judgment. Single muted-navy palette weighted by proximity.
-    const accent = horizon === "now"
-        ? { color: "var(--skin-text-primary, #0b2a5a)", background: "rgba(11, 42, 90, 0.08)", borderColor: "rgba(11, 42, 90, 0.25)" }
-        : horizon === "near"
-        ? { color: "var(--skin-text-body, rgba(11, 42, 90, 0.97))", background: "rgba(11, 42, 90, 0.05)", borderColor: "rgba(11, 42, 90, 0.18)" }
-        : horizon === "long_term"
-        ? { color: "var(--skin-text-muted, rgba(11, 42, 90, 0.93))", background: "rgba(11, 42, 90, 0.03)", borderColor: "rgba(11, 42, 90, 0.12)" }
-        : { color: "var(--skin-text-muted, rgba(11, 42, 90, 0.93))", background: "rgba(11, 42, 90, 0.025)", borderColor: "rgba(11, 42, 90, 0.10)" };
-    return (
-        <span
-            title={HORIZON_HINT[horizon]}
-            style={{ ...badgeBaseStyle, ...accent }}
-        >
-            {HORIZON_LABEL[horizon]}
-        </span>
-    );
-}
-
-// Day 63 v3 — NATURE badge. The ontological dimension that lets
-// symbolic/mythic capacity coexist with operational deployability
-// without flattening either. Color-graded by domain, not by quality —
-// every nature is dignified.
-const NATURE_LABEL: Record<AssetNature, string> = {
-    practical: "Practical",
-    relational: "Relational",
-    symbolic: "Symbolic",
-    infrastructural: "Infrastructural",
-    mythic: "Mythic",
-    intellectual: "Intellectual",
-    economic: "Economic",
-};
-
-const NATURE_HINT: Record<AssetNature, string> = {
-    practical: "Concrete skills, tools, deliverables, artifacts — things you can pick up and use.",
-    relational: "Trust, connections, warm bonds, shared history with specific people.",
-    symbolic: "Meaning-making, narrative coherence, brand essence, archetypal resonance — upstream of much else.",
-    infrastructural: "Systems, platforms, distribution rails, operational scaffolding.",
-    mythic: "Origin stories, sacred lineage, cross-domain synthesis that organizes worldview.",
-    intellectual: "Frameworks, methodologies, structured thought, IP.",
-    economic: "Commercial offers, financial instruments, productized services.",
-};
-
-function NatureBadge({ nature }: { nature: AssetNature }) {
-    // Distinct color per nature — each domain dignified equally. No
-    // hierarchy implied by color (all are valid; quality is signaled
-    // separately via leverage_score + maturity). Saturation level low
-    // so the badge reads as a quiet domain marker, not a banner.
-    const tone: Record<AssetNature, { color: string; background: string; borderColor: string }> = {
-        practical:       { color: "rgba(20, 90, 130, 0.95)",  background: "rgba(20, 90, 130, 0.07)",  borderColor: "rgba(20, 90, 130, 0.32)" },
-        relational:      { color: "rgba(150, 60, 110, 0.95)", background: "rgba(150, 60, 110, 0.07)", borderColor: "rgba(150, 60, 110, 0.32)" },
-        symbolic:        { color: "rgba(120, 70, 160, 0.95)", background: "rgba(120, 70, 160, 0.07)", borderColor: "rgba(120, 70, 160, 0.32)" },
-        infrastructural: { color: "rgba(60, 100, 80, 0.95)",  background: "rgba(60, 100, 80, 0.07)",  borderColor: "rgba(60, 100, 80, 0.32)" },
-        mythic:          { color: "rgba(160, 100, 30, 0.95)", background: "rgba(160, 100, 30, 0.07)", borderColor: "rgba(160, 100, 30, 0.32)" },
-        intellectual:    { color: "rgba(40, 70, 130, 0.95)",  background: "rgba(40, 70, 130, 0.07)",  borderColor: "rgba(40, 70, 130, 0.32)" },
-        economic:        { color: "rgba(20, 110, 60, 0.95)",  background: "rgba(20, 110, 60, 0.07)",  borderColor: "rgba(20, 110, 60, 0.32)" },
-    };
-    return (
-        <span
-            title={NATURE_HINT[nature]}
-            style={{ ...badgeBaseStyle, ...tone[nature] }}
-        >
-            {NATURE_LABEL[nature]}
-        </span>
-    );
-}
-
-// Day 63 v3 — OFFER flag. Productized services (paid sessions, cohorts,
-// retainers) get this so they're distinguishable from the underlying IP
-// they deploy. Small gold-rim chip.
-function OfferBadge() {
-    return (
-        <span
-            title="Productized offer — a paid service or named instrument, distinct from the underlying methodology it deploys."
-            style={{
-                ...badgeBaseStyle,
-                color: "var(--skin-goldDeep, #5d4307)",
-                background:
-                    "linear-gradient(135deg, rgba(244,212,114,0.18) 0%, rgba(212,175,55,0.10) 100%)",
-                borderColor: "rgba(212, 175, 55, 0.50)",
-            }}
-        >
-            ✦ Offer
-        </span>
-    );
-}
+// Day 65 evening (Sasha 2026-05-09) v5: HorizonBadge, NatureBadge, and
+// OfferBadge were retired along with their underlying schema fields
+// (horizon, nature, is_offer). The v5 lean schema keeps only MaturityBadge
+// above as the asset's single ranking signal. Component definitions and
+// their LABEL/HINT/tone tables removed; resurrect from git history if
+// any future schema brings these dimensions back.
