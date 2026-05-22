@@ -163,22 +163,23 @@ serve(async (req) => {
       `- ${a.type} > ${a.subType} > ${a.title}`
     ).join("\n");
 
-    // Day 63 evening (Sasha 2026-05-07) v3 prompt — aligned with the
-    // user-facing ASSET_MAPPING_PROMPT v3 upgrade. Adds three things on
-    // top of the morning's v2:
-    //   1. NATURE field (7-value enum: practical | relational | symbolic
-    //      | infrastructural | mythic | intellectual | economic) so
-    //      symbolic/mythic capacity isn't amputated as "symbolic_only."
-    //   2. HORIZON expanded from 3 values to 4 (added civilization_scale).
-    //   3. CENTER OF GRAVITY meta-asset as the FIRST array entry: a
-    //      named root field-function the user runs on the world; every
-    //      subsequent asset has `expresses_root` linking back to it.
-    //   4. is_offer boolean to distinguish productized services from
-    //      the underlying IP they deploy.
-    //   5. Leverage rubric recalibrated — load-bearing matters more
-    //      than commercial-actionable-now. Symbolic capacity that holds
-    //      up everything else can score 9 honestly.
-    //   6. Power-law distribution enforced — at most ~5 assets at 8+.
+    // Day 65 (Sasha 2026-05-09) v4 prompt — aligned with the user-facing
+    // ASSET_MAPPING_PROMPT v4 upgrade. Removes the v3 CENTER OF GRAVITY
+    // meta-asset + the `expresses_root` field (redundant with Top Talent
+    // bullseyeSentence and Mission Discovery, which both cover the
+    // root-capacity territory in their own dedicated surfaces).
+    //
+    // What stays from v3:
+    //   • NATURE field (7-value enum: practical | relational | symbolic
+    //     | infrastructural | mythic | intellectual | economic)
+    //   • HORIZON 4 values (now / near / long_term / civilization_scale)
+    //   • is_offer boolean (productized offer flag)
+    //   • Recalibrated leverage rubric — load-bearing matters more than
+    //     commercial-actionable-now
+    //   • Power-law distribution guard — at most ~5 assets at 8+
+    //   • Symbolic / mythic dignity protection
+    //   • Relational de-duplication + tribal-recognition test
+    //
     // Both extractors (this AI gateway path and the user-AI paste path)
     // produce one consistent shape so the client doesn't have to fork
     // on which extractor ran.
@@ -197,15 +198,11 @@ serve(async (req) => {
 
 CRITICAL — DO NOT amputate symbolic / mythic / meaning-making layers. Some of the highest-leverage assets a human owns are NOT directly monetizable: meaning-making capacity, mythic coherence, cross-domain synthesis, deep trust fields, embodied worldview architecture. These are upstream generators of downstream reality. Tag them with nature: symbolic / mythic and let them score high on leverage when they hold up everything else.
 
-FIRST — name the user's CENTER OF GRAVITY (root capacity).
-Before listing assets, articulate the deeper field-function the user runs on the world. This is usually a verb-phrase capacity, not a noun. The Center of Gravity is the FIRST entry in the array, with type: "Center of Gravity", category: "Root Capacity", subtype: null. Its name IS the field-function articulation in one sentence.
-
-Return a JSON array. Every asset MUST have all 11 fields:
-- "category": Best match from the provided list as "Type > SubType > Title". For Center of Gravity entry: "Center of Gravity > Root Capacity > <short label>". If a real asset doesn't fit, use "Other > Other > Other" and explain in description.
-- "name": Specific, concrete asset name (3-7 words). For Center of Gravity, the field-function articulation as one sentence.
+Return a JSON array. Every asset MUST have all 10 fields:
+- "category": Best match from the provided list as "Type > SubType > Title". If a real asset doesn't fit, use "Other > Other > Other" and explain in description.
+- "name": Specific, concrete asset name (3-7 words).
 - "description": 1-2 sentences. What it actually IS, in plain language that preserves relational texture (no LinkedIn copy, no "social proof generator" labels).
 - "why_value": 1 sentence. What it can produce; what it holds up. For symbolic/mythic items, why_value means upstream-generative force, not commercial revenue.
-- "expresses_root": 1 line — how this asset expresses or branches from the Center of Gravity. Empty string for the Center of Gravity entry itself.
 - "maturity": "monetizable_now" | "usable_but_needs_packaging" | "latent" | "aspirational" | "symbolic_only".
 - "horizon": "now" | "near" | "long_term" | "civilization_scale".
 - "nature": "practical" | "relational" | "symbolic" | "infrastructural" | "mythic" | "intellectual" | "economic".
@@ -213,7 +210,7 @@ Return a JSON array. Every asset MUST have all 11 fields:
 - "is_offer": boolean. True only for productized offers (paid sessions, cohorts, retainers, named services). False for the underlying IP they deploy.
 - "is_power_node": boolean. True only for the 3-7 assets where, if removed, most of the leverage collapses.
 
-MATURITY (UNCHANGED — about deployment readiness, NOT about value):
+MATURITY (about deployment readiness, NOT about value):
 - monetizable_now / usable_but_needs_packaging / latent / aspirational / symbolic_only
 
 HORIZON (4 VALUES):
@@ -231,7 +228,7 @@ NATURE (7 VALUES — the ontological dimension):
 - intellectual: frameworks, methodologies, structured thought, IP.
 - economic: commercial offers, financial instruments, productized services.
 
-LEVERAGE_SCORE (RECALIBRATED):
+LEVERAGE_SCORE:
 "Value" includes ALL of: revenue, credibility, strategic position, generative force, audience trust, mythic coherence. A symbolic asset that holds up an entire worldview is high-leverage.
 - 10: load-bearing; if removed, much collapses.
 - 8-9: proven and producing value, OR upstream of multiple other assets.
@@ -242,7 +239,7 @@ LEVERAGE_SCORE (RECALIBRATED):
 POWER-LAW DISTRIBUTION (HARD GUARD):
 Most assets land 3-5. A few at 7. One or two at 9. AT MOST ~5 ASSETS HIT 8+. If you find more than 5 at 8+, you are inflating — re-score harshly.
 
-IS_POWER_NODE: true only for the 3-7 load-bearing assets. Center of Gravity is automatically a power node.
+IS_POWER_NODE: true only for the 3-7 load-bearing assets.
 
 IS_OFFER: true for productized offers; false for the IP/methodology they deploy. Don't shove offers into Methodology tags — flag them with is_offer instead.
 
@@ -253,40 +250,23 @@ TRIBAL RECOGNITION:
 For each entry, ask: would the people NAMED recognize themselves in how they're described? "Social proof generator" / "referral source" framing strips relational texture and ruptures trust. Name people by name with one human texture-word ("warm," "cracked-open," "in motion") not generic function labels.
 
 SORTING:
-1. Center of Gravity entry FIRST.
-2. Then power nodes (desc leverage_score).
-3. Then maturity=monetizable_now (desc).
-4. Then everything else (desc).
-5. maturity=symbolic_only LAST regardless of score.
+1. Power nodes (is_power_node: true) FIRST, descending leverage_score.
+2. Then maturity=monetizable_now (desc).
+3. Then everything else (desc).
+4. maturity=symbolic_only LAST regardless of score.
 
 Rules:
-- Never empty name, description, expresses_root (except Center of Gravity), or why_value.
+- Never empty name, description, or why_value.
 - Plain English with concrete particulars; preserve user's relational texture.
 - Return ONLY the JSON array, no markdown, no preamble.
 
 Example output (excerpt — first 2 entries):
 [
   {
-    "category": "Center of Gravity > Root Capacity > Essence-naming field-function",
-    "name": "The capacity to perceive latent essence in people and systems, articulate it clearly, and reorganize reality around it.",
-    "description": "The user's deeper field-function: not a noun-asset but a verb-capacity that runs upstream of everything they make.",
-    "why_value": "Every other asset in the map is a downstream expression of this; if absent, none of the others would coalesce.",
-    "expresses_root": "",
-    "maturity": "monetizable_now",
-    "horizon": "long_term",
-    "nature": "intellectual",
-    "leverage_score": 10,
-    "is_offer": false,
-    "is_power_node": true,
-    "type": "Center of Gravity",
-    "subtype": null
-  },
-  {
     "category": "Intellectual Property > Methodologies > Frameworks",
     "name": "Top Talent Method",
     "description": "A 4-step assessment that names a person's irreducible signature talent and articulates it into productized form.",
-    "why_value": "Direct downstream expression of the field-function; can become a signed paid session next week.",
-    "expresses_root": "Operationalizes the essence-naming capacity into a repeatable artifact.",
+    "why_value": "Direct downstream expression of the user's essence-naming capacity; can become a signed paid session next week.",
     "maturity": "monetizable_now",
     "horizon": "now",
     "nature": "intellectual",
@@ -295,6 +275,20 @@ Example output (excerpt — first 2 entries):
     "is_power_node": true,
     "type": "Intellectual Property",
     "subtype": "Methodologies"
+  },
+  {
+    "category": "Influence > Industry Recognition > Awards",
+    "name": "MIT credibility line",
+    "description": "Educational credential that opens doors with founders, investors, and corporate partners.",
+    "why_value": "Compounds with every public mention; near-zero marginal cost to deploy.",
+    "maturity": "monetizable_now",
+    "horizon": "now",
+    "nature": "intellectual",
+    "leverage_score": 8,
+    "is_offer": false,
+    "is_power_node": true,
+    "type": "Influence",
+    "subtype": "Industry Recognition"
   }
 ]`
           },
@@ -335,6 +329,15 @@ Example output (excerpt — first 2 entries):
     // fields are passed through when present (graceful for any model
     // that drops a field). Validation rejects anything missing the four
     // core fields so the client can still render meaningful cards.
+    //
+    // Day 65 (Sasha 2026-05-09) v4: Center of Gravity removed. The
+    // `expresses_root` field is no longer requested from the model and
+    // is not surfaced to the client. Top Talent's bullseyeSentence and
+    // Mission Discovery already carry that semantic load — the asset
+    // map does a different job (strategic deployment, not self-
+    // understanding). Field is dropped from EdgeMatchOut and from the
+    // validatedMatches mapping; any v3-era cached model output that
+    // still includes it is silently ignored.
     type EdgeMatchOut = {
       category: string;
       name: string;
@@ -348,7 +351,6 @@ Example output (excerpt — first 2 entries):
       // Day 63 v3 — nature ontological tag (7 values) preserves symbolic /
       // mythic capacity dignity instead of v2's flatten-to-symbolic_only.
       nature?: "practical" | "relational" | "symbolic" | "infrastructural" | "mythic" | "intellectual" | "economic";
-      expresses_root?: string;
       leverage_score?: number;
       is_offer?: boolean;
       is_power_node?: boolean;
@@ -410,8 +412,6 @@ Example output (excerpt — first 2 entries):
         name: m.name,
         description: m.description,
         why_value: m.why_value,
-        expresses_root:
-          typeof m.expresses_root === "string" ? m.expresses_root.trim() || undefined : undefined,
         maturity: m.maturity && MATURITY_VALUES.has(m.maturity) ? m.maturity : undefined,
         horizon: mapLegacyHorizon(m.horizon),
         nature: m.nature && NATURE_VALUES.has(m.nature) ? m.nature : undefined,
