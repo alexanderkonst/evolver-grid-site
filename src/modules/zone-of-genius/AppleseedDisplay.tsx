@@ -625,12 +625,16 @@ const AppleseedDisplay = ({
                         </a>
                     </div>
 
-                    {/* OPTION 2 — Activate ($44, secondary, medium).
+                    {/* OPTION 2 — Activate ($37, secondary, medium).
                         Day 58 (Sasha 2026-05-02): now wrapped in a
                         liquid-glass card so it reads as a sibling of
-                        Option 1's box — same shape, lighter weight. */}
+                        Option 1's box — same shape, lighter weight.
+                        Day 80 Wave 2.3 (Sasha 2026-05-22): anchor id
+                        added so JOURNEY 1.5 ("Find out how to monetize
+                        your top talent") deep-links here on click. */}
                     <div
-                        className="liquid-glass rounded-3xl p-6 sm:p-7 space-y-4 text-center"
+                        id="activate"
+                        className="liquid-glass rounded-3xl p-6 sm:p-7 space-y-4 text-center scroll-mt-24"
                         style={{
                             border: '1px solid rgba(26,30,58,0.06)',
                         }}
