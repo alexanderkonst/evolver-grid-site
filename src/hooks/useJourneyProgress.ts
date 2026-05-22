@@ -153,7 +153,7 @@ export function useJourneyProgress(): { progress: JourneyProgress; isLoading: bo
           try { return await p; } catch { return null; }
         };
 
-        const [zogProbe, qolProbe, assetProbe, ubbProbe] = await Promise.all([
+        const [zogProbe, qolProbe, assetProbe, ubbProbe, findCollabProbe] = await Promise.all([
           profileId
             ? probe(
                 (supabase as any)
@@ -188,11 +188,24 @@ export function useJourneyProgress(): { progress: JourneyProgress; isLoading: bo
               .select("artifact_key")
               .eq("user_id", uid),
           ),
+          // Day 80 (Sasha 2026-05-22): match-path #5 completion signal.
+          // First "I'd like to meet" click = first row in match_interests
+          // where from_user_id = me. Page-visits don't count; the action
+          // does. Cheap query (indexed on from_user_id).
+          probe(
+            (supabase as any)
+              .from("match_interests")
+              .select("id")
+              .eq("from_user_id", uid)
+              .limit(1)
+              .maybeSingle(),
+          ),
         ]);
 
         const hasZogRow = !!(zogProbe as any)?.data?.id;
         const hasQolRow = !!(qolProbe as any)?.data?.id;
         const hasAssetRow = !!(assetProbe as any)?.data?.id;
+        const hasFirstInterest = !!(findCollabProbe as any)?.data?.id;
 
         // UBB completion = every artifact_key in ALL_ARTIFACT_KEYS has
         // ≥1 row in user_business_artifacts for this user (locked or
@@ -218,6 +231,11 @@ export function useJourneyProgress(): { progress: JourneyProgress; isLoading: bo
           // don't reliably set this column.
           "journey-mission-discovery": !!data?.mission_discovered_at,
           "journey-build-business": ubbAllCreated,
+          // Day 80 §8.6 (Sasha 2026-05-22): match-path terminus
+          // completion = user has clicked "I'd like to meet" on at
+          // least one card (first row in match_interests with
+          // from_user_id = current user).
+          "journey-find-collaborators": hasFirstInterest,
           // Day 65 wave 4: cross-device sync.
           "journey-the-playbook":
             !!visitFlags["journey-the-playbook"] || !!data?.playbook_visited_at,

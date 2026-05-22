@@ -252,7 +252,7 @@ const Connections = () => {
               title="No connections yet"
               description="Express interest in a match to start building your network. Introductions fire when both sides say yes."
               action={{
-                label: "Find Matches",
+                label: "Find Collaborators",
                 onClick: () => navigate("/game/collaborate/matches"),
               }}
             />

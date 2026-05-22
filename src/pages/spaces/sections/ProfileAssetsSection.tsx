@@ -229,7 +229,7 @@ const ProfileAssetsSection = () => {
                                     style={ceremonialPillPrimary}
                                 >
                                     <Users className="w-3.5 h-3.5" style={{ color: "var(--skin-cta-icon, rgba(244, 212, 114, 0.98))" }} />
-                                    Find Matches
+                                    Find Collaborators
                                 </button>
                             )}
                             <button

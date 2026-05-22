@@ -793,9 +793,9 @@ const Matchmaking = () => {
               textShadow: legibleHeadlineHalo,
             }}
           >
-            Genius{" "}
+            Find{" "}
             <span className="bg-clip-text text-transparent" style={GOLD_TEXT_STYLE}>
-              Matches
+              Collaborators
             </span>
           </h1>
           <p
@@ -1043,7 +1043,7 @@ const Matchmaking = () => {
                   }}
                   className="leading-[1.2] mb-1.5"
                 >
-                  Genius Matches
+                  Collaborators by Genius
                 </h2>
                 <p
                   className="italic"

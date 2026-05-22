@@ -489,37 +489,73 @@ const buildLearnSections = (pathBase: "/library" | "/game/learn/library"): Secti
     return [...stepRows, ...pathRows];
 };
 
+type EntryPath = "match" | null;
+
 const buildJourneySections = (
     _currentPath: string,
     _deepProfileActivated: boolean,
     journeyProgress: JourneyProgress = {},
+    entryPath: EntryPath = null,
 ): Section[] => {
-    // Funnel v2 (Day 77, Sasha 2026-05-20): JOURNEY restructured as the
-    // matching-onboarding sequence (T → M → A → Q → Build).
+    // Funnel v2 (Day 77, Sasha 2026-05-20) + Day 80 path-awareness:
+    // JOURNEY restructured as the matching-onboarding sequence
+    // (T → optional Activation → M → A → Q → Build OR Find Collaborators).
     //
-    //   1. Start by finding your top talent  — entry, always unlocked
-    //   2. Discover your mission             — locked until #1 completes
-    //   3. Map your assets                   — locked until #2 completes
-    //   4. Assess your quality of life       — locked until #3 completes
-    //                                          badge: "Improves match quality"
-    //   5. Build a business off your top talent — unlocked from the start
-    //                                             (decision §8.6 = b)
-    //
-    // Items previously living in JOURNEY (Playbook, Path, Dashboard) moved
-    // out into the BUILD space — see `SPACE_SECTIONS.build` below. The
-    // matching surface opens after #3 (T+M+A); QoL refines match precision
-    // but is not strictly required for the first match wave.
+    //   1.  Start by finding your top talent  — entry, always unlocked
+    //   1.5 Activate your top talent ($37)    — OPTIONAL, paid digital
+    //                                           deepening; no lock
+    //   2.  Discover your mission             — locked until #1 completes
+    //   3.  Map your assets                   — locked until #2 completes
+    //   4.  Assess your quality of life       — locked until #3 completes
+    //   5.  PATH-AWARE TERMINUS:
+    //        build path: "Build a business off your top talent" → /path
+    //                    (lock: !topTalentDone)
+    //        match path: "Find collaborators" → /game/collaborate/matches
+    //                    (lock: !assetsDone — engine needs T+M+A minimum
+    //                     so the first 10 heads-ups carry enough signal)
     //
     // Locks are advisory, not access-gating: any authenticated user can
     // navigate directly to /mission-discovery, /asset-mapping,
-    // /quality-of-life-map, /ubb regardless of JOURNEY lock state. The
-    // lock state only colors the row in the pane (strikethrough + dim +
-    // popover hint).
+    // /quality-of-life-map, /ubb, /game/collaborate/matches regardless of
+    // JOURNEY lock state. The lock state only colors the row in the pane
+    // (strikethrough + dim + popover hint).
     //
     // Spec: docs/specs/funnel-v2/funnel-v2_product_spec.md §4.2.
     const topTalentDone = !!journeyProgress["journey-start-here"];
     const missionDone = !!journeyProgress["journey-mission-discovery"];
     const assetsDone = !!journeyProgress["journey-asset-mapper"];
+
+    const isMatch = entryPath === "match";
+
+    const terminusItem: Section = isMatch
+        ? {
+              // Day 80 (Sasha 2026-05-22): match-path #5 = Find collaborators.
+              // Locks on assets-done because the matching engine needs
+              // T+M+A minimum for a decent AI-why; the first 10 heads-ups
+              // sent must be perfect (trust ritual) so we don't open the
+              // gate before the profile carries enough signal.
+              // Completion signal: journey-find-collaborators flag set on
+              // first match_interests insert by the user.
+              id: "journey-find-collaborators",
+              label: "5. Find collaborators",
+              path: "/game/collaborate/matches",
+              locked: !assetsDone,
+              lockedHint: "Unlocks after you map your assets.",
+              completed: !!journeyProgress["journey-find-collaborators"],
+          }
+        : {
+              // Day 80 (Sasha 2026-05-22): build-path #5 destination
+              // moved from /ubb → /path. /path shows the full 7-step
+              // visual with conversion CTAs and works whether or not
+              // the user has paid for Build; /ubb requires Build
+              // entitlement to render anything meaningful.
+              id: "journey-build-business",
+              label: "5. Build a business off your top talent",
+              path: "/path",
+              locked: !topTalentDone,
+              lockedHint: "Unlocks after you find your top talent.",
+              completed: !!journeyProgress["journey-build-business"],
+          };
 
     return [
         {
@@ -527,6 +563,22 @@ const buildJourneySections = (
             label: "1. Start by finding your top talent",
             path: "/",
             completed: topTalentDone,
+        },
+        {
+            // Day 80 (Sasha 2026-05-22): optional $37 Top Talent
+            // Activation step. Per alexanders_unique_business.md
+            // Branch B: deeper digital profile (Three Talents in Depth,
+            // How It Shows Up, Path of Mastery, Roles, Partner,
+            // Monetization, What's Next). Lands on /ignite#pricing-section
+            // (same anchor that surfaces both the $37 Activation and the
+            // $555 Top Talent Business Session). No lock — optional means
+            // optional. No completion-progress impact on subsequent items;
+            // this is parallel deepening, not a sequence step. Same on
+            // both build + match paths.
+            id: "journey-activation",
+            label: "Activate your top talent ($37, optional)",
+            path: "/ignite#pricing-section",
+            completed: !!journeyProgress["journey-activation"],
         },
         {
             id: "journey-mission-discovery",
@@ -555,27 +607,7 @@ const buildJourneySections = (
             lockedHint: "Unlocks after you map your assets.",
             completed: !!journeyProgress["journey-qol-assess"],
         },
-        {
-            // Day 78 (Sasha 2026-05-21) — gated on `!topTalentDone`,
-            // matching item #2. Decision §8.6(b) had this unlocked from
-            // start for everyone, but for fresh guests landing on
-            // /zone-of-genius the only two visible items beneath the
-            // fog-of-war on items 2-4 were #1 and #5 — and the eye
-            // reads the bottom unlocked item as "ready to go" before
-            // the user has even done step 1. Locking #5 on Top Talent
-            // completion makes the rail tell the truth: one actionable
-            // item until the reveal is saved, then #2 + #5 unlock
-            // simultaneously (the matching arc and the build bridge
-            // both become reachable). Build-path users still hit #5
-            // the moment they save Top Talent — no functional
-            // regression, just a clearer fresh-state visual.
-            id: "journey-build-business",
-            label: "5. Build a business off your top talent",
-            path: "/ubb",
-            locked: !topTalentDone,
-            lockedHint: "Unlocks after you find your top talent.",
-            completed: !!journeyProgress["journey-build-business"],
-        },
+        terminusItem,
     ];
 };
 
@@ -601,6 +633,12 @@ const SectionsPanel = ({
     // Same hook is consumed by GameShellV2 to gate the BUILD space
     // chip — single source of truth across the funnel boundary.
     const { activated: deepProfileActivated } = useDeepProfileActivated();
+
+    // Day 80 (Sasha 2026-05-22): entry-path context for the path-aware
+    // JOURNEY terminus (#5). match path → "Find collaborators"; build
+    // path → "Build a business". Read here, threaded into
+    // buildJourneySections.
+    const { path: entryPath } = useEntryPath();
 
     // Day 79 (Sasha 2026-05-22): one-shot expansion of ME → Top Talent
     // sub-list right after the user unlocks the deeper view.
@@ -718,7 +756,7 @@ const SectionsPanel = ({
         if (activeSpaceId === "journey") {
             return {
                 ...baseData,
-                sections: buildJourneySections(location.pathname, deepProfileActivated, journeyProgress),
+                sections: buildJourneySections(location.pathname, deepProfileActivated, journeyProgress, entryPath),
             };
         }
 
