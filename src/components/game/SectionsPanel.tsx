@@ -12,6 +12,7 @@ import { GROWTH_STEPS } from "@/modules/library/growthSteps";
 import { useCanvasProgressLite } from "@/modules/unique-business-builder/useCanvasProgressLite";
 import { useDeepProfileActivated } from "@/hooks/useDeepProfileActivated";
 import { useJourneyProgress, type JourneyProgress } from "@/hooks/useJourneyProgress";
+import { useEntryPath } from "@/contexts/EntryPathContext";
 import {
     TooltipProvider,
 } from "@/components/ui/tooltip";
