@@ -458,7 +458,7 @@ const TeamsSpace = () => {
                                         : "text-muted-foreground"
                                         }`}
                                 >
-                                    Genius Match
+                                    By Genius
                                 </button>
                                 <button
                                     type="button"
