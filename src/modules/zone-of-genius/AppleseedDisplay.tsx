@@ -981,6 +981,7 @@ const AppleseedDisplay = ({
                     Activate — $37 →
                 </a>
             </div>
+            )}
 
             {/* Day 60 (Sasha 2026-05-03): exit-intent modal removed.
                 The page-resident CTAs above (save by email + activate)
