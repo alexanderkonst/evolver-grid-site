@@ -62,17 +62,20 @@ const MatchHero = () => {
     <>
       <SEO
         title="Find Your Top Talent — Precision Matchmaking"
-        description="Your people are already here — we surface the high-precision matches, real introductions follow"
+        description="Create a profile in minutes using AI, get high-precision matches and intros"
         path="/?path=match"
         ogTitle="You don't have to build alone"
       />
       <div className="max-w-[720px] mx-auto px-5 py-8 sm:py-9 md:py-10">
         <header className="text-center">
-          {/* Eyebrow — small-caps gold accent. Day 78 (Sasha 2026-05-21):
-              promoted from `--skin-accent-gold` (#b8860b) to `goldDeep`
-              (#5d4307) + soft halo. The lighter gold was failing the
-              cream-on-cream contrast test in the Aurora skin. NS skin
-              cascade-overrides this to editorial black regardless. */}
+          {/* Day 79 (Sasha 2026-05-22) — legibility: gold-on-cream was
+              never going to read regardless of the shade (tried
+              `--skin-accent-gold`, then `--skin-goldDeep`, both faded
+              into the cream wash). Switched to dark navy ink at full
+              `--skin-text-primary` so the eyebrow actually reads.
+              Small-caps + tracked letter-spacing keeps the editorial
+              register; the brand-gold remains in the CTA emblem +
+              ornament where it has the contrast headroom. */}
           <p
             className="mb-4 sm:mb-5"
             style={{
@@ -81,7 +84,7 @@ const MatchHero = () => {
               fontSize: "11px",
               letterSpacing: "0.28em",
               textTransform: "uppercase",
-              color: "var(--skin-goldDeep, #5d4307)",
+              color: "var(--skin-text-primary, #0a1628)",
               textShadow:
                 "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.75), 0 0 8px rgba(255,255,255,0.55))",
             }}
@@ -89,10 +92,26 @@ const MatchHero = () => {
             Precision matchmaking for collaboration
           </p>
 
-          {/* Hero (h1) — Day 78 copy + treatment pass. No emphasized
-              word, no terminal period. Strong-cocktail legibility
-              (Cormorant 700 + deep halo) preserved for parity with the
-              build-path landing. */}
+          {/* Day 79: the setup line now LEADS the hero (was: italic
+              echo positioned BELOW the h1). New question pulls the
+              reader's recognition first; the h1 below answers it. */}
+          <p
+            className="text-lg sm:text-xl md:text-2xl leading-[1.32] italic mb-4 sm:mb-5"
+            style={{
+              fontFamily: "'Cormorant Garamond', serif",
+              fontWeight: 700,
+              letterSpacing: "0.01em",
+              color: "var(--skin-text-primary, #0a1628)",
+              textShadow:
+                "var(--skin-text-halo-deep, 0 0 28px rgba(255,255,255,0.85), 0 1px 2px rgba(255,255,255,0.95), 0 0 1px rgba(11,42,90,0.65), 0 1px 0 rgba(11,42,90,0.45))",
+            }}
+          >
+            Met tons of cool people but still haven't found people to build with?
+          </p>
+
+          {/* Hero (h1) — the answer to the setup above. Plain text,
+              no terminal period, Strong-cocktail legibility (Cormorant
+              700 + deep halo) preserved for parity with build-path. */}
           <h1
             className="text-3xl sm:text-4xl md:text-5xl font-bold leading-[1.1] tracking-[-0.018em] mb-4 sm:mb-5"
             style={{
@@ -105,29 +124,11 @@ const MatchHero = () => {
             You don't have to build alone
           </h1>
 
-          {/* Italic echo — the whispered consequence under the headline.
-              Day 78: no emphasized "your", no terminal period — reads as
-              one breath. */}
-          <p
-            className="text-lg sm:text-xl md:text-2xl leading-[1.32] italic"
-            style={{
-              fontFamily: "'Cormorant Garamond', serif",
-              fontWeight: 700,
-              letterSpacing: "0.01em",
-              color: "var(--skin-text-primary, #0a1628)",
-              textShadow:
-                "var(--skin-text-halo-deep, 0 0 28px rgba(255,255,255,0.85), 0 1px 2px rgba(255,255,255,0.95), 0 0 1px rgba(11,42,90,0.65), 0 1px 0 rgba(11,42,90,0.45))",
-            }}
-          >
-            You've met cool people, you still haven't found your people
-          </p>
-
           <Ornament className="my-5 sm:my-6" />
 
-          {/* Sub paragraph — the promise. Day 78: "in this network"
-              dropped (implied the visitor self-identifies with a
-              network); "We surface them" rephrased; no emphasis, no
-              terminal periods. Manifesto-row register held. */}
+          {/* Day 79: sub paragraph rewritten — names the mechanism
+              (AI-built profile) and the outcome (matches + intros)
+              instead of the older "we surface them" phrasing. */}
           <p
             className="text-xl sm:text-2xl md:text-[1.75rem] font-bold leading-[1.4] tracking-[-0.005em]"
             style={{
@@ -137,7 +138,7 @@ const MatchHero = () => {
                 "var(--skin-text-halo-deep, 0 0 22px rgba(255,255,255,0.7), 0 1px 2px rgba(255,255,255,0.9), 0 0 1px rgba(11,42,90,0.45), 0 1px 0 rgba(11,42,90,0.25))",
             }}
           >
-            Your people are already here — we surface the high-precision matches, real introductions follow
+            Create a profile in minutes using AI, get high-precision matches and intros
           </p>
         </header>
 
