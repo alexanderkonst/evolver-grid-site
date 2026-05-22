@@ -31,7 +31,8 @@ import type {
   VersionRow,
 } from "./types";
 import { ALL_ARTIFACT_KEYS } from "./types";
-import { ERROR_MESSAGES, nextVersionString } from "./constants";
+import { ARTIFACT_LABELS, ERROR_MESSAGES, nextVersionString } from "./constants";
+import { PARENTS } from "./dependencyTree";
 
 // ============================================================================
 // Helpers
@@ -98,20 +99,46 @@ function buildArtifactStates(rows: DbRow[]): Partial<Record<ArtifactKey, Artifac
       staleReason: undefined,
     };
   }
-  // Compute staleness: an artifact is stale if any sibling was locked AFTER its latestLocked.created_at
-  const lockTimes = Object.values(states)
-    .map((s) => s?.latestLocked)
-    .filter((x): x is VersionRow => !!x)
-    .map((v) => new Date(v.created_at).getTime());
-  const latestSiblingLock = lockTimes.length ? Math.max(...lockTimes) : 0;
+  // Parent-aware staleness compute (Day 74 — Sasha 2026-05-22).
+  //
+  // An artifact is stale iff one of its DIRECT PARENTS (per dependencyTree.ts)
+  // was last-locked AFTER this artifact's own latestLocked.created_at.
+  //
+  // Why this replaced the old flat sibling check: the previous logic compared
+  // every artifact against the global `latestSiblingLock` across all 18 keys,
+  // so locking `landing_page` (downstream of nearly everything) would falsely
+  // flash `uniqueness` as stale. The 60s buffer was a hack around that — it's
+  // unnecessary once we only compare against actual parents.
+  //
+  // When multiple parents are newer than this artifact, the staleness pointer
+  // records the MOST RECENTLY relocked parent — that's the highest-leverage
+  // change to surface to the user.
   for (const s of Object.values(states)) {
-    if (s?.latestLocked) {
-      const myLock = new Date(s.latestLocked.created_at).getTime();
-      if (myLock < latestSiblingLock - 60_000) {
-        // 1-minute buffer to avoid false positives on fast sequential locks
-        s.isStale = true;
-        s.staleReason = "A sibling was locked more recently — consider Improving again.";
+    if (!s?.latestLocked) continue; // not yet locked → not stale
+    const myLockMs = new Date(s.latestLocked.created_at).getTime();
+    let newestParent: { key: ArtifactKey; lockedAt: string; lockedAtMs: number } | null = null;
+    for (const parentKey of PARENTS[s.key]) {
+      const parentLock = states[parentKey]?.latestLocked;
+      if (!parentLock) continue;
+      const parentLockMs = new Date(parentLock.created_at).getTime();
+      if (parentLockMs > myLockMs) {
+        if (!newestParent || parentLockMs > newestParent.lockedAtMs) {
+          newestParent = {
+            key: parentKey,
+            lockedAt: parentLock.created_at,
+            lockedAtMs: parentLockMs,
+          };
+        }
       }
+    }
+    if (newestParent) {
+      s.isStale = true;
+      s.staleReason = `${ARTIFACT_LABELS[newestParent.key]} was updated — re-Improve to refresh.`;
+      s.stalenessSource = {
+        type: "parent_relocked",
+        parent: newestParent.key,
+        parentLockedAt: newestParent.lockedAt,
+      };
     }
   }
   return states;

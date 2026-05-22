@@ -141,8 +141,19 @@ export type ArtifactState = {
   latest: VersionRow | null; // latest row (may be unlocked)
   latestLocked: VersionRow | null; // latest locked row
   versionCount: number;
-  isStale: boolean; // a sibling was locked after this artifact's latestLocked
-  staleReason?: string; // e.g., "Tribe was re-locked on 2026-04-24"
+  isStale: boolean; // a direct parent was relocked after this artifact's latestLocked
+  staleReason?: string; // user-facing copy, e.g. "Tribe was updated — re-Improve to refresh"
+  /**
+   * Day 74 (Sasha 2026-05-22): structured staleness pointer for the re-derive
+   * dialog + bulk Improve UX. When `isStale` is true, this names which direct
+   * parent triggered it. Phase 2 will widen this to also cover prompt-version
+   * staleness (`type: 'prompt_changed'`).
+   */
+  stalenessSource?: {
+    type: "parent_relocked";
+    parent: ArtifactKey;
+    parentLockedAt: string; // ISO
+  };
 };
 
 // ============================================================================
