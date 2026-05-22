@@ -35,6 +35,12 @@ import { SoundCloudPlayerProvider } from "@/components/audio/SoundCloudPlayerPro
 // CTAs without the URL carrying state on every internal navigation.
 // Spec: docs/specs/funnel-v2/funnel-v2_product_spec.md §4.1.
 import { EntryPathProvider } from "@/contexts/EntryPathContext";
+// Day 80 Wave 2 (Sasha 2026-05-22): celebration modal listener mounted
+// once at App root. Listens for fytt:celebrate events fired by Top
+// Talent / Mission / Assets save handlers; renders modal with the
+// Transformative-Result Pattern anatomy. Once-per-primitive via
+// sessionStorage flags.
+import CelebrationModalListener from "@/components/celebration/CelebrationModalListener";
 import FeedbackPage from "./pages/FeedbackPage";
 import ContactNew from "./pages/ContactNew";
 import Library from "./pages/Library";
@@ -302,6 +308,7 @@ const App = () => (
               default-true when ready to launch for everyone. */}
           <MusicPlayer />
           <EntryPathProvider>
+          <CelebrationModalListener />
           <SoundCloudPlayerProvider>
           <ErrorBoundary>
             <Suspense fallback={<PageLoader />}>

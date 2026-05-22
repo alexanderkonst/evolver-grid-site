@@ -451,6 +451,36 @@ const AssetMappingLanding = () => {
                 title: "Assets saved",
                 description: `Saved ${result.saved} assets${totalSkipped ? `, skipped ${totalSkipped}` : ""}.`,
             });
+
+            // Day 80 Wave 2 (Sasha 2026-05-22): graduation detection +
+            // celebration modal dispatch. If this save lands the user at
+            // T+M+A all complete (the matching engine's minimum signal),
+            // fire the GRADUATION variant ("you're crystallized · find
+            // collaborators is now open"). Otherwise fire the regular
+            // per-save celebration. Listener (App.tsx) enforces once-
+            // per-primitive via sessionStorage.
+            try {
+                const { data: profileForGrad } = await supabase
+                    .from("game_profiles")
+                    .select("mission_discovered_at, last_zog_snapshot_id")
+                    .eq("user_id", user.id)
+                    .maybeSingle();
+                const hasMission = !!(profileForGrad as { mission_discovered_at?: string | null } | null)?.mission_discovered_at;
+                const hasTalent = !!(profileForGrad as { last_zog_snapshot_id?: string | null } | null)?.last_zog_snapshot_id;
+                const isGraduation = hasMission && hasTalent;
+                const resultText = `${result.saved} asset${result.saved === 1 ? "" : "s"} mapped`;
+                window.dispatchEvent(
+                    new CustomEvent("fytt:celebrate", {
+                        detail: {
+                            primitive: "assets",
+                            variant: isGraduation ? "graduation" : "regular",
+                            resultText,
+                        },
+                    }),
+                );
+            } catch {
+                // Defensive — never block save on celebration UX.
+            }
         } catch (err) {
             toast({ title: "Something went wrong", variant: "destructive" });
         } finally {

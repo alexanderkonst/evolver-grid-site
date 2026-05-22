@@ -569,15 +569,24 @@ const buildJourneySections = (
             // Activation step. Per alexanders_unique_business.md
             // Branch B: deeper digital profile (Three Talents in Depth,
             // How It Shows Up, Path of Mastery, Roles, Partner,
-            // Monetization, What's Next). Lands on /ignite#pricing-section
-            // (same anchor that surfaces both the $37 Activation and the
-            // $555 Top Talent Business Session). No lock — optional means
-            // optional. No completion-progress impact on subsequent items;
-            // this is parallel deepening, not a sequence step. Same on
-            // both build + match paths.
+            // Monetization, What's Next).
+            //
+            // Routes to /game/me/zone-of-genius (the user's existing
+            // Top Talent reveal in the platform shell), where the
+            // Activation CTA already lives in context. Sasha's call —
+            // "in-context deepening, not the /ignite sales page." The
+            // user clicking from JOURNEY 1.5 is already authenticated
+            // and has their reveal; landing them on the dedicated
+            // session-booking page would feel like a sales bait-and-
+            // switch. The contextual page reads as "deepen what you
+            // already see," matching the Sales-as-Love field quality.
+            //
+            // No lock — optional means optional. No completion-progress
+            // impact on subsequent items; this is parallel deepening,
+            // not a sequence step. Same on both build + match paths.
             id: "journey-activation",
             label: "Activate your top talent ($37, optional)",
-            path: "/ignite#pricing-section",
+            path: "/game/me/zone-of-genius",
             completed: !!journeyProgress["journey-activation"],
         },
         {
