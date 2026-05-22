@@ -596,11 +596,20 @@ const buildJourneySections = (
             // page). Sasha's call: "in-context deepening, not bait-
             // and-switch to the booking page."
             id: "journey-activation",
-            label: "Deepen your Top Talent",
-            subtitle: "How to use & monetize · optional",
+            // Day 80 Wave 2.3 (Sasha 2026-05-22): copy + visual revisions:
+            //  - label rewritten to Sasha's exact wording (matches the
+            //    AppleseedDisplay $37 CTA section's headline)
+            //  - subtitle dropped — was making the row visually larger
+            //    than step #1; sidequest should be a SIBLING of the
+            //    numbered steps, not a dominating element
+            //  - priceChip retained on the right for premium signal
+            //  - route swapped to /zone-of-genius#activate where the
+            //    actual $37 CTA section lives in AppleseedDisplay
+            //    (NOT /game/me/zone-of-genius which only has $555 CTAs)
+            label: "Find out how to monetize your top talent",
             priceChip: "$37",
             variant: "sidequest",
-            path: "/game/me/zone-of-genius",
+            path: "/zone-of-genius#activate",
             completed: !!journeyProgress["journey-activation"],
         },
         {
@@ -1091,79 +1100,64 @@ const SectionsPanel = ({
                     // the title, right-aligned gold price chip, smaller
                     // height (py-2 vs py-3). Doesn't interrupt the
                     // numbered 1→2→3→4→5 path reading.
+                    // Day 80 Wave 2.3 (Sasha 2026-05-22): sidequest row
+                    // shrunk to match step #1 height — same px-3 py-3
+                    // padding, same overall vertical real estate. Drops
+                    // the subtitle slot (was creating extra height that
+                    // made the row visually dominate the numbered path).
+                    // Result: a true sibling row with ✦ glyph, label
+                    // (italic, slightly muted to differentiate from
+                    // numbered steps), and right-aligned price chip.
                     const isSidequest = section.variant === "sidequest";
                     const sidequestRowContent = isSidequest ? (
                         <div
                             className={cn(
-                                "group flex items-center gap-2.5 px-3 py-2 mx-2 rounded-2xl transition-all duration-300 relative cursor-pointer",
+                                "group flex items-center gap-2.5 px-3 py-3 mx-2 rounded-2xl transition-all duration-300 relative cursor-pointer",
                                 "focus:outline-none focus-visible:ring-2 focus-visible:ring-[#d4af37]/40",
-                                "hover:translate-y-[-1px]",
+                                "bg-white/[0.04] hover:bg-white/[0.08] hover:translate-y-[-1px] hover:shadow-[0_0_12px_-4px_rgba(244,212,114,0.30)]",
                             )}
-                            style={{
-                                background:
-                                    "linear-gradient(135deg, rgba(244,212,114,0.10) 0%, rgba(212,175,55,0.06) 100%)",
-                                border: "0.5px solid rgba(212, 175, 55, 0.42)",
-                                boxShadow:
-                                    "0 0 12px -4px rgba(244,212,114,0.30), inset 0 0 8px -2px rgba(244,212,114,0.18)",
-                            }}
                             onClick={handleSectionClick}
                         >
-                            <span
-                                className="inline-flex items-center justify-center w-[22px] h-[22px] flex-shrink-0"
-                                style={{
-                                    fontFamily: "'Cormorant Garamond', serif",
-                                    fontSize: "15px",
-                                    color: "#d4af37",
-                                    textShadow:
-                                        "0 0 8px rgba(244, 212, 114, 0.55)",
-                                }}
-                                aria-hidden="true"
-                            >
-                                ✦
-                            </span>
-                            <span className="flex-1 min-w-0">
+                            <span className="w-[22px] h-[22px] flex items-center justify-center flex-shrink-0">
                                 <span
-                                    className="block leading-snug"
+                                    className="inline-flex items-center justify-center w-[22px] h-[22px]"
                                     style={{
                                         fontFamily: "'Cormorant Garamond', serif",
-                                        fontWeight: 600,
-                                        fontSize: "16px",
-                                        letterSpacing: "0.012em",
-                                        color: "rgba(255, 255, 255, 0.94)",
+                                        fontSize: "15px",
+                                        color: "rgba(244, 212, 114, 0.85)",
+                                        textShadow:
+                                            "0 0 6px rgba(244, 212, 114, 0.40)",
                                     }}
+                                    aria-hidden="true"
                                 >
-                                    {section.label}
+                                    ✦
                                 </span>
-                                {section.subtitle && (
-                                    <span
-                                        className="block mt-0.5 italic"
-                                        style={{
-                                            fontFamily: "'Source Serif 4', Georgia, serif",
-                                            fontWeight: 400,
-                                            fontSize: "11.5px",
-                                            color: "rgba(255, 255, 255, 0.58)",
-                                            letterSpacing: "0.01em",
-                                        }}
-                                    >
-                                        {section.subtitle}
-                                    </span>
-                                )}
+                            </span>
+                            <span
+                                className="flex-1 text-[16px] leading-snug italic min-w-0"
+                                style={{
+                                    fontFamily: "'Cormorant Garamond', serif",
+                                    fontWeight: 500,
+                                    letterSpacing: "0.012em",
+                                    color: "rgba(255, 255, 255, 0.80)",
+                                }}
+                            >
+                                {section.label}
                             </span>
                             {section.priceChip && (
                                 <span
-                                    className="ml-1 inline-flex items-center justify-center px-2 py-0.5 rounded-md flex-shrink-0"
+                                    className="ml-1 inline-flex items-center justify-center px-1.5 py-0.5 rounded-md flex-shrink-0"
                                     style={{
                                         fontFamily: "'DM Sans', system-ui, sans-serif",
                                         fontVariantNumeric: "tabular-nums lining-nums",
-                                        fontSize: "11px",
+                                        fontSize: "10.5px",
                                         fontWeight: 700,
-                                        letterSpacing: "0.04em",
-                                        color: "#5d4307",
+                                        letterSpacing: "0.03em",
+                                        color: "rgba(244, 212, 114, 0.92)",
                                         background:
-                                            "linear-gradient(135deg, rgba(244,212,114,0.55) 0%, rgba(212,175,55,0.42) 100%)",
-                                        border: "0.5px solid rgba(212, 175, 55, 0.70)",
-                                        boxShadow:
-                                            "0 0 6px rgba(244, 212, 114, 0.30)",
+                                            "rgba(244, 212, 114, 0.10)",
+                                        border:
+                                            "0.5px solid rgba(212, 175, 55, 0.45)",
                                     }}
                                 >
                                     {section.priceChip}
