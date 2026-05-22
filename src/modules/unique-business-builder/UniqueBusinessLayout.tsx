@@ -23,6 +23,7 @@
 import { Outlet } from "react-router-dom";
 import { UniqueBusinessProvider } from "./UniqueBusinessContext";
 import { ImproveReviewDrawer } from "./components/ImproveReviewDrawer";
+import { LockedCascadeDialog } from "./components/LockedCascadeDialog";
 
 export default function UniqueBusinessLayout() {
   return (
@@ -53,6 +54,9 @@ export default function UniqueBusinessLayout() {
         </footer>
       </div>
       <ImproveReviewDrawer />
+      {/* Day 74 (Sasha 2026-05-22): re-derive prompt that appears after a
+          user locks an upstream artifact with locked descendants. */}
+      <LockedCascadeDialog />
     </UniqueBusinessProvider>
   );
 }

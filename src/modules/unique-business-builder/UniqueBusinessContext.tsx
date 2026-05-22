@@ -13,6 +13,7 @@ import React, {
   useContext,
   useEffect,
   useMemo,
+  useRef,
   useState,
   type ReactNode,
 } from "react";
@@ -22,6 +23,8 @@ import { getOrCreateGameProfileId } from "@/lib/gameProfile";
 import type {
   ArtifactKey,
   ArtifactState,
+  BulkImproveProgress,
+  BulkImproveSkipReason,
   DossierSnapshot,
   GenerateResult,
   ImproveResult,
@@ -32,7 +35,7 @@ import type {
 } from "./types";
 import { ALL_ARTIFACT_KEYS } from "./types";
 import { ARTIFACT_LABELS, ERROR_MESSAGES, nextVersionString } from "./constants";
-import { PARENTS } from "./dependencyTree";
+import { PARENTS, getDownstream } from "./dependencyTree";
 
 // ============================================================================
 // Helpers
@@ -191,6 +194,47 @@ export function UniqueBusinessProvider({ children }: { children: ReactNode }) {
   // have artifacts === {}. Flips to false in the finally-block of the
   // initial fetch effect.
   const [isInitializing, setIsInitializing] = useState(true);
+
+  // Day 74 (Sasha 2026-05-22): Bulk Improve cascade state.
+  //
+  // We keep both a state value (for React re-renders) and a ref (for reading
+  // current bulk progress from inside callbacks without dragging the latest
+  // closure through deps arrays). Always write through `updateBulkImprove` so
+  // the two stay in sync.
+  const [bulkImprove, _setBulkImprove] = useState<BulkImproveProgress | null>(null);
+  const bulkImproveRef = useRef<BulkImproveProgress | null>(null);
+  const updateBulkImprove = useCallback(
+    (
+      next:
+        | BulkImproveProgress
+        | null
+        | ((prev: BulkImproveProgress | null) => BulkImproveProgress | null)
+    ) => {
+      _setBulkImprove((prev) => {
+        const value = typeof next === "function" ? next(prev) : next;
+        bulkImproveRef.current = value;
+        return value;
+      });
+    },
+    []
+  );
+  /**
+   * Ref pointer used during a bulk cascade to record WHY improveArtifact
+   * returned without producing a pending review (early-return cases: max
+   * specificity reached, diminishing returns, missing v1, model error). The
+   * existing improveArtifact body writes here when bulk is active so the
+   * advancement loop can record an outcome without changing the public action
+   * signature. Null when not bulk-active.
+   */
+  const bulkSkipReporterRef = useRef<((reason: BulkImproveSkipReason | { failed: string }) => void) | null>(null);
+
+  // Day 74 (Sasha 2026-05-22): "Re-derive downstream?" confirmation slice.
+  // Populated when a user successfully locks an upstream artifact whose
+  // transitive descendants are also locked. The LockedCascadeDialog reads
+  // this and renders a one-tap confirm/dismiss.
+  const [lockedCascadePrompt, setLockedCascadePrompt] = useState<
+    { lockedKey: ArtifactKey; candidates: ArtifactKey[] } | null
+  >(null);
 
   // Load user + ZoG + artifacts on mount
   useEffect(() => {
@@ -544,13 +588,36 @@ export function UniqueBusinessProvider({ children }: { children: ReactNode }) {
       });
 
       toast.success(`${artifact_key}: specificity +${clampedDelta.toFixed(1)}`);
+
+      // Day 74 (Sasha 2026-05-22): bulk cascade outcome — record acceptance.
+      // The advancement effect (watching `bulkImprove`) will dequeue the next
+      // item once current goes back to null.
+      if (bulkImproveRef.current?.current === artifact_key) {
+        updateBulkImprove((prev) =>
+          prev
+            ? { ...prev, current: null, accepted: [...prev.accepted, artifact_key] }
+            : null
+        );
+      }
     } catch (e: any) {
       console.error("acceptImprovement failed:", e);
       toast.error("Couldn't save the improvement. Please retry.");
+      // Day 74: classify as failed in bulk context so we don't lose the slot.
+      if (bulkImproveRef.current?.current === artifact_key) {
+        updateBulkImprove((prev) =>
+          prev
+            ? {
+                ...prev,
+                current: null,
+                failed: [...prev.failed, { key: artifact_key, message: e?.message || "save failed" }],
+              }
+            : null
+        );
+      }
     } finally {
       setPendingImprovement(null);
     }
-  }, [pendingImprovement, userId, artifacts]);
+  }, [pendingImprovement, userId, artifacts, updateBulkImprove]);
 
   const rejectImprovement = useCallback(async () => {
     if (!pendingImprovement || !userId) return;
@@ -574,9 +641,17 @@ export function UniqueBusinessProvider({ children }: { children: ReactNode }) {
     } catch (e) {
       console.error("rejectImprovement log failed:", e);
     } finally {
+      // Day 74 (Sasha 2026-05-22): bulk cascade outcome — record rejection.
+      if (bulkImproveRef.current?.current === artifact_key) {
+        updateBulkImprove((prev) =>
+          prev
+            ? { ...prev, current: null, rejected: [...prev.rejected, artifact_key] }
+            : null
+        );
+      }
       setPendingImprovement(null);
     }
-  }, [pendingImprovement, userId, artifacts]);
+  }, [pendingImprovement, userId, artifacts, updateBulkImprove]);
 
   // Day 62 (Sasha 2026-05-05): restore an artifact to its v1 content.
   // Append-only — fetches v1 from DB and inserts a new row whose
@@ -666,6 +741,122 @@ export function UniqueBusinessProvider({ children }: { children: ReactNode }) {
     [userId, artifacts]
   );
 
+  // ──────────────────────────────────────────────────────────────────────
+  // Day 74 (Sasha 2026-05-22): Bulk Improve cascade.
+  //
+  // Sorts the requested keys topologically (parents first), then walks the
+  // queue. The advancement effect below drives forward whenever we hit a
+  // settled state (no AI call in flight, no pending review). Per-item review
+  // happens via the existing ImproveReviewDrawer — accept/reject paths above
+  // record outcomes on `bulkImprove` when the cascade is active.
+  // ──────────────────────────────────────────────────────────────────────
+
+  const startBulkImprove = useCallback(
+    (keys: ArtifactKey[]) => {
+      if (!keys || keys.length === 0) return;
+      // Idempotent — refuse if a cascade is already in progress, to avoid
+      // tangled queue states. Caller should cancelBulkImprove first.
+      if (bulkImproveRef.current) {
+        toast.message("A Bulk Improve is already in progress.");
+        return;
+      }
+      // Dedupe + filter to valid known keys
+      const seen = new Set<ArtifactKey>();
+      const valid: ArtifactKey[] = [];
+      for (const k of keys) {
+        if (seen.has(k)) continue;
+        if (!ALL_ARTIFACT_KEYS.includes(k)) continue;
+        seen.add(k);
+        valid.push(k);
+      }
+      if (valid.length === 0) return;
+      // Topological sort — parents before children so each improve sees the
+      // freshly accepted upstream content. DFS over PARENTS restricted to the
+      // requested key set.
+      const validSet = new Set(valid);
+      const visited = new Set<ArtifactKey>();
+      const ordered: ArtifactKey[] = [];
+      const visit = (k: ArtifactKey) => {
+        if (visited.has(k) || !validSet.has(k)) return;
+        visited.add(k);
+        for (const p of PARENTS[k]) visit(p);
+        ordered.push(k);
+      };
+      for (const k of valid) visit(k);
+
+      updateBulkImprove({
+        total: ordered.length,
+        current: null,
+        remaining: ordered,
+        accepted: [],
+        rejected: [],
+        skipped: [],
+        failed: [],
+      });
+    },
+    [updateBulkImprove]
+  );
+
+  const cancelBulkImprove = useCallback(() => {
+    if (!bulkImproveRef.current) return;
+    updateBulkImprove(null);
+    toast.message("Bulk Improve cancelled.");
+  }, [updateBulkImprove]);
+
+  // Advancement effect — drives the cascade forward whenever the app is at
+  // a "settled" state (no improve in flight, no pending review). Each tick
+  // either: dequeues the next artifact and calls improveArtifact on it, or
+  // classifies a current item that finished without a pending review as a
+  // skip (improveArtifact toasted the actual reason), or summarizes and
+  // clears when the queue is empty.
+  useEffect(() => {
+    const bulk = bulkImprove;
+    if (!bulk) return;
+    if (isImproving) return; // wait for AI call to settle
+    if (pendingImprovement) return; // wait for user to accept/reject
+
+    // Case A — `current` is set but pendingImprovement is null and isImproving
+    // is null. improveArtifact returned without producing a review (max
+    // specificity, diminishing returns, missing v1, or model error). The toast
+    // already told the user. Record as skipped and let the next tick dequeue.
+    if (bulk.current) {
+      const skippedKey = bulk.current;
+      updateBulkImprove((prev) =>
+        prev
+          ? {
+              ...prev,
+              current: null,
+              skipped: [
+                ...prev.skipped,
+                { key: skippedKey, reason: "diminishing_returns" as BulkImproveSkipReason },
+              ],
+            }
+          : null
+      );
+      return;
+    }
+
+    // Case B — queue is empty. Summarize and clear.
+    if (bulk.remaining.length === 0) {
+      const parts = [
+        `${bulk.accepted.length} improved`,
+        bulk.rejected.length ? `${bulk.rejected.length} rejected` : null,
+        bulk.skipped.length ? `${bulk.skipped.length} skipped` : null,
+        bulk.failed.length ? `${bulk.failed.length} failed` : null,
+      ].filter(Boolean);
+      toast.success(`Bulk Improve complete — ${parts.join(" · ")}`);
+      updateBulkImprove(null);
+      return;
+    }
+
+    // Case C — dequeue the next artifact and improve it.
+    const [next, ...rest] = bulk.remaining;
+    updateBulkImprove((prev) =>
+      prev ? { ...prev, remaining: rest, current: next } : null
+    );
+    void improveArtifact(next);
+  }, [bulkImprove, isImproving, pendingImprovement, improveArtifact, updateBulkImprove]);
+
   // Day 51 (Sasha 2026-04-25): human-override for AI-suggested specificity
   // score. AI suggests, human can adjust via the badge in the UI. Stores
   // the human-chosen value back in `specificity_score` (single source of
@@ -724,9 +915,30 @@ export function UniqueBusinessProvider({ children }: { children: ReactNode }) {
         return { ...prev, [key]: { ...s, latest: updated, latestLocked: updated } };
       });
       toast.success(`${key}: locked.`);
+
+      // Day 74 (Sasha 2026-05-22): if this lock has already-locked descendants,
+      // surface a "Re-derive N downstream?" prompt. Only locked descendants
+      // are candidates — drafted-but-unlocked ones are the founder's
+      // in-progress work, not auto-suggest material. Skip the prompt entirely
+      // when a Bulk Improve cascade is already running (one queue at a time).
+      if (bulkImproveRef.current) return;
+      const candidates = getDownstream(key).filter((descendant) => {
+        // Read latest artifact snapshot directly — `artifacts` closure here
+        // doesn't yet include the lock we just applied, but the optimistic
+        // update above will land on the next render. Either way we only care
+        // about the descendants' lock state, which this dep already captures.
+        return !!artifacts[descendant]?.latestLocked;
+      });
+      if (candidates.length > 0) {
+        setLockedCascadePrompt({ lockedKey: key, candidates });
+      }
     },
     [artifacts]
   );
+
+  const dismissLockedCascadePrompt = useCallback(() => {
+    setLockedCascadePrompt(null);
+  }, []);
 
   const unlockArtifact = useCallback(
     async (key: ArtifactKey) => {
@@ -897,6 +1109,8 @@ export function UniqueBusinessProvider({ children }: { children: ReactNode }) {
     isImproving,
     isGenerating,
     isInitializing,
+    bulkImprove,
+    lockedCascadePrompt,
     lockedCount: derived.lockedCount,
     unlockedCount: derived.unlockedCount,
     avgSpecificity: derived.avgSpecificity,
@@ -913,6 +1127,9 @@ export function UniqueBusinessProvider({ children }: { children: ReactNode }) {
     publishDossier,
     updateArtifactScore,
     restoreToV1,
+    startBulkImprove,
+    cancelBulkImprove,
+    dismissLockedCascadePrompt,
   };
 
   return (

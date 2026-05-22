@@ -216,6 +216,35 @@ export type LandingPagePublication = {
 };
 
 // ============================================================================
+// Bulk Improve — Day 74 (Sasha 2026-05-22)
+// ============================================================================
+//
+// Hybrid cascade UX: user clicks "Improve all N stale" → context walks the
+// dependency tree in topological order (parents first), calling Improve on
+// each, surfacing the existing per-artifact review drawer for accept/reject
+// at each step. Failures and skips don't abort the queue; they're tallied
+// and reported at the end.
+//
+// `current` is set the moment we kick off the AI call and stays set through
+// the review drawer's accept/reject. `remaining` is the not-yet-attempted
+// queue. The four outcome arrays accumulate as we walk.
+
+export type BulkImproveSkipReason =
+  | "max_specificity" // artifact already at 10/10
+  | "diminishing_returns" // model declined to propose
+  | "no_latest"; // never generated a v1
+
+export type BulkImproveProgress = {
+  total: number;
+  current: ArtifactKey | null;
+  remaining: ArtifactKey[];
+  accepted: ArtifactKey[];
+  rejected: ArtifactKey[];
+  skipped: Array<{ key: ArtifactKey; reason: BulkImproveSkipReason }>;
+  failed: Array<{ key: ArtifactKey; message: string }>;
+};
+
+// ============================================================================
 // Context shape
 // ============================================================================
 
@@ -227,6 +256,22 @@ export type UniqueBusinessState = {
   pendingImprovement: { artifact_key: ArtifactKey; result: ImproveResult } | null;
   isImproving: ArtifactKey | null;
   isGenerating: ArtifactKey | null;
+  /**
+   * Day 74 (Sasha 2026-05-22): in-progress bulk cascade, null when idle.
+   * The review drawer reads this to render "Step N of M · part of cascade"
+   * and the canvas overview reads it to render the BulkImprovePanel.
+   */
+  bulkImprove: BulkImproveProgress | null;
+  /**
+   * Day 74 (Sasha 2026-05-22): after a user locks an upstream artifact whose
+   * (transitive) descendants are also locked, this slice surfaces a one-tap
+   * confirmation: "Re-derive N downstream artifacts?" The dialog reads this;
+   * accepting calls startBulkImprove(candidates); dismissing clears it.
+   */
+  lockedCascadePrompt: {
+    lockedKey: ArtifactKey;
+    candidates: ArtifactKey[];
+  } | null;
   /**
    * Day 53 night iter 3 (Sasha 2026-04-27): true while the initial
    * artifacts fetch is in flight. Lets surfaces (e.g. CanvasOverviewScreen)
@@ -266,4 +311,22 @@ export type UniqueBusinessActions = {
    * paramount invariant). No-op if already at v1 or if v1 is missing.
    */
   restoreToV1: (key: ArtifactKey) => Promise<void>;
+  /**
+   * Day 74 (Sasha 2026-05-22): bulk cascade. Sorts keys topologically
+   * (parents first), then walks the queue, surfacing the per-artifact
+   * review drawer at each step. Idempotent: calling while already active
+   * is a no-op.
+   */
+  startBulkImprove: (keys: ArtifactKey[]) => void;
+  /**
+   * Day 74 (Sasha 2026-05-22): abort the cascade. Any in-flight AI call
+   * resolves naturally — only the queue advancement stops.
+   */
+  cancelBulkImprove: () => void;
+  /**
+   * Day 74 (Sasha 2026-05-22): dismiss the "Re-derive downstream?" prompt
+   * that appeared after the user locked an upstream artifact. No-op if the
+   * prompt is not currently open.
+   */
+  dismissLockedCascadePrompt: () => void;
 };
