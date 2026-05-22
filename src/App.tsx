@@ -60,6 +60,9 @@ import GameShellV2 from "./components/game/GameShellV2";
 import MorphogeneticHolomap from "./pages/MorphogeneticHolomap";
 import FoundersShowcase from "./pages/FoundersShowcase";
 import IgniteSession from "./pages/IgniteSession";
+// Day 80 Wave 2.4 (Sasha 2026-05-22): standalone $37 Top Talent
+// Activation page — clean landing for the JOURNEY 1.5 sidequest row.
+import ActivateTopTalent from "./pages/ActivateTopTalent";
 // ActivateWelcome retired Day 58 (Sasha 2026-05-02 evening) — its route
 // now redirects to /game/me/zone-of-genius/start-here; the page file
 // is kept for reference only and no longer mounted.
@@ -411,6 +414,12 @@ const App = () => (
                   {/* Day 47 (Sasha): /ignite is now public — the ZoG result CTA lands
                       here directly. Auth at the pricing step was redundant funnel friction. */}
                   <Route path="/ignite" element={<IgniteSession />} />
+                  {/* Day 80 Wave 2.4 (Sasha 2026-05-22): $37 Top Talent
+                      Activation as its own clean landing — extracted
+                      from AppleseedDisplay's Option-2 card so the
+                      JOURNEY 1.5 sidequest row has somewhere focused
+                      to land (no $555 funnel surrounding it). */}
+                  <Route path="/activate-top-talent" element={<ActivateTopTalent />} />
                   {/* Day 58 (Sasha 2026-05-02 evening): /activate/welcome
                       eradicated as a standalone surface. The activation
                       home now lives at /game/me/zone-of-genius/start-here
