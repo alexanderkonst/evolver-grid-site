@@ -76,10 +76,18 @@ const MuxVideoBackground = () => {
         const urlPath = new URLSearchParams(window.location.search).get("path");
         if (urlPath === "match") return true;
         if (urlPath !== null) return false; // explicit non-match URL param
-        // No URL param. Honor sessionStorage only on SPA-nav (not POP).
+        // No URL param. Honor stored entry path only on SPA-nav (not POP).
+        // Day 79 (Sasha 2026-05-22): EntryPathContext was migrated from
+        // sessionStorage to localStorage (so the magic-link cross-tab
+        // hop preserves the path). Check localStorage first, fall back
+        // to sessionStorage for users who were mid-flow when the
+        // migration shipped.
         if (navigationType === "POP") return false;
         try {
-            return window.sessionStorage?.getItem("ftt_entry_path") === "match";
+            const stored =
+                window.localStorage?.getItem("ftt_entry_path") ||
+                window.sessionStorage?.getItem("ftt_entry_path");
+            return stored === "match";
         } catch {
             return false;
         }

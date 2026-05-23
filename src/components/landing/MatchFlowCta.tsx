@@ -98,9 +98,12 @@ const CONFIG: Record<Step, Config> = {
     primaryHref: "/game/collaborate/matches",
     secondaryLabel: "Assess your quality of life",
     secondaryHref: "/quality-of-life-map/assessment",
+    // Day 79 (Sasha 2026-05-22, second pass): ✦ glyphs removed per
+    // Sasha — read as "cliffs" / magic-shop ornament. The graduation
+    // ceremony comes from the eyebrow size + Ornament rule + extra
+    // breathing room alone; no decorative glyphs needed.
     unlockBanner: {
       eyebrow: "Collaboration profile complete",
-      eyebrowGlyph: "✦",
       lines: [
         "Your top talent, mission, and assets are all named.",
         "Your collaborators are now visible to you.",
