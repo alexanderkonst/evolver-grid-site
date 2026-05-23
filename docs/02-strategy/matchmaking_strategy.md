@@ -529,6 +529,89 @@ See [docs/specs/match-mechanic/active-intro_tracker.md](../specs/match-mechanic/
 
 ---
 
+## 8.7. Three loops — matching as a return habit, not a one-time check (Day 80, 2026-05-23)
+
+The matching engine is alive when three loops are running concurrently. Today only the first one exists.
+
+| Loop | Direction | What triggers it | What it produces |
+|---|---|---|---|
+| **Discovery** (user-pull) | User → engine | User opens the matches page | A small batch of high-resonance candidates + heads-up email when interest fires |
+| **Re-engagement** (system-push) | Engine → user | Weekly cron + new-match thresholds | A digest email pulling user back: "3 new matches this week + 1 mutual still waiting" |
+| **Improvement** (capability-deepen) | User → own profile | Engine surfaces "adding mission would lift 4 of your match scores" nudges | Deeper profiles → higher-quality matches → more reason to return |
+
+The platform monetizes on Loop 1 (the high-precision collaboration product). Loops 2 and 3 are what makes Loop 1 worth paying for. Without re-engagement, matches feel one-and-done. Without improvement, profiles stay thin and matches stay generic.
+
+**Order of build:** Loop 1 first (already shipped). Loop 2 next (weekly digest email — leverages existing `send-match-headsup-email` template + a cron-triggered edge function that runs `suggest-asset-matches` per active user weekly and packages the top 3 NEW matches into an email). Loop 3 ships alongside, since it's a single line of UI ("add your mission to lift these matches by ~X points") on the matches page.
+
+---
+
+## 8.8. Portion logic — what we surface, in what cadence (Day 80, 2026-05-23)
+
+The framing reset: **we're not selling self-knowledge, we're selling high-precision collaborations.** That changes the portion calculus. Two principles:
+
+1. **Each match has real value.** Computing a match costs LLM tokens AND surfaces a finite-trust artifact (the heads-up email that fires when someone clicks "I'd like to meet"). The system can't burn either at unlimited rate.
+2. **Returns require freshness.** Users who see the same matches twice never come back. Users who see 3 new matches every week return weekly.
+
+**v1 portion rule:** **3 matches per session, freshest pool first.** Smaller than the engine's natural top-8 because:
+
+- 3 is below the cognitive-fatigue threshold (users review every one carefully instead of skimming)
+- 3 leaves headroom for "fresh next time" — the engine deepens-and-rotates rather than exhausting the pool
+- 3 matches the natural rhythm of how a human thinks about new connections (Dunbar's "close circle" is roughly 5, not 50; even fewer when each contact is a potential collaboration)
+
+**Refresh budget:** users get **1 manual refresh per session** (loads the next 3) for a total of 6 fresh profiles per visit. Beyond that, "come back next week." This is the implicit free-tier ceiling and the natural upsell anchor.
+
+**Why this beats showing 8 at once:**
+- A 3-card page tells the user: each of these is intentional. An 8-card page tells them: pick whichever catches your eye, the rest is filler.
+- Refresh-on-demand teaches the return habit. Static-list-of-8 teaches the one-and-done habit.
+- We never have to say "here are lower-quality matches we hid from you" — we just say "your top 3 right now."
+
+**Implementation knob:** the cap lives at `suggest-asset-matches/index.ts` in the `survivors.slice(0, N)` line. v1 N=3 (primary) with a separate `loadMoreMatches` endpoint returning the next 3.
+
+---
+
+## 8.9. Free vs sponsored vs premium — the monetization map (Day 80, 2026-05-23)
+
+The matching network has a chicken-and-egg problem: too few users means too few matches means no reason to join. Charging end users at this stage kills the volume needed to make matching valuable. Solution: charge the side of the market that benefits at scale, free the side that creates volume.
+
+| Tier | Who pays | What they get | Why it works at Sasha-stage |
+|---|---|---|---|
+| **Free for individuals (always)** | Nobody | 3 matches per session + 1 manual refresh + weekly digest email | Network effect requires volume; can't gate the on-ramp |
+| **Community sponsorship** | Network operators (Network School, Sasha's Ignition cohort grads, future partner communities) | Branded matching surface + analytics for their members + bulk match credits | Communities already pay for tools; matching is one more line item. Sasha already has the Network School white-label as the prototype |
+| **Premium individual** (parked, post-scale) | Power users | Filters (location, type, language), unlimited refreshes, see-who-viewed-you, daily digest, priority queue | Standard SaaS pattern. Won't ship until matching is producing real collaborations at scale |
+| **Successful-intro fee** (parked, post-scale) | Both parties of a high-stakes mutual intro | Concierge intro for marquee matches (investors, hires, board members) | Value-based pricing — only charge when value lands. Earliest at hundreds of active users |
+
+**For the current stage:** **free for everyone, community sponsorship as primary revenue.** Premium tiers are explicitly parked. The mistake to avoid is pricing the matching surface before there's enough density to make matches valuable.
+
+---
+
+## 8.10. Profile-completion incentive (Day 80, 2026-05-23)
+
+The improvement loop (Loop 3 in §8.7) needs one surface to land on. v1: a single line on the matches page, immediately above or below the match cards, that says:
+
+> *"Adding your Quality of Life assessment would lift X of your matches by ~Y points."*
+
+OR if QoL is already done:
+
+> *"Going deeper on your Top Talent reveal would refine 3 of your matches with higher complementarity signal."*
+
+OR if both are done:
+
+> *"You're at the depth ceiling. New matches will surface as more people complete their profiles."*
+
+The order of nudges (priority sequence as the user fills in their profile):
+
+1. **Quality of Life assessment** — the missing 4th canonical input, easy to add, lifts QoL similarity sub-score from neutral 0.5 to real value
+2. **Deeper Top Talent review** — the v3 deep-profile prompt that produces top_three_talents_compact, primeDriver, etc. — many legacy users only have the basic reveal
+3. **Mission discovery (if missing)** — lifts mission similarity sub-score
+4. **Asset mapping (if missing)** — lifts asset Lego-fit sub-score
+5. **Future: wants/needs, UBB artifacts** — once those primitives are wired into matching
+
+The nudge is shown ONCE per session, takes minimal visual weight, and disappears when there's nothing to nudge (the user is at depth ceiling).
+
+**Filters (location, language, type) are parked for the premium tier** per §8.9. They don't belong as a free-feature on the matches page — they belong as the unlock that justifies a premium subscription when one exists. Until then, the engine's own scoring is the filter.
+
+---
+
 ## 9. Implementation status
 
 ### Already shipped

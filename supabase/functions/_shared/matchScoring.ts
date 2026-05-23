@@ -250,6 +250,11 @@ export function parseSimilarityScore(raw: string): number {
 export interface RationalePayload {
     matchType: "co-founder" | "collaborator" | "peer" | "mentor" | "client-fit";
     collaborationProposal: string;
+    /** Day 80 (Sasha 2026-05-23): optional one-line "how this could
+     *  deepen over time" sentence. The maturity axis lives here without
+     *  ever naming explicit stages to the user. Empty string when no
+     *  obvious evolution. */
+    evolutionLine: string;
     suggestedAction: "intro" | "micro-collab" | "practice-together" | "wait";
     alignment: string;
     complementarity: string;
@@ -273,7 +278,8 @@ Your job: produce a JSON object with these fields, and ONLY these fields. No pro
 
 {
   "matchType": "co-founder" | "collaborator" | "peer" | "mentor" | "client-fit",
-  "collaborationProposal": "1-2 sentences. Name a clear SHAPE of collaboration (a co-led workshop, a joint cohort, a co-authored framework, a recurring mastermind, an integrated offering, etc.) AND name what EACH person brings AND what EACH person gets. Bilateral. No invented brand names. No arbitrary numerical specifics. Lead with the active verb.",
+  "collaborationProposal": "ONE main proposal in 1-2 sentences. Pick a collaboration TYPE from this taxonomy: Co-Build (make together — business co-founding, product, methodology, service co-delivery, creative work), Co-Learn (grow together — mastermind, accountability dyad, study group, practice group, apprenticeship), Co-Distribute (reach together — audience cross-pollination, channel partnership, joint launch, affiliate, co-marketed event), Co-Resource (pool together — capital pool, talent pool, tool sharing, knowledge pool, network pool), Co-Steward (tend together — community moderation, ecosystem governance, infrastructure tending, mentorship lineage, movement building). Pick the sub-type that fits the pair best, then name a CONCRETE container shape (a co-led workshop, a joint cohort, a methodology, a shared mastermind, a quarterly intro exchange, a co-hosted event, etc.). Name what EACH person brings AND gets. Bilateral.",
+  "evolutionLine": "Optional. One short sentence about how this could deepen over time. Example: 'Could deepen into co-teaching a cohort once the framework is tested in one-on-one work.' Set to empty string if there's no obvious evolution.",
   "suggestedAction": "intro" | "micro-collab" | "practice-together" | "wait",
   "alignment": "1 sentence on Mission similarity. What direction or value they share. Use their first names, not 'Profile A/B'.",
   "complementarity": "1 sentence on Top Talent + Asset fit. What each brings the other lacks. Use first names.",
