@@ -80,6 +80,11 @@ const MatchHero = () => {
               Small-caps + tracked letter-spacing keeps the editorial
               register; the brand-gold remains in the CTA emblem +
               ornament where it has the contrast headroom. */}
+          {/* Day 80 (Sasha 2026-05-23): eyebrow halo upgraded soft →
+              deep per ui_playbook.md Part VIII Strong cocktail. The
+              new match Mux video is visually denser than the
+              build-path one; halo-soft wasn't carrying small-caps
+              text against the gold-bokeh patches. */}
           <p
             className="mb-4 sm:mb-5"
             style={{
@@ -90,7 +95,7 @@ const MatchHero = () => {
               textTransform: "uppercase",
               color: "var(--skin-text-primary, #0a1628)",
               textShadow:
-                "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.75), 0 0 8px rgba(255,255,255,0.55))",
+                "var(--skin-text-halo-deep, 0 0 28px rgba(255,255,255,0.85), 0 1px 2px rgba(255,255,255,0.95), 0 0 1px rgba(11,42,90,0.65), 0 1px 0 rgba(11,42,90,0.45))",
             }}
           >
             Precision intros for entrepreneurs

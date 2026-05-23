@@ -72,11 +72,18 @@ import { useToast } from "@/hooks/use-toast";
 // ─── Editorial-register tokens (per docs/03-playbooks/ui_playbook.md) ──
 // Mirror ZoneOfGeniusOverview / QoL Results. Dark ink on light glass,
 // Cormorant for hero, Source Serif for body.
+// Day 80 (Sasha 2026-05-23): INK_BODY + INK_MUTED bumped from 0.78/0.55
+// to playbook Strong (1.5×) alphas per Part VIII "Color alphas at Strong"
+// (--skin-text-body: 0.97, --skin-text-muted: 0.93). The match-path Mux
+// video sits behind this surface; sub-0.92 alphas were dropping out
+// of the 8-10:1 contrast band on bright bg patches. HALO_SOFT replaced
+// with halo-deep token for the same reason — soft halo doesn't bridge
+// variable-luminance pixel ranges.
 const INK = "#0a1628";
-const INK_BODY = "rgba(26,30,58,0.78)";
-const INK_MUTED = "rgba(26,30,58,0.55)";
+const INK_BODY = "rgba(11,42,90,0.97)";
+const INK_MUTED = "rgba(11,42,90,0.93)";
 const HALO_SOFT =
-    "0 0 22px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.8), 0 2px 12px rgba(26,30,58,0.15)";
+    "var(--skin-text-halo-deep, 0 0 28px rgba(255,255,255,0.85), 0 1px 2px rgba(255,255,255,0.95), 0 0 1px rgba(11,42,90,0.65), 0 1px 0 rgba(11,42,90,0.45))";
 
 // ─── One-sentence-synthesis extractor ──────────────────────────────────
 //
