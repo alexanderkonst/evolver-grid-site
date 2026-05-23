@@ -438,6 +438,7 @@ ${candidateBlocks.join("\n\n")}`;
                 subScores: s.subScores,
                 matchType: rationale.matchType,
                 collaborationProposal: rationale.collaborationProposal,
+                evolutionLine: rationale.evolutionLine,
                 suggestedAction: rationale.suggestedAction,
                 alignment: rationale.alignment,
                 complementarity: rationale.complementarity,
@@ -556,6 +557,7 @@ Return the JSON.`;
         return {
             matchType: validMatchType(parsed.matchType) || inferMatchType(subScores),
             collaborationProposal: String(parsed.collaborationProposal || "").slice(0, 400),
+            evolutionLine: String(parsed.evolutionLine || "").slice(0, 200),
             suggestedAction: validSuggestedAction(parsed.suggestedAction) || "intro",
             alignment: String(parsed.alignment || "").slice(0, 240),
             complementarity: String(parsed.complementarity || "").slice(0, 240),
@@ -576,6 +578,7 @@ function fallbackRationale(subScores: SubScores): RationalePayload {
         matchType: inferMatchType(subScores),
         collaborationProposal:
             "Their profile aligns with yours on the dimensions our engine scores. Open a conversation to find the specific shape.",
+        evolutionLine: "",
         suggestedAction: "intro",
         alignment:
             subScores.mission >= 0.6
