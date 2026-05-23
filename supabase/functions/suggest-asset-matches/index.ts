@@ -373,27 +373,26 @@ ${candidateBlocks.join("\n\n")}`;
         });
 
         // Day 80 (Sasha 2026-05-23): threshold relaxed + always-surface
-        // fallback. The previous `>= 40` cutoff was filtering out almost
-        // everyone when the candidate pool was sparsely populated —
-        // common in early days when most users have only completed Top
-        // Talent. With four sub-scores defaulting to 0.5 on missing
-        // data, geometric-mean composites cluster around 40-50 for
-        // sparse pairs, and one weak LLM verdict drops them below the
-        // line. Two-part fix:
-        //   1. Primary threshold lowered 40 → 25. Filters true noise
-        //      but lets sparse-but-real pairs through.
-        //   2. If zero pairs clear the threshold, surface the top 5
-        //      by score regardless — better to show something with
-        //      visible sub-scores than an empty page. The user can
-        //      judge whether to act on each.
+        // fallback. The previous `>= 40` cutoff filtered out almost
+        // everyone when the candidate pool was sparsely populated.
+        // Threshold lowered to 25; if zero pairs clear it, surface the
+        // top by score regardless.
+        //
+        // Day 80 (Sasha 2026-05-23, second pass): portion logic. The
+        // surface cap drops from 8 to 3 per session per
+        // matchmaking_strategy.md §8.8. Three is below cognitive
+        // fatigue, signals scarcity = value, and leaves headroom for
+        // the weekly digest to bring fresh matches. The "See more
+        // matches" button on the page surfaces "fresh matches Monday"
+        // rather than loading more from the same pool.
         const sortedByScore = [...scored].sort(
             (a, b) => b.resonance - a.resonance,
         );
         const aboveThreshold = sortedByScore.filter((s) => s.resonance >= 25);
         const survivors =
             aboveThreshold.length > 0
-                ? aboveThreshold.slice(0, 8)
-                : sortedByScore.slice(0, 5);
+                ? aboveThreshold.slice(0, 3)
+                : sortedByScore.slice(0, 3);
 
         if (survivors.length === 0) {
             // Genuinely empty pool (no candidates at all).
