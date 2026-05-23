@@ -1264,13 +1264,22 @@ const SectionsPanel = ({
                                     ✦
                                 </span>
                             </span>
+                            {/* Day 80 (Sasha 2026-05-23): label color
+                                was hardcoded to rgba(255,255,255,0.80)
+                                — invisible on the NS skin's light Pane 2
+                                background. The ✦ glyph stayed visible
+                                because it uses its own gold color, so
+                                the row read as "icon with no text".
+                                Skin-aware token + Aurora fallback keeps
+                                the existing dark-Pane-2 behavior while
+                                making the row legible on every skin. */}
                             <span
                                 className="flex-1 text-[16px] leading-snug italic min-w-0"
                                 style={{
                                     fontFamily: "'Cormorant Garamond', serif",
                                     fontWeight: 500,
                                     letterSpacing: "0.012em",
-                                    color: "rgba(255, 255, 255, 0.80)",
+                                    color: "var(--skin-sections-text, rgba(255, 255, 255, 0.80))",
                                 }}
                             >
                                 {section.label}
