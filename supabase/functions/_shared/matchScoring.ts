@@ -247,14 +247,24 @@ export function parseSimilarityScore(raw: string): number {
  * The matching edge function asks the model to return this shape after
  * deterministic scoring is already complete.
  */
+/** Day 80 (Sasha 2026-05-23): a single collaboration proposal in the
+ *  triplet returned per match. Each one names a distinct shape from
+ *  the taxonomy so the user has 3 different ways the collaboration
+ *  could take form, not 3 wordings of the same idea. */
+export interface CollaborationProposal {
+    /** Root type from the taxonomy (Co-Build / Co-Learn / Co-Distribute / Co-Resource / Co-Steward). */
+    type: string;
+    /** The 1-2 sentence bilateral proposal naming a concrete container shape. */
+    proposal: string;
+    /** Optional one-line "how this could deepen over time". Empty when no obvious evolution. */
+    evolutionLine: string;
+}
+
 export interface RationalePayload {
     matchType: "co-founder" | "collaborator" | "peer" | "mentor" | "client-fit";
-    collaborationProposal: string;
-    /** Day 80 (Sasha 2026-05-23): optional one-line "how this could
-     *  deepen over time" sentence. The maturity axis lives here without
-     *  ever naming explicit stages to the user. Empty string when no
-     *  obvious evolution. */
-    evolutionLine: string;
+    /** Three distinct proposals, each from a different taxonomy root
+     *  where possible, so the user can pick the one that resonates. */
+    proposals: CollaborationProposal[];
     suggestedAction: "intro" | "micro-collab" | "practice-together" | "wait";
     alignment: string;
     complementarity: string;
@@ -278,13 +288,29 @@ Your job: produce a JSON object with these fields, and ONLY these fields. No pro
 
 {
   "matchType": "co-founder" | "collaborator" | "peer" | "mentor" | "client-fit",
-  "collaborationProposal": "ONE main proposal in 1-2 sentences. Pick a collaboration TYPE from this taxonomy: Co-Build (make together — business co-founding, product, methodology, service co-delivery, creative work), Co-Learn (grow together — mastermind, accountability dyad, study group, practice group, apprenticeship), Co-Distribute (reach together — audience cross-pollination, channel partnership, joint launch, affiliate, co-marketed event), Co-Resource (pool together — capital pool, talent pool, tool sharing, knowledge pool, network pool), Co-Steward (tend together — community moderation, ecosystem governance, infrastructure tending, mentorship lineage, movement building). Pick the sub-type that fits the pair best, then name a CONCRETE container shape (a co-led workshop, a joint cohort, a methodology, a shared mastermind, a quarterly intro exchange, a co-hosted event, etc.). Name what EACH person brings AND gets. Bilateral.",
-  "evolutionLine": "Optional. One short sentence about how this could deepen over time. Example: 'Could deepen into co-teaching a cohort once the framework is tested in one-on-one work.' Set to empty string if there's no obvious evolution.",
+  "proposals": [
+    { "type": "Co-Build | Co-Learn | Co-Distribute | Co-Resource | Co-Steward", "proposal": "1-2 sentences. Concrete container shape, bilateral framing.", "evolutionLine": "Optional one-liner about how this could deepen over time. Empty string if no obvious evolution." },
+    { "type": "...", "proposal": "...", "evolutionLine": "..." },
+    { "type": "...", "proposal": "...", "evolutionLine": "..." }
+  ],
   "suggestedAction": "intro" | "micro-collab" | "practice-together" | "wait",
   "alignment": "1 sentence on Mission similarity. What direction or value they share. Use their first names, not 'Profile A/B'.",
   "complementarity": "1 sentence on Top Talent + Asset fit. What each brings the other lacks. Use first names.",
   "friction": "1 sentence on potential friction (timing, timezone, stage, language, mission divergence) or the literal string 'None identified' if you see nothing. Use first names when relevant."
 }
+
+PROPOSAL RULES — return EXACTLY THREE proposals per match. Each must:
+- Pick a different ROOT type from the taxonomy where possible (Co-Build, Co-Learn, Co-Distribute, Co-Resource, Co-Steward). If only two roots realistically fit this pair, repeat the strongest one but pick a different sub-type for the second instance.
+- Name a CONCRETE container shape from the relevant sub-type (a co-led workshop, a joint cohort, a co-authored framework, a shared mastermind, a quarterly intro exchange, a co-hosted event, an intro-pool exchange, a methodology, a service delivered jointly, etc.).
+- Be BILATERAL — name what each person brings AND gets. Avoid lopsided "help X build Y" framings.
+- Be DISTINCT from the other two. Three wordings of the same collaboration is failure; three genuinely different ways the pair could work together is the goal.
+
+The taxonomy (for grounding):
+- Co-Build (make together): business co-founding, product, methodology, service co-delivery, creative work
+- Co-Learn (grow together): peer mastermind, accountability dyad, study group, practice group, apprenticeship
+- Co-Distribute (reach together): audience cross-pollination, channel partnership, joint launch, affiliate / rev share, co-marketed event
+- Co-Resource (pool together): capital pool, talent pool, tool sharing, knowledge pool, network pool
+- Co-Steward (tend together): community moderation, ecosystem governance, infrastructure tending, mentorship lineage, movement building
 
 Voice rules:
 - **NEVER use "Profile A", "Profile B", "Person A", "Person B", "the requesting user", or "the candidate".** Always use the actual first names supplied. Address the requesting user in second person ("you", "your"); address the candidate by their first name.

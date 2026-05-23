@@ -4,6 +4,7 @@ import {
     type ProfileForMatching,
     type SubScores,
     type RationalePayload,
+    type CollaborationProposal,
     type QolVector,
     type AssetRow,
     scoreAssetFit,
@@ -437,8 +438,13 @@ ${candidateBlocks.join("\n\n")}`;
                 resonanceScore: s.resonance,
                 subScores: s.subScores,
                 matchType: rationale.matchType,
-                collaborationProposal: rationale.collaborationProposal,
-                evolutionLine: rationale.evolutionLine,
+                proposals: rationale.proposals,
+                // Day 80 (Sasha 2026-05-23): legacy fields kept so the
+                // current UI doesn't break before its triplet-aware
+                // update lands. UI can read the first proposal via
+                // `proposals[0]` or fall back to the legacy strings.
+                collaborationProposal: rationale.proposals[0]?.proposal || "",
+                evolutionLine: rationale.proposals[0]?.evolutionLine || "",
                 suggestedAction: rationale.suggestedAction,
                 alignment: rationale.alignment,
                 complementarity: rationale.complementarity,
@@ -554,10 +560,28 @@ Return the JSON.`;
         const jsonMatch = content.match(/\{[\s\S]*\}/);
         if (!jsonMatch) return fallbackRationale(subScores);
         const parsed = JSON.parse(jsonMatch[0]);
+        const rawProposals = Array.isArray(parsed.proposals) ? parsed.proposals : [];
+        const proposals: CollaborationProposal[] = rawProposals
+            .slice(0, 3)
+            .map((p: any) => ({
+                type: String(p?.type || "Co-Build").slice(0, 32),
+                proposal: String(p?.proposal || "").slice(0, 400),
+                evolutionLine: String(p?.evolutionLine || "").slice(0, 200),
+            }))
+            .filter((p: CollaborationProposal) => p.proposal.length > 0);
+        // Ensure we always return 3; pad with the fallback if the model
+        // returned fewer than asked.
+        while (proposals.length < 3) {
+            proposals.push({
+                type: "Co-Learn",
+                proposal:
+                    "Open a single conversation to find the specific shape together.",
+                evolutionLine: "",
+            });
+        }
         return {
             matchType: validMatchType(parsed.matchType) || inferMatchType(subScores),
-            collaborationProposal: String(parsed.collaborationProposal || "").slice(0, 400),
-            evolutionLine: String(parsed.evolutionLine || "").slice(0, 200),
+            proposals,
             suggestedAction: validSuggestedAction(parsed.suggestedAction) || "intro",
             alignment: String(parsed.alignment || "").slice(0, 240),
             complementarity: String(parsed.complementarity || "").slice(0, 240),
@@ -576,9 +600,26 @@ Return the JSON.`;
 function fallbackRationale(subScores: SubScores): RationalePayload {
     return {
         matchType: inferMatchType(subScores),
-        collaborationProposal:
-            "Their profile aligns with yours on the dimensions our engine scores. Open a conversation to find the specific shape.",
-        evolutionLine: "",
+        proposals: [
+            {
+                type: "Co-Learn",
+                proposal:
+                    "Open a single conversation to feel the resonance and decide what shape fits.",
+                evolutionLine: "",
+            },
+            {
+                type: "Co-Distribute",
+                proposal:
+                    "Swap audiences via a single guest appearance to test the fit at low commitment.",
+                evolutionLine: "",
+            },
+            {
+                type: "Co-Resource",
+                proposal:
+                    "Trade one warm introduction each as the lightest possible first move.",
+                evolutionLine: "",
+            },
+        ],
         suggestedAction: "intro",
         alignment:
             subScores.mission >= 0.6
