@@ -2455,6 +2455,24 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
     return () => { document.title = prev; };
   }, [focusCategory]);
 
+  // Day 79 (Sasha 2026-05-22): latch the ever-visited flag for the
+  // SpacesRail AI OS chip gate. Writes localStorage on first mount
+  // and dispatches a same-tab event so GameShellV2 updates its state
+  // without needing a navigation. Latches once; never un-latches —
+  // returning visitors keep AI OS in their rail forever after one visit.
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    try {
+      if (window.localStorage.getItem("fytt:ai-os-visited") !== "true") {
+        window.localStorage.setItem("fytt:ai-os-visited", "true");
+        window.dispatchEvent(new Event("fytt:ai-os-visited"));
+      }
+    } catch {
+      // localStorage unavailable (private mode); the rail will catch
+      // up on next direct visit. Non-blocking.
+    }
+  }, []);
+
   // Day 54: when on a suite sub-route, only render that one category;
   // when on /ai-os (no focus), render all five suites as before.
   const visibleGroups = focusCategory

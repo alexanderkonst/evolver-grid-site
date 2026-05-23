@@ -882,8 +882,17 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
     ];
     const isGuest = authChecked && !user;
 
-    const hiddenSpaces: string[] = isGuest
+    // Day 79 (Sasha 2026-05-22): AI OS gate applies to guests too.
+    // Default-hide for unauthed visitors who have never been to /ai-os.
+    // localStorage flag latches once and never un-latches, so any guest
+    // who has clicked through Sasha's cold-paste link (which writes the
+    // flag on AiOsPage mount) continues to see the chip thereafter.
+    const guestHidden: string[] = aiOsEverVisited
         ? [...NON_PUBLIC_SPACE_IDS]
+        : [...NON_PUBLIC_SPACE_IDS, "ai-os"];
+
+    const hiddenSpaces: string[] = isGuest
+        ? guestHidden
         : profileLoaded
         ? [
               ...profileBackedGated.filter((id) => unlockStatus[id] === false),
