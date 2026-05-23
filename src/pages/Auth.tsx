@@ -524,15 +524,24 @@ const Auth = () => {
               "0 8px 24px -10px rgba(10, 22, 40, 0.18), 0 24px 60px -24px rgba(10, 22, 40, 0.22), 0 0 0 1px rgba(212, 175, 55, 0.10)",
           }}
         >
-          {/* Header — Cormorant title + italic subtitle */}
+          {/* Header — Cormorant title + italic subtitle.
+              Day 80 (Sasha 2026-05-23): legibility upgraded per
+              ui_playbook.md Part VIII "Strong" cocktail. The match-path
+              Mux video sits behind this card (the card is liquid-glass,
+              not opaque) so the title + subtitle render against the
+              variable-luminance video pixels. Halo-strong → halo-deep
+              on the title (white lift + navy stroke); halo-soft →
+              halo-deep on the subtitle plus weight 500 → 700 + full
+              text-primary color (was muted) so the supporting line
+              holds its own next to the headline. */}
           <header className="text-center mb-2">
             <h1
-              className="text-3xl sm:text-4xl font-semibold leading-[1.1] tracking-[-0.018em]"
+              className="text-3xl sm:text-4xl font-bold leading-[1.1] tracking-[-0.018em]"
               style={{
                 fontFamily: "'Cormorant Garamond', serif",
                 color: "var(--skin-text-primary, #0a1628)",
                 textShadow:
-                  "var(--skin-text-halo-strong, 0 0 22px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.8))",
+                  "var(--skin-text-halo-deep, 0 0 28px rgba(255,255,255,0.85), 0 1px 2px rgba(255,255,255,0.95), 0 0 1px rgba(11,42,90,0.65), 0 1px 0 rgba(11,42,90,0.45))",
               }}
             >
               {titleNode}
@@ -541,10 +550,11 @@ const Auth = () => {
               className="mt-3 text-base sm:text-lg italic leading-snug"
               style={{
                 fontFamily: "'Cormorant Garamond', serif",
-                fontWeight: 500,
-                color: "var(--skin-text-muted, rgba(26,30,58,0.7))",
+                fontWeight: 700,
+                letterSpacing: "0.01em",
+                color: "var(--skin-text-primary, #0a1628)",
                 textShadow:
-                  "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
+                  "var(--skin-text-halo-deep, 0 0 28px rgba(255,255,255,0.85), 0 1px 2px rgba(255,255,255,0.95), 0 0 1px rgba(11,42,90,0.65), 0 1px 0 rgba(11,42,90,0.45))",
               }}
             >
               {subtitleText}
@@ -588,7 +598,7 @@ const Auth = () => {
                     className="text-[10px] uppercase tracking-[0.22em] font-medium"
                     style={{
                       fontFamily: "'Cormorant Garamond', serif",
-                      color: "var(--skin-text-muted, rgba(26,30,58,0.7))",
+                      color: "var(--skin-text-muted, rgba(11,42,90,0.93))",
                     }}
                   >
                     Email
@@ -610,7 +620,7 @@ const Auth = () => {
                       className="text-[10px] uppercase tracking-[0.22em] font-medium"
                       style={{
                         fontFamily: "'Cormorant Garamond', serif",
-                        color: "var(--skin-text-muted, rgba(26,30,58,0.7))",
+                        color: "var(--skin-text-muted, rgba(11,42,90,0.93))",
                       }}
                     >
                       Password
@@ -693,7 +703,7 @@ const Auth = () => {
                       className="text-[10px] uppercase tracking-[0.22em] font-medium"
                       style={{
                         fontFamily: "'Cormorant Garamond', serif",
-                        color: "var(--skin-text-muted, rgba(26,30,58,0.7))",
+                        color: "var(--skin-text-muted, rgba(11,42,90,0.93))",
                       }}
                     >
                       First Name
@@ -714,7 +724,7 @@ const Auth = () => {
                       className="text-[10px] uppercase tracking-[0.22em] font-medium"
                       style={{
                         fontFamily: "'Cormorant Garamond', serif",
-                        color: "var(--skin-text-muted, rgba(26,30,58,0.7))",
+                        color: "var(--skin-text-muted, rgba(11,42,90,0.93))",
                       }}
                     >
                       Last Name
@@ -736,7 +746,7 @@ const Auth = () => {
                     className="text-[10px] uppercase tracking-[0.22em] font-medium"
                     style={{
                       fontFamily: "'Cormorant Garamond', serif",
-                      color: "var(--skin-text-muted, rgba(26,30,58,0.7))",
+                      color: "var(--skin-text-muted, rgba(11,42,90,0.93))",
                     }}
                   >
                     Email
@@ -757,7 +767,7 @@ const Auth = () => {
                     className="text-[10px] uppercase tracking-[0.22em] font-medium"
                     style={{
                       fontFamily: "'Cormorant Garamond', serif",
-                      color: "var(--skin-text-muted, rgba(26,30,58,0.7))",
+                      color: "var(--skin-text-muted, rgba(11,42,90,0.93))",
                     }}
                   >
                     Password
