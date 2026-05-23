@@ -184,37 +184,19 @@ const parseMonetizationAvenue = (
 const ZoneOfGeniusOverview = () => {
     const navigate = useNavigate();
     const heroCardRef = useRef<HTMLElement | null>(null);
-    // Day 60 (Sasha 2026-05-03): seed state from the module-level cache so
-    // the Overview is instant after any other Top Talent perspective has
-    // already fetched it (and vice versa). Only loading=true on a true
-    // cache miss; otherwise the page paints real content on first frame.
-    const cachedSnapshot = getCachedZogSnapshot();
-    const [loading, setLoading] = useState(!cachedSnapshot);
-    const [appleseedData, setAppleseedData] = useState<AppleseedData | null>(
-        (cachedSnapshot?.appleseedData as AppleseedData | null) ??
-            (cachedSnapshot && cachedSnapshot.archetypeTitle
-                ? {
-                      vibrationalKey: {
-                          name: cachedSnapshot.archetypeTitle,
-                          essence: cachedSnapshot.corePattern || "",
-                      },
-                      bullseyeSentence: cachedSnapshot.corePattern || undefined,
-                      threeLenses: (cachedSnapshot.topThreeTalentsLong?.length ?? 0) > 0
-                          ? {
-                                actions: cachedSnapshot.topThreeTalentsLong!,
-                                primeDriver: "",
-                                archetype: cachedSnapshot.archetypeTitle,
-                            }
-                          : undefined,
-                  }
-                : null),
-    );
-    const [fullAppleseed, setFullAppleseed] = useState<FullAppleseedData | null>(
-        (cachedSnapshot?.appleseedData as FullAppleseedData | null) ?? null,
-    );
-    const [excaliburData, setExcaliburData] = useState<ExcaliburData | null>(
-        cachedSnapshot?.excaliburData ?? null,
-    );
+    // Day 80 (Sasha 2026-05-23): CROSS-USER LEAK FIX. The previous
+    // implementation called `getCachedZogSnapshot()` synchronously at
+    // module-eval time with NO user identity guard, so any prior tab
+    // resident snapshot was rendered to whoever was now signed in.
+    // The cache contract now REQUIRES a userId on read; we can only
+    // safely use it after `auth.getUser()` resolves inside the
+    // useEffect below. Component now always starts in loading state.
+    // Lost first-paint optimization in exchange for a privacy
+    // guarantee — non-negotiable trade.
+    const [loading, setLoading] = useState(true);
+    const [appleseedData, setAppleseedData] = useState<AppleseedData | null>(null);
+    const [fullAppleseed, setFullAppleseed] = useState<FullAppleseedData | null>(null);
+    const [excaliburData, setExcaliburData] = useState<ExcaliburData | null>(null);
     // Day 58 (Sasha 2026-05-02): the PDF generation is async (font fetch
     // + html2canvas) and takes 1-3 seconds with no visible feedback —
     // users were clicking again, thinking it was broken. This flag
@@ -233,11 +215,54 @@ const ZoneOfGeniusOverview = () => {
     };
 
     useEffect(() => {
-        if (cachedSnapshot) return;
         const loadData = async () => {
             try {
+                // Day 80 (Sasha 2026-05-23): identity-first. Get the
+                // current user BEFORE touching the cache so the
+                // userId guard rejects any stale cross-user snapshot.
+                const { data: { user } } = await supabase.auth.getUser();
+                if (!user) {
+                    setLoading(false);
+                    return;
+                }
+
                 const resolvedProfileId = await getOrCreateGameProfileId();
                 if (!resolvedProfileId) {
+                    setLoading(false);
+                    return;
+                }
+
+                // Cache hit short-circuit — only after both userId and
+                // profileId are known and verified. If the cache holds
+                // a different user's snapshot, getCachedZogSnapshot
+                // eagerly clears it and returns null.
+                const cached = getCachedZogSnapshot(user.id, resolvedProfileId);
+                if (cached) {
+                    const apple = cached.appleseedData as FullAppleseedData | null;
+                    if (apple) {
+                        setAppleseedData(apple as unknown as AppleseedData);
+                        setFullAppleseed(apple);
+                    } else if (cached.archetypeTitle) {
+                        const talents = cached.topThreeTalentsLong || [];
+                        setAppleseedData({
+                            vibrationalKey: {
+                                name: cached.archetypeTitle,
+                                essence: cached.corePattern || "",
+                            },
+                            bullseyeSentence: cached.corePattern || undefined,
+                            threeLenses:
+                                talents.length > 0
+                                    ? {
+                                          actions: talents,
+                                          primeDriver: "",
+                                          archetype: cached.archetypeTitle,
+                                      }
+                                    : undefined,
+                        });
+                    }
+                    if (cached.excaliburData) {
+                        setExcaliburData(cached.excaliburData);
+                    }
                     setLoading(false);
                     return;
                 }
@@ -290,6 +315,7 @@ const ZoneOfGeniusOverview = () => {
                 if (!snapshotId) {
                     // Genuinely no snapshot — empty state is correct.
                     setCachedZogSnapshot({
+                        userId: user.id,
                         profileId: resolvedProfileId,
                         appleseedData: null,
                         excaliburData: null,
@@ -347,6 +373,7 @@ const ZoneOfGeniusOverview = () => {
                     setExcaliburData(excalibur);
                 }
                 setCachedZogSnapshot({
+                    userId: user.id,
                     profileId: resolvedProfileId,
                     appleseedData: apple,
                     excaliburData: excalibur,

@@ -26,11 +26,28 @@
  * loadSavedData) will still hit Supabase. This cache exists so the
  * ME-space surfaces (ZoneOfGeniusOverview, ZoGPerspectiveView) can
  * paint instantly without waiting for a network roundtrip.
+ *
+ * Day 80 (Sasha 2026-05-23) — CROSS-USER LEAK FIX. The previous read
+ * signature accepted profileId optionally and returned the cached
+ * snapshot to ANY caller that didn't pass one. Two surfaces called
+ * `getCachedZogSnapshot()` with no argument, which meant Karima's
+ * page render received Sasha's cached snapshot when both had used
+ * the same browser tab. Read now REQUIRES the current authenticated
+ * `userId`; mismatch eagerly clears the cache and returns null. This
+ * is a privacy-critical guard: every read site must prove it's the
+ * right user before getting the data.
  */
 import type { AppleseedData } from "@/modules/zone-of-genius/appleseedGenerator";
 import type { ExcaliburData } from "@/modules/zone-of-genius/excaliburGenerator";
 
 export interface CachedZogSnapshot {
+    /**
+     * Day 80: auth.users.id (NOT game_profiles.id). This is the
+     * privacy guard — every read verifies the current session's
+     * user.id matches this field. profileId is kept as a secondary
+     * key (defense-in-depth) but userId is the canonical identity.
+     */
+    userId: string;
     profileId: string;
     appleseedData: AppleseedData | null;
     excaliburData: ExcaliburData | null;
@@ -63,7 +80,13 @@ function readFromSessionStorage(): CachedZogSnapshot | null {
     try {
         const raw = window.sessionStorage.getItem(SESSION_STORAGE_KEY);
         if (!raw) return null;
-        return JSON.parse(raw) as CachedZogSnapshot;
+        const parsed = JSON.parse(raw) as Partial<CachedZogSnapshot>;
+        // Day 80: legacy entries (pre-userId-field) are unsafe to
+        // serve cross-user. Treat as missing.
+        if (!parsed || typeof parsed.userId !== "string" || typeof parsed.profileId !== "string") {
+            return null;
+        }
+        return parsed as CachedZogSnapshot;
     } catch {
         // Corrupted JSON — wipe the bad entry so we don't keep failing.
         try {
@@ -94,26 +117,70 @@ function writeToSessionStorage(snapshot: CachedZogSnapshot | null): void {
     }
 }
 
+/**
+ * Day 80 (Sasha 2026-05-23): read signature changed from optional
+ * `profileId` to REQUIRED `userId` (+ optional `profileId` defense
+ * in depth). Any read site that can't prove the current user's
+ * identity must NOT receive a cached snapshot. On userId mismatch,
+ * the cache is eagerly cleared so the wrong-user snapshot can't
+ * leak to a subsequent read either.
+ */
 export const getCachedZogSnapshot = (
+    userId: string,
     profileId?: string,
 ): CachedZogSnapshot | null => {
+    if (!userId) return null;
     // Memory-cache hit — fast path.
     if (cache) {
-        if (profileId && cache.profileId !== profileId) return null;
+        if (cache.userId !== userId) {
+            console.warn(
+                "[zogSnapshotCache] userId mismatch on memory cache (cached:",
+                cache.userId,
+                "current:",
+                userId,
+                ") — clearing.",
+            );
+            clearCachedZogSnapshot();
+            return null;
+        }
+        if (profileId && cache.profileId !== profileId) {
+            console.warn(
+                "[zogSnapshotCache] profileId mismatch on memory cache — clearing.",
+            );
+            clearCachedZogSnapshot();
+            return null;
+        }
         return cache;
     }
-    // Memory miss — try sessionStorage. If we find a valid entry,
-    // hydrate the memory cache so subsequent reads stay fast.
+    // Memory miss — try sessionStorage.
     const fromSession = readFromSessionStorage();
-    if (fromSession) {
-        cache = fromSession;
-        if (profileId && fromSession.profileId !== profileId) return null;
-        return fromSession;
+    if (!fromSession) return null;
+    if (fromSession.userId !== userId) {
+        console.warn(
+            "[zogSnapshotCache] userId mismatch on sessionStorage cache — clearing.",
+        );
+        clearCachedZogSnapshot();
+        return null;
     }
-    return null;
+    if (profileId && fromSession.profileId !== profileId) {
+        console.warn(
+            "[zogSnapshotCache] profileId mismatch on sessionStorage cache — clearing.",
+        );
+        clearCachedZogSnapshot();
+        return null;
+    }
+    // Hydrate the memory cache so subsequent reads stay fast.
+    cache = fromSession;
+    return fromSession;
 };
 
 export const setCachedZogSnapshot = (snapshot: CachedZogSnapshot): void => {
+    if (!snapshot.userId || !snapshot.profileId) {
+        console.warn(
+            "[zogSnapshotCache] refusing to cache snapshot without userId+profileId",
+        );
+        return;
+    }
     cache = snapshot;
     writeToSessionStorage(snapshot);
 };
