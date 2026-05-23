@@ -20,7 +20,9 @@ import aiOsHomeIcon from "@/assets/mc-merkaba.png";
 // "your home + open menu" in one affordance.
 import brandMark from "@/assets/find-your-top-talent-torus.png";
 import { useSkin } from "@/contexts/SkinContext";
-import { useEntryPath } from "@/contexts/EntryPathContext";
+// Day 80 Wave 2.11: useEntryPath import retired — the video background
+// now checks the URL directly at mount (see comment in MuxVideoBackground
+// below) so sessionStorage-cached match flags don't poison fresh loads.
 import SpacesRail, { SPACES } from "./SpacesRail";
 import SectionsPanel, { SPACE_SECTIONS } from "./SectionsPanel";
 import { useDeepProfileActivated } from "@/hooks/useDeepProfileActivated";
@@ -47,12 +49,25 @@ const MATCH_MUX_BG_URL = "https://stream.mux.com/HAKiVOTMZGzcf00B9dE02uAO02CzaUi
 const MuxVideoBackground = () => {
     const videoRef = useRef<HTMLVideoElement>(null);
     const [videoFailed, setVideoFailed] = useState(false);
-    // Day 79: read EntryPath at mount and pick the URL once. We don't
-    // re-init HLS if the path flips during the session (rare, full
-    // reload covers it). useRef snapshot keeps the URL stable inside
-    // the useEffect closure without retriggering on context updates.
-    const { path: entryPath } = useEntryPath();
-    const srcUrlRef = useRef(entryPath === "match" ? MATCH_MUX_BG_URL : MUX_BG_URL);
+    // Day 80 Wave 2.11 (Sasha 2026-05-22) — URL-only detection at mount.
+    //
+    // Previously this read `useEntryPath()` which falls back to
+    // sessionStorage. Side effect: any user who'd visited `/?path=match`
+    // once kept the match video on every subsequent fresh load of `/`,
+    // even with no URL param. The page content (MethodologyLandingPage
+    // for `/` with no param, per Day 78 fix) was correctly build-path,
+    // but the video got out of sync.
+    //
+    // Fix: video selection follows the URL at mount only — same rule
+    // JourneyPage uses for its hero. A fresh `/` always gets the build
+    // video; only an explicit `?path=match` URL gets the match video.
+    // SPA-nav into match-path surfaces inherits the video that mounted
+    // (rare, full reload covers it).
+    const initialIsMatch =
+        typeof window !== "undefined" &&
+        new URLSearchParams(window.location.search).get("path") === "match";
+    const srcUrlRef = useRef(initialIsMatch ? MATCH_MUX_BG_URL : MUX_BG_URL);
+    const isMatchVideo = initialIsMatch;
 
     useEffect(() => {
         const video = videoRef.current;
