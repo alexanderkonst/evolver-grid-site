@@ -1277,26 +1277,42 @@ const PERSPECTIVES: Partial<Record<PerspectiveId, PerspectiveConfig>> = {
 const ZoGPerspectiveView = () => {
     const { perspectiveId } = useParams<{ perspectiveId: PerspectiveId }>();
     const location = useLocation();
-    // Day 60 (Sasha 2026-05-03): seed state from the module-level cache so
-    // navigating between Top Talent perspectives (or Overview ↔ Perspective)
-    // is instant after the first fetch. Loading is only true if the cache
-    // misses — otherwise we paint the real content on first frame.
-    const cachedSnapshot = getCachedZogSnapshot();
-    const [loading, setLoading] = useState(!cachedSnapshot);
-    const [appleseedData, setAppleseedData] = useState<AppleseedData | null>(
-        cachedSnapshot?.appleseedData ?? null,
-    );
+    // Day 80 (Sasha 2026-05-23): CROSS-USER LEAK FIX. Previous code
+    // called `getCachedZogSnapshot()` synchronously with no userId
+    // guard — render-time read of stale cross-user data. Cache reads
+    // now require userId (auth.users.id) and are deferred to AFTER
+    // auth.getUser() resolves inside the useEffect. Component always
+    // starts in loading state; first-paint optimization sacrificed
+    // for the privacy guarantee. See zogSnapshotCache.ts Day 80 note.
+    const [loading, setLoading] = useState(true);
+    const [appleseedData, setAppleseedData] = useState<AppleseedData | null>(null);
     // Tracks whether the fetch confirmed there's no snapshot (so we can
     // show the empty-state copy AFTER the load completes — never during).
     const [snapshotMissing, setSnapshotMissing] = useState(false);
 
     useEffect(() => {
-        if (cachedSnapshot) return;
         const loadData = async () => {
             try {
+                // Identity-first per Day 80 cache contract.
+                const { data: { user } } = await supabase.auth.getUser();
+                if (!user) {
+                    setSnapshotMissing(true);
+                    setLoading(false);
+                    return;
+                }
+
                 const profileId = await getOrCreateGameProfileId();
                 if (!profileId) {
                     setSnapshotMissing(true);
+                    setLoading(false);
+                    return;
+                }
+
+                // Cache hit — userId+profileId both verified inside
+                // getCachedZogSnapshot; mismatch eagerly clears + returns null.
+                const cached = getCachedZogSnapshot(user.id, profileId);
+                if (cached?.appleseedData) {
+                    setAppleseedData(cached.appleseedData);
                     setLoading(false);
                     return;
                 }
@@ -1356,6 +1372,7 @@ const ZoGPerspectiveView = () => {
                     setSnapshotMissing(true);
                 }
                 setCachedZogSnapshot({
+                    userId: user.id,
                     profileId,
                     appleseedData: apple,
                     excaliburData: (snapshotData?.excalibur_data ?? null) as unknown as ExcaliburData | null,
