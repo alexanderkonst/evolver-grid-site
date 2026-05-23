@@ -821,24 +821,19 @@ const ZoneOfGeniusEntry = () => {
                 {step === "choice-route" && (
                     <div ref={stepContentRef} className="space-y-8 animate-in fade-in duration-500">
                         <div className="text-center">
-                            <h2
-                                className="text-xl font-light tracking-wide"
-                                style={{
-                                    fontFamily: "'Source Serif 4', serif",
-                                    color: "var(--skin-text-body, rgba(26,30,58,0.82))",
-                                    textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.7))",
-                                }}
-                            >
-                                How do you want to reveal it?
-                            </h2>
-
-                            {/* Day 79 (Sasha 2026-05-22): match-path orientation.
-                                Tells the user the Top Talent reveal is step 1 of
-                                the match journey, so they don't wonder where
-                                the matches are. Build-path users skip this. */}
+                            {/* Day 80 Wave 2.9 (Sasha 2026-05-22): copy + layout
+                                revision. The "Step 1 of 2" framing was confusing
+                                because the JOURNEY pane already numbers 5 steps —
+                                a parallel 2-step counter on this page jarred.
+                                Rewrite: drop the artificial step counter, name
+                                WHY the top talent comes first (it's the signal)
+                                + what happens next (intros to people whose work
+                                meets yours). The "How do you want to reveal it?"
+                                question now sits directly above the CTAs as the
+                                interaction prompt, not as a page headline. */}
                             {isMatchPath && (
                                 <div
-                                    className="max-w-[560px] mx-auto mt-4 sm:mt-5 space-y-2"
+                                    className="max-w-[560px] mx-auto space-y-3 mb-6"
                                     style={{
                                         fontFamily: "'Source Serif 4', serif",
                                     }}
@@ -850,20 +845,25 @@ const ZoneOfGeniusEntry = () => {
                                             textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.7))",
                                         }}
                                     >
-                                        <strong style={{ fontWeight: 700 }}>Step 1 of 2.</strong>{" "}
-                                        Reveal your top talent first. That&rsquo;s the signal we use to find your people.
-                                    </p>
-                                    <p
-                                        className="text-sm sm:text-base italic leading-relaxed"
-                                        style={{
-                                            color: "var(--skin-text-muted, rgba(26,30,58,0.7))",
-                                            textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
-                                        }}
-                                    >
-                                        Then we make intros to the matching entrepreneurs, advisors, and operators.
+                                        Your top talent is the signal. Once you name it, we introduce you to entrepreneurs, advisors, and operators whose work meets yours.
                                     </p>
                                 </div>
                             )}
+
+                            {/* "How do you want to reveal it?" — moved DOWN to sit
+                                directly above the two CTAs as the interaction
+                                prompt (not the page headline). Build-path users
+                                see only this question, no orientation paragraph. */}
+                            <h2
+                                className="text-xl font-light tracking-wide"
+                                style={{
+                                    fontFamily: "'Source Serif 4', serif",
+                                    color: "var(--skin-text-body, rgba(26,30,58,0.82))",
+                                    textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.7))",
+                                }}
+                            >
+                                How do you want to reveal it?
+                            </h2>
                         </div>
 
                         {/* Day 48 (Sasha): selector cards re-skinned to the
