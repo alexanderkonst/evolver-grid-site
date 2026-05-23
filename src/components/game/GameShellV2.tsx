@@ -121,20 +121,40 @@ const MuxVideoBackground = () => {
         // (sky, particles, mountain) stays composed; the extra ~10% grows
         // toward bottom-right and clips against the viewport edge, taking
         // the watermark with it.
-        <video
-            ref={videoRef}
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="w-full h-full object-cover"
-            style={{
-                transform: 'scale(1.10)',
-                transformOrigin: 'top left',
-            }}
-            aria-hidden="true"
-            onError={() => setVideoFailed(true)}
-        />
+        //
+        // Day 80 Wave 2.11 (Sasha 2026-05-22): match-path video is more
+        // visually vivid than the build-path video (gold particles +
+        // bokeh + people in urban scene). The page-content text-shadow
+        // halos alone weren't enough — Sasha: "the text is barely
+        // legible." Added a soft cream-tinted dim overlay (12% alpha)
+        // for the match video only. Build video stays at full opacity
+        // — it's been working without legibility issues since Day 51.
+        <>
+            <video
+                ref={videoRef}
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="absolute inset-0 w-full h-full object-cover"
+                style={{
+                    transform: 'scale(1.10)',
+                    transformOrigin: 'top left',
+                }}
+                aria-hidden="true"
+                onError={() => setVideoFailed(true)}
+            />
+            {isMatchVideo && (
+                <div
+                    aria-hidden="true"
+                    className="absolute inset-0 pointer-events-none"
+                    style={{
+                        background:
+                            "linear-gradient(180deg, rgba(245, 241, 232, 0.18) 0%, rgba(245, 241, 232, 0.10) 50%, rgba(245, 241, 232, 0.18) 100%)",
+                    }}
+                />
+            )}
+        </>
     );
 };
 
