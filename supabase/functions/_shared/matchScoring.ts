@@ -258,14 +258,14 @@ export interface RationalePayload {
 
 /**
  * Build the rationale-writer system prompt. Voice contract from §5.7.
- * Sub-scores are passed in so the model can name the pattern with
- * grounding.
+ * Sub-scores + actual first names are passed in so the model writes
+ * potent, person-specific prose (not "Profile A / Profile B" abstractions).
  */
 export function buildRationalePrompt(): string {
-    return `You write the human-readable rationale for a pre-scored match between two people on a platform that pairs entrepreneurs, advisors, and operators for high-precision collaboration.
+    return `You write the human-readable rationale for a pre-scored match between two specific people on a platform that pairs entrepreneurs, advisors, and operators for high-precision collaboration.
 
 You will receive:
-- Profile A (the requesting user) and Profile B (the candidate)
+- Two named profiles: YOU (the requesting user, addressed in second person) and THEM (the candidate, addressed by their first name)
 - Four sub-scores (each 0-1): top_talent_complementarity, mission_similarity, asset_lego_fit, qol_similarity
 - The composite resonance score (0-100)
 
@@ -273,19 +273,20 @@ Your job: produce a JSON object with these fields, and ONLY these fields. No pro
 
 {
   "matchType": "co-founder" | "collaborator" | "peer" | "mentor" | "client-fit",
-  "collaborationProposal": "1-2 sentences. Specific to THESE two people. Name what they could build, exchange, or practice together. Concrete verbs.",
+  "collaborationProposal": "1-2 sentences. Name a CONCRETE thing they could build or do together — a specific offering, workshop, product, community, or practice. Not abstract ('combine your capacities to create alignment'). Concrete ('co-design a 6-week cohort that takes founders from raw insight to a sellable framework'). Lead with the active verb.",
   "suggestedAction": "intro" | "micro-collab" | "practice-together" | "wait",
-  "alignment": "1 sentence on Mission similarity — what direction or value they share.",
-  "complementarity": "1 sentence on Top Talent + Asset fit — what each brings the other lacks.",
-  "friction": "1 sentence on potential friction (timing, timezone, stage, language, mission divergence) or the literal string 'None identified' if you see nothing."
+  "alignment": "1 sentence on Mission similarity — what direction or value they share. Use their first names, not 'Profile A/B'.",
+  "complementarity": "1 sentence on Top Talent + Asset fit — what each brings the other lacks. Use first names.",
+  "friction": "1 sentence on potential friction (timing, timezone, stage, language, mission divergence) or the literal string 'None identified' if you see nothing. Use first names when relevant."
 }
 
 Voice rules:
+- **NEVER use "Profile A", "Profile B", "Person A", "Person B", "the requesting user", or "the candidate".** Always use the actual first names supplied. Address the requesting user in second person ("you", "your"); address the candidate by their first name.
 - Editorial register. Direct address.
-- No platitudes ("you both have great energy"). No AI-tells ("I detected", "based on the data"). No buzzwords ("AI-powered", "synergy", "leverage").
-- Name people by their actual gifts and assets, not by labels.
-- Be honest about friction. Don't force matches.
-- matchType is a description, not a generator. Pick whichever label best characterizes the pattern given the sub-scores. The score has already decided whether to surface this match; you're naming the shape.
+- No platitudes ("you both have great energy"). No AI-tells ("I detected", "based on the data", "based on what I see"). No buzzwords ("AI-powered", "synergy", "leverage", "actualize", "unlock potential").
+- Active voice, present tense. No hedging ("could potentially", "might possibly").
+- The collaborationProposal must name a SPECIFIC artifact or activity. Examples that work: "Run a quarterly mastermind for X." "Co-write the playbook on Y." "Launch a free workshop teaching Z together." Examples that don't work: "Combine your skills to create value." "Partner on a project." "Explore a collaboration."
+- matchType is a description, not a generator. Pick whichever label best fits the pattern given the sub-scores.
 
 Return ONLY the JSON object.`;
 }

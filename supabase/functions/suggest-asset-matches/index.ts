@@ -409,6 +409,12 @@ ${candidateBlocks.join("\n\n")}`;
         const matches: any[] = [];
         for (const s of survivors) {
             const meta = profileMeta.get(s.candidate.userId);
+            // Day 80 (Sasha 2026-05-23): pass actual first names to
+            // the rationale writer so it produces "you / [their name]"
+            // prose instead of "Profile A / Profile B".
+            const currentMeta = profileMeta.get(currentUser.userId);
+            const currentFirstName = currentMeta?.firstName || "you";
+            const candidateFirstName = meta?.firstName || "they";
             const rationale = LOVABLE_API_KEY
                 ? await fetchRationale(
                       LOVABLE_API_KEY,
@@ -416,6 +422,8 @@ ${candidateBlocks.join("\n\n")}`;
                       s.candidate,
                       s.subScores,
                       s.resonance,
+                      currentFirstName,
+                      candidateFirstName,
                   )
                 : fallbackRationale(s.subScores);
 
@@ -470,6 +478,8 @@ async function fetchRationale(
     candidate: ProfileForMatching,
     subScores: SubScores,
     resonance: number,
+    currentFirstName: string,
+    candidateFirstName: string,
 ): Promise<RationalePayload> {
     const systemPrompt = buildRationalePrompt();
     const profileBlock = (p: ProfileForMatching, label: string) => {
@@ -496,9 +506,15 @@ async function fetchRationale(
         return lines.join("\n");
     };
 
-    const userPrompt = `${profileBlock(current, "PROFILE A (the requesting user)")}
+    // Day 80 (Sasha 2026-05-23): blocks labeled by ACTUAL first names
+    // instead of "Profile A / Profile B". The system prompt forbids
+    // those labels in the output; this is the input-side change that
+    // makes the swap reliable.
+    const userPrompt = `${profileBlock(current, `YOU (${currentFirstName})`)}
 
-${profileBlock(candidate, "PROFILE B (the candidate)")}
+${profileBlock(candidate, `THEM (${candidateFirstName})`)}
+
+Address the requesting user (${currentFirstName}) in second person ("you", "your"). Address the candidate by their first name (${candidateFirstName}). Do NOT use the strings "Profile A", "Profile B", "Person A", "Person B", or any similar label.
 
 SUB-SCORES (already computed; use these as ground truth for your prose):
   top_talent_complementarity: ${subScores.topTalent.toFixed(2)}
