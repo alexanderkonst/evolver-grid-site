@@ -40,6 +40,27 @@ const CelebrationModalListener = () => {
             if (!incoming || !incoming.primitive || !incoming.variant) {
                 return;
             }
+            // Day 79 (Sasha 2026-05-22): match-path users never see this
+            // modal. Match-path completion surfaces (Top Talent reveal,
+            // Mission saved, Assets saved) carry their own inline
+            // celebration + unlock copy via MatchFlowCta / AppleseedDisplay,
+            // so the modal would stack a second CTA on top of the one
+            // already on the page (funnel-monogamy violation) and pull
+            // attention out of the recognition moment. Read storage
+            // directly inside the handler so the gate evaluates at
+            // event-fire time (not at component-mount time, when the
+            // entry path may not yet be set).
+            try {
+                if (typeof window !== "undefined") {
+                    const entryPath =
+                        window.localStorage?.getItem("ftt_entry_path") ||
+                        window.sessionStorage?.getItem("ftt_entry_path");
+                    if (entryPath === "match") return;
+                }
+            } catch {
+                // If storage is unavailable (private browsing), fall
+                // through and show the modal — additive UX, not load-bearing.
+            }
             // Once-per-flag enforcement
             try {
                 const key = flagKey(incoming.primitive, incoming.variant);
