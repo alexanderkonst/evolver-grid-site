@@ -83,7 +83,13 @@ function isShellRoute(pathname: string): boolean {
     // Hard-deny list of "no music" surfaces — every other route is
     // music-allowed by default. New routes don't need any change here.
     if (pathname === "/ignite" || pathname.startsWith("/ignite/")) return false;
-    if (pathname === "/auth" || pathname.startsWith("/auth/")) return false;
+    // Day 79 (Sasha 2026-05-22): /auth pause retired. The match-path
+    // funnel (Top Talent → Mission → Assets → save-your-data → /auth)
+    // now keeps music continuous through sign-up. Auth is a moment of
+    // progressive commitment inside the funnel, not a hard break from
+    // it; the underscoring should ride through. Other "no music"
+    // surfaces (/ignite, /activations) still pause as before because
+    // they're sales surfaces, not funnel-internal.
     if (pathname === "/activations" || pathname.startsWith("/activations/")) return false;
     return true;
 }
