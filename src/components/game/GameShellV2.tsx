@@ -169,13 +169,18 @@ const MuxVideoBackground = () => {
                     transformOrigin: 'top left',
                     /* Day 80 (Sasha 2026-05-23): match-path video was
                        reading as "too bright, too impositive" against
-                       the editorial text register. Brightness + saturation
-                       dampen the video AT THE SOURCE before the cream
-                       overlay layers on top, so the video stays present
-                       but stops dominating. Build-path video is left
-                       alone — it's been calibrated for months. */
+                       the editorial text register. Brightness +
+                       saturation dampen the video AT THE SOURCE before
+                       the cream overlay layers on top.
+                       Day 80 second pass (Sasha 2026-05-23, same day):
+                       cranked harder after Sasha called out the first
+                       round didn't go far enough. brightness 0.72 →
+                       0.48, saturate 0.78 → 0.55. The video is still
+                       there as ambient texture but no longer competes
+                       with the foreground text register at all.
+                       Build-path video left alone. */
                     filter: isMatchVideo
-                        ? "brightness(0.72) saturate(0.78)"
+                        ? "brightness(0.48) saturate(0.55)"
                         : undefined,
                 }}
                 aria-hidden="true"
@@ -187,18 +192,18 @@ const MuxVideoBackground = () => {
                     className="absolute inset-0 pointer-events-none"
                     style={{
                         /* Day 80 Wave 2.14 (Sasha 2026-05-22): 28-36%.
-                           Day 80 (Sasha 2026-05-23): bumped again to
-                           50-60% after Sasha called the auth page
-                           "TEXT IS NOT LEGIBLE ENOUGH" — even with the
-                           video filter above doing its share of the
-                           work, the overlay needs more body to bring
-                           text contrast into Strong-cocktail range
-                           per ui_playbook Part VIII. Stronger at
-                           top/bottom where eyebrows and CTAs live,
-                           slightly lighter through the middle so the
-                           imagery still breathes behind hero copy. */
+                           Day 80 (Sasha 2026-05-23) first pass: 50-62%.
+                           Day 80 (Sasha 2026-05-23) second pass:
+                           75-85%. Sasha shouted "STILL TEXT LEGIBILITY
+                           AND VIDEO IMPOSITION PROBLEM" after the
+                           50-62% range. The video is now treated as
+                           soft ambient texture rather than a foreground
+                           layer. Combined with the brightness(0.48)
+                           saturate(0.55) filter on the video itself,
+                           the foreground card + text get a clean
+                           cream-paper backdrop. */
                         background:
-                            "linear-gradient(180deg, rgba(245, 241, 232, 0.62) 0%, rgba(245, 241, 232, 0.50) 50%, rgba(245, 241, 232, 0.62) 100%)",
+                            "linear-gradient(180deg, rgba(245, 241, 232, 0.85) 0%, rgba(245, 241, 232, 0.75) 50%, rgba(245, 241, 232, 0.85) 100%)",
                     }}
                 />
             )}
