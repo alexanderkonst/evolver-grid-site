@@ -749,42 +749,11 @@ ${snapshotText}`;
                   eliminate the duplication / drift risk.
                   ═══════════════════════════════════════════════════════ */}
 
-              {/* Bridge — sets up the choice as a question of action */}
-              <div
-                className="py-10 max-w-lg mx-auto text-center space-y-4"
-                style={{
-                  fontFamily: "'Cormorant Garamond', serif",
-                  color: "var(--skin-text-primary, #0a1628)",
-                  textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.7))",
-                }}
-              >
-                <p
-                  className="text-xl md:text-2xl leading-relaxed"
-                  style={{ fontWeight: 500 }}
-                >
-                  Now the question becomes:
-                </p>
-                <p
-                  className="text-2xl md:text-3xl italic leading-snug"
-                  style={{ fontWeight: 500 }}
-                >
-                  What do you want to{" "}
-                  <em
-                    className="not-italic"
-                    style={{
-                      fontWeight: 700,
-                      fontStyle: "italic",
-                      textDecoration: "underline",
-                      textDecorationColor: "var(--skin-accent-gold, #b8860b)",
-                      textDecorationThickness: "1.5px",
-                      textUnderlineOffset: "5px",
-                    }}
-                  >
-                    do
-                  </em>{" "}
-                  with your top talent?
-                </p>
-              </div>
+              {/* Day 79 (Sasha 2026-05-22): "Now the question becomes /
+                  What do you want to do with your top talent?" bridge
+                  removed. Same call as AppleseedDisplay. The CTAs below
+                  carry the framing already; the rhetorical bridge was
+                  visual weight without payload. */}
 
               <div className="space-y-8 max-w-lg mx-auto">
                 {/* OPTION 1 — Build a business ($555, primary, large) */}
