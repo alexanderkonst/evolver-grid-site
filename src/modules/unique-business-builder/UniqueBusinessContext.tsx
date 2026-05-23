@@ -65,6 +65,30 @@ type DbRow = {
   prompt_version_at_lock?: string | null;
 };
 
+// Day 80 Wave 2.20 (Sasha 2026-05-22): defensive bridge for the
+// prompt_version_at_lock column. The Day 74 migration
+// (20260522222511_ubb_prompt_version_at_lock.sql) adds this column to
+// user_business_artifacts, but until Lovable's Supabase pipeline picks
+// it up + PostgREST refreshes its schema cache, fresh inserts hit
+// "Could not find the 'prompt_version_at_lock' column ... in the schema
+// cache" and the whole Generate Uniqueness / Improve / Restore flows
+// fail. This module-level latch trips on the first such error in a
+// session and strips the field from all subsequent inserts — so the
+// staleness Phase 2 feature degrades gracefully (rows get NULL prompt
+// versions, treated as "unknown" / no flag) instead of blocking the
+// canvas entirely. The latch resets per page-load, so once Supabase
+// catches up the next session resumes stamping prompt versions.
+let promptVersionColumnAvailable = true;
+const isPromptVersionSchemaCacheMiss = (err: unknown): boolean => {
+  if (!err || typeof err !== "object") return false;
+  const msg = ((err as { message?: string }).message ?? "") + "";
+  return /prompt_version_at_lock/.test(msg) && /schema cache/i.test(msg);
+};
+const stripPromptVersion = <T extends Record<string, unknown>>(payload: T): Omit<T, "prompt_version_at_lock"> => {
+  const { prompt_version_at_lock: _drop, ...rest } = payload;
+  return rest;
+};
+
 function rowToVersion(row: DbRow): VersionRow {
   return {
     id: row.id,
@@ -437,23 +461,47 @@ export function UniqueBusinessProvider({ children }: { children: ReactNode }) {
 
         // Insert v1 row — return inserted row so we can update local state
         // optimistically (don't rely on realtime channel).
-        const { data: inserted, error: insertError } = await (supabase as any)
-          .from("user_business_artifacts")
-          .insert({
-            user_id: userId,
-            artifact_key: key,
-            version: "v1",
-            content_json: result.content,
-            specificity_score: result.initial_specificity,
-            step_number: 1,
-            is_locked: false,
-            // Day 74 Phase 2 (Sasha 2026-05-22): stamp the prompt version
-            // alive at v1-generation time so future prompt edits can flag
-            // this row as "prompt-stale — re-Improve for the new ceiling."
-            prompt_version_at_lock: PROMPT_VERSION[key],
-          })
-          .select("*")
-          .single();
+        // Day 80 Wave 2.20: schema-cache fallback. If the
+        // prompt_version_at_lock column isn't visible to PostgREST yet
+        // (migration ahead of cache refresh), retry once without it.
+        const basePayload = {
+          user_id: userId,
+          artifact_key: key,
+          version: "v1",
+          content_json: result.content,
+          specificity_score: result.initial_specificity,
+          step_number: 1,
+          is_locked: false,
+          // Day 74 Phase 2 (Sasha 2026-05-22): stamp the prompt version
+          // alive at v1-generation time so future prompt edits can flag
+          // this row as "prompt-stale — re-Improve for the new ceiling."
+          prompt_version_at_lock: PROMPT_VERSION[key],
+        };
+        let inserted: DbRow | null = null;
+        let insertError: any = null;
+        {
+          const firstPayload = promptVersionColumnAvailable
+            ? basePayload
+            : stripPromptVersion(basePayload);
+          const r1 = await (supabase as any)
+            .from("user_business_artifacts")
+            .insert(firstPayload)
+            .select("*")
+            .single();
+          if (r1.error && isPromptVersionSchemaCacheMiss(r1.error)) {
+            promptVersionColumnAvailable = false;
+            const r2 = await (supabase as any)
+              .from("user_business_artifacts")
+              .insert(stripPromptVersion(basePayload))
+              .select("*")
+              .single();
+            inserted = r2.data as DbRow | null;
+            insertError = r2.error;
+          } else {
+            inserted = r1.data as DbRow | null;
+            insertError = r1.error;
+          }
+        }
 
         if (insertError) {
           // 23505 = Postgres unique_violation. Row already exists for
@@ -573,28 +621,49 @@ export function UniqueBusinessProvider({ children }: { children: ReactNode }) {
     const clampedScore = Math.min(10, Math.max(0, Number(result.specificity_score) || 0));
     const clampedDelta = Number((clampedScore - (current.specificity_score ?? 0)).toFixed(1));
     try {
-      const { data: inserted, error: insertError } = await (supabase as any)
-        .from("user_business_artifacts")
-        .insert({
-          user_id: userId,
-          artifact_key,
-          version: newVersion,
-          content_json: result.improved_content,
-          specificity_score: clampedScore,
-          parent_version_id: current.id,
-          roast_findings: result.roast_findings,
-          what_changed: result.what_changed,
-          step_number: current.version ? current.version + 1 : 1,
-          is_locked: false,
-          // Day 74 Phase 2 (Sasha 2026-05-22): stamp the prompt version this
-          // improvement was produced under. Re-Improving against a later
-          // prompt version flips the stamp; staleness compute uses the
-          // delta to flag "prompt-stale" rows.
-          prompt_version_at_lock: PROMPT_VERSION[artifact_key],
-        })
-        .select("*")
-        .single();
-      if (insertError) throw insertError;
+      // Day 80 Wave 2.20: same schema-cache fallback as generateArtifact.
+      const improvePayload = {
+        user_id: userId,
+        artifact_key,
+        version: newVersion,
+        content_json: result.improved_content,
+        specificity_score: clampedScore,
+        parent_version_id: current.id,
+        roast_findings: result.roast_findings,
+        what_changed: result.what_changed,
+        step_number: current.version ? current.version + 1 : 1,
+        is_locked: false,
+        // Day 74 Phase 2 (Sasha 2026-05-22): stamp the prompt version this
+        // improvement was produced under. Re-Improving against a later
+        // prompt version flips the stamp; staleness compute uses the
+        // delta to flag "prompt-stale" rows.
+        prompt_version_at_lock: PROMPT_VERSION[artifact_key],
+      };
+      let inserted: DbRow | null = null;
+      {
+        const firstPayload = promptVersionColumnAvailable
+          ? improvePayload
+          : stripPromptVersion(improvePayload);
+        const r1 = await (supabase as any)
+          .from("user_business_artifacts")
+          .insert(firstPayload)
+          .select("*")
+          .single();
+        if (r1.error && isPromptVersionSchemaCacheMiss(r1.error)) {
+          promptVersionColumnAvailable = false;
+          const r2 = await (supabase as any)
+            .from("user_business_artifacts")
+            .insert(stripPromptVersion(improvePayload))
+            .select("*")
+            .single();
+          if (r2.error) throw r2.error;
+          inserted = r2.data as DbRow | null;
+        } else if (r1.error) {
+          throw r1.error;
+        } else {
+          inserted = r1.data as DbRow | null;
+        }
+      }
 
       // Optimistic local state update — Day 51 (Sasha 2026-04-25): same
       // pattern as generateArtifact. Don't rely on realtime to flip state.
@@ -741,28 +810,50 @@ export function UniqueBusinessProvider({ children }: { children: ReactNode }) {
         const v1 = rowToVersion(v1Row as DbRow);
         const newVersion = nextVersionString(`v${current.version}`);
 
-        const { data: inserted, error: insertError } = await (supabase as any)
-          .from("user_business_artifacts")
-          .insert({
-            user_id: userId,
-            artifact_key: key,
-            version: newVersion,
-            content_json: v1.content,
-            specificity_score: v1.specificity_score,
-            parent_version_id: current.id,
-            what_changed: "Restored from v1",
-            step_number: current.version + 1,
-            is_locked: false,
-            // Day 74 Phase 2 (Sasha 2026-05-22): stamp the CURRENT prompt
-            // version (not v1's original). The row was born now; staleness
-            // semantics are "is the content's prompt-of-record current?" —
-            // copying v1 content under today's prompt is, by definition,
-            // current. If the user wants a higher ceiling they can re-Improve.
-            prompt_version_at_lock: PROMPT_VERSION[key],
-          })
-          .select("*")
-          .single();
-        if (insertError) throw insertError;
+        // Day 80 Wave 2.20: same schema-cache fallback as the other two
+        // insert sites in this file.
+        const restorePayload = {
+          user_id: userId,
+          artifact_key: key,
+          version: newVersion,
+          content_json: v1.content,
+          specificity_score: v1.specificity_score,
+          parent_version_id: current.id,
+          what_changed: "Restored from v1",
+          step_number: current.version + 1,
+          is_locked: false,
+          // Day 74 Phase 2 (Sasha 2026-05-22): stamp the CURRENT prompt
+          // version (not v1's original). The row was born now; staleness
+          // semantics are "is the content's prompt-of-record current?" —
+          // copying v1 content under today's prompt is, by definition,
+          // current. If the user wants a higher ceiling they can re-Improve.
+          prompt_version_at_lock: PROMPT_VERSION[key],
+        };
+        let inserted: DbRow | null = null;
+        {
+          const firstPayload = promptVersionColumnAvailable
+            ? restorePayload
+            : stripPromptVersion(restorePayload);
+          const r1 = await (supabase as any)
+            .from("user_business_artifacts")
+            .insert(firstPayload)
+            .select("*")
+            .single();
+          if (r1.error && isPromptVersionSchemaCacheMiss(r1.error)) {
+            promptVersionColumnAvailable = false;
+            const r2 = await (supabase as any)
+              .from("user_business_artifacts")
+              .insert(stripPromptVersion(restorePayload))
+              .select("*")
+              .single();
+            if (r2.error) throw r2.error;
+            inserted = r2.data as DbRow | null;
+          } else if (r1.error) {
+            throw r1.error;
+          } else {
+            inserted = r1.data as DbRow | null;
+          }
+        }
 
         // Optimistic local update — same pattern as acceptImprovement.
         if (inserted) {
