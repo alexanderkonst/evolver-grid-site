@@ -2730,15 +2730,15 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
   const seoMeta = (() => {
     switch (focusCategory) {
       case "clarity":
-        return { title: "AI OS — Clarity prompts", path: "/ai-os/clarity", description: "Free, curated AI prompts for clarity. The Holonic Commons library." };
+        return { title: "AI OS — Clarity skills", path: "/ai-os/clarity", description: "Free, curated AI skills for clarity. The Holonic Commons library." };
       case "iteration":
-        return { title: "AI OS — Iteration prompts", path: "/ai-os/iteration", description: "Free, curated AI prompts for iteration and refinement." };
+        return { title: "AI OS — Iteration skills", path: "/ai-os/iteration", description: "Free, curated AI skills for iteration and refinement." };
       case "deployment":
-        return { title: "AI OS — Vibe Code prompts", path: "/ai-os/vibe-code", description: "Free, curated AI prompts for shipping. The Holonic Commons library." };
+        return { title: "AI OS — Vibe Code skills", path: "/ai-os/vibe-code", description: "Free, curated AI skills for shipping. The Holonic Commons library." };
       case "design":
-        return { title: "AI OS — Design prompts", path: "/ai-os/design", description: "Free, curated AI prompts for design work." };
+        return { title: "AI OS — Design skills", path: "/ai-os/design", description: "Free, curated AI skills for design work." };
       default:
-        return { title: "AI OS — The Holonic Commons", path: "/ai-os", description: "A free, curated library of AI prompts for solo founders. Holonic Commons. Aleksandr's curatorship is the paid layer." };
+        return { title: "AI OS — The Holonic Commons", path: "/ai-os", description: "A free, curated library of AI skills for solo founders. Holonic Commons. Aleksandr's curatorship is the paid layer." };
     }
   })();
   return (
@@ -3022,7 +3022,7 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
                     backgroundClip: 'text',
                   }}
                 >
-                  Select prompts for everyday craft
+                  Select skills for everyday craft
                 </h2>
                 <p
                   className="mt-2 text-xs sm:text-sm font-light italic"
@@ -3609,7 +3609,7 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
               {/* Outro CTA — soft, in-aesthetic */}
               <div className="pt-6 mt-4" style={{ borderTop: '1px solid hsla(195, 30%, 70%, 0.15)' }}>
                 <p className="text-sm sm:text-base" style={{ color: 'hsl(0 0% 100% / 0.7)' }}>
-                  AI OS is your knoware library. Start anywhere — every prompt is a piece of the layer.
+                  AI OS is your knoware library. Start anywhere — every skill is a piece of the layer.
                 </p>
                 <button
                   onClick={() => setShowStoryDialog(false)}
