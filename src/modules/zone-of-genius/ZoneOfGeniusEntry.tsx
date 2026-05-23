@@ -1136,11 +1136,15 @@ const ZoneOfGeniusEntry = () => {
                 {step === "paste-response" && (
                     <div ref={stepContentRef} className="space-y-6 animate-in fade-in duration-500">
                         <div className="text-center space-y-2">
+                            {/* Day 80 Wave 2.15: unified h2 to Cormorant canon
+                                + deep halo on subtitle so the muted text
+                                reads cleanly over the video. */}
                             <h2
-                                className="text-lg font-light tracking-wide"
+                                className="text-2xl tracking-[-0.005em]"
                                 style={{
-                                    fontFamily: "'Source Serif 4', serif",
-                                    color: "var(--skin-text-body, rgba(26,30,58,0.82))",
+                                    fontFamily: "'Cormorant Garamond', serif",
+                                    fontWeight: 600,
+                                    color: "var(--skin-text-primary, #0a1628)",
                                     textShadow: "var(--skin-text-halo-deep, 0 0 28px rgba(255,255,255,0.85), 0 1px 2px rgba(255,255,255,0.95), 0 0 1px rgba(11,42,90,0.65), 0 1px 0 rgba(11,42,90,0.45))",
                                 }}
                             >
@@ -1148,7 +1152,11 @@ const ZoneOfGeniusEntry = () => {
                             </h2>
                             <p
                                 className="text-xs"
-                                style={{ color: "var(--skin-text-faint, rgba(26,30,58,0.55))" }}
+                                style={{
+                                    color: "var(--skin-text-muted, rgba(26,30,58,0.75))",
+                                    fontFamily: "'Source Serif 4', serif",
+                                    textShadow: "var(--skin-text-halo-deep, 0 0 22px rgba(255,255,255,0.85), 0 1px 2px rgba(255,255,255,0.95), 0 0 1px rgba(11,42,90,0.55))",
+                                }}
                             >
                                 The full response — we'll extract your pattern from it
                             </p>
