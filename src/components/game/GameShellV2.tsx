@@ -1,5 +1,5 @@
 import { ReactNode, useState, useEffect, useRef } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate, useNavigationType } from "react-router-dom";
 import { ArrowLeft, Menu, PanelLeft } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { getOrCreateGameProfileId } from "@/lib/gameProfile";
@@ -49,25 +49,43 @@ const MATCH_MUX_BG_URL = "https://stream.mux.com/HAKiVOTMZGzcf00B9dE02uAO02CzaUi
 const MuxVideoBackground = () => {
     const videoRef = useRef<HTMLVideoElement>(null);
     const [videoFailed, setVideoFailed] = useState(false);
-    // Day 80 Wave 2.11 (Sasha 2026-05-22) — URL-only detection at mount.
+    // Day 80 Wave 2.11 → Wave 2.18 (Sasha 2026-05-22): match-path video
+    // detection refined.
     //
-    // Previously this read `useEntryPath()` which falls back to
-    // sessionStorage. Side effect: any user who'd visited `/?path=match`
-    // once kept the match video on every subsequent fresh load of `/`,
-    // even with no URL param. The page content (MethodologyLandingPage
-    // for `/` with no param, per Day 78 fix) was correctly build-path,
-    // but the video got out of sync.
+    // Wave 2.11 used URL-only detection at mount. That fixed the
+    // sessionStorage-poisoning bug (visiting /?path=match once would
+    // sticky the match video on subsequent fresh visits to `/`) BUT
+    // introduced a new bug: GameShellV2 re-mounts on every route change,
+    // and EntryPathContext strips the ?path=match param from internal
+    // navigations. So a user who arrives at /?path=match (match video)
+    // and then navigates to /game/collaborate/matches would see the
+    // BUILD video on the matches page — URL no longer has the param.
     //
-    // Fix: video selection follows the URL at mount only — same rule
-    // JourneyPage uses for its hero. A fresh `/` always gets the build
-    // video; only an explicit `?path=match` URL gets the match video.
-    // SPA-nav into match-path surfaces inherits the video that mounted
-    // (rare, full reload covers it).
-    const initialIsMatch =
-        typeof window !== "undefined" &&
-        new URLSearchParams(window.location.search).get("path") === "match";
-    const srcUrlRef = useRef(initialIsMatch ? MATCH_MUX_BG_URL : MUX_BG_URL);
-    const isMatchVideo = initialIsMatch;
+    // Wave 2.18: same rule JourneyPage uses now —
+    //   - URL has ?path=match              → match video (always)
+    //   - URL no param + navigationType POP → build video (fresh load,
+    //                                          no sessionStorage carryover)
+    //   - URL no param + navigationType !== POP + sessionStorage match
+    //                                       → match video (SPA-nav inside
+    //                                          a match-flow session)
+    // navigationType is "POP" on initial page load AND on back/forward;
+    // it's "PUSH" / "REPLACE" on programmatic navigate() calls.
+    const navigationType = useNavigationType();
+    const isMatchPathNow = (() => {
+        if (typeof window === "undefined") return false;
+        const urlPath = new URLSearchParams(window.location.search).get("path");
+        if (urlPath === "match") return true;
+        if (urlPath !== null) return false; // explicit non-match URL param
+        // No URL param. Honor sessionStorage only on SPA-nav (not POP).
+        if (navigationType === "POP") return false;
+        try {
+            return window.sessionStorage?.getItem("ftt_entry_path") === "match";
+        } catch {
+            return false;
+        }
+    })();
+    const srcUrlRef = useRef(isMatchPathNow ? MATCH_MUX_BG_URL : MUX_BG_URL);
+    const isMatchVideo = isMatchPathNow;
 
     useEffect(() => {
         const video = videoRef.current;
