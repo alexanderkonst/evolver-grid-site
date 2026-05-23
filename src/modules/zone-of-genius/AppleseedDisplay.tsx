@@ -495,7 +495,17 @@ const AppleseedDisplay = ({
                             revision. Removed the ✦ eyebrow. Headline now
                             celebrates the just-completed act; body names
                             the why for the next act (meet people heading
-                            the same way) without methodology jargon. */}
+                            the same way) without methodology jargon.
+
+                            Day 79 (Sasha 2026-05-22, late): inner "Discover
+                            My Mission" CTA removed. ZoneOfGeniusEntry now
+                            renders <MatchFlowCta step="top-talent" /> right
+                            below this celebration card, which carries the
+                            single "Discover your mission in 1 minute" CTA.
+                            Two identical CTAs in the same scroll was the
+                            duplicate Sasha flagged. Keep heading + body as
+                            the celebration anchor; the MatchFlowCta below
+                            is the action. */}
                         <div
                             className="liquid-glass-strong rounded-3xl p-6 sm:p-8 text-center space-y-4"
                             style={{ border: '1px solid rgba(212, 175, 55, 0.32)' }}
@@ -521,22 +531,6 @@ const AppleseedDisplay = ({
                             >
                                 Next, articulate where you're heading to meet people heading the same way.
                             </p>
-                            <button
-                                type="button"
-                                onClick={() => navigate('/mission-discovery')}
-                                className="liquid-glass-dark cta-breath w-full rounded-full inline-flex items-center justify-center gap-2 px-5 py-3.5 text-base sm:text-lg font-semibold transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] mt-2"
-                                style={{
-                                    fontFamily: "'Cormorant Garamond', serif",
-                                    color: 'var(--skin-cta-text, rgba(245,245,250,0.98))',
-                                    backgroundImage:
-                                        'var(--skin-cta-bg, linear-gradient(135deg, rgba(10,22,40,0.72) 0%, rgba(26,30,58,0.62) 50%, rgba(10,22,40,0.72) 100%))',
-                                    boxShadow:
-                                        'var(--skin-cta-shadow, 0 0 18px -4px rgba(240,194,127,0.45), 0 10px 24px -10px rgba(10,22,40,0.5))',
-                                }}
-                            >
-                                <span style={CTA_SMALL_CAPS_STYLE}>Discover My Mission</span>
-                                <ArrowRight aria-hidden="true" className="w-4 h-4 flex-shrink-0" />
-                            </button>
                         </div>
                     </div>
                 )}
