@@ -150,9 +150,9 @@ const MatchExplainerInner = () => {
                 1
               </span>
               <span className="flex-1 text-[15px] sm:text-base leading-relaxed">
-                <strong style={{ fontWeight: 600 }}>You click "I'd like to meet."</strong>{" "}
+                <strong style={{ fontWeight: 600 }}>AI suggests optimal matches.</strong>{" "}
                 <span style={{ color: "rgba(11, 42, 90, 0.78)" }}>
-                  Your interest stays private. They don't see it in the platform.
+                  Click "I'd like to meet." whenever you'd like to get in touch.
                 </span>
               </span>
             </li>
@@ -172,9 +172,9 @@ const MatchExplainerInner = () => {
                 2
               </span>
               <span className="flex-1 text-[15px] sm:text-base leading-relaxed">
-                <strong style={{ fontWeight: 600 }}>We send them a heads-up email.</strong>{" "}
+                <strong style={{ fontWeight: 600 }}>We send them a heads-up email</strong>{" "}
                 <span style={{ color: "rgba(11, 42, 90, 0.78)" }}>
-                  Explaining who you are and why we paired you. They can say yes or not now in one click.
+                  explaining who you are and why we paired you. They can say "yes" or "not now".
                 </span>
               </span>
             </li>
@@ -196,21 +196,11 @@ const MatchExplainerInner = () => {
               <span className="flex-1 text-[15px] sm:text-base leading-relaxed">
                 <strong style={{ fontWeight: 600 }}>If they say yes,</strong>{" "}
                 <span style={{ color: "rgba(11, 42, 90, 0.78)" }}>
-                  we send you both an intro email in the same thread. You take it from there.
+                  we send you both an intro email. You take it from there. If they don't respond, we leave it at that.
                 </span>
               </span>
             </li>
           </ol>
-
-          <p
-            className="mt-4 sm:mt-5 text-[13.5px] sm:text-sm leading-relaxed italic"
-            style={{
-              color: "rgba(11, 42, 90, 0.62)",
-              fontFamily: "'Source Serif 4', Georgia, serif",
-            }}
-          >
-            If they don't respond, we leave it at that. You can withdraw your interest anytime from your Connections page.
-          </p>
 
           {/* Got it button — only show when this is the first visit */}
           {seenAt === null && (
