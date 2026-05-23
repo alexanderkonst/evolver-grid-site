@@ -20,6 +20,7 @@ import aiOsHomeIcon from "@/assets/mc-merkaba.png";
 // "your home + open menu" in one affordance.
 import brandMark from "@/assets/find-your-top-talent-torus.png";
 import { useSkin } from "@/contexts/SkinContext";
+import { useEntryPath } from "@/contexts/EntryPathContext";
 import SpacesRail, { SPACES } from "./SpacesRail";
 import SectionsPanel, { SPACE_SECTIONS } from "./SectionsPanel";
 import { useDeepProfileActivated } from "@/hooks/useDeepProfileActivated";
@@ -31,17 +32,32 @@ import SiteLogo from "@/components/SiteLogo";
 
 /** Animated video background — Mux HLS stream behind all panels */
 // Day 51 (Sasha 2026-04-25): swapped to new animated cosmic-landscape stream
-// — gold particles, mountain, sunset. Visible behind translucent Pane 2 +
+// (gold particles, mountain, sunset). Visible behind translucent Pane 2 +
 // content area. Pane 1 stays solid navy so the brand isn't competing.
 const MUX_BG_URL = "https://stream.mux.com/hTE02fn3vOf5czL8H1s02IcVKGmIxmr4tPacZkQ5KRZwo.m3u8";
+// Day 79 (Sasha 2026-05-22): match-path background. Sasha provided a new
+// Mux HLS stream specifically for the collaboration-funnel surfaces. When
+// `EntryPathContext.path === "match"` the video swaps to this URL across
+// every funnel surface the user touches (landing, ZoG entry, assessment
+// steps, etc.). The path flag persists for the session, so the bg rides
+// it for free. Mount-time selection only; mid-session URL pastes between
+// build and match paths are rare and a full reload covers them.
+const MATCH_MUX_BG_URL = "https://stream.mux.com/HAKiVOTMZGzcf00B9dE02uAO02CzaUiuq6JVgH300OR5yjM.m3u8";
 
 const MuxVideoBackground = () => {
     const videoRef = useRef<HTMLVideoElement>(null);
     const [videoFailed, setVideoFailed] = useState(false);
+    // Day 79: read EntryPath at mount and pick the URL once. We don't
+    // re-init HLS if the path flips during the session (rare, full
+    // reload covers it). useRef snapshot keeps the URL stable inside
+    // the useEffect closure without retriggering on context updates.
+    const { path: entryPath } = useEntryPath();
+    const srcUrlRef = useRef(entryPath === "match" ? MATCH_MUX_BG_URL : MUX_BG_URL);
 
     useEffect(() => {
         const video = videoRef.current;
         if (!video) return;
+        const srcUrl = srcUrlRef.current;
 
         let hlsInstance: any = null;
 
@@ -52,7 +68,7 @@ const MuxVideoBackground = () => {
 
                 if (Hls.isSupported()) {
                     hlsInstance = new Hls({ autoStartLoad: true });
-                    hlsInstance.loadSource(MUX_BG_URL);
+                    hlsInstance.loadSource(srcUrl);
                     hlsInstance.attachMedia(video);
                     hlsInstance.on(Hls.Events.MANIFEST_PARSED, () => {
                         video.play().catch(() => {});
@@ -62,7 +78,7 @@ const MuxVideoBackground = () => {
                         if (data.fatal) setVideoFailed(true);
                     });
                 } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
-                    video.src = MUX_BG_URL;
+                    video.src = srcUrl;
                     video.addEventListener("loadedmetadata", () => {
                         video.play().catch(() => {});
                         video.playbackRate = 0.5;
