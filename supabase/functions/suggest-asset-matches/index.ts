@@ -58,10 +58,19 @@ serve(async (req) => {
     }
 
     try {
-        const { userId } = await req.json();
+        const body = await req.json().catch(() => ({}));
+        const { userId, limit: requestedLimit } = body as {
+            userId?: string;
+            limit?: number;
+        };
         if (!userId) {
             return jsonResponse({ error: "Missing userId" }, 400);
         }
+        // Day 80 (Sasha 2026-05-23, reversal): cap defaults to 10 for
+        // validation-stage testing where testers need to see the
+        // distribution, not a curated 3. Caller can override via `limit`
+        // up to 25 (the "see more matches" pagination path uses this).
+        const surfaceCap = Math.max(1, Math.min(25, requestedLimit || 10));
 
         const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
         const supabaseKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
@@ -372,27 +381,27 @@ ${candidateBlocks.join("\n\n")}`;
             };
         });
 
-        // Day 80 (Sasha 2026-05-23): threshold relaxed + always-surface
-        // fallback. The previous `>= 40` cutoff filtered out almost
-        // everyone when the candidate pool was sparsely populated.
-        // Threshold lowered to 25; if zero pairs clear it, surface the
-        // top by score regardless.
+        // Day 80 (Sasha 2026-05-23): threshold at 25 (lowered from the
+        // original 40 to let sparse-but-real pairs through). Always-
+        // surface fallback: if zero clear the threshold, return the
+        // top by score so the user sees something.
         //
-        // Day 80 (Sasha 2026-05-23, second pass): portion logic. The
-        // surface cap drops from 8 to 3 per session per
-        // matchmaking_strategy.md §8.8. Three is below cognitive
-        // fatigue, signals scarcity = value, and leaves headroom for
-        // the weekly digest to bring fresh matches. The "See more
-        // matches" button on the page surfaces "fresh matches Monday"
-        // rather than loading more from the same pool.
+        // Day 80 (Sasha 2026-05-23, reversal): cap now driven by
+        // `surfaceCap` (default 10, max 25 via caller param). The
+        // earlier "3 per session" portion-logic move was premature
+        // for the validation stage where testers need to see the
+        // distribution to assess matching quality. The strategic
+        // scarcity (3-per-session + weekly digest cadence) is the
+        // production-mature shape, deferred until matching quality
+        // is validated.
         const sortedByScore = [...scored].sort(
             (a, b) => b.resonance - a.resonance,
         );
         const aboveThreshold = sortedByScore.filter((s) => s.resonance >= 25);
         const survivors =
             aboveThreshold.length > 0
-                ? aboveThreshold.slice(0, 3)
-                : sortedByScore.slice(0, 3);
+                ? aboveThreshold.slice(0, surfaceCap)
+                : sortedByScore.slice(0, Math.min(surfaceCap, 5));
 
         if (survivors.length === 0) {
             // Genuinely empty pool (no candidates at all).

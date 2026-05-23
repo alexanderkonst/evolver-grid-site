@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { MapPin, Users, Languages } from "lucide-react";
 import { toast } from "sonner";
 import GameShellV2 from "@/components/game/GameShellV2";
@@ -127,6 +127,16 @@ interface AssetMatchResult {
   complementarity: string;
   friction: string;
   theirAssets: { typeId: string; title: string }[];
+  /** Day 80 (Sasha 2026-05-23): sub-scores surfaced when ?debug=1
+   *  is in the URL. Helps testers / Sasha give precise feedback
+   *  ("rank 3 felt better than rank 1 — why did the engine flip
+   *  them?"). Admin-debug only; not shown in production UI. */
+  subScores?: {
+    topTalent: number;
+    mission: number;
+    assets: number;
+    qol: number;
+  };
 }
 
 const SUGGESTED_ACTION_LABELS: Record<string, string> = {
@@ -166,62 +176,69 @@ interface CurrentProfile {
 const stripSymbols = (s: string) => s.replace(/[✦★☆✧⬥◇◆⟐]/g, "").trim();
 
 /**
- * Day 80 (Sasha 2026-05-23): "See more matches" → "Fresh matches Monday"
- * panel. Implements the portion-logic principle from
- * matchmaking_strategy.md §8.7-§8.8: matches are a rationed weekly
- * surface, not infinite scroll. Click reveals the message inline
- * instead of fetching more from the same pool.
+ * Day 80 (Sasha 2026-05-23, reversal): "See more matches" now does
+ * real pagination — fetches additional matches from the engine and
+ * appends them to the visible list. The earlier "Fresh matches
+ * Monday" scarcity panel is parked at the bottom of this file for
+ * post-validation production use. Validation-stage testers need to
+ * see the distribution, not a curated three.
  */
-const SeeMoreMatchesPanel = () => {
-  const [revealed, setRevealed] = useState(false);
+interface SeeMoreMatchesPanelProps {
+  currentCount: number;
+  onLoadMore: () => Promise<number>;
+}
 
-  if (revealed) {
+const SeeMoreMatchesPanel = ({
+  currentCount,
+  onLoadMore,
+}: SeeMoreMatchesPanelProps) => {
+  const [loading, setLoading] = useState(false);
+  const [exhausted, setExhausted] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  if (exhausted) {
     return (
-      <div
-        className="mt-6 rounded-2xl px-6 py-5 text-center"
-        style={{
-          background: "rgba(245, 241, 232, 0.75)",
-          border: "0.5px solid rgba(212, 175, 55, 0.40)",
-          boxShadow: "0 6px 20px -10px rgba(10, 22, 40, 0.18)",
-        }}
-      >
+      <div className="mt-6 text-center">
         <p
+          className="italic"
           style={{
-            fontFamily: "'Cormorant Garamond', serif",
-            fontWeight: 700,
+            fontFamily: "'Source Serif 4', serif",
+            fontWeight: 500,
             fontSize: "13px",
-            letterSpacing: "0.28em",
-            textTransform: "uppercase",
-            color: "var(--skin-goldDeep, #5d4307)",
-            marginBottom: "8px",
+            color: "var(--skin-text-muted, rgba(11,42,90,0.65))",
           }}
         >
-          Fresh matches Monday
-        </p>
-        <p
-          className="italic mx-auto max-w-md"
-          style={{
-            fontFamily: "'Cormorant Garamond', serif",
-            fontWeight: 700,
-            fontSize: "clamp(1.05rem, 2vw, 1.25rem)",
-            lineHeight: 1.5,
-            color: "var(--skin-text-primary, #0a1628)",
-            textShadow:
-              "var(--skin-text-halo-deep, 0 0 22px rgba(255,255,255,0.7), 0 1px 2px rgba(255,255,255,0.9), 0 0 1px rgba(11,42,90,0.45), 0 1px 0 rgba(11,42,90,0.25))",
-          }}
-        >
-          Your next three matches are warming up. We'll surface them Monday morning, sent straight to your inbox.
+          You've seen everyone the engine has for you this round. As more people complete their profiles, fresh matches will surface.
         </p>
       </div>
     );
   }
 
+  const handleClick = async () => {
+    if (loading) return;
+    setLoading(true);
+    setError(null);
+    try {
+      const newCount = await onLoadMore();
+      if (newCount <= currentCount) {
+        setExhausted(true);
+      }
+    } catch (err) {
+      setError(
+        err instanceof Error ? err.message : "Could not load more matches.",
+      );
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
-    <div className="mt-6 flex justify-center">
+    <div className="mt-6 flex flex-col items-center gap-2">
       <button
         type="button"
-        onClick={() => setRevealed(true)}
-        className="inline-flex items-center gap-2 rounded-full px-5 py-3 transition-all duration-200 hover:translate-y-[-1px] active:translate-y-0"
+        onClick={handleClick}
+        disabled={loading}
+        className="inline-flex items-center gap-2 rounded-full px-5 py-3 transition-all duration-200 hover:translate-y-[-1px] active:translate-y-0 disabled:opacity-50 disabled:cursor-not-allowed"
         style={{
           fontFamily: "'Cormorant Garamond', serif",
           fontWeight: 600,
@@ -235,13 +252,79 @@ const SeeMoreMatchesPanel = () => {
             "0 6px 20px -10px rgba(10, 22, 40, 0.20), 0 0 0 1px rgba(212, 175, 55, 0.18)",
         }}
       >
-        See more matches →
+        {loading ? "Loading…" : "See more matches →"}
       </button>
+      {error && (
+        <p
+          className="italic"
+          style={{
+            fontFamily: "'Source Serif 4', serif",
+            fontSize: "12px",
+            color: "rgba(180, 50, 50, 0.85)",
+          }}
+        >
+          {error}
+        </p>
+      )}
     </div>
   );
 };
 
+/**
+ * Production-mature "Fresh matches Monday" scarcity panel. Parked here
+ * for post-validation use. When the matching engine is producing
+ * proven collaborations at volume, re-introduce this in place of the
+ * pagination panel above per matchmaking_strategy.md §8.7-§8.8.
+ */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const _ParkedFreshMatchesMondayPanel = () => (
+  <div
+    className="mt-6 rounded-2xl px-6 py-5 text-center"
+    style={{
+      background: "rgba(245, 241, 232, 0.75)",
+      border: "0.5px solid rgba(212, 175, 55, 0.40)",
+      boxShadow: "0 6px 20px -10px rgba(10, 22, 40, 0.18)",
+    }}
+  >
+    <p
+      style={{
+        fontFamily: "'Cormorant Garamond', serif",
+        fontWeight: 700,
+        fontSize: "13px",
+        letterSpacing: "0.28em",
+        textTransform: "uppercase",
+        color: "var(--skin-goldDeep, #5d4307)",
+        marginBottom: "8px",
+      }}
+    >
+      Fresh matches Monday
+    </p>
+    <p
+      className="italic mx-auto max-w-md"
+      style={{
+        fontFamily: "'Cormorant Garamond', serif",
+        fontWeight: 700,
+        fontSize: "clamp(1.05rem, 2vw, 1.25rem)",
+        lineHeight: 1.5,
+        color: "var(--skin-text-primary, #0a1628)",
+        textShadow:
+          "var(--skin-text-halo-deep, 0 0 22px rgba(255,255,255,0.7), 0 1px 2px rgba(255,255,255,0.9), 0 0 1px rgba(11,42,90,0.45), 0 1px 0 rgba(11,42,90,0.25))",
+      }}
+    >
+      Your next matches are warming up. We'll surface them Monday morning, sent straight to your inbox.
+    </p>
+  </div>
+);
+
 const Matchmaking = () => {
+  // Day 80 (Sasha 2026-05-23): ?debug=1 in the URL surfaces the four
+  // sub-scores below each match card. Validation-only — lets testers
+  // give precise feedback on the algorithm ("rank 3 felt better than
+  // rank 1; the scores show why"). Never shown to production users.
+  const debugMode =
+    typeof window !== "undefined" &&
+    new URLSearchParams(window.location.search).get("debug") === "1";
+
   // Day 79 (Sasha 2026-05-22): explainer state lifted out of the
   // accordion component so we can render it in two positions (top
   // for first-visit, bottom for already-dismissed). See JSX below for
@@ -405,6 +488,38 @@ const Matchmaking = () => {
 
     loadAssetMatches();
   }, []);
+
+  // Day 80 (Sasha 2026-05-23): re-fetch with a higher cap when the
+  // user clicks "See more matches". Returns the new total count so
+  // the panel knows whether to mark itself exhausted (no growth →
+  // engine returned everything it has).
+  const loadMoreMatches = useCallback(async (): Promise<number> => {
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user) return assetMatches.length;
+    const targetLimit = Math.min(assetMatches.length + 5, 25);
+    const { data, error } = await supabase.functions.invoke(
+      "suggest-asset-matches",
+      { body: { userId: user.id, limit: targetLimit } },
+    );
+    if (error || !data?.matches) {
+      throw new Error(error?.message || "Could not load more matches.");
+    }
+    const userIds = data.matches.map((m: any) => m.userId);
+    const { data: avatarRows } = await supabase
+      .from("game_profiles")
+      .select("user_id, avatar_url")
+      .in("user_id", userIds);
+    const avatarMap = new Map<string, string | null>();
+    (avatarRows || []).forEach((row: any) => {
+      avatarMap.set(row.user_id, row.avatar_url);
+    });
+    const enriched = data.matches.map((m: any) => ({
+      ...m,
+      avatarUrl: avatarMap.get(m.userId) || null,
+    }));
+    setAssetMatches(enriched);
+    return enriched.length;
+  }, [assetMatches.length]);
 
   // Day 66 wave §8 (Sasha 2026-05-16): load the current user's
   // match-mechanic state — which userIds they've expressed interest in
@@ -919,7 +1034,54 @@ const Matchmaking = () => {
                   onPrev={() => setCurrentAiMatchIndex(Math.max(0, clampedIndex - 1))}
                   onNext={() => setCurrentAiMatchIndex(Math.min(visibleAiMatches.length - 1, clampedIndex + 1))}
                 />
-              ) : (
+              ) : null}
+              {/* Day 80 (Sasha 2026-05-23): debug strip — only visible
+                  when ?debug=1. Surfaces the four sub-scores so testers
+                  can give precise feedback on the algorithm's ranking. */}
+              {debugMode && currentAiMatch?.subScores && (
+                <div
+                  className="mt-3 rounded-xl px-4 py-3 mx-auto"
+                  style={{
+                    maxWidth: "32rem",
+                    background: "rgba(11, 42, 90, 0.85)",
+                    color: "rgba(245, 245, 250, 0.95)",
+                    fontFamily: "'DM Sans', system-ui, monospace",
+                    fontSize: "11.5px",
+                    letterSpacing: "0.04em",
+                    boxShadow: "0 4px 16px -8px rgba(10, 22, 40, 0.4)",
+                  }}
+                >
+                  <div className="flex flex-wrap items-center justify-between gap-3">
+                    <span style={{ opacity: 0.7, textTransform: "uppercase", letterSpacing: "0.18em", fontSize: "10px" }}>
+                      Debug · sub-scores
+                    </span>
+                    <span style={{ fontWeight: 700 }}>
+                      composite: {currentAiMatch.resonanceScore}
+                    </span>
+                  </div>
+                  <div className="mt-2 grid grid-cols-2 sm:grid-cols-4 gap-2">
+                    <span>
+                      top_talent: <strong>{currentAiMatch.subScores.topTalent.toFixed(2)}</strong>
+                    </span>
+                    <span>
+                      mission: <strong>{currentAiMatch.subScores.mission.toFixed(2)}</strong>
+                    </span>
+                    <span>
+                      assets: <strong>{currentAiMatch.subScores.assets.toFixed(2)}</strong>
+                    </span>
+                    <span>
+                      qol: <strong>{currentAiMatch.subScores.qol.toFixed(2)}</strong>
+                    </span>
+                  </div>
+                </div>
+              )}
+              {/* Empty state when the engine returned no matches but
+                  the user is loaded. Was previously the else-branch
+                  of the MatchCard render; lifted out as a sibling so
+                  the debug strip (above) can render between MatchCard
+                  and the empty state without nesting hell. */}
+              {!assetMatchesLoading &&
+                !(visibleAiMatches.length > 0 && currentAiMatch) && (
                 <div
                   className="rounded-2xl px-5 py-6 text-center"
                   style={parchmentCardSubtle}
@@ -942,15 +1104,15 @@ const Matchmaking = () => {
                 </div>
               )}
 
-              {/* Day 80 (Sasha 2026-05-23): "See more matches" button
-                  with friendly Monday-refresh message. Implements
-                  matchmaking_strategy.md §8.7-§8.8 — matches are a
-                  rationed weekly thing, not an infinite scroll. The
-                  click reveals the message inline rather than fetching
-                  more from the same pool (which would just re-show
-                  the same people). */}
+              {/* Day 80 (Sasha 2026-05-23, reversal): "See more matches"
+                  does real pagination — re-fetches the engine with a
+                  higher `limit` and replaces state. Validation-stage
+                  testers need to see the distribution. */}
               {!assetMatchesLoading && visibleAiMatches.length > 0 && (
-                <SeeMoreMatchesPanel />
+                <SeeMoreMatchesPanel
+                  currentCount={assetMatches.length}
+                  onLoadMore={loadMoreMatches}
+                />
               )}
             </section>
 
