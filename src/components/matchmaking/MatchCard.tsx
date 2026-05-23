@@ -30,6 +30,18 @@ import {
  */
 export type MatchInteractionState = "default" | "interest-expressed" | "mutual";
 
+/**
+ * Day 80 (Sasha 2026-05-23): each match now carries up to 3 distinct
+ * collaboration proposals from different taxonomy roots (Co-Build,
+ * Co-Learn, Co-Distribute, Co-Resource, Co-Steward). Surfaced
+ * one-after-another on the card so the user has real choice.
+ */
+export interface MatchProposal {
+  type: string;
+  proposal: string;
+  evolutionLine?: string;
+}
+
 interface MatchCardProps {
   user: {
     id: string;
@@ -39,7 +51,11 @@ interface MatchCardProps {
     archetype: string;
     tagline?: string | null;
   };
-  matchReason: string;
+  /** Day 80 — preferred shape. When present, renders the proposals
+   *  list. Legacy single-proposal callers can still pass `matchReason`
+   *  (used as a fallback when `proposals` is empty). */
+  proposals?: MatchProposal[];
+  matchReason?: string;
   matchLabel?: string;
   secondaryReason?: string;
   secondaryLabel?: string;
