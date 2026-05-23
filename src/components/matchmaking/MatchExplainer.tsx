@@ -1,7 +1,11 @@
 import { memo, useEffect, useState } from "react";
 import { ChevronDown, ChevronUp, Sparkles } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
-import { GOLD_TEXT_STYLE } from "@/lib/landingDesign";
+// Day 80 Wave 2.19 (Sasha 2026-05-22): button + container restyled
+// to match the landing-CTA register per ui_playbook.md + glassmorphism
+// _blueprint.md. CTA_SMALL_CAPS_STYLE = Cormorant tracked uppercase;
+// igniteLogo = the ✦ emblem used on every primary CTA.
+import { CTA_SMALL_CAPS_STYLE, igniteLogo } from "@/lib/landingDesign";
 
 /**
  * MatchExplainer — Day 67 §8.6 (Sasha 2026-05-19).
@@ -80,15 +84,15 @@ const MatchExplainerInner = () => {
   }
 
   return (
+    /* Day 80 Wave 2.19 (Sasha 2026-05-22): container moved to
+       `liquid-glass-strong` (Apple iOS 26 Liquid Glass — heavy
+       backdrop blur + saturate + asymmetric edge lighting + layered
+       drop shadow). Per glassmorphism_blueprint.md, strong glass is
+       the canon for prominent panels carrying instructional value.
+       Custom parchment background retired. */
     <section
       aria-label="How introductions work"
-      className="mb-6 sm:mb-8 rounded-2xl overflow-hidden"
-      style={{
-        background: "rgba(255, 252, 245, 0.92)",
-        border: "0.5px solid rgba(212, 175, 55, 0.55)",
-        boxShadow:
-          "0 0 22px -8px rgba(212, 175, 55, 0.30), 0 16px 40px -20px rgba(10, 22, 40, 0.18)",
-      }}
+      className="liquid-glass-strong mb-6 sm:mb-8 rounded-3xl overflow-hidden"
     >
       {/* Header — clickable to toggle */}
       <button
@@ -202,23 +206,42 @@ const MatchExplainerInner = () => {
             </li>
           </ol>
 
-          {/* Got it button — only show when this is the first visit */}
+          {/* Got it button — only show when this is the first visit.
+              Day 80 Wave 2.19 (Sasha 2026-05-22): restyled to match the
+              canonical landing CTA voice — liquid-glass-dark pill +
+              cta-breath animation + ignite emblem + CTA_SMALL_CAPS_STYLE.
+              Same family as the "FIND YOUR TOP TALENT →" button on /. */}
           {seenAt === null && (
             <div className="mt-4 sm:mt-5 flex justify-end">
               <button
                 type="button"
                 onClick={handleDismiss}
                 disabled={dismissing}
-                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-[11px] sm:text-xs font-medium tracking-[0.18em] uppercase transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#d4af37]/40"
+                className="group liquid-glass-dark cta-breath rounded-full inline-flex items-center justify-center gap-2 px-5 py-2.5 transition-all duration-300 hover:scale-[1.03] active:scale-[0.97] disabled:opacity-50 focus-visible:ring-2 focus-visible:ring-white/40 outline-none"
                 style={{
-                  fontFamily: "'DM Sans', system-ui, sans-serif",
-                  background: "linear-gradient(135deg, #b8860b, #7a5108)",
-                  color: "#fffdf6",
-                  boxShadow: "0 4px 12px -4px rgba(122, 81, 8, 0.4)",
+                  fontFamily: "'Cormorant Garamond', serif",
+                  color: "var(--skin-cta-text, rgba(245,245,250,0.98))",
+                  backgroundImage:
+                    "var(--skin-cta-bg, linear-gradient(135deg, rgba(10,22,40,0.72) 0%, rgba(26,30,58,0.62) 50%, rgba(10,22,40,0.72) 100%))",
+                  boxShadow:
+                    "var(--skin-cta-shadow, 0 0 18px -4px rgba(240,194,127,0.45), 0 10px 24px -10px rgba(10,22,40,0.5))",
+                  textShadow:
+                    "var(--skin-cta-text-shadow, 0 0 16px rgba(240,194,127,0.25), 0 1px 2px rgba(0,0,0,0.35))",
                 }}
               >
-                <span style={GOLD_TEXT_STYLE}>✦</span>
-                Got it
+                <img
+                  src={igniteLogo}
+                  alt=""
+                  aria-hidden="true"
+                  className="h-3.5 w-auto opacity-80 transition-opacity group-hover:opacity-100 flex-shrink-0"
+                  style={{
+                    filter: "drop-shadow(0 0 6px rgba(244, 212, 114, 0.45))",
+                  }}
+                  draggable={false}
+                />
+                <span style={CTA_SMALL_CAPS_STYLE} className="text-xs sm:text-sm">
+                  Got it
+                </span>
               </button>
             </div>
           )}
