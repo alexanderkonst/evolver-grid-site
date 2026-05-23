@@ -853,12 +853,16 @@ const ZoneOfGeniusEntry = () => {
                             {/* "How do you want to reveal it?" — moved DOWN to sit
                                 directly above the two CTAs as the interaction
                                 prompt (not the page headline). Build-path users
-                                see only this question, no orientation paragraph. */}
+                                see only this question, no orientation paragraph.
+                                Day 80 Wave 2.10 (Sasha 2026-05-22): unified to
+                                Cormorant per ui_playbook.md — this is a heading
+                                question, not body copy. Was Source Serif 4. */}
                             <h2
-                                className="text-xl font-light tracking-wide"
+                                className="text-2xl tracking-[-0.005em]"
                                 style={{
-                                    fontFamily: "'Source Serif 4', serif",
-                                    color: "var(--skin-text-body, rgba(26,30,58,0.82))",
+                                    fontFamily: "'Cormorant Garamond', serif",
+                                    fontWeight: 600,
+                                    color: "var(--skin-text-primary, #0a1628)",
                                     textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.7))",
                                 }}
                             >
@@ -903,9 +907,15 @@ const ZoneOfGeniusEntry = () => {
                                         >
                                             Faster (1 min)
                                         </p>
+                                        {/* Day 80 Wave 2.10: CTA subtitle pinned to
+                                            Source Serif 4 (was inheriting system
+                                            sans). One of three canonical fonts. */}
                                         <p
                                             className="text-xs mt-0.5 leading-relaxed"
-                                            style={{ color: "rgba(245,245,250,0.65)" }}
+                                            style={{
+                                                fontFamily: "'Source Serif 4', Georgia, serif",
+                                                color: "rgba(245,245,250,0.65)",
+                                            }}
                                         >
                                             Paste from your AI. See your pattern.
                                         </p>
@@ -942,9 +952,13 @@ const ZoneOfGeniusEntry = () => {
                                         >
                                             Guided (10–15 min)
                                         </p>
+                                        {/* Day 80 Wave 2.10: pinned to Source Serif 4. */}
                                         <p
                                             className="text-xs mt-0.5 leading-relaxed"
-                                            style={{ color: "rgba(245,245,250,0.65)" }}
+                                            style={{
+                                                fontFamily: "'Source Serif 4', Georgia, serif",
+                                                color: "rgba(245,245,250,0.65)",
+                                            }}
                                         >
                                             Take the full assessment.
                                         </p>
