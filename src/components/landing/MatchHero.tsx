@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { EditorialCta } from "@/components/ui/editorial-cta";
-import { Ornament } from "@/lib/landingDesign";
+import { Ornament, GOLD_TEXT_STYLE } from "@/lib/landingDesign";
 import SEO from "@/components/SEO";
 import { trackFunnelEvent } from "@/lib/funnelAnalytics";
 import { useSkin } from "@/contexts/SkinContext";
@@ -110,7 +110,11 @@ const MatchHero = () => {
                 "var(--skin-text-halo-deep, 0 0 28px rgba(255,255,255,0.85), 0 1px 2px rgba(255,255,255,0.95), 0 0 1px rgba(11,42,90,0.65), 0 1px 0 rgba(11,42,90,0.45))",
             }}
           >
-            Ready to meet co-creators, not just grow your network?
+            Ready to meet{" "}
+            <span className="bg-clip-text text-transparent" style={GOLD_TEXT_STYLE}>
+              co-creators
+            </span>
+            , not just grow your network?
           </p>
 
           {/* Hero (h1) — the answer to the setup above. Plain text,

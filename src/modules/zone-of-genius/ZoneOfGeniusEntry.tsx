@@ -819,7 +819,10 @@ const ZoneOfGeniusEntry = () => {
 
                 {/* Step: Route Selection */}
                 {step === "choice-route" && (
-                    <div ref={stepContentRef} className="space-y-8 animate-in fade-in duration-500">
+                    /* Day 80 Wave 2.14 (Sasha 2026-05-22): vertical spacing
+                       tightened (space-y-8 → space-y-5) so the CTAs sit on
+                       the first viewport without scrolling. */
+                    <div ref={stepContentRef} className="space-y-5 animate-in fade-in duration-500">
                         <div className="text-center">
                             {/* Day 80 Wave 2.9 (Sasha 2026-05-22): copy + layout
                                 revision. The "Step 1 of 2" framing was confusing
