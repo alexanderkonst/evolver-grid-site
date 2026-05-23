@@ -26,6 +26,7 @@ import { useSkin } from "@/contexts/SkinContext";
 import SpacesRail, { SPACES } from "./SpacesRail";
 import SectionsPanel, { SPACE_SECTIONS } from "./SectionsPanel";
 import { useDeepProfileActivated } from "@/hooks/useDeepProfileActivated";
+import { useEntitlement } from "@/hooks/useEntitlement";
 import PlayerStatsBadge from "./PlayerStatsBadge";
 import KeyboardShortcuts from "@/components/KeyboardShortcuts";
 import SiteLogo from "@/components/SiteLogo";
@@ -395,6 +396,19 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
     // /game/me/zone-of-genius). Hoisting it here keeps the hook order
     // stable across both render paths.
     const { activated: deepProfileActivated, isLoading: deepProfileLoading } = useDeepProfileActivated();
+    // Day 80 Wave 2.20 (Sasha 2026-05-22): BUILD-gate refresh. Per spec
+    // §8.6 + §9, BUILD now unlocks ONLY when one of two conditions holds:
+    //   (a) Activate Top Talent sidequest done — i.e. paid/gifted tier
+    //       OR `coupon_activated` sessionStorage flag (set by the $37
+    //       Stripe return path and the coupon-redeem path), OR
+    //   (b) Full T+M+A triad complete (computed below as `tmaComplete`).
+    // The earlier Day 77 "always-true" rule leaked the BUILD chip to
+    // tasting-tier users who hit /game/collaborate/matches without ever
+    // having paid OR completed the triad. We keep `deepProfileActivated`
+    // for unrelated callers (Top Talent reveal gate, etc.) but consume
+    // tier + coupon directly here so the BUILD gate doesn't inherit
+    // the looser hasReveal arm.
+    const { tier, isLoading: entitlementLoading } = useEntitlement();
 
     const getSpaceFromPath = (pathname: string): string | undefined => {
         // Day 52 (Sasha 2026-04-26): /ubb (Unique Business Builder)
@@ -841,6 +855,23 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
     const tmaComplete = zogComplete && missionComplete && assetsComplete;
     const aiOsUnlocked = tmaComplete || aiOsEverVisited;
 
+    // Day 80 Wave 2.20 (Sasha 2026-05-22): BUILD unlock signal.
+    // (a) ACTIVATION arm — paid/gifted tier OR coupon_activated flag.
+    //     `tier !== "tasting"` catches Stripe success returns + admin
+    //     gifts (builder / locked_in / gifted_* / founders_50 / ignition).
+    //     The sessionStorage flag is set by the $37 Stripe success path
+    //     and the coupon-redeem path on the activation page.
+    // (b) TRIAD arm — tmaComplete already covers Top Talent + Mission + Assets.
+    // While entitlementLoading is true the tier arm is treated as unknown,
+    // so unauthed/loading users only unlock via tmaComplete (which is also
+    // resolved from the profile fetch — same loading window).
+    const couponActivated =
+        typeof window !== "undefined" &&
+        window.sessionStorage.getItem("coupon_activated") === "true";
+    const activationDone =
+        !entitlementLoading && (tier !== "tasting" || couponActivated);
+    const buildUnlocked = activationDone || tmaComplete;
+
     const unlockStatus: Record<string, boolean> = profileLoaded
         ? {
             "journey": true,                                    // Always open — the front door
@@ -853,16 +884,20 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
             // hiddenSpaces → invisible in rail. When flipped to
             // true, restores the previous "After Step 1" behavior.
             "learn": LEARN_VISIBLE && zogComplete,              // After Step 1 — growth material (currently flag-gated off)
-            // BUILD: Funnel v2 (Day 77, Sasha 2026-05-20) — always
-            // unlocked. The BUILD space now hosts Path / Dashboard /
-            // Playbook / Ignite (moved out of JOURNEY) plus Equilibrium
-            // + the Automated Venture Builder. Per spec §4.3 + DoD: any
-            // authenticated user must be able to reach BUILD's contents
-            // via the sidebar regardless of T-M-A completion. The /ubb
-            // route itself retains its MeGate, so the AVB still needs
-            // an activated reveal to enter — this gate only controlled
-            // the chip's lock indicator, not the underlying gates.
-            "build": true,
+            // BUILD: Day 80 Wave 2.20 (Sasha 2026-05-22) — re-gated.
+            // The Day 77 "always-true" rule was too permissive: it lit
+            // up the BUILD chip for tasting-tier users the moment they
+            // visited /game/collaborate/matches, before they'd ever
+            // earned the right to build a business off their top talent.
+            // New rule: BUILD unlocks on EITHER
+            //   (a) Activate Top Talent done — `activationDone` below
+            //       (paid/gifted tier OR `coupon_activated` flag), OR
+            //   (b) T+M+A triad complete — `tmaComplete` already derived
+            //       just above from zogComplete + missionComplete + assetsComplete.
+            // During the entitlement fetch we treat tier as unknown and
+            // fall back to tmaComplete-only — avoids a brief unlocked
+            // flash on tasting users while the fetch resolves.
+            "build": buildUnlocked,
             "meet": MEET_VISIBLE && zogComplete,                // After Step 1 — community events (currently flag-gated off)
             // Day 63 night (Sasha 2026-05-07): COLLABORATE gate is now
             // `collaborateUnlocked` — flipped to true the moment the
@@ -884,7 +919,7 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
         "next-move": "Unlocks after Step 1",
         "grow": "Unlocks after your Find Your Top Talent Reveal.",
         "learn": "Unlocks after Step 1",
-        "build": "Unlocks after you find your top talent.",
+        "build": "Unlocks after you activate your top talent or complete your collaboration profile.",
         "meet": "Unlocks after Step 1",
         "collaborate": "Unlocks after you map your first asset.",
         "buysell": "Unlocks after Step 2",
