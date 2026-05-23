@@ -167,6 +167,16 @@ const MuxVideoBackground = () => {
                 style={{
                     transform: 'scale(1.10)',
                     transformOrigin: 'top left',
+                    /* Day 80 (Sasha 2026-05-23): match-path video was
+                       reading as "too bright, too impositive" against
+                       the editorial text register. Brightness + saturation
+                       dampen the video AT THE SOURCE before the cream
+                       overlay layers on top, so the video stays present
+                       but stops dominating. Build-path video is left
+                       alone — it's been calibrated for months. */
+                    filter: isMatchVideo
+                        ? "brightness(0.72) saturate(0.78)"
+                        : undefined,
                 }}
                 aria-hidden="true"
                 onError={() => setVideoFailed(true)}
@@ -176,16 +186,19 @@ const MuxVideoBackground = () => {
                     aria-hidden="true"
                     className="absolute inset-0 pointer-events-none"
                     style={{
-                        /* Day 80 Wave 2.14 (Sasha 2026-05-22): bumped from
-                           10-18% → 28-36% cream tint. The 18% max wasn't
-                           enough to tame the match video's vivid
-                           bokeh+gold particles; text-shadow halos couldn't
-                           bridge the gap. Stronger top/bottom + slightly
-                           lighter through the middle so the gorgeous
-                           imagery still breathes but stops competing
-                           with foreground text. */
+                        /* Day 80 Wave 2.14 (Sasha 2026-05-22): 28-36%.
+                           Day 80 (Sasha 2026-05-23): bumped again to
+                           50-60% after Sasha called the auth page
+                           "TEXT IS NOT LEGIBLE ENOUGH" — even with the
+                           video filter above doing its share of the
+                           work, the overlay needs more body to bring
+                           text contrast into Strong-cocktail range
+                           per ui_playbook Part VIII. Stronger at
+                           top/bottom where eyebrows and CTAs live,
+                           slightly lighter through the middle so the
+                           imagery still breathes behind hero copy. */
                         background:
-                            "linear-gradient(180deg, rgba(245, 241, 232, 0.36) 0%, rgba(245, 241, 232, 0.28) 50%, rgba(245, 241, 232, 0.36) 100%)",
+                            "linear-gradient(180deg, rgba(245, 241, 232, 0.62) 0%, rgba(245, 241, 232, 0.50) 50%, rgba(245, 241, 232, 0.62) 100%)",
                     }}
                 />
             )}
