@@ -831,9 +831,16 @@ const ZoneOfGeniusEntry = () => {
                                 meets yours). The "How do you want to reveal it?"
                                 question now sits directly above the CTAs as the
                                 interaction prompt, not as a page headline. */}
+                            {/* Day 80 Wave 2.12 (Sasha 2026-05-22): copy revision.
+                                Replaced single "signal" paragraph with a
+                                three-stanza preamble that frames the act as
+                                profile-building (not assessment), names the
+                                accelerator (AI), and orients to the first
+                                primitive. Middle line italic + slightly
+                                muted to differentiate the supporting beat. */}
                             {isMatchPath && (
                                 <div
-                                    className="max-w-[560px] mx-auto space-y-3 mb-6"
+                                    className="max-w-[560px] mx-auto space-y-2 mb-6"
                                     style={{
                                         fontFamily: "'Source Serif 4', serif",
                                     }}
@@ -845,7 +852,25 @@ const ZoneOfGeniusEntry = () => {
                                             textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.7))",
                                         }}
                                     >
-                                        Your top talent is the signal. Once you name it, we introduce you to entrepreneurs, advisors, and operators whose work meets yours.
+                                        Let's create your profile for matching.
+                                    </p>
+                                    <p
+                                        className="text-sm sm:text-base italic leading-relaxed"
+                                        style={{
+                                            color: "var(--skin-text-muted, rgba(26,30,58,0.72))",
+                                            textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
+                                        }}
+                                    >
+                                        Good news: AI makes it real quick.
+                                    </p>
+                                    <p
+                                        className="text-sm sm:text-base leading-relaxed"
+                                        style={{
+                                            color: "var(--skin-text-primary, #0a1628)",
+                                            textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.7))",
+                                        }}
+                                    >
+                                        We start with your top talent.
                                     </p>
                                 </div>
                             )}
