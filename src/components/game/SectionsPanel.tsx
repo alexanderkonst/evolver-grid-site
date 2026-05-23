@@ -658,19 +658,21 @@ const buildJourneySections = (
             // The position in the sequence already signals its role.
             //
             // Day 79 (Sasha 2026-05-22): QoL marked optional + unlocked.
-            // QoL never gated anything downstream (terminus #5 depends on
-            // A or T, not QoL; AI OS depends on T+M+A; no other space
-            // unlock references QoL). Locking it behind A was therefore
-            // pure sequencing pressure on a step Sasha treats as a
-            // sidetrack. Two changes:
-            //   1. Label gains "(optional)" suffix so the user reads
-            //      it as skippable, equal visual weight with other items.
-            //   2. `locked` removed so the row is always accessible.
-            // Visual weight stays equal with the numbered siblings (still
-            // shows "4." prefix, same typography, no variant).
+            //
+            // Day 80 Wave 2.13 (Sasha 2026-05-22): unlock REVERTED. QoL
+            // stays labeled "(optional)" — that signal is right — but
+            // the sequence-gate comes back on assets-done. Reason: even
+            // though QoL doesn't technically gate anything downstream,
+            // showing it unlocked while #3 is still locked confuses the
+            // 1→2→3→4→5 reading order. The fix is sequencing pressure,
+            // not blocking access — users can still navigate directly
+            // to /quality-of-life-map/assessment if they want; the lock
+            // is advisory (visual + popover hint), not access-gating.
             id: "journey-qol-assess",
             label: "4. Assess your quality of life (optional)",
             path: "/quality-of-life-map/assessment",
+            locked: !assetsDone,
+            lockedHint: "Unlocks after you map your assets.",
             completed: !!journeyProgress["journey-qol-assess"],
         },
         terminusItem,
