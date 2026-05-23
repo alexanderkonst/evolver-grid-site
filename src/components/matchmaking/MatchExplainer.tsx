@@ -1,4 +1,4 @@
-import { memo, useEffect, useState } from "react";
+import { memo, useCallback, useEffect, useState } from "react";
 import { ChevronDown, ChevronUp, Sparkles } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 // Day 80 Wave 2.19 (Sasha 2026-05-22): button + container restyled
@@ -28,19 +28,23 @@ import { CTA_SMALL_CAPS_STYLE, igniteLogo } from "@/lib/landingDesign";
  *   3. The system isn't going to surprise either of them
  */
 
-const MatchExplainerInner = () => {
+/**
+ * Day 79 (Sasha 2026-05-22): explainer state lifted into a shared hook
+ * so the page can render the explainer in a "slot" pattern:
+ *   - First-visit (seenAt === null) → top of page, auto-expanded
+ *   - Already dismissed (seenAt is a string) → bottom of page, collapsed
+ * Both slots subscribe to the same state, so clicking "Got it" in the
+ * top instance triggers the bottom instance to mount on the next render.
+ */
+export const useMatchExplainerState = () => {
   const [seenAt, setSeenAt] = useState<string | null | undefined>(undefined);
-  // undefined = loading, null = first-visit (auto-expand), string = seen
-  const [expanded, setExpanded] = useState(false);
   const [dismissing, setDismissing] = useState(false);
 
-  // Load match_explainer_seen_at for the current user
   useEffect(() => {
     const load = async () => {
       const { data: { user } } = await supabase.auth.getUser();
       if (!user) {
         setSeenAt(null); // anon/unauth gets the first-visit treatment
-        setExpanded(true);
         return;
       }
       const { data } = await supabase
@@ -51,14 +55,12 @@ const MatchExplainerInner = () => {
       const seen = (data as { match_explainer_seen_at?: string | null } | null)
         ?.match_explainer_seen_at ?? null;
       setSeenAt(seen);
-      setExpanded(seen === null);
     };
     load();
   }, []);
 
-  const handleDismiss = async () => {
+  const dismiss = useCallback(async () => {
     setDismissing(true);
-    setExpanded(false);
     try {
       const { data: { user } } = await supabase.auth.getUser();
       if (user) {
@@ -68,13 +70,35 @@ const MatchExplainerInner = () => {
           .update({ match_explainer_seen_at: now } as never)
           .eq("user_id", user.id);
         setSeenAt(now);
+      } else {
+        // Anonymous fallback — mark as dismissed locally so the
+        // accordion behaves the same way for unauth users (the call to
+        // game_profiles requires auth so we can't persist for them).
+        setSeenAt(new Date().toISOString());
       }
     } catch (err) {
       console.warn("[MatchExplainer] failed to persist dismissal:", err);
     } finally {
       setDismissing(false);
     }
-  };
+  }, []);
+
+  return { seenAt, dismiss, dismissing };
+};
+
+interface MatchExplainerProps {
+  seenAt: string | null | undefined;
+  onDismiss: () => Promise<void>;
+  dismissing?: boolean;
+}
+
+const MatchExplainerInner = ({
+  seenAt,
+  onDismiss,
+  dismissing = false,
+}: MatchExplainerProps) => {
+  // First-visit instances auto-expand; dismissed instances stay collapsed.
+  const [expanded, setExpanded] = useState(() => seenAt === null);
 
   const toggle = () => setExpanded((v) => !v);
 
