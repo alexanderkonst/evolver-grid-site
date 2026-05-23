@@ -167,20 +167,21 @@ const MuxVideoBackground = () => {
                 style={{
                     transform: 'scale(1.10)',
                     transformOrigin: 'top left',
-                    /* Day 80 (Sasha 2026-05-23): match-path video was
-                       reading as "too bright, too impositive" against
-                       the editorial text register. Brightness +
-                       saturation dampen the video AT THE SOURCE before
-                       the cream overlay layers on top.
-                       Day 80 second pass (Sasha 2026-05-23, same day):
-                       cranked harder after Sasha called out the first
-                       round didn't go far enough. brightness 0.72 →
-                       0.48, saturate 0.78 → 0.55. The video is still
-                       there as ambient texture but no longer competes
-                       with the foreground text register at all.
-                       Build-path video left alone. */
+                    /* Day 80 (Sasha 2026-05-23): three passes to find the
+                       right balance for the match Mux video.
+                         Round 1: brightness 0.72 / saturate 0.78 +
+                           50-62% cream → too bright, text not legible.
+                         Round 2: brightness 0.48 / saturate 0.55 +
+                           75-85% cream → too dim, everything gray,
+                           journey items barely visible.
+                         Round 3 (this): brightness 0.62 / saturate
+                           0.65 + 65-72% cream → middle ground. Video
+                           reads as present ambient texture, foreground
+                           text has Strong-cocktail contrast, pane 1
+                           and 2 items keep their color. Build-path
+                           video still untouched. */
                     filter: isMatchVideo
-                        ? "brightness(0.48) saturate(0.55)"
+                        ? "brightness(0.62) saturate(0.65)"
                         : undefined,
                 }}
                 aria-hidden="true"
@@ -192,18 +193,18 @@ const MuxVideoBackground = () => {
                     className="absolute inset-0 pointer-events-none"
                     style={{
                         /* Day 80 Wave 2.14 (Sasha 2026-05-22): 28-36%.
-                           Day 80 (Sasha 2026-05-23) first pass: 50-62%.
-                           Day 80 (Sasha 2026-05-23) second pass:
-                           75-85%. Sasha shouted "STILL TEXT LEGIBILITY
-                           AND VIDEO IMPOSITION PROBLEM" after the
-                           50-62% range. The video is now treated as
-                           soft ambient texture rather than a foreground
-                           layer. Combined with the brightness(0.48)
-                           saturate(0.55) filter on the video itself,
-                           the foreground card + text get a clean
-                           cream-paper backdrop. */
+                           Day 80 (Sasha 2026-05-23) round 1: 50-62%.
+                           Day 80 (Sasha 2026-05-23) round 2: 75-85%
+                             — too dim, video gone, journey items
+                             washed out.
+                           Day 80 (Sasha 2026-05-23) round 3: 65-72%
+                             middle ground that pairs with brightness
+                             0.62 / saturate 0.65 on the video filter.
+                           Combined dim is enough for foreground text
+                           contrast without erasing the video and
+                           desaturating pane 2. */
                         background:
-                            "linear-gradient(180deg, rgba(245, 241, 232, 0.85) 0%, rgba(245, 241, 232, 0.75) 50%, rgba(245, 241, 232, 0.85) 100%)",
+                            "linear-gradient(180deg, rgba(245, 241, 232, 0.72) 0%, rgba(245, 241, 232, 0.62) 50%, rgba(245, 241, 232, 0.72) 100%)",
                     }}
                 />
             )}
