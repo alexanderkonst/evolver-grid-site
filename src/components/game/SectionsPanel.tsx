@@ -512,6 +512,7 @@ const buildJourneySections = (
     _deepProfileActivated: boolean,
     journeyProgress: JourneyProgress = {},
     entryPath: EntryPath = null,
+    activationDone: boolean = false,
 ): Section[] => {
     // Funnel v2 (Day 77, Sasha 2026-05-20) + Day 80 path-awareness +
     // Day 79 QoL optionality (Sasha 2026-05-22):
@@ -549,6 +550,17 @@ const buildJourneySections = (
     const topTalentDone = !!journeyProgress["journey-start-here"];
     const missionDone = !!journeyProgress["journey-mission-discovery"];
     const assetsDone = !!journeyProgress["journey-asset-mapper"];
+    const tmaComplete = topTalentDone && missionDone && assetsDone;
+
+    // Day 80 Wave 2.20 (Sasha 2026-05-22): match-path #6 unlock signal.
+    // Same gate as the BUILD space chip (GameShellV2). Either:
+    //   (a) Activation done — paid/gifted tier or coupon flag, or
+    //   (b) Triad complete — T+M+A.
+    // Identical to GameShellV2's `buildUnlocked` derivation. Keeping
+    // both in sync by re-deriving here from the threaded activationDone
+    // arg + locally-derived tmaComplete (which uses the same
+    // journeyProgress signals GameShellV2's tmaComplete consumes).
+    const buildBusinessUnlocked = activationDone || tmaComplete;
 
     const isMatch = entryPath === "match";
 
@@ -581,6 +593,27 @@ const buildJourneySections = (
               lockedHint: "Unlocks after you find your top talent.",
               completed: !!journeyProgress["journey-build-business"],
           };
+
+    // Day 80 Wave 2.20 (Sasha 2026-05-22): match-path #6 = "Build a
+    // business off your top talent." On the match path the user can
+    // optionally graduate from finding-collaborators to building-a-
+    // business — same destination as the build-path #5 (/path), but
+    // appears AFTER "Find collaborators" rather than instead of it.
+    // Locked until either Activate Top Talent is done OR the T+M+A
+    // triad is complete (same gate as the BUILD space chip).
+    // On the build path this is already item #5 (the terminus), so we
+    // don't double-emit.
+    const buildBusinessItem: Section | null = isMatch
+        ? {
+              id: "journey-build-business",
+              label: "6. Build a business off your top talent",
+              path: "/path",
+              locked: !buildBusinessUnlocked,
+              lockedHint:
+                  "Unlocks after you activate your top talent or complete your collaboration profile.",
+              completed: !!journeyProgress["journey-build-business"],
+          }
+        : null;
 
     return [
         {
@@ -677,6 +710,10 @@ const buildJourneySections = (
             completed: !!journeyProgress["journey-qol-assess"],
         },
         terminusItem,
+        // Day 80 Wave 2.20: match-path-only #6 (null on build path so
+        // we don't double up — build path already has "Build a business"
+        // as its #5 terminus).
+        ...(buildBusinessItem ? [buildBusinessItem] : []),
     ];
 };
 
@@ -702,6 +739,24 @@ const SectionsPanel = ({
     // Same hook is consumed by GameShellV2 to gate the BUILD space
     // chip — single source of truth across the funnel boundary.
     const { activated: deepProfileActivated } = useDeepProfileActivated();
+
+    // Day 80 Wave 2.20 (Sasha 2026-05-22): activation signal for the
+    // match-path JOURNEY #6 ("Build a business off your top talent")
+    // lock state. Same logic as GameShellV2's BUILD-space gate so the
+    // chip + the journey row light up in lockstep.
+    //   (a) Paid/gifted tier (tier !== "tasting") — Stripe success
+    //       path + admin grants, OR
+    //   (b) coupon_activated sessionStorage flag — set by the $37
+    //       coupon-redeem path on /activate-top-talent.
+    // The triad arm (T+M+A) is derived directly inside
+    // buildJourneySections from journeyProgress, so only the activation
+    // arm needs to be lifted up here.
+    const { tier, isLoading: entitlementLoading } = useEntitlement();
+    const couponActivated =
+        typeof window !== "undefined" &&
+        window.sessionStorage.getItem("coupon_activated") === "true";
+    const activationDone =
+        !entitlementLoading && (tier !== "tasting" || couponActivated);
 
     // Day 80 (Sasha 2026-05-22): entry-path context for the path-aware
     // JOURNEY terminus (#5). match path → "Find collaborators"; build
@@ -825,7 +880,7 @@ const SectionsPanel = ({
         if (activeSpaceId === "journey") {
             return {
                 ...baseData,
-                sections: buildJourneySections(location.pathname, deepProfileActivated, journeyProgress, entryPath),
+                sections: buildJourneySections(location.pathname, deepProfileActivated, journeyProgress, entryPath, activationDone),
             };
         }
 
@@ -854,8 +909,19 @@ const SectionsPanel = ({
         // legacy build items (canvas/product-builder/my-business/refine)
         // which still have live routes under /game/build/*. Sasha,
         // Day 52 (2026-04-26).
+        //
+        // Day 80 Wave 2.20 (Sasha 2026-05-22): match-path exception.
+        // On the match path the BUILD pane is the lighter "methodology +
+        // graduation" view — Path / Playbook / Dashboard / Ignite +
+        // AVB top-level + Equilibrium. We do NOT override into the
+        // 6-phase canvas-builder nav even when the user has navigated
+        // into /ubb*, because the match-path user's BUILD destination
+        // is about discovering the methodology, not running the full
+        // canvas yet. Falls through to the static SPACE_SECTIONS.build
+        // below (Path/Playbook/Dashboard etc.) for match-path users.
         if (
             activeSpaceId === "build" &&
+            entryPath !== "match" &&
             (location.pathname === "/ubb" || location.pathname.startsWith("/ubb/"))
         ) {
             return {
