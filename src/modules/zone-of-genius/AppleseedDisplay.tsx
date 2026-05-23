@@ -835,9 +835,14 @@ const AppleseedDisplay = ({
                       CTA 4: Or just email me my result (button-to-input,
                              same pattern as assessment path).
                     Day 80 Wave 2.4: CTA 3 hidden on match path (the
-                    playbook is build-path territory). CTA 4 still shows
-                    on both paths — it's a utility (email me my result /
-                    "Saved ✓"), not a sales offer. */}
+                    playbook is build-path territory).
+                    Day 79 (Sasha 2026-05-22, late): CTA 4 ALSO hidden
+                    on match path. "Just email me / Save / Saved ✓"
+                    doesn't make sense in the match flow; the user is
+                    moving to Mission next, not collecting their result
+                    to come back later. Keeps CTA 4 fully present on
+                    build path where the "come back to it" affordance
+                    still earns its place. */}
 
                 {/* CTA 3 — playbook card */}
                 {!isMatchPath && (
@@ -870,6 +875,7 @@ const AppleseedDisplay = ({
                 )}
 
                 {/* CTA 4 — Or just email me my result (button-to-input pattern) */}
+                {!isMatchPath && (
                 <div className="max-w-md mx-auto pt-4 pb-2">
                     {emailUnlocked || isSaved ? (
                         // Day 62 (Sasha 2026-05-05): Strong legibility cocktail
@@ -907,6 +913,7 @@ const AppleseedDisplay = ({
                         />
                     )}
                 </div>
+                )}
             </div>
 
             {/* FLOATING ACTIVATE PILL — Day 58 (Sasha 2026-05-02).
