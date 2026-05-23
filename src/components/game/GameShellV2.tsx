@@ -27,6 +27,7 @@ import SpacesRail, { SPACES } from "./SpacesRail";
 import SectionsPanel, { SPACE_SECTIONS } from "./SectionsPanel";
 import { useDeepProfileActivated } from "@/hooks/useDeepProfileActivated";
 import { useEntitlement } from "@/hooks/useEntitlement";
+import { useJourneyProgress } from "@/hooks/useJourneyProgress";
 import PlayerStatsBadge from "./PlayerStatsBadge";
 import KeyboardShortcuts from "@/components/KeyboardShortcuts";
 import SiteLogo from "@/components/SiteLogo";
@@ -428,6 +429,17 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
     // tier + coupon directly here so the BUILD gate doesn't inherit
     // the looser hasReveal arm.
     const { tier, isLoading: entitlementLoading } = useEntitlement();
+    // Day 80 Wave 2.21 (Sasha 2026-05-23): journey progress shared with
+    // SectionsPanel as the lenient completion signal — pointer columns
+    // (mission_discovered_at, resources_mapped_at) on game_profiles are
+    // NOT reliably set by every save flow (Day 65 wave 5 finding —
+    // see useJourneyProgress for the full list of probes). Wave 2.20's
+    // BUILD gate used the strict pointer-only signal, so users who had
+    // genuinely completed T+M+A — and saw their JOURNEY items struck
+    // through in the lenient pane — still hit a locked BUILD chip.
+    // Reading the same hook here re-uses the probe fallbacks and lets
+    // the BUILD chip + the JOURNEY strikethrough light up in lockstep.
+    const { progress: journeyProgress, isLoading: journeyProgressLoading } = useJourneyProgress();
 
     const getSpaceFromPath = (pathname: string): string | undefined => {
         // Day 52 (Sasha 2026-04-26): /ubb (Unique Business Builder)
@@ -877,9 +889,17 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
     // Assets = resources_mapped_at column written by Asset Mapping save.
     // All three must be non-null for the chip to surface on its own; the
     // ever-visited flag bypasses the gate for returning visitors.
-    const missionComplete = !!(profile as { mission_discovered_at?: string | null } | null)?.mission_discovered_at;
-    const assetsComplete = !!(profile as { resources_mapped_at?: string | null } | null)?.resources_mapped_at;
-    const tmaComplete = zogComplete && missionComplete && assetsComplete;
+    const missionCompleteStrict = !!(profile as { mission_discovered_at?: string | null } | null)?.mission_discovered_at;
+    const assetsCompleteStrict = !!(profile as { resources_mapped_at?: string | null } | null)?.resources_mapped_at;
+    // Day 80 Wave 2.21 (Sasha 2026-05-23): lenient OR. The pointer
+    // columns are the fast path; the journeyProgress flags are the
+    // probe-fallback (zog_snapshots, user_assets, qol_snapshots rows
+    // checked directly when the pointer is null). Either source counts
+    // for completion — matches SectionsPanel's strikethrough exactly.
+    const topTalentComplete = zogComplete || !!journeyProgress["journey-start-here"];
+    const missionComplete = missionCompleteStrict || !!journeyProgress["journey-mission-discovery"];
+    const assetsComplete = assetsCompleteStrict || !!journeyProgress["journey-asset-mapper"];
+    const tmaComplete = topTalentComplete && missionComplete && assetsComplete;
     const aiOsUnlocked = tmaComplete || aiOsEverVisited;
 
     // Day 80 Wave 2.20 (Sasha 2026-05-22): BUILD unlock signal.
@@ -897,7 +917,19 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
         window.sessionStorage.getItem("coupon_activated") === "true";
     const activationDone =
         !entitlementLoading && (tier !== "tasting" || couponActivated);
-    const buildUnlocked = activationDone || tmaComplete;
+    // Day 80 Wave 2.21 (Sasha 2026-05-23): no-flicker BUILD gate. Until
+    // BOTH the entitlement read AND the journeyProgress probes resolve,
+    // we don't have enough information to lock the chip — and a
+    // momentary "open → locked" flash on a returning user who has
+    // genuinely earned BUILD reads as a bug (Sasha: "At first it's open
+    // and then it locks. It closes, and there is no message"). Match
+    // the existing optimistic-loading pattern noted in the comment block
+    // around `profileLoaded`: BUILD stays unlocked during the fetch
+    // window; the real gate only lands once we can answer it correctly.
+    const buildGateResolved = !entitlementLoading && !journeyProgressLoading;
+    const buildUnlocked = buildGateResolved
+        ? activationDone || tmaComplete
+        : true;
 
     const unlockStatus: Record<string, boolean> = profileLoaded
         ? {
