@@ -202,6 +202,23 @@ const MissionDiscoveryLanding = () => {
     const pasteSectionRef = useRef<HTMLDivElement>(null);
     const [pulsePasteCard, setPulsePasteCard] = useState(false);
 
+    // Day 79 (Sasha 2026-05-22): force the JOURNEY space active on mount.
+    // After the auth-bounce from RequireAuth, the shell was restoring
+    // whatever space was last active (often ME), so users landed on
+    // /mission-discovery with the ME pane in the foreground. The
+    // mission-discovery flow lives in JOURNEY (item #8) — that's where
+    // attention should be. Save handler already dispatches the same
+    // event on save; this mount-time dispatch makes the foregrounding
+    // happen from the moment the page loads.
+    useEffect(() => {
+        if (typeof window === "undefined") return;
+        window.dispatchEvent(
+            new CustomEvent("fytt:set-active-space", {
+                detail: { spaceId: "journey" },
+            }),
+        );
+    }, []);
+
     // On mount, check whether a mission_statement already exists on the
     // user's profile — if so, skip straight to the saved state (so a
     // returning user sees their saved mission, not the empty paste form).

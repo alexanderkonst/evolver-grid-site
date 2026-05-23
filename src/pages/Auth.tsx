@@ -49,9 +49,14 @@ const Auth = () => {
   // Top Talent five seconds ago. We read EntryPathContext's
   // sessionStorage key directly so the branch flips before the
   // context provider hydrates.
+  // Day 79: entry path is now persisted in localStorage (was
+  // sessionStorage). We check both — localStorage is canonical going
+  // forward; sessionStorage is the legacy key kept as a safety net for
+  // users mid-flow when this ships.
   const isMatchPathEntry =
     typeof window !== "undefined" &&
-    window.sessionStorage?.getItem("ftt_entry_path") === "match";
+    (window.localStorage?.getItem("ftt_entry_path") === "match" ||
+      window.sessionStorage?.getItem("ftt_entry_path") === "match");
   const isOnboardingFlow = mode === "signup" || claimMode || isMatchPathEntry; // tinted UI
   // Match-path users are net-new — default them to Sign Up, not Log In.
   const defaultTab =
@@ -389,12 +394,15 @@ const Auth = () => {
   // they're moving forward into the next step. The copy reflects
   // that: "save your data so you don't lose it" plus the forward
   // promise instead of the "come back when ready" promise.
-  // Read from sessionStorage instead of EntryPathContext directly
-  // so the copy switches even before the context hydrates. Key matches
+  // Read from storage directly (not EntryPathContext) so the copy
+  // switches even before the context hydrates. Day 79: localStorage is
+  // canonical (survives magic-link cross-tab hop); sessionStorage is
+  // the legacy fallback for users mid-flow at ship time. Key matches
   // EntryPathContext.STORAGE_KEY ("ftt_entry_path").
   const claimIsMatchPath =
     typeof window !== "undefined" &&
-    window.sessionStorage?.getItem("ftt_entry_path") === "match";
+    (window.localStorage?.getItem("ftt_entry_path") === "match" ||
+      window.sessionStorage?.getItem("ftt_entry_path") === "match");
 
   if (claimMode) {
     return (
