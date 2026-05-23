@@ -512,22 +512,31 @@ const buildJourneySections = (
     journeyProgress: JourneyProgress = {},
     entryPath: EntryPath = null,
 ): Section[] => {
-    // Funnel v2 (Day 77, Sasha 2026-05-20) + Day 80 path-awareness:
-    // JOURNEY restructured as the matching-onboarding sequence
-    // (T → optional Activation → M → A → Q → Build OR Find Collaborators).
+    // Funnel v2 (Day 77, Sasha 2026-05-20) + Day 80 path-awareness +
+    // Day 79 QoL optionality (Sasha 2026-05-22):
+    // JOURNEY structured as the matching-onboarding sequence
+    // (T → optional Activation → M → A → optional QoL → Build OR Find Collaborators).
     //
-    //   1.  Start by finding your top talent  — entry, always unlocked
-    //   1.5 Activate your top talent ($37)    — OPTIONAL, paid digital
-    //                                           deepening; no lock
-    //   2.  Discover your mission             — locked until #1 completes
-    //   3.  Map your assets                   — locked until #2 completes
-    //   4.  Assess your quality of life       — locked until #3 completes
+    //   1.  Start by finding your top talent  : entry, always unlocked
+    //   1.5 Activate your top talent ($37)    : OPTIONAL paid deepening
+    //                                           (locked until T)
+    //   2.  Discover your mission             : locked until #1 completes
+    //   3.  Map your assets                   : locked until #2 completes
+    //   4.  Assess your quality of life       : OPTIONAL, no lock, no
+    //                                           downstream dependencies
     //   5.  PATH-AWARE TERMINUS:
     //        build path: "Build a business off your top talent" → /path
     //                    (lock: !topTalentDone)
     //        match path: "Find collaborators" → /game/collaborate/matches
-    //                    (lock: !assetsDone — engine needs T+M+A minimum
+    //                    (lock: !assetsDone; engine needs T+M+A minimum
     //                     so the first 10 heads-ups carry enough signal)
+    //
+    // QoL non-gate audit (Day 79): nothing downstream of QoL is gated by
+    // QoL completion. The terminus #5 depends on A or T. AI OS chip gate
+    // (GameShellV2 unlockStatus) depends on T+M+A. No other space unlock
+    // references the qol_complete onboarding stage as a hard gate. Adding
+    // QoL completion as a requirement anywhere in the future requires
+    // updating this comment block.
     //
     // Locks are advisory, not access-gating: any authenticated user can
     // navigate directly to /mission-discovery, /asset-mapping,
@@ -645,13 +654,23 @@ const buildJourneySections = (
         },
         {
             // Day 77 (Sasha 2026-05-20): "Improves match quality" badge
-            // removed — Sasha flagged it as redundant ornamentation.
+            // removed; Sasha flagged it as redundant ornamentation.
             // The position in the sequence already signals its role.
+            //
+            // Day 79 (Sasha 2026-05-22): QoL marked optional + unlocked.
+            // QoL never gated anything downstream (terminus #5 depends on
+            // A or T, not QoL; AI OS depends on T+M+A; no other space
+            // unlock references QoL). Locking it behind A was therefore
+            // pure sequencing pressure on a step Sasha treats as a
+            // sidetrack. Two changes:
+            //   1. Label gains "(optional)" suffix so the user reads
+            //      it as skippable, equal visual weight with other items.
+            //   2. `locked` removed so the row is always accessible.
+            // Visual weight stays equal with the numbered siblings (still
+            // shows "4." prefix, same typography, no variant).
             id: "journey-qol-assess",
-            label: "4. Assess your quality of life",
+            label: "4. Assess your quality of life (optional)",
             path: "/quality-of-life-map/assessment",
-            locked: !assetsDone,
-            lockedHint: "Unlocks after you map your assets.",
             completed: !!journeyProgress["journey-qol-assess"],
         },
         terminusItem,
