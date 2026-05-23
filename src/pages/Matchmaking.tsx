@@ -115,6 +115,12 @@ interface AssetMatchResult {
   avatarUrl?: string | null;
   resonanceScore: number;
   matchType: string;
+  /** Day 80 (Sasha 2026-05-23): three distinct collaboration proposals,
+   *  each from a different taxonomy root where possible. The card
+   *  renders them stacked one after another. */
+  proposals?: Array<{ type: string; proposal: string; evolutionLine?: string }>;
+  /** Legacy single-proposal field kept for backward compat with the
+   *  pre-triplet pipeline. The card prefers `proposals` when present. */
   collaborationProposal: string;
   suggestedAction: string;
   alignment: string;
@@ -158,6 +164,82 @@ interface CurrentProfile {
 /** Strip ✦ symbols from archetype strings (still used by MatchCard's
  *  archetype label). */
 const stripSymbols = (s: string) => s.replace(/[✦★☆✧⬥◇◆⟐]/g, "").trim();
+
+/**
+ * Day 80 (Sasha 2026-05-23): "See more matches" → "Fresh matches Monday"
+ * panel. Implements the portion-logic principle from
+ * matchmaking_strategy.md §8.7-§8.8: matches are a rationed weekly
+ * surface, not infinite scroll. Click reveals the message inline
+ * instead of fetching more from the same pool.
+ */
+const SeeMoreMatchesPanel = () => {
+  const [revealed, setRevealed] = useState(false);
+
+  if (revealed) {
+    return (
+      <div
+        className="mt-6 rounded-2xl px-6 py-5 text-center"
+        style={{
+          background: "rgba(245, 241, 232, 0.75)",
+          border: "0.5px solid rgba(212, 175, 55, 0.40)",
+          boxShadow: "0 6px 20px -10px rgba(10, 22, 40, 0.18)",
+        }}
+      >
+        <p
+          style={{
+            fontFamily: "'Cormorant Garamond', serif",
+            fontWeight: 700,
+            fontSize: "13px",
+            letterSpacing: "0.28em",
+            textTransform: "uppercase",
+            color: "var(--skin-goldDeep, #5d4307)",
+            marginBottom: "8px",
+          }}
+        >
+          Fresh matches Monday
+        </p>
+        <p
+          className="italic mx-auto max-w-md"
+          style={{
+            fontFamily: "'Cormorant Garamond', serif",
+            fontWeight: 700,
+            fontSize: "clamp(1.05rem, 2vw, 1.25rem)",
+            lineHeight: 1.5,
+            color: "var(--skin-text-primary, #0a1628)",
+            textShadow:
+              "var(--skin-text-halo-deep, 0 0 22px rgba(255,255,255,0.7), 0 1px 2px rgba(255,255,255,0.9), 0 0 1px rgba(11,42,90,0.45), 0 1px 0 rgba(11,42,90,0.25))",
+          }}
+        >
+          Your next three matches are warming up. We'll surface them Monday morning, sent straight to your inbox.
+        </p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="mt-6 flex justify-center">
+      <button
+        type="button"
+        onClick={() => setRevealed(true)}
+        className="inline-flex items-center gap-2 rounded-full px-5 py-3 transition-all duration-200 hover:translate-y-[-1px] active:translate-y-0"
+        style={{
+          fontFamily: "'Cormorant Garamond', serif",
+          fontWeight: 600,
+          fontSize: "13px",
+          letterSpacing: "0.14em",
+          textTransform: "uppercase",
+          color: "var(--skin-text-primary, #0b2a5a)",
+          background: "rgba(255, 252, 245, 0.92)",
+          border: "1px solid rgba(212, 175, 55, 0.55)",
+          boxShadow:
+            "0 6px 20px -10px rgba(10, 22, 40, 0.20), 0 0 0 1px rgba(212, 175, 55, 0.18)",
+        }}
+      >
+        See more matches →
+      </button>
+    </div>
+  );
+};
 
 const Matchmaking = () => {
   // Day 79 (Sasha 2026-05-22): explainer state lifted out of the
@@ -805,8 +887,17 @@ const Matchmaking = () => {
                     tagline: currentAiMatch.tagline,
                     avatarUrl: currentAiMatch.avatarUrl || null,
                   }}
-                  matchLabel="Collaboration Proposal"
-                  matchReason={currentAiMatch.collaborationProposal}
+                  // Day 80 (Sasha 2026-05-23): prefer the new triplet
+                  // shape when present; fall back to the legacy single
+                  // proposal for any in-flight match objects that
+                  // pre-date the edge fn redeploy.
+                  proposals={
+                    currentAiMatch.proposals && currentAiMatch.proposals.length > 0
+                      ? currentAiMatch.proposals
+                      : currentAiMatch.collaborationProposal
+                        ? [{ type: "Collaboration", proposal: currentAiMatch.collaborationProposal }]
+                        : undefined
+                  }
                   matchTypeBadge={MATCH_TYPE_LABELS[currentAiMatch.matchType] || currentAiMatch.matchType}
                   secondaryLabel="Why this works"
                   secondaryReason={`${currentAiMatch.alignment} ${currentAiMatch.complementarity}`}
@@ -849,6 +940,17 @@ const Matchmaking = () => {
                       : "Complete your Top Talent reveal and map your assets to unlock AI-powered matching."}
                   </p>
                 </div>
+              )}
+
+              {/* Day 80 (Sasha 2026-05-23): "See more matches" button
+                  with friendly Monday-refresh message. Implements
+                  matchmaking_strategy.md §8.7-§8.8 — matches are a
+                  rationed weekly thing, not an infinite scroll. The
+                  click reveals the message inline rather than fetching
+                  more from the same pool (which would just re-show
+                  the same people). */}
+              {!assetMatchesLoading && visibleAiMatches.length > 0 && (
+                <SeeMoreMatchesPanel />
               )}
             </section>
 

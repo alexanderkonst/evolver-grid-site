@@ -169,6 +169,7 @@ const navButton: React.CSSProperties = {
 
 const MatchCard = ({
   user,
+  proposals,
   matchReason,
   matchLabel,
   secondaryReason,
@@ -538,80 +539,206 @@ const MatchCard = ({
           )}
         </div>
 
-        {/* Collaboration Proposal blocks */}
+        {/* Day 80 (Sasha 2026-05-23): three collaboration proposals
+            stacked one after another. Each carries its taxonomy root
+            (Co-Build, Co-Learn, etc.) as a small label, then the
+            bilateral proposal prose. Legacy single-proposal callers
+            (the old matchReason / matchLabel API) still render
+            correctly via the fallback below. */}
         <div className="px-6 pb-5 space-y-4">
-          <div
-            className="pt-4"
-            style={{
-              borderTop: "0.5px solid var(--skin-rule-hairline, rgba(26, 30, 58, 0.10))",
-            }}
-          >
-            <p style={eyebrowGold} className="mb-2">
-              {matchLabel || "Why you match"}
-            </p>
-            <p
-              style={{
-                ...sourceSerifBody,
-                fontSize: "14.5px",
-                lineHeight: 1.6,
-                fontWeight: 600,
-              }}
-            >
-              {matchReason}
-            </p>
-          </div>
+          {proposals && proposals.length > 0 ? (
+            <>
+              {/* Section header above the proposals list */}
+              <div
+                className="pt-4"
+                style={{
+                  borderTop: "0.5px solid var(--skin-rule-hairline, rgba(26, 30, 58, 0.10))",
+                }}
+              >
+                <p style={eyebrowGold} className="mb-3">
+                  Ways you could collaborate
+                </p>
+                <div className="space-y-4">
+                  {proposals.map((p, i) => (
+                    <div
+                      key={i}
+                      className={i > 0 ? "pt-4" : ""}
+                      style={
+                        i > 0
+                          ? {
+                              borderTop:
+                                "0.5px dashed var(--skin-rule-hairline, rgba(26, 30, 58, 0.10))",
+                            }
+                          : undefined
+                      }
+                    >
+                      <p
+                        style={{
+                          fontFamily: "'DM Sans', system-ui, sans-serif",
+                          fontWeight: 600,
+                          fontSize: "10px",
+                          letterSpacing: "0.18em",
+                          textTransform: "uppercase",
+                          color: "var(--skin-goldDeep, #5d4307)",
+                          marginBottom: "6px",
+                        }}
+                      >
+                        {p.type}
+                      </p>
+                      <p
+                        style={{
+                          ...sourceSerifBody,
+                          fontSize: "14.5px",
+                          lineHeight: 1.6,
+                          fontWeight: 600,
+                        }}
+                      >
+                        {p.proposal}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
 
-          {secondaryReason && (
-            <div
-              className="pt-4"
-              style={{
-                borderTop: "0.5px solid var(--skin-rule-hairline, rgba(26, 30, 58, 0.10))",
-              }}
-            >
-              <p style={eyebrowGold} className="mb-2">
-                {secondaryLabel || "Also relevant"}
-              </p>
-              <p
-                style={{
-                  ...sourceSerifBody,
-                  fontSize: "14px",
-                  lineHeight: 1.6,
-                  fontWeight: 600,
-                }}
-              >
-                {secondaryReason}
-              </p>
-            </div>
-          )}
+              {/* Why this works (secondary signal, kept) */}
+              {secondaryReason && (
+                <div
+                  className="pt-4"
+                  style={{
+                    borderTop:
+                      "0.5px solid var(--skin-rule-hairline, rgba(26, 30, 58, 0.10))",
+                  }}
+                >
+                  <p style={eyebrowGold} className="mb-2">
+                    {secondaryLabel || "Why this works"}
+                  </p>
+                  <p
+                    style={{
+                      ...sourceSerifBody,
+                      fontSize: "14px",
+                      lineHeight: 1.6,
+                      fontWeight: 600,
+                    }}
+                  >
+                    {secondaryReason}
+                  </p>
+                </div>
+              )}
 
-          {tertiaryReason && (
-            <div
-              className="pt-4"
-              style={{
-                borderTop: "0.5px solid var(--skin-rule-hairline, rgba(26, 30, 58, 0.10))",
-              }}
-            >
-              <p
-                style={{
-                  ...eyebrowGold,
-                  color: "rgba(184, 92, 11, 0.95)",
-                }}
-                className="mb-2"
-              >
-                {tertiaryLabel || "Context"}
-              </p>
-              <p
-                style={{
-                  fontFamily: "'Source Serif 4', serif",
-                  fontWeight: 600,
-                  fontSize: "14px",
-                  lineHeight: 1.6,
-                  color: "var(--skin-text-primary, #0b2a5a)",
-                }}
-              >
-                {tertiaryReason}
-              </p>
-            </div>
+              {/* Friction line (kept) */}
+              {tertiaryReason && (
+                <div
+                  className="pt-4"
+                  style={{
+                    borderTop:
+                      "0.5px solid var(--skin-rule-hairline, rgba(26, 30, 58, 0.10))",
+                  }}
+                >
+                  <p
+                    style={{
+                      ...eyebrowGold,
+                      color: "rgba(184, 92, 11, 0.95)",
+                    }}
+                    className="mb-2"
+                  >
+                    {tertiaryLabel || "Watch out for"}
+                  </p>
+                  <p
+                    style={{
+                      fontFamily: "'Source Serif 4', serif",
+                      fontWeight: 600,
+                      fontSize: "14px",
+                      lineHeight: 1.6,
+                      color: "var(--skin-text-primary, #0b2a5a)",
+                    }}
+                  >
+                    {tertiaryReason}
+                  </p>
+                </div>
+              )}
+            </>
+          ) : (
+            <>
+              {/* Legacy single-proposal render path (no proposals[] passed). */}
+              {matchReason && (
+                <div
+                  className="pt-4"
+                  style={{
+                    borderTop:
+                      "0.5px solid var(--skin-rule-hairline, rgba(26, 30, 58, 0.10))",
+                  }}
+                >
+                  <p style={eyebrowGold} className="mb-2">
+                    {matchLabel || "Why you match"}
+                  </p>
+                  <p
+                    style={{
+                      ...sourceSerifBody,
+                      fontSize: "14.5px",
+                      lineHeight: 1.6,
+                      fontWeight: 600,
+                    }}
+                  >
+                    {matchReason}
+                  </p>
+                </div>
+              )}
+
+              {secondaryReason && (
+                <div
+                  className="pt-4"
+                  style={{
+                    borderTop:
+                      "0.5px solid var(--skin-rule-hairline, rgba(26, 30, 58, 0.10))",
+                  }}
+                >
+                  <p style={eyebrowGold} className="mb-2">
+                    {secondaryLabel || "Also relevant"}
+                  </p>
+                  <p
+                    style={{
+                      ...sourceSerifBody,
+                      fontSize: "14px",
+                      lineHeight: 1.6,
+                      fontWeight: 600,
+                    }}
+                  >
+                    {secondaryReason}
+                  </p>
+                </div>
+              )}
+
+              {tertiaryReason && (
+                <div
+                  className="pt-4"
+                  style={{
+                    borderTop:
+                      "0.5px solid var(--skin-rule-hairline, rgba(26, 30, 58, 0.10))",
+                  }}
+                >
+                  <p
+                    style={{
+                      ...eyebrowGold,
+                      color: "rgba(184, 92, 11, 0.95)",
+                    }}
+                    className="mb-2"
+                  >
+                    {tertiaryLabel || "Context"}
+                  </p>
+                  <p
+                    style={{
+                      fontFamily: "'Source Serif 4', serif",
+                      fontWeight: 600,
+                      fontSize: "14px",
+                      lineHeight: 1.6,
+                      color: "var(--skin-text-primary, #0b2a5a)",
+                    }}
+                  >
+                    {tertiaryReason}
+                  </p>
+                </div>
+              )}
+            </>
           )}
         </div>
       </div>
@@ -619,20 +746,36 @@ const MatchCard = ({
   );
 };
 
-const areEqual = (prev: MatchCardProps, next: MatchCardProps) => (
-  prev.user.id === next.user.id &&
-  prev.user.avatarUrl === next.user.avatarUrl &&
-  prev.user.archetype === next.user.archetype &&
-  prev.user.tagline === next.user.tagline &&
-  prev.matchReason === next.matchReason &&
-  prev.matchLabel === next.matchLabel &&
-  prev.secondaryReason === next.secondaryReason &&
-  prev.secondaryLabel === next.secondaryLabel &&
-  prev.tertiaryReason === next.tertiaryReason &&
-  prev.connectLabel === next.connectLabel &&
-  prev.matchTypeBadge === next.matchTypeBadge &&
-  prev.currentIndex === next.currentIndex &&
-  prev.interactionState === next.interactionState
-);
+const areEqual = (prev: MatchCardProps, next: MatchCardProps) => {
+  // Day 80 (Sasha 2026-05-23): proposals array comparison via length +
+  // first-proposal stable key. Same-user-id matches usually carry the
+  // same proposal set; if proposal contents differ between renders
+  // (rare — only after a re-fetch) the user.id check above already
+  // catches the new candidate.
+  const prevProposalsLen = prev.proposals?.length ?? 0;
+  const nextProposalsLen = next.proposals?.length ?? 0;
+  if (prevProposalsLen !== nextProposalsLen) return false;
+  if (
+    prevProposalsLen > 0 &&
+    prev.proposals![0]?.proposal !== next.proposals![0]?.proposal
+  ) {
+    return false;
+  }
+  return (
+    prev.user.id === next.user.id &&
+    prev.user.avatarUrl === next.user.avatarUrl &&
+    prev.user.archetype === next.user.archetype &&
+    prev.user.tagline === next.user.tagline &&
+    prev.matchReason === next.matchReason &&
+    prev.matchLabel === next.matchLabel &&
+    prev.secondaryReason === next.secondaryReason &&
+    prev.secondaryLabel === next.secondaryLabel &&
+    prev.tertiaryReason === next.tertiaryReason &&
+    prev.connectLabel === next.connectLabel &&
+    prev.matchTypeBadge === next.matchTypeBadge &&
+    prev.currentIndex === next.currentIndex &&
+    prev.interactionState === next.interactionState
+  );
+};
 
 export default memo(MatchCard, areEqual);
