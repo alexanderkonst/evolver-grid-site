@@ -110,7 +110,7 @@ const MatchHero = () => {
                 "var(--skin-text-halo-deep, 0 0 28px rgba(255,255,255,0.85), 0 1px 2px rgba(255,255,255,0.95), 0 0 1px rgba(11,42,90,0.65), 0 1px 0 rgba(11,42,90,0.45))",
             }}
           >
-            Met many great people, but still a solopreneur?
+            Ready to meet co-creators, not just grow your network?
           </p>
 
           {/* Hero (h1) — the answer to the setup above. Plain text,
