@@ -1,5 +1,5 @@
 import { memo, useCallback, useEffect, useState } from "react";
-import { ChevronDown, ChevronUp, Sparkles } from "lucide-react";
+import { ChevronDown, ChevronUp } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 // Day 80 Wave 2.19 (Sasha 2026-05-22): button + container restyled
 // to match the landing-CTA register per ui_playbook.md + glassmorphism
@@ -118,7 +118,11 @@ const MatchExplainerInner = ({
       aria-label="How introductions work"
       className="liquid-glass-strong mb-6 sm:mb-8 rounded-3xl overflow-hidden"
     >
-      {/* Header — clickable to toggle */}
+      {/* Header — clickable to toggle.
+          Day 80 (Sasha 2026-05-23): Sparkles glyph removed (redundant
+          ornament that competed with the title). Title font bumped
+          17px → 22px so it reads as a header against the 15-16px body
+          below it, not a sibling line. */}
       <button
         type="button"
         onClick={toggle}
@@ -126,28 +130,21 @@ const MatchExplainerInner = ({
         aria-controls="match-explainer-body"
         className="w-full flex items-center justify-between gap-3 px-5 sm:px-6 py-3.5 sm:py-4 transition-colors hover:bg-[rgba(212,175,55,0.04)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#d4af37]/40"
       >
-        <span className="inline-flex items-center gap-3">
-          <Sparkles
-            className="w-4 h-4 flex-shrink-0"
-            style={{ color: "#b8860b" }}
-            aria-hidden="true"
-          />
-          <span
-            style={{
-              fontFamily: "'Cormorant Garamond', serif",
-              fontWeight: 600,
-              fontSize: "17px",
-              letterSpacing: "-0.005em",
-              color: "var(--skin-text-primary, #0b2a5a)",
-            }}
-          >
-            How introductions work
-          </span>
+        <span
+          style={{
+            fontFamily: "'Cormorant Garamond', serif",
+            fontWeight: 700,
+            fontSize: "22px",
+            letterSpacing: "-0.005em",
+            color: "var(--skin-text-primary, #0b2a5a)",
+          }}
+        >
+          How introductions work
         </span>
         {expanded ? (
-          <ChevronUp className="w-4 h-4 flex-shrink-0" style={{ color: "rgba(11, 42, 90, 0.55)" }} aria-hidden="true" />
+          <ChevronUp className="w-5 h-5 flex-shrink-0" style={{ color: "rgba(11, 42, 90, 0.55)" }} aria-hidden="true" />
         ) : (
-          <ChevronDown className="w-4 h-4 flex-shrink-0" style={{ color: "rgba(11, 42, 90, 0.55)" }} aria-hidden="true" />
+          <ChevronDown className="w-5 h-5 flex-shrink-0" style={{ color: "rgba(11, 42, 90, 0.55)" }} aria-hidden="true" />
         )}
       </button>
 
@@ -225,6 +222,32 @@ const MatchExplainerInner = ({
                 <strong style={{ fontWeight: 600 }}>If they say yes,</strong>{" "}
                 <span style={{ color: "rgba(11, 42, 90, 0.78)" }}>
                   we send you both an intro email. You take it from there. If they don't respond, we leave it at that.
+                </span>
+              </span>
+            </li>
+            {/* Day 80 (Sasha 2026-05-23): step 4 added — intros run
+                BOTH ways. Without naming the reverse direction the
+                user only braces for outgoing emails and is surprised
+                when an incoming heads-up arrives. */}
+            <li className="flex gap-3">
+              <span
+                className="flex-shrink-0 mt-0.5 w-6 h-6 rounded-full inline-flex items-center justify-center"
+                style={{
+                  background: "rgba(212, 175, 55, 0.12)",
+                  border: "0.5px solid rgba(212, 175, 55, 0.42)",
+                  fontFamily: "'DM Sans', system-ui, sans-serif",
+                  fontWeight: 600,
+                  fontSize: "12px",
+                  color: "#7a5108",
+                }}
+                aria-hidden="true"
+              >
+                4
+              </span>
+              <span className="flex-1 text-[15px] sm:text-base leading-relaxed">
+                <strong style={{ fontWeight: 600 }}>It works both ways.</strong>{" "}
+                <span style={{ color: "rgba(11, 42, 90, 0.78)" }}>
+                  When someone else wants to meet you, you'll get the same heads-up email. Reply "yes" if it's a fit, "not now" if it isn't.
                 </span>
               </span>
             </li>

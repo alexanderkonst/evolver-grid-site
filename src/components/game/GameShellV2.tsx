@@ -639,14 +639,22 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
     // any future module can dispatch these without prop drilling.
     useEffect(() => {
         const onOpenPanel = () => setSectionsPanelOpen(true);
+        const onClosePanel = () => setSectionsPanelOpen(false);
         const onSetSpace = (evt: Event) => {
             const detail = (evt as CustomEvent).detail as { spaceId?: string } | undefined;
             if (detail?.spaceId) setActiveSpaceId(detail.spaceId);
         };
         window.addEventListener("fytt:open-sections-panel", onOpenPanel);
+        // Day 80 (Sasha 2026-05-23): added close-panel event so pages
+        // can request Pane 2 collapsed on mount. /game/collaborate/matches
+        // dispatches this — the COLLABORATE sub-nav (Find Collaborators /
+        // Connections / People Directory / Mission Groups) wasn't adding
+        // signal on the matches page itself.
+        window.addEventListener("fytt:close-sections-panel", onClosePanel);
         window.addEventListener("fytt:set-active-space", onSetSpace);
         return () => {
             window.removeEventListener("fytt:open-sections-panel", onOpenPanel);
+            window.removeEventListener("fytt:close-sections-panel", onClosePanel);
             window.removeEventListener("fytt:set-active-space", onSetSpace);
         };
     }, []);

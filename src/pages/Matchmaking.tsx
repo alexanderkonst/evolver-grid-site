@@ -181,6 +181,13 @@ const Matchmaking = () => {
   const [sameLanguageOnly, setSameLanguageOnly] = useState(false);
   const [assetMatches, setAssetMatches] = useState<AssetMatchResult[]>([]);
   const [assetMatchesLoading, setAssetMatchesLoading] = useState(false);
+  // Day 80 (Sasha 2026-05-23): surface the edge function's contextual
+  // message in the empty-state card. Previously the empty state was
+  // hardcoded "Complete your Top Talent reveal", which read wrong for
+  // users who HAD completed it (they just had no candidates above the
+  // 40 threshold yet). The edge function returns a `message` field for
+  // each empty-state cause; we render that when present.
+  const [matchesMessage, setMatchesMessage] = useState<string | null>(null);
 
   // Tinder-style: track current AI match index
   const [currentAiMatchIndex, setCurrentAiMatchIndex] = useState(0);
@@ -213,6 +220,16 @@ const Matchmaking = () => {
       }}
     />
   );
+
+  // Day 80 (Sasha 2026-05-23): close Pane 2 on mount. The COLLABORATE
+  // sub-nav (Find Collaborators / Connections / People Directory /
+  // Mission Groups) wasn't adding signal on the matches page itself,
+  // and the open pane was visually crowding the match card. The user
+  // can re-open it from the rail any time.
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    window.dispatchEvent(new CustomEvent("fytt:close-sections-panel"));
+  }, []);
 
   // Day 80 (Sasha 2026-05-22): the giant loadMatches useEffect that
   // built the (now-hidden) "Collaborators by Genius" three-group view
@@ -268,7 +285,13 @@ const Matchmaking = () => {
 
         if (error) {
           console.warn("[AssetMatching] Edge function error:", error.message);
+          setMatchesMessage("We hit a snag loading matches. Try again in a moment.");
           return;
+        }
+
+        // Capture any contextual empty-state message the edge function returns.
+        if (typeof data?.message === "string") {
+          setMatchesMessage(data.message);
         }
 
         if (data?.matches) {
@@ -744,7 +767,8 @@ const Matchmaking = () => {
                 lineHeight: 1.55,
               }}
             >
-              Complete your Top Talent reveal so the right people can find you.
+              {matchesMessage ||
+                "As more people complete their profiles, this fills in."}
             </p>
           </div>
         )}
