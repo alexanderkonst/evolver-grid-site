@@ -65,8 +65,22 @@ export const MatchFlowCta = ({ step }: { step: Step }) => {
 
   const cfg = CONFIG[step];
 
+  // Day 79 (Sasha 2026-05-22): on the Top Talent reveal screen the
+  // celebration card sits directly above this CTA. The generic
+  // py-10/12 wrapper was stacking with AppleseedDisplay's bottom
+  // padding into a giant empty gap. Tighter top padding on that one
+  // step pulls the CTA up to the celebration card without disturbing
+  // the rhythm on mission/assets/qol completion surfaces.
+  const isTopTalent = step === "top-talent";
+
   return (
-    <div className="w-full max-w-2xl mx-auto px-5 py-10 sm:py-12">
+    <div
+      className={
+        isTopTalent
+          ? "w-full max-w-2xl mx-auto px-5 pt-4 pb-10 sm:pt-5 sm:pb-12"
+          : "w-full max-w-2xl mx-auto px-5 py-10 sm:py-12"
+      }
+    >
       {cfg.unlockMessage && (
         <div className="text-center mb-7 sm:mb-8">
           <p
