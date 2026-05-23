@@ -12,7 +12,7 @@
  *   • AppleseedDisplay / ZoG ME-space — typography scale + chip styling
  */
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { ArrowRight, Brain, ListChecks, Clipboard, Check, Loader2 } from "lucide-react";
 import { Textarea } from "@/components/ui/textarea";
@@ -130,6 +130,22 @@ const fetchAssetMatches = async (text: string): Promise<MatchedAsset[] | null> =
             description?: string;
             maturity?: string;
         };
+        // Day 80 Wave 2.17 (Sasha 2026-05-22): canonical type whitelist.
+        // The AI sometimes returns legacy v3/v4 types ("Center of Gravity",
+        // "Root Capacity", "Capacity") that we retired in v5 — hallucinated
+        // from training data or echoed from the user's older pastes.
+        // Edge-function prompt now explicitly forbids these; this filter
+        // is defense in depth.
+        const VALID_TYPES = new Set<string>([
+            "Expertise",
+            "Life Experiences",
+            "Networks",
+            "Material Resources",
+            "Intellectual Property",
+            "Influence",
+            "Other",
+        ]);
+
         const matches = (data.matches as EdgeMatch[])
             .map((match): MatchedAsset | null => {
                 const description = match.description?.trim();
@@ -143,6 +159,15 @@ const fetchAssetMatches = async (text: string): Promise<MatchedAsset[] | null> =
                     .filter(Boolean);
                 const typeTitle = parts[0] || "Unknown";
                 if (typeTitle === "Unknown") return null;
+                if (!VALID_TYPES.has(typeTitle)) {
+                    console.warn(
+                        "[fetchAssetMatches] dropping non-canonical type:",
+                        typeTitle,
+                        "— was:",
+                        match.category,
+                    );
+                    return null;
+                }
                 return {
                     typeTitle,
                     subTypeTitle: parts[1] || undefined,
@@ -304,6 +329,20 @@ const AssetMappingLanding = () => {
     const [hasSaved, setHasSaved] = useState(false);
     const [matchedAssets, setMatchedAssets] = useState<MatchedAsset[]>([]);
     const { toast } = useToast();
+
+    // Day 79 (Sasha 2026-05-22): force the JOURNEY space active on mount.
+    // After the auth-bounce from RequireAuth, the shell was restoring the
+    // last-active space (often ME), so users landed on /asset-mapping
+    // with the wrong pane in the foreground. Asset mapping is a JOURNEY
+    // step (item #9 / #10) — the rail context should match.
+    useEffect(() => {
+        if (typeof window === "undefined") return;
+        window.dispatchEvent(
+            new CustomEvent("fytt:set-active-space", {
+                detail: { spaceId: "journey" },
+            }),
+        );
+    }, []);
 
     const handleCopyPrompt = async () => {
         await navigator.clipboard.writeText(ASSET_MAPPING_PROMPT);
