@@ -11,6 +11,7 @@ import { GROWTH_STEPS } from "@/modules/library/growthSteps";
 // other route — the hook is the gate, not a wrapper.
 import { useCanvasProgressLite } from "@/modules/unique-business-builder/useCanvasProgressLite";
 import { useDeepProfileActivated } from "@/hooks/useDeepProfileActivated";
+import { useEntitlement } from "@/hooks/useEntitlement";
 import { useJourneyProgress, type JourneyProgress } from "@/hooks/useJourneyProgress";
 import { useEntryPath } from "@/contexts/EntryPathContext";
 import {
