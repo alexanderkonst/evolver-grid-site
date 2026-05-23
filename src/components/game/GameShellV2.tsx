@@ -149,8 +149,16 @@ const MuxVideoBackground = () => {
                     aria-hidden="true"
                     className="absolute inset-0 pointer-events-none"
                     style={{
+                        /* Day 80 Wave 2.14 (Sasha 2026-05-22): bumped from
+                           10-18% → 28-36% cream tint. The 18% max wasn't
+                           enough to tame the match video's vivid
+                           bokeh+gold particles; text-shadow halos couldn't
+                           bridge the gap. Stronger top/bottom + slightly
+                           lighter through the middle so the gorgeous
+                           imagery still breathes but stops competing
+                           with foreground text. */
                         background:
-                            "linear-gradient(180deg, rgba(245, 241, 232, 0.18) 0%, rgba(245, 241, 232, 0.10) 50%, rgba(245, 241, 232, 0.18) 100%)",
+                            "linear-gradient(180deg, rgba(245, 241, 232, 0.36) 0%, rgba(245, 241, 232, 0.28) 50%, rgba(245, 241, 232, 0.36) 100%)",
                     }}
                 />
             )}
