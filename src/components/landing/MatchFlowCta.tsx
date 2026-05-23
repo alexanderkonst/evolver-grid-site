@@ -28,8 +28,11 @@ type Config = {
 
 const CONFIG: Record<Step, Config> = {
   // §4.4.1 — After Top Talent reveal.
+  // Day 79 (Sasha 2026-05-22): dropped "in 1 minute" suffix. Label was
+  // both visually long and stylistically loud next to the calm
+  // celebration card above it. The action verb stands alone.
   "top-talent": {
-    primaryLabel: "Discover your mission in 1 minute",
+    primaryLabel: "Discover your mission",
     primaryHref: "/mission-discovery",
   },
   // §4.4.2 — After Mission Discovery completion.
