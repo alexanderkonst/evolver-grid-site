@@ -89,27 +89,26 @@ const CONFIG: Record<Step, Config> = {
   },
   // §4.4.3 — After Asset Mapping completion. The GRADUATION moment:
   // top talent + mission + assets all named, collaboration profile
-  // complete. Day 79 (Sasha 2026-05-22) copy + graduation flag locked.
-  // The richer styling (✦ glyphs flanking the eyebrow, Ornament rule,
-  // extra padding) is what differentiates this from a regular step
-  // transition without going back to a modal.
+  // complete. The richer styling (Ornament rule, extra padding, larger
+  // eyebrow) differentiates this from regular step transitions
+  // without going back to a modal.
+  //
+  // Day 80 (Sasha 2026-05-23) revision:
+  //   • Recap body line ("Your top talent, mission, and assets are
+  //     all named.") removed — the eyebrow says it implicitly, the
+  //     recap was visual weight without payload.
+  //   • QoL psLine + secondary CTA removed entirely. Sasha's call:
+  //     mentioning QoL here pulls people off the only action that
+  //     matters at this moment ("Find collaborators"). QoL belongs
+  //     in the JOURNEY surface where users discover it naturally;
+  //     surfacing it here as a competing CTA leaks attention.
+  //   • Single-line banner + single forward CTA — funnel monogamy.
   assets: {
     primaryLabel: "Find collaborators",
     primaryHref: "/game/collaborate/matches",
-    secondaryLabel: "Assess your quality of life",
-    secondaryHref: "/quality-of-life-map/assessment",
-    // Day 79 (Sasha 2026-05-22, second pass): ✦ glyphs removed per
-    // Sasha — read as "cliffs" / magic-shop ornament. The graduation
-    // ceremony comes from the eyebrow size + Ornament rule + extra
-    // breathing room alone; no decorative glyphs needed.
     unlockBanner: {
       eyebrow: "Collaboration profile complete",
-      lines: [
-        "Your top talent, mission, and assets are all named.",
-        "Your collaborators are now visible to you.",
-      ],
-      psLine:
-        "Optional: the Quality of Life assessment refines match quality.",
+      lines: ["Your collaborators are now visible to you."],
       continueJourney: true,
       isGraduation: true,
     },

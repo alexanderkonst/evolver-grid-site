@@ -972,63 +972,95 @@ const AssetMappingLanding = () => {
                             </div>
                         )}
 
+                        {/* Day 80 (Sasha 2026-05-23): Back + Return to
+                            Profile removed for match-path users in the
+                            saved state. Sasha's note: those buttons
+                            misled users into thinking the page ended,
+                            so they never scrolled to the
+                            "Collaboration profile complete" banner +
+                            "Find collaborators" CTA below. Match-path
+                            now: just Save-to-Profile (pre-save) +
+                            "Add more manually" link. After save, the
+                            MatchFlowCta below carries the forward
+                            action. Build-path keeps the original three
+                            buttons because it has no MatchFlowCta to
+                            replace them.
+
+                            Path is sniffed via the same EntryPathContext
+                            consumer MatchFlowCta uses; we read storage
+                            inline so we don't add another hook here. */}
                         <div className="flex flex-wrap items-center gap-3 pt-1">
-                            <button
-                                onClick={() => setStep("has-ai")}
-                                className="inline-flex items-center gap-2 rounded-full px-4 py-2 transition-all duration-200 hover:translate-y-[-0.5px]"
-                                style={tertiaryPill}
-                            >
-                                <span aria-hidden="true">←</span>
-                                Back
-                            </button>
-                            {matchedAssets.length > 0 && (
-                                hasSaved ? (
-                                    <button
-                                        onClick={() => navigate(returnPath)}
-                                        className="group relative inline-flex flex-1 items-center justify-center gap-2.5 rounded-full px-6 py-3 transition-all duration-300 hover:translate-y-[-1px]"
-                                        style={{
-                                            ...ceremonialCta,
-                                            backdropFilter: "blur(14px) saturate(160%)",
-                                            WebkitBackdropFilter: "blur(14px) saturate(160%)",
-                                        }}
-                                    >
-                                        <span aria-hidden="true" style={{ color: "var(--skin-cta-icon, rgba(244, 212, 114, 0.98))", fontSize: "16px" }}>✦</span>
-                                        <span>Return to Profile</span>
-                                        <ArrowRight className="w-4 h-4" />
-                                    </button>
-                                ) : (
-                                    <button
-                                        onClick={handleSaveAssets}
-                                        disabled={isSaving}
-                                        className="group relative inline-flex flex-1 items-center justify-center gap-2.5 rounded-full px-6 py-3 transition-all duration-300 hover:translate-y-[-1px] disabled:cursor-not-allowed disabled:opacity-50"
-                                        style={{
-                                            ...ceremonialCta,
-                                            backdropFilter: "blur(14px) saturate(160%)",
-                                            WebkitBackdropFilter: "blur(14px) saturate(160%)",
-                                        }}
-                                    >
-                                        {isSaving ? (
-                                            <Loader2 className="h-4 w-4 animate-spin" />
-                                        ) : (
-                                            <span aria-hidden="true" style={{ color: "var(--skin-cta-icon, rgba(244, 212, 114, 0.98))", fontSize: "16px" }}>✦</span>
+                            {(() => {
+                                const isMatchPath =
+                                    typeof window !== "undefined" &&
+                                    (window.localStorage?.getItem("ftt_entry_path") === "match" ||
+                                        window.sessionStorage?.getItem("ftt_entry_path") === "match");
+
+                                return (
+                                    <>
+                                        {!isMatchPath && (
+                                            <button
+                                                onClick={() => setStep("has-ai")}
+                                                className="inline-flex items-center gap-2 rounded-full px-4 py-2 transition-all duration-200 hover:translate-y-[-0.5px]"
+                                                style={tertiaryPill}
+                                            >
+                                                <span aria-hidden="true">←</span>
+                                                Back
+                                            </button>
                                         )}
-                                        <span>{isSaving ? "Saving…" : "Save to Profile"}</span>
-                                    </button>
-                                )
-                            )}
-                            <button
-                                onClick={handleGoToWizard}
-                                className="italic transition-colors duration-200 hover:opacity-80"
-                                style={{
-                                    fontFamily: "'Source Serif 4', serif",
-                                    fontSize: "13px",
-                                    color: "var(--skin-text-muted, rgba(11, 42, 90, 0.93))",
-                                    textDecoration: "underline",
-                                    textUnderlineOffset: "3px",
-                                }}
-                            >
-                                Add more manually →
-                            </button>
+                                        {matchedAssets.length > 0 && (
+                                            hasSaved ? (
+                                                !isMatchPath && (
+                                                    <button
+                                                        onClick={() => navigate(returnPath)}
+                                                        className="group relative inline-flex flex-1 items-center justify-center gap-2.5 rounded-full px-6 py-3 transition-all duration-300 hover:translate-y-[-1px]"
+                                                        style={{
+                                                            ...ceremonialCta,
+                                                            backdropFilter: "blur(14px) saturate(160%)",
+                                                            WebkitBackdropFilter: "blur(14px) saturate(160%)",
+                                                        }}
+                                                    >
+                                                        <span aria-hidden="true" style={{ color: "var(--skin-cta-icon, rgba(244, 212, 114, 0.98))", fontSize: "16px" }}>✦</span>
+                                                        <span>Return to Profile</span>
+                                                        <ArrowRight className="w-4 h-4" />
+                                                    </button>
+                                                )
+                                            ) : (
+                                                <button
+                                                    onClick={handleSaveAssets}
+                                                    disabled={isSaving}
+                                                    className="group relative inline-flex flex-1 items-center justify-center gap-2.5 rounded-full px-6 py-3 transition-all duration-300 hover:translate-y-[-1px] disabled:cursor-not-allowed disabled:opacity-50"
+                                                    style={{
+                                                        ...ceremonialCta,
+                                                        backdropFilter: "blur(14px) saturate(160%)",
+                                                        WebkitBackdropFilter: "blur(14px) saturate(160%)",
+                                                    }}
+                                                >
+                                                    {isSaving ? (
+                                                        <Loader2 className="h-4 w-4 animate-spin" />
+                                                    ) : (
+                                                        <span aria-hidden="true" style={{ color: "var(--skin-cta-icon, rgba(244, 212, 114, 0.98))", fontSize: "16px" }}>✦</span>
+                                                    )}
+                                                    <span>{isSaving ? "Saving…" : "Save to Profile"}</span>
+                                                </button>
+                                            )
+                                        )}
+                                        <button
+                                            onClick={handleGoToWizard}
+                                            className="italic transition-colors duration-200 hover:opacity-80"
+                                            style={{
+                                                fontFamily: "'Source Serif 4', serif",
+                                                fontSize: "13px",
+                                                color: "var(--skin-text-muted, rgba(11, 42, 90, 0.93))",
+                                                textDecoration: "underline",
+                                                textUnderlineOffset: "3px",
+                                            }}
+                                        >
+                                            Add more manually →
+                                        </button>
+                                    </>
+                                );
+                            })()}
                         </div>
 
                         {/* Funnel v2 (§4.4.3): the unlock moment. Once
