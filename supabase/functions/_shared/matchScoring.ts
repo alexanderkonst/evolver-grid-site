@@ -260,8 +260,23 @@ export interface CollaborationProposal {
     evolutionLine: string;
 }
 
+/** Day 80 (Sasha 2026-05-23): matchType now uses the 5 layer-1 roots
+ *  from the collaboration taxonomy instead of the older shape-label
+ *  enum (co-founder / collaborator / peer / mentor / client-fit).
+ *  The taxonomy roots are the user-facing vocabulary defined in
+ *  docs/03-playbooks/collaboration_taxonomy.md and are already
+ *  grokable; the old shape labels needed translation. The matchType
+ *  is the engine's pick for the BEST-FIT root for the pair, while
+ *  the proposals array carries one offering per root. */
+export type MatchType =
+    | "Co-Build"
+    | "Co-Learn"
+    | "Co-Distribute"
+    | "Co-Resource"
+    | "Co-Steward";
+
 export interface RationalePayload {
-    matchType: "co-founder" | "collaborator" | "peer" | "mentor" | "client-fit";
+    matchType: MatchType;
     /** Three distinct proposals, each from a different taxonomy root
      *  where possible, so the user can pick the one that resonates. */
     proposals: CollaborationProposal[];
@@ -287,7 +302,7 @@ You will receive:
 Your job: produce a JSON object with these fields, and ONLY these fields. No prose outside the JSON. No markdown fence.
 
 {
-  "matchType": "co-founder" | "collaborator" | "peer" | "mentor" | "client-fit",
+  "matchType": "Co-Build" | "Co-Learn" | "Co-Distribute" | "Co-Resource" | "Co-Steward",
   "proposals": [
     { "type": "Co-Build | Co-Learn | Co-Distribute | Co-Resource | Co-Steward", "proposal": "1-2 sentences. Concrete container shape, bilateral framing.", "evolutionLine": "Optional one-liner about how this could deepen over time. Empty string if no obvious evolution." },
     { "type": "...", "proposal": "...", "evolutionLine": "..." },
@@ -336,7 +351,7 @@ Examples that miss (avoid these patterns):
 - "Help Karime build a business on her healing practice." (lopsided + lame default)
 - "Combine your skills to create value together." (abstract)
 
-matchType is a description, not a generator. Pick whichever label best fits the pattern given the sub-scores.
+matchType is the SINGLE best-fit root for the pair (one of Co-Build / Co-Learn / Co-Distribute / Co-Resource / Co-Steward from the taxonomy above). The proposals array carries multiple shapes; matchType is the headline label the user sees on the card to set expectation for what kind of collaboration this match leans toward.
 
 Return ONLY the JSON object.`;
 }

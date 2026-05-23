@@ -62,6 +62,12 @@ interface MatchCardProps {
   tertiaryReason?: string;
   tertiaryLabel?: string;
   matchTypeBadge?: string;
+  /** Day 80 (Sasha 2026-05-23): composite resonance score 0-100 from
+   *  the matching engine. When present, renders as a small gold-pill
+   *  next to the matchTypeBadge so the user sees the engine's
+   *  confidence at a glance. Tiered tint: ≥ 70 emerald-gold (strong),
+   *  50-69 gold (steady), < 50 muted-gold (borderline). */
+  resonanceScore?: number;
   connectLabel?: string;
   onPass: () => void;
   onConnect: () => void;
@@ -177,6 +183,7 @@ const MatchCard = ({
   tertiaryReason,
   tertiaryLabel,
   matchTypeBadge,
+  resonanceScore,
   connectLabel,
   onPass,
   onConnect,
@@ -500,6 +507,13 @@ const MatchCard = ({
             {cleanArchetype}
           </p>
 
+          {/* Day 80 (Sasha 2026-05-23): resonance score pill PARKED.
+              "Resonance" wasn't grokable without a scale + explanation;
+              shipping a number nobody understands is worse than no
+              number. The `resonanceScore` prop stays wired through the
+              component so reviving this with a real label + scale (or
+              a visualisation like a ring) is a one-line render swap.
+              Until then, only the matchType badge renders here. */}
           {matchTypeBadge && (
             <span
               className="mt-3 inline-block"
@@ -773,6 +787,7 @@ const areEqual = (prev: MatchCardProps, next: MatchCardProps) => {
     prev.tertiaryReason === next.tertiaryReason &&
     prev.connectLabel === next.connectLabel &&
     prev.matchTypeBadge === next.matchTypeBadge &&
+    prev.resonanceScore === next.resonanceScore &&
     prev.currentIndex === next.currentIndex &&
     prev.interactionState === next.interactionState
   );

@@ -146,12 +146,18 @@ const SUGGESTED_ACTION_LABELS: Record<string, string> = {
   wait: "Revisit Later",
 };
 
+// Day 80 (Sasha 2026-05-23): match-type vocabulary moved from the old
+// "co-founder / collaborator / peer / mentor / client-fit" shape labels
+// to the 5 layer-1 roots from the collaboration taxonomy. The roots
+// are already user-facing (per docs/03-playbooks/collaboration_taxonomy.md);
+// no translation needed. Dict kept as a display-tweak hook in case
+// we ever want to expand a root into a longer badge label.
 const MATCH_TYPE_LABELS: Record<string, string> = {
-  "co-founder": "Co-founder Fit",
-  collaborator: "Collaborator",
-  peer: "Peer",
-  mentor: "Mentor",
-  "client-fit": "Client Fit",
+  "Co-Build": "Co-Build",
+  "Co-Learn": "Co-Learn",
+  "Co-Distribute": "Co-Distribute",
+  "Co-Resource": "Co-Resource",
+  "Co-Steward": "Co-Steward",
 };
 
 interface CurrentProfile {
@@ -1014,6 +1020,7 @@ const Matchmaking = () => {
                         : undefined
                   }
                   matchTypeBadge={MATCH_TYPE_LABELS[currentAiMatch.matchType] || currentAiMatch.matchType}
+                  resonanceScore={currentAiMatch.resonanceScore}
                   secondaryLabel="Why this works"
                   secondaryReason={`${currentAiMatch.alignment} ${currentAiMatch.complementarity}`}
                   tertiaryLabel={currentAiMatch.friction !== "None identified" ? "Watch out for" : undefined}

@@ -641,17 +641,35 @@ function fallbackRationale(subScores: SubScores): RationalePayload {
     };
 }
 
+// Day 80 (Sasha 2026-05-23): match-type heuristic now maps the four
+// sub-scores to the 5 taxonomy roots. Maps signal-shape to root:
+//   • Strong top-talent complementarity + strong mission alignment →
+//     Co-Build (the pair makes something together).
+//   • Strong asset complementarity (Lego-fit) → Co-Resource (pool
+//     complementary assets) OR Co-Build (if also strong on talent).
+//   • Strong mission similarity with weak top-talent complementarity
+//     (same direction, similar gifts) → Co-Learn (peer practice).
+//   • Strong QoL similarity + decent top-talent → Co-Steward (tend
+//     a shared field together).
+//   • Fallback → Co-Distribute (the lowest-commitment, most-universal
+//     starting shape).
 function inferMatchType(s: SubScores): RationalePayload["matchType"] {
-    // Heuristic shape-recognition used when LLM doesn't label the pair.
-    if (s.topTalent >= 0.7 && s.mission >= 0.7) return "co-founder";
-    if (s.assets >= 0.7) return "collaborator";
-    if (s.topTalent <= 0.4 && s.mission >= 0.6) return "peer";
-    if (s.qol >= 0.8 && s.topTalent >= 0.6) return "mentor";
-    return "collaborator";
+    if (s.topTalent >= 0.7 && s.mission >= 0.7) return "Co-Build";
+    if (s.assets >= 0.7 && s.topTalent >= 0.5) return "Co-Build";
+    if (s.assets >= 0.7) return "Co-Resource";
+    if (s.mission >= 0.7 && s.topTalent <= 0.4) return "Co-Learn";
+    if (s.qol >= 0.7 && s.topTalent >= 0.6) return "Co-Steward";
+    return "Co-Distribute";
 }
 
 function validMatchType(v: unknown): RationalePayload["matchType"] | null {
-    const valid = ["co-founder", "collaborator", "peer", "mentor", "client-fit"];
+    const valid = [
+        "Co-Build",
+        "Co-Learn",
+        "Co-Distribute",
+        "Co-Resource",
+        "Co-Steward",
+    ];
     return typeof v === "string" && valid.includes(v)
         ? (v as RationalePayload["matchType"])
         : null;
