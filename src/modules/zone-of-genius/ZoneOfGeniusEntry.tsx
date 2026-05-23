@@ -841,9 +841,19 @@ const ZoneOfGeniusEntry = () => {
                                 accelerator (AI), and orients to the first
                                 primitive. Middle line italic + slightly
                                 muted to differentiate the supporting beat. */}
+                            {/* Day 80 Wave 2.14 (Sasha 2026-05-22): vertical
+                                spacing + legibility pass.
+                                  - mb-6 → mb-3 so preamble + h2 + CTAs fit
+                                    the first viewport without scrolling.
+                                  - textShadow upgraded from `--skin-text-halo-soft`
+                                    to `--skin-text-halo-deep` (the strong
+                                    legibility cocktail from ui_playbook
+                                    Part VIII) — match-path video is busier
+                                    than build-path, soft halos weren't
+                                    enough. */}
                             {isMatchPath && (
                                 <div
-                                    className="max-w-[560px] mx-auto space-y-2 mb-6"
+                                    className="max-w-[560px] mx-auto space-y-1.5 mb-3"
                                     style={{
                                         fontFamily: "'Source Serif 4', serif",
                                     }}
@@ -852,7 +862,8 @@ const ZoneOfGeniusEntry = () => {
                                         className="text-sm sm:text-base leading-relaxed"
                                         style={{
                                             color: "var(--skin-text-primary, #0a1628)",
-                                            textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.7))",
+                                            textShadow:
+                                                "var(--skin-text-halo-deep, 0 0 28px rgba(255,255,255,0.85), 0 1px 2px rgba(255,255,255,0.95), 0 0 1px rgba(11,42,90,0.65), 0 1px 0 rgba(11,42,90,0.45))",
                                         }}
                                     >
                                         Let's create your profile for matching.
@@ -860,8 +871,9 @@ const ZoneOfGeniusEntry = () => {
                                     <p
                                         className="text-sm sm:text-base italic leading-relaxed"
                                         style={{
-                                            color: "var(--skin-text-muted, rgba(26,30,58,0.72))",
-                                            textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
+                                            color: "var(--skin-text-muted, rgba(26,30,58,0.78))",
+                                            textShadow:
+                                                "var(--skin-text-halo-deep, 0 0 22px rgba(255,255,255,0.78), 0 1px 2px rgba(255,255,255,0.9), 0 0 1px rgba(11,42,90,0.6))",
                                         }}
                                     >
                                         Good news: AI makes it real quick.
@@ -870,7 +882,8 @@ const ZoneOfGeniusEntry = () => {
                                         className="text-sm sm:text-base leading-relaxed"
                                         style={{
                                             color: "var(--skin-text-primary, #0a1628)",
-                                            textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.7))",
+                                            textShadow:
+                                                "var(--skin-text-halo-deep, 0 0 28px rgba(255,255,255,0.85), 0 1px 2px rgba(255,255,255,0.95), 0 0 1px rgba(11,42,90,0.65), 0 1px 0 rgba(11,42,90,0.45))",
                                         }}
                                     >
                                         We start with your top talent.
@@ -885,13 +898,16 @@ const ZoneOfGeniusEntry = () => {
                                 Day 80 Wave 2.10 (Sasha 2026-05-22): unified to
                                 Cormorant per ui_playbook.md — this is a heading
                                 question, not body copy. Was Source Serif 4. */}
+                            {/* Day 80 Wave 2.14: deep halo cocktail for match-path
+                                legibility (ui_playbook Part VIII). */}
                             <h2
                                 className="text-2xl tracking-[-0.005em]"
                                 style={{
                                     fontFamily: "'Cormorant Garamond', serif",
                                     fontWeight: 600,
                                     color: "var(--skin-text-primary, #0a1628)",
-                                    textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.7))",
+                                    textShadow:
+                                        "var(--skin-text-halo-deep, 0 0 28px rgba(255,255,255,0.85), 0 1px 2px rgba(255,255,255,0.95), 0 0 1px rgba(11,42,90,0.65), 0 1px 0 rgba(11,42,90,0.45))",
                                 }}
                             >
                                 How do you want to reveal it?
@@ -909,7 +925,7 @@ const ZoneOfGeniusEntry = () => {
                         <div className="space-y-3">
                             <button
                                 onClick={() => setStep("ai-prompt")}
-                                className="group liquid-glass-dark w-full p-5 rounded-2xl text-left transition-all duration-300 hover:scale-[1.015] active:scale-[0.985] animate-in fade-in slide-in-from-bottom-2 duration-400 focus-visible:ring-2 focus-visible:ring-white/40 outline-none"
+                                className="group liquid-glass-dark w-full p-4 rounded-2xl text-left transition-all duration-300 hover:scale-[1.015] active:scale-[0.985] animate-in fade-in slide-in-from-bottom-2 duration-400 focus-visible:ring-2 focus-visible:ring-white/40 outline-none"
                                 style={{
                                     color: "var(--skin-cta-text, rgba(245,245,250,0.98))",
                                     backgroundImage:
@@ -953,7 +969,7 @@ const ZoneOfGeniusEntry = () => {
 
                             <button
                                 onClick={handleStartManualAssessment}
-                                className="group liquid-glass-dark w-full p-5 rounded-2xl text-left transition-all duration-300 hover:scale-[1.015] active:scale-[0.985] animate-in fade-in slide-in-from-bottom-2 duration-400 focus-visible:ring-2 focus-visible:ring-white/40 outline-none"
+                                className="group liquid-glass-dark w-full p-4 rounded-2xl text-left transition-all duration-300 hover:scale-[1.015] active:scale-[0.985] animate-in fade-in slide-in-from-bottom-2 duration-400 focus-visible:ring-2 focus-visible:ring-white/40 outline-none"
                                 style={{
                                     color: "var(--skin-cta-text, rgba(245,245,250,0.98))",
                                     backgroundImage:

@@ -136,7 +136,15 @@ const MatchHero = () => {
               fontFeatureSettings: '"lnum" 1, "onum" 0',
             }}
           >
-            You don't have to do it alone. Your co-creators are 10 minutes away.
+            You don't have to do it alone. Your{" "}
+            <span className="bg-clip-text text-transparent" style={GOLD_TEXT_STYLE}>
+              co-creators
+            </span>{" "}
+            are{" "}
+            <span className="bg-clip-text text-transparent" style={GOLD_TEXT_STYLE}>
+              10 minutes
+            </span>{" "}
+            away.
           </h1>
 
           <Ornament className="my-5 sm:my-6" />
@@ -153,7 +161,11 @@ const MatchHero = () => {
                 "var(--skin-text-halo-deep, 0 0 22px rgba(255,255,255,0.7), 0 1px 2px rgba(255,255,255,0.9), 0 0 1px rgba(11,42,90,0.45), 0 1px 0 rgba(11,42,90,0.25))",
             }}
           >
-            Describe yourself with our AI prompts; we'll make intros to the matching entrepreneurs, advisors, and operators.
+            Describe yourself with our AI prompts; we'll make{" "}
+            <span className="bg-clip-text text-transparent" style={GOLD_TEXT_STYLE}>
+              intros
+            </span>{" "}
+            to the matching entrepreneurs, advisors, and operators.
           </p>
         </header>
 
