@@ -273,20 +273,38 @@ Your job: produce a JSON object with these fields, and ONLY these fields. No pro
 
 {
   "matchType": "co-founder" | "collaborator" | "peer" | "mentor" | "client-fit",
-  "collaborationProposal": "1-2 sentences. Name a CONCRETE thing they could build or do together — a specific offering, workshop, product, community, or practice. Not abstract ('combine your capacities to create alignment'). Concrete ('co-design a 6-week cohort that takes founders from raw insight to a sellable framework'). Lead with the active verb.",
+  "collaborationProposal": "1-2 sentences. Name a clear SHAPE of collaboration (a co-led workshop, a joint cohort, a co-authored framework, a recurring mastermind, an integrated offering, etc.) AND name what EACH person brings AND what EACH person gets. Bilateral. No invented brand names. No arbitrary numerical specifics. Lead with the active verb.",
   "suggestedAction": "intro" | "micro-collab" | "practice-together" | "wait",
-  "alignment": "1 sentence on Mission similarity — what direction or value they share. Use their first names, not 'Profile A/B'.",
-  "complementarity": "1 sentence on Top Talent + Asset fit — what each brings the other lacks. Use first names.",
+  "alignment": "1 sentence on Mission similarity. What direction or value they share. Use their first names, not 'Profile A/B'.",
+  "complementarity": "1 sentence on Top Talent + Asset fit. What each brings the other lacks. Use first names.",
   "friction": "1 sentence on potential friction (timing, timezone, stage, language, mission divergence) or the literal string 'None identified' if you see nothing. Use first names when relevant."
 }
 
 Voice rules:
 - **NEVER use "Profile A", "Profile B", "Person A", "Person B", "the requesting user", or "the candidate".** Always use the actual first names supplied. Address the requesting user in second person ("you", "your"); address the candidate by their first name.
-- Editorial register. Direct address.
-- No platitudes ("you both have great energy"). No AI-tells ("I detected", "based on the data", "based on what I see"). No buzzwords ("AI-powered", "synergy", "leverage", "actualize", "unlock potential").
-- Active voice, present tense. No hedging ("could potentially", "might possibly").
-- The collaborationProposal must name a SPECIFIC artifact or activity. Examples that work: "Run a quarterly mastermind for X." "Co-write the playbook on Y." "Launch a free workshop teaching Z together." Examples that don't work: "Combine your skills to create value." "Partner on a project." "Explore a collaboration."
-- matchType is a description, not a generator. Pick whichever label best fits the pattern given the sub-scores.
+- Editorial register. Direct address. Active voice, present tense.
+- No platitudes ("you both have great energy"). No AI-tells ("I detected", "based on the data", "based on what I see"). No buzzwords ("AI-powered", "synergy", "leverage", "actualize", "unlock potential"). No hedging ("could potentially", "might possibly").
+
+CollaborationProposal — the sweet spot is concrete SHAPE without false precision.
+
+- **DO** name a recognisable container type: a co-led workshop, a joint cohort, a co-authored framework, a recurring mastermind, an integrated offering, a duo retreat, a shared methodology, a co-hosted event, a paired practice, etc.
+- **DO** make it BILATERAL. Name what each person brings and what each gets. Avoid lopsided proposals where one person is the giver and the other is the receiver.
+- **DON'T** invent brand names or capitalised product titles. Bad: "a Sacred Business Architecture workshop", "build a Planetary OS together". Good: "a workshop that pairs your framework-naming with her embodiment work".
+- **DON'T** add arbitrary numbers or specifics that no one has decided. Bad: "a 6-week cohort", "an 8-person mastermind", "a 90-day program", "a $555 offering". Good: "a cohort that takes founders from X to Y", "a small mastermind where they workshop their own offerings", "a recurring session".
+- **DON'T** suggest one person help the other "build their thing" as the primary proposal. That's the lame-default the engine is trying to avoid.
+
+Examples that hit the sweet spot:
+- "Co-lead a workshop that pairs your framework-naming work with Karime's embodiment practice, so participants leave with both an articulated insight and the felt sense behind it. You each gain a co-taught offering you can run again with your own audiences."
+- "Run a recurring mastermind where you trade structural language for somatic depth: she helps you read the body signals you miss, you help her name the patterns she works with intuitively. Both walk away with sharpened practice."
+- "Co-author a methodology that integrates your structure work and Karime's healing protocols. Joint IP, joint distribution, two offerings born from one frame."
+
+Examples that miss (avoid these patterns):
+- "Co-design a 6-week cohort..." (arbitrary number)
+- "A Sacred Business Architecture workshop..." (invented brand)
+- "Help Karime build a business on her healing practice." (lopsided + lame default)
+- "Combine your skills to create value together." (abstract)
+
+matchType is a description, not a generator. Pick whichever label best fits the pattern given the sub-scores.
 
 Return ONLY the JSON object.`;
 }
