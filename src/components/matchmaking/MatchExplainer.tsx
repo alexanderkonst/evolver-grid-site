@@ -119,23 +119,25 @@ const MatchExplainerInner = ({
       className="liquid-glass-strong mb-6 sm:mb-8 rounded-3xl overflow-hidden"
     >
       {/* Header — clickable to toggle.
-          Day 80 (Sasha 2026-05-23): Sparkles glyph removed (redundant
-          ornament that competed with the title). Title font bumped
-          17px → 22px so it reads as a header against the 15-16px body
-          below it, not a sibling line. */}
+          Day 80 (Sasha 2026-05-23): Sparkles glyph removed.
+          Title bumped 17px → 22px → 28px in two passes after Sasha
+          flagged it as still reading like a body-level sibling
+          instead of a header. At 28px it's clearly the dominant
+          element of the accordion. */}
       <button
         type="button"
         onClick={toggle}
         aria-expanded={expanded}
         aria-controls="match-explainer-body"
-        className="w-full flex items-center justify-between gap-3 px-5 sm:px-6 py-3.5 sm:py-4 transition-colors hover:bg-[rgba(212,175,55,0.04)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#d4af37]/40"
+        className="w-full flex items-center justify-between gap-3 px-5 sm:px-6 py-4 sm:py-5 transition-colors hover:bg-[rgba(212,175,55,0.04)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#d4af37]/40"
       >
         <span
           style={{
             fontFamily: "'Cormorant Garamond', serif",
             fontWeight: 700,
-            fontSize: "22px",
+            fontSize: "28px",
             letterSpacing: "-0.005em",
+            lineHeight: 1.1,
             color: "var(--skin-text-primary, #0b2a5a)",
           }}
         >
