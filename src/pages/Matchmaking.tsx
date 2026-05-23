@@ -7,7 +7,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { AppleseedData } from "@/modules/zone-of-genius/appleseedGenerator";
 import { areComplementary, getComplementarityLabel } from "@/lib/archetypeMatching";
 import MatchCard from "@/components/matchmaking/MatchCard";
-import MatchExplainer from "@/components/matchmaking/MatchExplainer";
+import MatchExplainer, { useMatchExplainerState } from "@/components/matchmaking/MatchExplainer";
 import { GOLD_TEXT_STYLE, Ornament } from "@/lib/landingDesign";
 
 // ─────────────────────────────────────────────────────────────────────
@@ -191,6 +191,15 @@ const hasLanguageOverlap = (base: string[], candidate: string[]) => {
 const stripSymbols = (s: string) => s.replace(/[✦★☆✧⬥◇◆⟐]/g, "").trim();
 
 const Matchmaking = () => {
+  // Day 79 (Sasha 2026-05-22): explainer state lifted out of the
+  // accordion component so we can render it in two positions (top
+  // for first-visit, bottom for already-dismissed). See JSX below for
+  // the slot pattern.
+  const {
+    seenAt,
+    dismiss: dismissExplainer,
+    dismissing: explainerDismissing,
+  } = useMatchExplainerState();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [groups, setGroups] = useState<MatchGroups>({
@@ -783,7 +792,15 @@ const Matchmaking = () => {
 
         {/* ═══════ HEADER — Aurora editorial register ═══════ */}
         {/* Cormorant headline with GOLD_TEXT_STYLE accent + italic echo
-            + Ornament — same rhythm as `/`, `/zone-of-genius`, dossier. */}
+            + Ornament — same rhythm as `/`, `/zone-of-genius`, dossier.
+            Day 79 (Sasha 2026-05-22) — title broadened to include
+            co-founders (match-path users are often founders looking
+            for co-founders, not just collaborators); subtitle promoted
+            from "resonates" to "complements" because the matching
+            mechanic is built on complementarity (different top talents
+            that fit together), not similarity. Subtitle font bumped
+            from clamp(16px,1.7vw,20px) → clamp(18px,2vw,22px) to read
+            as a real sub-promise, not an afterthought. */}
         <header className="text-center mb-8">
           <h1
             className="text-3xl sm:text-4xl md:text-5xl font-bold leading-[1.1] tracking-[-0.018em] mb-3 sm:mb-4"
@@ -795,24 +812,41 @@ const Matchmaking = () => {
           >
             Find{" "}
             <span className="bg-clip-text text-transparent" style={GOLD_TEXT_STYLE}>
-              Collaborators
+              collaborators
+            </span>
+            {" "}and{" "}
+            <span className="bg-clip-text text-transparent" style={GOLD_TEXT_STYLE}>
+              co-founders
             </span>
           </h1>
           <p
             className="text-lg sm:text-xl md:text-2xl leading-[1.32]"
             style={{
               ...legibleItalicEcho,
-              fontSize: "clamp(16px, 1.7vw, 20px)",
+              fontSize: "clamp(18px, 2vw, 22px)",
             }}
           >
-            People whose work resonates with yours
+            People whose work complements yours
           </p>
           <Ornament className="my-6 sm:my-7" />
         </header>
 
-        {/* Day 67 §8.6: "How introductions work" explainer accordion.
-            Auto-expands on first visit, persists collapse via game_profiles. */}
-        <MatchExplainer />
+        {/* Day 79 (Sasha 2026-05-22): "How introductions work" explainer
+            now uses a slot pattern. First-visit users see it
+            auto-expanded at the TOP (before the matches content). Once
+            they click "Got it", the top instance hides and the bottom
+            instance below the matches content takes its place,
+            collapsed. State is lifted via useMatchExplainerState so the
+            two slots share one source of truth — clicking Got it in
+            the top instance triggers the bottom instance to mount on
+            the next render. */}
+        {seenAt === null && (
+          <MatchExplainer
+            seenAt={seenAt}
+            onDismiss={dismissExplainer}
+            dismissing={explainerDismissing}
+          />
+        )}
 
         {/* Loading */}
         {loading && (
@@ -908,50 +942,19 @@ const Matchmaking = () => {
                 SECTION 1: AI-POWERED MATCHES (TOP)
                 Tinder-style: one profile at a time
                 ═════════════════════════════════════════ */}
+            {/* Day 79 (Sasha 2026-05-22): "✦ AI-Powered Matches"
+                eyebrow + "Collaboration Proposals" h2 + "Win-win
+                collaboration proposals powered by your full profile"
+                subtitle all removed. Sasha: the page header already
+                names the surface ("Find collaborators and co-founders
+                / People whose work complements yours"), and the
+                MatchExplainer accordion below it explains the
+                mechanic. The section-level repeat was visual weight
+                without payload — and the "AI-powered" framing
+                undercut the editorial register by leaning on the
+                tech-buzzword. The card carries everything the user
+                needs from here. */}
             <section>
-              {/* Day 65 (Sasha 2026-05-09): eyebrow + intro copy bumped
-                  for legibility — was reading as "small / barely visible
-                  on background" against the bright sun-glare frames of
-                  the GameShellV2 video. Eyebrow: 10.5px → 12px, weight
-                  500 → 700, halo-soft added. Intro italic: 15px → 17px,
-                  lineHeight 1.55 → 1.5. */}
-              <div className="mb-5">
-                <div
-                  style={{
-                    ...eyebrowSmall,
-                    fontSize: "12px",
-                    fontWeight: 700,
-                    color: "var(--skin-goldDeep, #5d4307)",
-                    textShadow:
-                      "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.7))",
-                  }}
-                  className="mb-2"
-                >
-                  ✦ AI-Powered Matches
-                </div>
-                <h2
-                  style={{
-                    ...cormorantTitle,
-                    fontSize: "28px",
-                    fontWeight: 700,
-                    textShadow: legibleHeadlineHalo,
-                  }}
-                  className="leading-[1.2] mb-1.5"
-                >
-                  Collaboration Proposals
-                </h2>
-                <p
-                  className="italic"
-                  style={{
-                    ...legibleItalicEcho,
-                    fontSize: "17px",
-                    lineHeight: 1.5,
-                  }}
-                >
-                  Win-win collaboration proposals powered by your full profile.
-                </p>
-              </div>
-
               {assetMatchesLoading ? (
                 <Skeleton className="h-64 w-full" />
               ) : visibleAiMatches.length > 0 && currentAiMatch ? (
@@ -1016,6 +1019,18 @@ const Matchmaking = () => {
                 SECTION 2: GENIUS MATCHES (BOTTOM)
                 Category-based list view
                 ═════════════════════════════════════════ */}
+            {/* Day 79 (Sasha 2026-05-22): entire "Collaborators by
+                Genius" section hidden (Similar Genius / Complementary
+                Genius / Similar Mission three-group list + filter
+                row). Sasha: this is work we never completed, so it
+                shouldn't be on the page. Surfacing it with "No
+                matches yet" placeholders for every sub-group reads as
+                ghosted-unfinished UI — same anti-pattern as locked
+                nav with fog-of-war. Hide-don't-show is correct.
+                The JSX is preserved below behind a `false &&` gate so
+                the layout / styles / data wiring are intact for when
+                we actually finish the network-side matching. */}
+            {false && (
             <section>
               {/* Day 65 (Sasha 2026-05-09): same eyebrow + intro bumps as
                   Section 1 above for legibility consistency. */}
@@ -1196,6 +1211,24 @@ const Matchmaking = () => {
                 </div>
               ))}
             </section>
+            )}
+
+            {/* Day 79 (Sasha 2026-05-22): MatchExplainer bottom slot.
+                Renders only after the user has dismissed the top
+                instance (seenAt is a string, not null). Stays
+                collapsed by default — the user already saw the
+                content; this is a "rules of engagement" reference
+                that they can re-expand at the bottom of the page if
+                they need a refresher. */}
+            {typeof seenAt === "string" && (
+              <div className="mt-10">
+                <MatchExplainer
+                  seenAt={seenAt}
+                  onDismiss={dismissExplainer}
+                  dismissing={explainerDismissing}
+                />
+              </div>
+            )}
           </div>
         )}
       </div>

@@ -1,5 +1,15 @@
-import { memo } from "react";
+import { memo, useState } from "react";
 import { X, UserPlus, Sparkles, ChevronLeft, ChevronRight, Check, Mail } from "lucide-react";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
 
 /**
  * Day 66 wave §8 (Sasha 2026-05-16): match-mechanic interaction state.

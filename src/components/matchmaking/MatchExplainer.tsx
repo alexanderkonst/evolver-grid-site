@@ -239,7 +239,7 @@ const MatchExplainerInner = ({
             <div className="mt-4 sm:mt-5 flex justify-end">
               <button
                 type="button"
-                onClick={handleDismiss}
+                onClick={onDismiss}
                 disabled={dismissing}
                 className="group liquid-glass-dark cta-breath rounded-full inline-flex items-center justify-center gap-2 px-5 py-2.5 transition-all duration-300 hover:scale-[1.03] active:scale-[0.97] disabled:opacity-50 focus-visible:ring-2 focus-visible:ring-white/40 outline-none"
                 style={{
