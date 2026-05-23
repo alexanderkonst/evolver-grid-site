@@ -40,8 +40,22 @@ const Auth = () => {
   // Top Talent result without picking a password first.
   const claimMode = searchParams.get("claim") === "true";
   const mode = searchParams.get("mode"); // signup, login, or null
-  const isOnboardingFlow = mode === "signup" || claimMode; // tinted UI
-  const defaultTab = mode === "signup" ? "signup" : "login";
+  // Day 79 (Sasha 2026-05-22): match-path entry detection. When the user
+  // came in via `?path=match`, completed Top Talent, and clicked
+  // "Discover your mission", RequireAuth on /mission-discovery bounces
+  // them here at /auth?redirect=/mission-discovery (no `?claim=true`,
+  // no `?mode=signup`). The default subtitle "Pick up where you left
+  // off" reads as nonsense to a first-time user who just minted their
+  // Top Talent five seconds ago. We read EntryPathContext's
+  // sessionStorage key directly so the branch flips before the
+  // context provider hydrates.
+  const isMatchPathEntry =
+    typeof window !== "undefined" &&
+    window.sessionStorage?.getItem("ftt_entry_path") === "match";
+  const isOnboardingFlow = mode === "signup" || claimMode || isMatchPathEntry; // tinted UI
+  // Match-path users are net-new — default them to Sign Up, not Log In.
+  const defaultTab =
+    mode === "signup" || isMatchPathEntry ? "signup" : "login";
   // Day 58+ (Sasha 2026-05-03): Tabs converted from uncontrolled to
   // controlled so the cross-device email-confirmation flow can flip
   // the user from Sign Up → Log In automatically when we detect they
@@ -477,11 +491,20 @@ const Auth = () => {
   const isQolRedirect =
     nextPath.startsWith("/quality-of-life-map") ||
     nextPath.startsWith("/game/me/quality-of-life");
+  // Day 79 (Sasha 2026-05-22): match-path subtitle. The user just
+  // saw their Top Talent reveal and clicked "Discover your mission".
+  // They land here because /mission-discovery is auth-walled. The
+  // honest framing is "save your data so you don't lose it" plus the
+  // forward promise into mission discovery. The generic onboarding
+  // line ("Unlock your unique business") was built for build-path
+  // users heading toward Ignite — wrong direction for this user.
   const subtitleText = isQolRedirect
     ? "Sign in to save your Quality of Life Map. Retake anytime — track your growth over time."
-    : isOnboardingFlow
-      ? "Save your Top Talent. Unlock your unique business."
-      : "Pick up where you left off — your Top Talent and progress are waiting.";
+    : isMatchPathEntry
+      ? "Save your data so you don't lose it. Then keep going with mission discovery."
+      : isOnboardingFlow
+        ? "Save your Top Talent. Unlock your unique business."
+        : "Pick up where you left off — your Top Talent and progress are waiting.";
 
   return (
     <GameShellV2 hideLogo>

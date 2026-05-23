@@ -378,7 +378,20 @@ const AppleseedDisplay = ({
               /zone-of-genius, /playbook, /path.
             */}
 
-            <div className="relative z-10 max-w-2xl mx-auto px-4 pt-2 pb-32 sm:pb-40 space-y-6">
+            {/* Day 79 (Sasha 2026-05-22): bottom padding split by path.
+                Build-path keeps the generous pb-32/40 because the floating
+                Activate pill + scroll-end inline CTAs need clearance.
+                Match-path users only see the celebration card here — all
+                build-path option cards/CTAs are gated by !isMatchPath — so
+                the wrapper's bottom padding plus MatchFlowCta's own top
+                padding stacked into ~170px of dead space between the
+                celebration and the "Discover your mission" CTA. Collapsing
+                the wrapper bottom to pb-2 hands the rhythm to MatchFlowCta. */}
+            <div
+                className={`relative z-10 max-w-2xl mx-auto px-4 pt-2 space-y-6 ${
+                    isMatchPath ? "pb-2" : "pb-32 sm:pb-40"
+                }`}
+            >
                 {/* Return-state greeting — Day 57 (Sasha 2026-05-01).
                     Shown only when the user is coming back to a previously
                     saved appleseed (isReturning captured at mount). */}
