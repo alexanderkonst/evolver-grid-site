@@ -1179,6 +1179,156 @@
   border-bottom-color: rgba(10, 10, 10, 0.08) !important;
 }
 
+/* ──────────────────────────────────────────────────────────────────────
+   Day 80 night (Sasha 2026-05-23) — AI OS page under NS skin.
+
+   AiOsPage mounts its own `[data-ai-os]` scope (see further down this
+   file ~line 2601) that hardcodes a deep navy palette + cosmic video
+   background. Every hero text, chip, subtitle and label inside the
+   page uses inline `hsl(0 0% 100% / 0.X)` colors + dark text-shadows
+   + `WebkitBackgroundClip: text` with light gradient + transparent
+   fill. All of those assume a dark backdrop — under NS skin (white
+   panes) they collapse to invisible.
+
+   Strategy: kill the dark scenery, force inline light-text patterns
+   to dark equivalents via attribute-substring selectors, neutralize
+   the gradient-clipped headlines. Specificity comes from the
+   compound `[data-skin="network-school"] [data-ai-os]` selector,
+   which beats `[data-ai-os]` alone.
+   ────────────────────────────────────────────────────────────────────── */
+
+/* Reset the AI OS root background + ambient overlays. */
+[data-skin="network-school"] [data-ai-os].ai-os-root,
+[data-skin="network-school"] [data-ai-os] {
+  background: #ffffff !important;
+  color: #0a0a0a !important;
+}
+/* Cosmic video poster + dark gradient overlay + vignette + noise + starry
+   overlay + cursor glow — all retired under NS. The video tag is
+   already hidden by the earlier video[autoplay][muted] rule; these
+   catch the fallback poster <img> + the four pointer-events-none
+   fixed overlays that the page paints above it. */
+[data-skin="network-school"] [data-ai-os] > img[aria-hidden="true"][class*="fixed"],
+[data-skin="network-school"] [data-ai-os] > div.pointer-events-none.fixed,
+[data-skin="network-school"] [data-ai-os] .vignette-overlay,
+[data-skin="network-school"] [data-ai-os] .noise-overlay {
+  display: none !important;
+}
+
+/* The deep-navy [data-ai-os] .liquid-glass override (`hsla(228, 25%, 8%, …)`)
+   from ~line 2657 wins over the global NS liquid-glass rule because it has
+   higher attribute specificity. Re-flatten to NS editorial under the
+   combined skin selector. */
+[data-skin="network-school"] [data-ai-os] .liquid-glass,
+[data-skin="network-school"] [data-ai-os] .liquid-glass-strong {
+  background: #ffffff !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border: 1px solid rgba(10, 10, 10, 0.08) !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 8px 24px -12px rgba(0, 0, 0, 0.08) !important;
+  color: #0a0a0a !important;
+}
+[data-skin="network-school"] [data-ai-os] .liquid-glass::before,
+[data-skin="network-school"] [data-ai-os] .liquid-glass-strong::before {
+  display: none !important;
+}
+[data-skin="network-school"] [data-ai-os] .wabi-card {
+  background: #ffffff !important;
+  border: 1px solid rgba(10, 10, 10, 0.08) !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 8px 24px -12px rgba(0, 0, 0, 0.08) !important;
+  color: #0a0a0a !important;
+}
+
+/* Gradient-clipped headlines — `WebkitBackgroundClip: text` with light
+   gradient + `WebkitTextFillColor: transparent` renders the headline
+   as the gradient. Under NS this gradient is near-white → invisible.
+   Force a solid black fill by re-revealing the text color and stripping
+   the gradient. Targets the inline pattern via attribute substring. */
+[data-skin="network-school"] [data-ai-os] h1[style*="background-clip"],
+[data-skin="network-school"] [data-ai-os] h2[style*="background-clip"],
+[data-skin="network-school"] [data-ai-os] h3[style*="background-clip"],
+[data-skin="network-school"] [data-ai-os] [style*="-webkit-background-clip"] {
+  background: none !important;
+  background-image: none !important;
+  -webkit-background-clip: initial !important;
+  background-clip: initial !important;
+  -webkit-text-fill-color: #0a0a0a !important;
+  color: #0a0a0a !important;
+}
+
+/* Kill the desktop drop-shadow + mobile text-shadow halos on the
+   hero glow text utilities. NS is flat editorial — no glow. */
+[data-skin="network-school"] [data-ai-os] .ai-os-glow-text-strong,
+[data-skin="network-school"] [data-ai-os] .ai-os-glow-text-medium,
+[data-skin="network-school"] [data-ai-os] .ai-os-glow-text-knoware {
+  filter: none !important;
+  text-shadow: none !important;
+}
+
+/* Inline `color: hsl(0 0% 100% / 0.X)` (white-with-opacity) is used on
+   ~every subtitle, label, microcopy and CTA inside AiOsPage. Convert
+   via attribute substring — the rgba/hsl literal is canonical in the
+   page source. */
+[data-skin="network-school"] [data-ai-os] [style*="hsl(0 0% 100%"],
+[data-skin="network-school"] [data-ai-os] [style*="hsl(0,0%,100%"],
+[data-skin="network-school"] [data-ai-os] [style*="hsla(0, 0%, 100%"],
+[data-skin="network-school"] [data-ai-os] [style*="hsla(0,0%,100%"] {
+  color: #0a0a0a !important;
+  text-shadow: none !important;
+}
+/* Pale-violet labels (`hsla(242, 40%, 85%, 0.85)` etc.) on the
+   "Additional power-ups" eyebrow and the italic "Same model.
+   Different conversation." subtitle. Under NS render as muted black. */
+[data-skin="network-school"] [data-ai-os] [style*="hsla(242,"],
+[data-skin="network-school"] [data-ai-os] [style*="hsl(242"],
+[data-skin="network-school"] [data-ai-os] [style*="hsla(290,"],
+[data-skin="network-school"] [data-ai-os] [style*="hsl(290"],
+[data-skin="network-school"] [data-ai-os] [style*="hsla(40 70%"],
+[data-skin="network-school"] [data-ai-os] [style*="hsl(40 70%"] {
+  color: rgba(10, 10, 10, 0.62) !important;
+  text-shadow: none !important;
+}
+
+/* Suite category chips ("Clarify / Iterate / Vibe Code / Design /
+   Foundational Skills") use inline `color`, `background` linear-
+   gradient and `boxShadow` from a `tocColors[category]` lookup
+   (low-saturation pastels: `#a4a3d0`, etc.). On the white NS pane
+   the pastel-on-pastel chip becomes near-invisible. Override to
+   neutral ink-on-white pill. */
+[data-skin="network-school"] [data-ai-os] a.group[class*="rounded-2xl"][style*="text-shadow"],
+[data-skin="network-school"] [data-ai-os] a.group[class*="rounded-2xl"][style*="background"] {
+  color: #0a0a0a !important;
+  background: #ffffff !important;
+  border: 1px solid rgba(10, 10, 10, 0.18) !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04) !important;
+  text-shadow: none !important;
+}
+[data-skin="network-school"] [data-ai-os] a.group[class*="rounded-2xl"]:hover {
+  background: rgba(10, 10, 10, 0.04) !important;
+  border-color: rgba(10, 10, 10, 0.32) !important;
+}
+
+/* Section-gradient backgrounds (`.section-gradient-clarity`, etc.) are
+   defined as low-alpha pastel gradients via CSS vars under `[data-ai-os]`
+   ~ line 2704. Under NS those wash to invisible; force flat white. */
+[data-skin="network-school"] [data-ai-os] [class*="section-gradient-"] {
+  background: #ffffff !important;
+}
+
+/* Bokeh glow + cursor glow + starry div are all decorative — kill them
+   wholesale via the role/aria/inline-fixed pattern. Cursor glow uses
+   `position: fixed; pointer-events: none` with a radial-gradient
+   background; pattern-matched via inline radial-gradient containing
+   `rgba(132,96,234`. */
+[data-skin="network-school"] [data-ai-os] [style*="rgba(132,96,234"],
+[data-skin="network-school"] [data-ai-os] [style*="rgba(132, 96, 234"],
+[data-skin="network-school"] [data-ai-os] [style*="rgba(180,140,255"],
+[data-skin="network-school"] [data-ai-os] [style*="rgba(180, 140, 255"] {
+  background: none !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+}
+
 /* Definition of the design system. All colors, gradients, fonts, etc should be defined here.
 All colors MUST be HSL.
 */
