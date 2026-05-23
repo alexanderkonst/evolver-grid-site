@@ -371,17 +371,35 @@ ${candidateBlocks.join("\n\n")}`;
             };
         });
 
-        // Cutoff: resonance ≥ 40, top 8 by score.
-        const survivors = scored
-            .filter((s) => s.resonance >= 40)
-            .sort((a, b) => b.resonance - a.resonance)
-            .slice(0, 8);
+        // Day 80 (Sasha 2026-05-23): threshold relaxed + always-surface
+        // fallback. The previous `>= 40` cutoff was filtering out almost
+        // everyone when the candidate pool was sparsely populated —
+        // common in early days when most users have only completed Top
+        // Talent. With four sub-scores defaulting to 0.5 on missing
+        // data, geometric-mean composites cluster around 40-50 for
+        // sparse pairs, and one weak LLM verdict drops them below the
+        // line. Two-part fix:
+        //   1. Primary threshold lowered 40 → 25. Filters true noise
+        //      but lets sparse-but-real pairs through.
+        //   2. If zero pairs clear the threshold, surface the top 5
+        //      by score regardless — better to show something with
+        //      visible sub-scores than an empty page. The user can
+        //      judge whether to act on each.
+        const sortedByScore = [...scored].sort(
+            (a, b) => b.resonance - a.resonance,
+        );
+        const aboveThreshold = sortedByScore.filter((s) => s.resonance >= 25);
+        const survivors =
+            aboveThreshold.length > 0
+                ? aboveThreshold.slice(0, 8)
+                : sortedByScore.slice(0, 5);
 
         if (survivors.length === 0) {
+            // Genuinely empty pool (no candidates at all).
             return jsonResponse({
                 matches: [],
                 message:
-                    "No matches above threshold yet. As more people complete their profiles, this will fill in.",
+                    "No other members are far enough into their profiles yet. As more people join, this will fill in.",
             });
         }
 
