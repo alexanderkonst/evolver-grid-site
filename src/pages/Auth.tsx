@@ -368,6 +368,19 @@ const Auth = () => {
   // `bg-primary` tokens — which respect the skin via the [data-skin="navy-gold"]
   // CSS-var block. Aurora renders via the default :root values, Navy+Gold
   // renders via the navy-gold override. No per-page branches.
+  // Day 79 (Sasha 2026-05-22): match-path claim copy. Same email-and-
+  // magic-link flow; different framing. Match-path users land here
+  // after their Top Talent reveal when they click "Discover your
+  // mission in 1 minute". They're not waiting to come back later;
+  // they're moving forward into the next step. The copy reflects
+  // that: "save your data so you don't lose it" plus the forward
+  // promise instead of the "come back when ready" promise.
+  // Read from sessionStorage instead of EntryPathContext directly
+  // so the copy switches even before the context hydrates.
+  const claimIsMatchPath =
+    typeof window !== "undefined" &&
+    window.sessionStorage?.getItem("fytt:entry_path") === "match";
+
   if (claimMode) {
     return (
       <GameShellV2 hideLogo>
@@ -379,10 +392,14 @@ const Auth = () => {
                 <Sparkles className="w-6 h-6 text-primary" />
               </div>
               <CardTitle className="text-2xl font-bold">
-                Enter your email — your free result stays safe there.
+                {claimIsMatchPath
+                  ? "Now let's save your data so you don't lose it."
+                  : "Enter your email — your free result stays safe there."}
               </CardTitle>
               <CardDescription>
-                We'll email you a one-click magic link. You can dive into your Top Talent now; the link just keeps your result waiting when you're ready to come back.
+                {claimIsMatchPath
+                  ? "Magic link to your inbox. One click and you keep going with mission discovery."
+                  : "We'll email you a one-click magic link. You can dive into your Top Talent now; the link just keeps your result waiting when you're ready to come back."}
               </CardDescription>
             </CardHeader>
             <CardContent>
