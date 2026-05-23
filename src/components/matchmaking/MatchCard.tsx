@@ -1,5 +1,5 @@
 import { memo, useState } from "react";
-import { X, UserPlus, Sparkles, ChevronLeft, ChevronRight, Check, Mail } from "lucide-react";
+import { X, UserPlus, ChevronLeft, ChevronRight, Mail } from "lucide-react";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -172,73 +172,32 @@ const MatchCard = ({
 }: MatchCardProps) => {
   const cleanArchetype = stripSymbols(user.archetype);
 
+  // Day 79 (Sasha 2026-05-22): "Don't show again" is destructive
+  // (permanently hides this profile from the user's match queue), so
+  // it gets a confirmation step. Pattern: same as Mission Discovery
+  // "Change your mission?" AlertDialog. Softer copy than the literal
+  // "Do you really want to never see this profile again?" Sasha's
+  // draft suggested — active verb, no double-negative.
+  const [confirmHideOpen, setConfirmHideOpen] = useState(false);
+  const handleHideClick = () => setConfirmHideOpen(true);
+  const handleConfirmHide = () => {
+    setConfirmHideOpen(false);
+    onPass();
+  };
+
   return (
     <div className="w-full max-w-lg mx-auto">
       {/* ─── Action Buttons (TOP) — varies by interactionState ─── */}
+      {/* Day 79 (Sasha 2026-05-22): CTA positions swapped. Was:
+          [Don't show again]  [< N/M >]  [I'd like to meet]
+          Now: [I'd like to meet]  [< N/M >]  [Don't show again]
+          The primary action lands first in the left-to-right reading
+          order so the user's eye finds the forward move before the
+          dismissal. Nav arrows also enlarged from 32×32 to 44×44
+          with stronger borders + shadows so the prev/next path is
+          unmissable. */}
       <div className="flex items-center justify-between gap-3 mb-4 flex-wrap">
-        {/* Left affordance: Pass / Withdraw / hidden depending on state */}
-        {interactionState === "default" ? (
-          <button
-            onClick={onPass}
-            className="flex items-center gap-2 px-4 py-2 rounded-full transition-all duration-200 hover:translate-y-[-0.5px]"
-            style={tertiaryPill}
-          >
-            <X className="w-3.5 h-3.5" />
-            Don't show again
-          </button>
-        ) : interactionState === "interest-expressed" && onWithdraw ? (
-          <button
-            onClick={onWithdraw}
-            className="flex items-center gap-2 px-4 py-2 rounded-full transition-all duration-200 hover:translate-y-[-0.5px]"
-            style={tertiaryPill}
-            aria-label="Withdraw interest"
-          >
-            <X className="w-3.5 h-3.5" />
-            Withdraw
-          </button>
-        ) : (
-          // Reserve the slot so the pager stays centered.
-          <span aria-hidden="true" className="w-[1px]" />
-        )}
-
-        {/* Navigation indicator (same in all states) */}
-        {typeof currentIndex === "number" && typeof totalCount === "number" && (
-          <div className="flex items-center gap-2">
-            <button
-              onClick={onPrev}
-              disabled={currentIndex === 0}
-              className="w-8 h-8 rounded-full flex items-center justify-center transition-all hover:translate-y-[-0.5px] disabled:opacity-30"
-              style={navButton}
-              aria-label="Previous match"
-            >
-              <ChevronLeft className="w-4 h-4" />
-            </button>
-            <span
-              style={{
-                fontFamily: "'DM Sans', system-ui, sans-serif",
-                fontVariantNumeric: "tabular-nums lining-nums",
-                fontSize: "13px",
-                fontWeight: 600,
-                color: "var(--skin-text-primary, #0b2a5a)",
-                textShadow:
-                  "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.7))",
-              }}
-            >
-              {currentIndex + 1}/{totalCount}
-            </span>
-            <button
-              onClick={onNext}
-              disabled={currentIndex === totalCount - 1}
-              className="w-8 h-8 rounded-full flex items-center justify-center transition-all hover:translate-y-[-0.5px] disabled:opacity-30"
-              style={navButton}
-              aria-label="Next match"
-            >
-              <ChevronRight className="w-4 h-4" />
-            </button>
-          </div>
-        )}
-
-        {/* Right affordance: "I'd like to meet" / interest pill / mutual banner */}
+        {/* Left affordance: Primary "I'd like to meet" / interest pill / mutual banner */}
         {interactionState === "default" ? (
           <button
             onClick={onConnect}
@@ -291,6 +250,110 @@ const MatchCard = ({
             Introduction sent
           </div>
         )}
+
+        {/* Navigation indicator (same in all states) — bigger + clearer */}
+        {typeof currentIndex === "number" && typeof totalCount === "number" && (
+          <div className="flex items-center gap-2">
+            <button
+              onClick={onPrev}
+              disabled={currentIndex === 0}
+              className="w-11 h-11 rounded-full flex items-center justify-center transition-all hover:translate-y-[-1px] hover:scale-[1.05] active:scale-95 disabled:opacity-25 disabled:cursor-not-allowed"
+              style={{
+                ...navButton,
+                borderWidth: "1px",
+                boxShadow: "0 6px 20px -8px rgba(10, 22, 40, 0.28), 0 0 0 1px rgba(212, 175, 55, 0.18)",
+              }}
+              aria-label="Previous match"
+            >
+              <ChevronLeft className="w-5 h-5" strokeWidth={2.25} />
+            </button>
+            <span
+              style={{
+                fontFamily: "'DM Sans', system-ui, sans-serif",
+                fontVariantNumeric: "tabular-nums lining-nums",
+                fontSize: "14px",
+                fontWeight: 600,
+                color: "var(--skin-text-primary, #0b2a5a)",
+                textShadow:
+                  "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.7))",
+                minWidth: "2.5rem",
+                textAlign: "center",
+              }}
+            >
+              {currentIndex + 1}/{totalCount}
+            </span>
+            <button
+              onClick={onNext}
+              disabled={currentIndex === totalCount - 1}
+              className="w-11 h-11 rounded-full flex items-center justify-center transition-all hover:translate-y-[-1px] hover:scale-[1.05] active:scale-95 disabled:opacity-25 disabled:cursor-not-allowed"
+              style={{
+                ...navButton,
+                borderWidth: "1px",
+                boxShadow: "0 6px 20px -8px rgba(10, 22, 40, 0.28), 0 0 0 1px rgba(212, 175, 55, 0.18)",
+              }}
+              aria-label="Next match"
+            >
+              <ChevronRight className="w-5 h-5" strokeWidth={2.25} />
+            </button>
+          </div>
+        )}
+
+        {/* Right affordance: secondary "Don't show again" / Withdraw / hidden depending on state */}
+        {interactionState === "default" ? (
+          <button
+            onClick={handleHideClick}
+            className="flex items-center gap-2 px-4 py-2 rounded-full transition-all duration-200 hover:translate-y-[-0.5px]"
+            style={tertiaryPill}
+          >
+            <X className="w-3.5 h-3.5" />
+            Don't show again
+          </button>
+        ) : interactionState === "interest-expressed" && onWithdraw ? (
+          <button
+            onClick={onWithdraw}
+            className="flex items-center gap-2 px-4 py-2 rounded-full transition-all duration-200 hover:translate-y-[-0.5px]"
+            style={tertiaryPill}
+            aria-label="Withdraw interest"
+          >
+            <X className="w-3.5 h-3.5" />
+            Withdraw
+          </button>
+        ) : (
+          // Reserve the slot so the pager stays centered.
+          <span aria-hidden="true" className="w-[1px]" />
+        )}
+
+        {/* Confirmation dialog for the destructive "Don't show again". */}
+        <AlertDialog open={confirmHideOpen} onOpenChange={setConfirmHideOpen}>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle
+                style={{
+                  fontFamily: "'Cormorant Garamond', serif",
+                  fontWeight: 700,
+                  color: "var(--skin-text-primary, #0b2a5a)",
+                }}
+              >
+                Hide {user.firstName} from your matches?
+              </AlertDialogTitle>
+              <AlertDialogDescription
+                style={{
+                  fontFamily: "'Source Serif 4', Georgia, serif",
+                  fontWeight: 500,
+                  color: "var(--skin-text-muted, rgba(11,42,90,0.72))",
+                }}
+              >
+                You won't see this profile again. The change is permanent.
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogCancel>Keep showing</AlertDialogCancel>
+              <AlertDialogAction onClick={handleConfirmHide}>
+                Hide forever
+              </AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
       </div>
 
       {/* ─── State banner (above the profile card) for interest/mutual ─── */}
@@ -356,17 +419,22 @@ const MatchCard = ({
 
       {/* ─── Profile Card — parchment surface, Aurora editorial ─── */}
       <div className="rounded-2xl overflow-hidden" style={parchmentCard}>
-        {/* Photo + Identity */}
+        {/* Photo + Identity. Day 79 (Sasha 2026-05-22): the avatar slot
+            no longer renders a Sparkles placeholder when the user
+            hasn't uploaded a photo. Sasha: "the photo with this ugly
+            space holder just doesn't look good." Empty avatar →
+            entire circle hidden; the name + archetype now lead the
+            card directly. */}
         <div className="flex flex-col items-center text-center p-6 pb-4">
-          <div
-            className="w-24 h-24 rounded-full overflow-hidden mb-4 flex items-center justify-center"
-            style={{
-              background: "rgba(212, 175, 55, 0.10)",
-              border: "0.5px solid rgba(212, 175, 55, 0.55)",
-              boxShadow: "0 0 18px -6px rgba(212, 175, 55, 0.40)",
-            }}
-          >
-            {user.avatarUrl ? (
+          {user.avatarUrl && (
+            <div
+              className="w-24 h-24 rounded-full overflow-hidden mb-4 flex items-center justify-center"
+              style={{
+                background: "rgba(212, 175, 55, 0.10)",
+                border: "0.5px solid rgba(212, 175, 55, 0.55)",
+                boxShadow: "0 0 18px -6px rgba(212, 175, 55, 0.40)",
+              }}
+            >
               <img
                 src={user.avatarUrl}
                 alt={`${user.firstName} ${user.lastName}`}
@@ -377,13 +445,8 @@ const MatchCard = ({
                 }}
                 className="w-full h-full object-cover"
               />
-            ) : (
-              <Sparkles
-                className="w-8 h-8"
-                style={{ color: "var(--skin-accent-gold, #b8860b)" }}
-              />
-            )}
-          </div>
+            </div>
+          )}
 
           {/* Day 65 (Sasha 2026-05-09) — name + archetype upgraded to
               halo-deep + Strong cocktail. Sasha's screenshot showed Val
