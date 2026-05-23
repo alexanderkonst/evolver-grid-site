@@ -222,6 +222,31 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
             return false;
         }
     });
+
+    // Day 79 (Sasha 2026-05-22): AI OS visibility gate.
+    //
+    // Sasha's call: new users in onboarding shouldn't see AI OS in the
+    // rail (distraction from T+M+A). But returning visitors who already
+    // know AI OS should never lose it, and direct URL paste (cold
+    // outreach links) must still work. Three rules combine:
+    //
+    //   1. Authed user with T+M+A completion → chip shown (earned).
+    //   2. localStorage flag `fytt:ai-os-visited` set → chip shown
+    //      (ever-visited memory; latches once, never un-latches).
+    //   3. Otherwise → chip hidden from rail. `/ai-os` URL still works
+    //      and the AiOsPage useEffect writes the flag, so the next
+    //      navigation lands them in the "shown" branch.
+    //
+    // Same shape as collaborateUnlocked: synchronous read from
+    // localStorage, storage event keeps cross-tab parity.
+    const [aiOsEverVisited, setAiOsEverVisited] = useState<boolean>(() => {
+        if (typeof window === "undefined") return false;
+        try {
+            return window.localStorage.getItem("fytt:ai-os-visited") === "true";
+        } catch {
+            return false;
+        }
+    });
     // Prevents the SpacesRail lock-flicker: while the profile is still being
     // fetched, `stage` would default to "new" and render ME/LEARN/MEET as
     // locked for a beat — then flip unlocked when the profile arrives. We
@@ -544,6 +569,10 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
             if (e.key === "fytt:collaborate-unlocked") {
                 setCollaborateUnlocked(e.newValue === "true");
             }
+            // Day 79: same cross-tab listener for AI OS ever-visited flag.
+            if (e.key === "fytt:ai-os-visited") {
+                setAiOsEverVisited(e.newValue === "true");
+            }
         };
         const onCustomUnlock = () => {
             setCollaborateUnlocked(
@@ -551,11 +580,19 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                     window.localStorage.getItem("fytt:collaborate-unlocked") === "true",
             );
         };
+        const onAiOsVisited = () => {
+            setAiOsEverVisited(
+                typeof window !== "undefined" &&
+                    window.localStorage.getItem("fytt:ai-os-visited") === "true",
+            );
+        };
         window.addEventListener("storage", onStorage);
         window.addEventListener("fytt:collaborate-unlocked", onCustomUnlock);
+        window.addEventListener("fytt:ai-os-visited", onAiOsVisited);
         return () => {
             window.removeEventListener("storage", onStorage);
             window.removeEventListener("fytt:collaborate-unlocked", onCustomUnlock);
+            window.removeEventListener("fytt:ai-os-visited", onAiOsVisited);
         };
     }, []);
 
@@ -708,10 +745,22 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
     // anyway (BUILD-exception), so the only visible effect is a
     // possible brief "no-lock → locked-then-unlocked" transition on
     // accounts that haven't activated. Acceptable trade-off.
+    // Day 79 (Sasha 2026-05-22): T+M+A gate for AI OS visibility.
+    // Top Talent = zogComplete (already derived above from onboarding_stage).
+    // Mission = mission_discovered_at column written by Mission Discovery save.
+    // Assets = resources_mapped_at column written by Asset Mapping save.
+    // All three must be non-null for the chip to surface on its own; the
+    // ever-visited flag bypasses the gate for returning visitors.
+    const missionComplete = !!(profile as { mission_discovered_at?: string | null } | null)?.mission_discovered_at;
+    const assetsComplete = !!(profile as { resources_mapped_at?: string | null } | null)?.resources_mapped_at;
+    const tmaComplete = zogComplete && missionComplete && assetsComplete;
+    const aiOsUnlocked = tmaComplete || aiOsEverVisited;
+
     const unlockStatus: Record<string, boolean> = profileLoaded
         ? {
             "journey": true,                                    // Always open — the front door
             "next-move": zogComplete,                           // After Step 1
+            "ai-os": aiOsUnlocked,                              // After T+M+A or ever-visited (Day 79)
             "grow": zogComplete,                                // ME — visible always, locked until ZoG done (Sasha, 2026-04-21)
             // Day 61 (Sasha 2026-05-04 14:30): LEARN + MEET gated
             // by feature flag (see top of file). When flag is false
@@ -771,7 +820,10 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
     // because Equilibrium (Biologic Watch) is now a daily-companion entry
     // point inside BUILD that doesn't require funnel progression. UBB itself
     // retains its existing gate via MeGate at the /ubb route level.
-    const GATED_SPACES = ["next-move", "learn", "meet", "collaborate", "buysell"] as const;
+    // Day 79 (Sasha 2026-05-22): ai-os added to GATED_SPACES so it falls
+    // into the hide-don't-lock pattern when the unlockStatus[ai-os] is
+    // false. Localised handling below for the unauthed-guest case.
+    const GATED_SPACES = ["next-move", "ai-os", "learn", "meet", "collaborate", "buysell"] as const;
     // Day 75 (Sasha 2026-05-19) — COLLABORATE flicker fix.
     //
     // Sasha: "collaborate space on the first panel doesn't show sometimes,

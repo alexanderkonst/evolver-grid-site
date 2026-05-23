@@ -123,6 +123,13 @@ const MatchHero = () => {
               color: "var(--skin-text-primary, #0a1628)",
               textShadow:
                 "var(--skin-text-halo-deep, 0 0 22px rgba(255,255,255,0.7), 0 1px 2px rgba(255,255,255,0.9), 0 0 1px rgba(11,42,90,0.45), 0 1px 0 rgba(11,42,90,0.25))",
+              // Day 79 (Sasha 2026-05-22): Cormorant Garamond defaults to
+              // old-style figures (numerals sit below the cap-height
+              // baseline like miniature lowercase). "10" rendered tiny
+              // next to "You" / "Your". Lining figures force full
+              // cap-height numerals that match capitals harmoniously.
+              fontVariantNumeric: "lining-nums",
+              fontFeatureSettings: '"lnum" 1, "onum" 0',
             }}
           >
             You don't have to do it alone. Your co-creators are 10 minutes away.
