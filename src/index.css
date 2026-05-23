@@ -562,6 +562,15 @@
   --skin-text-muted: rgba(10, 10, 10, 0.62);
   --skin-text-muted-soft: rgba(10, 10, 10, 0.48);
 
+  /* Day 80 (Sasha 2026-05-23): SectionsPanel sidequest rows (the
+     optional ✦ "monetize your top talent ($37)" entry between steps
+     1 and 2) hardcoded their label color as inline style
+     `rgba(255,255,255,0.80)` — invisible on the NS light Pane 2.
+     The Tailwind-class cascade above can't catch inline styles, so
+     this skin-specific token does. Aurora + navy-gold keep the
+     hardcoded white via the JS-side fallback in SectionsPanel.tsx. */
+  --skin-sections-text: rgba(10, 10, 10, 0.80);
+
   /* Halos flat — no glow in editorial register. */
   --skin-text-halo-strong: none;
   --skin-text-halo-subtle: none;
