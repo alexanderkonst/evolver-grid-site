@@ -202,6 +202,35 @@ Return a JSON array. Every asset MUST have exactly these 3 fields:
 - "description": 1-3 sentences. What this asset actually IS, in plain language that preserves the user's actual register (no LinkedIn copy, no "social proof generator" labels). If there's strategic reasoning for why this asset matters or how it's used, fold that INTO the description as natural prose — do not invent a separate field.
 - "maturity": "monetizable_now" | "usable_but_needs_packaging" | "latent" | "aspirational" | "symbolic_only".
 
+TAXONOMY DISCIPLINE (HARD RULE — added Day 80 Wave 2.17 after Sasha
+flagged repeated "Center of Gravity" hallucinations):
+
+The TYPE (first segment of the category breadcrumb) MUST be exactly
+one of these SIX values:
+  • Expertise
+  • Life Experiences
+  • Networks
+  • Material Resources
+  • Intellectual Property
+  • Influence
+
+DO NOT use any other type. Specifically forbidden (legacy v3/v4
+artifacts, often hallucinated from training data or echoed from the
+user's older AI pastes):
+  ❌ "Center of Gravity"
+  ❌ "Root Capacity"
+  ❌ "Capacity"
+  ❌ "Essence" / "Field-Function" / "Field" / "Source" as type
+  ❌ Any other capitalized concept name
+
+If the user's pasted text DOES contain a "Center of Gravity" or
+similar meta-frame, IGNORE that framing and map the underlying
+substance into one of the six valid types (usually Intellectual
+Property > Methodologies, or Expertise > the specific domain).
+
+If you genuinely cannot fit something, use "Other > Other > Other".
+NEVER invent a new top-level type.
+
 MATURITY RUBRIC (this is the only ranking signal — use it honestly):
 - monetizable_now — documented, deliverable, priced. Could produce revenue this month.
 - usable_but_needs_packaging — real and proven but scattered. Two weeks of packaging from sellable.
