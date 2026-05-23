@@ -376,10 +376,11 @@ const Auth = () => {
   // that: "save your data so you don't lose it" plus the forward
   // promise instead of the "come back when ready" promise.
   // Read from sessionStorage instead of EntryPathContext directly
-  // so the copy switches even before the context hydrates.
+  // so the copy switches even before the context hydrates. Key matches
+  // EntryPathContext.STORAGE_KEY ("ftt_entry_path").
   const claimIsMatchPath =
     typeof window !== "undefined" &&
-    window.sessionStorage?.getItem("fytt:entry_path") === "match";
+    window.sessionStorage?.getItem("ftt_entry_path") === "match";
 
   if (claimMode) {
     return (
