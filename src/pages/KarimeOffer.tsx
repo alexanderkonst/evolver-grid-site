@@ -110,31 +110,34 @@ const KarimeOffer = () => {
             }}
           >
             <p className="text-lg sm:text-xl md:text-[1.4rem] font-semibold leading-[1.45] tracking-[-0.005em]">
-              Karime offers deeply grounded emotional support for people moving through heartbreak, grief, emotional exhaustion, relationship pain, family crisis, impossible decisions, and delicate life transitions.
+              Karime offers deeply grounded emotional support for people moving through heartbreak, grief, burnout, relationship pain, family crisis, impossible decisions, and emotionally overwhelming seasons of life.
             </p>
 
             <p className="text-lg sm:text-xl md:text-[1.4rem] font-semibold leading-[1.45] tracking-[-0.005em]">
-              A space to soften, reconnect with yourself, and feel genuinely cared for while facing what is real.
+              A space to soften, hear yourself clearly again, and feel genuinely supported while facing what is real.
             </p>
 
-            {/* Three short lines — render as a tight stack, italic for breath. */}
+            {/* Three short lines — positive declarations, italic for breath.
+                Day 81 (Sasha 2026-05-23): negatives (Not advice / Not
+                pressure / Not spiritual performance) flipped to positives
+                so the page leads with what IS, not what isn't. */}
             <div
               className="space-y-1 sm:space-y-1.5 italic"
               style={{ fontWeight: 600 }}
             >
               <p className="text-base sm:text-lg md:text-xl leading-[1.4]">
-                Not advice.
+                Careful attention.
               </p>
               <p className="text-base sm:text-lg md:text-xl leading-[1.4]">
-                Not pressure.
+                Emotional honesty.
               </p>
               <p className="text-base sm:text-lg md:text-xl leading-[1.4]">
-                Not spiritual performance.
+                Held, not fixed.
               </p>
             </div>
 
             <p className="text-lg sm:text-xl md:text-[1.4rem] font-semibold leading-[1.45] tracking-[-0.005em]">
-              Just honest, attentive support during the moments of life that become too heavy to hold alone.
+              Just honest, attentive care during the moments that become too heavy to hold by yourself.
             </p>
           </div>
         </header>
@@ -142,7 +145,7 @@ const KarimeOffer = () => {
         {/* CTA cluster — single primary CTA, footer microcopy, contact line. */}
         <div className="mt-7 sm:mt-8">
           <div className="flex flex-col items-center gap-4 px-4 text-center">
-            <EditorialCta label="Book a conversation" onClick={handleBook} />
+            <EditorialCta label="Book a 20-min conversation" onClick={handleBook} />
 
             <div
               className="inline-flex items-center justify-center gap-2 max-w-[520px] mt-1"
@@ -156,7 +159,7 @@ const KarimeOffer = () => {
                 fontWeight: 500,
               }}
             >
-              <span>Free 20-minute fit session · Private online sessions worldwide & in person</span>
+              <span>Free 20 minutes fit call · Private online sessions worldwide and in person</span>
             </div>
 
             {/* Contact line — clickable Telegram + WhatsApp. Same small-caps
