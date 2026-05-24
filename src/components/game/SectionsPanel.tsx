@@ -930,6 +930,43 @@ const SectionsPanel = ({
             };
         }
 
+        // Day 80 (Sasha 2026-05-23): Karime Kuri's in-platform offering
+        // page. BUILD sidebar row appears only when:
+        //   (a) the viewer is Karime herself (so she always sees her own
+        //       page link), or
+        //   (b) the viewer has unlocked the BUILD space
+        //       (deepProfileActivated — paid tier, coupon, or completed
+        //       Top Talent reveal).
+        // Hidden otherwise. Direct URL /build/karime renders regardless —
+        // the route has no auth gate; only the sidebar row is conditional.
+        // Per memory: hide-don't-show beats ghost-locked nav.
+        if (
+            activeSpaceId === "build" &&
+            (userEmail === "karimekurit@gmail.com" || deepProfileActivated)
+        ) {
+            const karimeRow: Section = {
+                id: "build-karime",
+                label: "Karime's Unique Offer",
+                path: "/build/karime",
+            };
+            // Insert between "Productize Yourself Session" and "Equilibrium"
+            // so it sits in the offer-cluster of the pane rather than at the
+            // top or bottom.
+            const igniteIdx = baseData.sections.findIndex(
+                (s) => s.id === "build-ignite",
+            );
+            const insertAt =
+                igniteIdx >= 0 ? igniteIdx + 1 : baseData.sections.length;
+            return {
+                ...baseData,
+                sections: [
+                    ...baseData.sections.slice(0, insertAt),
+                    karimeRow,
+                    ...baseData.sections.slice(insertAt),
+                ],
+            };
+        }
+
         // Add Art section only for alexanderkonst@gmail.com in ME space
         if (activeSpaceId === "grow" && userEmail === "alexanderkonst@gmail.com") {
             return {

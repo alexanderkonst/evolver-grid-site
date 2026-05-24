@@ -68,6 +68,10 @@ import ActivateTopTalent from "./pages/ActivateTopTalent";
 // is kept for reference only and no longer mounted.
 import MethodologyLandingPage from "./pages/MethodologyLandingPage";
 import JourneyPage from "./pages/JourneyPage";
+// Day 80 (Sasha 2026-05-23): Karime Kuri's offering page, first
+// in-platform per-founder offer surface. Lives in BUILD space, route
+// is public so the direct URL is shareable cold; sidebar row gated.
+import KarimeOffer from "./pages/KarimeOffer";
 import PlaybookPage from "./pages/PlaybookPage";
 import PathPage from "./pages/PathPage";
 import MyArtifactsPage from "./pages/MyArtifactsPage";
@@ -718,6 +722,12 @@ const App = () => (
                   <Route path="/equilibrium" element={<Navigate to="/build/equilibrium" replace />} />
                   {/* Equilibrium v2 — Biologic Watch (platform-resident, BUILD space) */}
                   <Route path="/build/equilibrium" element={<MeGate><GameShellV2 hideLogo><EquilibriumV2Page /></GameShellV2></MeGate>} />
+                  {/* Day 80 (Sasha 2026-05-23): Karime's offering page.
+                      Public route — the component wraps itself in
+                      GameShellV2, and the URL must be shareable cold
+                      regardless of auth/unlock state. Sidebar
+                      visibility gated separately in SectionsPanel. */}
+                  <Route path="/build/karime" element={<KarimeOffer />} />
                   {/* TEMP: unguarded preview route for visual verification — REMOVE or convert to auth-gated after Sasha sign-off */}
                   <Route path="/preview/equilibrium-v2" element={<GameShellV2 hideLogo><EquilibriumV2Page /></GameShellV2>} />
                   {/* MDLS Preview · /mdls-preview · 2026-05-18 · ungated.
