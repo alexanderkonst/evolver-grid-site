@@ -25,7 +25,14 @@ const MethodologyLandingPage = () => {
         path="/"
         ogTitle="You've been giving your best work away for free."
       />
-    <div className="max-w-[720px] mx-auto px-5 py-8 sm:py-9 md:py-10">
+    {/* Day 80 (Sasha 2026-05-23): hero typography + container padding
+        shifted one tier down so the full first-viewport stack (eyebrow,
+        echo, manifesto, CTA, trust microcopy, secondary CTA) lands
+        above the fold without scrolling on standard desktop sizes.
+        Previously the manifesto pushed the CTA + trust line below the
+        fold at default zoom; Sasha had to zoom in + center manually
+        to see the target shape. */}
+    <div className="max-w-[720px] mx-auto px-5 py-6 sm:py-7 md:py-8">
       {/* ═══════ NAME ═══════ */}
       <header className="text-center">
         {/* Recognition opener — plain "You", no drop cap (Sasha).
@@ -37,7 +44,7 @@ const MethodologyLandingPage = () => {
             under-stroke) deepens edges on bright sun-glare spots.
             See ui_playbook.md → Legibility section. */}
         <h1
-          className="text-3xl sm:text-4xl md:text-5xl font-bold leading-[1.1] tracking-[-0.018em] mb-4 sm:mb-5"
+          className="text-2xl sm:text-3xl md:text-4xl font-bold leading-[1.1] tracking-[-0.018em] mb-3 sm:mb-4"
           style={{
             fontFamily: "'Cormorant Garamond', serif",
             color: "var(--skin-text-primary, #0a1628)",
@@ -70,7 +77,7 @@ const MethodologyLandingPage = () => {
             Halo-deep token strengthened globally (see index.css).
             Per ui_playbook.md Part VIII "Strong" legibility setting. */}
         <p
-          className="text-lg sm:text-xl md:text-2xl leading-[1.32] italic"
+          className="text-base sm:text-lg md:text-xl leading-[1.32] italic"
           style={{
             fontFamily: "'Cormorant Garamond', serif",
             fontWeight: 700,
@@ -99,7 +106,7 @@ const MethodologyLandingPage = () => {
             carries the gold signature below without competition).
             Day 54 (Sasha): margin opened up so the ornament reads as a
             real beat of breath, not a tight visual divider. */}
-        <Ornament className="my-5 sm:my-6" />
+        <Ornament className="my-4 sm:my-5" />
 
         {/* Structure — four accents unified to deep antique-gold.
             Day 54 (Sasha): vertical rhythm between bullets bumped
@@ -120,7 +127,7 @@ const MethodologyLandingPage = () => {
               "var(--skin-text-halo-deep, 0 0 22px rgba(255,255,255,0.7), 0 1px 2px rgba(255,255,255,0.9), 0 0 1px rgba(11,42,90,0.45), 0 1px 0 rgba(11,42,90,0.25))",
           }}
         >
-          <p className="text-xl sm:text-2xl md:text-[1.75rem] font-bold leading-[1.4] tracking-[-0.005em]">
+          <p className="text-lg sm:text-xl md:text-2xl font-bold leading-[1.4] tracking-[-0.005em]">
             Find Your{" "}
             <span
               className="bg-clip-text text-transparent"
@@ -131,7 +138,7 @@ const MethodologyLandingPage = () => {
             .
           </p>
 
-          <p className="text-xl sm:text-2xl md:text-[1.75rem] font-bold leading-[1.4] tracking-[-0.005em]">
+          <p className="text-lg sm:text-xl md:text-2xl font-bold leading-[1.4] tracking-[-0.005em]">
             <span
               className="bg-clip-text text-transparent"
               style={GOLD_TEXT_STYLE}
@@ -147,7 +154,7 @@ const MethodologyLandingPage = () => {
               Revenue and Impact) reads cleaner without the
               imperative-pair interruption between the gerund-form
               promise lines. */}
-          <p className="text-xl sm:text-2xl md:text-[1.75rem] font-bold leading-[1.4] tracking-[-0.005em]">
+          <p className="text-lg sm:text-xl md:text-2xl font-bold leading-[1.4] tracking-[-0.005em]">
             <span
               className="bg-clip-text text-transparent"
               style={GOLD_TEXT_STYLE}
