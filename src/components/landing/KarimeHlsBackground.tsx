@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { createPortal } from "react-dom";
 import Hls from "hls.js";
 
 /**
@@ -49,7 +50,21 @@ export const KarimeHlsBackground = () => {
     }
   }, []);
 
-  return (
+  // Day 82 v3 (Sasha 2026-05-24): mount through a portal at document.body
+  // so the bg lives OUTSIDE GameShellV2's mobile-layout transform tree.
+  // The mobile nav-view slide uses `transform: translateX(...)` on a parent
+  // div, which creates a new stacking context — any `fixed` element inside
+  // that parent gets re-anchored to the transformed box, not the viewport.
+  // Portaling bypasses that: the video + veil + grain stay locked to the
+  // viewport regardless of GameShellV2's internal layout state.
+  //
+  // SSR / pre-mount guard: bail to null if document.body isn't ready.
+  // For client-only React apps this is true from the moment the app mounts,
+  // but the guard prevents StrictMode + HMR re-execution races from
+  // throwing into the ErrorBoundary.
+  if (typeof document === "undefined" || !document.body) return null;
+
+  return createPortal(
     <>
       <video
         ref={videoRef}
@@ -118,7 +133,8 @@ export const KarimeHlsBackground = () => {
           opacity: 0.55,
         }}
       />
-    </>
+    </>,
+    document.body,
   );
 };
 

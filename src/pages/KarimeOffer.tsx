@@ -83,7 +83,7 @@ const KarimeOffer = () => {
             video bg. Karime-only treatment; we may extend to other
             founder pages if it lands well. */}
         <div
-          className="rounded-3xl backdrop-blur-md px-5 py-8 sm:px-7 sm:py-10 md:px-9 md:py-12"
+          className="rounded-3xl backdrop-blur-[7px] px-5 py-8 sm:px-7 sm:py-10 md:px-9 md:py-12"
           style={{
             background: "rgba(255, 240, 220, 0.10)",
             border: "1px solid rgba(255, 220, 180, 0.22)",
