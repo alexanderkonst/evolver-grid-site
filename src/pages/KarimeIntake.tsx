@@ -224,38 +224,81 @@ const KarimeIntake = () => {
 
           <div>
             <p
-              className="block mb-4 text-lg sm:text-xl leading-[1.4] font-semibold text-center"
+              className="block mb-2 text-xl sm:text-2xl leading-[1.3] font-bold text-center"
               style={bodyTextStyle}
             >
               Which kind of support feels most aligned right now?
             </p>
-            <div className="space-y-2 max-w-[560px] mx-auto">
+            <p
+              className="text-center mb-5 sm:mb-6 text-xs sm:text-sm italic opacity-70"
+              style={bodyTextStyle}
+            >
+              Choose one
+            </p>
+            {/* Day 81 (Sasha 2026-05-23): options redesigned as
+                clearly-visible bordered cards with custom gold-aligned
+                radio indicators. Native radios buried the affordance —
+                visitors didn't read this as a choice they needed to make.
+                Each option is now a tactile chip with hover lift and a
+                strong gold-ring selected state. Native input is sr-only
+                but retains full keyboard + a11y semantics. */}
+            <div className="space-y-3 sm:space-y-3.5 max-w-[580px] mx-auto">
               {SUPPORT_OPTIONS.map((opt) => {
                 const isSelected = selectedSupport === opt.key;
                 return (
                   <label
                     key={opt.key}
-                    className={`flex items-start gap-3 cursor-pointer py-2.5 px-3 -mx-3 rounded-lg transition-all ${
-                      isSelected ? "bg-white/40" : "hover:bg-white/25"
-                    }`}
-                    style={
+                    className={`flex items-center gap-4 cursor-pointer p-4 sm:p-5 rounded-xl border transition-all ${
                       isSelected
-                        ? {
-                            boxShadow:
-                              "0 0 0 1px rgba(244, 212, 114, 0.45), 0 2px 8px -2px rgba(244, 212, 114, 0.25)",
-                          }
-                        : undefined
-                    }
+                        ? "bg-white/55"
+                        : "bg-white/25 hover:bg-white/40 hover:scale-[1.005]"
+                    }`}
+                    style={{
+                      borderColor: isSelected
+                        ? "rgba(244, 212, 114, 0.7)"
+                        : "rgba(26, 30, 58, 0.14)",
+                      boxShadow: isSelected
+                        ? "0 0 0 1px rgba(244, 212, 114, 0.45), 0 6px 18px -6px rgba(244, 212, 114, 0.35), 0 1px 3px rgba(11, 42, 90, 0.08)"
+                        : "0 1px 2px rgba(11, 42, 90, 0.04)",
+                    }}
                   >
                     <input
                       type="radio"
                       name="support"
                       checked={isSelected}
                       onChange={() => setSelectedSupport(opt.key)}
-                      className="mt-1.5 w-4 h-4 border-[rgba(26,30,58,0.3)] accent-[rgba(244,212,114,0.85)] flex-shrink-0"
+                      className="sr-only"
                     />
+                    {/* Custom radio indicator — larger, gold-themed,
+                        clearly reads as a selectable control. */}
                     <span
-                      className="text-base sm:text-lg leading-[1.4]"
+                      className="w-6 h-6 rounded-full border-2 flex-shrink-0 flex items-center justify-center transition-all"
+                      style={{
+                        borderColor: isSelected
+                          ? "rgba(244, 212, 114, 0.9)"
+                          : "rgba(26, 30, 58, 0.35)",
+                        background: isSelected
+                          ? "rgba(244, 212, 114, 0.18)"
+                          : "rgba(255, 255, 255, 0.5)",
+                        boxShadow: isSelected
+                          ? "inset 0 0 4px rgba(244, 212, 114, 0.4)"
+                          : "none",
+                      }}
+                      aria-hidden="true"
+                    >
+                      {isSelected && (
+                        <span
+                          className="w-3 h-3 rounded-full"
+                          style={{
+                            background: "rgba(244, 212, 114, 0.95)",
+                            boxShadow:
+                              "0 0 6px rgba(244, 212, 114, 0.6)",
+                          }}
+                        />
+                      )}
+                    </span>
+                    <span
+                      className="text-base sm:text-lg leading-[1.4] font-semibold flex-1"
                       style={bodyTextStyle}
                     >
                       {opt.label}
@@ -303,7 +346,9 @@ const KarimeIntake = () => {
 
               {/* Contact line revealed alongside the CTA — Telegram +
                   WhatsApp as fallback channels for visitors who prefer
-                  to message before booking. */}
+                  to message before booking. "Questions?" lead-in (Sasha
+                  Day 81) labels the line so visitors read the channels
+                  as a question-channel, not a competing CTA. */}
               <div
                 className="inline-flex flex-wrap items-center justify-center gap-x-3 gap-y-1 max-w-[520px] mt-3"
                 style={{
@@ -316,6 +361,7 @@ const KarimeIntake = () => {
                   fontWeight: 500,
                 }}
               >
+                <span>Questions?</span>
                 <a
                   href={KARIME_TELEGRAM_URL}
                   target="_blank"
