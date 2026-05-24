@@ -24,6 +24,10 @@ const PreviewBanner = () => {
   const navigate = useNavigate();
 
   if (skin === "aurora") return null;
+  // Day 81 (Sasha 2026-05-23): karime is a production route-scoped skin
+  // (not a preview / not a debug surface), so the "preview chip" pattern
+  // doesn't apply — visitors on /build/karime* should never see it.
+  if (skin === "karime") return null;
 
   const isNS = skin === "network-school";
 
