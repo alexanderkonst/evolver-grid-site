@@ -682,6 +682,104 @@
   --skin-strike-color: rgba(10, 10, 10, 0.65);
 }
 
+/* ───────────────────────────────────────────────────────────────────
+   KARIME SKIN — Day 81 (Sasha 2026-05-23)
+   ───────────────────────────────────────────────────────────────────
+   One-off, route-scoped skin for Karime Kuri's offering pages
+   (/build/karime + /build/karime/intake). Activated via
+   `pushTemporarySkin("karime")` on mount and torn down on unmount —
+   does NOT persist in localStorage, does NOT affect any other route.
+
+   Tonal palette derived from the warm Moroccan-sunset HLS video
+   background: deep walnut text on cream halos, copper-warm gold
+   accents to match the brass altar objects, solid deep terracotta
+   panel backgrounds with a subtle warm-amber gradient overlay.
+   Pane 1 + Pane 2 warm into the same hue family as pane 3 so the
+   three panes read as one room.
+
+   Per Sasha's call: solid terracotta with warm-amber gradient
+   overlay over image-bleed into panes 1+2 (cleaner, less busy).
+*/
+[data-skin="karime"] {
+  /* TEXT — deep walnut brown on warm cream halos for clean
+     contrast against the warm video bg. The white halos of aurora
+     would read cold against this palette; we swap to cream-rose
+     for tonal coherence. */
+  --skin-text-primary: #3d2817;
+  --skin-text-body: rgba(61, 40, 23, 0.97);
+  --skin-text-muted: rgba(61, 40, 23, 0.88);
+  --skin-text-muted-soft: rgba(61, 40, 23, 0.72);
+  --skin-text-strong: rgba(43, 24, 12, 0.98);
+  --skin-text-faint: rgba(61, 40, 23, 0.62);
+  --skin-text-hint: rgba(61, 40, 23, 0.48);
+
+  /* HALOS — warm cream lift instead of cool white. Same shadow
+     architecture as aurora's halo cocktail; just rewarmed. */
+  --skin-text-halo-deep:
+    0 0 28px rgba(255, 240, 220, 0.95),
+    0 1px 2px rgba(255, 240, 220, 0.98),
+    0 0 1px rgba(91, 42, 11, 0.7),
+    0 1px 0 rgba(91, 42, 11, 0.5);
+  --skin-text-halo-soft: 0 1px 2px rgba(255, 240, 220, 0.82);
+  --skin-text-halo-subtle:
+    0 0 18px rgba(255, 240, 220, 0.65),
+    0 1px 2px rgba(255, 240, 220, 0.82);
+  --skin-text-halo-strong:
+    0 0 22px rgba(255, 240, 220, 0.7),
+    0 1px 2px rgba(255, 240, 220, 0.88),
+    0 2px 12px rgba(91, 42, 11, 0.18);
+
+  /* PANELS 1 & 2 — solid deep terracotta. Pane 1 a hair darker
+     than pane 2 so the rail recedes; pane 2 carries the lighter
+     terracotta tone so sidebar items have reading contrast. */
+  --skin-panel-1-bg: rgba(91, 42, 11, 0.94);
+  --skin-panel-2-bg: rgb(125, 65, 35);
+
+  /* PANEL WASH — warm-amber gradient overlay for any pane that
+     reads the wash token. Soft top-left glow over a warm
+     terracotta base; same idea as aurora's wash, just rewarmed. */
+  --skin-panel-wash:
+    radial-gradient(ellipse at 30% 20%, rgba(240, 180, 100, 0.18) 0%, transparent 60%),
+    linear-gradient(135deg, rgba(91, 42, 11, 0.42) 0%, rgba(125, 65, 35, 0.32) 100%);
+  --skin-panel-wash-quiet:
+    radial-gradient(ellipse at 30% 20%, rgba(240, 180, 100, 0.08) 0%, transparent 60%);
+
+  /* ORNAMENT — copper-warm gold, matched to the brass altar
+     objects in the video bg. */
+  --skin-ornament-rule: rgba(91, 42, 11, 0.32);
+  --skin-ornament-star: rgba(218, 165, 32, 0.92);
+  --skin-ornament-shadow:
+    0 0 12px rgba(255, 200, 120, 0.55),
+    0 0 3px rgba(218, 165, 32, 0.78);
+
+  /* CTA — warm-brown dark glass with copper halo. Reads as the
+     same EditorialCta dialect (dark glass + rotating emblem +
+     warm halo) but rewarmed top-to-bottom. */
+  --skin-cta-bg: linear-gradient(
+    135deg,
+    rgba(50, 30, 18, 0.85) 0%,
+    rgba(80, 45, 25, 0.75) 50%,
+    rgba(50, 30, 18, 0.85) 100%
+  );
+  --skin-cta-text: rgba(255, 240, 220, 0.98);
+  --skin-cta-border: rgba(255, 230, 200, 0.18);
+  --skin-cta-shadow:
+    0 0 22px -4px rgba(240, 180, 100, 0.55),
+    0 10px 28px -10px rgba(50, 30, 18, 0.6);
+  --skin-cta-text-shadow:
+    0 0 16px rgba(255, 200, 120, 0.35),
+    0 1px 2px rgba(0, 0, 0, 0.4);
+  --skin-cta-icon: rgba(240, 200, 130, 0.98);
+  --skin-cta-icon-shadow:
+    0 0 12px rgba(255, 200, 120, 0.85),
+    0 0 4px rgba(218, 165, 32, 0.9);
+
+  /* LINKS + RULES */
+  --skin-link-secondary: rgba(61, 40, 23, 0.85);
+  --skin-rule-strong: rgba(91, 42, 11, 0.3);
+  --skin-rule-medium: rgba(91, 42, 11, 0.18);
+}
+
 /* V3 typography (Sasha 2026-05-19) — NS is editorial serif throughout
    for content, clean sans only for UI chrome (rail chips, Pane 2 nav,
    form controls). Body type in serif is what carries the editorial

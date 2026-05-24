@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { EditorialCta } from "@/components/ui/editorial-cta";
 import { Ornament } from "@/lib/landingDesign";
 import SEO from "@/components/SEO";
 import GameShellV2 from "@/components/game/GameShellV2";
+import KarimeHlsBackground from "@/components/landing/KarimeHlsBackground";
+import { useSkin } from "@/contexts/SkinContext";
 
 /**
  * KarimeIntake — preparatory page Sasha sends manually on WhatsApp after
@@ -55,6 +57,15 @@ const SUPPORT_OPTIONS: { key: SupportKey; label: string }[] = [
 ];
 
 const KarimeIntake = () => {
+  // Day 81 (Sasha 2026-05-23): route-scoped "karime" skin activation.
+  // Same pattern as KarimeOffer — warm terracotta tokens applied only
+  // while on this page, restored on unmount.
+  const { pushTemporarySkin } = useSkin();
+  useEffect(() => {
+    const cleanup = pushTemporarySkin("karime");
+    return cleanup;
+  }, [pushTemporarySkin]);
+
   const [selectedSupport, setSelectedSupport] = useState<SupportKey | null>(
     null,
   );
@@ -89,7 +100,10 @@ const KarimeIntake = () => {
         path="/build/karime/intake"
         ogTitle="Before we meet"
       />
-      <div className="max-w-[720px] mx-auto px-5 py-8 sm:py-9 md:py-10">
+      {/* Day 81 (Sasha 2026-05-23): warm Moroccan-sunset HLS video bg
+          (Mux) shared with /build/karime landing for tonal continuity. */}
+      <KarimeHlsBackground />
+      <div className="relative z-10 max-w-[720px] mx-auto px-5 py-8 sm:py-9 md:py-10">
         {/* ── Page heading (minimal — placeholder for Sasha's substitute) ── */}
         <header className="text-center mb-8 sm:mb-10">
           <h1
