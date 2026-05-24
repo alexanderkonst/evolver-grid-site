@@ -69,17 +69,22 @@ export const KarimeHlsBackground = () => {
           texture aesthetic — adds the analog-film quality Sasha
           asked for. */}
 
-      {/* Warm veil — radial gradient: soft cream center fading to a
-          deeper terracotta wash at the edges. Functions as a soft
-          vignette + global contrast dampener. Lifts dark text against
-          bright bg areas; pushes the video's extremes toward a
-          legible middle. */}
+      {/* Warm veil — Day 82 v2: two-layer stack. Bottom layer is the
+          existing radial cream-to-terracotta vignette. TOP layer is a
+          new directional darkener focused on the upper-right window
+          zone (the sunset-window hotspot pulled the eye away from text
+          even with the uniform veil active — holonic-roast fix #2).
+          The directional ellipse is positioned at 72% 32%, so the
+          brightest part of the bg gets the most knock-down while the
+          cooler interior zones stay clear. */}
       <div
         className="fixed inset-0 z-[1] pointer-events-none"
         aria-hidden="true"
         style={{
-          background:
+          background: [
+            "radial-gradient(ellipse 60% 50% at 72% 32%, rgba(91, 42, 11, 0.4) 0%, transparent 75%)",
             "radial-gradient(ellipse 140% 100% at 50% 40%, rgba(255, 240, 220, 0.22) 0%, rgba(91, 42, 11, 0.48) 100%)",
+          ].join(", "),
         }}
       />
 
