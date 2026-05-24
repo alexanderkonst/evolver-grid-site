@@ -59,6 +59,15 @@ export const KarimeHlsBackground = () => {
         playsInline
         className="fixed inset-0 w-full h-full object-cover z-0 pointer-events-none"
         aria-hidden="true"
+        style={{
+          // Day 82 v2 (holonic-roast fix #4): soft desaturation on the
+          // video itself dampens the ivy (bright green) and cushion
+          // (high-saturation terracotta), so they stop pulling the eye
+          // away from the meditative center. ~12% knock-down; just
+          // enough that the highest-saturation elements settle into the
+          // overall palette without losing any of the photo's depth.
+          filter: "saturate(0.88)",
+        }}
       />
 
       {/* Day 81 v2 (Sasha 2026-05-23): atmospheric overlay stack for
@@ -88,14 +97,17 @@ export const KarimeHlsBackground = () => {
         }}
       />
 
-      {/* Film grain — SVG turbulence noise as a tile-able inline data
-          URI. `mix-blend-mode: soft-light` blends the grain with the
-          video below so it reads as organic film texture, not pixel
-          noise. Opacity tuned to be pronounced enough to feel tactile
-          (per Sasha's "maybe even more pronounced") without obscuring
-          the imagery. Zero network cost, single paint, no animation. */}
+      {/* Film grain — Day 82 v2 (holonic-roast fix #3): z-index raised
+          to [60] so the grain texture now covers panes 1+2 as well as
+          pane 3, instead of stopping at the rail/sidebar edges. The
+          flat warm-terracotta of pane 1+2 was reading as color blocks
+          next to a richly textured photo; with the grain extended
+          across the whole viewport, the three panes finally share the
+          same tactile film quality. soft-light blend keeps the effect
+          on solid surfaces subtle, so sidebar legibility is preserved.
+          Zero network cost, single paint, no animation. */}
       <div
-        className="fixed inset-0 z-[2] pointer-events-none"
+        className="fixed inset-0 z-[60] pointer-events-none"
         aria-hidden="true"
         style={{
           backgroundImage:
