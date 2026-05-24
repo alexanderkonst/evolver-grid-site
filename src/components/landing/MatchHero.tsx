@@ -70,7 +70,10 @@ const MatchHero = () => {
         path="/?path=match"
         ogTitle="Your co-creators are 10 minutes away"
       />
-      <div className="max-w-[720px] mx-auto px-5 py-8 sm:py-9 md:py-10">
+      {/* Day 80 (Sasha 2026-05-23): hero typography + padding tier-shifted
+          down (mirror of MethodologyLandingPage same-day change) so the
+          full first-viewport stack lands above the fold without zoom. */}
+      <div className="max-w-[720px] mx-auto px-5 py-6 sm:py-7 md:py-8">
         <header className="text-center">
           {/* Day 79 (Sasha 2026-05-22) — legibility: gold-on-cream was
               never going to read regardless of the shade (tried
@@ -105,7 +108,7 @@ const MatchHero = () => {
               echo positioned BELOW the h1). New question pulls the
               reader's recognition first; the h1 below answers it. */}
           <p
-            className="text-lg sm:text-xl md:text-2xl leading-[1.32] italic mb-4 sm:mb-5"
+            className="text-base sm:text-lg md:text-xl leading-[1.32] italic mb-3 sm:mb-4"
             style={{
               fontFamily: "'Cormorant Garamond', serif",
               fontWeight: 700,
@@ -126,7 +129,7 @@ const MatchHero = () => {
               no terminal period, Strong-cocktail legibility (Cormorant
               700 + deep halo) preserved for parity with build-path. */}
           <h1
-            className="text-3xl sm:text-4xl md:text-5xl font-bold leading-[1.1] tracking-[-0.018em] mb-4 sm:mb-5"
+            className="text-2xl sm:text-3xl md:text-4xl font-bold leading-[1.1] tracking-[-0.018em] mb-3 sm:mb-4"
             style={{
               fontFamily: "'Cormorant Garamond', serif",
               color: "var(--skin-text-primary, #0a1628)",
@@ -152,13 +155,13 @@ const MatchHero = () => {
             away.
           </h1>
 
-          <Ornament className="my-5 sm:my-6" />
+          <Ornament className="my-4 sm:my-5" />
 
           {/* Day 79: sub paragraph rewritten — names the mechanism
               (AI-built profile) and the outcome (matches + intros)
               instead of the older "we surface them" phrasing. */}
           <p
-            className="text-xl sm:text-2xl md:text-[1.75rem] font-bold leading-[1.4] tracking-[-0.005em]"
+            className="text-lg sm:text-xl md:text-2xl font-bold leading-[1.4] tracking-[-0.005em]"
             style={{
               fontFamily: "'Cormorant Garamond', serif",
               color: "var(--skin-text-primary, #0a1628)",
