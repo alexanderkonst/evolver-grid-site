@@ -85,8 +85,16 @@ const SiteLogo = () => {
         "/build/equilibrium",
         "/equilibrium",
         "/preview/equilibrium-v2",
+        // Day 81 (Sasha 2026-05-23): /build/karime lives in GameShellV2
+        // with hideLogo (Karime's offering page). Same fix shape as
+        // /build/equilibrium above — without this, the global SiteLogo
+        // wordmark renders top-center of pane 3 above the eyebrow,
+        // duplicating with the SpacesRail wordmark in pane 1. The
+        // startsWith match also covers /build/karime/intake (the prep
+        // page Sasha sends on WhatsApp).
+        "/build/karime",
     ];
-    const exactHidden = ["/", "/ignite", "/my-result", "/path", "/auth", "/dashboard", "/ai-os", "/library", "/prompt", "/ubb", "/mdls-preview", "/build/equilibrium", "/equilibrium", "/preview/equilibrium-v2"];
+    const exactHidden = ["/", "/ignite", "/my-result", "/path", "/auth", "/dashboard", "/ai-os", "/library", "/prompt", "/ubb", "/mdls-preview", "/build/equilibrium", "/equilibrium", "/preview/equilibrium-v2", "/build/karime", "/build/karime/intake"];
     if (hidden.some(p => location.pathname.startsWith(p)) || exactHidden.includes(location.pathname)) return null;
 
     return (

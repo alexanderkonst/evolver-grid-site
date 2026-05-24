@@ -72,6 +72,10 @@ import JourneyPage from "./pages/JourneyPage";
 // in-platform per-founder offer surface. Lives in BUILD space, route
 // is public so the direct URL is shareable cold; sidebar row gated.
 import KarimeOffer from "./pages/KarimeOffer";
+// Day 81 (Sasha 2026-05-23): Karime's preparatory page — Sasha sends
+// this URL manually on WhatsApp after the initial inbound from the
+// landing's CTA. Not in sidebar; reachable only by URL.
+import KarimeIntake from "./pages/KarimeIntake";
 import PlaybookPage from "./pages/PlaybookPage";
 import PathPage from "./pages/PathPage";
 import MyArtifactsPage from "./pages/MyArtifactsPage";
@@ -728,6 +732,10 @@ const App = () => (
                       regardless of auth/unlock state. Sidebar
                       visibility gated separately in SectionsPanel. */}
                   <Route path="/build/karime" element={<KarimeOffer />} />
+                  {/* Day 81 (Sasha 2026-05-23): Karime's prep page.
+                      Public route. Sasha sends URL manually on WhatsApp
+                      after initial inbound. No sidebar entry. */}
+                  <Route path="/build/karime/intake" element={<KarimeIntake />} />
                   {/* TEMP: unguarded preview route for visual verification — REMOVE or convert to auth-gated after Sasha sign-off */}
                   <Route path="/preview/equilibrium-v2" element={<GameShellV2 hideLogo><EquilibriumV2Page /></GameShellV2>} />
                   {/* MDLS Preview · /mdls-preview · 2026-05-18 · ungated.
