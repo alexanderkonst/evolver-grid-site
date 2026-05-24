@@ -1,7 +1,10 @@
+import { useEffect } from "react";
 import { EditorialCta } from "@/components/ui/editorial-cta";
 import { Ornament } from "@/lib/landingDesign";
 import SEO from "@/components/SEO";
 import GameShellV2 from "@/components/game/GameShellV2";
+import KarimeHlsBackground from "@/components/landing/KarimeHlsBackground";
+import { useSkin } from "@/contexts/SkinContext";
 
 /**
  * KarimeOffer — Karime Kuri's offering page, embedded in the BUILD space.
@@ -48,6 +51,16 @@ const KARIME_WHATSAPP_URL = "https://wa.me/14157073432";
 const TELEGRAM_HANDLE_URL = "https://t.me/integralevolution";
 
 const KarimeOffer = () => {
+  // Day 81 (Sasha 2026-05-23): route-scoped "karime" skin activation.
+  // pushTemporarySkin swaps tokens on mount and restores the user's
+  // persisted skin on unmount, so Karime's warm terracotta palette
+  // applies only while we're on this page.
+  const { pushTemporarySkin } = useSkin();
+  useEffect(() => {
+    const cleanup = pushTemporarySkin("karime");
+    return cleanup;
+  }, [pushTemporarySkin]);
+
   const handleBook = () => {
     window.open(WHATSAPP_BOOKING_URL, "_blank", "noopener,noreferrer");
   };
@@ -60,7 +73,10 @@ const KarimeOffer = () => {
         path="/build/karime"
         ogTitle="You do not have to carry this alone"
       />
-      <div className="max-w-[720px] mx-auto px-5 py-8 sm:py-9 md:py-10">
+      {/* Day 81 (Sasha 2026-05-23): warm Moroccan-sunset HLS video bg
+          (Mux) replaces the Aurora cool default for Karime's routes. */}
+      <KarimeHlsBackground />
+      <div className="relative z-10 max-w-[720px] mx-auto px-5 py-8 sm:py-9 md:py-10">
         <header className="text-center">
           {/* Eyebrow — same Cormorant small-caps + deep halo as MatchHero. */}
           <p
