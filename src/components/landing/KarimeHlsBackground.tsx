@@ -79,7 +79,7 @@ export const KarimeHlsBackground = () => {
         aria-hidden="true"
         style={{
           background:
-            "radial-gradient(ellipse 140% 100% at 50% 40%, rgba(255, 240, 220, 0.16) 0%, rgba(91, 42, 11, 0.38) 100%)",
+            "radial-gradient(ellipse 140% 100% at 50% 40%, rgba(255, 240, 220, 0.22) 0%, rgba(91, 42, 11, 0.48) 100%)",
         }}
       />
 

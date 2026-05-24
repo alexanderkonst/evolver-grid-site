@@ -138,11 +138,11 @@ const KarimeOffer = () => {
                 "var(--skin-text-halo-deep, 0 0 22px rgba(255,255,255,0.7), 0 1px 2px rgba(255,255,255,0.9), 0 0 1px rgba(11,42,90,0.45), 0 1px 0 rgba(11,42,90,0.25))",
             }}
           >
-            <p className="text-lg sm:text-xl md:text-[1.4rem] font-semibold leading-[1.45] tracking-[-0.005em]">
+            <p className="text-lg sm:text-xl md:text-[1.4rem] font-bold leading-[1.45] tracking-[-0.005em]">
               Karime offers deeply grounded emotional support for people moving through heartbreak, grief, burnout, relationship pain, family crisis, impossible decisions, and emotionally overwhelming seasons of life.
             </p>
 
-            <p className="text-lg sm:text-xl md:text-[1.4rem] font-semibold leading-[1.45] tracking-[-0.005em]">
+            <p className="text-lg sm:text-xl md:text-[1.4rem] font-bold leading-[1.45] tracking-[-0.005em]">
               A space to soften, hear yourself clearly again, and feel genuinely supported while facing what is real.
             </p>
 
@@ -165,7 +165,7 @@ const KarimeOffer = () => {
               </p>
             </div>
 
-            <p className="text-lg sm:text-xl md:text-[1.4rem] font-semibold leading-[1.45] tracking-[-0.005em]">
+            <p className="text-lg sm:text-xl md:text-[1.4rem] font-bold leading-[1.45] tracking-[-0.005em]">
               Just honest, attentive care during the moments that become too heavy to hold by yourself.
             </p>
           </div>
