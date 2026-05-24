@@ -66,7 +66,7 @@ const KarimeOffer = () => {
   };
 
   return (
-    <GameShellV2 hideLogo>
+    <GameShellV2 hideLogo forceMobileLayout>
       <SEO
         title="Karime Kuri · Grounded Emotional Support"
         description="Private emotional support for people moving through heartbreak, grief, burnout, relationship pain, family crisis, impossible decisions, and emotionally overwhelming seasons of life."
@@ -76,7 +76,21 @@ const KarimeOffer = () => {
       {/* Day 81 (Sasha 2026-05-23): warm Moroccan-sunset HLS video bg
           (Mux) replaces the Aurora cool default for Karime's routes. */}
       <KarimeHlsBackground />
-      <div className="relative z-10 max-w-[720px] mx-auto px-5 py-8 sm:py-9 md:py-10">
+      <div className="relative z-10 max-w-[760px] mx-auto px-4 sm:px-6 py-6 sm:py-8 md:py-10">
+        {/* Day 82 (Sasha 2026-05-24): glassmorphic content container —
+            transparent warm-cream tint + medium backdrop blur so the
+            text reads as floating on a soft "platform" against the
+            video bg. Karime-only treatment; we may extend to other
+            founder pages if it lands well. */}
+        <div
+          className="rounded-3xl backdrop-blur-md px-5 py-8 sm:px-7 sm:py-10 md:px-9 md:py-12"
+          style={{
+            background: "rgba(255, 240, 220, 0.10)",
+            border: "1px solid rgba(255, 220, 180, 0.22)",
+            boxShadow:
+              "0 12px 40px -8px rgba(91, 42, 11, 0.32), inset 0 1px 0 rgba(255, 230, 200, 0.16)",
+          }}
+        >
         <header className="text-center">
           {/* Eyebrow — same Cormorant small-caps + deep halo as MatchHero. */}
           <p
@@ -225,6 +239,7 @@ const KarimeOffer = () => {
               </a>
             </div>
           </div>
+        </div>
         </div>
       </div>
     </GameShellV2>

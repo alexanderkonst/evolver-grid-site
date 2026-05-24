@@ -93,7 +93,7 @@ const KarimeIntake = () => {
   };
 
   return (
-    <GameShellV2 hideLogo>
+    <GameShellV2 hideLogo forceMobileLayout>
       <SEO
         title="Karime Kuri · Preparing for our conversation"
         description="A short orientation before your free 20-minute conversation with Karime — her bio, the path, and one question that helps her prepare thoughtfully."
@@ -103,7 +103,18 @@ const KarimeIntake = () => {
       {/* Day 81 (Sasha 2026-05-23): warm Moroccan-sunset HLS video bg
           (Mux) shared with /build/karime landing for tonal continuity. */}
       <KarimeHlsBackground />
-      <div className="relative z-10 max-w-[720px] mx-auto px-5 py-8 sm:py-9 md:py-10">
+      <div className="relative z-10 max-w-[760px] mx-auto px-4 sm:px-6 py-6 sm:py-8 md:py-10">
+        {/* Day 82 (Sasha 2026-05-24): glassmorphic content container —
+            matches the landing. Warm-cream tint + medium backdrop blur. */}
+        <div
+          className="rounded-3xl backdrop-blur-md px-5 py-8 sm:px-7 sm:py-10 md:px-9 md:py-12"
+          style={{
+            background: "rgba(255, 240, 220, 0.10)",
+            border: "1px solid rgba(255, 220, 180, 0.22)",
+            boxShadow:
+              "0 12px 40px -8px rgba(91, 42, 11, 0.32), inset 0 1px 0 rgba(255, 230, 200, 0.16)",
+          }}
+        >
         {/* ── Page heading (minimal — placeholder for Sasha's substitute) ── */}
         <header className="text-center mb-8 sm:mb-10">
           <h1
@@ -397,6 +408,7 @@ const KarimeIntake = () => {
             </div>
           </section>
         )}
+        </div>
       </div>
     </GameShellV2>
   );

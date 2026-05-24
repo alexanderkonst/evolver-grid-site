@@ -271,6 +271,16 @@ interface GameShellV2Props {
     showNavigation?: boolean;
     /** Hide the top-right home/logo tile (for full-bleed pages like /path) */
     hideLogo?: boolean;
+    /**
+     * Day 82 (Sasha 2026-05-24): force the mobile single-pane layout
+     * on ALL viewport sizes. The SpacesRail (pane 1) + SectionsPanel
+     * (pane 2) collapse behind the menu-pill at the top, and pane 3
+     * takes the full viewport width. Used by /build/karime* so the
+     * offering page renders as one immersive editorial surface
+     * instead of three panes. Nav is still reachable by tapping the
+     * menu pill (same affordance as mobile).
+     */
+    forceMobileLayout?: boolean;
 }
 
 /**
@@ -279,7 +289,7 @@ interface GameShellV2Props {
  * Panel 2: SectionsPanel (sections list)  
  * Panel 3: Content area
  */
-export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, showNavigation: forceShowNavigation, hideLogo }: GameShellV2Props) => {
+export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, showNavigation: forceShowNavigation, hideLogo, forceMobileLayout = false }: GameShellV2Props) => {
     // V5 debug (Sasha 2026-05-19): mobile-header brand glyph needs to swap
     // to the NS flag under network-school. Previously rendered the FYTT
     // torus regardless of skin — mobile users on /ns saw the rainbow mark
@@ -1245,7 +1255,10 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                 Spotlight enters viewport, panes 1+2 (sticky, z-30) flicker
                 or disappear entirely. Isolating the parent stacking
                 context prevents the bleed and the panes stay rendered. */}
-            <div className={cn("hidden lg:flex isolate", isAiOsRoute ? "h-dvh min-h-0 overflow-hidden" : "min-h-dvh")}>
+            <div className={cn(
+                forceMobileLayout ? "hidden" : "hidden lg:flex isolate",
+                isAiOsRoute ? "h-dvh min-h-0 overflow-hidden" : "min-h-dvh",
+            )}>
                 {/* Panel 1: Spaces Rail */}
                 <SpacesRail
                     activeSpaceId={activeSpaceId}
@@ -1459,7 +1472,10 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
             </div>
 
             {/* === MOBILE LAYOUT === */}
-            <div className="lg:hidden relative w-full min-h-dvh overflow-hidden">
+            <div className={cn(
+                forceMobileLayout ? "block" : "lg:hidden",
+                "relative w-full min-h-dvh overflow-hidden",
+            )}>
                 {/* Mobile: Navigation View (Panel 1 + Panel 2) */}
                 <div
                     className={cn(
