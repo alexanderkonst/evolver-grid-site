@@ -5,81 +5,59 @@ import SEO from "@/components/SEO";
 import GameShellV2 from "@/components/game/GameShellV2";
 
 /**
- * KarimeIntake — the preparatory page Sasha sends manually on WhatsApp
- * after the initial CTA from /build/karime. NOT in the BUILD sidebar; only
- * reachable via direct URL that Sasha forwards by hand. Pattern: visitor
- * lands on /build/karime → taps "Book a 20-min conversation" → WhatsApp
- * opens with a prefilled greeting to Sasha → Sasha replies with this
- * page's URL → visitor reads modalities, fills the priming quiz, and books
- * via the Cal.com link at the bottom.
+ * KarimeIntake — preparatory page Sasha sends manually on WhatsApp after
+ * the initial inbound from /build/karime. Not in BUILD sidebar; reachable
+ * only by URL.
  *
- * Day 81 (Sasha 2026-05-23):
- *   - Modality language is VERBAL-ONLY (option a). The page names the
- *     SHAPE of Karime's work (honest conversation, embodied practice,
- *     ceremonial container, meditation guidance) but does NOT name any
- *     specific substance, plant, or controlled modality. Those are
- *     discussed only on the live 20-min call where context + consent are
- *     present together. Safety + legal cleanliness for a US-hosted site.
- *   - Pricing is intentionally a soft placeholder — exact numbers shared
- *     by Karime on the call once she's heard what the visitor is bringing.
- *     Sasha + Karime to fill in real numbers when ready.
- *   - Quiz is LOCAL STATE only. No submission backend. The act of
- *     answering primes the visitor to think through their context before
- *     booking; they share their answers verbally on the call. Future:
- *     wire to Supabase if Karime wants written context pre-call.
+ * Day 81 (Sasha 2026-05-23) — major restructure per Sasha's revision pass:
+ *   - "How Karime works" section removed (the modality list was treading
+ *     on what the live call should hold).
+ *   - Quiz collapsed from 4 questions to 1 single multi-choice — the
+ *     other questions belong to the actual conversation, not the form.
+ *   - Booking CTA + contact info now PROGRESSIVELY REVEALED only after
+ *     the visitor picks one of the 5 support options. The selection IS
+ *     the qualifying act; before it, the page is read-and-orient, not
+ *     book-and-go. After it, the path opens.
+ *   - About Karime rewritten as a cohesive single paragraph (was a
+ *     bullet list with a long closing sentence); credentials still
+ *     all present, ordered from prestige → walked away → trained for
+ *     this work → brings both.
+ *   - Steps 1-3 visually upgraded with numbered gold-pip badges and a
+ *     vertical gold connector line — same Cormorant register, more
+ *     visual rhythm than flat labeled paragraphs.
+ *   - "Cal.com" string removed from footer microcopy (visitor doesn't
+ *     need to know the booking infra).
+ *   - Hero subtitle paragraph + "A short reflection before we meet"
+ *     framing both removed — page opens directly with About Karime.
  *
- * Cal.com link is Karime's real 20-min booking page. Single CTA at the
- * bottom. No fork.
+ * (a) Verbal-only modality language carried forward — no controlled
+ * substances named anywhere on the page. The 5 quiz options are framed
+ * as MOODS of support, not lists of practices.
  */
 
 const CALCOM_BOOKING_URL = "https://cal.com/karimekuri/20min";
+const KARIME_WHATSAPP_URL = "https://wa.me/14157073432";
+const KARIME_TELEGRAM_URL = "https://t.me/integralevolution";
 
-type ModalityKey =
-  | "honest_conversation"
-  | "quiet_listening"
-  | "embodied_practice"
-  | "meditation_guidance"
-  | "ceremonial_container"
-  | "open_to_what_serves";
+type SupportKey =
+  | "gentle"
+  | "deep"
+  | "spiritual"
+  | "ceremonial"
+  | "unsure";
 
-const MODALITIES: { key: ModalityKey; label: string }[] = [
-  { key: "honest_conversation", label: "Honest conversation about what is happening" },
-  { key: "quiet_listening", label: "Quiet, attentive listening" },
-  { key: "embodied_practice", label: "Embodied or somatic practice" },
-  { key: "meditation_guidance", label: "Meditation guidance" },
-  { key: "ceremonial_container", label: "A ceremonial container (for those it serves)" },
-  { key: "open_to_what_serves", label: "Open to whatever serves" },
-];
-
-type ExperienceLevel =
-  | "currently_active"
-  | "within_year"
-  | "over_year_ago"
-  | "new_territory";
-
-const EXPERIENCE_OPTIONS: { key: ExperienceLevel; label: string }[] = [
-  { key: "currently_active", label: "Currently in active inner work" },
-  { key: "within_year", label: "Within the last year" },
-  { key: "over_year_ago", label: "More than a year ago" },
-  { key: "new_territory", label: "This is new territory for me" },
+const SUPPORT_OPTIONS: { key: SupportKey; label: string }[] = [
+  { key: "gentle", label: "Gentle conversation and emotional clarity" },
+  { key: "deep", label: "Deep emotional support and nervous system care" },
+  { key: "spiritual", label: "Spiritual guidance and inner work" },
+  { key: "ceremonial", label: "Ceremonial or medicine-supported work" },
+  { key: "unsure", label: "I'm not sure yet, but something needs to change" },
 ];
 
 const KarimeIntake = () => {
-  const [bringing, setBringing] = useState("");
-  const [selectedModalities, setSelectedModalities] = useState<Set<ModalityKey>>(
-    new Set(),
+  const [selectedSupport, setSelectedSupport] = useState<SupportKey | null>(
+    null,
   );
-  const [experience, setExperience] = useState<ExperienceLevel | null>(null);
-  const [landingFeel, setLandingFeel] = useState("");
-
-  const toggleModality = (key: ModalityKey) => {
-    setSelectedModalities((prev) => {
-      const next = new Set(prev);
-      if (next.has(key)) next.delete(key);
-      else next.add(key);
-      return next;
-    });
-  };
 
   const handleBook = () => {
     window.open(CALCOM_BOOKING_URL, "_blank", "noopener,noreferrer");
@@ -106,32 +84,21 @@ const KarimeIntake = () => {
   return (
     <GameShellV2 hideLogo>
       <SEO
-        title="Preparing for your conversation with Karime"
-        description="A few notes before we meet — Karime's work, how she approaches it, and a brief priming reflection to help you arrive ready."
+        title="Karime Kuri · Preparing for our conversation"
+        description="A short orientation before your free 20-minute conversation with Karime — her bio, the path, and one question that helps her prepare thoughtfully."
         path="/build/karime/intake"
-        ogTitle="Preparing for your conversation with Karime"
+        ogTitle="Before we meet"
       />
       <div className="max-w-[720px] mx-auto px-5 py-8 sm:py-9 md:py-10">
-        {/* ── Hero ─────────────────────────────────────────────── */}
+        {/* ── Page heading (minimal — placeholder for Sasha's substitute) ── */}
         <header className="text-center mb-8 sm:mb-10">
-          <p className="mb-4 sm:mb-5" style={sectionHeadingStyle}>
-            Preparing for your conversation with Karime
-          </p>
           <h1
-            className="text-3xl sm:text-4xl md:text-5xl font-bold leading-[1.1] tracking-[-0.018em]"
+            className="text-2xl sm:text-3xl md:text-4xl font-bold leading-[1.1] tracking-[-0.018em]"
             style={bodyTextStyle}
           >
-            A few notes before we meet.
+            Before we meet.
           </h1>
           <Ornament className="my-5 sm:my-6" />
-          <p
-            className="text-lg sm:text-xl md:text-[1.4rem] font-semibold leading-[1.45] tracking-[-0.005em] max-w-[600px] mx-auto"
-            style={bodyTextStyle}
-          >
-            This page exists so the 20 minutes we spend together can land
-            with as much depth as possible. Read it slowly. The reflection
-            below is for you, not for us.
-          </p>
         </header>
 
         {/* ── About Karime ─────────────────────────────────────── */}
@@ -140,211 +107,152 @@ const KarimeIntake = () => {
             About Karime
           </p>
           <div className="space-y-4 sm:space-y-5" style={bodyTextStyle}>
-            <p className="text-lg sm:text-xl leading-[1.5]">
-              Karime trained as a transformational life coach at Sofia
-              University, San Francisco. Before this work, her path ran
-              through some of the institutions most people do not step
-              away from:
+            <p className="text-lg sm:text-xl leading-[1.55]">
+              Karime is an Oxford alum, former Project Lead at the World
+              Economic Forum's Center for Emerging Technology, and a
+              Global Fellow Leader who walked away from the WEF track to
+              do this work. She trained as a transformational life coach
+              at Sofia University, San Francisco, and brings her
+              international policy background into the depth of the
+              inner work she now holds.
             </p>
-            <ul
-              className="space-y-2 pl-6 text-lg sm:text-xl leading-[1.5]"
-              style={{ ...bodyTextStyle }}
-            >
-              <li>Global Fellow Leader, World Economic Forum (dropped out)</li>
-              <li>Project Lead, Center for Emerging Technology, WEF</li>
-              <li>International policy-maker</li>
-              <li>Oxford alum</li>
-            </ul>
-            <p className="text-lg sm:text-xl leading-[1.5]">
-              She is here by choice, with formal training in the work and
-              the institutional fluency to know exactly what she walked
-              away from to do it.
-            </p>
-          </div>
-        </section>
-
-        {/* ── How Karime works ─────────────────────────────────── */}
-        <section className="mb-10 sm:mb-12">
-          <p className="text-center mb-4 sm:mb-5" style={sectionHeadingStyle}>
-            How Karime works
-          </p>
-          <div className="space-y-4 sm:space-y-5" style={bodyTextStyle}>
-            <p className="text-lg sm:text-xl leading-[1.5]">
-              Karime meets each person where they are. The shape of the
-              work is responsive, not formulaic. She draws on a range of
-              practices and chooses what serves the moment.
-            </p>
-            <p className="text-lg sm:text-xl leading-[1.5]">
-              The throughline across all of her work: honest presence,
-              careful attention, and a quality of holding that allows you
-              to feel what is real without needing to perform recovery.
-            </p>
-            <p className="text-lg sm:text-xl leading-[1.5]">
-              Practices she may bring, depending on what fits:
-            </p>
-            <ul
-              className="space-y-2 pl-6 text-lg sm:text-xl leading-[1.5] italic"
+            <p
+              className="text-lg sm:text-xl leading-[1.55] italic text-center"
               style={{ ...bodyTextStyle, fontWeight: 600 }}
             >
-              <li>Honest conversation about what is happening</li>
-              <li>Quiet, attentive listening</li>
-              <li>Embodied and somatic practice</li>
-              <li>Meditation guidance, including recorded personalized meditations</li>
-              <li>Ceremonial containers, where appropriate and consented</li>
-            </ul>
-            <p className="text-lg sm:text-xl leading-[1.5]">
-              The specifics of what your work together would look like are
-              shaped on the 20-minute call, once Karime has heard what you
-              are bringing.
+              She is here by choice.
             </p>
           </div>
         </section>
 
         {/* ── The path ─────────────────────────────────────────── */}
         <section className="mb-10 sm:mb-12">
-          <p className="text-center mb-4 sm:mb-5" style={sectionHeadingStyle}>
+          <p className="text-center mb-6 sm:mb-7" style={sectionHeadingStyle}>
             The path
           </p>
-          {/* Day 81 (Sasha 2026-05-23): 3-step structure replaces the
-              earlier "pricing TBD" placeholder. Pricing is set in Step 2
-              based on chosen modalities, regularity, and time with Karime —
-              so the visitor walks in knowing the shape of the commitment
-              without seeing dollar figures on a landing page. */}
-          <div className="space-y-6 sm:space-y-7" style={bodyTextStyle}>
-            <div>
-              <p className="text-lg sm:text-xl leading-[1.4] font-semibold mb-1.5">
-                Step 1: 20-minute fit call.
-              </p>
-              <p className="text-base sm:text-lg leading-[1.5] opacity-90">
-                Free. You meet Karime, you share what is bringing you
-                here, and you both feel whether this is the right fit.
-              </p>
-            </div>
-
-            <div>
-              <p className="text-lg sm:text-xl leading-[1.4] font-semibold mb-1.5">
-                Step 2: Your first 1-hour session.
-              </p>
-              <p className="text-base sm:text-lg leading-[1.5] opacity-90">
-                You and Karime co-design your personalized 3-month plan
-                together. Pricing for the engagement is set during this
-                session, based on the healing modalities you choose, the
-                regularity of meetings, and the time you spend with her.
-              </p>
-            </div>
-
-            <div>
-              <p className="text-lg sm:text-xl leading-[1.4] font-semibold mb-1.5">
-                Step 3: A 3-month result-oriented engagement.
-              </p>
-              <p className="text-base sm:text-lg leading-[1.5] opacity-90">
-                You walk the plan together. Karime holds the container as
-                the work unfolds.
-              </p>
-            </div>
-
-            <p className="text-base sm:text-lg leading-[1.5] italic text-center pt-2 opacity-80">
-              Online sessions worldwide. In-person sessions by arrangement.
-            </p>
-          </div>
-        </section>
-
-        {/* ── Priming reflection (the quiz) ────────────────────── */}
-        <section className="mb-10 sm:mb-12">
-          <p className="text-center mb-4 sm:mb-5" style={sectionHeadingStyle}>
-            A short reflection before we meet
-          </p>
+          {/* Steps 1-3 with numbered gold-pip badges + vertical
+              connector line on the left rail. Cormorant numerals in
+              gold-bordered circles; thin gold line connects pip-to-pip.
+              Step content sits in the right column. Cleaner visual
+              rhythm than flat labeled paragraphs. */}
+          <ol className="space-y-0">
+            {[
+              {
+                num: 1,
+                title: "20-minute fit call.",
+                body: "Free. You meet Karime, you share what is bringing you here, and you both feel whether this is the right fit.",
+              },
+              {
+                num: 2,
+                title: "Your first 1-hour session.",
+                body: "You and Karime co-design your personalized 3-month plan together. Pricing for the engagement is set during this session, based on the healing modalities you choose, the regularity of meetings, and the time you spend with her.",
+              },
+              {
+                num: 3,
+                title: "A 3-month result-oriented engagement.",
+                body: "You walk the plan together. Karime holds the container as the work unfolds.",
+              },
+            ].map((step, idx, arr) => {
+              const isLast = idx === arr.length - 1;
+              return (
+                <li
+                  key={step.num}
+                  className="flex gap-4 sm:gap-5 items-stretch"
+                >
+                  <div className="flex flex-col items-center flex-shrink-0">
+                    <div
+                      className="w-10 h-10 sm:w-11 sm:h-11 rounded-full flex items-center justify-center font-bold text-base sm:text-lg"
+                      style={{
+                        fontFamily: "'Cormorant Garamond', serif",
+                        color: "var(--skin-text-primary, #0a1628)",
+                        border: "1px solid rgba(244, 212, 114, 0.55)",
+                        background:
+                          "radial-gradient(circle at 30% 30%, rgba(244, 212, 114, 0.18), rgba(244, 212, 114, 0.04) 70%)",
+                        boxShadow:
+                          "0 0 12px -2px rgba(244, 212, 114, 0.35), inset 0 0 6px rgba(244, 212, 114, 0.15)",
+                      }}
+                      aria-hidden="true"
+                    >
+                      {step.num}
+                    </div>
+                    {!isLast && (
+                      <div
+                        className="w-px flex-1 my-1.5"
+                        style={{
+                          background:
+                            "linear-gradient(to bottom, rgba(244, 212, 114, 0.45), rgba(244, 212, 114, 0.15))",
+                          minHeight: "32px",
+                        }}
+                      />
+                    )}
+                  </div>
+                  <div
+                    className={`flex-1 ${isLast ? "pb-1" : "pb-6 sm:pb-7"}`}
+                    style={bodyTextStyle}
+                  >
+                    <p className="text-lg sm:text-xl leading-[1.4] font-semibold mb-1.5">
+                      Step {step.num}: {step.title}
+                    </p>
+                    <p className="text-base sm:text-lg leading-[1.55] opacity-90">
+                      {step.body}
+                    </p>
+                  </div>
+                </li>
+              );
+            })}
+          </ol>
           <p
-            className="text-center text-base sm:text-lg leading-[1.5] italic mb-6 sm:mb-8 max-w-[560px] mx-auto opacity-80"
+            className="text-base sm:text-lg leading-[1.5] italic text-center pt-6 sm:pt-7 opacity-80"
             style={bodyTextStyle}
           >
-            These notes are for you. Nothing here is sent or saved. The
-            act of writing them out is the preparation; bring whatever
-            stays alive in you to the call.
+            Online sessions worldwide. In-person sessions by arrangement.
+          </p>
+        </section>
+
+        {/* ── To help Karime prepare thoughtfully ──────────────── */}
+        <section className="mb-6">
+          <p className="text-center mb-3 sm:mb-4" style={sectionHeadingStyle}>
+            To help Karime prepare thoughtfully
+          </p>
+          <p
+            className="text-center text-lg sm:text-xl leading-[1.5] mb-6 sm:mb-8 max-w-[580px] mx-auto"
+            style={bodyTextStyle}
+          >
+            Before scheduling, choose the type of support that feels most
+            aligned for you right now.
           </p>
 
-          <div className="space-y-7 sm:space-y-8">
-            {/* Q1 — what's bringing you */}
-            <div>
-              <label
-                htmlFor="q-bringing"
-                className="block mb-2 text-lg sm:text-xl leading-[1.4] font-semibold"
-                style={bodyTextStyle}
-              >
-                1. What is bringing you here?
-              </label>
-              <textarea
-                id="q-bringing"
-                value={bringing}
-                onChange={(e) => setBringing(e.target.value)}
-                rows={4}
-                placeholder="The thing that's actually heavy, in your own words…"
-                className="w-full px-4 py-3 rounded-lg border border-[rgba(26,30,58,0.18)] bg-white/40 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-[rgba(244,212,114,0.5)] focus:border-[rgba(244,212,114,0.6)] transition-all"
-                style={{
-                  fontFamily: "'Cormorant Garamond', serif",
-                  fontSize: "1.05rem",
-                  color: "var(--skin-text-primary, #0a1628)",
-                }}
-              />
-            </div>
-
-            {/* Q2 — what resonates */}
-            <div>
-              <p
-                className="block mb-3 text-lg sm:text-xl leading-[1.4] font-semibold"
-                style={bodyTextStyle}
-              >
-                2. What kind of support resonates with you right now?
-              </p>
-              <p
-                className="text-sm sm:text-base mb-3 italic opacity-75"
-                style={bodyTextStyle}
-              >
-                Pick any that feel true. There is no wrong answer.
-              </p>
-              <div className="space-y-2">
-                {MODALITIES.map((m) => (
-                  <label
-                    key={m.key}
-                    className="flex items-start gap-3 cursor-pointer py-1.5 px-2 -mx-2 rounded-md hover:bg-white/30 transition-colors"
-                  >
-                    <input
-                      type="checkbox"
-                      checked={selectedModalities.has(m.key)}
-                      onChange={() => toggleModality(m.key)}
-                      className="mt-1.5 w-4 h-4 rounded border-[rgba(26,30,58,0.3)] accent-[rgba(244,212,114,0.85)]"
-                    />
-                    <span
-                      className="text-base sm:text-lg leading-[1.4]"
-                      style={bodyTextStyle}
-                    >
-                      {m.label}
-                    </span>
-                  </label>
-                ))}
-              </div>
-            </div>
-
-            {/* Q3 — experience level */}
-            <div>
-              <p
-                className="block mb-3 text-lg sm:text-xl leading-[1.4] font-semibold"
-                style={bodyTextStyle}
-              >
-                3. How recently have you been in deep inner work?
-              </p>
-              <div className="space-y-2">
-                {EXPERIENCE_OPTIONS.map((opt) => (
+          <div>
+            <p
+              className="block mb-4 text-lg sm:text-xl leading-[1.4] font-semibold text-center"
+              style={bodyTextStyle}
+            >
+              Which kind of support feels most aligned right now?
+            </p>
+            <div className="space-y-2 max-w-[560px] mx-auto">
+              {SUPPORT_OPTIONS.map((opt) => {
+                const isSelected = selectedSupport === opt.key;
+                return (
                   <label
                     key={opt.key}
-                    className="flex items-center gap-3 cursor-pointer py-1.5 px-2 -mx-2 rounded-md hover:bg-white/30 transition-colors"
+                    className={`flex items-start gap-3 cursor-pointer py-2.5 px-3 -mx-3 rounded-lg transition-all ${
+                      isSelected ? "bg-white/40" : "hover:bg-white/25"
+                    }`}
+                    style={
+                      isSelected
+                        ? {
+                            boxShadow:
+                              "0 0 0 1px rgba(244, 212, 114, 0.45), 0 2px 8px -2px rgba(244, 212, 114, 0.25)",
+                          }
+                        : undefined
+                    }
                   >
                     <input
                       type="radio"
-                      name="experience"
-                      checked={experience === opt.key}
-                      onChange={() => setExperience(opt.key)}
-                      className="w-4 h-4 border-[rgba(26,30,58,0.3)] accent-[rgba(244,212,114,0.85)]"
+                      name="support"
+                      checked={isSelected}
+                      onChange={() => setSelectedSupport(opt.key)}
+                      className="mt-1.5 w-4 h-4 border-[rgba(26,30,58,0.3)] accent-[rgba(244,212,114,0.85)] flex-shrink-0"
                     />
                     <span
                       className="text-base sm:text-lg leading-[1.4]"
@@ -353,66 +261,82 @@ const KarimeIntake = () => {
                       {opt.label}
                     </span>
                   </label>
-                ))}
+                );
+              })}
+            </div>
+          </div>
+        </section>
+
+        {/* ── CTA + contact (progressive reveal) ───────────────── */}
+        {/* Renders only after the visitor picks one of the 5 support
+            options. The selection IS the qualifying act; revealing the
+            booking + contact below makes the path forward feel earned,
+            and gives Karime + Sasha a signal in the inbound. */}
+        {selectedSupport && (
+          <section className="mt-2 mb-6 animate-in fade-in slide-in-from-bottom-2 duration-500">
+            <Ornament className="my-6 sm:my-8" />
+            <p
+              className="text-center text-lg sm:text-xl leading-[1.4] mb-5 sm:mb-6 max-w-[520px] mx-auto"
+              style={{ ...bodyTextStyle, fontWeight: 600 }}
+            >
+              When you are ready, book your 20 minutes with Karime.
+            </p>
+            <div className="flex flex-col items-center gap-4 px-4 text-center">
+              <EditorialCta
+                label="Book your free 20-minute conversation"
+                onClick={handleBook}
+              />
+              <div
+                className="inline-flex items-center justify-center gap-2 max-w-[460px] mt-1"
+                style={{
+                  color: "var(--skin-text-muted-soft, rgba(26,30,58,0.6))",
+                  textShadow:
+                    "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
+                  fontSize: "0.68rem",
+                  letterSpacing: "0.22em",
+                  textTransform: "uppercase",
+                  fontWeight: 500,
+                }}
+              >
+                <span>Free · 20 minutes</span>
+              </div>
+
+              {/* Contact line revealed alongside the CTA — Telegram +
+                  WhatsApp as fallback channels for visitors who prefer
+                  to message before booking. */}
+              <div
+                className="inline-flex flex-wrap items-center justify-center gap-x-3 gap-y-1 max-w-[520px] mt-3"
+                style={{
+                  color: "var(--skin-text-muted-soft, rgba(26,30,58,0.55))",
+                  textShadow:
+                    "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
+                  fontSize: "0.64rem",
+                  letterSpacing: "0.22em",
+                  textTransform: "uppercase",
+                  fontWeight: 500,
+                }}
+              >
+                <a
+                  href={KARIME_TELEGRAM_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:opacity-80 transition-opacity"
+                >
+                  Telegram @integralevolution
+                </a>
+                <span aria-hidden="true">·</span>
+                <a
+                  href={KARIME_WHATSAPP_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:opacity-80 transition-opacity"
+                >
+                  WhatsApp +1 (415) 707-3432
+                </a>
               </div>
             </div>
-
-            {/* Q4 — what would landing feel like */}
-            <div>
-              <label
-                htmlFor="q-landing"
-                className="block mb-2 text-lg sm:text-xl leading-[1.4] font-semibold"
-                style={bodyTextStyle}
-              >
-                4. What would make this feel like it landed?
-              </label>
-              <textarea
-                id="q-landing"
-                value={landingFeel}
-                onChange={(e) => setLandingFeel(e.target.value)}
-                rows={4}
-                placeholder="What would be different in you, in your week, in your body…"
-                className="w-full px-4 py-3 rounded-lg border border-[rgba(26,30,58,0.18)] bg-white/40 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-[rgba(244,212,114,0.5)] focus:border-[rgba(244,212,114,0.6)] transition-all"
-                style={{
-                  fontFamily: "'Cormorant Garamond', serif",
-                  fontSize: "1.05rem",
-                  color: "var(--skin-text-primary, #0a1628)",
-                }}
-              />
-            </div>
-          </div>
-        </section>
-
-        {/* ── CTA — Cal.com booking ────────────────────────────── */}
-        <section className="mb-6">
-          <Ornament className="my-6 sm:my-8" />
-          <p
-            className="text-center text-lg sm:text-xl leading-[1.4] mb-5 sm:mb-6 max-w-[520px] mx-auto"
-            style={{ ...bodyTextStyle, fontWeight: 600 }}
-          >
-            When you are ready, book your 20 minutes with Karime.
-          </p>
-          <div className="flex flex-col items-center gap-4 px-4 text-center">
-            <EditorialCta
-              label="Book your 20-min call"
-              onClick={handleBook}
-            />
-            <div
-              className="inline-flex items-center justify-center gap-2 max-w-[460px] mt-1"
-              style={{
-                color: "var(--skin-text-muted-soft, rgba(26,30,58,0.6))",
-                textShadow:
-                  "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
-                fontSize: "0.68rem",
-                letterSpacing: "0.22em",
-                textTransform: "uppercase",
-                fontWeight: 500,
-              }}
-            >
-              <span>Free · 20 minutes · Cal.com</span>
-            </div>
-          </div>
-        </section>
+          </section>
+        )}
       </div>
     </GameShellV2>
   );
