@@ -134,6 +134,35 @@ const KarimeIntake = () => {
           </p>
         </header>
 
+        {/* ── About Karime ─────────────────────────────────────── */}
+        <section className="mb-10 sm:mb-12">
+          <p className="text-center mb-4 sm:mb-5" style={sectionHeadingStyle}>
+            About Karime
+          </p>
+          <div className="space-y-4 sm:space-y-5" style={bodyTextStyle}>
+            <p className="text-lg sm:text-xl leading-[1.5]">
+              Karime trained as a transformational life coach at Sofia
+              University, San Francisco. Before this work, her path ran
+              through some of the institutions most people do not step
+              away from:
+            </p>
+            <ul
+              className="space-y-2 pl-6 text-lg sm:text-xl leading-[1.5]"
+              style={{ ...bodyTextStyle }}
+            >
+              <li>Global Fellow Leader, World Economic Forum (dropped out)</li>
+              <li>Project Lead, Center for Emerging Technology, WEF</li>
+              <li>International policy-maker</li>
+              <li>Oxford alum</li>
+            </ul>
+            <p className="text-lg sm:text-xl leading-[1.5]">
+              She is here by choice, with formal training in the work and
+              the institutional fluency to know exactly what she walked
+              away from to do it.
+            </p>
+          </div>
+        </section>
+
         {/* ── How Karime works ─────────────────────────────────── */}
         <section className="mb-10 sm:mb-12">
           <p className="text-center mb-4 sm:mb-5" style={sectionHeadingStyle}>
@@ -171,27 +200,51 @@ const KarimeIntake = () => {
           </div>
         </section>
 
-        {/* ── Pricing ──────────────────────────────────────────── */}
+        {/* ── The path ─────────────────────────────────────────── */}
         <section className="mb-10 sm:mb-12">
           <p className="text-center mb-4 sm:mb-5" style={sectionHeadingStyle}>
-            Pricing
+            The path
           </p>
-          <div className="space-y-3 sm:space-y-4" style={bodyTextStyle}>
-            {/* TODO (Sasha + Karime, Day 81): replace with real numbers.
-                Suggested shape: single session price · 3-session container
-                price · 6-session container price · sliding-scale note if
-                applicable. For now the page holds the slot with a soft
-                holding statement so the visitor isn't surprised by the
-                absence; the actual figures arrive on the call. */}
-            <p className="text-lg sm:text-xl leading-[1.5] italic text-center">
-              Specific pricing is shared on the 20-minute call, once
-              Karime has heard the shape of what you are bringing and the
-              container that would best serve it.
-            </p>
-            <p className="text-base sm:text-lg leading-[1.5] text-center opacity-80">
-              Sessions are available individually or in dedicated
-              multi-session containers. Online sessions are offered
-              worldwide; in-person sessions by arrangement.
+          {/* Day 81 (Sasha 2026-05-23): 3-step structure replaces the
+              earlier "pricing TBD" placeholder. Pricing is set in Step 2
+              based on chosen modalities, regularity, and time with Karime —
+              so the visitor walks in knowing the shape of the commitment
+              without seeing dollar figures on a landing page. */}
+          <div className="space-y-6 sm:space-y-7" style={bodyTextStyle}>
+            <div>
+              <p className="text-lg sm:text-xl leading-[1.4] font-semibold mb-1.5">
+                Step 1: 20-minute fit call.
+              </p>
+              <p className="text-base sm:text-lg leading-[1.5] opacity-90">
+                Free. You meet Karime, you share what is bringing you
+                here, and you both feel whether this is the right fit.
+              </p>
+            </div>
+
+            <div>
+              <p className="text-lg sm:text-xl leading-[1.4] font-semibold mb-1.5">
+                Step 2: Your first 1-hour session.
+              </p>
+              <p className="text-base sm:text-lg leading-[1.5] opacity-90">
+                You and Karime co-design your personalized 3-month plan
+                together. Pricing for the engagement is set during this
+                session, based on the healing modalities you choose, the
+                regularity of meetings, and the time you spend with her.
+              </p>
+            </div>
+
+            <div>
+              <p className="text-lg sm:text-xl leading-[1.4] font-semibold mb-1.5">
+                Step 3: A 3-month result-oriented engagement.
+              </p>
+              <p className="text-base sm:text-lg leading-[1.5] opacity-90">
+                You walk the plan together. Karime holds the container as
+                the work unfolds.
+              </p>
+            </div>
+
+            <p className="text-base sm:text-lg leading-[1.5] italic text-center pt-2 opacity-80">
+              Online sessions worldwide. In-person sessions by arrangement.
             </p>
           </div>
         </section>
