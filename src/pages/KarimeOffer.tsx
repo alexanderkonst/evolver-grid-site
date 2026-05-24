@@ -37,9 +37,9 @@ import GameShellV2 from "@/components/game/GameShellV2";
 // link (/build/karime/intake). "Came through Karime's page" is the source
 // signal so Sasha can tell funnel-sourced inbound from network referrals.
 //
-// TODO: confirm whether 14157073432 is Sasha's gateway number or Karime's
-// direct line — for v1 we ship with the same number used on the contact
-// line; swap to Sasha's number when confirmed.
+// Day 81 (Sasha 2026-05-23): confirmed — 14157073432 is Sasha's gateway.
+// The contact line below uses the same number; the CTA above prefills a
+// message so Sasha can distinguish funnel-sourced inbound from cold messages.
 const WHATSAPP_BOOKING_URL =
   "https://wa.me/14157073432?text=Hi%20Sasha%2C%20I%20came%20through%20Karime%27s%20page%20and%20would%20like%20to%20connect.";
 // Direct contact line at bottom of page still points to Karime's WhatsApp
