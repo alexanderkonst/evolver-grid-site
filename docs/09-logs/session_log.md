@@ -7809,3 +7809,25 @@ v5 prompt no longer asks the AI for a name, but the saved-asset row in `assets` 
 
 The asset map is now operationally simpler than it has ever been. Three signals per asset (where it lives, what it is, how ready it is) — anything beyond that was the model's fluff confusing the founder's read of his own resources. Si–Do (first $555 stranger from funnel) unchanged. This was a precision pass on the methodology surface, not a sales-mechanism move.
 
+---
+
+## Day 81 — Karime's Unique Offer page (Saturday, May 23, 2026)
+
+Sasha asked for an in-platform offering page for Karime Kuri (one of the seven founders, Ignition Step 2-3 per the roadmap). The ask emerged from a deeper thread: a Top Talent-shadow recognition moment ("I am basically receiving / remembering the strategy I am following myself") that the day's match-path beta-invite copywriting work mirrored back to him. Karime's page is the first concrete answer to "what does it look like when we put a founder's offer into our own platform's distribution surface."
+
+**What shipped:**
+
+- `src/pages/KarimeOffer.tsx` (new) — pane-3 hero on the MatchHero skeleton, Karime's exact copy: eyebrow ("A PLACE TO SOFTEN THROUGH LIFE'S HARDER SEASONS"), italic question ("Still holding everything together while quietly falling apart inside?"), h1 ("You do not have to keep carrying this alone."), supporting paragraphs, the "Not advice / Not pressure / Not spiritual performance" italic stack, closing line, CTA, footer microcopy ("FREE 20-MINUTE FIT SESSION · PRIVATE ONLINE SESSIONS WORLDWIDE & IN PERSON"), clickable Telegram + WhatsApp contact line. Same Cormorant Garamond typography, ornament, deep halo, EditorialCta as MatchHero. Gold word-highlights from MatchHero deliberately NOT carried over — Karime's tone is grief / heartbreak / emotional support, and inline gold emphasis would clash. Brand-gold stays in ornament + CTA emblem only.
+- `src/App.tsx` — route `/build/karime` mounted after `/build/equilibrium`. Public (no `RequireAuth`, no `MeGate`) so the direct URL is shareable cold.
+- `src/components/game/SectionsPanel.tsx` — new conditional branch in `getSections()` before the existing alexanderkonst-email Art branch. Injects "Karime's Unique Offer" row into BUILD pane between "Productize Yourself Session" and "Equilibrium" iff `userEmail === karimekurit@gmail.com` OR `deepProfileActivated` (same gate `useDeepProfileActivated()` used for BUILD chip + JOURNEY #5). Hide-don't-show; cold visitors and non-unlocked authed users see the standard 6-row BUILD pane.
+
+**CTA destination:** WhatsApp click-to-chat (`https://wa.me/14157073432`) — most direct path for a 20-min fit session intake, and the number is already in the contact line. TODO to swap to Cal.com when Karime provides a booking link (same pattern as the `// Oyi's booking link TBD` precedent in `OyiIgnition`).
+
+**Verified:** `/build/karime` renders cold in browser preview (vite-direct on :8080), no console errors, no server errors, sidebar row correctly hidden when neither gate condition is met. Screenshot showed eyebrow + italic question + h1 + ornament + paragraphs + italic three-line stack + CTA all rendering at the right typographic weight against the Aurora-skin background.
+
+**Why this matters:** the BUILD space just became the host surface for founder-collective offerings, not just for Sasha's own canvas (UBB / Path / Playbook / Dashboard / Ignite / Equilibrium). Karime's page is the first instance; the pattern is extensible to Oyi, Sergey, Sandra, Alexa, Kirill once they have offer copy ready. Distribution mechanism: anyone who walks the funnel deep enough to unlock BUILD sees the rotating list of offerings the collective is producing. Si–Do unchanged.
+
+**Push back with love (held for follow-up):** today's pre-build thread named the bottleneck as behavioral — Sasha showing up in aligned rooms with his own match card — not as another build move. Karime's page is necessary and a real gift, AND it's still build-side work. The Self-Use Discipline move (post Sasha's own match card in 3 aligned rooms this week) remains unfired. Worth re-naming on the next session open.
+
+**Open follow-up:** Karime to provide her Cal.com (or equivalent) booking link; swap the `WHATSAPP_BOOKING_URL` constant when ready. Re-arrangement of sidebar position, CTA destination, or visual register all easily adjustable per Sasha's "we will then rearrange it" note.
+
