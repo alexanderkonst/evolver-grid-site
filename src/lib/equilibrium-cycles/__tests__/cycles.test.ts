@@ -71,6 +71,55 @@ describe("Lunar elongation — Brown's theory (15 terms + ΔT)", () => {
       lastIdx = idx;
     }
   });
+
+  /**
+   * Regression: daysRemainingInPhase used to land on the next-next
+   * boundary due to a sign error in the shifted-space → elongation
+   * conversion. Symptom: Waxing Gibbous showed "7.4 days left" instead
+   * of ~3.7d. Sasha 2026-05-25.
+   *
+   * Test: across a full synodic month sampled hourly, daysRemainingInPhase
+   * must never exceed ~4.5 days (longest realistic single-phase duration,
+   * which occurs near apogee). Anything beyond ~5d means we're counting
+   * to the wrong boundary.
+   */
+  it("daysRemainingInPhase never exceeds a single phase duration", () => {
+    const start = Date.UTC(2024, 7, 1);
+    const MAX_REASONABLE_PHASE_DAYS = 4.5;
+    for (let h = 0; h < 30 * 24; h += 1) {
+      const state = getLunarState(start + h * 3600 * 1000);
+      expect(state.daysRemainingInPhase).toBeLessThanOrEqual(MAX_REASONABLE_PHASE_DAYS);
+      expect(state.daysRemainingInPhase).toBeGreaterThanOrEqual(0);
+    }
+  });
+
+  /**
+   * Stronger regression: stepping forward by ~daysRemainingInPhase
+   * must land in the NEXT phase (advance by exactly 1, mod 8). If
+   * daysRemainingInPhase targeted the wrong boundary, stepping that
+   * far would skip an entire phase and advance by 2.
+   *
+   * Buffer: the linear-rate estimate in `daysUntilElongationReaches`
+   * can undershoot/overshoot by ~5% (max ~5 hours for a ~4-day phase).
+   * We step by `daysRemainingInPhase + 6 hours` to guarantee crossing
+   * exactly one boundary even at worst-case linear-rate error.
+   */
+  it("Stepping forward by daysRemainingInPhase lands in the next phase", () => {
+    const samples = [
+      Date.UTC(2024, 0, 15),
+      Date.UTC(2024, 3, 7),
+      Date.UTC(2024, 6, 22),
+      Date.UTC(2024, 9, 30),
+      Date.UTC(2025, 1, 11),
+    ];
+    for (const ms of samples) {
+      const before = getLunarState(ms);
+      const stepMs = before.phaseEndMs + 6 * 3600 * 1000; // +6h buffer
+      const after = getLunarState(stepMs);
+      const advance = (after.segmentIndex - before.segmentIndex + 8) % 8;
+      expect(advance).toBe(1);
+    }
+  });
 });
 
 describe("Sun's true longitude — Meeus equation of center", () => {
