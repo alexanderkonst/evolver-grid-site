@@ -701,22 +701,21 @@
    overlay over image-bleed into panes 1+2 (cleaner, less busy).
 */
 [data-skin="karime"] {
-  /* TEXT — dense warm-charcoal "smoke" (Sasha 2026-05-23 v2).
-     Walnut brown was the same hue family as the warm video bg, so
-     legibility failed wherever the bg was dark wood/shadow. Dropping
-     value (lightness) closer to true-black gives high contrast on
-     both ends of the bg spectrum: dark text reads clean against the
-     bright window/curtain area AND against the dark wood/terracotta
-     wall, with the warm-cream halo handling the transition. Kept a
-     subtle warm undertone (the brown channels) so it doesn't go
-     fully neutral and clash with the bg's tonal world. */
-  --skin-text-primary: #1f1a15;
-  --skin-text-body: rgba(31, 26, 21, 0.97);
-  --skin-text-muted: rgba(31, 26, 21, 0.92);
-  --skin-text-muted-soft: rgba(31, 26, 21, 0.88);
-  --skin-text-strong: rgba(15, 12, 8, 0.99);
-  --skin-text-faint: rgba(31, 26, 21, 0.75);
-  --skin-text-hint: rgba(31, 26, 21, 0.6);
+  /* TEXT — Day 83 (Sasha 2026-05-25): shifted from warm walnut to
+     near-neutral dark charcoal. The previous warm-brown text (#1f1a15)
+     stayed in the same hue family as the terracotta bg + warm panes,
+     making the whole page read as a single saturated terracotta wash.
+     Charcoal `#1a1a1a` breaks the monochrome while staying dark
+     enough for full legibility on every part of the bg. The cream
+     halos still warm the text edges, so the page reads as
+     "warm-bg + crisp dark text" rather than "everything terracotta". */
+  --skin-text-primary: #1a1a1a;
+  --skin-text-body: rgba(26, 26, 26, 0.97);
+  --skin-text-muted: rgba(26, 26, 26, 0.92);
+  --skin-text-muted-soft: rgba(26, 26, 26, 0.88);
+  --skin-text-strong: rgba(12, 12, 12, 0.99);
+  --skin-text-faint: rgba(26, 26, 26, 0.75);
+  --skin-text-hint: rgba(26, 26, 26, 0.6);
 
   /* HALOS — warm cream lift strengthened to handle both extremes
      of the video bg. Brighter cream glow + sharper edge for dark
@@ -826,6 +825,25 @@
 [data-rail-compact="true"] .rounded-2xl,
 [data-rail-compact="true"] .rounded-xl {
   border-radius: 9999px !important;
+}
+/* Day 83 (Sasha 2026-05-25) v2: soft chip-sizing for compact rail.
+   Previous attempt forced every button to 44x44 which collapsed the
+   layout — too aggressive. Now we just give each chip a defined
+   width that fits inside the 72px column with breathing room, and
+   center horizontally. Height stays natural (padding-driven). */
+[data-rail-compact="true"] [data-tour-id],
+[data-rail-compact="true"] .liquid-glass button.group,
+[data-rail-compact="true"] .liquid-glass a.group {
+  width: 48px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+/* Trim the hover-ring shadow blur radius so it stays inside the
+   72px rail boundary (default 16px blur was overflowing + clipping
+   against the pane-2 edge). */
+[data-rail-compact="true"] .liquid-glass button.group:hover,
+[data-rail-compact="true"] .liquid-glass a.group:hover {
+  box-shadow: 0 0 8px -2px rgba(244, 212, 114, 0.28) !important;
 }
 [data-rail-compact="true"] .absolute.left-0.rounded-r-full {
   display: none !important;

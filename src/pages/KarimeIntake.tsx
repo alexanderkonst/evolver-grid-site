@@ -49,12 +49,14 @@ const KARIME_TELEGRAM_URL = "https://t.me/integralevolution";
 // "Productize", "Top Talent"). For Karime we use the warm copper
 // version so the highlights harmonize with the brass altar tones in
 // the video bg instead of clashing with cool antique gold.
+// Day 83 v4 (Sasha 2026-05-25): solid dark espresso-bronze with
+// text-shadow halo — same simplification as KarimeOffer (gradient
+// was washing pale; solid color reads as actual emphasis).
 const KARIME_EMPHASIS_STYLE = {
-  backgroundImage:
-    "linear-gradient(135deg, #c97644 0%, #e8b07a 50%, #c97644 100%)",
-  backgroundClip: "text" as const,
-  WebkitBackgroundClip: "text" as const,
-  color: "transparent",
+  color: "#4a2806",
+  fontWeight: 800,
+  textShadow:
+    "0 0 2px rgba(255, 230, 200, 0.6), 0 1px 0 rgba(91, 42, 11, 0.35)",
 };
 
 type SupportKey =
