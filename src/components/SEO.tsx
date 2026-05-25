@@ -1,13 +1,13 @@
 import { Helmet } from "react-helmet-async";
 
-// Day 65 (Sasha 2026-05-14): per-route head. The static head in
-// index.html is the brand fallback; <SEO> overrides title /
-// description / canonical / og:* per page so each surface is
-// indexable and citable as itself instead of collapsing into "/".
+// Per-route head. The static head in index.html is the brand
+// fallback; <SEO> overrides title / description / canonical / og:*
+// per page so each surface is indexable and citable as itself instead
+// of collapsing into "/".
 //
 // Convention:
-// - title is the *route* name; we suffix " · Genius Business" so tab
-//   chrome stays consistent with brand.
+// - title is rendered as-is; each route owns its full tab title
+//   including any brand chrome it wants.
 // - canonical is always production (https://findyourtoptalent.com)
 //   regardless of which preview/lovable.app/aleksandrkonstantinov
 //   alias the user landed on. This is intentional — we have one
@@ -43,7 +43,6 @@ const SEO = ({
     jsonLd,
     noIndex,
 }: SEOProps) => {
-    const fullTitle = `${title} · Genius Business`;
     const canonical = `${PROD_ORIGIN}${path}`;
     const finalOgTitle = ogTitle ?? title;
     const finalOgDescription = ogDescription ?? description;
@@ -51,7 +50,7 @@ const SEO = ({
 
     return (
         <Helmet>
-            <title>{fullTitle}</title>
+            <title>{title}</title>
             <meta name="description" content={description} />
             <link rel="canonical" href={canonical} />
             {noIndex && <meta name="robots" content="noindex,nofollow" />}

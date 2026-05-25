@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { EditorialCta } from "@/components/ui/editorial-cta";
+import { GOLD_TEXT_STYLE, Ornament } from "@/lib/landingDesign";
 import SEO from "@/components/SEO";
 import { trackFunnelEvent } from "@/lib/funnelAnalytics";
 import { useSkin } from "@/contexts/SkinContext";
@@ -111,154 +112,150 @@ const MatchHero = () => {
           this pass restores them because the design intent is now
           stillness. Periods serve as the pause "quiet realization"
           requires. Matches Sasha's brief copy verbatim. */}
-      {/* Day 84 v7 (Sasha 2026-05-25) viewport-fit pass.
-          v6 added breath but blew the no-scroll constraint. Sasha:
-          "the whole page must be seen with no scrolling." This is
-          the synthesis pass — hierarchy + emphasis + breath PLUS
-          viewport fit. Mechanics:
+      {/* Day 84 v8 (Sasha 2026-05-25) emphasis-restoration pass.
+          v7 fit the viewport but flattened the emotional register —
+          Sasha: "elegant emphasis, not flattened typography." This
+          pass copies the build-path hero's typographic family
+          (Cormorant 700 + deep halo + selective gold caps via
+          GOLD_TEXT_STYLE) so the two heroes feel like siblings.
 
-            1. Outer container is anchored to viewport height
-               (`min-h-[100svh]`) with `flex flex-col justify-center`.
-               The hero ALWAYS fills exactly the available pane area
-               and centers vertically inside it.
-            2. All type sizes use `clamp(min, vh-fraction, max)` so
-               they scale to viewport height. On a 720px-tall window
-               the H1 lands around 36px; on a 1080px window it lands
-               around 56px. Hierarchy ratios stay constant (eyebrow :
-               h1 : reflection : bridge ≈ 1 : 6 : 2.4 : 1.6).
-            3. Inter-beat gaps also use `clamp(min, vh-fraction, max)`.
-               Tall windows breathe; short windows compress; rhythm
-               preserved at every height.
-            4. `svh` (small viewport height) is used over `dvh` so
-               mobile browser chrome shrinking doesn't push content
-               out — the layout commits to the smaller viewport.
-            5. CSS `gap` on the flex parent replaces the per-element
-               margins that fight each other on shrink. Single gap
-               scale = one knob. */}
+          Specific moves:
+            1. Imported back GOLD_TEXT_STYLE + Ornament from
+               landingDesign. The gold spans are the emphasis grammar
+               the brand already speaks; not gimmicks.
+            2. Eyebrow "Find your people" is now an italic Cormorant
+               echo (text-base/lg/xl, weight 700, 0.01em) — same
+               register as build-path's italic echo. Reads as
+               thesis, not label.
+            3. H1 "The right people change EVERYTHING." uses the
+               build-path H1 scale (text-2xl/3xl/4xl, font-bold,
+               leading-1.1, tracking -0.018em). EVERYTHING in gold
+               caps (0.92em, 0.04em tracking) = one dominant moment
+               of emotional gravity. Container width handles wrap; no
+               artificial maxWidth clamp.
+            4. Sub-italic "But most networking goes nowhere." uses
+               the italic-echo register again (text-base/lg/xl,
+               weight 700 italic, 0.01em). No more 14ch narrow
+               column — full container width, single line on
+               desktop, natural wrap on mobile.
+            5. Ornament restored as the structural beat between
+               headline cluster and bridge.
+            6. Bridge uses the build-path manifesto scale
+               (text-lg/xl/2xl, font-bold, leading-1.4, tracking
+               -0.005em). Reading width is the container, not a 44ch
+               cinch.
+            7. CTA back to PRIMARY (dark glass, gold halo, rotating
+               emblem) — "important. inevitable. confident."
+            8. Atmospheric cream-radial backdrop removed. The parent
+               GameShellV2 already lays a cream overlay over the
+               video; layering another one was washing contrast.
+            9. Container width back to max-w-[720px] (sibling to
+               build-path). Single-knob fit handled by min-h/max-h on
+               the viewport-anchored wrapper. */}
+      {/* Height math (per shell branch):
+            - Desktop (lg+): parent `<main>` adds `pt-4` (16px).
+              Subtract 1rem.
+            - Mobile (<lg): mobile shell has a ~76px sticky topbar.
+              Subtract 5rem.
+          min-h + max-h lock the hero to the available area; flex
+          justify-center distributes breath; type uses fixed
+          responsive sizes (no clamps) for confident hierarchy. */}
       <div
         data-match-hero="true"
-        className="relative w-full min-h-[100svh] flex flex-col items-center justify-center px-5 py-6 sm:py-8 max-w-[860px] mx-auto"
+        className="relative w-full flex flex-col items-center justify-center px-5 py-4 max-w-[720px] mx-auto min-h-[calc(100svh-5rem)] max-h-[calc(100svh-5rem)] lg:min-h-[calc(100svh-1rem)] lg:max-h-[calc(100svh-1rem)]"
       >
-        {/* Atmospheric backdrop. Sits behind the headline cluster.
-            Soft cream radial so the dominant frame lifts off the
-            video without a hard card edge. */}
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-x-0 top-[14%] h-[56%] -z-10"
-          style={{
-            background:
-              "radial-gradient(ellipse 65% 58% at 50% 45%, rgba(245,241,232,0.62) 0%, rgba(245,241,232,0.36) 42%, rgba(245,241,232,0) 78%)",
-            filter: "blur(10px)",
-          }}
-        />
-
-        <header className="w-full flex flex-col items-center" style={{ gap: "clamp(0.75rem, 2vh, 1.75rem)" }}>
-          {/* Eyebrow — refined, quiet invitation. Small-caps tracking,
-              light italic, muted. */}
+        <header className="text-center w-full">
+          {/* Eyebrow — Cormorant italic, build-hero echo register.
+              The thesis of the entire experience, not a label. */}
           <p
-            className="text-center"
+            className="text-base sm:text-lg md:text-xl leading-[1.32] italic mb-4 sm:mb-5"
             style={{
               fontFamily: "'Cormorant Garamond', serif",
-              fontWeight: 500,
-              fontStyle: "italic",
-              fontSize: "clamp(0.65rem, 1.1vh, 0.82rem)",
-              letterSpacing: "0.36em",
-              textTransform: "uppercase",
-              color: "var(--skin-text-muted, rgba(26,30,58,0.55))",
+              fontWeight: 700,
+              letterSpacing: "0.01em",
+              color: "var(--skin-text-primary, #0a1628)",
               textShadow:
-                "var(--skin-text-halo-soft, 0 0 14px rgba(255,255,255,0.7), 0 1px 2px rgba(255,255,255,0.85))",
-              marginBottom: "clamp(0.5rem, 1.8vh, 1.5rem)",
+                "var(--skin-text-halo-deep, 0 0 28px rgba(255,255,255,0.85), 0 1px 2px rgba(255,255,255,0.95), 0 0 1px rgba(11,42,90,0.65), 0 1px 0 rgba(11,42,90,0.45))",
             }}
           >
             Find your people
           </p>
 
-          {/* THE dominant frame. Largest type, fullest weight,
-              expansive line, controlled wrap via 20ch clamp. */}
+          {/* THE dominant frame. Build-path H1 scale, gold caps on
+              EVERYTHING for the one moment of emotional gravity. */}
           <h1
-            className="text-center mx-auto"
+            className="text-2xl sm:text-3xl md:text-4xl font-bold leading-[1.1] tracking-[-0.018em] mb-3 sm:mb-4"
+            style={{
+              fontFamily: "'Cormorant Garamond', serif",
+              color: "var(--skin-text-primary, #0a1628)",
+              textShadow:
+                "var(--skin-text-halo-deep, 0 0 22px rgba(255,255,255,0.7), 0 1px 2px rgba(255,255,255,0.9), 0 0 1px rgba(11,42,90,0.45), 0 1px 0 rgba(11,42,90,0.25))",
+            }}
+          >
+            The right people change{" "}
+            <span
+              className="bg-clip-text text-transparent"
+              style={{
+                ...GOLD_TEXT_STYLE,
+                letterSpacing: "0.04em",
+                textTransform: "uppercase",
+                fontSize: "0.92em",
+              }}
+            >
+              everything
+            </span>
+            .
+          </h1>
+
+          {/* Tension line — italic echo register. Full container
+              width, no narrow stack. */}
+          <p
+            className="text-base sm:text-lg md:text-xl leading-[1.32] italic mb-3 sm:mb-4"
             style={{
               fontFamily: "'Cormorant Garamond', serif",
               fontWeight: 700,
+              letterSpacing: "0.01em",
               color: "var(--skin-text-primary, #0a1628)",
-              maxWidth: "20ch",
-              fontSize: "clamp(1.65rem, 5.8vh, 3.75rem)",
-              lineHeight: 1.04,
-              letterSpacing: "-0.024em",
               textShadow:
-                "var(--skin-text-halo-deep, 0 0 26px rgba(255,255,255,0.78), 0 1px 2px rgba(255,255,255,0.92), 0 0 1px rgba(11,42,90,0.5), 0 1px 0 rgba(11,42,90,0.3))",
+                "var(--skin-text-halo-deep, 0 0 28px rgba(255,255,255,0.85), 0 1px 2px rgba(255,255,255,0.95), 0 0 1px rgba(11,42,90,0.65), 0 1px 0 rgba(11,42,90,0.45))",
             }}
           >
-            The right people change everything.
-          </h1>
-
-          {/* Quieter reflection beat. Smaller, italic, lighter weight,
-              muted, narrower. Asymmetric break. */}
-          <p
-            className="text-center italic mx-auto"
-            style={{
-              fontFamily: "'Cormorant Garamond', serif",
-              fontWeight: 400,
-              color: "var(--skin-text-muted, rgba(26,30,58,0.62))",
-              maxWidth: "14ch",
-              fontSize: "clamp(0.95rem, 2.4vh, 1.5rem)",
-              lineHeight: 1.28,
-              letterSpacing: "-0.005em",
-              marginTop: "clamp(0.4rem, 1.4vh, 1.25rem)",
-              textShadow:
-                "var(--skin-text-halo-soft, 0 0 16px rgba(255,255,255,0.65), 0 1px 2px rgba(255,255,255,0.82))",
-            }}
-          >
-            But most networking
-            <br />
-            goes nowhere.
+            But most networking goes nowhere.
           </p>
 
-          {/* Bridge — single sentence, calm reading width. Real pause
-              above to set it apart from the headline cluster. */}
+          <Ornament className="my-4 sm:my-5" />
+
+          {/* Bridge — build-path manifesto register. Container width
+              for confidence; one calm sentence. */}
           <p
-            className="text-center mx-auto"
+            className="text-lg sm:text-xl md:text-2xl font-bold leading-[1.4] tracking-[-0.005em]"
             style={{
               fontFamily: "'Cormorant Garamond', serif",
-              fontWeight: 400,
-              color: "var(--skin-text-primary, rgba(10,22,40,0.88))",
-              maxWidth: "44ch",
-              fontSize: "clamp(0.85rem, 1.95vh, 1.2rem)",
-              lineHeight: 1.5,
-              letterSpacing: "-0.002em",
-              marginTop: "clamp(1rem, 3.5vh, 2.5rem)",
+              color: "var(--skin-text-primary, #0a1628)",
               textShadow:
-                "var(--skin-text-halo-soft, 0 0 16px rgba(255,255,255,0.62), 0 1px 2px rgba(255,255,255,0.82))",
+                "var(--skin-text-halo-deep, 0 0 22px rgba(255,255,255,0.7), 0 1px 2px rgba(255,255,255,0.9), 0 0 1px rgba(11,42,90,0.45), 0 1px 0 rgba(11,42,90,0.25))",
             }}
           >
             A few simple prompts, and we'll introduce you to entrepreneurs, operators, and advisors who see it the way you do.
           </p>
         </header>
 
-        {/* CTA cluster — secondary variant (light glass, navy text, no
-            halo). Spacing above scales with viewport so the move always
-            has breath without pushing the page off-screen. */}
-        <div
-          className="flex flex-col items-center px-4 text-center"
-          style={{
-            marginTop: "clamp(1rem, 3.2vh, 2.5rem)",
-            gap: "clamp(0.5rem, 1.4vh, 1rem)",
-          }}
-        >
+        {/* CTA cluster — PRIMARY dark glass with gold halo. The move
+            should feel important, inevitable, confident. */}
+        <div className="mt-6 sm:mt-7 md:mt-8 flex flex-col items-center gap-3 sm:gap-4 px-4 text-center">
           <EditorialCta
             label="Match me"
-            variant="secondary"
             onClick={() => navigate("/zone-of-genius?path=match")}
           />
 
           <div
-            className="inline-flex items-center justify-center gap-2 max-w-[460px]"
+            className="inline-flex items-center justify-center gap-2 max-w-[460px] mt-1"
             style={{
-              color: "var(--skin-text-muted-soft, rgba(26,30,58,0.48))",
+              color: "var(--skin-text-muted-soft, rgba(26,30,58,0.6))",
               textShadow:
-                "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.55))",
-              fontSize: "clamp(0.56rem, 0.95vh, 0.66rem)",
-              letterSpacing: "0.28em",
+                "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
+              fontSize: "0.68rem",
+              letterSpacing: "0.22em",
               textTransform: "uppercase",
               fontWeight: 500,
             }}
