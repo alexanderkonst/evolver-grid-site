@@ -65,48 +65,28 @@ const MatchHero = () => {
   return (
     <>
       <SEO
-        title="Find Your Top Talent · Precision Intros for Entrepreneurs"
-        description="Describe yourself with our AI prompts; we'll make intros to the matching entrepreneurs, advisors, and operators."
+        title="Find Your Top Talent · Find Your People"
+        description="Tell us how you think, build, and see the world. We'll introduce you to entrepreneurs, operators, and advisors who see it the way you do."
         path="/?path=match"
-        ogTitle="Your co-creators are 10 minutes away"
+        ogTitle="Find your people"
       />
       {/* Day 80 (Sasha 2026-05-23): hero typography + padding tier-shifted
           down (mirror of MethodologyLandingPage same-day change) so the
           full first-viewport stack lands above the fold without zoom. */}
       <div className="max-w-[720px] mx-auto px-5 py-6 sm:py-7 md:py-8">
         <header className="text-center">
-          {/* Day 79 (Sasha 2026-05-22) — legibility: gold-on-cream was
-              never going to read regardless of the shade (tried
-              `--skin-accent-gold`, then `--skin-goldDeep`, both faded
-              into the cream wash). Switched to dark navy ink at full
-              `--skin-text-primary` so the eyebrow actually reads.
-              Small-caps + tracked letter-spacing keeps the editorial
-              register; the brand-gold remains in the CTA emblem +
-              ornament where it has the contrast headroom. */}
-          {/* Day 80 (Sasha 2026-05-23): eyebrow halo upgraded soft →
-              deep per ui_playbook.md Part VIII Strong cocktail. The
-              new match Mux video is visually denser than the
-              build-path one; halo-soft wasn't carrying small-caps
-              text against the gold-bokeh patches. */}
-          <p
-            className="mb-4 sm:mb-5"
-            style={{
-              fontFamily: "'Cormorant Garamond', serif",
-              fontWeight: 700,
-              fontSize: "11px",
-              letterSpacing: "0.28em",
-              textTransform: "uppercase",
-              color: "var(--skin-text-primary, #0a1628)",
-              textShadow:
-                "var(--skin-text-halo-deep, 0 0 28px rgba(255,255,255,0.85), 0 1px 2px rgba(255,255,255,0.95), 0 0 1px rgba(11,42,90,0.65), 0 1px 0 rgba(11,42,90,0.45))",
-            }}
-          >
-            Precision intros for entrepreneurs
-          </p>
-
-          {/* Day 79: the setup line now LEADS the hero (was: italic
-              echo positioned BELOW the h1). New question pulls the
-              reader's recognition first; the h1 below answers it. */}
+          {/* Day 80 (Sasha 2026-05-25) — new locked copy. Eyebrow
+              ("Precision intros for entrepreneurs") retired on purpose;
+              Sasha's call. Italic setup ("Find your people") leads
+              directly into the two-line h1 promise / pain contrast.
+              Sub paragraph names the mechanism (you describe how you
+              think) + the outcome (intros to people who see it your
+              way). Gold-emphasis spans dropped this pass — clean
+              ship; if specific words want gold accent we'll add by
+              Sasha's word-level call after seeing it live. Line breaks
+              between H1 sentences and sub-paragraph sentences are
+              explicit <br /> to preserve the deliberate cadence Sasha
+              wrote (each line as a beat, no rolling paragraph). */}
           <p
             className="text-base sm:text-lg md:text-xl leading-[1.32] italic mb-3 sm:mb-4"
             style={{
@@ -118,48 +98,25 @@ const MatchHero = () => {
                 "var(--skin-text-halo-deep, 0 0 28px rgba(255,255,255,0.85), 0 1px 2px rgba(255,255,255,0.95), 0 0 1px rgba(11,42,90,0.65), 0 1px 0 rgba(11,42,90,0.45))",
             }}
           >
-            Ready to meet{" "}
-            <span className="bg-clip-text text-transparent" style={GOLD_TEXT_STYLE}>
-              co-creators
-            </span>
-            , not just grow your network?
+            Find your people
           </p>
 
-          {/* Hero (h1) — the answer to the setup above. Plain text,
-              no terminal period, Strong-cocktail legibility (Cormorant
-              700 + deep halo) preserved for parity with build-path. */}
           <h1
-            className="text-2xl sm:text-3xl md:text-4xl font-bold leading-[1.1] tracking-[-0.018em] mb-3 sm:mb-4"
+            className="text-2xl sm:text-3xl md:text-4xl font-bold leading-[1.15] tracking-[-0.018em] mb-3 sm:mb-4"
             style={{
               fontFamily: "'Cormorant Garamond', serif",
               color: "var(--skin-text-primary, #0a1628)",
               textShadow:
                 "var(--skin-text-halo-deep, 0 0 22px rgba(255,255,255,0.7), 0 1px 2px rgba(255,255,255,0.9), 0 0 1px rgba(11,42,90,0.45), 0 1px 0 rgba(11,42,90,0.25))",
-              // Day 79 (Sasha 2026-05-22): Cormorant Garamond defaults to
-              // old-style figures (numerals sit below the cap-height
-              // baseline like miniature lowercase). "10" rendered tiny
-              // next to "You" / "Your". Lining figures force full
-              // cap-height numerals that match capitals harmoniously.
-              fontVariantNumeric: "lining-nums",
-              fontFeatureSettings: '"lnum" 1, "onum" 0',
             }}
           >
-            You don't have to do it alone. Your{" "}
-            <span className="bg-clip-text text-transparent" style={GOLD_TEXT_STYLE}>
-              co-creators
-            </span>{" "}
-            are{" "}
-            <span className="bg-clip-text text-transparent" style={GOLD_TEXT_STYLE}>
-              10 minutes
-            </span>{" "}
-            away.
+            The right people change everything
+            <br />
+            But most networking goes nowhere
           </h1>
 
           <Ornament className="my-4 sm:my-5" />
 
-          {/* Day 79: sub paragraph rewritten — names the mechanism
-              (AI-built profile) and the outcome (matches + intros)
-              instead of the older "we surface them" phrasing. */}
           <p
             className="text-lg sm:text-xl md:text-2xl font-bold leading-[1.4] tracking-[-0.005em]"
             style={{
@@ -169,11 +126,9 @@ const MatchHero = () => {
                 "var(--skin-text-halo-deep, 0 0 22px rgba(255,255,255,0.7), 0 1px 2px rgba(255,255,255,0.9), 0 0 1px rgba(11,42,90,0.45), 0 1px 0 rgba(11,42,90,0.25))",
             }}
           >
-            Describe yourself with our AI prompts; we'll make{" "}
-            <span className="bg-clip-text text-transparent" style={GOLD_TEXT_STYLE}>
-              intros
-            </span>{" "}
-            to the matching entrepreneurs, advisors, and operators.
+            Tell us how you think, build, and see the world
+            <br />
+            We'll introduce you to entrepreneurs, operators, and advisors who see it the way you do
           </p>
         </header>
 
