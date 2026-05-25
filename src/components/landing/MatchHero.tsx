@@ -99,7 +99,26 @@ const MatchHero = () => {
                brand color — just atmospheric lift.
 
           Locked copy unchanged. No terminal periods. No gold spans. */}
-      <div data-match-hero="true" className="relative max-w-[720px] mx-auto px-5 py-8 sm:py-10 md:py-12">
+      {/* Day 84 v5 (Sasha 2026-05-25): platform-wide no-scroll pass.
+          Sasha's brief: entire match landing must read in ONE glance,
+          CTA + microcopy visible without scroll on a typical desktop
+          viewport. Applies to all skins, not just daouniverse — the
+          per-skin override approach was treating a symptom; the source
+          sizing was just too generous.
+
+          Compression deltas (each one tier down on the responsive scale):
+            - Hero h1:    text-3xl/4xl/5xl  → text-2xl/3xl/4xl
+            - Sub-h1:     text-xl/2xl/3xl   → text-lg/xl/2xl
+            - Body:       text-base/lg/xl   → text-sm/base/lg
+            - Eyebrow mb: mb-6/8/10         → mb-3/4/5
+            - Sub mt:     mt-5/6/7          → mt-3/4/5
+            - Ornament:   my-8/10/12        → my-4/5/6
+            - CTA mt:     mt-12/14/16       → mt-6/7/8
+            - Wrapper py: py-8/10/12        → py-4/5/6
+          The emotional arc (italic eyebrow → expansive h1 → quieter
+          recognition → ornament → bridge → CTA) is preserved — only the
+          absolute scale shifts. Editorial hierarchy intact. */}
+      <div data-match-hero="true" className="relative max-w-[720px] mx-auto px-5 py-4 sm:py-5 md:py-6">
         {/* Atmospheric backdrop. Sits behind the hero text only, not
             the CTA. Soft radial so the headline feels lifted from the
             video field without a hard card edge. */}
@@ -116,7 +135,7 @@ const MatchHero = () => {
         <header className="text-center">
           {/* Quiet entry. Steps in, sets the register, steps back. */}
           <p
-            className="text-sm sm:text-base md:text-lg leading-[1.4] italic mb-6 sm:mb-8 md:mb-10"
+            className="text-sm sm:text-base md:text-lg leading-[1.4] italic mb-3 sm:mb-4 md:mb-5"
             style={{
               fontFamily: "'Cormorant Garamond', serif",
               fontWeight: 500,
@@ -131,7 +150,7 @@ const MatchHero = () => {
 
           {/* H1 line 1 — the expansive beat. Largest, fullest weight. */}
           <h1
-            className="text-3xl sm:text-4xl md:text-5xl font-bold leading-[1.08] tracking-[-0.022em] mx-auto"
+            className="text-2xl sm:text-3xl md:text-4xl font-bold leading-[1.08] tracking-[-0.022em] mx-auto"
             style={{
               fontFamily: "'Cormorant Garamond', serif",
               fontWeight: 700,
@@ -148,7 +167,7 @@ const MatchHero = () => {
               muted. Asymmetric break per Sasha's option 2 rhythm: the
               break before "goes nowhere" lets the admission land. */}
           <p
-            className="mt-5 sm:mt-6 md:mt-7 text-xl sm:text-2xl md:text-3xl leading-[1.22] tracking-[-0.01em] mx-auto"
+            className="mt-3 sm:mt-4 md:mt-5 text-lg sm:text-xl md:text-2xl leading-[1.22] tracking-[-0.01em] mx-auto"
             style={{
               fontFamily: "'Cormorant Garamond', serif",
               fontWeight: 500,
@@ -158,17 +177,17 @@ const MatchHero = () => {
                 "var(--skin-text-halo-soft, 0 0 18px rgba(255,255,255,0.72), 0 1px 2px rgba(255,255,255,0.88))",
             }}
           >
-            But most networking
+            but most networking
             <br />
             goes nowhere
           </p>
 
-          <Ornament className="my-8 sm:my-10 md:my-12" />
+          <Ornament className="my-4 sm:my-5 md:my-6" />
 
           {/* Bridge paragraph — the mechanism + the outcome. Narrower,
               regular weight, smaller. A bridge, not a second headline. */}
           <p
-            className="text-base sm:text-lg md:text-xl leading-[1.5] tracking-[-0.003em] mx-auto"
+            className="text-sm sm:text-base md:text-lg leading-[1.5] tracking-[-0.003em] mx-auto"
             style={{
               fontFamily: "'Cormorant Garamond', serif",
               fontWeight: 500,
@@ -184,17 +203,18 @@ const MatchHero = () => {
           </p>
         </header>
 
-        {/* CTA cluster — single primary CTA. Generous space above so the
-            move lands as choice, not pressure. */}
-        <div className="mt-12 sm:mt-14 md:mt-16">
-          <div className="flex flex-col items-center gap-5 px-4 text-center">
+        {/* CTA cluster — single primary CTA. Compressed top-margin per
+            v5 no-scroll pass; the editorial pause is preserved by the
+            mb spacing on the bridge paragraph above. */}
+        <div className="mt-6 sm:mt-7 md:mt-8">
+          <div className="flex flex-col items-center gap-4 px-4 text-center">
             <EditorialCta
               label="Match me"
               onClick={() => navigate("/zone-of-genius?path=match")}
             />
 
             <div
-              className="inline-flex items-center justify-center gap-2 max-w-[460px] mt-2"
+              className="inline-flex items-center justify-center gap-2 max-w-[460px] mt-1"
               style={{
                 color: "var(--skin-text-muted-soft, rgba(26,30,58,0.55))",
                 textShadow:
