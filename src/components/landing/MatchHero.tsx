@@ -111,13 +111,40 @@ const MatchHero = () => {
           this pass restores them because the design intent is now
           stillness. Periods serve as the pause "quiet realization"
           requires. Matches Sasha's brief copy verbatim. */}
-      <div data-match-hero="true" className="relative max-w-[860px] mx-auto px-6 pt-12 pb-16 sm:pt-16 sm:pb-20 md:pt-20 md:pb-28">
-        {/* Atmospheric backdrop. Sits behind the headline cluster only.
-            Soft cream radial so the dominant frame lifts off the video
-            without a hard card edge. */}
+      {/* Day 84 v7 (Sasha 2026-05-25) viewport-fit pass.
+          v6 added breath but blew the no-scroll constraint. Sasha:
+          "the whole page must be seen with no scrolling." This is
+          the synthesis pass — hierarchy + emphasis + breath PLUS
+          viewport fit. Mechanics:
+
+            1. Outer container is anchored to viewport height
+               (`min-h-[100svh]`) with `flex flex-col justify-center`.
+               The hero ALWAYS fills exactly the available pane area
+               and centers vertically inside it.
+            2. All type sizes use `clamp(min, vh-fraction, max)` so
+               they scale to viewport height. On a 720px-tall window
+               the H1 lands around 36px; on a 1080px window it lands
+               around 56px. Hierarchy ratios stay constant (eyebrow :
+               h1 : reflection : bridge ≈ 1 : 6 : 2.4 : 1.6).
+            3. Inter-beat gaps also use `clamp(min, vh-fraction, max)`.
+               Tall windows breathe; short windows compress; rhythm
+               preserved at every height.
+            4. `svh` (small viewport height) is used over `dvh` so
+               mobile browser chrome shrinking doesn't push content
+               out — the layout commits to the smaller viewport.
+            5. CSS `gap` on the flex parent replaces the per-element
+               margins that fight each other on shrink. Single gap
+               scale = one knob. */}
+      <div
+        data-match-hero="true"
+        className="relative w-full min-h-[100svh] flex flex-col items-center justify-center px-5 py-6 sm:py-8 max-w-[860px] mx-auto"
+      >
+        {/* Atmospheric backdrop. Sits behind the headline cluster.
+            Soft cream radial so the dominant frame lifts off the
+            video without a hard card edge. */}
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-x-0 top-[6%] h-[58%] -z-10"
+          className="pointer-events-none absolute inset-x-0 top-[14%] h-[56%] -z-10"
           style={{
             background:
               "radial-gradient(ellipse 65% 58% at 50% 45%, rgba(245,241,232,0.62) 0%, rgba(245,241,232,0.36) 42%, rgba(245,241,232,0) 78%)",
@@ -125,35 +152,39 @@ const MatchHero = () => {
           }}
         />
 
-        <header>
+        <header className="w-full flex flex-col items-center" style={{ gap: "clamp(0.75rem, 2vh, 1.75rem)" }}>
           {/* Eyebrow — refined, quiet invitation. Small-caps tracking,
-              light italic, muted. Sets the room, steps back. */}
+              light italic, muted. */}
           <p
-            className="text-center text-[0.7rem] sm:text-xs md:text-[0.78rem] mb-10 sm:mb-12 md:mb-14"
+            className="text-center"
             style={{
               fontFamily: "'Cormorant Garamond', serif",
               fontWeight: 500,
               fontStyle: "italic",
+              fontSize: "clamp(0.65rem, 1.1vh, 0.82rem)",
               letterSpacing: "0.36em",
               textTransform: "uppercase",
               color: "var(--skin-text-muted, rgba(26,30,58,0.55))",
               textShadow:
                 "var(--skin-text-halo-soft, 0 0 14px rgba(255,255,255,0.7), 0 1px 2px rgba(255,255,255,0.85))",
+              marginBottom: "clamp(0.5rem, 1.8vh, 1.5rem)",
             }}
           >
             Find your people
           </p>
 
           {/* THE dominant frame. Largest type, fullest weight,
-              expansive single line on desktop, controlled wrap on
-              mobile via the 20ch clamp. */}
+              expansive line, controlled wrap via 20ch clamp. */}
           <h1
-            className="text-center text-[2rem] sm:text-5xl md:text-6xl font-bold leading-[1.04] tracking-[-0.024em] mx-auto"
+            className="text-center mx-auto"
             style={{
               fontFamily: "'Cormorant Garamond', serif",
               fontWeight: 700,
               color: "var(--skin-text-primary, #0a1628)",
               maxWidth: "20ch",
+              fontSize: "clamp(1.65rem, 5.8vh, 3.75rem)",
+              lineHeight: 1.04,
+              letterSpacing: "-0.024em",
               textShadow:
                 "var(--skin-text-halo-deep, 0 0 26px rgba(255,255,255,0.78), 0 1px 2px rgba(255,255,255,0.92), 0 0 1px rgba(11,42,90,0.5), 0 1px 0 rgba(11,42,90,0.3))",
             }}
@@ -162,15 +193,18 @@ const MatchHero = () => {
           </h1>
 
           {/* Quieter reflection beat. Smaller, italic, lighter weight,
-              muted, narrower. Break before "goes nowhere" so the
-              admission settles. */}
+              muted, narrower. Asymmetric break. */}
           <p
-            className="text-center mt-7 sm:mt-9 md:mt-11 text-lg sm:text-xl md:text-2xl leading-[1.28] tracking-[-0.005em] italic mx-auto"
+            className="text-center italic mx-auto"
             style={{
               fontFamily: "'Cormorant Garamond', serif",
               fontWeight: 400,
               color: "var(--skin-text-muted, rgba(26,30,58,0.62))",
               maxWidth: "14ch",
+              fontSize: "clamp(0.95rem, 2.4vh, 1.5rem)",
+              lineHeight: 1.28,
+              letterSpacing: "-0.005em",
+              marginTop: "clamp(0.4rem, 1.4vh, 1.25rem)",
               textShadow:
                 "var(--skin-text-halo-soft, 0 0 16px rgba(255,255,255,0.65), 0 1px 2px rgba(255,255,255,0.82))",
             }}
@@ -180,15 +214,19 @@ const MatchHero = () => {
             goes nowhere.
           </p>
 
-          {/* Bridge — single sentence. Calm reading width, regular
-              weight, generous pause above. */}
+          {/* Bridge — single sentence, calm reading width. Real pause
+              above to set it apart from the headline cluster. */}
           <p
-            className="text-center mt-16 sm:mt-20 md:mt-24 text-base sm:text-lg md:text-[1.2rem] leading-[1.55] tracking-[-0.002em] mx-auto"
+            className="text-center mx-auto"
             style={{
               fontFamily: "'Cormorant Garamond', serif",
               fontWeight: 400,
               color: "var(--skin-text-primary, rgba(10,22,40,0.88))",
               maxWidth: "44ch",
+              fontSize: "clamp(0.85rem, 1.95vh, 1.2rem)",
+              lineHeight: 1.5,
+              letterSpacing: "-0.002em",
+              marginTop: "clamp(1rem, 3.5vh, 2.5rem)",
               textShadow:
                 "var(--skin-text-halo-soft, 0 0 16px rgba(255,255,255,0.62), 0 1px 2px rgba(255,255,255,0.82))",
             }}
@@ -198,30 +236,34 @@ const MatchHero = () => {
         </header>
 
         {/* CTA cluster — secondary variant (light glass, navy text, no
-            halo). More refined, more integrated. Real breathing room
-            above so the move lands as choice, not pressure. */}
-        <div className="mt-14 sm:mt-16 md:mt-20">
-          <div className="flex flex-col items-center gap-5 px-4 text-center">
-            <EditorialCta
-              label="Match me"
-              variant="secondary"
-              onClick={() => navigate("/zone-of-genius?path=match")}
-            />
+            halo). Spacing above scales with viewport so the move always
+            has breath without pushing the page off-screen. */}
+        <div
+          className="flex flex-col items-center px-4 text-center"
+          style={{
+            marginTop: "clamp(1rem, 3.2vh, 2.5rem)",
+            gap: "clamp(0.5rem, 1.4vh, 1rem)",
+          }}
+        >
+          <EditorialCta
+            label="Match me"
+            variant="secondary"
+            onClick={() => navigate("/zone-of-genius?path=match")}
+          />
 
-            <div
-              className="inline-flex items-center justify-center gap-2 max-w-[460px] mt-3"
-              style={{
-                color: "var(--skin-text-muted-soft, rgba(26,30,58,0.48))",
-                textShadow:
-                  "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.55))",
-                fontSize: "0.62rem",
-                letterSpacing: "0.28em",
-                textTransform: "uppercase",
-                fontWeight: 500,
-              }}
-            >
-              <span>Free · 2 minutes · No signup to start</span>
-            </div>
+          <div
+            className="inline-flex items-center justify-center gap-2 max-w-[460px]"
+            style={{
+              color: "var(--skin-text-muted-soft, rgba(26,30,58,0.48))",
+              textShadow:
+                "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.55))",
+              fontSize: "clamp(0.56rem, 0.95vh, 0.66rem)",
+              letterSpacing: "0.28em",
+              textTransform: "uppercase",
+              fontWeight: 500,
+            }}
+          >
+            <span>Free · 2 minutes · No signup to start</span>
           </div>
         </div>
       </div>
