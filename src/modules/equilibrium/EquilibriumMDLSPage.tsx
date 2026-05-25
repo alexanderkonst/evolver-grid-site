@@ -364,6 +364,7 @@ export const EquilibriumMDLSPage = () => {
               onPromoteToDoNow={(id) => {
                 void eq.promoteToDoNow(id);
               }}
+              onDemoteFromDoNow={eq.demoteFromDoNow}
               onCompleteTask={eq.completeTask}
               onUncompleteTask={eq.uncompleteTask}
             />
