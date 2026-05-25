@@ -28,7 +28,7 @@ import {
   type ReactNode,
 } from "react";
 
-export type Skin = "aurora" | "navy-gold" | "network-school" | "karime" | "daouniverse";
+export type Skin = "aurora" | "navy-gold" | "network-school" | "karime" | "daouniverse" | "planetir";
 
 interface SkinContextValue {
   skin: Skin;
@@ -42,7 +42,7 @@ interface SkinContextValue {
 }
 
 const STORAGE_KEY = "app-skin";
-const VALID_SKINS: Skin[] = ["aurora", "navy-gold", "network-school", "karime", "daouniverse"];
+const VALID_SKINS: Skin[] = ["aurora", "navy-gold", "network-school", "karime", "daouniverse", "planetir"];
 
 const readStoredSkin = (): Skin => {
   if (typeof window === "undefined") return "aurora";
