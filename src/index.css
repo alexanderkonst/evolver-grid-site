@@ -837,20 +837,41 @@
    layout — too aggressive. Now we just give each chip a defined
    width that fits inside the 72px column with breathing room, and
    center horizontally. Height stays natural (padding-driven). */
+/* Day 83 v5 (Sasha 2026-05-25): bulletproof chip centering via grid.
+   Earlier passes used flex justify-content + align-self + margin
+   auto, but per-chip inline styles + nested wrappers kept producing
+   visible left-bias. Switching the chip to `display: grid;
+   place-items: center` forces every direct child to the exact
+   center regardless of internal flex/inline-style quirks. */
 [data-rail-compact="true"] [data-tour-id],
 [data-rail-compact="true"] .liquid-glass button.group,
 [data-rail-compact="true"] .liquid-glass a.group {
+  display: grid !important;
+  place-items: center !important;
   width: 48px !important;
+  height: 48px !important;
   align-self: center !important;
   margin-left: auto !important;
   margin-right: auto !important;
+  padding: 0 !important;
+  gap: 0 !important;
 }
-/* Day 83 v3 (Sasha 2026-05-25): centering bug fix. `margin: auto`
-   alone didn't center the chips because the SpacesRail wrapper is
-   `flex flex-col` with default `align-items: stretch` — children
-   stretch full-width, and `margin: auto` on a stretched item is a
-   no-op on the cross axis. Adding `align-self: center` overrides
-   stretch per-chip so each chip sits at the column center. */
+/* Force every direct child of the chip to grid-center too —
+   catches the icon-wrapper span and any positioning glitch from
+   inline styles on inner children. */
+[data-rail-compact="true"] .liquid-glass button.group > *,
+[data-rail-compact="true"] .liquid-glass a.group > * {
+  display: grid !important;
+  place-items: center !important;
+  margin: 0 !important;
+}
+/* GlyphIcon spans set width/height inline (size prop varies 22-32
+   across glyphs). Normalize to 26x26 so every chip's glyph occupies
+   the same visual footprint. */
+[data-rail-compact="true"] [aria-hidden="true"][style*="grid"] {
+  width: 26px !important;
+  height: 26px !important;
+}
 /* Trim the hover-ring shadow blur radius so it stays inside the
    72px rail boundary (default 16px blur was overflowing + clipping
    against the pane-2 edge). */

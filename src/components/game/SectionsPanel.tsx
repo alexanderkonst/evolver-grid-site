@@ -1590,11 +1590,20 @@ const SectionsPanel = ({
                                 onOpenAutoFocus={(e) => e.preventDefault()}
                                 className="w-auto max-w-[260px] rounded-xl border-none p-0 shadow-none bg-transparent"
                             >
+                                {/* Day 80 (Sasha 2026-05-25): gradient
+                                    alphas 0.92/0.88 → 1.0 across the
+                                    board. The 8-12% bleed was letting
+                                    page text show THROUGH the popover,
+                                    making the locked-hint copy fight
+                                    the underlying hero. The popover
+                                    surface is now fully opaque dark
+                                    navy with a gold rim — same brand
+                                    register, no bleed. */}
                                 <div
                                     className="rounded-xl px-4 py-3"
                                     style={{
                                         backgroundImage:
-                                            "linear-gradient(135deg, rgba(10,22,40,0.92) 0%, rgba(18,28,56,0.88) 50%, rgba(10,22,40,0.92) 100%)",
+                                            "linear-gradient(135deg, rgba(10,22,40,1) 0%, rgba(18,28,56,1) 50%, rgba(10,22,40,1) 100%)",
                                         border: "1px solid rgba(212, 175, 55, 0.35)",
                                         boxShadow:
                                             "0 0 0 1px rgba(212, 175, 55, 0.15), 0 8px 28px -8px rgba(10, 22, 40, 0.6), 0 0 24px -6px rgba(244, 212, 114, 0.25)",

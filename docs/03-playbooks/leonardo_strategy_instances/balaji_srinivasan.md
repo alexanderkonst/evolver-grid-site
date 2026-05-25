@@ -6,7 +6,7 @@
 
 ## Status
 
-**Send-ready as of May 21, 2026 (Day 78).** Channel: **Discord** (DM to Balaji). Message finalized at **v10**, converged from v8 through a multi-pass iteration arc: energy-mapping, divine roast, crash-tests, a lean-curiosity-trigger experiment (briefly explored a 3-beat micro-DM structure: permission-ask → URL → strategic depth), then a return to full Leonardo-letter form after Sasha surfaced the historical mapping organically (lyre = NS-skinned prototype, court invitation = January presence, war machines = three coordination primitives, garden trial = free pilot). v10 is ~125 words: warm opening, frame extension, build-history grounded theory, three URLs (one per primitive), simple free-pilot CTA. The compound-verb thread (*compounds for / compounds them / compound shipping*) runs through the three primitives as internal rhyme. v6 (email), v7 (Discord), v8 (energy-mapping), v9 (Leonardo letter-form first draft) all preserved in Version history. NS-skin of findyourtoptalent.com: live (Discord renders the OG preview for the first URL automatically). Reply-Ready Arsenal prepared and held for post-engagement. Send Tuesday or Wednesday morning SGT (Balaji's burst-read window).
+**Send-ready as of May 21, 2026 (Day 78).** Channel: **Discord** (DM to Balaji). Message finalized at **v11**, converged from v10 same-day after Sasha realized the matching URL (`/ns/?path=match`) delivers all three primitives via in-product navigation. Three URLs collapsed to one. This proves the *all in one prototype* claim visually rather than verbally, and removes URL-parsing overhead for the reader. v11 is ~110 words: warm opening, frame extension, build-history grounded theory, single URL, simple free-pilot CTA. The compound-verb thread (*compounds for / compounds them / compound shipping*) runs through the three primitives as internal rhyme. v6 through v10 preserved in Version history. NS-skin live; Discord renders the OG card for the single URL cleanly. Reply-Ready Arsenal prepared and held for post-engagement. Send Tuesday or Wednesday morning SGT (Balaji's burst-read window).
 
 ---
 
@@ -39,11 +39,11 @@ This is the bronze horse. Placed quietly at the end of the letter — *"whether 
 
 ---
 
-## The send-ready message (Discord, v10)
+## The send-ready message (Discord, v11)
 
 **Channel:** Discord, DM to Balaji.
-**Format:** ~125 words, ~900 chars. Fits one Discord message well under the 2000-char limit. Smiley renders natively. Line breaks pace the read.
-**Link:** Three URLs, one per primitive. Discord auto-renders the OG preview for the first URL (matching: findyourtoptalent.com/ns/?path=match), so the most-polished landing lands visually first.
+**Format:** ~110 words, ~750 chars. Fits one Discord message well under the 2000-char limit. Smiley renders natively. Line breaks pace the read.
+**Link:** Single URL (matching: findyourtoptalent.com/ns/?path=match). Delivers all three primitives via in-product navigation. Discord auto-renders the OG preview cleanly.
 
 ---
 
@@ -65,17 +65,18 @@ Since 2021, I've been building three key coordination primitives for this layer,
 
 NS-skinned 🙂
 
-Matching: findyourtoptalent.com/ns/?path=match
-Self-knowledge: findyourtoptalent.com/ns
-Venture-architecture: findyourtoptalent.com/ns/build/path
+findyourtoptalent.com/ns/?path=match
 
 Free pilot with ~10 NSers, if useful.
 
 ---
 
-~125 words. ~900 chars. Reads in under a minute.
+~110 words. ~750 chars. Reads in under a minute.
 
-**Craft note: the compound-verb thread.** Same verb runs through all three primitives, three positions: *compounds for this person · compounds them · compound shipping*. The list reads as one architectural idea expressed three ways rather than three separate features. Sasha's craft move, surfaced in the final pass after he caught the AI-suggested *"what shape makes the work shippable"* as robotic and replaced it with *"how to compound shipping"* (preserving the verb-thread).
+**Craft notes:**
+
+1. **Compound-verb thread.** Same verb runs through all three primitives, three positions: *compounds for this person · compounds them · compound shipping*. The list reads as one architectural idea expressed three ways rather than three separate features. Sasha's craft move, surfaced in v10 pass after he caught the AI-suggested *"what shape makes the work shippable"* as robotic and replaced it with *"how to compound shipping"*.
+2. **One URL proves "all in one prototype" visually.** Single URL renders cleanly, removes URL-parsing overhead, lets Balaji discover the three primitives himself on click (which is a stronger architectural-altitude landing than announcing them via three URLs). The unifying URL IS the architectural claim made tangible. Surfaced in v11 pass.
 
 ---
 
@@ -354,7 +355,7 @@ This pulled the artifact back from radically-lean toward Leonardo's actual histo
 
 **Lesson: the Leonardo mapping is recoverable from the patron's own thought structure.** Sasha surfaced the 1482 mapping organically when asked what each element of his proposed message corresponded to in the historical letter. The mapping is the strategic skeleton; the words decorate it. **The 3-beat hypothesis was AI-imposed and structurally wrong for Leonardo precedent.** When in doubt, return to the historical source (1482, 10 numbered points, single letter).
 
-### v10 — convergent send-ready (May 21, 2026, Day 78)
+### v10 — convergent letter-form (May 21, 2026, superseded same-day by v11)
 
 After v9's roast surfaced the four structural wounds, Sasha iterated once more and surfaced the **compound-verb thread** as a craft move that v9 was missing:
 
@@ -374,11 +375,73 @@ Same verb, three positions, internal rhyme. The list reads as one architectural 
 
 **Compression:** v8 (~195 words) → v9 (~140 words) → v10 (~125 words). Net ~35% shorter than v8 while carrying the full Leonardo three-modality structure.
 
-**Lessons (three, captured below in Lessons section):**
+**Full v10 text (preserved):**
 
-1. **The compound-verb thread** as a list-craft move.
-2. **"Robotic AF" is a real signal** — trust the human's ear over AI verbal symmetry.
-3. **The iteration-shadow self-recognition** — after ~10 rounds, give clean ship-permission and model the Self-Use Discipline.
+> Hi Balaji,
+>
+> I spent January at NS, had a blast. Really, thank you.
+>
+> You named the shift: AI makes everyone a founder.
+>
+> The missing layer is what to build, and who to build it with.
+>
+> In my view, this layer solves compounding for any high-agency network state.
+>
+> Since 2021, I've been building three key coordination primitives for this layer, all in one prototype:
+>
+> 1. precision self-knowledge: what compounds for this person
+> 2. precision matchmaking: who else compounds them
+> 3. precision venture-architecture: how to compound shipping
+>
+> NS-skinned 🙂
+>
+> Matching: findyourtoptalent.com/ns/?path=match
+> Self-knowledge: findyourtoptalent.com/ns
+> Venture-architecture: findyourtoptalent.com/ns/build/path
+>
+> Free pilot with ~10 NSers, if useful.
+
+### v11 — single-URL collapse (May 21, 2026, Day 78, send-ready)
+
+After v10 was locked, Sasha realized the matching URL (`/ns/?path=match`) actually delivers all three primitives via in-product navigation — the three layers live within the same prototype, accessible from the matching landing. The three URLs of v10 became visual noise the moment that realization landed.
+
+**The single move from v10 to v11:** three URLs collapsed to one. Everything else preserved.
+
+**Why this is structurally stronger than v10:**
+
+- **The unifying URL proves "all in one prototype" visually.** v10 said *"all in one prototype"* then listed three URLs, creating subtle verbal-vs-visual tension. v11 says it once and demonstrates it via the single URL. Claim and demonstration align.
+- **Removes URL-parsing overhead.** Three labeled URLs force a choice (*"which do I click first?"*). One URL is a single click decision.
+- **Better OG card rendering.** Discord renders the OG card cleanly for one URL; with three URLs, behavior is less predictable.
+- **Discovery payoff.** Balaji clicks once and discovers the three primitives himself in the product. That discovery moment is its own click-payoff — stronger than announcing the three via labeled URLs in the message.
+- **No weakest-link risk.** Removes any concern about the venture-architecture URL being less polished than the other two (Sasha's earlier honest concern).
+
+**Compression:** v10 (~125 words) → v11 (~110 words). The three URLs (~80 chars) became one URL (~40 chars), plus removed labels.
+
+**Full v11 text (preserved):**
+
+> Hi Balaji,
+>
+> I spent January at NS, had a blast. Really, thank you.
+>
+> You named the shift: AI makes everyone a founder.
+>
+> The missing layer is what to build, and who to build it with.
+>
+> In my view, this layer solves compounding for any high-agency network state.
+>
+> Since 2021, I've been building three key coordination primitives for this layer, all in one prototype:
+>
+> 1. precision self-knowledge: what compounds for this person
+> 2. precision matchmaking: who else compounds them
+> 3. precision venture-architecture: how to compound shipping
+>
+> NS-skinned 🙂
+>
+> findyourtoptalent.com/ns/?path=match
+>
+> Free pilot with ~10 NSers, if useful.
+
+**Lesson — one URL beats N URLs when N primitives live in one prototype.** When the prototype unifies the primitives (in-product navigation between them), send ONE URL. The single URL proves the *all in one prototype* claim visually; the three primitives in the list do the architectural-altitude work in the message. Multiple URLs split the proof and force URL-parsing overhead on the reader. Apply to future outreaches: if your prototype unifies what you're listing, link to the unifying surface, not to each component.
 
 **This is what gets sent.**
 
@@ -440,7 +503,8 @@ Same verb, three positions, internal rhyme. The list reads as one architectural 
 - **"Robotic AF" is a real signal.** When the AI-co-writer suggests a phrase the human calls robotic, trust the human's ear over AI verbal symmetry. The human's voice carries authorship signal that AI cannot fully match; honor it.
 - **The iteration-shadow self-recognition.** After ~10 rounds, the marginal gain per iteration approaches zero. The Self-Use Discipline call is to name the shadow ("polishing wording instead of using it"), give clean ship-permission, and stop pushing more revisions. Modeling the discipline IS the discipline. For ecosystem-leader outreaches: cap iterations at 5-7 before forcing the ship decision.
 - **The 3-beat hypothesis was AI-imposed and structurally wrong for Leonardo precedent.** Leonardo's actual 1482 letter to Ludovico was a single document with a structured list. The 3-beat micro-DM structure (curiosity → URL → depth) is a Discord-medium hypothesis worth considering for some patrons but not the default; default is single-letter-with-list per historical form.
+- **One URL beats N URLs when N primitives live in one prototype** (forged in v11, May 21). When the prototype unifies the primitives via in-product navigation, send ONE URL to the unifying surface. The single URL proves the *all in one prototype* claim visually; the list of N primitives in the message does the architectural-altitude work verbally. Multiple URLs split the proof, force URL-parsing overhead on the reader, and risk weakest-link click impressions. The unifying URL IS the architectural claim made tangible.
 
 ---
 
-*Last updated: May 21, 2026 (Day 78). v10 locked as send-ready, converged from v8 through an energy-mapping pass, divine roast, crash-tests, a lean-curiosity-trigger experiment, and a return to Leonardo-letter form with Sasha's compound-verb thread craft move. v6 through v9 preserved in full in Version history. Eight lessons captured for application to the next ~10 ecosystem-leader outreaches in queue.*
+*Last updated: May 21, 2026 (Day 78). v11 locked as send-ready (single-URL collapse of v10 after Sasha realized the matching URL delivers all three primitives via in-product navigation). v6 through v10 preserved in full in Version history. Nine lessons captured for application to the next ~10 ecosystem-leader outreaches in queue.*
