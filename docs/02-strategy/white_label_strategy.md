@@ -204,24 +204,55 @@ Components that hardcode colors and need either patching or skin-scoped CSS over
 - `src/lib/landingDesign.tsx` → `GOLD_GRADIENT` constant (✅ tokenized May 18)
 - `src/components/game/SpacesRail.tsx` → rail bg + selected-state inline styles (✅ tokenized May 18)
 - `src/components/game/SectionsPanel.tsx` → selected-state inline style (✅ tokenized May 18)
-- `src/components/game/GameShellV2.tsx` → header bg (✅ tokenized May 18)
+- `src/components/game/GameShellV2.tsx` → header bg (✅ tokenized May 18); **mobile `<main class="mobile-content-scroll">` bg is hardcoded `rgba(248,246,240,0.55)` Aurora cream — leaks over body bg on every dark-pane skin** (✅ skin-aware branch added Day 84 daouniverse pass)
 - `src/modules/zone-of-genius/*` → multiple `#a06d08` literals + `bg-[#0a0a1a]` cosmic-bg pattern (handled via CSS override for `/ns`)
+- `src/components/landing/MatchHero.tsx` → atmospheric cream radial backdrop reads as "stage spotlight" on dark-pane skins (✅ scoped to non-daouniverse Day 84)
 - **Pending:** Playbook rainbow step circles, Step accent purple text, Equilibrium ATTUNE/ACT toggle, QoL navy eyebrow + italic subtitle
+
+#### 8. Animated video background (Mux HLS or fallback)
+
+Most skins want their own animated video field behind pane 3. Capture:
+
+| Field | Why it matters |
+|---|---|
+| **Mux HLS URL** | Drops into `MuxVideoBackground` URL selection table in `GameShellV2.tsx`. Format: `https://stream.mux.com/<asset-id>.m3u8`. |
+| **Visual mood reference** | Source-site screenshot of how the bg should READ — most source sites darken/desaturate the video heavily (latamimpact.io = brightness ~50% + saturation ~65%). Capture the post-filter mood, not raw stock-footage. |
+| **Filter recipe** | If matching a source site, eyedropper the source page's video brightness/saturation and replicate via CSS `filter: brightness(0.X) saturate(0.Y) !important` scoped to `[data-skin="<slug>"] video[autoplay]`. |
+| **Fallback gradient** | Body bg gradient that holds the same atmospheric mood while HLS is loading (≥1s on cold cache). For daouniverse: deep-forest 5-stop linear gradient. ALWAYS ship this — without it the page renders cream-on-cream during the load window. |
+| **Disable rule retired** | If a previous skin (like NS) added `video[autoplay] { display: none }` for its register, your new video-having skin must NOT inherit that. Replace the kill-rule with a skin-scoped one (or scope yours by `[data-skin="<your-slug>"]`). |
+
+#### 9. Logo asset requirements (transparent-bg mandatory for dark-pane skins)
+
+The asset format determines whether your brand sits flush on pane 1 or shows as a visible rectangle:
+
+| Variant | Required for | Why |
+|---|---|---|
+| **Lockup (pyramid + wordmark) — TRANSPARENT BG** | Dark-pane skins (forest, navy, terracotta) | Source-brand PNGs often ship with a solid bg matching their own site. On YOUR pane that bg color is wrong by 5-10° hue → visible seam. Always request the transparent variant. |
+| **Mark only — TRANSPARENT BG** | Mobile pill (72px column), mobile hamburger | Same reason. |
+| **Mark only — light-bg variant** | If your skin has a light pane (NS-style white) | Optional; can also use the transparent. |
+| **OG / social-share image** | Skip for first ship | Per-tenant favicon + og:image needs build-time config; defer until subdomain phase. |
+
+**Asset acquisition path** (AI can't extract chat-pasted images to disk): operator saves PNG(s) to `~/Downloads/<descriptive-name>.png`, then a single `cp` into `src/assets/<skin-slug>-<role>.png` lands them in the build. Document this loop with operators before the session — saves 5-10 minutes of back-and-forth.
 
 ---
 
 ### The build procedure (after inventory is complete)
 
 1. **Add slug to `Skin` type** in `src/contexts/SkinContext.tsx` and update `VALID_SKINS`.
-2. **Add font import** at the top of `src/index.css` (Google Fonts URL).
+2. **Add font import** at the top of `src/index.css` (Google Fonts URL). **Include the italic axis** (`ital,wght@0,400;…;1,400;…`) if your display font is used for italic accent lines anywhere — synthetic italic fallback looks janky on display sizes.
 3. **Add token block** `[data-skin="<slug>"] { … }` in `src/index.css` after the previous skin's block. Populate from the palette table above. **Treat accent tokens as flat gradients** (e.g. `linear-gradient(135deg, #color 0%, #color 100%)`) — they're consumed via `background-image` in some places, and a solid hex isn't valid there.
 4. **Add shadcn HSL palette** under `@layer base` mirroring the existing `[data-skin="navy-gold"]` block — required for shadcn Card/Input/Button to auto-adapt.
-5. **Add decoration overrides** after the token block: hide animated video, ornament star, paper grain, liquid-glass — whatever decoration table #6 marks "off."
-6. **Add logo conditional render.** Either swap `<img src>` based on `useSkin().skin === '<slug>'`, or add a CSS rule that replaces the asset under `[data-skin="<slug>"]`. Cover SpacesRail + global SiteLogo + any per-page hero logos.
-7. **Create `<SlugScopeLock />` component** mirroring `src/components/skin/NSScopeLock.tsx` — force-mounts the skin via `pushTemporarySkin` while in `/slug/*` scope.
-8. **Add routing** in `src/App.tsx`: extend the basename detection (currently `/ns`-specific) to a list of valid skin prefixes, OR generalize the pattern with a single helper. Conditionally mount `<SlugScopeLock />` inside the `BrowserRouter`.
-9. **Visual QA** page-by-page against the source brand's site. Patch residual leaks.
-10. **Ship + verify.**
+5. **Add decoration overrides** after the token block: hide animated video (if your skin is bg-less), ornament star, paper grain, liquid-glass — whatever decoration table #6 marks "off." **Use `!important` on `.liquid-glass` / `.liquid-glass-strong` / `.liquid-glass-dark` overrides** — the original rules live in `@layer components` and their cascade behavior fights skin overrides without it (validated Day 84 daouniverse audit).
+6. **Wire the video bg into `MuxVideoBackground`** in `src/components/game/GameShellV2.tsx` (if your skin has a video): add a `<SKIN>_MUX_BG_URL` constant + extend the URL selection precedence to `skin > match-path > default`. Use `document.documentElement.dataset.skin` for synchronous read (no hook needed). Add `filter: brightness(0.X) saturate(0.Y) !important` under `[data-skin="<slug>"] video[autoplay]` to match the source-site mood (raw HLS reads too vivid; see inventory #8).
+7. **Patch the mobile main-content-scroll bg** in `GameShellV2.tsx`: the inline-style `background: "rgba(248, 246, 240, 0.55)"` is hardcoded Aurora cream. Add a skin-aware branch (`__isDaoShell ? "transparent" : …`) so your dark-pane skin doesn't wash to sage. Repeats from daouniverse pass — every dark skin hits this.
+8. **Add logo conditional render.** Import the local PNG asset (`import lockup from "@/assets/<slug>-lockup.png"`), conditionally render via `useSkin()` in SpacesRail's brand block (desktop full lockup, mobile pyramid-only) AND in GameShellV2's mobile pill. Request transparent-bg assets (inventory #9) — baked-in source-brand bg ≠ your pane bg = visible rectangle.
+9. **Create `<SlugScopeLock />` component** mirroring `src/components/skin/NSScopeLock.tsx` — force-mounts the skin via `pushTemporarySkin` while in `/slug/*` scope.
+10. **Add the prefix to the `SKIN_PREFIXES` table** in `src/App.tsx` (introduced Day 84 — generalized from the `/ns`-only check). One row added: `{ prefix: "/<slug>", skin: "<slug>" }`. Conditionally mount `<SlugScopeLock />` inside `BrowserRouter`. Zero route duplication.
+11. **Font discipline pass** — if your blanket `[data-skin="<slug>"] body, p, li { font-family: "<sans>" !important }` rule will catch sub-headlines that are semantically `<p>` (like MatchHero's reflection line), add a structural override (`[data-skin="<slug>"] [data-match-hero] header > p:nth-of-type(2) { font-family: "<serif>" italic !important }`) so the display-context `<p>` keeps the serif voice. Pattern: add a `data-*` attribute on the host wrapper for cheap scoping.
+12. **Color harmony pass** — under `[data-skin="<slug>"]`, override Aurora's bright-yellow gold glows (`[class*="rgba(244,212,114"]`, `[class*="rgba(244, 212, 114"]`) to your skin's accent family so active-state shadows on JOURNEY/section chips harmonize with your CTA. ONE bright color per page; everything else uses the muted family.
+13. **Visual QA** page-by-page against the source brand's site at desktop AND mobile breakpoints. Walk the landing, ZoG entry, playbook, AND the match-path landing (`/<slug>/?path=match`). Patch residual leaks.
+14. **Auth-flow check** — visit `/<slug>/auth` and confirm the page reads in your skin's register. Auth pages have heavy inline styling; `!important` overrides scoped to `.liquid-glass-strong` typically land the fix (see V8 lesson).
+15. **Ship + verify.**
 
 ---
 
@@ -296,6 +327,100 @@ When V4 brings forms into the NS surface, scope the changes to `[data-skin="netw
 
 ---
 
+## Daouniverse pass — second-skin validation (2026-05-25, Day 84)
+
+**LATAM Impact white-label deployed end-to-end in a single AI-driven prompt session.** The throughput claim from the NS spec ("hours, not days by the second deployment") is now empirically validated — daouniverse landed inventory → tokens → decoration overrides → 3-pane reskin → real Mux video bg → mobile shell → font discipline → color harmony pass → transparent-bg lockup swap in under two hours of wall time, including six iterative correction rounds.
+
+**The load-bearing instrument is the per-community spec above.** When followed, throughput holds. When skipped on "we already know what to do" intuition, V1 of any new skin re-discovers the same lessons.
+
+### New lessons (additions to the spec)
+
+#### Architecture
+
+- **Generalize basename detection from day one.** When NS was the only skin, App.tsx had a single `isNSScope` check. The daouniverse pass refactored to a `SKIN_PREFIXES: { prefix, skin }[]` table; future skin N+1 is one row. **Lesson:** the second instance of any per-skin special-case in App.tsx is the signal to generalize.
+- **The mobile `main.mobile-content-scroll` bg is hardcoded Aurora cream.** `rgba(248, 246, 240, 0.55)` inline-styled on the mobile content scroll container in `GameShellV2.tsx`. On NS this rendered as cream-on-white = invisible. On daouniverse it washed over the body's deep-forest gradient and turned pane 3 sage-gray. **Lesson:** any dark-pane skin must add a skin-aware branch to that inline style (`__isDaoShell ? "transparent" : "rgba(248,246,240,0.55)"`). Now documented in build procedure step 7.
+- **Body bg gradient is the video-load fallback.** Mux HLS takes 500ms-2s to first-frame on cold cache. Without a body-level fallback gradient in your skin's atmospheric register, the page renders cream-on-cream during the load window. Solution: ship a 4-5 stop linear-gradient `[data-skin="<slug>"] body { background: …deep forest… }` that holds the mood while HLS loads, then sits invisibly behind the video once it paints.
+- **MuxVideoBackground URL selection: skin FIRST, then match-path, then default.** Existing component branched on `isMatchPath ? MATCH_URL : DEFAULT_URL`. Daouniverse extended this to `isDao ? DAO_URL : isMatchPath ? MATCH_URL : DEFAULT_URL`. **Lesson:** skin-aware bg overrides any other context-aware bg. A `/daouniverse/?path=match` user gets the forest video, not the urban match video.
+
+#### Asset acquisition
+
+- **Transparent-bg PNG is mandatory for any dark-pane skin.** Source-brand PNGs ship with their site's bg color baked in (latam2.png had a forest-green bg 5° off from my pane bg → visible rectangle seam). The transparent variant (latam3.png) sat flush. **Lesson:** when handing the inventory checklist to the brand contact, explicitly request transparent-bg variants of all logo assets. Don't accept "here's our brand kit" → use it as-is. Verify alpha channel.
+- **AI cannot extract chat-pasted images to disk.** Inline image attachments are visible to the AI as content but inaccessible as filesystem paths. The path is: operator saves to `~/Downloads/<name>.png`, AI runs `cp` to `src/assets/`. **Lesson:** document this asset-acquisition loop with operators at the start of the session. Saves 5-10 minutes of confusion.
+- **Inline SVG only for purely geometric marks.** Tried this with the daouniverse pyramid before the real assets landed (3 stacked trapezoids + central staircase line). Looked OK at 32px in the rail but Sasha immediately called it out as a placeholder. **Lesson:** reaffirms the V5 NS lesson — geometric marks (Stripe S, Linear L, Notion N) work as inline SVG. Anything with custom contours or shading reads as fake. Default to using the source-brand asset.
+
+#### Font discipline
+
+- **Blanket `body, p, li { font-family: <sans> }` traps display-context paragraphs.** MatchHero's sub-h1 ("but most networking goes nowhere") is semantically a `<p>` but visually a sub-headline. The daouniverse `[data-skin] p { font-family: Inter !important }` rule caught it and rendered it in Inter sans, breaking the serif-headline voice. **Lesson:** sub-headlines that are `<p>` elements need a structural override (`[data-skin="<slug>"] [data-match-hero] header > p:nth-of-type(2) { font-family: "<serif>" italic !important }`). Add a `data-*` attribute on the host component wrapper as the scope anchor — cheap, non-invasive.
+- **Match source-site's two-font system, not a near-match.** Latamimpact.io uses Playfair Display + Inter (verified via raw HTML font-link inspection). I initially set Cormorant Garamond + Montserrat ("close enough") — Sasha called the mismatch on the first review. **Lesson:** never approximate the source-brand fonts. Inspect their stylesheet (`grep -oiE "fonts\.googleapis\.com[^\"']+" /tmp/<source>.html`) and use the same Google Fonts URL.
+- **Load all italic axes when display font is used for italic accent lines.** Playfair Display default import `:wght@400;600;700` does NOT include italics. Synthetic italic on display sizes looks unbalanced. Update import to `:ital,wght@0,400;…;1,400;1,600;1,700` when italic is used anywhere in the skin's hero copy.
+
+#### Cascade fights
+
+- **`!important` on `.liquid-glass` family overrides is non-negotiable.** The original `.liquid-glass` rule lives in `@layer components` (lower priority than unlayered) yet was beating skin overrides in computed style. Auditing via stylesheet enumeration confirmed both rules matched; the cascade landed on the layered rule first. `!important` on the skin override unconditionally wins. **Lesson:** ship glass-family overrides with `!important` on the bg + border + box-shadow + color properties from day one. Don't wait to discover the cascade fight in QA.
+- **Inline-styled colors inside light-glass elements need attribute-substring rules.** EditorialCta v6 sets inline `color: '#0a1628'` (Aurora navy) on the secondary CTA. Under daouniverse that's invisible on the dark-forest glass. The fix: `[data-skin="<slug>"] .liquid-glass [style*="color"] { color: <skin-text> !important }` — attribute-substring catches any inline color regardless of value.
+
+#### Color harmony
+
+- **One bright color per page.** Daouniverse v1-v3 had THREE competing golds visible at once: parchment gold on rail/sections (`#c4a35c`), Aurora bright-yellow gold leaking through chip glows (`rgba(244, 212, 114, …)`), and bright LATAM yellow on the CTA (`#d4a83a`). Eye couldn't settle. **Fix:** override Aurora's bright-yellow shadow patterns to the parchment family under daouniverse, leaving the CTA as the single bright element. Selector: `[data-skin="<slug>"] [class*="rgba(244,212,114"] { box-shadow: …parchment… !important }`.
+- **Two source-brand golds can coexist IF their roles are different.** Latamimpact.io uses parchment-gold for pyramid + accents AND brass-yellow for CTAs. These don't fight because the CTA is the SINGLE bright FILLED element on the page; everything else is gold strokes/text. Reproduce role separation in the skin: strokes + text in the muted gold family, ONE filled CTA block in the bright gold.
+- **Active-state glows must inherit your skin's accent.** Aurora's rail JOURNEY chip and section active-card use `rgba(244,212,114,X)` shadow patterns inline-styled in the component source. Without skin-scoped overrides, these render in Aurora bright-gold under EVERY skin. Result: skin pane 3 looks brand-coherent but pane 1 + pane 2 leak the wrong gold. **Fix in step 12 of the build procedure.**
+
+#### Component-level scoping
+
+- **Spotlight backdrops added for one skin context break other skins.** MatchHero v6 introduced an atmospheric cream radial gradient behind the headline cluster (lifts the h1 off the cream Aurora page). On daouniverse it read as a literal stage spotlight against the dark forest — completely foreign. **Lesson:** atmospheric helper elements added to shared components must either (a) pull from skin tokens, (b) check `useSkin()` and self-disable on incompatible skins, or (c) get scoped-to-zero CSS overrides under inverse skins. Document the pattern when shipping the helper.
+- **`data-match-hero="true"` on the wrapper is the cheap-scope pattern.** Adding a single `data-*` attribute on the host component wrapper gives every skin a clean scope handle for per-component CSS overrides without component-source changes. Use it whenever you need to override a shared component's appearance under one skin.
+
+### Cross-skin pattern catalog — the recurring traps
+
+These are the gotchas that will hit on EVERY new skin. Reading this section before opening the build is worth ~30 minutes of saved iteration:
+
+| Trap | Where it bites | Pre-emptive fix |
+|---|---|---|
+| **Mobile content-scroll Aurora cream leak** | Pane 3 on mobile renders as light wash over your dark body bg | Add `__isSkinShell ? "transparent" : "rgba(248,246,240,0.55)"` branch in GameShellV2 mobile main inline style |
+| **`.liquid-glass` cascade fight** | Glass elements render Aurora white instead of your skin's tinted glass | Ship glass overrides with `!important` on bg + border + box-shadow + color from day one |
+| **Sub-headline `<p>` caught by blanket body rule** | Headline-class `<p>` renders body sans instead of display serif | Add `data-*` attribute on host wrapper, add `[data-skin] [data-X] header > p:nth-of-type(N)` override |
+| **Spotlight/atmospheric helpers added for prior skin** | Foreign visual element (cream radial, etc.) reads as broken | Scope the helper to its native skin or pull from skin tokens; never leave global atmospheric effects |
+| **Raw HLS video reads too vivid** | Background competes with text for attention | `filter: brightness(0.45-0.55) saturate(0.6-0.7) !important` on the video element under your skin |
+| **Multi-gold competition** | Three+ different golds visible at once = jumpy | Override Aurora's `rgba(244,212,114,X)` shadow patterns to your skin's accent family; reserve ONE bright color for the CTA |
+| **Active-state glows leak Aurora gold** | Pane 1 + Pane 2 active states look wrong despite tokens being right | Patterns: `[class*="rgba(244,212,114"]`, `[class*="ring-[#d4af37"]` — re-tone under your skin |
+| **Sub-h1 rendering Inter when blanket p rule fires** | Sub-headlines lose serif voice | See font discipline lesson — structural override needed |
+| **Synthetic italic on display fonts** | Italic accent line looks unbalanced | Load `ital,wght@0,…;1,…` axis in Google Fonts import |
+| **PNG with baked-in source-brand bg color** | Visible rectangle seam on your pane | Request transparent-bg variant; do not accept the source-brand kit as-is |
+| **Aurora's `.liquid-glass-dark` (primary CTA class) confused with light glass** | CTA flips between primary and secondary depending on EditorialCta variant prop | Decide the skin's primary-CTA dialect (solid yellow, dark glass, etc.), apply to `.liquid-glass-dark`; light-glass override targets `.liquid-glass` for secondary CTAs |
+| **`/auth` page reverts to canonical brand** | Outsider drops out of the spell on first auth-gated click | `[data-skin] article.liquid-glass-strong h1, p, label, button, input` overrides with `!important`, targeting the page's unique outer class |
+
+### AI mega-prompt — first prompt of a new skin
+
+Hand this to an AI agent (or use as a self-prompt) to spin up skin N+1 at daouniverse-grade throughput:
+
+```
+Goal: ship a new white-label skin for <COMMUNITY NAME> at /<SLUG>/* on findyourtoptalent.com.
+
+Source brand: <REFERENCE URL>
+Slug: <slug>  (kebab-case, becomes both data-skin value AND /<slug>/* route prefix)
+
+Read docs/02-strategy/white_label_strategy.md → "Per-Community Skin Spec" + "Daouniverse pass" sections in full before writing any code. The build procedure (15 steps) and cross-skin pattern catalog are the spec — follow exactly.
+
+Inventory phase (no code until complete):
+  1. Brand identity + slug
+  2. Logo assets — REQUEST TRANSPARENT-BG VARIANTS for any dark-pane skin
+  3. Typography — inspect source site via `curl -sL <URL> | grep -oiE "fonts\.googleapis\.com[^\"']+"`; use exact same Google Fonts URL; include italic axis if italic is used
+  4. Color palette
+  5. Component recipes (primary CTA dialect, secondary, card, input, active-state)
+  6. Decorations to disable
+  7. Edge cases
+  8. Animated video bg — Mux HLS URL + visual-mood-match filter recipe (eyedropper source)
+  9. Logo PNG variants — confirm transparent-bg before proceeding
+
+Build phase (after inventory closes): execute the 15-step build procedure. Ship glass overrides with !important from day one. Add data-* scope handles for any per-component overrides. Verify mobile main-content-scroll bg leak fix (every dark-pane skin hits this).
+
+QA phase: walk landing, ZoG entry, playbook, match landing (/<slug>/?path=match), auth at desktop 1440×900 + mobile 375×812. Verify in browser preview, not just type-check. Diff against source-site screenshots.
+
+Asset acquisition: I (operator) will save PNGs to ~/Downloads/<descriptive>.png. You cp them into src/assets/<slug>-<role>.png.
+
+Mux video URL: <URL or "I'll provide after seeing v1">.
+```
+
 ---
 
 ## Strategic Role in the Commercial Model (Day 77, May 20, 2026)
@@ -342,5 +467,5 @@ This is the load-bearing claim that makes the planetary-coordination-infrastruct
 
 ---
 
-*White-Label Strategy v1.7*
-*Created: 2025-01-04 · Updated: 2026-05-20 (V7→V8 lessons — mobile/desktop shell class parity, auth-page CSS-!important override pattern, mandatory auth-flow audit per skin) · Strategic-role section added 2026-05-20 (Day 77 — white-label as primary commercial channel for the matching product, post-Day-77 crystallization)*
+*White-Label Strategy v1.8*
+*Created: 2025-01-04 · Updated: 2026-05-20 (V7→V8 lessons — mobile/desktop shell class parity, auth-page CSS-!important override pattern, mandatory auth-flow audit per skin) · Strategic-role section added 2026-05-20 (Day 77 — white-label as primary commercial channel for the matching product, post-Day-77 crystallization) · Day 84 daouniverse pass (2026-05-25) — second-skin validation; spec extended with inventory items #8 (Mux video URL + darkening recipe) + #9 (transparent-bg logo asset requirements); build procedure expanded 10 → 15 steps (skin-prefix table generalization, MuxVideoBackground priority chain, mobile content-scroll bg leak fix, !important on glass overrides, font discipline sub-headline scoping, color harmony pass, auth-flow check); new sections — daouniverse case study with 14 new lessons (architecture / asset acquisition / fonts / cascade / color harmony / component scoping), cross-skin pattern catalog (12 recurring traps with pre-emptive fixes), AI mega-prompt template for first-prompt of skin N+1. Throughput claim empirically validated: one prompt session = production-grade deploy.*

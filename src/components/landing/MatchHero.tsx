@@ -181,8 +181,21 @@ const MatchHero = () => {
             Find your people
           </p>
 
-          {/* THE dominant frame. Build-path H1 scale, gold caps on
-              EVERYTHING for the one moment of emotional gravity. */}
+          {/* THE dominant frame. Build-path H1 scale.
+              Day 84 v9 (Sasha 2026-05-25) — emphasis migrated from
+              "EVERYTHING" to "right people." Rationale:
+                - "right people" is the meaning, the identity hook,
+                  the product. That phrase is what the user should
+                  emotionally remember leaving the page.
+                - "change everything" is consequence language — a
+                  beautiful close but not the anchor.
+                - Previous gold caps on EVERYTHING made motivational-
+                  poster energy. Wrong register.
+              Treatment is intentionally subtle: GOLD_TEXT_STYLE only
+              (warm gold hue + soft glow), no uppercase, no scale
+              change, no extra tracking. Emotional precision, not
+              loudness. "change everything." returns to plain primary
+              color — calm confidence carries it. */}
           <h1
             className="text-2xl sm:text-3xl md:text-4xl font-bold leading-[1.1] tracking-[-0.018em] mb-3 sm:mb-4"
             style={{
@@ -192,19 +205,14 @@ const MatchHero = () => {
                 "var(--skin-text-halo-deep, 0 0 22px rgba(255,255,255,0.7), 0 1px 2px rgba(255,255,255,0.9), 0 0 1px rgba(11,42,90,0.45), 0 1px 0 rgba(11,42,90,0.25))",
             }}
           >
-            The right people change{" "}
+            The{" "}
             <span
               className="bg-clip-text text-transparent"
-              style={{
-                ...GOLD_TEXT_STYLE,
-                letterSpacing: "0.04em",
-                textTransform: "uppercase",
-                fontSize: "0.92em",
-              }}
+              style={GOLD_TEXT_STYLE}
             >
-              everything
-            </span>
-            .
+              right people
+            </span>{" "}
+            change everything.
           </h1>
 
           {/* Tension line — italic echo register. Full container
