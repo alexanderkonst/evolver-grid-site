@@ -791,6 +791,17 @@
   --skin-rule-medium: rgba(91, 42, 11, 0.18);
 }
 
+/* Day 82 v4 (Sasha 2026-05-24): SpacesRail compact mode. When the rail
+   carries data-rail-compact="true" (set by GameShellV2 when the user
+   minimizes pane 1 via the new toggle), force-hide every `md:block`
+   descendant. The rail's labels — chip labels, brand wordmark, "chat
+   with us", "settings", "Log In/Out" — are all rendered with
+   `hidden md:block`; this rule overrides the `md:block` half so they
+   stay hidden even at md+ viewport widths, leaving the icon-only strip. */
+[data-rail-compact="true"] .md\:block {
+  display: none !important;
+}
+
 /* V3 typography (Sasha 2026-05-19) — NS is editorial serif throughout
    for content, clean sans only for UI chrome (rail chips, Pane 2 nav,
    form controls). Body type in serif is what carries the editorial

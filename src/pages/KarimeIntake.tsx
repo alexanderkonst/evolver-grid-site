@@ -93,7 +93,7 @@ const KarimeIntake = () => {
   };
 
   return (
-    <GameShellV2 hideLogo forceMobileLayout>
+    <GameShellV2 hideLogo enableRailMinimize>
       <SEO
         title="Karime Kuri · Preparing for our conversation"
         description="A short orientation before your free 20-minute conversation with Karime — her bio, the path, and one question that helps her prepare thoughtfully."
@@ -109,10 +109,10 @@ const KarimeIntake = () => {
         <div
           className="rounded-3xl backdrop-blur-[7px] px-5 py-8 sm:px-7 sm:py-10 md:px-9 md:py-12"
           style={{
-            background: "rgba(255, 240, 220, 0.10)",
-            border: "1px solid rgba(255, 220, 180, 0.22)",
+            background: "rgba(255, 240, 220, 0.05)",
+            border: "1px solid rgba(255, 220, 180, 0.16)",
             boxShadow:
-              "0 12px 40px -8px rgba(91, 42, 11, 0.32), inset 0 1px 0 rgba(255, 230, 200, 0.16)",
+              "0 12px 40px -8px rgba(91, 42, 11, 0.24), inset 0 1px 0 rgba(255, 230, 200, 0.12)",
           }}
         >
         {/* ── Page heading (minimal — placeholder for Sasha's substitute) ── */}
