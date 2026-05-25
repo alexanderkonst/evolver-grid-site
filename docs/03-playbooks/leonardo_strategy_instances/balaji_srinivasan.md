@@ -6,7 +6,7 @@
 
 ## Status
 
-**Send-ready as of May 20, 2026 (Day 77).** Channel: **Discord** (DM to Balaji). Message finalized at **v8** — sharpened from v7 same-day after an energy-mapping pass surfaced six missing-but-wanted energies (acute member voice, *"who to build with"* opening reframe, *"community where founders actually find each other"* identity claim, pilot scope narrowed to a handful, de-polished prose for raw-cut sincerity, tighter Discord rhythm). v6 (email) and v7 (Discord) **both preserved in full** in Version history. NS-skin of findyourtoptalent.com: live (Discord renders the OG preview automatically). Reply-Ready Arsenal prepared and held for post-engagement (do NOT include in first message). Send when the moment is right.
+**Send-ready as of May 21, 2026 (Day 78).** Channel: **Discord** (DM to Balaji). Message finalized at **v10**, converged from v8 through a multi-pass iteration arc: energy-mapping, divine roast, crash-tests, a lean-curiosity-trigger experiment (briefly explored a 3-beat micro-DM structure: permission-ask → URL → strategic depth), then a return to full Leonardo-letter form after Sasha surfaced the historical mapping organically (lyre = NS-skinned prototype, court invitation = January presence, war machines = three coordination primitives, garden trial = free pilot). v10 is ~125 words: warm opening, frame extension, build-history grounded theory, three URLs (one per primitive), simple free-pilot CTA. The compound-verb thread (*compounds for / compounds them / compound shipping*) runs through the three primitives as internal rhyme. v6 (email), v7 (Discord), v8 (energy-mapping), v9 (Leonardo letter-form first draft) all preserved in Version history. NS-skin of findyourtoptalent.com: live (Discord renders the OG preview for the first URL automatically). Reply-Ready Arsenal prepared and held for post-engagement. Send Tuesday or Wednesday morning SGT (Balaji's burst-read window).
 
 ---
 
@@ -39,32 +39,43 @@ This is the bronze horse. Placed quietly at the end of the letter — *"whether 
 
 ---
 
-## The send-ready message (Discord, v8)
+## The send-ready message (Discord, v10)
 
-**Channel:** Discord — DM to Balaji.
-**Format:** ~195 words, ~1250 chars. Fits one Discord message well under the 2000-char limit. Markdown `**bold**` renders. Line breaks pace the read.
-**Link:** NS-skinned URL of findyourtoptalent.com (`/ns/?path=match`). Discord auto-renders the OG preview, so the prototype lands visually before he reads the close.
-
----
-
-Balaji —
-
-Your frame: AI makes everyone a CEO.
-The harder question underneath: **who to build with.**
-
-Frontier networks route high-agency people through reputation, credentials, chance. Low-resolution allocation. Founders who should be building together never meet. *"I keep meeting cool people but can't find my person"* — every high-agency network has this voice.
-
-I built a prototype that maps the structural patterns under how a person creates value, and surfaces unusually strong alignments — collaborators, missions, ventures forming. Less networking, more coordination. Not consumer typing — **the shift is from category to resolution.**
-
-[findyourtoptalent.com/ns/?path=match]
-
-Same bottleneck shows up across AI-native and web3-adjacent ecosystems, each bumping into it independently. **Networks that can see and coordinate differentiated talent at this resolution will outperform networks that cannot.** Infrastructure for any network operating as a polity. For NS — the community where founders actually find each other. Whether network states stay discourse or become operational depends partly on primitives like this being built early.
-
-Was at NS in January, didn't show it then — wasn't ready. It is now. Happy to run a free pilot with a handful of people you'd most want pressure-tested. Whether or not this specific implementation is right, the primitive itself looks inevitable.
+**Channel:** Discord, DM to Balaji.
+**Format:** ~125 words, ~900 chars. Fits one Discord message well under the 2000-char limit. Smiley renders natively. Line breaks pace the read.
+**Link:** Three URLs, one per primitive. Discord auto-renders the OG preview for the first URL (matching: findyourtoptalent.com/ns/?path=match), so the most-polished landing lands visually first.
 
 ---
 
-~195 words. ~1250 chars. Reads in under a minute.
+Hi Balaji,
+
+I spent January at NS, had a blast. Really, thank you.
+
+You named the shift: AI makes everyone a founder.
+
+The missing layer is what to build, and who to build it with.
+
+In my view, this layer solves compounding for any high-agency network state.
+
+Since 2021, I've been building three key coordination primitives for this layer, all in one prototype:
+
+1. precision self-knowledge: what compounds for this person
+2. precision matchmaking: who else compounds them
+3. precision venture-architecture: how to compound shipping
+
+NS-skinned 🙂
+
+Matching: findyourtoptalent.com/ns/?path=match
+Self-knowledge: findyourtoptalent.com/ns
+Venture-architecture: findyourtoptalent.com/ns/build/path
+
+Free pilot with ~10 NSers, if useful.
+
+---
+
+~125 words. ~900 chars. Reads in under a minute.
+
+**Craft note: the compound-verb thread.** Same verb runs through all three primitives, three positions: *compounds for this person · compounds them · compound shipping*. The list reads as one architectural idea expressed three ways rather than three separate features. Sasha's craft move, surfaced in the final pass after he caught the AI-suggested *"what shape makes the work shippable"* as robotic and replaced it with *"how to compound shipping"* (preserving the verb-thread).
 
 ---
 
