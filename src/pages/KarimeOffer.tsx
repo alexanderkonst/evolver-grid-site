@@ -45,6 +45,18 @@ import { useSkin } from "@/contexts/SkinContext";
 // message so Sasha can distinguish funnel-sourced inbound from cold messages.
 const WHATSAPP_BOOKING_URL =
   "https://wa.me/14157073432?text=Hi%20Sasha%2C%20I%20came%20through%20Karime%27s%20page%20and%20would%20like%20to%20connect.";
+
+// Day 82 v5 (Sasha 2026-05-24): warm copper-rose gradient for emphasis
+// words. Mirrors MatchHero's GOLD_TEXT_STYLE pattern but tuned to the
+// karime warm palette so the highlight harmonizes with the brass altar
+// tones in the video bg instead of clashing with cool antique gold.
+const KARIME_EMPHASIS_STYLE = {
+  backgroundImage:
+    "linear-gradient(135deg, #c97644 0%, #e8b07a 50%, #c97644 100%)",
+  backgroundClip: "text" as const,
+  WebkitBackgroundClip: "text" as const,
+  color: "transparent",
+};
 // Direct contact line at bottom of page still points to Karime's WhatsApp
 // + Telegram (without prefilled message — visitor writes their own).
 const KARIME_WHATSAPP_URL = "https://wa.me/14157073432";
@@ -136,7 +148,14 @@ const KarimeOffer = () => {
               fontFeatureSettings: '"lnum" 1, "onum" 0',
             }}
           >
-            You do not have to carry this alone.
+            You do not have to carry this{" "}
+            <span
+              className="bg-clip-text text-transparent"
+              style={KARIME_EMPHASIS_STYLE}
+            >
+              alone
+            </span>
+            .
           </h1>
 
           <Ornament className="my-5 sm:my-6" />
@@ -153,7 +172,14 @@ const KarimeOffer = () => {
             }}
           >
             <p className="text-lg sm:text-xl md:text-[1.4rem] font-bold leading-[1.45] tracking-[-0.005em]">
-              Karime offers deeply grounded emotional support for people moving through heartbreak, grief, burnout, relationship pain, family crisis, impossible decisions, and emotionally overwhelming seasons of life.
+              Karime offers{" "}
+              <span
+                className="bg-clip-text text-transparent"
+                style={KARIME_EMPHASIS_STYLE}
+              >
+                deeply grounded
+              </span>{" "}
+              emotional support for people moving through heartbreak, grief, burnout, relationship pain, family crisis, impossible decisions, and emotionally overwhelming seasons of life.
             </p>
 
             <p className="text-lg sm:text-xl md:text-[1.4rem] font-bold leading-[1.45] tracking-[-0.005em]">
