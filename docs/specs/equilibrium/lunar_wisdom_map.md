@@ -7,11 +7,44 @@
 
 ## The cycle
 
-8 phases × ~3.69 days each = 29.53-day synodic cycle. The cycle reads as
-two halves of a hero's journey: **Last Quarter → New Moon → First
-Quarter** is the inner/seed half ("the How is none of your business"),
-and **First Quarter → Full Moon → Last Quarter** is the outer/manifest
-half (the How reveals, the work happens, the harvest celebrates).
+8 phases × **exactly 45° of true Sun-Moon elongation each** = 29.53-day
+synodic cycle. The cycle reads as two halves of a hero's journey:
+**Last Quarter → New Moon → First Quarter** is the inner/seed half
+("the How is none of your business"), and **First Quarter → Full Moon →
+Last Quarter** is the outer/manifest half (the How reveals, the work
+happens, the harvest celebrates).
+
+### Astronomical boundaries (corrected 2026-05-21, refined 2026-05-24)
+
+Each phase WINDOW is centered on its principal/intermediate elongation
+moment. Principal phases (New 0°, First Quarter 90°, Full 180°, Last
+Quarter 270°) sit at the CENTER of their 45° windows — not the start.
+
+| Phase | Elongation window | Mean-cycle days (centered) |
+|---|---|---|
+| New Moon | 337.5° → 22.5° (wraps) | ±1.846d around the New Moon instant |
+| Waxing Crescent | 22.5° → 67.5° | 1.846 → 5.537 |
+| First Quarter | 67.5° → 112.5° | 5.537 → 9.228 |
+| Waxing Gibbous | 112.5° → 157.5° | 9.228 → 12.920 |
+| Full Moon | 157.5° → 202.5° | 12.920 → 16.611 |
+| Waning Gibbous | 202.5° → 247.5° | 16.611 → 20.302 |
+| Last Quarter | 247.5° → 292.5° | 20.302 → 23.994 |
+| Waning Crescent | 292.5° → 337.5° | 23.994 → 27.685 |
+
+**Phase DURATIONS in time vary slightly** (~3.27 to ~4.20 days in any
+given cycle) because the Moon's angular speed is not constant — it
+moves faster near perigee, slower near apogee. Astronomy, not a bug.
+Each phase is exactly 45° of elongation; the time it takes to traverse
+those 45° is what varies.
+
+Prior bug (fixed 2026-05-21): the asymmetric day-ranges in the original
+v1 implementation gave New Moon only 1.85d (half-window after the
+instant) and Waning Crescent 5.54d (the missing half-window before
+New Moon got wrongly assigned). Runtime now uses TRUE elongation via
+Brown's lunar theory (Meeus AA ch. 47), 15 dominant terms + ΔT (UTC →
+Terrestrial Time correction). Max error ~0.05° = ~6 minutes of cycle
+position. See `src/lib/equilibrium-cycles/index.ts` and the regression
+suite `src/lib/equilibrium-cycles/__tests__/cycles.test.ts`.
 
 ### The 4-Quarter Umbrella — Holonic Quadrants (refined 2026-05-18 round 4)
 

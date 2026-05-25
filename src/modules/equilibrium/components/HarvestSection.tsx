@@ -1,6 +1,7 @@
 import { memo, useMemo } from "react";
 import { Check, RotateCcw, Clock, Sparkles } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { getLunarState, MOON_PHASES } from "@/lib/equilibrium-cycles";
 import type { EquilibriumTask, EquilibriumWorkstream } from "../types";
 
 interface HarvestSectionProps {
@@ -226,6 +227,27 @@ const HarvestSectionBase = ({
                       </span>
                       <span className="text-[#0a1628]/30">·</span>
                       <span>{formatRelativeTime(new Date(task.done_at!))}</span>
+                      {/* Lunar phase at completion (Sasha 2026-05-24).
+                          Derived live from task.done_at — no schema
+                          change needed. Ties Harvest to the spine:
+                          you can see at a glance which phase the
+                          completion belonged to. */}
+                      {(() => {
+                        const phase = lunarPhaseAtDone(task.done_at);
+                        if (!phase) return null;
+                        return (
+                          <>
+                            <span className="text-[#0a1628]/30">·</span>
+                            <span
+                              className="inline-flex items-center gap-1"
+                              title={`Completed during ${phase.name}`}
+                            >
+                              <span aria-hidden="true">{phase.symbol}</span>
+                              <span className="hidden sm:inline">{phase.shortName}</span>
+                            </span>
+                          </>
+                        );
+                      })()}
                     </div>
                   </div>
                 </li>
@@ -239,6 +261,41 @@ const HarvestSectionBase = ({
 };
 
 // ─── Helpers ────────────────────────────────────────────────────
+
+/** Short display name for each lunar phase — used in Harvest tags. */
+const LUNAR_SHORT_NAMES: Record<string, string> = {
+  "New Moon": "Clearing",
+  "Waxing Crescent": "Gathering",
+  "First Quarter": "Seeing",
+  "Waxing Gibbous": "Leading",
+  "Full Moon": "Harvesting",
+  "Waning Gibbous": "Celebrating",
+  "Last Quarter": "Planning",
+  "Waning Crescent": "Planting",
+};
+
+/**
+ * Derive the lunar phase at the moment a task was completed.
+ * Returns undefined if done_at isn't set. Pure function over the
+ * timestamp — no schema dependency. Uses the astronomically-correct
+ * getLunarState (Brown's theory, 15 terms + ΔT) so the tag matches
+ * what the user would have seen on the watch face at that moment.
+ */
+function lunarPhaseAtDone(
+  doneAt: string | null,
+): { name: string; symbol: string; shortName: string } | null {
+  if (!doneAt) return null;
+  const ms = Date.parse(doneAt);
+  if (!Number.isFinite(ms)) return null;
+  const state = getLunarState(ms);
+  const phase = MOON_PHASES[state.segmentIndex];
+  if (!phase) return null;
+  return {
+    name: phase.name,
+    symbol: phase.symbol,
+    shortName: LUNAR_SHORT_NAMES[phase.name] ?? phase.name,
+  };
+}
 
 /** "2026-05-20" — local date key, stable across timezones for grouping. */
 function formatDayKey(d: Date): string {

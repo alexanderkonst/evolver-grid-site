@@ -20,7 +20,9 @@ import { WorkstreamsSection } from "./components/WorkstreamsSection";
 import { SmartGoalsSection } from "./components/SmartGoalsSection";
 import { DoNowSection } from "./components/DoNowSection";
 import { HarvestSection } from "./components/HarvestSection";
+import { PhaseTransitionEyebrow } from "./components/PhaseTransitionEyebrow";
 import { SynthesisCard } from "./components/SynthesisCard";
+import { UpcomingTransitions } from "./components/UpcomingTransitions";
 import { SectionAnchorNav } from "./components/SectionAnchorNav";
 import { WatchModeToggle, type WatchMode } from "./components/WatchModeToggle";
 import { ActiveFocusBanner } from "./components/ActiveFocusBanner";
@@ -123,18 +125,31 @@ function cyclesShallowEqual(a: AllCyclesV2, b: AllCyclesV2): boolean {
   );
 }
 
-function useCycles(birthday?: string): AllCyclesV2 {
-  const [cycles, setCycles] = useState<AllCyclesV2>(() =>
-    getAllCyclesV2(Date.now(), birthday),
-  );
+interface CyclesSnapshot {
+  cycles: AllCyclesV2;
+  /** Timestamp the cycles were computed at — stable across re-renders
+   *  between ticks. Use this for components that need a "now" anchor
+   *  (e.g. UpcomingTransitions) so they only recompute on the tick,
+   *  not every render. Sasha 2026-05-24. */
+  nowMs: number;
+}
+
+function useCycles(birthday?: string): CyclesSnapshot {
+  const [snapshot, setSnapshot] = useState<CyclesSnapshot>(() => {
+    const nowMs = Date.now();
+    return { cycles: getAllCyclesV2(nowMs, birthday), nowMs };
+  });
 
   useEffect(() => {
     let cancelled = false;
 
     const refresh = () => {
       if (cancelled) return;
-      const next = getAllCyclesV2(Date.now(), birthday);
-      setCycles((prev) => (cyclesShallowEqual(prev, next) ? prev : next));
+      const nowMs = Date.now();
+      const next = getAllCyclesV2(nowMs, birthday);
+      setSnapshot((prev) =>
+        cyclesShallowEqual(prev.cycles, next) ? prev : { cycles: next, nowMs },
+      );
     };
 
     const tick = () => {
@@ -149,8 +164,6 @@ function useCycles(birthday?: string): AllCyclesV2 {
     const intervalId = window.setInterval(tick, 5 * 60_000);
     document.addEventListener("visibilitychange", onVisible);
 
-    // Refresh immediately on mount (in case the user just landed and the
-    // initial state is older than a tick).
     refresh();
 
     return () => {
@@ -160,7 +173,7 @@ function useCycles(birthday?: string): AllCyclesV2 {
     };
   }, [birthday]);
 
-  return cycles;
+  return snapshot;
 }
 
 export const EquilibriumV2Page = () => {
@@ -173,7 +186,7 @@ export const EquilibriumV2Page = () => {
   if (isMdls) return <EquilibriumMDLSPage />;
 
   const eq = useEquilibriumV2();
-  const cycles = useCycles(eq.birthday ?? undefined);
+  const { cycles, nowMs: cyclesNowMs } = useCycles(eq.birthday ?? undefined);
   const [mode, setMode] = useWatchMode();
   const isAttune = mode === "attune";
 
@@ -283,6 +296,14 @@ export const EquilibriumV2Page = () => {
             id={SECTION_IDS.lunar}
           >
             <SectionHeader title="Current Lunar Energy" />
+            {/* Phase-transition eyebrow (Sasha 2026-05-24) — surfaces
+                "since your last visit, the moon moved into Gathering"
+                when the phase has shifted between sessions. Quiet
+                amber band, dismissible. localStorage-tracked. */}
+            <PhaseTransitionEyebrow
+              currentSegmentIndex={cycles.lunar.segmentIndex}
+              currentPhaseName={cycles.lunar.phase.name}
+            />
             <div className="mt-4">
               <CycleEnergyBar
                 segments={LUNAR_SEGMENTS}
@@ -316,6 +337,13 @@ export const EquilibriumV2Page = () => {
               loading={eq.loading}
               onSave={eq.setMoonFocus}
             />
+            {/* Coming-up: next 4 phase boundary moments (Sasha
+                2026-05-24). Surfaces phase transitions as scheduling
+                anchors — "Planning starts Tue May 27 03:14" — turning
+                the spine into a calendar. nowMs is derived from the
+                cycles tick (5-min cadence), so the panel refreshes
+                without its own timer. */}
+            <UpcomingTransitions nowMs={cyclesNowMs} />
           </EquilibriumSectionCard>
         )}
 
