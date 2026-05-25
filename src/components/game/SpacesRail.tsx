@@ -35,40 +35,15 @@ import { useSkin } from "@/contexts/SkinContext";
 // ns-assets.com. Sasha provided the URL directly — no local copy.
 const NS_LOGO_URL = "https://ns-assets.com/auth-privy/network-school-black-flag-white-background-privy.png";
 
-// Day 84 v2 (Sasha 2026-05-25): LATAM Impact pyramid mark for the
-// `daouniverse` white-label skin. Closer match to the actual LATAM
-// Impact lockup — 3 stacked trapezoidal tiers with slight inward
-// slant (Maya temple silhouette in 3/4 perspective), small temple
-// crown at top, central staircase column suggested by the divider
-// running down the middle. Geometric mark, so per the V5 lesson
-// inline SVG is the right call (no CDN round-trip, scales sharp,
-// stroke color follows the skin's gold token).
-const LatamPyramid = ({ size = 32 }: { size?: number }) => (
-    <svg
-        data-brand="latam-pyramid"
-        width={size}
-        height={size}
-        viewBox="0 0 64 64"
-        fill="none"
-        stroke="#c4a35c"
-        strokeWidth={1.75}
-        strokeLinejoin="round"
-        strokeLinecap="round"
-        aria-hidden="true"
-        className="flex-shrink-0"
-    >
-        {/* Top temple crown */}
-        <path d="M 27 10 L 27 21 L 37 21 L 37 10 Z" />
-        {/* Middle tier — trapezoid, narrower at top */}
-        <path d="M 21 21 L 23.5 35 L 40.5 35 L 43 21 Z" />
-        {/* Base tier — widest trapezoid */}
-        <path d="M 12 35 L 15 53 L 49 53 L 52 35 Z" />
-        {/* Central staircase column — suggests the steps up the
-            middle of the temple, breaking the front faces into
-            symmetric halves like the canonical lockup. */}
-        <line x1="32" y1="21" x2="32" y2="53" />
-    </svg>
-);
+// Day 84 v3 (Sasha 2026-05-25): LATAM Impact official lockup + mark
+// assets. Retired the V2 inline SVG placeholder — the brand has its
+// own composed lockup and we use it as shipped. Desktop rail uses
+// the full lockup (pyramid + LATAM IMPACT wordmark). Mobile pill
+// uses the pyramid-only mark. Both PNGs ship with a forest-green
+// background baked in — sits on the daouniverse pane-1 forest bg
+// without visible seam.
+import latamLockup from "@/assets/latam-impact-lockup.png";
+import latamPyramid from "@/assets/latam-impact-pyramid.png";
 // Day 48 iter 7 (Sasha): JOURNEY + ME spaces now render with custom
 // image assets (gold-tinted) instead of typographic glyphs — keeps
 // them coherent with the gold-signature identity while the other
