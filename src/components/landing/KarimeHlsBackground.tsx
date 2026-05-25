@@ -74,7 +74,12 @@ export const KarimeHlsBackground = () => {
           // video itself dampens the ivy (bright green) and cushion
           // (high-saturation terracotta), so they stop pulling the eye
           // away from the meditative center.
-          filter: "saturate(0.88)",
+          // Day 83 v3 (Sasha 2026-05-25, Option B): push saturation
+          // knockdown from 12% → 22% to reduce overall terracotta
+          // dominance on the page. The ivy + cushion + walls all
+          // soften further, but the video keeps enough warm hue to
+          // read as the sanctuary it is.
+          filter: "saturate(0.78)",
         }}
       />
 
