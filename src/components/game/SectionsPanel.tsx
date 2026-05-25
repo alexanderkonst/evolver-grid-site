@@ -1269,8 +1269,19 @@ const SectionsPanel = ({
                             className={cn(
                                 "group flex items-center gap-2.5 px-3 py-2 ml-8 mr-2 rounded-2xl transition-all duration-300 relative",
                                 "focus:outline-none focus-visible:ring-2 focus-visible:ring-[#d4af37]/40",
+                                // Day 80 (Sasha 2026-05-25): sidequest
+                                // locked-row wrapper opacity bumped
+                                // 0.55 → 0.85. Compound with the inner
+                                // text alpha of 0.80, the effective
+                                // contrast was ~0.44 — invisible on
+                                // the dark variable-luminance Pane 2.
+                                // At 0.85 wrapper × 0.80 text = ~0.68
+                                // effective, comfortably in the
+                                // playbook Strong-cocktail readable
+                                // range while still visibly dimmer
+                                // than active (full opacity).
                                 isLocked
-                                    ? "cursor-not-allowed bg-white/[0.03] opacity-55"
+                                    ? "cursor-not-allowed bg-white/[0.03] opacity-[0.85]"
                                     : "cursor-pointer bg-white/[0.03] hover:bg-white/[0.06] hover:translate-y-[-1px] hover:shadow-[0_0_10px_-4px_rgba(244,212,114,0.25)]",
                             )}
                             onClick={handleSectionClick}
@@ -1365,8 +1376,17 @@ const SectionsPanel = ({
                                 // also gets a faint bg-white/5 baseline so
                                 // each row reads as a discrete object even
                                 // before hover.
+                                // Day 80 (Sasha 2026-05-25): locked-row
+                                // text alpha bumped 0.60 → 0.85 per
+                                // ui_playbook.md Part VIII Strong-cocktail
+                                // muted-floor (0.78). Earlier 0.60 was
+                                // sub-readable on the variable-luminance
+                                // Pane 2 (video bleeds through). 0.85
+                                // still sits clearly below the active
+                                // tier (1.0 white) so the row reads as
+                                // inactive without going invisible.
                                 isLocked
-                                    ? "cursor-not-allowed bg-white/[0.04] text-white/60"
+                                    ? "cursor-not-allowed bg-white/[0.04] text-white/[0.85]"
                                     : sectionActive && !hasSubSections
                                         ? "cursor-pointer text-white ring-1 ring-[#d4af37]/60 shadow-[0_0_22px_-6px_rgba(244,212,114,0.55),0_0_48px_-14px_rgba(212,175,55,0.35)]"
                                         : "cursor-pointer bg-white/[0.05] text-white/95 hover:bg-white/[0.10] hover:text-white hover:ring-1 hover:ring-[#d4af37]/30 hover:shadow-[0_0_16px_-4px_rgba(244,212,114,0.28)] hover:translate-y-[-1px] active:translate-y-0"
