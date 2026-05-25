@@ -735,20 +735,26 @@
     0 1px 3px rgba(255, 240, 220, 0.95),
     0 2px 12px rgba(31, 26, 21, 0.22);
 
-  /* PANELS 1 & 2 — solid deep terracotta. Pane 1 a hair darker
-     than pane 2 so the rail recedes; pane 2 carries the lighter
-     terracotta tone so sidebar items have reading contrast. */
-  --skin-panel-1-bg: rgba(91, 42, 11, 0.94);
-  --skin-panel-2-bg: rgb(125, 65, 35);
+  /* PANELS 1 & 2 — Day 83 v3 (Sasha 2026-05-25, Option B): cooled
+     from terracotta to deep warm-charcoal. Previous saturated
+     terracotta panes were the biggest source of "everything is
+     terracotta" overwhelm on the page. New tones are still
+     subtly warm-tinted (the brown channels are slightly higher
+     than the cool channels) so they don't feel disconnected from
+     the warm video bg, but they're desaturated to dark-neutral —
+     the rail becomes a frame around the warm sanctuary instead
+     of competing with it. */
+  --skin-panel-1-bg: rgba(38, 33, 30, 0.94);
+  --skin-panel-2-bg: rgb(58, 50, 45);
 
-  /* PANEL WASH — warm-amber gradient overlay for any pane that
-     reads the wash token. Soft top-left glow over a warm
-     terracotta base; same idea as aurora's wash, just rewarmed. */
+  /* PANEL WASH — Day 83 v3: dropped the warm-amber radial overlay
+     (it was amplifying terracotta on any pane that consumed the
+     wash). Now a quiet neutral-charcoal gradient that matches the
+     new pane palette. */
   --skin-panel-wash:
-    radial-gradient(ellipse at 30% 20%, rgba(240, 180, 100, 0.18) 0%, transparent 60%),
-    linear-gradient(135deg, rgba(91, 42, 11, 0.42) 0%, rgba(125, 65, 35, 0.32) 100%);
+    linear-gradient(135deg, rgba(48, 42, 38, 0.42) 0%, rgba(70, 60, 54, 0.32) 100%);
   --skin-panel-wash-quiet:
-    radial-gradient(ellipse at 30% 20%, rgba(240, 180, 100, 0.08) 0%, transparent 60%);
+    linear-gradient(135deg, rgba(48, 42, 38, 0.12) 0%, rgba(70, 60, 54, 0.08) 100%);
 
   /* ORNAMENT — Day 82 v2: re-tuned from goldenrod (Aurora's
      yellow-gold) to true copper-rose to match the brass altar
@@ -835,9 +841,16 @@
 [data-rail-compact="true"] .liquid-glass button.group,
 [data-rail-compact="true"] .liquid-glass a.group {
   width: 48px !important;
+  align-self: center !important;
   margin-left: auto !important;
   margin-right: auto !important;
 }
+/* Day 83 v3 (Sasha 2026-05-25): centering bug fix. `margin: auto`
+   alone didn't center the chips because the SpacesRail wrapper is
+   `flex flex-col` with default `align-items: stretch` — children
+   stretch full-width, and `margin: auto` on a stretched item is a
+   no-op on the cross axis. Adding `align-self: center` overrides
+   stretch per-chip so each chip sits at the column center. */
 /* Trim the hover-ring shadow blur radius so it stays inside the
    72px rail boundary (default 16px blur was overflowing + clipping
    against the pane-2 edge). */
