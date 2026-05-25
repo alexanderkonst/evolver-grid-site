@@ -1339,6 +1339,457 @@
   letter-spacing: 0.08em;
 }
 
+/* ───────────────────────────────────────────────────────────────────
+   PLANETIR SKIN — Day 84 (Sasha 2026-05-25)
+   ───────────────────────────────────────────────────────────────────
+   Per-community skin mirroring planetir.org. Forest-mystic regenerative
+   register: deep sun-pierced forest backdrop, pure white text, white-pill
+   CTAs (no halo, no glass), olive-green + warm-gold accents from logo.
+   Display = Lexend (rounded geometric grotesque, bold weights),
+   body = Inter. Both imported at top of this file.
+
+   Activated by `<html data-skin="planetir">` (set by PlanetirScopeLock
+   inside the `/planetir/*` route prefix).
+
+   Built on the v1.9 white-label spec — applies all cross-skin patterns
+   (mobile content-scroll bg, !important on glass, sub-headline scoping,
+   color harmony override on Aurora yellow rgba(244,212,114,…) glows).
+   ─────────────────────────────────────────────────────────────────── */
+
+[data-skin="planetir"] {
+  /* ── Text — pure white on deep forest. */
+  --skin-text-primary: #ffffff;
+  --skin-text-body: rgba(255, 255, 255, 0.95);
+  --skin-text-muted: rgba(245, 245, 240, 0.75);
+  --skin-text-muted-soft: rgba(245, 245, 240, 0.55);
+
+  --skin-sections-text: rgba(245, 245, 240, 0.88);
+
+  /* Halos — subtle dark lift so white text holds against bright sun
+     patches of the forest video bg. */
+  --skin-text-halo-strong:
+    0 0 28px rgba(10, 22, 14, 0.72),
+    0 1px 3px rgba(10, 22, 14, 0.88);
+  --skin-text-halo-subtle:
+    0 0 18px rgba(10, 22, 14, 0.52),
+    0 1px 2px rgba(10, 22, 14, 0.78);
+  --skin-text-halo-soft: 0 1px 2px rgba(10, 22, 14, 0.68);
+  --skin-text-halo-deep:
+    0 0 32px rgba(10, 22, 14, 0.82),
+    0 1px 3px rgba(10, 22, 14, 0.92),
+    0 0 1px rgba(107, 122, 58, 0.42);
+
+  /* Panel washes — Pane 1 deep forest, Pane 2 slightly lifted.
+     Warmer hue than daouniverse (planetir.org's amber sun temp). */
+  --skin-panel-1-bg: rgba(18, 28, 16, 0.94);
+  --skin-panel-2-bg: rgb(26, 38, 22);
+  --skin-panel-wash:
+    linear-gradient(180deg,
+      rgba(34, 50, 28, 0.55) 0%,
+      rgba(18, 28, 16, 0.42) 55%,
+      rgba(10, 18, 10, 0.62) 100%);
+  --skin-panel-wash-quiet:
+    linear-gradient(180deg,
+      rgba(34, 50, 28, 0.18) 0%,
+      rgba(18, 28, 16, 0.10) 100%);
+
+  /* Ornaments — olive-gold (the gold-diamond in the Planetir logo,
+     warmer than daouniverse's parchment, less saturated). */
+  --skin-ornament-rule:  rgba(196, 163, 92, 0.38);
+  --skin-ornament-star:  #c4a35c;
+  --skin-ornament-shadow:
+    0 0 14px rgba(196, 163, 92, 0.52),
+    0 0 3px rgba(196, 163, 92, 0.72);
+
+  /* Primary CTA — WHITE pill, dark text, no halo (mirrors planetir.org
+     "Join the journey" / "Explore the Ecosystem" buttons). Tight radius
+     applied via the rounded-full override below. */
+  --skin-cta-bg: #ffffff;
+  --skin-cta-text: #0a1a12;
+  --skin-cta-border: transparent;
+  --skin-cta-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.18),
+    0 10px 24px -10px rgba(0, 0, 0, 0.42);
+  --skin-cta-text-shadow: none;
+  --skin-cta-icon: #0a1a12;
+  --skin-cta-icon-shadow: none;
+
+  /* Gradient accents — olive + warm-gold family (planetir logo palette). */
+  --skin-accent-1-bg: linear-gradient(135deg, #6b7a3a 0%, #5a682f 100%);
+  --skin-accent-1-glow: drop-shadow(0 0 10px rgba(107, 122, 58, 0.42));
+  --skin-accent-2-bg: linear-gradient(135deg, #c4a35c 0%, #a8884c 100%);
+  --skin-accent-2-glow: drop-shadow(0 0 10px rgba(196, 163, 92, 0.48));
+  --skin-accent-3-bg: linear-gradient(135deg, #8a6d36 0%, #6b5328 100%);
+  --skin-accent-3-glow: drop-shadow(0 0 8px rgba(138, 109, 54, 0.4));
+
+  --skin-link-secondary: rgba(245, 245, 240, 0.82);
+
+  --skin-text-strong: rgba(255, 255, 255, 0.98);
+  --skin-text-faint:  rgba(245, 245, 240, 0.62);
+  --skin-text-hint:   rgba(245, 245, 240, 0.45);
+
+  /* Rules — olive-tinted hairlines. */
+  --skin-rule-strong:   rgba(196, 163, 92, 0.36);
+  --skin-rule-medium:   rgba(196, 163, 92, 0.20);
+  --skin-rule-hairline: rgba(196, 163, 92, 0.12);
+  --skin-rule-faint:    rgba(196, 163, 92, 0.06);
+
+  /* Links — cream with olive-gold underline on hover. */
+  --skin-link-color:        #ffffff;
+  --skin-link-hover:        #c4a35c;
+  --skin-link-underline:    rgba(196, 163, 92, 0.45);
+
+  /* Cards — deep-forest surface, olive hairline. */
+  --skin-card-bg:       rgba(26, 38, 22, 0.85);
+  --skin-card-border:   rgba(196, 163, 92, 0.20);
+  --skin-card-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.28),
+    0 12px 32px -14px rgba(0, 0, 0, 0.48);
+
+  /* Tints — olive-gold only. */
+  --skin-tint-violet-soft: linear-gradient(135deg, rgba(196,163,92,0.04), rgba(196,163,92,0.01));
+  --skin-tint-gold-soft:   linear-gradient(135deg, rgba(196,163,92,0.10), rgba(196,163,92,0.03));
+
+  /* Single accent — olive-gold. */
+  --skin-accent-gold:        #c4a35c;
+  --skin-accent-gold-glow:   drop-shadow(0 0 8px rgba(196, 163, 92, 0.42));
+
+  /* Selected state — olive-tinted wash with brighter border. */
+  --skin-selected-bg:     rgba(196, 163, 92, 0.12);
+  --skin-selected-border: rgba(196, 163, 92, 0.55);
+  --skin-selected-text:   #ffffff;
+
+  /* Form inputs — dark forest with olive hairline. */
+  --skin-input-bg:      rgba(18, 28, 16, 0.62);
+  --skin-input-border:  rgba(196, 163, 92, 0.30);
+  --skin-input-text:    #ffffff;
+  --skin-input-placeholder: rgba(245, 245, 240, 0.45);
+
+  /* Darkroom — same forest palette. */
+  --skin-darkroom-bg:     rgba(10, 18, 10, 0.96);
+  --skin-darkroom-text:   rgba(255, 255, 255, 0.96);
+  --skin-darkroom-muted:  rgba(245, 245, 240, 0.72);
+  --skin-darkroom-border: rgba(196, 163, 92, 0.20);
+
+  /* Callout — olive-gold gradient for GOLD_GRADIENT consumers. */
+  --skin-callout-bg:     linear-gradient(135deg, #c4a35c 0%, #a8884c 100%);
+  --skin-callout-glow:   drop-shadow(0 0 12px rgba(196, 163, 92, 0.42));
+
+  /* Music player tokens. */
+  --skin-music-play-bg:     transparent;
+  --skin-music-play-border: rgba(196, 163, 92, 0.36);
+  --skin-music-play-shadow: 0 0 10px -2px rgba(196, 163, 92, 0.32);
+  --skin-music-icon:        #c4a35c;
+  --skin-music-text:        rgba(245, 245, 240, 0.86);
+  --skin-music-meta:        rgba(245, 245, 240, 0.62);
+
+  /* Locked/completed row strikethrough. */
+  --skin-strike-color: rgba(196, 163, 92, 0.55);
+}
+
+/* PLANETIR — typography (Lexend display + Inter body, per source-site inspection) */
+
+[data-skin="planetir"] h1,
+[data-skin="planetir"] h2,
+[data-skin="planetir"] h3,
+[data-skin="planetir"] h4,
+[data-skin="planetir"] .font-display,
+[data-skin="planetir"] .font-serif {
+  font-family: "Lexend", system-ui, sans-serif !important;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  line-height: 1.12;
+}
+
+[data-skin="planetir"] body,
+[data-skin="planetir"] p,
+[data-skin="planetir"] li,
+[data-skin="planetir"] blockquote {
+  font-family: "Inter", system-ui, sans-serif !important;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+[data-skin="planetir"] .liquid-glass.h-dvh,
+[data-skin="planetir"] .liquid-glass.h-dvh button,
+[data-skin="planetir"] .liquid-glass.h-dvh a,
+[data-skin="planetir"] .liquid-glass.h-dvh span,
+[data-skin="planetir"] .group[class*="rounded-2xl"],
+[data-skin="planetir"] button.liquid-glass-dark,
+[data-skin="planetir"] button.liquid-glass,
+[data-skin="planetir"] input,
+[data-skin="planetir"] textarea,
+[data-skin="planetir"] select,
+[data-skin="planetir"] label,
+[data-skin="planetir"] [class*="text-xs"],
+[data-skin="planetir"] [class*="uppercase"] {
+  font-family: "Inter", system-ui, sans-serif !important;
+  letter-spacing: normal;
+}
+
+/* Day 84 sub-headline scoping pattern — MatchHero sub-h1 stays in
+   Lexend italic (display) instead of falling to Inter via blanket
+   body p rule. */
+[data-skin="planetir"] [data-match-hero] header > p:nth-of-type(2) {
+  font-family: "Lexend", system-ui, sans-serif !important;
+  font-style: italic !important;
+  font-weight: 400;
+}
+
+[data-skin="planetir"] button.liquid-glass-dark,
+[data-skin="planetir"] a.liquid-glass-dark {
+  font-family: "Inter", system-ui, sans-serif !important;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+/* PLANETIR — decoration overrides */
+
+/* Kill the Mux HLS video background by default — Sasha will provide a
+   forest animation later. Until then the body's forest gradient holds
+   the atmospheric mood. Once URL lands, retire this rule + extend the
+   MuxVideoBackground URL selection table per Day 84 build step 6. */
+[data-skin="planetir"] video[autoplay][muted],
+[data-skin="planetir"] video.absolute,
+[data-skin="planetir"] [data-mux-background],
+[data-skin="planetir"] video[playsinline] {
+  display: none !important;
+}
+
+/* Body background — deep sun-pierced forest gradient. Mood-matches the
+   still planetir.org background (amber sun behind pine trees). */
+[data-skin="planetir"] body {
+  background:
+    radial-gradient(ellipse at 60% 22%, rgba(212, 178, 110, 0.32) 0%, transparent 48%),
+    radial-gradient(ellipse at 50% 50%, rgba(38, 60, 32, 0.32) 0%, transparent 65%),
+    linear-gradient(180deg,
+      #0a1a10 0%,
+      #142818 28%,
+      #1a2e1c 55%,
+      #14241a 80%,
+      #0a1810 100%);
+  color: #ffffff;
+}
+
+/* Cosmic indigo page bg → forest. */
+[data-skin="planetir"] [class*="bg-[#0a0a1a]"] {
+  background-color: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+[data-skin="planetir"] .bg-\[\#0a0a1a\] {
+  background-color: #0a1a10 !important;
+}
+
+/* Paper grain off — forest scene IS the texture. */
+[data-skin="planetir"] body::before {
+  display: none;
+}
+[data-skin="planetir"] ::selection {
+  background: rgba(196, 163, 92, 0.32);
+  color: #ffffff;
+}
+
+/* Liquid-glass — re-tone toward dark forest. !important per Day 84 cascade fight. */
+[data-skin="planetir"] .liquid-glass {
+  background: rgba(26, 38, 22, 0.45) !important;
+  border: 1px solid rgba(196, 163, 92, 0.20) !important;
+  box-shadow:
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.16),
+    inset 0 -1px 0 0 rgba(0, 0, 0, 0.32),
+    0 8px 22px -6px rgba(0, 0, 0, 0.45) !important;
+  color: #ffffff !important;
+}
+[data-skin="planetir"] .liquid-glass-strong {
+  background: rgba(26, 38, 22, 0.65) !important;
+  border: 1px solid rgba(196, 163, 92, 0.28) !important;
+  box-shadow:
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.22),
+    inset 0 -1px 0 0 rgba(0, 0, 0, 0.36),
+    0 12px 30px -10px rgba(0, 0, 0, 0.55) !important;
+}
+[data-skin="planetir"] .liquid-glass [style*="color"] {
+  color: #ffffff !important;
+}
+
+/* Primary CTA — WHITE pill, dark text. This is Planetir's signature
+   button paradigm (different from daouniverse yellow / NS black / Aurora
+   navy glass). */
+[data-skin="planetir"] .liquid-glass-dark {
+  background: #ffffff !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border: 1px solid rgba(0, 0, 0, 0.06) !important;
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.18),
+    0 10px 24px -10px rgba(0, 0, 0, 0.42) !important;
+  color: #0a1a12 !important;
+}
+[data-skin="planetir"] .liquid-glass-dark::before {
+  display: none !important;
+}
+[data-skin="planetir"] .liquid-glass-dark:hover {
+  background: #fafafa !important;
+  box-shadow:
+    0 2px 6px rgba(0, 0, 0, 0.22),
+    0 14px 28px -10px rgba(0, 0, 0, 0.48) !important;
+}
+[data-skin="planetir"] .liquid-glass-dark,
+[data-skin="planetir"] .liquid-glass-dark * {
+  color: #0a1a12 !important;
+}
+[data-skin="planetir"] .liquid-glass-dark img.ornament-spin,
+[data-skin="planetir"] .liquid-glass-dark > img:first-of-type {
+  filter: brightness(0) saturate(100%) invert(8%) sepia(40%) saturate(800%) hue-rotate(95deg) brightness(0.65) !important;
+}
+
+/* Hover wash — olive-tinted. */
+[data-skin="planetir"] .liquid-glass.h-dvh button:hover,
+[data-skin="planetir"] .liquid-glass.h-dvh a:hover,
+[data-skin="planetir"] .liquid-glass.h-dvh .group:hover,
+[data-skin="planetir"] [class*="w-[260px]"] .group:hover,
+[data-skin="planetir"] aside[data-pane="2"] .group:hover {
+  background-color: rgba(196, 163, 92, 0.10) !important;
+}
+
+/* Active-item gold left-bar. */
+[data-skin="planetir"] [style*="--skin-selected-bg"] {
+  box-shadow: inset 3px 0 0 0 #c4a35c !important;
+}
+
+/* Pane 1 rail right edge — double-rule editorial separator (olive). */
+[data-skin="planetir"] .liquid-glass.h-dvh {
+  border-right: 3px double rgba(196, 163, 92, 0.28) !important;
+}
+
+/* Pane 2 right edge + forest bg. */
+[data-skin="planetir"] .liquid-glass.h-dvh + .h-dvh.sticky,
+[data-skin="planetir"] .liquid-glass.h-dvh + div[class*="w-[260px]"],
+[data-skin="planetir"] aside[data-pane="2"] {
+  border-right: 1px solid rgba(196, 163, 92, 0.22) !important;
+  background-color: var(--skin-panel-2-bg, rgb(26, 38, 22)) !important;
+}
+
+/* SPACES↔utility separator — olive. */
+[data-skin="planetir"] .liquid-glass.h-dvh .h-px[style*="rgba(212, 175, 55"] {
+  background-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(196, 163, 92, 0.42) 20%,
+    rgba(196, 163, 92, 0.42) 80%,
+    transparent 100%
+  ) !important;
+}
+
+/* Pane 2 top header border-bottom. */
+[data-skin="planetir"] [class*="w-[260px]"] > div.h-16:first-child,
+[data-skin="planetir"] aside[data-pane="2"] > div.h-16:first-child {
+  border-bottom-color: rgba(196, 163, 92, 0.22) !important;
+}
+
+/* Pane 2 close button. */
+[data-skin="planetir"] button[aria-label="Hide sidebar"] {
+  color: rgba(245, 245, 240, 0.78) !important;
+}
+[data-skin="planetir"] button[aria-label="Hide sidebar"]:hover {
+  background-color: rgba(196, 163, 92, 0.12) !important;
+}
+
+/* Tight-radius CTAs — Planetir uses pill (NOT NS-style rectangles). Keep
+   rounded-full default. No override needed. */
+
+/* Rail SPACE chip icons — tint to olive-gold for harmony. EXCLUDES the
+   Planetir logo PNG which renders in its native palette. */
+[data-skin="planetir"] .liquid-glass.h-dvh img[alt="Journey"],
+[data-skin="planetir"] .liquid-glass.h-dvh img[alt="AI OS"],
+[data-skin="planetir"] .liquid-glass.h-dvh img[alt="Me"],
+[data-skin="planetir"] .liquid-glass.h-dvh img[alt="Build"],
+[data-skin="planetir"] .liquid-glass.h-dvh img[src*="settings-icon"] {
+  filter: brightness(0) saturate(100%) invert(72%) sepia(28%) saturate(420%) hue-rotate(2deg) brightness(0.95) !important;
+}
+
+/* GlyphIcon variants. */
+[data-skin="planetir"] .liquid-glass.h-dvh span[style*="place-items: center"],
+[data-skin="planetir"] .liquid-glass.h-dvh span[style*="place-items:center"] {
+  color: #c4a35c !important;
+  text-shadow: 0 0 6px rgba(196, 163, 92, 0.32) !important;
+}
+
+/* GameShellV2 top-right home glyph — tint to olive-gold. */
+[data-skin="planetir"] a[aria-label="Home"] img {
+  filter: brightness(0) saturate(100%) invert(72%) sepia(28%) saturate(420%) hue-rotate(2deg) brightness(0.95) !important;
+}
+
+/* Day 84 color harmony — Aurora yellow rgba(244,212,114,…) glows
+   re-toned to olive family. ONE bright color (white CTAs) on the page. */
+[data-skin="planetir"] [class*="rgba(244,212,114"],
+[data-skin="planetir"] [class*="rgba(244, 212, 114"] {
+  box-shadow:
+    0 0 16px -6px rgba(196, 163, 92, 0.30),
+    0 0 4px -1px rgba(196, 163, 92, 0.42) !important;
+}
+[data-skin="planetir"] [class*="ring-[#d4af37"] {
+  --tw-ring-color: rgba(196, 163, 92, 0.42) !important;
+}
+
+/* Rail spine right-edge gradient — soften to olive. */
+[data-skin="planetir"] .liquid-glass.h-dvh > span[aria-hidden][class*="absolute"][class*="top-0"][class*="right-0"] {
+  background-image:
+    linear-gradient(180deg,
+      rgba(196, 163, 92, 0) 0%,
+      rgba(196, 163, 92, 0.18) 16%,
+      rgba(212, 185, 117, 0.42) 40%,
+      rgba(196, 163, 92, 0.32) 62%,
+      rgba(196, 163, 92, 0.10) 88%,
+      rgba(196, 163, 92, 0) 100%) !important;
+}
+
+/* MatchHero spotlight backdrop scoped off (Day 84 lesson — cream radial
+   reads as foreign on dark forest). */
+[data-skin="planetir"] [data-match-hero] > div[aria-hidden] {
+  display: none !important;
+}
+
+/* Auth page editorial overrides — Lexend headings, Inter body. */
+[data-skin="planetir"] article.liquid-glass-strong h1,
+[data-skin="planetir"] article.liquid-glass-strong h1 *,
+[data-skin="planetir"] article.liquid-glass-strong p,
+[data-skin="planetir"] article.liquid-glass-strong label {
+  font-family: "Lexend", system-ui, sans-serif !important;
+  color: var(--skin-text-primary, #ffffff) !important;
+}
+[data-skin="planetir"] article.liquid-glass-strong button,
+[data-skin="planetir"] article.liquid-glass-strong input {
+  font-family: "Inter", system-ui, sans-serif !important;
+}
+[data-skin="planetir"] article.liquid-glass-strong [role="tablist"] {
+  background-color: rgba(196, 163, 92, 0.08) !important;
+  border-color: rgba(196, 163, 92, 0.22) !important;
+}
+[data-skin="planetir"] article.liquid-glass-strong [role="tab"][data-state="active"] {
+  background-color: rgba(196, 163, 92, 0.18) !important;
+  color: #ffffff !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.18) !important;
+}
+[data-skin="planetir"] article.liquid-glass-strong [role="tab"]:not([data-state="active"]) {
+  color: rgba(245, 245, 240, 0.62) !important;
+}
+[data-skin="planetir"] article.liquid-glass-strong input {
+  background-color: rgba(18, 28, 16, 0.55) !important;
+  border-color: rgba(196, 163, 92, 0.30) !important;
+  color: #ffffff !important;
+}
+[data-skin="planetir"] article.liquid-glass-strong input::placeholder {
+  color: rgba(245, 245, 240, 0.42) !important;
+}
+[data-skin="planetir"] article.liquid-glass-strong form button[type="submit"] {
+  background: #ffffff !important;
+  color: #0a1a12 !important;
+  border-color: rgba(0, 0, 0, 0.06) !important;
+  font-family: "Inter", system-ui, sans-serif !important;
+  letter-spacing: 0.04em;
+}
+
 /* Day 82 v4 (Sasha 2026-05-24): SpacesRail compact mode. When the rail
    carries data-rail-compact="true" (set by GameShellV2 when the user
    minimizes pane 1 via the new toggle), force-hide every `md:block`
@@ -2503,6 +2954,30 @@ All colors MUST be HSL.
     --accent-foreground: 150 35% 8%;
     --border: 40 30% 28%;              /* gold-tinted border */
     --input: 150 22% 13%;
+    --ring: 40 45% 56%;
+  }
+
+  /* Planetir — forest-mystic regenerative. Deep sun-pierced forest base,
+     pure white text, white-pill CTAs, olive-gold accents (from Planetir
+     logo). Shadcn HSL palette. Activated by `/planetir/*` route prefix
+     via PlanetirScopeLock. */
+  [data-skin="planetir"] {
+    --background: 138 28% 8%;          /* deep forest (warmer than daouniverse) */
+    --foreground: 0 0% 100%;           /* pure white */
+    --card: 138 25% 12%;
+    --card-foreground: 0 0% 100%;
+    --popover: 138 28% 9%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 0 0% 100%;              /* WHITE primary (Planetir's signature pill) */
+    --primary-foreground: 138 35% 8%;
+    --secondary: 138 22% 14%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 138 20% 13%;
+    --muted-foreground: 40 18% 72%;
+    --accent: 40 45% 56%;              /* olive-gold accent (from logo) */
+    --accent-foreground: 138 35% 8%;
+    --border: 40 28% 26%;
+    --input: 138 20% 13%;
     --ring: 40 45% 56%;
   }
 }
