@@ -18,6 +18,7 @@ import { SkinProvider } from "@/contexts/SkinContext";
 import SkinPreview from "./pages/SkinPreview";
 import PreviewBanner from "@/components/skin/PreviewBanner";
 import NSScopeLock from "@/components/skin/NSScopeLock";
+import DaouniverseScopeLock from "@/components/skin/DaouniverseScopeLock";
 import MusicPlayer from "@/components/MusicPlayer";
 // Day 58+ (Sasha 2026-05-03): App-root mount for the SoundCloud
 // playlist audio engine. SoundCloudMinimalPlayer used to own its
@@ -248,23 +249,38 @@ const HolonicModulesPage = lazy(() => import("./pages/HolonicModulesPage"));
 const queryClient = new QueryClient();
 
 /**
- * /ns/* white-label scope detection (2026-05-18, Sasha).
+ * White-label skin-scope detection (2026-05-18, Sasha).
  *
- * Evaluated ONCE at module load from the initial URL. When the URL is
- * under `/ns`, React Router's `basename` is set to `/ns` so the entire
- * existing route tree resolves transparently under the prefix —
- * `<Link to="/zone-of-genius">` becomes `/ns/zone-of-genius`,
- * `useLocation().pathname` returns the post-strip path. Zero route
- * duplication. The `data-skin` attribute is set synchronously here so
- * the first paint already lands in network-school register (no Aurora
- * flash). `<NSScopeLock />` then takes over via React state.
+ * Evaluated ONCE at module load from the initial URL. When the URL
+ * matches a registered skin prefix, React Router's `basename` is set
+ * to that prefix so the entire existing route tree resolves
+ * transparently under it — `<Link to="/zone-of-genius">` becomes
+ * `/<prefix>/zone-of-genius`, `useLocation().pathname` returns the
+ * post-strip path. Zero route duplication. The `data-skin` attribute
+ * is set synchronously here so the first paint already lands in the
+ * skin's register (no Aurora flash). The matching ScopeLock then
+ * takes over via React state.
+ *
+ * Day 84 (Sasha 2026-05-25): generalized from /ns-only to a prefix
+ * table so additional community skins can be added by one row.
  */
-const isNSScope =
-  typeof window !== "undefined" &&
-  (window.location.pathname === "/ns" || window.location.pathname.startsWith("/ns/"));
-const nsBasename = isNSScope ? "/ns" : undefined;
-if (typeof document !== "undefined" && isNSScope) {
-  document.documentElement.setAttribute("data-skin", "network-school");
+const SKIN_PREFIXES: { prefix: string; skin: string }[] = [
+  { prefix: "/ns", skin: "network-school" },
+  { prefix: "/daouniverse", skin: "daouniverse" },
+];
+const activeSkinScope =
+  typeof window !== "undefined"
+    ? SKIN_PREFIXES.find(
+        ({ prefix }) =>
+          window.location.pathname === prefix ||
+          window.location.pathname.startsWith(prefix + "/")
+      )
+    : undefined;
+const skinBasename = activeSkinScope?.prefix;
+const isNSScope = activeSkinScope?.skin === "network-school";
+const isDaouniverseScope = activeSkinScope?.skin === "daouniverse";
+if (typeof document !== "undefined" && activeSkinScope) {
+  document.documentElement.setAttribute("data-skin", activeSkinScope.skin);
 }
 
 const TitleManager = () => {
@@ -304,8 +320,9 @@ const App = () => (
         <Sonner />
         {/* AnimatedBackground removed for minimal SaaS design */}
         <CustomCursor />
-        <BrowserRouter basename={nsBasename}>
+        <BrowserRouter basename={skinBasename}>
           {isNSScope && <NSScopeLock />}
+          {isDaouniverseScope && <DaouniverseScopeLock />}
           <SiteLogo />
           <TitleManager />
           <ScrollRestoration />

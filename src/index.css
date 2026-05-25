@@ -796,6 +796,417 @@
   --skin-rule-medium: rgba(91, 42, 11, 0.18);
 }
 
+/* ───────────────────────────────────────────────────────────────────
+   DAOUNIVERSE SKIN — Day 84 (Sasha 2026-05-25)
+   ───────────────────────────────────────────────────────────────────
+   Per-community skin mirroring latamimpact.io. Editorial luxe-regenerative
+   register: deep forest green page background, cream typography, single
+   parchment-gold accent. Display = Playfair Display, body = Inter (both
+   pre-imported at the top of this file for Aurora + NS respectively).
+   Activated by `<html data-skin="daouniverse">` (set by DaouniverseScopeLock
+   inside the `/daouniverse/*` route prefix).
+
+   Sasha will provide the animated forest/canopy video background later —
+   until then the page sits on a solid deep-forest gradient that approximates
+   the same dark, atmospheric register. Aurora's Mux HLS bg is killed under
+   this skin (same pattern as NS).
+   ─────────────────────────────────────────────────────────────────── */
+
+[data-skin="daouniverse"] {
+  /* ── Text — warm cream on deep forest. */
+  --skin-text-primary: #f0e6d2;
+  --skin-text-body: rgba(240, 230, 210, 0.94);
+  --skin-text-muted: rgba(240, 230, 210, 0.72);
+  --skin-text-muted-soft: rgba(240, 230, 210, 0.55);
+
+  --skin-sections-text: rgba(240, 230, 210, 0.86);
+
+  /* Halos — gentle dark lift so cream text holds against bright canopy
+     patches of the eventual video bg. */
+  --skin-text-halo-strong:
+    0 0 28px rgba(13, 25, 18, 0.65),
+    0 1px 3px rgba(13, 25, 18, 0.85);
+  --skin-text-halo-subtle:
+    0 0 18px rgba(13, 25, 18, 0.45),
+    0 1px 2px rgba(13, 25, 18, 0.72);
+  --skin-text-halo-soft: 0 1px 2px rgba(13, 25, 18, 0.62);
+  --skin-text-halo-deep:
+    0 0 32px rgba(13, 25, 18, 0.78),
+    0 1px 3px rgba(13, 25, 18, 0.9),
+    0 0 1px rgba(196, 163, 92, 0.45);
+
+  /* Panel washes — Pane 1 deep forest, Pane 2 slightly lifted. */
+  --skin-panel-1-bg: rgba(13, 25, 18, 0.94);
+  --skin-panel-2-bg: rgb(20, 38, 28);
+  --skin-panel-wash:
+    linear-gradient(180deg,
+      rgba(20, 42, 30, 0.62) 0%,
+      rgba(13, 25, 18, 0.45) 55%,
+      rgba(8, 18, 12, 0.62) 100%);
+  --skin-panel-wash-quiet:
+    linear-gradient(180deg,
+      rgba(20, 42, 30, 0.18) 0%,
+      rgba(13, 25, 18, 0.10) 100%);
+
+  /* Ornaments — parchment gold (matches LATAM pyramid + h1 accent). */
+  --skin-ornament-rule:  rgba(196, 163, 92, 0.42);
+  --skin-ornament-star:  #c4a35c;
+  --skin-ornament-shadow:
+    0 0 14px rgba(196, 163, 92, 0.55),
+    0 0 3px rgba(196, 163, 92, 0.75);
+
+  /* Primary CTA — dark-forest glass with parchment-gold halo. */
+  --skin-cta-bg: linear-gradient(
+    135deg,
+    rgba(13, 25, 18, 0.88) 0%,
+    rgba(20, 38, 28, 0.78) 50%,
+    rgba(13, 25, 18, 0.88) 100%
+  );
+  --skin-cta-text: rgba(245, 236, 213, 0.98);
+  --skin-cta-border: rgba(196, 163, 92, 0.38);
+  --skin-cta-shadow:
+    0 0 24px -4px rgba(196, 163, 92, 0.42),
+    0 12px 30px -12px rgba(0, 0, 0, 0.55);
+  --skin-cta-text-shadow:
+    0 0 16px rgba(196, 163, 92, 0.32),
+    0 1px 2px rgba(0, 0, 0, 0.45);
+  --skin-cta-icon: rgba(212, 185, 117, 0.98);
+  --skin-cta-icon-shadow:
+    0 0 12px rgba(212, 185, 117, 0.78),
+    0 0 4px rgba(196, 163, 92, 0.85);
+
+  /* Gradient accents — single warm-gold family (Playbook rainbow circles
+     preserved via the locked Sasha rule scoping color to .ornament-spin). */
+  --skin-accent-1-bg: linear-gradient(135deg, #c4a35c 0%, #a8884c 100%);
+  --skin-accent-1-glow: drop-shadow(0 0 10px rgba(196, 163, 92, 0.45));
+  --skin-accent-2-bg: linear-gradient(135deg, #d4b975 0%, #c4a35c 100%);
+  --skin-accent-2-glow: drop-shadow(0 0 10px rgba(212, 185, 117, 0.5));
+  --skin-accent-3-bg: linear-gradient(135deg, #b09244 0%, #8e7236 100%);
+  --skin-accent-3-glow: drop-shadow(0 0 8px rgba(176, 146, 68, 0.4));
+
+  --skin-link-secondary: rgba(240, 230, 210, 0.78);
+
+  --skin-text-strong: rgba(245, 236, 213, 0.98);
+  --skin-text-faint:  rgba(240, 230, 210, 0.62);
+  --skin-text-hint:   rgba(240, 230, 210, 0.45);
+
+  /* Rules — gold-tinted hairlines. */
+  --skin-rule-strong:   rgba(196, 163, 92, 0.38);
+  --skin-rule-medium:   rgba(196, 163, 92, 0.22);
+  --skin-rule-hairline: rgba(196, 163, 92, 0.14);
+  --skin-rule-faint:    rgba(196, 163, 92, 0.07);
+
+  /* Links — cream with parchment-gold underline on hover. */
+  --skin-link-color:        #f0e6d2;
+  --skin-link-hover:        #d4b975;
+  --skin-link-underline:    rgba(196, 163, 92, 0.45);
+
+  /* Cards — deep-forest surface, gold hairline, soft drop. */
+  --skin-card-bg:       rgba(20, 38, 28, 0.85);
+  --skin-card-border:   rgba(196, 163, 92, 0.22);
+  --skin-card-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.25),
+    0 12px 32px -14px rgba(0, 0, 0, 0.45);
+
+  /* Tints — gold-only (no violet). */
+  --skin-tint-violet-soft: linear-gradient(135deg, rgba(196,163,92,0.04), rgba(196,163,92,0.01));
+  --skin-tint-gold-soft:   linear-gradient(135deg, rgba(196,163,92,0.10), rgba(196,163,92,0.03));
+
+  /* Single accent — parchment gold. */
+  --skin-accent-gold:        #c4a35c;
+  --skin-accent-gold-glow:   drop-shadow(0 0 8px rgba(196, 163, 92, 0.45));
+
+  /* Selected state — gold-tinted dark wash with brighter border. */
+  --skin-selected-bg:     rgba(196, 163, 92, 0.12);
+  --skin-selected-border: rgba(196, 163, 92, 0.55);
+  --skin-selected-text:   #f5ecd5;
+
+  /* Form inputs — dark forest with gold hairline border. */
+  --skin-input-bg:      rgba(13, 25, 18, 0.62);
+  --skin-input-border:  rgba(196, 163, 92, 0.32);
+  --skin-input-text:    #f0e6d2;
+  --skin-input-placeholder: rgba(240, 230, 210, 0.45);
+
+  /* Darkroom — same forest palette (LATAM hero IS the darkroom). */
+  --skin-darkroom-bg:     rgba(8, 18, 12, 0.96);
+  --skin-darkroom-text:   rgba(245, 236, 213, 0.96);
+  --skin-darkroom-muted:  rgba(240, 230, 210, 0.72);
+  --skin-darkroom-border: rgba(196, 163, 92, 0.22);
+
+  /* Callout — flat gold gradient for GOLD_GRADIENT helper consumers. */
+  --skin-callout-bg:     linear-gradient(135deg, #c4a35c 0%, #a8884c 100%);
+  --skin-callout-glow:   drop-shadow(0 0 12px rgba(196, 163, 92, 0.45));
+
+  /* Music player tokens — quiet gold-tinted on dark. */
+  --skin-music-play-bg:     transparent;
+  --skin-music-play-border: rgba(196, 163, 92, 0.38);
+  --skin-music-play-shadow: 0 0 10px -2px rgba(196, 163, 92, 0.35);
+  --skin-music-icon:        #d4b975;
+  --skin-music-text:        rgba(240, 230, 210, 0.86);
+  --skin-music-meta:        rgba(240, 230, 210, 0.62);
+
+  /* Locked/completed row strikethrough — parchment gold-faded. */
+  --skin-strike-color: rgba(196, 163, 92, 0.55);
+}
+
+/* DAOUNIVERSE — typography overrides */
+
+/* Display headlines — Playfair Display, high-contrast didone. */
+[data-skin="daouniverse"] h1,
+[data-skin="daouniverse"] h2,
+[data-skin="daouniverse"] h3,
+[data-skin="daouniverse"] h4,
+[data-skin="daouniverse"] .font-display,
+[data-skin="daouniverse"] .font-serif {
+  font-family: "Playfair Display", "Cormorant Garamond", Georgia, serif !important;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.14;
+}
+
+/* Body content — Inter (LATAM uses Inter for body prose). */
+[data-skin="daouniverse"] body,
+[data-skin="daouniverse"] p,
+[data-skin="daouniverse"] li,
+[data-skin="daouniverse"] blockquote {
+  font-family: "Inter", system-ui, sans-serif !important;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+/* UI chrome — rail labels, Pane 2 nav, buttons, form controls. */
+[data-skin="daouniverse"] .liquid-glass.h-dvh,
+[data-skin="daouniverse"] .liquid-glass.h-dvh button,
+[data-skin="daouniverse"] .liquid-glass.h-dvh a,
+[data-skin="daouniverse"] .liquid-glass.h-dvh span,
+[data-skin="daouniverse"] .group[class*="rounded-2xl"],
+[data-skin="daouniverse"] button.liquid-glass-dark,
+[data-skin="daouniverse"] button.liquid-glass,
+[data-skin="daouniverse"] input,
+[data-skin="daouniverse"] textarea,
+[data-skin="daouniverse"] select,
+[data-skin="daouniverse"] label,
+[data-skin="daouniverse"] [class*="text-xs"],
+[data-skin="daouniverse"] [class*="uppercase"] {
+  font-family: "Inter", system-ui, sans-serif !important;
+  letter-spacing: normal;
+}
+
+[data-skin="daouniverse"] button.liquid-glass-dark,
+[data-skin="daouniverse"] a.liquid-glass-dark {
+  font-family: "Inter", system-ui, sans-serif !important;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+
+/* DAOUNIVERSE — decoration overrides */
+
+/* Kill the Mux HLS video background; Sasha's forest animation lands later. */
+[data-skin="daouniverse"] video[autoplay][muted],
+[data-skin="daouniverse"] video.absolute,
+[data-skin="daouniverse"] [data-mux-background],
+[data-skin="daouniverse"] video[playsinline] {
+  display: none !important;
+}
+
+/* Body background — deep-forest gradient. Stays consistently dark across
+   the entire viewport height so the editorial cream text holds at every
+   scroll position (mobile QA showed earlier sage-lifted middle band).
+   The radial canopy-glow overlay is kept very subtle so it suggests
+   depth without lifting the middle into invisible-text territory.
+   When Sasha's animated forest video lands, it layers on top of this. */
+[data-skin="daouniverse"] body {
+  background:
+    radial-gradient(ellipse at 50% 30%, rgba(28, 58, 42, 0.22) 0%, transparent 55%),
+    linear-gradient(180deg,
+      #050d09 0%,
+      #0a1a12 25%,
+      #0d2218 55%,
+      #0a1a12 80%,
+      #050d09 100%);
+  color: #f0e6d2;
+}
+
+/* The cosmic indigo page bg should bleed into our forest gradient. */
+[data-skin="daouniverse"] [class*="bg-[#0a0a1a]"] {
+  background-color: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+[data-skin="daouniverse"] .bg-\[\#0a0a1a\] {
+  background-color: #0a1a12 !important;
+}
+
+/* Paper grain off — the forest backdrop carries all the texture. */
+[data-skin="daouniverse"] body::before {
+  display: none;
+}
+[data-skin="daouniverse"] ::selection {
+  background: rgba(196, 163, 92, 0.32);
+  color: #f5ecd5;
+}
+
+/* Liquid-glass: re-tone toward dark forest with gold rim. */
+[data-skin="daouniverse"] .liquid-glass {
+  background: rgba(20, 38, 28, 0.45);
+  border: 1px solid rgba(196, 163, 92, 0.20);
+  box-shadow:
+    inset 0 1px 0 0 rgba(245, 236, 213, 0.16),
+    inset 0 -1px 0 0 rgba(0, 0, 0, 0.32),
+    0 8px 22px -6px rgba(0, 0, 0, 0.45);
+}
+[data-skin="daouniverse"] .liquid-glass-strong {
+  background: rgba(20, 38, 28, 0.65);
+  border: 1px solid rgba(196, 163, 92, 0.28);
+  box-shadow:
+    inset 0 1px 0 0 rgba(245, 236, 213, 0.22),
+    inset 0 -1px 0 0 rgba(0, 0, 0, 0.36),
+    0 12px 30px -10px rgba(0, 0, 0, 0.55);
+}
+[data-skin="daouniverse"] .liquid-glass-dark {
+  background: rgba(8, 18, 12, 0.85);
+  border: 1px solid rgba(196, 163, 92, 0.42);
+  box-shadow:
+    inset 0 1px 0 0 rgba(196, 163, 92, 0.22),
+    inset 0 -1px 0 0 rgba(0, 0, 0, 0.52),
+    0 0 22px -6px rgba(196, 163, 92, 0.32),
+    0 14px 36px -10px rgba(0, 0, 0, 0.62);
+  color: #f0e6d2;
+}
+
+/* Hover wash on rail + Pane 2 — gold-tinted. */
+[data-skin="daouniverse"] .liquid-glass.h-dvh button:hover,
+[data-skin="daouniverse"] .liquid-glass.h-dvh a:hover,
+[data-skin="daouniverse"] .liquid-glass.h-dvh .group:hover,
+[data-skin="daouniverse"] [class*="w-[260px]"] .group:hover,
+[data-skin="daouniverse"] aside[data-pane="2"] .group:hover {
+  background-color: rgba(196, 163, 92, 0.10) !important;
+}
+
+/* Active-item indicator — gold left-bar. */
+[data-skin="daouniverse"] [style*="--skin-selected-bg"] {
+  box-shadow: inset 3px 0 0 0 #c4a35c !important;
+}
+
+/* SPACES↔utility separator in Pane 1 — strengthen alpha for visibility
+   on dark forest. */
+[data-skin="daouniverse"] .liquid-glass.h-dvh .h-px[style*="rgba(212, 175, 55"] {
+  background-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(196, 163, 92, 0.45) 20%,
+    rgba(196, 163, 92, 0.45) 80%,
+    transparent 100%
+  ) !important;
+}
+
+/* Pane 2 top header (h-16) — gold-tinted border-bottom. */
+[data-skin="daouniverse"] [class*="w-[260px]"] > div.h-16:first-child,
+[data-skin="daouniverse"] aside[data-pane="2"] > div.h-16:first-child {
+  border-bottom-color: rgba(196, 163, 92, 0.22) !important;
+}
+
+/* Pane 2 close button visibility. */
+[data-skin="daouniverse"] button[aria-label="Hide sidebar"] {
+  color: rgba(245, 236, 213, 0.78) !important;
+}
+[data-skin="daouniverse"] button[aria-label="Hide sidebar"]:hover {
+  background-color: rgba(196, 163, 92, 0.12) !important;
+}
+
+/* Rail right edge — double-rule editorial separator in gold. */
+[data-skin="daouniverse"] .liquid-glass.h-dvh {
+  border-right: 3px double rgba(196, 163, 92, 0.28) !important;
+}
+
+/* Pane 2 right edge — single gold hairline + ensure forest bg. */
+[data-skin="daouniverse"] .liquid-glass.h-dvh + .h-dvh.sticky,
+[data-skin="daouniverse"] .liquid-glass.h-dvh + div[class*="w-[260px]"],
+[data-skin="daouniverse"] aside[data-pane="2"] {
+  border-right: 1px solid rgba(196, 163, 92, 0.22) !important;
+  background-color: var(--skin-panel-2-bg, rgb(20, 38, 28)) !important;
+}
+
+/* Tight-radius rectangles, not full pills (LATAM editorial register). */
+[data-skin="daouniverse"] button.liquid-glass-dark.rounded-full,
+[data-skin="daouniverse"] a.liquid-glass-dark.rounded-full,
+[data-skin="daouniverse"] button.rounded-full.liquid-glass-dark,
+[data-skin="daouniverse"] .liquid-glass-dark[class*="rounded-full"] {
+  border-radius: 10px !important;
+}
+
+/* Pane 1 brand SVG — kill any inherited drop-shadow / spin. */
+[data-skin="daouniverse"] .liquid-glass.h-dvh svg[data-brand="latam-pyramid"] {
+  filter: none !important;
+  animation: none !important;
+}
+
+/* Rail SPACE chip icons — tint to warm parchment-gold so they harmonize
+   with the single-accent palette. EXCLUDES the brand pyramid SVG which
+   renders in its native gold via the data-brand attribute selector above. */
+[data-skin="daouniverse"] .liquid-glass.h-dvh img[alt="Journey"],
+[data-skin="daouniverse"] .liquid-glass.h-dvh img[alt="AI OS"],
+[data-skin="daouniverse"] .liquid-glass.h-dvh img[alt="Me"],
+[data-skin="daouniverse"] .liquid-glass.h-dvh img[alt="Build"],
+[data-skin="daouniverse"] .liquid-glass.h-dvh img[src*="settings-icon"] {
+  filter: brightness(0) saturate(100%) invert(80%) sepia(35%) saturate(420%) hue-rotate(2deg) brightness(0.95) !important;
+}
+
+/* GameShellV2 top-right home glyph (spinning torus/fractal). NS converts
+   this to flat black; under daouniverse we tint to parchment-gold so the
+   rotating mark reads as a quiet brand sigil instead of a rainbow torus
+   that betrays the FYTT identity. Same filter recipe as the chip icons. */
+[data-skin="daouniverse"] a[aria-label="Home"] img {
+  filter: brightness(0) saturate(100%) invert(80%) sepia(35%) saturate(420%) hue-rotate(2deg) brightness(0.95) !important;
+}
+
+/* GlyphIcon variants — same fingerprint selector as NS. */
+[data-skin="daouniverse"] .liquid-glass.h-dvh span[style*="place-items: center"],
+[data-skin="daouniverse"] .liquid-glass.h-dvh span[style*="place-items:center"] {
+  color: #d4b975 !important;
+  text-shadow: 0 0 6px rgba(212, 185, 117, 0.32) !important;
+}
+
+/* Auth page editorial overrides (mirror NS V8 pattern with daouniverse palette). */
+[data-skin="daouniverse"] article.liquid-glass-strong h1,
+[data-skin="daouniverse"] article.liquid-glass-strong h1 *,
+[data-skin="daouniverse"] article.liquid-glass-strong p,
+[data-skin="daouniverse"] article.liquid-glass-strong label {
+  font-family: "Playfair Display", "Cormorant Garamond", Georgia, serif !important;
+  color: var(--skin-text-primary, #f0e6d2) !important;
+}
+[data-skin="daouniverse"] article.liquid-glass-strong button,
+[data-skin="daouniverse"] article.liquid-glass-strong input {
+  font-family: "Inter", system-ui, sans-serif !important;
+}
+[data-skin="daouniverse"] article.liquid-glass-strong [role="tablist"] {
+  background-color: rgba(196, 163, 92, 0.08) !important;
+  border-color: rgba(196, 163, 92, 0.22) !important;
+}
+[data-skin="daouniverse"] article.liquid-glass-strong [role="tab"][data-state="active"] {
+  background-color: rgba(196, 163, 92, 0.18) !important;
+  color: #f5ecd5 !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.18) !important;
+}
+[data-skin="daouniverse"] article.liquid-glass-strong [role="tab"]:not([data-state="active"]) {
+  color: rgba(240, 230, 210, 0.62) !important;
+}
+[data-skin="daouniverse"] article.liquid-glass-strong input {
+  background-color: rgba(13, 25, 18, 0.55) !important;
+  border-color: rgba(196, 163, 92, 0.32) !important;
+  color: #f0e6d2 !important;
+}
+[data-skin="daouniverse"] article.liquid-glass-strong input::placeholder {
+  color: rgba(240, 230, 210, 0.42) !important;
+}
+[data-skin="daouniverse"] article.liquid-glass-strong form button[type="submit"] {
+  background: linear-gradient(135deg, #c4a35c 0%, #a8884c 100%) !important;
+  color: #0a1a12 !important;
+  border-color: rgba(245, 236, 213, 0.22) !important;
+  font-family: "Inter", system-ui, sans-serif !important;
+  letter-spacing: 0.08em;
+}
+
 /* Day 82 v4 (Sasha 2026-05-24): SpacesRail compact mode. When the rail
    carries data-rail-compact="true" (set by GameShellV2 when the user
    minimizes pane 1 via the new toggle), force-hide every `md:block`
@@ -907,6 +1318,178 @@
 [data-rail-compact="true"] .liquid-glass a.group > span {
   font-size: 22px !important;
   line-height: 1 !important;
+}
+
+/* ───────────────────────────────────────────────────────────────────
+   COLLAPSED SPINE — Day 84 (Sasha 2026-05-26)
+   Replaces the flat 5px-wide column toggle buttons with proper
+   tactile "collapsed drawer spine" elements per Sasha's design
+   brief. Used in the karime-skinned shell to make the rail-minimize
+   toggle (Panel 2) + sections-panel-expand button (Panel 3) read as
+   real physical objects — glass spine with a round handle in the
+   middle — rather than wireframe dividers.
+
+   Anatomy of each spine:
+     • outer button = 32-36px hit area, transparent
+     • spine-core   = 10-14px wide pill with full vertical extent,
+                      gold-tinted translucent gradient + edge
+                      highlights + inner shadow
+     • spine-handle = 22px round handle floating at vertical center,
+                      embossed glass with gold rim, holds the icon
+
+   Active state adds stronger gold ring + slightly wider spine.
+   Hover state widens spine + lifts handle.
+*/
+
+.collapsed-spine {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  z-index: 30;
+}
+
+.collapsed-spine .spine-core {
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.04) 0%,
+    rgba(255, 215, 120, 0.10) 20%,
+    rgba(255, 215, 120, 0.22) 48%,
+    rgba(255, 255, 255, 0.08) 72%,
+    rgba(0, 0, 0, 0.10) 100%
+  );
+  border-left: 1px solid rgba(255, 255, 255, 0.18);
+  border-right: 1px solid rgba(255, 230, 150, 0.10);
+  box-shadow:
+    inset 1px 0 1px rgba(255, 255, 255, 0.16),
+    inset -1px 0 2px rgba(0, 0, 0, 0.20),
+    2px 0 10px rgba(0, 0, 0, 0.16),
+    6px 0 18px rgba(0, 0, 0, 0.10);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition:
+    width 180ms ease,
+    box-shadow 180ms ease,
+    opacity 180ms ease,
+    transform 180ms ease;
+}
+
+.collapsed-spine .spine-handle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  background: radial-gradient(
+    circle at 35% 30%,
+    rgba(255, 255, 255, 0.22),
+    rgba(255, 215, 120, 0.14) 50%,
+    rgba(0, 0, 0, 0.22) 100%
+  );
+  border: 1px solid rgba(255, 220, 130, 0.35);
+  box-shadow:
+    inset 0 1px 2px rgba(255, 255, 255, 0.18),
+    inset 0 -2px 3px rgba(0, 0, 0, 0.20),
+    0 4px 10px rgba(0, 0, 0, 0.22);
+  opacity: 0.92;
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    opacity 180ms ease;
+  color: rgba(244, 212, 114, 0.95);
+}
+
+/* Width variants — rail-toggle (Panel 2) vs sections-expand (Panel 3) */
+.collapsed-spine.spine-narrow {
+  width: 32px;
+  min-width: 32px;
+}
+.collapsed-spine.spine-narrow .spine-core {
+  width: 12px;
+}
+.collapsed-spine.spine-wide {
+  width: 36px;
+  min-width: 36px;
+}
+.collapsed-spine.spine-wide .spine-core {
+  width: 14px;
+}
+
+/* Hover — widen spine, lift + brighten handle */
+.collapsed-spine:hover .spine-core,
+.collapsed-spine:focus-visible .spine-core {
+  box-shadow:
+    inset 1px 0 1px rgba(255, 255, 255, 0.22),
+    inset -1px 0 2px rgba(0, 0, 0, 0.22),
+    2px 0 10px rgba(0, 0, 0, 0.18),
+    0 0 14px rgba(255, 215, 120, 0.16),
+    6px 0 18px rgba(0, 0, 0, 0.12);
+}
+.collapsed-spine.spine-narrow:hover .spine-core,
+.collapsed-spine.spine-narrow:focus-visible .spine-core {
+  width: 15px;
+}
+.collapsed-spine.spine-wide:hover .spine-core,
+.collapsed-spine.spine-wide:focus-visible .spine-core {
+  width: 17px;
+}
+.collapsed-spine:hover .spine-handle,
+.collapsed-spine:focus-visible .spine-handle {
+  transform: translate(-50%, -50%) scale(1.06);
+  opacity: 1;
+  box-shadow:
+    inset 0 1px 2px rgba(255, 255, 255, 0.22),
+    inset 0 -2px 3px rgba(0, 0, 0, 0.20),
+    0 4px 12px rgba(0, 0, 0, 0.26),
+    0 0 14px rgba(255, 215, 120, 0.20);
+}
+
+/* Active / lit state — stronger gold ring on spine + handle */
+.collapsed-spine.active .spine-core {
+  border-left-color: rgba(255, 240, 180, 0.32);
+  box-shadow:
+    inset 1px 0 1px rgba(255, 255, 255, 0.22),
+    inset -1px 0 2px rgba(0, 0, 0, 0.22),
+    0 0 16px rgba(255, 215, 120, 0.18),
+    6px 0 20px rgba(0, 0, 0, 0.14);
+}
+.collapsed-spine.spine-narrow.active .spine-core {
+  width: 15px;
+}
+.collapsed-spine.spine-wide.active .spine-core {
+  width: 17px;
+}
+.collapsed-spine.active .spine-handle {
+  border-color: rgba(255, 220, 130, 0.55);
+  box-shadow:
+    inset 0 1px 2px rgba(255, 255, 255, 0.24),
+    inset 0 -2px 3px rgba(0, 0, 0, 0.20),
+    0 4px 12px rgba(0, 0, 0, 0.26),
+    0 0 16px rgba(255, 215, 120, 0.24);
+  opacity: 1;
+}
+
+/* SpacesRail (Panel 1) — Day 84: enhanced glass-rail material
+   treatment when in compact mode. Adds a stronger right-edge gold
+   highlight, a soft cast shadow rightward into pane 3, and a
+   subtle outer glow. The rail goes from "dark block" to
+   "translucent sacred control rail with weight". */
+[data-rail-compact="true"].liquid-glass {
+  box-shadow:
+    inset -1px 0 0 rgba(255, 215, 120, 0.22),
+    inset -2px 0 4px rgba(255, 215, 120, 0.06),
+    3px 0 14px -4px rgba(0, 0, 0, 0.45),
+    8px 0 32px -10px rgba(0, 0, 0, 0.30) !important;
 }
 [data-rail-compact="true"] .absolute.left-0.rounded-r-full {
   display: none !important;
@@ -1765,6 +2348,30 @@ All colors MUST be HSL.
     --border: 0 0% 90%;
     --input: 0 0% 90%;
     --ring: 0 0% 4%;
+  }
+
+  /* Daouniverse — editorial luxe-regenerative. Deep-forest base, cream text,
+     parchment-gold accents. Shadcn HSL palette so Cards/Inputs/Buttons
+     auto-adapt without per-component branches. Activated by `/daouniverse/*`
+     route prefix via DaouniverseScopeLock. */
+  [data-skin="daouniverse"] {
+    --background: 150 32% 8%;          /* deep forest green */
+    --foreground: 40 45% 88%;          /* warm cream */
+    --card: 150 28% 12%;
+    --card-foreground: 40 45% 88%;
+    --popover: 150 32% 9%;
+    --popover-foreground: 40 45% 88%;
+    --primary: 40 45% 56%;             /* parchment gold */
+    --primary-foreground: 150 35% 8%;
+    --secondary: 150 25% 14%;
+    --secondary-foreground: 40 45% 88%;
+    --muted: 150 22% 13%;
+    --muted-foreground: 40 25% 72%;
+    --accent: 40 45% 56%;              /* gold accent */
+    --accent-foreground: 150 35% 8%;
+    --border: 40 30% 28%;              /* gold-tinted border */
+    --input: 150 22% 13%;
+    --ring: 40 45% 56%;
   }
 }
 
