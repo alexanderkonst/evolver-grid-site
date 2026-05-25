@@ -44,6 +44,11 @@ const NS_LOGO_URL = "https://ns-assets.com/auth-privy/network-school-black-flag-
 // without visible seam.
 import latamLockup from "@/assets/latam-impact-lockup.png";
 import latamPyramid from "@/assets/latam-impact-pyramid.png";
+// Day 84 (Sasha 2026-05-25): Planetir white-label brand asset. Single
+// horizontal lockup (olive shield + "Planetir" wordmark, transparent bg
+// via Adobe Express). Used at both desktop rail and mobile pill — the
+// lockup is small enough horizontally to read on the 72px column.
+import planetirLogo from "@/assets/planetir-logo.png";
 // Day 48 iter 7 (Sasha): JOURNEY + ME spaces now render with custom
 // image assets (gold-tinted) instead of typographic glyphs — keeps
 // them coherent with the gold-signature identity while the other
@@ -267,6 +272,7 @@ const SpacesRail = ({
     const { skin } = useSkin();
     const isNS = skin === "network-school";
     const isDao = skin === "daouniverse";
+    const isPlanetir = skin === "planetir";
 
     // Day 54+++ (Sasha 2026-04-28 night): backdrop-filter disabled on touch
     // devices. iOS WebKit's backdrop-filter on a full-viewport-height region
@@ -392,9 +398,33 @@ const SpacesRail = ({
                 <Link
                     to="/"
                     className="block group transition-all hover:opacity-90"
-                    aria-label={isNS ? "Network School — home" : isDao ? "LATAM Impact — home" : "Find Your Top Talent — home"}
+                    aria-label={isNS ? "Network School — home" : isDao ? "LATAM Impact — home" : isPlanetir ? "Planetir — home" : "Find Your Top Talent — home"}
                 >
-                    {isDao ? (
+                    {isPlanetir ? (
+                        <>
+                            {/* Day 84 (Sasha 2026-05-25): Planetir lockup
+                                (olive shield + wordmark, transparent bg).
+                                Mobile (72px) crops to icon-only via object
+                                positioning; desktop shows full lockup. */}
+                            <div className="md:hidden flex items-center justify-center px-3 py-2.5">
+                                <img
+                                    src={planetirLogo}
+                                    alt="Planetir"
+                                    className="h-9 w-auto object-contain object-left flex-shrink-0"
+                                    style={{ maxWidth: "40px" }}
+                                    draggable={false}
+                                />
+                            </div>
+                            <div className="hidden md:flex items-center justify-start px-3 py-2.5">
+                                <img
+                                    src={planetirLogo}
+                                    alt="Planetir"
+                                    className="h-10 w-auto object-contain flex-shrink-0"
+                                    draggable={false}
+                                />
+                            </div>
+                        </>
+                    ) : isDao ? (
                         <>
                             {/* Day 84 v3 (Sasha 2026-05-25): LATAM Impact
                                 official brand assets, sourced directly from

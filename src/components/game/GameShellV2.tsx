@@ -22,6 +22,8 @@ import brandMark from "@/assets/find-your-top-talent-torus.png";
 // Day 84 v3 (Sasha 2026-05-25): real LATAM Impact pyramid mark for the
 // daouniverse mobile pill — replaces the V2 inline SVG.
 import latamPyramidMark from "@/assets/latam-impact-pyramid.png";
+// Day 84 (Sasha 2026-05-25): Planetir lockup for mobile pill.
+import planetirLogoMark from "@/assets/planetir-logo.png";
 import { useSkin } from "@/contexts/SkinContext";
 // Day 80 Wave 2.11: useEntryPath import retired — the video background
 // now checks the URL directly at mount (see comment in MuxVideoBackground
@@ -332,6 +334,7 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
     // as NS: mobile pill is a separate DOM tree from the rail, so the
     // skin-aware swap has to be explicit here too.
     const __isDaoShell = __spaceShipSkin === "daouniverse";
+    const __isPlanetirShell = __spaceShipSkin === "planetir";
     const location = useLocation();
     const navigate = useNavigate();
 
@@ -1663,6 +1666,12 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                                 border: '1px solid rgba(196,163,92,0.38)',
                                 filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.55))',
                                 boxShadow: '0 0 14px -4px rgba(196,163,92,0.32)',
+                            } : __isPlanetirShell ? {
+                                color: '#ffffff',
+                                background: 'rgba(18,28,16,0.62)',
+                                border: '1px solid rgba(196,163,92,0.36)',
+                                filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.55))',
+                                boxShadow: '0 0 14px -4px rgba(196,163,92,0.32)',
                             } : {
                                 color: '#f4d472',
                                 background: 'rgba(244,212,114,0.08)',
@@ -1682,11 +1691,13 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                                    asset principle now applies to daouniverse —
                                    the real LATAM pyramid PNG renders here too,
                                    replacing the V2 inline SVG. */
-                                src={__isDaoShell
-                                    ? latamPyramidMark
-                                    : __isNSShell
-                                        ? "https://ns-assets.com/auth-privy/network-school-black-flag-white-background-privy.png"
-                                        : brandMark}
+                                src={__isPlanetirShell
+                                    ? planetirLogoMark
+                                    : __isDaoShell
+                                        ? latamPyramidMark
+                                        : __isNSShell
+                                            ? "https://ns-assets.com/auth-privy/network-school-black-flag-white-background-privy.png"
+                                            : brandMark}
                                 alt=""
                                 aria-hidden="true"
                                 className="w-7 h-7 object-contain flex-shrink-0"
@@ -1846,7 +1857,11 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                                         // sage-gray. Transparent lets the body
                                         // bg show through unchanged.
                                         ? "transparent"
-                                        : "rgba(248, 246, 240, 0.55)",
+                                        : __isPlanetirShell
+                                            // Same lesson for planetir — body
+                                            // forest gradient through.
+                                            ? "transparent"
+                                            : "rgba(248, 246, 240, 0.55)",
                         }}
                     >
                         <div className="page-transition-enter">
