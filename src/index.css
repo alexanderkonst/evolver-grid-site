@@ -7,6 +7,11 @@
    transitional match to NS's display face than Source Serif Pro.
    Loaded for V3 NS skin (Sasha 2026-05-19). */
 @import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+/* Lexend — used by the planetir skin (white-label, planetir.org).
+   Rounded geometric grotesque, designed for readability. Full variable
+   axis loaded (100..900) including italic axis per Day 84 daouniverse
+   lesson (synthetic italic on display fonts reads janky). */
+@import url('https://fonts.googleapis.com/css2?family=Lexend:ital,wght@0,100..900;1,100..900&display=swap');
 
 @tailwind base;
 @tailwind components;
