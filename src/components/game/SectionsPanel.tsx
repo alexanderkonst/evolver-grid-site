@@ -668,7 +668,18 @@ const buildJourneySections = (
             // hint as the other numbered steps.
             locked: !topTalentDone,
             lockedHint: "Articulate your top talent first.",
-            completed: !!journeyProgress["journey-activation"],
+            // Day 80 (Sasha 2026-05-25): completion signal swapped from
+            // `journeyProgress["journey-activation"]` (a key that
+            // useJourneyProgress never actually emits — see
+            // src/hooks/useJourneyProgress.ts line 222 where the
+            // progress map is built; no `journey-activation` key
+            // exists) to the `activationDone` parameter already
+            // threaded into buildJourneySections. activationDone is
+            // true when the user has paid the $37 OR redeemed a
+            // coupon — the canonical signal that the deeper-talent
+            // view is unlocked. Without this swap the sidequest never
+            // marked complete and never crossed out.
+            completed: activationDone,
         },
         {
             id: "journey-mission-discovery",
