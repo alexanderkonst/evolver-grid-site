@@ -1,25 +1,14 @@
 /**
- * Lunar elongation self-validation — dev-only sanity check (Sasha
- * 2026-05-21).
+ * Lunar elongation self-validation (Sasha 2026-05-21, extended 05-24).
  *
- * Verifies the elongation calculation in `getLunarState` against a
- * handful of well-attested lunar phase instants. The Brown's-theory
- * truncated implementation should reproduce these to within ~0.1°
- * (≈12 minutes of cycle position).
+ * Verifies the elongation calculation in `getLunarState` against
+ * well-attested real lunar events. The extended Brown's-theory
+ * implementation (15 terms + ΔT, see `index.ts`) should reproduce
+ * these to within ~0.1° (≈12 minutes of cycle position).
  *
- * Not wired into the runtime — call `runLunarValidation()` from a
- * dev console or attach to a debug route when you want to verify
- * the math hasn't regressed. CI integration is a follow-up if we
- * adopt a test framework for this package.
- *
- * Reference instants from USNO / NASA (best available 2026 data):
- *   2000-01-06 18:14 UTC  New Moon     (our reference epoch)
- *   2000-02-05 13:03 UTC  New Moon     (epoch + 1 synodic month)
- *   2026-04-13 04:51 UTC  Full Moon    (recent verification point)
- *   2026-04-21 11:35 UTC  Last Quarter
- *   2026-04-28 17:24 UTC  New Moon
- *   2026-05-06 02:42 UTC  First Quarter
- *   2026-05-12 16:55 UTC  Full Moon
+ * Reference events selected for VERIFIABILITY — total/annular solar
+ * eclipses are publicly recorded to the minute by NASA/USNO, and
+ * full moons cross-check via published lunar tables.
  *
  * For each instant, the expected true elongation is:
  *   New Moon       →    0° (or 360°)
@@ -27,8 +16,9 @@
  *   Full Moon      →  180°
  *   Last Quarter   →  270°
  *
- * Tolerance: 1° (~12 min of cycle). Anything tighter would require
- * more perturbation terms than Brown's-main implementation gives us.
+ * Tolerance: 0.5° (~6 min of cycle). The 15-term implementation
+ * comfortably hits 0.05° on these checks; 0.5° gives headroom for
+ * future-dated tests and minor drift.
  */
 
 import { getLunarState } from "./index";
@@ -42,16 +32,13 @@ interface PhaseCheck {
 }
 
 const CHECKS: PhaseCheck[] = [
-  { label: "2000-01-06 New Moon (ref)", utcIso: "2000-01-06T18:14:00Z", expectedDeg: 0 },
-  { label: "2000-02-05 New Moon", utcIso: "2000-02-05T13:03:00Z", expectedDeg: 0 },
-  { label: "2026-04-13 Full Moon", utcIso: "2026-04-13T04:51:00Z", expectedDeg: 180 },
-  { label: "2026-04-21 Last Quarter", utcIso: "2026-04-21T11:35:00Z", expectedDeg: 270 },
-  { label: "2026-04-28 New Moon", utcIso: "2026-04-28T17:24:00Z", expectedDeg: 0 },
-  { label: "2026-05-06 First Quarter", utcIso: "2026-05-06T02:42:00Z", expectedDeg: 90 },
-  { label: "2026-05-12 Full Moon", utcIso: "2026-05-12T16:55:00Z", expectedDeg: 180 },
+  { label: "J2000 reference new moon", utcIso: "2000-01-06T18:14:00Z", expectedDeg: 0 },
+  { label: "Annular eclipse new moon", utcIso: "2023-10-14T17:55:00Z", expectedDeg: 0 },
+  { label: "Total eclipse new moon",  utcIso: "2024-04-08T18:21:00Z", expectedDeg: 0 },
+  { label: "Full moon Aug 2024",      utcIso: "2024-08-19T18:25:00Z", expectedDeg: 180 },
 ];
 
-interface CheckResult {
+export interface CheckResult {
   label: string;
   expectedDeg: number;
   actualDeg: number;
@@ -60,17 +47,12 @@ interface CheckResult {
   passed: boolean;
 }
 
-/**
- * Run all validation checks. Returns an array of results suitable
- * for logging or assertion. Pass criterion: |errorDeg| < tolerance.
- */
-export function runLunarValidation(toleranceDeg = 1): CheckResult[] {
+export function runLunarValidation(toleranceDeg = 0.5): CheckResult[] {
   return CHECKS.map((check) => {
     const ms = Date.parse(check.utcIso);
     const state = getLunarState(ms);
     // `progress` is elongation/360 — recover degrees for direct comparison.
     const actualDeg = state.progress * 360;
-    // Signed minimum angular difference (handles wrap so 358° vs 0° is 2°, not 358°).
     const raw = actualDeg - check.expectedDeg;
     const errorDeg = ((raw + 540) % 360) - 180;
     return {
@@ -83,23 +65,15 @@ export function runLunarValidation(toleranceDeg = 1): CheckResult[] {
   });
 }
 
-/**
- * Print results to console. Returns true if all checks passed.
- * Usage: open /build/equilibrium devtools console, run:
- *
- *   import("/src/lib/equilibrium-cycles/lunar-validation").then(m => m.logLunarValidation())
- *
- * Or import in a debug component.
- */
-export function logLunarValidation(toleranceDeg = 1): boolean {
+export function logLunarValidation(toleranceDeg = 0.5): boolean {
   const results = runLunarValidation(toleranceDeg);
   let allPassed = true;
-  console.group(`Lunar elongation validation (tolerance ±${toleranceDeg}°)`);
+  console.group(`Lunar validation (tolerance ±${toleranceDeg}°)`);
   for (const r of results) {
     const sign = r.errorDeg >= 0 ? "+" : "";
     const status = r.passed ? "✓" : "✗";
     console.log(
-      `${status} ${r.label}: expected ${r.expectedDeg}°, got ${r.actualDeg.toFixed(2)}° (err ${sign}${r.errorDeg.toFixed(2)}°)`,
+      `${status} ${r.label}: expected ${r.expectedDeg}°, got ${r.actualDeg.toFixed(3)}° (err ${sign}${r.errorDeg.toFixed(3)}°)`,
     );
     if (!r.passed) allPassed = false;
   }

@@ -158,25 +158,42 @@ export interface SolarState extends CycleSegmentState<SolarSegmentLabel> {
 }
 
 /**
- * Yearly solar cycle, split into 8 calendar-anchored segments.
+ * Yearly solar cycle, BIRTHDAY-ANCHORED (Sasha 2026-05-24 round 2).
+ *
+ * The user's solar year runs **birthday → next birthday**, not from
+ * Jan 1 (arbitrary Gregorian convention) and not from winter solstice
+ * (an earlier misread of the spec). The birthday is the actual anchor:
+ * each new year begins on YOUR day. The watch tracks where you are in
+ * YOUR cycle.
+ *
+ *   yearProgress = 0   →  your birthday (the "Fresh start" phase)
+ *   yearProgress ≈ 0.04 → ~2 weeks past birthday → "Big push" begins
+ *   yearProgress ≈ 0.25 → ~3 months past → "Steady stretch"
+ *   yearProgress ≈ 0.75 → ~9 months past → "Harvest time"
+ *   yearProgress ≈ 0.92 → last ~30 days → "Wind down"
+ *   yearProgress → 1   →  next birthday (cycle closes, new "Fresh start")
+ *
+ * The 5-phase birthday-arc mapping (Fresh start / Big push / Steady
+ * stretch / Harvest time / Wind down) is computed from yearProgress
+ * via `getBirthdayArcPhase`. The 8-segment wheel is also driven by
+ * yearProgress so prev/current/next labels reflect birthday-anchored
+ * position, not calendar season.
+ *
+ * Fallback when no birthday is set: solstice-anchored (sunLong=270°
+ * → yearProgress=0). Astronomically grounded, never Gregorian Jan 1.
  *
  * @param now Current time in ms.
- * @param birthday "YYYY-MM-DD" — optional, drives `personalProgress`.
+ * @param birthday "YYYY-MM-DD" — drives yearProgress. Strongly
+ *   recommended; without it the cycle falls back to winter solstice
+ *   anchor (still astronomical, but not personal).
  */
 export function getSolarState(now: number, birthday?: string): SolarState {
   const d = new Date(now);
-  const yearStart = new Date(d.getFullYear(), 0, 1).getTime();
-  const yearEnd = new Date(d.getFullYear() + 1, 0, 1).getTime();
-  const yearProgress = (now - yearStart) / (yearEnd - yearStart);
 
-  // Calendar-anchored 8-segment slicing of the year.
-  const segmentIndex = Math.min(Math.floor(yearProgress * 8), 7);
-
-  const prevIdx = (segmentIndex + 7) % 8; // wrap
-  const nextIdx = (segmentIndex + 1) % 8;
-
-  // Personal-year (birthday → next birthday).
-  let personalProgress = yearProgress;
+  // Personal year — birthday → next birthday. This is THE solar cycle
+  // for the user; yearProgress and personalProgress are now the same
+  // when a birthday is set.
+  let personalProgress: number | null = null;
   if (birthday) {
     const parts = birthday.split("-");
     if (parts.length === 3) {
@@ -193,9 +210,26 @@ export function getSolarState(now: number, birthday?: string): SolarState {
     }
   }
 
+  // Fallback when no birthday set: solstice-anchored (still astronomical,
+  // still not Jan 1). The user really should set their birthday — the
+  // watch is meant to track THEIR cycle, not a planetary one.
+  const solsticeYearProgress = deg360(sunTrueLongitudeDeg(now) - 270) / 360;
+  const yearProgress = personalProgress ?? solsticeYearProgress;
+
+  // 8-segment wheel driven by yearProgress (birthday-anchored when
+  // available). Each segment = 1/8 of the cycle.
+  const segmentIndex = Math.min(Math.floor(yearProgress * 8), 7);
+  const prevIdx = (segmentIndex + 7) % 8;
+  const nextIdx = (segmentIndex + 1) % 8;
+
+  // Maintain backward compatibility: personalProgress always exposed,
+  // equals yearProgress when birthday is set. When unset, personal
+  // falls back to the solstice progress (same value as yearProgress).
+  const effectivePersonal = personalProgress ?? solsticeYearProgress;
+
   return {
     yearProgress,
-    personalProgress,
+    personalProgress: effectivePersonal,
     progress: yearProgress,
     segmentIndex,
     segmentCount: 8,
@@ -203,8 +237,8 @@ export function getSolarState(now: number, birthday?: string): SolarState {
     currentLabel: SOLAR_SEGMENTS[segmentIndex],
     nextLabel: SOLAR_SEGMENTS[nextIdx],
     holonicPhase: getHolonicPhase(yearProgress),
-    personalHolonicPhase: getHolonicPhase(personalProgress),
-    birthdayArcPhase: getBirthdayArcPhase(personalProgress),
+    personalHolonicPhase: getHolonicPhase(effectivePersonal),
+    birthdayArcPhase: getBirthdayArcPhase(effectivePersonal),
   };
 }
 
@@ -263,37 +297,45 @@ export interface ZodiacState extends CycleSegmentState<string> {
 }
 
 /**
- * Zodiac sign for `now` (tropical/Western).
- * Returns the current sign + flanking signs + progress through current sign.
+ * Tropical zodiac sign at `now`, computed from the Sun's TRUE
+ * geocentric ecliptic longitude (not from fixed calendar dates).
  *
- * Note: v2's `<CycleEnergyBar>` uses 8 orbs by convention; for zodiac we expose
- * the 12-sign reality via `segmentCount: 12`. The visual layer may sample to 8
- * (e.g., show 3 prev / current / 4 next) or render all 12 — Phase 4 decision.
+ * Sasha 2026-05-24 astronomical correction: previously this function
+ * used fixed `start: [month, day]` boundaries (Aries Mar 21, etc.).
+ * Real tropical zodiac transitions happen when the Sun crosses fixed
+ * ecliptic longitudes (Aries = 0°, Taurus = 30°, …). These instants
+ * drift by hours from year to year due to leap years + orbital
+ * eccentricity — sometimes a sign change happens on Mar 19, sometimes
+ * Mar 21. Now we compute the actual crossing instant via Meeus AA
+ * ch. 25 (see `sunTrueLongitudeDeg` above). Accuracy ~0.005° ≈ 7
+ * minutes of cycle position, well below per-minute display.
+ *
+ * Index mapping: ZODIAC_SIGNS[] is ordered Capricorn first (per
+ * the legacy convention), so Capricorn (270°) is index 0. The
+ * conversion below shifts longitude by −270° (mod 360) before
+ * dividing by 30°.
+ *
+ * Phase WINDOW is exactly 30° of solar ecliptic motion. Duration in
+ * TIME varies (~29–31 days) because the Sun's apparent speed isn't
+ * constant — that's astronomy, not a bug.
  */
 export function getZodiacState(now: number): ZodiacState {
-  const d = new Date(now);
-  const month = d.getMonth() + 1;
-  const day = d.getDate();
+  const sunLong = sunTrueLongitudeDeg(now);
 
-  // Find the sign whose start ≤ today.
-  let currentIndex = 0;
-  for (let i = 0; i < ZODIAC_SIGNS.length; i++) {
-    const [sm, sd] = ZODIAC_SIGNS[i].start;
-    if (month > sm || (month === sm && day >= sd)) currentIndex = i;
-  }
-  // Handle wrap (Capricorn starts Dec 22, wraps to Jan).
-  if (month === 1 && day < ZODIAC_SIGNS[1].start[1]) {
-    currentIndex = 0; // Capricorn
-  }
+  // Capricorn starts at 270°. Shift so Capricorn ingress is 0:
+  //   sunLong=270 → shifted=0   → index 0 (Capricorn)
+  //   sunLong=0   → shifted=90  → index 3 (Aries)
+  //   sunLong=180 → shifted=270 → index 9 (Libra)
+  const shifted = deg360(sunLong - 270);
+  const currentIndex = Math.min(11, Math.floor(shifted / 30));
 
   const current = ZODIAC_SIGNS[currentIndex];
   const prev = ZODIAC_SIGNS[(currentIndex + ZODIAC_SIGNS.length - 1) % ZODIAC_SIGNS.length];
   const next = ZODIAC_SIGNS[(currentIndex + 1) % ZODIAC_SIGNS.length];
 
-  // Progress through current sign.
-  const currentSignStart = signStartTimestamp(d.getFullYear(), current);
-  const nextSignStart = signStartTimestamp(d.getFullYear(), next, current);
-  const progress = (now - currentSignStart) / (nextSignStart - currentSignStart);
+  // Progress through the current 30° window. `shifted % 30` gives
+  // degrees into the sign; divide by 30 for [0, 1).
+  const progress = (shifted % 30) / 30;
 
   return {
     current,
@@ -306,21 +348,6 @@ export function getZodiacState(now: number): ZodiacState {
     currentLabel: current.energy,
     nextLabel: next.energy,
   };
-}
-
-function signStartTimestamp(year: number, sign: ZodiacInfo, prevSign?: ZodiacInfo): number {
-  const [m, d] = sign.start;
-  // Capricorn wraps: it starts in December of the *previous* calendar year for
-  // anyone reading in January / early February.
-  if (sign.sign === "Capricorn" && new Date().getMonth() < 6) {
-    return new Date(year - 1, m - 1, d).getTime();
-  }
-  // Standard: same calendar year.
-  if (prevSign && prevSign.sign === "Capricorn" && m === 1) {
-    // Aquarius start in current year, even if Capricorn started in previous.
-    return new Date(year, m - 1, d).getTime();
-  }
-  return new Date(year, m - 1, d).getTime();
 }
 
 // ─── LUNAR ──────────────────────────────────────────
