@@ -1556,18 +1556,21 @@
   display: none !important;
 }
 
-/* Body background — deep sun-pierced forest gradient. Mood-matches the
-   still planetir.org background (amber sun behind pine trees). */
+/* Body background — sun-pierced forest still image (Sasha provided as
+   the source of bg truth). Lives at /planetir-bg-still.png (public/),
+   referenced as a fixed-position cover. A dark forest gradient overlays
+   on top to ensure cream text holds against the brightest sun areas
+   of the image. When Sasha provides the animated Mux URL, this still
+   continues as the fallback while HLS loads. */
 [data-skin="planetir"] body {
   background:
-    radial-gradient(ellipse at 60% 22%, rgba(212, 178, 110, 0.32) 0%, transparent 48%),
-    radial-gradient(ellipse at 50% 50%, rgba(38, 60, 32, 0.32) 0%, transparent 65%),
     linear-gradient(180deg,
-      #0a1a10 0%,
-      #142818 28%,
-      #1a2e1c 55%,
-      #14241a 80%,
-      #0a1810 100%);
+      rgba(8, 16, 10, 0.58) 0%,
+      rgba(8, 16, 10, 0.42) 35%,
+      rgba(8, 16, 10, 0.55) 70%,
+      rgba(8, 16, 10, 0.72) 100%),
+    url('/planetir-bg-still.png') center/cover no-repeat fixed,
+    #0a1a10;
   color: #ffffff;
 }
 
