@@ -20,10 +20,10 @@ const MethodologyLandingPage = () => {
   return (
     <>
       <SEO
-        title="Find Your Top Talent"
-        description="In 90 minutes, name your craft, discover the business built on who you already are, and get the first easy move to your first paying client. $555 with money-back guarantee."
+        title="Find Your Top Talent. Productize It. Find Your People."
+        description="An open-source methodology and AI-native apparatus for building your unique business off who you uniquely are."
         path="/"
-        ogTitle="You've been giving your best work away for free."
+        ogTitle="Find Your Top Talent. Productize It. Find Your People."
       />
     {/* Day 80 (Sasha 2026-05-23): hero typography + container padding
         shifted one tier down so the full first-viewport stack (eyebrow,

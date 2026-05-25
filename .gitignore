@@ -35,3 +35,4 @@ dist-ssr
 # the worktree dirs register as gitlinks (mode 160000) and the
 # auto-deploy script keeps churning "deploy" commits as they change.
 .claude/worktrees/
+.gstack/
