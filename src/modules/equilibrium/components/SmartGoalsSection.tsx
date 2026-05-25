@@ -218,6 +218,13 @@ interface SortableTaskBarProps {
   onRename: (text: string) => Promise<void> | void;
   onDelete: () => Promise<void> | void;
   onPromote: () => Promise<void> | void;
+  /**
+   * Demote the task from DOING NOW back to the workstream. Bound to
+   * the IN FOCUS pill — Sasha 2026-05-25: when a task is already in
+   * focus, clicking the pill releases it. Pairs with the DO NOW
+   * action so promote ↔ demote happen at the same control.
+   */
+  onDemote: () => Promise<void> | void;
   onComplete: () => Promise<void> | void;
 }
 
@@ -228,6 +235,7 @@ const SortableTaskBar = ({
   onRename,
   onDelete,
   onPromote,
+  onDemote,
   onComplete,
 }: SortableTaskBarProps) => {
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } =
@@ -275,19 +283,44 @@ const SortableTaskBar = ({
         />
       </div>
 
+      {/*
+        Promote / demote pill (Sasha 2026-05-25).
+        Single control, two states:
+          • inFocus=false → "do now" — click promotes to DOING NOW
+          • inFocus=true  → "in focus" / hover "release ↶" — click
+                              demotes back to the workstream.
+        Hover swap on the focus state telegraphs the action so the
+        affordance is discoverable. Soft rose hover tint signals
+        release (matches the workstream trash semantics) but the
+        resting state stays emerald — task is still in good standing,
+        we're not implying anything destructive.
+      */}
       <button
         type="button"
-        aria-label="DO NOW"
-        onClick={onPromote}
-        disabled={inFocus}
-        className={cn(
-          "shrink-0 rounded-full px-3 py-1.5 text-xs font-medium uppercase tracking-wider transition",
+        aria-label={inFocus ? "Release from DOING NOW back to workstream" : "Promote to DOING NOW"}
+        title={
           inFocus
-            ? "bg-emerald-100 text-emerald-700/70 cursor-default"
+            ? "Release this task back to the workstream"
+            : "Promote this task to DOING NOW"
+        }
+        onClick={inFocus ? onDemote : onPromote}
+        className={cn(
+          "group/pill relative shrink-0 rounded-full px-3 py-1.5 text-xs font-medium uppercase tracking-wider transition",
+          inFocus
+            ? "bg-emerald-100 text-emerald-700 hover:bg-rose-100 hover:text-rose-700"
             : "bg-[#0a1628] text-white hover:bg-[#0a1628]/85",
         )}
       >
-        {inFocus ? "in focus" : "do now"}
+        {inFocus ? (
+          <>
+            {/* Default label: "in focus". Hover swaps to "release ↶"
+                so the user knows the click action releases the task. */}
+            <span className="group-hover/pill:hidden">in focus</span>
+            <span className="hidden group-hover/pill:inline">release ↶</span>
+          </>
+        ) : (
+          "do now"
+        )}
       </button>
 
       <button
