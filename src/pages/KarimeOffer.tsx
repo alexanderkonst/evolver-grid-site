@@ -66,7 +66,7 @@ const KarimeOffer = () => {
   };
 
   return (
-    <GameShellV2 hideLogo forceMobileLayout>
+    <GameShellV2 hideLogo enableRailMinimize>
       <SEO
         title="Karime Kuri · Grounded Emotional Support"
         description="Private emotional support for people moving through heartbreak, grief, burnout, relationship pain, family crisis, impossible decisions, and emotionally overwhelming seasons of life."
@@ -85,10 +85,10 @@ const KarimeOffer = () => {
         <div
           className="rounded-3xl backdrop-blur-[7px] px-5 py-8 sm:px-7 sm:py-10 md:px-9 md:py-12"
           style={{
-            background: "rgba(255, 240, 220, 0.10)",
-            border: "1px solid rgba(255, 220, 180, 0.22)",
+            background: "rgba(255, 240, 220, 0.05)",
+            border: "1px solid rgba(255, 220, 180, 0.16)",
             boxShadow:
-              "0 12px 40px -8px rgba(91, 42, 11, 0.32), inset 0 1px 0 rgba(255, 230, 200, 0.16)",
+              "0 12px 40px -8px rgba(91, 42, 11, 0.24), inset 0 1px 0 rgba(255, 230, 200, 0.12)",
           }}
         >
         <header className="text-center">

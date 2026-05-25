@@ -272,15 +272,14 @@ interface GameShellV2Props {
     /** Hide the top-right home/logo tile (for full-bleed pages like /path) */
     hideLogo?: boolean;
     /**
-     * Day 82 (Sasha 2026-05-24): force the mobile single-pane layout
-     * on ALL viewport sizes. The SpacesRail (pane 1) + SectionsPanel
-     * (pane 2) collapse behind the menu-pill at the top, and pane 3
-     * takes the full viewport width. Used by /build/karime* so the
-     * offering page renders as one immersive editorial surface
-     * instead of three panes. Nav is still reachable by tapping the
-     * menu pill (same affordance as mobile).
+     * Day 82 v4 (Sasha 2026-05-24): enable a toggle button to minimize
+     * pane 1 (SpacesRail) — same pattern as the existing pane-2
+     * collapse. When minimized, pane 1 collapses to a slim icon-only
+     * strip (no labels). Tapping the expand button restores full pane 1.
+     * Currently used by /build/karime*; extendable to other routes by
+     * passing this prop.
      */
-    forceMobileLayout?: boolean;
+    enableRailMinimize?: boolean;
 }
 
 /**
@@ -289,7 +288,13 @@ interface GameShellV2Props {
  * Panel 2: SectionsPanel (sections list)  
  * Panel 3: Content area
  */
-export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, showNavigation: forceShowNavigation, hideLogo, forceMobileLayout = false }: GameShellV2Props) => {
+export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, showNavigation: forceShowNavigation, hideLogo, enableRailMinimize = false }: GameShellV2Props) => {
+    // Day 82 v4 (Sasha 2026-05-24): pane-1 minimize state. Off by
+    // default (rail shows full with labels). When enableRailMinimize
+    // is true and railMinimized is set to true, pane 1 collapses to
+    // a slim icon-only strip.
+    const [railMinimized, setRailMinimized] = useState(false);
+    const toggleRailMinimize = () => setRailMinimized((v) => !v);
     // V5 debug (Sasha 2026-05-19): mobile-header brand glyph needs to swap
     // to the NS flag under network-school. Previously rendered the FYTT
     // torus regardless of skin — mobile users on /ns saw the rainbow mark
@@ -1255,20 +1260,18 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                 Spotlight enters viewport, panes 1+2 (sticky, z-30) flicker
                 or disappear entirely. Isolating the parent stacking
                 context prevents the bleed and the panes stay rendered. */}
-            <div className={cn(
-                forceMobileLayout ? "hidden" : "hidden lg:flex isolate",
-                isAiOsRoute ? "h-dvh min-h-0 overflow-hidden" : "min-h-dvh",
-            )}>
+            <div className={cn("hidden lg:flex isolate", isAiOsRoute ? "h-dvh min-h-0 overflow-hidden" : "min-h-dvh")}>
                 {/* Panel 1: Spaces Rail */}
                 <SpacesRail
                     activeSpaceId={activeSpaceId}
                     onSpaceSelect={handleSpaceSelect}
                     unlockStatus={unlockStatus}
+                    compact={enableRailMinimize && railMinimized}
                     unlockHints={unlockHints}
                     nudgeBadges={nudgeBadges}
                     hiddenSpaces={hiddenSpaces}
                     className={cn(
-                        "h-dvh transform-gpu",
+                        "h-dvh transform-gpu transition-[width] duration-200 ease-out",
                         // On /ai-os desktop the shell is a true app-shell
                         // (parent is h-dvh overflow-hidden), so sticky is
                         // pointless and risky — use plain flex child.
@@ -1282,6 +1285,44 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                     userLevel={profile?.level || undefined}
                     userXp={profile?.xp_total || undefined}
                 />
+
+                {/* Day 82 v4 (Sasha 2026-05-24): pane-1 minimize toggle —
+                    only rendered when the page opted in via
+                    `enableRailMinimize`. Slim column-button between pane 1
+                    and pane 2, same visual register as the pane-2 expand
+                    column. Chevron flips direction based on state.
+                    Currently used by /build/karime*. */}
+                {enableRailMinimize && (
+                    <button
+                        onClick={toggleRailMinimize}
+                        className={cn(
+                            "h-dvh w-5 flex items-center justify-center transition-colors hover:bg-white/10 relative z-30 group",
+                            isAiOsRoute ? "shrink-0" : "sticky top-0",
+                            pageOwnsBackground
+                                ? "bg-[rgba(6,12,28,0.55)]"
+                                : "bg-[rgba(14,32,68,0.22)]",
+                        )}
+                        title={railMinimized ? "Expand rail" : "Minimize rail"}
+                        aria-label={railMinimized ? "Expand rail" : "Minimize rail"}
+                        style={{
+                            boxShadow:
+                                "inset -1px 0 0 rgba(212, 175, 55, 0.32), 2px 0 14px -8px rgba(244, 212, 114, 0.3)",
+                        }}
+                    >
+                        <span
+                            aria-hidden="true"
+                            className="text-[14px] leading-none transition-transform"
+                            style={{
+                                color: "rgba(244, 212, 114, 0.85)",
+                                transform: railMinimized
+                                    ? "rotate(0deg)"
+                                    : "rotate(180deg)",
+                            }}
+                        >
+                            ▶
+                        </span>
+                    </button>
+                )}
 
                 {/* Panel 2: Sections with transition.
                     Day 52 (Sasha 2026-04-27): `relative` removed.
@@ -1472,10 +1513,7 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
             </div>
 
             {/* === MOBILE LAYOUT === */}
-            <div className={cn(
-                forceMobileLayout ? "block" : "lg:hidden",
-                "relative w-full min-h-dvh overflow-hidden",
-            )}>
+            <div className="lg:hidden relative w-full min-h-dvh overflow-hidden">
                 {/* Mobile: Navigation View (Panel 1 + Panel 2) */}
                 <div
                     className={cn(

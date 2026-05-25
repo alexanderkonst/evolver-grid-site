@@ -1,5 +1,4 @@
 import { useEffect, useRef } from "react";
-import { createPortal } from "react-dom";
 import Hls from "hls.js";
 
 /**
@@ -12,12 +11,22 @@ import Hls from "hls.js";
  * in a clay pot, misty distant hills beyond an arched window. First
  * deviation from the platform's cool navy/gold Aurora skin on a Karime
  * route. Full per-route "karime" micro-skin (pane 1 + pane 2 warming
- * to terracotta tones, skin token swap) is shipped alongside; this
- * component just carries the pane-3 backdrop.
+ * to terracotta tones, skin token swap) is shipped alongside.
  *
  * Renders `fixed inset-0 z-0` (same pattern as OyiIgnition's HLS bg).
- * Pane-3 content sits at z-10 above the video. Panes 1+2 are recolored
- * via the karime skin tokens so they coordinate with this warm bg.
+ * Pane-3 content sits at z-10 above the video.
+ *
+ * Day 82 v3 (2026-05-24) — known issue: when GameShellV2 is in
+ * forceMobileLayout mode and the user taps the menu pill, the nav-view
+ * slide animation uses `transform: translateX(...)` on a parent div,
+ * which creates a new stacking context that re-anchors this `fixed`
+ * bg to the transformed box during the ~300ms slide. We tried portaling
+ * to document.body to bypass this, but that introduced a worse problem:
+ * portaled fixed elements paint ABOVE the React root in body's stacking
+ * context, hiding all page content. Negative z-index fixes that for
+ * video + veil but the grain layer (needs to sit above panes 1+2)
+ * can't go negative. Accepting the brief slide-animation glitch as
+ * the lesser of two evils.
  *
  * Swap-by-constant: when Sasha provides a better video URL later, update
  * MUX_URL here and both Karime pages get the new background.
@@ -50,21 +59,7 @@ export const KarimeHlsBackground = () => {
     }
   }, []);
 
-  // Day 82 v3 (Sasha 2026-05-24): mount through a portal at document.body
-  // so the bg lives OUTSIDE GameShellV2's mobile-layout transform tree.
-  // The mobile nav-view slide uses `transform: translateX(...)` on a parent
-  // div, which creates a new stacking context — any `fixed` element inside
-  // that parent gets re-anchored to the transformed box, not the viewport.
-  // Portaling bypasses that: the video + veil + grain stay locked to the
-  // viewport regardless of GameShellV2's internal layout state.
-  //
-  // SSR / pre-mount guard: bail to null if document.body isn't ready.
-  // For client-only React apps this is true from the moment the app mounts,
-  // but the guard prevents StrictMode + HMR re-execution races from
-  // throwing into the ErrorBoundary.
-  if (typeof document === "undefined" || !document.body) return null;
-
-  return createPortal(
+  return (
     <>
       <video
         ref={videoRef}
@@ -78,29 +73,16 @@ export const KarimeHlsBackground = () => {
           // Day 82 v2 (holonic-roast fix #4): soft desaturation on the
           // video itself dampens the ivy (bright green) and cushion
           // (high-saturation terracotta), so they stop pulling the eye
-          // away from the meditative center. ~12% knock-down; just
-          // enough that the highest-saturation elements settle into the
-          // overall palette without losing any of the photo's depth.
+          // away from the meditative center.
           filter: "saturate(0.88)",
         }}
       />
 
-      {/* Day 81 v2 (Sasha 2026-05-23): atmospheric overlay stack for
-          legibility + tactile depth. Two layers, both `fixed inset-0`
-          above the video and below the content. Panes 1+2 sit above
-          this stack at higher z-index, so the overlay is scoped to the
-          pane-3 viewport area only. Inspired by Kloroform's silk/grain
-          texture aesthetic — adds the analog-film quality Sasha
-          asked for. */}
-
       {/* Warm veil — Day 82 v2: two-layer stack. Bottom layer is the
-          existing radial cream-to-terracotta vignette. TOP layer is a
-          new directional darkener focused on the upper-right window
-          zone (the sunset-window hotspot pulled the eye away from text
-          even with the uniform veil active — holonic-roast fix #2).
-          The directional ellipse is positioned at 72% 32%, so the
-          brightest part of the bg gets the most knock-down while the
-          cooler interior zones stay clear. */}
+          radial cream-to-terracotta vignette. Top layer is a directional
+          darkener focused on the upper-right window zone (holonic-roast
+          fix #2) so the sunset hotspot stops pulling the eye away from
+          text. */}
       <div
         className="fixed inset-0 z-[1] pointer-events-none"
         aria-hidden="true"
@@ -112,15 +94,11 @@ export const KarimeHlsBackground = () => {
         }}
       />
 
-      {/* Film grain — Day 82 v2 (holonic-roast fix #3): z-index raised
-          to [60] so the grain texture now covers panes 1+2 as well as
-          pane 3, instead of stopping at the rail/sidebar edges. The
-          flat warm-terracotta of pane 1+2 was reading as color blocks
-          next to a richly textured photo; with the grain extended
-          across the whole viewport, the three panes finally share the
-          same tactile film quality. soft-light blend keeps the effect
-          on solid surfaces subtle, so sidebar legibility is preserved.
-          Zero network cost, single paint, no animation. */}
+      {/* Film grain — Day 82 v2 (holonic-roast fix #3): z-[60] so the
+          grain covers panes 1+2 as well as pane 3, instead of stopping
+          at the rail/sidebar edges. Soft-light blend keeps text and
+          UI legibility preserved while adding tactile depth. Zero
+          network cost, single paint, no animation. */}
       <div
         className="fixed inset-0 z-[60] pointer-events-none"
         aria-hidden="true"
@@ -130,11 +108,10 @@ export const KarimeHlsBackground = () => {
           backgroundRepeat: "repeat",
           backgroundSize: "400px 400px",
           mixBlendMode: "soft-light",
-          opacity: 0.55,
+          opacity: 0.3,
         }}
       />
-    </>,
-    document.body,
+    </>
   );
 };
 

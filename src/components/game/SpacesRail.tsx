@@ -206,6 +206,13 @@ interface SpacesRailProps {
     activeSpaceId?: string;
     onSpaceSelect?: (spaceId: string) => void;
     unlockStatus?: Record<string, boolean>;
+    /**
+     * Day 82 v4 (Sasha 2026-05-24): when true, the rail collapses to the
+     * mobile-equivalent slim icon-only width on desktop (overriding the
+     * lg:w-[280px] expansion) and hides all md:block labels via a
+     * data-rail-compact attribute + matching CSS rule in index.css.
+     */
+    compact?: boolean;
     /** Tooltip hints for locked spaces — e.g. "Unlocks after Step 1" */
     unlockHints?: Record<string, string>;
     /** Spaces that have a new unlock waiting (shows badge/glow) */
@@ -233,6 +240,7 @@ const SpacesRail = ({
     activeSpaceId,
     onSpaceSelect,
     unlockStatus = {},
+    compact = false,
     unlockHints = {},
     nudgeBadges = [],
     hiddenSpaces = [],
@@ -287,8 +295,9 @@ const SpacesRail = ({
 
     return (
         <div
+            data-rail-compact={compact ? "true" : undefined}
             className={cn(
-                "w-[72px] lg:w-[280px] flex flex-col relative z-30",
+                compact ? "w-[72px] flex flex-col relative z-30" : "w-[72px] lg:w-[280px] flex flex-col relative z-30",
                 "liquid-glass",
                 className
             )}
