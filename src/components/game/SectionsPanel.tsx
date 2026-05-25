@@ -1480,10 +1480,22 @@ const SectionsPanel = ({
                                     // Text-decoration cleanly strikes each line on its
                                     // own center, regardless of wrap. Color tuned to
                                     // gold so the strike reads as decisive at 1.5px.
-                                    // Label color also pushed harder (was 0.70 → 0.40)
-                                    // so the row reads as "quest done" not "minor tint."
+                                    //
+                                    // Day 80 (Sasha 2026-05-24): completed-row text
+                                    // opacity raised 0.40 → 0.78 per ui_playbook.md
+                                    // Part VIII Strong-cocktail muted alpha range
+                                    // (0.78-0.93). The earlier 0.40 was Sasha's
+                                    // "quest done not minor tint" call, but on the
+                                    // Aurora translucent Pane 2 (video bleeds
+                                    // through), 0.40 white falls below the contrast
+                                    // floor and reads as barely-legible. 0.78 still
+                                    // sits below the 0.95 active row alpha so the
+                                    // done state remains visually distinct, plus the
+                                    // strikethrough decoration carries the bulk of
+                                    // the "done" signal — the opacity doesn't need
+                                    // to also do the heavy lifting.
                                     color: section.completed && !sectionActive
-                                        ? "rgba(255, 255, 255, 0.40)"
+                                        ? "rgba(255, 255, 255, 0.78)"
                                         : undefined,
                                     textDecorationLine: section.completed && !sectionActive
                                         ? "line-through"

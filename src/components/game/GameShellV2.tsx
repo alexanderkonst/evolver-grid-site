@@ -289,11 +289,12 @@ interface GameShellV2Props {
  * Panel 3: Content area
  */
 export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, showNavigation: forceShowNavigation, hideLogo, enableRailMinimize = false }: GameShellV2Props) => {
-    // Day 82 v4 (Sasha 2026-05-24): pane-1 minimize state. Off by
-    // default (rail shows full with labels). When enableRailMinimize
-    // is true and railMinimized is set to true, pane 1 collapses to
-    // a slim icon-only strip.
-    const [railMinimized, setRailMinimized] = useState(false);
+    // Day 82 v4 (Sasha 2026-05-24): pane-1 minimize state. Defaults to
+    // ON when enableRailMinimize is enabled — Karime's pages open with
+    // the rail in compact (icon-only) mode so the editorial card has
+    // full visual focus on first impression. User can expand by tapping
+    // the chevron column between pane 1 and pane 2.
+    const [railMinimized, setRailMinimized] = useState(enableRailMinimize);
     const toggleRailMinimize = () => setRailMinimized((v) => !v);
     // V5 debug (Sasha 2026-05-19): mobile-header brand glyph needs to swap
     // to the NS flag under network-school. Previously rendered the FYTT
@@ -407,7 +408,13 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
             p === '/build/equilibrium' ||
             p === '/equilibrium' ||
             p === '/preview/equilibrium-v2';
-        return !isLandingPage && !isIgnitePage && !isEquilibriumPage;
+        // Day 82 v5 (Sasha 2026-05-24): Karime's offering surfaces
+        // default to fully-collapsed nav (pane 2 closed AND pane 1 in
+        // compact mode) so the visitor lands on the editorial card with
+        // no nav distraction. Toggles remain available.
+        const isKarimePage =
+            p === '/build/karime' || p === '/build/karime/intake';
+        return !isLandingPage && !isIgnitePage && !isEquilibriumPage && !isKarimePage;
     });
     const [mobileView, setMobileView] = useState<"navigation" | "content">(() => {
         // Day 53 (Sasha 2026-04-27): mobile landing now defaults to CONTENT
