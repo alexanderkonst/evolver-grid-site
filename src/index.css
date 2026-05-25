@@ -858,6 +858,35 @@
 [data-rail-compact="true"] .liquid-glass a.group:hover {
   box-shadow: 0 0 8px -2px rgba(244, 212, 114, 0.28) !important;
 }
+
+/* Day 83 v4 (Sasha 2026-05-25): normalize icon sizes inside compact
+   chips. Original glyph sizes ranged from 22px (AI OS img) to 32px
+   (BUILD glyph font-size) to ~18px (other glyphs). Inside the slim
+   72px rail this variance made the icons read as inconsistently
+   placed — small icons floating, large icons crowding — even though
+   the chip containers themselves are perfectly centered. Forcing all
+   icons to 26px (image) / 22px (glyph) and making each chip a
+   consistent 48x48 square gives the rail visual rhythm: every chip
+   is the same circle, every icon sits at the same scale. */
+[data-rail-compact="true"] [data-tour-id],
+[data-rail-compact="true"] .liquid-glass button.group,
+[data-rail-compact="true"] .liquid-glass a.group {
+  height: 48px !important;
+  min-height: 48px !important;
+}
+[data-rail-compact="true"] [data-tour-id] img,
+[data-rail-compact="true"] .liquid-glass button.group img,
+[data-rail-compact="true"] .liquid-glass a.group img {
+  width: 26px !important;
+  height: 26px !important;
+}
+/* Glyph characters (rendered as text spans with font-size) */
+[data-rail-compact="true"] [data-tour-id] > span,
+[data-rail-compact="true"] .liquid-glass button.group > span,
+[data-rail-compact="true"] .liquid-glass a.group > span {
+  font-size: 22px !important;
+  line-height: 1 !important;
+}
 [data-rail-compact="true"] .absolute.left-0.rounded-r-full {
   display: none !important;
 }
