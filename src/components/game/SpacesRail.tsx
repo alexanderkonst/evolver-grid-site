@@ -34,6 +34,31 @@ import { useSkin } from "@/contexts/SkinContext";
 // the rail brand mark swaps to the official NS flag asset hosted on
 // ns-assets.com. Sasha provided the URL directly — no local copy.
 const NS_LOGO_URL = "https://ns-assets.com/auth-privy/network-school-black-flag-white-background-privy.png";
+
+// Day 84 (Sasha 2026-05-25): LATAM Impact pyramid mark for the
+// `daouniverse` white-label skin. Geometric mark — 3 stacked
+// rectangles forming a Maya temple silhouette — so per the V5
+// per-community skin lesson, inline SVG is the right call (no CDN
+// asset round-trip, scales sharp at any size, color follows the
+// skin's gold token via stroke).
+const LatamPyramid = ({ size = 32 }: { size?: number }) => (
+    <svg
+        data-brand="latam-pyramid"
+        width={size}
+        height={size}
+        viewBox="0 0 64 64"
+        fill="none"
+        stroke="#c4a35c"
+        strokeWidth={2}
+        strokeLinejoin="round"
+        aria-hidden="true"
+        className="flex-shrink-0"
+    >
+        <rect x="26" y="10" width="12" height="11" />
+        <rect x="18" y="21" width="28" height="14" />
+        <rect x="8" y="35" width="48" height="18" />
+    </svg>
+);
 // Day 48 iter 7 (Sasha): JOURNEY + ME spaces now render with custom
 // image assets (gold-tinted) instead of typographic glyphs — keeps
 // them coherent with the gold-signature identity while the other
@@ -256,6 +281,7 @@ const SpacesRail = ({
     const { toast } = useToast();
     const { skin } = useSkin();
     const isNS = skin === "network-school";
+    const isDao = skin === "daouniverse";
 
     // Day 54+++ (Sasha 2026-04-28 night): backdrop-filter disabled on touch
     // devices. iOS WebKit's backdrop-filter on a full-viewport-height region
@@ -381,9 +407,40 @@ const SpacesRail = ({
                 <Link
                     to="/"
                     className="block group transition-all hover:opacity-90"
-                    aria-label={isNS ? "Network School — home" : "Find Your Top Talent — home"}
+                    aria-label={isNS ? "Network School — home" : isDao ? "LATAM Impact — home" : "Find Your Top Talent — home"}
                 >
-                    {isNS ? (
+                    {isDao ? (
+                        <>
+                            {/* Day 84 (Sasha 2026-05-25): LATAM Impact lockup.
+                                Mobile: pyramid only (72px column constraint).
+                                Desktop: pyramid + "LATAM IMPACT" wordmark stacked
+                                in Playfair Display — mirrors latamimpact.io's
+                                header treatment. */}
+                            <div className="md:hidden flex items-center justify-center px-3 py-2.5">
+                                <LatamPyramid size={32} />
+                            </div>
+                            <div className="hidden md:flex items-center gap-3 px-3 py-2.5">
+                                <LatamPyramid size={32} />
+                                <span
+                                    className="select-none truncate"
+                                    style={{
+                                        fontFamily: '"Playfair Display", "Cormorant Garamond", Georgia, serif',
+                                        fontWeight: 600,
+                                        fontSize: "16px",
+                                        lineHeight: 1.05,
+                                        color: "#f0e6d2",
+                                        letterSpacing: "0.04em",
+                                        textTransform: "uppercase",
+                                        display: "flex",
+                                        flexDirection: "column",
+                                    }}
+                                >
+                                    <span>LATAM</span>
+                                    <span>IMPACT</span>
+                                </span>
+                            </div>
+                        </>
+                    ) : isNS ? (
                         <>
                             {/* V6 (Sasha 2026-05-19): reverted to the actual
                                 NS PNG asset (the "wavy" black flag from

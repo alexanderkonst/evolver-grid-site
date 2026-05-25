@@ -302,6 +302,11 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
     // instead of the editorial black flag.
     const { skin: __spaceShipSkin } = useSkin();
     const __isNSShell = __spaceShipSkin === "network-school";
+    // Day 84 (Sasha 2026-05-25): mobile-header brand glyph also swaps to
+    // the LATAM pyramid mark under the `daouniverse` skin. Same V5 lesson
+    // as NS: mobile pill is a separate DOM tree from the rail, so the
+    // skin-aware swap has to be explicit here too.
+    const __isDaoShell = __spaceShipSkin === "daouniverse";
     const location = useLocation();
     const navigate = useNavigate();
 
@@ -1300,33 +1305,37 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                     column. Chevron flips direction based on state.
                     Currently used by /build/karime*. */}
                 {enableRailMinimize && (
+                    /* Day 84 (Sasha 2026-05-26): collapsed-spine treatment
+                       per the design brief. Was a flat w-5 column with a
+                       floating chevron — now a tactile glass spine (12px
+                       visible body inside a 32px hit area) with a 22px
+                       embossed round handle holding the chevron icon.
+                       Reads as a real collapsed drawer-tab. */
                     <button
                         onClick={toggleRailMinimize}
                         className={cn(
-                            "h-dvh w-5 flex items-center justify-center transition-colors hover:bg-white/10 relative z-30 group",
+                            "collapsed-spine spine-narrow h-dvh",
                             isAiOsRoute ? "shrink-0" : "sticky top-0",
-                            pageOwnsBackground
-                                ? "bg-[rgba(6,12,28,0.55)]"
-                                : "bg-[rgba(14,32,68,0.22)]",
+                            railMinimized && "active",
                         )}
                         title={railMinimized ? "Expand rail" : "Minimize rail"}
-                        aria-label={railMinimized ? "Expand rail" : "Minimize rail"}
-                        style={{
-                            boxShadow:
-                                "inset -1px 0 0 rgba(212, 175, 55, 0.32), 2px 0 14px -8px rgba(244, 212, 114, 0.3)",
-                        }}
+                        aria-label={
+                            railMinimized ? "Expand rail" : "Minimize rail"
+                        }
                     >
-                        <span
-                            aria-hidden="true"
-                            className="text-[14px] leading-none transition-transform"
-                            style={{
-                                color: "rgba(244, 212, 114, 0.85)",
-                                transform: railMinimized
-                                    ? "rotate(0deg)"
-                                    : "rotate(180deg)",
-                            }}
-                        >
-                            ▶
+                        <span className="spine-core" aria-hidden="true" />
+                        <span className="spine-handle">
+                            <span
+                                aria-hidden="true"
+                                className="text-[10px] leading-none transition-transform"
+                                style={{
+                                    transform: railMinimized
+                                        ? "rotate(0deg)"
+                                        : "rotate(180deg)",
+                                }}
+                            >
+                                ▶
+                            </span>
                         </span>
                     </button>
                 )}
@@ -1394,22 +1403,26 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                        z-30 puts the reopen column on the same stacking
                        layer as pane 1 + pane 2, above page overlays. */}
                 {!sectionsPanelOpen && (
+                    /* Day 84 (Sasha 2026-05-26): collapsed-spine treatment.
+                       Replaces the flat w-5 column with a tactile glass
+                       spine (14px visible body, 36px hit area) + 22px
+                       embossed handle holding the PanelLeft icon.
+                       Slightly wider than the rail-toggle spine — reads
+                       as the "primary" collapsed control. Always active
+                       (it only renders when pane 2 is collapsed). */
                     <button
                         onClick={toggleSectionsPanel}
                         className={cn(
-                            "h-dvh w-5 flex items-center justify-center transition-colors hover:bg-white/10 relative z-30 group",
+                            "collapsed-spine spine-wide h-dvh active",
                             isAiOsRoute ? "shrink-0" : "sticky top-0",
-                            pageOwnsBackground
-                                ? "bg-[rgba(6,12,28,0.78)]"
-                                : "bg-[rgba(14,32,68,0.32)]"
                         )}
                         title="Expand sidebar (⌘B)"
-                        style={{
-                            boxShadow:
-                                "inset -1px 0 0 rgba(212, 175, 55, 0.5), 2px 0 18px -6px rgba(244, 212, 114, 0.4)",
-                        }}
+                        aria-label="Expand sidebar"
                     >
-                        <PanelLeft className="w-3 h-3 text-[#d4af37]/85 group-hover:text-[#d4af37] transition-colors" />
+                        <span className="spine-core" aria-hidden="true" />
+                        <span className="spine-handle">
+                            <PanelLeft className="w-3 h-3" />
+                        </span>
                     </button>
                 )}
 
@@ -1619,6 +1632,12 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                                 border: '1px solid rgba(10,10,10,0.18)',
                                 filter: 'none',
                                 boxShadow: '0 1px 3px rgba(0,0,0,0.06)',
+                            } : __isDaoShell ? {
+                                color: '#f0e6d2',
+                                background: 'rgba(13,25,18,0.62)',
+                                border: '1px solid rgba(196,163,92,0.38)',
+                                filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.55))',
+                                boxShadow: '0 0 14px -4px rgba(196,163,92,0.32)',
                             } : {
                                 color: '#f4d472',
                                 background: 'rgba(244,212,114,0.08)',
@@ -1628,20 +1647,44 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                             }}
                             aria-label="Open menu"
                         >
-                            <img
-                                /* V6 (Sasha 2026-05-19): use the canonical
-                                   NS wavy flag PNG on mobile too, not the
-                                   square inline SVG. Single asset across
-                                   desktop + mobile keeps the brand mark
-                                   consistent end-to-end. */
-                                src={__isNSShell
-                                    ? "https://ns-assets.com/auth-privy/network-school-black-flag-white-background-privy.png"
-                                    : brandMark}
-                                alt=""
-                                aria-hidden="true"
-                                className="w-7 h-7 object-contain flex-shrink-0"
-                                draggable={false}
-                            />
+                            {__isDaoShell ? (
+                                /* Day 84 (Sasha 2026-05-25): inline LATAM
+                                   pyramid mark — geometric 3-tier silhouette,
+                                   gold stroke, no PNG round-trip. Mirrors the
+                                   <LatamPyramid> used in SpacesRail's desktop
+                                   brand block. */
+                                <svg
+                                    data-brand="latam-pyramid"
+                                    width={28}
+                                    height={28}
+                                    viewBox="0 0 64 64"
+                                    fill="none"
+                                    stroke="#c4a35c"
+                                    strokeWidth={2}
+                                    strokeLinejoin="round"
+                                    aria-hidden="true"
+                                    className="flex-shrink-0"
+                                >
+                                    <rect x="26" y="10" width="12" height="11" />
+                                    <rect x="18" y="21" width="28" height="14" />
+                                    <rect x="8" y="35" width="48" height="18" />
+                                </svg>
+                            ) : (
+                                <img
+                                    /* V6 (Sasha 2026-05-19): use the canonical
+                                       NS wavy flag PNG on mobile too, not the
+                                       square inline SVG. Single asset across
+                                       desktop + mobile keeps the brand mark
+                                       consistent end-to-end. */
+                                    src={__isNSShell
+                                        ? "https://ns-assets.com/auth-privy/network-school-black-flag-white-background-privy.png"
+                                        : brandMark}
+                                    alt=""
+                                    aria-hidden="true"
+                                    className="w-7 h-7 object-contain flex-shrink-0"
+                                    draggable={false}
+                                />
+                            )}
                             <Menu className="w-4 h-4 flex-shrink-0" aria-hidden="true" />
                         </button>
                         {/* Day 53 (Sasha 2026-04-27): mobile breadcrumb.
@@ -1787,7 +1830,16 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                                 ? undefined
                                 : isWorkingRoute
                                     ? "var(--skin-panel-wash-quiet, rgba(248, 246, 240, 0.98))"
-                                    : "rgba(248, 246, 240, 0.55)",
+                                    : __isDaoShell
+                                        // Day 84 (Sasha 2026-05-25): under the
+                                        // daouniverse skin the mobile <main> bg
+                                        // must not paint Aurora cream — it
+                                        // washes over the body's deep-forest
+                                        // gradient and turns the hero pane
+                                        // sage-gray. Transparent lets the body
+                                        // bg show through unchanged.
+                                        ? "transparent"
+                                        : "rgba(248, 246, 240, 0.55)",
                         }}
                     >
                         <div className="page-transition-enter">
