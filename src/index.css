@@ -1543,6 +1543,41 @@
   letter-spacing: 0.04em;
 }
 
+/* Day 84 v2 fix-pass (Sasha 2026-05-25 evening): aggressive Cormorant
+   Garamond kill under planetir. MethodologyLandingPage + PlaybookHero +
+   other landing components set `fontFamily: 'Cormorant Garamond'` INLINE
+   on individual elements. The blanket body/p rule above loses to inline
+   styles in nested contexts; attribute-substring `[style*="Cormorant"]`
+   catches them ALL regardless of nesting depth.
+   Route by tag: h-tags + their inner spans → Lexend (display); everything
+   else → Inter (body). */
+[data-skin="planetir"] h1[style*="Cormorant"],
+[data-skin="planetir"] h2[style*="Cormorant"],
+[data-skin="planetir"] h3[style*="Cormorant"],
+[data-skin="planetir"] h4[style*="Cormorant"],
+[data-skin="planetir"] h1 [style*="Cormorant"],
+[data-skin="planetir"] h2 [style*="Cormorant"] {
+  font-family: "Lexend", system-ui, sans-serif !important;
+}
+[data-skin="planetir"] p[style*="Cormorant"],
+[data-skin="planetir"] span[style*="Cormorant"],
+[data-skin="planetir"] div[style*="Cormorant"],
+[data-skin="planetir"] li[style*="Cormorant"],
+[data-skin="planetir"] em[style*="Cormorant"],
+[data-skin="planetir"] i[style*="Cormorant"] {
+  font-family: "Inter", system-ui, sans-serif !important;
+}
+
+/* CTA ✦ ignite-logo icon hide — planetir.org buttons are clean text-only
+   pills (no icon prefix). Same V3 NS pattern: hide the first <img> inside
+   any liquid-glass-dark button/anchor. */
+[data-skin="planetir"] button.liquid-glass-dark > img:first-of-type,
+[data-skin="planetir"] a.liquid-glass-dark > img:first-of-type,
+[data-skin="planetir"] button.liquid-glass-dark .ornament-spin,
+[data-skin="planetir"] a.liquid-glass-dark .ornament-spin {
+  display: none !important;
+}
+
 /* PLANETIR — decoration overrides */
 
 /* Kill the Mux HLS video background by default — Sasha will provide a
@@ -1558,17 +1593,19 @@
 
 /* Body background — sun-pierced forest still image (Sasha provided as
    the source of bg truth). Lives at /planetir-bg-still.png (public/),
-   referenced as a fixed-position cover. A dark forest gradient overlays
-   on top to ensure cream text holds against the brightest sun areas
-   of the image. When Sasha provides the animated Mux URL, this still
-   continues as the fallback while HLS loads. */
+   referenced as a fixed-position cover. Light dark overlay (~25-35%
+   alpha) keeps cream text legible WITHOUT smothering the image — the
+   forest scene needs to be clearly visible behind the text, matching
+   planetir.org's hero treatment. v2 fix (Sasha 2026-05-25 evening):
+   first pass had 0.42-0.72 alpha which made the page read as solid
+   dark forest with no image visible. */
 [data-skin="planetir"] body {
   background:
     linear-gradient(180deg,
-      rgba(8, 16, 10, 0.58) 0%,
-      rgba(8, 16, 10, 0.42) 35%,
-      rgba(8, 16, 10, 0.55) 70%,
-      rgba(8, 16, 10, 0.72) 100%),
+      rgba(8, 16, 10, 0.35) 0%,
+      rgba(8, 16, 10, 0.18) 40%,
+      rgba(8, 16, 10, 0.32) 80%,
+      rgba(8, 16, 10, 0.48) 100%),
     url('/planetir-bg-still.png') center/cover no-repeat fixed,
     #0a1a10;
   color: #ffffff;
