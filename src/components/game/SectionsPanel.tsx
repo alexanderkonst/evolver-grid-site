@@ -1297,37 +1297,54 @@ const SectionsPanel = ({
                                     : undefined
                             }
                         >
+                            {/* Day 80 (Sasha 2026-05-25): sidequest now
+                                honors the `completed` flag visually —
+                                strikethrough on the label + dimmed
+                                ✦ glyph + lighter opacity, mirroring
+                                how numbered rows behave when their
+                                section is done. The completed flag is
+                                wired upstream from
+                                journeyProgress["journey-activation"]
+                                (or per-sidequest progress key); it
+                                just wasn't being expressed in the
+                                render path. */}
                             <span className="w-[22px] h-[22px] flex items-center justify-center flex-shrink-0">
                                 <span
                                     className="inline-flex items-center justify-center w-[22px] h-[22px]"
                                     style={{
                                         fontFamily: "'Cormorant Garamond', serif",
                                         fontSize: "15px",
-                                        color: "rgba(244, 212, 114, 0.85)",
-                                        textShadow:
-                                            "0 0 6px rgba(244, 212, 114, 0.40)",
+                                        color: section.completed
+                                            ? "rgba(244, 212, 114, 0.50)"
+                                            : "rgba(244, 212, 114, 0.85)",
+                                        textShadow: section.completed
+                                            ? undefined
+                                            : "0 0 6px rgba(244, 212, 114, 0.40)",
                                     }}
                                     aria-hidden="true"
                                 >
                                     ✦
                                 </span>
                             </span>
-                            {/* Day 80 (Sasha 2026-05-23): label color
-                                was hardcoded to rgba(255,255,255,0.80)
-                                — invisible on the NS skin's light Pane 2
-                                background. The ✦ glyph stayed visible
-                                because it uses its own gold color, so
-                                the row read as "icon with no text".
-                                Skin-aware token + Aurora fallback keeps
-                                the existing dark-Pane-2 behavior while
-                                making the row legible on every skin. */}
                             <span
                                 className="flex-1 text-[16px] leading-snug italic min-w-0"
                                 style={{
                                     fontFamily: "'Cormorant Garamond', serif",
                                     fontWeight: 500,
                                     letterSpacing: "0.012em",
-                                    color: "var(--skin-sections-text, rgba(255, 255, 255, 0.80))",
+                                    color: section.completed
+                                        ? "var(--skin-sections-text-completed, rgba(255, 255, 255, 0.55))"
+                                        : "var(--skin-sections-text, rgba(255, 255, 255, 0.80))",
+                                    textDecorationLine: section.completed
+                                        ? "line-through"
+                                        : undefined,
+                                    textDecorationColor: section.completed
+                                        ? "var(--skin-strike-color, rgba(244, 212, 114, 0.75))"
+                                        : undefined,
+                                    textDecorationThickness: section.completed
+                                        ? "1.5px"
+                                        : undefined,
+                                    textUnderlineOffset: "auto",
                                 }}
                             >
                                 {section.label}
