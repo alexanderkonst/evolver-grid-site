@@ -337,18 +337,24 @@ const KarimeIntake = () => {
               className="text-center mb-5 sm:mb-6 text-xs sm:text-sm italic opacity-70"
               style={bodyTextStyle}
             >
-              Choose one
+              Choose all that apply
             </p>
             {/* Day 81 (Sasha 2026-05-23): options redesigned as
                 clearly-visible bordered cards with custom gold-aligned
-                radio indicators. Native radios buried the affordance —
-                visitors didn't read this as a choice they needed to make.
-                Each option is now a tactile chip with hover lift and a
-                strong gold-ring selected state. Native input is sr-only
-                but retains full keyboard + a11y semantics. */}
+                indicators. Native inputs buried the affordance — visitors
+                didn't read this as a choice they needed to make. Each
+                option is now a tactile chip with hover lift and a strong
+                gold-ring selected state. Native input is sr-only but
+                retains full keyboard + a11y semantics.
+
+                Day 85 (Sasha 2026-05-25): converted from radio (single)
+                to checkbox (multi). Square indicator with a gold check
+                glyph; supports selecting any combination. The selection
+                array drives both the CTA reveal and the WhatsApp message
+                body composed in handleSendWhatsApp. */}
             <div className="space-y-3 sm:space-y-3.5 max-w-[580px] mx-auto">
               {SUPPORT_OPTIONS.map((opt) => {
-                const isSelected = selectedSupport === opt.key;
+                const isSelected = selectedSupport.includes(opt.key);
                 return (
                   <label
                     key={opt.key}
@@ -367,16 +373,18 @@ const KarimeIntake = () => {
                     }}
                   >
                     <input
-                      type="radio"
+                      type="checkbox"
                       name="support"
+                      value={opt.key}
                       checked={isSelected}
-                      onChange={() => setSelectedSupport(opt.key)}
+                      onChange={() => toggleSupport(opt.key)}
                       className="sr-only"
                     />
-                    {/* Custom radio indicator — larger, gold-themed,
-                        clearly reads as a selectable control. */}
+                    {/* Custom checkbox indicator — square, gold-themed,
+                        check glyph appears when selected. Square shape
+                        reads as "multi-select" vs the round radio. */}
                     <span
-                      className="w-6 h-6 rounded-full border-2 flex-shrink-0 flex items-center justify-center transition-all"
+                      className="w-6 h-6 rounded-md border-2 flex-shrink-0 flex items-center justify-center transition-all"
                       style={{
                         borderColor: isSelected
                           ? "rgba(244, 212, 114, 0.9)"
@@ -391,14 +399,25 @@ const KarimeIntake = () => {
                       aria-hidden="true"
                     >
                       {isSelected && (
-                        <span
-                          className="w-3 h-3 rounded-full"
+                        <svg
+                          viewBox="0 0 16 16"
+                          className="w-3.5 h-3.5"
                           style={{
-                            background: "rgba(244, 212, 114, 0.95)",
-                            boxShadow:
-                              "0 0 6px rgba(244, 212, 114, 0.6)",
+                            color: "rgba(122, 81, 8, 0.95)",
+                            filter:
+                              "drop-shadow(0 0 4px rgba(244, 212, 114, 0.55))",
                           }}
-                        />
+                          aria-hidden="true"
+                        >
+                          <path
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M3 8.5L6.5 12L13 4.5"
+                          />
+                        </svg>
                       )}
                     </span>
                     <span
