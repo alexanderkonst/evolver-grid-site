@@ -887,13 +887,36 @@ export function useEquilibriumV2(): EquilibriumV2Data {
 
   const completeTask = useCallback(
     async (taskId: string) => {
-      // Optimistic: mark done in local state immediately so cascade animation can run.
+      // Optimistic: mark done in local state immediately so cascade
+      // animation can run.
+      //
+      // Sasha 2026-05-24: also stamp workstream_title_snapshot so the
+      // celebration record survives a later hard-delete of the parent
+      // workstream. The server-side eq_complete_task RPC does the
+      // canonical write; this is just the local mirror so Harvest
+      // shows the right citation immediately without waiting for a
+      // refetch.
       const nowIso = new Date().toISOString();
-      setTasks((prev) =>
-        prev.map((t) =>
-          t.id === taskId ? { ...t, status: "done", done_at: nowIso } : t,
-        ),
-      );
+      setTasks((prev) => {
+        // Look up the task's parent workstream title for the snapshot.
+        const target = prev.find((t) => t.id === taskId);
+        const parentTitle = target
+          ? workstreams.find((w) => w.id === target.workstream_id)?.title ??
+            target.workstream_title_snapshot ??
+            null
+          : null;
+        return prev.map((t) =>
+          t.id === taskId
+            ? {
+                ...t,
+                status: "done",
+                done_at: nowIso,
+                workstream_title_snapshot:
+                  parentTitle ?? t.workstream_title_snapshot,
+              }
+            : t,
+        );
+      });
       setFocus((prev) => prev.filter((f) => f.task_id !== taskId));
 
       const res = await eqAny.rpc("eq_complete_task", { p_task_id: taskId });
@@ -902,7 +925,7 @@ export function useEquilibriumV2(): EquilibriumV2Data {
         void fetchAll();
       }
     },
-    [fetchAll],
+    [fetchAll, workstreams],
   );
 
   // ─── Derived display values ────────────────────────────

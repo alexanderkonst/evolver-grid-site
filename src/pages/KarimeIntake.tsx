@@ -41,6 +41,22 @@ const CALCOM_BOOKING_URL = "https://cal.com/karimekuri/20min";
 const KARIME_WHATSAPP_URL = "https://wa.me/14157073432";
 const KARIME_TELEGRAM_URL = "https://t.me/integralevolution";
 
+// Day 83 (Sasha 2026-05-25): warm copper-rose emphasis gradient,
+// mirrored from KarimeOffer.tsx. Anchors the eye on a small handful of
+// "task" words per page — the verbs and nouns that carry the line's
+// meaning. Same pattern as the platform's landing pages (where
+// GOLD_TEXT_STYLE highlights e.g. "CLEARLY", "ALWAYS", "co-creators",
+// "Productize", "Top Talent"). For Karime we use the warm copper
+// version so the highlights harmonize with the brass altar tones in
+// the video bg instead of clashing with cool antique gold.
+const KARIME_EMPHASIS_STYLE = {
+  backgroundImage:
+    "linear-gradient(135deg, #c97644 0%, #e8b07a 50%, #c97644 100%)",
+  backgroundClip: "text" as const,
+  WebkitBackgroundClip: "text" as const,
+  color: "transparent",
+};
+
 type SupportKey =
   | "gentle"
   | "deep"
@@ -135,17 +151,30 @@ const KarimeIntake = () => {
             <p className="text-lg sm:text-xl leading-[1.55]">
               Karime is an Oxford alum, former Project Lead at the World
               Economic Forum's Center for Emerging Technology, and a
-              Global Fellow Leader who walked away from the WEF track to
-              do this work. She trained as a transformational life coach
-              at Sofia University, San Francisco, and brings her
-              international policy background into the depth of the
-              inner work she now holds.
+              Global Fellow Leader who{" "}
+              <span
+                className="bg-clip-text text-transparent"
+                style={KARIME_EMPHASIS_STYLE}
+              >
+                walked away
+              </span>{" "}
+              from the WEF track to do this work. She trained as a
+              transformational life coach at Sofia University, San
+              Francisco, and brings her international policy background
+              into the depth of the inner work she now holds.
             </p>
             <p
               className="text-lg sm:text-xl leading-[1.55] italic text-center"
               style={{ ...bodyTextStyle, fontWeight: 600 }}
             >
-              She is here by choice.
+              She is here{" "}
+              <span
+                className="bg-clip-text text-transparent not-italic"
+                style={KARIME_EMPHASIS_STYLE}
+              >
+                by choice
+              </span>
+              .
             </p>
           </div>
         </section>
@@ -215,8 +244,20 @@ const KarimeIntake = () => {
                     className={`flex-1 ${isLast ? "pb-1" : "pb-6 sm:pb-7"}`}
                     style={bodyTextStyle}
                   >
-                    <p className="text-lg sm:text-xl leading-[1.4] font-semibold mb-1.5">
-                      Step {step.num}: {step.title}
+                    {/* Day 83 (Sasha 2026-05-25): hierarchy fix — was
+                        all-bold "Step N: title" on one line, which gave
+                        the prefix equal weight with the title.
+                        Now "Step N" is a small uppercase eyebrow label
+                        and the title is the dominant row element. The
+                        action you'll actually take reads first. */}
+                    <p
+                      className="text-[11px] sm:text-xs uppercase tracking-[0.18em] opacity-60 mb-1"
+                      style={{ fontFamily: "'Cormorant Garamond', serif" }}
+                    >
+                      Step {step.num}
+                    </p>
+                    <p className="text-xl sm:text-2xl leading-[1.3] font-bold mb-1.5">
+                      {step.title}
                     </p>
                     <p className="text-base sm:text-lg leading-[1.55] opacity-90">
                       {step.body}
