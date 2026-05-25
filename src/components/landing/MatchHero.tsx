@@ -165,10 +165,21 @@ const MatchHero = () => {
         className="relative w-full flex flex-col items-center justify-center px-5 py-4 max-w-[720px] mx-auto min-h-[calc(100svh-5rem)] max-h-[calc(100svh-5rem)] lg:min-h-[calc(100svh-1rem)] lg:max-h-[calc(100svh-1rem)]"
       >
         <header className="text-center w-full">
+          {/* Day 84 v10 (Sasha 2026-05-25) — daouniverse font harmony.
+              Editorial paragraphs (eyebrow, tension line, bridge) get
+              `font-display`. Resolves to Cormorant on Aurora/Karime/NS
+              (same as the inline `fontFamily` style — no-op). On
+              daouniverse, the `.font-display` rule fires Playfair so
+              the entire editorial voice (eyebrow + H1 + tension line
+              + bridge) sits in ONE serif family. Inter stays for CTA
+              + microcopy (UI chrome lane). Two clean lanes under
+              daouniverse: editorial serif (voice) vs system sans
+              (chrome). Brand signal preserved, visual fragmentation
+              gone. */}
           {/* Eyebrow — Cormorant italic, build-hero echo register.
               The thesis of the entire experience, not a label. */}
           <p
-            className="text-base sm:text-lg md:text-xl leading-[1.32] italic mb-4 sm:mb-5"
+            className="font-display text-base sm:text-lg md:text-xl leading-[1.32] italic mb-4 sm:mb-5"
             style={{
               fontFamily: "'Cormorant Garamond', serif",
               fontWeight: 700,
@@ -216,9 +227,10 @@ const MatchHero = () => {
           </h1>
 
           {/* Tension line — italic echo register. Full container
-              width, no narrow stack. */}
+              width, no narrow stack. `font-display` so daouniverse
+              lifts this into Playfair alongside the H1. */}
           <p
-            className="text-base sm:text-lg md:text-xl leading-[1.32] italic mb-3 sm:mb-4"
+            className="font-display text-base sm:text-lg md:text-xl leading-[1.32] italic mb-3 sm:mb-4"
             style={{
               fontFamily: "'Cormorant Garamond', serif",
               fontWeight: 700,
@@ -234,9 +246,11 @@ const MatchHero = () => {
           <Ornament className="my-4 sm:my-5" />
 
           {/* Bridge — build-path manifesto register. Container width
-              for confidence; one calm sentence. */}
+              for confidence; one calm sentence. `font-display` keeps
+              this in the editorial voice on daouniverse (Playfair),
+              not the Inter body register. */}
           <p
-            className="text-lg sm:text-xl md:text-2xl font-bold leading-[1.4] tracking-[-0.005em]"
+            className="font-display text-lg sm:text-xl md:text-2xl font-bold leading-[1.4] tracking-[-0.005em]"
             style={{
               fontFamily: "'Cormorant Garamond', serif",
               color: "var(--skin-text-primary, #0a1628)",

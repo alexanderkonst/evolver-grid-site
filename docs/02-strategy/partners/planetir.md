@@ -159,7 +159,105 @@ Rewards already-completed contributions to the ecosystem.
 
 **Convertible Steward Agreement** — early capital as convertible loan. Cap: up to 4× return in case of profitability. Purpose-aligned, interim vehicle similar to a SAFE. Neither equity nor donation.
 
-### 2.4 [Future sources — add new captures below]
+### 2.4 Co-Creation & Support Opportunities page (captured 2026-05-25)
+
+Three-tier ask from Planetir to their community:
+
+**1. Activate Your Network (Most Impactful)**
+
+> *"Our main target for the next weeks is to raise €500k from aligned funders in our networks, such as impact angels, while paving the way towards the larger amount. Help us connect with vision-aligned funders. We're happy to reward connections that lead to investment."*
+
+Linked pages (not crawled): Ideal Funder Profiles, Fundraising Reward for Partners.
+
+Their suggested intro template:
+> *"Hey, I've been following a great team called Planetir, who are building an innovative ecosystem platform that fosters deep connection, knowledge sharing, and collaboration across silos to create a regenerative future. They're now raising seed capital to expand their impact, and I believe their approach and integrity are truly rare. You can learn more about it here: www.planetir.org/fundraising"*
+
+**2. Give Feedback**
+- Beta test platform, share what works / what could improve
+- 15-30 min per test
+
+**3. Offer Your Skills** — 7 expertise quests:
+
+| Quest | What it looks like | Time |
+|---|---|---|
+| **Storytelling & Narrative** | Share Planetir's story in your voice; capture community members' stories | 30 min to few hours/month |
+| **Podcast Support** | Identify guests, research, outreach for upcoming episodes | 2-4 hours/month |
+| **Co-Creation & Collective Intelligence** | Design/promote co-creation campaigns; gather ideas from circles | 2-3 hours per campaign |
+| **Feedback & Validation** | Beta test, refine | 15-30 min per test |
+| **Partnerships & Collaboration** | Identify aligned orgs, facilitate intros | Flexible |
+| **Community Building & Outreach** | Map local communities, host meetups | 1-3 hours/month |
+| **Technology, Tools & Innovation** | Build features, prototype, regenerative/decentralized tech insights | Flexible by project |
+
+Closing note: *"We believe everyone has a gift to offer — a story, a connection, an idea, a skill. Planetir is built by all of us, together."*
+
+### 2.5 Open role: Fundraising & Stewards Identification (10-20h/week)
+
+> *"As we open up our first funding round, we're looking for someone to walk alongside us — someone who sees fundraising not as a transactional hustle, but as an act of resonance, trust, and alignment."*
+
+Responsibilities:
+- Nurture relationships with aligned investors, partners, community members
+- Research and identify purpose-driven funds, angels, organizations
+- Manage fundraising pipeline (Notion-style)
+- Support comms materials (decks, updates, one-pagers)
+- Coordinate and co-create intimate investor spaces (online circles, small gatherings)
+- Collaborate closely with core team on narrative + numbers + energy
+- Hold structure and flow (reminders, follow-ups, momentum)
+
+Fit signals they list:
+- At home in impact / purpose / new systems thinking
+- Connecting dots and people for transformation, not transactions
+- Experience or strong intuition for fundraising, partnerships, community-building
+- Balance of heart and structure (spreadsheets + stories)
+- Resonate with "authenticity" and "regeneration"
+
+Application: not a formal cover letter, just *"a short message about why this role resonates with you and how you see yourself contributing."*
+
+### 2.6 Fundraising page — `/fundraising` (captured 2026-05-25)
+
+**Header:** *"The future is now. Will you co-create it?"*
+
+**Pitch:**
+> *"We're building an ecosystem platform connecting people, knowledge, capital, and opportunities across communities. We're raising seed capital to grow to 200+ communities, 144,000 users, and achieve €3M ARR by 2027."*
+
+**Primary CTA:** *"I am curious"* (soft, exploratory; not a hard "Invest now")
+
+**Social proof — "Our team is trusted by":**
+- Robert Bosch Stiftung
+- Internet Society
+- Katapult
+- Entrepreneurs Organisation
+- BMW Foundation Responsible Leaders
+- Planboo
+
+**Section: "Who we're calling in"**
+
+> *"For us, this is not about asking for money. It's about inviting the right funders into a co-creative process that would be incomplete without you — an opportunity to become an active partner in scaling Planetir to tens of millions of users."*
+>
+> *"We want to do business with people we want to do life with. If you resonate with the below statements we would love to hear from you."*
+
+**Four ideal-funder archetypes:**
+
+1. **You Lead with Purpose, Not Prestige** — *"You may have achieved success by society's standards, yet you continue to practice humility. You're seeking meaning and purpose rather than prestige — driven by a genuine desire to serve life."*
+2. **You Choose Co-Creation Over Control** — *"You want to participate, not dominate — bringing your insight, influence, and intuition into a shared process of learning and trust-based collaboration."*
+3. **You Care Deeply for People and Planet** — *"You're eager to use your resources in ways that heal systems, uplift others, and rebuild trust. You're also curious about the inner journey this invites — discovering blind spots, practicing vulnerability, and growing through continuous learning."*
+4. **You Value Authenticity and Joy** — *"You're a giver rather than a taker, coming with an open mind and heart. You seek environments where we build deep relationships and create from a place of authenticity, trust, and joy."*
+
+**Section: "Why Planetir is a rare opportunity"** — four pillars:
+
+1. **Ecosystemic Approach** — *"We build connective infrastructure across movements — shifting from fragmentation to flow. Planetir creates a living ecosystem platform that interweaves people, knowledge, and capital across communities, addressing disconnection at its root."*
+2. **Proven Track Record** — *"A globally trusted team blending deep collaboration with business acumen. We've spent the last decade building Think-it into a profitable data-collaboration leader and managing €350M innovation portfolios at Google. This is more than business — it's our life's work, lived daily through regenerative leadership."*
+3. **Movement Leverage** — *"Every Euro in Planetir is a multiplier — amplifying hundreds of initiatives worldwide. Our infrastructure ensures each contribution compounds across aligned communities, increasing ROI not only financially but culturally and systemically."*
+4. **Mission Protection** — *"Steward-owned, transparent, and regenerative by design. Built on steward-ownership principles, Planetir cannot be sold out or extracted. Funders become active partners and are invited to co-create a model that can truly change the world."*
+
+**Section: "Become an active partner"**
+
+> *"We're raising an initial amount now to scale through 2026, paving the way for a larger round of blended catalytic capital in H2 2026 with our first circle of active partners."*
+
+**Vehicle:** Convertible Steward Agreement (4× cap, SAFE-like, purpose-aligned)
+
+**Closing CTA:** *"You're looking to deploy capital. You want to meet us personally and dive deeper together. We'd love to get to know you and your vision. Let's connect."*
+
+### 2.7 [Future sources — add new captures below]
 
 ---
 
@@ -177,6 +275,8 @@ Rewards already-completed contributions to the ecosystem.
 - **Mehemed Bougsea** — Vice Chairman, ex-Think-it co-founder
 - **Daphne Laan** — Dutch co-founder (House of Wonder)
 
+**Team credentials (from fundraising page):** *"We've spent the last decade building Think-it into a profitable data-collaboration leader and managing €350M innovation portfolios at Google."* This is a serious operational profile. The heart-language wrapper sits on top of a Berlin engineering shop + Google-portfolio-management spine. Two-layer read: they speak heart externally, they think business internally. Commercial arguments and structural sophistication will land cleanly with them.
+
 ### Product surfaces
 
 - **Social network with Merlin AI matchmaking** — surfaces people, communities, projects, opportunities by *"resonance, shared values, and purpose"*
@@ -191,7 +291,16 @@ Rewards already-completed contributions to the ecosystem.
 
 - ~500 users total
 - **140 pilot members** across **26 countries**, **5 continents**, **43% female**
-- North star: **144,000 Planeteers by 2027**
+- North star: **144,000 Planeteers · 200+ communities · €3M ARR by 2027**
+
+### Current fundraising posture (2026-05-25 — TIME-SENSITIVE)
+
+- **Active seed round.** Target: **€500k from aligned funders (impact angels) in the next weeks**, paving toward a larger round of **blended catalytic capital in H2 2026**.
+- **Vehicle:** Convertible Steward Agreement (purpose-aligned, SAFE-like, 4× cap)
+- **Primary ask of their network:** *"Activate Your Network"* — connections to vision-aligned funders. They offer fundraising rewards for connections that lead to investment.
+- **Qualification filter:** *"We want to do business with people we want to do life with."* Vibe-first, alignment > dollars.
+- **CTA on /fundraising:** *"I am curious"* — soft, exploratory entry, not a hard "invest now."
+- **Open role:** Fundraising & Stewards Identification (10-20h/week, framed as *"an act of resonance, trust, and alignment"* not transactional hustle). Whoever fills this seat is a calibration signal for who they're attracting operationally.
 
 ### Funders + ecosystem partners
 
@@ -267,6 +376,16 @@ Geographic skew: Berlin / Amsterdam axis with active members in Western Cape, Li
 - *"Planetary citizens"* / *"You are Planeteer"*
 - *"Out-collaborate incumbents"*
 - *"You don't network — you resonate. You don't pitch — you share. And the people you're meant to meet, they'll find you."*
+- *"We want to do business with people we want to do life with"*
+- *"This is not about asking for money. It's about inviting the right funders into a co-creative process"*
+- *"Lead with Purpose, Not Prestige"*
+- *"Co-Creation Over Control"*
+- *"We build connective infrastructure across movements — shifting from fragmentation to flow"*
+- *"Every Euro in Planetir is a multiplier"*
+- *"Built on steward-ownership principles, Planetir cannot be sold out or extracted"*
+- *"Funders become active partners"*
+- *"I am curious"* (their soft-entry CTA — recommended pattern for low-friction exploratory contact)
+- *"Will you co-create it?"*
 - *"Each One Teach One"*
 - *"Heart skills"* (compassion, resilience, creativity, collaboration)
 - *"Co-create the world we know is possible"*
@@ -299,6 +418,19 @@ Markedly first-person, vulnerable, somatic on the live feed (e.g. Joscha's surfi
 ### Visual identity
 
 *[Sasha is collecting this directly via the skin build. Drop colors / fonts / layout pattern observations here as they crystallize.]*
+
+### Pattern: their four ideal-funder archetypes
+
+Useful as a structural pattern to mirror in the skin. Their /fundraising page profiles the AUDIENCE in four archetypal statements rather than describing the product. This is a Sasha-adjacent move (recognition-first, audience-first) and worth honoring in any Planetir-skinned surface that asks for action:
+
+1. Purpose-not-Prestige
+2. Co-Creation-over-Control
+3. Care-for-People-and-Planet (with vulnerability + inner-journey signal)
+4. Authenticity-and-Joy (giver, not taker)
+
+### Pattern: "Why X is a rare opportunity" — four-pillar structure
+
+Their pillars are: **Ecosystemic Approach · Proven Track Record · Movement Leverage · Mission Protection.** Worth noting as a rhetorical pattern: substantive claim per pillar, each with a one-sentence elaboration. Clean shape for any FYTT page that argues for itself.
 
 ---
 
@@ -340,6 +472,36 @@ Implications:
 - Even if Planetir doesn't move forward, the skin itself becomes proof-of-throughput for the next ecosystem-leader conversation
 - If they DO move forward, the proposal already exists in deployable form
 
+### New angle: the commercial-acceleration argument
+
+With **€3M ARR by 2027** named as a public target, the path-arithmetic is exposed. At 10-20% commission on transactions, €3M ARR implies roughly €15-30M in platform-mediated transaction volume. One-platform-grows-organically can get there, but slowly. **White-label deployment compresses the path:** each new community runs its own Planetir skin, all volume flows back through the shared rails + Collective Fund. Their 144,000-user / 200+-communities target IS a white-label-shaped target — they may not have named the architecture yet, but the math points at it.
+
+Worth running this argument explicitly in the conversation: *"Your numbers are white-label-shaped. We've built the rails. Want to see what your community looks like on them?"*
+
+### New angle: the fundraising-connector play
+
+Their **#1 ask of the network is funder connections** (impact angels, €500k near-term, larger H2 2026 round). Sasha's network includes founders, ecosystem leaders, and aligned-capital adjacents from the Originals + Mexico hacker-house orbit. Possible moves, ranked by leverage:
+
+1. **High:** make 1-3 specific intros to vision-aligned funders in his network. This is exactly what they're asking for, and it earns the right to ask for structural collaboration in return.
+2. **Medium:** offer to help them identify aligned funders (their open role) on a partner basis rather than as an employee.
+3. **Lower:** simply post about Planetir from his channels using their suggested intro template.
+
+The bigger structural framing: by helping them raise, Sasha demonstrates the FYTT-style "people who already want them" logic in action. Their fundraise becomes the first test case of *"can FYTT introduce a community-ecosystem leader to capital that already wants what they're building?"* Successful intro = proof-of-concept for a much bigger pattern.
+
+### New angle: the open-role calibration signal
+
+The Fundraising & Stewards Identification role (10-20h/week) is a precise diagnostic for who they're attracting at the operational layer. Two ways to use it:
+- **Refer someone** from Sasha's network who fits the heart+structure profile. Costs nothing, earns goodwill, and gives Sasha a inside-channel observer of Planetir's operations.
+- **Watch who fills it.** Whoever lands tells Sasha what register Planetir attracts at the working layer (not just at the visionary layer).
+
+### New angle: steward-ownership vocabulary collision (and complement)
+
+Both sides use "steward" / "stewardship" heavily but mean different things:
+- **Planetir:** *steward-ownership* (the legal structure — Kulimi e.V., cannot be sold, Convertible Steward Agreement, Stewards Circle of 144)
+- **FYTT:** *holonic stewardship* (each holon stewards itself; federated network of self-sovereign holons; PolyForm NC + Distributor Agreement as the legal twin)
+
+These are compatible models pointing at the same intuition (mission protection through structural lock) but with different commercial topologies. The compatibility argument: *FYTT's distributor agreement IS a steward-ownership pattern at the per-deployment scale; Planetir's Constitution + Kulimi e.V. structure IS a steward-ownership pattern at the meta scale.* They can stack. Worth naming explicitly to avoid the appearance of vocabulary competition.
+
 ---
 
 ## 6. Open questions for the actual conversation
@@ -354,9 +516,16 @@ Implications:
 - Their Convertible Steward Agreement vs. FYTT's PolyForm NC + 10% Distributor Agreement — compatible structures, or different commercial topologies?
 - Their relationship with regenerative-finance / impact-investor world (GIZ, Bosch, etc.) — surface for FYTT introductions, or distinct lane?
 - Geographic + cultural fit — Berlin-Amsterdam-Mexico City is a real triangle. Founder-collective co-residency possibility?
+- How does the €3M ARR by 2027 path arithmetic work in their model? Is white-label already on the roadmap or is it an unstated structural assumption?
+- Who's their first 5 ideal funders in the current €500k round? Useful to test network overlap.
+- What does "Convertible Steward Agreement 4× cap" mean in their dilution model? At what valuation does it convert, and into what (token allocation, equity, governance rights)?
+- Their open Fundraising & Stewards Identification role — would they prefer a referral, a partner-basis collaboration, or are they specifically looking for an employee?
+- How do they think about the Convertible Steward Agreement vs. FYTT's PolyForm NC + 10% Distributor Agreement? Compatible structures, or different commercial topologies they'd want to reconcile?
+- Their relationship with Kulimi e.V. as legal steward — is it analogous to a foundation-holds-the-IP model, or something looser?
 
 ---
 
 ## 7. Update log
 
 - **2026-05-25 (Day 80):** Doc created. Website crawled (~12 marketing pages + auth-gated feed, sample profiles/quests/posts). YouTube explainer captured verbatim. Whitepaper full text captured. Sasha building Planetir-skinned demo on FYTT rails as the conversation lead-with. First synthesis + collaboration angles drafted.
+- **2026-05-25 (Day 80, intel drop #2):** Added §2.4 Co-Creation & Support Opportunities (their 3-tier ask + 7 expertise quests), §2.5 Fundraising & Stewards Identification open role, §2.6 Fundraising page (€500k seed now → larger H2 2026 round, €3M ARR by 2027 target). Updated §3 with Think-it + €350M Google portfolio credentials + current fundraising posture (TIME-SENSITIVE). Updated §4 with new lexicon + their four ideal-funder archetype pattern + their four "rare opportunity" pillar pattern. Added §5 three new collaboration angles: commercial-acceleration argument (their numbers are white-label-shaped), fundraising-connector play (their #1 ask = Sasha's leverage), open-role calibration signal, and steward-ownership vocabulary collision/complement. Added 7 new open questions in §6.
