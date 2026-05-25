@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700&family=Montserrat:wght@300;400;500;600;700&display=swap');
 /* Source Serif Pro — used by the network-school skin (white-label NS demo).
    Editorial transitional serif, close cousin of Tiempos / NS's display face.
    Loaded only once; skin token swap activates it under [data-skin="network-school"]. */
@@ -855,25 +855,20 @@
     0 0 14px rgba(196, 163, 92, 0.55),
     0 0 3px rgba(196, 163, 92, 0.75);
 
-  /* Primary CTA — dark-forest glass with parchment-gold halo. */
-  --skin-cta-bg: linear-gradient(
-    135deg,
-    rgba(13, 25, 18, 0.88) 0%,
-    rgba(20, 38, 28, 0.78) 50%,
-    rgba(13, 25, 18, 0.88) 100%
-  );
-  --skin-cta-text: rgba(245, 236, 213, 0.98);
-  --skin-cta-border: rgba(196, 163, 92, 0.38);
+  /* Primary CTA — V2 (Sasha 2026-05-25): solid LATAM yellow-gold with
+     dark-forest text. Mirrors latamimpact.io's primary button
+     ("Explore the Ecosystem" yellow pill). The dark-forest glass
+     variant from V1 was off-register — LATAM uses block-color
+     buttons, not glass. */
+  --skin-cta-bg: #d4a83a;
+  --skin-cta-text: #0a1a12;
+  --skin-cta-border: transparent;
   --skin-cta-shadow:
-    0 0 24px -4px rgba(196, 163, 92, 0.42),
-    0 12px 30px -12px rgba(0, 0, 0, 0.55);
-  --skin-cta-text-shadow:
-    0 0 16px rgba(196, 163, 92, 0.32),
-    0 1px 2px rgba(0, 0, 0, 0.45);
-  --skin-cta-icon: rgba(212, 185, 117, 0.98);
-  --skin-cta-icon-shadow:
-    0 0 12px rgba(212, 185, 117, 0.78),
-    0 0 4px rgba(196, 163, 92, 0.85);
+    0 0 24px -6px rgba(212, 168, 58, 0.55),
+    0 10px 24px -10px rgba(0, 0, 0, 0.55);
+  --skin-cta-text-shadow: none;
+  --skin-cta-icon: #0a1a12;
+  --skin-cta-icon-shadow: none;
 
   /* Gradient accents — single warm-gold family (Playbook rainbow circles
      preserved via the locked Sasha rule scoping color to .ornament-spin). */
@@ -1062,15 +1057,51 @@
     inset 0 -1px 0 0 rgba(0, 0, 0, 0.36),
     0 12px 30px -10px rgba(0, 0, 0, 0.55);
 }
+/* V2 (Sasha 2026-05-25): primary CTA dialect flipped from "dark
+   forest glass with gold halo" to "solid LATAM yellow with dark
+   forest text" to mirror latamimpact.io's primary button. The
+   liquid-glass-dark class is the platform's primary-CTA class, so
+   this rule lands the new dialect everywhere primary CTAs render
+   under daouniverse. */
 [data-skin="daouniverse"] .liquid-glass-dark {
-  background: rgba(8, 18, 12, 0.85);
-  border: 1px solid rgba(196, 163, 92, 0.42);
+  background: #d4a83a;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border: 1px solid rgba(180, 142, 49, 0.55);
   box-shadow:
-    inset 0 1px 0 0 rgba(196, 163, 92, 0.22),
-    inset 0 -1px 0 0 rgba(0, 0, 0, 0.52),
-    0 0 22px -6px rgba(196, 163, 92, 0.32),
-    0 14px 36px -10px rgba(0, 0, 0, 0.62);
-  color: #f0e6d2;
+    inset 0 1px 0 0 rgba(255, 230, 160, 0.45),
+    inset 0 -1px 0 0 rgba(140, 110, 38, 0.55),
+    0 0 22px -6px rgba(212, 168, 58, 0.45),
+    0 10px 24px -10px rgba(0, 0, 0, 0.45);
+  color: #0a1a12;
+}
+/* Cancel the asymmetric edge-light pseudo-element — on a solid
+   yellow CTA the dark-bottom gradient overlay reads as a smudge. */
+[data-skin="daouniverse"] .liquid-glass-dark::before {
+  display: none;
+}
+/* Hover lift — slightly brighter yellow + slightly stronger halo. */
+[data-skin="daouniverse"] .liquid-glass-dark:hover {
+  background: #dcb244;
+  box-shadow:
+    inset 0 1px 0 0 rgba(255, 230, 160, 0.55),
+    inset 0 -1px 0 0 rgba(140, 110, 38, 0.55),
+    0 0 28px -4px rgba(212, 168, 58, 0.62),
+    0 12px 28px -10px rgba(0, 0, 0, 0.5);
+}
+/* Text + icon inside the CTA → dark forest (overrides Aurora's cream
+   that the button text inherits via class). */
+[data-skin="daouniverse"] .liquid-glass-dark,
+[data-skin="daouniverse"] .liquid-glass-dark * {
+  color: #0a1a12 !important;
+}
+/* The ✦ ignite-logo emblem inside primary CTAs is a gold PNG —
+   under daouniverse it should render as dark forest so it reads on
+   the yellow bg. Filter recipe inverts the existing gold to near
+   black with a hint of forest. */
+[data-skin="daouniverse"] .liquid-glass-dark img.ornament-spin,
+[data-skin="daouniverse"] .liquid-glass-dark > img:first-of-type {
+  filter: brightness(0) saturate(100%) invert(8%) sepia(40%) saturate(800%) hue-rotate(95deg) brightness(0.65) !important;
 }
 
 /* Hover wash on rail + Pane 2 — gold-tinted. */

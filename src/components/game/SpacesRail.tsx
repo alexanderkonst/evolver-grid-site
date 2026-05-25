@@ -35,12 +35,14 @@ import { useSkin } from "@/contexts/SkinContext";
 // ns-assets.com. Sasha provided the URL directly — no local copy.
 const NS_LOGO_URL = "https://ns-assets.com/auth-privy/network-school-black-flag-white-background-privy.png";
 
-// Day 84 (Sasha 2026-05-25): LATAM Impact pyramid mark for the
-// `daouniverse` white-label skin. Geometric mark — 3 stacked
-// rectangles forming a Maya temple silhouette — so per the V5
-// per-community skin lesson, inline SVG is the right call (no CDN
-// asset round-trip, scales sharp at any size, color follows the
-// skin's gold token via stroke).
+// Day 84 v2 (Sasha 2026-05-25): LATAM Impact pyramid mark for the
+// `daouniverse` white-label skin. Closer match to the actual LATAM
+// Impact lockup — 3 stacked trapezoidal tiers with slight inward
+// slant (Maya temple silhouette in 3/4 perspective), small temple
+// crown at top, central staircase column suggested by the divider
+// running down the middle. Geometric mark, so per the V5 lesson
+// inline SVG is the right call (no CDN round-trip, scales sharp,
+// stroke color follows the skin's gold token).
 const LatamPyramid = ({ size = 32 }: { size?: number }) => (
     <svg
         data-brand="latam-pyramid"
@@ -49,14 +51,22 @@ const LatamPyramid = ({ size = 32 }: { size?: number }) => (
         viewBox="0 0 64 64"
         fill="none"
         stroke="#c4a35c"
-        strokeWidth={2}
+        strokeWidth={1.75}
         strokeLinejoin="round"
+        strokeLinecap="round"
         aria-hidden="true"
         className="flex-shrink-0"
     >
-        <rect x="26" y="10" width="12" height="11" />
-        <rect x="18" y="21" width="28" height="14" />
-        <rect x="8" y="35" width="48" height="18" />
+        {/* Top temple crown */}
+        <path d="M 27 10 L 27 21 L 37 21 L 37 10 Z" />
+        {/* Middle tier — trapezoid, narrower at top */}
+        <path d="M 21 21 L 23.5 35 L 40.5 35 L 43 21 Z" />
+        {/* Base tier — widest trapezoid */}
+        <path d="M 12 35 L 15 53 L 49 53 L 52 35 Z" />
+        {/* Central staircase column — suggests the steps up the
+            middle of the temple, breaking the front faces into
+            symmetric halves like the canonical lockup. */}
+        <line x1="32" y1="21" x2="32" y2="53" />
     </svg>
 );
 // Day 48 iter 7 (Sasha): JOURNEY + ME spaces now render with custom
@@ -420,16 +430,23 @@ const SpacesRail = ({
                                 <LatamPyramid size={32} />
                             </div>
                             <div className="hidden md:flex items-center gap-3 px-3 py-2.5">
-                                <LatamPyramid size={32} />
+                                <LatamPyramid size={36} />
+                                {/* V2 (Sasha 2026-05-25): wordmark switched
+                                    from Playfair Display to Inter — the
+                                    latamimpact.io lockup uses a clean
+                                    geometric sans for the wordmark, NOT
+                                    a serif. Pointed-top A + tall x-height
+                                    + uniform stroke weight = Inter (or
+                                    Helvetica Neue near-cousin). */}
                                 <span
                                     className="select-none truncate"
                                     style={{
-                                        fontFamily: '"Playfair Display", "Cormorant Garamond", Georgia, serif',
+                                        fontFamily: '"Inter", "Helvetica Neue", system-ui, sans-serif',
                                         fontWeight: 600,
-                                        fontSize: "16px",
+                                        fontSize: "15px",
                                         lineHeight: 1.05,
                                         color: "#f0e6d2",
-                                        letterSpacing: "0.04em",
+                                        letterSpacing: "0.05em",
                                         textTransform: "uppercase",
                                         display: "flex",
                                         flexDirection: "column",
