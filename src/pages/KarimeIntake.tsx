@@ -434,23 +434,31 @@ const KarimeIntake = () => {
         </section>
 
         {/* ── CTA + contact (progressive reveal) ───────────────── */}
-        {/* Renders only after the visitor picks one of the 5 support
-            options. The selection IS the qualifying act; revealing the
+        {/* Renders only after the visitor picks at least one support
+            option. The selection IS the qualifying act; revealing the
             booking + contact below makes the path forward feel earned,
-            and gives Karime + Sasha a signal in the inbound. */}
-        {selectedSupport && (
+            and gives Karime + Sasha a signal in the inbound.
+
+            Day 85 (Sasha 2026-05-25): CTA action changed from direct
+            cal.com booking to WhatsApp-with-prefilled-form. The form
+            now actually delivers the visitor's selections to Karime as
+            a WhatsApp message — she sees the support shape before the
+            call. The cal.com URL is included inside the message body,
+            so visitors keep a self-serve booking path; one CTA per
+            stage preserved. */}
+        {selectedSupport.length > 0 && (
           <section className="mt-2 mb-6 animate-in fade-in slide-in-from-bottom-2 duration-500">
             <Ornament className="my-6 sm:my-8" />
             <p
               className="text-center text-lg sm:text-xl leading-[1.4] mb-5 sm:mb-6 max-w-[520px] mx-auto"
               style={{ ...bodyTextStyle, fontWeight: 600 }}
             >
-              When you are ready, book your 20 minutes with Karime.
+              Send your reflection to Karime, and she'll be in touch.
             </p>
             <div className="flex flex-col items-center gap-4 px-4 text-center">
               <EditorialCta
-                label="Book your free 20-minute conversation"
-                onClick={handleBook}
+                label="Send to Karime on WhatsApp"
+                onClick={handleSendWhatsApp}
               />
               <div
                 className="inline-flex items-center justify-center gap-2 max-w-[460px] mt-1"
@@ -464,7 +472,7 @@ const KarimeIntake = () => {
                   fontWeight: 500,
                 }}
               >
-                <span>Free · 20 minutes</span>
+                <span>Includes your booking link · Free 20-min call</span>
               </div>
 
               {/* Contact line revealed alongside the CTA — Telegram +
