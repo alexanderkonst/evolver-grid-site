@@ -2,41 +2,80 @@
  * PreviewBanner — floating chip that renders on every page while an
  * alt skin (e.g. Navy+Gold) is active.
  *
- * Day 47 very-late-night → autonomous night pass (Sasha):
+ * Two behavior modes:
  *
- *   When Sasha visits `/preview`, the skin flips to navy-gold and
- *   persists in localStorage. The preview is no longer scoped to the
- *   `/preview` route — he can tour every surface of the site in the
- *   alt skin until he clicks Exit on this banner.
+ *   1. DISCLAIMER mode — for white-label community skins (NS, Daouniverse,
+ *      Planetir). Renders an unclickable "Demo · not affiliated with <X>"
+ *      chip. The skin is route-scoped (e.g. /ns/*), so an "exit" button
+ *      would be confusing — the visitor exits by navigating away from the
+ *      route. Pattern established for NS V6 (Sasha 2026-05-19); extended
+ *      to Daouniverse + Planetir Day 84 evening per Sasha's call.
  *
- *   Banner behavior:
- *     • Visible whenever skin !== 'aurora'
- *     • Click to exit: calls setSkin('aurora') + navigates to `/`
- *     • Styled to read in any skin (dark glass + gold text)
- *     • Lives at `fixed bottom-4 right-4` on every route
+ *   2. PREVIEW mode — for the internal Navy+Gold test ground (set by
+ *      visiting /preview). Clickable Exit button that flips back to
+ *      Aurora and navigates home. Used by Sasha to dogfood alt aesthetics
+ *      without route prefixes.
+ *
+ * Day 47 very-late-night → autonomous night pass (Sasha): original
+ * implementation. Day 84 evening (Sasha 2026-05-25): refactored to a
+ * SKIN_BANNER_CONFIG table so adding a new white-label disclaimer is
+ * one row, no branching logic.
  */
 
-import { useSkin } from "@/contexts/SkinContext";
+import { useSkin, type Skin } from "@/contexts/SkinContext";
 import { useNavigate } from "react-router-dom";
+
+type DisclaimerConfig = {
+  mode: "disclaimer";
+  /** What appears on the chip — "Demo · not affiliated with <text>". */
+  notAffiliatedWith: string;
+};
+
+type PreviewConfig = {
+  mode: "preview";
+  /** Human label for the chip ("Navy + Gold preview"). */
+  label: string;
+};
+
+type HiddenConfig = { mode: "hidden" };
+
+/**
+ * Per-skin banner config. Add a row when shipping a new white-label skin.
+ * Karime is route-scoped to /build/karime/* but is a production landing
+ * (not a demo / not a preview), so it gets `hidden`.
+ */
+const SKIN_BANNER_CONFIG: Partial<
+  Record<Skin, DisclaimerConfig | PreviewConfig | HiddenConfig>
+> = {
+  "network-school": {
+    mode: "disclaimer",
+    notAffiliatedWith: "ns.com",
+  },
+  daouniverse: {
+    mode: "disclaimer",
+    notAffiliatedWith: "latamimpact.io",
+  },
+  planetir: {
+    mode: "disclaimer",
+    notAffiliatedWith: "planetir.org",
+  },
+  karime: { mode: "hidden" },
+  "navy-gold": {
+    mode: "preview",
+    label: "Navy + Gold preview",
+  },
+};
 
 const PreviewBanner = () => {
   const { skin, setSkin } = useSkin();
   const navigate = useNavigate();
 
   if (skin === "aurora") return null;
-  // Day 81 (Sasha 2026-05-23): karime is a production route-scoped skin
-  // (not a preview / not a debug surface), so the "preview chip" pattern
-  // doesn't apply — visitors on /build/karime* should never see it.
-  if (skin === "karime") return null;
 
-  const isNS = skin === "network-school";
+  const config = SKIN_BANNER_CONFIG[skin];
+  if (!config || config.mode === "hidden") return null;
 
-  // V6 (Sasha 2026-05-19): restored banner under NS with disclaimer copy.
-  // V4 hid the banner entirely on NS (so it wouldn't read as debug chrome
-  // to an external evaluator). Sasha's call now: bring it back, but as
-  // a legal-ish disclaimer rather than a "preview" chip — makes the
-  // not-affiliated relationship explicit so the demo is honest.
-  if (isNS) {
+  if (config.mode === "disclaimer") {
     return (
       <div
         className="fixed bottom-4 right-4 z-[9999] inline-flex items-center gap-2 rounded-md px-3 py-1.5 text-[11px] tracking-[0.04em] pointer-events-none select-none"
@@ -48,22 +87,19 @@ const PreviewBanner = () => {
           fontWeight: 500,
           boxShadow: "0 4px 14px -6px rgba(0, 0, 0, 0.10)",
         }}
-        aria-label="Demo only. This platform is not affiliated with ns.com."
+        aria-label={`Demo only. This platform is not affiliated with ${config.notAffiliatedWith}.`}
       >
-        <span>Demo · not affiliated with ns.com</span>
+        <span>Demo · not affiliated with {config.notAffiliatedWith}</span>
       </div>
     );
   }
 
-  const humanName =
-    skin === "navy-gold" ? "Navy + Gold preview" : `${skin} preview`;
-
+  // preview mode — clickable exit (Navy+Gold internal preview)
   return (
     <button
       type="button"
       onClick={() => {
         setSkin("aurora");
-        // Navigate home so exit feels like a clean return to Aurora.
         navigate("/");
       }}
       className="fixed bottom-4 right-4 z-[9999] inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-medium transition-all hover:scale-[1.03] active:scale-[0.98]"
@@ -82,7 +118,7 @@ const PreviewBanner = () => {
       <span aria-hidden="true" style={{ color: "#d4af37" }}>
         ✦
       </span>
-      <span>{humanName}</span>
+      <span>{config.label}</span>
       <span aria-hidden="true" style={{ opacity: 0.55 }}>
         ·
       </span>
