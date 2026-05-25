@@ -99,7 +99,7 @@ const MatchHero = () => {
                brand color — just atmospheric lift.
 
           Locked copy unchanged. No terminal periods. No gold spans. */}
-      <div className="relative max-w-[720px] mx-auto px-5 py-8 sm:py-10 md:py-12">
+      <div data-match-hero="true" className="relative max-w-[720px] mx-auto px-5 py-8 sm:py-10 md:py-12">
         {/* Atmospheric backdrop. Sits behind the hero text only, not
             the CTA. Soft radial so the headline feels lifted from the
             video field without a hard card edge. */}

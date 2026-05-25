@@ -19,6 +19,9 @@ import aiOsHomeIcon from "@/assets/mc-merkaba.png";
 // glyph in the mobile menu pill — pairs with the hamburger to read as
 // "your home + open menu" in one affordance.
 import brandMark from "@/assets/find-your-top-talent-torus.png";
+// Day 84 v3 (Sasha 2026-05-25): real LATAM Impact pyramid mark for the
+// daouniverse mobile pill — replaces the V2 inline SVG.
+import latamPyramidMark from "@/assets/latam-impact-pyramid.png";
 import { useSkin } from "@/contexts/SkinContext";
 // Day 80 Wave 2.11: useEntryPath import retired — the video background
 // now checks the URL directly at mount (see comment in MuxVideoBackground
@@ -1669,44 +1672,26 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                             }}
                             aria-label="Open menu"
                         >
-                            {__isDaoShell ? (
-                                /* Day 84 (Sasha 2026-05-25): inline LATAM
-                                   pyramid mark — geometric 3-tier silhouette,
-                                   gold stroke, no PNG round-trip. Mirrors the
-                                   <LatamPyramid> used in SpacesRail's desktop
-                                   brand block. */
-                                <svg
-                                    data-brand="latam-pyramid"
-                                    width={28}
-                                    height={28}
-                                    viewBox="0 0 64 64"
-                                    fill="none"
-                                    stroke="#c4a35c"
-                                    strokeWidth={2}
-                                    strokeLinejoin="round"
-                                    aria-hidden="true"
-                                    className="flex-shrink-0"
-                                >
-                                    <rect x="26" y="10" width="12" height="11" />
-                                    <rect x="18" y="21" width="28" height="14" />
-                                    <rect x="8" y="35" width="48" height="18" />
-                                </svg>
-                            ) : (
-                                <img
-                                    /* V6 (Sasha 2026-05-19): use the canonical
-                                       NS wavy flag PNG on mobile too, not the
-                                       square inline SVG. Single asset across
-                                       desktop + mobile keeps the brand mark
-                                       consistent end-to-end. */
-                                    src={__isNSShell
+                            <img
+                                /* V6 (Sasha 2026-05-19): use the canonical
+                                   NS wavy flag PNG on mobile too, not the
+                                   square inline SVG. Single asset across
+                                   desktop + mobile keeps the brand mark
+                                   consistent end-to-end.
+                                   Day 84 v3 (Sasha 2026-05-25): same single-
+                                   asset principle now applies to daouniverse —
+                                   the real LATAM pyramid PNG renders here too,
+                                   replacing the V2 inline SVG. */
+                                src={__isDaoShell
+                                    ? latamPyramidMark
+                                    : __isNSShell
                                         ? "https://ns-assets.com/auth-privy/network-school-black-flag-white-background-privy.png"
                                         : brandMark}
-                                    alt=""
-                                    aria-hidden="true"
-                                    className="w-7 h-7 object-contain flex-shrink-0"
-                                    draggable={false}
-                                />
-                            )}
+                                alt=""
+                                aria-hidden="true"
+                                className="w-7 h-7 object-contain flex-shrink-0"
+                                draggable={false}
+                            />
                             <Menu className="w-4 h-4 flex-shrink-0" aria-hidden="true" />
                         </button>
                         {/* Day 53 (Sasha 2026-04-27): mobile breadcrumb.
