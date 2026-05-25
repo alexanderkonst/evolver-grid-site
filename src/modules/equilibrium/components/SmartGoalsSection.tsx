@@ -249,7 +249,15 @@ const SortableTaskBar = ({
         transition,
       }}
       className={cn(
-        "group flex items-center gap-2 rounded-xl border bg-white/65 backdrop-blur-sm transition",
+        "group flex items-center gap-2 rounded-xl border bg-white/65 backdrop-blur-sm",
+        // Scope transitions to color/bg only (Sasha 2026-05-25): the
+        // Tailwind catch-all `transition` includes `transform`, which
+        // fights dnd-kit's 60Hz transform updates during drag and
+        // causes Chrome to interpolate each frame for 150ms → visible
+        // text-bloat / scaling artifact on the dragged row. Explicit
+        // property list keeps hover transitions snappy without
+        // touching the live drag transform.
+        "transition-[border-color,background-color] duration-150",
         inFocus ? "border-emerald-300/60" : "border-white/40",
         isDragging && "z-10 opacity-90 shadow-lg",
       )}

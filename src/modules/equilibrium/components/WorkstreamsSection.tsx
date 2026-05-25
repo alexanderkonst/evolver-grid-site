@@ -334,7 +334,12 @@ const SortableWorkstreamChip = ({
         }
       }}
       className={cn(
-        "group relative flex items-center gap-2 rounded-xl border-2 transition",
+        "group relative flex items-center gap-2 rounded-xl border-2",
+        // Sasha 2026-05-25: scope to color/bg so Tailwind doesn't
+        // transition `transform` and fight dnd-kit's drag updates
+        // (caused visible text-bloat / scaling on the dragged row
+        // in Chrome).
+        "transition-[border-color,background-color,box-shadow] duration-150",
         editing
           ? "border-[#0a1628]/30 bg-white cursor-text"
           : isActive

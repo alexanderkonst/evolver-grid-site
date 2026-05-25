@@ -143,7 +143,10 @@ const SortableStrategyRow = ({
       ref={setNodeRef}
       style={{ transform: CSS.Transform.toString(transform), transition }}
       className={cn(
-        "group flex items-start gap-3 rounded-xl border bg-white/55 px-2 py-1 backdrop-blur-sm transition",
+        "group flex items-start gap-3 rounded-xl border bg-white/55 px-2 py-1 backdrop-blur-sm",
+        // Sasha 2026-05-25: scope to color/bg so Tailwind doesn't
+        // transition `transform` and fight dnd-kit's drag updates.
+        "transition-[border-color,background-color] duration-150",
         "border-white/40 hover:border-white/70 hover:bg-white/75",
         isDragging && "z-10 opacity-90 shadow-lg",
       )}
