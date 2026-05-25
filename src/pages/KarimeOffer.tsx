@@ -183,7 +183,14 @@ const KarimeOffer = () => {
             </p>
 
             <p className="text-lg sm:text-xl md:text-[1.4rem] font-bold leading-[1.45] tracking-[-0.005em]">
-              A space to soften, hear yourself clearly again, and feel genuinely supported while facing what is real.
+              A space to{" "}
+              <span
+                className="bg-clip-text text-transparent"
+                style={KARIME_EMPHASIS_STYLE}
+              >
+                soften
+              </span>
+              , hear yourself clearly again, and feel genuinely supported while facing what is real.
             </p>
 
             {/* Three short lines — positive declarations, italic for breath.
@@ -201,7 +208,13 @@ const KarimeOffer = () => {
                 Emotional honesty.
               </p>
               <p className="text-base sm:text-lg md:text-xl leading-[1.4]">
-                Held, not fixed.
+                <span
+                  className="bg-clip-text text-transparent"
+                  style={KARIME_EMPHASIS_STYLE}
+                >
+                  Held
+                </span>
+                , not fixed.
               </p>
             </div>
 

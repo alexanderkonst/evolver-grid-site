@@ -64,6 +64,15 @@ export interface EquilibriumTask {
   created_at: string;
   done_at: string | null;
   do_now_at: string | null;
+  /**
+   * Immutable copy of the parent workstream.title at the moment this
+   * task was completed (Sasha 2026-05-24). Lets Harvest preserve
+   * celebration history even when the parent workstream is later
+   * hard-deleted. Null for tasks completed before this snapshot
+   * feature shipped, AND for active (not-yet-done) tasks. Migration:
+   * 20260524000000_add_workstream_title_snapshot.sql.
+   */
+  workstream_title_snapshot: string | null;
 }
 
 // ─── DO NOW focus slot (up to 3 promoted task IDs per user) ────────────

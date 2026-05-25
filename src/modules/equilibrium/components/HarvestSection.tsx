@@ -55,18 +55,29 @@ const HarvestSectionBase = ({
   loading,
   onUncompleteTask,
 }: HarvestSectionProps) => {
-  // Workstream-id → title lookup. Includes archived workstreams so a
-  // task whose workstream got deleted... wait, FK cascade deletes
-  // tasks too, so this list only includes tasks whose workstream
-  // still exists. But archived workstreams (soft-archived in the
-  // legacy data) are still present in the DB — include them so their
-  // tasks (if any survived) still attribute correctly.
+  // Workstream-id → title lookup, used as FALLBACK only. Sasha
+  // 2026-05-24: each task now carries workstream_title_snapshot,
+  // populated by eq_complete_task at the moment of completion. That
+  // snapshot is the canonical source for Harvest citations because
+  // it survives a later hard-delete of the parent workstream (which
+  // cascades and removes tasks otherwise). This lookup catches the
+  // two backwards-compat cases: legacy tasks completed before the
+  // snapshot column shipped, and any race where the snapshot didn't
+  // populate.
   const workstreamTitleById = useMemo(() => {
     const map: Record<string, string> = {};
     for (const w of workstreams) map[w.id] = w.title;
     for (const w of archivedWorkstreams) map[w.id] = w.title;
     return map;
   }, [workstreams, archivedWorkstreams]);
+
+  /**
+   * Resolve a task's workstream title — snapshot wins, live-lookup
+   * fallback. Returns undefined when neither source has a name (the
+   * snapshot never populated AND the parent workstream is now gone).
+   */
+  const resolveWorkstreamTitle = (task: EquilibriumTask): string | undefined =>
+    task.workstream_title_snapshot ?? workstreamTitleById[task.workstream_id];
 
   // Group completed tasks by day (local time of done_at). Order:
   // most-recent day first, tasks within a day already sorted newest
@@ -195,17 +206,20 @@ const HarvestSectionBase = ({
                     {/* Metadata — single italic citation line. Long
                         workstream names wrap; nothing truncates ugly. */}
                     <div className="mt-1 flex flex-wrap items-center gap-x-2 gap-y-0.5 text-[11px] text-[#0a1628]/55">
-                      {workstreamTitleById[task.workstream_id] && (
-                        <>
-                          <span className="italic">
-                            from{" "}
-                            <span className="font-medium not-italic text-[#0a1628]/75">
-                              {workstreamTitleById[task.workstream_id]}
+                      {(() => {
+                        const wsTitle = resolveWorkstreamTitle(task);
+                        return wsTitle ? (
+                          <>
+                            <span className="italic">
+                              from{" "}
+                              <span className="font-medium not-italic text-[#0a1628]/75">
+                                {wsTitle}
+                              </span>
                             </span>
-                          </span>
-                          <span className="text-[#0a1628]/30">·</span>
-                        </>
-                      )}
+                            <span className="text-[#0a1628]/30">·</span>
+                          </>
+                        ) : null;
+                      })()}
                       <span className="inline-flex items-center gap-1">
                         <Clock size={10} className="text-[#0a1628]/45" />
                         {formatDuration(focusDurationMs(task))}
