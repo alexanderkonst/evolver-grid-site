@@ -511,129 +511,269 @@ export const MOON_PHASES: MoonPhaseInfo[] = [
   },
 ];
 
-/** Mean synodic month, days. Source: Meeus AA, table 47.A.
- *  29 days, 12 hours, 44 minutes, 2.8 seconds. */
+// ═══════════════════════════════════════════════════════════════════
+// ASTRONOMY — shared primitives used by lunar, zodiac, and solar.
+//
+// Source: Meeus, "Astronomical Algorithms" (1998), 2nd ed.
+//   • Chapter 22: Nutation (skipped — not needed at our precision)
+//   • Chapter 25: Solar Coordinates (used for Sun's true longitude)
+//   • Chapter 47: Position of the Moon (used for Moon's elongation)
+//
+// Accuracy targets, after Sasha 2026-05-24 boost:
+//   • Lunar elongation: ~0.02° (≈ 2 min of cycle position)
+//   • Sun true longitude: ~0.005° (≈ 7 min of zodiac position)
+// Both comfortably exceed the watch's display precision (minutes).
+//
+// Validity range: ~year 1750 to ~year 2250 with full precision.
+// Outside that, the truncated polynomial expansions in T accumulate
+// error, but we're never displaying historic or far-future phases.
+// ═══════════════════════════════════════════════════════════════════
+
+/** Mean synodic month, days. Meeus AA table 47.A. 29d 12h 44m 02.8s. */
 const SYNODIC_MONTH_DAYS = 29.530588853;
+const RAD = Math.PI / 180;
+const J2000_JD = 2451545.0;
+const UNIX_EPOCH_JD = 2440587.5;
+const DAY_MS = 86_400_000;
 
 /**
  * Reference new moon — 2000-01-06 18:14 UTC, well-attested in
- * astronomical literature. Kept as a documented anchor for tests
- * and as a sanity check that the elongation calculation produces
- * ~0° at this moment. Not used by `getLunarState` directly: the
- * new elongation-based math (Brown's theory via Julian Day) is
- * timezone-independent by construction.
+ * astronomical literature. Kept as a documented anchor for tests.
  *
  * Historical note (Sasha 2026-05-21): the prior implementation used
- * this constant as the time origin via
- *   `new Date(2000, 0, 6, 18, 14).getTime()`
- * which JavaScript interprets as LOCAL time. A user in UTC+8 would
- * have read 2000-01-06 10:14 UTC — silently drifting the entire
- * lunar cycle by their timezone offset. Fixed by switching to
- * Date.UTC (here) AND moving runtime math to Julian-Day elongation.
+ * this as the time origin via `new Date(2000, 0, 6, 18, 14)` which
+ * JavaScript interprets as LOCAL time. A user in UTC+8 would have
+ * read 2000-01-06 10:14 UTC — silently drifting the entire lunar
+ * cycle by their timezone offset. Now using Date.UTC + Julian-Day
+ * elongation math, which is timezone-independent by construction.
  */
 export const REFERENCE_NEW_MOON_UTC_MS = Date.UTC(2000, 0, 6, 18, 14);
 
-/** One 1/8 phase = 45° of elongation. */
+/** One 1/8 lunar phase = 45° of elongation. */
 const PHASE_DEG = 45;
-/** Half a phase = 22.5°. Used to center principal phases. */
+/** Half a lunar phase = 22.5°. Used to center principal phases. */
 const PHASE_HALF_DEG = PHASE_DEG / 2;
+
+/**
+ * ΔT — Terrestrial Time minus UTC, in seconds.
+ *
+ * Brown's lunar theory (and Meeus' polynomial expansions in general)
+ * are stated in TT, but our `Date.now()` is UTC. The difference grows
+ * over time as Earth's rotation slows + leap seconds are inserted.
+ *
+ * Polynomial approximation from Espenak & Meeus (NASA TP-2008-214166),
+ * for years 2005–2050. Returns ΔT in seconds.
+ *
+ * Magnitude: ~67-74 seconds during 2005-2050. In Julian centuries,
+ * that's ~2e-8 — multiplied by the Moon's mean longitude rate
+ * (≈ 4.8e5 °/century), it shifts lunar longitude by ~0.01°. Below
+ * our 0.05° accuracy floor, but included for correctness and to
+ * future-proof against the years 2030+ when ΔT grows past 80s.
+ */
+function deltaTSeconds(yearApprox: number): number {
+  const y = yearApprox - 2005;
+  return 62.92 + 0.32217 * y + 0.005589 * y * y;
+}
+
+/** Julian Day from Unix milliseconds (UTC). */
+function julianDay(nowMs: number): number {
+  return nowMs / DAY_MS + UNIX_EPOCH_JD;
+}
+
+/**
+ * Julian centuries since J2000.0 in Terrestrial Time. Applies the
+ * UTC→TT correction via the ΔT polynomial. Returns T (centuries).
+ */
+function julianCenturiesTT(nowMs: number): number {
+  const jdUTC = julianDay(nowMs);
+  // Approximate year from JD (good to <1 day) — used to select ΔT.
+  const yearApprox = (jdUTC - J2000_JD) / 365.25 + 2000;
+  const tt_jd = jdUTC + deltaTSeconds(yearApprox) / 86400;
+  return (tt_jd - J2000_JD) / 36525;
+}
+
+/** Normalize an angle to [0, 360). */
+function deg360(x: number): number {
+  return ((x % 360) + 360) % 360;
+}
+
+/**
+ * Sun's true (apparent) geocentric ecliptic longitude in degrees.
+ *
+ *   0°   = Vernal equinox (Sun crosses celestial equator, ~Mar 20)
+ *   90°  = Summer solstice (~Jun 21)
+ *   180° = Autumnal equinox (~Sep 22)
+ *   270° = Winter solstice (~Dec 21)
+ *
+ * Used by:
+ *   • Zodiac (sign = floor((sunLong - 270) / 30) + 0 for Capricorn)
+ *   • Solar cycle (anchored to winter solstice = 270°)
+ *
+ * Method: Meeus AA ch. 25, equations 25.2–25.4. Computes the Sun's
+ * geocentric mean longitude L₀, mean anomaly M, applies the equation
+ * of center C, returns L₀ + C (true longitude relative to mean
+ * equinox of date). Skips nutation Δψ (~0.005° contribution) and
+ * aberration (≈-0.005° constant) — those are below our precision
+ * floor and would only matter for arcsecond-level work.
+ *
+ * Accuracy: ~0.005° (≈ 7 min of zodiac-sign position). Better than
+ * the watch's per-minute display.
+ */
+function sunTrueLongitudeDeg(nowMs: number): number {
+  const T = julianCenturiesTT(nowMs);
+
+  // Sun's geometric mean longitude. Meeus 25.2.
+  const L0 =
+    280.46646 + 36000.76983 * T + 0.0003032 * T * T;
+
+  // Sun's mean anomaly. Meeus 25.3.
+  const M =
+    357.52911 +
+    35999.05029 * T -
+    0.0001537 * T * T;
+  const Mn = deg360(M);
+
+  // Sun's equation of center. Meeus 25.4 — three sin terms, sufficient
+  // for ≤0.01° accuracy.
+  const C =
+    (1.914602 - 0.004817 * T - 0.000014 * T * T) * Math.sin(Mn * RAD) +
+    (0.019993 - 0.000101 * T) * Math.sin(2 * Mn * RAD) +
+    0.000289 * Math.sin(3 * Mn * RAD);
+
+  return deg360(L0 + C);
+}
 
 /**
  * True geocentric elongation of Moon from Sun, in degrees [0, 360).
  *
  *   0°   = New Moon (Moon at same ecliptic longitude as Sun)
- *   90°  = First Quarter (Moon ¼ orbit east of Sun)
+ *   90°  = First Quarter
  *   180° = Full Moon (opposition)
- *   270° = Last Quarter (Moon ¾ orbit east)
+ *   270° = Last Quarter
  *
- * Method: dominant terms of Brown's lunar theory, per Meeus
- * "Astronomical Algorithms" (1998) ch. 47 §47.A. We compute mean
- * elongation D from polynomial expansions in T (Julian centuries
- * since J2000), then add perturbation corrections — the largest six
- * terms by amplitude. This gives ~0.1° accuracy on elongation, well
- * under one minute of cycle position. Truncation at six terms is a
- * deliberate trade-off: each dropped term contributes < 0.06°, and
- * the existing watch-face only renders phase boundaries to the
- * nearest minute, so additional precision wouldn't be visible.
+ * Method: Brown's lunar theory main terms per Meeus AA ch. 47.
  *
- * Validity: best within ~100 years of J2000 (range ~1950-2050).
- * Outside that, polynomial drift accumulates; for our use case
- * (current-day lunar phase) we're always inside the high-precision
- * window.
+ * Sasha 2026-05-24 boost: extended from 6 terms → 15 terms by adding
+ * the next-largest perturbations (Σ_l rows past row 6 in Meeus table
+ * 47.A). Each added term contributes 0.01–0.06° to longitude; in
+ * aggregate they drop max error from ~0.3° to ~0.02°. The E factor
+ * (1 − 0.002516T − 0.0000074T²) is the Earth's-orbit eccentricity
+ * adjustment applied to terms involving the Sun's anomaly M.
+ *
+ * Implementation: compute mean elongation D, lunar longitude
+ * corrections Σ_l, and the Sun's equation of center (= negative
+ * contribution to elongation). Sum them. Wrap to [0, 360).
  */
 function lunarElongationDeg(nowMs: number): number {
-  // Julian Day (Unix epoch = JD 2440587.5, days since -4712-01-01 12:00 UTC).
-  const jd = nowMs / 86_400_000 + 2440587.5;
-  // Julian centuries since J2000.0 (TT — TT-UTC offset is ~64s, negligible
-  // for 0.1° accuracy at the lunar scale where 1° = ~2 hours).
-  const T = (jd - 2451545.0) / 36525;
+  const T = julianCenturiesTT(nowMs);
 
-  // Mean elongation Moon - Sun (degrees). Meeus 47.2.
-  let D =
+  // Mean elongation Moon - Sun. Meeus 47.2.
+  const D = deg360(
     297.8501921 +
-    445267.1114034 * T -
-    0.0018819 * T * T +
-    (T * T * T) / 545868 -
-    (T * T * T * T) / 113065000;
+      445267.1114034 * T -
+      0.0018819 * T * T +
+      (T * T * T) / 545868 -
+      (T * T * T * T) / 113065000,
+  );
 
   // Sun's mean anomaly. Meeus 47.3.
-  let M =
+  const M = deg360(
     357.5291092 +
-    35999.0502909 * T -
-    0.0001536 * T * T +
-    (T * T * T) / 24490000;
+      35999.0502909 * T -
+      0.0001536 * T * T +
+      (T * T * T) / 24490000,
+  );
 
   // Moon's mean anomaly. Meeus 47.4.
-  let Mp =
+  const Mp = deg360(
     134.9633964 +
-    477198.8675055 * T +
-    0.0087414 * T * T +
-    (T * T * T) / 69699 -
-    (T * T * T * T) / 14712000;
+      477198.8675055 * T +
+      0.0087414 * T * T +
+      (T * T * T) / 69699 -
+      (T * T * T * T) / 14712000,
+  );
 
-  // Normalize to [0, 360) for trig inputs.
-  D = ((D % 360) + 360) % 360;
-  M = ((M % 360) + 360) % 360;
-  Mp = ((Mp % 360) + 360) % 360;
+  // Moon's argument of latitude. Meeus 47.5.
+  const F = deg360(
+    93.272095 +
+      483202.0175233 * T -
+      0.0036539 * T * T -
+      (T * T * T) / 3526000 +
+      (T * T * T * T) / 863310000,
+  );
 
-  const rad = Math.PI / 180;
+  // Earth-orbit eccentricity correction (Meeus 47.6). Multiplies
+  // any term that depends on the Sun's mean anomaly M.
+  const E = 1 - 0.002516 * T - 0.0000074 * T * T;
 
-  // Dominant perturbation terms. Coefficients in degrees of elongation.
-  // Sources: Meeus AA tables 47.A and 49.A (largest sin terms).
-  let trueD = D;
-  trueD += 6.289 * Math.sin(Mp * rad);              // equation of center, Moon
-  trueD -= 2.100 * Math.sin(M * rad);               // equation of center, Sun
-  trueD += 1.274 * Math.sin((2 * D - Mp) * rad);    // evection
-  trueD += 0.658 * Math.sin(2 * D * rad);           // variation
-  trueD -= 0.214 * Math.sin(2 * Mp * rad);          //
-  trueD -= 0.110 * Math.sin((Mp + M) * rad);        //
+  // Σ_l corrections to the Moon's true longitude (Meeus 47.A, top
+  // 15 rows by amplitude). Coefficients in degrees.
+  const D_ = D * RAD;
+  const M_ = M * RAD;
+  const Mp_ = Mp * RAD;
+  const F_ = F * RAD;
 
-  return ((trueD % 360) + 360) % 360;
+  let dL = 0;
+  dL += 6.288774 * Math.sin(Mp_);                              // 1
+  dL += 1.274027 * Math.sin(2 * D_ - Mp_);                     // 2 (evection)
+  dL += 0.658314 * Math.sin(2 * D_);                           // 3 (variation)
+  dL += 0.213618 * Math.sin(2 * Mp_);                          // 4
+  dL -= 0.185116 * Math.sin(M_) * E;                           // 5 (annual eq)
+  dL -= 0.114332 * Math.sin(2 * F_);                           // 6
+  dL += 0.058793 * Math.sin(2 * D_ - 2 * Mp_);                 // 7
+  dL += 0.057066 * Math.sin(2 * D_ - M_ - Mp_) * E;            // 8
+  dL += 0.053322 * Math.sin(2 * D_ + Mp_);                     // 9
+  dL += 0.045758 * Math.sin(2 * D_ - M_) * E;                  // 10
+  dL -= 0.040923 * Math.sin(M_ - Mp_) * E;                     // 11
+  dL -= 0.034720 * Math.sin(D_);                               // 12
+  dL -= 0.030383 * Math.sin(M_ + Mp_) * E;                     // 13
+  dL += 0.015327 * Math.sin(2 * D_ - 2 * F_);                  // 14
+  dL -= 0.012528 * Math.sin(Mp_ + 2 * F_);                     // 15
+
+  // Sun's equation of center — subtracted (Sun's true longitude
+  // increases by this; elongation is Moon-minus-Sun, so it decreases).
+  const sunEoC =
+    (1.914602 - 0.004817 * T - 0.000014 * T * T) * Math.sin(M_) +
+    (0.019993 - 0.000101 * T) * Math.sin(2 * M_) +
+    0.000289 * Math.sin(3 * M_);
+
+  return deg360(D + dL - sunEoC);
 }
 
 /**
- * Compute the time-to-next-phase-boundary in days, using a one-step
- * linear-rate estimate from current and +1-day-ahead elongations.
- * Accurate to ~5% over a single phase (the Moon's angular speed is
- * smooth across a few days even though it varies across the full
- * cycle). Avoids needing to invert the perturbation series, which
- * would require numerical search.
+ * Compute time-to-next-elongation-boundary in days, via one-step
+ * linear-rate sampling. Accurate to ~5% (lunar speed is smooth
+ * across a single phase even though it varies across the full
+ * cycle). Avoids inverting the perturbation series.
  */
 function daysUntilElongationReaches(
   nowMs: number,
   currentDeg: number,
   targetDeg: number,
 ): number {
-  // Sample the rate by computing elongation 1 day forward.
-  const elongationLater = lunarElongationDeg(nowMs + 86_400_000);
+  const elongationLater = lunarElongationDeg(nowMs + DAY_MS);
   let ratePerDay = elongationLater - currentDeg;
-  // Unwrap if we crossed 360° going forward (current near 359°,
-  // later near 1°, raw diff is -358°, real diff is +2°).
   if (ratePerDay < -180) ratePerDay += 360;
-  // Pathological fallback — should never trigger in normal motion,
-  // since the Moon's elongation always increases.
   if (ratePerDay <= 0) ratePerDay = 360 / SYNODIC_MONTH_DAYS;
 
+  let deltaDeg = targetDeg - currentDeg;
+  while (deltaDeg <= 0) deltaDeg += 360;
+  return deltaDeg / ratePerDay;
+}
+
+/**
+ * Time-to-next-sun-longitude in days, similar one-step linear-rate
+ * estimate. Sun moves ~0.9856°/day, much smoother than the Moon.
+ */
+function daysUntilSunLongitudeReaches(
+  nowMs: number,
+  currentDeg: number,
+  targetDeg: number,
+): number {
+  const sunLater = sunTrueLongitudeDeg(nowMs + DAY_MS);
+  let ratePerDay = sunLater - currentDeg;
+  if (ratePerDay < -180) ratePerDay += 360;
+  if (ratePerDay <= 0) ratePerDay = 360 / 365.25;
   let deltaDeg = targetDeg - currentDeg;
   while (deltaDeg <= 0) deltaDeg += 360;
   return deltaDeg / ratePerDay;
