@@ -117,6 +117,97 @@ To be designed after MVP is proven. Considerations:
 
 *The first real skin shipped May 18, 2026: `network-school` at `/ns/*`. Process below extracted from that build so the second, third, Nth skin take hours, not days.*
 
+### Operator pre-production pipeline (added Day 84, 2026-05-25)
+
+Before any AI session: the operator (Sasha or a contractor) produces the raw assets the AI will consume. These five steps run on the human side and convert "I see a community I want to white-label" into a ready inventory packet. Each step uses a generic AI tool — substitute equivalents freely (Midjourney for image gen, Runway for video gen, etc.) — only the prompts are load-bearing.
+
+#### Step 1 — Visit the source landing page
+
+Open the community's canonical landing (e.g. `latamimpact.io`). Take a full-page screenshot for visual reference + read the typography/palette via DevTools. Inventory items #1-#7 (brand identity through edge cases) get filled in from this read.
+
+#### Step 2 — Extract the landing-page background via image-gen AI
+
+Upload the screenshot to ChatGPT (or any image-gen tool with image input). Use this prompt verbatim:
+
+```
+Please extract the background image (strip it of text, images, browser elements, etc).
+Only the background image as is should stay.
+```
+
+Output: a clean still of the source-site's background scene — no UI, no text, no logo. This becomes the source frame for step 3.
+
+#### Step 3 — Animate the background via video-gen AI
+
+Feed the extracted still into Gemini Veo (or Runway, Sora, etc.). Two prompt variants — the **short** is fast iteration; the **long** is production-grade with explicit motion-layer choreography.
+
+**Short prompt (fast iteration):**
+
+```
+Please animate this exact image with subtle premium one-direction motion.
+No camera jumps. Locked frame, seamless loop, no camera movement, no zoom,
+no added elements, no removed elements.
+```
+
+**Long prompt (production-grade — five-layer motion choreography):**
+
+```
+Seamless 4-second loop. Camera locked, no pan or zoom. Starting frame: the provided image exactly as-is.
+
+Animation layers:
+
+1. Living light — a luminous, softly glowing filament traces the most natural visual path through the image (follow dominant lines, curves, or compositional flow). The light travels smoothly and continuously, like breath — never jumping, each segment taking ~500ms. Match the light's color temperature to the image's palette.
+
+2. Node pulses — as the traveling light reaches key focal points, landmarks, or visual nodes in the image, each pulses once with a soft bloom outward in its local color, then settles back.
+
+3. Micro-movement — the most delicate element in the image (a wing, a leaf, a strand, a flame) shifts by three to five degrees when the light reaches it, then returns. Barely perceptible. Like a breath.
+
+4. Atmospheric drift — throughout the loop, any atmospheric elements (haze, gradient, texture, clouds, bokeh) drift with very slow parallax, 1-2 pixels per frame. Not distracting. Just alive.
+
+5. Seamless dissolve — at the end of the loop, the traveling light dissolves into a soft mist matching the image's palette, then reforms at the origin point. The loop is seamless — the end-frame matches the start-frame exactly.
+
+Style: painterly, luminous, sacred. No hard edges. Motion blur on the traveling light. Preserve grain texture from the source image. Deep depth of field preserved — background stays softly out of focus.
+
+Avoid: harsh flashing, rapid cuts, cartoony bounce, video-game particle effects, generic "magic sparkle" overlays, any added elements not in the original image.
+
+Technical: MP4, H.264, 1920×1080 (16:9), 30fps, seamless loop enabled (first frame === last frame).
+```
+
+Output: an MP4 of the animated background. This feeds step 4.
+
+#### Step 4 — Screenshot the logo + remove background
+
+Screenshot the source-site's brand mark (pyramid, flag, lockup — whatever they use). Drop it into [Adobe Express background remover](https://www.adobe.com/express/feature/image/remove-background) (or remove.bg, photopea, etc.). Export the transparent-bg PNG.
+
+Repeat for both variants if the source brand has them:
+- **Mark only** (icon without wordmark) — for the mobile pill / mobile rail
+- **Full lockup** (mark + wordmark composed by the brand) — for the desktop rail
+
+Outputs land at `~/Downloads/<slug>-mark.png` + `~/Downloads/<slug>-lockup.png`. The AI session's first action is `cp` these into `src/assets/<slug>-pyramid.png` + `src/assets/<slug>-lockup.png` (or whatever the brand calls its mark).
+
+#### Step 5 — Host the animated background on Mux
+
+Upload the MP4 from step 3 to [Mux](https://mux.com/) as a video asset. Mux returns an HLS playback URL of the form `https://stream.mux.com/<asset-id>.m3u8`. This URL drops directly into the `MuxVideoBackground` URL selection table in `GameShellV2.tsx` (build procedure step 6).
+
+Why Mux specifically: it produces a real HLS stream with adaptive bitrate, the platform's `MuxVideoBackground` component is already wired to consume `.m3u8` URLs via `hls.js`, and the latency from upload to playback URL is ~2 minutes. Alternatives: any HLS-compatible CDN works — but for `.mp4` direct hosting you'd need to change the video element's `src` handling.
+
+#### Step 6 — Hand inputs to AI; run the skin creation
+
+With these five inputs ready —
+1. Source landing URL (visual reference)
+2. Logo PNG(s), transparent-bg, saved to `~/Downloads/`
+3. Mux HLS URL for the animated background
+4. Slug for the route prefix + `data-skin` value
+5. Brand inventory captured during step 1 (palette, fonts, component recipes)
+
+— invoke the AI skin-creation session using the mega-prompt template at the bottom of this doc. The AI consumes these inputs against the build procedure (15 steps below) and ships the skin end-to-end in one session.
+
+**Production loop wall-clock budget** (per-skin, validated on daouniverse):
+- Operator pre-production pipeline (steps 1-5): ~30-60 min (mostly waiting on video-gen AI)
+- AI skin creation session (build + QA): ~60-90 min including 3-5 iteration rounds
+- **Total: ~90-150 min per new community skin from cold start to deploy.**
+
+---
+
 ### What you need to collect from the community before writing any code
 
 A new skin is a **brand inventory** + a **token translation**. Don't start coding until the inventory is complete — half-known palettes mid-implementation are how skins drift.
@@ -467,5 +558,5 @@ This is the load-bearing claim that makes the planetary-coordination-infrastruct
 
 ---
 
-*White-Label Strategy v1.8*
-*Created: 2025-01-04 · Updated: 2026-05-20 (V7→V8 lessons — mobile/desktop shell class parity, auth-page CSS-!important override pattern, mandatory auth-flow audit per skin) · Strategic-role section added 2026-05-20 (Day 77 — white-label as primary commercial channel for the matching product, post-Day-77 crystallization) · Day 84 daouniverse pass (2026-05-25) — second-skin validation; spec extended with inventory items #8 (Mux video URL + darkening recipe) + #9 (transparent-bg logo asset requirements); build procedure expanded 10 → 15 steps (skin-prefix table generalization, MuxVideoBackground priority chain, mobile content-scroll bg leak fix, !important on glass overrides, font discipline sub-headline scoping, color harmony pass, auth-flow check); new sections — daouniverse case study with 14 new lessons (architecture / asset acquisition / fonts / cascade / color harmony / component scoping), cross-skin pattern catalog (12 recurring traps with pre-emptive fixes), AI mega-prompt template for first-prompt of skin N+1. Throughput claim empirically validated: one prompt session = production-grade deploy.*
+*White-Label Strategy v1.9*
+*Created: 2025-01-04 · Updated: 2026-05-20 (V7→V8 lessons — mobile/desktop shell class parity, auth-page CSS-!important override pattern, mandatory auth-flow audit per skin) · Strategic-role section added 2026-05-20 (Day 77 — white-label as primary commercial channel for the matching product, post-Day-77 crystallization) · Day 84 daouniverse pass (2026-05-25) — second-skin validation; spec extended with inventory items #8 (Mux video URL + darkening recipe) + #9 (transparent-bg logo asset requirements); build procedure expanded 10 → 15 steps; new sections — operator pre-production pipeline (6 steps from source-site visit to AI-ready inputs, with verbatim ChatGPT image-extract prompt + short/long Gemini Veo motion prompts + Adobe Express bg-removal + Mux hosting), daouniverse case study with 14 new lessons (architecture / asset acquisition / fonts / cascade / color harmony / component scoping), cross-skin pattern catalog (12 recurring traps with pre-emptive fixes), AI mega-prompt template for first-prompt of skin N+1. Throughput claim empirically validated: one prompt session = production-grade deploy. Total wall-clock budget per new community skin documented at 90-150 min from cold start to deploy.*
