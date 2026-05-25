@@ -47,6 +47,13 @@ const MUX_BG_URL = "https://stream.mux.com/hTE02fn3vOf5czL8H1s02IcVKGmIxmr4tPacZ
 // it for free. Mount-time selection only; mid-session URL pastes between
 // build and match paths are rare and a full reload covers them.
 const MATCH_MUX_BG_URL = "https://stream.mux.com/HAKiVOTMZGzcf00B9dE02uAO02CzaUiuq6JVgH300OR5yjM.m3u8";
+// Day 84 (Sasha 2026-05-25): daouniverse skin background. Atmospheric
+// forest/canopy scene Sasha provided for the LATAM Impact white-label
+// surface — replaces the default cosmic-mountain Mux stream whenever
+// `useSkin().skin === "daouniverse"`. Skin-based selection takes
+// precedence over match-path selection: a /daouniverse/?path=match URL
+// uses the forest bg, not the match-path urban scene.
+const DAOUNIVERSE_MUX_BG_URL = "https://stream.mux.com/M5AQSxoJeXg9f4XjeyaWXo6UMTu66007DRajlWqqfUbk.m3u8";
 
 const MuxVideoBackground = () => {
     const videoRef = useRef<HTMLVideoElement>(null);
@@ -94,8 +101,23 @@ const MuxVideoBackground = () => {
             return false;
         }
     })();
-    const srcUrlRef = useRef(isMatchPathNow ? MATCH_MUX_BG_URL : MUX_BG_URL);
-    const isMatchVideo = isMatchPathNow;
+    // Day 84 (Sasha 2026-05-25): skin-based URL selection takes precedence
+    // over match-path selection. daouniverse → forest bg; else match logic.
+    // Reading via dataset (sync) instead of useSkin() avoids adding another
+    // hook dependency inside this leaf component and matches how the data-skin
+    // attribute is already set synchronously at App module load.
+    const __initialSkin = typeof document !== "undefined"
+        ? document.documentElement.dataset.skin
+        : undefined;
+    const __isDaoVideo = __initialSkin === "daouniverse";
+    const srcUrlRef = useRef(
+        __isDaoVideo
+            ? DAOUNIVERSE_MUX_BG_URL
+            : isMatchPathNow
+                ? MATCH_MUX_BG_URL
+                : MUX_BG_URL
+    );
+    const isMatchVideo = isMatchPathNow && !__isDaoVideo;
 
     useEffect(() => {
         const video = videoRef.current;

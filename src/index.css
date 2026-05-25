@@ -1001,13 +1001,12 @@
 
 /* DAOUNIVERSE — decoration overrides */
 
-/* Kill the Mux HLS video background; Sasha's forest animation lands later. */
-[data-skin="daouniverse"] video[autoplay][muted],
-[data-skin="daouniverse"] video.absolute,
-[data-skin="daouniverse"] [data-mux-background],
-[data-skin="daouniverse"] video[playsinline] {
-  display: none !important;
-}
+/* Day 84 v2 (Sasha 2026-05-25): the Mux HLS video kill rule was retired
+   once Sasha provided the forest/canopy stream — `MuxVideoBackground` in
+   GameShellV2 now selects DAOUNIVERSE_MUX_BG_URL when the active skin is
+   `daouniverse`, so we WANT the video element to render. Body gradient
+   below stays as a fallback for the HLS-loading window + the videoFailed
+   error path. */
 
 /* Body background — deep-forest gradient. Stays consistently dark across
    the entire viewport height so the editorial cream text holds at every
