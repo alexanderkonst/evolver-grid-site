@@ -712,11 +712,11 @@
      fully neutral and clash with the bg's tonal world. */
   --skin-text-primary: #1f1a15;
   --skin-text-body: rgba(31, 26, 21, 0.97);
-  --skin-text-muted: rgba(31, 26, 21, 0.86);
-  --skin-text-muted-soft: rgba(31, 26, 21, 0.7);
+  --skin-text-muted: rgba(31, 26, 21, 0.92);
+  --skin-text-muted-soft: rgba(31, 26, 21, 0.88);
   --skin-text-strong: rgba(15, 12, 8, 0.99);
-  --skin-text-faint: rgba(31, 26, 21, 0.58);
-  --skin-text-hint: rgba(31, 26, 21, 0.45);
+  --skin-text-faint: rgba(31, 26, 21, 0.75);
+  --skin-text-hint: rgba(31, 26, 21, 0.6);
 
   /* HALOS — warm cream lift strengthened to handle both extremes
      of the video bg. Brighter cream glow + sharper edge for dark
