@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { EditorialCta } from "@/components/ui/editorial-cta";
-import { Ornament, GOLD_TEXT_STYLE } from "@/lib/landingDesign";
+import { Ornament } from "@/lib/landingDesign";
 import SEO from "@/components/SEO";
 import { trackFunnelEvent } from "@/lib/funnelAnalytics";
 import { useSkin } from "@/contexts/SkinContext";
