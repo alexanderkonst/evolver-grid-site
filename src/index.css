@@ -1796,8 +1796,19 @@
    descendant. The rail's labels — chip labels, brand wordmark, "chat
    with us", "settings", "Log In/Out" — are all rendered with
    `hidden md:block`; this rule overrides the `md:block` half so they
-   stay hidden even at md+ viewport widths, leaving the icon-only strip. */
-[data-rail-compact="true"] .md\:block {
+   stay hidden even at md+ viewport widths, leaving the icon-only strip.
+
+   Day 85 (Sasha 2026-05-25): extended to also cover `md:inline-flex`
+   and `md:flex`. The SoundCloudMinimalPlayer's Skip-track button and
+   SC-attribution mark use `hidden md:inline-flex`; in desktop+
+   compact, they were still rendering and bleeding 30-65px to the
+   right of the 72px rail, into the spine/content zone. Sasha caught
+   this as "logos in the 1st panel not aligned." Same intent as the
+   block rule: "anything that should only show on a full desktop rail
+   stays hidden in compact." */
+[data-rail-compact="true"] .md\:block,
+[data-rail-compact="true"] .md\:inline-flex,
+[data-rail-compact="true"] .md\:flex {
   display: none !important;
 }
 
@@ -2061,6 +2072,133 @@
     0 0 16px rgba(255, 215, 120, 0.24);
   opacity: 1;
 }
+
+/* ─────────────────────────────────────────────────────────────────
+   KARIME — collapsed-spine "physical cockpit" treatment
+   Day 85 (Sasha 2026-05-25). Test bed for the platform-wide rail
+   redesign. Goal: kill the on-scroll flicker the existing material
+   shows on long pages.
+
+   Why the redesign:
+     The default `.spine-core` leans on `backdrop-filter: blur(10px)`
+     + transparent gradient. On sticky elements over a scrolling
+     parent, that recomputes every frame against shifting content —
+     reads as "decorative lines attached to the page" instead of
+     "fixed physical rail." Replacing with an OPAQUE material
+     removes the dependency on what's behind, so the rail stays
+     visually identical at every scroll position.
+
+   Architectural notes (per Sasha's brief + my judgment):
+     - Scoped to `[data-skin="karime"]` only (KarimeOffer applies
+       this skin via `pushTemporarySkin`). Other skins untouched.
+     - Sticky positioning kept; no DOM/layout refactor. The visible
+       bug was material, not positioning.
+     - Vertical edge language reduced to: one opaque body + one
+       dominant gold hairline (::after pseudo) + one attached handle.
+       Inset shadows from the default rule still fire but read as
+       material weight, not competing events.
+     - backdrop-filter NOT used here — opacity 0.92+ on the base
+       material already isolates the rail from scroll content. Keeps
+       paint cheap, kills the flicker source.
+
+   Colors per Sasha's spec (forest-acrylic palette). Karime's warm
+   sepia palette stays for the primary sidebar; the rail spine is
+   the universal cockpit material that will extend platform-wide. */
+
+[data-skin="karime"] .collapsed-spine .spine-core {
+  background: linear-gradient(
+    90deg,
+    rgba(9, 31, 23, 0.94) 0%,
+    rgba(25, 49, 35, 0.90) 38%,
+    rgba(28, 52, 38, 0.88) 62%,
+    rgba(8, 24, 18, 0.94) 100%
+  );
+  border-left: 1px solid rgba(231, 203, 124, 0.22);
+  border-right: 1px solid rgba(255, 255, 255, 0.10);
+  box-shadow:
+    inset 1px 0 0 rgba(255, 255, 255, 0.10),
+    inset -1px 0 0 rgba(0, 0, 0, 0.35),
+    8px 0 24px rgba(0, 0, 0, 0.22);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+/* Single dominant gold hairline — replaces the multiple competing
+   highlights/gradients of the default treatment. Pseudo-element so
+   it lives outside the box-shadow stack and reads cleanly. */
+[data-skin="karime"] .collapsed-spine .spine-core::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 5px;
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(236, 196, 86, 0.45) 50%,
+    transparent 100%
+  );
+  pointer-events: none;
+}
+
+/* Embossed circular handle — gold-rimmed glass token that reads as
+   physically attached to the rail. Per Sasha's spec. */
+[data-skin="karime"] .collapsed-spine .spine-handle {
+  background: radial-gradient(
+    circle at 35% 30%,
+    rgba(255, 255, 255, 0.28) 0%,
+    rgba(232, 190, 80, 0.22) 45%,
+    rgba(8, 24, 18, 0.72) 100%
+  );
+  border: 1px solid rgba(238, 201, 93, 0.55);
+  box-shadow:
+    inset 0 1px 2px rgba(255, 255, 255, 0.22),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.35),
+    0 4px 14px rgba(0, 0, 0, 0.35),
+    0 0 12px rgba(232, 190, 80, 0.16);
+  opacity: 1;
+  color: rgba(244, 218, 138, 0.98);
+}
+
+/* Hover — keep the existing widen behavior; just amplify the
+   handle's tactile lift and brighten the gold rim subtly. */
+[data-skin="karime"] .collapsed-spine:hover .spine-handle,
+[data-skin="karime"] .collapsed-spine:focus-visible .spine-handle {
+  transform: translate(-50%, -50%) scale(1.06);
+  border-color: rgba(244, 215, 120, 0.70);
+  box-shadow:
+    inset 0 1px 2px rgba(255, 255, 255, 0.26),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.32),
+    0 5px 16px rgba(0, 0, 0, 0.38),
+    0 0 14px rgba(232, 190, 80, 0.22);
+}
+
+/* Active state — slightly brighter rim, no extra glow halo (the
+   default rule adds a 16px gold glow; here we keep it intentional
+   but smaller so the rail stays disciplined). */
+[data-skin="karime"] .collapsed-spine.active .spine-core {
+  border-left-color: rgba(244, 215, 120, 0.34);
+  box-shadow:
+    inset 1px 0 0 rgba(255, 255, 255, 0.12),
+    inset -1px 0 0 rgba(0, 0, 0, 0.36),
+    8px 0 26px rgba(0, 0, 0, 0.26);
+}
+[data-skin="karime"] .collapsed-spine.active .spine-handle {
+  border-color: rgba(244, 215, 120, 0.68);
+  box-shadow:
+    inset 0 1px 2px rgba(255, 255, 255, 0.26),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.32),
+    0 5px 16px rgba(0, 0, 0, 0.38),
+    0 0 14px rgba(232, 190, 80, 0.20);
+}
+
+/* Note: SectionsPanel right-edge calm-down deferred. Selector
+   `[data-sections-panel]` doesn't exist on the component, and the
+   primary visible bug (rail flicker on scroll) is solved by the
+   opaque-material change above. If post-ship the drawer-right-edge
+   still competes, add `data-sections-panel="true"` to the root div
+   in SectionsPanel.tsx and revive a karime-scoped box-shadow rule. */
 
 /* SpacesRail (Panel 1) — Day 84: enhanced glass-rail material
    treatment when in compact mode. Adds a stronger right-edge gold
