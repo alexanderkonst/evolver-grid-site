@@ -84,12 +84,48 @@ const KarimeIntake = () => {
     return cleanup;
   }, [pushTemporarySkin]);
 
-  const [selectedSupport, setSelectedSupport] = useState<SupportKey | null>(
-    null,
-  );
+  // Day 85 (Sasha 2026-05-25): support question is now MULTI-select.
+  // Selections drive the reveal of the CTA (any choice unlocks it) and
+  // the body of the WhatsApp message we generate on submit.
+  const [selectedSupport, setSelectedSupport] = useState<SupportKey[]>([]);
 
-  const handleBook = () => {
-    window.open(CALCOM_BOOKING_URL, "_blank", "noopener,noreferrer");
+  const toggleSupport = (key: SupportKey) => {
+    setSelectedSupport((prev) =>
+      prev.includes(key) ? prev.filter((k) => k !== key) : [...prev, key],
+    );
+  };
+
+  // Day 85 (Sasha 2026-05-25): form submission via WhatsApp. The page
+  // collects no name/email/phone (Karime wanted minimum friction); the
+  // WhatsApp channel carries identity (the sender's number is the
+  // signal). Message body packages the selections + the cal.com link
+  // so Karime sees the intent shape AND the visitor still has a
+  // self-serve booking path inside the same message they're about to
+  // send. One CTA per stage; this replaces the previous direct-to-cal
+  // book button.
+  const handleSendWhatsApp = () => {
+    const selectedLabels = SUPPORT_OPTIONS.filter((opt) =>
+      selectedSupport.includes(opt.key),
+    )
+      .map((opt) => `• ${opt.label}`)
+      .join("\n");
+
+    const message = [
+      "Hi Karime,",
+      "",
+      "I came through your intake page (findyourtoptalent.com/build/karime/intake).",
+      "",
+      selectedSupport.length === 1
+        ? "The kind of support that feels most aligned for me right now:"
+        : "The kinds of support that feel most aligned for me right now:",
+      selectedLabels,
+      "",
+      "When you have a moment, I'd love to book the 20-minute conversation:",
+      CALCOM_BOOKING_URL,
+    ].join("\n");
+
+    const url = `${KARIME_WHATSAPP_URL}?text=${encodeURIComponent(message)}`;
+    window.open(url, "_blank", "noopener,noreferrer");
   };
 
   // Shared style tokens for body prose — same Cormorant + deep halo as the

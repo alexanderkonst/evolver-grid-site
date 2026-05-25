@@ -98,6 +98,7 @@ docs/
 | [distribution_playbook.md](./03-playbooks/distribution_playbook.md) | Philosophy, channels, growth loops |
 | [communications_playbook.md](./03-playbooks/communications_playbook.md) | **Tactical execution** — Surface SOP, locked texts, click-by-click (formerly: epicenter_broadcast_playbook.md, renamed 2026-04-18) |
 | [pain_theory_playbook.md](./03-playbooks/pain_theory_playbook.md) | Pain-point analysis (5-Layer Slicer) |
+| [skin_creation_playbook.md](./03-playbooks/skin_creation_playbook.md) | **White-label skin operational manual** — SoW+3DoD discipline, operator pre-production pipeline (image-gen → video-gen → Mux), 9-item inventory, CTA dialect catalog, 15-step build procedure, cross-skin pattern catalog (13 traps + fixes), AI mega-prompt template, lessons-by-skin lineage (NS V1-V8 / Daouniverse / Planetir). Living artifact — updated every new skin. Empirical throughput: 30-60 min build+QA per skin N+1 (validated at N=3). Sister doc: [white_label_strategy.md](./02-strategy/white_label_strategy.md) (strategy + commercial model). |
 
 **Path A: Product Creation** (UX → UI → Software → Brand — starts in parallel from Path B step 4)
 
