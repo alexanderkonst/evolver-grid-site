@@ -421,40 +421,30 @@ const SpacesRail = ({
                 >
                     {isDao ? (
                         <>
-                            {/* Day 84 (Sasha 2026-05-25): LATAM Impact lockup.
-                                Mobile: pyramid only (72px column constraint).
-                                Desktop: pyramid + "LATAM IMPACT" wordmark stacked
-                                in Playfair Display — mirrors latamimpact.io's
-                                header treatment. */}
+                            {/* Day 84 v3 (Sasha 2026-05-25): LATAM Impact
+                                official brand assets, sourced directly from
+                                the LATAM Impact brand sheet. Mobile (72px
+                                column constraint): pyramid-only mark.
+                                Desktop: full lockup (pyramid + wordmark
+                                composed by the brand). No inline wordmark
+                                rendering — the lockup already carries it,
+                                avoiding font-family mismatch with the canonical
+                                LATAM Impact wordmark. */}
                             <div className="md:hidden flex items-center justify-center px-3 py-2.5">
-                                <LatamPyramid size={32} />
+                                <img
+                                    src={latamPyramid}
+                                    alt="LATAM Impact"
+                                    className="w-10 h-10 object-contain flex-shrink-0"
+                                    draggable={false}
+                                />
                             </div>
-                            <div className="hidden md:flex items-center gap-3 px-3 py-2.5">
-                                <LatamPyramid size={36} />
-                                {/* V2 (Sasha 2026-05-25): wordmark switched
-                                    from Playfair Display to Inter — the
-                                    latamimpact.io lockup uses a clean
-                                    geometric sans for the wordmark, NOT
-                                    a serif. Pointed-top A + tall x-height
-                                    + uniform stroke weight = Inter (or
-                                    Helvetica Neue near-cousin). */}
-                                <span
-                                    className="select-none truncate"
-                                    style={{
-                                        fontFamily: '"Inter", "Helvetica Neue", system-ui, sans-serif',
-                                        fontWeight: 600,
-                                        fontSize: "15px",
-                                        lineHeight: 1.05,
-                                        color: "#f0e6d2",
-                                        letterSpacing: "0.05em",
-                                        textTransform: "uppercase",
-                                        display: "flex",
-                                        flexDirection: "column",
-                                    }}
-                                >
-                                    <span>LATAM</span>
-                                    <span>IMPACT</span>
-                                </span>
+                            <div className="hidden md:flex items-center justify-start px-3 py-2.5">
+                                <img
+                                    src={latamLockup}
+                                    alt="LATAM Impact"
+                                    className="h-12 w-auto object-contain flex-shrink-0"
+                                    draggable={false}
+                                />
                             </div>
                         </>
                     ) : isNS ? (

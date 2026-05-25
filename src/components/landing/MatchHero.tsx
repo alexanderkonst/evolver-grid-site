@@ -70,60 +70,112 @@ const MatchHero = () => {
         path="/?path=match"
         ogTitle="Find your people"
       />
-      {/* Day 80 (Sasha 2026-05-23): hero typography + padding tier-shifted
-          down (mirror of MethodologyLandingPage same-day change) so the
-          full first-viewport stack lands above the fold without zoom. */}
-      <div className="max-w-[720px] mx-auto px-5 py-6 sm:py-7 md:py-8">
+      {/* Day 80 (Sasha 2026-05-25) hero-optimization pass.
+          The previous tier-shifted version put all five lines in roughly
+          the same visual weight class. Sasha's brief: the copy has an
+          emotional arc (recognition / promise / pain / mechanism / move)
+          and the typography needs to embody that arc, not flatten it.
+
+          Structural moves:
+            1. Italic setup ("Find your people") is now a quiet entry,
+               not a header. Weight 500, smaller, muted, generous space
+               below — it sets the room, then steps aside.
+            2. H1 split into TWO elements with different weights:
+                 - Line 1 ("The right people change everything") is the
+                   expansive beat. Largest type, full primary color,
+                   weight 700, max-width clamp so it never sprawls.
+                 - Line 2 ("But most networking goes nowhere") is the
+                   quieter recognition beat. Smaller, lighter weight,
+                   muted color, broken asymmetrically per Sasha's
+                   preferred rhythm ("But most networking" / "goes
+                   nowhere"). The pain admission shouldn't shout.
+            3. Sub paragraph narrowed (~36ch max), regular weight,
+               smaller. It's a bridge, not a manifesto.
+            4. CTA gets real breathing room above (mt-12 sm:mt-16) so
+               the move lands as choice, not pressure.
+            5. Soft radial backdrop behind the hero stack so the text
+               feels like it emerges from stillness rather than sits
+               on a flat field. Pointer-events-none, low opacity, no
+               brand color — just atmospheric lift.
+
+          Locked copy unchanged. No terminal periods. No gold spans. */}
+      <div className="relative max-w-[720px] mx-auto px-5 py-8 sm:py-10 md:py-12">
+        {/* Atmospheric backdrop. Sits behind the hero text only, not
+            the CTA. Soft radial so the headline feels lifted from the
+            video field without a hard card edge. */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 top-0 h-[70%] -z-10"
+          style={{
+            background:
+              "radial-gradient(ellipse 70% 55% at 50% 45%, rgba(245,241,232,0.55) 0%, rgba(245,241,232,0.32) 45%, rgba(245,241,232,0) 80%)",
+            filter: "blur(8px)",
+          }}
+        />
+
         <header className="text-center">
-          {/* Day 80 (Sasha 2026-05-25) — new locked copy. Eyebrow
-              ("Precision intros for entrepreneurs") retired on purpose;
-              Sasha's call. Italic setup ("Find your people") leads
-              directly into the two-line h1 promise / pain contrast.
-              Sub paragraph names the mechanism (you describe how you
-              think) + the outcome (intros to people who see it your
-              way). Gold-emphasis spans dropped this pass — clean
-              ship; if specific words want gold accent we'll add by
-              Sasha's word-level call after seeing it live. Line breaks
-              between H1 sentences and sub-paragraph sentences are
-              explicit <br /> to preserve the deliberate cadence Sasha
-              wrote (each line as a beat, no rolling paragraph). */}
+          {/* Quiet entry. Steps in, sets the register, steps back. */}
           <p
-            className="text-base sm:text-lg md:text-xl leading-[1.32] italic mb-3 sm:mb-4"
+            className="text-sm sm:text-base md:text-lg leading-[1.4] italic mb-6 sm:mb-8 md:mb-10"
             style={{
               fontFamily: "'Cormorant Garamond', serif",
-              fontWeight: 700,
-              letterSpacing: "0.01em",
-              color: "var(--skin-text-primary, #0a1628)",
+              fontWeight: 500,
+              letterSpacing: "0.02em",
+              color: "var(--skin-text-muted, rgba(26,30,58,0.72))",
               textShadow:
-                "var(--skin-text-halo-deep, 0 0 28px rgba(255,255,255,0.85), 0 1px 2px rgba(255,255,255,0.95), 0 0 1px rgba(11,42,90,0.65), 0 1px 0 rgba(11,42,90,0.45))",
+                "var(--skin-text-halo-soft, 0 0 16px rgba(255,255,255,0.7), 0 1px 2px rgba(255,255,255,0.85))",
             }}
           >
             Find your people
           </p>
 
+          {/* H1 line 1 — the expansive beat. Largest, fullest weight. */}
           <h1
-            className="text-2xl sm:text-3xl md:text-4xl font-bold leading-[1.15] tracking-[-0.018em] mb-3 sm:mb-4"
+            className="text-3xl sm:text-4xl md:text-5xl font-bold leading-[1.08] tracking-[-0.022em] mx-auto"
             style={{
               fontFamily: "'Cormorant Garamond', serif",
+              fontWeight: 700,
               color: "var(--skin-text-primary, #0a1628)",
+              maxWidth: "18ch",
               textShadow:
-                "var(--skin-text-halo-deep, 0 0 22px rgba(255,255,255,0.7), 0 1px 2px rgba(255,255,255,0.9), 0 0 1px rgba(11,42,90,0.45), 0 1px 0 rgba(11,42,90,0.25))",
+                "var(--skin-text-halo-deep, 0 0 24px rgba(255,255,255,0.78), 0 1px 2px rgba(255,255,255,0.92), 0 0 1px rgba(11,42,90,0.5), 0 1px 0 rgba(11,42,90,0.3))",
             }}
           >
             The right people change everything
-            <br />
-            But most networking goes nowhere
           </h1>
 
-          <Ornament className="my-4 sm:my-5" />
-
+          {/* H1 line 2 — the quieter recognition beat. Smaller, lighter,
+              muted. Asymmetric break per Sasha's option 2 rhythm: the
+              break before "goes nowhere" lets the admission land. */}
           <p
-            className="text-lg sm:text-xl md:text-2xl font-bold leading-[1.4] tracking-[-0.005em]"
+            className="mt-5 sm:mt-6 md:mt-7 text-xl sm:text-2xl md:text-3xl leading-[1.22] tracking-[-0.01em] mx-auto"
             style={{
               fontFamily: "'Cormorant Garamond', serif",
-              color: "var(--skin-text-primary, #0a1628)",
+              fontWeight: 500,
+              color: "var(--skin-text-muted, rgba(26,30,58,0.78))",
+              maxWidth: "22ch",
               textShadow:
-                "var(--skin-text-halo-deep, 0 0 22px rgba(255,255,255,0.7), 0 1px 2px rgba(255,255,255,0.9), 0 0 1px rgba(11,42,90,0.45), 0 1px 0 rgba(11,42,90,0.25))",
+                "var(--skin-text-halo-soft, 0 0 18px rgba(255,255,255,0.72), 0 1px 2px rgba(255,255,255,0.88))",
+            }}
+          >
+            But most networking
+            <br />
+            goes nowhere
+          </p>
+
+          <Ornament className="my-8 sm:my-10 md:my-12" />
+
+          {/* Bridge paragraph — the mechanism + the outcome. Narrower,
+              regular weight, smaller. A bridge, not a second headline. */}
+          <p
+            className="text-base sm:text-lg md:text-xl leading-[1.5] tracking-[-0.003em] mx-auto"
+            style={{
+              fontFamily: "'Cormorant Garamond', serif",
+              fontWeight: 500,
+              color: "var(--skin-text-primary, #0a1628)",
+              maxWidth: "36ch",
+              textShadow:
+                "var(--skin-text-halo-soft, 0 0 18px rgba(255,255,255,0.68), 0 1px 2px rgba(255,255,255,0.85))",
             }}
           >
             Tell us how you think, build, and see the world
@@ -132,23 +184,23 @@ const MatchHero = () => {
           </p>
         </header>
 
-        {/* CTA cluster — single primary CTA, no secondary playbook link.
-            Visiting cold from outreach, the only next step is the assessment. */}
-        <div className="mt-7 sm:mt-8">
-          <div className="flex flex-col items-center gap-4 px-4 text-center">
+        {/* CTA cluster — single primary CTA. Generous space above so the
+            move lands as choice, not pressure. */}
+        <div className="mt-12 sm:mt-14 md:mt-16">
+          <div className="flex flex-col items-center gap-5 px-4 text-center">
             <EditorialCta
               label="Match me"
               onClick={() => navigate("/zone-of-genius?path=match")}
             />
 
             <div
-              className="inline-flex items-center justify-center gap-2 max-w-[460px] mt-1"
+              className="inline-flex items-center justify-center gap-2 max-w-[460px] mt-2"
               style={{
-                color: "var(--skin-text-muted-soft, rgba(26,30,58,0.6))",
+                color: "var(--skin-text-muted-soft, rgba(26,30,58,0.55))",
                 textShadow:
                   "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
-                fontSize: "0.68rem",
-                letterSpacing: "0.22em",
+                fontSize: "0.66rem",
+                letterSpacing: "0.24em",
                 textTransform: "uppercase",
                 fontWeight: 500,
               }}
