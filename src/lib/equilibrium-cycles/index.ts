@@ -517,16 +517,21 @@ const SYNODIC_MONTH_DAYS = 29.530588853;
 
 /**
  * Reference new moon — 2000-01-06 18:14 UTC, well-attested in
- * astronomical literature. Used as the time origin for cycle math.
+ * astronomical literature. Kept as a documented anchor for tests
+ * and as a sanity check that the elongation calculation produces
+ * ~0° at this moment. Not used by `getLunarState` directly: the
+ * new elongation-based math (Brown's theory via Julian Day) is
+ * timezone-independent by construction.
  *
- * Sasha 2026-05-21 BUG FIX: previously this was
+ * Historical note (Sasha 2026-05-21): the prior implementation used
+ * this constant as the time origin via
  *   `new Date(2000, 0, 6, 18, 14).getTime()`
  * which JavaScript interprets as LOCAL time. A user in UTC+8 would
  * have read 2000-01-06 10:14 UTC — silently drifting the entire
- * lunar cycle by their timezone offset. Now uses Date.UTC explicitly
- * so the reference is identical for every user on Earth.
+ * lunar cycle by their timezone offset. Fixed by switching to
+ * Date.UTC (here) AND moving runtime math to Julian-Day elongation.
  */
-const REFERENCE_NEW_MOON_UTC_MS = Date.UTC(2000, 0, 6, 18, 14);
+export const REFERENCE_NEW_MOON_UTC_MS = Date.UTC(2000, 0, 6, 18, 14);
 
 /** One 1/8 phase = 45° of elongation. */
 const PHASE_DEG = 45;
