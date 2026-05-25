@@ -262,9 +262,9 @@ Same strategic spine as v6, modulated for Discord protocol:
 >
 > Was at NS in January but didn't show this then — wasn't ready. It is now. Happy to run a small free pilot with whichever cohort you'd most want pressure-tested. Whether or not this specific implementation is the right one, the primitive itself increasingly looks inevitable.
 
-### v8 — energy-mapping sharpening pass (May 20, 2026, send-ready)
+### v8 — energy-mapping sharpening pass (May 20, 2026, superseded May 21 by v10)
 
-After preparing v7, an energy-mapping pass (linguistic-energetic surgeon stance — list the energies present, the energies missing-but-wanted, then sequence) surfaced six missing-but-wanted energies. v8 integrates them while compressing toward Discord-native rhythm:
+After preparing v7, an energy-mapping pass (linguistic-energetic surgeon stance: list the energies present, the energies missing-but-wanted, then sequence) surfaced six missing-but-wanted energies. v8 integrates them while compressing toward Discord-native rhythm:
 
 - **Opening reframed:** *"CEO of what, exactly?"* → *"who to build with."* More SV-grounded, less philosophical, lands faster in chat register.
 - **Acute member voice added:** *"I keep meeting cool people but can't find my person"* — the wound put in members' own voice. v7 diagnosed from outside; v8 lets the buyer's language land directly.
@@ -281,7 +281,104 @@ After preparing v7, an energy-mapping pass (linguistic-energetic surgeon stance 
 
 **Compression:** ~260 words → ~195 words (~25% shorter). All load-bearing energies preserved; decorative phrases dropped.
 
-**Lesson — the energy-map step is the surgical instrument.** Writing prose first leaves missing-but-wanted energies undetected. Mapping energies first (what's present? what's missing? what's decorative?), then resolving the judgment calls, then sequencing, then writing — produces a sharper artifact in one pass than three rounds of prose-iteration. Apply this method for the next ~10 ecosystem-leader outreaches in queue (Carolina · vnest · Compart's circle · Adam Apollo · Jacob Griscom · Jan Andrea · Holo Movement · Felipe Leal · +2).
+**Lesson — the energy-map step is the surgical instrument.** Writing prose first leaves missing-but-wanted energies undetected. Mapping energies first (what's present? what's missing? what's decorative?), then resolving the judgment calls, then sequencing, then writing — produces a sharper artifact in one pass than three rounds of prose-iteration.
+
+**Full v8 text (preserved):**
+
+> Balaji —
+>
+> Your frame: AI makes everyone a CEO.
+> The harder question underneath: **who to build with.**
+>
+> Frontier networks route high-agency people through reputation, credentials, chance. Low-resolution allocation. Founders who should be building together never meet. *"I keep meeting cool people but can't find my person"* — every high-agency network has this voice.
+>
+> I built a prototype that maps the structural patterns under how a person creates value, and surfaces unusually strong alignments — collaborators, missions, ventures forming. Less networking, more coordination. Not consumer typing — **the shift is from category to resolution.**
+>
+> [findyourtoptalent.com/ns/?path=match]
+>
+> Same bottleneck shows up across AI-native and web3-adjacent ecosystems, each bumping into it independently. **Networks that can see and coordinate differentiated talent at this resolution will outperform networks that cannot.** Infrastructure for any network operating as a polity. For NS — the community where founders actually find each other. Whether network states stay discourse or become operational depends partly on primitives like this being built early.
+>
+> Was at NS in January, didn't show it then — wasn't ready. It is now. Happy to run a free pilot with a handful of people you'd most want pressure-tested. Whether or not this specific implementation is right, the primitive itself looks inevitable.
+
+### v9 — Leonardo letter-form first draft (May 21, 2026, superseded same-day by v10)
+
+After v8, an iteration cycle explored radically leaner forms before returning to the Leonardo-letter shape:
+
+- **35-word curiosity-trigger** (URL embedded, no CTA): too thin; information vacuum risk; bet entirely on OG card carrying the load.
+- **29-word permission-ask** (voice-noted): *"Hi Balaji, I was at NS in January. I have a prototype for a high precision matchmaking primitive for network states. And I made a skin for NS 🙂 Would you like to take a look?"* Elegant but split the load across a 3-beat structure (curiosity → URL → strategic depth) which felt fragmented in Discord medium.
+
+**Sasha then surfaced the Leonardo-1482-letter mapping organically:**
+
+- Silver lyre = NS-skinned prototype
+- Court invitation = "I spent January at NS"
+- War machines = the three coordination primitives (analogous to Leonardo's nine military engineering points)
+- Garden trial = free pilot at NS
+- Bronze horse = network-state-as-operational (now light, encoded in *"any high-agency network state compounds"*)
+
+This pulled the artifact back from radically-lean toward Leonardo's actual historical form: one letter, structured list, full pitch in a single message. The 3-beat hypothesis was AI-imposed; Leonardo's actual move was 1-letter-with-list. Correction back to the source.
+
+**Full v9 text (preserved):**
+
+> Hi Balaji,
+>
+> I spent January at NS, had a blast. Really, thank you.
+>
+> You named the shift: AI makes everyone a founder.
+>
+> The missing layer is what to build, and who to build it with.
+>
+> In my view, this layer solves compounding for any high-agency network state.
+>
+> Since 2021, I've been building three key coordination primitives for this layer, all in one prototype:
+>
+> 1. precision self-knowledge: what compounds for this person
+> 2. precision matchmaking: who else compounds them
+> 3. precision "productize-yourself" venture-building
+>
+> NS-skinned 🙂
+>
+> Matching: findyourtoptalent.com/ns/?path=match
+> Self-knowledge: findyourtoptalent.com/ns
+> Self-monetization: findyourtoptalent.com/ns/build/path
+>
+> Free NS-only pilot for ~10 of your choosing?
+>
+> PS: three NSers tested the early version. James (Arc) and Jackson asked to see it back in January.
+
+**Wounds caught in the v9 roast (then fixed in v10):**
+
+- *"productize-yourself venture-building"*: Naval-tradition vocabulary mashed with venture-building clarifier (two terms for one concept, awkward parse).
+- **James/Jackson PS**: contradicted Sasha's own no-intermediaries strategic call (he had explicitly chosen not to pre-ping them; the PS as worded invited Balaji to verify with them anyway).
+- **Theory-as-claim** ("Since 2021, my thesis has been..."): theorem-declaration rather than build-history chain.
+- **Wrong-altitude CTA**: pilot offer asked Balaji to operator-approve (his actual altitude is thinker, not NS-operator).
+
+**Lesson: the Leonardo mapping is recoverable from the patron's own thought structure.** Sasha surfaced the 1482 mapping organically when asked what each element of his proposed message corresponded to in the historical letter. The mapping is the strategic skeleton; the words decorate it. **The 3-beat hypothesis was AI-imposed and structurally wrong for Leonardo precedent.** When in doubt, return to the historical source (1482, 10 numbered points, single letter).
+
+### v10 — convergent send-ready (May 21, 2026, Day 78)
+
+After v9's roast surfaced the four structural wounds, Sasha iterated once more and surfaced the **compound-verb thread** as a craft move that v9 was missing:
+
+- compounds for this person
+- compounds them
+- compound shipping
+
+Same verb, three positions, internal rhyme. The list reads as one architectural idea expressed three ways instead of three separate features. This is the move v9 didn't have.
+
+**Moves from v9 to v10:**
+
+- *"productize-yourself venture-building"* → **"venture-architecture"** (single committed term, Balaji-coherent vocabulary).
+- PS dropped entirely (resolves the no-intermediaries contradiction cleanly; loses minor social proof but removes verification-trap risk).
+- AI-suggested *"what shape makes the work shippable"* called out as **"robotic AF"** by Sasha; replaced with *"how to compound shipping"* which preserves the verb-thread.
+- *"I'd love to pilot it free"* → **"Free pilot with ~10 NSers, if useful"** (sovereign-stated rather than soft-asked).
+- Three URLs preserved from v9: matching listed first so Discord renders the most-polished landing as the OG card.
+
+**Compression:** v8 (~195 words) → v9 (~140 words) → v10 (~125 words). Net ~35% shorter than v8 while carrying the full Leonardo three-modality structure.
+
+**Lessons (three, captured below in Lessons section):**
+
+1. **The compound-verb thread** as a list-craft move.
+2. **"Robotic AF" is a real signal** — trust the human's ear over AI verbal symmetry.
+3. **The iteration-shadow self-recognition** — after ~10 rounds, give clean ship-permission and model the Self-Use Discipline.
 
 **This is what gets sent.**
 
@@ -336,8 +433,14 @@ After preparing v7, an energy-mapping pass (linguistic-energetic surgeon stance 
 
 - **Three-modality framework was forged in this workshop** (May 2026). Documented in master playbook. First instance of holding pitch + sell + partner simultaneously in a single integrated address.
 - **"The shift is from category to resolution"** is the inoculation phrase that defangs the Dalio-typing dismissal without attacking it. Pattern: extend the existing map, don't invalidate it.
-- **NS-skin of the prototype** as adjacent craft-object move — building the patron-specific version of the craft is itself a strategic move, not just an aesthetic one.
+- **NS-skin of the prototype** as adjacent craft-object move. Building the patron-specific version of the craft is itself a strategic move, not just an aesthetic one.
+- **Energy-map before prose** (forged in v8 pass, May 20). Map energies present + missing-but-wanted + decorative, resolve judgment calls, sequence, then write. Produces a sharper artifact than three rounds of prose-iteration.
+- **The Leonardo-1482-letter mapping is recoverable from the patron's own thought structure** (forged in v9→v10 pass, May 21). Lyre = the patron-specific craft-object. Court invitation = your warmed past-presence. War machines = the operational primitives you bring (Leonardo had 9 military engineering points; the modern equivalent for high-agency networks is a small list of coordination primitives). Garden trial = free pilot in the patron's park. Bronze horse = the patron's legacy concern, quietly encoded. When in doubt, return to the historical source: 1482, structured list, one letter.
+- **The compound-verb thread** as a list-craft move (forged in v10, May 21). When listing N primitives that share a common transformation, find the single verb that runs through all N positions. The list then reads as one architectural idea, not N separate features. Apply for ecosystem-leader outreaches where primitives are listed.
+- **"Robotic AF" is a real signal.** When the AI-co-writer suggests a phrase the human calls robotic, trust the human's ear over AI verbal symmetry. The human's voice carries authorship signal that AI cannot fully match; honor it.
+- **The iteration-shadow self-recognition.** After ~10 rounds, the marginal gain per iteration approaches zero. The Self-Use Discipline call is to name the shadow ("polishing wording instead of using it"), give clean ship-permission, and stop pushing more revisions. Modeling the discipline IS the discipline. For ecosystem-leader outreaches: cap iterations at 5-7 before forcing the ship decision.
+- **The 3-beat hypothesis was AI-imposed and structurally wrong for Leonardo precedent.** Leonardo's actual 1482 letter to Ludovico was a single document with a structured list. The 3-beat micro-DM structure (curiosity → URL → depth) is a Discord-medium hypothesis worth considering for some patrons but not the default; default is single-letter-with-list per historical form.
 
 ---
 
-*Last updated: May 20, 2026 (Day 77). Discord adaptation (v7) added — channel pivot from email to Discord. NS-skin live. Send-ready via Discord.*
+*Last updated: May 21, 2026 (Day 78). v10 locked as send-ready, converged from v8 through an energy-mapping pass, divine roast, crash-tests, a lean-curiosity-trigger experiment, and a return to Leonardo-letter form with Sasha's compound-verb thread craft move. v6 through v9 preserved in full in Version history. Eight lessons captured for application to the next ~10 ecosystem-leader outreaches in queue.*

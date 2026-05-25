@@ -32,6 +32,14 @@ interface SmartGoalsSectionProps {
   onDeleteTask: (id: string) => Promise<void> | void;
   onReorderTasks: (orderedIds: string[]) => Promise<void> | void;
   onPromoteToDoNow: (id: string) => Promise<void> | void;
+  /**
+   * Demote a task from DOING NOW back to the workstream (Sasha
+   * 2026-05-25). Bound to the IN FOCUS pill — clicking it on a
+   * focused task releases the task back to its workstream list.
+   * Sasha wanted to avoid the round-trip to the DOING NOW section
+   * just to demote a single task.
+   */
+  onDemoteFromDoNow: (id: string) => Promise<void> | void;
   onCompleteTask: (id: string) => Promise<void> | void;
   /** Restore a "done" task back to active (Sasha 2026-05-16: completions must be reversible). */
   onUncompleteTask: (id: string) => Promise<void> | void;
@@ -57,6 +65,7 @@ export const SmartGoalsSection = ({
   onDeleteTask,
   onReorderTasks,
   onPromoteToDoNow,
+  onDemoteFromDoNow,
   onCompleteTask,
   onUncompleteTask,
 }: SmartGoalsSectionProps) => {
@@ -135,6 +144,7 @@ export const SmartGoalsSection = ({
                 onRename={(text) => onRenameTask(t.id, text)}
                 onDelete={() => onDeleteTask(t.id)}
                 onPromote={() => onPromoteToDoNow(t.id)}
+                onDemote={() => onDemoteFromDoNow(t.id)}
                 onComplete={() => onCompleteTask(t.id)}
               />
             ))}
