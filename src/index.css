@@ -802,6 +802,44 @@
   display: none !important;
 }
 
+/* Day 82 v6 (Sasha 2026-05-25): rail compact-mode visual polish.
+   Five fixes from the screenshot audit:
+   (1) Center icons horizontally in the 72px column (chips were
+       flush-left because the original flex layout was icon-left,
+       label-right; without label, the icon sat off-center).
+   (2) Swap rounded-2xl chip shape to rounded-full so the hover ring
+       + halo render as a tight circle around the icon, fitting
+       inside the 72px boundary instead of clipping at pane edges.
+   (3) Hide the active-state gold pip — its `-translate-x-1/2` would
+       overflow the slim rail's left edge. The chip's own gold ring
+       on active state is enough indicator in compact.
+   (4) Show the small torus brand glyph (the mobile-pattern mark)
+       even at md+ when compact, so the rail has a brand anchor at
+       the top instead of an awkward empty zone.
+   (5) Tighten chip horizontal padding so the centered circle hover
+       has equal breathing room on both sides. */
+[data-rail-compact="true"] [data-tour-id],
+[data-rail-compact="true"] .liquid-glass button.group,
+[data-rail-compact="true"] .liquid-glass a.group {
+  justify-content: center !important;
+}
+[data-rail-compact="true"] .rounded-2xl,
+[data-rail-compact="true"] .rounded-xl {
+  border-radius: 9999px !important;
+}
+[data-rail-compact="true"] .absolute.left-0.rounded-r-full {
+  display: none !important;
+}
+[data-rail-compact="true"] img.md\:hidden {
+  display: block !important;
+}
+[data-rail-compact="true"] [data-tour-id],
+[data-rail-compact="true"] .liquid-glass button.group,
+[data-rail-compact="true"] .liquid-glass a.group {
+  padding-left: 0.5rem !important;
+  padding-right: 0.5rem !important;
+}
+
 /* V3 typography (Sasha 2026-05-19) — NS is editorial serif throughout
    for content, clean sans only for UI chrome (rail chips, Pane 2 nav,
    form controls). Body type in serif is what carries the editorial
