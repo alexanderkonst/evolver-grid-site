@@ -1165,10 +1165,68 @@
   border-radius: 10px !important;
 }
 
-/* Pane 1 brand SVG — kill any inherited drop-shadow / spin. */
-[data-skin="daouniverse"] .liquid-glass.h-dvh svg[data-brand="latam-pyramid"] {
-  filter: none !important;
-  animation: none !important;
+/* Day 84 v4 (Sasha 2026-05-25): video bg darkening. The raw Mux forest
+   stream is too vibrant compared to latamimpact.io's heavily-vignetted
+   backdrop — text legibility AND brand register both demand a more
+   atmospheric, muted treatment. Brightness ~50% + saturate ~65%
+   recreates the source-site mood without touching the video URL. */
+[data-skin="daouniverse"] video[autoplay][muted],
+[data-skin="daouniverse"] video.absolute,
+[data-skin="daouniverse"] video[playsinline] {
+  filter: brightness(0.48) saturate(0.7) !important;
+}
+/* Soft cream veil over the video to lift text legibility further —
+   same dim-overlay pattern the match-path uses on Aurora. */
+[data-skin="daouniverse"] video[autoplay][muted] + div,
+[data-skin="daouniverse"] video.absolute + div[aria-hidden] {
+  background: linear-gradient(180deg, rgba(8, 18, 12, 0.22) 0%, rgba(8, 18, 12, 0.38) 100%) !important;
+}
+
+/* Day 84 v4 (Sasha 2026-05-25): MatchHero typography compression.
+   The match-path landing under daouniverse pushed the CTA below the
+   fold because Playfair Display + Inter sit taller than Aurora's
+   Cormorant + Montserrat. Tightened sizes + margins below land the
+   CTA above the fold on a 900px viewport without losing editorial
+   hierarchy. Scoped to [data-match-hero] so it only touches the
+   match landing under this skin — other surfaces unaffected. */
+[data-skin="daouniverse"] [data-match-hero] {
+  padding-top: 1rem !important;
+  padding-bottom: 1rem !important;
+}
+[data-skin="daouniverse"] [data-match-hero] header > * {
+  /* Eyebrow ("Find your people") — was text-sm sm:text-base md:text-lg */
+  font-size: clamp(0.875rem, 1.4vw, 1rem) !important;
+  margin-bottom: 1rem !important;
+}
+[data-skin="daouniverse"] [data-match-hero] h1 {
+  /* Main h1 — was text-3xl sm:text-4xl md:text-5xl */
+  font-size: clamp(1.75rem, 3.4vw, 2.5rem) !important;
+  line-height: 1.1 !important;
+}
+[data-skin="daouniverse"] [data-match-hero] header > p:nth-of-type(2) {
+  /* Sub-h1 ("Tell us how you think...") — was text-xl sm:text-2xl md:text-3xl */
+  font-size: clamp(1.05rem, 2vw, 1.4rem) !important;
+  margin-top: 1rem !important;
+  line-height: 1.3 !important;
+}
+[data-skin="daouniverse"] [data-match-hero] header > p:nth-of-type(3),
+[data-skin="daouniverse"] [data-match-hero] header > p:nth-of-type(4) {
+  /* Body lines after ornament — was text-base sm:text-lg md:text-xl */
+  font-size: clamp(0.95rem, 1.5vw, 1.1rem) !important;
+  line-height: 1.4 !important;
+}
+/* Ornament margins compressed */
+[data-skin="daouniverse"] [data-match-hero] [class*="my-8"][class*="my-10"],
+[data-skin="daouniverse"] [data-match-hero] .my-8,
+[data-skin="daouniverse"] [data-match-hero] [class*="my-12"] {
+  margin-top: 1.25rem !important;
+  margin-bottom: 1.25rem !important;
+}
+/* CTA top-margin compressed */
+[data-skin="daouniverse"] [data-match-hero] [class*="mt-12"],
+[data-skin="daouniverse"] [data-match-hero] [class*="mt-14"],
+[data-skin="daouniverse"] [data-match-hero] [class*="mt-16"] {
+  margin-top: 1.5rem !important;
 }
 
 /* Rail SPACE chip icons — tint to warm parchment-gold so they harmonize
