@@ -1040,22 +1040,36 @@
   color: #f5ecd5;
 }
 
-/* Liquid-glass: re-tone toward dark forest with gold rim. */
+/* Liquid-glass: re-tone toward dark forest with gold rim.
+   Day 84 v7 (Sasha 2026-05-25): !important added — the original
+   .liquid-glass rule lives in @layer components but its position +
+   later-position-wins fight was reaching the computed style first;
+   !important forces the daouniverse register without exception. */
 [data-skin="daouniverse"] .liquid-glass {
-  background: rgba(20, 38, 28, 0.45);
-  border: 1px solid rgba(196, 163, 92, 0.20);
+  background: rgba(20, 38, 28, 0.45) !important;
+  border: 1px solid rgba(196, 163, 92, 0.20) !important;
   box-shadow:
     inset 0 1px 0 0 rgba(245, 236, 213, 0.16),
     inset 0 -1px 0 0 rgba(0, 0, 0, 0.32),
-    0 8px 22px -6px rgba(0, 0, 0, 0.45);
+    0 8px 22px -6px rgba(0, 0, 0, 0.45) !important;
 }
 [data-skin="daouniverse"] .liquid-glass-strong {
-  background: rgba(20, 38, 28, 0.65);
-  border: 1px solid rgba(196, 163, 92, 0.28);
+  background: rgba(20, 38, 28, 0.65) !important;
+  border: 1px solid rgba(196, 163, 92, 0.28) !important;
   box-shadow:
     inset 0 1px 0 0 rgba(245, 236, 213, 0.22),
     inset 0 -1px 0 0 rgba(0, 0, 0, 0.36),
-    0 12px 30px -10px rgba(0, 0, 0, 0.55);
+    0 12px 30px -10px rgba(0, 0, 0, 0.55) !important;
+}
+/* Text inside light-glass elements (e.g. v6 MatchHero secondary CTA)
+   reads as Aurora navy via inline `color: #0a1628` style. Under
+   daouniverse that's invisible on the dark forest glass — override to
+   cream. */
+[data-skin="daouniverse"] .liquid-glass {
+  color: #f0e6d2 !important;
+}
+[data-skin="daouniverse"] .liquid-glass [style*="color"] {
+  color: #f0e6d2 !important;
 }
 /* V2 (Sasha 2026-05-25): primary CTA dialect flipped from "dark
    forest glass with gold halo" to "solid LATAM yellow with dark
@@ -1182,12 +1196,77 @@
   background: linear-gradient(180deg, rgba(8, 18, 12, 0.22) 0%, rgba(8, 18, 12, 0.38) 100%) !important;
 }
 
-/* Day 84 v5 (Sasha 2026-05-25): the daouniverse-scoped MatchHero
-   compression rules from v4 were retired in favor of fixing the
-   sizing at source. MatchHero.tsx now ships one-tier-smaller responsive
-   font sizes + tighter margins platform-wide, so every skin's match
-   landing fits in one viewport without scroll. No skin-scoped override
-   needed; less CSS to maintain. */
+/* Day 84 v7 (Sasha 2026-05-25): MatchHero design-discipline pass under
+   daouniverse. Three corrections from the live audit:
+
+   1) SPOTLIGHT — the cream radial atmospheric backdrop reads as a
+      stage spotlight against the dark-forest video. Hidden under this
+      skin; the body's deep-forest gradient + the darkened video field
+      already do all the atmospheric lift needed. Other skins keep it.
+
+   2) SUB-H1 FONT — the second <p> in the match-hero header (the
+      "but most networking / goes nowhere" reflection line) renders as
+      Inter sans because the blanket daouniverse `body, p` rule forces
+      it. But that line is a TYPOGRAPHIC sub-headline, not body prose —
+      latamimpact.io's analogous accent line is set in Playfair italic.
+      Override the sub-h1 specifically to Playfair Display italic so
+      the typographic arc reads as one voice (serif h1 → serif italic
+      reflection → sans body bridge).
+
+   3) ACTIVE-STATE GOLD HARMONY — the rail JOURNEY chip + pane-2
+      active card still inherit Aurora's bright yellow gold glow
+      (rgba(244,212,114,…) shadows) which competes with the LATAM
+      yellow CTA. Re-tone to the parchment gold (#c4a35c family)
+      under this skin so the CTA stays the single bright element on
+      the page. */
+
+/* (1) Hide the cream spotlight backdrop in MatchHero under daouniverse. */
+[data-skin="daouniverse"] [data-match-hero] > div[aria-hidden] {
+  display: none !important;
+}
+
+/* (2) Sub-h1 (second <p> in match-hero header) → Playfair Display italic. */
+[data-skin="daouniverse"] [data-match-hero] header > p:nth-of-type(2) {
+  font-family: "Playfair Display", "Cormorant Garamond", Georgia, serif !important;
+  font-style: italic !important;
+}
+/* Body bridge paragraph (third <p>) stays in Inter — that one IS
+   prose-ish ("A few simple prompts, and we'll introduce you...").
+   No override needed; the blanket `[data-skin="daouniverse"] p`
+   rule already lands it on Inter. */
+
+/* (3) Active-state gold harmony — re-tone Aurora's yellow gold to
+   parchment under daouniverse. Both substring patterns catch the
+   Tailwind-arbitrary shadow + ring classes wherever they appear. */
+[data-skin="daouniverse"] [class*="rgba(244,212,114"],
+[data-skin="daouniverse"] [class*="rgba(244, 212, 114"] {
+  box-shadow:
+    0 0 16px -6px rgba(196, 163, 92, 0.32),
+    0 0 4px -1px rgba(196, 163, 92, 0.45) !important;
+}
+[data-skin="daouniverse"] [class*="ring-[#d4af37"],
+[data-skin="daouniverse"] [class*="ring-\\[\\#d4af37"] {
+  --tw-ring-color: rgba(196, 163, 92, 0.45) !important;
+}
+/* Inline-styled gold drop-shadows on rail icon glows — replace
+   yellow with parchment. */
+[data-skin="daouniverse"] .liquid-glass.h-dvh img[style*="rgba(244, 212, 114"],
+[data-skin="daouniverse"] .liquid-glass.h-dvh img[style*="rgba(244,212,114"] {
+  filter: brightness(0) saturate(100%) invert(72%) sepia(30%) saturate(380%) hue-rotate(2deg) brightness(0.92) drop-shadow(0 0 4px rgba(196, 163, 92, 0.45)) !important;
+}
+/* Rail spine right-edge gradient — soften from the Aurora bright
+   gold to parchment. Aurora's spine renders as rgba(244,212,114,…) at
+   higher alphas mid-spine; daouniverse pulls it to parchment.  */
+[data-skin="daouniverse"] .liquid-glass.h-dvh > span[aria-hidden][class*="absolute"][class*="top-0"][class*="right-0"] {
+  background-image:
+    linear-gradient(180deg,
+      rgba(196, 163, 92, 0) 0%,
+      rgba(196, 163, 92, 0.18) 16%,
+      rgba(212, 185, 117, 0.42) 40%,
+      rgba(196, 163, 92, 0.32) 62%,
+      rgba(196, 163, 92, 0.10) 88%,
+      rgba(196, 163, 92, 0) 100%) !important;
+}
 
 /* Rail SPACE chip icons — tint to warm parchment-gold so they harmonize
    with the single-accent palette. EXCLUDES the brand pyramid SVG which
