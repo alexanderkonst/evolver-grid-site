@@ -21,7 +21,7 @@ const MethodologyLandingPage = () => {
     <>
       <SEO
         title="Find Your Top Talent. Productize It. Find Your People."
-        description="An open-source methodology and AI-native apparatus for building your unique business off who you uniquely are."
+        description="Coordination infrastructure for conscious innovation. From individual genius to ventures to federated communities. Open-source, forkable."
         path="/"
         ogTitle="Find Your Top Talent. Productize It. Find Your People."
       />
