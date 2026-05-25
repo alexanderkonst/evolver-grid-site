@@ -893,13 +893,23 @@ export function getLunarState(now: number): LunarState {
   const progress = elongationDeg / 360;
   const day = progress * SYNODIC_MONTH_DAYS;
 
-  // Time-to-next-phase. Boundary is the next multiple of 45° AFTER
-  // the current elongation. Compute via linear-rate estimate
-  // (handles the Moon's slightly variable angular speed without
-  // needing to invert the perturbation series).
-  const nextBoundaryDeg = (segmentIndex + 1) * PHASE_DEG + PHASE_HALF_DEG;
-  // Wrap into [0, 360) for the helper. nextBoundaryDeg can be 360-22.5
-  // = 337.5° for phase 7 (Waning Crescent → wraps to New).
+  // Time-to-next-phase. Boundary is the elongation where the next
+  // phase begins. Since `shifted = elongation + PHASE_HALF_DEG`, the
+  // next boundary in SHIFTED-space is (segmentIndex + 1) * PHASE_DEG;
+  // converting back to elongation MUST subtract PHASE_HALF_DEG, not
+  // add it (Sasha 2026-05-25 bug fix — symptom: Waxing Gibbous showed
+  // "7.4 days left" instead of ~3.7d because the formula landed on
+  // the FULL MOON boundary, not the Full Moon ingress).
+  //
+  // Worked example, segmentIndex=3 (Waxing Gibbous, elongation
+  // 112.5°–157.5°): nextBoundary = 4*45 - 22.5 = 157.5° = ingress to
+  // Full Moon. ✓ Previous formula gave 4*45 + 22.5 = 202.5° = INGRESS
+  // TO WANING GIBBOUS, skipping Full Moon entirely.
+  const nextBoundaryDeg = (segmentIndex + 1) * PHASE_DEG - PHASE_HALF_DEG;
+  // Wrap into [0, 360) for the helper. For phase 7 (Waning Crescent)
+  // nextBoundary = 8*45 - 22.5 = 337.5° → no wrap; the helper handles
+  // the case where current elongation has already passed 337.5° and is
+  // approaching the wrap back to New Moon at 0°.
   const nextBoundaryWrapped = ((nextBoundaryDeg % 360) + 360) % 360;
   const daysRemainingInPhase = daysUntilElongationReaches(
     now,
