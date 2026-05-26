@@ -132,16 +132,37 @@ Empirically validated throughput: **30-60 min build + QA wall-clock per new comm
 
 ---
 
-## Skin lineage so far
+## Skin tracker — live deployments
 
-| # | Skin | Slug | Route | Source brand | Status |
-|---|---|---|---|---|---|
-| 1 | Aurora | `aurora` | `/` (default) | (canonical, no source brand) | ✓ Production |
-| 2 | Network School | `network-school` | `/ns/*` | ns.com | ✓ Production |
-| 3 | Daouniverse (LATAM Impact) | `daouniverse` | `/daouniverse/*` | latamimpact.io | ✓ Production |
-| 4 | Karime | `karime` | `/build/karime`, `/build/karime/intake` | (one-off, founder's offering) | ✓ Production |
-| 5 | Planetir | `planetir` | `/planetir/*` | planetir.org | ✓ Production |
-| 6 | Navy + Gold | `navy-gold` | `/preview` (test ground) | (premium alternate aesthetic) | Parked, internal preview only |
+This table is the single source of truth for what's in production. **Update one row per skin shipped.** Detailed operational lineage (V1→V8 lessons, daouniverse pass, planetir pass) lives in [`docs/03-playbooks/skin_creation_playbook.md`](../03-playbooks/skin_creation_playbook.md). This table is the strategic snapshot — what's live, who it serves, how it reads.
+
+| # | Skin | Slug | Route | Source brand | Display font | Body font | CTA dialect | Animated bg | Shipped | Status |
+|---|---|---|---|---|---|---|---|---|---|---|
+| 1 | **Aurora** | `aurora` | `/` (default) | — (canonical platform aesthetic) | Cormorant Garamond | Montserrat | Dark navy glass + gold halo | Cosmic mountain (Mux) | 2026 launch | ✓ Production |
+| 2 | **Navy + Gold** | `navy-gold` | `/preview` (internal) | — (premium alternate aesthetic) | Cormorant Garamond | Montserrat | (inherits Aurora primary dialect) | Inherits Aurora | Day 47 (2026-04-21) | 🔒 Internal preview only — Sasha's test ground for alt aesthetics |
+| 3 | **Network School** | `network-school` | `/ns/*` | [ns.com](https://ns.com) | Newsreader | Inter | Solid black pill, white text | (none — editorial flat) | Day 75 (2026-05-18) | ✓ Production |
+| 4 | **Karime** | `karime` | `/build/karime`, `/build/karime/intake` | (founder offering — Karime Kuri, one-off) | Cormorant Garamond | Inter | Warm-brown dark glass + copper halo | Moroccan-sunset interior (Mux) | Day 81 (2026-05-23) | ✓ Production |
+| 5 | **Daouniverse** (LATAM Impact) | `daouniverse` | `/daouniverse/*` | [latamimpact.io](https://latamimpact.io) | Playfair Display | Inter | Solid LATAM yellow `#d4a83a`, dark text | LATAM mountainscape (Mux, darkened + desaturated) | Day 84 (2026-05-25) | ✓ Production |
+| 6 | **Planetir** | `planetir` | `/planetir/*` | [planetir.org](https://planetir.org) | Lexend | Inter | Solid white pill, dark text | Sun-pierced pine grove (Mux, light filter) | Day 84 evening (2026-05-25) | ✓ Production |
+
+### How to add a row
+
+When shipping skin N+1:
+
+1. After the skin is verified live in browser preview (DoD #3 from the [playbook](../03-playbooks/skin_creation_playbook.md) closed), add the row here.
+2. **Source brand**: clickable URL to the canonical reference site. For one-offs without a source brand, note the deployment context.
+3. **Display / Body font**: extracted from the source site (see playbook inventory #3 — `curl <site>/_next/static/chunks/*.css | grep font-family`). Verbatim match, never an approximation.
+4. **CTA dialect**: one of the 4 paradigms catalogued in the [playbook → CTA dialect catalog](../03-playbooks/skin_creation_playbook.md#cta-dialect-catalog-pick-one-per-skin). If the new skin introduces a 5th, add a row to the catalog there too.
+5. **Animated bg**: short scene description + "(Mux)" or "(none)". The full Mux URL lives in `GameShellV2.tsx` `MuxVideoBackground` constants — no need to duplicate here.
+6. **Shipped**: project day-counter + ISO date. Useful for the throughput-monotonicity check (skin N+1 wall-clock should be ≤ skin N).
+7. **Status**: ✓ Production / 🔒 Internal / ⏳ Parked / 🗄 Retired.
+
+### Skin family at a glance
+
+- **4 production white-label community skins**: NS, Daouniverse, Karime, Planetir
+- **4 distinct primary-CTA dialects** in use: dark navy glass+halo (Aurora) / solid black (NS) / solid LATAM yellow (Daouniverse) / solid white (Planetir) — Karime uses a warm-brown variant of the Aurora dialect
+- **3 production Mux video backgrounds**: cosmic mountain (Aurora), LATAM mountainscape (Daouniverse), Moroccan-sunset interior (Karime), Planetir pine grove. NS is the only video-less production skin (editorial flat by design).
+- **2 internal-only skins**: Navy+Gold (preview), Aurora-default (canonical)
 
 ---
 
