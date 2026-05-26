@@ -92,6 +92,17 @@ The existing 10% revenue-share Distributor Agreement (Path B) stays in place for
 | **Network State experiments** (Praxis, smaller polities) | Follow NS if Balaji moves | Per-active-member, smaller volume |
 | **Co-founder matchmaking platforms** (YC CFM, FoundersList) | Surface without depth | Partner / API integrate, not compete |
 
+### Structural frame: substrate positioning + multi-patron architecture
+
+The monetization plays in this doc operate within two perception-shifts formally captured in [`docs/01-vision/phase_shift_technology_library.md`](../01-vision/phase_shift_technology_library.md):
+
+- **Domain 86 — Substrate Positioning:** Find Your Top Talent operates as coordination substrate, not as a competing platform. The org stays small while the substrate compounds large. Revenue is a lagging indicator of adoption, not a leading one. Pricing models that optimize for adoption-cost approaching zero (Distributor Agreement, free under threshold) protect the substrate's neutrality and therefore its adoption velocity.
+- **Domain 87 — Multi-Patron Architecture:** the commercial shape is portfolio-of-aligned-patrons, not pursuit-of-one-big-deal. Each white-label deployment is a patron-shaped relationship. Revenue is distributed and lower-variance. Founder identity is tied to the substrate working, not to any single deal closing.
+
+The six plays in this doc are different shapes of monetization within this frame, not alternative theories of the business.
+
+---
+
 ### Positioning lean: community ecosystem path > individual founder cold acquisition
 
 Lead with **community ecosystem path (B2B)**. Community leaders are easier to find, have acute need, repeatable buying motion. Sasha has 10+ ecosystem-leader contacts he can reach within a week.

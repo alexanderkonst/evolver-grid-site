@@ -7,6 +7,17 @@
 
 ---
 
+## Why this playbook exists (the strategic rationale)
+
+The 30-60 min throughput claim this playbook delivers is not just operational convenience. It is the load-bearing technical fact underneath two perception shifts captured in [`docs/01-vision/phase_shift_technology_library.md`](../01-vision/phase_shift_technology_library.md):
+
+- **Domain 87 — Multi-Patron Architecture:** if a new skin costs 30-60 min, the org can sustain N patrons in parallel. If a new skin costs 30-60 days, the model collapses to "find one big patron and pray." Cheap skins are what makes Leonardo-strategy multi-patron commerce tractable.
+- **Domain 88 — Demo-as-Hospitality (The Skinned Welcome):** the conversational opening with an ecosystem leader is not the pitch, it is the URL. You build the counterparty's skin BEFORE the conversation, then open with *"here's what your version already looks like."* This move flips pitch-energy to hospitality-energy. It only works when the skin is cheap enough to build speculatively, which this playbook is what makes possible.
+
+Read those two domains before shipping skin N+1 if the strategic-purpose framing is unclear. The playbook below is the operational manual; those domains are the why.
+
+---
+
 ## TLDR — If you're about to ship a new skin
 
 **Read these three sections in order before opening any code:**
