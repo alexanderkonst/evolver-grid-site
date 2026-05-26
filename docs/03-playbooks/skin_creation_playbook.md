@@ -66,6 +66,11 @@ Before any code lands on skin N+1, the operator (AI or human) produces FOUR arti
    - Aurora at `/` regression-safe.
    - All prior skins (NS, Daouniverse, etc.) regression-safe.
    - Animated Mux video URL wired into selection table (if applicable).
+   - **Body bg image shows through (not smothered) — image lives in P3, NOT covered by outer wrapper or heavy overlay.**
+   - **Pane darkness gradient verified: P1 < P2 < P3 in brightness** (P1 darkest forest, P3 brightest bg image).
+   - **Full rail visible in unauth'd state** — count all chips (AI OS, ME, LEARN, MEET, COLLABORATE, BUILD, OFFER); shouldn't see only JOURNEY.
+   - **Tooltip / popover hover walk** — hover every locked row in pane 2, confirm popover renders in skin's register (not Aurora navy + gold + Cormorant). Same for any other hover-revealed overlay.
+   - **Preview banner is unclickable + says "Demo · not affiliated with <source-site>"** (NOT "Exit →" — that's the navy-gold internal preview pattern only).
 
 **Status legend**: `✓ Done` (evidence captured) · `⏳ Pending` (work continues) · `⏳ Blocked` (waiting on external input — Mux URL, asset variant, etc.) · `✗ Failed` (acceptance not met, root cause investigation needed).
 
@@ -307,11 +312,16 @@ The asset format determines whether your brand sits flush on pane 1 or shows as 
 3. **Add token block** `[data-skin="<slug>"] { … }` in `src/index.css` after the previous skin's block. Populate from the palette table above. **Treat accent tokens as flat gradients** (e.g. `linear-gradient(135deg, #color 0%, #color 100%)`) — they're consumed via `background-image` in some places, and a solid hex isn't valid there.
 4. **Add shadcn HSL palette** under `@layer base` mirroring the existing `[data-skin="navy-gold"]` block — required for shadcn Card/Input/Button to auto-adapt.
 5. **Add decoration overrides** after the token block: hide animated video (if your skin is bg-less), ornament star, paper grain, liquid-glass — whatever decoration table #6 marks "off." **Use `!important` on `.liquid-glass` / `.liquid-glass-strong` / `.liquid-glass-dark` overrides** — the original rules live in `@layer components` and their cascade behavior fights skin overrides without it (validated Day 84 daouniverse audit).
+5a. **Hide CTA ✦ ignite-logo icon prefix** if your source-brand buttons are clean text-only pills (NS, Planetir): `[data-skin="<slug>"] button.liquid-glass-dark > img:first-of-type, .ornament-spin { display: none !important }`.
+5b. **Re-assert Pane 1 panel-bg fill after the `.liquid-glass !important` rule** — the rule from step 5 wins over SpacesRail's inline `--skin-panel-1-bg` token, making the rail render at glass alpha (~45%) instead of panel-1 alpha (~96%). Add `[data-skin="<slug>"] .liquid-glass.h-dvh { background: var(--skin-panel-1-bg, …) !important }` so Pane 1 is the darkest surface (per the P1<P2<P3 darkness gradient principle).
+5c. **Outer `bg-[#0a0a1a]` wrapper goes TRANSPARENT (not painted)** when using a body bg image, so the image shines through: `[data-skin="<slug>"] .bg-\[\#0a0a1a\] { background-color: transparent !important }`. If your skin is bg-less, paint a forest color instead.
 6. **Wire the video bg into `MuxVideoBackground`** in `src/components/game/GameShellV2.tsx` (if your skin has a video): add a `<SKIN>_MUX_BG_URL` constant + extend the URL selection precedence to `skin > match-path > default`. Use `document.documentElement.dataset.skin` for synchronous read (no hook needed). Add `filter: brightness(0.X) saturate(0.Y) !important` under `[data-skin="<slug>"] video[autoplay]` to match the source-site mood (raw HLS reads too vivid; see inventory #8).
 7. **Patch the mobile main-content-scroll bg** in `GameShellV2.tsx`: the inline-style `background: "rgba(248, 246, 240, 0.55)"` is hardcoded Aurora cream. Add a skin-aware branch (`__isDaoShell ? "transparent" : …`) so your dark-pane skin doesn't wash to sage. Repeats from daouniverse pass — every dark skin hits this.
 8. **Add logo conditional render.** Import the local PNG asset (`import lockup from "@/assets/<slug>-lockup.png"`), conditionally render via `useSkin()` in SpacesRail's brand block (desktop full lockup, mobile pyramid-only) AND in GameShellV2's mobile pill. Request transparent-bg assets (inventory #9) — baked-in source-brand bg ≠ your pane bg = visible rectangle.
 9. **Create `<SlugScopeLock />` component** mirroring `src/components/skin/NSScopeLock.tsx` — force-mounts the skin via `pushTemporarySkin` while in `/slug/*` scope.
 10. **Add the prefix to the `SKIN_PREFIXES` table** in `src/App.tsx` (introduced Day 84 — generalized from the `/ns`-only check). One row added: `{ prefix: "/<slug>", skin: "<slug>" }`. Conditionally mount `<SlugScopeLock />` inside `BrowserRouter`. Zero route duplication.
+10a. **Add your skin to `__isWhiteLabelDemoScope` in `GameShellV2.tsx`** so the FULL rail (AI OS + ME + LEARN + MEET + COLLABORATE + BUILD + OFFER) shows for unauth'd visitors. White-label landings are sales surfaces — guests need to see the platform's full depth, not just the canonical funnel's JOURNEY chip.
+10b. **Add your skin row to `SKIN_BANNER_CONFIG` in `PreviewBanner.tsx`**: `<slug>: { mode: "disclaimer", notAffiliatedWith: "<source-site>" }`. White-label community skins use the unclickable disclaimer mode; only internal preview surfaces (navy-gold) use the clickable Exit mode.
 11. **Font discipline pass** — if your blanket `[data-skin="<slug>"] body, p, li { font-family: "<sans>" !important }` rule will catch sub-headlines that are semantically `<p>` (like MatchHero's reflection line), add a structural override (`[data-skin="<slug>"] [data-match-hero] header > p:nth-of-type(2) { font-family: "<serif>" italic !important }`) so the display-context `<p>` keeps the serif voice. Pattern: add a `data-*` attribute on the host wrapper for cheap scoping.
 12. **Color harmony pass** — under `[data-skin="<slug>"]`, override Aurora's bright-yellow gold glows (`[class*="rgba(244,212,114"]`, `[class*="rgba(244, 212, 114"]`) to your skin's accent family so active-state shadows on JOURNEY/section chips harmonize with your CTA. ONE bright color per page; everything else uses the muted family.
 13. **Visual QA** page-by-page against the source brand's site at desktop AND mobile breakpoints. Walk the landing, ZoG entry, playbook, AND the match-path landing (`/<slug>/?path=match`). Patch residual leaks.
@@ -339,6 +349,13 @@ These are the gotchas that will hit on EVERY new skin. Reading this section befo
 | **Aurora's `.liquid-glass-dark` (primary CTA class) confused with light glass** | CTA flips between primary and secondary depending on EditorialCta variant prop | Decide the skin's primary-CTA dialect (solid yellow, dark glass, etc.), apply to `.liquid-glass-dark`; light-glass override targets `.liquid-glass` for secondary CTAs |
 | **`/auth` page reverts to canonical brand** | Outsider drops out of the spell on first auth-gated click | `[data-skin] article.liquid-glass-strong h1, p, label, button, input` overrides with `!important`, targeting the page's unique outer class |
 | **Wide-aspect-ratio lockup overflows mobile pill** | Horizontal lockup PNG renders cropped wrong or tiny on the 72px mobile column | Use `max-width: 40px` + `object-position: left` to crop to icon portion (Planetir pattern) |
+| **`.liquid-glass` cascade RE-STRIKE on Pane 1 rail** | Body bg image bleeds through the rail at ~45% because the daouniverse-pass `.liquid-glass !important` rule wins over SpacesRail's inline `--skin-panel-1-bg` token | Add explicit `[data-skin="<slug>"] .liquid-glass.h-dvh { background: var(--skin-panel-1-bg, …) !important }` to re-assert panel-1 fill |
+| **Outer `bg-[#0a0a1a]` GameShell wrapper smothers body bg image** | Solid color fill on the outer wrapper covers the body bg entirely; image never visible | Override to `background-color: transparent !important` (not a color); let body bg paint through |
+| **White-label demo scope hides AI OS / ME / BUILD chips from guests** | Default platform behavior hides "non-public" spaces from unauth'd visitors. Under a white-label demo this UNDERSELLS the platform — visitor sees only JOURNEY chip | In GameShellV2 add `__isWhiteLabelDemoScope` check (skin === 'planetir' \|\| 'daouniverse' \|\| 'network-school' \|\| pathname.startsWith('/build/karime')); when true, set `guestHidden = []` so full rail shows |
+| **SectionsPanel locked-row popover renders Aurora navy+gold+Cormorant** | Inline-styled tooltip ("Unlocks after you find your top talent") leaks Aurora register on every skin | Skin-scope via attribute-substring: `[data-skin="<slug>"] [style*="rgba(10,22,40,1)"][style*="rgba(18,28,56,1)"] { background-image: <skin gradient> !important }` + same for inner `p[style*="#f4d472"]` |
+| **Body bg image needs to be the LIGHTEST surface** | First-pass overlays at 0.42-0.72 alpha smother the image; P3 reads DARKER than P2 (wrong gradient direction) | Pane darkness = P1 darkest → P2 medium → P3 lightest. Body bg overlay drops to 0.15-0.25 alpha; text legibility comes from `--skin-text-halo-*` shadows on typography, NOT from darkening the bg |
+| **CTA ✦ ignite-logo icon prefix on text-only-pill brands** | Source-brand buttons are clean text-only pills; our `<EditorialCta>` injects a ✦ star image prefix | Hide via `[data-skin="<slug>"] button.liquid-glass-dark > img:first-of-type, .ornament-spin { display: none !important }` (NS V3 pattern) |
+| **PreviewBanner clickable-Exit on demo skins is wrong UX** | A community visitor doesn't want to "exit" the skin — they want to know it's a demo | PreviewBanner has two modes: `disclaimer` (unclickable "Demo · not affiliated with <X>") for white-label community skins; `preview` (clickable Exit) for internal navy-gold test ground only. Add one row to `SKIN_BANNER_CONFIG` per new white-label skin |
 
 ---
 
@@ -514,17 +531,44 @@ When V4 brings forms into the NS surface, scope the changes to `[data-skin="netw
 - **Throughput data point confirmed at N=3.** 60 min was the LATAM benchmark; Planetir came in at ~45 min build+QA when SoW+DoD is followed and the operator pipeline delivers inputs cleanly. Updated throughput claim: **30-60 min build+QA for any skin N+1 once the spec is in production use.**
 - **Mobile pill aspect-ratio gotcha for wide lockups.** Planetir's logo is a horizontal lockup (icon + wordmark side-by-side) — fits the 72px mobile pill column tighter than NS's square flag or Daouniverse's near-square pyramid. Mobile pill needed `max-width: 40px` + `object-position: left` to crop to the icon portion. Document as: **wide-aspect-ratio lockups need explicit crop styling on the mobile pill.** (For NS / Daouniverse / Karime the asset was near-square; first time we hit a wide one.) Now in cross-skin pattern catalog above.
 
-### Throughput claim (validated at N=3 skins)
+### Planetir round-2 fix-pass (same Day 84 evening — after Sasha's debug findings)
+
+After the initial Planetir ship, Sasha walked the deployed preview and surfaced 8 findings across two rounds. Each one revealed a spec gap that's now baked in. **All eight pre-empted on every future skin via the additions below.**
+
+#### Round 1 findings (5)
+
+1. **CTA ✦ ignite-logo icon must be hidden** for skins whose source-site uses clean text-only pills (planetir, NS already had it). NS V3 pattern: `[data-skin="<slug>"] button.liquid-glass-dark > img:first-of-type { display: none !important }`. Now in build procedure step 5.
+
+2. **Aggressive Cormorant Garamond kill via `[style*="Cormorant"]` attribute-substring selectors.** The blanket `body, p, li` font rule misses inline-styled `<p>` and `<span>` elements that hardcode `fontFamily: 'Cormorant Garamond'` (MethodologyLandingPage + PlaybookHero + others). Pattern: `[data-skin="<slug>"] h1[style*="Cormorant"], h1 [style*="Cormorant"] { font-family: <display> !important }` for h-tags; `p[style*="Cormorant"], span[style*="Cormorant"] { font-family: <body> !important }` for the rest. **New in cross-skin catalog.**
+
+3. **Still bg image as Mux fallback — copy to `public/`, reference via `url('/<slug>-bg-still.png')`.** Mux URL pending shouldn't mean "no bg" — operator provides a still while video gen finishes. Body bg layered: `linear-gradient(<light dark overlay>), url('/<slug>-bg-still.png') center/cover no-repeat fixed`. Updated inventory item #8.
+
+4. **PreviewBanner — disclaimer mode vs preview mode.** All white-label community skins (NS / Daouniverse / Planetir) need UNCLICKABLE "Demo · not affiliated with `<source-site>`" copy. Only the internal `/preview` navy-gold gets the clickable Exit button. Refactored `PreviewBanner.tsx` to a `SKIN_BANNER_CONFIG` table — adding a new white-label disclaimer is one row (`{ mode: "disclaimer", notAffiliatedWith: "<source-site>" }`). **New build procedure step:** add your skin's row to `SKIN_BANNER_CONFIG` in PreviewBanner.tsx.
+
+#### Round 2 findings (3) — discovered during deeper QA
+
+5. **White-label demo scopes need the FULL rail visible** (AI OS + ME + LEARN + MEET + COLLABORATE + BUILD + OFFER), even for unauth'd guests. The platform's default hides "non-public" spaces from guests to keep the canonical funnel focused on JOURNEY. But under a white-label demo scope, an ecosystem leader visiting `/<slug>/` needs to SEE the depth of the offering. Solution: in `GameShellV2.tsx` add `__isWhiteLabelDemoScope` check (planetir / daouniverse / network-school / `/build/karime` startsWith) → `guestHidden = []`. Add your skin's slug to this OR list when shipping. **New cross-skin pattern + build procedure step.**
+
+6. **Pane darkness gradient — P1 DARKEST → P2 MEDIUM → P3 LIGHTEST.** The brand-block pane sits on the gravity well (darkest); the bright atmospheric bg image lives in P3 (lightest); P2 transitions between them. First Planetir pass had P3 darker than P2 because of a heavy overlay; the bg image needs to BREATHE. Tokens: P1 `rgba(8, 14, 10, 0.96)`, P2 `rgba(20, 32, 20, 0.92)`, P3 = body bg image + LIGHT overlay (~15-25% alpha). **New design principle in inventory #4 palette.**
+
+7. **`.liquid-glass` cascade fight strikes again — Pane 1 / Pane 2 panel-bg gets clobbered.** My `[data-skin="<slug>"] .liquid-glass { background: rgba(...) !important }` rule from the daouniverse pass wins over the SpacesRail's inline `--skin-panel-1-bg` token, making the rail render at the glass alpha (~45%) instead of the panel-1 alpha (~96%). Symptom: the body bg image bleeds through the rail. **Fix:** add an explicit `[data-skin="<slug>"] .liquid-glass.h-dvh { background: var(--skin-panel-1-bg, ...) !important }` rule per skin. **New in build procedure step 5b.**
+
+8. **Outer `bg-[#0a0a1a]` GameShell wrapper must be TRANSPARENT (not painted) when using body bg-image.** The platform paints a deep-indigo outer wrapper that I was overriding to a deep-forest fill (`#0a1a10`). That solid fill covered the body bg image entirely. Fix: override to `transparent` (not a color) so the body bg shines through. **New in build procedure step 5c.**
+
+9. **SectionsPanel locked-row popover ("Unlocks after you find your top talent") is hardcoded Aurora navy + gold + Cormorant inline.** Renders as foreign chip on every skin. Skin-scoped override pattern: `[data-skin="<slug>"] [style*="rgba(10,22,40,1)"][style*="rgba(18,28,56,1)"] { background-image: <skin gradient> !important }` + same for inner `p[style*="#f4d472"]`. **New cross-skin pattern + new DoD #3 item: tooltip/popover hover walk under each skin.**
+
+### Throughput claim (validated at N=3 skins + Planetir 2 fix rounds)
 
 | Skin | Wall-clock (build + QA) | Iteration cycles | Spec discipline followed |
 |---|---|---|---|
 | NS | 1-2 sessions over 5 days (V1 → V8) | 8 | Spec didn't exist yet — was being WRITTEN |
 | Daouniverse | ~120 min including 6 correction rounds | 6 | Spec partially followed (SoW+DoD skipped) |
-| Planetir | ~45 min build + QA, zero correction rounds | 0 | Spec followed end-to-end (SoW+DoD codified mid-session, retroactive) |
+| Planetir round 1 | ~45 min build + QA, zero correction rounds | 0 | Spec followed end-to-end (SoW+DoD codified mid-session) |
+| Planetir round 2 (debug fixes) | ~60 min for 8 findings | 2 | Each finding became a new pattern in this playbook |
 
 **Direction of improvement is monotonic.** Each new skin should ship faster than the prior, because the spec absorbs the prior's lessons. If skin N+1 takes longer than skin N, this playbook has decayed (drift, outdated patterns, missed lesson capture) and needs an immediate refresh pass.
 
 ---
 
-*Skin Creation Playbook v1.0*
-*Created: 2026-05-25 (Day 84 evening) — extracted from `white_label_strategy.md` v1.10 to separate operational manual (this doc) from strategic context (sister doc). All operational content preserved verbatim; cross-links to strategy doc maintained. Bumped to playbook v1.0 to mark the split; subsequent skin lessons land here directly.*
+*Skin Creation Playbook v1.1*
+*v1.0 created 2026-05-25 (Day 84 evening) — extracted from `white_label_strategy.md` v1.10 to separate operational manual from strategic context. · v1.1 (same evening, 2026-05-25) — Planetir round-2 fix-pass adds 9 lessons total across 4 sections (CTA icon hide / Cormorant inline kill / bg-image fallback wiring / PreviewBanner refactor / white-label demo full-rail / pane darkness gradient / .liquid-glass cascade-fight re-strike / outer wrapper transparent / locked-row popover skin-scope). All landed in the cross-skin pattern catalog OR the build procedure OR both. Throughput table extended with the round-2 data point.*

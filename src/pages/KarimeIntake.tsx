@@ -95,14 +95,26 @@ const KarimeIntake = () => {
     );
   };
 
-  // Day 85 (Sasha 2026-05-25): form submission via WhatsApp. The page
-  // collects no name/email/phone (Karime wanted minimum friction); the
-  // WhatsApp channel carries identity (the sender's number is the
-  // signal). Message body packages the selections + the cal.com link
-  // so Karime sees the intent shape AND the visitor still has a
-  // self-serve booking path inside the same message they're about to
-  // send. One CTA per stage; this replaces the previous direct-to-cal
-  // book button.
+  // Day 85 (Sasha 2026-05-25 v2) — funnel-aware form submission.
+  // The funnel runs visitor → Sasha (WhatsApp) → Karime (cal.com).
+  // Sasha is the front-door receptionist; the /karime CTA already
+  // routes the cold inbound to his WA. By the time the visitor lands
+  // on /karime/intake, they're a warm thread Sasha has already
+  // qualified — the intake submission is the *follow-up reflection*
+  // in that existing WA conversation, carrying the visitor's
+  // selected support shape.
+  //
+  // Earlier v1 included the cal.com URL in the message body — Sasha
+  // caught this: it had the visitor sending Karime her own booking
+  // link, which makes zero sense. Booking is downstream of this
+  // submission (Sasha replies with the cal.com link or schedules
+  // directly once he sees the reflection). The message body now
+  // carries only the signal Sasha needs: the selections + a clean
+  // closing line. No URL.
+  //
+  // Addressed "Hi Sasha" so it reads as a continuation of the
+  // existing /karime WA thread (which also opens "Hi Sasha"). The
+  // visitor's framing is consistent across both touchpoints.
   const handleSendWhatsApp = () => {
     const selectedLabels = SUPPORT_OPTIONS.filter((opt) =>
       selectedSupport.includes(opt.key),
@@ -111,17 +123,16 @@ const KarimeIntake = () => {
       .join("\n");
 
     const message = [
-      "Hi Karime,",
+      "Hi Sasha,",
       "",
-      "I came through your intake page (findyourtoptalent.com/build/karime/intake).",
+      "Quick follow-up after Karime's intake page.",
       "",
       selectedSupport.length === 1
         ? "The kind of support that feels most aligned for me right now:"
         : "The kinds of support that feel most aligned for me right now:",
       selectedLabels,
       "",
-      "When you have a moment, I'd love to book the 20-minute conversation:",
-      CALCOM_BOOKING_URL,
+      "Looking forward to my conversation with Karime.",
     ].join("\n");
 
     const url = `${KARIME_WHATSAPP_URL}?text=${encodeURIComponent(message)}`;
@@ -453,11 +464,12 @@ const KarimeIntake = () => {
               className="text-center text-lg sm:text-xl leading-[1.4] mb-5 sm:mb-6 max-w-[520px] mx-auto"
               style={{ ...bodyTextStyle, fontWeight: 600 }}
             >
-              Send your reflection to Karime, and she'll be in touch.
+              Send your reflection. We'll be in touch shortly to schedule
+              your call with Karime.
             </p>
             <div className="flex flex-col items-center gap-4 px-4 text-center">
               <EditorialCta
-                label="Send to Karime on WhatsApp"
+                label="Send your reflection"
                 onClick={handleSendWhatsApp}
               />
               <div
@@ -472,7 +484,7 @@ const KarimeIntake = () => {
                   fontWeight: 500,
                 }}
               >
-                <span>Includes your booking link · Free 20-min call</span>
+                <span>Continues on WhatsApp · No signup needed</span>
               </div>
 
               {/* Contact line revealed alongside the CTA — Telegram +

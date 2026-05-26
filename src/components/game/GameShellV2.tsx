@@ -1116,12 +1116,27 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
     ];
     const isGuest = authChecked && !user;
 
+    // Day 84 v2 (Sasha 2026-05-25 evening): white-label demo scopes get
+    // the FULL rail visible (AI OS + ME + BUILD + etc), unauth or not.
+    // These routes (planetir/daouniverse/network-school/karime) are
+    // platform-sales surfaces — a prospective community leader needs to
+    // see the depth of the offering, not just a JOURNEY chip. Aurora's
+    // hide-non-public-for-guests stays for the canonical funnel since
+    // the funnel pivots on the single JOURNEY action.
+    const __isWhiteLabelDemoScope =
+        __spaceShipSkin === "planetir" ||
+        __spaceShipSkin === "daouniverse" ||
+        __spaceShipSkin === "network-school" ||
+        location.pathname.startsWith("/build/karime");
+
     // Day 79 (Sasha 2026-05-22): AI OS gate applies to guests too.
     // Default-hide for unauthed visitors who have never been to /ai-os.
     // localStorage flag latches once and never un-latches, so any guest
     // who has clicked through Sasha's cold-paste link (which writes the
     // flag on AiOsPage mount) continues to see the chip thereafter.
-    const guestHidden: string[] = aiOsEverVisited
+    const guestHidden: string[] = __isWhiteLabelDemoScope
+        ? [] // show ALL chips on white-label demo surfaces
+        : aiOsEverVisited
         ? [...NON_PUBLIC_SPACE_IDS]
         : [...NON_PUBLIC_SPACE_IDS, "ai-os"];
 
