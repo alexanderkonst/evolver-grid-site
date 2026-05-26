@@ -257,7 +257,61 @@ Application: not a formal cover letter, just *"a short message about why this ro
 
 **Closing CTA:** *"You're looking to deploy capital. You want to meet us personally and dive deeper together. We'd love to get to know you and your vision. Let's connect."*
 
-### 2.7 [Future sources — add new captures below]
+### 2.7 Silvana (Gaia Hub/Union) WhatsApp chat (captured 2026-05-25)
+
+Silvana is the human connector who surfaced Planetir to Sasha. She represents *"Gaia Union or Gaia Hub or something"* (per Sasha's recollection — exact name TBC). Her contact at Planetir is **Daphne Laan**, who set up the Planetir × Vocating partnership. She also surfaced **coown.org** as another platform peer (*"platform wise they are probably further than planetir on the tech side. but not sure if you could directly integrate. happy to make an intro there too"*).
+
+Key chat excerpts:
+
+> *[5/13/26] Silvana: Watch the video. Maybe partner with this guy? I don't know him but planetir is our partner and they partnercw him*
+>
+> *[5/14/26] Silvana: ok great to hear. can you have a look at planetir too. my contact is with planetir, daphne and she is the one that knows the guy from vocating and set up the partner ship*
+>
+> *[5/14/26] Silvana: also have a look at coown as platform wise they are probably further than planetir on the tech side. but not sure if you could directly integrate. happy to make an intro there too*
+>
+> *[5/20/26] Silvana: yalla on the connection to planetir and the vocating thing i want you guys to meet but i need you to have a look and let me know what from you i should share with them*
+
+Sasha's blurb to Silvana about FYTT (5/21/26):
+> *"I have two angles essentially: 1. Precision collaboration match-making through 10-min role & mission discovery, and asset mapping for communities. 2. Monetization of precision self-knowledge. The overarching strategic play is coordination infrastructure. And my key unique value contribution is the high-precision self-knowledge discovery tech."*
+
+**Silvana's standing ask:** what from FYTT should she share with Planetir + Vocating? She's waiting for materials to make the intro.
+
+### 2.8 Vocating × Planetir Career Purpose Challenge (captured 2026-05-25)
+
+Vocating.ai is a separate platform partnered with Planetir, building an "AI-powered career positioning app built on years of academic research." Launching publicly today (5/25/26) with **The Career Purpose Challenge**, a 4-week cohort for EU university students.
+
+**Tagline:** *"Compete. Co-Create. Reposition Your Career in the AI Age."*
+
+**Branding:** *"A challenge by Vocating × Planetir · Powered by RedPill Platform"*
+
+**Key product artifact:** **The Working Vision Card** — *"Way more useful than a CV. A sharp, personal document that captures who you are, what you bring, and where you're headed."* Direct conceptual cousin of the FYTT Unique Business Canvas.
+
+**3 sprints:** Discover → Test → Build (over 21 days)
+
+**3 missions (judged):**
+1. Working Vision Card
+2. UX Audit of Vocating
+3. Scaling Strategy (1-2 pages — *"the standout proposal gets implemented, with you"*)
+
+**Top prize includes:**
+- CHF 1,000 cash
+- Sponsored 2-month internship at Vocating or corporate partner
+- 90-min 1-on-1 with Florian Kemmerich
+- *"Permanent invitation to the Pioneer Layer as a co-builder"*
+- Maximum RedPill Reputation Points
+
+**Jury:**
+- **Florian Kemmerich** — Founder, Vocating.ai; Author of *On Vocation* (Routledge)
+- **Daphne Laan** — Co-Founder, Planetir; **Former Head of Technology, Google**
+- **Randall Zindler** — Co-Founder, Regenerative Alliance; Chairman, YPO Planet Action Network
+
+**Recruitment closes:** May 25, 2026 (TODAY).
+
+**Other platforms named:**
+- **RedPill Platform** — reputation/credentialing substrate that powers the challenge. Issues "RedPill Reputation Points." Unknown beyond that — research needed.
+- **Regenerative Alliance** — Randall Zindler's vehicle. YPO Planet Action Network adjacency.
+
+### 2.9 [Future sources — add new captures below]
 
 ---
 
@@ -273,7 +327,7 @@ Application: not a formal cover letter, just *"a short message about why this ro
 
 - **Joscha Raue** — Chairman, ex-Think-it co-founder
 - **Mehemed Bougsea** — Vice Chairman, ex-Think-it co-founder
-- **Daphne Laan** — Dutch co-founder (House of Wonder)
+- **Daphne Laan** — Dutch co-founder (House of Wonder). **Former Head of Technology, Google** (per Vocating jury page, 2026-05-25). **She is the bridge node** — set up the Planetir × Vocating partnership via Silvana; sits on the Vocating jury. The whitepaper's €350M Google innovation-portfolio reference is most likely her credential specifically (she ran Google tech at the level that touches portfolios of that size). Reaching Daphne reaches the whole assembly (Planetir + Vocating + Silvana's Gaia network + downstream).
 
 **Team credentials (from fundraising page):** *"We've spent the last decade building Think-it into a profitable data-collaboration leader and managing €350M innovation portfolios at Google."* This is a serious operational profile. The heart-language wrapper sits on top of a Berlin engineering shop + Google-portfolio-management spine. Two-layer read: they speak heart externally, they think business internally. Commercial arguments and structural sophistication will land cleanly with them.
 
@@ -301,6 +355,14 @@ Application: not a formal cover letter, just *"a short message about why this ro
 - **Qualification filter:** *"We want to do business with people we want to do life with."* Vibe-first, alignment > dollars.
 - **CTA on /fundraising:** *"I am curious"* — soft, exploratory entry, not a hard "invest now."
 - **Open role:** Fundraising & Stewards Identification (10-20h/week, framed as *"an act of resonance, trust, and alignment"* not transactional hustle). Whoever fills this seat is a calibration signal for who they're attracting operationally.
+
+### Status of the Sasha ↔ Planetir relationship (Day 84, 2026-05-25)
+
+- **Connector:** Silvana (Gaia Hub/Union). She has direct line to Daphne Laan at Planetir.
+- **Sasha's blurb sent to Silvana (5/21):** *"Precision collaboration match-making through 10-min role & mission discovery, and asset mapping for communities. Monetization of precision self-knowledge. The overarching strategic play is coordination infrastructure. My key unique value contribution is the high-precision self-knowledge discovery tech."*
+- **Silvana's standing ask:** what materials from FYTT should she share with Planetir + Vocating to make the intro?
+- **Planetir-skinned FYTT deployment:** **LIVE.** Day 84 evening (2026-05-25). `/planetir/*` route on FYTT in production. Source: planetir.org. Lexend display + Inter body fonts. Solid white pill CTAs. Sun-pierced pine grove Mux background, light filter. Skin #4 in the production white-label tracker (after NS, Daouniverse, Karime). The lead-with demo exists in deployable form.
+- **No direct contact yet** with Daphne or other Planetir team members. Conversation runway: build conversation plan + materials → send to Silvana → Silvana intros → first call.
 
 ### Funders + ecosystem partners
 
@@ -415,9 +477,14 @@ Geographic skew: Berlin / Amsterdam axis with active members in Western Cape, Li
 
 Markedly first-person, vulnerable, somatic on the live feed (e.g. Joscha's surfing post, Sara's purpose article, Khalil's relocation post). Overtly feminine-leadership-coded. Heart-led + inner-work language without going woo. Civilizational scope without going grandiose.
 
-### Visual identity
+### Visual identity (captured 2026-05-25 from the live `/planetir/*` skin)
 
-*[Sasha is collecting this directly via the skin build. Drop colors / fonts / layout pattern observations here as they crystallize.]*
+- **Display font:** Lexend
+- **Body font:** Inter
+- **CTA dialect:** Solid white pill, dark text (one of 4 cataloged paradigms in [`skin_creation_playbook.md`](../../03-playbooks/skin_creation_playbook.md))
+- **Animated background:** Sun-pierced pine grove (Mux, light filter)
+- **Live deployment:** `/planetir/*` on FYTT, Day 84 evening (2026-05-25). Skin #4 in the production tracker per [`white_label_strategy.md`](../white_label_strategy.md).
+- **Reference site:** [planetir.org](https://planetir.org)
 
 ### Pattern: their four ideal-funder archetypes
 
@@ -494,6 +561,27 @@ The Fundraising & Stewards Identification role (10-20h/week) is a precise diagno
 - **Refer someone** from Sasha's network who fits the heart+structure profile. Costs nothing, earns goodwill, and gives Sasha a inside-channel observer of Planetir's operations.
 - **Watch who fills it.** Whoever lands tells Sasha what register Planetir attracts at the working layer (not just at the visionary layer).
 
+### The broader assembly (Day 84 meta-observation)
+
+What's surfacing through the Planetir conversation is not a one-off partnership opportunity. It's a CONVERGENCE. Multiple aligned platforms are independently building pieces of the same coordination-infrastructure intuition, each from a different angle:
+
+| Platform | Their piece |
+|---|---|
+| **Planetir** | Social network + matchmaking + token commons + stewardship structure + residencies |
+| **Vocating** | Assessment + Working Vision Card + AI career-positioning + academic-research-backed methodology |
+| **RedPill Platform** | Reputation/credentialing substrate (powers Vocating) |
+| **coOwn** ([coown.space](https://coown.space), see [`coown.md`](./coown.md)) | Shipping product today (UBDI + Cognition + Brain + Space primitives on top of Bolder CMS). Architecturally closer to FYTT than Planetir is (canvas + AI + spaces + governance), but proprietary + paid SaaS + single-platform commons — the path FYTT explicitly is NOT taking |
+| **Gaia Hub/Union** (Silvana) | Human connective tissue across the network |
+| **Find Your Top Talent** | All of the above as one integrated substrate, with white-label as the structural primitive |
+
+The **Vocating × Planetir** partnership IS the integration play they're already executing — Florian's positioning canvas + Daphne's network and stewardship structure stacked together. Daphne is the bridge between them and one of the most-credentialed operators on either side (ex-Head of Tech Google).
+
+**The strategic position newly visible:** Sasha isn't being invited to add another piece to the stack. He's positioned to offer the SUBSTRATE that all the pieces could run on. The "puzzle pieces assembling themselves" feeling is structural — they're each manifestations of the same coordination-infrastructure intuition Sasha pre-sensed and has been building rails for.
+
+**Conversation framing to land:** *"You and Florian have stacked Piece N + Piece M into the strongest integration in this space. I've spent the last year building the rails that hold N + M + others, with white-label as a primitive so each community runs its own skin. Want to see Planetir running on it?"*
+
+**Time-sensitive context:** The Vocating Career Purpose Challenge cohort closes May 25, 2026 (TODAY). Not actionable for Sasha directly (it's for EU students), but symbolically significant — the field is crystallizing around this moment.
+
 ### New angle: steward-ownership vocabulary collision (and complement)
 
 Both sides use "steward" / "stewardship" heavily but mean different things:
@@ -522,6 +610,11 @@ These are compatible models pointing at the same intuition (mission protection t
 - Their open Fundraising & Stewards Identification role — would they prefer a referral, a partner-basis collaboration, or are they specifically looking for an employee?
 - How do they think about the Convertible Steward Agreement vs. FYTT's PolyForm NC + 10% Distributor Agreement? Compatible structures, or different commercial topologies they'd want to reconcile?
 - Their relationship with Kulimi e.V. as legal steward — is it analogous to a foundation-holds-the-IP model, or something looser?
+- How does the Vocating × Planetir partnership work commercially? Equity, rev-share, integration MoU? This is the precedent for any Planetir × FYTT collaboration structure.
+- What's the technical integration between Vocating and Planetir today? Is the Working Vision Card already importing into Planetir profiles, or are they parallel systems with shared branding?
+- How does RedPill fit? Is RedPill an independent vendor, an internal product, or a future Vocating spinoff? Reputation/credentialing is a layer FYTT will need to integrate with eventually.
+- What's Coown actually building, and is Silvana's assessment that it's "further on tech side than Planetir" accurate? Determines whether Coown is competitor, partner, or potential platform-substrate alternative.
+- Daphne specifically — what's her role split between Planetir, Vocating, and any other ventures? What does her week look like, what's she optimizing for?
 
 ---
 
@@ -529,3 +622,5 @@ These are compatible models pointing at the same intuition (mission protection t
 
 - **2026-05-25 (Day 80):** Doc created. Website crawled (~12 marketing pages + auth-gated feed, sample profiles/quests/posts). YouTube explainer captured verbatim. Whitepaper full text captured. Sasha building Planetir-skinned demo on FYTT rails as the conversation lead-with. First synthesis + collaboration angles drafted.
 - **2026-05-25 (Day 80, intel drop #2):** Added §2.4 Co-Creation & Support Opportunities (their 3-tier ask + 7 expertise quests), §2.5 Fundraising & Stewards Identification open role, §2.6 Fundraising page (€500k seed now → larger H2 2026 round, €3M ARR by 2027 target). Updated §3 with Think-it + €350M Google portfolio credentials + current fundraising posture (TIME-SENSITIVE). Updated §4 with new lexicon + their four ideal-funder archetype pattern + their four "rare opportunity" pillar pattern. Added §5 three new collaboration angles: commercial-acceleration argument (their numbers are white-label-shaped), fundraising-connector play (their #1 ask = Sasha's leverage), open-role calibration signal, and steward-ownership vocabulary collision/complement. Added 7 new open questions in §6.
+- **2026-05-25 (Day 84, intel drop #3 — the assembly):** Added §2.7 Silvana WhatsApp chat (she's the connector via Gaia Hub/Union; Daphne is her contact). Added §2.8 Vocating × Planetir Career Purpose Challenge captured (cohort closes today; jury includes Daphne + Florian Kemmerich + Randall Zindler; key artifact = Working Vision Card; RedPill Platform powers it). Updated §3 with Daphne clarified as Former Head of Tech Google and the bridge node + status section noting the Planetir-skinned FYTT deployment is LIVE at `/planetir/*` (Day 84 evening). Filled in §4 Visual identity from the live skin (Lexend + Inter + solid white pill + pine grove). Added §5 "The broader assembly" meta-observation: convergence of Planetir + Vocating + RedPill + Coown + Gaia Hub all manifesting the same coordination-infrastructure intuition; FYTT positioned as the substrate, not another piece. Added 6 new questions in §6 about the assembly mechanics. Coown research spawned in background.
+- **2026-05-25 (Day 84, intel drop #4 — Coown landed):** Sibling doc [`coown.md`](./coown.md) created with full Coown synthesis. Updated §5 broader-assembly table with concrete Coown intel: shipping product (UBDI/Cognition/Brain/Space on Bolder CMS), proprietary + paid SaaS + single-platform commons. Architecturally closer to FYTT than Planetir is, but commercial topology fundamentally different (closed vs. open). Useful as structural mirror for FYTT's own roadmap; useful as differentiation anchor for the Planetir conversation (Daphne and Planetir team likely already know Coown).
