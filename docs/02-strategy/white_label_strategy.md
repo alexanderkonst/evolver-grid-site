@@ -12,6 +12,15 @@
 
 The goal is a **black hole with gravity pull** — no visible brand, just magnetic value that draws communities in. Each community runs their own storefront on shared rails.
 
+### Structural frame underneath this strategy
+
+The white-label model is the operational expression of two perception shifts formally captured in [`docs/01-vision/phase_shift_technology_library.md`](../01-vision/phase_shift_technology_library.md):
+
+- **Domain 86 — Substrate Positioning:** in coordination-infrastructure plays, the org stays small while the substrate compounds large. Trying to be both the substrate AND the biggest platform on it is exactly what kills coordination plays (Facebook ↔ Open Graph as the canonical failure mode; W3C, Linux Foundation, IETF as canonical successes). The white-label strategy is what makes substrate positioning operational: each community runs its own storefront, the steward org stays neutral, adoption compounds.
+- **Domain 87 — Multi-Patron Architecture:** white-label deployment IS multi-patron Leonardo strategy at structural scale. Each skinned community is a patron-shaped relationship; the portfolio compounds; no single relationship is load-bearing. The 30-60 min throughput claim from the playbook is what makes this tractable: if skins are cheap, the portfolio scales; if skins are expensive, the model collapses to "find one big patron and pray."
+
+These two domains are the strategic load-bearing claims underneath everything that follows in this doc.
+
 ---
 
 ## What Gets Customized Per Community

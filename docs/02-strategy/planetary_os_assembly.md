@@ -367,6 +367,8 @@ This work sits at Step 12 of the Assembly but is only activated when the river b
 
 **Status:** 🔭 Vision captured. Nabadi = first active Ecosystem Builder contact. Gear shift when the river calls it.
 
+**Day 84 update (2026-05-25 — the river is calling earlier than predicted):** Multiple aligned platforms surfaced simultaneously through Silvana (Gaia Hub/Union) as the Planetir conversation opened: Planetir, Vocating, Coown, RedPill, plus the existing Step 12 ecosystem-builder list. The contemporary assembly is now legible as a coherent meta-pattern: each platform is independently building a piece of the same coordination-infrastructure intuition; the question is no longer "who wins among them" but "what's the substrate everyone runs on." This is the perception shift formally captured as **Phase Shift Domain 85 — The Assembly Recognition** (see [`docs/01-vision/phase_shift_technology_library.md`](../01-vision/phase_shift_technology_library.md#domain-85-the-assembly-recognition-multiple-platforms-building-pieces-of-the-same-elephant-simultaneously)). Step 12 is no longer "vision" — it is the operational frame for current ecosystem-leader conversations. Per-partner intel docs now live under [`docs/02-strategy/partners/`](./partners/).
+
 **How communities connect:** Each community that adopts these tools automatically plugs into a larger network. The AI matchmaking runs not just within one community, but across all of them. A person in The Originals can match with someone in another community if their skills and needs complement each other. Each community is whole on its own AND part of something larger.
 
 > A circle of circles. Each community is whole. Together, they're something more. Not a hierarchy — a network where every node is complete.
