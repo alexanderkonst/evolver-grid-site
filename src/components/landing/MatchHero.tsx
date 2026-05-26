@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { EditorialCta } from "@/components/ui/editorial-cta";
-import { GOLD_TEXT_STYLE, Ornament } from "@/lib/landingDesign";
+import { GOLD_TEXT_STYLE } from "@/lib/landingDesign";
 import SEO from "@/components/SEO";
 import { trackFunnelEvent } from "@/lib/funnelAnalytics";
 import { useSkin } from "@/contexts/SkinContext";
@@ -66,7 +66,7 @@ const MatchHero = () => {
     <>
       <SEO
         title="Find Your Top Talent · Find Your People"
-        description="A few simple prompts, and we'll introduce you to entrepreneurs, operators, and advisors who see it the way you do."
+        description="A few simple prompts. We learn how you think, build, and contribute, then introduce you to entrepreneurs, operators, and advisors who naturally fit."
         path="/?path=match"
         ogTitle="Find your people"
       />
@@ -223,12 +223,18 @@ const MatchHero = () => {
             >
               right people
             </span>{" "}
-            change everything.
+            change everything
           </h1>
 
           {/* Tension line — italic echo register. Full container
               width, no narrow stack. `font-display` so daouniverse
-              lifts this into Playfair alongside the H1. */}
+              lifts this into Playfair alongside the H1.
+              Day 85 v2 (Sasha 2026-05-25) — copy sharpened. Was
+              "But most networking goes nowhere." (abstract pain).
+              Now names the concrete villains visitors actually
+              feel — titles, résumés, keywords — the flattening
+              language of every existing platform. More specific
+              villain reads sharper than abstract complaint. */}
           <p
             className="font-display text-base sm:text-lg md:text-xl leading-[1.32] italic mb-3 sm:mb-4"
             style={{
@@ -240,15 +246,30 @@ const MatchHero = () => {
                 "var(--skin-text-halo-deep, 0 0 28px rgba(255,255,255,0.85), 0 1px 2px rgba(255,255,255,0.95), 0 0 1px rgba(11,42,90,0.65), 0 1px 0 rgba(11,42,90,0.45))",
             }}
           >
-            But most networking goes nowhere.
+            Most platforms flatten you into titles, résumés, and keywords
           </p>
 
-          <Ornament className="my-4 sm:my-5" />
+          {/* Day 85 v3 (Sasha 2026-05-25) — Ornament glyph removed. Sasha:
+              "no glyph, no dots that stop attention." The hairline +
+              ✦ between tension line and bridge was a beat-break the
+              new copy doesn't need; momentum reads cleaner without it.
+              Terminal periods stripped from the four text beats for
+              the same reason (Day 78 rule restored after the Day 84
+              stillness pass). The internal period inside the bridge
+              ("A few simple prompts. We learn...") stays — it's a
+              deliberate two-clause cadence, not a sentence-final
+              full-stop. */}
 
           {/* Bridge — build-path manifesto register. Container width
-              for confidence; one calm sentence. `font-display` keeps
-              this in the editorial voice on daouniverse (Playfair),
-              not the Inter body register. */}
+              for confidence. `font-display` keeps this in the editorial
+              voice on daouniverse (Playfair), not the Inter body register.
+              Day 85 v2 (Sasha 2026-05-25) — bridge tightened to name
+              the deep-profile mechanism explicitly ("how you think,
+              build, and contribute") and close on "naturally fit"
+              (the fit is the outcome, not the artifact). Two short
+              sentences instead of one long one; the period after
+              "prompts" lets the mechanism beat land before the
+              outcome beat. No em-dashes (Sasha's standing rule). */}
           <p
             className="font-display text-lg sm:text-xl md:text-2xl font-bold leading-[1.4] tracking-[-0.005em]"
             style={{
@@ -258,7 +279,7 @@ const MatchHero = () => {
                 "var(--skin-text-halo-deep, 0 0 22px rgba(255,255,255,0.7), 0 1px 2px rgba(255,255,255,0.9), 0 0 1px rgba(11,42,90,0.45), 0 1px 0 rgba(11,42,90,0.25))",
             }}
           >
-            A few simple prompts, and we'll introduce you to entrepreneurs, operators, and advisors who see it the way you do.
+            A few simple prompts. We learn how you think, build, and contribute, then introduce you to entrepreneurs, operators, and advisors who naturally fit
           </p>
         </header>
 
