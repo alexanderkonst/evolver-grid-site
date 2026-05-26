@@ -1339,6 +1339,30 @@
   letter-spacing: 0.08em;
 }
 
+/* Day 84 v2 (Sasha 2026-05-25 evening): SectionsPanel locked-row popover
+   override — same root cause as planetir (inline-styled Aurora navy +
+   gold + Cormorant). Re-tones to daouniverse forest + parchment family. */
+[data-skin="daouniverse"] [style*="rgba(10,22,40,1)"][style*="rgba(18,28,56,1)"] {
+  background-image: linear-gradient(
+    135deg,
+    rgba(13, 25, 18, 0.98) 0%,
+    rgba(20, 38, 28, 0.98) 50%,
+    rgba(13, 25, 18, 0.98) 100%
+  ) !important;
+  border-color: rgba(196, 163, 92, 0.42) !important;
+  box-shadow:
+    0 0 0 1px rgba(196, 163, 92, 0.18),
+    0 8px 28px -8px rgba(13, 25, 18, 0.6),
+    0 0 24px -6px rgba(196, 163, 92, 0.28) !important;
+}
+[data-skin="daouniverse"] [style*="rgba(10,22,40,1)"] p[style*="#f4d472"] {
+  font-family: "Playfair Display", "Cormorant Garamond", Georgia, serif !important;
+  color: #f0e6d2 !important;
+  text-shadow:
+    0 0 10px rgba(196, 163, 92, 0.32),
+    0 1px 2px rgba(13, 25, 18, 0.5) !important;
+}
+
 /* ───────────────────────────────────────────────────────────────────
    PLANETIR SKIN — Day 84 (Sasha 2026-05-25)
    ───────────────────────────────────────────────────────────────────
@@ -1379,19 +1403,26 @@
     0 1px 3px rgba(10, 22, 14, 0.92),
     0 0 1px rgba(107, 122, 58, 0.42);
 
-  /* Panel washes — Pane 1 deep forest, Pane 2 slightly lifted.
-     Warmer hue than daouniverse (planetir.org's amber sun temp). */
-  --skin-panel-1-bg: rgba(18, 28, 16, 0.94);
-  --skin-panel-2-bg: rgb(26, 38, 22);
+  /* Day 84 v2 (Sasha 2026-05-25 evening): pane darkness gradient —
+     P1 DARKEST → P2 MEDIUM → P3 LIGHTEST. The previous palette had P2
+     lighter than P1 (correct) but the body bg overlay then made P3
+     read DARKER than P2 (wrong). New palette:
+       P1: deepest forest (almost black-green) so brand block reads
+           as the gravity well.
+       P2: medium forest, a clear step lighter than P1.
+       P3: body bg (still image + light ~25% overlay) — the brightest
+           surface, the actual scene the user lives in. */
+  --skin-panel-1-bg: rgba(8, 14, 10, 0.96);
+  --skin-panel-2-bg: rgba(20, 32, 20, 0.92);
   --skin-panel-wash:
     linear-gradient(180deg,
-      rgba(34, 50, 28, 0.55) 0%,
-      rgba(18, 28, 16, 0.42) 55%,
-      rgba(10, 18, 10, 0.62) 100%);
+      rgba(34, 50, 28, 0.40) 0%,
+      rgba(18, 28, 16, 0.28) 55%,
+      rgba(10, 18, 10, 0.42) 100%);
   --skin-panel-wash-quiet:
     linear-gradient(180deg,
-      rgba(34, 50, 28, 0.18) 0%,
-      rgba(18, 28, 16, 0.10) 100%);
+      rgba(34, 50, 28, 0.12) 0%,
+      rgba(18, 28, 16, 0.06) 100%);
 
   /* Ornaments — olive-gold (the gold-diamond in the Planetir logo,
      warmer than daouniverse's parchment, less saturated). */
@@ -1578,6 +1609,37 @@
   display: none !important;
 }
 
+/* Day 84 v2 (Sasha 2026-05-25 evening): SectionsPanel locked-row popover
+   ("Unlocks after you find your top talent.") is inline-styled with
+   Aurora navy gradient bg + gold text + Cormorant Garamond — none of
+   it references skin tokens. Under planetir + daouniverse the popover
+   reads as a foreign Aurora chip floating on the forest/dark scene.
+   Attribute-substring selectors catch the inline patterns and re-tone:
+   bg → deep forest with skin's accent rim, text → cream Lexend italic,
+   removes the gold drop-shadow. NEW DoD #3 ITEM: tooltip/popover audit
+   added to playbook (lesson: any inline-styled overlay component needs
+   skin-scoped override; tokenization is future work). */
+[data-skin="planetir"] [style*="rgba(10,22,40,1)"][style*="rgba(18,28,56,1)"] {
+  background-image: linear-gradient(
+    135deg,
+    rgba(8, 14, 10, 0.98) 0%,
+    rgba(20, 32, 20, 0.98) 50%,
+    rgba(8, 14, 10, 0.98) 100%
+  ) !important;
+  border-color: rgba(196, 163, 92, 0.42) !important;
+  box-shadow:
+    0 0 0 1px rgba(196, 163, 92, 0.18),
+    0 8px 28px -8px rgba(8, 14, 10, 0.6),
+    0 0 24px -6px rgba(196, 163, 92, 0.28) !important;
+}
+[data-skin="planetir"] [style*="rgba(10,22,40,1)"] p[style*="#f4d472"] {
+  font-family: "Lexend", system-ui, sans-serif !important;
+  color: #f5f5f0 !important;
+  text-shadow:
+    0 0 10px rgba(196, 163, 92, 0.32),
+    0 1px 2px rgba(8, 14, 10, 0.5) !important;
+}
+
 /* PLANETIR — decoration overrides */
 
 /* Kill the Mux HLS video background by default — Sasha will provide a
@@ -1591,34 +1653,37 @@
   display: none !important;
 }
 
-/* Body background — sun-pierced forest still image (Sasha provided as
-   the source of bg truth). Lives at /planetir-bg-still.png (public/),
-   referenced as a fixed-position cover. Light dark overlay (~25-35%
-   alpha) keeps cream text legible WITHOUT smothering the image — the
-   forest scene needs to be clearly visible behind the text, matching
-   planetir.org's hero treatment. v2 fix (Sasha 2026-05-25 evening):
-   first pass had 0.42-0.72 alpha which made the page read as solid
-   dark forest with no image visible. */
+/* Body background — sun-pierced forest still image (Sasha provided).
+   Lives at /planetir-bg-still.png (public/). v3 fix (Sasha 2026-05-25
+   evening): VERY light overlay (~15-25% alpha) so the forest scene
+   reads as the bright, alive surface it is — P3 must be the LIGHTEST
+   pane, not the darkest. Text legibility comes from `--skin-text-halo-*`
+   shadows on the typography, not from darkening the bg. Matches
+   planetir.org's hero treatment exactly (bright forest, white text
+   with subtle drop-shadow). */
 [data-skin="planetir"] body {
   background:
     linear-gradient(180deg,
-      rgba(8, 16, 10, 0.35) 0%,
-      rgba(8, 16, 10, 0.18) 40%,
-      rgba(8, 16, 10, 0.32) 80%,
-      rgba(8, 16, 10, 0.48) 100%),
+      rgba(8, 16, 10, 0.22) 0%,
+      rgba(8, 16, 10, 0.10) 40%,
+      rgba(8, 16, 10, 0.18) 80%,
+      rgba(8, 16, 10, 0.32) 100%),
     url('/planetir-bg-still.png') center/cover no-repeat fixed,
     #0a1a10;
   color: #ffffff;
 }
 
-/* Cosmic indigo page bg → forest. */
+/* Cosmic indigo page bg → fully TRANSPARENT under planetir so the body
+   forest still image shows through. v2 fix (Sasha 2026-05-25 evening):
+   v1 painted #0a1a10 solid, which smothered the body bg image entirely.
+   Now both the opacity-variant pattern AND the bare class go transparent. */
 [data-skin="planetir"] [class*="bg-[#0a0a1a]"] {
   background-color: transparent !important;
   backdrop-filter: none !important;
   -webkit-backdrop-filter: none !important;
 }
 [data-skin="planetir"] .bg-\[\#0a0a1a\] {
-  background-color: #0a1a10 !important;
+  background-color: transparent !important;
 }
 
 /* Paper grain off — forest scene IS the texture. */
@@ -1697,9 +1762,18 @@
   box-shadow: inset 3px 0 0 0 #c4a35c !important;
 }
 
-/* Pane 1 rail right edge — double-rule editorial separator (olive). */
+/* Pane 1 rail — double-rule olive separator + re-assert dark forest fill.
+   v2 fix (Sasha 2026-05-25 evening): the global `[data-skin="planetir"]
+   .liquid-glass { background: rgba(26, 38, 22, 0.45) !important }` rule
+   was winning over the SpacesRail inline `--skin-panel-1-bg` token,
+   making the rail show the body bg image bleed through at 55%. Re-assert
+   the panel-1 token here so Pane 1 is the DARKEST surface (per the
+   P1<P2<P3 darkness gradient principle). */
 [data-skin="planetir"] .liquid-glass.h-dvh {
   border-right: 3px double rgba(196, 163, 92, 0.28) !important;
+  background: var(--skin-panel-1-bg, rgba(8, 14, 10, 0.96)) !important;
+  backdrop-filter: blur(8px) saturate(120%) !important;
+  -webkit-backdrop-filter: blur(8px) saturate(120%) !important;
 }
 
 /* Pane 2 right edge + forest bg. */
