@@ -1642,15 +1642,17 @@
 
 /* PLANETIR — decoration overrides */
 
-/* Kill the Mux HLS video background by default — Sasha will provide a
-   forest animation later. Until then the body's forest gradient holds
-   the atmospheric mood. Once URL lands, retire this rule + extend the
-   MuxVideoBackground URL selection table per Day 84 build step 6. */
+/* Day 84 evening v3 (Sasha 2026-05-25): the Mux HLS kill rule was retired
+   once Sasha provided the forest animation URL — `MuxVideoBackground` in
+   GameShellV2 now selects PLANETIR_MUX_BG_URL when the active skin is
+   `planetir`. The body bg image (planetir-bg-still.png) stays as the
+   HLS-load fallback during the ~500ms-2s before the video first-frames.
+   Light filter applied to keep cream text legible without over-darkening
+   the bright sun-pierced canopy. */
 [data-skin="planetir"] video[autoplay][muted],
 [data-skin="planetir"] video.absolute,
-[data-skin="planetir"] [data-mux-background],
 [data-skin="planetir"] video[playsinline] {
-  display: none !important;
+  filter: brightness(0.72) saturate(0.85) !important;
 }
 
 /* Body background — sun-pierced forest still image (Sasha provided).

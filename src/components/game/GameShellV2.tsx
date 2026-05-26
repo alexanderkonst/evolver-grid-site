@@ -59,6 +59,12 @@ const MATCH_MUX_BG_URL = "https://stream.mux.com/HAKiVOTMZGzcf00B9dE02uAO02CzaUi
 // precedence over match-path selection: a /daouniverse/?path=match URL
 // uses the forest bg, not the match-path urban scene.
 const DAOUNIVERSE_MUX_BG_URL = "https://stream.mux.com/M5AQSxoJeXg9f4XjeyaWXo6UMTu66007DRajlWqqfUbk.m3u8";
+// Day 84 evening (Sasha 2026-05-25): planetir skin background. Animated
+// version of the sun-pierced pine grove still that Sasha provided earlier
+// (still lives in public/planetir-bg-still.png as the HLS-load fallback).
+// Skin-based selection still wins over match-path: a /planetir/?path=match
+// URL gets the forest bg, not the match-path urban scene.
+const PLANETIR_MUX_BG_URL = "https://stream.mux.com/U1fTCt201DzXeb700iw6inJUyluSAfpiRvS7F7oGnwqc8.m3u8";
 
 const MuxVideoBackground = () => {
     const videoRef = useRef<HTMLVideoElement>(null);
@@ -115,14 +121,17 @@ const MuxVideoBackground = () => {
         ? document.documentElement.dataset.skin
         : undefined;
     const __isDaoVideo = __initialSkin === "daouniverse";
+    const __isPlanetirVideo = __initialSkin === "planetir";
     const srcUrlRef = useRef(
-        __isDaoVideo
-            ? DAOUNIVERSE_MUX_BG_URL
-            : isMatchPathNow
-                ? MATCH_MUX_BG_URL
-                : MUX_BG_URL
+        __isPlanetirVideo
+            ? PLANETIR_MUX_BG_URL
+            : __isDaoVideo
+                ? DAOUNIVERSE_MUX_BG_URL
+                : isMatchPathNow
+                    ? MATCH_MUX_BG_URL
+                    : MUX_BG_URL
     );
-    const isMatchVideo = isMatchPathNow && !__isDaoVideo;
+    const isMatchVideo = isMatchPathNow && !__isDaoVideo && !__isPlanetirVideo;
 
     useEffect(() => {
         const video = videoRef.current;
