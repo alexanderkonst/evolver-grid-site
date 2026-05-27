@@ -635,6 +635,7 @@ export const EquilibriumV2Page = () => {
               loading={eq.loading}
               onCompleteTask={eq.completeTask}
               onDemoteFromDoNow={eq.demoteFromDoNow}
+              onReorder={eq.reorderFocus}
             />
           </EquilibriumSectionCard>
         )}
