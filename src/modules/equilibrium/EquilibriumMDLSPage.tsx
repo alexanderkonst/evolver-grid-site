@@ -381,6 +381,7 @@ export const EquilibriumMDLSPage = () => {
                 loading={eq.loading}
                 onCompleteTask={eq.completeTask}
                 onDemoteFromDoNow={eq.demoteFromDoNow}
+                onReorder={eq.reorderFocus}
               />
             </MattePolymerCard>
           </EmberBreath>

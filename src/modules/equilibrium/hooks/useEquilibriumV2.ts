@@ -108,6 +108,14 @@ export interface EquilibriumV2Data {
    * Intuitive Tasks; only the focus row is dropped.
    */
   demoteFromDoNow: (taskId: string) => Promise<void>;
+  /**
+   * Reorder the focused tasks within DOING NOW (Sasha 2026-05-27).
+   * Receives the NEW task-id ordering (e.g., the drag-drop result).
+   * Persists by assigning positions 1..N to the supplied order and
+   * preserves `promoted_at` so the "replace oldest at cap" logic in
+   * promoteToDoNow continues to work correctly.
+   */
+  reorderFocus: (orderedTaskIds: string[]) => Promise<void>;
   /** Marks task done + removes from focus (transactional via eq_complete_task RPC). */
   completeTask: (taskId: string) => Promise<void>;
   /** Reverses a completed task back to active (clears done_at). */
@@ -855,6 +863,66 @@ export function useEquilibriumV2(): EquilibriumV2Data {
     [user, fetchAll],
   );
 
+  /**
+   * Reorder DOING NOW focus rows (Sasha 2026-05-27).
+   *
+   * Takes a new task-id ordering and assigns positions 1..N. Server
+   * write strategy: DELETE all focus rows for the user, then INSERT
+   * the new ones. The table has a UNIQUE constraint on (user_id,
+   * position), so naive sequential UPDATEs would collide during the
+   * swap. Delete-and-insert avoids that without needing a stored
+   * procedure or transaction wrapper.
+   *
+   * Microsecond gap between DELETE and INSERT where the server has
+   * zero focus rows for this user. Optimistic local update covers
+   * the UI for that window; if the INSERT fails we refetch.
+   *
+   * promoted_at is preserved per task — when a row was promoted is
+   * separate from how it's currently ordered. The "replace oldest
+   * at cap" logic in promoteToDoNow still uses promoted_at and so
+   * stays correct even after manual reorders.
+   */
+  const reorderFocus = useCallback(
+    async (orderedTaskIds: string[]) => {
+      if (!user) return;
+      const trimmed = orderedTaskIds.slice(0, MAX_FOCUS);
+
+      // Build new focus rows. Preserve promoted_at from existing rows
+      // when the task was already focused; default to now for any new
+      // task ids passed in (shouldn't happen during reorder but safe).
+      const nowIso = new Date().toISOString();
+      const newRows: EquilibriumFocus[] = trimmed.map((taskId, i) => ({
+        user_id: user.id,
+        position: (i + 1) as 1 | 2 | 3,
+        task_id: taskId,
+        promoted_at:
+          focus.find((f) => f.task_id === taskId)?.promoted_at ?? nowIso,
+      }));
+
+      // Optimistic local update — UI shows the new order immediately.
+      setFocus(newRows);
+
+      // Server: drop then re-insert. The (user_id, position) unique
+      // constraint blocks naive sequential UPDATEs during swap.
+      const delRes = await eqAny
+        .from("equilibrium_focus")
+        .delete()
+        .eq("user_id", user.id);
+      if (delRes.error) {
+        console.warn("[equilibrium_v2] reorder focus DELETE failed; refetching", delRes.error);
+        void fetchAll();
+        return;
+      }
+      if (newRows.length === 0) return;
+      const insRes = await eqAny.from("equilibrium_focus").insert(newRows);
+      if (insRes.error) {
+        console.warn("[equilibrium_v2] reorder focus INSERT failed; refetching", insRes.error);
+        void fetchAll();
+      }
+    },
+    [user, focus, fetchAll],
+  );
+
   const uncompleteTask = useCallback(
     async (taskId: string) => {
       // Reverse a "done" task back to active. Append to end of active list
@@ -1102,6 +1170,7 @@ export function useEquilibriumV2(): EquilibriumV2Data {
     reorderTasks,
     promoteToDoNow,
     demoteFromDoNow,
+    reorderFocus,
     completeTask,
     uncompleteTask,
     refresh: fetchAll,
