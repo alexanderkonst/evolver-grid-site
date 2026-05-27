@@ -14,22 +14,24 @@ synodic cycle. The cycle reads as two halves of a hero's journey:
 Last Quarter** is the outer/manifest half (the How reveals, the work
 happens, the harvest celebrates).
 
-### Astronomical boundaries (corrected 2026-05-21, refined 2026-05-24)
+### Astronomical boundaries (corrected 2026-05-21, refined through 2026-05-26)
 
-Each phase WINDOW is centered on its principal/intermediate elongation
-moment. Principal phases (New 0°, First Quarter 90°, Full 180°, Last
-Quarter 270°) sit at the CENTER of their 45° windows — not the start.
+Each phase WINDOW is **45° of true Sun-Moon elongation, beginning AT
+the principal/intermediate astronomical instant**. The principal
+instants (New 0°, First Quarter 90°, Full 180°, Last Quarter 270°)
+are inflection THRESHOLDS — they open the named phase, they don't
+center it. So:
 
-| Phase | Elongation window | Mean-cycle days (centered) |
+| Phase | Elongation window | Mean-cycle days (from window start) |
 |---|---|---|
-| New Moon | 337.5° → 22.5° (wraps) | ±1.846d around the New Moon instant |
-| Waxing Crescent | 22.5° → 67.5° | 1.846 → 5.537 |
-| First Quarter | 67.5° → 112.5° | 5.537 → 9.228 |
-| Waxing Gibbous | 112.5° → 157.5° | 9.228 → 12.920 |
-| Full Moon | 157.5° → 202.5° | 12.920 → 16.611 |
-| Waning Gibbous | 202.5° → 247.5° | 16.611 → 20.302 |
-| Last Quarter | 247.5° → 292.5° | 20.302 → 23.994 |
-| Waning Crescent | 292.5° → 337.5° | 23.994 → 27.685 |
+| New Moon (Clearing) | 0° → 45° | 0.000 → 3.691 |
+| Waxing Crescent (Gathering) | 45° → 90° | 3.691 → 7.383 |
+| First Quarter (Seeing) | 90° → 135° | 7.383 → 11.074 |
+| Waxing Gibbous (Leading) | 135° → 180° | 11.074 → 14.765 |
+| Full Moon (Harvesting) | 180° → 225° | 14.765 → 18.457 |
+| Waning Gibbous (Celebrating) | 225° → 270° | 18.457 → 22.148 |
+| Last Quarter (Planning) | 270° → 315° | 22.148 → 25.840 |
+| Waning Crescent (Planting) | 315° → 360° | 25.840 → 29.531 |
 
 **Phase DURATIONS in time vary slightly** (~3.27 to ~4.20 days in any
 given cycle) because the Moon's angular speed is not constant — it
@@ -37,14 +39,48 @@ moves faster near perigee, slower near apogee. Astronomy, not a bug.
 Each phase is exactly 45° of elongation; the time it takes to traverse
 those 45° is what varies.
 
-Prior bug (fixed 2026-05-21): the asymmetric day-ranges in the original
-v1 implementation gave New Moon only 1.85d (half-window after the
-instant) and Waning Crescent 5.54d (the missing half-window before
-New Moon got wrongly assigned). Runtime now uses TRUE elongation via
-Brown's lunar theory (Meeus AA ch. 47), 15 dominant terms + ΔT (UTC →
-Terrestrial Time correction). Max error ~0.05° = ~6 minutes of cycle
-position. See `src/lib/equilibrium-cycles/index.ts` and the regression
-suite `src/lib/equilibrium-cycles/__tests__/cycles.test.ts`.
+### Why STARTS-AT-PRINCIPAL, not CENTERED (Sasha 2026-05-26 round-5 lock)
+
+Earlier iterations centered each phase WINDOW on its principal
+elongation moment (so New Moon would have been 337.5° → 22.5°, the
+instant at the center). That convention is astronomically clean per
+Meeus, but it didn't match lived experience.
+
+After Sasha's astrologist Oyi (20 years tracking lunar cycles
+viscerally) showed a calendar where Clearing felt strongest ~1.85 days
+AFTER the New Moon instant — not centered on it — and his teaching
+videos confirmed the same pattern across all 4 principal instants, we
+switched to **starts-at-principal**. The principal moments are
+energetic THRESHOLDS, not peaks:
+
+- **New Moon = the cycle bottoms out → clearing work BEGINS** (release
+  fear, create the void). The peak of clearing is felt ~1.85 days
+  in, not at the conjunction itself.
+- **First Quarter = half-light revealed → seeing BEGINS** (the how
+  reveals over the next 3.7 days, not in the instant of quadrature).
+- **Full Moon = light peaks → harvesting BEGINS** (the cycle's most
+  expressive moment opens the doing, doesn't end it).
+- **Last Quarter = half-shadow returned → planning BEGINS** (the next
+  intention surfaces from the just-finished harvest).
+
+### Prior bug history (don't repeat)
+
+- **2026-05-21:** asymmetric day-ranges in the original v1 (New Moon
+  got 1.85d, Waning Crescent 5.54d). The half-window BEFORE the New
+  Moon instant got wrongly assigned to Waning Crescent. Replaced with
+  true elongation via Brown's main terms.
+- **2026-05-21 → 05-25:** centered model — principal instants at the
+  center of each 45° window. Astronomically clean per Meeus convention
+  but didn't match Oyi's felt-experience timing (always lagging by
+  ~1.85 days).
+- **2026-05-26:** switched to starts-at-principal (this doc). Single
+  math change: dropped the +22.5° centering shift in `getLunarState`.
+
+Runtime uses true elongation via Brown's lunar theory (Meeus AA ch. 47),
+15 dominant terms + ΔT (UTC → Terrestrial Time correction). Max error
+~0.05° = ~6 minutes of cycle position. See
+`src/lib/equilibrium-cycles/index.ts` and the regression suite
+`src/lib/equilibrium-cycles/__tests__/cycles.test.ts`.
 
 ### The 4-Quarter Umbrella — Holonic Quadrants (refined 2026-05-18 round 4)
 

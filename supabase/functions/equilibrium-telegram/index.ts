@@ -129,12 +129,13 @@ function lunarElongationDeg(nowMs: number): number {
 }
 
 function getMoonPhase(now: Date) {
-    // Phase index from true elongation. Shift by +22.5° so principal
-    // phases (New 0°, FQ 90°, Full 180°, LQ 270°) sit at the CENTER
-    // of their 45° windows. Floor → index 0-7.
+    // Phase index from true elongation. STARTS-AT-PRINCIPAL model
+    // (Sasha 2026-05-26): principal instants (New 0°, FQ 90°, Full
+    // 180°, LQ 270°) BEGIN their named phase. Each phase spans 45°
+    // forward from the principal. No centering shift.
+    // Stays in lockstep with src/lib/equilibrium-cycles/index.ts.
     const elongation = lunarElongationDeg(now.getTime());
-    const shifted = (elongation + 22.5) % 360;
-    const index = Math.min(7, Math.floor(shifted / 45));
+    const index = Math.min(7, Math.floor(elongation / 45));
     return MOON_PHASES[index];
 }
 
