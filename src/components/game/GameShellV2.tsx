@@ -1369,37 +1369,37 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                     column. Chevron flips direction based on state.
                     Currently used by /build/karime*. */}
                 {enableRailMinimize && (
-                    /* Day 84 (Sasha 2026-05-26): collapsed-spine treatment
-                       per the design brief. Was a flat w-5 column with a
-                       floating chevron — now a tactile glass spine (12px
-                       visible body inside a 32px hit area) with a 22px
-                       embossed round handle holding the chevron icon.
-                       Reads as a real collapsed drawer-tab. */
+                    /* Day 85 (Sasha 2026-05-27): Day 84 collapsed-spine
+                       treatment reverted. Restored pre-Day-84 flat w-5
+                       column with chevron, matching the sections-panel
+                       toggle's visual register. */
                     <button
                         onClick={toggleRailMinimize}
                         className={cn(
-                            "collapsed-spine spine-narrow h-dvh",
+                            "h-dvh w-5 flex items-center justify-center transition-colors hover:bg-white/10 relative z-30 group",
                             isAiOsRoute ? "shrink-0" : "sticky top-0",
-                            railMinimized && "active",
+                            pageOwnsBackground
+                                ? "bg-[rgba(6,12,28,0.55)]"
+                                : "bg-[rgba(14,32,68,0.22)]",
                         )}
                         title={railMinimized ? "Expand rail" : "Minimize rail"}
-                        aria-label={
-                            railMinimized ? "Expand rail" : "Minimize rail"
-                        }
+                        aria-label={railMinimized ? "Expand rail" : "Minimize rail"}
+                        style={{
+                            boxShadow:
+                                "inset -1px 0 0 rgba(212, 175, 55, 0.32), 2px 0 14px -8px rgba(244, 212, 114, 0.3)",
+                        }}
                     >
-                        <span className="spine-core" aria-hidden="true" />
-                        <span className="spine-handle">
-                            <span
-                                aria-hidden="true"
-                                className="text-[10px] leading-none transition-transform"
-                                style={{
-                                    transform: railMinimized
-                                        ? "rotate(0deg)"
-                                        : "rotate(180deg)",
-                                }}
-                            >
-                                ▶
-                            </span>
+                        <span
+                            aria-hidden="true"
+                            className="text-[14px] leading-none transition-transform"
+                            style={{
+                                color: "rgba(244, 212, 114, 0.85)",
+                                transform: railMinimized
+                                    ? "rotate(0deg)"
+                                    : "rotate(180deg)",
+                            }}
+                        >
+                            ▶
                         </span>
                     </button>
                 )}
@@ -1467,26 +1467,27 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                        z-30 puts the reopen column on the same stacking
                        layer as pane 1 + pane 2, above page overlays. */}
                 {!sectionsPanelOpen && (
-                    /* Day 84 (Sasha 2026-05-26): collapsed-spine treatment.
-                       Replaces the flat w-5 column with a tactile glass
-                       spine (14px visible body, 36px hit area) + 22px
-                       embossed handle holding the PanelLeft icon.
-                       Slightly wider than the rail-toggle spine — reads
-                       as the "primary" collapsed control. Always active
-                       (it only renders when pane 2 is collapsed). */
+                    /* Day 85 (Sasha 2026-05-27): Day 84 collapsed-spine
+                       treatment reverted. The gold ornate spine read as
+                       Victorian against the cinematic hero. Restored
+                       pre-Day-84 flat w-5 column with PanelLeft icon. */
                     <button
                         onClick={toggleSectionsPanel}
                         className={cn(
-                            "collapsed-spine spine-wide h-dvh active",
+                            "h-dvh w-5 flex items-center justify-center transition-colors hover:bg-white/10 relative z-30 group",
                             isAiOsRoute ? "shrink-0" : "sticky top-0",
+                            pageOwnsBackground
+                                ? "bg-[rgba(6,12,28,0.78)]"
+                                : "bg-[rgba(14,32,68,0.32)]"
                         )}
                         title="Expand sidebar (⌘B)"
                         aria-label="Expand sidebar"
+                        style={{
+                            boxShadow:
+                                "inset -1px 0 0 rgba(212, 175, 55, 0.5), 2px 0 18px -6px rgba(244, 212, 114, 0.4)",
+                        }}
                     >
-                        <span className="spine-core" aria-hidden="true" />
-                        <span className="spine-handle">
-                            <PanelLeft className="w-3 h-3" />
-                        </span>
+                        <PanelLeft className="w-3 h-3 text-[#d4af37]/85 group-hover:text-[#d4af37] transition-colors" />
                     </button>
                 )}
 
