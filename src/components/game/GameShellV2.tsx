@@ -1243,6 +1243,17 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
         path === "/build/equilibrium" ||
         path === "/equilibrium" ||
         path === "/preview/equilibrium-v2";
+    // Day 86 (Sasha 2026-05-26): /build/karime and /build/karime/intake
+    // mount their own KarimeHlsBackground (the Moroccan-sunset HLS video
+    // + cream-terracotta veils + film grain). Without this suppression,
+    // the shell mounted MuxVideoBackground UNDER karime's own background
+    // at the same z-0 — two HLS streams active, and the default
+    // build-path video (man-with-backpack scene) bled through where the
+    // karime treatment was supposed to sit. Sasha caught it as "wrong
+    // background video." Same pattern /ai-os and /equilibrium already
+    // use to claim their full-screen backdrop.
+    const isKarimeRoute =
+        path === "/build/karime" || path === "/build/karime/intake";
     const isWorkingRoute =
         path.startsWith("/playbook") ||
         path.startsWith("/path") ||
@@ -1259,7 +1270,8 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
     // feel for content; pane 2 finally has the animated dust to peek
     // through. Only page-owned-bg routes still suppress the shell
     // video (they render their own).
-    const suppressShellBackground = pageOwnsBackground || isEquilibriumRoute;
+    const suppressShellBackground =
+        pageOwnsBackground || isEquilibriumRoute || isKarimeRoute;
 
     // Day 56 (Sasha 2026-04-29): /ai-os ships as a real app-shell on desktop.
     // The earlier sticky-pane-on-document-scroll layout kept producing
