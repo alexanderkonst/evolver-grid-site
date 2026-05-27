@@ -802,6 +802,52 @@
 }
 
 /* ───────────────────────────────────────────────────────────────────
+   KARIME — compact-rail icon-size normalization (Day 86, 2026-05-26)
+   ───────────────────────────────────────────────────────────────────
+   Sasha caught that the rail icons on /build/karime read as off-center
+   even though every icon's bounding-box centerX equals the rail centerX
+   (delta 0 confirmed in headless browser). Root cause: three different
+   icon sizes in the column — FYTT brand logo at 40px, nav icons at
+   26px, utility icons (play / chat / settings / log-out) at 22px. The
+   1.8× size variance reads as "not aligned" even with perfect
+   mathematical centering.
+
+   Fix: normalize every icon in the karime compact rail to a uniform
+   28px. The whole column reads as one consistent vertical line of
+   matched glyphs, regardless of their underlying SVG / PNG dimensions.
+   Scoped to `[data-skin="karime"][data-rail-compact="true"]` so:
+     - Aurora / NS / daouniverse rails are NOT affected
+     - Non-compact karime rail (if it ever expands) keeps native sizes
+   The `!important` is necessary because Tailwind utility classes on
+   each icon (h-9, w-5, etc.) live in the cascade with higher specificity
+   than naked element selectors.
+
+   The brand logo (FYTT starburst at the top) intentionally shrinks
+   from 40 → 28. On /build/karime the dominant brand is KARIME, not
+   FYTT; the starburst sits as a quiet attribution mark in the rail,
+   not a hero. Letting it sit at the same size as nav icons reads as
+   intentional minimalism, not de-emphasis. */
+[data-skin="karime"] [data-rail-compact="true"] img,
+[data-skin="karime"] [data-rail-compact="true"] svg {
+  width: 28px !important;
+  height: 28px !important;
+  object-fit: contain;
+}
+
+/* The play-button SVG inside the SoundCloud mini player sits inside a
+   small <button> container whose visual ring (the gold "now playing"
+   circle) is sized via the button itself. The inner play-arrow SVG is
+   intentionally smaller (12px) than the surrounding container so the
+   arrow doesn't fill the gold ring edge-to-edge. The rule above would
+   bloat the arrow to 28px and burst out of the ring. Restore the inner
+   arrow's intended size. */
+[data-skin="karime"] [data-rail-compact="true"] button[aria-label*="playlist"] svg,
+[data-skin="karime"] [data-rail-compact="true"] button[aria-label*="Play"] svg {
+  width: 14px !important;
+  height: 14px !important;
+}
+
+/* ───────────────────────────────────────────────────────────────────
    DAOUNIVERSE SKIN — Day 84 (Sasha 2026-05-25)
    ───────────────────────────────────────────────────────────────────
    Per-community skin mirroring latamimpact.io. Editorial luxe-regenerative
