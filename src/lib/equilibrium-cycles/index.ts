@@ -391,16 +391,18 @@ export interface MoonPhaseInfo {
   guidance: string;
 }
 
-// 8 phases × exactly 45° of true elongation each. Each phase WINDOW
-// is centered on its principal/intermediate astronomical instant:
-//   New Moon       at  0° ± 22.5°  (= ±1.845 days around the instant)
-//   Waxing Cres.   at  45° ± 22.5°
-//   First Quarter  at  90° ± 22.5°
-//   Waxing Gibbous at 135° ± 22.5°
-//   Full Moon      at 180° ± 22.5°
-//   Waning Gibbous at 225° ± 22.5°
-//   Last Quarter   at 270° ± 22.5°
-//   Waning Cres.   at 315° ± 22.5°
+// 8 phases × exactly 45° of true elongation each. STARTS-AT-PRINCIPAL
+// model (Sasha 2026-05-26): each phase WINDOW begins AT its principal/
+// intermediate astronomical instant and runs 45° forward.
+//
+//   New Moon       starts at   0° (Clearing — release work begins)
+//   Waxing Crescent starts at  45° (Gathering — yes to what arrives)
+//   First Quarter  starts at  90° (Seeing — the how reveals)
+//   Waxing Gibbous starts at 135° (Leading — prep for harvest)
+//   Full Moon      starts at 180° (Harvesting — ship + receive)
+//   Waning Gibbous starts at 225° (Celebrating — announce + thank)
+//   Last Quarter   starts at 270° (Planning — intention surfaces)
+//   Waning Crescent starts at 315° (Planting — strategies reveal)
 //
 // The `start`/`end` fields below are MEAN-CYCLE approximations in
 // days (for documentation). The runtime in `getLunarState` uses true
@@ -449,10 +451,10 @@ export const MOON_PHASES: MoonPhaseInfo[] = [
   {
     name: "New Moon",
     symbol: "🌑",
-    // Astronomical window: elongation -22.5° to +22.5° (wraps).
-    // In mean-cycle days: 27.685–29.531 + 0–1.846 (centered on day 0).
+    // Elongation 0°–45° (starts AT the New Moon instant).
+    // Mean-cycle days 0.000–3.691.
     start: 0,
-    end: 1.846,
+    end: 3.691,
     energy: "Clearing · Release fear · Cry, don't complain · The how is not yours yet",
     holonicQuadrant: "emanation",
     guidance:
@@ -461,9 +463,9 @@ export const MOON_PHASES: MoonPhaseInfo[] = [
   {
     name: "Waxing Crescent",
     symbol: "🌒",
-    // Elongation 22.5°–67.5°. Mean-cycle days 1.846–5.537.
-    start: 1.846,
-    end: 5.537,
+    // Elongation 45°–90°. Mean-cycle days 3.691–7.383.
+    start: 3.691,
+    end: 7.383,
     energy: "Gathering · Say yes · Take meetings · Receive resources",
     holonicQuadrant: "digestion",
     guidance:
@@ -472,9 +474,10 @@ export const MOON_PHASES: MoonPhaseInfo[] = [
   {
     name: "First Quarter",
     symbol: "🌓",
-    // Elongation 67.5°–112.5°, centered on 90°. Mean-cycle days 5.537–9.228.
-    start: 5.537,
-    end: 9.228,
+    // Elongation 90°–135° (starts AT the First Quarter instant).
+    // Mean-cycle days 7.383–11.074.
+    start: 7.383,
+    end: 11.074,
     energy: "Seeing · The how reveals · Write it down · Capture before it drifts",
     holonicQuadrant: "digestion",
     guidance:
@@ -483,9 +486,9 @@ export const MOON_PHASES: MoonPhaseInfo[] = [
   {
     name: "Waxing Gibbous",
     symbol: "🌔",
-    // Elongation 112.5°–157.5°. Mean-cycle days 9.228–12.920.
-    start: 9.228,
-    end: 12.920,
+    // Elongation 135°–180°. Mean-cycle days 11.074–14.765.
+    start: 11.074,
+    end: 14.765,
     energy: "Leading · Prep for harvest · Set up infrastructure · Get the help",
     holonicQuadrant: "enrichment",
     guidance:
@@ -494,9 +497,10 @@ export const MOON_PHASES: MoonPhaseInfo[] = [
   {
     name: "Full Moon",
     symbol: "🌕",
-    // Elongation 157.5°–202.5°, centered on 180°. Mean-cycle days 12.920–16.611.
-    start: 12.920,
-    end: 16.611,
+    // Elongation 180°–225° (starts AT the Full Moon instant).
+    // Mean-cycle days 14.765–18.457.
+    start: 14.765,
+    end: 18.457,
     energy: "Harvesting · Reap what's ripe · Cut · Receive the fruits of labor",
     holonicQuadrant: "enrichment",
     guidance:
@@ -505,9 +509,9 @@ export const MOON_PHASES: MoonPhaseInfo[] = [
   {
     name: "Waning Gibbous",
     symbol: "🌖",
-    // Elongation 202.5°–247.5°. Mean-cycle days 16.611–20.302.
-    start: 16.611,
-    end: 20.302,
+    // Elongation 225°–270°. Mean-cycle days 18.457–22.148.
+    start: 18.457,
+    end: 22.148,
     energy: "Celebrating · Announce the harvest · Thank · Feel the gratitude",
     holonicQuadrant: "will",
     guidance:
@@ -516,9 +520,10 @@ export const MOON_PHASES: MoonPhaseInfo[] = [
   {
     name: "Last Quarter",
     symbol: "🌗",
-    // Elongation 247.5°–292.5°, centered on 270°. Mean-cycle days 20.302–23.994.
-    start: 20.302,
-    end: 23.994,
+    // Elongation 270°–315° (starts AT the Last Quarter instant).
+    // Mean-cycle days 22.148–25.840.
+    start: 22.148,
+    end: 25.840,
     energy: "Planning · The next intention surfaces · Receive it · Name it",
     holonicQuadrant: "will",
     guidance:
@@ -527,10 +532,10 @@ export const MOON_PHASES: MoonPhaseInfo[] = [
   {
     name: "Waning Crescent",
     symbol: "🌘",
-    // Elongation 292.5°–337.5°. Mean-cycle days 23.994–27.685.
-    // (Days 27.685–29.531 wrap back to New Moon — see top.)
-    start: 23.994,
-    end: 27.685,
+    // Elongation 315°–360° (= back to 0° = next New Moon).
+    // Mean-cycle days 25.840–29.531.
+    start: 25.840,
+    end: 29.531,
     energy: "Planting · The 1–3 strategies reveal · Write them down",
     holonicQuadrant: "emanation",
     guidance:
@@ -851,41 +856,56 @@ export interface LunarState extends CycleSegmentState<string> {
  * function just resolves the HolonicPhaseInfo for the current phase.
  */
 export function getLunarState(now: number): LunarState {
-  // Sasha 2026-05-21: rewritten for astronomical correctness.
+  // Phase detection is based on TRUE lunar elongation (Sun-Moon
+  // angular separation along the ecliptic), computed via Brown's
+  // main terms (see `lunarElongationDeg` above).
   //
-  // Phase detection is now based on TRUE lunar elongation (Sun-Moon
-  // angular separation along the ecliptic), not on mean-cycle days
-  // since a reference new moon. This fixes two prior bugs:
+  // === STARTS-AT-PRINCIPAL model (Sasha 2026-05-26, after Oyi audit) ===
   //
-  //   (1) Old code assigned phases by scanning the MOON_PHASES.start/end
-  //       array — which had New Moon at days 0-1.85 (1.85d wide) and
-  //       Waning Crescent at days 23.99-29.53 (5.54d wide). The half-
-  //       window BEFORE the New Moon instant got wrongly attributed to
-  //       Waning Crescent. Every 1/8 phase should be 45° wide centered
-  //       on its principal/intermediate astronomical moment.
+  // Each phase WINDOW is 45° wide and BEGINS at its principal/
+  // intermediate astronomical instant — it does NOT center on it.
+  // So:
   //
-  //   (2) The reference epoch was interpreted as LOCAL time, drifting
-  //       the entire cycle by the user's TZ offset (see
-  //       REFERENCE_NEW_MOON_UTC_MS above).
+  //   New Moon       elongation 0°   →  start of CLEARING (45° window)
+  //   Waxing Crescent           45°  →  start of GATHERING
+  //   First Quarter             90°  →  start of SEEING
+  //   Waxing Gibbous           135°  →  start of LEADING
+  //   Full Moon                180°  →  start of HARVESTING (Doing)
+  //   Waning Gibbous           225°  →  start of CELEBRATING
+  //   Last Quarter             270°  →  start of PLANNING
+  //   Waning Crescent          315°  →  start of PLANTING
   //
-  // Now: compute true elongation via Brown's main terms, then
-  // segmentIndex = floor((elongation + 22.5°) / 45°) mod 8. This puts
-  // principal phases (New 0°, First Quarter 90°, Full 180°, Last
-  // Quarter 270°) at the CENTER of their 45° windows, which is what
-  // astronomical convention says.
+  // Why this model: the principal instants are INFLECTION THRESHOLDS,
+  // not energetic peaks. The New Moon's darkness is the moment when
+  // CLEARING WORK BEGINS (release fear, create the void), and the
+  // energetic peak of clearing is felt ~1.85 days INTO the window.
+  // Same for the Full Moon — the instant of opposition is when
+  // HARVESTING BEGINS, and the visible-full + reaping peak is felt
+  // through the days after. Sasha's 20-years-of-lived-experience
+  // astrologist Oyi confirmed this model maps to the actual felt
+  // shifts.
   //
-  // Phase durations in TIME now vary realistically (~3.3 to ~4.1
-  // days) because the Moon's angular speed isn't constant — this is
-  // a feature, not a bug. Astronomically each phase is exactly 45°.
+  // History (don't repeat):
+  //   2026-05-21: phases detected by scanning MOON_PHASES.start/end →
+  //     buggy asymmetric boundaries (New Moon got 1.85d, Waning
+  //     Crescent got 5.54d). Replaced with elongation-based math.
+  //   2026-05-21..25: CENTERED model — principal instants at the
+  //     center of each window. Astronomically clean per Meeus
+  //     convention but didn't match Oyi's felt-experience timing.
+  //   2026-05-26: switched to STARTS-AT-PRINCIPAL per Sasha's call
+  //     after Oyi's calendar showed phases consistently lagging the
+  //     centered model by ~1.85 days. The shift is one constant:
+  //     drop the +22.5° centering offset.
+  //
+  // Phase durations in TIME vary realistically (~3.3 to ~4.1 days)
+  // because the Moon's angular speed isn't constant. Astronomically
+  // each phase is exactly 45° of true elongation.
   const elongationDeg = lunarElongationDeg(now);
 
-  // Center principal phases: phase 0 (New) covers -22.5° to +22.5°.
-  // Shifting by +22.5° before flooring achieves that cleanly:
-  //   shifted ∈ [0, 45)  → phase 0 (New)
-  //   shifted ∈ [45, 90) → phase 1 (Waxing Crescent)
-  //   ...
-  const shifted = (elongationDeg + PHASE_HALF_DEG) % 360;
-  const segmentIndex = Math.min(7, Math.floor(shifted / PHASE_DEG));
+  // Starts-at-principal: phase k covers elongation [k*45°, (k+1)*45°).
+  // No centering shift — the New Moon instant (0°) directly opens
+  // the Clearing window, and so on for every principal/intermediate.
+  const segmentIndex = Math.min(7, Math.floor(elongationDeg / PHASE_DEG));
   const phase = MOON_PHASES[segmentIndex];
 
   // Cycle progress 0-1, anchored to the synodic-month sweep. Equal to
@@ -894,23 +914,11 @@ export function getLunarState(now: number): LunarState {
   const day = progress * SYNODIC_MONTH_DAYS;
 
   // Time-to-next-phase. Boundary is the elongation where the next
-  // phase begins. Since `shifted = elongation + PHASE_HALF_DEG`, the
-  // next boundary in SHIFTED-space is (segmentIndex + 1) * PHASE_DEG;
-  // converting back to elongation MUST subtract PHASE_HALF_DEG, not
-  // add it (Sasha 2026-05-25 bug fix — symptom: Waxing Gibbous showed
-  // "7.4 days left" instead of ~3.7d because the formula landed on
-  // the FULL MOON boundary, not the Full Moon ingress).
-  //
-  // Worked example, segmentIndex=3 (Waxing Gibbous, elongation
-  // 112.5°–157.5°): nextBoundary = 4*45 - 22.5 = 157.5° = ingress to
-  // Full Moon. ✓ Previous formula gave 4*45 + 22.5 = 202.5° = INGRESS
-  // TO WANING GIBBOUS, skipping Full Moon entirely.
-  const nextBoundaryDeg = (segmentIndex + 1) * PHASE_DEG - PHASE_HALF_DEG;
-  // Wrap into [0, 360) for the helper. For phase 7 (Waning Crescent)
-  // nextBoundary = 8*45 - 22.5 = 337.5° → no wrap; the helper handles
-  // the case where current elongation has already passed 337.5° and is
-  // approaching the wrap back to New Moon at 0°.
-  const nextBoundaryWrapped = ((nextBoundaryDeg % 360) + 360) % 360;
+  // phase begins — i.e., the next multiple of PHASE_DEG (45°). For
+  // phase 7 (Waning Crescent), nextBoundary = 8*45 = 360°; the helper
+  // wraps this to 0° (= next New Moon).
+  const nextBoundaryDeg = (segmentIndex + 1) * PHASE_DEG;
+  const nextBoundaryWrapped = nextBoundaryDeg % 360;
   const daysRemainingInPhase = daysUntilElongationReaches(
     now,
     elongationDeg,
