@@ -7925,3 +7925,26 @@ The day after the Balaji send. Two more world-touching acts on the Tribe 2 (stra
 - `docs/02-strategy/morphogenetic_holomap.md` + memory `holomap_state.md`
 - `docs/09-logs/session_log.md` — this entry
 
+---
+
+## Day 87 continued — Monetization system synthesized · /monetization page · Vlad Gerasimov outreach sent (Thursday, May 29, 2026)
+
+Later the same day, an extended working session on the money model plus a third outreach.
+
+**Monetization model synthesized (doc + public page).** Sasha asked for the whole monetization model in its wholeness, in plain language. Added a front-door synthesis section to the top of `monetization_strategies.md`: the discrete revenue lines, grouped into three categories (Access / Outcome / Rights), sequenced across four phases, then the system, then a no-jargon plain-language version. Built a public explainer at `/monetization` (`src/pages/Monetization.tsx` + route in `src/App.tsx`): standalone Liquid Glass page, radical-transparency framing ("built in the open, paid in the open"), phase-disciplined (no exact carry % on a public surface; carry framed as invitation-based and in-the-loop; license as "comes last"). v1 draft for Sasha to vet. tsc clean, verified in an isolated preview, no console errors.
+
+**$37 correction.** Caught a model error: the "deeper top talent view" is a **$37 product** (a low-ticket preliminary step before the $555 session), not free as previously assumed. Ladder corrected: free reveal → $37 deep view → $555 session → build.
+
+**Strategy crystallizations (in dialogue).**
+- **"For Sasha, the collab IS the lead-gen IS the pilot."** Partnering with a community / ecosystem holder simultaneously feeds their members into the free → $37 → $555 funnel AND becomes a recurring community deal. One move, two revenue motions. Sasha: "music to my ears, could tattoo it."
+- **Lead-gen = the Partnership Distribution Model** (he is the "now what?" layer under self-knowledge systems), not cold acquisition.
+- **Carry-tracking resolved.** A carry on ventures is only trackable / enforceable where the platform is structurally in the loop (self-run cohorts + the opt-in studio tier). Passive intros are anecdotal (like YC's co-founder tool), so they are NOT monetized by carry; their value is captured by the recurring community subscription (priced on collaboration rate) plus proof and referrals. Carry monetizes depth; subscription monetizes breadth.
+
+**Vlad Gerasimov (Владмирум) outreach SENT.** Responded to a peer collaborator with a near-identical system (sees hidden potential, creates the "American Idol moment" of its manifestation; grew up on ул. Рентгена, X-ray street, in St. Petersburg). Sasha's reply: precision-forward (точность as the game-changer, woven with the banner + 1-liner wisdom that the natural way of thinking IS market value, and articulated precisely the right people / work / opportunities start finding you) + the triad (talent + mission + assets → high-precision matching) + findyourtoptalent.com + Calendly + a reciprocal session offer + a personal St. Petersburg resonance. The 8-day response gap (Vlad raised his hand May 21) flagged as a hand-raiser-cooling pattern to tighten. Logged in `tribe_outreach_tracker.md` (T2-4). Awaiting reply.
+
+**Files touched**
+- `docs/02-strategy/monetization_strategies.md` — front-door synthesis section + $37 ladder correction
+- `src/pages/Monetization.tsx` (new) + `src/App.tsx` (route `/monetization`)
+- `docs/02-strategy/tribe_outreach_tracker.md` — Balaji no-reply status + Vlad (T2-4) added and marked sent
+- `docs/09-logs/session_log.md` — this addendum
+

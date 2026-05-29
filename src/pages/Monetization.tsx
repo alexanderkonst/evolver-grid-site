@@ -119,7 +119,7 @@ const Monetization = () => {
               lineHeight: 1.35,
             }}
           >
-            No hidden model. Here is exactly how the work sustains itself, and why it only earns{" "}
+            The whole model: what stays free, what is paid for, and why it grows{" "}
             <GradientInk>when you do</GradientInk>.
           </p>
           <p className="mt-8 mx-auto max-w-[58ch] text-[15px] sm:text-base leading-relaxed" style={bodyStyle}>
@@ -199,8 +199,7 @@ const Monetization = () => {
               lineHeight: 1.4,
             }}
           >
-            A business that earns by helping people succeed, and takes a fair slice for making it happen. Never
-            by trapping anyone.
+            A business that earns by helping people succeed, and takes a fair slice for making it happen.
           </p>
         </section>
 
