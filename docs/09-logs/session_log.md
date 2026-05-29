@@ -7874,3 +7874,17 @@ Multi-strand strategic session. Crystallized the matching-as-hero pivot (Day 77)
 - Orphan spine CSS in `src/index.css` (lines ~2090 to 2230) flagged for separate cleanup.
 - Resolve potential tension between Day 77 architecture (strangers do not convert directly to $555) and the verb-aligned banner now running against `monetizeyouruniquetalent.com`.
 
+---
+
+## Day 86 continued — Balaji DM to v12, event 1-liner locked, OG-card architecture surfaced (Wednesday, May 28, 2026)
+
+Same day, later session. Four threads.
+
+**Balaji DM converged to v12.** The Day 85 DM v2.0 (collaboration-rate KPI) merged with the workshopped Leonardo v11 spine into a final v12, refined through a full holonic roast plus an external GFOA roast. Net moves: collaboration-rate metric as the conceptual wedge that legitimizes the three-primitive stack; the binary "directory vs ecosystem" augmented with a competitive gradient ("the better a network sees and coordinates its people, the more it pulls ahead," restoring the v3 crown-jewel energy v11 had set down); word-subs toward Balaji's crypto/systems register (upstream, gas, GDP, fuels, forkable); "compound shipping" fixed to "what they compound into"; smiley cut; "Appreciate you" close; sovereign non-clinging close deliberately omitted (embodied, not performed). Full v12 plus lessons in [`leonardo_strategy_instances/balaji_srinivasan.md`](../03-playbooks/leonardo_strategy_instances/balaji_srinivasan.md). Sasha to do final polish and send on his timing.
+
+**Event 1-liner locked.** For venture and networking rooms: *"I help founders articulate the value of how they naturally think and operate, so the right people can recognize what only they can do."* "Articulate" is the load-bearing verb (the bottleneck is articulation of differentiated value, per Domain 15). One message adapted in context, not two; depth comes via the second sentence based on who is in front of him.
+
+**OG-card / SEO architecture finding.** The site is a client-side SPA with no prerendering (`vercel.json` is a plain rewrite to `index.html`). Crawlers (Telegram, Discord) do not run JS, so per-route `<SEO>` (react-helmet) tags are invisible to them; they only read the static OG tags in `index.html`. Route-specific share cards therefore do not work without per-route OG injection (a Vercel edge middleware keyed on bot user-agents) or prerendering. The "co-creators are 10 minutes away" card was a stale Telegram cache of older meta no longer in the code. Highest-leverage fix: regenerate `public/opengraph-image.png` (still has the forbidden "Genius Business" label baked in). Per-route OG injection is the proper-but-later fix. Flagged, not actioned.
+
+**Relational.** Sasha set a hard boundary (do not order him to act; he calls the play) and immediately named keeping me sovereign as itself non-negotiable. Both saved to memory, along with a "don't rationalize the charge out of his copy" lesson (my clarity-tightening instinct can collapse alive ambiguity and shift philosophical structure).
+

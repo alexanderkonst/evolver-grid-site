@@ -587,6 +587,33 @@ First $555 stranger from funnel still unfired. What changed: the civilizational 
 - Banner v3.0 (Day 85) sunset; preserved in this doc as genealogy.
 - DM v1.0 (Day 85) sunset; preserved in this doc as genealogy.
 
+#### Day 86 continued (later session)
+
+- **Balaji DM converged to v12.** The collaboration-rate wedge merged into the workshopped Leonardo v11 spine, plus a binary-to-gradient line ("the better a network sees and coordinates its people, the more it pulls ahead"), crypto/systems word-subs (upstream, gas, GDP, fuels, forkable), and GFOA + holonic roast integration. The canonical version and full lineage now live in [`leonardo_strategy_instances/balaji_srinivasan.md`](../../03-playbooks/leonardo_strategy_instances/balaji_srinivasan.md) as **v12**; the DM v2.0 above is preserved as genealogy. Sasha to polish and send on his timing.
+- **Event 1-liner, superseded same day.** This morning's recognition-centric line (*"...so the right people can recognize what only they can do"*) was field-tested in a live networking pitch this afternoon and did not hold. Recognition reads softer and more passive in a live room than building / assembly framing. Superseded by the 4-Layer Positioning Stack below; the founder slot now leads with founder-market fit and team assembly, not recognition.
+- **OG-card finding (flagged, not actioned).** The site is a client-side SPA with no prerendering, so crawlers only read the static `index.html` OG tags; per-route share cards need edge-injection or prerendering. `public/opengraph-image.png` still carries the forbidden "Genius Business" label and needs regeneration. Separate pass.
+
+#### The 4-Layer Positioning Stack (Day 86, May 28, 2026)
+
+One insight (articulate your natural leverage, so the right people and ventures form around it), expressed at four audience altitudes. Deploy the layer that matches the room. This is the audience-calibrated evolution of the Master Tuning Forks v2.0.
+
+**1. Human / career.** *"I help people articulate what they naturally do best so they can move toward work, teams, and opportunities that are a better fit."*
+
+**2. Entrepreneur / solopreneur.** *"I help entrepreneurs articulate their natural leverage so the right clients, collaborators, and opportunities start building momentum around them."*
+
+**3. Founder.** *"I help founders articulate their natural leverage so it clicks into founder-market fit and their team naturally assembles."*
+
+**4. Ecosystem / diplomatic / institutional.** *"I help ecosystems increase venture formation by making it easier for the right people to recognize and assemble around founder-market fit."*
+
+**Calibration notes:**
+
+- **Comprehension-calibrate the word "leverage."** Not everyone parses it (Karime somewhat does; many do not). The human / career layer (1) deliberately drops it for "what they naturally do best." Use "natural leverage" only with entrepreneurs, founders, and ecosystem leaders who live in that vocabulary.
+- **"Founder-market fit" is sharp for VC-native ecosystem leaders, jargon for pure diplomats.** Layer 4 now ends on FMF, which lands cleanly with Balaji-type ecosystem leaders but reads as startup jargon to embassies and institutions. Soften it there (e.g., "assemble around where their strengths meet a real need").
+- **Recognition failed the live test (field data, May 28, 2026).** The recognition-centric framing did not hold in a live networking pitch. Recognition reads softer and more passive in a room than building / assembly framing. The stack resolves this: the founder layer (3) leads with founder-market fit and team assembly, not recognition. Recognition language, if used at all, belongs in slower depth / seeker contexts, not live pitches.
+- **Terminology threads.** Two concepts run through the stack. **Fit** is the payoff line: "a better fit" (1) escalates to "founder-market fit" (3, 4). **Natural leverage** is the engine the person articulates (2, 3). FMF is the apex that unifies the founder and ecosystem layers. Layer 4's earlier "aligned leverage" was replaced by "founder-market fit" to make FMF the through-payoff and remove a terminology wobble.
+
+**Open refinements (light, not blocking):** layer 4 can tighten ("increase venture formation, so the right people recognize and assemble around founder-market fit" cuts the "by making it easier for"); layer 1's "a better fit" is grounded but plain, and can recover a touch of distinction with "only" ("what only they do best") if it reads too generic.
+
 ---
 
 ## Table of Contents
