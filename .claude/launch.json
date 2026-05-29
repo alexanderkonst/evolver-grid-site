@@ -24,6 +24,12 @@
       "runtimeExecutable": "npx",
       "runtimeArgs": ["vite", "--port", "8080"],
       "port": 8080
+    },
+    {
+      "name": "vite-preview-8090",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["vite", "--port", "8090", "--strictPort"],
+      "port": 8090
     }
   ]
 }
