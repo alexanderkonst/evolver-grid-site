@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Pencil, Check, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -43,6 +43,17 @@ export interface InlineEditableTextProps {
    * DOING NOW) stay left-aligned.
    */
   align?: "left" | "center";
+  /**
+   * Optional line-clamp for long values (Sasha 2026-05-29). When set
+   * and the rendered text exceeds N lines, show a "show more" link
+   * beneath that toggles between clamped + full views. The toggle is
+   * its own element OUTSIDE the click-to-edit container so it never
+   * enters edit mode by accident.
+   *
+   * Only applies in display mode; editing always shows the full draft.
+   * If the text fits within N lines, no toggle is rendered.
+   */
+  clampLines?: number;
   className?: string;
 }
 
@@ -55,6 +66,7 @@ export const InlineEditableText = ({
   wordLimit,
   wordLimitHint,
   align = "left",
+  clampLines,
   className,
 }: InlineEditableTextProps) => {
   const [editing, setEditing] = useState(false);
@@ -160,34 +172,92 @@ export const InlineEditableText = ({
   const displayValue = value ?? emptyPlaceholder;
   const isEmpty = !value;
 
+  // ─── Clamp + show-more (Sasha 2026-05-29) ──────────────────────
+  // When `clampLines` is set, measure the text element's scroll vs
+  // client height to detect overflow. The toggle only renders when
+  // the text actually exceeds the clamp — short strategies don't see
+  // a useless "show more" link. Click stops propagation so it can't
+  // bubble to the click-to-edit container (which is a SIBLING in this
+  // structure, but defensive anyway).
+  const [expanded, setExpanded] = useState(false);
+  const [overflowing, setOverflowing] = useState(false);
+  const textRef = useRef<HTMLSpanElement>(null);
+
+  useLayoutEffect(() => {
+    if (!clampLines || expanded) {
+      // While expanded, we don't render the clamp class — measurement
+      // would falsely report "fits." Skip the check.
+      return;
+    }
+    const el = textRef.current;
+    if (!el) return;
+    // scrollHeight measures full content height; clientHeight is the
+    // clipped visible area. Strict > because clientHeight rounds.
+    setOverflowing(el.scrollHeight > el.clientHeight + 1);
+  }, [clampLines, displayValue, expanded]);
+
+  const shouldClamp = clampLines !== undefined && !expanded;
+  const clampStyle = shouldClamp
+    ? {
+        display: "-webkit-box" as const,
+        WebkitBoxOrient: "vertical" as const,
+        WebkitLineClamp: clampLines,
+        overflow: "hidden" as const,
+      }
+    : undefined;
+
+  // Outer container is a div (not a button) so the inner "show more"
+  // link can be its own button without nesting buttons (invalid HTML).
+  // The click-to-edit affordance is a separate inner button that
+  // doesn't wrap the show-more control.
   return (
-    <button
-      type="button"
-      onClick={() => !disabled && setEditing(true)}
-      disabled={disabled}
-      className={cn(
-        "group flex w-full items-start gap-2 rounded-md px-2 py-2 transition",
-        align === "center" ? "text-center" : "text-left",
-        "hover:bg-white/50 focus:bg-white/50 focus:outline-none",
-        disabled && "cursor-default opacity-60",
-        className,
-      )}
-    >
-      <span
+    <div className={cn("flex w-full flex-col gap-1", className)}>
+      <button
+        type="button"
+        onClick={() => !disabled && setEditing(true)}
+        disabled={disabled}
         className={cn(
-          "flex-1",
-          align === "center" && "text-center",
-          textClass,
-          isEmpty && "text-[#0a1628]/85",
+          "group flex w-full items-start gap-2 rounded-md px-2 py-2 transition",
+          align === "center" ? "text-center" : "text-left",
+          "hover:bg-white/50 focus:bg-white/50 focus:outline-none",
+          disabled && "cursor-default opacity-60",
         )}
       >
-        {displayValue}
-      </span>
-      <Pencil
-        size={14}
-        className="mt-1 shrink-0 text-[#0a1628]/95 opacity-0 transition group-hover:opacity-100 group-focus:opacity-100"
-      />
-    </button>
+        <span
+          ref={textRef}
+          style={clampStyle}
+          className={cn(
+            "flex-1 min-w-0",
+            align === "center" && "text-center",
+            textClass,
+            isEmpty && "text-[#0a1628]/85",
+          )}
+        >
+          {displayValue}
+        </span>
+        <Pencil
+          size={14}
+          className="mt-1 shrink-0 text-[#0a1628]/95 opacity-0 transition group-hover:opacity-100 group-focus:opacity-100"
+        />
+      </button>
+      {clampLines !== undefined && (overflowing || expanded) && (
+        <button
+          type="button"
+          onClick={(e) => {
+            // Defensive — keep the toggle from triggering edit mode
+            // even if a future refactor nests these inside one button.
+            e.stopPropagation();
+            setExpanded((v) => !v);
+          }}
+          className={cn(
+            "self-start rounded px-2 text-xs font-semibold uppercase tracking-wider text-emerald-700/80 transition hover:text-emerald-800",
+            align === "center" && "self-center",
+          )}
+        >
+          {expanded ? "show less ↑" : "show more ↓"}
+        </button>
+      )}
+    </div>
   );
 };
 
