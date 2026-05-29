@@ -1,6 +1,6 @@
 # UBB Deep Context — Planning SoW + DoD
 
-*Day 78, 2026-05-21. Author: Sasha + AI lane. Status: draft, decisions pending.*
+*Day 78, 2026-05-21. Author: Sasha + AI lane. Status: decisions resolved per leans (2026-05-21, Sasha sign-off).*
 
 ## TLDR
 
@@ -10,22 +10,33 @@
 
 Strategic and architectural decisions. Not code. Closing the DoD below unblocks the Implementation SoW.
 
-## Decisions to make
+## Decisions made (resolved 2026-05-21 per Sasha sign-off)
 
-| # | Decision | Options | Default lean | Status |
-|---|---|---|---|---|
-| 1 | Architecture: per-artifact filtering location | A) Pass full FounderContext, edge function filters per artifact_key. B) Client filters before send. | **A** (simpler client, edge owns the logic that already owns the prompt) | pending |
-| 2 | Per-artifact relevance map | The 19×5 matrix in Appendix A | Approve as v1 baseline | pending |
-| 3 | Graceful degradation policy | a) refuse to generate when mission/assets null. b) generate thin v1, flag artifact as "input-thin." c) soft-gate /ubb behind mission + assets. | **b** (mirrors today's "thin ZoG → thin v1, that is correct" pattern) | pending |
-| 4 | Order-of-operations gate | Soft-gate /ubb behind Mission + Assets, or keep optional | **Optional, with banner** when missing (b above) | pending |
-| 5 | Phasing | Five phases (0=Deep ZoG passthrough, 1=Mission, 2=Assets, 3=inputsNeeded map, 4=input-staleness banner) vs compressed | **Five phases** (each is independently shippable, each yields measurable lift) | pending |
-| 6 | Staleness chip absorption | Roll input-staleness into the spawned hybrid-staleness chip, or ship orthogonally | **Absorb** (same banner code path, three reasons) | pending |
-| 7 | Token budget per call | Hard cap (e.g. $0.005), soft cap, or no cap | **Soft cap with warning log** ($0.005 trigger) | pending |
-| 8 | Input-version hash strategy | Stable hash of FounderContext at lock time, OR semver bump per data source | **Stable hash** (auto-tracks any input change, no manual bumps) | pending |
+| # | Decision | Resolution | Status |
+|---|---|---|---|
+| 1 | Architecture: per-artifact filtering location | **A** — Pass full FounderContext from client, edge function filters per artifact_key. Simpler client; edge owns the prompt logic that already owns the filtering. | decided |
+| 2 | Per-artifact relevance map | **Appendix A approved as v1 baseline.** Subject to revision after Phase 2 user-felt validation feedback. | decided |
+| 3 | Graceful degradation policy | **b — generate thin v1 with "input-thin" flag.** Mirrors today's "thin ZoG → thin v1, that is correct" pattern. No refusal-to-generate. No hard gate on /ubb. | decided |
+| 4 | Order-of-operations gate | **Optional with banner.** /ubb stays accessible without Mission + Assets; UI surfaces an input-thin notice when generating without them. | decided |
+| 5 | Phasing | **Five phases** (0 = Deep ZoG passthrough, 1 = Mission, 2 = Assets, 3 = inputsNeeded map, 4 = input-staleness banner). Each independently shippable. | decided |
+| 6 | Staleness chip absorption | **Absorb.** Phase 4 input-staleness rolls into the same banner code path as the hybrid-staleness chip (sibling-staleness, prompt-staleness, input-staleness become three reasons sharing one UI). | decided |
+| 7 | Token budget per call | **Soft cap with warning log at $0.005.** Triggers an investigation, not a hard truncation. | decided |
+| 8 | Input-version hash strategy | **Stable hash** of FounderContext at lock time. Auto-tracks any input change. No manual semver bumps. | decided |
+
+## Roast amendments (added 2026-05-21 post-decisions)
+
+After all 8 decisions were resolved, a self-roast surfaced six weaknesses the SoWs did not fully address. They are NOT decisions; they are constraints on how the work proceeds:
+
+1. **"Manual eyeball" was over-used as DoD evidence.** Replaced in the Debugging SoW with snapshot-the-rootSummary-text-into-a-log discipline; each phase ships a `phaseN_rootsummary_sample.txt` artifact for review.
+2. **Specificity scores are model-self-reported.** Lift gates require regenerating each test artifact 3 times and averaging, plus a human read on at least 2 artifacts per phase. Encoded in Debugging SoW.
+3. **The relevance matrix lives in a parallel doc.** Migration target: Phase 3 moves the matrix into `ARTIFACT_CONFIGS.inputsNeeded` arrays in `supabase/functions/_shared/ubb-prompts.ts`. Until Phase 3 lands, the doc and code are two sources; commit messages must reference Appendix A explicitly.
+4. **Phase 0 is not truly "free."** Token-budget exposure is real because `appleseed_data` is rich (nested JSON, several hundred tokens flattened). `deepZogSummary` helper must be size-disciplined (target ≤ 600 chars flattened).
+5. **Input-thin signaling gap in Phases 1-3.** A basic toast lands in Phase 1 (when Mission is null) and Phase 2 (when Assets are null). Phase 4 replaces it with the full banner system.
+6. **Phantom field bug already exists.** `(zog as any).how_genius_shows_up` referenced in both edge functions but absent from `zog_snapshots` schema. Phase 0 also removes this dead line.
 
 ## Out of scope (for this SoW)
 
-- Code changes
+- Code changes (live in Implementation SoW + Phase commits)
 - DB migrations
 - Prompt edits to `ubb-prompts.ts`
 - Decisions about QoL / LinkedIn integration (deferred to a v2 deep-context expansion)
@@ -34,14 +45,14 @@ Strategic and architectural decisions. Not code. Closing the DoD below unblocks 
 
 | # | Done state | Evidence | Status |
 |---|---|---|---|
-| 1 | Architecture decision (A or B) recorded with reasoning | This doc, Section "Decisions to make," row 1 marked decided | pending |
-| 2 | Per-artifact relevance matrix locked as v1 | Appendix A signed off | pending |
-| 3 | Graceful degradation policy chosen, encoded | Decision row 3 marked decided | pending |
-| 4 | Phasing approved | Implementation SoW phase headers reflect choice | pending |
-| 5 | Staleness absorption decision (yes/no) | Decision row 6 marked decided; if yes, the spawned hybrid-staleness chip prompt gets expanded | pending |
-| 6 | Token budget policy decided | Decision row 7 marked decided | pending |
-| 7 | Input-version hash strategy decided | Decision row 8 marked decided | pending |
-| 8 | All decisions captured in this doc so an implementer can act on them cold | doc reads as actionable spec, not analysis | pending |
+| 1 | Architecture decision (A or B) recorded with reasoning | This doc, row 1 marked decided | done |
+| 2 | Per-artifact relevance matrix locked as v1 | Appendix A signed off as baseline | done |
+| 3 | Graceful degradation policy chosen, encoded | Row 3 marked decided | done |
+| 4 | Phasing approved | Implementation SoW phase headers reflect choice | done |
+| 5 | Staleness absorption decision (yes/no) | Row 6 marked decided (yes, absorb) | done |
+| 6 | Token budget policy decided | Row 7 marked decided | done |
+| 7 | Input-version hash strategy decided | Row 8 marked decided | done |
+| 8 | All decisions captured in this doc so an implementer can act on them cold | Doc reads as actionable spec | done |
 
 ## Appendix A — Per-artifact relevance matrix v1
 

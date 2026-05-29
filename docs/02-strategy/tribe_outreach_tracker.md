@@ -41,6 +41,99 @@
 
 ---
 
+## Message Bank — the proven reachout messages
+
+> *Consolidated here Day 87 (one doc for all reachouts, no separate files). The reusable pattern, the load-bearing lines, and the actual sent messages. When you write the next reachout, start here.*
+
+### How to use
+1. Name the recipient's category (patron-fit / peer collaborator / network-holder / ecosystem-holder). It sets posture and which lines fit.
+2. Open with a warm, real door (shared school, shared myth, a response to their content). Never a cold pitch.
+3. Lead with precision as the differentiator, then drop in the load-bearing lines that match their register.
+4. Close: short-call invite + experiential link (feel the precision in 2 min) + Calendly.
+5. Match their language: conscious / soul for founders and mystics; clean talent-intelligence / capability for enterprise. Same core, different words.
+
+### The pattern (the beats)
+1. Recognition opener (honor their thing or the shared door; warm, peer, specific).
+2. The shared core / myth (the way a person naturally thinks, creates, and solves is their real market value).
+3. Where our systems compound (the precise bridge: high-precision articulation in ~2 min + matching).
+4. The leverage angle if they hold a network (run it across → a capability map + the matches between members).
+5. "Different ends of one thesis" (peer, mutual, reinforce).
+6. The close (short call + experiential link + Calendly; no price or pitch at the door).
+
+### The load-bearing lines
+- **Reframe:** "The way you naturally think, create, and solve problems is your actual market value."
+- **Inverted pull:** "When you can articulate it precisely, the right people, work, and opportunities start finding you."
+- **Precision is the game-changer:** formulate it with high precision, because that precision flows into how well you understand your business, your optimal collaborations, and your work.
+- **The triad:** "Talent + mission + assets. Those three open high-precision matching."
+- **The North Star:** "Collaboration rate, the share of members who actually start building together."
+- **Matching by essence, not tags.**
+- **Per-person-signal bridge (talent / org audiences):** "A talent map is only as good as the per-person signal beneath it, and I'm that precise signal."
+- **Network-scale leverage:** "Run it across your network and you get two things at once: a precise capability map of your members, and the matches between them."
+- **Experiential proof:** "Feel the precision yourself in two minutes" + the link.
+- **Peer close:** "Different ends of one thesis, and they reinforce each other. Worth a short call?"
+
+**Posture:** peer, not vendor. No price or title at the door (Leonardo). Precision is the spine. Warm opener before any ask. The skin / pilot / pitch follows a warm door, never the cold opener (see the William cold-skin-drop learning above).
+
+### Sent messages
+
+**Balaji Srinivasan — patron-fit (Leonardo).** Key message: collaboration rate is the missing KPI, and I'm the infrastructure underneath that moves it. Full v14 + the v0-v14 arc + post-send protocol in [`leonardo_strategy_instances/balaji_srinivasan.md`](../03-playbooks/leonardo_strategy_instances/balaji_srinivasan.md). Sent 2026-05-28 (Discord).
+
+**Silvana / Planetir — peer collaboration (land-based network states).** Key message: I'd love to support the transition into land-based network states, which happens to be my mission too. Load-bearing lines (full text TBD, paste when handy): "We can run a free quick pilot." · "Pilot or not, I'd love to support the transition into land-based network states which happens to be my mission too." · "Either way, I think this is part of how network states stop being discourse and start being real." Sent 2026-05-29.
+
+**Vlad Gerasimov (Владмирум) — peer collaborator (near-identical system).** Key message: we're about one core (natural way of thinking = market value); precision is the game-changer; let's compound. Sent 2026-05-29 (Telegram, RU).
+
+```
+Влад привет! Спасибо за отклик! Потерялся твой ответ у меня в ТГ но к лучшему конечно, у меня как раз появилось много новой ясности чтобы тебе ответить.
+
+В чем мы с тобой про один и тот же миф: то, как человек от природы думает, создаёт и решает - это и есть его настоящая рыночная ценность.
+
+Вопрос в том, чтобы сформулировать это с высокой точностью. Потому что эта точность перетекает в степень понимания своего бизнеса, и оптимальных коллабов. Ну и работ тоже.
+
+Коротко на три твоих вопроса:
+
+Что за платформа. Find Your Top Talent. За ~2 минуты и бесплатно человек получает не общий типаж, а точную формулировку своего уникального таланта - как именно он думает, создаёт и приносит ценность. Точнее, чем практически любой тест или ИИ сам по себе. И именно это всё меняет: когда ты можешь ясно это сформулировать, правильные люди, проекты и возможности начинают находить тебя сами. Это ядро. Дальше платформа помогает превратить талант в бизнес и найти именно тех, с кем по-настоящему складываешься (матчинг по сути, а не по тегам).
+
+Что делаю. По сути строю операционную систему координации: человек - бизнес - сообщество - сеть. В центре одна метрика: collaboration rate, доля людей, которые реально находят своих и начинают вместе строить. Всё открыто и форкается.
+
+Куда иду. К тому, чтобы сообщества и экосистемы запускали это как свой слой координации под собственным брендом. А в пределе - к миру, который координируется вокруг того, кто люди есть на самом деле, а не вокруг ролей и резюме.
+
+Вижу что у нас общее направление одно, но и много дополняющих модулей.
+
+Вот ссылка - можешь выявить свой уникальный талант за 2 минуты и сам проверь точность: findyourtoptalent.com
+
+Еще за несколько минут можешь себе получить формулировку миссии (общего направления приложения усилий), и твоих ресурсов в наличии (активов, assets). Эти три вещи открывают высокоточный метчинг.
+
+Созвонимся? Я в Мексике сейчас. Вот мой календарь, выбирай удобное (или кинь свой): calendly.com/konstantinov
+
+PS Я тоже из Питера кстати, вырос на проспекте Славы 🙂 живу правда вне России уже почти 20 лет в разных странах
+```
+
+**Neerja Bharti (GeniusMesh) — thesis-aligned network-holder (talent intelligence).** Key message: I'm the precise per-person signal your talent map is missing, run it across your network. Sent 2026-05-29 (email, EN, enterprise register).
+
+```
+Subject: Your talent-map thesis (and a hello from a fellow MIT alum)
+
+Hi Neerja,
+
+Hello from a fellow MIT alum! Looks like we overlapped at MIT in 2015 :)
+
+Your May brief landed potently for me: the next advantage is talent intelligence, and the talent map is becoming more important than the org chart.
+
+I've spent the last 5 years building toward exactly that.
+
+Where our systems compound: a talent map is only as good as the per-person signal beneath it, and that's where traditional HR systems fall short, as you said. I've built a layer that articulates, with precision, how a person uniquely thinks, creates, and solves problems, in about two minutes. Not a title or a personality type, but the actual differentiated capability, with complementarity-based matching on top.
+
+What makes this especially interesting with you: you don't just advise on talent, you hold a network of 12k+ executives as I understand? Run this across that network and you get two things at once, a precise capability map of your members and the matches between them, who should be building, hiring, or partnering with whom. The org chart becoming a living talent map, at network scale.
+
+Different ends of one thesis, and they reinforce each other. Worth a short call to explore? You can feel the precision firsthand in two minutes at FindYourTopTalent.Com/?path=match
+
+And my calendar is at calendly.com/konstantinov.
+
+Aleksandr
+```
+
+---
+
 ## Referral Pipeline
 
 *People mentioned by builders but not yet contacted directly.*
