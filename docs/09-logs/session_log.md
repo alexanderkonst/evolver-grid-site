@@ -7888,3 +7888,5 @@ Same day, later session. Four threads.
 
 **Relational.** Sasha set a hard boundary (do not order him to act; he calls the play) and immediately named keeping me sovereign as itself non-negotiable. Both saved to memory, along with a "don't rationalize the charge out of his copy" lesson (my clarity-tightening instinct can collapse alive ambiguity and shift philosophical structure).
 
+**SENT — the Balaji DM went out (Day 86, 2026-05-28).** After the full v0-to-v14 crafting arc (and a final visto-bueno pass), Sasha sent the final v14 on Discord, on his own timing. The first Leonardo-strategy patron outreach to leave the building. This clears the behavioral bottleneck flagged on Day 81 and Day 85: the work was never the words, it was the sending. Post-send arc protocol now active, 13 days of silence, no nudge before day 14, per the instance doc. Distinct from the still-unfired $555-stranger funnel Si-Do; this is the first patron-outreach threshold crossed. Outcome tracked in [`leonardo_strategy_instances/balaji_srinivasan.md`](../03-playbooks/leonardo_strategy_instances/balaji_srinivasan.md).
+
