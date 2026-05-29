@@ -45,7 +45,7 @@ import { useFounderStates, type FounderState } from "./useFounderStates";
 import { FounderDetailDrawer } from "./FounderDetailDrawer";
 import { BulkEmailComposer } from "./BulkEmailComposer";
 import { SentCampaignsSection } from "./SentCampaignsSection";
-import { Mail } from "lucide-react";
+import { Mail, Loader2, RefreshCw } from "lucide-react";
 import { PremiumLoader } from "@/components/ui/PremiumLoader";
 import { useToast } from "@/hooks/use-toast";
 import GameShellV2 from "@/components/game/GameShellV2";
@@ -149,6 +149,51 @@ const cardSurface: React.CSSProperties = {
   boxShadow:
     "0 0 22px -8px rgba(212, 175, 55, 0.25), 0 16px 40px -20px rgba(10, 22, 40, 0.18)",
 };
+
+// Day 80 Wave 2.22 (Sasha 2026-05-29): per-section Refresh button.
+// /admin doesn't auto-sync from Supabase (each loader fires once on
+// mount); this chip is the operator's "pull fresh now" without a full
+// page reload. Visual + behavior match the existing chip in
+// SentCampaignsSection.tsx so the three sections read as a family.
+// Inline rather than a /components export — single file of callers,
+// no need for the abstraction. Aurora register: DM Sans tracked caps
+// in gold, restrained, right of the section title.
+const refreshChipStyle: React.CSSProperties = {
+  fontFamily: "'DM Sans', system-ui, sans-serif",
+  fontSize: "11px",
+  letterSpacing: "0.14em",
+  textTransform: "uppercase",
+  color: "var(--skin-accent-gold, #b8860b)",
+};
+
+function RefreshChip({
+  onClick,
+  loading,
+  label = "Refresh",
+}: {
+  onClick: () => void | Promise<void>;
+  loading: boolean;
+  label?: string;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={() => void onClick()}
+      disabled={loading}
+      className="inline-flex items-center gap-1.5 transition-opacity hover:opacity-80 disabled:opacity-50"
+      style={refreshChipStyle}
+      aria-label="Refresh section"
+      title="Reload"
+    >
+      {loading ? (
+        <Loader2 className="h-3 w-3 animate-spin" />
+      ) : (
+        <RefreshCw className="h-3 w-3" />
+      )}
+      {label}
+    </button>
+  );
+}
 
 const ceremonialLabel: React.CSSProperties = {
   fontFamily: "'Cormorant Garamond', serif",
@@ -508,10 +553,18 @@ function RecentFoundersSection({
   founders,
   adminEmail,
   onCampaignSent,
+  onRefresh,
+  refreshing,
 }: {
   founders: FounderState[];
   adminEmail: string | null;
   onCampaignSent: () => void;
+  // Day 80 Wave 2.22: parent owns the loader (useFounderStates.refetch);
+  // section just renders the chip + drives the click. `refreshing` is the
+  // same `loading` the parent shows during the spinner gate, so the chip
+  // can't race the section into a half-loaded state.
+  onRefresh: () => Promise<void>;
+  refreshing: boolean;
 }) {
   const [showAll, setShowAll] = useState(false);
   const [activeSegment, setActiveSegment] = useState<string>("all");
@@ -554,17 +607,33 @@ function RecentFoundersSection({
     <section className="rounded-2xl px-6 py-6" style={cardSurface}>
       <div className="flex items-baseline justify-between gap-3 mb-1">
         <h2 style={sectionTitleStyle}>Recent founders</h2>
-        <span
-          style={{
-            fontFamily: "'DM Sans', system-ui, sans-serif",
-            fontSize: "11px",
-            letterSpacing: "0.14em",
-            textTransform: "uppercase",
-            color: "var(--skin-text-muted, rgba(11, 42, 90, 0.55))",
-          }}
-        >
-          sorted by last touch · {sorted.length}
-        </span>
+        <div className="inline-flex items-baseline gap-4">
+          <span
+            style={{
+              fontFamily: "'DM Sans', system-ui, sans-serif",
+              fontSize: "11px",
+              letterSpacing: "0.14em",
+              textTransform: "uppercase",
+              color: "var(--skin-text-muted, rgba(11, 42, 90, 0.55))",
+            }}
+          >
+            sorted by last touch · {sorted.length}
+          </span>
+          {/* Day 80 Wave 2.22: Refresh chip. Errors during refresh are
+              surfaced via the parent's existing error path (toast +
+              preserved prior founder array). */}
+          <RefreshChip
+            onClick={async () => {
+              try {
+                await onRefresh();
+              } catch (e) {
+                const msg = e instanceof Error ? e.message : "Refresh failed.";
+                sonnerToast.error(msg);
+              }
+            }}
+            loading={refreshing}
+          />
+        </div>
       </div>
       <p
         className="italic"
@@ -1129,7 +1198,25 @@ function EntitlementGrantsSection() {
       </div>
 
       <div className="rounded-2xl px-6 py-6" style={cardSurface}>
-        <h2 style={sectionTitleStyle}>Recent grants</h2>
+        {/* Day 80 Wave 2.22: title row with inline Refresh chip.
+            loadRecent already runs after a successful grant (line ~960);
+            the chip lets the operator pull externally-written rows
+            (a grant issued by Sasha in another tab, an admin RPC fired
+            elsewhere) without reloading the page. */}
+        <div className="flex items-baseline justify-between gap-3">
+          <h2 style={sectionTitleStyle}>Recent grants</h2>
+          <RefreshChip
+            onClick={async () => {
+              try {
+                await loadRecent();
+              } catch (e) {
+                const msg = e instanceof Error ? e.message : "Refresh failed.";
+                sonnerToast.error(msg);
+              }
+            }}
+            loading={loadingRecent}
+          />
+        </div>
         <div className="mt-3">
           {loadingRecent ? (
             <p
@@ -1657,7 +1744,11 @@ function SpecializedAdminLinksSection() {
 // ─────────────────────────────────────────────────────────────────────
 
 function AdminPageInner() {
-  const { loading, error, founders } = useFounderStates();
+  // Day 80 Wave 2.22 (Sasha 2026-05-29): `refetch` exposed for the
+  // RecentFoundersSection Refresh chip. The hook preserves prior
+  // founders on refetch error, so a flaky reload never blanks the
+  // operator's table.
+  const { loading, error, founders, refetch: refetchFounders } = useFounderStates();
   // Day 62 Wave 2: admin's own email (for "Send preview to me") +
   // a refreshKey that bumps after each campaign send so
   // SentCampaignsSection re-fetches its log.
@@ -1756,6 +1847,8 @@ function AdminPageInner() {
             founders={founders}
             adminEmail={adminEmail}
             onCampaignSent={() => setCampaignRefreshKey((k) => k + 1)}
+            onRefresh={refetchFounders}
+            refreshing={loading}
           />
           <Ornament className="my-2" />
           {/* Day 62 Wave 2: bulk-email audit log. Refresh key bumps

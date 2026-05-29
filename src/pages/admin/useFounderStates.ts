@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 
 /**
@@ -54,19 +54,55 @@ type State = {
   founders: FounderState[];
 };
 
-export function useFounderStates(): State {
+/**
+ * Hook return shape.
+ *
+ * Day 80 Wave 2.22 (Sasha 2026-05-29): `refetch` exposed so the /admin
+ * "Refresh" button can pull a fresh founder list without a full page
+ * reload. On error the prior `founders` array is preserved (refresh
+ * never blanks the table); only `error` flips. Callers can toast on
+ * error without losing the existing snapshot.
+ */
+export type UseFounderStatesResult = State & {
+  refetch: () => Promise<void>;
+};
+
+export function useFounderStates(): UseFounderStatesResult {
   const [state, setState] = useState<State>({
     loading: true,
     error: null,
     founders: [],
   });
 
+  const load = useCallback(async (): Promise<void> => {
+    setState((prev) => ({ ...prev, loading: true, error: null }));
+    const { data, error } = await supabase
+      // The view isn't in the generated types yet; cast through `any` at
+      // the `.from()` boundary only. The row shape is enforced below.
+      .from("founder_state_v1" as never)
+      .select("*")
+      .order("last_touch_at", { ascending: false });
+    if (error) {
+      // Day 80 Wave 2.22: preserve previous `founders` on refetch error.
+      // The first load lands an empty array (no prior snapshot to keep).
+      setState((prev) => ({
+        loading: false,
+        error: error.message,
+        founders: prev.founders,
+      }));
+      return;
+    }
+    setState({
+      loading: false,
+      error: null,
+      founders: (data ?? []) as unknown as FounderState[],
+    });
+  }, []);
+
   useEffect(() => {
     let cancelled = false;
     (async () => {
       const { data, error } = await supabase
-        // The view isn't in the generated types yet; cast through `any` at
-        // the `.from()` boundary only. The row shape is enforced below.
         .from("founder_state_v1" as never)
         .select("*")
         .order("last_touch_at", { ascending: false });
@@ -86,5 +122,5 @@ export function useFounderStates(): State {
     };
   }, []);
 
-  return state;
+  return { ...state, refetch: load };
 }
