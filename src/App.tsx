@@ -206,6 +206,7 @@ import Settings from "./pages/Settings";
 import Transcriber from "./pages/Transcriber";
 import { EquilibriumV2Page } from "./modules/equilibrium";
 import MdlsPreview from "./pages/MdlsPreview";
+import OnePager from "./pages/OnePager";
 import ArtPage from "./pages/game/ArtPiecePage";
 import FounderMarketFit from "./pages/FounderMarketFit";
 import TheOriginalsPage from "./pages/TheOriginalsPage";
@@ -764,6 +765,9 @@ const App = () => (
                       equilibrium_mdls_style_guide.md spec. Dev-only — remove
                       or guard before public launch. */}
                   <Route path="/mdls-preview" element={<MdlsPreview />} />
+                  {/* Planetary OS public 1-pager · /1-pager · standalone (no shell),
+                      shareable. Copy locked from docs/02-strategy/planetary_os_1pager.md. */}
+                  <Route path="/1-pager" element={<OnePager />} />
                   {/* Founder-Market Fit Landing Page */}
                   <Route path="/founder-market-fit" element={<RequireAuth><FounderMarketFit /></RequireAuth>} />
                   <Route path="/fmf" element={<RequireAuth><FounderMarketFit /></RequireAuth>} />
