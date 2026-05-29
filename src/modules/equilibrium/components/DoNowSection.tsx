@@ -176,7 +176,10 @@ const SortableDoNowRow = ({
         />
       </button>
 
-      <span className="flex-1 font-serif text-lg text-[#0a1628]">
+      {/* `min-w-0` lets the text shrink below its intrinsic minimum
+          width so long task bodies wrap inside the row rather than
+          pushing the row's min-content wide (Sasha 2026-05-29). */}
+      <span className="flex-1 min-w-0 break-words font-serif text-lg text-[#0a1628]">
         {task.text}
       </span>
 
