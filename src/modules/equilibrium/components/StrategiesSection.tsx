@@ -165,6 +165,11 @@ const SortableStrategyRow = ({
           // not paragraphs. One sentence each, action-oriented.
           wordLimit={25}
           wordLimitHint="try one sentence, action verb first — direction, not detail"
+          // Clamp long strategies to 4 lines with a show-more toggle
+          // (Sasha 2026-05-29). The advisory word-limit nudges toward
+          // brevity, but when a strategy is genuinely long the row
+          // shouldn't become a wall of text.
+          clampLines={4}
         />
       </div>
 
