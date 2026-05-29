@@ -378,14 +378,20 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
     // instant unlock, browser-local. If user switches devices they
     // re-click the button on the new device. We listen to the `storage`
     // event so other tabs/windows of the SAME browser unlock together.
-    const [collaborateUnlocked, setCollaborateUnlocked] = useState<boolean>(() => {
-        if (typeof window === "undefined") return false;
-        try {
-            return window.localStorage.getItem("fytt:collaborate-unlocked") === "true";
-        } catch {
-            return false;
-        }
-    });
+    //
+    // Day 87 (Sasha 2026-05-29): GATE REMOVED. Per funnel-v2 spec
+    // ("the HERO is find your collaborators... JOURNEY locks are
+    // advisory, not access-gating"), Matching is the platform's hero
+    // feature, not a side reveal. Hiding COLLABORATE until the user
+    // clicks Find Matches on /game/me/assets made matching invisible
+    // to discovery — even Sasha (platform owner) didn't see his own
+    // matching surface in the rail. The localStorage key continues to
+    // be written by the Find Matches button (kept as a no-op signal
+    // for future analytics / cohort tracking) but no longer gates
+    // visibility. Anyone authed sees COLLABORATE from day one; if
+    // they navigate before having matches, /game/collaborate/matches
+    // shows its empty / pre-match state.
+    const collaborateUnlocked = true;
 
     // Day 79 (Sasha 2026-05-22): AI OS visibility gate.
     //
@@ -768,19 +774,15 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
     // cross-tab — see ProfileAssetsSection's button handler.
     useEffect(() => {
         const onStorage = (e: StorageEvent) => {
-            if (e.key === "fytt:collaborate-unlocked") {
-                setCollaborateUnlocked(e.newValue === "true");
-            }
-            // Day 79: same cross-tab listener for AI OS ever-visited flag.
+            // Day 87 (Sasha 2026-05-29): COLLABORATE listener removed —
+            // gate dropped, the rail chip is always visible, so cross-
+            // tab sync is no longer needed for this key. The Find
+            // Matches button on /game/me/assets still writes the
+            // localStorage key for analytics / future cohort use, but
+            // the rail doesn't read it anymore.
             if (e.key === "fytt:ai-os-visited") {
                 setAiOsEverVisited(e.newValue === "true");
             }
-        };
-        const onCustomUnlock = () => {
-            setCollaborateUnlocked(
-                typeof window !== "undefined" &&
-                    window.localStorage.getItem("fytt:collaborate-unlocked") === "true",
-            );
         };
         const onAiOsVisited = () => {
             setAiOsEverVisited(
@@ -789,11 +791,9 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
             );
         };
         window.addEventListener("storage", onStorage);
-        window.addEventListener("fytt:collaborate-unlocked", onCustomUnlock);
         window.addEventListener("fytt:ai-os-visited", onAiOsVisited);
         return () => {
             window.removeEventListener("storage", onStorage);
-            window.removeEventListener("fytt:collaborate-unlocked", onCustomUnlock);
             window.removeEventListener("fytt:ai-os-visited", onAiOsVisited);
         };
     }, []);
@@ -1512,7 +1512,22 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                     // vertical scroller. Other routes keep their original
                     // document-scroll behavior.
                     className={cn(
-                        "flex-1 relative z-10 bg-transparent",
+                        // Sasha 2026-05-29: `min-w-0` is load-bearing in
+                        // the desktop 3-pane flex layout. By default flex
+                        // items have `min-width: auto`, which means they
+                        // can't shrink below the intrinsic min-content
+                        // width of their children. On /build/equilibrium
+                        // ACT mode, the DOING NOW section renders task
+                        // text plus a check + demote-X + drag-handle in
+                        // a single row — when the task body is long
+                        // (e.g., a paragraph-length task), the row's
+                        // min-content exceeds the available space, the
+                        // flex algorithm steals width from pane 2 to
+                        // compensate, and pane 2's X close button gets
+                        // clipped on the right edge. `min-w-0` lets
+                        // pane 3 shrink properly so pane 2 keeps its
+                        // 260px regardless of page content.
+                        "flex-1 min-w-0 relative z-10 bg-transparent",
                         isAiOsRoute
                             ? "ai-os-desktop-content-scroll h-dvh min-h-0 overflow-y-auto overflow-x-hidden scrollbar-hide"
                             : "min-h-dvh",
