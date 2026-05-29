@@ -183,24 +183,35 @@ export function BulkImprovePanel() {
   // Pure prompt-stale → ceiling lift framing. Pure parent-stale → cascade
   // framing (Phase 1 wording, preserved). Mixed → name both honestly so
   // the founder reads the breakdown before clicking "Improve all."
-  const { promptCount, parentCount } = staleMix;
+  const { promptCount, inputCount, parentCount } = staleMix;
   let headline = "";
   let subhead = "";
-  if (promptCount > 0 && parentCount === 0) {
+  if (promptCount > 0 && inputCount === 0 && parentCount === 0) {
     headline =
       n === 1
         ? "Prompt updated — 1 artifact below ceiling"
         : `Prompt updated — ${n} artifacts below ceiling`;
     subhead =
       "The AI's prompt has been refined since these were locked. Re-Improve to claim the new ceiling.";
-  } else if (parentCount > 0 && promptCount === 0) {
+  } else if (inputCount > 0 && promptCount === 0 && parentCount === 0) {
+    headline =
+      n === 1
+        ? "Your context updated — 1 artifact needs refresh"
+        : `Your context updated — ${n} artifacts need refresh`;
+    subhead =
+      "Your mission or assets changed since these were locked. Re-Improve to carry the new context.";
+  } else if (parentCount > 0 && promptCount === 0 && inputCount === 0) {
     headline = `${n} ${n === 1 ? "artifact" : "artifacts"} may be stale`;
     subhead =
       "An upstream artifact was relocked after these — re-Improving carries the change downstream.";
   } else {
-    headline = `${n} stale · ${promptCount} prompt · ${parentCount} cascade`;
+    const parts: string[] = [];
+    if (promptCount > 0) parts.push(`${promptCount} prompt`);
+    if (inputCount > 0) parts.push(`${inputCount} context`);
+    if (parentCount > 0) parts.push(`${parentCount} cascade`);
+    headline = `${n} stale · ${parts.join(" · ")}`;
     subhead =
-      "Prompt edits and upstream relocks both fired since these were locked. Open the list to see which is which.";
+      "Multiple updates fired since these were locked. Open the list to see which is which.";
   }
 
   return (
