@@ -30,10 +30,21 @@ const cormorantTitle: React.CSSProperties = {
         "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.7))",
 };
 
+// Day 87 (Sasha 2026-05-29) — Strong cocktail applied (ui_playbook
+// Part VIII). Mirrors the MatchCard's identical token so page body
+// blocks (filter warnings, no-matches state, pagination prose) read
+// at the same legibility tier as the cards. Bumped:
+//   • weight 600 → 700 (lever 1)
+//   • added halo-strong (lever 3 — page body sits over parchment
+//     panels with mild video bleed, halo-strong is the right floor)
+//   • +0.003em letter-spacing (lever 4 micro)
 const sourceSerifBody: React.CSSProperties = {
     fontFamily: "'Source Serif 4', serif",
-    fontWeight: 600,
+    fontWeight: 700,
+    letterSpacing: "0.003em",
     color: "var(--skin-text-primary, #0b2a5a)",
+    textShadow:
+        "var(--skin-text-halo-strong, 0 0 12px rgba(255,255,255,0.55), 0 1px 1px rgba(255,255,255,0.85))",
 };
 
 const legibleHeadlineHalo =
@@ -780,9 +791,12 @@ const Matchmaking = () => {
               style={{
                 fontFamily: "'Source Serif 4', serif",
                 fontStyle: "italic",
-                fontWeight: 600,
+                fontWeight: 700,
+                letterSpacing: "0.01em",
                 fontSize: "12.5px",
                 color: "var(--skin-text-primary, #0b2a5a)",
+                textShadow:
+                  "var(--skin-text-halo-strong, 0 0 12px rgba(255,255,255,0.55), 0 1px 1px rgba(255,255,255,0.85))",
               }}
               className="truncate"
             >
@@ -813,10 +827,13 @@ const Matchmaking = () => {
           style={{
             fontFamily: "'Source Serif 4', serif",
             fontStyle: "italic",
-            fontWeight: 600,
+            fontWeight: 700,
+            letterSpacing: "0.01em",
             fontSize: "13px",
             lineHeight: 1.55,
             color: "var(--skin-text-primary, #0b2a5a)",
+            textShadow:
+              "var(--skin-text-halo-strong, 0 0 12px rgba(255,255,255,0.55), 0 1px 1px rgba(255,255,255,0.85))",
           }}
         >
           {match.matchReason}
@@ -909,9 +926,12 @@ const Matchmaking = () => {
               style={{
                 fontFamily: "'Source Serif 4', serif",
                 fontStyle: "italic",
-                fontWeight: 600,
+                fontWeight: 700,
+                letterSpacing: "0.01em",
                 fontSize: "15px",
                 color: "rgba(140, 60, 60, 0.95)",
+                textShadow:
+                  "var(--skin-text-halo-strong, 0 0 12px rgba(255,255,255,0.55), 0 1px 1px rgba(255,255,255,0.85))",
               }}
             >
               {error}
@@ -933,10 +953,13 @@ const Matchmaking = () => {
               style={{
                 fontFamily: "'Source Serif 4', serif",
                 fontStyle: "italic",
-                fontWeight: 600,
+                fontWeight: 700,
+                letterSpacing: "0.01em",
                 fontSize: "13.5px",
                 lineHeight: 1.55,
                 color: "var(--skin-goldDeep, #5d4307)",
+                textShadow:
+                  "var(--skin-text-halo-strong, 0 0 12px rgba(255,255,255,0.55), 0 1px 1px rgba(255,255,255,0.85))",
               }}
             >
               {locationBlocked && "Add your location in your profile to use the location filter. "}
@@ -1098,10 +1121,13 @@ const Matchmaking = () => {
                     style={{
                       fontFamily: "'Source Serif 4', serif",
                       fontStyle: "italic",
-                      fontWeight: 600,
+                      fontWeight: 700,
+                      letterSpacing: "0.01em",
                       fontSize: "14px",
                       lineHeight: 1.55,
                       color: "var(--skin-text-primary, #0b2a5a)",
+                      textShadow:
+                        "var(--skin-text-halo-strong, 0 0 12px rgba(255,255,255,0.55), 0 1px 1px rgba(255,255,255,0.85))",
                     }}
                   >
                     {assetMatches.length > 0

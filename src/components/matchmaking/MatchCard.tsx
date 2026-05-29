@@ -374,11 +374,17 @@ const MatchCard = ({
               >
                 Hide {user.firstName} from your matches?
               </AlertDialogTitle>
+              {/* Day 87 (Sasha 2026-05-29) — confirmation strengthened.
+                  Was weight 500 + muted color, which made a "permanent"
+                  warning read as a footnote. Bumped to weight 600 +
+                  full primary color so the consequence registers. No
+                  halo needed (dialog bg is uniform popover surface
+                  per ui_playbook). */}
               <AlertDialogDescription
                 style={{
                   fontFamily: "'Source Serif 4', Georgia, serif",
-                  fontWeight: 500,
-                  color: "var(--skin-text-muted, rgba(11,42,90,0.72))",
+                  fontWeight: 600,
+                  color: "var(--skin-text-primary, #0a1628)",
                 }}
               >
                 You won't see this profile again. The change is permanent.
@@ -436,6 +442,11 @@ const MatchCard = ({
           }}
           role="status"
         >
+          {/* Day 87 (Sasha 2026-05-29) — Strong cocktail. Headline got
+              halo-strong added; sub-line bumped weight 500 → 700 with
+              halo-strong + 0.01em italic letter-spacing. The mutual
+              moment is the most emotionally important state on the
+              page; can't read as faint flavor text. */}
           <p
             style={{
               fontFamily: "'Cormorant Garamond', serif",
@@ -443,19 +454,24 @@ const MatchCard = ({
               fontSize: "16px",
               lineHeight: 1.4,
               color: "var(--skin-text-primary, #0b2a5a)",
+              textShadow:
+                "var(--skin-text-halo-strong, 0 0 12px rgba(255,255,255,0.55), 0 1px 1px rgba(255,255,255,0.85))",
             }}
             className="mb-1"
           >
-            ✦ Mutual interest — you both said yes.
+            ✦ Mutual interest. You both said yes.
           </p>
           <p
             style={{
               fontFamily: "'Source Serif 4', serif",
-              fontWeight: 500,
+              fontWeight: 700,
               fontSize: "13.5px",
               lineHeight: 1.55,
+              letterSpacing: "0.01em",
               color: "var(--skin-text-primary, #0b2a5a)",
               fontStyle: "italic",
+              textShadow:
+                "var(--skin-text-halo-strong, 0 0 12px rgba(255,255,255,0.55), 0 1px 1px rgba(255,255,255,0.85))",
             }}
           >
             We sent the introduction to both of your inboxes. Take it from there.

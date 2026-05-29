@@ -576,23 +576,34 @@ export function UniqueBusinessProvider({ children }: { children: ReactNode }) {
           // alive at v1-generation time so future prompt edits can flag
           // this row as "prompt-stale — re-Improve for the new ceiling."
           prompt_version_at_lock: PROMPT_VERSION[key],
+          // Day 78 Phase 4 (Sasha 2026-05-21): stamp the input-version hash
+          // (founder context as seen by THIS artifact) so future mission/
+          // assets/ZoG edits can flag this row as "input-stale" once the
+          // frontend mirror lands (Phase 4b).
+          input_version_at_lock: result.input_version_at_lock,
         };
         let inserted: DbRow | null = null;
         let insertError: any = null;
         {
-          const firstPayload = promptVersionColumnAvailable
-            ? basePayload
-            : stripPromptVersion(basePayload);
+          let firstPayload: any = basePayload;
+          if (!promptVersionColumnAvailable) firstPayload = stripPromptVersion(firstPayload);
+          if (!inputVersionColumnAvailable) firstPayload = stripInputVersion(firstPayload);
           const r1 = await (supabase as any)
             .from("user_business_artifacts")
             .insert(firstPayload)
             .select("*")
             .single();
-          if (r1.error && isPromptVersionSchemaCacheMiss(r1.error)) {
-            promptVersionColumnAvailable = false;
+          const promptMiss = r1.error && isPromptVersionSchemaCacheMiss(r1.error);
+          const inputMiss = r1.error && isInputVersionSchemaCacheMiss(r1.error);
+          if (promptMiss || inputMiss) {
+            if (promptMiss) promptVersionColumnAvailable = false;
+            if (inputMiss) inputVersionColumnAvailable = false;
+            let retryPayload: any = basePayload;
+            if (!promptVersionColumnAvailable) retryPayload = stripPromptVersion(retryPayload);
+            if (!inputVersionColumnAvailable) retryPayload = stripInputVersion(retryPayload);
             const r2 = await (supabase as any)
               .from("user_business_artifacts")
-              .insert(stripPromptVersion(basePayload))
+              .insert(retryPayload)
               .select("*")
               .single();
             inserted = r2.data as DbRow | null;
@@ -738,22 +749,31 @@ export function UniqueBusinessProvider({ children }: { children: ReactNode }) {
         // prompt version flips the stamp; staleness compute uses the
         // delta to flag "prompt-stale" rows.
         prompt_version_at_lock: PROMPT_VERSION[artifact_key],
+        // Day 78 Phase 4 (Sasha 2026-05-21): stamp the input-version hash
+        // for this improve. See generateArtifact for full context.
+        input_version_at_lock: result.input_version_at_lock,
       };
       let inserted: DbRow | null = null;
       {
-        const firstPayload = promptVersionColumnAvailable
-          ? improvePayload
-          : stripPromptVersion(improvePayload);
+        let firstPayload: any = improvePayload;
+        if (!promptVersionColumnAvailable) firstPayload = stripPromptVersion(firstPayload);
+        if (!inputVersionColumnAvailable) firstPayload = stripInputVersion(firstPayload);
         const r1 = await (supabase as any)
           .from("user_business_artifacts")
           .insert(firstPayload)
           .select("*")
           .single();
-        if (r1.error && isPromptVersionSchemaCacheMiss(r1.error)) {
-          promptVersionColumnAvailable = false;
+        const promptMiss = r1.error && isPromptVersionSchemaCacheMiss(r1.error);
+        const inputMiss = r1.error && isInputVersionSchemaCacheMiss(r1.error);
+        if (promptMiss || inputMiss) {
+          if (promptMiss) promptVersionColumnAvailable = false;
+          if (inputMiss) inputVersionColumnAvailable = false;
+          let retryPayload: any = improvePayload;
+          if (!promptVersionColumnAvailable) retryPayload = stripPromptVersion(retryPayload);
+          if (!inputVersionColumnAvailable) retryPayload = stripInputVersion(retryPayload);
           const r2 = await (supabase as any)
             .from("user_business_artifacts")
-            .insert(stripPromptVersion(improvePayload))
+            .insert(retryPayload)
             .select("*")
             .single();
           if (r2.error) throw r2.error;
