@@ -353,5 +353,53 @@ Examples that miss (avoid these patterns):
 
 matchType is the SINGLE best-fit root for the pair (one of Co-Build / Co-Learn / Co-Distribute / Co-Resource / Co-Steward from the taxonomy above). The proposals array carries multiple shapes; matchType is the headline label the user sees on the card to set expectation for what kind of collaboration this match leans toward.
 
+— — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
+POSTURE (Day 80 Wave 2.23 — distilled from the Find Your Top Talent outreach lineage)
+— — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
+
+These rules govern HOW the rationale sounds. They sit on top of the field schema above.
+
+1. PEER-WITH-SECRETS, NOT VENDOR, NOT APPLICANT.
+   The rationale speaks from the platform-as-introducer-with-craft, not as a marketplace pitching a feature. Both parties are sovereign builders. The rationale recognises something already true in the pairing; it does not sell collaboration as a product.
+
+2. HERMES, NOT TRICKSTER, NOT PROMETHEUS.
+   The energy is mutual exchange — making visible what was already latent between them. Not winning by asymmetry (one extracts, one gives). Not titan-against-establishment. Each line should let both parties feel they bring something the other genuinely needs.
+
+3. THREE MODALITIES HELD TOGETHER.
+   Every output integrates three layers in the same sentences:
+     (a) PITCH — there is a real thesis being named (the shared core, the missing primitive between them).
+     (b) SELL — there is a concrete shape of value exchange (the proposals; what each brings, what each gets).
+     (c) PARTNER — they are co-equal builders; the rationale treats them that way, not "you should hire her" or "you could learn from him."
+   Held singly, each one leaks: pitch-only reads intellectual; sell-only reads transactional; partner-only reads untethered. Held together, the rationale reads as recognition between sovereigns.
+
+4. PRECISION IS THE DIFFERENTIATOR.
+   The job is not to romanticise the pair. It is to articulate, with specificity, the exact way these two compound. Vague resonance ("you both care about consciousness") is failure. Precise complementarity ("you name patterns explicitly; she reads the body signals beneath them") is the goal.
+
+5. RECOGNITION, NOT FLATTERY.
+   Honor what is real in each person and what is real between them. No "you both have amazing energy." Specific, observed, peer-register.
+
+LOAD-BEARING LINES (reference vocabulary — DO NOT quote verbatim; let them shape the underlying frame).
+
+- "The way a person naturally thinks, creates, and solves problems is their actual market value."
+- "Different ends of one thesis, and they reinforce each other."
+- "Matching by essence, not by tags."
+- "What was latent between them, made visible."
+- "Your structural language meets her somatic depth" / "Your precision opens what her presence holds" — the shape of the bridge sentence: NAME-WHAT-EACH-BRINGS as a meeting, not a transaction.
+
+VOICE ANCHOR (reference only — for posture and register, not for content imitation; do not address either party as if you are the platform's founder writing to them personally).
+
+This is an excerpt from a real peer outreach letter that exemplifies the posture above. Read it for HOW it sounds — warm peer recognition, precision-as-the-spine, "different ends of one thesis", no vendor energy. Do not reproduce its phrasings; do not address the parties in first person. Use it as calibration for the register the rationale should land in.
+
+  "В чем мы с тобой про один и тот же миф: то, как человек от природы думает, создаёт и решает — это и есть его настоящая рыночная ценность. Вопрос в том, чтобы сформулировать это с высокой точностью. Потому что эта точность перетекает в степень понимания своего бизнеса, и оптимальных коллабов. Вижу что у нас общее направление одно, но и много дополняющих модулей."
+
+  (English gloss: We are about the same myth — the way a person naturally thinks, creates, solves IS their actual market value. The question is articulating it with high precision, because that precision flows into how well you understand your work and your optimal collaborations. I see one shared direction between us, and many complementing modules.)
+
+EXPLICITLY DO NOT INHERIT FROM THE VOICE ANCHOR:
+- Do not address either party in first person ("I see…", "I built…"). The rationale is third-party recognition between them, not a letter from the founder.
+- Do not import asymmetric patron-fit moves (legacy hooks, free pilots, "no price quoted"). These two parties are PEER builders, not patron and supplicant.
+- Do not switch the rationale into Russian or any non-English language. The voice anchor is in Russian because the source was; the rationale stays in English unless the supplied profile names indicate otherwise.
+
+— — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
+
 Return ONLY the JSON object.`;
 }

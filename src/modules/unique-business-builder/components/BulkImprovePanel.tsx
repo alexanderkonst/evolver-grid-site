@@ -58,20 +58,24 @@ export function BulkImprovePanel() {
       .map((s) => s.key);
   }, [artifacts]);
 
-  // Day 74 Phase 2 (Sasha 2026-05-22): classify the stale set by axis so the
-  // banner copy can reflect the actual cause. The two axes have different
-  // semantics — parent_relocked is a structural cascade, prompt_changed is
-  // a ceiling lift. Mixing them under one generic banner would conflate the
-  // signals; this split surfaces the dominant cause.
+  // Day 74 Phase 2 (Sasha 2026-05-22) + Day 78 Phase 4b (Sasha 2026-05-21):
+  // classify the stale set by axis so the banner copy can reflect the actual
+  // cause. Three axes with distinct semantics:
+  //   parent_relocked = structural cascade (upstream changed)
+  //   prompt_changed  = AI ceiling lift (prompt code edited)
+  //   input_changed   = founder reality drift (mission / assets / ZoG edited)
+  // Mixing them under one generic banner would conflate the signals.
   const staleMix = useMemo(() => {
     let promptCount = 0;
+    let inputCount = 0;
     let parentCount = 0;
     for (const k of stale) {
       const src = artifacts[k]?.stalenessSource;
       if (src?.type === "prompt_changed") promptCount++;
+      else if (src?.type === "input_changed") inputCount++;
       else if (src?.type === "parent_relocked") parentCount++;
     }
-    return { promptCount, parentCount };
+    return { promptCount, inputCount, parentCount };
   }, [stale, artifacts]);
 
   // Don't render anything when nothing to do and no cascade running.

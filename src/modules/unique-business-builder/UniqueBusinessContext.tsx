@@ -37,6 +37,7 @@ import { ALL_ARTIFACT_KEYS } from "./types";
 import { ARTIFACT_LABELS, ERROR_MESSAGES, nextVersionString } from "./constants";
 import { PARENTS, getDownstream } from "./dependencyTree";
 import { PROMPT_VERSION } from "./promptVersions";
+import { inputVersionHash, type RootContextShape } from "./inputHash";
 
 // ============================================================================
 // Helpers
@@ -948,22 +949,36 @@ export function UniqueBusinessProvider({ children }: { children: ReactNode }) {
           // copying v1 content under today's prompt is, by definition,
           // current. If the user wants a higher ceiling they can re-Improve.
           prompt_version_at_lock: PROMPT_VERSION[key],
+          // Day 78 Phase 4b (Sasha 2026-05-29): stamp the CURRENT input
+          // hash for the same reason — the row is born now under today's
+          // rootContext, so it carries today's input-version-of-record.
+          // Without this, restored rows landed with NULL ("unknown") and
+          // immediately read as not-input-stale-because-legacy, defeating
+          // the axis. Phase 4a stamped this on generate + improve only;
+          // 4b closes the third insert site.
+          input_version_at_lock: inputVersionHash(rootContext, key),
         };
         let inserted: DbRow | null = null;
         {
-          const firstPayload = promptVersionColumnAvailable
-            ? restorePayload
-            : stripPromptVersion(restorePayload);
+          let firstPayload: any = restorePayload;
+          if (!promptVersionColumnAvailable) firstPayload = stripPromptVersion(firstPayload);
+          if (!inputVersionColumnAvailable) firstPayload = stripInputVersion(firstPayload);
           const r1 = await (supabase as any)
             .from("user_business_artifacts")
             .insert(firstPayload)
             .select("*")
             .single();
-          if (r1.error && isPromptVersionSchemaCacheMiss(r1.error)) {
-            promptVersionColumnAvailable = false;
+          const promptMiss = r1.error && isPromptVersionSchemaCacheMiss(r1.error);
+          const inputMiss = r1.error && isInputVersionSchemaCacheMiss(r1.error);
+          if (promptMiss || inputMiss) {
+            if (promptMiss) promptVersionColumnAvailable = false;
+            if (inputMiss) inputVersionColumnAvailable = false;
+            let retryPayload: any = restorePayload;
+            if (!promptVersionColumnAvailable) retryPayload = stripPromptVersion(retryPayload);
+            if (!inputVersionColumnAvailable) retryPayload = stripInputVersion(retryPayload);
             const r2 = await (supabase as any)
               .from("user_business_artifacts")
-              .insert(stripPromptVersion(restorePayload))
+              .insert(retryPayload)
               .select("*")
               .single();
             if (r2.error) throw r2.error;
@@ -999,7 +1014,7 @@ export function UniqueBusinessProvider({ children }: { children: ReactNode }) {
         toast.error(e?.message || "Couldn't restore to v1 — please retry.");
       }
     },
-    [userId, artifacts]
+    [userId, artifacts, rootContext]
   );
 
   // ──────────────────────────────────────────────────────────────────────
@@ -1357,14 +1372,71 @@ export function UniqueBusinessProvider({ children }: { children: ReactNode }) {
     return { slug: data.slug };
   }, [userId, buildArtifactSnapshot, derived.avgSpecificity]);
 
+  // ──────────────────────────────────────────────────────────────────────
+  // Day 78 Phase 4b (Sasha 2026-05-29) — input-staleness overlay.
+  //
+  // `buildArtifactStates(rows)` computes prompt_changed + parent_relocked
+  // from row data only. The third axis — input_changed — needs the current
+  // rootContext (mission, assets, ZoG) which lives in component state, so
+  // it can't live inside that pure function. This useMemo overlays it on
+  // top, with priority slotting between prompt_changed (1) and
+  // parent_relocked (3).
+  //
+  // Per-artifact rules:
+  //   • prompt_changed already set on s → leave alone (priority 1 wins).
+  //   • lockedInputVer is NULL → legacy row, treat as "unknown", no flag
+  //     (same convention as Phase 2 used for prompt_version_at_lock).
+  //   • currentInputVer differs from lockedInputVer → set input_changed,
+  //     overriding any parent_relocked the base pass set (priority 2 > 3).
+  //   • Otherwise → leave whatever base set (parent_relocked or nothing).
+  //
+  // Gated on isInitializing: while the four async fetches (zog, mission,
+  // assets, artifacts) are still in flight, rootContext is transiently
+  // empty, which would produce false input_changed flags on every locked
+  // artifact. Phase 4b waits for initialization to complete before
+  // applying the axis.
+  // ──────────────────────────────────────────────────────────────────────
+  const artifactsWithStaleness = useMemo(() => {
+    if (isInitializing) return artifacts;
+    const next: Partial<Record<ArtifactKey, ArtifactState>> = {};
+    const rc = rootContext as RootContextShape;
+    for (const key of ALL_ARTIFACT_KEYS) {
+      const s = artifacts[key];
+      if (!s) continue;
+      // Skip artifacts that aren't locked (no input_version_at_lock to compare)
+      // or that prompt_changed has already claimed (priority 1 wins).
+      if (!s.latestLocked || s.stalenessSource?.type === "prompt_changed") {
+        next[key] = s;
+        continue;
+      }
+      const lockedInputVer = s.latestLocked.input_version_at_lock;
+      const currentInputVer = inputVersionHash(rc, key);
+      if (lockedInputVer != null && currentInputVer && lockedInputVer !== currentInputVer) {
+        next[key] = {
+          ...s,
+          isStale: true,
+          staleReason: "Mission/assets updated since you locked this — re-Improve to refresh.",
+          stalenessSource: {
+            type: "input_changed",
+            lockedVersion: lockedInputVer,
+            currentVersion: currentInputVer,
+          },
+        };
+        continue;
+      }
+      next[key] = s;
+    }
+    return next;
+  }, [artifacts, rootContext, isInitializing]);
+
   const stalenessWarnings = useMemo(() => {
-    return Object.values(artifacts)
+    return Object.values(artifactsWithStaleness)
       .filter((s): s is ArtifactState => !!s && s.isStale)
       .map((s) => ({ artifact: s.key, reason: s.staleReason || "stale" }));
-  }, [artifacts]);
+  }, [artifactsWithStaleness]);
 
   const value: UniqueBusinessContextType = {
-    artifacts,
+    artifacts: artifactsWithStaleness,
     versionHistory,
     pendingImprovement,
     isImproving,
