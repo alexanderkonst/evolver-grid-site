@@ -4,7 +4,7 @@
 >
 > *Data fields here map 1:1 to the future `tribe_contacts` schema — no rework on migration.*
 
-*Last updated: April 3, 2026*
+*Last updated: May 29, 2026 (Day 87). Tribe 2 / Strategic Descent section added below the Original-5 pipeline; first patron / peer sends logged (Balaji, Silvana / Planetir, Victoria).*
 
 ---
 
@@ -21,6 +21,20 @@
 | 7 | **Tracey Abbott** | Warm network | v2.0 | ✅ March 28 | ⏳ Sent | — | — | DM sent March 28 |
 | 8 | **William Griffin** | Warm network | v2.0 | ✅ March 28 | ⏳ Sent | — | — | Does something similar to Alexander. Potential collaborator or complementary player — awaiting response before positioning |
 | 9 | **José da Veiga** | Warm network (INBOUND) | — (he initiated) | 🔵 He called April 3 | 🟡 In Conversation | — | — | **First inbound post-declaration.** Systems architect, PhD, runs Colibri Art Studio (35yr printing biz). Did ZoG live on call → "The Jazz Architect" → Quiz → "Multi-Talent Trap" → browsed /ignite → "I'm sold. Maybe I'll pay $550." Hit "failed to generate" bug on prompt path (JSON paste). Textbook Original Truth Rebel. Next: let him watch video, follow up in 2-3 days |
+
+---
+
+## Strategic Descent — Tribe 2 (Ecosystem Architects & Collaborators)
+
+> *Distinct from the Original Truth Rebels above (Tribe 1: descent-vector founders reached via the free Top Talent reveal). Tribe 2 = evolutionary-avant-garde ecosystem leaders and network-state architects, reached via strategic descent (patron-fit or peer collaboration), not the funnel. First sends went out Day 86-87 (May 28-29, 2026). See [Leonardo strategy](../03-playbooks/leonardo_strategy_for_the_golden_age.md) and the per-target instance docs.*
+
+| # | Name | Type | Vector | Sent | Status | Notes |
+|---|------|------|--------|------|--------|-------|
+| T2-1 | **Balaji Srinivasan** | Patron-fit (Network School founder) | Leonardo strategy | ✅ 2026-05-28 (Day 86) | ⏳ Silence window (no nudge before day 14) | Cold DM on Discord, final v14 after a v0-v14 crafting arc. Opens with the Pals tool (`ns.com/pals`), introduces collaboration rate as the missing KPI, offers the 3-layer infrastructure underneath Pals. Full lineage + post-send protocol in `leonardo_strategy_instances/balaji_srinivasan.md` |
+| T2-2 | **Silvana / Planetir** | Peer collaborator (land-based network-state infra) | Collaboration | ✅ 2026-05-29 (Day 87) | ⏳ Awaiting reply | Collaboration blurb sent almost as drafted. Closing energy: "Pilot or not, I'd love to support the transition into land-based network states, which happens to be my mission too." |
+| T2-3 | **Victoria** | Collaborator (forwards 1-pager to partners) | Warm forward | 🟡 Prepared, not yet sent | Planetary OS 1-pager built | Standalone 1-pager doc (`planetary_os_1pager.md`) + `/1-pager` page (Liquid Glass) built Day 87 for her to open and forward cold. Sasha sends when ready |
+
+> *Tribe 2 lifecycle differs from Tribe 1: outreach → reply → call → collaboration / pilot (no $555 funnel rung). These are patron and peer relationships, not funnel leads.*
 
 ---
 
