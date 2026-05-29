@@ -339,6 +339,7 @@ export const EquilibriumMDLSPage = () => {
               onAdd={eq.addWorkstream}
               onRename={eq.renameWorkstream}
               onDelete={eq.deleteWorkstream}
+              onComplete={eq.completeWorkstream}
               onRestore={eq.restoreWorkstream}
               onReorder={eq.reorderWorkstreams}
             />

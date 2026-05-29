@@ -88,8 +88,17 @@ export interface EquilibriumV2Data {
 
   addWorkstream: (title: string) => Promise<void>;
   renameWorkstream: (id: string, title: string) => Promise<void>;
-  /** Soft-archive (workstream marked complete; data preserved + restorable). */
+  /**
+   * HARD delete — permanently removes the workstream + cascade-deletes
+   * its tasks and any focus rows pointing at those tasks. Irreversible.
+   */
   deleteWorkstream: (id: string) => Promise<void>;
+  /**
+   * Soft-archive — marks the workstream complete (sets archived_at)
+   * and moves it to the Completed pile. Reversible via Undo toast +
+   * restoreWorkstream. Tasks under it are preserved (not deleted).
+   */
+  completeWorkstream: (id: string) => Promise<void>;
   /** Restore an archived workstream back to active. */
   restoreWorkstream: (id: string) => Promise<void>;
   reorderWorkstreams: (orderedIds: string[]) => Promise<void>;
@@ -633,6 +642,74 @@ export function useEquilibriumV2(): EquilibriumV2Data {
     [activeWorkstreamId, workstreams, tasks, fetchAll],
   );
 
+  /**
+   * Mark a workstream COMPLETE (Sasha 2026-05-29 — re-added alongside
+   * hard delete). Soft-archives the workstream into the Completed pile
+   * below the active chips. Reversible via `restoreWorkstream`.
+   *
+   * Distinct from `deleteWorkstream`, which removes the workstream and
+   * all its tasks permanently. Sasha's mental model:
+   *   • ✓ complete — "I finished this work, preserve the record"
+   *   • 🗑 delete — "this was a mistake or no longer relevant, gone"
+   *
+   * Tasks belonging to the archived workstream stay in the DB (the row
+   * just gets an archived_at timestamp on the workstream itself).
+   */
+  const completeWorkstream = useCallback(
+    async (id: string) => {
+      const target = workstreams.find((w) => w.id === id);
+      if (!target) return;
+
+      const archivedAt = new Date().toISOString();
+      // Optimistic: drop from active list, prepend to archived pile.
+      setWorkstreams((prev) => prev.filter((w) => w.id !== id));
+      setArchivedWorkstreams((prev) =>
+        [{ ...target, archived_at: archivedAt }, ...prev],
+      );
+      if (activeWorkstreamId === id) {
+        setActiveWorkstreamId(
+          workstreams.find((w) => w.id !== id)?.id ?? null,
+        );
+      }
+
+      const res = await eqAny
+        .from("equilibrium_workstreams")
+        .update({ archived_at: archivedAt })
+        .eq("id", id);
+      if (res.error) {
+        toast.error("Couldn't complete workstream — refreshing.");
+        void fetchAll();
+        return;
+      }
+
+      // Toast with Undo affordance — clicking Undo clears archived_at
+      // and the row comes back to active.
+      toast.success(`Completed "${target.title}"`, {
+        duration: 5000,
+        action: {
+          label: "Undo",
+          onClick: async () => {
+            const undoRes = await eqAny
+              .from("equilibrium_workstreams")
+              .update({ archived_at: null })
+              .eq("id", id);
+            if (undoRes.error) {
+              toast.error("Couldn't undo — refresh to recover.");
+              return;
+            }
+            setArchivedWorkstreams((prev) => prev.filter((w) => w.id !== id));
+            setWorkstreams((prev) =>
+              [...prev, { ...target, archived_at: null }].sort(
+                (a, b) => a.position - b.position,
+              ),
+            );
+          },
+        },
+      });
+    },
+    [activeWorkstreamId, workstreams, fetchAll],
+  );
+
   const restoreWorkstream = useCallback(
     async (id: string) => {
       const target = archivedWorkstreams.find((w) => w.id === id);
@@ -1162,6 +1239,7 @@ export function useEquilibriumV2(): EquilibriumV2Data {
     addWorkstream,
     renameWorkstream,
     deleteWorkstream,
+    completeWorkstream,
     restoreWorkstream,
     reorderWorkstreams,
     addTask,
