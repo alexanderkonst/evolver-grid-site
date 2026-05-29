@@ -44,6 +44,61 @@ When a candidate distributor, community partner, investor, counsel, or future Cl
 
 ---
 
+## The Whole System (Synthesis + Plain Language)
+
+> *Front-door synthesis added 2026-05-29 (Day 87). The discrete revenue lines, how they relate (by category and by sequence), the system they form, and the whole thing in plain language. The detailed six-plays and four-phase treatment lives below; this is the map of the map.*
+
+### 1. The discrete revenue lines (non-overlapping, by unit of money)
+
+Six distinct ways money enters, each a different "who pays for what":
+
+1. **Individual ladder** (Play #1) — a person pays for their own depth: free profile, then a **$37 deeper talent view** (a low-ticket preliminary step that warms toward the session), then $555 session, $5K build, $500/month container.
+2. **Facilitator tool** (Play #2) — a coach or guide pays to run it with their own clients.
+3. **Forked operator** (Play #3) — a sovereign operator self-hosts their own branded copy and sends back 10% of revenue above a $1,000/month free tier.
+4. **Hosted community** (Play #5) — an organization pays (per active member plus an onboarding fee) to run the whole thing for its membership under its own brand. Example shape: a ~300-member network at $2K/90-day pilot, then ~$2.25K/month; communities generally $5-50K/year or $5-20/member/month.
+5. **Venture carry** (Play #4) — the platform keeps a small, lasting share (equity or persistent rev-share, ~5-10%) of ventures born through it.
+6. **Teaching license** (Play #6) — institutions pay to teach the method: a per-trainer certification fee ($1-5K), annual maintenance ($500-2K), and a per-student fee.
+
+A free kernel sits underneath all six: the 2-minute talent profile, given away on purpose so it spreads. Nobody is charged for the seed; the six lines are charges on what grows from it.
+
+### 2. How they relate
+
+**By category (what is actually being sold):**
+
+- **Access, "use it":** lines 1, 2, 3, 4. People and groups pay to use the coordination layer at four scales (one person, one coach's practice, one sovereign fork, one whole community).
+- **Outcome, "share in what it makes":** line 5. The platform shares in the ventures it births. The asymmetric upside, where one success can outweigh a hundred subscriptions.
+- **Rights, "teach it":** line 6. Others pay for the right to certify and teach the method.
+
+**By sequence (the order they switch on as the project matures):**
+
+- **Now (Phase 1):** individuals direct (proven) plus first facilitators. In parallel, per this doc's "lead with community" positioning, the first hosted-community pilots (the current ecosystem outreach). The self-host fork option is available but rare (~5% of cases).
+- **Next (Phase 2):** scale hosted communities into the steady recurring engine. Exit when at least one community deal is signed and several operators are active.
+- **Later (Phase 3):** venture carry, invitation-only, once standout ventures form.
+- **Eventually (Phase 4):** teaching license, once the method is a recognized category.
+- **Discipline:** later layers stay in pocket, not promised; the free entry layer stays clean of equity asks or institutional politics until its phase opens.
+
+### 3. The system
+
+Give a free kernel away so it spreads as widely as possible (low adoption cost protects its neutrality and drives reach). On top of that seed, money enters on three layers, **Access, Outcome, Rights**, which turn on in **sequence** (individual, then community, then venture-share, then teaching-license), each earlier layer funding and proving the next. It runs as a **portfolio of aligned patrons** (many communities and operators under their own brands), not a chase for one big deal. Every layer ultimately prices against one number, **collaboration rate**: how many members actually find their people and start building. And the delivery that needs Sasha in the room today gets productized into **playbooks plus a certified-facilitator layer**, which removes him as the bottleneck and is exactly what lets the recurring, carry, and license layers scale without him.
+
+### 4. In plain language (no jargon)
+
+You give away a free thing: a 2-minute profile that shows a person what they are naturally great at. It is free on purpose, so it spreads far and wide. That is the seed. You do not make money on the seed. You make money on what grows from it, in three honest ways.
+
+**One: people and groups pay to use it.** A single person can pay to go deeper (a session to turn their talent into a real business, then help building it). A coach can pay to use the tool with their own clients. A whole community (a network, a group, a school) can pay a regular fee to run the entire thing for all its members, with their own name on it. And someone who wants full control can run their own copy and send back a small slice once they are truly making money. All of this is just "pay to use it." It is the bread and butter.
+
+**Two: you share in the businesses it gives birth to.** When two people meet through it and build something real, you keep a small, lasting piece, because that business would not exist without the platform. You only win when they win. This is the part that can get big: one real success can be worth more than a hundred subscriptions.
+
+**Three: others pay to teach the method.** Eventually, once enough people know this works, schools and programs pay to be certified to teach it themselves, like a yoga or coaching certification.
+
+The order matters. You turn them on as the thing grows. First (now): people pay you directly, one at a time, which proves it works and brings the first real money. Next (a couple of months out): communities pay to run it for their members, the steady repeating income, and the exact door your outreach opened today. Later: you share in the businesses born through it. Eventually: you license others to teach the method.
+
+The idea holding it together: you stay small, and the thing underneath gets big. You earn by helping people succeed and taking a fair slice, never by trapping them. And the one number it is all really about is simple: how many people find their people and start building together. Every way you make money is just a different way of getting paid for making that happen.
+
+The honest catch you already named: the exact prices, and the exact way of charging, are still a blank you fill in with the first real pilot. The shape is clear; the precise settings come from the market, not the whiteboard.
+
+---
+
 ## Strategic Crystallization (Day 76–77, May 19–20, 2026)
 
 The deepest reframe captured this week:

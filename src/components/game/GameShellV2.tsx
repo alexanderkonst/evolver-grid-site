@@ -366,32 +366,29 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
         current_streak_days?: number | null;
     } | null>(null);
     const [hasGeniusOffer, setHasGeniusOffer] = useState(false);
-    // Day 63 (Sasha 2026-05-07 night): COLLABORATE space gating moved
-    // from "has ≥1 saved asset" → "user pressed Find Matches button."
-    // Reasoning: pressing Find Matches IS the explicit moment the user
-    // requests collaboration matching — that's when the space earns its
-    // place in the rail. Doing it on asset-count was too eager (showed
-    // the space the moment any asset was mapped, even if user hadn't
-    // intended matching).
+    // Day 63 → Day 87 — COLLABORATE space gating history:
     //
-    // Persistence: localStorage key `fytt:collaborate-unlocked`. Cheap,
-    // instant unlock, browser-local. If user switches devices they
-    // re-click the button on the new device. We listen to the `storage`
-    // event so other tabs/windows of the SAME browser unlock together.
+    // Day 63 (Sasha 2026-05-07 night): gated on localStorage flag
+    // `fytt:collaborate-unlocked`, written when user pressed Find
+    // Matches on /game/me/assets. Explicit-intent unlock.
     //
-    // Day 87 (Sasha 2026-05-29): GATE REMOVED. Per funnel-v2 spec
-    // ("the HERO is find your collaborators... JOURNEY locks are
-    // advisory, not access-gating"), Matching is the platform's hero
-    // feature, not a side reveal. Hiding COLLABORATE until the user
-    // clicks Find Matches on /game/me/assets made matching invisible
-    // to discovery — even Sasha (platform owner) didn't see his own
-    // matching surface in the rail. The localStorage key continues to
-    // be written by the Find Matches button (kept as a no-op signal
-    // for future analytics / cohort tracking) but no longer gates
-    // visibility. Anyone authed sees COLLABORATE from day one; if
-    // they navigate before having matches, /game/collaborate/matches
-    // shows its empty / pre-match state.
-    const collaborateUnlocked = true;
+    // Day 87 v1 (Sasha 2026-05-29 morning): gate dropped to fix
+    // discoverability — but I overcorrected and hard-coded `true`,
+    // which showed COLLABORATE to unauthed guests on the public
+    // landing too.
+    //
+    // Day 87 v2 (Sasha 2026-05-29 afternoon, CURRENT): gated on
+    // T+M+A completion (`tmaComplete`, derived below). Two conditions
+    // must hold to see COLLABORATE in the rail:
+    //   (a) Authed user (handled upstream by `isGuest` → `guestHidden`
+    //       which already includes "collaborate" in NON_PUBLIC_SPACE_IDS)
+    //   (b) Top Talent + Mission + Assets all complete
+    // The localStorage key `fytt:collaborate-unlocked` is still WRITTEN
+    // by the Find Matches button (kept as a no-op signal for future
+    // analytics / cohort tracking) but no longer READ for gating —
+    // tmaComplete is the canonical signal. See line ~1031 for the
+    // unlockStatus binding; "collaborate" follows the same gating
+    // pattern as next-move / learn / meet (all profile-backed).
 
     // Day 79 (Sasha 2026-05-22): AI OS visibility gate.
     //
@@ -1022,13 +1019,13 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
             // flash on tasting users while the fetch resolves.
             "build": buildUnlocked,
             "meet": MEET_VISIBLE && zogComplete,                // After Step 1 — community events (currently flag-gated off)
-            // Day 63 night (Sasha 2026-05-07): COLLABORATE gate is now
-            // `collaborateUnlocked` — flipped to true the moment the
-            // user presses the "Find Matches" button on /game/me/assets
-            // (writes localStorage `fytt:collaborate-unlocked`). The
-            // earlier asset-count gate was too eager; this aligns the
-            // unlock to the user's explicit intent moment.
-            "collaborate": collaborateUnlocked,                 // After Find Matches pressed
+            // Day 87 v2 (Sasha 2026-05-29): COLLABORATE gated on T+M+A
+            // completion (matching the matchable threshold from the
+            // funnel-v2 spec). Authed users who haven't completed the
+            // triad don't see the chip; unauthed guests are already
+            // hidden by NON_PUBLIC_SPACE_IDS upstream. See comment at
+            // line ~369 for the gating history.
+            "collaborate": tmaComplete,                         // After T+M+A complete
             "buysell": ignitionComplete,                        // After Step 2 — needs offers to sell
         }
         : {};
@@ -1044,7 +1041,7 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
         "learn": "Unlocks after Step 1",
         "build": "Unlocks after you activate your top talent or complete your collaboration profile.",
         "meet": "Unlocks after Step 1",
-        "collaborate": "Unlocks after you map your first asset.",
+        "collaborate": "Unlocks after Top Talent + Mission + Assets.",
         "buysell": "Unlocks after Step 2",
     };
 
@@ -1067,30 +1064,22 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
     // into the hide-don't-lock pattern when the unlockStatus[ai-os] is
     // false. Localised handling below for the unauthed-guest case.
     const GATED_SPACES = ["next-move", "ai-os", "learn", "meet", "collaborate", "buysell"] as const;
-    // Day 75 (Sasha 2026-05-19) — COLLABORATE flicker fix.
+    // Day 75 → Day 87 — COLLABORATE flicker fix history:
     //
-    // Sasha: "collaborate space on the first panel doesn't show sometimes,
-    // quite often actually, when I click on the Me space, AI OS space."
+    // Day 75 (Sasha 2026-05-19): COLLABORATE was specifically extracted
+    // from the profile-gated branch because its unlock signal was
+    // localStorage-only (synchronous + instant), so it didn't need to
+    // wait for the profile fetch. Two-branch logic was the right shape
+    // for that signal.
     //
-    // Root cause: every route in App.tsx remounts <GameShellV2> fresh →
-    // `profileLoaded` resets to false → during the ~300-500ms profile
-    // fetch window, the catch-all `else [...GATED_SPACES]` branch below
-    // hid every gated space, including COLLABORATE.
-    //
-    // But COLLABORATE's unlock signal is LOCALSTORAGE-only
-    // (`fytt:collaborate-unlocked`, written when the user presses
-    // "Find Matches"). localStorage is synchronous + instant — there's
-    // no reason to wait for the profile fetch to decide its visibility.
-    // The other gated spaces (next-move/learn/meet/buysell) DO depend on
-    // profile-resolved values (zogComplete, ignitionComplete) and still
-    // correctly hide during the fetch to avoid flicker.
-    //
-    // Fix: extract COLLABORATE from the profile-gated branch and evaluate
-    // it on `collaborateUnlocked` regardless of `profileLoaded`. No
-    // flicker, no regression — other gated spaces' flicker-prevention is
-    // untouched.
-    const localStorageBackedHidden: string[] = collaborateUnlocked ? [] : ["collaborate"];
-    const profileBackedGated = GATED_SPACES.filter((id) => id !== "collaborate");
+    // Day 87 v2 (Sasha 2026-05-29): COLLABORATE gate moved to T+M+A
+    // completion (profile-resolved). It now behaves the same as
+    // next-move / learn / meet — unlockStatus is computed only when
+    // `profileLoaded === true`, otherwise it falls into the GATED_SPACES
+    // catch-all and stays hidden during the ~300-500ms fetch. Same
+    // flicker-prevention as the other gated spaces; no special case
+    // needed.
+    const profileBackedGated = [...GATED_SPACES];
 
     // Day 79 (Sasha 2026-05-22): unauthed-guest visibility tightened.
     // Only the genuinely public surfaces — JOURNEY (marketing entry)
@@ -1152,15 +1141,10 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
     const hiddenSpaces: string[] = isGuest
         ? guestHidden
         : profileLoaded
-        ? [
-              ...profileBackedGated.filter((id) => unlockStatus[id] === false),
-              ...localStorageBackedHidden,
-          ]
+        ? profileBackedGated.filter((id) => unlockStatus[id] === false)
         : // During the profile fetch, hide the profile-backed gated
-          // spaces (so there's no lock-then-hide flicker), but evaluate
-          // COLLABORATE from localStorage since that signal is already
-          // resolved synchronously.
-          [...profileBackedGated, ...localStorageBackedHidden];
+          // spaces (so there's no lock-then-hide flicker).
+          [...profileBackedGated];
 
     // Navigation handlers
     const handleSpaceSelect = (spaceId: string) => {
