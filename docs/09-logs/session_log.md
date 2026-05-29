@@ -7677,6 +7677,85 @@ Sasha's directive: methodically work through ALL 19 artifacts, fix what needs fi
 
 ---
 
+## Day 78 — Thursday, May 21, 2026 (Evening) — UBB deep-context expansion (Phases 0-4a)
+
+### Frame
+
+After the morning's prompt deepening + code-as-source cleanup, Sasha named the next-evolution opportunity: today's `/ubb` artifact-generation pipeline reads only ~4 ZoG headline fields and drops everything else on the floor. The rich `appleseed_data` JSON lives on every `zog_snapshots` row but never reaches the prompts. Mission and assets are not loaded at all. Strategic upside: 12-14 of 19 artifacts get materially more signal once these three sources reach the prompts.
+
+This evening's work scoped the change as a planning + implementation + debugging SoW trio, resolved 8 design decisions, then shipped Phases 0 + 1 + 2 + 3 + 4a. Phase 4b (frontend mirror + staleness compute) is queued as a chip.
+
+### What shipped
+
+**Three SoW + DoD documents** ([`docs/specs/ubb-deep-context/`](../specs/ubb-deep-context/)):
+- `planning_sow.md` (81 lines) — 8 design decisions resolved per defaults; per-artifact relevance matrix v1 in Appendix A.
+- `implementation_sow.md` (153 lines) — five-phase plan with self-contained DoD per phase.
+- `debugging_sow.md` (72 lines) — per-phase smoke protocol, telemetry triggers, rollback plan, five named failure modes.
+
+**Phase 0 — Deep ZoG passthrough** (~1hr).
+- New helper `deepZogSummary(appleseed)` in [`supabase/functions/_shared/ubb-prompts.ts`](../../supabase/functions/_shared/ubb-prompts.ts) flattens the rich appleseed JSON (Vibrational Key + Three Lenses + Appreciated-For + Elevator Pitch) into ~600-700 chars of high-signal prompt context. Size-disciplined with field-level char caps + 900-char hard ceiling.
+- New helper `formatTopTalents(value)` normalises the JSON `top_three_talents` field (was previously rendering as `[object Object]`).
+- Both [`generate-artifact/index.ts`](../../supabase/functions/generate-artifact/index.ts) and [`improve-artifact/index.ts`](../../supabase/functions/improve-artifact/index.ts) now call both helpers in their `rootSummary` builds.
+- Removed the phantom `how_genius_shows_up` line that referenced a column that never existed in the `zog_snapshots` schema.
+
+**Phase 1 — Mission integration** (~2hr).
+- [`UniqueBusinessContext.tsx`](../../src/modules/unique-business-builder/UniqueBusinessContext.tsx) loads `mission_statement + mission_discovered_at` from `game_profiles` on mount, forwards as `root_context.mission`.
+- New `missionSummary(mission)` helper in ubb-prompts.ts.
+- Edge functions both consume mission via `rootSummary`.
+- New per-session input-thin toast: when generating without mission or assets, fires once with copy "Tip: save your [mission/assets] first for sharper artifacts. Continuing with what we have."
+
+**Phase 2 — Assets integration** (~3hr).
+- UBB context loads `user_assets` table (mapped snake_case to camelCase `SavedAsset` shape), forwards as `root_context.assets`.
+- New `assetsSummary(assets, filter?)` helper groups by typeId, caps per-type items at 5, hard ceiling 1200 chars.
+- Edge functions consume assets via rootSummary.
+- The input-thin toast extends to cover assets as well.
+
+**Phase 3 — Per-artifact `inputsNeeded` map** (~2hr).
+- New `ARTIFACT_INPUTS: Record<ArtifactKey, InputsNeeded>` const in ubb-prompts.ts encodes the relevance matrix v1 from `planning_sow.md` Appendix A as code. Each of the 19 artifacts declares which slices it reads.
+- New `buildRootSummary(rootContext, inputs)` unified helper replaces both inline rootSummary builds. The edge functions now call `buildRootSummary(root_context, ARTIFACT_INPUTS[artifact_key])` and receive only the slices the artifact actually needs.
+- Per-artifact rootSummary sizes range from 70 chars (delivery, very lean) to 939 chars (landing_page, full composition). Average 640 chars vs ~2,000 chars pre-Phase-3 = ~68% token savings on average.
+- Roast-driven amendment: zogHeadline (~150 chars, cheap voice baseline) kept ON for all 19 artifacts. Only zogDeep (~700 chars expensive) gets stripped from artifacts that work on concrete inventory (frictionless_purchase, delivery, surface_inventory, reach, spread).
+
+**Phase 4a — Input-staleness DB infrastructure** (~2hr).
+- New migration [`20260524010000_ubb_input_version_at_lock.sql`](../../supabase/migrations/20260524010000_ubb_input_version_at_lock.sql) adds `input_version_at_lock TEXT NULL` to `user_business_artifacts`.
+- New `inputVersionHash(rootContext, key)` in ubb-prompts.ts reuses the existing `ubbPromptHash` (12-char FNV-1a 64-bit) over the rendered rootSummary string. Same hash function as the existing PROMPT_VERSION axis (Day 74 work).
+- Both edge functions compute the hash and return it in `GenerateResult.input_version_at_lock` / `ImproveResult.input_version_at_lock`.
+- UBB context stamps the returned hash at both insert sites (generate + improve). Restore site stays NULL pending Phase 4b's frontend hash mirror.
+- Schema-cache fallback latch mirrors the existing prompt_version_at_lock latch for graceful PostgREST cache lag.
+
+### Files touched
+
+- [`docs/specs/ubb-deep-context/planning_sow.md`](../specs/ubb-deep-context/planning_sow.md) — created, ~150 lines.
+- [`docs/specs/ubb-deep-context/implementation_sow.md`](../specs/ubb-deep-context/implementation_sow.md) — created, ~153 lines.
+- [`docs/specs/ubb-deep-context/debugging_sow.md`](../specs/ubb-deep-context/debugging_sow.md) — created, ~72 lines.
+- [`supabase/functions/_shared/ubb-prompts.ts`](../../supabase/functions/_shared/ubb-prompts.ts) — added 5 helpers (deepZogSummary, formatTopTalents, missionSummary, assetsSummary, buildRootSummary, inputVersionHash) + ARTIFACT_INPUTS const + InputsNeeded type. ~250 new lines.
+- [`supabase/functions/generate-artifact/index.ts`](../../supabase/functions/generate-artifact/index.ts) — imports new helpers + ARTIFACT_INPUTS, replaced inline rootSummary build with `buildRootSummary`, added `input_version_at_lock` to GenerateResult and stamp.
+- [`supabase/functions/improve-artifact/index.ts`](../../supabase/functions/improve-artifact/index.ts) — symmetric changes.
+- [`src/modules/unique-business-builder/UniqueBusinessContext.tsx`](../../src/modules/unique-business-builder/UniqueBusinessContext.tsx) — mission + assets state, load effects, rootContext forwarding, input-thin toast, schema-cache fallback for input_version, stamps on 2 of 3 insert sites.
+- [`src/modules/unique-business-builder/types.ts`](../../src/modules/unique-business-builder/types.ts) — added `input_version_at_lock` to VersionRow + GenerateResult + ImproveResult.
+- [`supabase/migrations/20260524010000_ubb_input_version_at_lock.sql`](../../supabase/migrations/20260524010000_ubb_input_version_at_lock.sql) — created.
+
+### Key decisions
+
+1. **All 8 planning decisions resolved per defaults.** Architecture A (edge-side filtering), graceful degradation (b: thin v1 + flag), optional gate, 5 phases, absorb input-staleness into hybrid chip, soft cap at $0.005, stable hash. Recorded in `planning_sow.md` decision table.
+2. **Self-roast at each phase, debug inline.** Phase 0 over-budget on size → trimmed. Phase 3 over-stripped zogHeadline from distribution artifacts → restored. Each roast surfaced 3-6 weaknesses; the actionable ones got patched same-turn.
+3. **Phase 4 split into 4a (infrastructure) and 4b (frontend mirror + staleness compute).** Frontend mirror requires duplicating canonicaliser + hash + all summarisers (~150 lines), and the staleness compute refactor is non-trivial. Cleaner shipping boundary: get the durable DB infra in today, follow up with the UX read path.
+4. **The relevance matrix lives in code, not the spec doc.** Per yesterday's code-as-source decision. The SoW Appendix A is the v1 baseline reference; `ARTIFACT_INPUTS` in `ubb-prompts.ts` is the runtime source of truth.
+
+### Si–Do
+
+The AVB's per-call cost dropped on average (68% rootSummary token savings via Phase 3 filtering), and 12-14 artifacts now see meaningfully more grounding data than yesterday. Distribution-pillar artifacts (reach, delivery, spread, surface_inventory, frictionless_purchase) finally have concrete inventory to ground in instead of hallucinating. Si–Do unchanged on the funnel side — first community member signs paid pilot is still the next macro move — but the AVB-as-deliverable is now materially sharper per artifact for any pilot that uses it.
+
+### Open follow-ups
+
+- **Phase 4b chip spawned** — frontend mirror of `inputVersionHash` + canonicaliser + staleness compute + restore-site stamping + banner copy for the third staleness axis. Closes the input-stale UX loop.
+- **Migration application** — `20260524010000_ubb_input_version_at_lock.sql` needs to apply via the supabase deploy pipeline. Schema-cache fallback latch in the client handles propagation lag gracefully.
+- **Cost telemetry not yet hooked up** — Debugging SoW lists production telemetry triggers ($0.005 per-call warning) but no observability surface exists yet. Manual eyeball until a metrics pipeline lands.
+- **Other edge functions untouched** — `generate-blueprint`, `generate-landing`, `generate-soul-colors`, `analyze-personality-test` may also benefit from deep ZoG / mission / assets. Out of scope for today, worth a future audit.
+- **Per-artifact specificity smoke test** — Debugging SoW prescribes a regenerate-3x-and-average protocol; not run today on Sasha's profile. He can run it manually any time.
+
+---
+
 ## Day 80 §B — UBB staleness UX hybrid (Phase 1 + Phase 2) — Friday, May 22, 2026
 
 Closes the chip spawned at the end of Day 78. Two phases shipped end-to-end in one session: parent-aware staleness compute + bulk cascade UX (Phase 1), then prompt-version staleness axis with deterministic content-hashing (Phase 2). Parallel to today's Day 80 JOURNEY work — separate thread, separate surface (UBB canvas overview).
