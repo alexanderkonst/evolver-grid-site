@@ -17,6 +17,8 @@ import {
   UBB_DISTILLATION_DIRECTIVE,
   MODEL,
   AI_GATEWAY_URL,
+  deepZogSummary,
+  formatTopTalents,
   type ArtifactKey,
 } from "../_shared/ubb-prompts.ts";
 
@@ -121,10 +123,14 @@ noise the iteration is correctly shedding.`;
       .join("\n");
 
     const zog = root_context?.zog_snapshot || {};
+    // Day 78 Phase 0 (Sasha 2026-05-21): pass the rich appleseed_data through
+    // via deepZogSummary. Previously the edge fn dropped it on the floor.
+    // formatTopTalents normalises the JSON top_three_talents field.
     const rootSummary = [
-      `- Top talent: ${(zog as any).top_three_talents || "—"}`,
+      `- Top talent: ${formatTopTalents((zog as any).top_three_talents)}`,
       `- Archetype: ${(zog as any).archetype_title || "—"}`,
       `- Core pattern: ${(zog as any).core_pattern || "—"}`,
+      deepZogSummary((zog as any).appleseed_data),
       root_context?.excalibur_data ? `- Legacy business: ${JSON.stringify(root_context.excalibur_data).slice(0, 400)}` : "",
     ]
       .filter(Boolean)

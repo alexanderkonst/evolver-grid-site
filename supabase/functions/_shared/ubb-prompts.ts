@@ -1270,3 +1270,96 @@ export const PROMPT_VERSION: Record<ArtifactKey, string> = (() => {
   }
   return out;
 })();
+
+// ============================================================================
+// Founder-context summarisers — Day 78 (Sasha 2026-05-21), Phase 0 of deep
+// context integration. See docs/specs/ubb-deep-context/.
+// ============================================================================
+//
+// `deepZogSummary` flattens the rich `appleseed_data` JSON from a ZoG snapshot
+// into ~600 chars of high-signal prompt context. The raw JSON ships from the
+// frontend already (it lives on every `zog_snapshots` row); previously the
+// edge functions referenced only top_three_talents + archetype_title +
+// core_pattern + a phantom how_genius_shows_up field that doesn't exist in the
+// schema, and dropped the rest on the floor. This helper unlocks: bullseye
+// sentence, Vibrational Key, Three Lenses actions / prime driver / archetype,
+// the appreciated-for scenes (concrete instances of the gift in motion), and
+// the elevator pitch.
+//
+// Size-disciplined: caps appreciatedFor at 2 entries, threeLenses.actions at 3,
+// truncates elevatorPitch to 200 chars. Total output stays under ~700 chars
+// even on the richest profiles. Returns "" if input is null/empty so the
+// caller can omit the section gracefully.
+//
+// `formatTopTalents` normalises the JSON `top_three_talents` field (usually
+// an array of strings or objects) into a readable line. Fixes a pre-existing
+// bug where template-stringifying the JSON yielded "[object Object]" or
+// unwieldy raw JSON in the prompt.
+
+type AppleseedShape = {
+  bullseyeSentence?: string;
+  vibrationalKey?: { name?: string; tagline?: string; tagline_simple?: string };
+  threeLenses?: {
+    actions?: string[];
+    primeDriver?: string;
+    primeDriver_meaning?: string;
+    archetype?: string;
+    archetype_meaning?: string;
+  };
+  appreciatedFor?: Array<{ effect?: string; scene?: string; outcome?: string }>;
+  elevatorPitch?: string;
+};
+
+export function deepZogSummary(appleseed: unknown): string {
+  if (!appleseed || typeof appleseed !== "object") return "";
+  const a = appleseed as AppleseedShape;
+  const lines: string[] = [];
+  if (a.bullseyeSentence) lines.push(`- Bullseye: ${a.bullseyeSentence}`);
+  const vk = a.vibrationalKey;
+  if (vk?.tagline || vk?.name) {
+    const head = vk.name ? `${vk.name}: ` : "";
+    lines.push(`- Vibrational key: ${head}${vk.tagline ?? vk.tagline_simple ?? ""}`);
+  }
+  const tl = a.threeLenses;
+  if (tl?.actions?.length) {
+    lines.push(`- 3 actions in their zone: ${tl.actions.slice(0, 3).join("; ")}`);
+  }
+  if (tl?.primeDriver) {
+    const m = tl.primeDriver_meaning ? ` (${tl.primeDriver_meaning})` : "";
+    lines.push(`- Prime driver: ${tl.primeDriver}${m}`);
+  }
+  if (tl?.archetype) {
+    const m = tl.archetype_meaning ? ` (${tl.archetype_meaning})` : "";
+    lines.push(`- Archetype reading: ${tl.archetype}${m}`);
+  }
+  if (a.appreciatedFor?.length) {
+    const af = a.appreciatedFor
+      .slice(0, 2)
+      .map((x) => `${x.effect ?? "?"} in ${x.scene ?? "?"} -> ${x.outcome ?? "?"}`)
+      .join(" | ");
+    lines.push(`- Appreciated-for scenes: ${af}`);
+  }
+  if (a.elevatorPitch) {
+    lines.push(`- Elevator pitch: ${a.elevatorPitch.slice(0, 200)}`);
+  }
+  return lines.join("\n");
+}
+
+export function formatTopTalents(value: unknown): string {
+  if (!value) return "—";
+  if (typeof value === "string") return value;
+  if (Array.isArray(value)) {
+    const items = value.slice(0, 3).map((v) => {
+      if (typeof v === "string") return v;
+      if (v && typeof v === "object") {
+        const o = v as Record<string, unknown>;
+        const candidate = o.name ?? o.title ?? o.label ?? o.text;
+        if (typeof candidate === "string") return candidate;
+        return JSON.stringify(v).slice(0, 80);
+      }
+      return String(v);
+    });
+    return items.join("; ");
+  }
+  return JSON.stringify(value).slice(0, 200);
+}
