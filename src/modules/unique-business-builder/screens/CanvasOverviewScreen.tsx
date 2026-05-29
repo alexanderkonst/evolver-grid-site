@@ -742,7 +742,8 @@ function ArtifactCard({ artifactKey }: { artifactKey: ArtifactKey }) {
                 whiteSpace: "nowrap",
               }}
             >
-              {state?.stalenessSource?.type === "prompt_changed"
+              {state?.stalenessSource?.type === "prompt_changed" ||
+              state?.stalenessSource?.type === "input_changed"
                 ? "re-improve"
                 : "re-derive"}
             </span>

@@ -171,9 +171,17 @@ export type ArtifactState = {
    *   Higher priority than `parent_relocked`: the founder's hand-tuned
    *   content is fine, but the AI's ceiling moved.
    *
-   * When both axes apply to the same artifact, `prompt_changed` wins —
-   * re-Improving against the new prompt produces a fresh ceiling, and a
-   * cascading parent change can be folded in by the same improve call.
+   * Phase 4b axis — `input_changed` (Day 78 — Sasha 2026-05-29): the founder
+   *   CONTEXT this artifact saw at lock time (mission, assets, ZoG snapshot
+   *   per ARTIFACT_INPUTS[key]) has drifted from the current local state.
+   *   Surfaces when row's `input_version_at_lock` ≠ inputVersionHash(current
+   *   rootContext, key). Priority is between the two: prompt_changed first
+   *   (the AI ceiling moved), input_changed second (founder reality drifted),
+   *   parent_relocked third (internal cascade).
+   *
+   * Priority when multiple axes fire: prompt_changed > input_changed >
+   * parent_relocked. The founder reads the copy to decide; a single
+   * re-Improve resolves all three at once.
    */
   stalenessSource?:
     | {
@@ -185,6 +193,11 @@ export type ArtifactState = {
         type: "prompt_changed";
         lockedVersion: string | null; // what was stamped at lock time (NULL = legacy)
         currentVersion: string; // current PROMPT_VERSION[key]
+      }
+    | {
+        type: "input_changed";
+        lockedVersion: string | null; // what was stamped at lock time (NULL = legacy)
+        currentVersion: string; // current inputVersionHash(rootContext, key)
       };
 };
 
