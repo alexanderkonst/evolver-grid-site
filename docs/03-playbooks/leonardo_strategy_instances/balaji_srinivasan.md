@@ -6,7 +6,7 @@
 
 ## Status
 
-**UPDATE (Day 86, May 28, 2026): v11 superseded by v12** (the KPI-synthesis convergence: the collaboration-rate wedge plus a binary-to-gradient competitive line). v12 is now the chosen send version; full text and rationale in Version history below. The v11 status note is preserved beneath as the prior send-ready state.
+**UPDATE (Day 86, May 28, 2026): final send version is v14.** The arc: v12 (KPI-synthesis convergence, collaboration-rate wedge plus binary-to-gradient line) → v13 (founder-market-fit reframe, natural leverage) → v14 (final: "are building" definition, parallel primitives, and the Leonardo-approved quiet-legacy close after ~5 rejected explicit-partnership attempts). Full text and rationale for each in Version history below. The v11 status note is preserved beneath as the prior send-ready state.
 
 **Send-ready as of May 21, 2026 (Day 78).** Channel: **Discord** (DM to Balaji). Message finalized at **v11**, converged from v10 same-day after Sasha realized the matching URL (`/ns/?path=match`) delivers all three primitives via in-product navigation. Three URLs collapsed to one. This proves the *all in one prototype* claim visually rather than verbally, and removes URL-parsing overhead for the reader. v11 is ~110 words: warm opening, frame extension, build-history grounded theory, single URL, simple free-pilot CTA. The compound-verb thread (*compounds for / compounds them / compound shipping*) runs through the three primitives as internal rhyme. v6 through v10 preserved in Version history. NS-skin live; Discord renders the OG card for the single URL cleanly. Reply-Ready Arsenal prepared and held for post-engagement. Send Tuesday or Wednesday morning SGT (Balaji's burst-read window).
 
@@ -542,7 +542,54 @@ GFOA's draft over-executed it: it lost the compound-verb thread, repeated "lever
 >
 > Appreciate you.
 
-**Lesson — take the concept, keep the craft.** When a late roast surfaces a truer concept (FMF / natural leverage), incorporate the conceptual gain but execute it at the prior version's discipline. Do not let the new concept re-bloat the form or sacrifice established craft jewels (the compound-verb thread). Sasha's frame on this pass: the layers open organically rather than from willful polishing; this one was a genuine gain, and also the completion. His call: "this is the last edit, indeed."
+**Lesson — take the concept, keep the craft.** When a late roast surfaces a truer concept (FMF / natural leverage), incorporate the conceptual gain but execute it at the prior version's discipline. Do not let the new concept re-bloat the form or sacrifice established craft jewels (the compound-verb thread). Sasha's frame on this pass: the layers open organically rather than from willful polishing; this one was a genuine gain.
+
+**This was the convergent draft. Superseded same-day by v14 (final), below.**
+
+---
+
+### v14 — final send version (May 28, 2026, Day 86)
+
+Three small refinements to v13, plus the closing line that resolved a long arc.
+
+- **Definition: "the share of members who are building together"** (was "find their people and start building together"). "Are building" is a clean current-state ratio, which is what a rate should be; "start... within a window" needed a timeframe that had been cut.
+- **Primitive 3: "what they build together"** (was "what they compound into"). Restores parallelism with primitives 1 and 2 (all clauses) after intermediate clunkers ("compounding product," "resulting product"). Drops the compound thread at line 3 but reads clean.
+- **"upstream" appears once; ">0" cut.** An intermediate pass introduced a double "upstream" and renamed the metric "collaboration growth rate" (a velocity term contradicting its share-definition); both reverted. A proposed ">0" on the directory/ecosystem line was cut: it cluttered the quotable line and reasserted a binary against the gradient.
+- **The closing line: the partnership arc resolved into a quiet legacy aside.** Across roughly five attempts (sounding board, support the transition, my mission too, build toward it with you, envision/build/scale), every explicit partnership-declaration hit the same Leonardo wall. The resolution is a quiet, hedged, non-clinging legacy aside that touches the bronze horse without claiming the relationship: *"Either way, I think this is part of how network states stop being discourse and start being real."* Last, quiet, humble, his legacy, no claim on the relationship.
+
+**Full v14 text (final, this is what gets sent):**
+
+> Hi Balaji,
+> I spent January at NS. Had a blast, thank you. Really.
+>
+> You named the shift: AI makes everyone a founder. The unresolved layer is founder-market fit: what to build, and who to build it with.
+>
+> I see an upstream metric driving GDP, member count, and network-state count.
+>
+> Collaboration rate: the share of members who are building together.
+>
+> The better a network helps people name and coordinate their natural leverage, the faster ventures and teams form.
+>
+> Without it, a network is a directory. With it, an ecosystem. It's the gas that fuels GDP, and almost nobody measures it.
+>
+> I've been building such a coordination layer since 2021.
+>
+> Three primitives, one prototype:
+>
+> 1. precision self-knowledge: where their leverage compounds
+> 2. precision matchmaking: who compounds with them
+> 3. precision venture-architecture: what they build together
+>
+> NS-skinned, forkable:
+> findyourtoptalent.com/ns/?path=match
+>
+> Free pilot with ~10 NSers, if useful.
+>
+> Either way, I think this is part of how network states stop being discourse and start being real.
+>
+> Appreciate you 💗
+
+**Lesson — the partnership is the seventeen years, not the first message.** The impulse to declare the partnership explicitly at the door is exactly what the strategy counsels against. Every gate (humble close, quiet-never-foregrounded bronze horse, non-clinging sovereignty, patient maturation) points the same way: embody the partnership in the quality of the message, touch the legacy quietly, and let the deep relationship reveal itself over time. The strongest close says the partnership by not saying it. Applies to every future patron outreach: resist the door-side partnership declaration; let the craft and a quiet legacy aside carry it.
 
 **This is what gets sent.**
 
@@ -584,7 +631,7 @@ GFOA's draft over-executed it: it lost the compound-verb thread, repeated "lever
 
 *(Updated after send and as the relationship develops.)*
 
-- **Sent:** [date / channel]
+- **Sent:** 2026-05-28 (Day 86), Discord DM to Balaji. v14 (final). Sent by Sasha on his own timing, after the full v0-to-v14 crafting arc.
 - **Reply:** [TBD]
 - **Pilot:** [TBD]
 - **Long arc:** [TBD]
