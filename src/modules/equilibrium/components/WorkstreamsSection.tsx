@@ -41,8 +41,10 @@ interface WorkstreamsSectionProps {
   onSelect: (id: string) => void;
   onAdd: (title: string) => Promise<void> | void;
   onRename: (id: string, title: string) => Promise<void> | void;
-  /** Soft-archive ("complete") — preserves data, reversible via onRestore. */
+  /** HARD delete — permanently removes the workstream + tasks. */
   onDelete: (id: string) => Promise<void> | void;
+  /** Complete (soft-archive) — moves to Completed pile, reversible. */
+  onComplete: (id: string) => Promise<void> | void;
   /** Restore a completed workstream back to active. */
   onRestore: (id: string) => Promise<void> | void;
   onReorder: (orderedIds: string[]) => Promise<void> | void;
@@ -66,6 +68,7 @@ export const WorkstreamsSection = ({
   onAdd,
   onRename,
   onDelete,
+  onComplete,
   onRestore,
   onReorder,
 }: WorkstreamsSectionProps) => {
@@ -134,6 +137,7 @@ export const WorkstreamsSection = ({
                 onSelect={() => handleSelect(w.id)}
                 onRename={(title) => onRename(w.id, title)}
                 onDelete={() => onDelete(w.id)}
+                onComplete={() => onComplete(w.id)}
               />
             ))}
           </ul>
@@ -212,7 +216,10 @@ interface SortableWorkstreamChipProps {
   loading: boolean;
   onSelect: () => void;
   onRename: (title: string) => Promise<void> | void;
+  /** HARD delete (with confirm). Removes workstream + tasks forever. */
   onDelete: () => Promise<void> | void;
+  /** Complete (soft-archive). Moves to Completed pile, reversible. */
+  onComplete: () => Promise<void> | void;
 }
 
 /**
@@ -247,6 +254,7 @@ const SortableWorkstreamChip = ({
   onSelect,
   onRename,
   onDelete,
+  onComplete,
 }: SortableWorkstreamChipProps) => {
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } =
     useSortable({ id: workstream.id });
@@ -450,6 +458,36 @@ const SortableWorkstreamChip = ({
         >
           <ArrowDown size={12} />
           tasks
+        </button>
+      )}
+
+      {/*
+        Complete workstream — soft-archive (Sasha 2026-05-29). Sits
+        BEFORE delete because complete is the friendlier, more common
+        outcome ("I finished this work"). Distinct from delete:
+          ✓ complete  — preserved in the Completed pile, reversible
+          🗑 delete   — gone forever, with confirm
+
+        Same visibility rule as the trash + pencil: always visible on
+        the active chip, hover-revealed on inactive chips.
+      */}
+      {!editing && (
+        <button
+          type="button"
+          aria-label="Complete workstream"
+          title={`Mark "${workstream.title}" complete — preserved in the Completed pile below`}
+          onClick={(e) => {
+            stop(e);
+            void onComplete();
+          }}
+          className={cn(
+            "shrink-0 rounded-full p-1.5 text-emerald-600/70 transition hover:bg-emerald-50 hover:text-emerald-700",
+            isActive
+              ? "opacity-100"
+              : "opacity-0 group-hover:opacity-100 focus-visible:opacity-100",
+          )}
+        >
+          <Check size={16} />
         </button>
       )}
 
