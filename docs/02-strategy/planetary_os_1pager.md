@@ -4,7 +4,7 @@
 
 *An operating system for a civilization that coordinates around who people actually are.*
 
-Planetary OS helps people find their unique contribution, find the right people to build with, and turn that into real ventures. It does the same thing at every scale: a person, a team, a community, a whole network state. The entire system runs on one core move: making a person's differentiated value legible enough that the right collaborations, ventures, and opportunities can form around it.
+Planetary OS helps people find their unique contribution, find the right people to build with, and turn that into real ventures. It does the same thing at every scale: a person, a team, a community, and ecosystems, evolution-oriented communities, network states, and land-based projects. The entire system runs on one core move: making a person's differentiated value legible enough that the right collaborations, ventures, and opportunities can form around it.
 
 ## The shift
 
@@ -33,12 +33,12 @@ The whole system exists to move one number: **collaboration rate**, the share of
 
 ## How it grows
 
-The same pattern runs at every scale, and it was proven on its own founder first, then a small founder cohort, before any network. The first holon tests every piece before the network inherits it. From one person, to a community, to a network state.
+The same pattern runs at every scale, and it was proven on its own founder first, then a small founder cohort, before any network. The first holon tests every piece before the network inherits it. From one person, to a community, to an ecosystem, a network state, a land-based project.
 
 ## How to touch it
 
-A person enters free, in about fifteen minutes, at findyourtoptalent.com. A community runs it as the coordination layer beneath its membership, skinned to its own brand. It is open-source and forkable, meant to be owned by the people who use it. And the whole project, docs and code, is one living, queryable knowledge base.
+A person enters free, in about fifteen minutes, at findyourtoptalent.com. A community, ecosystem, or network runs it as the coordination layer beneath its membership, skinned to its own brand. It is open-source and forkable, meant to be owned by the people who use it. And the whole project, docs and code, is one living, queryable knowledge base. See a live demo of the platform at findyourtoptalent.com/?path=match, or reach Aleksandr directly at t.me/integralevolution.
 
 ## The stake
 
-A civilization that organizes around who people actually are, instead of flattening them into standardized roles. Make differentiated human value legible, and everything else, the matching, the ventures, the network states, follows.
+A civilization that organizes around who people actually are, instead of flattening them into standardized roles. Make differentiated human value legible, and everything else, the matching, the ventures, the ecosystems and network states, follows.

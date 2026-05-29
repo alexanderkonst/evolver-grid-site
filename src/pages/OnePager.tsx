@@ -114,7 +114,7 @@ const OnePager = () => {
           <p className="mt-8 mx-auto max-w-[58ch] text-[15px] sm:text-base leading-relaxed" style={bodyStyle}>
             Planetary OS helps people find their unique contribution, find the right people to build
             with, and turn that into real ventures. It does the same thing at every scale: a person, a
-            team, a community, a whole network state. The entire system runs on one core move: making a
+            team, a community, and ecosystems, evolution-oriented communities, network states, and land-based projects. The entire system runs on one core move: making a
             person's differentiated value legible enough that the right collaborations, ventures, and
             opportunities can form around it.
           </p>
@@ -178,24 +178,46 @@ const OnePager = () => {
             <p className="text-[15px] sm:text-base leading-relaxed" style={bodyStyle}>
               The same pattern runs at every scale, and it was proven on its own founder first, then a small
               founder cohort, before any network. The first holon tests every piece before the network
-              inherits it. From one person, to a community, to a network state.
+              inherits it. From one person, to a community, to an ecosystem, a network state, a land-based project.
             </p>
           </Panel>
 
           <Panel eyebrow="How to touch it">
             <p className="text-[15px] sm:text-base leading-relaxed" style={bodyStyle}>
-              A person enters free, in about fifteen minutes. A community runs it as the coordination layer
+              A person enters free, in about fifteen minutes. A community, ecosystem, or network runs it as the coordination layer
               beneath its membership, skinned to its own brand. It is open-source and forkable, owned by the
               people who use it.
             </p>
-            <Link
-              to="/"
-              className="liquid-glass-strong mt-6 inline-flex items-center gap-3 rounded-full px-6 py-3.5 text-sm font-semibold tracking-wide transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
-              style={{ color: NAVY, textShadow: "0 1px 2px rgba(255,255,255,0.7)" }}
-            >
-              Find your top talent
-              <ArrowRight className="w-4 h-4 opacity-70" />
-            </Link>
+            <div className="mt-6 flex flex-col items-start gap-4">
+              <Link
+                to="/"
+                className="liquid-glass-strong inline-flex items-center gap-3 rounded-full px-6 py-3.5 text-sm font-semibold tracking-wide transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+                style={{ color: NAVY, textShadow: "0 1px 2px rgba(255,255,255,0.7)" }}
+              >
+                Find your top talent
+                <ArrowRight className="w-4 h-4 opacity-70" />
+              </Link>
+              <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-[13px]">
+                <Link
+                  to="/?path=match"
+                  className="inline-flex items-center gap-1.5 font-medium transition-opacity hover:opacity-70"
+                  style={{ color: "rgba(26,30,58,0.7)" }}
+                >
+                  See a live demo of the platform
+                  <ArrowRight className="w-3.5 h-3.5 opacity-60" />
+                </Link>
+                <a
+                  href="https://t.me/integralevolution"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 font-medium transition-opacity hover:opacity-70"
+                  style={{ color: "rgba(26,30,58,0.7)" }}
+                >
+                  Book a chat with Aleksandr
+                  <ArrowRight className="w-3.5 h-3.5 opacity-60" />
+                </a>
+              </div>
+            </div>
           </Panel>
         </div>
 
@@ -213,7 +235,7 @@ const OnePager = () => {
           >
             A civilization that organizes around who people actually are, instead of flattening them into
             standardized roles. Make differentiated human value legible, and everything else, the matching,
-            the ventures, the network states, follows.
+            the ventures, the ecosystems and network states, follows.
           </p>
         </section>
 

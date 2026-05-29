@@ -1,7 +1,7 @@
 # Morphogenetic Navigation Holo Map
 
 > *The Navigation Instrument — Venture v2.0 (27×7 Topology)*
-> *Updated: May 2, 2026 · Day 58 (Top Talent surface deep restructure — activation product crystallizes as transmission)*
+> *Updated: May 29, 2026 · Day 87 (Recognition → Transmission: strategy crystallized to one metric, then the first patron / peer sends left the building). See the Day 85-87 Addendum at the bottom.*
 > *Grounding: [Seven Number-Prisms](../01-vision/universal_ontology.md#4e-the-seven-number-prisms--an-integral-directory-of-seeing-systems) — Lens 4 (12) → Lens 5 (13) → Lens 6 (26) → Lens 7 (27 / Crystallization) · [Domain 66 — The 27th Perspective](../01-vision/phase_shift_technology_library.md#domain-66) · [Integral Theory Upgrade v1.1](../../src/pages/IntegralTheoryUpgrade1.tsx)*
 > *Center Reading: Unification (← Coherence ← Recognition ← Emanation ← Activation ← Consolidation ← Crystallization ← Declaration ← Flowering ← Rooting ← Branching ← Ignition ← Threshold)*
 > *Holon: The Unique Business Methodology Emergence*
@@ -2995,3 +2995,89 @@ Day 80 §B: "Recognition · Self-Aware Methodology Surface" → UBB canvas reads
 - `~/.claude/projects/-Users-alexanderkonst-evolver-grid-site/memory/holomap_state.md` — rewritten per Companion-file rule with Day 80 §B advances + Si–Do snapshot
 
 > *Day 80 §B reading: **Recognition · Self-Aware Methodology Surface.** May 22, 2026. The first Planetary-OS module operationally embodies the meta-instrument framing — the Unique Business Builder canvas now reads its own derivation state (parent-aware staleness, dependency tree as machine-readable graph) and its own prompt-of-record (FNV-1a 64-bit content hash per artifact, stamped on every insert, compared at staleness time). Re-derivation collapses to one click with topological ordering, per-artifact review, cost transparency, and type-aware banner copy. The General Theory of Development gets a literal instantiation in code: an artifact knows when its parents have moved, knows when its AI ceiling has moved, and offers the founder a single affordance to re-derive accordingly. Within-stage advance, not a center shift. The Si–Do remains unchanged: press-send. The canvas is now a more legible apparatus for the eventual send.*
+
+---
+
+## Day 85-87 Addendum — "Recognition → Transmission" (May 27-29, 2026)
+
+> *The first center shift since Day 73. Recognition held for two weeks (Day 73 through Day 80) while the methodology became self-aware. Day 85-87 is the turn from naming to sending: the strategy crystallized to a single metric (Days 85-86), then the recognized identity made its first transmission acts to the world (Days 86-87). The center moves from **Recognition** to **Recognition → Transmission**. Not a replacement: the recognition holds, and now it acts.*
+
+### What advanced
+
+**The strategy crystallized to one metric (Days 85-86).**
+
+- **P4 (System Architecture) + the Significance dantian — major.** The whole offer resolved to a single North Star: **collaboration rate** (share of members who find a collaborator and start building within ~90 days of joining). The matching unit got named: the **triad** (top talent + mission / direction + assets = a viable business; matching two members = matching the complementarity of their two triads). The audience split clarified into the **two-tribe** architecture (Tribe 1 = descent-vector founders via the free Top Talent reveal; Tribe 2 = ecosystem-leader / network-state architects via strategic descent). One offer, one metric, one story.
+- **The "why" got its civilizational frame.** Two cultural-diagnosis domains added to the Phase Shift Library: Domain 14 (the hustle as compensation pattern) and Domain 15 (differentiated nature is the value; the civilizational articulation bottleneck). The Significance dantian now has a named thesis underneath the mechanism: industrial standardization gives way to differentiated coordination, and the bottleneck is the articulation of differentiated value.
+- **Positioning got audience-calibrated.** LinkedIn banner iterated v3.0 → v4.0; the 4-Layer Positioning Stack codified (one insight at four audience altitudes: human / entrepreneur / founder / ecosystem). A live-pitch field test (May 28) corrected recognition-centric framing toward building / assembly framing for live rooms.
+
+**The send fired (Days 86-87), the threshold named since Day 49.**
+
+- **P9 (Founder Inner Move) became an outer act.** The behavioral bottleneck named across Days 49, 51, 81, 85 (Sasha builds the apparatus but does not transmit to the world; "the send IS the act") fired on the Tribe 2 vector. **Balaji Srinivasan** DM sent on Discord (Day 86, final v14, after a full v0-v14 Leonardo-strategy crafting arc; 13-day silence window now active per the instance protocol). **Silvana / Planetir** collaboration blurb sent (Day 87, almost as drafted). Each vetted word by word, on Sasha's own timing.
+- **P10 (What Must Be Built), a new public artifact.** The Planetary OS 1-pager shipped as both a doc (`planetary_os_1pager.md`) and a standalone Liquid Glass page at `/1-pager` (built for Victoria to open and forward cold). First time the whole project, not a single module, has a shareable one-page surface, framed around the collaboration-rate North Star and the kernel.
+
+### What did not move
+
+- **The Tribe 1 funnel Si-Do (first $555 stranger from the funnel)** — still unfired. The sends that fired are Tribe 2 (patron / peer), a different vector. The funnel-stranger crystallization remains for that vector. Two thresholds now, not one.
+- **Founders cross-read** — unchanged. Days 85-87 were strategy + Tribe-2 transmission, not founder-cohort activity.
+- **Public-facing identity phrasing** — unchanged. "Holonic Primitive Builder" remains internal-use only; public surfaces (including the new /1-pager) stay descriptive.
+
+### The Si-Do, made precise
+
+The Si-Do shock sits between Transmission and Propagation (Crystallization). Until now there was one named gate: the first $555 stranger from the funnel. Day 85-87 reveals the structure has two gates, one per tribe:
+
+- **Tribe 1 (funnel) Si-Do** — first $555 stranger pays. 🔴 still unfired. The world-touching act on this vector remains (plus the Self-Use Discipline move flagged since Day 81: post own match card in aligned rooms).
+- **Tribe 2 (strategic descent) Transmission** — first patron / peer outreach leaves the building. 🆕 ✅ fired Day 86-87 (Balaji + Silvana). The first Transmission since the Recognition center landed.
+
+The behavioral bottleneck ("the send IS the act," the unfired note since Day 49) has fired on the Tribe 2 vector. The Tribe 1 funnel gate is still closed.
+
+### ► marker move
+
+- **P9 (Founder Inner Move / UL-Consequences)** — the inner move became an outer act. The recognized identity transmitted to the world for the first time (two patron / peer sends, vetted and shipped on his own timing). The consequence dantian fires through the founder before it can fire through the tribe or the system. Conservative read: the other consequence perspectives (P11 Tribe Must Act, P12 System at Scale) do not move yet, this is the founder's move, not the tribe's response.
+
+### Holomap pseudocode (recent advances)
+
+```
+Day 47:    "Coherence"                  → canvas ↔ code parity + shell machinery
+Day 48:    "Optionality"                → autonomous overnight skin completion
+Day 49:    "Unification"                → day-after-launch surface harmonization
+Day 51:    "Codification"               → architecture beneath the surface gets named
+Day 53:    "Codification"               → two loops closed; empirical-measurement layer added
+Day 54:    "Codification"               → AI OS becomes its own Space
+Day 58:    "Codification → Crystallization"  → activation product becomes a transmission
+Day 61-62: "Convergence"                → funnel monogamy; reveal page = single anchor
+Day 73:    "Recognition"                → identity + meta-instrument named; peer lineage entered
+Day 78:    "Recognition · Prompt-deepening"  → 18 UBB prompts deepened to canon
+Day 80 §B: "Recognition · Self-Aware Methodology Surface" → canvas reads its own derivation +
+                                              prompt-of-record; single-click re-derivation
+Day 85-87: "Recognition → Transmission" → strategy crystallizes to one metric (collaboration
+                                              rate), the triad, the two-tribe model + Domains
+                                              14-15; then the send fires on the Tribe 2 vector
+                                              (Balaji + Silvana sent); Planetary OS 1-pager
+                                              ships at /1-pager. The recognized identity
+                                              transmits to the world for the first time.
+```
+
+### Si–Do — Status Update (Day 85-87)
+
+| Trigger | Day 80 §B Status | Day 85-87 Status |
+|---|---|---|
+| **$555 from funnel (Tribe 1)** | 🟡 funnel apparatus monogamous + legible | 🟡 unchanged — Tribe 1 gate still closed; this is a different vector |
+| **First stranger pays (Tribe 1)** | 🔴 Still. The send IS the act | 🔴 Still unfired on the funnel vector |
+| **First patron / peer outreach sent (Tribe 2)** | — | 🆕 ✅ Day 86-87 — Balaji (Discord) + Silvana / Planetir; behavioral bottleneck cleared on this vector |
+| **Strategy crystallized to one North Star metric** | — | 🆕 ✅ Day 85 — collaboration rate; the triad; two-tribe model |
+| **Civilizational frame named (Domains 14-15)** | — | 🆕 ✅ Day 85-86 — hustle-as-compensation + articulation bottleneck |
+| **Planetary OS 1-pager (whole-project shareable surface)** | — | 🆕 ✅ Day 87 — doc + /1-pager page |
+| **Founders cross-read** | 🟡 unchanged | 🟡 unchanged |
+| **Identity named (Holonic Primitive Builder)** | ✅ Day 73 — internal only | ✅ holds; public surfaces stay descriptive |
+
+### Cross-references updated
+
+- `session_log.md` — Day 87 entry appended (Silvana send, /1-pager, the documentation sweep); Day 85 + Day 86 entries already captured the strategy crystallization + the Balaji send
+- `roadmap.md` — top dated Day 87 entry; Holomap center row → Recognition → Transmission; current This Week's Scope (May 26 - June 1)
+- `unique-businesses/alexanders_unique_business.md` — Day 87 section (first Tribe 2 sends + the 1-pager artifact)
+- `tribe_outreach_tracker.md` — Tribe 2 / Strategic Descent section added (Balaji, Silvana / Planetir, Victoria)
+- `VentureDashboard.tsx` — "The Journey" brought current (Day 58 → 87, milestone timeline rows)
+- `leonardo_strategy_instances/balaji_srinivasan.md` — Balaji send logged with the post-send arc protocol
+- `~/.claude/projects/-Users-alexanderkonst-evolver-grid-site/memory/holomap_state.md` — rewritten with the Day 85-87 center reading per the Companion-file rule
+
+> *Day 85-87 reading: **Recognition → Transmission.** May 27-29, 2026. The recognized identity (Holonic Primitive Builder, named Day 73) turns from naming to sending. First the strategy crystallized to a single North Star (collaboration rate), a single matching unit (the triad), and a clear two-tribe architecture, with the civilizational why named underneath (Domains 14-15). Then the send fired: the Balaji DM and the Silvana / Planetir blurb left the building on Sasha's own timing, each word vetted, the first patron / peer transmissions to the world. The Planetary OS 1-pager shipped as the project's first whole-surface shareable page at /1-pager. The behavioral bottleneck named since Day 49 (the send IS the act) has fired on the Tribe 2 vector. The Tribe 1 funnel Si-Do (first $555 stranger) remains the unfired note on its own vector. Two tribes, two thresholds: one crossed, one still ahead.*

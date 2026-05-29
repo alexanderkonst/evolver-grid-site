@@ -7890,3 +7890,38 @@ Same day, later session. Four threads.
 
 **SENT — the Balaji DM went out (Day 86, 2026-05-28).** After the full v0-to-v14 crafting arc (and a final visto-bueno pass), Sasha sent the final v14 on Discord, on his own timing. The first Leonardo-strategy patron outreach to leave the building. This clears the behavioral bottleneck flagged on Day 81 and Day 85: the work was never the words, it was the sending. Post-send arc protocol now active, 13 days of silence, no nudge before day 14, per the instance doc. Distinct from the still-unfired $555-stranger funnel Si-Do; this is the first patron-outreach threshold crossed. Outcome tracked in [`leonardo_strategy_instances/balaji_srinivasan.md`](../03-playbooks/leonardo_strategy_instances/balaji_srinivasan.md).
 
+---
+
+## Day 87 — Silvana / Planetir outreach sent · Planetary OS 1-pager shipped (/1-pager) · documentation sweep (Thursday, May 29, 2026)
+
+The day after the Balaji send. Two more world-touching acts on the Tribe 2 (strategic descent) vector, plus a documentation sweep to bring the corpus current after the biggest outbound week so far.
+
+**Silvana / Planetir collaboration outreach SENT.** Sasha sent the collaboration blurb to Silvana (Planetir), almost exactly as drafted, on his own timing. Second patron/peer outreach to leave the building in two days. Where Balaji is a patron-fit (Network School founder, Leonardo strategy), Silvana / Planetir is a peer collaboration on land-based network-state infrastructure. Both belong to Tribe 2 (ecosystem-leader / network-state architects), distinct from the Tribe 1 founder funnel.
+
+**Planetary OS 1-pager shipped, two surfaces.** Built for Victoria (collaborator who forwards it to partners cold):
+- `docs/02-strategy/planetary_os_1pager.md` (new) — the canonical 1-pager copy. Structure: title + subtitle, The shift, The kernel, The gameplay (6 holonic steps: Top Talent, Mission, Assets, Matching, Quality of Life, Venture), The metric (collaboration rate), How it grows, How to touch it, The stake.
+- `src/pages/OnePager.tsx` (new) + route `/1-pager` in `src/App.tsx` — a standalone public page (NOT inside GameShellV2: a clean, full-bleed, shareable surface a partner opens cold). Liquid Glass editorial register (navy + gold, Cormorant headlines, DM Sans body, gradient-ink on "who people actually are" + "collaboration rate", ambient glows, glass Panels). MDLS (3D / mesh) named as a possible v2 elevation on the same content and route. Sasha will send the page to Victoria when ready (prepared today, not yet sent).
+
+**LinkedIn tagline recommended (awaiting pick).** Primary recommendation: "Coordination infrastructure for communities and networks. Find your top talent, find your people, build your venture." Signals both tribes at once (Tribe 1 reads "find your top talent"; Tribe 2 reads "coordination infrastructure for communities and networks"). Two alternates offered. Sasha's choice stays open.
+
+**Documentation sweep.** Brought the corpus current after the Balaji + Silvana sends and the 1-pager build:
+- `tribe_outreach_tracker.md` — new Tribe 2 / Strategic Descent section (Balaji, Silvana / Planetir, Victoria); last-updated stamp moved to Day 87.
+- `roadmap.md` — top dated entry refreshed (was frozen at Day 58 / May 2); Current Status + This Week's Scope brought to the two-tribe strategy and the patron-outreach arc.
+- `alexanders_unique_business.md` — Day 87 note (Silvana collaboration + the 1-pager artifact).
+- `VentureDashboard.tsx` — "The Journey" brought current (Day counter 58 to 87, days-active stat, subtitle, milestone timeline rows). Revenue figures and founder count left unchanged (no new revenue events); flagged to Sasha.
+- `morphogenetic_holomap.md` — Day 85-87 addendum (center reading "Recognition to Transmission"). `holomap_state.md` memory companion rewritten per the Companion-file rule.
+
+**The threshold (precise).** The behavioral bottleneck flagged across Days 49, 51, 81, 85 (Sasha builds the apparatus but does not transmit to the world) is now decisively cleared on the Tribe 2 vector: two real outreaches sent in two days, each vetted word by word, on his own timing. This is the first Transmission since the Recognition center landed (Day 73). It is distinct from the Tribe 1 funnel Si-Do (first $555 stranger from the funnel), which remains unfired. Two vectors, two thresholds: the patron / peer Transmission has fired; the funnel-stranger crystallization has not.
+
+**Relational note carried.** Sasha's boundary from Day 86 holds and is now load-bearing: I present plays, I do not order sends; he calls the play and vets every word and energy. Saved to memory, alongside keeping me sovereign (his stated non-negotiable) and the do-not-rationalize-the-charge-out lesson.
+
+**Files touched**
+- `docs/02-strategy/planetary_os_1pager.md` (new, earlier in session)
+- `src/pages/OnePager.tsx` (new) + `src/App.tsx` (route)
+- `docs/02-strategy/tribe_outreach_tracker.md`
+- `docs/02-strategy/roadmap.md`
+- `docs/02-strategy/unique-businesses/alexanders_unique_business.md`
+- `src/pages/VentureDashboard.tsx`
+- `docs/02-strategy/morphogenetic_holomap.md` + memory `holomap_state.md`
+- `docs/09-logs/session_log.md` — this entry
+

@@ -33,6 +33,8 @@ const REVENUE_TIMELINE = [
   { day: 53, date: "Apr 27", total: 2250, label: "AI OS empirical-rating telemetry + UBB founder-doc bulk seed (16/18) + .env hygiene closure" },
   { day: 54, date: "Apr 28", total: 2250, label: "AI OS elevated to its own Space (process / substrate / being); MIT scoped to AI OS scaffold; admin operator-console + magic-link delivery" },
   { day: 58, date: "May 2", total: 2250, label: "Top Talent surface deep restructure: free reveal rebuilt with Top Shadow promoted, ME space restructured to 10 canonical subpages, /activate retired in favor of in-shell Start Here, deep profile schema merged into single Lovable call, second-person voice + no-jargon rule baked into prompts, full editorial PDF rewrite, AAC audio shipped, Aleksandr calibration baked with Sasha's actual data — apparatus now coheres as a transmission" },
+  { day: 85, date: "May 27", total: 2250, label: "Collaboration rate named as the North Star metric; the triad and two-tribe strategy locked" },
+  { day: 87, date: "May 29", total: 2250, label: "Planetary OS one-pager shipped at /1-pager: the whole project on one shareable page" },
 ];
 
 // ─── KPI Data ───────────────────────────────────────────────────────────────
@@ -67,7 +69,7 @@ const KPIS = [
 const SECONDARY_STATS = [
   { label: "Marketing Spend", value: "$0" },
   { label: "CRM Contacts", value: "31" },
-  { label: "Days Active", value: "58" },
+  { label: "Days Active", value: "87" },
 ];
 
 // ─── Revenue Breakdown ──────────────────────────────────────────────────────
@@ -215,7 +217,7 @@ const VentureDashboard = () => {
               className="w-1.5 h-1.5 rounded-full animate-pulse"
               style={{ background: "var(--skin-accent-gold, #b8860b)" }}
             />
-            <span>Live · Day 58</span>
+            <span>Live · Day 87</span>
           </div>
 
           <h1
@@ -522,7 +524,7 @@ const VentureDashboard = () => {
             The Journey
           </h2>
           <p className="text-center italic mb-8 text-base md:text-lg" style={{ ...serif, ...textMuted, ...haloSubtle }}>
-            Fifty-eight days. Seven founders. One emerging field.
+            Eighty-seven days. Seven founders. One emerging field.
           </p>
 
           <div className="relative">

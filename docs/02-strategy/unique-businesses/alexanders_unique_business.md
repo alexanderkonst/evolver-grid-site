@@ -616,6 +616,34 @@ One insight (articulate your natural leverage, so the right people and ventures 
 
 ---
 
+### Day 87 — First Tribe 2 sends + Planetary OS 1-pager (Thursday, May 29, 2026)
+
+> *The strategy crystallized on Days 85-86 met the world on Days 86-87. Two patron / peer outreaches left the building, and the project got its first standalone public 1-pager. This section captures the outbound and the artifact; the holomap reads the threshold.*
+
+#### The threshold crossed (Tribe 2 / Strategic Descent)
+
+The behavioral bottleneck (build the apparatus, do not transmit) cleared on the Tribe 2 vector across two days:
+
+- **Balaji Srinivasan** (Network School founder, patron-fit). Final v14 sent on Discord, Day 86 (2026-05-28), on Sasha's own timing. Leonardo strategy. Post-send protocol active: 13 days of silence, no nudge before day 14. Full lineage and outcome tracking in [`leonardo_strategy_instances/balaji_srinivasan.md`](../../03-playbooks/leonardo_strategy_instances/balaji_srinivasan.md).
+- **Silvana / Planetir** (peer collaboration on land-based network-state infrastructure). Collaboration blurb sent Day 87 (2026-05-29), almost exactly as drafted. Awaiting reply.
+
+Both are Tribe 2 (ecosystem-leader / network-state architects), distinct from the Tribe 1 founder funnel. The Tribe 1 Si-Do (first $555 stranger from the funnel) remains unfired: two vectors, two thresholds. The patron / peer Transmission has fired; the funnel-stranger crystallization has not.
+
+#### Planetary OS 1-pager (new public artifact)
+
+Built for Victoria (collaborator who forwards it to partners cold). Two surfaces:
+
+- **Doc:** [`planetary_os_1pager.md`](../planetary_os_1pager.md). Canonical copy. Structure: title + subtitle, The shift, The kernel, The gameplay (6 holonic steps: Top Talent, Mission, Assets, Matching, Quality of Life, Venture), The metric (collaboration rate), How it grows, How to touch it, The stake.
+- **Page:** `src/pages/OnePager.tsx` at route `/1-pager`. Standalone (NOT inside GameShellV2: a clean, full-bleed, shareable surface a partner opens cold). Liquid Glass editorial register (navy + gold, Cormorant headlines, DM Sans body, gradient-ink on "who people actually are" and "collaboration rate"). MDLS (3D / mesh) named as a possible v2 elevation on the same content and route. Prepared today; Sasha sends to Victoria when ready.
+
+First time the whole project (not a single module) has a standalone shareable 1-pager surface, framed around the collaboration-rate North Star and the kernel.
+
+#### LinkedIn tagline (recommended, awaiting pick)
+
+Primary: *"Coordination infrastructure for communities and networks. Find your top talent, find your people, build your venture."* Signals both tribes at once (Tribe 1 hears "find your top talent"; Tribe 2 hears "coordination infrastructure for communities and networks"). The 4-Layer Positioning Stack (Day 86) governs which single layer to lead with in a given room; this tagline is the both-tribes default for the profile header. Sasha's choice stays open.
+
+---
+
 ## Table of Contents
 
 ### I. Core Artifacts (The 14-Domain OS)
