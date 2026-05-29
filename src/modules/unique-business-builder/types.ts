@@ -137,6 +137,14 @@ export type VersionRow<TContent = unknown> = {
    * PROMPT_VERSION[artifact_key] to flag "prompt-stale" artifacts.
    */
   prompt_version_at_lock: string | null;
+  /**
+   * Day 78 (Sasha 2026-05-21), Phase 4: 12-char content-hash of the founder
+   * CONTEXT (per ARTIFACT_INPUTS) that produced this row. NULL on legacy rows
+   * from before the migration. Compared in the frontend (Phase 4b) against
+   * the current local-state input hash to flag "input-stale" artifacts
+   * (mission edited, assets added, ZoG resnapshot since lock).
+   */
+  input_version_at_lock: string | null;
 };
 
 // ============================================================================
@@ -204,12 +212,16 @@ export type ImproveResult = {
   specificity_delta: number;
   crystallized_action: string;
   diminishing_returns: boolean;
+  /** Day 78 Phase 4: input-version hash stamped by the edge function. */
+  input_version_at_lock?: string;
 };
 
 export type GenerateResult = {
   content: unknown;
   initial_specificity: number;
   crystallized_action: string;
+  /** Day 78 Phase 4: input-version hash stamped by the edge function. */
+  input_version_at_lock?: string;
 };
 
 export type EdgeFunctionError = {

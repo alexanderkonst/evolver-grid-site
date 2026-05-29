@@ -63,6 +63,11 @@ type DbRow = {
    * before the migration — treated as "unknown" (no prompt-stale flag).
    */
   prompt_version_at_lock?: string | null;
+  /**
+   * Day 78 (Sasha 2026-05-21), Phase 4 of UBB staleness UX. NULL on rows
+   * from before the migration — treated as "unknown" (no input-stale flag).
+   */
+  input_version_at_lock?: string | null;
 };
 
 // Day 80 Wave 2.20 (Sasha 2026-05-22): defensive bridge for the
@@ -89,6 +94,22 @@ const stripPromptVersion = <T extends Record<string, unknown>>(payload: T): Omit
   return rest;
 };
 
+// Day 78 Phase 4 (Sasha 2026-05-21): parallel defensive bridge for the
+// input_version_at_lock column. Same pattern, same shape, same lifetime as
+// promptVersionColumnAvailable above. When the column hasn't propagated yet,
+// strip it from the insert and let the row write with NULL — staleness Phase
+// 4b (frontend mirror + compute) reads NULL as "unknown" / no flag.
+let inputVersionColumnAvailable = true;
+const isInputVersionSchemaCacheMiss = (err: unknown): boolean => {
+  if (!err || typeof err !== "object") return false;
+  const msg = ((err as { message?: string }).message ?? "") + "";
+  return /input_version_at_lock/.test(msg) && /schema cache/i.test(msg);
+};
+const stripInputVersion = <T extends Record<string, unknown>>(payload: T): Omit<T, "input_version_at_lock"> => {
+  const { input_version_at_lock: _drop, ...rest } = payload;
+  return rest;
+};
+
 function rowToVersion(row: DbRow): VersionRow {
   return {
     id: row.id,
@@ -104,6 +125,9 @@ function rowToVersion(row: DbRow): VersionRow {
     created_at: row.created_at,
     // Day 74 Phase 2: defaults to null on legacy rows from before the migration.
     prompt_version_at_lock: row.prompt_version_at_lock ?? null,
+    // Day 78 Phase 4: defaults to null on legacy rows; staleness compute
+    // (Phase 4b — frontend mirror) treats NULL as "unknown — do not flag."
+    input_version_at_lock: row.input_version_at_lock ?? null,
   };
 }
 
@@ -247,6 +271,23 @@ export function UniqueBusinessProvider({ children }: { children: ReactNode }) {
   const [userId, setUserId] = useState<string | null>(null);
   const [zogSnapshot, setZogSnapshot] = useState<Record<string, unknown> | null>(null);
   const [excaliburData, setExcaliburData] = useState<Record<string, unknown> | null>(null);
+  // Day 78 Phase 1 (Sasha 2026-05-21): mission_statement + mission_discovered_at
+  // loaded from game_profiles, forwarded into root_context.mission for the
+  // edge functions. Previously the AI prompts saw nothing about the founder's
+  // mission. See docs/specs/ubb-deep-context/.
+  const [mission, setMission] = useState<{ sentence: string; discovered_at: string | null } | null>(null);
+  // Day 78 Phase 2 (Sasha 2026-05-21): user_assets inventory loaded from DB,
+  // forwarded into root_context.assets. Distribution + value-ladder artifacts
+  // were operating blind without this; with it, reach / frictionless_purchase /
+  // surface_inventory / delivery / value_ladder ground in real inventory.
+  // Each row mapped from DB shape (snake_case) to SavedAsset (camelCase).
+  type AssetRow = { typeId: string; subTypeId: string | null; categoryId: string | null; title: string; description: string | null };
+  const [assets, setAssets] = useState<AssetRow[] | null>(null);
+  // Day 78 Phase 1 amendment: when generating with input-thin context (no
+  // mission or no assets), surface a single non-blocking toast per session
+  // so the user knows the ceiling will lift once they save those. Replaced
+  // by the persistent banner in Phase 4 (input-staleness axis).
+  const inputThinNoticeShownRef = useRef(false);
   // Day 53 night iter 3 (Sasha 2026-04-27): tracks whether the initial
   // artifacts fetch has completed. Without this, surfaces can't tell
   // "loading" apart from "fresh user with zero artifacts" — both states
@@ -327,6 +368,50 @@ export function UniqueBusinessProvider({ children }: { children: ReactNode }) {
           }
         } catch (e) {
           console.warn("[UBB] zog_snapshot load failed (non-fatal):", e);
+        }
+
+        // Day 78 Phase 1 (Sasha 2026-05-21): load mission_statement +
+        // mission_discovered_at from game_profiles. Non-fatal if missing;
+        // the rootContext memo will simply omit the mission field.
+        try {
+          const { data: profileRows } = await (supabase as any)
+            .from("game_profiles")
+            .select("mission_statement, mission_discovered_at")
+            .eq("user_id", uid)
+            .limit(1);
+          if (cancelled) return;
+          const row = profileRows?.[0];
+          if (row?.mission_statement) {
+            setMission({
+              sentence: row.mission_statement,
+              discovered_at: row.mission_discovered_at ?? null,
+            });
+          }
+        } catch (e) {
+          console.warn("[UBB] mission load failed (non-fatal):", e);
+        }
+
+        // Day 78 Phase 2 (Sasha 2026-05-21): load user_assets inventory.
+        // Non-fatal if missing; rootContext memo omits assets when null.
+        // Maps DB snake_case fields to the SavedAsset-shaped camelCase the
+        // edge function expects via assetsSummary.
+        try {
+          const { data: assetRows } = await (supabase as any)
+            .from("user_assets")
+            .select("type_id, sub_type_id, category_id, title, description")
+            .eq("user_id", uid);
+          if (cancelled) return;
+          if (Array.isArray(assetRows) && assetRows.length) {
+            setAssets(assetRows.map((r: any) => ({
+              typeId: r.type_id,
+              subTypeId: r.sub_type_id,
+              categoryId: r.category_id,
+              title: r.title,
+              description: r.description,
+            })));
+          }
+        } catch (e) {
+          console.warn("[UBB] assets load failed (non-fatal):", e);
         }
 
         // Load all artifact rows for this user (v2.0 keys only)
@@ -432,8 +517,10 @@ export function UniqueBusinessProvider({ children }: { children: ReactNode }) {
     return {
       zog_snapshot: zogSnapshot ?? {},
       ...(excaliburData ? { excalibur_data: excaliburData } : {}),
+      ...(mission ? { mission } : {}),
+      ...(assets && assets.length ? { assets } : {}),
     };
-  }, [zogSnapshot, excaliburData]);
+  }, [zogSnapshot, excaliburData, mission, assets]);
 
   // --- Actions ---
 
@@ -442,6 +529,19 @@ export function UniqueBusinessProvider({ children }: { children: ReactNode }) {
       if (!userId) {
         toast.error("Please sign in first.");
         return;
+      }
+      // Day 78 Phases 1+2 amendment: input-thin notice (one-per-session).
+      // When mission or assets are missing, the prompts run with weaker
+      // context. We generate anyway (per planning SoW decision 3, graceful
+      // degradation), but tell the user once.
+      if ((!mission || !assets || assets.length === 0) && !inputThinNoticeShownRef.current) {
+        const missingParts: string[] = [];
+        if (!mission) missingParts.push("mission");
+        if (!assets || assets.length === 0) missingParts.push("assets");
+        toast.message(
+          `Tip: save your ${missingParts.join(" + ")} first for sharper artifacts. Continuing with what we have.`
+        );
+        inputThinNoticeShownRef.current = true;
       }
       setIsGenerating(key);
       try {
@@ -555,7 +655,7 @@ export function UniqueBusinessProvider({ children }: { children: ReactNode }) {
         setIsGenerating(null);
       }
     },
-    [userId, getSiblingContext, rootContext]
+    [userId, mission, assets, getSiblingContext, rootContext]
   );
 
   const improveArtifact = useCallback(

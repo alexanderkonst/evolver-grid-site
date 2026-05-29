@@ -11,14 +11,15 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import {
   ARTIFACT_CONFIGS,
+  ARTIFACT_INPUTS,
   ROAST_PROTOCOL,
   SYNTHESIS_PROTOCOL_PROMPT,
   UBB_LANGUAGE_GUIDELINES,
   UBB_DISTILLATION_DIRECTIVE,
   MODEL,
   AI_GATEWAY_URL,
-  deepZogSummary,
-  formatTopTalents,
+  buildRootSummary,
+  inputVersionHash,
   type ArtifactKey,
 } from "../_shared/ubb-prompts.ts";
 
@@ -35,6 +36,8 @@ type ImproveBody = {
   root_context: {
     zog_snapshot: Record<string, unknown>;
     excalibur_data?: Record<string, unknown>;
+    mission?: { sentence: string; discovered_at: string | null };
+    assets?: Array<{ typeId?: string; subTypeId?: string | null; categoryId?: string | null; title?: string; description?: string | null }>;
   };
   previous_versions?: unknown[];
 };
@@ -47,6 +50,8 @@ type ImproveResult = {
   specificity_delta: number;
   crystallized_action: string;
   diminishing_returns: boolean;
+  // Day 78 Phase 4 (Sasha 2026-05-21): see generate-artifact.GenerateResult.
+  input_version_at_lock: string;
 };
 
 serve(async (req) => {
@@ -122,19 +127,10 @@ noise the iteration is correctly shedding.`;
       .map(([k, v]) => `- ${k} (specificity ${v.specificity}): ${JSON.stringify(v.content).slice(0, 400)}`)
       .join("\n");
 
-    const zog = root_context?.zog_snapshot || {};
-    // Day 78 Phase 0 (Sasha 2026-05-21): pass the rich appleseed_data through
-    // via deepZogSummary. Previously the edge fn dropped it on the floor.
-    // formatTopTalents normalises the JSON top_three_talents field.
-    const rootSummary = [
-      `- Top talent: ${formatTopTalents((zog as any).top_three_talents)}`,
-      `- Archetype: ${(zog as any).archetype_title || "—"}`,
-      `- Core pattern: ${(zog as any).core_pattern || "—"}`,
-      deepZogSummary((zog as any).appleseed_data),
-      root_context?.excalibur_data ? `- Legacy business: ${JSON.stringify(root_context.excalibur_data).slice(0, 400)}` : "",
-    ]
-      .filter(Boolean)
-      .join("\n");
+    // Day 78 Phase 3 (Sasha 2026-05-21): per-artifact rootSummary via
+    // ARTIFACT_INPUTS relevance map. See generate-artifact for full context.
+    const inputs = ARTIFACT_INPUTS[artifact_key];
+    const rootSummary = buildRootSummary(root_context, inputs);
 
     const previousSummary = previous_versions.length
       ? previous_versions
@@ -252,6 +248,11 @@ vocabulary appears nowhere in any string field except the quadrant codes.`;
         { status: 502, headers: { ...corsHeaders, "Content-Type": "application/json" } }
       );
     }
+
+    // Day 78 Phase 4 (Sasha 2026-05-21): stamp the input-version hash on the
+    // response so the frontend can write it to `input_version_at_lock`.
+    // See generate-artifact for full context.
+    result.input_version_at_lock = inputVersionHash(root_context, artifact_key);
 
     // Enforce monotonic invariant — override if model lied
     if (

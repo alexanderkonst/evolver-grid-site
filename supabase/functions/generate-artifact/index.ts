@@ -10,13 +10,14 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import {
   ARTIFACT_CONFIGS,
+  ARTIFACT_INPUTS,
   SYNTHESIS_PROTOCOL_PROMPT,
   UBB_LANGUAGE_GUIDELINES,
   UBB_DISTILLATION_DIRECTIVE,
   MODEL,
   AI_GATEWAY_URL,
-  deepZogSummary,
-  formatTopTalents,
+  buildRootSummary,
+  inputVersionHash,
   type ArtifactKey,
 } from "../_shared/ubb-prompts.ts";
 
@@ -31,6 +32,11 @@ type GenerateBody = {
   root_context: {
     zog_snapshot: Record<string, unknown>;
     excalibur_data?: Record<string, unknown>;
+    // Day 78 Phase 1: mission optional; when present, renders into rootSummary.
+    mission?: { sentence: string; discovered_at: string | null };
+    // Day 78 Phase 2: assets inventory optional; SavedAsset-shaped array.
+    // Phase 3 will add per-artifact type filtering via ARTIFACT_CONFIGS.inputsNeeded.
+    assets?: Array<{ typeId?: string; subTypeId?: string | null; categoryId?: string | null; title?: string; description?: string | null }>;
   };
 };
 
@@ -38,6 +44,12 @@ type GenerateResult = {
   content: unknown;
   initial_specificity: number;
   crystallized_action: string;
+  // Day 78 Phase 4 (Sasha 2026-05-21): content-hash of the founder-context
+  // slices VISIBLE to this artifact (per ARTIFACT_INPUTS). Frontend stamps
+  // this onto the inserted row's `input_version_at_lock` column. Future
+  // staleness comparison: when the founder's local input hash drifts from
+  // this stored value, the artifact is "input-stale."
+  input_version_at_lock: string;
 };
 
 serve(async (req) => {
@@ -93,21 +105,13 @@ ${SYNTHESIS_PROTOCOL_PROMPT}`;
       .map(([k, v]) => `- ${k}: ${JSON.stringify(v.content).slice(0, 400)}`)
       .join("\n");
 
-    const zog = root_context?.zog_snapshot || {};
-    // Day 78 Phase 0 (Sasha 2026-05-21): pass the rich appleseed_data through
-    // via deepZogSummary. Previously the edge fn dropped it on the floor.
-    // Also: formatTopTalents normalises the JSON top_three_talents field
-    // (was rendering as [object Object] / raw JSON). Phantom
-    // how_genius_shows_up line removed; field never existed in zog_snapshots.
-    const rootSummary = [
-      `- Top talent: ${formatTopTalents((zog as any).top_three_talents)}`,
-      `- Archetype: ${(zog as any).archetype_title || "—"}`,
-      `- Core pattern: ${(zog as any).core_pattern || "—"}`,
-      deepZogSummary((zog as any).appleseed_data),
-      root_context?.excalibur_data ? `- Legacy business data: ${JSON.stringify(root_context.excalibur_data).slice(0, 400)}` : "",
-    ]
-      .filter(Boolean)
-      .join("\n");
+    // Day 78 Phase 3 (Sasha 2026-05-21): per-artifact rootSummary via
+    // ARTIFACT_INPUTS relevance map. Each artifact only sees the slices
+    // it actually reads from. Phases 0-2 ran every helper unconditionally;
+    // Phase 3 makes per-artifact filtering precise. See ubb-prompts.ts
+    // ARTIFACT_INPUTS + buildRootSummary + docs/specs/ubb-deep-context/.
+    const inputs = ARTIFACT_INPUTS[artifact_key];
+    const rootSummary = buildRootSummary(root_context, inputs);
 
     const userPrompt = `ARTIFACT: ${artifact_key} — ${config.label}
 
@@ -198,6 +202,13 @@ mandatory, not optional.`;
         { status: 502, headers: { ...corsHeaders, "Content-Type": "application/json" } }
       );
     }
+
+    // Day 78 Phase 4 (Sasha 2026-05-21): stamp the input-version hash on the
+    // response so the frontend can write it to `input_version_at_lock`.
+    // Hash is over the rootSummary string buildRootSummary would produce for
+    // THIS artifact_key given the current rootContext. See ubb-prompts.ts
+    // inputVersionHash + docs/specs/ubb-deep-context/.
+    result.input_version_at_lock = inputVersionHash(root_context, artifact_key);
 
     return new Response(
       JSON.stringify(result),

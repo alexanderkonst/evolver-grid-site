@@ -1272,6 +1272,36 @@ export const PROMPT_VERSION: Record<ArtifactKey, string> = (() => {
 })();
 
 // ============================================================================
+// Input-version hashing — Day 78 Phase 4 (Sasha 2026-05-21).
+// ============================================================================
+//
+// Per-artifact content hash of the founder-context SLICES visible to that
+// artifact. Reuses the same FNV-1a impl as PROMPT_VERSION so a single deploy
+// can re-hash both. Mirrors `src/modules/unique-business-builder/inputHash.ts`
+// on the frontend (which computes the CURRENT input hash from local state
+// for the staleness compare against the row's stamped value).
+//
+// Canonicalisation policy:
+//   - Run rootContext through the same buildRootSummary path the prompt would
+//     see. The hash is of the resulting summary string, not the raw rootContext.
+//   - This means: two semantically-equivalent rootContexts (e.g., assets in
+//     different order in the DB but rendered into the same string) produce
+//     the same hash. Two divergent rootContexts (mission edited, asset added)
+//     produce different hashes.
+//   - The hash CHANGES when ARTIFACT_INPUTS changes for that key (because
+//     buildRootSummary output changes) — desirable: a relevance-map edit
+//     invalidates all prior locks for affected artifacts.
+
+export function inputVersionHash(
+  rootContext: Parameters<typeof buildRootSummary>[0],
+  key: ArtifactKey
+): string {
+  const inputs = ARTIFACT_INPUTS[key];
+  const summary = buildRootSummary(rootContext, inputs);
+  return ubbPromptHash(summary);
+}
+
+// ============================================================================
 // Founder-context summarisers — Day 78 (Sasha 2026-05-21), Phase 0 of deep
 // context integration. See docs/specs/ubb-deep-context/.
 // ============================================================================
@@ -1310,39 +1340,232 @@ type AppleseedShape = {
   elevatorPitch?: string;
 };
 
+// Hard ceiling on deepZogSummary output. Last-resort guard against
+// pathological inputs (1000-char fields, etc.). Normal output runs 400-700.
+const DEEP_ZOG_MAX_CHARS = 900;
+
 export function deepZogSummary(appleseed: unknown): string {
   if (!appleseed || typeof appleseed !== "object") return "";
   const a = appleseed as AppleseedShape;
   const lines: string[] = [];
-  if (a.bullseyeSentence) lines.push(`- Bullseye: ${a.bullseyeSentence}`);
+  if (a.bullseyeSentence) lines.push(`- Bullseye: ${a.bullseyeSentence.slice(0, 200)}`);
   const vk = a.vibrationalKey;
   if (vk?.tagline || vk?.name) {
     const head = vk.name ? `${vk.name}: ` : "";
-    lines.push(`- Vibrational key: ${head}${vk.tagline ?? vk.tagline_simple ?? ""}`);
+    const tagline = (vk.tagline ?? vk.tagline_simple ?? "").slice(0, 150);
+    lines.push(`- Vibrational key: ${head}${tagline}`);
   }
   const tl = a.threeLenses;
   if (tl?.actions?.length) {
-    lines.push(`- 3 actions in their zone: ${tl.actions.slice(0, 3).join("; ")}`);
+    const actions = tl.actions.slice(0, 3).map((s) => (s ?? "").slice(0, 80)).join("; ");
+    lines.push(`- 3 actions in their zone: ${actions}`);
   }
   if (tl?.primeDriver) {
-    const m = tl.primeDriver_meaning ? ` (${tl.primeDriver_meaning})` : "";
-    lines.push(`- Prime driver: ${tl.primeDriver}${m}`);
+    const m = tl.primeDriver_meaning ? ` (${tl.primeDriver_meaning.slice(0, 80)})` : "";
+    lines.push(`- Prime driver: ${tl.primeDriver.slice(0, 60)}${m}`);
   }
   if (tl?.archetype) {
-    const m = tl.archetype_meaning ? ` (${tl.archetype_meaning})` : "";
-    lines.push(`- Archetype reading: ${tl.archetype}${m}`);
+    const m = tl.archetype_meaning ? ` (${tl.archetype_meaning.slice(0, 80)})` : "";
+    lines.push(`- Archetype reading: ${tl.archetype.slice(0, 60)}${m}`);
   }
   if (a.appreciatedFor?.length) {
-    const af = a.appreciatedFor
-      .slice(0, 2)
-      .map((x) => `${x.effect ?? "?"} in ${x.scene ?? "?"} -> ${x.outcome ?? "?"}`)
-      .join(" | ");
-    lines.push(`- Appreciated-for scenes: ${af}`);
+    // Day 78 Phase 0 debug: dropped from slice(0,2) to slice(0,1) after the
+    // smoke test showed length blowing past the 700-char target on rich
+    // profiles. One representative scene is enough signal.
+    const x = a.appreciatedFor[0];
+    const effect = (x.effect ?? "?").slice(0, 80);
+    const scene = (x.scene ?? "?").slice(0, 80);
+    const outcome = (x.outcome ?? "?").slice(0, 100);
+    lines.push(`- Appreciated-for scene: ${effect} in ${scene} -> ${outcome}`);
   }
   if (a.elevatorPitch) {
-    lines.push(`- Elevator pitch: ${a.elevatorPitch.slice(0, 200)}`);
+    // Day 78 Phase 0 debug: truncated from 200 to 120 to stay under budget.
+    lines.push(`- Elevator pitch: ${a.elevatorPitch.slice(0, 120)}`);
   }
-  return lines.join("\n");
+  const out = lines.join("\n");
+  return out.length > DEEP_ZOG_MAX_CHARS ? out.slice(0, DEEP_ZOG_MAX_CHARS) + "..." : out;
+}
+
+// ----------------------------------------------------------------------------
+// Assets summariser — Day 78 Phase 2 (Sasha 2026-05-21).
+// ----------------------------------------------------------------------------
+// Renders the founder's user_assets inventory into a grouped list. Assets are
+// classified by typeId (expertise / experiences / networks / resources / ip /
+// influence). For artifacts that operate on concrete inventory (reach,
+// frictionless_purchase, delivery, surface_inventory, value_ladder, spread,
+// lead_magnet, landing_page, packaging, tuning_fork, golden_dm), the assets
+// list is the single highest-signal input. For early-derivation artifacts
+// (uniqueness, myth, tribe) assets are noise.
+//
+// Phase 2 passes all types; Phase 3 (per-artifact inputsNeeded) layers in
+// type-based filtering so each prompt sees only the asset slices that matter.
+//
+// Size-disciplined: up to 5 items per type (rest collapsed into "+ N more"),
+// title 80 chars + description 100 chars per item, hard cap on output.
+
+const ASSETS_MAX_CHARS = 1200;
+const ASSETS_PER_TYPE_LIMIT = 5;
+
+type AssetShape = {
+  typeId?: string;
+  subTypeId?: string;
+  categoryId?: string;
+  title?: string;
+  description?: string;
+};
+
+/**
+ * Render an assets array. Optional `filter` restricts to specific typeIds
+ * (used by Phase 3 inputsNeeded). When filter is undefined, all types render.
+ */
+export function assetsSummary(assets: unknown, filter?: string[]): string {
+  if (!Array.isArray(assets) || assets.length === 0) return "";
+
+  const byType = new Map<string, string[]>();
+  for (const raw of assets) {
+    if (!raw || typeof raw !== "object") continue;
+    const a = raw as AssetShape;
+    const type = a.typeId ?? "other";
+    if (filter && !filter.includes(type)) continue;
+    const title = (a.title ?? "").slice(0, 80);
+    if (!title) continue;
+    const desc = a.description ? `: ${a.description.slice(0, 100)}` : "";
+    if (!byType.has(type)) byType.set(type, []);
+    byType.get(type)!.push(`${title}${desc}`);
+  }
+
+  if (byType.size === 0) return "";
+
+  const lines: string[] = ["- Assets inventory (founder's concrete what-they-have):"];
+  for (const [type, items] of byType.entries()) {
+    const shown = items.slice(0, ASSETS_PER_TYPE_LIMIT);
+    const more = items.length > ASSETS_PER_TYPE_LIMIT
+      ? ` (+ ${items.length - ASSETS_PER_TYPE_LIMIT} more)`
+      : "";
+    lines.push(`  · ${type}: ${shown.join(" | ")}${more}`);
+  }
+  const out = lines.join("\n");
+  return out.length > ASSETS_MAX_CHARS ? out.slice(0, ASSETS_MAX_CHARS) + "..." : out;
+}
+
+// ============================================================================
+// Phase 3 — Per-artifact inputsNeeded map + unified buildRootSummary
+// Day 78 (Sasha 2026-05-21). See docs/specs/ubb-deep-context/.
+// ============================================================================
+//
+// The Planning SoW Appendix A relevance matrix becomes code here. Each
+// artifact declares which slices of FounderContext it reads. The edge
+// functions consume this via buildRootSummary() to filter rootSummary per
+// artifact_key, dropping token spend on slices that would be noise for
+// that artifact.
+//
+// Default semantics for any field not specified in InputsNeeded:
+//   zogHeadline, zogDeep, mission, excalibur => included (true)
+//   assets => excluded (undefined; explicit string[] of typeIds to include)
+//
+// The asset typeId vocabulary (from src/modules/asset-mapping/data/assetTypes.ts):
+//   "expertise" · "experiences" · "networks" · "resources" · "ip" · "influence"
+
+export type InputsNeeded = {
+  zogHeadline?: boolean;
+  zogDeep?: boolean;
+  mission?: boolean;
+  excalibur?: boolean;
+  /** Asset typeIds to include. Absence/undefined skips assets entirely. */
+  assets?: string[];
+};
+
+export const ARTIFACT_INPUTS: Record<ArtifactKey, InputsNeeded> = {
+  // Day 78 Phase 3 amendment (Sasha 2026-05-21): zogHeadline kept ON for all
+  // 19 artifacts. It is only ~150 chars and carries the founder's voice
+  // baseline (top talent, archetype, core pattern). The distribution-mechanic
+  // artifacts (frictionless_purchase, delivery, surface_inventory) use it for
+  // CTA copy + channel-naming voice. zogDeep (the ~700-char appleseed flatten)
+  // is the expensive slice; that one gets stripped from artifacts that work on
+  // concrete inventory rather than voice/identity.
+  uniqueness: { mission: false },
+  myth: {},
+  tribe: {},
+  pain: { assets: ["experiences"] },
+  promise: {},
+  lead_magnet: { assets: ["ip", "expertise", "influence"] },
+  value_ladder: { assets: ["ip", "expertise", "resources"] },
+  specificity_matrix: {},
+  session_bridge: { assets: ["expertise"] },
+  core_belief: {},
+  packaging: { assets: ["ip", "expertise"] },
+  frictionless_purchase: { zogDeep: false, mission: false, assets: ["resources", "ip"] },
+  reach: { zogDeep: false, assets: ["networks", "influence"] },
+  delivery: { zogDeep: false, mission: false, assets: ["resources"] },
+  spread: { zogDeep: false, assets: ["networks", "influence"] },
+  surface_inventory: { zogDeep: false, mission: false, assets: ["influence", "networks"] },
+  tuning_fork: { assets: ["influence"] },
+  golden_dm: { assets: ["networks"] },
+  landing_page: { assets: ["resources", "ip", "influence"] },
+};
+
+/**
+ * Build the per-artifact root_context summary. Consumes the founder context
+ * once + the InputsNeeded entry for the artifact, returns the joined string
+ * for direct interpolation into the user prompt.
+ *
+ * Called from both generate-artifact and improve-artifact, replacing the
+ * previously-inline rootSummary builds that ran every helper unconditionally.
+ */
+export function buildRootSummary(
+  rootContext: {
+    zog_snapshot?: Record<string, unknown>;
+    excalibur_data?: Record<string, unknown>;
+    mission?: { sentence: string; discovered_at: string | null };
+    assets?: Array<{ typeId?: string; title?: string; description?: string | null }>;
+  } | undefined,
+  inputs: InputsNeeded
+): string {
+  const zog = rootContext?.zog_snapshot ?? {};
+  const parts: string[] = [];
+
+  if (inputs.zogHeadline !== false) {
+    parts.push(`- Top talent: ${formatTopTalents((zog as any).top_three_talents)}`);
+    parts.push(`- Archetype: ${(zog as any).archetype_title || "—"}`);
+    parts.push(`- Core pattern: ${(zog as any).core_pattern || "—"}`);
+  }
+  if (inputs.zogDeep !== false) {
+    const deep = deepZogSummary((zog as any).appleseed_data);
+    if (deep) parts.push(deep);
+  }
+  if (inputs.mission !== false) {
+    const m = missionSummary(rootContext?.mission);
+    if (m) parts.push(m);
+  }
+  if (Array.isArray(inputs.assets) && inputs.assets.length > 0) {
+    const a = assetsSummary(rootContext?.assets, inputs.assets);
+    if (a) parts.push(a);
+  }
+  if (inputs.excalibur !== false && rootContext?.excalibur_data) {
+    parts.push(`- Legacy business data: ${JSON.stringify(rootContext.excalibur_data).slice(0, 400)}`);
+  }
+  return parts.join("\n");
+}
+
+// ----------------------------------------------------------------------------
+// Mission summariser — Day 78 Phase 1 (Sasha 2026-05-21).
+// ----------------------------------------------------------------------------
+// Renders the founder's mission_statement into one line. The mission is a
+// declarative "what I'm here to do" sentence saved on game_profiles by the
+// /mission-discovery module. It encodes worldview + A→B + tribe-implied,
+// which makes it high-signal context for: myth, tribe, promise, core_belief,
+// session_bridge, tuning_fork. Per-artifact filtering ships in Phase 3.
+// Caps the sentence at 220 chars (the mission discovery flow caps it tighter
+// upstream, but this is a defensive ceiling).
+
+type MissionShape = { sentence?: string; discovered_at?: string | null };
+
+export function missionSummary(mission: unknown): string {
+  if (!mission || typeof mission !== "object") return "";
+  const m = mission as MissionShape;
+  if (!m.sentence) return "";
+  const sentence = m.sentence.slice(0, 220);
+  return `- Mission (the founder's declared 'what I am here to do'): ${sentence}`;
 }
 
 export function formatTopTalents(value: unknown): string {
