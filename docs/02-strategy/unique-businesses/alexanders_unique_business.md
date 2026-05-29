@@ -207,6 +207,16 @@ Step 1 free · Steps 2+3 **$555** · Step 4 **$1,111** · Step 5 **$333** · Ste
 
 > **✦ Canonical product name (Day 53, April 27, 2026):** the $555 Steps 2+3 product is now called the **Top Talent Business Session.** Naming evolution: *Ignition Session* (v1.0, March 5) → *Productize Yourself Session* (Day 47, April 21) → **Top Talent Business Session** (Day 53). Older SOPs in this doc still use "Ignition Session" — those are dated artifacts of evolution, preserved as genealogy. New copy + active surfaces should use Top Talent Business Session. URL stays `/ignite#pricing-section`.
 
+### Active Real-World Outreach (live)
+
+This is not hypothetical. Real reachouts are in motion. As of Day 87 (2026-05-29): **7 Tribe 2 threads** (patrons, peers, ecosystem-holders, network-holders) sent or in conversation, e.g. Balaji Srinivasan, Vlad Gerasimov, Neerja Bharti (GeniusMesh), Геннадий Мутасов, Will Blakey, Silvana / Planetir, Victoria.
+
+**Single source of truth (any AI: start here for outreach context, copy, and reuse):** [`tribe_outreach_tracker.md`](../tribe_outreach_tracker.md). One doc holds both:
+- **The live trace** (who · category · when · result), including the non-responses.
+- **The Message Bank** (the reusable outreach pattern, the load-bearing lines, and the actual sent messages, tagged by recipient · category · key message).
+
+When writing or analyzing any outreach, read and reuse from there. Strategy spine behind it: **collab = lead-gen = pilot**; lead with community-ecosystem precision matchmaking; warm relational door before any ask. (Defer cold founder acquisition.)
+
 ### Platform Access Pricing v3.0 — One-Time, Not Subscription (Day 64, May 7, 2026)
 
 The platform (UBB module at `/ubb` + deeper Top Talent profile at `/game/me/*`) is a **one-time purchase, not a subscription.** The system was built — the user pays once for access. Token throughput (a real cost on every UBB Improve/Generate call) is metered separately as a monthly budget per tier, but the *access itself* doesn't churn.

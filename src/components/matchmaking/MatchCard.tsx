@@ -103,10 +103,24 @@ const cormorantTitle: React.CSSProperties = {
   color: "var(--skin-text-primary, #0b2a5a)",
 };
 
+// Day 87 (Sasha 2026-05-29) — applied the Strong cocktail (ui_playbook
+// Part VIII) to match-card body copy. Previous values (weight 600, no
+// halo, no letter-spacing) sat below Strong-default; Sasha caught the
+// proposals + heads-up callout reading washed-out against bright video
+// frames bleeding through the parchment-card at 0.92α. Bumped to:
+//   • weight 700 (lever 1)
+//   • halo-strong (lever 3 — card is mostly solid parchment, so
+//     halo-strong is the right floor; halo-deep is reserved for
+//     headlines that need maximum lift)
+//   • +0.003em letter-spacing (lever 4 micro)
+// Color was already at skin-text-primary (full alpha) per lever 2.
 const sourceSerifBody: React.CSSProperties = {
   fontFamily: "'Source Serif 4', serif",
-  fontWeight: 600,
+  fontWeight: 700,
+  letterSpacing: "0.003em",
   color: "var(--skin-text-primary, #0b2a5a)",
+  textShadow:
+    "var(--skin-text-halo-strong, 0 0 12px rgba(255,255,255,0.55), 0 1px 1px rgba(255,255,255,0.85))",
 };
 
 const eyebrowGold: React.CSSProperties = {
@@ -390,17 +404,25 @@ const MatchCard = ({
           }}
           role="status"
         >
+          {/* Day 87 (Sasha 2026-05-29) — Strong cocktail applied.
+              Was weight 600 + no halo + em-dash. Bumped to 700 + halo-
+              strong + letter-spacing 0.01em (italic at body size needs
+              breathing room per ui_playbook). Em-dash replaced with
+              comma per Sasha's non-negotiable em-dash ban. */}
           <p
             style={{
               fontFamily: "'Source Serif 4', serif",
-              fontWeight: 600,
+              fontWeight: 700,
               fontSize: "13.5px",
               lineHeight: 1.55,
+              letterSpacing: "0.01em",
               color: "var(--skin-text-primary, #0b2a5a)",
               fontStyle: "italic",
+              textShadow:
+                "var(--skin-text-halo-strong, 0 0 12px rgba(255,255,255,0.55), 0 1px 1px rgba(255,255,255,0.85))",
             }}
           >
-            A heads-up email is on its way to {user.firstName}. We'll send you both an intro the moment they say yes — and leave it quiet if they don't.
+            A heads-up email is on its way to {user.firstName}. We'll send you both an intro the moment they say yes, and leave it quiet if they don't.
           </p>
         </div>
       )}
@@ -533,19 +555,25 @@ const MatchCard = ({
               {matchTypeBadge}
             </span>
           )}
+          {/* Day 87 (Sasha 2026-05-29) — Strong cocktail.
+              Was weight 600 + halo-soft. Bumped weight to 700 and
+              halo-soft → halo-strong; the tagline is a one-line italic
+              quote that needs to read as the card's emotional anchor,
+              not faint flavor text. Letter-spacing kept at 0.005em
+              (italic body Strong floor). */}
           {user.tagline && (
             <p
               className="mt-3 italic max-w-sm"
               style={{
                 fontFamily: "'Source Serif 4', serif",
                 fontStyle: "italic",
-                fontWeight: 600,
+                fontWeight: 700,
                 letterSpacing: "0.005em",
                 fontSize: "14px",
                 lineHeight: 1.55,
                 color: "var(--skin-text-primary, #0b2a5a)",
                 textShadow:
-                  "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.7))",
+                  "var(--skin-text-halo-strong, 0 0 12px rgba(255,255,255,0.55), 0 1px 1px rgba(255,255,255,0.85))",
               }}
             >
               "{user.tagline}"
@@ -604,7 +632,6 @@ const MatchCard = ({
                           ...sourceSerifBody,
                           fontSize: "14.5px",
                           lineHeight: 1.6,
-                          fontWeight: 600,
                         }}
                       >
                         {p.proposal}
@@ -631,7 +658,6 @@ const MatchCard = ({
                       ...sourceSerifBody,
                       fontSize: "14px",
                       lineHeight: 1.6,
-                      fontWeight: 600,
                     }}
                   >
                     {secondaryReason}
@@ -659,11 +685,9 @@ const MatchCard = ({
                   </p>
                   <p
                     style={{
-                      fontFamily: "'Source Serif 4', serif",
-                      fontWeight: 600,
+                      ...sourceSerifBody,
                       fontSize: "14px",
                       lineHeight: 1.6,
-                      color: "var(--skin-text-primary, #0b2a5a)",
                     }}
                   >
                     {tertiaryReason}
@@ -690,7 +714,6 @@ const MatchCard = ({
                       ...sourceSerifBody,
                       fontSize: "14.5px",
                       lineHeight: 1.6,
-                      fontWeight: 600,
                     }}
                   >
                     {matchReason}
@@ -714,7 +737,6 @@ const MatchCard = ({
                       ...sourceSerifBody,
                       fontSize: "14px",
                       lineHeight: 1.6,
-                      fontWeight: 600,
                     }}
                   >
                     {secondaryReason}
@@ -741,11 +763,9 @@ const MatchCard = ({
                   </p>
                   <p
                     style={{
-                      fontFamily: "'Source Serif 4', serif",
-                      fontWeight: 600,
+                      ...sourceSerifBody,
                       fontSize: "14px",
                       lineHeight: 1.6,
-                      color: "var(--skin-text-primary, #0b2a5a)",
                     }}
                   >
                     {tertiaryReason}
