@@ -635,12 +635,23 @@ function RecentFoundersSection({
           />
         </div>
       </div>
+      {/* Day 88 (Sasha 2026-05-30): legibility upgrade to Strong (1.5×)
+          per ui_playbook.md Part VIII. In-card italic Source Serif 4
+          at 13.5px with 0.62 alpha + no halo was failing on bright video
+          pixels behind the card. Bumped to weight 600 (Source Serif 4
+          semibold), +0.005em tracking, alpha 0.95, navy under-shadow.
+          Kept Source Serif 4 (file's deliberate face choice) — just
+          lifted the legibility levers per the Strong cocktail. */}
       <p
         className="italic"
         style={{
           fontFamily: "'Source Serif 4', serif",
-          fontSize: "13.5px",
-          color: "var(--skin-text-muted, rgba(11, 42, 90, 0.62))",
+          fontSize: "14px",
+          fontWeight: 600,
+          letterSpacing: "0.005em",
+          color: "var(--skin-text-body, rgba(11, 42, 90, 0.95))",
+          textShadow:
+            "0 0 14px rgba(255,255,255,0.7), 0 1px 0 rgba(11,42,90,0.18)",
           marginBottom: "12px",
         }}
       >
@@ -1808,6 +1819,13 @@ function AdminPageInner() {
           </span>
         </h1>
 
+        {/* Day 88 (Sasha 2026-05-30): legibility upgrade to Strong (1.5×)
+            per ui_playbook.md Part VIII. Hero subtitle sits over the video
+            hero with sun-glare luminance variation — was using halo-soft
+            + 500 weight + 0.78 alpha (Subtle/Standard tier), generated
+            "hard to read" on bright sun pixels. Strong cocktail: weight
+            700, letter-spacing +0.01em, alpha 0.97 via text-body, deep
+            halo (two-direction: white lift + navy stroke). */}
         <p
           className="italic max-w-xl mx-auto"
           style={{
@@ -1815,10 +1833,11 @@ function AdminPageInner() {
             fontStyle: "italic",
             fontSize: "clamp(15px, 1.6vw, 19px)",
             lineHeight: 1.5,
-            fontWeight: 500,
-            color: "var(--skin-text-muted, rgba(11, 42, 90, 0.78))",
+            fontWeight: 700,
+            letterSpacing: "0.01em",
+            color: "var(--skin-text-body, rgba(11, 42, 90, 0.97))",
             textShadow:
-              "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
+              "var(--skin-text-halo-deep, 0 0 28px rgba(255,255,255,0.85), 0 1px 2px rgba(255,255,255,0.95), 0 0 1px rgba(11,42,90,0.65), 0 1px 0 rgba(11,42,90,0.45))",
           }}
         >
           End-of-session lookup, entitlement grants, funnel signal — one console for everything operator-side.
