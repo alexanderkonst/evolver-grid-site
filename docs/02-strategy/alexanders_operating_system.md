@@ -857,6 +857,7 @@ The register that lands here:
 | **Balancing vision with operations** | Layers 6-8 pull attention while Layer 4 needs finishing | Pacing Principle: match the horse to the terrain. Layer 4 (revenue) first |
 | **Emotional clarity before decisions** | Emotional authority + Manifestor urgency = risk of spike decisions | Sleep on every decision that costs more than a day. The wave completes |
 | **Consistent visibility without burnout** | The 6/2 hermit wants to disappear after each creation cycle | Schedule visibility rhythms. Tuesday/Wednesday/Thursday = session days. Hermit days protected |
+| **Value capture / the one paid ask** *(deepest edge, named Day 87)* | World-class value *creation*, near-zero value *capture* — the lifelong "1033 euros beside billionaires" pattern. Over-give, deliver before the price is set, defer the direct paid ask. The search for "what unblocks the money" becomes its own avoidance. | Name a price on the genius and make the direct ask of someone who can pay, then let it land or be refused cleanly. The Day 86-87 reachouts are the muscle firing for the first time. Money is the descent completing into matter, not the gift betrayed. |
 
 ---
 

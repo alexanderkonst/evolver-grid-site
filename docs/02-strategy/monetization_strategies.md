@@ -97,6 +97,12 @@ The idea holding it together: you stay small, and the thing underneath gets big.
 
 The honest catch you already named: the exact prices, and the exact way of charging, are still a blank you fill in with the first real pilot. The shape is clear; the precise settings come from the market, not the whiteboard.
 
+### 5. Who pays for the free core, and the name (clarified Day 87)
+
+**Who pays.** "Free" means free *to the member*, never free to provide (the AI has a real cost). The core (self-discovery + matching) stays free to members always, because a member paywall on the core kills the density the network effect runs on. The **ecosystem leader pays** (a per-active-member fee, or a flat community fee). That is what "subsidize" means: the leader covers the cost so members get it free. They do it because a coordinated, collaborating, venture-forming ecosystem makes their community more valuable, stickier, and more alive. They are not buying a tool; they are buying a more valuable community plus a premium revenue line. The leader's only optionality is *how* they cover the fee (absorb it, fold it into existing dues, find a sponsor) and *how much premium* they layer on (where they keep 90%). It is **not** "charge members for the core or not." For a pilot, the core is free to everyone (absorbed, or a free pilot) to prove collaboration rate; the leader-subsidized recurring model kicks in after.
+
+**The name.** The human-facing name for this whole thing is the **Self-Organizing Human Network (SOHN)**. `PlanetaryOS` / the `Kernel` stay the engine under the hood; SOHN is what gets published, spoken, and put on the seminal page (`/sohn`). The thesis abstract lives there.
+
 ---
 
 ## Strategic Crystallization (Day 76–77, May 19–20, 2026)

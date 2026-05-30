@@ -208,6 +208,7 @@ import { EquilibriumV2Page } from "./modules/equilibrium";
 import MdlsPreview from "./pages/MdlsPreview";
 import OnePager from "./pages/OnePager";
 import Monetization from "./pages/Monetization";
+import Sohn from "./pages/Sohn";
 import ArtPage from "./pages/game/ArtPiecePage";
 import FounderMarketFit from "./pages/FounderMarketFit";
 import TheOriginalsPage from "./pages/TheOriginalsPage";
@@ -772,6 +773,8 @@ const App = () => (
                   {/* Public monetization explainer · /monetization · standalone (no shell),
                       radical-transparency framing, Liquid Glass register. */}
                   <Route path="/monetization" element={<Monetization />} />
+                  {/* SOHN seminal note · /sohn · standalone, the abstract (seed) + a link to the live platform (the proof). */}
+                  <Route path="/sohn" element={<Sohn />} />
                   {/* Founder-Market Fit Landing Page */}
                   <Route path="/founder-market-fit" element={<RequireAuth><FounderMarketFit /></RequireAuth>} />
                   <Route path="/fmf" element={<RequireAuth><FounderMarketFit /></RequireAuth>} />

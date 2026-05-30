@@ -6256,5 +6256,29 @@ The right level of language is the level of universal primitives: alignment, leg
 
 ---
 
+## Domain 91: The Self-Organizing Human Network (SOHN) — Coordination Without Central Planning, Once Differentiated Value Is Legible
+
+> *Named Day 87 (May 29, 2026). The seminal synthesis of the whole corpus. The abstract lives at `/sohn` and in [`monetization_strategies.md`](../02-strategy/monetization_strategies.md); this domain registers the pattern in the library.*
+
+**The transformational result:** a human network self-organizes into collaboration and venture formation without central planning, the moment each node's differentiated value is made precise and composable.
+
+**The pattern.** Industrial coordination scaled by standardizing people into roles and credentials; it could not see, and therefore could not coordinate, the differentiated way each person actually thinks, creates, and contributes. As differentiated value becomes the primary leverage, the binding constraint is no longer talent but its *legibility*. SOHN supplies the missing legibility: an atomic operation articulates a person's irreducible signal (top talent + mission + assets + quality-of-life) in minutes; nodes then match on the complementarity of those signals, not on titles or tags. Above a legibility threshold, coordinated structure emerges spontaneously, the human analogue of self-organizing networks in telecommunications (nodes self-configure, optimize, and heal through local exchange). The order parameter is **collaboration rate**: the share of members who find a collaborator and begin building within a bounded window. The mechanism composes holonically across scales: individual → team → community → land project → network state.
+
+**Why it is a phase-shift technology, not just a product.** SOHN is the seed; the running, paid network is its proof. The abstract is the article only if the live platform is its body (Bitcoin = whitepaper + chain). It is the substrate the other coordination domains compose on.
+
+**Lineage made literal.** Sasha designed self-organizing networks for radios on the US-Mexico border before he designed them for humans. The biography is the curriculum; SOHN is the same primitive ported from spectrum to people.
+
+**Connects to:**
+- **Domain 86 (Substrate Positioning):** SOHN is the substrate; its free core (self-discovery + matching) drives the density the network effect needs.
+- **Domain 87 (Multi-Patron Architecture):** each ecosystem that runs SOHN under its own brand is a patron node; the network is the portfolio.
+- **Domain 89 (Self-Description Quality):** the per-person legibility operation is Domain 89 made into infrastructure.
+- **Domain 5 (Precision Gap IS Product) + Domain 10 (I Focus the Lens):** the precision of the articulation is the load-bearing thing; SOHN is Sasha's own gift turned into a coordination substrate.
+
+### 91a. The One-Sentence Version
+
+> *"When you make differentiated human value precise and composable, a network of people self-organizes into collaboration and ventures the way a self-organizing radio network configures itself, no central planner required, priced against one number: collaboration rate."*
+
+---
+
 
 
