@@ -459,7 +459,16 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
         // no nav distraction. Toggles remain available.
         const isKarimePage =
             p === '/build/karime' || p === '/build/karime/intake';
-        return !isLandingPage && !isIgnitePage && !isEquilibriumPage && !isKarimePage;
+        // Day 88 (Sasha 2026-05-30): /admin is its own focused operator
+        // workspace (Recent founders + filter chips + KPIs + audit log +
+        // CRM overlay). The admin route doesn't map to any known SPACES
+        // entry, so activeSpaceId falls back to the default "next-move"
+        // which has no SPACE_SECTIONS — pane 2 used to render empty. Same
+        // shape as Ignite/Equilibrium/Karime: close pane 2 by default,
+        // user can still toggle it open. Covers all /admin/* sub-pages
+        // (content, genius-offers, mission-participants, mission-sync).
+        const isAdminPage = p === '/admin' || p.startsWith('/admin/');
+        return !isLandingPage && !isIgnitePage && !isEquilibriumPage && !isKarimePage && !isAdminPage;
     });
     const [mobileView, setMobileView] = useState<"navigation" | "content">(() => {
         // Day 53 (Sasha 2026-04-27): mobile landing now defaults to CONTENT
