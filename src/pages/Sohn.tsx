@@ -1,7 +1,8 @@
 import type { ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
-import { GOLD_GRADIENT, GOLD_GLOW, Ornament, igniteLogo } from "@/lib/landingDesign";
+import { GOLD_GRADIENT, GOLD_GLOW, Ornament } from "@/lib/landingDesign";
+import fyttTorus from "@/assets/find-your-top-talent-torus.png";
 
 /**
  * Sohn — public seminal note for the Self-Organizing Human Network (SOHN).
@@ -81,32 +82,19 @@ const bodyStyle = { color: "rgba(26,30,58,0.8)" } as const;
 const SohnWordmark = () => (
   <Link
     to="/"
-    className="fixed top-5 left-1/2 -translate-x-1/2 z-50 inline-flex items-center gap-2.5 transition-opacity hover:opacity-80"
-    aria-label="Find Your Top Talent — home"
+    className="fixed top-5 left-1/2 -translate-x-1/2 z-50 inline-flex items-center transition-opacity hover:opacity-80"
+    aria-label="Find Your Top Talent home"
   >
     <img
-      src={igniteLogo}
+      src={fyttTorus}
       alt=""
       aria-hidden="true"
-      className="h-5 w-auto"
+      className="h-9 w-auto"
       style={{
-        filter: "drop-shadow(0 0 10px rgba(240, 194, 127, 0.45)) drop-shadow(0 0 3px rgba(212, 175, 55, 0.65))",
-        animation: "ornament-spin 48s linear infinite",
+        filter: "drop-shadow(0 0 16px rgba(240, 194, 127, 0.35)) drop-shadow(0 0 5px rgba(212, 175, 55, 0.45))",
       }}
       draggable={false}
     />
-    <span
-      style={{
-        fontFamily: "'Cormorant Garamond', serif",
-        fontWeight: 600,
-        fontSize: "13px",
-        letterSpacing: "0.22em",
-        textTransform: "uppercase",
-        color: "rgba(26,30,58,0.7)",
-      }}
-    >
-      SOHN
-    </span>
   </Link>
 );
 
@@ -173,7 +161,7 @@ const Sohn = () => {
           </p>
           <p className="mt-8 mx-auto max-w-[56ch] text-[15px] sm:text-base leading-relaxed" style={bodyStyle}>
             The whole signal in one page. The abstract below is the seed; the running, free platform it links
-            to is the proof. A note is only seminal once its body actually runs.
+            to is the proof.
           </p>
         </header>
 
