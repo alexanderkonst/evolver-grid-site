@@ -16,7 +16,7 @@ import { Helmet } from "react-helmet-async";
 //   overridden when the social hook differs from the SEO hook.
 
 const PROD_ORIGIN = "https://findyourtoptalent.com";
-const DEFAULT_OG_IMAGE = `${PROD_ORIGIN}/opengraph-image.png`;
+const DEFAULT_OG_IMAGE = `${PROD_ORIGIN}/opengraph-image-v2.png`;
 const DEFAULT_OG_IMAGE_ALT = "Find Your Top Talent. Productize It. Find Your People.";
 
 export interface SEOProps {
