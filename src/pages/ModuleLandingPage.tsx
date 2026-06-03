@@ -17,7 +17,7 @@ const ModuleLandingPage = () => {
 
     useEffect(() => {
         if (module) {
-            document.title = `${module.title} — Genius Business`;
+            document.title = `${module.title} | Find Your Top Talent`;
         }
     }, [module]);
 

@@ -78,3 +78,7 @@ Dependencies: PENDING_events_database.md
 - User-run prompts live in `src/prompts/user/`; extraction/system prompts live in `src/prompts/extraction/`.
 - `docs/prompt_registry.md` is an index and guidelines only; do not duplicate prompt text there.
 - If a prompt output schema changes, update parsing logic in the same change.
+
+## Imported Claude Cowork project instructions
+
+My signature holonic project.

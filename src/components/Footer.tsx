@@ -36,7 +36,7 @@ const Footer = () => {
 
           {/* Copyright */}
           <p className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} Genius Business
+            © {new Date().getFullYear()} Find Your Top Talent
           </p>
         </div>
       </div>

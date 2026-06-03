@@ -17,6 +17,7 @@ import { Helmet } from "react-helmet-async";
 
 const PROD_ORIGIN = "https://findyourtoptalent.com";
 const DEFAULT_OG_IMAGE = `${PROD_ORIGIN}/opengraph-image.png`;
+const DEFAULT_OG_IMAGE_ALT = "Find Your Top Talent. Productize It. Find Your People.";
 
 export interface SEOProps {
     title: string;
@@ -26,6 +27,7 @@ export interface SEOProps {
     ogTitle?: string;
     ogDescription?: string;
     ogImage?: string;
+    ogImageAlt?: string;
     ogType?: "website" | "article" | "profile";
     /** Extra JSON-LD blocks to inject (Article, Person, Service, FAQ, etc.). */
     jsonLd?: Record<string, unknown> | Record<string, unknown>[];
@@ -39,6 +41,7 @@ const SEO = ({
     ogTitle,
     ogDescription,
     ogImage = DEFAULT_OG_IMAGE,
+    ogImageAlt = DEFAULT_OG_IMAGE_ALT,
     ogType = "website",
     jsonLd,
     noIndex,
@@ -60,11 +63,15 @@ const SEO = ({
             <meta property="og:url" content={canonical} />
             <meta property="og:type" content={ogType} />
             <meta property="og:image" content={ogImage} />
+            <meta property="og:image:width" content="1200" />
+            <meta property="og:image:height" content="630" />
+            <meta property="og:image:alt" content={ogImageAlt} />
 
             <meta name="twitter:card" content="summary_large_image" />
             <meta name="twitter:title" content={finalOgTitle} />
             <meta name="twitter:description" content={finalOgDescription} />
             <meta name="twitter:image" content={ogImage} />
+            <meta name="twitter:image:alt" content={ogImageAlt} />
 
             {blocks.map((block, i) => (
                 <script key={i} type="application/ld+json">

@@ -67,8 +67,9 @@ const OyiIgnition = () => {
   const [expandedTestimonial, setExpandedTestimonial] = useState<number | null>(null);
 
   useEffect(() => {
+    const previousTitle = document.title;
     document.title = "Sovereignty Restored — Oyi Sun";
-    return () => { document.title = "Genius Business"; };
+    return () => { document.title = previousTitle; };
   }, []);
 
   const content = (

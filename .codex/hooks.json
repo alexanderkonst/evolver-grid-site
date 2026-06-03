@@ -1,0 +1,38 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 '/Users/alexanderkonst/evolver-grid-site/.codex/hooks/block-irreversible.py'"
+          },
+          {
+            "type": "command",
+            "command": "python3 '/Users/alexanderkonst/evolver-grid-site/.codex/hooks/block-deploy-commit.py'"
+          }
+        ]
+      },
+      {
+        "matcher": "Edit|Write|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 '/Users/alexanderkonst/evolver-grid-site/.codex/hooks/canon-lock.py'"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 '/Users/alexanderkonst/evolver-grid-site/.codex/hooks/session-log-nudge.py'"
+          }
+        ]
+      }
+    ]
+  }
+}
