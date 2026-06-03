@@ -176,9 +176,10 @@ const IgniteSession = () => {
   const testimonials = useTestimonials();
 
   useEffect(() => {
+    const previousTitle = document.title;
     document.title = "You've Been Giving Your Best Work Away for Free — Productize Yourself Session";
     trackPageView('ignite_view');
-    return () => { document.title = "Genius Business"; };
+    return () => { document.title = previousTitle; };
   }, []);
 
   // Handle hash-based scrolling.
@@ -517,7 +518,7 @@ const IgniteSession = () => {
   return (
     <>
       <SEO
-        title="Productize Yourself Session — $555"
+        title="Productize Yourself Session — $555 | Find Your Top Talent"
         description="A 90-minute 1:1 with Aleksandr. Name your craft, design the business built on who you already are, and walk out with the first easy move to your first paying client. Money-back guarantee."
         path="/ignite"
         ogTitle="You've been giving your best work away for free."

@@ -66,8 +66,9 @@ const SandraIgnition = () => {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   useEffect(() => {
+    const previousTitle = document.title;
     document.title = "The Future Is Already Speaking To You — Sandra Otto";
-    return () => { document.title = "Genius Business"; };
+    return () => { document.title = previousTitle; };
   }, []);
 
   const content = (

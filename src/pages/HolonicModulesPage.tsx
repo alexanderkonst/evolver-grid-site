@@ -675,7 +675,7 @@ const HolonicModulesPage = () => {
     const listAnim = useScrollAnimation(0.1);
 
     useEffect(() => {
-        document.title = "The Genius Business System — All Modules";
+        document.title = "Modules | Find Your Top Talent";
         window.scrollTo(0, 0);
     }, []);
 

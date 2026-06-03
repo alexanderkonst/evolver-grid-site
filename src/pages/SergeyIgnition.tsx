@@ -66,8 +66,9 @@ const SergeyIgnition = () => {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   useEffect(() => {
+    const previousTitle = document.title;
     document.title = "Pull + AI = Breakthrough — Sergey Jay Makarov";
-    return () => { document.title = "Genius Business"; };
+    return () => { document.title = previousTitle; };
   }, []);
 
   const content = (

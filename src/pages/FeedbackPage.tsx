@@ -32,8 +32,9 @@ export default function FeedbackPage() {
   const [beforeState, setBeforeState] = useState("");
 
   useEffect(() => {
-    document.title = "Share Your Experience | Genius Business";
-    return () => { document.title = "Genius Business"; };
+    const previousTitle = document.title;
+    document.title = "Share Your Experience | Find Your Top Talent";
+    return () => { document.title = previousTitle; };
   }, []);
 
   const handleSubmit = useCallback(async () => {
