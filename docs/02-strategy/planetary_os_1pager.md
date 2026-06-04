@@ -10,9 +10,13 @@ Planetary OS helps people find their unique contribution, find the right people 
 
 Industrial civilization coordinated people by standardizing them: roles, credentials, replaceability. The world increasingly rewards the opposite, the differentiated way each person thinks, creates, and contributes. But that value stays trapped, often illegible even to the person who holds it, so it never gets coordinated. Planetary OS is the infrastructure that makes it legible.
 
+Most communities are still directories of high-agency people, not coordination systems. They gather impressive people, but they do not reliably make the right people find and build with each other. Planetary OS turns a community's latent talent into coordination throughput by making each member's unique leverage precise enough to match, route, and activate.
+
 ## The kernel
 
 At the center is one atomic operation: turn a person's differentiated nature into a clear, usable profile of what they uniquely think, create, and contribute, in about fifteen minutes. Just as a computer's kernel manages memory and processes so applications can run, this kernel manages legible human difference so coordination can run. Everything else is built on top of it.
+
+For communities, the first expression is **Community Member Onboarding**: precision purpose discovery, precision mission discovery, and precision resource mapping. The question is not only what someone is good at, but what role they are naturally here to play inside a living system.
 
 ## The gameplay
 
@@ -30,6 +34,8 @@ Each module is whole on its own and fits a coherent larger whole. That is what h
 ## The metric
 
 The whole system exists to move one number: **collaboration rate**, the share of members who actually start building together. It is the hidden engine beneath every community's growth and output, and almost nobody measures it.
+
+Secondary metrics follow from that one: collaborations formed, ventures formed, projects launched, introductions converted, member retention through meaningful participation, and member GDP.
 
 ## How it grows
 

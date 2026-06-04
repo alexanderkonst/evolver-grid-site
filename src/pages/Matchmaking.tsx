@@ -904,8 +904,12 @@ const Matchmaking = () => {
           />
         )}
 
-        {/* Loading */}
-        {loading && (
+        {/* Loading — only show the page-level skeleton while we have
+            NO data and the matches engine is still in flight. Previously
+            this was gated on the unrelated `loading` flag from initAuth,
+            which kept the skeleton visible even after match data had
+            arrived if the auth/profile fetch was slow. */}
+        {assetMatchesLoading && assetMatches.length === 0 && !error && (
           <div className="space-y-4">
             <Skeleton className="h-48 w-full" />
             <Skeleton className="h-32 w-full" />
@@ -913,7 +917,7 @@ const Matchmaking = () => {
         )}
 
         {/* Error */}
-        {!loading && error && (
+        {!!error && (
           <div
             className="rounded-2xl px-5 py-5 text-center"
             style={{
@@ -940,7 +944,7 @@ const Matchmaking = () => {
         )}
 
         {/* Filter warnings — gold-tinted parchment */}
-        {!loading && !error && (locationBlocked || languageBlocked) && (
+        {!error && (locationBlocked || languageBlocked) && (
           <div
             className="rounded-2xl px-5 py-4 mb-6"
             style={{
@@ -969,7 +973,7 @@ const Matchmaking = () => {
         )}
 
         {/* No-matches state — Aurora ceremonial empty */}
-        {!loading && !error && !hasAnyMatches && (
+        {!assetMatchesLoading && !error && !hasAnyMatches && (
           <div
             className="rounded-2xl px-6 py-10 text-center"
             style={parchmentCard}
@@ -999,7 +1003,7 @@ const Matchmaking = () => {
           </div>
         )}
 
-        {!loading && !error && hasAnyMatches && (
+        {!error && hasAnyMatches && (
           <div className="space-y-10">
             {/* ═════════════════════════════════════════
                 SECTION 1: AI-POWERED MATCHES (TOP)
