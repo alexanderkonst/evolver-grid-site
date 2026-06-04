@@ -13,7 +13,8 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Boxes, ChevronDown, ChevronUp, Users, Plus, ArrowRight, RefreshCw, Loader2 } from "lucide-react";
+import { Boxes, ChevronDown, ChevronUp, Users, Plus, ArrowRight, RefreshCw, Loader2, Copy, Check } from "lucide-react";
+import { toast } from "sonner";
 import GameShellV2 from "@/components/game/GameShellV2";
 import { supabase } from "@/integrations/supabase/client";
 import { ASSET_TYPES } from "@/modules/asset-mapping/data/assetTypes";
