@@ -1096,7 +1096,7 @@ const SectionsPanel = ({
                    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
                 pageOwnsBackground
                     ? "bg-[rgba(6,12,28,0.94)]"
-                    : "bg-[rgba(14,32,68,0.55)] lg:bg-[rgba(14,32,68,0.42)]",
+                    : "bg-[rgba(14,32,68,0.80)] lg:bg-[rgba(14,32,68,0.72)]",
                 className
             )}
             style={{
@@ -1230,7 +1230,14 @@ const SectionsPanel = ({
                               (s, i) => s.locked && i < spaceData.sections.indexOf(section),
                           ).length
                         : -1;
-                    const FOG_OPACITY: number[] = [0.85, 0.60, 0.40, 0.30];
+                    // Day 102 (Sasha 2026-06-04): legibility correction
+                    // using docs/03-playbooks/ui_playbook.md's muted text
+                    // floor. The old fog values compounded with locked
+                    // row text alpha (0.85 * 0.30 = 0.255 effective), which
+                    // made pane-2 copy unreadable in bright background
+                    // frames. Keep a small depth cue, but never let text
+                    // fall below the readable range.
+                    const FOG_OPACITY: number[] = [1, 0.96, 0.92, 0.88];
                     const fogOpacity = isLocked
                         ? (FOG_OPACITY[lockedFogIndex] ?? 0.30)
                         : 1;
@@ -1280,19 +1287,8 @@ const SectionsPanel = ({
                             className={cn(
                                 "group flex items-center gap-2.5 px-3 py-2 ml-8 mr-2 rounded-2xl transition-all duration-300 relative",
                                 "focus:outline-none focus-visible:ring-2 focus-visible:ring-[#d4af37]/40",
-                                // Day 80 (Sasha 2026-05-25): sidequest
-                                // locked-row wrapper opacity bumped
-                                // 0.55 → 0.85. Compound with the inner
-                                // text alpha of 0.80, the effective
-                                // contrast was ~0.44 — invisible on
-                                // the dark variable-luminance Pane 2.
-                                // At 0.85 wrapper × 0.80 text = ~0.68
-                                // effective, comfortably in the
-                                // playbook Strong-cocktail readable
-                                // range while still visibly dimmer
-                                // than active (full opacity).
                                 isLocked
-                                    ? "cursor-not-allowed bg-white/[0.03] opacity-[0.85]"
+                                    ? "cursor-not-allowed bg-white/[0.05] opacity-100"
                                     : "cursor-pointer bg-white/[0.03] hover:bg-white/[0.06] hover:translate-y-[-1px] hover:shadow-[0_0_10px_-4px_rgba(244,212,114,0.25)]",
                             )}
                             onClick={handleSectionClick}
@@ -1345,7 +1341,9 @@ const SectionsPanel = ({
                                     letterSpacing: "0.012em",
                                     color: section.completed
                                         ? "var(--skin-sections-text-completed, rgba(255, 255, 255, 0.55))"
-                                        : "var(--skin-sections-text, rgba(255, 255, 255, 0.80))",
+                                        : isLocked
+                                            ? "var(--skin-sections-text, rgba(255, 255, 255, 0.92))"
+                                            : "var(--skin-sections-text, rgba(255, 255, 255, 0.88))",
                                     textDecorationLine: section.completed
                                         ? "line-through"
                                         : undefined,
@@ -1414,10 +1412,10 @@ const SectionsPanel = ({
                                 // tier (1.0 white) so the row reads as
                                 // inactive without going invisible.
                                 isLocked
-                                    ? "cursor-not-allowed bg-white/[0.04] text-white/[0.85]"
+                                    ? "cursor-not-allowed bg-white/[0.07] text-white/[0.94]"
                                     : sectionActive && !hasSubSections
                                         ? "cursor-pointer text-white ring-1 ring-[#d4af37]/60 shadow-[0_0_22px_-6px_rgba(244,212,114,0.55),0_0_48px_-14px_rgba(212,175,55,0.35)]"
-                                        : "cursor-pointer bg-white/[0.05] text-white/95 hover:bg-white/[0.10] hover:text-white hover:ring-1 hover:ring-[#d4af37]/30 hover:shadow-[0_0_16px_-4px_rgba(244,212,114,0.28)] hover:translate-y-[-1px] active:translate-y-0"
+                                        : "cursor-pointer bg-white/[0.07] text-white hover:bg-white/[0.12] hover:text-white hover:ring-1 hover:ring-[#d4af37]/30 hover:shadow-[0_0_16px_-4px_rgba(244,212,114,0.28)] hover:translate-y-[-1px] active:translate-y-0"
                             )}
                             style={
                                 sectionActive && !hasSubSections && !isLocked
@@ -1513,10 +1511,10 @@ const SectionsPanel = ({
                             </span>
                             {section.icon}
                             <span
-                                className="flex-1 text-[18px] leading-snug"
+                                className="flex-1 text-[19px] leading-snug"
                                 style={{
-                                    fontFamily: "'Cormorant Garamond', serif",
-                                    fontWeight: sectionActive && !isLocked ? 700 : 600,
+                                        fontFamily: "'Cormorant Garamond', serif",
+                                        fontWeight: sectionActive && !isLocked ? 700 : 650,
                                     letterSpacing: "0.012em",
                                     // Day 67 (Sasha 2026-05-16, bug fix): completed
                                     // rows use native text-decoration (per-line strike)
@@ -1594,7 +1592,7 @@ const SectionsPanel = ({
                                             ? "#f4d472"
                                             : section.progress.locked > 0
                                                 ? "rgba(244, 212, 114, 0.85)"
-                                                : "rgba(255, 255, 255, 0.40)",
+                                                : "rgba(255, 255, 255, 0.72)",
                                         textShadow: section.progress.locked === section.progress.total
                                             ? "0 0 6px rgba(244, 212, 114, 0.55)"
                                             : "none",
