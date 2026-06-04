@@ -539,6 +539,7 @@ export const EquilibriumV2Page = () => {
               loading={eq.loading}
               onUpsert={eq.upsertStrategy}
               onReorder={eq.reorderStrategies}
+              onComplete={eq.completeStrategy}
             />
           </EquilibriumSectionCard>
         )}
@@ -657,6 +658,7 @@ export const EquilibriumV2Page = () => {
             />
             <HarvestSection
               completedTasks={eq.completedTasksAll}
+              completedStrategies={eq.completedStrategies}
               workstreams={eq.workstreams}
               archivedWorkstreams={eq.archivedWorkstreams}
               loading={eq.loading}

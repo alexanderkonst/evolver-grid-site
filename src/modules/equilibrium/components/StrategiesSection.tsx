@@ -1,4 +1,4 @@
-import { GripVertical } from "lucide-react";
+import { Check, GripVertical } from "lucide-react";
 import {
   closestCenter,
   DndContext,
@@ -29,6 +29,11 @@ interface StrategiesSectionProps {
    * positions 1/2/3 as a 3-tuple. Sasha 2026-05-17.
    */
   onReorder: (orderedTexts: [string | null, string | null, string | null]) => Promise<void> | void;
+  /**
+   * Mark a strategy COMPLETE (Sasha 2026-05-29). Archives it to the
+   * Harvest section and frees the position slot for a new direction.
+   */
+  onComplete: (position: 1 | 2 | 3) => Promise<void> | void;
 }
 
 /**
@@ -46,6 +51,7 @@ export const StrategiesSection = ({
   loading,
   onUpsert,
   onReorder,
+  onComplete,
 }: StrategiesSectionProps) => {
   const sensors = useSensors(
     useSensor(PointerSensor, { activationConstraint: { distance: 4 } }),
@@ -102,6 +108,7 @@ export const StrategiesSection = ({
                   strategy={strategy}
                   loading={loading}
                   onSave={(text) => onUpsert(position, text)}
+                  onComplete={() => onComplete(position)}
                 />
               );
             }
@@ -128,12 +135,14 @@ const SortableStrategyRow = ({
   strategy,
   loading,
   onSave,
+  onComplete,
 }: {
   id: string;
   position: 1 | 2 | 3;
   strategy: EquilibriumStrategy;
   loading: boolean;
   onSave: (text: string | null) => Promise<void> | void;
+  onComplete: () => Promise<void> | void;
 }) => {
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } =
     useSortable({ id });
@@ -186,6 +195,24 @@ const SortableStrategyRow = ({
           reasoning={strategy.alignment_reasoning ?? undefined}
         />
       )}
+
+      {/*
+        Complete strategy — soft-archive into Harvest (Sasha 2026-05-29).
+        Moves the strategy from equilibrium_strategies →
+        equilibrium_strategy_completions, freeing the position slot for
+        a new direction. Hover-revealed (matches workstream chip
+        pattern) so the resting row stays clean.
+      */}
+      <button
+        type="button"
+        aria-label="Complete strategy"
+        title="Mark complete — moves to Harvest and frees this slot"
+        onClick={() => void onComplete()}
+        disabled={loading}
+        className="mt-1.5 shrink-0 rounded-full p-1.5 text-emerald-600/70 transition opacity-0 hover:bg-emerald-50 hover:text-emerald-700 group-hover:opacity-100 focus-visible:opacity-100"
+      >
+        <Check size={16} />
+      </button>
 
       <button
         type="button"

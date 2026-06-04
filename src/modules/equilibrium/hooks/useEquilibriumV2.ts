@@ -7,6 +7,7 @@ import type {
   EquilibriumFocus,
   EquilibriumState,
   EquilibriumStrategy,
+  EquilibriumStrategyCompletion,
   EquilibriumTask,
   EquilibriumWorkstream,
 } from "../types";
@@ -76,6 +77,14 @@ export interface EquilibriumV2Data {
    */
   reorderStrategies: (orderedTexts: [string | null, string | null, string | null]) => Promise<void>;
   /**
+   * Mark a strategy COMPLETE (Sasha 2026-05-29). Moves it from
+   * equilibrium_strategies → equilibrium_strategy_completions, freeing
+   * the position slot for a new direction. Appears in Harvest.
+   */
+  completeStrategy: (position: 1 | 2 | 3) => Promise<void>;
+  /** All completed strategies, newest first. Powers the Harvest union. */
+  completedStrategies: EquilibriumStrategyCompletion[];
+  /**
    * Score each filled strategy 0-100 against the user's "highest
    * expression" (Lifelong Dedication + Role). Calls the
    * score-equilibrium-strategies edge function, caches scores +
@@ -143,6 +152,7 @@ export function useEquilibriumV2(): EquilibriumV2Data {
   const [birthday, setBirthday] = useState<string | null>(null);
 
   const [strategies, setStrategies] = useState<EquilibriumStrategy[]>([]);
+  const [completedStrategies, setCompletedStrategies] = useState<EquilibriumStrategyCompletion[]>([]);
   const [workstreams, setWorkstreams] = useState<EquilibriumWorkstream[]>([]);
   const [archivedWorkstreams, setArchivedWorkstreams] = useState<EquilibriumWorkstream[]>([]);
   const [tasks, setTasks] = useState<EquilibriumTask[]>([]);
@@ -199,6 +209,7 @@ export function useEquilibriumV2(): EquilibriumV2Data {
       setTopTalentTitle(null);
       setBirthday(null);
       setStrategies([]);
+      setCompletedStrategies([]);
       setWorkstreams([]);
       setTasks([]);
       setFocus([]);
@@ -213,6 +224,7 @@ export function useEquilibriumV2(): EquilibriumV2Data {
       participantRes,
       profileRes,
       strategiesRes,
+      strategyCompletionsRes,
       workstreamsRes,
       focusRes,
     ] = await Promise.all([
@@ -235,6 +247,11 @@ export function useEquilibriumV2(): EquilibriumV2Data {
         .eq("user_id", user.id)
         .maybeSingle(),
       eqAny.from("equilibrium_strategies").select("*").eq("user_id", user.id),
+      eqAny
+        .from("equilibrium_strategy_completions")
+        .select("*")
+        .eq("user_id", user.id)
+        .order("done_at", { ascending: false }),
       eqAny.from("equilibrium_workstreams").select("*").eq("user_id", user.id),
       eqAny.from("equilibrium_focus").select("*").eq("user_id", user.id),
     ]);
@@ -323,6 +340,10 @@ export function useEquilibriumV2(): EquilibriumV2Data {
       ((strategiesRes.data as EquilibriumStrategy[] | null) ?? []).sort(
         (a, b) => a.position - b.position,
       ),
+    );
+    setCompletedStrategies(
+      (strategyCompletionsRes.data as EquilibriumStrategyCompletion[] | null) ??
+        [],
     );
 
     const allWs = ((workstreamsRes.data as EquilibriumWorkstream[] | null) ?? []);
@@ -531,6 +552,80 @@ export function useEquilibriumV2(): EquilibriumV2Data {
       );
     },
     [user],
+  );
+
+  /**
+   * Mark a strategy COMPLETE (Sasha 2026-05-29). Two server-side ops
+   * in sequence (no transaction wrapper — Supabase JS client doesn't
+   * expose one cleanly, and the optimistic local update covers the
+   * brief gap):
+   *
+   *   (1) INSERT into equilibrium_strategy_completions — capture the
+   *       full row + original_position + done_at=now()
+   *   (2) Remove the live row at (user_id, position) — frees the slot
+   *       for a new direction
+   *
+   * If the INSERT succeeds but the DELETE fails (rare), we refetch
+   * to repair the local state. The user momentarily sees both rows
+   * (live + completion); refetch resolves it.
+   *
+   * Tasks under this strategy are NOT affected — strategies and tasks
+   * are independent in the data model. The completion appears in
+   * Harvest with the strategy's text + alignment metadata + a
+   * "strategy" attribution (vs "from <workstream>" for tasks).
+   */
+  const completeStrategy = useCallback(
+    async (position: 1 | 2 | 3) => {
+      if (!user) return;
+      const target = strategies.find((s) => s.position === position);
+      if (!target) return;
+
+      const doneAt = new Date().toISOString();
+      const completionRow: Omit<EquilibriumStrategyCompletion, "id"> = {
+        user_id: user.id,
+        text: target.text,
+        original_position: target.position,
+        set_at: target.set_at,
+        done_at: doneAt,
+        alignment_score: target.alignment_score ?? null,
+        alignment_reasoning: target.alignment_reasoning ?? null,
+      };
+
+      // Optimistic: drop from live, prepend to completions. The id is
+      // assigned by the server; we use a temporary so React can key
+      // the new row, and the next fetchAll will resync with the real id.
+      const tempId = `tmp-${Date.now()}`;
+      setStrategies((prev) => prev.filter((s) => s.position !== position));
+      setCompletedStrategies((prev) => [
+        { id: tempId, ...completionRow },
+        ...prev,
+      ]);
+
+      const insRes = await eqAny
+        .from("equilibrium_strategy_completions")
+        .insert(completionRow);
+      if (insRes.error) {
+        toast.error("Couldn't archive strategy — refreshing.");
+        void fetchAll();
+        return;
+      }
+
+      const delRes = await eqAny
+        .from("equilibrium_strategies")
+        .delete()
+        .eq("user_id", user.id)
+        .eq("position", position);
+      if (delRes.error) {
+        toast.error("Strategy archived, but couldn't clear slot — refreshing.");
+        void fetchAll();
+        return;
+      }
+
+      toast.success(`Completed strategy "${target.text.slice(0, 40)}…"`);
+      // Refetch in background to get the real completion id (replaces the temp).
+      void fetchAll();
+    },
+    [user, strategies, fetchAll],
   );
 
   // ─── Workstreams ───────────────────────────────────────
@@ -1234,6 +1329,8 @@ export function useEquilibriumV2(): EquilibriumV2Data {
     setLastSynthesis,
     upsertStrategy,
     reorderStrategies,
+    completeStrategy,
+    completedStrategies,
     scoreStrategies,
     scoringStrategies,
     addWorkstream,

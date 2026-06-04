@@ -1,12 +1,21 @@
 import { memo, useMemo } from "react";
-import { Check, RotateCcw, Clock, Sparkles } from "lucide-react";
+import { Check, RotateCcw, Clock, Sparkles, Compass } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { getLunarState, MOON_PHASES } from "@/lib/equilibrium-cycles";
-import type { EquilibriumTask, EquilibriumWorkstream } from "../types";
+import type {
+  EquilibriumStrategyCompletion,
+  EquilibriumTask,
+  EquilibriumWorkstream,
+} from "../types";
 
 interface HarvestSectionProps {
   /** All completed tasks across every workstream, newest first. */
   completedTasks: EquilibriumTask[];
+  /**
+   * All completed strategies, newest first (Sasha 2026-05-29). Strategies
+   * are unioned with tasks into a single time-ordered Harvest feed.
+   */
+  completedStrategies: EquilibriumStrategyCompletion[];
   /** Active workstreams (for name attribution on each completed task). */
   workstreams: EquilibriumWorkstream[];
   /** Archived workstreams — completed tasks may belong to these. */
@@ -15,6 +24,15 @@ interface HarvestSectionProps {
   /** Restore a completed task back to active (clears done_at). */
   onUncompleteTask: (id: string) => Promise<void> | void;
 }
+
+/**
+ * Unified Harvest entry — tasks and strategy completions share a
+ * timeline. Discriminated by `kind` so the renderer can type-narrow
+ * to each shape.
+ */
+type HarvestEntry =
+  | { kind: "task"; task: EquilibriumTask; doneAt: string }
+  | { kind: "strategy"; completion: EquilibriumStrategyCompletion; doneAt: string };
 
 /**
  * Harvest — running celebration feed of completed tasks across ALL
@@ -51,6 +69,7 @@ interface HarvestSectionProps {
  */
 const HarvestSectionBase = ({
   completedTasks,
+  completedStrategies,
   workstreams,
   archivedWorkstreams,
   loading,
@@ -80,23 +99,33 @@ const HarvestSectionBase = ({
   const resolveWorkstreamTitle = (task: EquilibriumTask): string | undefined =>
     task.workstream_title_snapshot ?? workstreamTitleById[task.workstream_id];
 
-  // Group completed tasks by day (local time of done_at). Order:
-  // most-recent day first, tasks within a day already sorted newest
-  // first by the parent hook.
+  // Union tasks + strategy completions into a single timeline, sorted
+  // newest-first by done_at, then bucket by day. Discriminated union
+  // means the renderer can type-narrow safely.
   const grouped = useMemo(() => {
-    const buckets = new Map<string, EquilibriumTask[]>();
+    const entries: HarvestEntry[] = [];
     for (const t of completedTasks) {
       if (!t.done_at) continue;
-      const dayKey = formatDayKey(new Date(t.done_at));
-      if (!buckets.has(dayKey)) buckets.set(dayKey, []);
-      buckets.get(dayKey)!.push(t);
+      entries.push({ kind: "task", task: t, doneAt: t.done_at });
     }
-    // Map preserves insertion order, which is already newest-first
-    // because completedTasks is pre-sorted.
-    return Array.from(buckets.entries());
-  }, [completedTasks]);
+    for (const s of completedStrategies) {
+      if (!s.done_at) continue;
+      entries.push({ kind: "strategy", completion: s, doneAt: s.done_at });
+    }
+    entries.sort(
+      (a, b) => new Date(b.doneAt).getTime() - new Date(a.doneAt).getTime(),
+    );
 
-  const totalCount = completedTasks.length;
+    const buckets = new Map<string, HarvestEntry[]>();
+    for (const e of entries) {
+      const dayKey = formatDayKey(new Date(e.doneAt));
+      if (!buckets.has(dayKey)) buckets.set(dayKey, []);
+      buckets.get(dayKey)!.push(e);
+    }
+    return Array.from(buckets.entries());
+  }, [completedTasks, completedStrategies]);
+
+  const totalCount = completedTasks.length + completedStrategies.length;
 
   // Empty state — quiet, no motivational pressure. The watch is for
   // attunement, not gamification guilt.
@@ -137,9 +166,13 @@ const HarvestSectionBase = ({
   // Computed: tasks reaped in the trailing 7 days (window for the
   // "this week" stat). Today's count is already in the day eyebrow.
   const sevenDaysAgo = Date.now() - 7 * 86_400_000;
-  const weekCount = completedTasks.filter(
-    (t) => t.done_at && new Date(t.done_at).getTime() >= sevenDaysAgo,
-  ).length;
+  const weekCount =
+    completedTasks.filter(
+      (t) => t.done_at && new Date(t.done_at).getTime() >= sevenDaysAgo,
+    ).length +
+    completedStrategies.filter(
+      (s) => s.done_at && new Date(s.done_at).getTime() >= sevenDaysAgo,
+    ).length;
 
   // Top aggregate line — context-sensitive copy. If there's history
   // beyond today, surface the wider window; otherwise stay on the
@@ -159,104 +192,200 @@ const HarvestSectionBase = ({
       </div>
 
       <div className="flex flex-col gap-5">
-        {grouped.map(([dayKey, dayTasks]) => (
+        {grouped.map(([dayKey, dayEntries]) => (
           <div key={dayKey}>
-            {/* Day group eyebrow — day name + count, no "REAPED"
-                redundancy. Tighter tracking, calmer color. */}
             <div className="mb-2 flex items-center gap-2 px-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-[#0a1628]/65">
               <span>{formatDayLabel(dayKey)}</span>
-              <span className="text-[#0a1628]/40">· {dayTasks.length}</span>
+              <span className="text-[#0a1628]/40">· {dayEntries.length}</span>
               <span className="flex-1 border-t border-[#0a1628]/10" />
             </div>
 
             <ul className="flex flex-col gap-1.5">
-              {dayTasks.map((task) => (
-                <li
-                  key={task.id}
-                  className="group/harvest flex items-start gap-3 rounded-xl border border-[#0a1628]/8 bg-white/80 px-3 py-2.5 transition hover:border-[#0a1628]/14 hover:bg-white/95"
-                >
-                  {/* Pre-checked square — visual symmetry with the
-                      active-task checkbox, plus the only emerald
-                      element in the row (it's the symbol of done).
-                      Hover swaps to the restore arrow. */}
-                  <button
-                    type="button"
-                    aria-label={`Restore "${task.text}" to active`}
-                    title="Restore to active"
-                    disabled={loading}
-                    onClick={() => onUncompleteTask(task.id)}
-                    className="group/check relative mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-md border-2 border-emerald-500/70 bg-emerald-50 transition hover:border-emerald-600 hover:bg-emerald-100"
-                  >
-                    <Check
-                      size={14}
-                      className="absolute text-emerald-700 transition group-hover/check:opacity-0"
-                    />
-                    <RotateCcw
-                      size={14}
-                      className="absolute text-emerald-700 opacity-0 transition group-hover/check:opacity-100"
-                    />
-                  </button>
-
-                  <div className="flex-1 min-w-0">
-                    {/* Task text — muted /65 + strikethrough /30. Two
-                        soft signals add to "done"; neither has to
-                        shout on its own. */}
-                    <div className="font-serif text-[15px] leading-snug text-[#0a1628]/65 line-through decoration-[#0a1628]/30">
-                      {task.text}
-                    </div>
-                    {/* Metadata — single italic citation line. Long
-                        workstream names wrap; nothing truncates ugly. */}
-                    <div className="mt-1 flex flex-wrap items-center gap-x-2 gap-y-0.5 text-[11px] text-[#0a1628]/55">
-                      {(() => {
-                        const wsTitle = resolveWorkstreamTitle(task);
-                        return wsTitle ? (
-                          <>
-                            <span className="italic">
-                              from{" "}
-                              <span className="font-medium not-italic text-[#0a1628]/75">
-                                {wsTitle}
-                              </span>
-                            </span>
-                            <span className="text-[#0a1628]/30">·</span>
-                          </>
-                        ) : null;
-                      })()}
-                      <span className="inline-flex items-center gap-1">
-                        <Clock size={10} className="text-[#0a1628]/45" />
-                        {formatDuration(focusDurationMs(task))}
-                      </span>
-                      <span className="text-[#0a1628]/30">·</span>
-                      <span>{formatRelativeTime(new Date(task.done_at!))}</span>
-                      {/* Lunar phase at completion (Sasha 2026-05-24).
-                          Derived live from task.done_at — no schema
-                          change needed. Ties Harvest to the spine:
-                          you can see at a glance which phase the
-                          completion belonged to. */}
-                      {(() => {
-                        const phase = lunarPhaseAtDone(task.done_at);
-                        if (!phase) return null;
-                        return (
-                          <>
-                            <span className="text-[#0a1628]/30">·</span>
-                            <span
-                              className="inline-flex items-center gap-1"
-                              title={`Completed during ${phase.name}`}
-                            >
-                              <span aria-hidden="true">{phase.symbol}</span>
-                              <span className="hidden sm:inline">{phase.shortName}</span>
-                            </span>
-                          </>
-                        );
-                      })()}
-                    </div>
-                  </div>
-                </li>
-              ))}
+              {dayEntries.map((entry) =>
+                entry.kind === "task" ? (
+                  <TaskHarvestRow
+                    key={`task-${entry.task.id}`}
+                    task={entry.task}
+                    workstreamTitle={resolveWorkstreamTitle(entry.task)}
+                    loading={loading}
+                    onUncompleteTask={onUncompleteTask}
+                  />
+                ) : (
+                  <StrategyHarvestRow
+                    key={`strat-${entry.completion.id}`}
+                    completion={entry.completion}
+                  />
+                ),
+              )}
             </ul>
           </div>
         ))}
       </div>
     </div>
+  );
+};
+
+// ─── Row renderers ──────────────────────────────────────────────
+
+interface TaskHarvestRowProps {
+  task: EquilibriumTask;
+  workstreamTitle: string | undefined;
+  loading: boolean;
+  onUncompleteTask: (id: string) => Promise<void> | void;
+}
+
+const TaskHarvestRow = ({
+  task,
+  workstreamTitle,
+  loading,
+  onUncompleteTask,
+}: TaskHarvestRowProps) => {
+  const phase = lunarPhaseAtDone(task.done_at);
+  return (
+    <li className="group/harvest flex items-start gap-3 rounded-xl border border-[#0a1628]/8 bg-white/80 px-3 py-2.5 transition hover:border-[#0a1628]/14 hover:bg-white/95">
+      <button
+        type="button"
+        aria-label={`Restore "${task.text}" to active`}
+        title="Restore to active"
+        disabled={loading}
+        onClick={() => onUncompleteTask(task.id)}
+        className="group/check relative mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-md border-2 border-emerald-500/70 bg-emerald-50 transition hover:border-emerald-600 hover:bg-emerald-100"
+      >
+        <Check
+          size={14}
+          className="absolute text-emerald-700 transition group-hover/check:opacity-0"
+        />
+        <RotateCcw
+          size={14}
+          className="absolute text-emerald-700 opacity-0 transition group-hover/check:opacity-100"
+        />
+      </button>
+
+      <div className="flex-1 min-w-0">
+        <div className="font-serif text-[15px] leading-snug text-[#0a1628]/65 line-through decoration-[#0a1628]/30">
+          {task.text}
+        </div>
+        <div className="mt-1 flex flex-wrap items-center gap-x-2 gap-y-0.5 text-[11px] text-[#0a1628]/55">
+          {workstreamTitle && (
+            <>
+              <span className="italic">
+                from{" "}
+                <span className="font-medium not-italic text-[#0a1628]/75">
+                  {workstreamTitle}
+                </span>
+              </span>
+              <span className="text-[#0a1628]/30">·</span>
+            </>
+          )}
+          <span className="inline-flex items-center gap-1">
+            <Clock size={10} className="text-[#0a1628]/45" />
+            {formatDuration(focusDurationMs(task))}
+          </span>
+          <span className="text-[#0a1628]/30">·</span>
+          <span>{formatRelativeTime(new Date(task.done_at!))}</span>
+          {phase && (
+            <>
+              <span className="text-[#0a1628]/30">·</span>
+              <span
+                className="inline-flex items-center gap-1"
+                title={`Completed during ${phase.name}`}
+              >
+                <span aria-hidden="true">{phase.symbol}</span>
+                <span className="hidden sm:inline">{phase.shortName}</span>
+              </span>
+            </>
+          )}
+        </div>
+      </div>
+    </li>
+  );
+};
+
+interface StrategyHarvestRowProps {
+  completion: EquilibriumStrategyCompletion;
+}
+
+/**
+ * Strategy completion row — distinct visual cues from a task row so
+ * the user reads "this is a strategy I completed, not a task":
+ *   • Lavender accent on the check button border (vs emerald for tasks)
+ *   • Compass icon as an inline glyph next to the strategy text
+ *   • Citation reads "strategy" + position (not "from <workstream>")
+ *   • Duration measures set_at → done_at ("in play 12 days")
+ *
+ * No restore handler yet — restoring a strategy requires picking an
+ * open slot (positions 1/2/3), which the live strategies list may not
+ * have. We can add a "restore to slot N" flow later if needed; for
+ * now strategy completions are immutable celebration artifacts.
+ */
+const StrategyHarvestRow = ({ completion }: StrategyHarvestRowProps) => {
+  const phase = lunarPhaseAtDone(completion.done_at);
+  const inPlayMs =
+    new Date(completion.done_at).getTime() -
+    new Date(completion.set_at).getTime();
+  return (
+    <li className="group/harvest flex items-start gap-3 rounded-xl border border-[#0a1628]/8 bg-white/80 px-3 py-2.5 transition hover:border-[#0a1628]/14 hover:bg-white/95">
+      <div
+        aria-label="Completed strategy"
+        title="Completed strategy"
+        className="relative mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-md border-2 border-violet-400/70 bg-violet-50"
+      >
+        <Check size={14} className="text-violet-700" />
+      </div>
+
+      <div className="flex-1 min-w-0">
+        <div className="flex items-start gap-1.5">
+          <Compass
+            size={13}
+            className="mt-1 shrink-0 text-violet-600/80"
+            aria-hidden="true"
+          />
+          <div className="flex-1 font-serif text-[15px] leading-snug text-[#0a1628]/65 line-through decoration-[#0a1628]/30">
+            {completion.text}
+          </div>
+        </div>
+        <div className="mt-1 flex flex-wrap items-center gap-x-2 gap-y-0.5 text-[11px] text-[#0a1628]/55">
+          <span className="italic">
+            <span className="font-medium not-italic text-violet-700/80">
+              strategy
+            </span>
+            {completion.original_position
+              ? ` #${completion.original_position}`
+              : ""}
+          </span>
+          <span className="text-[#0a1628]/30">·</span>
+          <span className="inline-flex items-center gap-1">
+            <Clock size={10} className="text-[#0a1628]/45" />
+            in play {formatDuration(inPlayMs)}
+          </span>
+          <span className="text-[#0a1628]/30">·</span>
+          <span>{formatRelativeTime(new Date(completion.done_at))}</span>
+          {phase && (
+            <>
+              <span className="text-[#0a1628]/30">·</span>
+              <span
+                className="inline-flex items-center gap-1"
+                title={`Completed during ${phase.name}`}
+              >
+                <span aria-hidden="true">{phase.symbol}</span>
+                <span className="hidden sm:inline">{phase.shortName}</span>
+              </span>
+            </>
+          )}
+          {typeof completion.alignment_score === "number" && (
+            <>
+              <span className="text-[#0a1628]/30">·</span>
+              <span
+                className="inline-flex items-center rounded-full bg-emerald-50 px-1.5 py-0.5 text-[10px] font-semibold text-emerald-700"
+                title={completion.alignment_reasoning ?? undefined}
+              >
+                {completion.alignment_score}
+              </span>
+            </>
+          )}
+        </div>
+      </div>
+    </li>
   );
 };
 
