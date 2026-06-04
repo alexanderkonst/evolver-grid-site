@@ -904,8 +904,12 @@ const Matchmaking = () => {
           />
         )}
 
-        {/* Loading */}
-        {loading && (
+        {/* Loading — only show the page-level skeleton while we have
+            NO data and the matches engine is still in flight. Previously
+            this was gated on the unrelated `loading` flag from initAuth,
+            which kept the skeleton visible even after match data had
+            arrived if the auth/profile fetch was slow. */}
+        {assetMatchesLoading && assetMatches.length === 0 && !error && (
           <div className="space-y-4">
             <Skeleton className="h-48 w-full" />
             <Skeleton className="h-32 w-full" />
