@@ -330,6 +330,25 @@ const ProfileAssetsSection = () => {
                             </span>
                         </button>
                         <div className="flex items-center gap-3">
+                            {/* Copy all assets to clipboard (single-tap export). */}
+                            <button
+                                onClick={copyAssets}
+                                disabled={savedAssets.length === 0}
+                                className="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 transition-all duration-200 hover:translate-y-[-0.5px] disabled:opacity-50 disabled:cursor-not-allowed"
+                                style={{
+                                    fontFamily: "'DM Sans', system-ui, sans-serif",
+                                    fontSize: "11px",
+                                    letterSpacing: "0.10em",
+                                    textTransform: "uppercase",
+                                    color: "var(--skin-text-muted, rgba(11, 42, 90, 0.93))",
+                                    background: "rgba(255, 255, 255, 0.55)",
+                                    border: "0.5px solid var(--skin-rule-hairline, rgba(26, 30, 58, 0.10))",
+                                }}
+                                title="Copy all assets to clipboard"
+                            >
+                                {justCopied ? <Check className="w-3 h-3" /> : <Copy className="w-3 h-3" />}
+                                {justCopied ? "Copied" : "Copy"}
+                            </button>
                             {/* Manual refresh — UX hint for the
                                 propagation delay between Save-on-mapping
                                 and the assets surfacing here. */}
