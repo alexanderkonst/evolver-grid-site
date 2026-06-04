@@ -973,7 +973,7 @@ const Matchmaking = () => {
         )}
 
         {/* No-matches state — Aurora ceremonial empty */}
-        {!loading && !error && !hasAnyMatches && (
+        {!assetMatchesLoading && !error && !hasAnyMatches && (
           <div
             className="rounded-2xl px-6 py-10 text-center"
             style={parchmentCard}
