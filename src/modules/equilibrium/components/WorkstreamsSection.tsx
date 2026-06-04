@@ -432,7 +432,12 @@ const SortableWorkstreamChip = ({
             title="Rename"
             className={cn(
               "shrink-0 rounded p-1.5 text-[#0a1628]/55 transition hover:bg-[#0a1628]/5 hover:text-[#0a1628]",
-              isActive ? "opacity-100" : "opacity-0 group-hover:opacity-100 focus-visible:opacity-100",
+              // Mobile fallback (Sasha 2026-05-29): partial opacity on
+              // touch so the rename affordance is discoverable without
+              // hover. Same pattern as complete + delete buttons.
+              isActive
+                ? "opacity-100"
+                : "opacity-0 group-hover:opacity-100 focus-visible:opacity-100 max-sm:opacity-60",
             )}
           >
             <Pencil size={13} />
@@ -482,9 +487,12 @@ const SortableWorkstreamChip = ({
           }}
           className={cn(
             "shrink-0 rounded-full p-1.5 text-emerald-600/70 transition hover:bg-emerald-50 hover:text-emerald-700",
+            // Always visible on active chip; hover-revealed on desktop
+            // for inactive chips, with a mobile fallback so touch users
+            // can find the action without hover (Sasha 2026-05-29).
             isActive
               ? "opacity-100"
-              : "opacity-0 group-hover:opacity-100 focus-visible:opacity-100",
+              : "opacity-0 group-hover:opacity-100 focus-visible:opacity-100 max-sm:opacity-60",
           )}
         >
           <Check size={16} />
@@ -521,9 +529,12 @@ const SortableWorkstreamChip = ({
           }}
           className={cn(
             "shrink-0 rounded-full p-1.5 text-rose-500/70 transition hover:bg-rose-50 hover:text-rose-600",
+            // Same visibility rule as complete-workstream above:
+            // always on active chip, hover-revealed on desktop,
+            // partial-opacity on mobile (Sasha 2026-05-29).
             isActive
               ? "opacity-100"
-              : "opacity-0 group-hover:opacity-100 focus-visible:opacity-100",
+              : "opacity-0 group-hover:opacity-100 focus-visible:opacity-100 max-sm:opacity-60",
           )}
         >
           <Trash2 size={16} />

@@ -250,7 +250,10 @@ export const InlineEditableText = ({
             setExpanded((v) => !v);
           }}
           className={cn(
-            "self-start rounded px-2 text-xs font-semibold uppercase tracking-wider text-emerald-700/80 transition hover:text-emerald-800",
+            // Tap target sized for mobile (Sasha 2026-05-29 audit) —
+            // px-3 py-1.5 = ~38x28px, close to the iOS 44pt minimum
+            // while staying visually quiet against the body text.
+            "self-start rounded px-3 py-1.5 text-xs font-semibold uppercase tracking-wider text-emerald-700/80 transition hover:bg-emerald-50/70 hover:text-emerald-800",
             align === "center" && "self-center",
           )}
         >

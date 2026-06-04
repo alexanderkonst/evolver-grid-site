@@ -331,11 +331,14 @@ const SortableTaskBar = ({
         )}
       </button>
 
+      {/* Hover-revealed on desktop, partial opacity on mobile
+          (max-sm:opacity-60) so touch users can find it without
+          a hover state. Sasha 2026-05-29 mobile audit. */}
       <button
         type="button"
         aria-label="Delete task"
         onClick={onDelete}
-        className="rounded p-2 text-[#0a1628]/95 opacity-0 transition hover:text-red-500 group-hover:opacity-100"
+        className="rounded p-2 text-[#0a1628]/55 opacity-0 transition hover:text-red-500 group-hover:opacity-100 focus-visible:opacity-100 max-sm:opacity-60"
       >
         <Trash2 size={14} />
       </button>
