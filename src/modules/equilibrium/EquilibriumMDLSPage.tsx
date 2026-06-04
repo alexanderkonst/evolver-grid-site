@@ -323,6 +323,7 @@ export const EquilibriumMDLSPage = () => {
               loading={eq.loading}
               onUpsert={eq.upsertStrategy}
               onReorder={eq.reorderStrategies}
+              onComplete={eq.completeStrategy}
             />
           </MattePolymerCard>
         )}

@@ -40,6 +40,27 @@ export interface EquilibriumStrategy {
   alignment_scored_at?: string | null;
 }
 
+/**
+ * Completed/archived strategy — the row in
+ * `equilibrium_strategy_completions` (Sasha 2026-05-29). When a strategy
+ * is marked done, its live row in `equilibrium_strategies` is copied
+ * here and deleted from the live table, freeing the position slot.
+ * Harvest unions these with completed tasks for the celebration feed.
+ */
+export interface EquilibriumStrategyCompletion {
+  id: string;
+  user_id: string;
+  text: string;
+  /** The 1/2/3 slot the strategy occupied at the moment of completion. */
+  original_position: number | null;
+  /** When it was first created — used to compute "in play" duration. */
+  set_at: string;
+  /** When it was marked complete. */
+  done_at: string;
+  alignment_score: number | null;
+  alignment_reasoning: string | null;
+}
+
 // ─── Workstreams (up to 7 active per user) ─────────────────────────────
 
 export interface EquilibriumWorkstream {
