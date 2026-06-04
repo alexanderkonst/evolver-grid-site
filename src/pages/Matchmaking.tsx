@@ -1003,7 +1003,7 @@ const Matchmaking = () => {
           </div>
         )}
 
-        {!loading && !error && hasAnyMatches && (
+        {!error && hasAnyMatches && (
           <div className="space-y-10">
             {/* ═════════════════════════════════════════
                 SECTION 1: AI-POWERED MATCHES (TOP)
