@@ -917,7 +917,7 @@ const Matchmaking = () => {
         )}
 
         {/* Error */}
-        {!loading && error && (
+        {!!error && (
           <div
             className="rounded-2xl px-5 py-5 text-center"
             style={{
