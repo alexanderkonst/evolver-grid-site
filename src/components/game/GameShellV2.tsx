@@ -4,12 +4,9 @@ import { ArrowLeft, Menu, PanelLeft } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { getOrCreateGameProfileId } from "@/lib/gameProfile";
 import { cn } from "@/lib/utils";
-// Top-right corner icon — stays as the legacy dodecahedron/fractal
-// image (Sasha, Day 48 later: "let's stick to what we had there").
-// The rail top-left now carries the new brand wordmark; the top-right
-// keeps its own visual register as a round, radially-masked icon that
-// reads as a "home button," not a second brand hit.
-import logoSrc from "@/assets/logo.jpg";
+// Top-right corner icon — FYTT glyph, separate from the rail wordmark.
+// AI OS routes still swap this for the merkaba below.
+import logoSrc from "@/assets/find-your-top-talent-torus.png";
 // Day 54+ (Sasha 2026-04-28): on AI OS routes, the top-right home icon
 // uses the merkaba (matching the AI OS Space rail icon) instead of the
 // default torus-dodecahedron logo.jpg. Route-detected inside the
