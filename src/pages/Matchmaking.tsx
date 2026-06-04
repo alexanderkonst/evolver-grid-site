@@ -944,7 +944,7 @@ const Matchmaking = () => {
         )}
 
         {/* Filter warnings — gold-tinted parchment */}
-        {!loading && !error && (locationBlocked || languageBlocked) && (
+        {!error && (locationBlocked || languageBlocked) && (
           <div
             className="rounded-2xl px-5 py-4 mb-6"
             style={{
