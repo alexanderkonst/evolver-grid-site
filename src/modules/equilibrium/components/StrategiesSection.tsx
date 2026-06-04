@@ -197,11 +197,13 @@ const SortableStrategyRow = ({
       )}
 
       {/*
-        Complete strategy — soft-archive into Harvest (Sasha 2026-05-29).
-        Moves the strategy from equilibrium_strategies →
-        equilibrium_strategy_completions, freeing the position slot for
-        a new direction. Hover-revealed (matches workstream chip
-        pattern) so the resting row stays clean.
+        Complete strategy — archives into Harvest (Sasha 2026-05-29).
+        Moves the strategy from the live table to completions, freeing
+        the slot for a new direction.
+
+        Visibility: hover-revealed on desktop, ~60% opacity on mobile
+        (max-sm) so it's discoverable without hover. Pattern matches
+        DoNowSection / ActiveFocusBanner mobile fallbacks.
       */}
       <button
         type="button"
@@ -209,7 +211,7 @@ const SortableStrategyRow = ({
         title="Mark complete — moves to Harvest and frees this slot"
         onClick={() => void onComplete()}
         disabled={loading}
-        className="mt-1.5 shrink-0 rounded-full p-1.5 text-emerald-600/70 transition opacity-0 hover:bg-emerald-50 hover:text-emerald-700 group-hover:opacity-100 focus-visible:opacity-100"
+        className="mt-1.5 shrink-0 rounded-full p-1.5 text-emerald-600/70 transition opacity-0 hover:bg-emerald-50 hover:text-emerald-700 group-hover:opacity-100 focus-visible:opacity-100 max-sm:opacity-60"
       >
         <Check size={16} />
       </button>
