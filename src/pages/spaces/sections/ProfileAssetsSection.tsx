@@ -117,6 +117,28 @@ const ProfileAssetsSection = () => {
     //      moment — tap Refresh."
     //   3. Show a small loading dot while reload is in flight.
     const [isReloading, setIsReloading] = useState(false);
+    const [justCopied, setJustCopied] = useState(false);
+
+    const copyAssets = useCallback(async () => {
+        if (savedAssets.length === 0) return;
+        const lines = savedAssets.map((a) => {
+            const type = ASSET_TYPES.find((t) => t.id === a.typeId)?.title || a.typeId;
+            const sub = a.subTypeId
+                ? ASSET_SUB_TYPES.find((s) => s.id === a.subTypeId)?.title || a.subTypeId
+                : "";
+            const header = sub ? `${type} → ${sub}` : type;
+            return `${header}\n${a.title}${a.description ? `\n${a.description}` : ""}`;
+        });
+        const text = lines.join("\n\n");
+        try {
+            await navigator.clipboard.writeText(text);
+            setJustCopied(true);
+            toast.success(`Copied ${savedAssets.length} assets to clipboard`);
+            setTimeout(() => setJustCopied(false), 2000);
+        } catch {
+            toast.error("Couldn't copy — clipboard blocked");
+        }
+    }, [savedAssets]);
 
     const reload = useCallback(async () => {
         setIsReloading(true);
