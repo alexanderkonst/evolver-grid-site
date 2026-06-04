@@ -654,6 +654,83 @@ Primary: *"Coordination infrastructure for communities and networks. Find your t
 
 ---
 
+### Day 92 — Sovereign offer spine + live collaboration reveal (Wednesday, June 3, 2026)
+
+> *The Day 92 signal-legibility correction produced the first fully sovereign offer register for ecosystem leaders. The move is no longer "let me teach you what your network is missing" and no longer "I built a tool, will you test it?" It is a clean invitation to reveal what may already be latent inside their network.*
+
+#### The sovereign offer spine
+
+**Canonical essence version:**
+
+> *A high-agency network activates when its members' deeper business-relevant data becomes visible, precise, and matchable by AI.*
+>
+> *Presenting: the Community Member Onboarding Module, with three integrated technologies:*
+>
+> *1. Precision Purpose Discovery: what role each member is naturally here to play*
+> *2. Precision Mission Discovery: what each member is moving toward*
+> *3. Precision Resource Mapping: what each member already has to build with*
+>
+> *Pick 5-10 members to run the test onboarding. We'll show you the hidden collaboration, venture, and project opportunities your community is currently missing.*
+>
+> *As communities join, a decentralized steward network forms to evolve the onboarding module, protect the data, and develop the governance blueprint.*
+>
+> *White-label it for your community. Offer built-in self-knowledge power-ups under your brand. Share 10% revenue on digital products created through the shared engine. Co-run venture-building programs with us. Help decentralize the infrastructure that makes high-agency humans more coordinated, sovereign, and alive.*
+
+**Core phrase:**
+
+> *Latent collaborations → made visible → no belief required → small voluntary test → sovereignty preserved.*
+
+**Negative definition:**
+
+> *This is not "I built a tool, will you test it?"*
+>
+> *It is: Your community is already carrying dormant collaborations. I can help reveal them, without asking you to believe anything first.*
+
+**Diagnostic:**
+
+> *The next frontier for your community may not be more members, more content, or more events, but making the collaborations already latent in the network visible enough to activate.*
+
+**Ask:**
+
+> *If you want, we can invite a small group of members through the free onboarding and see what hidden collaboration patterns emerge.*
+
+**Why this is the right energy:** it does not shame the ecosystem leader, does not force illumination, does not ask for belief, and does not sell from need. It names a possibility already present in their field and opens a clean door.
+
+#### Live collaboration opportunities reveal
+
+New format idea: gather a small group on Zoom after members complete the onboarding, then reveal collaboration hypotheses live.
+
+**Important correction:** this is **not for the core team**. The clean pilot is 5-10 volunteer members. That protects the leader from internal team politics, gives members direct value first, and keeps the ask socially light. If not everyone joins the reveal call, no problem; the call is optional proof, not a dependency.
+
+**Format:**
+
+1. 5-10 members complete Community Member Onboarding.
+2. Sasha generates collaboration opportunities across the group.
+3. Group gathers on Zoom.
+4. Sasha reveals each collaboration hypothesis in real time.
+5. Each named participant answers:
+   - *Does this collaboration make sense to you?*
+   - *Would you explore it further, 1-10?*
+   - *Why this low / why this high?*
+   - *What would make it a 10?*
+
+**Why this matters:** the reveal becomes product, proof, research, and social activation in one act. The ecosystem leader witnesses dormant network potential becoming visible. Members receive specific self-knowledge and live relational signal. The platform gets resonance data on which collaboration hypotheses actually feel alive.
+
+**Strategic note:** this is the collaboration-rate equivalent of the Specificity Loop. Instead of asking whether an artifact matches a person, it asks whether a proposed collaboration matches the people it would connect. The same 1-10 resonance mechanism becomes telemetry for network activation.
+
+#### Offer ladder after the signal appears
+
+If the onboarding and reveal produce enough signal, the next moves become:
+
+1. **White-label it and run it for your members**, or give members access to the platform, or both.
+2. **Enable opt-in data sharing for AI matching across communities**, so the community can offer global collaboration opportunities without losing its own identity.
+3. **Sell branded high-transformative-value self-knowledge tools and programs under your brand**, with the community keeping 90% of digital-product revenue and 10% flowing back to the shared engine.
+4. **Partner, co-develop, or steward the platform**, including the decentralization and data-protection layer as the network matures.
+
+This is equivalent to one sales call if it works: the members experience value, the leader sees dormant collaborations become visible, and the sale becomes the natural continuation of proof rather than persuasion.
+
+---
+
 ## Table of Contents
 
 ### I. Core Artifacts (The 14-Domain OS)

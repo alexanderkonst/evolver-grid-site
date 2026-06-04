@@ -244,6 +244,12 @@ const OnePager = () => {
               to the person who holds it, so it never gets coordinated. Planetary OS is the infrastructure
               that makes it legible.
             </p>
+            <p className="text-[15px] sm:text-base leading-relaxed mt-4" style={bodyStyle}>
+              Most communities are still directories of high-agency people, not coordination systems. They gather impressive
+              people, but they do not reliably make the right people find and build with each other.
+              Planetary OS turns a community's latent talent into coordination throughput by making each
+              member's unique leverage precise enough to match, route, and activate.
+            </p>
           </Panel>
 
           <Panel eyebrow="The kernel" weight="heavy">
@@ -252,6 +258,12 @@ const OnePager = () => {
               usable profile of what they uniquely think, create, and contribute, in about fifteen minutes.
               Just as a computer's kernel manages memory and processes so applications can run, this kernel
               manages legible human difference so coordination can run. Everything else is built on top of it.
+            </p>
+            <p className="text-[15px] sm:text-base leading-relaxed mt-4" style={bodyStyle}>
+              For communities, the first expression is <GradientInk>Community Member Onboarding</GradientInk>:
+              precision purpose discovery, precision mission discovery, and precision resource mapping. The
+              question is not only what someone is good at, but what role they are naturally here to play
+              inside a living system.
             </p>
           </Panel>
 
@@ -290,6 +302,11 @@ const OnePager = () => {
               The whole system exists to move one number: <GradientInk>collaboration rate</GradientInk>, the
               share of members who actually start building together. The hidden engine beneath every
               community's growth and output, and almost nobody measures it.
+            </p>
+            <p className="text-[15px] sm:text-base leading-relaxed mt-4" style={bodyStyle}>
+              Secondary metrics follow from that one: collaborations formed, ventures formed, projects
+              launched, introductions converted, member retention through meaningful participation, and
+              member GDP.
             </p>
           </Panel>
 

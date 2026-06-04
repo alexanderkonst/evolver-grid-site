@@ -81,6 +81,23 @@ A free kernel sits underneath all six: the 2-minute talent profile, given away o
 
 Give a free kernel away so it spreads as widely as possible (low adoption cost protects its neutrality and drives reach). On top of that seed, money enters on three layers, **Access, Outcome, Rights**, which turn on in **sequence** (individual, then community, then venture-share, then teaching-license), each earlier layer funding and proving the next. It runs as a **portfolio of aligned patrons** (many communities and operators under their own brands), not a chase for one big deal. Every layer ultimately prices against one number, **collaboration rate**: how many members actually find their people and start building. And the delivery that needs Sasha in the room today gets productized into **playbooks plus a certified-facilitator layer**, which removes him as the bottleneck and is exactly what lets the recurring, carry, and license layers scale without him.
 
+### 3.1 Buyer-legible wedge (Day 92)
+
+The sharp commercial doorway is **founder-market-fit infrastructure for high-agency ecosystems**.
+
+The problem is not that high-agency communities lack impressive members. The problem is that most of them function as directories, social theaters, or inspiration fields, not coordination systems. Members can admire each other for months without the right collaborations forming. The expensive failure is low collaboration throughput.
+
+The product sells against that failure:
+
+- discover what role each member is naturally here to play
+- map mission, resources, direction, and collaboration compatibility
+- route the right people toward each other
+- measure whether collaborations, ventures, and projects actually form
+
+This is the buyer-facing translation of SOHN. PlanetaryOS remains the engine under the hood; collaboration rate is the metric the ecosystem leader can buy.
+
+The first module is **Community Member Onboarding**: precision purpose discovery, precision mission discovery, and precision resource mapping. A 5-10 member test should reveal collaboration hypotheses the community is currently missing.
+
 ### 4. In plain language (no jargon)
 
 You give away a free thing: a 2-minute profile that shows a person what they are naturally great at. It is free on purpose, so it spreads far and wide. That is the seed. You do not make money on the seed. You make money on what grows from it, in three honest ways.
@@ -175,8 +192,10 @@ Lead with **community ecosystem path (B2B)**. Community leaders are easier to fi
 Avoid *"web3 networking"* — Balaji has moved past that framing. Better:
 
 - *"Coordination infrastructure for high-agency networks"*
+- *"Founder-market-fit infrastructure for high-agency ecosystems"*
 - *"The discovery protocol your network never had"*
 - *"The primitive your network state thesis requires"*
+- *"Most communities are directories of high-agency people. This turns them into coordination systems."*
 
 ### 90-day NS pilot structure (Reply-ready)
 

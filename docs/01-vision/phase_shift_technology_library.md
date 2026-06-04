@@ -6280,5 +6280,76 @@ The right level of language is the level of universal primitives: alignment, leg
 
 ---
 
+## Domain 92: Signal Legibility as Provision (Hidden Architecture Becomes Economic Exchange)
 
+> *Named Day 92 (June 3, 2026). Surfaced through Scarlett / Prisma transmission and subsequent grounded synthesis. The mythic layer named "provision"; the strategic layer revealed the mechanism: value already present must become externally legible before the field can request it, buy it, route it, or build with it.*
 
+### 92a. The Sentence That Names It
+
+> *"The bottleneck is not lack of value. It is lack of signal legibility. Provision follows when hidden architecture becomes a form other people can recognize, request, and exchange with."*
+
+### 92b. The First Principle
+
+Very large internal architectures often exceed the market's existing categories. The founder may be carrying a real civilizational primitive, but the world cannot buy "what it does not yet know how to request." This produces the felt illusion of a gap: internally the pattern is coherent; externally the signal has not yet been translated into a doorway.
+
+The correction is not to shrink the architecture. The correction is to externalize it in buyer-legible forms:
+
+- frameworks spoken aloud before they feel complete
+- offers small enough to transact now
+- demos that let counterparties recognize themselves immediately
+- one metric that makes the value visible
+- language that names the pain in the buyer's world
+
+Provision is not separate from ontology. It is the moment ontology becomes legible enough for exchange.
+
+### 92c. The Strategic Translation
+
+For this corpus, the sharpened translation is:
+
+> *Most communities are directories of high-agency people, not coordination systems. The highest-leverage metric in a high-agency network is collaboration rate.*
+
+This moves the public doorway away from abstract "Planetary OS" language and toward the concrete failure experienced by ecosystem leaders: impressive people are gathered, but the right collaborations do not form fast enough. The system solves that by articulating each member's unique leverage, mission, assets, and compatibility so collaborations can self-organize.
+
+The strongest buyer-facing category is:
+
+> *Founder-market-fit infrastructure for high-agency ecosystems.*
+
+This phrase preserves the deeper ontology while giving the market a usable slot.
+
+The first deployable unit is **Community Member Onboarding**, built from three integrated technologies:
+
+1. **Precision purpose discovery:** what role each member is naturally here to play.
+2. **Precision mission discovery:** what each member is moving toward.
+3. **Precision resource mapping:** what each member already has to build with.
+
+A small test with 5-10 members should produce both member-facing value and leader-facing proof: a first map of hidden collaboration, venture, and project opportunities the community is not currently seeing.
+
+### 92d. The Anti-Pattern
+
+The shadow is mythic substitution: using councils, codices, destiny, or cosmic timing as aesthetic cover for execution friction. The symbolic layer may be true and nourishing, but it becomes distortion when it replaces:
+
+- shipping
+- offers
+- conversations
+- sales
+- demos
+- artifacts
+- repeated market contact
+
+The mature synthesis is: keep the mythic layer as signal and inspiration, while letting reality-testing sharpen the transmission.
+
+### 92e. Relationship to Other Domains
+
+- **Domain 7 (Founder-First Inversion):** founder uniqueness determines value, but Domain 92 adds that the value must become legible to buyers before exchange can happen.
+- **Domain 47 (The Quality That Sells):** love becomes sales only when it is expressed through touchpoints the other can receive.
+- **Domain 81 (Specificity Loop):** the per-user conversion mechanism is a local instance of signal legibility.
+- **Domain 86 (Substrate Positioning):** the substrate wins by being adopted; adoption requires language the adopter can recognize.
+- **Domain 89 (Self-Description Quality):** person-level opportunity quality depends on self-description quality; Domain 92 applies the same law to Sasha's own architecture and the venture's public signal.
+- **Domain 90 (Three-Layer Positioning):** the mythology stays true, but the doorway leads with audience translation.
+- **Domain 91 (SOHN):** collaboration rate is the economic expression of legibility at network scale.
+
+### 92f. The One-Sentence Version
+
+> *"Provision is the economic mirror of legibility: when the hidden architecture is expressed in a form the field can recognize and request, exchange starts moving."*
+
+---
