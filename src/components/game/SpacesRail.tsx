@@ -515,7 +515,7 @@ const SpacesRail = ({
                                 src={brandLogo}
                                 alt="Find Your Top Talent"
                                 className="hidden md:block h-auto object-contain brand-breath"
-                                style={{ width: "89%" }}
+                                style={{ width: "89%", marginLeft: "8px" }}
                                 draggable={false}
                             />
                         </>
