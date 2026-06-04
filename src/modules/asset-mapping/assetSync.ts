@@ -58,6 +58,29 @@ const markResourcesMapped = async (userId: string): Promise<void> => {
   }
 };
 
+/**
+ * Day 93 (Sasha 2026-06-04, bug fix): tell every live `useJourneyProgress`
+ * instance to refetch after a successful asset save.
+ *
+ * Without this, the JOURNEY pane's `useJourneyProgress` hook only reads on
+ * mount. The /asset-mapping flow saves in-place (the shell + pane 2 stay
+ * mounted — no navigation), so after the user mapped their assets,
+ * `journey-asset-mapper` stayed false and the next step ("Assess your
+ * quality of life") stayed locked with the "Unlocks after you map your
+ * assets" popover until a hard reload.
+ *
+ * This is the SAME post-save signal Mission Discovery
+ * (MissionDiscoveryLanding) and QoL Results (QualityOfLifeMapResults)
+ * already dispatch. Centralized here in the sync layer — not at each page
+ * handler — so BOTH asset-save entry points (AI-extract on
+ * AssetMappingLanding + the manual AssetMappingWizard) and any future
+ * caller refresh the rail, instead of each call site having to remember.
+ */
+const notifyJourneyProgressRefresh = (): void => {
+  if (typeof window === "undefined") return;
+  window.dispatchEvent(new CustomEvent("fytt:refresh-journey-progress"));
+};
+
 /** Read assets from localStorage */
 export const readLocalAssets = (userId: string): SavedAsset[] => {
   try {
@@ -194,6 +217,8 @@ export const saveAsset = async (userId: string, asset: SavedAsset): Promise<bool
 
   // First-write-wins pointer for JOURNEY item #5 strikethrough.
   await markResourcesMapped(userId);
+  // Unlock the next JOURNEY step (Assess your quality of life) without a reload.
+  notifyJourneyProgressRefresh();
   return true;
 };
 
@@ -259,5 +284,7 @@ export const saveAssets = async (
 
   // First-write-wins pointer for JOURNEY item #5 strikethrough.
   await markResourcesMapped(userId);
+  // Unlock the next JOURNEY step (Assess your quality of life) without a reload.
+  notifyJourneyProgressRefresh();
   return { saved: newAssets.length, skipped, success: true };
 };
