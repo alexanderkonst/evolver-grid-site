@@ -545,31 +545,74 @@ const MatchCard = ({
             {cleanArchetype}
           </p>
 
-          {/* Day 80 (Sasha 2026-05-23): resonance score pill PARKED.
-              "Resonance" wasn't grokable without a scale + explanation;
-              shipping a number nobody understands is worse than no
-              number. The `resonanceScore` prop stays wired through the
-              component so reviving this with a real label + scale (or
-              a visualisation like a ring) is a one-line render swap.
-              Until then, only the matchType badge renders here. */}
-          {matchTypeBadge && (
-            <span
-              className="mt-3 inline-block"
-              style={{
-                fontFamily: "'DM Sans', system-ui, sans-serif",
-                fontSize: "10.5px",
-                fontWeight: 500,
-                letterSpacing: "0.14em",
-                textTransform: "uppercase",
-                padding: "3px 10px",
-                borderRadius: "999px",
-                color: "rgba(20, 130, 70, 0.95)",
-                background: "rgba(20, 130, 70, 0.08)",
-                border: "0.5px solid rgba(20, 130, 70, 0.35)",
-              }}
-            >
-              {matchTypeBadge}
-            </span>
+          {/* Day 81 (Sasha 2026-06-04): UNPARKED. Day 80's parked-because-
+              ungrokable "Resonance" pill now ships with a real scale ("/100")
+              + an unambiguous label ("Match") so the number is self-explanatory
+              without supporting copy. Tier-tinted per the original spec:
+              ≥ 70 strong gold · 50-69 steady gold · < 50 muted gold. Sits
+              on the same row as matchTypeBadge so the brief reads as a
+              two-pill stripe (type · score). */}
+          {(matchTypeBadge || typeof resonanceScore === "number") && (
+            <div className="mt-3 flex flex-wrap items-center gap-2">
+              {matchTypeBadge && (
+                <span
+                  style={{
+                    fontFamily: "'DM Sans', system-ui, sans-serif",
+                    fontSize: "10.5px",
+                    fontWeight: 500,
+                    letterSpacing: "0.14em",
+                    textTransform: "uppercase",
+                    padding: "3px 10px",
+                    borderRadius: "999px",
+                    color: "rgba(20, 130, 70, 0.95)",
+                    background: "rgba(20, 130, 70, 0.08)",
+                    border: "0.5px solid rgba(20, 130, 70, 0.35)",
+                  }}
+                >
+                  {matchTypeBadge}
+                </span>
+              )}
+              {typeof resonanceScore === "number" && (() => {
+                const score = Math.max(0, Math.min(100, Math.round(resonanceScore)));
+                const tier =
+                  score >= 70 ? "strong" : score >= 50 ? "steady" : "borderline";
+                const tint = {
+                  strong: {
+                    color: "rgba(130, 95, 20, 0.98)",
+                    background: "rgba(212, 175, 55, 0.18)",
+                    border: "0.5px solid rgba(212, 175, 55, 0.55)",
+                  },
+                  steady: {
+                    color: "rgba(130, 95, 20, 0.88)",
+                    background: "rgba(212, 175, 55, 0.10)",
+                    border: "0.5px solid rgba(212, 175, 55, 0.40)",
+                  },
+                  borderline: {
+                    color: "rgba(130, 95, 20, 0.62)",
+                    background: "rgba(212, 175, 55, 0.05)",
+                    border: "0.5px solid rgba(212, 175, 55, 0.25)",
+                  },
+                }[tier];
+                return (
+                  <span
+                    title="Composite match score from the platform's matching engine (0–100). Higher = stronger alignment across mission, role, and gift."
+                    style={{
+                      fontFamily: "'DM Sans', system-ui, sans-serif",
+                      fontSize: "10.5px",
+                      fontWeight: 500,
+                      letterSpacing: "0.14em",
+                      textTransform: "uppercase",
+                      padding: "3px 10px",
+                      borderRadius: "999px",
+                      fontVariantNumeric: "tabular-nums lining-nums",
+                      ...tint,
+                    }}
+                  >
+                    Match {score}/100
+                  </span>
+                );
+              })()}
+            </div>
           )}
           {/* Day 87 (Sasha 2026-05-29) — Strong cocktail.
               Was weight 600 + halo-soft. Bumped weight to 700 and
