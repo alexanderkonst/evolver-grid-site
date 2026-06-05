@@ -1548,54 +1548,14 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                         }}
                       />
                     )}
-                    {/* Logo — fixed upper right. Hidden when hideLogo prop is set.
-                        Renders the legacy dodecahedron/fractal icon with a radial
-                        mask — reads as a distinct "home button" visually separate
-                        from the new brand wordmark that sits in the rail. */}
-                    {/* Day 48 iter 9 (Sasha): home icon now rotates slowly
-                        via .gentle-spin (60s linear infinite). Matches
-                        the rail icons + CTA emblems + ornament centerpiece
-                        so every geometric image on the page has the same
-                        "breathing object" tempo. */}
-                    {/* Day 48 iter 14 (Sasha): rotation via INLINE style
-                        (as well as the class) — class-only was failing
-                        in preview. Also retired `group-hover:scale-110`
-                        on the img because Tailwind's scale utility
-                        writes an explicit `transform: ... scale(1.1)`
-                        which would interrupt the rotation animation. */}
-                    {!hideLogo && (
-                        // Day 53 (Sasha 2026-04-27): vertical position
-                        // tuned to align the home-icon torus with the
-                        // orb in the left-pane logo lockup.
-                        // Day 55 (Sasha 2026-04-29 Plan B): aligned with
-                        // pane 2's compact h-16 header title (center
-                        // ~32px from pane top). Pane 1 wordmark left
-                        // alone — it's a brand lockup with its own
-                        // editorial position. Right icon is 40px tall,
-                        // so top:12 puts its center at 32 — matches
-                        // pane 2 title.
-                        <Link to="/" className="absolute top-[12px] right-4 z-50 block w-10 h-10 group">
-                            <div
-                                className="w-full h-full rounded-lg overflow-hidden"
-                                style={{
-                                    WebkitMaskImage: "radial-gradient(circle at center, black 40%, transparent 75%)",
-                                    maskImage: "radial-gradient(circle at center, black 40%, transparent 75%)",
-                                }}
-                            >
-                                <img
-                                    src={location.pathname.startsWith("/ai-os") ? aiOsHomeIcon : logoSrc}
-                                    alt="Home"
-                                    className="w-full h-full object-cover gentle-spin-always"
-                                    style={{
-                                        animation: "gentle-spin 60s linear infinite",
-                                        willChange: "transform",
-                                        transformOrigin: "center",
-                                    }}
-                                    draggable={false}
-                                />
-                            </div>
-                        </Link>
-                    )}
+                    {/* Day 81 (Sasha 2026-06-04): retired the rotating top-right
+                        home glyph (60s gentle-spin torus / aiOs icon). It was the
+                        only persistent rotating element on the desktop shell;
+                        removing it quiets the upper-right corner across all routes.
+                        The `hideLogo` prop on GameShellV2Props is now dead code,
+                        kept in place to avoid touching the dozens of pages that
+                        pass it. Re-add this block if a future shell variant wants
+                        a home glyph back. */}
                     <div className="page-transition-enter">
                         {children}
                     </div>
