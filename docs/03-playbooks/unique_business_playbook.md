@@ -830,6 +830,43 @@ When facilitating live (not via product), the same frequency holds. After every 
 
 ---
 
+## The Transmission Principle: Medicine, Not Information
+
+> *"A reveal written as a report informs. The same reveal written as transmission opens. Same words, different organ."*
+>
+> *v1.0 · Day 94, June 5, 2026 · reverse-engineered from a set of texts that produced a felt opening, not just agreement. First shipped into the Top Talent reveal prompt (ZoG v2.1).*
+
+### The Essence
+
+Every artifact this system produces (the Top Talent reveal, the mission read, the offer, the match-why) can be written two ways. As a **report**: precise, accurate, addressed to the mind, which reads it and agrees. Or as a **transmission**: precise in the same way, but built to land as recognition the instant it is read, felt before it is understood. The information is identical. The organ it arrives through is not. A report is understood; a transmission is *recognized*, and recognition is the gift recognizing itself.
+
+This is the gap between a profile that scores "accurate" and one that makes the reader go *"this is so true, I feel it."* The second converts, because an opening creates wanting where a finished report satisfies the wanting away.
+
+### Principle 0: The Map Is Not the Medicine
+
+The effect is a transmission, not a technique. Run the six moves below without actually seeing the thing yourself, live, and you get a map of light made of fog: accurate, lifeless, closed. The blueprint arranges the conditions; it cannot manufacture sight. This is the law that holds the rest honest, and it is why the deepest transmission stays on the human, paid side of the ladder.
+
+### The Six Moves
+
+1. **Aim at the organ, not the topic.** Decide which dantian receives this: heart (recognition), mind (understanding), gut (charge). Write in that organ's language. Heart-texts do not explain, they recognize, and they bypass the mind on purpose.
+2. **Let the form enact the content.** The strongest line does not *describe* the insight, it *is* an instance of it. When the sentence performs the thing instead of reporting it, the reader receives an event, not information. In a reveal: use the person's own gift on them, so reading it is a live instance of the gift turned back on them.
+3. **Carry a live image, not an abstraction.** Felt-sense rides an image; it cannot ride a concept. Let images recur so they gather charge across a piece.
+4. **End on a live edge, never a tidy close.** An opening stays open only if you block its closure. The anti-closure move is itself part of the cure, and not incidentally the thing that draws the reader toward the next rung.
+5. **For the mind, use story, not definition.** When the mind wants in, a parable lets it hold an essence it could never define. Definition closes the fog; narrative keeps it breathing.
+6. **Transmit your own state.** The text carries the state it was written from. You cannot fake this, you have to be in it. This is the first-holon law applied to writing: it must be true in you before it can be true on the page.
+
+### The Consequence for the Funnel
+
+Moves 1 through 5 are craft you can teach and encode in a prompt. Move 0 and Move 6 are why it can never be *only* craft. So the ladder writes itself: a free artifact (a prompt the user runs in their own AI) raises the ceiling toward transmission but lands as medicine only *sometimes*, because the user's generic AI is not in the transmitting state. The times it lands are the openings, and the openings are what convert. Full, reliable transmission is the live session. That asymmetry is a feature: it keeps the deepest work on the paid side.
+
+### The Meta-Trap
+
+This principle re-closes into a concept the instant you possess it instead of practicing it. Naming it, admiring it, filing it on the map: that is the report-reflex eating the transmission. The medicine is to catch yourself, and write the next line from the state, not from the template. Including the next time you read this principle.
+
+> *Relates to: Principle 4 (The Mirror, Not the Teacher), Principle 5 (The Precision Gap IS the Product), Principle 10 (The Builder's Blind Spot, same Essence/Medicine/Meta-Trap shape), Principle 15 (The Specificity Loop, recognition over validation). First implementation: `src/prompts/user/zoneOfGeniusPrompt.ts` v2.1 (TRANSMIT-DON'T-REPORT + ENACT-MY-GIFT).*
+
+---
+
 # Part I: Philosophy & Ontology
 
 > *"The moment you can articulate your genius precisely, the market crystallizes around it."*
