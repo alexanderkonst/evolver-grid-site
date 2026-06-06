@@ -51,6 +51,7 @@ docs/
 | Doc | Purpose |
 |-----|---------|
 | [roadmap.md](./02-strategy/roadmap.md) | Product roadmap & milestones |
+| [sacred_space_map.md](./02-strategy/sacred_space_map.md) | **Third navigation instrument** (sibling to roadmap + morphogenetic_holomap) — full read of the 5-year "My Sacred Space" Telegram journal (2021–2026). Taxonomy · evolution/eras · idea-flow/book architecture · mind-mirror · lexicon · gems. Where Sasha's mind has actually been |
 | [module_taxonomy.md](./02-strategy/module_taxonomy.md) | GROW·LEARN·MEET·COLLABORATE·BUILD·BUYSELL |
 | [game_spaces.md](./02-strategy/game_spaces.md) | 5 Spaces architecture |
 | [monetization_evolution_ladder.md](./02-strategy/monetization_evolution_ladder.md) | Monetization strategy |
