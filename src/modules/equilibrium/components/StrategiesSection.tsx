@@ -1,4 +1,5 @@
-import { Check, GripVertical } from "lucide-react";
+import { useEffect, useState } from "react";
+import { Check, GripVertical, Sparkles } from "lucide-react";
 import {
   closestCenter,
   DndContext,
@@ -17,7 +18,7 @@ import {
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { cn } from "@/lib/utils";
-import type { EquilibriumStrategy } from "../types";
+import type { EquilibriumStrategy, EquilibriumStrategyIteration } from "../types";
 import { InlineEditableText } from "./InlineEditableText";
 
 interface StrategiesSectionProps {
@@ -34,6 +35,10 @@ interface StrategiesSectionProps {
    * Harvest section and frees the position slot for a new direction.
    */
   onComplete: (position: 1 | 2 | 3) => Promise<void> | void;
+  onIterate: (
+    position: 1 | 2 | 3,
+  ) => Promise<EquilibriumStrategyIteration | null>;
+  iteratingPosition: 1 | 2 | 3 | null;
 }
 
 /**
@@ -52,6 +57,8 @@ export const StrategiesSection = ({
   onUpsert,
   onReorder,
   onComplete,
+  onIterate,
+  iteratingPosition,
 }: StrategiesSectionProps) => {
   const sensors = useSensors(
     useSensor(PointerSensor, { activationConstraint: { distance: 4 } }),
@@ -109,6 +116,8 @@ export const StrategiesSection = ({
                   loading={loading}
                   onSave={(text) => onUpsert(position, text)}
                   onComplete={() => onComplete(position)}
+                  onIterate={() => onIterate(position)}
+                  isIterating={iteratingPosition === position}
                 />
               );
             }
@@ -136,6 +145,8 @@ const SortableStrategyRow = ({
   loading,
   onSave,
   onComplete,
+  onIterate,
+  isIterating,
 }: {
   id: string;
   position: 1 | 2 | 3;
@@ -143,16 +154,41 @@ const SortableStrategyRow = ({
   loading: boolean;
   onSave: (text: string | null) => Promise<void> | void;
   onComplete: () => Promise<void> | void;
+  onIterate: () => Promise<EquilibriumStrategyIteration | null>;
+  isIterating: boolean;
 }) => {
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } =
     useSortable({ id });
+  const [iteration, setIteration] =
+    useState<EquilibriumStrategyIteration | null>(null);
+  const [draft, setDraft] = useState("");
+
+  useEffect(() => {
+    setIteration(null);
+    setDraft("");
+  }, [strategy.text]);
+
+  const handleIterate = async () => {
+    const result = await onIterate();
+    if (!result) return;
+    setIteration(result);
+    setDraft(result.proposedStrategy);
+  };
+
+  const handleAccept = async () => {
+    const next = draft.trim();
+    if (!next) return;
+    await onSave(next);
+    setIteration(null);
+    setDraft("");
+  };
 
   return (
     <li
       ref={setNodeRef}
       style={{ transform: CSS.Transform.toString(transform), transition }}
       className={cn(
-        "group flex items-start gap-3 rounded-xl border bg-white/55 px-2 py-1 backdrop-blur-sm",
+        "group rounded-xl border bg-white/55 px-2 py-1 backdrop-blur-sm",
         // Sasha 2026-05-25: scope to color/bg so Tailwind doesn't
         // transition `transform` and fight dnd-kit's drag updates.
         "transition-[border-color,background-color] duration-150",
@@ -160,71 +196,120 @@ const SortableStrategyRow = ({
         isDragging && "z-10 opacity-90 shadow-lg",
       )}
     >
-      <span className="mt-3 select-none font-serif text-base text-[#0a1628]/90">
-        {position}.
-      </span>
-      <div className="flex-1 min-w-0">
-        <InlineEditableText
-          value={strategy.text}
-          size="body"
+      <div className="flex items-start gap-3">
+        <span className="mt-3 select-none font-serif text-base text-[#0a1628]/90">
+          {position}.
+        </span>
+        <div className="min-w-0 flex-1">
+          <InlineEditableText
+            value={strategy.text}
+            size="body"
+            disabled={loading}
+            emptyPlaceholder="—"
+            onSave={onSave}
+            // Phase C: advisory hint — strategies are direction-choices,
+            // not paragraphs. One sentence each, action-oriented.
+            wordLimit={25}
+            wordLimitHint="try one sentence, action verb first — direction, not detail"
+            // Clamp long strategies to 4 lines with a show-more toggle
+            // (Sasha 2026-05-29). The advisory word-limit nudges toward
+            // brevity, but when a strategy is genuinely long the row
+            // shouldn't become a wall of text.
+            clampLines={4}
+          />
+        </div>
+
+        {/*
+          Alignment score badge — visible when strategy has been scored.
+          Sasha 2026-05-17: "compare strategies on alignment with my highest
+          expression so that I can myself see the score to then prioritize."
+          Hover reveals the one-sentence reasoning via native title tooltip
+          so it stays glanceable.
+        */}
+        {typeof strategy.alignment_score === "number" && (
+          <ScoreBadge
+            score={strategy.alignment_score}
+            reasoning={strategy.alignment_reasoning ?? undefined}
+          />
+        )}
+
+        <button
+          type="button"
+          aria-label="Iterate strategy"
+          title="Iterate this strategy"
+          onClick={() => void handleIterate()}
+          disabled={loading || isIterating}
+          className="mt-1.5 inline-flex shrink-0 items-center gap-1 rounded-full border border-[#0a1628]/10 bg-white/55 px-2.5 py-1.5 text-[10px] font-semibold uppercase tracking-wider text-[#0a1628]/70 transition hover:bg-white/85 hover:text-[#0a1628] disabled:cursor-not-allowed disabled:opacity-45"
+        >
+          <Sparkles size={13} />
+          {isIterating ? "Iterating…" : "Iterate"}
+        </button>
+
+        {/*
+          Complete strategy — archives into Harvest (Sasha 2026-05-29).
+          Moves the strategy from the live table to completions, freeing
+          the slot for a new direction.
+
+          Visibility: hover-revealed on desktop, ~60% opacity on mobile
+          (max-sm) so it's discoverable without hover. Pattern matches
+          DoNowSection / ActiveFocusBanner mobile fallbacks.
+        */}
+        <button
+          type="button"
+          aria-label="Complete strategy"
+          title="Mark complete — moves to Harvest and frees this slot"
+          onClick={() => void onComplete()}
           disabled={loading}
-          emptyPlaceholder="—"
-          onSave={onSave}
-          // Phase C: advisory hint — strategies are direction-choices,
-          // not paragraphs. One sentence each, action-oriented.
-          wordLimit={25}
-          wordLimitHint="try one sentence, action verb first — direction, not detail"
-          // Clamp long strategies to 4 lines with a show-more toggle
-          // (Sasha 2026-05-29). The advisory word-limit nudges toward
-          // brevity, but when a strategy is genuinely long the row
-          // shouldn't become a wall of text.
-          clampLines={4}
-        />
+          className="mt-1.5 shrink-0 rounded-full p-1.5 text-emerald-600/70 opacity-0 transition hover:bg-emerald-50 hover:text-emerald-700 group-hover:opacity-100 focus-visible:opacity-100 max-sm:opacity-60"
+        >
+          <Check size={16} />
+        </button>
+
+        <button
+          type="button"
+          aria-label="Drag to reorder"
+          className="mr-1 cursor-grab touch-none p-2 text-[#0a1628]/40 hover:text-[#0a1628]/80 active:cursor-grabbing"
+          {...attributes}
+          {...listeners}
+        >
+          <GripVertical size={16} />
+        </button>
       </div>
 
-      {/*
-        Alignment score badge — visible when strategy has been scored.
-        Sasha 2026-05-17: "compare strategies on alignment with my highest
-        expression so that I can myself see the score to then prioritize."
-        Hover reveals the one-sentence reasoning via native title tooltip
-        so it stays glanceable.
-      */}
-      {typeof strategy.alignment_score === "number" && (
-        <ScoreBadge
-          score={strategy.alignment_score}
-          reasoning={strategy.alignment_reasoning ?? undefined}
-        />
+      {iteration && (
+        <div className="ml-8 mt-2 rounded-lg border border-[#0a1628]/10 bg-white/70 p-3 shadow-sm">
+          <p className="text-xs leading-relaxed text-[#0a1628]/80">
+            {iteration.bottomLine}
+          </p>
+          <textarea
+            value={draft}
+            onChange={(event) => setDraft(event.target.value)}
+            disabled={loading}
+            rows={2}
+            className="mt-2 w-full resize-none rounded-lg border border-[#0a1628]/10 bg-white/80 px-3 py-2 text-sm leading-snug text-[#0a1628] outline-none transition focus:border-[#0a1628]/30 focus:bg-white"
+          />
+          <div className="mt-2 flex justify-end gap-2">
+            <button
+              type="button"
+              onClick={() => {
+                setIteration(null);
+                setDraft("");
+              }}
+              className="rounded-full border border-[#0a1628]/10 bg-white/45 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-wider text-[#0a1628]/65 transition hover:bg-white/75 hover:text-[#0a1628]"
+            >
+              No
+            </button>
+            <button
+              type="button"
+              onClick={() => void handleAccept()}
+              disabled={loading || draft.trim().length === 0}
+              className="rounded-full border border-emerald-500/25 bg-emerald-50 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-wider text-emerald-800 transition hover:bg-emerald-100 disabled:cursor-not-allowed disabled:opacity-45"
+            >
+              Accept
+            </button>
+          </div>
+        </div>
       )}
-
-      {/*
-        Complete strategy — archives into Harvest (Sasha 2026-05-29).
-        Moves the strategy from the live table to completions, freeing
-        the slot for a new direction.
-
-        Visibility: hover-revealed on desktop, ~60% opacity on mobile
-        (max-sm) so it's discoverable without hover. Pattern matches
-        DoNowSection / ActiveFocusBanner mobile fallbacks.
-      */}
-      <button
-        type="button"
-        aria-label="Complete strategy"
-        title="Mark complete — moves to Harvest and frees this slot"
-        onClick={() => void onComplete()}
-        disabled={loading}
-        className="mt-1.5 shrink-0 rounded-full p-1.5 text-emerald-600/70 transition opacity-0 hover:bg-emerald-50 hover:text-emerald-700 group-hover:opacity-100 focus-visible:opacity-100 max-sm:opacity-60"
-      >
-        <Check size={16} />
-      </button>
-
-      <button
-        type="button"
-        aria-label="Drag to reorder"
-        className="cursor-grab touch-none p-2 mr-1 text-[#0a1628]/40 hover:text-[#0a1628]/80 active:cursor-grabbing"
-        {...attributes}
-        {...listeners}
-      >
-        <GripVertical size={16} />
-      </button>
     </li>
   );
 };

@@ -84,6 +84,9 @@ verify_jwt = false
 [functions.generate-equilibrium-insight]
 verify_jwt = false
 
+[functions.iterate-equilibrium-strategy]
+verify_jwt = true
+
 [functions.equilibrium-telegram-bot]
 verify_jwt = false
 
