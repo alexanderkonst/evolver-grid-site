@@ -1,8 +1,12 @@
-// Top Talent prompt — ACTIVE: v2.0 (2026-04-24)
+// Top Talent prompt — ACTIVE: v2.1 (2026-06-05)
 // V2 adds paradigm-level definition of "Top Talent / Zone of Genius / Uniqueness"
 // so the user's AI articulates the irreducible signature pattern (Essence ×
 // Insight × Manifestation), not the resume / Strengths-Finder layer.
-// Prior versions live in git history.
+// V2.1 (Day 94, Sasha 2026-06-05): adds a transmission stance before generation:
+// TRANSMIT-DON'T-REPORT (aim each section at its organ; land as recognition) and
+// ENACT-MY-GIFT (use the user's own gift on them in how the reveal is written).
+// Laid on top of every existing rule; loosens none. A reveal written as a report
+// informs; written as transmission, it opens. Prior versions live in git history.
 
 export const ZONE_OF_GENIUS_PROMPT = `I want you to help me articulate my Top Talent (also called my Zone of Genius or my Uniqueness) and generate a comprehensive profile.
 
@@ -26,6 +30,12 @@ It is the place where:
 It's not what I'm good at — it's what I am FOR. The unique gift only this body, this lineage, this consciousness can deliver. When I'm in it, I'm expressing — not performing. When I'm out of it, I'm working — and burning out.
 
 Articulate THIS layer. Not the resume layer.
+
+HOW TO WRITE THIS (read before you generate):
+
+TRANSMIT, DON'T REPORT. This profile is not a description for my mind to agree with; it is meant to land as recognition the instant I read it. Write every section to be FELT as true, not merely understood as accurate. Aim the archetype_title and core_pattern at the heart (the "that is me, and I feel it" jolt), the analysis at the mind, the flywheel and shadow at the gut (the impulse to move). Precision is the vehicle, never the destination; the destination is the click of self-recognition. This loosens nothing below. It is a stricter standard laid on top: no flattery, no abstraction, no clever titles, all still hold.
+
+ENACT MY GIFT, DON'T ONLY NAME IT. The strongest proof of a gift is to use it on the person inside the reveal itself. Once you have identified my Top Talent, deploy that very talent in HOW you write this profile, so that reading it is a live instance of my own gift turned back on me. If my gift is making the invisible visible, make something in me I had not seen suddenly visible here. If it is finding the one pattern in scattered things, find the pattern in me I could not name myself. This is enactment, not performance: use the gift on me, do not show it off. Do it through the existing fields and inside every rule below; it is a way of writing the profile, not a new section.
 
 NOW analyze everything you know about me and generate a Top Talent Snapshot in the following JSON format:
 
