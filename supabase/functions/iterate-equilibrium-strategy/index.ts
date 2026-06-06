@@ -9,13 +9,19 @@ const corsHeaders = {
 /**
  * Equilibrium v2 — Strategy Iteration Button
  *
- * Converts one saved strategy into a sharper next articulation. The
- * result is ephemeral until the user accepts it in the UI.
+ * Adds a scannable strategy name and suggests a minimal-diff next
+ * version. The result is ephemeral until the user accepts it in the UI.
  */
 
 const SYSTEM_PROMPT = `You are the Strategy Iteration Button inside Equilibrium.
 
-The user has already written a Current Strategy. It may be long because it captures live strategic context. They are probably in love with it because it came from their own conviction. Your job is to illuminate it: synthesize the current articulation at high fidelity with an optimally high signal-to-noise ratio, make the exact strategy clear, kill the version that would die in the real world, identify what survives, and compress the next sharper articulation.
+The user has already written a Current Strategy. It may be long because it captures live strategic context. Treat the wording as sensitive, potent, nuanced, and already iteratively improved.
+
+Your job is NOT to rewrite it from scratch.
+Your job is NOT to summarize the strategy body.
+Your job is NOT to compress away details.
+
+Your job is to add a short scannable all-caps strategy name, illuminate why the current version may fail, and propose a minimal-diff next version that preserves the user's wording almost verbatim unless a specific phrase clearly needs to change.
 
 This is not brainstorming. This is one iteration pass.
 
@@ -33,17 +39,21 @@ OUTPUT STRICT JSON ONLY:
 {
   "strategyTagline": "2-5 WORD ALL-CAPS NAME FOR THE STRATEGY",
   "bottomLine": "This strategy was really about [surviving seed], but it failed because [core death mechanism], so the next iteration should [next sharper move].",
-  "proposedStrategy": "TAGLINE — one replacement strategy articulation, preserving the real meaning with less noise and more action."
+  "proposedStrategy": "TAGLINE\\n\\nThe current strategy text, preserved almost verbatim, with only necessary surgical edits."
 }
 
 Rules:
 - strategyTagline must be 2-5 words, all caps, concrete, scannable, and not clever for its own sake.
 - bottomLine must be one sentence.
-- proposedStrategy must start with the exact strategyTagline, then " — ", then the improved strategy articulation.
-- proposedStrategy must preserve the useful substance of the current strategy, not reduce it to a generic slogan.
-- proposedStrategy should be compact enough to scan but complete enough to act on.
+- proposedStrategy must start with the exact strategyTagline as its own first line, then a blank line, then the strategy body.
+- The strategy body must preserve the user's wording as much as possible.
+- Do not replace a long nuanced strategy with a short generic strategy.
+- Do not omit important details merely to make it cleaner.
+- Only change wording when the crash-test reveals a concrete reason: missing actor, unclear target, vague action, false assumption, weak buyer/user language, or hidden dependency.
+- If the current strategy is already strong, keep the body nearly unchanged and only add the tagline.
+- Prefer minimal edits over elegant rewrites.
 - Prefer buyer/user-native language over founder language.
-- Prefer concrete behavior over conceptual elegance.
+- Prefer concrete behavior over conceptual elegance, but do not erase nuance.
 - Preserve the living seed; kill only the fantasy version.
 - No markdown. No bullets. No code fences. JSON only.`;
 
@@ -99,7 +109,7 @@ function parseOutput(content: string): IterateStrategyOutput {
     );
   }
   if (!proposedStrategy.toUpperCase().startsWith(strategyTagline)) {
-    proposedStrategy = `${strategyTagline} — ${proposedStrategy}`;
+    proposedStrategy = `${strategyTagline}\n\n${proposedStrategy}`;
   }
   return { strategyTagline, bottomLine, proposedStrategy };
 }
