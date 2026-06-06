@@ -5,7 +5,7 @@
 > **Client · Karime Kuri**
 > **Facilitator:** Alexander Konstantinov (Sasha)
 > **Practitioner:** Karime Kuri — grounded emotional support for people moving through heartbreak, grief, burnout, relationship pain, family crisis, impossible decisions, and emotionally overwhelming seasons of life
-> **Status:** Funnel live (Day 85, May 25, 2026). Other UB-canvas artifacts (Uniqueness, Tribe, Pain, Promise, Value Ladder, etc.) not yet sessioned — placeholders below.
+> **Status:** Funnel live (Day 88, June 6, 2026, v1.1 copy-clarity pass). Other UB-canvas artifacts (Uniqueness, Tribe, Pain, Promise, Value Ladder, etc.) not yet sessioned — placeholders below.
 
 > **How to use this file:** the funnel is currently the live, load-bearing part of Karime's business with Sasha. Everything else in the canvas (full UB artifact set) is captured here as a placeholder so the file can grow into a complete canvas if/when Karime does an Ignition Session. For now, treat the **Lived User Journey** section as the single source of truth for how a stranger becomes a paying client.
 
@@ -15,7 +15,7 @@
 
 | Artifact | Version | Precision | Status |
 |---|---|---|---|
-| Funnel (live) | **v1.0** (Day 85, May 25, 2026) | — | ✅ Shipped — `/build/karime` + `/build/karime/intake`, WhatsApp-relay submission, cal.com booking downstream |
+| Funnel (live) | **v1.1** (Day 88, June 6, 2026) | — | ✅ Shipped — `/build/karime` + `/build/karime/intake`, WhatsApp-relay submission, cal.com booking downstream. v1.1: copy-clarity pass (bridge trim, emphasis restraint, CTA unification, intake-CTA reframe). |
 | Uniqueness | — | — | 🔄 Not yet sessioned |
 | Shadow | — | — | 🔄 Not yet sessioned |
 | Myth | — | — | 🔄 Not yet sessioned |
@@ -50,12 +50,15 @@ The funnel is **monogamous to the WhatsApp inbox**. Every step ultimately routes
 
 | Element | Copy |
 |---|---|
-| **Eyebrow** | *PRIVATE EMOTIONAL SUPPORT FOR DELICATE LIFE MOMENTS* (Cormorant small-caps) |
+| **Eyebrow** | *PRIVATE EMOTIONAL SUPPORT FOR DELICATE LIFE MOMENTS* (Cormorant small-caps, 13px tracked 0.22em — v1.1 size bump from 11px/0.28em so it earns its positioning-lead role under the H1) |
 | **Italic setup** | *"Still holding everything together while quietly falling apart inside?"* |
-| **H1** | *"You do not have to carry this **alone**."* (alone in copper-bronze emphasis) |
-| **Bridge** | *"Karime offers **deeply grounded** emotional support for people moving through heartbreak, grief, burnout, relationship pain, family crisis, impossible decisions, and emotionally overwhelming seasons of life."* |
-| **CTA button** | *"Speak with Karime"* (primary dark glass) |
+| **H1** | *"You do not have to carry this **alone**."* (alone in copper-bronze emphasis; v1.1 — only emphasis span on the page) |
+| **Bridge (v1.1, trimmed)** | *"Deeply grounded emotional support for people moving through heartbreak, burnout, and the seasons that become too heavy to hold alone."* (was a 7-item pain list in v1.0; trimmed to 3 + closing image, no emphasis span — the H1 holds the only highlight) |
+| **Italic three-liner** | *"Careful attention. / Emotional honesty. / Held, not fixed."* (held in v1.1 as the punchy second beat before the CTA; "Held" emphasis span removed) |
+| **CTA button** | *"Speak with Karime"* (primary dark glass — v1.1 unified from prior "Book a 20-min conversation" so the label matches the warm relational register; doc-canonical) |
+| **Microcopy** | *"Free 20-minute fit call · Online sessions worldwide · In-person by arrangement"* (v1.1 — single canonical label for the fit call, in-person phrasing matched to doc's "by arrangement") |
 | **CTA action** | Opens `wa.me/14157073432?text=Hi Sasha, I came through Karime's page and would like to connect.` in a new tab |
+| **v1.1 cuts** | The two duplicate bold blocks ("A space to soften, hear yourself clearly again..." and "Just honest, attentive care during the moments that become too heavy to hold by yourself.") were removed — the bridge + italic three-liner already do that work, and four near-equal bold blocks were collapsing the hierarchy after the H1. |
 
 **The submission action is the WhatsApp draft.** The visitor sees their own outgoing message in WhatsApp, hits send, the thread opens in Sasha's WhatsApp. No form fields collected on the page — the visitor's phone number IS the identity.
 
@@ -82,11 +85,13 @@ Reachable only by direct URL. Sasha sends this link manually after the initial W
      - Spiritual guidance and inner work
      - Ceremonial or medicine-supported work
      - I'm not sure yet, but something needs to change
-5. **Progressive-reveal CTA cluster** (renders only after ≥1 selection):
-   - Heading: *"Send your reflection. We'll be in touch shortly to schedule your call with Karime."*
-   - CTA: *"Send your reflection"* (primary dark glass)
-   - Micro: *"Continues on WhatsApp · No signup needed"*
+5. **Progressive-reveal CTA cluster** (renders only after ≥1 selection — v1.1 reframe; copy below is current shipped):
+   - Heading: *"Sasha is Karime's first contact. He'll read your message on WhatsApp and reply within hours with times for your call with Karime."*
+   - CTA: *"Send to Sasha on WhatsApp"* (primary dark glass)
+   - Micro: *"Opens WhatsApp with your message pre-written · No signup needed"*
    - Footer: *"Questions? Telegram @integralevolution · WhatsApp +1 (415) 707-3432"*
+
+   **v1.1 reframe rationale.** v1.0 heading + CTA both said "Send your reflection." Two problems: (1) the visitor never wrote a reflection (they ticked checkboxes), so the word read as abstract jargon; (2) "we'll be in touch" and "continues on WhatsApp" did not name what physically happens on click. v1.1 names the receiver (Sasha), his role (Karime's first contact), the channel (WhatsApp), and what the click does (opens WhatsApp with the message pre-written). The visitor now knows exactly what's about to happen before they click.
 
 **The CTA action** opens the same WhatsApp thread (`wa.me/14157073432`) with this prefilled body (built dynamically from the visitor's selections):
 
@@ -229,3 +234,5 @@ Looking forward to my conversation with Karime.
 ---
 
 *v1.0 · Day 85 · May 25, 2026 · Funnel section authored after the Day 85 build cycle that (a) converted the intake question from single-select to multi-select, (b) replaced the broken "visitor sends Karime her own cal.com link" message with a proper WhatsApp follow-up addressed to Sasha (front-door pattern matching the /build/karime cold inbound), and (c) added the "Continues on WhatsApp · No signup needed" microcopy under the CTA. Other UB-canvas sections (Uniqueness, Shadow, Myth, Tribe, Pain, Promise, Value Ladder) left as placeholders — Karime has not done an Ignition Session, and the funnel works without them for now.*
+
+*v1.1 · Day 88 · June 6, 2026 · Copy-clarity pass on both surfaces after a Top-Talent-grounded UB synthesis revealed the funnel was leaving signal on the table. Shipped: bridge trim (7-item pain list → 3-item), cut two duplicate bold blocks, restrained emphasis to one span per page (H1 "alone" only), unified CTA label across page + microcopy + doc ("Speak with Karime" / "Free 20-minute fit call"), eyebrow size bump (11 → 13px), and full reframe of the intake CTA cluster from the abstract "Send your reflection" → the literal "Send to Sasha on WhatsApp" with explicit naming of who's on the other end and what physically happens on click. Held for sign-off (NOT shipped): platform-wide rail + sidebar visibility — both surfaces still render inside `GameShellV2` with the full BUILD-space sections panel visible, which contradicts the doc's "outside the FYTT platform" architectural principle. Three sign-off options drafted (CSS-only hide, new GameShellV2 prop, slimmer page shell); awaiting Sasha's call.*
