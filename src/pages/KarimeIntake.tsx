@@ -64,7 +64,8 @@ type SupportKey =
   | "deep"
   | "spiritual"
   | "ceremonial"
-  | "unsure";
+  | "unsure"
+  | "other";
 
 const SUPPORT_OPTIONS: { key: SupportKey; label: string }[] = [
   { key: "gentle", label: "Gentle conversation and emotional clarity" },
@@ -72,7 +73,13 @@ const SUPPORT_OPTIONS: { key: SupportKey; label: string }[] = [
   { key: "spiritual", label: "Spiritual guidance and inner work" },
   { key: "ceremonial", label: "Ceremonial or medicine-supported work" },
   { key: "unsure", label: "I'm not sure yet, but something needs to change" },
+  { key: "other", label: "Something else (I'll describe it)" },
 ];
+
+// Day 89 (Sasha 2026-06-06): cap the "other" free-form field at 400 chars.
+// Roughly 3 short sentences. 280 is too tight for emotional nuance; 500
+// invites monologue. 400 sits in the sweet spot for a thoughtful intake.
+const OTHER_TEXT_MAX = 400;
 
 const KarimeIntake = () => {
   // Day 81 (Sasha 2026-05-23): route-scoped "karime" skin activation.
@@ -88,12 +95,23 @@ const KarimeIntake = () => {
   // Selections drive the reveal of the CTA (any choice unlocks it) and
   // the body of the WhatsApp message we generate on submit.
   const [selectedSupport, setSelectedSupport] = useState<SupportKey[]>([]);
+  // Day 89 (Sasha 2026-06-06): "other" option reveals an inline textarea.
+  // Content gets spliced into the WhatsApp message body as a
+  // "• Something else: ..." bullet when present. Empty textarea + "other"
+  // selected => CTA disabled with helper text. Half-collected signal is
+  // worse than waiting one sentence.
+  const [otherText, setOtherText] = useState("");
 
   const toggleSupport = (key: SupportKey) => {
     setSelectedSupport((prev) =>
       prev.includes(key) ? prev.filter((k) => k !== key) : [...prev, key],
     );
   };
+
+  const otherSelected = selectedSupport.includes("other");
+  const canSubmit =
+    selectedSupport.length > 0 &&
+    (!otherSelected || otherText.trim().length > 0);
 
   // Day 85 (Sasha 2026-05-25 v2) — funnel-aware form submission.
   // The funnel runs visitor → Sasha (WhatsApp) → Karime (cal.com).
@@ -116,11 +134,21 @@ const KarimeIntake = () => {
   // existing /karime WA thread (which also opens "Hi Sasha"). The
   // visitor's framing is consistent across both touchpoints.
   const handleSendWhatsApp = () => {
-    const selectedLabels = SUPPORT_OPTIONS.filter((opt) =>
-      selectedSupport.includes(opt.key),
-    )
-      .map((opt) => `• ${opt.label}`)
-      .join("\n");
+    if (!canSubmit) return;
+
+    // Day 89 (Sasha 2026-06-06): bullets composed in two passes so the
+    // "other" bullet carries the visitor's verbatim text instead of the
+    // generic option label. Named bullets first, free-form last.
+    const namedBullets = SUPPORT_OPTIONS.filter(
+      (opt) => opt.key !== "other" && selectedSupport.includes(opt.key),
+    ).map((opt) => `• ${opt.label}`);
+
+    const otherBullet =
+      otherSelected && otherText.trim().length > 0
+        ? [`• Something else: ${otherText.trim()}`]
+        : [];
+
+    const selectedLabels = [...namedBullets, ...otherBullet].join("\n");
 
     const message = [
       "Hi Sasha,",
@@ -441,6 +469,53 @@ const KarimeIntake = () => {
                 );
               })}
             </div>
+
+            {/* Day 89 (Sasha 2026-06-06): "Something else" describe-it
+                textarea. Sibling of the option grid (not nested in the
+                option label) so focus targets stay independent and
+                screen-readers see one control per label. Animated in
+                on selection. Mobile-aware: rows={2} on small screens
+                keeps the CTA close enough to reach without 2+ screens
+                of scroll; expands to rows={3} at sm+. No fixed height,
+                so the soft keyboard can lift the viewport cleanly. */}
+            {otherSelected && (
+              <div
+                className="max-w-[580px] mx-auto mt-3 sm:mt-4 animate-in fade-in slide-in-from-top-1 duration-300"
+              >
+                <textarea
+                  value={otherText}
+                  onChange={(e) =>
+                    setOtherText(e.target.value.slice(0, OTHER_TEXT_MAX))
+                  }
+                  placeholder="In a sentence or two, what's bringing you here right now?"
+                  rows={2}
+                  maxLength={OTHER_TEXT_MAX}
+                  inputMode="text"
+                  autoCapitalize="sentences"
+                  aria-label="Describe what's bringing you here"
+                  className="w-full p-3 sm:p-4 rounded-xl border resize-y transition-all focus:outline-none sm:min-h-[96px]"
+                  style={{
+                    fontFamily: "'Cormorant Garamond', serif",
+                    fontSize: "17px",
+                    lineHeight: 1.5,
+                    color: "var(--skin-text-primary, #0a1628)",
+                    background: "rgba(255, 255, 255, 0.55)",
+                    borderColor: "rgba(244, 212, 114, 0.55)",
+                    boxShadow:
+                      "0 0 0 1px rgba(244, 212, 114, 0.25), inset 0 1px 3px rgba(11, 42, 90, 0.05)",
+                  }}
+                />
+                <p
+                  className="text-right mt-1.5 text-[11px] tracking-[0.18em] uppercase opacity-50"
+                  style={{
+                    fontFamily: "'Cormorant Garamond', serif",
+                    color: "var(--skin-text-primary, #0a1628)",
+                  }}
+                >
+                  {otherText.length} / {OTHER_TEXT_MAX}
+                </p>
+              </div>
+            )}
           </div>
         </section>
 
@@ -481,10 +556,32 @@ const KarimeIntake = () => {
               Sasha is Karime's first contact. He'll read your message on WhatsApp and reply within hours with times for your call with Karime.
             </p>
             <div className="flex flex-col items-center gap-4 px-4 text-center">
-              <EditorialCta
-                label="Send to Sasha on WhatsApp"
-                onClick={handleSendWhatsApp}
-              />
+              {/* Day 89 (Sasha 2026-06-06): CTA gated when "other" is
+                  selected with an empty textarea. EditorialCta's prop
+                  surface isn't typed for disabled here, so we wrap it
+                  in a visual + interaction lockout div. Helper line
+                  below names the missing piece. */}
+              <div
+                className={
+                  canSubmit
+                    ? ""
+                    : "opacity-50 pointer-events-none select-none"
+                }
+                aria-disabled={!canSubmit}
+              >
+                <EditorialCta
+                  label="Send to Sasha on WhatsApp"
+                  onClick={handleSendWhatsApp}
+                />
+              </div>
+              {!canSubmit && otherSelected && (
+                <p
+                  className="text-xs sm:text-sm italic opacity-75 -mt-2"
+                  style={bodyTextStyle}
+                >
+                  Add a sentence to send.
+                </p>
+              )}
               <div
                 className="inline-flex items-center justify-center gap-2 max-w-[520px] mt-1"
                 style={{
