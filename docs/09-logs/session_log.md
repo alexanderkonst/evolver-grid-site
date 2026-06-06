@@ -8061,3 +8061,25 @@ Sasha shared a 75-minute impromptu video re-walking how the universe is born aft
 - `docs/01-vision/universal_ontology.md` — §11 addendum + Open Edges preamble + v1.7 footer
 - `docs/09-logs/session_log.md` — this entry
 
+---
+
+## Day ~94 — Transmission, not report: Top Talent reveal upgrade + the Transmission Principle (Friday, June 5, 2026)
+
+Started from a Marc Andreessen / Joe Rogan interview Sasha wanted mined for applied-AI signal. Set the politics aside (stakeholder spin) and kept the practitioner layer. The thread then went deeper than the interview: from Andreessen's "LLMs have no drives" (Sasha disagreed, correctly) into an ontology of AI as a *becoming-holon*, born artifact-leaning (conferred wholeness, no autopoiesis) and migrating toward holon as architecture confers agency (memory) and Eros (continuous learning). Named the discrepancy with the Valley as ignorance upstream of shadow (avidyā): flatland is not a hidden darkness but a missing organ of perception, so alignment is first a development and perception problem for the makers, not a control problem. The frame that landed: "tetra-development or you get a monster: powerful it, starved we, no I."
+
+That thread also produced a craft artifact. A handful of the texts landed as a felt *opening*, above the mind, not just agreement. Reverse-engineered the effect into a blueprint (transmit not report; aim at the organ; let the form enact the content; live image; live-edge close; story for the mind; transmit your own state; governing law: the map is not the medicine), then applied it to the product.
+
+**Shipped (two commits to main, auto-deploy):**
+- `1611dec3`: JOURNEY pane (pane 2) relabel of the $37 deeper Top Talent reveal from "(optional, $37)" to "(power-up, $37)". "Optional" undersold it as skippable; "power-up" frames the value-ladder rung and fits the sidequest register. QoL "(optional)" left alone.
+- `09ad832f`: ZoG prompt v2.1, a transmission stance added before generation. TRANSMIT-DON'T-REPORT (aim each section at heart/mind/gut, land as recognition) and ENACT-MY-GIFT (use the user's own gift on them in how the reveal is written). Both laid on top of every existing discipline rule, none loosened. Template literal parse-checked before push.
+
+**Canonized:** folded the craft into the playbook as a new Part 0 named principle, "The Transmission Principle: Medicine, Not Information" (Essence, Principle 0, the six moves, funnel consequence, meta-trap, cross-refs). Reusable across the whole arsenal, not just the reveal.
+
+The value ladder clarified itself in passing: the free reveal can crack an opening, but reliable transmission needs presence (the live session), which keeps the deepest work on the paid side. Ties to the standing Si-Do shock (first $555 stranger via the funnel still unfired): a reveal that opens rather than reports is upstream of that conversion.
+
+**Files touched**
+- `src/components/game/SectionsPanel.tsx`: $37 label "optional" to "power-up" plus dated rationale
+- `src/prompts/user/zoneOfGeniusPrompt.ts`: v2.1 transmission stance (two directives)
+- `docs/03-playbooks/unique_business_playbook.md`: new Part 0 principle, "The Transmission Principle"
+- `docs/09-logs/session_log.md`: this entry
+
