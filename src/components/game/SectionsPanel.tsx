@@ -655,7 +655,11 @@ const buildJourneySections = (
             // paid. Price is now ambient inside the label itself
             // (muted dim text). Honest, present, but quieter — the
             // numbered free steps stay the visual anchor.
-            label: "Find out how to monetize your top talent (optional, $37)",
+            // Day 94 (Sasha 2026-06-05): "optional" -> "power-up". "Optional"
+            // undersold the $37 deeper Top Talent reveal as skippable; "power-up"
+            // frames it as a value-ladder enhancement and fits the sidequest /
+            // game register. The QoL row keeps "(optional)"; that signal is right.
+            label: "Find out how to monetize your top talent (power-up, $37)",
             variant: "sidequest",
             // Day 80 Wave 2.4: route to the dedicated standalone page,
             // not the AppleseedDisplay anchor (which surrounds the
