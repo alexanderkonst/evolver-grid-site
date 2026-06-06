@@ -43,6 +43,13 @@ import { useSkin } from "@/contexts/SkinContext";
 // Day 81 (Sasha 2026-05-23): confirmed — 14157073432 is Sasha's gateway.
 // The contact line below uses the same number; the CTA above prefills a
 // message so Sasha can distinguish funnel-sourced inbound from cold messages.
+//
+// Day 88 (Sasha 2026-06-06): CTA label unified to "Speak with Karime"
+// (canonical per karimes_unique_business.md doc). Warmer + relational vs
+// the prior "Book a 20-min conversation" which front-loaded the
+// transactional verb. The microcopy below still names the actual
+// mechanic ("Free 20-minute fit call") so the visitor knows what
+// "speaking" actually means.
 const WHATSAPP_BOOKING_URL =
   "https://wa.me/14157073432?text=Hi%20Sasha%2C%20I%20came%20through%20Karime%27s%20page%20and%20would%20like%20to%20connect.";
 
@@ -110,14 +117,19 @@ const KarimeOffer = () => {
           }}
         >
         <header className="text-center">
-          {/* Eyebrow — same Cormorant small-caps + deep halo as MatchHero. */}
+          {/* Eyebrow — same Cormorant small-caps + deep halo as MatchHero.
+              Day 88 (Sasha 2026-06-06): font-size 11→13, letter-spacing
+              0.28→0.22. Prior 11px:H1-48px ratio (~1:4.4) made the
+              eyebrow read as legal-text attribution under the H1.
+              Bumped one step so it earns its positioning-lead role
+              without losing the small-caps editorial register. */}
           <p
             className="mb-4 sm:mb-5"
             style={{
               fontFamily: "'Cormorant Garamond', serif",
               fontWeight: 700,
-              fontSize: "11px",
-              letterSpacing: "0.28em",
+              fontSize: "13px",
+              letterSpacing: "0.22em",
               textTransform: "uppercase",
               color: "var(--skin-text-primary, #0a1628)",
               textShadow:
@@ -166,8 +178,30 @@ const KarimeOffer = () => {
 
           <Ornament className="my-5 sm:my-6" />
 
-          {/* Supporting copy — paragraph + the three short lines (Not advice /
-              Not pressure / Not spiritual performance) + closing line. */}
+          {/* Supporting copy — Day 88 (Sasha 2026-06-06) tightening pass.
+              Previously: 4 bold-prose blocks + italic three-liner, which
+              gave 4 near-equal weight blocks competing after the H1, and
+              the bridge's 7-item pain list ("heartbreak, grief, burnout,
+              relationship pain, family crisis, impossible decisions, and
+              emotionally overwhelming seasons of life") read as catalogue
+              rather than mirror — duplicating the recognition the italic
+              question already lands.
+
+              New shape:
+                - Bridge trimmed from 7 pains to 3, lighter (no emphasis
+                  span); ICP-recognition stays but tighter
+                - "A space to soften..." block CUT (the italic three-liner
+                  below already names what the space feels like)
+                - Italic three-liner KEPT (the punchiest copy on the page)
+                - "Just honest, attentive care..." closing block CUT (it
+                  duplicates the bridge and the three-liner)
+                - Emphasis spans held to ONE per viewport (the H1's
+                  "alone"). The prior "deeply grounded" / "soften" / "Held"
+                  highlights read as Mad-Libs at 4 emphasis hits per scroll.
+
+              Result: bridge → italic three-liner → CTA. Two beats of
+              support copy crescendoing into action, instead of five
+              competing blocks. */}
           <div
             className="space-y-4 sm:space-y-5"
             style={{
@@ -178,31 +212,14 @@ const KarimeOffer = () => {
             }}
           >
             <p className="text-lg sm:text-xl md:text-[1.4rem] font-bold leading-[1.45] tracking-[-0.005em]">
-              Karime offers{" "}
-              <span
-                className="bg-clip-text text-transparent"
-                style={KARIME_EMPHASIS_STYLE}
-              >
-                deeply grounded
-              </span>{" "}
-              emotional support for people moving through heartbreak, grief, burnout, relationship pain, family crisis, impossible decisions, and emotionally overwhelming seasons of life.
-            </p>
-
-            <p className="text-lg sm:text-xl md:text-[1.4rem] font-bold leading-[1.45] tracking-[-0.005em]">
-              A space to{" "}
-              <span
-                className="bg-clip-text text-transparent"
-                style={KARIME_EMPHASIS_STYLE}
-              >
-                soften
-              </span>
-              , hear yourself clearly again, and feel genuinely supported while facing what is real.
+              Deeply grounded emotional support for people moving through heartbreak, burnout, and the seasons that become too heavy to hold alone.
             </p>
 
             {/* Three short lines — positive declarations, italic for breath.
-                Day 81 (Sasha 2026-05-23): negatives (Not advice / Not
-                pressure / Not spiritual performance) flipped to positives
-                so the page leads with what IS, not what isn't. */}
+                Day 81: negatives flipped to positives so the page leads
+                with what IS, not what isn't. Day 88: emphasis span on
+                "Held" removed — the H1's "alone" is now the only
+                emphasis on the page. */}
             <div
               className="space-y-1 sm:space-y-1.5 italic"
               style={{ fontWeight: 600 }}
@@ -214,26 +231,16 @@ const KarimeOffer = () => {
                 Emotional honesty.
               </p>
               <p className="text-base sm:text-lg md:text-xl leading-[1.4]">
-                <span
-                  className="bg-clip-text text-transparent"
-                  style={KARIME_EMPHASIS_STYLE}
-                >
-                  Held
-                </span>
-                , not fixed.
+                Held, not fixed.
               </p>
             </div>
-
-            <p className="text-lg sm:text-xl md:text-[1.4rem] font-bold leading-[1.45] tracking-[-0.005em]">
-              Just honest, attentive care during the moments that become too heavy to hold by yourself.
-            </p>
           </div>
         </header>
 
         {/* CTA cluster — single primary CTA, footer microcopy, contact line. */}
         <div className="mt-7 sm:mt-8">
           <div className="flex flex-col items-center gap-4 px-4 text-center">
-            <EditorialCta label="Book a 20-min conversation" onClick={handleBook} />
+            <EditorialCta label="Speak with Karime" onClick={handleBook} />
 
             <div
               className="inline-flex items-center justify-center gap-2 max-w-[520px] mt-1"
@@ -247,7 +254,14 @@ const KarimeOffer = () => {
                 fontWeight: 500,
               }}
             >
-              <span>Free 20 minutes fit call · Private online sessions worldwide and in person</span>
+              {/* Day 88 (Sasha 2026-06-06): microcopy unified to match the
+                  canvas doc. Three terms previously named the same call
+                  three different ways ("20-min conversation" CTA, "20
+                  minutes fit call" microcopy, "20-min fit call" doc).
+                  Canonical now: "Free 20-minute fit call." In-person
+                  phrasing matched to the doc's "by arrangement" so the
+                  page does not overpromise in-person availability. */}
+              <span>Free 20-minute fit call · Online sessions worldwide · In-person by arrangement</span>
             </div>
 
             {/* Contact line — clickable Telegram + WhatsApp. Same small-caps
