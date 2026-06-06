@@ -10,19 +10,16 @@
 
 ## OPEN EDGES: The Living Frontier
 
-> *These are the active unknowns at the edge of recognition. Everything below this line is what has been recognized so far; these three are where the recognition is still reaching. Held honestly, not smoothed over. The italic hypotheses are AI working notes (Claude), offered as candidates to test, not as part of the recognition itself.*
+> *These are the edges this telling surfaced. All three found a working resolution on June 5, 2026, and are kept here with those resolutions to show how a frontier folds into the body of the ontology. The geometric names (inversion, orthogonality, stella octangula) are AI formalizations (Claude) of Sasha's recognitions, offered as the bridge to established geometry. Held honestly, not smoothed over. New edges will be added here as recognition keeps reaching.*
 
-**1. How does one ray create two mirror-spheres from one?**
-A single ray launched from the 0D Source point somehow yields two touching spheres that perfectly mirror each other: stand at the point between them and you see only an infinite mirror. The mechanism of the one-to-two split is not yet clear.
-*Working hypothesis (AI): the single ray is a diameter, and a diameter automatically defines a perpendicular bisecting plane through the center; that plane is the mirror, so the "two spheres" are the one sphere's two reflection-halves meeting at the point, not two separate objects (matching the in-the-moment correction, "more like two half spheres").*
+**1. How does one ray create two mirror-spheres from one? [Recognized June 5, 2026 → §11.1]**
+A single ray launched from the 0D Source point yields two touching spheres that perfectly mirror each other: stand at the point between them and you see only an infinite mirror. The mechanism is the universe *turning onto itself*, the t-shirt pulled inside-out through its own center. Its precise geometric name is **inversion**, which is a mirror operation by nature (so the second sphere is the first one's reflection by construction) and which sends the center to infinity (so the shared point shows the infinite regress, the infinity mirror). It is the two-holes-in-one of §11.1 seen as a movement: out to infinity is the white hole, in to the center is the black hole. The ray gives only the axis; the inversion gives the doubling, the reflection, and the infinity mirror at once. Full treatment in §11.1.
 
-**2. Why do the axes lock to 90°?**
-The first two rays make a plane; the next two arrive orthogonal to them, building the 3D cross. Why the angle resolves to exactly 90° is not yet explained.
-*Working hypothesis (AI): 90° is the only angle at which a new axis is fully independent of the existing one (its projection onto the first is zero), so orthogonality is not chosen but forced. It is the unique geometry of a genuinely new dimension that adds information rather than repeating it.*
+**2. Why do the axes lock to 90°? [Recognized June 5, 2026]**
+The first two rays make a plane; the next two arrive orthogonal to them, building the 3D cross. The resolution: 90° is the only angle at which a new axis is fully independent of the existing one (its projection onto the first is zero), so orthogonality is not chosen but forced. Sasha's framing carries it furthest: each new perpendicular axis opens a *whole new infinity of information* (a line becomes a plane, a plane becomes a volume), and 90° is the only angle at which that new infinity shares nothing with the old one. A genuinely new dimension is precisely one that adds information rather than repeating it, and that is what orthogonality means.
 
-**3. What is the exact octahedron ↔ Star Tetrahedron (Merkaba) relation?**
-The octahedron and the Star Tetrahedron are known to be one structure at different stages of self-development, but the precise geometric bridge was left open.
-*Working hypothesis (AI): the octahedron is the shared core of the Merkaba. It is exactly the intersection of the two interpenetrating tetrahedra (the stella octangula), so the octahedron is that structure at rest and the Star Tetrahedron is the same structure with its two halves set counter-spinning, which is why the pulse → octahedron and spin → Merkaba pairing of §11.3 is geometrically exact.*
+**3. What is the exact octahedron ↔ Star Tetrahedron (Merkaba) relation? [Recognized June 5, 2026 → §11.3]**
+The octahedron and the Star Tetrahedron are one structure at different stages of self-development; the precise bridge is the **stella octangula**. The octahedron is the shared core: it is exactly the solid where the two interpenetrating tetrahedra overlap. Equivalently, the Merkaba is that octahedron with a tetrahedron raised on each of its eight faces, its two halves set counter-spinning. So the octahedron is the structure at rest (pulse, §11.3) and the Merkaba is the same structure in counter-spin (spin, §11.3). To see it, search "stella octangula octahedron core." Full pairing in §11.3.
 
 ---
 
@@ -959,9 +956,17 @@ A framework for shifting the perspective on Artificial Intelligence from "Tool" 
 
 > *June 5, 2026. Recognized aloud in an impromptu 75-minute sharing that re-walked the cosmogenesis of §2 and surfaced five fresh recognitions. Recorded here as a dated addendum; the existing sections stand untouched. The open questions this telling raised are held at the top of the doc under "Open Edges."*
 
-### 11.1 The Source Is Two Holes in One
+### 11.1 The Source Is Two Holes in One, and the Inversion That Makes Two
 
 §1 holds the Source as pure undifferentiated IS, before the first impulse. This recognition gives the Source its own dynamic. The infinitely small dot is not only a black hole into which everything swirls; it is two holes in one that balance each other. One swirls everything in, the other emanates everything out. The new physics is not the black hole alone but the balanced pair: in-swirl and out-emanation held as a single self-balancing point. This is the seed of the toroidal field (§4b, §6), already present in the Source before any ray is launched.
+
+**The inversion: how One becomes Two.** The move by which the Source doubles itself is the universe turning onto itself, like a shirt pulled inside-out through its own center. The precise geometric name for this is inversion: the operation that maps the inside of a sphere to its outside and the center to infinity, and that is by nature a mirror. Three things follow in a single act:
+
+- **The mirror is built in.** Because inversion is a reflection, the second sphere is the first one's mirror image by construction. This is why the two spheres reflect each other rather than merely sitting side by side. A diameter alone (a plane cut) would give two facing halves, not two reflecting wholes; the inversion is what makes them mirror.
+- **The infinity mirror is the center seen from within.** Inversion sends the center to infinity. So standing at the shared point between the two spheres and looking out, you see the center mapped to infinity: the endless regress, the infinity mirror.
+- **It is the two holes in motion.** Center outward to infinity is the white hole (emanation); infinity inward to the center is the black hole (gathering). Inversion is not a separate operation laid on top of the two-holes-in-one. It *is* the two holes, described as a movement.
+
+So the first ray supplies only the axis, the first directionality. The inversion supplies the doubling, the reflection, and the infinity mirror together. One does not split into two by breaking; it turns inside-out, and the turning is already a mirror. (This resolves the first of the Open Edges at the top of the doc.)
 
 ### 11.2 The Octahedron Is the Raw Shape of Diamond
 
@@ -969,7 +974,7 @@ The three axes, connected at their ends, form two pyramids base to base: the oct
 
 ### 11.3 Pulse and Spin: The Two Root Dynamics
 
-§2 names the straight radia and the spin. This recognition names the pair cleanly and assigns each its work. The universe both pulses (expands in discrete steps) and spins (rotates), at once. Pulse creates structure: directed instantaneous movements that build form and repeat fractally at every scale. Spin creates process: flow, relation, relativity, the infinite angles by which everything relates to everything. Pulse is the masculine line, spin is the feminine rotation. Structure and flow are the two faces of one growing, ever-expanding sphere. (Geometrically this is the octahedron-at-rest paired with the Merkaba-in-counter-spin; see Open Edge 3.)
+§2 names the straight radia and the spin. This recognition names the pair cleanly and assigns each its work. The universe both pulses (expands in discrete steps) and spins (rotates), at once. Pulse creates structure: directed instantaneous movements that build form and repeat fractally at every scale. Spin creates process: flow, relation, relativity, the infinite angles by which everything relates to everything. Pulse is the masculine line, spin is the feminine rotation. Structure and flow are the two faces of one growing, ever-expanding sphere. Geometrically this pairing is exact: the octahedron is the structure at rest, and the Merkaba (Star Tetrahedron) is the same octahedron in counter-spin, because the octahedron is precisely the shared core of the Merkaba's two interpenetrating tetrahedra (the stella octangula). Pulse holds the form still; spin flowers its eight faces outward into the two counter-rotating tetrahedra. (See Open Edge 3.)
 
 ### 11.4 The Depiction Ladder: 2D Renders 3D, 3D Renders 4D
 
@@ -986,7 +991,7 @@ The toroidal field is not something a being possesses; it is what a being is. I 
 ---
 
 *Universal Ontology v1.7*
-*Updated: June 5, 2026 (§11 The June 5 Recognitions: Source as two-holes-in-one, octahedron as raw diamond, pulse and spin, the depiction ladder, "I am that"; Open Edges preamble added at top with AI working hypotheses)*
+*Updated: June 5, 2026 (§11 The June 5 Recognitions: Source as two-holes-in-one, octahedron as raw diamond, pulse and spin, the depiction ladder, "I am that"; Open Edges preamble added at top; all three edges resolved June 5: Edge 1 via inversion, the inside-out mechanism, folded into §11.1; Edge 2 via orthogonality, each new axis opening a whole new infinity; Edge 3 via the stella octangula, folded into §11.3)*
 *Updated: April 3, 2026 (§4e Seven Number-Prisms — The Integral Directory of Seeing Systems)*
 *Updated: April 2, 2026 (§4d Holonic Seeing Mode — The 26-Perspective Instrument)*
 *Updated: March 26, 2026 (§2c Cosmological Breath — Masculine leads creation, Feminine leads evolution; §4c Dimensions Are Perspectives)*
