@@ -22,6 +22,7 @@ import {
   inputVersionHash,
   type ArtifactKey,
 } from "../_shared/ubb-prompts.ts";
+import { isViabilityApplicable, runViabilityPass, type Viability } from "../_shared/viability.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -52,6 +53,9 @@ type ImproveResult = {
   diminishing_returns: boolean;
   // Day 78 Phase 4 (Sasha 2026-05-21): see generate-artifact.GenerateResult.
   input_version_at_lock: string;
+  // Vision ↔ Viability (Domain 93): the crash-test second pass. Best-effort;
+  // absent/null on essence-class artifacts or if the pass fails.
+  viability?: Viability | null;
 };
 
 serve(async (req) => {
@@ -267,6 +271,24 @@ vocabulary appears nowhere in any string field except the quadrant codes.`;
     if (result.diminishing_returns) {
       result.specificity_score = current_specificity;
       result.specificity_delta = 0;
+    }
+
+    // Vision ↔ Viability (Domain 93): second, independent crash-test pass on the
+    // improved content. Strategy/offer/positioning artifacts only — essence-class
+    // artifacts (uniqueness, myth, specificity_matrix) are exempt. Best-effort:
+    // a null result never blocks the improve.
+    if (isViabilityApplicable(artifact_key)) {
+      const viabilityContext = `${rootSummary}
+
+TRIBE / SIBLING ARTIFACTS:
+${siblingSummary || "(none yet)"}`;
+      const viability = await runViabilityPass({
+        label: config.label,
+        content: result.improved_content,
+        contextSummary: viabilityContext,
+        apiKey: LOVABLE_API_KEY,
+      });
+      if (viability) result.viability = viability;
     }
 
     return new Response(

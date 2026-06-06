@@ -9,6 +9,8 @@
  * An accepted Improve creates a new VersionRow; previous rows are never overwritten.
  */
 
+import type { Viability } from "@/types/viability";
+
 // ============================================================================
 // Artifact keys — the 18 improvable artifacts (Dossier is a composed view)
 // ============================================================================
@@ -227,6 +229,9 @@ export type ImproveResult = {
   diminishing_returns: boolean;
   /** Day 78 Phase 4: input-version hash stamped by the edge function. */
   input_version_at_lock?: string;
+  /** Vision ↔ Viability (Domain 93): crash-test second pass. Absent on
+   *  essence-class artifacts or when the best-effort pass returns null. */
+  viability?: Viability | null;
 };
 
 export type GenerateResult = {

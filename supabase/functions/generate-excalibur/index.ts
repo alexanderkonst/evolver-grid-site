@@ -1,4 +1,5 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
+import { runViabilityPass } from "../_shared/viability.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -333,8 +334,25 @@ serve(async (req) => {
 
     console.log("Excalibur generated successfully");
 
+    // Vision ↔ Viability (Domain 93): second, independent crash-test pass on the
+    // generated offer. The Excalibur IS the offer, so it is always viability-
+    // applicable. Best-effort: a null result never blocks the generation.
+    const viabilityContext = [
+      excalibur?.offer?.statement ? `Offer: ${excalibur.offer.statement}` : "",
+      excalibur?.idealClient?.profile ? `Ideal client: ${excalibur.idealClient.profile}` : "",
+      excalibur?.idealClient?.problem ? `Their problem: ${excalibur.idealClient.problem}` : "",
+      excalibur?.channels?.hook ? `Hook: ${excalibur.channels.hook}` : "",
+      excalibur?.channels?.primary ? `Primary channel: ${excalibur.channels.primary}` : "",
+    ].filter(Boolean).join("\n");
+    const viability = await runViabilityPass({
+      label: "Unique Offer (Excalibur)",
+      content: excalibur,
+      contextSummary: viabilityContext,
+      apiKey: LOVABLE_API_KEY,
+    });
+
     return new Response(
-      JSON.stringify({ excalibur }),
+      JSON.stringify({ excalibur, viability }),
       { headers: { ...corsHeaders, "Content-Type": "application/json" } }
     );
   } catch (error) {

@@ -6353,3 +6353,74 @@ The mature synthesis is: keep the mythic layer as signal and inspiration, while 
 > *"Provision is the economic mirror of legibility: when the hidden architecture is expressed in a form the field can recognize and request, exchange starts moving."*
 
 ---
+
+## Domain 93: Vision ↔ Viability Balancing for Business Strategies (The Two-Axis Strategist and the Kinetic-Calm Signal)
+
+> *Named Day 94 (June 5, 2026). Surfaced in dialogue from a ChatGPT exchange on why the strategic mind swings between "this will change everything" and "this was destined to fail," then synthesized here. This domain sits upstream of the Roasting Protocol ([roasting_protocol.md](../05-reference/roasting_protocol.md)): roasting refines an artifact toward essence-truth (fidelity); this domain adds the second adversarial axis, survival against reality (viability), and the felt signal that says when both are satisfied.*
+
+**The transformational result:** a business strategy stops needing you to be intoxicated by it. You converge, fast, on the smaller move that is both true to the vision and able to survive contact with real human behavior, and you feel the arrival as calm rather than certainty.
+
+### 93a. The Sentence That Names It
+
+> *"A real strategy is the seed that survives both the vision that fell in love with it and the reality that tried to burn it down. You know you have it not by certainty but by kinetic calm: small enough to try, real enough to matter."*
+
+### 93b. The First Principle: Two Modes, Two Axes
+
+The strategic mind runs two legitimate intelligences, and the pendulum swings because it fuses with one at a time:
+
+- **Vision mode** sees what wants to exist: the architecture, the symmetry, the leverage, the missing layer. Its output has *potential energy*. Fusing with it alone is drinking the Kool-Aid.
+- **Market mode** sees what tired, busy, defensive, under-resourced humans will actually do next Tuesday. Fusing with it alone kills living seeds too early.
+
+Neither is wrong. The danger is fusing with either. A complete strategist holds both as two adversarial axes:
+
+| Axis | Question | Optimizes for | In this system |
+|------|----------|---------------|----------------|
+| **Fidelity** | Is this true to the essence? Clear, non-generic, undeniable? | Essence-truth (inward) | the Roasting Protocol |
+| **Viability** | Does it survive contact with real human behavior? | Reality-survival (outward) | this domain (the crash-test) |
+
+Roasting was never the whole category. It is the fidelity axis. This domain adds the viability axis and unites the two as one strategist: refine to essence-truth *and* pressure-test against reality, then converge where they meet.
+
+### 93c. The Loop: Three Questions, Repeated
+
+The engine is three questions, looped until the strategy stabilizes (and optionally fanned across parallel agents for speed and diversity of attack):
+
+> 1. What's our exact strategy in 1 short paragraph?
+> 2. Let's subject it to the crash test. What's the post mortem of this exact strategy as is? Why and how did it fail?
+> 3. Please look at the ashes. What survived the grand roast? What still holds true and has a seed of truth in it?
+
+Question 1 forces vision mode to commit to a single legible claim. Question 2 runs the pre-mortem (imagine it has already failed, then explain why), which surfaces the hidden costs optimism hides: trust, timing, buyer language, budget, inertia, proof, ego, follow-through. Question 3 recovers the invariant, the part of the strategy that survives its own funeral. Feed the surviving seed back into Question 1 and run again. Each pass burns off romance, vagueness, category error, and hidden dependence on human virtue. This is evolutionary strategy compression: selecting for strategies that survive repeated contact with imagined reality before spending real-world cycles.
+
+### 93d. Kinetic Calm: the Fitness Signal
+
+The hard part of any generate-and-select loop is knowing when to stop. The signal is not certainty. It is **kinetic calm**:
+
+- **Kinetic energy** (it compels the next move) means the viability axis has passed: the move is small, concrete, uses existing behavior, names a buyer-native pain, and can fail fast.
+- **Potential energy** (a quiet sense it can grow into something useful and meaningful) means the fidelity axis has passed: the seed is still true to the vision and has room to compound.
+
+Calm *and* compelled means both axes are satisfied at once. Manic certainty is the fidelity axis without viability; despair is viability without fidelity. Kinetic calm is the felt fitness function that says: this one is real enough to take to a human now.
+
+### 93e. Tactics as Holons
+
+Tactics are the strategy recursively decomposed into micro-strategies. Each tactic (outreach message, first call, teardown offer, pricing, follow-up, tracker) is an executable holon with its own failure modes and its own surviving seed, and each can be crash-tested by the same three questions. Strategy is the living thesis; tactics are its holons; crash-testing is the selection pressure; kinetic calm is the felt fitness signal at every scale.
+
+### 93f. The Caveats: Crash-Testing the Method Itself
+
+The honest application of this domain is to apply it to itself, which surfaces three failure modes:
+
+1. **Simulated reality is not reality.** The AI's "what humans do next Tuesday" is a confident guess; it will sometimes kill a good seed and spare a bad one. The loop produces a sharper *hypothesis*, not validation. The seed that survives ten imagined roasts still has to survive one real stranger. The danger is a gorgeous preparation loop that feels like market contact and is not. (See Domain 92's anti-pattern: reality-testing must sharpen the transmission, not replace shipping.)
+2. **Conservatism bias.** Crash-testing rewards "uses existing behavior, buyer-native pain," which is lethal to category-creating moonshots that have no buyer language yet and would fail a market-mode roast. Use the crash-test to find the small doorway into the cathedral, never to vote on whether the cathedral is real. Vision proposes; the crash-test finds the wedge; the wedge-finder gets no veto over the vision.
+3. **Only as good as the roast's honesty.** A flattering crash-test is worse than none. The fidelity axis already encodes this discipline (loving energy, and still name what is broken).
+
+### 93g. Relationship to Other Domains
+
+- **The Roasting Protocol (fidelity axis):** the existing under-the-hood refinement loop. This domain is its complement, not its replacement. Together they are the two-axis strategist.
+- **Domain 92 (Signal Legibility as Provision):** the viability axis is how the mythic layer gets reality-tested into buyer-legible form; Domain 92's anti-pattern is the same warning as caveat 1.
+- **Domain 7 (Founder-First Inversion):** vision mode is founder-first (uniqueness proposes value); the viability axis keeps the proposal honest about market behavior without surrendering the inversion.
+- **Domain 5 (Precision Gap IS Product):** Question 1's "exact strategy in one paragraph" is a precision demand; vagueness fails the loop immediately.
+- **Universal Ontology §2 (Primordial Dynamics):** the loop is novelty (the impulse, the ray) met by selection (reality), the same generate-and-select pattern at the scale of strategy.
+
+### 93h. The One-Sentence Version
+
+> *"Run vision and viability as two adversarial axes (fall in love, then burn it down, then keep the seed that survives both), and stop not at certainty but at kinetic calm: small enough to try, real enough to matter."*
+
+---
