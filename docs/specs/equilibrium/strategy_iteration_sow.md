@@ -14,10 +14,11 @@ Equilibrium Box 8 already stores the user's 1-3 current strategies. The new beha
 ## Implementation Scope
 
 - Add a Supabase edge function that receives the current strategy plus optional Lifelong Dedication and Role context.
-- Return strict JSON: one caps strategy tagline, one bottom-line sentence, and one proposed next strategy articulation.
+- Return strict JSON: one caps strategy tagline, one bottom-line sentence, and one proposed next strategy text.
 - Add an Iterate control to each filled strategy row.
 - Show the caps tagline, the one-line bottom line, an editable proposed strategy text, and `Accept` / `No` actions.
-- The proposed strategy text starts with `TAGLINE — ...` so accepted long strategies become scannable in the row.
+- The proposed strategy text starts with the caps tagline as its own first line, then preserves the existing strategy body with minimal necessary edits.
+- Do not rewrite long nuanced strategies from scratch; the strategy body is sensitive working text.
 - On `Accept`, save the proposed text through the existing strategy upsert.
 - On `No`, dismiss the suggestion without persisting anything.
 
@@ -28,6 +29,7 @@ Equilibrium Box 8 already stores the user's 1-3 current strategies. The new beha
 - Filled strategies show an Iterate button.
 - Empty strategy slots do not show Iterate.
 - Clicking Iterate shows loading state and handles edge-function errors.
-- The iteration output includes a caps tagline that synthesizes the current strategy with high signal-to-noise.
+- The iteration output includes a caps tagline that names the current strategy with high signal-to-noise.
+- The proposed strategy body preserves the user's wording almost verbatim unless the crash-test reveals a concrete reason to change it.
 - Accept updates the row using the existing strategy save path.
 - No dismisses the suggestion and leaves the original strategy unchanged.
