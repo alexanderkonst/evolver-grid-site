@@ -8027,3 +8027,37 @@ Later the same day, an extended working session on the money model plus a third 
 - `docs/02-strategy/tribe_outreach_tracker.md` — Balaji no-reply status + Vlad (T2-4) added and marked sent
 - `docs/09-logs/session_log.md` — this addendum
 
+---
+
+## Day ~94 — The Sacred Space Map: 5-year Telegram journal read, mapped, filed (Friday, June 5, 2026)
+
+Sasha exported his five-year "My Sacred Space" Telegram journal (his main journaling destination since Feb 2021) and asked for a double read + taxonomy + idea-flow + mind-map, with himself as the only intended reader: "I want to understand what's in there."
+
+**Corpus.** 5,572 messages, 4,553 with text (~540k tokens / ~2.17M chars), 27 Feb 2021 → 5 Jun 2026; ~20% Russian; plus 702 photos, 308 videos, 271 files, 154 audio, 32 voice notes (text only was read — media is still unmapped).
+
+**Method.** Parsed the 6 HTML files into a clean chronological corpus, split into 24 even slices, ran a Workflow: 24 reader agents (one per slice, full read) → 6 synthesis agents (taxonomy · 5-year evolution/eras · lexicon · gems · book/idea-flow architecture · mind-of-Sasha). 30 agents, ~3M tokens. Six independent readers converged on the same spine and the same live edge.
+
+**Output.** Assembled `SACRED_SPACE_MAP.md` (~16.5k words, 6 parts) → filed into the corpus as `docs/02-strategy/sacred_space_map.md`, framed as the **third navigation instrument** (roadmap = where going · holomap = structural state · sacred-space-map = where the mind has been). Index pointer added.
+
+**Key findings (reaffirm existing memory, no new contradictions).**
+- Single spine: *uniqueness becomes legible, and legibility becomes coordination* — "the eye finally saw itself." The whole arc is a flashlight learning to turn around.
+- Three leaps in journaling volume = three fusions: ×10 (2023, ChatGPT = the engine) · ×4 (2025, the spine = method + AI co-architect) · ×3 (2026, the loop closes = client zero). Built a chart ("The Exponential Envelope," log scale): creative **throughput** went exponential.
+- The one unresolved thread, dead center: **create >> capture**. The first clean $555 from a stranger via the funnel is still unfired — exactly the **Si–Do shock** the holomap has been flagging. The capture-curve stayed flat while the create-curve went exponential; that gap is the story.
+
+**Also produced (in chat).** Book abstract for *The Flashlight That Learned to Turn Around* (Sasha: "stunning… the story of my life, never seen it articulated so well"). Offered next: shadow-recurrence chart, topic-drift-over-time, media transcription.
+
+**Files touched**
+- `docs/02-strategy/sacred_space_map.md` (new — the map)
+- `docs/docs_index.md` — pointer added to 02-strategy table
+- `docs/09-logs/session_log.md` — this entry
+
+---
+
+## Day ~94 — Universal Ontology v1.7: the June 5 cosmogenesis recognitions filed (Friday, June 5, 2026)
+
+Sasha shared a 75-minute impromptu video re-walking how the universe is born after the Big Bang. Checked it against `universal_ontology.md`: the spine was already in §2, but the telling surfaced five fresh recognitions, now folded in as a dated §11 addendum (existing sections untouched): (1) the Source as two-holes-in-one (black hole in, white hole out, self-balancing); (2) the octahedron as the raw natural shape of diamond (hardest matter, most primordial form); (3) pulse vs spin as the two root dynamics (structure vs flow); (4) the depiction ladder, 2D renders 3D and 3D renders 4D, tied to Stage 8 NEO-DIMENSIONAL UI; (5) "I am that, not I have that." Three open edges he named aloud are now recorded at the very top of the doc under "Open Edges," each with a one-line AI working hypothesis (one-ray-to-two-spheres = a diameter's mirror plane; 90° = the only fully-independent axis; octahedron = the shared core of the Merkaba / stella octangula). Version bumped v1.6 → v1.7.
+
+**Files touched**
+- `docs/01-vision/universal_ontology.md` — §11 addendum + Open Edges preamble + v1.7 footer
+- `docs/09-logs/session_log.md` — this entry
+
