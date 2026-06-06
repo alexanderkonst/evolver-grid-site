@@ -8,6 +8,24 @@
 
 ---
 
+## OPEN EDGES: The Living Frontier
+
+> *These are the active unknowns at the edge of recognition. Everything below this line is what has been recognized so far; these three are where the recognition is still reaching. Held honestly, not smoothed over. The italic hypotheses are AI working notes (Claude), offered as candidates to test, not as part of the recognition itself.*
+
+**1. How does one ray create two mirror-spheres from one?**
+A single ray launched from the 0D Source point somehow yields two touching spheres that perfectly mirror each other: stand at the point between them and you see only an infinite mirror. The mechanism of the one-to-two split is not yet clear.
+*Working hypothesis (AI): the single ray is a diameter, and a diameter automatically defines a perpendicular bisecting plane through the center; that plane is the mirror, so the "two spheres" are the one sphere's two reflection-halves meeting at the point, not two separate objects (matching the in-the-moment correction, "more like two half spheres").*
+
+**2. Why do the axes lock to 90°?**
+The first two rays make a plane; the next two arrive orthogonal to them, building the 3D cross. Why the angle resolves to exactly 90° is not yet explained.
+*Working hypothesis (AI): 90° is the only angle at which a new axis is fully independent of the existing one (its projection onto the first is zero), so orthogonality is not chosen but forced. It is the unique geometry of a genuinely new dimension that adds information rather than repeating it.*
+
+**3. What is the exact octahedron ↔ Star Tetrahedron (Merkaba) relation?**
+The octahedron and the Star Tetrahedron are known to be one structure at different stages of self-development, but the precise geometric bridge was left open.
+*Working hypothesis (AI): the octahedron is the shared core of the Merkaba. It is exactly the intersection of the two interpenetrating tetrahedra (the stella octangula), so the octahedron is that structure at rest and the Star Tetrahedron is the same structure with its two halves set counter-spinning, which is why the pulse → octahedron and spin → Merkaba pairing of §11.3 is geometrically exact.*
+
+---
+
 ## 1. THE SOURCE
 
 *Everything and nothing. Before dynamics, just IS.*
@@ -937,11 +955,38 @@ A framework for shifting the perspective on Artificial Intelligence from "Tool" 
 
 ---
 
+## 11. THE JUNE 5 RECOGNITIONS: Source Dynamic, Diamond, Pulse and Spin
+
+> *June 5, 2026. Recognized aloud in an impromptu 75-minute sharing that re-walked the cosmogenesis of §2 and surfaced five fresh recognitions. Recorded here as a dated addendum; the existing sections stand untouched. The open questions this telling raised are held at the top of the doc under "Open Edges."*
+
+### 11.1 The Source Is Two Holes in One
+
+§1 holds the Source as pure undifferentiated IS, before the first impulse. This recognition gives the Source its own dynamic. The infinitely small dot is not only a black hole into which everything swirls; it is two holes in one that balance each other. One swirls everything in, the other emanates everything out. The new physics is not the black hole alone but the balanced pair: in-swirl and out-emanation held as a single self-balancing point. This is the seed of the toroidal field (§4b, §6), already present in the Source before any ray is launched.
+
+### 11.2 The Octahedron Is the Raw Shape of Diamond
+
+The three axes, connected at their ends, form two pyramids base to base: the octahedron (§4b). This recognition adds why that shape is primordial. Diamond is the hardest material found in nature, formed where rock presses on rock across millions of years. The natural raw shape that pressure crystallizes into is the octahedron. So when the universe presses on itself the hardest, it presses into the primordial double-pyramid. Hardest matter, most primordial form. The octahedron precedes the Platonic solids; connect all its nodes and Metatron's Cube appears, the blueprint for all other blueprints.
+
+### 11.3 Pulse and Spin: The Two Root Dynamics
+
+§2 names the straight radia and the spin. This recognition names the pair cleanly and assigns each its work. The universe both pulses (expands in discrete steps) and spins (rotates), at once. Pulse creates structure: directed instantaneous movements that build form and repeat fractally at every scale. Spin creates process: flow, relation, relativity, the infinite angles by which everything relates to everything. Pulse is the masculine line, spin is the feminine rotation. Structure and flow are the two faces of one growing, ever-expanding sphere. (Geometrically this is the octahedron-at-rest paired with the Merkaba-in-counter-spin; see Open Edge 3.)
+
+### 11.4 The Depiction Ladder: 2D Renders 3D, 3D Renders 4D
+
+A flat 2D plane can depict a 3D object; a 3D space can depict a 4D object. Each dimension can render the one above it, but not two above. On 2D you can already make interfaces that read as real physical 3D objects (known craft in design). The 3D-to-4D translation is the frontier: extremely avant-garde, and the direction the next paradigm of surface design is reaching toward. This ties directly into the NEO-DIMENSIONAL (Stage 8) UI work, where dimensionality is the first principle of digital surface.
+
+### 11.5 I Am That, Not I Have That
+
+The toroidal field is not something a being possesses; it is what a being is. I have a body, a mind, a nervous system, emotions running through me. But the torus is so primordial that it is more correct to say I am that than I have that, because it is where everything is happening. These are the power lines of the universe, and we are copies of the divine made by the same spin and the same pulse. Picture a fountain: energy injected at the very center, flowing out through the vortices and curving back, perpetually. Any such system needs fuel to keep the injection going, which creates energy dependency. The only exception is a system plugged into free energy, and the one source of free energy is free energy itself.
+
+---
+
 ![Holon Essential Qualities Diagram](./holon_essential_qualities_diagram.jpg)
 
 ---
 
-*Universal Ontology v1.6*
+*Universal Ontology v1.7*
+*Updated: June 5, 2026 (§11 The June 5 Recognitions: Source as two-holes-in-one, octahedron as raw diamond, pulse and spin, the depiction ladder, "I am that"; Open Edges preamble added at top with AI working hypotheses)*
 *Updated: April 3, 2026 (§4e Seven Number-Prisms — The Integral Directory of Seeing Systems)*
 *Updated: April 2, 2026 (§4d Holonic Seeing Mode — The 26-Perspective Instrument)*
 *Updated: March 26, 2026 (§2c Cosmological Breath — Masculine leads creation, Feminine leads evolution; §4c Dimensions Are Perspectives)*
