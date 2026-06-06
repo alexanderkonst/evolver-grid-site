@@ -278,6 +278,9 @@ const SortableStrategyRow = ({
 
       {iteration && (
         <div className="ml-8 mt-2 rounded-lg border border-[#0a1628]/10 bg-white/70 p-3 shadow-sm">
+          <div className="mb-1.5 text-[10px] font-semibold uppercase tracking-[0.22em] text-[#0a1628]/70">
+            {iteration.strategyTagline}
+          </div>
           <p className="text-xs leading-relaxed text-[#0a1628]/80">
             {iteration.bottomLine}
           </p>
