@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { PremiumButton } from "@/components/ui/PremiumButton";
 import ResonanceRating from "@/components/ui/ResonanceRating";
 import { ExcaliburData } from "./excaliburGenerator";
+import { ViabilityReadout } from "@/components/ViabilityReadout";
 
 interface ExcaliburDisplayProps {
     excalibur: ExcaliburData;
@@ -113,6 +114,11 @@ const ExcaliburDisplay = ({ excalibur, profileId, onSaveToProfile, isSaving, onR
                     </div>
                 </div>
             </div>
+
+            {/* Vision ↔ Viability (Domain 93): the crash-test read on the offer */}
+            {excalibur?.viability && (
+                <ViabilityReadout viability={excalibur.viability} variant="light" />
+            )}
 
             {/* Resonance Rating — Specificity Loop step "excalibur" */}
             {onResonanceRating && (

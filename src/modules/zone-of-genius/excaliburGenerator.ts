@@ -14,6 +14,7 @@
 
 import { AppleseedData } from './appleseedGenerator';
 import { supabase } from "@/integrations/supabase/client";
+import type { Viability } from "@/types/viability";
 
 // ---------------------------------------------------------------------------
 // EXCALIBUR PHILOSOPHY
@@ -258,6 +259,9 @@ export interface ExcaliburData {
     vision: string;
     moonshot: string;
   };
+  /** Vision ↔ Viability (Domain 93): crash-test read on the offer, folded into
+   *  the persisted excalibur blob (no migration). Absent on legacy/older offers. */
+  viability?: Viability | null;
 }
 
 // ---------------------------------------------------------------------------
@@ -378,5 +382,7 @@ export const generateExcalibur = async (appleseed: AppleseedData): Promise<Excal
   }
 
   console.log("[generateExcalibur] Success!");
-  return data.excalibur as ExcaliburData;
+  // Vision ↔ Viability (Domain 93): fold the crash-test read into the offer
+  // object so it persists in the excalibur_data blob and shows on the reveal.
+  return { ...(data.excalibur as ExcaliburData), viability: (data.viability ?? null) as Viability | null };
 };

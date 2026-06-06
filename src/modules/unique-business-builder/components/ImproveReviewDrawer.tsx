@@ -21,6 +21,7 @@ import { useUniqueBusiness } from "../UniqueBusinessContext";
 import { SpecificityBadge } from "./SpecificityBadge";
 import { ARTIFACT_LABELS } from "../constants";
 import type { RoastQuadrant } from "../types";
+import { ViabilityReadout } from "@/components/ViabilityReadout";
 
 const QUADRANT_LABELS: Record<RoastQuadrant, string> = {
   UL: "Soul · does it feel true from the inside?",
@@ -271,6 +272,9 @@ export function ImproveReviewDrawer() {
                   </div>
                 </div>
               )}
+
+              {/* Vision ↔ Viability (Domain 93): the crash-test read, beside the roast */}
+              <ViabilityReadout viability={pending.result.viability} variant="dark" />
             </section>
 
             {/* ═══ Decision row ═══ */}
