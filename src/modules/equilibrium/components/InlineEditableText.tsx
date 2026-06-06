@@ -74,6 +74,17 @@ export const InlineEditableText = ({
   const [saving, setSaving] = useState(false);
   const inputRef = useRef<HTMLTextAreaElement>(null);
 
+  // ─── Clamp + show-more state (Sasha 2026-05-29) ────────────────
+  // Hoisted ABOVE the editing-mode early return so the hook order
+  // stays stable across toggles. (Sasha 2026-06-06: clicking an empty
+  // strategy slot triggered the ErrorBoundary because these hooks
+  // lived BELOW the `if (editing) return ...` branch, so React saw
+  // "rendered fewer hooks than during the previous render" when
+  // editing flipped on. Rules-of-Hooks violation.)
+  const [expanded, setExpanded] = useState(false);
+  const [overflowing, setOverflowing] = useState(false);
+  const textRef = useRef<HTMLSpanElement>(null);
+
   useEffect(() => {
     if (!editing) setDraft(value ?? "");
   }, [value, editing]);
@@ -81,6 +92,19 @@ export const InlineEditableText = ({
   useEffect(() => {
     if (editing) inputRef.current?.focus();
   }, [editing]);
+
+  // Measure overflow in display mode. Guards skip the check while
+  // editing (no clamp container exists then) and while expanded (the
+  // clamp class isn't applied, so the measurement would falsely
+  // report "fits"). `displayValue` is computed below the conditional
+  // return; depend on `value` instead so this hook can sit here.
+  useLayoutEffect(() => {
+    if (editing) return;
+    if (!clampLines || expanded) return;
+    const el = textRef.current;
+    if (!el) return;
+    setOverflowing(el.scrollHeight > el.clientHeight + 1);
+  }, [clampLines, value, expanded, editing]);
 
   const commit = async () => {
     if (saving) return;
@@ -172,30 +196,9 @@ export const InlineEditableText = ({
   const displayValue = value ?? emptyPlaceholder;
   const isEmpty = !value;
 
-  // ─── Clamp + show-more (Sasha 2026-05-29) ──────────────────────
-  // When `clampLines` is set, measure the text element's scroll vs
-  // client height to detect overflow. The toggle only renders when
-  // the text actually exceeds the clamp — short strategies don't see
-  // a useless "show more" link. Click stops propagation so it can't
-  // bubble to the click-to-edit container (which is a SIBLING in this
-  // structure, but defensive anyway).
-  const [expanded, setExpanded] = useState(false);
-  const [overflowing, setOverflowing] = useState(false);
-  const textRef = useRef<HTMLSpanElement>(null);
-
-  useLayoutEffect(() => {
-    if (!clampLines || expanded) {
-      // While expanded, we don't render the clamp class — measurement
-      // would falsely report "fits." Skip the check.
-      return;
-    }
-    const el = textRef.current;
-    if (!el) return;
-    // scrollHeight measures full content height; clientHeight is the
-    // clipped visible area. Strict > because clientHeight rounds.
-    setOverflowing(el.scrollHeight > el.clientHeight + 1);
-  }, [clampLines, displayValue, expanded]);
-
+  // Clamp + show-more rendering — state + measurement hooks are
+  // declared at the top of the component (above the editing-mode
+  // early return) so the hook order stays stable across edit toggles.
   const shouldClamp = clampLines !== undefined && !expanded;
   const clampStyle = shouldClamp
     ? {
