@@ -8083,3 +8083,24 @@ The value ladder clarified itself in passing: the free reveal can crack an openi
 - `docs/03-playbooks/unique_business_playbook.md`: new Part 0 principle, "The Transmission Principle"
 - `docs/09-logs/session_log.md`: this entry
 
+---
+
+## Day 94: Vision ↔ Viability, a second axis beside roasting (June 5, 2026)
+
+From a ChatGPT exchange on why the strategic mind swings between "this will change everything" and "this was destined to fail," Sasha named a method and asked to bake it in. Documented as **Domain 93 (Vision ↔ Viability Balancing for Business Strategies)** in the phase shift library: vision mode proposes, the crash-test (Gary Klein's pre-mortem, made near-free and loopable by AI) burns the fantasy, the surviving seed is the real strategy, and **kinetic calm** (small enough to try, real enough to matter) is the felt stop signal. Honest framing held in the doc: the AI crash-test is a sharper hypothesis, not validation; it still has to survive one real stranger (the standing Si-Do shock).
+
+The build adds the **viability axis beside the existing fidelity roast**, never replacing it. Roast = is it true to essence (inward). Viability = does it survive contact with real humans (outward). Kinetic calm = both passed. Category-error guard: viability fires only on strategy/offer/positioning artifacts, never the Zone of Genius essence (`uniqueness`, `myth`, `specificity_matrix` exempt). Design (Sasha's call): a **second, independent pass** (the burner is not the lover), best-effort so it never blocks the artifact.
+
+Shipped to code: a decoupled `_shared/viability.ts` (CRASH_TEST_PROTOCOL = Sasha's 3 questions, `runViabilityPass`), wired into `improve-artifact` (16 UBB strategy artifacts) and `generate-excalibur` (the offer; viability folded into the persisted blob, no migration). Frontend: a shared `<ViabilityReadout>` (dark/light variants) surfacing the kinetic-calm read + the one buyer-native next move + pre-mortem findings, in the UBB Improve drawer and the Excalibur reveal. Verified: `tsc` clean, app boots clean, both variants screenshotted via a throwaway route (reverted). Incidental: the `ubb-prompts.ts` "binary file" grep oddity turned out to be an intentional `\x00` hash delimiter, not a bug.
+
+Deploy reality: frontend ships on the commit-to-main auto-deploy; the edge functions additionally need `supabase functions deploy improve-artifact generate-excalibur` (no CI deploys functions). The crash-test's actual output quality is unverified until that runs against the live gateway.
+
+**Files touched**
+- `docs/01-vision/phase_shift_technology_library.md`: Domain 93
+- `docs/specs/vision-viability/planning_sow.md` (new): SOW + DoD
+- `supabase/functions/_shared/viability.ts` (new), `improve-artifact/index.ts`, `generate-excalibur/index.ts`
+- `src/types/viability.ts` (new), `src/components/ViabilityReadout.tsx` (new)
+- `src/modules/unique-business-builder/types.ts`, `.../components/ImproveReviewDrawer.tsx`
+- `src/modules/zone-of-genius/excaliburGenerator.ts`, `ExcaliburDisplay.tsx`
+- `docs/09-logs/session_log.md`: this entry
+
