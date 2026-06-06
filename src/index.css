@@ -847,6 +847,92 @@
   height: 14px !important;
 }
 
+/* Day 89 (Sasha 2026-06-06): BUILD hex glyph fix.
+   ============================================================
+   Bug: ⬢ (U+2B22) visually sits ~2-3px below the gold ring center
+   in compact rail. Root cause: GlyphIcon for BUILD passes size={32}
+   (SpacesRail.tsx:205), setting inline fontSize: 32 on its span.
+   The compact rule at line 2038-2041 forces the outer wrapper to
+   26x26, but the font-size override at line 2072-2077 only targets
+   direct-child spans of [data-tour-id]; GlyphIcon's text-bearing
+   span is the GRANDCHILD, so it keeps the inline 32px. Result:
+   32px character draws inside a 26x26 grid box, overflowing and
+   landing low because Cormorant's bearing for U+2B22 sits below
+   typographic center.
+   Fix: re-normalize font-size for ANY descendant span carrying
+   inline grid + aria-hidden inside a Karime compact chip. Matches
+   the GlyphIcon shape exactly (display: grid + aria-hidden="true"
+   per GlyphIcon.tsx:39-43). Scoped to Karime so global rail is
+   untouched. Line-height: 1 centers the glyph EM box vertically
+   inside the 26x26 container. */
+[data-skin="karime"] [data-rail-compact="true"] [data-tour-id] span[aria-hidden="true"][style*="grid"] {
+  font-size: 22px !important;
+  line-height: 1 !important;
+}
+
+/* Day 89 (Sasha 2026-06-06): FYTT brand-logo alignment fix.
+   ============================================================
+   Bug: torus mark reads as not vertically aligned with nav icons
+   beneath it. Math centerX matches (36px both), but the centering
+   machinery differs: logo uses mx-auto on the <img> inside a
+   p-1.5 wrapper, while nav chips use display: grid + place-items:
+   center inside a 48x48 button. The brand-spin-slow rotation also
+   pushes the AABB to 33x33 (desktop) vs 28x28 footprint of nav
+   icons, magnifying any PNG-internal whitespace bias.
+   Fix: give the logo's <Link> the same 48x48 grid-center
+   treatment as nav chips, so both centering pipelines are
+   identical. The wrapping <div className="p-1 md:p-1.5"> stays;
+   we only restructure the Link's display box. */
+[data-skin="karime"] [data-rail-compact="true"] a[aria-label*="Find Your Top Talent"] {
+  display: grid !important;
+  place-items: center !important;
+  width: 48px !important;
+  height: 48px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding: 0 !important;
+}
+
+/* Re-center the logo <img> inside the new 48x48 grid box. Cancel
+   the mx-auto + any inherited block alignment so grid place-items
+   handles both axes cleanly. */
+[data-skin="karime"] [data-rail-compact="true"] a[aria-label*="Find Your Top Talent"] img {
+  margin: 0 !important;
+  display: block !important;
+}
+
+/* Tighten the logo wrapper padding so the new 48x48 Link sits with
+   the same vertical rhythm as the nav chips below (which sit inside
+   a nav.p-3 = 12px padding box). The previous p-1.5 (6px) wrapper
+   leaves the logo too cramped against the divider; matching the nav
+   padding restores the rail's three-section visual rhythm.
+
+   Day 89 verify-fix (Sasha 2026-06-06): the first direct child of
+   the data-rail-compact root is a `<span aria-hidden="true">` gold
+   spine, not a div, so `> div:first-child` matched nothing and the
+   padding silently no-opped. `> div:nth-of-type(1)` matches the first
+   DIV child regardless of preceding non-div siblings. */
+[data-skin="karime"] [data-rail-compact="true"] > div:nth-of-type(1) {
+  padding: 8px !important;
+}
+
+/* Day 89 (Sasha 2026-06-06): FYTT brand-logo prominence (Karime).
+   ============================================================
+   Sasha: "same size 28px is fine, but add subtle prominence."
+   Drop-shadow halo only. Same warm cream-gold token family as the
+   nav ImageIcon defaults (rgba 244,212,114) but at higher amplitude:
+   wider blur + a second copper inner-glow stop. Reads as the rail's
+   "lit candle" anchor without making the icon louder than the
+   experience. Identical at desktop and mobile (no viewport
+   conditionals); applies only to the actual <img> element so the
+   spin animation isn't double-shadowed. */
+[data-skin="karime"] [data-rail-compact="true"] a[aria-label*="Find Your Top Talent"] img {
+  filter:
+    drop-shadow(0 0 8px rgba(244, 212, 114, 0.55))
+    drop-shadow(0 0 14px rgba(212, 175, 55, 0.32))
+    drop-shadow(0 0 1px rgba(122, 81, 8, 0.45)) !important;
+}
+
 /* ───────────────────────────────────────────────────────────────────
    DAOUNIVERSE SKIN — Day 84 (Sasha 2026-05-25)
    ───────────────────────────────────────────────────────────────────
