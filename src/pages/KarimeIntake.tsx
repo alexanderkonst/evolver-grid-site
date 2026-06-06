@@ -460,20 +460,33 @@ const KarimeIntake = () => {
         {selectedSupport.length > 0 && (
           <section className="mt-2 mb-6 animate-in fade-in slide-in-from-bottom-2 duration-500">
             <Ornament className="my-6 sm:my-8" />
+            {/* Day 88 (Sasha 2026-06-06) — CTA reframe.
+                Previously: heading "Send your reflection." + CTA "Send
+                your reflection." Visitors don't know what a "reflection"
+                is (they ticked checkboxes, they didn't write anything),
+                "we'll be in touch" doesn't name who, and "Continues on
+                WhatsApp" is too subtle to register as "your phone's
+                WhatsApp app will open."
+
+                New shape: name the actual mechanic. Sasha is the named
+                receiver. His role is explicit ("Karime's first contact").
+                The action is literal ("Send to Sasha on WhatsApp"). The
+                microcopy describes what physically happens on click
+                ("Opens WhatsApp with your message pre-written"). Visitor
+                knows exactly what's about to happen before they click. */}
             <p
-              className="text-center text-lg sm:text-xl leading-[1.4] mb-5 sm:mb-6 max-w-[520px] mx-auto"
+              className="text-center text-lg sm:text-xl leading-[1.45] mb-5 sm:mb-6 max-w-[560px] mx-auto"
               style={{ ...bodyTextStyle, fontWeight: 600 }}
             >
-              Send your reflection. We'll be in touch shortly to schedule
-              your call with Karime.
+              Sasha is Karime's first contact. He'll read your message on WhatsApp and reply within hours with times for your call with Karime.
             </p>
             <div className="flex flex-col items-center gap-4 px-4 text-center">
               <EditorialCta
-                label="Send your reflection"
+                label="Send to Sasha on WhatsApp"
                 onClick={handleSendWhatsApp}
               />
               <div
-                className="inline-flex items-center justify-center gap-2 max-w-[460px] mt-1"
+                className="inline-flex items-center justify-center gap-2 max-w-[520px] mt-1"
                 style={{
                   color: "var(--skin-text-muted-soft, rgba(26,30,58,0.6))",
                   textShadow:
@@ -484,7 +497,7 @@ const KarimeIntake = () => {
                   fontWeight: 500,
                 }}
               >
-                <span>Continues on WhatsApp · No signup needed</span>
+                <span>Opens WhatsApp with your message pre-written · No signup needed</span>
               </div>
 
               {/* Contact line revealed alongside the CTA — Telegram +
