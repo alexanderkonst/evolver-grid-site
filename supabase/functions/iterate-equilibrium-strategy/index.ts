@@ -15,7 +15,7 @@ const corsHeaders = {
 
 const SYSTEM_PROMPT = `You are the Strategy Iteration Button inside Equilibrium.
 
-The user has already written a Current Strategy. They are probably in love with it because it came from their own context and conviction. Your job is to illuminate it: make the exact strategy clear, kill the version that would die in the real world, identify what survives, and compress the next sharper articulation.
+The user has already written a Current Strategy. It may be long because it captures live strategic context. They are probably in love with it because it came from their own conviction. Your job is to illuminate it: synthesize the current articulation at high fidelity with an optimally high signal-to-noise ratio, make the exact strategy clear, kill the version that would die in the real world, identify what survives, and compress the next sharper articulation.
 
 This is not brainstorming. This is one iteration pass.
 
@@ -31,13 +31,17 @@ Do not output the full analysis. Return only the result needed by the UI.
 
 OUTPUT STRICT JSON ONLY:
 {
+  "strategyTagline": "2-5 WORD ALL-CAPS NAME FOR THE STRATEGY",
   "bottomLine": "This strategy was really about [surviving seed], but it failed because [core death mechanism], so the next iteration should [next sharper move].",
-  "proposedStrategy": "One replacement strategy sentence, action verb first, concrete enough to act on."
+  "proposedStrategy": "TAGLINE — one replacement strategy articulation, preserving the real meaning with less noise and more action."
 }
 
 Rules:
+- strategyTagline must be 2-5 words, all caps, concrete, scannable, and not clever for its own sake.
 - bottomLine must be one sentence.
-- proposedStrategy must be one sentence, 8-25 words, suitable to replace the existing strategy row.
+- proposedStrategy must start with the exact strategyTagline, then " — ", then the improved strategy articulation.
+- proposedStrategy must preserve the useful substance of the current strategy, not reduce it to a generic slogan.
+- proposedStrategy should be compact enough to scan but complete enough to act on.
 - Prefer buyer/user-native language over founder language.
 - Prefer concrete behavior over conceptual elegance.
 - Preserve the living seed; kill only the fantasy version.
@@ -50,6 +54,7 @@ interface IterateStrategyInput {
 }
 
 interface IterateStrategyOutput {
+  strategyTagline: string;
   bottomLine: string;
   proposedStrategy: string;
 }
@@ -77,16 +82,26 @@ function parseOutput(content: string): IterateStrategyOutput {
   const cleaned = stripCodeFence(content);
   const jsonMatch = cleaned.match(/\{[\s\S]*\}/);
   const parsed = JSON.parse(jsonMatch ? jsonMatch[0] : cleaned);
+  const rawTagline =
+    typeof parsed.strategyTagline === "string"
+      ? parsed.strategyTagline.trim()
+      : "";
+  const strategyTagline = rawTagline.toUpperCase();
   const bottomLine =
     typeof parsed.bottomLine === "string" ? parsed.bottomLine.trim() : "";
-  const proposedStrategy =
+  let proposedStrategy =
     typeof parsed.proposedStrategy === "string"
       ? parsed.proposedStrategy.trim()
       : "";
-  if (!bottomLine || !proposedStrategy) {
-    throw new Error("AI response missing bottomLine or proposedStrategy");
+  if (!strategyTagline || !bottomLine || !proposedStrategy) {
+    throw new Error(
+      "AI response missing strategyTagline, bottomLine, or proposedStrategy",
+    );
   }
-  return { bottomLine, proposedStrategy };
+  if (!proposedStrategy.toUpperCase().startsWith(strategyTagline)) {
+    proposedStrategy = `${strategyTagline} — ${proposedStrategy}`;
+  }
+  return { strategyTagline, bottomLine, proposedStrategy };
 }
 
 serve(async (req) => {

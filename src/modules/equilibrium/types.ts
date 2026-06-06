@@ -41,6 +41,7 @@ export interface EquilibriumStrategy {
 }
 
 export interface EquilibriumStrategyIteration {
+  strategyTagline: string;
   bottomLine: string;
   proposedStrategy: string;
 }
