@@ -5,8 +5,8 @@
 
 > *"Work seen as sacred, executed as ceremony."*
 
-**Version:** 4.6  
-**Created:** February 2026 · Last updated: April 25, 2026 (Day 51 night — *commercial-decentralization model codified as the v1.0 commercial-decentralization architecture this playbook now operates within. Six business-model plays mapped with 4-phase sequencing. Specificity Loop principle (P15) and per-founder Specificity Matrix (UBB artifact #19) are the operational foundation.*)  
+**Version:** 4.7  
+**Created:** February 2026 · Last updated: June 5, 2026 (Day 94: *The Transmission Principle added to Part 0, the transmission-not-report craft canonized and first shipped into the Top Talent reveal prompt (ZoG v2.1). Prior: Day 51 commercial-decentralization model (P15).*)  
 **Purpose:** The master playbook for AI-assisted genius-based venture building  
 **Execution:** [Customer Journey Playbook](./customer_journey_playbook.md) — the operational map from first touchpoint to paid session
 
