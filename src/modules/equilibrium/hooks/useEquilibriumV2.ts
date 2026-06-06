@@ -8,6 +8,7 @@ import type {
   EquilibriumState,
   EquilibriumStrategy,
   EquilibriumStrategyCompletion,
+  EquilibriumStrategyIteration,
   EquilibriumTask,
   EquilibriumWorkstream,
 } from "../types";
@@ -94,6 +95,17 @@ export interface EquilibriumV2Data {
   scoreStrategies: () => Promise<boolean>;
   /** True while the alignment scoring round-trip is in flight. */
   scoringStrategies: boolean;
+  /**
+   * Run one Strategy Crucible pass on a single saved strategy. Returns
+   * an ephemeral suggestion; accepting it still goes through
+   * upsertStrategy so the existing edit/save model remains the source
+   * of truth.
+   */
+  iterateStrategy: (
+    position: 1 | 2 | 3,
+  ) => Promise<EquilibriumStrategyIteration | null>;
+  /** Position currently being iterated, used for row-level loading UI. */
+  iteratingStrategyPosition: 1 | 2 | 3 | null;
 
   addWorkstream: (title: string) => Promise<void>;
   renameWorkstream: (id: string, title: string) => Promise<void>;
@@ -159,6 +171,8 @@ export function useEquilibriumV2(): EquilibriumV2Data {
   const [focus, setFocus] = useState<EquilibriumFocus[]>([]);
   const [activeWorkstreamId, setActiveWorkstreamId] = useState<string | null>(null);
   const [scoringStrategies, setScoringStrategies] = useState(false);
+  const [iteratingStrategyPosition, setIteratingStrategyPosition] =
+    useState<1 | 2 | 3 | null>(null);
 
   // ─── Auth subscription ─────────────────────────────────
   //
@@ -1260,6 +1274,45 @@ export function useEquilibriumV2(): EquilibriumV2Data {
     }
   }, [user, strategies, missionDisplay, roleDisplay]);
 
+  const iterateStrategy = useCallback(
+    async (
+      position: 1 | 2 | 3,
+    ): Promise<EquilibriumStrategyIteration | null> => {
+      if (!user) return null;
+      const target = strategies.find((s) => s.position === position);
+      if (!target?.text?.trim()) {
+        toast.error("Add a strategy first.");
+        return null;
+      }
+
+      setIteratingStrategyPosition(position);
+      try {
+        const { data, error } =
+          await supabase.functions.invoke<EquilibriumStrategyIteration>(
+            "iterate-equilibrium-strategy",
+            {
+              body: {
+                strategy: target.text,
+                lifelong_dedication: missionDisplay,
+                role: roleDisplay,
+              },
+            },
+          );
+        if (error || !data?.bottomLine || !data?.proposedStrategy) {
+          throw error ?? new Error("no iteration returned");
+        }
+        return data;
+      } catch (e) {
+        console.warn("[equilibrium_v2] iterate strategy failed", e);
+        toast.error("Couldn't iterate strategy — try again.");
+        return null;
+      } finally {
+        setIteratingStrategyPosition(null);
+      }
+    },
+    [user, strategies, missionDisplay, roleDisplay],
+  );
+
   const tasksByWorkstream = useMemo(() => {
     const map: Record<string, EquilibriumTask[]> = {};
     for (const t of tasks) {
@@ -1333,6 +1386,8 @@ export function useEquilibriumV2(): EquilibriumV2Data {
     completedStrategies,
     scoreStrategies,
     scoringStrategies,
+    iterateStrategy,
+    iteratingStrategyPosition,
     addWorkstream,
     renameWorkstream,
     deleteWorkstream,

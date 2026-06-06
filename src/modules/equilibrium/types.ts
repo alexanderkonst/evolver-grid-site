@@ -40,6 +40,11 @@ export interface EquilibriumStrategy {
   alignment_scored_at?: string | null;
 }
 
+export interface EquilibriumStrategyIteration {
+  bottomLine: string;
+  proposedStrategy: string;
+}
+
 /**
  * Completed/archived strategy — the row in
  * `equilibrium_strategy_completions` (Sasha 2026-05-29). When a strategy
