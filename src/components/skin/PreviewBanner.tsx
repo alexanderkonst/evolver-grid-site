@@ -59,6 +59,14 @@ const SKIN_BANNER_CONFIG: Partial<
     mode: "disclaimer",
     notAffiliatedWith: "planetir.org",
   },
+  // Day 88 (Sasha 2026-05-30): darktheme is the platform's canonical
+  // dark register, NOT a third-party demo. Use the clickable preview
+  // mode (same as navy-gold) so the visitor can flip back to Aurora —
+  // the disclaimer mode would falsely imply this is a community demo.
+  darktheme: {
+    mode: "preview",
+    label: "Dark theme preview",
+  },
   karime: { mode: "hidden" },
   "navy-gold": {
     mode: "preview",

@@ -20,6 +20,7 @@ import PreviewBanner from "@/components/skin/PreviewBanner";
 import NSScopeLock from "@/components/skin/NSScopeLock";
 import DaouniverseScopeLock from "@/components/skin/DaouniverseScopeLock";
 import PlanetirScopeLock from "@/components/skin/PlanetirScopeLock";
+import DarkthemeScopeLock from "@/components/skin/DarkthemeScopeLock";
 import MusicPlayer from "@/components/MusicPlayer";
 // Day 58+ (Sasha 2026-05-03): App-root mount for the SoundCloud
 // playlist audio engine. SoundCloudMinimalPlayer used to own its
@@ -272,6 +273,7 @@ const SKIN_PREFIXES: { prefix: string; skin: string }[] = [
   { prefix: "/ns", skin: "network-school" },
   { prefix: "/daouniverse", skin: "daouniverse" },
   { prefix: "/planetir", skin: "planetir" },
+  { prefix: "/darktheme", skin: "darktheme" },
 ];
 const activeSkinScope =
   typeof window !== "undefined"
@@ -285,6 +287,7 @@ const skinBasename = activeSkinScope?.prefix;
 const isNSScope = activeSkinScope?.skin === "network-school";
 const isDaouniverseScope = activeSkinScope?.skin === "daouniverse";
 const isPlanetirScope = activeSkinScope?.skin === "planetir";
+const isDarkthemeScope = activeSkinScope?.skin === "darktheme";
 if (typeof document !== "undefined" && activeSkinScope) {
   document.documentElement.setAttribute("data-skin", activeSkinScope.skin);
 }
@@ -330,6 +333,7 @@ const App = () => (
           {isNSScope && <NSScopeLock />}
           {isDaouniverseScope && <DaouniverseScopeLock />}
           {isPlanetirScope && <PlanetirScopeLock />}
+          {isDarkthemeScope && <DarkthemeScopeLock />}
           <SiteLogo />
           <TitleManager />
           <ScrollRestoration />
