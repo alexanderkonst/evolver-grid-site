@@ -341,6 +341,12 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
     // skin-aware swap has to be explicit here too.
     const __isDaoShell = __spaceShipSkin === "daouniverse";
     const __isPlanetirShell = __spaceShipSkin === "planetir";
+    // Day 88 (Sasha 2026-05-30): darktheme is the platform's canonical
+    // dark skin (sister to Aurora). Mobile-pill brand glyph still shows
+    // the FYTT torus — no per-community asset swap. The mobile content-
+    // scroll bg fix DOES apply (Aurora cream wash → transparent so the
+    // body bg's near-black + amber-radial shows through).
+    const __isDarkthemeShell = __spaceShipSkin === "darktheme";
     const location = useLocation();
     const navigate = useNavigate();
 
@@ -1131,6 +1137,7 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
         __spaceShipSkin === "planetir" ||
         __spaceShipSkin === "daouniverse" ||
         __spaceShipSkin === "network-school" ||
+        __spaceShipSkin === "darktheme" ||
         location.pathname.startsWith("/build/karime");
 
     // Day 79 (Sasha 2026-05-22): AI OS gate applies to guests too.
@@ -1863,7 +1870,12 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                                             // Same lesson for planetir — body
                                             // forest gradient through.
                                             ? "transparent"
-                                            : "rgba(248, 246, 240, 0.55)",
+                                            : __isDarkthemeShell
+                                                // Same again for darktheme —
+                                                // body's near-black + amber-
+                                                // radial through.
+                                                ? "transparent"
+                                                : "rgba(248, 246, 240, 0.55)",
                         }}
                     >
                         <div className="page-transition-enter">

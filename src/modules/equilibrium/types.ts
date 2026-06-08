@@ -137,6 +137,10 @@ export const SECTION_IDS = {
   synthesis: "synthesis",
   mission: "mission",
   role: "role",
+  // Sasha 2026-06-08: Focus mirrors `moon_focus_text` into ACT mode
+  // between Role and Strategy — same underlying value as the ATTUNE
+  // Moon Focus pill, surfaced as a North Star row in the ACT stack.
+  focus: "focus",
   solar: "solar",
   zodiac: "zodiac",
   lunar: "lunar",

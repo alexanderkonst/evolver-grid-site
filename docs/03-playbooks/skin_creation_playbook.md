@@ -99,6 +99,7 @@ Every skin commits to ONE primary CTA paradigm at inventory time. This is bound 
 | NS | Solid black pill, white text | ns.com APPLY button | `bg: #0a0a0a; color: #ffffff` |
 | Daouniverse (LATAM Impact) | Solid LATAM-yellow + dark text | latamimpact.io "Explore the Ecosystem" | `bg: #d4a83a; color: #0a1a12` |
 | Planetir | Solid white pill + dark text | planetir.org "Join the journey" + "Explore the Ecosystem" | `bg: #ffffff; color: #0a1a12` |
+| Darktheme | Amber-glass pill + dark text (candleflame) | — (authored from scratch — Editorial Noir register) | `bg: linear-gradient(135deg, #d4a83a 0%, #f0c870 50%, #d4a83a 100%); color: #0a0a0c; halo: 0 0 28px rgba(240,200,112,0.55)` |
 
 When you ship skin N+1, add its row here. The dialect is a load-bearing brand-recognition signal — wrong dialect = wrong brand register regardless of perfect tokens elsewhere.
 
@@ -568,7 +569,22 @@ After the initial Planetir ship, Sasha walked the deployed preview and surfaced 
 
 9. **SectionsPanel locked-row popover ("Unlocks after you find your top talent") is hardcoded Aurora navy + gold + Cormorant inline.** Renders as foreign chip on every skin. Skin-scoped override pattern: `[data-skin="<slug>"] [style*="rgba(10,22,40,1)"][style*="rgba(18,28,56,1)"] { background-image: <skin gradient> !important }` + same for inner `p[style*="#f4d472"]`. **New cross-skin pattern + new DoD #3 item: tooltip/popover hover walk under each skin.**
 
-### Throughput claim (validated at N=3 skins + Planetir 2 fix rounds)
+### Darktheme pass — first skin authored from scratch (2026-05-30, Day 88)
+
+**Editorial Noir shipped as the platform's canonical dark register.** Aurora's voice (Cormorant Garamond + Montserrat + gold accent), inverted from cream-on-navy to cream-on-near-black. Slug `darktheme`, route `/darktheme/*`. Built end-to-end in one prompt session per the v1.1 playbook with zero correction rounds.
+
+**This is the first skin in the family that has NO source brand to mirror.** Every prior production skin (NS, Daouniverse, Karime, Planetir) inherited its palette + fonts + CTA dialect from a source-site brand inventory. Darktheme's inventory came from design judgment instead — a useful validation that the playbook generalizes to authored skins, not just mirrored ones.
+
+#### What the Darktheme pass added to the skill
+
+- **Authored-skin variant of inventory.** Inventory items #1–#9 in the playbook assume a source brand exists. For an authored skin, items #2 (logo assets), #3 (typography), #4 (palette), #5 (component recipes), #8 (animated video), #9 (logo PNG transparency) become DESIGN-JUDGMENT artifacts rather than EXTRACTED artifacts. **Lesson:** when no source brand exists, articulate the aesthetic in one explicit sentence ("Aurora's voice in its dark register") and derive the inventory from that thesis. Without the thesis, palette decisions drift.
+- **5th distinct CTA dialect — amber-glass pill (candleflame).** Warm amber gradient fill (`#d4a83a` → `#f0c870` → `#d4a83a`) with bright amber halo, dark text. Reads as "candleflame in a dark room" rather than "another button." Distinct from Aurora glass+halo, NS solid black, Daouniverse yellow block, Planetir white pill. Now in CTA dialect catalog.
+- **PreviewBanner mode choice for non-community skins.** Disclaimer mode ("Demo · not affiliated with X") is wrong for skins that aren't community demos — it falsely implies a third-party brand. Darktheme uses `preview` mode (clickable Exit, sister to Navy+Gold) because it IS the platform itself in its dark register. **Lesson:** the third banner mode (`hidden`) is for production white-label deployments like Karime where the visitor shouldn't see preview chrome. The dialect choice tells the operator which mode fits — disclaimer for community demos, preview for internal aesthetic alternates, hidden for production white-label.
+- **Photo-bg-less skins are legitimate.** Every prior skin had a Mux video. Editorial Noir is intentionally photo-bg-less — the dark register IS its own atmosphere; a video bg on near-black would compete with the candleflame CTA. **Lesson:** the playbook should not assume a Mux video URL is mandatory. Some aesthetics commit to the lack of one. Document the intentional absence in the inventory ("none — Editorial Noir is photo-bg-less by design").
+- **Mobile content-scroll bg fix applies even without a body bg image.** Darktheme has no `/<slug>-bg-still.png`, only a near-black + amber-radial CSS gradient. But the Aurora-cream-leak under the mobile `main.mobile-content-scroll` STILL washes over the gradient if not patched. Lesson reaffirmed: this fix is mandatory for ANY dark-pane skin, regardless of whether a bg IMAGE exists. Now explicitly in build step 7.
+- **Pane darkness gradient principle holds without a photo bg.** P1 darkest → P2 medium → P3 lightest still applies. The body bg is the lightest surface (subtle amber-radial glow on near-black), Pane 1 is darkest (solid near-black at 0.96 alpha), Pane 2 is medium. No bg image needed to honor the principle.
+
+### Throughput claim (validated at N=4 skins + Planetir 2 fix rounds)
 
 | Skin | Wall-clock (build + QA) | Iteration cycles | Spec discipline followed |
 |---|---|---|---|
@@ -576,10 +592,11 @@ After the initial Planetir ship, Sasha walked the deployed preview and surfaced 
 | Daouniverse | ~120 min including 6 correction rounds | 6 | Spec partially followed (SoW+DoD skipped) |
 | Planetir round 1 | ~45 min build + QA, zero correction rounds | 0 | Spec followed end-to-end (SoW+DoD codified mid-session) |
 | Planetir round 2 (debug fixes) | ~60 min for 8 findings | 2 | Each finding became a new pattern in this playbook |
+| **Darktheme** | **~30 min build + QA, zero correction rounds** | **0** | **Full SoW+DoD discipline; first non-white-label skin; Workflow used for QA fan-out** |
 
-**Direction of improvement is monotonic.** Each new skin should ship faster than the prior, because the spec absorbs the prior's lessons. If skin N+1 takes longer than skin N, this playbook has decayed (drift, outdated patterns, missed lesson capture) and needs an immediate refresh pass.
+**Direction of improvement is monotonic.** Each new skin ships faster than the prior because the spec absorbs the prior's lessons. Darktheme proves the playbook generalizes beyond white-label community skins to authored-from-scratch aesthetics — same instrument, broader scope.
 
 ---
 
-*Skin Creation Playbook v1.1*
-*v1.0 created 2026-05-25 (Day 84 evening) — extracted from `white_label_strategy.md` v1.10 to separate operational manual from strategic context. · v1.1 (same evening, 2026-05-25) — Planetir round-2 fix-pass adds 9 lessons total across 4 sections (CTA icon hide / Cormorant inline kill / bg-image fallback wiring / PreviewBanner refactor / white-label demo full-rail / pane darkness gradient / .liquid-glass cascade-fight re-strike / outer wrapper transparent / locked-row popover skin-scope). All landed in the cross-skin pattern catalog OR the build procedure OR both. Throughput table extended with the round-2 data point.*
+*Skin Creation Playbook v1.2*
+*v1.0 created 2026-05-25 (Day 84 evening) — extracted from `white_label_strategy.md` v1.10. · v1.1 (Day 84) — Planetir round-2 fix-pass: 9 lessons across 4 sections. · v1.2 (2026-05-30 Day 88) — Darktheme pass: first non-white-label skin authored from scratch. New section "Authored-skin variant of inventory" covers the design-judgment alternative when no source brand exists. CTA dialect catalog expanded to 5 paradigms (amber-glass pill added). PreviewBanner mode-choice rationale documented (preview vs disclaimer vs hidden). Photo-bg-less skins acknowledged as legitimate. Mobile content-scroll bg fix reaffirmed as mandatory for any dark-pane skin (not just photo-bg ones). Throughput table extended; Darktheme sets the new floor at ~30 min build+QA with full discipline.*

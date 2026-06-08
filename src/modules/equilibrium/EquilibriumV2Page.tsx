@@ -494,6 +494,30 @@ export const EquilibriumV2Page = () => {
           </EquilibriumSectionCard>
         )}
 
+        {/* Focus — mirrors the ATTUNE-mode Moon Focus pill (Sasha
+            2026-06-08). Same underlying `moon_focus_text` on
+            `equilibrium_state`; editing here updates the same field
+            visible in ATTUNE under Current Lunar Energy. Sits between
+            Role and Current Strategy as a North Star row: identity
+            (Dedication, Role) → present intent (Focus) → direction
+            (Strategy).
+
+            Wrapped in EquilibriumSectionCard so the box width matches
+            adjacent Dedication / Role / Strategy cards. The MoonFocusInput
+            uses `variant="wide"` to drop its own `max-w-md` cap and
+            stretch to the card's inner width. No SectionHeader — the
+            pill's internal "Focus:" label is its own header. */}
+        {!isAttune && (
+          <EquilibriumSectionCard id={SECTION_IDS.focus}>
+            <MoonFocusInput
+              value={eq.state?.moon_focus_text ?? null}
+              loading={eq.loading}
+              onSave={eq.setMoonFocus}
+              variant="wide"
+            />
+          </EquilibriumSectionCard>
+        )}
+
         {/* Current Strategy */}
         {!isAttune && (
           <EquilibriumSectionCard
