@@ -1133,7 +1133,7 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
     // see the depth of the offering, not just a JOURNEY chip. Aurora's
     // hide-non-public-for-guests stays for the canonical funnel since
     // the funnel pivots on the single JOURNEY action.
-    const __isWhiteLabelDemoScope =
+    const __isFullRailScope =
         __spaceShipSkin === "planetir" ||
         __spaceShipSkin === "daouniverse" ||
         __spaceShipSkin === "network-school" ||
@@ -1145,7 +1145,7 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
     // localStorage flag latches once and never un-latches, so any guest
     // who has clicked through Sasha's cold-paste link (which writes the
     // flag on AiOsPage mount) continues to see the chip thereafter.
-    const guestHidden: string[] = __isWhiteLabelDemoScope
+    const guestHidden: string[] = __isFullRailScope
         ? [] // show ALL chips on white-label demo surfaces
         : aiOsEverVisited
         ? [...NON_PUBLIC_SPACE_IDS]

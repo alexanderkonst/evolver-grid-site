@@ -172,7 +172,7 @@ When shipping skin N+1:
 - **4 production white-label community skins**: NS, Daouniverse, Karime, Planetir
 - **5 distinct primary-CTA dialects** in use: dark navy glass+halo (Aurora) / solid black (NS) / solid LATAM yellow (Daouniverse) / solid white (Planetir) / **amber-glass pill (Darktheme — candleflame on near-black)** — Karime uses a warm-brown variant of the Aurora dialect
 - **4 production Mux video backgrounds**: cosmic mountain (Aurora), LATAM mountainscape (Daouniverse), Moroccan-sunset interior (Karime), Planetir pine grove. NS + Darktheme are the only video-less production skins (editorial flat by design).
-- **3 internal-only skins**: Navy+Gold (preview), Aurora-default (canonical), Darktheme (preview-mode banner — sister to Aurora, not a community demo)
+- **2 internal-only skins**: Navy+Gold (preview-only, parked) and Aurora-default (canonical). **Darktheme is live-on-prod at `/darktheme/*`** with a clickable preview-mode banner (not a "Demo · not affiliated" disclaimer — it IS the platform's own dark register, not a community demo). Treated as production for the route but doesn't need a disclaimer because there's no third-party brand to disclaim.
 - **First skin authored from scratch (no source brand)**: Darktheme (Day 88). Validates the playbook for non-white-label authorship — inventory by design judgment instead of brand extraction.
 
 ---
