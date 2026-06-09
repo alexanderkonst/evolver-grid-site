@@ -2081,20 +2081,21 @@
     0 1px 3px rgba(6, 6, 8, 0.88),
     0 0 1px rgba(212, 168, 58, 0.32);
 
-  /* Panel washes — P1 darkest near-black, P2 medium, P3 (body) lightest.
-     Aurora's gradient cocktail re-mapped to dark luminance steps per the
-     Day 84 v2 panel-darkness principle (P1<P2<P3). */
-  --skin-panel-1-bg: rgba(6, 6, 8, 0.96);
-  --skin-panel-2-bg: rgba(14, 14, 18, 0.92);
+  /* Panel washes — Day 88 v2 deepening pass: push closer to true black.
+     P1 near-pure-black (rail = gravity well), P2 slightly warm-charcoal
+     (sections = stepping into a lit room), P3 (body) lightest still per
+     the playbook's P1<P2<P3 darkness gradient principle. */
+  --skin-panel-1-bg: rgba(2, 2, 4, 0.97);
+  --skin-panel-2-bg: rgba(9, 9, 13, 0.95);
   --skin-panel-wash:
     linear-gradient(180deg,
-      rgba(16, 16, 22, 0.45) 0%,
-      rgba(10, 10, 14, 0.32) 55%,
-      rgba(6, 6, 8, 0.45) 100%);
+      rgba(11, 11, 16, 0.42) 0%,
+      rgba(7, 7, 10, 0.28) 55%,
+      rgba(3, 3, 5, 0.42) 100%);
   --skin-panel-wash-quiet:
     linear-gradient(180deg,
-      rgba(16, 16, 22, 0.14) 0%,
-      rgba(10, 10, 14, 0.08) 100%);
+      rgba(11, 11, 16, 0.12) 0%,
+      rgba(7, 7, 10, 0.06) 100%);
 
   /* Ornaments — warm amber, slightly more saturated than Aurora's
      parchment gold so the candleflame register comes through on
@@ -2152,11 +2153,11 @@
   --skin-link-underline:    rgba(212, 168, 58, 0.45);
 
   /* Cards — deep near-black surface, amber hairline. */
-  --skin-card-bg:       rgba(14, 14, 18, 0.88);
-  --skin-card-border:   rgba(212, 168, 58, 0.22);
+  --skin-card-bg:       rgba(11, 11, 16, 0.92);
+  --skin-card-border:   rgba(212, 168, 58, 0.26);
   --skin-card-shadow:
-    0 1px 3px rgba(0, 0, 0, 0.42),
-    0 14px 36px -16px rgba(0, 0, 0, 0.58);
+    0 1px 3px rgba(0, 0, 0, 0.52),
+    0 16px 40px -16px rgba(0, 0, 0, 0.72);
 
   /* Tints — amber only, no violet. */
   --skin-tint-violet-soft: linear-gradient(135deg, rgba(212,168,58,0.04), rgba(212,168,58,0.01));
@@ -2220,30 +2221,40 @@
   display: none !important;
 }
 
-/* Body background — pure near-black with a very subtle warm amber
-   radial glow upper-left (candleflame in the corner). Less aggressive
-   than the cream/forest body gradients of other skins because there's
-   no photo bg to compete with. */
+/* Body background — Day 88 v2 deepening pass: pushed closer to true
+   black per Sasha's "Claude Code dark" reference. Lightest stop drops
+   from #101014 → #0a0a0e; deepest stop from #08080a → #020203. The
+   amber-radial glow upper-left lifts to 0.11 alpha (was 0.08) so the
+   candleflame ambient still registers against the darker base. Cool
+   radial bottom-right deepens for a subtle warm/cool variation across
+   the canvas without introducing a second hue.
+   "More varied, less black-and-white" — variation from the amber-glow +
+   the warm-cool radial dance, NOT from a second accent color. */
 [data-skin="darktheme"] body {
   background:
-    radial-gradient(ellipse at 12% 18%, rgba(212, 168, 58, 0.08) 0%, transparent 55%),
-    radial-gradient(ellipse at 80% 75%, rgba(10, 10, 18, 0.45) 0%, transparent 65%),
+    radial-gradient(ellipse at 12% 18%, rgba(212, 168, 58, 0.11) 0%, transparent 55%),
+    radial-gradient(ellipse at 80% 75%, rgba(8, 8, 14, 0.62) 0%, transparent 65%),
     linear-gradient(180deg,
-      #0a0a0c 0%,
-      #0e0e12 35%,
-      #101014 65%,
-      #08080a 100%);
+      #050507 0%,
+      #07070a 35%,
+      #0a0a0e 65%,
+      #020203 100%);
   color: #f0e6d0;
 }
 
-/* Cosmic indigo page bg → near-black under darktheme. */
+/* Cosmic indigo page bg → TRANSPARENT so the body's near-black + amber
+   radial gradient shines through. Day 88 v2 mobile bg leak fix: the
+   v1 painted #08080a solid here, which smothered the body bg entirely
+   (most visible on mobile where no opaque pane backgrounds cover it).
+   Same fix-pattern as planetir/daouniverse from the playbook
+   cross-skin catalog. */
 [data-skin="darktheme"] [class*="bg-[#0a0a1a]"] {
   background-color: transparent !important;
   backdrop-filter: none !important;
   -webkit-backdrop-filter: none !important;
 }
 [data-skin="darktheme"] .bg-\[\#0a0a1a\] {
-  background-color: #08080a !important;
+  background-color: transparent !important;
 }
 
 /* Paper grain stays — but bias toward the amber family on dark. Keep
@@ -2259,22 +2270,24 @@
 
 /* Liquid-glass — re-tone toward dark frost. Day 84 cascade-fight lesson:
    !important non-negotiable on bg + border + box-shadow + color. */
+/* Day 88 v2 deepening — glass bgs darker + more opaque so they sit
+   coherently on the now-deeper body bg without revealing through. */
 [data-skin="darktheme"] .liquid-glass {
-  background: rgba(20, 20, 26, 0.52) !important;
-  border: 1px solid rgba(212, 168, 58, 0.18) !important;
+  background: rgba(14, 14, 20, 0.62) !important;
+  border: 1px solid rgba(212, 168, 58, 0.24) !important;
   box-shadow:
-    inset 0 1px 0 0 rgba(240, 200, 112, 0.14),
-    inset 0 -1px 0 0 rgba(0, 0, 0, 0.42),
-    0 8px 24px -6px rgba(0, 0, 0, 0.62) !important;
+    inset 0 1px 0 0 rgba(240, 200, 112, 0.16),
+    inset 0 -1px 0 0 rgba(0, 0, 0, 0.52),
+    0 10px 28px -6px rgba(0, 0, 0, 0.72) !important;
   color: #f0e6d0 !important;
 }
 [data-skin="darktheme"] .liquid-glass-strong {
-  background: rgba(22, 22, 30, 0.72) !important;
-  border: 1px solid rgba(212, 168, 58, 0.26) !important;
+  background: rgba(16, 16, 24, 0.82) !important;
+  border: 1px solid rgba(212, 168, 58, 0.32) !important;
   box-shadow:
-    inset 0 1px 0 0 rgba(240, 200, 112, 0.20),
-    inset 0 -1px 0 0 rgba(0, 0, 0, 0.48),
-    0 14px 32px -10px rgba(0, 0, 0, 0.72) !important;
+    inset 0 1px 0 0 rgba(240, 200, 112, 0.22),
+    inset 0 -1px 0 0 rgba(0, 0, 0, 0.55),
+    0 16px 36px -10px rgba(0, 0, 0, 0.82) !important;
 }
 [data-skin="darktheme"] .liquid-glass [style*="color"] {
   color: #f0e6d0 !important;
@@ -3831,22 +3844,24 @@ All colors MUST be HSL.
      amber accent (candleflame register). First skin authored from scratch.
      Sister to Aurora. Activated by `/darktheme/*` via DarkthemeScopeLock. */
   [data-skin="darktheme"] {
-    --background: 240 14% 4%;          /* near-black with subtle warm undertone */
+    /* Day 88 v2 deepening — pushed closer to true black per Sasha's
+       Claude Code reference. Base 2% L, surfaces step up 3-6%. */
+    --background: 240 10% 2%;          /* near-true-black, slight warm undertone */
     --foreground: 40 50% 88%;          /* warm cream */
-    --card: 240 14% 7%;
+    --card: 240 12% 5%;
     --card-foreground: 40 50% 88%;
-    --popover: 240 14% 5%;
+    --popover: 240 10% 3%;
     --popover-foreground: 40 50% 88%;
     --primary: 41 62% 53%;             /* warm amber (CTA fill) */
-    --primary-foreground: 240 14% 4%;
-    --secondary: 240 12% 9%;
+    --primary-foreground: 240 10% 2%;
+    --secondary: 240 12% 7%;
     --secondary-foreground: 40 50% 88%;
-    --muted: 240 10% 11%;
+    --muted: 240 10% 8%;
     --muted-foreground: 40 25% 72%;
     --accent: 41 62% 53%;              /* warm amber */
-    --accent-foreground: 240 14% 4%;
-    --border: 41 38% 22%;              /* amber-tinted border */
-    --input: 240 12% 8%;
+    --accent-foreground: 240 10% 2%;
+    --border: 41 38% 24%;              /* amber-tinted border, lifted */
+    --input: 240 10% 6%;
     --ring: 41 62% 53%;
   }
 }
