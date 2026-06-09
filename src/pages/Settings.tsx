@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { ArrowLeft, Bell, Palette, User, Check } from "lucide-react";
+import { ArrowLeft, Bell, Download, Palette, User, Check } from "lucide-react";
+import { generateProfilePdf } from "@/modules/profile/generateProfilePdf";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Switch } from "@/components/ui/switch";
 import GameShellV2 from "@/components/game/GameShellV2";
@@ -376,6 +377,164 @@ const NotificationsTab = () => {
     );
 };
 
+/**
+ * DataExportTab — Day 79 (Sasha 2026-05-15).
+ *
+ * One-stop "take your data with you" surface. Lists every export the
+ * platform offers and provides the action button for each. v1 surfaces
+ * the unified Personal Profile PDF only — a single document containing
+ * Top Talent, Mission, Assets, and Quality of Life in one place
+ * (separate from the section-specific Top Talent PDF on the ZoG
+ * Overview page, which stays as-is for now per Sasha's call).
+ *
+ * Growth path: each future export (CSV, JSON, raw zog_snapshot, etc.)
+ * lands as another card in this tab. The button labels follow the
+ * same "result-first" pattern as elsewhere on the platform: "Download
+ * My Profile as PDF," not "Generate PDF."
+ */
+const DataExportTab = () => {
+    const { toast } = useToast();
+    const [building, setBuilding] = useState(false);
+
+    const handleDownloadProfile = async () => {
+        if (building) return;
+        setBuilding(true);
+        try {
+            await generateProfilePdf();
+            toast({
+                title: "Profile downloaded",
+                description: "Your unified PDF is in your downloads folder.",
+            });
+        } catch (err) {
+            console.error("[DataExportTab] Profile PDF failed:", err);
+            toast({
+                title: "Couldn't build the PDF",
+                description: err instanceof Error ? err.message : "Try again.",
+                variant: "destructive",
+            });
+        } finally {
+            setBuilding(false);
+        }
+    };
+
+    return (
+        <div className="space-y-6">
+            {/* Card 1: My Profile (unified PDF) — same editorial register
+                as ProfileSettingsSection and the other tab content. */}
+            <div
+                className="rounded-2xl p-5 sm:p-6 space-y-5"
+                style={{
+                    background: "rgba(255, 255, 255, 0.65)",
+                    border: "1px solid hsla(228, 30%, 18%, 0.10)",
+                    boxShadow:
+                        "0 4px 16px -8px hsla(228, 30%, 18%, 0.10), inset 0 1px 0 hsla(0, 0%, 100%, 0.50)",
+                    backdropFilter: "blur(8px)",
+                    WebkitBackdropFilter: "blur(8px)",
+                }}
+            >
+                <div className="flex items-start gap-3">
+                    <Download
+                        className="w-5 h-5 mt-0.5 flex-shrink-0"
+                        style={{ color: "hsl(40 70% 45%)" }}
+                    />
+                    <div>
+                        <h2
+                            className="text-xl leading-tight"
+                            style={{
+                                fontFamily: "'Cormorant Garamond', serif",
+                                fontWeight: 600,
+                                color: "var(--skin-text-primary, #0a1628)",
+                            }}
+                        >
+                            Your complete profile
+                        </h2>
+                        <p
+                            className="text-sm mt-1 leading-relaxed"
+                            style={{
+                                fontFamily: "'Source Serif 4', Georgia, serif",
+                                color: "var(--skin-text-muted, rgba(26,30,58,0.7))",
+                            }}
+                        >
+                            One PDF containing everything you've created in this platform — Top Talent, Mission, Assets, and Quality of Life. Hand it to your AI, send it to a coach, archive it for yourself. Sections you haven't completed yet show as empty pages with a link to start.
+                        </p>
+                    </div>
+                </div>
+
+                {/* What's in it — quick scan list so the user knows what
+                    they're about to download. */}
+                <div
+                    className="rounded-xl p-4 space-y-1.5"
+                    style={{
+                        background: "rgba(212, 175, 55, 0.06)",
+                        border: "0.5px solid rgba(212, 175, 55, 0.30)",
+                    }}
+                >
+                    <p
+                        className="text-xs uppercase tracking-[0.18em] font-semibold"
+                        style={{
+                            fontFamily: "'Cormorant Garamond', serif",
+                            color: "#7a5108",
+                        }}
+                    >
+                        Included
+                    </p>
+                    <ul
+                        className="text-sm leading-relaxed space-y-0.5"
+                        style={{
+                            fontFamily: "'Source Serif 4', Georgia, serif",
+                            color: "var(--skin-text-primary, #0a1628)",
+                        }}
+                    >
+                        <li>· Top Talent profile (cover + deep view)</li>
+                        <li>· Mission</li>
+                        <li>· Assets</li>
+                        <li>· Quality of Life</li>
+                    </ul>
+                </div>
+
+                {/* Action button — matches the platform CTA register
+                    (glass-dark pill, gold-on-dark, breath). */}
+                <div className="flex justify-center pt-1">
+                    <button
+                        type="button"
+                        onClick={handleDownloadProfile}
+                        disabled={building}
+                        className={cn(
+                            "group liquid-glass-dark cta-breath rounded-full inline-flex items-center justify-center gap-2 sm:gap-2.5 px-6 sm:px-7 py-3 sm:py-3.5 text-sm sm:text-base font-semibold transition-all duration-300",
+                            "hover:scale-[1.02] active:scale-[0.98]",
+                            "disabled:cursor-wait disabled:opacity-70 disabled:scale-100",
+                        )}
+                        style={{
+                            fontFamily: "'Cormorant Garamond', serif",
+                            color: "var(--skin-cta-text, rgba(245,245,250,0.98))",
+                            backgroundImage:
+                                "var(--skin-cta-bg, linear-gradient(135deg, rgba(10,22,40,0.92) 0%, rgba(26,30,58,0.85) 50%, rgba(10,22,40,0.92) 100%))",
+                            boxShadow:
+                                "var(--skin-cta-shadow, 0 0 18px -4px rgba(240,194,127,0.45), 0 10px 24px -10px rgba(10,22,40,0.5))",
+                            textShadow:
+                                "var(--skin-cta-text-shadow, 0 0 16px rgba(240,194,127,0.25), 0 1px 2px rgba(0,0,0,0.35))",
+                            letterSpacing: "0.02em",
+                        }}
+                    >
+                        <Download className="w-4 h-4 flex-shrink-0" aria-hidden="true" />
+                        <span>{building ? "Building your PDF…" : "Download my profile as PDF"}</span>
+                    </button>
+                </div>
+
+                <p
+                    className="text-xs text-center leading-relaxed"
+                    style={{
+                        fontFamily: "'Source Serif 4', Georgia, serif",
+                        color: "var(--skin-text-muted-soft, rgba(26,30,58,0.55))",
+                    }}
+                >
+                    A4, ~10–20 pages depending on how much you've filled in. Editorial register, gold + cream.
+                </p>
+            </div>
+        </div>
+    );
+};
+
 const Settings = () => {
     const navigate = useNavigate();
     const [searchParams, setSearchParams] = useSearchParams();
@@ -389,7 +548,9 @@ const Settings = () => {
     const initialTab =
         tabParam === "notifications"
             ? "notifications"
-            : "profile";
+            : tabParam === "export"
+                ? "export"
+                : "profile";
     const [activeTab, setActiveTab] = useState<string>(initialTab);
 
     const handleTabChange = (tab: string) => {
@@ -487,9 +648,13 @@ const Settings = () => {
                             Appearance trigger removed (skin chooser not ready
                             for end users). When the appearance tab returns,
                             flip back to grid-cols-3 + re-add the TabsTrigger
-                            below. */}
+                            below.
+                            Day 79 (Sasha 2026-05-15): grid-cols-2 → grid-cols-3
+                            again — Export tab added for the unified Personal
+                            Profile PDF + future data exports. The visible tabs
+                            are now Profile · Notifications · Export. */}
                         <TabsList
-                            className="mb-6 h-auto p-1 rounded-full grid w-full grid-cols-2"
+                            className="mb-6 h-auto p-1 rounded-full grid w-full grid-cols-3"
                             style={{
                                 background: "hsla(228, 30%, 18%, 0.06)",
                                 border: "1px solid hsla(228, 30%, 18%, 0.10)",
@@ -539,6 +704,34 @@ const Settings = () => {
                                 <Bell className="w-3.5 h-3.5" />
                                 Notifications
                             </TabsTrigger>
+                            {/* Day 79 (Sasha 2026-05-15): Export tab — entry
+                                point for the unified Personal Profile PDF
+                                (Top Talent + Mission + Assets + QoL in one
+                                document). Future data exports (CSV, JSON,
+                                etc.) plug in as additional cards within the
+                                DataExportTab — no new tabs needed. */}
+                            <TabsTrigger
+                                value="export"
+                                className={cn(
+                                    "gap-2 rounded-full min-h-[44px] px-3 sm:px-5 py-2 transition-all",
+                                    "data-[state=active]:bg-white data-[state=active]:shadow-sm",
+                                    "data-[state=inactive]:text-muted-foreground",
+                                )}
+                                style={{
+                                    fontFamily: "'Cormorant Garamond', serif",
+                                    fontWeight: 600,
+                                    fontSize: "0.78rem",
+                                    letterSpacing: "0.14em",
+                                    textTransform: "uppercase",
+                                    color:
+                                        activeTab === "export"
+                                            ? "#7a5108"
+                                            : undefined,
+                                }}
+                            >
+                                <Download className="w-3.5 h-3.5" />
+                                Export
+                            </TabsTrigger>
                             {/* Day 78 (Sasha 2026-05-22): Appearance trigger
                                 hidden. Skin chooser is not user-ready —
                                 Navy+Gold never finished QA, NS skin is
@@ -577,6 +770,9 @@ const Settings = () => {
                         </TabsContent>
                         <TabsContent value="notifications">
                             <NotificationsTab />
+                        </TabsContent>
+                        <TabsContent value="export">
+                            <DataExportTab />
                         </TabsContent>
                         <TabsContent value="appearance">
                             <AppearanceTab />

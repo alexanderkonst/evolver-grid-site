@@ -51,18 +51,23 @@ import { flipToFirstPersonReflexive, flipToSecondPerson } from "@/lib/zogProfile
 // Page geometry — A4 (mm)
 // ─────────────────────────────────────────────────────────────────────
 
-const PAGE_W = 210;
-const PAGE_H = 297;
-const MARGIN = 22;
-const CONTENT_W = PAGE_W - MARGIN * 2;
-const FOOTER_Y = PAGE_H - 12;
-const SECTION_GAP = 9;
+// Day 79 (Sasha 2026-05-15): page geometry + builder + section
+// renderers exported so the unified Profile PDF (generateProfilePdf.ts)
+// can compose Top Talent content alongside Mission, Assets, and QoL
+// sections in a single document. No behavior change here — just adding
+// `export` to existing internal declarations.
+export const PAGE_W = 210;
+export const PAGE_H = 297;
+export const MARGIN = 22;
+export const CONTENT_W = PAGE_W - MARGIN * 2;
+export const FOOTER_Y = PAGE_H - 12;
+export const SECTION_GAP = 9;
 
 // ─────────────────────────────────────────────────────────────────────
 // Color tokens — cream/gold editorial register, RGB triples for jsPDF
 // ─────────────────────────────────────────────────────────────────────
 
-const C = {
+export const C = {
     cream:        [251, 247, 238] as [number, number, number],
     cardCream:    [253, 250, 242] as [number, number, number],
     ink:          [10, 22, 40]    as [number, number, number],
@@ -82,13 +87,13 @@ const MASTERY_CTA_TEXT = "Accelerate your path of mastery — book a session";
 // case the bullseye, slugify for filename)
 // ─────────────────────────────────────────────────────────────────────
 
-const stripDecorativeGlyphs = (s: string): string =>
+export const stripDecorativeGlyphs = (s: string): string =>
     s.replace(/[✦✧◆◇❖✱★☆]/g, "").trim();
 
-const formatBullseye = (s: string): string =>
+export const formatBullseye = (s: string): string =>
     s.toLowerCase().replace(/\.\s*$/, "").trim();
 
-const slugifyArchetype = (s: string): string =>
+export const slugifyArchetype = (s: string): string =>
     stripDecorativeGlyphs(s)
         .toLowerCase()
         .replace(/[^a-z0-9]+/g, "-")
@@ -100,7 +105,7 @@ const slugifyArchetype = (s: string): string =>
 // the PDF lights up with the full editorial register automatically.
 // ─────────────────────────────────────────────────────────────────────
 
-interface FontMap {
+export interface FontMap {
     serif: string;  // headings
     body: string;   // body
 }
@@ -128,7 +133,7 @@ async function tryLoadFont(url: string): Promise<string | null> {
     }
 }
 
-async function setupFonts(doc: jsPDF): Promise<FontMap> {
+export async function setupFonts(doc: jsPDF): Promise<FontMap> {
     const fonts: FontMap = { ...TIMES };
 
     const cormorant = await tryLoadFont("/fonts/CormorantGaramond-Regular.ttf");
@@ -167,7 +172,7 @@ async function setupFonts(doc: jsPDF): Promise<FontMap> {
 // PdfBuilder — primitives, page background, common building blocks
 // ─────────────────────────────────────────────────────────────────────
 
-class PdfBuilder {
+export class PdfBuilder {
     doc: jsPDF;
     y: number;
     fonts: FontMap;
@@ -413,7 +418,7 @@ class PdfBuilder {
 // Section renderers — one per logical block
 // ─────────────────────────────────────────────────────────────────────
 
-function renderHero(b: PdfBuilder, appleseed: AppleseedData) {
+export function renderHero(b: PdfBuilder, appleseed: AppleseedData) {
     b.y = MARGIN + 10;
 
     b.ornament();
@@ -479,7 +484,7 @@ function renderHero(b: PdfBuilder, appleseed: AppleseedData) {
     b.y += 4;
 }
 
-function renderHowItShowsUp(b: PdfBuilder, appleseed: AppleseedData) {
+export function renderHowItShowsUp(b: PdfBuilder, appleseed: AppleseedData) {
     const text = appleseed.topTalentProfile?.how_genius_shows_up;
     if (!text) return;
     b.sectionRule();
@@ -489,7 +494,7 @@ function renderHowItShowsUp(b: PdfBuilder, appleseed: AppleseedData) {
     b.sectionGap();
 }
 
-function renderThreeKeyTalents(b: PdfBuilder, appleseed: AppleseedData) {
+export function renderThreeKeyTalents(b: PdfBuilder, appleseed: AppleseedData) {
     const talents = appleseed.topTalentProfile?.top_three_talents;
     if (!talents || talents.length === 0) return;
     b.sectionRule();
@@ -503,7 +508,7 @@ function renderThreeKeyTalents(b: PdfBuilder, appleseed: AppleseedData) {
     b.sectionGap();
 }
 
-function renderTopShadow(b: PdfBuilder, appleseed: AppleseedData) {
+export function renderTopShadow(b: PdfBuilder, appleseed: AppleseedData) {
     const oneSentence = flipToFirstPersonReflexive(
         appleseed.topTalentProfile?.top_shadow_one_sentence?.trim(),
     );
@@ -529,7 +534,7 @@ function renderTopShadow(b: PdfBuilder, appleseed: AppleseedData) {
     b.sectionGap();
 }
 
-function renderOneAction(b: PdfBuilder, appleseed: AppleseedData) {
+export function renderOneAction(b: PdfBuilder, appleseed: AppleseedData) {
     const text = appleseed.topTalentProfile?.flywheel_action;
     if (!text) return;
     // NOTE — Day 60+ audit (Sasha 2026-05-04): an earlier audit pass
@@ -553,7 +558,7 @@ function renderOneAction(b: PdfBuilder, appleseed: AppleseedData) {
 // Sasha: "let's just delete it". Removed from PDF chapter list and
 // from the function definitions to avoid unused-export drift.
 
-function renderPathOfMastery(b: PdfBuilder, appleseed: AppleseedData) {
+export function renderPathOfMastery(b: PdfBuilder, appleseed: AppleseedData) {
     const stages = appleseed.masteryStages;
     if (!stages || stages.length === 0) return;
     b.sectionRule();
@@ -574,7 +579,7 @@ function renderPathOfMastery(b: PdfBuilder, appleseed: AppleseedData) {
     b.sectionGap();
 }
 
-function renderIdealEnvironments(b: PdfBuilder, appleseed: AppleseedData) {
+export function renderIdealEnvironments(b: PdfBuilder, appleseed: AppleseedData) {
     const envs = appleseed.topTalentProfile?.ideal_environments;
     const fallback = appleseed.rolesEnvironments?.environment;
     if ((!envs || envs.length === 0) && !fallback) return;
@@ -589,7 +594,7 @@ function renderIdealEnvironments(b: PdfBuilder, appleseed: AppleseedData) {
     b.sectionGap();
 }
 
-function renderComplementaryPartner(b: PdfBuilder, appleseed: AppleseedData) {
+export function renderComplementaryPartner(b: PdfBuilder, appleseed: AppleseedData) {
     const partner = appleseed.complementaryPartner;
     if (!partner) return;
     const synergy = partner.synergy?.trim();
@@ -610,7 +615,7 @@ function renderComplementaryPartner(b: PdfBuilder, appleseed: AppleseedData) {
     b.sectionGap();
 }
 
-function renderMonetization(b: PdfBuilder, appleseed: AppleseedData) {
+export function renderMonetization(b: PdfBuilder, appleseed: AppleseedData) {
     const avenues = appleseed.monetizationAvenues;
     const sweetSpots = appleseed.topTalentProfile?.career_sweet_spots;
     const hasAvenues = avenues && avenues.length > 0;
@@ -648,7 +653,7 @@ function renderMonetization(b: PdfBuilder, appleseed: AppleseedData) {
 // PDF redesign deferred to its own wave.
 // ─────────────────────────────────────────────────────────────────────
 
-function renderExcalibur(b: PdfBuilder, excalibur: ExcaliburData) {
+export function renderExcalibur(b: PdfBuilder, excalibur: ExcaliburData) {
     b.newPage();
     b.y = MARGIN + 10;
     b.ornament();
@@ -709,7 +714,7 @@ function renderExcalibur(b: PdfBuilder, excalibur: ExcaliburData) {
 // Footer — page-N-of-M, brand
 // ─────────────────────────────────────────────────────────────────────
 
-function renderFooter(b: PdfBuilder) {
+export function renderFooter(b: PdfBuilder) {
     const pageCount = b.doc.getNumberOfPages();
     for (let i = 1; i <= pageCount; i++) {
         b.doc.setPage(i);
