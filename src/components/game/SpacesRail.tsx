@@ -49,6 +49,7 @@ import latamPyramid from "@/assets/latam-impact-pyramid.png";
 // via Adobe Express). Used at both desktop rail and mobile pill — the
 // lockup is small enough horizontally to read on the 72px column.
 import planetirLogo from "@/assets/planetir-logo.png";
+import techstarsLogo from "@/assets/techstars-logo.png";
 // Day 48 iter 7 (Sasha): JOURNEY + ME spaces now render with custom
 // image assets (gold-tinted) instead of typographic glyphs — keeps
 // them coherent with the gold-signature identity while the other
@@ -273,6 +274,7 @@ const SpacesRail = ({
     const isNS = skin === "network-school";
     const isDao = skin === "daouniverse";
     const isPlanetir = skin === "planetir";
+    const isTechstars = skin === "techstars";
 
     // Day 54+++ (Sasha 2026-04-28 night): backdrop-filter disabled on touch
     // devices. iOS WebKit's backdrop-filter on a full-viewport-height region
@@ -398,9 +400,35 @@ const SpacesRail = ({
                 <Link
                     to="/"
                     className="block group transition-all hover:opacity-90"
-                    aria-label={isNS ? "Network School — home" : isDao ? "LATAM Impact — home" : isPlanetir ? "Planetir — home" : "Find Your Top Talent — home"}
+                    aria-label={isNS ? "Network School home" : isDao ? "LATAM Impact home" : isPlanetir ? "Planetir home" : isTechstars ? "Techstars home" : "Find Your Top Talent home"}
                 >
-                    {isPlanetir ? (
+                    {isTechstars ? (
+                        <>
+                            {/* Day 91 (Sasha 2026-06-08): Techstars wordmark
+                                (white wordmark + green underscore, designed for
+                                dark surfaces). Mobile (72px column): crops to a
+                                centered narrow band that still reads as the
+                                star + first letter of the wordmark. Desktop:
+                                full wordmark. */}
+                            <div className="md:hidden flex items-center justify-center px-3 py-2.5">
+                                <img
+                                    src={techstarsLogo}
+                                    alt="Techstars"
+                                    className="h-7 w-auto object-contain object-left flex-shrink-0"
+                                    style={{ maxWidth: "48px" }}
+                                    draggable={false}
+                                />
+                            </div>
+                            <div className="hidden md:flex items-center justify-start px-3 py-2.5">
+                                <img
+                                    src={techstarsLogo}
+                                    alt="Techstars"
+                                    className="h-7 w-auto object-contain flex-shrink-0"
+                                    draggable={false}
+                                />
+                            </div>
+                        </>
+                    ) : isPlanetir ? (
                         <>
                             {/* Day 84 (Sasha 2026-05-25): Planetir lockup
                                 (olive shield + wordmark, transparent bg).

@@ -21,6 +21,8 @@ import brandMark from "@/assets/find-your-top-talent-torus.png";
 import latamPyramidMark from "@/assets/latam-impact-pyramid.png";
 // Day 84 (Sasha 2026-05-25): Planetir lockup for mobile pill.
 import planetirLogoMark from "@/assets/planetir-logo.png";
+// Day 91 (Sasha 2026-06-08): Techstars wordmark for mobile pill.
+import techstarsLogoMark from "@/assets/techstars-logo.png";
 import { useSkin } from "@/contexts/SkinContext";
 // Day 80 Wave 2.11: useEntryPath import retired — the video background
 // now checks the URL directly at mount (see comment in MuxVideoBackground
@@ -62,6 +64,13 @@ const DAOUNIVERSE_MUX_BG_URL = "https://stream.mux.com/M5AQSxoJeXg9f4XjeyaWXo6UM
 // Skin-based selection still wins over match-path: a /planetir/?path=match
 // URL gets the forest bg, not the match-path urban scene.
 const PLANETIR_MUX_BG_URL = "https://stream.mux.com/U1fTCt201DzXeb700iw6inJUyluSAfpiRvS7F7oGnwqc8.m3u8";
+// Day 91 (Sasha 2026-06-08): techstars skin background. Startup Weekend
+// group photo (animated) for the Techstars white-label surface. Skin-based
+// selection takes precedence over match-path: a /techstars/?path=match URL
+// uses this scene, not the match-path urban scene. Filter recipe (heavy
+// brightness reduce + slight desaturate) is applied via index.css token —
+// Techstars darkens their hero video aggressively for headline legibility.
+const TECHSTARS_MUX_BG_URL = "https://stream.mux.com/3OG38vgsk7IkmutR3VxjYBw0100jgMJ01ivAAHWfzXxDcU.m3u8";
 
 const MuxVideoBackground = () => {
     const videoRef = useRef<HTMLVideoElement>(null);
@@ -119,16 +128,19 @@ const MuxVideoBackground = () => {
         : undefined;
     const __isDaoVideo = __initialSkin === "daouniverse";
     const __isPlanetirVideo = __initialSkin === "planetir";
+    const __isTechstarsVideo = __initialSkin === "techstars";
     const srcUrlRef = useRef(
-        __isPlanetirVideo
-            ? PLANETIR_MUX_BG_URL
-            : __isDaoVideo
-                ? DAOUNIVERSE_MUX_BG_URL
-                : isMatchPathNow
-                    ? MATCH_MUX_BG_URL
-                    : MUX_BG_URL
+        __isTechstarsVideo
+            ? TECHSTARS_MUX_BG_URL
+            : __isPlanetirVideo
+                ? PLANETIR_MUX_BG_URL
+                : __isDaoVideo
+                    ? DAOUNIVERSE_MUX_BG_URL
+                    : isMatchPathNow
+                        ? MATCH_MUX_BG_URL
+                        : MUX_BG_URL
     );
-    const isMatchVideo = isMatchPathNow && !__isDaoVideo && !__isPlanetirVideo;
+    const isMatchVideo = isMatchPathNow && !__isDaoVideo && !__isPlanetirVideo && !__isTechstarsVideo;
 
     useEffect(() => {
         const video = videoRef.current;
@@ -347,6 +359,10 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
     // scroll bg fix DOES apply (Aurora cream wash → transparent so the
     // body bg's near-black + amber-radial shows through).
     const __isDarkthemeShell = __spaceShipSkin === "darktheme";
+    // Day 91 (Sasha 2026-06-08): techstars white-label demo. Same mobile
+    // content-scroll rule (Aurora cream wash → transparent so the Mux
+    // photo bg shows through), same full-rail inclusion.
+    const __isTechstarsShell = __spaceShipSkin === "techstars";
     const location = useLocation();
     const navigate = useNavigate();
 
@@ -1138,6 +1154,7 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
         __spaceShipSkin === "daouniverse" ||
         __spaceShipSkin === "network-school" ||
         __spaceShipSkin === "darktheme" ||
+        __spaceShipSkin === "techstars" ||
         location.pathname.startsWith("/build/karime");
 
     // Day 79 (Sasha 2026-05-22): AI OS gate applies to guests too.
@@ -1681,6 +1698,19 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                                 border: '1px solid rgba(196,163,92,0.36)',
                                 filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.55))',
                                 boxShadow: '0 0 14px -4px rgba(196,163,92,0.32)',
+                            } : __isTechstarsShell ? {
+                                /* Day 91 (Sasha 2026-06-08): Techstars mobile
+                                   pill. White wordmark sits on a near-black
+                                   glass background with the brand-green
+                                   underscore visible. Border + shadow shift
+                                   from Aurora gold to Techstars green so the
+                                   pill reads as "in the Techstars register",
+                                   not as a leftover Aurora chrome surface. */
+                                color: '#ffffff',
+                                background: 'rgba(8,10,12,0.72)',
+                                border: '1px solid rgba(61,204,74,0.42)',
+                                filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.55))',
+                                boxShadow: '0 0 14px -4px rgba(61,204,74,0.32)',
                             } : {
                                 color: '#f4d472',
                                 background: 'rgba(244,212,114,0.08)',
@@ -1700,13 +1730,15 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                                    asset principle now applies to daouniverse —
                                    the real LATAM pyramid PNG renders here too,
                                    replacing the V2 inline SVG. */
-                                src={__isPlanetirShell
-                                    ? planetirLogoMark
-                                    : __isDaoShell
-                                        ? latamPyramidMark
-                                        : __isNSShell
-                                            ? "https://ns-assets.com/auth-privy/network-school-black-flag-white-background-privy.png"
-                                            : brandMark}
+                                src={__isTechstarsShell
+                                    ? techstarsLogoMark
+                                    : __isPlanetirShell
+                                        ? planetirLogoMark
+                                        : __isDaoShell
+                                            ? latamPyramidMark
+                                            : __isNSShell
+                                                ? "https://ns-assets.com/auth-privy/network-school-black-flag-white-background-privy.png"
+                                                : brandMark}
                                 alt=""
                                 aria-hidden="true"
                                 className="w-7 h-7 object-contain flex-shrink-0"
@@ -1875,7 +1907,12 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                                                 // body's near-black + amber-
                                                 // radial through.
                                                 ? "transparent"
-                                                : "rgba(248, 246, 240, 0.55)",
+                                                : __isTechstarsShell
+                                                    // Same again for techstars —
+                                                    // body's dark wash + Mux
+                                                    // group-photo through.
+                                                    ? "transparent"
+                                                    : "rgba(248, 246, 240, 0.55)",
                         }}
                     >
                         <div className="page-transition-enter">

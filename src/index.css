@@ -2543,6 +2543,516 @@
   letter-spacing: 0.08em;
 }
 
+/* ───────────────────────────────────────────────────────────────────
+   TECHSTARS SKIN — Day 91 (Sasha 2026-06-08)
+   ───────────────────────────────────────────────────────────────────
+   Mirrors techstars.com — the global accelerator. Bold neo-grotesque
+   on a photographic Mux video bg (Startup Weekend group photo), bright
+   Techstars green primary CTA, white headlines + dark cards.
+
+   6th distinct primary-CTA dialect across the platform:
+     Aurora glass+halo | NS solid black | Daouniverse yellow | Planetir
+     white | Karime warm-brown | Darktheme amber-glass | Techstars
+     solid bright green.
+
+   Suisse Intl is the source font (paid Swiss Typefaces); Inter (already
+   loaded for NS/Daouniverse/Planetir/Karime) is the closest free
+   near-match — same Swiss neo-grotesque register. No new font import
+   needed; we just override the platform's Cormorant/Montserrat defaults
+   to Inter on display copy.
+
+   Activated by `<html data-skin="techstars">` (set by TechstarsScopeLock
+   inside the `/techstars/*` route prefix).
+   ─────────────────────────────────────────────────────────────────── */
+
+[data-skin="techstars"] {
+  /* ── Text — bright white on the photographic dark video bg. */
+  --skin-text-primary: #ffffff;
+  --skin-text-body: rgba(255, 255, 255, 0.94);
+  --skin-text-muted: rgba(255, 255, 255, 0.72);
+  --skin-text-muted-soft: rgba(255, 255, 255, 0.52);
+
+  --skin-sections-text: rgba(255, 255, 255, 0.86);
+
+  /* Halos — deep dark lift so headlines read against the busy photo bg.
+     Techstars's own site darkens their hero video heavily AND adds a
+     dark gradient overlay; we replicate the legibility recipe with
+     halos + the video filter below. */
+  --skin-text-halo-strong:
+    0 0 32px rgba(0, 0, 0, 0.78),
+    0 2px 4px rgba(0, 0, 0, 0.88);
+  --skin-text-halo-subtle:
+    0 0 20px rgba(0, 0, 0, 0.55),
+    0 1px 2px rgba(0, 0, 0, 0.72);
+  --skin-text-halo-soft: 0 1px 3px rgba(0, 0, 0, 0.62);
+  --skin-text-halo-deep:
+    0 0 36px rgba(0, 0, 0, 0.85),
+    0 2px 5px rgba(0, 0, 0, 0.95),
+    0 0 2px rgba(61, 204, 74, 0.32);
+
+  /* Panel washes — Techstars uses near-pure-black for sticky chrome,
+     and a slight contrast lift on body to keep the dark video legible
+     under content. P1 darkest (rail = gravity well), P2 medium, P3
+     lightest per playbook P1<P2<P3 darkness principle. */
+  --skin-panel-1-bg: rgba(0, 0, 0, 0.96);
+  --skin-panel-2-bg: rgba(8, 10, 12, 0.92);
+  --skin-panel-wash:
+    linear-gradient(180deg,
+      rgba(10, 12, 14, 0.32) 0%,
+      rgba(6, 8, 10, 0.22) 55%,
+      rgba(2, 4, 6, 0.32) 100%);
+  --skin-panel-wash-quiet:
+    linear-gradient(180deg,
+      rgba(10, 12, 14, 0.12) 0%,
+      rgba(6, 8, 10, 0.06) 100%);
+
+  /* Ornaments — Techstars green. */
+  --skin-ornament-rule:  rgba(61, 204, 74, 0.42);
+  --skin-ornament-star:  #3dcc4a;
+  --skin-ornament-shadow:
+    0 0 18px rgba(61, 204, 74, 0.62),
+    0 0 4px rgba(61, 204, 74, 0.82);
+
+  /* Primary CTA — solid Techstars green pill with dark text. The 6th
+     distinct primary-CTA dialect. Bold, confident, unmissable on the
+     photographic bg. */
+  --skin-cta-bg: #3dcc4a;
+  --skin-cta-text: #000000;
+  --skin-cta-border: rgba(61, 204, 74, 0.62);
+  --skin-cta-shadow:
+    0 0 32px -6px rgba(61, 204, 74, 0.58),
+    0 14px 36px -12px rgba(0, 0, 0, 0.72);
+  --skin-cta-text-shadow: none;
+  --skin-cta-icon: #000000;
+  --skin-cta-icon-shadow: none;
+
+  /* Gradient accents — single Techstars-green family. */
+  --skin-accent-1-bg: linear-gradient(135deg, #3dcc4a 0%, #2ba036 100%);
+  --skin-accent-1-glow: drop-shadow(0 0 12px rgba(61, 204, 74, 0.55));
+  --skin-accent-2-bg: linear-gradient(135deg, #5bd968 0%, #3dcc4a 100%);
+  --skin-accent-2-glow: drop-shadow(0 0 14px rgba(91, 217, 104, 0.62));
+  --skin-accent-3-bg: linear-gradient(135deg, #2ba036 0%, #1f7a28 100%);
+  --skin-accent-3-glow: drop-shadow(0 0 8px rgba(43, 160, 54, 0.42));
+
+  --skin-link-secondary: rgba(255, 255, 255, 0.78);
+
+  --skin-text-strong: rgba(255, 255, 255, 0.98);
+  --skin-text-faint:  rgba(255, 255, 255, 0.62);
+  --skin-text-hint:   rgba(255, 255, 255, 0.42);
+
+  /* Rules — green-tinted hairlines. */
+  --skin-rule-strong:   rgba(61, 204, 74, 0.42);
+  --skin-rule-medium:   rgba(61, 204, 74, 0.24);
+  --skin-rule-hairline: rgba(61, 204, 74, 0.14);
+  --skin-rule-faint:    rgba(61, 204, 74, 0.07);
+
+  /* Links — white with bright Techstars green on hover. */
+  --skin-link-color:        #ffffff;
+  --skin-link-hover:        #3dcc4a;
+  --skin-link-underline:    rgba(61, 204, 74, 0.55);
+
+  /* Cards — near-black surface, Techstars-green hairline. */
+  --skin-card-bg:       rgba(10, 12, 14, 0.92);
+  --skin-card-border:   rgba(61, 204, 74, 0.26);
+  --skin-card-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.58),
+    0 18px 44px -16px rgba(0, 0, 0, 0.78);
+
+  /* Tints — green only, no violet. */
+  --skin-tint-violet-soft: linear-gradient(135deg, rgba(61,204,74,0.04), rgba(61,204,74,0.01));
+  --skin-tint-gold-soft:   linear-gradient(135deg, rgba(61,204,74,0.10), rgba(61,204,74,0.03));
+
+  /* Single accent — bright Techstars green. Mapped to the platform's
+     `--skin-accent-gold` token (which controls active states + journey
+     pips). Naming kept for cross-skin token compatibility. */
+  --skin-accent-gold:        #3dcc4a;
+  --skin-accent-gold-glow:   drop-shadow(0 0 12px rgba(61, 204, 74, 0.58));
+
+  /* Selected state — green-tinted wash with bright green border. */
+  --skin-selected-bg:     rgba(61, 204, 74, 0.16);
+  --skin-selected-border: rgba(61, 204, 74, 0.62);
+  --skin-selected-text:   #ffffff;
+
+  /* Form inputs — near-black with green hairline border. */
+  --skin-input-bg:      rgba(8, 10, 12, 0.72);
+  --skin-input-border:  rgba(61, 204, 74, 0.32);
+  --skin-input-text:    #ffffff;
+  --skin-input-placeholder: rgba(255, 255, 255, 0.45);
+
+  /* Darkroom — pure near-black for hero-style content. */
+  --skin-darkroom-bg:     rgba(0, 0, 0, 0.96);
+  --skin-darkroom-text:   #ffffff;
+  --skin-darkroom-muted:  rgba(255, 255, 255, 0.72);
+  --skin-darkroom-border: rgba(61, 204, 74, 0.24);
+
+  /* Callout — bright green gradient. */
+  --skin-callout-bg:     linear-gradient(135deg, #3dcc4a 0%, #2ba036 100%);
+  --skin-callout-glow:   drop-shadow(0 0 14px rgba(61, 204, 74, 0.58));
+
+  /* Music player tokens — quiet green on near-black. */
+  --skin-music-play-bg:     transparent;
+  --skin-music-play-border: rgba(61, 204, 74, 0.42);
+  --skin-music-play-shadow: 0 0 10px -2px rgba(61, 204, 74, 0.42);
+  --skin-music-icon:        #3dcc4a;
+  --skin-music-text:        rgba(255, 255, 255, 0.86);
+  --skin-music-meta:        rgba(255, 255, 255, 0.62);
+
+  /* Locked/completed row strikethrough — green-faded. */
+  --skin-strike-color: rgba(61, 204, 74, 0.55);
+}
+
+/* TECHSTARS — typography. Override the platform's Cormorant Garamond
+   display + Montserrat body to Inter for the Swiss neo-grotesque register
+   that techstars.com uses (their actual font is Suisse Intl; Inter is the
+   closest free near-match). Tight letter-spacing on headlines matches
+   Techstars's aggressive condensed-headline voice. */
+[data-skin="techstars"] body,
+[data-skin="techstars"] p,
+[data-skin="techstars"] span,
+[data-skin="techstars"] a,
+[data-skin="techstars"] button,
+[data-skin="techstars"] input,
+[data-skin="techstars"] textarea,
+[data-skin="techstars"] label,
+[data-skin="techstars"] li,
+[data-skin="techstars"] th,
+[data-skin="techstars"] td {
+  font-family: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+}
+[data-skin="techstars"] h1,
+[data-skin="techstars"] h2,
+[data-skin="techstars"] h3,
+[data-skin="techstars"] h4,
+[data-skin="techstars"] h5,
+[data-skin="techstars"] h6 {
+  font-family: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.025em !important;
+}
+[data-skin="techstars"] h1 {
+  font-weight: 800 !important;
+  letter-spacing: -0.032em !important;
+}
+/* Sister-literal rule: inline `fontFamily: "Cormorant Garamond"` on
+   PathPage/MatchHero/etc. would leak the platform default voice. Catch
+   any attribute-substring match and re-tone to Inter under techstars
+   (Day 84 Planetir cross-skin lesson). */
+[data-skin="techstars"] [style*="Cormorant"],
+[data-skin="techstars"] [style*="Playfair"],
+[data-skin="techstars"] [style*="Newsreader"],
+[data-skin="techstars"] [style*="Lexend"] {
+  font-family: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+  font-style: normal !important;
+}
+
+/* TECHSTARS — decoration overrides */
+
+/* Body background — dark wash that lets the Mux photo video read through.
+   Techstars.com pairs their video with a heavy bottom-vignette + green
+   ambient glow lower-right; we replicate via two radial gradients + a
+   linear vertical wash, low enough alpha that the photo bg dominates
+   when the video is visible. */
+[data-skin="techstars"] body {
+  background:
+    radial-gradient(ellipse at 85% 90%, rgba(61, 204, 74, 0.08) 0%, transparent 55%),
+    radial-gradient(ellipse at 15% 10%, rgba(8, 10, 14, 0.42) 0%, transparent 60%),
+    linear-gradient(180deg,
+      #050608 0%,
+      #07080a 35%,
+      #0a0b0e 65%,
+      #02030a 100%);
+  color: #ffffff;
+}
+
+/* Mux video filter — darken aggressively for headline legibility.
+   Techstars.com applies a heavy darken to their hero video. */
+[data-skin="techstars"] video[autoplay][muted],
+[data-skin="techstars"] video.absolute,
+[data-skin="techstars"] [data-mux-background],
+[data-skin="techstars"] video[playsinline] {
+  filter: brightness(0.62) saturate(0.78) contrast(1.04) !important;
+}
+
+/* Outer wrapper `bg-[#0a0a1a]` (GameShell, mobile content-scroll) →
+   TRANSPARENT so the body's dark wash + Mux video photo shines through.
+   Mandatory cross-skin pattern (Day 88 v2 darktheme lesson, Day 84
+   planetir/daouniverse round-2 lesson). */
+[data-skin="techstars"] [class*="bg-[#0a0a1a]"] {
+  background-color: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+[data-skin="techstars"] .bg-\[\#0a0a1a\] {
+  background-color: transparent !important;
+}
+
+/* Paper grain stays — subtle on dark register. */
+[data-skin="techstars"] body::before {
+  mix-blend-mode: screen;
+  opacity: 0.03;
+}
+[data-skin="techstars"] ::selection {
+  background: rgba(61, 204, 74, 0.42);
+  color: #ffffff;
+}
+
+/* Liquid-glass — re-tone to near-black + green hairline. Day 84
+   cascade-fight lesson: !important non-negotiable on bg + border +
+   box-shadow + color. */
+[data-skin="techstars"] .liquid-glass {
+  background: rgba(10, 12, 14, 0.62) !important;
+  border: 1px solid rgba(61, 204, 74, 0.22) !important;
+  box-shadow:
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.08),
+    inset 0 -1px 0 0 rgba(0, 0, 0, 0.55),
+    0 12px 32px -8px rgba(0, 0, 0, 0.72) !important;
+  color: #ffffff !important;
+}
+[data-skin="techstars"] .liquid-glass-strong {
+  background: rgba(8, 10, 12, 0.85) !important;
+  border: 1px solid rgba(61, 204, 74, 0.32) !important;
+  box-shadow:
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.12),
+    inset 0 -1px 0 0 rgba(0, 0, 0, 0.62),
+    0 18px 40px -12px rgba(0, 0, 0, 0.85) !important;
+}
+[data-skin="techstars"] .liquid-glass [style*="color"] {
+  color: #ffffff !important;
+}
+
+/* Primary CTA — solid Techstars green pill paradigm. Override
+   .liquid-glass-dark across the platform. */
+[data-skin="techstars"] .liquid-glass-dark {
+  background: #3dcc4a !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border: 1px solid rgba(43, 160, 54, 0.85) !important;
+  box-shadow:
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.32),
+    inset 0 -1px 0 0 rgba(0, 0, 0, 0.18),
+    0 0 32px -6px rgba(61, 204, 74, 0.52),
+    0 16px 36px -10px rgba(0, 0, 0, 0.62) !important;
+  color: #000000 !important;
+}
+[data-skin="techstars"] .liquid-glass-dark::before {
+  display: none !important;
+}
+[data-skin="techstars"] .liquid-glass-dark:hover {
+  background: #32be3f !important;
+  box-shadow:
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.38),
+    inset 0 -1px 0 0 rgba(0, 0, 0, 0.22),
+    0 0 38px -4px rgba(61, 204, 74, 0.68),
+    0 18px 38px -10px rgba(0, 0, 0, 0.68) !important;
+}
+[data-skin="techstars"] .liquid-glass-dark,
+[data-skin="techstars"] .liquid-glass-dark * {
+  color: #000000 !important;
+}
+/* The ✦ ignite-logo emblem inside primary CTAs — under techstars it
+   should render as pure black so it reads on the green fill. */
+[data-skin="techstars"] .liquid-glass-dark img.ornament-spin,
+[data-skin="techstars"] .liquid-glass-dark > img:first-of-type {
+  filter: brightness(0) saturate(100%) !important;
+}
+
+/* Hover wash on rail + Pane 2 — green-tinted. */
+[data-skin="techstars"] .liquid-glass.h-dvh button:hover,
+[data-skin="techstars"] .liquid-glass.h-dvh a:hover,
+[data-skin="techstars"] .liquid-glass.h-dvh .group:hover,
+[data-skin="techstars"] [class*="w-[260px]"] .group:hover,
+[data-skin="techstars"] aside[data-pane="2"] .group:hover {
+  background-color: rgba(61, 204, 74, 0.12) !important;
+}
+
+/* Active-item indicator — bright Techstars green left-bar. */
+[data-skin="techstars"] [style*="--skin-selected-bg"] {
+  box-shadow: inset 3px 0 0 0 #3dcc4a !important;
+}
+
+/* SPACES↔utility separator in Pane 1 — green. */
+[data-skin="techstars"] .liquid-glass.h-dvh .h-px[style*="rgba(212, 175, 55"] {
+  background-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(61, 204, 74, 0.45) 20%,
+    rgba(61, 204, 74, 0.45) 80%,
+    transparent 100%
+  ) !important;
+}
+
+/* Pane 2 top header. */
+[data-skin="techstars"] [class*="w-[260px]"] > div.h-16:first-child,
+[data-skin="techstars"] aside[data-pane="2"] > div.h-16:first-child {
+  border-bottom-color: rgba(61, 204, 74, 0.22) !important;
+}
+
+/* Pane 2 close button. */
+[data-skin="techstars"] button[aria-label="Hide sidebar"] {
+  color: rgba(255, 255, 255, 0.78) !important;
+}
+[data-skin="techstars"] button[aria-label="Hide sidebar"]:hover {
+  background-color: rgba(61, 204, 74, 0.14) !important;
+}
+
+/* Pane 1 rail — single bold rule + token re-assertion. */
+[data-skin="techstars"] .liquid-glass.h-dvh {
+  border-right: 1px solid rgba(61, 204, 74, 0.32) !important;
+  background: var(--skin-panel-1-bg, rgba(0, 0, 0, 0.96)) !important;
+  backdrop-filter: blur(10px) saturate(120%) !important;
+  -webkit-backdrop-filter: blur(10px) saturate(120%) !important;
+}
+
+/* Pane 2 right edge — green hairline. */
+[data-skin="techstars"] .liquid-glass.h-dvh + .h-dvh.sticky,
+[data-skin="techstars"] .liquid-glass.h-dvh + div[class*="w-[260px]"],
+[data-skin="techstars"] aside[data-pane="2"] {
+  border-right: 1px solid rgba(61, 204, 74, 0.22) !important;
+  background-color: var(--skin-panel-2-bg, rgba(8, 10, 12, 0.92)) !important;
+}
+
+/* Rail SPACE chip icons — tint to bright Techstars green for harmony. */
+[data-skin="techstars"] .liquid-glass.h-dvh img[alt="Journey"],
+[data-skin="techstars"] .liquid-glass.h-dvh img[alt="AI OS"],
+[data-skin="techstars"] .liquid-glass.h-dvh img[alt="Me"],
+[data-skin="techstars"] .liquid-glass.h-dvh img[alt="Build"],
+[data-skin="techstars"] .liquid-glass.h-dvh img[src*="settings-icon"] {
+  filter: brightness(0) saturate(100%) invert(72%) sepia(60%) saturate(540%) hue-rotate(78deg) brightness(1.02) !important;
+}
+
+/* GlyphIcon variants — bright green, same fingerprint selector as the
+   other skins. */
+[data-skin="techstars"] .liquid-glass.h-dvh span[style*="place-items: center"],
+[data-skin="techstars"] .liquid-glass.h-dvh span[style*="place-items:center"] {
+  color: #3dcc4a !important;
+  text-shadow: 0 0 8px rgba(61, 204, 74, 0.42) !important;
+}
+
+/* GameShellV2 top-right home glyph — green tint. */
+[data-skin="techstars"] a[aria-label="Home"] img {
+  filter: brightness(0) saturate(100%) invert(72%) sepia(60%) saturate(540%) hue-rotate(78deg) brightness(1.02) !important;
+}
+
+/* Day 84 color harmony — Aurora yellow rgba(244,212,114,…) → Techstars
+   green re-tone. JOURNEY chip's bright-yellow inline gradient + shadows. */
+[data-skin="techstars"] [class*="rgba(244,212,114"],
+[data-skin="techstars"] [class*="rgba(244, 212, 114"] {
+  box-shadow:
+    0 0 20px -4px rgba(61, 204, 74, 0.48),
+    0 0 4px -1px rgba(91, 217, 104, 0.55) !important;
+}
+[data-skin="techstars"] [style*="rgba(244,212,114"],
+[data-skin="techstars"] [style*="rgba(244, 212, 114"] {
+  background-image: linear-gradient(
+    135deg,
+    rgba(61, 204, 74, 0.18),
+    rgba(91, 217, 104, 0.10)) !important;
+  border-color: rgba(61, 204, 74, 0.45) !important;
+  color: #3dcc4a !important;
+}
+
+/* Day 88 v3 sister-literal: Aurora gold #d4af37 (rgb 212,175,55) re-tone
+   to Techstars green. Catches Path stages, Dashboard rail, MatchHero
+   JourneyRail, and any future surface that hardcodes Aurora gold. */
+[data-skin="techstars"] .bg-\[\#d4af37\] {
+  background-color: #3dcc4a !important;
+  box-shadow: none !important;
+}
+[data-skin="techstars"] [class*="bg-[#d4af37"] {
+  background-color: #3dcc4a !important;
+}
+[data-skin="techstars"] [style*="rgba(212,175,55"],
+[data-skin="techstars"] [style*="rgba(212, 175, 55"] {
+  background-color: rgba(61, 204, 74, 0.16) !important;
+  background-image: none !important;
+  border-color: rgba(61, 204, 74, 0.45) !important;
+  color: #3dcc4a !important;
+}
+[data-skin="techstars"] [class*="rgba(212,175,55"],
+[data-skin="techstars"] [class*="rgba(212, 175, 55"] {
+  background-color: rgba(61, 204, 74, 0.16) !important;
+  border-color: rgba(61, 204, 74, 0.45) !important;
+}
+
+/* Rail spine right-edge gradient — soften to Techstars green. */
+[data-skin="techstars"] .liquid-glass.h-dvh > span[aria-hidden][class*="absolute"][class*="top-0"][class*="right-0"] {
+  background-image:
+    linear-gradient(180deg,
+      rgba(61, 204, 74, 0) 0%,
+      rgba(61, 204, 74, 0.22) 16%,
+      rgba(91, 217, 104, 0.55) 40%,
+      rgba(61, 204, 74, 0.42) 62%,
+      rgba(61, 204, 74, 0.14) 88%,
+      rgba(61, 204, 74, 0) 100%) !important;
+}
+
+/* MatchHero spotlight backdrop — cream radial reads as foreign on
+   dark photo bg. Hide. */
+[data-skin="techstars"] [data-match-hero] > div[aria-hidden] {
+  display: none !important;
+}
+
+/* SectionsPanel locked-row popover — inline Aurora navy + gold tokens
+   leak through under non-Aurora skins. Re-tone to near-black + green.
+   Day 84 round-2 cross-skin lesson. */
+[data-skin="techstars"] [style*="rgba(10,22,40,1)"][style*="rgba(18,28,56,1)"] {
+  background-image: linear-gradient(
+    135deg,
+    rgba(6, 8, 10, 0.98) 0%,
+    rgba(12, 14, 18, 0.98) 50%,
+    rgba(6, 8, 10, 0.98) 100%
+  ) !important;
+  border-color: rgba(61, 204, 74, 0.45) !important;
+  box-shadow:
+    0 0 0 1px rgba(61, 204, 74, 0.22),
+    0 10px 30px -8px rgba(0, 0, 0, 0.78),
+    0 0 26px -6px rgba(61, 204, 74, 0.32) !important;
+}
+[data-skin="techstars"] [style*="rgba(10,22,40,1)"] p[style*="#f4d472"] {
+  font-family: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+  color: #5bd968 !important;
+  text-shadow:
+    0 0 10px rgba(61, 204, 74, 0.42),
+    0 1px 2px rgba(0, 0, 0, 0.62) !important;
+}
+
+/* Auth page editorial overrides — re-tone Cormorant headings + tabs +
+   inputs + submit button to Techstars register. */
+[data-skin="techstars"] article.liquid-glass-strong h1,
+[data-skin="techstars"] article.liquid-glass-strong h1 *,
+[data-skin="techstars"] article.liquid-glass-strong p,
+[data-skin="techstars"] article.liquid-glass-strong label {
+  color: var(--skin-text-primary, #ffffff) !important;
+}
+[data-skin="techstars"] article.liquid-glass-strong [role="tablist"] {
+  background-color: rgba(61, 204, 74, 0.08) !important;
+  border-color: rgba(61, 204, 74, 0.24) !important;
+}
+[data-skin="techstars"] article.liquid-glass-strong [role="tab"][data-state="active"] {
+  background-color: rgba(61, 204, 74, 0.22) !important;
+  color: #ffffff !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.42) !important;
+}
+[data-skin="techstars"] article.liquid-glass-strong [role="tab"]:not([data-state="active"]) {
+  color: rgba(255, 255, 255, 0.62) !important;
+}
+[data-skin="techstars"] article.liquid-glass-strong input {
+  background-color: rgba(8, 10, 12, 0.72) !important;
+  border-color: rgba(61, 204, 74, 0.32) !important;
+  color: #ffffff !important;
+}
+[data-skin="techstars"] article.liquid-glass-strong input::placeholder {
+  color: rgba(255, 255, 255, 0.45) !important;
+}
+[data-skin="techstars"] article.liquid-glass-strong form button[type="submit"] {
+  background: #3dcc4a !important;
+  color: #000000 !important;
+  border-color: rgba(43, 160, 54, 0.55) !important;
+  font-family: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.02em;
+}
+
 /* Day 82 v4 (Sasha 2026-05-24): SpacesRail compact mode. When the rail
    carries data-rail-compact="true" (set by GameShellV2 when the user
    minimizes pane 1 via the new toggle), force-hide every `md:block`
@@ -3870,6 +4380,30 @@ All colors MUST be HSL.
     --border: 40 28% 26%;
     --input: 138 20% 13%;
     --ring: 40 45% 56%;
+  }
+
+  /* Techstars — Day 91 (Sasha 2026-06-08). Bright Techstars-green accent
+     on near-black surfaces. Shadcn HSL palette mirrors the [data-skin]
+     token block above for skin-aware shadcn components (DropdownMenu,
+     Card, Dialog, etc.). Activated by `/techstars/*` via TechstarsScopeLock. */
+  [data-skin="techstars"] {
+    --background: 220 12% 4%;          /* near-black, very slight cool */
+    --foreground: 0 0% 100%;            /* pure white */
+    --card: 220 12% 6%;
+    --card-foreground: 0 0% 100%;
+    --popover: 220 12% 4%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 126 58% 52%;            /* Techstars green #3DCC4A */
+    --primary-foreground: 0 0% 0%;
+    --secondary: 220 12% 8%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 220 12% 10%;
+    --muted-foreground: 0 0% 72%;
+    --accent: 126 58% 52%;             /* Techstars green */
+    --accent-foreground: 0 0% 0%;
+    --border: 126 38% 28%;             /* green-tinted border, lifted */
+    --input: 220 12% 8%;
+    --ring: 126 58% 52%;
   }
 
   /* Darktheme — Editorial Noir. Near-black base + warm cream text + warm
