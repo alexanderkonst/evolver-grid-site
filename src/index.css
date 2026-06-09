@@ -2452,12 +2452,35 @@
 [data-skin="darktheme"] [class*="bg-[#d4af37"] {
   background-color: #d4a83a !important;
 }
-[data-skin="darktheme"] [style*="rgba(212,175,55"],
-[data-skin="darktheme"] [style*="rgba(212, 175, 55"] {
+/* Day 91 (Sasha 2026-06-08): `:not(img)` is load-bearing. The rail space
+   icons (JOURNEY/AI OS/ME) carry an inline drop-shadow filter whose string
+   contains the Aurora gold literal rgba(212,175,55). Without :not(img) this
+   attribute-substring rule matched the square <img> (border-radius 0) and
+   painted a hard-edged amber tile behind each icon — the "strange square
+   glow" Sasha flagged. The icons already get their amber tint from the
+   dedicated filter rule above; they must NOT receive a background fill.
+   Exclude img so only true gold-background elements (Path chips, rail
+   indicators) get re-toned. */
+[data-skin="darktheme"] [style*="rgba(212,175,55"]:not(img),
+[data-skin="darktheme"] [style*="rgba(212, 175, 55"]:not(img) {
   background-color: rgba(212, 168, 58, 0.14) !important;
   background-image: none !important;
   border-color: rgba(212, 168, 58, 0.42) !important;
   color: #f0c870 !important;
+}
+
+/* Day 91 (Sasha 2026-06-08): lift inactive rail labels. They inherited
+   rgba(255,255,255,0.3) — ~2:1 contrast on the near-black rail, below AA
+   and reading as "unfinished" (Sasha's anti-dim-nav principle). The ACTIVE
+   label already renders full cream: its button carries an inline
+   background-color token, so the `.liquid-glass [style*="color"]` rule keys
+   on the "color" substring and forces #f0e6d0. Inactive buttons have an
+   empty style attr, so they miss that lift. Target exactly those
+   (`:not([style*="color"])`) and raise to 0.6 cream — clearly legible but
+   still subordinate to the active item. */
+[data-skin="darktheme"] .liquid-glass.h-dvh button.group:not([style*="color"]) span.md\:block,
+[data-skin="darktheme"] .liquid-glass.h-dvh a.group:not([style*="color"]) span.md\:block {
+  color: rgba(240, 230, 208, 0.6) !important;
 }
 [data-skin="darktheme"] [class*="rgba(212,175,55"],
 [data-skin="darktheme"] [class*="rgba(212, 175, 55"] {
@@ -2961,12 +2984,25 @@
 [data-skin="techstars"] [class*="bg-[#d4af37"] {
   background-color: #3dcc4a !important;
 }
-[data-skin="techstars"] [style*="rgba(212,175,55"],
-[data-skin="techstars"] [style*="rgba(212, 175, 55"] {
+/* Day 91 (Sasha 2026-06-08): `:not(img)` — same root cause as the darktheme
+   rule above. The rail icons' inline drop-shadow filter contains the Aurora
+   gold literal, so without this exclusion the rule painted a square GREEN
+   tile behind each icon. Exclude img; true gold-background elements still
+   re-tone. */
+[data-skin="techstars"] [style*="rgba(212,175,55"]:not(img),
+[data-skin="techstars"] [style*="rgba(212, 175, 55"]:not(img) {
   background-color: rgba(61, 204, 74, 0.16) !important;
   background-image: none !important;
   border-color: rgba(61, 204, 74, 0.45) !important;
   color: #3dcc4a !important;
+}
+
+/* Day 91 (Sasha 2026-06-08): inactive-rail-label lift, same mechanism as
+   darktheme (identical near-black rail). Techstars uses cool white, not
+   warm cream. */
+[data-skin="techstars"] .liquid-glass.h-dvh button.group:not([style*="color"]) span.md\:block,
+[data-skin="techstars"] .liquid-glass.h-dvh a.group:not([style*="color"]) span.md\:block {
+  color: rgba(255, 255, 255, 0.62) !important;
 }
 [data-skin="techstars"] [class*="rgba(212,175,55"],
 [data-skin="techstars"] [class*="rgba(212, 175, 55"] {
