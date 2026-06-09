@@ -1321,8 +1321,17 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                     aria-hidden="true"
                     className="absolute inset-0"
                     style={{
-                      background:
-                        "radial-gradient(ellipse 120% 100% at 50% 0%, #f1f5fb 0%, #e5e9f2 45%, #dfe3ec 100%)",
+                      // Day 91 (Sasha 2026-06-08): skin-aware backdrop. The
+                      // Aurora default keeps the calm cool slate→ivory wash.
+                      // Under the dark skins (Aurum / Techstars) the light
+                      // wash was a hard light-leak island behind the frosted
+                      // cards — swap to a near-black gradient so the module
+                      // reads as part of the dark register, not a window.
+                      background: __isDarkthemeShell
+                        ? "radial-gradient(ellipse 120% 100% at 50% 0%, #0b0b10 0%, #07070a 45%, #020203 100%)"
+                        : __isTechstarsShell
+                          ? "radial-gradient(ellipse 120% 100% at 50% 0%, #0a0c0f 0%, #07080a 45%, #02030a 100%)"
+                          : "radial-gradient(ellipse 120% 100% at 50% 0%, #f1f5fb 0%, #e5e9f2 45%, #dfe3ec 100%)",
                     }}
                   />
                 )}
