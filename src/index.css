@@ -2433,6 +2433,38 @@
     0 0 4px -1px rgba(240, 200, 112, 0.55) !important;
 }
 
+/* Day 88 v3 (Sasha 2026-05-30 evening): Aurora gold #d4af37 (rgb 212,175,55)
+   is a SECOND distinct Aurora gold literal hardcoded across the journey-
+   spine (PathPage stage chips, SpacesRail active-tab indicator, JourneyRail
+   step badges, PreviewBanner clickable preview mode). The existing
+   rgba(244,212,114,…) pattern catalog row was missing this sister literal.
+   Workflow critic flagged 4-of-7 surfaces leaking it. Re-tone to noir
+   amber #d4a83a (rgb 212,168,58) at matching alpha:
+     - Solid #d4af37 (Tailwind arbitrary bg-[#d4af37]) → solid noir amber
+     - rgba(212,175,55, X alpha) backgrounds → rgba(212,168,58, X alpha)
+     - rgba(212,175,55, X alpha) borders → noir amber at same alpha
+   Catches Path stages, Dashboard rail, MatchHero JourneyRail, and any
+   future surface that hardcodes the Aurora gold literal. */
+[data-skin="darktheme"] .bg-\[\#d4af37\] {
+  background-color: #d4a83a !important;
+  box-shadow: none !important;
+}
+[data-skin="darktheme"] [class*="bg-[#d4af37"] {
+  background-color: #d4a83a !important;
+}
+[data-skin="darktheme"] [style*="rgba(212,175,55"],
+[data-skin="darktheme"] [style*="rgba(212, 175, 55"] {
+  background-color: rgba(212, 168, 58, 0.14) !important;
+  background-image: none !important;
+  border-color: rgba(212, 168, 58, 0.42) !important;
+  color: #f0c870 !important;
+}
+[data-skin="darktheme"] [class*="rgba(212,175,55"],
+[data-skin="darktheme"] [class*="rgba(212, 175, 55"] {
+  background-color: rgba(212, 168, 58, 0.14) !important;
+  border-color: rgba(212, 168, 58, 0.42) !important;
+}
+
 /* Rail spine right-edge gradient — soften to candleflame amber. */
 [data-skin="darktheme"] .liquid-glass.h-dvh > span[aria-hidden][class*="absolute"][class*="top-0"][class*="right-0"] {
   background-image:

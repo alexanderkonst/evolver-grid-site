@@ -102,7 +102,15 @@ const PreviewBanner = () => {
     );
   }
 
-  // preview mode — clickable exit (Navy+Gold internal preview)
+  // preview mode — clickable exit (Navy+Gold + Darktheme internal previews)
+  // Day 88 v3 (Sasha 2026-05-30): skin-aware color so darktheme renders
+  // the noir-amber #d4a83a instead of the Aurora gold #d4af37 it inherited
+  // by default. The Aurora gold leaked into the noir register and was
+  // visible across every page that mounted the banner.
+  const isDarkthemeBanner = skin === "darktheme";
+  const accentColor = isDarkthemeBanner ? "#d4a83a" : "#d4af37";
+  const accentBorder = isDarkthemeBanner ? "rgba(212, 168, 58, 0.42)" : "rgba(212, 175, 55, 0.42)";
+  const bannerBg = isDarkthemeBanner ? "rgba(2, 2, 4, 0.88)" : "rgba(10, 22, 40, 0.88)";
   return (
     <button
       type="button"
@@ -112,9 +120,9 @@ const PreviewBanner = () => {
       }}
       className="fixed bottom-4 right-4 z-[9999] inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-medium transition-all hover:scale-[1.03] active:scale-[0.98]"
       style={{
-        backgroundColor: "rgba(10, 22, 40, 0.88)",
-        color: "#d4af37",
-        border: "1px solid rgba(212, 175, 55, 0.42)",
+        backgroundColor: bannerBg,
+        color: accentColor,
+        border: `1px solid ${accentBorder}`,
         boxShadow:
           "0 10px 30px -8px rgba(0,0,0,0.45), inset 0 1px 1px rgba(255,255,255,0.12)",
         backdropFilter: "blur(14px) saturate(160%)",
@@ -123,7 +131,7 @@ const PreviewBanner = () => {
       title="Exit preview and return to Aurora"
       aria-label="Exit preview and return to Aurora"
     >
-      <span aria-hidden="true" style={{ color: "#d4af37" }}>
+      <span aria-hidden="true" style={{ color: accentColor }}>
         ✦
       </span>
       <span>{config.label}</span>
