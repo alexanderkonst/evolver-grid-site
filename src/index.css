@@ -5321,6 +5321,84 @@ All colors MUST be HSL.
   }
 }
 
+/* ──────────────────────────────────────────────────────────────────
+   EQUILIBRIUM under dark skins (Aurum / Techstars) — Day 91 (Sasha 2026-06-08)
+   The Equilibrium module is the platform's largest authored surface and
+   it predates the dark skins — it hardcodes Aurora navy-on-frost across
+   ~20 sub-components: 136× `text-[#0a1628]` (navy text), ~60× `bg-white/*`
+   (frosted card fills), 36× `border-[#0a1628]` (navy hairlines). Under
+   Aurum / Techstars those render as a bright light-leak island with
+   near-invisible navy text. We re-tone the module's hardcoded literals
+   to the active skin tokens via attribute-substring selectors scoped to
+   `.eq-v2-page`, so the rest of the app (Aurora) is untouched.
+
+   The route's light backdrop gradient is handled separately in
+   GameShellV2 (skin-aware inline branch). The outer liquid-glass cards
+   are handled by the global [data-skin] .liquid-glass !important rules;
+   here we re-assert them under .eq-v2-page (which re-scopes liquid-glass
+   to a near-white frost at equal specificity) plus fix the INNER
+   surfaces / text / borders the module hardcodes.
+   ────────────────────────────────────────────────────────────── */
+
+/* Navy text → skin cream/white. Headings (h1/h2) get the brighter
+   primary token; body copy gets the body token. Catches the /85 /70 /50
+   opacity variants too (they all contain the `text-[#0a1628]` substring). */
+[data-skin="darktheme"] .eq-v2-page [class*="text-[#0a1628]"],
+[data-skin="techstars"] .eq-v2-page [class*="text-[#0a1628]"] {
+  color: var(--skin-text-body) !important;
+}
+[data-skin="darktheme"] .eq-v2-page h1[class*="text-[#0a1628]"],
+[data-skin="darktheme"] .eq-v2-page h2[class*="text-[#0a1628]"],
+[data-skin="techstars"] .eq-v2-page h1[class*="text-[#0a1628]"],
+[data-skin="techstars"] .eq-v2-page h2[class*="text-[#0a1628]"] {
+  color: var(--skin-text-primary) !important;
+}
+
+/* Frosted white card fills (task rows, chips, buttons) → subtle
+   dark-glass lift. A faint light-on-dark overlay reads as proper dark
+   glass regardless of the original /85 /60 /20 opacity tier, and the
+   re-toned cream text sits on it legibly. */
+[data-skin="darktheme"] .eq-v2-page [class*="bg-white"],
+[data-skin="techstars"] .eq-v2-page [class*="bg-white"] {
+  background-color: rgba(255, 255, 255, 0.07) !important;
+}
+
+/* Navy tint surfaces (bg-[#0a1628]/5 etc.) → faint skin-accent tint. */
+[data-skin="darktheme"] .eq-v2-page [class*="bg-[#0a1628]"] {
+  background-color: rgba(212, 168, 58, 0.08) !important;
+}
+[data-skin="techstars"] .eq-v2-page [class*="bg-[#0a1628]"] {
+  background-color: rgba(61, 204, 74, 0.08) !important;
+}
+
+/* Navy hairlines → skin accent hairline. */
+[data-skin="darktheme"] .eq-v2-page [class*="border-[#0a1628]"] {
+  border-color: rgba(212, 168, 58, 0.22) !important;
+}
+[data-skin="techstars"] .eq-v2-page [class*="border-[#0a1628]"] {
+  border-color: rgba(61, 204, 74, 0.22) !important;
+}
+
+/* Re-assert the inner frosted cards dark. `.eq-v2-page .liquid-glass`
+   (rgba(252,253,255,.62), no !important) is beaten by the global
+   [data-skin] .liquid-glass !important rule already, but the .eq-v2-page
+   scope also bumps blur/saturate — re-state the dark fill + hairline here
+   so the cards are unambiguously in-register. */
+[data-skin="darktheme"] .eq-v2-page .liquid-glass,
+[data-skin="darktheme"] .eq-v2-page .liquid-glass-strong {
+  background: rgba(12, 12, 18, 0.74) !important;
+  border-color: rgba(212, 168, 58, 0.22) !important;
+}
+[data-skin="techstars"] .eq-v2-page .liquid-glass,
+[data-skin="techstars"] .eq-v2-page .liquid-glass-strong {
+  background: rgba(8, 10, 14, 0.74) !important;
+  border-color: rgba(61, 204, 74, 0.22) !important;
+}
+
+/* The "Equilibrium" title halo is white (rgba 255 glow) — luminous on
+   the cream-now skin text over near-black, keep it. The WatchModeToggle
+   active pill + InfoPopover inherit from the re-tones above. */
+
 /* Brand-mark alive tell — Day 48 iter 7 (Sasha):
    The rail's torus/wordmark needs a subtle "living" quality so the
    nav column doesn't feel dead. Two animations, used separately:
