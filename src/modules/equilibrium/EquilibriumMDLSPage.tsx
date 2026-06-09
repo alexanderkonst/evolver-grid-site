@@ -291,6 +291,21 @@ export const EquilibriumMDLSPage = () => {
           </MattePolymerCard>
         )}
 
+        {/* Focus — mirrors the V2 ACT-mode Focus card (Sasha
+            2026-06-08). Same `moon_focus_text` source as the ATTUNE
+            Lunar Focus pill above. Sits between Role and Strategy as
+            a North Star row. MDLS parity with EquilibriumV2Page. */}
+        {!isAttune && (
+          <MattePolymerCard variant="translucent" id={SECTION_IDS.focus}>
+            <MoonFocusInput
+              value={eq.state?.moon_focus_text ?? null}
+              loading={eq.loading}
+              onSave={eq.setMoonFocus}
+              variant="wide"
+            />
+          </MattePolymerCard>
+        )}
+
         {!isAttune && (
           <MattePolymerCard variant="translucent" id={SECTION_IDS.strategies}>
             <div className="flex items-center gap-2">
