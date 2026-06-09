@@ -59,6 +59,13 @@ const SKIN_BANNER_CONFIG: Partial<
     mode: "disclaimer",
     notAffiliatedWith: "planetir.org",
   },
+  // Day 91 (Sasha 2026-06-08): Techstars white-label demo for the global
+  // accelerator brand. Same disclaimer rule as NS / Daouniverse / Planetir —
+  // a route-scoped community demo, not a clickable preview.
+  techstars: {
+    mode: "disclaimer",
+    notAffiliatedWith: "techstars.com",
+  },
   // Day 88 (Sasha 2026-05-30): darktheme is the platform's canonical
   // dark register, NOT a third-party demo. Use the clickable preview
   // mode (same as navy-gold) so the visitor can flip back to Aurora —

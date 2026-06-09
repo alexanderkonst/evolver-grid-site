@@ -154,6 +154,7 @@ This table is the single source of truth for what's in production. **Update one 
 | 5 | **Daouniverse** (LATAM Impact) | `daouniverse` | `/daouniverse/*` | [latamimpact.io](https://latamimpact.io) | Playfair Display | Inter | Solid LATAM yellow `#d4a83a`, dark text | LATAM mountainscape (Mux, darkened + desaturated) | Day 84 (2026-05-25) | ✓ Production |
 | 6 | **Planetir** | `planetir` | `/planetir/*` | [planetir.org](https://planetir.org) | Lexend | Inter | Solid white pill, dark text | Sun-pierced pine grove (Mux, light filter) | Day 84 evening (2026-05-25) | ✓ Production |
 | 7 | **Darktheme** (Editorial Noir) | `darktheme` | `/darktheme/*` | — (canonical platform dark register, authored from scratch) | Cormorant Garamond | Montserrat | Amber-glass pill, dark text | (none — Editorial Noir is photo-bg-less by design; near-black + amber radial glow) | Day 88 (2026-05-30) | ✓ Production |
+| 8 | **Techstars** | `techstars` | `/techstars/*` | [techstars.com](https://techstars.com) | Inter (near-match for paid Suisse Intl) | Inter | Solid Techstars green `#3DCC4A` pill, black text | Startup Weekend group photo (Mux, brightness 0.62 + sat 0.78 heavy darken) | Day 91 (2026-06-08) | ✓ Production |
 
 ### How to add a row
 
@@ -169,9 +170,9 @@ When shipping skin N+1:
 
 ### Skin family at a glance
 
-- **4 production white-label community skins**: NS, Daouniverse, Karime, Planetir
-- **5 distinct primary-CTA dialects** in use: dark navy glass+halo (Aurora) / solid black (NS) / solid LATAM yellow (Daouniverse) / solid white (Planetir) / **amber-glass pill (Darktheme — candleflame on near-black)** — Karime uses a warm-brown variant of the Aurora dialect
-- **4 production Mux video backgrounds**: cosmic mountain (Aurora), LATAM mountainscape (Daouniverse), Moroccan-sunset interior (Karime), Planetir pine grove. NS + Darktheme are the only video-less production skins (editorial flat by design).
+- **5 production white-label community skins**: NS, Daouniverse, Karime, Planetir, Techstars
+- **6 distinct primary-CTA dialects** in use: dark navy glass+halo (Aurora) / solid black (NS) / solid LATAM yellow (Daouniverse) / solid white (Planetir) / amber-glass pill (Darktheme) / **solid bright Techstars green (Techstars — first non-Aurora CTA with a hue completely outside the warm-amber family)** — Karime uses a warm-brown variant of the Aurora dialect
+- **5 production Mux video backgrounds**: cosmic mountain (Aurora), LATAM mountainscape (Daouniverse), Moroccan-sunset interior (Karime), Planetir pine grove, Techstars Startup Weekend group photo (heavy-darkened). NS + Darktheme are the only video-less production skins (editorial flat by design).
 - **2 internal-only skins**: Navy+Gold (preview-only, parked) and Aurora-default (canonical). **Darktheme is live-on-prod at `/darktheme/*`** with a clickable preview-mode banner (not a "Demo · not affiliated" disclaimer — it IS the platform's own dark register, not a community demo). Treated as production for the route but doesn't need a disclaimer because there's no third-party brand to disclaim.
 - **First skin authored from scratch (no source brand)**: Darktheme (Day 88). Validates the playbook for non-white-label authorship — inventory by design judgment instead of brand extraction.
 
