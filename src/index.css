@@ -5340,17 +5340,23 @@ All colors MUST be HSL.
    surfaces / text / borders the module hardcodes.
    ────────────────────────────────────────────────────────────── */
 
-/* Navy text → skin cream/white. Headings (h1/h2) get the brighter
-   primary token; body copy gets the body token. Catches the /85 /70 /50
-   opacity variants too (they all contain the `text-[#0a1628]` substring). */
-[data-skin="darktheme"] .eq-v2-page [class*="text-[#0a1628]"],
-[data-skin="techstars"] .eq-v2-page [class*="text-[#0a1628]"] {
+/* Navy text → skin cream/white. NOTE: this rule is GLOBAL (not scoped to
+   .eq-v2-page) because `text-[#0a1628]` is the platform's DEFAULT body/
+   heading color, hardcoded across many pre-skin pages (Zone of Genius
+   entry + assessment, dashboard, etc.) — on near-black it renders
+   invisible everywhere, not just on Equilibrium. Globally re-toning it is
+   safe: no dark-skin surface uses #0a1628 as text on a light fill (the
+   amber/green primary CTAs use #0a0a0c / #000). Headings (h1/h2) get the
+   brighter primary token; body copy gets the body token. Catches the
+   /85 /70 /50 opacity variants too (all contain the substring). */
+[data-skin="darktheme"] [class*="text-[#0a1628]"],
+[data-skin="techstars"] [class*="text-[#0a1628]"] {
   color: var(--skin-text-body) !important;
 }
-[data-skin="darktheme"] .eq-v2-page h1[class*="text-[#0a1628]"],
-[data-skin="darktheme"] .eq-v2-page h2[class*="text-[#0a1628]"],
-[data-skin="techstars"] .eq-v2-page h1[class*="text-[#0a1628]"],
-[data-skin="techstars"] .eq-v2-page h2[class*="text-[#0a1628]"] {
+[data-skin="darktheme"] h1[class*="text-[#0a1628]"],
+[data-skin="darktheme"] h2[class*="text-[#0a1628]"],
+[data-skin="techstars"] h1[class*="text-[#0a1628]"],
+[data-skin="techstars"] h2[class*="text-[#0a1628]"] {
   color: var(--skin-text-primary) !important;
 }
 
@@ -5361,6 +5367,44 @@ All colors MUST be HSL.
 [data-skin="darktheme"] .eq-v2-page [class*="bg-white"],
 [data-skin="techstars"] .eq-v2-page [class*="bg-white"] {
   background-color: rgba(255, 255, 255, 0.07) !important;
+}
+
+/* Some sub-components (MoonFocusInput FOCUS pill, BirthdayPrompt card,
+   CycleEnergyBar / SolarCycleBar tracks + pills) set their light fill via
+   an inline `style="background: rgba(255,255,255,X)"` rather than a
+   Tailwind class — the class selector above can't reach those. Catch the
+   inline white fills and drop them to a subtle dark-glass frost. Uses
+   background-color (not the shorthand) so it overrides only the fill and
+   leaves any gradient/asset backgrounds intact. */
+[data-skin="darktheme"] .eq-v2-page [style*="rgba(255,255,255"],
+[data-skin="darktheme"] .eq-v2-page [style*="rgba(255, 255, 255"],
+[data-skin="techstars"] .eq-v2-page [style*="rgba(255,255,255"],
+[data-skin="techstars"] .eq-v2-page [style*="rgba(255, 255, 255"] {
+  background-color: rgba(255, 255, 255, 0.09) !important;
+}
+
+/* CycleEnergyBar active-phase pill (lunar/week/zodiac "current" highlight)
+   uses a bright cream→lavender→lilac glass gradient — the brand's "active
+   now" accent. On near-black it reads as a light block. Re-tone to a dark
+   lavender-glass pill so the active phase still pops as a cool accent but
+   sits in the dark register. Lavender glow kept (works under both amber
+   and green skins as a distinct "now" marker); the re-toned cream text
+   from the rule above sits on it legibly. */
+[data-skin="darktheme"] .eq-v2-page [style*="rgba(252, 231, 197"],
+[data-skin="darktheme"] .eq-v2-page [style*="rgba(252,231,197"],
+[data-skin="techstars"] .eq-v2-page [style*="rgba(252, 231, 197"],
+[data-skin="techstars"] .eq-v2-page [style*="rgba(252,231,197"] {
+  background: linear-gradient(
+    135deg,
+    rgba(38, 34, 50, 0.94) 0%,
+    rgba(30, 28, 44, 0.94) 50%,
+    rgba(34, 30, 48, 0.94) 100%
+  ) !important;
+  border-color: rgba(212, 180, 255, 0.42) !important;
+  box-shadow:
+    0 0 24px rgba(212, 180, 255, 0.30),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.16),
+    0 6px 18px rgba(0, 0, 0, 0.55) !important;
 }
 
 /* Navy tint surfaces (bg-[#0a1628]/5 etc.) → faint skin-accent tint. */
