@@ -142,8 +142,13 @@ const eyebrowGold: React.CSSProperties = {
 // computed against parchment, not against bleeding sun-glare. Kept gold
 // hairline + soft shadow so the card still reads as parchment, not as a
 // flat opaque slab.
+// Day 91 (Sasha 2026-06-09): tokenized for Aurum — re-pointed from
+// --skin-card-bg (defined at :root, so its white 0.65 overrode the
+// parchment fallback on Lapis) to --skin-card-fill, which the dark
+// skins alias to their card token and Lapis leaves undefined → the
+// Day-65 parchment 0.92 literal actually fires again on Lapis.
 const parchmentCard: React.CSSProperties = {
-  background: "var(--skin-card-bg, rgba(255, 252, 245, 0.92))",
+  background: "var(--skin-card-fill, rgba(255, 252, 245, 0.92))",
   border: "0.5px solid rgba(212, 175, 55, 0.55)",
   boxShadow:
     "0 0 22px -8px rgba(212, 175, 55, 0.30), 0 16px 40px -20px rgba(10, 22, 40, 0.22)",
@@ -175,13 +180,15 @@ const tertiaryPill: React.CSSProperties = {
   textTransform: "uppercase",
   fontSize: "11px",
   color: "var(--skin-text-primary, #0b2a5a)",
-  background: "rgba(255, 252, 245, 0.85)",
+  // Day 91 (Sasha 2026-06-09): tokenized for Aurum (parchment 0.85
+  // literal stays the Lapis fallback).
+  background: "var(--skin-card-fill, rgba(255, 252, 245, 0.85))",
   border: "0.5px solid rgba(212, 175, 55, 0.45)",
   boxShadow: "0 4px 16px -8px rgba(10, 22, 40, 0.18)",
 };
 
 const navButton: React.CSSProperties = {
-  background: "rgba(255, 252, 245, 0.85)",
+  background: "var(--skin-card-fill, rgba(255, 252, 245, 0.85))",
   border: "0.5px solid rgba(212, 175, 55, 0.40)",
   color: "var(--skin-text-primary, #0b2a5a)",
   boxShadow: "0 4px 16px -8px rgba(10, 22, 40, 0.18)",

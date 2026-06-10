@@ -6,9 +6,10 @@
  * accent + dark navy text. No external lib — HTML5 <audio> underneath,
  * custom controls on top. ~60 lines.
  *
- * Day 91 (Sasha 2026-06-09): tokenized for Aurum — card fill, hairline,
- * and ink read skin tokens with the original literals as fallbacks
- * (Lapis pixel-identical). The gold play button keeps its navy icon:
+ * Day 91 (Sasha 2026-06-09): tokenized for Aurum — card fill and inks
+ * read skin tokens with the original literals as fallbacks (Lapis
+ * pixel-identical; the alias tokens are undefined on Lapis so the
+ * fallback always fires). The gold play button keeps its navy icon:
  * its gradient is hardcoded light-gold in every skin, so dark ink on
  * it stays correct.
  *
@@ -84,7 +85,7 @@ export default function MeditationPlayer({ src, title }: MeditationPlayerProps) 
       style={{
         background:
           "var(--skin-card-fill, linear-gradient(180deg, rgba(255,255,255,0.96), rgba(255,255,255,0.88)))",
-        border: "1px solid var(--skin-card-border, rgba(122, 81, 8, 0.18))",
+        border: "1px solid rgba(122, 81, 8, 0.18)",
         boxShadow:
           "0 10px 28px -10px rgba(10,22,40,0.18), 0 0 24px -4px rgba(244,212,114,0.30), inset 0 1px 0 rgba(255,255,255,0.6)",
         backdropFilter: "blur(10px)",
@@ -136,14 +137,14 @@ export default function MeditationPlayer({ src, title }: MeditationPlayerProps) 
             aria-label="Seek"
             className="w-full h-1.5 rounded-full appearance-none cursor-pointer disabled:cursor-not-allowed"
             style={{
-              background: `linear-gradient(to right, var(--skin-ink-muted, rgba(122, 81, 8, 0.85)) 0%, var(--skin-ink-muted, rgba(122, 81, 8, 0.85)) ${progress}%, var(--skin-card-border, rgba(26,30,58,0.12)) ${progress}%, var(--skin-card-border, rgba(26,30,58,0.12)) 100%)`,
+              background: `linear-gradient(to right, var(--skin-ink-muted, rgba(122, 81, 8, 0.85)) 0%, var(--skin-ink-muted, rgba(122, 81, 8, 0.85)) ${progress}%, rgba(26,30,58,0.12) ${progress}%, rgba(26,30,58,0.12) 100%)`,
               accentColor: "rgba(122, 81, 8, 0.85)",
             }}
           />
           <div
             className="flex justify-between text-[11px] tabular-nums"
             style={{
-              color: "rgba(26,30,58,0.55)",
+              color: "var(--skin-ink-muted, rgba(26,30,58,0.55))",
               fontFamily: "'DM Sans', system-ui, sans-serif",
             }}
           >

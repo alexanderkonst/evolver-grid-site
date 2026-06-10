@@ -407,8 +407,11 @@ const SaveProfileCard = ({ onSuccess }: { onSuccess: () => void }) => {
     // washed out on cream), placeholder opacity 0.40 → 0.55, text size
     // bumped to text-base + medium weight so typed input reads
     // substantial.
+    // Day 91 (Sasha 2026-06-09): tokenized for Aurum — input fill +
+    // placeholder read skin tokens with the Day-61 literals as
+    // fallbacks, so Lapis stays pixel-identical.
     const editorialInputClass =
-        "bg-white/90 border-[1.5px] border-[hsla(228,30%,18%,0.32)] text-[#0a1628] text-base font-medium placeholder:text-[hsla(228,30%,18%,0.55)] focus-visible:ring-2 focus-visible:ring-[hsla(40,70%,55%,0.55)] focus-visible:border-[hsla(40,70%,55%,0.65)]";
+        "bg-[var(--skin-input-fill,rgba(255,255,255,0.9))] border-[1.5px] border-[hsla(228,30%,18%,0.32)] text-[#0a1628] text-base font-medium placeholder:text-[color:var(--skin-ink-muted,hsla(228,30%,18%,0.55))] focus-visible:ring-2 focus-visible:ring-[hsla(40,70%,55%,0.55)] focus-visible:border-[hsla(40,70%,55%,0.65)]";
     // Form labels — bumped weight 500 → 600 so the italic Cormorant
     // labels don't blend into the surrounding cream.
     const editorialLabelStyle = {
@@ -520,10 +523,15 @@ const SaveProfileCard = ({ onSuccess }: { onSuccess: () => void }) => {
                         active tab gets a clear white pill background
                         + subtle gold border so the selected state
                         reads instantly. Pattern matches Shadcn's
-                        default Tabs aesthetic. */}
+                        default Tabs aesthetic.
+                        Day 91 (Sasha 2026-06-09): tokenized for Aurum —
+                        active pill reads --skin-tab-active-bg (same
+                        token Settings.tsx uses) with the white literal
+                        as fallback, so Lapis keeps the exact Day-61
+                        white pill. */}
                     <TabsTrigger
                         value="save"
-                        className="rounded-full min-h-[44px] text-base font-semibold transition-all data-[state=active]:bg-white data-[state=active]:shadow-md"
+                        className="rounded-full min-h-[44px] text-base font-semibold transition-all data-[state=active]:bg-[var(--skin-tab-active-bg,#fff)] data-[state=active]:shadow-md"
                         style={{
                             fontFamily: "'Cormorant Garamond', serif",
                             fontWeight: 600,
@@ -534,7 +542,7 @@ const SaveProfileCard = ({ onSuccess }: { onSuccess: () => void }) => {
                     </TabsTrigger>
                     <TabsTrigger
                         value="return"
-                        className="rounded-full min-h-[44px] text-base font-semibold transition-all data-[state=active]:bg-white data-[state=active]:shadow-md"
+                        className="rounded-full min-h-[44px] text-base font-semibold transition-all data-[state=active]:bg-[var(--skin-tab-active-bg,#fff)] data-[state=active]:shadow-md"
                         style={{
                             fontFamily: "'Cormorant Garamond', serif",
                             fontWeight: 600,
