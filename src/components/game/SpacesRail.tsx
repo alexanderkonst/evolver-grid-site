@@ -5,6 +5,8 @@ import {
     LogOut,
     LogIn,
     MessageCircle,
+    Moon,
+    Sun,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { supabase } from "@/integrations/supabase/client";
@@ -270,7 +272,7 @@ const SpacesRail = ({
     const location = useLocation();
     const navigate = useNavigate();
     const { toast } = useToast();
-    const { skin } = useSkin();
+    const { skin, setSkin } = useSkin();
     const isNS = skin === "network-school";
     const isDao = skin === "daouniverse";
     const isPlanetir = skin === "planetir";
@@ -850,6 +852,62 @@ const SpacesRail = ({
                         settings
                     </span>
                 </button>
+                {/* Day 91 (Sasha 2026-06-09): Lapis/Aurum theme toggle.
+                    Rendered ONLY on the two first-class themes — the
+                    white-label demo scopes (ns/dao/planetir/techstars/
+                    karime) own their look and must not expose a theme
+                    switch. Visible to guests too: the theme is a device
+                    preference, not an account setting. Persists via
+                    setSkin (localStorage); full names + swatches live in
+                    Settings → Appearance. */}
+                {(skin === "lapis" || skin === "aurum") && (
+                    <button
+                        onClick={() => setSkin(skin === "aurum" ? "lapis" : "aurum")}
+                        className={cn(
+                            "flex items-center gap-3 px-3 py-2.5 rounded-2xl transition-all duration-300 w-full",
+                            "justify-center md:justify-start",
+                            "text-white/45 hover:bg-white/[0.04] hover:text-white/80 hover:translate-y-[-1px] active:translate-y-0"
+                        )}
+                        title={skin === "aurum" ? "Switch to Aurum's light sister, Lapis" : "Switch to Aurum, the dark theme"}
+                        aria-label={skin === "aurum" ? "Switch to light theme" : "Switch to dark theme"}
+                    >
+                        {skin === "aurum" ? (
+                            <Sun
+                                className="flex-shrink-0"
+                                aria-hidden="true"
+                                style={{
+                                    width: 22,
+                                    height: 22,
+                                    filter: "drop-shadow(0 0 4px rgba(244, 212, 114, 0.25))",
+                                    opacity: 0.75,
+                                }}
+                            />
+                        ) : (
+                            <Moon
+                                className="flex-shrink-0"
+                                aria-hidden="true"
+                                style={{
+                                    width: 22,
+                                    height: 22,
+                                    filter: "drop-shadow(0 0 4px rgba(244, 212, 114, 0.25))",
+                                    opacity: 0.75,
+                                }}
+                            />
+                        )}
+                        <span
+                            className="hidden md:block truncate"
+                            style={{
+                                fontFamily: "'Cormorant Garamond', serif",
+                                fontWeight: 600,
+                                fontSize: "0.82rem",
+                                letterSpacing: "0.06em",
+                                textTransform: "lowercase",
+                            }}
+                        >
+                            {skin === "aurum" ? "light theme" : "dark theme"}
+                        </span>
+                    </button>
+                )}
                 {(() => {
                     // Hide Log In on pages that are part of the unauthenticated
                     // funnel (landing + ZoG reveal + playbook + path + settings)

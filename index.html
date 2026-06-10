@@ -11,6 +11,29 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#041a2f" />
+
+    <!-- Day 91 (Sasha 2026-06-09): pre-paint theme apply. Without this,
+         a user who persisted the Aurum dark theme paints the Lapis light
+         register first and flips dark only after React mounts: a white
+         flash on every load. Runs before any stylesheet paints. Keep the
+         legacy-slug migration map in sync with SkinContext.tsx
+         (LEGACY_SKIN_MIGRATIONS). Route-prefix scopes (/aurum, /ns, ...)
+         are applied later, synchronously at App.tsx module load, and
+         override this for demo URLs. -->
+    <script>
+      (function () {
+        try {
+          var s = localStorage.getItem("app-skin");
+          if (s === "darktheme") s = "aurum";
+          if (s === "aurora") s = "lapis";
+          var valid = ["lapis", "navy-gold", "network-school", "karime", "daouniverse", "planetir", "aurum", "techstars"];
+          if (s && valid.indexOf(s) !== -1) {
+            document.documentElement.setAttribute("data-skin", s);
+          }
+        } catch (e) { /* private mode etc. - default register applies */ }
+      })();
+    </script>
+
     <title>Find Your Top Talent. Productize It. Find Your People.</title>
     <meta name="description" content="Coordination infrastructure for conscious innovation. From individual genius to ventures to federated communities. Open-source, forkable." />
     <meta name="author" content="Alexander Konstantinov" />

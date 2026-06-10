@@ -40,35 +40,46 @@ interface SkinOption {
     disabled?: boolean;
 }
 
+// Day 91 (Sasha 2026-06-09): the chooser graduates with the two
+// first-class themes — Lapis (light default: navy and gold on cream,
+// the blue stone veined with gold) and Aurum (dark: gold on
+// near-black). Navy+Gold stays internal-only at /preview; the old
+// "Aurora" option was renamed Lapis with the platform-wide slug
+// rename (localStorage migrates automatically).
 const SKIN_OPTIONS: SkinOption[] = [
     {
-        id: "aurora",
-        label: "Aurora",
-        tagline: "Light · pearlescent · rainbow",
+        id: "lapis",
+        label: "Lapis",
+        tagline: "Light · navy and gold on cream",
         swatchBackground:
-            "linear-gradient(135deg, #f5f1e8 0%, #fde2e4 22%, #dbeafe 48%, #bbf7d0 72%, #fef3c7 100%)",
-    },
-    {
-        id: "navy-gold",
-        label: "Navy + Gold",
-        tagline: "Deep navy · gold · editorial dark",
-        // Day 78 (Sasha 2026-05-22): "Coming Soon" gate retired. Navy+Gold
-        // shipped fully alongside the NS skin work (the same token
-        // infrastructure powers all three skins now), and Sasha has been
-        // using it via /preview for weeks. Marking it disabled was a
-        // launch-day caution that's no longer accurate — the tile now
-        // reads as a real, selectable option matching the canonical
-        // platform default.
-        swatchBackground:
-            "linear-gradient(135deg, #04081a 0%, #0a1628 55%, #142244 100%)",
+            "linear-gradient(135deg, #f5f1e8 0%, #ece7da 38%, #ccd6ea 68%, #f3e5c0 100%)",
         swatchOverlay: (
             <span
                 aria-hidden="true"
                 className="absolute inset-0 flex items-center justify-center text-lg"
                 style={{
-                    color: "#d4af37",
+                    color: "#0a1628",
+                    textShadow: "0 0 8px rgba(212,175,55,0.45)",
+                }}
+            >
+                ✦
+            </span>
+        ),
+    },
+    {
+        id: "aurum",
+        label: "Aurum",
+        tagline: "Dark · gold on near-black",
+        swatchBackground:
+            "linear-gradient(135deg, #020203 0%, #0a0a0e 55%, #1c1408 100%)",
+        swatchOverlay: (
+            <span
+                aria-hidden="true"
+                className="absolute inset-0 flex items-center justify-center text-lg"
+                style={{
+                    color: "#d4a83a",
                     textShadow:
-                        "0 0 10px rgba(244,212,114,0.7), 0 0 3px rgba(212,175,55,0.85)",
+                        "0 0 10px rgba(240,200,112,0.7), 0 0 3px rgba(212,168,58,0.85)",
                 }}
             >
                 ✦
@@ -539,18 +550,18 @@ const Settings = () => {
     const navigate = useNavigate();
     const [searchParams, setSearchParams] = useSearchParams();
     const tabParam = searchParams.get("tab");
-    // Day 78 (Sasha 2026-05-22): Appearance tab hidden. The skin picker
-    // is incomplete — Navy+Gold never reached production-quality QA, and
-    // the V1→V8 NS work proved the white-label spine but didn't graduate
-    // an end-user-facing chooser. Component + route param preserved so
-    // re-enabling later is a one-line revert; for now any `?tab=appearance`
-    // visit (e.g. old bookmark) silently lands on Profile.
+    // Day 78 (Sasha 2026-05-22): Appearance tab hidden pending a
+    // production-ready chooser. Day 91 (Sasha 2026-06-09): RE-ENABLED —
+    // the chooser ships with the two first-class themes (Lapis light /
+    // Aurum dark) and the platform-wide dark-theme toggle work.
     const initialTab =
         tabParam === "notifications"
             ? "notifications"
             : tabParam === "export"
                 ? "export"
-                : "profile";
+                : tabParam === "appearance"
+                    ? "appearance"
+                    : "profile";
     const [activeTab, setActiveTab] = useState<string>(initialTab);
 
     const handleTabChange = (tab: string) => {
@@ -654,7 +665,7 @@ const Settings = () => {
                             Profile PDF + future data exports. The visible tabs
                             are now Profile · Notifications · Export. */}
                         <TabsList
-                            className="mb-6 h-auto p-1 rounded-full grid w-full grid-cols-3"
+                            className="mb-6 h-auto p-1 rounded-full grid w-full grid-cols-4"
                             style={{
                                 background: "hsla(228, 30%, 18%, 0.06)",
                                 border: "1px solid var(--skin-card-border, hsla(228, 30%, 18%, 0.10))",
@@ -733,14 +744,9 @@ const Settings = () => {
                                 Export
                             </TabsTrigger>
                             {/* Day 78 (Sasha 2026-05-22): Appearance trigger
-                                hidden. Skin chooser is not user-ready —
-                                Navy+Gold never finished QA, NS skin is
-                                demo-scoped only. Tracked in roadmap as
-                                "Appearance tab — re-enable when skin
-                                chooser is production-ready." Restore by
-                                un-commenting + flipping TabsList back
-                                to grid-cols-3. */}
-                            {/*
+                                hidden pending a production-ready chooser.
+                                Day 91 (Sasha 2026-06-09): RE-ENABLED with
+                                the first-class Lapis/Aurum themes. */}
                             <TabsTrigger
                                 value="appearance"
                                 className={cn(
@@ -763,7 +769,6 @@ const Settings = () => {
                                 <Palette className="w-3.5 h-3.5" />
                                 Appearance
                             </TabsTrigger>
-                            */}
                         </TabsList>
                         <TabsContent value="profile">
                             <ProfileSettingsSection />
