@@ -27,8 +27,14 @@ import {
   useState,
   type ReactNode,
 } from "react";
+import { initialSkinScope } from "@/lib/skinScope";
 
-export type Skin = "aurora" | "navy-gold" | "network-school" | "karime" | "daouniverse" | "planetir" | "darktheme" | "techstars";
+// Day 91 (Sasha 2026-06-09): the two first-class platform themes got
+// their real names — "lapis" (light default, navy-and-gold-on-cream,
+// the blue stone veined with gold) and "aurum" (dark, gold-on-near-
+// black; formerly the route-scoped "darktheme" preview). Legacy slugs
+// stored in localStorage are migrated on read (see getPersistedSkin).
+export type Skin = "lapis" | "navy-gold" | "network-school" | "karime" | "daouniverse" | "planetir" | "aurum" | "techstars";
 
 interface SkinContextValue {
   skin: Skin;
@@ -42,18 +48,44 @@ interface SkinContextValue {
 }
 
 const STORAGE_KEY = "app-skin";
-const VALID_SKINS: Skin[] = ["aurora", "navy-gold", "network-school", "karime", "daouniverse", "planetir", "darktheme", "techstars"];
+const VALID_SKINS: Skin[] = ["lapis", "navy-gold", "network-school", "karime", "daouniverse", "planetir", "aurum", "techstars"];
 
-const readStoredSkin = (): Skin => {
-  if (typeof window === "undefined") return "aurora";
+/** One-time slug migration for choices persisted before the Day 91
+ *  rename. Without this, the VALID_SKINS gate would silently discard
+ *  stored "darktheme" and the user's dark choice would fall back to
+ *  light. The same map is inlined in index.html's pre-paint script —
+ *  keep both in sync. */
+const LEGACY_SKIN_MIGRATIONS: Record<string, Skin> = {
+  aurora: "lapis",
+  darktheme: "aurum",
+};
+
+/** Reads the user's persisted skin (with legacy-slug migration),
+ *  ignoring any route-scoped temporary override. Exported so surfaces
+ *  like PreviewBanner's Exit can restore the user's actual choice
+ *  instead of hard-resetting to the default. */
+export const getPersistedSkin = (): Skin => {
+  if (typeof window === "undefined") return "lapis";
   try {
-    const stored = window.localStorage.getItem(STORAGE_KEY);
-    if (stored && VALID_SKINS.includes(stored as Skin)) return stored as Skin;
+    const raw = window.localStorage.getItem(STORAGE_KEY);
+    const stored = raw && LEGACY_SKIN_MIGRATIONS[raw] ? LEGACY_SKIN_MIGRATIONS[raw] : raw;
+    if (stored && VALID_SKINS.includes(stored as Skin)) {
+      if (raw !== stored) {
+        try {
+          window.localStorage.setItem(STORAGE_KEY, stored);
+        } catch {
+          // ignore — migration retries next read
+        }
+      }
+      return stored as Skin;
+    }
   } catch {
     // localStorage unavailable (e.g. private mode) — fall through.
   }
-  return "aurora";
+  return "lapis";
 };
+
+const readStoredSkin = getPersistedSkin;
 
 const applySkinToDocument = (skin: Skin) => {
   if (typeof document === "undefined") return;
@@ -61,17 +93,29 @@ const applySkinToDocument = (skin: Skin) => {
 };
 
 const SkinContext = createContext<SkinContextValue>({
-  skin: "aurora",
+  skin: "lapis",
   setSkin: () => {},
   pushTemporarySkin: () => () => {},
 });
 
 export const SkinProvider = ({ children }: { children: ReactNode }) => {
-  const [skin, setSkinState] = useState<Skin>(() => readStoredSkin());
+  // Day 91: initial state is seeded from the route scope when one is
+  // active (/aurum, /ns, /planetir, …). Previously it started from the
+  // PERSISTED skin, so on scoped routes the provider's mount effect
+  // would re-apply the stale persisted value post-paint (after the
+  // child ScopeLock had already pushed the scope skin) — a momentary
+  // attr flip-flop that becomes a visible dark↔light blink once dark
+  // is persistable. Seeding from the scope kills the flip-flop.
+  const [skin, setSkinState] = useState<Skin>(
+    () => (initialSkinScope?.skin as Skin | undefined) ?? readStoredSkin()
+  );
 
-  // The "user's choice" — the skin they'd have if no /preview route was
-  // forcing an override. Used to restore after a temporary override.
-  const persistedSkinRef = useRef<Skin>(skin);
+  // The "user's choice" — the skin they'd have if no route scope or
+  // /preview push was forcing an override. Used to restore after a
+  // temporary override. Deliberately read from storage (NOT from the
+  // scope-seeded state above) so the restore path returns to the
+  // user's actual persisted theme.
+  const persistedSkinRef = useRef<Skin>(readStoredSkin());
 
   // Apply to <html> whenever skin changes
   useEffect(() => {

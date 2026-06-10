@@ -20,7 +20,8 @@ import PreviewBanner from "@/components/skin/PreviewBanner";
 import NSScopeLock from "@/components/skin/NSScopeLock";
 import DaouniverseScopeLock from "@/components/skin/DaouniverseScopeLock";
 import PlanetirScopeLock from "@/components/skin/PlanetirScopeLock";
-import DarkthemeScopeLock from "@/components/skin/DarkthemeScopeLock";
+import AurumScopeLock from "@/components/skin/AurumScopeLock";
+import { initialSkinScope } from "@/lib/skinScope";
 import TechstarsScopeLock from "@/components/skin/TechstarsScopeLock";
 import MusicPlayer from "@/components/MusicPlayer";
 // Day 58+ (Sasha 2026-05-03): App-root mount for the SoundCloud
@@ -269,27 +270,19 @@ const queryClient = new QueryClient();
  *
  * Day 84 (Sasha 2026-05-25): generalized from /ns-only to a prefix
  * table so additional community skins can be added by one row.
+ *
+ * Day 91 (Sasha 2026-06-09): the table + detection moved to
+ * `src/lib/skinScope.ts` so GameShellV2 can key demo-only behavior
+ * (full rail for guests) on ROUTE SCOPE instead of skin value — a
+ * user who merely persisted the Aurum dark theme must not inherit
+ * demo-surface gating. This file just re-exports the scope flags.
  */
-const SKIN_PREFIXES: { prefix: string; skin: string }[] = [
-  { prefix: "/ns", skin: "network-school" },
-  { prefix: "/daouniverse", skin: "daouniverse" },
-  { prefix: "/planetir", skin: "planetir" },
-  { prefix: "/darktheme", skin: "darktheme" },
-  { prefix: "/techstars", skin: "techstars" },
-];
-const activeSkinScope =
-  typeof window !== "undefined"
-    ? SKIN_PREFIXES.find(
-        ({ prefix }) =>
-          window.location.pathname === prefix ||
-          window.location.pathname.startsWith(prefix + "/")
-      )
-    : undefined;
+const activeSkinScope = initialSkinScope;
 const skinBasename = activeSkinScope?.prefix;
 const isNSScope = activeSkinScope?.skin === "network-school";
 const isDaouniverseScope = activeSkinScope?.skin === "daouniverse";
 const isPlanetirScope = activeSkinScope?.skin === "planetir";
-const isDarkthemeScope = activeSkinScope?.skin === "darktheme";
+const isAurumScope = activeSkinScope?.skin === "aurum";
 const isTechstarsScope = activeSkinScope?.skin === "techstars";
 if (typeof document !== "undefined" && activeSkinScope) {
   document.documentElement.setAttribute("data-skin", activeSkinScope.skin);
@@ -336,7 +329,7 @@ const App = () => (
           {isNSScope && <NSScopeLock />}
           {isDaouniverseScope && <DaouniverseScopeLock />}
           {isPlanetirScope && <PlanetirScopeLock />}
-          {isDarkthemeScope && <DarkthemeScopeLock />}
+          {isAurumScope && <AurumScopeLock />}
           {isTechstarsScope && <TechstarsScopeLock />}
           <SiteLogo />
           <TitleManager />

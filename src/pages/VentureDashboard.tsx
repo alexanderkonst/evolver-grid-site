@@ -119,21 +119,24 @@ const formatCurrency = (v: number) => (v >= 1000 ? `$${(v / 1000).toFixed(1)}K` 
 
 /** Resolve skin-aware chart palette by reading the active <html data-skin>. */
 const useSkinChartPalette = () => {
-  const [skin, setSkin] = useState<"aurora" | "navy-gold">(() => {
-    if (typeof document === "undefined") return "aurora";
-    return (document.documentElement.dataset.skin as any) || "aurora";
+  const [skin, setSkin] = useState<"lapis" | "navy-gold" | "aurum">(() => {
+    if (typeof document === "undefined") return "lapis";
+    return (document.documentElement.dataset.skin as any) || "lapis";
   });
 
   useEffect(() => {
     if (typeof document === "undefined") return;
     const obs = new MutationObserver(() => {
-      setSkin((document.documentElement.dataset.skin as any) || "aurora");
+      setSkin((document.documentElement.dataset.skin as any) || "lapis");
     });
     obs.observe(document.documentElement, { attributes: true, attributeFilter: ["data-skin"] });
     return () => obs.disconnect();
   }, []);
 
-  const isDark = skin === "navy-gold";
+  // Day 91 (Sasha 2026-06-09): aurum added — persisted-dark users were
+  // getting the LIGHT chart palette (near-invisible navy ticks on a
+  // near-black page) because only navy-gold counted as dark.
+  const isDark = skin === "navy-gold" || skin === "aurum";
   return {
     tick: isDark ? "rgba(245,241,232,0.78)" : "rgba(11,42,90,0.72)",
     grid: isDark ? "rgba(212,175,55,0.10)" : "rgba(26,30,58,0.10)",

@@ -22,7 +22,7 @@
  * one row, no branching logic.
  */
 
-import { useSkin, type Skin } from "@/contexts/SkinContext";
+import { getPersistedSkin, useSkin, type Skin } from "@/contexts/SkinContext";
 import { useNavigate } from "react-router-dom";
 
 type DisclaimerConfig = {
@@ -66,14 +66,13 @@ const SKIN_BANNER_CONFIG: Partial<
     mode: "disclaimer",
     notAffiliatedWith: "techstars.com",
   },
-  // Day 88 (Sasha 2026-05-30): darktheme is the platform's canonical
-  // dark register, NOT a third-party demo. Use the clickable preview
-  // mode (same as navy-gold) so the visitor can flip back to Aurora —
-  // the disclaimer mode would falsely imply this is a community demo.
-  darktheme: {
-    mode: "preview",
-    label: "Dark theme preview",
-  },
+  // Day 88 → Day 91: the dark register graduated from a route-scoped
+  // "Dark theme preview" chip to the first-class AURUM theme. A user
+  // who picks Aurum in Settings must NOT carry preview chrome, and the
+  // /aurum (+ legacy /darktheme) demo route needs no disclaimer either:
+  // it's the platform's own theme, with no third-party brand to
+  // disclaim. No config row = handled by the first-class early return
+  // below.
   karime: { mode: "hidden" },
   "navy-gold": {
     mode: "preview",
@@ -85,7 +84,9 @@ const PreviewBanner = () => {
   const { skin, setSkin } = useSkin();
   const navigate = useNavigate();
 
-  if (skin === "aurora") return null;
+  // Lapis and Aurum are the two first-class platform themes — neither
+  // is a preview or a demo, so neither carries a banner (Day 91).
+  if (skin === "lapis" || skin === "aurum") return null;
 
   const config = SKIN_BANNER_CONFIG[skin];
   if (!config || config.mode === "hidden") return null;
@@ -109,20 +110,19 @@ const PreviewBanner = () => {
     );
   }
 
-  // preview mode — clickable exit (Navy+Gold + Darktheme internal previews)
-  // Day 88 v3 (Sasha 2026-05-30): skin-aware color so darktheme renders
-  // the noir-amber #d4a83a instead of the Aurora gold #d4af37 it inherited
-  // by default. The Aurora gold leaked into the noir register and was
-  // visible across every page that mounted the banner.
-  const isDarkthemeBanner = skin === "darktheme";
-  const accentColor = isDarkthemeBanner ? "#d4a83a" : "#d4af37";
-  const accentBorder = isDarkthemeBanner ? "rgba(212, 168, 58, 0.42)" : "rgba(212, 175, 55, 0.42)";
-  const bannerBg = isDarkthemeBanner ? "rgba(2, 2, 4, 0.88)" : "rgba(10, 22, 40, 0.88)";
+  // preview mode — clickable exit (Navy+Gold internal preview only,
+  // since Day 91 moved the dark register to first-class Aurum).
+  const accentColor = "#d4af37";
+  const accentBorder = "rgba(212, 175, 55, 0.42)";
+  const bannerBg = "rgba(10, 22, 40, 0.88)";
   return (
     <button
       type="button"
       onClick={() => {
-        setSkin("aurora");
+        // Day 91: restore the user's PERSISTED theme instead of
+        // hard-resetting to the light default — an Aurum user touring
+        // Navy+Gold must get Aurum back, not Lapis.
+        setSkin(getPersistedSkin());
         navigate("/");
       }}
       className="fixed bottom-4 right-4 z-[9999] inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-medium transition-all hover:scale-[1.03] active:scale-[0.98]"
@@ -135,8 +135,8 @@ const PreviewBanner = () => {
         backdropFilter: "blur(14px) saturate(160%)",
         WebkitBackdropFilter: "blur(14px) saturate(160%)",
       }}
-      title="Exit preview and return to Aurora"
-      aria-label="Exit preview and return to Aurora"
+      title="Exit preview and return to your theme"
+      aria-label="Exit preview and return to your theme"
     >
       <span aria-hidden="true" style={{ color: accentColor }}>
         ✦

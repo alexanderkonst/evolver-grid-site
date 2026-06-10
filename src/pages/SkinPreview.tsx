@@ -32,18 +32,23 @@ import { Navigate } from "react-router-dom";
 import { useSkin } from "@/contexts/SkinContext";
 
 const SkinPreview = () => {
-  const { setSkin } = useSkin();
+  const { pushTemporarySkin } = useSkin();
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
-    setSkin("navy-gold");
+    // Day 91 (Sasha 2026-06-09): switched setSkin → pushTemporarySkin.
+    // setSkin PERSISTED navy-gold to localStorage, silently overwriting
+    // the user's saved Lapis/Aurum choice. The preview is session-only
+    // now; the PreviewBanner Exit (or any reload) restores the
+    // persisted theme.
+    pushTemporarySkin("navy-gold");
     // Defer the navigate to the next frame so the skin flip has
     // committed to the DOM (data-skin attribute + localStorage) before
     // the route changes. Otherwise the landing might first paint in
     // Aurora for one tick and then re-render as Navy+Gold.
     const raf = requestAnimationFrame(() => setReady(true));
     return () => cancelAnimationFrame(raf);
-  }, [setSkin]);
+  }, [pushTemporarySkin]);
 
   if (!ready) return null;
   return <Navigate to="/" replace />;

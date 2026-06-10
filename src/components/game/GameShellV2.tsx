@@ -24,6 +24,11 @@ import planetirLogoMark from "@/assets/planetir-logo.png";
 // Day 91 (Sasha 2026-06-08): Techstars wordmark for mobile pill.
 import techstarsLogoMark from "@/assets/techstars-logo.png";
 import { useSkin } from "@/contexts/SkinContext";
+// Day 91 (Sasha 2026-06-09): route-scope detection for demo-only
+// behavior (full guest rail on /aurum and the white-label prefixes).
+// Skin VALUE no longer implies demo scope now that Aurum is a
+// persistable user theme — see __isFullRailScope below.
+import { initialSkinScope } from "@/lib/skinScope";
 // Day 80 Wave 2.11: useEntryPath import retired — the video background
 // now checks the URL directly at mount (see comment in MuxVideoBackground
 // below) so sessionStorage-cached match flags don't poison fresh loads.
@@ -353,12 +358,14 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
     // skin-aware swap has to be explicit here too.
     const __isDaoShell = __spaceShipSkin === "daouniverse";
     const __isPlanetirShell = __spaceShipSkin === "planetir";
-    // Day 88 (Sasha 2026-05-30): darktheme is the platform's canonical
-    // dark skin (sister to Aurora). Mobile-pill brand glyph still shows
-    // the FYTT torus — no per-community asset swap. The mobile content-
-    // scroll bg fix DOES apply (Aurora cream wash → transparent so the
-    // body bg's near-black + amber-radial shows through).
-    const __isDarkthemeShell = __spaceShipSkin === "darktheme";
+    // Day 88 (Sasha 2026-05-30): the platform's canonical dark skin
+    // (sister to Lapis). Day 91: renamed darktheme → aurum with its
+    // graduation to a first-class user-selectable theme. Mobile-pill
+    // brand glyph still shows the FYTT torus — no per-community asset
+    // swap. The mobile content-scroll bg fix DOES apply (Lapis cream
+    // wash → transparent so the body bg's near-black + amber-radial
+    // shows through).
+    const __isAurumShell = __spaceShipSkin === "aurum";
     // Day 91 (Sasha 2026-06-08): techstars white-label demo. Same mobile
     // content-scroll rule (Aurora cream wash → transparent so the Mux
     // photo bg shows through), same full-rail inclusion.
@@ -1149,12 +1156,20 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
     // see the depth of the offering, not just a JOURNEY chip. Aurora's
     // hide-non-public-for-guests stays for the canonical funnel since
     // the funnel pivots on the single JOURNEY action.
+    // Day 91 (Sasha 2026-06-09): aurum dropped from the SKIN-VALUE list.
+    // Now that Aurum is a persistable user theme, keying full-rail on
+    // the skin value would show logged-out guests on the CANONICAL
+    // landing the full rail just because they prefer dark — undoing the
+    // Day 79 guest tightening. The /aurum (+ legacy /darktheme) DEMO
+    // route still gets the full rail via the route-scope check below.
+    // The white-label slugs stay value-keyed: they only ever occur
+    // under their route scopes (never persistable via setSkin).
     const __isFullRailScope =
         __spaceShipSkin === "planetir" ||
         __spaceShipSkin === "daouniverse" ||
         __spaceShipSkin === "network-school" ||
-        __spaceShipSkin === "darktheme" ||
         __spaceShipSkin === "techstars" ||
+        initialSkinScope?.skin === "aurum" ||
         location.pathname.startsWith("/build/karime");
 
     // Day 79 (Sasha 2026-05-22): AI OS gate applies to guests too.
@@ -1306,7 +1321,15 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                 Pane 3 wash sits inside <main> and covers the video
                 only in the content column on working routes. */}
             <div className="fixed inset-0 z-0">
-                {!suppressShellBackground && <MuxVideoBackground />}
+                {/* Day 91 (Sasha 2026-06-09): under Aurum the Mux video
+                    is suppressed at MOUNT, not just hidden by CSS — the
+                    old route-scoped preview kept streaming HLS behind a
+                    display:none, which a persistable theme would inflict
+                    on every dark user's bandwidth. `__spaceShipSkin` is
+                    reactive (useSkin), so toggling Aurum → Lapis mounts
+                    the video fresh. The [data-skin="aurum"] video-kill
+                    CSS stays as belt-and-suspenders. */}
+                {!suppressShellBackground && __spaceShipSkin !== "aurum" && <MuxVideoBackground />}
                 {/*
                   Equilibrium clean backdrop (Sasha 2026-05-20). When
                   the Mux video is suppressed for /build/equilibrium,
@@ -1327,7 +1350,7 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                       // wash was a hard light-leak island behind the frosted
                       // cards — swap to a near-black gradient so the module
                       // reads as part of the dark register, not a window.
-                      background: __isDarkthemeShell
+                      background: __isAurumShell
                         ? "radial-gradient(ellipse 120% 100% at 50% 0%, #0b0b10 0%, #07070a 45%, #020203 100%)"
                         : __isTechstarsShell
                           ? "radial-gradient(ellipse 120% 100% at 50% 0%, #0a0c0f 0%, #07080a 45%, #02030a 100%)"
@@ -1911,8 +1934,8 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                                             // Same lesson for planetir — body
                                             // forest gradient through.
                                             ? "transparent"
-                                            : __isDarkthemeShell
-                                                // Same again for darktheme —
+                                            : __isAurumShell
+                                                // Same again for aurum —
                                                 // body's near-black + amber-
                                                 // radial through.
                                                 ? "transparent"

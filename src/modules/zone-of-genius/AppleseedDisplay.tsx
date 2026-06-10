@@ -195,10 +195,12 @@ const AppleseedDisplay = ({
     // existing three-options layout unchanged.
     const { path: entryPath } = useEntryPath();
     const isMatchPath = entryPath === "match";
-    // On Navy+Gold the light-cream reveal card reads as a bright slab on
-    // dark panel. Use the hero's built-in `darkMode` palette (liquid-glass
-    // body + cream text) so the card stays in the skin's family.
-    const useDarkHero = skin === "navy-gold";
+    // On the dark skins the light-cream reveal card reads as a bright
+    // slab on dark panel. Use the hero's built-in `darkMode` palette
+    // (liquid-glass body + cream text) so the card stays in the skin's
+    // family. Day 91 (Sasha 2026-06-09): aurum joins navy-gold now that
+    // dark is a persistable first-class theme.
+    const useDarkHero = skin === "navy-gold" || skin === "aurum";
 
     // Email gate state
     const [email, setEmail] = useState('');

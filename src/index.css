@@ -193,7 +193,7 @@
    ========================================================================== */
 
 :root,
-[data-skin="aurora"] {
+[data-skin="lapis"] {
   /* ── Text ──
      Day 48 (Sasha): primary shifted from near-black (#0a1628) to a
      saturated marine navy (#0b2a5a) so the hero reads as blue, not
@@ -2053,11 +2053,11 @@
    navy. Editorial Noir is minimal cream-on-black with restrained warm
    amber. NS for the noir register, Aurora for the voice.
 
-   Activated by `<html data-skin="darktheme">` (set by DarkthemeScopeLock
+   Activated by `<html data-skin="aurum">` (set by DarkthemeScopeLock
    inside the `/darktheme/*` route prefix).
    ─────────────────────────────────────────────────────────────────── */
 
-[data-skin="darktheme"] {
+[data-skin="aurum"] {
   /* ── Text — warm cream on near-black. */
   --skin-text-primary: #f0e6d0;
   --skin-text-body: rgba(240, 230, 208, 0.95);
@@ -2205,6 +2205,15 @@
      tokens with the Aurora literals as fallbacks. */
   --skin-tab-active-bg: rgba(212, 168, 58, 0.20);
   --skin-tab-active-ink: #f0c870;
+
+  /* Page-level surfaces — Day 91 platform-toggle remediation tokens.
+     Pre-skin pages hardcode full-viewport light washes (bg-white,
+     cream gradients in style props). They re-tone to these with their
+     original literals as fallbacks, so Lapis is pixel-identical:
+       bg-[var(--skin-page-bg,#fff)]
+       background: "var(--skin-page-wash, <original gradient>)" */
+  --skin-page-bg: transparent;
+  --skin-page-wash: linear-gradient(160deg, #0b0b10 0%, #07070a 50%, #020203 100%);
 }
 
 /* DARKTHEME — typography (inherits Aurora Cormorant + Montserrat; no
@@ -2212,8 +2221,8 @@
    darktheme defaults. Just adjust hero h1 letter-spacing to honor the
    noir register's tighter feel on dark bg. */
 
-[data-skin="darktheme"] h1,
-[data-skin="darktheme"] h2 {
+[data-skin="aurum"] h1,
+[data-skin="aurum"] h2 {
   letter-spacing: -0.018em;
 }
 
@@ -2221,10 +2230,10 @@
 
 /* Kill the Mux HLS video background. Editorial Noir is intentionally
    photo-bg-less — the dark register is its own atmosphere. */
-[data-skin="darktheme"] video[autoplay][muted],
-[data-skin="darktheme"] video.absolute,
-[data-skin="darktheme"] [data-mux-background],
-[data-skin="darktheme"] video[playsinline] {
+[data-skin="aurum"] video[autoplay][muted],
+[data-skin="aurum"] video.absolute,
+[data-skin="aurum"] [data-mux-background],
+[data-skin="aurum"] video[playsinline] {
   display: none !important;
 }
 
@@ -2237,7 +2246,7 @@
    the canvas without introducing a second hue.
    "More varied, less black-and-white" — variation from the amber-glow +
    the warm-cool radial dance, NOT from a second accent color. */
-[data-skin="darktheme"] body {
+[data-skin="aurum"] body {
   background:
     radial-gradient(ellipse at 12% 18%, rgba(212, 168, 58, 0.11) 0%, transparent 55%),
     radial-gradient(ellipse at 80% 75%, rgba(8, 8, 14, 0.62) 0%, transparent 65%),
@@ -2255,22 +2264,22 @@
    (most visible on mobile where no opaque pane backgrounds cover it).
    Same fix-pattern as planetir/daouniverse from the playbook
    cross-skin catalog. */
-[data-skin="darktheme"] [class*="bg-[#0a0a1a]"] {
+[data-skin="aurum"] [class*="bg-[#0a0a1a]"] {
   background-color: transparent !important;
   backdrop-filter: none !important;
   -webkit-backdrop-filter: none !important;
 }
-[data-skin="darktheme"] .bg-\[\#0a0a1a\] {
+[data-skin="aurum"] .bg-\[\#0a0a1a\] {
   background-color: transparent !important;
 }
 
 /* Paper grain stays — but bias toward the amber family on dark. Keep
    the default body::before; just adjust opacity for dark register. */
-[data-skin="darktheme"] body::before {
+[data-skin="aurum"] body::before {
   mix-blend-mode: screen;
   opacity: 0.04;
 }
-[data-skin="darktheme"] ::selection {
+[data-skin="aurum"] ::selection {
   background: rgba(240, 200, 112, 0.32);
   color: #f5ecd5;
 }
@@ -2279,7 +2288,7 @@
    !important non-negotiable on bg + border + box-shadow + color. */
 /* Day 88 v2 deepening — glass bgs darker + more opaque so they sit
    coherently on the now-deeper body bg without revealing through. */
-[data-skin="darktheme"] .liquid-glass {
+[data-skin="aurum"] .liquid-glass {
   background: rgba(14, 14, 20, 0.62) !important;
   border: 1px solid rgba(212, 168, 58, 0.24) !important;
   box-shadow:
@@ -2288,7 +2297,7 @@
     0 10px 28px -6px rgba(0, 0, 0, 0.72) !important;
   color: #f0e6d0 !important;
 }
-[data-skin="darktheme"] .liquid-glass-strong {
+[data-skin="aurum"] .liquid-glass-strong {
   background: rgba(16, 16, 24, 0.82) !important;
   border: 1px solid rgba(212, 168, 58, 0.32) !important;
   box-shadow:
@@ -2296,14 +2305,14 @@
     inset 0 -1px 0 0 rgba(0, 0, 0, 0.55),
     0 16px 36px -10px rgba(0, 0, 0, 0.82) !important;
 }
-[data-skin="darktheme"] .liquid-glass [style*="color"] {
+[data-skin="aurum"] .liquid-glass [style*="color"] {
   color: #f0e6d0 !important;
 }
 
 /* Primary CTA — amber-glass pill paradigm. The platform's primary-CTA
    class is .liquid-glass-dark; we override to the amber-glass dialect
    so every primary CTA across the platform inherits it. */
-[data-skin="darktheme"] .liquid-glass-dark {
+[data-skin="aurum"] .liquid-glass-dark {
   background: linear-gradient(
     135deg,
     rgba(212, 168, 58, 0.94) 0%,
@@ -2320,10 +2329,10 @@
     0 14px 32px -10px rgba(0, 0, 0, 0.62) !important;
   color: #0a0a0c !important;
 }
-[data-skin="darktheme"] .liquid-glass-dark::before {
+[data-skin="aurum"] .liquid-glass-dark::before {
   display: none !important;
 }
-[data-skin="darktheme"] .liquid-glass-dark:hover {
+[data-skin="aurum"] .liquid-glass-dark:hover {
   background: linear-gradient(
     135deg,
     rgba(228, 184, 70, 0.96) 0%,
@@ -2336,33 +2345,33 @@
     0 0 36px -4px rgba(240, 200, 112, 0.72),
     0 16px 34px -10px rgba(0, 0, 0, 0.68) !important;
 }
-[data-skin="darktheme"] .liquid-glass-dark,
-[data-skin="darktheme"] .liquid-glass-dark * {
+[data-skin="aurum"] .liquid-glass-dark,
+[data-skin="aurum"] .liquid-glass-dark * {
   color: #0a0a0c !important;
 }
 /* The ✦ ignite-logo emblem inside primary CTAs — under darktheme it
    should render as near-black so it reads on the amber fill. */
-[data-skin="darktheme"] .liquid-glass-dark img.ornament-spin,
-[data-skin="darktheme"] .liquid-glass-dark > img:first-of-type {
+[data-skin="aurum"] .liquid-glass-dark img.ornament-spin,
+[data-skin="aurum"] .liquid-glass-dark > img:first-of-type {
   filter: brightness(0) saturate(100%) !important;
 }
 
 /* Hover wash on rail + Pane 2 — amber-tinted. */
-[data-skin="darktheme"] .liquid-glass.h-dvh button:hover,
-[data-skin="darktheme"] .liquid-glass.h-dvh a:hover,
-[data-skin="darktheme"] .liquid-glass.h-dvh .group:hover,
-[data-skin="darktheme"] [class*="w-[260px]"] .group:hover,
-[data-skin="darktheme"] aside[data-pane="2"] .group:hover {
+[data-skin="aurum"] .liquid-glass.h-dvh button:hover,
+[data-skin="aurum"] .liquid-glass.h-dvh a:hover,
+[data-skin="aurum"] .liquid-glass.h-dvh .group:hover,
+[data-skin="aurum"] [class*="w-[260px]"] .group:hover,
+[data-skin="aurum"] aside[data-pane="2"] .group:hover {
   background-color: rgba(212, 168, 58, 0.10) !important;
 }
 
 /* Active-item indicator — bright amber left-bar. */
-[data-skin="darktheme"] [style*="--skin-selected-bg"] {
+[data-skin="aurum"] [style*="--skin-selected-bg"] {
   box-shadow: inset 3px 0 0 0 #f0c870 !important;
 }
 
 /* SPACES↔utility separator in Pane 1 — amber. */
-[data-skin="darktheme"] .liquid-glass.h-dvh .h-px[style*="rgba(212, 175, 55"] {
+[data-skin="aurum"] .liquid-glass.h-dvh .h-px[style*="rgba(212, 175, 55"] {
   background-image: linear-gradient(
     90deg,
     transparent 0%,
@@ -2373,23 +2382,23 @@
 }
 
 /* Pane 2 top header. */
-[data-skin="darktheme"] [class*="w-[260px]"] > div.h-16:first-child,
-[data-skin="darktheme"] aside[data-pane="2"] > div.h-16:first-child {
+[data-skin="aurum"] [class*="w-[260px]"] > div.h-16:first-child,
+[data-skin="aurum"] aside[data-pane="2"] > div.h-16:first-child {
   border-bottom-color: rgba(212, 168, 58, 0.22) !important;
 }
 
 /* Pane 2 close button. */
-[data-skin="darktheme"] button[aria-label="Hide sidebar"] {
+[data-skin="aurum"] button[aria-label="Hide sidebar"] {
   color: rgba(240, 230, 208, 0.78) !important;
 }
-[data-skin="darktheme"] button[aria-label="Hide sidebar"]:hover {
+[data-skin="aurum"] button[aria-label="Hide sidebar"]:hover {
   background-color: rgba(212, 168, 58, 0.12) !important;
 }
 
 /* Pane 1 rail — double-rule editorial separator in amber + Day 84 v2
    panel-1 re-assertion (the .liquid-glass !important from above wins
    over the SpacesRail inline panel-1 token; re-assert here). */
-[data-skin="darktheme"] .liquid-glass.h-dvh {
+[data-skin="aurum"] .liquid-glass.h-dvh {
   border-right: 3px double rgba(212, 168, 58, 0.30) !important;
   background: var(--skin-panel-1-bg, rgba(6, 6, 8, 0.96)) !important;
   backdrop-filter: blur(10px) saturate(120%) !important;
@@ -2397,9 +2406,9 @@
 }
 
 /* Pane 2 right edge — amber hairline. */
-[data-skin="darktheme"] .liquid-glass.h-dvh + .h-dvh.sticky,
-[data-skin="darktheme"] .liquid-glass.h-dvh + div[class*="w-[260px]"],
-[data-skin="darktheme"] aside[data-pane="2"] {
+[data-skin="aurum"] .liquid-glass.h-dvh + .h-dvh.sticky,
+[data-skin="aurum"] .liquid-glass.h-dvh + div[class*="w-[260px]"],
+[data-skin="aurum"] aside[data-pane="2"] {
   border-right: 1px solid rgba(212, 168, 58, 0.22) !important;
   background-color: var(--skin-panel-2-bg, rgba(14, 14, 18, 0.92)) !important;
 }
@@ -2408,24 +2417,24 @@
    noir voice keeps the rounded-full geometry; just tones it to amber. */
 
 /* Rail SPACE chip icons — tint to warm amber for harmony. */
-[data-skin="darktheme"] .liquid-glass.h-dvh img[alt="Journey"],
-[data-skin="darktheme"] .liquid-glass.h-dvh img[alt="AI OS"],
-[data-skin="darktheme"] .liquid-glass.h-dvh img[alt="Me"],
-[data-skin="darktheme"] .liquid-glass.h-dvh img[alt="Build"],
-[data-skin="darktheme"] .liquid-glass.h-dvh img[src*="settings-icon"] {
+[data-skin="aurum"] .liquid-glass.h-dvh img[alt="Journey"],
+[data-skin="aurum"] .liquid-glass.h-dvh img[alt="AI OS"],
+[data-skin="aurum"] .liquid-glass.h-dvh img[alt="Me"],
+[data-skin="aurum"] .liquid-glass.h-dvh img[alt="Build"],
+[data-skin="aurum"] .liquid-glass.h-dvh img[src*="settings-icon"] {
   filter: brightness(0) saturate(100%) invert(74%) sepia(38%) saturate(560%) hue-rotate(2deg) brightness(0.96) !important;
 }
 
 /* GlyphIcon variants — bright amber, same fingerprint selector as the
    other skins. */
-[data-skin="darktheme"] .liquid-glass.h-dvh span[style*="place-items: center"],
-[data-skin="darktheme"] .liquid-glass.h-dvh span[style*="place-items:center"] {
+[data-skin="aurum"] .liquid-glass.h-dvh span[style*="place-items: center"],
+[data-skin="aurum"] .liquid-glass.h-dvh span[style*="place-items:center"] {
   color: #f0c870 !important;
   text-shadow: 0 0 8px rgba(240, 200, 112, 0.38) !important;
 }
 
 /* GameShellV2 top-right home glyph — amber tint. */
-[data-skin="darktheme"] a[aria-label="Home"] img {
+[data-skin="aurum"] a[aria-label="Home"] img {
   filter: brightness(0) saturate(100%) invert(74%) sepia(38%) saturate(560%) hue-rotate(2deg) brightness(0.96) !important;
 }
 
@@ -2433,8 +2442,8 @@
    stay amber-family under darktheme (no re-tone needed since amber IS
    the family). But the JOURNEY chip's bright-yellow inline gradient
    should bias toward the candleflame amber for register consistency. */
-[data-skin="darktheme"] [class*="rgba(244,212,114"],
-[data-skin="darktheme"] [class*="rgba(244, 212, 114"] {
+[data-skin="aurum"] [class*="rgba(244,212,114"],
+[data-skin="aurum"] [class*="rgba(244, 212, 114"] {
   box-shadow:
     0 0 18px -4px rgba(212, 168, 58, 0.42),
     0 0 4px -1px rgba(240, 200, 112, 0.55) !important;
@@ -2452,11 +2461,11 @@
      - rgba(212,175,55, X alpha) borders → noir amber at same alpha
    Catches Path stages, Dashboard rail, MatchHero JourneyRail, and any
    future surface that hardcodes the Aurora gold literal. */
-[data-skin="darktheme"] .bg-\[\#d4af37\] {
+[data-skin="aurum"] .bg-\[\#d4af37\] {
   background-color: #d4a83a !important;
   box-shadow: none !important;
 }
-[data-skin="darktheme"] [class*="bg-[#d4af37"] {
+[data-skin="aurum"] [class*="bg-[#d4af37"] {
   background-color: #d4a83a !important;
 }
 /* Day 91 (Sasha 2026-06-08): `:not(img)` is load-bearing. The rail space
@@ -2468,8 +2477,8 @@
    dedicated filter rule above; they must NOT receive a background fill.
    Exclude img so only true gold-background elements (Path chips, rail
    indicators) get re-toned. */
-[data-skin="darktheme"] [style*="rgba(212,175,55"]:not(img),
-[data-skin="darktheme"] [style*="rgba(212, 175, 55"]:not(img) {
+[data-skin="aurum"] [style*="rgba(212,175,55"]:not(img),
+[data-skin="aurum"] [style*="rgba(212, 175, 55"]:not(img) {
   background-color: rgba(212, 168, 58, 0.14) !important;
   background-image: none !important;
   border-color: rgba(212, 168, 58, 0.42) !important;
@@ -2485,18 +2494,18 @@
    empty style attr, so they miss that lift. Target exactly those
    (`:not([style*="color"])`) and raise to 0.6 cream — clearly legible but
    still subordinate to the active item. */
-[data-skin="darktheme"] .liquid-glass.h-dvh button.group:not([style*="color"]) span.md\:block,
-[data-skin="darktheme"] .liquid-glass.h-dvh a.group:not([style*="color"]) span.md\:block {
+[data-skin="aurum"] .liquid-glass.h-dvh button.group:not([style*="color"]) span.md\:block,
+[data-skin="aurum"] .liquid-glass.h-dvh a.group:not([style*="color"]) span.md\:block {
   color: rgba(240, 230, 208, 0.6) !important;
 }
-[data-skin="darktheme"] [class*="rgba(212,175,55"],
-[data-skin="darktheme"] [class*="rgba(212, 175, 55"] {
+[data-skin="aurum"] [class*="rgba(212,175,55"],
+[data-skin="aurum"] [class*="rgba(212, 175, 55"] {
   background-color: rgba(212, 168, 58, 0.14) !important;
   border-color: rgba(212, 168, 58, 0.42) !important;
 }
 
 /* Rail spine right-edge gradient — soften to candleflame amber. */
-[data-skin="darktheme"] .liquid-glass.h-dvh > span[aria-hidden][class*="absolute"][class*="top-0"][class*="right-0"] {
+[data-skin="aurum"] .liquid-glass.h-dvh > span[aria-hidden][class*="absolute"][class*="top-0"][class*="right-0"] {
   background-image:
     linear-gradient(180deg,
       rgba(212, 168, 58, 0) 0%,
@@ -2509,14 +2518,14 @@
 
 /* MatchHero spotlight backdrop — cream radial reads as foreign on
    near-black. Hide. */
-[data-skin="darktheme"] [data-match-hero] > div[aria-hidden] {
+[data-skin="aurum"] [data-match-hero] > div[aria-hidden] {
   display: none !important;
 }
 
 /* Day 84 v2 SectionsPanel locked-row popover override — same root cause
    as planetir/daouniverse (inline Aurora navy + gold + Cormorant).
    Re-tone to dark-frost + amber. */
-[data-skin="darktheme"] [style*="rgba(10,22,40,1)"][style*="rgba(18,28,56,1)"] {
+[data-skin="aurum"] [style*="rgba(10,22,40,1)"][style*="rgba(18,28,56,1)"] {
   background-image: linear-gradient(
     135deg,
     rgba(8, 8, 12, 0.98) 0%,
@@ -2529,7 +2538,7 @@
     0 8px 28px -8px rgba(0, 0, 0, 0.72),
     0 0 24px -6px rgba(212, 168, 58, 0.32) !important;
 }
-[data-skin="darktheme"] [style*="rgba(10,22,40,1)"] p[style*="#f4d472"] {
+[data-skin="aurum"] [style*="rgba(10,22,40,1)"] p[style*="#f4d472"] {
   font-family: "Cormorant Garamond", serif !important;
   color: #f0c870 !important;
   text-shadow:
@@ -2539,33 +2548,33 @@
 
 /* Auth page editorial overrides — Cormorant headings stay, just
    re-tone to noir palette via !important. */
-[data-skin="darktheme"] article.liquid-glass-strong h1,
-[data-skin="darktheme"] article.liquid-glass-strong h1 *,
-[data-skin="darktheme"] article.liquid-glass-strong p,
-[data-skin="darktheme"] article.liquid-glass-strong label {
+[data-skin="aurum"] article.liquid-glass-strong h1,
+[data-skin="aurum"] article.liquid-glass-strong h1 *,
+[data-skin="aurum"] article.liquid-glass-strong p,
+[data-skin="aurum"] article.liquid-glass-strong label {
   color: var(--skin-text-primary, #f0e6d0) !important;
 }
-[data-skin="darktheme"] article.liquid-glass-strong [role="tablist"] {
+[data-skin="aurum"] article.liquid-glass-strong [role="tablist"] {
   background-color: rgba(212, 168, 58, 0.08) !important;
   border-color: rgba(212, 168, 58, 0.24) !important;
 }
-[data-skin="darktheme"] article.liquid-glass-strong [role="tab"][data-state="active"] {
+[data-skin="aurum"] article.liquid-glass-strong [role="tab"][data-state="active"] {
   background-color: rgba(212, 168, 58, 0.20) !important;
   color: #f5ecd5 !important;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.42) !important;
 }
-[data-skin="darktheme"] article.liquid-glass-strong [role="tab"]:not([data-state="active"]) {
+[data-skin="aurum"] article.liquid-glass-strong [role="tab"]:not([data-state="active"]) {
   color: rgba(240, 230, 208, 0.62) !important;
 }
-[data-skin="darktheme"] article.liquid-glass-strong input {
+[data-skin="aurum"] article.liquid-glass-strong input {
   background-color: rgba(10, 10, 14, 0.62) !important;
   border-color: rgba(212, 168, 58, 0.32) !important;
   color: #f0e6d0 !important;
 }
-[data-skin="darktheme"] article.liquid-glass-strong input::placeholder {
+[data-skin="aurum"] article.liquid-glass-strong input::placeholder {
   color: rgba(240, 230, 208, 0.42) !important;
 }
-[data-skin="darktheme"] article.liquid-glass-strong form button[type="submit"] {
+[data-skin="aurum"] article.liquid-glass-strong form button[type="submit"] {
   background: linear-gradient(135deg, #d4a83a 0%, #b08a2a 100%) !important;
   color: #0a0a0c !important;
   border-color: rgba(255, 230, 160, 0.32) !important;
@@ -2730,9 +2739,13 @@
   /* Locked/completed row strikethrough — green-faded. */
   --skin-strike-color: rgba(61, 204, 74, 0.55);
 
-  /* Settings tabs — Day 91: see darktheme note. Green register. */
+  /* Settings tabs — Day 91: see aurum note. Green register. */
   --skin-tab-active-bg: rgba(61, 204, 74, 0.22);
   --skin-tab-active-ink: #5bd968;
+
+  /* Page-level surfaces — see aurum note. Green-dark register. */
+  --skin-page-bg: transparent;
+  --skin-page-wash: linear-gradient(160deg, #0a0c0f 0%, #07080a 50%, #02030a 100%);
 }
 
 /* TECHSTARS — typography. Override the platform's Cormorant Garamond
@@ -3108,7 +3121,7 @@
    changing Aurora (the :root value differs from the cards' literal), so
    re-shadow here, scoped to the dark skins, keyed on the tokenized
    style attribute itself. */
-[data-skin="darktheme"] [style*="var(--skin-card-bg"] {
+[data-skin="aurum"] [style*="var(--skin-card-bg"] {
   box-shadow:
     0 1px 3px rgba(0, 0, 0, 0.52),
     0 16px 40px -16px rgba(0, 0, 0, 0.72),
@@ -4477,7 +4490,7 @@ All colors MUST be HSL.
   /* Darktheme — Editorial Noir. Near-black base + warm cream text + warm
      amber accent (candleflame register). First skin authored from scratch.
      Sister to Aurora. Activated by `/darktheme/*` via DarkthemeScopeLock. */
-  [data-skin="darktheme"] {
+  [data-skin="aurum"] {
     /* Day 88 v2 deepening — pushed closer to true black per Sasha's
        Claude Code reference. Base 2% L, surfaces step up 3-6%. */
     --background: 240 10% 2%;          /* near-true-black, slight warm undertone */
@@ -4502,7 +4515,7 @@ All colors MUST be HSL.
 
 /* Day 48 (Sasha): the `@media (prefers-color-scheme: dark)` block that
    used to override :root tokens when the OS was in dark mode has been
-   retired. We have an explicit skin system now (`[data-skin="aurora"]`
+   retired. We have an explicit skin system now (`[data-skin="lapis"]`
    vs `[data-skin="navy-gold"]`). Letting the OS impose a dark palette
    on top caused Aurora to render with dark shadcn cards whenever the
    user's Mac was in dark mode — mixing the two skins in one view.
@@ -5381,12 +5394,12 @@ All colors MUST be HSL.
    amber/green primary CTAs use #0a0a0c / #000). Headings (h1/h2) get the
    brighter primary token; body copy gets the body token. Catches the
    /85 /70 /50 opacity variants too (all contain the substring). */
-[data-skin="darktheme"] [class*="text-[#0a1628]"],
+[data-skin="aurum"] [class*="text-[#0a1628]"],
 [data-skin="techstars"] [class*="text-[#0a1628]"] {
   color: var(--skin-text-body) !important;
 }
-[data-skin="darktheme"] h1[class*="text-[#0a1628]"],
-[data-skin="darktheme"] h2[class*="text-[#0a1628]"],
+[data-skin="aurum"] h1[class*="text-[#0a1628]"],
+[data-skin="aurum"] h2[class*="text-[#0a1628]"],
 [data-skin="techstars"] h1[class*="text-[#0a1628]"],
 [data-skin="techstars"] h2[class*="text-[#0a1628]"] {
   color: var(--skin-text-primary) !important;
@@ -5396,7 +5409,7 @@ All colors MUST be HSL.
    dark-glass lift. A faint light-on-dark overlay reads as proper dark
    glass regardless of the original /85 /60 /20 opacity tier, and the
    re-toned cream text sits on it legibly. */
-[data-skin="darktheme"] .eq-v2-page [class*="bg-white"],
+[data-skin="aurum"] .eq-v2-page [class*="bg-white"],
 [data-skin="techstars"] .eq-v2-page [class*="bg-white"] {
   background-color: rgba(255, 255, 255, 0.07) !important;
 }
@@ -5408,8 +5421,8 @@ All colors MUST be HSL.
    inline white fills and drop them to a subtle dark-glass frost. Uses
    background-color (not the shorthand) so it overrides only the fill and
    leaves any gradient/asset backgrounds intact. */
-[data-skin="darktheme"] .eq-v2-page [style*="rgba(255,255,255"],
-[data-skin="darktheme"] .eq-v2-page [style*="rgba(255, 255, 255"],
+[data-skin="aurum"] .eq-v2-page [style*="rgba(255,255,255"],
+[data-skin="aurum"] .eq-v2-page [style*="rgba(255, 255, 255"],
 [data-skin="techstars"] .eq-v2-page [style*="rgba(255,255,255"],
 [data-skin="techstars"] .eq-v2-page [style*="rgba(255, 255, 255"] {
   background-color: rgba(255, 255, 255, 0.09) !important;
@@ -5422,8 +5435,8 @@ All colors MUST be HSL.
    sits in the dark register. Lavender glow kept (works under both amber
    and green skins as a distinct "now" marker); the re-toned cream text
    from the rule above sits on it legibly. */
-[data-skin="darktheme"] .eq-v2-page [style*="rgba(252, 231, 197"],
-[data-skin="darktheme"] .eq-v2-page [style*="rgba(252,231,197"],
+[data-skin="aurum"] .eq-v2-page [style*="rgba(252, 231, 197"],
+[data-skin="aurum"] .eq-v2-page [style*="rgba(252,231,197"],
 [data-skin="techstars"] .eq-v2-page [style*="rgba(252, 231, 197"],
 [data-skin="techstars"] .eq-v2-page [style*="rgba(252,231,197"] {
   background: linear-gradient(
@@ -5440,7 +5453,7 @@ All colors MUST be HSL.
 }
 
 /* Navy tint surfaces (bg-[#0a1628]/5 etc.) → faint skin-accent tint. */
-[data-skin="darktheme"] .eq-v2-page [class*="bg-[#0a1628]"] {
+[data-skin="aurum"] .eq-v2-page [class*="bg-[#0a1628]"] {
   background-color: rgba(212, 168, 58, 0.08) !important;
 }
 [data-skin="techstars"] .eq-v2-page [class*="bg-[#0a1628]"] {
@@ -5448,7 +5461,7 @@ All colors MUST be HSL.
 }
 
 /* Navy hairlines → skin accent hairline. */
-[data-skin="darktheme"] .eq-v2-page [class*="border-[#0a1628]"] {
+[data-skin="aurum"] .eq-v2-page [class*="border-[#0a1628]"] {
   border-color: rgba(212, 168, 58, 0.22) !important;
 }
 [data-skin="techstars"] .eq-v2-page [class*="border-[#0a1628]"] {
@@ -5460,8 +5473,8 @@ All colors MUST be HSL.
    [data-skin] .liquid-glass !important rule already, but the .eq-v2-page
    scope also bumps blur/saturate — re-state the dark fill + hairline here
    so the cards are unambiguously in-register. */
-[data-skin="darktheme"] .eq-v2-page .liquid-glass,
-[data-skin="darktheme"] .eq-v2-page .liquid-glass-strong {
+[data-skin="aurum"] .eq-v2-page .liquid-glass,
+[data-skin="aurum"] .eq-v2-page .liquid-glass-strong {
   background: rgba(12, 12, 18, 0.74) !important;
   border-color: rgba(212, 168, 58, 0.22) !important;
 }
