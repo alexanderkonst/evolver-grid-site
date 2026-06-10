@@ -284,7 +284,7 @@ export default function PublicLandingPage() {
             style={{
               // Day 91 (Sasha 2026-06-09): tokenized for Aurum.
               background: "var(--skin-card-fill, rgba(255, 255, 255, 0.68))",
-              border: "0.5px solid var(--skin-card-border, rgba(26, 30, 58, 0.08))",
+              border: "0.5px solid var(--skin-hairline, rgba(26, 30, 58, 0.08))",
               boxShadow:
                 "0 4px 16px -8px rgba(10, 22, 40, 0.10), 0 16px 40px -20px rgba(10, 22, 40, 0.15)",
             }}
@@ -449,7 +449,7 @@ export default function PublicLandingPage() {
           <section
             className="space-y-5 pt-6"
             style={{
-              borderTop: "0.5px solid var(--skin-card-border, rgba(26, 30, 58, 0.10))",
+              borderTop: "0.5px solid var(--skin-hairline, rgba(26, 30, 58, 0.10))",
             }}
           >
             {extraKeys.map((key) => {
@@ -479,7 +479,7 @@ export default function PublicLandingPage() {
         {/* ═══ Footer ═══ */}
         <footer
           className="pt-10 text-center"
-          style={{ borderTop: "0.5px solid var(--skin-card-border, rgba(26, 30, 58, 0.10))" }}
+          style={{ borderTop: "0.5px solid var(--skin-hairline, rgba(26, 30, 58, 0.10))" }}
         >
           <div
             style={{

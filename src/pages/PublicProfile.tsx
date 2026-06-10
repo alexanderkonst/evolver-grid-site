@@ -200,7 +200,7 @@ const PublicProfile = () => {
         <BackButton />
       </div>
       <div className="max-w-4xl mx-auto px-4 pb-12">
-        <div className="rounded-3xl bg-[var(--skin-card-fill,rgba(255,255,255,0.8))] backdrop-blur p-6 sm:p-10 shadow-lg border border-[var(--skin-card-border,rgba(255,255,255,0.6))]">
+        <div className="rounded-3xl bg-[var(--skin-card-fill,rgba(255,255,255,0.8))] backdrop-blur p-6 sm:p-10 shadow-lg border border-[var(--skin-hairline,rgba(255,255,255,0.6))]">
           <div className="flex flex-col items-center text-center">
             <div className="w-28 h-28 rounded-full overflow-hidden bg-[var(--skin-input-fill,#f0f4ff)] flex items-center justify-center">
               {profile.avatar_url ? (
@@ -268,14 +268,14 @@ const PublicProfile = () => {
           )}
 
           {mission?.intro_text && (
-            <div className="mt-8 rounded-2xl border border-[var(--skin-card-border,rgba(164,163,208,0.2))] bg-[var(--skin-card-fill,rgba(255,255,255,0.85))] backdrop-blur-sm p-5 text-center shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
+            <div className="mt-8 rounded-2xl border border-[var(--skin-hairline,rgba(164,163,208,0.2))] bg-[var(--skin-card-fill,rgba(255,255,255,0.85))] backdrop-blur-sm p-5 text-center shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
               <p className="text-sm uppercase tracking-wide" style={{ color: "var(--skin-text-muted, rgba(44,49,80,0.6))" }}>Bio</p>
               <p className="mt-2" style={{ color: "var(--skin-text-primary, #2c3150)" }}>{mission.intro_text}</p>
             </div>
           )}
 
           {canShowOffer && excalibur && (
-            <div className="mt-8 rounded-2xl border border-[var(--skin-card-border,rgba(164,163,208,0.2))] bg-[var(--skin-card-fill,rgba(240,244,255,0.5))] p-5 shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
+            <div className="mt-8 rounded-2xl border border-[var(--skin-hairline,rgba(164,163,208,0.2))] bg-[var(--skin-card-fill,rgba(240,244,255,0.5))] p-5 shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
               <p className="text-xs font-medium mb-1" style={{ color: "var(--skin-text-muted, rgba(44,49,80,0.6))" }}>Unique Offer</p>
               <h2 className="text-lg font-semibold" style={{ color: "var(--skin-text-primary, #2c3150)" }}>{excalibur.offer?.statement || excalibur.businessIdentity?.tagline || "Genius Offer"}</h2>
               <p className="text-sm mt-2" style={{ color: "var(--skin-text-muted, rgba(44,49,80,0.7))" }}>{excalibur.offer?.deliverable || ""}</p>

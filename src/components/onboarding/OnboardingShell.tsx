@@ -16,7 +16,7 @@ export const OnboardingShell = ({ children }: OnboardingShellProps) => {
     return (
         <div className="min-h-dvh bg-[var(--skin-page-bg,#f8f7fc)]">
             {/* Simple header */}
-            <header className="fixed top-0 left-0 right-0 h-16 bg-[var(--skin-card-fill,rgba(255,255,255,0.8))] backdrop-blur-sm border-b border-[var(--skin-card-border,rgba(164,163,208,0.2))] z-modal">
+            <header className="fixed top-0 left-0 right-0 h-16 bg-[var(--skin-card-fill,rgba(255,255,255,0.8))] backdrop-blur-sm border-b border-[var(--skin-hairline,rgba(164,163,208,0.2))] z-modal">
                 <div className="h-full max-w-4xl mx-auto px-4 flex items-center justify-between">
                     <div className="flex items-center gap-3">
                         <div className="w-8 h-8 rounded-lg bg-amber-500 flex items-center justify-center">

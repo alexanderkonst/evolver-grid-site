@@ -1,6 +1,12 @@
 /**
  * Shared sections reused across /founders and /game/marketplace pages.
  * Light-mode styling by default (for in-platform use).
+ *
+ * Day 91 (Sasha 2026-06-09): tokenized for Aurum — the lightMode branch
+ * (what /game/marketplace actually renders) reads skin tokens with the
+ * original literals as fallbacks, so Lapis stays pixel-identical while
+ * the dark skins re-tone the white CTA panel + navy gradient text. The
+ * non-lightMode branch already renders white-on-dark and is untouched.
  */
 
 export const FoundersHero = ({ lightMode = true }: { lightMode?: boolean }) => (
@@ -33,7 +39,7 @@ export const FoundersHero = ({ lightMode = true }: { lightMode?: boolean }) => (
       ].map((s, i) => (
         <div key={i} className="flex flex-col items-center gap-0.5">
           <span
-            className={`text-sm font-display font-medium bg-gradient-to-b bg-clip-text text-transparent ${lightMode ? 'from-[#2c3150]/60 to-[#2c3150]/30' : 'from-white/40 to-white/15'}`}
+            className={`text-sm font-display font-medium bg-gradient-to-b bg-clip-text text-transparent ${lightMode ? 'from-[color:var(--skin-ink-body,rgba(44,49,80,0.6))] to-[color:var(--skin-ink-muted,rgba(44,49,80,0.3))]' : 'from-white/40 to-white/15'}`}
           >
             {s.val}
           </span>
@@ -54,7 +60,7 @@ export const FoundersCTA = ({ lightMode = true }: { lightMode?: boolean }) => (
           "linear-gradient(135deg, #8460ea40, #5eaf8b30, #d49a5e30, #7eb8d430, #8460ea40)",
       }}
     >
-      <div className={`rounded-3xl p-10 md:p-14 text-center relative overflow-hidden ${lightMode ? 'bg-white' : 'bg-[#0e1528]'}`}>
+      <div className={`rounded-3xl p-10 md:p-14 text-center relative overflow-hidden ${lightMode ? 'bg-[var(--skin-card-fill,#fff)]' : 'bg-[#0e1528]'}`}>
         {/* Internal glow */}
         <div className="absolute inset-0 pointer-events-none">
           <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] rounded-full blur-[120px] ${lightMode ? 'bg-[#8460ea]/8' : 'bg-[#8460ea]/6'}`} />

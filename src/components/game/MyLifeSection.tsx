@@ -38,7 +38,7 @@ const MyLifeSection = ({ qolScores }: MyLifeSectionProps) => {
 
     // Day 91 (Sasha 2026-06-09): tokenized for Aurum - lapis falls back to the exact original literals
     return (
-        <div className="rounded-xl border border-[color:var(--skin-card-border,rgba(164,163,208,0.2))] bg-[var(--skin-card-fill,rgba(255,255,255,0.85))] backdrop-blur-sm p-5 mb-4 shadow-[0_4px_16px_rgba(44,49,80,0.06)] breathing-card">
+        <div className="rounded-xl border border-[color:var(--skin-hairline,rgba(164,163,208,0.2))] bg-[var(--skin-card-fill,rgba(255,255,255,0.85))] backdrop-blur-sm p-5 mb-4 shadow-[0_4px_16px_rgba(44,49,80,0.06)] breathing-card">
             <div className="flex items-center gap-3 mb-4">
                 <div className="p-2 rounded-full bg-[#6894d0]/20">
                     <BarChart3 className="w-5 h-5 text-[#6894d0]" />

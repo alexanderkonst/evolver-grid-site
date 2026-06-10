@@ -130,7 +130,7 @@ const DeepICPScreen: React.FC = () => {
             {/* Header — Day 91 (Sasha 2026-06-09): white fills tokenized for
                 Aurum; lapis keeps the exact literals via var() fallbacks. */}
             <div className="text-center mb-8">
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[var(--skin-card-fill,#ffffff)] border border-[var(--skin-card-border,#e5e7eb)] mb-4">
+                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[var(--skin-card-fill,#ffffff)] border border-[var(--skin-hairline,#e5e7eb)] mb-4">
                     <User className="w-8 h-8 text-primary-wabi" />
                 </div>
                 <h1 className="text-3xl font-bold text-[#2c3150] mb-2 uppercase tracking-wide">Your Ideal Client</h1>
@@ -140,7 +140,7 @@ const DeepICPScreen: React.FC = () => {
             </div>
 
             {/* ICP Card */}
-            <Card className="mb-8 max-w-2xl mx-auto bg-[var(--skin-card-fill,#ffffff)] border border-[var(--skin-card-border,#e5e7eb)]">
+            <Card className="mb-8 max-w-2xl mx-auto bg-[var(--skin-card-fill,#ffffff)] border border-[var(--skin-hairline,#e5e7eb)]">
                 <CardContent className="p-6 space-y-6">
                     <div>
                         <h3 className="text-sm font-semibold text-primary-wabi uppercase tracking-wide mb-2">

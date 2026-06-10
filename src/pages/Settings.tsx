@@ -102,7 +102,7 @@ const AppearanceTab = () => {
                 className="rounded-2xl p-5 sm:p-6 space-y-4"
                 style={{
                     background: "var(--skin-card-bg, rgba(255, 255, 255, 0.65))",
-                    border: "1px solid var(--skin-card-border, hsla(228, 30%, 18%, 0.10))",
+                    border: "1px solid var(--skin-hairline, hsla(228, 30%, 18%, 0.10))",
                     boxShadow:
                         "0 4px 16px -8px hsla(228, 30%, 18%, 0.10), inset 0 1px 0 hsla(0, 0%, 100%, 0.50)",
                     backdropFilter: "blur(8px)",
@@ -169,7 +169,7 @@ const AppearanceTab = () => {
                                     background: "var(--skin-input-bg, rgba(255, 255, 255, 0.55))",
                                     border: active
                                         ? "1px solid hsla(40, 70%, 55%, 0.55)"
-                                        : "1px solid var(--skin-card-border, hsla(228, 30%, 18%, 0.10))",
+                                        : "1px solid var(--skin-hairline, hsla(228, 30%, 18%, 0.10))",
                                 }}
                             >
                                 <div className="flex items-center justify-between gap-3">
@@ -316,7 +316,7 @@ const NotificationsTab = () => {
                 className="rounded-2xl p-5 sm:p-6 space-y-4"
                 style={{
                     background: "var(--skin-card-bg, rgba(255, 255, 255, 0.65))",
-                    border: "1px solid var(--skin-card-border, hsla(228, 30%, 18%, 0.10))",
+                    border: "1px solid var(--skin-hairline, hsla(228, 30%, 18%, 0.10))",
                     boxShadow:
                         "0 4px 16px -8px hsla(228, 30%, 18%, 0.10), inset 0 1px 0 hsla(0, 0%, 100%, 0.50)",
                     backdropFilter: "blur(8px)",
@@ -439,7 +439,7 @@ const DataExportTab = () => {
                 className="rounded-2xl p-5 sm:p-6 space-y-5"
                 style={{
                     background: "var(--skin-card-bg, rgba(255, 255, 255, 0.65))",
-                    border: "1px solid var(--skin-card-border, hsla(228, 30%, 18%, 0.10))",
+                    border: "1px solid var(--skin-hairline, hsla(228, 30%, 18%, 0.10))",
                     boxShadow:
                         "0 4px 16px -8px hsla(228, 30%, 18%, 0.10), inset 0 1px 0 hsla(0, 0%, 100%, 0.50)",
                     backdropFilter: "blur(8px)",
@@ -671,7 +671,7 @@ const Settings = () => {
                             className="mb-6 h-auto p-1 rounded-full grid w-full grid-cols-4"
                             style={{
                                 background: "hsla(228, 30%, 18%, 0.06)",
-                                border: "1px solid var(--skin-card-border, hsla(228, 30%, 18%, 0.10))",
+                                border: "1px solid var(--skin-hairline, hsla(228, 30%, 18%, 0.10))",
                             }}
                         >
                             <TabsTrigger

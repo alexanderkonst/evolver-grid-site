@@ -1170,7 +1170,7 @@ function EntitlementGrantsSection() {
             style={{
               background: "var(--skin-card-fill, rgba(255, 255, 255, 0.55))",
               border:
-                "0.5px solid var(--skin-card-border, rgba(26, 30, 58, 0.08))",
+                "0.5px solid var(--skin-hairline, rgba(26, 30, 58, 0.08))",
             }}
           >
             <div

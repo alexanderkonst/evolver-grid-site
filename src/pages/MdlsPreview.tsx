@@ -256,7 +256,7 @@ const MdlsPreview = () => {
               ].map((p, i, arr) => (
                 <li
                   key={i}
-                  className={`flex items-center gap-5 sm:gap-7 py-3 ${i < arr.length - 1 ? "border-b border-[color:var(--skin-card-border,rgba(10,22,40,0.08))]" : ""}`}
+                  className={`flex items-center gap-5 sm:gap-7 py-3 ${i < arr.length - 1 ? "border-b border-[color:var(--skin-hairline,rgba(10,22,40,0.08))]" : ""}`}
                 >
                   <div className="shrink-0 w-10 h-10 flex items-center justify-center">{p.glyph}</div>
                   <p
@@ -574,7 +574,7 @@ const MdlsPreview = () => {
             {VERBS.map((v, i) => (
               <li
                 key={i}
-                className="flex items-baseline gap-4 py-3 border-b border-[color:var(--skin-card-border,rgba(10,22,40,0.08))]"
+                className="flex items-baseline gap-4 py-3 border-b border-[color:var(--skin-hairline,rgba(10,22,40,0.08))]"
               >
                 <span
                   className="font-serif text-[#0a1628] flex-shrink-0"

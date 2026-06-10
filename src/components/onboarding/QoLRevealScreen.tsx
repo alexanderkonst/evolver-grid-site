@@ -56,7 +56,7 @@ const QoLRevealScreen = ({ scores, focusArea, onContinue, saving = false }: QoLR
 
                     {/* Score Display */}
                     {/* Day 91 (Sasha 2026-06-09): tokenized for Aurum — fallbacks keep lapis identical */}
-                    <div className="bg-[var(--skin-card-fill,rgba(255,255,255,0.8))] backdrop-blur-sm rounded-3xl p-6 border border-[var(--skin-card-border,rgba(255,255,255,0.5))] shadow-xl">
+                    <div className="bg-[var(--skin-card-fill,rgba(255,255,255,0.8))] backdrop-blur-sm rounded-3xl p-6 border border-[var(--skin-hairline,rgba(255,255,255,0.5))] shadow-xl">
                         {/* Pentagon visualization simplified to list */}
                         <div className="space-y-4 mb-6">
                             {Object.entries(scores).map(([key, value]) => {
@@ -94,7 +94,7 @@ const QoLRevealScreen = ({ scores, focusArea, onContinue, saving = false }: QoLR
                         </div>
 
                         {/* Overall */}
-                        <div className="pt-4 border-t border-[var(--skin-card-border,#e5e7eb)]">
+                        <div className="pt-4 border-t border-[var(--skin-hairline,#e5e7eb)]">
                             <p className="text-sm text-[var(--wabi-text-muted)]">Overall Balance</p>
                             <p className="text-3xl font-bold text-[var(--depth-violet)]">{average.toFixed(1)} / 10</p>
                         </div>

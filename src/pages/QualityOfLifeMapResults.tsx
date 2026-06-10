@@ -811,7 +811,7 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
               <div
                 key={domain.id}
                 className="flex items-center justify-between py-2 border-b last:border-b-0"
-                style={{ borderColor: "var(--skin-card-border, rgba(26,30,58,0.08))" }}
+                style={{ borderColor: "var(--skin-hairline, rgba(26,30,58,0.08))" }}
               >
                 <span className="flex items-center gap-3">
                   <span aria-hidden="true" style={{ fontSize: "18px" }}>{emoji}</span>

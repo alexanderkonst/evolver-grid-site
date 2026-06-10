@@ -121,7 +121,7 @@ export function ArtifactView({ artifactKey }: { artifactKey: ArtifactKey }) {
           className="space-y-5 rounded-2xl px-6 py-8 text-center"
           style={{
             background: "var(--skin-card-fill, rgba(255, 255, 255, 0.68))",
-            border: "0.5px solid var(--skin-card-border, rgba(26, 30, 58, 0.08))",
+            border: "0.5px solid var(--skin-hairline, rgba(26, 30, 58, 0.08))",
             boxShadow: "var(--skin-card-shadow, 0 4px 16px -8px rgba(10, 22, 40, 0.12), 0 16px 40px -20px rgba(10, 22, 40, 0.18))",
           }}
         >
@@ -169,7 +169,7 @@ export function ArtifactView({ artifactKey }: { artifactKey: ArtifactKey }) {
             className="relative space-y-5 rounded-2xl px-6 py-6"
             style={{
               background: "var(--skin-card-fill, rgba(255, 255, 255, 0.68))",
-              border: "0.5px solid var(--skin-card-border, rgba(26, 30, 58, 0.08))",
+              border: "0.5px solid var(--skin-hairline, rgba(26, 30, 58, 0.08))",
               boxShadow: "var(--skin-card-shadow, 0 4px 16px -8px rgba(10, 22, 40, 0.12), 0 16px 40px -20px rgba(10, 22, 40, 0.18))",
             }}
           >
@@ -388,7 +388,7 @@ function ArtifactSkeleton({ label }: { label: string }) {
         className="space-y-4 rounded-2xl px-6 py-6"
         style={{
           background: "var(--skin-card-fill, rgba(255, 255, 255, 0.65))",
-          border: "0.5px solid var(--skin-card-border, rgba(26, 30, 58, 0.08))",
+          border: "0.5px solid var(--skin-hairline, rgba(26, 30, 58, 0.08))",
           boxShadow:
             "var(--skin-card-shadow, 0 4px 16px -8px rgba(10, 22, 40, 0.12), 0 16px 40px -20px rgba(10, 22, 40, 0.18))",
         }}

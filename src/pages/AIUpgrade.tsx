@@ -702,7 +702,7 @@ const AIUpgrade = () => {
     return (
       <div className="min-h-dvh bg-[var(--skin-page-bg,#fff)]">
         {/* Navigation */}
-        <nav className="fixed top-0 left-0 right-0 z-modal bg-[var(--skin-card-fill,rgba(255,255,255,0.95))] backdrop-blur border-b border-[color:var(--skin-card-border,#e5e7eb)]">
+        <nav className="fixed top-0 left-0 right-0 z-modal bg-[var(--skin-card-fill,rgba(255,255,255,0.95))] backdrop-blur border-b border-[color:var(--skin-hairline,#e5e7eb)]">
           <div className="container mx-auto px-6 py-4">
             <Link
               to="/"
@@ -757,7 +757,7 @@ const AIUpgrade = () => {
         }}
       >
         {/* Navigation */}
-        <nav className="fixed top-0 left-0 right-0 z-modal bg-[var(--skin-card-fill,rgba(255,255,255,0.95))] backdrop-blur border-b border-[color:var(--skin-card-border,#e5e7eb)]">
+        <nav className="fixed top-0 left-0 right-0 z-modal bg-[var(--skin-card-fill,rgba(255,255,255,0.95))] backdrop-blur border-b border-[color:var(--skin-hairline,#e5e7eb)]">
           <div className="container mx-auto px-6 py-4">
             <Link
               to="/"
@@ -847,7 +847,7 @@ const AIUpgrade = () => {
   return (
     <div className="min-h-dvh bg-[var(--skin-page-bg,#fff)]">
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-modal bg-[var(--skin-card-fill,rgba(255,255,255,0.95))] backdrop-blur border-b border-[color:var(--skin-card-border,#e5e7eb)]">
+      <nav className="fixed top-0 left-0 right-0 z-modal bg-[var(--skin-card-fill,rgba(255,255,255,0.95))] backdrop-blur border-b border-[color:var(--skin-hairline,#e5e7eb)]">
         <div className="container mx-auto px-6 py-4">
           <Link
             to="/"

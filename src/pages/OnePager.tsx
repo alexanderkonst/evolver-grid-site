@@ -91,7 +91,7 @@ const Panel = ({
         className="rounded-3xl px-7 py-6 sm:px-9 sm:py-7"
         style={{
           background: "var(--skin-card-fill, rgba(255,255,255,0.35))",
-          border: "1px solid var(--skin-card-border, rgba(26,30,58,0.10))",
+          border: "1px solid var(--skin-hairline, rgba(26,30,58,0.10))",
           boxShadow: "0 1px 2px rgba(26,30,58,0.04)",
         }}
       >

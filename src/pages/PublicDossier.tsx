@@ -305,7 +305,7 @@ export default function PublicDossier() {
         <footer
           className="pt-10 text-center"
           style={{
-            borderTop: "0.5px solid var(--skin-card-border, rgba(26, 30, 58, 0.10))",
+            borderTop: "0.5px solid var(--skin-hairline, rgba(26, 30, 58, 0.10))",
           }}
         >
           <div
@@ -342,7 +342,7 @@ function ArtifactBlock({
       style={{
         // Day 91 (Sasha 2026-06-09): tokenized for Aurum.
         background: "var(--skin-card-fill, rgba(255, 255, 255, 0.68))",
-        border: "0.5px solid var(--skin-card-border, rgba(26, 30, 58, 0.08))",
+        border: "0.5px solid var(--skin-hairline, rgba(26, 30, 58, 0.08))",
         boxShadow:
           "0 4px 16px -8px rgba(10, 22, 40, 0.10), 0 16px 40px -20px rgba(10, 22, 40, 0.15)",
       }}
@@ -535,7 +535,7 @@ function renderValue(v: unknown): React.ReactNode {
             className="rounded-lg p-3"
             style={{
               background: "var(--skin-card-fill, rgba(255, 255, 255, 0.45))",
-              border: "0.5px solid var(--skin-card-border, rgba(26, 30, 58, 0.08))",
+              border: "0.5px solid var(--skin-hairline, rgba(26, 30, 58, 0.08))",
             }}
           >
             {renderValue(x)}

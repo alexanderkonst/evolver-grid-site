@@ -80,7 +80,7 @@ const ActivateTopTalent = () => {
                     <div
                         className="liquid-glass rounded-3xl p-6 sm:p-10 space-y-5 text-center"
                         style={{
-                            border: "1px solid var(--skin-card-border, rgba(26,30,58,0.06))",
+                            border: "1px solid var(--skin-hairline, rgba(26,30,58,0.06))",
                         }}
                     >
                         {/* Day 80 Wave 2.5 (Sasha 2026-05-22): "If you don't
@@ -117,7 +117,7 @@ const ActivateTopTalent = () => {
                             style={{
                                 fontFamily: "'Cormorant Garamond', serif",
                                 color: "var(--skin-text-primary, #0a1628)",
-                                border: "1.5px solid var(--skin-card-border, rgba(11,42,90,0.32))",
+                                border: "1.5px solid var(--skin-hairline, rgba(11,42,90,0.32))",
                                 textShadow:
                                     "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
                             }}
@@ -187,7 +187,7 @@ const ActivateTopTalent = () => {
                                             color: "var(--skin-text-primary, #0a1628)",
                                             borderColor: couponError
                                                 ? "rgba(180, 50, 50, 0.55)"
-                                                : "var(--skin-card-border, rgba(26,30,58,0.18))",
+                                                : "var(--skin-hairline, rgba(26,30,58,0.18))",
                                         }}
                                     />
                                     <button
