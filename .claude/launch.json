@@ -30,6 +30,12 @@
       "runtimeExecutable": "npx",
       "runtimeArgs": ["vite", "--port", "8090", "--strictPort"],
       "port": 8090
+    },
+    {
+      "name": "gabriel-site",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "4621", "--directory", "/Users/alexanderkonst/gabriel-padilla-site"],
+      "port": 4621
     }
   ]
 }
