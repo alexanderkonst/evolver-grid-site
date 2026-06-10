@@ -37,7 +37,15 @@ export default function CelebrationModal({
 
     return (
         <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
-            <DialogContent className="sm:max-w-md text-center border-none bg-gradient-to-br from-white via-[#f5f5ff] to-[#ebe8f7] shadow-2xl">
+            {/* Day 91 (Sasha 2026-06-09): tokenized for Aurum - gradient classes moved to a
+                style-prop token; lapis falls back to the exact same white > #f5f5ff > #ebe8f7 wash */}
+            <DialogContent
+                className="sm:max-w-md text-center border-none shadow-2xl"
+                style={{
+                    background:
+                        "var(--skin-card-fill, linear-gradient(to bottom right, #ffffff 0%, #f5f5ff 50%, #ebe8f7 100%))",
+                }}
+            >
                 {/* Icon */}
                 <div className="flex justify-center mb-4">
                     <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[#8460ea] to-[#6894d0] flex items-center justify-center">

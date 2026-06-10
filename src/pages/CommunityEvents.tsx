@@ -45,8 +45,9 @@ const CommunityEvents = () => {
           </div>
         )}
 
+        {/* Day 91 (Sasha 2026-06-09): tokenized for Aurum — card fill falls back to white/85 on lapis */}
         {!loading && !error && filteredEvents.length === 0 && (
-          <div className="rounded-xl border border-border bg-white/85 backdrop-blur-sm p-8 shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
+          <div className="rounded-xl border border-border bg-[var(--skin-card-fill,rgba(255,255,255,0.85))] backdrop-blur-sm p-8 shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
             <EmptyState
               icon={<CalendarDays className="w-6 h-6 text-muted-foreground" />}
               title="No events yet"

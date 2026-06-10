@@ -22,8 +22,9 @@ export default function MeSummary({
     const xpInCurrentLevel = xpTotal % xpToNextLevel;
     const progressPercent = (xpInCurrentLevel / xpToNextLevel) * 100;
 
+    // Day 91 (Sasha 2026-06-09): tokenized for Aurum - lapis falls back to the original bg-white/80
     return (
-        <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-sm border border-[var(--wabi-lavender)]/20 p-6 breathing-card">
+        <div className="bg-[var(--skin-card-fill,rgba(255,255,255,0.8))] backdrop-blur-sm rounded-2xl shadow-sm border border-[var(--wabi-lavender)]/20 p-6 breathing-card">
             <div className="flex items-start gap-4">
                 {/* Archetype Icon */}
                 <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#a4a3d0] to-[#8460ea] flex items-center justify-center flex-shrink-0">

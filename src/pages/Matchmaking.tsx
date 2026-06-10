@@ -393,11 +393,13 @@ const Matchmaking = () => {
 
   // Day 63 night: Skeleton bg matched to parchment-card surface so the
   // shimmer reads against the cream wash, not against an inverted dark.
+  // Day 91 (Sasha 2026-06-09): tokenized for Aurum — dark skins define
+  // --skin-card-fill; lapis keeps the exact white/45 via the fallback.
   const Skeleton = ({ className }: { className?: string }) => (
     <div
       className={`animate-pulse rounded-2xl ${className || ""}`}
       style={{
-        background: "rgba(255, 255, 255, 0.45)",
+        background: "var(--skin-card-fill, rgba(255, 255, 255, 0.45))",
         border: "0.5px solid var(--skin-rule-hairline, rgba(26, 30, 58, 0.08))",
       }}
     />

@@ -128,10 +128,11 @@ const DeepPainScreen: React.FC = () => {
                 </p>
             </div>
 
-            {/* Pain Cards */}
+            {/* Pain Cards — Day 91 (Sasha 2026-06-09): white fill tokenized for
+                Aurum; lapis keeps the exact literals via var() fallbacks. */}
             <div className="grid gap-4 max-w-2xl mx-auto mb-8">
                 {painSections.map((section) => (
-                    <Card key={section.title} className="overflow-hidden bg-white border border-gray-200">
+                    <Card key={section.title} className="overflow-hidden bg-[var(--skin-card-fill,#ffffff)] border border-[var(--skin-card-border,#e5e7eb)]">
                         <CardContent className="p-0">
                             <div className="flex items-start gap-4 p-4">
                                 <div className={`mt-1 ${section.color}`}>

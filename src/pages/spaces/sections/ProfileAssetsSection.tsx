@@ -79,7 +79,8 @@ const ceremonialPill: React.CSSProperties = {
     textTransform: "uppercase",
     fontSize: "12px",
     color: "var(--skin-text-primary, #0b2a5a)",
-    background: "rgba(255, 255, 255, 0.72)",
+    // Day 91 (Sasha 2026-06-09): tokenized for Aurum — fallback = exact prior literal.
+    background: "var(--skin-card-fill, rgba(255, 255, 255, 0.72))",
     border: "0.5px solid rgba(212, 175, 55, 0.55)",
     boxShadow: "0 0 14px -4px rgba(212, 175, 55, 0.32)",
 };
@@ -341,7 +342,7 @@ const ProfileAssetsSection = () => {
                                     letterSpacing: "0.10em",
                                     textTransform: "uppercase",
                                     color: "var(--skin-text-muted, rgba(11, 42, 90, 0.93))",
-                                    background: "rgba(255, 255, 255, 0.55)",
+                                    background: "var(--skin-card-fill, rgba(255, 255, 255, 0.55))",
                                     border: "0.5px solid var(--skin-rule-hairline, rgba(26, 30, 58, 0.10))",
                                 }}
                                 title="Copy all assets to clipboard"
@@ -362,7 +363,7 @@ const ProfileAssetsSection = () => {
                                     letterSpacing: "0.10em",
                                     textTransform: "uppercase",
                                     color: "var(--skin-text-muted, rgba(11, 42, 90, 0.93))",
-                                    background: "rgba(255, 255, 255, 0.55)",
+                                    background: "var(--skin-card-fill, rgba(255, 255, 255, 0.55))",
                                     border: "0.5px solid var(--skin-rule-hairline, rgba(26, 30, 58, 0.10))",
                                 }}
                                 title="Just saved assets and don't see them yet? Tap Refresh."

@@ -73,11 +73,14 @@ const ActivateTopTalent = () => {
 
                     {/* The card — verbatim styling pulled from
                         AppleseedDisplay's OPTION 2. Liquid-glass on
-                        parchment, no border accent, generous padding. */}
+                        parchment, no border accent, generous padding.
+                        Day 91 (Sasha 2026-06-09): tokenized for Aurum —
+                        borders/fills/inks read --skin-* aliases; lapis
+                        keeps the exact literals via var() fallbacks. */}
                     <div
                         className="liquid-glass rounded-3xl p-6 sm:p-10 space-y-5 text-center"
                         style={{
-                            border: "1px solid rgba(26,30,58,0.06)",
+                            border: "1px solid var(--skin-card-border, rgba(26,30,58,0.06))",
                         }}
                     >
                         {/* Day 80 Wave 2.5 (Sasha 2026-05-22): "If you don't
@@ -114,7 +117,7 @@ const ActivateTopTalent = () => {
                             style={{
                                 fontFamily: "'Cormorant Garamond', serif",
                                 color: "var(--skin-text-primary, #0a1628)",
-                                border: "1.5px solid rgba(11,42,90,0.32)",
+                                border: "1.5px solid var(--skin-card-border, rgba(11,42,90,0.32))",
                                 textShadow:
                                     "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
                             }}
@@ -133,7 +136,9 @@ const ActivateTopTalent = () => {
                             style={{
                                 fontFamily: "'DM Sans', system-ui, sans-serif",
                                 letterSpacing: "0.18em",
-                                color: "rgba(122, 81, 8, 0.95)",
+                                /* same amber→muted mapping the central
+                                   text-[#7a5108] sweep applies */
+                                color: "var(--skin-ink-muted, rgba(122, 81, 8, 0.95))",
                             }}
                         >
                             7 min of understanding the value you bring + 6 min of guided meditation to connect with your talent somatically
@@ -153,7 +158,7 @@ const ActivateTopTalent = () => {
                                     fontWeight: 500,
                                     color: "var(--skin-text-muted, rgba(11,42,90,0.86))",
                                     textDecorationColor:
-                                        "rgba(11,42,90,0.35)",
+                                        "var(--skin-ink-muted, rgba(11,42,90,0.35))",
                                     opacity: 0.95,
                                 }}
                             >
@@ -176,13 +181,13 @@ const ActivateTopTalent = () => {
                                         autoFocus
                                         placeholder="Code"
                                         aria-label="Activation code"
-                                        className="flex-1 min-w-0 rounded-full px-3.5 py-2 text-xs bg-white/70 border outline-none focus:ring-2 focus:ring-[hsla(40,70%,55%,0.45)]"
+                                        className="flex-1 min-w-0 rounded-full px-3.5 py-2 text-xs bg-[var(--skin-input-fill,rgba(255,255,255,0.7))] border outline-none focus:ring-2 focus:ring-[hsla(40,70%,55%,0.45)]"
                                         style={{
                                             fontFamily: "'Source Serif 4', serif",
                                             color: "var(--skin-text-primary, #0a1628)",
                                             borderColor: couponError
                                                 ? "rgba(180, 50, 50, 0.55)"
-                                                : "rgba(26,30,58,0.18)",
+                                                : "var(--skin-card-border, rgba(26,30,58,0.18))",
                                         }}
                                     />
                                     <button
@@ -194,7 +199,7 @@ const ActivateTopTalent = () => {
                                             background:
                                                 "linear-gradient(135deg, hsla(40, 75%, 60%, 0.32) 0%, hsla(40, 65%, 50%, 0.18) 100%)",
                                             border: "1px solid hsla(40, 70%, 55%, 0.50)",
-                                            color: "#5d4307",
+                                            color: "var(--skin-ink, #5d4307)",
                                         }}
                                     >
                                         Apply

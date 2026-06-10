@@ -102,7 +102,7 @@ const EventsSpace = () => {
                   id="events-filter"
                   value={filterMode}
                   onChange={(e) => setFilterMode(e.target.value as "all" | "location" | "community")}
-                  className="rounded-md border border-border bg-white px-2 py-1 text-sm"
+                  className="rounded-md border border-border bg-[var(--skin-input-fill,#fff)] px-2 py-1 text-sm"
                 >
                   <option value="all">All Events</option>
                   <option value="location">By Location</option>
@@ -118,7 +118,7 @@ const EventsSpace = () => {
                     id="community-filter"
                     value={selectedCommunity}
                     onChange={(e) => setSelectedCommunity(e.target.value)}
-                    className="rounded-md border border-border bg-white px-2 py-1 text-sm"
+                    className="rounded-md border border-border bg-[var(--skin-input-fill,#fff)] px-2 py-1 text-sm"
                   >
                     <option value="all">All Communities</option>
                     {communityOptions.map((communityId) => (
@@ -141,9 +141,9 @@ const EventsSpace = () => {
             </div>
           )}
 
-          {/* Empty State */}
+          {/* Empty State — Day 91 (Sasha 2026-06-09): card fill tokenized for Aurum, fallback keeps lapis at white/85 */}
           {!loading && !error && events.length === 0 && (
-            <div className="rounded-xl border border-border bg-white/85 backdrop-blur-sm p-8 shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
+            <div className="rounded-xl border border-border bg-[var(--skin-card-fill,rgba(255,255,255,0.85))] backdrop-blur-sm p-8 shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
               <EmptyState
                 icon={<CalendarDays className="w-6 h-6 text-muted-foreground" />}
                 title="No events yet"

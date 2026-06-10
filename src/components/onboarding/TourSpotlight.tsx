@@ -100,7 +100,8 @@ const TourSpotlight = ({
             <div
                 ref={tooltipRef}
                 className={cn(
-                    "fixed z-[102] w-80 bg-white rounded-2xl shadow-2xl p-6 transition-all duration-300",
+                    // Day 91 (Sasha 2026-06-09): tokenized for Aurum — fallback keeps lapis white.
+                    "fixed z-[102] w-80 bg-[var(--skin-card-fill,#ffffff)] rounded-2xl shadow-2xl p-6 transition-all duration-300",
                     "animate-in fade-in slide-in-from-left-4",
                     // Mobile: bottom sheet style
                     "lg:animate-none"

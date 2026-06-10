@@ -28,8 +28,8 @@ const TodaysPractice = () => {
                     />
                 </div>
 
-                {/* Main Card */}
-                <div className="rounded-xl border border-border bg-white/85 backdrop-blur-sm p-6 shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
+                {/* Main Card — Day 91 (Sasha 2026-06-09): tokenized for Aurum, fallback keeps lapis at white/85 */}
+                <div className="rounded-xl border border-border bg-[var(--skin-card-fill,rgba(255,255,255,0.85))] backdrop-blur-sm p-6 shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
                     <p className="text-muted-foreground mb-6">
                         Based on your profile and progress, we'll recommend the best practice for today.
                     </p>

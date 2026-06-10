@@ -166,8 +166,9 @@ const PublishedScreen: React.FC = () => {
                     Your Genius Business is Now Live
                 </p>
 
-                {/* Heart/Mind/Gut Messages */}
-                <div className="max-w-md mx-auto space-y-2 text-left bg-white border border-[#a4a3d0]/20 rounded-lg p-4">
+                {/* Heart/Mind/Gut Messages — Day 91 (Sasha 2026-06-09): white
+                    fill tokenized for Aurum; lapis keeps #ffffff via fallback. */}
+                <div className="max-w-md mx-auto space-y-2 text-left bg-[var(--skin-card-fill,#ffffff)] border border-[#a4a3d0]/20 rounded-lg p-4">
                     <p className="text-sm text-[#2c3150]">
                         <span className="mr-2">🫀</span>
                         <strong>You just published your genius business.</strong>
@@ -184,7 +185,7 @@ const PublishedScreen: React.FC = () => {
             </div>
 
             {/* Link Box */}
-            <div className="max-w-xl mx-auto mb-6 bg-white border border-[#a4a3d0]/20 rounded-xl p-4">
+            <div className="max-w-xl mx-auto mb-6 bg-[var(--skin-card-fill,#ffffff)] border border-[#a4a3d0]/20 rounded-xl p-4">
                 <p className="text-sm text-[#2c3150]/70 mb-2">Your product URL:</p>
                 <div className="flex items-center gap-2">
                     <div className="flex-1 bg-[#8460ea]/5 rounded-lg px-4 py-3 text-sm font-mono text-[#2c3150] truncate">

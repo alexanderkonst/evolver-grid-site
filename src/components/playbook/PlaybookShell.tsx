@@ -105,8 +105,16 @@ const PlaybookShell = ({
         aria-label="Playbook progression"
         className="sticky top-0 z-20 -mx-4 sm:-mx-6 px-4 sm:px-6 py-3 sm:py-4 mb-5 sm:mb-6 backdrop-blur-xl"
         style={{
+          // Day 91 (Sasha 2026-06-09): tokenized for Aurum. The old value
+          // nested var(--skin-panel-wash-quiet) — itself a full gradient in
+          // every skin — inside a gradient stop, which is invalid CSS, so
+          // the nav never actually painted this wash (blur + border only).
+          // Wrapping the whole literal in var(--skin-page-wash, …) keeps
+          // lapis pixel-identical (fallback = same invalid value = no
+          // paint) while dark skins, which define --skin-page-wash, get a
+          // coherent dark band instead of a raw cream stop.
           backgroundImage:
-            "linear-gradient(180deg, var(--skin-panel-wash-quiet, rgba(248, 246, 240, 0.92)) 0%, rgba(248, 246, 240, 0.78) 100%)",
+            "var(--skin-page-wash, linear-gradient(180deg, var(--skin-panel-wash-quiet, rgba(248, 246, 240, 0.92)) 0%, rgba(248, 246, 240, 0.78) 100%))",
           borderBottom: "1px solid rgba(212, 175, 55, 0.18)",
           boxShadow: "0 6px 18px -10px rgba(10, 22, 40, 0.18)",
         }}

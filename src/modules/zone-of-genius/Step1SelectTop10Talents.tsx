@@ -205,12 +205,13 @@ const Step1SelectTop10Talents = () => {
         </button>
       </div>
 
-      {/* Mobile sticky bottom */}
+      {/* Mobile sticky bottom — Day 91 (Sasha 2026-06-09): white wash
+          tokenized for Aurum; lapis keeps the exact gradient via fallback. */}
       <div
         className="sm:hidden fixed bottom-0 left-0 right-0 p-4 z-20"
         style={{
           background:
-            "linear-gradient(to top, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.85) 80%, transparent 100%)",
+            "var(--skin-card-fill, linear-gradient(to top, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.85) 80%, transparent 100%))",
           backdropFilter: "blur(14px)",
           WebkitBackdropFilter: "blur(14px)",
         }}

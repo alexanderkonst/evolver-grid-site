@@ -731,7 +731,10 @@ const MensCircle = () => {
       {/* Bottom padding for sticky CTA on mobile */}
       <div className="h-20 md:hidden" />
 
-      <div className="bg-white">
+      {/* Day 91 (Sasha 2026-06-09): tokenized for Aurum — footer band reads
+          --skin-page-bg (transparent under dark skins, so the page's own dark
+          wash shows through); lapis keeps the exact white via the fallback. */}
+      <div className="bg-[var(--skin-page-bg,#ffffff)]">
         <Footer />
       </div>
       <ScrollToTop />

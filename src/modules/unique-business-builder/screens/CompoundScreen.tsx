@@ -213,6 +213,7 @@ export default function CompoundScreen() {
 }
 
 /* ─── Pill styles ────────────────────────────────────────────────── */
+/* Day 91 (Sasha 2026-06-09): pill fills tokenized for Aurum — lapis hits the exact var() fallbacks */
 
 const navPillStyle: React.CSSProperties = {
   fontFamily: "'Cormorant Garamond', serif",
@@ -221,7 +222,7 @@ const navPillStyle: React.CSSProperties = {
   textTransform: "uppercase",
   fontSize: "11.5px",
   color: "var(--skin-text-primary, #0b2a5a)",
-  background: "rgba(255, 255, 255, 0.68)",
+  background: "var(--skin-card-fill, rgba(255, 255, 255, 0.68))",
   border: "0.5px solid var(--skin-rule-medium, rgba(26, 30, 58, 0.15))",
 };
 
@@ -232,7 +233,7 @@ const navPillStyleStrong: React.CSSProperties = {
   textTransform: "uppercase",
   fontSize: "12.5px",
   color: "var(--skin-text-primary, #0b2a5a)",
-  background: "rgba(255, 255, 255, 0.68)",
+  background: "var(--skin-card-fill, rgba(255, 255, 255, 0.68))",
   border: "0.5px solid rgba(212, 175, 55, 0.55)",
   boxShadow: "0 0 14px -4px rgba(212, 175, 55, 0.32)",
 };
@@ -399,7 +400,7 @@ function SubArtifactCard({ artifactKey }: { artifactKey: ArtifactKey }) {
                     textTransform: "uppercase",
                     fontSize: "12px",
                     color: "var(--skin-text-primary, #0b2a5a)",
-                    background: "rgba(255, 255, 255, 0.68)",
+                    background: "var(--skin-card-fill, rgba(255, 255, 255, 0.68))",
                     border: "0.5px solid rgba(212, 175, 55, 0.55)",
                     boxShadow: "0 0 14px -4px rgba(212, 175, 55, 0.32)",
                   }}

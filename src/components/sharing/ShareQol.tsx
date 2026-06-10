@@ -142,8 +142,11 @@ const ShareQol = ({ overallStage, growthDomains, strengthDomains, profileId, pro
           fontStyle: "italic",
           fontSize: "13px",
           fontWeight: 600,
-          color: "rgba(11, 42, 90, 0.65)",
-          textShadow: "0 1px 2px rgba(255,255,255,0.7)",
+          // Day 91 (Sasha 2026-06-09): tokenized for Aurum — navy ink goes
+          // light via --skin-ink-muted; the white halo rides --skin-page-bg
+          // (transparent on dark skins, so it simply disappears there).
+          color: "var(--skin-ink-muted, rgba(11, 42, 90, 0.65))",
+          textShadow: "0 1px 2px var(--skin-page-bg, rgba(255,255,255,0.7))",
           letterSpacing: "0.01em",
         }}
       >

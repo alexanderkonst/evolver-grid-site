@@ -17,7 +17,8 @@ const SelectTrigger = React.forwardRef<
   <SelectPrimitive.Trigger
     ref={ref}
     className={cn(
-      "flex h-10 w-full items-center justify-between rounded-xl border border-[#a4a3d0]/40 bg-[#e7e9e5]/50 px-3 py-2 text-sm text-[#2c3150] ring-offset-background placeholder:text-[#a4a3d0] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8460ea] focus-visible:ring-offset-2 focus-visible:border-[#8460ea] disabled:cursor-not-allowed disabled:opacity-50 transition-colors [&>span]:line-clamp-1",
+      // Day 91 (Sasha 2026-06-09): trigger fill tokenized for Aurum; lapis hits the exact var() fallback
+      "flex h-10 w-full items-center justify-between rounded-xl border border-[#a4a3d0]/40 bg-[var(--skin-input-fill,rgba(231,233,229,0.5))] px-3 py-2 text-sm text-[#2c3150] ring-offset-background placeholder:text-[#a4a3d0] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8460ea] focus-visible:ring-offset-2 focus-visible:border-[#8460ea] disabled:cursor-not-allowed disabled:opacity-50 transition-colors [&>span]:line-clamp-1",
       className,
     )}
     {...props}
@@ -66,7 +67,8 @@ const SelectContent = React.forwardRef<
     <SelectPrimitive.Content
       ref={ref}
       className={cn(
-        "relative z-modal max-h-96 min-w-[8rem] overflow-hidden rounded-xl border border-[#a4a3d0]/30 bg-[#f5f4f1] text-[#2c3150] shadow-[0_12px_30px_rgba(164,163,208,0.2)] data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
+        // Day 91 (Sasha 2026-06-09): dropdown panel fill tokenized for Aurum; lapis hits the exact var() fallback
+        "relative z-modal max-h-96 min-w-[8rem] overflow-hidden rounded-xl border border-[#a4a3d0]/30 bg-[var(--skin-card-fill,#f5f4f1)] text-[#2c3150] shadow-[0_12px_30px_rgba(164,163,208,0.2)] data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
         position === "popper" &&
           "data-[side=bottom]:translate-y-1 data-[side=left]:-translate-x-1 data-[side=right]:translate-x-1 data-[side=top]:-translate-y-1",
         className,

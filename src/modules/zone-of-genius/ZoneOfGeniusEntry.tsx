@@ -1045,11 +1045,15 @@ const ZoneOfGeniusEntry = () => {
                             </p>
                         </div>
 
+                        {/* Day 91 (Sasha 2026-06-09): glass fill tokenized for
+                            Aurum — `background` (not backgroundImage) so the
+                            skin's --skin-card-fill color value resolves; lapis
+                            keeps the exact gradient via the fallback. */}
                         <div
                             className="relative rounded-2xl"
                             style={{
-                                backgroundImage:
-                                    "linear-gradient(135deg, rgba(255,255,255,0.30), rgba(255,255,255,0.12))",
+                                background:
+                                    "var(--skin-card-fill, linear-gradient(135deg, rgba(255,255,255,0.30), rgba(255,255,255,0.12)))",
                                 border: "1px solid var(--skin-rule-medium, rgba(26,30,58,0.12))",
                                 backdropFilter: "blur(12px)",
                                 WebkitBackdropFilter: "blur(12px)",
@@ -1066,8 +1070,8 @@ const ZoneOfGeniusEntry = () => {
                                 size="sm"
                                 className="absolute top-3 right-3 shadow-sm text-xs rounded-lg"
                                 style={{
-                                    backgroundColor: "rgba(255,255,255,0.35)",
-                                    borderColor: "rgba(26,30,58,0.2)",
+                                    backgroundColor: "var(--skin-input-fill, rgba(255,255,255,0.35))",
+                                    borderColor: "var(--skin-card-border, rgba(26,30,58,0.2))",
                                     color: "var(--skin-text-primary, #0a1628)",
                                     backdropFilter: "blur(8px)",
                                 }}
@@ -1168,8 +1172,8 @@ const ZoneOfGeniusEntry = () => {
                             placeholder="Paste your AI's response here..."
                             className="min-h-[200px] font-mono text-sm rounded-2xl focus:ring-1 transition-all duration-300"
                             style={{
-                                backgroundColor: "rgba(255,255,255,0.30)",
-                                borderColor: "rgba(26,30,58,0.14)",
+                                backgroundColor: "var(--skin-input-fill, rgba(255,255,255,0.30))",
+                                borderColor: "var(--skin-card-border, rgba(26,30,58,0.14))",
                                 color: "var(--skin-text-primary, #0a1628)",
                                 backdropFilter: "blur(12px)",
                                 WebkitBackdropFilter: "blur(12px)",
