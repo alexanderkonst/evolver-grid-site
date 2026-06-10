@@ -5540,6 +5540,83 @@ All colors MUST be HSL.
   fill: var(--skin-text-muted) !important;
 }
 
+/* ── Round 2 (medium-severity fan-out) central re-tones — Day 91. ── */
+
+/* Semantic green/emerald success text reads as mud on near-black
+   (AdminMissionSync sync states et al). Same hue family, lifted. */
+[data-skin="aurum"] .text-green-700,
+[data-skin="techstars"] .text-green-700,
+[data-skin="aurum"] .text-emerald-700,
+[data-skin="techstars"] .text-emerald-700 {
+  color: #4ade80;
+}
+
+/* Semantic error chips (CommunityEvents, TeamsSpace, EventsSpace):
+   bg-red-50 is a blinding light slab on near-black. */
+[data-skin="aurum"] .bg-red-50,
+[data-skin="techstars"] .bg-red-50 {
+  background-color: rgba(127, 29, 29, 0.25);
+}
+[data-skin="aurum"] .border-red-200,
+[data-skin="techstars"] .border-red-200 {
+  border-color: rgba(248, 113, 113, 0.35);
+}
+[data-skin="aurum"] .text-red-600,
+[data-skin="techstars"] .text-red-600 {
+  color: #fca5a5;
+}
+
+/* Status chips: amber ("Building" / "Refining"). Green chips
+   (bg-green-100.text-green-700) are already covered by the round-1
+   selected-bg rule above, which wins on !important — no duplicate. */
+[data-skin="aurum"] .bg-amber-100.text-amber-700,
+[data-skin="techstars"] .bg-amber-100.text-amber-700 {
+  background-color: rgba(245, 158, 11, 0.16);
+  color: #fcd34d;
+}
+
+/* White hover flashes (ProfileAssetsSection rows, GeniusBusiness nav,
+   UBB LandingPageScreen "Copy" chip). Resting fills are tokenized
+   in-file; hovers are utilities, so re-tone here. Lapis untouched. */
+[data-skin="aurum"] .hover\:bg-white\/40:hover,
+[data-skin="techstars"] .hover\:bg-white\/40:hover {
+  background-color: var(--skin-input-fill);
+}
+[data-skin="aurum"] .hover\:bg-white\/80:hover,
+[data-skin="techstars"] .hover\:bg-white\/80:hover {
+  background-color: var(--skin-card-fill);
+}
+[data-skin="aurum"] .hover\:bg-white\/30:hover,
+[data-skin="techstars"] .hover\:bg-white\/30:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+/* TheOriginalsPage "Back to ZoG" tile — class-based 3-stop light
+   gradient. */
+[data-skin="aurum"] .from-white.via-\[\#f5f5ff\].to-\[\#ebe8f7\],
+[data-skin="techstars"] .from-white.via-\[\#f5f5ff\].to-\[\#ebe8f7\] {
+  background-image: none;
+  background-color: var(--skin-card-fill);
+}
+
+/* Light pastel hero gradients (TheOriginalsPage + CanvasOverviewPage
+   lavender, GeniusBusiness sage) — page-dominant light islands on
+   near-black; re-tone to the dark card register, matching the round-1
+   AuthCallback treatment. Their inner bg-white/60 icon circles follow. */
+[data-skin="aurum"] .from-\[\#c8b7d8\].via-\[\#d4d1e8\].to-\[\#e7e9f5\],
+[data-skin="techstars"] .from-\[\#c8b7d8\].via-\[\#d4d1e8\].to-\[\#e7e9f5\],
+[data-skin="aurum"] .from-\[\#e7e9e5\].to-\[\#dcdde2\],
+[data-skin="techstars"] .from-\[\#e7e9e5\].to-\[\#dcdde2\] {
+  background-image: none;
+  background-color: var(--skin-card-fill);
+}
+[data-skin="aurum"] .from-\[\#c8b7d8\] .bg-white\/60,
+[data-skin="techstars"] .from-\[\#c8b7d8\] .bg-white\/60,
+[data-skin="aurum"] .from-\[\#e7e9e5\] .bg-white\/60,
+[data-skin="techstars"] .from-\[\#e7e9e5\] .bg-white\/60 {
+  background-color: var(--skin-input-fill);
+}
+
 /* Status chips whose in-file tokenization would change Lapis (lapis
    defines --skin-selected-* at :root, so a fallback never fires):
    RefineBusinessPage "Live" green chip + PublicProfile amber talent
