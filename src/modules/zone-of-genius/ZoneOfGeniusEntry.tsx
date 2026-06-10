@@ -1071,7 +1071,7 @@ const ZoneOfGeniusEntry = () => {
                                 className="absolute top-3 right-3 shadow-sm text-xs rounded-lg"
                                 style={{
                                     backgroundColor: "var(--skin-input-fill, rgba(255,255,255,0.35))",
-                                    borderColor: "var(--skin-card-border, rgba(26,30,58,0.2))",
+                                    borderColor: "var(--skin-hairline, rgba(26,30,58,0.2))",
                                     color: "var(--skin-text-primary, #0a1628)",
                                     backdropFilter: "blur(8px)",
                                 }}
@@ -1173,7 +1173,7 @@ const ZoneOfGeniusEntry = () => {
                             className="min-h-[200px] font-mono text-sm rounded-2xl focus:ring-1 transition-all duration-300"
                             style={{
                                 backgroundColor: "var(--skin-input-fill, rgba(255,255,255,0.30))",
-                                borderColor: "var(--skin-card-border, rgba(26,30,58,0.14))",
+                                borderColor: "var(--skin-hairline, rgba(26,30,58,0.14))",
                                 color: "var(--skin-text-primary, #0a1628)",
                                 backdropFilter: "blur(12px)",
                                 WebkitBackdropFilter: "blur(12px)",

@@ -555,7 +555,7 @@ const MissionDiscoveryLanding = () => {
                                 fontFamily: "'JetBrains Mono', ui-monospace, monospace",
                                 backgroundColor: "var(--skin-input-fill, rgba(255, 255, 255, 0.45))",
                                 color: INK_MUTED,
-                                border: "0.5px solid var(--skin-card-border, rgba(11,42,90,0.10))",
+                                border: "0.5px solid var(--skin-hairline, rgba(11,42,90,0.10))",
                             }}
                         >
                             {MISSION_DISCOVERY_PROMPT}

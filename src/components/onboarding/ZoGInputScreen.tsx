@@ -70,7 +70,7 @@ const ZoGInputScreen = ({ onSubmit, onBack, saving = false }: ZoGInputScreenProp
                                 value={loves}
                                 onChange={(e) => setLoves(e.target.value)}
                                 placeholder="I love creating systems that help people understand complex ideas..."
-                                className="min-h-[120px] bg-[var(--skin-input-fill,rgba(255,255,255,0.8))] backdrop-blur-sm border-[var(--skin-card-border,rgba(255,255,255,0.5))] focus:border-[var(--depth-violet)] resize-none"
+                                className="min-h-[120px] bg-[var(--skin-input-fill,rgba(255,255,255,0.8))] backdrop-blur-sm border-[var(--skin-hairline,rgba(255,255,255,0.5))] focus:border-[var(--depth-violet)] resize-none"
                             />
                         </div>
 
@@ -84,7 +84,7 @@ const ZoGInputScreen = ({ onSubmit, onBack, saving = false }: ZoGInputScreenProp
                                 value={thankedFor}
                                 onChange={(e) => setThankedFor(e.target.value)}
                                 placeholder="People thank me for making the complex simple, for seeing patterns others miss..."
-                                className="min-h-[120px] bg-[var(--skin-input-fill,rgba(255,255,255,0.8))] backdrop-blur-sm border-[var(--skin-card-border,rgba(255,255,255,0.5))] focus:border-[var(--depth-violet)] resize-none"
+                                className="min-h-[120px] bg-[var(--skin-input-fill,rgba(255,255,255,0.8))] backdrop-blur-sm border-[var(--skin-hairline,rgba(255,255,255,0.5))] focus:border-[var(--depth-violet)] resize-none"
                             />
                         </div>
                     </div>

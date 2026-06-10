@@ -76,7 +76,7 @@ const TourCompleteScreen = ({ hasZog, onFinish, saving = false }: TourCompleteSc
 
                     {/* Completed Items */}
                     {/* Day 91 (Sasha 2026-06-09): tokenized for Aurum — fallbacks keep lapis identical */}
-                    <div className="bg-[var(--skin-card-fill,rgba(255,255,255,0.8))] backdrop-blur-sm rounded-2xl p-6 border border-[var(--skin-card-border,rgba(255,255,255,0.5))] shadow-lg space-y-4">
+                    <div className="bg-[var(--skin-card-fill,rgba(255,255,255,0.8))] backdrop-blur-sm rounded-2xl p-6 border border-[var(--skin-hairline,rgba(255,255,255,0.5))] shadow-lg space-y-4">
                         <p className="text-sm text-[var(--wabi-text-muted)] uppercase tracking-wider">You now have:</p>
                         {completedItems.map((item, index) => (
                             <div

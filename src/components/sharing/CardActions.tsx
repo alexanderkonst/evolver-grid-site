@@ -319,8 +319,12 @@ const CardActions = ({
     );
 
     // Color tokens — adapt to dark/light card placement
-    const idle = darkMode ? "text-white/55" : "text-[rgba(26,30,58,0.55)]";
-    const hover = darkMode ? "hover:text-white/85" : "hover:text-[rgba(26,30,58,0.85)]";
+    // Day 91 (Sasha 2026-06-09): tokenized for Aurum — the light-placement
+    // navy inks read the skin ink tokens with the original literals as
+    // fallbacks (Lapis pixel-identical; the dark-placement branch already
+    // renders white-on-dark and needs no re-tone).
+    const idle = darkMode ? "text-white/55" : "text-[color:var(--skin-ink-muted,rgba(26,30,58,0.55))]";
+    const hover = darkMode ? "hover:text-white/85" : "hover:text-[color:var(--skin-ink-body,rgba(26,30,58,0.85))]";
     const buttonBg = darkMode
         ? "hover:bg-white/10"
         : "hover:bg-[rgba(26,30,58,0.05)]";
@@ -374,7 +378,7 @@ const CardActions = ({
                         top: popoverPos.top,
                         left: popoverPos.left,
                         transform: "translateX(-50%)",
-                        background: "rgba(255, 255, 255, 0.96)",
+                        background: "var(--skin-card-fill, rgba(255, 255, 255, 0.96))",
                         backdropFilter: "blur(24px) saturate(180%)",
                         WebkitBackdropFilter: "blur(24px) saturate(180%)",
                         border: "1px solid rgba(26, 30, 58, 0.12)",
@@ -387,7 +391,7 @@ const CardActions = ({
                             target="_blank"
                             rel="noopener noreferrer"
                             role="menuitem"
-                            className="flex min-h-[40px] items-center gap-3 px-3 py-2 text-sm text-[rgba(26,30,58,0.85)] hover:bg-[rgba(26,30,58,0.05)] transition-colors"
+                            className="flex min-h-[40px] items-center gap-3 px-3 py-2 text-sm text-[color:var(--skin-ink-body,rgba(26,30,58,0.85))] hover:bg-[rgba(26,30,58,0.05)] transition-colors"
                             onClick={() => setShareOpen(false)}
                         >
                             <link.icon className="w-4 h-4 text-[#8460ea]" aria-hidden="true" />
@@ -398,7 +402,7 @@ const CardActions = ({
                         type="button"
                         onClick={handleCopy}
                         role="menuitem"
-                        className="flex min-h-[40px] w-full items-center gap-3 px-3 py-2 text-sm text-[rgba(26,30,58,0.85)] hover:bg-[rgba(26,30,58,0.05)] transition-colors border-t border-[rgba(26,30,58,0.08)]"
+                        className="flex min-h-[40px] w-full items-center gap-3 px-3 py-2 text-sm text-[color:var(--skin-ink-body,rgba(26,30,58,0.85))] hover:bg-[rgba(26,30,58,0.05)] transition-colors border-t border-[color:var(--skin-hairline,rgba(26,30,58,0.08))]"
                     >
                         {copied ? (
                             <Check className="w-4 h-4 text-emerald-600" aria-hidden="true" />

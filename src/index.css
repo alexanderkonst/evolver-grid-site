@@ -2233,6 +2233,12 @@
      the skin's real card/input tokens. */
   --skin-card-fill: var(--skin-card-bg);
   --skin-input-fill: var(--skin-input-bg);
+  /* Hairline alias — Day 91 v2: --skin-card-border IS defined at :root
+     (rgba(26,30,58,0.08)), so tokenized borders whose fallback differs
+     (white 0.5 glass edges, lavender hairlines) were drifting on Lapis.
+     This alias is NOT at :root: Lapis always gets the exact fallback;
+     dark skins resolve to the real border token. */
+  --skin-hairline: var(--skin-card-border);
 }
 
 /* DARKTHEME — typography (inherits Aurora Cormorant + Montserrat; no
@@ -2785,6 +2791,7 @@
   /* Fill aliases — see aurum note. */
   --skin-card-fill: var(--skin-card-bg);
   --skin-input-fill: var(--skin-input-bg);
+  --skin-hairline: var(--skin-card-border);
 }
 
 /* TECHSTARS — typography. Override the platform's Cormorant Garamond
@@ -5589,6 +5596,33 @@ All colors MUST be HSL.
 [data-skin="aurum"] .hover\:bg-white\/30:hover,
 [data-skin="techstars"] .hover\:bg-white\/30:hover {
   background-color: rgba(255, 255, 255, 0.08);
+}
+
+/* Dark hairlines + shadows on tokenized cards that keep literal
+   borders (MeditationPlayer bronze border + white inset hairline;
+   ModuleLandingTemplate how-it-works cards; CardActions share
+   popover). */
+[data-skin="aurum"] [style*="var(--skin-card-fill, linear-gradient(180deg, rgba(255,255,255,0.96)"],
+[data-skin="techstars"] [style*="var(--skin-card-fill, linear-gradient(180deg, rgba(255,255,255,0.96)"] {
+  border-color: var(--skin-card-border) !important;
+  box-shadow:
+    0 10px 28px -10px rgba(0, 0, 0, 0.6),
+    0 0 24px -4px rgba(212, 168, 58, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06) !important;
+}
+[data-skin="aurum"] [style*="var(--skin-card-fill, rgba(255, 255, 255, 0.85))"],
+[data-skin="techstars"] [style*="var(--skin-card-fill, rgba(255, 255, 255, 0.85))"],
+[data-skin="aurum"] [style*="var(--skin-card-fill, rgba(255, 255, 255, 0.96))"],
+[data-skin="techstars"] [style*="var(--skin-card-fill, rgba(255, 255, 255, 0.96))"] {
+  border-color: var(--skin-card-border) !important;
+}
+/* Dark-translucent hover tints are invisible on dark fills
+   (CardActions popover rows). */
+[data-skin="aurum"] [class*="hover:bg-[rgba(26,30,58"]:hover {
+  background-color: rgba(240, 230, 208, 0.08) !important;
+}
+[data-skin="techstars"] [class*="hover:bg-[rgba(26,30,58"]:hover {
+  background-color: rgba(255, 255, 255, 0.08) !important;
 }
 
 /* TheOriginalsPage "Back to ZoG" tile — class-based 3-stop light

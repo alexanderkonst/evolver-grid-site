@@ -268,7 +268,7 @@ function SubArtifactCard({ artifactKey }: { artifactKey: ArtifactKey }) {
       className="relative rounded-2xl p-5"
       style={{
         background: "var(--skin-card-bg, rgba(255, 255, 255, 0.68))",
-        border: "0.5px solid var(--skin-card-border, rgba(26, 30, 58, 0.08))",
+        border: "0.5px solid var(--skin-hairline, rgba(26, 30, 58, 0.08))",
         boxShadow:
           "var(--skin-card-shadow, 0 4px 16px -8px rgba(10, 22, 40, 0.12), 0 16px 40px -20px rgba(10, 22, 40, 0.18))",
       }}

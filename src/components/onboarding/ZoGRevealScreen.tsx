@@ -56,7 +56,7 @@ const ZoGRevealScreen = ({
 
                     {/* Genius Card */}
                     {/* Day 91 (Sasha 2026-06-09): tokenized for Aurum — fallbacks keep lapis identical */}
-                    <div className="bg-[var(--skin-card-fill,rgba(255,255,255,0.8))] backdrop-blur-sm rounded-3xl p-8 border border-[var(--skin-card-border,rgba(255,255,255,0.5))] shadow-xl space-y-6">
+                    <div className="bg-[var(--skin-card-fill,rgba(255,255,255,0.8))] backdrop-blur-sm rounded-3xl p-8 border border-[var(--skin-hairline,rgba(255,255,255,0.5))] shadow-xl space-y-6">
                         {/* Archetype Title */}
                         <div className="space-y-2">
                             <p className="text-sm text-[var(--wabi-text-muted)] uppercase tracking-wider">Your Archetype</p>

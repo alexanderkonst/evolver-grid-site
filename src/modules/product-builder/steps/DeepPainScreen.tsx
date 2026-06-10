@@ -132,7 +132,7 @@ const DeepPainScreen: React.FC = () => {
                 Aurum; lapis keeps the exact literals via var() fallbacks. */}
             <div className="grid gap-4 max-w-2xl mx-auto mb-8">
                 {painSections.map((section) => (
-                    <Card key={section.title} className="overflow-hidden bg-[var(--skin-card-fill,#ffffff)] border border-[var(--skin-card-border,#e5e7eb)]">
+                    <Card key={section.title} className="overflow-hidden bg-[var(--skin-card-fill,#ffffff)] border border-[var(--skin-hairline,#e5e7eb)]">
                         <CardContent className="p-0">
                             <div className="flex items-start gap-4 p-4">
                                 <div className={`mt-1 ${section.color}`}>

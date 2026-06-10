@@ -516,7 +516,7 @@ function DossierRow({ artifactKey }: { artifactKey: ArtifactKey }) {
       className="rounded-xl px-4 py-3.5"
       style={{
         background: "var(--skin-card-fill, rgba(255, 255, 255, 0.68))",
-        border: "0.5px solid var(--skin-card-border, rgba(26, 30, 58, 0.08))",
+        border: "0.5px solid var(--skin-hairline, rgba(26, 30, 58, 0.08))",
         boxShadow:
           "var(--skin-card-shadow, 0 4px 16px -8px rgba(10, 22, 40, 0.10), 0 16px 40px -20px rgba(10, 22, 40, 0.15))",
       }}

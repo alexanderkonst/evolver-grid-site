@@ -153,7 +153,7 @@ const useSkinChartPalette = () => {
 
 const cardStyle: React.CSSProperties = {
   background: "var(--skin-card-fill, rgba(255,255,255,0.45))",
-  border: "1px solid var(--skin-card-border, rgba(26,30,58,0.08))",
+  border: "1px solid var(--skin-hairline, rgba(26,30,58,0.08))",
   boxShadow: "var(--skin-card-shadow, 0 4px 16px -8px rgba(10,22,40,0.12), 0 16px 40px -20px rgba(10,22,40,0.18))",
   backdropFilter: "blur(14px)",
   WebkitBackdropFilter: "blur(14px)",
@@ -460,7 +460,7 @@ const VentureDashboard = () => {
                       </div>
                       <span className="text-xs font-mono" style={textPrimary}>{formatCurrency(rTotal)}</span>
                     </div>
-                    <div className="h-1 rounded-full overflow-hidden" style={{ background: "var(--skin-card-border, rgba(26,30,58,0.08))" }}>
+                    <div className="h-1 rounded-full overflow-hidden" style={{ background: "var(--skin-hairline, rgba(26,30,58,0.08))" }}>
                       <div
                         className="h-full rounded-full transition-all duration-700"
                         style={{ width: `${pct}%`, background: `linear-gradient(90deg, ${r.color}, ${r.color}66)` }}
@@ -478,7 +478,7 @@ const VentureDashboard = () => {
             </div>
 
             {/* Totals */}
-            <div className="mt-5 pt-4" style={{ borderTop: "1px solid var(--skin-card-border, rgba(26,30,58,0.08))" }}>
+            <div className="mt-5 pt-4" style={{ borderTop: "1px solid var(--skin-hairline, rgba(26,30,58,0.08))" }}>
               <div className="flex items-center justify-between mb-1">
                 <span className="text-[10px] uppercase tracking-[0.18em]" style={textMuted}>Total</span>
                 <span className="text-2xl font-medium" style={numerals}>
@@ -608,7 +608,7 @@ const VentureDashboard = () => {
               className="text-[11px] px-3 py-1.5 rounded-lg transition-colors"
               style={{
                 color: "var(--skin-accent-gold, #b8860b)",
-                border: "1px solid var(--skin-card-border, rgba(184,134,11,0.25))",
+                border: "1px solid var(--skin-hairline, rgba(184,134,11,0.25))",
                 background: "var(--skin-card-fill, rgba(255,255,255,0.45))",
               }}
             >
@@ -673,7 +673,7 @@ const VentureDashboard = () => {
                         </div>
                         <span className="text-[11px] font-mono" style={textPrimary}>{d.value}</span>
                       </div>
-                      <div className="h-[3px] rounded-full overflow-hidden" style={{ background: "var(--skin-card-border, rgba(26,30,58,0.08))" }}>
+                      <div className="h-[3px] rounded-full overflow-hidden" style={{ background: "var(--skin-hairline, rgba(26,30,58,0.08))" }}>
                         <div
                           className="h-full rounded-full transition-all duration-700"
                           style={{
@@ -689,7 +689,7 @@ const VentureDashboard = () => {
               </div>
               <div
                 className="mt-4 pt-3 flex items-center justify-between"
-                style={{ borderTop: "1px solid var(--skin-card-border, rgba(26,30,58,0.08))" }}
+                style={{ borderTop: "1px solid var(--skin-hairline, rgba(26,30,58,0.08))" }}
               >
                 <span className="text-[10px] uppercase tracking-[0.18em]" style={textMuted}>Average</span>
                 <span className="text-base font-medium" style={{ ...serif, ...textPrimary }}>
@@ -705,7 +705,7 @@ const VentureDashboard = () => {
         {/* ═══════ FOOTER ═══════ */}
         <footer
           className="pt-8 pb-4 mt-4"
-          style={{ borderTop: "1px solid var(--skin-card-border, rgba(26,30,58,0.08))" }}
+          style={{ borderTop: "1px solid var(--skin-hairline, rgba(26,30,58,0.08))" }}
           id="dashboard-footer"
         >
           <div className="flex flex-wrap items-center justify-between gap-2 text-[10px]" style={textMutedSoft}>

@@ -211,7 +211,7 @@ const Intros = () => {
               href="https://t.me/ARKHAZM/170"
               target="_blank"
               rel="noopener noreferrer"
-              className="block p-6 lg:p-7 bg-[var(--skin-card-fill,rgba(255,255,255,0.8))] rounded-2xl border border-[color:var(--skin-card-border,rgba(26,26,46,0.08))] hover:border-[#8460ea]/40 hover:bg-white transition-all group"
+              className="block p-6 lg:p-7 bg-[var(--skin-card-fill,rgba(255,255,255,0.8))] rounded-2xl border border-[color:var(--skin-hairline,rgba(26,26,46,0.08))] hover:border-[#8460ea]/40 hover:bg-white transition-all group"
             >
               <div className="flex items-start gap-5">
                 <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-gradient-to-br from-[#8460ea] to-[#5b3fb0] text-white flex items-center justify-center text-xl font-bold shadow-md shadow-[#8460ea]/30">
@@ -243,7 +243,7 @@ const Intros = () => {
               href="https://FindYourTopTalent.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="block p-6 lg:p-7 bg-[var(--skin-card-fill,rgba(255,255,255,0.8))] rounded-2xl border border-[color:var(--skin-card-border,rgba(26,26,46,0.08))] hover:border-[#8460ea]/40 hover:bg-white transition-all group"
+              className="block p-6 lg:p-7 bg-[var(--skin-card-fill,rgba(255,255,255,0.8))] rounded-2xl border border-[color:var(--skin-hairline,rgba(26,26,46,0.08))] hover:border-[#8460ea]/40 hover:bg-white transition-all group"
             >
               <div className="flex items-start gap-5">
                 <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-gradient-to-br from-[#8460ea] to-[#5b3fb0] text-white flex items-center justify-center text-xl font-bold shadow-md shadow-[#8460ea]/30">
@@ -271,7 +271,7 @@ const Intros = () => {
             </a>
 
             {/* Vector 3 */}
-            <div className="block p-6 lg:p-7 bg-[var(--skin-card-fill,rgba(255,255,255,0.8))] rounded-2xl border border-[color:var(--skin-card-border,rgba(26,26,46,0.08))]">
+            <div className="block p-6 lg:p-7 bg-[var(--skin-card-fill,rgba(255,255,255,0.8))] rounded-2xl border border-[color:var(--skin-hairline,rgba(26,26,46,0.08))]">
               <div className="flex items-start gap-5">
                 <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-gradient-to-br from-[#8460ea] to-[#5b3fb0] text-white flex items-center justify-center text-xl font-bold shadow-md shadow-[#8460ea]/30">
                   3
@@ -311,7 +311,7 @@ const Intros = () => {
         {/* Tiers */}
         {TIERS.map((group) => (
           <section key={group.tier} className="mb-14">
-            <div className="mb-6 pb-3 border-b border-[color:var(--skin-card-border,rgba(26,26,46,0.10))]">
+            <div className="mb-6 pb-3 border-b border-[color:var(--skin-hairline,rgba(26,26,46,0.10))]">
               <div className="flex items-baseline gap-3">
                 <span className="text-xs font-mono font-bold text-[#8460ea] uppercase tracking-widest">
                   Tier {group.tier}
@@ -327,7 +327,7 @@ const Intros = () => {
               {group.people.map((p, i) => (
                 <article
                   key={p.name}
-                  className="p-5 lg:p-6 bg-[var(--skin-card-fill,rgba(255,255,255,0.7))] rounded-2xl border border-[color:var(--skin-card-border,rgba(26,26,46,0.08))] hover:border-[#8460ea]/30 hover:bg-white/90 transition-all"
+                  className="p-5 lg:p-6 bg-[var(--skin-card-fill,rgba(255,255,255,0.7))] rounded-2xl border border-[color:var(--skin-hairline,rgba(26,26,46,0.08))] hover:border-[#8460ea]/30 hover:bg-white/90 transition-all"
                 >
                   <div className="flex items-baseline justify-between gap-4 mb-2">
                     <div className="flex items-baseline gap-3 flex-wrap">
@@ -372,7 +372,7 @@ const Intros = () => {
         ))}
 
         {/* CTA */}
-        <section className="text-center py-8 border-t border-[color:var(--skin-card-border,rgba(26,26,46,0.10))]">
+        <section className="text-center py-8 border-t border-[color:var(--skin-hairline,rgba(26,26,46,0.10))]">
           <p className="text-sm uppercase tracking-[0.2em] text-[#8460ea] font-semibold mb-4">
             Who can open a door
           </p>

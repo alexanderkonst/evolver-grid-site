@@ -66,7 +66,7 @@ const MatchHero = () => {
     <>
       <SEO
         title="Find Your Top Talent · Find Your People"
-        description="A few simple prompts. We learn how you think, build, and contribute, then introduce you to entrepreneurs, operators, and advisors who naturally fit."
+        description="A few simple prompts reveal how you think, build, and contribute. Your talent in exact words in two minutes, then introductions to people whose work complements yours."
         path="/?path=match"
         ogTitle="Find your people"
       />
@@ -234,7 +234,13 @@ const MatchHero = () => {
               Now names the concrete villains visitors actually
               feel — titles, résumés, keywords — the flattening
               language of every existing platform. More specific
-              villain reads sharper than abstract complaint. */}
+              villain reads sharper than abstract complaint.
+              (Sasha 2026-06-09) — "Luck shouldn't decide whether you
+              meet them" prepended (approved Option A copy pass from
+              the strategy-iteration session). Escalation pair: luck
+              (the unnamed villain) → platforms (the named one). H1
+              stays the single dominant frame per Day 84 v9; this
+              sentence lives here so the beat count holds at four. */}
           <p
             className="font-display text-base sm:text-lg md:text-xl leading-[1.32] italic mb-3 sm:mb-4"
             style={{
@@ -246,7 +252,7 @@ const MatchHero = () => {
                 "var(--skin-text-halo-deep, 0 0 28px rgba(255,255,255,0.85), 0 1px 2px rgba(255,255,255,0.95), 0 0 1px rgba(11,42,90,0.65), 0 1px 0 rgba(11,42,90,0.45))",
             }}
           >
-            Most platforms flatten you into titles, résumés, and keywords
+            Luck shouldn't decide whether you meet them. Most platforms flatten you into titles, résumés, and keywords
           </p>
 
           {/* Day 85 v3 (Sasha 2026-05-25) — Ornament glyph removed. Sasha:
@@ -269,7 +275,18 @@ const MatchHero = () => {
               (the fit is the outcome, not the artifact). Two short
               sentences instead of one long one; the period after
               "prompts" lets the mechanism beat land before the
-              outcome beat. No em-dashes (Sasha's standing rule). */}
+              outcome beat. No em-dashes (Sasha's standing rule).
+              (Sasha 2026-06-09) — approved Option A rewrite from the
+              strategy-iteration session. Three moves: (1) the certain
+              reward named first ("your talent in exact words, in two
+              minutes") so the page pays even while the pool is young;
+              (2) "entrepreneurs, operators, and advisors" → "people
+              whose work complements yours" (complementarity is the
+              mechanic, and pilot communities send non-startup people
+              through this door); (3) "with the collaboration spelled
+              out" = the differentiator no competitor has: intros
+              arrive with the opportunity named. Internal periods are
+              deliberate cadence; final period stripped per Day 85 v3. */}
           <p
             className="font-display text-lg sm:text-xl md:text-2xl font-bold leading-[1.4] tracking-[-0.005em]"
             style={{
@@ -279,7 +296,7 @@ const MatchHero = () => {
                 "var(--skin-text-halo-deep, 0 0 22px rgba(255,255,255,0.7), 0 1px 2px rgba(255,255,255,0.9), 0 0 1px rgba(11,42,90,0.45), 0 1px 0 rgba(11,42,90,0.25))",
             }}
           >
-            A few simple prompts. We learn how you think, build, and contribute, then introduce you to entrepreneurs, operators, and advisors who naturally fit
+            A few simple prompts reveal how you naturally think, build, and contribute. You get your talent in exact words, in two minutes. We use it to introduce you to people whose work complements yours, with the collaboration spelled out: what you'd build together and why it works
           </p>
         </header>
 
