@@ -17,6 +17,12 @@ interface ModuleLandingTemplateProps {
  * 8-section structure driven entirely by ModuleLandingData.
  * Follows Marketing Playbook section flow:
  * Hero → ForWhom → Pain → Solution → Outcomes → HowItWorks → Story → FinalCTA
+ *
+ * Day 91 (Sasha 2026-06-09): tokenized for Aurum — the light section
+ * washes, glass cards, and the white CTA button read skin tokens with
+ * their original literals as fallbacks, so Lapis stays pixel-identical
+ * while the dark skins re-tone. Dark purple sections are skin-agnostic
+ * and stay hardcoded.
  */
 const ModuleLandingTemplate = ({ data, moduleTitle, moduleSpace }: ModuleLandingTemplateProps) => {
     useEffect(() => {
@@ -104,7 +110,7 @@ const ModuleLandingTemplate = ({ data, moduleTitle, moduleSpace }: ModuleLanding
             <section
                 ref={forWhomAnim.ref}
                 className={`py-20 px-6 ${forWhomAnim.isVisible ? "fade-in-section" : "opacity-0"}`}
-                style={{ backgroundColor: "hsl(30, 15%, 96%)" }}
+                style={{ backgroundColor: "var(--skin-page-bg, hsl(30, 15%, 96%))" }}
             >
                 <div className="container mx-auto max-w-3xl">
                     <h2 className="text-3xl sm:text-4xl font-display font-semibold text-center mb-12 text-[#2c3150]">
@@ -160,7 +166,7 @@ const ModuleLandingTemplate = ({ data, moduleTitle, moduleSpace }: ModuleLanding
             <section
                 ref={solutionAnim.ref}
                 className={`py-20 px-6 ${solutionAnim.isVisible ? "fade-in-section" : "opacity-0"}`}
-                style={{ backgroundColor: "hsl(30, 25%, 94%)" }}
+                style={{ backgroundColor: "var(--skin-page-bg, hsl(30, 25%, 94%))" }}
             >
                 <div className="container mx-auto max-w-3xl">
                     <h2 className="text-3xl sm:text-4xl font-display font-semibold text-center mb-12 text-[#2c3150]">
@@ -219,7 +225,7 @@ const ModuleLandingTemplate = ({ data, moduleTitle, moduleSpace }: ModuleLanding
             <section
                 ref={howItWorksAnim.ref}
                 className={`py-20 px-6 ${howItWorksAnim.isVisible ? "fade-in-section" : "opacity-0"}`}
-                style={{ backgroundColor: "hsl(30, 15%, 96%)" }}
+                style={{ backgroundColor: "var(--skin-page-bg, hsl(30, 15%, 96%))" }}
             >
                 <div className="container mx-auto max-w-4xl">
                     <h2 className="text-3xl sm:text-4xl font-display font-semibold text-center mb-14 text-[#2c3150]">
@@ -231,9 +237,9 @@ const ModuleLandingTemplate = ({ data, moduleTitle, moduleSpace }: ModuleLanding
                                 key={i}
                                 className="relative text-center p-6 rounded-2xl"
                                 style={{
-                                    background: "rgba(255, 255, 255, 0.85)",
+                                    background: "var(--skin-card-fill, rgba(255, 255, 255, 0.85))",
                                     backdropFilter: "blur(20px)",
-                                    border: "1px solid rgba(164, 163, 208, 0.2)",
+                                    border: "1px solid var(--skin-card-border, rgba(164, 163, 208, 0.2))",
                                     boxShadow: "0 4px 16px rgba(44, 49, 80, 0.06)",
                                 }}
                             >
@@ -302,8 +308,8 @@ const ModuleLandingTemplate = ({ data, moduleTitle, moduleSpace }: ModuleLanding
                         size="lg"
                         className="text-lg px-10 py-6 rounded-2xl shadow-lg btn-premium-hover"
                         style={{
-                            background: "white",
-                            color: "#2c3150",
+                            background: "var(--skin-card-fill, white)",
+                            color: "var(--skin-ink, #2c3150)",
                             boxShadow: "0 4px 20px rgba(0, 0, 0, 0.15)",
                         }}
                     >
