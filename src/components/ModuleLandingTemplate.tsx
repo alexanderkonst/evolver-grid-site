@@ -239,7 +239,7 @@ const ModuleLandingTemplate = ({ data, moduleTitle, moduleSpace }: ModuleLanding
                                 style={{
                                     background: "var(--skin-card-fill, rgba(255, 255, 255, 0.85))",
                                     backdropFilter: "blur(20px)",
-                                    border: "1px solid var(--skin-card-border, rgba(164, 163, 208, 0.2))",
+                                    border: "1px solid rgba(164, 163, 208, 0.2)",
                                     boxShadow: "0 4px 16px rgba(44, 49, 80, 0.06)",
                                 }}
                             >
