@@ -99,6 +99,18 @@ export function useJourneyProgress(): { progress: JourneyProgress; isLoading: bo
           "journey-dashboard": !!window.localStorage.getItem(
             "journey:visited:journey-dashboard",
           ),
+          // 2026-06-10 (live-demo bug): a GUEST who completes the Top
+          // Talent reveal has their result auto-saved on-device
+          // (guest_appleseed_data / guest_ai_response — written by
+          // ZoneOfGeniusEntry via saveToDatabase.ts) but no Supabase
+          // row, so JOURNEY kept "2. Discover your mission" locked
+          // right after they found their top talent. Count the guest
+          // payload as completion. Same-device only by nature; the DB
+          // signal takes over after signup (postAuthSideEffects
+          // migrates the guest payload).
+          "journey-start-here":
+            !!window.localStorage.getItem("guest_appleseed_data") ||
+            !!window.localStorage.getItem("guest_ai_response"),
         };
       } catch {
         return {};
@@ -223,7 +235,13 @@ export function useJourneyProgress(): { progress: JourneyProgress; isLoading: bo
           ...visitFlags,
           // Pointer OR source row — covers cases where the
           // denormalized column on game_profiles was never set.
-          "journey-start-here": !!data?.last_zog_snapshot_id || hasZogRow,
+          // Also OR the on-device guest payload (visitFlags) so a
+          // just-signed-up user whose guest reveal hasn't migrated
+          // yet doesn't see the gate re-lock.
+          "journey-start-here":
+            !!data?.last_zog_snapshot_id ||
+            hasZogRow ||
+            !!visitFlags["journey-start-here"],
           "journey-asset-mapper": !!data?.resources_mapped_at || hasAssetRow,
           "journey-qol-assess": !!data?.last_qol_snapshot_id || hasQolRow,
           // Mission has no separate source table I can probe, so

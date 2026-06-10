@@ -53,10 +53,14 @@ const Auth = () => {
   // sessionStorage). We check both — localStorage is canonical going
   // forward; sessionStorage is the legacy key kept as a safety net for
   // users mid-flow when this ships.
+  // 2026-06-10 default flip: the match funnel is the default, so every
+  // visitor without an explicit `?path=build` entry counts as a funnel
+  // newcomer (net-new → Sign Up default). Returning founders get
+  // auto-flipped to Log In by the existing already-registered detection.
   const isMatchPathEntry =
     typeof window !== "undefined" &&
-    (window.localStorage?.getItem("ftt_entry_path") === "match" ||
-      window.sessionStorage?.getItem("ftt_entry_path") === "match");
+    (window.localStorage?.getItem("ftt_entry_path") ||
+      window.sessionStorage?.getItem("ftt_entry_path")) !== "build";
   const isOnboardingFlow = mode === "signup" || claimMode || isMatchPathEntry; // tinted UI
   // Match-path users are net-new — default them to Sign Up, not Log In.
   const defaultTab =
@@ -399,10 +403,12 @@ const Auth = () => {
   // canonical (survives magic-link cross-tab hop); sessionStorage is
   // the legacy fallback for users mid-flow at ship time. Key matches
   // EntryPathContext.STORAGE_KEY ("ftt_entry_path").
+  // 2026-06-10 default flip: match-funnel copy is the default; only an
+  // explicit `?path=build` entry gets the legacy claim line.
   const claimIsMatchPath =
     typeof window !== "undefined" &&
-    (window.localStorage?.getItem("ftt_entry_path") === "match" ||
-      window.sessionStorage?.getItem("ftt_entry_path") === "match");
+    (window.localStorage?.getItem("ftt_entry_path") ||
+      window.sessionStorage?.getItem("ftt_entry_path")) !== "build";
 
   if (claimMode) {
     return (

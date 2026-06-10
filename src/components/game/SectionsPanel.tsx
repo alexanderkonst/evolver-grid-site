@@ -505,7 +505,7 @@ const buildLearnSections = (pathBase: "/library" | "/game/learn/library"): Secti
     return [...stepRows, ...pathRows];
 };
 
-type EntryPath = "match" | null;
+type EntryPath = "match" | "build" | null;
 
 const buildJourneySections = (
     _currentPath: string,
@@ -562,7 +562,10 @@ const buildJourneySections = (
     // journeyProgress signals GameShellV2's tmaComplete consumes).
     const buildBusinessUnlocked = activationDone || tmaComplete;
 
-    const isMatch = entryPath === "match";
+    // 2026-06-10 default flip: match funnel is the default JOURNEY shape
+    // (#5 Find collaborators, #6 Build a business). Only an explicit
+    // `?path=build` entry restores the legacy build-terminus journey.
+    const isMatch = entryPath !== "build";
 
     const terminusItem: Section = isMatch
         ? {
@@ -934,6 +937,13 @@ const SectionsPanel = ({
         // is about discovering the methodology, not running the full
         // canvas yet. Falls through to the static SPACE_SECTIONS.build
         // below (Path/Playbook/Dashboard etc.) for match-path users.
+        //
+        // 2026-06-10 default flip note: this branch DELIBERATELY stays
+        // keyed on explicit `match` (not the new `!== "build"` funnel
+        // default). It serves users already standing on /ubb* — active
+        // UBB founders with no stored entry path — who need the 6-phase
+        // canvas nav. Only explicit `?path=match` outreach entries get
+        // the lighter methodology pane here.
         if (
             activeSpaceId === "build" &&
             entryPath !== "match" &&

@@ -55,7 +55,12 @@ const CelebrationModalListener = () => {
                     const entryPath =
                         window.localStorage?.getItem("ftt_entry_path") ||
                         window.sessionStorage?.getItem("ftt_entry_path");
-                    if (entryPath === "match") return;
+                    // 2026-06-10 default flip: the match funnel (inline
+                    // celebration via MatchFlowCta / AppleseedDisplay) is
+                    // the default — suppress this modal for everyone
+                    // except explicit ?path=build entries, otherwise the
+                    // default flow would stack two CTAs (funnel monogamy).
+                    if (entryPath !== "build") return;
                 }
             } catch {
                 // If storage is unavailable (private browsing), fall

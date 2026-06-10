@@ -8104,3 +8104,26 @@ Deploy reality: frontend ships on the commit-to-main auto-deploy; the edge funct
 - `src/modules/zone-of-genius/excaliburGenerator.ts`, `ExcaliburDisplay.tsx`
 - `docs/09-logs/session_log.md`: this entry
 
+
+---
+
+## Day 99: The demo fork — match funnel becomes the default (June 10, 2026)
+
+A live demo in front of ~20 people exposed the funnel fork. An attendee did the Top Talent reveal on the bare URL from his phone and got the OLD build-path experience: post-reveal $555/$37 session cards, then a JOURNEY rail with "2. Discover your mission" locked behind "Unlocks after you find your top talent" — right after he'd found it. Not a mobile bug: the new match flow (reveal → Mission → Assets → matchmaking) only ever fired behind `?path=match` links, and Sasha's own desktop carried that flag in localStorage while the attendee's phone didn't. Second, independent bug: JOURNEY gating read only the authed Supabase profile, so a GUEST's on-device reveal (`guest_appleseed_data`) never unlocked Mission — on any device.
+
+Sasha's call (Option A): **the match funnel is now the default for cold traffic.** The funnel-v2 spec §4.1 had marked "BuildLanding is the default" as reversible if the strategic balance shifts; with the North Star locked on collaboration rate and the triad as the matching unit, it shifted. Sessions don't vanish: `/ignite` stays live for direct links, the $37 power-up holds at JOURNEY 1.5, the $555 path lives at JOURNEY #6 → `/path`, and an explicit `?path=build` link restores the full legacy sessions funnel end-to-end (now sticky through the flow, persisted like match always was).
+
+Shipped: `EntryPathContext` extended (`"match" | "build" | null`, default-flip documented in header; predicate convention `!== "build"` = funnel flavor, `=== "match"` = hero swap). Flipped: AppleseedDisplay reveal CTAs, ZoneOfGeniusEntry "Step 1 of 2" preamble, SectionsPanel journey terminus, CelebrationModal graduation CTA, CelebrationModalListener suppression (funnel monogamy held — no double CTAs), MissionDiscoveryLanding saved-state CTA, MatchFlowCta gate, AssetMappingLanding post-save row, Auth Sign-Up default + claim copy. Deliberately NOT flipped: the landing hero (`/` keeps MethodologyLandingPage byte-identical; MatchHero still needs explicit `?path=match`) and the /ubb canvas-builder pane (active UBB founders keep their 6-phase nav). Guest gate fixed in `useJourneyProgress`: on-device guest reveal now counts as "journey-start-here" completion, OR'd under the authed path too so a fresh signup doesn't re-lock before migration.
+
+Verified live in preview: cold `/` = venture hero + match journey shape; guest reveal data → #1 struck through + #2 Mission unlocked (was `cursor: not-allowed`, now `pointer`); `?path=build` → build terminus + stored override; `?path=match` → MatchHero + override of stored build; auth bounce defaults to Sign Up; zero console errors; `tsc` + production build clean.
+
+**Files touched**
+- `src/contexts/EntryPathContext.tsx`: type + capture + persistence + default-flip contract
+- `src/modules/zone-of-genius/AppleseedDisplay.tsx`, `ZoneOfGeniusEntry.tsx`: reveal surfaces flipped
+- `src/components/game/SectionsPanel.tsx`: journey terminus default + local type + deliberate /ubb holdout note
+- `src/components/celebration/CelebrationModal.tsx`, `CelebrationModalListener.tsx`: graduation CTA + suppression flipped
+- `src/modules/mission-discovery/MissionDiscoveryLanding.tsx`, `src/modules/asset-mapping/AssetMappingLanding.tsx`, `src/components/landing/MatchFlowCta.tsx`: completion CTAs flipped
+- `src/pages/Auth.tsx`: Sign-Up default + claim copy for funnel newcomers
+- `src/hooks/useJourneyProgress.ts`: guest reveal unlocks JOURNEY #2
+- `docs/specs/funnel-v2/funnel-v2_product_spec.md`: dated §4.1 correction
+- `docs/09-logs/session_log.md`: this entry

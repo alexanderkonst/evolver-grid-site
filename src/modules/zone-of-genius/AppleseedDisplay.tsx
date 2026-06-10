@@ -193,8 +193,11 @@ const AppleseedDisplay = ({
     // Day 80 Wave 2.4: match-path users see a clean reveal with one
     // forward CTA (Discover My Mission). Build-path users see the
     // existing three-options layout unchanged.
+    // 2026-06-10 default flip: match funnel is the default for everyone;
+    // the three-options sessions layout now requires an explicit
+    // `?path=build` entry (Sasha's direct session-sales links).
     const { path: entryPath } = useEntryPath();
-    const isMatchPath = entryPath === "match";
+    const isMatchPath = entryPath !== "build";
     // On the dark skins the light-cream reveal card reads as a bright
     // slab on dark panel. Use the hero's built-in `darkMode` palette
     // (liquid-glass body + cream text) so the card stays in the skin's
