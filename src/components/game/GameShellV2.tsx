@@ -1400,6 +1400,20 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                         // Everywhere else, sticky preserves the historical
                         // behavior these routes depend on.
                         isAiOsRoute ? "shrink-0" : "sticky top-0",
+                        // (Sasha 2026-06-10) overflow guard. The rail is
+                        // h-dvh, but for AUTHED users on short viewports
+                        // (laptop + stacked browser bars) the rail content
+                        // (logo + spaces + player + chat + settings + theme
+                        // + logout) can exceed the viewport. Without this,
+                        // the overflowing content extends the DOCUMENT
+                        // scroll area — every page grows a phantom scroll,
+                        // and scrolled past the shell the body bg shows as
+                        // a dark ribbon under the whole layout (Sasha's
+                        // Lovable-preview screenshot, /?path=match). With
+                        // it, a too-tall rail scrolls internally and the
+                        // document never grows. Pane 2's wrapper already
+                        // has the same guard (h-dvh overflow-hidden).
+                        "overflow-y-auto overflow-x-hidden",
                     )}
                     pageOwnsBackground={pageOwnsBackground}
                     userName={profile?.first_name || undefined}

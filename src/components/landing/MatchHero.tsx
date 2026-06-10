@@ -66,7 +66,7 @@ const MatchHero = () => {
     <>
       <SEO
         title="Find Your Top Talent · Find Your People"
-        description="A few simple prompts reveal how you think, build, and contribute. Your talent in exact words in two minutes, then introductions to people whose work complements yours."
+        description="A few simple prompts. Your talent in exact words, in two minutes. Then introductions to people whose work complements yours, with the collaboration spelled out."
         path="/?path=match"
         ogTitle="Find your people"
       />
@@ -157,12 +157,20 @@ const MatchHero = () => {
               Subtract 1rem.
             - Mobile (<lg): mobile shell has a ~76px sticky topbar.
               Subtract 5rem.
-          min-h + max-h lock the hero to the available area; flex
-          justify-center distributes breath; type uses fixed
-          responsive sizes (no clamps) for confident hierarchy. */}
+          (Sasha 2026-06-10) max-h clamps DROPPED. min-h + max-h made
+          the hero a fixed-height box: on viewports shorter than the
+          calc assumption (laptop + stacked browser bars, browser zoom,
+          authed-rail metrics) content exceeded the clamp, overflowed
+          visibly, top-pinned the eyebrow, and grew the document
+          (phantom scroll + the dark ribbon under the shell). min-h
+          alone keeps the centering guarantee when content fits — the
+          normal case, especially after the same-day copy compression —
+          and degrades to natural flow instead of clipping when it
+          doesn't. Flex justify-center distributes breath; type uses
+          fixed responsive sizes (no clamps) for confident hierarchy. */}
       <div
         data-match-hero="true"
-        className="relative w-full flex flex-col items-center justify-center px-5 py-4 max-w-[720px] mx-auto min-h-[calc(100svh-5rem)] max-h-[calc(100svh-5rem)] lg:min-h-[calc(100svh-1rem)] lg:max-h-[calc(100svh-1rem)]"
+        className="relative w-full flex flex-col items-center justify-center px-5 py-4 max-w-[720px] mx-auto min-h-[calc(100svh-5rem)] lg:min-h-[calc(100svh-1rem)]"
       >
         <header className="text-center w-full">
           {/* Day 84 v10 (Sasha 2026-05-25) — daouniverse font harmony.
@@ -237,10 +245,13 @@ const MatchHero = () => {
               villain reads sharper than abstract complaint.
               (Sasha 2026-06-09) — "Luck shouldn't decide whether you
               meet them" prepended (approved Option A copy pass from
-              the strategy-iteration session). Escalation pair: luck
-              (the unnamed villain) → platforms (the named one). H1
-              stays the single dominant frame per Day 84 v9; this
-              sentence lives here so the beat count holds at four. */}
+              the strategy-iteration session).
+              (Sasha 2026-06-10) — luck sentence REMOVED again in the
+              one-screen harmonization pass: Sasha's call, "a bit too
+              much text… the whole landing page should fit on one page
+              harmoniously." The luck line was the newest, least-vetted
+              addition; the Day 85 v2 named-villain line carries the
+              beat alone again. */}
           <p
             className="font-display text-base sm:text-lg md:text-xl leading-[1.32] italic mb-3 sm:mb-4"
             style={{
@@ -252,7 +263,7 @@ const MatchHero = () => {
                 "var(--skin-text-halo-deep, 0 0 28px rgba(255,255,255,0.85), 0 1px 2px rgba(255,255,255,0.95), 0 0 1px rgba(11,42,90,0.65), 0 1px 0 rgba(11,42,90,0.45))",
             }}
           >
-            Luck shouldn't decide whether you meet them. Most platforms flatten you into titles, résumés, and keywords
+            Most platforms flatten you into titles, résumés, and keywords
           </p>
 
           {/* Day 85 v3 (Sasha 2026-05-25) — Ornament glyph removed. Sasha:
@@ -286,7 +297,12 @@ const MatchHero = () => {
               through this door); (3) "with the collaboration spelled
               out" = the differentiator no competitor has: intros
               arrive with the opportunity named. Internal periods are
-              deliberate cadence; final period stripped per Day 85 v3. */}
+              deliberate cadence; final period stripped per Day 85 v3.
+              (Sasha 2026-06-10) — compressed 47 → 28 words in the
+              one-screen harmonization pass. All three Option A payloads
+              survive (certain reward · complementarity · collaboration
+              spelled out); only the connective tissue went. "A few
+              simple prompts." returns as the original staccato opener. */}
           <p
             className="font-display text-lg sm:text-xl md:text-2xl font-bold leading-[1.4] tracking-[-0.005em]"
             style={{
@@ -296,7 +312,7 @@ const MatchHero = () => {
                 "var(--skin-text-halo-deep, 0 0 22px rgba(255,255,255,0.7), 0 1px 2px rgba(255,255,255,0.9), 0 0 1px rgba(11,42,90,0.45), 0 1px 0 rgba(11,42,90,0.25))",
             }}
           >
-            A few simple prompts reveal how you naturally think, build, and contribute. You get your talent in exact words, in two minutes. We use it to introduce you to people whose work complements yours, with the collaboration spelled out: what you'd build together and why it works
+            A few simple prompts. Your talent in exact words, in two minutes. Then introductions to people whose work complements yours, with the collaboration spelled out
           </p>
         </header>
 
