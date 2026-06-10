@@ -28,6 +28,7 @@ import {
   type ReactNode,
 } from "react";
 import { initialSkinScope } from "@/lib/skinScope";
+import { supabase } from "@/integrations/supabase/client";
 
 // Day 91 (Sasha 2026-06-09): the two first-class platform themes got
 // their real names — "lapis" (light default, navy-and-gold-on-cream,
@@ -92,6 +93,32 @@ const applySkinToDocument = (skin: Skin) => {
   document.documentElement.dataset.skin = skin;
 };
 
+/** Only the two first-class themes follow the person across devices.
+ *  White-label demo skins are route-scoped and never sync; navy-gold
+ *  is an internal preview. Day 91 (Sasha 2026-06-10). */
+const SYNCABLE_SKINS: ReadonlyArray<Skin> = ["lapis", "aurum"];
+
+/** Fire-and-forget: persist the choice to the user's profile so it
+ *  follows them across devices. Guests no-op (localStorage covers the
+ *  device). Errors swallowed deliberately: if the column migration
+ *  hasn't applied yet or the network is down, the local persistence
+ *  path stands and the next successful toggle re-syncs. */
+const syncSkinToProfile = async (next: Skin) => {
+  if (!SYNCABLE_SKINS.includes(next)) return;
+  try {
+    const {
+      data: { session },
+    } = await supabase.auth.getSession();
+    if (!session?.user?.id) return;
+    await (supabase as any)
+      .from("game_profiles")
+      .update({ preferred_skin: next } as never)
+      .eq("user_id", session.user.id);
+  } catch {
+    // offline / migration pending — silent, local choice stands
+  }
+};
+
 const SkinContext = createContext<SkinContextValue>({
   skin: "lapis",
   setSkin: () => {},
@@ -122,6 +149,71 @@ export const SkinProvider = ({ children }: { children: ReactNode }) => {
     applySkinToDocument(skin);
   }, [skin]);
 
+  // Day 91 (Sasha 2026-06-10): person-level theme reconcile. On load /
+  // sign-in, read `game_profiles.preferred_skin`:
+  //   - remote choice exists and differs from local → remote wins
+  //     (the user's latest cross-device choice), cache it locally, and
+  //     apply unless a route scope owns the paint.
+  //   - remote is NULL but this device holds an explicit choice (the
+  //     localStorage key exists) → push the local choice up, so users
+  //     who picked a theme before this feature shipped get synced on
+  //     their next visit.
+  useEffect(() => {
+    let cancelled = false;
+
+    const reconcile = async (userId: string) => {
+      try {
+        const { data } = await (supabase as any)
+          .from("game_profiles")
+          .select("preferred_skin")
+          .eq("user_id", userId)
+          .maybeSingle();
+        if (cancelled) return;
+        const remote = (data as { preferred_skin?: string | null } | null)
+          ?.preferred_skin;
+        if (remote && SYNCABLE_SKINS.includes(remote as Skin)) {
+          if (remote !== getPersistedSkin()) {
+            persistedSkinRef.current = remote as Skin;
+            try {
+              window.localStorage.setItem(STORAGE_KEY, remote);
+            } catch {
+              // ignore
+            }
+            // Route scopes (/aurum, /ns, …) own the paint for the whole
+            // SPA session — update only the persisted layer there.
+            if (!initialSkinScope) setSkinState(remote as Skin);
+          }
+          return;
+        }
+        // Remote empty: push up this device's explicit choice, if any.
+        let hasExplicitLocal = false;
+        try {
+          hasExplicitLocal = window.localStorage.getItem(STORAGE_KEY) !== null;
+        } catch {
+          // ignore
+        }
+        if (hasExplicitLocal) void syncSkinToProfile(getPersistedSkin());
+      } catch {
+        // column migration pending / offline — local persistence stands
+      }
+    };
+
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      if (!cancelled && session?.user?.id) void reconcile(session.user.id);
+    });
+    const { data: listener } = supabase.auth.onAuthStateChange(
+      (event, session) => {
+        if (event === "SIGNED_IN" && session?.user?.id) {
+          void reconcile(session.user.id);
+        }
+      }
+    );
+    return () => {
+      cancelled = true;
+      listener.subscription.unsubscribe();
+    };
+  }, []);
+
   const setSkin = useCallback((next: Skin) => {
     persistedSkinRef.current = next;
     try {
@@ -130,6 +222,8 @@ export const SkinProvider = ({ children }: { children: ReactNode }) => {
       // ignore
     }
     setSkinState(next);
+    // Person-level sync — fire-and-forget (see syncSkinToProfile).
+    void syncSkinToProfile(next);
   }, []);
 
   const pushTemporarySkin = useCallback((next: Skin): (() => void) => {
