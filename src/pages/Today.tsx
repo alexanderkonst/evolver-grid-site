@@ -371,9 +371,12 @@ export default function TodayPage() {
     };
 
     // Loading state
+    // Day 91 (Sasha 2026-06-09): tokenized for Aurum — page washes read
+    // --skin-page-bg / --skin-page-wash (dark-skin-only tokens; lapis
+    // falls through to the exact original literals).
     if (isLoading) {
         return (
-            <div className="min-h-dvh flex items-center justify-center bg-[#f8f9fc]">
+            <div className="min-h-dvh flex items-center justify-center bg-[var(--skin-page-bg,#f8f9fc)]">
                 <PremiumLoader size="lg" />
             </div>
         );
@@ -382,7 +385,13 @@ export default function TodayPage() {
     // UX Playbook: First visit entry screen
     if (showFirstVisitIntro) {
         return (
-            <div className="min-h-dvh bg-gradient-to-br from-indigo-50 via-white to-purple-50 flex flex-col items-center justify-center px-6">
+            <div
+                className="min-h-dvh flex flex-col items-center justify-center px-6"
+                style={{
+                    background:
+                        "var(--skin-page-wash, linear-gradient(to bottom right, #eef2ff 0%, #ffffff 50%, #faf5ff 100%))",
+                }}
+            >
                 <div className="text-center max-w-md space-y-8">
                     <div className="w-16 h-16 rounded-full bg-indigo-600 flex items-center justify-center mx-auto">
                         <Sparkles className="w-8 h-8 text-white" />
@@ -410,7 +419,7 @@ export default function TodayPage() {
     }
 
     return (
-        <div className="min-h-dvh bg-[#f8f9fc]">
+        <div className="today-page min-h-dvh bg-[var(--skin-page-bg,#f8f9fc)]">
             <div className="max-w-2xl mx-auto px-4 py-8">
 
                 {/* Header */}
@@ -474,7 +483,7 @@ export default function TodayPage() {
                                     Main Quest
                                 </span>
                             </div>
-                            <span className="text-xs text-[#2c3150]/60 bg-[#f0f4ff] px-2 py-1 rounded-full">
+                            <span className="text-xs text-[#2c3150]/60 bg-[var(--skin-input-fill,#f0f4ff)] px-2 py-1 rounded-full">
                                 Stage {getStageNumber(mainQuestStage)} of {getTotalStages()}
                             </span>
                         </div>
@@ -521,7 +530,7 @@ export default function TodayPage() {
                     {/* 2. Side Quest (Practice) */}
                     <div className={`rounded-2xl border-2 p-5 ${sideQuestDoneToday
                         ? 'border-emerald-200 bg-emerald-50'
-                        : 'border-[#a4a3d0]/20 bg-white/85 backdrop-blur-sm'
+                        : 'border-[#a4a3d0]/20 bg-[var(--skin-card-fill,rgba(255,255,255,0.85))] backdrop-blur-sm'
                         }`}>
                         <div className="flex items-center gap-2 mb-3">
                             <div className={`w-8 h-8 rounded-full flex items-center justify-center ${sideQuestDoneToday ? 'bg-emerald-500' : 'bg-emerald-600'
@@ -610,8 +619,8 @@ export default function TodayPage() {
 
                     {/* 3. Upgrade (Growth Path) */}
                     <div className={`rounded-2xl border-2 p-5 ${!upgradeUnlockStatus.unlocked
-                        ? 'border-[#a4a3d0]/30 bg-[#f0f4ff]/50'
-                        : 'border-[#a4a3d0]/20 bg-white/85 backdrop-blur-sm'
+                        ? 'border-[#a4a3d0]/30 bg-[var(--skin-card-fill,rgba(240,244,255,0.5))]'
+                        : 'border-[#a4a3d0]/20 bg-[var(--skin-card-fill,rgba(255,255,255,0.85))] backdrop-blur-sm'
                         }`}>
                         <div className="flex items-center gap-2 mb-3">
                             <div className={`w-8 h-8 rounded-full flex items-center justify-center ${!upgradeUnlockStatus.unlocked ? 'bg-[#a4a3d0]' : 'bg-purple-600'
@@ -700,7 +709,7 @@ export default function TodayPage() {
                         </h3>
                         <div className="space-y-2">
                             {todayQuestRuns.map(run => (
-                                <div key={run.id} className="flex items-center justify-between bg-white/85 backdrop-blur-sm rounded-lg border border-[#a4a3d0]/20 px-4 py-3 shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
+                                <div key={run.id} className="flex items-center justify-between bg-[var(--skin-card-fill,rgba(255,255,255,0.85))] backdrop-blur-sm rounded-lg border border-[#a4a3d0]/20 px-4 py-3 shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
                                     <div>
                                         <p className="font-medium text-[#2c3150]">{run.title}</p>
                                         <p className="text-xs text-[#2c3150]/60">{run.path} • {run.duration_minutes} min</p>
@@ -717,7 +726,15 @@ export default function TodayPage() {
             {/* World Artifact Modal */}
             {showArtifactModal && (
                 <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-modal p-4">
-                    <div className="bg-white rounded-2xl shadow-xl max-w-md w-full p-6">
+                    {/* Day 91 (Sasha 2026-06-09): tokenized for Aurum. Panel reads
+                        --skin-page-wash (dark-skin-only, opaque dark surface) instead
+                        of --skin-card-bg because the lapis fallback must stay solid
+                        #fff over the black/50 backdrop — card-bg's lapis value is
+                        translucent and would gray the modal. */}
+                    <div
+                        className="rounded-2xl shadow-xl max-w-md w-full p-6"
+                        style={{ background: "var(--skin-page-wash, #ffffff)" }}
+                    >
                         <div className="flex items-center justify-between mb-4">
                             <h2 className="text-xl font-bold text-[#2c3150]">Capture Your Output</h2>
                             <button onClick={() => setShowArtifactModal(false)} className="text-[#2c3150]/60 hover:text-[#2c3150]">
@@ -737,7 +754,7 @@ export default function TodayPage() {
                                 <select
                                     value={artifactType}
                                     onChange={(e) => setArtifactType(e.target.value as any)}
-                                    className="w-full rounded-md border border-[#a4a3d0]/30 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                                    className="w-full rounded-md border border-[#a4a3d0]/30 bg-[var(--skin-input-fill,#fff)] px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
                                 >
                                     <option value="post">Post</option>
                                     <option value="pitch">Pitch</option>

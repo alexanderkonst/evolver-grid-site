@@ -416,7 +416,7 @@ const PeopleDirectory = () => {
           )}
 
           {!loading && !error && filteredPeople.length === 0 && (
-            <div className="rounded-xl border border-border bg-white/85 backdrop-blur-sm p-6 text-center text-sm text-muted-foreground">
+            <div className="rounded-xl border border-border bg-[var(--skin-card-fill,rgba(255,255,255,0.85))] backdrop-blur-sm p-6 text-center text-sm text-muted-foreground">
               No profiles match these filters yet.
             </div>
           )}
@@ -428,11 +428,13 @@ const PeopleDirectory = () => {
               const canShowLocation =
                 person.visibility !== "minimal" && person.showLocation && !!person.location;
 
+              // Day 91 (Sasha 2026-06-09): tokenized for Aurum — raw white/85
+              // cards put cream muted-foreground text on white (invisible).
               return (
                 <button
                   key={person.userId}
                   onClick={() => navigate(`/profile/${person.userId}`)}
-                  className="text-left rounded-2xl border border-border bg-white/85 backdrop-blur-sm p-4 shadow-[0_4px_16px_rgba(44,49,80,0.06)] transition hover:border-primary/40 hover:shadow-md"
+                  className="text-left rounded-2xl border border-border bg-[var(--skin-card-fill,rgba(255,255,255,0.85))] backdrop-blur-sm p-4 shadow-[0_4px_16px_rgba(44,49,80,0.06)] transition hover:border-primary/40 hover:shadow-md"
                 >
                   <div className="flex items-center gap-4">
                     <div className="w-12 h-12 rounded-full bg-muted overflow-hidden flex items-center justify-center">

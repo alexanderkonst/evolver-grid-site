@@ -166,10 +166,10 @@ const AppearanceTab = () => {
                                           ),
                                 )}
                                 style={{
-                                    background: "rgba(255, 255, 255, 0.55)",
+                                    background: "var(--skin-input-bg, rgba(255, 255, 255, 0.55))",
                                     border: active
                                         ? "1px solid hsla(40, 70%, 55%, 0.55)"
-                                        : "1px solid hsla(228, 30%, 18%, 0.10)",
+                                        : "1px solid var(--skin-card-border, hsla(228, 30%, 18%, 0.10))",
                                 }}
                             >
                                 <div className="flex items-center justify-between gap-3">
@@ -226,9 +226,12 @@ const AppearanceTab = () => {
                                         <span
                                             aria-hidden="true"
                                             className="flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center"
-                                            style={{ backgroundColor: "#7a5108" }}
+                                            style={{ backgroundColor: "var(--skin-tab-active-ink, #7a5108)" }}
                                         >
-                                            <Check className="w-3 h-3 text-white" />
+                                            <Check
+                                                className="w-3 h-3"
+                                                style={{ color: skin === "aurum" ? "#0a0a0c" : "#ffffff" }}
+                                            />
                                         </span>
                                     )}
                                 </div>

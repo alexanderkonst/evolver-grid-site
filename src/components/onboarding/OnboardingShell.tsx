@@ -10,16 +10,19 @@ interface OnboardingShellProps {
 }
 
 export const OnboardingShell = ({ children }: OnboardingShellProps) => {
+    // Day 91 (Sasha 2026-06-09): tokenized for Aurum — page wash + header
+    // fill + hairline read the skin tokens; fallbacks keep the lapis
+    // light look (near-white #f8f7fc page, white/80 frosted header).
     return (
-        <div className="min-h-dvh bg-[#f8f7fc]">
+        <div className="min-h-dvh bg-[var(--skin-page-bg,#f8f7fc)]">
             {/* Simple header */}
-            <header className="fixed top-0 left-0 right-0 h-16 bg-white/80 backdrop-blur-sm border-b border-[#a4a3d0]/20 z-modal">
+            <header className="fixed top-0 left-0 right-0 h-16 bg-[var(--skin-card-fill,rgba(255,255,255,0.8))] backdrop-blur-sm border-b border-[var(--skin-card-border,rgba(164,163,208,0.2))] z-modal">
                 <div className="h-full max-w-4xl mx-auto px-4 flex items-center justify-between">
                     <div className="flex items-center gap-3">
                         <div className="w-8 h-8 rounded-lg bg-amber-500 flex items-center justify-center">
                             <span className="text-white font-bold text-sm">E</span>
                         </div>
-                        <span className="font-semibold text-[#2c3150]">Evolver Grid</span>
+                        <span className="font-semibold text-[var(--skin-text-primary,#2c3150)]">Evolver Grid</span>
                     </div>
                 </div>
             </header>

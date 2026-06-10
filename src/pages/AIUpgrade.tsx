@@ -681,13 +681,17 @@ const AIUpgrade = () => {
     window.open("https://t.me/konstantinov", "_blank");
   };
 
+  // Day 91 (Sasha 2026-06-09): tokenized for Aurum — page washes, nav/card
+  // fills, light borders, and navy/gray text below now read skin tokens with
+  // the exact original literals as fallbacks, so lapis stays pixel-identical
+  // while dark skins (aurum/techstars) repaint via their token blocks.
   // Loading state
   if (isLoading || promoLoading) {
     return (
-      <div className="min-h-dvh bg-white flex items-center justify-center">
+      <div className="min-h-dvh bg-[var(--skin-page-bg,#fff)] flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#0A2342] mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading...</p>
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[color:var(--skin-text-primary,#0A2342)] mx-auto mb-4"></div>
+          <p className="text-[color:var(--skin-text-muted,#4b5563)]">Loading...</p>
         </div>
       </div>
     );
@@ -696,14 +700,14 @@ const AIUpgrade = () => {
   // Auth gate - user not logged in
   if (!user) {
     return (
-      <div className="min-h-dvh bg-white">
+      <div className="min-h-dvh bg-[var(--skin-page-bg,#fff)]">
         {/* Navigation */}
-        <nav className="fixed top-0 left-0 right-0 z-modal bg-white/95 backdrop-blur border-b border-gray-200">
+        <nav className="fixed top-0 left-0 right-0 z-modal bg-[var(--skin-card-fill,rgba(255,255,255,0.95))] backdrop-blur border-b border-[color:var(--skin-card-border,#e5e7eb)]">
           <div className="container mx-auto px-6 py-4">
             <Link
               to="/"
               className="text-sm font-medium hover:opacity-70 transition-opacity"
-              style={{ color: '#0A2342' }}
+              style={{ color: 'var(--skin-text-primary, #0A2342)' }}
             >
               ← Back
             </Link>
@@ -720,11 +724,11 @@ const AIUpgrade = () => {
             </div>
             <h1
               className="text-3xl font-bold mb-4"
-              style={{ color: '#0A2342' }}
+              style={{ color: 'var(--skin-text-primary, #0A2342)' }}
             >
               Sign in to access your AI Upgrade
             </h1>
-            <p className="text-gray-600 mb-8">
+            <p className="text-[color:var(--skin-text-muted,#4b5563)] mb-8">
               Create a free account or log in so we can remember your upgrade.
             </p>
             <div className="space-y-3">
@@ -753,12 +757,12 @@ const AIUpgrade = () => {
         }}
       >
         {/* Navigation */}
-        <nav className="fixed top-0 left-0 right-0 z-modal bg-white/95 backdrop-blur border-b border-gray-200">
+        <nav className="fixed top-0 left-0 right-0 z-modal bg-[var(--skin-card-fill,rgba(255,255,255,0.95))] backdrop-blur border-b border-[color:var(--skin-card-border,#e5e7eb)]">
           <div className="container mx-auto px-6 py-4">
             <Link
               to="/"
               className="text-sm font-medium hover:opacity-70 transition-opacity"
-              style={{ color: '#0A2342' }}
+              style={{ color: 'var(--skin-text-primary, #0A2342)' }}
             >
               ← Back
             </Link>
@@ -768,18 +772,18 @@ const AIUpgrade = () => {
         {/* Main Content - Centered Card */}
         <div className="min-h-dvh flex items-center justify-center px-4 py-24">
           <div
-            className="w-full max-w-md bg-white/95 backdrop-blur-sm rounded-2xl shadow-2xl p-8 sm:p-10"
+            className="w-full max-w-md bg-[var(--skin-card-fill,rgba(255,255,255,0.95))] backdrop-blur-sm rounded-2xl shadow-2xl p-8 sm:p-10"
           >
             {/* Title */}
             <h1
               className="text-3xl sm:text-4xl font-bold text-center mb-3"
-              style={{ color: '#0A2342' }}
+              style={{ color: 'var(--skin-text-primary, #0A2342)' }}
             >
               Prompt Launcher
             </h1>
 
             {/* Subtitle */}
-            <p className="text-center text-gray-500 mb-8 text-sm sm:text-base">
+            <p className="text-center text-[color:var(--skin-text-muted,#6b7280)] mb-8 text-sm sm:text-base">
               Tap to copy a prompt to your clipboard
             </p>
 
@@ -815,7 +819,7 @@ const AIUpgrade = () => {
         <Dialog open={showSuccessModal} onOpenChange={setShowSuccessModal}>
           <DialogContent className="sm:max-w-md">
             <DialogHeader>
-              <DialogTitle className="text-2xl" style={{ color: '#0A2342' }}>
+              <DialogTitle className="text-2xl" style={{ color: 'var(--skin-text-primary, #0A2342)' }}>
                 Gift Unlocked! 🌐
               </DialogTitle>
               <DialogDescription className="text-base pt-4 leading-relaxed">
@@ -841,14 +845,14 @@ const AIUpgrade = () => {
 
   // Locked state - user is logged in but hasn't purchased
   return (
-    <div className="min-h-dvh bg-white">
+    <div className="min-h-dvh bg-[var(--skin-page-bg,#fff)]">
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-modal bg-white/95 backdrop-blur border-b border-gray-200">
+      <nav className="fixed top-0 left-0 right-0 z-modal bg-[var(--skin-card-fill,rgba(255,255,255,0.95))] backdrop-blur border-b border-[color:var(--skin-card-border,#e5e7eb)]">
         <div className="container mx-auto px-6 py-4">
           <Link
             to="/"
             className="text-sm font-medium hover:opacity-70 transition-opacity"
-            style={{ color: '#0A2342' }}
+            style={{ color: 'var(--skin-text-primary, #0A2342)' }}
           >
             ← Back
           </Link>
@@ -860,17 +864,17 @@ const AIUpgrade = () => {
         <div className="container mx-auto max-w-4xl text-center">
           <h1
             className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-8 leading-tight transition-all duration-700"
-            style={{ color: '#0A2342' }}
+            style={{ color: 'var(--skin-text-primary, #0A2342)' }}
           >
             Your AI model can't think as fast as you and is slowing you down.
           </h1>
           <p
             className="text-2xl sm:text-3xl font-light mb-8"
-            style={{ color: '#0A2342' }}
+            style={{ color: 'var(--skin-text-primary, #0A2342)' }}
           >
             Upgrade its thinking to match yours.
           </p>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed mb-12">
+          <p className="text-xl text-[color:var(--skin-text-muted,#4b5563)] max-w-3xl mx-auto leading-relaxed mb-12">
             This instant AI upgrade removes the bottleneck — giving your AI the speed, clarity, and reasoning your work demands.
           </p>
           <Button
@@ -882,14 +886,14 @@ const AIUpgrade = () => {
             Get the Upgrade — $33
             <ArrowRight className="ml-2 h-5 w-5" />
           </Button>
-          <p className="text-sm text-gray-600 mt-4">One-time payment · Instant access</p>
+          <p className="text-sm text-[color:var(--skin-text-muted,#4b5563)] mt-4">One-time payment · Instant access</p>
 
           {/* Promo Code Section */}
           <div className="mt-8 pt-6">
             <div className="text-center">
               <button
                 onClick={() => setShowPromoInput(!showPromoInput)}
-                className="text-sm text-gray-500 hover:text-gray-700 transition-colors inline-flex items-center gap-1"
+                className="text-sm text-[color:var(--skin-text-muted,#6b7280)] hover:text-[color:var(--skin-text-primary,#374151)] transition-colors inline-flex items-center gap-1"
               >
                 Have a promo code?
                 {showPromoInput ? (
@@ -918,7 +922,7 @@ const AIUpgrade = () => {
                     variant="outline"
                     size="sm"
                     className="text-sm"
-                    style={{ borderColor: '#0A2342', color: '#0A2342' }}
+                    style={{ borderColor: 'var(--skin-text-primary, #0A2342)', color: 'var(--skin-text-primary, #0A2342)' }}
                     disabled={isValidating}
                   >
                     {isValidating ? "Validating..." : "Apply"}
@@ -937,7 +941,7 @@ const AIUpgrade = () => {
       <Dialog open={showSuccessModal} onOpenChange={setShowSuccessModal}>
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
-            <DialogTitle className="text-2xl" style={{ color: '#0A2342' }}>
+            <DialogTitle className="text-2xl" style={{ color: 'var(--skin-text-primary, #0A2342)' }}>
               Gift Unlocked! 🌐
             </DialogTitle>
             <DialogDescription className="text-base pt-4 leading-relaxed">
@@ -959,53 +963,53 @@ const AIUpgrade = () => {
       </Dialog>
 
       {/* Problem Section */}
-      <section className="py-20 px-6 bg-gray-50 transition-all duration-700">
+      <section className="py-20 px-6 bg-[var(--skin-page-bg,#f9fafb)] transition-all duration-700">
         <div className="container mx-auto max-w-4xl">
           <h2
             className="text-4xl sm:text-5xl font-bold mb-12 text-center"
-            style={{ color: '#0A2342' }}
+            style={{ color: 'var(--skin-text-primary, #0A2342)' }}
           >
             The Problem
           </h2>
           <div className="space-y-8">
-            <p className="text-2xl font-light text-gray-800 leading-relaxed">
+            <p className="text-2xl font-light text-[color:var(--skin-text-primary,#1f2937)] leading-relaxed">
               Your mind moves fast.<br />
               Your AI doesn't.
             </p>
-            <p className="text-xl text-gray-600 leading-relaxed">
+            <p className="text-xl text-[color:var(--skin-text-muted,#4b5563)] leading-relaxed">
               Instead, it:
             </p>
-            <ul className="space-y-3 text-xl text-gray-700">
+            <ul className="space-y-3 text-xl text-[color:var(--skin-text-primary,#374151)]">
               <li className="flex items-start">
-                <span className="mr-3" style={{ color: '#0A2342' }}>•</span>
+                <span className="mr-3" style={{ color: 'var(--skin-text-primary, #0A2342)' }}>•</span>
                 <span>over-explains</span>
               </li>
               <li className="flex items-start">
-                <span className="mr-3" style={{ color: '#0A2342' }}>•</span>
+                <span className="mr-3" style={{ color: 'var(--skin-text-primary, #0A2342)' }}>•</span>
                 <span>loses nuance</span>
               </li>
               <li className="flex items-start">
-                <span className="mr-3" style={{ color: '#0A2342' }}>•</span>
+                <span className="mr-3" style={{ color: 'var(--skin-text-primary, #0A2342)' }}>•</span>
                 <span>breaks coherence</span>
               </li>
               <li className="flex items-start">
-                <span className="mr-3" style={{ color: '#0A2342' }}>•</span>
+                <span className="mr-3" style={{ color: 'var(--skin-text-primary, #0A2342)' }}>•</span>
                 <span>gives junior-level insights</span>
               </li>
               <li className="flex items-start">
-                <span className="mr-3" style={{ color: '#0A2342' }}>•</span>
+                <span className="mr-3" style={{ color: 'var(--skin-text-primary, #0A2342)' }}>•</span>
                 <span>interrupts your flow</span>
               </li>
               <li className="flex items-start">
-                <span className="mr-3" style={{ color: '#0A2342' }}>•</span>
+                <span className="mr-3" style={{ color: 'var(--skin-text-primary, #0A2342)' }}>•</span>
                 <span>dilutes your clarity</span>
               </li>
             </ul>
-            <p className="text-xl text-gray-700 leading-relaxed mt-8">
+            <p className="text-xl text-[color:var(--skin-text-primary,#374151)] leading-relaxed mt-8">
               For high-level operators, this isn't noise —<br />
               it's friction you feel every day.
             </p>
-            <p className="text-xl text-gray-700 leading-relaxed">
+            <p className="text-xl text-[color:var(--skin-text-primary,#374151)] leading-relaxed">
               If your work depends on clarity, synthesis, or precision, default AI becomes a bottleneck.
             </p>
           </div>
@@ -1017,51 +1021,51 @@ const AIUpgrade = () => {
         <div className="container mx-auto max-w-4xl">
           <h2
             className="text-4xl sm:text-5xl font-bold mb-12 text-center"
-            style={{ color: '#0A2342' }}
+            style={{ color: 'var(--skin-text-primary, #0A2342)' }}
           >
             The Upgrade
           </h2>
           <div className="space-y-8">
-            <p className="text-xl text-gray-700 leading-relaxed">
+            <p className="text-xl text-[color:var(--skin-text-primary,#374151)] leading-relaxed">
               This upgrade installs the thinking layer your AI has been missing.
             </p>
-            <p className="text-xl text-gray-600 leading-relaxed">
+            <p className="text-xl text-[color:var(--skin-text-muted,#4b5563)] leading-relaxed">
               It becomes:
             </p>
-            <ul className="space-y-3 text-xl text-gray-700">
+            <ul className="space-y-3 text-xl text-[color:var(--skin-text-primary,#374151)]">
               <li className="flex items-start">
-                <span className="mr-3" style={{ color: '#0A2342' }}>•</span>
+                <span className="mr-3" style={{ color: 'var(--skin-text-primary, #0A2342)' }}>•</span>
                 <span>fast</span>
               </li>
               <li className="flex items-start">
-                <span className="mr-3" style={{ color: '#0A2342' }}>•</span>
+                <span className="mr-3" style={{ color: 'var(--skin-text-primary, #0A2342)' }}>•</span>
                 <span>structured</span>
               </li>
               <li className="flex items-start">
-                <span className="mr-3" style={{ color: '#0A2342' }}>•</span>
+                <span className="mr-3" style={{ color: 'var(--skin-text-primary, #0A2342)' }}>•</span>
                 <span>precise</span>
               </li>
               <li className="flex items-start">
-                <span className="mr-3" style={{ color: '#0A2342' }}>•</span>
+                <span className="mr-3" style={{ color: 'var(--skin-text-primary, #0A2342)' }}>•</span>
                 <span>context-aware</span>
               </li>
               <li className="flex items-start">
-                <span className="mr-3" style={{ color: '#0A2342' }}>•</span>
+                <span className="mr-3" style={{ color: 'var(--skin-text-primary, #0A2342)' }}>•</span>
                 <span>concise</span>
               </li>
               <li className="flex items-start">
-                <span className="mr-3" style={{ color: '#0A2342' }}>•</span>
+                <span className="mr-3" style={{ color: 'var(--skin-text-primary, #0A2342)' }}>•</span>
                 <span>coherent</span>
               </li>
               <li className="flex items-start">
-                <span className="mr-3" style={{ color: '#0A2342' }}>•</span>
+                <span className="mr-3" style={{ color: 'var(--skin-text-primary, #0A2342)' }}>•</span>
                 <span>reliable</span>
               </li>
             </ul>
-            <p className="text-xl text-gray-700 leading-relaxed mt-8">
+            <p className="text-xl text-[color:var(--skin-text-primary,#374151)] leading-relaxed mt-8">
               Instead of dragging behind you, it starts moving with you.
             </p>
-            <p className="text-2xl font-light text-gray-800 leading-relaxed mt-8">
+            <p className="text-2xl font-light text-[color:var(--skin-text-primary,#1f2937)] leading-relaxed mt-8">
               Not a chatbot.<br />
               A cognitive instrument.
             </p>
@@ -1081,38 +1085,38 @@ const AIUpgrade = () => {
       </section>
 
       {/* Who It's For Section */}
-      <section className="py-20 px-6 bg-gray-50 transition-all duration-700">
+      <section className="py-20 px-6 bg-[var(--skin-page-bg,#f9fafb)] transition-all duration-700">
         <div className="container mx-auto max-w-4xl">
           <h2
             className="text-4xl sm:text-5xl font-bold mb-12 text-center"
-            style={{ color: '#0A2342' }}
+            style={{ color: 'var(--skin-text-primary, #0A2342)' }}
           >
             Who It's For
           </h2>
           <div className="space-y-8">
-            <p className="text-xl text-gray-700 leading-relaxed">
+            <p className="text-xl text-[color:var(--skin-text-primary,#374151)] leading-relaxed">
               Built for the top 20% of operators who don't just use AI —<br />
               they think with it.
             </p>
-            <ul className="space-y-3 text-xl text-gray-700 mt-6">
+            <ul className="space-y-3 text-xl text-[color:var(--skin-text-primary,#374151)] mt-6">
               <li className="flex items-start">
-                <span className="mr-3" style={{ color: '#0A2342' }}>•</span>
+                <span className="mr-3" style={{ color: 'var(--skin-text-primary, #0A2342)' }}>•</span>
                 <span>Strategic founders & CEOs</span>
               </li>
               <li className="flex items-start">
-                <span className="mr-3" style={{ color: '#0A2342' }}>•</span>
+                <span className="mr-3" style={{ color: 'var(--skin-text-primary, #0A2342)' }}>•</span>
                 <span>High-end consultants</span>
               </li>
               <li className="flex items-start">
-                <span className="mr-3" style={{ color: '#0A2342' }}>•</span>
+                <span className="mr-3" style={{ color: 'var(--skin-text-primary, #0A2342)' }}>•</span>
                 <span>Executive & performance coaches</span>
               </li>
               <li className="flex items-start">
-                <span className="mr-3" style={{ color: '#0A2342' }}>•</span>
+                <span className="mr-3" style={{ color: 'var(--skin-text-primary, #0A2342)' }}>•</span>
                 <span>Systems thinkers & polymaths</span>
               </li>
             </ul>
-            <p className="text-xl text-gray-700 leading-relaxed mt-8">
+            <p className="text-xl text-[color:var(--skin-text-primary,#374151)] leading-relaxed mt-8">
               If clarity is your competitive advantage, this upgrade protects it and amplifies it.
             </p>
           </div>
@@ -1124,14 +1128,14 @@ const AIUpgrade = () => {
         <div className="container mx-auto max-w-4xl">
           <h2
             className="text-4xl sm:text-5xl font-bold mb-12 text-center"
-            style={{ color: '#0A2342' }}
+            style={{ color: 'var(--skin-text-primary, #0A2342)' }}
           >
             Before / After
           </h2>
           <div className="grid md:grid-cols-2 gap-12">
             <div className="space-y-4">
-              <h3 className="text-2xl font-semibold text-gray-800">Before</h3>
-              <ul className="space-y-3 text-lg text-gray-600">
+              <h3 className="text-2xl font-semibold text-[color:var(--skin-text-primary,#1f2937)]">Before</h3>
+              <ul className="space-y-3 text-lg text-[color:var(--skin-text-muted,#4b5563)]">
                 <li className="flex items-start">
                   <span className="mr-3 text-red-400">✗</span>
                   <span>Vague, generic outputs</span>
@@ -1151,8 +1155,8 @@ const AIUpgrade = () => {
               </ul>
             </div>
             <div className="space-y-4">
-              <h3 className="text-2xl font-semibold text-gray-800">After</h3>
-              <ul className="space-y-3 text-lg text-gray-600">
+              <h3 className="text-2xl font-semibold text-[color:var(--skin-text-primary,#1f2937)]">After</h3>
+              <ul className="space-y-3 text-lg text-[color:var(--skin-text-muted,#4b5563)]">
                 <li className="flex items-start">
                   <span className="mr-3 text-green-500">✓</span>
                   <span>Sharp, specific insights</span>

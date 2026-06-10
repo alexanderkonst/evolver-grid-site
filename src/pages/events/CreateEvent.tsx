@@ -134,7 +134,8 @@ const CreateEvent = () => {
           <p className="text-muted-foreground">Share a gathering with the community.</p>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-5 rounded-xl border border-border bg-white/85 backdrop-blur-sm p-6 shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
+        {/* Day 91 (Sasha 2026-06-09): form-card fill tokenized for Aurum — shadcn Label/Input ink flips light under the dark skins, so the white/85 surface must read the skin card token too. */}
+        <form onSubmit={handleSubmit} className="space-y-5 rounded-xl border border-border bg-[var(--skin-card-fill,rgba(255,255,255,0.85))] backdrop-blur-sm p-6 shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
           <div className="space-y-2">
             <Label htmlFor="title">Title *</Label>
             <Input

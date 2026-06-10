@@ -212,7 +212,11 @@ const MissionSelection = () => {
             </SelectContent>
           </Select>
 
-          <div className="rounded-2xl border border-border bg-white/85 backdrop-blur-sm p-4 shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
+          {/* Day 91 (Sasha 2026-06-09): tokenized for Aurum — the near-opaque
+              white fill made the token-based text-foreground label invisible
+              under the dark skins. Card fill now reads --skin-card-bg with the
+              original literal as fallback. */}
+          <div className="rounded-2xl border border-border bg-[var(--skin-card-fill,rgba(255,255,255,0.85))] backdrop-blur-sm p-4 shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
             <p className="text-sm font-medium text-foreground mb-2">Describe your specific mission (optional)</p>
             <Textarea
               value={missionNote}

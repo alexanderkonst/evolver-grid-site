@@ -612,8 +612,12 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
             fontFamily: "'Source Serif 4', serif",
             fontStyle: "italic",
             fontSize: "15px",
-            color: "rgba(11, 42, 90, 0.78)",
-            textShadow: "0 1px 2px rgba(255,255,255,0.7)",
+            // Day 91 (Sasha 2026-06-09): tokenized for Aurum — this text sits
+            // OUTSIDE the liquid-glass cards, so the global dark-skin glass
+            // override never reaches it; raw navy + white halo were invisible
+            // / glowing on the dark page.
+            color: "var(--skin-text-muted, rgba(11, 42, 90, 0.78))",
+            textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.7))",
           }}
           className="animate-pulse"
         >
@@ -640,7 +644,9 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
             letterSpacing: "0.22em",
             textTransform: "uppercase",
             color: "#0a1628",
-            textShadow: "0 1px 2px rgba(255,255,255,0.85)",
+            // Day 91 (Sasha 2026-06-09): halo tokenized for Aurum (color is
+            // already re-toned by the dark-skin .liquid-glass override).
+            textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.85))",
           }}
           className="mb-3"
         >
@@ -654,7 +660,7 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
             letterSpacing: "-0.005em",
             lineHeight: 1.1,
             color: "#0a1628",
-            textShadow: "0 0 22px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.85), 0 2px 12px rgba(26,30,58,0.18)",
+            textShadow: "var(--skin-text-halo-strong, 0 0 22px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.85), 0 2px 12px rgba(26,30,58,0.18))",
           }}
           className="mb-3"
         >
@@ -667,8 +673,11 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
             fontSize: "15px",
             lineHeight: 1.55,
             // Day 64 (third pass): muted-alpha lift 0.78 → 0.88 + halo-soft.
+            // Day 91 (Sasha 2026-06-09): halo tokenized for Aurum (color is
+            // covered by the dark-skin .liquid-glass override; left literal
+            // so lapis stays pixel-identical).
             color: "rgba(11, 42, 90, 0.88)",
-            textShadow: "0 1px 2px rgba(255,255,255,0.7)",
+            textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.7))",
           }}
           className="mb-7"
         >
@@ -705,8 +714,12 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
   // MethodologyLandingPage.tsx line 79. Replaces the weaker single-
   // white-stroke cocktail that left text looking faint on the cream
   // sections of the cinematic bg.
+  // Day 91 (Sasha 2026-06-09): wrapped in the skin token for Aurum — the
+  // raw white-lift cocktail glowed around re-toned cream text on the dark
+  // glass cards. Fallback is the exact Day 64 literal (identical to the
+  // lapis token value), so the light skin is pixel-identical.
   const haloDeep =
-    "0 0 28px rgba(255,255,255,0.85), 0 1px 2px rgba(255,255,255,0.95), 0 0 1px rgba(11,42,90,0.65), 0 1px 0 rgba(11,42,90,0.45)";
+    "var(--skin-text-halo-deep, 0 0 28px rgba(255,255,255,0.85), 0 1px 2px rgba(255,255,255,0.95), 0 0 1px rgba(11,42,90,0.65), 0 1px 0 rgba(11,42,90,0.45))";
   const heroEyebrowStyle: React.CSSProperties = {
     fontFamily: "'Cormorant Garamond', serif",
     fontSize: "11px",
@@ -761,8 +774,10 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
               lineHeight: 1.55,
               // Day 64 (third pass): muted-alpha lifted 0.78 → 0.88 + halo-soft
               // per ui_playbook.md Part VIII Strong cocktail lever 2.
+              // Day 91 (Sasha 2026-06-09): halo tokenized for Aurum (color is
+              // covered by the dark-skin .liquid-glass override).
               color: "rgba(11, 42, 90, 0.88)",
-              textShadow: "0 1px 2px rgba(255,255,255,0.7)",
+              textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.7))",
             }}
           >
             Now you know where to focus your growth.
@@ -796,7 +811,7 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
               <div
                 key={domain.id}
                 className="flex items-center justify-between py-2 border-b last:border-b-0"
-                style={{ borderColor: "rgba(26,30,58,0.08)" }}
+                style={{ borderColor: "var(--skin-card-border, rgba(26,30,58,0.08))" }}
               >
                 <span className="flex items-center gap-3">
                   <span aria-hidden="true" style={{ fontSize: "18px" }}>{emoji}</span>
@@ -809,8 +824,10 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
                       // names now read cleanly against the cinematic bg's
                       // bright sections.
                       fontWeight: 600,
+                      // Day 91 (Sasha 2026-06-09): halo tokenized for Aurum
+                      // (color is covered by the dark-skin glass override).
                       color: "rgba(11, 42, 90, 0.94)",
-                      textShadow: "0 1px 2px rgba(255,255,255,0.85), 0 0 1px rgba(11,42,90,0.4)",
+                      textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.85), 0 0 1px rgba(11,42,90,0.4))",
                     }}
                   >
                     {domain.name}

@@ -101,12 +101,20 @@ const AuthCallback = () => {
     };
   }, [navigate, next]);
 
+  // Day 91 (Sasha 2026-06-09): tokenized for Aurum — the pastel page gradient
+  // moved from Tailwind gradient classes to a --skin-page-wash style read (the
+  // exact original gradient as fallback) so dark skins repaint it; the card,
+  // warning chip, and loading text read skin tokens the same way. Lapis stays
+  // pixel-identical via the fallbacks.
   if (status === "error") {
     return (
-      <div className="min-h-dvh flex items-center justify-center px-4 py-24 bg-gradient-to-br from-[#e7e9e5] via-[#dcdde2] to-[#c8b7d8]">
-        <Card className="w-full max-w-md bg-white/90 backdrop-blur-sm">
+      <div
+        className="min-h-dvh flex items-center justify-center px-4 py-24"
+        style={{ background: "var(--skin-page-wash, linear-gradient(to bottom right, #e7e9e5, #dcdde2, #c8b7d8))" }}
+      >
+        <Card className="w-full max-w-md bg-[var(--skin-card-fill,rgba(255,255,255,0.9))] backdrop-blur-sm">
           <CardHeader className="text-center">
-            <div className="mx-auto w-12 h-12 rounded-full bg-amber-100 flex items-center justify-center mb-3">
+            <div className="mx-auto w-12 h-12 rounded-full bg-[var(--skin-input-fill,#fef3c7)] flex items-center justify-center mb-3">
               <AlertTriangle className="w-6 h-6 text-amber-600" />
             </div>
             <CardTitle>We couldn't verify your sign-in link</CardTitle>
@@ -125,11 +133,14 @@ const AuthCallback = () => {
   }
 
   return (
-    <div className="min-h-dvh flex items-center justify-center px-4 py-24 bg-gradient-to-br from-[#e7e9e5] via-[#dcdde2] to-[#c8b7d8]">
+    <div
+      className="min-h-dvh flex items-center justify-center px-4 py-24"
+      style={{ background: "var(--skin-page-wash, linear-gradient(to bottom right, #e7e9e5, #dcdde2, #c8b7d8))" }}
+    >
       <div className="text-center space-y-4">
         <Loader2 className="w-10 h-10 text-[#8460ea] animate-spin mx-auto" />
-        <p className="text-[#2c3150] font-medium">Signing you in…</p>
-        <p className="text-sm text-[#6b6a8a]">Attaching your Top Talent result.</p>
+        <p className="text-[color:var(--skin-text-primary,#2c3150)] font-medium">Signing you in…</p>
+        <p className="text-sm text-[color:var(--skin-text-muted,#6b6a8a)]">Attaching your Top Talent result.</p>
       </div>
     </div>
   );

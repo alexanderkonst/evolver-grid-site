@@ -18,12 +18,18 @@ const ArtGallery = () => {
         backgroundRepeat: "no-repeat",
       }}
     >
-      {/* White overlay for subtlety */}
-      <div className="absolute inset-0 bg-white/70 z-0" />
+      {/* White overlay for subtlety — Day 91 (Sasha 2026-06-09): tokenized for
+          Aurum. Dark skins repaint the veil via --skin-page-wash (so navy text
+          re-tones below stay legible); lapis keeps the exact white/70 veil
+          through the fallback. */}
+      <div
+        className="absolute inset-0 z-0"
+        style={{ background: "var(--skin-page-wash, rgba(255,255,255,0.7))" }}
+      />
 
       {/* Hero Section */}
       <div className="flex flex-col items-center mb-16 text-center max-w-2xl relative z-10">
-        <h1 className="font-serif text-4xl md:text-6xl text-[hsl(210,70%,15%)] mb-6">
+        <h1 className="font-serif text-4xl md:text-6xl text-[color:var(--skin-text-primary,hsl(210,70%,15%))] mb-6">
           АРХАЗМ ART
         </h1>
         <img
@@ -31,7 +37,7 @@ const ArtGallery = () => {
           alt="Arkhazm"
           className="w-20 h-20 md:w-28 md:h-28 rounded-full object-cover mb-6"
         />
-        <p className="font-serif text-base md:text-lg text-[hsl(210,70%,15%)] uppercase">
+        <p className="font-serif text-base md:text-lg text-[color:var(--skin-text-primary,hsl(210,70%,15%))] uppercase">
           A designer of the Golden Age: synthesizing sacred, digital, and physical into simple multidimensional art forms
         </p>
       </div>
@@ -42,7 +48,7 @@ const ArtGallery = () => {
           <Link
             key={category.id}
             to={`/art/${category.id}`}
-            className="font-serif text-lg md:text-2xl text-[hsl(210,70%,15%)] hover:opacity-60 transition-opacity duration-300 underline underline-offset-4 decoration-1"
+            className="font-serif text-lg md:text-2xl text-[color:var(--skin-text-primary,hsl(210,70%,15%))] hover:opacity-60 transition-opacity duration-300 underline underline-offset-4 decoration-1"
           >
             {category.label}
           </Link>
@@ -52,7 +58,7 @@ const ArtGallery = () => {
           href="https://t.me/integralevolution"
           target="_blank"
           rel="noopener noreferrer"
-          className="font-serif text-lg md:text-2xl text-[hsl(210,70%,15%)] hover:opacity-60 transition-opacity duration-300 underline underline-offset-4 decoration-1"
+          className="font-serif text-lg md:text-2xl text-[color:var(--skin-text-primary,hsl(210,70%,15%))] hover:opacity-60 transition-opacity duration-300 underline underline-offset-4 decoration-1"
         >
           CONTACT THE TEAM
         </a>

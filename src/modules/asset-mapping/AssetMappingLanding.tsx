@@ -203,14 +203,16 @@ const WASH_BG =
 // Parchment card surface — cream with gold hairline + soft shadow.
 // Mirrors DossierScreen / FounderDetailDrawer card backgrounds.
 const parchmentCard: React.CSSProperties = {
-    background: "var(--skin-card-bg, rgba(255, 255, 255, 0.68))",
+    background: "var(--skin-card-fill, rgba(255, 255, 255, 0.68))",
     border: "0.5px solid rgba(212, 175, 55, 0.45)",
     boxShadow:
         "0 0 22px -8px rgba(212, 175, 55, 0.25), 0 16px 40px -20px rgba(10, 22, 40, 0.18)",
 };
 
+// Day 91 (Sasha 2026-06-09): tokenized for Aurum — raw white fills in the
+// style consts below now read skin tokens; exact literals kept as fallbacks.
 const parchmentCardSubtle: React.CSSProperties = {
-    background: "rgba(255, 255, 255, 0.55)",
+    background: "var(--skin-card-fill, rgba(255, 255, 255, 0.55))",
     border: "0.5px solid var(--skin-rule-hairline, rgba(26, 30, 58, 0.10))",
     boxShadow: "0 4px 16px -8px rgba(10, 22, 40, 0.10)",
 };
@@ -301,7 +303,7 @@ const secondaryPill: React.CSSProperties = {
     textTransform: "uppercase",
     fontSize: "11.5px",
     color: "var(--skin-text-primary, #0b2a5a)",
-    background: "rgba(255, 255, 255, 0.68)",
+    background: "var(--skin-card-fill, rgba(255, 255, 255, 0.68))",
     border: "0.5px solid rgba(212, 175, 55, 0.55)",
     boxShadow: "0 0 14px -4px rgba(212, 175, 55, 0.32)",
 };
@@ -310,7 +312,7 @@ const secondaryPill: React.CSSProperties = {
 // option so the page hierarchy reads primary > secondary > tertiary.
 const tertiaryPill: React.CSSProperties = {
     ...secondaryPill,
-    background: "rgba(255, 255, 255, 0.55)",
+    background: "var(--skin-card-fill, rgba(255, 255, 255, 0.55))",
     border: "0.5px solid var(--skin-rule-medium, rgba(26, 30, 58, 0.15))",
     boxShadow: "none",
     color: "var(--skin-text-muted, rgba(11, 42, 90, 0.93))",
@@ -774,7 +776,7 @@ const AssetMappingLanding = () => {
                                     fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace",
                                     fontSize: "11.5px",
                                     lineHeight: 1.55,
-                                    background: "rgba(255, 252, 245, 0.85)",
+                                    background: "var(--skin-input-fill, rgba(255, 252, 245, 0.85))",
                                     color: "var(--skin-text-primary, #0b2a5a)",
                                     border: "0.5px solid rgba(212, 175, 55, 0.20)",
                                 }}
@@ -798,7 +800,7 @@ const AssetMappingLanding = () => {
                                     fontSize: "14.5px",
                                     lineHeight: 1.55,
                                     color: "var(--skin-text-primary, #0b2a5a)",
-                                    background: "rgba(255, 255, 255, 0.85)",
+                                    background: "var(--skin-input-fill, rgba(255, 255, 255, 0.85))",
                                     border: "0.5px solid var(--skin-rule-medium, rgba(26, 30, 58, 0.15))",
                                 }}
                             />
@@ -905,7 +907,7 @@ const AssetMappingLanding = () => {
                                         style={
                                             asset.maturity === "symbolic_only"
                                                 ? {
-                                                    background: "rgba(255, 255, 255, 0.30)",
+                                                    background: "var(--skin-card-fill, rgba(255, 255, 255, 0.30))",
                                                     border: "0.5px solid var(--skin-rule-hairline, rgba(26, 30, 58, 0.06))",
                                                     boxShadow: "none",
                                                     opacity: 0.78,

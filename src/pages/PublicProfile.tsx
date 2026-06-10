@@ -164,8 +164,10 @@ const PublicProfile = () => {
     return (
       <div className="min-h-dvh flex items-center justify-center px-4">
         <div className="max-w-md text-center space-y-4">
-          <h1 className="text-2xl font-semibold text-[#2c3150]">Profile Private</h1>
-          <p className="text-sm text-[#2c3150]/60">This profile is not available right now.</p>
+          {/* Day 91 (Sasha 2026-06-09): navy text tokenized for Aurum —
+              hardcoded #2c3150 was invisible on the near-black skins. */}
+          <h1 className="text-2xl font-semibold" style={{ color: "var(--skin-text-primary, #2c3150)" }}>Profile Private</h1>
+          <p className="text-sm" style={{ color: "var(--skin-text-muted, rgba(44,49,80,0.6))" }}>This profile is not available right now.</p>
           <BackButton />
         </div>
       </div>
@@ -179,14 +181,28 @@ const PublicProfile = () => {
   const coreVibration = excalibur?.essenceAnchor?.geniusAppleSeed || null;
 
   return (
-    <div className="min-h-dvh bg-[radial-gradient(circle_at_top,#f8f4ff,transparent_45%),radial-gradient(circle_at_bottom,#fff6ea,transparent_50%)] text-[#2c3150]">
+    // Day 91 (Sasha 2026-06-09): tokenized for Aurum. This page predates
+    // the skin system and hardcoded its own light radial wash + navy ink —
+    // a full bright island under the dark skins. The wash moves to the
+    // --skin-page-wash token (style prop — Tailwind can't infer
+    // background-image from a var()) and the ink to --skin-text-primary;
+    // both fall back to the exact original literals, so lapis is
+    // pixel-identical.
+    <div
+      className="min-h-dvh"
+      style={{
+        background:
+          "var(--skin-page-wash, radial-gradient(circle at top,#f8f4ff,transparent 45%),radial-gradient(circle at bottom,#fff6ea,transparent 50%))",
+        color: "var(--skin-text-primary, #2c3150)",
+      }}
+    >
       <div className="px-4 py-6 max-w-4xl mx-auto">
         <BackButton />
       </div>
       <div className="max-w-4xl mx-auto px-4 pb-12">
-        <div className="rounded-3xl bg-white/80 backdrop-blur p-6 sm:p-10 shadow-lg border border-white/60">
+        <div className="rounded-3xl bg-[var(--skin-card-fill,rgba(255,255,255,0.8))] backdrop-blur p-6 sm:p-10 shadow-lg border border-[var(--skin-card-border,rgba(255,255,255,0.6))]">
           <div className="flex flex-col items-center text-center">
-            <div className="w-28 h-28 rounded-full overflow-hidden bg-[#f0f4ff] flex items-center justify-center">
+            <div className="w-28 h-28 rounded-full overflow-hidden bg-[var(--skin-input-fill,#f0f4ff)] flex items-center justify-center">
               {profile.avatar_url ? (
                 <img
                   src={profile.avatar_url}
@@ -198,7 +214,7 @@ const PublicProfile = () => {
                   className="w-full h-full object-cover"
                 />
               ) : (
-                <span className="text-2xl font-semibold text-[#2c3150]/60">
+                <span className="text-2xl font-semibold" style={{ color: "var(--skin-text-muted, rgba(44,49,80,0.6))" }}>
                   {fullName
                     .split(" ")
                     .map((part) => part[0])
@@ -210,19 +226,19 @@ const PublicProfile = () => {
             </div>
             <h1 className="text-3xl sm:text-4xl font-display font-semibold mt-5">{fullName}</h1>
             {archetypeTitle && (
-              <p className="mt-3 text-lg font-medium text-[#2c3150]">✦ {archetypeTitle} ✦</p>
+              <p className="mt-3 text-lg font-medium" style={{ color: "var(--skin-text-primary, #2c3150)" }}>✦ {archetypeTitle} ✦</p>
             )}
             {appleseed?.vibrationalKey?.tagline && (
-              <p className="mt-2 text-sm italic text-[#2c3150]/60 max-w-xl">
+              <p className="mt-2 text-sm italic max-w-xl" style={{ color: "var(--skin-text-muted, rgba(44,49,80,0.6))" }}>
                 "{appleseed.vibrationalKey.tagline}"
               </p>
             )}
             {coreVibration && (
-              <p className="mt-3 text-sm font-medium text-[rgba(44,49,80,0.7)]">
-                Core Vibration: <span className="text-[#2c3150]">{coreVibration}</span>
+              <p className="mt-3 text-sm font-medium" style={{ color: "var(--skin-text-muted, rgba(44,49,80,0.7))" }}>
+                Core Vibration: <span style={{ color: "var(--skin-text-primary, #2c3150)" }}>{coreVibration}</span>
               </p>
             )}
-            <div className="mt-4 space-y-2 text-sm text-[#2c3150]/60">
+            <div className="mt-4 space-y-2 text-sm" style={{ color: "var(--skin-text-muted, rgba(44,49,80,0.6))" }}>
               {canShowLocation && (
                 <div className="flex items-center justify-center gap-2">
                   <MapPin className="w-4 h-4" />
@@ -252,18 +268,18 @@ const PublicProfile = () => {
           )}
 
           {mission?.intro_text && (
-            <div className="mt-8 rounded-2xl border border-[#a4a3d0]/20 bg-white/85 backdrop-blur-sm p-5 text-center shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
-              <p className="text-sm uppercase tracking-wide text-[#2c3150]/60">Bio</p>
-              <p className="mt-2 text-[#2c3150]">{mission.intro_text}</p>
+            <div className="mt-8 rounded-2xl border border-[var(--skin-card-border,rgba(164,163,208,0.2))] bg-[var(--skin-card-fill,rgba(255,255,255,0.85))] backdrop-blur-sm p-5 text-center shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
+              <p className="text-sm uppercase tracking-wide" style={{ color: "var(--skin-text-muted, rgba(44,49,80,0.6))" }}>Bio</p>
+              <p className="mt-2" style={{ color: "var(--skin-text-primary, #2c3150)" }}>{mission.intro_text}</p>
             </div>
           )}
 
           {canShowOffer && excalibur && (
-            <div className="mt-8 rounded-2xl border border-[#a4a3d0]/20 bg-[#f0f4ff]/50 p-5 shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
-              <p className="text-xs font-medium text-[#2c3150]/60 mb-1">Unique Offer</p>
-              <h2 className="text-lg font-semibold text-[#2c3150]">{excalibur.offer?.statement || excalibur.businessIdentity?.tagline || "Genius Offer"}</h2>
-              <p className="text-sm text-[rgba(44,49,80,0.7)] mt-2">{excalibur.offer?.deliverable || ""}</p>
-              <p className="text-sm text-[rgba(44,49,80,0.7)] mt-2">{excalibur.offer?.form || ""}</p>
+            <div className="mt-8 rounded-2xl border border-[var(--skin-card-border,rgba(164,163,208,0.2))] bg-[var(--skin-card-fill,rgba(240,244,255,0.5))] p-5 shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
+              <p className="text-xs font-medium mb-1" style={{ color: "var(--skin-text-muted, rgba(44,49,80,0.6))" }}>Unique Offer</p>
+              <h2 className="text-lg font-semibold" style={{ color: "var(--skin-text-primary, #2c3150)" }}>{excalibur.offer?.statement || excalibur.businessIdentity?.tagline || "Genius Offer"}</h2>
+              <p className="text-sm mt-2" style={{ color: "var(--skin-text-muted, rgba(44,49,80,0.7))" }}>{excalibur.offer?.deliverable || ""}</p>
+              <p className="text-sm mt-2" style={{ color: "var(--skin-text-muted, rgba(44,49,80,0.7))" }}>{excalibur.offer?.form || ""}</p>
             </div>
           )}
 

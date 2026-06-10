@@ -9,8 +9,14 @@ interface ZoGIntroScreenProps {
 }
 
 const ZoGIntroScreen = ({ onStart, onSkip, onBack, saving = false }: ZoGIntroScreenProps) => {
+    // Day 91 (Sasha 2026-06-09): tokenized for Aurum. Full-viewport
+    // white-to-pearl wash now reads --skin-page-wash (defined by the
+    // dark skins); the original gradient stays as the Lapis fallback.
     return (
-        <div className="min-h-dvh flex flex-col items-center justify-center px-6 py-12 bg-gradient-to-b from-white to-[var(--wabi-pearl)] relative">
+        <div
+            className="min-h-dvh flex flex-col items-center justify-center px-6 py-12 relative"
+            style={{ background: "var(--skin-page-wash, linear-gradient(to bottom, #fff, var(--wabi-pearl)))" }}
+        >
             {/* Back button */}
             {onBack && (
                 <button

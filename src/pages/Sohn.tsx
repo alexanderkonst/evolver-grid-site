@@ -17,12 +17,15 @@ import fyttTorus from "@/assets/find-your-top-talent-torus.png";
  * phase_shift_technology_library.md Domain 91. Copy is a v1 draft for Sasha to vet.
  */
 
-const NAVY = "#0a1628";
+// Day 91 (Sasha 2026-06-09): tokenized for Aurum — NAVY is only ever used
+// as a text color, so it reads the skin's primary-text token with the
+// original near-black navy as the lapis-side fallback.
+const NAVY = "var(--skin-text-primary, #0a1628)";
 
 const Eyebrow = ({ children, size = "default" }: { children: ReactNode; size?: "default" | "large" }) => (
   <p
     className={`uppercase mb-3 ${size === "large" ? "text-[12px] tracking-[0.30em]" : "text-[11px] tracking-[0.28em]"}`}
-    style={{ color: "rgba(26,30,58,0.5)" }}
+    style={{ color: "var(--skin-text-muted-soft, rgba(26,30,58,0.5))" }}
   >
     {children}
   </p>
@@ -59,8 +62,9 @@ const Panel = ({
       <section
         className="rounded-3xl px-7 py-6 sm:px-9 sm:py-7"
         style={{
-          background: "rgba(255,255,255,0.35)",
-          border: "1px solid rgba(26,30,58,0.10)",
+          // Day 91 (Sasha 2026-06-09): tokenized for Aurum.
+          background: "var(--skin-card-fill, rgba(255,255,255,0.35))",
+          border: "1px solid var(--skin-card-border, rgba(26,30,58,0.10))",
           boxShadow: "0 1px 2px rgba(26,30,58,0.04)",
         }}
       >
@@ -77,7 +81,7 @@ const Panel = ({
   );
 };
 
-const bodyStyle = { color: "rgba(26,30,58,0.8)" } as const;
+const bodyStyle = { color: "var(--skin-text-muted, rgba(26,30,58,0.8))" } as const;
 
 const SohnWordmark = () => (
   <Link
@@ -99,14 +103,16 @@ const SohnWordmark = () => (
 );
 
 const Sohn = () => {
-  const headlineHalo = "0 0 26px rgba(255,255,255,0.7), 0 1px 2px rgba(255,255,255,0.85)";
+  // Day 91 (Sasha 2026-06-09): tokenized for Aurum — halo + page wash read
+  // skin tokens; the exact original literals stay as light-side fallbacks.
+  const headlineHalo = "var(--skin-text-halo-strong, 0 0 26px rgba(255,255,255,0.7), 0 1px 2px rgba(255,255,255,0.85))";
   return (
     <main
       className="relative overflow-hidden"
       style={{
         fontFamily: "'DM Sans', sans-serif",
         color: NAVY,
-        background: "linear-gradient(160deg, #f6f5f1 0%, #eef0f6 55%, #f1ecf6 100%)",
+        background: "var(--skin-page-wash, linear-gradient(160deg, #f6f5f1 0%, #eef0f6 55%, #f1ecf6 100%))",
         minHeight: "100vh",
       }}
     >
@@ -131,7 +137,7 @@ const Sohn = () => {
       <div className="relative z-10 max-w-[820px] mx-auto px-5 sm:px-8 pt-20 sm:pt-24 pb-12 sm:pb-16">
         {/* HERO */}
         <header className="text-center mb-8 sm:mb-10">
-          <p className="text-[11px] uppercase tracking-[0.30em] mb-5" style={{ color: "rgba(26,30,58,0.5)" }}>
+          <p className="text-[11px] uppercase tracking-[0.30em] mb-5" style={{ color: "var(--skin-text-muted-soft, rgba(26,30,58,0.5))" }}>
             A coordination substrate · seminal note
           </p>
           <h1
@@ -152,7 +158,7 @@ const Sohn = () => {
             style={{
               fontFamily: "'Cormorant Garamond', serif",
               fontSize: "clamp(1.25rem, 3vw, 1.7rem)",
-              color: "rgba(26,30,58,0.72)",
+              color: "var(--skin-text-muted, rgba(26,30,58,0.72))",
               lineHeight: 1.35,
             }}
           >
@@ -197,7 +203,7 @@ const Sohn = () => {
             <Link
               to="/"
               className="liquid-glass-strong mt-6 inline-flex items-center gap-3 rounded-full px-6 py-3.5 text-sm font-semibold tracking-wide transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
-              style={{ color: NAVY, textShadow: "0 1px 2px rgba(255,255,255,0.7)" }}
+              style={{ color: NAVY, textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.7))" }}
             >
               Run it on yourself
               <ArrowRight className="w-4 h-4 opacity-70" />
@@ -209,7 +215,7 @@ const Sohn = () => {
 
         {/* CLOSE */}
         <section className="text-center max-w-[52ch] mx-auto">
-          <p className="text-[11px] uppercase tracking-[0.28em] mb-3" style={{ color: "rgba(26,30,58,0.5)" }}>
+          <p className="text-[11px] uppercase tracking-[0.28em] mb-3" style={{ color: "var(--skin-text-muted-soft, rgba(26,30,58,0.5))" }}>
             The stake
           </p>
           <p
@@ -217,7 +223,7 @@ const Sohn = () => {
             style={{
               fontFamily: "'Cormorant Garamond', serif",
               fontSize: "clamp(1.25rem, 3vw, 1.7rem)",
-              color: "rgba(26,30,58,0.8)",
+              color: "var(--skin-text-muted, rgba(26,30,58,0.8))",
               lineHeight: 1.4,
             }}
           >
@@ -227,7 +233,7 @@ const Sohn = () => {
         </section>
 
         <footer className="text-center mt-16">
-          <p className="text-[10px] uppercase tracking-[0.28em]" style={{ color: "rgba(26,30,58,0.4)" }}>
+          <p className="text-[10px] uppercase tracking-[0.28em]" style={{ color: "var(--skin-text-muted-soft, rgba(26,30,58,0.4))" }}>
             SOHN · Find Your Top Talent · findyourtoptalent.com
           </p>
         </footer>

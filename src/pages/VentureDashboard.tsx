@@ -119,7 +119,7 @@ const formatCurrency = (v: number) => (v >= 1000 ? `$${(v / 1000).toFixed(1)}K` 
 
 /** Resolve skin-aware chart palette by reading the active <html data-skin>. */
 const useSkinChartPalette = () => {
-  const [skin, setSkin] = useState<"lapis" | "navy-gold" | "aurum">(() => {
+  const [skin, setSkin] = useState<"lapis" | "navy-gold" | "aurum" | "techstars">(() => {
     if (typeof document === "undefined") return "lapis";
     return (document.documentElement.dataset.skin as any) || "lapis";
   });
@@ -135,8 +135,9 @@ const useSkinChartPalette = () => {
 
   // Day 91 (Sasha 2026-06-09): aurum added — persisted-dark users were
   // getting the LIGHT chart palette (near-invisible navy ticks on a
-  // near-black page) because only navy-gold counted as dark.
-  const isDark = skin === "navy-gold" || skin === "aurum";
+  // near-black page) because only navy-gold counted as dark. Same pass,
+  // later wave: techstars added — same near-black register, same leak.
+  const isDark = skin === "navy-gold" || skin === "aurum" || skin === "techstars";
   return {
     tick: isDark ? "rgba(245,241,232,0.78)" : "rgba(11,42,90,0.72)",
     grid: isDark ? "rgba(212,175,55,0.10)" : "rgba(26,30,58,0.10)",
@@ -151,7 +152,7 @@ const useSkinChartPalette = () => {
 // ─── Shared style fragments (skin-aware) ────────────────────────────────────
 
 const cardStyle: React.CSSProperties = {
-  background: "var(--skin-card-bg, rgba(255,255,255,0.45))",
+  background: "var(--skin-card-fill, rgba(255,255,255,0.45))",
   border: "1px solid var(--skin-card-border, rgba(26,30,58,0.08))",
   boxShadow: "var(--skin-card-shadow, 0 4px 16px -8px rgba(10,22,40,0.12), 0 16px 40px -20px rgba(10,22,40,0.18))",
   backdropFilter: "blur(14px)",
@@ -558,7 +559,7 @@ const VentureDashboard = () => {
                     style={{
                       background: "var(--skin-accent-gold, #b8860b)",
                       boxShadow:
-                        "0 0 0 3px var(--skin-card-bg, rgba(255,255,255,0.45)), 0 0 12px rgba(184,134,11,0.4)",
+                        "0 0 0 3px var(--skin-card-fill, rgba(255,255,255,0.45)), 0 0 12px rgba(184,134,11,0.4)",
                     }}
                   />
 
@@ -608,7 +609,7 @@ const VentureDashboard = () => {
               style={{
                 color: "var(--skin-accent-gold, #b8860b)",
                 border: "1px solid var(--skin-card-border, rgba(184,134,11,0.25))",
-                background: "var(--skin-card-bg, rgba(255,255,255,0.45))",
+                background: "var(--skin-card-fill, rgba(255,255,255,0.45))",
               }}
             >
               Open Holomap →

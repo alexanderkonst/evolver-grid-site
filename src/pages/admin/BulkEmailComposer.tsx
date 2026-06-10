@@ -295,7 +295,7 @@ export function BulkEmailComposer({
               <div
                 className="rounded-xl p-4"
                 style={{
-                  background: "rgba(255, 255, 255, 0.55)",
+                  background: "var(--skin-card-fill, rgba(255, 255, 255, 0.55))",
                   border: "0.5px solid rgba(212, 175, 55, 0.30)",
                 }}
               >
@@ -466,11 +466,13 @@ function Label({ children }: { children: React.ReactNode }) {
   );
 }
 
+// Day 91 (Sasha 2026-06-09): tokenized for Aurum — raw white input fill
+// made typed cream text invisible under the dark skins.
 const inputStyle: React.CSSProperties = {
   fontFamily: "'DM Sans', system-ui, sans-serif",
   fontSize: "14px",
   color: "var(--skin-text-primary, #0b2a5a)",
-  background: "rgba(255, 255, 255, 0.85)",
+  background: "var(--skin-input-fill, rgba(255, 255, 255, 0.85))",
   border: "0.5px solid var(--skin-rule-medium, rgba(26, 30, 58, 0.15))",
 };
 
@@ -498,6 +500,6 @@ const secondaryPill: React.CSSProperties = {
   textTransform: "uppercase",
   fontSize: "11.5px",
   color: "var(--skin-text-primary, #0b2a5a)",
-  background: "rgba(255, 255, 255, 0.72)",
+  background: "var(--skin-card-fill, rgba(255, 255, 255, 0.72))",
   border: "0.5px solid rgba(26, 30, 58, 0.15)",
 };

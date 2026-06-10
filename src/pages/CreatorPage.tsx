@@ -71,19 +71,22 @@ const CreatorPage = () => {
     const { slug } = useParams<{ slug: string }>();
     const creator = slug ? CREATORS[slug] : null;
 
+    // Day 91 (Sasha 2026-06-09): tokenized for Aurum — page washes, offer
+    // cards, and the navy text classes now read skin tokens with the exact
+    // original literals as fallbacks (lapis pixel-identical).
     if (!creator) {
         return (
-            <div className="min-h-dvh bg-white flex items-center justify-center">
+            <div className="min-h-dvh bg-[var(--skin-page-bg,#fff)] flex items-center justify-center">
                 <div className="text-center">
-                    <h1 className="text-2xl font-bold text-[#2c3150] mb-2">Page Not Found</h1>
-                    <p className="text-[rgba(44,49,80,0.7)]">This creator page doesn't exist yet.</p>
+                    <h1 className="text-2xl font-bold text-[color:var(--skin-text-primary,#2c3150)] mb-2">Page Not Found</h1>
+                    <p className="text-[color:var(--skin-text-muted,rgba(44,49,80,0.7))]">This creator page doesn't exist yet.</p>
                 </div>
             </div>
         );
     }
 
     return (
-        <div className="min-h-dvh bg-white">
+        <div className="min-h-dvh bg-[var(--skin-page-bg,#fff)]">
             {/* Header with brand color */}
             <div
                 className="h-32"
@@ -99,25 +102,25 @@ const CreatorPage = () => {
                     {creator.name.charAt(0)}
                 </div>
 
-                <h1 className="text-2xl font-bold text-[#2c3150]">{creator.name}</h1>
-                <p className="text-[rgba(44,49,80,0.7)] mb-4">{creator.title}</p>
-                <p className="text-[#2c3150] mb-8">{creator.bio}</p>
+                <h1 className="text-2xl font-bold text-[color:var(--skin-text-primary,#2c3150)]">{creator.name}</h1>
+                <p className="text-[color:var(--skin-text-muted,rgba(44,49,80,0.7))] mb-4">{creator.title}</p>
+                <p className="text-[color:var(--skin-text-primary,#2c3150)] mb-8">{creator.bio}</p>
 
                 {/* Offers */}
-                <h2 className="text-lg font-semibold text-[#2c3150] mb-4">Offers</h2>
+                <h2 className="text-lg font-semibold text-[color:var(--skin-text-primary,#2c3150)] mb-4">Offers</h2>
                 <div className="space-y-4 mb-12">
                     {creator.offers.map(offer => (
                         <div
                             key={offer.id}
-                            className="rounded-xl border border-[#a4a3d0]/20 bg-white/85 backdrop-blur-sm p-5 hover:border-[#a4a3d0]/40 transition-colors shadow-[0_4px_16px_rgba(44,49,80,0.06)]"
+                            className="rounded-xl border border-[#a4a3d0]/20 bg-[var(--skin-card-fill,rgba(255,255,255,0.85))] backdrop-blur-sm p-5 hover:border-[#a4a3d0]/40 transition-colors shadow-[0_4px_16px_rgba(44,49,80,0.06)]"
                         >
                             <div className="flex items-start justify-between">
                                 <div>
-                                    <h3 className="font-semibold text-[#2c3150]">{offer.title}</h3>
-                                    <p className="text-sm text-[rgba(44,49,80,0.7)] mt-1">{offer.description}</p>
+                                    <h3 className="font-semibold text-[color:var(--skin-text-primary,#2c3150)]">{offer.title}</h3>
+                                    <p className="text-sm text-[color:var(--skin-text-muted,rgba(44,49,80,0.7))] mt-1">{offer.description}</p>
                                 </div>
                                 {offer.price && (
-                                    <span className="text-lg font-bold text-[#2c3150]">{offer.price}</span>
+                                    <span className="text-lg font-bold text-[color:var(--skin-text-primary,#2c3150)]">{offer.price}</span>
                                 )}
                             </div>
                             <Button className="w-full mt-4" style={{ backgroundColor: creator.color }}>

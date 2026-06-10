@@ -798,7 +798,7 @@ const AppleseedDisplay = ({
                                         autoFocus
                                         placeholder="Code"
                                         aria-label="Activation code"
-                                        className="flex-1 min-w-0 rounded-full px-3.5 py-2 text-xs bg-white/70 border outline-none focus:ring-2 focus:ring-[hsla(40,70%,55%,0.45)]"
+                                        className="flex-1 min-w-0 rounded-full px-3.5 py-2 text-xs bg-[var(--skin-input-fill,rgba(255,255,255,0.7))] border outline-none focus:ring-2 focus:ring-[hsla(40,70%,55%,0.45)]"
                                         style={{
                                             fontFamily: "'Source Serif 4', serif",
                                             color: "var(--skin-text-primary, #0a1628)",
@@ -956,7 +956,11 @@ const AppleseedDisplay = ({
                     style={{
                         fontFamily: "'Cormorant Garamond', serif",
                         color: "var(--skin-text-primary, #0a1628)",
-                        backgroundImage: 'linear-gradient(180deg, rgba(255,255,255,0.97), rgba(255,255,255,0.90))',
+                        // Day 91 (Sasha 2026-06-09): tokenized for Aurum —
+                        // `backgroundImage` → `background` shorthand so the skin
+                        // token (a flat color on dark skins) stays valid; the
+                        // original white gradient is the fallback.
+                        background: 'var(--skin-card-fill, linear-gradient(180deg, rgba(255,255,255,0.97), rgba(255,255,255,0.90)))',
                         border: '1px solid rgba(122, 81, 8, 0.32)',
                         boxShadow:
                             '0 10px 28px -10px rgba(10,22,40,0.22), 0 0 18px -2px rgba(244,212,114,0.45), inset 0 1px 0 rgba(255,255,255,0.7)',

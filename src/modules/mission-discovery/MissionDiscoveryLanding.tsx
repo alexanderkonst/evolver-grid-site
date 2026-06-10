@@ -79,9 +79,11 @@ import { useToast } from "@/hooks/use-toast";
 // of the 8-10:1 contrast band on bright bg patches. HALO_SOFT replaced
 // with halo-deep token for the same reason — soft halo doesn't bridge
 // variable-luminance pixel ranges.
-const INK = "#0a1628";
-const INK_BODY = "rgba(11,42,90,0.97)";
-const INK_MUTED = "rgba(11,42,90,0.93)";
+// Day 91 (Sasha 2026-06-09): tokenized for Aurum — ink reads the skin text
+// tokens (cream under dark skins) with the original literals as fallbacks.
+const INK = "var(--skin-text-primary, #0a1628)";
+const INK_BODY = "var(--skin-text-body, rgba(11,42,90,0.97))";
+const INK_MUTED = "var(--skin-text-muted, rgba(11,42,90,0.93))";
 const HALO_SOFT =
     "var(--skin-text-halo-deep, 0 0 28px rgba(255,255,255,0.85), 0 1px 2px rgba(255,255,255,0.95), 0 0 1px rgba(11,42,90,0.65), 0 1px 0 rgba(11,42,90,0.45))";
 
@@ -551,9 +553,9 @@ const MissionDiscoveryLanding = () => {
                             className="text-xs whitespace-pre-wrap p-3 rounded-lg max-h-40 overflow-y-auto"
                             style={{
                                 fontFamily: "'JetBrains Mono', ui-monospace, monospace",
-                                backgroundColor: "rgba(255, 255, 255, 0.45)",
+                                backgroundColor: "var(--skin-input-fill, rgba(255, 255, 255, 0.45))",
                                 color: INK_MUTED,
-                                border: "0.5px solid rgba(11,42,90,0.10)",
+                                border: "0.5px solid var(--skin-card-border, rgba(11,42,90,0.10))",
                             }}
                         >
                             {MISSION_DISCOVERY_PROMPT}
@@ -658,7 +660,7 @@ const MissionDiscoveryLanding = () => {
                                 fontSize: "clamp(1.15rem, 2.4vw, 1.5rem)",
                                 color: INK,
                                 lineHeight: 1.4,
-                                background: "rgba(255, 252, 245, 0.78)",
+                                background: "var(--skin-input-fill, rgba(255, 252, 245, 0.78))",
                                 border: "0.5px solid rgba(212, 175, 55, 0.45)",
                                 boxShadow: "inset 0 1px 2px rgba(10,22,40,0.06)",
                                 cursor: "text",

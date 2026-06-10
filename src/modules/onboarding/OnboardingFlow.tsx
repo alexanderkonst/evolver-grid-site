@@ -201,9 +201,15 @@ const OnboardingFlow = ({ profileId, initialStep, hasZog, hasQol, onComplete }: 
 
   // Step 2: AI choice (card layout)
   return (
-    <div className="min-h-dvh bg-gradient-to-b from-white to-[var(--wabi-pearl)] flex items-center justify-center">
+    // Day 91 (Sasha 2026-06-09): tokenized for Aurum — the white→pearl page
+    // wash + white card now read the skin tokens; fallbacks keep the exact
+    // original light-skin values.
+    <div
+      className="min-h-dvh flex items-center justify-center"
+      style={{ background: "var(--skin-page-wash, linear-gradient(to bottom, #fff, var(--wabi-pearl)))" }}
+    >
       <div className="min-h-[70vh] px-4 py-16 w-full">
-        <div className="mx-auto max-w-2xl rounded-3xl border border-[#a4a3d0]/20 bg-white/85 backdrop-blur-sm p-8 shadow-[0_4px_16px_rgba(44,49,80,0.06)] sm:p-10">
+        <div className="mx-auto max-w-2xl rounded-3xl border border-[#a4a3d0]/20 bg-[var(--skin-card-fill,rgba(255,255,255,0.85))] backdrop-blur-sm p-8 shadow-[0_4px_16px_rgba(44,49,80,0.06)] sm:p-10">
           {/* Header with back and skip buttons */}
           <div className="flex justify-between items-center mb-4">
             <button

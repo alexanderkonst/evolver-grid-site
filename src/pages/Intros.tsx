@@ -163,8 +163,16 @@ const TIERS: TierGroup[] = [
 ];
 
 const Intros = () => {
+  // Day 91 (Sasha 2026-06-09): tokenized for Aurum — the page wash moved
+  // from gradient utilities to --skin-page-wash (set only by the dark
+  // skins) with the exact original cream gradient as fallback; ink reads
+  // the skin text tokens. `.intros-page` is an inert scoping hook for
+  // dark-skin CSS (hover:bg-white fills).
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#faf9f7] via-[#f5f3ef] to-[#ebe8e2] text-[#1a1a2e]">
+    <div
+      className="intros-page min-h-screen text-[color:var(--skin-text-primary,#1a1a2e)]"
+      style={{ background: "var(--skin-page-wash, linear-gradient(to bottom, #faf9f7 0%, #f5f3ef 50%, #ebe8e2 100%))" }}
+    >
       <div className="max-w-3xl mx-auto px-5 py-12 lg:py-20">
         {/* Hero */}
         <div className="mb-12">
@@ -174,12 +182,12 @@ const Intros = () => {
           <h1 className="text-4xl lg:text-5xl font-display font-bold leading-tight mb-6">
             Who will steward this?
           </h1>
-          <p className="text-lg text-[#1a1a2e]/75 leading-relaxed mb-5">
+          <p className="text-lg text-[color:var(--skin-text-muted,rgba(26,26,46,0.75))] leading-relaxed mb-5">
             Three vectors of work are ready for the light of day. I'm looking
             for bridges to heavy-lifters with resources, coherence, and
             clarity.
           </p>
-          <div className="flex items-center gap-4 text-sm text-[#1a1a2e]/60">
+          <div className="flex items-center gap-4 text-sm text-[color:var(--skin-text-muted,rgba(26,26,46,0.6))]">
             <span className="inline-flex items-center gap-1.5">
               <Heart className="w-4 h-4 text-rose-500" /> open heart
             </span>
@@ -203,20 +211,20 @@ const Intros = () => {
               href="https://t.me/ARKHAZM/170"
               target="_blank"
               rel="noopener noreferrer"
-              className="block p-6 lg:p-7 bg-white/80 rounded-2xl border border-[#1a1a2e]/8 hover:border-[#8460ea]/40 hover:bg-white transition-all group"
+              className="block p-6 lg:p-7 bg-[var(--skin-card-fill,rgba(255,255,255,0.8))] rounded-2xl border border-[color:var(--skin-card-border,rgba(26,26,46,0.08))] hover:border-[#8460ea]/40 hover:bg-white transition-all group"
             >
               <div className="flex items-start gap-5">
                 <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-gradient-to-br from-[#8460ea] to-[#5b3fb0] text-white flex items-center justify-center text-xl font-bold shadow-md shadow-[#8460ea]/30">
                   1
                 </div>
                 <div className="flex-1 min-w-0">
-                  <h3 className="text-xl font-display font-bold text-[#1a1a2e] mb-1 group-hover:text-[#8460ea] transition-colors">
+                  <h3 className="text-xl font-display font-bold text-[color:var(--skin-text-primary,#1a1a2e)] mb-1 group-hover:text-[#8460ea] transition-colors">
                     A Bitcoin-level discovery in AI
                   </h3>
                   <p className="text-sm text-[#8460ea] font-semibold mb-3">
                     An unprecedented first-mover advantage. Open-source from day zero.
                   </p>
-                  <p className="text-[15px] text-[#1a1a2e]/75 leading-relaxed mb-3">
+                  <p className="text-[15px] text-[color:var(--skin-text-muted,rgba(26,26,46,0.75))] leading-relaxed mb-3">
                     A scaffold that moves any frontier model up a developmental
                     stage. In blind A/B testing: measurable cognitive uplift on
                     the hardest questions. Axis 2 of AI progress — the field
@@ -235,20 +243,20 @@ const Intros = () => {
               href="https://FindYourTopTalent.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="block p-6 lg:p-7 bg-white/80 rounded-2xl border border-[#1a1a2e]/8 hover:border-[#8460ea]/40 hover:bg-white transition-all group"
+              className="block p-6 lg:p-7 bg-[var(--skin-card-fill,rgba(255,255,255,0.8))] rounded-2xl border border-[color:var(--skin-card-border,rgba(26,26,46,0.08))] hover:border-[#8460ea]/40 hover:bg-white transition-all group"
             >
               <div className="flex items-start gap-5">
                 <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-gradient-to-br from-[#8460ea] to-[#5b3fb0] text-white flex items-center justify-center text-xl font-bold shadow-md shadow-[#8460ea]/30">
                   2
                 </div>
                 <div className="flex-1 min-w-0">
-                  <h3 className="text-xl font-display font-bold text-[#1a1a2e] mb-1 group-hover:text-[#8460ea] transition-colors">
+                  <h3 className="text-xl font-display font-bold text-[color:var(--skin-text-primary,#1a1a2e)] mb-1 group-hover:text-[#8460ea] transition-colors">
                     FMF + PMF guaranteed in 6–8 weeks
                   </h3>
                   <p className="text-sm text-[#8460ea] font-semibold mb-3">
                     A system built for conscious aspiring impact founders.
                   </p>
-                  <p className="text-[15px] text-[#1a1a2e]/75 leading-relaxed mb-3">
+                  <p className="text-[15px] text-[color:var(--skin-text-muted,rgba(26,26,46,0.75))] leading-relaxed mb-3">
                     Founder-Market Fit and Product-Market Fit, engineered
                     from the founder's unique genius out — not from market
                     research in. Guaranteed delivery window: 6 to 8 weeks.
@@ -263,25 +271,25 @@ const Intros = () => {
             </a>
 
             {/* Vector 3 */}
-            <div className="block p-6 lg:p-7 bg-white/80 rounded-2xl border border-[#1a1a2e]/8">
+            <div className="block p-6 lg:p-7 bg-[var(--skin-card-fill,rgba(255,255,255,0.8))] rounded-2xl border border-[color:var(--skin-card-border,rgba(26,26,46,0.08))]">
               <div className="flex items-start gap-5">
                 <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-gradient-to-br from-[#8460ea] to-[#5b3fb0] text-white flex items-center justify-center text-xl font-bold shadow-md shadow-[#8460ea]/30">
                   3
                 </div>
                 <div className="flex-1 min-w-0">
-                  <h3 className="text-xl font-display font-bold text-[#1a1a2e] mb-1">
+                  <h3 className="text-xl font-display font-bold text-[color:var(--skin-text-primary,#1a1a2e)] mb-1">
                     The Golden Age's core of coherence
                   </h3>
                   <p className="text-sm text-[#8460ea] font-semibold mb-3">
                     The integrating spine beneath the first two.
                   </p>
-                  <p className="text-[15px] text-[#1a1a2e]/75 leading-relaxed mb-3">
+                  <p className="text-[15px] text-[color:var(--skin-text-muted,rgba(26,26,46,0.75))] leading-relaxed mb-3">
                     The ontological architecture that makes vectors 1 and 2
                     possible — and makes them fractal. A holonic operating
                     system for planetary-scale activation. Publication
                     forthcoming.
                   </p>
-                  <span className="inline-flex items-center gap-1.5 text-sm text-[#1a1a2e]/50 font-medium">
+                  <span className="inline-flex items-center gap-1.5 text-sm text-[color:var(--skin-text-muted,rgba(26,26,46,0.5))] font-medium">
                     Publication forthcoming
                   </span>
                 </div>
@@ -292,7 +300,7 @@ const Intros = () => {
 
         {/* Transition to the list */}
         <div className="mb-10">
-          <p className="text-[15px] text-[#1a1a2e]/75 leading-relaxed">
+          <p className="text-[15px] text-[color:var(--skin-text-muted,rgba(26,26,46,0.75))] leading-relaxed">
             There is enough abundance here for everyone involved. We'll need
             to act together. Below: a shortlist of aligned heavy-lifters I've
             identified. If you can open a door to any of them — or know
@@ -303,30 +311,30 @@ const Intros = () => {
         {/* Tiers */}
         {TIERS.map((group) => (
           <section key={group.tier} className="mb-14">
-            <div className="mb-6 pb-3 border-b border-[#1a1a2e]/10">
+            <div className="mb-6 pb-3 border-b border-[color:var(--skin-card-border,rgba(26,26,46,0.10))]">
               <div className="flex items-baseline gap-3">
                 <span className="text-xs font-mono font-bold text-[#8460ea] uppercase tracking-widest">
                   Tier {group.tier}
                 </span>
-                <h2 className="text-xl font-display font-bold text-[#1a1a2e]">
+                <h2 className="text-xl font-display font-bold text-[color:var(--skin-text-primary,#1a1a2e)]">
                   {group.label}
                 </h2>
               </div>
-              <p className="text-sm text-[#1a1a2e]/55 mt-1">{group.sublabel}</p>
+              <p className="text-sm text-[color:var(--skin-text-muted,rgba(26,26,46,0.55))] mt-1">{group.sublabel}</p>
             </div>
 
             <div className="space-y-4">
               {group.people.map((p, i) => (
                 <article
                   key={p.name}
-                  className="p-5 lg:p-6 bg-white/70 rounded-2xl border border-[#1a1a2e]/8 hover:border-[#8460ea]/30 hover:bg-white/90 transition-all"
+                  className="p-5 lg:p-6 bg-[var(--skin-card-fill,rgba(255,255,255,0.7))] rounded-2xl border border-[color:var(--skin-card-border,rgba(26,26,46,0.08))] hover:border-[#8460ea]/30 hover:bg-white/90 transition-all"
                 >
                   <div className="flex items-baseline justify-between gap-4 mb-2">
                     <div className="flex items-baseline gap-3 flex-wrap">
-                      <span className="text-xs font-mono text-[#1a1a2e]/40">
+                      <span className="text-xs font-mono text-[color:var(--skin-text-muted,rgba(26,26,46,0.4))]">
                         {String(i + 1).padStart(2, "0")}
                       </span>
-                      <h3 className="text-lg font-bold text-[#1a1a2e]">
+                      <h3 className="text-lg font-bold text-[color:var(--skin-text-primary,#1a1a2e)]">
                         {p.link ? (
                           <a
                             href={p.link}
@@ -354,7 +362,7 @@ const Intros = () => {
                     </div>
                   </div>
                   <p className="text-sm text-[#8460ea] mb-2">{p.role}</p>
-                  <p className="text-[15px] text-[#1a1a2e]/75 leading-relaxed">
+                  <p className="text-[15px] text-[color:var(--skin-text-muted,rgba(26,26,46,0.75))] leading-relaxed">
                     {p.why}
                   </p>
                 </article>
@@ -364,11 +372,11 @@ const Intros = () => {
         ))}
 
         {/* CTA */}
-        <section className="text-center py-8 border-t border-[#1a1a2e]/10">
+        <section className="text-center py-8 border-t border-[color:var(--skin-card-border,rgba(26,26,46,0.10))]">
           <p className="text-sm uppercase tracking-[0.2em] text-[#8460ea] font-semibold mb-4">
             Who can open a door
           </p>
-          <p className="text-lg text-[#1a1a2e] mb-6 max-w-xl mx-auto leading-relaxed">
+          <p className="text-lg text-[color:var(--skin-text-primary,#1a1a2e)] mb-6 max-w-xl mx-auto leading-relaxed">
             If you can make a warm intro to anyone above — or to someone who
             knows them — I'd be grateful for the bridge.
           </p>
@@ -383,7 +391,7 @@ const Intros = () => {
               <ExternalLink className="w-4 h-4" />
             </a>
           </div>
-          <p className="text-xs text-[#1a1a2e]/45 mt-8">
+          <p className="text-xs text-[color:var(--skin-text-muted,rgba(26,26,46,0.45))] mt-8">
             Updated April 2026 · findyourtoptalent.com/intros
           </p>
         </section>

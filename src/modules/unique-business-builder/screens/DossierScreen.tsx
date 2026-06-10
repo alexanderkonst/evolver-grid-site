@@ -236,7 +236,7 @@ export default function DossierScreen() {
       <div
         className="relative space-y-4 overflow-hidden rounded-2xl px-5 py-5"
         style={{
-          background: "var(--skin-card-bg, rgba(255, 255, 255, 0.68))",
+          background: "var(--skin-card-fill, rgba(255, 255, 255, 0.68))",
           border: "0.5px solid rgba(212, 175, 55, 0.45)",
           boxShadow:
             "0 0 22px -8px rgba(212, 175, 55, 0.30), 0 16px 40px -20px rgba(10, 22, 40, 0.18)",
@@ -325,7 +325,9 @@ export default function DossierScreen() {
               textTransform: "uppercase",
               fontSize: "11px",
               color: "var(--skin-text-primary, #0b2a5a)",
-              background: "rgba(255, 255, 255, 0.72)",
+              // Day 91 (Sasha 2026-06-09): tokenized for Aurum — raw white
+              // pill fills → skin tokens, exact literals as fallbacks.
+              background: "var(--skin-card-fill, rgba(255, 255, 255, 0.72))",
               border: "0.5px solid rgba(212, 175, 55, 0.55)",
               boxShadow: "0 0 12px -4px rgba(212, 175, 55, 0.25)",
             }}
@@ -365,7 +367,7 @@ export default function DossierScreen() {
             </code>
             <button
               onClick={handleCopy}
-              className="inline-flex items-center gap-1 rounded-full px-3 py-1 transition-colors duration-200 hover:bg-white/30"
+              className="inline-flex items-center gap-1 rounded-full px-3 py-1 transition-colors duration-200 hover:bg-[var(--skin-selected-bg,rgba(255,255,255,0.3))]"
               style={{
                 fontFamily: "'Cormorant Garamond', serif",
                 fontWeight: 600,
@@ -390,7 +392,7 @@ export default function DossierScreen() {
                 textTransform: "uppercase",
                 fontSize: "10px",
                 color: "var(--skin-text-primary, #0b2a5a)",
-                background: "rgba(255, 255, 255, 0.68)",
+                background: "var(--skin-card-fill, rgba(255, 255, 255, 0.68))",
                 border: "0.5px solid rgba(212, 175, 55, 0.55)",
               }}
             >
@@ -412,7 +414,7 @@ export default function DossierScreen() {
             textTransform: "uppercase",
             fontSize: "11.5px",
             color: "var(--skin-text-primary, #0b2a5a)",
-            background: "rgba(255, 255, 255, 0.68)",
+            background: "var(--skin-card-fill, rgba(255, 255, 255, 0.68))",
             border: "0.5px solid var(--skin-rule-medium, rgba(26, 30, 58, 0.15))",
           }}
         >
@@ -460,7 +462,7 @@ function DossierRow({ artifactKey }: { artifactKey: ArtifactKey }) {
       <div
         className="flex items-center justify-between gap-3 rounded-xl px-4 py-3"
         style={{
-          background: "rgba(255, 252, 245, 0.55)",
+          background: "var(--skin-card-fill, rgba(255, 252, 245, 0.55))",
           border: "0.5px solid rgba(212, 175, 55, 0.30)",
           boxShadow: "0 2px 8px -4px rgba(212, 175, 55, 0.18)",
         }}
@@ -497,7 +499,7 @@ function DossierRow({ artifactKey }: { artifactKey: ArtifactKey }) {
             textTransform: "uppercase",
             fontSize: "11px",
             color: "var(--skin-text-primary, #0b2a5a)",
-            background: "rgba(255, 255, 255, 0.65)",
+            background: "var(--skin-card-fill, rgba(255, 255, 255, 0.65))",
             border: "0.5px solid rgba(212, 175, 55, 0.55)",
             boxShadow: "0 0 10px -4px rgba(212, 175, 55, 0.30)",
           }}
@@ -513,7 +515,7 @@ function DossierRow({ artifactKey }: { artifactKey: ArtifactKey }) {
     <div
       className="rounded-xl px-4 py-3.5"
       style={{
-        background: "var(--skin-card-bg, rgba(255, 255, 255, 0.68))",
+        background: "var(--skin-card-fill, rgba(255, 255, 255, 0.68))",
         border: "0.5px solid var(--skin-card-border, rgba(26, 30, 58, 0.08))",
         boxShadow:
           "var(--skin-card-shadow, 0 4px 16px -8px rgba(10, 22, 40, 0.10), 0 16px 40px -20px rgba(10, 22, 40, 0.15))",
@@ -541,7 +543,7 @@ function DossierRow({ artifactKey }: { artifactKey: ArtifactKey }) {
         </div>
         <Link
           to={`${UBB_ROOT}/${ARTIFACT_URL_SLUGS[artifactKey]}`}
-          className="inline-flex flex-shrink-0 items-center rounded-full px-3 py-1 transition-colors duration-200 hover:bg-white/40"
+          className="inline-flex flex-shrink-0 items-center rounded-full px-3 py-1 transition-colors duration-200 hover:bg-[var(--skin-selected-bg,rgba(255,255,255,0.4))]"
           style={{
             fontFamily: "'Cormorant Garamond', serif",
             fontWeight: 600,

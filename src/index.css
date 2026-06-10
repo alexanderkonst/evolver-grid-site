@@ -2214,6 +2214,25 @@
        background: "var(--skin-page-wash, <original gradient>)" */
   --skin-page-bg: transparent;
   --skin-page-wash: linear-gradient(160deg, #0b0b10 0%, #07070a 50%, #020203 100%);
+
+  /* Editorial ink — Day 91. ME-space pages (ProfileMissionSection,
+     ZoneOfGeniusOverview, CommitFlow, …) hardcode navy ink via JS
+     consts (INK = "#0a1628"), invisible to class-based re-tones. They
+     now read these tokens with the navy literals as fallbacks. NOT
+     defined at :root on purpose: Lapis must keep the exact original
+     ink, and :root's --skin-text-primary (#0b2a5a) is a different
+     navy. */
+  --skin-ink: #f0e6d0;
+  --skin-ink-body: rgba(240, 230, 208, 0.92);
+  --skin-ink-muted: rgba(240, 230, 208, 0.66);
+
+  /* Fill aliases — Day 91 Wave C fidelity. The remediated pages carry
+     fills like var(--skin-card-fill, rgba(255,255,255,0.85)). These
+     alias names are deliberately NOT defined at :root, so on Lapis the
+     exact original alpha fires from the fallback; here they resolve to
+     the skin's real card/input tokens. */
+  --skin-card-fill: var(--skin-card-bg);
+  --skin-input-fill: var(--skin-input-bg);
 }
 
 /* DARKTHEME — typography (inherits Aurora Cormorant + Montserrat; no
@@ -2476,9 +2495,20 @@
    glow" Sasha flagged. The icons already get their amber tint from the
    dedicated filter rule above; they must NOT receive a background fill.
    Exclude img so only true gold-background elements (Path chips, rail
-   indicators) get re-toned. */
-[data-skin="aurum"] [style*="rgba(212,175,55"]:not(img),
-[data-skin="aurum"] [style*="rgba(212, 175, 55"]:not(img) {
+   indicators) get re-toned.
+
+   Day 91 v2 (Sasha 2026-06-09): `[style*="background"]` guard added.
+   The unguarded form also matched elements whose ONLY gold literal was
+   an inline BORDER (e.g. ProfileMissionSection's liquid-glass-strong
+   mission card, border rgba(212,175,55,0.32)) — and, coming later in
+   the cascade at equal specificity, its background-color !important
+   OVERRODE the dark liquid-glass re-tone: the card rendered as a washed
+   amber-cream slab ("text under glass", Sasha's Mission-page flag).
+   Requiring "background" in the style attr scopes the re-tone to
+   elements that actually paint a gold FILL; gold borders are the same
+   family and read fine on near-black as-is. */
+[data-skin="aurum"] [style*="background"][style*="rgba(212,175,55"]:not(img),
+[data-skin="aurum"] [style*="background"][style*="rgba(212, 175, 55"]:not(img) {
   background-color: rgba(212, 168, 58, 0.14) !important;
   background-image: none !important;
   border-color: rgba(212, 168, 58, 0.42) !important;
@@ -2746,6 +2776,15 @@
   /* Page-level surfaces — see aurum note. Green-dark register. */
   --skin-page-bg: transparent;
   --skin-page-wash: linear-gradient(160deg, #0a0c0f 0%, #07080a 50%, #02030a 100%);
+
+  /* Editorial ink — see aurum note. White register. */
+  --skin-ink: #ffffff;
+  --skin-ink-body: rgba(255, 255, 255, 0.92);
+  --skin-ink-muted: rgba(255, 255, 255, 0.66);
+
+  /* Fill aliases — see aurum note. */
+  --skin-card-fill: var(--skin-card-bg);
+  --skin-input-fill: var(--skin-input-bg);
 }
 
 /* TECHSTARS — typography. Override the platform's Cormorant Garamond
@@ -3013,8 +3052,10 @@
    gold literal, so without this exclusion the rule painted a square GREEN
    tile behind each icon. Exclude img; true gold-background elements still
    re-tone. */
-[data-skin="techstars"] [style*="rgba(212,175,55"]:not(img),
-[data-skin="techstars"] [style*="rgba(212, 175, 55"]:not(img) {
+/* Day 91 v2: [style*="background"] guard — same border-only-match fix
+   as the aurum twin (see comment there). */
+[data-skin="techstars"] [style*="background"][style*="rgba(212,175,55"]:not(img),
+[data-skin="techstars"] [style*="background"][style*="rgba(212, 175, 55"]:not(img) {
   background-color: rgba(61, 204, 74, 0.16) !important;
   background-image: none !important;
   border-color: rgba(61, 204, 74, 0.45) !important;
@@ -5403,6 +5444,148 @@ All colors MUST be HSL.
 [data-skin="techstars"] h1[class*="text-[#0a1628]"],
 [data-skin="techstars"] h2[class*="text-[#0a1628]"] {
   color: var(--skin-text-primary) !important;
+}
+
+/* ──────────────────────────────────────────────────────────────────
+   WAVE C CONSOLIDATED RE-TONES — Day 91 (Sasha 2026-06-09).
+   Central CSS proposals from the 8-agent leak-remediation fan-out,
+   deduped. Each rule covers a pattern that could NOT be tokenized
+   in-file without changing Lapis (chips whose fallback would never
+   fire, recharts SVG attrs, hover utilities, page-atmosphere classes).
+   ────────────────────────────────────────────────────────────── */
+
+/* The SECOND hardcoded navy ink family: #2c3150 (+ rgba(44,49,80,…)
+   alpha variants). Used by RevelatoryHero light palette, Today,
+   GrowthPaths, Marketplace, OnboardingProgress, MeSummary, ui/button
+   and ~20 more pre-skin files. Mirrors the #0a1628 sweep above
+   (body for copy, primary for h1/h2/h3 — Today card titles are h3). */
+[data-skin="aurum"] [class*="text-[#2c3150]"],
+[data-skin="techstars"] [class*="text-[#2c3150]"] {
+  color: var(--skin-text-body) !important;
+}
+[data-skin="aurum"] [class*="text-[rgba(44,49,80"],
+[data-skin="techstars"] [class*="text-[rgba(44,49,80"] {
+  color: var(--skin-text-muted) !important;
+}
+[data-skin="aurum"] h1[class*="text-[#2c3150]"],
+[data-skin="aurum"] h2[class*="text-[#2c3150]"],
+[data-skin="aurum"] h3[class*="text-[#2c3150]"],
+[data-skin="techstars"] h1[class*="text-[#2c3150]"],
+[data-skin="techstars"] h2[class*="text-[#2c3150]"],
+[data-skin="techstars"] h3[class*="text-[#2c3150]"] {
+  color: var(--skin-text-primary) !important;
+}
+/* Carve-outs: surfaces that intentionally STAY light under the dark
+   skins keep their navy ink (Marketplace hero CTA white pill on the
+   dark hero gradient; GrowthPaths locked step circle bg-[#a4a3d0]).
+   Wins over the sweep on specificity. */
+[data-skin="aurum"] [class*="bg-white"][class*="text-[#2c3150]"],
+[data-skin="techstars"] [class*="bg-white"][class*="text-[#2c3150]"],
+[data-skin="aurum"] [class*="bg-[#a4a3d0]"][class*="text-[#2c3150]"],
+[data-skin="techstars"] [class*="bg-[#a4a3d0]"][class*="text-[#2c3150]"] {
+  color: #2c3150 !important;
+}
+
+/* Gold-brown eyebrow ink (RevelatoryHero, ZoneOfGeniusEntry) — dark
+   goldenrod reads as mud on near-black. */
+[data-skin="aurum"] [class*="text-[#7a5108]"],
+[data-skin="techstars"] [class*="text-[#7a5108]"] {
+  color: var(--skin-text-muted) !important;
+}
+
+/* Wabi-era text tokens (QoL Assessment progress dots, hairlines,
+   mobile bottom bar, BACK buttons) — remap the wabi scale onto the
+   skin scale; Lapis keeps the :root values. */
+[data-skin="aurum"],
+[data-skin="techstars"] {
+  --wabi-text-primary: var(--skin-text-primary);
+  --wabi-text-secondary: var(--skin-text-muted);
+  --wabi-text-muted: var(--skin-text-muted-soft);
+}
+
+/* RevelatoryHero light (appleseed) reveal-card cream gradient —
+   Step4GenerateSnapshot hardcodes darkMode={false}, so the cream
+   from-white/70 via-[#fdf6e3]/80 card is a page-dominant bright
+   island. via-[#fdf6e3] is unique to this surface; cannot tokenize
+   in-file without flattening the lapis cream gradient. */
+[data-skin="aurum"] [class*="via-[#fdf6e3]"],
+[data-skin="techstars"] [class*="via-[#fdf6e3]"] {
+  background-image: none !important;
+  background-color: var(--skin-card-bg) !important;
+}
+
+/* /intros hover — resting fills tokenized in-file, but hover:bg-white
+   utilities would flash a white card. .intros-page is the inert hook
+   added in Intros.tsx. */
+[data-skin="aurum"] .intros-page [class*="hover:bg-white"]:hover,
+[data-skin="techstars"] .intros-page [class*="hover:bg-white"]:hover {
+  background-color: var(--skin-selected-bg) !important;
+}
+
+/* /today pastel state cards (emerald done-states, indigo Main Quest)
+   → dark-glass lift; ships together with the #2c3150 text sweep above
+   (else cream text lands on pale pastel fills). .today-page is the
+   hook added in Today.tsx. */
+[data-skin="aurum"] .today-page [class*="bg-emerald-50"],
+[data-skin="aurum"] .today-page [class*="bg-indigo-50"],
+[data-skin="techstars"] .today-page [class*="bg-emerald-50"],
+[data-skin="techstars"] .today-page [class*="bg-indigo-50"] {
+  background-color: rgba(255, 255, 255, 0.07) !important;
+}
+
+/* QoL Results radar — recharts writes axis tick fills as SVG
+   presentation attributes (can't read var()); re-tone under dark. */
+[data-skin="aurum"] [data-qol-snapshot] text.recharts-text,
+[data-skin="techstars"] [data-qol-snapshot] text.recharts-text {
+  fill: var(--skin-text-muted) !important;
+}
+
+/* Status chips whose in-file tokenization would change Lapis (lapis
+   defines --skin-selected-* at :root, so a fallback never fires):
+   RefineBusinessPage "Live" green chip + PublicProfile amber talent
+   chips. Dark skins only. */
+[data-skin="aurum"] .bg-green-100.text-green-700,
+[data-skin="techstars"] .bg-green-100.text-green-700,
+[data-skin="aurum"] .bg-amber-100.text-amber-900,
+[data-skin="techstars"] .bg-amber-100.text-amber-900 {
+  background-color: var(--skin-selected-bg) !important;
+  color: var(--skin-selected-text) !important;
+}
+
+/* /mdls-preview — wire the dark skins to the page's existing dark
+   atmosphere variant (values verbatim from .mdls-page-atmosphere--dark)
+   so the global ink flips don't produce light-on-cream. */
+[data-skin="aurum"] .mdls-page-atmosphere,
+[data-skin="techstars"] .mdls-page-atmosphere {
+  background-color: hsl(225 40% 6%);
+  background-image:
+    radial-gradient(ellipse 60% 50% at 12% 8%, hsl(28 90% 55% / 0.18) 0%, transparent 60%),
+    radial-gradient(ellipse 70% 60% at 92% 96%, hsl(220 70% 50% / 0.18) 0%, transparent 65%),
+    radial-gradient(ellipse 50% 40% at 50% 55%, hsl(290 60% 40% / 0.15) 0%, transparent 60%);
+}
+/* …its cream device-frame demo stays a held light object: re-assert
+   navy ink inside the frame against the global #0a1628 flip. */
+[data-skin="aurum"] .mdls-device-frame [class*="text-[#0a1628]"],
+[data-skin="techstars"] .mdls-device-frame [class*="text-[#0a1628]"] {
+  color: #0a1628 !important;
+}
+[data-skin="aurum"] .mdls-device-frame [class*="text-[#0a1628]/85"],
+[data-skin="techstars"] .mdls-device-frame [class*="text-[#0a1628]/85"] { color: rgba(10, 22, 40, 0.85) !important; }
+[data-skin="aurum"] .mdls-device-frame [class*="text-[#0a1628]/75"],
+[data-skin="techstars"] .mdls-device-frame [class*="text-[#0a1628]/75"] { color: rgba(10, 22, 40, 0.75) !important; }
+[data-skin="aurum"] .mdls-device-frame [class*="text-[#0a1628]/70"],
+[data-skin="techstars"] .mdls-device-frame [class*="text-[#0a1628]/70"] { color: rgba(10, 22, 40, 0.7) !important; }
+[data-skin="aurum"] .mdls-device-frame [class*="text-[#0a1628]/55"],
+[data-skin="techstars"] .mdls-device-frame [class*="text-[#0a1628]/55"] { color: rgba(10, 22, 40, 0.55) !important; }
+[data-skin="aurum"] .mdls-device-frame [class*="text-[#0a1628]/50"],
+[data-skin="techstars"] .mdls-device-frame [class*="text-[#0a1628]/50"] { color: rgba(10, 22, 40, 0.5) !important; }
+[data-skin="aurum"] .mdls-device-frame [class*="text-[#0a1628]/30"],
+[data-skin="techstars"] .mdls-device-frame [class*="text-[#0a1628]/30"] { color: rgba(10, 22, 40, 0.3) !important; }
+/* …and its three inline white text halos swap to the skin halo token
+   (excluding the device frame, whose white halo must stay). */
+[data-skin="aurum"] .mdls-page-atmosphere [style*="text-shadow"]:not(.mdls-device-frame *),
+[data-skin="techstars"] .mdls-page-atmosphere [style*="text-shadow"]:not(.mdls-device-frame *) {
+  text-shadow: var(--skin-text-halo-strong) !important;
 }
 
 /* Frosted white card fills (task rows, chips, buttons) → subtle

@@ -65,7 +65,9 @@ export default function GenericArtifactScreen() {
             textTransform: "uppercase",
             fontSize: "11.5px",
             color: "var(--skin-text-primary, #0b2a5a)",
-            background: "rgba(255, 255, 255, 0.68)",
+            // Day 91 (Sasha 2026-06-09): tokenized for Aurum (raw white fills
+            // → skin tokens, exact literals kept as fallbacks).
+            background: "var(--skin-card-fill, rgba(255, 255, 255, 0.68))",
             border: "0.5px solid rgba(212, 175, 55, 0.45)",
           }}
         >
@@ -118,7 +120,7 @@ export function ArtifactView({ artifactKey }: { artifactKey: ArtifactKey }) {
         <div
           className="space-y-5 rounded-2xl px-6 py-8 text-center"
           style={{
-            background: "var(--skin-card-bg, rgba(255, 255, 255, 0.68))",
+            background: "var(--skin-card-fill, rgba(255, 255, 255, 0.68))",
             border: "0.5px solid var(--skin-card-border, rgba(26, 30, 58, 0.08))",
             boxShadow: "var(--skin-card-shadow, 0 4px 16px -8px rgba(10, 22, 40, 0.12), 0 16px 40px -20px rgba(10, 22, 40, 0.18))",
           }}
@@ -166,7 +168,7 @@ export function ArtifactView({ artifactKey }: { artifactKey: ArtifactKey }) {
           <div
             className="relative space-y-5 rounded-2xl px-6 py-6"
             style={{
-              background: "var(--skin-card-bg, rgba(255, 255, 255, 0.68))",
+              background: "var(--skin-card-fill, rgba(255, 255, 255, 0.68))",
               border: "0.5px solid var(--skin-card-border, rgba(26, 30, 58, 0.08))",
               boxShadow: "var(--skin-card-shadow, 0 4px 16px -8px rgba(10, 22, 40, 0.12), 0 16px 40px -20px rgba(10, 22, 40, 0.18))",
             }}
@@ -255,7 +257,7 @@ export function ArtifactView({ artifactKey }: { artifactKey: ArtifactKey }) {
                   textTransform: "uppercase",
                   fontSize: "12.5px",
                   color: "var(--skin-text-primary, #0b2a5a)",
-                  background: "rgba(255, 255, 255, 0.68)",
+                  background: "var(--skin-card-fill, rgba(255, 255, 255, 0.68))",
                   border: "0.5px solid rgba(212, 175, 55, 0.55)",
                   boxShadow: "0 0 14px -4px rgba(212, 175, 55, 0.32)",
                 }}
@@ -274,7 +276,7 @@ export function ArtifactView({ artifactKey }: { artifactKey: ArtifactKey }) {
                   textTransform: "uppercase",
                   fontSize: "12.5px",
                   color: "var(--skin-text-primary, #0b2a5a)",
-                  background: "rgba(255, 255, 255, 0.68)",
+                  background: "var(--skin-card-fill, rgba(255, 255, 255, 0.68))",
                   border: "0.5px solid rgba(212, 175, 55, 0.55)",
                   boxShadow: "0 0 14px -4px rgba(212, 175, 55, 0.32)",
                 }}
@@ -299,7 +301,7 @@ export function ArtifactView({ artifactKey }: { artifactKey: ArtifactKey }) {
                   textTransform: "uppercase",
                   fontSize: "12.5px",
                   color: "var(--skin-text-primary, #0b2a5a)",
-                  background: "rgba(255, 255, 255, 0.68)",
+                  background: "var(--skin-card-fill, rgba(255, 255, 255, 0.68))",
                   border: "0.5px solid rgba(212, 175, 55, 0.55)",
                   boxShadow: "0 0 14px -4px rgba(212, 175, 55, 0.32)",
                 }}
@@ -385,7 +387,7 @@ function ArtifactSkeleton({ label }: { label: string }) {
       <div
         className="space-y-4 rounded-2xl px-6 py-6"
         style={{
-          background: "var(--skin-card-bg, rgba(255, 255, 255, 0.65))",
+          background: "var(--skin-card-fill, rgba(255, 255, 255, 0.65))",
           border: "0.5px solid var(--skin-card-border, rgba(26, 30, 58, 0.08))",
           boxShadow:
             "var(--skin-card-shadow, 0 4px 16px -8px rgba(10, 22, 40, 0.12), 0 16px 40px -20px rgba(10, 22, 40, 0.18))",
@@ -457,7 +459,7 @@ function renderValue(v: unknown): React.ReactNode {
             key={i}
             className="rounded-lg p-3"
             style={{
-              background: "rgba(255, 255, 255, 0.45)",
+              background: "var(--skin-input-fill, rgba(255, 255, 255, 0.45))",
               border: "0.5px solid var(--skin-rule-medium, rgba(26, 30, 58, 0.15))",
             }}
           >
@@ -511,7 +513,7 @@ function DistillationBlock({ value }: { value: unknown }) {
           color: "var(--skin-text-muted, rgba(11, 42, 90, 0.55))",
           padding: "10px 14px",
           borderLeft: "0.5px solid var(--skin-rule-medium, rgba(26, 30, 58, 0.15))",
-          background: "rgba(255, 255, 255, 0.32)",
+          background: "var(--skin-input-fill, rgba(255, 255, 255, 0.32))",
         }}
       >
         Distillation not yet generated. Improve this artifact to add the one-sentence synthesis that lands at the top.
@@ -688,7 +690,7 @@ function SpecificityMatrixView({ content }: { content: MatrixContent }) {
       <div
         className="overflow-x-auto rounded-xl"
         style={{
-          background: "rgba(255, 255, 255, 0.40)",
+          background: "var(--skin-card-fill, rgba(255, 255, 255, 0.40))",
           border: "0.5px solid var(--skin-rule-medium, rgba(26, 30, 58, 0.15))",
         }}
       >

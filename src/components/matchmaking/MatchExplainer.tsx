@@ -143,10 +143,13 @@ const MatchExplainerInner = ({
         >
           How introductions work
         </span>
+        {/* Day 91 (Sasha 2026-06-09): tokenized for Aurum. Chevrons + body
+            spans below read --skin-text-muted; original navy literals stay
+            as the Lapis fallbacks. */}
         {expanded ? (
-          <ChevronUp className="w-5 h-5 flex-shrink-0" style={{ color: "rgba(11, 42, 90, 0.55)" }} aria-hidden="true" />
+          <ChevronUp className="w-5 h-5 flex-shrink-0" style={{ color: "var(--skin-text-muted, rgba(11, 42, 90, 0.55))" }} aria-hidden="true" />
         ) : (
-          <ChevronDown className="w-5 h-5 flex-shrink-0" style={{ color: "rgba(11, 42, 90, 0.55)" }} aria-hidden="true" />
+          <ChevronDown className="w-5 h-5 flex-shrink-0" style={{ color: "var(--skin-text-muted, rgba(11, 42, 90, 0.55))" }} aria-hidden="true" />
         )}
       </button>
 
@@ -178,7 +181,7 @@ const MatchExplainerInner = ({
               </span>
               <span className="flex-1 text-[15px] sm:text-base leading-relaxed">
                 <strong style={{ fontWeight: 600 }}>AI suggests optimal matches.</strong>{" "}
-                <span style={{ color: "rgba(11, 42, 90, 0.78)" }}>
+                <span style={{ color: "var(--skin-text-muted, rgba(11, 42, 90, 0.78))" }}>
                   Click "I'd like to meet." whenever you'd like to get in touch.
                 </span>
               </span>
@@ -200,7 +203,7 @@ const MatchExplainerInner = ({
               </span>
               <span className="flex-1 text-[15px] sm:text-base leading-relaxed">
                 <strong style={{ fontWeight: 600 }}>We send them a heads-up email</strong>{" "}
-                <span style={{ color: "rgba(11, 42, 90, 0.78)" }}>
+                <span style={{ color: "var(--skin-text-muted, rgba(11, 42, 90, 0.78))" }}>
                   explaining who you are and why we paired you. They can say "yes" or "not now".
                 </span>
               </span>
@@ -222,7 +225,7 @@ const MatchExplainerInner = ({
               </span>
               <span className="flex-1 text-[15px] sm:text-base leading-relaxed">
                 <strong style={{ fontWeight: 600 }}>If they say yes,</strong>{" "}
-                <span style={{ color: "rgba(11, 42, 90, 0.78)" }}>
+                <span style={{ color: "var(--skin-text-muted, rgba(11, 42, 90, 0.78))" }}>
                   we send you both an intro email. You take it from there. If they don't respond, we leave it at that.
                 </span>
               </span>
@@ -248,7 +251,7 @@ const MatchExplainerInner = ({
               </span>
               <span className="flex-1 text-[15px] sm:text-base leading-relaxed">
                 <strong style={{ fontWeight: 600 }}>It works both ways.</strong>{" "}
-                <span style={{ color: "rgba(11, 42, 90, 0.78)" }}>
+                <span style={{ color: "var(--skin-text-muted, rgba(11, 42, 90, 0.78))" }}>
                   When someone else wants to meet you, you'll get the same heads-up email. Reply "yes" if it's a fit, "not now" if it isn't.
                 </span>
               </span>

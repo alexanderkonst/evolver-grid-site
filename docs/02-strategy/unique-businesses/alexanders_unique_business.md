@@ -8370,3 +8370,53 @@ The consequence for the canvas: Sasha's **channels** layer (7-artifact model) ju
 ***What this enables next.** Sasha can now hand any of these docs to a distributor candidate, a community partner, an investor, a counsel-review session, a future Claude session, and the Day 51 architecture is recoverable. The corpus carries the discovery — the founder doesn't have to re-explain it. This is exactly what Big Idea #1 (master holon prototypes everything before the network) requires at the doc layer: the prototype must be legible enough that the network can run on it without the founder being in every conversation.*
 
 ***Open heading into Day 52.** First $555 stranger (Si–Do, P27 — unchanged since Day 47). Friday DM send (queued; templates EN+RU drafted; warm-tie aligned tribe list-building is Sasha's move). Manual `.env.example` + `git rm --cached .env` + Lovable resonance_events migration (sandbox-blocked from Claude). First commercial distributor walk-through (Oyi-level technical, with Sasha helping manually) before building the provisioning automation. Cohort follow-throughs (Kirill's Shadow rating · Sergey's monetization flip · Oyi's Golden DM · Sandra's first delivery post-Italy · Karime's body-score session). AI Credits MVP architecture (Phase 2 work).*
+
+---
+
+## The Hand: Ten Aces & the Three-Horizon Strategy (June 9, 2026)
+
+*Captured from the June 9 working session. Behind this section: a full seven-document corpus sweep (roadmap, session log, monetization, this file, outreach tracker, Balaji instance, 1-pager) plus adversarial verification of single-source claims against Fathom recordings. Calendar dates are authoritative here; the corpus runs three conflicting day-numbering systems as of this writing.*
+
+### The aces (the asset inventory, in Sasha's own enumeration)
+
+1. **Community onboarding module** — quick, revelatory, profound onboarding for any high-agency community: unique talent reveal, mission discovery, rapid asset mapping, optional QoL assessment. **Named sub-asset: the onboarding sequence itself** — easy, does not throw people off; members actually create the profile because it is easy and because it is built to benefit them. This sequence is a differentiator in its own right (most platforms lose people at onboarding; this one converts onboarding into the first delivery of value).
+2. **Venture-building playbook off self-knowledge** rather than a market problem — near-guaranteed instead of a presumed 10% chance. Canonical: `docs/03-playbooks/unique_business_playbook.md`.
+3. **System-Level AI Skill (/ai-os)** — instantly awakens a layer of potential in any AI model; works better with each model generation (Domain 80, Scaffold Engineering). Benchmark artifact: +29% metacognition.
+4. **AI Skillsets** — Strategic Thinking Skill, Iterative Improvement Skill; a real edge for strategy and tactics work.
+5. **Autonomous business-strategy builder (/ubb)** — comprehensive business plan from the unique talent, nothing else.
+6. **Collaboration matchmaking module** — canonical: `docs/02-strategy/matchmaking_strategy.md` (v3, four-input geometric-mean engine, consent-bearing intros).
+7. **Equilibrium** — conscious goal-setting and task management on lunar/solar/zodiac cycles. Satellite product, separate audience pull. Canonical: `docs/04-products/equilibrium_user_manual.md`.
+8. **White-label setup** for any configuration of modules — 8 skins live, ~25-60 min throughput. Canonical: `docs/02-strategy/white_label_strategy.md`.
+9. **Phase Shift Technology Library** — 93 domains as of June 2026. Keep the self-given name; "management science" and "business science" both file it inside the discipline Domain 7 supersedes.
+10. **Universal Ontology** — the root of the deep stack. Canonical: `docs/01-vision/universal_ontology.md`.
+
+### The four-layer model (how the hand actually plays)
+
+| Layer | Aces | Role |
+|---|---|---|
+| Sellable product NOW | 1 + 6 + 8 | The pilot shape: onboarding + matching + white-label. This is what a community signs |
+| Engine underneath | 2 + 5 | Why the matches are better; the premium layer inside communities, not a separate sale |
+| Trojan distribution | 3 + 4 | Near-zero marginal cost, travels without the founder; AI training calls are this ace demonstrating itself live |
+| Source code / lineage | 9 + 10 | Credibility, peer gravity (Balaji-tier), the non-replicable depth |
+
+Ace 7 (Equilibrium) stays a satellite: real product, different audience, does not feed the pilot.
+
+### Three-horizon strategy snapshot
+
+**Short (now → end of August): the pilot-conversion window.** Si–Do reshaped May 20: first community signs paid pilot. Pilot mechanics decided June 4 (ROSO calls, Fathom-verified): frictionless async free pilots, manual intros as proof, 2-4 pilot communities, price after data. Fastest fuse: the Collaboration Discovery Session ("Give me 5 members. I'll show you 3 hidden collaborations."). Live doors: Planetir (paid pilot under discussion via Silvana's connection), Neerja/GeniusMesh, ROSO-sourced communities, AI-training-call rooms, 16 adjacent-founder targets. Balaji day-14 gate June 11 (one verbatim nudge, then leave it; the pilot path does not depend on him). Income bridge target ~June 27 decouples survival from pilot timing. Bands: optimistic = first paid signature mid-July; baseline = Aug-Sep; conservative = Q4.
+
+**Medium (September 2026 → mid-2027): the recurring engine.** Phase 2 opens on first signed community deal (~$2K/90-day pilot → ~$2.25K/mo shape for a ~300-member network; $5-50K/yr or $5-20/member/mo band, deliberately unlocked until pilot data). 2-3 sizable adoptions = the raising case. Distributors activate on the existing 10% rev-share rails (Oyi/Sergey first manual candidates). Cross-network commons starts compounding the data moat.
+
+**Long (2027+): the substrate.** Phase 3 venture carry (invitation-only, carry only where structurally in the loop). Phase 4 teaching license. Commons treasury evolves (purpose entity ~25 distributors, council 50+; structurally unsellable). SOHN as category name; ontology + library as the lineage. Vision-anchored, not data-anchored; everything compounds from the first pilot signature.
+
+### The distributor invitation (one sentence, DRAFT for Sasha's vetting)
+
+> "You know ecosystem leaders; I've built what their communities are missing — most communities are directories of high-agency people, this turns them into coordination systems — so open one door, and if it becomes a paid pilot, we share the revenue."
+
+### Standing tensions (named, not solved)
+
+1. Two-step fuse: Si–Do says PAID pilot, every pilot design is free-first; mitigation = success metrics + conversion price named upfront in every pilot conversation.
+2. Skin-before-relationship repeating (Techstars skin live June 8, no contact attached; the William Blakey lesson).
+3. Artifact drift: the 1-pager still leads with Planetary OS language; the June 3 wedge says lead with collaboration rate.
+4. Instrument drift: session log days behind, weekly scope expired un-triaged, three day-numbering systems.
+5. The biggest lever is in no document: rooms per week. "I don't need a better funnel. I need more people inside it."

@@ -76,10 +76,12 @@ const buildOverviewShareText = (
 };
 
 // Light-glass + dark-text palette, per the blueprint.
-const INK = "#0a1628";
-const INK_BODY = "rgba(26,30,58,0.78)";
-const INK_MUTED = "rgba(26,30,58,0.55)";
-const HALO_SOFT = "0 0 22px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.8), 0 2px 12px rgba(26,30,58,0.15)";
+// Day 91 (Sasha 2026-06-09): ink tokenized for the dark skins; Lapis
+// keeps the exact literals via the var() fallbacks.
+const INK = "var(--skin-ink, #0a1628)";
+const INK_BODY = "var(--skin-ink-body, rgba(26,30,58,0.78))";
+const INK_MUTED = "var(--skin-ink-muted, rgba(26,30,58,0.55))";
+const HALO_SOFT = "var(--skin-text-halo-soft, 0 0 22px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.8), 0 2px 12px rgba(26,30,58,0.15))";
 
 interface AppleseedData {
     vibrationalKey?: {
