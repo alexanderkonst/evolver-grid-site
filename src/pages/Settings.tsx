@@ -133,7 +133,8 @@ const AppearanceTab = () => {
                             }}
                         >
                             Pick the aesthetic that feels right. Applies instantly across the
-                            whole app; we remember your choice on this device.
+                            whole app. We remember your choice; when you're logged in, it
+                            follows you to every device.
                         </p>
                     </div>
                 </div>
