@@ -96,7 +96,7 @@ export default function MeditationPlayer({ src, title }: MeditationPlayerProps) 
       {title && (
         <p
           className="text-[10px] sm:text-xs font-semibold tracking-[0.28em] uppercase mb-4 text-center"
-          style={{ color: "rgba(122, 81, 8, 0.85)" }}
+          style={{ color: "var(--skin-ink-muted, rgba(122, 81, 8, 0.85))" }}
         >
           {title}
         </p>
@@ -136,7 +136,7 @@ export default function MeditationPlayer({ src, title }: MeditationPlayerProps) 
             aria-label="Seek"
             className="w-full h-1.5 rounded-full appearance-none cursor-pointer disabled:cursor-not-allowed"
             style={{
-              background: `linear-gradient(to right, rgba(122, 81, 8, 0.85) 0%, rgba(122, 81, 8, 0.85) ${progress}%, rgba(26,30,58,0.12) ${progress}%, rgba(26,30,58,0.12) 100%)`,
+              background: `linear-gradient(to right, var(--skin-ink-muted, rgba(122, 81, 8, 0.85)) 0%, var(--skin-ink-muted, rgba(122, 81, 8, 0.85)) ${progress}%, var(--skin-card-border, rgba(26,30,58,0.12)) ${progress}%, var(--skin-card-border, rgba(26,30,58,0.12)) 100%)`,
               accentColor: "rgba(122, 81, 8, 0.85)",
             }}
           />
