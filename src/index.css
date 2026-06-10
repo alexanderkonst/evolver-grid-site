@@ -2198,6 +2198,13 @@
 
   /* Locked/completed row strikethrough — amber-faded. */
   --skin-strike-color: rgba(212, 168, 58, 0.55);
+
+  /* Settings tabs — Day 91 (Sasha 2026-06-09): active tab pill + ink.
+     Aurora's solid-white active pill (data-[state=active]:bg-white) is
+     unreadable under the dark register; Settings.tsx now reads these
+     tokens with the Aurora literals as fallbacks. */
+  --skin-tab-active-bg: rgba(212, 168, 58, 0.20);
+  --skin-tab-active-ink: #f0c870;
 }
 
 /* DARKTHEME — typography (inherits Aurora Cormorant + Montserrat; no
@@ -2722,6 +2729,10 @@
 
   /* Locked/completed row strikethrough — green-faded. */
   --skin-strike-color: rgba(61, 204, 74, 0.55);
+
+  /* Settings tabs — Day 91: see darktheme note. Green register. */
+  --skin-tab-active-bg: rgba(61, 204, 74, 0.22);
+  --skin-tab-active-ink: #5bd968;
 }
 
 /* TECHSTARS — typography. Override the platform's Cormorant Garamond
@@ -3087,6 +3098,27 @@
   font-family: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
   font-weight: 700 !important;
   letter-spacing: 0.02em;
+}
+
+/* Tokenized editorial cards (Settings + future surfaces) — Day 91
+   (Sasha 2026-06-09). Cards that inline `var(--skin-card-bg, …)` carry
+   an Aurora-era literal box-shadow with an `inset 0 1px 0 white/0.50`
+   top highlight. On near-black card fills that inset reads as a bright
+   hairline. We can't tokenize the shadow via --skin-card-shadow without
+   changing Aurora (the :root value differs from the cards' literal), so
+   re-shadow here, scoped to the dark skins, keyed on the tokenized
+   style attribute itself. */
+[data-skin="darktheme"] [style*="var(--skin-card-bg"] {
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.52),
+    0 16px 40px -16px rgba(0, 0, 0, 0.72),
+    inset 0 1px 0 rgba(240, 200, 112, 0.10) !important;
+}
+[data-skin="techstars"] [style*="var(--skin-card-bg"] {
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.58),
+    0 18px 44px -16px rgba(0, 0, 0, 0.78),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
 }
 
 /* Day 82 v4 (Sasha 2026-05-24): SpacesRail compact mode. When the rail
