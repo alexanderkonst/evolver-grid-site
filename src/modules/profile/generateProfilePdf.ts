@@ -13,8 +13,10 @@
  *                        renderComplementaryPartner / renderMonetization
  *                        verbatim — single source of truth for the
  *                        Top Talent register).
- *   • Mission          — mission_statement / mission_override_text +
- *                        categories from missions table.
+ *   • Mission          — game_profiles.mission_statement (canonical,
+ *                        written by Mission Discovery) with the
+ *                        missions-table statement + categories as
+ *                        fallback.
  *   • Assets           — user_assets grouped by type (Expertise,
  *                        Experiences, Networks, Resources, IP,
  *                        Influence).
@@ -140,11 +142,23 @@ async function loadProfileBundle(): Promise<ProfileBundle> {
 
     // Top Talent — pointer in game_profiles → latest zog_snapshot
     try {
-        const { data: profileData } = await supabase
+        // Day 79 fix (Sasha 2026-06-09): the select previously asked for
+        // `mission_override_text`, which is NOT a game_profiles column
+        // (it lives on equilibrium_state, the sibling product). PostgREST
+        // rejects the whole query on an unknown column, and because we
+        // ignored `error`, the failure was silent: profileData came back
+        // null, mission_statement never got read, and the Mission section
+        // rendered "Not yet discovered" for users who HAVE a mission.
+        // (Top Talent still rendered only because the snapshot-pointer
+        // fallback below re-queries by profile_id — it masked the bug.)
+        const { data: profileData, error: profileError } = await supabase
             .from("game_profiles")
-            .select("last_zog_snapshot_id, mission_statement, mission_override_text")
+            .select("last_zog_snapshot_id, mission_statement")
             .eq("id", profileId)
             .single();
+        if (profileError) {
+            console.warn("[generateProfilePdf] game_profiles fetch failed:", profileError);
+        }
 
         let snapshotId =
             (profileData as { last_zog_snapshot_id?: string | null } | null)
@@ -186,11 +200,10 @@ async function loadProfileBundle(): Promise<ProfileBundle> {
                     | null ?? null;
         }
 
-        // Mission — game_profiles override text takes precedence over the
-        // missions-table statement (matches the UI's resolution order).
-        const overrideText =
-            (profileData as { mission_override_text?: string | null } | null)
-                ?.mission_override_text ?? null;
+        // Mission — game_profiles.mission_statement is the canonical
+        // source (written by MissionDiscoveryLanding, read by UBB +
+        // ProfileMissionSection). The missions table is the secondary
+        // fallback for categories + legacy rows.
         const profileStatement =
             (profileData as { mission_statement?: string | null } | null)
                 ?.mission_statement ?? null;
@@ -208,7 +221,7 @@ async function loadProfileBundle(): Promise<ProfileBundle> {
             (missionRow as { categories?: string[] | null } | null)?.categories ?? null;
 
         const resolvedStatement =
-            overrideText ?? profileStatement ?? missionTableStatement ?? null;
+            profileStatement ?? missionTableStatement ?? null;
         if (resolvedStatement || (categories && categories.length > 0)) {
             bundle.mission = { statement: resolvedStatement, categories };
         }
