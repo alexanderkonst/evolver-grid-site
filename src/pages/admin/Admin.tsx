@@ -139,12 +139,14 @@ const inputStyle: React.CSSProperties = {
   fontFamily: "'DM Sans', system-ui, sans-serif",
   fontSize: "14px",
   color: "var(--skin-text-primary, #0b2a5a)",
-  background: "rgba(255, 255, 255, 0.85)",
+  // Day 91 (Sasha 2026-06-09): tokenized for Aurum — raw white inputs
+  // made typed cream text invisible under the dark skins.
+  background: "var(--skin-input-fill, rgba(255, 255, 255, 0.85))",
   border: "0.5px solid var(--skin-rule-medium, rgba(26, 30, 58, 0.15))",
 };
 
 const cardSurface: React.CSSProperties = {
-  background: "var(--skin-card-bg, rgba(255, 255, 255, 0.65))",
+  background: "var(--skin-card-fill, rgba(255, 255, 255, 0.65))",
   border: "0.5px solid rgba(212, 175, 55, 0.45)",
   boxShadow:
     "0 0 22px -8px rgba(212, 175, 55, 0.25), 0 16px 40px -20px rgba(10, 22, 40, 0.18)",
@@ -443,7 +445,7 @@ function SendLinkButton({ founder }: { founder: FounderState }) {
       style={{
         background: justSent
           ? "linear-gradient(135deg, rgba(244,212,114,0.22) 0%, rgba(184,134,11,0.12) 100%)"
-          : "rgba(255, 255, 255, 0.7)",
+          : "var(--skin-card-fill, rgba(255, 255, 255, 0.7))",
         border: `0.5px solid ${justSent ? "rgba(212,175,55,0.85)" : "rgba(212,175,55,0.5)"}`,
         boxShadow: justSent
           ? "0 0 14px -3px rgba(244,212,114,0.5), 0 0 0 1px rgba(212,175,55,0.18)"
@@ -682,9 +684,12 @@ function RecentFoundersSection({
                 color: isActive
                   ? "var(--skin-text-primary, #0b2a5a)"
                   : "var(--skin-text-muted, rgba(11, 42, 90, 0.62))",
+                // Day 91 (Sasha 2026-06-09): tokenized for Aurum. Active
+                // pill reads --skin-tab-active-bg (dark-skin-only token;
+                // lapis falls through to the exact original literal).
                 background: isActive
-                  ? "rgba(255, 255, 255, 0.85)"
-                  : "rgba(255, 255, 255, 0.40)",
+                  ? "var(--skin-tab-active-bg, rgba(255, 255, 255, 0.85))"
+                  : "var(--skin-card-fill, rgba(255, 255, 255, 0.40))",
                 border: isActive
                   ? "0.5px solid rgba(212, 175, 55, 0.65)"
                   : "0.5px solid var(--skin-rule-hairline, rgba(26, 30, 58, 0.10))",
@@ -735,7 +740,7 @@ function RecentFoundersSection({
             textTransform: "uppercase",
             fontSize: "10.5px",
             color: "var(--skin-text-primary, #0b2a5a)",
-            background: "rgba(255, 255, 255, 0.72)",
+            background: "var(--skin-card-fill, rgba(255, 255, 255, 0.72))",
             border: "0.5px solid rgba(212, 175, 55, 0.55)",
             boxShadow: "0 0 12px -4px rgba(212, 175, 55, 0.30)",
           }}
@@ -773,9 +778,9 @@ function RecentFoundersSection({
                     setDrawerFounder(f);
                   }
                 }}
-                className="flex items-center gap-3 px-3.5 py-2.5 rounded-xl transition-colors cursor-pointer hover:bg-white/70"
+                className="flex items-center gap-3 px-3.5 py-2.5 rounded-xl transition-colors cursor-pointer hover:bg-[var(--skin-card-fill,rgba(255,255,255,0.7))]"
                 style={{
-                  background: "rgba(255, 255, 255, 0.55)",
+                  background: "var(--skin-card-fill, rgba(255, 255, 255, 0.55))",
                   border:
                     "0.5px solid var(--skin-rule-hairline, rgba(26, 30, 58, 0.08))",
                 }}
@@ -1152,7 +1157,7 @@ function EntitlementGrantsSection() {
               textTransform: "uppercase",
               fontSize: "11.5px",
               color: "var(--skin-text-primary, #0b2a5a)",
-              background: "rgba(255, 255, 255, 0.68)",
+              background: "var(--skin-card-fill, rgba(255, 255, 255, 0.68))",
               border: "0.5px solid rgba(212, 175, 55, 0.45)",
             }}
           >
@@ -1163,7 +1168,7 @@ function EntitlementGrantsSection() {
           <div
             className="mt-3 rounded-xl px-4 py-3.5"
             style={{
-              background: "var(--skin-card-bg, rgba(255, 255, 255, 0.55))",
+              background: "var(--skin-card-fill, rgba(255, 255, 255, 0.55))",
               border:
                 "0.5px solid var(--skin-card-border, rgba(26, 30, 58, 0.08))",
             }}
@@ -1256,7 +1261,7 @@ function EntitlementGrantsSection() {
                   key={r.id}
                   className="rounded-lg px-3.5 py-2.5"
                   style={{
-                    background: "rgba(255, 255, 255, 0.55)",
+                    background: "var(--skin-card-fill, rgba(255, 255, 255, 0.55))",
                     border:
                       "0.5px solid var(--skin-rule-hairline, rgba(26, 30, 58, 0.08))",
                   }}
@@ -1517,7 +1522,7 @@ function FunnelKpisSection({ founders }: { founders: FounderState[] }) {
               />
               <Tooltip
                 contentStyle={{
-                  background: "rgba(255, 255, 255, 0.95)",
+                  background: "var(--skin-card-fill, rgba(255, 255, 255, 0.95))",
                   border: "0.5px solid rgba(212, 175, 55, 0.45)",
                   borderRadius: 10,
                   fontFamily: "'DM Sans', system-ui, sans-serif",
@@ -1718,7 +1723,7 @@ function SpecializedAdminLinksSection() {
             to={s.path}
             className="rounded-xl px-4 py-3 transition-all duration-200 hover:translate-y-[-1px]"
             style={{
-              background: "rgba(255, 255, 255, 0.55)",
+              background: "var(--skin-card-fill, rgba(255, 255, 255, 0.55))",
               border:
                 "0.5px solid var(--skin-rule-hairline, rgba(26, 30, 58, 0.08))",
             }}

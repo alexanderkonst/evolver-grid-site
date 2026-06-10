@@ -125,10 +125,14 @@ const CelebrationModal = ({ payload, open, onClose }: CelebrationModalProps) => 
 
     return (
         <Dialog open={open} onOpenChange={(o) => !o && onClose()}>
+            {/* Day 91 (Sasha 2026-06-09): tokenized for Aurum. Cream slab +
+                navy text read --skin-* tokens; original literals stay as
+                fallbacks. Gold accents (border, pill, CTA) are skin-neutral
+                and stay literal. */}
             <DialogContent
                 className="max-w-md sm:max-w-lg"
                 style={{
-                    background: "rgba(255, 252, 245, 0.96)",
+                    background: "var(--skin-card-fill, rgba(255, 252, 245, 0.96))",
                     border: "0.5px solid rgba(212, 175, 55, 0.55)",
                     boxShadow:
                         "0 16px 40px -20px rgba(10, 22, 40, 0.22), 0 0 22px -8px rgba(212, 175, 55, 0.32)",
@@ -141,7 +145,7 @@ const CelebrationModal = ({ payload, open, onClose }: CelebrationModalProps) => 
                             fontWeight: 700,
                             fontSize: "26px",
                             lineHeight: 1.25,
-                            color: "#0b2a5a",
+                            color: "var(--skin-text-primary, #0b2a5a)",
                             letterSpacing: "-0.005em",
                             textAlign: "center",
                             marginBottom: "10px",
@@ -171,7 +175,7 @@ const CelebrationModal = ({ payload, open, onClose }: CelebrationModalProps) => 
                             fontWeight: 600,
                             fontSize: "19px",
                             lineHeight: 1.35,
-                            color: "#0b2a5a",
+                            color: "var(--skin-text-primary, #0b2a5a)",
                             textAlign: "center",
                             margin: 0,
                         }}
@@ -188,7 +192,7 @@ const CelebrationModal = ({ payload, open, onClose }: CelebrationModalProps) => 
                             fontStyle: "italic",
                             fontSize: "13.5px",
                             lineHeight: 1.55,
-                            color: "rgba(11, 42, 90, 0.72)",
+                            color: "var(--skin-text-muted, rgba(11, 42, 90, 0.72))",
                             textAlign: "center",
                             marginTop: "2px",
                         }}
@@ -232,7 +236,7 @@ const CelebrationModal = ({ payload, open, onClose }: CelebrationModalProps) => 
                             fontFamily: "'Source Serif 4', Georgia, serif",
                             fontWeight: 500,
                             fontSize: "13px",
-                            color: "rgba(11, 42, 90, 0.62)",
+                            color: "var(--skin-text-muted, rgba(11, 42, 90, 0.62))",
                             textDecoration: "underline",
                             textUnderlineOffset: "3px",
                             background: "transparent",

@@ -81,8 +81,10 @@ const PHASE_ORDER = ["canvas", "session", "marketing", "distribution", "communic
 
 // Cream wash matches Aurora's pane-3 wash so public dossiers feel like
 // the same brand as the in-app surfaces. Gold sun-glow at top right.
+// Day 91 (Sasha 2026-06-09): tokenized for Aurum — dark skins supply
+// --skin-page-wash; the cream radial stays as the light-side fallback.
 const WASH_BG =
-  "radial-gradient(ellipse 95% 105% at 95% 5%, rgba(255, 200, 130, 0.45) 0%, rgba(255, 218, 170, 0.35) 18%, rgba(252, 232, 200, 0.65) 38%, rgba(248, 240, 220, 0.88) 65%, rgba(245, 242, 235, 0.96) 88%)";
+  "var(--skin-page-wash, radial-gradient(ellipse 95% 105% at 95% 5%, rgba(255, 200, 130, 0.45) 0%, rgba(255, 218, 170, 0.35) 18%, rgba(252, 232, 200, 0.65) 38%, rgba(248, 240, 220, 0.88) 65%, rgba(245, 242, 235, 0.96) 88%))";
 
 export default function PublicDossier() {
   const { slug } = useParams<{ slug: string }>();
@@ -120,7 +122,7 @@ export default function PublicDossier() {
             fontFamily: "'Source Serif 4', serif",
             fontStyle: "italic",
             fontSize: "15px",
-            color: "rgba(11, 42, 90, 0.55)",
+            color: "var(--skin-text-muted-soft, rgba(11, 42, 90, 0.55))",
           }}
         >
           Loading…
@@ -141,7 +143,7 @@ export default function PublicDossier() {
               fontFamily: "'Cormorant Garamond', serif",
               fontWeight: 600,
               fontSize: "28px",
-              color: "#0b2a5a",
+              color: "var(--skin-text-primary, #0b2a5a)",
             }}
           >
             Dossier not found
@@ -152,7 +154,7 @@ export default function PublicDossier() {
               fontFamily: "'Source Serif 4', serif",
               fontStyle: "italic",
               fontSize: "14px",
-              color: "rgba(11, 42, 90, 0.62)",
+              color: "var(--skin-text-muted, rgba(11, 42, 90, 0.62))",
             }}
           >
             This dossier may have been unpublished or never existed.
@@ -184,8 +186,8 @@ export default function PublicDossier() {
               fontWeight: 600,
               fontSize: "clamp(36px, 5vw, 52px)",
               letterSpacing: "-0.01em",
-              color: "#0b2a5a",
-              textShadow: "0 1px 2px rgba(255,255,255,0.7)",
+              color: "var(--skin-text-primary, #0b2a5a)",
+              textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.7))",
             }}
           >
             {dossier.title}
@@ -196,7 +198,7 @@ export default function PublicDossier() {
               fontFamily: "'Source Serif 4', serif",
               fontStyle: "italic",
               fontSize: "14px",
-              color: "rgba(11, 42, 90, 0.62)",
+              color: "var(--skin-text-muted, rgba(11, 42, 90, 0.62))",
             }}
           >
             <span>
@@ -206,7 +208,7 @@ export default function PublicDossier() {
                   fontFamily: "'DM Sans', system-ui, sans-serif",
                   fontWeight: 600,
                   fontVariantNumeric: "tabular-nums lining-nums",
-                  color: "rgba(11, 42, 90, 0.85)",
+                  color: "var(--skin-text-body, rgba(11, 42, 90, 0.85))",
                 }}
               >
                 {Number(dossier.specificity_avg || 0).toFixed(1)}
@@ -221,7 +223,7 @@ export default function PublicDossier() {
                   fontFamily: "'DM Sans', system-ui, sans-serif",
                   fontWeight: 600,
                   fontVariantNumeric: "tabular-nums lining-nums",
-                  color: "rgba(11, 42, 90, 0.85)",
+                  color: "var(--skin-text-body, rgba(11, 42, 90, 0.85))",
                 }}
               >
                 {Object.keys(snapshot).length}
@@ -236,7 +238,7 @@ export default function PublicDossier() {
                 style={{
                   fontFamily: "'DM Sans', system-ui, sans-serif",
                   fontVariantNumeric: "tabular-nums lining-nums",
-                  color: "rgba(11, 42, 90, 0.85)",
+                  color: "var(--skin-text-body, rgba(11, 42, 90, 0.85))",
                 }}
               >
                 {new Date(dossier.published_at).toLocaleDateString()}
@@ -303,7 +305,7 @@ export default function PublicDossier() {
         <footer
           className="pt-10 text-center"
           style={{
-            borderTop: "0.5px solid rgba(26, 30, 58, 0.10)",
+            borderTop: "0.5px solid var(--skin-card-border, rgba(26, 30, 58, 0.10))",
           }}
         >
           <div
@@ -313,7 +315,7 @@ export default function PublicDossier() {
               fontSize: "10.5px",
               letterSpacing: "0.22em",
               textTransform: "uppercase",
-              color: "rgba(11, 42, 90, 0.45)",
+              color: "var(--skin-text-muted-soft, rgba(11, 42, 90, 0.45))",
             }}
           >
             <span style={{ color: "#b8860b", textShadow: "0 0 6px rgba(240,194,127,0.5)" }}>✦</span>
@@ -338,8 +340,9 @@ function ArtifactBlock({
     <article
       className="rounded-2xl px-5 py-5"
       style={{
-        background: "rgba(255, 255, 255, 0.68)",
-        border: "0.5px solid rgba(26, 30, 58, 0.08)",
+        // Day 91 (Sasha 2026-06-09): tokenized for Aurum.
+        background: "var(--skin-card-fill, rgba(255, 255, 255, 0.68))",
+        border: "0.5px solid var(--skin-card-border, rgba(26, 30, 58, 0.08))",
         boxShadow:
           "0 4px 16px -8px rgba(10, 22, 40, 0.10), 0 16px 40px -20px rgba(10, 22, 40, 0.15)",
       }}
@@ -351,7 +354,7 @@ function ArtifactBlock({
             fontWeight: 600,
             fontSize: "22px",
             letterSpacing: "-0.005em",
-            color: "#0b2a5a",
+            color: "var(--skin-text-primary, #0b2a5a)",
           }}
         >
           {ARTIFACT_LABELS[artifactKey] || artifactKey}
@@ -363,7 +366,7 @@ function ArtifactBlock({
             fontSize: "10.5px",
             letterSpacing: "0.18em",
             textTransform: "uppercase",
-            color: "rgba(11, 42, 90, 0.55)",
+            color: "var(--skin-text-muted-soft, rgba(11, 42, 90, 0.55))",
             fontVariantNumeric: "tabular-nums lining-nums",
           }}
         >
@@ -388,7 +391,7 @@ function ContentRenderer({ content }: { content: unknown }) {
         style={{
           fontFamily: "'Source Serif 4', serif",
           fontSize: "14px",
-          color: "rgba(11, 42, 90, 0.45)",
+          color: "var(--skin-text-muted-soft, rgba(11, 42, 90, 0.45))",
         }}
       >
         (empty)
@@ -403,7 +406,7 @@ function ContentRenderer({ content }: { content: unknown }) {
           fontFamily: "'Source Serif 4', serif",
           fontSize: "16px",
           lineHeight: 1.6,
-          color: "rgba(11, 42, 90, 0.85)",
+          color: "var(--skin-text-body, rgba(11, 42, 90, 0.85))",
         }}
       >
         {content}
@@ -428,12 +431,12 @@ function ContentRenderer({ content }: { content: unknown }) {
               fontWeight: 500,
               fontSize: "clamp(20px, 2.4vw, 26px)",
               lineHeight: 1.35,
-              color: "#0b2a5a",
+              color: "var(--skin-text-primary, #0b2a5a)",
               padding: "18px 22px",
               borderLeft: "2px solid #b8860b",
               background: "rgba(212, 175, 55, 0.06)",
               margin: 0,
-              textShadow: "0 1px 2px rgba(255,255,255,0.7)",
+              textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.7))",
             }}
           >
             {distillation}
@@ -466,7 +469,7 @@ function ContentRenderer({ content }: { content: unknown }) {
     );
   }
   return (
-    <div style={{ fontFamily: "'Source Serif 4', serif", color: "rgba(11, 42, 90, 0.85)" }}>
+    <div style={{ fontFamily: "'Source Serif 4', serif", color: "var(--skin-text-body, rgba(11, 42, 90, 0.85))" }}>
       {String(content)}
     </div>
   );
@@ -477,14 +480,14 @@ function renderValue(v: unknown): React.ReactNode {
     fontFamily: "'Source Serif 4', serif",
     fontSize: "15.5px",
     lineHeight: 1.6,
-    color: "rgba(11, 42, 90, 0.85)",
+    color: "var(--skin-text-body, rgba(11, 42, 90, 0.85))",
   };
 
   if (v === null || v === undefined) {
     return (
       <span
         className="italic"
-        style={{ ...proseStyle, color: "rgba(11, 42, 90, 0.45)" }}
+        style={{ ...proseStyle, color: "var(--skin-text-muted-soft, rgba(11, 42, 90, 0.45))" }}
       >
         (empty)
       </span>
@@ -531,8 +534,8 @@ function renderValue(v: unknown): React.ReactNode {
             key={i}
             className="rounded-lg p-3"
             style={{
-              background: "rgba(255, 255, 255, 0.45)",
-              border: "0.5px solid rgba(26, 30, 58, 0.08)",
+              background: "var(--skin-card-fill, rgba(255, 255, 255, 0.45))",
+              border: "0.5px solid var(--skin-card-border, rgba(26, 30, 58, 0.08))",
             }}
           >
             {renderValue(x)}
@@ -553,7 +556,7 @@ function renderValue(v: unknown): React.ReactNode {
                 fontSize: "10px",
                 letterSpacing: "0.16em",
                 textTransform: "uppercase",
-                color: "rgba(11, 42, 90, 0.55)",
+                color: "var(--skin-text-muted-soft, rgba(11, 42, 90, 0.55))",
               }}
             >
               {k.replace(/[_-]+/g, " ")}:

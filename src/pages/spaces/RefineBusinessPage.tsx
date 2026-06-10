@@ -100,8 +100,11 @@ const RefineBusinessPage: React.FC = () => {
                         </p>
                     </div>
 
-                    {/* Current Product Summary */}
-                    <div className="bg-white rounded-xl border border-border shadow-sm p-4 mb-8 flex items-center gap-4">
+                    {/* Current Product Summary
+                        Day 91 (Sasha 2026-06-09): bg-white tokenized for Aurum —
+                        full-opacity white card was a light-leak island under the
+                        dark skins; lapis keeps its light card via the token. */}
+                    <div className="bg-[var(--skin-card-fill,#fff)] rounded-xl border border-border shadow-sm p-4 mb-8 flex items-center gap-4">
                         <div className="p-2 rounded-lg bg-primary/10">
                             <Sparkles className="w-5 h-5 text-primary" />
                         </div>
@@ -129,7 +132,7 @@ const RefineBusinessPage: React.FC = () => {
                                     }
                                 }}
                                 className={`w-full text-left rounded-xl border p-5 transition-all ${option.available
-                                        ? "bg-white border-border hover:border-primary/40 hover:shadow-sm cursor-pointer"
+                                        ? "bg-[var(--skin-card-fill,#fff)] border-border hover:border-primary/40 hover:shadow-sm cursor-pointer"
                                         : "bg-muted/30 border-border/10 opacity-60 cursor-not-allowed"
                                     }`}
                             >

@@ -42,6 +42,12 @@ import MdlsPageProgress from "@/components/mdls/MdlsPageProgress";
  *   8. Tokens — concrete reference values (dev appendix)
  *
  * Style Guide: docs/specs/equilibrium/equilibrium_mdls_style_guide.md
+ *
+ * Day 91 (Sasha 2026-06-09): tokenized hairline borders for Aurum. The
+ * cream .mdls-page-atmosphere backdrop + the white hero halos live in
+ * index.css (central) — dark-skin scoping for those is proposed there,
+ * not patched here. text-[#0a1628] classes are re-toned by the global
+ * dark-skin rule and stay as-is by design.
  */
 
 const VERBS: Array<{ verb: string; when: string }> = [
@@ -250,7 +256,7 @@ const MdlsPreview = () => {
               ].map((p, i, arr) => (
                 <li
                   key={i}
-                  className={`flex items-center gap-5 sm:gap-7 py-3 ${i < arr.length - 1 ? "border-b border-[#0a1628]/8" : ""}`}
+                  className={`flex items-center gap-5 sm:gap-7 py-3 ${i < arr.length - 1 ? "border-b border-[color:var(--skin-card-border,rgba(10,22,40,0.08))]" : ""}`}
                 >
                   <div className="shrink-0 w-10 h-10 flex items-center justify-center">{p.glyph}</div>
                   <p
@@ -568,7 +574,7 @@ const MdlsPreview = () => {
             {VERBS.map((v, i) => (
               <li
                 key={i}
-                className="flex items-baseline gap-4 py-3 border-b border-[#0a1628]/8"
+                className="flex items-baseline gap-4 py-3 border-b border-[color:var(--skin-card-border,rgba(10,22,40,0.08))]"
               >
                 <span
                   className="font-serif text-[#0a1628] flex-shrink-0"

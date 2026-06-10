@@ -22,9 +22,15 @@ import { supabase } from "@/integrations/supabase/client";
  * + liquid-glass card on the cream wash supplied by `GameShellV2`.
  */
 
-const INK = "#0a1628";
-const INK_BODY = "rgba(26,30,58,0.78)";
-const INK_MUTED = "rgba(26,30,58,0.55)";
+// Day 91 (Sasha 2026-06-09): ink consts tokenized for the dark skins.
+// Const-applied colors are invisible to the class-based dark re-tones
+// (the source never contains a literal class), so the page rendered
+// navy-on-near-black under Aurum. Lapis keeps the exact literals via
+// the var() fallbacks (--skin-ink is deliberately NOT defined at
+// :root).
+const INK = "var(--skin-ink, #0a1628)";
+const INK_BODY = "var(--skin-ink-body, rgba(26,30,58,0.78))";
+const INK_MUTED = "var(--skin-ink-muted, rgba(26,30,58,0.55))";
 const HALO_DEEP =
     "var(--skin-text-halo-deep, 0 0 22px rgba(255,255,255,0.7), 0 1px 2px rgba(255,255,255,0.9), 0 0 1px rgba(11,42,90,0.45), 0 1px 0 rgba(11,42,90,0.25))";
 

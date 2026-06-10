@@ -26,7 +26,10 @@ import { GOLD_GRADIENT, GOLD_GLOW, Ornament, igniteLogo } from "@/lib/landingDes
  *     surface (this IS the Planetary OS brand surface, not FYTT funnel).
  */
 
-const NAVY = "#0a1628";
+// Day 91 (Sasha 2026-06-09): tokenized for Aurum — primary ink reads the
+// skin token with the original literal as fallback, so the dark skins
+// (aurum / techstars) re-tone this standalone surface correctly.
+const NAVY = "var(--skin-text-primary, #0a1628)";
 
 const GAMEPLAY: Array<{ n: string; title: string; desc: string }> = [
   { n: "1", title: "Top Talent", desc: "name what you are uniquely great at." },
@@ -40,7 +43,7 @@ const GAMEPLAY: Array<{ n: string; title: string; desc: string }> = [
 const Eyebrow = ({ children, size = "default" }: { children: ReactNode; size?: "default" | "large" }) => (
   <p
     className={`uppercase mb-3 ${size === "large" ? "text-[12px] tracking-[0.30em]" : "text-[11px] tracking-[0.28em]"}`}
-    style={{ color: "rgba(26,30,58,0.5)" }}
+    style={{ color: "var(--skin-text-muted, rgba(26,30,58,0.5))" }}
   >
     {children}
   </p>
@@ -87,8 +90,8 @@ const Panel = ({
       <section
         className="rounded-3xl px-7 py-6 sm:px-9 sm:py-7"
         style={{
-          background: "rgba(255,255,255,0.35)",
-          border: "1px solid rgba(26,30,58,0.10)",
+          background: "var(--skin-card-fill, rgba(255,255,255,0.35))",
+          border: "1px solid var(--skin-card-border, rgba(26,30,58,0.10))",
           boxShadow: "0 1px 2px rgba(26,30,58,0.04)",
         }}
       >
@@ -105,7 +108,7 @@ const Panel = ({
   );
 };
 
-const bodyStyle = { color: "rgba(26,30,58,0.8)" } as const;
+const bodyStyle = { color: "var(--skin-text-muted, rgba(26,30,58,0.8))" } as const;
 
 /**
  * PlanetaryOSWordmark — replaces the FYTT torus on this surface.
@@ -136,7 +139,7 @@ const PlanetaryOSWordmark = () => (
         fontSize: "13px",
         letterSpacing: "0.22em",
         textTransform: "uppercase",
-        color: "rgba(26,30,58,0.7)",
+        color: "var(--skin-text-muted, rgba(26,30,58,0.7))",
       }}
     >
       Planetary OS
@@ -154,7 +157,9 @@ const OnePager = () => {
       style={{
         fontFamily: "'DM Sans', sans-serif",
         color: NAVY,
-        background: "linear-gradient(160deg, #f6f5f1 0%, #eef0f6 55%, #f1ecf6 100%)",
+        // Day 91 (Sasha 2026-06-09): page wash reads --skin-page-wash (set
+        // only by the dark skins) with the exact cream gradient as fallback.
+        background: "var(--skin-page-wash, linear-gradient(160deg, #f6f5f1 0%, #eef0f6 55%, #f1ecf6 100%))",
         minHeight: "100vh",
       }}
     >
@@ -181,7 +186,7 @@ const OnePager = () => {
       <div className="relative z-10 max-w-[820px] mx-auto px-5 sm:px-8 pt-20 sm:pt-24 pb-16 sm:pb-20">
         {/* HERO — tightened mb (was 14/20, now 8/10), tightened sub-h1 max-width, soft break for clean wrap. */}
         <header className="text-center mb-8 sm:mb-10">
-          <p className="text-[11px] uppercase tracking-[0.30em] mb-5" style={{ color: "rgba(26,30,58,0.5)" }}>
+          <p className="text-[11px] uppercase tracking-[0.30em] mb-5" style={{ color: "var(--skin-text-muted, rgba(26,30,58,0.5))" }}>
             Coordination infrastructure
           </p>
           <h1
@@ -200,7 +205,7 @@ const OnePager = () => {
             style={{
               fontFamily: "'Cormorant Garamond', serif",
               fontSize: "clamp(1.25rem, 3vw, 1.75rem)",
-              color: "rgba(26,30,58,0.72)",
+              color: "var(--skin-text-muted, rgba(26,30,58,0.72))",
               lineHeight: 1.35,
             }}
           >
@@ -220,7 +225,7 @@ const OnePager = () => {
             to="/"
             className="inline-flex items-center gap-1.5 mt-6 text-[13px] font-medium transition-opacity hover:opacity-70"
             style={{
-              color: "rgba(26,30,58,0.72)",
+              color: "var(--skin-text-muted, rgba(26,30,58,0.72))",
               borderBottom: "1px solid rgba(160, 109, 8, 0.45)",
               paddingBottom: "2px",
             }}
@@ -285,13 +290,13 @@ const OnePager = () => {
                   >
                     {g.n}
                   </span>
-                  <p className="text-[15px] sm:text-base leading-snug" style={{ color: "rgba(26,30,58,0.82)" }}>
+                  <p className="text-[15px] sm:text-base leading-snug" style={{ color: "var(--skin-text-muted, rgba(26,30,58,0.82))" }}>
                     <span className="font-semibold" style={{ color: NAVY }}>{g.title}:</span> {g.desc}
                   </p>
                 </li>
               ))}
             </ol>
-            <p className="text-[13px] mt-5 italic" style={{ color: "rgba(26,30,58,0.6)" }}>
+            <p className="text-[13px] mt-5 italic" style={{ color: "var(--skin-text-muted, rgba(26,30,58,0.6))" }}>
               Each module is whole on its own and fits a coherent larger whole. That is what holonic means:
               standalone and part of the pattern at once.
             </p>
@@ -352,14 +357,14 @@ const OnePager = () => {
             Find your top talent
             <ArrowRight className="w-4 h-4 opacity-70" />
           </Link>
-          <p className="mt-4 text-[11px] uppercase tracking-[0.22em]" style={{ color: "rgba(26,30,58,0.5)" }}>
+          <p className="mt-4 text-[11px] uppercase tracking-[0.22em]" style={{ color: "var(--skin-text-muted, rgba(26,30,58,0.5))" }}>
             Free · 2 minutes · No signup
           </p>
           <div className="mt-7 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[13px]">
             <Link
               to="/?path=match"
               className="inline-flex items-center gap-1.5 font-medium transition-opacity hover:opacity-70"
-              style={{ color: "rgba(26,30,58,0.7)" }}
+              style={{ color: "var(--skin-text-muted, rgba(26,30,58,0.7))" }}
             >
               See a live demo of the platform
               <ArrowRight className="w-3.5 h-3.5 opacity-60" />
@@ -369,7 +374,7 @@ const OnePager = () => {
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 font-medium transition-opacity hover:opacity-70"
-              style={{ color: "rgba(26,30,58,0.7)" }}
+              style={{ color: "var(--skin-text-muted, rgba(26,30,58,0.7))" }}
             >
               Book a chat with Aleksandr
               <ArrowRight className="w-3.5 h-3.5 opacity-60" />
@@ -385,7 +390,7 @@ const OnePager = () => {
             style={{
               fontFamily: "'Cormorant Garamond', serif",
               fontSize: "clamp(1.25rem, 3vw, 1.7rem)",
-              color: "rgba(26,30,58,0.8)",
+              color: "var(--skin-text-muted, rgba(26,30,58,0.8))",
               lineHeight: 1.4,
             }}
           >
@@ -402,12 +407,12 @@ const OnePager = () => {
             style={{
               fontFamily: "'Cormorant Garamond', serif",
               fontSize: "0.95rem",
-              color: "rgba(26,30,58,0.55)",
+              color: "var(--skin-text-muted, rgba(26,30,58,0.55))",
             }}
           >
             Built in the open. Owned by the people who use it.
           </p>
-          <p className="text-[10px] uppercase tracking-[0.28em]" style={{ color: "rgba(26,30,58,0.4)" }}>
+          <p className="text-[10px] uppercase tracking-[0.28em]" style={{ color: "var(--skin-text-muted, rgba(26,30,58,0.4))" }}>
             Planetary OS · findyourtoptalent.com
           </p>
         </footer>

@@ -74,7 +74,7 @@ const GrowthPathsPage = () => {
                     </p>
                 </div>
 
-                {/* Path cards */}
+                {/* Path cards — Day 91 (Sasha 2026-06-09): fills tokenized for Aurum; non-skin contexts fall back to the original literals. */}
                 <div className="space-y-3">
                     {growthPaths.map((path) => {
                         const Icon = getPathIcon(path.iconType);
@@ -82,7 +82,7 @@ const GrowthPathsPage = () => {
                             <button
                                 key={path.id}
                                 onClick={() => setSelectedPath(path)}
-                                className="w-full p-4 rounded-xl border border-[#a4a3d0]/20 bg-white/85 backdrop-blur-sm hover:border-[#a4a3d0]/40 hover:shadow-sm transition-all text-left"
+                                className="w-full p-4 rounded-xl border border-[#a4a3d0]/20 bg-[var(--skin-card-fill,rgba(255,255,255,0.85))] backdrop-blur-sm hover:border-[#a4a3d0]/40 hover:shadow-sm transition-all text-left"
                             >
                                 <div className="flex items-center gap-4">
                                     <div
@@ -118,7 +118,7 @@ const GrowthPathsPage = () => {
                 </div>
 
                 {/* Legend */}
-                <div className="mt-8 p-4 rounded-lg bg-[#f0f4ff]/50 border border-[#a4a3d0]/20">
+                <div className="mt-8 p-4 rounded-lg bg-[var(--skin-input-fill,rgba(240,244,255,0.5))] border border-[#a4a3d0]/20">
                     <h3 className="text-sm font-medium text-[#2c3150] mb-3">Legend</h3>
                     <div className="grid grid-cols-2 gap-2 text-sm">
                         <div className="flex items-center gap-2">
@@ -163,7 +163,7 @@ const UpgradeCard = ({
     // Content status badge
     const getStatusBadge = () => {
         if (!upgrade.contentStatus || upgrade.contentStatus === 'coming-soon') {
-            return <span className="text-[10px] px-1.5 py-0.5 rounded bg-[#f0f4ff] text-[#2c3150]/60">Coming Soon</span>;
+            return <span className="text-[10px] px-1.5 py-0.5 rounded bg-[var(--skin-input-fill,#f0f4ff)] text-[#2c3150]/60">Coming Soon</span>;
         }
         if (upgrade.contentStatus === 'available') {
             return <span className="text-[10px] px-1.5 py-0.5 rounded bg-green-100 text-green-600">Ready</span>;
@@ -179,10 +179,10 @@ const UpgradeCard = ({
             className={`
                 p-4 rounded-xl border transition-all
                 ${isLocked
-                    ? 'border-[#a4a3d0]/20 bg-[#f0f4ff]/50 opacity-60'
+                    ? 'border-[#a4a3d0]/20 bg-[var(--skin-input-fill,rgba(240,244,255,0.5))] opacity-60'
                     : isCompleted
                         ? 'border-green-200 bg-green-50'
-                        : 'border-[#a4a3d0]/20 bg-white hover:border-[#a4a3d0]/40 hover:shadow-sm'
+                        : 'border-[#a4a3d0]/20 bg-[var(--skin-card-fill,#fff)] hover:border-[#a4a3d0]/40 hover:shadow-sm'
                 }
             `}
         >

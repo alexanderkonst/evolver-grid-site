@@ -97,8 +97,10 @@ const proseStyle: React.CSSProperties = {
   color: "var(--skin-text-body, rgba(11, 42, 90, 0.85))",
 };
 
+// Day 91 (Sasha 2026-06-09): tokenized for Aurum — raw white card fills
+// under the dark skins put cream text on white (invisible).
 const cardSurface: React.CSSProperties = {
-  background: "rgba(255, 255, 255, 0.55)",
+  background: "var(--skin-card-fill, rgba(255, 255, 255, 0.55))",
   border: "0.5px solid var(--skin-rule-hairline, rgba(26, 30, 58, 0.10))",
   borderRadius: "12px",
 };
@@ -109,7 +111,7 @@ const ceremonialPill: React.CSSProperties = {
   letterSpacing: "0.14em",
   textTransform: "uppercase",
   fontSize: "11px",
-  background: "rgba(255, 255, 255, 0.72)",
+  background: "var(--skin-card-fill, rgba(255, 255, 255, 0.72))",
   border: "0.5px solid rgba(212, 175, 55, 0.55)",
   boxShadow: "0 0 12px -4px rgba(212, 175, 55, 0.25)",
   color: "var(--skin-text-primary, #0b2a5a)",
@@ -519,7 +521,7 @@ export function FounderDetailDrawer({
                       key={row.id}
                       className="flex flex-wrap items-baseline gap-x-3 gap-y-0.5 rounded-md px-3 py-2"
                       style={{
-                        background: "rgba(255, 255, 255, 0.50)",
+                        background: "var(--skin-card-fill, rgba(255, 255, 255, 0.50))",
                         border: "0.5px solid var(--skin-rule-hairline, rgba(26, 30, 58, 0.08))",
                       }}
                     >
@@ -613,7 +615,7 @@ export function FounderDetailDrawer({
                 style={{
                   ...ceremonialPill,
                   border: "0.5px solid rgba(26, 30, 58, 0.15)",
-                  background: "rgba(255, 255, 255, 0.55)",
+                  background: "var(--skin-card-fill, rgba(255, 255, 255, 0.55))",
                   boxShadow: "none",
                 }}
               >
@@ -630,7 +632,7 @@ export function FounderDetailDrawer({
                   style={{
                     ...ceremonialPill,
                     border: "0.5px solid rgba(26, 30, 58, 0.15)",
-                    background: "rgba(255, 255, 255, 0.55)",
+                    background: "var(--skin-card-fill, rgba(255, 255, 255, 0.55))",
                     boxShadow: "none",
                   }}
                   title="Open the public reveal page (their content is on /game/me/zone-of-genius after auth)"

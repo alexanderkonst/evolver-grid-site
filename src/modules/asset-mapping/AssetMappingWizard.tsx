@@ -84,14 +84,17 @@ const labelMuted: React.CSSProperties = {
 };
 
 const parchmentCard: React.CSSProperties = {
-    background: "var(--skin-card-bg, rgba(255, 255, 255, 0.68))",
+    background: "var(--skin-card-fill, rgba(255, 255, 255, 0.68))",
     border: "0.5px solid rgba(212, 175, 55, 0.45)",
     boxShadow:
         "0 0 22px -8px rgba(212, 175, 55, 0.25), 0 16px 40px -20px rgba(10, 22, 40, 0.18)",
 };
 
+// Day 91 (Sasha 2026-06-09): tokenized for Aurum — the three raw white fills
+// below (subtle card, tertiary pill, input) now read skin tokens; exact
+// original literals kept as fallbacks.
 const parchmentCardSubtle: React.CSSProperties = {
-    background: "rgba(255, 255, 255, 0.55)",
+    background: "var(--skin-card-fill, rgba(255, 255, 255, 0.55))",
     border: "0.5px solid var(--skin-rule-hairline, rgba(26, 30, 58, 0.10))",
     boxShadow: "0 4px 16px -8px rgba(10, 22, 40, 0.08)",
 };
@@ -117,7 +120,7 @@ const tertiaryPill: React.CSSProperties = {
     textTransform: "uppercase",
     fontSize: "11.5px",
     color: "var(--skin-text-muted, rgba(11, 42, 90, 0.93))",
-    background: "rgba(255, 255, 255, 0.55)",
+    background: "var(--skin-card-fill, rgba(255, 255, 255, 0.55))",
     border: "0.5px solid var(--skin-rule-medium, rgba(26, 30, 58, 0.15))",
 };
 
@@ -126,7 +129,7 @@ const editorialInput: React.CSSProperties = {
     fontSize: "14.5px",
     lineHeight: 1.55,
     color: "var(--skin-text-primary, #0b2a5a)",
-    background: "rgba(255, 255, 255, 0.85)",
+    background: "var(--skin-input-fill, rgba(255, 255, 255, 0.85))",
     border: "0.5px solid var(--skin-rule-medium, rgba(26, 30, 58, 0.15))",
 };
 

@@ -9,8 +9,14 @@ interface QoLIntroScreenProps {
 }
 
 const QoLIntroScreen = ({ onStart, onSkip, onBack, saving = false }: QoLIntroScreenProps) => {
+    // Day 91 (Sasha 2026-06-09): tokenized for Aurum. Full-viewport
+    // white-to-pearl wash now reads --skin-page-wash (defined by the
+    // dark skins); the original gradient stays as the Lapis fallback.
     return (
-        <div className="min-h-dvh flex flex-col items-center justify-center px-6 py-12 bg-gradient-to-b from-white to-[var(--wabi-pearl)] relative">
+        <div
+            className="min-h-dvh flex flex-col items-center justify-center px-6 py-12 relative"
+            style={{ background: "var(--skin-page-wash, linear-gradient(to bottom, #fff, var(--wabi-pearl)))" }}
+        >
             {/* Back button */}
             {onBack && (
                 <button
@@ -47,7 +53,7 @@ const QoLIntroScreen = ({ onStart, onSkip, onBack, saving = false }: QoLIntroScr
                 {/* 8 domains preview */}
                 <div className="grid grid-cols-4 gap-3 max-w-xs mx-auto">
                     {['💰', '❤️', '😊', '💕', '🌍', '📈', '👥', '🏠'].map((emoji, i) => (
-                        <div key={i} className="w-12 h-12 rounded-xl bg-white/80 flex items-center justify-center text-xl shadow-sm">
+                        <div key={i} className="w-12 h-12 rounded-xl bg-[var(--skin-card-fill,rgba(255,255,255,0.8))] flex items-center justify-center text-xl shadow-sm">
                             {emoji}
                         </div>
                     ))}

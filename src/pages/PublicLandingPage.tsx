@@ -81,8 +81,10 @@ const formatLabel = (key: string): string =>
   key.replace(/[_-]+/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
 
 // Cream wash matches the platform `/` landing — gold sun-glow at top right.
+// Day 91 (Sasha 2026-06-09): tokenized for Aurum — dark skins supply
+// --skin-page-wash; the cream radial stays as the light-side fallback.
 const WASH_BG =
-  "radial-gradient(ellipse 95% 105% at 95% 5%, rgba(255, 200, 130, 0.55) 0%, rgba(255, 218, 170, 0.45) 18%, rgba(252, 232, 200, 0.75) 38%, rgba(248, 240, 220, 0.92) 65%, rgba(245, 242, 235, 0.98) 88%)";
+  "var(--skin-page-wash, radial-gradient(ellipse 95% 105% at 95% 5%, rgba(255, 200, 130, 0.55) 0%, rgba(255, 218, 170, 0.45) 18%, rgba(252, 232, 200, 0.75) 38%, rgba(248, 240, 220, 0.92) 65%, rgba(245, 242, 235, 0.98) 88%))";
 
 export default function PublicLandingPage() {
   const { slugWithVersion } = useParams<{ slugWithVersion: string }>();
@@ -126,7 +128,7 @@ export default function PublicLandingPage() {
             fontFamily: "'Source Serif 4', serif",
             fontStyle: "italic",
             fontSize: "15px",
-            color: "rgba(11, 42, 90, 0.55)",
+            color: "var(--skin-text-muted-soft, rgba(11, 42, 90, 0.55))",
           }}
         >
           Loading…
@@ -147,7 +149,7 @@ export default function PublicLandingPage() {
               fontFamily: "'Cormorant Garamond', serif",
               fontWeight: 600,
               fontSize: "28px",
-              color: "#0b2a5a",
+              color: "var(--skin-text-primary, #0b2a5a)",
             }}
           >
             Page not found
@@ -158,7 +160,7 @@ export default function PublicLandingPage() {
               fontFamily: "'Source Serif 4', serif",
               fontStyle: "italic",
               fontSize: "14px",
-              color: "rgba(11, 42, 90, 0.62)",
+              color: "var(--skin-text-muted, rgba(11, 42, 90, 0.62))",
             }}
           >
             This landing page may have been unpublished or never existed.
@@ -197,7 +199,7 @@ export default function PublicLandingPage() {
                 fontFamily: "'Cormorant Garamond', serif",
                 fontWeight: 600,
                 fontSize: "28px",
-                color: "#0b2a5a",
+                color: "var(--skin-text-primary, #0b2a5a)",
               }}
             >
               {dossier.title || "Landing Page"}
@@ -207,7 +209,7 @@ export default function PublicLandingPage() {
                 fontFamily: "'Source Serif 4', serif",
                 fontStyle: "italic",
                 fontSize: "14px",
-                color: "rgba(11, 42, 90, 0.62)",
+                color: "var(--skin-text-muted, rgba(11, 42, 90, 0.62))",
               }}
             >
               This page was published but doesn't have rendered content yet.
@@ -225,8 +227,8 @@ export default function PublicLandingPage() {
                 fontWeight: 600,
                 fontSize: "clamp(40px, 6vw, 64px)",
                 letterSpacing: "-0.012em",
-                color: "#0b2a5a",
-                textShadow: "0 1px 2px rgba(255,255,255,0.7), 0 0 22px rgba(255,255,255,0.55)",
+                color: "var(--skin-text-primary, #0b2a5a)",
+                textShadow: "var(--skin-text-halo-strong, 0 1px 2px rgba(255,255,255,0.7), 0 0 22px rgba(255,255,255,0.55))",
               }}
             >
               {headline}
@@ -239,7 +241,7 @@ export default function PublicLandingPage() {
                   fontStyle: "italic",
                   fontSize: "clamp(16px, 1.6vw, 19px)",
                   lineHeight: 1.55,
-                  color: "rgba(11, 42, 90, 0.85)",
+                  color: "var(--skin-text-body, rgba(11, 42, 90, 0.85))",
                 }}
               >
                 {subheadline}
@@ -280,8 +282,9 @@ export default function PublicLandingPage() {
           <section
             className="rounded-2xl px-6 py-6"
             style={{
-              background: "rgba(255, 255, 255, 0.68)",
-              border: "0.5px solid rgba(26, 30, 58, 0.08)",
+              // Day 91 (Sasha 2026-06-09): tokenized for Aurum.
+              background: "var(--skin-card-fill, rgba(255, 255, 255, 0.68))",
+              border: "0.5px solid var(--skin-card-border, rgba(26, 30, 58, 0.08))",
               boxShadow:
                 "0 4px 16px -8px rgba(10, 22, 40, 0.10), 0 16px 40px -20px rgba(10, 22, 40, 0.15)",
             }}
@@ -292,7 +295,7 @@ export default function PublicLandingPage() {
                 fontFamily: "'Source Serif 4', serif",
                 fontSize: "16.5px",
                 lineHeight: 1.62,
-                color: "rgba(11, 42, 90, 0.88)",
+                color: "var(--skin-text-body, rgba(11, 42, 90, 0.88))",
               }}
             >
               {painSection}
@@ -312,8 +315,8 @@ export default function PublicLandingPage() {
                 fontSize: "clamp(20px, 2.4vw, 26px)",
                 lineHeight: 1.4,
                 letterSpacing: "-0.005em",
-                color: "#0b2a5a",
-                textShadow: "0 1px 2px rgba(255,255,255,0.6)",
+                color: "var(--skin-text-primary, #0b2a5a)",
+                textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
               }}
             >
               {promiseSection}
@@ -331,7 +334,7 @@ export default function PublicLandingPage() {
                   key={i}
                   className="rounded-xl px-5 py-4"
                   style={{
-                    background: "rgba(255, 255, 255, 0.45)",
+                    background: "var(--skin-card-fill, rgba(255, 255, 255, 0.45))",
                     borderLeft: "2px solid #b8860b",
                     boxShadow: "0 0 16px -8px rgba(212, 175, 55, 0.30)",
                   }}
@@ -342,7 +345,7 @@ export default function PublicLandingPage() {
                       fontFamily: "'Source Serif 4', serif",
                       fontSize: "16px",
                       lineHeight: 1.55,
-                      color: "rgba(11, 42, 90, 0.88)",
+                      color: "var(--skin-text-body, rgba(11, 42, 90, 0.88))",
                     }}
                   >
                     {p}
@@ -363,7 +366,7 @@ export default function PublicLandingPage() {
                 fontFamily: "'Source Serif 4', serif",
                 fontSize: "16px",
                 lineHeight: 1.6,
-                color: "rgba(11, 42, 90, 0.85)",
+                color: "var(--skin-text-body, rgba(11, 42, 90, 0.85))",
               }}
             >
               {valueLadder}
@@ -424,7 +427,7 @@ export default function PublicLandingPage() {
               <div
                 className="inline-flex items-center gap-2 rounded-full px-7 py-3"
                 style={{
-                  background: "rgba(255, 255, 255, 0.68)",
+                  background: "var(--skin-card-fill, rgba(255, 255, 255, 0.68))",
                   border: "0.5px solid rgba(212, 175, 55, 0.55)",
                   boxShadow: "0 0 14px -4px rgba(212, 175, 55, 0.32)",
                   fontFamily: "'Cormorant Garamond', serif",
@@ -432,7 +435,7 @@ export default function PublicLandingPage() {
                   letterSpacing: "0.14em",
                   textTransform: "uppercase",
                   fontSize: "13px",
-                  color: "#0b2a5a",
+                  color: "var(--skin-text-primary, #0b2a5a)",
                 }}
               >
                 {cta.text || "Get started"}
@@ -446,7 +449,7 @@ export default function PublicLandingPage() {
           <section
             className="space-y-5 pt-6"
             style={{
-              borderTop: "0.5px solid rgba(26, 30, 58, 0.10)",
+              borderTop: "0.5px solid var(--skin-card-border, rgba(26, 30, 58, 0.10))",
             }}
           >
             {extraKeys.map((key) => {
@@ -462,7 +465,7 @@ export default function PublicLandingPage() {
                       fontFamily: "'Source Serif 4', serif",
                       fontSize: "15.5px",
                       lineHeight: 1.6,
-                      color: "rgba(11, 42, 90, 0.85)",
+                      color: "var(--skin-text-body, rgba(11, 42, 90, 0.85))",
                     }}
                   >
                     {valueStr}
@@ -476,7 +479,7 @@ export default function PublicLandingPage() {
         {/* ═══ Footer ═══ */}
         <footer
           className="pt-10 text-center"
-          style={{ borderTop: "0.5px solid rgba(26, 30, 58, 0.10)" }}
+          style={{ borderTop: "0.5px solid var(--skin-card-border, rgba(26, 30, 58, 0.10))" }}
         >
           <div
             style={{
@@ -484,7 +487,7 @@ export default function PublicLandingPage() {
               fontSize: "10.5px",
               letterSpacing: "0.18em",
               textTransform: "uppercase",
-              color: "rgba(11, 42, 90, 0.45)",
+              color: "var(--skin-text-muted-soft, rgba(11, 42, 90, 0.45))",
               fontVariantNumeric: "tabular-nums lining-nums",
             }}
           >
@@ -499,7 +502,7 @@ export default function PublicLandingPage() {
               fontSize: "10.5px",
               letterSpacing: "0.22em",
               textTransform: "uppercase",
-              color: "rgba(11, 42, 90, 0.45)",
+              color: "var(--skin-text-muted-soft, rgba(11, 42, 90, 0.45))",
             }}
           >
             <span style={{ color: "#b8860b", textShadow: "0 0 6px rgba(240,194,127,0.5)" }}>✦</span>

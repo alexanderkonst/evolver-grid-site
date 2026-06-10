@@ -8,8 +8,14 @@ interface TourOverviewScreenProps {
 }
 
 const TourOverviewScreen = ({ onStartTour, onSkipTour, saving = false }: TourOverviewScreenProps) => {
+    // Day 91 (Sasha 2026-06-09): tokenized for Aurum. Full-viewport
+    // white-to-pearl wash now reads --skin-page-wash (defined by the
+    // dark skins); the original gradient stays as the Lapis fallback.
     return (
-        <div className="min-h-dvh flex flex-col items-center justify-center px-6 py-12 bg-gradient-to-b from-white to-[var(--wabi-pearl)]">
+        <div
+            className="min-h-dvh flex flex-col items-center justify-center px-6 py-12"
+            style={{ background: "var(--skin-page-wash, linear-gradient(to bottom, #fff, var(--wabi-pearl)))" }}
+        >
             <div className="max-w-lg mx-auto text-center space-y-8">
                 {/* Icon */}
                 <div className="flex items-center justify-center">

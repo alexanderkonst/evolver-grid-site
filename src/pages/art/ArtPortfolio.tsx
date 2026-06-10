@@ -56,21 +56,24 @@ const ArtPortfolio = () => {
     setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
   };
 
+  // Day 91 (Sasha 2026-06-09): tokenized for Aurum — page wash, placeholder
+  // tile, and navy hsl text read skin tokens with the exact original literals
+  // as fallbacks (lapis pixel-identical).
   return (
-    <div className="min-h-screen bg-white flex flex-col relative">
+    <div className="min-h-screen bg-[var(--skin-page-bg,#fff)] flex flex-col relative">
       {/* Header - higher z-index to ensure buttons are immediately clickable */}
       <header className="w-full px-4 md:px-8 py-6 flex items-center relative z-50">
         {/* Back Button */}
         <button
           onClick={() => navigate("/art")}
-          className="text-[hsl(210,70%,15%)] hover:opacity-60 transition-opacity p-2 -ml-2 cursor-pointer"
+          className="text-[color:var(--skin-text-primary,hsl(210,70%,15%))] hover:opacity-60 transition-opacity p-2 -ml-2 cursor-pointer"
           aria-label="Back to gallery"
         >
           <ArrowLeft className="w-6 h-6 md:w-8 md:h-8" strokeWidth={1.5} />
         </button>
 
         {/* Portfolio Title */}
-        <h1 className="flex-1 text-center font-serif text-lg md:text-2xl text-[hsl(210,70%,15%)] font-normal -ml-8 md:-ml-10 uppercase">
+        <h1 className="flex-1 text-center font-serif text-lg md:text-2xl text-[color:var(--skin-text-primary,hsl(210,70%,15%))] font-normal -ml-8 md:-ml-10 uppercase">
           {categoryName} PORTFOLIO
         </h1>
       </header>
@@ -84,14 +87,14 @@ const ArtPortfolio = () => {
               {/* Left Arrow */}
               <button
                 onClick={goToPrevious}
-                className="absolute left-0 md:-left-16 text-[hsl(210,70%,15%)] hover:opacity-60 transition-opacity p-2 z-50 cursor-pointer"
+                className="absolute left-0 md:-left-16 text-[color:var(--skin-text-primary,hsl(210,70%,15%))] hover:opacity-60 transition-opacity p-2 z-50 cursor-pointer"
                 aria-label="Previous image"
               >
                 <ChevronLeft className="w-10 h-10 md:w-14 md:h-14" strokeWidth={1} />
               </button>
 
               {/* Image */}
-              <div className="w-full aspect-[4/3] md:aspect-[16/10] bg-gray-100 flex items-center justify-center">
+              <div className="w-full aspect-[4/3] md:aspect-[16/10] bg-[var(--skin-input-fill,#f3f4f6)] flex items-center justify-center">
                 {currentImage.src ? (
                   <img
                     src={currentImage.src}
@@ -99,7 +102,7 @@ const ArtPortfolio = () => {
                     className="max-w-full max-h-full object-contain"
                   />
                 ) : (
-                  <span className="font-serif text-[hsl(210,70%,15%)] opacity-40 text-sm">
+                  <span className="font-serif text-[color:var(--skin-text-primary,hsl(210,70%,15%))] opacity-40 text-sm">
                     Image placeholder
                   </span>
                 )}
@@ -108,7 +111,7 @@ const ArtPortfolio = () => {
               {/* Right Arrow */}
               <button
                 onClick={goToNext}
-                className="absolute right-0 md:-right-16 text-[hsl(210,70%,15%)] hover:opacity-60 transition-opacity p-2 z-50 cursor-pointer"
+                className="absolute right-0 md:-right-16 text-[color:var(--skin-text-primary,hsl(210,70%,15%))] hover:opacity-60 transition-opacity p-2 z-50 cursor-pointer"
                 aria-label="Next image"
               >
                 <ChevronRight className="w-10 h-10 md:w-14 md:h-14" strokeWidth={1} />
@@ -117,14 +120,14 @@ const ArtPortfolio = () => {
 
             {/* Caption - aligned with left edge of image */}
             <div className="mt-4 md:mt-6">
-              <p className="font-serif text-sm md:text-base text-[hsl(210,70%,15%)] text-left">
+              <p className="font-serif text-sm md:text-base text-[color:var(--skin-text-primary,hsl(210,70%,15%))] text-left">
                 {currentImage.caption || "\u00A0"}
               </p>
             </div>
           </div>
         ) : (
           <div className="flex items-center justify-center">
-            <p className="font-serif text-[hsl(210,70%,15%)] opacity-50">
+            <p className="font-serif text-[color:var(--skin-text-primary,hsl(210,70%,15%))] opacity-50">
               No images yet
             </p>
           </div>

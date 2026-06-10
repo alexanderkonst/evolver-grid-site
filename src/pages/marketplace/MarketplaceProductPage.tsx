@@ -79,9 +79,12 @@ const MarketplaceProductPage: React.FC = () => {
         console.log("Download blueprint");
     };
 
+    // Day 91 (Sasha 2026-06-09): full-viewport white washes (all three render
+    // states) tokenized for Aurum — page-bg token is transparent under the
+    // dark skins so the body wash shows through; lapis falls back to #fff.
     if (loading) {
         return (
-            <div className="min-h-dvh bg-white flex items-center justify-center">
+            <div className="min-h-dvh bg-[var(--skin-page-bg,#fff)] flex items-center justify-center">
                 <div className="flex flex-col items-center gap-4">
                     <div className="relative">
                         <div className="w-12 h-12 border-4 border-[#8460ea]/20 rounded-full" />
@@ -95,7 +98,7 @@ const MarketplaceProductPage: React.FC = () => {
 
     if (error || !product) {
         return (
-            <div className="min-h-dvh bg-white flex flex-col items-center justify-center px-4">
+            <div className="min-h-dvh bg-[var(--skin-page-bg,#fff)] flex flex-col items-center justify-center px-4">
                 <h1 className="text-2xl font-bold text-[#2c3150] mb-4">Product Not Found</h1>
                 <p className="text-[#2c3150]/60 mb-6">{error}</p>
                 <Button
@@ -110,7 +113,7 @@ const MarketplaceProductPage: React.FC = () => {
     }
 
     return (
-        <div className="min-h-dvh bg-white">
+        <div className="min-h-dvh bg-[var(--skin-page-bg,#fff)]">
             {/* Hero Section — Brandbook gradient */}
             <section className="relative overflow-hidden">
                 {/* Background gradient with brandbook colors */}
@@ -157,7 +160,7 @@ const MarketplaceProductPage: React.FC = () => {
                             </p>
                         </div>
 
-                        <div className="bg-white rounded-xl border border-[#a4a3d0]/20 shadow-sm p-6 sm:p-8 mb-8">
+                        <div className="bg-[var(--skin-card-fill,#fff)] rounded-xl border border-[#a4a3d0]/20 shadow-sm p-6 sm:p-8 mb-8">
                             <div className="space-y-6">
                                 {product.blueprint_content.steps.map((step, index) => (
                                     <div key={index} className="flex gap-4">
@@ -186,7 +189,7 @@ const MarketplaceProductPage: React.FC = () => {
             )}
 
             {/* Final CTA Section */}
-            <section className="py-20 px-6 bg-gradient-to-b from-white to-[#8460ea]/5">
+            <section className="py-20 px-6 bg-gradient-to-b from-[color:var(--skin-page-bg,#fff)] to-[#8460ea]/5">
                 <div className="container mx-auto max-w-lg text-center">
                     <h3 className="text-2xl sm:text-3xl font-bold text-[#2c3150] mb-4">
                         Ready to Transform?

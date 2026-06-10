@@ -182,6 +182,9 @@ const Connections = () => {
     );
   }
 
+  // Day 91 (Sasha 2026-06-09): row-card fills tokenized for Aurum — the
+  // foreground/muted-foreground ink inside flips light under the dark
+  // skins, so the white/85 fill must read the skin card token too.
   const renderIntroRow = (row: MutualIntroRow) => {
     if (!userId) return null;
     const otherId = row.user_a_id === userId ? row.user_b_id : row.user_a_id;
@@ -190,7 +193,7 @@ const Connections = () => {
       ? `${profile.first_name || ""} ${profile.last_name || ""}`.trim()
       : "Community member";
     return (
-      <div key={row.id} className="rounded-xl border border-border bg-white/85 backdrop-blur-sm p-4 shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
+      <div key={row.id} className="rounded-xl border border-border bg-[var(--skin-card-fill,rgba(255,255,255,0.85))] backdrop-blur-sm p-4 shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
         <div className="flex items-center justify-between gap-4">
           <div>
             <p className="font-semibold text-foreground">{name}</p>
@@ -213,7 +216,7 @@ const Connections = () => {
       ? `${profile.first_name || ""} ${profile.last_name || ""}`.trim()
       : "Community member";
     return (
-      <div key={row.id} className="rounded-xl border border-border bg-white/85 backdrop-blur-sm p-4 shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
+      <div key={row.id} className="rounded-xl border border-border bg-[var(--skin-card-fill,rgba(255,255,255,0.85))] backdrop-blur-sm p-4 shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
         <div className="flex items-center justify-between gap-4">
           <div>
             <p className="font-semibold text-foreground">{name}</p>
@@ -246,7 +249,7 @@ const Connections = () => {
         </div>
 
         {!hasActivity ? (
-          <div className="rounded-xl border border-border bg-white/85 backdrop-blur-sm p-6 shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
+          <div className="rounded-xl border border-border bg-[var(--skin-card-fill,rgba(255,255,255,0.85))] backdrop-blur-sm p-6 shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
             <EmptyState
               icon={<UserPlus className="w-6 h-6 text-muted-foreground" />}
               title="No connections yet"

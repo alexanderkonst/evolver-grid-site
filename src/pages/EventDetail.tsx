@@ -159,10 +159,15 @@ const EventDetail = () => {
   };
 
 
+  // Day 91 (Sasha 2026-06-09): tokenized for Aurum — loading/error washes,
+  // hero fallback band, and the main content card now read skin tokens with
+  // the exact original literals as fallbacks (lapis pixel-identical). The
+  // card going dark under dark skins is what makes the cream --foreground
+  // text inside it legible again.
   // Loading State
   if (loading) {
     return (
-      <div className="min-h-dvh bg-white flex items-center justify-center">
+      <div className="min-h-dvh bg-[var(--skin-page-bg,#fff)] flex items-center justify-center">
         <PremiumLoader size="lg" />
       </div>
     );
@@ -171,7 +176,7 @@ const EventDetail = () => {
   // Error State
   if (error || !event) {
     return (
-      <div className="min-h-dvh bg-white flex items-center justify-center">
+      <div className="min-h-dvh bg-[var(--skin-page-bg,#fff)] flex items-center justify-center">
         <div className="text-center p-6">
           <CalendarDays className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
           <h2 className="text-xl font-semibold text-foreground mb-2">Event Not Found</h2>
@@ -210,7 +215,7 @@ const EventDetail = () => {
   return (
     <div className="min-h-dvh bg-background">
       {/* Hero Image */}
-      <div className="h-48 sm:h-64 bg-amber-100 relative">
+      <div className="h-48 sm:h-64 bg-[var(--skin-card-fill,#fef3c7)] relative">
         {event.photo_url ? (
           <img
             src={event.photo_url}
@@ -227,13 +232,13 @@ const EventDetail = () => {
         {/* Back Button */}
         <BackButton
           to="/game/events"
-          className="absolute top-4 left-4 bg-card/80 hover:bg-white"
+          className="absolute top-4 left-4 bg-card/80 hover:bg-[var(--skin-card-fill,#fff)]"
         />
       </div>
 
       {/* Content */}
       <div className="max-w-2xl mx-auto px-4 -mt-8 relative z-above pb-12">
-        <div className="bg-white/85 backdrop-blur-sm rounded-xl shadow-[0_4px_16px_rgba(44,49,80,0.06)] border border-border overflow-hidden">
+        <div className="bg-[var(--skin-card-fill,rgba(255,255,255,0.85))] backdrop-blur-sm rounded-xl shadow-[0_4px_16px_rgba(44,49,80,0.06)] border border-border overflow-hidden">
           {/* Title & RSVP */}
           <div className="p-6 border-b border-border/10">"
             <h1 className="text-2xl font-bold text-foreground mb-4">{event.title}</h1>

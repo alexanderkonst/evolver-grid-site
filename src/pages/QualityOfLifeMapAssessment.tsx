@@ -274,8 +274,11 @@ const QualityOfLifeMapAssessment = ({
               fontStyle: "italic",
               fontSize: "16px",
               lineHeight: 1.55,
-              color: "rgba(11, 42, 90, 0.88)",
-              textShadow: "0 1px 2px rgba(255,255,255,0.7)",
+              // Day 91 (Sasha 2026-06-09): tokenized for Aurum — raw navy +
+              // white halo were invisible/glowing on the dark skins. Same
+              // var pattern as the intro subhead above.
+              color: "var(--skin-text-body, rgba(11, 42, 90, 0.88))",
+              textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.7))",
             }}
           >
             Select the stage that best represents your current state in this domain.
@@ -332,7 +335,10 @@ const QualityOfLifeMapAssessment = ({
                   "border-2 hover:scale-[1.02]",
                   isSelected
                     ? "border-[#b8860b] bg-[#b8860b]/10"
-                    : "border-[var(--wabi-text-muted)]/20 bg-white/[0.85] hover:border-[#b8860b]/40"
+                    // Day 91 (Sasha 2026-06-09): bg-white/[0.85] tokenized for
+                    // Aurum — the unselected stage cards ARE the page and were
+                    // a full light-leak under the dark skins.
+                    : "border-[var(--wabi-text-muted)]/20 bg-[var(--skin-card-fill,rgba(255,255,255,0.85))] hover:border-[#b8860b]/40"
                 )}
               >
                 <div className="flex items-start gap-4">
@@ -362,7 +368,9 @@ const QualityOfLifeMapAssessment = ({
                         letterSpacing: "-0.005em",
                         lineHeight: 1.2,
                         color: "var(--skin-text-primary, #0a1628)",
-                        textShadow: "0 1px 2px rgba(255,255,255,0.85), 0 0 1px rgba(11,42,90,0.4)",
+                        // Day 91 (Sasha 2026-06-09): halo tokenized for Aurum —
+                        // raw white lift glowed around cream text on dark glass.
+                        textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.85), 0 0 1px rgba(11,42,90,0.4))",
                       }}
                       className="mb-2"
                     >
@@ -373,7 +381,9 @@ const QualityOfLifeMapAssessment = ({
                         fontFamily: "'Source Serif 4', serif",
                         fontSize: "15px",
                         lineHeight: 1.55,
-                        color: "rgba(11, 42, 90, 0.85)",
+                        // Day 91 (Sasha 2026-06-09): tokenized for Aurum — raw
+                        // navy was invisible on the re-toned dark stage cards.
+                        color: "var(--skin-text-muted, rgba(11, 42, 90, 0.85))",
                       }}
                     >
                       {stage.description}
@@ -413,8 +423,10 @@ const QualityOfLifeMapAssessment = ({
           notch. max(16px, env(...)) ensures non-iOS browsers still get
           the original 16px padding when env() resolves to 0.
         */}
+        {/* Day 91 (Sasha 2026-06-09): bg-white/90 tokenized for Aurum — the
+            sticky footer was a bright white band over the dark page. */}
         <div
-          className="sm:hidden fixed bottom-0 left-0 right-0 bg-white/90 backdrop-blur-md border-t border-[var(--wabi-text-muted)]/10 px-4 pt-4 shadow-lg z-above"
+          className="sm:hidden fixed bottom-0 left-0 right-0 bg-[var(--skin-card-fill,rgba(255,255,255,0.9))] backdrop-blur-md border-t border-[var(--wabi-text-muted)]/10 px-4 pt-4 shadow-lg z-above"
           style={{ paddingBottom: "max(16px, env(safe-area-inset-bottom))" }}
         >
           <div className="flex items-center justify-between gap-3">

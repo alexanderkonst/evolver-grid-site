@@ -148,19 +148,20 @@ const AdminMissionParticipants = () => {
           <p className="text-sm text-[rgba(44,49,80,0.7)]">Track who committed to missions and their connection preferences.</p>
         </div>
 
+        {/* Day 91 (Sasha 2026-06-09): card/table/chip fills tokenized for Aurum — lapis reads the skin tokens, other skins fall back to the literals. */}
         {loading ? (
           <div className="flex items-center gap-2 text-[rgba(44,49,80,0.7)]">
             <span className="premium-spinner w-4 h-4" />
             Loading participants...
           </div>
         ) : participants.length === 0 ? (
-          <div className="rounded-xl border border-[#a4a3d0]/20 bg-white/85 backdrop-blur-sm p-6 text-sm text-[rgba(44,49,80,0.7)] shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
+          <div className="rounded-xl border border-[#a4a3d0]/20 bg-[var(--skin-card-fill,rgba(255,255,255,0.85))] backdrop-blur-sm p-6 text-sm text-[rgba(44,49,80,0.7)] shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
             No mission participants yet.
           </div>
         ) : (
-          <div className="overflow-x-auto rounded-xl border border-[#a4a3d0]/20 bg-white/85 backdrop-blur-sm shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
+          <div className="overflow-x-auto rounded-xl border border-[#a4a3d0]/20 bg-[var(--skin-card-fill,rgba(255,255,255,0.85))] backdrop-blur-sm shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
             <table className="w-full text-sm">
-              <thead className="bg-[#f0f4ff] text-[rgba(44,49,80,0.7)]">
+              <thead className="bg-[var(--skin-input-fill,#f0f4ff)] text-[rgba(44,49,80,0.7)]">
                 <tr>
                   <th className="text-left px-4 py-3 font-semibold">Mission</th>
                   <th className="text-left px-4 py-3 font-semibold">User</th>
@@ -181,7 +182,7 @@ const AdminMissionParticipants = () => {
                       <p className="text-xs text-[#2c3150]/60">{participant.email}</p>
                     </td>
                     <td className="px-4 py-3">
-                      <span className={`inline-flex rounded-full px-2 py-1 text-xs font-semibold ${participant.share_consent ? "bg-[#b1c9b6]/20 text-[#2c3150]" : "bg-[#f0f4ff] text-[rgba(44,49,80,0.7)]"}`}>
+                      <span className={`inline-flex rounded-full px-2 py-1 text-xs font-semibold ${participant.share_consent ? "bg-[#b1c9b6]/20 text-[#2c3150]" : "bg-[var(--skin-input-fill,#f0f4ff)] text-[rgba(44,49,80,0.7)]"}`}>
                         {participant.share_consent ? "Shared" : "Private"}
                       </span>
                     </td>
