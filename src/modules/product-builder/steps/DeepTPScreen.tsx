@@ -102,9 +102,10 @@ const DeepTPScreen: React.FC = () => {
 
     return (
         <div className="py-8">
-            {/* Header */}
+            {/* Header — Day 91 (Sasha 2026-06-09): white fills tokenized for
+                Aurum; lapis keeps the exact literals via var() fallbacks. */}
             <div className="text-center mb-8">
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-white border border-gray-200 mb-4">
+                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[var(--skin-card-fill,#ffffff)] border border-[var(--skin-card-border,#e5e7eb)] mb-4">
                     <Sparkles className="w-8 h-8 text-primary-wabi" />
                 </div>
                 <h1 className="text-3xl font-bold text-[#2c3150] mb-2 uppercase tracking-wide">Your USP</h1>
@@ -117,7 +118,7 @@ const DeepTPScreen: React.FC = () => {
             <div className="max-w-3xl mx-auto mb-8">
                 <div className="grid md:grid-cols-2 gap-4 items-stretch relative">
                     {/* Point A */}
-                    <Card className="bg-white border border-[#cea4ae]/40">
+                    <Card className="bg-[var(--skin-card-fill,#ffffff)] border border-[#cea4ae]/40">
                         <CardContent className="p-6">
                             <div className="flex items-center gap-2 mb-3">
                                 <div className="w-8 h-8 rounded-full bg-[#cea4ae] flex items-center justify-center text-white font-bold text-sm">
@@ -133,11 +134,11 @@ const DeepTPScreen: React.FC = () => {
 
                     {/* Arrow - hidden on mobile, visible on desktop */}
                     <div className="hidden md:flex items-center justify-center absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
-                        <ArrowRightCircle className="w-10 h-10 text-primary-wabi bg-white rounded-full" />
+                        <ArrowRightCircle className="w-10 h-10 text-primary-wabi bg-[var(--skin-card-fill,#ffffff)] rounded-full" />
                     </div>
 
                     {/* Point B */}
-                    <Card className="bg-white border border-[#8460ea]/40">
+                    <Card className="bg-[var(--skin-card-fill,#ffffff)] border border-[#8460ea]/40">
                         <CardContent className="p-6">
                             <div className="flex items-center gap-2 mb-3">
                                 <div className="w-8 h-8 rounded-full bg-[#8460ea] flex items-center justify-center text-white font-bold text-sm">
@@ -159,7 +160,7 @@ const DeepTPScreen: React.FC = () => {
             </div>
 
             {/* Promise Statement */}
-            <Card className="max-w-2xl mx-auto mb-8 bg-white border border-gray-200">
+            <Card className="max-w-2xl mx-auto mb-8 bg-[var(--skin-card-fill,#ffffff)] border border-[var(--skin-card-border,#e5e7eb)]">
                 <CardContent className="p-6 text-center">
                     <h3 className="text-sm font-semibold text-[#8460ea] uppercase tracking-wide mb-3">
                         Your Unique Selling Proposition

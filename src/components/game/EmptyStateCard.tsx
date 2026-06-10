@@ -38,8 +38,16 @@ const EMPTY_STATE_CONFIG: Record<
 export default function EmptyStateCard({ type }: EmptyStateCardProps) {
     const config = EMPTY_STATE_CONFIG[type];
 
+    // Day 91 (Sasha 2026-06-09): tokenized for Aurum - gradient classes moved to a style-prop
+    // token; lapis falls back to the exact same lavender/20 > white wash
     return (
-        <div className="bg-gradient-to-br from-[#a4a3d0]/20 to-white rounded-2xl p-8 text-center">
+        <div
+            className="rounded-2xl p-8 text-center"
+            style={{
+                background:
+                    "var(--skin-card-fill, linear-gradient(to bottom right, rgba(164, 163, 208, 0.2) 0%, #ffffff 100%))",
+            }}
+        >
             <div className="text-4xl mb-4">{config.icon}</div>
             <p className="text-lg text-[rgba(44,49,80,0.7)] mb-6">{config.message}</p>
             <Link to={config.href}>

@@ -267,7 +267,8 @@ const CanvasOverviewPage = () => {
                 className={`p-4 rounded-xl border border-[#a4a3d0]/20 bg-gradient-to-r ${artifact.gradient} hover:border-[#8460ea]/30 transition-all group`}
               >
                 <div className="flex items-start gap-3">
-                  <div className="w-9 h-9 rounded-lg bg-white/80 flex items-center justify-center flex-shrink-0 shadow-sm">
+                  {/* Day 91 (Sasha 2026-06-09): icon-tile fill tokenized for Aurum — lapis fallback = exact prior literal. */}
+                  <div className="w-9 h-9 rounded-lg bg-[var(--skin-input-fill,rgba(255,255,255,0.8))] flex items-center justify-center flex-shrink-0 shadow-sm">
                     <Icon className="w-4 h-4 text-[#8460ea]" />
                   </div>
                   <div className="flex-1 min-w-0">
@@ -298,7 +299,7 @@ const CanvasOverviewPage = () => {
 
         {/* Session Notes */}
         {canvas.notes && (
-          <div className="p-4 bg-white/60 rounded-xl border border-[#a4a3d0]/20">
+          <div className="p-4 bg-[var(--skin-card-fill,rgba(255,255,255,0.6))] rounded-xl border border-[#a4a3d0]/20">
             <p className="text-xs text-[#8460ea] uppercase tracking-wide mb-2 font-medium">
               Session Notes
             </p>

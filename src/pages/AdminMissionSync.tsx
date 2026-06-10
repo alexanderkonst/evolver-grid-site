@@ -350,23 +350,23 @@ export default function AdminMissionSync() {
                 </div>
 
                 <div className="grid grid-cols-2 md:grid-cols-5 gap-3 mb-4">
-                  <div className="text-center p-2 bg-white/50 rounded">
+                  <div className="text-center p-2 bg-[var(--skin-card-fill,rgba(255,255,255,0.5))] rounded">
                     <div className="text-lg font-bold">{result.counts.pillars}</div>
                     <div className="text-xs text-muted-foreground">Pillars</div>
                   </div>
-                  <div className="text-center p-2 bg-white/50 rounded">
+                  <div className="text-center p-2 bg-[var(--skin-card-fill,rgba(255,255,255,0.5))] rounded">
                     <div className="text-lg font-bold">{result.counts.focusAreas}</div>
                     <div className="text-xs text-muted-foreground">Focus Areas</div>
                   </div>
-                  <div className="text-center p-2 bg-white/50 rounded">
+                  <div className="text-center p-2 bg-[var(--skin-card-fill,rgba(255,255,255,0.5))] rounded">
                     <div className="text-lg font-bold">{result.counts.challenges}</div>
                     <div className="text-xs text-muted-foreground">Challenges</div>
                   </div>
-                  <div className="text-center p-2 bg-white/50 rounded">
+                  <div className="text-center p-2 bg-[var(--skin-card-fill,rgba(255,255,255,0.5))] rounded">
                     <div className="text-lg font-bold">{result.counts.outcomes}</div>
                     <div className="text-xs text-muted-foreground">Outcomes</div>
                   </div>
-                  <div className="text-center p-2 bg-white/50 rounded">
+                  <div className="text-center p-2 bg-[var(--skin-card-fill,rgba(255,255,255,0.5))] rounded">
                     <div className="text-lg font-bold">{result.counts.missions}</div>
                     <div className="text-xs text-muted-foreground">Missions</div>
                   </div>
@@ -376,7 +376,7 @@ export default function AdminMissionSync() {
                   <h4 className="font-medium mb-2 text-sm">Missions by Pillar:</h4>
                   <div className="grid grid-cols-2 md:grid-cols-3 gap-2 text-sm">
                     {Object.entries(result.missionsByPillar).map(([pillar, count]) => (
-                      <div key={pillar} className="flex justify-between p-2 bg-white/50 rounded">
+                      <div key={pillar} className="flex justify-between p-2 bg-[var(--skin-card-fill,rgba(255,255,255,0.5))] rounded">
                         <span className="capitalize">{pillar}</span>
                         <span className="font-mono">{count}</span>
                       </div>

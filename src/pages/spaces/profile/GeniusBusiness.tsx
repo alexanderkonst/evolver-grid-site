@@ -168,8 +168,9 @@ const GeniusBusiness = () => {
                 </div>
 
                 {/* Essence Anchor summary */}
+                {/* Day 91 (Sasha 2026-06-09): card fills tokenized for Aurum — lapis fallback = exact prior literal. */}
                 {excaliburData.essenceAnchor && (
-                    <div className="p-4 bg-white/60 rounded-xl border border-[#a4a3d0]/20">
+                    <div className="p-4 bg-[var(--skin-card-fill,rgba(255,255,255,0.6))] rounded-xl border border-[#a4a3d0]/20">
                         <p className="text-sm text-[#a4a3d0] mb-1">Genius Apple Seed</p>
                         <p className="text-[#2c3150] font-medium">{excaliburData.essenceAnchor.geniusAppleSeed}</p>
                     </div>
@@ -177,7 +178,7 @@ const GeniusBusiness = () => {
 
                 {/* Offer statement */}
                 {excaliburData.offer && (
-                    <div className="p-4 bg-white/60 rounded-xl border border-[#a4a3d0]/20">
+                    <div className="p-4 bg-[var(--skin-card-fill,rgba(255,255,255,0.6))] rounded-xl border border-[#a4a3d0]/20">
                         <p className="text-sm text-[#a4a3d0] mb-1">Your Unique Selling Proposition</p>
                         <p className="text-[#2c3150]">{excaliburData.offer.statement}</p>
                     </div>
@@ -189,7 +190,7 @@ const GeniusBusiness = () => {
                         <button
                             key={mod.id}
                             onClick={() => navigate(mod.path)}
-                            className="p-4 bg-white/60 rounded-xl border border-[#a4a3d0]/20 hover:border-[#8460ea]/40 hover:bg-white/80 transition-all text-left group"
+                            className="p-4 bg-[var(--skin-card-fill,rgba(255,255,255,0.6))] rounded-xl border border-[#a4a3d0]/20 hover:border-[#8460ea]/40 hover:bg-white/80 transition-all text-left group"
                         >
                             <mod.icon className="w-5 h-5 text-[#8460ea] mb-2" />
                             <p className="font-medium text-[#2c3150] group-hover:text-[#8460ea] transition-colors">

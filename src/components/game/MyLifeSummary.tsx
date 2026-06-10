@@ -73,8 +73,9 @@ export default function MyLifeSummary({ scores }: MyLifeSummaryProps) {
         return "Building foundations";
     };
 
+    // Day 91 (Sasha 2026-06-09): tokenized for Aurum - lapis falls back to the original bg-white/80
     return (
-        <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-sm border border-[var(--wabi-lavender)]/20 p-6 breathing-card">
+        <div className="bg-[var(--skin-card-fill,rgba(255,255,255,0.8))] backdrop-blur-sm rounded-2xl shadow-sm border border-[var(--wabi-lavender)]/20 p-6 breathing-card">
             <h3 className="text-lg font-semibold text-[#2c3150] font-display mb-4">My Life</h3>
 
             {scores ? (

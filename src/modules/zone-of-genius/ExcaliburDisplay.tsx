@@ -51,8 +51,10 @@ const ExcaliburDisplay = ({ excalibur, profileId, onSaveToProfile, isSaving, onR
                 Day 48 iter 7 (Sasha): all purple labels (#8460ea) +
                 dividers (#a4a3d0) migrated to the signature gold
                 palette so this screen reads as one family with the
-                landing + entry CTAs. */}
-            <div className="p-4 rounded-2xl bg-white/60 backdrop-blur-md border border-white/50 shadow-sm alive-card">
+                landing + entry CTAs.
+                Day 91 (Sasha 2026-06-09): white glass fills tokenized for
+                Aurum; lapis keeps the exact alphas via var() fallbacks. */}
+            <div className="p-4 rounded-2xl bg-[var(--skin-card-fill,rgba(255,255,255,0.6))] backdrop-blur-md border border-[var(--skin-card-border,rgba(255,255,255,0.5))] shadow-sm alive-card">
                 {/* Header: Icon + Title + Action Statement */}
                 <div className="text-center mb-3 pb-3 border-b border-[#d4af37]/20">
                     <div className="flex justify-center mb-2">
@@ -101,12 +103,12 @@ const ExcaliburDisplay = ({ excalibur, profileId, onSaveToProfile, isSaving, onR
                     <div>
                         <p className="text-[9px] font-medium uppercase tracking-wide mb-1" style={{ color: "#7a5108" }}>Transformational Promise</p>
                         <div className="flex items-center gap-1">
-                            <div className="flex-1 p-1.5 bg-white/70 backdrop-blur-sm rounded-lg border border-white/50">
+                            <div className="flex-1 p-1.5 bg-[var(--skin-card-fill,rgba(255,255,255,0.7))] backdrop-blur-sm rounded-lg border border-[var(--skin-card-border,rgba(255,255,255,0.5))]">
                                 <p className="text-[8px] uppercase" style={{ color: "rgba(122, 81, 8, 0.6)" }}>From</p>
                                 <p className="text-[11px] text-[#2c3150] leading-tight">{excalibur?.transformationalPromise?.fromState || "Where they are"}</p>
                             </div>
                             <ArrowRight className="w-3 h-3 shrink-0" style={{ color: "#7a5108" }} />
-                            <div className="flex-1 p-1.5 bg-white/70 backdrop-blur-sm rounded-lg border border-white/50">
+                            <div className="flex-1 p-1.5 bg-[var(--skin-card-fill,rgba(255,255,255,0.7))] backdrop-blur-sm rounded-lg border border-[var(--skin-card-border,rgba(255,255,255,0.5))]">
                                 <p className="text-[8px] uppercase" style={{ color: "rgba(122, 81, 8, 0.6)" }}>To</p>
                                 <p className="text-[11px] text-[#2c3150] leading-tight">{excalibur?.transformationalPromise?.toState || "Where they want to be"}</p>
                             </div>

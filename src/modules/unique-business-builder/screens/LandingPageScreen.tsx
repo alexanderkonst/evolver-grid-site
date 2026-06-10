@@ -163,7 +163,7 @@ export default function LandingPageScreen() {
                   textTransform: "uppercase",
                   fontSize: "10px",
                   color: "var(--skin-text-primary, #0b2a5a)",
-                  background: "rgba(255, 255, 255, 0.68)",
+                  background: "var(--skin-card-fill, rgba(255, 255, 255, 0.68))",
                   border: "0.5px solid rgba(212, 175, 55, 0.55)",
                 }}
               >

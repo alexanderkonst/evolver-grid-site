@@ -220,7 +220,8 @@ const QualityOfLifePriorities = () => {
                 onDrop={() => handleDrop(domainId)}
                 className={`flex items-center gap-3 rounded-xl border px-4 py-3 transition cursor-grab active:cursor-grabbing focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--depth-violet)]/50 ${isTop
                   ? "border-[var(--depth-violet)]/50 bg-gradient-to-r from-[var(--depth-violet)]/10 to-[var(--wabi-text-muted)]/10"
-                  : "border-[var(--wabi-text-muted)]/20 bg-white/50"
+                  // Day 91 (Sasha 2026-06-09): tokenized for Aurum — fallback keeps lapis at white/50
+                  : "border-[var(--wabi-text-muted)]/20 bg-[var(--skin-card-fill,rgba(255,255,255,0.5))]"
                   }`}
               >
                 <GripVertical className="h-5 w-5 text-[var(--wabi-text-muted)]" />

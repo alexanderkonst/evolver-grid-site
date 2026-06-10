@@ -120,9 +120,10 @@ const LandingPageScreen: React.FC = () => {
 
     return (
         <div className="py-8">
-            {/* Header */}
+            {/* Header — Day 91 (Sasha 2026-06-09): white fills tokenized for
+                Aurum; lapis keeps the exact literals via var() fallbacks. */}
             <div className="text-center mb-8">
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-white border border-gray-200 mb-4">
+                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[var(--skin-card-fill,#ffffff)] border border-[var(--skin-card-border,#e5e7eb)] mb-4">
                     <FileText className="w-8 h-8 text-primary-wabi" />
                 </div>
                 <h1 className="text-3xl font-bold text-[#2c3150] mb-2 uppercase tracking-wide">Your Landing Page</h1>
@@ -132,7 +133,7 @@ const LandingPageScreen: React.FC = () => {
             </div>
 
             {/* Landing Page Preview */}
-            <Card className="max-w-3xl mx-auto mb-8 overflow-hidden bg-white border border-[#a4a3d0]/20">
+            <Card className="max-w-3xl mx-auto mb-8 overflow-hidden bg-[var(--skin-card-fill,#ffffff)] border border-[#a4a3d0]/20">
                 <div className="bg-[#8460ea]/5 px-4 py-2 border-b border-[#a4a3d0]/20 flex items-center gap-2">
                     <Eye className="w-4 h-4 text-[#8460ea]" />
                     <span className="text-sm text-[#2c3150]">Preview</span>
@@ -205,7 +206,7 @@ const LandingPageScreen: React.FC = () => {
                         </div>
 
                         {/* Final CTA */}
-                        <div className="text-center px-6 py-8 bg-white border border-gray-200/50">
+                        <div className="text-center px-6 py-8 bg-[var(--skin-card-fill,#ffffff)] border border-[var(--skin-card-border,rgba(229,231,235,0.5))]">
                             <h3 className="text-xl font-bold mb-2">
                                 {rawData.finalCtaHeadline || "Ready to transform?"}
                             </h3>

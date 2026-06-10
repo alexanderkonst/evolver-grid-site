@@ -182,7 +182,8 @@ export function SentCampaignsSection({
                 key={c.campaign_id}
                 className="rounded-xl px-4 py-3"
                 style={{
-                  background: "rgba(255, 255, 255, 0.55)",
+                  // Day 91 (Sasha 2026-06-09): tokenized for Aurum — fallback = exact prior literal.
+                  background: "var(--skin-input-fill, rgba(255, 255, 255, 0.55))",
                   border:
                     "0.5px solid var(--skin-rule-hairline, rgba(26, 30, 58, 0.08))",
                 }}

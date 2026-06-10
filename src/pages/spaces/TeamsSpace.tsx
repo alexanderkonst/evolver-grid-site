@@ -454,7 +454,7 @@ const TeamsSpace = () => {
                                     type="button"
                                     onClick={() => setMatchMode("genius")}
                                     className={`rounded-full px-3 py-1 font-medium transition ${matchMode === "genius"
-                                        ? "bg-white text-foreground shadow-sm"
+                                        ? "bg-[var(--skin-card-fill,#fff)] text-foreground shadow-sm"
                                         : "text-muted-foreground"
                                         }`}
                                 >
@@ -464,7 +464,7 @@ const TeamsSpace = () => {
                                     type="button"
                                     onClick={() => setMatchMode("assets")}
                                     className={`rounded-full px-3 py-1 font-medium transition ${matchMode === "assets"
-                                        ? "bg-white text-foreground shadow-sm"
+                                        ? "bg-[var(--skin-card-fill,#fff)] text-foreground shadow-sm"
                                         : "text-muted-foreground"
                                         }`}
                                 >
@@ -479,7 +479,7 @@ const TeamsSpace = () => {
                                     id="match-filter"
                                     value={filterMode}
                                     onChange={(e) => setFilterMode(e.target.value as FilterMode)}
-                                    className="rounded-md border border-border bg-white px-2 py-1 text-sm"
+                                    className="rounded-md border border-border bg-[var(--skin-input-fill,#fff)] px-2 py-1 text-sm"
                                 >
                                     <option value="all">All Matches</option>
                                     <option value="mission">Same Mission</option>
@@ -505,8 +505,9 @@ const TeamsSpace = () => {
                         </div>
                     )}
 
+                    {/* Day 91 (Sasha 2026-06-09): card fill tokenized for Aurum — fallback keeps lapis at white/85 */}
                     {!loading && !error && !currentMatch && (
-                        <div className="rounded-xl border border-border bg-white/85 backdrop-blur-sm p-10 text-center shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
+                        <div className="rounded-xl border border-border bg-[var(--skin-card-fill,rgba(255,255,255,0.85))] backdrop-blur-sm p-10 text-center shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
                             <Users className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
                             <h2 className="text-xl font-semibold text-foreground mb-2">No matches yet</h2>
                             <p className="text-muted-foreground max-w-md mx-auto">

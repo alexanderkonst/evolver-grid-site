@@ -51,11 +51,12 @@ const TheOriginalsPage = () => {
         </div>
 
         {/* Founder Cards */}
+        {/* Day 91 (Sasha 2026-06-09): card fills tokenized for Aurum — lapis fallback = exact prior literal. */}
         <div className="space-y-3">
           {FOUNDERS.map((founder) => (
             <div
               key={founder.name}
-              className="p-5 bg-white/60 rounded-xl border border-[#a4a3d0]/20 hover:border-[#8460ea]/30 transition-all"
+              className="p-5 bg-[var(--skin-card-fill,rgba(255,255,255,0.6))] rounded-xl border border-[#a4a3d0]/20 hover:border-[#8460ea]/30 transition-all"
             >
               <div className="flex items-start justify-between">
                 <div className="flex-1">
@@ -89,7 +90,7 @@ const TheOriginalsPage = () => {
         </div>
 
         {/* What Is This */}
-        <div className="p-5 bg-white/60 rounded-xl border border-[#a4a3d0]/20">
+        <div className="p-5 bg-[var(--skin-card-fill,rgba(255,255,255,0.6))] rounded-xl border border-[#a4a3d0]/20">
           <h2 className="font-semibold text-[#2c3150] mb-2">
             What is The Originals?
           </h2>

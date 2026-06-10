@@ -397,7 +397,7 @@ export default function CanvasOverviewScreen() {
                   textTransform: "uppercase",
                   fontSize: "11.5px",
                   color: "var(--skin-text-primary, #0b2a5a)",
-                  background: "rgba(255, 255, 255, 0.68)",
+                  background: "var(--skin-card-fill, rgba(255, 255, 255, 0.68))",
                   border: "0.5px solid rgba(212, 175, 55, 0.45)",
                   boxShadow: "0 0 12px -4px rgba(212, 175, 55, 0.30)",
                 }}
@@ -573,7 +573,7 @@ function PhaseSection({ title, keys }: { title: string; keys: readonly ArtifactK
                   letterSpacing: "0.14em",
                   textTransform: "uppercase",
                   color: "var(--skin-text-muted, rgba(11, 42, 90, 0.62))",
-                  background: "rgba(255, 255, 255, 0.45)",
+                  background: "var(--skin-card-fill, rgba(255, 255, 255, 0.45))",
                   border: "0.5px solid var(--skin-rule-medium, rgba(26, 30, 58, 0.15))",
                 }}
                 title={`This phase implements Playbook Step ${sl.number} — ${sl.appName}`}

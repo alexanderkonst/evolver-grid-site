@@ -55,7 +55,8 @@ const QoLRevealScreen = ({ scores, focusArea, onContinue, saving = false }: QoLR
                     </div>
 
                     {/* Score Display */}
-                    <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-6 border border-white/50 shadow-xl">
+                    {/* Day 91 (Sasha 2026-06-09): tokenized for Aurum — fallbacks keep lapis identical */}
+                    <div className="bg-[var(--skin-card-fill,rgba(255,255,255,0.8))] backdrop-blur-sm rounded-3xl p-6 border border-[var(--skin-card-border,rgba(255,255,255,0.5))] shadow-xl">
                         {/* Pentagon visualization simplified to list */}
                         <div className="space-y-4 mb-6">
                             {Object.entries(scores).map(([key, value]) => {
@@ -66,7 +67,7 @@ const QoLRevealScreen = ({ scores, focusArea, onContinue, saving = false }: QoLR
                                         key={key}
                                         className={`flex items-center justify-between p-3 rounded-xl transition-all ${isLowest
                                                 ? 'bg-[var(--wabi-blush)]/20 border border-[var(--wabi-blush)]/30'
-                                                : 'bg-white/50'
+                                                : 'bg-[var(--skin-input-fill,rgba(255,255,255,0.5))]'
                                             }`}
                                     >
                                         <div className="flex items-center gap-3">
@@ -79,7 +80,7 @@ const QoLRevealScreen = ({ scores, focusArea, onContinue, saving = false }: QoLR
                                             )}
                                         </div>
                                         <div className="flex items-center gap-2">
-                                            <div className="w-24 h-2 bg-gray-200 rounded-full overflow-hidden">
+                                            <div className="w-24 h-2 bg-[var(--skin-input-fill,#e5e7eb)] rounded-full overflow-hidden">
                                                 <div
                                                     className="h-full bg-gradient-to-r from-[var(--depth-violet)] to-[var(--depth-cornflower)] transition-all"
                                                     style={{ width: `${value * 10}%` }}
@@ -93,7 +94,7 @@ const QoLRevealScreen = ({ scores, focusArea, onContinue, saving = false }: QoLR
                         </div>
 
                         {/* Overall */}
-                        <div className="pt-4 border-t border-gray-200">
+                        <div className="pt-4 border-t border-[var(--skin-card-border,#e5e7eb)]">
                             <p className="text-sm text-[var(--wabi-text-muted)]">Overall Balance</p>
                             <p className="text-3xl font-bold text-[var(--depth-violet)]">{average.toFixed(1)} / 10</p>
                         </div>

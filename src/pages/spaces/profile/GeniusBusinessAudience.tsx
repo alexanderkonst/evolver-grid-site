@@ -42,8 +42,9 @@ const GeniusBusinessAudience = () => {
 
                 {data ? (
                     <div className="space-y-4">
+                        {/* Day 91 (Sasha 2026-06-09): card fills tokenized for Aurum — lapis fallback = exact prior literal. */}
                         {/* Profile */}
-                        <div className="p-5 bg-white/60 rounded-xl border border-[#a4a3d0]/20">
+                        <div className="p-5 bg-[var(--skin-card-fill,rgba(255,255,255,0.6))] rounded-xl border border-[#a4a3d0]/20">
                             <div className="flex items-start gap-3">
                                 <Users className="w-5 h-5 text-[#8460ea] mt-0.5" />
                                 <div>
@@ -54,7 +55,7 @@ const GeniusBusinessAudience = () => {
                         </div>
 
                         {/* Problem */}
-                        <div className="p-5 bg-white/60 rounded-xl border border-[#a4a3d0]/20">
+                        <div className="p-5 bg-[var(--skin-card-fill,rgba(255,255,255,0.6))] rounded-xl border border-[#a4a3d0]/20">
                             <div className="flex items-start gap-3">
                                 <AlertCircle className="w-5 h-5 text-[#8460ea] mt-0.5" />
                                 <div>
@@ -66,7 +67,7 @@ const GeniusBusinessAudience = () => {
 
                         {/* Aha moment */}
                         {data.aha && (
-                            <div className="p-5 bg-white/60 rounded-xl border border-[#a4a3d0]/20">
+                            <div className="p-5 bg-[var(--skin-card-fill,rgba(255,255,255,0.6))] rounded-xl border border-[#a4a3d0]/20">
                                 <div className="flex items-start gap-3">
                                     <Lightbulb className="w-5 h-5 text-[#8460ea] mt-0.5" />
                                     <div>

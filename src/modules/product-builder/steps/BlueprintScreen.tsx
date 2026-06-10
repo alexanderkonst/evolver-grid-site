@@ -90,9 +90,10 @@ const BlueprintScreen: React.FC = () => {
 
     return (
         <div className="py-8">
-            {/* Header */}
+            {/* Header — Day 91 (Sasha 2026-06-09): white fills tokenized for
+                Aurum; lapis keeps the exact literals via var() fallbacks. */}
             <div className="text-center mb-8">
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-white border border-gray-200 mb-4">
+                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[var(--skin-card-fill,#ffffff)] border border-[var(--skin-card-border,#e5e7eb)] mb-4">
                     <BookOpen className="w-8 h-8 text-primary-wabi" />
                 </div>
                 <h1 className="text-3xl font-bold text-[#2c3150] mb-2 uppercase tracking-wide">Your Blueprint</h1>
@@ -102,7 +103,7 @@ const BlueprintScreen: React.FC = () => {
             </div>
 
             {/* Blueprint Preview */}
-            <div className="max-w-2xl mx-auto mb-8 bg-white rounded-xl border border-[#a4a3d0]/20 shadow-sm">
+            <div className="max-w-2xl mx-auto mb-8 bg-[var(--skin-card-fill,#ffffff)] rounded-xl border border-[#a4a3d0]/20 shadow-sm">
                 <div className="p-6">
                     {/* Title */}
                     <div className="flex items-center gap-3 mb-6 pb-4 border-b border-[#a4a3d0]/20">

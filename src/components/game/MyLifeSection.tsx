@@ -36,8 +36,9 @@ const MyLifeSection = ({ qolScores }: MyLifeSectionProps) => {
     const lowestTwo = sortedScores.slice(0, 2);
     const lowestLabels = lowestTwo.map(d => d.label).join(" and ");
 
+    // Day 91 (Sasha 2026-06-09): tokenized for Aurum - lapis falls back to the exact original literals
     return (
-        <div className="rounded-xl border border-[#a4a3d0]/20 bg-white/85 backdrop-blur-sm p-5 mb-4 shadow-[0_4px_16px_rgba(44,49,80,0.06)] breathing-card">
+        <div className="rounded-xl border border-[color:var(--skin-card-border,rgba(164,163,208,0.2))] bg-[var(--skin-card-fill,rgba(255,255,255,0.85))] backdrop-blur-sm p-5 mb-4 shadow-[0_4px_16px_rgba(44,49,80,0.06)] breathing-card">
             <div className="flex items-center gap-3 mb-4">
                 <div className="p-2 rounded-full bg-[#6894d0]/20">
                     <BarChart3 className="w-5 h-5 text-[#6894d0]" />
@@ -69,7 +70,7 @@ const MyLifeSection = ({ qolScores }: MyLifeSectionProps) => {
             </div>
 
             {/* Insight */}
-            <p className="text-sm text-[#2c3150]/70 bg-[#f0f4ff]/60 rounded-lg p-3">
+            <p className="text-sm text-[#2c3150]/70 bg-[var(--skin-input-fill,rgba(240,244,255,0.6))] rounded-lg p-3">
                 <span className="font-medium">Your life is asking for attention in:</span>{" "}
                 <span className="text-[#8460ea] font-semibold">{lowestLabels}</span>
             </p>
