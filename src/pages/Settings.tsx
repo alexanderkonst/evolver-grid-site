@@ -90,8 +90,8 @@ const AppearanceTab = () => {
             <div
                 className="rounded-2xl p-5 sm:p-6 space-y-4"
                 style={{
-                    background: "rgba(255, 255, 255, 0.65)",
-                    border: "1px solid hsla(228, 30%, 18%, 0.10)",
+                    background: "var(--skin-card-bg, rgba(255, 255, 255, 0.65))",
+                    border: "1px solid var(--skin-card-border, hsla(228, 30%, 18%, 0.10))",
                     boxShadow:
                         "0 4px 16px -8px hsla(228, 30%, 18%, 0.10), inset 0 1px 0 hsla(0, 0%, 100%, 0.50)",
                     backdropFilter: "blur(8px)",
@@ -190,7 +190,7 @@ const AppearanceTab = () => {
                                                         className="text-[9px] tracking-[0.22em] uppercase font-semibold px-2 py-0.5 rounded-full"
                                                         style={{
                                                             backgroundColor: "rgba(212, 175, 55, 0.14)",
-                                                            color: "#7a5108",
+                                                            color: "var(--skin-tab-active-ink, #7a5108)",
                                                             border: "0.5px solid rgba(212, 175, 55, 0.32)",
                                                             fontFamily: "'Cormorant Garamond', serif",
                                                             letterSpacing: "0.18em",
@@ -301,8 +301,8 @@ const NotificationsTab = () => {
             <div
                 className="rounded-2xl p-5 sm:p-6 space-y-4"
                 style={{
-                    background: "rgba(255, 255, 255, 0.65)",
-                    border: "1px solid hsla(228, 30%, 18%, 0.10)",
+                    background: "var(--skin-card-bg, rgba(255, 255, 255, 0.65))",
+                    border: "1px solid var(--skin-card-border, hsla(228, 30%, 18%, 0.10))",
                     boxShadow:
                         "0 4px 16px -8px hsla(228, 30%, 18%, 0.10), inset 0 1px 0 hsla(0, 0%, 100%, 0.50)",
                     backdropFilter: "blur(8px)",
@@ -424,8 +424,8 @@ const DataExportTab = () => {
             <div
                 className="rounded-2xl p-5 sm:p-6 space-y-5"
                 style={{
-                    background: "rgba(255, 255, 255, 0.65)",
-                    border: "1px solid hsla(228, 30%, 18%, 0.10)",
+                    background: "var(--skin-card-bg, rgba(255, 255, 255, 0.65))",
+                    border: "1px solid var(--skin-card-border, hsla(228, 30%, 18%, 0.10))",
                     boxShadow:
                         "0 4px 16px -8px hsla(228, 30%, 18%, 0.10), inset 0 1px 0 hsla(0, 0%, 100%, 0.50)",
                     backdropFilter: "blur(8px)",
@@ -473,7 +473,7 @@ const DataExportTab = () => {
                         className="text-xs uppercase tracking-[0.18em] font-semibold"
                         style={{
                             fontFamily: "'Cormorant Garamond', serif",
-                            color: "#7a5108",
+                            color: "var(--skin-tab-active-ink, #7a5108)",
                         }}
                     >
                         Included
@@ -657,14 +657,14 @@ const Settings = () => {
                             className="mb-6 h-auto p-1 rounded-full grid w-full grid-cols-3"
                             style={{
                                 background: "hsla(228, 30%, 18%, 0.06)",
-                                border: "1px solid hsla(228, 30%, 18%, 0.10)",
+                                border: "1px solid var(--skin-card-border, hsla(228, 30%, 18%, 0.10))",
                             }}
                         >
                             <TabsTrigger
                                 value="profile"
                                 className={cn(
                                     "gap-2 rounded-full min-h-[44px] px-3 sm:px-5 py-2 transition-all",
-                                    "data-[state=active]:bg-white data-[state=active]:shadow-sm",
+                                    "data-[state=active]:bg-[var(--skin-tab-active-bg,#fff)] data-[state=active]:shadow-sm",
                                     "data-[state=inactive]:text-muted-foreground",
                                 )}
                                 style={{
@@ -675,7 +675,7 @@ const Settings = () => {
                                     textTransform: "uppercase",
                                     color:
                                         activeTab === "profile"
-                                            ? "#7a5108"
+                                            ? "var(--skin-tab-active-ink, #7a5108)"
                                             : undefined,
                                 }}
                             >
@@ -686,7 +686,7 @@ const Settings = () => {
                                 value="notifications"
                                 className={cn(
                                     "gap-2 rounded-full min-h-[44px] px-3 sm:px-5 py-2 transition-all",
-                                    "data-[state=active]:bg-white data-[state=active]:shadow-sm",
+                                    "data-[state=active]:bg-[var(--skin-tab-active-bg,#fff)] data-[state=active]:shadow-sm",
                                     "data-[state=inactive]:text-muted-foreground",
                                 )}
                                 style={{
@@ -697,7 +697,7 @@ const Settings = () => {
                                     textTransform: "uppercase",
                                     color:
                                         activeTab === "notifications"
-                                            ? "#7a5108"
+                                            ? "var(--skin-tab-active-ink, #7a5108)"
                                             : undefined,
                                 }}
                             >
@@ -714,7 +714,7 @@ const Settings = () => {
                                 value="export"
                                 className={cn(
                                     "gap-2 rounded-full min-h-[44px] px-3 sm:px-5 py-2 transition-all",
-                                    "data-[state=active]:bg-white data-[state=active]:shadow-sm",
+                                    "data-[state=active]:bg-[var(--skin-tab-active-bg,#fff)] data-[state=active]:shadow-sm",
                                     "data-[state=inactive]:text-muted-foreground",
                                 )}
                                 style={{
@@ -725,7 +725,7 @@ const Settings = () => {
                                     textTransform: "uppercase",
                                     color:
                                         activeTab === "export"
-                                            ? "#7a5108"
+                                            ? "var(--skin-tab-active-ink, #7a5108)"
                                             : undefined,
                                 }}
                             >
@@ -745,7 +745,7 @@ const Settings = () => {
                                 value="appearance"
                                 className={cn(
                                     "gap-2 rounded-full min-h-[44px] px-3 sm:px-5 py-2 transition-all",
-                                    "data-[state=active]:bg-white data-[state=active]:shadow-sm",
+                                    "data-[state=active]:bg-[var(--skin-tab-active-bg,#fff)] data-[state=active]:shadow-sm",
                                     "data-[state=inactive]:text-muted-foreground",
                                 )}
                                 style={{
@@ -756,7 +756,7 @@ const Settings = () => {
                                     textTransform: "uppercase",
                                     color:
                                         activeTab === "appearance"
-                                            ? "#7a5108"
+                                            ? "var(--skin-tab-active-ink, #7a5108)"
                                             : undefined,
                                 }}
                             >

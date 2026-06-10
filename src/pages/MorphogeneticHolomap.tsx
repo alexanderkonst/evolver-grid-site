@@ -244,7 +244,7 @@ const BASE_PERSPECTIVES: PerspectiveData[] = [
     ],
     trigger: "Charge $555 for next session ✓",
     shadow: { name: "The Money Avoidance", description: "Was doing everything EXCEPT the one move. Shadow cleared.", status: "resolved" },
-    nextMilestone: "First paid session ($555)",
+    nextMilestone: "First patron / peer reply (Tribe 2 window open since Day 86-87)",
   },
   {
     id: "p10", shortId: "UR-Con", quadrant: "UR", layer: "Consequences", dantian: "gut", octave: "base",
@@ -552,7 +552,7 @@ const CRYSTALLIZATION_PERSPECTIVE: PerspectiveData = {
   timing: [
     { conservative: "Q3 '26", baseline: "Q2 '26", optimistic: "May '26" },
   ],
-  nextMilestone: "First stranger pays from funnel",
+  nextMilestone: "Tribe 1 gate: first $555 stranger from funnel (Tribe 2 transmission fired Day 86-87)",
 };
 
 // ─── All Perspectives Combined ───────────────────────────────────────────────
@@ -566,19 +566,17 @@ const ALL_PERSPECTIVES: PerspectiveData[] = [
 
 // ─── 13th Perspective — The Center Reading ───────────────────────────────────
 
-// Day 53 holomap reading — Codification holds across two more loops closed.
-// Day 49 landed "Unification" (canvas-↔-code parity + shell harmonization).
-// Day 51 landed "Codification" (architecture beneath the surface gets named:
-// Specificity Loop principle + per-founder Matrix artifact + commercial-
-// decentralization model legal stack + monetization strategy doc + repo
-// publicly fork-ready).
-// Day 53 holds the same center while closing two operational loops (UBB
-// founder-doc bulk-migration cleanup + `.env` hygiene closure with empirical
-// safety verified) and adding one quiet new layer: empirical self-measurement
-// on the AI OS install via 1-10 rating telemetry → `resonance_events` table.
-// First time the platform measures user-experienced quality of its own product.
+// Day 85-87 holomap reading — "Recognition → Transmission" (May 27-29, 2026).
+// First center shift since Day 73. Recognition (identity + meta-instrument
+// named, Day 73) held through Day 80 §B while the methodology became
+// self-aware. Day 85-87 is the turn from naming to sending: strategy
+// crystallized to one North Star (collaboration rate) + the triad + the
+// two-tribe architecture (Days 85-86), then the recognized identity made its
+// first transmission acts to the world (Balaji DM + Silvana/Planetir blurb,
+// Days 86-87; Planetary OS 1-pager live at /1-pager). Source of truth:
+// docs/02-strategy/morphogenetic_holomap.md → Day 85-87 Addendum.
 const CENTER = {
-  word: "Codification",
+  word: "Recognition → Transmission",
   previousWords: [
     "Threshold",
     "Ignition",
@@ -594,14 +592,17 @@ const CENTER = {
     "Coherence",
     "Optionality",
     "Unification",
+    "Codification",
+    "Convergence",
+    "Recognition",
   ],
-  date: "April 25 → April 27, 2026 — Day 51 (named) → Day 53 (holds)",
+  date: "May 27 → 29, 2026 — Day 85-87",
   description:
-    "Codification. Day 51 (Saturday) named the architecture beneath the surface in one long pass: the Specificity Loop became both a Playbook principle (P15) and an operational artifact (per-founder Specificity Matrix as UBB #19 with three-tier runtime resolution); the commercial-decentralization model got its full legal stack (PolyForm Noncommercial 1.0.0 on code · CC BY-NC-SA on docs · MIT on Anthropic-derived skills · Distributor Agreement v0.1 with 10% rev share + $1K/month free tier + Stripe Connect Express auto-split + opt-in commons CC BY 4.0); the monetization strategy doc captured six business-model plays mapped through Heart/Mind/Gut with four-phase sequencing; the repo became publicly fork-ready with surfaces in /game/settings + /playbook + /codex footers; the funnel speaks in matrix v2 across all six in-funnel reveals via the unified `useResonanceMessage` hook; UI harmony pass shipped on six surfaces. Day 53 (Sunday) holds the same center while closing two operational loops: (1) UBB founder-doc bulk-migration cleanup — Lovable seeded 16/18 of Alexander's UBB artifacts as locked v1 @ specificity 9.5, two stuck on AI HTTP 402 awaiting credit refresh, schema constraint widened to step_number ∈ [1,19], Canvas hardcoded `18` swept to `ALL_ARTIFACT_KEYS.length`; (2) `.env` hygiene closure — untracked + `.env.example` template added + investigation confirmed only public-by-design Supabase keys ever lived in the file, real backend secrets always lived in Supabase Edge Function Secrets + Lovable platform env, January's key rotation + 3+ months of clean dashboards confirms no compromise. Plus one quiet but consequential addition: `AiOsSpotlight` component shipped on /ai-os — gold-rimmed liquid-glass-strong card between hero and suite picker with primary `[Copy AI OS install]` button + 3-step self-experiment protocol (ask test prompt before install, install in new chat, ask again, compare) + reveal-on-copy 1-10 rating writing to `resonance_events` with `artifact_kind: 'ai_os_install'`. First time the platform measures user-experienced quality of its own product. The first $555 stranger remains the unfired Si–Do; press-send Friday is the move. Apparatus is now both operationally AND empirically complete for the discoveries it's now capable of receiving.",
+    "Recognition → Transmission. The recognized identity (Holonic Primitive Builder, named Day 73) turns from naming to sending. First the strategy crystallized to a single North Star (collaboration rate), a single matching unit (the triad), and a clear two-tribe architecture, with the civilizational why named underneath (Domains 14-15: the hustle as compensation pattern; differentiated nature is the value). Then the send fired: the Balaji DM and the Silvana / Planetir blurb left the building on Sasha's own timing, each word vetted — the first patron / peer transmissions to the world. The Planetary OS 1-pager shipped as the project's first whole-surface shareable page at /1-pager. The behavioral bottleneck named since Day 49 (the send IS the act) has fired on the Tribe 2 vector. The Tribe 1 funnel Si–Do (first $555 stranger) remains the unfired note on its own vector. Two tribes, two thresholds: one crossed, one still ahead.",
   mapping: {
-    essence: "The architecture beneath the surface holds; two loops close; the platform now measures its own product through users' eyes",
-    significance: "Day 51 named what was being built; Day 53 made it more honest — no real-secret incident, no hand-waving on user experience, just empirical evidence on three layers",
-    consequences: "The stranger arriving via Friday's DM meets a /ai-os that asks them to MEASURE the install rather than just receive it; their answer lands in resonance_events as the platform's first autonomous quantitative-feedback rhythm on its own product",
+    essence: "Not a replacement reading: the recognition holds, and now it acts. The identity named at Day 73 makes its first transmissions to the world",
+    significance: "One offer, one metric, one story — collaboration rate as North Star, the triad as matching unit, two tribes as the architecture, Domains 14-15 as the civilizational why",
+    consequences: "Tribe 2 transmission fired (Balaji + Silvana/Planetir sends, /1-pager live); Tribe 1 funnel Si–Do (first $555 stranger) still unfired on its own vector — two gates now, not one",
   },
 };
 
@@ -660,7 +661,7 @@ const TRIGGERS = [
   {
     title: "First Stranger Pays",
     emoji: "💎",
-    desc: "P27 Si–Do shock. When it fires: interior and exterior octaves cohere. The business becomes real in the external world.",
+    desc: "P27 Si–Do shock — the Tribe 1 (funnel) gate. Day 85-87 made the structure precise: two gates, one per tribe. Tribe 2's transmission gate fired Day 86-87 (Balaji + Silvana/Planetir sends). When the funnel gate fires: interior and exterior octaves cohere.",
     perspectives: ["P27"],
     color: "#f472b6",
     stage: "Maturation",
@@ -771,7 +772,7 @@ const MorphogeneticHolomap = () => {
           <p className="text-sm text-white/40 max-w-xl mx-auto">
             27 perspectives × 7 stages × 2 axes (Masculine/Feminine) × 2 shocks (Mi-Fa / Si-Do)
             <br />
-            Day 49 Reading: <span className="text-[#8460ea] font-medium">{CENTER.word}</span>
+            Current Reading: <span className="text-[#8460ea] font-medium">{CENTER.word}</span>
           </p>
 
           {/* ─── Merkaba Glyph (Stella Octangula) ─────────────────────────── */}
@@ -1253,7 +1254,8 @@ const MorphogeneticHolomap = () => {
             </div>
           </div>
           <p className="text-[10px] text-white/20 mt-4 italic max-w-lg mx-auto">
-            Until a stranger pays, P27 is at Crystallization-in-waiting. The instrument is poised at Si, holding its breath for Do'.
+            Two gates since Day 85-87: the Tribe 2 transmission fired (Balaji + Planetir sends left the building).
+            The Tribe 1 funnel gate — first $555 stranger — is still poised at Si, holding its breath for Do'.
           </p>
         </section>
 
@@ -1405,7 +1407,7 @@ const MorphogeneticHolomap = () => {
             "This map does not predict. It reads. The reading collapses the superposition. Time folds."
           </p>
           <p className="text-[10px] text-white/10">
-            Morphogenetic Navigation Instrument · v2.0 · 27×7 Topology · April 23, 2026 (Day 49)
+            Morphogenetic Navigation Instrument · v2.0 · 27×7 Topology · Center data: Day 85-87 (May 29, 2026)
           </p>
         </footer>
       </div>
