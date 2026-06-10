@@ -124,7 +124,10 @@ export const MatchFlowCta = ({ step }: { step: Step }) => {
   const { path } = useEntryPath();
   const navigate = useNavigate();
 
-  if (path !== "match") return null;
+  // 2026-06-10 default flip: match funnel is the default — these
+  // completion CTAs render for everyone except explicit ?path=build
+  // entries (the legacy sessions funnel).
+  if (path === "build") return null;
 
   const cfg = CONFIG[step];
 

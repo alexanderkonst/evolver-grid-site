@@ -99,17 +99,18 @@ const CelebrationModal = ({ payload, open, onClose }: CelebrationModalProps) => 
     const isGraduation = payload.variant === "graduation";
 
     // Graduation copy is verbatim from Sasha's Day 80 Wave 2.1 spec.
-    // Primary CTA is path-aware: match path → Find Collaborators;
-    // build path → Build A Business.
+    // Primary CTA is path-aware: match funnel (the default since the
+    // 2026-06-10 flip) → Find Collaborators; explicit `?path=build`
+    // entry → Build A Business.
     const copy: CopyBlock = isGraduation
         ? {
               headline: "Congrats with completing your collaboration profile!",
               statement: "You just unlocked Collaborator Matching!",
               ps: "PS: taking the optional Quality of Life assessment improves collaboration match quality.",
               primaryLabel:
-                  entryPath === "match" ? "Find Collaborators" : "Build A Business",
+                  entryPath !== "build" ? "Find Collaborators" : "Build A Business",
               primaryPath:
-                  entryPath === "match" ? "/game/collaborate/matches" : "/path",
+                  entryPath !== "build" ? "/game/collaborate/matches" : "/path",
           }
         : REGULAR_COPY[payload.primitive];
 

@@ -755,7 +755,11 @@ const MissionDiscoveryLanding = () => {
                             icon={<Pencil className="w-4 h-4" />}
                             rightIcon={null}
                         />
-                        {entryPath !== "match" && (
+                        {/* 2026-06-10 default flip: match funnel is the
+                            default, so MatchFlowCta carries the forward
+                            CTA for everyone except explicit ?path=build
+                            entries. */}
+                        {entryPath === "build" && (
                             <EditorialCta
                                 variant="primary"
                                 label="See on profile"

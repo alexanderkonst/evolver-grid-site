@@ -98,8 +98,10 @@ const ZoneOfGeniusEntry = () => {
     // Faster/Guided options so the user understands the Top Talent
     // reveal is step 1 and the actual intros come after. Build-path
     // users see the screen unchanged.
+    // 2026-06-10 default flip: match funnel is the default — only an
+    // explicit `?path=build` entry hides the orientation preamble.
     const { path: entryPath } = useEntryPath();
-    const isMatchPath = entryPath === "match";
+    const isMatchPath = entryPath !== "build";
 
     // Show the full platform shell everywhere (Sasha, 2026-04-21): the ZoG
     // reveal module now lives inside the JOURNEY shell regardless of route.

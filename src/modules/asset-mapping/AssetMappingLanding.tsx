@@ -993,10 +993,13 @@ const AssetMappingLanding = () => {
                             inline so we don't add another hook here. */}
                         <div className="flex flex-wrap items-center gap-3 pt-1">
                             {(() => {
+                                // 2026-06-10 default flip: match funnel is
+                                // the default; only explicit ?path=build
+                                // keeps the legacy three-button row.
                                 const isMatchPath =
                                     typeof window !== "undefined" &&
-                                    (window.localStorage?.getItem("ftt_entry_path") === "match" ||
-                                        window.sessionStorage?.getItem("ftt_entry_path") === "match");
+                                    (window.localStorage?.getItem("ftt_entry_path") ||
+                                        window.sessionStorage?.getItem("ftt_entry_path")) !== "build";
 
                                 return (
                                     <>
