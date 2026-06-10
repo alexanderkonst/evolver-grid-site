@@ -64,6 +64,7 @@
 
 | # | Item | Path | Status | Notes |
 |---|------|------|--------|-------|
+| C0 | **Design the first paid pilot — the Collaboration Map** | Tribe 2 | 🔴 NEW 2026-06-10 | Feeds the live Planetir conversation. Shape locked in the June 9 iteration: leader's own reveal free (the lead magnet) · paid map BEFORE volunteers onboard · 5-10 members for pair density · 3 selective intros written in the leader's voice · double-opt-in consent built in · leader-as-broker first, member self-serve second · cross-community in pocket. Sasha's read: *"it's actually going to be way easier than I now imagine, because simplicity is really the DNA of this project."* Open design details: (a) **what do we measure**; (b) **the exact ask** to the 5-10 volunteers; (c) **the price** for the ecosystem leader; (d) **Sasha's time budget** to produce the 3 best collaboration proposals. Output artifact: the priced, dated, signable pilot one-pager |
 | C1 | **Balaji** post-send arc | Tribe 2 | ⏳ Waiting | Sent Day 86. 13-day silence window, no nudge before ~June 11. Reply triggers a call-prep brief; no-reply by day 14 triggers the drafted follow-up. Protocol in `leonardo_strategy_instances/balaji_srinivasan.md` |
 | C2 | **Silvana → Planetir** | Tribe 2 | 🟢 In conversation | Silvana replied + connected Sasha to the Planetir team; **paid pilot under discussion** (status corrected 2026-06-09) |
 | C3 | **Victoria** 1-pager | Tribe 2 | ⏳ Waiting | Sent 2026-05-29 (status corrected 2026-06-09 — was logged as prepared-only). Awaiting forwards / replies |
