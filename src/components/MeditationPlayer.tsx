@@ -6,6 +6,12 @@
  * accent + dark navy text. No external lib — HTML5 <audio> underneath,
  * custom controls on top. ~60 lines.
  *
+ * Day 91 (Sasha 2026-06-09): tokenized for Aurum — card fill, hairline,
+ * and ink read skin tokens with the original literals as fallbacks
+ * (Lapis pixel-identical). The gold play button keeps its navy icon:
+ * its gradient is hardcoded light-gold in every skin, so dark ink on
+ * it stays correct.
+ *
  * Usage:
  *   <MeditationPlayer src="/audio/activation-meditation.mp3" title="The Activation" />
  */
@@ -76,9 +82,9 @@ export default function MeditationPlayer({ src, title }: MeditationPlayerProps) 
     <div
       className="rounded-3xl p-6 sm:p-7"
       style={{
-        backgroundImage:
-          "linear-gradient(180deg, rgba(255,255,255,0.96), rgba(255,255,255,0.88))",
-        border: "1px solid rgba(122, 81, 8, 0.18)",
+        background:
+          "var(--skin-card-fill, linear-gradient(180deg, rgba(255,255,255,0.96), rgba(255,255,255,0.88)))",
+        border: "1px solid var(--skin-card-border, rgba(122, 81, 8, 0.18))",
         boxShadow:
           "0 10px 28px -10px rgba(10,22,40,0.18), 0 0 24px -4px rgba(244,212,114,0.30), inset 0 1px 0 rgba(255,255,255,0.6)",
         backdropFilter: "blur(10px)",
