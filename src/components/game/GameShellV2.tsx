@@ -1,5 +1,5 @@
-import { ReactNode, useState, useEffect, useRef } from "react";
-import { Link, useLocation, useNavigate, useNavigationType } from "react-router-dom";
+import { ReactNode, useState, useEffect, useRef, createContext, useContext } from "react";
+import { Link, useLocation, useNavigate, useNavigationType, Outlet } from "react-router-dom";
 import { ArrowLeft, Menu, PanelLeft } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { getOrCreateGameProfileId } from "@/lib/gameProfile";
@@ -314,7 +314,15 @@ const LEARN_VISIBLE = false;
 const MEET_VISIBLE = false;
 
 interface GameShellV2Props {
-    children: ReactNode;
+    /**
+     * Day 87 (Sasha 2026-05-29): now OPTIONAL. When GameShellV2 is used
+     * as a React Router *layout route* element (no children passed), it
+     * renders `<Outlet/>` for the matched child route instead. This is
+     * what lets the shell mount ONCE and persist across navigations —
+     * the central fix of the layout-route refactor. Legacy call sites
+     * that still pass children (the 5 holdouts) keep working unchanged.
+     */
+    children?: ReactNode;
     /** Force hide navigation panels (for onboarding flows) */
     hideNavigation?: boolean;
     /** Force show navigation even during onboarding (for tour spotlight) */
@@ -333,12 +341,52 @@ interface GameShellV2Props {
 }
 
 /**
- * GameShellV2 - Three-panel Discord-style navigation
+ * Day 87 (Sasha 2026-05-29) — Shell-nesting guard for the layout-route
+ * refactor.
+ *
+ * `false` outside any shell; flipped to `true` by the real shell once it
+ * mounts. A nested GameShellV2 (e.g., a page that still wraps its own
+ * `<GameShellV2>` while a layout route already supplied the shell)
+ * reads `true` and renders as a transparent pass-through — no second
+ * rail/panes. This is what makes the migration safe to land
+ * INCREMENTALLY on the live site: we add the layout routes first (pages
+ * keep their internal wrapper, which harmlessly no-ops), then strip the
+ * redundant inner wrappers in batches. Every commit renders correctly,
+ * never double-wrapped.
+ */
+const ShellNestingContext = createContext(false);
+
+/**
+ * GameShellV2 — dispatcher.
+ *
+ * - Nested (already inside a shell): transparent pass-through. Renders
+ *   `children`, or `<Outlet/>` if used as a layout element.
+ * - Top-level: provides the nesting context + renders the real shell
+ *   (`GameShellV2Inner`).
+ *
+ * The single `useContext` call sits before the branch so the Rules of
+ * Hooks hold for this component; all the heavy hooks live in
+ * `GameShellV2Inner`, which only ever renders at the top level.
+ */
+export const GameShellV2 = (props: GameShellV2Props) => {
+    const alreadyInShell = useContext(ShellNestingContext);
+    if (alreadyInShell) {
+        return <>{props.children ?? <Outlet />}</>;
+    }
+    return (
+        <ShellNestingContext.Provider value={true}>
+            <GameShellV2Inner {...props} />
+        </ShellNestingContext.Provider>
+    );
+};
+
+/**
+ * GameShellV2Inner - Three-panel Discord-style navigation
  * Panel 1: SpacesRail (icons)
- * Panel 2: SectionsPanel (sections list)  
+ * Panel 2: SectionsPanel (sections list)
  * Panel 3: Content area
  */
-export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, showNavigation: forceShowNavigation, hideLogo, enableRailMinimize = false }: GameShellV2Props) => {
+const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showNavigation: forceShowNavigation, hideLogo, enableRailMinimize = false }: GameShellV2Props) => {
     // Day 82 v4 (Sasha 2026-05-24): pane-1 minimize state. Defaults to
     // ON when enableRailMinimize is enabled — Karime's pages open with
     // the rail in compact (icon-only) mode so the editorial card has
@@ -919,7 +967,7 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                 )}
                 <SiteLogo />
                 <div className="relative z-10">
-                    {children}
+                    {children ?? <Outlet />}
                 </div>
             </div>
         );
@@ -1627,7 +1675,7 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                         pass it. Re-add this block if a future shell variant wants
                         a home glyph back. */}
                     <div className="page-transition-enter">
-                        {children}
+                        {children ?? <Outlet />}
                     </div>
                 </main>
             </div>
@@ -1962,7 +2010,7 @@ export const GameShellV2 = ({ children, hideNavigation: forceHideNavigation, sho
                         }}
                     >
                         <div className="page-transition-enter">
-                            {children}
+                            {children ?? <Outlet />}
                         </div>
                     </main>
                 </div>
