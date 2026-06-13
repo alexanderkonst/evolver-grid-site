@@ -509,7 +509,22 @@ type EntryPath = "match" | "build" | null;
 
 const buildJourneySections = (
     _currentPath: string,
-    _deepProfileActivated: boolean,
+    // Day 95 (Sasha 2026-06-13): now USED (was `_deepProfileActivated`,
+    // threaded-but-ignored). This is the BROAD "deeper Top Talent view
+    // is active" signal from useDeepProfileActivated — true when the
+    // user has completed the reveal (saved zog_snapshot) OR paid OR
+    // redeemed a coupon. It is the canonical gate the rest of the
+    // platform already consumes (BUILD-space unlock, ME dropdown reveal,
+    // Karime row). The $37 power-up row below now uses it too, fixing
+    // the two bugs Sasha hit: (1) the row never crossed out for
+    // reveal-completers who hadn't paid $37, because it used the NARROW
+    // `activationDone` (paid/coupon only); (2) it always routed to the
+    // /activate-top-talent SALES page even for activated users instead
+    // of their deeper-view results. Both stem from the row ignoring this
+    // signal. `activationDone` stays as a separate param — it still
+    // drives `buildBusinessUnlocked` (a different, payment-sensitive
+    // gate) which we deliberately leave untouched.
+    deepProfileActivated: boolean,
     journeyProgress: JourneyProgress = {},
     entryPath: EntryPath = null,
     activationDone: boolean = false,
@@ -667,7 +682,19 @@ const buildJourneySections = (
             // Day 80 Wave 2.4: route to the dedicated standalone page,
             // not the AppleseedDisplay anchor (which surrounds the
             // $37 offer with the $555 funnel + other CTAs).
-            path: "/activate-top-talent",
+            // Day 95 (Sasha 2026-06-13): route is now STATE-AWARE. Once
+            // the deeper view is active, the row sends the user to their
+            // RESULTS (the deeper Top Talent overview), not back to the
+            // /activate-top-talent sales page. The destination is
+            // auth-gated only (MeGate: any authed user passes — there is
+            // NO payment check there), so every user for whom
+            // deepProfileActivated is true can actually reach it:
+            // authed reveal-completers, paid/gifted tiers, and
+            // coupon guests (MeGate honors the coupon bypass). Not-yet-
+            // activated users still get the sales page.
+            path: deepProfileActivated
+                ? "/game/me/zone-of-genius"
+                : "/activate-top-talent",
             // Day 80 Wave 2.8 (Sasha 2026-05-22): locked until Top
             // Talent is articulated. Buying the deeper monetization
             // product before the user has a Top Talent is nonsensical
@@ -677,16 +704,17 @@ const buildJourneySections = (
             lockedHint: "Articulate your top talent first.",
             // Day 80 (Sasha 2026-05-25): completion signal swapped from
             // `journeyProgress["journey-activation"]` (a key that
-            // useJourneyProgress never actually emits — see
-            // src/hooks/useJourneyProgress.ts line 222 where the
-            // progress map is built; no `journey-activation` key
-            // exists) to the `activationDone` parameter already
-            // threaded into buildJourneySections. activationDone is
-            // true when the user has paid the $37 OR redeemed a
-            // coupon — the canonical signal that the deeper-talent
-            // view is unlocked. Without this swap the sidequest never
-            // marked complete and never crossed out.
-            completed: activationDone,
+            // useJourneyProgress never actually emits) to a real signal.
+            // Day 95 (Sasha 2026-06-13): swapped again — from the NARROW
+            // `activationDone` (paid $37 OR coupon only) to the BROAD
+            // `deepProfileActivated` (reveal-completed OR paid OR
+            // coupon). The narrow signal left the row un-crossed-out for
+            // every user who had the deeper view via the free reveal but
+            // hadn't paid $37 — which is most reveal-completers, and was
+            // the bug Sasha reported. The strikethrough must match the
+            // routing above: crossed out exactly when the row points at
+            // the deeper-view results rather than the sales page.
+            completed: deepProfileActivated,
         },
         {
             id: "journey-mission-discovery",
