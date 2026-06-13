@@ -25,6 +25,7 @@ import { ArrowRight, ArrowLeft } from "lucide-react";
 import GameShellV2 from "@/components/game/GameShellV2";
 import { CTA_SMALL_CAPS_STYLE } from "@/lib/landingDesign";
 import { trackCTAClick } from "@/lib/funnelAnalytics";
+import { supabase } from "@/integrations/supabase/client";
 
 const STRIPE_ACTIVATE_LINK = "https://buy.stripe.com/00w6oH7wo21R41XaDedEs0H";
 
@@ -39,14 +40,39 @@ const ActivateTopTalent = () => {
     const [couponInput, setCouponInput] = useState("");
     const [couponError, setCouponError] = useState(false);
 
-    const handleCouponSubmit = (e: React.FormEvent) => {
+    // Day 95 (Sasha 2026-06-13): the coupon now grants DURABLE access via
+    // the server (redeem-activation-coupon sets game_profiles
+    // .activation_unlocked_at). The client-side ACTIVATION_COUPON_CODES
+    // check is kept only for instant UX feedback — it is NOT the security
+    // boundary; the edge function re-validates the code server-side before
+    // unlocking. Authed users redeem immediately; guests stash the code
+    // and the post-signup bridge (MeGate → RequireDeeperAccess) completes
+    // the unlock once they have an account.
+    const handleCouponSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         const entered = couponInput.trim().toLowerCase();
-        if (ACTIVATION_COUPON_CODES.has(entered)) {
-            trackCTAClick("activate_coupon_redeemed", "activate_top_talent_page");
-            navigate("/game/me/zone-of-genius/start-here?payment=success");
-        } else {
+        if (!ACTIVATION_COUPON_CODES.has(entered)) {
             setCouponError(true);
+            return;
+        }
+        trackCTAClick("activate_coupon_redeemed", "activate_top_talent_page");
+        const { data: { session } } = await supabase.auth.getSession();
+        if (session) {
+            try {
+                await supabase.functions.invoke("redeem-activation-coupon", {
+                    body: { code: entered },
+                });
+            } catch (err) {
+                console.warn("[ActivateTopTalent] coupon redeem failed:", err);
+            }
+            navigate("/game/me/zone-of-genius/start-here");
+        } else {
+            try {
+                window.sessionStorage.setItem("pending_activation_coupon", entered);
+            } catch {
+                /* private mode — RequireDeeperAccess still re-checks access */
+            }
+            navigate("/game/me/zone-of-genius/start-here?payment=success");
         }
     };
 

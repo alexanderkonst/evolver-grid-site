@@ -157,6 +157,41 @@ const MeGate = ({ children }: { children: ReactNode }) => {
                         } catch (err) {
                             console.warn("[MeGate post-payment] claim-anonymous-zog threw", err);
                         }
+                        // Day 95 (Sasha 2026-06-13): now that the buyer has
+                        // an account, durably unlock the $37 deeper view —
+                        // we do it HERE (not after navigate) because the
+                        // Stripe session_id lives in the current URL and is
+                        // dropped by the clean navigate below. A real
+                        // payment carries session_id (verified server-side
+                        // by confirm-activation-payment); a coupon guest
+                        // carries a stashed pending_activation_coupon
+                        // (re-validated by redeem-activation-coupon).
+                        try {
+                            const params = new URLSearchParams(window.location.search);
+                            const sessionId = params.get("session_id");
+                            let pendingCoupon: string | null = null;
+                            try {
+                                pendingCoupon = window.sessionStorage.getItem("pending_activation_coupon");
+                            } catch {
+                                pendingCoupon = null;
+                            }
+                            if (sessionId) {
+                                await supabase.functions.invoke("confirm-activation-payment", {
+                                    body: { session_id: sessionId },
+                                });
+                            } else if (pendingCoupon) {
+                                await supabase.functions.invoke("redeem-activation-coupon", {
+                                    body: { code: pendingCoupon },
+                                });
+                            }
+                            try {
+                                window.sessionStorage.removeItem("pending_activation_coupon");
+                            } catch {
+                                /* private mode — ignore */
+                            }
+                        } catch (err) {
+                            console.warn("[MeGate post-payment] activation unlock failed", err);
+                        }
                         navigate("/game/me/zone-of-genius/start-here", { replace: true });
                     }}
                 />

@@ -104,6 +104,12 @@ interface ProfileBundle {
     mission: MissionData | null;
     assets: AssetRow[];
     qol: QolData | null;
+    // Day 95 (Sasha 2026-06-13): paid-access flag. The deeper Top Talent
+    // sections in the PDF are paid content — a free user must not be able
+    // to export them via Settings → Export. True iff paid / coupon / tier.
+    // FAIL-OPEN: defaults true and stays true if the access read errors
+    // (e.g. before the migration is applied), mirroring useDeeperAccess.
+    hasDeeperAccess: boolean;
 }
 
 // ─────────────────────────────────────────────────────────────────────
@@ -119,6 +125,7 @@ async function loadProfileBundle(): Promise<ProfileBundle> {
         mission: null,
         assets: [],
         qol: null,
+        hasDeeperAccess: true, // fail-open default (see interface note)
     };
 
     // Auth — user identity
@@ -227,6 +234,31 @@ async function loadProfileBundle(): Promise<ProfileBundle> {
         }
     } catch (err) {
         console.warn("[generateProfilePdf] Top Talent / Mission fetch failed:", err);
+    }
+
+    // Deeper-access read — ISOLATED in its own query so that if the
+    // activation_unlocked_at column doesn't exist yet (pre-migration),
+    // the failure can't poison the Top Talent / Mission read above. Same
+    // fail-open contract as useDeeperAccess: on error, hasDeeperAccess
+    // stays true (default), so grandfathered users keep their full PDF
+    // before the migration lands; after it, free users get the gated PDF.
+    try {
+        const { data: accessRow, error: accessErr } = await supabase
+            .from("game_profiles")
+            .select("activation_unlocked_at, entitlement_tier")
+            .eq("id", profileId)
+            .maybeSingle();
+        if (accessErr) {
+            console.warn("[generateProfilePdf] access read failed — failing open:", accessErr.message);
+        } else {
+            const unlockedAt = (accessRow as { activation_unlocked_at?: string | null } | null)
+                ?.activation_unlocked_at ?? null;
+            const tier = (accessRow as { entitlement_tier?: string | null } | null)
+                ?.entitlement_tier ?? "tasting";
+            bundle.hasDeeperAccess = unlockedAt != null || tier !== "tasting";
+        }
+    } catch (err) {
+        console.warn("[generateProfilePdf] access read threw — failing open:", err);
     }
 
     // Assets — user_assets list, latest first
@@ -585,20 +617,34 @@ export async function generateProfilePdf(): Promise<void> {
 
     // ── Top Talent ────────────────────────────────────────────────
     if (bundle.appleseed) {
-        // Reuse the Top Talent section renderers verbatim. They each
-        // start by reserving vertical space, so they compose cleanly
-        // after a newPage() (handled inside renderHero, which begins
-        // the section with its own page break-as-needed).
         b.newPage();
+        // renderHero is the first-level identity (archetype + bullseye +
+        // core pattern) — free-tier, always included.
         renderHero(b, bundle.appleseed);
-        renderHowItShowsUp(b, bundle.appleseed);
-        renderThreeKeyTalents(b, bundle.appleseed);
-        renderTopShadow(b, bundle.appleseed);
-        renderPathOfMastery(b, bundle.appleseed);
-        renderOneAction(b, bundle.appleseed);
-        renderIdealEnvironments(b, bundle.appleseed);
-        renderComplementaryPartner(b, bundle.appleseed);
-        renderMonetization(b, bundle.appleseed);
+        // Day 95 (Sasha 2026-06-13): the eight DEEP sections are the paid
+        // $37 product. Only render them when the user has actually
+        // activated (paid / coupon / tier). A free user exporting via
+        // Settings → Export gets the hero + a locked note, not the paid
+        // depth — closing the PDF as a paywall-bypass vector. (Fail-open:
+        // hasDeeperAccess defaults true, so grandfathered users and the
+        // pre-migration window keep the full export.)
+        if (bundle.hasDeeperAccess) {
+            renderHowItShowsUp(b, bundle.appleseed);
+            renderThreeKeyTalents(b, bundle.appleseed);
+            renderTopShadow(b, bundle.appleseed);
+            renderPathOfMastery(b, bundle.appleseed);
+            renderOneAction(b, bundle.appleseed);
+            renderIdealEnvironments(b, bundle.appleseed);
+            renderComplementaryPartner(b, bundle.appleseed);
+            renderMonetization(b, bundle.appleseed);
+        } else {
+            b.y += SECTION_GAP;
+            b.eyebrow("Locked");
+            b.body(
+                "Your full deeper Top Talent profile — How It Shows Up, Three Talents in Depth, Top Shadow, Path of Mastery, One Action, Ideal Environments, Complementary Partner, and Monetization — unlocks with the $37 Top Talent Activation. Visit findyourtoptalent.com/activate-top-talent.",
+                { italic: true, color: C.muted },
+            );
+        }
     } else {
         renderTopTalentEmpty(b);
     }

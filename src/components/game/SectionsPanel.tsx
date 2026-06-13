@@ -11,6 +11,7 @@ import { GROWTH_STEPS } from "@/modules/library/growthSteps";
 // other route — the hook is the gate, not a wrapper.
 import { useCanvasProgressLite } from "@/modules/unique-business-builder/useCanvasProgressLite";
 import { useDeepProfileActivated } from "@/hooks/useDeepProfileActivated";
+import { useDeeperAccess } from "@/hooks/useDeeperAccess";
 import { useEntitlement } from "@/hooks/useEntitlement";
 import { useJourneyProgress, type JourneyProgress } from "@/hooks/useJourneyProgress";
 import { useEntryPath } from "@/contexts/EntryPathContext";
@@ -509,22 +510,21 @@ type EntryPath = "match" | "build" | null;
 
 const buildJourneySections = (
     _currentPath: string,
-    // Day 95 (Sasha 2026-06-13): now USED (was `_deepProfileActivated`,
-    // threaded-but-ignored). This is the BROAD "deeper Top Talent view
-    // is active" signal from useDeepProfileActivated — true when the
-    // user has completed the reveal (saved zog_snapshot) OR paid OR
-    // redeemed a coupon. It is the canonical gate the rest of the
-    // platform already consumes (BUILD-space unlock, ME dropdown reveal,
-    // Karime row). The $37 power-up row below now uses it too, fixing
-    // the two bugs Sasha hit: (1) the row never crossed out for
-    // reveal-completers who hadn't paid $37, because it used the NARROW
-    // `activationDone` (paid/coupon only); (2) it always routed to the
-    // /activate-top-talent SALES page even for activated users instead
-    // of their deeper-view results. Both stem from the row ignoring this
-    // signal. `activationDone` stays as a separate param — it still
-    // drives `buildBusinessUnlocked` (a different, payment-sensitive
-    // gate) which we deliberately leave untouched.
-    deepProfileActivated: boolean,
+    // Day 95 (Sasha 2026-06-13, rev 2): the $37 power-up row keys on the
+    // NARROW, durable PAID signal from useDeeperAccess — true iff the
+    // user has paid / redeemed a coupon (game_profiles
+    // .activation_unlocked_at set) OR holds a paid entitlement tier.
+    // Completing the FREE reveal does NOT trip it (Sasha's explicit
+    // call). This is the SAME signal the content gate (RequireDeeperAccess)
+    // enforces, so the row's strikethrough + routing match what the user
+    // can actually access:
+    //   • activated  → crossed out + routes to deeper-view RESULTS
+    //   • otherwise  → not crossed + routes to the /activate-top-talent
+    //                  SALES page.
+    // (rev 1 briefly used the BROAD deepProfileActivated, which crossed
+    // the row out on free reveal — reverted here.) `activationDone` stays
+    // a separate param driving buildBusinessUnlocked, untouched.
+    hasDeeperAccess: boolean,
     journeyProgress: JourneyProgress = {},
     entryPath: EntryPath = null,
     activationDone: boolean = false,
@@ -682,17 +682,14 @@ const buildJourneySections = (
             // Day 80 Wave 2.4: route to the dedicated standalone page,
             // not the AppleseedDisplay anchor (which surrounds the
             // $37 offer with the $555 funnel + other CTAs).
-            // Day 95 (Sasha 2026-06-13): route is now STATE-AWARE. Once
-            // the deeper view is active, the row sends the user to their
-            // RESULTS (the deeper Top Talent overview), not back to the
-            // /activate-top-talent sales page. The destination is
-            // auth-gated only (MeGate: any authed user passes — there is
-            // NO payment check there), so every user for whom
-            // deepProfileActivated is true can actually reach it:
-            // authed reveal-completers, paid/gifted tiers, and
-            // coupon guests (MeGate honors the coupon bypass). Not-yet-
-            // activated users still get the sales page.
-            path: deepProfileActivated
+            // Day 95 (Sasha 2026-06-13): route is STATE-AWARE on the PAID
+            // signal. Once the user has actually activated (paid / coupon /
+            // tier — hasDeeperAccess), the row sends them to their deeper-
+            // view RESULTS. The deeper view is now paywalled by
+            // RequireDeeperAccess, so routing there for a NON-activated
+            // user would just bounce them back to the sales page — hence
+            // we send unactivated users straight to /activate-top-talent.
+            path: hasDeeperAccess
                 ? "/game/me/zone-of-genius"
                 : "/activate-top-talent",
             // Day 80 Wave 2.8 (Sasha 2026-05-22): locked until Top
@@ -702,19 +699,13 @@ const buildJourneySections = (
             // hint as the other numbered steps.
             locked: !topTalentDone,
             lockedHint: "Articulate your top talent first.",
-            // Day 80 (Sasha 2026-05-25): completion signal swapped from
-            // `journeyProgress["journey-activation"]` (a key that
-            // useJourneyProgress never actually emits) to a real signal.
-            // Day 95 (Sasha 2026-06-13): swapped again — from the NARROW
-            // `activationDone` (paid $37 OR coupon only) to the BROAD
-            // `deepProfileActivated` (reveal-completed OR paid OR
-            // coupon). The narrow signal left the row un-crossed-out for
-            // every user who had the deeper view via the free reveal but
-            // hadn't paid $37 — which is most reveal-completers, and was
-            // the bug Sasha reported. The strikethrough must match the
-            // routing above: crossed out exactly when the row points at
-            // the deeper-view results rather than the sales page.
-            completed: deepProfileActivated,
+            // Day 95 (Sasha 2026-06-13, rev 2): crosses out on the PAID
+            // signal only (hasDeeperAccess = paid / coupon / tier). The
+            // free reveal does NOT cross it out — Sasha's explicit intent,
+            // and now correct since the deeper view is genuinely paywalled.
+            // Matches the routing above and what RequireDeeperAccess
+            // enforces, so strikethrough ⇔ actually-has-access.
+            completed: hasDeeperAccess,
         },
         {
             id: "journey-mission-discovery",
@@ -785,6 +776,12 @@ const SectionsPanel = ({
     // Same hook is consumed by GameShellV2 to gate the BUILD space
     // chip — single source of truth across the funnel boundary.
     const { activated: deepProfileActivated } = useDeepProfileActivated();
+    // Day 95 (Sasha 2026-06-13): narrow PAID signal for the $37 power-up
+    // row's strikethrough + routing (paid / coupon / tier — NOT free
+    // reveal). Same signal RequireDeeperAccess enforces on the deeper
+    // routes. Broad `deepProfileActivated` still drives BUILD unlock /
+    // Karime / dropdown below — those are reveal-level, not paywalled.
+    const { hasAccess: hasDeeperAccess } = useDeeperAccess();
 
     // Day 80 Wave 2.20 (Sasha 2026-05-22): activation signal for the
     // match-path JOURNEY #6 ("Build a business off your top talent")
@@ -926,7 +923,7 @@ const SectionsPanel = ({
         if (activeSpaceId === "journey") {
             return {
                 ...baseData,
-                sections: buildJourneySections(location.pathname, deepProfileActivated, journeyProgress, entryPath, activationDone),
+                sections: buildJourneySections(location.pathname, hasDeeperAccess, journeyProgress, entryPath, activationDone),
             };
         }
 
