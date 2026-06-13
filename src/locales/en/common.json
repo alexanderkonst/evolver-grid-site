@@ -1,0 +1,10 @@
+{
+  "language": {
+    "label": "Language"
+  },
+  "notFound": {
+    "code": "404",
+    "title": "Oops! Page not found",
+    "home": "Return to Home"
+  }
+}
