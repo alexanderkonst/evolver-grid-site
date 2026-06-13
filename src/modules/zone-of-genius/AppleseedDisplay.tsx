@@ -221,11 +221,35 @@ const AppleseedDisplay = ({
     const [couponOpen, setCouponOpen] = useState(false);
     const [couponInput, setCouponInput] = useState('');
     const [couponError, setCouponError] = useState(false);
-    const handleCouponSubmit = (e: React.FormEvent) => {
+    const handleCouponSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         const entered = couponInput.trim().toLowerCase();
         if (ACTIVATION_COUPON_CODES.has(entered)) {
             trackCTAClick('activate_coupon_redeemed', 'appleseed_option2');
+            // Day 95 (Sasha 2026-06-13): grant DURABLE access via the
+            // server. Authed users redeem immediately
+            // (redeem-activation-coupon sets activation_unlocked_at);
+            // guests stash the code so the post-signup bridge (MeGate →
+            // RequireDeeperAccess) completes the unlock once they have an
+            // account. The client-side code check above is instant-UX
+            // only — the edge function re-validates server-side.
+            const { data: { session } } = await supabase.auth.getSession();
+            if (session) {
+                try {
+                    await supabase.functions.invoke("redeem-activation-coupon", {
+                        body: { code: entered },
+                    });
+                } catch (err) {
+                    console.warn("[AppleseedDisplay] coupon redeem failed:", err);
+                }
+                navigate("/game/me/zone-of-genius/start-here");
+                return;
+            }
+            try {
+                window.sessionStorage.setItem("pending_activation_coupon", entered);
+            } catch {
+                /* private mode — RequireDeeperAccess still re-checks access */
+            }
             // Day 61 (Sasha 2026-05-04 19:30): coupon path now converges
             // on the SAME post-payment bridge as Stripe ($37 buyers).
             //

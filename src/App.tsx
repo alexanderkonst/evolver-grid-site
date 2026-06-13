@@ -8,6 +8,7 @@ import CustomCursor from "@/components/CustomCursor";
 import SiteLogo from "@/components/SiteLogo";
 import RequireAuth from "@/components/RequireAuth";
 import MeGate from "@/components/MeGate";
+import RequireDeeperAccess from "@/components/RequireDeeperAccess";
 // AnimatedBackground removed for minimal SaaS design
 import PageTransition from "@/components/PageTransition";
 import ErrorBoundary from "@/components/ErrorBoundary";
@@ -527,8 +528,14 @@ const App = () => (
                   <Route path="/game/me/genius-business/promise" element={<MeGate><GeniusBusinessPromise /></MeGate>} />
                   <Route path="/game/me/genius-business/channels" element={<MeGate><GeniusBusinessChannels /></MeGate>} />
                   <Route path="/game/me/genius-business/vision" element={<MeGate><GeniusBusinessVision /></MeGate>} />
-                  <Route path="/game/me/zone-of-genius" element={<MeGate><ZoneOfGeniusOverview /></MeGate>} />
-                  <Route path="/game/me/zone-of-genius/:perspectiveId" element={<MeGate><ZoGPerspectiveView /></MeGate>} />
+                  {/* Day 95 (Sasha 2026-06-13): deeper Top Talent view is
+                      the paid $37 product. MeGate ensures auth; the inner
+                      RequireDeeperAccess enforces the paywall (unactivated
+                      authed users → /activate-top-talent) and completes
+                      activation on post-payment / coupon arrival. The
+                      first-level reveal (/zone-of-genius) stays free. */}
+                  <Route path="/game/me/zone-of-genius" element={<MeGate><RequireDeeperAccess><ZoneOfGeniusOverview /></RequireDeeperAccess></MeGate>} />
+                  <Route path="/game/me/zone-of-genius/:perspectiveId" element={<MeGate><RequireDeeperAccess><ZoGPerspectiveView /></RequireDeeperAccess></MeGate>} />
                   <Route path="/game/me/canvas" element={<MeGate><CanvasOverviewPage /></MeGate>} />
                   <Route path="/game/me/art" element={<MeGate><ArtPage /></MeGate>} />
                   {/* Legacy redirects */}
