@@ -564,6 +564,7 @@ export const EquilibriumV2Page = () => {
               onUpsert={eq.upsertStrategy}
               onReorder={eq.reorderStrategies}
               onComplete={eq.completeStrategy}
+              onDelete={(position) => eq.upsertStrategy(position, null)}
               onIterate={eq.iterateStrategy}
               iteratingPosition={eq.iteratingStrategyPosition}
             />

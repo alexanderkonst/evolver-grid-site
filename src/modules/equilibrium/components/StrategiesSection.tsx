@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Check, GripVertical, Sparkles } from "lucide-react";
+import { Check, GripVertical, Sparkles, Trash2 } from "lucide-react";
 import {
   closestCenter,
   DndContext,
@@ -35,6 +35,13 @@ interface StrategiesSectionProps {
    * Harvest section and frees the position slot for a new direction.
    */
   onComplete: (position: 1 | 2 | 3) => Promise<void> | void;
+  /**
+   * HARD DELETE a strategy (Sasha 2026-06-08). Removes the row entirely
+   * without archiving to Harvest. Used when a strategy wasn't actually
+   * pursued — clears the slot without claiming a "completed" win.
+   * Confirm dialog before firing (irreversible, no undo).
+   */
+  onDelete: (position: 1 | 2 | 3) => Promise<void> | void;
   onIterate: (
     position: 1 | 2 | 3,
   ) => Promise<EquilibriumStrategyIteration | null>;
@@ -57,6 +64,7 @@ export const StrategiesSection = ({
   onUpsert,
   onReorder,
   onComplete,
+  onDelete,
   onIterate,
   iteratingPosition,
 }: StrategiesSectionProps) => {
@@ -116,6 +124,7 @@ export const StrategiesSection = ({
                   loading={loading}
                   onSave={(text) => onUpsert(position, text)}
                   onComplete={() => onComplete(position)}
+                  onDelete={() => onDelete(position)}
                   onIterate={() => onIterate(position)}
                   isIterating={iteratingPosition === position}
                 />
@@ -145,6 +154,7 @@ const SortableStrategyRow = ({
   loading,
   onSave,
   onComplete,
+  onDelete,
   onIterate,
   isIterating,
 }: {
@@ -154,6 +164,7 @@ const SortableStrategyRow = ({
   loading: boolean;
   onSave: (text: string | null) => Promise<void> | void;
   onComplete: () => Promise<void> | void;
+  onDelete: () => Promise<void> | void;
   onIterate: () => Promise<EquilibriumStrategyIteration | null>;
   isIterating: boolean;
 }) => {
@@ -263,6 +274,29 @@ const SortableStrategyRow = ({
           className="mt-1.5 shrink-0 rounded-full p-1.5 text-emerald-600/70 opacity-0 transition hover:bg-emerald-50 hover:text-emerald-700 group-hover:opacity-100 focus-visible:opacity-100 max-sm:opacity-60"
         >
           <Check size={16} />
+        </button>
+
+        {/*
+          HARD DELETE strategy (Sasha 2026-06-08). Distinct from Complete:
+          this removes the slot without claiming a win in Harvest. For
+          directions that were drafted but never pursued. window.confirm
+          before firing — irreversible, no undo toast. Visibility matches
+          Complete: hover-revealed desktop, partial opacity on mobile.
+        */}
+        <button
+          type="button"
+          aria-label="Delete strategy"
+          title="Delete permanently — this can't be undone"
+          onClick={() => {
+            const confirmed = window.confirm(
+              `Delete this strategy?\n\n"${strategy.text}"\n\nThis removes the slot entirely (no Harvest entry). Can't be undone.`,
+            );
+            if (confirmed) void onDelete();
+          }}
+          disabled={loading}
+          className="mt-1.5 shrink-0 rounded-full p-1.5 text-rose-500/70 opacity-0 transition hover:bg-rose-50 hover:text-rose-600 group-hover:opacity-100 focus-visible:opacity-100 max-sm:opacity-60"
+        >
+          <Trash2 size={16} />
         </button>
 
         <button
