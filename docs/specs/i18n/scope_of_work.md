@@ -10,7 +10,7 @@ This is **not a brochure site that needs its buttons translated.** It is an AI-n
 
 - **i18n** (the plumbing) is built once and is language-agnostic.
 - **l10n** (the content) repeats per language. We launch Spanish + Russian.
-- Recommendation: **full stack, phased.** Build the plumbing, prove all three layers end-to-end in Spanish (first-holon principle), then replicate to Russian. The trap to avoid: translating the menus while the user's generated profile still comes back in English. That is half a product.
+- Recommendation: **full stack, phased.** Build the plumbing, prove all three layers end-to-end in **Russian** (first-holon principle), then replicate to Spanish. The trap to avoid: translating the menus while the user's generated profile still comes back in English. That is half a product.
 
 ---
 
@@ -51,11 +51,11 @@ Layer 3 — AI GENERATION   the Top Talent profile · Appleseed · Excalibur · 
 
 | Option | What ships | Cost / risk |
 |---|---|---|
-| **A. Full stack (recommended)** | All three layers in ES + RU. The user's generated profile speaks their language. Phased: plumbing → prove in ES → replicate RU. | Highest value. Layer 3 needs native resonance review. ~5–7 weeks for both languages; ES provable in ~3. |
+| **A. Full stack (recommended)** | All three layers in RU + ES. The user's generated profile speaks their language. Phased: plumbing → prove in RU → replicate ES. | Highest value. Layer 3 needs native resonance review. ~5–7 weeks for both languages; RU provable in ~3. |
 | **B. Chrome + seeded only** | Layers 1+2. App speaks ES/RU; AI output stays English. | Faster, lower risk, but paid artifact still English. Half the value for an AI-native product. |
 | **C. Plumbing-first, defer** | Layer 0 only: library, LocaleProvider, routing, formatting, extraction tooling. Nothing new gets hardcoded; translation depth decided later. | Lowest commitment. Good if timing is uncertain and you want the architecture in place now. |
 
-**Recommendation: A, sequenced as 0 → ES(full) → RU(full).** It honors the first-holon principle (one holon fully proves the stack before the network) and it is the only option where the product, not just the chrome, crosses the language line.
+**Recommendation: A, sequenced as 0 → RU(full) → ES(full).** It honors the first-holon principle (one holon fully proves the stack before the network) and it is the only option where the product, not just the chrome, crosses the language line.
 
 ---
 
@@ -88,22 +88,22 @@ Layer 3 — AI GENERATION   the Top Talent profile · Appleseed · Excalibur · 
 
 **DoD:** App runs identically in English with all chrome strings served through `t()` from an `en` bundle; a stub `es` bundle flips a visible subset; locale survives reload and route changes; no `en-US` hardcoded formatters remain on user-facing surfaces.
 
-### Phase 1 — Chrome + seeded content → Spanish, then Russian (Layers 1+2)
+### Phase 1 — Chrome + seeded content → Russian, then Spanish (Layers 1+2)
 1. Extract ~6,200 strings: bulk the centralized `data/` hubs first (highest ROI), then scattered JSX (toasts, validation, aria, alts, titles).
-2. Translate to ES (method per your choice), native review.
+2. Translate to RU (method per your choice), native review.
 3. Translate seeded Supabase content (testimonials, founder canvases, mission catalog); extend `AdminContentManager` for per-locale variants or a translations table.
-4. Replicate to RU.
+4. Replicate to ES.
 
-**DoD:** A Spanish (then Russian) user can navigate the entire funnel and app with zero English chrome; all seeded testimonials/canvases/mission copy render in-locale; locale switcher works; no missing-key fallbacks visible.
+**DoD:** A Russian (then Spanish) user can navigate the entire funnel and app with zero English chrome; all seeded testimonials/canvases/mission copy render in-locale; locale switcher works; no missing-key fallbacks visible.
 
-### Phase 2 — AI generation → Spanish, then Russian (Layer 3, the product)
+### Phase 2 — AI generation → Russian, then Spanish (Layer 3, the product)
 1. Inject `target_language` into all 15 edge functions + 6 client prompts.
 2. Add `output_language` tag to stored rows (`zog_snapshots`, `user_business_artifacts`, etc.).
-3. Build **language-specific calibration banks** (ES exemplars, not translated English ones).
+3. Build **language-specific calibration banks** (RU exemplars, not translated English ones).
 4. Native-speaker **resonance review** with a charge/precision regression check before sign-off.
-5. Replicate to RU.
+5. Replicate to ES.
 
-**DoD:** A Spanish user's ZoG snapshot, Appleseed, Excalibur, Mission, and UBB Dossier are generated in Spanish and a native reviewer confirms the transmission holds (charge + specificity not degraded vs the English baseline). Same gate for Russian.
+**DoD:** A Russian user's ZoG snapshot, Appleseed, Excalibur, Mission, and UBB Dossier are generated in Russian and a native reviewer confirms the transmission holds (charge + specificity not degraded vs the English baseline). Same gate for Spanish.
 
 ### Phase 3 — SEO, share, switcher, QA
 1. hreflang + per-locale OG/meta across the live routes; locale-aware sitemap.
@@ -123,7 +123,7 @@ Layer 3 — AI GENERATION   the Top Talent profile · Appleseed · Excalibur · 
 | 1 — Chrome + seeded (ES then RU) | ~1–2 weeks | Extraction grind + native review |
 | 2 — AI generation (ES then RU) | ~2–3 weeks | Calibration banks + resonance review (the long pole) |
 | 3 — SEO/share/switcher/QA | 3–5 days | Per-locale OG verification |
-| **Total (both languages, all layers)** | **~5–7 weeks** | Spanish provable end-to-end in ~3 |
+| **Total (both languages, all layers)** | **~5–7 weeks** | Russian provable end-to-end in ~3 |
 
 ---
 
@@ -138,7 +138,7 @@ Layer 3 — AI GENERATION   the Top Talent profile · Appleseed · Excalibur · 
 
 ## Decisions locked (2026-06-13)
 
-1. **v1 depth → Full stack (Option A).** All three layers in ES + RU. The generated artifact crosses the language line. Sequenced 0 → prove fully in Spanish → replicate Russian.
+1. **v1 depth → Full stack (Option A).** All three layers in RU + ES. The generated artifact crosses the language line. Sequenced 0 → prove fully in **Russian** → replicate Spanish. (Sasha 2026-06-13: lead with Russian.)
 2. **Translation method → Hybrid.** AI draft + native review for chrome + seeded content; language-specific calibration + native resonance review mandatory on Layer 3 (the AI-generated product).
 
 ## Still open
