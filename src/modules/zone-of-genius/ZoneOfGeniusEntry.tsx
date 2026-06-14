@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { useTranslation } from "react-i18next";
 import { trackPageView, trackFunnelEvent } from "@/lib/funnelAnalytics";
 import { useNavigate, useSearchParams, useLocation } from "react-router-dom";
 import { ArrowRight, Copy, Check, Bot, ClipboardList, Sword } from "lucide-react";
@@ -88,6 +89,7 @@ type Step =
     | "excalibur-result";
 
 const ZoneOfGeniusEntry = () => {
+    const { t } = useTranslation();
     const navigate = useNavigate();
     const location = useLocation();
     const { toast } = useToast();
@@ -371,16 +373,16 @@ const ZoneOfGeniusEntry = () => {
                     } else {
                         console.error("[ZoneOfGeniusEntry] Auto-save returned failure:", result.error);
                         toast({
-                            title: "Save Failed",
-                            description: result.error || "Your Top Talent couldn't be saved. Tap Save to retry.",
+                            title: t('zogEntry.toastSaveFailedTitle'),
+                            description: result.error || t('zogEntry.toastAutoSaveFailedDesc'),
                             variant: "destructive",
                         });
                     }
                 } catch (err) {
                     console.error("[ZoneOfGeniusEntry] Auto-save threw:", err);
                     toast({
-                        title: "Save Failed",
-                        description: err instanceof Error ? err.message : "Tap Save to retry.",
+                        title: t('zogEntry.toastSaveFailedTitle'),
+                        description: err instanceof Error ? err.message : t('zogEntry.toastTapSaveToRetry'),
                         variant: "destructive",
                     });
                 }
@@ -475,10 +477,10 @@ const ZoneOfGeniusEntry = () => {
             // Day 62 (Sasha 2026-05-05).
             setStep("appleseed-result");
         } catch (err) {
-            const errorMsg = err instanceof Error ? err.message : 'Something went wrong';
+            const errorMsg = err instanceof Error ? err.message : t('zogEntry.errorGeneric');
             setError(errorMsg.includes('try again')
               ? errorMsg
-              : 'Something went wrong generating your profile. Please try again — it usually works on retry.');
+              : t('zogEntry.errorGenerateProfile'));
             setStep("paste-response");
         } finally {
             setIsProcessing(false);
@@ -500,15 +502,15 @@ const ZoneOfGeniusEntry = () => {
                 }
             } else {
                 toast({
-                    title: "Save Failed",
-                    description: result.error || "Could not save your profile.",
+                    title: t('zogEntry.toastSaveFailedTitle'),
+                    description: result.error || t('zogEntry.toastCouldNotSaveProfile'),
                     variant: "destructive",
                 });
             }
         } catch (err) {
             toast({
-                title: "Error",
-                description: "Something went wrong while saving.",
+                title: t('zogEntry.toastErrorTitle'),
+                description: t('zogEntry.toastSomethingWentWrongSaving'),
                 variant: "destructive",
             });
         } finally {
@@ -543,10 +545,10 @@ const ZoneOfGeniusEntry = () => {
             setExcalibur(result);
             setStep("excalibur-result");
         } catch (err) {
-            setError('Failed to generate your Excalibur. Please try again.');
+            setError(t('zogEntry.errorGenerateExcalibur'));
             toast({
-                title: "Generation Failed",
-                description: err instanceof Error ? err.message : "Please try again.",
+                title: t('zogEntry.toastGenerationFailedTitle'),
+                description: err instanceof Error ? err.message : t('zogEntry.toastPleaseTryAgain'),
                 variant: "destructive",
             });
             setStep("appleseed-result");
@@ -563,34 +565,34 @@ const ZoneOfGeniusEntry = () => {
             const result = await saveExcalibur(excalibur);
             if (result.success) {
                 toast({
-                    title: "Unique Offer Saved!",
-                    description: "Your genius offer has been saved.",
+                    title: t('zogEntry.toastOfferSavedTitle'),
+                    description: t('zogEntry.toastOfferSavedDesc'),
                 });
                 if (result.xpAwarded) {
                     toast({
-                        title: `🎉 +${result.xpAwarded} XP (Genius)`,
-                        description: "Your profile leveled up.",
+                        title: t('zogEntry.toastXpAwardedTitle', { xp: result.xpAwarded }),
+                        description: t('zogEntry.toastProfileLeveledUp'),
                     });
                 }
                 if (result.firstTimeBonus) {
                     toast({
-                        title: "🎉 FIRST TIME BONUS!",
-                        description: `+${result.firstTimeBonus} XP for your first ${getFirstTimeActionLabel("first_genius_offer")}!`,
+                        title: t('zogEntry.toastFirstTimeBonusTitle'),
+                        description: t('zogEntry.toastFirstTimeBonusDesc', { xp: result.firstTimeBonus, action: getFirstTimeActionLabel("first_genius_offer") }),
                     });
                 }
                 // Navigate back to profile after short delay
                 setTimeout(() => navigate(returnPath), 1000);
             } else {
                 toast({
-                    title: "Save Failed",
-                    description: result.error || "Could not save your offer.",
+                    title: t('zogEntry.toastSaveFailedTitle'),
+                    description: result.error || t('zogEntry.toastCouldNotSaveOffer'),
                     variant: "destructive",
                 });
             }
         } catch (err) {
             toast({
-                title: "Error",
-                description: "Something went wrong while saving.",
+                title: t('zogEntry.toastErrorTitle'),
+                description: t('zogEntry.toastSomethingWentWrongSaving'),
                 variant: "destructive",
             });
         } finally {
@@ -622,7 +624,7 @@ const ZoneOfGeniusEntry = () => {
                                     border: "1px solid rgba(212, 175, 55, 0.22)",
                                 }}
                             >
-                                Saving your result to <strong>{anonymousSave.email}</strong>…
+                                {t('zogEntry.bannerSavingTo')} <strong>{anonymousSave.email}</strong>…
                             </div>
                         )}
                         {anonymousSave.status === "sent" && (
@@ -631,19 +633,19 @@ const ZoneOfGeniusEntry = () => {
                                 style={{ color: "var(--skin-text-primary, #2c3150)" }}
                             >
                                 <p className="font-medium">
-                                    Result saved. Check your email — the magic link unlocks your full playbook.
+                                    {t('zogEntry.bannerResultSaved')}
                                 </p>
                                 <p
                                     className="mt-1"
                                     style={{ color: "var(--skin-text-muted, #4a4a6d)" }}
                                 >
-                                    Sent to <strong>{anonymousSave.email}</strong>.{" "}
+                                    {t('zogEntry.bannerSentTo')} <strong>{anonymousSave.email}</strong>.{" "}
                                     <button
                                         type="button"
                                         onClick={handleRedoClaimEmail}
                                         className="underline text-[#7a5108] hover:text-[#a06d08]"
                                     >
-                                        Wrong email? Redo
+                                        {t('zogEntry.bannerWrongEmailRedo')}
                                     </button>
                                 </p>
                             </div>
@@ -654,13 +656,13 @@ const ZoneOfGeniusEntry = () => {
                                 style={{ color: "var(--skin-text-primary, #2c3150)" }}
                             >
                                 <p>
-                                    We couldn't save your result to <strong>{anonymousSave.email}</strong>.{" "}
+                                    {t('zogEntry.bannerCouldNotSaveTo')} <strong>{anonymousSave.email}</strong>.{" "}
                                     <button
                                         type="button"
                                         onClick={handleRedoClaimEmail}
                                         className="underline text-[#7a5108] hover:text-[#a06d08]"
                                     >
-                                        Try a different email
+                                        {t('zogEntry.bannerTryDifferentEmail')}
                                     </button>
                                 </p>
                             </div>
@@ -704,10 +706,10 @@ const ZoneOfGeniusEntry = () => {
                         </div>
                     </div>
                     <p className="text-lg text-[#2c3150]/60 animate-pulse">
-                        Creating your unique offer...
+                        {t('zogEntry.excaliburLoadingTitle')}
                     </p>
                     <p className="mt-4 text-sm text-[#2c3150]/40">
-                        One clear offer, one path forward...
+                        {t('zogEntry.excaliburLoadingSubtitle')}
                     </p>
 
                     {/* Progress Bar */}
@@ -757,8 +759,8 @@ const ZoneOfGeniusEntry = () => {
     return (
         <>
         <SEO
-            title="Top Talent Reveal — Free in 5 minutes"
-            description="A guided reveal that names your top talent with a specificity higher than any personality test. Free, takes 5 minutes, runs in your AI."
+            title={t('zogEntry.seoTitle')}
+            description={t('zogEntry.seoDescription')}
             path="/zone-of-genius"
         />
         <GameShellV2 hideNavigation={hideNav} hideLogo>
@@ -868,7 +870,7 @@ const ZoneOfGeniusEntry = () => {
                                                 "var(--skin-text-halo-deep, 0 0 28px rgba(255,255,255,0.85), 0 1px 2px rgba(255,255,255,0.95), 0 0 1px rgba(11,42,90,0.65), 0 1px 0 rgba(11,42,90,0.45))",
                                         }}
                                     >
-                                        Let's create your profile for matching.
+                                        {t('zogEntry.matchPreambleLine1')}
                                     </p>
                                     <p
                                         className="text-sm sm:text-base italic leading-relaxed"
@@ -878,7 +880,7 @@ const ZoneOfGeniusEntry = () => {
                                                 "var(--skin-text-halo-deep, 0 0 22px rgba(255,255,255,0.78), 0 1px 2px rgba(255,255,255,0.9), 0 0 1px rgba(11,42,90,0.6))",
                                         }}
                                     >
-                                        Good news: AI makes it real quick.
+                                        {t('zogEntry.matchPreambleLine2')}
                                     </p>
                                     <p
                                         className="text-sm sm:text-base leading-relaxed"
@@ -888,7 +890,7 @@ const ZoneOfGeniusEntry = () => {
                                                 "var(--skin-text-halo-deep, 0 0 28px rgba(255,255,255,0.85), 0 1px 2px rgba(255,255,255,0.95), 0 0 1px rgba(11,42,90,0.65), 0 1px 0 rgba(11,42,90,0.45))",
                                         }}
                                     >
-                                        We start with your top talent.
+                                        {t('zogEntry.matchPreambleLine3')}
                                     </p>
                                 </div>
                             )}
@@ -912,7 +914,7 @@ const ZoneOfGeniusEntry = () => {
                                         "var(--skin-text-halo-deep, 0 0 28px rgba(255,255,255,0.85), 0 1px 2px rgba(255,255,255,0.95), 0 0 1px rgba(11,42,90,0.65), 0 1px 0 rgba(11,42,90,0.45))",
                                 }}
                             >
-                                How do you want to reveal it?
+                                {t('zogEntry.revealQuestion')}
                             </h2>
                         </div>
 
@@ -951,7 +953,7 @@ const ZoneOfGeniusEntry = () => {
                                                 color: "var(--skin-cta-text, rgba(245,245,250,0.98))",
                                             }}
                                         >
-                                            Faster (1 min)
+                                            {t('zogEntry.cardFasterTitle')}
                                         </p>
                                         {/* Day 80 Wave 2.10: CTA subtitle pinned to
                                             Source Serif 4 (was inheriting system
@@ -963,7 +965,7 @@ const ZoneOfGeniusEntry = () => {
                                                 color: "rgba(245,245,250,0.65)",
                                             }}
                                         >
-                                            Paste from your AI. See your pattern.
+                                            {t('zogEntry.cardFasterSubtitle')}
                                         </p>
                                     </div>
                                 </div>
@@ -996,7 +998,7 @@ const ZoneOfGeniusEntry = () => {
                                                 color: "var(--skin-cta-text, rgba(245,245,250,0.98))",
                                             }}
                                         >
-                                            Guided (10–15 min)
+                                            {t('zogEntry.cardGuidedTitle')}
                                         </p>
                                         {/* Day 80 Wave 2.10: pinned to Source Serif 4. */}
                                         <p
@@ -1006,7 +1008,7 @@ const ZoneOfGeniusEntry = () => {
                                                 color: "rgba(245,245,250,0.65)",
                                             }}
                                         >
-                                            Take the full assessment.
+                                            {t('zogEntry.cardGuidedSubtitle')}
                                         </p>
                                     </div>
                                 </div>
@@ -1033,7 +1035,7 @@ const ZoneOfGeniusEntry = () => {
                                     textShadow: "var(--skin-text-halo-deep, 0 0 28px rgba(255,255,255,0.85), 0 1px 2px rgba(255,255,255,0.95), 0 0 1px rgba(11,42,90,0.65), 0 1px 0 rgba(11,42,90,0.45))",
                                 }}
                             >
-                                Copy this prompt into your AI
+                                {t('zogEntry.aiPromptHeading')}
                             </h2>
                             <p
                                 className="text-xs"
@@ -1043,7 +1045,7 @@ const ZoneOfGeniusEntry = () => {
                                     textShadow: "var(--skin-text-halo-deep, 0 0 22px rgba(255,255,255,0.85), 0 1px 2px rgba(255,255,255,0.95), 0 0 1px rgba(11,42,90,0.55))",
                                 }}
                             >
-                                ChatGPT, Claude, Gemini — any will work
+                                {t('zogEntry.aiPromptSubtitle')}
                             </p>
                         </div>
 
@@ -1082,12 +1084,12 @@ const ZoneOfGeniusEntry = () => {
                                 {copied ? (
                                     <>
                                         <Check className="w-3 h-3 mr-1" />
-                                        Copied
+                                        {t('zogEntry.copyButtonCopied')}
                                     </>
                                 ) : (
                                     <>
                                         <Copy className="w-3 h-3 mr-1" />
-                                        Copy
+                                        {t('zogEntry.copyButton')}
                                     </>
                                 )}
                             </Button>
@@ -1118,7 +1120,7 @@ const ZoneOfGeniusEntry = () => {
                                     }}
                                     draggable={false}
                                 />
-                                <span style={CTA_SMALL_CAPS_STYLE}>I've got my AI's response</span>
+                                <span style={CTA_SMALL_CAPS_STYLE}>{t('zogEntry.ctaGotResponse')}</span>
                                 <ArrowRight
                                     aria-hidden="true"
                                     className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5"
@@ -1132,7 +1134,7 @@ const ZoneOfGeniusEntry = () => {
                                 className="text-[11px] transition-colors duration-300 tracking-wide hover:underline"
                                 style={{ color: "var(--skin-text-muted-soft, rgba(26,30,58,0.6))" }}
                             >
-                                I'll do the guided assessment instead →
+                                {t('zogEntry.guidedAssessmentLink')}
                             </button>
                         </div>
                     </div>
@@ -1154,7 +1156,7 @@ const ZoneOfGeniusEntry = () => {
                                     textShadow: "var(--skin-text-halo-deep, 0 0 28px rgba(255,255,255,0.85), 0 1px 2px rgba(255,255,255,0.95), 0 0 1px rgba(11,42,90,0.65), 0 1px 0 rgba(11,42,90,0.45))",
                                 }}
                             >
-                                Paste your AI's response
+                                {t('zogEntry.pasteHeading')}
                             </h2>
                             <p
                                 className="text-xs"
@@ -1164,14 +1166,14 @@ const ZoneOfGeniusEntry = () => {
                                     textShadow: "var(--skin-text-halo-deep, 0 0 22px rgba(255,255,255,0.85), 0 1px 2px rgba(255,255,255,0.95), 0 0 1px rgba(11,42,90,0.55))",
                                 }}
                             >
-                                The full response — we'll extract your pattern from it
+                                {t('zogEntry.pasteSubtitle')}
                             </p>
                         </div>
 
                         <Textarea
                             value={aiResponse}
                             onChange={(e) => setAiResponse(e.target.value)}
-                            placeholder="Paste your AI's response here..."
+                            placeholder={t('zogEntry.pastePlaceholder')}
                             className="min-h-[200px] font-mono text-sm rounded-2xl focus:ring-1 transition-all duration-300"
                             style={{
                                 backgroundColor: "var(--skin-input-fill, rgba(255,255,255,0.30))",
@@ -1208,7 +1210,7 @@ const ZoneOfGeniusEntry = () => {
                                     }}
                                     draggable={false}
                                 />
-                                <span style={CTA_SMALL_CAPS_STYLE}>{isProcessing ? "Revealing..." : "Reveal my top talent"}</span>
+                                <span style={CTA_SMALL_CAPS_STYLE}>{isProcessing ? t('zogEntry.ctaRevealing') : t('zogEntry.ctaRevealTopTalent')}</span>
                                 <ArrowRight
                                     aria-hidden="true"
                                     className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5"

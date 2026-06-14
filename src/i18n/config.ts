@@ -1,22 +1,29 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
-import LanguageDetector from "i18next-browser-languagedetector";
 
 import enCommon from "@/locales/en/common.json";
 import ruCommon from "@/locales/ru/common.json";
 import esCommon from "@/locales/es/common.json";
 
+import {
+  DEFAULT_LANGUAGE,
+  LOCALE_STORAGE_KEY,
+  SUPPORTED_LNGS,
+  initialLocaleScope,
+  isSupportedLng,
+} from "./localeScope";
+
 /**
- * i18n engine — Phase 0 (2026-06-13). Russian-first, then Spanish.
- *
+ * i18n engine — Phase 0 / Increment 1 (2026-06-13). Russian-first, then Spanish.
  * Scope of work: docs/specs/i18n/scope_of_work.md
  *
- * This file owns the single i18next instance. Resources are bundled
- * statically for now (one `common` namespace). When bundles grow, split
- * per-route namespaces and switch to lazy loading via i18next-http-backend
- * (see README in this folder). Detection is localStorage -> navigator; the
- * URL-prefix locale (/ru, /es) composed with the skin-scope basename lands
- * in a later Phase 0 increment.
+ * Language resolution, in priority order:
+ *   1. URL locale prefix (/ru, /es) — set once at module load (initialLocaleScope),
+ *      composed with the skin-scope basename so /ru/aurum/… works.
+ *   2. localStorage — the visitor's explicit prior switcher choice.
+ *   3. English — the default for fresh funnel traffic. Browser auto-detection is
+ *      intentionally OFF until the locale experience is reviewed live; turning it
+ *      on later is one line (add navigator language to resolveInitialLanguage).
  */
 
 export const SUPPORTED_LANGUAGES = [
@@ -27,8 +34,7 @@ export const SUPPORTED_LANGUAGES = [
 
 export type LanguageCode = (typeof SUPPORTED_LANGUAGES)[number]["code"];
 
-export const DEFAULT_LANGUAGE: LanguageCode = "en";
-export const LOCALE_STORAGE_KEY = "app-language";
+export { DEFAULT_LANGUAGE, LOCALE_STORAGE_KEY } from "./localeScope";
 
 export const resources = {
   en: { common: enCommon },
@@ -36,35 +42,47 @@ export const resources = {
   es: { common: esCommon },
 } as const;
 
+const resolveInitialLanguage = (): string => {
+  if (initialLocaleScope) return initialLocaleScope.lng;
+  try {
+    const stored = localStorage.getItem(LOCALE_STORAGE_KEY);
+    if (isSupportedLng(stored)) return stored as string;
+  } catch {
+    /* localStorage unavailable (private mode) — fall through to default */
+  }
+  return DEFAULT_LANGUAGE;
+};
+
 if (!i18n.isInitialized) {
-  i18n
-    .use(LanguageDetector)
-    .use(initReactI18next)
-    .init({
-      resources,
-      fallbackLng: DEFAULT_LANGUAGE,
-      supportedLngs: SUPPORTED_LANGUAGES.map((l) => l.code),
-      defaultNS: "common",
-      ns: ["common"],
-      detection: {
-        order: ["localStorage", "navigator"],
-        lookupLocalStorage: LOCALE_STORAGE_KEY,
-        caches: ["localStorage"],
-      },
-      interpolation: { escapeValue: false },
-      returnNull: false,
-      react: { useSuspense: false },
-    });
+  i18n.use(initReactI18next).init({
+    resources,
+    lng: resolveInitialLanguage(),
+    fallbackLng: DEFAULT_LANGUAGE,
+    supportedLngs: [...SUPPORTED_LNGS],
+    defaultNS: "common",
+    ns: ["common"],
+    interpolation: { escapeValue: false },
+    returnNull: false,
+    react: { useSuspense: false },
+  });
 }
 
-// Keep the document's lang attribute in sync with the active locale —
-// matters for screen readers, browser translation prompts, and SEO.
-const syncHtmlLang = (lng: string) => {
+// Persist the active locale and keep <html lang> in sync (a11y, SEO, browser
+// translate prompts). Persisting on change makes the switcher's choice sticky
+// even when navigating back to a non-prefixed (English-default) URL.
+i18n.on("languageChanged", (lng) => {
+  try {
+    localStorage.setItem(LOCALE_STORAGE_KEY, lng);
+  } catch {
+    /* ignore */
+  }
   if (typeof document !== "undefined" && lng) {
     document.documentElement.lang = lng;
   }
-};
-syncHtmlLang(i18n.resolvedLanguage || DEFAULT_LANGUAGE);
-i18n.on("languageChanged", syncHtmlLang);
+});
+
+if (typeof document !== "undefined") {
+  document.documentElement.lang = i18n.resolvedLanguage || DEFAULT_LANGUAGE;
+}
 
 export default i18n;

@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { EditorialCta } from "@/components/ui/editorial-cta";
 import { GOLD_TEXT_STYLE } from "@/lib/landingDesign";
 import SEO from "@/components/SEO";
@@ -40,6 +41,7 @@ import { useSkin } from "@/contexts/SkinContext";
 const MatchHero = () => {
   const navigate = useNavigate();
   const { skin } = useSkin();
+  const { t } = useTranslation();
 
   // §4.8 entry-path attribution. Fires once on mount — the landing
   // impression. `path_param_present` reflects whether the user arrived
@@ -65,10 +67,10 @@ const MatchHero = () => {
   return (
     <>
       <SEO
-        title="Find Your Top Talent · Find Your People"
-        description="A few simple prompts. Your talent in exact words, in two minutes. Then introductions to people whose work complements yours, with the collaboration spelled out."
+        title={t("matchHero.seoTitle")}
+        description={t("matchHero.seoDescription")}
         path="/?path=match"
-        ogTitle="Find your people"
+        ogTitle={t("matchHero.seoOgTitle")}
       />
       {/* Day 84 v6 (Sasha 2026-05-25) attention-choreography pass.
           The v5 no-scroll compression flattened the emotional arc to
@@ -197,7 +199,7 @@ const MatchHero = () => {
                 "var(--skin-text-halo-deep, 0 0 28px rgba(255,255,255,0.85), 0 1px 2px rgba(255,255,255,0.95), 0 0 1px rgba(11,42,90,0.65), 0 1px 0 rgba(11,42,90,0.45))",
             }}
           >
-            Find your people
+            {t("matchHero.eyebrow")}
           </p>
 
           {/* THE dominant frame. Build-path H1 scale.
@@ -224,14 +226,14 @@ const MatchHero = () => {
                 "var(--skin-text-halo-deep, 0 0 22px rgba(255,255,255,0.7), 0 1px 2px rgba(255,255,255,0.9), 0 0 1px rgba(11,42,90,0.45), 0 1px 0 rgba(11,42,90,0.25))",
             }}
           >
-            The{" "}
+            {t("matchHero.headlineBefore")}{" "}
             <span
               className="bg-clip-text text-transparent"
               style={GOLD_TEXT_STYLE}
             >
-              right people
+              {t("matchHero.headlineGold")}
             </span>{" "}
-            change everything
+            {t("matchHero.headlineAfter")}
           </h1>
 
           {/* Tension line — italic echo register. Full container
@@ -263,7 +265,7 @@ const MatchHero = () => {
                 "var(--skin-text-halo-deep, 0 0 28px rgba(255,255,255,0.85), 0 1px 2px rgba(255,255,255,0.95), 0 0 1px rgba(11,42,90,0.65), 0 1px 0 rgba(11,42,90,0.45))",
             }}
           >
-            Most platforms flatten you into titles, résumés, and keywords
+            {t("matchHero.tensionLine")}
           </p>
 
           {/* Day 85 v3 (Sasha 2026-05-25) — Ornament glyph removed. Sasha:
@@ -312,7 +314,7 @@ const MatchHero = () => {
                 "var(--skin-text-halo-deep, 0 0 22px rgba(255,255,255,0.7), 0 1px 2px rgba(255,255,255,0.9), 0 0 1px rgba(11,42,90,0.45), 0 1px 0 rgba(11,42,90,0.25))",
             }}
           >
-            A few simple prompts. Your talent in exact words, in two minutes. Then introductions to people whose work complements yours, with the collaboration spelled out
+            {t("matchHero.bridge")}
           </p>
         </header>
 
@@ -320,7 +322,7 @@ const MatchHero = () => {
             should feel important, inevitable, confident. */}
         <div className="mt-6 sm:mt-7 md:mt-8 flex flex-col items-center gap-3 sm:gap-4 px-4 text-center">
           <EditorialCta
-            label="Match me"
+            label={t("matchHero.ctaLabel")}
             onClick={() => navigate("/zone-of-genius?path=match")}
           />
 
@@ -336,7 +338,7 @@ const MatchHero = () => {
               fontWeight: 500,
             }}
           >
-            <span>Free · 2 minutes · No signup to start</span>
+            <span>{t("matchHero.microcopy")}</span>
           </div>
         </div>
       </div>

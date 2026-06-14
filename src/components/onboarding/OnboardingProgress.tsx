@@ -1,4 +1,5 @@
 import { Check, Sparkles, Briefcase, Map, Target, Compass, Users, Flag } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 interface OnboardingProgressProps {
     currentStep: number;
@@ -6,14 +7,14 @@ interface OnboardingProgressProps {
 }
 
 const ONBOARDING_STEPS = [
-    { id: 1, label: "Genius", icon: Sparkles, description: "Discover your Zone of Genius" },
-    { id: 2, label: "Business", icon: Briefcase, description: "Create your Genius Business" },
-    { id: 3, label: "Life Map", icon: Map, description: "Assess your Quality of Life" },
-    { id: 4, label: "Priorities", icon: Target, description: "Set growth priorities" },
-    { id: 5, label: "Recipe", icon: Compass, description: "Get your growth recipe" },
-    { id: 6, label: "Daily", icon: Flag, description: "Enter the daily loop" },
-    { id: 7, label: "Connect", icon: Users, description: "Find your people" },
-    { id: 8, label: "Mission", icon: Flag, description: "Discover your mission" },
+    { id: 1, labelKey: "onboarding.step1Label", icon: Sparkles, descriptionKey: "onboarding.step1Description" },
+    { id: 2, labelKey: "onboarding.step2Label", icon: Briefcase, descriptionKey: "onboarding.step2Description" },
+    { id: 3, labelKey: "onboarding.step3Label", icon: Map, descriptionKey: "onboarding.step3Description" },
+    { id: 4, labelKey: "onboarding.step4Label", icon: Target, descriptionKey: "onboarding.step4Description" },
+    { id: 5, labelKey: "onboarding.step5Label", icon: Compass, descriptionKey: "onboarding.step5Description" },
+    { id: 6, labelKey: "onboarding.step6Label", icon: Flag, descriptionKey: "onboarding.step6Description" },
+    { id: 7, labelKey: "onboarding.step7Label", icon: Users, descriptionKey: "onboarding.step7Description" },
+    { id: 8, labelKey: "onboarding.step8Label", icon: Flag, descriptionKey: "onboarding.step8Description" },
 ];
 
 /**
@@ -21,6 +22,8 @@ const ONBOARDING_STEPS = [
  * Shows as a horizontal bar with icons for each step
  */
 const OnboardingProgress = ({ currentStep, className = "" }: OnboardingProgressProps) => {
+    const { t } = useTranslation();
+
     return (
         <div className={`w-full ${className}`}>
             {/* Progress bar */}
@@ -70,7 +73,7 @@ const OnboardingProgress = ({ currentStep, className = "" }: OnboardingProgressP
                     ${isCurrent ? "text-[#8460ea]" : isCompleted ? "text-[#2c3150]" : "text-[#a4a3d0]"}
                   `}
                                 >
-                                    {step.label}
+                                    {t(step.labelKey)}
                                 </span>
                             </div>
                         );
@@ -81,7 +84,13 @@ const OnboardingProgress = ({ currentStep, className = "" }: OnboardingProgressP
             {/* Current step description */}
             <div className="mt-4 text-center">
                 <p className="text-sm text-[#a4a3d0]">
-                    Step {currentStep} of {ONBOARDING_STEPS.length}: {ONBOARDING_STEPS[currentStep - 1]?.description}
+                    {t("onboarding.stepCounter", {
+                        current: currentStep,
+                        total: ONBOARDING_STEPS.length,
+                        description: ONBOARDING_STEPS[currentStep - 1]
+                            ? t(ONBOARDING_STEPS[currentStep - 1].descriptionKey)
+                            : "",
+                    })}
                 </p>
             </div>
         </div>

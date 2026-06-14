@@ -18,6 +18,8 @@
  * persisted the Aurum dark theme is NOT on a demo surface.
  */
 
+import { pathWithoutLocale } from "@/i18n/localeScope";
+
 export interface SkinScope {
   prefix: string;
   skin: string;
@@ -38,9 +40,12 @@ export const SKIN_PREFIXES: SkinScope[] = [
 
 export const initialSkinScope: SkinScope | undefined =
   typeof window !== "undefined"
-    ? SKIN_PREFIXES.find(
-        ({ prefix }) =>
-          window.location.pathname === prefix ||
-          window.location.pathname.startsWith(prefix + "/")
-      )
+    ? (() => {
+        // Detect the skin on the path with any locale prefix (/ru, /es) stripped,
+        // so /ru/aurum still registers as the aurum demo scope.
+        const path = pathWithoutLocale(window.location.pathname);
+        return SKIN_PREFIXES.find(
+          ({ prefix }) => path === prefix || path.startsWith(prefix + "/")
+        );
+      })()
     : undefined;

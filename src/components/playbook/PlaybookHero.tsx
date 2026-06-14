@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { cn } from "@/lib/utils";
 // Day 67 (Sasha 2026-05-10): primary CTA extracted to shared
 // `<EditorialCta>` component (src/components/ui/editorial-cta.tsx).
@@ -44,6 +45,7 @@ import { EditorialCta } from "@/components/ui/editorial-cta";
 
 const PlaybookHero = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   return (
     /* Day 54 (Sasha 2026-04-28): inner stack opened up to match the
@@ -67,7 +69,7 @@ const PlaybookHero = () => {
               on hover / focus (so the button's own hover feedback is
               read cleanly). Respects prefers-reduced-motion. */}
         <EditorialCta
-          label="Find your top talent"
+          label={t("playbookHero.primaryCtaLabel")}
           onClick={() => navigate("/zone-of-genius")}
         />
 
@@ -89,7 +91,7 @@ const PlaybookHero = () => {
             fontWeight: 500,
           }}
         >
-          <span>Free · 2 minutes · No signup</span>
+          <span>{t("playbookHero.metaLine")}</span>
         </div>
 
         {/* Secondary — also compact glass pill, de-ranked via
@@ -114,7 +116,7 @@ const PlaybookHero = () => {
               "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
           }}
         >
-          See the exact playbook
+          {t("playbookHero.secondaryCtaLabel")}
         </button>
       </div>
     </div>

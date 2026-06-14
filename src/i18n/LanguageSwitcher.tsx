@@ -1,6 +1,7 @@
 import { useTranslation } from "react-i18next";
 
 import { SUPPORTED_LANGUAGES } from "./config";
+import { buildLocalePath, LOCALE_STORAGE_KEY } from "./localeScope";
 
 interface LanguageSwitcherProps {
   className?: string;
@@ -23,7 +24,21 @@ export const LanguageSwitcher = ({ className }: LanguageSwitcherProps) => {
           <button
             key={lng.code}
             type="button"
-            onClick={() => i18n.changeLanguage(lng.code)}
+            onClick={() => {
+              // Locale is a URL prefix (/ru, /es), so switching is a full
+              // navigation that re-reads the basename. Persist first so the
+              // choice sticks even when returning to a non-prefixed URL.
+              try {
+                localStorage.setItem(LOCALE_STORAGE_KEY, lng.code);
+              } catch {
+                /* ignore */
+              }
+              window.location.assign(
+                buildLocalePath(lng.code, window.location.pathname) +
+                  window.location.search +
+                  window.location.hash,
+              );
+            }}
             aria-pressed={active}
             className={[
               "rounded-full px-3 py-1 text-sm transition-colors",

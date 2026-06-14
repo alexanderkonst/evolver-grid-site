@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
@@ -34,6 +35,7 @@ const Auth = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const { toast } = useToast();
+  const { t } = useTranslation();
 
   // Claim mode: the landing-page "Claim your gift" CTA lands the user here
   // with ?claim=true so they can enter just an email and carry on to their
@@ -91,7 +93,7 @@ const Auth = () => {
   ) => {
     const trimmed = submittedEmail.trim();
     if (!trimmed) {
-      toast({ title: "Email required", description: "Please enter your email.", variant: "destructive" });
+      toast({ title: t('auth.emailRequiredTitle'), description: t('auth.emailRequiredDesc'), variant: "destructive" });
       return;
     }
 
@@ -109,8 +111,8 @@ const Auth = () => {
       }
 
       toast({
-        title: "Magic link sent",
-        description: `Check ${trimmed} for a sign-in link.`,
+        title: t('auth.magicLinkSentTitle'),
+        description: t('auth.magicLinkSentDesc', { email: trimmed }),
       });
 
       // Claim flow: send the user straight to their (still anonymous) result
@@ -120,8 +122,8 @@ const Auth = () => {
       }
     } catch (error: any) {
       toast({
-        title: "Couldn't send magic link",
-        description: error?.message ?? "Please try again.",
+        title: t('auth.magicLinkErrorTitle'),
+        description: error?.message ?? t('auth.tryAgain'),
         variant: "destructive",
       });
     } finally {
@@ -193,9 +195,8 @@ const Auth = () => {
       if (data.user && (data.user.identities?.length ?? 0) === 0) {
         setTab("login");
         toast({
-          title: "Looks like you already have an account",
-          description:
-            "If you just confirmed your email on another device, log in here. Forgot your password? Use the link above.",
+          title: t('auth.alreadyHaveAccountTitle'),
+          description: t('auth.alreadyHaveAccountDesc'),
         });
         return;
       }
@@ -203,8 +204,8 @@ const Auth = () => {
       // Case 3: auto-confirm ON, session created → log in immediately
       if (data.session) {
         toast({
-          title: "Welcome.",
-          description: "Account created. Redirecting…",
+          title: t('auth.welcomeTitle'),
+          description: t('auth.accountCreatedDesc'),
         });
         setTimeout(() => navigate(nextPath), 800);
         return;
@@ -212,12 +213,12 @@ const Auth = () => {
 
       // Case 1: email confirmation required — no session yet
       toast({
-        title: "Check your inbox",
-        description: `We sent a confirmation link to ${email}. Click it to finish signing up.`,
+        title: t('auth.checkInboxTitle'),
+        description: t('auth.checkInboxDesc', { email }),
       });
     } catch (error: any) {
       toast({
-        title: "Sign up failed",
+        title: t('auth.signUpFailedTitle'),
         description: error.message,
         variant: "destructive",
       });
@@ -239,14 +240,14 @@ const Auth = () => {
       if (error) throw error;
 
       toast({
-        title: "Welcome back!",
-        description: "Redirecting...",
+        title: t('auth.welcomeBackTitle'),
+        description: t('auth.redirecting'),
       });
 
       setTimeout(() => navigate(nextPath), 500);
     } catch (error: any) {
       toast({
-        title: "Login failed",
+        title: t('auth.loginFailedTitle'),
         description: error.message,
         variant: "destructive",
       });
@@ -269,7 +270,7 @@ const Auth = () => {
       navigate("/start");
     } catch (error: any) {
       toast({
-        title: "Test login failed",
+        title: t('auth.testLoginFailedTitle'),
         description: error.message,
         variant: "destructive",
       });
@@ -282,8 +283,8 @@ const Auth = () => {
     e.preventDefault();
     if (!email) {
       toast({
-        title: "Email required",
-        description: "Please enter your email address.",
+        title: t('auth.emailRequiredTitle'),
+        description: t('auth.emailAddressRequiredDesc'),
         variant: "destructive",
       });
       return;
@@ -300,12 +301,12 @@ const Auth = () => {
 
       setResetEmailSent(true);
       toast({
-        title: "Reset email sent!",
-        description: "Check your inbox for password reset instructions.",
+        title: t('auth.resetEmailSentTitle'),
+        description: t('auth.resetEmailSentDesc'),
       });
     } catch (error: any) {
       toast({
-        title: "Failed to send reset email",
+        title: t('auth.resetEmailFailedTitle'),
         description: error.message,
         variant: "destructive",
       });
@@ -321,11 +322,11 @@ const Auth = () => {
         <main className="min-h-dvh flex items-center justify-center px-4 py-24">
           <Card className="w-full max-w-md">
             <CardHeader className="text-center">
-              <CardTitle className="text-2xl font-bold">Reset Password</CardTitle>
+              <CardTitle className="text-2xl font-bold">{t('auth.resetPasswordTitle')}</CardTitle>
               <CardDescription>
                 {resetEmailSent
-                  ? "Check your email for reset instructions."
-                  : "Enter your email and we'll send you a reset link."
+                  ? t('auth.resetCheckEmailDesc')
+                  : t('auth.resetEnterEmailDesc')
                 }
               </CardDescription>
             </CardHeader>
@@ -336,7 +337,7 @@ const Auth = () => {
                     <Mail className="w-6 h-6 text-green-600" />
                   </div>
                   <p className="text-sm text-muted-foreground">
-                    If an account with that email exists, you'll receive a password reset link shortly.
+                    {t('auth.resetIfAccountExists')}
                   </p>
                   <Button
                     variant="outline"
@@ -347,24 +348,24 @@ const Auth = () => {
                     }}
                   >
                     <ArrowLeft className="w-4 h-4 mr-2" />
-                    Back to Login
+                    {t('auth.backToLogin')}
                   </Button>
                 </div>
               ) : (
                 <form onSubmit={handleForgotPassword} className="space-y-4">
                   <div className="space-y-2">
-                    <Label htmlFor="reset-email">Email</Label>
+                    <Label htmlFor="reset-email">{t('auth.emailLabel')}</Label>
                     <Input
                       id="reset-email"
                       type="email"
-                      placeholder="you@example.com"
+                      placeholder={t('auth.emailPlaceholder')}
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       required
                     />
                   </div>
                   <Button type="submit" className="w-full" disabled={loading}>
-                    {loading ? "Sending..." : "Send Reset Link"}
+                    {loading ? t('auth.sending') : t('auth.sendResetLink')}
                   </Button>
                   <Button
                     type="button"
@@ -373,7 +374,7 @@ const Auth = () => {
                     onClick={() => setShowForgotPassword(false)}
                   >
                     <ArrowLeft className="w-4 h-4 mr-2" />
-                    Back to Login
+                    {t('auth.backToLogin')}
                   </Button>
                 </form>
               )}
@@ -422,23 +423,23 @@ const Auth = () => {
               </div>
               <CardTitle className="text-2xl font-bold">
                 {claimIsMatchPath
-                  ? "Now let's save your data so you don't lose it."
-                  : "Enter your email — your free result stays safe there."}
+                  ? t('auth.claimMatchTitle')
+                  : t('auth.claimBuildTitle')}
               </CardTitle>
               <CardDescription>
                 {claimIsMatchPath
-                  ? "Magic link to your inbox. One click and you keep going with mission discovery."
-                  : "We'll email you a one-click magic link. You can dive into your Top Talent now; the link just keeps your result waiting when you're ready to come back."}
+                  ? t('auth.claimMatchDesc')
+                  : t('auth.claimBuildDesc')}
               </CardDescription>
             </CardHeader>
             <CardContent>
               <form onSubmit={handleClaimSubmit} className="space-y-4">
                 <div className="space-y-2">
-                  <Label htmlFor="claim-email">Email</Label>
+                  <Label htmlFor="claim-email">{t('auth.emailLabel')}</Label>
                   <Input
                     id="claim-email"
                     type="email"
-                    placeholder="you@example.com"
+                    placeholder={t('auth.emailPlaceholder')}
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
@@ -446,10 +447,10 @@ const Auth = () => {
                   />
                 </div>
                 <Button type="submit" className="w-full" disabled={loading}>
-                  {loading ? "Sending..." : "Send me the magic link"}
+                  {loading ? t('auth.sending') : t('auth.claimSendMagicLink')}
                 </Button>
                 <p className="text-xs text-muted-foreground text-center pt-2">
-                  No password to pick. No spam. Just your result, ready when you are.
+                  {t('auth.claimReassurance')}
                 </p>
                 </form>
             </CardContent>
@@ -479,17 +480,17 @@ const Auth = () => {
   //     so it picks up bg-primary / text-primary-foreground
   const titleNode = isOnboardingFlow ? (
     <>
-      Create your{" "}
+      {t('auth.createAccountTitlePrefix')}{" "}
       <span className="bg-clip-text text-transparent" style={GOLD_TEXT_STYLE}>
-        account
+        {t('auth.createAccountTitleGold')}
       </span>
     </>
   ) : (
     <>
       <span className="bg-clip-text text-transparent" style={GOLD_TEXT_STYLE}>
-        Welcome
+        {t('auth.welcomeTitleGold')}
       </span>
-      .
+      {t('auth.welcomeTitleSuffix')}
     </>
   );
 
@@ -513,12 +514,12 @@ const Auth = () => {
   // line ("Unlock your unique business") was built for build-path
   // users heading toward Ignite — wrong direction for this user.
   const subtitleText = isQolRedirect
-    ? "Sign in to save your Quality of Life Map. Retake anytime — track your growth over time."
+    ? t('auth.subtitleQol')
     : isMatchPathEntry
-      ? "Save your data so you don't lose it. Then keep going with mission discovery."
+      ? t('auth.subtitleMatch')
       : isOnboardingFlow
-        ? "Save your Top Talent. Unlock your unique business."
-        : "Pick up where you left off — your Top Talent and progress are waiting.";
+        ? t('auth.subtitleOnboarding')
+        : t('auth.subtitleReturning');
 
   return (
     <GameShellV2 hideLogo>
@@ -584,14 +585,14 @@ const Auth = () => {
                 className="rounded-full text-[11px] uppercase tracking-[0.18em] font-semibold data-[state=active]:bg-[rgba(212,175,55,0.18)] data-[state=active]:text-[#0a1628] data-[state=active]:shadow-[0_0_14px_-4px_rgba(244,212,114,0.45)]"
                 style={{ fontFamily: "'Cormorant Garamond', serif" }}
               >
-                Log In
+                {t('auth.tabLogIn')}
               </TabsTrigger>
               <TabsTrigger
                 value="signup"
                 className="rounded-full text-[11px] uppercase tracking-[0.18em] font-semibold data-[state=active]:bg-[rgba(212,175,55,0.18)] data-[state=active]:text-[#0a1628] data-[state=active]:shadow-[0_0_14px_-4px_rgba(244,212,114,0.45)]"
                 style={{ fontFamily: "'Cormorant Garamond', serif" }}
               >
-                Sign Up
+                {t('auth.tabSignUp')}
               </TabsTrigger>
             </TabsList>
 
@@ -607,12 +608,12 @@ const Auth = () => {
                       color: "var(--skin-text-muted, rgba(11,42,90,0.93))",
                     }}
                   >
-                    Email
+                    {t('auth.emailLabel')}
                   </Label>
                   <Input
                     id="login-email"
                     type="email"
-                    placeholder="you@example.com"
+                    placeholder={t('auth.emailPlaceholder')}
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
@@ -629,7 +630,7 @@ const Auth = () => {
                         color: "var(--skin-text-muted, rgba(11,42,90,0.93))",
                       }}
                     >
-                      Password
+                      {t('auth.passwordLabel')}
                     </Label>
                     {/* Day 58+ (Sasha 2026-05-03): bumped from 11px italic-
                         muted-no-underline to 12.5px non-italic underlined-
@@ -648,7 +649,7 @@ const Auth = () => {
                         color: "var(--skin-link-secondary, rgba(26,30,58,0.85))",
                       }}
                     >
-                      Forgot password?
+                      {t('auth.forgotPassword')}
                     </button>
                   </div>
                   <Input
@@ -662,7 +663,7 @@ const Auth = () => {
                   />
                 </div>
                 <Button type="submit" className="w-full h-12 rounded-full" disabled={loading}>
-                  {loading ? "Logging in…" : "Log In"}
+                  {loading ? t('auth.loggingIn') : t('auth.logInButton')}
                 </Button>
 
                 <div className="flex items-center gap-3 py-1">
@@ -674,7 +675,7 @@ const Auth = () => {
                       color: "var(--skin-text-muted-soft, rgba(26,30,58,0.5))",
                     }}
                   >
-                    or
+                    {t('auth.or')}
                   </span>
                   <span className="flex-1 h-px" style={{ backgroundColor: "var(--skin-rule-medium, rgba(26,30,58,0.12))" }} />
                 </div>
@@ -687,7 +688,7 @@ const Auth = () => {
                   disabled={loading || !email}
                 >
                   <Sparkles className="w-4 h-4 mr-2" />
-                  Send me a magic link
+                  {t('auth.sendMagicLink')}
                 </Button>
                 {/* Day 51 night v2 (Sasha 2026-04-26): "Test Login (Dev Only)"
                     button removed. It was gated behind import.meta.env.DEV
@@ -712,12 +713,12 @@ const Auth = () => {
                         color: "var(--skin-text-muted, rgba(11,42,90,0.93))",
                       }}
                     >
-                      First Name
+                      {t('auth.firstNameLabel')}
                     </Label>
                     <Input
                       id="signup-firstname"
                       type="text"
-                      placeholder="Jane"
+                      placeholder={t('auth.firstNamePlaceholder')}
                       value={firstName}
                       onChange={(e) => setFirstName(e.target.value)}
                       required
@@ -733,12 +734,12 @@ const Auth = () => {
                         color: "var(--skin-text-muted, rgba(11,42,90,0.93))",
                       }}
                     >
-                      Last Name
+                      {t('auth.lastNameLabel')}
                     </Label>
                     <Input
                       id="signup-lastname"
                       type="text"
-                      placeholder="Doe"
+                      placeholder={t('auth.lastNamePlaceholder')}
                       value={lastName}
                       onChange={(e) => setLastName(e.target.value)}
                       required
@@ -755,12 +756,12 @@ const Auth = () => {
                       color: "var(--skin-text-muted, rgba(11,42,90,0.93))",
                     }}
                   >
-                    Email
+                    {t('auth.emailLabel')}
                   </Label>
                   <Input
                     id="signup-email"
                     type="email"
-                    placeholder="you@example.com"
+                    placeholder={t('auth.emailPlaceholder')}
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
@@ -776,7 +777,7 @@ const Auth = () => {
                       color: "var(--skin-text-muted, rgba(11,42,90,0.93))",
                     }}
                   >
-                    Password
+                    {t('auth.passwordLabel')}
                   </Label>
                   <Input
                     id="signup-password"
@@ -795,11 +796,11 @@ const Auth = () => {
                       color: "var(--skin-text-muted-soft, rgba(26,30,58,0.55))",
                     }}
                   >
-                    At least 6 characters.
+                    {t('auth.passwordHint')}
                   </p>
                 </div>
                 <Button type="submit" className="w-full h-12 rounded-full" disabled={loading}>
-                  {loading ? "Creating account…" : "Sign Up"}
+                  {loading ? t('auth.creatingAccount') : t('auth.signUpButton')}
                 </Button>
               </form>
             </TabsContent>

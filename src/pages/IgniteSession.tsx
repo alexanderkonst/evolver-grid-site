@@ -29,6 +29,7 @@ import SEO from "@/components/SEO";
 // glyph (now plain italic underline links); DivineTimingCapture
 // removed (called trackFunnelEvent for the divine_timing event).
 import { useState, useRef, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import Hls from "hls.js";
 import geniusLogo from "@/assets/ignite-logo.png";
 import { supabase } from "@/integrations/supabase/client";
@@ -115,6 +116,7 @@ const HlsBackground = () => {
 };
 /* ─── Lazy YouTube Embed ──────────────────────────────────── */
 const LazyYouTube = ({ id, title }: { id: string; title: string }) => {
+  const { t } = useTranslation();
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
 
@@ -138,25 +140,28 @@ const LazyYouTube = ({ id, title }: { id: string; title: string }) => {
           className="w-full h-full"
         />
       ) : (
-        <div className="w-full h-full flex items-center justify-center text-xs text-white/20 bg-white/5">Loading…</div>
+        <div className="w-full h-full flex items-center justify-center text-xs text-white/20 bg-white/5">{t('ignite.videoLoading')}</div>
       )}
     </div>
   );
 };
 
 /* ─── Already Paid → Book ─────────────────── */
-const AlreadyPaidLink = () => (
-  <Button variant="outline" size="sm" asChild>
-    <a
-      href={CALCOM_BOOKING_LINK}
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      <Check className="w-3 h-3" />
-      Already paid? Book your session here →
-    </a>
-  </Button>
-);
+const AlreadyPaidLink = () => {
+  const { t } = useTranslation();
+  return (
+    <Button variant="outline" size="sm" asChild>
+      <a
+        href={CALCOM_BOOKING_LINK}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <Check className="w-3 h-3" />
+        {t('ignite.alreadyPaidLink')}
+      </a>
+    </Button>
+  );
+};
 
 /* Day 61 (Sasha 2026-05-04): retired components.
    – PrimaryCTA helper (replaced by inline <Button> calls so each
@@ -169,6 +174,7 @@ const AlreadyPaidLink = () => (
      reveal page, not here. */
 
 const IgniteSession = () => {
+  const { t } = useTranslation();
   const location = useLocation();
   // `inShell` flag retired Day 47 late pass — GameShellV2 is now the
   // wrapper regardless of URL. `location` still used for hash scrolling below.
@@ -284,16 +290,16 @@ const IgniteSession = () => {
                 "0 0 30px rgba(255,255,255,0.20), 0 0 60px rgba(255,255,255,0.08)",
             }}
           >
-            Walk out with a one-sentence business
+            {t('ignite.heroTitle')}
           </h1>
 
           <p
             className="text-base sm:text-lg italic text-white/70 max-w-md mx-auto leading-relaxed"
             style={{ fontFamily: "'Source Serif 4', serif" }}
           >
-            In 2 hours
+            {t('ignite.heroSubA')}
             <br />
-            Or you don't pay
+            {t('ignite.heroSubB')}
           </p>
 
           <div className="flex flex-col items-center gap-3 pt-4">
@@ -304,7 +310,7 @@ const IgniteSession = () => {
                 rel="noopener noreferrer"
                 onClick={() => trackCTAClick('booking_click', 'hero-cta')}
               >
-                <BoldText className="uppercase">Get my one-sentence business — $555</BoldText>
+                <BoldText className="uppercase">{t('ignite.ctaGetBusiness')}</BoldText>
                 <ArrowRight className="w-4 h-4 ml-1" />
               </a>
             </Button>
@@ -316,7 +322,7 @@ const IgniteSession = () => {
               className="text-xs text-white/55 hover:text-white/85 italic underline underline-offset-4 decoration-white/15 hover:decoration-white/40 transition-colors"
               onClick={() => trackCTAClick('clarity_call_click', 'hero-quiet-link')}
             >
-              Not sure yet? Take 20 min — a first read on your situation, free →
+              {t('ignite.clarityLinkHero')}
             </a>
           </div>
         </header>
@@ -324,14 +330,14 @@ const IgniteSession = () => {
         {/* BLOCK 2 — WHAT YOU LEAVE WITH */}
         <section className="space-y-5 max-w-md mx-auto" aria-label="What you leave with">
           <p className="text-[10px] text-white/45 uppercase tracking-[0.28em] text-center font-medium">
-            What you leave with
+            {t('ignite.leaveWithLabel')}
           </p>
           <div className="space-y-2.5 text-left">
             {[
-              "A one-sentence business you recognize as yours",
-              "The audience it's actually for",
-              "The reason they'll pay",
-              "A single landing page that holds it all",
+              t('ignite.leaveWith1'),
+              t('ignite.leaveWith2'),
+              t('ignite.leaveWith3'),
+              t('ignite.leaveWith4'),
             ].map((item, i) => (
               <div key={i} className="flex items-baseline gap-2.5">
                 <span className="text-white/40 text-sm">→</span>
@@ -343,7 +349,7 @@ const IgniteSession = () => {
             className="text-xs text-white/55 italic text-center leading-relaxed pt-1 max-w-sm mx-auto"
             style={{ fontFamily: "'Source Serif 4', serif" }}
           >
-            NOT a sales call for a "long-term coaching engagement." A 2-hour working session that produces a landing page for your business.
+            {t('ignite.leaveWithDisclaimer')}
           </p>
           <div className="flex justify-center pt-2">
             <Button size="lg" asChild>
@@ -353,7 +359,7 @@ const IgniteSession = () => {
                 rel="noopener noreferrer"
                 onClick={() => trackCTAClick('booking_click', 'block2-cta')}
               >
-                <BoldText className="uppercase">Get my one-sentence business — $555</BoldText>
+                <BoldText className="uppercase">{t('ignite.ctaGetBusiness')}</BoldText>
                 <ArrowRight className="w-4 h-4 ml-1" />
               </a>
             </Button>
@@ -386,7 +392,7 @@ const IgniteSession = () => {
               </span>
             </div>
             <p className="text-xs text-white/60">
-              2 hours · with a self-productization coach
+              {t('ignite.priceAttribution')}
             </p>
           </div>
 
@@ -396,7 +402,7 @@ const IgniteSession = () => {
               <ShieldCheck className="w-5 h-5 text-white/55" aria-hidden="true" />
             </div>
             <p className="text-sm text-white/90 leading-relaxed font-medium">
-              If you don't leave with a one-sentence business you recognize as yours: you don't pay.
+              {t('ignite.guarantee')}
             </p>
           </div>
 
@@ -405,7 +411,7 @@ const IgniteSession = () => {
             className="text-[11px] text-white/50 italic max-w-xs mx-auto leading-relaxed"
             style={{ fontFamily: "'Source Serif 4', serif" }}
           >
-            If your heart isn't resonating with this, don't sign up. This works because people come when they're ready — not when they're pressured or manipulated.
+            {t('ignite.resonancePermission')}
           </p>
 
           {/* Final CTA */}
@@ -418,7 +424,7 @@ const IgniteSession = () => {
                 id="book-session-btn"
                 onClick={() => trackCTAClick('booking_click', 'pricing-cta')}
               >
-                <BoldText className="uppercase">Book my session — $555</BoldText>
+                <BoldText className="uppercase">{t('ignite.ctaBookSession')}</BoldText>
                 <ArrowRight className="w-4 h-4 ml-1" />
               </a>
             </Button>
@@ -441,7 +447,7 @@ const IgniteSession = () => {
               className="text-xs text-white/55 hover:text-white/85 italic underline underline-offset-4 decoration-white/15 hover:decoration-white/40 transition-colors"
               onClick={() => trackCTAClick('clarity_call_click', 'footer-quiet-link')}
             >
-              Not sure yet? 20 min — a first read on your situation, free. →
+              {t('ignite.clarityLinkFooter')}
             </a>
           </div>
 
@@ -449,12 +455,12 @@ const IgniteSession = () => {
           <div className="space-y-2 max-w-lg mx-auto" id="faq-section">
             {[
               {
-                q: "What if I don't know my top talent yet?",
-                a: "Everyone has one. You can't see yours because it's been YOU your whole life — too natural to notice. The session names what's already there and turns it into a one-sentence business people will actually pay for.",
+                q: t('ignite.faq1Q'),
+                a: t('ignite.faq1A'),
               },
               {
-                q: "What if there's no actual business in what I do?",
-                a: "Every top talent is monetizable — nature doesn't waste them. If yours exists, it's because it's useful, helpful, and valuable to other people. The only question is how it translates into something they'll pay for. The session names the three pieces (what you do, who pays for it, why) and pulls them into one sentence. If we don't find it in 2 hours, you don't pay.",
+                q: t('ignite.faq2Q'),
+                a: t('ignite.faq2A'),
               },
             ].map((faq, i) => (
               <div key={i} className="liquid-glass rounded-2xl">
@@ -494,12 +500,12 @@ const IgniteSession = () => {
             className="space-y-3 pt-4"
           >
             <p className="text-[10px] text-white/40 uppercase tracking-[0.28em] text-center font-medium">
-              Methodology overview · 6 min
+              {t('ignite.methodologyLabel')}
             </p>
             <div className="liquid-glass rounded-2xl p-1">
               <LazyYouTube
                 id="afWWcXUqnLI"
-                title="The Productize Yourself Session — Methodology Overview"
+                title={t('ignite.methodologyVideoTitle')}
               />
             </div>
           </section>
