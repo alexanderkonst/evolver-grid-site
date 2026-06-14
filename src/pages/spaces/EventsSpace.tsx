@@ -1,5 +1,6 @@
 import { useState, useEffect, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { CalendarDays } from "lucide-react";
 import GameShellV2 from "@/components/game/GameShellV2";
 import EventCard from "@/components/events/EventCard";
@@ -13,6 +14,7 @@ import ErrorBoundary from "@/components/ErrorBoundary";
 
 const EventsSpace = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const { events, loading, error, refetch } = useEvents();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [filterMode, setFilterMode] = useState<"all" | "location" | "community">("all");
@@ -46,14 +48,14 @@ const EventsSpace = () => {
   const eventsByLocation = useMemo(() => {
     if (filterMode !== "location") return {};
     return filteredEvents.reduce<Record<string, typeof events>>((acc, event) => {
-      const key = event.location || "Other locations";
+      const key = event.location || t("eventsSpace.otherLocations");
       if (!acc[key]) {
         acc[key] = [];
       }
       acc[key].push(event);
       return acc;
     }, {});
-  }, [filterMode, filteredEvents, events]);
+  }, [filterMode, filteredEvents, events, t]);
 
   return (
     <GameShellV2>
@@ -64,9 +66,9 @@ const EventsSpace = () => {
             <div>
               <div className="flex items-center gap-3 mb-2">
                 <CalendarDays className="w-6 h-6 text-foreground" />
-                <h1 className="text-2xl font-bold text-foreground">Events</h1>
+                <h1 className="text-2xl font-bold text-foreground">{t("eventsSpace.title")}</h1>
               </div>
-              <p className="text-muted-foreground">Gatherings and experiences</p>
+              <p className="text-muted-foreground">{t("eventsSpace.subtitle")}</p>
             </div>
 
             {/* Create Event Button */}
@@ -96,7 +98,7 @@ const EventsSpace = () => {
             <div className="flex flex-wrap items-center gap-3 mb-6">
               <div className="flex items-center gap-2">
                 <label htmlFor="events-filter" className="text-xs text-muted-foreground">
-                  Filter
+                  {t("eventsSpace.filter")}
                 </label>
                 <select
                   id="events-filter"
@@ -104,15 +106,15 @@ const EventsSpace = () => {
                   onChange={(e) => setFilterMode(e.target.value as "all" | "location" | "community")}
                   className="rounded-md border border-border bg-[var(--skin-input-fill,#fff)] px-2 py-1 text-sm"
                 >
-                  <option value="all">All Events</option>
-                  <option value="location">By Location</option>
-                  <option value="community">By Community</option>
+                  <option value="all">{t("eventsSpace.filterAll")}</option>
+                  <option value="location">{t("eventsSpace.filterByLocation")}</option>
+                  <option value="community">{t("eventsSpace.filterByCommunity")}</option>
                 </select>
               </div>
               {filterMode === "community" && (
                 <div className="flex items-center gap-2">
                   <label htmlFor="community-filter" className="text-xs text-muted-foreground">
-                    Community
+                    {t("eventsSpace.community")}
                   </label>
                   <select
                     id="community-filter"
@@ -120,7 +122,7 @@ const EventsSpace = () => {
                     onChange={(e) => setSelectedCommunity(e.target.value)}
                     className="rounded-md border border-border bg-[var(--skin-input-fill,#fff)] px-2 py-1 text-sm"
                   >
-                    <option value="all">All Communities</option>
+                    <option value="all">{t("eventsSpace.allCommunities")}</option>
                     {communityOptions.map((communityId) => (
                       <option key={communityId} value={communityId}>
                         {communityId}
@@ -133,7 +135,7 @@ const EventsSpace = () => {
                       size="sm"
                       onClick={() => navigate(`/events/community/${selectedCommunity}`)}
                     >
-                      View page
+                      {t("eventsSpace.viewPage")}
                     </Button>
                   )}
                 </div>
@@ -146,16 +148,16 @@ const EventsSpace = () => {
             <div className="rounded-xl border border-border bg-[var(--skin-card-fill,rgba(255,255,255,0.85))] backdrop-blur-sm p-8 shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
               <EmptyState
                 icon={<CalendarDays className="w-6 h-6 text-muted-foreground" />}
-                title="No events yet"
+                title={t("eventsSpace.emptyTitle")}
                 description={
                   isAuthenticated
-                    ? "Check back soon or create your own community gathering."
-                    : "Check back soon for upcoming community gatherings."
+                    ? t("eventsSpace.emptyDescAuthed")
+                    : t("eventsSpace.emptyDescGuest")
                 }
                 action={
                   isAuthenticated
                     ? {
-                      label: "Create Event",
+                      label: t("eventsSpace.createEvent"),
                       onClick: () => navigate("/game/events/create"),
                     }
                     : undefined

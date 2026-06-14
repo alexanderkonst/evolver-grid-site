@@ -127,6 +127,7 @@ const ImageIcon = ({
 interface SpaceItem {
     id: string;
     label: string;
+    labelKey: string;
     icon: ReactNode;
     path: string;
 }
@@ -143,6 +144,7 @@ const SPACES: SpaceItem[] = [
     {
         id: "journey",
         label: "JOURNEY",
+        labelKey: "spacesRail.journey",
         // Day 48 iter 7 (Sasha): teal ✵ glyph replaced with the custom
         // gold-with-blue-hints journey icon asset.
         // Day 50 (Sasha): warm gold glow now matches ME — the two
@@ -153,6 +155,7 @@ const SPACES: SpaceItem[] = [
     {
         id: "ai-os",
         label: "AI OS",
+        labelKey: "spacesRail.aiOs",
         // Day 54 (Sasha 2026-04-28): AI OS elevated to its own Space,
         // sitting between JOURNEY and ME — process / substrate / being,
         // the three foundational doors. The merkaba carries the rainbow
@@ -172,6 +175,7 @@ const SPACES: SpaceItem[] = [
     {
         id: "grow",
         label: "ME",
+        labelKey: "spacesRail.me",
         // Day 48 iter 7 (Sasha): purple ❂ glyph replaced with the custom
         // ME icon asset. Sasha asked for a warm gold glow around the
         // mark — rendered via drop-shadow on the <img> (see ImageIcon).
@@ -181,12 +185,14 @@ const SPACES: SpaceItem[] = [
     {
         id: "learn",
         label: "LEARN",
+        labelKey: "spacesRail.learn",
         icon: <GlyphIcon glyph="✹" color="hsl(210, 75%, 68%)" />,
         path: "/game/learn",
     },
     {
         id: "meet",
         label: "MEET",
+        labelKey: "spacesRail.meet",
         icon: <GlyphIcon glyph="⚭" color="hsl(145, 65%, 60%)" />,
         path: "/game/meet",
     },
@@ -200,12 +206,14 @@ const SPACES: SpaceItem[] = [
         // matches surface as a safety net (see App.tsx).
         id: "collaborate",
         label: "COLLABORATE",
+        labelKey: "spacesRail.collaborate",
         icon: <GlyphIcon glyph="⇶" color="hsl(325, 65%, 65%)" />,
         path: "/game/collaborate/matches",
     },
     {
         id: "build",
         label: "BUILD",
+        labelKey: "spacesRail.build",
         icon: <GlyphIcon glyph="⬢" color="hsl(45, 90%, 62%)" size={32} />,
         // Day 52 (Sasha 2026-04-26): BUILD chip lands on the Unique
         // Business Builder. UBB is the canonical BUILD experience —
@@ -216,6 +224,7 @@ const SPACES: SpaceItem[] = [
     {
         id: "buysell",
         label: "OFFER",
+        labelKey: "spacesRail.offer",
         icon: <GlyphIcon glyph="⚛" color="hsl(15, 85%, 65%)" />,
         path: "/game/marketplace",
     },
@@ -630,8 +639,8 @@ const SpacesRail = ({
                             // Non-locked chips keep the native title as a simple
                             // accessibility fallback for mobile where the label
                             // column is hidden.
-                            title={!isLocked ? space.label : undefined}
-                            aria-label={isLocked ? (unlockHints[space.id] || `${space.label} — locked`) : space.label}
+                            title={!isLocked ? t(space.labelKey) : undefined}
+                            aria-label={isLocked ? (unlockHints[space.id] || t('spacesRail.lockedLabel', { space: t(space.labelKey) })) : t(space.labelKey)}
                         >
                             <span className="relative flex-shrink-0">
                                 <span
@@ -654,7 +663,7 @@ const SpacesRail = ({
                                     textTransform: "uppercase",
                                 }}
                             >
-                                {space.label}
+                                {t(space.labelKey)}
                             </span>
 
                             {hasNudge && (
@@ -678,7 +687,7 @@ const SpacesRail = ({
                     // (over the chip itself) never covers the message. Small
                     // side-offset so it doesn't touch the rail edge.
                     if (isLocked) {
-                        const hint = unlockHints[space.id] || `${space.label} — locked`;
+                        const hint = unlockHints[space.id] || t('spacesRail.lockedLabel', { space: t(space.labelKey) });
                         return (
                             <Tooltip key={space.id}>
                                 <TooltipTrigger asChild>
@@ -711,7 +720,7 @@ const SpacesRail = ({
                                                 textShadow: "0 0 10px rgba(244, 212, 114, 0.4)",
                                             }}
                                         >
-                                            {space.label} · Locked
+                                            {t('spacesRail.lockedHeader', { space: t(space.labelKey) })}
                                         </p>
                                         <p
                                             className="text-[13px] italic leading-snug"

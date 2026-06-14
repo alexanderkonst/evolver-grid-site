@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { localizedOrigin } from "@/i18n/localeScope";
 import { useNavigate } from "react-router-dom";
 import { Sparkles } from "lucide-react";
@@ -14,6 +15,7 @@ import { saveResonanceRating } from "@/lib/saveResonanceRating";
 import BackButton from "@/components/BackButton";
 
 const AppleseedView = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [appleseed, setAppleseed] = useState<AppleseedData | null>(null);
   const [excalibur, setExcalibur] = useState<ExcaliburData | null>(null);
@@ -51,13 +53,13 @@ const AppleseedView = () => {
       <GameShellV2>
         <div className="min-h-[60vh] flex flex-col items-center justify-center text-center px-4">
           <Sparkles className="w-10 h-10 text-amber-400 mb-3" />
-          <h1 className="text-2xl font-semibold text-[#2c3150] mb-2">No genius profile yet</h1>
+          <h1 className="text-2xl font-semibold text-[#2c3150] mb-2">{t('appleseedView.empty.title')}</h1>
           <p className="text-[rgba(44,49,80,0.7)] mb-6">
-            Generate your Zone of Genius to view your profile here.
+            {t('appleseedView.empty.body')}
           </p>
           <div className="flex flex-wrap gap-3 justify-center">
             <Button onClick={() => navigate("/zone-of-genius/entry")}>
-              Start Zone of Genius
+              {t('appleseedView.empty.cta')}
             </Button>
             <BackButton to="/game/me" />
           </div>
@@ -82,12 +84,12 @@ const AppleseedView = () => {
       {!excalibur && (
         <div className="px-4 pb-10">
           <div className="max-w-3xl mx-auto rounded-2xl border border-violet-200 bg-violet-50 p-6 text-center">
-            <h2 className="text-lg font-semibold text-[#2c3150] mb-2">Your Unique Offer</h2>
+            <h2 className="text-lg font-semibold text-[#2c3150] mb-2">{t('appleseedView.offer.title')}</h2>
             <p className="text-[rgba(44,49,80,0.7)] mb-4">
-              You know who you are. Now discover what you can offer.
+              {t('appleseedView.offer.body')}
             </p>
             <Button onClick={() => navigate("/zone-of-genius/entry")}>
-              Create My Unique Offer →
+              {t('appleseedView.offer.cta')}
             </Button>
           </div>
         </div>

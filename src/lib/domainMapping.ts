@@ -36,13 +36,14 @@ export const VECTOR_CONFIG: Record<VectorId, { label: string; icon: string; colo
 /**
  * Starter actions for each vector
  * Used when user has no completed actions
+ * `title` is the English fallback; `titleKey` resolves the localized label via i18n.
  */
-export const STARTER_ACTIONS: Record<VectorId, { title: string; duration: number; xp: number }> = {
-    genius: { title: "Articulate Your Top 3 Talents", duration: 10, xp: 15 },
-    body: { title: "10-Minute Morning Stretch", duration: 10, xp: 10 },
-    mind: { title: "Read 1 Educational Article", duration: 15, xp: 10 },
-    emotions: { title: "Gratitude Journal Entry", duration: 5, xp: 5 },
-    spirit: { title: "5-Minute Breathing Practice", duration: 5, xp: 10 },
+export const STARTER_ACTIONS: Record<VectorId, { title: string; titleKey: string; duration: number; xp: number }> = {
+    genius: { title: "Articulate Your Top 3 Talents", titleKey: "nextMove.starterActions.genius", duration: 10, xp: 15 },
+    body: { title: "10-Minute Morning Stretch", titleKey: "nextMove.starterActions.body", duration: 10, xp: 10 },
+    mind: { title: "Read 1 Educational Article", titleKey: "nextMove.starterActions.mind", duration: 15, xp: 10 },
+    emotions: { title: "Gratitude Journal Entry", titleKey: "nextMove.starterActions.emotions", duration: 5, xp: 5 },
+    spirit: { title: "5-Minute Breathing Practice", titleKey: "nextMove.starterActions.spirit", duration: 5, xp: 10 },
 };
 
 /**

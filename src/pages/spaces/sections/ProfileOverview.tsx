@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { User, Sparkles, Briefcase, Map, Target, Boxes, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -18,6 +19,7 @@ interface ProfileData {
 }
 
 const ProfileOverviewContent = () => {
+    const { t } = useTranslation();
     const [data, setData] = useState<ProfileData | null>(null);
     const [isLoading, setIsLoading] = useState(true);
 
@@ -55,7 +57,7 @@ const ProfileOverviewContent = () => {
     if (isLoading) {
         return (
             <div className="p-6 lg:p-8 max-w-2xl mx-auto flex items-center justify-center min-h-[50vh]">
-                <div className="text-white/30 animate-pulse text-sm">Loading profile...</div>
+                <div className="text-white/30 animate-pulse text-sm">{t('profileOverview.loading')}</div>
             </div>
         );
     }
@@ -68,10 +70,10 @@ const ProfileOverviewContent = () => {
                     <User className="w-8 h-8 text-[#8460ea]" />
                 </div>
                 <h1 className="text-2xl font-bold text-white mb-2">
-                    {data?.firstName ? `Hello, ${data.firstName}!` : "Your Profile"}
+                    {data?.firstName ? t('profileOverview.greeting', { name: data.firstName }) : t('profileOverview.titleFallback')}
                 </h1>
                 <p className="text-white/40">
-                    Know yourself. Build your character.
+                    {t('profileOverview.subtitle')}
                 </p>
             </div>
 
@@ -99,28 +101,28 @@ const ProfileOverviewContent = () => {
                     className="flex items-center gap-3 p-4 rounded-xl liquid-glass ring-1 ring-white/10 hover:ring-[#8460ea]/30 hover:bg-white/[0.03] transition-all group"
                 >
                     <Sparkles className="w-5 h-5 text-[#8460ea]" />
-                    <span className="text-sm font-medium text-white/80 group-hover:text-white transition-colors">Top Talent</span>
+                    <span className="text-sm font-medium text-white/80 group-hover:text-white transition-colors">{t('profileOverview.cards.topTalent')}</span>
                 </Link>
                 <Link
                     to="/game/me/genius-business"
                     className="flex items-center gap-3 p-4 rounded-xl liquid-glass ring-1 ring-white/10 hover:ring-[#8460ea]/30 hover:bg-white/[0.03] transition-all group"
                 >
                     <Briefcase className="w-5 h-5 text-[#8460ea]" />
-                    <span className="text-sm font-medium text-white/80 group-hover:text-white transition-colors">Genius Business</span>
+                    <span className="text-sm font-medium text-white/80 group-hover:text-white transition-colors">{t('profileOverview.cards.business')}</span>
                 </Link>
                 <Link
                     to="/quality-of-life-map/assessment"
                     className="flex items-center gap-3 p-4 rounded-xl liquid-glass ring-1 ring-white/10 hover:ring-[#8460ea]/30 hover:bg-white/[0.03] transition-all group"
                 >
                     <Map className="w-5 h-5 text-[#8460ea]" />
-                    <span className="text-sm font-medium text-white/80 group-hover:text-white transition-colors">Quality of Life</span>
+                    <span className="text-sm font-medium text-white/80 group-hover:text-white transition-colors">{t('profileOverview.cards.qualityOfLife')}</span>
                 </Link>
                 <Link
                     to="/game/me/mission"
                     className="flex items-center gap-3 p-4 rounded-xl liquid-glass ring-1 ring-white/10 hover:ring-[#8460ea]/30 hover:bg-white/[0.03] transition-all group"
                 >
                     <Target className="w-5 h-5 text-[#8460ea]" />
-                    <span className="text-sm font-medium text-white/80 group-hover:text-white transition-colors">My Mission</span>
+                    <span className="text-sm font-medium text-white/80 group-hover:text-white transition-colors">{t('profileOverview.cards.mission')}</span>
                 </Link>
             </div>
 

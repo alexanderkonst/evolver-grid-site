@@ -274,7 +274,7 @@ const IgniteSession = () => {
         <header className="text-center space-y-6 pt-4 pb-2" id="ignite-hero">
           <img
             src={geniusLogo}
-            alt="Genius Business"
+            alt={t('ignite.logoAlt')}
             className="w-[140px] h-auto mx-auto opacity-80"
           />
 
@@ -328,7 +328,7 @@ const IgniteSession = () => {
         </header>
 
         {/* BLOCK 2 — WHAT YOU LEAVE WITH */}
-        <section className="space-y-5 max-w-md mx-auto" aria-label="What you leave with">
+        <section className="space-y-5 max-w-md mx-auto" aria-label={t('ignite.sectionLeaveWith')}>
           <p className="text-[10px] text-white/45 uppercase tracking-[0.28em] text-center font-medium">
             {t('ignite.leaveWithLabel')}
           </p>
@@ -370,7 +370,7 @@ const IgniteSession = () => {
         <section
           className="liquid-glass-strong rounded-[2.5rem] p-7 md:p-9 text-center space-y-6"
           id="pricing-section"
-          aria-label="Book your session"
+          aria-label={t('ignite.sectionBook')}
         >
           <div id="booking" className="sr-only" aria-hidden="true" />
 
@@ -437,7 +437,7 @@ const IgniteSession = () => {
         </section>
 
         {/* BLOCK 4 — QUIET FOOTER (alternates + 2 FAQs + methodology video) */}
-        <section className="space-y-6 pt-2" aria-label="Alternates and FAQ">
+        <section className="space-y-6 pt-2" aria-label={t('ignite.sectionAlternatesFaq')}>
           {/* Alternates — two thin links stacked */}
           <div className="flex flex-col items-center gap-3 text-center">
             <a
@@ -496,7 +496,7 @@ const IgniteSession = () => {
               lives in a quieter position now. */}
           <section
             id="hero-video"
-            aria-label="Methodology video"
+            aria-label={t('ignite.sectionMethodologyVideo')}
             className="space-y-3 pt-4"
           >
             <p className="text-[10px] text-white/40 uppercase tracking-[0.28em] text-center font-medium">

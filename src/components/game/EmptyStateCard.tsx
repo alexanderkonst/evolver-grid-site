@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 
 type EmptyStateType = "zog" | "qol" | "action";
@@ -9,24 +10,24 @@ interface EmptyStateCardProps {
 
 const EMPTY_STATE_CONFIG: Record<
     EmptyStateType,
-    { icon: string; message: string; cta: string; href: string }
+    { icon: string; messageKey: string; ctaKey: string; href: string }
 > = {
     zog: {
         icon: "🌟",
-        message: "Let's discover who you are",
-        cta: "Discover My Genius",
+        messageKey: "emptyState.zog.message",
+        ctaKey: "emptyState.zog.cta",
         href: "/zone-of-genius/entry?return=/game",
     },
     qol: {
         icon: "📊",
-        message: "See where you are across 8 life areas",
-        cta: "Map My Life",
+        messageKey: "emptyState.qol.message",
+        ctaKey: "emptyState.qol.cta",
         href: "/game/transformation/qol-assessment?return=/game",
     },
     action: {
         icon: "✨",
-        message: "You've completed all recommended actions!",
-        cta: "Explore More",
+        messageKey: "emptyState.action.message",
+        ctaKey: "emptyState.action.cta",
         href: "/game/transformation/library",
     },
 };
@@ -36,6 +37,7 @@ const EMPTY_STATE_CONFIG: Record<
  * Inviting, not guilt-inducing
  */
 export default function EmptyStateCard({ type }: EmptyStateCardProps) {
+    const { t } = useTranslation();
     const config = EMPTY_STATE_CONFIG[type];
 
     // Day 91 (Sasha 2026-06-09): tokenized for Aurum - gradient classes moved to a style-prop
@@ -49,13 +51,13 @@ export default function EmptyStateCard({ type }: EmptyStateCardProps) {
             }}
         >
             <div className="text-4xl mb-4">{config.icon}</div>
-            <p className="text-lg text-[rgba(44,49,80,0.7)] mb-6">{config.message}</p>
+            <p className="text-lg text-[rgba(44,49,80,0.7)] mb-6">{t(config.messageKey)}</p>
             <Link to={config.href}>
                 <Button
                     variant="outline"
                     className="border-2 border-[#8460ea] text-[#8460ea] hover:bg-[#8460ea]/10 px-6 py-3 rounded-xl"
                 >
-                    {config.cta} →
+                    {t(config.ctaKey)} →
                 </Button>
             </Link>
         </div>

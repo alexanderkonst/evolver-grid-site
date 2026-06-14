@@ -1,4 +1,6 @@
 import { Sparkles } from "lucide-react";
+import { useTranslation } from "react-i18next";
+import { formatNumber } from "@/i18n/format";
 
 interface MeSectionProps {
     archetypeTitle?: string;
@@ -27,6 +29,7 @@ const getLevelFromXp = (xpTotal: number): number => {
 };
 
 const MeSection = ({ archetypeTitle, level: dbLevel, xpTotal, displayName, avatarUrl }: MeSectionProps) => {
+    const { t } = useTranslation();
     // Use XP-derived level to avoid mismatch bugs
     const level = getLevelFromXp(xpTotal);
     const xpForCurrentLevel = getXpForLevel(level - 1);
@@ -42,7 +45,7 @@ const MeSection = ({ archetypeTitle, level: dbLevel, xpTotal, displayName, avata
                     {avatarUrl ? (
                         <img
                             src={avatarUrl}
-                            alt="Profile avatar"
+                            alt={t('meSection.avatarAlt')}
                             loading="lazy"
                             onError={(e) => {
                                 e.currentTarget.src = "/placeholder.svg";
@@ -61,11 +64,11 @@ const MeSection = ({ archetypeTitle, level: dbLevel, xpTotal, displayName, avata
                         {archetypeTitle ? (
                             <span>✦ {archetypeTitle} ✦</span>
                         ) : (
-                            "Discover Your Archetype"
+                            t('meSection.discoverArchetype')
                         )}
                     </h2>
                     <p className="text-sm text-white/50">
-                        Level {level} · {xpTotal.toLocaleString()} XP
+                        {t('meSection.levelLine', { level, xp: formatNumber(xpTotal) })}
                     </p>
                 </div>
             </div>
@@ -73,8 +76,8 @@ const MeSection = ({ archetypeTitle, level: dbLevel, xpTotal, displayName, avata
             {/* XP Progress Bar */}
             <div className="mt-2">
                 <div className="flex justify-between text-xs text-white/30 mb-1">
-                    <span>{xpInCurrentLevel.toLocaleString()} / {xpNeededForNext.toLocaleString()} XP</span>
-                    <span>Level {level + 1}</span>
+                    <span>{t('meSection.xpProgress', { current: formatNumber(xpInCurrentLevel), needed: formatNumber(xpNeededForNext) })}</span>
+                    <span>{t('meSection.levelNext', { next: level + 1 })}</span>
                 </div>
                 <div className="h-2 bg-white/10 rounded-full overflow-hidden">
                     <div

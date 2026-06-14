@@ -188,7 +188,12 @@
     "faq2Q": "А что, если в том, что я делаю, нет настоящего бизнеса?",
     "faq2A": "Любой главный талант можно монетизировать — природа их не расходует впустую. Если твой существует, то потому, что он полезен, нужен и ценен для других людей. Вопрос лишь в том, как он переводится в то, за что они заплатят. Сессия называет три части (что ты делаешь, кто за это платит, почему) и собирает их в одну фразу. Если мы не найдём её за 2 часа — ты не платишь.",
     "methodologyLabel": "Обзор методологии · 6 мин",
-    "methodologyVideoTitle": "Сессия «Упакуй себя» — обзор методологии"
+    "methodologyVideoTitle": "Сессия «Упакуй себя» — обзор методологии",
+    "logoAlt": "Найди свой главный талант",
+    "sectionLeaveWith": "С чем ты уйдёшь",
+    "sectionBook": "Забронируй сессию",
+    "sectionAlternatesFaq": "Альтернативы и частые вопросы",
+    "sectionMethodologyVideo": "Видео о методологии"
   },
   "auth": {
     "emailRequiredTitle": "Нужен email",
@@ -423,6 +428,167 @@
       "buildBusinessSix": {
         "label": "6. Построй бизнес на своём главном таланте",
         "lockedHint": "Откроется, когда активируешь свой главный талант или заполнишь профиль для мэтчинга."
+      }
+    },
+    "aiOs": {
+      "install": {
+        "label": "Установка за 60 секунд"
+      },
+      "suites": {
+        "label": "AI-навыки"
+      },
+      "clarity": {
+        "label": "Прояснить"
+      },
+      "iteration": {
+        "label": "Итерировать"
+      },
+      "vibeCode": {
+        "label": "Vibe Code"
+      },
+      "design": {
+        "label": "Дизайн"
+      },
+      "benchmark": {
+        "label": "Бенчмаркинг"
+      },
+      "pricing": {
+        "label": "Работать с нами"
+      }
+    },
+    "me": {
+      "topTalent": {
+        "label": "Главный талант"
+      },
+      "ttStartHere": {
+        "label": "Начни здесь"
+      },
+      "ttOverview": {
+        "label": "Обзор"
+      },
+      "ttHowItShowsUp": {
+        "label": "Как это проявляется"
+      },
+      "ttThreeKeyTalents": {
+        "label": "Три таланта в глубину"
+      },
+      "ttTopShadow": {
+        "label": "Главная тень"
+      },
+      "ttMastery": {
+        "label": "Путь мастерства"
+      },
+      "ttOneAction": {
+        "label": "Одно действие"
+      },
+      "ttRoles": {
+        "label": "Идеальная среда"
+      },
+      "ttPartner": {
+        "label": "Дополняющий партнёр"
+      },
+      "ttMonetization": {
+        "label": "Монетизация"
+      },
+      "ttUnifyingRole": {
+        "label": "Твоя объединяющая роль"
+      },
+      "ttWhatsNext": {
+        "label": "Что дальше?"
+      },
+      "mission": {
+        "label": "Миссия"
+      },
+      "qol": {
+        "label": "Качество жизни"
+      },
+      "assets": {
+        "label": "Активы"
+      }
+    },
+    "art": {
+      "root": {
+        "label": "🎨 Искусство"
+      },
+      "gallery": {
+        "label": "Галерея"
+      },
+      "ceremonial": {
+        "label": "Церемониальные пространства"
+      },
+      "illustrations": {
+        "label": "Иллюстрации"
+      },
+      "starcodes": {
+        "label": "Звёздные коды"
+      },
+      "webportals": {
+        "label": "Веб-порталы"
+      }
+    },
+    "meet": {
+      "browse": {
+        "label": "Смотреть события"
+      },
+      "myRsvps": {
+        "label": "Мои отклики"
+      },
+      "create": {
+        "label": "Создать событие"
+      }
+    },
+    "collaborate": {
+      "findCollaborators": {
+        "label": "Найти бизнес-партнёров"
+      },
+      "connections": {
+        "label": "Связи",
+        "lockedHint": "Скоро. Поверхность для отслеживания связей в разработке."
+      },
+      "people": {
+        "label": "Каталог людей",
+        "lockedHint": "Скоро. Каталогу нужны разрешения профилей, прежде чем он выйдет."
+      },
+      "missionGroups": {
+        "label": "Группы по миссии",
+        "lockedHint": "Скоро. Поток создания групп ещё не готов."
+      }
+    },
+    "build": {
+      "avb": {
+        "label": "Автоматический конструктор бизнеса"
+      },
+      "path": {
+        "label": "Путь к твоему уникальному бизнесу"
+      },
+      "playbook": {
+        "label": "Возьми точный плейбук"
+      },
+      "dashboard": {
+        "label": "Посмотреть дашборд"
+      },
+      "ignite": {
+        "label": "Сессия «Упакуй себя в продукт»"
+      },
+      "equilibrium": {
+        "label": "Equilibrium"
+      },
+      "karime": {
+        "label": "Уникальное предложение Кариме"
+      }
+    },
+    "offer": {
+      "overview": {
+        "label": "Обзор"
+      },
+      "myProducts": {
+        "label": "Мои продукты"
+      },
+      "ignite": {
+        "label": "Сессия «Упакуй себя в продукт»"
+      },
+      "publicPage": {
+        "label": "Моя публичная страница"
       }
     }
   },
@@ -2911,7 +3077,17 @@
     "logOutTitle": "Выйти",
     "logOutLabel": "выйти",
     "logInTitle": "Войти",
-    "logInLabel": "Войти"
+    "logInLabel": "Войти",
+    "journey": "ПУТЬ",
+    "aiOs": "AI OS",
+    "me": "Я",
+    "learn": "УЧИТЬСЯ",
+    "meet": "ЗНАКОМСТВА",
+    "collaborate": "ПАРТНЁРЫ",
+    "build": "СОЗДАВАТЬ",
+    "offer": "ПРЕДЛОЖИТЬ",
+    "lockedLabel": "{{space}}, закрыто",
+    "lockedHeader": "{{space}} · Закрыто"
   },
   "profileSettings": {
     "toastErrorTitle": "Ошибка",
@@ -3435,7 +3611,8 @@
     "footerOpenText": "Метод открыт для чтения. Платформу можно форкнуть.",
     "forkOnGithub": "Форкни на GitHub →",
     "footerCollectiveText": "Запусти его для своего сообщества — под своим брендом. 10% в общий фонд, если идёшь в коммерцию (плюс множество других плюшек от входа в коллектив импакт-фаундеров).",
-    "contactUs": "Свяжись с нами →"
+    "contactUs": "Свяжись с нами →",
+    "navAriaLabel": "Этапы плейбука"
   },
   "signupModal": {
     "defaultTitle": "Сохрани свой гений",
@@ -6470,5 +6647,126 @@
     "discoverMission": "Найти мою миссию",
     "heading": "Твоя миссия",
     "oneSentence": "Одна фраза"
+  },
+  "nextMove": {
+    "title": "Мой следующий шаг",
+    "allComplete": "Ты выполнил все рекомендованные действия!",
+    "exploreMore": "Смотреть ещё →",
+    "pathLine": "Путь: {{path}} · {{duration}}",
+    "start": "НАЧАТЬ",
+    "xp": "+{{xp}} XP",
+    "notThis": "Не то? Смотри ещё →",
+    "paths": {
+      "genius": "Гений",
+      "body": "Тело",
+      "mind": "Разум",
+      "emotions": "Эмоции",
+      "spirit": "Дух"
+    },
+    "starterActions": {
+      "genius": "Сформулируй свои 3 главных таланта",
+      "body": "10-минутная утренняя растяжка",
+      "mind": "Прочитай 1 обучающую статью",
+      "emotions": "Запись в дневнике благодарности",
+      "spirit": "5-минутная дыхательная практика"
+    }
+  },
+  "meSummary": {
+    "discovering": "Раскрываем...",
+    "levelXp": "Уровень {{level}} · {{xp}} XP",
+    "progressToNext": "{{current}} / {{target}} до уровня {{next}}",
+    "viewProfile": "Открыть профиль →"
+  },
+  "emptyState": {
+    "zog": {
+      "message": "Давай выясним, кто ты на самом деле",
+      "cta": "Найти свой главный талант"
+    },
+    "qol": {
+      "message": "Посмотри, где ты находишься по 8 сферам жизни",
+      "cta": "Составить карту жизни"
+    },
+    "action": {
+      "message": "Ты выполнил все рекомендованные действия!",
+      "cta": "Смотреть ещё"
+    }
+  },
+  "meSection": {
+    "avatarAlt": "Аватар профиля",
+    "discoverArchetype": "Открой свой архетип",
+    "levelLine": "Уровень {{level}} · {{xp}} XP",
+    "xpProgress": "{{current}} / {{needed}} XP",
+    "levelNext": "Уровень {{next}}"
+  },
+  "profileOverview": {
+    "loading": "Загружаем профиль...",
+    "greeting": "Привет, {{name}}!",
+    "titleFallback": "Твой профиль",
+    "subtitle": "Познай себя. Прокачивай своего персонажа.",
+    "cards": {
+      "topTalent": "Главный талант",
+      "business": "Твой бизнес",
+      "qualityOfLife": "Качество жизни",
+      "mission": "Моя миссия"
+    }
+  },
+  "myProducts": {
+    "toast": {
+      "copied": {
+        "title": "Ссылка скопирована!",
+        "description": "Поделись им со всем миром."
+      }
+    },
+    "title": "Мои продукты",
+    "subtitle": "Твои опубликованные офферы и продукты.",
+    "fallbackHeadline": "Мой продукт",
+    "statusLive": "В эфире",
+    "fallbackPromise": "Твой трансформационный оффер",
+    "viewPage": "Открыть страницу",
+    "copyLink": "Скопировать ссылку",
+    "empty": {
+      "title": "Пока нет опубликованных продуктов.",
+      "cta": "Заполни свой холст уникального бизнеса, чтобы начать."
+    }
+  },
+  "eventsSpace": {
+    "title": "События",
+    "subtitle": "Встречи и впечатления",
+    "otherLocations": "Другие места",
+    "filter": "Фильтр",
+    "filterAll": "Все события",
+    "filterByLocation": "По месту",
+    "filterByCommunity": "По сообществу",
+    "community": "Сообщество",
+    "allCommunities": "Все сообщества",
+    "viewPage": "Открыть страницу",
+    "emptyTitle": "Событий пока нет",
+    "emptyDescAuthed": "Загляни позже или создай свою встречу для сообщества.",
+    "emptyDescGuest": "Загляни позже, скоро появятся встречи сообщества.",
+    "createEvent": "Создать событие"
+  },
+  "appleseedView": {
+    "empty": {
+      "title": "Профиля главного таланта пока нет",
+      "body": "Запусти Zone of Genius, чтобы увидеть свой профиль здесь.",
+      "cta": "Запустить Zone of Genius"
+    },
+    "offer": {
+      "title": "Твоё уникальное предложение",
+      "body": "Ты знаешь, кто ты. Теперь открой, что ты можешь предложить.",
+      "cta": "Создать моё уникальное предложение →"
+    }
+  },
+  "events": {
+    "dateTimeAt": "{{date}} в {{time}}"
+  },
+  "gameCelebration": {
+    "continue": "Дальше",
+    "title": "Отлично!",
+    "message": "Твой следующий ход готов",
+    "xpBadge_one": "+{{count}} XP",
+    "xpBadge_few": "+{{count}} XP",
+    "xpBadge_many": "+{{count}} XP",
+    "xpBadge_other": "+{{count}} XP"
   }
 }

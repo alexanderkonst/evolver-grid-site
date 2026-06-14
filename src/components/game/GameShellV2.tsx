@@ -34,7 +34,7 @@ import { initialSkinScope } from "@/lib/skinScope";
 // now checks the URL directly at mount (see comment in MuxVideoBackground
 // below) so sessionStorage-cached match flags don't poison fresh loads.
 import SpacesRail, { SPACES } from "./SpacesRail";
-import SectionsPanel, { SPACE_SECTIONS } from "./SectionsPanel";
+import SectionsPanel, { SPACE_SECTIONS, STATIC_LABEL_KEYS } from "./SectionsPanel";
 import { useDeepProfileActivated } from "@/hooks/useDeepProfileActivated";
 import { useEntitlement } from "@/hooks/useEntitlement";
 import { useJourneyProgress } from "@/hooks/useJourneyProgress";
@@ -1859,7 +1859,8 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                             space name when the section can't be derived
                             (e.g., paths that aren't section-mapped). */}
                         {(() => {
-                            const spaceLabel = SPACES.find(s => s.id === activeSpaceId)?.label || t("shell.breadcrumb.spaceFallback");
+                            const __activeSpace = SPACES.find(s => s.id === activeSpaceId);
+                            const spaceLabel = __activeSpace ? t(__activeSpace.labelKey) : t("shell.breadcrumb.spaceFallback");
                             const pathname = location.pathname;
 
                             // Resolve active section label.
@@ -1882,7 +1883,7 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                                                     pathname === sub.path ||
                                                     pathname.startsWith(sub.path + "/")
                                                 ) {
-                                                    sectionLabel = sub.label;
+                                                    sectionLabel = STATIC_LABEL_KEYS[sub.id]?.label ? t(STATIC_LABEL_KEYS[sub.id].label) : sub.label;
                                                     break;
                                                 }
                                             }
@@ -1895,7 +1896,7 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                                                 pathname === section.path ||
                                                 pathname.startsWith(section.path + "/")
                                             ) {
-                                                sectionLabel = section.label;
+                                                sectionLabel = STATIC_LABEL_KEYS[section.id]?.label ? t(STATIC_LABEL_KEYS[section.id].label) : section.label;
                                                 break;
                                             }
                                         }
