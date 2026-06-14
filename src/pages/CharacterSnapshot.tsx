@@ -10,7 +10,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Sparkles, Target, Brain, Heart, User, RefreshCw } from 'lucide-react';
 import { PremiumLoader } from "@/components/ui/PremiumLoader";
 import { TALENTS } from '@/modules/zone-of-genius/talents';
-import { DOMAINS } from '@/modules/quality-of-life-map/qolConfig';
+import { useLocalizedDomains } from '@/modules/quality-of-life-map/qolConfig';
 import BackButton from '@/components/BackButton';
 
 interface ZogSnapshot {
@@ -73,6 +73,7 @@ const DOMAIN_TO_STAGE_KEY: Record<string, keyof QolSnapshot> = {
 const CharacterSnapshot: React.FC = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
+  const localizedDomains = useLocalizedDomains();
   const [loading, setLoading] = useState(true);
   const [zogSnapshot, setZogSnapshot] = useState<ZogSnapshot | null>(null);
   const [qolSnapshot, setQolSnapshot] = useState<QolSnapshot | null>(null);
@@ -158,7 +159,7 @@ const CharacterSnapshot: React.FC = () => {
   };
 
   const getDomainInfo = (domainId: string, stageValue: number) => {
-    const domain = DOMAINS.find(d => d.id === domainId);
+    const domain = localizedDomains.find(d => d.id === domainId);
     if (!domain) return { name: domainId, currentTitle: '', nextTitle: '' };
 
     const currentStage = domain.stages.find(s => s.id === stageValue);

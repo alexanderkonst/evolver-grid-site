@@ -1,5 +1,6 @@
 import { useState, useRef } from "react";
 import type { ReactNode } from "react";
+import { useTranslation } from "react-i18next";
 import { motion, useScroll, useTransform } from "framer-motion";
 import {
   HeroHeadline,
@@ -50,19 +51,21 @@ import MdlsPageProgress from "@/components/mdls/MdlsPageProgress";
  * dark-skin rule and stay as-is by design.
  */
 
-const VERBS: Array<{ verb: string; when: string }> = [
-  { verb: "Transmit signal", when: "Publish public-facing work" },
-  { verb: "Compress to one sentence", when: "Articulate the messy into the clear line" },
-  { verb: "Close loop", when: "Finish what's been left dangling" },
-  { verb: "Seal artifact", when: "Lock work as canonical · versioned · done" },
-  { verb: "Seed alliance", when: "Initiate connection with a peer or collaborator" },
-  { verb: "Open doorway", when: "Make a path for someone else to enter" },
-  { verb: "Hold field", when: "Maintain presence without forcing" },
-  { verb: "Recover coherence", when: "Restore alignment when scattered" },
-  { verb: "Restore rhythm", when: "Return to natural cadence after disruption" },
-  { verb: "Touch the source", when: "Reconnect to deeper ground · inner practice" },
-  { verb: "Name the unnamed", when: "Articulate the intuitive but unspoken" },
-  { verb: "Forge primitive", when: "Build a new irreducible unit" },
+// WAVE i18n — verb/when copy resolved via t() at render. `key` is a
+// stable suffix appended to mdlsPreview.verbs.<key>.{verb,when}.
+const VERBS: Array<{ key: string }> = [
+  { key: "transmitSignal" },
+  { key: "compressToOneSentence" },
+  { key: "closeLoop" },
+  { key: "sealArtifact" },
+  { key: "seedAlliance" },
+  { key: "openDoorway" },
+  { key: "holdField" },
+  { key: "recoverCoherence" },
+  { key: "restoreRhythm" },
+  { key: "touchTheSource" },
+  { key: "nameTheUnnamed" },
+  { key: "forgePrimitive" },
 ];
 
 const ORB_NAMES = [
@@ -74,19 +77,29 @@ const ORB_NAMES = [
 // WAVE 9 / M4 — Page navigation sections. Mirrors the section IDs added
 // to each <section> below. MdlsPageProgress reads this to render the
 // right-side dot indicator + handle scrollIntoView navigation.
+// WAVE i18n — `labelKey` resolved via t() into MdlsPageProgress's
+// `label` prop at render (see CODEX_SECTIONS mapping inside the component).
 const CODEX_SECTIONS = [
-  { id: "mdls-hero",        label: "Direction Memo" },
-  { id: "mdls-composed",    label: "Composed Surface" },
-  { id: "mdls-principles",  label: "Principles + Rules" },
-  { id: "mdls-materials",   label: "Materials" },
-  { id: "mdls-registers",   label: "Registers" },
-  { id: "mdls-typography",  label: "Typography" },
-  { id: "mdls-vocabulary",  label: "Vocabulary" },
+  { id: "mdls-hero",        labelKey: "sections.directionMemo" },
+  { id: "mdls-composed",    labelKey: "sections.composedSurface" },
+  { id: "mdls-principles",  labelKey: "sections.principlesRules" },
+  { id: "mdls-materials",   labelKey: "sections.materials" },
+  { id: "mdls-registers",   labelKey: "sections.registers" },
+  { id: "mdls-typography",  labelKey: "sections.typography" },
+  { id: "mdls-vocabulary",  labelKey: "sections.vocabulary" },
 ];
 
 const MdlsPreview = () => {
+  const { t } = useTranslation();
   const [demoMode, setDemoMode] = useState<"attune" | "act">("act");
   const [completedDemoGoals, setCompletedDemoGoals] = useState<Set<number>>(new Set());
+
+  // Resolve section labels for the right-side progress nav at render time
+  // (CODEX_SECTIONS is module-scope; t() can only run inside the component).
+  const codexSections = CODEX_SECTIONS.map((s) => ({
+    id: s.id,
+    label: t(`mdlsPreview.${s.labelKey}`),
+  }));
 
   // WAVE 5 + WAVE 7 (N4) — Hero parallax with REAL 3D camera depth.
   // The mesh background uses 2D translateY (it IS a 2D shader, so a 2D
@@ -124,7 +137,7 @@ const MdlsPreview = () => {
       {/* WAVE 9 / M4 — fixed-right page-progress dots that show scroll
           position + click-navigate. The "chapter book" cue that ties
           sections into a sequence rather than independent blocks. */}
-      <MdlsPageProgress sections={CODEX_SECTIONS} />
+      <MdlsPageProgress sections={codexSections} />
 
       {/* ═══════════════════════════════════════════════════════════════ */}
       {/* §1 · HERO — Direction Memo                                       */}
@@ -159,13 +172,10 @@ const MdlsPreview = () => {
               fontWeight: 500,
             }}
           >
-            MDLS replaces the question{" "}
-            <em className="italic font-normal">"how should this look?"</em> with{" "}
-            <em className="italic font-normal">"what does this transmit?"</em> — compiling
-            a software category that did not exist before:{" "}
-            <span className="font-semibold">contemplative operating surfaces</span> —
-            environments that are not tools but formative spaces, where every choice
-            carries a stance about consciousness, time, and human coordination.
+            {t("mdlsPreview.hero.lead.before")}{" "}
+            <em className="italic font-normal">{t("mdlsPreview.hero.lead.q1")}</em> {t("mdlsPreview.hero.lead.mid1")}{" "}
+            <em className="italic font-normal">{t("mdlsPreview.hero.lead.q2")}</em> {t("mdlsPreview.hero.lead.mid2")}{" "}
+            <span className="font-semibold">{t("mdlsPreview.hero.lead.category")}</span> {t("mdlsPreview.hero.lead.after")}
           </p>
           <p
             className="font-serif text-[#0a1628]/82"
@@ -175,13 +185,10 @@ const MdlsPreview = () => {
               letterSpacing: "-0.005em",
             }}
           >
-            It enacts this by composing three co-equal poles —{" "}
-            <span className="font-semibold">luminosity</span> (aurora living within material),{" "}
-            <span className="font-semibold">physicality</span> (industrial-design weight,
-            tactile commit), and{" "}
-            <span className="font-semibold">editorial refinement</span> (typography doing
-            work, not decoration) — across eight primitives, producing surfaces that feel
-            like designed objects, not painted screens.
+            {t("mdlsPreview.hero.poles.before")}{" "}
+            <span className="font-semibold">{t("mdlsPreview.hero.poles.luminosity")}</span> {t("mdlsPreview.hero.poles.luminosityGloss")}{" "}
+            <span className="font-semibold">{t("mdlsPreview.hero.poles.physicality")}</span> {t("mdlsPreview.hero.poles.physicalityGloss")}{" "}
+            <span className="font-semibold">{t("mdlsPreview.hero.poles.editorial")}</span> {t("mdlsPreview.hero.poles.editorialGloss")}
           </p>
           <p
             className="font-serif italic text-[#0a1628]/72"
@@ -190,12 +197,11 @@ const MdlsPreview = () => {
               lineHeight: 1.5,
             }}
           >
-            We start with Equilibrium because cycles, dedication, and energetic commitment
-            cannot transmit through a SaaS register.
+            {t("mdlsPreview.hero.equilibrium")}
           </p>
         </motion.div>
         <div className="relative mt-20 text-center text-[10px] uppercase tracking-[0.28em] text-[#0a1628]/40" style={{ zIndex: 1 }}>
-          Multi-Dimensional Living Surface · the codex · v2.6 — code-split + mobile
+          {t("mdlsPreview.hero.footerMeta")}
         </div>
       </section>
 
@@ -207,7 +213,7 @@ const MdlsPreview = () => {
       <MdlsRevealSection>
         <section id="mdls-composed" className="py-12 sm:py-16">
           <div className="max-w-5xl mx-auto px-4 sm:px-8">
-            <SectionEyebrow>One composed surface</SectionEyebrow>
+            <SectionEyebrow>{t("mdlsPreview.composed.eyebrow")}</SectionEyebrow>
             {/* WAVE 6: removed MdlsHoverTilt + MdlsExtrudedSurface "floating"
                 plinth wrap. The plinth was creating a visible white pill
                 under the device; the hover-tilt was a third transform on
@@ -222,8 +228,7 @@ const MdlsPreview = () => {
               />
             </MdlsScrollTilt>
             <p className="mt-10 text-center max-w-xl mx-auto font-serif italic text-[#0a1628]/60 text-base sm:text-lg leading-relaxed">
-              Trinity of luminosity, physicality, editorial refinement — composed into one
-              held object.
+              {t("mdlsPreview.composed.caption")}
             </p>
           </div>
         </section>
@@ -237,7 +242,7 @@ const MdlsPreview = () => {
       <MdlsRevealSection>
       <section id="mdls-principles" className="relative py-24 px-6 sm:px-12">
         <div className="relative max-w-4xl mx-auto">
-          <SectionEyebrow>Seven principles, three rules</SectionEyebrow>
+          <SectionEyebrow>{t("mdlsPreview.principles.eyebrow")}</SectionEyebrow>
 
           <MdlsExtrudedSurface
             variant="floating"
@@ -246,13 +251,13 @@ const MdlsPreview = () => {
           >
             <ul className="space-y-2">
               {[
-                { glyph: <GlyphAuroraDot />,           text: "Color enters from within, not painted on." },
-                { glyph: <GlyphOutlineCircle />,       text: "Restraint over decoration." },
-                { glyph: <SealMedallion size={32} variant="mandala" />, text: "Sacred over neutral." },
-                { glyph: <GlyphNestedRings />,         text: "Coherence over consistency." },
-                { glyph: <SoulOrbGoal orbId={7} size={32} />, text: "Every primitive earns its place." },
-                { glyph: <GlyphMatteCard />,           text: "Surface is the form the transformation arrives in." },
-                { glyph: <GlyphConcentric />,          text: "Motion is meaning, not noise." },
+                { glyph: <GlyphAuroraDot />,           text: t("mdlsPreview.principles.list.colorFromWithin") },
+                { glyph: <GlyphOutlineCircle />,       text: t("mdlsPreview.principles.list.restraint") },
+                { glyph: <SealMedallion size={32} variant="mandala" />, text: t("mdlsPreview.principles.list.sacred") },
+                { glyph: <GlyphNestedRings />,         text: t("mdlsPreview.principles.list.coherence") },
+                { glyph: <SoulOrbGoal orbId={7} size={32} />, text: t("mdlsPreview.principles.list.everyPrimitive") },
+                { glyph: <GlyphMatteCard />,           text: t("mdlsPreview.principles.list.surfaceIsForm") },
+                { glyph: <GlyphConcentric />,          text: t("mdlsPreview.principles.list.motionIsMeaning") },
               ].map((p, i, arr) => (
                 <li
                   key={i}
@@ -272,12 +277,12 @@ const MdlsPreview = () => {
           </MdlsExtrudedSurface>
 
           <div className="mt-16">
-            <SectionEyebrow>Three operational rules</SectionEyebrow>
+            <SectionEyebrow>{t("mdlsPreview.principles.rulesEyebrow")}</SectionEyebrow>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 mt-10">
               {[
-                { glyph: <GlyphCoralHalo />,  text: "Active state is a halo, never a fill." },
-                { glyph: <GlyphCoralDot />,   text: "One coral accent per surface · two for devotion." },
-                { glyph: <GlyphTypeA />,      text: "Hierarchy through weight, not color." },
+                { glyph: <GlyphCoralHalo />,  text: t("mdlsPreview.principles.rules.haloNotFill") },
+                { glyph: <GlyphCoralDot />,   text: t("mdlsPreview.principles.rules.oneCoral") },
+                { glyph: <GlyphTypeA />,      text: t("mdlsPreview.principles.rules.weightNotColor") },
               ].map((r, i) => (
                 <MdlsExtrudedSurface key={i} variant="raised" className="text-center" style={{ padding: "1.5rem 1rem" }}>
                   <div className="flex justify-center mb-4 h-10 items-center">{r.glyph}</div>
@@ -301,20 +306,20 @@ const MdlsPreview = () => {
       <section id="mdls-materials" className="relative py-24 px-4 sm:px-12 overflow-hidden">
         <MdlsMeshBackground register="sculptural" style={{ opacity: 0.35 }} />
         <div className="relative max-w-5xl mx-auto overflow-hidden" style={{ zIndex: 1 }}>
-          <SectionEyebrow>The materials</SectionEyebrow>
+          <SectionEyebrow>{t("mdlsPreview.materials.eyebrow")}</SectionEyebrow>
 
           <div className="mt-16 space-y-32">
             <MaterialFeature
               name="Aurora-Glass-Orb"
-              register="Luminous-Cosmic · translucent glass"
-              description="Color enters from within. WAVE 7 upgrade: was a CSS radial gradient on a flat circle (paint pretending to be glass); now an R3F sphere with MeshPhysicalMaterial.transmission — REAL translucent glass holding an inner point light source. The aurora glows through the material, not painted onto its surface."
+              register={t("mdlsPreview.materials.auroraGlassOrb.register")}
+              description={t("mdlsPreview.materials.auroraGlassOrb.description")}
               feature={<MdlsAuroraOrb3D size={300} hue="warm" />}
             />
 
             <MaterialFeature
               name="Matte-Polymer"
-              register="Premium-Restrained"
-              description="The daily surface. Cream-grain substrate with single-source lighting, layered floating shadow. Active state via ember-breath under-glow."
+              register={t("mdlsPreview.materials.mattePolymer.register")}
+              description={t("mdlsPreview.materials.mattePolymer.description")}
               feature={
                 <EmberBreath active>
                   <MattePolymerCard emphasized className="max-w-md">
@@ -323,10 +328,10 @@ const MdlsPreview = () => {
                       className="mt-3 font-serif text-[#0a1628] leading-snug"
                       style={{ fontSize: "1.125rem", letterSpacing: "-0.005em" }}
                     >
-                      Assist humanity evolve into a consciously coordinated civilization.
+                      {t("mdlsPreview.demo.dedicationLine")}
                     </p>
                     <p className="mt-3 text-[10px] uppercase tracking-[0.18em] text-[#0a1628]/55">
-                      Lifelong Dedication · Day 73
+                      {t("mdlsPreview.demo.dedicationMeta")}
                     </p>
                   </MattePolymerCard>
                 </EmberBreath>
@@ -335,8 +340,8 @@ const MdlsPreview = () => {
 
             <MaterialFeature
               name="Sculpted-Silk"
-              register="Soft-Sculptural"
-              description="Organic curving form. Three blob variants rendered as actual SVG paths (no clipping, no masking). For workstream territories, section dividers, brand backdrops."
+              register={t("mdlsPreview.materials.sculptedSilk.register")}
+              description={t("mdlsPreview.materials.sculptedSilk.description")}
               feature={
                 <div className="relative h-[180px] sm:h-[220px] flex items-center justify-center">
                   <SculptedSilkSection
@@ -363,15 +368,15 @@ const MdlsPreview = () => {
 
             <MaterialFeature
               name="Soul-Orb Library"
-              register="all registers · translucent glass spheres"
-              description="Twelve curated color signatures. WAVE 9 / M1 upgrade: was 12 CSS-gradient circles; now a single R3F Canvas with 12 translucent glass spheres, each with its own inner point-light source. Each orb glows with its identity hue — paint became light."
+              register={t("mdlsPreview.materials.soulOrbLibrary.register")}
+              description={t("mdlsPreview.materials.soulOrbLibrary.description")}
               feature={<MdlsSoulOrbField3D width={520} />}
             />
 
             <MaterialFeature
               name="Tactile-Ceramic"
-              register="Sacred-object surfaces · matte ceramic"
-              description="Granular, sculptural, fired-clay surface. SVG turbulence grain + warm-cool tri-gradient + multi-stop edge AO. Pairs with the R3F SealMedallion3D in this demo — clay slab holding a bronze seal."
+              register={t("mdlsPreview.materials.tactileCeramic.register")}
+              description={t("mdlsPreview.materials.tactileCeramic.description")}
               feature={
                 <div className="flex gap-5 justify-center items-center">
                   <MdlsCeramicSurface
@@ -397,8 +402,8 @@ const MdlsPreview = () => {
 
             <MaterialFeature
               name="Extruded-Surface"
-              register="Premium-Restrained · neumorphism"
-              description="Soft-extruded plastic surface — the new-morphism register. Multi-layer shadow with single light source upper-left, warm cream substrate, optional coral under-glow for active state. For UI controls that need to feel physical."
+              register={t("mdlsPreview.materials.extrudedSurface.register")}
+              description={t("mdlsPreview.materials.extrudedSurface.description")}
               feature={
                 <div className="flex gap-6 items-center justify-center">
                   <MdlsExtrudedSurface variant="raised" style={{ width: 110, height: 110 }}>
@@ -413,7 +418,7 @@ const MdlsPreview = () => {
                   </MdlsExtrudedSurface>
                   <MdlsExtrudedSurface variant="pressed" style={{ width: 110, height: 110 }}>
                     <div className="h-full flex items-center justify-center text-[10px] uppercase tracking-[0.18em] text-[#0a1628]/55">
-                      pressed
+                      {t("mdlsPreview.materials.extrudedSurface.pressedLabel")}
                     </div>
                   </MdlsExtrudedSurface>
                 </div>
@@ -422,8 +427,8 @@ const MdlsPreview = () => {
 
             <MaterialFeature
               name="Sacred-3D"
-              register="Luminous-Cosmic · real geometry"
-              description="WebGL-rendered dodecahedron — 12 pentagonal faces correspond to the 12-orb soul library and the 12-month aurora cycle. Bloom postprocessing + studio HDRI lighting gives the object the presence of a held artifact. Idle slow-rotate; pauses on prefers-reduced-motion."
+              register={t("mdlsPreview.materials.sacred3d.register")}
+              description={t("mdlsPreview.materials.sacred3d.description")}
               feature={<MdlsSacred3D size={240} hue="warm" />}
             />
           </div>
@@ -438,19 +443,19 @@ const MdlsPreview = () => {
       <MdlsRevealSection>
       <section id="mdls-registers" className="relative py-24 px-6 sm:px-12">
         <div className="relative max-w-5xl mx-auto">
-          <SectionEyebrow>Four registers, one language</SectionEyebrow>
+          <SectionEyebrow>{t("mdlsPreview.registers.eyebrow")}</SectionEyebrow>
 
           <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             <RegisterCard
               name="Luminous-Cosmic"
-              mood="charged · contemplative · sacred"
-              whenToUse="Hero · ritual · revelation"
+              mood={t("mdlsPreview.registers.luminousCosmic.mood")}
+              whenToUse={t("mdlsPreview.registers.luminousCosmic.when")}
               sample={<MdlsAuroraOrb3D size={120} hue="warm" />}
             />
             <RegisterCard
               name="Premium-Restrained"
-              mood="calm · authoritative · daily"
-              whenToUse="Daily UI · editorial sections"
+              mood={t("mdlsPreview.registers.premiumRestrained.mood")}
+              whenToUse={t("mdlsPreview.registers.premiumRestrained.when")}
               sample={
                 <MattePolymerCard className="w-full h-32 flex items-center justify-center !p-3">
                   <SealMedallion size={28} />
@@ -459,8 +464,8 @@ const MdlsPreview = () => {
             />
             <RegisterCard
               name="Soft-Sculptural"
-              mood="organic · adaptive · living"
-              whenToUse="Section dividers · territories · backdrops"
+              mood={t("mdlsPreview.registers.softSculptural.mood")}
+              whenToUse={t("mdlsPreview.registers.softSculptural.when")}
               sample={
                 <SculptedSilkSection
                   hue={195}
@@ -472,8 +477,8 @@ const MdlsPreview = () => {
             />
             <RegisterCard
               name="Ascetic Minimal"
-              mood="reverent · stripped · sacred-minimal"
-              whenToUse="Contemplative pauses · daily mantra · single-mark moments"
+              mood={t("mdlsPreview.registers.asceticMinimal.mood")}
+              whenToUse={t("mdlsPreview.registers.asceticMinimal.when")}
               sample={
                 <div className="flex items-center justify-center w-full h-32">
                   <span
@@ -497,10 +502,10 @@ const MdlsPreview = () => {
       <MdlsRevealSection>
       <section id="mdls-typography" className="relative py-24 px-6 sm:px-12">
         <div className="relative max-w-4xl mx-auto">
-          <SectionEyebrow>Typography</SectionEyebrow>
+          <SectionEyebrow>{t("mdlsPreview.typography.eyebrow")}</SectionEyebrow>
 
           <div className="mt-12 space-y-14">
-            <TypeSpec label="Hero · Cormorant Garamond · semibold">
+            <TypeSpec label={t("mdlsPreview.typography.heroLabel")}>
               <h2
                 className="font-serif text-[#0a1628]"
                 style={{
@@ -515,7 +520,7 @@ const MdlsPreview = () => {
               </h2>
             </TypeSpec>
 
-            <TypeSpec label="Sacred prose · Cormorant Garamond · medium">
+            <TypeSpec label={t("mdlsPreview.typography.sacredProseLabel")}>
               <p
                 className="font-serif text-[#0a1628]"
                 style={{
@@ -524,12 +529,11 @@ const MdlsPreview = () => {
                   letterSpacing: "-0.005em",
                 }}
               >
-                I assist conscious aspiring impact founders turn their top talent into a
-                growing scalable business in flow.
+                {t("mdlsPreview.typography.sacredProseSample")}
               </p>
             </TypeSpec>
 
-            <TypeSpec label="Editorial hero · DM Sans · bold">
+            <TypeSpec label={t("mdlsPreview.typography.editorialHeroLabel")}>
               <p
                 className="font-sans text-[#0a1628] font-bold"
                 style={{
@@ -542,16 +546,15 @@ const MdlsPreview = () => {
               </p>
             </TypeSpec>
 
-            <TypeSpec label="Body UI · DM Sans · regular">
+            <TypeSpec label={t("mdlsPreview.typography.bodyUiLabel")}>
               <p className="text-base sm:text-lg text-[#0a1628]/85 leading-relaxed">
-                Color enters from within, not painted on. Restraint over decoration. Every
-                primitive earns its place. Motion is meaning, not noise.
+                {t("mdlsPreview.typography.bodyUiSample")}
               </p>
             </TypeSpec>
 
-            <TypeSpec label="Microcaps · DM Sans · semibold">
+            <TypeSpec label={t("mdlsPreview.typography.microcapsLabel")}>
               <p className="text-xs uppercase tracking-[0.18em] text-[#0a1628]/55 font-semibold">
-                Lifelong Dedication · Day 73 · Winter · Will-Building
+                {t("mdlsPreview.typography.microcapsSample")}
               </p>
             </TypeSpec>
           </div>
@@ -568,7 +571,7 @@ const MdlsPreview = () => {
       <section id="mdls-vocabulary" className="relative py-24 px-6 sm:px-12 overflow-hidden">
         <MdlsMeshBackground register="luminous" style={{ opacity: 0.5 }} />
         <div className="relative max-w-4xl mx-auto" style={{ zIndex: 1 }}>
-          <SectionEyebrow>Twelve verbs, one register</SectionEyebrow>
+          <SectionEyebrow>{t("mdlsPreview.vocabulary.eyebrow")}</SectionEyebrow>
 
           <ul className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-1">
             {VERBS.map((v, i) => (
@@ -580,10 +583,10 @@ const MdlsPreview = () => {
                   className="font-serif text-[#0a1628] flex-shrink-0"
                   style={{ fontSize: "1.125rem", letterSpacing: "-0.005em" }}
                 >
-                  {v.verb}
+                  {t(`mdlsPreview.verbs.${v.key}.verb`)}
                 </span>
                 <span className="text-sm text-[#0a1628]/55 italic ml-auto text-right">
-                  {v.when}
+                  {t(`mdlsPreview.verbs.${v.key}.when`)}
                 </span>
               </li>
             ))}
@@ -604,11 +607,10 @@ const MdlsPreview = () => {
                 letterSpacing: "-0.005em",
               }}
             >
-              The interface stops being a thing you look at and becomes a presence that
-              knows you.
+              {t("mdlsPreview.vocabulary.closing")}
             </p>
             <p className="mt-12 text-[10px] uppercase tracking-[0.28em] text-[#0a1628]/35">
-              MDLS · the codex
+              {t("mdlsPreview.vocabulary.closingMeta")}
             </p>
           </div>
         </div>
@@ -622,27 +624,27 @@ const MdlsPreview = () => {
         <div className="max-w-5xl mx-auto">
           <aside className="rounded-3xl bg-[#0a1628]/95 text-white p-8 sm:p-10">
             <h2 className="font-sans text-sm font-bold uppercase tracking-widest text-white/70 mb-6">
-              Tokens · dev appendix
+              {t("mdlsPreview.tokens.heading")}
             </h2>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 text-xs font-mono">
-              <TokenGroup title="Radius">
+              <TokenGroup title={t("mdlsPreview.tokens.radius")}>
                 <Token name="card" value="24px" />
                 <Token name="pill" value="9999px" />
                 <Token name="orb" value="50%" />
                 <Token name="device frame" value="36px" />
               </TokenGroup>
-              <TokenGroup title="Motion">
+              <TokenGroup title={t("mdlsPreview.tokens.motion")}>
                 <Token name="ember breath" value="6s ease-in-out ∞" />
                 <Token name="state change" value="240ms spring" />
                 <Token name="tilt-settle" value="800ms quart-out" />
                 <Token name="aurora drift" value="22s ease-in-out ∞" />
               </TokenGroup>
-              <TokenGroup title="Coral">
+              <TokenGroup title={t("mdlsPreview.tokens.coral")}>
                 <Token name="--mdls-coral" value="hsl(15 88% 60%)" />
                 <Token name="--mdls-coral-soft" value="…/0.45" />
                 <Token name="per-surface budget" value="1–2 max" />
               </TokenGroup>
-              <TokenGroup title="Atmosphere">
+              <TokenGroup title={t("mdlsPreview.tokens.atmosphere")}>
                 <Token name="page bg" value="hsl(38 38% 95%)" />
                 <Token name="warm wash" value="hsl(28 80% 88%) UL" />
                 <Token name="cool wash" value="hsl(220 60% 90%) LR" />
@@ -652,24 +654,24 @@ const MdlsPreview = () => {
           </aside>
         </div>
         <p className="mt-10 text-center text-[10px] uppercase tracking-[0.22em] text-[#0a1628]/35">
-          Style Guide · docs/specs/equilibrium/equilibrium_mdls_style_guide.md
+          {t("mdlsPreview.tokens.styleGuide", { path: "docs/specs/equilibrium/equilibrium_mdls_style_guide.md" })}
         </p>
 
         {/* WAVE 5 (5.9): Reference benchmark — what we're calibrating
             against. Public commitment to the bar; holds us accountable. */}
         <aside className="mt-10 mx-auto max-w-3xl text-center">
           <p className="text-[10px] uppercase tracking-[0.22em] text-[#0a1628]/35 mb-4">
-            Calibrated against
+            {t("mdlsPreview.calibration.label")}
           </p>
           <div className="flex flex-wrap justify-center gap-x-8 gap-y-2 text-[11px] text-[#0a1628]/55 font-serif italic">
-            <span>Linear · motion + restraint</span>
+            <span>{t("mdlsPreview.calibration.linear")}</span>
             <span>·</span>
-            <span>Apple HIG / Liquid Glass · material register</span>
+            <span>{t("mdlsPreview.calibration.apple")}</span>
             <span>·</span>
-            <span>Spline community · 3D craft</span>
+            <span>{t("mdlsPreview.calibration.spline")}</span>
           </div>
           <p className="mt-4 text-[9px] uppercase tracking-[0.22em] text-[#0a1628]/30">
-            If our surface falls below these, the paradigm isn't done yet.
+            {t("mdlsPreview.calibration.warning")}
           </p>
         </aside>
       </section>
@@ -770,6 +772,7 @@ const ComposedSurfaceDemo = ({
   completedDemoGoals,
   onToggleDemoGoal,
 }: ComposedSurfaceDemoProps) => {
+  const { t } = useTranslation();
   return (
     <div className="mt-10">
       {/* WAVE 6 (Day 74 evening): removed the MdlsExtrudedSurface "floating"
@@ -793,17 +796,17 @@ const ComposedSurfaceDemo = ({
             Equilibrium
           </h1>
           <p className="mt-1.5 font-serif text-[14px] text-[#0a1628]/70" style={{ letterSpacing: "0.005em" }}>
-            Biologic Watch and Task Manager
+            {t("mdlsPreview.demo.subtitle")}
           </p>
           <div className="mt-5 flex justify-center">
             <ToggleGlassDual
               options={[
-                { value: "attune", label: "ATTUNE" },
-                { value: "act", label: "ACT" },
+                { value: "attune", label: t("mdlsPreview.demo.toggleAttune") },
+                { value: "act", label: t("mdlsPreview.demo.toggleAct") },
               ]}
               value={demoMode}
               onChange={onDemoModeChange}
-              ariaLabel="Demo mode"
+              ariaLabel={t("mdlsPreview.demo.toggleAriaLabel")}
               variant="light"
               showCoralDot
             />
@@ -814,11 +817,11 @@ const ComposedSurfaceDemo = ({
           <AuroraCycleDisc
             size={272}
             currentDay={73}
-            currentDayLabel="DAY 73"
+            currentDayLabel={t("mdlsPreview.demo.dayLabel", { day: 73 })}
             variant="light"
             use3D
           >
-            WINTER · WILL-BUILDING
+            {t("mdlsPreview.demo.season")}
           </AuroraCycleDisc>
         </div>
 
@@ -827,17 +830,17 @@ const ComposedSurfaceDemo = ({
             <MattePolymerCard emphasized>
               <div className="flex items-start gap-3">
                 <div className="pt-0.5">
-                  <SealMedallion size={30} variant="mandala" ariaLabel="Lifelong Dedication seal" />
+                  <SealMedallion size={30} variant="mandala" ariaLabel={t("mdlsPreview.demo.sealAriaLabel")} />
                 </div>
                 <div className="flex-1">
                   <p
                     className="font-serif text-[15px] text-[#0a1628] leading-[1.35]"
                     style={{ letterSpacing: "-0.005em" }}
                   >
-                    Assist humanity evolve into a consciously coordinated civilization.
+                    {t("mdlsPreview.demo.dedicationLine")}
                   </p>
                   <p className="mt-2 text-[9px] uppercase tracking-[0.18em] text-[#0a1628]/55">
-                    Lifelong Dedication · Day 73
+                    {t("mdlsPreview.demo.dedicationMeta")}
                   </p>
                 </div>
               </div>
@@ -847,7 +850,7 @@ const ComposedSurfaceDemo = ({
 
         <div className="mt-7">
           <p className="text-center text-[9px] uppercase tracking-[0.20em] text-[#0a1628]/55 mb-3">
-            Workstreams
+            {t("mdlsPreview.demo.workstreams")}
           </p>
           <div className="relative h-[128px] flex items-center justify-center">
             <SculptedSilkSection
@@ -891,13 +894,13 @@ const ComposedSurfaceDemo = ({
 
         <div className="mt-6">
           <p className="text-center text-[9px] uppercase tracking-[0.20em] text-[#0a1628]/55 mb-3">
-            Today's commitments
+            {t("mdlsPreview.demo.commitments")}
           </p>
           <div className="grid grid-cols-3 gap-3 justify-items-center">
             {[
-              { orbId: 7, label: "Transmit signal", sub: "Ship one essay" },
-              { orbId: 2, label: "Seed alliance", sub: "Send Friday DMs" },
-              { orbId: 10, label: "Seal artifact", sub: "Complete cycle review" },
+              { orbId: 7, label: t("mdlsPreview.verbs.transmitSignal.verb"), sub: t("mdlsPreview.demo.goalShipEssay") },
+              { orbId: 2, label: t("mdlsPreview.verbs.seedAlliance.verb"), sub: t("mdlsPreview.demo.goalFridayDms") },
+              { orbId: 10, label: t("mdlsPreview.verbs.sealArtifact.verb"), sub: t("mdlsPreview.demo.goalCycleReview") },
             ].map((goal, i) => (
               <div key={i} className="text-center">
                 <SoulOrbGoal
@@ -917,7 +920,7 @@ const ComposedSurfaceDemo = ({
         </div>
 
         <div className="mt-8 text-center text-[8.5px] uppercase tracking-[0.22em] text-[#0a1628]/30">
-          MDLS · contemplative operating surface
+          {t("mdlsPreview.demo.footer")}
         </div>
       </div>
     </div>

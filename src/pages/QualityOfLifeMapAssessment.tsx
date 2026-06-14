@@ -8,7 +8,7 @@ import { ArrowLeft, ArrowRight, Check } from "lucide-react";
 import BoldText from "@/components/BoldText";
 import { Button } from "@/components/ui/button";
 import { useQolAssessment } from "@/modules/quality-of-life-map/QolAssessmentContext";
-import { DOMAINS } from "@/modules/quality-of-life-map/qolConfig";
+import { DOMAINS, useLocalizedDomains } from "@/modules/quality-of-life-map/qolConfig";
 import { cn } from "@/lib/utils";
 import { buildQolResultsPath } from "@/lib/onboardingRouting";
 import ProgressIndicator from "@/components/ProgressIndicator";
@@ -43,7 +43,8 @@ const QualityOfLifeMapAssessment = ({
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [currentIndex, showIntro]);
 
-  const domain = DOMAINS[currentIndex];
+  const localizedDomains = useLocalizedDomains();
+  const domain = localizedDomains[currentIndex];
   const isLastDomain = currentIndex === DOMAINS.length - 1;
   const hasAnswer = answers[domain.id] !== null;
   const selectedStageId = answers[domain.id];

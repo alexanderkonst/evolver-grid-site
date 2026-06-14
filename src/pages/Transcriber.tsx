@@ -5,6 +5,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Copy, Check, Youtube, Sparkles, AlertCircle } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { useTranslation } from "react-i18next";
 
 /**
  * YouTube Transcriber — Following the UX Playbook
@@ -25,6 +26,7 @@ const Transcriber = () => {
   const [copied, setCopied] = useState(false);
   const [showManualInput, setShowManualInput] = useState(false);
   const { toast } = useToast();
+  const { t } = useTranslation();
 
   // Extract video ID from various YouTube URL formats
   const extractVideoId = (url: string): string | null => {
@@ -46,7 +48,7 @@ const Transcriber = () => {
     const videoId = extractVideoId(url);
 
     if (!videoId) {
-      setError("Please enter a valid YouTube URL");
+      setError(t('transcriber.errorInvalidUrl'));
       return;
     }
 
@@ -66,7 +68,7 @@ const Transcriber = () => {
           const komeData = await komeResponse.json();
           if (komeData.transcript) {
             setTranscript(komeData.transcript);
-            toast({ title: "Success!", description: `Transcript ready (${komeData.transcript.split(" ").length} words)` });
+            toast({ title: t('transcriber.toastSuccessTitle'), description: t('transcriber.toastTranscriptReady', { count: komeData.transcript.split(" ").length }) });
             return;
           }
         }
@@ -84,7 +86,7 @@ const Transcriber = () => {
           if (tactiqData.captions && tactiqData.captions.length > 0) {
             const text = tactiqData.captions.map((c: any) => c.text).join(" ");
             setTranscript(text);
-            toast({ title: "Success!", description: `Transcript ready (${text.split(" ").length} words)` });
+            toast({ title: t('transcriber.toastSuccessTitle'), description: t('transcriber.toastTranscriptReady', { count: text.split(" ").length }) });
             return;
           }
         }
@@ -111,7 +113,7 @@ const Transcriber = () => {
               .replace(/&#39;/g, "'")
               .replace(/&quot;/g, '"');
             setTranscript(transcript);
-            toast({ title: "Success!", description: `Transcript ready (${transcript.split(" ").length} words)` });
+            toast({ title: t('transcriber.toastSuccessTitle'), description: t('transcriber.toastTranscriptReady', { count: transcript.split(" ").length }) });
             return;
           }
         }
@@ -121,12 +123,12 @@ const Transcriber = () => {
 
       // All APIs failed - show manual input
       setShowManualInput(true);
-      setError("Automatic transcript not available. You can paste the transcript manually below, or use YouTube's built-in transcript feature (click ⋮ → Show transcript on the video).");
+      setError(t('transcriber.errorAutoUnavailable'));
 
     } catch (err: any) {
       console.error("Transcript error:", err);
       setShowManualInput(true);
-      setError("Could not fetch transcript automatically. You can paste it manually below.");
+      setError(t('transcriber.errorAutoFailed'));
     } finally {
       setIsLoading(false);
     }
@@ -136,8 +138,8 @@ const Transcriber = () => {
     navigator.clipboard.writeText(transcript);
     setCopied(true);
     toast({
-      title: "Copied!",
-      description: "Transcript copied to clipboard",
+      title: t('transcriber.toastCopiedTitle'),
+      description: t('transcriber.toastCopiedDescription'),
     });
     setTimeout(() => setCopied(false), 2000);
   };
@@ -151,9 +153,9 @@ const Transcriber = () => {
             <div className="mx-auto w-12 h-12 rounded-full bg-gradient-to-r from-[#8460ea] to-[#6894d0] flex items-center justify-center mb-4">
               <Youtube className="w-6 h-6 text-white" />
             </div>
-            <CardTitle className="text-2xl text-white">YouTube Transcriber</CardTitle>
+            <CardTitle className="text-2xl text-white">{t('transcriber.title')}</CardTitle>
             <CardDescription className="text-[#a4a3d0]">
-              Paste any YouTube URL → Get the transcript instantly
+              {t('transcriber.subtitle')}
             </CardDescription>
           </CardHeader>
 
@@ -179,7 +181,7 @@ const Transcriber = () => {
                 ) : (
                   <>
                     <Sparkles className="w-4 h-4 mr-2" />
-                    Get Transcript
+                    {t('transcriber.getTranscript')}
                   </>
                 )}
               </Button>
@@ -196,7 +198,7 @@ const Transcriber = () => {
             {isLoading && (
               <div className="py-8 text-center">
                 <span className="premium-spinner w-8 h-8 mx-auto mb-2" />
-                <p className="text-[#a4a3d0]">Fetching transcript...</p>
+                <p className="text-[#a4a3d0]">{t('transcriber.fetching')}</p>
               </div>
             )}
 
@@ -205,20 +207,20 @@ const Transcriber = () => {
               <div className="space-y-3">
                 <div className="flex items-center gap-2 text-[#8460ea]">
                   <AlertCircle className="w-4 h-4" />
-                  <span className="text-sm font-medium">Paste transcript manually</span>
+                  <span className="text-sm font-medium">{t('transcriber.pasteManually')}</span>
                 </div>
                 <Textarea
-                  placeholder="Paste the transcript here..."
+                  placeholder={t('transcriber.pastePlaceholder')}
                   value={transcript}
                   onChange={(e) => setTranscript(e.target.value)}
                   className="min-h-[200px] bg-[#1a1d2e] border-[#a4a3d0]/40 text-white"
                 />
                 {transcript && (
                   <Button
-                    onClick={() => toast({ title: "Transcript saved!", description: `${transcript.split(" ").length} words` })}
+                    onClick={() => toast({ title: t('transcriber.toastSavedTitle'), description: t('transcriber.wordCount', { count: transcript.split(" ").length }) })}
                     className="w-full bg-green-600 hover:bg-green-700"
                   >
-                    <Check className="w-4 h-4 mr-2" /> Confirm Transcript
+                    <Check className="w-4 h-4 mr-2" /> {t('transcriber.confirmTranscript')}
                   </Button>
                 )}
               </div>
@@ -228,7 +230,7 @@ const Transcriber = () => {
             {transcript && !isLoading && (
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
-                  <h3 className="text-white font-medium">Transcript</h3>
+                  <h3 className="text-white font-medium">{t('transcriber.transcriptHeading')}</h3>
                   <Button
                     variant="outline"
                     size="sm"
@@ -236,9 +238,9 @@ const Transcriber = () => {
                     className="border-[#a4a3d0]/40 text-[#a4a3d0] hover:text-white"
                   >
                     {copied ? (
-                      <><Check className="w-4 h-4 mr-1" /> Copied</>
+                      <><Check className="w-4 h-4 mr-1" /> {t('transcriber.copied')}</>
                     ) : (
-                      <><Copy className="w-4 h-4 mr-1" /> Copy</>
+                      <><Copy className="w-4 h-4 mr-1" /> {t('transcriber.copy')}</>
                     )}
                   </Button>
                 </div>
@@ -250,7 +252,7 @@ const Transcriber = () => {
                 />
 
                 <p className="text-xs text-[#a4a3d0]/60 text-center">
-                  {transcript.split(' ').length} words
+                  {t('transcriber.wordCount', { count: transcript.split(' ').length })}
                 </p>
               </div>
             )}
@@ -259,7 +261,7 @@ const Transcriber = () => {
 
         {/* Footer tip */}
         <p className="text-center text-[#a4a3d0]/60 text-xs mt-4">
-          Works with most YouTube videos that have captions enabled
+          {t('transcriber.footerTip')}
         </p>
       </div>
     </div>

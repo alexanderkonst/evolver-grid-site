@@ -48,9 +48,11 @@ This is **not a brochure site that needs its buttons translated.** It is an AI-n
 | 0b — format sweep (9 files → locale-aware dates/numbers) | ✅ 2026-06-14 | done |
 | 2l–2m — 24 components/sub-pages + RU (ZoGPerspectiveView reveal-depth, SpacesRail, MatchCard, MeGate, RevelatoryHero, activations, modals…; 601 keys) | ✅ 2026-06-14 | build green (20.5s) |
 | QoL official RU+ES sheets captured (`docs/specs/i18n/qol_map_{ru,es}_official.csv`) | ✅ 2026-06-14 | drives qolConfig pass; corrects domain drift (Богатство not Достаток) |
-| 2n+ — qolConfig + shared `domains.*` · data hubs (missions 1166…) · holomap/admin/per-client · `SPACE_SECTIONS`/UBB rail · Zod errorMap · landmines (PDF/charts/15 emails) · **Layer 3** · seeded · SEO · ES | ⏳ | the bulk remains |
+| 2n — qolConfig data hub localized (168 official RU+ES from Sasha's CSVs, `useLocalizedDomains` hook) + per-client/misc pages (wave 1n, +703 keys) | ✅ 2026-06-14 | build green (13.2s); stage-alignment nuance flagged for review |
+| L3 server — output-language directive injected into 7 generation edge functions (`_shared/language.ts`) | ✅ 2026-06-14 | backward-compatible, deno-clean; inert until client passes `target_language` |
+| 2o+ — data hubs (missions 1166, talents…) · holomap/admin · `SPACE_SECTIONS`/UBB rail · Zod errorMap · landmines (PDF/charts/15 emails) · **L3 client wiring + output_language storage + reveal calibration** · seeded · SEO · full ES catalog | ⏳ | the bulk remains |
 
-**Running tally (2026-06-14): ~2,409 keys across ~94 files, 10 production builds green.** Most user-facing UI chrome (funnel + shell + post-reveal + profile/settings + core loop + offers + onboarding + events) reads Russian. Phase 0b: calendar locale + preferred_language sync done; output_language migration written; Zod errorMap + format sweep pending. Not started: data hubs · landmines (PDF/charts/emails) · Layer-3 generation wiring · seeded content · SEO · Spanish.
+**Running tally (2026-06-14): ~3,280 keys across ~115 files, 11 production builds green. ES catalog seeded with the official QoL (168 keys); Layer-3 generation is language-aware server-side.** Most user-facing UI chrome (funnel + shell + post-reveal + profile/settings + core loop + offers + onboarding + events) reads Russian. Phase 0b: calendar locale + preferred_language sync done; output_language migration written; Zod errorMap + format sweep pending. Not started: data hubs · landmines (PDF/charts/emails) · Layer-3 generation wiring · seeded content · SEO · Spanish.
 
 **Milestone (2026-06-14): the public cold-funnel reads in Russian** — `/ru` (manifesto + playbook CTA), `/ru?path=match` (hero + match CTAs), `/ru/ignite` (paid session). ~137 keys, 3 production builds green. Ready for Sasha's Charge review.
 

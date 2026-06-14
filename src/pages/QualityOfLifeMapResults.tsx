@@ -11,7 +11,7 @@ import { Button } from "@/components/ui/button";
 import { EditorialCta } from "@/components/ui/editorial-cta";
 import ShareQol from "@/components/sharing/ShareQol";
 import { useQolAssessment, type Answers } from "@/modules/quality-of-life-map/QolAssessmentContext";
-import { DOMAINS } from "@/modules/quality-of-life-map/qolConfig";
+import { DOMAINS, useLocalizedDomains } from "@/modules/quality-of-life-map/qolConfig";
 // Day 64 (Sasha 2026-05-07): Results page revamp — see
 // docs/specs/quality-of-life-map/results_revamp_spec.md for the full
 // design rationale. Summary of this round:
@@ -303,12 +303,21 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
     }
   };
 
-  // Build domain results
+  // Build domain results from the canonical (English) DOMAINS — these power
+  // the emoji-by-English-name lookup, scoring and the PDF (non-React export),
+  // so they must stay English-keyed.
   const domainResults = DOMAINS.map(domain => {
     const stageValue = answers[domain.id] ?? 0;
     const stage = domain.stages.find(s => s.id === stageValue);
     return { domain, stageValue, stage };
   });
+
+  // i18n (2026-06-13): localized display names, keyed by domain id. Used only
+  // for on-screen / share text — never for the emoji lookup or the PDF.
+  const localizedDomains = useLocalizedDomains();
+  const localizedNameById = Object.fromEntries(
+    localizedDomains.map(d => [d.id, d.name])
+  ) as Record<string, string>;
 
   const overallAverage = domainResults.reduce((sum, r) => sum + r.stageValue, 0) / domainResults.length;
   const overallStageRounded = overallAverage.toFixed(1);
@@ -833,7 +842,7 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
                       textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.85), 0 0 1px rgba(11,42,90,0.4))",
                     }}
                   >
-                    {domain.name}
+                    {localizedNameById[domain.id] ?? domain.name}
                   </span>
                 </span>
                 <span
@@ -856,8 +865,12 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
       {/* Share — kept (existing collapsible component) */}
       <ShareQol
         overallStage={overallStageRounded}
-        growthDomains={growthDomains}
-        strengthDomains={strengthDomains}
+        growthDomains={growthDomains.map(({ domain }) => ({
+          domain: { id: domain.id, name: localizedNameById[domain.id] ?? domain.name },
+        }))}
+        strengthDomains={strengthDomains.map(({ domain }) => ({
+          domain: { id: domain.id, name: localizedNameById[domain.id] ?? domain.name },
+        }))}
         profileId={profileId ?? undefined}
       />
 

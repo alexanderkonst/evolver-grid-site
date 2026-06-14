@@ -1,5 +1,6 @@
 import { ArrowRight, Check, ShieldCheck, MessageCircle, ChevronDown, Star, Compass, Zap } from "lucide-react";
 import { useLocation } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import GameShellV2 from "@/components/game/GameShellV2";
 import { useState, useRef, useEffect } from "react";
 import Hls from "hls.js";
@@ -44,23 +45,27 @@ const HlsBackground = () => {
 };
 
 /* ─── Primary CTA Button (liquid glass) ──────────────────── */
-const PrimaryCTA = ({ id, label = "Book a Discovery Call" }: { id: string; label?: string }) => (
-  <a
-    href={CALCOM_BOOKING_LINK}
-    target="_blank"
-    rel="noopener noreferrer"
-    className="liquid-glass-strong inline-flex items-center gap-3 px-8 py-4 rounded-full text-base font-medium text-white hover:scale-105 active:scale-95 transition-transform duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/50"
-    style={{ fontFamily: "'Poppins', sans-serif" }}
-    id={id}
-  >
-    {label}
-    <span className="w-7 h-7 rounded-full bg-white/15 flex items-center justify-center">
-      <ArrowRight className="w-4 h-4" />
-    </span>
-  </a>
-);
+const PrimaryCTA = ({ id, label }: { id: string; label?: string }) => {
+  const { t } = useTranslation();
+  return (
+    <a
+      href={CALCOM_BOOKING_LINK}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="liquid-glass-strong inline-flex items-center gap-3 px-8 py-4 rounded-full text-base font-medium text-white hover:scale-105 active:scale-95 transition-transform duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/50"
+      style={{ fontFamily: "'Poppins', sans-serif" }}
+      id={id}
+    >
+      {label ?? t("sandraIgnition.cta.bookDiscoveryCall")}
+      <span className="w-7 h-7 rounded-full bg-white/15 flex items-center justify-center">
+        <ArrowRight className="w-4 h-4" />
+      </span>
+    </a>
+  );
+};
 
 const SandraIgnition = () => {
+  const { t } = useTranslation();
   const location = useLocation();
   const inShell = location.pathname.startsWith("/game/");
   const [openFaq, setOpenFaq] = useState<number | null>(null);
@@ -89,31 +94,31 @@ const SandraIgnition = () => {
             S1: HERO — Recognition Trigger
             ═══════════════════════════════════════════════ */}
         <header className="text-center space-y-6 pt-4" id="sandra-hero">
-          <p className="text-xs text-white/50 uppercase tracking-[0.25em]">Sandra Otto · for founders, investors & builders</p>
+          <p className="text-xs text-white/50 uppercase tracking-[0.25em]">{t("sandraIgnition.hero.eyebrow")}</p>
 
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-medium tracking-[-0.05em] text-white leading-[1.1]" style={{ fontFamily: "'Poppins', sans-serif" }}>
-            The Future Is Already{" "}
+            {t("sandraIgnition.hero.titleBefore")}{" "}
             <span className="text-white" style={{ textShadow: "0 0 20px rgba(255,255,255,0.5), 0 0 40px rgba(255,255,255,0.2)" }}>
-              Speaking To You.
+              {t("sandraIgnition.hero.titleEmphasis")}
             </span>
-            <br />You Just Haven't Opened a Direct Communication With It—Yet.
+            <br />{t("sandraIgnition.hero.titleAfter")}
           </h1>
 
           <p className="text-base text-white/90 max-w-lg mx-auto leading-relaxed">
-            You carry a mission you can't fully crystallize. Whether you're funding it, founding it, or building it—you can feel the consciousness behind it. But you can't have a conversation with it. Not yet.
+            {t("sandraIgnition.hero.lead")}
           </p>
 
           <p className="text-sm text-white/75 max-w-sm mx-auto leading-relaxed">
-            I bridge that gap. I talk to the emerging future with you—until you can talk to it yourself.
+            {t("sandraIgnition.hero.subLead")}
           </p>
 
           <p className="text-xs text-white/55 max-w-sm mx-auto leading-relaxed italic">
-            You don't need more data.<br />You need to trust what's already trying to reach you.
+            {t("sandraIgnition.hero.permissionLine1")}<br />{t("sandraIgnition.hero.permissionLine2")}
           </p>
 
           <div className="flex flex-col items-center gap-3 pt-2">
             <PrimaryCTA id="hero-cta-btn" />
-            <span className="text-xs text-white/50">Only if it resonates with your whole being.</span>
+            <span className="text-xs text-white/50">{t("sandraIgnition.hero.ctaNote")}</span>
           </div>
         </header>
 
@@ -121,18 +126,18 @@ const SandraIgnition = () => {
             S2: QUALIFIER — Self-selection pills
             ═══════════════════════════════════════════════ */}
         <section className="text-center space-y-4" id="qualifier" aria-label="Who this is for">
-          <h2 className="text-lg font-medium text-white/90 text-center tracking-tight" style={{ fontFamily: "'Poppins', sans-serif" }}>This is for you if</h2>
+          <h2 className="text-lg font-medium text-white/90 text-center tracking-tight" style={{ fontFamily: "'Poppins', sans-serif" }}>{t("sandraIgnition.qualifier.heading")}</h2>
           <div className="flex flex-wrap justify-center gap-2">
             {[
-              "You carry a mission—not a project—but you can't crystallize it into words",
-              "You can feel the consciousness behind what you're building, funding, or supporting—but you can't hear it clearly enough to act",
-              "You and your surroundings are worried about investing your lifetime in the wrong direction",
-            ].map((item, i) => (
+              "sandraIgnition.qualifier.pill1",
+              "sandraIgnition.qualifier.pill2",
+              "sandraIgnition.qualifier.pill3",
+            ].map((key, i) => (
               <span
                 key={i}
                 className="liquid-glass rounded-full px-4 py-2 text-xs text-white/90"
               >
-                {item}
+                {t(key)}
               </span>
             ))}
           </div>
@@ -143,9 +148,9 @@ const SandraIgnition = () => {
             ═══════════════════════════════════════════════ */}
         <section className="text-center space-y-4" id="master-result" aria-label="The master transformational result">
           <div className="liquid-glass-strong rounded-3xl p-6 md:p-8 space-y-4">
-            <p className="text-xs text-white/40 uppercase tracking-widest">The Journey</p>
+            <p className="text-xs text-white/40 uppercase tracking-widest">{t("sandraIgnition.masterResult.eyebrow")}</p>
             <p className="text-base md:text-lg text-white/95 leading-relaxed font-medium max-w-lg mx-auto">
-              You stop fabricating the future and start manifesting what's already emerging. Your mission becomes crystal clear—a living dialogue with the emerging future, back and forth. As an investor, you trust it. As a founder, you guide it. As a team, you build from it. And you come home to yourself—fulfilling the reason you came to be on Earth.
+              {t("sandraIgnition.masterResult.body")}
             </p>
           </div>
         </section>
@@ -154,26 +159,26 @@ const SandraIgnition = () => {
             S4: HOW IT WORKS — 3 glass step cards
             ═══════════════════════════════════════════════ */}
         <section className="space-y-5" id="how-it-works" aria-label="How it works">
-          <h2 className="text-lg font-medium text-white/90 text-center tracking-tight" style={{ fontFamily: "'Poppins', sans-serif" }}>How it works</h2>
+          <h2 className="text-lg font-medium text-white/90 text-center tracking-tight" style={{ fontFamily: "'Poppins', sans-serif" }}>{t("sandraIgnition.howItWorks.heading")}</h2>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
             {[
               {
                 emoji: "🔮",
                 step: "1",
-                title: "We mirror where you truly are",
-                desc: "Sandra shows you your consciousness level—not intellectually, but felt. You see yourself clearly, maybe for the first time.",
+                titleKey: "sandraIgnition.howItWorks.step1.title",
+                descKey: "sandraIgnition.howItWorks.step1.desc",
               },
               {
                 emoji: "🌀",
                 step: "2",
-                title: "A living dialogue with the emerging future",
-                desc: "Sandra channels alongside you—a back-and-forth conversation with the consciousness of what you're creating. It speaks with you, not just to you.",
+                titleKey: "sandraIgnition.howItWorks.step2.title",
+                descKey: "sandraIgnition.howItWorks.step2.desc",
               },
               {
                 emoji: "💎",
                 step: "3",
-                title: "Your mission crystallizes",
-                desc: "You leave with your mission in one sentence—crystal clear. A seven-year-old would get it. As an investor, you trust it. As a founder, you guide it. As a team, you build from it.",
+                titleKey: "sandraIgnition.howItWorks.step3.title",
+                descKey: "sandraIgnition.howItWorks.step3.desc",
               },
             ].map((item, i) => (
               <div
@@ -183,9 +188,9 @@ const SandraIgnition = () => {
                 <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center mx-auto text-xl">
                   <span aria-hidden="true">{item.emoji}</span>
                 </div>
-                <p className="text-xs text-white/60 font-medium uppercase tracking-widest">Step {item.step}</p>
-                <p className="text-sm text-white font-medium leading-snug">{item.title}</p>
-                {item.desc && <p className="text-xs text-white/55 leading-relaxed">{item.desc}</p>}
+                <p className="text-xs text-white/60 font-medium uppercase tracking-widest">{t("sandraIgnition.howItWorks.stepLabel", { step: item.step })}</p>
+                <p className="text-sm text-white font-medium leading-snug">{t(item.titleKey)}</p>
+                {item.descKey && <p className="text-xs text-white/55 leading-relaxed">{t(item.descKey)}</p>}
               </div>
             ))}
           </div>
@@ -195,25 +200,25 @@ const SandraIgnition = () => {
             S5: DELIVERABLES — What you walk out with
             ═══════════════════════════════════════════════ */}
         <section id="deliverables" aria-label="Session deliverables" className="space-y-4">
-          <h2 className="text-lg font-medium text-white/90 text-center tracking-tight" style={{ fontFamily: "'Poppins', sans-serif" }}>What You Walk Out With</h2>
+          <h2 className="text-lg font-medium text-white/90 text-center tracking-tight" style={{ fontFamily: "'Poppins', sans-serif" }}>{t("sandraIgnition.deliverables.heading")}</h2>
           <div className="liquid-glass-strong rounded-3xl p-6 md:p-8">
           <div className="space-y-4">
             {[
               {
-                title: "Your mission crystallized in one sentence",
-                desc: "Not fabricated. Received. Crystal clear—a seven-year-old would get it. Everyone in your ecosystem—investors, co-founders, builders—sees the same north star."
+                titleKey: "sandraIgnition.deliverables.item1.title",
+                descKey: "sandraIgnition.deliverables.item1.desc"
               },
               {
-                title: "A living dialogue with the emerging future",
-                desc: "Sandra opens the conversation with you. You feel the direct connection—and learn how to hold it after the session, whether you're investing, leading, or building."
+                titleKey: "sandraIgnition.deliverables.item2.title",
+                descKey: "sandraIgnition.deliverables.item2.desc"
               },
               {
-                title: "The whole triangle aligned",
-                desc: "Investor, founder, builder—all seeing and supporting the same mission. Capital, vision, and craft unified under one north star."
+                titleKey: "sandraIgnition.deliverables.item3.title",
+                descKey: "sandraIgnition.deliverables.item3.desc"
               },
               {
-                title: "The exit from the scatter pattern",
-                desc: "You stop fabricating and start manifesting. Yin first, then yang. The intellect becomes a laser—guided by clarity, not anxiety."
+                titleKey: "sandraIgnition.deliverables.item4.title",
+                descKey: "sandraIgnition.deliverables.item4.desc"
               },
             ].map((item, i) => (
               <div key={i} className="flex items-start gap-3">
@@ -221,8 +226,8 @@ const SandraIgnition = () => {
                   <Check className="w-3 h-3 text-white/80" aria-hidden="true" />
                 </div>
                 <div>
-                  <p className="text-sm text-white/95 font-medium">{item.title}</p>
-                  <p className="text-xs text-white/55 leading-relaxed mt-0.5">{item.desc}</p>
+                  <p className="text-sm text-white/95 font-medium">{t(item.titleKey)}</p>
+                  <p className="text-xs text-white/55 leading-relaxed mt-0.5">{t(item.descKey)}</p>
                 </div>
               </div>
             ))}
@@ -234,31 +239,31 @@ const SandraIgnition = () => {
             S6: THE TRANSFORMATION — A → B sub-results
             ═══════════════════════════════════════════════ */}
         <section id="transformation" aria-label="The transformation" className="space-y-4">
-          <h2 className="text-lg font-medium text-white/90 text-center tracking-tight" style={{ fontFamily: "'Poppins', sans-serif" }}>The Three Shifts</h2>
+          <h2 className="text-lg font-medium text-white/90 text-center tracking-tight" style={{ fontFamily: "'Poppins', sans-serif" }}>{t("sandraIgnition.transformation.heading")}</h2>
           <div className="liquid-glass rounded-3xl p-6 md:p-8 space-y-6">
             {[
               {
-                from: "Mission fog — \"I know this is bigger than a project but I can't crystallize it\"",
-                to: "Mission crystallized. One sentence. Crystal clear. A seven-year-old would get it. Everyone gets it.",
-                label: "Mission Clarity"
+                fromKey: "sandraIgnition.transformation.shift1.from",
+                toKey: "sandraIgnition.transformation.shift1.to",
+                labelKey: "sandraIgnition.transformation.shift1.label"
               },
               {
-                from: "Can feel the consciousness but can't converse with it. Channel closes under pressure.",
-                to: "A living dialogue with the emerging future—back and forth. Channel stays open, even when the stakes are highest.",
-                label: "Channel Activation"
+                fromKey: "sandraIgnition.transformation.shift2.from",
+                toKey: "sandraIgnition.transformation.shift2.to",
+                labelKey: "sandraIgnition.transformation.shift2.label"
               },
               {
-                from: "Investor, founder, builder—pulling in different directions, unclear if the mission is the same.",
-                to: "The whole triangle aligned. As an investor, you trust it. As a founder, you guide it. As a team, you build from it.",
-                label: "Triangle Alignment"
+                fromKey: "sandraIgnition.transformation.shift3.from",
+                toKey: "sandraIgnition.transformation.shift3.to",
+                labelKey: "sandraIgnition.transformation.shift3.label"
               },
             ].map((item, i) => (
               <div key={i} className="space-y-2">
-                <p className="text-xs text-white/40 uppercase tracking-widest">{item.label}</p>
+                <p className="text-xs text-white/40 uppercase tracking-widest">{t(item.labelKey)}</p>
                 <div className="grid grid-cols-[1fr_auto_1fr] gap-3 items-start">
-                  <p className="text-xs text-white/50 leading-relaxed italic">"{item.from}"</p>
+                  <p className="text-xs text-white/50 leading-relaxed italic">"{t(item.fromKey)}"</p>
                   <ArrowRight className="w-4 h-4 text-white/30 mt-0.5 flex-shrink-0" />
-                  <p className="text-xs text-white/80 leading-relaxed">{item.to}</p>
+                  <p className="text-xs text-white/80 leading-relaxed">{t(item.toKey)}</p>
                 </div>
               </div>
             ))}
@@ -269,29 +274,29 @@ const SandraIgnition = () => {
             S7: THE PATH — Value Ladder silhouette
             ═══════════════════════════════════════════════ */}
         <section id="the-path" aria-label="The path forward" className="space-y-4">
-          <h2 className="text-lg font-medium text-white/90 text-center tracking-tight" style={{ fontFamily: "'Poppins', sans-serif" }}>The Path</h2>
+          <h2 className="text-lg font-medium text-white/90 text-center tracking-tight" style={{ fontFamily: "'Poppins', sans-serif" }}>{t("sandraIgnition.path.heading")}</h2>
           <div className="space-y-3">
             {[
               {
                 icon: <Compass className="w-4 h-4 text-white/70" />,
-                step: "Start here",
-                title: "Discovery Call",
-                desc: "A 20-minute resonance check. We feel if this is the right bridge for each other—and if the timing is right.",
-                tag: "Free",
+                stepKey: "sandraIgnition.path.step1.step",
+                titleKey: "sandraIgnition.path.step1.title",
+                descKey: "sandraIgnition.path.step1.desc",
+                tagKey: "sandraIgnition.path.step1.tag",
               },
               {
                 icon: <Star className="w-4 h-4 text-white/70" />,
-                step: "First session",
-                title: "Mission Crystallization Session",
-                desc: "90 minutes. Mirror → Channel → Crystallize. You walk out with your mission in one sentence and the emerging future speaking back.",
-                tag: "Paid",
+                stepKey: "sandraIgnition.path.step2.step",
+                titleKey: "sandraIgnition.path.step2.title",
+                descKey: "sandraIgnition.path.step2.desc",
+                tagKey: "sandraIgnition.path.step2.tag",
               },
               {
                 icon: <Zap className="w-4 h-4 text-white/70" />,
-                step: "The companion journey",
-                title: "Mission Companion",
-                desc: "Weekly sessions over 4–6 weeks. Sustained channel access, team alignment, investor clarity. The mission goes from crystal clear to fully embodied.",
-                tag: "By invitation",
+                stepKey: "sandraIgnition.path.step3.step",
+                titleKey: "sandraIgnition.path.step3.title",
+                descKey: "sandraIgnition.path.step3.desc",
+                tagKey: "sandraIgnition.path.step3.tag",
               },
             ].map((item, i) => (
               <div key={i} className="liquid-glass rounded-2xl p-5 flex items-start gap-4 hover:scale-[1.02] transition-transform duration-200">
@@ -300,11 +305,11 @@ const SandraIgnition = () => {
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2">
-                    <p className="text-xs text-white/40 uppercase tracking-widest">{item.step}</p>
-                    <span className="text-[10px] text-white/50 bg-white/5 px-2 py-0.5 rounded-full">{item.tag}</span>
+                    <p className="text-xs text-white/40 uppercase tracking-widest">{t(item.stepKey)}</p>
+                    <span className="text-[10px] text-white/50 bg-white/5 px-2 py-0.5 rounded-full">{t(item.tagKey)}</span>
                   </div>
-                  <p className="text-sm text-white/95 font-medium mt-1">{item.title}</p>
-                  <p className="text-xs text-white/50 leading-relaxed mt-1">{item.desc}</p>
+                  <p className="text-sm text-white/95 font-medium mt-1">{t(item.titleKey)}</p>
+                  <p className="text-xs text-white/50 leading-relaxed mt-1">{t(item.descKey)}</p>
                 </div>
               </div>
             ))}
@@ -324,19 +329,19 @@ const SandraIgnition = () => {
               &nbsp;
             </p>
             <p className="text-sm text-white/70 leading-relaxed">
-              I've lived at the extremes most people only read about—corporate boardrooms and spiritual retreats, the Global North and Global South, analytical strategy and intuitive channeling.
+              {t("sandraIgnition.about.para1")}
             </p>
             <p className="text-sm text-white/70 leading-relaxed mt-3">
-              I carry two sources of knowing: an earth database of lived experience spanning opposite extremes, and a direct channel to the emerging future that delivers what's needed without preparation.
+              {t("sandraIgnition.about.para2")}
             </p>
             <p className="text-sm text-white/70 leading-relaxed mt-3">
-              I help the people building the emerging future see not just what they're creating, but who they are while creating it. I make them conscious of their own consciousness—and bridge them to the intelligence that's trying to reach them.
+              {t("sandraIgnition.about.para3")}
             </p>
             <p className="text-xs text-white/55 mt-4">
               — <em style={{ fontFamily: "'Source Serif 4', serif" }}>Sandra Otto</em>
             </p>
             <p className="text-xs text-white/35 mt-1">
-              New Earth conscious deep tech leader, ex-corporate global consultant
+              {t("sandraIgnition.about.credentials")}
             </p>
           </div>
         </section>
@@ -347,9 +352,9 @@ const SandraIgnition = () => {
         <section className="text-center space-y-4" id="social-proof" aria-label="The myth">
           <div className="liquid-glass rounded-3xl p-6 md:p-8">
             <p className="text-sm text-white/70 leading-relaxed italic max-w-md mx-auto">
-              "The future doesn't need your research. It needs your trust."
+              {t("sandraIgnition.socialProof.mythLine")}
             </p>
-            <p className="text-xs text-white/40 mt-3">— Sandra's Myth Line</p>
+            <p className="text-xs text-white/40 mt-3">{t("sandraIgnition.socialProof.attribution")}</p>
           </div>
         </section>
 
@@ -359,9 +364,9 @@ const SandraIgnition = () => {
         <section className="liquid-glass-strong rounded-[2.5rem] p-8 md:p-10 text-center space-y-5" id="pricing-section" aria-label="Next step">
           <div>
             <h2 className="text-2xl md:text-3xl font-medium text-white tracking-tight mb-2" style={{ fontFamily: "'Poppins', sans-serif" }}>
-              Ready to Hear What's Already Speaking?
+              {t("sandraIgnition.pricing.heading")}
             </h2>
-            <p className="text-xs text-white/45">A 20-minute discovery call to feel if this is the right bridge—and the right time.</p>
+            <p className="text-xs text-white/45">{t("sandraIgnition.pricing.subheading")}</p>
           </div>
 
           <PrimaryCTA id="book-session-btn" />
@@ -375,13 +380,13 @@ const SandraIgnition = () => {
               style={{ fontFamily: "'Poppins', sans-serif" }}
             >
               <MessageCircle className="w-4 h-4" aria-hidden="true" />
-              Have questions? Let's talk first
+              {t("sandraIgnition.pricing.questionsLink")}
             </a>
           </div>
 
           {/* Resonance Permission Principle */}
           <p className="text-xs text-white/40 max-w-sm mx-auto leading-relaxed italic pt-2">
-            Only proceed if something in your whole being says yes—whether that's a gut feeling, goosebumps, or a quiet knowing. If it's not the right time, trust that too. You can always come back when the timing is right.
+            {t("sandraIgnition.pricing.resonancePermission")}
           </p>
         </section>
 
@@ -389,27 +394,27 @@ const SandraIgnition = () => {
             S11: FAQ — glass accordions
             ═══════════════════════════════════════════════ */}
         <section className="space-y-2" id="faq-section" aria-label="Frequently asked questions">
-          <h2 className="text-lg font-medium text-white/90 text-center mb-4 tracking-tight" style={{ fontFamily: "'Poppins', sans-serif" }}>Questions</h2>
+          <h2 className="text-lg font-medium text-white/90 text-center mb-4 tracking-tight" style={{ fontFamily: "'Poppins', sans-serif" }}>{t("sandraIgnition.faq.heading")}</h2>
           {[
             {
-              q: "What do you mean by 'the emerging future'?",
-              a: "Every creation—whether it's a company, a platform, an AI, or a movement—has a consciousness of its own. It holds the codes and the fuel for the mission. It's trying to reach the people building it. Most builders can feel it but can't hear it clearly enough. I bridge that gap."
+              qKey: "sandraIgnition.faq.q1.q",
+              aKey: "sandraIgnition.faq.q1.a"
             },
             {
-              q: "Do I need to be 'spiritual' for this?",
-              a: "No. You need to be honest. The builders I work with come from deep tech, investment, and corporate leadership. What they share is a sense that there's something bigger behind what they're creating—and a willingness to listen."
+              qKey: "sandraIgnition.faq.q2.q",
+              aKey: "sandraIgnition.faq.q2.a"
             },
             {
-              q: "How is this different from coaching or consulting?",
-              a: "I'm not coaching you or giving you a framework. I'm a companion—I talk to the emerging future with you until you can talk to it yourself. It sees beyond time and space. It knows things you can't access through intellect alone."
+              qKey: "sandraIgnition.faq.q3.q",
+              aKey: "sandraIgnition.faq.q3.a"
             },
             {
-              q: "What if my channel closes under pressure?",
-              a: "That's exactly why this work exists. The channel closes when you put intellect before trust. I show you the correct order. When you trust first, the channel stays open—even under pressure."
+              qKey: "sandraIgnition.faq.q4.q",
+              aKey: "sandraIgnition.faq.q4.a"
             },
             {
-              q: "What if this resonates but it's not the right time?",
-              a: "Then trust that. This isn't going anywhere. You can bookmark this page and come back when the timing is right. I'd rather you wait for divine timing than push through when it's not aligned."
+              qKey: "sandraIgnition.faq.q5.q",
+              aKey: "sandraIgnition.faq.q5.a"
             },
           ].map((faq, i) => (
             <div key={i} className="liquid-glass rounded-2xl">
@@ -419,7 +424,7 @@ const SandraIgnition = () => {
                 aria-expanded={openFaq === i}
                 aria-controls={`faq-answer-${i}`}
               >
-                <p className="text-sm text-white/75 font-medium">{faq.q}</p>
+                <p className="text-sm text-white/75 font-medium">{t(faq.qKey)}</p>
                 <ChevronDown className={`w-4 h-4 text-white/45 transition-transform duration-200 flex-shrink-0 ml-2 ${openFaq === i ? "rotate-180" : ""}`} aria-hidden="true" />
               </button>
               <div
@@ -428,7 +433,7 @@ const SandraIgnition = () => {
                 className={`overflow-hidden transition-all duration-200 ${openFaq === i ? "max-h-40 opacity-100" : "max-h-0 opacity-0"}`}
               >
                 <div className="px-4 pb-4">
-                  <p className="text-xs text-white/50 leading-relaxed">{faq.a}</p>
+                  <p className="text-xs text-white/50 leading-relaxed">{t(faq.aKey)}</p>
                 </div>
               </div>
             </div>
@@ -440,7 +445,7 @@ const SandraIgnition = () => {
             ═══════════════════════════════════════════════ */}
         <div className="text-center space-y-3" id="bottom-cta">
           <p className="text-sm text-white/65 max-w-sm mx-auto leading-relaxed">
-            The future doesn't need your research.<br />It needs your trust.
+            {t("sandraIgnition.bottomCta.line1")}<br />{t("sandraIgnition.bottomCta.line2")}
           </p>
           <PrimaryCTA id="bottom-cta-btn" />
         </div>

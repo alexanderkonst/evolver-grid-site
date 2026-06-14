@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
@@ -26,6 +27,8 @@ const BionicText = ({ children, className = "" }: { children: string; className?
 };
 
 const GeniusLayerMatching = () => {
+    const { t } = useTranslation();
+
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
@@ -42,11 +45,11 @@ const GeniusLayerMatching = () => {
                     {/* Hero Section */}
                     <section className="text-center space-y-6">
                         <h1 className="text-2xl sm:text-3xl lg:text-4xl text-primary leading-tight uppercase ">
-                            <BionicText>GENIUS-LAYER MATCHING FOR FOUNDER ECOSYSTEMS</BionicText>
+                            <BionicText>{t('geniusLayerMatching.heroTitle')}</BionicText>
                         </h1>
 
                         <p className="text-lg sm:text-xl text-foreground/80 max-w-2xl mx-auto">
-                            Stop guessing co-founder fit. Start matching on how people are actually built to play.
+                            {t('geniusLayerMatching.heroSubtitle')}
                         </p>
 
                         <div className="flex flex-col gap-4 justify-center pt-4">
@@ -60,7 +63,7 @@ const GeniusLayerMatching = () => {
                                     color: 'white'
                                 }}
                             >
-                                Talk to Aleksandr about a pilot
+                                {t('geniusLayerMatching.ctaTalkToAleksandr')}
                                 <ExternalLink size={18} />
                             </a>
                         </div>
@@ -70,7 +73,7 @@ const GeniusLayerMatching = () => {
                                 href="#how-pilot-works"
                                 className="text-sm text-muted-foreground hover:text-foreground transition-colors underline"
                             >
-                                Learn how the 3-way A/B pilot works
+                                {t('geniusLayerMatching.heroLearnHow')}
                             </a>
                         </div>
                     </section>
@@ -78,36 +81,36 @@ const GeniusLayerMatching = () => {
                     {/* Problem Section */}
                     <section className="text-center space-y-4">
                         <h2 className="text-xl sm:text-2xl text-primary uppercase ">
-                            <BionicText>MATCHING ON IDEAS ISN'T ENOUGH</BionicText>
+                            <BionicText>{t('geniusLayerMatching.problemTitle')}</BionicText>
                         </h2>
 
                         <p className="text-base sm:text-lg text-foreground/90 leading-relaxed">
-                            Most founder programs try to match people based on what they're building and what's on their CV. But what actually makes or breaks teams is how people <em>operate</em>: the roles they default to, how they decide, and what they become under pressure.
+                            {t('geniusLayerMatching.problemBodyBefore')}<em>{t('geniusLayerMatching.problemBodyEm')}</em>{t('geniusLayerMatching.problemBodyAfter')}
                         </p>
                     </section>
 
                     {/* Solution Section */}
                     <section className="text-center space-y-4">
                         <h2 className="text-xl sm:text-2xl text-primary uppercase ">
-                            <BionicText>ADD A "GENIUS LAYER" TO YOUR MATCHING</BionicText>
+                            <BionicText>{t('geniusLayerMatching.solutionTitle')}</BionicText>
                         </h2>
 
                         <p className="text-base sm:text-lg text-foreground/90 leading-relaxed">
-                            We use a short <em>Zone-of-Genius</em> assessment to surface each founder's deep operating pattern – the role they're structurally built to excel at. Boardy (an AI matchmaker) then uses these high-signal snapshots to generate a concrete map of who should meet whom, and in what roles.
+                            {t('geniusLayerMatching.solutionBodyBefore')}<em>{t('geniusLayerMatching.solutionBodyEm')}</em>{t('geniusLayerMatching.solutionBodyAfter')}
                         </p>
                     </section>
 
                     {/* Why It Matters Section */}
                     <section className="text-center space-y-6">
                         <h2 className="text-xl sm:text-2xl text-primary uppercase ">
-                            <BionicText>WHY THIS MATTERS NOW</BionicText>
+                            <BionicText>{t('geniusLayerMatching.whyTitle')}</BionicText>
                         </h2>
 
                         <ul className="space-y-4 text-left max-w-xl mx-auto">
                             {[
-                                "Fewer mis-matched founder pairs and zombie teams",
-                                "Faster trust and role-clarity in new teams",
-                                'A differentiated "we actually see you" layer in your studio or accelerator'
+                                t('geniusLayerMatching.whyItem1'),
+                                t('geniusLayerMatching.whyItem2'),
+                                t('geniusLayerMatching.whyItem3')
                             ].map((item, idx) => (
                                 <li key={idx} className="flex items-start gap-3">
                                     <CheckCircle className="w-5 h-5 text-emerald-500 flex-shrink-0 mt-0.5" />
@@ -121,14 +124,14 @@ const GeniusLayerMatching = () => {
                     <section id="how-pilot-works" className="space-y-8">
                         <div className="text-center space-y-3">
                             <h2 className="text-xl sm:text-2xl text-primary uppercase ">
-                                <BionicText>RUN A FAST, 3-WAY A/B PILOT</BionicText>
+                                <BionicText>{t('geniusLayerMatching.pilotTitle')}</BionicText>
                             </h2>
                             <p className="text-muted-foreground">
-                                We keep it absurdly simple and data-honest.
+                                {t('geniusLayerMatching.pilotSubtitle')}
                             </p>
                             <div className="text-lg font-semibold text-primary space-y-1">
-                                <p>$1,000 for 5 founders</p>
-                                <p>$1,500 for 10 founders</p>
+                                <p>{t('geniusLayerMatching.pilotPrice5')}</p>
+                                <p>{t('geniusLayerMatching.pilotPrice10')}</p>
                             </div>
                         </div>
 
@@ -136,33 +139,33 @@ const GeniusLayerMatching = () => {
                             {[
                                 {
                                     step: 1,
-                                    title: "Exploratory call (30 minutes)",
-                                    description: "Short call with Aleksandr to decide if a pilot makes sense for your context and sketch the 3-cell experiment design."
+                                    title: t('geniusLayerMatching.step1Title'),
+                                    description: t('geniusLayerMatching.step1Desc')
                                 },
                                 {
                                     step: 2,
-                                    title: "Run the pilot (about 1–2 weeks, end-to-end)",
-                                    description: "You select 5–10 founders from your ecosystem. They each take a short online Zone-of-Genius assessment (async)."
+                                    title: t('geniusLayerMatching.step2Title'),
+                                    description: t('geniusLayerMatching.step2Desc')
                                 },
                                 {
                                     step: 3,
-                                    title: "Generate 3 kinds of matches",
+                                    title: t('geniusLayerMatching.step3Title'),
                                     description: null,
                                     bullets: [
-                                        "Group A: matches using your current way",
-                                        "Group B: matches using Boardy with your usual founder data",
-                                        "Group C: matches using the same info plus the genius snapshots"
+                                        t('geniusLayerMatching.step3Bullet1'),
+                                        t('geniusLayerMatching.step3Bullet2'),
+                                        t('geniusLayerMatching.step3Bullet3')
                                     ]
                                 },
                                 {
                                     step: 4,
-                                    title: "Measure what actually felt better",
-                                    description: "Founders rate resonance and likelihood to continue the relationship. You get a short written debrief on what felt accurate, what didn't, and clear recommendations."
+                                    title: t('geniusLayerMatching.step4Title'),
+                                    description: t('geniusLayerMatching.step4Desc')
                                 },
                                 {
                                     step: 5,
-                                    title: "Decide on rollout",
-                                    description: 'If the signal is strong, we discuss weaving this "genius layer" into more of your programs. If not, you still walk away with clean data and sharper language for how you think about matching.'
+                                    title: t('geniusLayerMatching.step5Title'),
+                                    description: t('geniusLayerMatching.step5Desc')
                                 }
                             ].map((item) => (
                                 <div
@@ -201,18 +204,18 @@ const GeniusLayerMatching = () => {
                     <section className="text-center space-y-6">
                         <div>
                             <p className="text-xs uppercase  text-primary/70 mb-2">
-                                Designed for serious ecosystem builders
+                                {t('geniusLayerMatching.whoEyebrow')}
                             </p>
                             <h2 className="text-xl sm:text-2xl text-primary uppercase ">
-                                <BionicText>VENTURE STUDIOS, FOUNDER ECOSYSTEMS, ACCELERATORS</BionicText>
+                                <BionicText>{t('geniusLayerMatching.whoTitle')}</BionicText>
                             </h2>
                         </div>
 
                         <ul className="space-y-4 text-left max-w-xl mx-auto">
                             {[
-                                "You already curate strong founders, but matching still leans on vibes and guesswork",
-                                "You care about reducing silent co-founder misalignment and team drift",
-                                "You want a simple, time-bound experiment before committing to tooling changes"
+                                t('geniusLayerMatching.whoItem1'),
+                                t('geniusLayerMatching.whoItem2'),
+                                t('geniusLayerMatching.whoItem3')
                             ].map((item, idx) => (
                                 <li key={idx} className="flex items-start gap-3">
                                     <Target className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
@@ -225,26 +228,26 @@ const GeniusLayerMatching = () => {
                     {/* FAQ Section */}
                     <section className="space-y-8">
                         <h2 className="text-xl sm:text-2xl text-center text-primary uppercase ">
-                            <BionicText>FAQ</BionicText>
+                            <BionicText>{t('geniusLayerMatching.faqTitle')}</BionicText>
                         </h2>
 
                         <div className="space-y-6 text-center">
                             {[
                                 {
-                                    q: "How long does the pilot take?",
-                                    a: "Typically 1–2 weeks end-to-end from selecting founders to getting the debrief."
+                                    q: t('geniusLayerMatching.faq1Q'),
+                                    a: t('geniusLayerMatching.faq1A')
                                 },
                                 {
-                                    q: "How heavy is the lift on our side?",
-                                    a: "You choose the founders and share existing basic info you already have. The assessment is short and async; we handle the matching logic and debrief."
+                                    q: t('geniusLayerMatching.faq2Q'),
+                                    a: t('geniusLayerMatching.faq2A')
                                 },
                                 {
-                                    q: "What about pricing?",
-                                    a: "The pilot is $1,000 for 5 founders or $1,500 for 10 founders — sized so it's easy to approve as an experiment rather than a big platform decision."
+                                    q: t('geniusLayerMatching.faq3Q'),
+                                    a: t('geniusLayerMatching.faq3A')
                                 },
                                 {
-                                    q: "What happens after the pilot?",
-                                    a: 'If the signal is strong, we explore how a "genius layer" could plug into more of your programs. If not, you keep the insights and we part as friends.'
+                                    q: t('geniusLayerMatching.faq4Q'),
+                                    a: t('geniusLayerMatching.faq4A')
                                 }
                             ].map((faq, idx) => (
                                 <div key={idx} className="space-y-2">
@@ -258,11 +261,11 @@ const GeniusLayerMatching = () => {
                     {/* Final CTA Section */}
                     <section className="text-center space-y-6 py-10 px-6 rounded-3xl border-2 border-primary/30 bg-primary/5">
                         <h2 className="text-xl sm:text-2xl text-primary uppercase ">
-                            <BionicText>RUN A GENIUS-LAYER PILOT WITH ALEKSANDR TODAY</BionicText>
+                            <BionicText>{t('geniusLayerMatching.finalCtaTitle')}</BionicText>
                         </h2>
 
                         <p className="text-base text-foreground/80 max-w-2xl mx-auto">
-                            If you're running a founder ecosystem and want to see whether higher-fidelity "genius" signals actually improve your matching, this is the place to start.
+                            {t('geniusLayerMatching.finalCtaBody')}
                         </p>
 
                         <div className="flex justify-center">
@@ -276,7 +279,7 @@ const GeniusLayerMatching = () => {
                                     color: 'white'
                                 }}
                             >
-                                Talk to Aleksandr about a pilot
+                                {t('geniusLayerMatching.ctaTalkToAleksandr')}
                                 <ExternalLink size={18} />
                             </a>
                         </div>

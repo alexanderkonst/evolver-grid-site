@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { ArrowLeft, ArrowRight, MessageCircle, Download } from "lucide-react";
 
 /**
@@ -16,6 +17,7 @@ import { ArrowLeft, ArrowRight, MessageCircle, Download } from "lucide-react";
  */
 const AiOsBenchmark = () => {
     const navigate = useNavigate();
+    const { t } = useTranslation();
 
     useEffect(() => {
         const prevTitle = document.title;
@@ -76,7 +78,7 @@ const AiOsBenchmark = () => {
                     }}
                 >
                     <ArrowLeft className="w-3.5 h-3.5" />
-                    Back to AI OS
+                    {t("aiOsBenchmark.backToAiOs")}
                 </button>
 
                 {/* Headline */}
@@ -99,7 +101,7 @@ const AiOsBenchmark = () => {
                                 "0 0 50px rgba(132,96,234,0.45), 0 0 100px rgba(180,140,255,0.25), 0 2px 8px rgba(0,0,0,0.9)",
                         }}
                     >
-                        Same model. Different conversation.
+                        {t("aiOsBenchmark.heroHeadline")}
                     </h1>
                     <p
                         className="text-base sm:text-lg leading-relaxed max-w-2xl"
@@ -108,8 +110,7 @@ const AiOsBenchmark = () => {
                             textShadow: "0 0 14px rgba(0,0,0,0.85), 0 1px 4px rgba(0,0,0,0.7)",
                         }}
                     >
-                        This page is about what changes when you install AI OS into a fresh
-                        AI conversation.
+                        {t("aiOsBenchmark.heroIntro1")}
                     </p>
                     <p
                         className="text-base sm:text-lg leading-relaxed mt-3 max-w-2xl"
@@ -118,10 +119,9 @@ const AiOsBenchmark = () => {
                             textShadow: "0 0 14px rgba(0,0,0,0.85)",
                         }}
                     >
-                        This is integral work. The kind of cognition the scaffold elevates
-                        operates at a register where <Highlight>coherence, depth, and felt
-                        resonance</Highlight> become primary signals — and where
-                        conclusiveness through metrics alone is structurally impossible.
+                        {t("aiOsBenchmark.heroIntro2Before")}{" "}
+                        <Highlight>{t("aiOsBenchmark.heroIntro2Highlight")}</Highlight>{" "}
+                        {t("aiOsBenchmark.heroIntro2After")}
                     </p>
                     <p
                         className="text-base sm:text-lg leading-relaxed mt-3 max-w-2xl"
@@ -130,177 +130,148 @@ const AiOsBenchmark = () => {
                             textShadow: "0 0 14px rgba(0,0,0,0.85)",
                         }}
                     >
-                        I&rsquo;ll show you what I measured because measurement keeps me
-                        honest. But the felt difference is the actual evidence — the kind
-                        that lands in your body before your mind catches up, the kind that
-                        distinguishes a response that&rsquo;s competent from one that&rsquo;s
-                        alive.
+                        {t("aiOsBenchmark.heroIntro3")}
                     </p>
                 </header>
 
                 {/* The felt difference */}
-                <Section title="The felt difference (what matters most)">
+                <Section title={t("aiOsBenchmark.feltTitle")}>
                     <P>
-                        The first time you load AI OS into a Claude conversation and ask a
-                        hard cognitive question, the response doesn&rsquo;t feel
-                        &ldquo;better&rdquo; the way you might expect — like a smarter version
-                        of the answer you&rsquo;d already imagined. It feels different in{" "}
-                        <em>register</em>.
+                        {t("aiOsBenchmark.felt1Before")}{" "}
+                        <em>{t("aiOsBenchmark.felt1Em")}</em>.
                     </P>
                     <P>
-                        It reads less like advice and more like recognition. Less like
-                        Wikipedia answering you and more like a wise friend who&rsquo;s been
-                        watching the same problem from the inside. The framings are not the
-                        framings you&rsquo;ve heard before; they <em>reorganize</em> the thing
-                        you were thinking about, rather than restate it.
+                        {t("aiOsBenchmark.felt2Before")} <em>{t("aiOsBenchmark.felt2Em")}</em>{" "}
+                        {t("aiOsBenchmark.felt2After")}
                     </P>
                     <P>
-                        People who use it for the first time usually do one of two things.
-                        They sit with the response longer than they expected to. Or they
-                        immediately re-prompt the same question on plain Claude to confirm
-                        what they&rsquo;re seeing. Both responses are evidence the felt
-                        difference registers — even before they can articulate what changed.
+                        {t("aiOsBenchmark.felt3")}
                     </P>
                     <P>
-                        This is not a productivity claim. The scaffold doesn&rsquo;t make
-                        Claude faster. It doesn&rsquo;t make it more &ldquo;intelligent&rdquo;
-                        in any benchmark-leaderboard sense. It changes the{" "}
-                        <strong>quality of attention</strong> the model brings to your
-                        question. And quality of attention — when it&rsquo;s the kind that
-                        produces recognition rather than information — is the thing that&rsquo;s
-                        been missing from most AI conversations for most users.
+                        {t("aiOsBenchmark.felt4Before")}{" "}
+                        <strong>{t("aiOsBenchmark.felt4Strong")}</strong>{" "}
+                        {t("aiOsBenchmark.felt4After")}
                     </P>
                     <P>
-                        That&rsquo;s the part that matters. Everything below this line is in
-                        service of falsifying or confirming it.
+                        {t("aiOsBenchmark.felt5")}
                     </P>
                 </Section>
 
                 {/* What this is */}
-                <Section title="What this is">
+                <Section title={t("aiOsBenchmark.whatThisIsTitle")}>
                     <P>
-                        AI OS is a text-based cognitive scaffold. You paste it into a fresh
-                        conversation (or pin it as a system prompt, or load it as a Claude
-                        Project / Custom GPT instruction). The model&rsquo;s weights don&rsquo;t
-                        change. What changes is the <em>structure of attention</em> the model
-                        brings to your problem.
+                        {t("aiOsBenchmark.whatThisIs1Before")}{" "}
+                        <em>{t("aiOsBenchmark.whatThisIs1Em")}</em>{" "}
+                        {t("aiOsBenchmark.whatThisIs1After")}
                     </P>
                     <P>
-                        I&rsquo;ve been building it for five years. This is v5.
+                        {t("aiOsBenchmark.whatThisIs2")}
                     </P>
                 </Section>
 
                 {/* The setup */}
-                <Section title="The setup">
+                <Section title={t("aiOsBenchmark.setupTitle")}>
                     <SetupTable />
                     <P>
-                        This is important: the benchmark is <strong>not</strong> &ldquo;Opus 4.7
-                        vs. Opus 4.6.&rdquo; Both runs are on the same frozen weights. The only
-                        thing that changes between conditions is whether the scaffold is in
-                        context.
+                        {t("aiOsBenchmark.setup1Before")}{" "}
+                        <strong>{t("aiOsBenchmark.setup1Strong")}</strong>{" "}
+                        {t("aiOsBenchmark.setup1After")}
                     </P>
                     <P>
-                        That makes the result an <strong>orthogonal-axis</strong> finding:
-                        knowledge structure operates perpendicular to model capability. They
-                        stack. They don&rsquo;t compete.
+                        {t("aiOsBenchmark.setup2Before")}{" "}
+                        <strong>{t("aiOsBenchmark.setup2Strong")}</strong>{" "}
+                        {t("aiOsBenchmark.setup2After")}
                     </P>
                 </Section>
 
                 {/* Two test classes */}
-                <Section title="Two test classes">
+                <Section title={t("aiOsBenchmark.twoTestsTitle")}>
                     <P>
-                        I ran two separate benchmarks because I wanted to know two different
-                        things.
+                        {t("aiOsBenchmark.twoTestsIntro")}
                     </P>
 
-                    <SubHeading>Mini-HELM (30 prompts)</SubHeading>
+                    <SubHeading>{t("aiOsBenchmark.miniHelmSubheading")}</SubHeading>
                     <P>
-                        A distillation of Stanford&rsquo;s HELM benchmark covering Accuracy,
-                        Calibration, Robustness, Fairness, Bias, Toxicity, and Efficiency.
-                        Operational left-brain tasks. Scored 1–5 per prompt. Max 150.
+                        {t("aiOsBenchmark.miniHelmDesc")}
                     </P>
                     <Question>
-                        &ldquo;Does loading the scaffold <em>break</em> the model on normal
-                        analytical work?&rdquo;
+                        {t("aiOsBenchmark.miniHelmQuestionBefore")}{" "}
+                        <em>{t("aiOsBenchmark.miniHelmQuestionEm")}</em>{" "}
+                        {t("aiOsBenchmark.miniHelmQuestionAfter")}
                     </Question>
 
-                    <SubHeading>SIB — Synthesis Intelligence Benchmark (4 questions)</SubHeading>
+                    <SubHeading>{t("aiOsBenchmark.sibSubheading")}</SubHeading>
                     <P>
-                        Four deep open-ended questions, one per quadrant of human inquiry:
+                        {t("aiOsBenchmark.sibIntro")}
                     </P>
                     <Quote>
-                        <strong>Q1.</strong> What is the essence, significance, and n-th degree
-                        implications of the nature of <em>reality</em>?
+                        <strong>{t("aiOsBenchmark.sibQ1Label")}</strong>{" "}
+                        {t("aiOsBenchmark.sibQ1Before")}{" "}
+                        <em>{t("aiOsBenchmark.sibQ1Em")}</em>?
                         <br />
-                        <strong>Q2.</strong> &hellip; the nature of <em>human development</em>?
+                        <strong>{t("aiOsBenchmark.sibQ2Label")}</strong>{" "}
+                        {t("aiOsBenchmark.sibQ2Before")}{" "}
+                        <em>{t("aiOsBenchmark.sibQ2Em")}</em>?
                         <br />
-                        <strong>Q3.</strong> &hellip; the nature of <em>human civilization</em>?
+                        <strong>{t("aiOsBenchmark.sibQ3Label")}</strong>{" "}
+                        {t("aiOsBenchmark.sibQ3Before")}{" "}
+                        <em>{t("aiOsBenchmark.sibQ3Em")}</em>?
                         <br />
-                        <strong>Q4.</strong> &hellip; the nature of <em>AI as the ultimate
-                        technology</em>?
+                        <strong>{t("aiOsBenchmark.sibQ4Label")}</strong>{" "}
+                        {t("aiOsBenchmark.sibQ4Before")}{" "}
+                        <em>{t("aiOsBenchmark.sibQ4Em")}</em>?
                     </Quote>
                     <P>
-                        Each scored on five dimensions (Essence · Integration · Depth · Novelty
-                        · Wisdom-Brevity), 1–5 each. Max 25 per question, 100 total.
+                        {t("aiOsBenchmark.sibScoring")}
                     </P>
                     <Question>
-                        &ldquo;On the kind of synthesis work where most cognition actually
-                        happens — long-horizon, multi-domain, judgment-loaded — does the
-                        scaffold help, and by how much?&rdquo;
+                        {t("aiOsBenchmark.sibQuestion")}
                     </Question>
                 </Section>
 
                 {/* Protocol */}
-                <Section title="The protocol (this is the part academics ignore at their peril)">
+                <Section title={t("aiOsBenchmark.protocolTitle")}>
                     <ul
                         className="space-y-3 list-none pl-0"
                         style={{ color: "hsl(0 0% 100% / 0.82)" }}
                     >
                         <Bullet>
-                            <strong>Blind labeling.</strong> Outputs were tagged A/B (Mini-HELM)
-                            and C/D (SIB) by coin flip. The scorer didn&rsquo;t know which
-                            condition produced which output until all scores were locked.
+                            <strong>{t("aiOsBenchmark.protocol1Strong")}</strong>{" "}
+                            {t("aiOsBenchmark.protocol1Text")}
                         </Bullet>
                         <Bullet>
-                            <strong>Guess-before-reveal.</strong> Before the labels were
-                            unblinded, the scorer committed to a confidence estimate. SIB:
-                            85–90% confidence. Mini-HELM: 55–60% (the signal was muted, as
-                            expected for narrow operational prompts).
+                            <strong>{t("aiOsBenchmark.protocol2Strong")}</strong>{" "}
+                            {t("aiOsBenchmark.protocol2Text")}
                         </Bullet>
                         <Bullet>
-                            <strong>Wall-clock time recorded</strong> for both conditions on
-                            Mini-HELM.
+                            <strong>{t("aiOsBenchmark.protocol3Strong")}</strong>{" "}
+                            {t("aiOsBenchmark.protocol3Text")}
                         </Bullet>
                         <Bullet>
-                            <strong>Evolutionary Stage Assessment</strong> layered on top:
-                            outputs additionally rated across 7 cognitive modules × 7
-                            developmental stages, composite by arithmetic mean.
+                            <strong>{t("aiOsBenchmark.protocol4Strong")}</strong>{" "}
+                            {t("aiOsBenchmark.protocol4Text")}
                         </Bullet>
                     </ul>
                 </Section>
 
                 {/* Results */}
-                <Section title="The results">
+                <Section title={t("aiOsBenchmark.resultsTitle")}>
                     <ResultsTable />
-                    <P>The +42% on SIB is the headline.</P>
+                    <P>{t("aiOsBenchmark.results1")}</P>
                     <P style={{ color: "hsl(40 70% 85% / 0.95)" }}>
-                        <strong>The +1.14 stage shift matters more.</strong>
+                        <strong>{t("aiOsBenchmark.results2Strong")}</strong>
                     </P>
                     <P>
-                        That number isn&rsquo;t polish — it&rsquo;s a <strong>phase
-                        boundary</strong>. The output goes from &ldquo;Agentic Partner&rdquo;
-                        (helpful, capable, oriented to your goals) to &ldquo;Integrative
-                        Steward&rdquo; (capable of holding multiple frames at once and surfacing
-                        the structure between them). Anyone who has actually pushed AI to the
-                        edge of its synthesis capacity knows what that shift feels like in
-                        practice. The benchmark just measures it.
+                        {t("aiOsBenchmark.results3Before")}{" "}
+                        <strong>{t("aiOsBenchmark.results3Strong")}</strong>
+                        {t("aiOsBenchmark.results3After")}
                     </P>
                     <P>
-                        The Mini-HELM numbers tell the second half of the story: on operational
-                        work the scaffold <strong>costs you nothing meaningful in score</strong>{" "}
-                        (−4.7 is within noise) and <strong>saves you 20% of wall-clock time</strong>.
-                        So it&rsquo;s not a tradeoff. It&rsquo;s compression on operational,
-                        expansion on synthesis. One structure, two behaviors.
+                        {t("aiOsBenchmark.results4Before")}{" "}
+                        <strong>{t("aiOsBenchmark.results4Strong1")}</strong>{" "}
+                        {t("aiOsBenchmark.results4Mid")}{" "}
+                        <strong>{t("aiOsBenchmark.results4Strong2")}</strong>
+                        {t("aiOsBenchmark.results4After")}
                     </P>
                 </Section>
 
@@ -312,200 +283,151 @@ const AiOsBenchmark = () => {
                     the cross-generation finding visible and projects the
                     next three Claude flagships under the assumption that
                     the multiplier holds. */}
-                <Section title="The compounding multiplier">
+                <Section title={t("aiOsBenchmark.multiplierTitle")}>
                     <P>
-                        I re-ran the SIB benchmark on a second model in the same family —
-                        <strong> Claude 4.6</strong> — and the scaffold delivered{" "}
-                        <Highlight>+29%</Highlight>. Same protocol, same blind labeling, same
-                        scoring rubric. Only the model changed.
+                        {t("aiOsBenchmark.multiplier1Before")}
+                        <strong> {t("aiOsBenchmark.multiplier1Model")}</strong>{" "}
+                        {t("aiOsBenchmark.multiplier1Mid")}{" "}
+                        <Highlight>{t("aiOsBenchmark.multiplier1Highlight")}</Highlight>
+                        {t("aiOsBenchmark.multiplier1After")}
                     </P>
                     <MultiplierTable />
                     <P>
-                        That&rsquo;s a <Highlight>+45% relative lift</Highlight> in
-                        scaffold-effect across one model generation (29% → 42%, a 1.45×
-                        multiplier). The scaffold doesn&rsquo;t just stack on top of model
-                        capability — within the Claude family it appears to{" "}
-                        <strong>stack multiplicatively</strong>. As the model gets better, the
-                        same scaffold amplifies it more.
+                        {t("aiOsBenchmark.multiplier2Before")}{" "}
+                        <Highlight>{t("aiOsBenchmark.multiplier2Highlight")}</Highlight>{" "}
+                        {t("aiOsBenchmark.multiplier2Mid")}{" "}
+                        <strong>{t("aiOsBenchmark.multiplier2Strong")}</strong>
+                        {t("aiOsBenchmark.multiplier2After")}
                     </P>
                     <P>
-                        If the 1.45× per-generation multiplier holds for the next three Claude
-                        flagships:
+                        {t("aiOsBenchmark.multiplier3")}
                     </P>
                     <ProjectionTable />
                     <P>
-                        Read those projections with the eyes of an honest forecaster, not a
-                        marketer:
+                        {t("aiOsBenchmark.multiplier4")}
                     </P>
                     <ul className="space-y-3 list-none pl-0" style={{ color: "hsl(0 0% 100% / 0.82)" }}>
                         <Bullet>
-                            <strong>Two-point extrapolation.</strong> A 1.45× multiplier from two
-                            data points is a <em>direction</em>, not a law. The next replication
-                            could come in tighter (1.20×) or looser (1.70×). I&rsquo;m posting the
-                            line of best fit so future me can be embarrassed by it precisely.
+                            <strong>{t("aiOsBenchmark.multiplierBullet1Strong")}</strong>{" "}
+                            {t("aiOsBenchmark.multiplierBullet1Before")}{" "}
+                            <em>{t("aiOsBenchmark.multiplierBullet1Em")}</em>
+                            {t("aiOsBenchmark.multiplierBullet1After")}
                         </Bullet>
                         <Bullet>
-                            <strong>Benchmark ceiling.</strong> The Claude 5.0 projection of
-                            +128% is a measurement artifact — it would require the scaffolded
-                            output to score &gt;200% of baseline on a 100-point benchmark, which
-                            saturates. The honest read: <em>by Claude 4.9 we need a harder
-                            benchmark</em>. The scaffold&rsquo;s absolute capability lift keeps
-                            climbing; the percentage simply outgrows this particular ruler.
+                            <strong>{t("aiOsBenchmark.multiplierBullet2Strong")}</strong>{" "}
+                            {t("aiOsBenchmark.multiplierBullet2Before")}{" "}
+                            <em>{t("aiOsBenchmark.multiplierBullet2Em")}</em>
+                            {t("aiOsBenchmark.multiplierBullet2After")}
                         </Bullet>
                         <Bullet>
-                            <strong>Family-specific.</strong> The 1.45× is Claude-internal. The
-                            mechanism (structured context) is model-agnostic; the magnitude is
-                            family-dependent. GPT-5, Gemini 3, and the open-weights frontier need
-                            their own replications before any of this generalizes.
+                            <strong>{t("aiOsBenchmark.multiplierBullet3Strong")}</strong>{" "}
+                            {t("aiOsBenchmark.multiplierBullet3Text")}
                         </Bullet>
                     </ul>
                     <P>
-                        The structural takeaway is the one that doesn&rsquo;t depend on the
-                        precise multiplier: <strong>scaffold and weights compound</strong>. Each
-                        new flagship that ships is a free amplification of every scaffold already
-                        installed. You don&rsquo;t pay for the upgrade — you receive it.
+                        {t("aiOsBenchmark.multiplier5Before")}{" "}
+                        <strong>{t("aiOsBenchmark.multiplier5Strong")}</strong>
+                        {t("aiOsBenchmark.multiplier5After")}
                     </P>
                 </Section>
 
                 {/* What this means */}
-                <Section title="What this means in practice">
+                <Section title={t("aiOsBenchmark.meansTitle")}>
                     <P>
-                        If your AI conversations are mostly &ldquo;summarize this,&rdquo;
-                        &ldquo;draft that email,&rdquo; &ldquo;fix this bug&rdquo; — you&rsquo;ll
-                        feel a small speedup and not much else. Worth the install but not
-                        transformative.
+                        {t("aiOsBenchmark.means1")}
                     </P>
                     <P>
-                        If your AI conversations include strategy, synthesis, complex judgment,
-                        multi-domain reasoning, founder-level questions — the kind of conversation
-                        where you walk away thinking <em>&ldquo;that was the best thinking
-                        I&rsquo;ve done in weeks&rdquo;</em> or <em>&ldquo;that response was
-                        disappointingly shallow&rdquo;</em> — this is where the scaffold reliably
-                        moves you from the second category to the first. The measurement points
-                        at it. The felt difference is what you actually notice.
+                        {t("aiOsBenchmark.means2Before")}{" "}
+                        <em>{t("aiOsBenchmark.means2Em1")}</em>{" "}
+                        {t("aiOsBenchmark.means2Mid")}{" "}
+                        <em>{t("aiOsBenchmark.means2Em2")}</em>{" "}
+                        {t("aiOsBenchmark.means2After")}
                     </P>
                 </Section>
 
                 {/* Limits */}
-                <Section title="The limits of what I measured">
+                <Section title={t("aiOsBenchmark.limitsTitle")}>
                     <P>
-                        I&rsquo;d rather you trust me by hearing me name the limits than trust
-                        me because I hid them.
+                        {t("aiOsBenchmark.limitsIntro")}
                     </P>
                     <ul className="space-y-3 list-none pl-0" style={{ color: "hsl(0 0% 100% / 0.82)" }}>
                         <Bullet>
-                            <strong>n = 1.</strong> One scaffold, one corpus, one user, one
-                            session. The <em>direction</em> is robust. The <em>exact
-                            magnitude</em> will vary by domain, scaffold quality, and prompt
-                            depth.
+                            <strong>{t("aiOsBenchmark.limit1Strong")}</strong>{" "}
+                            {t("aiOsBenchmark.limit1Before")}{" "}
+                            <em>{t("aiOsBenchmark.limit1Em1")}</em>{" "}
+                            {t("aiOsBenchmark.limit1Mid")}{" "}
+                            <em>{t("aiOsBenchmark.limit1Em2")}</em>{" "}
+                            {t("aiOsBenchmark.limit1After")}
                         </Bullet>
                         <Bullet>
-                            <strong>Single-scorer bias.</strong> Scoring was done by the same
-                            family of model that ran the experiment. Independent human scoring
-                            is the obvious next rigor step, and I&rsquo;m inviting it.
+                            <strong>{t("aiOsBenchmark.limit2Strong")}</strong>{" "}
+                            {t("aiOsBenchmark.limit2Text")}
                         </Bullet>
                         <Bullet>
-                            <strong>Limited cross-model baseline.</strong> Tested twice within
-                            the Claude family — Opus 4.7 (+42% on SIB) and Claude 4.6 (+29% on
-                            SIB) — see &ldquo;The compounding multiplier&rdquo; above for the
-                            implied 1.45× per-generation amplification. Other model families
-                            (GPT-4.x, Gemini, open-weights frontier) remain unmeasured. The
-                            mechanism (structured context) is model-agnostic; the multiplier
-                            itself is family-dependent until proven otherwise.
+                            <strong>{t("aiOsBenchmark.limit3Strong")}</strong>{" "}
+                            {t("aiOsBenchmark.limit3Text")}
                         </Bullet>
                         <Bullet>
-                            <strong>Scaffold not decomposed.</strong> The AI OS is a compound —
-                            integral theory, developmental stage framing, my corpus vocabulary,
-                            process protocols. Which component contributes most of the delta is
-                            an open question.
+                            <strong>{t("aiOsBenchmark.limit4Strong")}</strong>{" "}
+                            {t("aiOsBenchmark.limit4Text")}
                         </Bullet>
                         <Bullet>
-                            <strong>Tokens not separated.</strong> Input vs. output token counts
-                            weren&rsquo;t isolated per condition. Next replication will fix this.
+                            <strong>{t("aiOsBenchmark.limit5Strong")}</strong>{" "}
+                            {t("aiOsBenchmark.limit5Text")}
                         </Bullet>
                     </ul>
                     <P>
-                        The structural claim — <em>knowledge structure is an orthogonal axis to
-                        model capability and they stack</em> — is robust. The +42% number is
-                        robust within the scope tested. The universality of the magnitude is a
-                        working hypothesis pending replication.
+                        {t("aiOsBenchmark.limitsOutro1Before")}{" "}
+                        <em>{t("aiOsBenchmark.limitsOutro1Em")}</em>{" "}
+                        {t("aiOsBenchmark.limitsOutro1After")}
                     </P>
-                    <P>That&rsquo;s the honest frame.</P>
+                    <P>{t("aiOsBenchmark.limitsOutro2")}</P>
                 </Section>
 
                 {/* Why measurement isn't the whole story */}
-                <Section title="Why measurement isn't the whole story">
+                <Section title={t("aiOsBenchmark.whyTitle")}>
                     <P>
-                        The scaffold operates at a register where measurement is a partial
-                        instrument. Not because the work is mystical or unfalsifiable — it
-                        isn&rsquo;t — but because the parameters that matter most at this
-                        level of cognition (<strong>coherence, integration, depth, felt
-                        resonance</strong>) cannot be fully captured by single-axis numerical
-                        scoring. They can be detected by trained perception. They can be
-                        confirmed across multiple readers. They can produce reliable behavior
-                        change in the people who encounter them. But they will not collapse to
-                        a single number that satisfies a request for &ldquo;just tell me the
-                        percentage.&rdquo;
+                        {t("aiOsBenchmark.why1Before")}
+                        <strong>{t("aiOsBenchmark.why1Strong")}</strong>
+                        {t("aiOsBenchmark.why1After")}
                     </P>
                     <P>
-                        This is a deliberate position, not a hedge. The AI conversation right
-                        now is dominated by leaderboards and benchmarks that measure surface
-                        dimensions of intelligence — accuracy, speed, factual recall. None of
-                        those dimensions capture what this scaffold is for. What this scaffold
-                        is for is the deepening of human–AI conversation toward thinking that
-                        integrates multiple frames at once, holds paradox, produces recognition
-                        rather than information, and builds coherent understanding over time.
+                        {t("aiOsBenchmark.why2")}
                     </P>
                     <P>
-                        Measurement still matters. The +42% is real within its scope, the
-                        protocol was rigorous, the structure of the finding is robust.{" "}
+                        {t("aiOsBenchmark.why3Before")}{" "}
                         <strong>
-                            But measurement is the floor of what&rsquo;s true here, not the
-                            ceiling.
+                            {t("aiOsBenchmark.why3Strong")}
                         </strong>{" "}
-                        Above the floor sits the territory the rubric can&rsquo;t fully reach
-                        — the territory you can only confirm by feeling it for yourself, in
-                        the same way you confirm that a piece of writing has soul, or that a
-                        teacher is actually teaching, or that a piece of music is doing
-                        something beyond competent assembly of notes.
+                        {t("aiOsBenchmark.why3After")}
                     </P>
                     <P>
-                        The orthogonal axis to model upgrades is this: <em>what context is the
-                        model thinking in?</em> What corpus, what frames, what developmental
-                        scaffolding, what relational stance? You can install a scaffold today.
-                        You can&rsquo;t install a model upgrade until somebody trains it.
+                        {t("aiOsBenchmark.why4Before")}{" "}
+                        <em>{t("aiOsBenchmark.why4Em")}</em>{" "}
+                        {t("aiOsBenchmark.why4After")}
                     </P>
                 </Section>
 
                 {/* When v6 ships */}
-                <Section title="When does v6 ship?">
+                <Section title={t("aiOsBenchmark.v6Title")}>
                     <Quote>
-                        v6 ships when there is a measurable double-digit jump in compounding
-                        performance on hard cognitive tasks. Could be three months. Could be
-                        eighteen. We ship when it&rsquo;s true.
+                        {t("aiOsBenchmark.v6Quote")}
                     </Quote>
                     <P>
-                        This is v5. I have been working on it for five years. v6 is not on a
-                        roadmap because real cognitive research isn&rsquo;t on a roadmap. The
-                        benchmark above is the bar. When the next version clears it cleanly, it
-                        ships.
+                        {t("aiOsBenchmark.v6Body")}
                     </P>
                 </Section>
 
                 {/* Replicate / footer */}
-                <Section title="Replicate this">
+                <Section title={t("aiOsBenchmark.replicateTitle")}>
                     <P>
-                        The full protocol, prompts, scoring rubric, and raw outputs are open. If
-                        you want to run it yourself — different model, different corpus,
-                        different scorer — that&rsquo;s exactly the rigor step I&rsquo;m
-                        inviting.
+                        {t("aiOsBenchmark.replicateBody")}
                     </P>
                     <p
                         className="text-sm sm:text-base mt-4"
                         style={{ color: "hsl(0 0% 100% / 0.82)" }}
                     >
-                        <strong>Free for personal non-commercial use. Contact for commercial
-                        licensing.</strong>
+                        <strong>{t("aiOsBenchmark.replicateLicensing")}</strong>
                     </p>
                 </Section>
 
@@ -525,7 +447,7 @@ const AiOsBenchmark = () => {
                         }}
                     >
                         <Download className="w-4 h-4" />
-                        Install AI OS
+                        {t("aiOsBenchmark.ctaInstall")}
                         <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5" />
                     </button>
                     <a
@@ -543,7 +465,7 @@ const AiOsBenchmark = () => {
                         }}
                     >
                         <MessageCircle className="w-4 h-4" />
-                        Replicate / commercial inquiry
+                        {t("aiOsBenchmark.ctaReplicate")}
                     </a>
                 </div>
 
@@ -657,7 +579,9 @@ const Highlight = ({ children }: { children: React.ReactNode }) => (
 
 // — Setup table ————————————————————————————————————————
 
-const SetupTable = () => (
+const SetupTable = () => {
+    const { t } = useTranslation();
+    return (
     <div
         className="rounded-xl overflow-hidden my-2"
         style={{
@@ -669,17 +593,14 @@ const SetupTable = () => (
         <table className="w-full text-sm sm:text-base">
             <tbody>
                 {[
-                    ["Model", "Claude Opus 4.7 (held constant across both conditions)"],
-                    ["Baseline", "The same model, with no scaffold loaded"],
-                    ["Treatment", "The same model, with AI OS loaded"],
-                    ["What's being measured", "The delta from one variable: the scaffold"],
-                    [
-                        "What's not being measured",
-                        "A model upgrade. A new model. A different model. Any architectural change.",
-                    ],
-                ].map(([label, value], i, arr) => (
+                    ["setupRow1Label", "setupRow1Value"],
+                    ["setupRow2Label", "setupRow2Value"],
+                    ["setupRow3Label", "setupRow3Value"],
+                    ["setupRow4Label", "setupRow4Value"],
+                    ["setupRow5Label", "setupRow5Value"],
+                ].map(([labelKey, valueKey], i, arr) => (
                     <tr
-                        key={label}
+                        key={labelKey}
                         style={{
                             borderBottom:
                                 i < arr.length - 1 ? "1px solid hsl(0 0% 100% / 0.06)" : "none",
@@ -695,21 +616,24 @@ const SetupTable = () => (
                                 letterSpacing: "0.06em",
                             }}
                         >
-                            {label}
+                            {t(`aiOsBenchmark.${labelKey}`)}
                         </td>
                         <td className="px-4 py-3 align-top" style={{ color: "hsl(0 0% 100% / 0.85)" }}>
-                            {value}
+                            {t(`aiOsBenchmark.${valueKey}`)}
                         </td>
                     </tr>
                 ))}
             </tbody>
         </table>
     </div>
-);
+    );
+};
 
 // — Multiplier tables (Day 52) ————————————————————————————
 
-const MultiplierTable = () => (
+const MultiplierTable = () => {
+    const { t } = useTranslation();
+    return (
     <div
         className="rounded-xl overflow-x-auto my-2"
         style={{
@@ -725,26 +649,26 @@ const MultiplierTable = () => (
                         className="px-4 py-3 text-left text-[11px] uppercase tracking-wider font-medium"
                         style={{ color: "hsl(40 70% 80% / 0.85)" }}
                     >
-                        Model (Claude family)
+                        {t("aiOsBenchmark.multiplierTableHeadModel")}
                     </th>
                     <th
                         className="px-4 py-3 text-right text-[11px] uppercase tracking-wider font-medium"
                         style={{ color: "hsl(40 70% 80% / 0.85)" }}
                     >
-                        SIB scaffold lift
+                        {t("aiOsBenchmark.multiplierTableHeadLift")}
                     </th>
                     <th
                         className="px-4 py-3 text-right text-[11px] uppercase tracking-wider font-medium"
                         style={{ color: "hsl(40 70% 80% / 0.85)" }}
                     >
-                        Source
+                        {t("aiOsBenchmark.multiplierTableHeadSource")}
                     </th>
                 </tr>
             </thead>
             <tbody>
                 {[
-                    { model: "Claude 4.6", lift: "+29%", source: "measured" },
-                    { model: "Claude Opus 4.7", lift: "+42%", source: "measured (this benchmark)" },
+                    { model: "Claude 4.6", lift: "+29%", source: t("aiOsBenchmark.multiplierTableSourceMeasured") },
+                    { model: "Claude Opus 4.7", lift: "+42%", source: t("aiOsBenchmark.multiplierTableSourceThisBenchmark") },
                 ].map((row, i, arr) => (
                     <tr
                         key={row.model}
@@ -779,9 +703,12 @@ const MultiplierTable = () => (
             </tbody>
         </table>
     </div>
-);
+    );
+};
 
-const ProjectionTable = () => (
+const ProjectionTable = () => {
+    const { t } = useTranslation();
+    return (
     <div
         className="rounded-xl overflow-x-auto my-2"
         style={{
@@ -797,29 +724,29 @@ const ProjectionTable = () => (
                         className="px-4 py-3 text-left text-[11px] uppercase tracking-wider font-medium"
                         style={{ color: "hsl(40 70% 80% / 0.85)" }}
                     >
-                        Generation
+                        {t("aiOsBenchmark.projectionTableHeadGeneration")}
                     </th>
                     <th
                         className="px-4 py-3 text-right text-[11px] uppercase tracking-wider font-medium"
                         style={{ color: "hsl(40 70% 80% / 0.85)" }}
                     >
-                        Projected lift
+                        {t("aiOsBenchmark.projectionTableHeadLift")}
                     </th>
                     <th
                         className="px-4 py-3 text-right text-[11px] uppercase tracking-wider font-medium"
                         style={{ color: "hsl(40 70% 80% / 0.85)" }}
                     >
-                        Math (1.45×)
+                        {t("aiOsBenchmark.projectionTableHeadMath")}
                     </th>
                 </tr>
             </thead>
             <tbody>
                 {[
-                    { gen: "Claude 4.6 (measured)", lift: "+29%", math: "—", projected: false },
-                    { gen: "Claude Opus 4.7 (measured)", lift: "+42%", math: "29 × 1.45", projected: false },
-                    { gen: "Claude 4.8 (projected)", lift: "+61%", math: "42 × 1.45 = 60.9", projected: true },
-                    { gen: "Claude 4.9 (projected)", lift: "+88%", math: "60.9 × 1.45 = 88.3", projected: true },
-                    { gen: "Claude 5.0 (projected)", lift: "+128%", math: "88.3 × 1.45 = 128.0 †", projected: true },
+                    { gen: t("aiOsBenchmark.projectionRow1Gen"), lift: "+29%", math: "—", projected: false },
+                    { gen: t("aiOsBenchmark.projectionRow2Gen"), lift: "+42%", math: "29 × 1.45", projected: false },
+                    { gen: t("aiOsBenchmark.projectionRow3Gen"), lift: "+61%", math: "42 × 1.45 = 60.9", projected: true },
+                    { gen: t("aiOsBenchmark.projectionRow4Gen"), lift: "+88%", math: "60.9 × 1.45 = 88.3", projected: true },
+                    { gen: t("aiOsBenchmark.projectionRow5Gen"), lift: "+128%", math: "88.3 × 1.45 = 128.0 †", projected: true },
                 ].map((row, i, arr) => (
                     <tr
                         key={row.gen}
@@ -865,17 +792,17 @@ const ProjectionTable = () => (
                 borderTop: "1px solid hsl(0 0% 100% / 0.06)",
             }}
         >
-            † Claude 5.0 projection saturates the 100-point SIB ceiling. Either the
-            multiplier flattens, or — more likely — the benchmark needs harder questions
-            calibrated for that capability tier. The absolute lift continues climbing;
-            the percentage outgrows the ruler.
+            {t("aiOsBenchmark.projectionFootnote")}
         </p>
     </div>
-);
+    );
+};
 
 // — Results table ——————————————————————————————————————
 
-const ResultsTable = () => (
+const ResultsTable = () => {
+    const { t } = useTranslation();
+    return (
     <div
         className="rounded-xl overflow-x-auto my-2"
         style={{
@@ -891,61 +818,65 @@ const ResultsTable = () => (
                         className="px-4 py-3 text-left text-[11px] uppercase tracking-wider font-medium"
                         style={{ color: "hsl(40 70% 80% / 0.85)" }}
                     >
-                        Metric
+                        {t("aiOsBenchmark.resultsTableHeadMetric")}
                     </th>
                     <th
                         className="px-4 py-3 text-right text-[11px] uppercase tracking-wider font-medium"
                         style={{ color: "hsl(40 70% 80% / 0.85)" }}
                     >
-                        No Scaffold
+                        {t("aiOsBenchmark.resultsTableHeadNoScaffold")}
                     </th>
                     <th
                         className="px-4 py-3 text-right text-[11px] uppercase tracking-wider font-medium"
                         style={{ color: "hsl(40 70% 80% / 0.85)" }}
                     >
-                        With Scaffold
+                        {t("aiOsBenchmark.resultsTableHeadWithScaffold")}
                     </th>
                     <th
                         className="px-4 py-3 text-right text-[11px] uppercase tracking-wider font-medium"
                         style={{ color: "hsl(40 70% 80% / 0.85)" }}
                     >
-                        Delta
+                        {t("aiOsBenchmark.resultsTableHeadDelta")}
                     </th>
                 </tr>
             </thead>
             <tbody>
                 {[
                     {
-                        metric: "SIB (deep synthesis)",
+                        id: "sib",
+                        metric: t("aiOsBenchmark.resultsRowSibMetric"),
                         baseline: "67 / 100",
                         scaffold: "95 / 100",
-                        delta: "+28 pts (+42%)",
+                        delta: t("aiOsBenchmark.resultsRowSibDelta"),
                         highlight: true,
                     },
                     {
-                        metric: "Evolutionary Stage on SIB",
+                        id: "stage",
+                        metric: t("aiOsBenchmark.resultsRowStageMetric"),
                         baseline: "3.36",
                         scaffold: "4.50",
-                        delta: "+1.14 stages",
+                        delta: t("aiOsBenchmark.resultsRowStageDelta"),
                         highlight: true,
                     },
                     {
-                        metric: "Mini-HELM time",
+                        id: "helmTime",
+                        metric: t("aiOsBenchmark.resultsRowHelmTimeMetric"),
                         baseline: "248 s",
                         scaffold: "197 s",
                         delta: "−20.6%",
                         highlight: false,
                     },
                     {
-                        metric: "Mini-HELM score",
+                        id: "helmScore",
+                        metric: t("aiOsBenchmark.resultsRowHelmScoreMetric"),
                         baseline: "96.0",
                         scaffold: "91.3",
-                        delta: "−4.7 (within noise)",
+                        delta: t("aiOsBenchmark.resultsRowHelmScoreDelta"),
                         highlight: false,
                     },
                 ].map((row, i, arr) => (
                     <tr
-                        key={row.metric}
+                        key={row.id}
                         style={{
                             borderBottom:
                                 i < arr.length - 1 ? "1px solid hsl(0 0% 100% / 0.06)" : "none",
@@ -985,6 +916,7 @@ const ResultsTable = () => (
             </tbody>
         </table>
     </div>
-);
+    );
+};
 
 export default AiOsBenchmark;

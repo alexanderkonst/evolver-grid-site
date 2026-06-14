@@ -1,4 +1,5 @@
 import { useParams } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -68,6 +69,7 @@ const CREATORS: Record<string, {
 };
 
 const CreatorPage = () => {
+    const { t } = useTranslation();
     const { slug } = useParams<{ slug: string }>();
     const creator = slug ? CREATORS[slug] : null;
 
@@ -78,8 +80,8 @@ const CreatorPage = () => {
         return (
             <div className="min-h-dvh bg-[var(--skin-page-bg,#fff)] flex items-center justify-center">
                 <div className="text-center">
-                    <h1 className="text-2xl font-bold text-[color:var(--skin-text-primary,#2c3150)] mb-2">Page Not Found</h1>
-                    <p className="text-[color:var(--skin-text-muted,rgba(44,49,80,0.7))]">This creator page doesn't exist yet.</p>
+                    <h1 className="text-2xl font-bold text-[color:var(--skin-text-primary,#2c3150)] mb-2">{t('creatorPage.notFoundTitle')}</h1>
+                    <p className="text-[color:var(--skin-text-muted,rgba(44,49,80,0.7))]">{t('creatorPage.notFoundBody')}</p>
                 </div>
             </div>
         );
@@ -107,7 +109,7 @@ const CreatorPage = () => {
                 <p className="text-[color:var(--skin-text-primary,#2c3150)] mb-8">{creator.bio}</p>
 
                 {/* Offers */}
-                <h2 className="text-lg font-semibold text-[color:var(--skin-text-primary,#2c3150)] mb-4">Offers</h2>
+                <h2 className="text-lg font-semibold text-[color:var(--skin-text-primary,#2c3150)] mb-4">{t('creatorPage.offersHeading')}</h2>
                 <div className="space-y-4 mb-12">
                     {creator.offers.map(offer => (
                         <div
@@ -124,7 +126,7 @@ const CreatorPage = () => {
                                 )}
                             </div>
                             <Button className="w-full mt-4" style={{ backgroundColor: creator.color }}>
-                                Get This Offer
+                                {t('creatorPage.getOfferCta')}
                             </Button>
                         </div>
                     ))}
@@ -134,7 +136,7 @@ const CreatorPage = () => {
                 <div className="border-t border-[#a4a3d0]/20 pt-8 pb-12">
                     <Button variant="outline" className="w-full">
                         <Mail className="w-4 h-4 mr-2" />
-                        Contact {creator.name.split(' ')[0]}
+                        {t('creatorPage.contactCta', { name: creator.name.split(' ')[0] })}
                     </Button>
                 </div>
             </div>
