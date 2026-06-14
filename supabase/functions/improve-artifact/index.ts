@@ -23,6 +23,7 @@ import {
   type ArtifactKey,
 } from "../_shared/ubb-prompts.ts";
 import { isViabilityApplicable, runViabilityPass, type Viability } from "../_shared/viability.ts";
+import { resolveOutputLanguage, languageDirective } from "../_shared/language.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -64,7 +65,7 @@ serve(async (req) => {
   }
 
   try {
-    const body = (await req.json()) as ImproveBody;
+    const body = (await req.json()) as ImproveBody & { target_language?: unknown };
     const {
       artifact_key,
       current_content,
@@ -73,6 +74,7 @@ serve(async (req) => {
       root_context,
       previous_versions = [],
     } = body;
+    const outputLanguage = resolveOutputLanguage(body?.target_language);
 
     if (!artifact_key || current_content === undefined || current_specificity === undefined) {
       return new Response(
@@ -125,7 +127,7 @@ signal-energies from across all versions, plus any new signal-energies
 surfaced by the roast. The common threads across versions are higher-
 confidence signal; energies that appear in only one version need to be
 scored carefully — they may be signal that hasn't yet been preserved, or
-noise the iteration is correctly shedding.`;
+noise the iteration is correctly shedding.${languageDirective(outputLanguage)}`;
 
     const siblingSummary = Object.entries(sibling_artifacts || {})
       .map(([k, v]) => `- ${k} (specificity ${v.specificity}): ${JSON.stringify(v.content).slice(0, 400)}`)

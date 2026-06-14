@@ -8,6 +8,7 @@
  */
 
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
+import { resolveOutputLanguage, languageDirective } from "../_shared/language.ts";
 import {
   ARTIFACT_CONFIGS,
   ARTIFACT_INPUTS,
@@ -60,6 +61,7 @@ serve(async (req) => {
   try {
     const body = (await req.json()) as GenerateBody;
     const { artifact_key, sibling_artifacts, root_context } = body;
+    const outputLanguage = resolveOutputLanguage((body as { target_language?: unknown })?.target_language);
 
     if (!artifact_key) {
       return new Response(
@@ -99,7 +101,7 @@ SOURCE PLAYBOOK: ${config.sourcePlaybook}
 
 ---
 
-${SYNTHESIS_PROTOCOL_PROMPT}`;
+${SYNTHESIS_PROTOCOL_PROMPT}${languageDirective(outputLanguage)}`;
 
     const siblingSummary = Object.entries(sibling_artifacts || {})
       .map(([k, v]) => `- ${k}: ${JSON.stringify(v.content).slice(0, 400)}`)

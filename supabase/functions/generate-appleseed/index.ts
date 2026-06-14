@@ -1,4 +1,5 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
+import { resolveOutputLanguage, languageDirective } from "../_shared/language.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -11,7 +12,9 @@ serve(async (req) => {
   }
 
   try {
-    const { rawSignal, prompt } = await req.json();
+    const body = await req.json();
+    const { rawSignal, prompt } = body;
+    const outputLanguage = resolveOutputLanguage(body?.target_language);
 
     if (!prompt && !rawSignal) {
       return new Response(
@@ -57,7 +60,7 @@ serve(async (req) => {
         messages: [
           {
             role: "system",
-            content: "You are an Appleseed Generator that outputs ONLY valid JSON. No markdown, no code blocks, no explanation."
+            content: "You are an Appleseed Generator that outputs ONLY valid JSON. No markdown, no code blocks, no explanation." + languageDirective(outputLanguage)
           },
           { role: "user", content: prompt }
         ],

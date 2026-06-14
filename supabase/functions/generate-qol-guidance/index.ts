@@ -1,5 +1,6 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+import { resolveOutputLanguage, languageDirective } from "../_shared/language.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -34,8 +35,10 @@ serve(async (req) => {
       // The game supports both authenticated and guest modes
     }
 
-    const { domains } = await req.json();
-    
+    const body = await req.json();
+    const { domains } = body;
+    const outputLanguage = resolveOutputLanguage(body?.target_language);
+
     if (!domains || !Array.isArray(domains) || domains.length !== 8) {
       return new Response(
         JSON.stringify({ error: "Invalid domains data" }), 
@@ -90,7 +93,7 @@ GUIDELINES:
 - Avoid jargon or spiritual clichés; use simple, grounded language.
 - Never guilt or shame the user. Speak as an ally.
 
-Output ONLY the Markdown blocks described above. Do not add explanations or extra sections.`;
+Output ONLY the Markdown blocks described above. Do not add explanations or extra sections.` + languageDirective(outputLanguage);
 
     const userPrompt = `Here are the dimensions and stages:\n${JSON.stringify(domains, null, 2)}\n\nNow output the guidance blocks.`;
 
