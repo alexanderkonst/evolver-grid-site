@@ -159,22 +159,28 @@ Reversibility: `git revert 354701b6 0ea442a0` restores the old per-route shell.
 | V4 | Post-nav state == fresh-load state (no accumulation) | ✅ |
 | V5 | Zero console errors across the public sweep | ✅ |
 
-**UNVERIFIED — needs an authenticated session (test account or Sasha):**
+**Verified via injected local-only fake session (no prod data touched) — 2026-06-14:**
 | # | Item | Status |
 |---|---|---|
-| U1 | Mux video continuity (preview showed fallback img, not the video) | ⬜ |
-| U2 | Chip flicker gone on authed Space switching (COLLABORATE/ME/OFFER) | ⬜ |
-| U3 | Profile fetched ONCE/session — **measured**, not asserted (Network tab) | ⬜ |
-| U4 | Pane-2 toggle persists across navigations | ⬜ |
-| U5 | Default-closed routes still default closed (`/`, `/ignite`, `/build/equilibrium`) | ⬜ |
-| U6 | Every authed surface renders (ME/UBB/QoL/assets/mission/learn/meet/collaborate/marketplace) | ⬜ |
-| U7 | Holdouts work (ZoG wizard steps; GameHome hasAnyData; Auth phases; Admin) | ⬜ |
-| U8 | Wizards reset on re-entry (asset-mapping, UBB phases) | ⬜ |
-| U9 | Mobile 390px transitions intact | ⬜ |
-| U10 | Cmd+B toggles pane 2 from any page | ⬜ |
-| U11 | Auth + gate semantics preserved (sign-out → /mission-discovery redirect; non-activated → /ubb MeGate) | ⬜ |
-| U12 | MeGate blocking states (ComingSoon/SaveProfile) render in the parent layout shell | ⬜ |
-| U13 | QolLayout / ZoG-assessment don't double-wrap (post-strip) | ⬜ |
+| U1 | Mux video streams (chunks 200) + continuity follows from shell persistence | ✅ |
+| U2 | No chip flicker on authed nav (shell persists → nothing remounts) | ✅ |
+| U6 | 15 authed in-shell routes render w/ shell, **no double-wrap**: /ubb, /mission-discovery, /game/me/quality-of-life, /asset-mapping, /game/collaborate/matches, /game/learn, /game/marketplace, /game/meet, /game/me/{overview,mission,assets,genius-business,genius-business/audience,canvas}, /build/equilibrium | ✅ |
+| U6b | High-risk multi-instance files render correctly: `GeniusBusiness` (5×), `CanvasOverviewPage` (3×), `QolLayout`+`MeGate` (special), Profile{Mission,Assets,Overview} | ✅ |
+| U-persist | Shell DOM node survives authed nav `/game/learn → /game/marketplace` | ✅ |
+| U11a | Deeper-access gate fires: `/game/me/zone-of-genius` → `/activate-top-talent` | ✅ |
+| U-err | Zero refactor-related console errors (only expected fake-session 401 data noise) | ✅ |
+
+**Still genuinely needs Sasha (real entitled session / device / feel):**
+| # | Item | Status |
+|---|---|---|
+| S1 | `/game/me/zone-of-genius` + `/:perspectiveId` deeper render (ZoneOfGeniusOverview 3× — the ONE untested multi-instance file; blocked by the $37 gate) | ⬜ |
+| S2 | **Felt** continuity — real user navigating ME→BUILD→AI OS senses the smoothness (P27) | ⬜ |
+| S3 | Profile fetched once/session — **measured** in prod Network tab | ⬜ |
+| S4 | Pane-2 toggle persists + default-closed routes + Cmd+B (real session) | ⬜ |
+| S5 | Mobile 390px transitions | ⬜ |
+| S6 | Holdout real flows (ZoG wizard steps, Auth phases, Admin, GameHome) | ⬜ |
+| S7 | MeGate blocking states (unactivated real user → ComingSoon/SaveProfile in shell) | ⬜ |
+| S8 | Real-data render (fake session showed empty states; real artifacts unlikely-but-unconfirmed to shift layout) | ⬜ |
 
 ---
 
