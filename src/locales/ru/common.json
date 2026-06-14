@@ -1076,7 +1076,9 @@
     "tabAppearance": "Оформление",
     "footerForkLine": "Открытый исходный код. Форкни для себя или своего сообщества — бесплатно.",
     "footerCommercialLine": "Идёшь в коммерцию? 10% от выручки, бренд остаётся твоим.",
-    "sourceOnGithub": "Исходники на GitHub"
+    "sourceOnGithub": "Исходники на GitHub",
+    "languageRowTitle": "Язык",
+    "languageRowHint": "Выбери язык интерфейса."
   },
   "zogOverview": {
     "emptyImageAlt": "Главный талант",

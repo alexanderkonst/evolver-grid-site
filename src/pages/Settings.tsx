@@ -7,6 +7,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Switch } from "@/components/ui/switch";
 import GameShellV2 from "@/components/game/GameShellV2";
 import ProfileSettingsSection from "@/components/settings/ProfileSettingsSection";
+import LanguageSwitcher from "@/i18n/LanguageSwitcher";
 import { useSkin, type Skin } from "@/contexts/SkinContext";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
@@ -779,6 +780,15 @@ const Settings = () => {
                             </TabsTrigger>
                         </TabsList>
                         <TabsContent value="profile">
+                            {/* Language — the logged-in home for switching locale
+                                (the floating switcher is guest-only). */}
+                            <div className="mb-6 flex items-center justify-between gap-4 rounded-xl border border-border/60 bg-card/50 p-4">
+                                <div>
+                                    <p className="font-medium text-foreground">{t("settings.languageRowTitle")}</p>
+                                    <p className="text-sm text-muted-foreground">{t("settings.languageRowHint")}</p>
+                                </div>
+                                <LanguageSwitcher />
+                            </div>
                             <ProfileSettingsSection />
                         </TabsContent>
                         <TabsContent value="notifications">

@@ -1075,7 +1075,9 @@
     "tabAppearance": "Appearance",
     "footerForkLine": "Source-available. Fork for yourself or your community — free.",
     "footerCommercialLine": "Going commercial? 10% revenue share, you keep your brand.",
-    "sourceOnGithub": "Source on GitHub"
+    "sourceOnGithub": "Source on GitHub",
+    "languageRowTitle": "Language",
+    "languageRowHint": "Choose the language for the interface."
   },
   "zogOverview": {
     "emptyImageAlt": "Top Talent",
