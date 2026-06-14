@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useZoneOfGenius } from "./ZoneOfGeniusContext";
-import { TALENTS } from "./talents";
+import { useLocalizedTalents } from "./talents";
 import { cn } from "@/lib/utils";
 import { Check, ArrowLeft, ArrowRight } from "lucide-react";
 import { getZogAssessmentBasePath, getZogStepPath } from "./zogRoutes";
@@ -11,17 +11,19 @@ const Step1SelectTop10Talents = () => {
   const location = useLocation();
   const { selectedTop10TalentIds, setSelectedTop10TalentIds } = useZoneOfGenius();
   const basePath = getZogAssessmentBasePath(location.pathname);
+  const localizedTalents = useLocalizedTalents();
   const [localSelected, setLocalSelected] = useState<number[]>(selectedTop10TalentIds);
   const [showMaxWarning, setShowMaxWarning] = useState(false);
   const [randomizedTalents, setRandomizedTalents] = useState<any[]>([]);
 
   useEffect(() => {
-    const shuffled = [...TALENTS];
+    const shuffled = [...localizedTalents];
     for (let i = shuffled.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
     }
     setRandomizedTalents(shuffled);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {

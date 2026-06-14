@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect, useMemo } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useZoneOfGenius } from './ZoneOfGeniusContext';
-import { TALENTS } from './talents';
+import { useLocalizedTalents } from './talents';
 import { Progress } from '@/components/ui/progress';
 import { ThumbsUp, ThumbsDown, ArrowLeft, ArrowRight } from 'lucide-react';
 import { getZogAssessmentBasePath, getZogStepPath } from './zogRoutes';
@@ -11,15 +11,17 @@ const Step0SwipeTalents = () => {
   const location = useLocation();
   const { setYesTalentIds } = useZoneOfGenius();
   const basePath = getZogAssessmentBasePath(location.pathname);
-  
+  const localizedTalents = useLocalizedTalents();
+
   // Randomize talent order once on mount
   const shuffledTalents = useMemo(() => {
-    const talents = [...TALENTS];
+    const talents = [...localizedTalents];
     for (let i = talents.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [talents[i], talents[j]] = [talents[j], talents[i]];
     }
     return talents;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   
   const [currentIndex, setCurrentIndex] = useState(0);

@@ -6,12 +6,13 @@ import Footer from "@/components/Footer";
 import SkillTree from "@/components/SkillTree";
 import BoldText from "@/components/BoldText";
 import BackButton from "@/components/BackButton";
-import { skillTrees } from "@/data/skillTrees";
+import { useLocalizedSkillTrees } from "@/data/skillTrees";
 import { cn } from "@/lib/utils";
 import { normalizeDomainSlug, DomainSlug } from "@/lib/domains";
 
 const SkillTrees = () => {
     const { t } = useTranslation();
+    const skillTrees = useLocalizedSkillTrees();
     const navigate = useNavigate();
     const { pathId } = useParams<{ pathId: string }>();
     const [searchParams] = useSearchParams();

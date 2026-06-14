@@ -3,11 +3,12 @@ import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { Check, Lock, ChevronRight, ArrowLeft } from "lucide-react";
 import GameShellV2 from "@/components/game/GameShellV2";
-import { growthPaths, getPathIcon, TYPE_ICONS, type GrowthPath, type Upgrade } from "@/data/growthPaths";
+import { useLocalizedGrowthPaths, getPathIcon, TYPE_ICONS, type GrowthPath, type Upgrade } from "@/data/growthPaths";
 import { Button } from "@/components/ui/button";
 
 const GrowthPathsPage = () => {
     const { t } = useTranslation();
+    const growthPaths = useLocalizedGrowthPaths();
     const [selectedPath, setSelectedPath] = useState<GrowthPath | null>(null);
 
     // If viewing a specific path

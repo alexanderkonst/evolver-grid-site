@@ -1,3 +1,6 @@
+import { useMemo } from "react";
+import { useTranslation } from "react-i18next";
+
 /**
  * Playbook steps — single source of truth for the seven-step journey.
  *
@@ -400,3 +403,79 @@ export const getStepBySlug = (slug: string): PlaybookStep | undefined =>
 /** Lookup by number (1–7) */
 export const getStepByNumber = (n: number): PlaybookStep | undefined =>
   PLAYBOOK_STEPS.find((s) => s.number === n);
+
+/**
+ * i18n (2026-06-14): localized view of PLAYBOOK_STEPS for DISPLAY surfaces.
+ *
+ * Returns the same PlaybookStep[] shape — slugs, numbers, colors (neonHsl /
+ * neonRgb), priceId, bundleWith, price (a logic value: useStepCheckout
+ * compares `step.price === "Free"`), appName (code-like uppercase handle,
+ * never rendered — labelLines always present for all 7 steps) and ordering
+ * are preserved verbatim from the canonical PLAYBOOK_STEPS array.
+ *
+ * Only the user-facing strings are swapped for `t('playbookSteps.<slug>.…')`
+ * lookups against the official EN/RU/ES translations:
+ *   - subtitle, transformationalResult, ctaText
+ *   - labelLines[]            (infographic ring labels)
+ *   - included[]              (popover "What's included" bullets)
+ *   - substeps[].name / .description / .oneProvenStrategy
+ *
+ * oneProvenStrategy / description may carry inline markdown links
+ * `[label](href)` and `\n\n` paragraph breaks — the translations preserve
+ * the href + structure verbatim; only the prose is localized.
+ *
+ * Keep reading PLAYBOOK_STEPS directly for any non-display logic (slug /
+ * number lookups, color reads, Stripe price gating, bundle math). This hook
+ * is for what the user reads, not for what the app computes. English is the
+ * i18n fallback, so a missing key degrades to the English source string,
+ * never to a raw key.
+ */
+export const useLocalizedPlaybookSteps = (): PlaybookStep[] => {
+  const { t } = useTranslation();
+  return useMemo(
+    () =>
+      PLAYBOOK_STEPS.map((step) => {
+        const base = `playbookSteps.${step.slug}`;
+        return {
+          ...step,
+          subtitle: t(`${base}.subtitle`, { defaultValue: step.subtitle }),
+          transformationalResult: t(`${base}.transformationalResult`, {
+            defaultValue: step.transformationalResult,
+          }),
+          ...(step.ctaText !== undefined && {
+            ctaText: t(`${base}.ctaText`, { defaultValue: step.ctaText }),
+          }),
+          ...(step.labelLines !== undefined && {
+            labelLines: step.labelLines.map((line, i) =>
+              t(`${base}.labelLines.${i}`, { defaultValue: line }),
+            ),
+          }),
+          ...(step.included !== undefined && {
+            included: step.included.map((item, i) =>
+              t(`${base}.included.${i}`, { defaultValue: item }),
+            ),
+          }),
+          substeps: step.substeps.map((ss) => ({
+            ...ss,
+            name: t(`${base}.substeps.${ss.number}.name`, {
+              defaultValue: ss.name,
+            }),
+            description: t(`${base}.substeps.${ss.number}.description`, {
+              defaultValue: ss.description,
+            }),
+            oneProvenStrategy: t(
+              `${base}.substeps.${ss.number}.oneProvenStrategy`,
+              { defaultValue: ss.oneProvenStrategy },
+            ),
+          })) as [Substep, Substep, Substep],
+        };
+      }),
+    [t],
+  );
+};
+
+/** Localized lookup by slug — display fields swapped for t() reads. */
+export const useLocalizedStepBySlug = (
+  slug: string,
+): PlaybookStep | undefined =>
+  useLocalizedPlaybookSteps().find((s) => s.slug === slug);

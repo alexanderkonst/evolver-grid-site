@@ -9,7 +9,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Sparkles, Target, Brain, Heart, User, RefreshCw } from 'lucide-react';
 import { PremiumLoader } from "@/components/ui/PremiumLoader";
-import { TALENTS } from '@/modules/zone-of-genius/talents';
+import { useLocalizedTalents } from '@/modules/zone-of-genius/talents';
 import { useLocalizedDomains } from '@/modules/quality-of-life-map/qolConfig';
 import BackButton from '@/components/BackButton';
 
@@ -74,6 +74,7 @@ const CharacterSnapshot: React.FC = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
   const localizedDomains = useLocalizedDomains();
+  const localizedTalents = useLocalizedTalents();
   const [loading, setLoading] = useState(true);
   const [zogSnapshot, setZogSnapshot] = useState<ZogSnapshot | null>(null);
   const [qolSnapshot, setQolSnapshot] = useState<QolSnapshot | null>(null);
@@ -154,7 +155,7 @@ const CharacterSnapshot: React.FC = () => {
   };
 
   const getTalentName = (id: number) => {
-    const talent = TALENTS.find(t => t.id === id);
+    const talent = localizedTalents.find(t => t.id === id);
     return talent?.name || t('characterSnapshot.talentFallback', { id });
   };
 

@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import { ArrowLeft } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import GameShellV2 from "@/components/game/GameShellV2";
-import { PLAYBOOK_STEPS } from "@/data/playbookSteps";
+import { useLocalizedPlaybookSteps } from "@/data/playbookSteps";
 
 /**
  * MyArtifactsPage — grouped view of the user's unique-business artifacts.
@@ -66,6 +66,8 @@ const ARTIFACT_LABEL_KEYS: Record<ArtifactKey, string> = {
 const MyArtifactsPage = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  // Localized steps for the per-step section headers (step.subtitle).
+  const playbookSteps = useLocalizedPlaybookSteps();
   const [artifacts, setArtifacts] = useState<Artifact[]>([]);
   const [loading, setLoading] = useState(true);
   const [expanded, setExpanded] = useState<Set<string>>(new Set());
@@ -231,7 +233,7 @@ const MyArtifactsPage = () => {
           ) : (
             <div className="space-y-6">
               {stepsWithArtifacts.map((stepNumber) => {
-                const step = PLAYBOOK_STEPS.find(
+                const step = playbookSteps.find(
                   (s) => s.number === stepNumber,
                 );
                 const items = byStep[stepNumber] ?? [];

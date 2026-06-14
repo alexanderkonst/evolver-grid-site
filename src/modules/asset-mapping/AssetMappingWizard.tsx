@@ -20,7 +20,7 @@ import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { ASSET_TYPES, AssetTypeId } from "./data/assetTypes";
 import { ASSET_SUB_TYPES } from "./data/assetSubtypes";
-import { ASSET_CATEGORIES } from "./data/assetCategories";
+import { useLocalizedAssetCategories } from "./data/assetCategories";
 import { saveAsset } from "./assetSync";
 import { Ornament, GOLD_TEXT_STYLE } from "@/lib/landingDesign";
 
@@ -212,14 +212,18 @@ const AssetMappingWizard = () => {
         [selectedTypeId]
     );
 
+    // i18n: localized view of categories for DISPLAY (list buttons + breadcrumb
+    // + prefilled title). Taxonomy traversal stays on the raw ASSET_CATEGORIES.
+    const localizedCategories = useLocalizedAssetCategories();
+
     const categories = useMemo(() =>
-        selectedSubTypeId ? ASSET_CATEGORIES.filter(c => c.subTypeId === selectedSubTypeId) : [],
-        [selectedSubTypeId]
+        selectedSubTypeId ? localizedCategories.filter(c => c.subTypeId === selectedSubTypeId) : [],
+        [selectedSubTypeId, localizedCategories]
     );
 
     const selectedType = ASSET_TYPES.find(t => t.id === selectedTypeId);
     const selectedSubType = ASSET_SUB_TYPES.find(s => s.id === selectedSubTypeId);
-    const selectedCategory = ASSET_CATEGORIES.find(c => c.id === selectedCategoryId);
+    const selectedCategory = localizedCategories.find(c => c.id === selectedCategoryId);
 
     const handleSelectType = (typeId: AssetTypeId) => {
         setSelectedTypeId(typeId);
@@ -237,7 +241,7 @@ const AssetMappingWizard = () => {
     const handleSelectCategory = (categoryId: string) => {
         setSelectedCategoryId(categoryId);
         setStep('details');
-        const cat = ASSET_CATEGORIES.find(c => c.id === categoryId);
+        const cat = localizedCategories.find(c => c.id === categoryId);
         if (cat) setTitle(cat.title);
     };
 

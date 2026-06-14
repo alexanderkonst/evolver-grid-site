@@ -1,3 +1,6 @@
+import { useMemo } from "react";
+import { useTranslation } from "react-i18next";
+
 export interface Talent {
   id: number;
   name: string;
@@ -87,3 +90,35 @@ export const TALENTS: Talent[] = [
   { id: 80, name: 'Promoting Calm Environments', description: 'You work to reduce stress, like a wellness coordinator implementing relaxation programs.' },
   { id: 81, name: 'Spreading Peace', description: 'You are passionate about fostering harmony, akin to a diplomat negotiating peaceful resolutions.' },
 ];
+
+/**
+ * i18n (2026-06-13): localized view of TALENTS for DISPLAY surfaces.
+ *
+ * Returns the same Talent[] shape - ids and ordering are preserved verbatim
+ * from the canonical TALENTS array. Only the user-facing strings (name,
+ * description) are swapped for `t('talents.<id>....')` lookups against the
+ * official RU/ES translations.
+ *
+ * Keep reading TALENTS directly for any non-display logic: id filtering /
+ * lookups, the AI prompt signal (buildPrompt / guidedRawSignal), and the
+ * DB-persisted talent-name arrays (top_three_talents / top_ten_talents) must
+ * stay English so stored identifiers and downstream matching remain stable.
+ * This hook is for what the user reads, not for what the app computes or
+ * persists. English is the i18n fallback, so a missing key degrades to the
+ * English source string, never to a raw key.
+ */
+export const useLocalizedTalents = (): Talent[] => {
+  const { t } = useTranslation();
+  return useMemo(
+    () =>
+      TALENTS.map((talent) => ({
+        ...talent,
+        name: t(`talents.${talent.id}.name`, { defaultValue: talent.name }),
+        description: t(`talents.${talent.id}.description`, {
+          defaultValue: talent.description,
+        }),
+      })),
+    [t],
+  );
+};
+

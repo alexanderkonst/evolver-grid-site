@@ -1,4 +1,5 @@
 import { Sparkles, Crown, Droplet, Sun, Dumbbell } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 /**
  * Growth Paths - Sequences of transformational upgrades
@@ -633,6 +634,30 @@ export const growthPaths: GrowthPath[] = [
         ],
     },
 ];
+
+/**
+ * i18n: returns the growthPaths array with display text (path name/subtitle/
+ * tagline/description + each upgrade's name/description) replaced by the active
+ * locale. IDs, colors, icons, links, xp, ordering, and all logic fields stay
+ * verbatim. English falls back to the source literal (defaultValue), so a
+ * missing key never renders a raw key path. Consumers map over the returned
+ * array exactly as they did over `growthPaths`.
+ */
+export function useLocalizedGrowthPaths(): GrowthPath[] {
+    const { t } = useTranslation();
+    return growthPaths.map((path) => ({
+        ...path,
+        name: t(`growthPaths.${path.id}.name`, { defaultValue: path.name }),
+        subtitle: t(`growthPaths.${path.id}.subtitle`, { defaultValue: path.subtitle }),
+        tagline: t(`growthPaths.${path.id}.tagline`, { defaultValue: path.tagline }),
+        description: t(`growthPaths.${path.id}.description`, { defaultValue: path.description }),
+        upgrades: path.upgrades.map((u) => ({
+            ...u,
+            name: t(`growthPaths.${path.id}.upgrades.${u.id}.name`, { defaultValue: u.name }),
+            description: t(`growthPaths.${path.id}.upgrades.${u.id}.description`, { defaultValue: u.description }),
+        })),
+    }));
+}
 
 // Helper functions
 export const getPathById = (id: string): GrowthPath | undefined => {
