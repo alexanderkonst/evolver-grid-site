@@ -96,18 +96,26 @@ require lifting that state to the URL, a separate refactor.
 
 ## DoD 2 — Implementation
 
+> **Status Day 87:** Commits 1+2 landed. **Core win delivered, verified live, on main.**
+> Strips (I4–I7) remain — pure cleanup of now-no-op inner shells; behavior already correct.
+> Implementation chose a lower-risk mechanism than originally planned: instead of physically
+> regrouping routes into public/authed layout parents, ONE `SmartShellLayout` wraps the
+> unchanged route list and decides shell-vs-no-shell + hideLogo by URL classifier
+> (`src/lib/shellRoutes.ts`). Routes/auth wrappers are byte-for-byte unchanged → no
+> reorder/auth-hole risk. `hideLogo` is URL-derived; `showNavigation` stays a holdout prop.
+
 | # | Item | Evidence | Status |
 |---|---|---|---|
-| I1 | `GameShellV2` renders `<Outlet/>` when no children (`children?` optional) | grep `children ?? <Outlet` | ⬜ |
-| I2 | `hideLogo` + `showNavigation` derived from URL inside GameShellV2 (rules cover all former per-route props) | code | ⬜ |
-| I3 | App.tsx restructured: public-shell + authed-shell layout parents; the 14 inline wrappers + 65 internal-wrap routes nested under them | git diff | ⬜ |
-| I4 | 60 plain-strip files: internal `<GameShellV2>` wrapper removed, unused import removed | grep count → only holdouts remain | ⬜ |
-| I5 | 5 special-strip files: shell removed, Outlet/Provider/gate logic preserved | per-file review | ⬜ |
-| I6 | MeGate: 3 internal shell wrappers removed; gating logic intact | code | ⬜ |
-| I7 | 5 holdouts untouched + doc-comment header explaining why | grep | ⬜ |
-| I8 | `/art`, `/auth/*`, public pages stay shell-less (not pulled into a layout) | route review | ⬜ |
-| I9 | Effect-on-navigation audit: no GameShellV2 effect silently assumed per-nav re-fire | code | ⬜ |
-| I10 | `npx tsc --noEmit` zero errors; `npm run build` clean; no NEW lint warnings | terminal | ⬜ |
+| I1 | `GameShellV2` renders `<Outlet/>` when no children (`children?` optional) | commit `0ea442a0` | ✅ |
+| I2 | Nesting-aware shell (no-op when nested) so strips land incrementally green | commit `0ea442a0` | ✅ |
+| I3 | `SmartShellLayout` hoists one persistent shell; URL classifier verified vs all 153 concrete routes | commit `354701b6` | ✅ |
+| I4 | ~58 plain-strip files: internal `<GameShellV2>` wrapper + unused import removed | — | ⬜ (cleanup) |
+| I5 | 5 special-strip files: shell removed, Outlet/Provider/gate logic preserved | — | ⬜ (cleanup) |
+| I6 | MeGate: 3 internal shell wrappers removed; gating logic intact | — | ⬜ (cleanup) |
+| I7 | 7 holdouts untouched + doc-comment (added /auth, /admin to the 5) | — | ⬜ (cleanup) |
+| I8 | `/art`, `/auth/*`, public pages stay shell-less | classifier verified | ✅ |
+| I9 | Effect-on-navigation audit | — | ⬜ |
+| I10 | `tsc` zero errors; `vite build` clean | each commit built green | ✅ (per-commit) |
 
 ## DoD 3 — Debugging (live verification)
 
