@@ -3,6 +3,7 @@ import RevelatoryHero from "@/components/game/RevelatoryHero";
 import ResonanceRating from "@/components/ui/ResonanceRating";
 import { AppleseedData } from "./appleseedGenerator";
 import { useState, useCallback, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
@@ -90,6 +91,7 @@ const OwnershipSection = ({
     emailSaving: boolean;
     handleEmailSubmit: (e: React.FormEvent) => void;
 }) => {
+    const { t } = useTranslation();
     // Success state — quiet inline confirmation that points DOWN at
     // the next content (offer cards). No toast, no popup, no
     // "check your inbox" instruction — those would push attention OFF
@@ -121,7 +123,7 @@ const OwnershipSection = ({
                         textShadow: "var(--skin-text-halo-deep, 0 0 28px rgba(255,255,255,0.85), 0 1px 2px rgba(255,255,255,0.95), 0 0 1px rgba(11,42,90,0.65), 0 1px 0 rgba(11,42,90,0.45))",
                     }}
                 >
-                    Saved ✓ — there's more ↓
+                    {t('appleseed.savedMore')}
                 </p>
             </div>
         );
@@ -146,7 +148,7 @@ const OwnershipSection = ({
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    placeholder="your@email.com"
+                    placeholder={t('appleseed.emailPlaceholder')}
                     className="flex-1 bg-transparent border-0 text-sm focus:outline-none min-w-0"
                     style={{ color: "var(--skin-text-primary, #0a1628)" }}
                     required
@@ -161,7 +163,7 @@ const OwnershipSection = ({
                             "linear-gradient(135deg, #a06d08 0%, #7a5108 45%, #6b4208 100%)",
                     }}
                 >
-                    {emailSaving ? "Saving…" : "Save it"}
+                    {emailSaving ? t('appleseed.saving') : t('appleseed.saveIt')}
                 </button>
             </form>
         </div>
@@ -187,6 +189,7 @@ const AppleseedDisplay = ({
     isSaving = false,
     onResonanceRating,
 }: AppleseedDisplayProps) => {
+    const { t } = useTranslation();
     const { toast } = useToast();
     const { skin } = useSkin();
     const navigate = useNavigate();
@@ -438,7 +441,7 @@ const AppleseedDisplay = ({
                                 fontWeight: 500,
                             }}
                         >
-                            Your pattern is still here.
+                            {t('appleseed.patternStillHere')}
                         </p>
                     </div>
                 )}
@@ -465,7 +468,7 @@ const AppleseedDisplay = ({
                     <RevelatoryHero
                         type="appleseed"
                         title={appleseed.vibrationalKey.name}
-                        tagline="My top talent"
+                        tagline={t('appleseed.heroTagline')}
                         actionStatement={appleseed.bullseyeSentence}
                         topThreeTalents={appleseed.topTalentProfile?.top_three_talents_compact}
                         topShadow={flipToFirstPersonReflexive(appleseed.topTalentProfile?.top_shadow_one_sentence)}
@@ -561,7 +564,7 @@ const AppleseedDisplay = ({
                                     color: 'var(--skin-text-primary, #0a1628)',
                                 }}
                             >
-                                Congrats with articulating your top talent!
+                                {t('appleseed.congratsHeading')}
                             </h2>
                             <p
                                 className="italic text-base sm:text-lg leading-snug"
@@ -571,7 +574,7 @@ const AppleseedDisplay = ({
                                     color: 'var(--skin-text-muted, rgba(11,42,90,0.78))',
                                 }}
                             >
-                                Next, articulate where you're heading to meet people heading the same way.
+                                {t('appleseed.congratsBody')}
                             </p>
                         </div>
                     </div>
@@ -610,7 +613,7 @@ const AppleseedDisplay = ({
                                 color: "var(--skin-text-muted, rgba(26,30,58,0.7))",
                             }}
                         >
-                            If you're ready to act:
+                            {t('appleseed.option1Lead')}
                         </p>
                         <h3
                             className="leading-[1.15] tracking-[-0.005em]"
@@ -621,7 +624,7 @@ const AppleseedDisplay = ({
                                 color: "var(--skin-text-primary, #0a1628)",
                             }}
                         >
-                            Build a Business From It
+                            {t('appleseed.option1Title')}
                         </h3>
                         <p
                             className="text-base sm:text-lg leading-relaxed"
@@ -631,7 +634,7 @@ const AppleseedDisplay = ({
                                 fontWeight: 500,
                             }}
                         >
-                            Turn your top talent into a clear and sellable business offer.
+                            {t('appleseed.option1Body')}
                         </p>
                         <p
                             className="text-sm leading-relaxed"
@@ -640,7 +643,7 @@ const AppleseedDisplay = ({
                                 color: "var(--skin-text-muted, rgba(26,30,58,0.7))",
                             }}
                         >
-                            We do it together in 2 hours.
+                            {t('appleseed.option1Together')}
                         </p>
                         <blockquote
                             className="text-sm italic leading-relaxed pt-1"
@@ -649,7 +652,7 @@ const AppleseedDisplay = ({
                                 color: "var(--skin-text-primary, #0a1628)",
                             }}
                         >
-                            "Everything clicks." — <strong className="not-italic">Sergey Jay Makarov</strong>
+                            {t('appleseed.testimonialQuote')} — <strong className="not-italic">Sergey Jay Makarov</strong>
                         </blockquote>
 
                         {/* Primary CTA — hover swaps idle label for action label.
@@ -694,13 +697,13 @@ const AppleseedDisplay = ({
                                     style={CTA_SMALL_CAPS_STYLE}
                                     className="block transition-opacity duration-300 group-hover:opacity-0"
                                 >
-                                    Build a business from your top talent — $555
+                                    {t('appleseed.option1CtaIdle')}
                                 </span>
                                 <span
                                     style={CTA_SMALL_CAPS_STYLE}
                                     className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100 whitespace-nowrap"
                                 >
-                                    Turn this into an offer
+                                    {t('appleseed.option1CtaHover')}
                                 </span>
                             </span>
                             <ArrowRight
@@ -747,7 +750,7 @@ const AppleseedDisplay = ({
                                 color: "var(--skin-text-muted, rgba(11,42,90,0.86))",
                             }}
                         >
-                            If you don't want to build your business yet:
+                            {t('appleseed.option2Lead')}
                         </p>
                         <h3
                             className="leading-[1.15] tracking-[-0.005em]"
@@ -758,7 +761,7 @@ const AppleseedDisplay = ({
                                 color: "var(--skin-text-primary, #0a1628)",
                             }}
                         >
-                            Find Out How to Use &amp; Monetize Your Top Talent
+                            {t('appleseed.option2Title')}
                         </h3>
 
                         <a
@@ -775,7 +778,7 @@ const AppleseedDisplay = ({
                             }}
                         >
                             <span style={CTA_SMALL_CAPS_STYLE}>
-                                Leverage your top talent — $37
+                                {t('appleseed.option2Cta')}
                             </span>
                             <ArrowRight
                                 aria-hidden="true"
@@ -791,7 +794,7 @@ const AppleseedDisplay = ({
                                 color: "rgba(122, 81, 8, 0.95)",
                             }}
                         >
-                            7 min of understanding the value you bring + 6 min of guided meditation to connect with your talent somatically
+                            {t('appleseed.option2Detail')}
                         </p>
 
                         {/* Coupon bypass — Day 58 (Sasha 2026-05-02).
@@ -810,7 +813,7 @@ const AppleseedDisplay = ({
                                     opacity: 0.95,
                                 }}
                             >
-                                Have a code?
+                                {t('appleseed.haveCode')}
                             </button>
                         ) : (
                             <form onSubmit={handleCouponSubmit} className="space-y-1.5 pt-1">
@@ -823,8 +826,8 @@ const AppleseedDisplay = ({
                                             if (couponError) setCouponError(false);
                                         }}
                                         autoFocus
-                                        placeholder="Code"
-                                        aria-label="Activation code"
+                                        placeholder={t('appleseed.couponPlaceholder')}
+                                        aria-label={t('appleseed.couponAriaLabel')}
                                         className="flex-1 min-w-0 rounded-full px-3.5 py-2 text-xs bg-[var(--skin-input-fill,rgba(255,255,255,0.7))] border outline-none focus:ring-2 focus:ring-[hsla(40,70%,55%,0.45)]"
                                         style={{
                                             fontFamily: "'Source Serif 4', serif",
@@ -845,7 +848,7 @@ const AppleseedDisplay = ({
                                             color: "#5d4307",
                                         }}
                                     >
-                                        Apply
+                                        {t('appleseed.couponApply')}
                                     </button>
                                 </div>
                                 {couponError && (
@@ -856,7 +859,7 @@ const AppleseedDisplay = ({
                                             color: "rgba(180, 50, 50, 0.85)",
                                         }}
                                     >
-                                        Invalid code.
+                                        {t('appleseed.couponInvalid')}
                                     </p>
                                 )}
                             </form>
@@ -900,7 +903,7 @@ const AppleseedDisplay = ({
                             className="text-xs uppercase tracking-[0.18em] mb-2"
                             style={{ color: "var(--skin-text-muted, rgba(122,81,8,0.85))" }}
                         >
-                            Or build it yourself
+                            {t('appleseed.option3Eyebrow')}
                         </p>
                         <h3
                             className="text-xl sm:text-2xl"
@@ -910,7 +913,7 @@ const AppleseedDisplay = ({
                                 color: "var(--skin-text-primary, #0a1628)",
                             }}
                         >
-                            Take the exact end-to-end playbook →
+                            {t('appleseed.option3Title')} →
                         </h3>
                     </a>
                 </div>
@@ -932,7 +935,7 @@ const AppleseedDisplay = ({
                                 textShadow: "var(--skin-text-halo-deep, 0 0 28px rgba(255,255,255,0.85), 0 1px 2px rgba(255,255,255,0.95), 0 0 1px rgba(11,42,90,0.65), 0 1px 0 rgba(11,42,90,0.45))",
                             }}
                         >
-                            Saved ✓
+                            {t('appleseed.saved')}
                         </p>
                     ) : !bottomEmailExpanded ? (
                         <button
@@ -942,7 +945,7 @@ const AppleseedDisplay = ({
                             style={{ color: "var(--skin-text-muted, rgba(26,30,58,0.7))" }}
                         >
                             <Mail className="w-4 h-4" />
-                            <span>Or just email me my result</span>
+                            <span>{t('appleseed.emailMeResult')}</span>
                         </button>
                     ) : (
                         <OwnershipSection
@@ -995,7 +998,7 @@ const AppleseedDisplay = ({
                         WebkitBackdropFilter: 'blur(10px)',
                     }}
                 >
-                    Activate — $37 →
+                    {t('appleseed.floatingActivate')} →
                 </a>
             </div>
             )}

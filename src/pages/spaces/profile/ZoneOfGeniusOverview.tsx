@@ -17,6 +17,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import GameShellV2 from "@/components/game/GameShellV2";
 import { Button } from "@/components/ui/button";
 import { Sparkles, Download, ArrowRight, Loader2 } from "lucide-react";
@@ -184,6 +185,7 @@ const parseMonetizationAvenue = (
 };
 
 const ZoneOfGeniusOverview = () => {
+    const { t } = useTranslation();
     const navigate = useNavigate();
     const heroCardRef = useRef<HTMLElement | null>(null);
     // Day 80 (Sasha 2026-05-23): CROSS-USER LEAK FIX. The previous
@@ -454,23 +456,23 @@ const ZoneOfGeniusOverview = () => {
             <GameShellV2>
                 <div className="max-w-2xl mx-auto p-6 text-center">
                     <div className="inline-flex items-center justify-center w-16 h-16 rounded-full overflow-hidden mb-4">
-                        <img src="/dodecahedron.png" alt="Top Talent" className="w-full h-full object-cover" />
+                        <img src="/dodecahedron.png" alt={t('zogOverview.emptyImageAlt')} className="w-full h-full object-cover" />
                     </div>
                     <h1
                         className="text-3xl mb-2"
                         style={{ fontFamily: "'Cormorant Garamond', serif", color: INK, textShadow: HALO_SOFT, fontWeight: 600 }}
                     >
-                        Discover Your Top Talent
+                        {t('zogOverview.emptyTitle')}
                     </h1>
                     <p className="mb-6" style={{ color: INK_BODY }}>
-                        Take the 15-minute assessment to uncover your unique genius.
+                        {t('zogOverview.emptyBody')}
                     </p>
                     <Button
                         variant="wabi-primary"
                         onClick={() => navigate("/zone-of-genius/entry")}
                     >
                         <Sparkles className="w-4 h-4 mr-2" />
-                        Start Assessment
+                        {t('zogOverview.emptyCta')}
                     </Button>
                 </div>
             </GameShellV2>
@@ -509,7 +511,7 @@ const ZoneOfGeniusOverview = () => {
                             className="text-[10px] uppercase tracking-[0.32em] font-medium"
                             style={{ color: "var(--skin-accent-gold, #b8860b)" }}
                         >
-                            My top talent
+                            {t('zogOverview.heroLabel')}
                         </p>
                         {/* Day 62 (Sasha 2026-05-05): Strong legibility
                             cocktail per ui_playbook.md Part VIII —
@@ -559,7 +561,7 @@ const ZoneOfGeniusOverview = () => {
                                     className="text-[10px] uppercase tracking-[0.32em] font-medium mb-2"
                                     style={{ color: "var(--skin-accent-gold, #b8860b)" }}
                                 >
-                                    My three talents
+                                    {t('zogOverview.threeTalentsLabel')}
                                 </p>
                                 {/* Day 61 (Sasha 2026-05-04 11:30): ✦
                                     glyphs replaced with 1/2/3 — mirrors
@@ -659,7 +661,7 @@ const ZoneOfGeniusOverview = () => {
                             textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.7))",
                         }}
                     >
-                        Give the PDF to your AI so it can know more about you.
+                        {t('zogOverview.pdfHint')}
                     </p>
                     <button
                         onClick={handleDownloadPdf}
@@ -674,10 +676,10 @@ const ZoneOfGeniusOverview = () => {
                             <Download className="w-4 h-4" />
                         )}
                         {pdfBuilding
-                            ? "Preparing your PDF…"
+                            ? t('zogOverview.pdfButtonBuilding')
                             : fullAppleseed
-                                ? "Download Full PDF"
-                                : "Generating PDF data…"}
+                                ? t('zogOverview.pdfButtonReady')
+                                : t('zogOverview.pdfButtonGenerating')}
                     </button>
                 </section>
 
@@ -696,10 +698,10 @@ const ZoneOfGeniusOverview = () => {
                 <section className="liquid-glass-strong rounded-2xl p-6 text-center space-y-4 max-w-md mx-auto">
                     <div className="space-y-1">
                         <p className="text-sm sm:text-base font-medium" style={{ color: INK_BODY }}>
-                            We do it together in 2 hours.
+                            {t('zogOverview.funnelLine1')}
                         </p>
                         <p className="text-sm sm:text-base font-medium" style={{ color: INK_BODY }}>
-                            Or you don't pay.
+                            {t('zogOverview.funnelLine2')}
                         </p>
                     </div>
 
@@ -732,7 +734,7 @@ const ZoneOfGeniusOverview = () => {
                             draggable={false}
                         />
                         <span style={CTA_SMALL_CAPS_STYLE} className="text-center">
-                            Build a business off your top talent
+                            {t('zogOverview.ctaPrimary')}
                         </span>
                         <ArrowRight
                             aria-hidden="true"
@@ -752,7 +754,7 @@ const ZoneOfGeniusOverview = () => {
                             fontWeight: 500,
                         }}
                     >
-                        Or read the methodology first:
+                        {t('zogOverview.methodologyBridge')}
                     </p>
 
                     {/* SECONDARY — See the exact playbook */}
@@ -766,7 +768,7 @@ const ZoneOfGeniusOverview = () => {
                                 "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
                         }}
                     >
-                        See the exact playbook
+                        {t('zogOverview.ctaSecondary')}
                     </a>
                 </section>
             </div>

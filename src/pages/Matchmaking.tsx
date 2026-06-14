@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { MapPin, Users, Languages } from "lucide-react";
 import { toast } from "sonner";
 import GameShellV2 from "@/components/game/GameShellV2";
@@ -209,6 +210,7 @@ const SeeMoreMatchesPanel = ({
   currentCount,
   onLoadMore,
 }: SeeMoreMatchesPanelProps) => {
+  const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
   const [exhausted, setExhausted] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -225,7 +227,7 @@ const SeeMoreMatchesPanel = ({
             color: "var(--skin-text-muted, rgba(11,42,90,0.65))",
           }}
         >
-          You've seen everyone the engine has for you this round. As more people complete their profiles, fresh matches will surface.
+          {t('matchmaking.seeMoreExhausted')}
         </p>
       </div>
     );
@@ -242,7 +244,7 @@ const SeeMoreMatchesPanel = ({
       }
     } catch (err) {
       setError(
-        err instanceof Error ? err.message : "Could not load more matches.",
+        err instanceof Error ? err.message : t('matchmaking.couldNotLoadMore'),
       );
     } finally {
       setLoading(false);
@@ -269,7 +271,7 @@ const SeeMoreMatchesPanel = ({
             "0 6px 20px -10px rgba(10, 22, 40, 0.20), 0 0 0 1px rgba(212, 175, 55, 0.18)",
         }}
       >
-        {loading ? "Loading…" : "See more matches →"}
+        {loading ? t('matchmaking.loading') : t('matchmaking.seeMoreMatches')}
       </button>
       {error && (
         <p
@@ -294,7 +296,9 @@ const SeeMoreMatchesPanel = ({
  * pagination panel above per matchmaking_strategy.md §8.7-§8.8.
  */
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-const _ParkedFreshMatchesMondayPanel = () => (
+const _ParkedFreshMatchesMondayPanel = () => {
+  const { t } = useTranslation();
+  return (
   <div
     className="mt-6 rounded-2xl px-6 py-5 text-center"
     style={{
@@ -314,7 +318,7 @@ const _ParkedFreshMatchesMondayPanel = () => (
         marginBottom: "8px",
       }}
     >
-      Fresh matches Monday
+      {t('matchmaking.freshMatchesMonday')}
     </p>
     <p
       className="italic mx-auto max-w-md"
@@ -328,12 +332,14 @@ const _ParkedFreshMatchesMondayPanel = () => (
           "var(--skin-text-halo-deep, 0 0 22px rgba(255,255,255,0.7), 0 1px 2px rgba(255,255,255,0.9), 0 0 1px rgba(11,42,90,0.45), 0 1px 0 rgba(11,42,90,0.25))",
       }}
     >
-      Your next matches are warming up. We'll surface them Monday morning, sent straight to your inbox.
+      {t('matchmaking.freshMatchesMondayBody')}
     </p>
   </div>
-);
+  );
+};
 
 const Matchmaking = () => {
+  const { t } = useTranslation();
   // Day 80 (Sasha 2026-05-23): ?debug=1 in the URL surfaces the four
   // sub-scores below each match card. Validation-only — lets testers
   // give precise feedback on the algorithm ("rank 3 felt better than
@@ -430,7 +436,7 @@ const Matchmaking = () => {
       setError(null);
       const { data: { user } } = await supabase.auth.getUser();
       if (!user) {
-        setError("Sign in to view matches.");
+        setError(t('matchmaking.signInToView'));
         setLoading(false);
         return;
       }
@@ -442,7 +448,7 @@ const Matchmaking = () => {
       if (profile) {
         setCurrentProfile({
           id: profile.user_id || "",
-          name: `${profile.first_name || ""} ${profile.last_name || ""}`.trim() || "You",
+          name: `${profile.first_name || ""} ${profile.last_name || ""}`.trim() || t('matchmaking.youFallback'),
           archetype: "",
           location: profile.location || null,
           spokenLanguages: Array.isArray(profile.spoken_languages)
@@ -469,7 +475,7 @@ const Matchmaking = () => {
 
         if (error) {
           console.warn("[AssetMatching] Edge function error:", error.message);
-          setMatchesMessage("We hit a snag loading matches. Try again in a moment.");
+          setMatchesMessage(t('matchmaking.loadSnag'));
           return;
         }
 
@@ -521,7 +527,7 @@ const Matchmaking = () => {
       { body: { userId: user.id, limit: targetLimit } },
     );
     if (error || !data?.matches) {
-      throw new Error(error?.message || "Could not load more matches.");
+      throw new Error(error?.message || t('matchmaking.couldNotLoadMore'));
     }
     const userIds = data.matches.map((m: any) => m.userId);
     const { data: avatarRows } = await supabase
@@ -639,7 +645,7 @@ const Matchmaking = () => {
     try {
       const { data: { user } } = await supabase.auth.getUser();
       if (!user) {
-        toast.error("Sign in to express interest in a match.");
+        toast.error(t('matchmaking.signInToExpressInterest'));
         return;
       }
 
@@ -701,22 +707,22 @@ const Matchmaking = () => {
           );
           if (headsupErr) throw headsupErr;
           toast.success(
-            `Heads-up email sent to ${currentAiMatch.firstName}. We'll introduce you both if they say yes.`,
+            t('matchmaking.headsupSent', { name: currentAiMatch.firstName }),
           );
         } catch (emailErr) {
           console.warn("[handleExpressInterest] heads-up email failed:", emailErr);
           toast.success(
-            `Interest in ${currentAiMatch.firstName} recorded. (Heads-up email may be delayed; we'll retry.)`,
+            t('matchmaking.interestRecordedEmailDelayed', { name: currentAiMatch.firstName }),
           );
         }
       } else {
         toast.success(
-          `Interest in ${currentAiMatch.firstName} recorded.`,
+          t('matchmaking.interestRecorded', { name: currentAiMatch.firstName }),
         );
       }
     } catch (err) {
       const message =
-        err instanceof Error ? err.message : "Couldn't record your interest.";
+        err instanceof Error ? err.message : t('matchmaking.couldNotRecordInterest');
       toast.error(message);
     }
   };
@@ -741,10 +747,10 @@ const Matchmaking = () => {
         next.delete(currentAiMatch.userId);
         return next;
       });
-      toast.info(`Withdrew your interest in ${currentAiMatch.firstName}.`);
+      toast.info(t('matchmaking.withdrewInterest', { name: currentAiMatch.firstName }));
     } catch (err) {
       console.warn("[handleWithdrawInterest] failed:", err);
-      toast.error("Couldn't withdraw interest. Try again.");
+      toast.error(t('matchmaking.couldNotWithdrawInterest'));
     }
   };
 
@@ -868,13 +874,13 @@ const Matchmaking = () => {
               textShadow: legibleHeadlineHalo,
             }}
           >
-            Find{" "}
+            {t('matchmaking.headlineBefore')}{" "}
             <span className="bg-clip-text text-transparent" style={GOLD_TEXT_STYLE}>
-              collaborators
+              {t('matchmaking.headlineCollaborators')}
             </span>
-            {" "}and{" "}
+            {" "}{t('matchmaking.headlineAnd')}{" "}
             <span className="bg-clip-text text-transparent" style={GOLD_TEXT_STYLE}>
-              co-founders
+              {t('matchmaking.headlineCoFounders')}
             </span>
           </h1>
           <p
@@ -884,7 +890,7 @@ const Matchmaking = () => {
               fontSize: "clamp(18px, 2vw, 22px)",
             }}
           >
-            People whose work complements yours
+            {t('matchmaking.subtitle')}
           </p>
           <Ornament className="my-6 sm:my-7" />
         </header>
@@ -968,8 +974,8 @@ const Matchmaking = () => {
                   "var(--skin-text-halo-strong, 0 0 12px rgba(255,255,255,0.55), 0 1px 1px rgba(255,255,255,0.85))",
               }}
             >
-              {locationBlocked && "Add your location in your profile to use the location filter. "}
-              {languageBlocked && "Add spoken languages in your profile to use the language filter."}
+              {locationBlocked && t('matchmaking.locationBlockedWarning')}
+              {languageBlocked && t('matchmaking.languageBlockedWarning')}
             </p>
           </div>
         )}
@@ -989,7 +995,7 @@ const Matchmaking = () => {
               }}
               className="mb-2"
             >
-              No matches yet
+              {t('matchmaking.noMatchesYet')}
             </h2>
             <p
               className="italic"
@@ -1000,7 +1006,7 @@ const Matchmaking = () => {
               }}
             >
               {matchesMessage ||
-                "As more people complete their profiles, this fills in."}
+                t('matchmaking.noMatchesYetBody')}
             </p>
           </div>
         )}
@@ -1033,7 +1039,7 @@ const Matchmaking = () => {
                     id: currentAiMatch.userId,
                     firstName: currentAiMatch.firstName,
                     lastName: currentAiMatch.lastName,
-                    archetype: currentAiMatch.archetype || "Community Member",
+                    archetype: currentAiMatch.archetype || t('matchmaking.communityMember'),
                     tagline: currentAiMatch.tagline,
                     avatarUrl: currentAiMatch.avatarUrl || null,
                   }}
@@ -1045,16 +1051,16 @@ const Matchmaking = () => {
                     currentAiMatch.proposals && currentAiMatch.proposals.length > 0
                       ? currentAiMatch.proposals
                       : currentAiMatch.collaborationProposal
-                        ? [{ type: "Collaboration", proposal: currentAiMatch.collaborationProposal }]
+                        ? [{ type: t('matchmaking.proposalTypeCollaboration'), proposal: currentAiMatch.collaborationProposal }]
                         : undefined
                   }
                   matchTypeBadge={MATCH_TYPE_LABELS[currentAiMatch.matchType] || currentAiMatch.matchType}
                   resonanceScore={currentAiMatch.resonanceScore}
-                  secondaryLabel="Why this works"
+                  secondaryLabel={t('matchmaking.whyThisWorks')}
                   secondaryReason={`${currentAiMatch.alignment} ${currentAiMatch.complementarity}`}
-                  tertiaryLabel={currentAiMatch.friction !== "None identified" ? "Watch out for" : undefined}
+                  tertiaryLabel={currentAiMatch.friction !== "None identified" ? t('matchmaking.watchOutFor') : undefined}
                   tertiaryReason={currentAiMatch.friction !== "None identified" ? currentAiMatch.friction : undefined}
-                  connectLabel="I'd like to meet"
+                  connectLabel={t('matchmaking.connectLabel')}
                   onPass={handleAiPass}
                   onConnect={handleExpressInterest}
                   onWithdraw={handleWithdrawInterest}
@@ -1137,8 +1143,8 @@ const Matchmaking = () => {
                     }}
                   >
                     {assetMatches.length > 0
-                      ? "You've reviewed all AI matches. New ones will appear as more people join."
-                      : "Complete your Top Talent reveal and map your assets to unlock AI-powered matching."}
+                      ? t('matchmaking.reviewedAllMatches')
+                      : t('matchmaking.completeProfilePrompt')}
                   </p>
                 </div>
               )}
@@ -1187,7 +1193,7 @@ const Matchmaking = () => {
                   className="mb-2"
                 >
                   <Users className="w-3.5 h-3.5 inline-block mr-1.5 align-[-2px]" />
-                  Your network
+                  {t('matchmaking.yourNetwork')}
                 </div>
                 <h2
                   style={{
@@ -1198,7 +1204,7 @@ const Matchmaking = () => {
                   }}
                   className="leading-[1.2] mb-1.5"
                 >
-                  Collaborators by Genius
+                  {t('matchmaking.collaboratorsByGenius')}
                 </h2>
                 <p
                   className="italic"
@@ -1208,7 +1214,7 @@ const Matchmaking = () => {
                     lineHeight: 1.5,
                   }}
                 >
-                  People in the network whose Top Talent complements yours.
+                  {t('matchmaking.collaboratorsByGeniusSubtitle')}
                 </p>
               </div>
 
@@ -1231,7 +1237,7 @@ const Matchmaking = () => {
                           color: "var(--skin-text-muted, rgba(11, 42, 90, 0.93))",
                         }}
                       >
-                        Same location
+                        {t('matchmaking.sameLocation')}
                       </p>
                       <p
                         style={{
@@ -1240,13 +1246,13 @@ const Matchmaking = () => {
                           lineHeight: 1.45,
                         }}
                       >
-                        {currentProfile?.location ? currentProfile.location : "Add your location to enable"}
+                        {currentProfile?.location ? currentProfile.location : t('matchmaking.addLocationToEnable')}
                       </p>
                     </div>
                     <Switch
                       checked={sameLocationOnly}
                       onCheckedChange={setSameLocationOnly}
-                      aria-label="Filter matches by same location"
+                      aria-label={t('matchmaking.filterBySameLocationAria')}
                     />
                   </div>
                   <div className="flex items-center gap-3">
@@ -1262,7 +1268,7 @@ const Matchmaking = () => {
                           color: "var(--skin-text-muted, rgba(11, 42, 90, 0.93))",
                         }}
                       >
-                        Same language
+                        {t('matchmaking.sameLanguage')}
                       </p>
                       <p
                         style={{
@@ -1273,13 +1279,13 @@ const Matchmaking = () => {
                       >
                         {currentProfile?.spokenLanguages?.length
                           ? currentProfile.spokenLanguages.join(", ")
-                          : "Add languages to enable"}
+                          : t('matchmaking.addLanguagesToEnable')}
                       </p>
                     </div>
                     <Switch
                       checked={sameLanguageOnly}
                       onCheckedChange={setSameLanguageOnly}
-                      aria-label="Filter matches by shared language"
+                      aria-label={t('matchmaking.filterBySharedLanguageAria')}
                     />
                   </div>
                 </div>
@@ -1288,25 +1294,28 @@ const Matchmaking = () => {
               {/* Three sub-groups — Similar / Complementary / Similar Mission */}
               {([
                 {
-                  title: "Similar Genius",
-                  copy: "People who think and operate like you.",
+                  id: "similar-genius",
+                  titleKey: "matchmaking.similarGeniusTitle",
+                  copyKey: "matchmaking.similarGeniusCopy",
                   matches: filteredGroups.similarGenius,
-                  empty: "No similar genius matches yet.",
+                  emptyKey: "matchmaking.similarGeniusEmpty",
                 },
                 {
-                  title: "Complementary Genius",
-                  copy: "Great co-founder or collaborator fit.",
+                  id: "complementary-genius",
+                  titleKey: "matchmaking.complementaryGeniusTitle",
+                  copyKey: "matchmaking.complementaryGeniusCopy",
                   matches: filteredGroups.complementaryGenius,
-                  empty: "No complementary matches yet.",
+                  emptyKey: "matchmaking.complementaryGeniusEmpty",
                 },
                 {
-                  title: "Similar Mission",
-                  copy: "People aligned with your current mission.",
+                  id: "similar-mission",
+                  titleKey: "matchmaking.similarMissionTitle",
+                  copyKey: "matchmaking.similarMissionCopy",
                   matches: filteredGroups.similarMission,
-                  empty: "No mission matches yet.",
+                  emptyKey: "matchmaking.similarMissionEmpty",
                 },
               ] as const).map((group) => (
-                <div key={group.title} className="mb-6 last:mb-0">
+                <div key={group.id} className="mb-6 last:mb-0">
                   <div className="mb-3">
                     <h3
                       style={{
@@ -1315,7 +1324,7 @@ const Matchmaking = () => {
                         fontWeight: 700,
                       }}
                     >
-                      {group.title}
+                      {t(group.titleKey)}
                     </h3>
                     <p
                       className="italic"
@@ -1327,7 +1336,7 @@ const Matchmaking = () => {
                         color: "var(--skin-text-muted, rgba(11, 42, 90, 0.93))",
                       }}
                     >
-                      {group.copy}
+                      {t(group.copyKey)}
                     </p>
                   </div>
                   <div className="grid gap-3 md:grid-cols-2">
@@ -1344,7 +1353,7 @@ const Matchmaking = () => {
                           color: "var(--skin-text-muted, rgba(11, 42, 90, 0.93))",
                         }}
                       >
-                        {group.empty}
+                        {t(group.emptyKey)}
                       </div>
                     )}
                   </div>

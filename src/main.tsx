@@ -4,6 +4,7 @@ import { I18nextProvider } from "react-i18next";
 import App from "./App.tsx";
 import "./index.css";
 import i18n from "@/i18n/config";
+import { installLanguageProfileSync } from "@/i18n/languageSync";
 import { installPostAuthSideEffects } from "@/lib/postAuthSideEffects";
 
 // Day 58+ (Sasha 2026-05-03): defensive service-worker cleanup. The
@@ -46,6 +47,7 @@ if (typeof window !== "undefined" && "serviceWorker" in navigator) {
 // claim function; MeGate did not, orphaning Karime's snapshot). See
 // src/lib/postAuthSideEffects.ts for the architectural rationale.
 installPostAuthSideEffects();
+installLanguageProfileSync();
 
 createRoot(document.getElementById("root")!).render(
     <I18nextProvider i18n={i18n}>

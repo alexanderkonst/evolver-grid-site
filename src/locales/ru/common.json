@@ -456,5 +456,459 @@
     "menu": {
       "open": "Открыть меню"
     }
+  },
+  "myResult": {
+    "errorNoToken": "Токен доступа не передан.",
+    "errorNotFound": "Результат не найден. Возможно, ссылка недействительна.",
+    "errorNoResultSaved": "Результат ещё не сохранён.",
+    "errorCouldNotLoad": "Не удалось загрузить твой результат. Попробуй ещё раз.",
+    "errorGeneric": "Что-то пошло не так. Попробуй ещё раз.",
+    "loading": "Загружаем твой результат…",
+    "discoverCta": "Открой свой главный талант →",
+    "headerEyebrow": "Твой главный талант",
+    "tagline": "Мой главный талант",
+    "inSimpleWords": "Простыми словами",
+    "thePitch": "Питч",
+    "itsYours": "Это твоё. Срок не истекает.",
+    "whyNoIncomeCta": "Узнай, почему это ещё не приносит доход →",
+    "retakeCta": "Пройти оценку заново"
+  },
+  "connections": {
+    "toastWithdrawn": "Интерес отозван",
+    "toastWithdrawError": "Не удалось отозвать",
+    "signInTitle": "Войди, чтобы видеть свои связи",
+    "signInButton": "Войти",
+    "communityMember": "Участник сообщества",
+    "introSent": "Знакомство отправлено {{date}}",
+    "headsUpSent": "Письмо-уведомление отправлено {{date}} — ждём их ответа",
+    "withdraw": "Отозвать",
+    "heading": "Связи",
+    "emptyTitle": "Пока нет связей",
+    "emptyDescription": "Прояви интерес к мэтчу, чтобы начать строить свою сеть. Знакомство срабатывает, когда обе стороны сказали да.",
+    "emptyAction": "Найти коллабораторов",
+    "introducedHeading": "Знакомства ({{count}})",
+    "introducedEmpty": "Пока нет знакомств — обе стороны должны проявить интерес, прежде чем платформа вас свяжет.",
+    "interestsHeading": "Твои проявленные интересы ({{count}})",
+    "interestsEmpty": "Нет ожидающих интересов. Найди больше мэтчей в /matchmaking."
+  },
+  "matchmaking": {
+    "headlineBefore": "Найди",
+    "headlineCollaborators": "коллабораторов",
+    "headlineAnd": "и",
+    "headlineCoFounders": "сооснователей",
+    "subtitle": "Люди, чья работа дополняет твою",
+    "signInToView": "Войди, чтобы увидеть мэтчи.",
+    "youFallback": "Ты",
+    "loadSnag": "Не получилось загрузить мэтчи. Попробуй через минуту.",
+    "couldNotLoadMore": "Не удалось загрузить ещё мэтчи.",
+    "signInToExpressInterest": "Войди, чтобы проявить интерес к мэтчу.",
+    "headsupSent": "Письмо-предупреждение отправлено {{name}}. Познакомим вас, если ответят согласием.",
+    "interestRecordedEmailDelayed": "Интерес к {{name}} зафиксирован. (Письмо может прийти с задержкой — попробуем ещё раз.)",
+    "interestRecorded": "Интерес к {{name}} зафиксирован.",
+    "couldNotRecordInterest": "Не удалось зафиксировать твой интерес.",
+    "withdrewInterest": "Интерес к {{name}} отозван.",
+    "couldNotWithdrawInterest": "Не удалось отозвать интерес. Попробуй ещё раз.",
+    "locationBlockedWarning": "Добавь локацию в профиль, чтобы пользоваться фильтром по локации. ",
+    "languageBlockedWarning": "Добавь языки в профиль, чтобы пользоваться фильтром по языку.",
+    "noMatchesYet": "Пока нет мэтчей",
+    "noMatchesYetBody": "Чем больше людей заполнят профили, тем полнее станет эта подборка.",
+    "communityMember": "Участник сообщества",
+    "proposalTypeCollaboration": "Коллаборация",
+    "whyThisWorks": "Почему это сработает",
+    "watchOutFor": "На что обратить внимание",
+    "connectLabel": "Хочу познакомиться",
+    "reviewedAllMatches": "Ты пересмотрел все мэтчи. Новые появятся, когда подключатся новые люди.",
+    "completeProfilePrompt": "Раскрой свой главный талант и опиши свои активы, чтобы включить мэтчинг.",
+    "seeMoreExhausted": "Ты увидел всех, кого подобрал движок в этом раунде. Чем больше людей заполнят профили, тем больше новых мэтчей появится.",
+    "loading": "Загрузка…",
+    "seeMoreMatches": "Показать ещё мэтчи →",
+    "freshMatchesMonday": "Новые мэтчи в понедельник",
+    "freshMatchesMondayBody": "Твои следующие мэтчи готовятся. Покажем их в понедельник утром и пришлём прямо на почту.",
+    "yourNetwork": "Твоя сеть",
+    "collaboratorsByGenius": "Коллабораторы по главному таланту",
+    "collaboratorsByGeniusSubtitle": "Люди из сети, чей главный талант дополняет твой.",
+    "sameLocation": "Та же локация",
+    "addLocationToEnable": "Добавь локацию, чтобы включить",
+    "filterBySameLocationAria": "Фильтровать мэтчи по той же локации",
+    "sameLanguage": "Тот же язык",
+    "addLanguagesToEnable": "Добавь языки, чтобы включить",
+    "filterBySharedLanguageAria": "Фильтровать мэтчи по общему языку",
+    "similarGeniusTitle": "Похожий талант",
+    "similarGeniusCopy": "Люди, которые думают и действуют как ты.",
+    "similarGeniusEmpty": "Пока нет мэтчей с похожим талантом.",
+    "complementaryGeniusTitle": "Дополняющий талант",
+    "complementaryGeniusCopy": "Отличный мэтч для сооснователя или коллаборатора.",
+    "complementaryGeniusEmpty": "Пока нет дополняющих мэтчей.",
+    "similarMissionTitle": "Похожая миссия",
+    "similarMissionCopy": "Люди, созвучные твоей текущей миссии.",
+    "similarMissionEmpty": "Пока нет мэтчей по миссии."
+  },
+  "intros": {
+    "hero": {
+      "eyebrow": "Александр Константинов · /intros",
+      "heading": "Кто возьмёт это под опеку?",
+      "intro": "Три вектора работы готовы выйти на свет. Ищу мосты к тем, кто реально тянет — с ресурсами, внутренней цельностью и ясностью.",
+      "openHeart": "открытое сердце",
+      "higherMind": "высший ум",
+      "committedWill": "посвящённая воля"
+    },
+    "vectors": {
+      "eyebrow": "Три вектора"
+    },
+    "vector1": {
+      "title": "Открытие уровня биткоина в ИИ",
+      "tagline": "Беспрецедентное преимущество первопроходца. Открытый код с нулевого дня.",
+      "body": "Каркас, который поднимает любую передовую модель на ступень развития выше. В слепом A/B-тестировании — измеримый когнитивный прирост на самых трудных вопросах. Ось 2 прогресса ИИ — слой поля — вскрыта и выпущена как публичная инфраструктура.",
+      "cta": "Читать релиз: Knoware · t.me/ARKHAZM/170"
+    },
+    "vector2": {
+      "title": "FMF + PMF гарантированно за 6–8 недель",
+      "tagline": "Система для осознанных начинающих impact-фаундеров.",
+      "body": "Founder-Market Fit и Product-Market Fit, выстроенные от уникального гения основателя наружу — а не от рыночных исследований внутрь. Гарантированное окно поставки: от 6 до 8 недель. Уже работает с платящими основателями."
+    },
+    "vector3": {
+      "title": "Ядро цельности Золотого века",
+      "tagline": "Интегрирующий хребет под первыми двумя.",
+      "body": "Онтологическая архитектура, которая делает векторы 1 и 2 возможными — и делает их фрактальными. Холоническая операционная система для активации планетарного масштаба. Публикация готовится.",
+      "status": "Публикация готовится"
+    },
+    "transition": "Здесь хватит изобилия на всех, кто причастен. Действовать придётся вместе. Ниже — короткий список созвучных людей, которые реально тянут, кого я выделил. Если можешь открыть дверь к кому-то из них — или знаешь кого-то в их ближнем круге — напиши.",
+    "tierLabel": "Уровень {{tier}}",
+    "tierS": {
+      "label": "Первое кольцо",
+      "sublabel": "Ядерное созвучие · максимальный рычаг"
+    },
+    "tierA": {
+      "label": "Второе кольцо",
+      "sublabel": "Сильное совпадение · точечный рычаг"
+    },
+    "status": {
+      "inTouch": "на связи",
+      "oneStep": "в одном шаге"
+    },
+    "person": {
+      "kenWilber": {
+        "role": "Основатель интегральной теории",
+        "why": "Мой онтологический стек напрямую происходит от AQAL, квадрантов, холонов, линий. Его поддержка = определяющая категорию. В одном шаге через общего контакта."
+      },
+      "danielSchmachtenberger": {
+        "role": "Сооснователь, The Consilience Project",
+        "why": "Метакризис, осмысление, ИИ + цивилизация. Говорит со всеми, с кем стоит говорить. Knoware попадает прямо в его поле зрения."
+      },
+      "jamieWheal": {
+        "role": "Основатель, Flow Genome Project · автор книги Recapture the Rapture",
+        "why": "Архитектура культуры для метакризиса. Сеть глубоко прошита через психоделические, перформанс-, интегральные и осознанно-фаундерские круги."
+      },
+      "tomasBjorkman": {
+        "role": "Основатель, Ekskäret Foundation · автор книги The Market Myth",
+        "why": "Шведский инвестор осознанного капитала. Тихо финансирует работу по внутреннему развитию в масштабе. Прямое совпадение по ресурсам + цельности + ясности."
+      },
+      "peterMerry": {
+        "role": "Сооснователь, Ubiquity University · Center for Human Emergence",
+        "why": "Европейская интегральная сеть. Работа с ноосферой. Уже в орбите контактов."
+      },
+      "charlesEisenstein": {
+        "role": "Автор книг Sacred Economics · The More Beautiful World Our Hearts Know Is Possible",
+        "why": "Экономика дара + взаимобытие. Миллионы осознанных читателей. Философское совпадение с позицией открытого чертежа / притяжения через дар."
+      },
+      "bayoAkomolafe": {
+        "role": "Основатель, The Emergence Network",
+        "why": "Постактивистский философ. Та самая частота, на которой резонирует моё племя. Поэзия + политика + онтология."
+      },
+      "ottoScharmer": {
+        "role": "MIT · Presencing Institute · Theory U",
+        "why": "Институциональный вес в осознанном лидерстве. Словарь восприятия поля чисто стыкуется с формулировкой второй оси."
+      },
+      "iainMcgilchrist": {
+        "role": "Автор книг The Master and His Emissary · The Matter With Things",
+        "why": "Теория полушарий. Научно обосновывает мужско-женскую формулировку прогресса ИИ, к которой я пришёл."
+      },
+      "johnVervaeke": {
+        "role": "Когнитивный учёный, Торонто · Awakening from the Meaning Crisis",
+        "why": "Мост ИИ + познание + смысл. Растущая сеть Weaving Community из осознанных исследователей."
+      },
+      "tysonYunkaporta": {
+        "role": "Автор книги Sand Talk",
+        "why": "Системы коренных знаний, приложенные к современному осмыслению. Совпадает со слоем индейской космовидения в моей операционной логике."
+      },
+      "noraBateson": {
+        "role": "Warm Data Lab · International Bateson Institute",
+        "why": "Системное мышление. Тихо соединяет множество сетей. Трансконтекстуальный интеллект."
+      },
+      "lynneTwist": {
+        "role": "Soul of Money Institute · сооснователь, Pachamama Alliance",
+        "why": "Четыре десятилетия наведения филантропических мостов. Мудрость коренных народов + осознанный капитал."
+      },
+      "audreyTang": {
+        "role": "Бывший цифровой министр Тайваня · соавтор книги Plurality",
+        "why": "Политика распределённых протоколов. Идеальное философское совпадение с Knoware с открытым кодом как публичной инфраструктурой."
+      },
+      "zakStein": {
+        "role": "Будущее образования · Lectica · The Consilience Project",
+        "why": "Психология развития + ИИ + образование. Прямая орбита Шмахтенбергера."
+      },
+      "alnoorLadha": {
+        "role": "Culture Hack Labs · посткапиталистическая меметическая инженерия",
+        "why": "Партизанский + духовный + стратегический. Совпадение с виральной половиной фрактального роста."
+      },
+      "fosterGamble": {
+        "role": "Thrive Movement · Thrive I + II",
+        "why": "Аудитория из миллионов осознанных искателей. Масштабный охват в племя ищущих решения."
+      },
+      "emanuelKuntzelman": {
+        "role": "Greenheart International · Purpose Earth Foundation",
+        "why": "Сеть эволюции сознания с реальной дистрибуцией. Филантропия + созыв."
+      },
+      "robertKirkpatrick": {
+        "role": "Бывший директор, UN Global Pulse",
+        "why": "Данные на службе человечества + институциональный мост. Сеть иного уровня, чем у большинства интегралистов — ООН, многосторонние структуры, уровень политики."
+      },
+      "glenWeyl": {
+        "role": "Microsoft Research · RadicalxChange · соавтор книги Plurality",
+        "why": "Технологии + распределённое управление + пересечение с племенем осознанных фаундеров. Соединяет ИИ-лаборатории и движения публичной инфраструктуры."
+      }
+    },
+    "cta": {
+      "eyebrow": "Кто может открыть дверь",
+      "body": "Если можешь сделать тёплое представление кому-то из перечисленных — или тому, кто их знает — буду благодарен за мост.",
+      "button": "Написать мне в Telegram",
+      "footer": "Обновлено в апреле 2026 · findyourtoptalent.com/intros"
+    }
+  },
+  "peopleDir": {
+    "title": "Каталог людей",
+    "subtitle": "Находи тех, кто разделяет твою миссию, фокус и место.",
+    "filterPillar": "Столп",
+    "allPillars": "Все столпы",
+    "filterFocus": "Область фокуса",
+    "allFocusAreas": "Все области фокуса",
+    "filterChallenge": "Вызов",
+    "allChallenges": "Все вызовы",
+    "filterOutcome": "Результат",
+    "allOutcomes": "Все результаты",
+    "filterMission": "Миссия",
+    "allMissions": "Все миссии",
+    "filterLocation": "Место",
+    "allLocations": "Все места",
+    "filterArchetype": "Архетип",
+    "allArchetypes": "Все архетипы",
+    "emptyState": "Пока никто не подходит под эти фильтры.",
+    "loadMore": "Показать ещё",
+    "fallbackName": "Участник сообщества",
+    "unknownArchetype": "Архетип не определён",
+    "loadError": "Не удалось загрузить каталог."
+  },
+  "growthPaths": {
+    "back": "Назад",
+    "heading": "Пути роста",
+    "subheading": "Последовательности трансформационных апгрейдов — как ты развиваешь себя",
+    "upgradeCount": "{{count}} апгрейдов",
+    "upgradeCount_one": "{{count}} апгрейд",
+    "upgradeCount_few": "{{count}} апгрейда",
+    "upgradeCount_many": "{{count}} апгрейдов",
+    "legend": {
+      "title": "Легенда",
+      "immersiveActivation": "Иммерсивная активация",
+      "microLearning": "Микрообучение (90 сек)",
+      "selfAssessment": "Самооценка",
+      "premiumModule": "Премиум-модуль"
+    },
+    "status": {
+      "comingSoon": "Скоро",
+      "ready": "Готово",
+      "module": "Модуль"
+    }
+  },
+  "appleseed": {
+    "savedMore": "Сохранено ✓ — дальше есть ещё ↓",
+    "emailPlaceholder": "your@email.com",
+    "saving": "Сохраняю…",
+    "saveIt": "Сохранить",
+    "patternStillHere": "Твой узор всё ещё здесь.",
+    "heroTagline": "Мой главный талант",
+    "congratsHeading": "Поздравляю — ты сформулировал свой главный талант!",
+    "congratsBody": "Теперь сформулируй, куда ты движешься — чтобы найти бизнес-партнёров, идущих в ту же сторону.",
+    "option1Lead": "Если ты готов действовать:",
+    "option1Title": "Построй из него бизнес",
+    "option1Body": "Преврати свой главный талант в понятное и продаваемое бизнес-предложение.",
+    "option1Together": "Делаем это вместе за 2 часа.",
+    "testimonialQuote": "«Всё складывается».",
+    "option1CtaIdle": "Построй бизнес из своего главного таланта — $555",
+    "option1CtaHover": "Преврати это в предложение",
+    "option2Lead": "Если ты пока не хочешь строить свой бизнес:",
+    "option2Title": "Узнай, как использовать и монетизировать свой главный талант",
+    "option2Cta": "Задействуй свой главный талант — $37",
+    "option2Detail": "7 минут на понимание ценности, которую ты несёшь, + 6 минут направляемой медитации, чтобы телесно соединиться со своим талантом",
+    "haveCode": "Есть код?",
+    "couponPlaceholder": "Код",
+    "couponAriaLabel": "Код активации",
+    "couponApply": "Применить",
+    "couponInvalid": "Неверный код.",
+    "option3Eyebrow": "Или построй сам",
+    "option3Title": "Возьми точный пошаговый плейбук",
+    "saved": "Сохранено ✓",
+    "emailMeResult": "Или просто пришли мне результат на почту",
+    "floatingActivate": "Активировать — $37"
+  },
+  "profile": {
+    "toastErrorTitle": "Ошибка",
+    "toastUpdateFailedDescription": "Не удалось обновить профиль. Попробуй ещё раз.",
+    "toastProfileUpdatedTitle": "Профиль обновлён",
+    "toastProfileUpdatedDescription": "Изменения сохранены.",
+    "sourceUnknown": "Неизвестно",
+    "sourceStripeCheckout": "Stripe Checkout",
+    "sourcePromoCode": "Промокод",
+    "pageTitle": "ПРОФИЛЬ",
+    "pageSubtitle": "Управляй настройками аккаунта и подписками",
+    "personalInfoTitle": "Личная информация",
+    "personalInfoDescription": "Основные данные твоего аккаунта",
+    "editButton": "Изменить",
+    "firstNameLabel": "Имя",
+    "firstNamePlaceholder": "Анна",
+    "lastNameLabel": "Фамилия",
+    "lastNamePlaceholder": "Иванова",
+    "emailLabel": "Email",
+    "emailCannotBeChanged": "Email изменить нельзя",
+    "languagesLabel": "Языки",
+    "removeLanguageAria": "Убрать {{language}}",
+    "addLanguagePlaceholder": "Добавить язык",
+    "addButton": "Добавить",
+    "savingButton": "Сохранение...",
+    "saveChangesButton": "Сохранить",
+    "cancelButton": "Отмена",
+    "billingTitle": "Оплата и покупки",
+    "billingDescription": "История покупок и управление подпиской",
+    "purchaseHistoryHeading": "История покупок",
+    "aiIntelligenceBoost": "Прокачка ИИ-интеллекта",
+    "viaSource": "через {{source}}",
+    "noPurchasesYet": "Покупок пока нет",
+    "subscriptionManagementHeading": "Управление подпиской",
+    "subscriptionManagementDescription": "Управляй активными подписками, меняй способы оплаты или отменяй.",
+    "openingButton": "Открываем...",
+    "manageSubscriptionButton": "Управлять подпиской",
+    "dangerZoneTitle": "Опасная зона",
+    "dangerZoneDescription": "Необратимые действия с данными твоего аккаунта",
+    "resetProgressLabel": "Сбросить прогресс",
+    "resetProgressDescription": "Стереть весь игровой прогресс (XP, уровни, снимки) и начать заново.",
+    "resetConfirm": "Точно? Это сотрёт ВЕСЬ твой прогресс, XP и открытые улучшения. Отменить будет нельзя.",
+    "toastProgressResetTitle": "Прогресс сброшен",
+    "toastProgressResetDescription": "Твой путь начат заново.",
+    "toastResetFailedDescription": "Не удалось сбросить прогресс. Попробуй ещё раз.",
+    "resetMyProgressButton": "Сбросить мой прогресс"
+  },
+  "settings": {
+    "skinHeading": "Тема",
+    "skinDescription": "Выбери оформление, которое тебе по душе. Применяется мгновенно во всём приложении. Мы запомним твой выбор; когда ты вошёл в аккаунт, он следует за тобой на любом устройстве.",
+    "skinLapisLabel": "Lapis",
+    "skinLapisTagline": "Светлая · синий и золото на кремовом",
+    "skinAurumLabel": "Aurum",
+    "skinAurumTagline": "Тёмная · золото на почти чёрном",
+    "comingSoon": "Скоро",
+    "matchHeadsUpsHeading": "Уведомления о мэтчах",
+    "matchHeadsUpsDescBefore": "Когда кто-то проявляет интерес к встрече с тобой, мы отправляем письмо-уведомление с двумя кнопками:",
+    "matchHeadsUpsDescYes": "Да, познакомьте нас",
+    "matchHeadsUpsDescOr": "или",
+    "matchHeadsUpsDescNotNow": "Не сейчас",
+    "matchHeadsUpsDescAfter": ". Их можно поставить на паузу, не отключая остальную часть платформы.",
+    "pauseHeadsUpEmailsLabel": "Поставить письма-уведомления на паузу",
+    "pauseHeadsUpEmailsHint": "Интерес всё равно будет записан; мы просто не станем писать тебе об этом.",
+    "pauseHeadsUpEmailsAriaLabel": "Поставить на паузу письма-уведомления о мэтчах",
+    "headsUpsPausedTitle": "Уведомления на паузе",
+    "headsUpsResumedTitle": "Уведомления возобновлены",
+    "headsUpsPausedDescription": "Мы не будем писать тебе, когда кто-то захочет встретиться с тобой. Их интерес всё равно тихо записывается.",
+    "headsUpsResumedDescription": "Мы напишем тебе, когда кто-то захочет встретиться с тобой.",
+    "couldntSaveTitle": "Не удалось сохранить",
+    "tryAgain": "Попробуй ещё раз.",
+    "completeProfileHeading": "Твой полный профиль",
+    "completeProfileDescription": "Один PDF со всем, что ты создал на этой платформе — главный талант, миссия, активы и качество жизни. Отдай его своему ИИ, отправь коучу, сохрани для себя. Разделы, которые ты ещё не заполнил, показываются пустыми страницами со ссылкой, чтобы начать.",
+    "includedLabel": "Что внутри",
+    "includedTopTalent": "Профиль главного таланта (обложка + глубокий разбор)",
+    "includedMission": "Миссия",
+    "includedAssets": "Активы",
+    "includedQualityOfLife": "Качество жизни",
+    "buildingPdf": "Собираем твой PDF…",
+    "downloadProfileAsPdf": "Скачать мой профиль в PDF",
+    "profileDownloadedTitle": "Профиль скачан",
+    "profileDownloadedDescription": "Твой единый PDF лежит в папке загрузок.",
+    "couldntBuildPdfTitle": "Не удалось собрать PDF",
+    "pdfFooterNote": "A4, ~10–20 страниц в зависимости от того, сколько ты заполнил. Издательский регистр, золото + кремовый.",
+    "back": "Назад",
+    "heroTitleBefore": "Твои",
+    "heroTitleGold": "настройки",
+    "heroSubtitle": "Твой аккаунт и предпочтения.",
+    "tabProfile": "Профиль",
+    "tabNotifications": "Уведомления",
+    "tabExport": "Экспорт",
+    "tabAppearance": "Оформление",
+    "footerForkLine": "Открытый исходный код. Форкни для себя или своего сообщества — бесплатно.",
+    "footerCommercialLine": "Идёшь в коммерцию? 10% от выручки, бренд остаётся твоим.",
+    "sourceOnGithub": "Исходники на GitHub"
+  },
+  "zogOverview": {
+    "emptyImageAlt": "Главный талант",
+    "emptyTitle": "Откройте свой главный талант",
+    "emptyBody": "Пройдите 15-минутный тест и раскройте свою уникальность.",
+    "emptyCta": "Начать тест",
+    "heroLabel": "Мой главный талант",
+    "threeTalentsLabel": "Мои три таланта",
+    "pdfHint": "Отдайте PDF своему ИИ — пусть он узнает вас лучше.",
+    "pdfButtonBuilding": "Готовим ваш PDF…",
+    "pdfButtonReady": "Скачать полный PDF",
+    "pdfButtonGenerating": "Готовим данные для PDF…",
+    "funnelLine1": "Сделаем это вместе за 2 часа.",
+    "funnelLine2": "Или вы не платите.",
+    "ctaPrimary": "Постройте бизнес на своём главном таланте",
+    "methodologyBridge": "Или сначала прочитайте методологию:",
+    "ctaSecondary": "Посмотрите точный плейбук"
+  },
+  "canvasOverview": {
+    "artifactUniquenessLabel": "Уникальность",
+    "artifactUniquenessQuestion": "Кто я, когда сияю ярче всего?",
+    "artifactMythLabel": "Миф",
+    "artifactMythQuestion": "Что должно быть истиной, чтобы моя работа стала неизбежной?",
+    "artifactTribeLabel": "Племя",
+    "artifactTribeQuestion": "Кто узнаёт себя в этом мифе?",
+    "artifactPainLabel": "Боль",
+    "artifactPainQuestion": "Что в их положении невыносимо?",
+    "artifactPromiseLabel": "Обещание",
+    "artifactPromiseQuestion": "Какой главный результат-трансформация?",
+    "artifactLeadMagnetLabel": "Лид-магнит",
+    "artifactLeadMagnetQuestion": "Как люди заходят к тебе впервые?",
+    "artifactValueLadderLabel": "Лестница ценности",
+    "artifactValueLadderQuestion": "Какие ступени ведут вверх?",
+    "statusLanded": "Закреплено",
+    "statusRefining": "Дорабатывается",
+    "statusDraft": "Черновик",
+    "loading": "Загрузка…",
+    "emptyTitle": "Твой холст Уникального бизнеса",
+    "emptyDescription": "Холст собирается на ведущей сессии, где ты раскрываешь свою уникальность, миф, племя, боль, обещание, лид-магнит и лестницу ценности.",
+    "emptyTagline": "7 артефактов. 1 сессия. Целостный фундамент твоего уникального бизнеса.",
+    "bookSessionButton": "Записаться на сессию по холсту",
+    "heroEyebrow": "Холст Уникального бизнеса",
+    "heroTitleFallback": "Мой уникальный бизнес",
+    "facilitatedBy": "Ведущий — {{facilitator}}",
+    "session": "Сессия {{number}}",
+    "sessionNotesLabel": "Заметки сессии",
+    "buildLandingButton": "Собрать лендинг",
+    "communityButton": "Сообщество"
+  },
+  "missionSelection": {
+    "heading": "Выбор миссии",
+    "subheading": "Выбери миссию, которая отражает то, что ты пришёл построить.",
+    "pillarPlaceholder": "Опора",
+    "pillarChoose": "Выбери опору",
+    "focusAreaPlaceholder": "Область фокуса",
+    "focusAreaChoose": "Выбери область фокуса",
+    "missionPlaceholder": "Миссия",
+    "missionChoose": "Выбери миссию",
+    "missionNoteLabel": "Опиши свою конкретную миссию (необязательно)",
+    "missionNotePlaceholder": "Я строю...",
+    "back": "Назад",
+    "saving": "Сохранение...",
+    "saveMission": "Сохранить миссию",
+    "toastChooseMission": "Выбери миссию, чтобы продолжить",
+    "toastMissionSaved": "Миссия сохранена",
+    "toastSaveFailed": "Не удалось сохранить",
+    "toastSaveFailedDescription": "Не удалось сохранить твою миссию."
   }
 }

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSearchParams, Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { supabase } from "@/integrations/supabase/client";
 import RevelatoryHero from "@/components/game/RevelatoryHero";
 import { AppleseedData } from "@/modules/zone-of-genius/appleseedGenerator";
@@ -20,6 +21,7 @@ import { flipToFirstPersonReflexive } from "@/lib/zogProfileVoice";
  * No authentication required.
  */
 const MyResult = () => {
+    const { t } = useTranslation();
     const [searchParams] = useSearchParams();
     const token = searchParams.get("token");
 
@@ -30,7 +32,7 @@ const MyResult = () => {
     useEffect(() => {
         const fetchResult = async () => {
             if (!token) {
-                setError("No access token provided.");
+                setError(t("myResult.errorNoToken"));
                 setLoading(false);
                 return;
             }
@@ -44,13 +46,13 @@ const MyResult = () => {
                     .maybeSingle();
 
                 if (profileError || !profile) {
-                    setError("Result not found. This link may be invalid.");
+                    setError(t("myResult.errorNotFound"));
                     setLoading(false);
                     return;
                 }
 
                 if (!profile.last_zog_snapshot_id) {
-                    setError("No result saved yet.");
+                    setError(t("myResult.errorNoResultSaved"));
                     setLoading(false);
                     return;
                 }
@@ -63,7 +65,7 @@ const MyResult = () => {
                     .maybeSingle();
 
                 if (snapshotError || !snapshot?.appleseed_data) {
-                    setError("Could not load your result. Please try again.");
+                    setError(t("myResult.errorCouldNotLoad"));
                     setLoading(false);
                     return;
                 }
@@ -71,14 +73,14 @@ const MyResult = () => {
                 setAppleseed(snapshot.appleseed_data as unknown as AppleseedData);
             } catch (err) {
                 console.error("[MyResult] Error:", err);
-                setError("Something went wrong. Please try again.");
+                setError(t("myResult.errorGeneric"));
             }
 
             setLoading(false);
         };
 
         fetchResult();
-    }, [token]);
+    }, [token, t]);
 
     return (
         <>
@@ -93,7 +95,7 @@ const MyResult = () => {
                 {loading && (
                     <div className="text-center space-y-4">
                         <Loader2 className="w-8 h-8 text-purple-400 animate-spin mx-auto" />
-                        <p className="text-white/50 text-sm">Loading your result...</p>
+                        <p className="text-white/50 text-sm">{t("myResult.loading")}</p>
                     </div>
                 )}
 
@@ -105,7 +107,7 @@ const MyResult = () => {
                                 to="/"
                                 className="inline-block px-6 py-3 rounded-full liquid-glass-strong text-white text-sm font-medium hover:scale-105 transition-transform"
                             >
-                                Discover your genius →
+                                {t("myResult.discoverCta")}
                             </Link>
                         </div>
                     </div>
@@ -115,7 +117,7 @@ const MyResult = () => {
                     <div className="max-w-2xl w-full space-y-8">
                         {/* Subtle header */}
                         <div className="text-center">
-                            <p className="text-[10px] uppercase tracking-[4px] text-white/30 mb-2">Your Top Talent</p>
+                            <p className="text-[10px] uppercase tracking-[4px] text-white/30 mb-2">{t("myResult.headerEyebrow")}</p>
                         </div>
 
                         {/* The reveal — same component as the live funnel.
@@ -128,7 +130,7 @@ const MyResult = () => {
                         <RevelatoryHero
                             type="appleseed"
                             title={appleseed.vibrationalKey.name}
-                            tagline="My top talent"
+                            tagline={t("myResult.tagline")}
                             actionStatement={appleseed.bullseyeSentence}
                             topThreeTalents={appleseed.topTalentProfile?.top_three_talents_compact}
                             topShadow={flipToFirstPersonReflexive(appleseed.topTalentProfile?.top_shadow_one_sentence)}
@@ -139,13 +141,13 @@ const MyResult = () => {
                         <div className="space-y-3 max-w-md mx-auto">
                             {appleseed.vibrationalKey.tagline_simple && (
                                 <div className="liquid-glass rounded-lg p-4 ring-1 ring-white/10">
-                                    <p className="text-[10px] uppercase tracking-[2px] text-white/30 mb-1">In simple words</p>
+                                    <p className="text-[10px] uppercase tracking-[2px] text-white/30 mb-1">{t("myResult.inSimpleWords")}</p>
                                     <p className="text-white/70 text-sm">{appleseed.vibrationalKey.tagline_simple}</p>
                                 </div>
                             )}
                             {appleseed.elevatorPitch && (
                                 <div className="liquid-glass rounded-lg p-4 ring-1 ring-white/10">
-                                    <p className="text-[10px] uppercase tracking-[2px] text-white/30 mb-1">The pitch</p>
+                                    <p className="text-[10px] uppercase tracking-[2px] text-white/30 mb-1">{t("myResult.thePitch")}</p>
                                     <p className="text-white/70 text-sm">{appleseed.elevatorPitch}</p>
                                 </div>
                             )}
@@ -153,19 +155,19 @@ const MyResult = () => {
 
                         {/* CTA section */}
                         <div className="text-center space-y-4 pt-4">
-                            <p className="text-white/30 text-xs">This is yours. It doesn't expire.</p>
+                            <p className="text-white/30 text-xs">{t("myResult.itsYours")}</p>
                             <div className="flex flex-col sm:flex-row gap-3 justify-center">
                                 <a
                                     href="/ignite#hero-video"
                                     className="inline-block px-6 py-3 rounded-full liquid-glass-strong text-white text-sm font-medium hover:scale-105 transition-transform"
                                 >
-                                    See why this hasn't turned into income →
+                                    {t("myResult.whyNoIncomeCta")}
                                 </a>
                                 <Link
                                     to="/"
                                     className="inline-block px-6 py-3 rounded-full liquid-glass text-white/60 text-sm hover:text-white/80 transition-colors ring-1 ring-white/10"
                                 >
-                                    Retake the assessment
+                                    {t("myResult.retakeCta")}
                                 </Link>
                             </div>
                         </div>

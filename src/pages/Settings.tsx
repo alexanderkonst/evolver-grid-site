@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { ArrowLeft, Bell, Download, Palette, User, Check } from "lucide-react";
 import { generateProfilePdf } from "@/modules/profile/generateProfilePdf";
@@ -31,8 +32,9 @@ import { GOLD_TEXT_STYLE, Ornament } from "@/lib/landingDesign";
 
 interface SkinOption {
     id: Skin;
-    label: string;
-    tagline: string;
+    /** i18n keys resolved with t() at render time. */
+    labelKey: string;
+    taglineKey: string;
     swatchBackground: string;
     swatchOverlay?: React.ReactNode;
     /** Day 48 iter 14 (Sasha): lets an option render as "coming soon"
@@ -49,8 +51,8 @@ interface SkinOption {
 const SKIN_OPTIONS: SkinOption[] = [
     {
         id: "lapis",
-        label: "Lapis",
-        tagline: "Light · navy and gold on cream",
+        labelKey: "settings.skinLapisLabel",
+        taglineKey: "settings.skinLapisTagline",
         swatchBackground:
             "linear-gradient(135deg, #f5f1e8 0%, #ece7da 38%, #ccd6ea 68%, #f3e5c0 100%)",
         swatchOverlay: (
@@ -68,8 +70,8 @@ const SKIN_OPTIONS: SkinOption[] = [
     },
     {
         id: "aurum",
-        label: "Aurum",
-        tagline: "Dark · gold on near-black",
+        labelKey: "settings.skinAurumLabel",
+        taglineKey: "settings.skinAurumTagline",
         swatchBackground:
             "linear-gradient(135deg, #020203 0%, #0a0a0e 55%, #1c1408 100%)",
         swatchOverlay: (
@@ -89,6 +91,7 @@ const SKIN_OPTIONS: SkinOption[] = [
 ];
 
 const AppearanceTab = () => {
+    const { t } = useTranslation();
     const { skin, setSkin } = useSkin();
 
     return (
@@ -123,7 +126,7 @@ const AppearanceTab = () => {
                                 color: "var(--skin-text-primary, #0a1628)",
                             }}
                         >
-                            Skin
+                            {t("settings.skinHeading")}
                         </h2>
                         <p
                             className="text-sm mt-1 leading-relaxed"
@@ -132,14 +135,12 @@ const AppearanceTab = () => {
                                 color: "var(--skin-text-muted, rgba(26,30,58,0.7))",
                             }}
                         >
-                            Pick the aesthetic that feels right. Applies instantly across the
-                            whole app. We remember your choice; when you're logged in, it
-                            follows you to every device.
+                            {t("settings.skinDescription")}
                         </p>
                     </div>
                 </div>
 
-                <div role="radiogroup" aria-label="Skin" className="grid sm:grid-cols-2 gap-3 pt-1">
+                <div role="radiogroup" aria-label={t("settings.skinHeading")} className="grid sm:grid-cols-2 gap-3 pt-1">
                     {SKIN_OPTIONS.map((opt) => {
                         const active = opt.id === skin;
                         const isDisabled = !!opt.disabled;
@@ -196,7 +197,7 @@ const AppearanceTab = () => {
                                                     color: "var(--skin-text-primary, #0a1628)",
                                                 }}
                                             >
-                                                <span>{opt.label}</span>
+                                                <span>{t(opt.labelKey)}</span>
                                                 {isDisabled && (
                                                     <span
                                                         className="text-[9px] tracking-[0.22em] uppercase font-semibold px-2 py-0.5 rounded-full"
@@ -208,7 +209,7 @@ const AppearanceTab = () => {
                                                             letterSpacing: "0.18em",
                                                         }}
                                                     >
-                                                        Coming soon
+                                                        {t("settings.comingSoon")}
                                                     </span>
                                                 )}
                                             </div>
@@ -219,7 +220,7 @@ const AppearanceTab = () => {
                                                     color: "var(--skin-text-muted, rgba(26,30,58,0.6))",
                                                 }}
                                             >
-                                                {opt.tagline}
+                                                {t(opt.taglineKey)}
                                             </div>
                                         </div>
                                     </div>
@@ -256,6 +257,7 @@ const AppearanceTab = () => {
  * weekly digests, etc.) goes here as additional rows.
  */
 const NotificationsTab = () => {
+    const { t } = useTranslation();
     const { toast } = useToast();
     const [loading, setLoading] = useState(true);
     const [saving, setSaving] = useState(false);
@@ -294,16 +296,16 @@ const NotificationsTab = () => {
                 .eq("user_id", userId);
             if (error) throw error;
             toast({
-                title: next ? "Heads-ups paused" : "Heads-ups resumed",
+                title: next ? t("settings.headsUpsPausedTitle") : t("settings.headsUpsResumedTitle"),
                 description: next
-                    ? "We won't email you when someone wants to meet you. Their interest is still recorded silently."
-                    : "We'll email you when someone wants to meet you.",
+                    ? t("settings.headsUpsPausedDescription")
+                    : t("settings.headsUpsResumedDescription"),
             });
         } catch (err) {
             setOptOut(prev); // revert on error
             toast({
-                title: "Couldn't save",
-                description: err instanceof Error ? err.message : "Try again.",
+                title: t("settings.couldntSaveTitle"),
+                description: err instanceof Error ? err.message : t("settings.tryAgain"),
                 variant: "destructive",
             });
         } finally {
@@ -335,7 +337,7 @@ const NotificationsTab = () => {
                                 color: "var(--skin-text-primary, #0a1628)",
                             }}
                         >
-                            Match heads-ups
+                            {t("settings.matchHeadsUpsHeading")}
                         </h2>
                         <p
                             className="text-sm mt-1 leading-relaxed"
@@ -344,10 +346,10 @@ const NotificationsTab = () => {
                                 color: "var(--skin-text-muted, rgba(26,30,58,0.7))",
                             }}
                         >
-                            When someone expresses interest in meeting you, we send a heads-up email with two buttons:
-                            <em> Yes, introduce us </em>
-                            or
-                            <em> Not now</em>. You can pause these without disabling the rest of the platform.
+                            {t("settings.matchHeadsUpsDescBefore")}
+                            <em> {t("settings.matchHeadsUpsDescYes")} </em>
+                            {t("settings.matchHeadsUpsDescOr")}
+                            <em> {t("settings.matchHeadsUpsDescNotNow")}</em>{t("settings.matchHeadsUpsDescAfter")}
                         </p>
                     </div>
                 </div>
@@ -368,7 +370,7 @@ const NotificationsTab = () => {
                                 color: "var(--skin-text-primary, #0a1628)",
                             }}
                         >
-                            Pause heads-up emails
+                            {t("settings.pauseHeadsUpEmailsLabel")}
                         </p>
                         <p
                             className="text-xs mt-1 leading-relaxed"
@@ -377,14 +379,14 @@ const NotificationsTab = () => {
                                 color: "var(--skin-text-muted, rgba(26,30,58,0.65))",
                             }}
                         >
-                            Interest will still be recorded; we just won't email you about it.
+                            {t("settings.pauseHeadsUpEmailsHint")}
                         </p>
                     </div>
                     <Switch
                         checked={optOut}
                         onCheckedChange={handleToggle}
                         disabled={loading || saving}
-                        aria-label="Pause match heads-up emails"
+                        aria-label={t("settings.pauseHeadsUpEmailsAriaLabel")}
                     />
                 </div>
             </div>
@@ -408,6 +410,7 @@ const NotificationsTab = () => {
  * My Profile as PDF," not "Generate PDF."
  */
 const DataExportTab = () => {
+    const { t } = useTranslation();
     const { toast } = useToast();
     const [building, setBuilding] = useState(false);
 
@@ -417,14 +420,14 @@ const DataExportTab = () => {
         try {
             await generateProfilePdf();
             toast({
-                title: "Profile downloaded",
-                description: "Your unified PDF is in your downloads folder.",
+                title: t("settings.profileDownloadedTitle"),
+                description: t("settings.profileDownloadedDescription"),
             });
         } catch (err) {
             console.error("[DataExportTab] Profile PDF failed:", err);
             toast({
-                title: "Couldn't build the PDF",
-                description: err instanceof Error ? err.message : "Try again.",
+                title: t("settings.couldntBuildPdfTitle"),
+                description: err instanceof Error ? err.message : t("settings.tryAgain"),
                 variant: "destructive",
             });
         } finally {
@@ -461,7 +464,7 @@ const DataExportTab = () => {
                                 color: "var(--skin-text-primary, #0a1628)",
                             }}
                         >
-                            Your complete profile
+                            {t("settings.completeProfileHeading")}
                         </h2>
                         <p
                             className="text-sm mt-1 leading-relaxed"
@@ -470,7 +473,7 @@ const DataExportTab = () => {
                                 color: "var(--skin-text-muted, rgba(26,30,58,0.7))",
                             }}
                         >
-                            One PDF containing everything you've created in this platform — Top Talent, Mission, Assets, and Quality of Life. Hand it to your AI, send it to a coach, archive it for yourself. Sections you haven't completed yet show as empty pages with a link to start.
+                            {t("settings.completeProfileDescription")}
                         </p>
                     </div>
                 </div>
@@ -491,7 +494,7 @@ const DataExportTab = () => {
                             color: "var(--skin-tab-active-ink, #7a5108)",
                         }}
                     >
-                        Included
+                        {t("settings.includedLabel")}
                     </p>
                     <ul
                         className="text-sm leading-relaxed space-y-0.5"
@@ -500,10 +503,10 @@ const DataExportTab = () => {
                             color: "var(--skin-text-primary, #0a1628)",
                         }}
                     >
-                        <li>· Top Talent profile (cover + deep view)</li>
-                        <li>· Mission</li>
-                        <li>· Assets</li>
-                        <li>· Quality of Life</li>
+                        <li>· {t("settings.includedTopTalent")}</li>
+                        <li>· {t("settings.includedMission")}</li>
+                        <li>· {t("settings.includedAssets")}</li>
+                        <li>· {t("settings.includedQualityOfLife")}</li>
                     </ul>
                 </div>
 
@@ -532,7 +535,7 @@ const DataExportTab = () => {
                         }}
                     >
                         <Download className="w-4 h-4 flex-shrink-0" aria-hidden="true" />
-                        <span>{building ? "Building your PDF…" : "Download my profile as PDF"}</span>
+                        <span>{building ? t("settings.buildingPdf") : t("settings.downloadProfileAsPdf")}</span>
                     </button>
                 </div>
 
@@ -543,7 +546,7 @@ const DataExportTab = () => {
                         color: "var(--skin-text-muted-soft, rgba(26,30,58,0.55))",
                     }}
                 >
-                    A4, ~10–20 pages depending on how much you've filled in. Editorial register, gold + cream.
+                    {t("settings.pdfFooterNote")}
                 </p>
             </div>
         </div>
@@ -551,6 +554,7 @@ const DataExportTab = () => {
 };
 
 const Settings = () => {
+    const { t } = useTranslation();
     const navigate = useNavigate();
     const [searchParams, setSearchParams] = useSearchParams();
     const tabParam = searchParams.get("tab");
@@ -607,10 +611,10 @@ const Settings = () => {
                                     "1px solid var(--skin-rule-strong, rgba(26,30,58,0.2))",
                                 color: "var(--skin-link-secondary, rgba(26,30,58,0.85))",
                             }}
-                            aria-label="Back"
+                            aria-label={t("settings.back")}
                         >
                             <ArrowLeft className="w-3 h-3" aria-hidden="true" />
-                            <span>Back</span>
+                            <span>{t("settings.back")}</span>
                         </button>
                     </div>
 
@@ -630,12 +634,12 @@ const Settings = () => {
                                     "var(--skin-text-halo-strong, 0 0 22px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.8), 0 2px 12px rgba(26,30,58,0.15))",
                             }}
                         >
-                            Your{" "}
+                            {t("settings.heroTitleBefore")}{" "}
                             <span
                                 className="bg-clip-text text-transparent"
                                 style={GOLD_TEXT_STYLE}
                             >
-                                Settings
+                                {t("settings.heroTitleGold")}
                             </span>
                         </h1>
                         <p
@@ -648,7 +652,7 @@ const Settings = () => {
                                     "var(--skin-text-halo-subtle, 0 0 18px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.75))",
                             }}
                         >
-                            Your account and preferences.
+                            {t("settings.heroSubtitle")}
                         </p>
 
                         <Ornament className="my-5 sm:my-6" />
@@ -695,7 +699,7 @@ const Settings = () => {
                                 }}
                             >
                                 <User className="w-3.5 h-3.5" />
-                                Profile
+                                {t("settings.tabProfile")}
                             </TabsTrigger>
                             <TabsTrigger
                                 value="notifications"
@@ -717,7 +721,7 @@ const Settings = () => {
                                 }}
                             >
                                 <Bell className="w-3.5 h-3.5" />
-                                Notifications
+                                {t("settings.tabNotifications")}
                             </TabsTrigger>
                             {/* Day 79 (Sasha 2026-05-15): Export tab — entry
                                 point for the unified Personal Profile PDF
@@ -745,7 +749,7 @@ const Settings = () => {
                                 }}
                             >
                                 <Download className="w-3.5 h-3.5" />
-                                Export
+                                {t("settings.tabExport")}
                             </TabsTrigger>
                             {/* Day 78 (Sasha 2026-05-22): Appearance trigger
                                 hidden pending a production-ready chooser.
@@ -771,7 +775,7 @@ const Settings = () => {
                                 }}
                             >
                                 <Palette className="w-3.5 h-3.5" />
-                                Appearance
+                                {t("settings.tabAppearance")}
                             </TabsTrigger>
                         </TabsList>
                         <TabsContent value="profile">
@@ -803,9 +807,9 @@ const Settings = () => {
                             className="text-xs leading-relaxed"
                             style={{ color: "var(--skin-text-muted-soft, rgba(26,30,58,0.55))" }}
                         >
-                            Source-available. Fork for yourself or your community — free.
+                            {t("settings.footerForkLine")}
                             <br />
-                            Going commercial? 10% revenue share, you keep your brand.
+                            {t("settings.footerCommercialLine")}
                         </p>
                         <a
                             href="https://github.com/alexanderkonst/evolver-grid-site"
@@ -820,7 +824,7 @@ const Settings = () => {
                                 color: "var(--skin-link-secondary, rgba(26,30,58,0.75))",
                             }}
                         >
-                            Source on GitHub →
+                            {t("settings.sourceOnGithub")} →
                         </a>
                     </div>
                 </div>
