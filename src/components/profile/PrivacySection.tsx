@@ -5,6 +5,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
+import { useTranslation } from "react-i18next";
 
 type VisibilityLevel = "hidden" | "minimal" | "medium" | "full";
 
@@ -22,11 +23,11 @@ interface PrivacySectionProps {
   }>) => void;
 }
 
-const VISIBILITY_OPTIONS: { value: VisibilityLevel; label: string; description: string }[] = [
-  { value: "hidden", label: "Hidden", description: "Only I can see my profile" },
-  { value: "minimal", label: "Minimal", description: "Name and archetype only" },
-  { value: "medium", label: "Medium", description: "Plus mission, no offer" },
-  { value: "full", label: "Full", description: "Show everything" },
+const VISIBILITY_OPTIONS: { value: VisibilityLevel; labelKey: string; descriptionKey: string }[] = [
+  { value: "hidden", labelKey: "privacySection.option_hidden_label", descriptionKey: "privacySection.option_hidden_description" },
+  { value: "minimal", labelKey: "privacySection.option_minimal_label", descriptionKey: "privacySection.option_minimal_description" },
+  { value: "medium", labelKey: "privacySection.option_medium_label", descriptionKey: "privacySection.option_medium_description" },
+  { value: "full", labelKey: "privacySection.option_full_label", descriptionKey: "privacySection.option_full_description" },
 ];
 
 const PrivacySection = ({
@@ -38,6 +39,7 @@ const PrivacySection = ({
   onUpdate,
 }: PrivacySectionProps) => {
   const { toast } = useToast();
+  const { t } = useTranslation();
   const [saving, setSaving] = useState<string | null>(null);
 
   const handleVisibilityChange = async (value: VisibilityLevel) => {
@@ -53,12 +55,12 @@ const PrivacySection = ({
 
       if (error) throw error;
 
-      toast({ title: "Visibility updated" });
+      toast({ title: t("privacySection.toast_visibility_updated") });
     } catch (error: any) {
       onUpdate({ visibility: previousValue });
       toast({
-        title: "Update failed",
-        description: error.message || "Unable to update visibility.",
+        title: t("privacySection.toast_update_failed"),
+        description: error.message || t("privacySection.error_update_visibility"),
         variant: "destructive",
       });
     } finally {
@@ -87,12 +89,12 @@ const PrivacySection = ({
 
       if (error) throw error;
 
-      toast({ title: "Settings updated" });
+      toast({ title: t("privacySection.toast_settings_updated") });
     } catch (error: any) {
       onUpdate({ [field]: previousValue });
       toast({
-        title: "Update failed",
-        description: error.message || "Unable to update settings.",
+        title: t("privacySection.toast_update_failed"),
+        description: error.message || t("privacySection.error_update_settings"),
         variant: "destructive",
       });
     } finally {
@@ -108,14 +110,14 @@ const PrivacySection = ({
           <Shield className="w-5 h-5 text-[rgba(44,49,80,0.7)]" />
         </div>
         <div>
-          <h3 className="font-semibold text-[#2c3150]">Privacy & Visibility</h3>
-          <p className="text-sm text-[#2c3150]/60">Control who can see your profile</p>
+          <h3 className="font-semibold text-[#2c3150]">{t("privacySection.header_title")}</h3>
+          <p className="text-sm text-[#2c3150]/60">{t("privacySection.header_subtitle")}</p>
         </div>
       </div>
 
       {/* Visibility Level */}
       <div className="space-y-3">
-        <Label className="text-sm font-medium text-[#2c3150]">Profile Visibility</Label>
+        <Label className="text-sm font-medium text-[#2c3150]">{t("privacySection.visibility_label")}</Label>
         <RadioGroup
           value={visibility}
           onValueChange={(value) => handleVisibilityChange(value as VisibilityLevel)}
@@ -133,9 +135,9 @@ const PrivacySection = ({
                   htmlFor={`visibility-${option.value}`}
                   className="text-sm font-medium text-[#2c3150] cursor-pointer"
                 >
-                  {option.label}
+                  {t(option.labelKey)}
                 </Label>
-                <p className="text-xs text-[#2c3150]/60">{option.description}</p>
+                <p className="text-xs text-[#2c3150]/60">{t(option.descriptionKey)}</p>
               </div>
               {saving === "visibility" && visibility === option.value && (
                 <span className="premium-spinner w-4 h-4" />
@@ -150,15 +152,15 @@ const PrivacySection = ({
 
       {/* Toggle Switches */}
       <div className="space-y-3">
-        <Label className="text-sm font-medium text-[#2c3150]">Show on Public Profile</Label>
+        <Label className="text-sm font-medium text-[#2c3150]">{t("privacySection.toggles_label")}</Label>
 
         {/* Location Toggle */}
         <div className="flex items-center justify-between p-3 rounded-lg bg-[#f8f7fc]">
           <div className="flex items-center gap-3">
             <MapPin className="w-4 h-4 text-[#2c3150]/60" />
             <div>
-              <p className="text-sm font-medium text-[#2c3150]">My location</p>
-              <p className="text-xs text-[#2c3150]/60">City and country</p>
+              <p className="text-sm font-medium text-[#2c3150]">{t("privacySection.location_title")}</p>
+              <p className="text-xs text-[#2c3150]/60">{t("privacySection.location_subtitle")}</p>
             </div>
           </div>
           <div className="flex items-center gap-2">
@@ -178,8 +180,8 @@ const PrivacySection = ({
           <div className="flex items-center gap-3">
             <Target className="w-4 h-4 text-[#2c3150]/60" />
             <div>
-              <p className="text-sm font-medium text-[#2c3150]">My mission</p>
-              <p className="text-xs text-[#2c3150]/60">Current mission focus</p>
+              <p className="text-sm font-medium text-[#2c3150]">{t("privacySection.mission_title")}</p>
+              <p className="text-xs text-[#2c3150]/60">{t("privacySection.mission_subtitle")}</p>
             </div>
           </div>
           <div className="flex items-center gap-2">
@@ -199,8 +201,8 @@ const PrivacySection = ({
           <div className="flex items-center gap-3">
             <Sparkles className="w-4 h-4 text-[#2c3150]/60" />
             <div>
-              <p className="text-sm font-medium text-[#2c3150]">My unique offer</p>
-              <p className="text-xs text-[#2c3150]/60">Your genius offer</p>
+              <p className="text-sm font-medium text-[#2c3150]">{t("privacySection.offer_title")}</p>
+              <p className="text-xs text-[#2c3150]/60">{t("privacySection.offer_subtitle")}</p>
             </div>
           </div>
           <div className="flex items-center gap-2">

@@ -4412,5 +4412,323 @@
       "goalCycleReview": "Завершить обзор цикла",
       "footer": "MDLS · созерцательная рабочая поверхность"
     }
+  },
+  "gameShell": {
+    "brand": "Genius Business",
+    "nav": {
+      "profile": {
+        "label": "Профиль",
+        "description": "Познай себя",
+        "modules": {
+          "zog": "Зона гения",
+          "qol": "Качество жизни"
+        }
+      },
+      "transformation": {
+        "label": "Трансформация",
+        "description": "Овладей собой",
+        "modules": {
+          "library": "Библиотека практик",
+          "paths": "Пути роста"
+        }
+      },
+      "marketplace": {
+        "label": "Маркетплейс",
+        "description": "Монетизируй свой гений"
+      },
+      "teams": {
+        "label": "Команды",
+        "description": "Найди своих людей",
+        "modules": {
+          "matches": "Совпадения",
+          "people": "Каталог людей"
+        }
+      },
+      "events": {
+        "label": "События",
+        "description": "Встречи и впечатления"
+      },
+      "coop": {
+        "label": "Бизнес-инкубатор",
+        "description": "Создавайте вместе"
+      }
+    },
+    "unlockHints": {
+      "teams": "Пройди Зону гения, чтобы открыть Команды.",
+      "marketplace": "Создай своё Гениальное предложение, чтобы открыть Маркетплейс.",
+      "coop": "Создай своё Гениальное предложение, чтобы открыть Бизнес-инкубатор.",
+      "events": "Пройди Зону гения, чтобы открыть События."
+    },
+    "toast": {
+      "lockedTitle": "Закрыто",
+      "lockedFallback": "Пройди нужные шаги, чтобы открыть это пространство."
+    },
+    "aria": {
+      "openSidebar": "Открыть боковую панель",
+      "closeSidebar": "Закрыть боковую панель",
+      "collapseSidebar": "Свернуть боковую панель",
+      "expandSidebar": "Развернуть боковую панель"
+    },
+    "user": {
+      "avatarAlt": "Аватар профиля",
+      "fallbackName": "Игрок",
+      "signOut": "Выйти",
+      "signIn": "Войти"
+    }
+  },
+  "tourSteps": {
+    "me": {
+      "title": "Я",
+      "tagline": "Здесь живёт твоя зона гениальности",
+      "description": "Это ты — твоя зона гениальности, твоя история, твои уникальные дары. Всё, что ты о себе открываешь, сохраняется здесь."
+    },
+    "learn": {
+      "title": "Учись",
+      "tagline": "Твой путь трансформации",
+      "description": "Составь карту качества жизни, выбери путь роста и открой доступ к трансформационному контенту. Здесь ты растёшь."
+    },
+    "meet": {
+      "title": "Знакомься",
+      "tagline": "Найди своих",
+      "description": "Связывайся с близкими по духу людьми через профессиональный мэтчинг по гениальности. Находи бизнес-партнёров, менторов и коллабораторов, которые дополняют твои дары."
+    },
+    "collaborate": {
+      "title": "Сотрудничай",
+      "tagline": "Работайте вместе",
+      "description": "Объединяй силы с другими в общих проектах и миссиях. Здесь индивидуальная гениальность становится коллективным влиянием."
+    },
+    "build": {
+      "title": "Создавай",
+      "tagline": "Преврати гениальность в доход",
+      "description": "Создай своё уникальное предложение, собери лендинг и запусти свой гениальный бизнес в мир."
+    },
+    "offer": {
+      "title": "Предложение",
+      "tagline": "Маркетплейс",
+      "description": "Смотри и покупай предложения других создателей или выставляй свои. Здесь обменивается гениальность."
+    },
+    "exploreHint": "Исследуй свои пространства"
+  },
+  "geniusBusiness": {
+    "loading": "Загрузка...",
+    "generatingTitle": "Создаём твой гениальный бизнес",
+    "generatingBody": "Превращаем твою гениальность в бизнес-идентичность...",
+    "logoAlt": "Гениальный бизнес",
+    "createTitle": "Создай свой гениальный бизнес",
+    "createBody": "Сначала открой свою Зону гениальности, чтобы разблокировать гениальный бизнес.",
+    "discoverCta": "Открыть мою гениальность",
+    "readyTitle": "Твоя гениальность готова",
+    "readyBody": "Давай превратим твою Зону гениальности в бизнес-идентичность.",
+    "revealCta": "Показать мой гениальный бизнес",
+    "geniusAppleSeedLabel": "Семя гениальности",
+    "uspLabel": "Твоё уникальное торговое предложение",
+    "moduleAudienceLabel": "Идеальный клиент",
+    "moduleAudienceDescription": "Для кого это",
+    "modulePromiseLabel": "Обещание",
+    "modulePromiseDescription": "Трансформация из точки А в точку Б",
+    "moduleChannelsLabel": "Каналы",
+    "moduleChannelsDescription": "Как их достичь",
+    "moduleVisionLabel": "Видение",
+    "moduleVisionDescription": "Бо́льшая дуга",
+    "errorLoadGenius": "Не удалось загрузить данные о твоей гениальности",
+    "errorSaveOffer": "Не удалось сохранить твоё Уникальное предложение",
+    "toastGenerationFailedTitle": "Не удалось сгенерировать",
+    "toastGenerationFailedFallback": "Попробуй ещё раз."
+  },
+  "privacySection": {
+    "header_title": "Приватность и видимость",
+    "header_subtitle": "Управляй тем, кто видит твой профиль",
+    "visibility_label": "Видимость профиля",
+    "option_hidden_label": "Скрыт",
+    "option_hidden_description": "Профиль вижу только я",
+    "option_minimal_label": "Минимум",
+    "option_minimal_description": "Только имя и архетип",
+    "option_medium_label": "Средне",
+    "option_medium_description": "Плюс миссия, без оффера",
+    "option_full_label": "Полностью",
+    "option_full_description": "Показывать всё",
+    "toggles_label": "Показывать в публичном профиле",
+    "location_title": "Моя локация",
+    "location_subtitle": "Город и страна",
+    "mission_title": "Моя миссия",
+    "mission_subtitle": "Текущий фокус миссии",
+    "offer_title": "Мой уникальный оффер",
+    "offer_subtitle": "Твой главный оффер",
+    "toast_visibility_updated": "Видимость обновлена",
+    "toast_settings_updated": "Настройки обновлены",
+    "toast_update_failed": "Не удалось обновить",
+    "error_update_visibility": "Не удалось обновить видимость.",
+    "error_update_settings": "Не удалось обновить настройки."
+  },
+  "celebrationModal": {
+    "talentHeadline": "Поздравляем — твой главный талант сформулирован!",
+    "talentStatement": "Ты только что открыл фундамент своего профиля для коллабораций.",
+    "talentPs": "P.S.: следующий шаг — найти миссию; это задаёт направление твоему мэтчингу.",
+    "missionHeadline": "Поздравляем — твоя миссия названа!",
+    "missionStatement": "Ты только что открыл направление в своём профиле для коллабораций.",
+    "missionPs": "P.S.: следующий шаг — собрать активы; это добавляет твоему сигналу мощности.",
+    "assetsHeadline": "Поздравляем — твои активы собраны!",
+    "assetsStatement": "Ты только что открыл мощность в своём профиле для коллабораций.",
+    "assetsPs": "P.S.: найти миссию — и твой профиль для коллабораций завершён.",
+    "graduationHeadline": "Поздравляем — твой профиль для коллабораций завершён!",
+    "graduationStatement": "Ты только что открыл профессиональный мэтчинг коллабораторов!",
+    "graduationPs": "P.S.: необязательная оценка качества жизни повышает качество мэтчинга коллабораций.",
+    "discoverMyMission": "Найти свою миссию",
+    "mapMyAssets": "Собрать свои активы",
+    "findCollaborators": "Найти коллабораторов",
+    "buildABusiness": "Построить бизнес",
+    "continueYourJourney": "Продолжить путь"
+  },
+  "linkedinUpload": {
+    "heading": "Добавьте свой профиль LinkedIn",
+    "subheading": "Загрузите PDF-экспорт из LinkedIn.",
+    "imported": "LinkedIn импортирован",
+    "viewPdf": "Открыть PDF",
+    "replace": "Заменить",
+    "remove": "Удалить",
+    "uploadPdf": "Загрузить PDF",
+    "showInstructions": "Как получить PDF из LinkedIn",
+    "hideInstructions": "Скрыть инструкцию",
+    "step1": "Перейдите на linkedin.com/in/ваш-профиль",
+    "step2": "Нажмите кнопку «Ещё»",
+    "step3": "Выберите «Сохранить в PDF»",
+    "step4": "Загрузите скачанный файл сюда",
+    "invalidTypeTitle": "Неверный тип файла",
+    "invalidTypeDescription": "Загрузите файл в формате PDF.",
+    "uploadedTitle": "Профиль LinkedIn загружен",
+    "uploadFailedTitle": "Не удалось загрузить",
+    "uploadFailedDescription": "Не удалось загрузить PDF из LinkedIn.",
+    "downloadFailedTitle": "Не удалось скачать файл",
+    "removedTitle": "Профиль LinkedIn удалён",
+    "deleteFailedTitle": "Не удалось удалить",
+    "deleteFailedDescription": "Не удалось удалить PDF из LinkedIn."
+  },
+  "marketplaceProduct": {
+    "errorProductNotFound": "Продукт не найден",
+    "loading": "Загрузка...",
+    "notFoundHeading": "Продукт не найден",
+    "goHome": "На главную",
+    "blueprintSubtitle": "Твоя пошаговая система трансформации",
+    "downloadBlueprint": "Скачать чертёж",
+    "finalCtaHeading": "Готов трансформироваться?"
+  },
+  "refineBusiness": {
+    "empty": {
+      "title": "Пока нечего улучшать",
+      "description": "Сначала собери свой бизнес в Конструкторе продукта. Потом возвращайся сюда — улучшать и докручивать.",
+      "buildCta": "Сначала собрать"
+    },
+    "header": {
+      "title": "Докрутить мой бизнес",
+      "subtitle": "Каждый цикл доводки заостряет твой бизнес. Выбери, что улучшить."
+    },
+    "summary": {
+      "fallbackName": "Мой продукт",
+      "status": "Текущая версия · Опубликовано",
+      "live": "В эфире"
+    },
+    "options": {
+      "icp": {
+        "title": "Заостри свой ICP",
+        "description": "Копни глубже: кто именно твой идеальный клиент. Чем точнее — тем магнетичнее твоё сообщение."
+      },
+      "pain": {
+        "title": "Углуби понимание боли",
+        "description": "Вскрой скрытые слои боли, которую переживает твой клиент. Точнее боль — точнее позиционирование."
+      },
+      "promise": {
+        "title": "Доведи своё обещание",
+        "description": "Сделай своё обещание трансформации острым как бритва. Это ядро всего твоего бизнеса."
+      },
+      "blueprint": {
+        "title": "Прокачай блюпринт",
+        "description": "Улучши свой лид-магнит: чётче шаги, плотнее текст, сильнее CTA."
+      },
+      "landing": {
+        "title": "Отполируй лендинг",
+        "description": "Оптимизируй текст лендинга, заголовки и элементы конверсии."
+      },
+      "comingSoon": "Скоро"
+    },
+    "footer": {
+      "info": "Итерации доводки улучшат твой текущий продукт, не теряя проделанную работу."
+    }
+  },
+  "readNext": {
+    "readNext": "Читать дальше: {{label}}",
+    "label": {
+      "startHere": "Начни здесь",
+      "overview": "Обзор",
+      "howItShowsUp": "Как это проявляется",
+      "threeTalents": "Три таланта в деталях",
+      "topShadow": "Главная тень",
+      "mastery": "Путь мастерства",
+      "oneAction": "Одно действие",
+      "idealEnvironments": "Идеальная среда",
+      "partner": "Дополняющий партнёр",
+      "monetization": "Монетизация",
+      "unifyingRole": "Твоя объединяющая роль",
+      "whatsNext": "Что дальше?"
+    }
+  },
+  "pathSection": {
+    "bodyLabel": "Тело",
+    "bodyDescription": "Физическая жизненная сила, энергия и здоровье",
+    "emotionsLabel": "Эмоции",
+    "emotionsDescription": "Регуляция эмоций и работа с тенью",
+    "mindLabel": "Ум",
+    "mindDescription": "Мировоззрение, убеждения и ясность ума",
+    "geniusLabel": "Гений",
+    "geniusDescription": "Подлинность и самовыражение",
+    "spiritLabel": "Дух",
+    "spiritDescription": "Осознанность, присутствие и чувствительность",
+    "notFoundTitle": "Путь не найден",
+    "notFoundBody": "Такого пути развития не существует.",
+    "comingSoon": "Скоро: практики и материалы для пути «{{label}}»."
+  },
+  "assemblyTracker": {
+    "header": "The Originals · Путь сообщества",
+    "status": "Шаг 2: Растём из уст в уста · 3 фаундера в деле →",
+    "stepTooltip": "Шаг {{step}}: {{label}}",
+    "steps": {
+      "founder": "Фаундер",
+      "test": "Тест",
+      "grow": "Рост",
+      "charge": "Оплата",
+      "community": "Сообщество",
+      "improve": "Улучшай",
+      "others": "Другие",
+      "tenK": "$10K",
+      "match": "Мэтчинг",
+      "products": "Упакуй",
+      "selfOrg": "Самоорг",
+      "spread": "Распространяй",
+      "connect": "Связи"
+    }
+  },
+  "myGeniusBusiness": {
+    "toastCopiedTitle": "Ссылка скопирована!",
+    "toastCopiedDescription": "Поделись ею с миром.",
+    "emptyTitle": "Бизнеса пока нет",
+    "emptyDescription": "Собери свой первый бизнес в конструкторе продукта. На лендинг уйдёт около 5 минут.",
+    "startBuilding": "Начать сборку",
+    "pageTitle": "Мой бизнес",
+    "pageSubtitle": "Твой опубликованный бизнес — одним взглядом.",
+    "productHeadlineFallback": "Мой продукт",
+    "liveBadge": "В эфире",
+    "statIcpLabel": "ICP",
+    "statPromiseLabel": "Обещание",
+    "statBlueprintLabel": "Чертёж",
+    "statDefined": "Задано",
+    "statSteps_one": "{{count}} шаг",
+    "statSteps_few": "{{count}} шага",
+    "statSteps_many": "{{count}} шагов",
+    "viewPage": "Открыть страницу",
+    "edit": "Редактировать",
+    "refineTitle": "Доведи свой бизнес до точности",
+    "refineDescription": "Заостри ICP, глубже пойми боль, прогони своё трансформационное обещание ещё раз. Каждая доводка делает бизнес точнее.",
+    "startRefinement": "Начать доводку",
+    "canvasTitle": "Открыть холст",
+    "canvasDescription": "Посмотри все 7 артефактов своей сессии"
   }
 }

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import GameShellV2 from "@/components/game/GameShellV2";
 import { Button } from "@/components/ui/button";
 import { Users, Target, Radio, Telescope, Sparkles, Sword } from "lucide-react";
@@ -18,22 +19,23 @@ import { supabase } from "@/integrations/supabase/client";
  */
 const GeniusBusiness = () => {
     const navigate = useNavigate();
+    const { t } = useTranslation();
     const { toast } = useToast();
     const { loading, excaliburData, hasAppleseed, snapshotId } = useExcaliburData();
     const [isGenerating, setIsGenerating] = useState(false);
 
     const modules = [
-        { id: "audience", label: "Ideal Client", icon: Users, path: "/game/me/genius-business/audience", description: "Who this is for" },
-        { id: "promise", label: "Promise", icon: Target, path: "/game/me/genius-business/promise", description: "A to B transformation" },
-        { id: "channels", label: "Channels", icon: Radio, path: "/game/me/genius-business/channels", description: "How to reach them" },
-        { id: "vision", label: "Vision", icon: Telescope, path: "/game/me/genius-business/vision", description: "The bigger arc" },
+        { id: "audience", labelKey: "geniusBusiness.moduleAudienceLabel", icon: Users, path: "/game/me/genius-business/audience", descriptionKey: "geniusBusiness.moduleAudienceDescription" },
+        { id: "promise", labelKey: "geniusBusiness.modulePromiseLabel", icon: Target, path: "/game/me/genius-business/promise", descriptionKey: "geniusBusiness.modulePromiseDescription" },
+        { id: "channels", labelKey: "geniusBusiness.moduleChannelsLabel", icon: Radio, path: "/game/me/genius-business/channels", descriptionKey: "geniusBusiness.moduleChannelsDescription" },
+        { id: "vision", labelKey: "geniusBusiness.moduleVisionLabel", icon: Telescope, path: "/game/me/genius-business/vision", descriptionKey: "geniusBusiness.moduleVisionDescription" },
     ];
 
     if (loading) {
         return (
             <GameShellV2>
                 <div className="flex items-center justify-center min-h-[60vh]">
-                    <div className="animate-pulse text-[#a4a3d0]">Loading...</div>
+                    <div className="animate-pulse text-[#a4a3d0]">{t("geniusBusiness.loading")}</div>
                 </div>
             </GameShellV2>
         );
@@ -52,9 +54,9 @@ const GeniusBusiness = () => {
                             <Sword className="w-6 h-6 text-violet-600" />
                         </div>
                     </div>
-                    <h2 className="text-xl font-bold text-[#2c3150] mb-2 uppercase tracking-wide">Crafting Your Genius Business</h2>
+                    <h2 className="text-xl font-bold text-[#2c3150] mb-2 uppercase tracking-wide">{t("geniusBusiness.generatingTitle")}</h2>
                     <p className="text-[#2c3150]/70 animate-pulse">
-                        Transforming your genius into a business identity...
+                        {t("geniusBusiness.generatingBody")}
                     </p>
                 </div>
             </GameShellV2>
@@ -67,18 +69,18 @@ const GeniusBusiness = () => {
             <GameShellV2>
                 <div className="max-w-2xl mx-auto p-6 text-center">
                     <div className="inline-flex items-center justify-center w-16 h-16 rounded-full overflow-hidden mb-4">
-                        <img src="/genius-business-logo.png" alt="Genius Business" className="w-full h-full object-cover" />
+                        <img src="/genius-business-logo.png" alt={t("geniusBusiness.logoAlt")} className="w-full h-full object-cover" />
                     </div>
-                    <h1 className="text-2xl font-bold text-[#2c3150] mb-2 uppercase tracking-wide">Create Your Genius Business</h1>
+                    <h1 className="text-2xl font-bold text-[#2c3150] mb-2 uppercase tracking-wide">{t("geniusBusiness.createTitle")}</h1>
                     <p className="text-[#2c3150]/70 mb-6">
-                        Discover your Zone of Genius first to unlock your Genius Business.
+                        {t("geniusBusiness.createBody")}
                     </p>
                     <Button
                         variant="wabi-primary"
                         onClick={() => navigate("/zone-of-genius/entry?return=/game/me/genius-business")}
                     >
                         <Sparkles className="w-4 h-4 mr-2" />
-                        Discover My Genius
+                        {t("geniusBusiness.discoverCta")}
                     </Button>
                 </div>
             </GameShellV2>
@@ -98,7 +100,7 @@ const GeniusBusiness = () => {
                     .single();
 
                 if (!snapshot?.appleseed_data) {
-                    throw new Error("Could not load your genius data");
+                    throw new Error(t("geniusBusiness.errorLoadGenius"));
                 }
 
                 // Import and run the Excalibur generator
@@ -112,7 +114,7 @@ const GeniusBusiness = () => {
                 const { saveExcalibur } = await import("@/modules/zone-of-genius/saveToDatabase");
                 const saveResult = await saveExcalibur(excalibur);
                 if (!saveResult.success) {
-                    throw new Error(saveResult.error || "Could not save your Unique Offer");
+                    throw new Error(saveResult.error || t("geniusBusiness.errorSaveOffer"));
                 }
 
                 // Reload page to show the full overview
@@ -122,8 +124,8 @@ const GeniusBusiness = () => {
                 setIsGenerating(false);
                 // Day 66: surface to user instead of stalling silently.
                 toast({
-                    title: "Generation Failed",
-                    description: err instanceof Error ? err.message : "Please try again.",
+                    title: t("geniusBusiness.toastGenerationFailedTitle"),
+                    description: err instanceof Error ? err.message : t("geniusBusiness.toastGenerationFailedFallback"),
                     variant: "destructive",
                 });
             }
@@ -133,18 +135,18 @@ const GeniusBusiness = () => {
             <GameShellV2>
                 <div className="max-w-2xl mx-auto p-6 text-center">
                     <div className="inline-flex items-center justify-center w-16 h-16 rounded-full overflow-hidden mb-4">
-                        <img src="/genius-business-logo.png" alt="Genius Business" className="w-full h-full object-cover" />
+                        <img src="/genius-business-logo.png" alt={t("geniusBusiness.logoAlt")} className="w-full h-full object-cover" />
                     </div>
-                    <h1 className="text-2xl font-bold text-[#2c3150] mb-2 uppercase tracking-wide">Your Genius Is Ready</h1>
+                    <h1 className="text-2xl font-bold text-[#2c3150] mb-2 uppercase tracking-wide">{t("geniusBusiness.readyTitle")}</h1>
                     <p className="text-[#2c3150]/70 mb-6">
-                        Let's transform your Zone of Genius into a business identity.
+                        {t("geniusBusiness.readyBody")}
                     </p>
                     <Button
                         variant="wabi-primary"
                         onClick={handleRevealGeniusBusiness}
                     >
                         <Sword className="w-4 h-4 mr-2" />
-                        Reveal My Genius Business
+                        {t("geniusBusiness.revealCta")}
                     </Button>
                 </div>
             </GameShellV2>
@@ -157,7 +159,7 @@ const GeniusBusiness = () => {
                 {/* Hero: Business name + tagline */}
                 <div className="text-center py-8 bg-gradient-to-br from-[#e7e9e5] to-[#dcdde2] rounded-2xl border border-[#a4a3d0]/20">
                     <div className="inline-flex items-center justify-center w-14 h-14 rounded-full overflow-hidden mb-4">
-                        <img src="/genius-business-logo.png" alt="Genius Business" className="w-full h-full object-cover" />
+                        <img src="/genius-business-logo.png" alt={t("geniusBusiness.logoAlt")} className="w-full h-full object-cover" />
                     </div>
                     <h1 className="text-3xl font-display font-bold text-[#2c3150] mb-2">
                         {excaliburData.businessIdentity.name}
@@ -171,7 +173,7 @@ const GeniusBusiness = () => {
                 {/* Day 91 (Sasha 2026-06-09): card fills tokenized for Aurum — lapis fallback = exact prior literal. */}
                 {excaliburData.essenceAnchor && (
                     <div className="p-4 bg-[var(--skin-card-fill,rgba(255,255,255,0.6))] rounded-xl border border-[#a4a3d0]/20">
-                        <p className="text-sm text-[#a4a3d0] mb-1">Genius Apple Seed</p>
+                        <p className="text-sm text-[#a4a3d0] mb-1">{t("geniusBusiness.geniusAppleSeedLabel")}</p>
                         <p className="text-[#2c3150] font-medium">{excaliburData.essenceAnchor.geniusAppleSeed}</p>
                     </div>
                 )}
@@ -179,7 +181,7 @@ const GeniusBusiness = () => {
                 {/* Offer statement */}
                 {excaliburData.offer && (
                     <div className="p-4 bg-[var(--skin-card-fill,rgba(255,255,255,0.6))] rounded-xl border border-[#a4a3d0]/20">
-                        <p className="text-sm text-[#a4a3d0] mb-1">Your Unique Selling Proposition</p>
+                        <p className="text-sm text-[#a4a3d0] mb-1">{t("geniusBusiness.uspLabel")}</p>
                         <p className="text-[#2c3150]">{excaliburData.offer.statement}</p>
                     </div>
                 )}
@@ -194,9 +196,9 @@ const GeniusBusiness = () => {
                         >
                             <mod.icon className="w-5 h-5 text-[#8460ea] mb-2" />
                             <p className="font-medium text-[#2c3150] group-hover:text-[#8460ea] transition-colors">
-                                {mod.label}
+                                {t(mod.labelKey)}
                             </p>
-                            <p className="text-xs text-[#a4a3d0]">{mod.description}</p>
+                            <p className="text-xs text-[#a4a3d0]">{t(mod.descriptionKey)}</p>
                         </button>
                     ))}
                 </div>

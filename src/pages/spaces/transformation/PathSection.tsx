@@ -1,36 +1,38 @@
 import { useParams } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { Activity, Brain, Heart, Sparkles, Zap } from "lucide-react";
 import GameShellV2 from "@/components/game/GameShellV2";
 
 const PATH_INFO = {
   body: {
-    label: "Body",
+    labelKey: "pathSection.bodyLabel",
     icon: Activity,
-    description: "Physical vitality, energy, and health",
+    descriptionKey: "pathSection.bodyDescription",
   },
   emotions: {
-    label: "Emotions",
+    labelKey: "pathSection.emotionsLabel",
     icon: Heart,
-    description: "Emotional regulation and shadow work",
+    descriptionKey: "pathSection.emotionsDescription",
   },
   mind: {
-    label: "Mind",
+    labelKey: "pathSection.mindLabel",
     icon: Brain,
-    description: "Worldview, beliefs, and mental clarity",
+    descriptionKey: "pathSection.mindDescription",
   },
   genius: {
-    label: "Genius",
+    labelKey: "pathSection.geniusLabel",
     icon: Zap,
-    description: "Authenticity and self-expression",
+    descriptionKey: "pathSection.geniusDescription",
   },
   spirit: {
-    label: "Spirit",
+    labelKey: "pathSection.spiritLabel",
     icon: Sparkles,
-    description: "Awareness, presence, and sensitivity",
+    descriptionKey: "pathSection.spiritDescription",
   },
 };
 
 const PathSection = () => {
+  const { t } = useTranslation();
   const { pathId } = useParams<{ pathId: string }>();
   const pathInfo = PATH_INFO[pathId as keyof typeof PATH_INFO];
 
@@ -38,14 +40,15 @@ const PathSection = () => {
     return (
       <GameShellV2>
         <div className="p-6 lg:p-8 max-w-2xl mx-auto">
-          <h1 className="text-2xl font-bold text-foreground">Path not found</h1>
-          <p className="text-muted-foreground mt-2">This growth path does not exist.</p>
+          <h1 className="text-2xl font-bold text-foreground">{t('pathSection.notFoundTitle')}</h1>
+          <p className="text-muted-foreground mt-2">{t('pathSection.notFoundBody')}</p>
         </div>
       </GameShellV2>
     );
   }
 
   const Icon = pathInfo.icon;
+  const label = t(pathInfo.labelKey);
 
   return (
     <GameShellV2>
@@ -53,14 +56,14 @@ const PathSection = () => {
         <div className="mb-8">
           <div className="flex items-center gap-3 mb-2">
             <Icon className="w-6 h-6 text-foreground" />
-            <h1 className="text-2xl font-bold text-foreground">{pathInfo.label}</h1>
+            <h1 className="text-2xl font-bold text-foreground">{label}</h1>
           </div>
-          <p className="text-muted-foreground">{pathInfo.description}</p>
+          <p className="text-muted-foreground">{t(pathInfo.descriptionKey)}</p>
         </div>
 
         <div className="rounded-xl border border-border bg-white/85 backdrop-blur-sm p-6 shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
           <p className="text-muted-foreground">
-            Coming soon: practices and content for the {pathInfo.label} path.
+            {t('pathSection.comingSoon', { label })}
           </p>
         </div>
       </div>

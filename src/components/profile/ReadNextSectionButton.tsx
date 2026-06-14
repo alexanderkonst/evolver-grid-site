@@ -11,23 +11,28 @@
  */
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 /**
  * Canonical order of My Top Talent subpages. Matches the SectionsPanel
  * subSections list. Start Here is included so the post-payment landing
  * also has a "next" button.
+ *
+ * The `label` field holds an i18n KEY (resolved with t() at render),
+ * not display copy. Keep the field name `label` so the exported
+ * getNextZogSubpage() return shape is unchanged for any future caller.
  */
 export const ZOG_SUBPAGE_ORDER: Array<{ path: string; label: string }> = [
-    { path: "/game/me/zone-of-genius/start-here", label: "Start Here" },
-    { path: "/game/me/zone-of-genius", label: "Overview" },
-    { path: "/game/me/zone-of-genius/how-it-shows-up", label: "How It Shows Up" },
-    { path: "/game/me/zone-of-genius/three-key-talents", label: "Three Talents in Depth" },
-    { path: "/game/me/zone-of-genius/top-shadow", label: "Top Shadow" },
-    { path: "/game/me/zone-of-genius/mastery", label: "Path of Mastery" },
-    { path: "/game/me/zone-of-genius/one-action", label: "One Action" },
-    { path: "/game/me/zone-of-genius/roles", label: "Ideal Environments" },
-    { path: "/game/me/zone-of-genius/partner", label: "Complementary Partner" },
-    { path: "/game/me/zone-of-genius/monetization", label: "Monetization" },
+    { path: "/game/me/zone-of-genius/start-here", label: "readNext.label.startHere" },
+    { path: "/game/me/zone-of-genius", label: "readNext.label.overview" },
+    { path: "/game/me/zone-of-genius/how-it-shows-up", label: "readNext.label.howItShowsUp" },
+    { path: "/game/me/zone-of-genius/three-key-talents", label: "readNext.label.threeTalents" },
+    { path: "/game/me/zone-of-genius/top-shadow", label: "readNext.label.topShadow" },
+    { path: "/game/me/zone-of-genius/mastery", label: "readNext.label.mastery" },
+    { path: "/game/me/zone-of-genius/one-action", label: "readNext.label.oneAction" },
+    { path: "/game/me/zone-of-genius/roles", label: "readNext.label.idealEnvironments" },
+    { path: "/game/me/zone-of-genius/partner", label: "readNext.label.partner" },
+    { path: "/game/me/zone-of-genius/monetization", label: "readNext.label.monetization" },
     // Day 66 (Sasha 2026-05-12): Unifying Role inserted between
     // monetization and whats-next. The order tells a story: how your
     // gift WORKS (talents/shadow/mastery) → how it PAYS (monetization)
@@ -35,12 +40,12 @@ export const ZOG_SUBPAGE_ORDER: Array<{ path: string; label: string }> = [
     // role) → what to DO next (whats-next CTA). The strategic-
     // positioning view sits right before the action prompt so the
     // closing CTA lands with deeper ground under it.
-    { path: "/game/me/zone-of-genius/unifying-role", label: "Your Unifying Role" },
+    { path: "/game/me/zone-of-genius/unifying-role", label: "readNext.label.unifyingRole" },
     // Day 61 (Sasha 2026-05-04 12:00): "What's Next?" appended as the
     // closing subpage. The reader who's gone through all 10 deep pages
     // lands here for the next-step CTA. Renders the same content as
     // Step 3 on Start Here, surfaced as its own page.
-    { path: "/game/me/zone-of-genius/whats-next", label: "What's Next?" },
+    { path: "/game/me/zone-of-genius/whats-next", label: "readNext.label.whatsNext" },
 ];
 
 /**
@@ -59,6 +64,7 @@ interface ReadNextSectionButtonProps {
 }
 
 const ReadNextSectionButton = ({ currentPath }: ReadNextSectionButtonProps) => {
+    const { t } = useTranslation();
     const next = getNextZogSubpage(currentPath);
     if (!next) return null;
 
@@ -79,7 +85,7 @@ const ReadNextSectionButton = ({ currentPath }: ReadNextSectionButtonProps) => {
                 }}
             >
                 <span style={{ letterSpacing: "0.02em" }}>
-                    Read next: {next.label}
+                    {t("readNext.readNext", { label: t(next.label) })}
                 </span>
                 <ArrowRight
                     aria-hidden="true"

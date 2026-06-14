@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import GameShellV2 from "@/components/game/GameShellV2";
 import TourSpotlight, { TourStepConfig } from "./TourSpotlight";
 
@@ -11,50 +12,46 @@ interface TourStepsScreenProps {
 /**
  * Tour steps configuration - maps to SpacesRail space IDs
  * Order: Profile (ME) first, then other spaces
+ *
+ * Copy lives in i18n under the `tourSteps.<key>.*` namespace and is
+ * resolved at render time (see component body).
  */
-const TOUR_STEPS: TourStepConfig[] = [
+interface TourStepDef {
+    /** ID to highlight in SpacesRail (matches SPACES.id) */
+    targetSpaceId: string;
+    /** i18n key suffix for this step's title/tagline/description */
+    key: string;
+}
+
+const TOUR_STEPS: TourStepDef[] = [
     // Hidden until built — uncomment to re-enable
     // {
     //     targetSpaceId: "next-move",
-    //     title: "My Next Move",
-    //     tagline: "Your personalized recommendations",
-    //     description: "This is your command center. See your recommended next action, track your progress, and stay focused on what matters most.",
+    //     key: "nextMove",
     // },
     {
         targetSpaceId: "grow",
-        title: "Me",
-        tagline: "Your Zone of Genius lives here",
-        description: "This is you — your Zone of Genius, your story, your unique gifts. Everything you discover about yourself gets saved here.",
+        key: "me",
     },
     {
         targetSpaceId: "learn",
-        title: "Learn",
-        tagline: "Your path of transformation",
-        description: "Map your Quality of Life, choose your growth path, and access transformational content. This is where you grow.",
+        key: "learn",
     },
     {
         targetSpaceId: "meet",
-        title: "Meet",
-        tagline: "Find your people",
-        description: "Connect with aligned people through genius matchmaking. Find partners, mentors, and collaborators who complement your gifts.",
+        key: "meet",
     },
     {
         targetSpaceId: "collaborate",
-        title: "Collaborate",
-        tagline: "Work together",
-        description: "Join forces with others on shared projects and missions. This is where individual genius becomes collective impact.",
+        key: "collaborate",
     },
     {
         targetSpaceId: "build",
-        title: "Build",
-        tagline: "Turn genius into income",
-        description: "Create your unique offer, build your landing page, and launch your genius business to the world.",
+        key: "build",
     },
     {
         targetSpaceId: "buysell",
-        title: "Offer",
-        tagline: "The marketplace",
-        description: "Browse and purchase offers from other creators, or list your own. This is where genius gets exchanged.",
+        key: "offer",
     },
 ];
 
@@ -63,7 +60,15 @@ const TOUR_STEPS: TourStepConfig[] = [
  * Shows navigation with spotlight highlighting each space
  */
 const TourStepsScreen = ({ onComplete, onBack, onSkip }: TourStepsScreenProps) => {
+    const { t } = useTranslation();
     const [currentStep, setCurrentStep] = useState(0);
+
+    const resolvedSteps: TourStepConfig[] = TOUR_STEPS.map((step) => ({
+        targetSpaceId: step.targetSpaceId,
+        title: t(`tourSteps.${step.key}.title`),
+        tagline: t(`tourSteps.${step.key}.tagline`),
+        description: t(`tourSteps.${step.key}.description`),
+    }));
 
     const handleNext = () => {
         if (currentStep < TOUR_STEPS.length - 1) {
@@ -86,13 +91,13 @@ const TourStepsScreen = ({ onComplete, onBack, onSkip }: TourStepsScreenProps) =
             {/* Empty content - tour shows in spotlight overlay */}
             <div className="min-h-[60vh] flex items-center justify-center p-8">
                 <div className="text-center text-[var(--wabi-text-muted)]">
-                    <p className="text-sm">Explore your spaces →</p>
+                    <p className="text-sm">{t("tourSteps.exploreHint")} →</p>
                 </div>
             </div>
 
             {/* Tour Spotlight Overlay */}
             <TourSpotlight
-                steps={TOUR_STEPS}
+                steps={resolvedSteps}
                 currentStep={currentStep}
                 onNext={handleNext}
                 onBack={handleBack}

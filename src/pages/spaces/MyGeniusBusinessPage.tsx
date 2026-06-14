@@ -17,17 +17,19 @@ import GameShellV2 from "@/components/game/GameShellV2";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import { usePublishedGeniusBusiness } from "@/modules/product-builder/ProductBuilderContext";
 import { useToast } from "@/hooks/use-toast";
+import { useTranslation } from "react-i18next";
 
 const MyGeniusBusinessPage: React.FC = () => {
     const navigate = useNavigate();
     const business = usePublishedGeniusBusiness();
     const { toast } = useToast();
+    const { t } = useTranslation();
 
     const handleCopyLink = async () => {
         if (business?.productUrl) {
             const fullUrl = `${window.location.origin}${business.productUrl}`;
             await navigator.clipboard.writeText(fullUrl);
-            toast({ title: "Link copied!", description: "Share it with the world." });
+            toast({ title: t("myGeniusBusiness.toastCopiedTitle"), description: t("myGeniusBusiness.toastCopiedDescription") });
         }
     };
 
@@ -41,11 +43,10 @@ const MyGeniusBusinessPage: React.FC = () => {
                             <Sparkles className="w-8 h-8 text-primary" />
                         </div>
                         <h1 className="text-2xl font-bold text-white mb-3">
-                            No Genius Business Yet
+                            {t("myGeniusBusiness.emptyTitle")}
                         </h1>
                         <p className="text-white/50 mb-8 max-w-md mx-auto">
-                            Build your first genius business using the Product Builder.
-                            It takes about 5 minutes to create your landing page.
+                            {t("myGeniusBusiness.emptyDescription")}
                         </p>
                         <button
                             onClick={() => navigate("/game/build/product-builder")}
@@ -55,7 +56,7 @@ const MyGeniusBusinessPage: React.FC = () => {
                                        flex items-center gap-2 mx-auto"
                         >
                             <Sparkles className="w-4 h-4" />
-                            Start Building
+                            {t("myGeniusBusiness.startBuilding")}
                         </button>
                     </div>
                 </ErrorBoundary>
@@ -71,9 +72,9 @@ const MyGeniusBusinessPage: React.FC = () => {
                     <div className="mb-8">
                         <div className="flex items-center gap-3 mb-2">
                             <Sparkles className="w-6 h-6 text-primary" />
-                            <h1 className="text-2xl font-bold text-white">My Genius Business</h1>
+                            <h1 className="text-2xl font-bold text-white">{t("myGeniusBusiness.pageTitle")}</h1>
                         </div>
-                        <p className="text-white/50">Your published genius business at a glance.</p>
+                        <p className="text-white/50">{t("myGeniusBusiness.pageSubtitle")}</p>
                     </div>
 
                     {/* Product Card */}
@@ -81,14 +82,14 @@ const MyGeniusBusinessPage: React.FC = () => {
                         <div className="flex items-start justify-between mb-4">
                             <div>
                                 <h2 className="text-xl font-bold text-white mb-1">
-                                    {business.landingContent?.headline || "My Genius Product"}
+                                    {business.landingContent?.headline || t("myGeniusBusiness.productHeadlineFallback")}
                                 </h2>
                                 <p className="text-white/50 text-sm">
                                     {business.landingContent?.subheadline || ""}
                                 </p>
                             </div>
                             <span className="px-3 py-1 rounded-full bg-green-500/15 text-green-300 text-xs font-semibold ring-1 ring-green-500/20">
-                                Live
+                                {t("myGeniusBusiness.liveBadge")}
                             </span>
                         </div>
 
@@ -96,23 +97,23 @@ const MyGeniusBusinessPage: React.FC = () => {
                         <div className="grid grid-cols-3 gap-4 mb-6">
                             <div className="text-center p-3 rounded-lg bg-white/[0.02] ring-1 ring-white/5">
                                 <Users className="w-5 h-5 text-primary mx-auto mb-1" />
-                                <p className="text-xs text-white/30">ICP</p>
+                                <p className="text-xs text-white/30">{t("myGeniusBusiness.statIcpLabel")}</p>
                                 <p className="text-sm font-medium text-white/80 truncate">
-                                    {business.deepICP?.who?.split('.')[0]?.slice(0, 30) || "Defined"}
+                                    {business.deepICP?.who?.split('.')[0]?.slice(0, 30) || t("myGeniusBusiness.statDefined")}
                                 </p>
                             </div>
                             <div className="text-center p-3 rounded-lg bg-white/[0.02] ring-1 ring-white/5">
                                 <Target className="w-5 h-5 text-primary mx-auto mb-1" />
-                                <p className="text-xs text-white/30">Promise</p>
+                                <p className="text-xs text-white/30">{t("myGeniusBusiness.statPromiseLabel")}</p>
                                 <p className="text-sm font-medium text-white/80 truncate">
-                                    {business.deepTP?.promiseStatement?.slice(0, 30) || "Defined"}
+                                    {business.deepTP?.promiseStatement?.slice(0, 30) || t("myGeniusBusiness.statDefined")}
                                 </p>
                             </div>
                             <div className="text-center p-3 rounded-lg bg-white/[0.02] ring-1 ring-white/5">
                                 <BookOpen className="w-5 h-5 text-primary mx-auto mb-1" />
-                                <p className="text-xs text-white/30">Blueprint</p>
+                                <p className="text-xs text-white/30">{t("myGeniusBusiness.statBlueprintLabel")}</p>
                                 <p className="text-sm font-medium text-white/80 truncate">
-                                    {business.blueprintContent?.steps?.length || 0} steps
+                                    {t("myGeniusBusiness.statSteps", { count: business.blueprintContent?.steps?.length || 0 })}
                                 </p>
                             </div>
                         </div>
@@ -137,14 +138,14 @@ const MyGeniusBusinessPage: React.FC = () => {
                                 className="px-4 py-2 rounded-lg bg-primary/20 ring-1 ring-[#8460ea]/30 text-muted-foreground hover:bg-primary/30 transition-all text-sm font-medium flex items-center gap-1"
                             >
                                 <ExternalLink className="w-4 h-4" />
-                                View Page
+                                {t("myGeniusBusiness.viewPage")}
                             </button>
                             <button
                                 onClick={() => navigate("/game/build/product-builder")}
                                 className="px-4 py-2 rounded-lg liquid-glass ring-1 ring-white/15 text-white/70 hover:bg-white/5 transition-all text-sm font-medium flex items-center gap-1"
                             >
                                 <Edit className="w-4 h-4" />
-                                Edit
+                                {t("myGeniusBusiness.edit")}
                             </button>
                         </div>
                     </div>
@@ -156,17 +157,16 @@ const MyGeniusBusinessPage: React.FC = () => {
                                 <RefreshCw className="w-6 h-6 text-primary" />
                             </div>
                             <div className="flex-1">
-                                <h3 className="font-semibold text-white mb-1">Refine Your Genius Business</h3>
+                                <h3 className="font-semibold text-white mb-1">{t("myGeniusBusiness.refineTitle")}</h3>
                                 <p className="text-sm text-white/50 mb-4">
-                                    Sharpen your ICP, deepen your pain understanding,
-                                    and iterate on your transformational promise. Each refinement makes your business more precise.
+                                    {t("myGeniusBusiness.refineDescription")}
                                 </p>
                                 <button
                                     onClick={() => navigate("/game/build/refine")}
                                     className="px-4 py-2 rounded-lg liquid-glass ring-1 ring-[#8460ea]/30 text-muted-foreground hover:bg-primary/10 transition-all text-sm font-medium flex items-center gap-1"
                                 >
                                     <Zap className="w-4 h-4" />
-                                    Start Refinement
+                                    {t("myGeniusBusiness.startRefinement")}
                                     <ArrowRight className="w-4 h-4 ml-1" />
                                 </button>
                             </div>
@@ -182,8 +182,8 @@ const MyGeniusBusinessPage: React.FC = () => {
                                 <Eye className="w-5 h-5 text-primary" />
                             </div>
                             <div className="flex-1">
-                                <h3 className="font-semibold text-white text-sm group-hover:text-white transition-colors">View Your Canvas</h3>
-                                <p className="text-xs text-white/40">See all 7 artifacts from your session</p>
+                                <h3 className="font-semibold text-white text-sm group-hover:text-white transition-colors">{t("myGeniusBusiness.canvasTitle")}</h3>
+                                <p className="text-xs text-white/40">{t("myGeniusBusiness.canvasDescription")}</p>
                             </div>
                             <ArrowRight className="w-4 h-4 text-white/30 group-hover:text-white/60 transition-colors" />
                         </div>
