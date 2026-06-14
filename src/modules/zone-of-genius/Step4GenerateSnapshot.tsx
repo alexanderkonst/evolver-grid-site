@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from "react";
+import { localizedOrigin } from "@/i18n/localeScope";
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import { useZoneOfGenius } from "./ZoneOfGeniusContext";
 import { TALENTS } from "./talents";
@@ -1121,10 +1122,10 @@ ${snapshotText}`;
                         navigator.share({
                           title: "My Top Talent",
                           text: `I just discovered my Top Talent: ${cleanedArchetypeTitle}.`,
-                          url: `${window.location.origin}/zone-of-genius`,
+                          url: `${localizedOrigin()}/zone-of-genius`,
                         }).catch(() => {});
                       } else {
-                        navigator.clipboard?.writeText(`${window.location.origin}/zone-of-genius`);
+                        navigator.clipboard?.writeText(`${localizedOrigin()}/zone-of-genius`);
                         toast.success("Link copied — share with a friend.");
                       }
                     }}

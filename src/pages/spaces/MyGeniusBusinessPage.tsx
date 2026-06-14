@@ -1,4 +1,5 @@
 import React from "react";
+import { localizedOrigin } from "@/i18n/localeScope";
 import { Link, useNavigate } from "react-router-dom";
 import {
     ExternalLink,
@@ -27,7 +28,7 @@ const MyGeniusBusinessPage: React.FC = () => {
 
     const handleCopyLink = async () => {
         if (business?.productUrl) {
-            const fullUrl = `${window.location.origin}${business.productUrl}`;
+            const fullUrl = `${localizedOrigin()}${business.productUrl}`;
             await navigator.clipboard.writeText(fullUrl);
             toast({ title: t("myGeniusBusiness.toastCopiedTitle"), description: t("myGeniusBusiness.toastCopiedDescription") });
         }

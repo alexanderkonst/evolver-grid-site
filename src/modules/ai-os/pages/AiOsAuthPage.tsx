@@ -5,6 +5,7 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/hooks/use-toast";
+import { localizedOrigin } from "@/i18n/localeScope";
 import BokehBackground from "../components/BokehBackground";
 import { useAiOsAuth as useAuth } from "../hooks/useAiOsAuth";
 import { useEffect } from "react";
@@ -38,7 +39,7 @@ const Auth = () => {
           password,
           options: {
             data: { display_name: displayName },
-            emailRedirectTo: window.location.origin,
+            emailRedirectTo: localizedOrigin(),
           },
         });
         if (error) throw error;

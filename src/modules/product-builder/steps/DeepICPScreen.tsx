@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import i18n from "@/i18n/config";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -63,7 +64,8 @@ const DeepICPScreen: React.FC = () => {
             // Try to call AI to deepen ICP
             try {
                 const { data, error: fnError } = await supabase.functions.invoke("deepen-icp", {
-                    body: { excalibur: snapshot.excalibur_data },
+                    body: {
+                        target_language: i18n.resolvedLanguage, excalibur: snapshot.excalibur_data },
                 });
 
                 if (!fnError && data) {

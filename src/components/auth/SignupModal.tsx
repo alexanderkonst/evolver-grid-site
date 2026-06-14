@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/dialog";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useToast } from "@/hooks/use-toast";
+import { localizedOrigin } from "@/i18n/localeScope";
 import { useTranslation } from "react-i18next";
 import { User, Sparkles } from "lucide-react";
 
@@ -69,7 +70,7 @@ const SignupModal = ({
                 email,
                 password,
                 options: {
-                    emailRedirectTo: `${window.location.origin}/game`,
+                    emailRedirectTo: `${localizedOrigin()}/game`,
                     data: {
                         first_name: firstName.trim(),
                         last_name: lastName.trim(),

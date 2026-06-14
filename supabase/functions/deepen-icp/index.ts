@@ -1,4 +1,5 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
+import { resolveOutputLanguage, languageDirective } from "../_shared/language.ts";
 
 const corsHeaders = {
     "Access-Control-Allow-Origin": "*",
@@ -37,7 +38,8 @@ serve(async (req) => {
     }
 
     try {
-        const { excalibur } = await req.json();
+        const { excalibur, target_language } = await req.json();
+        const outputLanguage = resolveOutputLanguage(target_language);
 
         if (!excalibur) {
             return new Response(
@@ -70,7 +72,7 @@ EXCALIBUR DATA:
             body: JSON.stringify({
                 model: "google/gemini-2.5-flash-lite",
                 messages: [
-                    { role: "system", content: DEEPEN_ICP_PROMPT },
+                    { role: "system", content: DEEPEN_ICP_PROMPT + languageDirective(outputLanguage) },
                     { role: "user", content: `Deepen this ICP:\n\n${icpContext}` }
                 ],
             }),

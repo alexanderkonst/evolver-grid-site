@@ -322,7 +322,6 @@
     "toastAssetsSavedDesc": "Сохранено активов: {{saved}}{{skipped}}.",
     "toastSkippedClause": ", пропущено: {{count}}",
     "toastSomethingWentWrong": "Что-то пошло не так",
-    "celebrateResultText": "{{count}} актив на карте",
     "heroTitleBefore": "Карта",
     "heroTitleGold": "активов",
     "heroSubtitle": "Собери свои ресурсы для коллабораций",
@@ -360,7 +359,10 @@
     "maturityHintNeedsPackaging": "Реальный и проверенный, но живёт у тебя в голове или в разрозненных артефактах. Две недели упаковки — и можно продавать.",
     "maturityHintLatent": "Потенциал реален, но не проверен на рынке. Не протестирован или не описан.",
     "maturityHintAspirational": "Связи, сеть, предполагаемый доступ. Дверь есть — но ты ещё не открыл её ради дохода или дистрибуции.",
-    "maturityHintSymbolicOnly": "Мифическое, биографическое или сакральное топливо. Реальное, но операционно инертное сегодня."
+    "maturityHintSymbolicOnly": "Мифическое, биографическое или сакральное топливо. Реальное, но операционно инертное сегодня.",
+    "celebrateResultText_one": "{{count}} актив на карте",
+    "celebrateResultText_few": "{{count}} актива на карте",
+    "celebrateResultText_many": "{{count}} активов на карте"
   },
   "qolResults": {
     "loading": "Загружаем твои результаты...",
@@ -2235,11 +2237,15 @@
     "card": {
       "submodules_one": "{{count}} субмодуль",
       "submodules_other": "{{count}} субмодулей",
-      "requires": "Требуется: {{deps}}"
+      "requires": "Требуется: {{deps}}",
+      "submodules_few": "{{count}} субмодуля",
+      "submodules_many": "{{count}} субмодулей"
     },
     "list": {
       "moduleCount_one": "({{count}} модуль)",
-      "moduleCount_other": "({{count}} модулей)"
+      "moduleCount_other": "({{count}} модулей)",
+      "moduleCount_few": "({{count}} модуля)",
+      "moduleCount_many": "({{count}} модулей)"
     },
     "versionScheme": {
       "title": "Схема версионирования",
@@ -3250,7 +3256,6 @@
     }
   },
   "profileAssets": {
-    "toastCopied": "Скопировано {{count}} актив в буфер обмена",
     "toastCopyBlocked": "Не удалось скопировать — буфер обмена заблокирован",
     "headerTitleBefore": "Сохранённые",
     "headerTitleGold": "активы",
@@ -3271,7 +3276,10 @@
     "syncHintRefresh": "«Обновить»",
     "syncHintAfter": "выше.",
     "emptyLine1": "Здесь пока пусто.",
-    "emptyLine2": "Картируй свой первый ресурс, чтобы правильные коллабораторы могли тебя найти."
+    "emptyLine2": "Картируй свой первый ресурс, чтобы правильные коллабораторы могли тебя найти.",
+    "toastCopied_one": "Скопирован {{count}} актив в буфер обмена",
+    "toastCopied_few": "Скопировано {{count}} актива в буфер обмена",
+    "toastCopied_many": "Скопировано {{count}} активов в буфер обмена"
   },
   "revelatoryHero": {
     "logoAlt": "Главный талант",
@@ -6453,5 +6461,12 @@
     "philanthropy-impact": {
       "title": "Филантропия"
     }
+  },
+  "profileMission": {
+    "savedOn": "Сохранено {{date}}.",
+    "editMission": "Редактировать миссию",
+    "discoverMission": "Найти мою миссию",
+    "heading": "Твоя миссия",
+    "oneSentence": "Одна фраза"
   }
 }

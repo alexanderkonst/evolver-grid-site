@@ -30,6 +30,7 @@
  */
 
 import { useEffect, useState } from "react";
+import { formatDate } from "@/i18n/format";
 import { useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { supabase } from "@/integrations/supabase/client";
@@ -493,7 +494,7 @@ export default function PublicLandingPage() {
               fontVariantNumeric: "tabular-nums lining-nums",
             }}
           >
-            {t('publicLanding.publishedOn', { date: new Date(dossier.published_at).toLocaleDateString() })} ·{" "}
+            {t('publicLanding.publishedOn', { date: formatDate(dossier.published_at) })} ·{" "}
             {dossier.landing_page_version || "v?"}
           </div>
           <div

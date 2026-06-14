@@ -80,7 +80,7 @@ interface SideQuestRecommendation {
 export default function TodayPage() {
     const navigate = useNavigate();
     const { toast } = useToast();
-    const { t } = useTranslation();
+    const { t, i18n } = useTranslation();
 
     const logSelection = (payload: Omit<Parameters<typeof logActionEvent>[0], "profileId">) => {
         if (!profile?.id) return;
@@ -222,6 +222,7 @@ export default function TodayPage() {
 
             const { data, error } = await supabase.functions.invoke('suggest-next-quest', {
                 body: {
+                    target_language: i18n.resolvedLanguage,
                     intention: "personal growth and transformation",
                     practices,
                     context: {

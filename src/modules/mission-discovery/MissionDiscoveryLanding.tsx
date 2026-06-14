@@ -41,6 +41,7 @@
  */
 
 import { useEffect, useRef, useState } from "react";
+import { formatDate } from "@/i18n/format";
 import { useTranslation } from "react-i18next";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { ArrowRight, Clipboard, Check, ChevronRight, Pencil } from "lucide-react";
@@ -831,7 +832,7 @@ const MissionDiscoveryLanding = () => {
                         >
                             {savedAt
                                 ? t("missionLanding.editDialogDescDated", {
-                                      date: new Date(savedAt).toLocaleDateString(undefined, { month: "long", day: "numeric", year: "numeric" }),
+                                      date: formatDate(savedAt, { month: "long", day: "numeric", year: "numeric" }),
                                   })
                                 : t("missionLanding.editDialogDesc")}
                         </AlertDialogDescription>
@@ -878,7 +879,7 @@ const MissionDiscoveryLanding = () => {
                         >
                             {savedAt
                                 ? t("missionLanding.startOverDialogDescDated", {
-                                      date: new Date(savedAt).toLocaleDateString(undefined, { month: "long", day: "numeric", year: "numeric" }),
+                                      date: formatDate(savedAt, { month: "long", day: "numeric", year: "numeric" }),
                                   })
                                 : t("missionLanding.startOverDialogDesc")}
                         </AlertDialogDescription>

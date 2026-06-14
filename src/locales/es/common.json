@@ -1530,7 +1530,6 @@
     "introSubtitle": "Una práctica. Cinco caminos. Progreso constante.",
     "introCta": "Muéstrame la práctica de hoy",
     "pageTitle": "Hoy",
-    "dayStreak": "racha de {{count}} días",
     "level": "Nivel {{level}}",
     "xp": "{{xp}} XP",
     "doneTitle": "¡Hecho por hoy! 🎉",
@@ -1569,7 +1568,9 @@
     "notesLabel": "Notas (opcional)",
     "notesPlaceholder": "¿Qué creaste? ¿Cómo se siente?",
     "cancel": "Cancelar",
-    "markArtifactDone": "Marcar artefacto como hecho"
+    "markArtifactDone": "Marcar artefacto como hecho",
+    "dayStreak_one": "racha de {{count}} día",
+    "dayStreak_other": "racha de {{count}} días"
   },
   "geniusOffer": {
     "back": "ATRÁS",
@@ -2443,7 +2444,6 @@
     "footerTagline": "Construido en abierto. Propiedad de las personas que lo usan."
   },
   "profileAssets": {
-    "toastCopied": "Se copió {{count}} activo al portapapeles",
     "toastCopyBlocked": "No se pudo copiar — portapapeles bloqueado",
     "headerTitleBefore": "Activos",
     "headerTitleGold": "guardados",
@@ -2464,7 +2464,9 @@
     "syncHintRefresh": "Actualizar",
     "syncHintAfter": "arriba.",
     "emptyLine1": "Aquí no hay nada todavía.",
-    "emptyLine2": "Mapea tu primer recurso para que los colaboradores adecuados puedan encontrarte."
+    "emptyLine2": "Mapea tu primer recurso para que los colaboradores adecuados puedan encontrarte.",
+    "toastCopied_one": "Se copió {{count}} activo al portapapeles",
+    "toastCopied_other": "Se copiaron {{count}} activos al portapapeles"
   },
   "revelatoryHero": {
     "logoAlt": "Talento Principal",
@@ -2816,16 +2818,18 @@
     "transcriptHeading": "Transcripción",
     "copy": "Copiar",
     "copied": "Copiado",
-    "wordCount": "{{count}} palabras",
     "footerTip": "Funciona con la mayoría de los videos de YouTube que tienen subtítulos activados",
     "errorInvalidUrl": "Por favor, ingresa una URL de YouTube válida",
     "errorAutoUnavailable": "Transcripción automática no disponible. Puedes pegar la transcripción manualmente abajo, o usar la función de transcripción integrada de YouTube (haz clic en ⋮ → Mostrar transcripción en el video).",
     "errorAutoFailed": "No se pudo obtener la transcripción automáticamente. Puedes pegarla manualmente abajo.",
     "toastSuccessTitle": "¡Listo!",
-    "toastTranscriptReady": "Transcripción lista ({{count}} palabras)",
     "toastCopiedTitle": "¡Copiado!",
     "toastCopiedDescription": "Transcripción copiada al portapapeles",
-    "toastSavedTitle": "¡Transcripción guardada!"
+    "toastSavedTitle": "¡Transcripción guardada!",
+    "wordCount_one": "{{count}} palabra",
+    "wordCount_other": "{{count}} palabras",
+    "toastTranscriptReady_one": "Transcripción lista ({{count}} palabra)",
+    "toastTranscriptReady_other": "Transcripción lista ({{count}} palabras)"
   },
   "gameShell": {
     "brand": "Genius Business",
@@ -4373,7 +4377,8 @@
     "refineDescription": "Afina tu ICP, profundiza tu comprensión del dolor e itera sobre tu promesa transformacional. Cada refinamiento vuelve tu negocio más preciso.",
     "startRefinement": "Empezar el refinamiento",
     "canvasTitle": "Ver tu Canvas",
-    "canvasDescription": "Mira los 7 artefactos de tu sesión"
+    "canvasDescription": "Mira los 7 artefactos de tu sesión",
+    "statSteps_other": "{{count}} pasos"
   },
   "dailyLoopLayout": {
     "me": {
@@ -4381,7 +4386,8 @@
       "welcomeBack": "Bienvenido de vuelta",
       "playerFallback": "Jugador",
       "levelXp": "Nivel {{level}} · {{xp}} XP",
-      "streak": "Racha de {{count}} días"
+      "streak_one": "Racha de {{count}} día",
+      "streak_other": "Racha de {{count}} días"
     },
     "myLife": {
       "title": "Mi vida",
@@ -4935,7 +4941,6 @@
     "toastAssetsSavedDesc": "Se guardaron {{saved}} activos{{skipped}}.",
     "toastSkippedClause": ", se omitieron {{count}}",
     "toastSomethingWentWrong": "Algo salió mal",
-    "celebrateResultText": "{{count}} activo mapeado",
     "heroTitleBefore": "Mapeo de",
     "heroTitleGold": "Activos",
     "heroSubtitle": "Mapea tus recursos para colaborar",
@@ -4973,7 +4978,9 @@
     "maturityHintNeedsPackaging": "Real y probado, pero vive en tu cabeza o en artefactos dispersos. A dos semanas de empaquetado de poder venderse.",
     "maturityHintLatent": "El potencial es real, pero no está probado en el mercado. Sin probar o sin documentar.",
     "maturityHintAspirational": "Acceso relacional / de red / previsto. La puerta existe; aún no la has abierto para generar ingresos o distribución.",
-    "maturityHintSymbolicOnly": "Combustible mítico, biográfico o sagrado. Real, pero hoy operativamente inerte."
+    "maturityHintSymbolicOnly": "Combustible mítico, biográfico o sagrado. Real, pero hoy operativamente inerte.",
+    "celebrateResultText_one": "{{count}} activo mapeado",
+    "celebrateResultText_other": "{{count}} activos mapeados"
   },
   "pathPage": {
     "hero": {
@@ -6453,5 +6460,12 @@
     "philanthropy-impact": {
       "title": "Filantropía"
     }
+  },
+  "profileMission": {
+    "savedOn": "Guardado el {{date}}.",
+    "editMission": "Editar misión",
+    "discoverMission": "Descubrir mi misión",
+    "heading": "Tu misión",
+    "oneSentence": "Una frase"
   }
 }

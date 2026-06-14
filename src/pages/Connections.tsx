@@ -27,6 +27,7 @@
  */
 
 import { useEffect, useMemo, useState } from "react";
+import { formatDate } from "@/i18n/format";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { UserPlus, Mail, X } from "lucide-react";
@@ -201,7 +202,7 @@ const Connections = () => {
             <p className="font-semibold text-foreground">{name}</p>
             <p className="text-xs text-muted-foreground mt-0.5 inline-flex items-center gap-1">
               <Mail className="w-3 h-3" />
-              {t('connections.introSent', { date: new Date(row.intro_sent_at).toLocaleDateString() })}
+              {t('connections.introSent', { date: formatDate(row.intro_sent_at) })}
             </p>
             {row.ai_why_text && (
               <p className="text-sm text-muted-foreground mt-2 italic">"{row.ai_why_text}"</p>
@@ -223,7 +224,7 @@ const Connections = () => {
           <div>
             <p className="font-semibold text-foreground">{name}</p>
             <p className="text-xs text-muted-foreground mt-0.5">
-              {t('connections.headsUpSent', { date: new Date(row.created_at).toLocaleDateString() })}
+              {t('connections.headsUpSent', { date: formatDate(row.created_at) })}
             </p>
           </div>
           <Button

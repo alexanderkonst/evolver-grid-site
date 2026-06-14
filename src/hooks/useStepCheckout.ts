@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { localizedOrigin } from "@/i18n/localeScope";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { PlaybookStep } from "@/data/playbookSteps";
@@ -60,7 +61,7 @@ export function useStepCheckout() {
 
             // ═══ Invoke the edge function ═══
             const returnUrl =
-                `${window.location.origin}/playbook/${step.slug}`;
+                `${localizedOrigin()}/playbook/${step.slug}`;
             const cancelUrl = returnUrl;
 
             const response = await supabase.functions.invoke(

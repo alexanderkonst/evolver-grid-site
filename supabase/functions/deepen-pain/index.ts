@@ -1,4 +1,5 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
+import { resolveOutputLanguage, languageDirective } from "../_shared/language.ts";
 
 const corsHeaders = {
     "Access-Control-Allow-Origin": "*",
@@ -39,7 +40,8 @@ serve(async (req) => {
     }
 
     try {
-        const { icp } = await req.json();
+        const { icp, target_language } = await req.json();
+        const outputLanguage = resolveOutputLanguage(target_language);
 
         if (!icp) {
             return new Response(
@@ -69,7 +71,7 @@ IDEAL CLIENT PROFILE:
             body: JSON.stringify({
                 model: "google/gemini-2.5-flash-lite",
                 messages: [
-                    { role: "system", content: DEEPEN_PAIN_PROMPT },
+                    { role: "system", content: DEEPEN_PAIN_PROMPT + languageDirective(outputLanguage) },
                     { role: "user", content: `Map the pain landscape for this client:\n\n${context}` }
                 ],
             }),

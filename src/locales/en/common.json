@@ -322,7 +322,6 @@
     "toastAssetsSavedDesc": "Saved {{saved}} assets{{skipped}}.",
     "toastSkippedClause": ", skipped {{count}}",
     "toastSomethingWentWrong": "Something went wrong",
-    "celebrateResultText": "{{count}} asset mapped",
     "heroTitleBefore": "Asset",
     "heroTitleGold": "Mapping",
     "heroSubtitle": "Map your resources for collaboration",
@@ -360,7 +359,9 @@
     "maturityHintNeedsPackaging": "Real and proven, but lives in your head or scattered artifacts. Two weeks of packaging from sellable.",
     "maturityHintLatent": "Potential is real but unproven in the market. Untested or undocumented.",
     "maturityHintAspirational": "Relational / networked / intended access. The door exists; you have not opened it for revenue or distribution yet.",
-    "maturityHintSymbolicOnly": "Mythic, biographical, or sacred fuel. Real, but operationally inert today."
+    "maturityHintSymbolicOnly": "Mythic, biographical, or sacred fuel. Real, but operationally inert today.",
+    "celebrateResultText_one": "{{count}} asset mapped",
+    "celebrateResultText_other": "{{count}} assets mapped"
   },
   "qolResults": {
     "loading": "Loading your results...",
@@ -3250,7 +3251,6 @@
     }
   },
   "profileAssets": {
-    "toastCopied": "Copied {{count}} asset to clipboard",
     "toastCopyBlocked": "Couldn't copy — clipboard blocked",
     "headerTitleBefore": "Saved",
     "headerTitleGold": "Assets",
@@ -3271,7 +3271,9 @@
     "syncHintRefresh": "Refresh",
     "syncHintAfter": "above.",
     "emptyLine1": "Nothing here yet.",
-    "emptyLine2": "Map your first resource so the right collaborators can find you."
+    "emptyLine2": "Map your first resource so the right collaborators can find you.",
+    "toastCopied_one": "Copied {{count}} asset to clipboard",
+    "toastCopied_other": "Copied {{count}} assets to clipboard"
   },
   "revelatoryHero": {
     "logoAlt": "Top Talent",
@@ -5114,7 +5116,8 @@
     "refineDescription": "Sharpen your ICP, deepen your pain understanding, and iterate on your transformational promise. Each refinement makes your business more precise.",
     "startRefinement": "Start Refinement",
     "canvasTitle": "View Your Canvas",
-    "canvasDescription": "See all 7 artifacts from your session"
+    "canvasDescription": "See all 7 artifacts from your session",
+    "statSteps_other": "{{count}} steps"
   },
   "landingCarousel": {
     "slide0": {
@@ -6453,5 +6456,12 @@
     "philanthropy-impact": {
       "title": "Philanthropy"
     }
+  },
+  "profileMission": {
+    "savedOn": "Saved on {{date}}.",
+    "editMission": "Edit mission",
+    "discoverMission": "Discover my mission",
+    "heading": "Your Mission",
+    "oneSentence": "One sentence"
   }
 }
