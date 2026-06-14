@@ -3,7 +3,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { lazy, Suspense, useEffect } from "react";
-import { BrowserRouter, Routes, Route, Navigate, useLocation, useParams } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, Outlet, useLocation, useParams } from "react-router-dom";
 import CustomCursor from "@/components/CustomCursor";
 import SiteLogo from "@/components/SiteLogo";
 import RequireAuth from "@/components/RequireAuth";
@@ -23,6 +23,7 @@ import DaouniverseScopeLock from "@/components/skin/DaouniverseScopeLock";
 import PlanetirScopeLock from "@/components/skin/PlanetirScopeLock";
 import AurumScopeLock from "@/components/skin/AurumScopeLock";
 import { initialSkinScope } from "@/lib/skinScope";
+import { initialLocaleScope } from "@/i18n/localeScope";
 import TechstarsScopeLock from "@/components/skin/TechstarsScopeLock";
 import MusicPlayer from "@/components/MusicPlayer";
 // Day 58+ (Sasha 2026-05-03): App-root mount for the SoundCloud
@@ -63,6 +64,7 @@ import MensCircle from "./pages/MensCircle";
 import MensCircleThankYou from "./pages/MensCircleThankYou";
 import VentureDashboard from "./pages/VentureDashboard";
 import GameShellV2 from "./components/game/GameShellV2";
+import { pathUsesLayoutShell, pathHidesLogo } from "./lib/shellRoutes";
 import MorphogeneticHolomap from "./pages/MorphogeneticHolomap";
 import FoundersShowcase from "./pages/FoundersShowcase";
 import IgniteSession from "./pages/IgniteSession";
@@ -280,6 +282,10 @@ const queryClient = new QueryClient();
  */
 const activeSkinScope = initialSkinScope;
 const skinBasename = activeSkinScope?.prefix;
+// Compose the locale prefix (/ru, /es) with the skin-scope prefix so the router
+// resolves /ru/aurum/… transparently. English carries no prefix.
+const localeBasename = initialLocaleScope?.prefix ?? "";
+const routerBasename = `${localeBasename}${skinBasename ?? ""}` || undefined;
 const isNSScope = activeSkinScope?.skin === "network-school";
 const isDaouniverseScope = activeSkinScope?.skin === "daouniverse";
 const isPlanetirScope = activeSkinScope?.skin === "planetir";
@@ -305,6 +311,37 @@ const TitleManager = () => {
   return null;
 };
 
+/**
+ * SmartShellLayout — Day 87 (Sasha 2026-05-29). The single layout route
+ * that hoists the persistent GameShellV2 out of per-page wrappers.
+ *
+ * Wraps the ENTIRE route list (routes themselves are left byte-for-byte
+ * unchanged — no reordering, no auth-wrapper moves). For in-shell paths
+ * it renders one persistent GameShellV2 around <Outlet/>; for everything
+ * else it renders a bare <Outlet/>. Because the shell instance sits at a
+ * stable tree position for all in-shell paths, navigating among them
+ * preserves the shell (and its Mux video, profile fetch, rail state)
+ * instead of rebuilding it — the core win of the refactor.
+ *
+ * Shell-vs-no-shell + hideLogo are decided by `src/lib/shellRoutes.ts`,
+ * a classifier verified against every route. Pages that still wrap their
+ * own <GameShellV2> render correctly meanwhile: the inner shell detects
+ * the nesting and no-ops (see ShellNestingContext in GameShellV2). Those
+ * inner wrappers get stripped in follow-up commits; nothing breaks in
+ * between.
+ */
+const SmartShellLayout = () => {
+  const location = useLocation();
+  if (pathUsesLayoutShell(location.pathname)) {
+    return (
+      <GameShellV2 hideLogo={pathHidesLogo(location.pathname)}>
+        <Outlet />
+      </GameShellV2>
+    );
+  }
+  return <Outlet />;
+};
+
 // Day 53 night iter 2 (Sasha 2026-04-27): UBD/UBL → dossier/page rename.
 // These two micro-redirects preserve any previously shared URLs.
 // `replace` so the user's history shows the new URL, not the old.
@@ -326,7 +363,7 @@ const App = () => (
         <Sonner />
         {/* AnimatedBackground removed for minimal SaaS design */}
         <CustomCursor />
-        <BrowserRouter basename={skinBasename}>
+        <BrowserRouter basename={routerBasename}>
           {isNSScope && <NSScopeLock />}
           {isDaouniverseScope && <DaouniverseScopeLock />}
           {isPlanetirScope && <PlanetirScopeLock />}
@@ -351,6 +388,13 @@ const App = () => (
             <Suspense fallback={<PageLoader />}>
               <PageTransition>
                 <Routes>
+                  {/* Day 87 (Sasha 2026-05-29): single layout route hoists the
+                      persistent shell. SmartShellLayout renders GameShellV2 once
+                      for in-shell paths (per src/lib/shellRoutes.ts) and a bare
+                      <Outlet/> otherwise. Routes below are UNCHANGED — same
+                      paths, same auth wrappers, same order — only the shell is
+                      lifted out of per-page mounts so it persists across nav. */}
+                  <Route element={<SmartShellLayout />}>
                   {/* ══════ PUBLIC ROUTES (no login required) ══════ */}
                   <Route path="/" element={<JourneyPage />} />
                   <Route path="/zone-of-genius" element={<ZoneOfGeniusEntry />} />
@@ -800,6 +844,7 @@ const App = () => (
                   <Route path="/preview" element={<SkinPreview />} />
                   {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                   <Route path="*" element={<NotFound />} />
+                  </Route>
                 </Routes>
               </PageTransition>
             </Suspense>
