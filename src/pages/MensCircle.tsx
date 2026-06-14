@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Users, MessageCircle } from "lucide-react";
@@ -212,6 +213,7 @@ const BulletItem = ({ children }: { children: string }) => (
 );
 
 const MensCircle = () => {
+  const { t } = useTranslation();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
@@ -254,7 +256,7 @@ const MensCircle = () => {
         <div className="max-w-md w-full text-center space-y-8">
           <img loading="lazy"
             src={mensCircleLogo}
-            alt="Men's Circle"
+            alt={t('mensCircle.logoAlt')}
             className="w-64 h-64 mx-auto mb-6 object-contain logo-glow"
           />
           <p
@@ -314,7 +316,7 @@ const MensCircle = () => {
         <div className="max-w-4xl mx-auto text-center space-y-5 md:space-y-8">
           <img loading="lazy"
             src={mensCircleLogo}
-            alt="Men's Circle"
+            alt={t('mensCircle.logoAlt')}
             className="w-32 h-32 md:w-56 md:h-56 mx-auto mb-2 md:mb-4 object-contain logo-glow"
           />
           <h1 className="text-2xl md:text-4xl lg:text-5xl leading-tight uppercase  px-2" style={{ textShadow: '0 0 15px rgba(218, 165, 32, 0.4), 0 0 30px rgba(218, 165, 32, 0.2)' }}>
@@ -381,7 +383,7 @@ const MensCircle = () => {
             <div className="w-24 h-24 md:w-36 md:h-36 mx-auto rounded-full p-1" style={{ backgroundColor: '#D4AF37' }}>
               <img loading="lazy"
                 src={mcLion}
-                alt="For Whom"
+                alt={t('mensCircle.forWhomAlt')}
                 className="w-full h-full object-cover rounded-full"
                 style={{ objectPosition: '40% center' }}
               />
@@ -419,7 +421,7 @@ const MensCircle = () => {
           <div className="text-center mb-2 md:mb-4">
             <img loading="lazy"
               src={mcDodecahedron}
-              alt="What Is This"
+              alt={t('mensCircle.whatIsThisAlt')}
               className="w-20 h-20 md:w-32 md:h-32 mx-auto object-contain"
             />
           </div>
@@ -449,7 +451,7 @@ const MensCircle = () => {
           <div className="text-center mb-2 md:mb-4">
             <img loading="lazy"
               src={mcMerkaba}
-              alt="How Meeting Goes"
+              alt={t('mensCircle.howMeetingGoesAlt')}
               className="w-20 h-20 md:w-32 md:h-32 mx-auto object-contain"
             />
           </div>
@@ -500,7 +502,7 @@ const MensCircle = () => {
             <div className="w-24 h-24 md:w-36 md:h-36 rounded-full overflow-hidden border-2 border-white/20 mx-auto">
               <img loading="lazy"
                 src={mcAlexShamanic}
-                alt="Aleksandr - Shamanic"
+                alt={t('mensCircle.alexShamanicAlt')}
                 className="w-full h-full object-cover object-center"
               />
             </div>
@@ -535,7 +537,7 @@ const MensCircle = () => {
             <div className="w-24 h-24 md:w-36 md:h-36 rounded-full overflow-hidden border-2 border-white/20 mx-auto">
               <img loading="lazy"
                 src={mcAlexProfessional}
-                alt="Aleksandr - Professional"
+                alt={t('mensCircle.alexProfessionalAlt')}
                 className="w-full h-full object-cover object-center"
               />
             </div>
@@ -552,7 +554,7 @@ const MensCircle = () => {
           <div className="text-center mb-2 md:mb-4">
             <img loading="lazy"
               src={mcCannabis}
-              alt="Safety and Rules"
+              alt={t('mensCircle.safetyAndRulesAlt')}
               className="w-20 h-20 md:w-32 md:h-32 mx-auto object-contain"
             />
           </div>
@@ -609,7 +611,7 @@ const MensCircle = () => {
           <div className="text-center mb-4 md:mb-8">
             <img loading="lazy"
               src={mcCrossStar}
-              alt="Men's Circle"
+              alt={t('mensCircle.crossStarAlt')}
               className="w-32 h-32 md:w-56 md:h-56 mx-auto object-contain"
             />
           </div>

@@ -11,6 +11,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -79,6 +80,7 @@ interface SideQuestRecommendation {
 export default function TodayPage() {
     const navigate = useNavigate();
     const { toast } = useToast();
+    const { t } = useTranslation();
 
     const logSelection = (payload: Omit<Parameters<typeof logActionEvent>[0], "profileId">) => {
         if (!profile?.id) return;
@@ -199,7 +201,7 @@ export default function TodayPage() {
             await fetchSideQuestRecommendation();
 
         } catch (err) {
-            toast({ title: "Error", description: "Failed to load data", variant: "destructive" });
+            toast({ title: t('today.toastErrorTitle'), description: t('today.toastLoadFailed'), variant: "destructive" });
         } finally {
             setIsLoading(false);
         }
@@ -266,15 +268,15 @@ export default function TodayPage() {
 
             if (result.success) {
                 toast({
-                    title: `+${result.xpAwarded} XP earned!`,
-                    description: `Streak: ${result.newStreak} days 🔥`,
+                    title: t('today.toastXpEarned', { xp: result.xpAwarded }),
+                    description: t('today.toastStreak', { days: result.newStreak }),
                 });
                 await loadTodayData();
             } else {
                 throw new Error(result.error);
             }
         } catch (err: any) {
-            toast({ title: "Error", description: err.message, variant: "destructive" });
+            toast({ title: t('today.toastErrorTitle'), description: err.message, variant: "destructive" });
         } finally {
             setCompletingSideQuest(false);
         }
@@ -304,10 +306,10 @@ export default function TodayPage() {
                 },
                 { profileId: profile.id }
             );
-            toast({ title: "Upgrade Complete!", description: `+${nextUpgrade.xp_reward || 25} XP` });
+            toast({ title: t('today.toastUpgradeCompleteTitle'), description: t('today.toastUpgradeXp', { xp: nextUpgrade.xp_reward || 25 }) });
             await loadTodayData();
         } catch (err: any) {
-            toast({ title: "Error", description: err.message, variant: "destructive" });
+            toast({ title: t('today.toastErrorTitle'), description: err.message, variant: "destructive" });
         } finally {
             setCompletingUpgrade(false);
         }
@@ -354,8 +356,8 @@ export default function TodayPage() {
             }
 
             toast({
-                title: "🎉 World Artifact Captured!",
-                description: "Your real-world creation has been documented."
+                title: t('today.toastArtifactCapturedTitle'),
+                description: t('today.toastArtifactCapturedDesc')
             });
 
             setShowArtifactModal(false);
@@ -364,7 +366,7 @@ export default function TodayPage() {
             setArtifactNote('');
             await loadTodayData();
         } catch (err: any) {
-            toast({ title: "Error", description: err.message, variant: "destructive" });
+            toast({ title: t('today.toastErrorTitle'), description: err.message, variant: "destructive" });
         } finally {
             setSavingArtifact(false);
         }
@@ -398,20 +400,20 @@ export default function TodayPage() {
                     </div>
                     <div>
                         <p className="text-sm uppercase tracking-wide text-indigo-600 mb-3">
-                            Transformation Space
+                            {t('today.introEyebrow')}
                         </p>
                         <h1 className="text-4xl font-bold text-[#2c3150] mb-4">
-                            Grow every day
+                            {t('today.introTitle')}
                         </h1>
                         <p className="text-lg text-[rgba(44,49,80,0.7)]">
-                            One practice. Five paths. Consistent progress.
+                            {t('today.introSubtitle')}
                         </p>
                     </div>
                     <button
                         onClick={() => setShowFirstVisitIntro(false)}
                         className="px-8 py-4 text-base font-semibold rounded-full bg-indigo-600 text-white hover:bg-indigo-700 transition-colors shadow-lg"
                     >
-                        Show Me Today's Practice
+                        {t('today.introCta')}
                     </button>
                 </div>
             </div>
@@ -424,17 +426,17 @@ export default function TodayPage() {
 
                 {/* Header */}
                 <header className="mb-8">
-                    <h1 className="text-3xl font-bold text-[#2c3150] mb-2">Today</h1>
+                    <h1 className="text-3xl font-bold text-[#2c3150] mb-2">{t('today.pageTitle')}</h1>
                     <div className="flex items-center gap-4 text-sm text-[rgba(44,49,80,0.7)]">
                         <span className="flex items-center gap-1">
                             <Flame className="w-4 h-4 text-orange-500" />
-                            {profile?.current_streak_days || 0} day streak
+                            {t('today.dayStreak', { count: profile?.current_streak_days || 0 })}
                         </span>
                         <span className="flex items-center gap-1">
                             <Trophy className="w-4 h-4 text-amber-500" />
-                            Level {profile?.level || 1}
+                            {t('today.level', { level: profile?.level || 1 })}
                         </span>
-                        <span>{profile?.xp_total || 0} XP</span>
+                        <span>{t('today.xp', { xp: profile?.xp_total || 0 })}</span>
                     </div>
                 </header>
 
@@ -442,8 +444,8 @@ export default function TodayPage() {
                 {allDoneForToday && (
                     <div className="rounded-3xl border-2 border-emerald-200 bg-emerald-50 p-8 text-center mb-6">
                         <CheckCircle2 className="w-16 h-16 text-emerald-500 mx-auto mb-4" />
-                        <h2 className="text-2xl font-bold text-[#2c3150] mb-2">Done for Today! 🎉</h2>
-                        <p className="text-[rgba(44,49,80,0.7)] mb-6">You've completed your daily actions. Great work!</p>
+                        <h2 className="text-2xl font-bold text-[#2c3150] mb-2">{t('today.doneTitle')}</h2>
+                        <p className="text-[rgba(44,49,80,0.7)] mb-6">{t('today.doneSubtitle')}</p>
                         <Button
                             variant="outline"
                             onClick={() => {
@@ -458,7 +460,7 @@ export default function TodayPage() {
                             }}
                         >
                             <Gift className="w-4 h-4 mr-2" />
-                            Bonus Side Quest
+                            {t('today.bonusSideQuest')}
                         </Button>
                     </div>
                 )}
@@ -480,11 +482,11 @@ export default function TodayPage() {
                                     }
                                 </div>
                                 <span className="text-xs font-semibold uppercase  text-indigo-600">
-                                    Main Quest
+                                    {t('today.mainQuestLabel')}
                                 </span>
                             </div>
                             <span className="text-xs text-[#2c3150]/60 bg-[var(--skin-input-fill,#f0f4ff)] px-2 py-1 rounded-full">
-                                Stage {getStageNumber(mainQuestStage)} of {getTotalStages()}
+                                {t('today.stageOf', { current: getStageNumber(mainQuestStage), total: getTotalStages() })}
                             </span>
                         </div>
 
@@ -494,7 +496,7 @@ export default function TodayPage() {
                         {mainQuestComplete || artifactSubmitted ? (
                             <div className="flex items-center gap-2 text-emerald-600">
                                 <CheckCircle2 className="w-4 h-4" />
-                                <span className="text-sm font-medium">Complete</span>
+                                <span className="text-sm font-medium">{t('today.complete')}</span>
                             </div>
                         ) : mainQuestStage === 'mq_5_real_world_output' ? (
                             <Button
@@ -503,7 +505,7 @@ export default function TodayPage() {
                                 className="w-full bg-indigo-600 hover:bg-indigo-700"
                             >
                                 <Upload className="w-4 h-4 mr-2" />
-                                Capture Your Output
+                                {t('today.captureOutput')}
                             </Button>
                         ) : (
                             <Button
@@ -541,7 +543,7 @@ export default function TodayPage() {
                                 }
                             </div>
                             <span className="text-xs font-semibold uppercase  text-emerald-600">
-                                Side Quest (Practice)
+                                {t('today.sideQuestLabel')}
                             </span>
                         </div>
 
@@ -550,7 +552,7 @@ export default function TodayPage() {
                                 <div className="flex items-center gap-2 text-emerald-600 mb-3">
                                     <CheckCircle2 className="w-4 h-4" />
                                     <span className="text-sm font-medium">
-                                        Completed: {todayQuestRuns[0]?.title}
+                                        {t('today.completedLabel', { title: todayQuestRuns[0]?.title })}
                                     </span>
                                 </div>
                                 <Button
@@ -569,13 +571,13 @@ export default function TodayPage() {
                                     disabled={loadingSideQuest}
                                 >
                                     {loadingSideQuest ? <span className="premium-spinner w-4 h-4 mr-2" /> : null}
-                                    Bonus Practice
+                                    {t('today.bonusPractice')}
                                 </Button>
                             </>
                         ) : loadingSideQuest ? (
                             <div className="flex items-center gap-2 text-[#2c3150]/60">
                                 <span className="premium-spinner w-4 h-4" />
-                                <span className="text-sm">Finding your practice...</span>
+                                <span className="text-sm">{t('today.findingPractice')}</span>
                             </div>
                         ) : sideQuest ? (
                             <>
@@ -583,10 +585,10 @@ export default function TodayPage() {
                                     {sideQuest.practice.title}
                                 </h3>
                                 <p className="text-sm text-[#2c3150]/60 mb-1">
-                                    {sideQuest.practice.duration_min} min • {sideQuest.domain}
+                                    {t('today.practiceMeta', { minutes: sideQuest.practice.duration_min, domain: sideQuest.domain })}
                                 </p>
                                 <p className="text-sm text-[rgba(44,49,80,0.7)] mb-4">
-                                    {sideQuest.why?.[0] || 'Recommended for your growth.'}
+                                    {sideQuest.why?.[0] || t('today.recommendedFallback')}
                                 </p>
                                 <Button
                                     onClick={handleCompleteSideQuest}
@@ -594,7 +596,7 @@ export default function TodayPage() {
                                     className="w-full"
                                 >
                                     {completingSideQuest ? <span className="premium-spinner w-4 h-4 mr-2" /> : null}
-                                    Mark as Done
+                                    {t('today.markAsDone')}
                                 </Button>
                             </>
                         ) : (
@@ -612,7 +614,7 @@ export default function TodayPage() {
                                 variant="outline"
                                 className="w-full"
                             >
-                                Get Practice Recommendation
+                                {t('today.getRecommendation')}
                             </Button>
                         )}
                     </div>
@@ -632,11 +634,11 @@ export default function TodayPage() {
                             </div>
                             <span className={`text-xs font-semibold uppercase  ${!upgradeUnlockStatus.unlocked ? 'text-[#2c3150]/60' : 'text-purple-600'
                                 }`}>
-                                Upgrade (Growth Path)
+                                {t('today.upgradeLabel')}
                             </span>
                             {!upgradeUnlockStatus.unlocked && (
                                 <span className="text-xs bg-[#a4a3d0]/20 text-[rgba(44,49,80,0.7)] px-2 py-0.5 rounded-full">
-                                    Locked
+                                    {t('today.lockedBadge')}
                                 </span>
                             )}
                         </div>
@@ -649,15 +651,15 @@ export default function TodayPage() {
                                 </h3>
                                 <p className={`text-sm mb-4 ${!upgradeUnlockStatus.unlocked ? 'text-[#2c3150]/60' : 'text-[rgba(44,49,80,0.7)]'
                                     }`}>
-                                    {nextUpgrade.description || 'Unlock this upgrade to level up.'}
+                                    {nextUpgrade.description || t('today.upgradeDescFallback')}
                                 </p>
 
                                 {!upgradeUnlockStatus.unlocked ? (
                                     <div className="text-sm text-[#2c3150]/60">
                                         <Lock className="w-4 h-4 inline mr-1" />
-                                        Locked — requires: {upgradeUnlockStatus.missingPrereqs
+                                        {t('today.lockedRequires', { prereqs: upgradeUnlockStatus.missingPrereqs
                                             .map(code => prereqTitles[code] || code)
-                                            .join(', ')}
+                                            .join(', ') })}
                                         {nextUpgrade.unlock_hint && (
                                             <p className="mt-2 text-xs italic">{nextUpgrade.unlock_hint}</p>
                                         )}
@@ -670,14 +672,14 @@ export default function TodayPage() {
                                         className="w-full"
                                     >
                                         {completingUpgrade ? <span className="premium-spinner w-4 h-4 mr-2" /> : null}
-                                        Complete Upgrade
+                                        {t('today.completeUpgrade')}
                                         <ChevronRight className="w-4 h-4 ml-1" />
                                     </Button>
                                 )}
                             </>
                         ) : (
                             <div className="text-center py-4">
-                                <p className="text-sm text-[#2c3150]/60 mb-3">All upgrades complete!</p>
+                                <p className="text-sm text-[#2c3150]/60 mb-3">{t('today.allUpgradesComplete')}</p>
                                 <Button
                                     variant="outline"
                                     size="sm"
@@ -693,7 +695,7 @@ export default function TodayPage() {
                                     }}
                                 >
                                     <BookOpen className="w-4 h-4 mr-2" />
-                                    View Growth Paths
+                                    {t('today.viewGrowthPaths')}
                                 </Button>
                             </div>
                         )}
@@ -705,14 +707,14 @@ export default function TodayPage() {
                 {todayQuestRuns.length > 0 && (
                     <div className="mt-8">
                         <h3 className="text-sm font-semibold text-[#2c3150]/60 uppercase  mb-3">
-                            Today's Log
+                            {t('today.todaysLog')}
                         </h3>
                         <div className="space-y-2">
                             {todayQuestRuns.map(run => (
                                 <div key={run.id} className="flex items-center justify-between bg-[var(--skin-card-fill,rgba(255,255,255,0.85))] backdrop-blur-sm rounded-lg border border-[#a4a3d0]/20 px-4 py-3 shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
                                     <div>
                                         <p className="font-medium text-[#2c3150]">{run.title}</p>
-                                        <p className="text-xs text-[#2c3150]/60">{run.path} • {run.duration_minutes} min</p>
+                                        <p className="text-xs text-[#2c3150]/60">{t('today.runMeta', { path: run.path, minutes: run.duration_minutes })}</p>
                                     </div>
                                     <span className="text-sm font-semibold text-emerald-600">+{run.xp_awarded} XP</span>
                                 </div>
@@ -736,38 +738,38 @@ export default function TodayPage() {
                         style={{ background: "var(--skin-page-wash, #ffffff)" }}
                     >
                         <div className="flex items-center justify-between mb-4">
-                            <h2 className="text-xl font-bold text-[#2c3150]">Capture Your Output</h2>
+                            <h2 className="text-xl font-bold text-[#2c3150]">{t('today.captureOutput')}</h2>
                             <button onClick={() => setShowArtifactModal(false)} className="text-[#2c3150]/60 hover:text-[#2c3150]">
                                 <X className="w-5 h-5" />
                             </button>
                         </div>
 
                         <p className="text-sm text-[rgba(44,49,80,0.7)] mb-6">
-                            Document your real-world creation — a post, pitch, demo, or any tangible output.
+                            {t('today.artifactModalDesc')}
                         </p>
 
                         <div className="space-y-4">
                             <div>
                                 <label className="block text-sm font-medium text-[#2c3150] mb-1">
-                                    Type *
+                                    {t('today.typeLabel')}
                                 </label>
                                 <select
                                     value={artifactType}
                                     onChange={(e) => setArtifactType(e.target.value as any)}
                                     className="w-full rounded-md border border-[#a4a3d0]/30 bg-[var(--skin-input-fill,#fff)] px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
                                 >
-                                    <option value="post">Post</option>
-                                    <option value="pitch">Pitch</option>
-                                    <option value="demo">Demo</option>
-                                    <option value="doc">Doc</option>
-                                    <option value="video">Video</option>
-                                    <option value="other">Other</option>
+                                    <option value="post">{t('today.typePost')}</option>
+                                    <option value="pitch">{t('today.typePitch')}</option>
+                                    <option value="demo">{t('today.typeDemo')}</option>
+                                    <option value="doc">{t('today.typeDoc')}</option>
+                                    <option value="video">{t('today.typeVideo')}</option>
+                                    <option value="other">{t('today.typeOther')}</option>
                                 </select>
                             </div>
 
                             <div>
                                 <label className="block text-sm font-medium text-[#2c3150] mb-1">
-                                    Link (optional)
+                                    {t('today.linkLabel')}
                                 </label>
                                 <div className="relative">
                                     <LinkIcon className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#2c3150]/60" />
@@ -782,10 +784,10 @@ export default function TodayPage() {
 
                             <div>
                                 <label className="block text-sm font-medium text-[#2c3150] mb-1">
-                                    Notes (optional)
+                                    {t('today.notesLabel')}
                                 </label>
                                 <Textarea
-                                    placeholder="What did you create? How does it feel?"
+                                    placeholder={t('today.notesPlaceholder')}
                                     value={artifactNote}
                                     onChange={(e) => setArtifactNote(e.target.value)}
                                     rows={3}
@@ -795,7 +797,7 @@ export default function TodayPage() {
 
                         <div className="flex gap-3 mt-6">
                             <Button variant="outline" className="flex-1" onClick={() => setShowArtifactModal(false)}>
-                                Cancel
+                                {t('today.cancel')}
                             </Button>
                             <Button
                                 className="flex-1 bg-indigo-600 hover:bg-indigo-700"
@@ -803,7 +805,7 @@ export default function TodayPage() {
                                 disabled={savingArtifact}
                             >
                                 {savingArtifact ? <span className="premium-spinner w-4 h-4 mr-2" /> : null}
-                                Mark Artifact Done
+                                {t('today.markArtifactDone')}
                             </Button>
                         </div>
                     </div>

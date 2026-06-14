@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { Link, useSearchParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -571,15 +572,17 @@ Then, deliver only the final, polished output.`,
 ];
 
 // Launcher buttons for Prompt Launcher UI
+// labelKey resolves via t() at render (see Prompt Launcher map below)
 const LAUNCHER_BUTTONS = [
-  { id: "boost-intel", label: "Boost Intelligence of Your AI Model", promptIndex: 0 },
-  { id: "roast", label: "Roast the Result", promptIndex: 1 },
-  { id: "roast-again", label: "Another Round of Roasting", promptIndex: 2 },
-  { id: "10x", label: "10x Your Result", promptIndex: 3 },
-  { id: "iteration", label: "Full Iteration Cycle", promptIndex: 4 },
+  { id: "boost-intel", labelKey: "aiUpgrade.launcher.boostIntel", promptIndex: 0 },
+  { id: "roast", labelKey: "aiUpgrade.launcher.roast", promptIndex: 1 },
+  { id: "roast-again", labelKey: "aiUpgrade.launcher.roastAgain", promptIndex: 2 },
+  { id: "10x", labelKey: "aiUpgrade.launcher.tenX", promptIndex: 3 },
+  { id: "iteration", labelKey: "aiUpgrade.launcher.iteration", promptIndex: 4 },
 ];
 
 const AIUpgrade = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const { toast } = useToast();
@@ -609,8 +612,8 @@ const AIUpgrade = () => {
         if (success) {
           setPurchaseRecorded(true);
           toast({
-            title: "🎉 Your AI Upgrade is now active.",
-            description: "Enjoy your enhanced AI experience!",
+            title: t('aiUpgrade.toast.activeTitle'),
+            description: t('aiUpgrade.toast.activeDesc'),
           });
           // Clean up URL params
           setSearchParams({});
@@ -621,13 +624,13 @@ const AIUpgrade = () => {
     if (!isLoading && user) {
       handleStripeSuccess();
     }
-  }, [isLoading, user, searchParams, recordPurchase, purchaseRecorded, toast, setSearchParams]);
+  }, [isLoading, user, searchParams, recordPurchase, purchaseRecorded, toast, setSearchParams, t]);
 
   const handleApplyPromo = async () => {
     setPromoError("");
 
     if (!promoCode.trim()) {
-      setPromoError("Please enter a promo code.");
+      setPromoError(t('aiUpgrade.promo.enterCode'));
       return;
     }
 
@@ -637,7 +640,7 @@ const AIUpgrade = () => {
       if (result.success) {
         setShowSuccessModal(true);
       } else {
-        setPromoError(result.error || "Invalid or expired promo code.");
+        setPromoError(result.error || t('aiUpgrade.promo.invalidCode'));
       }
     } finally {
       setIsValidating(false);
@@ -664,14 +667,14 @@ const AIUpgrade = () => {
       await navigator.clipboard.writeText(content);
       setCopied(id);
       toast({
-        title: "Copied to clipboard!",
-        description: "Paste the prompt into your AI chat.",
+        title: t('aiUpgrade.toast.copiedTitle'),
+        description: t('aiUpgrade.toast.copiedDesc'),
       });
       setTimeout(() => setCopied(null), 2000);
     } catch (err) {
       toast({
-        title: "Failed to copy",
-        description: "Please try again or copy manually.",
+        title: t('aiUpgrade.toast.copyFailTitle'),
+        description: t('aiUpgrade.toast.copyFailDesc'),
         variant: "destructive",
       });
     }
@@ -691,7 +694,7 @@ const AIUpgrade = () => {
       <div className="min-h-dvh bg-[var(--skin-page-bg,#fff)] flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[color:var(--skin-text-primary,#0A2342)] mx-auto mb-4"></div>
-          <p className="text-[color:var(--skin-text-muted,#4b5563)]">Loading...</p>
+          <p className="text-[color:var(--skin-text-muted,#4b5563)]">{t('aiUpgrade.loading')}</p>
         </div>
       </div>
     );
@@ -709,7 +712,7 @@ const AIUpgrade = () => {
               className="text-sm font-medium hover:opacity-70 transition-opacity"
               style={{ color: 'var(--skin-text-primary, #0A2342)' }}
             >
-              ← Back
+              {t('aiUpgrade.nav.back')}
             </Link>
           </div>
         </nav>
@@ -726,10 +729,10 @@ const AIUpgrade = () => {
               className="text-3xl font-bold mb-4"
               style={{ color: 'var(--skin-text-primary, #0A2342)' }}
             >
-              Sign in to access your AI Upgrade
+              {t('aiUpgrade.auth.title')}
             </h1>
             <p className="text-[color:var(--skin-text-muted,#4b5563)] mb-8">
-              Create a free account or log in so we can remember your upgrade.
+              {t('aiUpgrade.auth.subtitle')}
             </p>
             <div className="space-y-3">
               <Button
@@ -738,7 +741,7 @@ const AIUpgrade = () => {
                 className="w-full text-lg py-6 rounded-full text-white"
                 style={{ backgroundColor: '#0A2342' }}
               >
-                Log in / Sign up
+                {t('aiUpgrade.auth.loginSignup')}
               </Button>
             </div>
           </div>
@@ -764,7 +767,7 @@ const AIUpgrade = () => {
               className="text-sm font-medium hover:opacity-70 transition-opacity"
               style={{ color: 'var(--skin-text-primary, #0A2342)' }}
             >
-              ← Back
+              {t('aiUpgrade.nav.back')}
             </Link>
           </div>
         </nav>
@@ -779,12 +782,12 @@ const AIUpgrade = () => {
               className="text-3xl sm:text-4xl font-bold text-center mb-3"
               style={{ color: 'var(--skin-text-primary, #0A2342)' }}
             >
-              Prompt Launcher
+              {t('aiUpgrade.launcher.title')}
             </h1>
 
             {/* Subtitle */}
             <p className="text-center text-[color:var(--skin-text-muted,#6b7280)] mb-8 text-sm sm:text-base">
-              Tap to copy a prompt to your clipboard
+              {t('aiUpgrade.launcher.subtitle')}
             </p>
 
             {/* Prompt Buttons */}
@@ -796,7 +799,7 @@ const AIUpgrade = () => {
                   className="w-full py-4 px-6 rounded-xl font-semibold text-white transition-all hover:scale-[1.02] hover:shadow-lg active:scale-[0.98]"
                   style={{ backgroundColor: '#0A2342' }}
                 >
-                  {copied === button.id ? "✓ Copied!" : button.label}
+                  {copied === button.id ? t('aiUpgrade.launcher.copied') : t(button.labelKey)}
                 </button>
               ))}
 
@@ -809,7 +812,7 @@ const AIUpgrade = () => {
                 className="w-full py-4 px-6 rounded-xl font-semibold text-white transition-all hover:scale-[1.02] hover:shadow-lg active:scale-[0.98]"
                 style={{ backgroundColor: '#0A2342' }}
               >
-                Contact us on Telegram
+                {t('aiUpgrade.launcher.contactTelegram')}
               </button>
             </div>
           </div>
@@ -820,12 +823,12 @@ const AIUpgrade = () => {
           <DialogContent className="sm:max-w-md">
             <DialogHeader>
               <DialogTitle className="text-2xl" style={{ color: 'var(--skin-text-primary, #0A2342)' }}>
-                Gift Unlocked! 🌐
+                {t('aiUpgrade.giftModal.title')}
               </DialogTitle>
               <DialogDescription className="text-base pt-4 leading-relaxed">
-                Your promo code unlocks this product as a gift for you.
+                {t('aiUpgrade.giftModal.line1')}
                 <br />
-                Enjoy, and may it serve you. 🌐
+                {t('aiUpgrade.giftModal.line2')}
               </DialogDescription>
             </DialogHeader>
             <div className="flex justify-center pt-4">
@@ -834,7 +837,7 @@ const AIUpgrade = () => {
                 className="rounded-full px-8 text-white"
                 style={{ backgroundColor: '#0A2342' }}
               >
-                Continue
+                {t('aiUpgrade.giftModal.continue')}
               </Button>
             </div>
           </DialogContent>
@@ -866,16 +869,16 @@ const AIUpgrade = () => {
             className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-8 leading-tight transition-all duration-700"
             style={{ color: 'var(--skin-text-primary, #0A2342)' }}
           >
-            Your AI model can't think as fast as you and is slowing you down.
+            {t('aiUpgrade.hero.headline')}
           </h1>
           <p
             className="text-2xl sm:text-3xl font-light mb-8"
             style={{ color: 'var(--skin-text-primary, #0A2342)' }}
           >
-            Upgrade its thinking to match yours.
+            {t('aiUpgrade.hero.subhead')}
           </p>
           <p className="text-xl text-[color:var(--skin-text-muted,#4b5563)] max-w-3xl mx-auto leading-relaxed mb-12">
-            This instant AI upgrade removes the bottleneck — giving your AI the speed, clarity, and reasoning your work demands.
+            {t('aiUpgrade.hero.body')}
           </p>
           <Button
             onClick={handleGetUpgrade}
@@ -883,10 +886,10 @@ const AIUpgrade = () => {
             className="text-lg px-12 py-6 rounded-full shadow-lg hover:shadow-xl transition-all text-white"
             style={{ backgroundColor: '#0A2342' }}
           >
-            Get the Upgrade — $33
+            {t('aiUpgrade.cta.getUpgrade')}
             <ArrowRight className="ml-2 h-5 w-5" />
           </Button>
-          <p className="text-sm text-[color:var(--skin-text-muted,#4b5563)] mt-4">One-time payment · Instant access</p>
+          <p className="text-sm text-[color:var(--skin-text-muted,#4b5563)] mt-4">{t('aiUpgrade.cta.microcopy')}</p>
 
           {/* Promo Code Section */}
           <div className="mt-8 pt-6">
@@ -895,7 +898,7 @@ const AIUpgrade = () => {
                 onClick={() => setShowPromoInput(!showPromoInput)}
                 className="text-sm text-[color:var(--skin-text-muted,#6b7280)] hover:text-[color:var(--skin-text-primary,#374151)] transition-colors inline-flex items-center gap-1"
               >
-                Have a promo code?
+                {t('aiUpgrade.promo.toggle')}
                 {showPromoInput ? (
                   <ChevronUp className="h-3 w-3" />
                 ) : (
@@ -909,7 +912,7 @@ const AIUpgrade = () => {
                 <div className="flex gap-2">
                   <Input
                     type="text"
-                    placeholder="Enter promo code"
+                    placeholder={t('aiUpgrade.promo.placeholder')}
                     value={promoCode}
                     onChange={(e) => {
                       setPromoCode(e.target.value);
@@ -925,7 +928,7 @@ const AIUpgrade = () => {
                     style={{ borderColor: 'var(--skin-text-primary, #0A2342)', color: 'var(--skin-text-primary, #0A2342)' }}
                     disabled={isValidating}
                   >
-                    {isValidating ? "Validating..." : "Apply"}
+                    {isValidating ? t('aiUpgrade.promo.validating') : t('aiUpgrade.promo.apply')}
                   </Button>
                 </div>
                 {promoError && (
@@ -969,48 +972,48 @@ const AIUpgrade = () => {
             className="text-4xl sm:text-5xl font-bold mb-12 text-center"
             style={{ color: 'var(--skin-text-primary, #0A2342)' }}
           >
-            The Problem
+            {t('aiUpgrade.problem.title')}
           </h2>
           <div className="space-y-8">
             <p className="text-2xl font-light text-[color:var(--skin-text-primary,#1f2937)] leading-relaxed">
-              Your mind moves fast.<br />
-              Your AI doesn't.
+              {t('aiUpgrade.problem.leadLine1')}<br />
+              {t('aiUpgrade.problem.leadLine2')}
             </p>
             <p className="text-xl text-[color:var(--skin-text-muted,#4b5563)] leading-relaxed">
-              Instead, it:
+              {t('aiUpgrade.problem.insteadIt')}
             </p>
             <ul className="space-y-3 text-xl text-[color:var(--skin-text-primary,#374151)]">
               <li className="flex items-start">
                 <span className="mr-3" style={{ color: 'var(--skin-text-primary, #0A2342)' }}>•</span>
-                <span>over-explains</span>
+                <span>{t('aiUpgrade.problem.bullet1')}</span>
               </li>
               <li className="flex items-start">
                 <span className="mr-3" style={{ color: 'var(--skin-text-primary, #0A2342)' }}>•</span>
-                <span>loses nuance</span>
+                <span>{t('aiUpgrade.problem.bullet2')}</span>
               </li>
               <li className="flex items-start">
                 <span className="mr-3" style={{ color: 'var(--skin-text-primary, #0A2342)' }}>•</span>
-                <span>breaks coherence</span>
+                <span>{t('aiUpgrade.problem.bullet3')}</span>
               </li>
               <li className="flex items-start">
                 <span className="mr-3" style={{ color: 'var(--skin-text-primary, #0A2342)' }}>•</span>
-                <span>gives junior-level insights</span>
+                <span>{t('aiUpgrade.problem.bullet4')}</span>
               </li>
               <li className="flex items-start">
                 <span className="mr-3" style={{ color: 'var(--skin-text-primary, #0A2342)' }}>•</span>
-                <span>interrupts your flow</span>
+                <span>{t('aiUpgrade.problem.bullet5')}</span>
               </li>
               <li className="flex items-start">
                 <span className="mr-3" style={{ color: 'var(--skin-text-primary, #0A2342)' }}>•</span>
-                <span>dilutes your clarity</span>
+                <span>{t('aiUpgrade.problem.bullet6')}</span>
               </li>
             </ul>
             <p className="text-xl text-[color:var(--skin-text-primary,#374151)] leading-relaxed mt-8">
-              For high-level operators, this isn't noise —<br />
-              it's friction you feel every day.
+              {t('aiUpgrade.problem.frictionLine1')}<br />
+              {t('aiUpgrade.problem.frictionLine2')}
             </p>
             <p className="text-xl text-[color:var(--skin-text-primary,#374151)] leading-relaxed">
-              If your work depends on clarity, synthesis, or precision, default AI becomes a bottleneck.
+              {t('aiUpgrade.problem.bottleneck')}
             </p>
           </div>
         </div>
@@ -1023,51 +1026,51 @@ const AIUpgrade = () => {
             className="text-4xl sm:text-5xl font-bold mb-12 text-center"
             style={{ color: 'var(--skin-text-primary, #0A2342)' }}
           >
-            The Upgrade
+            {t('aiUpgrade.upgrade.title')}
           </h2>
           <div className="space-y-8">
             <p className="text-xl text-[color:var(--skin-text-primary,#374151)] leading-relaxed">
-              This upgrade installs the thinking layer your AI has been missing.
+              {t('aiUpgrade.upgrade.intro')}
             </p>
             <p className="text-xl text-[color:var(--skin-text-muted,#4b5563)] leading-relaxed">
-              It becomes:
+              {t('aiUpgrade.upgrade.itBecomes')}
             </p>
             <ul className="space-y-3 text-xl text-[color:var(--skin-text-primary,#374151)]">
               <li className="flex items-start">
                 <span className="mr-3" style={{ color: 'var(--skin-text-primary, #0A2342)' }}>•</span>
-                <span>fast</span>
+                <span>{t('aiUpgrade.upgrade.bullet1')}</span>
               </li>
               <li className="flex items-start">
                 <span className="mr-3" style={{ color: 'var(--skin-text-primary, #0A2342)' }}>•</span>
-                <span>structured</span>
+                <span>{t('aiUpgrade.upgrade.bullet2')}</span>
               </li>
               <li className="flex items-start">
                 <span className="mr-3" style={{ color: 'var(--skin-text-primary, #0A2342)' }}>•</span>
-                <span>precise</span>
+                <span>{t('aiUpgrade.upgrade.bullet3')}</span>
               </li>
               <li className="flex items-start">
                 <span className="mr-3" style={{ color: 'var(--skin-text-primary, #0A2342)' }}>•</span>
-                <span>context-aware</span>
+                <span>{t('aiUpgrade.upgrade.bullet4')}</span>
               </li>
               <li className="flex items-start">
                 <span className="mr-3" style={{ color: 'var(--skin-text-primary, #0A2342)' }}>•</span>
-                <span>concise</span>
+                <span>{t('aiUpgrade.upgrade.bullet5')}</span>
               </li>
               <li className="flex items-start">
                 <span className="mr-3" style={{ color: 'var(--skin-text-primary, #0A2342)' }}>•</span>
-                <span>coherent</span>
+                <span>{t('aiUpgrade.upgrade.bullet6')}</span>
               </li>
               <li className="flex items-start">
                 <span className="mr-3" style={{ color: 'var(--skin-text-primary, #0A2342)' }}>•</span>
-                <span>reliable</span>
+                <span>{t('aiUpgrade.upgrade.bullet7')}</span>
               </li>
             </ul>
             <p className="text-xl text-[color:var(--skin-text-primary,#374151)] leading-relaxed mt-8">
-              Instead of dragging behind you, it starts moving with you.
+              {t('aiUpgrade.upgrade.movingWith')}
             </p>
             <p className="text-2xl font-light text-[color:var(--skin-text-primary,#1f2937)] leading-relaxed mt-8">
-              Not a chatbot.<br />
-              A cognitive instrument.
+              {t('aiUpgrade.upgrade.notChatbot')}<br />
+              {t('aiUpgrade.upgrade.cognitiveInstrument')}
             </p>
             <div className="mt-12 text-center">
               <Button
@@ -1091,33 +1094,33 @@ const AIUpgrade = () => {
             className="text-4xl sm:text-5xl font-bold mb-12 text-center"
             style={{ color: 'var(--skin-text-primary, #0A2342)' }}
           >
-            Who It's For
+            {t('aiUpgrade.whoFor.title')}
           </h2>
           <div className="space-y-8">
             <p className="text-xl text-[color:var(--skin-text-primary,#374151)] leading-relaxed">
-              Built for the top 20% of operators who don't just use AI —<br />
-              they think with it.
+              {t('aiUpgrade.whoFor.introLine1')}<br />
+              {t('aiUpgrade.whoFor.introLine2')}
             </p>
             <ul className="space-y-3 text-xl text-[color:var(--skin-text-primary,#374151)] mt-6">
               <li className="flex items-start">
                 <span className="mr-3" style={{ color: 'var(--skin-text-primary, #0A2342)' }}>•</span>
-                <span>Strategic founders & CEOs</span>
+                <span>{t('aiUpgrade.whoFor.bullet1')}</span>
               </li>
               <li className="flex items-start">
                 <span className="mr-3" style={{ color: 'var(--skin-text-primary, #0A2342)' }}>•</span>
-                <span>High-end consultants</span>
+                <span>{t('aiUpgrade.whoFor.bullet2')}</span>
               </li>
               <li className="flex items-start">
                 <span className="mr-3" style={{ color: 'var(--skin-text-primary, #0A2342)' }}>•</span>
-                <span>Executive & performance coaches</span>
+                <span>{t('aiUpgrade.whoFor.bullet3')}</span>
               </li>
               <li className="flex items-start">
                 <span className="mr-3" style={{ color: 'var(--skin-text-primary, #0A2342)' }}>•</span>
-                <span>Systems thinkers & polymaths</span>
+                <span>{t('aiUpgrade.whoFor.bullet4')}</span>
               </li>
             </ul>
             <p className="text-xl text-[color:var(--skin-text-primary,#374151)] leading-relaxed mt-8">
-              If clarity is your competitive advantage, this upgrade protects it and amplifies it.
+              {t('aiUpgrade.whoFor.closing')}
             </p>
           </div>
         </div>
@@ -1130,48 +1133,48 @@ const AIUpgrade = () => {
             className="text-4xl sm:text-5xl font-bold mb-12 text-center"
             style={{ color: 'var(--skin-text-primary, #0A2342)' }}
           >
-            Before / After
+            {t('aiUpgrade.beforeAfter.title')}
           </h2>
           <div className="grid md:grid-cols-2 gap-12">
             <div className="space-y-4">
-              <h3 className="text-2xl font-semibold text-[color:var(--skin-text-primary,#1f2937)]">Before</h3>
+              <h3 className="text-2xl font-semibold text-[color:var(--skin-text-primary,#1f2937)]">{t('aiUpgrade.beforeAfter.beforeLabel')}</h3>
               <ul className="space-y-3 text-lg text-[color:var(--skin-text-muted,#4b5563)]">
                 <li className="flex items-start">
                   <span className="mr-3 text-red-400">✗</span>
-                  <span>Vague, generic outputs</span>
+                  <span>{t('aiUpgrade.beforeAfter.before1')}</span>
                 </li>
                 <li className="flex items-start">
                   <span className="mr-3 text-red-400">✗</span>
-                  <span>Loses track of context</span>
+                  <span>{t('aiUpgrade.beforeAfter.before2')}</span>
                 </li>
                 <li className="flex items-start">
                   <span className="mr-3 text-red-400">✗</span>
-                  <span>Over-explains simple things</span>
+                  <span>{t('aiUpgrade.beforeAfter.before3')}</span>
                 </li>
                 <li className="flex items-start">
                   <span className="mr-3 text-red-400">✗</span>
-                  <span>Requires constant re-prompting</span>
+                  <span>{t('aiUpgrade.beforeAfter.before4')}</span>
                 </li>
               </ul>
             </div>
             <div className="space-y-4">
-              <h3 className="text-2xl font-semibold text-[color:var(--skin-text-primary,#1f2937)]">After</h3>
+              <h3 className="text-2xl font-semibold text-[color:var(--skin-text-primary,#1f2937)]">{t('aiUpgrade.beforeAfter.afterLabel')}</h3>
               <ul className="space-y-3 text-lg text-[color:var(--skin-text-muted,#4b5563)]">
                 <li className="flex items-start">
                   <span className="mr-3 text-green-500">✓</span>
-                  <span>Sharp, specific insights</span>
+                  <span>{t('aiUpgrade.beforeAfter.after1')}</span>
                 </li>
                 <li className="flex items-start">
                   <span className="mr-3 text-green-500">✓</span>
-                  <span>Maintains coherence across sessions</span>
+                  <span>{t('aiUpgrade.beforeAfter.after2')}</span>
                 </li>
                 <li className="flex items-start">
                   <span className="mr-3 text-green-500">✓</span>
-                  <span>Concise, action-oriented</span>
+                  <span>{t('aiUpgrade.beforeAfter.after3')}</span>
                 </li>
                 <li className="flex items-start">
                   <span className="mr-3 text-green-500">✓</span>
-                  <span>Understands your intent the first time</span>
+                  <span>{t('aiUpgrade.beforeAfter.after4')}</span>
                 </li>
               </ul>
             </div>

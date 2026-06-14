@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from "react";
+import { useTranslation } from "react-i18next";
 import { useLocation } from "react-router-dom";
 import GameShellV2 from "@/components/game/GameShellV2";
 import { supabase } from "@/integrations/supabase/client";
@@ -290,6 +291,7 @@ export const FounderCard = ({
   onToggle: () => void;
   lightMode?: boolean;
 }) => {
+  const { t } = useTranslation();
   const { ref, visible } = useReveal();
   const f = founder;
   const isLocked = !f.consentGiven;
@@ -409,7 +411,7 @@ export const FounderCard = ({
                   </span>
                   {f.status === "in-progress" && (
                     <span className="text-[10px] px-2 py-0.5 rounded-full border border-amber-500/30 text-amber-400/60 bg-amber-500/5">
-                      In Progress
+                      {t('foundersShowcase.inProgressBadge')}
                     </span>
                   )}
                   {isLocked && (
@@ -486,12 +488,12 @@ export const FounderCard = ({
                     🔒
                   </div>
                   <p className={`text-sm ${lightMode ? 'text-[#2c3150]/50' : 'text-white/35'}`}>
-                    Full canvas will be visible once{" "}
+                    {t('foundersShowcase.lockedConsentBefore')}{" "}
                     <span style={{ color: f.colors.primary }}>{f.name}</span>{" "}
-                    gives consent.
+                    {t('foundersShowcase.lockedConsentAfter')}
                   </p>
                   <p className={`text-xs mt-2 ${lightMode ? 'text-[#2c3150]/30' : 'text-white/15'}`}>
-                    The myth above is shown for illustration.
+                    {t('foundersShowcase.lockedMythIllustration')}
                   </p>
                 </div>
               ) : (
@@ -508,12 +510,12 @@ export const FounderCard = ({
                       className="text-[10px] uppercase tracking-[0.2em] mb-3 font-medium"
                       style={{ color: `${f.colors.primary}99` }}
                     >
-                      The Myth
+                      {t('foundersShowcase.mythLabel')}
                     </p>
                     <div className="space-y-3">
                       <div>
                         <span className="text-[10px] font-mono text-red-400/50 tracking-wide">
-                          LIE
+                          {t('foundersShowcase.mythLieLabel')}
                         </span>
                         <p className={`text-sm leading-relaxed mt-0.5 ${lightMode ? 'text-[#2c3150]/50' : 'text-white/35'}`}>
                           {f.myth.lie}
@@ -522,7 +524,7 @@ export const FounderCard = ({
                       <div className={`h-px ${lightMode ? 'bg-[#2c3150]/8' : 'bg-white/5'}`} />
                       <div>
                         <span className="text-[10px] font-mono text-emerald-400/50 tracking-wide">
-                          TRUTH
+                          {t('foundersShowcase.mythTruthLabel')}
                         </span>
                         <p className={`text-sm leading-relaxed mt-0.5 ${lightMode ? 'text-[#2c3150]/70' : 'text-white/55'}`}>
                           {f.myth.truth}
@@ -534,12 +536,12 @@ export const FounderCard = ({
                   {/* Canvas grid */}
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {[
-                      { label: "Uniqueness", icon: "◇", content: f.uniqueness },
-                      { label: "The Tribe", icon: "⊛", content: f.tribe },
-                      { label: "The Pain", icon: "△", content: f.pain },
+                      { key: "uniqueness", label: t('foundersShowcase.canvasUniquenessLabel'), icon: "◇", content: f.uniqueness },
+                      { key: "tribe", label: t('foundersShowcase.canvasTribeLabel'), icon: "⊛", content: f.tribe },
+                      { key: "pain", label: t('foundersShowcase.canvasPainLabel'), icon: "△", content: f.pain },
                     ].map((item) => (
                       <div
-                        key={item.label}
+                        key={item.key}
                         className="p-5 rounded-2xl backdrop-blur-md transition-all duration-300 hover:scale-[1.01]"
                         style={{
                           background: lightMode ? `${f.colors.primary}08` : 'rgba(255,255,255,0.02)',
@@ -580,7 +582,7 @@ export const FounderCard = ({
                           className="text-[10px] uppercase tracking-[0.2em] font-medium"
                           style={{ color: `${f.colors.primary}80` }}
                         >
-                          The Promise
+                          {t('foundersShowcase.promiseLabel')}
                         </p>
                       </div>
                       <p className={`text-sm leading-relaxed ${lightMode ? 'text-[#2c3150]/70' : 'text-white/60'}`}>
@@ -601,6 +603,7 @@ export const FounderCard = ({
 // ─── Main Page ────────────────────────────────────────────────────────────────
 
 const FoundersShowcase = () => {
+  const { t } = useTranslation();
   const [expandedFounder, setExpandedFounder] = useState<string | null>(null);
   const heroReveal = useReveal();
   const ctaReveal = useReveal();
@@ -671,42 +674,40 @@ const FoundersShowcase = () => {
               href="/dashboard"
               className="text-white/20 hover:text-[#8460ea] transition-colors"
             >
-              ← Dashboard
+              {t('foundersShowcase.navDashboard')}
             </a>
             <a
               href="/holomap"
               className="text-white/20 hover:text-[#8460ea] transition-colors"
             >
-              Holo Map →
+              {t('foundersShowcase.navHolomap')}
             </a>
           </nav>
           )}
 
           <p className="text-[11px] font-medium tracking-[0.4em] uppercase text-[#8460ea]/60">
-            The Originals
+            {t('foundersShowcase.eyebrow')}
           </p>
 
           <h1 className="text-4xl md:text-6xl font-display font-medium tracking-tight leading-[1.1]">
             <span className="bg-gradient-to-r from-[#8460ea] via-[#5eaf8b] to-[#d49a5e] bg-clip-text text-transparent">
-              Founders Who Found
+              {t('foundersShowcase.heroTitleLine1')}
             </span>
             <br />
-            <span className={inShell ? 'text-[#2c3150]/85' : 'text-white/85'}>Their Genius</span>
+            <span className={inShell ? 'text-[#2c3150]/85' : 'text-white/85'}>{t('foundersShowcase.heroTitleLine2')}</span>
           </h1>
 
           <p className={`text-sm max-w-md mx-auto leading-relaxed ${inShell ? 'text-[#2c3150]/40' : 'text-white/30'}`}>
-            Each person went through the Unique Business Canvas process.
-            Their myth was discovered. Their business was designed
-            around who they already are.
+            {t('foundersShowcase.heroSubtitle')}
           </p>
 
           {/* Stats ribbon */}
           <div className={`flex justify-center gap-6 text-[11px] pt-2 ${inShell ? 'text-[#2c3150]/25' : 'text-white/15'}`}>
             {[
-              { val: String(founders.length), label: "canvases" },
-              { val: founders.length > 0 ? `${Math.ceil((Date.now() - new Date('2026-02-19').getTime()) / (1000 * 60 * 60 * 24))}` : "0", label: "days" },
-              { val: "$0", label: "ad spend" },
-              { val: "100%", label: "conversion" },
+              { val: String(founders.length), label: t('foundersShowcase.statCanvases') },
+              { val: founders.length > 0 ? `${Math.ceil((Date.now() - new Date('2026-02-19').getTime()) / (1000 * 60 * 60 * 24))}` : "0", label: t('foundersShowcase.statDays') },
+              { val: "$0", label: t('foundersShowcase.statAdSpend') },
+              { val: "100%", label: t('foundersShowcase.statConversion') },
             ].map((s, i) => (
               <div key={i} className="flex flex-col items-center gap-0.5">
                 <span
@@ -742,7 +743,7 @@ const FoundersShowcase = () => {
           }}
         >
           <p className={`text-xs italic max-w-sm mx-auto leading-relaxed ${inShell ? 'text-[#2c3150]/25' : 'text-white/25'}`}>
-            "The myth IS the marketing. Operational fact, not theory."
+            {t('foundersShowcase.thesisQuote')}
           </p>
         </div>
 
@@ -774,20 +775,19 @@ const FoundersShowcase = () => {
 
               <div className="relative z-10">
                 <p className="text-[11px] tracking-[0.4em] uppercase text-[#8460ea]/50 mb-4">
-                  Ready to Find Your Genius?
+                  {t('foundersShowcase.ctaEyebrow')}
                 </p>
 
                 <h3 className="text-2xl md:text-4xl font-display font-medium mb-3">
                   <span className="bg-gradient-to-r from-[#8460ea] via-[#5eaf8b] to-[#d49a5e] bg-clip-text text-transparent">
-                    Your Uniqueness IS
+                    {t('foundersShowcase.ctaTitleLine1')}
                   </span>
                   <br />
-                  <span className={inShell ? 'text-[#2c3150]/80' : 'text-white/80'}>Your Business</span>
+                  <span className={inShell ? 'text-[#2c3150]/80' : 'text-white/80'}>{t('foundersShowcase.ctaTitleLine2')}</span>
                 </h3>
 
                 <p className={`text-sm max-w-sm mx-auto mb-8 ${inShell ? 'text-[#2c3150]/40' : 'text-white/30'}`}>
-                  One session. Your myth discovered. Your canvas complete.
-                  The business you were always meant to build — revealed.
+                  {t('foundersShowcase.ctaSubtitle')}
                 </p>
 
                 <a
@@ -796,7 +796,7 @@ const FoundersShowcase = () => {
                   id="book-session-btn"
                 >
                   <span className="text-lg">◉</span>
-                  Book Your Productize Yourself Session — $555
+                  {t('foundersShowcase.ctaButton')}
                 </a>
               </div>
             </div>
@@ -809,7 +809,7 @@ const FoundersShowcase = () => {
             href="/the-originals"
             className={`text-[10px] transition-colors ${inShell ? 'text-[#2c3150]/15 hover:text-[#2c3150]/30' : 'text-white/10 hover:text-white/25'}`}
           >
-            Join the community →
+            {t('foundersShowcase.footerJoinCommunity')}
           </a>
         </footer>
       </div>

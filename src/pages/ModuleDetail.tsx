@@ -1,5 +1,6 @@
 import { useParams, Link } from "react-router-dom";
 import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { getModuleBySlug, getRelatedModules } from "@/data/modules";
 import Navigation from "@/components/Navigation";
 import ModuleTile from "@/components/ModuleTile";
@@ -13,6 +14,7 @@ import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import BackButton from "@/components/BackButton";
 
 const ModuleDetail = () => {
+  const { t } = useTranslation();
   const { slug } = useParams<{ slug: string }>();
   const module = getModuleBySlug(slug || "");
 
@@ -35,10 +37,10 @@ const ModuleDetail = () => {
         <Navigation />
         <div className="pt-32 pb-16 px-4 sm:px-6 lg:px-8">
           <div className="container mx-auto max-w-4xl text-center">
-            <h1 className="text-4xl font-serif font-bold mb-4">Module Not Found</h1>
+            <h1 className="text-4xl font-serif font-bold mb-4">{t('moduleDetail.notFoundTitle')}</h1>
             <BackButton
               to="/"
-              label="Back to Home"
+              label={t('moduleDetail.backToHome')}
               variant="outline"
             />
           </div>
@@ -58,7 +60,7 @@ const ModuleDetail = () => {
         <div className="container mx-auto max-w-4xl">
           <BackButton
             to="/"
-            label={<BoldText>BACK</BoldText>}
+            label={<BoldText>{t('moduleDetail.back')}</BoldText>}
             className="text-white/60 hover:text-white transition-colors font-semibold"
           />
         </div>
@@ -99,7 +101,7 @@ const ModuleDetail = () => {
               <p className="text-5xl sm:text-6xl font-bold text-white mb-2" style={{ color: 'hsl(var(--destiny-gold))' }}>
                 {module.price}
               </p>
-              <p className="text-lg text-white/60">One-time payment · Instant access</p>
+              <p className="text-lg text-white/60">{t('moduleDetail.oneTimePayment')}</p>
             </div>
           )}
           
@@ -145,7 +147,7 @@ const ModuleDetail = () => {
       >
         <div className="container mx-auto max-w-4xl text-center">
           <h2 className="text-4xl sm:text-5xl font-serif font-bold mb-8">
-            <BoldText>WHAT THIS IS</BoldText>
+            <BoldText>{t('moduleDetail.whatThisIs')}</BoldText>
           </h2>
           <div 
             className="prose prose-lg max-w-none leading-relaxed mx-auto text-foreground/80"
@@ -163,7 +165,7 @@ const ModuleDetail = () => {
         >
           <div className="container mx-auto max-w-4xl text-center">
             <h2 className="text-4xl sm:text-5xl font-serif font-bold mb-8 text-white">
-              <BoldText>WHO IT'S FOR</BoldText>
+              <BoldText>{t('moduleDetail.whoItsFor')}</BoldText>
             </h2>
             <ul className="space-y-4 inline-block text-left">
               {module.who_for.map((item, index) => (
@@ -186,7 +188,7 @@ const ModuleDetail = () => {
         >
           <div className="container mx-auto max-w-4xl text-center">
             <h2 className="text-4xl sm:text-5xl font-serif font-bold mb-8">
-              <BoldText>OUTCOMES</BoldText>
+              <BoldText>{t('moduleDetail.outcomes')}</BoldText>
             </h2>
             <ul className="space-y-4 inline-block text-left">
               {module.outcomes.map((item, index) => (
@@ -209,7 +211,7 @@ const ModuleDetail = () => {
         >
           <div className="container mx-auto max-w-4xl text-center">
             <h2 className="text-4xl sm:text-5xl font-serif font-bold mb-8 text-white">
-              <BoldText>HOW IT WORKS</BoldText>
+              <BoldText>{t('moduleDetail.howItWorks')}</BoldText>
             </h2>
             <ol className="space-y-4 inline-block text-left">
               {module.structure.map((item, index) => (
@@ -232,7 +234,7 @@ const ModuleDetail = () => {
         >
           <div className="container mx-auto max-w-4xl text-center">
             <h2 className="text-4xl sm:text-5xl font-serif font-bold mb-8">
-              <BoldText>ACCESS & APP LINKS</BoldText>
+              <BoldText>{t('moduleDetail.accessAppLinks')}</BoldText>
             </h2>
             <div className="flex flex-wrap gap-4 justify-center">
               {module.app_links.map((link, index) => {
@@ -276,7 +278,7 @@ const ModuleDetail = () => {
         >
           <div className="container mx-auto max-w-4xl text-center">
             <h2 className="text-4xl sm:text-5xl font-serif font-bold mb-8 text-white">
-              <BoldText>ORIGIN STORY</BoldText>
+              <BoldText>{t('moduleDetail.originStory')}</BoldText>
             </h2>
             <p className="text-lg text-white/70 leading-relaxed whitespace-pre-line mx-auto max-w-3xl">
               {module.story}
@@ -290,7 +292,7 @@ const ModuleDetail = () => {
         <section className="py-24 px-6" style={{ backgroundColor: 'hsl(var(--destiny-light))' }}>
           <div className="container mx-auto max-w-4xl text-center">
             <h2 className="text-4xl sm:text-5xl font-serif font-bold mb-8">
-              <BoldText>RELATED MODULES</BoldText>
+              <BoldText>{t('moduleDetail.relatedModules')}</BoldText>
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
               {relatedModules.slice(0, 3).map((relatedModule) => (

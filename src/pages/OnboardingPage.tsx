@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { supabase } from "@/integrations/supabase/client";
 import OnboardingFlow from "@/modules/onboarding/OnboardingFlow";
 import { FullPageLoader } from "@/components/ui/PremiumLoader";
@@ -10,6 +11,7 @@ import { FullPageLoader } from "@/components/ui/PremiumLoader";
  */
 const OnboardingPage = () => {
     const navigate = useNavigate();
+    const { t } = useTranslation();
     const [loading, setLoading] = useState(true);
     const [profileData, setProfileData] = useState<{
         profileId: string;
@@ -81,7 +83,7 @@ const OnboardingPage = () => {
     };
 
     if (loading) {
-        return <FullPageLoader text="Preparing your journey..." />;
+        return <FullPageLoader text={t('onboardingPage.loaderText')} />;
     }
 
     if (!profileData) {

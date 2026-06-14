@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import {
   RadarChart,
   PolarGrid,
@@ -41,7 +42,7 @@ const REVENUE_TIMELINE = [
 
 const KPIS = [
   {
-    label: "Total Revenue",
+    labelKey: "ventureDashboard.kpi.totalRevenue",
     value: "$1,973",
     trend: "+$319",
     trendLabel: "Apr 20",
@@ -49,7 +50,7 @@ const KPIS = [
     gold: true,
   },
   {
-    label: "Genius Founders",
+    labelKey: "ventureDashboard.kpi.geniusFounders",
     value: "7",
     trend: "+1",
     trendLabel: "Apr 18",
@@ -57,7 +58,7 @@ const KPIS = [
     gold: false,
   },
   {
-    label: "Continuation Rate",
+    labelKey: "ventureDashboard.kpi.continuationRate",
     value: "100%",
     trend: "",
     trendLabel: "",
@@ -67,9 +68,9 @@ const KPIS = [
 ];
 
 const SECONDARY_STATS = [
-  { label: "Marketing Spend", value: "$0" },
-  { label: "CRM Contacts", value: "31" },
-  { label: "Days Active", value: "87" },
+  { labelKey: "ventureDashboard.secondaryStats.marketingSpend", value: "$0" },
+  { labelKey: "ventureDashboard.secondaryStats.crmContacts", value: "31" },
+  { labelKey: "ventureDashboard.secondaryStats.daysActive", value: "87" },
 ];
 
 // ─── Revenue Breakdown ──────────────────────────────────────────────────────
@@ -191,6 +192,7 @@ const numerals: React.CSSProperties = {
 // ─── Component ──────────────────────────────────────────────────────────────
 
 const VentureDashboard = () => {
+  const { t } = useTranslation();
   const palette = useSkinChartPalette();
   const totalCash = REVENUE_BREAKDOWN.reduce((s, r) => s + r.cash, 0);
   const totalInKind = REVENUE_BREAKDOWN.reduce((s, r) => s + r.inKind, 0);
@@ -221,21 +223,21 @@ const VentureDashboard = () => {
               className="w-1.5 h-1.5 rounded-full animate-pulse"
               style={{ background: "var(--skin-accent-gold, #b8860b)" }}
             />
-            <span>Live · Day 87</span>
+            <span>{t('ventureDashboard.header.live')}</span>
           </div>
 
           <h1
             className="text-3xl sm:text-4xl md:text-5xl font-semibold leading-[1.1] tracking-[-0.01em] mb-3"
             style={{ ...serif, ...textPrimary, ...haloStrong }}
           >
-            Venture <span className="bg-clip-text text-transparent" style={GOLD_TEXT_STYLE}>Growth Dashboard</span>
+            {t('ventureDashboard.header.titleBefore')} <span className="bg-clip-text text-transparent" style={GOLD_TEXT_STYLE}>{t('ventureDashboard.header.titleGold')}</span>
           </h1>
 
           <p
             className="text-lg sm:text-xl md:text-2xl leading-[1.25] tracking-[-0.005em] italic max-w-xl mx-auto"
             style={{ ...serif, fontWeight: 500, ...textMuted, ...haloSubtle }}
           >
-            Built in the open. Paid in the open. Open-source methodology.
+            {t('ventureDashboard.header.tagline')}
           </p>
 
           <Ornament className="my-6 sm:my-8" />
@@ -256,46 +258,46 @@ const VentureDashboard = () => {
           className="rounded-xl px-6 py-8 sm:px-8 sm:py-10 mb-12 fade-in-section"
           style={cardStyle}
           id="dashboard-context"
-          aria-label="What this dashboard is and what's coming next"
+          aria-label={t('ventureDashboard.context.ariaLabel')}
         >
           <div className="grid gap-8 sm:gap-10 sm:grid-cols-2 sm:divide-x sm:divide-[rgba(212,175,55,0.18)]">
             {/* — What this is — */}
             <div className="sm:pr-8">
               <div className="mb-3" style={eyebrowStyle}>
-                What this is
+                {t('ventureDashboard.context.whatThisIs.eyebrow')}
               </div>
               <p
                 className="text-base sm:text-lg leading-[1.55] tracking-[-0.005em] italic"
                 style={{ ...serif, fontWeight: 500, ...textPrimary, ...haloSubtle }}
               >
-                The state of the venture, and the state of the founders building their{" "}
+                {t('ventureDashboard.context.whatThisIs.before')}{" "}
                 <span className="bg-clip-text text-transparent" style={GOLD_TEXT_STYLE}>
-                  unique businesses
+                  {t('ventureDashboard.context.whatThisIs.gold')}
                 </span>{" "}
-                inside it. The dashboard updates as both evolve.
+                {t('ventureDashboard.context.whatThisIs.after')}
               </p>
             </div>
 
             {/* — What's coming — */}
             <div className="sm:pl-8">
               <div className="mb-3" style={eyebrowStyle}>
-                What's coming
+                {t('ventureDashboard.context.whatsComing.eyebrow')}
               </div>
               <p
                 className="text-base sm:text-lg leading-[1.55] tracking-[-0.005em] italic"
                 style={{ ...serif, fontWeight: 500, ...textPrimary, ...haloSubtle }}
               >
-                Founders who advance through the journey will be able to{" "}
+                {t('ventureDashboard.context.whatsComing.before')}{" "}
                 <span className="bg-clip-text text-transparent" style={GOLD_TEXT_STYLE}>
-                  fork this entire platform
+                  {t('ventureDashboard.context.whatsComing.gold')}
                 </span>{" "}
-                and offer it to their community — same engine, same methodology, their own tribe and brand. Every active founder becomes a node.
+                {t('ventureDashboard.context.whatsComing.after')}
               </p>
               <p
                 className="mt-3 text-[12px] uppercase tracking-[0.18em]"
                 style={{ ...textMutedSoft, fontWeight: 500 }}
               >
-                Released in the next version.
+                {t('ventureDashboard.context.whatsComing.released')}
               </p>
             </div>
           </div>
@@ -319,13 +321,13 @@ const VentureDashboard = () => {
             // label/number stack is top-anchored uniformly and the empty
             // space sits at the bottom of the no-trend card.
             <div
-              key={kpi.label}
+              key={kpi.labelKey}
               className="rounded-xl p-5 transition-all duration-300 hover:translate-y-[-1px] flex flex-col items-center justify-start text-center"
               style={{ ...cardStyle, animationDelay: `${i * 100}ms` }}
               id={`kpi-${i}`}
             >
               <div className="text-[11px] font-medium tracking-[0.18em] uppercase mb-3 text-center" style={textMuted}>
-                {kpi.label}
+                {t(kpi.labelKey)}
               </div>
               <div
                 className="text-4xl md:text-5xl font-medium tracking-[-0.02em] mb-2 leading-none text-center"
@@ -373,9 +375,9 @@ const VentureDashboard = () => {
           id="secondary-stats"
         >
           {SECONDARY_STATS.map((s) => (
-            <div key={s.label} className="flex items-center gap-2">
+            <div key={s.labelKey} className="flex items-center gap-2">
               <span className="text-base font-medium" style={{ ...numerals, ...textPrimary }}>{s.value}</span>
-              <span className="text-[10px] uppercase tracking-[0.18em]" style={textMuted}>{s.label}</span>
+              <span className="text-[10px] uppercase tracking-[0.18em]" style={textMuted}>{t(s.labelKey)}</span>
             </div>
           ))}
         </section>
@@ -390,13 +392,13 @@ const VentureDashboard = () => {
             <div className="flex items-center justify-between mb-5">
               <div>
                 <h2 className="text-xl font-medium mb-0.5" style={{ ...serif, ...textPrimary }}>
-                  Revenue Timeline
+                  {t('ventureDashboard.revenue.timeline.title')}
                 </h2>
-                <p className="text-[11px]" style={textMuted}>Cumulative revenue since Day 1</p>
+                <p className="text-[11px]" style={textMuted}>{t('ventureDashboard.revenue.timeline.subtitle')}</p>
               </div>
               <div className="flex items-center gap-1.5 text-[10px]" style={textMuted}>
                 <span className="w-2 h-0.5 rounded-full" style={{ background: palette.accent }} />
-                Total Revenue
+                {t('ventureDashboard.revenue.timeline.legend')}
               </div>
             </div>
             <ResponsiveContainer width="100%" height={240}>
@@ -435,8 +437,8 @@ const VentureDashboard = () => {
 
           {/* Revenue Breakdown */}
           <div className="lg:col-span-2 rounded-xl p-6" style={cardStyle}>
-            <h2 className="text-xl font-medium mb-1" style={{ ...serif, ...textPrimary }}>Revenue Breakdown</h2>
-            <p className="text-[11px] mb-5" style={textMuted}>By founder · cash · in-kind · rev share</p>
+            <h2 className="text-xl font-medium mb-1" style={{ ...serif, ...textPrimary }}>{t('ventureDashboard.revenue.breakdown.title')}</h2>
+            <p className="text-[11px] mb-5" style={textMuted}>{t('ventureDashboard.revenue.breakdown.subtitle')}</p>
 
             <div className="space-y-3">
               {REVENUE_BREAKDOWN.map((r) => {
@@ -455,7 +457,7 @@ const VentureDashboard = () => {
                             color: r.status === "received" ? "var(--skin-accent-gold, #b8860b)" : "var(--skin-text-muted, rgba(11,42,90,0.72))",
                           }}
                         >
-                          {r.status === "received" ? "received" : "pending"}
+                          {r.status === "received" ? t('ventureDashboard.revenue.breakdown.received') : t('ventureDashboard.revenue.breakdown.pending')}
                         </span>
                       </div>
                       <span className="text-xs font-mono" style={textPrimary}>{formatCurrency(rTotal)}</span>
@@ -467,9 +469,9 @@ const VentureDashboard = () => {
                       />
                     </div>
                     <div className="flex items-center gap-3 mt-1">
-                      {r.cash > 0 && <span className="text-[9px]" style={textMutedSoft}>${r.cash} cash</span>}
-                      {r.inKind > 0 && <span className="text-[9px]" style={textMutedSoft}>${r.inKind} in-kind</span>}
-                      {r.revShare > 0 && <span className="text-[9px]" style={textMutedSoft}>${r.revShare.toLocaleString()} rev share</span>}
+                      {r.cash > 0 && <span className="text-[9px]" style={textMutedSoft}>{t('ventureDashboard.revenue.breakdown.cashAmount', { amount: r.cash })}</span>}
+                      {r.inKind > 0 && <span className="text-[9px]" style={textMutedSoft}>{t('ventureDashboard.revenue.breakdown.inKindAmount', { amount: r.inKind })}</span>}
+                      {r.revShare > 0 && <span className="text-[9px]" style={textMutedSoft}>{t('ventureDashboard.revenue.breakdown.revShareAmount', { amount: r.revShare.toLocaleString() })}</span>}
                       <span className="text-[9px] ml-auto" style={textMutedSoft}>{r.type}</span>
                     </div>
                   </div>
@@ -480,7 +482,7 @@ const VentureDashboard = () => {
             {/* Totals */}
             <div className="mt-5 pt-4" style={{ borderTop: "1px solid var(--skin-hairline, rgba(26,30,58,0.08))" }}>
               <div className="flex items-center justify-between mb-1">
-                <span className="text-[10px] uppercase tracking-[0.18em]" style={textMuted}>Total</span>
+                <span className="text-[10px] uppercase tracking-[0.18em]" style={textMuted}>{t('ventureDashboard.revenue.breakdown.total')}</span>
                 <span className="text-2xl font-medium" style={numerals}>
                   <span className="bg-clip-text text-transparent" style={GOLD_TEXT_STYLE}>
                     {formatCurrency(totalAll)}
@@ -488,9 +490,9 @@ const VentureDashboard = () => {
                 </span>
               </div>
               <div className="flex items-center gap-4 text-[9px]" style={textMutedSoft}>
-                <span>${totalCash} cash</span>
-                <span>${totalInKind} in-kind</span>
-                <span>${totalRevShare} rev share</span>
+                <span>{t('ventureDashboard.revenue.breakdown.cashAmount', { amount: totalCash })}</span>
+                <span>{t('ventureDashboard.revenue.breakdown.inKindAmount', { amount: totalInKind })}</span>
+                <span>{t('ventureDashboard.revenue.breakdown.revShareAmount', { amount: totalRevShare })}</span>
               </div>
             </div>
           </div>
@@ -502,21 +504,21 @@ const VentureDashboard = () => {
           style={cardStyle}
           id="next-milestone"
         >
-          <p className="mb-3" style={eyebrowStyle}>Next Milestone</p>
+          <p className="mb-3" style={eyebrowStyle}>{t('ventureDashboard.nextMilestone.eyebrow')}</p>
           <h3
             className="text-2xl md:text-3xl font-medium mb-4"
             style={serif}
           >
             <span className="bg-clip-text text-transparent" style={GOLD_TEXT_STYLE}>
-              First $555 Productize Yourself Session from Funnel
+              {t('ventureDashboard.nextMilestone.title')}
             </span>
           </h3>
           <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[11px]" style={textMuted}>
-            <span>$1,696 received (cash + in-kind)</span>
+            <span>{t('ventureDashboard.nextMilestone.stat1')}</span>
             <span className="w-1 h-1 rounded-full" style={{ background: "var(--skin-text-muted, rgba(11,42,90,0.4))" }} />
-            <span>3 canvases to N=10</span>
+            <span>{t('ventureDashboard.nextMilestone.stat2')}</span>
             <span className="w-1 h-1 rounded-full" style={{ background: "var(--skin-text-muted, rgba(11,42,90,0.4))" }} />
-            <span>3/9 surfaces live</span>
+            <span>{t('ventureDashboard.nextMilestone.stat3')}</span>
           </div>
         </section>
 
@@ -525,10 +527,10 @@ const VentureDashboard = () => {
         {/* ═══════ THE JOURNEY ═══════ */}
         <section id="timeline-section" className="mb-12">
           <h2 className="text-2xl md:text-3xl font-medium mb-2 text-center" style={{ ...serif, ...textPrimary, ...haloStrong }}>
-            The Journey
+            {t('ventureDashboard.journey.title')}
           </h2>
           <p className="text-center italic mb-8 text-base md:text-lg" style={{ ...serif, ...textMuted, ...haloSubtle }}>
-            Eighty-seven days. Seven founders. One emerging field.
+            {t('ventureDashboard.journey.subtitle')}
           </p>
 
           <div className="relative">
@@ -547,11 +549,11 @@ const VentureDashboard = () => {
             />
 
             <div className="space-y-6">
-              {TIMELINE.map((t, i) => (
+              {TIMELINE.map((tl, i) => (
                 <div
-                  key={`${t.name}-${t.day}`}
+                  key={`${tl.name}-${tl.day}`}
                   className={`relative flex items-start gap-6 ${i % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"}`}
-                  id={`timeline-${t.name.toLowerCase()}-${t.day}`}
+                  id={`timeline-${tl.name.toLowerCase()}-${tl.day}`}
                 >
                   {/* Node — desktop only (see comment above) */}
                   <div
@@ -570,7 +572,7 @@ const VentureDashboard = () => {
                         className="flex items-center gap-2 mb-1"
                         style={{ justifyContent: i % 2 === 0 ? "flex-end" : "flex-start" }}
                       >
-                        <span className="text-[10px] font-mono" style={textMuted}>Day {t.day}</span>
+                        <span className="text-[10px] font-mono" style={textMuted}>{t('ventureDashboard.journey.dayLabel', { day: tl.day })}</span>
                         <span
                           className="text-[10px] px-1.5 py-0.5 rounded-md"
                           style={{
@@ -579,11 +581,11 @@ const VentureDashboard = () => {
                             border: "1px solid rgba(184,134,11,0.20)",
                           }}
                         >
-                          {t.type}
+                          {tl.type}
                         </span>
                       </div>
-                      <h3 className="text-base font-medium mb-1" style={{ ...serif, ...textPrimary }}>{t.name}</h3>
-                      <p className="text-[12px] leading-relaxed" style={textMuted}>{t.desc}</p>
+                      <h3 className="text-base font-medium mb-1" style={{ ...serif, ...textPrimary }}>{tl.name}</h3>
+                      <p className="text-[12px] leading-relaxed" style={textMuted}>{tl.desc}</p>
                     </div>
                   </div>
                 </div>
@@ -599,9 +601,9 @@ const VentureDashboard = () => {
           <div className="flex items-end justify-between mb-6 gap-4 flex-wrap">
             <div>
               <h2 className="text-2xl md:text-3xl font-medium mb-1" style={{ ...serif, ...textPrimary, ...haloStrong }}>
-                Systemic View
+                {t('ventureDashboard.systemicView.title')}
               </h2>
-              <p className="text-[11px]" style={textMuted}>27 perspectives · 4 quadrants × 3 dantians · 7 stages</p>
+              <p className="text-[11px]" style={textMuted}>{t('ventureDashboard.systemicView.subtitle')}</p>
             </div>
             <a
               href="/holomap"
@@ -612,7 +614,7 @@ const VentureDashboard = () => {
                 background: "var(--skin-card-fill, rgba(255,255,255,0.45))",
               }}
             >
-              Open Holomap →
+              {t('ventureDashboard.systemicView.openHolomap')}
             </a>
           </div>
 
@@ -691,7 +693,7 @@ const VentureDashboard = () => {
                 className="mt-4 pt-3 flex items-center justify-between"
                 style={{ borderTop: "1px solid var(--skin-hairline, rgba(26,30,58,0.08))" }}
               >
-                <span className="text-[10px] uppercase tracking-[0.18em]" style={textMuted}>Average</span>
+                <span className="text-[10px] uppercase tracking-[0.18em]" style={textMuted}>{t('ventureDashboard.systemicView.average')}</span>
                 <span className="text-base font-medium" style={{ ...serif, ...textPrimary }}>
                   {(RADAR_DATA.reduce((s, d) => s + d.value, 0) / RADAR_DATA.length).toFixed(1)}/10
                 </span>
@@ -709,8 +711,8 @@ const VentureDashboard = () => {
           id="dashboard-footer"
         >
           <div className="flex flex-wrap items-center justify-between gap-2 text-[10px]" style={textMutedSoft}>
-            <span>Built in public · Updated in near-real time</span>
-            <span>© 2026 Aleksandr Konstantinov</span>
+            <span>{t('ventureDashboard.footer.builtInPublic')}</span>
+            <span>{t('ventureDashboard.footer.copyright')}</span>
           </div>
         </footer>
 

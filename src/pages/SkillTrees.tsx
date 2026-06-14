@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -10,6 +11,7 @@ import { cn } from "@/lib/utils";
 import { normalizeDomainSlug, DomainSlug } from "@/lib/domains";
 
 const SkillTrees = () => {
+    const { t } = useTranslation();
     const navigate = useNavigate();
     const { pathId } = useParams<{ pathId: string }>();
     const [searchParams] = useSearchParams();
@@ -63,17 +65,17 @@ const SkillTrees = () => {
                     {/* Back link */}
                     <BackButton
                         to="/game"
-                        label={<BoldText>BACK TO CHARACTER</BoldText>}
+                        label={<BoldText>{t('skillTrees.backToCharacter')}</BoldText>}
                         className="text-muted-foreground hover:text-foreground transition-colors mb-6 font-semibold"
                     />
 
                     {/* Page Header */}
                     <div className="text-center mb-6 sm:mb-8">
                         <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground mb-2">
-                            <BoldText>SKILL TREES</BoldText>
+                            <BoldText>{t('skillTrees.title')}</BoldText>
                         </h1>
                         <p className="text-[#2c3150]/60 max-w-2xl mx-auto text-sm sm:text-base px-2">
-                            Five paths of development. Each skill unlocks as you complete practices and quests.
+                            {t('skillTrees.subtitle')}
                         </p>
                     </div>
 
@@ -172,18 +174,18 @@ const SkillTrees = () => {
                     <div className="flex flex-wrap justify-center gap-4 sm:gap-6 mt-8 sm:mt-10 text-xs text-[#2c3150]/60">
                         <div className="flex items-center gap-2">
                             <div className="w-4 h-4 rounded-full bg-muted/30 border border-muted/50" />
-                            <span>Locked</span>
+                            <span>{t('skillTrees.legend.locked')}</span>
                         </div>
                         <div className="flex items-center gap-2">
                             <div className="w-4 h-4 rounded-full border-2" style={{ borderColor: activeTree.color }} />
-                            <span>Available</span>
+                            <span>{t('skillTrees.legend.available')}</span>
                         </div>
                         <div className="flex items-center gap-2">
                             <div
                                 className="w-4 h-4 rounded-full animate-pulse"
                                 style={{ backgroundColor: `${activeTree.color}40`, borderColor: activeTree.color }}
                             />
-                            <span>In Progress</span>
+                            <span>{t('skillTrees.legend.inProgress')}</span>
                         </div>
                         <div className="flex items-center gap-2">
                             <div
@@ -194,7 +196,7 @@ const SkillTrees = () => {
                                     <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
                                 </svg>
                             </div>
-                            <span>Completed</span>
+                            <span>{t('skillTrees.legend.completed')}</span>
                         </div>
                     </div>
                 </div>

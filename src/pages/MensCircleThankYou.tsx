@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Calendar, Send, CheckCircle } from "lucide-react";
 import Navigation from "@/components/Navigation";
@@ -58,6 +59,8 @@ const generateCalendarUrls = () => {
 };
 
 const MensCircleThankYou = () => {
+    const { t } = useTranslation();
+
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
@@ -82,7 +85,7 @@ const MensCircleThankYou = () => {
 
                     <img
                         src="https://i.imgur.com/NGSxNw8.png"
-                        alt="Men's Circle"
+                        alt={t('mensCircleThanks.imageAlt')}
                         loading="lazy"
                         className="w-48 h-48 mx-auto object-contain"
                     />
@@ -189,7 +192,7 @@ const MensCircleThankYou = () => {
                                 onClick={() => window.open(calendarUrls.google, "_blank")}
                             >
                                 <Calendar className="w-4 h-4" />
-                                Google Calendar
+                                {t('mensCircleThanks.calGoogle')}
                             </Button>
                             <Button
                                 variant="outline"
@@ -198,7 +201,7 @@ const MensCircleThankYou = () => {
                                 onClick={() => window.open(calendarUrls.outlook, "_blank")}
                             >
                                 <Calendar className="w-4 h-4" />
-                                Outlook
+                                {t('mensCircleThanks.calOutlook')}
                             </Button>
                             <Button
                                 variant="outline"
@@ -212,7 +215,7 @@ const MensCircleThankYou = () => {
                                 }}
                             >
                                 <Calendar className="w-4 h-4" />
-                                Apple / iCal
+                                {t('mensCircleThanks.calApple')}
                             </Button>
                         </div>
                     </div>

@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { GOLD_GRADIENT, GOLD_GLOW, Ornament, igniteLogo } from "@/lib/landingDesign";
 
 /**
@@ -31,21 +32,21 @@ import { GOLD_GRADIENT, GOLD_GLOW, Ornament, igniteLogo } from "@/lib/landingDes
 // (aurum / techstars) re-tone this standalone surface correctly.
 const NAVY = "var(--skin-text-primary, #0a1628)";
 
-const WAYS: Array<{ n: string; title: string; desc: string }> = [
+const WAYS: Array<{ n: string; titleKey: string; descKey: string }> = [
   {
     n: "1",
-    title: "People and groups pay to use it",
-    desc: "A person can go deeper for a small fee, then book a session, then get help building. A community can pay a regular fee to run the whole thing for its members, under its own name. And anyone can run their own copy and send back a small share once they are truly earning from it.",
+    titleKey: "monetization.way1Title",
+    descKey: "monetization.way1Desc",
   },
   {
     n: "2",
-    title: "We share in what it helps build",
-    desc: "Where the platform is genuinely part of building a venture, it keeps a small, lasting share. We only earn when you do. This is invitation-based and only where we are truly in the loop, never a tax on every introduction.",
+    titleKey: "monetization.way2Title",
+    descKey: "monetization.way2Desc",
   },
   {
     n: "3",
-    title: "Others pay to teach it",
-    desc: "In time, schools and programs can be certified to teach the method themselves, the way a coaching or yoga certification works.",
+    titleKey: "monetization.way3Title",
+    descKey: "monetization.way3Desc",
   },
 ];
 
@@ -114,6 +115,7 @@ const Panel = ({
 const bodyStyle = { color: "var(--skin-text-muted, rgba(26,30,58,0.8))" } as const;
 
 const Monetization = () => {
+  const { t } = useTranslation();
   const headlineHalo = "0 0 26px rgba(255,255,255,0.7), 0 1px 2px rgba(255,255,255,0.85)";
   return (
     <main
@@ -153,7 +155,7 @@ const Monetization = () => {
         {/* HERO — tightened mb (was 14/20, now 8/10), tightened sub-h1 max-width. */}
         <header className="text-center mb-8 sm:mb-10">
           <p className="text-[11px] uppercase tracking-[0.30em] mb-5" style={{ color: "var(--skin-text-muted, rgba(26,30,58,0.5))" }}>
-            Built in the open · paid in the open
+            {t("monetization.heroEyebrow")}
           </p>
           <h1
             className="font-bold leading-[1.04] tracking-[-0.01em]"
@@ -164,7 +166,7 @@ const Monetization = () => {
               textShadow: headlineHalo,
             }}
           >
-            How this is paid for
+            {t("monetization.heroTitle")}
           </h1>
           <p
             className="mt-5 italic mx-auto max-w-[36ch]"
@@ -175,13 +177,11 @@ const Monetization = () => {
               lineHeight: 1.35,
             }}
           >
-            The whole model: what stays free, what is paid for, and why it grows{" "}
-            <GradientInk>when you do</GradientInk>.
+            {t("monetization.heroSubBefore")}{" "}
+            <GradientInk>{t("monetization.heroSubInk")}</GradientInk>{t("monetization.heroSubAfter")}
           </p>
           <p className="mt-8 mx-auto max-w-[56ch] text-[15px] sm:text-base leading-relaxed" style={bodyStyle}>
-            The seed is free on purpose: a short profile that shows you what you are naturally great at, given
-            away so it can spread. Nobody pays for the seed. The money comes from what grows around it, and
-            every form of it is designed so the platform stays small while the people using it grow.
+            {t("monetization.heroBody")}
           </p>
 
           {/* Inline soft CTA — for early-leavers. */}
@@ -194,7 +194,7 @@ const Monetization = () => {
               paddingBottom: "2px",
             }}
           >
-            Try the free seed yourself
+            {t("monetization.heroSoftCta")}
             <ArrowRight className="w-3.5 h-3.5 opacity-70" />
           </Link>
         </header>
@@ -206,15 +206,13 @@ const Monetization = () => {
             The "Three ways" is the core argument; "Order it grows" is supporting
             chronology; "Principle" is the closing rationale + carries gravitas. */}
         <div className="space-y-5">
-          <Panel eyebrow="The seed is free" weight="standard">
+          <Panel eyebrow={t("monetization.seedEyebrow")} weight="standard">
             <p className="text-[15px] sm:text-base leading-relaxed" style={bodyStyle}>
-              A two-minute talent profile, free for anyone. It is the front door, not a sample held back to
-              upsell. The more people who hold a clear picture of what they uniquely bring, the better the
-              whole thing works, so the front door stays open and free.
+              {t("monetization.seedBody")}
             </p>
           </Panel>
 
-          <Panel eyebrow="Three ways it is paid for" weight="heavy">
+          <Panel eyebrow={t("monetization.waysEyebrow")} weight="heavy">
             <ol className="space-y-4">
               {WAYS.map((w) => (
                 <li key={w.n} className="flex gap-4 items-baseline">
@@ -230,29 +228,22 @@ const Monetization = () => {
                     {w.n}
                   </span>
                   <p className="text-[15px] sm:text-base leading-snug" style={{ color: "var(--skin-text-muted, rgba(26,30,58,0.82))" }}>
-                    <span className="font-semibold" style={{ color: NAVY }}>{w.title}.</span> {w.desc}
+                    <span className="font-semibold" style={{ color: NAVY }}>{t(w.titleKey)}.</span> {t(w.descKey)}
                   </p>
                 </li>
               ))}
             </ol>
           </Panel>
 
-          <Panel eyebrow="The order it grows" weight="light">
+          <Panel eyebrow={t("monetization.orderEyebrow")} weight="light">
             <p className="text-[15px] sm:text-base leading-relaxed" style={bodyStyle}>
-              These turn on in sequence, not all at once. People first, you can use it today. Communities next,
-              running it for their own members. Sharing in the ventures it helps build comes later, and only
-              where we are genuinely part of the building. Licensing others to teach it comes last. Each step
-              proves and funds the next.
+              {t("monetization.orderBody")}
             </p>
           </Panel>
 
-          <Panel eyebrow="The principle" weight="standard">
+          <Panel eyebrow={t("monetization.principleEyebrow")} weight="standard">
             <p className="text-[15px] sm:text-base leading-relaxed" style={bodyStyle}>
-              Three commitments hold it together. We stay small while the thing underneath grows. The code is
-              open-source and forkable, meant to be owned by the people who use it, not locked behind a wall.
-              And a fair share of what the network earns funds a shared commons, not a private fortune. The one
-              number all of it serves is simple: <GradientInk>how many people find their people and start
-              building together</GradientInk>.
+              {t("monetization.principleBodyBefore")} <GradientInk>{t("monetization.principleBodyInk")}</GradientInk>{t("monetization.principleBodyAfter")}
             </p>
           </Panel>
         </div>
@@ -278,11 +269,11 @@ const Monetization = () => {
                 filter: "drop-shadow(0 0 8px rgba(240, 194, 127, 0.5)) drop-shadow(0 0 2px rgba(212, 175, 55, 0.7))",
               }}
             />
-            Find your top talent
+            {t("monetization.ctaPrimary")}
             <ArrowRight className="w-4 h-4 opacity-70" />
           </Link>
           <p className="mt-4 text-[11px] uppercase tracking-[0.22em]" style={{ color: "var(--skin-text-muted, rgba(26,30,58,0.5))" }}>
-            Free · 2 minutes · No signup
+            {t("monetization.ctaMeta")}
           </p>
           <div className="mt-7 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[13px]">
             <Link
@@ -290,7 +281,7 @@ const Monetization = () => {
               className="inline-flex items-center gap-1.5 font-medium transition-opacity hover:opacity-70"
               style={{ color: "var(--skin-text-muted, rgba(26,30,58,0.7))" }}
             >
-              Read the whole 1-pager
+              {t("monetization.ctaReadOnePager")}
               <ArrowRight className="w-3.5 h-3.5 opacity-60" />
             </Link>
             <a
@@ -300,7 +291,7 @@ const Monetization = () => {
               className="inline-flex items-center gap-1.5 font-medium transition-opacity hover:opacity-70"
               style={{ color: "var(--skin-text-muted, rgba(26,30,58,0.7))" }}
             >
-              Book a chat with Aleksandr
+              {t("monetization.ctaBookChat")}
               <ArrowRight className="w-3.5 h-3.5 opacity-60" />
             </a>
           </div>
@@ -308,7 +299,7 @@ const Monetization = () => {
 
         {/* CLOSE — italic pull-quote. */}
         <section className="text-center mt-16 sm:mt-20 max-w-[52ch] mx-auto">
-          <Eyebrow>The whole idea</Eyebrow>
+          <Eyebrow>{t("monetization.closeEyebrow")}</Eyebrow>
           <p
             className="italic"
             style={{
@@ -318,7 +309,7 @@ const Monetization = () => {
               lineHeight: 1.4,
             }}
           >
-            A business that earns by helping people succeed, and takes a fair slice for making it happen.
+            {t("monetization.closeQuote")}
           </p>
         </section>
 
@@ -332,10 +323,10 @@ const Monetization = () => {
               color: "var(--skin-text-muted, rgba(26,30,58,0.55))",
             }}
           >
-            Built in the open. Owned by the people who use it.
+            {t("monetization.footerTagline")}
           </p>
           <p className="text-[10px] uppercase tracking-[0.28em]" style={{ color: "var(--skin-text-muted, rgba(26,30,58,0.4))" }}>
-            Find Your Top Talent · findyourtoptalent.com
+            {t("monetization.footerBrand")}
           </p>
         </footer>
       </div>

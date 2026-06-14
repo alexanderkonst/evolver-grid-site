@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
+import { useTranslation } from "react-i18next";
 import { Check, ArrowLeft } from "lucide-react";
 import GameShellV2 from "@/components/game/GameShellV2";
 import { supabase } from "@/integrations/supabase/client";
@@ -16,13 +17,14 @@ import { supabase } from "@/integrations/supabase/client";
 type FormState = "form" | "submitting" | "submitted";
 
 const SESSION_TYPES = [
-  { value: "ignition", label: "Productize Yourself Session (90 min)" },
-  { value: "build", label: "The Build (multi-session)" },
-  { value: "group", label: "Group Build" },
-  { value: "other", label: "Other" },
+  { value: "ignition", labelKey: "feedback.sessionType.ignition" },
+  { value: "build", labelKey: "feedback.sessionType.build" },
+  { value: "group", labelKey: "feedback.sessionType.group" },
+  { value: "other", labelKey: "feedback.sessionType.other" },
 ];
 
 export default function FeedbackPage() {
+  const { t } = useTranslation();
   const [state, setState] = useState<FormState>("form");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -87,15 +89,14 @@ export default function FeedbackPage() {
             className="text-2xl sm:text-3xl font-display font-semibold text-white mb-4"
             style={{ textShadow: "0 0 30px rgba(255,255,255,0.15)" }}
           >
-            Thank you, {name}.
+            {t("feedback.submitted.title", { name })}
           </h1>
 
           <p
             className="text-base text-white/50 max-w-md leading-relaxed mb-10"
             style={{ fontFamily: "'Source Serif 4', serif" }}
           >
-            Your words will help someone else recognize their own genius.
-            That's the real gift.
+            {t("feedback.submitted.body")}
           </p>
 
           <a
@@ -103,7 +104,7 @@ export default function FeedbackPage() {
             className="inline-flex items-center gap-2 text-sm text-white/30 hover:text-white/60 transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
-            Back to home
+            {t("feedback.backToHome")}
           </a>
         </div>
       </GameShellV2>
@@ -130,13 +131,13 @@ export default function FeedbackPage() {
             className="text-2xl sm:text-3xl font-display font-semibold text-white mb-3"
             style={{ textShadow: "0 0 30px rgba(255,255,255,0.15)" }}
           >
-            What happened in your session?
+            {t("feedback.header.title")}
           </h1>
 
           <p className="text-sm text-white/35 max-w-sm mx-auto leading-relaxed">
-            Your honest experience — in a few sentences.
+            {t("feedback.header.subtitleLine1")}
             <br />
-            No polish needed. The raw truth is always the most powerful.
+            {t("feedback.header.subtitleLine2")}
           </p>
         </div>
 
@@ -145,13 +146,13 @@ export default function FeedbackPage() {
           {/* Name */}
           <div>
             <label className="text-[10px] text-white/30 uppercase tracking-[0.15em] mb-1.5 block">
-              Your name *
+              {t("feedback.field.name.label")}
             </label>
             <input
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              placeholder="First name or full name"
+              placeholder={t("feedback.field.name.placeholder")}
               className="w-full px-4 py-3 rounded-xl bg-white/[0.03] backdrop-blur-sm
                          border border-white/10 focus:border-white/20 focus:ring-1 focus:ring-white/10
                          text-white/80 text-sm placeholder:text-white/15
@@ -162,7 +163,7 @@ export default function FeedbackPage() {
           {/* Email (optional) */}
           <div>
             <label className="text-[10px] text-white/30 uppercase tracking-[0.15em] mb-1.5 block">
-              Email <span className="text-white/15">(optional — if you'd like a copy)</span>
+              {t("feedback.field.email.label")} <span className="text-white/15">{t("feedback.field.email.note")}</span>
             </label>
             <input
               type="email"
@@ -179,21 +180,21 @@ export default function FeedbackPage() {
           {/* Session type */}
           <div>
             <label className="text-[10px] text-white/30 uppercase tracking-[0.15em] mb-1.5 block">
-              Session type
+              {t("feedback.field.sessionType.label")}
             </label>
             <div className="grid grid-cols-2 gap-2">
-              {SESSION_TYPES.map((t) => (
+              {SESSION_TYPES.map((s) => (
                 <button
-                  key={t.value}
+                  key={s.value}
                   type="button"
-                  onClick={() => setSessionType(t.value)}
+                  onClick={() => setSessionType(s.value)}
                   className={`px-3 py-2.5 rounded-xl text-xs transition-all duration-200 border
-                    ${sessionType === t.value
+                    ${sessionType === s.value
                       ? "border-white/20 bg-white/[0.06] text-white/80"
                       : "border-white/5 bg-white/[0.02] text-white/30 hover:border-white/10 hover:text-white/50"
                     }`}
                 >
-                  {t.label}
+                  {t(s.labelKey)}
                 </button>
               ))}
             </div>
@@ -202,13 +203,13 @@ export default function FeedbackPage() {
           {/* Before state */}
           <div>
             <label className="text-[10px] text-white/30 uppercase tracking-[0.15em] mb-1.5 block">
-              Before the session, I was... <span className="text-white/15">(optional)</span>
+              {t("feedback.field.beforeState.label")} <span className="text-white/15">{t("feedback.field.beforeState.note")}</span>
             </label>
             <input
               type="text"
               value={beforeState}
               onChange={(e) => setBeforeState(e.target.value)}
-              placeholder="e.g., stuck, confused, overthinking, giving it away for free..."
+              placeholder={t("feedback.field.beforeState.placeholder")}
               className="w-full px-4 py-3 rounded-xl bg-white/[0.03] backdrop-blur-sm
                          border border-white/10 focus:border-white/20 focus:ring-1 focus:ring-white/10
                          text-white/80 text-sm placeholder:text-white/15
@@ -219,12 +220,12 @@ export default function FeedbackPage() {
           {/* Short quote (required) */}
           <div>
             <label className="text-[10px] text-white/30 uppercase tracking-[0.15em] mb-1.5 block">
-              The one thing you'd tell someone considering this *
+              {t("feedback.field.shortQuote.label")}
             </label>
             <textarea
               value={shortQuote}
               onChange={(e) => setShortQuote(e.target.value)}
-              placeholder="1-2 sentences. What changed? What did you walk away with?"
+              placeholder={t("feedback.field.shortQuote.placeholder")}
               rows={3}
               className="w-full px-4 py-3 rounded-xl bg-white/[0.03] backdrop-blur-sm
                          border border-white/10 focus:border-white/20 focus:ring-1 focus:ring-white/10
@@ -236,12 +237,12 @@ export default function FeedbackPage() {
           {/* Full quote (optional) */}
           <div>
             <label className="text-[10px] text-white/30 uppercase tracking-[0.15em] mb-1.5 block">
-              The full story <span className="text-white/15">(optional — as much or as little as you want)</span>
+              {t("feedback.field.fullQuote.label")} <span className="text-white/15">{t("feedback.field.fullQuote.note")}</span>
             </label>
             <textarea
               value={fullQuote}
               onChange={(e) => setFullQuote(e.target.value)}
-              placeholder="What was happening before? What shifted? What's different now?"
+              placeholder={t("feedback.field.fullQuote.placeholder")}
               rows={5}
               className="w-full px-4 py-3 rounded-xl bg-white/[0.03] backdrop-blur-sm
                          border border-white/10 focus:border-white/20 focus:ring-1 focus:ring-white/10
@@ -265,14 +266,14 @@ export default function FeedbackPage() {
                        ${name.trim() && shortQuote.trim() ? "alive-card" : ""}`}
             style={{ textShadow: "0 0 20px rgba(240,194,127,0.3)" }}
           >
-            {state === "submitting" ? "Submitting..." : "Share your experience"}
+            {state === "submitting" ? t("feedback.submit.submitting") : t("feedback.submit.cta")}
           </button>
 
           {/* Privacy note */}
           <p className="text-[10px] text-white/15 text-center leading-relaxed">
-            Your testimonial will be reviewed before being shared publicly.
+            {t("feedback.privacy.line1")}
             <br />
-            We'll never share your email.
+            {t("feedback.privacy.line2")}
           </p>
         </div>
 
@@ -282,7 +283,7 @@ export default function FeedbackPage() {
             href="/"
             className="text-xs text-white/20 hover:text-white/40 transition-colors"
           >
-            ← Back to home
+            ← {t("feedback.backToHome")}
           </a>
         </div>
       </div>

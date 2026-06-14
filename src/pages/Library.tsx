@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useNavigate, useParams } from "react-router-dom";
 import GameShellV2 from "@/components/game/GameShellV2";
 import {
@@ -46,7 +47,9 @@ const VideoCategoryFilter = ({
 }: {
   activeCategory: LibraryCategoryId | "all";
   onSelect: (id: LibraryCategoryId | "all") => void;
-}) => (
+}) => {
+  const { t } = useTranslation();
+  return (
   <div className="flex gap-2 flex-wrap mb-6 justify-center">
     <button
       onClick={() => onSelect("all")}
@@ -62,7 +65,7 @@ const VideoCategoryFilter = ({
         letterSpacing: "0.16em",
       }}
     >
-      All
+      {t('library.filterAll')}
     </button>
     {LIBRARY_CATEGORIES.map((cat) => (
       <button
@@ -84,7 +87,8 @@ const VideoCategoryFilter = ({
       </button>
     ))}
   </div>
-);
+  );
+};
 
 /* ─── Video Card ─── */
 const VideoCard = ({
@@ -93,7 +97,9 @@ const VideoCard = ({
 }: {
   item: LibraryItem;
   onSelect: (item: LibraryItem) => void;
-}) => (
+}) => {
+  const { t } = useTranslation();
+  return (
   <button
     onClick={() => onSelect(item)}
     className="flex flex-col rounded-2xl liquid-glass-strong text-left group hover:scale-[1.015] transition-all duration-300 overflow-hidden"
@@ -134,15 +140,18 @@ const VideoCard = ({
       )}
       {(item.durationLabel || item.durationMinutes) && (
         <div className="text-[11px]" style={{ ...BODY_STYLE, opacity: 0.75 }}>
-          {item.durationLabel ?? `${item.durationMinutes} min`}
+          {item.durationLabel ?? t('library.durationMinutes', { count: item.durationMinutes })}
         </div>
       )}
     </div>
   </button>
-);
+  );
+};
 
 /* ─── Step Header ─── */
-const StepHeader = ({ step }: { step: GrowthStep }) => (
+const StepHeader = ({ step }: { step: GrowthStep }) => {
+  const { t } = useTranslation();
+  return (
   <div className="text-center mb-10">
     <div
       className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full liquid-glass-strong mb-5"
@@ -161,7 +170,7 @@ const StepHeader = ({ step }: { step: GrowthStep }) => (
         {step.number}
       </span>
       <span className="text-[10.5px]" style={EYEBROW_STYLE}>
-        Growth Sequence · Step {step.number}
+        {t('library.stepEyebrow', { number: step.number })}
       </span>
     </div>
     <h1
@@ -175,10 +184,12 @@ const StepHeader = ({ step }: { step: GrowthStep }) => (
       {step.description}
     </p>
   </div>
-);
+  );
+};
 
 /* ─── Step Content (pane 3) ─── */
 const StepContent = ({ step }: { step: GrowthStep }) => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [activeCategory, setActiveCategory] = useState<LibraryCategoryId | "all">("all");
   const [selectedItem, setSelectedItem] = useState<LibraryItem | null>(null);
@@ -204,7 +215,7 @@ const StepContent = ({ step }: { step: GrowthStep }) => {
               </div>
             ) : (
               <p className="text-sm text-center" style={BODY_STYLE}>
-                No content in this category yet.
+                {t('library.emptyCategory')}
               </p>
             )}
           </div>
@@ -228,13 +239,13 @@ const StepContent = ({ step }: { step: GrowthStep }) => {
                 style={{ color: "rgba(160, 109, 8, 0.88)" }}
               />
               <h3 className="text-xl font-semibold mb-1" style={TITLE_STYLE}>
-                Consciousness Meets{" "}
+                {t('library.articleLinkTitleBefore')}{" "}
                 <span className="bg-clip-text text-transparent" style={GOLD_TEXT_STYLE}>
-                  Science
+                  {t('library.articleLinkTitleEmphasis')}
                 </span>
               </h3>
               <p className="text-sm italic mb-5" style={BODY_STYLE}>
-                How inner experiences and science co-reveal the nature of reality.
+                {t('library.articleLinkDescription')}
               </p>
               <div
                 className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300"
@@ -246,7 +257,7 @@ const StepContent = ({ step }: { step: GrowthStep }) => {
                   letterSpacing: "0.04em",
                 }}
               >
-                Read on Medium
+                {t('library.readOnMedium')}
                 <ArrowRight className="w-4 h-4 group-hover/card:translate-x-1 transition-transform duration-300" />
               </div>
             </a>
@@ -269,13 +280,13 @@ const StepContent = ({ step }: { step: GrowthStep }) => {
                 style={{ color: "rgba(160, 109, 8, 0.88)" }}
               />
               <h3 className="text-xl font-semibold mb-1" style={TITLE_STYLE}>
-                27-Perspective{" "}
+                {t('library.article27TitleBefore')}{" "}
                 <span className="bg-clip-text text-transparent" style={GOLD_TEXT_STYLE}>
-                  Vision
+                  {t('library.article27TitleEmphasis')}
                 </span>
               </h3>
               <p className="text-sm italic mb-5" style={BODY_STYLE}>
-                Person-Perspectives as Dimensions of Reality
+                {t('library.article27Description')}
               </p>
               <div
                 className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300"
@@ -287,7 +298,7 @@ const StepContent = ({ step }: { step: GrowthStep }) => {
                   letterSpacing: "0.04em",
                 }}
               >
-                Read the article
+                {t('library.readTheArticle')}
                 <ArrowRight className="w-4 h-4 group-hover/card:translate-x-1 transition-transform duration-300" />
               </div>
             </button>
@@ -311,12 +322,12 @@ const StepContent = ({ step }: { step: GrowthStep }) => {
               />
               <h3 className="text-2xl font-semibold mb-2" style={TITLE_STYLE}>
                 <span className="bg-clip-text text-transparent" style={GOLD_TEXT_STYLE}>
-                  Ignition
+                  {t('library.ctaTitleEmphasis')}
                 </span>{" "}
-                Session
+                {t('library.ctaTitleAfter')}
               </h3>
               <p className="text-sm italic mb-6" style={BODY_STYLE}>
-                One conversation that changes your trajectory.
+                {t('library.ctaDescription')}
               </p>
               <div
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-bold transition-all duration-300"
@@ -329,7 +340,7 @@ const StepContent = ({ step }: { step: GrowthStep }) => {
                   boxShadow: "0 0 20px -4px rgba(244,212,114,0.3)",
                 }}
               >
-                Start now
+                {t('library.startNow')}
                 <ArrowRight className="w-4 h-4 group-hover/card:translate-x-1 transition-transform duration-300" />
               </div>
             </button>
@@ -348,10 +359,10 @@ const StepContent = ({ step }: { step: GrowthStep }) => {
                 style={{ color: "var(--skin-text-muted-soft, rgba(26,30,58,0.45))" }}
               />
               <h3 className="text-lg font-semibold mb-2" style={TITLE_STYLE}>
-                Locked
+                {t('library.lockedTitle')}
               </h3>
               <p className="text-sm italic leading-relaxed" style={BODY_STYLE}>
-                {step.lockedHint ?? "This module is being built. Stay tuned."}
+                {step.lockedHint ?? t('library.lockedHintFallback')}
               </p>
             </div>
           </div>
@@ -381,7 +392,7 @@ const StepContent = ({ step }: { step: GrowthStep }) => {
                   border: "1px solid rgba(212,175,55,0.24)",
                 }}
               >
-                Close
+                {t('library.close')}
               </button>
             </div>
             <div className="w-full aspect-video mb-4">
@@ -395,7 +406,7 @@ const StepContent = ({ step }: { step: GrowthStep }) => {
             </div>
             {selectedItem.teacher && (
               <p className="text-sm italic" style={BODY_STYLE}>
-                Guided by {selectedItem.teacher}
+                {t('library.guidedBy', { teacher: selectedItem.teacher })}
               </p>
             )}
           </div>
@@ -407,6 +418,7 @@ const StepContent = ({ step }: { step: GrowthStep }) => {
 
 /* ─── Index View (no stepId) ─── */
 const LibraryIndex = ({ pathBase }: { pathBase: string }) => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   return (
     <div className="p-6 pb-24 lg:p-10 lg:pb-12 max-w-3xl mx-auto">
@@ -420,7 +432,7 @@ const LibraryIndex = ({ pathBase }: { pathBase: string }) => {
             style={{ color: "rgba(160, 109, 8, 0.85)" }}
           />
           <span className="text-[10.5px]" style={EYEBROW_STYLE}>
-            Growth Sequence
+            {t('library.growthSequence')}
           </span>
         </div>
         <h1
@@ -428,13 +440,12 @@ const LibraryIndex = ({ pathBase }: { pathBase: string }) => {
           style={TITLE_STYLE}
         >
           <span className="bg-clip-text text-transparent" style={GOLD_TEXT_STYLE}>
-            GROW
+            {t('library.indexHero')}
           </span>
         </h1>
         <Ornament className="my-5" />
         <p className="text-base sm:text-lg italic max-w-xl mx-auto leading-relaxed" style={BODY_STYLE}>
-          Six steps. From scattered talent to centered mastery. Pick a step from the side
-          panel — each one unlocks the next level of seeing.
+          {t('library.indexIntro')}
         </p>
       </div>
 

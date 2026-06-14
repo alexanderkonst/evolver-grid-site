@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -11,6 +12,7 @@ import profilePhoto from "@/assets/profile-photo.png";
 import BackButton from "@/components/BackButton";
 
 const Destiny = () => {
+  const { t } = useTranslation();
   const sectionIds = ['hero', 'is-this-you', 'how-it-works', 'about', 'start'];
   const activeSection = useScrollSpy(sectionIds);
   
@@ -42,7 +44,7 @@ const Destiny = () => {
         <div className="container mx-auto max-w-4xl">
           <BackButton
             to="/"
-            label={<BoldText>BACK</BoldText>}
+            label={<BoldText>{t('destiny.nav.back')}</BoldText>}
             className="text-white/60 hover:text-white transition-colors font-semibold"
           />
         </div>
@@ -53,11 +55,11 @@ const Destiny = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-center gap-3 sm:gap-6 py-4 overflow-x-auto scrollbar-hide">
             {[
-              { label: "HOME", id: "hero" },
-              { label: "IS THIS YOU?", id: "is-this-you" },
-              { label: "HOW IT WORKS", id: "how-it-works" },
-              { label: "ABOUT", id: "about" },
-              { label: "START", id: "start" }
+              { labelKey: "destiny.nav.home", id: "hero" },
+              { labelKey: "destiny.nav.isThisYou", id: "is-this-you" },
+              { labelKey: "destiny.nav.howItWorks", id: "how-it-works" },
+              { labelKey: "destiny.nav.about", id: "about" },
+              { labelKey: "destiny.nav.start", id: "start" }
             ].map((link) => (
               <button
                 key={link.id}
@@ -69,7 +71,7 @@ const Destiny = () => {
                 }`}
                 style={activeSection === link.id ? { color: 'hsl(var(--destiny-gold-dark))' } : {}}
               >
-                <BoldText>{link.label}</BoldText>
+                <BoldText>{t(link.labelKey)}</BoldText>
               </button>
             ))}
           </div>
@@ -95,29 +97,29 @@ const Destiny = () => {
 
           {/* Offer Name Overline */}
           <p className="text-sm uppercase  mb-6 text-white/60">
-            <BoldText>DESTINY: YOUR UNIQUE GENIUS BUSINESS</BoldText>
+            <BoldText>{t('destiny.hero.overline')}</BoldText>
           </p>
 
           {/* Hero Headline */}
           <h1 className="text-5xl sm:text-6xl lg:text-7xl font-serif font-bold mb-6 text-white">
-            <BoldText>YOUR OLD LIFE IS COLLAPSING. YOUR GENIUS ISN'T.</BoldText>
+            <BoldText>{t('destiny.hero.headline')}</BoldText>
           </h1>
-          
+
           {/* Hero Subheadline */}
           <p className="text-xl sm:text-2xl mb-8 text-white/80 max-w-3xl mx-auto leading-relaxed">
-            For founders and visionaries stuck in the in-between — too awake to go back, not yet clear how to go forward — I help you design one Minimally Viable <span style={{ color: 'hsl(45, 100%, 65%)' }}>Genius</span> Business that can actually pay your bills and honor your destiny.
+            {t('destiny.hero.subheadlineBefore')}<span style={{ color: 'hsl(45, 100%, 65%)' }}>{t('destiny.hero.subheadlineEmphasis')}</span>{t('destiny.hero.subheadlineAfter')}
           </p>
           
           {/* Hero Bullets */}
           <div className="space-y-3 mb-12 max-w-2xl mx-auto">
             {[
-              "Turn your soul work into one clear, sellable offer",
-              "Aim for a sane target (e.g. 5–10k/month on ~15–20 hours)",
-              "Stop scattering energy across 7 half-projects and build one true lane"
-            ].map((bullet, i) => (
+              "destiny.hero.bullet1",
+              "destiny.hero.bullet2",
+              "destiny.hero.bullet3"
+            ].map((bulletKey, i) => (
               <div key={i} className="flex items-start gap-3 text-left">
                 <CheckCircle2 className="h-5 w-5 flex-shrink-0 mt-0.5" style={{ color: 'hsl(45, 100%, 65%)' }} />
-                <p className="text-white/70 text-base">{bullet}</p>
+                <p className="text-white/70 text-base">{t(bulletKey)}</p>
               </div>
             ))}
           </div>
@@ -132,13 +134,13 @@ const Destiny = () => {
               color: 'hsl(var(--destiny-dark))',
             }}
           >
-            <BoldText>BOOK AN EXCALIBUR CALL</BoldText>
+            <BoldText>{t('destiny.cta.book')}</BoldText>
             <ArrowRight className="ml-2 h-5 w-5" />
           </Button>
           
           {/* Subtext under button */}
           <p className="text-sm text-white/50">
-            Or learn how this works ↓
+            {t('destiny.hero.ctaSubtext')}
           </p>
         </div>
       </section>
@@ -152,34 +154,34 @@ const Destiny = () => {
       >
         <div className="container mx-auto max-w-4xl">
           <h2 className="text-4xl sm:text-5xl font-serif font-bold mb-8 text-center">
-            <BoldText>YOU'RE IN THE FORGE, NOT JUST IN A PIVOT</BoldText>
+            <BoldText>{t('destiny.isThisYou.heading')}</BoldText>
           </h2>
-          
+
           <div className="space-y-6 text-lg text-foreground/80 max-w-3xl mx-auto">
             <p className="text-xl font-medium">
-              You're not "just changing careers." You're standing between worlds:
+              {t('destiny.isThisYou.intro')}
             </p>
-            
+
             <div className="space-y-4 pl-6 border-l-2" style={{ borderColor: 'hsl(45, 100%, 65%)' }}>
               <p>
-                • The old way of working is dead or dying — your body and soul won't tolerate it anymore.
+                {t('destiny.isThisYou.bullet1')}
               </p>
               <p>
-                • You're receiving real visions — land, projects, communities, products — but they mostly live in your head, voice notes, or ceremony.
+                {t('destiny.isThisYou.bullet2')}
               </p>
               <p>
-                • Savings are melting, and your partner / family is shifting from "I support you" to "I'm scared."
+                {t('destiny.isThisYou.bullet3')}
               </p>
               <p>
-                • You're highly capable (founder/leader energy), but right now your power is spread across too many ideas.
+                {t('destiny.isThisYou.bullet4')}
               </p>
               <p>
-                • If someone asked, "So what exactly do you do?" — you'd hesitate or give three different answers.
+                {t('destiny.isThisYou.bullet5')}
               </p>
             </div>
-            
+
             <p className="text-xl font-semibold text-center pt-6" style={{ color: 'hsl(var(--destiny-gold-dark))' }}>
-              If this feels uncomfortably accurate, this work is for you.
+              {t('destiny.isThisYou.closer')}
             </p>
 
             {/* Mid-Page CTA */}
@@ -193,7 +195,7 @@ const Destiny = () => {
                   color: 'hsl(var(--destiny-dark))',
                 }}
               >
-                <BoldText>BOOK AN EXCALIBUR CALL</BoldText>
+                <BoldText>{t('destiny.cta.book')}</BoldText>
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </div>
@@ -210,27 +212,27 @@ const Destiny = () => {
       >
         <div className="container mx-auto max-w-4xl">
           <h2 className="text-4xl sm:text-5xl font-serif font-bold mb-8 text-center text-white">
-            <BoldText>WHAT WE BUILD: A MINIMALLY VIABLE GENIUS BUSINESS</BoldText>
+            <BoldText>{t('destiny.promise.heading')}</BoldText>
           </h2>
-          
+
           <div className="space-y-6 text-lg text-white/80 max-w-3xl mx-auto">
             <p className="text-xl">
-              I don't help you "find your purpose." You already hear it — that's why the old world hurts so much.
+              {t('destiny.promise.p1')}
             </p>
-            
+
             <p className="text-xl">
-              What I do is help you turn that loud inner knowing into one simple, grounded business model that:
+              {t('destiny.promise.p2')}
             </p>
-            
+
             <div className="space-y-4 pl-6 border-l-2" style={{ borderColor: 'hsl(var(--destiny-gold))' }}>
-              <p>• Is built around your true genius, not a trendy niche</p>
-              <p>• Speaks to a real, conscious pain in people you deeply understand</p>
-              <p>• Lives in a doable container (usually 1:1 or small-group deep work)</p>
-              <p>• Has realistic potential to generate thousands per month without burning you out</p>
+              <p>{t('destiny.promise.bullet1')}</p>
+              <p>{t('destiny.promise.bullet2')}</p>
+              <p>{t('destiny.promise.bullet3')}</p>
+              <p>{t('destiny.promise.bullet4')}</p>
             </div>
-            
+
             <p className="text-xl font-semibold text-center pt-6" style={{ color: 'hsl(var(--destiny-gold))' }}>
-              Think of it as Destiny, implemented: not as a fantasy, but as a business.
+              {t('destiny.promise.closer')}
             </p>
           </div>
         </div>
@@ -244,11 +246,11 @@ const Destiny = () => {
       >
         <div className="container mx-auto max-w-5xl">
           <h2 className="text-4xl sm:text-5xl font-serif font-bold mb-4 text-center">
-            <BoldText>THE EXCALIBUR METHOD</BoldText>
+            <BoldText>{t('destiny.method.heading')}</BoldText>
           </h2>
-          
+
           <p className="text-xl text-center mb-16 text-muted-foreground">
-            We don't manifest. We get radically honest, then build.
+            {t('destiny.method.subheading')}
           </p>
           
           <div className="relative space-y-12">
@@ -268,11 +270,10 @@ const Destiny = () => {
               </div>
               <div className="flex-1">
                 <h3 className="text-2xl font-serif font-bold mb-3">
-                  <BoldText>NAME THE TRUTH</BoldText>
+                  <BoldText>{t('destiny.method.step1.title')}</BoldText>
                 </h3>
                 <p className="text-lg text-foreground/80 leading-relaxed">
-                  We start with a real look at your life: projects, money, responsibilities, energy, partner dynamics.
-                  You keep what feeds you. We're not here to blow up your life — we're here to give your genius a viable lane.
+                  {t('destiny.method.step1.body')}
                 </p>
               </div>
             </div>
@@ -287,11 +288,10 @@ const Destiny = () => {
               </div>
               <div className="flex-1">
                 <h3 className="text-2xl font-serif font-bold mb-3">
-                  <BoldText>MAP YOUR GENIUS (APPLESEED)</BoldText>
+                  <BoldText>{t('destiny.method.step2.title')}</BoldText>
                 </h3>
                 <p className="text-lg text-foreground/80 leading-relaxed">
-                  We map your zone of genius: what you actually do when you're at your best, who you're naturally built to serve, and the archetypal roles you play.
-                  This becomes your Genius Map — the compass for everything that follows.
+                  {t('destiny.method.step2.body')}
                 </p>
               </div>
             </div>
@@ -306,11 +306,10 @@ const Destiny = () => {
               </div>
               <div className="flex-1">
                 <h3 className="text-2xl font-serif font-bold mb-3">
-                  <BoldText>FORGE YOUR EXCALIBUR SENTENCE</BoldText>
+                  <BoldText>{t('destiny.method.step3.title')}</BoldText>
                 </h3>
                 <p className="text-lg text-foreground/80 leading-relaxed">
-                  Together we craft a one-sentence unique genius offer that names your ideal person, their real, felt problem, the role you play, and the tangible shift you help create.
-                  Most people feel a mix of relief and "oh shit, that's actually it."
+                  {t('destiny.method.step3.body')}
                 </p>
               </div>
             </div>
@@ -325,11 +324,10 @@ const Destiny = () => {
               </div>
               <div className="flex-1">
                 <h3 className="text-2xl font-serif font-bold mb-3">
-                  <BoldText>DESIGN & TEST YOUR MVGB</BoldText>
+                  <BoldText>{t('destiny.method.step4.title')}</BoldText>
                 </h3>
                 <p className="text-lg text-foreground/80 leading-relaxed">
-                  From that sentence, we design your Minimally Viable Genius Business: clear offer and outcome, container, price point, and simple, human outreach.
-                  Then you test it in real conversations, and we refine based on what lands, what doesn't, and what your body says yes to.
+                  {t('destiny.method.step4.body')}
                 </p>
               </div>
             </div>
@@ -348,18 +346,18 @@ const Destiny = () => {
             {/* Who This Is For */}
             <div>
               <h2 className="text-3xl sm:text-4xl font-serif font-bold mb-6 text-white">
-                <BoldText>WHO THIS IS FOR</BoldText>
+                <BoldText>{t('destiny.forWhom.forHeading')}</BoldText>
               </h2>
               <div className="space-y-4">
                 {[
-                  "Founders, ex-founders, and creative leaders who know they're here to change something real, not just make decent money.",
-                  "People whose old professional identity has cracked, and pretending it still works feels like self-betrayal.",
-                  "Those willing to tell the truth about money, fear, and desire — and then do focused work from there.",
-                  "People ready to commit to one primary lane (for now) and give it a genuine chance."
-                ].map((item, i) => (
+                  "destiny.forWhom.for1",
+                  "destiny.forWhom.for2",
+                  "destiny.forWhom.for3",
+                  "destiny.forWhom.for4"
+                ].map((itemKey, i) => (
                   <div key={i} className="flex items-start gap-3">
                     <CheckCircle2 className="h-5 w-5 flex-shrink-0 mt-0.5" style={{ color: 'hsl(var(--destiny-gold))' }} />
-                    <p className="text-white/70 text-base leading-relaxed">{item}</p>
+                    <p className="text-white/70 text-base leading-relaxed">{t(itemKey)}</p>
                   </div>
                 ))}
               </div>
@@ -368,18 +366,18 @@ const Destiny = () => {
             {/* Who This Is Not For */}
             <div>
               <h2 className="text-3xl sm:text-4xl font-serif font-bold mb-6 text-white">
-                <BoldText>WHO THIS IS NOT FOR</BoldText>
+                <BoldText>{t('destiny.forWhom.notForHeading')}</BoldText>
               </h2>
               <div className="space-y-4">
                 {[
-                  "Anyone looking for \"10k in 10 days\" hacks or copy-paste funnels.",
-                  "People who want AI and automation to do the work instead of real conversations.",
-                  "Folks unwilling to be seen more deeply than their current bio or brand.",
-                  "Anyone who wants a guarantee without taking any risk or responsibility."
-                ].map((item, i) => (
+                  "destiny.forWhom.notFor1",
+                  "destiny.forWhom.notFor2",
+                  "destiny.forWhom.notFor3",
+                  "destiny.forWhom.notFor4"
+                ].map((itemKey, i) => (
                   <div key={i} className="flex items-start gap-3">
                     <div className="h-5 w-5 flex-shrink-0 mt-0.5 text-white/40">✕</div>
-                    <p className="text-white/70 text-base leading-relaxed">{item}</p>
+                    <p className="text-white/70 text-base leading-relaxed">{t(itemKey)}</p>
                   </div>
                 ))}
               </div>
@@ -396,34 +394,34 @@ const Destiny = () => {
       >
         <div className="container mx-auto max-w-4xl">
           <h2 className="text-4xl sm:text-5xl font-serif font-bold mb-8 text-center">
-            <BoldText>HOW WE WORK TOGETHER</BoldText>
+            <BoldText>{t('destiny.howWeWork.heading')}</BoldText>
           </h2>
-          
+
           <div className="space-y-6 text-lg text-foreground/80 max-w-3xl mx-auto">
             <p>
-              We work in a focused, time-bound container (for example, 6–10 weeks), using:
+              {t('destiny.howWeWork.intro')}
             </p>
             <ul className="list-none space-y-2 pl-6">
-              <li>– Deep 1:1 sessions (Zoom or in-person when possible)</li>
-              <li>– Voice / text between sessions for integration and tweaks</li>
-              <li>– Shared living documents (your Genius Map, Excalibur sentence, MVGB spec)</li>
+              <li>{t('destiny.howWeWork.item1')}</li>
+              <li>{t('destiny.howWeWork.item2')}</li>
+              <li>{t('destiny.howWeWork.item3')}</li>
             </ul>
-            
+
             <p className="pt-4">
-              I don't sell endless months of "support." We aim for a clear before/after: you enter in limbo, you leave with one working path.
+              {t('destiny.howWeWork.beforeAfter')}
             </p>
-            
+
             <div className="pt-8 border-t border-border">
               <h3 className="text-2xl font-serif font-bold mb-4">
-                <BoldText>VALUE EXCHANGE</BoldText>
+                <BoldText>{t('destiny.howWeWork.valueHeading')}</BoldText>
               </h3>
               <ul className="list-none space-y-2">
-                <li>– We agree on a base fee for the container (discussed live).</li>
-                <li>– Plus a small share of revenue from your new MVGB only,</li>
-                <li>– Capped at a fixed amount, so it stays fair and non-extractive.</li>
+                <li>{t('destiny.howWeWork.value1')}</li>
+                <li>{t('destiny.howWeWork.value2')}</li>
+                <li>{t('destiny.howWeWork.value3')}</li>
               </ul>
               <p className="pt-4 text-xl font-semibold" style={{ color: 'hsl(var(--destiny-gold-dark))' }}>
-                I win when your genius starts feeding you. That's the point.
+                {t('destiny.howWeWork.valueCloser')}
               </p>
             </div>
           </div>
@@ -439,7 +437,7 @@ const Destiny = () => {
       >
         <div className="container mx-auto max-w-4xl">
           <h2 className="text-4xl sm:text-5xl font-serif font-bold mb-12 text-center text-white">
-            <BoldText>WHO'S HOLDING THIS WORK</BoldText>
+            <BoldText>{t('destiny.about.heading')}</BoldText>
           </h2>
           
           <div className="flex flex-col md:flex-row gap-8 items-center max-w-3xl mx-auto">
@@ -460,15 +458,15 @@ const Destiny = () => {
             {/* Bio Text */}
             <div className="space-y-6 text-lg text-white/80 flex-1">
               <p>
-                I'm Aleksandr — a systems architect, venture builder, and teacher of integral evolution.
+                {t('destiny.about.bio1')}
               </p>
-              
+
               <p>
-                My life's work is helping people and projects move from myth-level vision to real-world structure. I've built and advised ventures at the intersection of tech, consciousness, and new systems, and helped founders name their true lane and design businesses around it.
+                {t('destiny.about.bio2')}
               </p>
-              
+
               <p>
-                This offer — Destiny: Your Unique Genius Business — is my own MVGB. It's how my genius plugs straight into yours.
+                {t('destiny.about.bio3')}
               </p>
             </div>
           </div>
@@ -484,16 +482,16 @@ const Destiny = () => {
       >
         <div className="container mx-auto max-w-4xl text-center">
           <h2 className="text-4xl sm:text-5xl font-serif font-bold mb-8">
-            <BoldText>READY TO STOP HOVERING BETWEEN WORLDS?</BoldText>
+            <BoldText>{t('destiny.finalCta.heading')}</BoldText>
           </h2>
-          
+
           <div className="space-y-6 text-lg text-foreground/80 max-w-3xl mx-auto mb-12">
             <p>
-              If you feel the gap between who you are and how you make a living getting more painful, that's not a bug — it's a summons.
+              {t('destiny.finalCta.p1')}
             </p>
-            
+
             <p>
-              This call is not a sales trap. It's a space to look honestly at where you are, name what's really trying to be born through you, and see whether this container is the right forge.
+              {t('destiny.finalCta.p2')}
             </p>
           </div>
 
@@ -506,12 +504,12 @@ const Destiny = () => {
               color: 'hsl(var(--destiny-dark))',
             }}
           >
-            <BoldText>BOOK AN EXCALIBUR CALL</BoldText>
+            <BoldText>{t('destiny.cta.book')}</BoldText>
             <ArrowRight className="ml-2 h-5 w-5" />
           </Button>
           
           <p className="text-sm text-muted-foreground max-w-2xl mx-auto">
-            One conversation. Full honesty. No pressure. If it's not the right time or fit, we'll both say so.
+            {t('destiny.finalCta.subtext')}
           </p>
         </div>
       </section>
@@ -531,7 +529,7 @@ const Destiny = () => {
             color: 'hsl(var(--destiny-dark))',
           }}
         >
-          <BoldText>BOOK EXCALIBUR CALL</BoldText>
+          <BoldText>{t('destiny.cta.bookShort')}</BoldText>
         </button>
       </div>
     </div>
