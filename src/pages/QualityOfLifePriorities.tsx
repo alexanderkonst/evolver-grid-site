@@ -17,7 +17,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { getOrCreateGameProfileId } from "@/lib/gameProfile";
 import { buildQolGrowthRecipePath } from "@/lib/onboardingRouting";
 import { useQolAssessment } from "@/modules/quality-of-life-map/QolAssessmentContext";
-import { DOMAINS, TOP_PRIORITIES_COUNT, type DomainId } from "@/modules/quality-of-life-map/qolConfig";
+import { DOMAINS, TOP_PRIORITIES_COUNT, useLocalizedDomains, type DomainId } from "@/modules/quality-of-life-map/qolConfig";
 // Day 63 (Sasha 2026-05-06): GameShellV2 import removed — shell now
 // owned by QolLayout, not per-page.
 
@@ -39,6 +39,7 @@ const QualityOfLifePriorities = () => {
   const returnTo = searchParams.get("return");
   const { answers, isComplete, isLoading } = useQolAssessment();
   const { toast } = useToast();
+  const localizedDomains = useLocalizedDomains();
 
   // Sort domains by score ascending (lowest first)
   const domainScores = useMemo(() => {
@@ -103,7 +104,7 @@ const QualityOfLifePriorities = () => {
 
       toast({
         title: "✨ Priorities Saved!",
-        description: `Focus: ${topThree.map((id) => DOMAINS.find(d => d.id === id)?.name).join(", ")}.`,
+        description: `Focus: ${topThree.map((id) => localizedDomains.find(d => d.id === id)?.name).join(", ")}.`,
       });
 
       navigate(buildQolGrowthRecipePath(returnTo, topThree[0]));

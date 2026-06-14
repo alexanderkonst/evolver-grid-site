@@ -1,5 +1,6 @@
 import { ArrowRight, Check, MessageCircle, ChevronDown, Star, Compass, Flame, Eye, Heart, Shield } from "lucide-react";
 import { useLocation } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import GameShellV2 from "@/components/game/GameShellV2";
 import { useState, useRef, useEffect } from "react";
 import Hls from "hls.js";
@@ -44,23 +45,27 @@ const HlsBackground = () => {
 };
 
 /* ─── Primary CTA Button (liquid glass) ──────────────────── */
-const PrimaryCTA = ({ id, label = "See My Map" }: { id: string; label?: string }) => (
-  <a
-    href={CALCOM_BOOKING_LINK}
-    target="_blank"
-    rel="noopener noreferrer"
-    className="liquid-glass-strong inline-flex items-center gap-3 px-8 py-4 rounded-full text-base font-medium text-white hover:scale-105 active:scale-95 transition-transform duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/50"
-    style={{ fontFamily: "'Poppins', sans-serif" }}
-    id={id}
-  >
-    {label}
-    <span className="w-7 h-7 rounded-full bg-white/15 flex items-center justify-center">
-      <ArrowRight className="w-4 h-4" />
-    </span>
-  </a>
-);
+const PrimaryCTA = ({ id, label }: { id: string; label?: string }) => {
+  const { t } = useTranslation();
+  return (
+    <a
+      href={CALCOM_BOOKING_LINK}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="liquid-glass-strong inline-flex items-center gap-3 px-8 py-4 rounded-full text-base font-medium text-white hover:scale-105 active:scale-95 transition-transform duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/50"
+      style={{ fontFamily: "'Poppins', sans-serif" }}
+      id={id}
+    >
+      {label ?? t("oyiIgnition.primaryCta.label")}
+      <span className="w-7 h-7 rounded-full bg-white/15 flex items-center justify-center">
+        <ArrowRight className="w-4 h-4" />
+      </span>
+    </a>
+  );
+};
 
 const OyiIgnition = () => {
+  const { t } = useTranslation();
   const location = useLocation();
   const inShell = location.pathname.startsWith("/game/");
   const [openFaq, setOpenFaq] = useState<number | null>(null);
@@ -91,48 +96,48 @@ const OyiIgnition = () => {
             ═══════════════════════════════════════════════ */}
         <header className="text-center space-y-6 pt-4" id="oyi-hero">
           {/* Warm-arrival line — Generator distribution: they arrive from podcast / cipher / conversation */}
-          <p className="text-xs text-white/40 italic">You felt something that brought you here. Good.</p>
-          <p className="text-xs text-white/50 uppercase tracking-[0.25em]">Oyi Sun · for source path builders</p>
+          <p className="text-xs text-white/40 italic">{t("oyiIgnition.hero.arrival")}</p>
+          <p className="text-xs text-white/50 uppercase tracking-[0.25em]">{t("oyiIgnition.hero.eyebrow")}</p>
 
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-medium tracking-[-0.05em] text-white leading-[1.1]" style={{ fontFamily: "'Poppins', sans-serif" }}>
-            The kid who created without permission.
+            {t("oyiIgnition.hero.headlineLine1")}
             <br />
             <span className="text-white/70 text-3xl md:text-4xl lg:text-5xl" style={{ textShadow: "0 0 20px rgba(255,255,255,0.3), 0 0 40px rgba(255,255,255,0.1)" }}>
-              Where did they go?
+              {t("oyiIgnition.hero.headlineLine2")}
             </span>
           </h1>
 
           <p className="text-base text-white/90 max-w-lg mx-auto leading-relaxed">
-            Every step of &ldquo;growing up&rdquo; cost you power. Let's find where.
+            {t("oyiIgnition.hero.subhead")}
           </p>
 
           <div className="text-sm text-white/75 max-w-md mx-auto leading-relaxed space-y-3">
             <p>
-              You carry two worlds inside you—the spiritual and the practical, the ancient and the modern.
+              {t("oyiIgnition.hero.worlds1")}
             </p>
-            <p>The world told you to pick one.</p>
-            <p>You couldn't. Because both are real.</p>
+            <p>{t("oyiIgnition.hero.worlds2")}</p>
+            <p>{t("oyiIgnition.hero.worlds3")}</p>
           </div>
 
           <div className="text-sm text-white/60 max-w-sm mx-auto leading-relaxed space-y-1">
-            <p>But somewhere along the way:</p>
-            <p className="text-white/70">Joy left.</p>
-            <p className="text-white/70">Peace left.</p>
-            <p className="text-white/70">The light in your eyes started fading.</p>
+            <p>{t("oyiIgnition.hero.alongTheWay")}</p>
+            <p className="text-white/70">{t("oyiIgnition.hero.joyLeft")}</p>
+            <p className="text-white/70">{t("oyiIgnition.hero.peaceLeft")}</p>
+            <p className="text-white/70">{t("oyiIgnition.hero.lightFading")}</p>
           </div>
 
           <div className="liquid-glass rounded-2xl p-5 max-w-md mx-auto text-center space-y-3">
             <p className="text-sm text-white/90 leading-relaxed">
-              In 60 minutes, you'll see exactly where that happened—and what to do in the next 5 days to take it back.
+              {t("oyiIgnition.hero.promise")}
             </p>
             <p className="text-xs text-white/45 leading-relaxed">
-              No frameworks. No theory. No performance. Just truth.
+              {t("oyiIgnition.hero.noFrameworks")}
             </p>
           </div>
 
           <div className="flex flex-col items-center gap-3 pt-2">
             <PrimaryCTA id="hero-cta-btn" />
-            <span className="text-xs text-white/40">Private session. Limited availability.</span>
+            <span className="text-xs text-white/40">{t("oyiIgnition.hero.ctaNote")}</span>
           </div>
         </header>
 
@@ -140,22 +145,22 @@ const OyiIgnition = () => {
             S2: QUALIFIER — Self-selection pills (upgraded with tribal differentiators)
             ═══════════════════════════════════════════════ */}
         <section className="text-center space-y-4" id="qualifier" aria-label="Who this is for">
-          <h2 className="text-lg font-medium text-white/90 text-center tracking-tight" style={{ fontFamily: "'Poppins', sans-serif" }}>This is for you if</h2>
+          <h2 className="text-lg font-medium text-white/90 text-center tracking-tight" style={{ fontFamily: "'Poppins', sans-serif" }}>{t("oyiIgnition.qualifier.heading")}</h2>
           <div className="flex flex-wrap justify-center gap-2">
             {[
-              "You've survived things most people can't imagine",
-              "The people who should have protected you were the first to shut you down",
-              "There's a version of you that used to create without asking—you miss them",
-              "You give your best work away for free—and don't know why",
-              "You feel both spiritual AND practical—and don't fit anywhere",
-              "You've tried coaching, courses, frameworks—none of them held all of you",
-              "You hear 'Live Free'… and something in you wakes up",
-            ].map((item, i) => (
+              "oyiIgnition.qualifier.pill1",
+              "oyiIgnition.qualifier.pill2",
+              "oyiIgnition.qualifier.pill3",
+              "oyiIgnition.qualifier.pill4",
+              "oyiIgnition.qualifier.pill5",
+              "oyiIgnition.qualifier.pill6",
+              "oyiIgnition.qualifier.pill7",
+            ].map((key, i) => (
               <span
                 key={i}
                 className="liquid-glass rounded-full px-4 py-2 text-xs text-white/90"
               >
-                {item}
+                {t(key)}
               </span>
             ))}
           </div>
@@ -168,13 +173,13 @@ const OyiIgnition = () => {
         <section className="text-center" id="origin-hit" aria-label="Who Oyi is">
           <div className="liquid-glass rounded-3xl p-6 md:p-8 space-y-3 max-w-lg mx-auto">
             <p className="text-sm text-white/85 leading-relaxed font-medium" style={{ fontFamily: "'Source Serif 4', serif" }}>
-              I grew up with guns in my face, car crashes, and domestic violence. Survival forced me to read people before they spoke.
+              {t("oyiIgnition.originHit.line1")}
             </p>
             <p className="text-sm text-white/70 leading-relaxed">
-              24 years later, that's the gift — and I use it to show you exactly where you gave your power away.
+              {t("oyiIgnition.originHit.line2")}
             </p>
             <p className="text-xs text-white/40 mt-2">
-              — Oyi Sun · Lotus Medicine Man
+              {t("oyiIgnition.originHit.attribution")}
             </p>
           </div>
         </section>
@@ -184,28 +189,28 @@ const OyiIgnition = () => {
             ═══════════════════════════════════════════════ */}
         <section className="space-y-4" id="what-happens" aria-label="What happens in the session">
           <div className="text-center space-y-2">
-            <h2 className="text-lg font-medium text-white/90 tracking-tight" style={{ fontFamily: "'Poppins', sans-serif" }}>What Happens in the Session</h2>
-            <p className="text-xs text-white/50">This is not coaching. This is a read + mirror + reset.</p>
+            <h2 className="text-lg font-medium text-white/90 tracking-tight" style={{ fontFamily: "'Poppins', sans-serif" }}>{t("oyiIgnition.whatHappens.heading")}</h2>
+            <p className="text-xs text-white/50">{t("oyiIgnition.whatHappens.subhead")}</p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
             {[
               {
                 emoji: "👁",
                 step: "1",
-                title: "The Read",
-                desc: "You give me your birthday. Before you say a word, I map your patterns, your pressure points, your natural path. Not guesswork. Pattern recognition from 24+ years across astrology and human design.",
+                titleKey: "oyiIgnition.whatHappens.step1.title",
+                descKey: "oyiIgnition.whatHappens.step1.desc",
               },
               {
                 emoji: "🪞",
                 step: "2",
-                title: "The Mirror",
-                desc: "I tell your story—through mine. The swamp. The survival. The lie running your life. Then I stop. And you see it.",
+                titleKey: "oyiIgnition.whatHappens.step2.title",
+                descKey: "oyiIgnition.whatHappens.step2.desc",
               },
               {
                 emoji: "💊",
                 step: "3",
-                title: "The Prescription",
-                desc: "I name your gift—the one you've been giving away for free. Then ONE move. One action. Five days. That's it.",
+                titleKey: "oyiIgnition.whatHappens.step3.title",
+                descKey: "oyiIgnition.whatHappens.step3.desc",
               },
             ].map((item, i) => (
               <div
@@ -215,9 +220,9 @@ const OyiIgnition = () => {
                 <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center mx-auto text-xl">
                   <span aria-hidden="true">{item.emoji}</span>
                 </div>
-                <p className="text-xs text-white/60 font-medium uppercase tracking-widest">Step {item.step}</p>
-                <p className="text-sm text-white font-medium leading-snug">{item.title}</p>
-                <p className="text-xs text-white/55 leading-relaxed">{item.desc}</p>
+                <p className="text-xs text-white/60 font-medium uppercase tracking-widest">{t("oyiIgnition.whatHappens.stepLabel", { step: item.step })}</p>
+                <p className="text-sm text-white font-medium leading-snug">{t(item.titleKey)}</p>
+                <p className="text-xs text-white/55 leading-relaxed">{t(item.descKey)}</p>
               </div>
             ))}
           </div>
@@ -227,22 +232,22 @@ const OyiIgnition = () => {
             S5: DELIVERABLES — Your Sovereignty Map
             ═══════════════════════════════════════════════ */}
         <section id="deliverables" aria-label="Session deliverables" className="space-y-4">
-          <h2 className="text-lg font-medium text-white/90 text-center tracking-tight" style={{ fontFamily: "'Poppins', sans-serif" }}>What You Walk Out With</h2>
+          <h2 className="text-lg font-medium text-white/90 text-center tracking-tight" style={{ fontFamily: "'Poppins', sans-serif" }}>{t("oyiIgnition.deliverables.heading")}</h2>
           <div className="liquid-glass-strong rounded-3xl p-6 md:p-8">
-            <p className="text-xs text-white/45 mb-4">Your Sovereignty Map:</p>
+            <p className="text-xs text-white/45 mb-4">{t("oyiIgnition.deliverables.label")}</p>
             <div className="space-y-4">
               {[
-                "The pattern that's been quietly running your life",
-                "The exact moment you started giving your power away",
-                "Your real decision-making system (not what you've been taught)",
-                "The gift you've been undervaluing—and how it becomes income",
-                "The ONE move to start reclaiming your life immediately",
-              ].map((item, i) => (
+                "oyiIgnition.deliverables.item1",
+                "oyiIgnition.deliverables.item2",
+                "oyiIgnition.deliverables.item3",
+                "oyiIgnition.deliverables.item4",
+                "oyiIgnition.deliverables.item5",
+              ].map((key, i) => (
                 <div key={i} className="flex items-start gap-3">
                   <div className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0 mt-0.5">
                     <Check className="w-3 h-3 text-white/80" aria-hidden="true" />
                   </div>
-                  <p className="text-sm text-white/95 font-medium">{item}</p>
+                  <p className="text-sm text-white/95 font-medium">{t(key)}</p>
                 </div>
               ))}
             </div>
@@ -253,31 +258,31 @@ const OyiIgnition = () => {
             S6: THE THREE SHIFTS — A → B
             ═══════════════════════════════════════════════ */}
         <section id="transformation" aria-label="The three shifts" className="space-y-4">
-          <h2 className="text-lg font-medium text-white/90 text-center tracking-tight" style={{ fontFamily: "'Poppins', sans-serif" }}>The Three Shifts</h2>
+          <h2 className="text-lg font-medium text-white/90 text-center tracking-tight" style={{ fontFamily: "'Poppins', sans-serif" }}>{t("oyiIgnition.shifts.heading")}</h2>
           <div className="liquid-glass rounded-3xl p-6 md:p-8 space-y-6">
             {[
               {
-                from: "You follow systems, strategies, expectations that were never yours.",
-                to: "You move from your own authority. No borrowed identity.",
-                label: "From Control → Sovereignty"
+                fromKey: "oyiIgnition.shifts.shift1.from",
+                toKey: "oyiIgnition.shifts.shift1.to",
+                labelKey: "oyiIgnition.shifts.shift1.label"
               },
               {
-                from: "Joy gone. Peace gone. Just functioning.",
-                to: "Energy returns. Clarity returns. The light comes back.",
-                label: "From Exhaustion → Aliveness"
+                fromKey: "oyiIgnition.shifts.shift2.from",
+                toKey: "oyiIgnition.shifts.shift2.to",
+                labelKey: "oyiIgnition.shifts.shift2.label"
               },
               {
-                from: "Your most powerful work is free, hidden, or minimized.",
-                to: "Your gift becomes your life—and your income.",
-                label: "From Hiding Your Gift → Living From It"
+                fromKey: "oyiIgnition.shifts.shift3.from",
+                toKey: "oyiIgnition.shifts.shift3.to",
+                labelKey: "oyiIgnition.shifts.shift3.label"
               },
             ].map((item, i) => (
               <div key={i} className="space-y-2">
-                <p className="text-xs text-white/40 uppercase tracking-widest">{item.label}</p>
+                <p className="text-xs text-white/40 uppercase tracking-widest">{t(item.labelKey)}</p>
                 <div className="grid grid-cols-[1fr_auto_1fr] gap-3 items-start">
-                  <p className="text-xs text-white/50 leading-relaxed italic">&ldquo;{item.from}&rdquo;</p>
+                  <p className="text-xs text-white/50 leading-relaxed italic">&ldquo;{t(item.fromKey)}&rdquo;</p>
                   <ArrowRight className="w-4 h-4 text-white/30 mt-0.5 flex-shrink-0" />
-                  <p className="text-xs text-white/80 leading-relaxed">{item.to}</p>
+                  <p className="text-xs text-white/80 leading-relaxed">{t(item.toKey)}</p>
                 </div>
               </div>
             ))}
@@ -290,10 +295,10 @@ const OyiIgnition = () => {
         <section className="text-center space-y-3" id="reality-check" aria-label="Reality check">
           <div className="liquid-glass rounded-3xl p-6 md:p-8 space-y-3">
             <p className="text-sm text-white/80 font-medium leading-relaxed">
-              You don't need another framework.
+              {t("oyiIgnition.realityCheck.line1")}
             </p>
             <p className="text-xs text-white/50 leading-relaxed">
-              You need to see the truth everyone's been afraid to tell you.
+              {t("oyiIgnition.realityCheck.line2")}
             </p>
           </div>
         </section>
@@ -302,48 +307,48 @@ const OyiIgnition = () => {
             S8: PROOF — Real testimonials (replacing anonymous micro proof)
             ═══════════════════════════════════════════════ */}
         <section className="space-y-4" id="proof-section" aria-label="Testimonials">
-          <h2 className="text-lg font-medium text-white/90 text-center tracking-tight" style={{ fontFamily: "'Poppins', sans-serif" }}>What They Said After</h2>
+          <h2 className="text-lg font-medium text-white/90 text-center tracking-tight" style={{ fontFamily: "'Poppins', sans-serif" }}>{t("oyiIgnition.proof.heading")}</h2>
           <div className="space-y-3">
             {[
               {
-                quote: "Nobody can hold space for me. They're all afraid. You're very courageous, crazy too.",
-                full: "I'm moving and feeling a lot of confidence and clarity on the decisions I have made and actions I have initiated since our call today. Thank you. I owe you big time. I've never had a session like that before. Thank you for helping me face my fears.",
-                name: "Session client",
-                title: "Founder & medicine carrier",
+                quoteKey: "oyiIgnition.proof.t1.quote",
+                fullKey: "oyiIgnition.proof.t1.full",
+                nameKey: "oyiIgnition.proof.t1.name",
+                titleKey: "oyiIgnition.proof.t1.title",
               },
               {
-                quote: "I've never felt this seen in my life.",
-                full: "He told me my own story — things I hadn't told anyone. I sat there with my mouth open. Then everything I'd been carrying alone just came out. That's what happens when someone sees you for real.",
-                name: "Mirror Session participant",
-                title: "Source Path Builder",
+                quoteKey: "oyiIgnition.proof.t2.quote",
+                fullKey: "oyiIgnition.proof.t2.full",
+                nameKey: "oyiIgnition.proof.t2.name",
+                titleKey: "oyiIgnition.proof.t2.title",
               },
               {
-                quote: "He's far superior. He ain't just good — he's drilling down like nobody else does.",
-                full: "I was in another class with a well-known teacher. Good, but not like this. Oyi drills down to places nobody else reaches. The precision is surgical. You can't hide from it — and you don't want to.",
-                name: "Long-time student",
-                title: "Practitioner",
+                quoteKey: "oyiIgnition.proof.t3.quote",
+                fullKey: "oyiIgnition.proof.t3.full",
+                nameKey: "oyiIgnition.proof.t3.name",
+                titleKey: "oyiIgnition.proof.t3.title",
               },
-            ].map((t, i) => (
+            ].map((item, i) => (
               <div key={i} className="liquid-glass rounded-2xl p-5 space-y-3">
                 <p className="text-base text-white/90 leading-relaxed font-medium italic" style={{ fontFamily: "'Source Serif 4', serif" }}>
-                  &ldquo;{t.quote}&rdquo;
+                  &ldquo;{t(item.quoteKey)}&rdquo;
                 </p>
                 <button
                   onClick={() => setExpandedTestimonial(expandedTestimonial === i ? null : i)}
                   className="text-xs text-white/40 hover:text-white/60 transition-colors cursor-pointer underline underline-offset-2"
                 >
-                  {expandedTestimonial === i ? "Less" : "Full story"}
+                  {expandedTestimonial === i ? t("oyiIgnition.proof.less") : t("oyiIgnition.proof.fullStory")}
                 </button>
                 <div className={`overflow-hidden transition-all duration-300 ${expandedTestimonial === i ? "max-h-40 opacity-100" : "max-h-0 opacity-0"}`}>
                   <p className="text-xs text-white/55 leading-relaxed italic" style={{ fontFamily: "'Source Serif 4', serif" }}>
-                    {t.full}
+                    {t(item.fullKey)}
                   </p>
                 </div>
                 <div className="flex items-center gap-2 pt-1">
                   <div className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center text-xs">🪷</div>
                   <div>
-                    <p className="text-xs text-white/70 font-medium">{t.name}</p>
-                    <p className="text-[10px] text-white/40">{t.title}</p>
+                    <p className="text-xs text-white/70 font-medium">{t(item.nameKey)}</p>
+                    <p className="text-[10px] text-white/40">{t(item.titleKey)}</p>
                   </div>
                 </div>
               </div>
@@ -355,29 +360,29 @@ const OyiIgnition = () => {
             S9: THE PATH — next step if it lands
             ═══════════════════════════════════════════════ */}
         <section id="the-path" aria-label="The path forward" className="space-y-4">
-          <h2 className="text-lg font-medium text-white/90 text-center tracking-tight" style={{ fontFamily: "'Poppins', sans-serif" }}>The Next Step (If This Lands)</h2>
-          <p className="text-xs text-white/50 text-center">We don't stop at awareness.</p>
+          <h2 className="text-lg font-medium text-white/90 text-center tracking-tight" style={{ fontFamily: "'Poppins', sans-serif" }}>{t("oyiIgnition.path.heading")}</h2>
+          <p className="text-xs text-white/50 text-center">{t("oyiIgnition.path.subhead")}</p>
           <div className="space-y-3">
             {[
               {
                 icon: <Eye className="w-4 h-4 text-white/70" />,
-                step: "Start here",
-                title: "The Mirror Session",
-                desc: "60 minutes, 1-on-1. The read, the mirror, and your Sovereignty Map. Walk out seeing the pattern.",
+                stepKey: "oyiIgnition.path.tier1.step",
+                titleKey: "oyiIgnition.path.tier1.title",
+                descKey: "oyiIgnition.path.tier1.desc",
                 tag: "$555",
               },
               {
                 icon: <Flame className="w-4 h-4 text-white/70" />,
-                step: "Go deeper",
-                title: "The Build",
-                desc: "6 weeks. Your sovereignty restored, your inner child leading again, your business aligned to your actual gift. Outcome: your first aligned income—from being who you actually are.",
+                stepKey: "oyiIgnition.path.tier2.step",
+                titleKey: "oyiIgnition.path.tier2.title",
+                descKey: "oyiIgnition.path.tier2.desc",
                 tag: "$5,000",
               },
               {
                 icon: <Star className="w-4 h-4 text-white/70" />,
-                step: "Stay connected",
-                title: "The Container",
-                desc: "Monthly advisory. Sovereignty maintained. Accountability without performance.",
+                stepKey: "oyiIgnition.path.tier3.step",
+                titleKey: "oyiIgnition.path.tier3.title",
+                descKey: "oyiIgnition.path.tier3.desc",
                 tag: "$500/mo",
               },
             ].map((item, i) => (
@@ -387,11 +392,11 @@ const OyiIgnition = () => {
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2">
-                    <p className="text-xs text-white/40 uppercase tracking-widest">{item.step}</p>
+                    <p className="text-xs text-white/40 uppercase tracking-widest">{t(item.stepKey)}</p>
                     <span className="text-[10px] text-white/50 bg-white/5 px-2 py-0.5 rounded-full">{item.tag}</span>
                   </div>
-                  <p className="text-sm text-white/95 font-medium mt-1">{item.title}</p>
-                  <p className="text-xs text-white/50 leading-relaxed mt-1">{item.desc}</p>
+                  <p className="text-sm text-white/95 font-medium mt-1">{t(item.titleKey)}</p>
+                  <p className="text-xs text-white/50 leading-relaxed mt-1">{t(item.descKey)}</p>
                 </div>
               </div>
             ))}
@@ -407,25 +412,25 @@ const OyiIgnition = () => {
           </div>
           <div className="liquid-glass rounded-3xl p-6 md:p-8 pt-14 -mt-10 text-center space-y-3">
             <p className="text-sm text-white/80 leading-relaxed font-medium">
-              I didn't learn this from a book. I lived it.
+              {t("oyiIgnition.about.line1")}
             </p>
             <p className="text-xs text-white/60 leading-relaxed">
-              Guns in my face. Car crashes. Domestic violence. Kidnapped by my own parents. I had to grow up at twelve — making grown man decisions with no one to protect me.
+              {t("oyiIgnition.about.line2")}
             </p>
             <p className="text-sm text-white/70 leading-relaxed mt-2">
-              Survival forced me to read people before they spoke. That became the gift.
+              {t("oyiIgnition.about.line3")}
             </p>
             <p className="text-xs text-white/55 leading-relaxed mt-2">
-              Then came 24 years of refinement: ten teachers, each one planting a seed — astrology, human design, martial arts, storytelling, mystery school initiation. Together, they are the method. And only I know the recipe.
+              {t("oyiIgnition.about.line4")}
             </p>
             <p className="text-sm text-white/70 leading-relaxed mt-3">
-              Now I help people find the power they never actually lost—just buried under survival, growing up, and other people's rules.
+              {t("oyiIgnition.about.line5")}
             </p>
             <p className="text-xs text-white/55 mt-4">
               — <em style={{ fontFamily: "'Source Serif 4', serif" }}>Oyi Sun</em>
             </p>
             <p className="text-xs text-white/35 mt-1">
-              Lotus Medicine Man · 475+ Episodes · 24 Years Reading People · Live Free
+              {t("oyiIgnition.about.credentials")}
             </p>
           </div>
         </section>
@@ -436,9 +441,9 @@ const OyiIgnition = () => {
         <section className="liquid-glass-strong rounded-[2.5rem] p-8 md:p-10 text-center space-y-5" id="pricing-section" aria-label="Next step">
           <div>
             <h2 className="text-2xl md:text-3xl font-medium text-white tracking-tight mb-2" style={{ fontFamily: "'Poppins', sans-serif" }}>
-              If this made you pause—even for a second—
+              {t("oyiIgnition.finalCta.heading")}
             </h2>
-            <p className="text-base text-white/70 font-medium">That's your signal.</p>
+            <p className="text-base text-white/70 font-medium">{t("oyiIgnition.finalCta.signal")}</p>
           </div>
 
           <PrimaryCTA id="book-session-btn" />
@@ -452,12 +457,12 @@ const OyiIgnition = () => {
               style={{ fontFamily: "'Poppins', sans-serif" }}
             >
               <MessageCircle className="w-4 h-4" aria-hidden="true" />
-              Have questions? Let's talk first
+              {t("oyiIgnition.finalCta.questions")}
             </a>
           </div>
 
           <p className="text-xs text-white/40 max-w-sm mx-auto leading-relaxed italic pt-2">
-            Only proceed if this lands in your body, not your mind.
+            {t("oyiIgnition.finalCta.disclaimer")}
           </p>
         </section>
 
@@ -465,27 +470,27 @@ const OyiIgnition = () => {
             S12: FAQ — glass accordions
             ═══════════════════════════════════════════════ */}
         <section className="space-y-2" id="faq-section" aria-label="Frequently asked questions">
-          <h2 className="text-lg font-medium text-white/90 text-center mb-4 tracking-tight" style={{ fontFamily: "'Poppins', sans-serif" }}>Questions</h2>
+          <h2 className="text-lg font-medium text-white/90 text-center mb-4 tracking-tight" style={{ fontFamily: "'Poppins', sans-serif" }}>{t("oyiIgnition.faq.heading")}</h2>
           {[
             {
-              q: "Do I need to believe in astrology?",
-              a: "No. You just need to be honest. The patterns speak for themselves — 24 years of readings, thousands of people. It works whether you believe it or not."
+              qKey: "oyiIgnition.faq.q1.q",
+              aKey: "oyiIgnition.faq.q1.a"
             },
             {
-              q: "How can you know so much from a birthday?",
-              a: "Patterns repeat. Your birth date maps to specific patterns in astrology and human design that reveal how you're wired to make decisions, what your purpose is, and where you've been giving your power away. I've been reading these patterns for 24 years."
+              qKey: "oyiIgnition.faq.q2.q",
+              aKey: "oyiIgnition.faq.q2.a"
             },
             {
-              q: "What is a Sovereignty Map?",
-              a: "A precise diagnosis of where you gave away your power, what your actual purpose is, how you're designed to make decisions, and the specific shadow running your life — plus one prescription to start restoring what was taken."
+              qKey: "oyiIgnition.faq.q3.q",
+              aKey: "oyiIgnition.faq.q3.a"
             },
             {
-              q: "What if I've already done a lot of inner work?",
-              a: "Then you'll recognize this faster. This isn't another layer of healing. It's a mirror — you see what you already know but haven't been able to name or act on. The people who've done the most work get the deepest hit."
+              qKey: "oyiIgnition.faq.q4.q",
+              aKey: "oyiIgnition.faq.q4.a"
             },
             {
-              q: "What happens after the Mirror Session?",
-              a: "You receive a 5-day prescription — one action, aligned to your design. When you complete it and report back, that's the natural entry into The Build: 6 weeks of sovereignty restoration, inner child reinstatement, and building income from your actual gift."
+              qKey: "oyiIgnition.faq.q5.q",
+              aKey: "oyiIgnition.faq.q5.a"
             },
           ].map((faq, i) => (
             <div key={i} className="liquid-glass rounded-2xl">
@@ -495,7 +500,7 @@ const OyiIgnition = () => {
                 aria-expanded={openFaq === i}
                 aria-controls={`faq-answer-${i}`}
               >
-                <p className="text-sm text-white/75 font-medium">{faq.q}</p>
+                <p className="text-sm text-white/75 font-medium">{t(faq.qKey)}</p>
                 <ChevronDown className={`w-4 h-4 text-white/45 transition-transform duration-200 flex-shrink-0 ml-2 ${openFaq === i ? "rotate-180" : ""}`} aria-hidden="true" />
               </button>
               <div
@@ -504,7 +509,7 @@ const OyiIgnition = () => {
                 className={`overflow-hidden transition-all duration-200 ${openFaq === i ? "max-h-60 opacity-100" : "max-h-0 opacity-0"}`}
               >
                 <div className="px-4 pb-4">
-                  <p className="text-xs text-white/50 leading-relaxed">{faq.a}</p>
+                  <p className="text-xs text-white/50 leading-relaxed">{t(faq.aKey)}</p>
                 </div>
               </div>
             </div>

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { EditorialCta } from "@/components/ui/editorial-cta";
 import { Ornament } from "@/lib/landingDesign";
 import SEO from "@/components/SEO";
@@ -82,6 +83,7 @@ const SUPPORT_OPTIONS: { key: SupportKey; label: string }[] = [
 const OTHER_TEXT_MAX = 400;
 
 const KarimeIntake = () => {
+  const { t } = useTranslation();
   // Day 81 (Sasha 2026-05-23): route-scoped "karime" skin activation.
   // Same pattern as KarimeOffer — warm terracotta tokens applied only
   // while on this page, restored on unmount.
@@ -214,7 +216,7 @@ const KarimeIntake = () => {
             className="text-2xl sm:text-3xl md:text-4xl font-bold leading-[1.1] tracking-[-0.018em]"
             style={bodyTextStyle}
           >
-            Before we meet.
+            {t("karimeIntake.heroTitle")}
           </h1>
           <Ornament className="my-5 sm:my-6" />
         </header>
@@ -222,36 +224,31 @@ const KarimeIntake = () => {
         {/* ── About Karime ─────────────────────────────────────── */}
         <section className="mb-10 sm:mb-12">
           <p className="text-center mb-4 sm:mb-5" style={sectionHeadingStyle}>
-            About Karime
+            {t("karimeIntake.aboutHeading")}
           </p>
           <div className="space-y-4 sm:space-y-5" style={bodyTextStyle}>
             <p className="text-lg sm:text-xl leading-[1.55]">
-              Karime is an Oxford alum, former Project Lead at the World
-              Economic Forum's Center for Emerging Technology, and a
-              Global Fellow Leader who{" "}
+              {t("karimeIntake.bioBefore")}{" "}
               <span
                 className="bg-clip-text text-transparent"
                 style={KARIME_EMPHASIS_STYLE}
               >
-                walked away
+                {t("karimeIntake.bioEmphasis")}
               </span>{" "}
-              from the WEF track to do this work. She trained as a
-              transformational life coach at Sofia University, San
-              Francisco, and brings her international policy background
-              into the depth of the inner work she now holds.
+              {t("karimeIntake.bioAfter")}
             </p>
             <p
               className="text-lg sm:text-xl leading-[1.55] italic text-center"
               style={{ ...bodyTextStyle, fontWeight: 600 }}
             >
-              She is here{" "}
+              {t("karimeIntake.byChoiceBefore")}{" "}
               <span
                 className="bg-clip-text text-transparent not-italic"
                 style={KARIME_EMPHASIS_STYLE}
               >
-                by choice
+                {t("karimeIntake.byChoiceEmphasis")}
               </span>
-              .
+              {t("karimeIntake.byChoiceAfter")}
             </p>
           </div>
         </section>
@@ -259,7 +256,7 @@ const KarimeIntake = () => {
         {/* ── The path ─────────────────────────────────────────── */}
         <section className="mb-10 sm:mb-12">
           <p className="text-center mb-6 sm:mb-7" style={sectionHeadingStyle}>
-            The path
+            {t("karimeIntake.pathHeading")}
           </p>
           {/* Steps 1-3 with numbered gold-pip badges + vertical
               connector line on the left rail. Cormorant numerals in
@@ -270,18 +267,18 @@ const KarimeIntake = () => {
             {[
               {
                 num: 1,
-                title: "20-minute fit call.",
-                body: "Free. You meet Karime, you share what is bringing you here, and you both feel whether this is the right fit.",
+                title: t("karimeIntake.step1Title"),
+                body: t("karimeIntake.step1Body"),
               },
               {
                 num: 2,
-                title: "Your first 1-hour session.",
-                body: "You and Karime co-design your personalized 3-month plan together. Pricing for the engagement is set during this session, based on the healing modalities you choose, the regularity of meetings, and the time you spend with her.",
+                title: t("karimeIntake.step2Title"),
+                body: t("karimeIntake.step2Body"),
               },
               {
                 num: 3,
-                title: "A 3-month result-oriented engagement.",
-                body: "You walk the plan together. Karime holds the container as the work unfolds.",
+                title: t("karimeIntake.step3Title"),
+                body: t("karimeIntake.step3Body"),
               },
             ].map((step, idx, arr) => {
               const isLast = idx === arr.length - 1;
@@ -331,7 +328,7 @@ const KarimeIntake = () => {
                       className="text-[11px] sm:text-xs uppercase tracking-[0.18em] opacity-60 mb-1"
                       style={{ fontFamily: "'Cormorant Garamond', serif" }}
                     >
-                      Step {step.num}
+                      {t("karimeIntake.stepLabel", { num: step.num })}
                     </p>
                     <p className="text-xl sm:text-2xl leading-[1.3] font-bold mb-1.5">
                       {step.title}
@@ -348,21 +345,20 @@ const KarimeIntake = () => {
             className="text-base sm:text-lg leading-[1.5] italic text-center pt-6 sm:pt-7 opacity-80"
             style={bodyTextStyle}
           >
-            Online sessions worldwide. In-person sessions by arrangement.
+            {t("karimeIntake.sessionsNote")}
           </p>
         </section>
 
         {/* ── To help Karime prepare thoughtfully ──────────────── */}
         <section className="mb-6">
           <p className="text-center mb-3 sm:mb-4" style={sectionHeadingStyle}>
-            To help Karime prepare thoughtfully
+            {t("karimeIntake.prepareHeading")}
           </p>
           <p
             className="text-center text-lg sm:text-xl leading-[1.5] mb-6 sm:mb-8 max-w-[580px] mx-auto"
             style={bodyTextStyle}
           >
-            Before scheduling, choose the type of support that feels most
-            aligned for you right now.
+            {t("karimeIntake.prepareIntro")}
           </p>
 
           <div>
@@ -370,13 +366,13 @@ const KarimeIntake = () => {
               className="block mb-2 text-xl sm:text-2xl leading-[1.3] font-bold text-center"
               style={bodyTextStyle}
             >
-              Which kind of support feels most aligned right now?
+              {t("karimeIntake.questionLabel")}
             </p>
             <p
               className="text-center mb-5 sm:mb-6 text-xs sm:text-sm italic opacity-70"
               style={bodyTextStyle}
             >
-              Choose all that apply
+              {t("karimeIntake.chooseAllThatApply")}
             </p>
             {/* Day 81 (Sasha 2026-05-23): options redesigned as
                 clearly-visible bordered cards with custom gold-aligned
@@ -487,12 +483,12 @@ const KarimeIntake = () => {
                   onChange={(e) =>
                     setOtherText(e.target.value.slice(0, OTHER_TEXT_MAX))
                   }
-                  placeholder="In a sentence or two, what's bringing you here right now?"
+                  placeholder={t("karimeIntake.otherPlaceholder")}
                   rows={2}
                   maxLength={OTHER_TEXT_MAX}
                   inputMode="text"
                   autoCapitalize="sentences"
-                  aria-label="Describe what's bringing you here"
+                  aria-label={t("karimeIntake.otherAriaLabel")}
                   className="w-full p-3 sm:p-4 rounded-xl border resize-y transition-all focus:outline-none sm:min-h-[96px]"
                   style={{
                     fontFamily: "'Cormorant Garamond', serif",
@@ -553,7 +549,7 @@ const KarimeIntake = () => {
               className="text-center text-lg sm:text-xl leading-[1.45] mb-5 sm:mb-6 max-w-[560px] mx-auto"
               style={{ ...bodyTextStyle, fontWeight: 600 }}
             >
-              Sasha is Karime's first contact. He'll read your message on WhatsApp and reply within hours with times for your call with Karime.
+              {t("karimeIntake.ctaLead")}
             </p>
             <div className="flex flex-col items-center gap-4 px-4 text-center">
               {/* Day 89 (Sasha 2026-06-06): CTA gated when "other" is
@@ -570,7 +566,7 @@ const KarimeIntake = () => {
                 aria-disabled={!canSubmit}
               >
                 <EditorialCta
-                  label="Send to Sasha on WhatsApp"
+                  label={t("karimeIntake.ctaButton")}
                   onClick={handleSendWhatsApp}
                 />
               </div>
@@ -579,7 +575,7 @@ const KarimeIntake = () => {
                   className="text-xs sm:text-sm italic opacity-75 -mt-2"
                   style={bodyTextStyle}
                 >
-                  Add a sentence to send.
+                  {t("karimeIntake.addSentenceHelper")}
                 </p>
               )}
               <div
@@ -594,7 +590,7 @@ const KarimeIntake = () => {
                   fontWeight: 500,
                 }}
               >
-                <span>Opens WhatsApp with your message pre-written · No signup needed</span>
+                <span>{t("karimeIntake.ctaMicrocopy")}</span>
               </div>
 
               {/* Contact line revealed alongside the CTA — Telegram +
@@ -614,14 +610,14 @@ const KarimeIntake = () => {
                   fontWeight: 500,
                 }}
               >
-                <span>Questions?</span>
+                <span>{t("karimeIntake.questionsLeadIn")}</span>
                 <a
                   href={KARIME_TELEGRAM_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:opacity-80 transition-opacity"
                 >
-                  Telegram @integralevolution
+                  {t("karimeIntake.telegramLabel")} @integralevolution
                 </a>
                 <span aria-hidden="true">·</span>
                 <a
@@ -630,7 +626,7 @@ const KarimeIntake = () => {
                   rel="noopener noreferrer"
                   className="hover:opacity-80 transition-opacity"
                 >
-                  WhatsApp +1 (415) 707-3432
+                  {t("karimeIntake.whatsappLabel")} +1 (415) 707-3432
                 </a>
               </div>
             </div>

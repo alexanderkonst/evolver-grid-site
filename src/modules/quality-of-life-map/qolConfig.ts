@@ -1,3 +1,6 @@
+import { useMemo } from "react";
+import { useTranslation } from "react-i18next";
+
 export type DomainId =
   | "wealth"
   | "health"
@@ -170,3 +173,38 @@ export const DOMAINS: Domain[] = [
  * qol_priorities back from the DB). One number, one source of truth.
  */
 export const TOP_PRIORITIES_COUNT = 3;
+
+/**
+ * i18n (2026-06-13): localized view of DOMAINS for DISPLAY surfaces.
+ *
+ * Returns the same Domain[] shape — ids, colors, stage ids, ordering and all
+ * non-text fields are preserved verbatim from the canonical DOMAINS array.
+ * Only the user-facing strings (domain.name, stage.title, stage.description)
+ * are swapped for `t('qol.<id>.…')` lookups against Sasha's official RU/ES
+ * translations.
+ *
+ * Keep reading DOMAINS directly for any non-display logic (ids, colors,
+ * scoring, ordering, emoji-by-English-name lookups). This hook is for what the
+ * user reads, not for what the app computes. English is the i18n fallback, so
+ * a missing key degrades to the English source string, never to a raw key.
+ */
+export const useLocalizedDomains = (): Domain[] => {
+  const { t } = useTranslation();
+  return useMemo(
+    () =>
+      DOMAINS.map((domain) => ({
+        ...domain,
+        name: t(`qol.${domain.id}.name`, { defaultValue: domain.name }),
+        stages: domain.stages.map((stage) => ({
+          ...stage,
+          title: t(`qol.${domain.id}.s${stage.id}.title`, {
+            defaultValue: stage.title,
+          }),
+          description: t(`qol.${domain.id}.s${stage.id}.description`, {
+            defaultValue: stage.description,
+          }),
+        })),
+      })),
+    [t],
+  );
+};

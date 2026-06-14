@@ -6,5 +6,351 @@
     "code": "404",
     "title": "¡Ups! Página no encontrada",
     "home": "Volver al inicio"
+  },
+  "qol": {
+    "wealth": {
+      "name": "Riqueza",
+      "s1": {
+        "title": "Apenas sobreviviendo",
+        "description": "Sin ahorros, dependiendo de ayuda externa para necesidades básicas."
+      },
+      "s2": {
+        "title": "Viviendo del cheque a cheque",
+        "description": "Puede cubrir gastos mensuales pero sin ahorros, tiene deudas."
+      },
+      "s3": {
+        "title": "Ahorrador cauteloso",
+        "description": "Acumuló de 1 a 2 meses de ahorros de emergencia, empezando a pagar deudas."
+      },
+      "s4": {
+        "title": "Libre de deudas",
+        "description": "De 3 a 6 meses de ahorros de emergencia, sin deudas de alto interés."
+      },
+      "s5": {
+        "title": "Inversiones iniciales",
+        "description": "De 6 a 12 meses de ahorros, invirtiendo más allá de solo una cuenta de ahorros."
+      },
+      "s6": {
+        "title": "Novato en inversiones",
+        "description": "Más de un año de ahorros, expandiéndose a otras formas de inversión como bienes raíces."
+      },
+      "s7": {
+        "title": "Auto-sostenible",
+        "description": "Más de dos años de ahorros, ingresos pasivos que cubren gastos esenciales."
+      },
+      "s8": {
+        "title": "Financieramente libre",
+        "description": "Viviendo de inversiones, no necesita empleo, trabajo es una elección."
+      },
+      "s9": {
+        "title": "Riqueza y filantropía",
+        "description": "Creciendo en riqueza, retribuyendo significativamente."
+      },
+      "s10": {
+        "title": "Creación de legado",
+        "description": "Sostenimiento de riqueza, creando impacto generacional a través de filantropía y planeación de legado."
+      }
+    },
+    "health": {
+      "name": "Salud",
+      "s1": {
+        "title": "Baja energía",
+        "description": "Fatiga frecuente, mala alimentación, sin ejercicio, enfermándose recurrentemente."
+      },
+      "s2": {
+        "title": "Afrontando",
+        "description": "Empezó ejercicio y nutrición básica, aún se enferma a menudo."
+      },
+      "s3": {
+        "title": "Activo",
+        "description": "Rara vez fatiga o enfermedad, ejercicio regular, equilibrando nutrición."
+      },
+      "s4": {
+        "title": "Energía moderada a alta",
+        "description": "Casi nunca cansado o enfermo, rutina rigurosa de ejercicio, nutrición mayormente balanceada."
+      },
+      "s5": {
+        "title": "Alta energía",
+        "description": "Niveles de energía consistentemente altos, estilo de vida activo, nutrición balanceada, casi nunca enfermo."
+      },
+      "s6": {
+        "title": "Salud holística",
+        "description": "Nutrición balanceada, ejercicio y bienestar mental, consciente de todos los aspectos de salud."
+      },
+      "s7": {
+        "title": "Vitalidad",
+        "description": "Niveles excepcionales de energía, comprometido con prácticas avanzadas de salud."
+      },
+      "s8": {
+        "title": "Rendimiento máximo",
+        "description": "Consistentemente en la mejor condición física, casi nunca enfermo."
+      },
+      "s9": {
+        "title": "Bienestar holístico",
+        "description": "Manteniendo estado óptimo y ayudando a otros. Recuperación rápida de enfermedades o lesiones."
+      },
+      "s10": {
+        "title": "Embajador de bienestar y salud de por vida",
+        "description": "Influenciando positivamente a la comunidad o círculos sociales. Energía y salud elevadas sostenidas hasta etapas tardías de la vida."
+      }
+    },
+    "happiness": {
+      "name": "Felicidad",
+      "s1": {
+        "title": "Crisis / Modo de supervivencia",
+        "description": "Comúnmente bajo estrés inmanejable, frecuentemente abrumado por emociones."
+      },
+      "s2": {
+        "title": "Luchando",
+        "description": "Manejando estrés pero con altibajos emocionales frecuentes."
+      },
+      "s3": {
+        "title": "Afrontamiento emocional",
+        "description": "Desarrollando estrategias básicas de afrontamiento emocional, aprendiendo a relacionarse con emociones."
+      },
+      "s4": {
+        "title": "Estado estable",
+        "description": "Mayormente estable emocionalmente, ocasional estrés, empezando a ser proactivo."
+      },
+      "s5": {
+        "title": "Resiliencia",
+        "description": "Desarrollando buenas habilidades de manejo de estrés y recuperación emocional."
+      },
+      "s6": {
+        "title": "Equilibrio interno y atención plena",
+        "description": "Estados internos balanceados, creciendo en inteligencia emocional, práctica regular de atención plena."
+      },
+      "s7": {
+        "title": "Dominio emocional",
+        "description": "Alta inteligencia emocional y control."
+      },
+      "s8": {
+        "title": "Paz interior, claridad y enfoque",
+        "description": "Altos niveles de claridad y enfoque mental, un estado de tranquilidad interior y libertad emocional."
+      },
+      "s9": {
+        "title": "Existencia alegre / Relaciones armoniosas",
+        "description": "Sentido penetrante de alegría y paz, rara vez perturbado, paz y fortaleza emocional arraigadas, enriqueciendo emocionalmente a uno mismo y a otros."
+      },
+      "s10": {
+        "title": "Ser unificado",
+        "description": "El bienestar emocional nutre y se extiende a todas las formas de vida, estados emocionales, cognitivos y espirituales armonizados."
+      }
+    },
+    "love": {
+      "name": "Amor y relaciones",
+      "s1": {
+        "title": "Aislamiento",
+        "description": "Sintiéndose solo la mayor parte del tiempo, apenas relaciones activas."
+      },
+      "s2": {
+        "title": "Conexiones iniciales",
+        "description": "Interacciones sociales básicas pero relaciones mayormente superficiales, encuentros románticos aleatorios."
+      },
+      "s3": {
+        "title": "Primeras conexiones íntimas",
+        "description": "Habiendo desarrollado al menos un vínculo emocional cercano, romances de corta duración, lazos familiares débiles."
+      },
+      "s4": {
+        "title": "Cohesión familiar y relaciones cercanas",
+        "description": "Formando lazos con familia inmediata, apoyo emocional mutuo de amigos, relación romántica estable."
+      },
+      "s5": {
+        "title": "Relaciones profundas",
+        "description": "Múltiples vínculos emocionales cercanos, un sentido de comunidad, listo para una relación íntima o empezando una."
+      },
+      "s6": {
+        "title": "Relaciones sinceras",
+        "description": "Además de la etapa previa, comprometido en una relación romántica amorosa e íntima."
+      },
+      "s7": {
+        "title": "Comunidad dinámica",
+        "description": "Comprometido en una comunidad que nutre crecimiento y apoyo, visto como confiable por amigos y familia."
+      },
+      "s8": {
+        "title": "Amor y cuidado expandidos",
+        "description": "Varias relaciones profundas de confianza. Quizás criando hijos o guiando a otros, expandiendo el círculo de relaciones cercanas."
+      },
+      "s9": {
+        "title": "Relaciones conscientes, orientación y sabiduría",
+        "description": "Relaciones profundas y conscientes que se nutren mutuamente. Una fuente de apoyo emocional y sabiduría en tu comunidad."
+      },
+      "s10": {
+        "title": "Amor incondicional universal, legado generacional",
+        "description": "Un sentido de amor y conexión que se extiende a todos los seres, dejando huellas emocionales y morales en generaciones más jóvenes."
+      }
+    },
+    "impact": {
+      "name": "Impacto",
+      "s1": {
+        "title": "Energía sin dirección, incumplida",
+        "description": "En un trabajo solo por el ingreso, no alineado con el propósito, sin impacto claro."
+      },
+      "s2": {
+        "title": "Desarrollo de habilidades, pequeños actos",
+        "description": "En un trabajo que ayuda a desarrollar habilidades pero no está alineado, y/o haciendo una diferencia a micro-escala (como ayudar a un amigo)."
+      },
+      "s3": {
+        "title": "Crecimiento profesional, intención enfocada",
+        "description": "Trayectoria profesional identificada y en un trabajo relevante."
+      },
+      "s4": {
+        "title": "Impacto iniciado, trabajo alineado",
+        "description": "Comprometido en un proceso creativo o trabajo que empieza a alinearse con valores y propósito personales, Proyectos o pasatiempos iniciales que se alinean con intereses."
+      },
+      "s5": {
+        "title": "Roles de liderazgo alineados, dominio creativo",
+        "description": "Asumiendo responsabilidades de liderazgo, Perfeccionando tu oficio a un alto nivel de competencia."
+      },
+      "s6": {
+        "title": "Influencia en expansión",
+        "description": "Tus creaciones / trabajo empiezan a influir en tu campo o tener impacto regional o nacional."
+      },
+      "s7": {
+        "title": "Impacto amplio sostenible",
+        "description": "Tus creaciones / trabajo impactan significativamente una comunidad más grande. Estableciste un modelo sostenible para impacto continuo."
+      },
+      "s8": {
+        "title": "Contribuciones innovadoras de alto impacto",
+        "description": "Liderando en áreas inexploradas, creando nuevas soluciones. Tus contribuciones afectan cambios a gran escala."
+      },
+      "s9": {
+        "title": "Influencia global, impacto multi-dominio",
+        "description": "Tu impacto se siente globalmente y cruza múltiples sectores."
+      },
+      "s10": {
+        "title": "Agente de cambio global, trabajo de legado",
+        "description": "Tus creaciones contribuyen a cambios globales significativos y tendrán un impacto generacional duradero."
+      }
+    },
+    "growth": {
+      "name": "Crecimiento",
+      "s1": {
+        "title": "Inconsciente, estancamiento",
+        "description": "Ningún esfuerzo consciente hacia auto-mejora o crecimiento espiritual."
+      },
+      "s2": {
+        "title": "Cuestionamiento inicial, curiosidad despertada",
+        "description": "Empezó a cuestionar el significado más profundo de la vida, aprendiendo sobre auto-mejora o espiritualidad pero apenas acción."
+      },
+      "s3": {
+        "title": "Primeros pasos",
+        "description": "Comienzo de práctica espiritual o auto-mejora, quizás reflexión o diario pero aún mayormente teoría."
+      },
+      "s4": {
+        "title": "Auto-conciencia, aplicación práctica",
+        "description": "Buen entendimiento de fortalezas y debilidades personales, aplicando activamente lo que estás aprendiendo a tu vida."
+      },
+      "s5": {
+        "title": "Práctica espiritual, vida consciente",
+        "description": "Prácticas consistentes de crecimiento espiritual, personal o de atención plena, y aplicándolo a la vida."
+      },
+      "s6": {
+        "title": "Perspectivas profundas, creciendo armonía interna",
+        "description": "Avances en entendimiento personal y espiritual, un creciente sentido de paz y equilibrio en tu mundo interno."
+      },
+      "s7": {
+        "title": "Conexión espiritual, integrando el ser",
+        "description": "Sintiendo una conexión más fuerte con algo superior, equilibrando varios aspectos de la vida para crecimiento holístico."
+      },
+      "s8": {
+        "title": "Viviendo intuitivamente, mentoría espiritual",
+        "description": "Regularmente accediendo a intuición o guía espiritual en la toma de decisiones, quizás guiando a otros en sus caminos personales y espirituales."
+      },
+      "s9": {
+        "title": "Ser unificado, experiencias trascendentales",
+        "description": "Integración de aspectos espirituales y mundanos de la vida, experiencias regulares de estados más allá de lo ordinario."
+      },
+      "s10": {
+        "title": "Unicidad cósmica universal",
+        "description": "Experimentando un profundo sentido de unidad e interconexión con todo lo que existe."
+      }
+    },
+    "socialTies": {
+      "name": "Lazos sociales",
+      "s1": {
+        "title": "Auto-aislamiento",
+        "description": "Interacciones sociales mínimas, incómodo o desencantado en entornos sociales."
+      },
+      "s2": {
+        "title": "Compromiso inicial, conocidos amigables",
+        "description": "Conexiones casuales y pequeña charla dominan el panorama social, se unió a grupos pero con participación activa mínima."
+      },
+      "s3": {
+        "title": "Miembro de la comunidad, lazos cercanos",
+        "description": "Estableció un círculo muy unido pero todavía no profundamente arraigado, participación regular en actividades comunitarias."
+      },
+      "s4": {
+        "title": "Conexiones sinceras, lazos sólidos",
+        "description": "Múltiples lazos significativos, tanto dar como recibir, que ofrecen apoyo emocional, intercambian recursos y consejos prácticos."
+      },
+      "s5": {
+        "title": "Colaborador de la comunidad, red extendida",
+        "description": "Círculo social más amplio, incluyendo mentores y asesores, asumiendo roles en la comunidad, como organizar eventos."
+      },
+      "s6": {
+        "title": "Conectado, lazos de alta calidad",
+        "description": "Buenos lazos en varios círculos sociales, las conexiones son consistentemente edificantes y recíprocas."
+      },
+      "s7": {
+        "title": "Influyente, red influyente",
+        "description": "Tu opinión impacta significativamente a tu comunidad, empezando a influir a otros a través de tu círculo social."
+      },
+      "s8": {
+        "title": "Liderazgo comunitario",
+        "description": "Visto como líder en múltiples entornos sociales, asumiendo un papel activo en decisiones y actividades comunales."
+      },
+      "s9": {
+        "title": "Red global, benefactor social",
+        "description": "Tus acciones benefician significativamente a la comunidad, los lazos sociales abarcan culturas, países y sectores profesionales."
+      },
+      "s10": {
+        "title": "Ciudadano global, armonía universal",
+        "description": "Tu influencia social trasciende fronteras, un sentido de interconexión y parentesco con todos los seres."
+      }
+    },
+    "home": {
+      "name": "Casa",
+      "s1": {
+        "title": "Espacio caótico desordenado",
+        "description": "El entorno de vida está desorganizado, estresante o inestable, sin control sobre el ambiente."
+      },
+      "s2": {
+        "title": "Organización básica",
+        "description": "Empezando a hacer que el espacio de vida sea funcional, cierto nivel de orden, muebles y artículos básicos, pero carece de toque estético o personal."
+      },
+      "s3": {
+        "title": "Confort básico",
+        "description": "Tu espacio de vida es funcional y estable, generalmente limpio, y está empezando a reflejar tu estilo pero carece de elementos de diseño personalizados o armoniosos."
+      },
+      "s4": {
+        "title": "Santuario personal",
+        "description": "no sólo sirve para necesidades funcionales sino que también es visualmente agradable, y está diseñado para reflejar el estilo personal."
+      },
+      "s5": {
+        "title": "Cohesión estética",
+        "description": "Los alrededores realzan tu bienestar y creatividad."
+      },
+      "s6": {
+        "title": "Hogar-templo holístico",
+        "description": "El ambiente está diseñado y optimizado para bienestar físico y psicológico. Este es tu espacio de nutrición donde recargas energía."
+      },
+      "s7": {
+        "title": "Centro social",
+        "description": "El espacio de vida no es sólo un refugio personal sino que también facilita interacciones sociales significativas."
+      },
+      "s8": {
+        "title": "Ancla de sinergia comunitaria",
+        "description": "Tu hogar/espacio beneficia a la comunidad en general."
+      },
+      "s9": {
+        "title": "Vivienda armónica innovadora",
+        "description": "Optimizado para sostenibilidad, resonancia espiritual y valor social. Adoptando tecnologías o principios de diseño de vanguardia para hacer que el espacio sea adaptativo, autosostenible o incluso móvil."
+      },
+      "s10": {
+        "title": "Hábitat universal, santuario holístico",
+        "description": "Tus alrededores reflejan una perspectiva global o incluso cósmica para que no sólo sea sostenible y hermoso sino que también sirva como modelo o ejemplo educativo de vida integrada y armoniosa."
+      }
+    }
   }
 }

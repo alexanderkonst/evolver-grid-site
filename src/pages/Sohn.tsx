@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { ArrowRight } from "lucide-react";
 import { GOLD_GRADIENT, GOLD_GLOW, Ornament } from "@/lib/landingDesign";
 import fyttTorus from "@/assets/find-your-top-talent-torus.png";
@@ -83,11 +84,13 @@ const Panel = ({
 
 const bodyStyle = { color: "var(--skin-text-muted, rgba(26,30,58,0.8))" } as const;
 
-const SohnWordmark = () => (
+const SohnWordmark = () => {
+  const { t } = useTranslation();
+  return (
   <Link
     to="/"
     className="fixed top-5 left-1/2 -translate-x-1/2 z-50 inline-flex items-center transition-opacity hover:opacity-80"
-    aria-label="Find Your Top Talent home"
+    aria-label={t("sohn.wordmarkAria")}
   >
     <img
       src={fyttTorus}
@@ -100,9 +103,11 @@ const SohnWordmark = () => (
       draggable={false}
     />
   </Link>
-);
+  );
+};
 
 const Sohn = () => {
+  const { t } = useTranslation();
   // Day 91 (Sasha 2026-06-09): tokenized for Aurum — halo + page wash read
   // skin tokens; the exact original literals stay as light-side fallbacks.
   const headlineHalo = "var(--skin-text-halo-strong, 0 0 26px rgba(255,255,255,0.7), 0 1px 2px rgba(255,255,255,0.85))";
@@ -138,7 +143,7 @@ const Sohn = () => {
         {/* HERO */}
         <header className="text-center mb-8 sm:mb-10">
           <p className="text-[11px] uppercase tracking-[0.30em] mb-5" style={{ color: "var(--skin-text-muted-soft, rgba(26,30,58,0.5))" }}>
-            A coordination substrate · seminal note
+            {t("sohn.heroEyebrow")}
           </p>
           <h1
             className="font-bold leading-[1.06] tracking-[-0.01em]"
@@ -149,9 +154,9 @@ const Sohn = () => {
               textShadow: headlineHalo,
             }}
           >
-            The Self-Organizing
+            {t("sohn.heroTitleLine1")}
             <br />
-            Human Network
+            {t("sohn.heroTitleLine2")}
           </h1>
           <p
             className="mt-5 italic mx-auto max-w-[42ch]"
@@ -162,50 +167,32 @@ const Sohn = () => {
               lineHeight: 1.35,
             }}
           >
-            When differentiated value becomes legible, human networks self-organize into collaboration,{" "}
-            <GradientInk>without central planning</GradientInk>.
+            {t("sohn.heroSubtitleBefore")}{" "}
+            <GradientInk>{t("sohn.heroSubtitleInk")}</GradientInk>{t("sohn.heroSubtitleAfter")}
           </p>
           <p className="mt-8 mx-auto max-w-[56ch] text-[15px] sm:text-base leading-relaxed" style={bodyStyle}>
-            The whole signal in one page. The abstract below is the seed; the running, free platform it links
-            to is the proof.
+            {t("sohn.heroLede")}
           </p>
         </header>
 
         <div className="space-y-5">
-          <Panel eyebrow="The abstract" weight="heavy">
+          <Panel eyebrow={t("sohn.abstractEyebrow")} weight="heavy">
             <p className="text-[15px] sm:text-base leading-relaxed" style={bodyStyle}>
-              Industrial coordination scaled by standardizing people into roles, credentials, and replaceable
-              units. It could not see, and therefore could not coordinate, the differentiated way each person
-              actually thinks, creates, and contributes. As that differentiated value becomes the primary
-              source of economic and creative leverage, the binding constraint is no longer talent but its{" "}
-              <GradientInk>legibility</GradientInk>. This note introduces the Self-Organizing Human Network
-              (SOHN): a coordination substrate in which human nodes self-organize into collaboration and
-              venture formation without central planning, by making each node's differentiated value precise
-              and composable. The atomic operation articulates a person's irreducible signal, their top
-              talent, direction, and assets, in minutes; nodes then match on the complementarity of those
-              signals rather than on titles or tags. Collaboration rate, the share of members who find a
-              collaborator and begin building within a bounded window, is the network's order parameter, and
-              above a legibility threshold coordinated structure emerges spontaneously, the human analogue of
-              self-organizing networks in telecommunications, where nodes self-configure, optimize, and heal
-              through local exchange. The mechanism composes holonically across scales, from individual to
-              team to community to network state, a general coordination layer for a civilization that
-              organizes around who people actually are rather than the roles they were assigned.
+              {t("sohn.abstractBodyBefore")}{" "}
+              <GradientInk>{t("sohn.abstractBodyInk")}</GradientInk>{t("sohn.abstractBodyAfter")}
             </p>
           </Panel>
 
-          <Panel eyebrow="The proof is the running network">
+          <Panel eyebrow={t("sohn.proofEyebrow")}>
             <p className="text-[15px] sm:text-base leading-relaxed" style={bodyStyle}>
-              Bitcoin was a whitepaper plus a chain that actually ran. SOHN is this abstract plus a live, free,
-              self-organizing network and the collaboration rate it moves. The seed and its proof, together,
-              are the whole. So do not take the claim on faith. Feel the precision yourself in about two
-              minutes.
+              {t("sohn.proofBody")}
             </p>
             <Link
               to="/"
               className="liquid-glass-strong mt-6 inline-flex items-center gap-3 rounded-full px-6 py-3.5 text-sm font-semibold tracking-wide transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
               style={{ color: NAVY, textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.7))" }}
             >
-              Run it on yourself
+              {t("sohn.proofCta")}
               <ArrowRight className="w-4 h-4 opacity-70" />
             </Link>
           </Panel>
@@ -216,7 +203,7 @@ const Sohn = () => {
         {/* CLOSE */}
         <section className="text-center max-w-[52ch] mx-auto">
           <p className="text-[11px] uppercase tracking-[0.28em] mb-3" style={{ color: "var(--skin-text-muted-soft, rgba(26,30,58,0.5))" }}>
-            The stake
+            {t("sohn.stakeEyebrow")}
           </p>
           <p
             className="italic"
@@ -227,8 +214,8 @@ const Sohn = () => {
               lineHeight: 1.4,
             }}
           >
-            A coordination layer for a civilization that organizes around{" "}
-            <GradientInk>who people actually are</GradientInk>, rather than the roles they were assigned.
+            {t("sohn.stakeBefore")}{" "}
+            <GradientInk>{t("sohn.stakeInk")}</GradientInk>{t("sohn.stakeAfter")}
           </p>
         </section>
 

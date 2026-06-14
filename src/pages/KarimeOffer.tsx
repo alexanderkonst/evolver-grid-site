@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { EditorialCta } from "@/components/ui/editorial-cta";
 import { Ornament } from "@/lib/landingDesign";
 import SEO from "@/components/SEO";
@@ -81,6 +82,7 @@ const KarimeOffer = () => {
   // persisted skin on unmount, so Karime's warm terracotta palette
   // applies only while we're on this page.
   const { pushTemporarySkin } = useSkin();
+  const { t } = useTranslation();
   useEffect(() => {
     const cleanup = pushTemporarySkin("karime");
     return cleanup;
@@ -136,7 +138,7 @@ const KarimeOffer = () => {
                 "var(--skin-text-halo-deep, 0 0 28px rgba(255,255,255,0.85), 0 1px 2px rgba(255,255,255,0.95), 0 0 1px rgba(11,42,90,0.65), 0 1px 0 rgba(11,42,90,0.45))",
             }}
           >
-            Private emotional support for delicate life moments
+            {t("karimeOffer.eyebrow")}
           </p>
 
           {/* Italic question — leads the hero, h1 below answers it. */}
@@ -151,7 +153,7 @@ const KarimeOffer = () => {
                 "var(--skin-text-halo-deep, 0 0 28px rgba(255,255,255,0.85), 0 1px 2px rgba(255,255,255,0.95), 0 0 1px rgba(11,42,90,0.65), 0 1px 0 rgba(11,42,90,0.45))",
             }}
           >
-            Still holding everything together while quietly falling apart inside?
+            {t("karimeOffer.question")}
           </p>
 
           {/* Main headline — no gold word-highlights for Karime's tone. */}
@@ -166,14 +168,14 @@ const KarimeOffer = () => {
               fontFeatureSettings: '"lnum" 1, "onum" 0',
             }}
           >
-            You do not have to carry this{" "}
+            {t("karimeOffer.headlineBefore")}{" "}
             <span
               className="bg-clip-text text-transparent"
               style={KARIME_EMPHASIS_STYLE}
             >
-              alone
+              {t("karimeOffer.headlineEmphasis")}
             </span>
-            .
+            {t("karimeOffer.headlineAfter")}
           </h1>
 
           <Ornament className="my-5 sm:my-6" />
@@ -212,7 +214,7 @@ const KarimeOffer = () => {
             }}
           >
             <p className="text-lg sm:text-xl md:text-[1.4rem] font-bold leading-[1.45] tracking-[-0.005em]">
-              Deeply grounded emotional support for people moving through heartbreak, burnout, and the seasons that become too heavy to hold alone.
+              {t("karimeOffer.bridge")}
             </p>
 
             {/* Three short lines — positive declarations, italic for breath.
@@ -225,13 +227,13 @@ const KarimeOffer = () => {
               style={{ fontWeight: 600 }}
             >
               <p className="text-base sm:text-lg md:text-xl leading-[1.4]">
-                Careful attention.
+                {t("karimeOffer.line1")}
               </p>
               <p className="text-base sm:text-lg md:text-xl leading-[1.4]">
-                Emotional honesty.
+                {t("karimeOffer.line2")}
               </p>
               <p className="text-base sm:text-lg md:text-xl leading-[1.4]">
-                Held, not fixed.
+                {t("karimeOffer.line3")}
               </p>
             </div>
           </div>
@@ -240,7 +242,7 @@ const KarimeOffer = () => {
         {/* CTA cluster — single primary CTA, footer microcopy, contact line. */}
         <div className="mt-7 sm:mt-8">
           <div className="flex flex-col items-center gap-4 px-4 text-center">
-            <EditorialCta label="Speak with Karime" onClick={handleBook} />
+            <EditorialCta label={t("karimeOffer.ctaLabel")} onClick={handleBook} />
 
             <div
               className="inline-flex items-center justify-center gap-2 max-w-[520px] mt-1"
@@ -261,7 +263,7 @@ const KarimeOffer = () => {
                   Canonical now: "Free 20-minute fit call." In-person
                   phrasing matched to the doc's "by arrangement" so the
                   page does not overpromise in-person availability. */}
-              <span>Free 20-minute fit call · Online sessions worldwide · In-person by arrangement</span>
+              <span>{t("karimeOffer.microcopy")}</span>
             </div>
 
             {/* Contact line — clickable Telegram + WhatsApp. Same small-caps
@@ -285,7 +287,7 @@ const KarimeOffer = () => {
                 rel="noopener noreferrer"
                 className="hover:opacity-80 transition-opacity"
               >
-                Telegram @integralevolution
+                {t("karimeOffer.telegramLabel")}
               </a>
               <span aria-hidden="true">·</span>
               <a
@@ -294,7 +296,7 @@ const KarimeOffer = () => {
                 rel="noopener noreferrer"
                 className="hover:opacity-80 transition-opacity"
               >
-                WhatsApp +1 (415) 707-3432
+                {t("karimeOffer.whatsappLabel")}
               </a>
             </div>
           </div>

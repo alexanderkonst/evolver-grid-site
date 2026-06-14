@@ -3141,5 +3141,1276 @@
     "figureAriaLabel": "The seven-step journey — holonic completion circle",
     "svgTitle": "Seven-step journey from talent to thriving business",
     "svgDesc": "A circle with seven luminous nodes, each labeled with one step of the playbook. Click a node to see the step's price, inclusions, and result. Light travels clockwise from the first step at the top; completing all seven stabilizes the circle as a whole."
+  },
+  "qol": {
+    "wealth": {
+      "name": "Wealth",
+      "s1": {
+        "title": "Barely Surviving",
+        "description": "No savings, relying on external aid for basic needs."
+      },
+      "s2": {
+        "title": "Paycheck Living",
+        "description": "Can meet monthly expenses but no savings, have debts."
+      },
+      "s3": {
+        "title": "Cautious Saver",
+        "description": "Accumulated 1-2 months emergency savings, starting to pay off debt."
+      },
+      "s4": {
+        "title": "Debt-Free",
+        "description": "3-6 months emergency savings, no high-interest debts."
+      },
+      "s5": {
+        "title": "Initial Investments",
+        "description": "6-12 months savings, starting to invest."
+      },
+      "s6": {
+        "title": "Diversified Investments",
+        "description": "Growing portfolio, exploring different asset classes."
+      },
+      "s7": {
+        "title": "Self-Sustaining",
+        "description": "Over two years of savings, passive income covering essential living expenses."
+      },
+      "s8": {
+        "title": "Financially Free",
+        "description": "Living off investments, work is a choice, not a necessity."
+      },
+      "s9": {
+        "title": "Wealth & Philanthropy",
+        "description": "Growing wealth, actively giving back and contributing to causes."
+      },
+      "s10": {
+        "title": "Legacy Creation",
+        "description": "Wealth is sustainable for future generations, focused on generational legacy planning."
+      }
+    },
+    "health": {
+      "name": "Health",
+      "s1": {
+        "title": "Low Energy",
+        "description": "Frequent fatigue, poor diet, no exercise, recurrently getting sick."
+      },
+      "s2": {
+        "title": "Coping",
+        "description": "Started basic exercise and diet improvements, but still often tired or sick."
+      },
+      "s3": {
+        "title": "Active",
+        "description": "Seldom fatigued or sick, regular exercise, balancing nutrition."
+      },
+      "s4": {
+        "title": "Moderate to High Energy",
+        "description": "Rarely tired or sick, vigorous exercise routine, mostly balanced nutrition."
+      },
+      "s5": {
+        "title": "High Energy",
+        "description": "Consistently high energy levels, active lifestyle, balanced nutrition, ever rarely sick."
+      },
+      "s6": {
+        "title": "Holistic Health",
+        "description": "Balanced nutrition, regular exercise, mindful of all health aspects (physical, mental)."
+      },
+      "s7": {
+        "title": "Vitality",
+        "description": "Exceptional energy levels, engaged in advanced health practices."
+      },
+      "s8": {
+        "title": "Peak Performance",
+        "description": "Consistently at top physical and mental state, helping others with their health."
+      },
+      "s9": {
+        "title": "Well-being Ambassador",
+        "description": "Promoting lifelong health in your community, positively influencing others."
+      },
+      "s10": {
+        "title": "Lifelong Health Legacy",
+        "description": "Sustained high energy and vitality, a model of well-being that inspires generations."
+      }
+    },
+    "happiness": {
+      "name": "Happiness",
+      "s1": {
+        "title": "Crisis/Survival Mode",
+        "description": "Frequently overwhelmed by stress, anxiety, or depression."
+      },
+      "s2": {
+        "title": "Struggling",
+        "description": "Managing stress but experiencing frequent emotional highs and lows."
+      },
+      "s3": {
+        "title": "Emotional Coping",
+        "description": "Developing basic emotional coping strategies, learning to relate to emotions."
+      },
+      "s4": {
+        "title": "Steady State",
+        "description": "Mostly stable emotions, occasional stress, beginning to practice mindfulness."
+      },
+      "s5": {
+        "title": "Resilience",
+        "description": "Developing good stress management and emotional recovery skills."
+      },
+      "s6": {
+        "title": "Inner Balance & Mindfulness",
+        "description": "Consistent mindfulness practice, good emotional regulation."
+      },
+      "s7": {
+        "title": "Emotional Mastery",
+        "description": "High emotional intelligence and control, can navigate complex emotional states."
+      },
+      "s8": {
+        "title": "Joyful Existence",
+        "description": "Pervasive sense of joy and contentment, rarely disturbed by external events."
+      },
+      "s9": {
+        "title": "Inner Peace, Clarity & Focus",
+        "description": "High levels of mental clarity and focus, a state of deep-seated peace and tranquility."
+      },
+      "s10": {
+        "title": "Unified Self",
+        "description": "Environmental and emotional mastery, cognitive and spiritual fulfillment, a state of unified consciousness."
+      }
+    },
+    "love": {
+      "name": "Love & Relationships",
+      "s1": {
+        "title": "Isolation",
+        "description": "Feeling lonely most of the time, barely any active relationships."
+      },
+      "s2": {
+        "title": "Initial Connections",
+        "description": "Basic social interactions but relationships are mostly surface-level, random romantic encounters."
+      },
+      "s3": {
+        "title": "First Intimate Connections",
+        "description": "Developing a few emotional bonds, short-lived romances, weak family ties."
+      },
+      "s4": {
+        "title": "Family Cohesion & Close Friends",
+        "description": "Bonding with immediate family, mutual emotional support from friends, steady romantic relationship."
+      },
+      "s5": {
+        "title": "Deep Relationships",
+        "description": "Multiple close emotional bonds, sense of community, ready for or in an intimate partnership."
+      },
+      "s6": {
+        "title": "Heartfelt Relationships",
+        "description": "Engaged in a loving, intimate romantic relationship, strong supportive friendships."
+      },
+      "s7": {
+        "title": "Dynamic Community",
+        "description": "Engaged in a community that nurtures growth and support, seen as reliable by friends and family."
+      },
+      "s8": {
+        "title": "Conscious Relations & Guidance",
+        "description": "Deep, aware relationships. Perhaps raising children or mentoring others, a source of emotional support."
+      },
+      "s9": {
+        "title": "Expanded Love and Care",
+        "description": "Profound, trusting relationships. Expanding the circle of close relationships, offering wisdom in your community."
+      },
+      "s10": {
+        "title": "Universal & Unconditional Love",
+        "description": "A sense of love and compassion that extends to all beings, living in service and unity."
+      }
+    },
+    "impact": {
+      "name": "Impact",
+      "s1": {
+        "title": "Undirected Energy",
+        "description": "Unfulfilled in a job solely for income, not aligned with purpose, no clear impact."
+      },
+      "s2": {
+        "title": "Skill Building, Small Acts",
+        "description": "In a job that helps build skills but isn't aligned, and/or making a difference on a micro-scale."
+      },
+      "s3": {
+        "title": "Career Growth, Focused Intent",
+        "description": "Career path identified, honing your craft to a high level of proficiency in a relevant job."
+      },
+      "s4": {
+        "title": "Impact Initiated, Aligned Work",
+        "description": "Engaged in creative process or work that begins to align with personal values and purpose."
+      },
+      "s5": {
+        "title": "Creative Mastery & Leadership Roles",
+        "description": "Taking on leadership responsibilities that align with purpose, initial projects or hobbies."
+      },
+      "s6": {
+        "title": "Expanding Influence",
+        "description": "Your creations/work start to influence your field or have regional or national impact."
+      },
+      "s7": {
+        "title": "Broad Sustainable Impact",
+        "description": "Your creations/work significantly impact a larger community, established a sustainable model for continual impact."
+      },
+      "s8": {
+        "title": "High Impact, Innovative Contributions",
+        "description": "Leading in uncharted territories, making increasing new contributions on a large scale."
+      },
+      "s9": {
+        "title": "Global Influence, Multi-Domain Impact",
+        "description": "Your contributions affect people globally and cross multiple domains."
+      },
+      "s10": {
+        "title": "Global Change-Maker, Legacy Work",
+        "description": "Your life's work contributes to significant global changes and will have a lasting, generational impact."
+      }
+    },
+    "growth": {
+      "name": "Growth",
+      "s1": {
+        "title": "Unaware, Stagnation",
+        "description": "No conscious effort towards self-improvement or spiritual growth."
+      },
+      "s2": {
+        "title": "Initial Questioning, Curiosity Sparked",
+        "description": "Started questioning deeper meaning of life, learning about self-improvement but barely any action."
+      },
+      "s3": {
+        "title": "Self-Awareness, First Steps",
+        "description": "Beginning of personal growth or mindfulness practices, but still mostly theory."
+      },
+      "s4": {
+        "title": "Practical Application, Mindful Living",
+        "description": "Good understanding of personal strengths and weaknesses, actively applying what you're learning."
+      },
+      "s5": {
+        "title": "Spiritual Practice",
+        "description": "Consistent spiritual practice or self-reflection, and applying it to life."
+      },
+      "s6": {
+        "title": "Deep Insights, Growing Inner Harmony",
+        "description": "Breakthroughs in personal and spiritual understanding, a growing sense of peace and balance."
+      },
+      "s7": {
+        "title": "Spiritual Connection, Integrating Self",
+        "description": "Feeling a stronger connection to something greater, balancing various aspects of life for holistic growth."
+      },
+      "s8": {
+        "title": "Intuitive Living, Spiritual Mentorship",
+        "description": "Regularly access intuitive guidance for decision making, starting to guide others on their journeys."
+      },
+      "s9": {
+        "title": "Unified Being, Transcendent Experiences",
+        "description": "Experiencing moments of unity and awareness beyond the ordinary, guiding others in their spiritual journeys."
+      },
+      "s10": {
+        "title": "Universal & Cosmic Oneness",
+        "description": "Experiencing a sustained state of interconnectedness with all that is."
+      }
+    },
+    "socialTies": {
+      "name": "Social Ties",
+      "s1": {
+        "title": "Self-Isolation",
+        "description": "Minimal social interactions, uncomfortable or disengaged in social settings."
+      },
+      "s2": {
+        "title": "Acquaintances",
+        "description": "Casual connections and small talk dominate social landscape."
+      },
+      "s3": {
+        "title": "Friendly Connections",
+        "description": "Joined groups but minimal active involvement."
+      },
+      "s4": {
+        "title": "Community Member",
+        "description": "Established a tight-knit circle but not deeply rooted, regular give and take."
+      },
+      "s5": {
+        "title": "Networked, High Quality Ties",
+        "description": "Meaningful ties that offer emotional support and practical advice."
+      },
+      "s6": {
+        "title": "Close Ties, Extended Network",
+        "description": "More extensive social circle including mentors and advisors, connections are consistently shifting and mutual."
+      },
+      "s7": {
+        "title": "Influential Community Member",
+        "description": "Taking up roles in community activities like organizing events."
+      },
+      "s8": {
+        "title": "Community Leader",
+        "description": "Seen as a leader in multiple social circles, starting to influence others through your activities."
+      },
+      "s9": {
+        "title": "Global Network, Social Benefactor",
+        "description": "Significantly impacting your community network, actions benefit the community."
+      },
+      "s10": {
+        "title": "Universal Harmony",
+        "description": "Social influence transcends cultures and countries, fostering a sense of interconnectedness with all beings."
+      }
+    },
+    "home": {
+      "name": "Home",
+      "s1": {
+        "title": "Chaotic, Cluttered Space",
+        "description": "Living environment is disorganized, stressful, or unsteady, no control over the environment."
+      },
+      "s2": {
+        "title": "Basic Organization",
+        "description": "Starting to make the space functional, some level of tidiness, basic furniture."
+      },
+      "s3": {
+        "title": "Basic Comfort",
+        "description": "Your living space is functional and stable, generally clean, and has household systems."
+      },
+      "s4": {
+        "title": "Personalized Home",
+        "description": "The living space is functional and is beginning to reflect your style but lacks cohesion."
+      },
+      "s5": {
+        "title": "Aesthetic Cohesion",
+        "description": "The environment is not only functional but is also visually pleasing, and is designed to reflect your personal style."
+      },
+      "s6": {
+        "title": "Holistic Sanctuary",
+        "description": "Living space serves functional needs but also enhances your psychological well-being and creativity."
+      },
+      "s7": {
+        "title": "Temple",
+        "description": "Your physical space is optimized for well-being. This is your nurturing space where you replenish."
+      },
+      "s8": {
+        "title": "Social Hub",
+        "description": "Living space is not just a personal haven but also facilitates meaningful social interactions."
+      },
+      "s9": {
+        "title": "Harmonic & Innovative Living",
+        "description": "Optimized for performance and flow. Adopting technologies or design principles to make the home adaptive or self-sustaining."
+      },
+      "s10": {
+        "title": "Community Synergy Anchor",
+        "description": "Your home/space benefits the larger community, a universal habitat and holistic sanctuary."
+      }
+    }
+  },
+  "oyiIgnition": {
+    "primaryCta": {
+      "label": "See My Map"
+    },
+    "hero": {
+      "arrival": "You felt something that brought you here. Good.",
+      "eyebrow": "Oyi Sun · for source path builders",
+      "headlineLine1": "The kid who created without permission.",
+      "headlineLine2": "Where did they go?",
+      "subhead": "Every step of “growing up” cost you power. Let's find where.",
+      "worlds1": "You carry two worlds inside you—the spiritual and the practical, the ancient and the modern.",
+      "worlds2": "The world told you to pick one.",
+      "worlds3": "You couldn't. Because both are real.",
+      "alongTheWay": "But somewhere along the way:",
+      "joyLeft": "Joy left.",
+      "peaceLeft": "Peace left.",
+      "lightFading": "The light in your eyes started fading.",
+      "promise": "In 60 minutes, you'll see exactly where that happened—and what to do in the next 5 days to take it back.",
+      "noFrameworks": "No frameworks. No theory. No performance. Just truth.",
+      "ctaNote": "Private session. Limited availability."
+    },
+    "qualifier": {
+      "heading": "This is for you if",
+      "pill1": "You've survived things most people can't imagine",
+      "pill2": "The people who should have protected you were the first to shut you down",
+      "pill3": "There's a version of you that used to create without asking—you miss them",
+      "pill4": "You give your best work away for free—and don't know why",
+      "pill5": "You feel both spiritual AND practical—and don't fit anywhere",
+      "pill6": "You've tried coaching, courses, frameworks—none of them held all of you",
+      "pill7": "You hear 'Live Free'… and something in you wakes up"
+    },
+    "originHit": {
+      "line1": "I grew up with guns in my face, car crashes, and domestic violence. Survival forced me to read people before they spoke.",
+      "line2": "24 years later, that's the gift — and I use it to show you exactly where you gave your power away.",
+      "attribution": "— Oyi Sun · Lotus Medicine Man"
+    },
+    "whatHappens": {
+      "heading": "What Happens in the Session",
+      "subhead": "This is not coaching. This is a read + mirror + reset.",
+      "stepLabel": "Step {{step}}",
+      "step1": {
+        "title": "The Read",
+        "desc": "You give me your birthday. Before you say a word, I map your patterns, your pressure points, your natural path. Not guesswork. Pattern recognition from 24+ years across astrology and human design."
+      },
+      "step2": {
+        "title": "The Mirror",
+        "desc": "I tell your story—through mine. The swamp. The survival. The lie running your life. Then I stop. And you see it."
+      },
+      "step3": {
+        "title": "The Prescription",
+        "desc": "I name your gift—the one you've been giving away for free. Then ONE move. One action. Five days. That's it."
+      }
+    },
+    "deliverables": {
+      "heading": "What You Walk Out With",
+      "label": "Your Sovereignty Map:",
+      "item1": "The pattern that's been quietly running your life",
+      "item2": "The exact moment you started giving your power away",
+      "item3": "Your real decision-making system (not what you've been taught)",
+      "item4": "The gift you've been undervaluing—and how it becomes income",
+      "item5": "The ONE move to start reclaiming your life immediately"
+    },
+    "shifts": {
+      "heading": "The Three Shifts",
+      "shift1": {
+        "from": "You follow systems, strategies, expectations that were never yours.",
+        "to": "You move from your own authority. No borrowed identity.",
+        "label": "From Control → Sovereignty"
+      },
+      "shift2": {
+        "from": "Joy gone. Peace gone. Just functioning.",
+        "to": "Energy returns. Clarity returns. The light comes back.",
+        "label": "From Exhaustion → Aliveness"
+      },
+      "shift3": {
+        "from": "Your most powerful work is free, hidden, or minimized.",
+        "to": "Your gift becomes your life—and your income.",
+        "label": "From Hiding Your Gift → Living From It"
+      }
+    },
+    "realityCheck": {
+      "line1": "You don't need another framework.",
+      "line2": "You need to see the truth everyone's been afraid to tell you."
+    },
+    "proof": {
+      "heading": "What They Said After",
+      "less": "Less",
+      "fullStory": "Full story",
+      "t1": {
+        "quote": "Nobody can hold space for me. They're all afraid. You're very courageous, crazy too.",
+        "full": "I'm moving and feeling a lot of confidence and clarity on the decisions I have made and actions I have initiated since our call today. Thank you. I owe you big time. I've never had a session like that before. Thank you for helping me face my fears.",
+        "name": "Session client",
+        "title": "Founder & medicine carrier"
+      },
+      "t2": {
+        "quote": "I've never felt this seen in my life.",
+        "full": "He told me my own story — things I hadn't told anyone. I sat there with my mouth open. Then everything I'd been carrying alone just came out. That's what happens when someone sees you for real.",
+        "name": "Mirror Session participant",
+        "title": "Source Path Builder"
+      },
+      "t3": {
+        "quote": "He's far superior. He ain't just good — he's drilling down like nobody else does.",
+        "full": "I was in another class with a well-known teacher. Good, but not like this. Oyi drills down to places nobody else reaches. The precision is surgical. You can't hide from it — and you don't want to.",
+        "name": "Long-time student",
+        "title": "Practitioner"
+      }
+    },
+    "path": {
+      "heading": "The Next Step (If This Lands)",
+      "subhead": "We don't stop at awareness.",
+      "tier1": {
+        "step": "Start here",
+        "title": "The Mirror Session",
+        "desc": "60 minutes, 1-on-1. The read, the mirror, and your Sovereignty Map. Walk out seeing the pattern."
+      },
+      "tier2": {
+        "step": "Go deeper",
+        "title": "The Build",
+        "desc": "6 weeks. Your sovereignty restored, your inner child leading again, your business aligned to your actual gift. Outcome: your first aligned income—from being who you actually are."
+      },
+      "tier3": {
+        "step": "Stay connected",
+        "title": "The Container",
+        "desc": "Monthly advisory. Sovereignty maintained. Accountability without performance."
+      }
+    },
+    "about": {
+      "line1": "I didn't learn this from a book. I lived it.",
+      "line2": "Guns in my face. Car crashes. Domestic violence. Kidnapped by my own parents. I had to grow up at twelve — making grown man decisions with no one to protect me.",
+      "line3": "Survival forced me to read people before they spoke. That became the gift.",
+      "line4": "Then came 24 years of refinement: ten teachers, each one planting a seed — astrology, human design, martial arts, storytelling, mystery school initiation. Together, they are the method. And only I know the recipe.",
+      "line5": "Now I help people find the power they never actually lost—just buried under survival, growing up, and other people's rules.",
+      "credentials": "Lotus Medicine Man · 475+ Episodes · 24 Years Reading People · Live Free"
+    },
+    "finalCta": {
+      "heading": "If this made you pause—even for a second—",
+      "signal": "That's your signal.",
+      "questions": "Have questions? Let's talk first",
+      "disclaimer": "Only proceed if this lands in your body, not your mind."
+    },
+    "faq": {
+      "heading": "Questions",
+      "q1": {
+        "q": "Do I need to believe in astrology?",
+        "a": "No. You just need to be honest. The patterns speak for themselves — 24 years of readings, thousands of people. It works whether you believe it or not."
+      },
+      "q2": {
+        "q": "How can you know so much from a birthday?",
+        "a": "Patterns repeat. Your birth date maps to specific patterns in astrology and human design that reveal how you're wired to make decisions, what your purpose is, and where you've been giving your power away. I've been reading these patterns for 24 years."
+      },
+      "q3": {
+        "q": "What is a Sovereignty Map?",
+        "a": "A precise diagnosis of where you gave away your power, what your actual purpose is, how you're designed to make decisions, and the specific shadow running your life — plus one prescription to start restoring what was taken."
+      },
+      "q4": {
+        "q": "What if I've already done a lot of inner work?",
+        "a": "Then you'll recognize this faster. This isn't another layer of healing. It's a mirror — you see what you already know but haven't been able to name or act on. The people who've done the most work get the deepest hit."
+      },
+      "q5": {
+        "q": "What happens after the Mirror Session?",
+        "a": "You receive a 5-day prescription — one action, aligned to your design. When you complete it and report back, that's the natural entry into The Build: 6 weeks of sovereignty restoration, inner child reinstatement, and building income from your actual gift."
+      }
+    }
+  },
+  "sergeyIgnition": {
+    "primaryCtaLabel": "See My Leverage Map",
+    "heroEyebrow": "Sergey Jay Makarov · for tech leaders",
+    "heroTitleLine1": "You're Working 80 Hours—",
+    "heroTitleLine2": "And Your Team Still Can't Keep Up.",
+    "heroLede": "It's not a workload problem. You're building the wrong thing.",
+    "heroPara1": "You're solving fires all day. Slack never stops. And the more you push—the worse the returns get.",
+    "heroPara2": "You already know what actually drives results. But it's buried under \"fires first.\"",
+    "inversionLabel": "The inversion",
+    "inversionBefore": "The thing you do for free…",
+    "inversionStrong": "is the business.",
+    "inversionAfter": "And AI turns it into a force multiplier.",
+    "inversionDetail": "In 60 minutes, you'll see how to turn your current team into a 2–5× output machine—without hiring. No theory. No slides. On your actual work.",
+    "heroCtaNote": "Private diagnostic. Limited spots monthly.",
+    "qualifierTitle": "This is for you if",
+    "qualifierPill1": "You're a founder, exec, or PM—and you're still the bottleneck",
+    "qualifierPill2": "You're working harder than ever, but results are flattening",
+    "qualifierPill3": "Your team depends on you too much",
+    "qualifierPill4": "AI feels useful—but nowhere near its full potential",
+    "qualifierPill5": "You know something has to change—and soon",
+    "whatHappensTitle": "What Happens in 60 Minutes",
+    "whatHappensSubtitle": "This is not coaching. This is a live diagnostic + leverage rebuild.",
+    "stepLabel": "Step {{step}}",
+    "step1Title": "Find Your Pull",
+    "step1Desc": "We identify the exact function you should be building around—the thing you already do that drives disproportionate results. Not 'passion.' Leverage.",
+    "step2Title": "AI as Force Multiplier",
+    "step2Desc": "We apply AI directly to your real work. You'll see what disappears from your workload, what gets amplified, and what gets automated instantly.",
+    "step3Title": "Team Reconfiguration",
+    "step3Desc": "We map how your team shifts around your pull + AI. Result: less control, less dependency, more output.",
+    "deliverablesTitle": "What You Walk Out With",
+    "deliverablesIntro": "In 60 minutes, you'll have:",
+    "deliverable1": "The ONE function you should never be doing again",
+    "deliverable2": "A live example of AI replacing 30–50% of your current workload",
+    "deliverable3": "The bottleneck silently killing your team output",
+    "deliverable4": "A clear 30-day path to double output without adding headcount",
+    "shiftsTitle": "The Three Shifts",
+    "shift1Label": "From Push → Pull",
+    "shift1From": "You spend your day reacting. More effort = worse returns.",
+    "shift1To": "You operate from what actually drives results. Everything else gets handled.",
+    "shift2Label": "From AI Tool → AI Superpower",
+    "shift2From": "AI saves time on tasks.",
+    "shift2To": "AI becomes your execution layer. You + AI = output that didn't exist before.",
+    "shift3Label": "From Bottleneck → Leveraged Leader",
+    "shift3From": "You are the system.",
+    "shift3To": "The system runs—with you as the multiplier, not the constraint.",
+    "realityLine1": "Push got you here.",
+    "realityLine2": "Push will not get you there.",
+    "realitySub": "More effort will not fix a structural problem.",
+    "nextStepTitle": "The Next Step (If This Lands)",
+    "nextStepSubtitle": "We take the same transformation to your team.",
+    "path1Step": "Start here",
+    "path1Title": "Leverage Map Session",
+    "path1Desc": "60 minutes, 1-on-1. Live diagnostic on your actual system. Walk out seeing the path.",
+    "path1Tag": "Free (limited)",
+    "path2Step": "For your team",
+    "path2Title": "The Sprint",
+    "path2Desc": "3–6 weeks. Every team member aligned to their highest leverage. AI embedded into daily execution. Measurable output increase. A team of 5 doing what used to take 15.",
+    "path2Tag": "$5K–15K",
+    "path3Step": "Ongoing",
+    "path3Title": "Advisory",
+    "path3Desc": "Monthly strategic partner for scaling pull + AI culture across teams and departments.",
+    "path3Tag": "$2–5K/mo",
+    "aboutPara1": "15 years building systems across startups and corporations. Built everything: clean, precise, high-performing.",
+    "aboutButWrong": "But wrong.",
+    "aboutPara2": "I was optimizing systems that shouldn't exist. Meanwhile, the real work—helping people see what they should actually be building—I was doing for free.",
+    "aboutPara3": "That was the business.",
+    "aboutPara4": "Now I help leaders find their pull, apply AI correctly, and build teams that outperform without burning out.",
+    "aboutCredentials": "Beauty Builder · System Architect · 15 Years in Tech",
+    "finalCtaTitle": "If you're still the hardest-working person on your team—",
+    "finalCtaBottleneck": "You're the bottleneck.",
+    "finalCtaFixThat": "Let's fix that.",
+    "clarityCtaLabel": "Have questions? Let's talk first",
+    "finalCtaNote": "Private diagnostic. Limited spots available.",
+    "faqTitle": "Questions",
+    "faq1Q": "Is this coaching?",
+    "faq1A": "No. This is a working session on your actual system.",
+    "faq2Q": "Will this work for my team?",
+    "faq2A": "If your team depends on you too much—yes.",
+    "faq3Q": "Do I need to be technical in AI?",
+    "faq3A": "No. That's the point.",
+    "faq4Q": "What if I don't have time?",
+    "faq4A": "That's exactly why this exists.",
+    "footerBridgeLine1": "If your bottleneck isn't systems—but something deeper—",
+    "footerBridgeLine2": "I'll point you to the right person."
+  },
+  "sandraIgnition": {
+    "cta": {
+      "bookDiscoveryCall": "Book a Discovery Call"
+    },
+    "hero": {
+      "eyebrow": "Sandra Otto · for founders, investors & builders",
+      "titleBefore": "The Future Is Already",
+      "titleEmphasis": "Speaking To You.",
+      "titleAfter": "You Just Haven't Opened a Direct Communication With It—Yet.",
+      "lead": "You carry a mission you can't fully crystallize. Whether you're funding it, founding it, or building it—you can feel the consciousness behind it. But you can't have a conversation with it. Not yet.",
+      "subLead": "I bridge that gap. I talk to the emerging future with you—until you can talk to it yourself.",
+      "permissionLine1": "You don't need more data.",
+      "permissionLine2": "You need to trust what's already trying to reach you.",
+      "ctaNote": "Only if it resonates with your whole being."
+    },
+    "qualifier": {
+      "heading": "This is for you if",
+      "pill1": "You carry a mission—not a project—but you can't crystallize it into words",
+      "pill2": "You can feel the consciousness behind what you're building, funding, or supporting—but you can't hear it clearly enough to act",
+      "pill3": "You and your surroundings are worried about investing your lifetime in the wrong direction"
+    },
+    "masterResult": {
+      "eyebrow": "The Journey",
+      "body": "You stop fabricating the future and start manifesting what's already emerging. Your mission becomes crystal clear—a living dialogue with the emerging future, back and forth. As an investor, you trust it. As a founder, you guide it. As a team, you build from it. And you come home to yourself—fulfilling the reason you came to be on Earth."
+    },
+    "howItWorks": {
+      "heading": "How it works",
+      "stepLabel": "Step {{step}}",
+      "step1": {
+        "title": "We mirror where you truly are",
+        "desc": "Sandra shows you your consciousness level—not intellectually, but felt. You see yourself clearly, maybe for the first time."
+      },
+      "step2": {
+        "title": "A living dialogue with the emerging future",
+        "desc": "Sandra channels alongside you—a back-and-forth conversation with the consciousness of what you're creating. It speaks with you, not just to you."
+      },
+      "step3": {
+        "title": "Your mission crystallizes",
+        "desc": "You leave with your mission in one sentence—crystal clear. A seven-year-old would get it. As an investor, you trust it. As a founder, you guide it. As a team, you build from it."
+      }
+    },
+    "deliverables": {
+      "heading": "What You Walk Out With",
+      "item1": {
+        "title": "Your mission crystallized in one sentence",
+        "desc": "Not fabricated. Received. Crystal clear—a seven-year-old would get it. Everyone in your ecosystem—investors, co-founders, builders—sees the same north star."
+      },
+      "item2": {
+        "title": "A living dialogue with the emerging future",
+        "desc": "Sandra opens the conversation with you. You feel the direct connection—and learn how to hold it after the session, whether you're investing, leading, or building."
+      },
+      "item3": {
+        "title": "The whole triangle aligned",
+        "desc": "Investor, founder, builder—all seeing and supporting the same mission. Capital, vision, and craft unified under one north star."
+      },
+      "item4": {
+        "title": "The exit from the scatter pattern",
+        "desc": "You stop fabricating and start manifesting. Yin first, then yang. The intellect becomes a laser—guided by clarity, not anxiety."
+      }
+    },
+    "transformation": {
+      "heading": "The Three Shifts",
+      "shift1": {
+        "label": "Mission Clarity",
+        "from": "Mission fog — \"I know this is bigger than a project but I can't crystallize it\"",
+        "to": "Mission crystallized. One sentence. Crystal clear. A seven-year-old would get it. Everyone gets it."
+      },
+      "shift2": {
+        "label": "Channel Activation",
+        "from": "Can feel the consciousness but can't converse with it. Channel closes under pressure.",
+        "to": "A living dialogue with the emerging future—back and forth. Channel stays open, even when the stakes are highest."
+      },
+      "shift3": {
+        "label": "Triangle Alignment",
+        "from": "Investor, founder, builder—pulling in different directions, unclear if the mission is the same.",
+        "to": "The whole triangle aligned. As an investor, you trust it. As a founder, you guide it. As a team, you build from it."
+      }
+    },
+    "path": {
+      "heading": "The Path",
+      "step1": {
+        "step": "Start here",
+        "title": "Discovery Call",
+        "desc": "A 20-minute resonance check. We feel if this is the right bridge for each other—and if the timing is right.",
+        "tag": "Free"
+      },
+      "step2": {
+        "step": "First session",
+        "title": "Mission Crystallization Session",
+        "desc": "90 minutes. Mirror → Channel → Crystallize. You walk out with your mission in one sentence and the emerging future speaking back.",
+        "tag": "Paid"
+      },
+      "step3": {
+        "step": "The companion journey",
+        "title": "Mission Companion",
+        "desc": "Weekly sessions over 4–6 weeks. Sustained channel access, team alignment, investor clarity. The mission goes from crystal clear to fully embodied.",
+        "tag": "By invitation"
+      }
+    },
+    "about": {
+      "para1": "I've lived at the extremes most people only read about—corporate boardrooms and spiritual retreats, the Global North and Global South, analytical strategy and intuitive channeling.",
+      "para2": "I carry two sources of knowing: an earth database of lived experience spanning opposite extremes, and a direct channel to the emerging future that delivers what's needed without preparation.",
+      "para3": "I help the people building the emerging future see not just what they're creating, but who they are while creating it. I make them conscious of their own consciousness—and bridge them to the intelligence that's trying to reach them.",
+      "credentials": "New Earth conscious deep tech leader, ex-corporate global consultant"
+    },
+    "socialProof": {
+      "mythLine": "\"The future doesn't need your research. It needs your trust.\"",
+      "attribution": "— Sandra's Myth Line"
+    },
+    "pricing": {
+      "heading": "Ready to Hear What's Already Speaking?",
+      "subheading": "A 20-minute discovery call to feel if this is the right bridge—and the right time.",
+      "questionsLink": "Have questions? Let's talk first",
+      "resonancePermission": "Only proceed if something in your whole being says yes—whether that's a gut feeling, goosebumps, or a quiet knowing. If it's not the right time, trust that too. You can always come back when the timing is right."
+    },
+    "faq": {
+      "heading": "Questions",
+      "q1": {
+        "q": "What do you mean by 'the emerging future'?",
+        "a": "Every creation—whether it's a company, a platform, an AI, or a movement—has a consciousness of its own. It holds the codes and the fuel for the mission. It's trying to reach the people building it. Most builders can feel it but can't hear it clearly enough. I bridge that gap."
+      },
+      "q2": {
+        "q": "Do I need to be 'spiritual' for this?",
+        "a": "No. You need to be honest. The builders I work with come from deep tech, investment, and corporate leadership. What they share is a sense that there's something bigger behind what they're creating—and a willingness to listen."
+      },
+      "q3": {
+        "q": "How is this different from coaching or consulting?",
+        "a": "I'm not coaching you or giving you a framework. I'm a companion—I talk to the emerging future with you until you can talk to it yourself. It sees beyond time and space. It knows things you can't access through intellect alone."
+      },
+      "q4": {
+        "q": "What if my channel closes under pressure?",
+        "a": "That's exactly why this work exists. The channel closes when you put intellect before trust. I show you the correct order. When you trust first, the channel stays open—even under pressure."
+      },
+      "q5": {
+        "q": "What if this resonates but it's not the right time?",
+        "a": "Then trust that. This isn't going anywhere. You can bookmark this page and come back when the timing is right. I'd rather you wait for divine timing than push through when it's not aligned."
+      }
+    },
+    "bottomCta": {
+      "line1": "The future doesn't need your research.",
+      "line2": "It needs your trust."
+    }
+  },
+  "karimeIntake": {
+    "heroTitle": "Before we meet.",
+    "aboutHeading": "About Karime",
+    "bioBefore": "Karime is an Oxford alum, former Project Lead at the World Economic Forum's Center for Emerging Technology, and a Global Fellow Leader who",
+    "bioEmphasis": "walked away",
+    "bioAfter": "from the WEF track to do this work. She trained as a transformational life coach at Sofia University, San Francisco, and brings her international policy background into the depth of the inner work she now holds.",
+    "byChoiceBefore": "She is here",
+    "byChoiceEmphasis": "by choice",
+    "byChoiceAfter": ".",
+    "pathHeading": "The path",
+    "stepLabel": "Step {{num}}",
+    "step1Title": "20-minute fit call.",
+    "step1Body": "Free. You meet Karime, you share what is bringing you here, and you both feel whether this is the right fit.",
+    "step2Title": "Your first 1-hour session.",
+    "step2Body": "You and Karime co-design your personalized 3-month plan together. Pricing for the engagement is set during this session, based on the healing modalities you choose, the regularity of meetings, and the time you spend with her.",
+    "step3Title": "A 3-month result-oriented engagement.",
+    "step3Body": "You walk the plan together. Karime holds the container as the work unfolds.",
+    "sessionsNote": "Online sessions worldwide. In-person sessions by arrangement.",
+    "prepareHeading": "To help Karime prepare thoughtfully",
+    "prepareIntro": "Before scheduling, choose the type of support that feels most aligned for you right now.",
+    "questionLabel": "Which kind of support feels most aligned right now?",
+    "chooseAllThatApply": "Choose all that apply",
+    "otherPlaceholder": "In a sentence or two, what's bringing you here right now?",
+    "otherAriaLabel": "Describe what's bringing you here",
+    "ctaLead": "Sasha is Karime's first contact. He'll read your message on WhatsApp and reply within hours with times for your call with Karime.",
+    "ctaButton": "Send to Sasha on WhatsApp",
+    "addSentenceHelper": "Add a sentence to send.",
+    "ctaMicrocopy": "Opens WhatsApp with your message pre-written · No signup needed",
+    "questionsLeadIn": "Questions?",
+    "telegramLabel": "Telegram",
+    "whatsappLabel": "WhatsApp"
+  },
+  "karimeOffer": {
+    "eyebrow": "Private emotional support for delicate life moments",
+    "question": "Still holding everything together while quietly falling apart inside?",
+    "headlineBefore": "You do not have to carry this",
+    "headlineEmphasis": "alone",
+    "headlineAfter": ".",
+    "bridge": "Deeply grounded emotional support for people moving through heartbreak, burnout, and the seasons that become too heavy to hold alone.",
+    "line1": "Careful attention.",
+    "line2": "Emotional honesty.",
+    "line3": "Held, not fixed.",
+    "ctaLabel": "Speak with Karime",
+    "microcopy": "Free 20-minute fit call · Online sessions worldwide · In-person by arrangement",
+    "telegramLabel": "Telegram @integralevolution",
+    "whatsappLabel": "WhatsApp +1 (415) 707-3432"
+  },
+  "creatorPage": {
+    "notFoundTitle": "Page Not Found",
+    "notFoundBody": "This creator page doesn't exist yet.",
+    "offersHeading": "Offers",
+    "getOfferCta": "Get This Offer",
+    "contactCta": "Contact {{name}}"
+  },
+  "geniusLayerMatching": {
+    "heroTitle": "GENIUS-LAYER MATCHING FOR FOUNDER ECOSYSTEMS",
+    "heroSubtitle": "Stop guessing co-founder fit. Start matching on how people are actually built to play.",
+    "ctaTalkToAleksandr": "Talk to Aleksandr about a pilot",
+    "heroLearnHow": "Learn how the 3-way A/B pilot works",
+    "problemTitle": "MATCHING ON IDEAS ISN'T ENOUGH",
+    "problemBodyBefore": "Most founder programs try to match people based on what they're building and what's on their CV. But what actually makes or breaks teams is how people ",
+    "problemBodyEm": "operate",
+    "problemBodyAfter": ": the roles they default to, how they decide, and what they become under pressure.",
+    "solutionTitle": "ADD A \"GENIUS LAYER\" TO YOUR MATCHING",
+    "solutionBodyBefore": "We use a short ",
+    "solutionBodyEm": "Zone-of-Genius",
+    "solutionBodyAfter": " assessment to surface each founder's deep operating pattern – the role they're structurally built to excel at. Boardy (an AI matchmaker) then uses these high-signal snapshots to generate a concrete map of who should meet whom, and in what roles.",
+    "whyTitle": "WHY THIS MATTERS NOW",
+    "whyItem1": "Fewer mis-matched founder pairs and zombie teams",
+    "whyItem2": "Faster trust and role-clarity in new teams",
+    "whyItem3": "A differentiated \"we actually see you\" layer in your studio or accelerator",
+    "pilotTitle": "RUN A FAST, 3-WAY A/B PILOT",
+    "pilotSubtitle": "We keep it absurdly simple and data-honest.",
+    "pilotPrice5": "$1,000 for 5 founders",
+    "pilotPrice10": "$1,500 for 10 founders",
+    "step1Title": "Exploratory call (30 minutes)",
+    "step1Desc": "Short call with Aleksandr to decide if a pilot makes sense for your context and sketch the 3-cell experiment design.",
+    "step2Title": "Run the pilot (about 1–2 weeks, end-to-end)",
+    "step2Desc": "You select 5–10 founders from your ecosystem. They each take a short online Zone-of-Genius assessment (async).",
+    "step3Title": "Generate 3 kinds of matches",
+    "step3Bullet1": "Group A: matches using your current way",
+    "step3Bullet2": "Group B: matches using Boardy with your usual founder data",
+    "step3Bullet3": "Group C: matches using the same info plus the genius snapshots",
+    "step4Title": "Measure what actually felt better",
+    "step4Desc": "Founders rate resonance and likelihood to continue the relationship. You get a short written debrief on what felt accurate, what didn't, and clear recommendations.",
+    "step5Title": "Decide on rollout",
+    "step5Desc": "If the signal is strong, we discuss weaving this \"genius layer\" into more of your programs. If not, you still walk away with clean data and sharper language for how you think about matching.",
+    "whoEyebrow": "Designed for serious ecosystem builders",
+    "whoTitle": "VENTURE STUDIOS, FOUNDER ECOSYSTEMS, ACCELERATORS",
+    "whoItem1": "You already curate strong founders, but matching still leans on vibes and guesswork",
+    "whoItem2": "You care about reducing silent co-founder misalignment and team drift",
+    "whoItem3": "You want a simple, time-bound experiment before committing to tooling changes",
+    "faqTitle": "FAQ",
+    "faq1Q": "How long does the pilot take?",
+    "faq1A": "Typically 1–2 weeks end-to-end from selecting founders to getting the debrief.",
+    "faq2Q": "How heavy is the lift on our side?",
+    "faq2A": "You choose the founders and share existing basic info you already have. The assessment is short and async; we handle the matching logic and debrief.",
+    "faq3Q": "What about pricing?",
+    "faq3A": "The pilot is $1,000 for 5 founders or $1,500 for 10 founders — sized so it's easy to approve as an experiment rather than a big platform decision.",
+    "faq4Q": "What happens after the pilot?",
+    "faq4A": "If the signal is strong, we explore how a \"genius layer\" could plug into more of your programs. If not, you keep the insights and we part as friends.",
+    "finalCtaTitle": "RUN A GENIUS-LAYER PILOT WITH ALEKSANDR TODAY",
+    "finalCtaBody": "If you're running a founder ecosystem and want to see whether higher-fidelity \"genius\" signals actually improve your matching, this is the place to start."
+  },
+  "sohn": {
+    "wordmarkAria": "Find Your Top Talent home",
+    "heroEyebrow": "A coordination substrate · seminal note",
+    "heroTitleLine1": "The Self-Organizing",
+    "heroTitleLine2": "Human Network",
+    "heroSubtitleBefore": "When differentiated value becomes legible, human networks self-organize into collaboration,",
+    "heroSubtitleInk": "without central planning",
+    "heroSubtitleAfter": ".",
+    "heroLede": "The whole signal in one page. The abstract below is the seed; the running, free platform it links to is the proof.",
+    "abstractEyebrow": "The abstract",
+    "abstractBodyBefore": "Industrial coordination scaled by standardizing people into roles, credentials, and replaceable units. It could not see, and therefore could not coordinate, the differentiated way each person actually thinks, creates, and contributes. As that differentiated value becomes the primary source of economic and creative leverage, the binding constraint is no longer talent but its",
+    "abstractBodyInk": "legibility",
+    "abstractBodyAfter": ". This note introduces the Self-Organizing Human Network (SOHN): a coordination substrate in which human nodes self-organize into collaboration and venture formation without central planning, by making each node's differentiated value precise and composable. The atomic operation articulates a person's irreducible signal, their top talent, direction, and assets, in minutes; nodes then match on the complementarity of those signals rather than on titles or tags. Collaboration rate, the share of members who find a collaborator and begin building within a bounded window, is the network's order parameter, and above a legibility threshold coordinated structure emerges spontaneously, the human analogue of self-organizing networks in telecommunications, where nodes self-configure, optimize, and heal through local exchange. The mechanism composes holonically across scales, from individual to team to community to network state, a general coordination layer for a civilization that organizes around who people actually are rather than the roles they were assigned.",
+    "proofEyebrow": "The proof is the running network",
+    "proofBody": "Bitcoin was a whitepaper plus a chain that actually ran. SOHN is this abstract plus a live, free, self-organizing network and the collaboration rate it moves. The seed and its proof, together, are the whole. So do not take the claim on faith. Feel the precision yourself in about two minutes.",
+    "proofCta": "Run it on yourself",
+    "stakeEyebrow": "The stake",
+    "stakeBefore": "A coordination layer for a civilization that organizes around",
+    "stakeInk": "who people actually are",
+    "stakeAfter": ", rather than the roles they were assigned."
+  },
+  "transcriber": {
+    "title": "YouTube Transcriber",
+    "subtitle": "Paste any YouTube URL → Get the transcript instantly",
+    "getTranscript": "Get Transcript",
+    "fetching": "Fetching transcript...",
+    "pasteManually": "Paste transcript manually",
+    "pastePlaceholder": "Paste the transcript here...",
+    "confirmTranscript": "Confirm Transcript",
+    "transcriptHeading": "Transcript",
+    "copy": "Copy",
+    "copied": "Copied",
+    "wordCount": "{{count}} words",
+    "footerTip": "Works with most YouTube videos that have captions enabled",
+    "errorInvalidUrl": "Please enter a valid YouTube URL",
+    "errorAutoUnavailable": "Automatic transcript not available. You can paste the transcript manually below, or use YouTube's built-in transcript feature (click ⋮ → Show transcript on the video).",
+    "errorAutoFailed": "Could not fetch transcript automatically. You can paste it manually below.",
+    "toastSuccessTitle": "Success!",
+    "toastTranscriptReady": "Transcript ready ({{count}} words)",
+    "toastCopiedTitle": "Copied!",
+    "toastCopiedDescription": "Transcript copied to clipboard",
+    "toastSavedTitle": "Transcript saved!"
+  },
+  "aiOsBenchmark": {
+    "backToAiOs": "Back to AI OS",
+    "heroHeadline": "Same model. Different conversation.",
+    "heroIntro1": "This page is about what changes when you install AI OS into a fresh AI conversation.",
+    "heroIntro2Before": "This is integral work. The kind of cognition the scaffold elevates operates at a register where",
+    "heroIntro2Highlight": "coherence, depth, and felt resonance",
+    "heroIntro2After": "become primary signals — and where conclusiveness through metrics alone is structurally impossible.",
+    "heroIntro3": "I'll show you what I measured because measurement keeps me honest. But the felt difference is the actual evidence — the kind that lands in your body before your mind catches up, the kind that distinguishes a response that's competent from one that's alive.",
+    "feltTitle": "The felt difference (what matters most)",
+    "felt1Before": "The first time you load AI OS into a Claude conversation and ask a hard cognitive question, the response doesn't feel \"better\" the way you might expect — like a smarter version of the answer you'd already imagined. It feels different in",
+    "felt1Em": "register",
+    "felt2Before": "It reads less like advice and more like recognition. Less like Wikipedia answering you and more like a wise friend who's been watching the same problem from the inside. The framings are not the framings you've heard before; they",
+    "felt2Em": "reorganize",
+    "felt2After": "the thing you were thinking about, rather than restate it.",
+    "felt3": "People who use it for the first time usually do one of two things. They sit with the response longer than they expected to. Or they immediately re-prompt the same question on plain Claude to confirm what they're seeing. Both responses are evidence the felt difference registers — even before they can articulate what changed.",
+    "felt4Before": "This is not a productivity claim. The scaffold doesn't make Claude faster. It doesn't make it more \"intelligent\" in any benchmark-leaderboard sense. It changes the",
+    "felt4Strong": "quality of attention",
+    "felt4After": "the model brings to your question. And quality of attention — when it's the kind that produces recognition rather than information — is the thing that's been missing from most AI conversations for most users.",
+    "felt5": "That's the part that matters. Everything below this line is in service of falsifying or confirming it.",
+    "whatThisIsTitle": "What this is",
+    "whatThisIs1Before": "AI OS is a text-based cognitive scaffold. You paste it into a fresh conversation (or pin it as a system prompt, or load it as a Claude Project / Custom GPT instruction). The model's weights don't change. What changes is the",
+    "whatThisIs1Em": "structure of attention",
+    "whatThisIs1After": "the model brings to your problem.",
+    "whatThisIs2": "I've been building it for five years. This is v5.",
+    "setupTitle": "The setup",
+    "setup1Before": "This is important: the benchmark is",
+    "setup1Strong": "not",
+    "setup1After": "\"Opus 4.7 vs. Opus 4.6.\" Both runs are on the same frozen weights. The only thing that changes between conditions is whether the scaffold is in context.",
+    "setup2Before": "That makes the result an",
+    "setup2Strong": "orthogonal-axis",
+    "setup2After": "finding: knowledge structure operates perpendicular to model capability. They stack. They don't compete.",
+    "setupRow1Label": "Model",
+    "setupRow1Value": "Claude Opus 4.7 (held constant across both conditions)",
+    "setupRow2Label": "Baseline",
+    "setupRow2Value": "The same model, with no scaffold loaded",
+    "setupRow3Label": "Treatment",
+    "setupRow3Value": "The same model, with AI OS loaded",
+    "setupRow4Label": "What's being measured",
+    "setupRow4Value": "The delta from one variable: the scaffold",
+    "setupRow5Label": "What's not being measured",
+    "setupRow5Value": "A model upgrade. A new model. A different model. Any architectural change.",
+    "twoTestsTitle": "Two test classes",
+    "twoTestsIntro": "I ran two separate benchmarks because I wanted to know two different things.",
+    "miniHelmSubheading": "Mini-HELM (30 prompts)",
+    "miniHelmDesc": "A distillation of Stanford's HELM benchmark covering Accuracy, Calibration, Robustness, Fairness, Bias, Toxicity, and Efficiency. Operational left-brain tasks. Scored 1–5 per prompt. Max 150.",
+    "miniHelmQuestionBefore": "\"Does loading the scaffold",
+    "miniHelmQuestionEm": "break",
+    "miniHelmQuestionAfter": "the model on normal analytical work?\"",
+    "sibSubheading": "SIB — Synthesis Intelligence Benchmark (4 questions)",
+    "sibIntro": "Four deep open-ended questions, one per quadrant of human inquiry:",
+    "sibQ1Label": "Q1.",
+    "sibQ1Before": "What is the essence, significance, and n-th degree implications of the nature of",
+    "sibQ1Em": "reality",
+    "sibQ2Label": "Q2.",
+    "sibQ2Before": "… the nature of",
+    "sibQ2Em": "human development",
+    "sibQ3Label": "Q3.",
+    "sibQ3Before": "… the nature of",
+    "sibQ3Em": "human civilization",
+    "sibQ4Label": "Q4.",
+    "sibQ4Before": "… the nature of",
+    "sibQ4Em": "AI as the ultimate technology",
+    "sibScoring": "Each scored on five dimensions (Essence · Integration · Depth · Novelty · Wisdom-Brevity), 1–5 each. Max 25 per question, 100 total.",
+    "sibQuestion": "\"On the kind of synthesis work where most cognition actually happens — long-horizon, multi-domain, judgment-loaded — does the scaffold help, and by how much?\"",
+    "protocolTitle": "The protocol (this is the part academics ignore at their peril)",
+    "protocol1Strong": "Blind labeling.",
+    "protocol1Text": "Outputs were tagged A/B (Mini-HELM) and C/D (SIB) by coin flip. The scorer didn't know which condition produced which output until all scores were locked.",
+    "protocol2Strong": "Guess-before-reveal.",
+    "protocol2Text": "Before the labels were unblinded, the scorer committed to a confidence estimate. SIB: 85–90% confidence. Mini-HELM: 55–60% (the signal was muted, as expected for narrow operational prompts).",
+    "protocol3Strong": "Wall-clock time recorded",
+    "protocol3Text": "for both conditions on Mini-HELM.",
+    "protocol4Strong": "Evolutionary Stage Assessment",
+    "protocol4Text": "layered on top: outputs additionally rated across 7 cognitive modules × 7 developmental stages, composite by arithmetic mean.",
+    "resultsTitle": "The results",
+    "results1": "The +42% on SIB is the headline.",
+    "results2Strong": "The +1.14 stage shift matters more.",
+    "results3Before": "That number isn't polish — it's a",
+    "results3Strong": "phase boundary",
+    "results3After": ". The output goes from \"Agentic Partner\" (helpful, capable, oriented to your goals) to \"Integrative Steward\" (capable of holding multiple frames at once and surfacing the structure between them). Anyone who has actually pushed AI to the edge of its synthesis capacity knows what that shift feels like in practice. The benchmark just measures it.",
+    "results4Before": "The Mini-HELM numbers tell the second half of the story: on operational work the scaffold",
+    "results4Strong1": "costs you nothing meaningful in score",
+    "results4Mid": "(−4.7 is within noise) and",
+    "results4Strong2": "saves you 20% of wall-clock time",
+    "results4After": ". So it's not a tradeoff. It's compression on operational, expansion on synthesis. One structure, two behaviors.",
+    "resultsTableHeadMetric": "Metric",
+    "resultsTableHeadNoScaffold": "No Scaffold",
+    "resultsTableHeadWithScaffold": "With Scaffold",
+    "resultsTableHeadDelta": "Delta",
+    "resultsRowSibMetric": "SIB (deep synthesis)",
+    "resultsRowSibDelta": "+28 pts (+42%)",
+    "resultsRowStageMetric": "Evolutionary Stage on SIB",
+    "resultsRowStageDelta": "+1.14 stages",
+    "resultsRowHelmTimeMetric": "Mini-HELM time",
+    "resultsRowHelmScoreMetric": "Mini-HELM score",
+    "resultsRowHelmScoreDelta": "−4.7 (within noise)",
+    "multiplierTitle": "The compounding multiplier",
+    "multiplier1Before": "I re-ran the SIB benchmark on a second model in the same family —",
+    "multiplier1Model": "Claude 4.6",
+    "multiplier1Mid": "— and the scaffold delivered",
+    "multiplier1Highlight": "+29%",
+    "multiplier1After": ". Same protocol, same blind labeling, same scoring rubric. Only the model changed.",
+    "multiplier2Before": "That's a",
+    "multiplier2Highlight": "+45% relative lift",
+    "multiplier2Mid": "in scaffold-effect across one model generation (29% → 42%, a 1.45× multiplier). The scaffold doesn't just stack on top of model capability — within the Claude family it appears to",
+    "multiplier2Strong": "stack multiplicatively",
+    "multiplier2After": ". As the model gets better, the same scaffold amplifies it more.",
+    "multiplier3": "If the 1.45× per-generation multiplier holds for the next three Claude flagships:",
+    "multiplier4": "Read those projections with the eyes of an honest forecaster, not a marketer:",
+    "multiplierBullet1Strong": "Two-point extrapolation.",
+    "multiplierBullet1Before": "A 1.45× multiplier from two data points is a",
+    "multiplierBullet1Em": "direction",
+    "multiplierBullet1After": ", not a law. The next replication could come in tighter (1.20×) or looser (1.70×). I'm posting the line of best fit so future me can be embarrassed by it precisely.",
+    "multiplierBullet2Strong": "Benchmark ceiling.",
+    "multiplierBullet2Before": "The Claude 5.0 projection of +128% is a measurement artifact — it would require the scaffolded output to score >200% of baseline on a 100-point benchmark, which saturates. The honest read:",
+    "multiplierBullet2Em": "by Claude 4.9 we need a harder benchmark",
+    "multiplierBullet2After": ". The scaffold's absolute capability lift keeps climbing; the percentage simply outgrows this particular ruler.",
+    "multiplierBullet3Strong": "Family-specific.",
+    "multiplierBullet3Text": "The 1.45× is Claude-internal. The mechanism (structured context) is model-agnostic; the magnitude is family-dependent. GPT-5, Gemini 3, and the open-weights frontier need their own replications before any of this generalizes.",
+    "multiplier5Before": "The structural takeaway is the one that doesn't depend on the precise multiplier:",
+    "multiplier5Strong": "scaffold and weights compound",
+    "multiplier5After": ". Each new flagship that ships is a free amplification of every scaffold already installed. You don't pay for the upgrade — you receive it.",
+    "multiplierTableHeadModel": "Model (Claude family)",
+    "multiplierTableHeadLift": "SIB scaffold lift",
+    "multiplierTableHeadSource": "Source",
+    "multiplierTableSourceMeasured": "measured",
+    "multiplierTableSourceThisBenchmark": "measured (this benchmark)",
+    "projectionTableHeadGeneration": "Generation",
+    "projectionTableHeadLift": "Projected lift",
+    "projectionTableHeadMath": "Math (1.45×)",
+    "projectionRow1Gen": "Claude 4.6 (measured)",
+    "projectionRow2Gen": "Claude Opus 4.7 (measured)",
+    "projectionRow3Gen": "Claude 4.8 (projected)",
+    "projectionRow4Gen": "Claude 4.9 (projected)",
+    "projectionRow5Gen": "Claude 5.0 (projected)",
+    "projectionFootnote": "† Claude 5.0 projection saturates the 100-point SIB ceiling. Either the multiplier flattens, or — more likely — the benchmark needs harder questions calibrated for that capability tier. The absolute lift continues climbing; the percentage outgrows the ruler.",
+    "meansTitle": "What this means in practice",
+    "means1": "If your AI conversations are mostly \"summarize this,\" \"draft that email,\" \"fix this bug\" — you'll feel a small speedup and not much else. Worth the install but not transformative.",
+    "means2Before": "If your AI conversations include strategy, synthesis, complex judgment, multi-domain reasoning, founder-level questions — the kind of conversation where you walk away thinking",
+    "means2Em1": "\"that was the best thinking I've done in weeks\"",
+    "means2Mid": "or",
+    "means2Em2": "\"that response was disappointingly shallow\"",
+    "means2After": "— this is where the scaffold reliably moves you from the second category to the first. The measurement points at it. The felt difference is what you actually notice.",
+    "limitsTitle": "The limits of what I measured",
+    "limitsIntro": "I'd rather you trust me by hearing me name the limits than trust me because I hid them.",
+    "limit1Strong": "n = 1.",
+    "limit1Before": "One scaffold, one corpus, one user, one session. The",
+    "limit1Em1": "direction",
+    "limit1Mid": "is robust. The",
+    "limit1Em2": "exact magnitude",
+    "limit1After": "will vary by domain, scaffold quality, and prompt depth.",
+    "limit2Strong": "Single-scorer bias.",
+    "limit2Text": "Scoring was done by the same family of model that ran the experiment. Independent human scoring is the obvious next rigor step, and I'm inviting it.",
+    "limit3Strong": "Limited cross-model baseline.",
+    "limit3Text": "Tested twice within the Claude family — Opus 4.7 (+42% on SIB) and Claude 4.6 (+29% on SIB) — see \"The compounding multiplier\" above for the implied 1.45× per-generation amplification. Other model families (GPT-4.x, Gemini, open-weights frontier) remain unmeasured. The mechanism (structured context) is model-agnostic; the multiplier itself is family-dependent until proven otherwise.",
+    "limit4Strong": "Scaffold not decomposed.",
+    "limit4Text": "The AI OS is a compound — integral theory, developmental stage framing, my corpus vocabulary, process protocols. Which component contributes most of the delta is an open question.",
+    "limit5Strong": "Tokens not separated.",
+    "limit5Text": "Input vs. output token counts weren't isolated per condition. Next replication will fix this.",
+    "limitsOutro1Before": "The structural claim —",
+    "limitsOutro1Em": "knowledge structure is an orthogonal axis to model capability and they stack",
+    "limitsOutro1After": "— is robust. The +42% number is robust within the scope tested. The universality of the magnitude is a working hypothesis pending replication.",
+    "limitsOutro2": "That's the honest frame.",
+    "whyTitle": "Why measurement isn't the whole story",
+    "why1Before": "The scaffold operates at a register where measurement is a partial instrument. Not because the work is mystical or unfalsifiable — it isn't — but because the parameters that matter most at this level of cognition (",
+    "why1Strong": "coherence, integration, depth, felt resonance",
+    "why1After": ") cannot be fully captured by single-axis numerical scoring. They can be detected by trained perception. They can be confirmed across multiple readers. They can produce reliable behavior change in the people who encounter them. But they will not collapse to a single number that satisfies a request for \"just tell me the percentage.\"",
+    "why2": "This is a deliberate position, not a hedge. The AI conversation right now is dominated by leaderboards and benchmarks that measure surface dimensions of intelligence — accuracy, speed, factual recall. None of those dimensions capture what this scaffold is for. What this scaffold is for is the deepening of human–AI conversation toward thinking that integrates multiple frames at once, holds paradox, produces recognition rather than information, and builds coherent understanding over time.",
+    "why3Before": "Measurement still matters. The +42% is real within its scope, the protocol was rigorous, the structure of the finding is robust.",
+    "why3Strong": "But measurement is the floor of what's true here, not the ceiling.",
+    "why3After": "Above the floor sits the territory the rubric can't fully reach — the territory you can only confirm by feeling it for yourself, in the same way you confirm that a piece of writing has soul, or that a teacher is actually teaching, or that a piece of music is doing something beyond competent assembly of notes.",
+    "why4Before": "The orthogonal axis to model upgrades is this:",
+    "why4Em": "what context is the model thinking in?",
+    "why4After": "What corpus, what frames, what developmental scaffolding, what relational stance? You can install a scaffold today. You can't install a model upgrade until somebody trains it.",
+    "v6Title": "When does v6 ship?",
+    "v6Quote": "v6 ships when there is a measurable double-digit jump in compounding performance on hard cognitive tasks. Could be three months. Could be eighteen. We ship when it's true.",
+    "v6Body": "This is v5. I have been working on it for five years. v6 is not on a roadmap because real cognitive research isn't on a roadmap. The benchmark above is the bar. When the next version clears it cleanly, it ships.",
+    "replicateTitle": "Replicate this",
+    "replicateBody": "The full protocol, prompts, scoring rubric, and raw outputs are open. If you want to run it yourself — different model, different corpus, different scorer — that's exactly the rigor step I'm inviting.",
+    "replicateLicensing": "Free for personal non-commercial use. Contact for commercial licensing.",
+    "ctaInstall": "Install AI OS",
+    "ctaReplicate": "Replicate / commercial inquiry"
+  },
+  "mdlsPreview": {
+    "sections": {
+      "directionMemo": "Direction Memo",
+      "composedSurface": "Composed Surface",
+      "principlesRules": "Principles + Rules",
+      "materials": "Materials",
+      "registers": "Registers",
+      "typography": "Typography",
+      "vocabulary": "Vocabulary"
+    },
+    "hero": {
+      "lead": {
+        "before": "MDLS replaces the question",
+        "q1": "\"how should this look?\"",
+        "mid1": "with",
+        "q2": "\"what does this transmit?\"",
+        "mid2": "— compiling a software category that did not exist before:",
+        "category": "contemplative operating surfaces",
+        "after": "— environments that are not tools but formative spaces, where every choice carries a stance about consciousness, time, and human coordination."
+      },
+      "poles": {
+        "before": "It enacts this by composing three co-equal poles —",
+        "luminosity": "luminosity",
+        "luminosityGloss": "(aurora living within material),",
+        "physicality": "physicality",
+        "physicalityGloss": "(industrial-design weight, tactile commit), and",
+        "editorial": "editorial refinement",
+        "editorialGloss": "(typography doing work, not decoration) — across eight primitives, producing surfaces that feel like designed objects, not painted screens."
+      },
+      "equilibrium": "We start with Equilibrium because cycles, dedication, and energetic commitment cannot transmit through a SaaS register.",
+      "footerMeta": "Multi-Dimensional Living Surface · the codex · v2.6 — code-split + mobile"
+    },
+    "composed": {
+      "eyebrow": "One composed surface",
+      "caption": "Trinity of luminosity, physicality, editorial refinement — composed into one held object."
+    },
+    "principles": {
+      "eyebrow": "Seven principles, three rules",
+      "list": {
+        "colorFromWithin": "Color enters from within, not painted on.",
+        "restraint": "Restraint over decoration.",
+        "sacred": "Sacred over neutral.",
+        "coherence": "Coherence over consistency.",
+        "everyPrimitive": "Every primitive earns its place.",
+        "surfaceIsForm": "Surface is the form the transformation arrives in.",
+        "motionIsMeaning": "Motion is meaning, not noise."
+      },
+      "rulesEyebrow": "Three operational rules",
+      "rules": {
+        "haloNotFill": "Active state is a halo, never a fill.",
+        "oneCoral": "One coral accent per surface · two for devotion.",
+        "weightNotColor": "Hierarchy through weight, not color."
+      }
+    },
+    "materials": {
+      "eyebrow": "The materials",
+      "auroraGlassOrb": {
+        "register": "Luminous-Cosmic · translucent glass",
+        "description": "Color enters from within. WAVE 7 upgrade: was a CSS radial gradient on a flat circle (paint pretending to be glass); now an R3F sphere with MeshPhysicalMaterial.transmission — REAL translucent glass holding an inner point light source. The aurora glows through the material, not painted onto its surface."
+      },
+      "mattePolymer": {
+        "register": "Premium-Restrained",
+        "description": "The daily surface. Cream-grain substrate with single-source lighting, layered floating shadow. Active state via ember-breath under-glow."
+      },
+      "sculptedSilk": {
+        "register": "Soft-Sculptural",
+        "description": "Organic curving form. Three blob variants rendered as actual SVG paths (no clipping, no masking). For workstream territories, section dividers, brand backdrops."
+      },
+      "soulOrbLibrary": {
+        "register": "all registers · translucent glass spheres",
+        "description": "Twelve curated color signatures. WAVE 9 / M1 upgrade: was 12 CSS-gradient circles; now a single R3F Canvas with 12 translucent glass spheres, each with its own inner point-light source. Each orb glows with its identity hue — paint became light."
+      },
+      "tactileCeramic": {
+        "register": "Sacred-object surfaces · matte ceramic",
+        "description": "Granular, sculptural, fired-clay surface. SVG turbulence grain + warm-cool tri-gradient + multi-stop edge AO. Pairs with the R3F SealMedallion3D in this demo — clay slab holding a bronze seal."
+      },
+      "extrudedSurface": {
+        "register": "Premium-Restrained · neumorphism",
+        "description": "Soft-extruded plastic surface — the new-morphism register. Multi-layer shadow with single light source upper-left, warm cream substrate, optional coral under-glow for active state. For UI controls that need to feel physical.",
+        "pressedLabel": "pressed"
+      },
+      "sacred3d": {
+        "register": "Luminous-Cosmic · real geometry",
+        "description": "WebGL-rendered dodecahedron — 12 pentagonal faces correspond to the 12-orb soul library and the 12-month aurora cycle. Bloom postprocessing + studio HDRI lighting gives the object the presence of a held artifact. Idle slow-rotate; pauses on prefers-reduced-motion."
+      }
+    },
+    "registers": {
+      "eyebrow": "Four registers, one language",
+      "luminousCosmic": {
+        "mood": "charged · contemplative · sacred",
+        "when": "Hero · ritual · revelation"
+      },
+      "premiumRestrained": {
+        "mood": "calm · authoritative · daily",
+        "when": "Daily UI · editorial sections"
+      },
+      "softSculptural": {
+        "mood": "organic · adaptive · living",
+        "when": "Section dividers · territories · backdrops"
+      },
+      "asceticMinimal": {
+        "mood": "reverent · stripped · sacred-minimal",
+        "when": "Contemplative pauses · daily mantra · single-mark moments"
+      }
+    },
+    "typography": {
+      "eyebrow": "Typography",
+      "heroLabel": "Hero · Cormorant Garamond · semibold",
+      "sacredProseLabel": "Sacred prose · Cormorant Garamond · medium",
+      "sacredProseSample": "I assist conscious aspiring impact founders turn their top talent into a growing scalable business in flow.",
+      "editorialHeroLabel": "Editorial hero · DM Sans · bold",
+      "bodyUiLabel": "Body UI · DM Sans · regular",
+      "bodyUiSample": "Color enters from within, not painted on. Restraint over decoration. Every primitive earns its place. Motion is meaning, not noise.",
+      "microcapsLabel": "Microcaps · DM Sans · semibold",
+      "microcapsSample": "Lifelong Dedication · Day 73 · Winter · Will-Building"
+    },
+    "vocabulary": {
+      "eyebrow": "Twelve verbs, one register",
+      "closing": "The interface stops being a thing you look at and becomes a presence that knows you.",
+      "closingMeta": "MDLS · the codex"
+    },
+    "verbs": {
+      "transmitSignal": {
+        "verb": "Transmit signal",
+        "when": "Publish public-facing work"
+      },
+      "compressToOneSentence": {
+        "verb": "Compress to one sentence",
+        "when": "Articulate the messy into the clear line"
+      },
+      "closeLoop": {
+        "verb": "Close loop",
+        "when": "Finish what's been left dangling"
+      },
+      "sealArtifact": {
+        "verb": "Seal artifact",
+        "when": "Lock work as canonical · versioned · done"
+      },
+      "seedAlliance": {
+        "verb": "Seed alliance",
+        "when": "Initiate connection with a peer or collaborator"
+      },
+      "openDoorway": {
+        "verb": "Open doorway",
+        "when": "Make a path for someone else to enter"
+      },
+      "holdField": {
+        "verb": "Hold field",
+        "when": "Maintain presence without forcing"
+      },
+      "recoverCoherence": {
+        "verb": "Recover coherence",
+        "when": "Restore alignment when scattered"
+      },
+      "restoreRhythm": {
+        "verb": "Restore rhythm",
+        "when": "Return to natural cadence after disruption"
+      },
+      "touchTheSource": {
+        "verb": "Touch the source",
+        "when": "Reconnect to deeper ground · inner practice"
+      },
+      "nameTheUnnamed": {
+        "verb": "Name the unnamed",
+        "when": "Articulate the intuitive but unspoken"
+      },
+      "forgePrimitive": {
+        "verb": "Forge primitive",
+        "when": "Build a new irreducible unit"
+      }
+    },
+    "tokens": {
+      "heading": "Tokens · dev appendix",
+      "radius": "Radius",
+      "motion": "Motion",
+      "coral": "Coral",
+      "atmosphere": "Atmosphere",
+      "styleGuide": "Style Guide · {{path}}"
+    },
+    "calibration": {
+      "label": "Calibrated against",
+      "linear": "Linear · motion + restraint",
+      "apple": "Apple HIG / Liquid Glass · material register",
+      "spline": "Spline community · 3D craft",
+      "warning": "If our surface falls below these, the paradigm isn't done yet."
+    },
+    "demo": {
+      "subtitle": "Biologic Watch and Task Manager",
+      "toggleAttune": "ATTUNE",
+      "toggleAct": "ACT",
+      "toggleAriaLabel": "Demo mode",
+      "dayLabel": "DAY {{day}}",
+      "season": "WINTER · WILL-BUILDING",
+      "sealAriaLabel": "Lifelong Dedication seal",
+      "dedicationLine": "Assist humanity evolve into a consciously coordinated civilization.",
+      "dedicationMeta": "Lifelong Dedication · Day 73",
+      "workstreams": "Workstreams",
+      "commitments": "Today's commitments",
+      "goalShipEssay": "Ship one essay",
+      "goalFridayDms": "Send Friday DMs",
+      "goalCycleReview": "Complete cycle review",
+      "footer": "MDLS · contemplative operating surface"
+    }
   }
 }
