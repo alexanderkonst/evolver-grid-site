@@ -1,6 +1,6 @@
 import "https://deno.land/x/xhr@0.1.0/mod.ts";
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
-import { resolveOutputLanguage, languageDirective } from "../_shared/language.ts";
+import { resolveOutputLanguage, languageDirective, revealCalibration } from "../_shared/language.ts";
 
 
 const corsHeaders = {
@@ -44,7 +44,7 @@ serve(async (req) => {
         messages: [
           {
             role: 'user',
-            content: prompt + languageDirective(outputLanguage)
+            content: prompt + languageDirective(outputLanguage) + revealCalibration(outputLanguage)
           }
         ],
       }),
