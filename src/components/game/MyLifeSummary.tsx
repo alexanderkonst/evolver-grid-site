@@ -1,16 +1,17 @@
 import { Link } from "react-router-dom";
-import { type DomainId } from "@/modules/quality-of-life-map/qolConfig";
+import { useTranslation } from "react-i18next";
+import { useLocalizedDomains, type DomainId } from "@/modules/quality-of-life-map/qolConfig";
 
-// Domain configuration with colors from brandbook
-const DOMAIN_CONFIG: Record<DomainId, { icon: string; color: string; label: string }> = {
-    wealth: { icon: "💰", color: "#cec9b0", label: "Wealth" },
-    health: { icon: "❤️", color: "#b1c9b6", label: "Health" },
-    happiness: { icon: "😊", color: "#a4a3d0", label: "Happiness" },
-    love: { icon: "💕", color: "#cea4ae", label: "Love" },
-    impact: { icon: "🌍", color: "#29549f", label: "Impact" },
-    growth: { icon: "📈", color: "#c8b7d8", label: "Growth" },
-    socialTies: { icon: "👥", color: "#cdaed2", label: "Social" },
-    home: { icon: "🏠", color: "#a7cbd4", label: "Home" },
+// Domain icon + color from brandbook (labels come from useLocalizedDomains)
+const DOMAIN_CONFIG: Record<DomainId, { icon: string; color: string }> = {
+    wealth: { icon: "💰", color: "#cec9b0" },
+    health: { icon: "❤️", color: "#b1c9b6" },
+    happiness: { icon: "😊", color: "#a4a3d0" },
+    love: { icon: "💕", color: "#cea4ae" },
+    impact: { icon: "🌍", color: "#29549f" },
+    growth: { icon: "📈", color: "#c8b7d8" },
+    socialTies: { icon: "👥", color: "#cdaed2" },
+    home: { icon: "🏠", color: "#a7cbd4" },
 };
 
 interface QolScores {
@@ -33,6 +34,12 @@ interface MyLifeSummaryProps {
  * Simplified view: shows focus area (lowest) and overall sentiment
  */
 export default function MyLifeSummary({ scores }: MyLifeSummaryProps) {
+    const { t } = useTranslation();
+    const localizedDomains = useLocalizedDomains();
+    // Localized domain label lookup keyed by DomainId
+    const domainLabel = (id: DomainId): string =>
+        localizedDomains.find((d) => d.id === id)?.name ?? id;
+
     // Find lowest domain (focus area)
     const findFocusDomain = (): { domain: DomainId; score: number } | null => {
         if (!scores) return null;
@@ -67,16 +74,16 @@ export default function MyLifeSummary({ scores }: MyLifeSummaryProps) {
 
     // Sentiment based on average
     const getSentiment = (avg: number): string => {
-        if (avg >= 8) return "Thriving";
-        if (avg >= 6) return "Balanced";
-        if (avg >= 4) return "Growing";
-        return "Building foundations";
+        if (avg >= 8) return t("myLifeSummary.sentimentThriving");
+        if (avg >= 6) return t("myLifeSummary.sentimentBalanced");
+        if (avg >= 4) return t("myLifeSummary.sentimentGrowing");
+        return t("myLifeSummary.sentimentBuilding");
     };
 
     // Day 91 (Sasha 2026-06-09): tokenized for Aurum - lapis falls back to the original bg-white/80
     return (
         <div className="bg-[var(--skin-card-fill,rgba(255,255,255,0.8))] backdrop-blur-sm rounded-2xl shadow-sm border border-[var(--wabi-lavender)]/20 p-6 breathing-card">
-            <h3 className="text-lg font-semibold text-[#2c3150] font-display mb-4">My Life</h3>
+            <h3 className="text-lg font-semibold text-[#2c3150] font-display mb-4">{t("myLifeSummary.title")}</h3>
 
             {scores ? (
                 <>
@@ -91,7 +98,7 @@ export default function MyLifeSummary({ scores }: MyLifeSummaryProps) {
                                     <div
                                         key={domain}
                                         className="flex flex-col items-center"
-                                        title={`${config.label}: ${score}/10`}
+                                        title={`${domainLabel(domain)}: ${score}/10`}
                                     >
                                         <div
                                             className="w-8 h-8 rounded-full flex items-center justify-center text-sm"
@@ -112,8 +119,8 @@ export default function MyLifeSummary({ scores }: MyLifeSummaryProps) {
                     <div className="text-center text-sm text-[rgba(44,49,80,0.7)]">
                         {focusDomain && (
                             <p>
-                                <span className="font-medium">Focus:</span>{" "}
-                                {DOMAIN_CONFIG[focusDomain.domain].label} ({focusDomain.score}/10)
+                                <span className="font-medium">{t("myLifeSummary.focusLabel")}</span>{" "}
+                                {domainLabel(focusDomain.domain)} ({focusDomain.score}/10)
                             </p>
                         )}
                         {avgScore && (
@@ -123,7 +130,7 @@ export default function MyLifeSummary({ scores }: MyLifeSummaryProps) {
                 </>
             ) : (
                 <p className="text-sm text-[var(--wabi-text-muted)] text-center italic">
-                    No life map yet
+                    {t("myLifeSummary.emptyState")}
                 </p>
             )}
 
@@ -132,7 +139,7 @@ export default function MyLifeSummary({ scores }: MyLifeSummaryProps) {
                 to="/game/transformation/qol-results"
                 className="mt-4 text-sm text-[#b1c9b6] hover:underline flex items-center justify-center gap-1"
             >
-                See Details →
+                {t("myLifeSummary.seeDetails")} →
             </Link>
         </div>
     );

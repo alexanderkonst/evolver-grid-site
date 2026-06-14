@@ -9,6 +9,7 @@
 // =============================================================================
 
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { ArrowRight, BookOpen } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -20,95 +21,95 @@ import { TOP_PRIORITIES_COUNT, type DomainId } from "@/modules/quality-of-life-m
 
 type GrowthPath = {
   id: "uniqueness" | "mind" | "spirit" | "emotions" | "body";
-  label: string;
+  labelKey: string;
   emoji: string;
-  description: string;
+  descriptionKey: string;
 };
 
 type GrowthRecipe = {
-  domainLabel: string;
+  domainLabelKey: string;
   paths: GrowthPath[];
 };
 
 const DOMAIN_RECIPES: Record<DomainId, GrowthRecipe> = {
   wealth: {
-    domainLabel: "💰 Wealth",
+    domainLabelKey: "qolRecipe.domain.wealth",
     paths: [
-      { id: "uniqueness", label: "Uniqueness", emoji: "✨", description: "Monetize your genius and signature value." },
-      { id: "mind", label: "Mind", emoji: "🧠", description: "Rewire money beliefs and sharpen business thinking." },
-      { id: "spirit", label: "Spirit", emoji: "🙏", description: "Anchor wealth in service and aligned contribution." },
-      { id: "emotions", label: "Emotions", emoji: "💜", description: "Clear fear or scarcity patterns around money." },
-      { id: "body", label: "Body", emoji: "💪", description: "Build the energy to execute and sustain momentum." },
+      { id: "uniqueness", labelKey: "qolRecipe.path.uniqueness", emoji: "✨", descriptionKey: "qolRecipe.wealth.uniqueness" },
+      { id: "mind", labelKey: "qolRecipe.path.mind", emoji: "🧠", descriptionKey: "qolRecipe.wealth.mind" },
+      { id: "spirit", labelKey: "qolRecipe.path.spirit", emoji: "🙏", descriptionKey: "qolRecipe.wealth.spirit" },
+      { id: "emotions", labelKey: "qolRecipe.path.emotions", emoji: "💜", descriptionKey: "qolRecipe.wealth.emotions" },
+      { id: "body", labelKey: "qolRecipe.path.body", emoji: "💪", descriptionKey: "qolRecipe.wealth.body" },
     ],
   },
   health: {
-    domainLabel: "💪 Health",
+    domainLabelKey: "qolRecipe.domain.health",
     paths: [
-      { id: "body", label: "Body", emoji: "💪", description: "Strengthen the physical foundation first." },
-      { id: "spirit", label: "Spirit", emoji: "🙏", description: "Reconnect to meaning, purpose, and self-care." },
-      { id: "emotions", label: "Emotions", emoji: "💜", description: "Release stress cycles and emotional eating." },
-      { id: "mind", label: "Mind", emoji: "🧠", description: "Shift health beliefs and mental habits." },
-      { id: "uniqueness", label: "Uniqueness", emoji: "✨", description: "Express health through your authentic rhythm." },
+      { id: "body", labelKey: "qolRecipe.path.body", emoji: "💪", descriptionKey: "qolRecipe.health.body" },
+      { id: "spirit", labelKey: "qolRecipe.path.spirit", emoji: "🙏", descriptionKey: "qolRecipe.health.spirit" },
+      { id: "emotions", labelKey: "qolRecipe.path.emotions", emoji: "💜", descriptionKey: "qolRecipe.health.emotions" },
+      { id: "mind", labelKey: "qolRecipe.path.mind", emoji: "🧠", descriptionKey: "qolRecipe.health.mind" },
+      { id: "uniqueness", labelKey: "qolRecipe.path.uniqueness", emoji: "✨", descriptionKey: "qolRecipe.health.uniqueness" },
     ],
   },
   happiness: {
-    domainLabel: "😊 Happiness",
+    domainLabelKey: "qolRecipe.domain.happiness",
     paths: [
-      { id: "emotions", label: "Emotions", emoji: "💜", description: "Build resilience and emotional regulation." },
-      { id: "spirit", label: "Spirit", emoji: "🙏", description: "Reconnect to joy, meaning, and inner peace." },
-      { id: "mind", label: "Mind", emoji: "🧠", description: "Reframe thought loops and mental narratives." },
-      { id: "body", label: "Body", emoji: "💪", description: "Stabilize energy through sleep, movement, and nourishment." },
-      { id: "uniqueness", label: "Uniqueness", emoji: "✨", description: "Create happiness through your natural gifts." },
+      { id: "emotions", labelKey: "qolRecipe.path.emotions", emoji: "💜", descriptionKey: "qolRecipe.happiness.emotions" },
+      { id: "spirit", labelKey: "qolRecipe.path.spirit", emoji: "🙏", descriptionKey: "qolRecipe.happiness.spirit" },
+      { id: "mind", labelKey: "qolRecipe.path.mind", emoji: "🧠", descriptionKey: "qolRecipe.happiness.mind" },
+      { id: "body", labelKey: "qolRecipe.path.body", emoji: "💪", descriptionKey: "qolRecipe.happiness.body" },
+      { id: "uniqueness", labelKey: "qolRecipe.path.uniqueness", emoji: "✨", descriptionKey: "qolRecipe.happiness.uniqueness" },
     ],
   },
   love: {
-    domainLabel: "❤️ Love",
+    domainLabelKey: "qolRecipe.domain.love",
     paths: [
-      { id: "emotions", label: "Emotions", emoji: "💜", description: "Heal patterns that block intimacy and trust." },
-      { id: "spirit", label: "Spirit", emoji: "🙏", description: "Lead with compassion, forgiveness, and heart." },
-      { id: "mind", label: "Mind", emoji: "🧠", description: "Learn new relationship skills and communication." },
-      { id: "body", label: "Body", emoji: "💪", description: "Ground connection through presence and embodiment." },
-      { id: "uniqueness", label: "Uniqueness", emoji: "✨", description: "Show up as your truest self in love." },
+      { id: "emotions", labelKey: "qolRecipe.path.emotions", emoji: "💜", descriptionKey: "qolRecipe.love.emotions" },
+      { id: "spirit", labelKey: "qolRecipe.path.spirit", emoji: "🙏", descriptionKey: "qolRecipe.love.spirit" },
+      { id: "mind", labelKey: "qolRecipe.path.mind", emoji: "🧠", descriptionKey: "qolRecipe.love.mind" },
+      { id: "body", labelKey: "qolRecipe.path.body", emoji: "💪", descriptionKey: "qolRecipe.love.body" },
+      { id: "uniqueness", labelKey: "qolRecipe.path.uniqueness", emoji: "✨", descriptionKey: "qolRecipe.love.uniqueness" },
     ],
   },
   impact: {
-    domainLabel: "🌍 Impact",
+    domainLabelKey: "qolRecipe.domain.impact",
     paths: [
-      { id: "uniqueness", label: "Uniqueness", emoji: "✨", description: "Lead with what only you can build." },
-      { id: "spirit", label: "Spirit", emoji: "🙏", description: "Anchor impact in mission and service." },
-      { id: "mind", label: "Mind", emoji: "🧠", description: "Strengthen strategy, systems, and execution." },
-      { id: "emotions", label: "Emotions", emoji: "💜", description: "Build courage and emotional leadership." },
-      { id: "body", label: "Body", emoji: "💪", description: "Sustain impact with strong energy." },
+      { id: "uniqueness", labelKey: "qolRecipe.path.uniqueness", emoji: "✨", descriptionKey: "qolRecipe.impact.uniqueness" },
+      { id: "spirit", labelKey: "qolRecipe.path.spirit", emoji: "🙏", descriptionKey: "qolRecipe.impact.spirit" },
+      { id: "mind", labelKey: "qolRecipe.path.mind", emoji: "🧠", descriptionKey: "qolRecipe.impact.mind" },
+      { id: "emotions", labelKey: "qolRecipe.path.emotions", emoji: "💜", descriptionKey: "qolRecipe.impact.emotions" },
+      { id: "body", labelKey: "qolRecipe.path.body", emoji: "💪", descriptionKey: "qolRecipe.impact.body" },
     ],
   },
   growth: {
-    domainLabel: "🌱 Growth",
+    domainLabelKey: "qolRecipe.domain.growth",
     paths: [
-      { id: "spirit", label: "Spirit", emoji: "🙏", description: "Deepen self-connection and purpose." },
-      { id: "mind", label: "Mind", emoji: "🧠", description: "Expand learning and self-awareness." },
-      { id: "emotions", label: "Emotions", emoji: "💜", description: "Integrate shadow work and emotional clarity." },
-      { id: "uniqueness", label: "Uniqueness", emoji: "✨", description: "Evolve by expressing your gifts." },
-      { id: "body", label: "Body", emoji: "💪", description: "Ground growth with daily practices." },
+      { id: "spirit", labelKey: "qolRecipe.path.spirit", emoji: "🙏", descriptionKey: "qolRecipe.growth.spirit" },
+      { id: "mind", labelKey: "qolRecipe.path.mind", emoji: "🧠", descriptionKey: "qolRecipe.growth.mind" },
+      { id: "emotions", labelKey: "qolRecipe.path.emotions", emoji: "💜", descriptionKey: "qolRecipe.growth.emotions" },
+      { id: "uniqueness", labelKey: "qolRecipe.path.uniqueness", emoji: "✨", descriptionKey: "qolRecipe.growth.uniqueness" },
+      { id: "body", labelKey: "qolRecipe.path.body", emoji: "💪", descriptionKey: "qolRecipe.growth.body" },
     ],
   },
   socialTies: {
-    domainLabel: "🤝 Social",
+    domainLabelKey: "qolRecipe.domain.socialTies",
     paths: [
-      { id: "emotions", label: "Emotions", emoji: "💜", description: "Build trust, openness, and empathy." },
-      { id: "spirit", label: "Spirit", emoji: "🙏", description: "Show up in community with purpose." },
-      { id: "mind", label: "Mind", emoji: "🧠", description: "Learn collaboration and social skills." },
-      { id: "body", label: "Body", emoji: "💪", description: "Bring presence and consistency to relationships." },
-      { id: "uniqueness", label: "Uniqueness", emoji: "✨", description: "Contribute your distinct gifts to the group." },
+      { id: "emotions", labelKey: "qolRecipe.path.emotions", emoji: "💜", descriptionKey: "qolRecipe.socialTies.emotions" },
+      { id: "spirit", labelKey: "qolRecipe.path.spirit", emoji: "🙏", descriptionKey: "qolRecipe.socialTies.spirit" },
+      { id: "mind", labelKey: "qolRecipe.path.mind", emoji: "🧠", descriptionKey: "qolRecipe.socialTies.mind" },
+      { id: "body", labelKey: "qolRecipe.path.body", emoji: "💪", descriptionKey: "qolRecipe.socialTies.body" },
+      { id: "uniqueness", labelKey: "qolRecipe.path.uniqueness", emoji: "✨", descriptionKey: "qolRecipe.socialTies.uniqueness" },
     ],
   },
   home: {
-    domainLabel: "🏠 Home",
+    domainLabelKey: "qolRecipe.domain.home",
     paths: [
-      { id: "body", label: "Body", emoji: "💪", description: "Create a stable physical foundation and routines." },
-      { id: "emotions", label: "Emotions", emoji: "💜", description: "Make home a place of calm and safety." },
-      { id: "mind", label: "Mind", emoji: "🧠", description: "Design systems that keep things orderly." },
-      { id: "spirit", label: "Spirit", emoji: "🙏", description: "Infuse your space with meaning and beauty." },
-      { id: "uniqueness", label: "Uniqueness", emoji: "✨", description: "Shape home to reflect who you are." },
+      { id: "body", labelKey: "qolRecipe.path.body", emoji: "💪", descriptionKey: "qolRecipe.home.body" },
+      { id: "emotions", labelKey: "qolRecipe.path.emotions", emoji: "💜", descriptionKey: "qolRecipe.home.emotions" },
+      { id: "mind", labelKey: "qolRecipe.path.mind", emoji: "🧠", descriptionKey: "qolRecipe.home.mind" },
+      { id: "spirit", labelKey: "qolRecipe.path.spirit", emoji: "🙏", descriptionKey: "qolRecipe.home.spirit" },
+      { id: "uniqueness", labelKey: "qolRecipe.path.uniqueness", emoji: "✨", descriptionKey: "qolRecipe.home.uniqueness" },
     ],
   },
 };
@@ -117,6 +118,7 @@ const isDomainId = (value: string | null): value is DomainId =>
   value !== null && Object.prototype.hasOwnProperty.call(DOMAIN_RECIPES, value);
 
 const QualityOfLifeGrowthRecipe = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const returnTo = searchParams.get("return");
@@ -153,7 +155,7 @@ const QualityOfLifeGrowthRecipe = () => {
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-[60vh]">
-        <div className="text-[var(--wabi-text-muted)]">Loading growth recipe...</div>
+        <div className="text-[var(--wabi-text-muted)]">{t('qolRecipe.loading')}</div>
       </div>
     );
   }
@@ -178,7 +180,7 @@ const QualityOfLifeGrowthRecipe = () => {
             }}
             className="mb-2"
           >
-            Your Growth Recipe
+            {t('qolRecipe.title')}
           </h1>
           <p
             style={{
@@ -189,7 +191,7 @@ const QualityOfLifeGrowthRecipe = () => {
             }}
             className="text-[var(--wabi-text-muted)]"
           >
-            Optimal development sequence for <span className="text-[var(--depth-violet)] font-medium not-italic">{primaryRecipe?.domainLabel}</span>
+            {t('qolRecipe.subhead')} <span className="text-[var(--depth-violet)] font-medium not-italic">{primaryRecipe ? t(primaryRecipe.domainLabelKey) : ""}</span>
           </p>
         </div>
 
@@ -228,7 +230,7 @@ const QualityOfLifeGrowthRecipe = () => {
                         }}
                         className={isTop ? "text-[var(--depth-violet)]" : "text-[var(--wabi-text-primary)]"}
                       >
-                        {path.label}
+                        {t(path.labelKey)}
                       </h3>
                       {isTop && (
                         <span
@@ -242,7 +244,7 @@ const QualityOfLifeGrowthRecipe = () => {
                           }}
                           className="bg-[var(--depth-violet)]/15 px-2 py-0.5 rounded-full"
                         >
-                          Focus
+                          {t('qolRecipe.focus')}
                         </span>
                       )}
                     </div>
@@ -255,7 +257,7 @@ const QualityOfLifeGrowthRecipe = () => {
                       }}
                       className="text-[var(--wabi-text-muted)] mt-1"
                     >
-                      {path.description}
+                      {t(path.descriptionKey)}
                     </p>
                   </div>
                 </div>
@@ -273,7 +275,7 @@ const QualityOfLifeGrowthRecipe = () => {
           // to QualityOfLifePriorities's Skip button.
           onClick={() => navigate(returnTo === "/start" ? "/game/journey" : returnTo || "/game/journey")}
         >
-          Start Improving <ArrowRight className="w-4 h-4 ml-2" />
+          {t('qolRecipe.startImproving')} <ArrowRight className="w-4 h-4 ml-2" />
         </Button>
       </div>
   );
