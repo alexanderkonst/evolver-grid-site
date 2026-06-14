@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import i18n from "@/i18n/config";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { BookOpen, ArrowRight, Download, ChevronRight } from "lucide-react";
@@ -31,6 +32,7 @@ const BlueprintScreen: React.FC = () => {
         try {
             const { data, error: fnError } = await supabase.functions.invoke("generate-blueprint", {
                 body: {
+                    target_language: i18n.resolvedLanguage,
                     icp: state.deepICP,
                     pain: state.deepPain,
                     tp: state.deepTP,

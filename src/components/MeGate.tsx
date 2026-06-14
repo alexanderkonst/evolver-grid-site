@@ -12,6 +12,7 @@ import { useToast } from "@/hooks/use-toast";
 import { getOrCreateGameProfileId } from "@/lib/gameProfile";
 import { migrateGuestDataToProfile } from "@/modules/zone-of-genius/saveToDatabase";
 import { GOLD_TEXT_STYLE, Ornament } from "@/lib/landingDesign";
+import { localizedOrigin } from "@/i18n/localeScope";
 
 /**
  * MeGate — entry guard for /game/me.
@@ -326,7 +327,7 @@ const SaveProfileCard = ({ onSuccess }: { onSuccess: () => void }) => {
                     // and confused first-time users who landed in the
                     // middle of the ME shell) to the canonical Start Here
                     // activation home. New users always begin there.
-                    emailRedirectTo: `${window.location.origin}/game/me/zone-of-genius/start-here`,
+                    emailRedirectTo: `${localizedOrigin()}/game/me/zone-of-genius/start-here`,
                     data: { first_name: firstName.trim() || null },
                 },
             });
@@ -350,7 +351,7 @@ const SaveProfileCard = ({ onSuccess }: { onSuccess: () => void }) => {
                     const { error: otpError } = await supabase.auth.signInWithOtp({
                         email: email.trim(),
                         options: {
-                            emailRedirectTo: `${window.location.origin}/game/me/zone-of-genius/start-here`,
+                            emailRedirectTo: `${localizedOrigin()}/game/me/zone-of-genius/start-here`,
                         },
                     });
                     if (otpError) throw otpError;

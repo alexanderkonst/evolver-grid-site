@@ -25,6 +25,7 @@
  */
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+import { resolveOutputLanguage, languageDirective } from "../_shared/language.ts";
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -136,7 +137,8 @@ const handler = async (req: Request): Promise<Response> => {
       console.log('Auth check - allowing anonymous access for guest users');
     }
 
-    const { intention, practices, context }: SuggestQuestRequest = await req.json();
+    const { intention, practices, context, target_language }: SuggestQuestRequest & { target_language?: string } = await req.json();
+    const outputLanguage = resolveOutputLanguage(target_language);
 
     if (!intention || !practices || practices.length === 0) {
       return new Response(
@@ -228,7 +230,7 @@ Select the best Side Quest and up to 2 alternatives.`;
       body: JSON.stringify({
         model: 'google/gemini-2.5-flash-lite',
         messages: [
-          { role: 'system', content: systemPrompt },
+          { role: 'system', content: systemPrompt + languageDirective(outputLanguage) },
           { role: 'user', content: userPrompt }
         ],
       }),

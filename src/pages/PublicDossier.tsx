@@ -15,6 +15,7 @@
  */
 
 import { useEffect, useState } from "react";
+import { formatDate } from "@/i18n/format";
 import { useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import type { TFunction } from "i18next";
@@ -251,7 +252,7 @@ export default function PublicDossier() {
                   color: "var(--skin-text-body, rgba(11, 42, 90, 0.85))",
                 }}
               >
-                {new Date(dossier.published_at).toLocaleDateString()}
+                {formatDate(dossier.published_at)}
               </span>
             </span>
           </div>

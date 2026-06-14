@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { localizedOrigin } from "@/i18n/localeScope";
 import {
     Sparkles,
     ExternalLink,
@@ -18,7 +19,7 @@ const MyProductsPage = () => {
 
     const handleCopyLink = async () => {
         if (business?.productUrl) {
-            const fullUrl = `${window.location.origin}${business.productUrl}`;
+            const fullUrl = `${localizedOrigin()}${business.productUrl}`;
             await navigator.clipboard.writeText(fullUrl);
             toast({ title: "Link copied!", description: "Share it with the world." });
         }

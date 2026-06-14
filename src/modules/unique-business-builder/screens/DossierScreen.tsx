@@ -17,6 +17,7 @@
  */
 
 import { useState } from "react";
+import { localizedOrigin } from "@/i18n/localeScope";
 import { Link } from "react-router-dom";
 import { Copy, Download, Loader2 } from "lucide-react";
 import { toast } from "sonner";
@@ -45,7 +46,7 @@ export default function DossierScreen() {
     setIsPublishing(true);
     try {
       const result = await publishDossier();
-      const url = `${window.location.origin}/dossier/${result.slug}`;
+      const url = `${localizedOrigin()}/dossier/${result.slug}`;
       setPublishedUrl(url);
     } catch (e: any) {
       toast.error(e?.message || "Publish failed.");

@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import { localizedOrigin } from "@/i18n/localeScope";
 import { Copy, Share2, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
@@ -27,7 +28,7 @@ const InviteFriendPrompt = ({
   const resolvedUrl = useMemo(() => {
     if (shareUrl) return shareUrl;
     if (typeof window === "undefined") return "";
-    return `${window.location.origin}/zone-of-genius/entry`;
+    return `${localizedOrigin()}/zone-of-genius/entry`;
   }, [shareUrl]);
 
   const resolvedText = useMemo(() => {

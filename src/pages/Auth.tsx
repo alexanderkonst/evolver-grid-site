@@ -13,6 +13,7 @@ import { useToast } from "@/hooks/use-toast";
 import GameShellV2 from "@/components/game/GameShellV2";
 import { ArrowLeft, Mail, Sparkles } from "lucide-react";
 import { captureReferralIdFromUrl } from "@/lib/gameProfile";
+import { localizedOrigin } from "@/i18n/localeScope";
 // Day 51 night v2 (Sasha 2026-04-26): editorial v2 of the auth surface
 // reuses the landing's gold-text gradient + ornament rule so the auth
 // page reads as part of the same brand register, not a generic shadcn
@@ -99,7 +100,7 @@ const Auth = () => {
 
     setLoading(true);
     try {
-      const emailRedirectTo = `${window.location.origin}/auth/callback?next=${encodeURIComponent(postLinkRedirect)}`;
+      const emailRedirectTo = `${localizedOrigin()}/auth/callback?next=${encodeURIComponent(postLinkRedirect)}`;
       const { error } = await supabase.auth.signInWithOtp({
         email: trimmed,
         options: { emailRedirectTo },
@@ -166,7 +167,7 @@ const Auth = () => {
         email,
         password,
         options: {
-          emailRedirectTo: `${window.location.origin}${nextPath}`,
+          emailRedirectTo: `${localizedOrigin()}${nextPath}`,
           data: {
             first_name: firstName.trim(),
             last_name: lastName.trim(),
@@ -294,7 +295,7 @@ const Auth = () => {
 
     try {
       const { error } = await supabase.auth.resetPasswordForEmail(email, {
-        redirectTo: `${window.location.origin}/auth/reset-password`,
+        redirectTo: `${localizedOrigin()}/auth/reset-password`,
       });
 
       if (error) throw error;

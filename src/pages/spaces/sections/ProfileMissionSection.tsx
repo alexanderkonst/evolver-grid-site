@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
+import { formatDate } from "@/i18n/format";
 import { Pencil, Loader2, ArrowRight } from "lucide-react";
 import GameShellV2 from "@/components/game/GameShellV2";
 import { EditorialCta } from "@/components/ui/editorial-cta";
@@ -35,6 +37,7 @@ const HALO_DEEP =
     "var(--skin-text-halo-deep, 0 0 22px rgba(255,255,255,0.7), 0 1px 2px rgba(255,255,255,0.9), 0 0 1px rgba(11,42,90,0.45), 0 1px 0 rgba(11,42,90,0.25))";
 
 const ProfileMissionSection = () => {
+    const { t } = useTranslation();
     const navigate = useNavigate();
     const [missionStatement, setMissionStatement] = useState<string | null>(null);
     const [missionDiscoveredAt, setMissionDiscoveredAt] = useState<string | null>(null);
@@ -86,9 +89,7 @@ const ProfileMissionSection = () => {
                             color: INK,
                             textShadow: HALO_DEEP,
                         }}
-                    >
-                        Your Mission
-                    </h1>
+                    >{t("profileMission.heading")}</h1>
                     {missionDiscoveredAt && (
                         <p
                             className="italic"
@@ -98,13 +99,13 @@ const ProfileMissionSection = () => {
                                 color: INK_MUTED,
                             }}
                         >
-                            Saved on{" "}
-                            {new Date(missionDiscoveredAt).toLocaleDateString(undefined, {
-                                month: "long",
-                                day: "numeric",
-                                year: "numeric",
+                            {t("profileMission.savedOn", {
+                                date: formatDate(missionDiscoveredAt, {
+                                    month: "long",
+                                    day: "numeric",
+                                    year: "numeric",
+                                }),
                             })}
-                            .
                         </p>
                     )}
                     <Ornament className="my-6 sm:my-7" />
@@ -126,9 +127,7 @@ const ProfileMissionSection = () => {
                             <p
                                 className="text-[10px] uppercase tracking-[0.32em] font-medium mb-4"
                                 style={{ color: "var(--skin-accent-gold, #b8860b)" }}
-                            >
-                                One sentence
-                            </p>
+                            >{t("profileMission.oneSentence")}</p>
                             <p
                                 className="mx-auto max-w-[40ch]"
                                 style={{
@@ -147,7 +146,7 @@ const ProfileMissionSection = () => {
                         <div className="flex flex-wrap gap-3 justify-center mt-6">
                             <EditorialCta
                                 variant="secondary"
-                                label="Edit mission"
+                                label={t("profileMission.editMission")}
                                 onClick={() => navigate("/mission-discovery")}
                                 icon={<Pencil className="w-4 h-4" />}
                                 rightIcon={null}
@@ -185,7 +184,7 @@ const ProfileMissionSection = () => {
                         <div className="flex justify-center mt-6">
                             <EditorialCta
                                 variant="primary"
-                                label="Discover my mission"
+                                label={t("profileMission.discoverMission")}
                                 onClick={() => navigate("/mission-discovery")}
                                 rightIcon={<ArrowRight className="w-4 h-4" />}
                             />

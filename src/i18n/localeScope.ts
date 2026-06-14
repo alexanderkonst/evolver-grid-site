@@ -53,3 +53,15 @@ export const buildLocalePath = (lng: string, pathname: string): string => {
   if (base === "/") return prefix || "/";
   return `${prefix}${base}`;
 };
+
+/**
+ * `window.location.origin` with the active locale prefix appended, for building
+ * ABSOLUTE return/redirect URLs (magic links, OAuth, Stripe, share links) that
+ * must bring the user back to the SAME locale they left from. `window.location.origin`
+ * is scheme+host only and drops the /ru or /es prefix, which would silently boot
+ * RU/ES users into the English site on return. Use this instead of bare origin.
+ */
+export const localizedOrigin = (): string => {
+  if (typeof window === "undefined") return "";
+  return `${window.location.origin}${initialLocaleScope?.prefix ?? ""}`;
+};

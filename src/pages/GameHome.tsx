@@ -110,7 +110,7 @@ const QUEST_MODES = [
 const GameHome = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   // Core state
   const [isLoading, setIsLoading] = useState(true);
@@ -407,6 +407,7 @@ const GameHome = () => {
 
       const { data, error } = await supabase.functions.invoke('suggest-next-quest', {
         body: {
+            target_language: i18n.resolvedLanguage,
           intention: `${selectedMode} practice for ${selectedDuration} minutes`,
           practices,
           context

@@ -1,4 +1,5 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
+import { resolveOutputLanguage, languageDirective } from "../_shared/language.ts";
 
 const corsHeaders = {
     "Access-Control-Allow-Origin": "*",
@@ -49,7 +50,8 @@ serve(async (req) => {
     }
 
     try {
-        const { icp, pain } = await req.json();
+        const { icp, pain, target_language } = await req.json();
+        const outputLanguage = resolveOutputLanguage(target_language);
 
         if (!icp) {
             return new Response(
@@ -85,7 +87,7 @@ PAIN LANDSCAPE:
             body: JSON.stringify({
                 model: "google/gemini-2.5-flash-lite",
                 messages: [
-                    { role: "system", content: DEEPEN_TP_PROMPT },
+                    { role: "system", content: DEEPEN_TP_PROMPT + languageDirective(outputLanguage) },
                     { role: "user", content: `Crystallize the transformational promise:\n\n${context}` }
                 ],
             }),

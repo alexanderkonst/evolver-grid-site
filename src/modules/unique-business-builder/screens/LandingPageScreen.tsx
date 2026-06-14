@@ -12,6 +12,7 @@
  */
 
 import { useState } from "react";
+import { localizedOrigin } from "@/i18n/localeScope";
 import { Copy, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import { ArtifactView } from "./GenericArtifactScreen";
@@ -30,7 +31,7 @@ export default function LandingPageScreen() {
     setIsPublishing(true);
     try {
       const result = await publishLandingPage();
-      const url = `${window.location.origin}/page/${result.slug}`;
+      const url = `${localizedOrigin()}/page/${result.slug}`;
       setPublishedUrl(url);
     } catch (e: any) {
       toast.error(e?.message || "Publish failed.");

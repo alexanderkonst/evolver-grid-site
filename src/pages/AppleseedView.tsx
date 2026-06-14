@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { localizedOrigin } from "@/i18n/localeScope";
 import { useNavigate } from "react-router-dom";
 import { Sparkles } from "lucide-react";
 import { PremiumLoader } from "@/components/ui/PremiumLoader";
@@ -28,7 +29,7 @@ const AppleseedView = () => {
       const pid = await getOrCreateGameProfileId().catch(() => null);
       if (pid) {
         setProfileId(pid);
-        setProfileUrl(`${window.location.origin}/profile/${pid}`);
+        setProfileUrl(`${localizedOrigin()}/profile/${pid}`);
       }
       setLoading(false);
     };

@@ -1,4 +1,5 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
+import { resolveOutputLanguage, languageDirective } from "../_shared/language.ts";
 
 const corsHeaders = {
     "Access-Control-Allow-Origin": "*",
@@ -34,7 +35,8 @@ serve(async (req) => {
     }
 
     try {
-        const { icp, pain, tp } = await req.json();
+        const { icp, pain, tp, target_language } = await req.json();
+        const outputLanguage = resolveOutputLanguage(target_language);
 
         if (!tp) {
             return new Response(
@@ -68,7 +70,7 @@ IDEAL CLIENT:
             body: JSON.stringify({
                 model: "google/gemini-2.5-flash-lite",
                 messages: [
-                    { role: "system", content: GENERATE_BLUEPRINT_PROMPT },
+                    { role: "system", content: GENERATE_BLUEPRINT_PROMPT + languageDirective(outputLanguage) },
                     { role: "user", content: `Generate a blueprint lead magnet:\n\n${context}` }
                 ],
             }),
