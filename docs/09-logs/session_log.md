@@ -8150,3 +8150,21 @@ Two judgment calls worth remembering. The seeded testimonials are real named-per
 - `supabase/functions/_shared/language.ts`: `revealCalibration(lang)`; wired into `generate-appleseed` + `generate-zog-snapshot`
 - `docs/specs/i18n/scope_of_work.md`: build log + deferral decisions
 - `docs/09-logs/session_log.md`: this entry
+
+### Day 101 continued: the switcher + the adversarial debug pass
+
+Sasha asked two things after the catalog landed: give people a way to actually switch language, and debug the whole thing. Both done.
+
+The switcher was the headline bug. It existed but was mounted on exactly one surface: the 404 page. So the entire 4,355-key translation was unreachable by organic traffic (resolution is URL-prefix > localStorage > 'en', navigator detection deliberately off, and nobody hands a cold visitor a /ru link). Rebuilt it as a polished glassy globe dropdown (English / Русский / Español in their own script) and mounted it once at App root, `fixed top-right` — it lands in the empty corner of the funnel header, balancing the logo on the left, legible on both the dark funnel header and the light marketing pages. It preserves path + query + hash + skin prefix through `buildLocalePath`, persists to localStorage, then full-navigates. Verified the whole cycle live: RU → click → English → lands on `/`, English content, `app-language=en` persisted.
+
+On the system prompts: Sasha asked whether the Appleseed "technology" needs translating. Assessed and recommended against it. The prompt is 870 lines of battle-tested English instruction with dozens of dated pronoun/anti-abstraction refinements; Gemini follows English meta-instructions and writes in the target language when directed, so translating it would triple maintenance, risk drift degrading the conversion artifact, and fork the source of truth. The correct design is already shipped: English instructions + `languageDirective` + the reveal-specific `revealCalibration`. Verified no prompt fragment injects verbatim English into the output.
+
+The debug pass ran as a 41-agent adversarial workflow across eight dimensions (switcher UX, missing keys, routing, Layer-3 wiring, persistence/sync, formatting, pluralization, hardcoded money-path), each finding refuted-by-default before it counted. 25 confirmed. Fixed all five HIGH plus the correctness-MEDIUM: the worst was `myGeniusBusiness.statSteps`, authored with Russian one/few/many in the EN and ES catalogs with no CLDR `other`, so it leaked the literal key path `myGeniusBusiness.statSteps` into the ENGLISH default UI for any count ≥ 2. Added a `localizedOrigin()` helper so magic-link / OAuth / Stripe / share URLs stop dropping the locale prefix and booting RU/ES users into English on return. Threaded `target_language` through the Product Builder generation chain (blueprint + deepen ICP/pain/TP + suggest-next-quest + match-assets) that was silently producing English. Swept browser-locale date/number/time/currency onto the locale-aware `format.ts` helpers (added `formatTime` — 24-hour for RU/ES — and `formatCompact`). The remaining LOW items (types.ts cast debt, raw-href SPA-reload prefix drops, a couple of extraction stragglers) are logged in the SOW as deferred.
+
+**Files touched (continued)**
+- `src/i18n/LanguageSwitcher.tsx`, `src/App.tsx`: global discoverable switcher
+- `src/i18n/localeScope.ts`: `localizedOrigin()`; `src/i18n/format.ts`: `formatTime` + `formatCompact`
+- `src/pages/Auth.tsx`, `src/components/MeGate.tsx`, `src/components/auth/SignupModal.tsx`, `src/modules/ai-os/pages/AiOsAuthPage.tsx` + 8 share-URL sites: locale-prefixed returns
+- `supabase/functions/{generate-blueprint,deepen-icp,deepen-pain,deepen-tp,suggest-next-quest,match-assets}` + 7 client invoke sites: `target_language` threading
+- `src/locales/{en,ru,es}/common.json`: CLDR plural fixes + `profileMission` keys
+- date/number/time consumers: CharacterHub, MeSummary, GameMap, EventDetail, EventCard, VentureDashboard, MissionDiscoveryLanding, PublicDossier, PublicLandingPage, Connections, ProfileMissionSection
