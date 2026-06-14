@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { MapPin, Target, Users } from "lucide-react";
 import GameShellV2 from "@/components/game/GameShellV2";
 import { Button } from "@/components/ui/button";
@@ -70,6 +71,7 @@ const resolveVisibility = (value: string | null): VisibilityLevel => {
 
 const PeopleDirectory = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const [loading, setLoading] = useState(true);
   const [people, setPeople] = useState<DirectoryPerson[]>([]);
   const [error, setError] = useState<string | null>(null);
@@ -153,7 +155,7 @@ const PeopleDirectory = () => {
             : null;
           const firstName = row.first_name || "";
           const lastName = row.last_name || "";
-          const name = `${firstName} ${lastName}`.trim() || "Community Member";
+          const name = `${firstName} ${lastName}`.trim() || t("peopleDir.fallbackName");
 
           return {
             userId: row.user_id,
@@ -164,7 +166,7 @@ const PeopleDirectory = () => {
             showLocation: row.show_location ?? true,
             showMission: row.show_mission ?? true,
             showOffer: row.show_offer ?? true,
-            archetype: appleseed?.vibrationalKey?.name || "Unknown archetype",
+            archetype: appleseed?.vibrationalKey?.name || t("peopleDir.unknownArchetype"),
             tagline: appleseed?.vibrationalKey?.tagline || null,
             mission: missionByUser.get(row.user_id) ?? null,
           };
@@ -176,7 +178,7 @@ const PeopleDirectory = () => {
         }
       } catch (err: any) {
         if (isMounted) {
-          setError(err.message || "Unable to load directory.");
+          setError(err.message || t("peopleDir.loadError"));
           setLoading(false);
         }
       }
@@ -294,20 +296,20 @@ const PeopleDirectory = () => {
           <div className="mb-8">
             <div className="flex items-center gap-3 text-foreground">
               <Users className="w-6 h-6" />
-              <h1 className="text-2xl sm:text-3xl font-semibold">People Directory</h1>
+              <h1 className="text-2xl sm:text-3xl font-semibold">{t("peopleDir.title")}</h1>
             </div>
             <p className="text-sm text-muted-foreground mt-2">
-              Find people who share your mission, focus, and location.
+              {t("peopleDir.subtitle")}
             </p>
           </div>
 
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 mb-8">
             <Select value={pillarFilter} onValueChange={setPillarFilter}>
               <SelectTrigger className="w-full">
-                <SelectValue placeholder="Pillar" />
+                <SelectValue placeholder={t("peopleDir.filterPillar")} />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="all">All pillars</SelectItem>
+                <SelectItem value="all">{t("peopleDir.allPillars")}</SelectItem>
                 {PILLARS.map((pillar) => (
                   <SelectItem key={pillar.id} value={pillar.id}>
                     {pillar.title}
@@ -318,10 +320,10 @@ const PeopleDirectory = () => {
 
             <Select value={focusFilter} onValueChange={setFocusFilter}>
               <SelectTrigger className="w-full">
-                <SelectValue placeholder="Focus Area" />
+                <SelectValue placeholder={t("peopleDir.filterFocus")} />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="all">All focus areas</SelectItem>
+                <SelectItem value="all">{t("peopleDir.allFocusAreas")}</SelectItem>
                 {focusOptions.map((focus) => (
                   <SelectItem key={focus.id} value={focus.id}>
                     {focus.title}
@@ -332,10 +334,10 @@ const PeopleDirectory = () => {
 
             <Select value={challengeFilter} onValueChange={setChallengeFilter}>
               <SelectTrigger className="w-full">
-                <SelectValue placeholder="Challenge" />
+                <SelectValue placeholder={t("peopleDir.filterChallenge")} />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="all">All challenges</SelectItem>
+                <SelectItem value="all">{t("peopleDir.allChallenges")}</SelectItem>
                 {challengeOptions.map((challenge) => (
                   <SelectItem key={challenge.id} value={challenge.id}>
                     {challenge.title}
@@ -346,10 +348,10 @@ const PeopleDirectory = () => {
 
             <Select value={outcomeFilter} onValueChange={setOutcomeFilter}>
               <SelectTrigger className="w-full">
-                <SelectValue placeholder="Outcome" />
+                <SelectValue placeholder={t("peopleDir.filterOutcome")} />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="all">All outcomes</SelectItem>
+                <SelectItem value="all">{t("peopleDir.allOutcomes")}</SelectItem>
                 {outcomeOptions.map((outcome) => (
                   <SelectItem key={outcome.id} value={outcome.id}>
                     {outcome.title}
@@ -360,10 +362,10 @@ const PeopleDirectory = () => {
 
             <Select value={missionFilter} onValueChange={setMissionFilter}>
               <SelectTrigger className="w-full">
-                <SelectValue placeholder="Mission" />
+                <SelectValue placeholder={t("peopleDir.filterMission")} />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="all">All missions</SelectItem>
+                <SelectItem value="all">{t("peopleDir.allMissions")}</SelectItem>
                 {missionOptions.map((mission) => (
                   <SelectItem key={mission.id} value={mission.id}>
                     {mission.title}
@@ -374,10 +376,10 @@ const PeopleDirectory = () => {
 
             <Select value={locationFilter} onValueChange={setLocationFilter}>
               <SelectTrigger className="w-full">
-                <SelectValue placeholder="Location" />
+                <SelectValue placeholder={t("peopleDir.filterLocation")} />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="all">All locations</SelectItem>
+                <SelectItem value="all">{t("peopleDir.allLocations")}</SelectItem>
                 {availableLocations.map((location) => (
                   <SelectItem key={location} value={location}>
                     {location}
@@ -388,10 +390,10 @@ const PeopleDirectory = () => {
 
             <Select value={archetypeFilter} onValueChange={setArchetypeFilter}>
               <SelectTrigger className="w-full">
-                <SelectValue placeholder="Archetype" />
+                <SelectValue placeholder={t("peopleDir.filterArchetype")} />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="all">All archetypes</SelectItem>
+                <SelectItem value="all">{t("peopleDir.allArchetypes")}</SelectItem>
                 {availableArchetypes.map((archetype) => (
                   <SelectItem key={archetype} value={archetype}>
                     {archetype}
@@ -417,7 +419,7 @@ const PeopleDirectory = () => {
 
           {!loading && !error && filteredPeople.length === 0 && (
             <div className="rounded-xl border border-border bg-[var(--skin-card-fill,rgba(255,255,255,0.85))] backdrop-blur-sm p-6 text-center text-sm text-muted-foreground">
-              No profiles match these filters yet.
+              {t("peopleDir.emptyState")}
             </div>
           )}
 
@@ -487,7 +489,7 @@ const PeopleDirectory = () => {
           {!loading && filteredPeople.length > visibleCount && (
             <div className="flex justify-center mt-6">
               <Button variant="outline" onClick={() => setVisibleCount((prev) => prev + PAGE_SIZE)}>
-                Load more
+                {t("peopleDir.loadMore")}
               </Button>
             </div>
           )}

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { Check, Lock, ChevronRight, ArrowLeft } from "lucide-react";
 import GameShellV2 from "@/components/game/GameShellV2";
@@ -6,6 +7,7 @@ import { growthPaths, getPathIcon, TYPE_ICONS, type GrowthPath, type Upgrade } f
 import { Button } from "@/components/ui/button";
 
 const GrowthPathsPage = () => {
+    const { t } = useTranslation();
     const [selectedPath, setSelectedPath] = useState<GrowthPath | null>(null);
 
     // If viewing a specific path
@@ -23,7 +25,7 @@ const GrowthPathsPage = () => {
                         className="text-[rgba(44,49,80,0.7)] hover:text-[#2c3150] mb-6"
                     >
                         <ArrowLeft className="w-4 h-4 mr-2" />
-                        Back
+                        {t('growthPaths.back')}
                     </Button>
 
                     {/* Path header */}
@@ -68,9 +70,9 @@ const GrowthPathsPage = () => {
             <div className="p-4 lg:p-6 max-w-3xl mx-auto">
                 {/* Header */}
                 <div className="mb-8">
-                    <h1 className="text-2xl font-bold text-[#2c3150] mb-2">Growth Paths</h1>
+                    <h1 className="text-2xl font-bold text-[#2c3150] mb-2">{t('growthPaths.heading')}</h1>
                     <p className="text-[rgba(44,49,80,0.7)]">
-                        Sequences of transformational upgrades — how you develop yourself
+                        {t('growthPaths.subheading')}
                     </p>
                 </div>
 
@@ -107,7 +109,7 @@ const GrowthPathsPage = () => {
                                             {path.tagline}
                                         </p>
                                         <p className="text-xs text-[#2c3150]/60 mt-1">
-                                            {path.upgrades.length} upgrades
+                                            {t('growthPaths.upgradeCount', { count: path.upgrades.length })}
                                         </p>
                                     </div>
                                     <ChevronRight className="w-5 h-5 text-[#2c3150]/50 shrink-0" />
@@ -119,23 +121,23 @@ const GrowthPathsPage = () => {
 
                 {/* Legend */}
                 <div className="mt-8 p-4 rounded-lg bg-[var(--skin-input-fill,rgba(240,244,255,0.5))] border border-[#a4a3d0]/20">
-                    <h3 className="text-sm font-medium text-[#2c3150] mb-3">Legend</h3>
+                    <h3 className="text-sm font-medium text-[#2c3150] mb-3">{t('growthPaths.legend.title')}</h3>
                     <div className="grid grid-cols-2 gap-2 text-sm">
                         <div className="flex items-center gap-2">
                             <span>🔥</span>
-                            <span className="text-[rgba(44,49,80,0.7)]">Immersive Activation</span>
+                            <span className="text-[rgba(44,49,80,0.7)]">{t('growthPaths.legend.immersiveActivation')}</span>
                         </div>
                         <div className="flex items-center gap-2">
                             <span>📚</span>
-                            <span className="text-[rgba(44,49,80,0.7)]">Micro-learning (90s)</span>
+                            <span className="text-[rgba(44,49,80,0.7)]">{t('growthPaths.legend.microLearning')}</span>
                         </div>
                         <div className="flex items-center gap-2">
                             <span>📝</span>
-                            <span className="text-[rgba(44,49,80,0.7)]">Self-Assessment</span>
+                            <span className="text-[rgba(44,49,80,0.7)]">{t('growthPaths.legend.selfAssessment')}</span>
                         </div>
                         <div className="flex items-center gap-2">
                             <span>💰</span>
-                            <span className="text-[rgba(44,49,80,0.7)]">Premium Module</span>
+                            <span className="text-[rgba(44,49,80,0.7)]">{t('growthPaths.legend.premiumModule')}</span>
                         </div>
                     </div>
                 </div>
@@ -156,6 +158,7 @@ const UpgradeCard = ({
     isFirst: boolean;
     isLast: boolean;
 }) => {
+    const { t } = useTranslation();
     const isCompleted = false; // TODO: Connect to actual completion status
     const isLocked = !isFirst && !isCompleted; // TODO: Check prerequisites
     const typeIcon = TYPE_ICONS[upgrade.type];
@@ -163,13 +166,13 @@ const UpgradeCard = ({
     // Content status badge
     const getStatusBadge = () => {
         if (!upgrade.contentStatus || upgrade.contentStatus === 'coming-soon') {
-            return <span className="text-[10px] px-1.5 py-0.5 rounded bg-[var(--skin-input-fill,#f0f4ff)] text-[#2c3150]/60">Coming Soon</span>;
+            return <span className="text-[10px] px-1.5 py-0.5 rounded bg-[var(--skin-input-fill,#f0f4ff)] text-[#2c3150]/60">{t('growthPaths.status.comingSoon')}</span>;
         }
         if (upgrade.contentStatus === 'available') {
-            return <span className="text-[10px] px-1.5 py-0.5 rounded bg-green-100 text-green-600">Ready</span>;
+            return <span className="text-[10px] px-1.5 py-0.5 rounded bg-green-100 text-green-600">{t('growthPaths.status.ready')}</span>;
         }
         if (upgrade.contentStatus === 'module') {
-            return <span className="text-[10px] px-1.5 py-0.5 rounded bg-blue-100 text-blue-600">Module</span>;
+            return <span className="text-[10px] px-1.5 py-0.5 rounded bg-blue-100 text-blue-600">{t('growthPaths.status.module')}</span>;
         }
         return null;
     };

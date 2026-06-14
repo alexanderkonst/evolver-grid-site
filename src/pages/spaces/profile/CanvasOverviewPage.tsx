@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import type { TFunction } from "i18next";
 import GameShellV2 from "@/components/game/GameShellV2";
 import { supabase } from "@/integrations/supabase/client";
 import { getOrCreateGameProfileId } from "@/lib/gameProfile";
@@ -24,73 +26,73 @@ import type {
 const ARTIFACT_CONFIG = [
   {
     key: "uniqueness" as const,
-    label: "Uniqueness",
+    labelKey: "canvasOverview.artifactUniquenessLabel",
     icon: Sparkles,
-    question: "Who am I at my brightest?",
+    questionKey: "canvasOverview.artifactUniquenessQuestion",
     gradient: "from-[#8460ea]/10 to-[#c8b7d8]/20",
   },
   {
     key: "myth" as const,
-    label: "Myth",
+    labelKey: "canvasOverview.artifactMythLabel",
     icon: BookOpen,
-    question: "What must be true for my work to be inevitable?",
+    questionKey: "canvasOverview.artifactMythQuestion",
     gradient: "from-[#6b8dd6]/10 to-[#8460ea]/15",
   },
   {
     key: "tribe" as const,
-    label: "Tribe",
+    labelKey: "canvasOverview.artifactTribeLabel",
     icon: Users,
-    question: "Who recognizes themselves in this myth?",
+    questionKey: "canvasOverview.artifactTribeQuestion",
     gradient: "from-[#7ec8a0]/10 to-[#8460ea]/10",
   },
   {
     key: "pain" as const,
-    label: "Pain",
+    labelKey: "canvasOverview.artifactPainLabel",
     icon: AlertCircle,
-    question: "What's unbearable about their situation?",
+    questionKey: "canvasOverview.artifactPainQuestion",
     gradient: "from-[#e88e72]/10 to-[#c8b7d8]/15",
   },
   {
     key: "promise" as const,
-    label: "Promise",
+    labelKey: "canvasOverview.artifactPromiseLabel",
     icon: ArrowRight,
-    question: "What's the master transformational result?",
+    questionKey: "canvasOverview.artifactPromiseQuestion",
     gradient: "from-[#8460ea]/10 to-[#6b8dd6]/15",
   },
   {
     key: "lead_magnet" as const,
-    label: "Lead Magnet",
+    labelKey: "canvasOverview.artifactLeadMagnetLabel",
     icon: Zap,
-    question: "How do people get in the door?",
+    questionKey: "canvasOverview.artifactLeadMagnetQuestion",
     gradient: "from-[#e8c87e]/10 to-[#c8b7d8]/10",
   },
   {
     key: "value_ladder" as const,
-    label: "Value Ladder",
+    labelKey: "canvasOverview.artifactValueLadderLabel",
     icon: TrendingUp,
-    question: "What are the ascending containers?",
+    questionKey: "canvasOverview.artifactValueLadderQuestion",
     gradient: "from-[#7ec8a0]/10 to-[#6b8dd6]/10",
   },
 ];
 
-const statusBadge = (status: ArtifactStatusValue) => {
+const statusBadge = (status: ArtifactStatusValue, t: TFunction) => {
   switch (status) {
     case "landed":
       return (
         <span className="px-2 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-700">
-          Landed
+          {t("canvasOverview.statusLanded")}
         </span>
       );
     case "refining":
       return (
         <span className="px-2 py-0.5 rounded-full text-xs font-medium bg-amber-100 text-amber-700">
-          Refining
+          {t("canvasOverview.statusRefining")}
         </span>
       );
     default:
       return (
         <span className="px-2 py-0.5 rounded-full text-xs font-medium bg-[#a4a3d0]/20 text-[#a4a3d0]">
-          Draft
+          {t("canvasOverview.statusDraft")}
         </span>
       );
   }
@@ -116,6 +118,7 @@ const getArtifactPreview = (canvas: CanvasSnapshot, key: string): string | null 
 };
 
 const CanvasOverviewPage = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const [canvas, setCanvas] = useState<CanvasSnapshot | null>(null);
@@ -164,7 +167,7 @@ const CanvasOverviewPage = () => {
     return (
       <GameShellV2>
         <div className="flex items-center justify-center min-h-[60vh]">
-          <div className="animate-pulse text-[#a4a3d0]">Loading…</div>
+          <div className="animate-pulse text-[#a4a3d0]">{t("canvasOverview.loading")}</div>
         </div>
       </GameShellV2>
     );
@@ -179,16 +182,13 @@ const CanvasOverviewPage = () => {
             <Sparkles className="w-8 h-8 text-[#8460ea]" />
           </div>
           <h1 className="text-2xl font-bold text-[#2c3150] mb-3">
-            Your Unique Business Canvas
+            {t("canvasOverview.emptyTitle")}
           </h1>
           <p className="text-[#2c3150]/60 mb-2 max-w-md mx-auto">
-            The Canvas is built during a facilitated session where you discover
-            your uniqueness, myth, tribe, pain, promise, lead magnet, and value
-            ladder.
+            {t("canvasOverview.emptyDescription")}
           </p>
           <p className="text-sm text-[#a4a3d0] mb-8 max-w-sm mx-auto">
-            7 artifacts. 1 session. A complete foundation for your unique
-            business.
+            {t("canvasOverview.emptyTagline")}
           </p>
 
           {/* Empty state - show all 7 artifacts as ghosted cards */}
@@ -205,10 +205,10 @@ const CanvasOverviewPage = () => {
                 </div>
                 <div className="flex-1 min-w-0">
                   <p className="text-sm font-medium text-[#2c3150]/40">
-                    {artifact.label}
+                    {t(artifact.labelKey)}
                   </p>
                   <p className="text-xs text-[#a4a3d0]/60 truncate">
-                    {artifact.question}
+                    {t(artifact.questionKey)}
                   </p>
                 </div>
               </div>
@@ -222,7 +222,7 @@ const CanvasOverviewPage = () => {
             }
           >
             <Calendar className="w-4 h-4 mr-2" />
-            Book a Canvas Session
+            {t("canvasOverview.bookSessionButton")}
           </Button>
         </div>
       </GameShellV2>
@@ -241,15 +241,15 @@ const CanvasOverviewPage = () => {
             <Sparkles className="w-7 h-7 text-[#8460ea]" />
           </div>
           <p className="text-xs text-[#8460ea] uppercase tracking-widest mb-2">
-            Unique Business Canvas · {canvas.version}
+            {t("canvasOverview.heroEyebrow")} · {canvas.version}
           </p>
           <h1 className="text-3xl font-display font-bold text-[#2c3150] mb-2">
-            {canvas.tagline || "My Unique Business"}
+            {canvas.tagline || t("canvasOverview.heroTitleFallback")}
           </h1>
           {canvas.facilitator && (
             <p className="text-sm text-[#2c3150]/50">
-              Facilitated by {canvas.facilitator} · Session{" "}
-              {canvas.session_number}
+              {t("canvasOverview.facilitatedBy", { facilitator: canvas.facilitator })} ·{" "}
+              {t("canvasOverview.session", { number: canvas.session_number })}
             </p>
           )}
         </div>
@@ -277,9 +277,9 @@ const CanvasOverviewPage = () => {
                         {i + 1}.
                       </span>
                       <h3 className="font-semibold text-[#2c3150] text-sm">
-                        {artifact.label}
+                        {t(artifact.labelKey)}
                       </h3>
-                      {statusBadge(status)}
+                      {statusBadge(status, t)}
                     </div>
                     {preview ? (
                       <p className="text-sm text-[#2c3150]/70 leading-relaxed">
@@ -287,7 +287,7 @@ const CanvasOverviewPage = () => {
                       </p>
                     ) : (
                       <p className="text-sm text-[#a4a3d0]/60 italic">
-                        {artifact.question}
+                        {t(artifact.questionKey)}
                       </p>
                     )}
                   </div>
@@ -301,7 +301,7 @@ const CanvasOverviewPage = () => {
         {canvas.notes && (
           <div className="p-4 bg-[var(--skin-card-fill,rgba(255,255,255,0.6))] rounded-xl border border-[#a4a3d0]/20">
             <p className="text-xs text-[#8460ea] uppercase tracking-wide mb-2 font-medium">
-              Session Notes
+              {t("canvasOverview.sessionNotesLabel")}
             </p>
             <p className="text-sm text-[#2c3150]/70 leading-relaxed whitespace-pre-wrap">
               {canvas.notes}
@@ -317,7 +317,7 @@ const CanvasOverviewPage = () => {
             onClick={() => navigate("/game/build/product-builder")}
           >
             <Zap className="w-4 h-4 mr-2" />
-            Build Landing Page
+            {t("canvasOverview.buildLandingButton")}
           </Button>
           <Button
             variant="outline"
@@ -325,7 +325,7 @@ const CanvasOverviewPage = () => {
             onClick={() => navigate("/the-originals")}
           >
             <Users className="w-4 h-4 mr-1" />
-            Community
+            {t("canvasOverview.communityButton")}
           </Button>
         </div>
       </div>

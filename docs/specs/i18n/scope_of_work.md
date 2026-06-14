@@ -39,9 +39,12 @@ This is **not a brochure site that needs its buttons translated.** It is an AI-n
 | 2e — Post-reveal money path + RU (MissionDiscovery, AssetMapping, QoL results; 106 keys) | ✅ 2026-06-14 | build green, prefix-normalized merge, charts/Zod skipped for landmine/Phase-0b passes |
 | 2f — Shell rail + breadcrumb + RU (SectionsPanel `buildJourneySections` t-threaded, GameShellV2 breadcrumb; 40 keys) | ✅ 2026-06-14 | build green (12.3s), `/ru` rail fully RU, number-pip regex preserved, `SPACE_SECTIONS` deliberately left (GameShellV2 consumer) |
 | 0b · `preferred_language` migration written (sync pending) | 🟡 | mirrors `preferred_skin`; activates on deploy |
-| 2g+ — `SPACE_SECTIONS`/UBB rail labels · Phase 0b (Zod/format/calendar/lang-sync) · data hubs · landmines (PDF/charts/emails) · Layer 3 · seeded · SEO · ES | ⏳ | the bulk remains |
+| 2g — Matching/reveal surfaces + RU (MyResult, Connections, Matchmaking, Intros, PeopleDir, GrowthPaths; 186 keys) | ✅ 2026-06-14 | build green |
+| 2h — Reveal display + profile/settings + RU (Appleseed, Profile, Settings, ZoGOverview, CanvasOverview, MissionSelection; 180 keys) | ✅ 2026-06-14 | build green (12.7s) |
+| 0b — calendar locale + `preferred_language` sync (`languageSync.ts`) wired | ✅ 2026-06-14 | build green; sync activates on migration deploy |
+| 2i+ — logged-in core loop/offers · `SPACE_SECTIONS`/UBB rail · Phase 0b (Zod errorMap, format sweep) · data hubs · landmines (PDF/charts/emails) · Layer 3 · seeded · SEO · ES | ⏳ | the bulk remains |
 
-**Running tally (2026-06-14): ~358 keys across 15 files, 6 production builds green. The entire pre-login funnel + the shell rail + the post-reveal money path read in Russian** (`/ru`, `/ru?path=match`, `/ru/ignite`, `/ru/auth`, the JOURNEY sidebar).
+**Running tally (2026-06-14): ~724 keys across 27 files, 7 production builds green. Pre-login funnel + shell rail + post-reveal money path + matching/reveal surfaces + profile/settings read in Russian.** Phase 0b: calendar locale + preferred_language sync done; Zod errorMap + format sweep pending.
 
 **Milestone (2026-06-14): the public cold-funnel reads in Russian** — `/ru` (manifesto + playbook CTA), `/ru?path=match` (hero + match CTAs), `/ru/ignite` (paid session). ~137 keys, 3 production builds green. Ready for Sasha's Charge review.
 

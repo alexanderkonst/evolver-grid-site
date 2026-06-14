@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { User, CreditCard, Check, Edit2, X, AlertTriangle } from "lucide-react";
 import { PremiumLoader } from "@/components/ui/PremiumLoader";
@@ -27,6 +28,7 @@ interface Purchase {
 }
 
 const Profile = () => {
+    const { t } = useTranslation();
     const navigate = useNavigate();
     const { toast } = useToast();
     const [isLoading, setIsLoading] = useState(true);
@@ -123,8 +125,8 @@ const Profile = () => {
 
         if (error) {
             toast({
-                title: "Error",
-                description: "Failed to update profile. Please try again.",
+                title: t('profile.toastErrorTitle'),
+                description: t('profile.toastUpdateFailedDescription'),
                 variant: "destructive",
             });
         } else {
@@ -136,8 +138,8 @@ const Profile = () => {
             });
             setIsEditing(false);
             toast({
-                title: "Profile updated",
-                description: "Your changes have been saved.",
+                title: t('profile.toastProfileUpdatedTitle'),
+                description: t('profile.toastProfileUpdatedDescription'),
             });
         }
 
@@ -193,12 +195,12 @@ const Profile = () => {
     };
 
     const formatPurchaseSource = (source: string | null) => {
-        if (!source) return "Unknown";
+        if (!source) return t('profile.sourceUnknown');
         switch (source) {
             case "stripe_checkout":
-                return "Stripe Checkout";
+                return t('profile.sourceStripeCheckout');
             case "promo_code":
-                return "Promo Code";
+                return t('profile.sourcePromoCode');
             default:
                 return source;
         }
@@ -222,10 +224,10 @@ const Profile = () => {
                     {/* Page Header */}
                     <div className="mb-8">
                         <h1 className="text-3xl font-bold text-[#2c3150]">
-                            <BoldText>PROFILE</BoldText>
+                            <BoldText>{t('profile.pageTitle')}</BoldText>
                         </h1>
                         <p className="text-[#2c3150]/60 mt-1">
-                            Manage your account settings and subscriptions
+                            {t('profile.pageSubtitle')}
                         </p>
                     </div>
 
@@ -237,8 +239,8 @@ const Profile = () => {
                                     <div className="flex items-center gap-3">
                                         <User className="h-5 w-5 text-[#2c3150]/60" />
                                         <div>
-                                            <CardTitle className="text-[#2c3150] font-sans text-lg">Personal Information</CardTitle>
-                                            <CardDescription className="text-[#2c3150]/60 font-sans">Your basic account details</CardDescription>
+                                            <CardTitle className="text-[#2c3150] font-sans text-lg">{t('profile.personalInfoTitle')}</CardTitle>
+                                            <CardDescription className="text-[#2c3150]/60 font-sans">{t('profile.personalInfoDescription')}</CardDescription>
                                         </div>
                                     </div>
                                     {!isEditing && (
@@ -248,7 +250,7 @@ const Profile = () => {
                                             onClick={() => setIsEditing(true)}
                                         >
                                             <Edit2 className="h-4 w-4 mr-1" />
-                                            Edit
+                                            {t('profile.editButton')}
                                         </Button>
                                     )}
                                 </div>
@@ -258,33 +260,33 @@ const Profile = () => {
                                     <div className="space-y-4">
                                         <div className="grid grid-cols-2 gap-4">
                                             <div className="space-y-2">
-                                                <Label htmlFor="firstName">First Name</Label>
+                                                <Label htmlFor="firstName">{t('profile.firstNameLabel')}</Label>
                                                 <Input
                                                     id="firstName"
                                                     value={editFirstName}
                                                     onChange={(e) => setEditFirstName(e.target.value)}
-                                                    placeholder="Jane"
+                                                    placeholder={t('profile.firstNamePlaceholder')}
                                                 />
                                             </div>
                                             <div className="space-y-2">
-                                                <Label htmlFor="lastName">Last Name</Label>
+                                                <Label htmlFor="lastName">{t('profile.lastNameLabel')}</Label>
                                                 <Input
                                                     id="lastName"
                                                     value={editLastName}
                                                     onChange={(e) => setEditLastName(e.target.value)}
-                                                    placeholder="Doe"
+                                                    placeholder={t('profile.lastNamePlaceholder')}
                                                 />
                                             </div>
                                         </div>
                                         <div className="space-y-2">
-                                            <Label>Email</Label>
+                                            <Label>{t('profile.emailLabel')}</Label>
                                             <Input value={user?.email || ""} disabled className="bg-muted" />
                                             <p className="text-xs text-muted-foreground">
-                                                Email cannot be changed
+                                                {t('profile.emailCannotBeChanged')}
                                             </p>
                                         </div>
                                         <div className="space-y-3">
-                                            <Label>Languages</Label>
+                                            <Label>{t('profile.languagesLabel')}</Label>
                                             <div className="flex flex-wrap gap-2">
                                                 {COMMON_LANGUAGES.map((language) => {
                                                     const isSelected = editLanguages.some(
@@ -315,7 +317,7 @@ const Profile = () => {
                                                                 type="button"
                                                                 onClick={() => removeLanguage(language)}
                                                                 className="text-xs text-muted-foreground hover:text-foreground"
-                                                                aria-label={`Remove ${language}`}
+                                                                aria-label={t('profile.removeLanguageAria', { language })}
                                                             >
                                                                 ×
                                                             </button>
@@ -327,7 +329,7 @@ const Profile = () => {
                                                 <Input
                                                     value={customLanguage}
                                                     onChange={(e) => setCustomLanguage(e.target.value)}
-                                                    placeholder="Add a language"
+                                                    placeholder={t('profile.addLanguagePlaceholder')}
                                                     onKeyDown={(e) => {
                                                         if (e.key === "Enter") {
                                                             e.preventDefault();
@@ -336,7 +338,7 @@ const Profile = () => {
                                                     }}
                                                 />
                                                 <Button type="button" variant="outline" onClick={addCustomLanguage}>
-                                                    Add
+                                                    {t('profile.addButton')}
                                                 </Button>
                                             </div>
                                         </div>
@@ -345,18 +347,18 @@ const Profile = () => {
                                                 {isSaving ? (
                                                     <>
                                                         <span className="premium-spinner h-4 w-4 mr-2" />
-                                                        Saving...
+                                                        {t('profile.savingButton')}
                                                     </>
                                                 ) : (
                                                     <>
                                                         <Check className="h-4 w-4 mr-2" />
-                                                        Save Changes
+                                                        {t('profile.saveChangesButton')}
                                                     </>
                                                 )}
                                             </Button>
                                             <Button variant="ghost" onClick={handleCancelEdit}>
                                                 <X className="h-4 w-4 mr-2" />
-                                                Cancel
+                                                {t('profile.cancelButton')}
                                             </Button>
                                         </div>
                                     </div>
@@ -364,20 +366,20 @@ const Profile = () => {
                                     <div className="space-y-4">
                                         <div className="grid grid-cols-2 gap-4">
                                             <div>
-                                                <p className="text-sm text-[#2c3150]/60">First Name</p>
+                                                <p className="text-sm text-[#2c3150]/60">{t('profile.firstNameLabel')}</p>
                                                 <p className="font-medium text-[#2c3150]">{profile?.first_name || "—"}</p>
                                             </div>
                                             <div>
-                                                <p className="text-sm text-[#2c3150]/60">Last Name</p>
+                                                <p className="text-sm text-[#2c3150]/60">{t('profile.lastNameLabel')}</p>
                                                 <p className="font-medium text-[#2c3150]">{profile?.last_name || "—"}</p>
                                             </div>
                                         </div>
                                         <div>
-                                            <p className="text-sm text-[#2c3150]/60">Email</p>
+                                            <p className="text-sm text-[#2c3150]/60">{t('profile.emailLabel')}</p>
                                             <p className="font-medium text-[#2c3150]">{user?.email}</p>
                                         </div>
                                         <div>
-                                            <p className="text-sm text-[#2c3150]/60">Languages</p>
+                                            <p className="text-sm text-[#2c3150]/60">{t('profile.languagesLabel')}</p>
                                             {profile?.spoken_languages && profile.spoken_languages.length > 0 ? (
                                                 <div className="mt-2 flex flex-wrap gap-2">
                                                     {profile.spoken_languages.map((language) => (
@@ -401,9 +403,9 @@ const Profile = () => {
                                 <div className="flex items-center gap-3">
                                     <CreditCard className="h-5 w-5 text-[#2c3150]/60" />
                                     <div>
-                                        <CardTitle className="text-[#2c3150] font-sans text-lg">Billing & Purchases</CardTitle>
+                                        <CardTitle className="text-[#2c3150] font-sans text-lg">{t('profile.billingTitle')}</CardTitle>
                                         <CardDescription className="text-[#2c3150]/60 font-sans">
-                                            Your purchase history and subscription management
+                                            {t('profile.billingDescription')}
                                         </CardDescription>
                                     </div>
                                 </div>
@@ -412,7 +414,7 @@ const Profile = () => {
                                 <div className="space-y-6">
                                     {/* Purchases List */}
                                     <div>
-                                        <h4 className="text-sm font-medium mb-3 text-[#2c3150]">Purchase History</h4>
+                                        <h4 className="text-sm font-medium mb-3 text-[#2c3150]">{t('profile.purchaseHistoryHeading')}</h4>
                                         {purchases.length > 0 ? (
                                             <div className="space-y-2">
                                                 {purchases.map((purchase) => (
@@ -421,9 +423,9 @@ const Profile = () => {
                                                         className="flex items-center justify-between p-3 bg-[#f0f4ff]/50 rounded-lg"
                                                     >
                                                         <div>
-                                                            <p className="font-medium text-sm text-[#2c3150]">AI Intelligence Boost</p>
+                                                            <p className="font-medium text-sm text-[#2c3150]">{t('profile.aiIntelligenceBoost')}</p>
                                                             <p className="text-xs text-[#2c3150]/60">
-                                                                via {formatPurchaseSource(purchase.source)}
+                                                                {t('profile.viaSource', { source: formatPurchaseSource(purchase.source) })}
                                                             </p>
                                                         </div>
                                                         <p className="text-sm text-[#2c3150]/60">
@@ -434,16 +436,16 @@ const Profile = () => {
                                             </div>
                                         ) : (
                                             <p className="text-sm text-[#2c3150]/60 py-4 text-center">
-                                                No purchases yet
+                                                {t('profile.noPurchasesYet')}
                                             </p>
                                         )}
                                     </div>
 
                                     {/* Subscription Management */}
                                     <div className="pt-4 border-t">
-                                        <h4 className="text-sm font-medium mb-3 text-[#2c3150]">Subscription Management</h4>
+                                        <h4 className="text-sm font-medium mb-3 text-[#2c3150]">{t('profile.subscriptionManagementHeading')}</h4>
                                         <p className="text-sm text-[#2c3150]/60 mb-4">
-                                            Manage your active subscriptions, update payment methods, or cancel.
+                                            {t('profile.subscriptionManagementDescription')}
                                         </p>
                                         <Button
                                             variant="outline"
@@ -453,10 +455,10 @@ const Profile = () => {
                                             {isPortalLoading ? (
                                                 <>
                                                     <span className="premium-spinner h-4 w-4 mr-2" />
-                                                    Opening...
+                                                    {t('profile.openingButton')}
                                                 </>
                                             ) : (
-                                                "Manage Subscription"
+                                                t('profile.manageSubscriptionButton')
                                             )}
                                         </Button>
                                     </div>
@@ -469,9 +471,9 @@ const Profile = () => {
                                 <div className="flex items-center gap-3">
                                     <AlertTriangle className="h-5 w-5 text-red-600" />
                                     <div>
-                                        <CardTitle className="text-red-900">Danger Zone</CardTitle>
+                                        <CardTitle className="text-red-900">{t('profile.dangerZoneTitle')}</CardTitle>
                                         <CardDescription className="text-red-700">
-                                            Irreversible actions regarding your account data
+                                            {t('profile.dangerZoneDescription')}
                                         </CardDescription>
                                     </div>
                                 </div>
@@ -479,15 +481,15 @@ const Profile = () => {
                             <CardContent>
                                 <div className="flex items-center justify-between">
                                     <div>
-                                        <p className="font-medium text-red-900">Reset Progress</p>
+                                        <p className="font-medium text-red-900">{t('profile.resetProgressLabel')}</p>
                                         <p className="text-sm text-red-700">
-                                            Wipe all game progress (XP, levels, snapshots) and start over.
+                                            {t('profile.resetProgressDescription')}
                                         </p>
                                     </div>
                                     <Button
                                         variant="destructive"
                                         onClick={async () => {
-                                            if (!profile || !confirm("Are you sure? This will wipe ALL your progress, XP, and unlocked upgrades. This cannot be undone.")) return;
+                                            if (!profile || !confirm(t('profile.resetConfirm'))) return;
 
                                             setIsLoading(true);
                                             try {
@@ -532,23 +534,23 @@ const Profile = () => {
 
 
                                                 toast({
-                                                    title: "Progress Reset",
-                                                    description: "Your journey has been restarted.",
+                                                    title: t('profile.toastProgressResetTitle'),
+                                                    description: t('profile.toastProgressResetDescription'),
                                                 });
 
                                                 // Navigate home to restart onboarding
                                                 navigate('/game');
                                             } catch (error) {
                                                 toast({
-                                                    title: "Error",
-                                                    description: "Failed to reset progress. Please try again.",
+                                                    title: t('profile.toastErrorTitle'),
+                                                    description: t('profile.toastResetFailedDescription'),
                                                     variant: "destructive",
                                                 });
                                                 setIsLoading(false);
                                             }
                                         }}
                                     >
-                                        Reset My Progress
+                                        {t('profile.resetMyProgressButton')}
                                     </Button>
                                 </div>
                             </CardContent>

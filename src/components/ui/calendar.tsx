@@ -1,15 +1,25 @@
 import * as React from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { DayPicker } from "react-day-picker";
+import { ru, es } from "date-fns/locale";
+import { useTranslation } from "react-i18next";
 
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
 
 export type CalendarProps = React.ComponentProps<typeof DayPicker>;
 
+// Month + weekday names follow the active UI language. English (undefined)
+// falls back to react-day-picker's en-US default. Callers can still override
+// via an explicit `locale` prop (it spreads after this default).
+const DATE_FNS_LOCALES: Record<string, typeof ru> = { ru, es };
+
 function Calendar({ className, classNames, showOutsideDays = true, ...props }: CalendarProps) {
+  const { i18n } = useTranslation();
+  const dfLocale = DATE_FNS_LOCALES[i18n.resolvedLanguage ?? "en"];
   return (
     <DayPicker
+      locale={dfLocale}
       showOutsideDays={showOutsideDays}
       className={cn("p-3", className)}
       classNames={{

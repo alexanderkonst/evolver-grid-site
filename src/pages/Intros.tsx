@@ -1,4 +1,5 @@
 import { ExternalLink, Heart, Brain, Target } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 /**
  * /intros — Public page. Sasha's shortlist of aligned heavy-lifters
@@ -11,151 +12,151 @@ type Tier = "S" | "A";
 
 interface Person {
   name: string;
-  role: string;
-  why: string;
+  roleKey: string;
+  whyKey: string;
   status?: "in-touch" | "one-step";
   link?: string;
 }
 
 interface TierGroup {
   tier: Tier;
-  label: string;
-  sublabel: string;
+  labelKey: string;
+  sublabelKey: string;
   people: Person[];
 }
 
 const TIERS: TierGroup[] = [
   {
     tier: "S",
-    label: "First ring",
-    sublabel: "Core alignment · highest leverage",
+    labelKey: "intros.tierS.label",
+    sublabelKey: "intros.tierS.sublabel",
     people: [
       {
         name: "Ken Wilber",
-        role: "Founder, Integral Theory",
-        why: "My ontological stack descends directly from AQAL, quadrants, holons, lines. Endorsement = category-defining. One step away via mutual contact.",
+        roleKey: "intros.person.kenWilber.role",
+        whyKey: "intros.person.kenWilber.why",
         status: "one-step",
         link: "https://integrallife.com/",
       },
       {
         name: "Daniel Schmachtenberger",
-        role: "Co-founder, The Consilience Project",
-        why: "Meta-crisis, sensemaking, AI + civilization. Speaks to everyone worth speaking to. Knoware sits directly in his aperture.",
+        roleKey: "intros.person.danielSchmachtenberger.role",
+        whyKey: "intros.person.danielSchmachtenberger.why",
         link: "https://consilienceproject.org/",
       },
       {
         name: "Jamie Wheal",
-        role: "Founder, Flow Genome Project · author, Recapture the Rapture",
-        why: "Culture-architecture for the meta-crisis. Network runs deep across psychedelic, performance, integral, and conscious-founder circles.",
+        roleKey: "intros.person.jamieWheal.role",
+        whyKey: "intros.person.jamieWheal.why",
         link: "https://www.flowgenomeproject.com/",
       },
       {
         name: "Tomas Björkman",
-        role: "Founder, Ekskäret Foundation · author, The Market Myth",
-        why: "Swedish conscious-capital funder. Resources inner-development work quietly at scale. Direct match for resources + coherence + clarity.",
+        roleKey: "intros.person.tomasBjorkman.role",
+        whyKey: "intros.person.tomasBjorkman.why",
         link: "https://ekskaret.com/",
       },
       {
         name: "Peter Merry",
-        role: "Co-founder, Ubiquity University · Center for Human Emergence",
-        why: "European integral network. Noosphere work. Already in reference orbit.",
+        roleKey: "intros.person.peterMerry.role",
+        whyKey: "intros.person.peterMerry.why",
         status: "in-touch",
         link: "https://petermerry.org/",
       },
       {
         name: "Charles Eisenstein",
-        role: "Author, Sacred Economics · The More Beautiful World Our Hearts Know Is Possible",
-        why: "Gift-economy + interbeing. Millions of conscious readers. Philosophical match for open-blueprint / gravity-by-gift posture.",
+        roleKey: "intros.person.charlesEisenstein.role",
+        whyKey: "intros.person.charlesEisenstein.why",
         link: "https://charleseisenstein.org/",
       },
       {
         name: "Bayo Akomolafe",
-        role: "Founder, The Emergence Network",
-        why: "Post-activist philosopher. The exact frequency my tribe resonates with. Poetry + politics + ontology.",
+        roleKey: "intros.person.bayoAkomolafe.role",
+        whyKey: "intros.person.bayoAkomolafe.why",
         link: "https://www.bayoakomolafe.net/",
       },
       {
         name: "Otto Scharmer",
-        role: "MIT · Presencing Institute · Theory U",
-        why: "Institutional gravitas in conscious leadership. Field-sensing vocabulary aligns cleanly with the second-axis framing.",
+        roleKey: "intros.person.ottoScharmer.role",
+        whyKey: "intros.person.ottoScharmer.why",
         link: "https://www.presencing.org/",
       },
     ],
   },
   {
     tier: "A",
-    label: "Second ring",
-    sublabel: "Strong fit · specific leverage",
+    labelKey: "intros.tierA.label",
+    sublabelKey: "intros.tierA.sublabel",
     people: [
       {
         name: "Iain McGilchrist",
-        role: "Author, The Master and His Emissary · The Matter With Things",
-        why: "Hemispheric theory. Scientifically grounds the masculine/feminine formulation of AI progress I arrived at.",
+        roleKey: "intros.person.iainMcgilchrist.role",
+        whyKey: "intros.person.iainMcgilchrist.why",
         link: "https://channelmcgilchrist.com/",
       },
       {
         name: "John Vervaeke",
-        role: "Cognitive scientist, Toronto · Awakening from the Meaning Crisis",
-        why: "AI + cognition + meaning bridge. Growing Weaving Community network of conscious researchers.",
+        roleKey: "intros.person.johnVervaeke.role",
+        whyKey: "intros.person.johnVervaeke.why",
         link: "https://johnvervaeke.com/",
       },
       {
         name: "Tyson Yunkaporta",
-        role: "Author, Sand Talk",
-        why: "Indigenous knowledge systems applied to modern sense-making. Matches the indigenous-cosmovision layer of my operating logic.",
+        roleKey: "intros.person.tysonYunkaporta.role",
+        whyKey: "intros.person.tysonYunkaporta.why",
         link: "https://www.deakin.edu.au/about-deakin/people/tyson-yunkaporta",
       },
       {
         name: "Nora Bateson",
-        role: "Warm Data Lab · International Bateson Institute",
-        why: "Systems thinking. Bridges many networks quietly. Transcontextual intelligence.",
+        roleKey: "intros.person.noraBateson.role",
+        whyKey: "intros.person.noraBateson.why",
         link: "https://batesoninstitute.org/",
       },
       {
         name: "Lynne Twist",
-        role: "Soul of Money Institute · co-founder, Pachamama Alliance",
-        why: "Four decades of philanthropic bridge-making. Indigenous wisdom + conscious capital.",
+        roleKey: "intros.person.lynneTwist.role",
+        whyKey: "intros.person.lynneTwist.why",
         link: "https://soulofmoney.org/",
       },
       {
         name: "Audrey Tang",
-        role: "Former Digital Minister, Taiwan · co-author, Plurality",
-        why: "Distributed-protocol politics. Perfect philosophical match for open-source Knoware as public infrastructure.",
+        roleKey: "intros.person.audreyTang.role",
+        whyKey: "intros.person.audreyTang.why",
         link: "https://audreyt.org/",
       },
       {
         name: "Zak Stein",
-        role: "Education futures · Lectica · The Consilience Project",
-        why: "Developmental psychology + AI + education. Direct Schmachtenberger orbit.",
+        roleKey: "intros.person.zakStein.role",
+        whyKey: "intros.person.zakStein.why",
         link: "https://www.zakstein.org/",
       },
       {
         name: "Alnoor Ladha",
-        role: "Culture Hack Labs · post-capitalist memetic engineering",
-        why: "Guerilla + spiritual + strategic. Match for the viral-vector half of fractal growth.",
+        roleKey: "intros.person.alnoorLadha.role",
+        whyKey: "intros.person.alnoorLadha.why",
         link: "https://alnoorladha.com/",
       },
       {
         name: "Foster Gamble",
-        role: "Thrive Movement · Thrive I + II",
-        why: "Audience of millions of conscious seekers. Large-scale reach into the solution-seeking tribe.",
+        roleKey: "intros.person.fosterGamble.role",
+        whyKey: "intros.person.fosterGamble.why",
         link: "https://www.thriveon.com/",
       },
       {
         name: "Emanuel Kuntzelman",
-        role: "Greenheart International · Purpose Earth Foundation",
-        why: "Consciousness evolution network with real distribution. Philanthropic + convening.",
+        roleKey: "intros.person.emanuelKuntzelman.role",
+        whyKey: "intros.person.emanuelKuntzelman.why",
         link: "https://www.emanuelkuntzelman.com/",
       },
       {
         name: "Robert Kirkpatrick",
-        role: "Former Director, UN Global Pulse",
-        why: "Data-for-humanity + institutional bridge. Different tier of network than most integralists — UN, multilaterals, policy-level.",
+        roleKey: "intros.person.robertKirkpatrick.role",
+        whyKey: "intros.person.robertKirkpatrick.why",
       },
       {
         name: "Glen Weyl",
-        role: "Microsoft Research · RadicalxChange · co-author, Plurality",
-        why: "Tech + distributed governance + conscious-founder tribe overlap. Bridges AI labs and public-infrastructure movements.",
+        roleKey: "intros.person.glenWeyl.role",
+        whyKey: "intros.person.glenWeyl.why",
         link: "https://www.glenweyl.com/",
       },
     ],
@@ -163,6 +164,7 @@ const TIERS: TierGroup[] = [
 ];
 
 const Intros = () => {
+  const { t } = useTranslation();
   // Day 91 (Sasha 2026-06-09): tokenized for Aurum — the page wash moved
   // from gradient utilities to --skin-page-wash (set only by the dark
   // skins) with the exact original cream gradient as fallback; ink reads
@@ -177,25 +179,23 @@ const Intros = () => {
         {/* Hero */}
         <div className="mb-12">
           <p className="text-xs uppercase tracking-[0.2em] text-[#8460ea] font-semibold mb-4">
-            Aleksandr Konstantinov · /intros
+            {t("intros.hero.eyebrow")}
           </p>
           <h1 className="text-4xl lg:text-5xl font-display font-bold leading-tight mb-6">
-            Who will steward this?
+            {t("intros.hero.heading")}
           </h1>
           <p className="text-lg text-[color:var(--skin-text-muted,rgba(26,26,46,0.75))] leading-relaxed mb-5">
-            Three vectors of work are ready for the light of day. I'm looking
-            for bridges to heavy-lifters with resources, coherence, and
-            clarity.
+            {t("intros.hero.intro")}
           </p>
           <div className="flex items-center gap-4 text-sm text-[color:var(--skin-text-muted,rgba(26,26,46,0.6))]">
             <span className="inline-flex items-center gap-1.5">
-              <Heart className="w-4 h-4 text-rose-500" /> open heart
+              <Heart className="w-4 h-4 text-rose-500" /> {t("intros.hero.openHeart")}
             </span>
             <span className="inline-flex items-center gap-1.5">
-              <Brain className="w-4 h-4 text-amber-500" /> higher mind
+              <Brain className="w-4 h-4 text-amber-500" /> {t("intros.hero.higherMind")}
             </span>
             <span className="inline-flex items-center gap-1.5">
-              <Target className="w-4 h-4 text-[#8460ea]" /> committed will
+              <Target className="w-4 h-4 text-[#8460ea]" /> {t("intros.hero.committedWill")}
             </span>
           </div>
         </div>
@@ -203,7 +203,7 @@ const Intros = () => {
         {/* THE THREE VECTORS */}
         <div className="mb-16">
           <p className="text-xs uppercase tracking-[0.2em] text-[#8460ea] font-semibold mb-6">
-            The three vectors
+            {t("intros.vectors.eyebrow")}
           </p>
           <div className="space-y-4">
             {/* Vector 1 */}
@@ -219,19 +219,16 @@ const Intros = () => {
                 </div>
                 <div className="flex-1 min-w-0">
                   <h3 className="text-xl font-display font-bold text-[color:var(--skin-text-primary,#1a1a2e)] mb-1 group-hover:text-[#8460ea] transition-colors">
-                    A Bitcoin-level discovery in AI
+                    {t("intros.vector1.title")}
                   </h3>
                   <p className="text-sm text-[#8460ea] font-semibold mb-3">
-                    An unprecedented first-mover advantage. Open-source from day zero.
+                    {t("intros.vector1.tagline")}
                   </p>
                   <p className="text-[15px] text-[color:var(--skin-text-muted,rgba(26,26,46,0.75))] leading-relaxed mb-3">
-                    A scaffold that moves any frontier model up a developmental
-                    stage. In blind A/B testing: measurable cognitive uplift on
-                    the hardest questions. Axis 2 of AI progress — the field
-                    layer — opened and released as public infrastructure.
+                    {t("intros.vector1.body")}
                   </p>
                   <span className="inline-flex items-center gap-1.5 text-sm text-[#8460ea] font-semibold group-hover:underline">
-                    Read the release: Knoware · t.me/ARKHAZM/170
+                    {t("intros.vector1.cta")}
                     <ExternalLink className="w-3.5 h-3.5" />
                   </span>
                 </div>
@@ -251,16 +248,13 @@ const Intros = () => {
                 </div>
                 <div className="flex-1 min-w-0">
                   <h3 className="text-xl font-display font-bold text-[color:var(--skin-text-primary,#1a1a2e)] mb-1 group-hover:text-[#8460ea] transition-colors">
-                    FMF + PMF guaranteed in 6–8 weeks
+                    {t("intros.vector2.title")}
                   </h3>
                   <p className="text-sm text-[#8460ea] font-semibold mb-3">
-                    A system built for conscious aspiring impact founders.
+                    {t("intros.vector2.tagline")}
                   </p>
                   <p className="text-[15px] text-[color:var(--skin-text-muted,rgba(26,26,46,0.75))] leading-relaxed mb-3">
-                    Founder-Market Fit and Product-Market Fit, engineered
-                    from the founder's unique genius out — not from market
-                    research in. Guaranteed delivery window: 6 to 8 weeks.
-                    Live with paying founders.
+                    {t("intros.vector2.body")}
                   </p>
                   <span className="inline-flex items-center gap-1.5 text-sm text-[#8460ea] font-semibold group-hover:underline">
                     FindYourTopTalent.com
@@ -278,19 +272,16 @@ const Intros = () => {
                 </div>
                 <div className="flex-1 min-w-0">
                   <h3 className="text-xl font-display font-bold text-[color:var(--skin-text-primary,#1a1a2e)] mb-1">
-                    The Golden Age's core of coherence
+                    {t("intros.vector3.title")}
                   </h3>
                   <p className="text-sm text-[#8460ea] font-semibold mb-3">
-                    The integrating spine beneath the first two.
+                    {t("intros.vector3.tagline")}
                   </p>
                   <p className="text-[15px] text-[color:var(--skin-text-muted,rgba(26,26,46,0.75))] leading-relaxed mb-3">
-                    The ontological architecture that makes vectors 1 and 2
-                    possible — and makes them fractal. A holonic operating
-                    system for planetary-scale activation. Publication
-                    forthcoming.
+                    {t("intros.vector3.body")}
                   </p>
                   <span className="inline-flex items-center gap-1.5 text-sm text-[color:var(--skin-text-muted,rgba(26,26,46,0.5))] font-medium">
-                    Publication forthcoming
+                    {t("intros.vector3.status")}
                   </span>
                 </div>
               </div>
@@ -301,10 +292,7 @@ const Intros = () => {
         {/* Transition to the list */}
         <div className="mb-10">
           <p className="text-[15px] text-[color:var(--skin-text-muted,rgba(26,26,46,0.75))] leading-relaxed">
-            There is enough abundance here for everyone involved. We'll need
-            to act together. Below: a shortlist of aligned heavy-lifters I've
-            identified. If you can open a door to any of them — or know
-            someone in their inner ring — reach out.
+            {t("intros.transition")}
           </p>
         </div>
 
@@ -314,13 +302,13 @@ const Intros = () => {
             <div className="mb-6 pb-3 border-b border-[color:var(--skin-hairline,rgba(26,26,46,0.10))]">
               <div className="flex items-baseline gap-3">
                 <span className="text-xs font-mono font-bold text-[#8460ea] uppercase tracking-widest">
-                  Tier {group.tier}
+                  {t("intros.tierLabel", { tier: group.tier })}
                 </span>
                 <h2 className="text-xl font-display font-bold text-[color:var(--skin-text-primary,#1a1a2e)]">
-                  {group.label}
+                  {t(group.labelKey)}
                 </h2>
               </div>
-              <p className="text-sm text-[color:var(--skin-text-muted,rgba(26,26,46,0.55))] mt-1">{group.sublabel}</p>
+              <p className="text-sm text-[color:var(--skin-text-muted,rgba(26,26,46,0.55))] mt-1">{t(group.sublabelKey)}</p>
             </div>
 
             <div className="space-y-4">
@@ -351,19 +339,19 @@ const Intros = () => {
                       </h3>
                       {p.status === "in-touch" && (
                         <span className="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-green-100 text-green-700 uppercase tracking-wide">
-                          in touch
+                          {t("intros.status.inTouch")}
                         </span>
                       )}
                       {p.status === "one-step" && (
                         <span className="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-amber-100 text-amber-700 uppercase tracking-wide">
-                          one step away
+                          {t("intros.status.oneStep")}
                         </span>
                       )}
                     </div>
                   </div>
-                  <p className="text-sm text-[#8460ea] mb-2">{p.role}</p>
+                  <p className="text-sm text-[#8460ea] mb-2">{t(p.roleKey)}</p>
                   <p className="text-[15px] text-[color:var(--skin-text-muted,rgba(26,26,46,0.75))] leading-relaxed">
-                    {p.why}
+                    {t(p.whyKey)}
                   </p>
                 </article>
               ))}
@@ -374,11 +362,10 @@ const Intros = () => {
         {/* CTA */}
         <section className="text-center py-8 border-t border-[color:var(--skin-hairline,rgba(26,26,46,0.10))]">
           <p className="text-sm uppercase tracking-[0.2em] text-[#8460ea] font-semibold mb-4">
-            Who can open a door
+            {t("intros.cta.eyebrow")}
           </p>
           <p className="text-lg text-[color:var(--skin-text-primary,#1a1a2e)] mb-6 max-w-xl mx-auto leading-relaxed">
-            If you can make a warm intro to anyone above — or to someone who
-            knows them — I'd be grateful for the bridge.
+            {t("intros.cta.body")}
           </p>
           <div className="flex justify-center">
             <a
@@ -387,12 +374,12 @@ const Intros = () => {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-sm font-semibold bg-[#1a1a2e] text-white hover:bg-[#8460ea] transition-all shadow-md"
             >
-              Reach me on Telegram
+              {t("intros.cta.button")}
               <ExternalLink className="w-4 h-4" />
             </a>
           </div>
           <p className="text-xs text-[color:var(--skin-text-muted,rgba(26,26,46,0.45))] mt-8">
-            Updated April 2026 · findyourtoptalent.com/intros
+            {t("intros.cta.footer")}
           </p>
         </section>
       </div>

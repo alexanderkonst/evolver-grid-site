@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { Target } from "lucide-react";
 import { PremiumLoader } from "@/components/ui/PremiumLoader";
 import GameShellV2 from "@/components/game/GameShellV2";
@@ -22,6 +23,7 @@ import { PILLARS } from "@/modules/mission-discovery/data/pillars";
 
 const MissionSelection = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const { toast } = useToast();
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
@@ -82,7 +84,7 @@ const MissionSelection = () => {
   const handleSave = async () => {
     if (!userId || !userEmail) return;
     if (!selectedMission) {
-      toast({ title: "Choose a mission to continue", variant: "destructive" });
+      toast({ title: t('missionSelection.toastChooseMission'), variant: "destructive" });
       return;
     }
 
@@ -133,12 +135,12 @@ const MissionSelection = () => {
         if (error) throw error;
       }
 
-      toast({ title: "Mission saved" });
+      toast({ title: t('missionSelection.toastMissionSaved') });
       navigate("/game/me");
     } catch (err: any) {
       toast({
-        title: "Save failed",
-        description: err.message || "Unable to save your mission.",
+        title: t('missionSelection.toastSaveFailed'),
+        description: err.message || t('missionSelection.toastSaveFailedDescription'),
         variant: "destructive",
       });
     } finally {
@@ -163,18 +165,18 @@ const MissionSelection = () => {
           <div className="flex items-center gap-3 text-foreground">
             <Target className="w-6 h-6" />
             <div>
-              <h1 className="text-2xl sm:text-3xl font-semibold">Mission Selection</h1>
-              <p className="text-sm text-muted-foreground">Choose a mission that reflects what you are here to build.</p>
+              <h1 className="text-2xl sm:text-3xl font-semibold">{t('missionSelection.heading')}</h1>
+              <p className="text-sm text-muted-foreground">{t('missionSelection.subheading')}</p>
             </div>
           </div>
 
           <div className="grid gap-4 sm:grid-cols-2">
             <Select value={pillarId} onValueChange={setPillarId}>
               <SelectTrigger className="w-full">
-                <SelectValue placeholder="Pillar" />
+                <SelectValue placeholder={t('missionSelection.pillarPlaceholder')} />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="all">Choose a pillar</SelectItem>
+                <SelectItem value="all">{t('missionSelection.pillarChoose')}</SelectItem>
                 {PILLARS.map((pillar) => (
                   <SelectItem key={pillar.id} value={pillar.id}>
                     {pillar.title}
@@ -185,10 +187,10 @@ const MissionSelection = () => {
 
             <Select value={focusAreaId} onValueChange={setFocusAreaId}>
               <SelectTrigger className="w-full">
-                <SelectValue placeholder="Focus Area" />
+                <SelectValue placeholder={t('missionSelection.focusAreaPlaceholder')} />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="all">Choose a focus area</SelectItem>
+                <SelectItem value="all">{t('missionSelection.focusAreaChoose')}</SelectItem>
                 {focusOptions.map((focus) => (
                   <SelectItem key={focus.id} value={focus.id}>
                     {focus.title}
@@ -200,10 +202,10 @@ const MissionSelection = () => {
 
           <Select value={missionId} onValueChange={setMissionId}>
             <SelectTrigger className="w-full">
-              <SelectValue placeholder="Mission" />
+              <SelectValue placeholder={t('missionSelection.missionPlaceholder')} />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="all">Choose a mission</SelectItem>
+              <SelectItem value="all">{t('missionSelection.missionChoose')}</SelectItem>
               {missionsForFocus.map((mission) => (
                 <SelectItem key={mission.id} value={mission.id}>
                   {mission.title}
@@ -217,19 +219,19 @@ const MissionSelection = () => {
               under the dark skins. Card fill now reads --skin-card-bg with the
               original literal as fallback. */}
           <div className="rounded-2xl border border-border bg-[var(--skin-card-fill,rgba(255,255,255,0.85))] backdrop-blur-sm p-4 shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
-            <p className="text-sm font-medium text-foreground mb-2">Describe your specific mission (optional)</p>
+            <p className="text-sm font-medium text-foreground mb-2">{t('missionSelection.missionNoteLabel')}</p>
             <Textarea
               value={missionNote}
               onChange={(event) => setMissionNote(event.target.value)}
-              placeholder="I'm building..."
+              placeholder={t('missionSelection.missionNotePlaceholder')}
               rows={4}
             />
           </div>
 
           <div className="flex flex-col gap-3 sm:flex-row sm:justify-end">
-            <Button variant="outline" onClick={() => navigate("/game/me")}>Back</Button>
+            <Button variant="outline" onClick={() => navigate("/game/me")}>{t('missionSelection.back')}</Button>
             <Button onClick={handleSave} disabled={saving}>
-              {saving ? "Saving..." : "Save Mission"}
+              {saving ? t('missionSelection.saving') : t('missionSelection.saveMission')}
             </Button>
           </div>
         </div>

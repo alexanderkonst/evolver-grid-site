@@ -28,6 +28,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { UserPlus, Mail, X } from "lucide-react";
 import GameShellV2 from "@/components/game/GameShellV2";
 import { Button } from "@/components/ui/button";
@@ -61,6 +62,7 @@ interface ProfileSummary {
 
 const Connections = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const { toast } = useToast();
   const [userId, setUserId] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
@@ -147,10 +149,10 @@ const Connections = () => {
         .eq("from_user_id", userId);
       if (error) throw error;
       setOneSidedInterests((prev) => prev.filter((r) => r.id !== row.id));
-      toast({ title: "Interest withdrawn" });
+      toast({ title: t('connections.toastWithdrawn') });
     } catch (err) {
       toast({
-        title: "Couldn't withdraw",
+        title: t('connections.toastWithdrawError'),
         description: err instanceof Error ? err.message : undefined,
         variant: "destructive",
       });
@@ -163,8 +165,8 @@ const Connections = () => {
     return (
       <GameShellV2>
         <div className="p-6 lg:p-8 max-w-3xl mx-auto text-center">
-          <h1 className="text-2xl font-semibold text-foreground mb-3">Sign in to view connections</h1>
-          <Button onClick={() => navigate("/auth")}>Sign in</Button>
+          <h1 className="text-2xl font-semibold text-foreground mb-3">{t('connections.signInTitle')}</h1>
+          <Button onClick={() => navigate("/auth")}>{t('connections.signInButton')}</Button>
         </div>
       </GameShellV2>
     );
@@ -191,7 +193,7 @@ const Connections = () => {
     const profile = profiles[otherId];
     const name = profile
       ? `${profile.first_name || ""} ${profile.last_name || ""}`.trim()
-      : "Community member";
+      : t('connections.communityMember');
     return (
       <div key={row.id} className="rounded-xl border border-border bg-[var(--skin-card-fill,rgba(255,255,255,0.85))] backdrop-blur-sm p-4 shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
         <div className="flex items-center justify-between gap-4">
@@ -199,7 +201,7 @@ const Connections = () => {
             <p className="font-semibold text-foreground">{name}</p>
             <p className="text-xs text-muted-foreground mt-0.5 inline-flex items-center gap-1">
               <Mail className="w-3 h-3" />
-              Introduction sent {new Date(row.intro_sent_at).toLocaleDateString()}
+              {t('connections.introSent', { date: new Date(row.intro_sent_at).toLocaleDateString() })}
             </p>
             {row.ai_why_text && (
               <p className="text-sm text-muted-foreground mt-2 italic">"{row.ai_why_text}"</p>
@@ -214,14 +216,14 @@ const Connections = () => {
     const profile = profiles[row.to_user_id];
     const name = profile
       ? `${profile.first_name || ""} ${profile.last_name || ""}`.trim()
-      : "Community member";
+      : t('connections.communityMember');
     return (
       <div key={row.id} className="rounded-xl border border-border bg-[var(--skin-card-fill,rgba(255,255,255,0.85))] backdrop-blur-sm p-4 shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
         <div className="flex items-center justify-between gap-4">
           <div>
             <p className="font-semibold text-foreground">{name}</p>
             <p className="text-xs text-muted-foreground mt-0.5">
-              Heads-up email sent {new Date(row.created_at).toLocaleDateString()} — waiting for them to respond
+              {t('connections.headsUpSent', { date: new Date(row.created_at).toLocaleDateString() })}
             </p>
           </div>
           <Button
@@ -231,7 +233,7 @@ const Connections = () => {
             disabled={withdrawing === row.id}
           >
             <X className="w-3.5 h-3.5 mr-1" />
-            Withdraw
+            {t('connections.withdraw')}
           </Button>
         </div>
       </div>
@@ -245,17 +247,17 @@ const Connections = () => {
 
         <div className="flex items-center gap-3 mb-6">
           <UserPlus className="w-6 h-6 text-foreground" />
-          <h1 className="text-2xl font-bold text-foreground">Connections</h1>
+          <h1 className="text-2xl font-bold text-foreground">{t('connections.heading')}</h1>
         </div>
 
         {!hasActivity ? (
           <div className="rounded-xl border border-border bg-[var(--skin-card-fill,rgba(255,255,255,0.85))] backdrop-blur-sm p-6 shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
             <EmptyState
               icon={<UserPlus className="w-6 h-6 text-muted-foreground" />}
-              title="No connections yet"
-              description="Express interest in a match to start building your network. Introductions fire when both sides say yes."
+              title={t('connections.emptyTitle')}
+              description={t('connections.emptyDescription')}
               action={{
-                label: "Find Collaborators",
+                label: t('connections.emptyAction'),
                 onClick: () => navigate("/game/collaborate/matches"),
               }}
             />
@@ -264,10 +266,10 @@ const Connections = () => {
           <div className="space-y-8">
             <section className="space-y-3">
               <h2 className="text-sm font-semibold text-muted-foreground">
-                Introduced ({intros.length})
+                {t('connections.introducedHeading', { count: intros.length })}
               </h2>
               {intros.length === 0 ? (
-                <p className="text-sm text-muted-foreground">No introductions yet — both sides need to express interest before the platform connects you.</p>
+                <p className="text-sm text-muted-foreground">{t('connections.introducedEmpty')}</p>
               ) : (
                 intros.map(renderIntroRow)
               )}
@@ -275,10 +277,10 @@ const Connections = () => {
 
             <section className="space-y-3">
               <h2 className="text-sm font-semibold text-muted-foreground">
-                Your expressed interests ({oneSidedInterests.length})
+                {t('connections.interestsHeading', { count: oneSidedInterests.length })}
               </h2>
               {oneSidedInterests.length === 0 ? (
-                <p className="text-sm text-muted-foreground">No pending interests. Find more matches on /matchmaking.</p>
+                <p className="text-sm text-muted-foreground">{t('connections.interestsEmpty')}</p>
               ) : (
                 oneSidedInterests.map(renderInterestRow)
               )}
