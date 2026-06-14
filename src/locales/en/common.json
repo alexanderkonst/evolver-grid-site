@@ -4412,5 +4412,323 @@
       "goalCycleReview": "Complete cycle review",
       "footer": "MDLS · contemplative operating surface"
     }
+  },
+  "gameShell": {
+    "brand": "Genius Business",
+    "nav": {
+      "profile": {
+        "label": "Profile",
+        "description": "Know yourself",
+        "modules": {
+          "zog": "Zone of Genius",
+          "qol": "Quality of Life"
+        }
+      },
+      "transformation": {
+        "label": "Transformation",
+        "description": "Master yourself",
+        "modules": {
+          "library": "Practice Library",
+          "paths": "Growth Paths"
+        }
+      },
+      "marketplace": {
+        "label": "Marketplace",
+        "description": "Monetize your genius"
+      },
+      "teams": {
+        "label": "Teams",
+        "description": "Find your people",
+        "modules": {
+          "matches": "Matches",
+          "people": "People Directory"
+        }
+      },
+      "events": {
+        "label": "Events",
+        "description": "Gatherings and Experiences"
+      },
+      "coop": {
+        "label": "Business Incubator",
+        "description": "Build together"
+      }
+    },
+    "unlockHints": {
+      "teams": "Complete your Zone of Genius to unlock Teams.",
+      "marketplace": "Create your Genius Offer to unlock Marketplace.",
+      "coop": "Create your Genius Offer to unlock Business Incubator.",
+      "events": "Complete your Zone of Genius to unlock Events."
+    },
+    "toast": {
+      "lockedTitle": "Locked",
+      "lockedFallback": "Complete the required steps to unlock this space."
+    },
+    "aria": {
+      "openSidebar": "Open sidebar",
+      "closeSidebar": "Close sidebar",
+      "collapseSidebar": "Collapse sidebar",
+      "expandSidebar": "Expand sidebar"
+    },
+    "user": {
+      "avatarAlt": "Profile avatar",
+      "fallbackName": "Player",
+      "signOut": "Sign out",
+      "signIn": "Sign in"
+    }
+  },
+  "tourSteps": {
+    "me": {
+      "title": "Me",
+      "tagline": "Your Zone of Genius lives here",
+      "description": "This is you — your Zone of Genius, your story, your unique gifts. Everything you discover about yourself gets saved here."
+    },
+    "learn": {
+      "title": "Learn",
+      "tagline": "Your path of transformation",
+      "description": "Map your Quality of Life, choose your growth path, and access transformational content. This is where you grow."
+    },
+    "meet": {
+      "title": "Meet",
+      "tagline": "Find your people",
+      "description": "Connect with aligned people through genius matchmaking. Find partners, mentors, and collaborators who complement your gifts."
+    },
+    "collaborate": {
+      "title": "Collaborate",
+      "tagline": "Work together",
+      "description": "Join forces with others on shared projects and missions. This is where individual genius becomes collective impact."
+    },
+    "build": {
+      "title": "Build",
+      "tagline": "Turn genius into income",
+      "description": "Create your unique offer, build your landing page, and launch your genius business to the world."
+    },
+    "offer": {
+      "title": "Offer",
+      "tagline": "The marketplace",
+      "description": "Browse and purchase offers from other creators, or list your own. This is where genius gets exchanged."
+    },
+    "exploreHint": "Explore your spaces"
+  },
+  "geniusBusiness": {
+    "loading": "Loading...",
+    "generatingTitle": "Crafting Your Genius Business",
+    "generatingBody": "Transforming your genius into a business identity...",
+    "logoAlt": "Genius Business",
+    "createTitle": "Create Your Genius Business",
+    "createBody": "Discover your Zone of Genius first to unlock your Genius Business.",
+    "discoverCta": "Discover My Genius",
+    "readyTitle": "Your Genius Is Ready",
+    "readyBody": "Let's transform your Zone of Genius into a business identity.",
+    "revealCta": "Reveal My Genius Business",
+    "geniusAppleSeedLabel": "Genius Apple Seed",
+    "uspLabel": "Your Unique Selling Proposition",
+    "moduleAudienceLabel": "Ideal Client",
+    "moduleAudienceDescription": "Who this is for",
+    "modulePromiseLabel": "Promise",
+    "modulePromiseDescription": "A to B transformation",
+    "moduleChannelsLabel": "Channels",
+    "moduleChannelsDescription": "How to reach them",
+    "moduleVisionLabel": "Vision",
+    "moduleVisionDescription": "The bigger arc",
+    "errorLoadGenius": "Could not load your genius data",
+    "errorSaveOffer": "Could not save your Unique Offer",
+    "toastGenerationFailedTitle": "Generation Failed",
+    "toastGenerationFailedFallback": "Please try again."
+  },
+  "privacySection": {
+    "header_title": "Privacy & Visibility",
+    "header_subtitle": "Control who can see your profile",
+    "visibility_label": "Profile Visibility",
+    "option_hidden_label": "Hidden",
+    "option_hidden_description": "Only I can see my profile",
+    "option_minimal_label": "Minimal",
+    "option_minimal_description": "Name and archetype only",
+    "option_medium_label": "Medium",
+    "option_medium_description": "Plus mission, no offer",
+    "option_full_label": "Full",
+    "option_full_description": "Show everything",
+    "toggles_label": "Show on Public Profile",
+    "location_title": "My location",
+    "location_subtitle": "City and country",
+    "mission_title": "My mission",
+    "mission_subtitle": "Current mission focus",
+    "offer_title": "My unique offer",
+    "offer_subtitle": "Your genius offer",
+    "toast_visibility_updated": "Visibility updated",
+    "toast_settings_updated": "Settings updated",
+    "toast_update_failed": "Update failed",
+    "error_update_visibility": "Unable to update visibility.",
+    "error_update_settings": "Unable to update settings."
+  },
+  "celebrationModal": {
+    "talentHeadline": "Congrats — your Top Talent is articulated!",
+    "talentStatement": "You just unlocked the foundation of your collaboration profile.",
+    "talentPs": "PS: discovering your mission next gives your matches direction.",
+    "missionHeadline": "Congrats — your Mission is named!",
+    "missionStatement": "You just unlocked direction in your collaboration profile.",
+    "missionPs": "PS: mapping your assets next adds capacity to the signal.",
+    "assetsHeadline": "Congrats — your Assets are mapped!",
+    "assetsStatement": "You just unlocked capacity in your collaboration profile.",
+    "assetsPs": "PS: discovering your mission completes your collaboration profile.",
+    "graduationHeadline": "Congrats with completing your collaboration profile!",
+    "graduationStatement": "You just unlocked Collaborator Matching!",
+    "graduationPs": "PS: taking the optional Quality of Life assessment improves collaboration match quality.",
+    "discoverMyMission": "Discover My Mission",
+    "mapMyAssets": "Map My Assets",
+    "findCollaborators": "Find Collaborators",
+    "buildABusiness": "Build A Business",
+    "continueYourJourney": "Continue your journey"
+  },
+  "linkedinUpload": {
+    "heading": "Add Your LinkedIn Profile",
+    "subheading": "Upload a PDF export from LinkedIn.",
+    "imported": "LinkedIn imported",
+    "viewPdf": "View PDF",
+    "replace": "Replace",
+    "remove": "Remove",
+    "uploadPdf": "Upload PDF",
+    "showInstructions": "How to get your LinkedIn PDF",
+    "hideInstructions": "Hide instructions",
+    "step1": "Go to linkedin.com/in/your-profile",
+    "step2": "Click the \"More\" button",
+    "step3": "Select \"Save to PDF\"",
+    "step4": "Upload the downloaded file here",
+    "invalidTypeTitle": "Invalid file type",
+    "invalidTypeDescription": "Please upload a PDF file.",
+    "uploadedTitle": "LinkedIn profile uploaded",
+    "uploadFailedTitle": "Upload failed",
+    "uploadFailedDescription": "Unable to upload LinkedIn PDF.",
+    "downloadFailedTitle": "Unable to download file",
+    "removedTitle": "LinkedIn profile removed",
+    "deleteFailedTitle": "Delete failed",
+    "deleteFailedDescription": "Unable to remove LinkedIn PDF."
+  },
+  "marketplaceProduct": {
+    "errorProductNotFound": "Product not found",
+    "loading": "Loading...",
+    "notFoundHeading": "Product Not Found",
+    "goHome": "Go Home",
+    "blueprintSubtitle": "Your step-by-step transformation framework",
+    "downloadBlueprint": "Download Blueprint",
+    "finalCtaHeading": "Ready to Transform?"
+  },
+  "refineBusiness": {
+    "empty": {
+      "title": "Nothing to Refine Yet",
+      "description": "First, build your Genius Business using the Product Builder. Then come back here to refine and iterate.",
+      "buildCta": "Build First"
+    },
+    "header": {
+      "title": "Refine My Genius Business",
+      "subtitle": "Each refinement cycle sharpens your business. Choose what to improve."
+    },
+    "summary": {
+      "fallbackName": "My Genius Product",
+      "status": "Current version · Published",
+      "live": "Live"
+    },
+    "options": {
+      "icp": {
+        "title": "Sharpen Your ICP",
+        "description": "Go deeper on who exactly your ideal client is. The more precise, the more magnetic your message."
+      },
+      "pain": {
+        "title": "Deepen Pain Understanding",
+        "description": "Uncover the hidden layers of pain your client experiences. Better pain = better positioning."
+      },
+      "promise": {
+        "title": "Refine Your Promise",
+        "description": "Make your transformational promise razor-sharp. This is the core of your entire business."
+      },
+      "blueprint": {
+        "title": "Upgrade Blueprint",
+        "description": "Improve your lead magnet with better steps, tighter copy, and stronger CTA."
+      },
+      "landing": {
+        "title": "Polish Landing Page",
+        "description": "Optimize your landing page copy, headlines, and conversion elements."
+      },
+      "comingSoon": "Coming soon"
+    },
+    "footer": {
+      "info": "Refinement iterations will improve your existing product without losing your current work."
+    }
+  },
+  "readNext": {
+    "readNext": "Read next: {{label}}",
+    "label": {
+      "startHere": "Start Here",
+      "overview": "Overview",
+      "howItShowsUp": "How It Shows Up",
+      "threeTalents": "Three Talents in Depth",
+      "topShadow": "Top Shadow",
+      "mastery": "Path of Mastery",
+      "oneAction": "One Action",
+      "idealEnvironments": "Ideal Environments",
+      "partner": "Complementary Partner",
+      "monetization": "Monetization",
+      "unifyingRole": "Your Unifying Role",
+      "whatsNext": "What's Next?"
+    }
+  },
+  "pathSection": {
+    "bodyLabel": "Body",
+    "bodyDescription": "Physical vitality, energy, and health",
+    "emotionsLabel": "Emotions",
+    "emotionsDescription": "Emotional regulation and shadow work",
+    "mindLabel": "Mind",
+    "mindDescription": "Worldview, beliefs, and mental clarity",
+    "geniusLabel": "Genius",
+    "geniusDescription": "Authenticity and self-expression",
+    "spiritLabel": "Spirit",
+    "spiritDescription": "Awareness, presence, and sensitivity",
+    "notFoundTitle": "Path not found",
+    "notFoundBody": "This growth path does not exist.",
+    "comingSoon": "Coming soon: practices and content for the {{label}} path."
+  },
+  "assemblyTracker": {
+    "header": "The Originals · Community Journey",
+    "status": "Step 2: Growing through word of mouth · 3 founders active →",
+    "stepTooltip": "Step {{step}}: {{label}}",
+    "steps": {
+      "founder": "Founder",
+      "test": "Test",
+      "grow": "Grow",
+      "charge": "Charge",
+      "community": "Community",
+      "improve": "Improve",
+      "others": "Others",
+      "tenK": "$10K",
+      "match": "Match",
+      "products": "Products",
+      "selfOrg": "Self-org",
+      "spread": "Spread",
+      "connect": "Connect"
+    }
+  },
+  "myGeniusBusiness": {
+    "toastCopiedTitle": "Link copied!",
+    "toastCopiedDescription": "Share it with the world.",
+    "emptyTitle": "No Genius Business Yet",
+    "emptyDescription": "Build your first genius business using the Product Builder. It takes about 5 minutes to create your landing page.",
+    "startBuilding": "Start Building",
+    "pageTitle": "My Genius Business",
+    "pageSubtitle": "Your published genius business at a glance.",
+    "productHeadlineFallback": "My Genius Product",
+    "liveBadge": "Live",
+    "statIcpLabel": "ICP",
+    "statPromiseLabel": "Promise",
+    "statBlueprintLabel": "Blueprint",
+    "statDefined": "Defined",
+    "statSteps_one": "{{count}} step",
+    "statSteps_few": "{{count}} steps",
+    "statSteps_many": "{{count}} steps",
+    "viewPage": "View Page",
+    "edit": "Edit",
+    "refineTitle": "Refine Your Genius Business",
+    "refineDescription": "Sharpen your ICP, deepen your pain understanding, and iterate on your transformational promise. Each refinement makes your business more precise.",
+    "startRefinement": "Start Refinement",
+    "canvasTitle": "View Your Canvas",
+    "canvasDescription": "See all 7 artifacts from your session"
   }
 }

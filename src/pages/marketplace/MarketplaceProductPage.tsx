@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Download, Phone, Laptop, Sparkles, ArrowRight } from "lucide-react";
 
@@ -24,6 +25,7 @@ interface MarketplaceProduct {
 const MarketplaceProductPage: React.FC = () => {
     const { slug } = useParams<{ slug: string }>();
     const navigate = useNavigate();
+    const { t } = useTranslation();
     const [product, setProduct] = useState<MarketplaceProduct | null>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
@@ -34,7 +36,7 @@ const MarketplaceProductPage: React.FC = () => {
 
     const loadProduct = async () => {
         if (!slug) {
-            setError("Product not found");
+            setError(t("marketplaceProduct.errorProductNotFound"));
             setLoading(false);
             return;
         }
@@ -90,7 +92,7 @@ const MarketplaceProductPage: React.FC = () => {
                         <div className="w-12 h-12 border-4 border-[#8460ea]/20 rounded-full" />
                         <div className="absolute top-0 left-0 w-12 h-12 border-4 border-[#8460ea] border-t-transparent rounded-full animate-spin" />
                     </div>
-                    <p className="text-[#2c3150]/60 text-sm">Loading...</p>
+                    <p className="text-[#2c3150]/60 text-sm">{t("marketplaceProduct.loading")}</p>
                 </div>
             </div>
         );
@@ -99,14 +101,14 @@ const MarketplaceProductPage: React.FC = () => {
     if (error || !product) {
         return (
             <div className="min-h-dvh bg-[var(--skin-page-bg,#fff)] flex flex-col items-center justify-center px-4">
-                <h1 className="text-2xl font-bold text-[#2c3150] mb-4">Product Not Found</h1>
+                <h1 className="text-2xl font-bold text-[#2c3150] mb-4">{t("marketplaceProduct.notFoundHeading")}</h1>
                 <p className="text-[#2c3150]/60 mb-6">{error}</p>
                 <Button
                     onClick={() => navigate("/")}
                     className="bg-[#8460ea] hover:bg-[#7350d0] text-white"
                 >
                     <ArrowLeft className="w-4 h-4 mr-2" />
-                    Go Home
+                    {t("marketplaceProduct.goHome")}
                 </Button>
             </div>
         );
@@ -156,7 +158,7 @@ const MarketplaceProductPage: React.FC = () => {
                                 {product.blueprint_content.title}
                             </h2>
                             <p className="text-[#2c3150]/60">
-                                Your step-by-step transformation framework
+                                {t("marketplaceProduct.blueprintSubtitle")}
                             </p>
                         </div>
 
@@ -181,7 +183,7 @@ const MarketplaceProductPage: React.FC = () => {
                                 className="border-[#8460ea]/30 text-[#8460ea] hover:bg-[#8460ea]/5 px-8"
                             >
                                 <Download className="w-4 h-4 mr-2" />
-                                Download Blueprint
+                                {t("marketplaceProduct.downloadBlueprint")}
                             </Button>
                         </div>
                     </div>
@@ -192,7 +194,7 @@ const MarketplaceProductPage: React.FC = () => {
             <section className="py-20 px-6 bg-gradient-to-b from-[color:var(--skin-page-bg,#fff)] to-[#8460ea]/5">
                 <div className="container mx-auto max-w-lg text-center">
                     <h3 className="text-2xl sm:text-3xl font-bold text-[#2c3150] mb-4">
-                        Ready to Transform?
+                        {t("marketplaceProduct.finalCtaHeading")}
                     </h3>
                     <p className="text-[#2c3150]/60 mb-8 leading-relaxed">
                         {product.cta_config?.description}

@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import {
     RefreshCw,
@@ -19,41 +20,42 @@ const REFINEMENT_OPTIONS = [
     {
         id: "icp",
         icon: Users,
-        title: "Sharpen Your ICP",
-        description: "Go deeper on who exactly your ideal client is. The more precise, the more magnetic your message.",
+        titleKey: "refineBusiness.options.icp.title",
+        descKey: "refineBusiness.options.icp.description",
         available: true,
     },
     {
         id: "pain",
         icon: Flame,
-        title: "Deepen Pain Understanding",
-        description: "Uncover the hidden layers of pain your client experiences. Better pain = better positioning.",
+        titleKey: "refineBusiness.options.pain.title",
+        descKey: "refineBusiness.options.pain.description",
         available: true,
     },
     {
         id: "promise",
         icon: Target,
-        title: "Refine Your Promise",
-        description: "Make your transformational promise razor-sharp. This is the core of your entire business.",
+        titleKey: "refineBusiness.options.promise.title",
+        descKey: "refineBusiness.options.promise.description",
         available: true,
     },
     {
         id: "blueprint",
         icon: BookOpen,
-        title: "Upgrade Blueprint",
-        description: "Improve your lead magnet with better steps, tighter copy, and stronger CTA.",
+        titleKey: "refineBusiness.options.blueprint.title",
+        descKey: "refineBusiness.options.blueprint.description",
         available: false,
     },
     {
         id: "landing",
         icon: Sparkles,
-        title: "Polish Landing Page",
-        description: "Optimize your landing page copy, headlines, and conversion elements.",
+        titleKey: "refineBusiness.options.landing.title",
+        descKey: "refineBusiness.options.landing.description",
         available: false,
     },
 ];
 
 const RefineBusinessPage: React.FC = () => {
+    const { t } = useTranslation();
     const navigate = useNavigate();
     const business = usePublishedGeniusBusiness();
 
@@ -66,10 +68,10 @@ const RefineBusinessPage: React.FC = () => {
                             <RefreshCw className="w-8 h-8 text-primary" />
                         </div>
                         <h1 className="text-2xl font-bold text-foreground mb-3">
-                            Nothing to Refine Yet
+                            {t("refineBusiness.empty.title")}
                         </h1>
                         <p className="text-muted-foreground mb-8 max-w-md mx-auto">
-                            First, build your Genius Business using the Product Builder. Then come back here to refine and iterate.
+                            {t("refineBusiness.empty.description")}
                         </p>
                         <Button
                             size="lg"
@@ -77,7 +79,7 @@ const RefineBusinessPage: React.FC = () => {
                             className="bg-primary hover:bg-primary/80 text-white px-8"
                         >
                             <Sparkles className="w-4 h-4 mr-2" />
-                            Build First
+                            {t("refineBusiness.empty.buildCta")}
                         </Button>
                     </div>
                 </ErrorBoundary>
@@ -93,10 +95,10 @@ const RefineBusinessPage: React.FC = () => {
                     <div className="mb-8">
                         <div className="flex items-center gap-3 mb-2">
                             <RefreshCw className="w-6 h-6 text-primary" />
-                            <h1 className="text-2xl font-bold text-foreground">Refine My Genius Business</h1>
+                            <h1 className="text-2xl font-bold text-foreground">{t("refineBusiness.header.title")}</h1>
                         </div>
                         <p className="text-muted-foreground">
-                            Each refinement cycle sharpens your business. Choose what to improve.
+                            {t("refineBusiness.header.subtitle")}
                         </p>
                     </div>
 
@@ -110,12 +112,12 @@ const RefineBusinessPage: React.FC = () => {
                         </div>
                         <div className="flex-1 min-w-0">
                             <p className="font-semibold text-foreground truncate">
-                                {business.landingContent?.headline || "My Genius Product"}
+                                {business.landingContent?.headline || t("refineBusiness.summary.fallbackName")}
                             </p>
-                            <p className="text-xs text-muted-foreground">Current version · Published</p>
+                            <p className="text-xs text-muted-foreground">{t("refineBusiness.summary.status")}</p>
                         </div>
                         <span className="px-2 py-0.5 rounded-full bg-green-100 text-green-700 text-xs font-semibold flex-shrink-0">
-                            Live
+                            {t("refineBusiness.summary.live")}
                         </span>
                     </div>
 
@@ -144,14 +146,14 @@ const RefineBusinessPage: React.FC = () => {
                                     </div>
                                     <div className="flex-1">
                                         <div className="flex items-center gap-2 mb-1">
-                                            <h3 className="font-semibold text-foreground">{option.title}</h3>
+                                            <h3 className="font-semibold text-foreground">{t(option.titleKey)}</h3>
                                             {!option.available && (
                                                 <span className="flex items-center gap-1 text-xs text-muted-foreground">
-                                                    <Lock className="w-3 h-3" /> Coming soon
+                                                    <Lock className="w-3 h-3" /> {t("refineBusiness.options.comingSoon")}
                                                 </span>
                                             )}
                                         </div>
-                                        <p className="text-sm text-muted-foreground">{option.description}</p>
+                                        <p className="text-sm text-muted-foreground">{t(option.descKey)}</p>
                                     </div>
                                     {option.available && (
                                         <ArrowRight className="w-5 h-5 text-muted-foreground flex-shrink-0 mt-1" />
@@ -164,7 +166,7 @@ const RefineBusinessPage: React.FC = () => {
                     {/* Info */}
                     <div className="mt-8 text-center">
                         <p className="text-xs text-muted-foreground">
-                            Refinement iterations will improve your existing product without losing your current work.
+                            {t("refineBusiness.footer.info")}
                         </p>
                     </div>
                 </div>

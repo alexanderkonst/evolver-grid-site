@@ -17,6 +17,7 @@ import {
     PanelLeftClose,
     PanelLeft
 } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { getOrCreateGameProfileId } from "@/lib/gameProfile";
@@ -24,16 +25,16 @@ import { useToast } from "@/hooks/use-toast";
 
 interface ModuleItem {
     id: string;
-    label: string;
+    labelKey: string;
     path: string;
 }
 
 interface NavItem {
     id: string;
-    label: string;
+    labelKey: string;
     icon: ReactNode;
     path: string;
-    description: string;
+    descriptionKey: string;
     modules?: ModuleItem[];
 }
 
@@ -48,57 +49,57 @@ const SPACES: NavItem[] = [
     // },
     {
         id: "profile",
-        label: "Profile",
+        labelKey: "gameShell.nav.profile.label",
         icon: <User className="w-5 h-5" />,
         path: "/game/me",
-        description: "Know yourself",
+        descriptionKey: "gameShell.nav.profile.description",
         modules: [
-            { id: "zog", label: "Zone of Genius", path: "/zone-of-genius/entry" },
-            { id: "qol", label: "Quality of Life", path: "/quality-of-life-map/assessment" }
+            { id: "zog", labelKey: "gameShell.nav.profile.modules.zog", path: "/zone-of-genius/entry" },
+            { id: "qol", labelKey: "gameShell.nav.profile.modules.qol", path: "/quality-of-life-map/assessment" }
         ]
     },
     {
         id: "transformation",
-        label: "Transformation",
+        labelKey: "gameShell.nav.transformation.label",
         icon: <Sparkles className="w-5 h-5" />,
         path: "/game/transformation",
-        description: "Master yourself",
+        descriptionKey: "gameShell.nav.transformation.description",
         modules: [
-            { id: "library", label: "Practice Library", path: "/library" },
-            { id: "paths", label: "Growth Paths", path: "/growth-paths" }
+            { id: "library", labelKey: "gameShell.nav.transformation.modules.library", path: "/library" },
+            { id: "paths", labelKey: "gameShell.nav.transformation.modules.paths", path: "/growth-paths" }
         ]
     },
     {
         id: "marketplace",
-        label: "Marketplace",
+        labelKey: "gameShell.nav.marketplace.label",
         icon: <Store className="w-5 h-5" />,
         path: "/game/marketplace",
-        description: "Monetize your genius"
+        descriptionKey: "gameShell.nav.marketplace.description"
     },
     {
         id: "teams",
-        label: "Teams",
+        labelKey: "gameShell.nav.teams.label",
         icon: <Users className="w-5 h-5" />,
         path: "/game/teams",
-        description: "Find your people",
+        descriptionKey: "gameShell.nav.teams.description",
         modules: [
-            { id: "matches", label: "Matches", path: "/game/matches" },
-            { id: "people", label: "People Directory", path: "/community/people" }
+            { id: "matches", labelKey: "gameShell.nav.teams.modules.matches", path: "/game/matches" },
+            { id: "people", labelKey: "gameShell.nav.teams.modules.people", path: "/community/people" }
         ]
     },
     {
         id: "events",
-        label: "Events",
+        labelKey: "gameShell.nav.events.label",
         icon: <CalendarDays className="w-5 h-5" />,
         path: "/game/events",
-        description: "Gatherings and Experiences"
+        descriptionKey: "gameShell.nav.events.description"
     },
     {
         id: "coop",
-        label: "Business Incubator",
+        labelKey: "gameShell.nav.coop.label",
         icon: <Building2 className="w-5 h-5" />,
         path: "/game/coop",
-        description: "Build together"
+        descriptionKey: "gameShell.nav.coop.description"
     }
 ];
 
@@ -107,6 +108,7 @@ interface GameShellProps {
 }
 
 export const GameShell = ({ children }: GameShellProps) => {
+    const { t } = useTranslation();
     const location = useLocation();
     const navigate = useNavigate();
     const { toast } = useToast();
@@ -205,10 +207,10 @@ export const GameShell = ({ children }: GameShellProps) => {
     };
 
     const unlockHints = {
-        teams: "Complete your Zone of Genius to unlock Teams.",
-        marketplace: "Create your Genius Offer to unlock Marketplace.",
-        coop: "Create your Genius Offer to unlock Business Incubator.",
-        events: "Complete your Zone of Genius to unlock Events.",
+        teams: t("gameShell.unlockHints.teams"),
+        marketplace: t("gameShell.unlockHints.marketplace"),
+        coop: t("gameShell.unlockHints.coop"),
+        events: t("gameShell.unlockHints.events"),
     };
 
     useEffect(() => {
@@ -251,11 +253,11 @@ export const GameShell = ({ children }: GameShellProps) => {
                 <button
                     onClick={() => setSidebarOpen(!sidebarOpen)}
                     className="p-2 hover:bg-[#a4a3d0]/10 rounded-lg"
-                    aria-label={sidebarOpen ? "Close sidebar" : "Open sidebar"}
+                    aria-label={sidebarOpen ? t("gameShell.aria.closeSidebar") : t("gameShell.aria.openSidebar")}
                 >
                     {sidebarOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
                 </button>
-                <span className="font-bold text-[#2c3150]">Genius Business</span>
+                <span className="font-bold text-[#2c3150]">{t("gameShell.brand")}</span>
                 <div className="w-9" /> {/* Spacer */}
             </div>
 
@@ -274,14 +276,14 @@ export const GameShell = ({ children }: GameShellProps) => {
                 {/* Logo */}
                 <div className="h-safe-14 lg:h-16 flex items-center justify-between px-4 pt-safe lg:pt-0 border-b border-[#2c3150]">
                     <Link to="/" className="font-bold text-lg text-white">
-                        Genius Business
+                        {t("gameShell.brand")}
                     </Link>
                     {/* Desktop collapse button */}
                     <button
                         onClick={() => setDesktopSidebarOpen(false)}
                         className="hidden lg:block p-1.5 text-[#a4a3d0] hover:text-white hover:bg-[#2c3150] rounded-md transition-colors"
-                        title="Collapse sidebar"
-                        aria-label="Collapse sidebar"
+                        title={t("gameShell.aria.collapseSidebar")}
+                        aria-label={t("gameShell.aria.collapseSidebar")}
                     >
                         <PanelLeftClose className="w-4 h-4" />
                     </button>
@@ -311,9 +313,9 @@ export const GameShell = ({ children }: GameShellProps) => {
                                         <>
                                             {item.icon}
                                             <div className="flex-1 min-w-0">
-                                                <p className="text-sm font-medium truncate">{item.label}</p>
+                                                <p className="text-sm font-medium truncate">{t(item.labelKey)}</p>
                                                 <p className={`text-xs truncate ${isActive(item.path) ? "text-[#a4a3d0]" : "text-[#a4a3d0]/60"}`}>
-                                                    {item.description}
+                                                    {t(item.descriptionKey)}
                                                 </p>
                                             </div>
                                             {!isUnlocked && <Lock className="w-4 h-4 text-[#a4a3d0]/60" />}
@@ -335,8 +337,8 @@ export const GameShell = ({ children }: GameShellProps) => {
                                                     type="button"
                                                     onClick={() => {
                                                         toast({
-                                                            title: "Locked",
-                                                            description: hint || "Complete the required steps to unlock this space.",
+                                                            title: t("gameShell.toast.lockedTitle"),
+                                                            description: hint || t("gameShell.toast.lockedFallback"),
                                                         });
                                                     }}
                                                     className={linkClasses}
@@ -376,7 +378,7 @@ export const GameShell = ({ children }: GameShellProps) => {
                                                     }
                                                 `}
                                             >
-                                                {module.label}
+                                                {t(module.labelKey)}
                                             </Link>
                                         ))}
                                     </div>
@@ -395,7 +397,7 @@ export const GameShell = ({ children }: GameShellProps) => {
                                     {profile?.avatar_url ? (
                                         <img
                                             src={profile.avatar_url}
-                                            alt="Profile avatar"
+                                            alt={t("gameShell.user.avatarAlt")}
                                             loading="lazy"
                                             onError={(e) => {
                                                 e.currentTarget.src = "/placeholder.svg";
@@ -410,7 +412,7 @@ export const GameShell = ({ children }: GameShellProps) => {
                                 </div>
                                 <div className="min-w-0">
                                     <p className="text-sm text-white truncate">
-                                        {profile?.first_name || user.email?.split("@")[0] || "Player"}
+                                        {profile?.first_name || user.email?.split("@")[0] || t("gameShell.user.fallbackName")}
                                     </p>
                                     <p className="text-xs text-[#a4a3d0] truncate">{user.email}</p>
                                 </div>
@@ -422,7 +424,7 @@ export const GameShell = ({ children }: GameShellProps) => {
                                 onClick={handleLogout}
                             >
                                 <LogOut className="w-4 h-4 mr-2" />
-                                Sign out
+                                {t("gameShell.user.signOut")}
                             </Button>
                         </div>
                     ) : (
@@ -432,7 +434,7 @@ export const GameShell = ({ children }: GameShellProps) => {
                             className="w-full border-[#2c3150] text-[#a4a3d0] hover:bg-[#2c3150] hover:text-white"
                             onClick={() => navigate("/auth")}
                         >
-                            Sign in
+                            {t("gameShell.user.signIn")}
                         </Button>
                     )}
                 </div>
@@ -451,8 +453,8 @@ export const GameShell = ({ children }: GameShellProps) => {
                 <button
                     onClick={() => setDesktopSidebarOpen(true)}
                     className="hidden lg:flex fixed top-4 left-4 z-modal items-center justify-center w-10 h-10 bg-[#1a1d2e] text-[#a4a3d0] hover:text-white rounded-lg shadow-lg border border-[#2c3150] transition-colors"
-                    title="Expand sidebar"
-                    aria-label="Expand sidebar"
+                    title={t("gameShell.aria.expandSidebar")}
+                    aria-label={t("gameShell.aria.expandSidebar")}
                 >
                     <PanelLeft className="w-5 h-5" />
                 </button>

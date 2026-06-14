@@ -40,6 +40,7 @@ import {
 } from "@/components/ui/dialog";
 import { Sparkles } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { useEntryPath } from "@/contexts/EntryPathContext";
 
 export type CelebrationPrimitive = "talent" | "mission" | "assets";
@@ -59,39 +60,44 @@ interface CelebrationModalProps {
 }
 
 type CopyBlock = {
-    headline: string;
-    statement: string;
-    ps: string;
-    primaryLabel: string;
+    /** i18n key (under `celebrationModal.`) resolved with t() at render. */
+    headlineKey: string;
+    /** i18n key (under `celebrationModal.`) resolved with t() at render. */
+    statementKey: string;
+    /** i18n key (under `celebrationModal.`) resolved with t() at render. */
+    psKey: string;
+    /** i18n key (under `celebrationModal.`) resolved with t() at render. */
+    primaryLabelKey: string;
     primaryPath: string;
 };
 
 const REGULAR_COPY: Record<CelebrationPrimitive, CopyBlock> = {
     talent: {
-        headline: "Congrats — your Top Talent is articulated!",
-        statement: "You just unlocked the foundation of your collaboration profile.",
-        ps: "PS: discovering your mission next gives your matches direction.",
-        primaryLabel: "Discover My Mission",
+        headlineKey: "celebrationModal.talentHeadline",
+        statementKey: "celebrationModal.talentStatement",
+        psKey: "celebrationModal.talentPs",
+        primaryLabelKey: "celebrationModal.discoverMyMission",
         primaryPath: "/mission-discovery",
     },
     mission: {
-        headline: "Congrats — your Mission is named!",
-        statement: "You just unlocked direction in your collaboration profile.",
-        ps: "PS: mapping your assets next adds capacity to the signal.",
-        primaryLabel: "Map My Assets",
+        headlineKey: "celebrationModal.missionHeadline",
+        statementKey: "celebrationModal.missionStatement",
+        psKey: "celebrationModal.missionPs",
+        primaryLabelKey: "celebrationModal.mapMyAssets",
         primaryPath: "/asset-mapping",
     },
     assets: {
-        headline: "Congrats — your Assets are mapped!",
-        statement: "You just unlocked capacity in your collaboration profile.",
-        ps: "PS: discovering your mission completes your collaboration profile.",
-        primaryLabel: "Discover My Mission",
+        headlineKey: "celebrationModal.assetsHeadline",
+        statementKey: "celebrationModal.assetsStatement",
+        psKey: "celebrationModal.assetsPs",
+        primaryLabelKey: "celebrationModal.discoverMyMission",
         primaryPath: "/mission-discovery",
     },
 };
 
 const CelebrationModal = ({ payload, open, onClose }: CelebrationModalProps) => {
     const navigate = useNavigate();
+    const { t } = useTranslation();
     const { path: entryPath } = useEntryPath();
 
     if (!payload) return null;
@@ -104,11 +110,13 @@ const CelebrationModal = ({ payload, open, onClose }: CelebrationModalProps) => 
     // entry → Build A Business.
     const copy: CopyBlock = isGraduation
         ? {
-              headline: "Congrats with completing your collaboration profile!",
-              statement: "You just unlocked Collaborator Matching!",
-              ps: "PS: taking the optional Quality of Life assessment improves collaboration match quality.",
-              primaryLabel:
-                  entryPath !== "build" ? "Find Collaborators" : "Build A Business",
+              headlineKey: "celebrationModal.graduationHeadline",
+              statementKey: "celebrationModal.graduationStatement",
+              psKey: "celebrationModal.graduationPs",
+              primaryLabelKey:
+                  entryPath !== "build"
+                      ? "celebrationModal.findCollaborators"
+                      : "celebrationModal.buildABusiness",
               primaryPath:
                   entryPath !== "build" ? "/game/collaborate/matches" : "/path",
           }
@@ -152,7 +160,7 @@ const CelebrationModal = ({ payload, open, onClose }: CelebrationModalProps) => 
                             marginBottom: "10px",
                         }}
                     >
-                        {copy.headline}
+                        {t(copy.headlineKey)}
                     </DialogTitle>
                 </DialogHeader>
 
@@ -181,7 +189,7 @@ const CelebrationModal = ({ payload, open, onClose }: CelebrationModalProps) => 
                             margin: 0,
                         }}
                     >
-                        {copy.statement}
+                        {t(copy.statementKey)}
                     </p>
                 </div>
 
@@ -198,7 +206,7 @@ const CelebrationModal = ({ payload, open, onClose }: CelebrationModalProps) => 
                             marginTop: "2px",
                         }}
                     >
-                        {copy.ps}
+                        {t(copy.psKey)}
                     </p>
                 </DialogDescription>
 
@@ -226,7 +234,7 @@ const CelebrationModal = ({ payload, open, onClose }: CelebrationModalProps) => 
                         }}
                     >
                         <Sparkles className="w-4 h-4" aria-hidden="true" />
-                        {copy.primaryLabel}
+                        {t(copy.primaryLabelKey)}
                     </button>
 
                     <button
@@ -246,7 +254,7 @@ const CelebrationModal = ({ payload, open, onClose }: CelebrationModalProps) => 
                             cursor: "pointer",
                         }}
                     >
-                        Continue your journey →
+                        {t("celebrationModal.continueYourJourney")} →
                     </button>
                 </div>
             </DialogContent>

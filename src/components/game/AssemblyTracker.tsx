@@ -1,20 +1,21 @@
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { Users } from "lucide-react";
 
 const STEPS = [
-  { step: 0, label: "Founder", done: true },
-  { step: 1, label: "Test", done: true },
-  { step: 2, label: "Grow", current: true },
-  { step: 3, label: "Charge" },
-  { step: 4, label: "Community", done: true },
-  { step: 5, label: "Improve", current: true },
-  { step: 6, label: "Others" },
-  { step: 7, label: "$10K" },
-  { step: 8, label: "Match" },
-  { step: 9, label: "Products" },
-  { step: 10, label: "Self-org" },
-  { step: 11, label: "Spread" },
-  { step: 12, label: "Connect" },
+  { step: 0, labelKey: "assemblyTracker.steps.founder", done: true },
+  { step: 1, labelKey: "assemblyTracker.steps.test", done: true },
+  { step: 2, labelKey: "assemblyTracker.steps.grow", current: true },
+  { step: 3, labelKey: "assemblyTracker.steps.charge" },
+  { step: 4, labelKey: "assemblyTracker.steps.community", done: true },
+  { step: 5, labelKey: "assemblyTracker.steps.improve", current: true },
+  { step: 6, labelKey: "assemblyTracker.steps.others" },
+  { step: 7, labelKey: "assemblyTracker.steps.tenK" },
+  { step: 8, labelKey: "assemblyTracker.steps.match" },
+  { step: 9, labelKey: "assemblyTracker.steps.products" },
+  { step: 10, labelKey: "assemblyTracker.steps.selfOrg" },
+  { step: 11, labelKey: "assemblyTracker.steps.spread" },
+  { step: 12, labelKey: "assemblyTracker.steps.connect" },
 ];
 
 /**
@@ -23,6 +24,7 @@ const STEPS = [
  */
 const AssemblyTracker = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   return (
     <div
@@ -32,7 +34,7 @@ const AssemblyTracker = () => {
       <div className="flex items-center gap-2 mb-3">
         <Users className="w-4 h-4 text-[#8460ea]" />
         <p className="text-xs text-[#8460ea] uppercase tracking-wide font-medium">
-          The Originals · Community Journey
+          {t("assemblyTracker.header")}
         </p>
       </div>
       <div className="flex items-center gap-1 flex-wrap">
@@ -46,14 +48,17 @@ const AssemblyTracker = () => {
                 ? "bg-[#8460ea]/20 text-[#8460ea]"
                 : "bg-[#a4a3d0]/10 text-[#a4a3d0]"
             }`}
-            title={`Step ${s.step}: ${s.label}`}
+            title={t("assemblyTracker.stepTooltip", {
+              step: s.step,
+              label: t(s.labelKey),
+            })}
           >
             {s.done ? "✓" : s.step}
           </div>
         ))}
       </div>
       <p className="text-xs text-[#2c3150]/50 mt-2 group-hover:text-[#8460ea] transition-colors">
-        Step 2: Growing through word of mouth · 3 founders active →
+        {t("assemblyTracker.status")}
       </p>
     </div>
   );
