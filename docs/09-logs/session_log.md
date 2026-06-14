@@ -8168,3 +8168,19 @@ The debug pass ran as a 41-agent adversarial workflow across eight dimensions (s
 - `supabase/functions/{generate-blueprint,deepen-icp,deepen-pain,deepen-tp,suggest-next-quest,match-assets}` + 7 client invoke sites: `target_language` threading
 - `src/locales/{en,ru,es}/common.json`: CLDR plural fixes + `profileMission` keys
 - date/number/time consumers: CharacterHub, MeSummary, GameMap, EventDetail, EventCard, VentureDashboard, MissionDiscoveryLanding, PublicDossier, PublicLandingPage, Connections, ProfileMissionSection
+
+### Day 101 continued (3): elegant switcher + second debug pass + the game shell
+
+Sasha pushed back on the switcher: a floating chip on every page is overkill once the choice persists. He's right. Refined it to a clean rule — `GlobalLanguageSwitcher` shows ONLY to logged-out visitors (the cold traffic actually choosing a language; renders nothing until the session is confirmed absent, so no flash for authed users), and logged-in users change language from a new Settings → Profile "Language" row. The deep app chrome is now uncluttered.
+
+Then a second adversarial debug pass (18 agents, dimensions the first missed + a regression check). Good news first: zero regressions — localizedOrigin, the guest-gating, all six edge-function wirings, the CLDR plurals, and the new keys all verified correct. The real finding: the FUNNEL was fully localized, but the logged-in GAME SHELL had whole components extraction had skipped. Most visible — the SpacesRail's eight primary nav labels (JOURNEY/ME/LEARN/MEET/COLLABORATE/BUILD/OFFER) were English on every authenticated page. Plus the mobile breadcrumb + pane-2 group title (a third "JOURNEY" source, separate from the rail and the breadcrumb — all three now share spacesRail.* keys and read "CAMINO" in ES), the daily-loop cluster (NextMoveCard with its starter-action titles, MeSummary, MeSection, EmptyStateCard), the COLLABORATE rail, and four whole pages (ProfileOverview, MyProductsPage, EventsSpace, AppleseedView).
+
+Fixed them in a one-agent-per-component extraction wave (+146 keys, merged centrally, every file verified wired — no lost edits this time), then hand-finished the three-source "JOURNEY" leak by sharing the spacesRail.* keys across the rail, the GameShellV2 breadcrumb, and the SectionsPanel pane title (via an exported STATIC_LABEL_KEYS + a new SPACE_TITLE_KEYS map). Also dropped the banned "Genius Business" brand from the /ignite logo alt. tsc + production build green, zero console errors.
+
+One environment note: the machine hit 100% disk during a build (ENOSPC on the dist write — not a code error; tsc --noEmit was clean throughout). Cleared the regenerable build caches (dist + node_modules/.vite) to let the build complete. This will also block a production deploy until disk is freed.
+
+**Files touched (continued 3)**
+- `src/i18n/LanguageSwitcher.tsx` (GlobalLanguageSwitcher guest-gating), `src/App.tsx`, `src/pages/Settings.tsx` (Language row)
+- game shell: `SpacesRail.tsx`, `NextMoveCard.tsx` + `src/lib/domainMapping.ts`, `MeSummary.tsx`, `MeSection.tsx`, `EmptyStateCard.tsx`, `SectionsPanel.tsx` (+ exported STATIC_LABEL_KEYS / SPACE_TITLE_KEYS), `GameShellV2.tsx` (breadcrumb), `CelebrationModal.tsx`
+- pages: `ProfileOverview.tsx`, `MyProductsPage.tsx`, `EventsSpace.tsx`, `AppleseedView.tsx`, `IgniteSession.tsx` (a11y/alt), `PlaybookShell.tsx`, `EventCard.tsx`
+- `src/locales/{en,ru,es}/common.json`: +146 shell keys + settings.languageRow*
