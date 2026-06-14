@@ -81,13 +81,22 @@ serve(async (req: Request): Promise<Response> => {
       return json({ unlocked: true, alreadyUnlocked: true });
     }
 
-    const { error: updErr } = await admin
+    // Authoritative write: select the column back and assert it moved.
+    // Catches a trigger/RLS regression at runtime (silent no-op → loud)
+    // instead of as "I redeemed a code but it's still locked" tickets.
+    const { data: updated, error: updErr } = await admin
       .from("game_profiles")
       .update({ activation_unlocked_at: new Date().toISOString() })
-      .eq("id", profile.id);
+      .eq("id", profile.id)
+      .select("activation_unlocked_at")
+      .single();
     if (updErr) {
       console.error("[redeem-activation-coupon] update failed:", updErr);
       return json({ unlocked: false, error: "Failed to unlock" }, 500);
+    }
+    if (!updated?.activation_unlocked_at) {
+      console.error("[redeem-activation-coupon] write no-op — column did not move (trigger/RLS?)");
+      return json({ unlocked: false, error: "Unlock did not persist" }, 500);
     }
 
     return json({ unlocked: true });

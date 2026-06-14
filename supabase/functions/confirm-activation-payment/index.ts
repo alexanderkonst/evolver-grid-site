@@ -56,20 +56,50 @@ serve(async (req: Request): Promise<Response> => {
     const { data: { user }, error: userErr } = await userClient.auth.getUser();
     if (userErr || !user) return json({ unlocked: false, error: "Not authenticated" }, 401);
 
-    // Verify the Stripe session is genuinely paid AND belongs to this user.
-    const stripe = new Stripe(stripeKey, { apiVersion: "2023-10-16" });
-    const session = await stripe.checkout.sessions.retrieve(sessionId);
-    const paid =
-      session.payment_status === "paid" || session.status === "complete";
-    if (!paid) {
+    // httpClient: required on the Deno edge runtime (matches
+    // create-step-checkout / create-portal-session). Without it the
+    // default Stripe HTTP client targets Node's http and can throw.
+    const stripe = new Stripe(stripeKey, {
+      apiVersion: "2023-10-16",
+      httpClient: Stripe.createFetchHttpClient(),
+    });
+
+    // Retrieve with line items so we can verify the PRODUCT, not just that
+    // *some* session was paid (audit: a $555 / playbook session id must
+    // NOT unlock the $37 product).
+    const session = await stripe.checkout.sessions.retrieve(sessionId, {
+      expand: ["line_items"],
+    });
+
+    // (1) Genuinely paid. Require payment_status === 'paid' ONLY — NOT the
+    // looser status === 'complete', which a $0 / 100%-off promo session can
+    // satisfy with no actual payment.
+    if (session.payment_status !== "paid") {
       return json({ unlocked: false, error: "Payment not completed" }, 402);
     }
-    const sessionUserId = session.metadata?.supabase_user_id ?? null;
-    // If the checkout carried a user id, it must match the caller. (Some
-    // older Payment-Link sessions may lack metadata; in that case we fall
-    // back to "paid is enough" since the caller is authenticated and the
-    // session id is unguessable.)
-    if (sessionUserId && sessionUserId !== user.id) {
+
+    // (2) Right product. Prefer an explicit price id when configured;
+    // otherwise fall back to the known $37 amount. Fails closed if neither
+    // matches (an unrelated paid session cannot unlock).
+    const expectedPriceId = Deno.env.get("STRIPE_ACTIVATION_PRICE_ID") ?? "";
+    const lineItems = (session.line_items?.data ?? []) as Array<{ price?: { id?: string } }>;
+    const priceMatch = expectedPriceId
+      ? lineItems.some((li) => li.price?.id === expectedPriceId)
+      : null;
+    const amountMatch = session.amount_total === 3700; // $37.00
+    if (expectedPriceId ? !priceMatch : !amountMatch) {
+      return json({ unlocked: false, error: "Session is not the activation product" }, 403);
+    }
+
+    // (3) Ownership when the session carries it. Static Payment Links
+    // cannot stamp this per-buyer; when present (client_reference_id or
+    // metadata.supabase_user_id), it MUST match the caller. When absent we
+    // rely on (1)+(2) plus one-time consumption (4) below.
+    const boundUserId =
+      (session.client_reference_id as string | null) ??
+      (session.metadata?.supabase_user_id as string | undefined) ??
+      null;
+    if (boundUserId && boundUserId !== user.id) {
       return json({ unlocked: false, error: "Session does not belong to caller" }, 403);
     }
 
@@ -77,7 +107,7 @@ serve(async (req: Request): Promise<Response> => {
     const admin = createClient(supabaseUrl, serviceKey);
     const { data: profile, error: profileErr } = await admin
       .from("game_profiles")
-      .select("id, activation_unlocked_at")
+      .select("id, activation_unlocked_at, activation_stripe_session_id")
       .eq("user_id", user.id)
       .maybeSingle();
     if (profileErr || !profile) return json({ unlocked: false, error: "Profile not found" }, 404);
@@ -86,13 +116,33 @@ serve(async (req: Request): Promise<Response> => {
       return json({ unlocked: true, alreadyUnlocked: true });
     }
 
-    const { error: updErr } = await admin
+    // (4) One-time consumption: stamp the session id. The partial UNIQUE
+    // index on activation_stripe_session_id makes a paid session usable for
+    // exactly one account — a leaked/shared session id cannot be replayed
+    // across profiles. A unique violation (23505) means it was already
+    // consumed elsewhere.
+    const { data: updated, error: updErr } = await admin
       .from("game_profiles")
-      .update({ activation_unlocked_at: new Date().toISOString() })
-      .eq("id", profile.id);
+      .update({
+        activation_unlocked_at: new Date().toISOString(),
+        activation_stripe_session_id: sessionId,
+      })
+      .eq("id", profile.id)
+      .select("activation_unlocked_at")
+      .single();
     if (updErr) {
+      const code = (updErr as { code?: string }).code;
+      if (code === "23505") {
+        return json({ unlocked: false, error: "This payment was already used to unlock another account" }, 409);
+      }
       console.error("[confirm-activation-payment] update failed:", updErr);
       return json({ unlocked: false, error: "Failed to unlock" }, 500);
+    }
+    // (5) Authoritative write check: confirm the column actually moved.
+    // Catches a trigger/RLS regression at runtime (silent no-op → loud).
+    if (!updated?.activation_unlocked_at) {
+      console.error("[confirm-activation-payment] write no-op — column did not move (trigger/RLS?)");
+      return json({ unlocked: false, error: "Unlock did not persist" }, 500);
     }
 
     return json({ unlocked: true });

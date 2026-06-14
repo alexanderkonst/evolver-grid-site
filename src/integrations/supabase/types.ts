@@ -844,6 +844,7 @@ export type Database = {
       game_profiles: {
         Row: {
           access_token: string | null
+          activation_stripe_session_id: string | null
           activation_unlocked_at: string | null
           ai_upgrade_access: boolean | null
           avatar_url: string | null
@@ -912,6 +913,7 @@ export type Database = {
         }
         Insert: {
           access_token?: string | null
+          activation_stripe_session_id?: string | null
           activation_unlocked_at?: string | null
           ai_upgrade_access?: boolean | null
           avatar_url?: string | null
@@ -980,6 +982,7 @@ export type Database = {
         }
         Update: {
           access_token?: string | null
+          activation_stripe_session_id?: string | null
           activation_unlocked_at?: string | null
           ai_upgrade_access?: boolean | null
           avatar_url?: string | null
