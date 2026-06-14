@@ -3,7 +3,12 @@ import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { ChevronRight, Wrench } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { PLAYBOOK_STEPS, PlaybookStep, Substep } from "@/data/playbookSteps";
+import {
+  PLAYBOOK_STEPS,
+  PlaybookStep,
+  Substep,
+  useLocalizedPlaybookSteps,
+} from "@/data/playbookSteps";
 import { getBuildLinksForStep } from "@/data/playbookArtifactMap";
 import { UBB_ROOT } from "@/modules/unique-business-builder/constants";
 
@@ -730,10 +735,12 @@ const StepCard = ({ step }: StepCardProps) => {
 // — the actual doing surface — closing the loop on the playbook.
 const UpNext = ({ step }: { step: PlaybookStep }) => {
   const { t } = useTranslation();
+  // Localized array so the next step's subtitle renders in the active locale.
+  const localizedSteps = useLocalizedPlaybookSteps();
   const isLast = step.number === PLAYBOOK_STEPS.length;
   const nextStep = isLast
     ? null
-    : PLAYBOOK_STEPS.find((s) => s.number === step.number + 1) ?? null;
+    : localizedSteps.find((s) => s.number === step.number + 1) ?? null;
 
   if (isLast) {
     return (

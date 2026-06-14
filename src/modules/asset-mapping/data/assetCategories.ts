@@ -1,4 +1,7 @@
 // Asset Categories - Third level of the holonic taxonomy
+import { useMemo } from "react";
+import { useTranslation } from "react-i18next";
+
 export interface AssetCategory {
     id: string;
     subTypeId: string;
@@ -187,4 +190,36 @@ export const ASSET_CATEGORIES: AssetCategory[] = [
     { id: 'social-movements', subTypeId: 'community-impact', title: 'Social Movements' },
     { id: 'philanthropy-impact', subTypeId: 'community-impact', title: 'Philanthropy' },
 ];
+
+/**
+ * i18n (2026-06-14): localized view of ASSET_CATEGORIES for DISPLAY surfaces.
+ *
+ * Returns the same AssetCategory[] shape — ids, subTypeIds and ordering are
+ * preserved verbatim from the canonical ASSET_CATEGORIES array. Only the
+ * user-facing string (category.title) is swapped for a
+ * `t('assetCategories.<id>.title')` lookup against Sasha's official RU/ES
+ * translations.
+ *
+ * Keep reading ASSET_CATEGORIES directly for any non-display logic:
+ *   • filtering / finding by id or subTypeId (taxonomy traversal)
+ *   • matching AI-extracted English titles against the canonical English
+ *     `.title` (AssetMappingLanding) — that match MUST stay English.
+ *
+ * This hook is for what the user reads, not for what the app computes.
+ * English is the i18n fallback, so a missing key degrades to the English
+ * source string, never to a raw key.
+ */
+export const useLocalizedAssetCategories = (): AssetCategory[] => {
+    const { t } = useTranslation();
+    return useMemo(
+        () =>
+            ASSET_CATEGORIES.map((category) => ({
+                ...category,
+                title: t(`assetCategories.${category.id}.title`, {
+                    defaultValue: category.title,
+                }),
+            })),
+        [t],
+    );
+};
 

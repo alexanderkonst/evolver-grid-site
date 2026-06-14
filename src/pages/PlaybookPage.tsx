@@ -3,7 +3,7 @@ import { Navigate, useParams } from "react-router-dom";
 import GameShellV2 from "@/components/game/GameShellV2";
 import PlaybookShell from "@/components/playbook/PlaybookShell";
 import StepCard from "@/components/playbook/StepCard";
-import { getStepBySlug, PLAYBOOK_STEPS } from "@/data/playbookSteps";
+import { useLocalizedStepBySlug, PLAYBOOK_STEPS } from "@/data/playbookSteps";
 import { markJourneyVisited } from "@/lib/journeyVisits";
 
 /**
@@ -22,7 +22,7 @@ import { markJourneyVisited } from "@/lib/journeyVisits";
 const PlaybookPage = () => {
   const { slug } = useParams<{ slug: string }>();
   const resolvedSlug = slug ?? "discover";
-  const step = getStepBySlug(resolvedSlug);
+  const step = useLocalizedStepBySlug(resolvedSlug);
 
   // Day 65 wave 4 (Sasha 2026-05-15): cross-device visit tracking.
   // markJourneyVisited writes localStorage (fast, pre-auth-safe)

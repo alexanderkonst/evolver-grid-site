@@ -1,4 +1,5 @@
 import { Sparkles, Crown, Droplet, Sun, TreeDeciduous } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 // Custom icon URLs (hosted externally)
 const wakingUpIcon = "https://i.imgur.com/oUfcX6u.jpeg";
@@ -372,6 +373,30 @@ export const skillTrees: SkillTree[] = [
         ],
     },
 ];
+
+/**
+ * i18n: returns the skillTrees array with display text (tree name/tagline/
+ * description + each node's name/description) replaced by the active locale.
+ * IDs, colors, gradients, icons, positions, prerequisites, quests, and xp stay
+ * verbatim. Node IDs are globally unique, so node text is keyed flat as
+ * skillTrees.node.<nodeId>.*. English falls back to the source literal.
+ * Presentational children (SkillTree/SkillNode) receive the localized objects
+ * as props, so no edits are needed there.
+ */
+export function useLocalizedSkillTrees(): SkillTree[] {
+    const { t } = useTranslation();
+    return skillTrees.map((tree) => ({
+        ...tree,
+        name: t(`skillTrees.tree.${tree.id}.name`, { defaultValue: tree.name }),
+        tagline: t(`skillTrees.tree.${tree.id}.tagline`, { defaultValue: tree.tagline }),
+        description: t(`skillTrees.tree.${tree.id}.description`, { defaultValue: tree.description }),
+        nodes: tree.nodes.map((node) => ({
+            ...node,
+            name: t(`skillTrees.node.${node.id}.name`, { defaultValue: node.name }),
+            description: t(`skillTrees.node.${node.id}.description`, { defaultValue: node.description }),
+        })),
+    }));
+}
 
 // Helper to get a tree by ID
 export const getTreeById = (id: string): SkillTree | undefined => {

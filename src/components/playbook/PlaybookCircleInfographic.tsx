@@ -1,6 +1,10 @@
 import { useTranslation } from "react-i18next";
 import { cn } from "@/lib/utils";
-import { PLAYBOOK_STEPS, PlaybookStep } from "@/data/playbookSteps";
+import {
+  PLAYBOOK_STEPS,
+  PlaybookStep,
+  useLocalizedPlaybookSteps,
+} from "@/data/playbookSteps";
 
 /**
  * PlaybookCircleInfographic — the 7-note / 7-color holonic circle.
@@ -62,6 +66,9 @@ const PlaybookCircleInfographic = ({
   className,
 }: PlaybookCircleInfographicProps) => {
   const { t } = useTranslation();
+  // Localized steps for the always-visible ring labels (labelLines).
+  // All other maps below read colors/numbers (logic) from PLAYBOOK_STEPS.
+  const localizedSteps = useLocalizedPlaybookSteps();
 
   return (
     <figure
@@ -267,7 +274,7 @@ const PlaybookCircleInfographic = ({
             - dominantBaseline: hanging | auto | middle (vertical side)
             Anchoring keeps each label's INNER edge at the same distance
             from the ring regardless of how many words it has.            */}
-        {PLAYBOOK_STEPS.map((step, i) => {
+        {localizedSteps.map((step, i) => {
           const a = angleFor(i);
           const cosA = Math.cos(a);
           const sinA = Math.sin(a);

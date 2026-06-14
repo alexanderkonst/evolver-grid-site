@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useZoneOfGenius } from "./ZoneOfGeniusContext";
-import { TALENTS } from "./talents";
+import { useLocalizedTalents } from "./talents";
 import { cn } from "@/lib/utils";
 import { Check, ArrowLeft, ArrowRight } from "lucide-react";
 import { getZogAssessmentBasePath, getZogStepPath } from "./zogRoutes";
@@ -22,7 +22,8 @@ const Step2SelectTop3CoreTalents = () => {
     setLocalSelected(top3CoreTalentIds);
   }, [selectedTop10TalentIds, top3CoreTalentIds, navigate, basePath]);
 
-  const top10Talents = TALENTS.filter(t => selectedTop10TalentIds.includes(t.id));
+  const localizedTalents = useLocalizedTalents();
+  const top10Talents = localizedTalents.filter(t => selectedTop10TalentIds.includes(t.id));
 
   const handleTalentClick = (talentId: number) => {
     if (localSelected.includes(talentId)) {

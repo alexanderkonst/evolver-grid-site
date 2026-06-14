@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useZoneOfGenius } from "./ZoneOfGeniusContext";
-import { TALENTS } from "./talents";
+import { useLocalizedTalents } from "./talents";
 import { cn } from "@/lib/utils";
 import { ChevronUp, ChevronDown, ArrowLeft, GripVertical, Sparkles } from "lucide-react";
 import { getZogAssessmentBasePath, getZogStepPath } from "./zogRoutes";
@@ -26,7 +26,8 @@ const Step3OrderTalents = () => {
     }
   }, [top3CoreTalentIds, orderedTalentIds, navigate, basePath]);
 
-  const orderedTalents = localOrdered.map(id => TALENTS.find(t => t.id === id)!).filter(Boolean);
+  const localizedTalents = useLocalizedTalents();
+  const orderedTalents = localOrdered.map(id => localizedTalents.find(t => t.id === id)!).filter(Boolean);
 
   const moveUp = (index: number) => {
     if (index === 0) return;

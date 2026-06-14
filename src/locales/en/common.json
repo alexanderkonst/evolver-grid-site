@@ -717,6 +717,238 @@
       "comingSoon": "Coming Soon",
       "ready": "Ready",
       "module": "Module"
+    },
+    "genius": {
+      "name": "Genius",
+      "subtitle": "Showing Up",
+      "tagline": "Know Your Gifts · Express Your Genius",
+      "description": "Discover and express your unique genius. From knowing your talents to building a genius-based business.",
+      "upgrades": {
+        "g-1-zog-test": {
+          "name": "Zone of Genius Test",
+          "description": "Know your unique genius (~1 min)"
+        },
+        "g-2-apply-genius": {
+          "name": "Apply Your Genius",
+          "description": "See how your genius shows up in life"
+        },
+        "g-3-personality-tests": {
+          "name": "Upload Personality Tests",
+          "description": "Enrich profile with MBTI, Enneagram, etc."
+        },
+        "g-4-micro-distinctions": {
+          "name": "Micro: Genius, Purpose, Mission, Traits, Talents",
+          "description": "Clarity on all the distinctions"
+        },
+        "g-5-genius-activation": {
+          "name": "Zone of Genius Activation",
+          "description": "Immersive experience of your genius"
+        },
+        "g-6-mi-assessment": {
+          "name": "Multiple Intelligences Assessment",
+          "description": "3-min MI self-assessment"
+        },
+        "g-7-unique-offering": {
+          "name": "Unique Offering",
+          "description": "Articulate your genius offer"
+        },
+        "g-8-genius-business": {
+          "name": "Genius Business",
+          "description": "Build your genius-based business"
+        }
+      }
+    },
+    "spirit": {
+      "name": "Spirit",
+      "subtitle": "Waking Up",
+      "tagline": "Awareness · Sensitivity · Presence",
+      "description": "Awareness + Sensitivity as meta-skills. Develop your capacity for presence, love, and expanded states.",
+      "upgrades": {
+        "s-1-what-is-spirit": {
+          "name": "Micro: What is Spirit?",
+          "description": "Awareness + Sensitivity as the two graspable aspects of spirit; seeing them as meta-skills through everyday experience"
+        },
+        "s-2-baseline": {
+          "name": "Spirit Baseline Assessment",
+          "description": "Where am I on the holonic map of awareness? Sensitivity? What's next?"
+        },
+        "s-3-shifting-consciousness": {
+          "name": "Micro: Shifting Consciousness",
+          "description": "Speed of shifting, degree of peak, sustainable development considerations"
+        },
+        "s-4-conscious-breath": {
+          "name": "Conscious Breath",
+          "description": "Learn to take a conscious breath — the foundational skill"
+        },
+        "s-5-heart-centering": {
+          "name": "Heart Centering",
+          "description": "Breath into the center of the heart — a technique to increase sensitivity"
+        },
+        "s-6-state-shifting": {
+          "name": "State Shifting Experience",
+          "description": "Experience shifting awareness and sensitivity; develop sensitivity to the shifting itself"
+        },
+        "s-7-micro-states": {
+          "name": "Micro: States of Consciousness",
+          "description": "Altered/expanded states, peak experiences, nervous system connection, brain wave activity"
+        },
+        "s-8-depth-perception": {
+          "name": "Micro: Depth Perception",
+          "description": "Perception of time and space → better decisions; this as a meta-skill"
+        },
+        "s-9-breathwork-meditation": {
+          "name": "Breathwork + Meditation",
+          "description": "Full experience: breathwork followed by meditation"
+        },
+        "s-10-five-states": {
+          "name": "Micro: Five Major States",
+          "description": "Physical, Subtle, Causal, Non-dual, Isness/Suchness, Ground of Being, Non-dual + Void"
+        }
+      }
+    },
+    "mind": {
+      "name": "Mind",
+      "subtitle": "Growing Up",
+      "tagline": "Development · Perspective · Meaning",
+      "description": "Development as lens polishing — seeing the lens you see through. Expand your capacity for complexity and meaning-making.",
+      "upgrades": {
+        "m-1-why-matters": {
+          "name": "Micro: Why This Matters",
+          "description": "How developmental stages reflect in products, businesses, societies, politics, thoughts"
+        },
+        "m-2-mind-development": {
+          "name": "Micro: Mind Development",
+          "description": "Understanding growth as mind development"
+        },
+        "m-3-thinking-about-thinking": {
+          "name": "Micro: Thinking About Thinking",
+          "description": "One of the best ways to learn about mind is to learn about thinking"
+        },
+        "m-4-essence-of-mind": {
+          "name": "Micro: Essence of Mind",
+          "description": "Mind as a filtering lens of perception → worldview; development = polishing/studying the lens"
+        },
+        "m-5-cognitive-distortions": {
+          "name": "Micro: Cognitive Distortions",
+          "description": "Key distortions per Spiral Dynamics stage; extreme manifestations in human mind"
+        },
+        "m-6-distortion-discovery": {
+          "name": "Distortion Discovery",
+          "description": "Immersive experience connecting you to YOUR key distortions"
+        },
+        "m-7-thinking-patterns": {
+          "name": "Micro: Thinking Patterns",
+          "description": "Different thinking patterns per developmental stage; clear examples; developmental sequence as mind matures"
+        },
+        "m-8-blind-spots": {
+          "name": "Micro: Blind Spots by Stage",
+          "description": "How each stage gets stuck; the conundrum it tries to resolve; how it finally resolves"
+        },
+        "m-9-perspectives": {
+          "name": "Micro: Perspectives",
+          "description": "Ego-centric → Ethnocentric → World-centric → Cosmo-centric; 1st/2nd/3rd/4th/5th person"
+        },
+        "m-10-quadrants": {
+          "name": "Micro: Quadrants",
+          "description": "I/We/It/Its — the four fundamental perspectives"
+        },
+        "m-11-lines": {
+          "name": "Micro: Lines (Multiple Intelligences)",
+          "description": "Cognitive, emotional, moral, interpersonal, etc."
+        },
+        "m-12-types": {
+          "name": "Micro: Types",
+          "description": "Horizontal variety at each level (masculine/feminine, Enneagram, etc.)"
+        },
+        "m-13-holistic": {
+          "name": "Micro: Holistic Thinking",
+          "description": "Thinking in interconnected wholes"
+        },
+        "m-14-holonic": {
+          "name": "Micro: Holonic Thinking",
+          "description": "Thinking in holons — the structure that repeats at every level"
+        }
+      }
+    },
+    "emotions": {
+      "name": "Emotions",
+      "subtitle": "Cleaning Up",
+      "tagline": "Shadow · Emotions · Healing",
+      "description": "Integrate your shadow, heal trauma, develop emotional literacy, and repair your nervous system.",
+      "upgrades": {
+        "e-1-baseline": {
+          "name": "Emotional Baseline",
+          "description": "What's my current emotional range?"
+        },
+        "e-2-vocabulary": {
+          "name": "Emotion Vocabulary",
+          "description": "Expand what I can name and feel"
+        },
+        "e-3-trigger-map": {
+          "name": "Trigger Map",
+          "description": "Identify my top triggers"
+        },
+        "e-4-release": {
+          "name": "Release Activation",
+          "description": "Somatic/breathwork release"
+        },
+        "e-5-shadow-basics": {
+          "name": "Micro: Shadow Basics",
+          "description": "Projection, repression, integration"
+        },
+        "e-6-shadow-encounter": {
+          "name": "Shadow Encounter",
+          "description": "Meet a shadow aspect (guided)"
+        },
+        "e-7-integration": {
+          "name": "Integration Activation",
+          "description": "Bring shadow into wholeness"
+        },
+        "e-8-sovereignty": {
+          "name": "Emotional Sovereignty",
+          "description": "Feel without being consumed"
+        }
+      }
+    },
+    "body": {
+      "name": "Body",
+      "subtitle": "Foundation",
+      "tagline": "Body · Energy · Environment",
+      "description": "The foundation of everything. Energy, mobility, capacity, nervous system, and environment design.",
+      "upgrades": {
+        "b-1-baseline": {
+          "name": "Body Baseline",
+          "description": "Current energy, mobility, capacity"
+        },
+        "b-2-somatic-awareness": {
+          "name": "Somatic Awareness Activation",
+          "description": "Attune to body signals"
+        },
+        "b-3-energy-audit": {
+          "name": "Energy Audit",
+          "description": "Where do I leak/gain energy?"
+        },
+        "b-4-stress-response": {
+          "name": "Stress Response Map",
+          "description": "Fight/flight/freeze patterns"
+        },
+        "b-5-nervous-system": {
+          "name": "Nervous System Activation",
+          "description": "Shift nervous system state"
+        },
+        "b-6-recovery": {
+          "name": "Micro: Recovery Science",
+          "description": "Sleep, restoration, recovery"
+        },
+        "b-7-reset": {
+          "name": "Full Body Reset",
+          "description": "Complete activation/reset"
+        },
+        "b-8-integration": {
+          "name": "Body-Mind Integration",
+          "description": "Embody mental/emotional shifts"
+        }
+      }
     }
   },
   "appleseed": {
@@ -1141,6 +1373,159 @@
       "available": "Available",
       "inProgress": "In Progress",
       "completed": "Completed"
+    },
+    "tree": {
+      "waking-up": {
+        "name": "Waking Up",
+        "tagline": "Spirit · Awareness · Presence",
+        "description": "Develop your capacity for awareness, sensitivity, presence, and love. Practices include meditation, breathwork, nondual glimpses, and heart-opening."
+      },
+      "growing-up": {
+        "name": "Growing Up",
+        "tagline": "Meaning · Maturity · Responsibility",
+        "description": "Develop your worldview, emotional adulthood, and capacity to take full responsibility for your life and contribution."
+      },
+      "cleaning-up": {
+        "name": "Cleaning Up",
+        "tagline": "Shadow · Emotions · Healing",
+        "description": "Integrate your shadow, heal trauma, develop emotional literacy, and repair your nervous system."
+      },
+      "showing-up": {
+        "name": "Showing Up",
+        "tagline": "Mission · Contribution · Impact",
+        "description": "Discover and express your dharmic path. Entrepreneurship, service, leadership, and venture-building."
+      },
+      "body": {
+        "name": "Body",
+        "tagline": "Body · Foundation · Environment",
+        "description": "HRV, movement, strength, posture, breath, sleep, home — the foundation of everything."
+      }
+    },
+    "node": {
+      "wu-awareness-101": {
+        "name": "Awareness 101",
+        "description": "Notice when you're lost in thought vs. present. The foundation of all inner work."
+      },
+      "wu-breath-anchor": {
+        "name": "Breath as Anchor",
+        "description": "Use the breath to return to now. A simple but profound skill."
+      },
+      "wu-body-scan": {
+        "name": "Body Scan",
+        "description": "Move attention through the body. Feel what's alive in you."
+      },
+      "wu-witness-state": {
+        "name": "Witness State",
+        "description": "Rest as the one who observes. Begin to taste non-dual awareness."
+      },
+      "wu-heart-opening": {
+        "name": "Heart Opening",
+        "description": "Practices that soften the heart and expand your capacity for love."
+      },
+      "wu-nondual-glimpse": {
+        "name": "Nondual Glimpse",
+        "description": "Taste the recognition that awareness and its contents are not two."
+      },
+      "wu-abiding-presence": {
+        "name": "Abiding Presence",
+        "description": "Presence becomes your natural state, not just a practice."
+      },
+      "gu-self-honesty": {
+        "name": "Self-Honesty",
+        "description": "See yourself clearly. Stop the subtle lies we tell ourselves."
+      },
+      "gu-own-your-story": {
+        "name": "Own Your Story",
+        "description": "Take authorship of your narrative. You are not a victim."
+      },
+      "gu-complexity-tolerance": {
+        "name": "Complexity Tolerance",
+        "description": "Hold paradox, nuance, and 'both/and' thinking."
+      },
+      "gu-responsibility": {
+        "name": "Radical Responsibility",
+        "description": "Everything in your life is your creation. Act accordingly."
+      },
+      "gu-meaning-making": {
+        "name": "Meaning Making",
+        "description": "Craft a worldview that serves you, others, and truth."
+      },
+      "cu-feel-feelings": {
+        "name": "Feel Your Feelings",
+        "description": "Basic emotional literacy. Name it to tame it."
+      },
+      "cu-trigger-tracking": {
+        "name": "Trigger Tracking",
+        "description": "Notice what activates you. Map your reactive patterns."
+      },
+      "cu-nervous-system": {
+        "name": "Nervous System Basics",
+        "description": "Understand fight/flight/freeze/fawn. Know your window of tolerance."
+      },
+      "cu-shadow-spotting": {
+        "name": "Shadow Spotting",
+        "description": "Recognize your projections. Meet what you've disowned."
+      },
+      "cu-somatic-release": {
+        "name": "Somatic Release",
+        "description": "Let the body complete what the mind can't process."
+      },
+      "cu-integration": {
+        "name": "Integration",
+        "description": "Welcome all parts. Nothing to hide, nothing to fix."
+      },
+      "su-zone-of-genius": {
+        "name": "Zone of Genius",
+        "description": "Know your unique gifts. What only you can do."
+      },
+      "su-values-clarity": {
+        "name": "Values Clarity",
+        "description": "What matters most to you? Align action with values."
+      },
+      "su-offer-creation": {
+        "name": "Offer Creation",
+        "description": "Turn your genius into something people can say yes to."
+      },
+      "su-visibility": {
+        "name": "Visibility",
+        "description": "Be seen. Share your work. Let people find you."
+      },
+      "su-sustainable-rhythm": {
+        "name": "Sustainable Rhythm",
+        "description": "Build systems that let you create without burning out."
+      },
+      "su-mission": {
+        "name": "Living Your Mission",
+        "description": "Your work IS your practice. No separation."
+      },
+      "gr-sleep-hygiene": {
+        "name": "Sleep Hygiene",
+        "description": "The foundation of recovery. Master your sleep environment and rhythm."
+      },
+      "gr-breath-basics": {
+        "name": "Breath Basics",
+        "description": "Nasal breathing, diaphragmatic breath, basic coherence."
+      },
+      "gr-daily-movement": {
+        "name": "Daily Movement",
+        "description": "Move every day. It doesn't have to be intense."
+      },
+      "gr-hrv-tracking": {
+        "name": "HRV Tracking",
+        "description": "Measure your nervous system readiness. Objective feedback."
+      },
+      "gr-strength-base": {
+        "name": "Strength Foundation",
+        "description": "Basic resistance training. Build structural integrity."
+      },
+      "gr-environment-design": {
+        "name": "Environment Design",
+        "description": "Your home and workspace shape you. Design them consciously."
+      },
+      "gr-embodied-presence": {
+        "name": "Embodied Presence",
+        "description": "Your body becomes your ally. Ground for everything else."
+      }
     }
   },
   "library": {
@@ -5156,5 +5541,917 @@
     "sentimentBuilding": "Building foundations",
     "emptyState": "No life map yet",
     "seeDetails": "See Details"
+  },
+  "talents": {
+    "1": {
+      "name": "Designing Ideals",
+      "description": "You excel at creating systems that embody high standards, like an architect drafting the blueprint of a groundbreaking sustainable building."
+    },
+    "2": {
+      "name": "Advocating Fairness",
+      "description": "You are passionate about promoting justice, like a human rights lawyer fighting for equal rights in court."
+    },
+    "3": {
+      "name": "Seeking Improvements",
+      "description": "You thrive in refining processes, like a quality control specialist enhancing production methods for efficiency."
+    },
+    "4": {
+      "name": "Mastering Precision",
+      "description": "You love achieving flawless execution, akin to a watchmaker assembling intricate timepieces with exactness."
+    },
+    "5": {
+      "name": "Upholding Ethics",
+      "description": "You are committed to acting ethically, much like a journalist dedicated to reporting unbiased truths."
+    },
+    "6": {
+      "name": "Maintaining Order",
+      "description": "You find satisfaction in organizing systems, like a librarian cataloging books for easy access."
+    },
+    "7": {
+      "name": "Standing for Righteousness",
+      "description": "You are unafraid to stand up for what is right, like an activist campaigning against social injustices."
+    },
+    "8": {
+      "name": "Building Structures",
+      "description": "You thrive in creating order from chaos, like a project manager streamlining a complex project plan."
+    },
+    "9": {
+      "name": "Crafting Visions",
+      "description": "You find joy in setting lofty goals, similar to a CEO outlining a visionary business strategy."
+    },
+    "10": {
+      "name": "Assisting Empathetically",
+      "description": "You excel in helping others through empathy, like a nurse providing compassionate care to patients."
+    },
+    "11": {
+      "name": "Building Harmonious Relationships",
+      "description": "You naturally build harmonious relationships, like a diplomat fostering peace between nations."
+    },
+    "12": {
+      "name": "Offering Service",
+      "description": "You love offering your service to those in need, akin to a humanitarian delivering aid in crisis zones."
+    },
+    "13": {
+      "name": "Providing Emotional Support",
+      "description": "You find fulfillment in supporting others emotionally, like a counselor guiding clients through challenges."
+    },
+    "14": {
+      "name": "Anticipating Needs",
+      "description": "You excel at foreseeing others' needs, like a personal assistant preparing everything before it's requested."
+    },
+    "15": {
+      "name": "Cultivating Community",
+      "description": "You enjoy fostering a sense of community, akin to a community organizer planning local events."
+    },
+    "16": {
+      "name": "Showering Generosity",
+      "description": "You find joy in acts of generosity, like a philanthropist funding educational scholarships."
+    },
+    "17": {
+      "name": "Communicating Heartfelt Messages",
+      "description": "You have a knack for sincere expression, like a writer crafting a moving memoir."
+    },
+    "18": {
+      "name": "Giving Affection",
+      "description": "You thrive in sharing love and warmth, like a caregiver providing comfort to those in need."
+    },
+    "19": {
+      "name": "Setting Goals",
+      "description": "You love establishing and reaching ambitious targets, like an athlete training to win a gold medal."
+    },
+    "20": {
+      "name": "Organizing Efficiently",
+      "description": "You thrive in arranging tasks effectively, like a logistics manager coordinating timely deliveries."
+    },
+    "21": {
+      "name": "Chasing Success",
+      "description": "You are energized by pursuing achievements, similar to an entrepreneur launching a successful startup."
+    },
+    "22": {
+      "name": "Crafting Images",
+      "description": "You excel at creating impressive personal or brand images, akin to a marketing professional building a strong brand identity."
+    },
+    "23": {
+      "name": "Mastering Performances",
+      "description": "You have a knack for delivering outstanding performances, like an actor captivating an audience on stage."
+    },
+    "24": {
+      "name": "Maximizing Potential",
+      "description": "You derive satisfaction from fully developing abilities, like a coach helping athletes reach peak performance."
+    },
+    "25": {
+      "name": "Striving for Excellence",
+      "description": "You are committed to achieving excellence, similar to a chef perfecting a signature dish."
+    },
+    "26": {
+      "name": "Nurturing Competitiveness",
+      "description": "You thrive on healthy competition, like a salesperson aiming to top sales charts."
+    },
+    "27": {
+      "name": "Seeking Recognition",
+      "description": "You find fulfillment in being acknowledged for your accomplishments, like a researcher receiving a prestigious award."
+    },
+    "28": {
+      "name": "Experiencing Deep Emotions",
+      "description": "You embrace profound emotions, similar to an artist conveying feelings through their work."
+    },
+    "29": {
+      "name": "Preserving Authenticity",
+      "description": "You value staying true to yourself, akin to an indie musician maintaining their unique sound."
+    },
+    "30": {
+      "name": "Appreciating Aesthetics",
+      "description": "You find joy in the beauty of design, like an interior designer creating harmonious spaces."
+    },
+    "31": {
+      "name": "Exploring Inner Self",
+      "description": "You delve into self-discovery, like a philosopher reflecting on personal identity."
+    },
+    "32": {
+      "name": "Creating Originality",
+      "description": "You thrive on producing original work, like an inventor developing a groundbreaking gadget."
+    },
+    "33": {
+      "name": "Romanticizing Life",
+      "description": "You enjoy seeing life through a poetic lens, similar to a novelist weaving tales of epic adventures."
+    },
+    "34": {
+      "name": "Craving Intensity",
+      "description": "You have a natural desire for passionate experiences, like a filmmaker crafting emotionally charged scenes."
+    },
+    "35": {
+      "name": "Seeking Beauty",
+      "description": "You derive satisfaction from finding beauty in the world, like a photographer capturing breathtaking images."
+    },
+    "36": {
+      "name": "Seeking Depth",
+      "description": "You are driven to pursue profound experiences, akin to a deep-sea explorer venturing into uncharted waters."
+    },
+    "37": {
+      "name": "Questing for Knowledge",
+      "description": "You delight in exploring new domains, like a scientist researching unexplored phenomena."
+    },
+    "38": {
+      "name": "Unraveling Secrets",
+      "description": "You decipher complex information, much like a detective solving intricate mysteries."
+    },
+    "39": {
+      "name": "Constructing Thought Systems",
+      "description": "You enjoy building comprehensive ideas, similar to a theorist developing new frameworks."
+    },
+    "40": {
+      "name": "Architecting Innovations",
+      "description": "You build groundbreaking solutions to complex problems, much like an engineer designing cutting-edge technology."
+    },
+    "41": {
+      "name": "Cultivating Wisdom",
+      "description": "You focus on gaining wisdom, akin to a scholar dedicated to lifelong learning."
+    },
+    "42": {
+      "name": "Refining Intellect",
+      "description": "You relish honing your understanding, similar to a chess grandmaster strategizing plays."
+    },
+    "43": {
+      "name": "Learning Independently",
+      "description": "You thrive in self-directed learning, like an autodidact mastering a new skill."
+    },
+    "44": {
+      "name": "Deepening Observations",
+      "description": "You enhance understanding through keen observation, much like a biologist studying ecosystems."
+    },
+    "45": {
+      "name": "Synthesizing Understanding",
+      "description": "You excel at distilling complex concepts into clear insights, like a teacher explaining difficult subjects."
+    },
+    "46": {
+      "name": "Building Trust",
+      "description": "You enjoy fostering trust, like a counselor establishing rapport with clients."
+    },
+    "47": {
+      "name": "Predicting Problems",
+      "description": "You excel at anticipating potential issues, akin to a risk manager identifying future challenges."
+    },
+    "48": {
+      "name": "Providing Security",
+      "description": "You find fulfillment in ensuring safety, similar to a cybersecurity expert protecting data."
+    },
+    "49": {
+      "name": "Being Reliable",
+      "description": "You thrive in being dependable, akin to a trusted colleague who delivers consistently."
+    },
+    "50": {
+      "name": "Seeking Guidance",
+      "description": "You value learning from others, like an apprentice absorbing knowledge from a master craftsman."
+    },
+    "51": {
+      "name": "Craving Assurance",
+      "description": "You seek affirmation, like an author appreciating feedback from readers."
+    },
+    "52": {
+      "name": "Navigating Systems",
+      "description": "You excel in maneuvering through complex structures, akin to a policy analyst understanding regulatory landscapes."
+    },
+    "53": {
+      "name": "Assessing Danger",
+      "description": "You have a knack for evaluating risks, like a safety inspector identifying workplace hazards."
+    },
+    "54": {
+      "name": "Upholding Loyalty",
+      "description": "You are committed to being loyal, similar to a teammate supporting their group through challenges."
+    },
+    "55": {
+      "name": "Innovating in Uncharted Areas",
+      "description": "You love exploring new ideas, like a tech entrepreneur pioneering novel technologies."
+    },
+    "56": {
+      "name": "Motivating with Positive Energy",
+      "description": "You inspire others with enthusiasm, much like a motivational speaker energizing an audience."
+    },
+    "57": {
+      "name": "Diversifying Skill Sets",
+      "description": "You thrive when learning varied skills, like a generalist adapting to multiple roles."
+    },
+    "58": {
+      "name": "Visioning Bold Ventures",
+      "description": "You find joy in planning adventurous strategies, comparable to an executive entering new markets."
+    },
+    "59": {
+      "name": "Fostering a Joyful Workplace",
+      "description": "You excel at creating vibrant work cultures, like an HR manager organizing team-building activities."
+    },
+    "60": {
+      "name": "Conceptualizing Innovative Solutions",
+      "description": "Your imagination crafts fresh approaches, like a product designer developing a unique gadget."
+    },
+    "61": {
+      "name": "Facilitating Creative Brainstorms",
+      "description": "You harness collective thinking for ideas, like a creative director leading brainstorming sessions."
+    },
+    "62": {
+      "name": "Incorporating Fun into Work",
+      "description": "You blend enjoyment with tasks, similar to a teacher using games to engage students."
+    },
+    "63": {
+      "name": "Navigating Freelance Opportunities",
+      "description": "You prefer project flexibility, akin to a freelancer choosing diverse assignments."
+    },
+    "64": {
+      "name": "Exercising Power",
+      "description": "You confidently take charge, like a CEO making strategic decisions for growth."
+    },
+    "65": {
+      "name": "Maintaining Control",
+      "description": "You thrive in guiding situations, akin to a conductor directing a symphony orchestra."
+    },
+    "66": {
+      "name": "Ensuring Justice",
+      "description": "You are passionate about fairness, like a judge delivering impartial verdicts."
+    },
+    "67": {
+      "name": "Breaking Barriers",
+      "description": "You enjoy challenging limitations, similar to an innovator disrupting traditional industries."
+    },
+    "68": {
+      "name": "Offering Protection",
+      "description": "You are naturally protective, akin to a firefighter safeguarding the community."
+    },
+    "69": {
+      "name": "Making Decisions",
+      "description": "You excel in making prompt decisions, like an emergency room doctor prioritizing patient care."
+    },
+    "70": {
+      "name": "Displaying Strength",
+      "description": "You are open to demonstrating your capabilities, similar to an athlete showcasing skills in competition."
+    },
+    "71": {
+      "name": "Valuing Independence",
+      "description": "You assert your autonomy, like a solo entrepreneur running their own business."
+    },
+    "72": {
+      "name": "Taking Leadership",
+      "description": "You are a natural leader, like a captain guiding a team to victory."
+    },
+    "73": {
+      "name": "Creating Harmony",
+      "description": "You love bringing people together, like a mediator resolving workplace conflicts."
+    },
+    "74": {
+      "name": "Offering Understanding",
+      "description": "You excel at empathy, akin to a therapist connecting with clients' emotions."
+    },
+    "75": {
+      "name": "Providing Comfort",
+      "description": "You find joy in comforting others, like a caregiver supporting patients through recovery."
+    },
+    "76": {
+      "name": "Mediating Conflicts",
+      "description": "You have a knack for resolving disputes, like a negotiator facilitating agreements."
+    },
+    "77": {
+      "name": "Seeking Serenity",
+      "description": "You pursue peaceful environments, like a mindfulness coach cultivating calm spaces."
+    },
+    "78": {
+      "name": "Promoting Acceptance",
+      "description": "You encourage inclusivity, like a diversity officer fostering an accepting workplace."
+    },
+    "79": {
+      "name": "Maintaining Balance",
+      "description": "You strive for equilibrium, akin to a life coach helping clients find work-life balance."
+    },
+    "80": {
+      "name": "Promoting Calm Environments",
+      "description": "You work to reduce stress, like a wellness coordinator implementing relaxation programs."
+    },
+    "81": {
+      "name": "Spreading Peace",
+      "description": "You are passionate about fostering harmony, akin to a diplomat negotiating peaceful resolutions."
+    }
+  },
+  "playbookSteps": {
+    "discover": {
+      "subtitle": "Name Your Top Talent",
+      "transformationalResult": "I can name my top talent out loud.",
+      "ctaText": "Find Your Top Talent",
+      "labelLines": {
+        "0": "Name Your",
+        "1": "Top Talent"
+      },
+      "included": {
+        "0": "Your top talent distilled into one sentence in a couple of minutes"
+      },
+      "substeps": {
+        "1": {
+          "name": "Ask your AI about your top talent",
+          "description": "",
+          "oneProvenStrategy": "Use this prompt: “Based on all you know about me, what’s my zone of genius?” Or do the top talent reveal on this page. That gets you to a high enough specificity to then leverage and monetize your unique talent."
+        },
+        "2": {
+          "name": "Distill it into one sentence — and actually write it down",
+          "description": "",
+          "oneProvenStrategy": "Ask your AI to do this for you, and then polish it yourself. You can use [this iterative improvement prompt](/ai-os/iteration)."
+        },
+        "3": {
+          "name": "Iterate whenever new clarity emerges",
+          "description": "",
+          "oneProvenStrategy": "Keep it in an accessible place, update it, and call each version v1.1, v2, and so on."
+        }
+      }
+    },
+    "package": {
+      "subtitle": "Articulate it with Precision",
+      "transformationalResult": "I can describe my top talent in a crystal clear one sentence that lands visceral and emotive.",
+      "ctaText": "Sharpen Your Top Talent to 9+/10 in 60 mins",
+      "labelLines": {
+        "0": "Articulate it",
+        "1": "with Precision"
+      },
+      "included": {
+        "0": "One-sentence top talent that lights you up and that you have had all your life",
+        "1": "Your top talent sharpened to 9/10 or higher — in 60 minutes"
+      },
+      "substeps": {
+        "1": {
+          "name": "Iterate until you reach 9/10 resonance or higher",
+          "description": "Iterate on your current articulation until it reaches 9/10 of resonance or higher.",
+          "oneProvenStrategy": "Work with a guide who has reached 9.9+ resonance for themselves, or use a high-precision purpose-discovery tool."
+        },
+        "2": {
+          "name": "Reach at least 9/10 resonance",
+          "description": "Reach at least 9/10 resonance — the threshold precise enough to later reveal your unique product.",
+          "oneProvenStrategy": "TL;DR: the process we have designed is the recommended option to get this result. Other methods will be suboptimal workarounds. If you did our top-talent reveal you are likely at 6-8 out of 10 resonance. None of the personality tests I or AI know will get you any further than that. I am aware of only three sufficiently precise tools, and even those (1) give you a report — not a single distilled sentence you can iterate on; (2) hence require AI-assisted iterative synthesis (these clarity prompts will help); and (3) still call for a guide, and as of April 2026 I haven't met anyone I can recommend, because the signal-to-noise threshold for precise top-talent articulation must be embodied by the guide, and that's not yet common."
+        },
+        "3": {
+          "name": "Keep iterating as clarity trickles down",
+          "description": "Keep iterating as more clarity and insight into your top talent naturally emerges — it will trickle down across your entire business as improvements.",
+          "oneProvenStrategy": "Version your top-talent statement and keep it in your face — in your notes app, as a post-it on your desk, as your phone background."
+        }
+      }
+    },
+    "build": {
+      "subtitle": "Enhance it with Business Structure",
+      "transformationalResult": "I know the shape of my business.",
+      "ctaText": "Create your Unique Business Structure at 9+/10 resonance in 2 hours",
+      "labelLines": {
+        "0": "Enhance with",
+        "1": "Business Structure"
+      },
+      "included": {
+        "0": "Clarity and remembrance on what business your top talent was always pointing at",
+        "1": "7 business artifacts unique to YOUR business"
+      },
+      "substeps": {
+        "1": {
+          "name": "Find your Top Blind Spot",
+          "description": "",
+          "oneProvenStrategy": "Give your AI your Top Talent, ask it: please reveal my top blind spot by turning my top talent inside out."
+        },
+        "2": {
+          "name": "Remember Your Personal Myth that Magnetizes Your Aligned Clients",
+          "description": "",
+          "oneProvenStrategy": "Ask your AI: turn my top blind spot into a Master Belief most of the world believes in, turn my top talent into a Master Truth I stand behind when I shine."
+        },
+        "3": {
+          "name": "Produce the minimally viable set of key business artifacts that together form a concrete specific business strategy that stands the test of reason and that of an investor.",
+          "description": "",
+          "oneProvenStrategy": "Translate your top talent, your top blind spot, and your magnetizing myth into the pain that one experiences by living everyday with blind spot, especially when it gets acute, then into your aligned client tribe, then into a transformation promise; and finally the user/hero journey you serve and guide them on. You got a business. To make it rain, keep iterating, getting stuck, getting naturally unstuck, until you get to 9.5+/10. Empirically this seems to be a sufficient specificity to continue to the next step."
+        }
+      }
+    },
+    "product": {
+      "subtitle": "Build your First Unique Product",
+      "transformationalResult": "My first product exists — I can hand it to someone.",
+      "ctaText": "Build Your First Unique Product, Ready for Testing and Selling",
+      "labelLines": {
+        "0": "Build your First",
+        "1": "Unique Product"
+      },
+      "included": {
+        "0": "Major learnings and improvements to your product",
+        "1": "Realization that you gain enormously by having your medicine received",
+        "2": "Excitement, entering flow state deeper, a boost of confidence, a sense of being useful, gratitude"
+      },
+      "substeps": {
+        "1": {
+          "name": "Iterate to bring the business artifacts to 9+/10 resonance",
+          "description": "Iterate to bring the business artifacts to 9+/10 resonance.",
+          "oneProvenStrategy": "Roast the current version with AI (use roasting prompts at metaprompt.lovable.app), provide your inputs, then produce the next iteration, and repeat until you get to 9/10 or further. I recommend: arrive at 9/10, then continue with next steps. You will keep receiving further clarity towards 10, so make sure you version your work otherwise you likely get stuck in analysis paralysis."
+        },
+        "2": {
+          "name": "Solidify and Concretize The Transformational Promise",
+          "description": "Solidify and concretize the Transformational Promise, turn it into a User Journey, a Value Ladder, and a Lead Magnet.",
+          "oneProvenStrategy": "Give AI transcripts of prior most aligned consulting/coaching calls and ask it to extract these artifacts."
+        },
+        "3": {
+          "name": "Deliver Your Unique Product for the First Time",
+          "description": "Deliver your unique product for the first time.",
+          "oneProvenStrategy": "Iterate until you are excited to run it in this new structured way and literally can’t wait and until you arrive at a first signature 1:1 session. Trust the first name that comes to mind, consciously focus on a clear tangible transformational result but don’t overwhelm your client."
+        }
+      }
+    },
+    "test": {
+      "subtitle": "Beta-Test That Everything Works by Gifting and/or Selling",
+      "transformationalResult": "People who got it say yes to more.",
+      "labelLines": {
+        "0": "Gift or Sell",
+        "1": "to Beta-Test"
+      },
+      "substeps": {
+        "1": {
+          "name": "Intuitively identify 5 people in your network that are in your tribe",
+          "description": "",
+          "oneProvenStrategy": "Set an intention to be listening to your intuition to suggest. Then from then on, watch for names of people in your network naturally bubbling up in your awareness. Maybe almost right away, maybe in the next day or two, maybe longer. Don’t brute force it with the mind greedily wanting more client names. The key is to get one at a time. Until the next one. Trust your first instinct even when the mind says “that could not be it”. Write them down immediately so your ego doesn’t dodge. Then whenever you get to it send an intuitive quick message without overthinking it. At this stage, you could offer them the transformational promise as a gift, offer is at an introductory price if appropriate, share an exciting professional update of now focusing on this."
+        },
+        "2": {
+          "name": "Deliver your product as a 1:1 session, record it, track and analyze with AI, extract testimonials from their direct text (and/or video) quotes, do it again, learn iteratively, track what you think are your three key metrics.",
+          "description": "",
+          "oneProvenStrategy": "Use a simple dashboard to track delivery + outcomes like findyourtoptalent.com/dashboard. Do use an AI recorder like fathom.video or Plaud so every session becomes a learning artifact."
+        },
+        "3": {
+          "name": "Get good at delivery and find your highly specific tribe.",
+          "description": "",
+          "oneProvenStrategy": "When you reach ~10 sessions delivered across ~5 clients (so it seems), that’s where you start to be getting good at delivering transformational results across key flavors of people and situations to your tribe. Out of this newly earned clarity blossoms the flower of the highly specific aligned client tribe. For me as of April 2026 that’s conscious aspiring impact entrepreneurs building their visionary ventures."
+        }
+      }
+    },
+    "launch": {
+      "subtitle": "Laser-Focus Tactically and Go Live",
+      "transformationalResult": "I have my first paying client.",
+      "labelLines": {
+        "0": "Laser-Focus and",
+        "1": "Go Live"
+      },
+      "substeps": {
+        "1": {
+          "name": "Build landing, funnel, and lead magnet that transform your ~10/10 tribe at every touchpoint",
+          "description": "",
+          "oneProvenStrategy": "The site you are reading is the landing page, the lead magnet is this playbook and the top talent reveal. The funnel is you reading this and what follows. Here is the template:\n\n1. Give out your method/playbook of how you got your transformational result as a free lead magnet.\n2. Crystallize everything from Steps 1–5 into a landing page, and a funnel. Use Godfather Offer Architect GPT or equivalent, and iterate through cycles of roast, and producing a next version.\n3. Your funnel is you helping them make a beneficial decision. You could highlight the cost of procrastinating on solving their painful situation, use identity-shift language. Iterate until the page can close without you on the call. Test of success is straightforward: ~10/10 aligned clients buy. If yes, you are at early PMF. If not, keep iterating. You are the answer.\n\nPS: My recommendation is not to quit doing whatever is currently bringing income. Not until at least this stage of your unique business. Kinda obvious but it is better to say it."
+        },
+        "2": {
+          "name": "Laser-focus your communication on your 9+/10 tribe.",
+          "description": "",
+          "oneProvenStrategy": "Create and activate a “master tuning fork” that repels non-clients and pulls in your 9+/10 tribe — the simplest possible frame of the transformation in ONE sentence. It will make the right people sit up, and makes other quietly leave. Then post a variation of it to your key digital channels: (a) one line + a URL bios (LinkedIn, Instagram, WhatsApp, Telegram, email signature, X, FB); (b) ONE DM template gifting the lead magnet and sharing your life’s work; (c) ONE life-update post — what you just focused your life on, URL as only link, no pitch; (d) ONE bold content piece that diagnoses the pain the tribe lives in, or another first post."
+        },
+        "3": {
+          "name": "Send a personal life-update + your lead magnet to tribe-aligned people (selected intuitively, especially ones holding a community). Make intros in 9+/10 aligned communities where appropriate.",
+          "description": "If demand isn’t growing organically at this point yet, there are three strategies to add more kindle to this ignition:\n\n1. you need more iteration towards higher specificity on your tribe which may require adjustment to the landing, funnel, and lead magnet, and/or\n2. Activate additional digital + physical surfaces (ask AI to give your an integral list of digital and physical surfaces where it is optimal for you to place your communication for your specific tribe)\n3. Go upstream to aligned practitioners serving the same tribe, and/or start outreach campaigns",
+          "oneProvenStrategy": "Sit still, let names arise — trust the first instinct, especially weak-tie names (research is clear: weak ties carry the novelty strong ties can’t). The higher their tribe-alignment AND community-holding potential, the better. Include the lead magnet (playbook / methodology link) as the gift, not the ask. Parallel: write ONE short intro for each alive ~10/10 community where you’re already a member — wherever appropriate. Culture-match the text using AI by giving it some of the chat content, and/or intros."
+        }
+      }
+    },
+    "scale": {
+      "subtitle": "Turn Organic Growth into Scaling Impact and Revenue",
+      "transformationalResult": "My income is organically growing without me pushing.",
+      "labelLines": {
+        "0": "Grow & Scale",
+        "1": "with Others, in Flow"
+      },
+      "substeps": {
+        "1": {
+          "name": "Get guidance from a whole team of venture scalers working with you",
+          "description": "",
+          "oneProvenStrategy": "[Pending Sasha's vetted text]"
+        },
+        "2": {
+          "name": "Enter a decentralized revenue-sharing coop scheme",
+          "description": "",
+          "oneProvenStrategy": "[Pending Sasha's vetted text]"
+        },
+        "3": {
+          "name": "Enjoy the next octave of the ride",
+          "description": "",
+          "oneProvenStrategy": "[Pending Sasha's vetted text]"
+        }
+      }
+    }
+  },
+  "assetCategories": {
+    "professional-science": {
+      "title": "Professional"
+    },
+    "life-sciences": {
+      "title": "Life Sciences"
+    },
+    "engineering": {
+      "title": "Engineering"
+    },
+    "information-technology": {
+      "title": "Information Technology"
+    },
+    "mathematics": {
+      "title": "Mathematics"
+    },
+    "management": {
+      "title": "Management"
+    },
+    "finance": {
+      "title": "Finance"
+    },
+    "marketing": {
+      "title": "Marketing"
+    },
+    "entrepreneurship": {
+      "title": "Entrepreneurship"
+    },
+    "economics": {
+      "title": "Economics"
+    },
+    "visual-arts": {
+      "title": "Visual Arts"
+    },
+    "performing-arts": {
+      "title": "Performing Arts"
+    },
+    "literature": {
+      "title": "Literature"
+    },
+    "philosophy": {
+      "title": "Philosophy"
+    },
+    "history": {
+      "title": "History"
+    },
+    "psychology": {
+      "title": "Psychology"
+    },
+    "sociology": {
+      "title": "Sociology"
+    },
+    "anthropology": {
+      "title": "Anthropology"
+    },
+    "political-science": {
+      "title": "Political Science"
+    },
+    "education": {
+      "title": "Education"
+    },
+    "healthcare": {
+      "title": "Healthcare"
+    },
+    "law": {
+      "title": "Law"
+    },
+    "environmental-studies": {
+      "title": "Environmental Studies"
+    },
+    "urban-planning": {
+      "title": "Urban Planning"
+    },
+    "agriculture": {
+      "title": "Agriculture"
+    },
+    "self-discovery": {
+      "title": "Self-discovery"
+    },
+    "overcoming-challenges": {
+      "title": "Overcoming Challenges"
+    },
+    "spiritual-journeys": {
+      "title": "Spiritual Journeys"
+    },
+    "relationships": {
+      "title": "Relationships"
+    },
+    "health-transformations": {
+      "title": "Health Transformations"
+    },
+    "long-term-travel": {
+      "title": "Long-term Travel"
+    },
+    "living-abroad": {
+      "title": "Living Abroad"
+    },
+    "language-acquisition": {
+      "title": "Language Acquisition"
+    },
+    "cultural-studies": {
+      "title": "Cultural Studies"
+    },
+    "intercultural-projects": {
+      "title": "Intercultural Projects"
+    },
+    "volunteering": {
+      "title": "Volunteering"
+    },
+    "social-work": {
+      "title": "Social Work"
+    },
+    "peace-corps": {
+      "title": "Peace Corps"
+    },
+    "disaster-relief": {
+      "title": "Disaster Relief"
+    },
+    "community-building": {
+      "title": "Community Building"
+    },
+    "wilderness-expeditions": {
+      "title": "Wilderness Expeditions"
+    },
+    "environmental-conservation": {
+      "title": "Environmental Conservation"
+    },
+    "extreme-sports": {
+      "title": "Extreme Sports"
+    },
+    "wildlife-interaction": {
+      "title": "Wildlife Interaction"
+    },
+    "sustainable-living": {
+      "title": "Sustainable Living"
+    },
+    "industry-associations": {
+      "title": "Industry Associations"
+    },
+    "alumni-networks": {
+      "title": "Alumni Networks"
+    },
+    "professional-societies": {
+      "title": "Professional Societies"
+    },
+    "mentorship-circles": {
+      "title": "Mentorship Circles"
+    },
+    "entrepreneurial-ecosystems": {
+      "title": "Entrepreneurial Ecosystems"
+    },
+    "local-organizations": {
+      "title": "Local Organizations"
+    },
+    "volunteer-groups": {
+      "title": "Volunteer Groups"
+    },
+    "spiritual-communities": {
+      "title": "Spiritual Communities"
+    },
+    "hobby-clubs": {
+      "title": "Hobby Clubs"
+    },
+    "neighborhood-associations": {
+      "title": "Neighborhood Associations"
+    },
+    "trade-groups": {
+      "title": "Trade Groups"
+    },
+    "research-consortiums": {
+      "title": "Research Consortiums"
+    },
+    "standards-bodies": {
+      "title": "Standards Bodies"
+    },
+    "innovation-hubs": {
+      "title": "Innovation Hubs"
+    },
+    "industry-forums": {
+      "title": "Industry-Specific Forums"
+    },
+    "international-ngos": {
+      "title": "International NGOs"
+    },
+    "cultural-exchange": {
+      "title": "Cultural Exchange Programs"
+    },
+    "global-think-tanks": {
+      "title": "Global Think Tanks"
+    },
+    "multinational-collaborations": {
+      "title": "Multinational Collaborations"
+    },
+    "diaspora-networks": {
+      "title": "Diaspora Networks"
+    },
+    "liquid-savings": {
+      "title": "Liquid Savings"
+    },
+    "investment-portfolio": {
+      "title": "Investment Portfolio"
+    },
+    "income-streams": {
+      "title": "Income Streams"
+    },
+    "credit-access": {
+      "title": "Credit Access"
+    },
+    "domains-websites": {
+      "title": "Domains & Websites"
+    },
+    "email-lists": {
+      "title": "Email Lists & Subscribers"
+    },
+    "software-accounts": {
+      "title": "Software & API Access"
+    },
+    "digital-content": {
+      "title": "Digital Content Libraries"
+    },
+    "angel-investing": {
+      "title": "Angel Investing"
+    },
+    "seed-funding": {
+      "title": "Seed Funding"
+    },
+    "series-funding": {
+      "title": "Series A-C"
+    },
+    "growth-capital": {
+      "title": "Growth Capital"
+    },
+    "impact-investing": {
+      "title": "Impact Investing"
+    },
+    "philanthropy": {
+      "title": "Philanthropy"
+    },
+    "offices": {
+      "title": "Offices"
+    },
+    "workshops": {
+      "title": "Workshops"
+    },
+    "land": {
+      "title": "Land"
+    },
+    "venues": {
+      "title": "Venues"
+    },
+    "retreat-centers": {
+      "title": "Retreat Centers"
+    },
+    "technology-equipment": {
+      "title": "Technology"
+    },
+    "machinery": {
+      "title": "Machinery"
+    },
+    "vehicles": {
+      "title": "Vehicles"
+    },
+    "scientific-instruments": {
+      "title": "Scientific Instruments"
+    },
+    "artistic-tools": {
+      "title": "Artistic Tools"
+    },
+    "water-sources": {
+      "title": "Water Sources"
+    },
+    "energy-resources": {
+      "title": "Energy Resources"
+    },
+    "agricultural-land": {
+      "title": "Agricultural Land"
+    },
+    "forests": {
+      "title": "Forests"
+    },
+    "mineral-deposits": {
+      "title": "Mineral Deposits"
+    },
+    "patents": {
+      "title": "Patents"
+    },
+    "inventions": {
+      "title": "Inventions"
+    },
+    "algorithms": {
+      "title": "Algorithms"
+    },
+    "prototypes": {
+      "title": "Prototypes"
+    },
+    "novel-applications": {
+      "title": "Novel Applications"
+    },
+    "frameworks": {
+      "title": "Frameworks"
+    },
+    "processes": {
+      "title": "Processes"
+    },
+    "systems": {
+      "title": "Systems"
+    },
+    "techniques": {
+      "title": "Techniques"
+    },
+    "approaches": {
+      "title": "Approaches"
+    },
+    "writing": {
+      "title": "Writing"
+    },
+    "artwork": {
+      "title": "Artwork"
+    },
+    "music": {
+      "title": "Music"
+    },
+    "software": {
+      "title": "Software"
+    },
+    "designs": {
+      "title": "Designs"
+    },
+    "publishing": {
+      "title": "Publishing"
+    },
+    "speaking": {
+      "title": "Speaking"
+    },
+    "consulting": {
+      "title": "Consulting"
+    },
+    "mentoring": {
+      "title": "Mentoring"
+    },
+    "academic-influence": {
+      "title": "Academic Influence"
+    },
+    "social-media": {
+      "title": "Social Media"
+    },
+    "traditional-media": {
+      "title": "Traditional Media"
+    },
+    "podcasts": {
+      "title": "Podcasts"
+    },
+    "blogs": {
+      "title": "Blogs"
+    },
+    "video-platforms": {
+      "title": "Video Platforms"
+    },
+    "awards": {
+      "title": "Awards"
+    },
+    "board-positions": {
+      "title": "Board Positions"
+    },
+    "expert-status": {
+      "title": "Expert Status"
+    },
+    "patent-citation": {
+      "title": "Patent Citation"
+    },
+    "peer-recognition": {
+      "title": "Peer Recognition"
+    },
+    "local-leadership": {
+      "title": "Local Leadership"
+    },
+    "grassroots-organizing": {
+      "title": "Grassroots Organizing"
+    },
+    "policy-influence": {
+      "title": "Policy Influence"
+    },
+    "social-movements": {
+      "title": "Social Movements"
+    },
+    "philanthropy-impact": {
+      "title": "Philanthropy"
+    }
   }
 }

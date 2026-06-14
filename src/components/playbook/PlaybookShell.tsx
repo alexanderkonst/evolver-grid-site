@@ -3,7 +3,11 @@ import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { ArrowLeft } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { PLAYBOOK_STEPS, PlaybookStep } from "@/data/playbookSteps";
+import {
+  PLAYBOOK_STEPS,
+  PlaybookStep,
+  useLocalizedPlaybookSteps,
+} from "@/data/playbookSteps";
 
 /**
  * PlaybookShell — top-nav progression bar for the seven-step playbook.
@@ -51,6 +55,9 @@ const PlaybookShell = ({
 }: PlaybookShellProps) => {
   const navigate = useNavigate();
   const { t } = useTranslation();
+  // Localized steps for the nav labels + aria; state resolution still keys
+  // on slug/number (identifiers), so it can read either array.
+  const localizedSteps = useLocalizedPlaybookSteps();
   const resolveState = (s: PlaybookStep) =>
     getStepState ? getStepState(s) : defaultStateFor(s, currentSlug);
 
@@ -122,9 +129,9 @@ const PlaybookShell = ({
         }}
       >
         <ol className="flex items-start justify-between gap-1 sm:gap-2">
-          {PLAYBOOK_STEPS.map((step, i) => {
+          {localizedSteps.map((step, i) => {
             const state = resolveState(step);
-            const isLast = i === PLAYBOOK_STEPS.length - 1;
+            const isLast = i === localizedSteps.length - 1;
             const isActive = state === "active";
 
             return (

@@ -1188,6 +1188,238 @@
       "comingSoon": "Próximamente",
       "ready": "Listo",
       "module": "Módulo"
+    },
+    "genius": {
+      "name": "Genio",
+      "subtitle": "Presencia",
+      "tagline": "Conoce tus dones · Expresa tu genio",
+      "description": "Descubre y expresa tu genio único. Desde conocer tus talentos hasta construir un negocio basado en tu genio.",
+      "upgrades": {
+        "g-1-zog-test": {
+          "name": "Test de la Zona de Genio",
+          "description": "Conoce tu genio único (~1 min)"
+        },
+        "g-2-apply-genius": {
+          "name": "Aplica tu genio",
+          "description": "Observa cómo tu genio se manifiesta en la vida"
+        },
+        "g-3-personality-tests": {
+          "name": "Sube tus tests de personalidad",
+          "description": "Enriquece tu perfil con MBTI, Eneagrama, etc."
+        },
+        "g-4-micro-distinctions": {
+          "name": "Micro: Genio, Propósito, Misión, Rasgos, Talentos",
+          "description": "Claridad sobre todas las distinciones"
+        },
+        "g-5-genius-activation": {
+          "name": "Activación de la Zona de Genio",
+          "description": "Experiencia inmersiva de tu genio"
+        },
+        "g-6-mi-assessment": {
+          "name": "Evaluación de Inteligencias Múltiples",
+          "description": "Autoevaluación de IM de 3 min"
+        },
+        "g-7-unique-offering": {
+          "name": "Oferta Única",
+          "description": "Articula tu oferta genial"
+        },
+        "g-8-genius-business": {
+          "name": "Negocio basado en tu genio",
+          "description": "Construye tu negocio basado en tu genio"
+        }
+      }
+    },
+    "spirit": {
+      "name": "Espíritu",
+      "subtitle": "Despertar",
+      "tagline": "Conciencia · Sensibilidad · Presencia",
+      "description": "Conciencia + Sensibilidad como meta-habilidades. Desarrolla tu capacidad de presencia, amor y estados expandidos.",
+      "upgrades": {
+        "s-1-what-is-spirit": {
+          "name": "Micro: ¿Qué es el Espíritu?",
+          "description": "Conciencia + Sensibilidad como los dos aspectos aprehensibles del espíritu; verlos como meta-habilidades a través de la experiencia cotidiana"
+        },
+        "s-2-baseline": {
+          "name": "Evaluación base del Espíritu",
+          "description": "¿Dónde estoy en el mapa holónico de la conciencia? ¿De la sensibilidad? ¿Qué sigue?"
+        },
+        "s-3-shifting-consciousness": {
+          "name": "Micro: Cambiar la conciencia",
+          "description": "Velocidad del cambio, grado del pico, consideraciones de desarrollo sostenible"
+        },
+        "s-4-conscious-breath": {
+          "name": "Respiración consciente",
+          "description": "Aprende a tomar una respiración consciente: la habilidad fundamental"
+        },
+        "s-5-heart-centering": {
+          "name": "Centrado en el corazón",
+          "description": "Respira hacia el centro del corazón: una técnica para aumentar la sensibilidad"
+        },
+        "s-6-state-shifting": {
+          "name": "Experiencia de cambio de estado",
+          "description": "Experimenta el cambio de conciencia y sensibilidad; desarrolla sensibilidad al cambio mismo"
+        },
+        "s-7-micro-states": {
+          "name": "Micro: Estados de conciencia",
+          "description": "Estados alterados/expandidos, experiencias cumbre, conexión con el sistema nervioso, actividad de ondas cerebrales"
+        },
+        "s-8-depth-perception": {
+          "name": "Micro: Percepción de la profundidad",
+          "description": "Percepción del tiempo y el espacio → mejores decisiones; esto como meta-habilidad"
+        },
+        "s-9-breathwork-meditation": {
+          "name": "Trabajo de respiración + Meditación",
+          "description": "Experiencia completa: trabajo de respiración seguido de meditación"
+        },
+        "s-10-five-states": {
+          "name": "Micro: Cinco estados principales",
+          "description": "Físico, Sutil, Causal, No-dual, Talidad/Esencia, Fundamento del Ser, No-dual + Vacío"
+        }
+      }
+    },
+    "mind": {
+      "name": "Mente",
+      "subtitle": "Madurez",
+      "tagline": "Desarrollo · Perspectiva · Significado",
+      "description": "El desarrollo como pulido de la lente: ver la lente a través de la cual miras. Expande tu capacidad para la complejidad y la creación de significado.",
+      "upgrades": {
+        "m-1-why-matters": {
+          "name": "Micro: Por qué esto importa",
+          "description": "Cómo las etapas de desarrollo se reflejan en productos, negocios, sociedades, política, pensamientos"
+        },
+        "m-2-mind-development": {
+          "name": "Micro: Desarrollo de la mente",
+          "description": "Entender el crecimiento como desarrollo de la mente"
+        },
+        "m-3-thinking-about-thinking": {
+          "name": "Micro: Pensar sobre el pensar",
+          "description": "Una de las mejores formas de conocer la mente es aprender sobre el pensar"
+        },
+        "m-4-essence-of-mind": {
+          "name": "Micro: Esencia de la mente",
+          "description": "La mente como lente filtrante de la percepción → cosmovisión; el desarrollo = pulir/estudiar la lente"
+        },
+        "m-5-cognitive-distortions": {
+          "name": "Micro: Distorsiones cognitivas",
+          "description": "Distorsiones clave por etapa de la Dinámica Espiral; manifestaciones extremas en la mente humana"
+        },
+        "m-6-distortion-discovery": {
+          "name": "Descubrimiento de distorsiones",
+          "description": "Experiencia inmersiva que te conecta con TUS distorsiones clave"
+        },
+        "m-7-thinking-patterns": {
+          "name": "Micro: Patrones de pensamiento",
+          "description": "Diferentes patrones de pensamiento por etapa de desarrollo; ejemplos claros; la secuencia de desarrollo a medida que madura la mente"
+        },
+        "m-8-blind-spots": {
+          "name": "Micro: Puntos ciegos por etapa",
+          "description": "Cómo se atasca cada etapa; el dilema que intenta resolver; cómo finalmente se resuelve"
+        },
+        "m-9-perspectives": {
+          "name": "Micro: Perspectivas",
+          "description": "Egocéntrica → Etnocéntrica → Mundocéntrica → Cosmocéntrica; 1ª/2ª/3ª/4ª/5ª persona"
+        },
+        "m-10-quadrants": {
+          "name": "Micro: Cuadrantes",
+          "description": "Yo/Nosotros/Ello/Ellos: las cuatro perspectivas fundamentales"
+        },
+        "m-11-lines": {
+          "name": "Micro: Líneas (Inteligencias Múltiples)",
+          "description": "Cognitiva, emocional, moral, interpersonal, etc."
+        },
+        "m-12-types": {
+          "name": "Micro: Tipos",
+          "description": "Variedad horizontal en cada nivel (masculino/femenino, Eneagrama, etc.)"
+        },
+        "m-13-holistic": {
+          "name": "Micro: Pensamiento holístico",
+          "description": "Pensar en totalidades interconectadas"
+        },
+        "m-14-holonic": {
+          "name": "Micro: Pensamiento holónico",
+          "description": "Pensar en holones: la estructura que se repite en cada nivel"
+        }
+      }
+    },
+    "emotions": {
+      "name": "Emociones",
+      "subtitle": "Limpieza",
+      "tagline": "Sombra · Emociones · Sanación",
+      "description": "Integra tu sombra, sana traumas, desarrolla alfabetización emocional y repara tu sistema nervioso.",
+      "upgrades": {
+        "e-1-baseline": {
+          "name": "Base emocional",
+          "description": "¿Cuál es mi rango emocional actual?"
+        },
+        "e-2-vocabulary": {
+          "name": "Vocabulario emocional",
+          "description": "Amplía lo que puedes nombrar y sentir"
+        },
+        "e-3-trigger-map": {
+          "name": "Mapa de detonantes",
+          "description": "Identifica tus principales detonantes"
+        },
+        "e-4-release": {
+          "name": "Activación de liberación",
+          "description": "Liberación somática/respiratoria"
+        },
+        "e-5-shadow-basics": {
+          "name": "Micro: Fundamentos de la sombra",
+          "description": "Proyección, represión, integración"
+        },
+        "e-6-shadow-encounter": {
+          "name": "Encuentro con la sombra",
+          "description": "Encuentra un aspecto de la sombra (guiado)"
+        },
+        "e-7-integration": {
+          "name": "Activación de integración",
+          "description": "Lleva la sombra a la totalidad"
+        },
+        "e-8-sovereignty": {
+          "name": "Soberanía emocional",
+          "description": "Siente sin ser consumido"
+        }
+      }
+    },
+    "body": {
+      "name": "Cuerpo",
+      "subtitle": "Fundamento",
+      "tagline": "Cuerpo · Energía · Entorno",
+      "description": "El fundamento de todo. Energía, movilidad, capacidad, sistema nervioso y diseño del entorno.",
+      "upgrades": {
+        "b-1-baseline": {
+          "name": "Base corporal",
+          "description": "Energía, movilidad y capacidad actuales"
+        },
+        "b-2-somatic-awareness": {
+          "name": "Activación de conciencia somática",
+          "description": "Sintonízate con las señales del cuerpo"
+        },
+        "b-3-energy-audit": {
+          "name": "Auditoría de energía",
+          "description": "¿Dónde pierdo/gano energía?"
+        },
+        "b-4-stress-response": {
+          "name": "Mapa de respuesta al estrés",
+          "description": "Patrones de lucha/huida/congelación"
+        },
+        "b-5-nervous-system": {
+          "name": "Activación del sistema nervioso",
+          "description": "Cambia el estado del sistema nervioso"
+        },
+        "b-6-recovery": {
+          "name": "Micro: Ciencia de la recuperación",
+          "description": "Sueño, restauración, recuperación"
+        },
+        "b-7-reset": {
+          "name": "Reinicio completo del cuerpo",
+          "description": "Activación/reinicio completo"
+        },
+        "b-8-integration": {
+          "name": "Integración cuerpo-mente",
+          "description": "Encarna los cambios mentales/emocionales"
+        }
+      }
     }
   },
   "profile": {
@@ -5152,9 +5384,1074 @@
       "available": "Disponible",
       "inProgress": "En progreso",
       "completed": "Completado"
+    },
+    "tree": {
+      "waking-up": {
+        "name": "Despertar",
+        "tagline": "Espíritu · Consciencia · Presencia",
+        "description": "Desarrolla tu capacidad de consciencia, sensibilidad, presencia y amor. Las prácticas incluyen meditación, respiración consciente, vislumbres no-duales y apertura del corazón."
+      },
+      "growing-up": {
+        "name": "Madurar",
+        "tagline": "Sentido · Madurez · Responsabilidad",
+        "description": "Desarrolla tu visión del mundo, tu adultez emocional y tu capacidad de asumir plena responsabilidad por tu vida y tu aporte."
+      },
+      "cleaning-up": {
+        "name": "Sanar",
+        "tagline": "Sombra · Emociones · Sanación",
+        "description": "Integra tu sombra, sana tus traumas, desarrolla alfabetización emocional y repara tu sistema nervioso."
+      },
+      "showing-up": {
+        "name": "Manifestarte",
+        "tagline": "Misión · Aporte · Impacto",
+        "description": "Descubre y expresa tu camino dhármico. Emprendimiento, servicio, liderazgo y creación de proyectos."
+      },
+      "body": {
+        "name": "Cuerpo",
+        "tagline": "Cuerpo · Base · Entorno",
+        "description": "VFC, movimiento, fuerza, postura, respiración, sueño, hogar: la base de todo."
+      }
+    },
+    "node": {
+      "wu-awareness-101": {
+        "name": "Consciencia 101",
+        "description": "Nota cuándo te pierdes en pensamientos y cuándo estás presente. La base de todo el trabajo interior."
+      },
+      "wu-breath-anchor": {
+        "name": "La respiración como ancla",
+        "description": "Usa la respiración para volver al ahora. Una habilidad sencilla pero profunda."
+      },
+      "wu-body-scan": {
+        "name": "Escaneo corporal",
+        "description": "Recorre el cuerpo con tu atención. Siente lo que está vivo en ti."
+      },
+      "wu-witness-state": {
+        "name": "Estado de testigo",
+        "description": "Descansa como aquel que observa. Empieza a saborear la consciencia no-dual."
+      },
+      "wu-heart-opening": {
+        "name": "Apertura del corazón",
+        "description": "Prácticas que ablandan el corazón y expanden tu capacidad de amar."
+      },
+      "wu-nondual-glimpse": {
+        "name": "Vislumbre no-dual",
+        "description": "Saborea el reconocimiento de que la consciencia y su contenido no son dos."
+      },
+      "wu-abiding-presence": {
+        "name": "Presencia que permanece",
+        "description": "La presencia se vuelve tu estado natural, no solo una práctica."
+      },
+      "gu-self-honesty": {
+        "name": "Honestidad contigo",
+        "description": "Mírate con claridad. Detén las sutiles mentiras que nos contamos."
+      },
+      "gu-own-your-story": {
+        "name": "Adueñate de tu historia",
+        "description": "Conviértete en autor de tu narrativa. No eres una víctima."
+      },
+      "gu-complexity-tolerance": {
+        "name": "Tolerancia a la complejidad",
+        "description": "Sostén la paradoja, el matiz y el pensamiento de «ambos a la vez»."
+      },
+      "gu-responsibility": {
+        "name": "Responsabilidad radical",
+        "description": "Todo en tu vida es tu creación. Actúa en consecuencia."
+      },
+      "gu-meaning-making": {
+        "name": "Creación de sentido",
+        "description": "Forja una visión del mundo que te sirva a ti, a los demás y a la verdad."
+      },
+      "cu-feel-feelings": {
+        "name": "Siente lo que sientes",
+        "description": "Alfabetización emocional básica. Nómbralo para domarlo."
+      },
+      "cu-trigger-tracking": {
+        "name": "Rastreo de detonantes",
+        "description": "Nota qué te activa. Mapea tus patrones reactivos."
+      },
+      "cu-nervous-system": {
+        "name": "Fundamentos del sistema nervioso",
+        "description": "Comprende lucha/huida/congelación/sumisión. Conoce tu ventana de tolerancia."
+      },
+      "cu-shadow-spotting": {
+        "name": "Detectar la sombra",
+        "description": "Reconoce tus proyecciones. Encuéntrate con lo que renegaste."
+      },
+      "cu-somatic-release": {
+        "name": "Liberación somática",
+        "description": "Deja que el cuerpo complete lo que la mente no puede procesar."
+      },
+      "cu-integration": {
+        "name": "Integración",
+        "description": "Da la bienvenida a todas tus partes. Nada que esconder, nada que arreglar."
+      },
+      "su-zone-of-genius": {
+        "name": "Zona de genialidad",
+        "description": "Conoce tus dones únicos. Lo que solo tú puedes hacer."
+      },
+      "su-values-clarity": {
+        "name": "Claridad de valores",
+        "description": "¿Qué es lo que más te importa? Alinea la acción con tus valores."
+      },
+      "su-offer-creation": {
+        "name": "Creación de la oferta",
+        "description": "Convierte tu genialidad en algo a lo que la gente pueda decir que sí."
+      },
+      "su-visibility": {
+        "name": "Visibilidad",
+        "description": "Déjate ver. Comparte tu trabajo. Deja que la gente te encuentre."
+      },
+      "su-sustainable-rhythm": {
+        "name": "Ritmo sostenible",
+        "description": "Construye sistemas que te permitan crear sin quemarte."
+      },
+      "su-mission": {
+        "name": "Vivir tu misión",
+        "description": "Tu trabajo ES tu práctica. Sin separación."
+      },
+      "gr-sleep-hygiene": {
+        "name": "Higiene del sueño",
+        "description": "La base de la recuperación. Domina el entorno y el ritmo de tu sueño."
+      },
+      "gr-breath-basics": {
+        "name": "Fundamentos de la respiración",
+        "description": "Respiración nasal, respiración diafragmática, coherencia básica."
+      },
+      "gr-daily-movement": {
+        "name": "Movimiento diario",
+        "description": "Muévete cada día. No tiene por qué ser intenso."
+      },
+      "gr-hrv-tracking": {
+        "name": "Seguimiento de la VFC",
+        "description": "Mide la disposición de tu sistema nervioso. Retroalimentación objetiva."
+      },
+      "gr-strength-base": {
+        "name": "Base de fuerza",
+        "description": "Entrenamiento de fuerza básico. Construye integridad estructural."
+      },
+      "gr-environment-design": {
+        "name": "Diseño del entorno",
+        "description": "Tu hogar y tu espacio de trabajo te moldean. Diséñalos conscientemente."
+      },
+      "gr-embodied-presence": {
+        "name": "Presencia encarnada",
+        "description": "Tu cuerpo se vuelve tu aliado. Cimiento de todo lo demás."
+      }
     }
   },
   "onboardingPage": {
     "loaderText": "Preparando tu camino..."
+  },
+  "talents": {
+    "1": {
+      "name": "Diseñar ideales",
+      "description": "Sobresales creando sistemas que encarnan estándares altos, como un arquitecto que traza el plano de un edificio sostenible revolucionario."
+    },
+    "2": {
+      "name": "Defender la justicia",
+      "description": "Te apasiona promover la justicia, como un abogado de derechos humanos que lucha por la igualdad en los tribunales."
+    },
+    "3": {
+      "name": "Buscar mejoras",
+      "description": "Te creces puliendo procesos, como un especialista en control de calidad que mejora los métodos de producción para ganar eficiencia."
+    },
+    "4": {
+      "name": "Dominar la precisión",
+      "description": "Te encanta lograr una ejecución impecable, como un relojero que ensambla mecanismos intrincados con exactitud."
+    },
+    "5": {
+      "name": "Sostener la ética",
+      "description": "Te comprometes a actuar con ética, como un periodista dedicado a contar verdades sin sesgos."
+    },
+    "6": {
+      "name": "Mantener el orden",
+      "description": "Encuentras satisfacción en organizar sistemas, como un bibliotecario que cataloga libros para un acceso fácil."
+    },
+    "7": {
+      "name": "Defender lo justo",
+      "description": "No tienes miedo de alzarte por lo que es correcto, como un activista que hace campaña contra las injusticias sociales."
+    },
+    "8": {
+      "name": "Construir estructuras",
+      "description": "Te creces creando orden a partir del caos, como un gestor de proyectos que ordena un plan complejo."
+    },
+    "9": {
+      "name": "Forjar visiones",
+      "description": "Disfrutas fijando metas elevadas, como un director ejecutivo que traza una estrategia de negocio visionaria."
+    },
+    "10": {
+      "name": "Ayudar con empatía",
+      "description": "Sobresales ayudando a los demás con empatía, como una enfermera que brinda cuidados compasivos a sus pacientes."
+    },
+    "11": {
+      "name": "Construir relaciones armoniosas",
+      "description": "Construyes relaciones armoniosas con naturalidad, como un diplomático que fomenta la paz entre naciones."
+    },
+    "12": {
+      "name": "Ofrecer servicio",
+      "description": "Te encanta ofrecer tu servicio a quienes lo necesitan, como un trabajador humanitario que lleva ayuda a zonas de crisis."
+    },
+    "13": {
+      "name": "Brindar apoyo emocional",
+      "description": "Te realizas apoyando emocionalmente a los demás, como un consejero que guía a sus clientes a través de los desafíos."
+    },
+    "14": {
+      "name": "Anticipar necesidades",
+      "description": "Sobresales previendo las necesidades de los demás, como un asistente personal que prepara todo antes de que se lo pidan."
+    },
+    "15": {
+      "name": "Cultivar comunidad",
+      "description": "Disfrutas cultivando un sentido de comunidad, como un organizador comunitario que planifica eventos locales."
+    },
+    "16": {
+      "name": "Derrochar generosidad",
+      "description": "Encuentras alegría en los actos de generosidad, como un filántropo que financia becas educativas."
+    },
+    "17": {
+      "name": "Comunicar mensajes sinceros",
+      "description": "Tienes un don para la expresión sincera, como un escritor que da forma a unas memorias conmovedoras."
+    },
+    "18": {
+      "name": "Dar afecto",
+      "description": "Te creces compartiendo amor y calidez, como un cuidador que da consuelo a quienes lo necesitan."
+    },
+    "19": {
+      "name": "Fijar metas",
+      "description": "Te encanta fijar metas ambiciosas y alcanzarlas, como un atleta que entrena para ganar una medalla de oro."
+    },
+    "20": {
+      "name": "Organizar con eficiencia",
+      "description": "Te creces organizando tareas con eficacia, como un gestor de logística que coordina entregas puntuales."
+    },
+    "21": {
+      "name": "Perseguir el éxito",
+      "description": "Te energiza ir tras los logros, como un emprendedor que lanza una startup exitosa."
+    },
+    "22": {
+      "name": "Forjar imágenes",
+      "description": "Sobresales creando imágenes personales o de marca impactantes, como un profesional de marketing que construye una identidad de marca sólida."
+    },
+    "23": {
+      "name": "Dominar las actuaciones",
+      "description": "Tienes un don para ofrecer actuaciones sobresalientes, como un actor que cautiva al público desde el escenario."
+    },
+    "24": {
+      "name": "Maximizar el potencial",
+      "description": "Obtienes satisfacción desarrollando las capacidades al máximo, como un entrenador que lleva a los atletas a su mejor rendimiento."
+    },
+    "25": {
+      "name": "Buscar la excelencia",
+      "description": "Te comprometes a alcanzar la excelencia, como un chef que perfecciona su plato estrella."
+    },
+    "26": {
+      "name": "Nutrir la competitividad",
+      "description": "Te creces con la competencia sana, como un vendedor que aspira a encabezar las listas de ventas."
+    },
+    "27": {
+      "name": "Buscar reconocimiento",
+      "description": "Te realizas cuando reconocen tus logros, como un investigador que recibe un premio prestigioso."
+    },
+    "28": {
+      "name": "Vivir emociones profundas",
+      "description": "Abrazas las emociones profundas, como un artista que transmite sentimientos a través de su obra."
+    },
+    "29": {
+      "name": "Preservar la autenticidad",
+      "description": "Valoras ser fiel a ti mismo, como un músico independiente que mantiene su sonido único."
+    },
+    "30": {
+      "name": "Apreciar la estética",
+      "description": "Encuentras alegría en la belleza del diseño, como un diseñador de interiores que crea espacios armoniosos."
+    },
+    "31": {
+      "name": "Explorar el ser interior",
+      "description": "Te adentras en el autoconocimiento, como un filósofo que reflexiona sobre la identidad personal."
+    },
+    "32": {
+      "name": "Crear con originalidad",
+      "description": "Te creces produciendo obra original, como un inventor que desarrolla un aparato revolucionario."
+    },
+    "33": {
+      "name": "Romantizar la vida",
+      "description": "Disfrutas viendo la vida a través de una lente poética, como un novelista que teje relatos de aventuras épicas."
+    },
+    "34": {
+      "name": "Ansiar intensidad",
+      "description": "Tienes un deseo natural de experiencias intensas, como un cineasta que crea escenas cargadas de emoción."
+    },
+    "35": {
+      "name": "Buscar la belleza",
+      "description": "Obtienes satisfacción encontrando belleza en el mundo, como un fotógrafo que captura imágenes impresionantes."
+    },
+    "36": {
+      "name": "Buscar profundidad",
+      "description": "Te impulsa a buscar experiencias profundas, como un explorador de las profundidades que se aventura en aguas inexploradas."
+    },
+    "37": {
+      "name": "Ir tras el conocimiento",
+      "description": "Disfrutas explorando nuevos campos, como un científico que investiga fenómenos inexplorados."
+    },
+    "38": {
+      "name": "Desentrañar secretos",
+      "description": "Descifras información compleja, como un detective que resuelve misterios intrincados."
+    },
+    "39": {
+      "name": "Construir sistemas de pensamiento",
+      "description": "Disfrutas construyendo ideas integrales, como un teórico que desarrolla nuevos marcos."
+    },
+    "40": {
+      "name": "Diseñar innovaciones",
+      "description": "Construyes soluciones revolucionarias a problemas complejos, como un ingeniero que diseña tecnología de vanguardia."
+    },
+    "41": {
+      "name": "Cultivar la sabiduría",
+      "description": "Te enfocas en ganar sabiduría, como un erudito dedicado al aprendizaje de por vida."
+    },
+    "42": {
+      "name": "Afinar el intelecto",
+      "description": "Disfrutas afinando tu comprensión, como un gran maestro de ajedrez que traza sus jugadas."
+    },
+    "43": {
+      "name": "Aprender de forma autónoma",
+      "description": "Te creces con el aprendizaje autodirigido, como un autodidacta que domina una nueva habilidad."
+    },
+    "44": {
+      "name": "Profundizar las observaciones",
+      "description": "Enriqueces la comprensión mediante una observación aguda, como un biólogo que estudia ecosistemas."
+    },
+    "45": {
+      "name": "Sintetizar la comprensión",
+      "description": "Sobresales destilando conceptos complejos en ideas claras, como un maestro que explica temas difíciles."
+    },
+    "46": {
+      "name": "Construir confianza",
+      "description": "Disfrutas cultivando la confianza, como un consejero que establece un vínculo con sus clientes."
+    },
+    "47": {
+      "name": "Predecir problemas",
+      "description": "Sobresales anticipando posibles problemas, como un gestor de riesgos que identifica desafíos futuros."
+    },
+    "48": {
+      "name": "Brindar seguridad",
+      "description": "Te realizas garantizando la seguridad, como un experto en ciberseguridad que protege los datos."
+    },
+    "49": {
+      "name": "Ser confiable",
+      "description": "Te creces siendo de fiar, como un colega de confianza que cumple con constancia."
+    },
+    "50": {
+      "name": "Buscar orientación",
+      "description": "Valoras aprender de los demás, como un aprendiz que absorbe el conocimiento de un maestro artesano."
+    },
+    "51": {
+      "name": "Ansiar reafirmación",
+      "description": "Buscas afirmación, como un autor que aprecia los comentarios de sus lectores."
+    },
+    "52": {
+      "name": "Navegar sistemas",
+      "description": "Sobresales moviéndote por estructuras complejas, como un analista de políticas que entiende los marcos regulatorios."
+    },
+    "53": {
+      "name": "Evaluar el peligro",
+      "description": "Tienes un don para evaluar riesgos, como un inspector de seguridad que identifica peligros en el lugar de trabajo."
+    },
+    "54": {
+      "name": "Sostener la lealtad",
+      "description": "Te comprometes a ser leal, como un compañero de equipo que apoya a su grupo en los momentos difíciles."
+    },
+    "55": {
+      "name": "Innovar en lo inexplorado",
+      "description": "Te encanta explorar ideas nuevas, como un emprendedor tecnológico pionero de tecnologías inéditas."
+    },
+    "56": {
+      "name": "Motivar con energía positiva",
+      "description": "Inspiras a los demás con entusiasmo, como un orador motivacional que llena de energía a su público."
+    },
+    "57": {
+      "name": "Diversificar habilidades",
+      "description": "Te creces aprendiendo habilidades variadas, como un generalista que se adapta a múltiples roles."
+    },
+    "58": {
+      "name": "Visionar empresas audaces",
+      "description": "Encuentras alegría planificando estrategias atrevidas, como un ejecutivo que entra en nuevos mercados."
+    },
+    "59": {
+      "name": "Fomentar un entorno laboral alegre",
+      "description": "Sobresales creando culturas de trabajo vibrantes, como un responsable de RR. HH. que organiza actividades de equipo."
+    },
+    "60": {
+      "name": "Conceptualizar soluciones innovadoras",
+      "description": "Tu imaginación crea enfoques frescos, como un diseñador de producto que desarrolla un aparato único."
+    },
+    "61": {
+      "name": "Facilitar lluvias de ideas creativas",
+      "description": "Aprovechas el pensamiento colectivo para generar ideas, como un director creativo que dirige sesiones de lluvia de ideas."
+    },
+    "62": {
+      "name": "Incorporar diversión al trabajo",
+      "description": "Mezclas el disfrute con las tareas, como un maestro que usa juegos para captar a sus alumnos."
+    },
+    "63": {
+      "name": "Navegar oportunidades freelance",
+      "description": "Prefieres la flexibilidad de los proyectos, como un freelance que elige encargos variados."
+    },
+    "64": {
+      "name": "Ejercer el poder",
+      "description": "Tomas las riendas con confianza, como un director ejecutivo que toma decisiones estratégicas para crecer."
+    },
+    "65": {
+      "name": "Mantener el control",
+      "description": "Te creces guiando las situaciones, como un director que dirige una orquesta sinfónica."
+    },
+    "66": {
+      "name": "Garantizar la justicia",
+      "description": "Te apasiona la equidad, como un juez que dicta veredictos imparciales."
+    },
+    "67": {
+      "name": "Romper barreras",
+      "description": "Disfrutas desafiando los límites, como un innovador que sacude industrias tradicionales."
+    },
+    "68": {
+      "name": "Ofrecer protección",
+      "description": "Eres protector por naturaleza, como un bombero que resguarda a la comunidad."
+    },
+    "69": {
+      "name": "Tomar decisiones",
+      "description": "Sobresales tomando decisiones rápidas, como un médico de urgencias que prioriza la atención a los pacientes."
+    },
+    "70": {
+      "name": "Mostrar fortaleza",
+      "description": "Estás dispuesto a demostrar tus capacidades, como un atleta que exhibe sus habilidades en competición."
+    },
+    "71": {
+      "name": "Valorar la independencia",
+      "description": "Reivindicas tu autonomía, como un emprendedor en solitario que lleva su propio negocio."
+    },
+    "72": {
+      "name": "Asumir el liderazgo",
+      "description": "Eres un líder nato, como un capitán que lleva a su equipo a la victoria."
+    },
+    "73": {
+      "name": "Crear armonía",
+      "description": "Te encanta unir a las personas, como un mediador que resuelve conflictos laborales."
+    },
+    "74": {
+      "name": "Ofrecer comprensión",
+      "description": "Sobresales en la empatía, como un terapeuta que conecta con las emociones de sus clientes."
+    },
+    "75": {
+      "name": "Brindar consuelo",
+      "description": "Encuentras alegría consolando a los demás, como un cuidador que acompaña a los pacientes en su recuperación."
+    },
+    "76": {
+      "name": "Mediar en conflictos",
+      "description": "Tienes un don para resolver disputas, como un negociador que facilita acuerdos."
+    },
+    "77": {
+      "name": "Buscar la serenidad",
+      "description": "Buscas entornos apacibles, como un coach de mindfulness que cultiva espacios de calma."
+    },
+    "78": {
+      "name": "Promover la aceptación",
+      "description": "Fomentas la inclusión, como un responsable de diversidad que cultiva un entorno laboral que acoge a todos."
+    },
+    "79": {
+      "name": "Mantener el equilibrio",
+      "description": "Buscas el equilibrio, como un coach de vida que ayuda a sus clientes a conciliar trabajo y vida personal."
+    },
+    "80": {
+      "name": "Promover entornos serenos",
+      "description": "Trabajas para reducir el estrés, como un coordinador de bienestar que implementa programas de relajación."
+    },
+    "81": {
+      "name": "Sembrar la paz",
+      "description": "Te apasiona cultivar la armonía, como un diplomático que negocia resoluciones pacíficas."
+    }
+  },
+  "playbookSteps": {
+    "discover": {
+      "subtitle": "Nombra tu talento principal",
+      "transformationalResult": "Puedo nombrar mi talento principal en voz alta.",
+      "ctaText": "Encuentra tu talento principal",
+      "labelLines": {
+        "0": "Nombra tu",
+        "1": "talento principal"
+      },
+      "included": {
+        "0": "Tu talento principal destilado en una sola frase en un par de minutos"
+      },
+      "substeps": {
+        "1": {
+          "name": "Pregúntale a tu IA sobre tu talento principal",
+          "description": "",
+          "oneProvenStrategy": "Usa este prompt: “Con base en todo lo que sabes de mí, ¿cuál es mi zona de genialidad?” O haz la revelación de talento principal en esta página. Eso te lleva a una especificidad suficiente para luego aprovechar y monetizar tu talento único."
+        },
+        "2": {
+          "name": "Destílalo en una sola frase — y escríbela de verdad",
+          "description": "",
+          "oneProvenStrategy": "Pídele a tu IA que lo haga por ti, y luego púlelo tú mismo. Puedes usar [este prompt de mejora iterativa](/ai-os/iteration)."
+        },
+        "3": {
+          "name": "Itera cada vez que surja nueva claridad",
+          "description": "",
+          "oneProvenStrategy": "Guárdalo en un lugar accesible, actualízalo y nombra cada versión v1.1, v2, y así sucesivamente."
+        }
+      }
+    },
+    "package": {
+      "subtitle": "Articúlalo con precisión",
+      "transformationalResult": "Puedo describir mi talento principal en una sola frase cristalina que cala visceral y emotiva.",
+      "ctaText": "Afina tu talento principal a 9+/10 en 60 minutos",
+      "labelLines": {
+        "0": "Articúlalo",
+        "1": "con precisión"
+      },
+      "included": {
+        "0": "Talento principal en una sola frase que te enciende y que has tenido toda la vida",
+        "1": "Tu talento principal afinado a 9/10 o más — en 60 minutos"
+      },
+      "substeps": {
+        "1": {
+          "name": "Itera hasta alcanzar una resonancia de 9/10 o más",
+          "description": "Itera sobre tu articulación actual hasta que alcance una resonancia de 9/10 o más.",
+          "oneProvenStrategy": "Trabaja con un guía que haya alcanzado una resonancia de 9.9+ para sí mismo, o usa una herramienta de descubrimiento de propósito de alta precisión."
+        },
+        "2": {
+          "name": "Alcanza al menos 9/10 de resonancia",
+          "description": "Alcanza al menos 9/10 de resonancia — el umbral lo bastante preciso para luego revelar tu producto único.",
+          "oneProvenStrategy": "En resumen: el proceso que hemos diseñado es la opción recomendada para obtener este resultado. Otros métodos serán soluciones subóptimas. Si hiciste nuestra revelación de talento principal, probablemente estés en una resonancia de 6-8 sobre 10. Ninguno de los tests de personalidad que conozco yo o la IA te llevará más allá de eso. Solo conozco tres herramientas suficientemente precisas, e incluso esas (1) te dan un informe — no una sola frase destilada que puedas iterar; (2) por eso requieren una síntesis iterativa asistida por IA (estos prompts de claridad ayudarán); y (3) aun así requieren un guía, y a abril de 2026 no he conocido a nadie que pueda recomendar, porque el umbral de señal-ruido para articular con precisión el talento principal debe estar encarnado por el guía, y eso todavía no es común."
+        },
+        "3": {
+          "name": "Sigue iterando mientras la claridad va decantando",
+          "description": "Sigue iterando a medida que surge naturalmente más claridad y comprensión de tu talento principal — irá decantando en mejoras por todo tu negocio.",
+          "oneProvenStrategy": "Versiona la declaración de tu talento principal y tenla siempre a la vista — en tu app de notas, como un post-it en tu escritorio, como fondo de pantalla del móvil."
+        }
+      }
+    },
+    "build": {
+      "subtitle": "Poténcialo con estructura de negocio",
+      "transformationalResult": "Conozco la forma de mi negocio.",
+      "ctaText": "Crea tu estructura de negocio única a 9+/10 de resonancia en 2 horas",
+      "labelLines": {
+        "0": "Potencia con",
+        "1": "estructura de negocio"
+      },
+      "included": {
+        "0": "Claridad y recuerdo de hacia qué negocio apuntaba siempre tu talento principal",
+        "1": "7 artefactos de negocio únicos para TU negocio"
+      },
+      "substeps": {
+        "1": {
+          "name": "Encuentra tu punto ciego principal",
+          "description": "",
+          "oneProvenStrategy": "Dale a tu IA tu talento principal y pídele: por favor revela mi punto ciego principal poniendo mi talento principal del revés."
+        },
+        "2": {
+          "name": "Recuerda tu mito personal que magnetiza a tus clientes alineados",
+          "description": "",
+          "oneProvenStrategy": "Pídele a tu IA: convierte mi punto ciego principal en una creencia maestra en la que cree la mayor parte del mundo, y mi talento principal en una verdad maestra que defiendo cuando brillo."
+        },
+        "3": {
+          "name": "Produce el conjunto mínimo viable de artefactos de negocio clave que juntos formen una estrategia de negocio concreta y específica que resista la prueba de la razón y la de un inversor.",
+          "description": "",
+          "oneProvenStrategy": "Traduce tu talento principal, tu punto ciego principal y tu mito magnetizador a el dolor que uno vive cada día con el punto ciego, sobre todo cuando se agudiza, luego a tu tribu de clientes alineados, luego a una promesa de transformación; y por último al viaje del usuario/héroe al que sirves y guías. Ya tienes un negocio. Para que llueva, sigue iterando, atascándote, desatascándote de forma natural, hasta llegar a 9.5+/10. Empíricamente esto parece una especificidad suficiente para continuar al siguiente paso."
+        }
+      }
+    },
+    "product": {
+      "subtitle": "Construye tu primer producto único",
+      "transformationalResult": "Mi primer producto existe — puedo entregárselo a alguien.",
+      "ctaText": "Construye tu primer producto único, listo para probar y vender",
+      "labelLines": {
+        "0": "Construye tu primer",
+        "1": "producto único"
+      },
+      "included": {
+        "0": "Aprendizajes importantes y mejoras a tu producto",
+        "1": "La comprensión de que ganas enormemente cuando tu medicina es recibida",
+        "2": "Entusiasmo, entrar más hondo en estado de flow, un impulso de confianza, una sensación de ser útil, gratitud"
+      },
+      "substeps": {
+        "1": {
+          "name": "Itera para llevar los artefactos de negocio a 9+/10 de resonancia",
+          "description": "Itera para llevar los artefactos de negocio a 9+/10 de resonancia.",
+          "oneProvenStrategy": "Tuesta la versión actual con IA (usa prompts de tostado en metaprompt.lovable.app), aporta tus insumos, luego produce la siguiente iteración, y repite hasta llegar a 9/10 o más allá. Recomiendo: llega a 9/10, y luego continúa con los siguientes pasos. Seguirás recibiendo más claridad hacia el 10, así que asegúrate de versionar tu trabajo o probablemente te quedes atascado en la parálisis por análisis."
+        },
+        "2": {
+          "name": "Solidifica y concreta la promesa transformacional",
+          "description": "Solidifica y concreta la promesa transformacional, conviértela en un viaje del usuario, una escalera de valor y un imán de prospectos.",
+          "oneProvenStrategy": "Dale a la IA transcripciones de tus llamadas de consultoría/coaching más alineadas y pídele que extraiga estos artefactos."
+        },
+        "3": {
+          "name": "Entrega tu producto único por primera vez",
+          "description": "Entrega tu producto único por primera vez.",
+          "oneProvenStrategy": "Itera hasta que te entusiasme correrlo de esta nueva forma estructurada y literalmente no puedas esperar, y hasta que llegues a una primera sesión 1:1 con tu sello. Confía en el primer nombre que te venga a la mente, enfócate conscientemente en un resultado transformacional claro y tangible pero no abrumes a tu cliente."
+        }
+      }
+    },
+    "test": {
+      "subtitle": "Haz beta-testing de que todo funciona regalando y/o vendiendo",
+      "transformationalResult": "Las personas que lo recibieron dicen sí a más.",
+      "labelLines": {
+        "0": "Regala o vende",
+        "1": "para beta-testear"
+      },
+      "substeps": {
+        "1": {
+          "name": "Identifica intuitivamente a 5 personas de tu red que estén en tu tribu",
+          "description": "",
+          "oneProvenStrategy": "Pon la intención de escuchar a tu intuición para que te sugiera. Luego, a partir de ahí, fíjate en los nombres de personas de tu red que afloren naturalmente en tu conciencia. Quizá casi de inmediato, quizá en uno o dos días, quizá más. No lo fuerces con la mente queriendo ávidamente más nombres de clientes. La clave es obtener uno a la vez. Hasta el siguiente. Confía en tu primer instinto incluso cuando la mente diga “ese no puede ser”. Anótalos de inmediato para que tu ego no esquive. Luego, cuando puedas, envía un mensaje intuitivo y rápido sin darle demasiadas vueltas. En esta etapa, podrías ofrecerles la promesa transformacional como regalo, a un precio introductorio si es apropiado, compartir una actualización profesional emocionante de que ahora te enfocas en esto."
+        },
+        "2": {
+          "name": "Entrega tu producto como una sesión 1:1, grábala, registra y analiza con IA, extrae testimonios de sus citas directas de texto (y/o video), hazlo de nuevo, aprende de forma iterativa, registra lo que crees que son tus tres métricas clave.",
+          "description": "",
+          "oneProvenStrategy": "Usa un panel simple para registrar la entrega y los resultados, como findyourtoptalent.com/dashboard. Usa sí o sí un grabador con IA como fathom.video o Plaud para que cada sesión se convierta en un artefacto de aprendizaje."
+        },
+        "3": {
+          "name": "Vuélvete bueno en la entrega y encuentra tu tribu muy específica.",
+          "description": "",
+          "oneProvenStrategy": "Cuando llegas a ~10 sesiones entregadas con ~5 clientes (así suele ser), ahí es donde empiezas a volverte bueno entregando resultados transformacionales a los principales matices de personas y situaciones de tu tribu. De esta claridad recién ganada florece la flor de la tribu de clientes alineados muy específica. Para mí, a abril de 2026, eso es emprendedores de impacto conscientes y aspirantes que construyen sus emprendimientos visionarios."
+        }
+      }
+    },
+    "launch": {
+      "subtitle": "Enfócate táctica y láser, y sal en vivo",
+      "transformationalResult": "Tengo mi primer cliente que paga.",
+      "labelLines": {
+        "0": "Enfócate láser y",
+        "1": "sal en vivo"
+      },
+      "substeps": {
+        "1": {
+          "name": "Construye landing, embudo e imán de prospectos que transformen a tu tribu ~10/10 en cada punto de contacto",
+          "description": "",
+          "oneProvenStrategy": "El sitio que estás leyendo es la landing page, el imán de prospectos es este playbook y la revelación de talento principal. El embudo es que estés leyendo esto y lo que sigue. Aquí está la plantilla:\n\n1. Reparte tu método/playbook de cómo lograste tu resultado transformacional como un imán de prospectos gratuito.\n2. Cristaliza todo lo de los pasos 1–5 en una landing page y un embudo. Usa Godfather Offer Architect GPT o equivalente, e itera con ciclos de tostado y de producir una siguiente versión.\n3. Tu embudo es tú ayudándoles a tomar una decisión beneficiosa. Podrías resaltar el costo de procrastinar en resolver su situación dolorosa, usar lenguaje de cambio de identidad. Itera hasta que la página pueda cerrar sin ti en la llamada. La prueba de éxito es sencilla: ~10/10 de clientes alineados compran. Si es así, estás en un PMF temprano. Si no, sigue iterando. Tú eres la respuesta.\n\nP.D.: Mi recomendación es no dejar lo que sea que actualmente te trae ingresos. No hasta al menos esta etapa de tu negocio único. Algo obvio, pero mejor decirlo."
+        },
+        "2": {
+          "name": "Enfoca láser tu comunicación en tu tribu 9+/10.",
+          "description": "",
+          "oneProvenStrategy": "Crea y activa un “diapasón maestro” que repela a los no-clientes y atraiga a tu tribu 9+/10 — el encuadre más simple posible de la transformación en UNA frase. Hará que las personas correctas se incorporen, y que las demás se vayan en silencio. Luego publica una variación en tus canales digitales clave: (a) una línea + una URL en las bios (LinkedIn, Instagram, WhatsApp, Telegram, firma de correo, X, FB); (b) UNA plantilla de DM que regale el imán de prospectos y comparta la obra de tu vida; (c) UNA publicación de actualización de vida — en qué acabas de enfocar tu vida, la URL como único enlace, sin pitch; (d) UNA pieza de contenido audaz que diagnostique el dolor en el que vive la tribu, u otra primera publicación."
+        },
+        "3": {
+          "name": "Envía una actualización personal de vida + tu imán de prospectos a personas alineadas con la tribu (seleccionadas intuitivamente, sobre todo quienes sostienen una comunidad). Haz presentaciones en comunidades alineadas 9+/10 donde sea apropiado.",
+          "description": "Si la demanda aún no crece de forma orgánica en este punto, hay tres estrategias para echar más leña a esta ignición:\n\n1. necesitas más iteración hacia una mayor especificidad sobre tu tribu, lo que puede requerir ajustar la landing, el embudo y el imán de prospectos, y/o\n2. Activa superficies digitales + físicas adicionales (pídele a la IA que te dé una lista integral de superficies digitales y físicas donde sea óptimo para ti colocar tu comunicación para tu tribu específica)\n3. Ve aguas arriba hacia practicantes alineados que sirven a la misma tribu, y/o inicia campañas de contacto",
+          "oneProvenStrategy": "Quédate quieto, deja que surjan los nombres — confía en el primer instinto, sobre todo en los nombres de vínculos débiles (la investigación es clara: los vínculos débiles llevan la novedad que los fuertes no pueden). Cuanto mayor sea su alineación con la tribu Y su potencial para sostener comunidad, mejor. Incluye el imán de prospectos (enlace al playbook / metodología) como el regalo, no como la petición. En paralelo: escribe UNA presentación corta para cada comunidad viva ~10/10 de la que ya seas miembro — donde sea apropiado. Ajusta el texto a la cultura usando IA, dándole parte del contenido del chat y/o presentaciones."
+        }
+      }
+    },
+    "scale": {
+      "subtitle": "Convierte el crecimiento orgánico en impacto e ingresos a escala",
+      "transformationalResult": "Mis ingresos crecen orgánicamente sin que yo los empuje.",
+      "labelLines": {
+        "0": "Crece y escala",
+        "1": "con otros, en flow"
+      },
+      "substeps": {
+        "1": {
+          "name": "Recibe acompañamiento de todo un equipo de escaladores de emprendimientos que trabajan contigo",
+          "description": "",
+          "oneProvenStrategy": "[Pending Sasha's vetted text]"
+        },
+        "2": {
+          "name": "Entra en un esquema cooperativo descentralizado de reparto de ingresos",
+          "description": "",
+          "oneProvenStrategy": "[Pending Sasha's vetted text]"
+        },
+        "3": {
+          "name": "Disfruta la siguiente octava del viaje",
+          "description": "",
+          "oneProvenStrategy": "[Pending Sasha's vetted text]"
+        }
+      }
+    }
+  },
+  "assetCategories": {
+    "professional-science": {
+      "title": "Profesional"
+    },
+    "life-sciences": {
+      "title": "Ciencias de la vida"
+    },
+    "engineering": {
+      "title": "Ingeniería"
+    },
+    "information-technology": {
+      "title": "Tecnología de la información"
+    },
+    "mathematics": {
+      "title": "Matemáticas"
+    },
+    "management": {
+      "title": "Gestión"
+    },
+    "finance": {
+      "title": "Finanzas"
+    },
+    "marketing": {
+      "title": "Marketing"
+    },
+    "entrepreneurship": {
+      "title": "Emprendimiento"
+    },
+    "economics": {
+      "title": "Economía"
+    },
+    "visual-arts": {
+      "title": "Artes visuales"
+    },
+    "performing-arts": {
+      "title": "Artes escénicas"
+    },
+    "literature": {
+      "title": "Literatura"
+    },
+    "philosophy": {
+      "title": "Filosofía"
+    },
+    "history": {
+      "title": "Historia"
+    },
+    "psychology": {
+      "title": "Psicología"
+    },
+    "sociology": {
+      "title": "Sociología"
+    },
+    "anthropology": {
+      "title": "Antropología"
+    },
+    "political-science": {
+      "title": "Ciencias políticas"
+    },
+    "education": {
+      "title": "Educación"
+    },
+    "healthcare": {
+      "title": "Salud"
+    },
+    "law": {
+      "title": "Derecho"
+    },
+    "environmental-studies": {
+      "title": "Estudios ambientales"
+    },
+    "urban-planning": {
+      "title": "Urbanismo"
+    },
+    "agriculture": {
+      "title": "Agricultura"
+    },
+    "self-discovery": {
+      "title": "Autodescubrimiento"
+    },
+    "overcoming-challenges": {
+      "title": "Superación de desafíos"
+    },
+    "spiritual-journeys": {
+      "title": "Viajes espirituales"
+    },
+    "relationships": {
+      "title": "Relaciones"
+    },
+    "health-transformations": {
+      "title": "Transformaciones de salud"
+    },
+    "long-term-travel": {
+      "title": "Viajes prolongados"
+    },
+    "living-abroad": {
+      "title": "Vivir en el extranjero"
+    },
+    "language-acquisition": {
+      "title": "Aprendizaje de idiomas"
+    },
+    "cultural-studies": {
+      "title": "Estudios culturales"
+    },
+    "intercultural-projects": {
+      "title": "Proyectos interculturales"
+    },
+    "volunteering": {
+      "title": "Voluntariado"
+    },
+    "social-work": {
+      "title": "Trabajo social"
+    },
+    "peace-corps": {
+      "title": "Cuerpo de Paz"
+    },
+    "disaster-relief": {
+      "title": "Ayuda en catástrofes"
+    },
+    "community-building": {
+      "title": "Construcción de comunidad"
+    },
+    "wilderness-expeditions": {
+      "title": "Expediciones a la naturaleza"
+    },
+    "environmental-conservation": {
+      "title": "Conservación ambiental"
+    },
+    "extreme-sports": {
+      "title": "Deportes extremos"
+    },
+    "wildlife-interaction": {
+      "title": "Interacción con la vida silvestre"
+    },
+    "sustainable-living": {
+      "title": "Vida sostenible"
+    },
+    "industry-associations": {
+      "title": "Asociaciones del sector"
+    },
+    "alumni-networks": {
+      "title": "Redes de exalumnos"
+    },
+    "professional-societies": {
+      "title": "Sociedades profesionales"
+    },
+    "mentorship-circles": {
+      "title": "Círculos de mentoría"
+    },
+    "entrepreneurial-ecosystems": {
+      "title": "Ecosistemas emprendedores"
+    },
+    "local-organizations": {
+      "title": "Organizaciones locales"
+    },
+    "volunteer-groups": {
+      "title": "Grupos de voluntarios"
+    },
+    "spiritual-communities": {
+      "title": "Comunidades espirituales"
+    },
+    "hobby-clubs": {
+      "title": "Clubes de aficionados"
+    },
+    "neighborhood-associations": {
+      "title": "Asociaciones vecinales"
+    },
+    "trade-groups": {
+      "title": "Grupos comerciales"
+    },
+    "research-consortiums": {
+      "title": "Consorcios de investigación"
+    },
+    "standards-bodies": {
+      "title": "Organismos de normalización"
+    },
+    "innovation-hubs": {
+      "title": "Centros de innovación"
+    },
+    "industry-forums": {
+      "title": "Foros del sector"
+    },
+    "international-ngos": {
+      "title": "ONG internacionales"
+    },
+    "cultural-exchange": {
+      "title": "Programas de intercambio cultural"
+    },
+    "global-think-tanks": {
+      "title": "Centros de pensamiento globales"
+    },
+    "multinational-collaborations": {
+      "title": "Colaboraciones multinacionales"
+    },
+    "diaspora-networks": {
+      "title": "Redes de la diáspora"
+    },
+    "liquid-savings": {
+      "title": "Ahorros líquidos"
+    },
+    "investment-portfolio": {
+      "title": "Cartera de inversión"
+    },
+    "income-streams": {
+      "title": "Fuentes de ingresos"
+    },
+    "credit-access": {
+      "title": "Acceso a crédito"
+    },
+    "domains-websites": {
+      "title": "Dominios y sitios web"
+    },
+    "email-lists": {
+      "title": "Listas de correo y suscriptores"
+    },
+    "software-accounts": {
+      "title": "Software y acceso a API"
+    },
+    "digital-content": {
+      "title": "Bibliotecas de contenido digital"
+    },
+    "angel-investing": {
+      "title": "Inversión ángel"
+    },
+    "seed-funding": {
+      "title": "Financiación semilla"
+    },
+    "series-funding": {
+      "title": "Series A-C"
+    },
+    "growth-capital": {
+      "title": "Capital de crecimiento"
+    },
+    "impact-investing": {
+      "title": "Inversión de impacto"
+    },
+    "philanthropy": {
+      "title": "Filantropía"
+    },
+    "offices": {
+      "title": "Oficinas"
+    },
+    "workshops": {
+      "title": "Talleres"
+    },
+    "land": {
+      "title": "Terrenos"
+    },
+    "venues": {
+      "title": "Espacios"
+    },
+    "retreat-centers": {
+      "title": "Centros de retiro"
+    },
+    "technology-equipment": {
+      "title": "Tecnología"
+    },
+    "machinery": {
+      "title": "Maquinaria"
+    },
+    "vehicles": {
+      "title": "Vehículos"
+    },
+    "scientific-instruments": {
+      "title": "Instrumentos científicos"
+    },
+    "artistic-tools": {
+      "title": "Herramientas artísticas"
+    },
+    "water-sources": {
+      "title": "Fuentes de agua"
+    },
+    "energy-resources": {
+      "title": "Recursos energéticos"
+    },
+    "agricultural-land": {
+      "title": "Tierras agrícolas"
+    },
+    "forests": {
+      "title": "Bosques"
+    },
+    "mineral-deposits": {
+      "title": "Yacimientos minerales"
+    },
+    "patents": {
+      "title": "Patentes"
+    },
+    "inventions": {
+      "title": "Invenciones"
+    },
+    "algorithms": {
+      "title": "Algoritmos"
+    },
+    "prototypes": {
+      "title": "Prototipos"
+    },
+    "novel-applications": {
+      "title": "Aplicaciones novedosas"
+    },
+    "frameworks": {
+      "title": "Marcos de trabajo"
+    },
+    "processes": {
+      "title": "Procesos"
+    },
+    "systems": {
+      "title": "Sistemas"
+    },
+    "techniques": {
+      "title": "Técnicas"
+    },
+    "approaches": {
+      "title": "Enfoques"
+    },
+    "writing": {
+      "title": "Escritura"
+    },
+    "artwork": {
+      "title": "Obras de arte"
+    },
+    "music": {
+      "title": "Música"
+    },
+    "software": {
+      "title": "Software"
+    },
+    "designs": {
+      "title": "Diseños"
+    },
+    "publishing": {
+      "title": "Publicaciones"
+    },
+    "speaking": {
+      "title": "Conferencias"
+    },
+    "consulting": {
+      "title": "Consultoría"
+    },
+    "mentoring": {
+      "title": "Mentoría"
+    },
+    "academic-influence": {
+      "title": "Influencia académica"
+    },
+    "social-media": {
+      "title": "Redes sociales"
+    },
+    "traditional-media": {
+      "title": "Medios tradicionales"
+    },
+    "podcasts": {
+      "title": "Pódcasts"
+    },
+    "blogs": {
+      "title": "Blogs"
+    },
+    "video-platforms": {
+      "title": "Plataformas de vídeo"
+    },
+    "awards": {
+      "title": "Premios"
+    },
+    "board-positions": {
+      "title": "Puestos en consejos"
+    },
+    "expert-status": {
+      "title": "Estatus de experto"
+    },
+    "patent-citation": {
+      "title": "Citación de patentes"
+    },
+    "peer-recognition": {
+      "title": "Reconocimiento de pares"
+    },
+    "local-leadership": {
+      "title": "Liderazgo local"
+    },
+    "grassroots-organizing": {
+      "title": "Organización de base"
+    },
+    "policy-influence": {
+      "title": "Influencia en políticas"
+    },
+    "social-movements": {
+      "title": "Movimientos sociales"
+    },
+    "philanthropy-impact": {
+      "title": "Filantropía"
+    }
   }
 }
