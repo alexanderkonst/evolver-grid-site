@@ -1,57 +1,85 @@
 import { useTranslation } from "react-i18next";
+import { Globe, Check } from "lucide-react";
 
 import { SUPPORTED_LANGUAGES } from "./config";
 import { buildLocalePath, LOCALE_STORAGE_KEY } from "./localeScope";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 interface LanguageSwitcherProps {
+  /** Positioning / sizing classes applied to the trigger pill. */
   className?: string;
 }
 
 /**
- * Phase 0 i18n pilot switcher. Soft (in-place) language switch via i18next,
- * persisted to localStorage by the detector cache. URL-prefix / SEO routing
- * and the final placement (global menu / Settings) land in later increments.
+ * Global language switcher. A compact glassy globe pill (current locale code)
+ * that opens a menu of all supported languages in their own script. Selecting
+ * one persists the choice to localStorage and navigates to the locale-prefixed
+ * URL (locale is a URL prefix: /ru, /es), preserving path + query + hash and
+ * composing correctly with the white-label skin basename via buildLocalePath.
+ *
+ * Mounted once at App root (fixed top-right) so it is discoverable on every
+ * surface — the funnel landing, the in-app shell, and the marketing pages.
+ * The chip carries its own translucent background, so it stays legible on both
+ * the dark funnel header and the light marketing pages.
  */
 export const LanguageSwitcher = ({ className }: LanguageSwitcherProps) => {
   const { i18n, t } = useTranslation();
-  const current = i18n.resolvedLanguage ?? i18n.language;
+  const current = i18n.resolvedLanguage ?? i18n.language ?? "en";
+  const active =
+    SUPPORTED_LANGUAGES.find((l) => l.code === current) ?? SUPPORTED_LANGUAGES[0];
+
+  const switchTo = (code: string) => {
+    if (code === current) return;
+    // Persist first so the choice sticks even when the user later returns to a
+    // non-prefixed URL. Then full-navigate so the router re-reads the basename.
+    try {
+      localStorage.setItem(LOCALE_STORAGE_KEY, code);
+    } catch {
+      /* ignore */
+    }
+    window.location.assign(
+      buildLocalePath(code, window.location.pathname) +
+        window.location.search +
+        window.location.hash,
+    );
+  };
 
   return (
-    <div className={className} role="group" aria-label={t("language.label", "Language")}>
-      {SUPPORTED_LANGUAGES.map((lng) => {
-        const active = current === lng.code;
-        return (
-          <button
-            key={lng.code}
-            type="button"
-            onClick={() => {
-              // Locale is a URL prefix (/ru, /es), so switching is a full
-              // navigation that re-reads the basename. Persist first so the
-              // choice sticks even when returning to a non-prefixed URL.
-              try {
-                localStorage.setItem(LOCALE_STORAGE_KEY, lng.code);
-              } catch {
-                /* ignore */
-              }
-              window.location.assign(
-                buildLocalePath(lng.code, window.location.pathname) +
-                  window.location.search +
-                  window.location.hash,
-              );
-            }}
-            aria-pressed={active}
-            className={[
-              "rounded-full px-3 py-1 text-sm transition-colors",
-              active
-                ? "bg-primary text-primary-foreground"
-                : "bg-transparent text-muted-foreground hover:text-foreground",
-            ].join(" ")}
+    <DropdownMenu>
+      <DropdownMenuTrigger
+        aria-label={t("language.label", "Language")}
+        className={[
+          "inline-flex items-center gap-1.5 rounded-full border border-border/50",
+          "bg-background/70 px-3 py-1.5 text-sm font-medium text-foreground/80 shadow-sm",
+          "backdrop-blur-md transition-colors hover:text-foreground hover:border-border",
+          "focus:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+          className ?? "",
+        ].join(" ")}
+      >
+        <Globe className="h-4 w-4 shrink-0" aria-hidden="true" />
+        <span className="uppercase tracking-wide">{active.code}</span>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align="end" className="min-w-[10rem]">
+        {SUPPORTED_LANGUAGES.map((l) => (
+          <DropdownMenuItem
+            key={l.code}
+            onSelect={() => switchTo(l.code)}
+            className="flex cursor-pointer items-center justify-between gap-3"
+            aria-current={l.code === current}
           >
-            {lng.native}
-          </button>
-        );
-      })}
-    </div>
+            <span>{l.native}</span>
+            {l.code === current && (
+              <Check className="h-4 w-4 opacity-70" aria-hidden="true" />
+            )}
+          </DropdownMenuItem>
+        ))}
+      </DropdownMenuContent>
+    </DropdownMenu>
   );
 };
 
