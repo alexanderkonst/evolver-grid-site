@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { Users } from "lucide-react";
 import { PremiumLoader } from "@/components/ui/PremiumLoader";
 import GameShellV2 from "@/components/game/GameShellV2";
@@ -165,6 +166,7 @@ const pickAssetOpportunity = (yourAssets: AssetSignal[], theirAssets: AssetSigna
 };
 
 const TeamsSpace = () => {
+    const { t } = useTranslation();
     const { toast } = useToast();
     const navigate = useNavigate();
     const [loading, setLoading] = useState(true);
@@ -190,7 +192,7 @@ const TeamsSpace = () => {
 
             const { data: { user } } = await supabase.auth.getUser();
             if (!user) {
-                setError("Sign in to view matches.");
+                setError(t("teamsSpace.error.signIn"));
                 setLoading(false);
                 return;
             }
@@ -302,12 +304,12 @@ const TeamsSpace = () => {
                     const snapshot = row.last_zog_snapshot_id
                         ? snapshotMap.get(row.last_zog_snapshot_id)
                         : null;
-                    const archetype = snapshot?.vibrationalKey?.name || "Unknown archetype";
+                    const archetype = snapshot?.vibrationalKey?.name || t("teamsSpace.match.unknownArchetype");
                     const tagline = snapshot?.vibrationalKey?.tagline || null;
                     const candidateSignals = buildCandidateSignals(snapshot);
                     const assetPair = pickAssetOpportunity(userAssetSignals, candidateSignals);
                     const assetMatchReason = assetPair
-                        ? `Your ${assetPair.your.label} + Their ${assetPair.their.label} = opportunity.`
+                        ? t("teamsSpace.match.assetOpportunity", { yours: assetPair.your.label, theirs: assetPair.their.label })
                         : null;
                     const complementary = currentUserArchetype
                         ? areComplementary(currentUserArchetype, archetype)
@@ -316,16 +318,16 @@ const TeamsSpace = () => {
                         ? getComplementarityLabel(currentUserArchetype, archetype)
                         : null;
                     const missionLabel = currentMission.mission_title
-                        ? `Same mission: ${currentMission.mission_title}`
-                        : "Same mission";
+                        ? t("teamsSpace.match.sameMissionNamed", { mission: currentMission.mission_title })
+                        : t("teamsSpace.match.sameMission");
                     const reason = complementaryLabel
                         ? `${missionLabel}. ${complementaryLabel}.`
                         : `${missionLabel}.`;
 
                     return {
                         id: row.user_id!,
-                        firstName: row.first_name || "Community",
-                        lastName: row.last_name || "Member",
+                        firstName: row.first_name || t("teamsSpace.match.fallbackFirstName"),
+                        lastName: row.last_name || t("teamsSpace.match.fallbackLastName"),
                         avatarUrl: row.avatar_url || null,
                         archetype,
                         tagline,
@@ -376,8 +378,8 @@ const TeamsSpace = () => {
             ? currentMatch.matchReason
             : currentMatch.assetMatchReason || null
         : null;
-    const primaryLabel = matchMode === "assets" ? "Asset opportunity" : "Genius alignment";
-    const secondaryLabel = matchMode === "assets" ? "Genius alignment" : "Asset opportunity";
+    const primaryLabel = matchMode === "assets" ? t("teamsSpace.label.assetOpportunity") : t("teamsSpace.label.geniusAlignment");
+    const secondaryLabel = matchMode === "assets" ? t("teamsSpace.label.geniusAlignment") : t("teamsSpace.label.assetOpportunity");
 
     const handlePass = useCallback(() => {
         setCurrentIndex((prev) => Math.min(prev + 1, filteredMatches.length));
@@ -395,7 +397,7 @@ const TeamsSpace = () => {
         setSending(true);
         try {
             const { data: { user } } = await supabase.auth.getUser();
-            if (!user) throw new Error("Not authenticated");
+            if (!user) throw new Error(t("teamsSpace.error.notAuthenticated"));
 
             // Day 66 wave §8 (Sasha 2026-05-16): migrated from
             // legacy `connections.insert` → match_interests.insert.
@@ -423,9 +425,9 @@ const TeamsSpace = () => {
             setSelectedMatch(null);
             setShowConnectionSent(true);
         } catch (err: unknown) {
-            const message = err instanceof Error ? err.message : "Could not send request.";
+            const message = err instanceof Error ? err.message : t("teamsSpace.error.sendFailed");
             toast({
-                title: "Error",
+                title: t("teamsSpace.error.title"),
                 description: message,
                 variant: "destructive",
             });
@@ -442,9 +444,9 @@ const TeamsSpace = () => {
                     <div className="mb-8">
                         <div className="flex items-center gap-3 mb-2">
                             <Users className="w-6 h-6 text-foreground" />
-                            <h1 className="text-2xl font-bold text-foreground">Teams</h1>
+                            <h1 className="text-2xl font-bold text-foreground">{t("teamsSpace.header.title")}</h1>
                         </div>
-                        <p className="text-muted-foreground">Find your people. Connect with complementary geniuses.</p>
+                        <p className="text-muted-foreground">{t("teamsSpace.header.subtitle")}</p>
                     </div>
 
                     <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
@@ -458,7 +460,7 @@ const TeamsSpace = () => {
                                         : "text-muted-foreground"
                                         }`}
                                 >
-                                    By Genius
+                                    {t("teamsSpace.mode.byGenius")}
                                 </button>
                                 <button
                                     type="button"
@@ -468,12 +470,12 @@ const TeamsSpace = () => {
                                         : "text-muted-foreground"
                                         }`}
                                 >
-                                    Match by Assets
+                                    {t("teamsSpace.mode.byAssets")}
                                 </button>
                             </div>
                             <div className="flex items-center gap-2">
                                 <label htmlFor="match-filter" className="text-xs text-muted-foreground">
-                                    Filter
+                                    {t("teamsSpace.filter.label")}
                                 </label>
                                 <select
                                     id="match-filter"
@@ -481,15 +483,15 @@ const TeamsSpace = () => {
                                     onChange={(e) => setFilterMode(e.target.value as FilterMode)}
                                     className="rounded-md border border-border bg-[var(--skin-input-fill,#fff)] px-2 py-1 text-sm"
                                 >
-                                    <option value="all">All Matches</option>
-                                    <option value="mission">Same Mission</option>
-                                    <option value="local">Near Me</option>
-                                    <option value="cofounders">Co-founders</option>
+                                    <option value="all">{t("teamsSpace.filter.all")}</option>
+                                    <option value="mission">{t("teamsSpace.filter.mission")}</option>
+                                    <option value="local">{t("teamsSpace.filter.local")}</option>
+                                    <option value="cofounders">{t("teamsSpace.filter.cofounders")}</option>
                                 </select>
                             </div>
                         </div>
                         <Button variant="outline" onClick={() => navigate("/connections")}>
-                            View Connections
+                            {t("teamsSpace.viewConnections")}
                         </Button>
                     </div>
 
@@ -509,11 +511,11 @@ const TeamsSpace = () => {
                     {!loading && !error && !currentMatch && (
                         <div className="rounded-xl border border-border bg-[var(--skin-card-fill,rgba(255,255,255,0.85))] backdrop-blur-sm p-10 text-center shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
                             <Users className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
-                            <h2 className="text-xl font-semibold text-foreground mb-2">No matches yet</h2>
+                            <h2 className="text-xl font-semibold text-foreground mb-2">{t("teamsSpace.empty.title")}</h2>
                             <p className="text-muted-foreground max-w-md mx-auto">
                                 {filterMode === "cofounders"
-                                    ? "No complementary matches right now. Try a different filter."
-                                    : "We will surface new matches as your community grows."}
+                                    ? t("teamsSpace.empty.cofounders")
+                                    : t("teamsSpace.empty.default")}
                             </p>
                         </div>
                     )}
@@ -521,11 +523,11 @@ const TeamsSpace = () => {
                     {!loading && !error && matchMode === "assets" && currentUserAssets.length === 0 && (
                         <div className="rounded-xl border border-primary/30 bg-primary/5 p-5 text-sm text-foreground mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                             <div>
-                                <p className="font-semibold text-primary">Add assets to unlock smarter matches.</p>
-                                <p className="text-muted-foreground">Map what you can offer so we can pair you by collaboration potential.</p>
+                                <p className="font-semibold text-primary">{t("teamsSpace.assetsCta.title")}</p>
+                                <p className="text-muted-foreground">{t("teamsSpace.assetsCta.subtitle")}</p>
                             </div>
                             <Button variant="outline" onClick={() => navigate("/asset-mapping")}>
-                                Map Assets
+                                {t("teamsSpace.assetsCta.button")}
                             </Button>
                         </div>
                     )}
@@ -548,26 +550,26 @@ const TeamsSpace = () => {
                         <DialogContent>
                             <DialogHeader>
                                 <DialogTitle>
-                                    {selectedMatch ? `Connect with ${selectedMatch.firstName}` : "Connect"}
+                                    {selectedMatch ? t("teamsSpace.connectModal.titleWithName", { name: selectedMatch.firstName }) : t("teamsSpace.connectModal.title")}
                                 </DialogTitle>
                             </DialogHeader>
                             <div className="space-y-3">
                                 <label htmlFor="connect-message" className="text-sm text-muted-foreground">
-                                    Add a message (optional)
+                                    {t("teamsSpace.connectModal.messageLabel")}
                                 </label>
                                 <Textarea
                                     id="connect-message"
                                     value={connectMessage}
                                     onChange={(e) => setConnectMessage(e.target.value)}
-                                    placeholder="Introduce yourself..."
+                                    placeholder={t("teamsSpace.connectModal.placeholder")}
                                 />
                             </div>
                             <DialogFooter className="gap-2">
                                 <Button variant="outline" onClick={() => setConnectModalOpen(false)} disabled={sending}>
-                                    Cancel
+                                    {t("teamsSpace.connectModal.cancel")}
                                 </Button>
                                 <Button onClick={handleSendRequest} disabled={sending}>
-                                    {sending ? "Sending..." : "Send Request"}
+                                    {sending ? t("teamsSpace.connectModal.sending") : t("teamsSpace.connectModal.send")}
                                 </Button>
                             </DialogFooter>
                         </DialogContent>

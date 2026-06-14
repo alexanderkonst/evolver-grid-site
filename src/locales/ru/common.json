@@ -2378,5 +2378,768 @@
     "bookFoundingRate": "тариф первых клиентов",
     "bookCta": "Забронируй сессию",
     "bookGuarantee": "Ясность или возврат денег."
+  },
+  "zogPerspective": {
+    "startHere": {
+      "title": "Ты в деле. Начнём.",
+      "subtitle": "Три шага."
+    },
+    "howItShowsUp": {
+      "title": "Как это проявляется",
+      "subtitle": "Где твой гений вспыхивает в реальной жизни"
+    },
+    "threeKeyTalents": {
+      "title": "Три таланта вглубь",
+      "subtitle": "Что на самом деле значит каждый из твоих трёх талантов."
+    },
+    "topShadow": {
+      "title": "Главная тень",
+      "subtitle": "Оборотная сторона медали",
+      "eyebrow": "Моя главная тень —"
+    },
+    "oneAction": {
+      "title": "Одно действие",
+      "subtitle": "Единственное действие, которое, повторяясь, углубляет твоё мастерство",
+      "repeatEyebrow": "Повторяй это"
+    },
+    "bullseye": {
+      "title": "Фраза в яблочко",
+      "subtitle": "Твоя суть на одном дыхании",
+      "iPrefix": "Я"
+    },
+    "vibrationalKey": {
+      "title": "Уникальный вибрационный ключ",
+      "subtitle": "Твоё архетипическое имя и слоган",
+      "inSimpleTerms": "Простыми словами: {{text}}"
+    },
+    "threeLenses": {
+      "title": "Зона гения — три линзы",
+      "subtitle": "Действия → Главный драйвер → Архетип",
+      "topActionsLabel": "Мои главные действия",
+      "primeDriverLabel": "Мой главный драйвер",
+      "archetypeLabel": "Мой архетип",
+      "oneActionLabel": "✦ Одно действие к мастерству",
+      "putOnRepeat": "Поставь «{{driver}}» на повтор.",
+      "oneActionExplain": "Это единственное действие, которое при постоянной практике ведёт к полному мастерству твоего гения."
+    },
+    "mastery": {
+      "title": "Путь мастерства",
+      "subtitle": "Твои семь стадий эволюции"
+    },
+    "activities": {
+      "title": "Профессиональные роли",
+      "subtitle": "Роли, которые ищут в LinkedIn",
+      "forPrefix": "Для: {{audience}}",
+      "purposePrefix": "Цель: {{purpose}}"
+    },
+    "roles": {
+      "title": "Идеальные среды",
+      "subtitle": "Где твой гений по-настоящему дома",
+      "idealEnvironmentLabel": "Идеальная среда"
+    },
+    "partner": {
+      "title": "Дополняющий партнёр",
+      "subtitle": "Кто нужен тебе рядом больше всего",
+      "skillsWiseLabel": "По навыкам",
+      "geniusWiseLabel": "По гению",
+      "archetypeWiseLabel": "По архетипу",
+      "synergyLabel": "Синергия"
+    },
+    "monetization": {
+      "title": "Монетизация",
+      "subtitle": "Как превратить твой гений в доход",
+      "avenuesHeading": "Пути монетизации",
+      "sweetSpotsHeading": "Карьерные точки силы"
+    },
+    "unifyingRoleConfig": {
+      "title": "Твоя объединяющая роль",
+      "subtitle": "Раскол, который ты исцеляешь. Перекрёсток, которым ты являешься."
+    },
+    "unifyingRole": {
+      "introGenerated": "Профиль твоей объединяющей роли создаётся на твоей бизнес-сессии по главному таланту.",
+      "introBefore": "Если твой главный талант называет,",
+      "introWhatYouDo": "что ты делаешь",
+      "introMiddle": ", то твоя объединяющая роль называет,",
+      "introWhatYouAre": "что ты есть",
+      "introAfter": " — структурную функцию, которую твой дар выполняет в большем поле: раскол, который ты исцеляешь, два мира, которые ты связываешь, позицию, которую ты держишь в сети связей.",
+      "bookCta": "Запишись на сессию, чтобы получить его",
+      "hide": "Скрыть",
+      "reveal": "Показать",
+      "disclosureTitle": "Моя объединяющая роль",
+      "roleTitleEyebrow": "Моя объединяющая роль —",
+      "oneLineEyebrow": "В одну строку",
+      "splitLabel": "Раскол, который ты исцеляешь",
+      "pole1": "Полюс 1",
+      "pole2": "Полюс 2",
+      "integrationLabel": "Как ты совершаешь объединение",
+      "withoutYou": "Без тебя в комнате",
+      "whenPresent": "Когда ты присутствуешь",
+      "whereMattersMost": "Где эта роль важнее всего",
+      "tribeLabel": "Племя, которое узнаёт тебя",
+      "civilizationalFunction": "Цивилизационная функция"
+    },
+    "whatsNext": {
+      "title": "Что дальше?",
+      "subtitle": "От узнавания к действию",
+      "bodyLine1": "Ты глубже в контакте со своим главным талантом.",
+      "bodyLine2a": "Используй его в своей работе —",
+      "bodyLine2b": "или преврати его в бизнес, который можешь построить только ты.",
+      "cta": "Преврати его в бизнес"
+    },
+    "lifeScene": {
+      "title": "Сцена из жизни",
+      "subtitle": "Чувственное воплощение в потоке"
+    },
+    "visualCodes": {
+      "title": "Визуальные коды",
+      "subtitle": "Символические якоря для твоего гения"
+    },
+    "elevatorPitch": {
+      "title": "Презентация в лифте",
+      "subtitle": "Твой гений за 30 секунд"
+    },
+    "unknownPerspective": "Неизвестная перспектива.",
+    "noDataYet": "Данных по главному таланту пока нет. Сначала пройди диагностику.",
+    "loading": "Загрузка…"
+  },
+  "spacesRail": {
+    "logoutToastTitle": "Вы вышли из аккаунта",
+    "logoutToastDescription": "Будем ждать вашего возвращения.",
+    "chatTitle": "Написать Александру напрямую в Telegram",
+    "chatLabel": "написать нам",
+    "settingsTitle": "Настройки",
+    "settingsLabel": "настройки",
+    "themeToggleToLapisTitle": "Переключиться на светлую сестру Aurum — Lapis",
+    "themeToggleToAurumTitle": "Переключиться на тёмную тему Aurum",
+    "themeToggleToLightAria": "Переключиться на светлую тему",
+    "themeToggleToDarkAria": "Переключиться на тёмную тему",
+    "lightTheme": "светлая тема",
+    "darkTheme": "тёмная тема",
+    "logOutTitle": "Выйти",
+    "logOutLabel": "выйти",
+    "logInTitle": "Войти",
+    "logInLabel": "Войти"
+  },
+  "profileSettings": {
+    "toastErrorTitle": "Ошибка",
+    "toastUpdateFailedDescription": "Не удалось обновить профиль. Попробуй ещё раз.",
+    "toastProfileUpdatedTitle": "Профиль обновлён",
+    "toastProfileUpdatedDescription": "Изменения сохранены.",
+    "sourceUnknown": "Неизвестно",
+    "sourceStripeCheckout": "Оплата через Stripe",
+    "sourcePromoCode": "Промокод",
+    "guestTitle": "Профиль",
+    "guestDescription": "Ты в гостевом режиме. Войди, чтобы управлять личными данными, смотреть покупки и сбрасывать прогресс.",
+    "guestCtaLabel": "Войти или зарегистрироваться",
+    "personalInfoTitle": "Личные данные",
+    "personalInfoDescription": "Основные данные твоего аккаунта.",
+    "editButton": "Изменить",
+    "firstNameLabel": "Имя",
+    "firstNamePlaceholder": "Иван",
+    "lastNameLabel": "Фамилия",
+    "lastNamePlaceholder": "Иванов",
+    "emailLabel": "Email",
+    "emailCannotBeChanged": "Email изменить нельзя",
+    "accountTierLabel": "Тариф аккаунта",
+    "languagesLabel": "Языки",
+    "removeLanguageAria": "Удалить {{language}}",
+    "addLanguagePlaceholder": "Добавить язык",
+    "addButton": "Добавить",
+    "savingButton": "Сохраняю...",
+    "saveChangesButton": "Сохранить",
+    "cancelButton": "Отмена",
+    "billingTitle": "Оплата и покупки",
+    "billingDescription": "История покупок и управление подпиской.",
+    "purchaseHistoryHeading": "История покупок",
+    "aiIntelligenceBoost": "Усиление ИИ-интеллекта",
+    "viaSource": "через {{source}}",
+    "noPurchasesYet": "Покупок пока нет",
+    "subscriptionManagementHeading": "Управление подпиской",
+    "subscriptionManagementDescription": "Управляй активными подписками, обновляй способы оплаты или отменяй.",
+    "openingButton": "Открываю...",
+    "manageSubscriptionButton": "Управлять подпиской",
+    "dangerZoneTitle": "Опасная зона",
+    "dangerZoneDescription": "Необратимые действия с данными твоего аккаунта.",
+    "resetProgressLabel": "Сбросить прогресс",
+    "resetProgressDescription": "Стереть весь игровой прогресс (XP, уровни, снимки) и начать заново.",
+    "resetConfirm": "Точно? Это сотрёт ВЕСЬ твой прогресс, XP и открытые улучшения. Отменить будет нельзя.",
+    "toastProgressResetPartialTitle": "Прогресс сброшен (частично)",
+    "toastProgressResetPartialDescription": "Некоторые таблицы не удалось очистить: {{tables}}. Возможны остатки — попробуй ещё раз или напиши в поддержку.",
+    "toastProgressResetTitle": "Прогресс сброшен",
+    "toastProgressResetDescription": "Твой путь начат заново.",
+    "toastResetFailedDescription": "Не удалось сбросить прогресс. Попробуй ещё раз.",
+    "resetMyProgressButton": "Сбросить мой прогресс",
+    "deleteAccountLabel": "Удалить аккаунт",
+    "deleteAccountDescription": "Навсегда удалить твой аккаунт, твои данные и твой вход.",
+    "deleteAccountCannotBeUndone": "Отменить нельзя.",
+    "deleteAccountConfirm": "Это НАВСЕГДА удалит твой аккаунт, все твои данные и данные для входа. Войти снова с этим email будет нельзя. Продолжить?",
+    "deleteAccountPrompt": "Введи DELETE, чтобы подтвердить безвозвратное удаление аккаунта:",
+    "toastCancelledTitle": "Отменено",
+    "toastDeleteCancelledDescription": "Удаление аккаунта отменено — ты не ввёл DELETE.",
+    "toastSessionExpiredTitle": "Сессия истекла",
+    "toastSessionExpiredDescription": "Войди снова, затем повтори удаление аккаунта.",
+    "toastAccountDeletedTitle": "Аккаунт удалён",
+    "toastAccountDeletedDescription": "Твой аккаунт и все твои данные удалены. Прощай.",
+    "deleteAccountFallbackDetail": "Попробуй ещё раз или напиши в поддержку.",
+    "toastDeleteFailedTitle": "Не удалось удалить аккаунт",
+    "deleteMyAccountButton": "Удалить мой аккаунт",
+    "tierLoading": "Загрузка…",
+    "tierTastingNote": "Бесплатный пробный · улучши тариф для сохранения и публикации"
+  },
+  "matchCard": {
+    "connectDefault": "Хочу познакомиться",
+    "connectAriaLabel": "Сообщить, что хотите познакомиться с этим человеком",
+    "headsUpEmailSent": "Письмо-уведомление отправлено",
+    "introductionSent": "Знакомство отправлено",
+    "previousMatch": "Предыдущий мэтч",
+    "nextMatch": "Следующий мэтч",
+    "dontShowAgain": "Больше не показывать",
+    "withdraw": "Отозвать",
+    "withdrawAriaLabel": "Отозвать интерес",
+    "hideDialogTitle": "Скрыть {{firstName}} из ваших мэтчей?",
+    "hideDialogDescription": "Вы больше не увидите этот профиль. Изменение необратимо.",
+    "hideDialogCancel": "Оставить",
+    "hideDialogConfirm": "Скрыть навсегда",
+    "interestBanner": "Письмо-уведомление уже летит к {{firstName}}. Как только они скажут «да», мы отправим вам обоим знакомство; если нет — оставим всё тихо.",
+    "mutualHeadline": "✦ Взаимный интерес. Вы оба сказали «да».",
+    "mutualSubline": "Мы отправили знакомство на оба ваших адреса. Дальше — за вами.",
+    "scoreTooltip": "Сводный балл мэтча от движка мэтчинга платформы (0–100). Выше — сильнее совпадение по миссии, роли и дару.",
+    "scorePill": "Мэтч {{score}}/100",
+    "waysToCollaborate": "Как вы могли бы коллаборировать",
+    "whyThisWorks": "Почему это сработает",
+    "watchOutFor": "На что обратить внимание",
+    "whyYouMatch": "Почему вы подходите друг другу",
+    "alsoRelevant": "Также важно",
+    "context": "Контекст"
+  },
+  "stepCard": {
+    "oneProvenStrategy": "Одна проверенная стратегия",
+    "essayTitle": "Секрет упаковки себя в продукт",
+    "essayP1": "Стартап-инфлюенсеры твердят: «Упакуй себя в продукт».",
+    "essayP2": "Коучи из соцсетей твердят: «Монетизируй то, кто ты есть». «Построй аутентичный бренд».",
+    "essayP3": "Почти никто из них не говорит КАК. Существующие плейбуки работают лишь для малого процента людей, а тесты личности и коучи по предназначению редко приводят созвучных платящих клиентов.",
+    "essayWhy": "Почему?",
+    "essayTease": "У упаковки себя в продукт есть скрытый секрет.",
+    "essayVagueNotEnough": "Смутно понимать, что ты делаешь, недостаточно.",
+    "essayPunchline": "Чего большинство не осознаёт: упаковка себя в продукт ТРЕБУЕТ ОЧЕНЬ ВЫСОКОЙ ТОЧНОСТИ формулировки того, что ты делаешь.",
+    "essayLongWay": "От «я помогаю людям получать лучшие результаты в жизни и бизнесе» до ЧЁТКОЙ формулировки на 9/10 того, что ты делаешь на самом деле, — путь неблизкий.",
+    "essayPrecisionIntro": "Вот как звучит точность на ~10/10:",
+    "essayExample": "«Я помогаю осознанным начинающим импакт-фаундерам превратить свой главный талант в растущий масштабируемый бизнес в потоке».",
+    "essayThatsSpecific": "Вот это точно.",
+    "essayDownstreamEasy": "Такая точность делает всё дальнейшее простым: продукт, который строить, упаковку, которую писать, дистрибуцию, которую запускать, клиентов, которых притягиваешь, — а все остальные отсеиваются сами.",
+    "essayHowYouGetThere": "Так как ТЕБЕ довести СВОЙ главный талант до этого уровня?",
+    "essayPatternIntro": "Вот закономерность, спрятанная на виду:",
+    "essayFluffyLine": "Размытое самоописание → размытые клиенты, размытые тексты.",
+    "essaySpecificLine": "Предельно точное самоописание → магнетическое притяжение.",
+    "essayRevealLevel": "Разбор на этой странице доводит тебя до ~7/10 или ~8/10.",
+    "essayContainersExperience": "По нашему опыту проведения трансформационных пространств для сотен предпринимателей: те, кто успешно упаковывает себя в продукт, доходят до 9+/10, прежде чем всё складывается.",
+    "essayLetThatSitBefore": "Дай этому осесть. Насколько точно",
+    "essayLetThatSitYour": "твоё",
+    "essayLetThatSitAfter": "самопонимание прямо сейчас? Ощущается ли это правдой?",
+    "essayHowDoYouGetThere": "Как на самом деле туда добраться?",
+    "essaySlowPaths": "Медленные пути существуют: годы сфокусированной интроспекции, шлифовка формулировок, аутентичное / художественное самовыражение, внезапные пробуждения, растительные практики, коучинг по предназначению, сам путь фаундера.",
+    "essayShortcuts": "Короткие пути тоже есть. Либо тебя ведёт тот, кто сам уже дошёл до 9.9+ и делится путём, либо ты используешь высокоточный инструмент поиска предназначения. Или и то, и другое. На 2026 год и то, и другое всё ещё редкость.",
+    "essayToolsRecommend": "Помимо инструмента findyourtoptalent, мы рекомендуем ещё пару:",
+    "essayCoachRecommend": "Можешь поработать и с коучем по предназначению, мы рекомендуем:",
+    "essayWishCommonplace": "Хотелось бы, чтобы это было обыденностью. Пока нет.",
+    "essayMethodSixYears": "Метод, который мы оттачивали шесть лет, доводит тебя до 9+/10. Когда дойдёшь, из самопознания естественно проступает предельно точный бизнес — тот, что всегда был уникально твоим. AI-скиллы и шаблоны от фаундеров, уже увидевших свой, делают сборку быстрой.",
+    "essayHindsight": "Задним числом это всегда выглядит очевидным. Будто ты всегда это знал.",
+    "essayMorePeople": "Чем больше людей туда доходит, тем легче становится следующему.",
+    "essayBookSession": "Записаться на сессию",
+    "essayShortcutAfter": "если хочешь пойти коротким путём.",
+    "stepLabel": "Шаг {{number}}:",
+    "byTheEnd": "К концу:",
+    "substepsAriaLabel": "Подшаги",
+    "upNextSeenMethod": "Ты увидел метод",
+    "upNextWalkIt": "Теперь иди и пройди его",
+    "upNextLabel": "Далее · Шаг {{number}}",
+    "buildHeading": "Собери это в своём Билдере",
+    "buildAriaLabel": "Собери это в Билдере уникального бизнеса",
+    "buildBody": "Артефакты, которые кристаллизуют этот шаг в работающую часть твоего бизнеса. Каждый можно улучшать — сгенерируй, затем итерируй до точности 9+/10."
+  },
+  "buildCanvas": {
+    "artifact": {
+      "uniqueness": {
+        "label": "Уникальность",
+        "question": "Кто я в своём максимуме?",
+        "description": "Пересечение, которое не занимает никто другой"
+      },
+      "myth": {
+        "label": "Миф",
+        "question": "Что должно быть истиной, чтобы твоё дело стало неизбежным?",
+        "description": "Ложь, правда и строчка, которая останавливает скролл"
+      },
+      "tribe": {
+        "label": "Племя",
+        "question": "Кто узнаёт себя в этом мифе?",
+        "description": "Твои люди — критерии, жизненная ситуация, язык"
+      },
+      "pain": {
+        "label": "Боль",
+        "question": "Что невыносимо в их ситуации?",
+        "description": "5-слойная диагностика — от давления к синтезу борьбы"
+      },
+      "promise": {
+        "label": "Обещание",
+        "question": "Каков главный трансформационный результат?",
+        "description": "Точная инверсия их боли"
+      },
+      "lead_magnet": {
+        "label": "Лид-магнит",
+        "question": "Как они пробуют трансформацию на вкус?",
+        "description": "Карта боли, доставленная через резонансные каналы"
+      },
+      "value_ladder": {
+        "label": "Лестница ценности",
+        "question": "Каковы восходящие контейнеры?",
+        "description": "Бесплатно → Вход → Путь → Контейнер"
+      }
+    },
+    "status": {
+      "landed": "Закреплено",
+      "refining": "Уточняется",
+      "draft": "Черновик"
+    },
+    "detail": {
+      "archetype": "Архетип",
+      "distillation": "Дистилляция",
+      "tagline": "Слоган",
+      "theLie": "Ложь",
+      "theTruth": "Правда",
+      "theLine": "Строчка",
+      "tribeName": "Название племени",
+      "description": "Описание",
+      "traits": "Черты",
+      "promiseStatement": "Формулировка обещания",
+      "format": "Формат",
+      "mechanism": "Механизм",
+      "fullText": "Полный текст"
+    },
+    "painLayer": {
+      "pressure": "Давление",
+      "consequences": "Последствия",
+      "costOfInaction": "Цена бездействия",
+      "urgency": "Срочность",
+      "struggleSynthesized": "Синтез борьбы",
+      "fallback": "Слой {{n}}"
+    },
+    "loading": "Загрузка канваса…",
+    "empty": {
+      "title": "Канвас уникального бизнеса",
+      "subtitle": "Канвас собирается на сопровождаемой сессии «Упакуй себя» — 60–90 минут, за которые мы раскрываем твою уникальность, выковываем твой миф, находим твоё племя и проектируем бизнес вокруг того, кто ты уже есть.",
+      "cta": "Записаться на сессию «Упакуй себя» — $555",
+      "ctaCaption": "60–90 минут · Полный канвас из 7 артефактов · Собирается ИИ в реальном времени",
+      "alreadyHaveProduct": "Уже есть продукт?",
+      "goToProductBuilder": "Перейти в Конструктор продукта"
+    },
+    "howItWorks": {
+      "title": "Как это работает",
+      "body": "Каждый артефакт выводится из предыдущего. Меняешь артефакт 1 → всё ниже по цепочке становится острее."
+    },
+    "chain": {
+      "uniqueness": "Уникальность",
+      "myth": "Миф",
+      "tribe": "Племя",
+      "pain": "Боль",
+      "promise": "Обещание",
+      "magnet": "Магнит",
+      "ladder": "Лестница"
+    },
+    "promo": {
+      "badge": "новое · v2",
+      "eyebrow": "Цикл Improve · 27 перспектив",
+      "title": "Собирай через Improve — Конструктор уникального бизнеса v2",
+      "body": "Тот же канвас, теперь с 27-перспективным холоническим разбором каждого артефакта. Конкретика растёт. Версии не теряются.",
+      "openBtn": "Открыть v2"
+    },
+    "hero": {
+      "eyebrow": "Канвас уникального бизнеса · {{version}}",
+      "fallbackTitle": "Мой уникальный бизнес",
+      "facilitatedBy": "Ведущий: {{name}}",
+      "sessionSuffix": " · Сессия {{n}}"
+    },
+    "progress": {
+      "label": "Заполненность канваса",
+      "count": "{{landed}}/{{total}} закреплено"
+    },
+    "controls": {
+      "heading": "7 артефактов",
+      "expandAll": "Развернуть всё",
+      "collapseAll": "Свернуть всё"
+    },
+    "sessionNotes": "Заметки сессии",
+    "actions": {
+      "buildLanding": "Собрать лендинг",
+      "refineArtifacts": "Уточнить артефакты"
+    },
+    "quickLinks": {
+      "myBusiness": "Мой бизнес",
+      "theOriginals": "The Originals"
+    }
+  },
+  "meGate": {
+    "comingSoonTitle": "Твой профиль таланта сейчас дорабатываем",
+    "comingSoonBody": "Наводим последний лоск в этом пространстве. Откроется завтра. Твои результаты в сохранности — заходи скоро.",
+    "headerTitle": "Сохрани свои результаты",
+    "headerEcho": "чтобы они были на месте, когда ты вернёшься",
+    "headerBody": "Прямо сейчас твой результат живёт только на этом устройстве. Дай нам почту и пароль — так мы узнаем тебя в следующий раз. Без них следующий визит начнётся с нуля.",
+    "tabFirstTime": "Первый раз",
+    "tabComingBack": "Возвращаюсь",
+    "labelName": "Твоё имя",
+    "placeholderName": "Как тебя называть?",
+    "labelEmail": "Почта",
+    "placeholderEmail": "you@example.com",
+    "labelPassword": "Пароль",
+    "placeholderPassword": "Придумай любой",
+    "btnSaving": "Сохраняем…",
+    "btnSaveProfile": "Сохранить мой профиль",
+    "btnOpening": "Открываем…",
+    "btnOpenProfile": "Открыть мой профиль",
+    "toastWelcomeBackTitle": "С возвращением — проверь почту",
+    "toastWelcomeBackDescription": "Мы отправили ссылку для входа в один клик на твою почту.",
+    "toastBeenHereBeforeTitle": "Похоже, ты уже здесь был",
+    "toastBeenHereBeforeDescription": "Попробуй вкладку «Возвращаюсь» — или поищи в почте прежнюю ссылку для входа.",
+    "toastAlmostThereTitle": "Почти готово",
+    "toastAlmostThereDescription": "Найди в почте ссылку для подтверждения и возвращайся.",
+    "toastSavedTitle": "Сохранено.",
+    "toastSavedDescription": "Теперь твой профиль ждёт тебя, когда захочешь вернуться.",
+    "toastWeakPasswordTitle": "Этот пароль уже всплывал в какой-то публичной утечке",
+    "toastWeakPasswordDescription": "Добавь цифру или символ, чтобы он стал только твоим, и попробуй снова.",
+    "toastCouldntSaveTitle": "Не удалось сохранить",
+    "toastYoureInTitle": "Ты внутри.",
+    "toastCouldntOpenTitle": "Не удалось открыть твой профиль"
+  },
+  "teamsSpace": {
+    "error": {
+      "signIn": "Войдите, чтобы видеть совпадения.",
+      "notAuthenticated": "Вы не авторизованы",
+      "sendFailed": "Не удалось отправить запрос.",
+      "title": "Ошибка"
+    },
+    "header": {
+      "title": "Команды",
+      "subtitle": "Найди своих. Свяжись с теми, чей талант дополняет твой."
+    },
+    "mode": {
+      "byGenius": "По таланту",
+      "byAssets": "Мэтчинг по активам"
+    },
+    "filter": {
+      "label": "Фильтр",
+      "all": "Все совпадения",
+      "mission": "Та же миссия",
+      "local": "Рядом со мной",
+      "cofounders": "Сооснователи"
+    },
+    "viewConnections": "Мои связи",
+    "empty": {
+      "title": "Пока нет совпадений",
+      "cofounders": "Сейчас нет дополняющих совпадений. Попробуй другой фильтр.",
+      "default": "Новые совпадения появятся по мере роста твоего сообщества."
+    },
+    "assetsCta": {
+      "title": "Добавь активы — и мэтчинг станет умнее.",
+      "subtitle": "Опиши, что ты можешь предложить, чтобы мы подбирали пары по потенциалу коллаборации.",
+      "button": "Описать активы"
+    },
+    "connectModal": {
+      "title": "Связаться",
+      "titleWithName": "Связаться с {{name}}",
+      "messageLabel": "Добавь сообщение (по желанию)",
+      "placeholder": "Представься...",
+      "cancel": "Отмена",
+      "send": "Отправить запрос",
+      "sending": "Отправка..."
+    },
+    "label": {
+      "assetOpportunity": "Возможность по активам",
+      "geniusAlignment": "Совпадение по таланту"
+    },
+    "match": {
+      "unknownArchetype": "Архетип не определён",
+      "assetOpportunity": "Твой актив «{{yours}}» + их актив «{{theirs}}» = возможность.",
+      "sameMission": "Та же миссия",
+      "sameMissionNamed": "Та же миссия: {{mission}}",
+      "fallbackFirstName": "Участник",
+      "fallbackLastName": "сообщества"
+    }
+  },
+  "profileAssets": {
+    "toastCopied": "Скопировано {{count}} актив в буфер обмена",
+    "toastCopyBlocked": "Не удалось скопировать — буфер обмена заблокирован",
+    "headerTitleBefore": "Сохранённые",
+    "headerTitleGold": "активы",
+    "ctaFindCollaborators": "Найти коллабораторов",
+    "ctaAddMore": "Добавить ещё",
+    "ctaMapAssets": "Картируй свои активы",
+    "subtitle": "Навыки, инструменты и ресурсы, которые ты картировал — твои, чтобы задействовать их с правильным коллаборатором.",
+    "listTitle": "Твои активы",
+    "copy": "Копировать",
+    "copyDone": "Скопировано",
+    "copyButtonTitle": "Скопировать все активы в буфер обмена",
+    "refresh": "Обновить",
+    "refreshing": "Обновление",
+    "refreshButtonTitle": "Только что сохранил активы и пока их не видишь? Нажми «Обновить».",
+    "collapse": "Свернуть",
+    "expand": "Развернуть",
+    "syncHintBefore": "Только что сохранил активы и пока их не видишь? Синхронизация может занять до минуты — нажми",
+    "syncHintRefresh": "«Обновить»",
+    "syncHintAfter": "выше.",
+    "emptyLine1": "Здесь пока пусто.",
+    "emptyLine2": "Картируй свой первый ресурс, чтобы правильные коллабораторы могли тебя найти."
+  },
+  "revelatoryHero": {
+    "logoAlt": "Главный талант",
+    "bullseyePrefix": "Я",
+    "threeTalentsEyebrow": "Мои три таланта",
+    "topShadowEyebrow": "Моя главная тень",
+    "brandFooterPrefix": "→ узнай свой ·",
+    "shareTitleLine": "Мой главный талант — {{title}}.",
+    "shareBullseyeLine": "Я {{statement}}.",
+    "shareTalentsLine": "Мои три таланта: {{talents}}.",
+    "shareClosing": "Интересно, что увидишь ты."
+  },
+  "matchExplainer": {
+    "title": "Как работают знакомства",
+    "step1Title": "ИИ предлагает лучшие совпадения.",
+    "step1Body": "Нажми «Хочу познакомиться», когда захочешь выйти на связь.",
+    "step2Title": "Мы отправляем им письмо-предупреждение",
+    "step2Body": "с рассказом о том, кто ты и почему мы вас свели. Они могут ответить «да» или «не сейчас».",
+    "step3Title": "Если они говорят «да»,",
+    "step3Body": "мы отправляем вам обоим письмо-знакомство. Дальше — вы сами. Если они не ответят, мы на этом останавливаемся.",
+    "step4Title": "Это работает в обе стороны.",
+    "step4Body": "Когда познакомиться захотят с тобой, ты получишь такое же письмо-предупреждение. Ответь «да», если это в тему, «не сейчас», если нет.",
+    "gotItCta": "Понятно"
+  },
+  "navigation": {
+    "accountFallback": "Аккаунт",
+    "navLinks": {
+      "gameOfLife": "игра в жизнь",
+      "tools": "инструменты",
+      "library": "библиотека",
+      "contact": "контакты",
+      "donate": "поддержать"
+    },
+    "profile": "Профиль",
+    "gameOfLife": "Игра в жизнь",
+    "logOut": "Выйти",
+    "playingAsGuest": "Вы вошли как гость",
+    "playingAsGuestLong": "Вы играете как гость",
+    "logInSignUp": "Войти / Зарегистрироваться",
+    "openMenu": "Открыть меню",
+    "closeMenu": "Закрыть меню"
+  },
+  "personalityUpload": {
+    "errorAnalyze": "Не удалось проанализировать изображение",
+    "toastSavedTitle": "Результаты сохранены!",
+    "toastSavedDescription": "+20 XP за исследование своего внутреннего ландшафта.",
+    "errorSave": "Не удалось сохранить результаты",
+    "enneagramTypeLabel": "Тип {{type}}",
+    "enneagramPrimaryType": "Основной тип",
+    "enneagramTypeRow": "Тип {{type}}:",
+    "variantLabel": "Вариант: {{variant}}",
+    "hdProfileLabel": "Профиль {{profile}}",
+    "hdStrategy": "Стратегия",
+    "hdAuthority": "Авторитет",
+    "hdDefinition": "Определённость",
+    "hdIncarnationCross": "Крест Воплощения",
+    "dialogTitle": "Загрузите результаты теста {{testName}}",
+    "whatToUpload": "Что загружать",
+    "uploadHintEnneagram": "Скриншот с вашим типом Эннеаграммы и баллами по всем 9 типам (например, из Truity, Eclectic Energies или аналогичных). Должен показывать столбцы/проценты для каждого типа.",
+    "uploadHint16Personalities": "Скриншот с вашим 4-буквенным кодом типа (например, INTJ-A), названием типа и процентами по шкалам: Mind, Energy, Nature, Tactics и Identity.",
+    "uploadHintHumanDesign": "Скриншот с вашим Типом, Стратегией, Авторитетом, Профилем и Определённостью в Human Design (например, из humdes.com).",
+    "exampleScreenshot": "Пример скриншота",
+    "clickOrDropToChange": "Нажмите или перетащите, чтобы заменить",
+    "dropScreenshotHere": "Перетащите скриншот сюда",
+    "orClickToBrowse": "или нажмите для выбора файла",
+    "resultsExtracted": "Результаты распознаны",
+    "cancel": "Отмена",
+    "analyzing": "Анализируем...",
+    "analyze": "Анализировать →",
+    "tryAgain": "Попробовать снова",
+    "saving": "Сохраняем...",
+    "saved": "Сохранено!",
+    "saveToProfile": "Сохранить в профиль"
+  },
+  "cardActions": {
+    "toast": {
+      "captureFailed": "Не удалось снять карточку — элемент не найден",
+      "saved": "Сохранено в Загрузки",
+      "saveFailed": "Не удалось сохранить — попробуй ещё раз",
+      "copied": "Скопировано в буфер обмена",
+      "copyFailed": "Не удалось скопировать"
+    },
+    "save": {
+      "label": "Сохранить",
+      "ariaLabel": "Сохранить карточку как изображение"
+    },
+    "share": {
+      "label": "Поделиться",
+      "ariaLabel": "Поделиться в соцсетях",
+      "title": "Поделиться текстом в соцсетях"
+    },
+    "copy": {
+      "label": "Скопировать текст",
+      "done": "Скопировано!"
+    }
+  },
+  "moduleLandingTemplate": {
+    "forWhomHeader": "Это для тебя?",
+    "outcomesHeader": "Что ты унесёшь с собой",
+    "howItWorksHeader": "Как это работает",
+    "storyHeader": "Зачем это существует"
+  },
+  "createEventForm": {
+    "toastMissingTitle": "Заполни все поля",
+    "toastMissingDescription": "Укажи название, дату и время",
+    "toastCreatedTitle": "Событие создано!",
+    "toastCreatedDescription": "Твоё событие успешно создано",
+    "toastErrorTitle": "Ошибка",
+    "toastErrorDescription": "Не удалось создать событие. Попробуй ещё раз.",
+    "triggerButton": "Создать событие",
+    "dialogTitle": "Новое событие",
+    "labelTitle": "Название *",
+    "placeholderTitle": "Название события",
+    "labelDescription": "Описание",
+    "placeholderDescription": "О чём это событие?",
+    "labelDate": "Дата *",
+    "labelTime": "Время *",
+    "labelTimezone": "Часовой пояс",
+    "labelLocation": "Место",
+    "placeholderLocation": "Где это пройдёт?",
+    "labelPhotoUrl": "Ссылка на фото",
+    "labelVisibility": "Видимость",
+    "placeholderVisibility": "Кто это увидит?",
+    "visibilityPublic": "Публично — кто угодно",
+    "visibilityCommunity": "Сообщество — только участники",
+    "visibilityPrivate": "Приватно — только по приглашению",
+    "visibilityTeam": "Команда — только моя команда",
+    "cancelButton": "Отмена",
+    "submitCreating": "Создаём...",
+    "submitButton": "Создать событие"
+  },
+  "activationLanding": {
+    "notFound": "Активация не найдена:",
+    "backToActivations": "Назад к активациям",
+    "allActivations": "Все активации",
+    "heroEyebrow": "{{duration}} · Записанная активация",
+    "whoForLabel": "Для кого это",
+    "whatYouGetLabel": "Что ты получишь",
+    "priceSuffix": "· разовый платёж · доступ навсегда",
+    "getCta": "Получить «{{title}}»",
+    "comingSoon": "Скоро",
+    "checkoutWiringNote": "Подключаем оплату через Stripe — скоро вернёмся.",
+    "inPreparationNote": "Активация готовится. Первый поток скоро.",
+    "testimonialsLabel": "Что говорят участники",
+    "byline": "Александр Константинов · FindYourTopTalent.Com"
+  },
+  "playbookShell": {
+    "back": "Назад",
+    "backAriaLabel": "Назад на главную",
+    "stepAriaLabel": "Шаг {{number}}: {{subtitle}}",
+    "footerOpenText": "Метод открыт для чтения. Платформу можно форкнуть.",
+    "forkOnGithub": "Форкни на GitHub →",
+    "footerCollectiveText": "Запусти его для своего сообщества — под своим брендом. 10% в общий фонд, если идёшь в коммерцию (плюс множество других плюшек от входа в коллектив импакт-фаундеров).",
+    "contactUs": "Свяжись с нами →"
+  },
+  "signupModal": {
+    "defaultTitle": "Сохрани свой гений",
+    "defaultDescription": "Создай аккаунт, чтобы сохранить свой главный талант и открыть профиль",
+    "defaultName": "друг",
+    "signupSuccessTitle": "Добро пожаловать, {{name}}!",
+    "signupSuccessDescription": "Твой гений теперь сохранён навсегда.",
+    "signupErrorTitle": "Не удалось зарегистрироваться",
+    "loginSuccessTitle": "С возвращением!",
+    "loginSuccessDescription": "Твой гений ждёт",
+    "loginErrorTitle": "Не удалось войти",
+    "tabSignup": "Регистрация",
+    "tabLogin": "Вход",
+    "firstNameLabel": "Имя",
+    "firstNamePlaceholder": "Анна",
+    "lastNameLabel": "Фамилия",
+    "lastNamePlaceholder": "Иванова",
+    "emailLabel": "Email",
+    "emailPlaceholder": "you@example.com",
+    "passwordLabel": "Пароль",
+    "passwordHint": "Минимум 6 символов",
+    "signupButton": "Создать аккаунт и сохранить",
+    "signupButtonLoading": "Создаём...",
+    "loginButton": "Войти и сохранить",
+    "loginButtonLoading": "Входим..."
+  },
+  "activationSteps": {
+    "heading": "Начнём.",
+    "subheading": "Три шага.",
+    "step1": {
+      "eyebrow": "1 · Посмотри",
+      "body1Line1": "Твой глубокий разбор главного таланта открыт —",
+      "body1Line2": "он показывает, как ты естественно мыслишь, работаешь и создаёшь.",
+      "body2Line1": "Что тебя зажигает.",
+      "body2Line2": "Что всё это время приводило тебя к лучшим результатам.",
+      "cta": "Встреться с собой на пике"
+    },
+    "step2": {
+      "eyebrow": "2 · Активация",
+      "body1": "Прежде чем нажать «играть» —",
+      "body2": "Выбери одну фразу, которая оказалась самой точной.",
+      "beginCta": "Начать 6-минутную медитацию",
+      "playerTitle": "Активация",
+      "downloadAudio": "Скачать аудио"
+    },
+    "step3": {
+      "eyebrow": "3 · Что дальше?",
+      "body1": "Ты лучше чувствуешь свой главный талант.",
+      "body2Line1": "Используй его в работе —",
+      "body2Line2": "или преврати его в бизнес, который можешь построить только ты.",
+      "cta": "Преврати в бизнес"
+    }
+  },
+  "microModule": {
+    "path": {
+      "body": "Тело",
+      "mind": "Ум",
+      "emotions": "Эмоции",
+      "spirit": "Дух",
+      "genius": "Гений"
+    },
+    "videoComingSoon": "Видео скоро появится.",
+    "keyTakeaway": "Главный вывод",
+    "experience": "Практика",
+    "integration": "Интеграция",
+    "resources": "Материалы",
+    "markComplete": "Отметить пройденным",
+    "nextNamed": "Дальше: {{title}}",
+    "nextModule": "Следующий модуль"
+  },
+  "activationsIndex": {
+    "backHome": "Главная",
+    "eyebrow": "Образовательные приложения · Planetary OS",
+    "title": "Активации",
+    "intro": "Двухчасовые трансформационные воркшопы. Каждый — самостоятельная активация: собрана из живых сессий, упакована в отдельный продукт.",
+    "liveCount": "{{live}} в эфире · ещё {{coming}} на подходе",
+    "emptyTitle": "Активации готовятся. Первая партия выходит скоро.",
+    "emptyHint": "А пока слой AI OS полностью открыт.",
+    "useAiOs": "Открыть AI OS",
+    "openActivation": "Открыть активацию",
+    "bundleEyebrow": "Комплект",
+    "bundleHeading": "Все активации · ${{price}}",
+    "bundleSavings": "Получи все активации. Доступ навсегда. Экономия ${{savings}} против поштучной покупки.",
+    "bundleStripeNote": "(Ссылка Stripe на комплект подключится, как только выйдут первые 3 активации.)",
+    "footerNote": "Активации — это образовательные приложения внутри Planetary OS. Слой AI OS бесплатен; активации дают глубинную работу, которую AI в одиночку не вытянет."
+  },
+  "activationAccess": {
+    "notFound": "Активация не найдена.",
+    "backToActivations": "Назад к активациям",
+    "accessGranted": "✓ Доступ открыт · {{duration}}",
+    "videoUploading": "Видео загружается. Загляни чуть позже — Александр напишет тебе, как только всё будет готово.",
+    "promiseEyebrow": "Что ты унесёшь с собой",
+    "questionsPrompt": "Есть вопросы или хочешь чем-то поделиться?",
+    "reachTelegram": "Написать Александру в Telegram",
+    "allActivations": "Все активации"
+  },
+  "playbookCircle": {
+    "figureAriaLabel": "Путь из семи шагов — холонический круг завершения",
+    "svgTitle": "Путь из семи шагов: от таланта к процветающему бизнесу",
+    "svgDesc": "Круг из семи светящихся узлов, каждый подписан одним шагом плейбука. Нажми на узел, чтобы увидеть цену шага, что входит и результат. Свет идёт по часовой стрелке от первого шага наверху; пройди все семь — и круг стабилизируется как целое."
   }
 }

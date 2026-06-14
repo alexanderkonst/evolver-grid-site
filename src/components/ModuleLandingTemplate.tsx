@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { ModuleLandingData } from "@/types/module";
 import Navigation from "@/components/Navigation";
@@ -25,6 +26,7 @@ interface ModuleLandingTemplateProps {
  * and stay hardcoded.
  */
 const ModuleLandingTemplate = ({ data, moduleTitle, moduleSpace }: ModuleLandingTemplateProps) => {
+    const { t } = useTranslation();
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
@@ -114,7 +116,7 @@ const ModuleLandingTemplate = ({ data, moduleTitle, moduleSpace }: ModuleLanding
             >
                 <div className="container mx-auto max-w-3xl">
                     <h2 className="text-3xl sm:text-4xl font-display font-semibold text-center mb-12 text-[#2c3150]">
-                        Is this for you?
+                        {t('moduleLandingTemplate.forWhomHeader')}
                     </h2>
                     <ul className="space-y-5">
                         {data.forWhom.map((item, i) => (
@@ -202,7 +204,7 @@ const ModuleLandingTemplate = ({ data, moduleTitle, moduleSpace }: ModuleLanding
             >
                 <div className="container mx-auto max-w-3xl">
                     <h2 className="text-3xl sm:text-4xl font-display font-semibold text-center mb-12 text-white">
-                        What you walk away with
+                        {t('moduleLandingTemplate.outcomesHeader')}
                     </h2>
                     <ul className="space-y-5">
                         {data.outcomes.map((outcome, i) => (
@@ -229,7 +231,7 @@ const ModuleLandingTemplate = ({ data, moduleTitle, moduleSpace }: ModuleLanding
             >
                 <div className="container mx-auto max-w-4xl">
                     <h2 className="text-3xl sm:text-4xl font-display font-semibold text-center mb-14 text-[#2c3150]">
-                        How it works
+                        {t('moduleLandingTemplate.howItWorksHeader')}
                     </h2>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                         {data.howItWorks.map((item, i) => (
@@ -272,7 +274,7 @@ const ModuleLandingTemplate = ({ data, moduleTitle, moduleSpace }: ModuleLanding
             >
                 <div className="container mx-auto max-w-3xl text-center">
                     <h2 className="text-3xl sm:text-4xl font-display font-semibold mb-10 text-white">
-                        Why this exists
+                        {t('moduleLandingTemplate.storyHeader')}
                     </h2>
                     <p className="text-lg text-white/70 leading-relaxed">
                         {data.story}

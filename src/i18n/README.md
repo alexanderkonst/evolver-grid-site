@@ -51,6 +51,24 @@ Locked during review so future waves stay consistent:
 - Em-dashes (тире) are correct standard Russian punctuation; the no-em-dash rule applies to Sasha's **English** copy and chat, not Russian prose.
 - Register: second-person `ты`/`вы` per surface, concrete, no corporate-speak. Preserve the charge over literal accuracy.
 
+## QoL framework — official Russian (use the CSV, NOT machine translation)
+
+Sasha provided the canonical Russian for the Integral Map of Quality of Life: [`docs/specs/i18n/qol_map_ru_official.csv`](../../docs/specs/i18n/qol_map_ru_official.csv) (8 aspects × 10 stages, full descriptions). **Use it verbatim for `qolConfig.ts` and every QoL surface** — it carries his charge and overrides any machine draft.
+
+Official domain names (correct the machine drafts that already shipped):
+- Wealth → **Богатство** (not Достаток)
+- Health → Здоровье
+- Happiness → Счастье
+- Love → **Отношения и любовь** (not Любовь)
+- Impact → Влияние
+- Growth → Рост
+- Social → **Социальные связи**
+- Home → Дом
+
+Stages render as «Этап 1…10»; framework name = «Интегральная карта качества жизни». A shared `domains.*` namespace should hold these so the labels never diverge across components.
+
+**Spanish** ([`docs/specs/i18n/qol_map_es_official.csv`](../../docs/specs/i18n/qol_map_es_official.csv)) — official domain names: Wealth → Riqueza · Health → Salud · Happiness → Felicidad · Love → Amor y relaciones · Impact → Impacto · Growth → Crecimiento · Social → Lazos sociales · Home → Casa. Stages = «Etapa 1…10»; framework = «Mapa Integral de la Calidad de Vida». Use this CSV verbatim for the ES QoL pass (Phase 2).
+
 ## Roadmap (Phase 0 increments)
 
 - [x] Engine + provider + persistence + pilot surface

@@ -1,5 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { ArrowLeft, ArrowRight, Sparkles } from "lucide-react";
 import { ACTIVATIONS, ACTIVATIONS_BUNDLE_PRICE, getLiveActivations } from "@/data/activations";
 
@@ -9,6 +10,7 @@ import { ACTIVATIONS, ACTIVATIONS_BUNDLE_PRICE, getLiveActivations } from "@/dat
 // flips status to "live", entries surface here automatically.
 
 const ActivationsIndex = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const live = getLiveActivations();
   const totalCount = ACTIVATIONS.length;
@@ -44,14 +46,14 @@ const ActivationsIndex = () => {
               }}
             >
               <ArrowLeft className="w-3.5 h-3.5" />
-              Home
+              {t('activationsIndex.backHome')}
             </button>
 
             <p
               className="text-[10px] tracking-[0.3em] uppercase font-medium"
               style={{ color: "hsl(40 60% 75% / 0.7)" }}
             >
-              Educational apps · Planetary OS
+              {t('activationsIndex.eyebrow')}
             </p>
 
             <h1
@@ -65,15 +67,14 @@ const ActivationsIndex = () => {
                 backgroundClip: "text",
               }}
             >
-              Activations
+              {t('activationsIndex.title')}
             </h1>
 
             <p
               className="text-base sm:text-lg font-light max-w-2xl mx-auto leading-relaxed"
               style={{ color: "hsl(0 0% 100% / 0.78)" }}
             >
-              Two-hour transformative workshops. Each one a self-contained activation
-              — synthesized from live sessions, packaged as standalone product.
+              {t('activationsIndex.intro')}
             </p>
 
             {live.length > 0 && totalCount > live.length && (
@@ -81,7 +82,7 @@ const ActivationsIndex = () => {
                 className="text-xs font-light"
                 style={{ color: "hsl(0 0% 100% / 0.4)" }}
               >
-                {live.length} live · {totalCount - live.length} more coming
+                {t('activationsIndex.liveCount', { live: live.length, coming: totalCount - live.length })}
               </p>
             )}
           </header>
@@ -104,13 +105,13 @@ const ActivationsIndex = () => {
                 className="text-base font-light"
                 style={{ color: "hsl(0 0% 100% / 0.7)" }}
               >
-                Activations are being prepared. First batch ships soon.
+                {t('activationsIndex.emptyTitle')}
               </p>
               <p
                 className="text-xs font-light mt-3"
                 style={{ color: "hsl(0 0% 100% / 0.4)" }}
               >
-                In the meantime, the AI OS layer is fully open.
+                {t('activationsIndex.emptyHint')}
               </p>
               <Link
                 to="/ai-os"
@@ -121,7 +122,7 @@ const ActivationsIndex = () => {
                   color: "hsl(195 50% 90%)",
                 }}
               >
-                Use AI OS
+                {t('activationsIndex.useAiOs')}
                 <ArrowRight className="w-3.5 h-3.5" />
               </Link>
             </div>
@@ -168,7 +169,7 @@ const ActivationsIndex = () => {
                     className="inline-flex items-center gap-1.5 text-xs font-medium mt-4 transition-transform group-hover:translate-x-0.5"
                     style={{ color: "hsl(40 70% 80%)" }}
                   >
-                    Open activation
+                    {t('activationsIndex.openActivation')}
                     <ArrowRight className="w-3.5 h-3.5" />
                   </span>
                 </Link>
@@ -191,26 +192,26 @@ const ActivationsIndex = () => {
                 className="text-[10px] tracking-[0.25em] uppercase font-medium mb-2"
                 style={{ color: "hsl(40 60% 80% / 0.75)" }}
               >
-                The bundle
+                {t('activationsIndex.bundleEyebrow')}
               </p>
               <h3
                 className="text-xl sm:text-2xl font-display italic font-normal mb-3"
                 style={{ color: "hsl(0 0% 100% / 0.95)" }}
               >
-                All Activations · ${ACTIVATIONS_BUNDLE_PRICE}
+                {t('activationsIndex.bundleHeading', { price: ACTIVATIONS_BUNDLE_PRICE })}
               </h3>
               <p
                 className="text-sm font-light max-w-md mx-auto mb-5 leading-relaxed"
                 style={{ color: "hsl(0 0% 100% / 0.7)" }}
               >
-                Get every activation. Lifetime access. Save ${live.length * 39 - ACTIVATIONS_BUNDLE_PRICE} vs individual.
+                {t('activationsIndex.bundleSavings', { savings: live.length * 39 - ACTIVATIONS_BUNDLE_PRICE })}
               </p>
               {/* Bundle Stripe URL — to be filled */}
               <p
                 className="text-[11px] italic font-light"
                 style={{ color: "hsl(0 0% 100% / 0.4)" }}
               >
-                (Bundle Stripe link wires up once first 3 activations are live.)
+                {t('activationsIndex.bundleStripeNote')}
               </p>
             </div>
           )}
@@ -221,7 +222,7 @@ const ActivationsIndex = () => {
               className="text-[11px] font-light max-w-md mx-auto leading-relaxed"
               style={{ color: "hsl(0 0% 100% / 0.42)" }}
             >
-              Activations are educational apps inside the Planetary OS. AI OS layer is free; activations bring depth-work that AI alone can't.
+              {t('activationsIndex.footerNote')}
             </p>
           </div>
 

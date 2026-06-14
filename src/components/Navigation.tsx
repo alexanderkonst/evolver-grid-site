@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { Menu, X, LogOut, ChevronDown, User, Gamepad2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -19,6 +20,7 @@ interface UserProfile {
 }
 
 const Navigation = () => {
+  const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
   const [scrollY, setScrollY] = useState(0);
   const [user, setUser] = useState<any>(null);
@@ -97,15 +99,15 @@ const Navigation = () => {
     if (user?.email) {
       return user.email.split('@')[0];
     }
-    return "Account";
+    return t('navigation.accountFallback');
   };
 
   const navLinks = [
-    { to: "/game/next-move", label: "game of life", isScroll: false, isPrimary: true },
-    { to: "/modules", label: "tools", isScroll: false },
-    { to: "/library", label: "library", isScroll: false },
-    { to: "/contact", label: "contact", isScroll: false },
-    { to: "https://buy.stripe.com/4gweVVb2E75r0Wk00p", label: "donate", isScroll: false, isExternal: true },
+    { to: "/game/next-move", labelKey: "navigation.navLinks.gameOfLife", isScroll: false, isPrimary: true },
+    { to: "/modules", labelKey: "navigation.navLinks.tools", isScroll: false },
+    { to: "/library", labelKey: "navigation.navLinks.library", isScroll: false },
+    { to: "/contact", labelKey: "navigation.navLinks.contact", isScroll: false },
+    { to: "https://buy.stripe.com/4gweVVb2E75r0Wk00p", labelKey: "navigation.navLinks.donate", isScroll: false, isExternal: true },
   ];
 
   return (
@@ -143,7 +145,7 @@ const Navigation = () => {
                       }
                     }}
                   >
-                    {link.label}
+                    {t(link.labelKey)}
                   </a>
                 ) : link.isExternal ? (
                   <a
@@ -153,7 +155,7 @@ const Navigation = () => {
                     rel="noopener noreferrer"
                     className="nav-link text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
                   >
-                    {link.label}
+                    {t(link.labelKey)}
                   </a>
                 ) : (
                   <NavLink
@@ -162,7 +164,7 @@ const Navigation = () => {
                     className={`nav-link text-sm transition-colors ${link.isPrimary ? 'font-semibold text-amber-600 dark:text-amber-400 drop-shadow-[0_0_6px_rgba(217,119,6,0.4)] hover:drop-shadow-[0_0_10px_rgba(217,119,6,0.6)]' : 'font-medium text-muted-foreground hover:text-foreground'}`}
                     activeClassName="text-foreground"
                   >
-                    {link.label}
+                    {t(link.labelKey)}
                   </NavLink>
                 )
               ))}
@@ -190,33 +192,33 @@ const Navigation = () => {
                       <DropdownMenuItem asChild>
                         <Link to="/game/me" className="flex items-center cursor-pointer">
                           <User className="h-4 w-4 mr-2" />
-                          Profile
+                          {t('navigation.profile')}
                         </Link>
                       </DropdownMenuItem>
                       <DropdownMenuItem asChild>
                         <Link to="/game/next-move" className="flex items-center cursor-pointer">
                           <Gamepad2 className="h-4 w-4 mr-2" />
-                          Game of Life
+                          {t('navigation.gameOfLife')}
                         </Link>
                       </DropdownMenuItem>
                       <DropdownMenuSeparator />
                       <DropdownMenuItem onClick={handleLogout} className="cursor-pointer">
                         <LogOut className="h-4 w-4 mr-2" />
-                        Log out
+                        {t('navigation.logOut')}
                       </DropdownMenuItem>
                     </DropdownMenuContent>
                   </DropdownMenu>
                 </div>
               ) : (
                 <div className="flex items-center gap-2 pl-4 border-l border-border">
-                  <span className="text-xs text-muted-foreground">Playing as guest</span>
+                  <span className="text-xs text-muted-foreground">{t('navigation.playingAsGuest')}</span>
                   <Button
                     variant="default"
                     size="sm"
                     asChild
                     className="h-8 text-xs"
                   >
-                    <Link to="/auth">Log in / Sign up</Link>
+                    <Link to="/auth">{t('navigation.logInSignUp')}</Link>
                   </Button>
                 </div>
               )}
@@ -228,7 +230,7 @@ const Navigation = () => {
               size="icon"
               className="md:hidden"
               onClick={() => setIsOpen(!isOpen)}
-              aria-label={isOpen ? "Close menu" : "Open menu"}
+              aria-label={isOpen ? t('navigation.closeMenu') : t('navigation.openMenu')}
             >
               {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </Button>
@@ -257,7 +259,7 @@ const Navigation = () => {
                     }
                   }}
                 >
-                  {link.label}
+                  {t(link.labelKey)}
                 </a>
               ) : link.isExternal ? (
                 <a
@@ -268,7 +270,7 @@ const Navigation = () => {
                   className="block py-2 text-base font-medium text-muted-foreground hover:text-foreground transition-colors"
                   onClick={() => setIsOpen(false)}
                 >
-                  {link.label}
+                  {t(link.labelKey)}
                 </a>
               ) : (
                 <NavLink
@@ -278,7 +280,7 @@ const Navigation = () => {
                   activeClassName="text-foreground"
                   onClick={() => setIsOpen(false)}
                 >
-                  {link.label}
+                  {t(link.labelKey)}
                 </NavLink>
               )
             ))}
@@ -295,7 +297,7 @@ const Navigation = () => {
                     onClick={() => setIsOpen(false)}
                   >
                     <User className="h-4 w-4 mr-2" />
-                    Profile
+                    {t('navigation.profile')}
                   </Link>
                   <Link
                     to="/game/next-move"
@@ -303,7 +305,7 @@ const Navigation = () => {
                     onClick={() => setIsOpen(false)}
                   >
                     <Gamepad2 className="h-4 w-4 mr-2" />
-                    Game of Life
+                    {t('navigation.gameOfLife')}
                   </Link>
                   <Button
                     variant="ghost"
@@ -315,12 +317,12 @@ const Navigation = () => {
                     className="w-full justify-start"
                   >
                     <LogOut className="h-4 w-4 mr-2" />
-                    Log out
+                    {t('navigation.logOut')}
                   </Button>
                 </div>
               ) : (
                 <div className="space-y-2">
-                  <p className="text-xs text-muted-foreground">You're playing as a guest</p>
+                  <p className="text-xs text-muted-foreground">{t('navigation.playingAsGuestLong')}</p>
                   <Button
                     variant="default"
                     size="sm"
@@ -328,7 +330,7 @@ const Navigation = () => {
                     className="w-full"
                     onClick={() => setIsOpen(false)}
                   >
-                    <Link to="/auth">Log in / Sign up</Link>
+                    <Link to="/auth">{t('navigation.logInSignUp')}</Link>
                   </Button>
                 </div>
               )}

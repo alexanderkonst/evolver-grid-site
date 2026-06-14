@@ -1,4 +1,6 @@
 import { ReactNode, useRef } from "react";
+import { useTranslation } from "react-i18next";
+import type { TFunction } from "i18next";
 import CardActions from "@/components/sharing/CardActions";
 import { QRCodeCanvas } from "qrcode.react";
 import { Ornament } from "@/lib/landingDesign";
@@ -89,19 +91,20 @@ const SHARE_URL = "https://findyourtoptalent.com?utm_source=share&utm_medium=soc
 const TWITTER_SOFT_CAP = 260;
 
 const buildShareTextFor = (
+    t: TFunction,
     title: string,
     actionStatement: string | undefined,
     topThreeTalents: string[] | undefined,
 ): string => {
-    const titleLine = `My top talent is ${stripDecorativeGlyphs(title)}.\n\n`;
+    const titleLine = `${t("revelatoryHero.shareTitleLine", { title: stripDecorativeGlyphs(title) })}\n\n`;
     const bullseyeLine = actionStatement
-        ? `I ${formatBullseye(actionStatement)}.\n\n`
+        ? `${t("revelatoryHero.shareBullseyeLine", { statement: formatBullseye(actionStatement) })}\n\n`
         : "";
     const talentsLine =
         topThreeTalents && topThreeTalents.length > 0
-            ? `My three talents: ${topThreeTalents.join(" · ")}.\n\n`
+            ? `${t("revelatoryHero.shareTalentsLine", { talents: topThreeTalents.join(" · ") })}\n\n`
             : "";
-    const closingLine = `Curious what you see.\n\n→ ${SHARE_URL}`;
+    const closingLine = `${t("revelatoryHero.shareClosing")}\n\n→ ${SHARE_URL}`;
 
     const fullText = `${titleLine}${bullseyeLine}${talentsLine}${closingLine}`;
 
@@ -142,6 +145,7 @@ const RevelatoryHero = ({
     darkMode = false,
     subtitle,
 }: RevelatoryHeroProps) => {
+    const { t } = useTranslation();
     const isAppleseed = type === "appleseed";
 
     // Day 58 (Sasha 2026-05-02): icon/iconBg/iconColor/divider fields
@@ -179,7 +183,7 @@ const RevelatoryHero = ({
     // serialize what the user sees, including the breathing-card glow
     // and the gradient backdrop.
     const cardRef = useRef<HTMLDivElement>(null);
-    const shareText = buildShareTextFor(title, actionStatement, topThreeTalents);
+    const shareText = buildShareTextFor(t, title, actionStatement, topThreeTalents);
 
     // Day 61 (Sasha 2026-05-04): defensive filter — drop empty strings,
     // limit to 3 entries (in case the model over-generates) so the
@@ -240,7 +244,7 @@ const RevelatoryHero = ({
                 >
                     <img
                         src="/zone-of-genius-logo.png"
-                        alt="Top Talent"
+                        alt={t("revelatoryHero.logoAlt")}
                         className="w-full h-full object-cover"
                         draggable={false}
                         style={{
@@ -278,7 +282,7 @@ const RevelatoryHero = ({
                             textShadow: `0 0 40px ${palette.glowColor}, 0 0 12px rgba(255,255,255,0.12)`,
                         }}
                     >
-                        I {formatBullseye(actionStatement)}
+                        {t("revelatoryHero.bullseyePrefix")} {formatBullseye(actionStatement)}
                     </p>
                 )}
 
@@ -311,7 +315,7 @@ const RevelatoryHero = ({
                         <p
                             className={`text-[10px] sm:text-xs uppercase tracking-[0.28em] ${palette.textMuted} mb-3`}
                         >
-                            My three talents
+                            {t("revelatoryHero.threeTalentsEyebrow")}
                         </p>
 
                         {/* Day 61 (Sasha 2026-05-04 11:30 update):
@@ -377,7 +381,7 @@ const RevelatoryHero = ({
                         <p
                             className={`text-[10px] sm:text-xs uppercase tracking-[0.28em] ${palette.textMuted} mb-2`}
                         >
-                            My top shadow
+                            {t("revelatoryHero.topShadowEyebrow")}
                         </p>
 
                         <p
@@ -435,7 +439,7 @@ const RevelatoryHero = ({
                             textShadow: `0 0 24px ${palette.glowColor}`,
                         }}
                     >
-                        → get yours · <span style={{ fontWeight: 600 }}>findyourtoptalent.com</span>
+                        {t("revelatoryHero.brandFooterPrefix")} <span style={{ fontWeight: 600 }}>findyourtoptalent.com</span>
                     </p>
 
                     {/* QR code — Day 61 (Sasha 2026-05-04 19:45).

@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { cn } from "@/lib/utils";
 import { PLAYBOOK_STEPS, PlaybookStep } from "@/data/playbookSteps";
 
@@ -60,11 +61,12 @@ const PlaybookCircleInfographic = ({
   onStepClick: _onStepClick,
   className,
 }: PlaybookCircleInfographicProps) => {
+  const { t } = useTranslation();
 
   return (
     <figure
       className={cn("relative mx-auto w-full max-w-[640px]", className)}
-      aria-label="The seven-step journey — holonic completion circle"
+      aria-label={t("playbookCircle.figureAriaLabel")}
     >
       <svg
         // viewBox expanded generously on the sides (~-160 → 640) so the
@@ -77,13 +79,10 @@ const PlaybookCircleInfographic = ({
         aria-labelledby="playbook-circle-title playbook-circle-desc"
       >
         <title id="playbook-circle-title">
-          Seven-step journey from talent to thriving business
+          {t("playbookCircle.svgTitle")}
         </title>
         <desc id="playbook-circle-desc">
-          A circle with seven luminous nodes, each labeled with one step of the
-          playbook. Click a node to see the step's price, inclusions, and
-          result. Light travels clockwise from the first step at the top;
-          completing all seven stabilizes the circle as a whole.
+          {t("playbookCircle.svgDesc")}
         </desc>
 
         {/* ═══ DEFS — gradients, glow filter, drawing primitives ═══ */}

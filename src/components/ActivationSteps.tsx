@@ -21,6 +21,7 @@
  */
 import { ArrowRight, ArrowDown, Download } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import MeditationPlayer from "@/components/MeditationPlayer";
 
 const AUDIO_SRC = "/audio/activation-meditation.mp3";
@@ -58,6 +59,7 @@ interface ActivationStepsProps {
 }
 
 export default function ActivationSteps({ showHeading = true }: ActivationStepsProps) {
+    const { t } = useTranslation();
     return (
         <div className="space-y-12 sm:space-y-14">
             {showHeading && (
@@ -70,13 +72,13 @@ export default function ActivationSteps({ showHeading = true }: ActivationStepsP
                             textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.7))",
                         }}
                     >
-                        Let's begin.
+                        {t("activationSteps.heading")}
                     </p>
                     <p
                         className="text-base md:text-lg leading-relaxed"
                         style={inkSecondaryStyle}
                     >
-                        Three moves.
+                        {t("activationSteps.subheading")}
                     </p>
                 </div>
             )}
@@ -98,20 +100,20 @@ export default function ActivationSteps({ showHeading = true }: ActivationStepsP
                     className="text-[11px] sm:text-xs font-semibold tracking-[0.28em] uppercase"
                     style={eyebrowStyle}
                 >
-                    1 · See it
+                    {t("activationSteps.step1.eyebrow")}
                 </p>
                 <div
                     className="space-y-4 max-w-md mx-auto text-base md:text-lg leading-relaxed"
                     style={inkPrimaryStyle}
                 >
                     <p>
-                        Your deep talent view is open —<br />
-                        it shows how you naturally think, work, and create.
+                        {t("activationSteps.step1.body1Line1")}<br />
+                        {t("activationSteps.step1.body1Line2")}
                     </p>
                     <p>
-                        What excites you.
+                        {t("activationSteps.step1.body2Line1")}
                         <br />
-                        What's been driving your best results all along.
+                        {t("activationSteps.step1.body2Line2")}
                     </p>
                 </div>
                 <div className="pt-2">
@@ -120,7 +122,7 @@ export default function ActivationSteps({ showHeading = true }: ActivationStepsP
                         className="group liquid-glass-dark cta-breath rounded-full inline-flex items-center justify-center gap-2 sm:gap-2.5 px-6 sm:px-7 py-3 sm:py-3.5 text-sm sm:text-base font-semibold transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
                         style={ctaButtonStyle}
                     >
-                        <span style={{ letterSpacing: "0.02em" }}>See you at your best</span>
+                        <span style={{ letterSpacing: "0.02em" }}>{t("activationSteps.step1.cta")}</span>
                         <ArrowRight
                             aria-hidden="true"
                             className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 flex-shrink-0"
@@ -143,15 +145,15 @@ export default function ActivationSteps({ showHeading = true }: ActivationStepsP
                     className="text-[11px] sm:text-xs font-semibold tracking-[0.28em] uppercase text-center"
                     style={eyebrowStyle}
                 >
-                    2 · Activation
+                    {t("activationSteps.step2.eyebrow")}
                 </p>
 
                 <div
                     className="space-y-4 max-w-md mx-auto text-center text-base md:text-lg leading-relaxed"
                     style={inkPrimaryStyle}
                 >
-                    <p>Before you press play—</p>
-                    <p>Pick one sentence that felt most accurate.</p>
+                    <p>{t("activationSteps.step2.body1")}</p>
+                    <p>{t("activationSteps.step2.body2")}</p>
                 </div>
 
                 {/* Day 61 (Sasha 2026-05-04 13:00): demoted from
@@ -176,7 +178,7 @@ export default function ActivationSteps({ showHeading = true }: ActivationStepsP
                         className="group inline-flex items-center justify-center gap-1.5 text-base md:text-lg italic transition-opacity duration-200 hover:opacity-80"
                         style={inkSecondaryStyle}
                     >
-                        <span>Begin the 6-min guided meditation</span>
+                        <span>{t("activationSteps.step2.beginCta")}</span>
                         <ArrowDown
                             aria-hidden="true"
                             className="w-4 h-4 flex-shrink-0 transition-transform duration-300 group-hover:translate-y-0.5"
@@ -187,7 +189,7 @@ export default function ActivationSteps({ showHeading = true }: ActivationStepsP
                 <div id="activation-meditation-player">
                     <MeditationPlayer
                         src={AUDIO_SRC}
-                        title="The Activation"
+                        title={t("activationSteps.step2.playerTitle")}
                     />
                 </div>
 
@@ -209,7 +211,7 @@ export default function ActivationSteps({ showHeading = true }: ActivationStepsP
                         }}
                     >
                         <Download className="w-3 h-3 flex-shrink-0" aria-hidden="true" />
-                        <span>Download audio</span>
+                        <span>{t("activationSteps.step2.downloadAudio")}</span>
                     </a>
                 </div>
             </section>
@@ -226,16 +228,16 @@ export default function ActivationSteps({ showHeading = true }: ActivationStepsP
                     className="text-[11px] sm:text-xs font-semibold tracking-[0.28em] uppercase"
                     style={eyebrowStyle}
                 >
-                    3 · What's next?
+                    {t("activationSteps.step3.eyebrow")}
                 </p>
                 <div
                     className="space-y-4 max-w-md mx-auto text-base md:text-lg leading-relaxed"
                     style={inkPrimaryStyle}
                 >
-                    <p>You're more in touch with your top talent.</p>
+                    <p>{t("activationSteps.step3.body1")}</p>
                     <p>
-                        Use it in your work—<br />
-                        or turn it into a business only you can build.
+                        {t("activationSteps.step3.body2Line1")}<br />
+                        {t("activationSteps.step3.body2Line2")}
                     </p>
                 </div>
                 <div className="pt-2">
@@ -245,7 +247,7 @@ export default function ActivationSteps({ showHeading = true }: ActivationStepsP
                         style={ctaButtonStyle}
                     >
                         <span style={{ letterSpacing: "0.02em" }}>
-                            Turn it into a business
+                            {t("activationSteps.step3.cta")}
                         </span>
                         <ArrowRight
                             aria-hidden="true"

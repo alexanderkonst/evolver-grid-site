@@ -1,4 +1,5 @@
 import { memo, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { X, UserPlus, ChevronLeft, ChevronRight, Mail } from "lucide-react";
 import {
   AlertDialog,
@@ -215,6 +216,7 @@ const MatchCard = ({
   interactionState = "default",
   onWithdraw,
 }: MatchCardProps) => {
+  const { t } = useTranslation();
   const cleanArchetype = stripSymbols(user.archetype);
 
   // Day 79 (Sasha 2026-05-22): "Don't show again" is destructive
@@ -248,13 +250,13 @@ const MatchCard = ({
             onClick={onConnect}
             className="group inline-flex items-center gap-2 rounded-full px-5 py-2.5 transition-all duration-300 hover:translate-y-[-1px]"
             style={ceremonialPrimary}
-            aria-label="Express interest in meeting this person"
+            aria-label={t('matchCard.connectAriaLabel')}
           >
             <UserPlus
               className="w-3.5 h-3.5"
               style={{ color: "var(--skin-cta-icon, rgba(244, 212, 114, 0.98))" }}
             />
-            {connectLabel || "I'd like to meet"}
+            {connectLabel || t('matchCard.connectDefault')}
           </button>
         ) : interactionState === "interest-expressed" ? (
           <div
@@ -272,7 +274,7 @@ const MatchCard = ({
             aria-live="polite"
           >
             <Mail className="w-3.5 h-3.5" />
-            Heads-up email sent
+            {t('matchCard.headsUpEmailSent')}
           </div>
         ) : (
           <div
@@ -292,7 +294,7 @@ const MatchCard = ({
             aria-live="polite"
           >
             <Mail className="w-3.5 h-3.5" />
-            Introduction sent
+            {t('matchCard.introductionSent')}
           </div>
         )}
 
@@ -308,7 +310,7 @@ const MatchCard = ({
                 borderWidth: "1px",
                 boxShadow: "0 6px 20px -8px rgba(10, 22, 40, 0.28), 0 0 0 1px rgba(212, 175, 55, 0.18)",
               }}
-              aria-label="Previous match"
+              aria-label={t('matchCard.previousMatch')}
             >
               <ChevronLeft className="w-5 h-5" strokeWidth={2.25} />
             </button>
@@ -336,7 +338,7 @@ const MatchCard = ({
                 borderWidth: "1px",
                 boxShadow: "0 6px 20px -8px rgba(10, 22, 40, 0.28), 0 0 0 1px rgba(212, 175, 55, 0.18)",
               }}
-              aria-label="Next match"
+              aria-label={t('matchCard.nextMatch')}
             >
               <ChevronRight className="w-5 h-5" strokeWidth={2.25} />
             </button>
@@ -351,17 +353,17 @@ const MatchCard = ({
             style={tertiaryPill}
           >
             <X className="w-3.5 h-3.5" />
-            Don't show again
+            {t('matchCard.dontShowAgain')}
           </button>
         ) : interactionState === "interest-expressed" && onWithdraw ? (
           <button
             onClick={onWithdraw}
             className="flex items-center gap-2 px-4 py-2 rounded-full transition-all duration-200 hover:translate-y-[-0.5px]"
             style={tertiaryPill}
-            aria-label="Withdraw interest"
+            aria-label={t('matchCard.withdrawAriaLabel')}
           >
             <X className="w-3.5 h-3.5" />
-            Withdraw
+            {t('matchCard.withdraw')}
           </button>
         ) : (
           // Reserve the slot so the pager stays centered.
@@ -379,7 +381,7 @@ const MatchCard = ({
                   color: "var(--skin-text-primary, #0b2a5a)",
                 }}
               >
-                Hide {user.firstName} from your matches?
+                {t('matchCard.hideDialogTitle', { firstName: user.firstName })}
               </AlertDialogTitle>
               {/* Day 87 (Sasha 2026-05-29) — confirmation strengthened.
                   Was weight 500 + muted color, which made a "permanent"
@@ -394,13 +396,13 @@ const MatchCard = ({
                   color: "var(--skin-text-primary, #0a1628)",
                 }}
               >
-                You won't see this profile again. The change is permanent.
+                {t('matchCard.hideDialogDescription')}
               </AlertDialogDescription>
             </AlertDialogHeader>
             <AlertDialogFooter>
-              <AlertDialogCancel>Keep showing</AlertDialogCancel>
+              <AlertDialogCancel>{t('matchCard.hideDialogCancel')}</AlertDialogCancel>
               <AlertDialogAction onClick={handleConfirmHide}>
-                Hide forever
+                {t('matchCard.hideDialogConfirm')}
               </AlertDialogAction>
             </AlertDialogFooter>
           </AlertDialogContent>
@@ -435,7 +437,7 @@ const MatchCard = ({
                 "var(--skin-text-halo-strong, 0 0 12px rgba(255,255,255,0.55), 0 1px 1px rgba(255,255,255,0.85))",
             }}
           >
-            A heads-up email is on its way to {user.firstName}. We'll send you both an intro the moment they say yes, and leave it quiet if they don't.
+            {t('matchCard.interestBanner', { firstName: user.firstName })}
           </p>
         </div>
       )}
@@ -466,7 +468,7 @@ const MatchCard = ({
             }}
             className="mb-1"
           >
-            ✦ Mutual interest. You both said yes.
+            {t('matchCard.mutualHeadline')}
           </p>
           <p
             style={{
@@ -481,7 +483,7 @@ const MatchCard = ({
                 "var(--skin-text-halo-strong, 0 0 12px rgba(255,255,255,0.55), 0 1px 1px rgba(255,255,255,0.85))",
             }}
           >
-            We sent the introduction to both of your inboxes. Take it from there.
+            {t('matchCard.mutualSubline')}
           </p>
         </div>
       )}
@@ -602,7 +604,7 @@ const MatchCard = ({
                 }[tier];
                 return (
                   <span
-                    title="Composite match score from the platform's matching engine (0–100). Higher = stronger alignment across mission, role, and gift."
+                    title={t('matchCard.scoreTooltip')}
                     style={{
                       fontFamily: "'DM Sans', system-ui, sans-serif",
                       fontSize: "10.5px",
@@ -615,7 +617,7 @@ const MatchCard = ({
                       ...tint,
                     }}
                   >
-                    Match {score}/100
+                    {t('matchCard.scorePill', { score })}
                   </span>
                 );
               })()}
@@ -664,7 +666,7 @@ const MatchCard = ({
                 }}
               >
                 <p style={eyebrowGold} className="mb-3">
-                  Ways you could collaborate
+                  {t('matchCard.waysToCollaborate')}
                 </p>
                 <div className="space-y-4">
                   {proposals.map((p, i) => (
@@ -717,7 +719,7 @@ const MatchCard = ({
                   }}
                 >
                   <p style={eyebrowGold} className="mb-2">
-                    {secondaryLabel || "Why this works"}
+                    {secondaryLabel || t('matchCard.whyThisWorks')}
                   </p>
                   <p
                     style={{
@@ -747,7 +749,7 @@ const MatchCard = ({
                     }}
                     className="mb-2"
                   >
-                    {tertiaryLabel || "Watch out for"}
+                    {tertiaryLabel || t('matchCard.watchOutFor')}
                   </p>
                   <p
                     style={{
@@ -773,7 +775,7 @@ const MatchCard = ({
                   }}
                 >
                   <p style={eyebrowGold} className="mb-2">
-                    {matchLabel || "Why you match"}
+                    {matchLabel || t('matchCard.whyYouMatch')}
                   </p>
                   <p
                     style={{
@@ -796,7 +798,7 @@ const MatchCard = ({
                   }}
                 >
                   <p style={eyebrowGold} className="mb-2">
-                    {secondaryLabel || "Also relevant"}
+                    {secondaryLabel || t('matchCard.alsoRelevant')}
                   </p>
                   <p
                     style={{
@@ -825,7 +827,7 @@ const MatchCard = ({
                     }}
                     className="mb-2"
                   >
-                    {tertiaryLabel || "Context"}
+                    {tertiaryLabel || t('matchCard.context')}
                   </p>
                   <p
                     style={{

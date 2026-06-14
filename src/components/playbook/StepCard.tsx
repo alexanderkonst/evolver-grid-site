@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { ChevronRight, Wrench } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { PLAYBOOK_STEPS, PlaybookStep, Substep } from "@/data/playbookSteps";
@@ -146,6 +147,7 @@ const SubstepRow = ({
   open: boolean;
   onToggle: () => void;
 }) => {
+  const { t } = useTranslation();
   return (
     // Consistent vertical rhythm — every substep block gets the same
     // top/bottom breathing regardless of whether it has a description
@@ -229,7 +231,7 @@ const SubstepRow = ({
                   data field name. "Recommended How-To" was generic. "One
                   Proven Strategy" is what's actually behind the disclosure —
                   matches the prose register inside the reveal too. */}
-              <span>One Proven Strategy</span>
+              <span>{t("stepCard.oneProvenStrategy")}</span>
             </button>
           </div>
 
@@ -296,6 +298,7 @@ const SubstepRow = ({
 // retired to plain paragraph so the new punchline owns the strongest
 // emphasis (one Tier-1 callout per essay, by design).
 const Step2Essay = (_: { neonHsl: string; neonRgb: string }) => {
+  const { t } = useTranslation();
   const bodyStyle: React.CSSProperties = {
     color: "var(--skin-text-primary, #0a1628)",
     fontFamily: "'Source Serif 4', Georgia, serif",
@@ -312,7 +315,7 @@ const Step2Essay = (_: { neonHsl: string; neonRgb: string }) => {
   return (
     <section
       id="step-2-essay"
-      aria-label="The Secret to Productizing Yourself"
+      aria-label={t("stepCard.essayTitle")}
       className="mb-10 max-w-2xl mx-auto text-base sm:text-[17px] leading-relaxed space-y-5"
       style={bodyStyle}
     >
@@ -326,7 +329,7 @@ const Step2Essay = (_: { neonHsl: string; neonRgb: string }) => {
             "var(--skin-text-halo-subtle, 0 1px 2px rgba(255,255,255,0.7))",
         }}
       >
-        The Secret to Productizing Yourself
+        {t("stepCard.essayTitle")}
       </h2>
 
       {/* Day 60+ (Sasha 2026-05-04 SNR pass): essay compressed from
@@ -350,17 +353,17 @@ const Step2Essay = (_: { neonHsl: string; neonRgb: string }) => {
           length IS the point. All link slots preserved (talentq.me,
           evolution.life, Paul WhatsApp, John WhatsApp, Kawtar
           LinkedIn, Book-a-session). */}
-      <p>Startup influencers say "Productize yourself."</p>
+      <p>{t("stepCard.essayP1")}</p>
 
       <p>
-        Social media coaches say "monetize who you are." "Build an authentic brand."
+        {t("stepCard.essayP2")}
       </p>
 
       <p>
-        Almost none of them tell you HOW. Existing playbooks only work for a small percentage of people, and personality tests and purpose coaches rarely lead to aligned paying clients.
+        {t("stepCard.essayP3")}
       </p>
 
-      <p>Why?</p>
+      <p>{t("stepCard.essayWhy")}</p>
 
       {/* ── Tier 2 emphasis: the secret tease.
           Italic + bold + slightly larger, no rule.
@@ -379,10 +382,10 @@ const Step2Essay = (_: { neonHsl: string; neonRgb: string }) => {
             "var(--skin-text-halo-deep, 0 0 28px rgba(255,255,255,0.85), 0 1px 2px rgba(255,255,255,0.95), 0 0 1px rgba(11,42,90,0.65), 0 1px 0 rgba(11,42,90,0.45))",
         }}
       >
-        There is a hidden secret to productizing yourself.
+        {t("stepCard.essayTease")}
       </p>
 
-      <p>Knowing what you do vaguely is not enough.</p>
+      <p>{t("stepCard.essayVagueNotEnough")}</p>
 
       {/* ── Tier 1 emphasis: THE punchline.
           Gold-rule blockquote, elevated weight, slightly larger. The
@@ -396,14 +399,14 @@ const Step2Essay = (_: { neonHsl: string; neonRgb: string }) => {
           color: "var(--skin-text-primary, #0a1628)",
         }}
       >
-        What most people don't realize is that productizing yourself REQUIRES A VERY HIGH SPECIFICITY of articulation of what you do.
+        {t("stepCard.essayPunchline")}
       </blockquote>
 
       <p>
-        There is a long way from "I help people get better results in life and business" to a 9/10 CRISP statement of what you actually do.
+        {t("stepCard.essayLongWay")}
       </p>
 
-      <p>Here is what ~10/10 precision sounds like:</p>
+      <p>{t("stepCard.essayPrecisionIntro")}</p>
 
       {/* The example sentence — left-rule offset, no font change.
           The single load-bearing proof point of the whole essay. */}
@@ -413,18 +416,18 @@ const Step2Essay = (_: { neonHsl: string; neonRgb: string }) => {
           borderColor: "var(--skin-rule-strong, rgba(26,30,58,0.25))",
         }}
       >
-        "I assist conscious aspiring impact founders turn their top talent into a growing scalable business in flow."
+        {t("stepCard.essayExample")}
       </p>
 
-      <p>That's specific.</p>
+      <p>{t("stepCard.essayThatsSpecific")}</p>
 
       <p>
-        That kind of specificity makes everything downstream easy: the product to build, the packaging to write, the distribution to run, the clients you pull in — and everyone else self-selects out.
+        {t("stepCard.essayDownstreamEasy")}
       </p>
 
-      <p>So how do YOU get YOUR top talent to that level?</p>
+      <p>{t("stepCard.essayHowYouGetThere")}</p>
 
-      <p>Here is the pattern hidden in plain sight:</p>
+      <p>{t("stepCard.essayPatternIntro")}</p>
 
       {/* The fluffy vs specific contrast rendered as a two-line block. */}
       <div
@@ -433,32 +436,32 @@ const Step2Essay = (_: { neonHsl: string; neonRgb: string }) => {
           borderColor: "var(--skin-rule-strong, rgba(26,30,58,0.25))",
         }}
       >
-        <p>Fluffy self-description → fluffy clients, fluffy copy.</p>
-        <p>Highly specific self-description → magnetic pull.</p>
+        <p>{t("stepCard.essayFluffyLine")}</p>
+        <p>{t("stepCard.essaySpecificLine")}</p>
       </div>
 
-      <p>The reveal on this page gets you to ~7/10 or ~8/10.</p>
+      <p>{t("stepCard.essayRevealLevel")}</p>
 
       <p>
-        In our experience running transformational containers for hundreds of entrepreneurs, the people who productize themselves successfully reach 9+/10 before things click.
+        {t("stepCard.essayContainersExperience")}
       </p>
 
       <p>
-        Let that sit. How specific is <em>your</em> current self-understanding right now? Does this feel true?
+        {t("stepCard.essayLetThatSitBefore")} <em>{t("stepCard.essayLetThatSitYour")}</em> {t("stepCard.essayLetThatSitAfter")}
       </p>
 
-      <p>How do you actually get there?</p>
+      <p>{t("stepCard.essayHowDoYouGetThere")}</p>
 
       <p>
-        The slow paths exist: years of focused introspection, iteration on the wording, authentic / artistic self-expression, sudden awakenings, plant medicine, purpose coaching, the founder journey itself.
-      </p>
-
-      <p>
-        Shortcuts exist too. Either you get guided by someone who has already reached 9.9+ for themselves and shares the path, or you use a high-precision purpose-discovery tool. Or both. As of 2026, both are still rare.
+        {t("stepCard.essaySlowPaths")}
       </p>
 
       <p>
-        We recommend a couple of other tools outside of findyourtoptalent tool:{" "}
+        {t("stepCard.essayShortcuts")}
+      </p>
+
+      <p>
+        {t("stepCard.essayToolsRecommend")}{" "}
         <a href="https://talentq.me/" target="_blank" rel="noreferrer noopener" style={linkStyle}>1</a>
         ,{" "}
         <a href="https://www.evolution.life/" target="_blank" rel="noreferrer noopener" style={linkStyle}>2</a>
@@ -469,7 +472,7 @@ const Step2Essay = (_: { neonHsl: string; neonRgb: string }) => {
           composed intro; Kawtar goes to LinkedIn. Names not surfaced —
           rendered as anonymous numbered links matching the tools above. */}
       <p>
-        You could work with a purpose coach too, we recommend:{" "}
+        {t("stepCard.essayCoachRecommend")}{" "}
         <a
           href="https://wa.me/13018733135?text=Hi%20Paul%2C%20Aleksandr%20Konstantinov%20at%20www.FindYourTopTalent.com%20recommended%20you%20as%20a%20purpose%20coach%20I%20can%20work%20with.%20What%27s%20the%20best%20way%20to%20engage%20with%20you%3F"
           target="_blank"
@@ -499,21 +502,21 @@ const Step2Essay = (_: { neonHsl: string; neonRgb: string }) => {
         .
       </p>
 
-      <p>We wish these were commonplace. They aren't yet.</p>
+      <p>{t("stepCard.essayWishCommonplace")}</p>
 
       <p>
-        The method we've refined over six years gets you to 9+/10. When you reach that, a highly specific business naturally emerges from the self-knowledge — the one that was always uniquely yours. AI skills and templates from founders who already saw theirs make the build fast.
+        {t("stepCard.essayMethodSixYears")}
       </p>
 
-      <p>In hindsight it always looks obvious. Like you've always known it.</p>
+      <p>{t("stepCard.essayHindsight")}</p>
 
-      <p>The more people get there, the easier it becomes for the next.</p>
+      <p>{t("stepCard.essayMorePeople")}</p>
 
       <p>
         <a href="/ignite" style={linkStyle}>
-          Book a session
+          {t("stepCard.essayBookSession")}
         </a>{" "}
-        if you'd like to take the shortcut.
+        {t("stepCard.essayShortcutAfter")}
       </p>
     </section>
   );
@@ -531,6 +534,7 @@ const parseHash = (raw: string): { seeHow: boolean; substep: number | null } => 
 };
 
 const StepCard = ({ step }: StepCardProps) => {
+  const { t } = useTranslation();
   // Step-level "See how" is gone (Sasha, 2026-04-21) but seeHowOpen is kept
   // as a compat flag — always true — in case hash-based deep links reference it.
   const [seeHowOpen, setSeeHowOpen] = useState(true);
@@ -630,7 +634,7 @@ const StepCard = ({ step }: StepCardProps) => {
               "var(--skin-text-halo-subtle, 0 0 18px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.75))",
           }}
         >
-          Step {step.number}:{" "}
+          {t("stepCard.stepLabel", { number: step.number })}{" "}
           <span
             style={{
               // Step color blended with skin-text-primary so it stays
@@ -659,7 +663,7 @@ const StepCard = ({ step }: StepCardProps) => {
             textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
           }}
         >
-          By the end:{" "}
+          {t("stepCard.byTheEnd")}{" "}
           <span style={{ color: "var(--skin-text-primary, #0a1628)" }}>
             &ldquo;{step.transformationalResult}&rdquo;
           </span>
@@ -675,7 +679,7 @@ const StepCard = ({ step }: StepCardProps) => {
       ) : (
         <section
           id={`step-${step.number}-substeps`}
-          aria-label="Substeps"
+          aria-label={t("stepCard.substepsAriaLabel")}
           className="mb-10"
         >
           {step.substeps.map((ss) => (
@@ -725,6 +729,7 @@ const StepCard = ({ step }: StepCardProps) => {
 // the next step's slug + subtitle. On step 7, points to /zone-of-genius
 // — the actual doing surface — closing the loop on the playbook.
 const UpNext = ({ step }: { step: PlaybookStep }) => {
+  const { t } = useTranslation();
   const isLast = step.number === PLAYBOOK_STEPS.length;
   const nextStep = isLast
     ? null
@@ -743,7 +748,7 @@ const UpNext = ({ step }: { step: PlaybookStep }) => {
             color: `color-mix(in srgb, ${step.neonHsl} 40%, var(--skin-text-primary, #0a1628) 60%)`,
           }}
         >
-          You've seen the method
+          {t("stepCard.upNextSeenMethod")}
         </p>
         <Link
           to="/zone-of-genius"
@@ -754,7 +759,7 @@ const UpNext = ({ step }: { step: PlaybookStep }) => {
             textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
           }}
         >
-          Now go walk it →
+          {t("stepCard.upNextWalkIt")} →
         </Link>
       </div>
     );
@@ -778,7 +783,7 @@ const UpNext = ({ step }: { step: PlaybookStep }) => {
             color: `color-mix(in srgb, ${nextStep.neonHsl} 45%, var(--skin-text-primary, #0a1628) 55%)`,
           }}
         >
-          Up next · Step {nextStep.number}
+          {t("stepCard.upNextLabel", { number: nextStep.number })}
         </span>
         <span
           className="text-base sm:text-lg font-semibold"
@@ -807,12 +812,13 @@ const UpNext = ({ step }: { step: PlaybookStep }) => {
 // the methodology reads first, the tooling appears as the natural
 // "ok where do I do this?" answer.
 const BuildTheseInBuilder = ({ step }: { step: PlaybookStep }) => {
+  const { t } = useTranslation();
   const links = getBuildLinksForStep(step.slug);
   if (links.length === 0) return null;
 
   return (
     <section
-      aria-label="Build these in the Unique Business Builder"
+      aria-label={t("stepCard.buildAriaLabel")}
       className="mt-2 rounded-2xl p-5 sm:p-6"
       style={{
         backgroundImage: `linear-gradient(135deg, rgba(${step.neonRgb},0.10), rgba(${step.neonRgb},0.03))`,
@@ -829,15 +835,14 @@ const BuildTheseInBuilder = ({ step }: { step: PlaybookStep }) => {
           className="text-[10px] sm:text-[11px] uppercase tracking-[0.24em] font-semibold"
           style={{ color: `color-mix(in srgb, ${step.neonHsl} 35%, var(--skin-text-primary, #0a1628) 65%)` }}
         >
-          Build these in your Builder
+          {t("stepCard.buildHeading")}
         </h3>
       </div>
       <p
         className="mb-4 text-sm leading-relaxed"
         style={{ color: "var(--skin-text-body, rgba(26,30,58,0.78))" }}
       >
-        The artifacts that crystallize this step into a working part of your business.
-        Each one is improvable — generate, then iterate to 9+/10 specificity.
+        {t("stepCard.buildBody")}
       </p>
       <div className="flex flex-wrap gap-2">
         {links.map((link) => (

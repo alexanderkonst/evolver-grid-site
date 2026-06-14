@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/dialog";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useToast } from "@/hooks/use-toast";
+import { useTranslation } from "react-i18next";
 import { User, Sparkles } from "lucide-react";
 
 interface SignupModalProps {
@@ -32,9 +33,12 @@ const SignupModal = ({
     open,
     onOpenChange,
     onSuccess,
-    title = "Save Your Genius",
-    description = "Create an account to save your Top Talent and unlock your profile",
+    title,
+    description,
 }: SignupModalProps) => {
+    const { t } = useTranslation();
+    const resolvedTitle = title ?? t("signupModal.defaultTitle");
+    const resolvedDescription = description ?? t("signupModal.defaultDescription");
     const [searchParams] = useSearchParams();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -76,10 +80,10 @@ const SignupModal = ({
 
             if (error) throw error;
 
-            const displayName = firstName.trim() || "Friend";
+            const displayName = firstName.trim() || t("signupModal.defaultName");
             toast({
-                title: `Welcome, ${displayName}!`,
-                description: "Your genius is now saved forever.",
+                title: t("signupModal.signupSuccessTitle", { name: displayName }),
+                description: t("signupModal.signupSuccessDescription"),
             });
 
             // Migrate any guest data from localStorage to database (silent)
@@ -93,7 +97,7 @@ const SignupModal = ({
             }
         } catch (error: any) {
             toast({
-                title: "Sign up failed",
+                title: t("signupModal.signupErrorTitle"),
                 description: error.message,
                 variant: "destructive",
             });
@@ -115,8 +119,8 @@ const SignupModal = ({
             if (error) throw error;
 
             toast({
-                title: "Welcome back!",
-                description: "Your genius awaits",
+                title: t("signupModal.loginSuccessTitle"),
+                description: t("signupModal.loginSuccessDescription"),
             });
 
             onOpenChange(false);
@@ -126,7 +130,7 @@ const SignupModal = ({
             }
         } catch (error: any) {
             toast({
-                title: "Login failed",
+                title: t("signupModal.loginErrorTitle"),
                 description: error.message,
                 variant: "destructive",
             });
@@ -143,10 +147,10 @@ const SignupModal = ({
                         <Sparkles className="w-7 h-7 text-white" />
                     </div>
                     <DialogTitle className="text-xl font-semibold text-foreground">
-                        {title}
+                        {resolvedTitle}
                     </DialogTitle>
                     <DialogDescription className="text-muted-foreground">
-                        {description}
+                        {resolvedDescription}
                     </DialogDescription>
                 </DialogHeader>
 
@@ -156,13 +160,13 @@ const SignupModal = ({
                             value="signup"
                             className="data-[state=active]:bg-background data-[state=active]:text-primary"
                         >
-                            Sign Up
+                            {t("signupModal.tabSignup")}
                         </TabsTrigger>
                         <TabsTrigger
                             value="login"
                             className="data-[state=active]:bg-background data-[state=active]:text-primary"
                         >
-                            Log In
+                            {t("signupModal.tabLogin")}
                         </TabsTrigger>
                     </TabsList>
 
@@ -170,11 +174,11 @@ const SignupModal = ({
                         <form onSubmit={handleSignUp} className="space-y-4">
                             <div className="grid grid-cols-2 gap-3">
                                 <div className="space-y-1.5">
-                                    <Label htmlFor="signup-firstname" className="text-foreground">First Name</Label>
+                                    <Label htmlFor="signup-firstname" className="text-foreground">{t("signupModal.firstNameLabel")}</Label>
                                     <Input
                                         id="signup-firstname"
                                         type="text"
-                                        placeholder="Jane"
+                                        placeholder={t("signupModal.firstNamePlaceholder")}
                                         value={firstName}
                                         onChange={(e) => setFirstName(e.target.value)}
                                         required
@@ -182,11 +186,11 @@ const SignupModal = ({
                                     />
                                 </div>
                                 <div className="space-y-1.5">
-                                    <Label htmlFor="signup-lastname" className="text-foreground">Last Name</Label>
+                                    <Label htmlFor="signup-lastname" className="text-foreground">{t("signupModal.lastNameLabel")}</Label>
                                     <Input
                                         id="signup-lastname"
                                         type="text"
-                                        placeholder="Doe"
+                                        placeholder={t("signupModal.lastNamePlaceholder")}
                                         value={lastName}
                                         onChange={(e) => setLastName(e.target.value)}
                                         required
@@ -195,11 +199,11 @@ const SignupModal = ({
                                 </div>
                             </div>
                             <div className="space-y-1.5">
-                                <Label htmlFor="signup-email" className="text-foreground">Email</Label>
+                                <Label htmlFor="signup-email" className="text-foreground">{t("signupModal.emailLabel")}</Label>
                                 <Input
                                     id="signup-email"
                                     type="email"
-                                    placeholder="you@example.com"
+                                    placeholder={t("signupModal.emailPlaceholder")}
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
                                     required
@@ -207,7 +211,7 @@ const SignupModal = ({
                                 />
                             </div>
                             <div className="space-y-1.5">
-                                <Label htmlFor="signup-password" className="text-foreground">Password</Label>
+                                <Label htmlFor="signup-password" className="text-foreground">{t("signupModal.passwordLabel")}</Label>
                                 <Input
                                     id="signup-password"
                                     type="password"
@@ -219,7 +223,7 @@ const SignupModal = ({
                                     className="bg-background/80"
                                 />
                                 <p className="text-xs text-muted-foreground">
-                                    At least 6 characters
+                                    {t("signupModal.passwordHint")}
                                 </p>
                             </div>
                             <Button
@@ -228,7 +232,7 @@ const SignupModal = ({
                                 disabled={loading}
                             >
                                 <User className="w-4 h-4 mr-2" />
-                                {loading ? "Creating..." : "Create Account & Save"}
+                                {loading ? t("signupModal.signupButtonLoading") : t("signupModal.signupButton")}
                             </Button>
                         </form>
                     </TabsContent>
@@ -236,11 +240,11 @@ const SignupModal = ({
                     <TabsContent value="login" className="mt-4">
                         <form onSubmit={handleLogin} className="space-y-4">
                             <div className="space-y-1.5">
-                                <Label htmlFor="login-email" className="text-foreground">Email</Label>
+                                <Label htmlFor="login-email" className="text-foreground">{t("signupModal.emailLabel")}</Label>
                                 <Input
                                     id="login-email"
                                     type="email"
-                                    placeholder="you@example.com"
+                                    placeholder={t("signupModal.emailPlaceholder")}
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
                                     required
@@ -248,7 +252,7 @@ const SignupModal = ({
                                 />
                             </div>
                             <div className="space-y-1.5">
-                                <Label htmlFor="login-password" className="text-foreground">Password</Label>
+                                <Label htmlFor="login-password" className="text-foreground">{t("signupModal.passwordLabel")}</Label>
                                 <Input
                                     id="login-password"
                                     type="password"
@@ -264,7 +268,7 @@ const SignupModal = ({
                                 className="w-full bg-gradient-to-r from-[#8460ea] to-[#29549f] hover:opacity-90"
                                 disabled={loading}
                             >
-                                {loading ? "Logging in..." : "Log In & Save"}
+                                {loading ? t("signupModal.loginButtonLoading") : t("signupModal.loginButton")}
                             </Button>
                         </form>
                     </TabsContent>

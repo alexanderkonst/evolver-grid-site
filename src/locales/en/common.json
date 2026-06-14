@@ -2378,5 +2378,768 @@
     "bookFoundingRate": "founding rate",
     "bookCta": "Book Your Session",
     "bookGuarantee": "Clarity or your money back."
+  },
+  "zogPerspective": {
+    "startHere": {
+      "title": "You're in. Let's begin.",
+      "subtitle": "Three moves."
+    },
+    "howItShowsUp": {
+      "title": "How It Shows Up",
+      "subtitle": "Where your genius lights up in real life"
+    },
+    "threeKeyTalents": {
+      "title": "Three Talents in Depth",
+      "subtitle": "What each of your three talents really means."
+    },
+    "topShadow": {
+      "title": "Top Shadow",
+      "subtitle": "The other side of the coin",
+      "eyebrow": "My top shadow is"
+    },
+    "oneAction": {
+      "title": "One Action",
+      "subtitle": "The single action that, repeated, deepens your mastery",
+      "repeatEyebrow": "Repeat this"
+    },
+    "bullseye": {
+      "title": "Bullseye Sentence",
+      "subtitle": "Your essence in one breath",
+      "iPrefix": "I"
+    },
+    "vibrationalKey": {
+      "title": "Unique Vibrational Key",
+      "subtitle": "Your archetypal name and tagline",
+      "inSimpleTerms": "In simple terms: {{text}}"
+    },
+    "threeLenses": {
+      "title": "Zone of Genius — Three Lenses",
+      "subtitle": "Actions → Prime Driver → Archetype",
+      "topActionsLabel": "My Top Actions",
+      "primeDriverLabel": "My Prime Driver",
+      "archetypeLabel": "My Archetype",
+      "oneActionLabel": "✦ One Action to Mastery",
+      "putOnRepeat": "Put \"{{driver}}\" on repeat.",
+      "oneActionExplain": "This is the single action that, when practiced consistently, leads to full mastery of your genius."
+    },
+    "mastery": {
+      "title": "Path of Mastery",
+      "subtitle": "Your seven stages of evolution"
+    },
+    "activities": {
+      "title": "Professional Activities",
+      "subtitle": "LinkedIn-searchable roles",
+      "forPrefix": "For: {{audience}}",
+      "purposePrefix": "Purpose: {{purpose}}"
+    },
+    "roles": {
+      "title": "Ideal Environments",
+      "subtitle": "Where your genius is most at home",
+      "idealEnvironmentLabel": "Ideal Environment"
+    },
+    "partner": {
+      "title": "Complementary Partner",
+      "subtitle": "Who you most need beside you",
+      "skillsWiseLabel": "Skills-Wise",
+      "geniusWiseLabel": "Genius-Wise",
+      "archetypeWiseLabel": "Archetype-Wise",
+      "synergyLabel": "The Synergy"
+    },
+    "monetization": {
+      "title": "Monetization",
+      "subtitle": "How you turn your genius into revenue",
+      "avenuesHeading": "Monetization Avenues",
+      "sweetSpotsHeading": "Career Sweet Spots"
+    },
+    "unifyingRoleConfig": {
+      "title": "Your Unifying Role",
+      "subtitle": "The split you heal. The crossing you are."
+    },
+    "unifyingRole": {
+      "introGenerated": "Your Unifying Role profile is generated during your Top Talent Business Session.",
+      "introBefore": "Where your Top Talent names",
+      "introWhatYouDo": "what you do",
+      "introMiddle": ", your Unifying Role names",
+      "introWhatYouAre": "what you are",
+      "introAfter": " — the structural function your gift performs in the larger field: the split you heal, the two realms you bridge, the position you hold in the meshwork.",
+      "bookCta": "Book your session to generate it",
+      "hide": "Hide",
+      "reveal": "Reveal",
+      "disclosureTitle": "My Unifying Role",
+      "roleTitleEyebrow": "My unifying role is",
+      "oneLineEyebrow": "In one line",
+      "splitLabel": "The Split You Heal",
+      "pole1": "Pole 1",
+      "pole2": "Pole 2",
+      "integrationLabel": "How You Perform the Unification",
+      "withoutYou": "Without You in the Room",
+      "whenPresent": "When You Are Present",
+      "whereMattersMost": "Where This Role Matters Most",
+      "tribeLabel": "The Tribe That Recognizes You",
+      "civilizationalFunction": "Civilizational Function"
+    },
+    "whatsNext": {
+      "title": "What's Next?",
+      "subtitle": "From recognition to action",
+      "bodyLine1": "You're more in touch with your top talent.",
+      "bodyLine2a": "Use it in your work—",
+      "bodyLine2b": "or turn it into a business only you can build.",
+      "cta": "Turn it into a business"
+    },
+    "lifeScene": {
+      "title": "Life Scene",
+      "subtitle": "Sensory embodiment in flow"
+    },
+    "visualCodes": {
+      "title": "Visual Codes",
+      "subtitle": "Symbolic anchors for your genius"
+    },
+    "elevatorPitch": {
+      "title": "Elevator Pitch",
+      "subtitle": "Your genius in 30 seconds"
+    },
+    "unknownPerspective": "Unknown perspective.",
+    "noDataYet": "No Top Talent data found yet. Complete the assessment first.",
+    "loading": "Loading…"
+  },
+  "spacesRail": {
+    "logoutToastTitle": "You're logged out",
+    "logoutToastDescription": "See you when you're back.",
+    "chatTitle": "Direct message Aleksandr on Telegram",
+    "chatLabel": "chat with us",
+    "settingsTitle": "Settings",
+    "settingsLabel": "settings",
+    "themeToggleToLapisTitle": "Switch to Aurum's light sister, Lapis",
+    "themeToggleToAurumTitle": "Switch to Aurum, the dark theme",
+    "themeToggleToLightAria": "Switch to light theme",
+    "themeToggleToDarkAria": "Switch to dark theme",
+    "lightTheme": "light theme",
+    "darkTheme": "dark theme",
+    "logOutTitle": "Log Out",
+    "logOutLabel": "log out",
+    "logInTitle": "Log In",
+    "logInLabel": "Log In"
+  },
+  "profileSettings": {
+    "toastErrorTitle": "Error",
+    "toastUpdateFailedDescription": "Failed to update profile. Please try again.",
+    "toastProfileUpdatedTitle": "Profile updated",
+    "toastProfileUpdatedDescription": "Your changes have been saved.",
+    "sourceUnknown": "Unknown",
+    "sourceStripeCheckout": "Stripe Checkout",
+    "sourcePromoCode": "Promo Code",
+    "guestTitle": "Profile",
+    "guestDescription": "You're browsing as a guest. Log in to manage your personal information, review purchases, and reset your progress.",
+    "guestCtaLabel": "Log in or sign up",
+    "personalInfoTitle": "Personal Information",
+    "personalInfoDescription": "Your basic account details.",
+    "editButton": "Edit",
+    "firstNameLabel": "First Name",
+    "firstNamePlaceholder": "Jane",
+    "lastNameLabel": "Last Name",
+    "lastNamePlaceholder": "Doe",
+    "emailLabel": "Email",
+    "emailCannotBeChanged": "Email cannot be changed",
+    "accountTierLabel": "Account tier",
+    "languagesLabel": "Languages",
+    "removeLanguageAria": "Remove {{language}}",
+    "addLanguagePlaceholder": "Add a language",
+    "addButton": "Add",
+    "savingButton": "Saving...",
+    "saveChangesButton": "Save Changes",
+    "cancelButton": "Cancel",
+    "billingTitle": "Billing & Purchases",
+    "billingDescription": "Your purchase history and subscription management.",
+    "purchaseHistoryHeading": "Purchase History",
+    "aiIntelligenceBoost": "AI Intelligence Boost",
+    "viaSource": "via {{source}}",
+    "noPurchasesYet": "No purchases yet",
+    "subscriptionManagementHeading": "Subscription Management",
+    "subscriptionManagementDescription": "Manage your active subscriptions, update payment methods, or cancel.",
+    "openingButton": "Opening...",
+    "manageSubscriptionButton": "Manage Subscription",
+    "dangerZoneTitle": "Danger Zone",
+    "dangerZoneDescription": "Irreversible actions regarding your account data.",
+    "resetProgressLabel": "Reset Progress",
+    "resetProgressDescription": "Wipe all game progress (XP, levels, snapshots) and start over.",
+    "resetConfirm": "Are you sure? This will wipe ALL your progress, XP, and unlocked upgrades. This cannot be undone.",
+    "toastProgressResetPartialTitle": "Progress reset (partial)",
+    "toastProgressResetPartialDescription": "Some tables couldn't be cleared: {{tables}}. You may see remnants — try again or contact support.",
+    "toastProgressResetTitle": "Progress Reset",
+    "toastProgressResetDescription": "Your journey has been restarted.",
+    "toastResetFailedDescription": "Failed to reset progress. Please try again.",
+    "resetMyProgressButton": "Reset My Progress",
+    "deleteAccountLabel": "Delete Account",
+    "deleteAccountDescription": "Permanently delete your account, your data, and your login.",
+    "deleteAccountCannotBeUndone": "Cannot be undone.",
+    "deleteAccountConfirm": "This will PERMANENTLY delete your account, all your data, and your login credentials. You will not be able to log back in with this email. Continue?",
+    "deleteAccountPrompt": "Type DELETE to confirm permanent account deletion:",
+    "toastCancelledTitle": "Cancelled",
+    "toastDeleteCancelledDescription": "Account deletion cancelled — you didn't type DELETE.",
+    "toastSessionExpiredTitle": "Session expired",
+    "toastSessionExpiredDescription": "Please sign in again, then retry account deletion.",
+    "toastAccountDeletedTitle": "Account deleted",
+    "toastAccountDeletedDescription": "Your account and all your data are gone. Goodbye.",
+    "deleteAccountFallbackDetail": "Please try again, or contact support.",
+    "toastDeleteFailedTitle": "Couldn't delete account",
+    "deleteMyAccountButton": "Delete My Account",
+    "tierLoading": "Loading…",
+    "tierTastingNote": "Free trial · upgrade for save + publish"
+  },
+  "matchCard": {
+    "connectDefault": "I'd like to meet",
+    "connectAriaLabel": "Express interest in meeting this person",
+    "headsUpEmailSent": "Heads-up email sent",
+    "introductionSent": "Introduction sent",
+    "previousMatch": "Previous match",
+    "nextMatch": "Next match",
+    "dontShowAgain": "Don't show again",
+    "withdraw": "Withdraw",
+    "withdrawAriaLabel": "Withdraw interest",
+    "hideDialogTitle": "Hide {{firstName}} from your matches?",
+    "hideDialogDescription": "You won't see this profile again. The change is permanent.",
+    "hideDialogCancel": "Keep showing",
+    "hideDialogConfirm": "Hide forever",
+    "interestBanner": "A heads-up email is on its way to {{firstName}}. We'll send you both an intro the moment they say yes, and leave it quiet if they don't.",
+    "mutualHeadline": "✦ Mutual interest. You both said yes.",
+    "mutualSubline": "We sent the introduction to both of your inboxes. Take it from there.",
+    "scoreTooltip": "Composite match score from the platform's matching engine (0–100). Higher = stronger alignment across mission, role, and gift.",
+    "scorePill": "Match {{score}}/100",
+    "waysToCollaborate": "Ways you could collaborate",
+    "whyThisWorks": "Why this works",
+    "watchOutFor": "Watch out for",
+    "whyYouMatch": "Why you match",
+    "alsoRelevant": "Also relevant",
+    "context": "Context"
+  },
+  "stepCard": {
+    "oneProvenStrategy": "One Proven Strategy",
+    "essayTitle": "The Secret to Productizing Yourself",
+    "essayP1": "Startup influencers say \"Productize yourself.\"",
+    "essayP2": "Social media coaches say \"monetize who you are.\" \"Build an authentic brand.\"",
+    "essayP3": "Almost none of them tell you HOW. Existing playbooks only work for a small percentage of people, and personality tests and purpose coaches rarely lead to aligned paying clients.",
+    "essayWhy": "Why?",
+    "essayTease": "There is a hidden secret to productizing yourself.",
+    "essayVagueNotEnough": "Knowing what you do vaguely is not enough.",
+    "essayPunchline": "What most people don't realize is that productizing yourself REQUIRES A VERY HIGH SPECIFICITY of articulation of what you do.",
+    "essayLongWay": "There is a long way from \"I help people get better results in life and business\" to a 9/10 CRISP statement of what you actually do.",
+    "essayPrecisionIntro": "Here is what ~10/10 precision sounds like:",
+    "essayExample": "\"I assist conscious aspiring impact founders turn their top talent into a growing scalable business in flow.\"",
+    "essayThatsSpecific": "That's specific.",
+    "essayDownstreamEasy": "That kind of specificity makes everything downstream easy: the product to build, the packaging to write, the distribution to run, the clients you pull in — and everyone else self-selects out.",
+    "essayHowYouGetThere": "So how do YOU get YOUR top talent to that level?",
+    "essayPatternIntro": "Here is the pattern hidden in plain sight:",
+    "essayFluffyLine": "Fluffy self-description → fluffy clients, fluffy copy.",
+    "essaySpecificLine": "Highly specific self-description → magnetic pull.",
+    "essayRevealLevel": "The reveal on this page gets you to ~7/10 or ~8/10.",
+    "essayContainersExperience": "In our experience running transformational containers for hundreds of entrepreneurs, the people who productize themselves successfully reach 9+/10 before things click.",
+    "essayLetThatSitBefore": "Let that sit. How specific is",
+    "essayLetThatSitYour": "your",
+    "essayLetThatSitAfter": "current self-understanding right now? Does this feel true?",
+    "essayHowDoYouGetThere": "How do you actually get there?",
+    "essaySlowPaths": "The slow paths exist: years of focused introspection, iteration on the wording, authentic / artistic self-expression, sudden awakenings, plant medicine, purpose coaching, the founder journey itself.",
+    "essayShortcuts": "Shortcuts exist too. Either you get guided by someone who has already reached 9.9+ for themselves and shares the path, or you use a high-precision purpose-discovery tool. Or both. As of 2026, both are still rare.",
+    "essayToolsRecommend": "We recommend a couple of other tools outside of findyourtoptalent tool:",
+    "essayCoachRecommend": "You could work with a purpose coach too, we recommend:",
+    "essayWishCommonplace": "We wish these were commonplace. They aren't yet.",
+    "essayMethodSixYears": "The method we've refined over six years gets you to 9+/10. When you reach that, a highly specific business naturally emerges from the self-knowledge — the one that was always uniquely yours. AI skills and templates from founders who already saw theirs make the build fast.",
+    "essayHindsight": "In hindsight it always looks obvious. Like you've always known it.",
+    "essayMorePeople": "The more people get there, the easier it becomes for the next.",
+    "essayBookSession": "Book a session",
+    "essayShortcutAfter": "if you'd like to take the shortcut.",
+    "stepLabel": "Step {{number}}:",
+    "byTheEnd": "By the end:",
+    "substepsAriaLabel": "Substeps",
+    "upNextSeenMethod": "You've seen the method",
+    "upNextWalkIt": "Now go walk it",
+    "upNextLabel": "Up next · Step {{number}}",
+    "buildHeading": "Build these in your Builder",
+    "buildAriaLabel": "Build these in the Unique Business Builder",
+    "buildBody": "The artifacts that crystallize this step into a working part of your business. Each one is improvable — generate, then iterate to 9+/10 specificity."
+  },
+  "buildCanvas": {
+    "artifact": {
+      "uniqueness": {
+        "label": "Uniqueness",
+        "question": "Who am I at my brightest?",
+        "description": "The intersection no one else occupies"
+      },
+      "myth": {
+        "label": "Myth",
+        "question": "What must be true for my work to be inevitable?",
+        "description": "The lie, the truth, the line that stops the scroll"
+      },
+      "tribe": {
+        "label": "Tribe",
+        "question": "Who recognizes themselves in this myth?",
+        "description": "Your people — qualifiers, life situation, language"
+      },
+      "pain": {
+        "label": "Pain",
+        "question": "What's unbearable about their situation?",
+        "description": "5-layer forensic trace — pressure to struggle synthesized"
+      },
+      "promise": {
+        "label": "Promise",
+        "question": "What's the master transformational result?",
+        "description": "The exact inversion of their pain"
+      },
+      "lead_magnet": {
+        "label": "Lead Magnet",
+        "question": "How do they taste the transformation?",
+        "description": "The pain card delivered through resonant channels"
+      },
+      "value_ladder": {
+        "label": "Value Ladder",
+        "question": "What are the ascending containers?",
+        "description": "Free → Entry → Journey → Container"
+      }
+    },
+    "status": {
+      "landed": "Landed",
+      "refining": "Refining",
+      "draft": "Draft"
+    },
+    "detail": {
+      "archetype": "Archetype",
+      "distillation": "Distillation",
+      "tagline": "Tagline",
+      "theLie": "The Lie",
+      "theTruth": "The Truth",
+      "theLine": "The Line",
+      "tribeName": "Tribe Name",
+      "description": "Description",
+      "traits": "Traits",
+      "promiseStatement": "Promise Statement",
+      "format": "Format",
+      "mechanism": "Mechanism",
+      "fullText": "Full Text"
+    },
+    "painLayer": {
+      "pressure": "Pressure",
+      "consequences": "Consequences",
+      "costOfInaction": "Cost of Inaction",
+      "urgency": "Urgency",
+      "struggleSynthesized": "Struggle Synthesized",
+      "fallback": "Layer {{n}}"
+    },
+    "loading": "Loading canvas…",
+    "empty": {
+      "title": "Unique Business Canvas",
+      "subtitle": "The Canvas is built during a facilitated Productize Yourself Session — 60–90 minutes where we discover your uniqueness, forge your myth, identify your tribe, and design your business around who you already are.",
+      "cta": "Book Productize Yourself Session — $555",
+      "ctaCaption": "60–90 minutes · Full 7-artifact Canvas · AI-compiled in real time",
+      "alreadyHaveProduct": "Already have a product?",
+      "goToProductBuilder": "Go to Product Builder"
+    },
+    "howItWorks": {
+      "title": "How it works",
+      "body": "Each artifact derives from the previous. Change artifact 1 → everything downstream sharpens."
+    },
+    "chain": {
+      "uniqueness": "Uniqueness",
+      "myth": "Myth",
+      "tribe": "Tribe",
+      "pain": "Pain",
+      "promise": "Promise",
+      "magnet": "Magnet",
+      "ladder": "Ladder"
+    },
+    "promo": {
+      "badge": "new · v2",
+      "eyebrow": "Improve loop · 27 perspectives",
+      "title": "Build with Improve — the v2 Unique Business Builder",
+      "body": "Same canvas, now with a 27-perspective holonic roast per artifact. Specificity goes up. Versions never lost.",
+      "openBtn": "Open v2"
+    },
+    "hero": {
+      "eyebrow": "Unique Business Canvas · {{version}}",
+      "fallbackTitle": "My Unique Business",
+      "facilitatedBy": "Facilitated by {{name}}",
+      "sessionSuffix": " · Session {{n}}"
+    },
+    "progress": {
+      "label": "Canvas Completion",
+      "count": "{{landed}}/{{total}} landed"
+    },
+    "controls": {
+      "heading": "7 Artifacts",
+      "expandAll": "Expand all",
+      "collapseAll": "Collapse all"
+    },
+    "sessionNotes": "Session Notes",
+    "actions": {
+      "buildLanding": "Build Landing Page",
+      "refineArtifacts": "Refine Artifacts"
+    },
+    "quickLinks": {
+      "myBusiness": "My Business",
+      "theOriginals": "The Originals"
+    }
+  },
+  "meGate": {
+    "comingSoonTitle": "Your Genius Profile is being polished",
+    "comingSoonBody": "We're putting the final touches on this space. It opens tomorrow. Your results are safe — come back soon.",
+    "headerTitle": "Save Your Results",
+    "headerEcho": "so they're here when you come back",
+    "headerBody": "Right now your result lives only on this device. Give us an email and a password — that's how we know it's you next time. Without them, the next visit starts from zero.",
+    "tabFirstTime": "First time",
+    "tabComingBack": "Coming back",
+    "labelName": "Your name",
+    "placeholderName": "What should we call you?",
+    "labelEmail": "Email",
+    "placeholderEmail": "you@example.com",
+    "labelPassword": "Password",
+    "placeholderPassword": "Make one up",
+    "btnSaving": "Saving…",
+    "btnSaveProfile": "Save my profile",
+    "btnOpening": "Opening…",
+    "btnOpenProfile": "Open my profile",
+    "toastWelcomeBackTitle": "Welcome back — check your email",
+    "toastWelcomeBackDescription": "We sent a one-click sign-in link to your inbox.",
+    "toastBeenHereBeforeTitle": "Looks like you've been here before",
+    "toastBeenHereBeforeDescription": "Try the 'Coming back' tab — or check your email for a previous sign-in link.",
+    "toastAlmostThereTitle": "Almost there",
+    "toastAlmostThereDescription": "Check your email for a confirmation link, then come back.",
+    "toastSavedTitle": "Saved.",
+    "toastSavedDescription": "Your profile is now yours to come back to.",
+    "toastWeakPasswordTitle": "That password's been seen in a public breach somewhere",
+    "toastWeakPasswordDescription": "Add a number or symbol to make it unique to you, then try again.",
+    "toastCouldntSaveTitle": "Couldn't save",
+    "toastYoureInTitle": "You're in.",
+    "toastCouldntOpenTitle": "Couldn't open your profile"
+  },
+  "teamsSpace": {
+    "error": {
+      "signIn": "Sign in to view matches.",
+      "notAuthenticated": "Not authenticated",
+      "sendFailed": "Could not send request.",
+      "title": "Error"
+    },
+    "header": {
+      "title": "Teams",
+      "subtitle": "Find your people. Connect with complementary geniuses."
+    },
+    "mode": {
+      "byGenius": "By Genius",
+      "byAssets": "Match by Assets"
+    },
+    "filter": {
+      "label": "Filter",
+      "all": "All Matches",
+      "mission": "Same Mission",
+      "local": "Near Me",
+      "cofounders": "Co-founders"
+    },
+    "viewConnections": "View Connections",
+    "empty": {
+      "title": "No matches yet",
+      "cofounders": "No complementary matches right now. Try a different filter.",
+      "default": "We will surface new matches as your community grows."
+    },
+    "assetsCta": {
+      "title": "Add assets to unlock smarter matches.",
+      "subtitle": "Map what you can offer so we can pair you by collaboration potential.",
+      "button": "Map Assets"
+    },
+    "connectModal": {
+      "title": "Connect",
+      "titleWithName": "Connect with {{name}}",
+      "messageLabel": "Add a message (optional)",
+      "placeholder": "Introduce yourself...",
+      "cancel": "Cancel",
+      "send": "Send Request",
+      "sending": "Sending..."
+    },
+    "label": {
+      "assetOpportunity": "Asset opportunity",
+      "geniusAlignment": "Genius alignment"
+    },
+    "match": {
+      "unknownArchetype": "Unknown archetype",
+      "assetOpportunity": "Your {{yours}} + Their {{theirs}} = opportunity.",
+      "sameMission": "Same mission",
+      "sameMissionNamed": "Same mission: {{mission}}",
+      "fallbackFirstName": "Community",
+      "fallbackLastName": "Member"
+    }
+  },
+  "profileAssets": {
+    "toastCopied": "Copied {{count}} asset to clipboard",
+    "toastCopyBlocked": "Couldn't copy — clipboard blocked",
+    "headerTitleBefore": "Saved",
+    "headerTitleGold": "Assets",
+    "ctaFindCollaborators": "Find Collaborators",
+    "ctaAddMore": "Add more",
+    "ctaMapAssets": "Map your assets",
+    "subtitle": "The skills, tools, and resources you've mapped — yours to leverage with the right collaborator.",
+    "listTitle": "Your Assets",
+    "copy": "Copy",
+    "copyDone": "Copied",
+    "copyButtonTitle": "Copy all assets to clipboard",
+    "refresh": "Refresh",
+    "refreshing": "Refreshing",
+    "refreshButtonTitle": "Just saved assets and don't see them yet? Tap Refresh.",
+    "collapse": "Collapse",
+    "expand": "Expand",
+    "syncHintBefore": "Just saved assets and don't see them yet? They can take up to a minute to sync — tap",
+    "syncHintRefresh": "Refresh",
+    "syncHintAfter": "above.",
+    "emptyLine1": "Nothing here yet.",
+    "emptyLine2": "Map your first resource so the right collaborators can find you."
+  },
+  "revelatoryHero": {
+    "logoAlt": "Top Talent",
+    "bullseyePrefix": "I",
+    "threeTalentsEyebrow": "My three talents",
+    "topShadowEyebrow": "My top shadow",
+    "brandFooterPrefix": "→ get yours ·",
+    "shareTitleLine": "My top talent is {{title}}.",
+    "shareBullseyeLine": "I {{statement}}.",
+    "shareTalentsLine": "My three talents: {{talents}}.",
+    "shareClosing": "Curious what you see."
+  },
+  "matchExplainer": {
+    "title": "How introductions work",
+    "step1Title": "AI suggests optimal matches.",
+    "step1Body": "Click \"I'd like to meet.\" whenever you'd like to get in touch.",
+    "step2Title": "We send them a heads-up email",
+    "step2Body": "explaining who you are and why we paired you. They can say \"yes\" or \"not now\".",
+    "step3Title": "If they say yes,",
+    "step3Body": "we send you both an intro email. You take it from there. If they don't respond, we leave it at that.",
+    "step4Title": "It works both ways.",
+    "step4Body": "When someone else wants to meet you, you'll get the same heads-up email. Reply \"yes\" if it's a fit, \"not now\" if it isn't.",
+    "gotItCta": "Got it"
+  },
+  "navigation": {
+    "accountFallback": "Account",
+    "navLinks": {
+      "gameOfLife": "game of life",
+      "tools": "tools",
+      "library": "library",
+      "contact": "contact",
+      "donate": "donate"
+    },
+    "profile": "Profile",
+    "gameOfLife": "Game of Life",
+    "logOut": "Log out",
+    "playingAsGuest": "Playing as guest",
+    "playingAsGuestLong": "You're playing as a guest",
+    "logInSignUp": "Log in / Sign up",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu"
+  },
+  "personalityUpload": {
+    "errorAnalyze": "Failed to analyze image",
+    "toastSavedTitle": "Results saved!",
+    "toastSavedDescription": "+20 XP for exploring your inner landscape.",
+    "errorSave": "Failed to save results",
+    "enneagramTypeLabel": "Type {{type}}",
+    "enneagramPrimaryType": "Primary Type",
+    "enneagramTypeRow": "Type {{type}}:",
+    "variantLabel": "{{variant}} Variant",
+    "hdProfileLabel": "Profile {{profile}}",
+    "hdStrategy": "Strategy",
+    "hdAuthority": "Authority",
+    "hdDefinition": "Definition",
+    "hdIncarnationCross": "Incarnation Cross",
+    "dialogTitle": "Upload Your {{testName}} Results",
+    "whatToUpload": "What to upload",
+    "uploadHintEnneagram": "Screenshot showing your Enneagram type with all 9 type scores (e.g., from Truity, Eclectic Energies, or similar). Should display bars/percentages for each type.",
+    "uploadHint16Personalities": "Screenshot showing your 4-letter type code (e.g., INTJ-A), type name, and trait percentages for Mind, Energy, Nature, Tactics, and Identity.",
+    "uploadHintHumanDesign": "Screenshot showing your Human Design Type, Strategy, Authority, Profile, and Definition (e.g., from humdes.com).",
+    "exampleScreenshot": "Example screenshot",
+    "clickOrDropToChange": "Click or drop to change",
+    "dropScreenshotHere": "Drop screenshot here",
+    "orClickToBrowse": "or click to browse",
+    "resultsExtracted": "Results Extracted",
+    "cancel": "Cancel",
+    "analyzing": "Analyzing...",
+    "analyze": "Analyze →",
+    "tryAgain": "Try Again",
+    "saving": "Saving...",
+    "saved": "Saved!",
+    "saveToProfile": "Save to Profile"
+  },
+  "cardActions": {
+    "toast": {
+      "captureFailed": "Couldn't capture card — element not found",
+      "saved": "Saved to Downloads",
+      "saveFailed": "Save failed — try again",
+      "copied": "Copied to clipboard",
+      "copyFailed": "Copy failed"
+    },
+    "save": {
+      "label": "Save",
+      "ariaLabel": "Save card as image"
+    },
+    "share": {
+      "label": "Share",
+      "ariaLabel": "Share to socials",
+      "title": "Share text to socials"
+    },
+    "copy": {
+      "label": "Copy text",
+      "done": "Copied!"
+    }
+  },
+  "moduleLandingTemplate": {
+    "forWhomHeader": "Is this for you?",
+    "outcomesHeader": "What you walk away with",
+    "howItWorksHeader": "How it works",
+    "storyHeader": "Why this exists"
+  },
+  "createEventForm": {
+    "toastMissingTitle": "Missing fields",
+    "toastMissingDescription": "Please fill in title, date, and time",
+    "toastCreatedTitle": "Event created!",
+    "toastCreatedDescription": "Your event has been created successfully",
+    "toastErrorTitle": "Error",
+    "toastErrorDescription": "Failed to create event. Please try again.",
+    "triggerButton": "Create Event",
+    "dialogTitle": "Create New Event",
+    "labelTitle": "Title *",
+    "placeholderTitle": "Event title",
+    "labelDescription": "Description",
+    "placeholderDescription": "What's this event about?",
+    "labelDate": "Date *",
+    "labelTime": "Time *",
+    "labelTimezone": "Timezone",
+    "labelLocation": "Location",
+    "placeholderLocation": "Where will it take place?",
+    "labelPhotoUrl": "Photo URL",
+    "labelVisibility": "Visibility",
+    "placeholderVisibility": "Who can see this?",
+    "visibilityPublic": "Public — Anyone",
+    "visibilityCommunity": "Community — Members only",
+    "visibilityPrivate": "Private — Invite only",
+    "visibilityTeam": "Team — My team only",
+    "cancelButton": "Cancel",
+    "submitCreating": "Creating...",
+    "submitButton": "Create Event"
+  },
+  "activationLanding": {
+    "notFound": "Activation not found:",
+    "backToActivations": "Back to Activations",
+    "allActivations": "All Activations",
+    "heroEyebrow": "{{duration}} · Recorded activation",
+    "whoForLabel": "Who this is for",
+    "whatYouGetLabel": "What you get",
+    "priceSuffix": "· one-time · lifetime access",
+    "getCta": "Get {{title}}",
+    "comingSoon": "Coming soon",
+    "checkoutWiringNote": "Stripe checkout being wired up — back shortly.",
+    "inPreparationNote": "Activation in preparation. First batch ships soon.",
+    "testimonialsLabel": "What past participants say",
+    "byline": "by Aleksandr Konstantinov · FindYourTopTalent.Com"
+  },
+  "playbookShell": {
+    "back": "Back",
+    "backAriaLabel": "Back to landing page",
+    "stepAriaLabel": "Step {{number}}: {{subtitle}}",
+    "footerOpenText": "The method is open to read. The platform is forkable.",
+    "forkOnGithub": "Fork it on GitHub →",
+    "footerCollectiveText": "Run it for your own community — under your own brand. 10% to commons if you go commercial (plus the many other benefits of entering the impact founder collective).",
+    "contactUs": "Contact us →"
+  },
+  "signupModal": {
+    "defaultTitle": "Save Your Genius",
+    "defaultDescription": "Create an account to save your Top Talent and unlock your profile",
+    "defaultName": "Friend",
+    "signupSuccessTitle": "Welcome, {{name}}!",
+    "signupSuccessDescription": "Your genius is now saved forever.",
+    "signupErrorTitle": "Sign up failed",
+    "loginSuccessTitle": "Welcome back!",
+    "loginSuccessDescription": "Your genius awaits",
+    "loginErrorTitle": "Login failed",
+    "tabSignup": "Sign Up",
+    "tabLogin": "Log In",
+    "firstNameLabel": "First Name",
+    "firstNamePlaceholder": "Jane",
+    "lastNameLabel": "Last Name",
+    "lastNamePlaceholder": "Doe",
+    "emailLabel": "Email",
+    "emailPlaceholder": "you@example.com",
+    "passwordLabel": "Password",
+    "passwordHint": "At least 6 characters",
+    "signupButton": "Create Account & Save",
+    "signupButtonLoading": "Creating...",
+    "loginButton": "Log In & Save",
+    "loginButtonLoading": "Logging in..."
+  },
+  "activationSteps": {
+    "heading": "Let's begin.",
+    "subheading": "Three moves.",
+    "step1": {
+      "eyebrow": "1 · See it",
+      "body1Line1": "Your deep talent view is open —",
+      "body1Line2": "it shows how you naturally think, work, and create.",
+      "body2Line1": "What excites you.",
+      "body2Line2": "What's been driving your best results all along.",
+      "cta": "See you at your best"
+    },
+    "step2": {
+      "eyebrow": "2 · Activation",
+      "body1": "Before you press play—",
+      "body2": "Pick one sentence that felt most accurate.",
+      "beginCta": "Begin the 6-min guided meditation",
+      "playerTitle": "The Activation",
+      "downloadAudio": "Download audio"
+    },
+    "step3": {
+      "eyebrow": "3 · What's next?",
+      "body1": "You're more in touch with your top talent.",
+      "body2Line1": "Use it in your work—",
+      "body2Line2": "or turn it into a business only you can build.",
+      "cta": "Turn it into a business"
+    }
+  },
+  "microModule": {
+    "path": {
+      "body": "Body",
+      "mind": "Mind",
+      "emotions": "Emotions",
+      "spirit": "Spirit",
+      "genius": "Genius"
+    },
+    "videoComingSoon": "Video coming soon.",
+    "keyTakeaway": "Key Takeaway",
+    "experience": "Experience",
+    "integration": "Integration",
+    "resources": "Resources",
+    "markComplete": "Mark Complete",
+    "nextNamed": "Next: {{title}}",
+    "nextModule": "Next Module"
+  },
+  "activationsIndex": {
+    "backHome": "Home",
+    "eyebrow": "Educational apps · Planetary OS",
+    "title": "Activations",
+    "intro": "Two-hour transformative workshops. Each one a self-contained activation — synthesized from live sessions, packaged as standalone product.",
+    "liveCount": "{{live}} live · {{coming}} more coming",
+    "emptyTitle": "Activations are being prepared. First batch ships soon.",
+    "emptyHint": "In the meantime, the AI OS layer is fully open.",
+    "useAiOs": "Use AI OS",
+    "openActivation": "Open activation",
+    "bundleEyebrow": "The bundle",
+    "bundleHeading": "All Activations · ${{price}}",
+    "bundleSavings": "Get every activation. Lifetime access. Save ${{savings}} vs individual.",
+    "bundleStripeNote": "(Bundle Stripe link wires up once first 3 activations are live.)",
+    "footerNote": "Activations are educational apps inside the Planetary OS. AI OS layer is free; activations bring depth-work that AI alone can't."
+  },
+  "activationAccess": {
+    "notFound": "Activation not found.",
+    "backToActivations": "Back to Activations",
+    "accessGranted": "✓ Access granted · {{duration}}",
+    "videoUploading": "Video uploading. Check back shortly — Aleksandr will DM you when ready.",
+    "promiseEyebrow": "What you'll walk away with",
+    "questionsPrompt": "Questions or insight to share?",
+    "reachTelegram": "Reach Aleksandr on Telegram",
+    "allActivations": "All Activations"
+  },
+  "playbookCircle": {
+    "figureAriaLabel": "The seven-step journey — holonic completion circle",
+    "svgTitle": "Seven-step journey from talent to thriving business",
+    "svgDesc": "A circle with seven luminous nodes, each labeled with one step of the playbook. Click a node to see the step's price, inclusions, and result. Light travels clockwise from the first step at the top; completing all seven stabilizes the circle as a whole."
   }
 }

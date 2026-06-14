@@ -12,6 +12,7 @@
  */
 
 import { useCallback, useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { Boxes, ChevronDown, ChevronUp, Users, Plus, ArrowRight, RefreshCw, Loader2, Copy, Check } from "lucide-react";
 import { toast } from "sonner";
@@ -100,6 +101,7 @@ const ceremonialPillPrimary: React.CSSProperties = {
 };
 
 const ProfileAssetsSection = () => {
+    const { t } = useTranslation();
     const navigate = useNavigate();
     const [savedAssets, setSavedAssets] = useState<SavedAsset[]>([]);
     const [showAssets, setShowAssets] = useState(false);
@@ -134,10 +136,10 @@ const ProfileAssetsSection = () => {
         try {
             await navigator.clipboard.writeText(text);
             setJustCopied(true);
-            toast.success(`Copied ${savedAssets.length} assets to clipboard`);
+            toast.success(t('profileAssets.toastCopied', { count: savedAssets.length }));
             setTimeout(() => setJustCopied(false), 2000);
         } catch {
-            toast.error("Couldn't copy — clipboard blocked");
+            toast.error(t('profileAssets.toastCopyBlocked'));
         }
     }, [savedAssets]);
 
@@ -209,12 +211,12 @@ const ProfileAssetsSection = () => {
                                 textShadow: legibleHeadlineHalo,
                             }}
                         >
-                            Saved{" "}
+                            {t('profileAssets.headerTitleBefore')}{" "}
                             <span
                                 className="bg-clip-text text-transparent"
                                 style={GOLD_TEXT_STYLE}
                             >
-                                Assets
+                                {t('profileAssets.headerTitleGold')}
                             </span>
                         </h1>
                         {/* Action row — primary CTA flips based on whether
@@ -253,7 +255,7 @@ const ProfileAssetsSection = () => {
                                     style={ceremonialPillPrimary}
                                 >
                                     <Users className="w-3.5 h-3.5" style={{ color: "var(--skin-cta-icon, rgba(244, 212, 114, 0.98))" }} />
-                                    Find Collaborators
+                                    {t('profileAssets.ctaFindCollaborators')}
                                 </button>
                             )}
                             <button
@@ -264,12 +266,12 @@ const ProfileAssetsSection = () => {
                                 {hasAssets ? (
                                     <>
                                         <Plus className="w-3.5 h-3.5" style={{ color: "var(--skin-accent-gold, #b8860b)" }} />
-                                        Add more
+                                        {t('profileAssets.ctaAddMore')}
                                     </>
                                 ) : (
                                     <>
                                         <span aria-hidden="true" style={{ color: "var(--skin-cta-icon, rgba(244, 212, 114, 0.98))", fontSize: "14px" }}>✦</span>
-                                        Map your assets
+                                        {t('profileAssets.ctaMapAssets')}
                                     </>
                                 )}
                             </button>
@@ -284,7 +286,7 @@ const ProfileAssetsSection = () => {
                             lineHeight: 1.5,
                         }}
                     >
-                        The skills, tools, and resources you've mapped — yours to leverage with the right collaborator.
+                        {t('profileAssets.subtitle')}
                     </p>
                     <Ornament className="mt-5 sm:mt-6" />
                 </header>
@@ -317,7 +319,7 @@ const ProfileAssetsSection = () => {
                                     fontWeight: 600,
                                 }}
                             >
-                                Your Assets
+                                {t('profileAssets.listTitle')}
                             </span>
                             <span
                                 style={{
@@ -345,10 +347,10 @@ const ProfileAssetsSection = () => {
                                     background: "var(--skin-card-fill, rgba(255, 255, 255, 0.55))",
                                     border: "0.5px solid var(--skin-rule-hairline, rgba(26, 30, 58, 0.10))",
                                 }}
-                                title="Copy all assets to clipboard"
+                                title={t('profileAssets.copyButtonTitle')}
                             >
                                 {justCopied ? <Check className="w-3 h-3" /> : <Copy className="w-3 h-3" />}
-                                {justCopied ? "Copied" : "Copy"}
+                                {justCopied ? t('profileAssets.copyDone') : t('profileAssets.copy')}
                             </button>
                             {/* Manual refresh — UX hint for the
                                 propagation delay between Save-on-mapping
@@ -366,19 +368,19 @@ const ProfileAssetsSection = () => {
                                     background: "var(--skin-card-fill, rgba(255, 255, 255, 0.55))",
                                     border: "0.5px solid var(--skin-rule-hairline, rgba(26, 30, 58, 0.10))",
                                 }}
-                                title="Just saved assets and don't see them yet? Tap Refresh."
+                                title={t('profileAssets.refreshButtonTitle')}
                             >
                                 {isReloading ? (
                                     <Loader2 className="w-3 h-3 animate-spin" />
                                 ) : (
                                     <RefreshCw className="w-3 h-3" />
                                 )}
-                                {isReloading ? "Refreshing" : "Refresh"}
+                                {isReloading ? t('profileAssets.refreshing') : t('profileAssets.refresh')}
                             </button>
                             <button
                                 onClick={() => setShowAssets(!showAssets)}
                                 className="text-[var(--skin-text-muted,rgba(11,42,90,0.93))] hover:opacity-80"
-                                aria-label={showAssets ? "Collapse" : "Expand"}
+                                aria-label={showAssets ? t('profileAssets.collapse') : t('profileAssets.expand')}
                             >
                                 {showAssets ? (
                                     <ChevronUp className="w-4 h-4" />
@@ -421,9 +423,9 @@ const ProfileAssetsSection = () => {
                                                 color: "var(--skin-goldDeep, #5d4307)",
                                             }}
                                         >
-                                            Just saved assets and don't see them yet? They can take up to a minute to sync — tap{" "}
-                                            <strong style={{ fontStyle: "normal" }}>Refresh</strong>{" "}
-                                            above.
+                                            {t('profileAssets.syncHintBefore')}{" "}
+                                            <strong style={{ fontStyle: "normal" }}>{t('profileAssets.syncHintRefresh')}</strong>{" "}
+                                            {t('profileAssets.syncHintAfter')}
                                         </p>
                                     </div>
                                     <p
@@ -438,9 +440,9 @@ const ProfileAssetsSection = () => {
                                             lineHeight: 1.55,
                                         }}
                                     >
-                                        Nothing here yet.
+                                        {t('profileAssets.emptyLine1')}
                                         <br />
-                                        Map your first resource so the right collaborators can find you.
+                                        {t('profileAssets.emptyLine2')}
                                     </p>
                                     <div>
                                         <button
@@ -449,7 +451,7 @@ const ProfileAssetsSection = () => {
                                             style={ceremonialPillPrimary}
                                         >
                                             <span aria-hidden="true" style={{ color: "var(--skin-cta-icon, rgba(244, 212, 114, 0.98))", fontSize: "14px" }}>✦</span>
-                                            Map your assets
+                                            {t('profileAssets.ctaMapAssets')}
                                             <ArrowRight className="w-3.5 h-3.5" />
                                         </button>
                                     </div>

@@ -1,5 +1,6 @@
 import { Link, useParams } from "react-router-dom";
 import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { ArrowLeft, ExternalLink } from "lucide-react";
 import { getActivationBySlug } from "@/data/activations";
 
@@ -10,6 +11,7 @@ import { getActivationBySlug } from "@/data/activations";
 // switch YouTube videos to private and DM the link.
 
 const ActivationAccessPage = () => {
+  const { t } = useTranslation();
   const { slug } = useParams<{ slug: string }>();
   const activation = slug ? getActivationBySlug(slug) : undefined;
 
@@ -31,7 +33,7 @@ const ActivationAccessPage = () => {
       >
         <div className="text-center space-y-4">
           <p className="text-base" style={{ color: "hsl(0 0% 100% / 0.7)" }}>
-            Activation not found.
+            {t("activationAccess.notFound")}
           </p>
           <Link
             to="/activations"
@@ -43,7 +45,7 @@ const ActivationAccessPage = () => {
             }}
           >
             <ArrowLeft className="w-3.5 h-3.5" />
-            Back to Activations
+            {t("activationAccess.backToActivations")}
           </Link>
         </div>
       </div>
@@ -69,7 +71,7 @@ const ActivationAccessPage = () => {
               className="text-[10px] tracking-[0.3em] uppercase font-medium"
               style={{ color: "hsl(40 60% 75% / 0.7)" }}
             >
-              ✓ Access granted · {activation.duration}
+              {t("activationAccess.accessGranted", { duration: activation.duration })}
             </p>
 
             <h1
@@ -129,7 +131,7 @@ const ActivationAccessPage = () => {
                 className="text-base font-light"
                 style={{ color: "hsl(0 0% 100% / 0.7)" }}
               >
-                Video uploading. Check back shortly — Aleksandr will DM you when ready.
+                {t("activationAccess.videoUploading")}
               </p>
             </div>
           )}
@@ -148,7 +150,7 @@ const ActivationAccessPage = () => {
                 className="text-[10px] tracking-[0.25em] uppercase font-medium mb-2"
                 style={{ color: "hsl(40 60% 75% / 0.7)" }}
               >
-                What you'll walk away with
+                {t("activationAccess.promiseEyebrow")}
               </p>
               <p
                 className="text-sm sm:text-base font-light italic leading-relaxed max-w-xl mx-auto"
@@ -165,7 +167,7 @@ const ActivationAccessPage = () => {
               className="text-xs font-light"
               style={{ color: "hsl(0 0% 100% / 0.55)" }}
             >
-              Questions or insight to share?
+              {t("activationAccess.questionsPrompt")}
             </p>
             <a
               href="https://t.me/integralevolution"
@@ -178,7 +180,7 @@ const ActivationAccessPage = () => {
                 color: "hsl(0 0% 100% / 0.85)",
               }}
             >
-              Reach Aleksandr on Telegram
+              {t("activationAccess.reachTelegram")}
               <ExternalLink className="w-3.5 h-3.5" />
             </a>
           </section>
@@ -190,7 +192,7 @@ const ActivationAccessPage = () => {
               style={{ color: "hsl(0 0% 100% / 0.5)" }}
             >
               <ArrowLeft className="w-3 h-3" />
-              All Activations
+              {t("activationAccess.allActivations")}
             </Link>
           </footer>
 

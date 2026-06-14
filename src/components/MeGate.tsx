@@ -1,5 +1,6 @@
 import { useEffect, useState, type ReactNode } from "react";
 import { Navigate, useLocation, useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { Sparkles } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import GameShellV2 from "@/components/game/GameShellV2";
@@ -38,22 +39,24 @@ import { GOLD_TEXT_STYLE, Ornament } from "@/lib/landingDesign";
 // (or delete this block + the early return below) to unlock.
 const ME_SPACE_LOCKED = false;
 
-const ComingSoonCard = () => (
-    <div className="p-6 lg:p-8 max-w-xl mx-auto">
-        <div className="rounded-2xl liquid-glass ring-1 ring-white/10 p-8 text-center">
-            <div className="w-14 h-14 mx-auto rounded-full bg-[#8460ea]/15 flex items-center justify-center ring-1 ring-white/10 mb-4">
-                <Sparkles className="w-7 h-7 text-[#8460ea]" />
+const ComingSoonCard = () => {
+    const { t } = useTranslation();
+    return (
+        <div className="p-6 lg:p-8 max-w-xl mx-auto">
+            <div className="rounded-2xl liquid-glass ring-1 ring-white/10 p-8 text-center">
+                <div className="w-14 h-14 mx-auto rounded-full bg-[#8460ea]/15 flex items-center justify-center ring-1 ring-white/10 mb-4">
+                    <Sparkles className="w-7 h-7 text-[#8460ea]" />
+                </div>
+                <h1 className="text-xl font-semibold text-white mb-2">
+                    {t("meGate.comingSoonTitle")}
+                </h1>
+                <p className="text-sm text-white/60 leading-relaxed">
+                    {t("meGate.comingSoonBody")}
+                </p>
             </div>
-            <h1 className="text-xl font-semibold text-white mb-2">
-                Your Genius Profile is being polished
-            </h1>
-            <p className="text-sm text-white/60 leading-relaxed">
-                We're putting the final touches on this space. It opens
-                tomorrow. Your results are safe — come back soon.
-            </p>
         </div>
-    </div>
-);
+    );
+};
 
 const MeGate = ({ children }: { children: ReactNode }) => {
     const [status, setStatus] = useState<"loading" | "authed" | "guest">("loading");
@@ -308,6 +311,7 @@ const SaveProfileCard = ({ onSuccess }: { onSuccess: () => void }) => {
     const [firstName, setFirstName] = useState("");
     const [loading, setLoading] = useState(false);
     const { toast } = useToast();
+    const { t } = useTranslation();
 
     const handleSave = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -351,28 +355,28 @@ const SaveProfileCard = ({ onSuccess }: { onSuccess: () => void }) => {
                     });
                     if (otpError) throw otpError;
                     toast({
-                        title: "Welcome back — check your email",
-                        description: "We sent a one-click sign-in link to your inbox.",
+                        title: t("meGate.toastWelcomeBackTitle"),
+                        description: t("meGate.toastWelcomeBackDescription"),
                     });
                 } catch (otpErr) {
                     console.warn("[MeGate] magic-link recovery failed", otpErr);
                     toast({
-                        title: "Looks like you've been here before",
-                        description: "Try the 'Coming back' tab — or check your email for a previous sign-in link.",
+                        title: t("meGate.toastBeenHereBeforeTitle"),
+                        description: t("meGate.toastBeenHereBeforeDescription"),
                     });
                 }
                 return;
             }
             if (!data.session) {
                 toast({
-                    title: "Almost there",
-                    description: "Check your email for a confirmation link, then come back.",
+                    title: t("meGate.toastAlmostThereTitle"),
+                    description: t("meGate.toastAlmostThereDescription"),
                 });
                 return;
             }
             toast({
-                title: "Saved.",
-                description: "Your profile is now yours to come back to.",
+                title: t("meGate.toastSavedTitle"),
+                description: t("meGate.toastSavedDescription"),
             });
             onSuccess();
         } catch (err: any) {
@@ -392,14 +396,13 @@ const SaveProfileCard = ({ onSuccess }: { onSuccess: () => void }) => {
                 /known to be weak|pwned|breach/i.test(raw);
             if (isWeakPassword) {
                 toast({
-                    title: "That password's been seen in a public breach somewhere",
-                    description:
-                        "Add a number or symbol to make it unique to you, then try again.",
+                    title: t("meGate.toastWeakPasswordTitle"),
+                    description: t("meGate.toastWeakPasswordDescription"),
                     variant: "destructive",
                 });
             } else {
                 toast({
-                    title: "Couldn't save",
+                    title: t("meGate.toastCouldntSaveTitle"),
                     description: raw,
                     variant: "destructive",
                 });
@@ -418,11 +421,11 @@ const SaveProfileCard = ({ onSuccess }: { onSuccess: () => void }) => {
                 password,
             });
             if (error) throw error;
-            toast({ title: "You're in." });
+            toast({ title: t("meGate.toastYoureInTitle") });
             onSuccess();
         } catch (err: any) {
             toast({
-                title: "Couldn't open your profile",
+                title: t("meGate.toastCouldntOpenTitle"),
                 description: err.message,
                 variant: "destructive",
             });
@@ -495,7 +498,7 @@ const SaveProfileCard = ({ onSuccess }: { onSuccess: () => void }) => {
                             "var(--skin-text-halo-strong, 0 0 22px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.8), 0 2px 12px rgba(26,30,58,0.15))",
                     }}
                 >
-                    Save Your Results
+                    {t("meGate.headerTitle")}
                 </h1>
 
                 <p
@@ -508,7 +511,7 @@ const SaveProfileCard = ({ onSuccess }: { onSuccess: () => void }) => {
                             "var(--skin-text-halo-subtle, 0 0 18px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.75))",
                     }}
                 >
-                    so they're here when you come back
+                    {t("meGate.headerEcho")}
                 </p>
 
                 <Ornament className="my-6 sm:my-7" />
@@ -528,9 +531,7 @@ const SaveProfileCard = ({ onSuccess }: { onSuccess: () => void }) => {
                             "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
                     }}
                 >
-                    Right now your result lives only on this device. Give us
-                    an email and a password — that's how we know it's you next
-                    time. Without them, the next visit starts from zero.
+                    {t("meGate.headerBody")}
                 </p>
             </header>
 
@@ -573,7 +574,7 @@ const SaveProfileCard = ({ onSuccess }: { onSuccess: () => void }) => {
                             color: "var(--skin-text-primary, #0b2a5a)",
                         }}
                     >
-                        First time
+                        {t("meGate.tabFirstTime")}
                     </TabsTrigger>
                     <TabsTrigger
                         value="return"
@@ -584,7 +585,7 @@ const SaveProfileCard = ({ onSuccess }: { onSuccess: () => void }) => {
                             color: "var(--skin-text-primary, #0b2a5a)",
                         }}
                     >
-                        Coming back
+                        {t("meGate.tabComingBack")}
                     </TabsTrigger>
                 </TabsList>
 
@@ -596,12 +597,12 @@ const SaveProfileCard = ({ onSuccess }: { onSuccess: () => void }) => {
                                 className="text-lg italic"
                                 style={editorialLabelStyle}
                             >
-                                Your name
+                                {t("meGate.labelName")}
                             </Label>
                             <Input
                                 id="me-firstname"
                                 type="text"
-                                placeholder="What should we call you?"
+                                placeholder={t("meGate.placeholderName")}
                                 value={firstName}
                                 onChange={(e) => setFirstName(e.target.value)}
                                 className={editorialInputClass}
@@ -613,12 +614,12 @@ const SaveProfileCard = ({ onSuccess }: { onSuccess: () => void }) => {
                                 className="text-lg italic"
                                 style={editorialLabelStyle}
                             >
-                                Email
+                                {t("meGate.labelEmail")}
                             </Label>
                             <Input
                                 id="me-email"
                                 type="email"
-                                placeholder="you@example.com"
+                                placeholder={t("meGate.placeholderEmail")}
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                                 required
@@ -631,12 +632,12 @@ const SaveProfileCard = ({ onSuccess }: { onSuccess: () => void }) => {
                                 className="text-lg italic"
                                 style={editorialLabelStyle}
                             >
-                                Password
+                                {t("meGate.labelPassword")}
                             </Label>
                             <Input
                                 id="me-password"
                                 type="password"
-                                placeholder="Make one up"
+                                placeholder={t("meGate.placeholderPassword")}
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                                 required
@@ -649,7 +650,7 @@ const SaveProfileCard = ({ onSuccess }: { onSuccess: () => void }) => {
                             className="w-full mt-3 rounded-full py-6 text-base font-bold transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
                             style={ctaButtonStyle}
                         >
-                            {loading ? "Saving…" : "Save my profile"}
+                            {loading ? t("meGate.btnSaving") : t("meGate.btnSaveProfile")}
                         </Button>
                     </form>
                 </TabsContent>
@@ -662,12 +663,12 @@ const SaveProfileCard = ({ onSuccess }: { onSuccess: () => void }) => {
                                 className="text-lg italic"
                                 style={editorialLabelStyle}
                             >
-                                Email
+                                {t("meGate.labelEmail")}
                             </Label>
                             <Input
                                 id="me-email-r"
                                 type="email"
-                                placeholder="you@example.com"
+                                placeholder={t("meGate.placeholderEmail")}
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                                 required
@@ -680,7 +681,7 @@ const SaveProfileCard = ({ onSuccess }: { onSuccess: () => void }) => {
                                 className="text-lg italic"
                                 style={editorialLabelStyle}
                             >
-                                Password
+                                {t("meGate.labelPassword")}
                             </Label>
                             <Input
                                 id="me-password-r"
@@ -697,7 +698,7 @@ const SaveProfileCard = ({ onSuccess }: { onSuccess: () => void }) => {
                             className="w-full mt-3 rounded-full py-6 text-base font-bold transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
                             style={ctaButtonStyle}
                         >
-                            {loading ? "Opening…" : "Open my profile"}
+                            {loading ? t("meGate.btnOpening") : t("meGate.btnOpenProfile")}
                         </Button>
                     </form>
                 </TabsContent>

@@ -1,4 +1,5 @@
 import { ReactNode, memo, useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
@@ -269,6 +270,7 @@ const SpacesRail = ({
     userLevel,
     userXp,
 }: SpacesRailProps) => {
+    const { t } = useTranslation();
     const location = useLocation();
     const navigate = useNavigate();
     const { toast } = useToast();
@@ -784,7 +786,7 @@ const SpacesRail = ({
                         "justify-center md:justify-start",
                         "text-white/55 hover:bg-white/[0.04] hover:text-white/85 hover:translate-y-[-1px] active:translate-y-0"
                     )}
-                    title="Direct message Aleksandr on Telegram"
+                    title={t('spacesRail.chatTitle')}
                 >
                     <MessageCircle
                         className="flex-shrink-0"
@@ -806,7 +808,7 @@ const SpacesRail = ({
                             textTransform: "lowercase",
                         }}
                     >
-                        chat with us
+                        {t('spacesRail.chatLabel')}
                     </span>
                 </a>
                 {/* Day 48 iter 9 (Sasha): Settings chip upgraded to match
@@ -821,7 +823,7 @@ const SpacesRail = ({
                         "justify-center md:justify-start",
                         "text-white/45 hover:bg-white/[0.04] hover:text-white/80 hover:translate-y-[-1px] active:translate-y-0"
                     )}
-                    title="Settings"
+                    title={t('spacesRail.settingsTitle')}
                 >
                     {/* Day 48 iter 10 (Sasha): custom gold settings
                         mark in place of the lucide gear. Static — no
@@ -849,7 +851,7 @@ const SpacesRail = ({
                             textTransform: "lowercase",
                         }}
                     >
-                        settings
+                        {t('spacesRail.settingsLabel')}
                     </span>
                 </button>
                 {/* Day 91 (Sasha 2026-06-09): Lapis/Aurum theme toggle.
@@ -868,8 +870,8 @@ const SpacesRail = ({
                             "justify-center md:justify-start",
                             "text-white/45 hover:bg-white/[0.04] hover:text-white/80 hover:translate-y-[-1px] active:translate-y-0"
                         )}
-                        title={skin === "aurum" ? "Switch to Aurum's light sister, Lapis" : "Switch to Aurum, the dark theme"}
-                        aria-label={skin === "aurum" ? "Switch to light theme" : "Switch to dark theme"}
+                        title={skin === "aurum" ? t('spacesRail.themeToggleToLapisTitle') : t('spacesRail.themeToggleToAurumTitle')}
+                        aria-label={skin === "aurum" ? t('spacesRail.themeToggleToLightAria') : t('spacesRail.themeToggleToDarkAria')}
                     >
                         {skin === "aurum" ? (
                             <Sun
@@ -904,7 +906,7 @@ const SpacesRail = ({
                                 textTransform: "lowercase",
                             }}
                         >
-                            {skin === "aurum" ? "light theme" : "dark theme"}
+                            {skin === "aurum" ? t('spacesRail.lightTheme') : t('spacesRail.darkTheme')}
                         </span>
                     </button>
                 )}
@@ -933,8 +935,8 @@ const SpacesRail = ({
                                 onClick={async () => {
                                     await supabase.auth.signOut();
                                     toast({
-                                        title: "You're logged out",
-                                        description: "See you when you're back.",
+                                        title: t('spacesRail.logoutToastTitle'),
+                                        description: t('spacesRail.logoutToastDescription'),
                                     });
                                     navigate("/");
                                 }}
@@ -950,7 +952,7 @@ const SpacesRail = ({
                                     "justify-center md:justify-start",
                                     "text-white/45 hover:bg-white/[0.04] hover:text-white/80 hover:translate-y-[-1px] active:translate-y-0"
                                 )}
-                                title="Log Out"
+                                title={t('spacesRail.logOutTitle')}
                             >
                                 <LogOut
                                     className="flex-shrink-0"
@@ -967,7 +969,7 @@ const SpacesRail = ({
                                         textTransform: "lowercase",
                                     }}
                                 >
-                                    log out
+                                    {t('spacesRail.logOutLabel')}
                                 </span>
                             </button>
                         );
@@ -985,10 +987,10 @@ const SpacesRail = ({
                                 "justify-center md:justify-start",
                                 "text-white/60 hover:bg-white/10 hover:text-white"
                             )}
-                            title="Log In"
+                            title={t('spacesRail.logInTitle')}
                         >
                             <LogIn className="w-4 h-4 flex-shrink-0" />
-                            <span className="hidden md:block text-xs font-medium">Log In</span>
+                            <span className="hidden md:block text-xs font-medium">{t('spacesRail.logInLabel')}</span>
                         </button>
                     );
                 })()}

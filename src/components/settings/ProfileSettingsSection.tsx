@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { User, CreditCard, Check, Edit2, X, AlertTriangle, ArrowRight } from "lucide-react";
 // Day 53 night iter 4 (Sasha 2026-04-27): entitlement tier surfacing.
 // `SettingsTierBadge` (defined below) wraps `EntitlementBadge` to handle
@@ -77,6 +78,7 @@ const COMMON_LANGUAGES = [
 
 const ProfileSettingsSection = () => {
     const navigate = useNavigate();
+    const { t } = useTranslation();
     const { toast } = useToast();
     const [isLoading, setIsLoading] = useState(true);
     const [user, setUser] = useState<any>(null);
@@ -148,7 +150,7 @@ const ProfileSettingsSection = () => {
             })
             .eq("id", profile.id);
         if (error) {
-            toast({ title: "Error", description: "Failed to update profile. Please try again.", variant: "destructive" });
+            toast({ title: t('profileSettings.toastErrorTitle'), description: t('profileSettings.toastUpdateFailedDescription'), variant: "destructive" });
         } else {
             setProfile({
                 ...profile,
@@ -157,7 +159,7 @@ const ProfileSettingsSection = () => {
                 spoken_languages: normalizedLanguages,
             });
             setIsEditing(false);
-            toast({ title: "Profile updated", description: "Your changes have been saved." });
+            toast({ title: t('profileSettings.toastProfileUpdatedTitle'), description: t('profileSettings.toastProfileUpdatedDescription') });
         }
         setIsSaving(false);
     };
@@ -200,10 +202,10 @@ const ProfileSettingsSection = () => {
         formatDateI18n(dateString, { year: "numeric", month: "long", day: "numeric" });
 
     const formatPurchaseSource = (source: string | null) => {
-        if (!source) return "Unknown";
+        if (!source) return t('profileSettings.sourceUnknown');
         switch (source) {
-            case "stripe_checkout": return "Stripe Checkout";
-            case "promo_code": return "Promo Code";
+            case "stripe_checkout": return t('profileSettings.sourceStripeCheckout');
+            case "promo_code": return t('profileSettings.sourcePromoCode');
             default: return source;
         }
     };
@@ -241,7 +243,7 @@ const ProfileSettingsSection = () => {
                                         fontWeight: 600,
                                     }}
                                 >
-                                    Profile
+                                    {t('profileSettings.guestTitle')}
                                 </CardTitle>
                                 <CardDescription
                                     className="mt-1 text-base"
@@ -251,7 +253,7 @@ const ProfileSettingsSection = () => {
                                         fontStyle: "italic",
                                     }}
                                 >
-                                    You're browsing as a guest. Log in to manage your personal information, review purchases, and reset your progress.
+                                    {t('profileSettings.guestDescription')}
                                 </CardDescription>
                             </div>
                         </div>
@@ -278,7 +280,7 @@ const ProfileSettingsSection = () => {
                                 style={{ filter: "drop-shadow(0 0 6px rgba(244, 212, 114, 0.45))" }}
                                 draggable={false}
                             />
-                            <span style={CTA_SMALL_CAPS_STYLE}>Log in or sign up</span>
+                            <span style={CTA_SMALL_CAPS_STYLE}>{t('profileSettings.guestCtaLabel')}</span>
                             <ArrowRight aria-hidden="true" className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5" />
                         </button>
                     </CardContent>
@@ -305,7 +307,7 @@ const ProfileSettingsSection = () => {
                                         fontWeight: 600,
                                     }}
                                 >
-                                    Personal Information
+                                    {t('profileSettings.personalInfoTitle')}
                                 </CardTitle>
                                 <CardDescription
                                     className="text-base mt-0.5"
@@ -315,13 +317,13 @@ const ProfileSettingsSection = () => {
                                         fontStyle: "italic",
                                     }}
                                 >
-                                    Your basic account details.
+                                    {t('profileSettings.personalInfoDescription')}
                                 </CardDescription>
                             </div>
                         </div>
                         {!isEditing && (
                             <Button variant="ghost" size="sm" onClick={() => setIsEditing(true)}>
-                                <Edit2 className="h-4 w-4 mr-1" />Edit
+                                <Edit2 className="h-4 w-4 mr-1" />{t('profileSettings.editButton')}
                             </Button>
                         )}
                     </div>
@@ -354,18 +356,18 @@ const ProfileSettingsSection = () => {
                         <div className="space-y-4">
                             <div className="grid grid-cols-2 gap-4">
                                 <div className="space-y-2">
-                                    <Label htmlFor="firstName">First Name</Label>
-                                    <Input id="firstName" value={editFirstName} onChange={e => setEditFirstName(e.target.value)} placeholder="Jane" />
+                                    <Label htmlFor="firstName">{t('profileSettings.firstNameLabel')}</Label>
+                                    <Input id="firstName" value={editFirstName} onChange={e => setEditFirstName(e.target.value)} placeholder={t('profileSettings.firstNamePlaceholder')} />
                                 </div>
                                 <div className="space-y-2">
-                                    <Label htmlFor="lastName">Last Name</Label>
-                                    <Input id="lastName" value={editLastName} onChange={e => setEditLastName(e.target.value)} placeholder="Doe" />
+                                    <Label htmlFor="lastName">{t('profileSettings.lastNameLabel')}</Label>
+                                    <Input id="lastName" value={editLastName} onChange={e => setEditLastName(e.target.value)} placeholder={t('profileSettings.lastNamePlaceholder')} />
                                 </div>
                             </div>
                             <div className="space-y-2">
-                                <Label>Email</Label>
+                                <Label>{t('profileSettings.emailLabel')}</Label>
                                 <Input value={user?.email || ""} disabled className="bg-muted" />
-                                <p className="text-xs text-muted-foreground">Email cannot be changed</p>
+                                <p className="text-xs text-muted-foreground">{t('profileSettings.emailCannotBeChanged')}</p>
                             </div>
                             {/* Day 53 night iter 4 (Sasha 2026-04-27): tier
                                 badge surfaces here so the user always knows
@@ -374,13 +376,13 @@ const ProfileSettingsSection = () => {
                                 nothing). For gifted_* tiers, shows
                                 "✦ Gifted Builder · gifted by Sasha". */}
                             <div className="space-y-2">
-                                <Label>Account tier</Label>
+                                <Label>{t('profileSettings.accountTierLabel')}</Label>
                                 <div className="rounded-md border bg-muted px-3 py-2.5">
                                     <SettingsTierBadge />
                                 </div>
                             </div>
                             <div className="space-y-3">
-                                <Label>Languages</Label>
+                                <Label>{t('profileSettings.languagesLabel')}</Label>
                                 <div className="flex flex-wrap gap-2">
                                     {COMMON_LANGUAGES.map(language => {
                                         const isSelected = editLanguages.some(item => normalizeKey(item) === normalizeKey(language));
@@ -409,7 +411,7 @@ const ProfileSettingsSection = () => {
                                                     type="button"
                                                     onClick={() => removeLanguage(language)}
                                                     className="text-xs text-muted-foreground hover:text-foreground"
-                                                    aria-label={`Remove ${language}`}
+                                                    aria-label={t('profileSettings.removeLanguageAria', { language })}
                                                 >
                                                     ×
                                                 </button>
@@ -421,7 +423,7 @@ const ProfileSettingsSection = () => {
                                     <Input
                                         value={customLanguage}
                                         onChange={e => setCustomLanguage(e.target.value)}
-                                        placeholder="Add a language"
+                                        placeholder={t('profileSettings.addLanguagePlaceholder')}
                                         onKeyDown={e => {
                                             if (e.key === "Enter") {
                                                 e.preventDefault();
@@ -429,19 +431,19 @@ const ProfileSettingsSection = () => {
                                             }
                                         }}
                                     />
-                                    <Button type="button" variant="outline" onClick={addCustomLanguage}>Add</Button>
+                                    <Button type="button" variant="outline" onClick={addCustomLanguage}>{t('profileSettings.addButton')}</Button>
                                 </div>
                             </div>
                             <div className="flex gap-2 pt-2">
                                 <Button onClick={handleSaveProfile} disabled={isSaving}>
                                     {isSaving ? (
-                                        <><span className="premium-spinner h-4 w-4 mr-2" />Saving...</>
+                                        <><span className="premium-spinner h-4 w-4 mr-2" />{t('profileSettings.savingButton')}</>
                                     ) : (
-                                        <><Check className="h-4 w-4 mr-2" />Save Changes</>
+                                        <><Check className="h-4 w-4 mr-2" />{t('profileSettings.saveChangesButton')}</>
                                     )}
                                 </Button>
                                 <Button variant="ghost" onClick={handleCancelEdit}>
-                                    <X className="h-4 w-4 mr-2" />Cancel
+                                    <X className="h-4 w-4 mr-2" />{t('profileSettings.cancelButton')}
                                 </Button>
                             </div>
                         </div>
@@ -449,20 +451,20 @@ const ProfileSettingsSection = () => {
                         <div className="space-y-4">
                             <div className="grid grid-cols-2 gap-4">
                                 <div>
-                                    <p className="text-sm text-muted-foreground">First Name</p>
+                                    <p className="text-sm text-muted-foreground">{t('profileSettings.firstNameLabel')}</p>
                                     <p className="font-medium text-foreground">{profile?.first_name || "—"}</p>
                                 </div>
                                 <div>
-                                    <p className="text-sm text-muted-foreground">Last Name</p>
+                                    <p className="text-sm text-muted-foreground">{t('profileSettings.lastNameLabel')}</p>
                                     <p className="font-medium text-foreground">{profile?.last_name || "—"}</p>
                                 </div>
                             </div>
                             <div>
-                                <p className="text-sm text-muted-foreground">Email</p>
+                                <p className="text-sm text-muted-foreground">{t('profileSettings.emailLabel')}</p>
                                 <p className="font-medium text-foreground">{user?.email}</p>
                             </div>
                             <div>
-                                <p className="text-sm text-muted-foreground">Languages</p>
+                                <p className="text-sm text-muted-foreground">{t('profileSettings.languagesLabel')}</p>
                                 {profile?.spoken_languages && profile.spoken_languages.length > 0 ? (
                                     <div className="mt-2 flex flex-wrap gap-2">
                                         {profile.spoken_languages.map(language => (
@@ -491,7 +493,7 @@ const ProfileSettingsSection = () => {
                                     fontWeight: 600,
                                 }}
                             >
-                                Billing & Purchases
+                                {t('profileSettings.billingTitle')}
                             </CardTitle>
                             <CardDescription
                                 className="text-base text-muted-foreground mt-0.5"
@@ -501,7 +503,7 @@ const ProfileSettingsSection = () => {
                                     fontStyle: "italic",
                                 }}
                             >
-                                Your purchase history and subscription management.
+                                {t('profileSettings.billingDescription')}
                             </CardDescription>
                         </div>
                     </div>
@@ -509,32 +511,32 @@ const ProfileSettingsSection = () => {
                 <CardContent>
                     <div className="space-y-6">
                         <div>
-                            <h4 className="text-sm font-medium mb-3 text-foreground">Purchase History</h4>
+                            <h4 className="text-sm font-medium mb-3 text-foreground">{t('profileSettings.purchaseHistoryHeading')}</h4>
                             {purchases.length > 0 ? (
                                 <div className="space-y-2">
                                     {purchases.map(purchase => (
                                         <div key={purchase.id} className="flex items-center justify-between p-3 bg-muted/40 rounded-lg">
                                             <div>
-                                                <p className="font-medium text-sm text-foreground">AI Intelligence Boost</p>
-                                                <p className="text-xs text-muted-foreground">via {formatPurchaseSource(purchase.source)}</p>
+                                                <p className="font-medium text-sm text-foreground">{t('profileSettings.aiIntelligenceBoost')}</p>
+                                                <p className="text-xs text-muted-foreground">{t('profileSettings.viaSource', { source: formatPurchaseSource(purchase.source) })}</p>
                                             </div>
                                             <p className="text-sm text-muted-foreground">{formatDate(purchase.created_at)}</p>
                                         </div>
                                     ))}
                                 </div>
                             ) : (
-                                <p className="text-sm text-muted-foreground py-4 text-center">No purchases yet</p>
+                                <p className="text-sm text-muted-foreground py-4 text-center">{t('profileSettings.noPurchasesYet')}</p>
                             )}
                         </div>
                         <div className="pt-4 border-t">
-                            <h4 className="text-sm font-medium mb-3 text-foreground">Subscription Management</h4>
+                            <h4 className="text-sm font-medium mb-3 text-foreground">{t('profileSettings.subscriptionManagementHeading')}</h4>
                             <p className="text-sm text-muted-foreground mb-4">
-                                Manage your active subscriptions, update payment methods, or cancel.
+                                {t('profileSettings.subscriptionManagementDescription')}
                             </p>
                             <Button variant="outline" onClick={openPortal} disabled={isPortalLoading}>
                                 {isPortalLoading ? (
-                                    <><span className="premium-spinner h-4 w-4 mr-2" />Opening...</>
-                                ) : "Manage Subscription"}
+                                    <><span className="premium-spinner h-4 w-4 mr-2" />{t('profileSettings.openingButton')}</>
+                                ) : t('profileSettings.manageSubscriptionButton')}
                             </Button>
                         </div>
                     </div>
@@ -554,7 +556,7 @@ const ProfileSettingsSection = () => {
                                     fontWeight: 600,
                                 }}
                             >
-                                Danger Zone
+                                {t('profileSettings.dangerZoneTitle')}
                             </CardTitle>
                             <CardDescription
                                 className="text-base text-red-700 mt-0.5"
@@ -564,7 +566,7 @@ const ProfileSettingsSection = () => {
                                     fontStyle: "italic",
                                 }}
                             >
-                                Irreversible actions regarding your account data.
+                                {t('profileSettings.dangerZoneDescription')}
                             </CardDescription>
                         </div>
                     </div>
@@ -572,15 +574,15 @@ const ProfileSettingsSection = () => {
                 <CardContent>
                     <div className="flex items-center justify-between">
                         <div>
-                            <p className="font-medium text-red-900">Reset Progress</p>
+                            <p className="font-medium text-red-900">{t('profileSettings.resetProgressLabel')}</p>
                             <p className="text-sm text-red-700">
-                                Wipe all game progress (XP, levels, snapshots) and start over.
+                                {t('profileSettings.resetProgressDescription')}
                             </p>
                         </div>
                         <Button
                             variant="destructive"
                             onClick={async () => {
-                                if (!profile || !confirm("Are you sure? This will wipe ALL your progress, XP, and unlocked upgrades. This cannot be undone.")) return;
+                                if (!profile || !confirm(t('profileSettings.resetConfirm'))) return;
                                 setIsLoading(true);
                                 try {
                                     // Day 61 (Sasha 2026-05-04 17:00): full
@@ -708,12 +710,12 @@ const ProfileSettingsSection = () => {
 
                                     if (deleteFailures.length > 0) {
                                         toast({
-                                            title: "Progress reset (partial)",
-                                            description: `Some tables couldn't be cleared: ${deleteFailures.join(', ')}. You may see remnants — try again or contact support.`,
+                                            title: t('profileSettings.toastProgressResetPartialTitle'),
+                                            description: t('profileSettings.toastProgressResetPartialDescription', { tables: deleteFailures.join(', ') }),
                                             variant: "destructive",
                                         });
                                     } else {
-                                        toast({ title: "Progress Reset", description: "Your journey has been restarted." });
+                                        toast({ title: t('profileSettings.toastProgressResetTitle'), description: t('profileSettings.toastProgressResetDescription') });
                                     }
                                     // Day 62 (Sasha 2026-05-05): stay on /game/settings
                                     // after reset instead of navigate('/'). Sasha's
@@ -734,15 +736,15 @@ const ProfileSettingsSection = () => {
                                     await loadUserData();
                                 } catch {
                                     toast({
-                                        title: "Error",
-                                        description: "Failed to reset progress. Please try again.",
+                                        title: t('profileSettings.toastErrorTitle'),
+                                        description: t('profileSettings.toastResetFailedDescription'),
                                         variant: "destructive",
                                     });
                                     setIsLoading(false);
                                 }
                             }}
                         >
-                            Reset My Progress
+                            {t('profileSettings.resetMyProgressButton')}
                         </Button>
                     </div>
 
@@ -774,9 +776,9 @@ const ProfileSettingsSection = () => {
                             handling; toast + bail. */}
                     <div className="flex items-center justify-between mt-6 pt-6 border-t border-red-200">
                         <div>
-                            <p className="font-medium text-red-900">Delete Account</p>
+                            <p className="font-medium text-red-900">{t('profileSettings.deleteAccountLabel')}</p>
                             <p className="text-sm text-red-700">
-                                Permanently delete your account, your data, and your login. <em>Cannot be undone.</em>
+                                {t('profileSettings.deleteAccountDescription')} <em>{t('profileSettings.deleteAccountCannotBeUndone')}</em>
                             </p>
                         </div>
                         <Button
@@ -784,7 +786,7 @@ const ProfileSettingsSection = () => {
                             className="bg-red-900 hover:bg-red-950"
                             onClick={async () => {
                                 if (!profile) return;
-                                if (!confirm("This will PERMANENTLY delete your account, all your data, and your login credentials. You will not be able to log back in with this email. Continue?")) return;
+                                if (!confirm(t('profileSettings.deleteAccountConfirm'))) return;
                                 // Day 61 bug-sweep: trim whitespace and
                                 // accept case-insensitively so a user typing
                                 // "DELETE " (trailing space) or "delete"
@@ -793,15 +795,15 @@ const ProfileSettingsSection = () => {
                                 // lifting on intent verification — this
                                 // prompt is the typed-acknowledgment, no
                                 // need for it to be pedantically strict.
-                                const typed = window.prompt('Type DELETE to confirm permanent account deletion:');
+                                const typed = window.prompt(t('profileSettings.deleteAccountPrompt'));
                                 if (typed === null) {
                                     // user cancelled — silent bail
                                     return;
                                 }
                                 if (typed.trim().toUpperCase() !== "DELETE") {
                                     toast({
-                                        title: "Cancelled",
-                                        description: "Account deletion cancelled — you didn't type DELETE.",
+                                        title: t('profileSettings.toastCancelledTitle'),
+                                        description: t('profileSettings.toastDeleteCancelledDescription'),
                                     });
                                     return;
                                 }
@@ -816,8 +818,8 @@ const ProfileSettingsSection = () => {
                                     const accessToken = sessionData?.session?.access_token;
                                     if (!accessToken) {
                                         toast({
-                                            title: "Session expired",
-                                            description: "Please sign in again, then retry account deletion.",
+                                            title: t('profileSettings.toastSessionExpiredTitle'),
+                                            description: t('profileSettings.toastSessionExpiredDescription'),
                                             variant: "destructive",
                                         });
                                         setIsLoading(false);
@@ -851,14 +853,14 @@ const ProfileSettingsSection = () => {
                                     }
 
                                     toast({
-                                        title: "Account deleted",
-                                        description: "Your account and all your data are gone. Goodbye.",
+                                        title: t('profileSettings.toastAccountDeletedTitle'),
+                                        description: t('profileSettings.toastAccountDeletedDescription'),
                                     });
                                     window.location.href = '/';
                                 } catch (err: any) {
                                     console.error('[delete-account] failed:', err);
                                     // Try to surface the structured backend error if present.
-                                    let detail = err?.message || "Please try again, or contact support.";
+                                    let detail = err?.message || t('profileSettings.deleteAccountFallbackDetail');
                                     try {
                                         const ctx = err?.context;
                                         if (ctx && typeof ctx.json === "function") {
@@ -871,7 +873,7 @@ const ProfileSettingsSection = () => {
                                         // ignore parse failures
                                     }
                                     toast({
-                                        title: "Couldn't delete account",
+                                        title: t('profileSettings.toastDeleteFailedTitle'),
                                         description: detail,
                                         variant: "destructive",
                                     });
@@ -879,7 +881,7 @@ const ProfileSettingsSection = () => {
                                 }
                             }}
                         >
-                            Delete My Account
+                            {t('profileSettings.deleteMyAccountButton')}
                         </Button>
                     </div>
                 </CardContent>
@@ -899,16 +901,17 @@ const ProfileSettingsSection = () => {
  * for the Tasting case while delegating the rest to EntitlementBadge.
  */
 function SettingsTierBadge() {
+    const { t } = useTranslation();
     const { tier, isLoading } = useEntitlement();
     if (isLoading) {
-        return <span className="text-xs text-muted-foreground">Loading…</span>;
+        return <span className="text-xs text-muted-foreground">{t('profileSettings.tierLoading')}</span>;
     }
     if (tier === "tasting") {
         return (
             <span className="inline-flex items-baseline gap-2 text-sm">
                 <span className="font-medium text-foreground">{tierLabel(tier)}</span>
                 <span className="text-xs italic text-muted-foreground">
-                    Free trial · upgrade for save + publish
+                    {t('profileSettings.tierTastingNote')}
                 </span>
             </span>
         );
