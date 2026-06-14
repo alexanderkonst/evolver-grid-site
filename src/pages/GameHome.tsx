@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate, Link, Navigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import {
   Sparkles,
   CheckCircle2,
@@ -101,14 +102,15 @@ interface QuestSuggestion {
 const QUEST_DURATIONS = [5, 10, 15, 20, 30, 45, 60, 90, 120, 150];
 
 const QUEST_MODES = [
-  { id: "activating", label: "Activating / Energizing" },
-  { id: "relaxing", label: "Relaxing / Calming" },
-  { id: "balanced", label: "Balanced" },
+  { id: "activating", labelKey: "gameHome.questMode.activating" },
+  { id: "relaxing", labelKey: "gameHome.questMode.relaxing" },
+  { id: "balanced", labelKey: "gameHome.questMode.balanced" },
 ];
 
 const GameHome = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
+  const { t } = useTranslation();
 
   // Core state
   const [isLoading, setIsLoading] = useState(true);
@@ -196,13 +198,13 @@ const GameHome = () => {
         const levelDelta = profileData.level - (previousProfile.level ?? 0);
         if (levelDelta > 0) {
           setCelebration({
-            title: "Level up!",
-            detail: `You reached level ${profileData.level}.`,
+            title: t('gameHome.celebration.levelUpTitle'),
+            detail: t('gameHome.celebration.levelUpDetail', { level: profileData.level }),
           });
         } else if (xpDelta > 0) {
           setCelebration({
-            title: `+${xpDelta} XP`,
-            detail: "Momentum unlocked.",
+            title: t('gameHome.celebration.xpTitle', { xp: xpDelta }),
+            detail: t('gameHome.celebration.xpDetail'),
           });
         }
       }
@@ -310,10 +312,10 @@ const GameHome = () => {
       await advanceMainQuestIfEligible(id, profileForStats, playerStats);
 
     } catch (err) {
-      setActionError("We couldn't load your next move yet. Please retry.");
+      setActionError(t('gameHome.error.loadNextMove'));
       toast({
-        title: "Error loading data",
-        description: "Please refresh the page to try again.",
+        title: t('gameHome.error.loadDataTitle'),
+        description: t('gameHome.error.loadDataDescription'),
         variant: "destructive",
       });
     } finally {
@@ -330,14 +332,14 @@ const GameHome = () => {
     const priorities = Array.isArray(profile?.qol_priorities) ? profile.qol_priorities : [];
     if (priorities.length > 0) {
       const labelMap: Record<DomainId, string> = {
-        wealth: "Wealth",
-        health: "Health",
-        happiness: "Happiness",
-        love: "Love",
-        impact: "Impact",
-        growth: "Growth",
-        socialTies: "Social",
-        home: "Home",
+        wealth: t('gameHome.domain.wealth'),
+        health: t('gameHome.domain.health'),
+        happiness: t('gameHome.domain.happiness'),
+        love: t('gameHome.domain.love'),
+        impact: t('gameHome.domain.impact'),
+        growth: t('gameHome.domain.growth'),
+        socialTies: t('gameHome.domain.social'),
+        home: t('gameHome.domain.home'),
       };
       return priorities
         .map((id: unknown) => typeof id === 'string' ? labelMap[id as DomainId] : null)
@@ -345,14 +347,14 @@ const GameHome = () => {
     }
     if (!currentQolSnapshot) return [];
     const domainStages = [
-      { name: "Wealth", value: currentQolSnapshot.wealth_stage },
-      { name: "Health", value: currentQolSnapshot.health_stage },
-      { name: "Happiness", value: currentQolSnapshot.happiness_stage },
-      { name: "Love", value: currentQolSnapshot.love_relationships_stage },
-      { name: "Impact", value: currentQolSnapshot.impact_stage },
-      { name: "Growth", value: currentQolSnapshot.growth_stage },
-      { name: "Social", value: currentQolSnapshot.social_ties_stage },
-      { name: "Home", value: currentQolSnapshot.home_stage },
+      { name: t('gameHome.domain.wealth'), value: currentQolSnapshot.wealth_stage },
+      { name: t('gameHome.domain.health'), value: currentQolSnapshot.health_stage },
+      { name: t('gameHome.domain.happiness'), value: currentQolSnapshot.happiness_stage },
+      { name: t('gameHome.domain.love'), value: currentQolSnapshot.love_relationships_stage },
+      { name: t('gameHome.domain.impact'), value: currentQolSnapshot.impact_stage },
+      { name: t('gameHome.domain.growth'), value: currentQolSnapshot.growth_stage },
+      { name: t('gameHome.domain.social'), value: currentQolSnapshot.social_ties_stage },
+      { name: t('gameHome.domain.home'), value: currentQolSnapshot.home_stage },
     ];
     const minValue = Math.min(...domainStages.map(d => d.value));
     return domainStages.filter(d => d.value === minValue).slice(0, 2).map(d => d.name);
@@ -456,8 +458,8 @@ const GameHome = () => {
         });
       } else {
         toast({
-          title: "Couldn't find a quest",
-          description: "Please try again or visit the Library.",
+          title: t('gameHome.questPicker.notFoundTitle'),
+          description: t('gameHome.questPicker.notFoundDescription'),
           variant: "destructive",
         });
       }
@@ -493,7 +495,7 @@ const GameHome = () => {
       setShowCelebrationModal(true);
       await loadGameData();
     } catch (error) {
-      toast({ title: "Error", description: "Failed to save side quest.", variant: "destructive" });
+      toast({ title: t('gameHome.error.genericTitle'), description: t('gameHome.error.saveSideQuest'), variant: "destructive" });
     }
   };
 
@@ -717,8 +719,8 @@ const GameHome = () => {
         isOpen={showCelebrationModal}
         onClose={() => setShowCelebrationModal(false)}
         xpEarned={lastXpEarned}
-        title="Well done!"
-        message="Your next move is ready"
+        title={t('gameHome.celebrationModal.title')}
+        message={t('gameHome.celebrationModal.message')}
       />
 
       <div className="pt-6 sm:pt-10 lg:pt-16 px-4 sm:px-6 lg:px-8 pb-20">
@@ -752,14 +754,14 @@ const GameHome = () => {
                 <div className="mb-8 max-w-md mx-auto">
                   <MyLifeSection
                     qolScores={[
-                      { key: "wealth_stage", label: "Wealth", score: currentQolSnapshot.wealth_stage },
-                      { key: "health_stage", label: "Health", score: currentQolSnapshot.health_stage },
-                      { key: "happiness_stage", label: "Happiness", score: currentQolSnapshot.happiness_stage },
-                      { key: "love_relationships_stage", label: "Love", score: currentQolSnapshot.love_relationships_stage },
-                      { key: "impact_stage", label: "Impact", score: currentQolSnapshot.impact_stage },
-                      { key: "growth_stage", label: "Growth", score: currentQolSnapshot.growth_stage },
-                      { key: "social_ties_stage", label: "Social", score: currentQolSnapshot.social_ties_stage },
-                      { key: "home_stage", label: "Home", score: currentQolSnapshot.home_stage },
+                      { key: "wealth_stage", label: t('gameHome.domain.wealth'), score: currentQolSnapshot.wealth_stage },
+                      { key: "health_stage", label: t('gameHome.domain.health'), score: currentQolSnapshot.health_stage },
+                      { key: "happiness_stage", label: t('gameHome.domain.happiness'), score: currentQolSnapshot.happiness_stage },
+                      { key: "love_relationships_stage", label: t('gameHome.domain.love'), score: currentQolSnapshot.love_relationships_stage },
+                      { key: "impact_stage", label: t('gameHome.domain.impact'), score: currentQolSnapshot.impact_stage },
+                      { key: "growth_stage", label: t('gameHome.domain.growth'), score: currentQolSnapshot.growth_stage },
+                      { key: "social_ties_stage", label: t('gameHome.domain.social'), score: currentQolSnapshot.social_ties_stage },
+                      { key: "home_stage", label: t('gameHome.domain.home'), score: currentQolSnapshot.home_stage },
                     ]}
                   />
                 </div>
@@ -780,10 +782,10 @@ const GameHome = () => {
                   <HeroIcon icon={Sparkles} size="lg" variant="gradient" />
                 </div>
                 <h2 className="text-3xl font-bold text-[#2c3150] mb-4">
-                  Your Operating System for Life
+                  {t('gameHome.onboarding.heading')}
                 </h2>
                 <p className="text-lg text-[#2c3150]/70 mb-8 leading-relaxed max-w-md mx-auto">
-                  Discover your genius. Build your vision. Transform your life.
+                  {t('gameHome.onboarding.subheading')}
                 </p>
                 <div className="space-y-4">
                   <PremiumButton
@@ -803,7 +805,7 @@ const GameHome = () => {
                       navigate("/zone-of-genius/entry");
                     }}
                   >
-                    Begin: Discover My Zone of Genius
+                    {t('gameHome.onboarding.ctaButton')}
                   </PremiumButton>
                 </div>
               </PremiumCard>
@@ -817,14 +819,14 @@ const GameHome = () => {
                 <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-[#8460ea]/10 flex items-center justify-center">
                   <Sparkles className="w-8 h-8 text-[#8460ea]" />
                 </div>
-                <h2 className="text-2xl font-bold text-[#2c3150] mb-2">Your Genius is Saved!</h2>
+                <h2 className="text-2xl font-bold text-[#2c3150] mb-2">{t('gameHome.zogComplete.heading')}</h2>
                 {zogSnapshot?.archetype_title && (
                   <p className="text-lg text-[#8460ea] font-medium mb-4">
                     ✦ {zogSnapshot.archetype_title} ✦
                   </p>
                 )}
                 <p className="text-base text-[rgba(44,49,80,0.7)] mb-8 leading-relaxed">
-                  Ready to discover how to monetize it?
+                  {t('gameHome.zogComplete.subheading')}
                 </p>
                 <Button
                   size="lg"
@@ -832,7 +834,7 @@ const GameHome = () => {
                   onClick={() => navigate("/game/me/genius-business")}
                 >
                   <Sparkles className="w-5 h-5 mr-2" />
-                  <BoldText>Reveal My Genius Business</BoldText>
+                  <BoldText>{t('gameHome.zogComplete.revealButton')}</BoldText>
                 </Button>
               </div>
             </div>
@@ -864,7 +866,7 @@ const GameHome = () => {
             <div className="fixed inset-0 bg-black/50 z-modal flex items-center justify-center p-4">
               <div className="bg-white rounded-3xl max-w-lg w-full max-h-[90vh] overflow-y-auto p-6 sm:p-8">
                 <div className="flex items-center justify-between mb-6">
-                  <h2 className="text-xl font-bold text-[#2c3150]">Choose Your Side Quest</h2>
+                  <h2 className="text-xl font-bold text-[#2c3150]">{t('gameHome.questPicker.title')}</h2>
                   <button
                     onClick={() => {
                       setShowQuestPicker(false);
@@ -882,7 +884,7 @@ const GameHome = () => {
                   <>
                     {/* Duration Selection */}
                     <div className="mb-6">
-                      <p className="text-sm font-semibold text-[#2c3150] mb-3">How long do you have?</p>
+                      <p className="text-sm font-semibold text-[#2c3150] mb-3">{t('gameHome.questPicker.durationPrompt')}</p>
                       <div className="flex flex-wrap gap-2">
                         {QUEST_DURATIONS.map(dur => (
                           <button
@@ -913,7 +915,7 @@ const GameHome = () => {
 
                     {/* Mode Selection */}
                     <div className="mb-6">
-                      <p className="text-sm font-semibold text-[#2c3150] mb-3">What mode?</p>
+                      <p className="text-sm font-semibold text-[#2c3150] mb-3">{t('gameHome.questPicker.modePrompt')}</p>
                       <div className="flex flex-wrap gap-2">
                         {QUEST_MODES.map(mode => (
                           <button
@@ -936,7 +938,7 @@ const GameHome = () => {
                               : 'bg-[#a4a3d0]/20 text-[#2c3150] hover:bg-[#a4a3d0]/30'
                               }`}
                           >
-                            {mode.label}
+                            {t(mode.labelKey)}
                           </button>
                         ))}
                       </div>
@@ -950,10 +952,10 @@ const GameHome = () => {
                       {isLoadingQuest ? (
                         <>
                           <span className="premium-spinner w-4 h-4 mr-2" />
-                          Finding your quest...
+                          {t('gameHome.questPicker.findingQuest')}
                         </>
                       ) : (
-                        'Find Side Quest'
+                        t('gameHome.questPicker.findButton')
                       )}
                     </Button>
                   </>
@@ -1010,12 +1012,12 @@ const GameHome = () => {
                           }}
                           className="w-full"
                         >
-                          I completed this quest
+                          {t('gameHome.questResult.completeButton')}
                         </Button>
                       ) : (
                         <div className="flex items-center gap-2 text-emerald-700 justify-center">
                           <CheckCircle2 className="w-5 h-5" />
-                          <span className="font-medium">Side quest completed!</span>
+                          <span className="font-medium">{t('gameHome.questResult.completed')}</span>
                         </div>
                       )}
                     </div>
@@ -1023,7 +1025,7 @@ const GameHome = () => {
                     {
                       questSuggestion.alternatives?.length > 0 && (
                         <div className="rounded-2xl border border-[#a4a3d0]/20 bg-white/85 backdrop-blur-sm p-4 space-y-3">
-                          <p className="text-xs font-semibold text-[#2c3150]/60 uppercase ">Alternatives</p>
+                          <p className="text-xs font-semibold text-[#2c3150]/60 uppercase ">{t('gameHome.questResult.alternatives')}</p>
                           <div className="space-y-2">
                             {questSuggestion.alternatives.map((alt, idx) => (
                               <button
@@ -1080,7 +1082,7 @@ const GameHome = () => {
                           setSelectedMode(null);
                         }}
                       >
-                        Choose a different quest
+                        {t('gameHome.questResult.chooseDifferent')}
                       </Button>
                       <Button
                         variant="ghost"
@@ -1102,7 +1104,7 @@ const GameHome = () => {
                           setSelectedMode(null);
                         }}
                       >
-                        Skip for now
+                        {t('gameHome.questResult.skipForNow')}
                       </Button>
                     </div>
                   </div>

@@ -38,6 +38,7 @@
  */
 
 import jsPDF from "jspdf";
+import { formatDate } from "@/i18n/format";
 import { supabase } from "@/integrations/supabase/client";
 import { getOrCreateGameProfileId } from "@/lib/gameProfile";
 import type { AppleseedData } from "@/modules/zone-of-genius/appleseedGenerator";
@@ -344,7 +345,7 @@ function renderCover(b: PdfBuilder, bundle: ProfileBundle) {
 
     // Date generated — small, muted, low-key
     const today = new Date();
-    const dateStr = today.toLocaleDateString("en-US", {
+    const dateStr = formatDate(today, {
         year: "numeric",
         month: "long",
         day: "numeric",
@@ -530,8 +531,7 @@ function renderQolSection(b: PdfBuilder, qol: QolData | null) {
     }
 
     // Snapshot date
-    const d = new Date(qol.created_at);
-    const dateStr = d.toLocaleDateString("en-US", {
+    const dateStr = formatDate(qol.created_at, {
         year: "numeric",
         month: "long",
         day: "numeric",

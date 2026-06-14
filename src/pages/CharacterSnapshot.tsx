@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { supabase } from '@/integrations/supabase/client';
 import { getOrCreateGameProfileId } from '@/lib/gameProfile';
 import Navigation from '@/components/Navigation';
@@ -71,6 +72,7 @@ const DOMAIN_TO_STAGE_KEY: Record<string, keyof QolSnapshot> = {
 
 const CharacterSnapshot: React.FC = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const [loading, setLoading] = useState(true);
   const [zogSnapshot, setZogSnapshot] = useState<ZogSnapshot | null>(null);
   const [qolSnapshot, setQolSnapshot] = useState<QolSnapshot | null>(null);
@@ -152,7 +154,7 @@ const CharacterSnapshot: React.FC = () => {
 
   const getTalentName = (id: number) => {
     const talent = TALENTS.find(t => t.id === id);
-    return talent?.name || `Talent ${id}`;
+    return talent?.name || t('characterSnapshot.talentFallback', { id });
   };
 
   const getDomainInfo = (domainId: string, stageValue: number) => {
@@ -164,8 +166,8 @@ const CharacterSnapshot: React.FC = () => {
 
     return {
       name: domain.name,
-      currentTitle: currentStage?.title || `Stage ${stageValue}`,
-      nextTitle: nextStage?.title || 'Peak',
+      currentTitle: currentStage?.title || t('characterSnapshot.stageFallback', { stage: stageValue }),
+      nextTitle: nextStage?.title || t('characterSnapshot.peakFallback'),
     };
   };
 
@@ -180,11 +182,11 @@ const CharacterSnapshot: React.FC = () => {
   const hasAnyData = zogSnapshot || qolSnapshot || multipleIntelligences || personalityTests;
 
   // Calculate highest and lowest domains for highlighting
-  const getDomainStyles = (domainId: string): { className: string; label: string | null } => {
-    if (!qolSnapshot) return { className: '', label: null };
+  const getDomainStyles = (domainId: string): { className: string; label: string | null; tone: 'low' | 'high' | null } => {
+    if (!qolSnapshot) return { className: '', label: null, tone: null };
 
     const stageKey = DOMAIN_TO_STAGE_KEY[domainId];
-    if (!stageKey) return { className: '', label: null };
+    if (!stageKey) return { className: '', label: null, tone: null };
 
     const values = Object.values(DOMAIN_TO_STAGE_KEY).map(key => qolSnapshot[key] || 0);
     const currentValue = qolSnapshot[stageKey] || 0;
@@ -194,16 +196,18 @@ const CharacterSnapshot: React.FC = () => {
     if (currentValue === minValue && minValue !== maxValue) {
       return {
         className: 'bg-red-50 border-red-200',
-        label: '↓ needs attention'
+        label: t('characterSnapshot.domainNeedsAttention'),
+        tone: 'low'
       };
     }
     if (currentValue === maxValue && minValue !== maxValue) {
       return {
         className: 'bg-emerald-50 border-emerald-200',
-        label: '✓ strength'
+        label: t('characterSnapshot.domainStrength'),
+        tone: 'high'
       };
     }
-    return { className: 'bg-muted/50 border-transparent', label: null };
+    return { className: 'bg-muted/50 border-transparent', label: null, tone: null };
   };
 
   return (
@@ -213,20 +217,22 @@ const CharacterSnapshot: React.FC = () => {
       <main className="container max-w-4xl mx-auto px-4 py-8 pt-24">
         <BackButton
           to="/game"
-          label="Back to Game"
+          label={t('characterSnapshot.backToGame')}
           className="text-muted-foreground hover:text-foreground mb-6"
         />
 
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold mb-2">
-            {firstName ? `${firstName}'s` : 'Your'} Full Snapshot
+            {firstName
+              ? t('characterSnapshot.titleNamed', { name: firstName })
+              : t('characterSnapshot.titleGeneric')}
           </h1>
           <p className="text-muted-foreground">
-            Your self-understanding in one place
+            {t('characterSnapshot.subtitle')}
           </p>
           <Button variant="ghost" size="sm" onClick={loadCharacterData} className="mt-2">
             <RefreshCw className="w-4 h-4 mr-2" />
-            Refresh
+            {t('characterSnapshot.refresh')}
           </Button>
         </div>
 
@@ -234,16 +240,16 @@ const CharacterSnapshot: React.FC = () => {
           <Card className="text-center py-12">
             <CardContent>
               <User className="w-16 h-16 mx-auto mb-4 text-muted-foreground/50" />
-              <h2 className="text-xl font-semibold mb-2">No Character Data Yet</h2>
+              <h2 className="text-xl font-semibold mb-2">{t('characterSnapshot.emptyTitle')}</h2>
               <p className="text-muted-foreground mb-6">
-                Complete assessments to build your character profile
+                {t('characterSnapshot.emptyBody')}
               </p>
               <div className="flex flex-col sm:flex-row gap-3 justify-center">
                 <Button onClick={() => navigate('/zone-of-genius')}>
-                  Discover Your Genius
+                  {t('characterSnapshot.discoverGenius')}
                 </Button>
                 <Button variant="outline" onClick={() => navigate('/quality-of-life-map/assessment')}>
-                  Map Your Life
+                  {t('characterSnapshot.mapYourLife')}
                 </Button>
               </div>
             </CardContent>
@@ -256,20 +262,20 @@ const CharacterSnapshot: React.FC = () => {
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
                     <Sparkles className="w-5 h-5 text-amber-500" />
-                    Zone of Genius
+                    {t('characterSnapshot.zoneOfGenius')}
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div>
-                    <p className="text-xs uppercase  text-muted-foreground mb-1">Archetype</p>
+                    <p className="text-xs uppercase  text-muted-foreground mb-1">{t('characterSnapshot.archetype')}</p>
                     <p className="text-xl font-semibold">{zogSnapshot.archetype_title}</p>
                   </div>
                   <div>
-                    <p className="text-xs uppercase  text-muted-foreground mb-1">Core Pattern</p>
+                    <p className="text-xs uppercase  text-muted-foreground mb-1">{t('characterSnapshot.corePattern')}</p>
                     <p className="text-sm leading-relaxed">{zogSnapshot.core_pattern}</p>
                   </div>
                   <div>
-                    <p className="text-xs uppercase  text-muted-foreground mb-2">Top 3 Talents</p>
+                    <p className="text-xs uppercase  text-muted-foreground mb-2">{t('characterSnapshot.topThreeTalents')}</p>
                     <div className="flex flex-wrap gap-2">
                       {zogSnapshot.top_three_talents.map((id) => (
                         <span key={id} className="px-3 py-1 bg-amber-500/10 text-amber-700 dark:text-amber-300 rounded-full text-sm">
@@ -279,7 +285,7 @@ const CharacterSnapshot: React.FC = () => {
                     </div>
                   </div>
                   <div>
-                    <p className="text-xs uppercase  text-muted-foreground mb-2">Top 10 Talents</p>
+                    <p className="text-xs uppercase  text-muted-foreground mb-2">{t('characterSnapshot.topTenTalents')}</p>
                     <div className="flex flex-wrap gap-2">
                       {zogSnapshot.top_ten_talents.map((id) => (
                         <span key={id} className="px-2 py-1 bg-muted text-muted-foreground rounded text-xs">
@@ -290,7 +296,7 @@ const CharacterSnapshot: React.FC = () => {
                   </div>
                   {zogSnapshot.mastery_action && (
                     <div className="mt-4 p-4 bg-amber-50 border border-amber-200 rounded-lg">
-                      <p className="text-xs uppercase  text-amber-700 mb-1">🔁 Mastery Action</p>
+                      <p className="text-xs uppercase  text-amber-700 mb-1">{t('characterSnapshot.masteryAction')}</p>
                       <p className="text-sm font-medium text-amber-900">{zogSnapshot.mastery_action}</p>
                     </div>
                   )}
@@ -304,7 +310,7 @@ const CharacterSnapshot: React.FC = () => {
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
                     <Target className="w-5 h-5 text-emerald-500" />
-                    Quality of Life Map
+                    {t('characterSnapshot.qualityOfLifeMap')}
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
@@ -312,7 +318,7 @@ const CharacterSnapshot: React.FC = () => {
                     {Object.entries(DOMAIN_TO_STAGE_KEY).map(([domainId, stageKey]) => {
                       const value = qolSnapshot[stageKey] || 0;
                       const info = getDomainInfo(domainId, value);
-                      const { className, label } = getDomainStyles(domainId);
+                      const { className, label, tone } = getDomainStyles(domainId);
 
                       return (
                         <div
@@ -328,11 +334,11 @@ const CharacterSnapshot: React.FC = () => {
                           </p>
                           {value < 10 && (
                             <p className="text-xs text-muted-foreground">
-                              → growing into <span className="italic">{info.nextTitle}</span>
+                              {t('characterSnapshot.growingIntoBefore')}<span className="italic">{info.nextTitle}</span>
                             </p>
                           )}
                           {label && (
-                            <p className={`text-xs mt-2 font-medium ${label.startsWith('↓') ? 'text-red-600' : 'text-emerald-600'}`}>
+                            <p className={`text-xs mt-2 font-medium ${tone === 'low' ? 'text-red-600' : 'text-emerald-600'}`}>
                               {label}
                             </p>
                           )}
@@ -350,7 +356,7 @@ const CharacterSnapshot: React.FC = () => {
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
                     <Brain className="w-5 h-5 text-purple-500" />
-                    Multiple Intelligences
+                    {t('characterSnapshot.multipleIntelligences')}
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
@@ -380,15 +386,18 @@ const CharacterSnapshot: React.FC = () => {
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
                     <Heart className="w-5 h-5 text-rose-500" />
-                    Personality Tests
+                    {t('characterSnapshot.personalityTests')}
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   {personalityTests.enneagram && (
                     <div className="p-3 bg-muted/50 rounded-lg">
-                      <p className="text-xs uppercase  text-muted-foreground mb-1">Enneagram</p>
+                      <p className="text-xs uppercase  text-muted-foreground mb-1">{t('characterSnapshot.enneagram')}</p>
                       <p className="font-semibold mb-3">
-                        Type {personalityTests.enneagram.primary_type}: {personalityTests.enneagram.primary_name}
+                        {t('characterSnapshot.enneagramType', {
+                          type: personalityTests.enneagram.primary_type,
+                          name: personalityTests.enneagram.primary_name,
+                        })}
                       </p>
                       {personalityTests.enneagram.scores && (
                         <div className="space-y-1.5">
@@ -400,7 +409,7 @@ const CharacterSnapshot: React.FC = () => {
                             .sort((a, b) => b.score - a.score)
                             .map(({ type, score }) => (
                               <div key={type} className="flex items-center gap-2 text-xs">
-                                <span className="w-14 text-muted-foreground">Type {type}</span>
+                                <span className="w-14 text-muted-foreground">{t('characterSnapshot.typeShort', { type })}</span>
                                 <div className="flex-1 h-1.5 bg-muted rounded-full overflow-hidden">
                                   <div className="h-full bg-primary" style={{ width: `${(score / 30) * 100}%` }} />
                                 </div>
@@ -413,7 +422,7 @@ const CharacterSnapshot: React.FC = () => {
                   )}
                   {personalityTests['16personalities'] && (
                     <div className="p-3 bg-muted/50 rounded-lg">
-                      <p className="text-xs uppercase  text-muted-foreground mb-1">16 Personalities (MBTI)</p>
+                      <p className="text-xs uppercase  text-muted-foreground mb-1">{t('characterSnapshot.sixteenPersonalities')}</p>
                       <p className="font-semibold">
                         {personalityTests['16personalities'].type_code} – {personalityTests['16personalities'].type_name}
                       </p>
@@ -435,30 +444,30 @@ const CharacterSnapshot: React.FC = () => {
                   )}
                   {personalityTests.human_design && (
                     <div className="p-3 bg-muted/50 rounded-lg">
-                      <p className="text-xs uppercase  text-muted-foreground mb-2">Human Design</p>
+                      <p className="text-xs uppercase  text-muted-foreground mb-2">{t('characterSnapshot.humanDesign')}</p>
                       <p className="font-semibold text-lg mb-3">{personalityTests.human_design.type}</p>
                       <div className="grid grid-cols-2 gap-2">
                         <div className="p-2 rounded bg-background border">
-                          <p className="text-[10px] uppercase  text-muted-foreground">Strategy</p>
+                          <p className="text-[10px] uppercase  text-muted-foreground">{t('characterSnapshot.hdStrategy')}</p>
                           <p className="text-sm font-medium">{personalityTests.human_design.strategy}</p>
                         </div>
                         <div className="p-2 rounded bg-background border">
-                          <p className="text-[10px] uppercase  text-muted-foreground">Authority</p>
+                          <p className="text-[10px] uppercase  text-muted-foreground">{t('characterSnapshot.hdAuthority')}</p>
                           <p className="text-sm font-medium">{personalityTests.human_design.authority}</p>
                         </div>
                         <div className="p-2 rounded bg-background border">
-                          <p className="text-[10px] uppercase  text-muted-foreground">Profile</p>
+                          <p className="text-[10px] uppercase  text-muted-foreground">{t('characterSnapshot.hdProfile')}</p>
                           <p className="text-sm font-medium">{personalityTests.human_design.profile}</p>
                         </div>
                         {personalityTests.human_design.definition && (
                           <div className="p-2 rounded bg-background border">
-                            <p className="text-[10px] uppercase  text-muted-foreground">Definition</p>
+                            <p className="text-[10px] uppercase  text-muted-foreground">{t('characterSnapshot.hdDefinition')}</p>
                             <p className="text-sm font-medium">{personalityTests.human_design.definition}</p>
                           </div>
                         )}
                         {personalityTests.human_design.incarnation_cross && (
                           <div className="p-2 rounded bg-background border col-span-2">
-                            <p className="text-[10px] uppercase  text-muted-foreground">Incarnation Cross</p>
+                            <p className="text-[10px] uppercase  text-muted-foreground">{t('characterSnapshot.hdIncarnationCross')}</p>
                             <p className="text-sm font-medium">{personalityTests.human_design.incarnation_cross}</p>
                           </div>
                         )}
@@ -473,16 +482,16 @@ const CharacterSnapshot: React.FC = () => {
             <div className="flex flex-wrap gap-3 justify-center pt-4">
               {!zogSnapshot && (
                 <Button onClick={() => navigate('/zone-of-genius')}>
-                  Discover Your Genius
+                  {t('characterSnapshot.discoverGenius')}
                 </Button>
               )}
               {!qolSnapshot && (
                 <Button variant="outline" onClick={() => navigate('/quality-of-life-map/assessment')}>
-                  Map Your Life
+                  {t('characterSnapshot.mapYourLife')}
                 </Button>
               )}
               <Button variant="outline" onClick={() => navigate('/game')}>
-                Back to Game
+                {t('characterSnapshot.backToGameButton')}
               </Button>
             </div>
           </div>

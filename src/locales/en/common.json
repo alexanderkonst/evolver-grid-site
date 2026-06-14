@@ -1775,5 +1775,608 @@
       "notFoundYet": "Haven't found your genius yet?",
       "discoverZoG": "Discover Your Zone of Genius"
     }
+  },
+  "gameHome": {
+    "questMode": {
+      "activating": "Activating / Energizing",
+      "relaxing": "Relaxing / Calming",
+      "balanced": "Balanced"
+    },
+    "celebration": {
+      "levelUpTitle": "Level up!",
+      "levelUpDetail": "You reached level {{level}}.",
+      "xpTitle": "+{{xp}} XP",
+      "xpDetail": "Momentum unlocked."
+    },
+    "error": {
+      "loadNextMove": "We couldn't load your next move yet. Please retry.",
+      "loadDataTitle": "Error loading data",
+      "loadDataDescription": "Please refresh the page to try again.",
+      "genericTitle": "Error",
+      "saveSideQuest": "Failed to save side quest."
+    },
+    "questPicker": {
+      "notFoundTitle": "Couldn't find a quest",
+      "notFoundDescription": "Please try again or visit the Library.",
+      "title": "Choose Your Side Quest",
+      "durationPrompt": "How long do you have?",
+      "modePrompt": "What mode?",
+      "findingQuest": "Finding your quest...",
+      "findButton": "Find Side Quest"
+    },
+    "celebrationModal": {
+      "title": "Well done!",
+      "message": "Your next move is ready"
+    },
+    "onboarding": {
+      "heading": "Your Operating System for Life",
+      "subheading": "Discover your genius. Build your vision. Transform your life.",
+      "ctaButton": "Begin: Discover My Zone of Genius"
+    },
+    "zogComplete": {
+      "heading": "Your Genius is Saved!",
+      "subheading": "Ready to discover how to monetize it?",
+      "revealButton": "Reveal My Genius Business"
+    },
+    "questResult": {
+      "completeButton": "I completed this quest",
+      "completed": "Side quest completed!",
+      "alternatives": "Alternatives",
+      "chooseDifferent": "Choose a different quest",
+      "skipForNow": "Skip for now"
+    },
+    "domain": {
+      "wealth": "Wealth",
+      "health": "Health",
+      "happiness": "Happiness",
+      "love": "Love",
+      "impact": "Impact",
+      "growth": "Growth",
+      "social": "Social",
+      "home": "Home"
+    }
+  },
+  "holonicModules": {
+    "hero": {
+      "badge": "Module Taxonomy v2.2",
+      "title": "The Genius Business System",
+      "stats": "{{modules}} modules · {{submodules}} submodules · {{spaces}} spaces.",
+      "subtitle": "Every module is a part of you."
+    },
+    "map": {
+      "ariaLabel": "Holonic system map — {{modules}} modules across {{spaces}} spaces",
+      "center": "YOU"
+    },
+    "card": {
+      "submodules_one": "{{count}} submodule",
+      "submodules_other": "{{count}} submodules",
+      "requires": "Requires: {{deps}}"
+    },
+    "list": {
+      "moduleCount_one": "({{count}} module)",
+      "moduleCount_other": "({{count}} modules)"
+    },
+    "versionScheme": {
+      "title": "Versioning Scheme",
+      "subtitle": "Semantic versioning for product modules",
+      "concept": "0.1 Concept",
+      "prototype": "0.3 Prototype",
+      "poc": "0.5 PoC",
+      "alpha": "0.7 Alpha",
+      "mvp": "0.9 MVP",
+      "commercial": "1.0 Commercial"
+    },
+    "cta": {
+      "title": "Start with what calls you",
+      "body": "Every module is an entry point. Pick one, begin, and the system meets you where you are.",
+      "button": "Begin Your Journey"
+    },
+    "spaces": {
+      "ME": {
+        "label": "ME",
+        "tagline": "Know yourself, your profile"
+      },
+      "LEARN": {
+        "label": "LEARN",
+        "tagline": "Practices, growth paths"
+      },
+      "MEET": {
+        "label": "MEET",
+        "tagline": "Events, community"
+      },
+      "COLLABORATE": {
+        "label": "COLLABORATE",
+        "tagline": "Matchmaking, discover"
+      },
+      "BUILD": {
+        "label": "BUILD",
+        "tagline": "Create your offer & products"
+      },
+      "BUYSELL": {
+        "label": "OFFER",
+        "tagline": "Marketplace"
+      },
+      "SPECIAL": {
+        "label": "SPECIAL",
+        "tagline": "Onboarding & tour"
+      },
+      "STANDALONE": {
+        "label": "STANDALONE",
+        "tagline": "Independent tools"
+      }
+    },
+    "modules": {
+      "zog": {
+        "name": "Zone of Genius",
+        "masterResult": "\"Who am I?\" → I know my genius and how to use it"
+      },
+      "qol": {
+        "name": "Quality of Life",
+        "masterResult": "Fog about my life → Clear map of where I stand"
+      },
+      "mission": {
+        "name": "Mission Discovery",
+        "masterResult": "Unclear purpose → Clear life mission I can live",
+        "dependencies": "ZoG recommended"
+      },
+      "resources": {
+        "name": "Resource Mapping",
+        "masterResult": "Hidden assets → Visible superpowers ready to share"
+      },
+      "personality": {
+        "name": "Personality Tests",
+        "masterResult": "Surface knowledge → Deep personality insights"
+      },
+      "daily-loop": {
+        "name": "Daily Loop",
+        "masterResult": "Overwhelmed → Clear on my ONE next move",
+        "dependencies": "ZoG, QoL, Tour"
+      },
+      "library": {
+        "name": "Library",
+        "masterResult": "Stuck in my head → Embodied daily practice"
+      },
+      "growth-paths": {
+        "name": "Growth Paths",
+        "masterResult": "Scattered efforts → Step-by-step mastery path",
+        "dependencies": "Onboarding"
+      },
+      "skill-trees": {
+        "name": "Skill Trees",
+        "masterResult": "Plateau → Next level unlocked",
+        "dependencies": "Basic onboarding"
+      },
+      "events": {
+        "name": "Events",
+        "masterResult": "Solo journey → Part of live community"
+      },
+      "mens-circle": {
+        "name": "Men's Circle",
+        "masterResult": "Alone in my journey → Held by brothers"
+      },
+      "matchmaking": {
+        "name": "Matchmaking",
+        "masterResult": "Alone → Matched with my people",
+        "dependencies": "ZoG, Resources"
+      },
+      "connections": {
+        "name": "Connections",
+        "masterResult": "Invisible network → See who's aligned with me",
+        "dependencies": "Profile complete"
+      },
+      "genius-business": {
+        "name": "Genius Business",
+        "masterResult": "Hidden genius → Offer the world wants",
+        "dependencies": "ZoG complete"
+      },
+      "product-builder": {
+        "name": "Product Builder",
+        "masterResult": "Idea in my head → Working product",
+        "dependencies": "Genius Business recommended"
+      },
+      "business-incubator": {
+        "name": "Business Incubator",
+        "masterResult": "Building alone → Backed by a studio",
+        "dependencies": "Genius Business"
+      },
+      "marketplace": {
+        "name": "Marketplace",
+        "masterResult": "No visibility → My offer discoverable",
+        "dependencies": "Genius Offer"
+      },
+      "onboarding": {
+        "name": "Onboarding",
+        "masterResult": "Stranger → System knows who I am"
+      },
+      "tour": {
+        "name": "Tour",
+        "masterResult": "Lost → Know exactly where to start",
+        "dependencies": "Onboarding"
+      },
+      "equilibrium": {
+        "name": "Equilibrium",
+        "masterResult": "Arbitrary willpower-driven work → Harmonious cycle-aware deep work"
+      },
+      "art": {
+        "name": "Art",
+        "masterResult": "Abstract self → Visual expression of my essence"
+      },
+      "transcriber": {
+        "name": "Transcriber",
+        "masterResult": "Video content → Searchable text transcript"
+      },
+      "clock": {
+        "name": "Clock",
+        "masterResult": "TBD"
+      }
+    }
+  },
+  "publicDossier": {
+    "loading": "Loading…",
+    "notFound": {
+      "title": "Dossier not found",
+      "body": "This dossier may have been unpublished or never existed."
+    },
+    "glance": {
+      "avgSpecificity": "avg specificity",
+      "artifacts": "artifacts",
+      "published": "Published"
+    },
+    "artifactMeta": "v{{version}} · specificity {{score}}",
+    "empty": "(empty)",
+    "footer": {
+      "brand": "Find Your Top Talent"
+    },
+    "phase": {
+      "canvas": "Foundation",
+      "session": "First Session",
+      "marketing": "Why · How · Buy",
+      "distribution": "Where People Find It",
+      "communications": "How It Speaks",
+      "publication": "The Page"
+    },
+    "artifact": {
+      "uniqueness": "Uniqueness",
+      "myth": "Myth",
+      "tribe": "Tribe",
+      "pain": "Pain",
+      "promise": "Promise",
+      "lead_magnet": "Lead Magnet",
+      "value_ladder": "Value Ladder",
+      "specificity_matrix": "Specificity Matrix",
+      "session_bridge": "1st Session Design",
+      "core_belief": "Core Belief",
+      "packaging": "Packaging",
+      "frictionless_purchase": "Frictionless Purchase",
+      "reach": "Reach",
+      "delivery": "Delivery",
+      "spread": "Spread",
+      "surface_inventory": "Surface Inventory",
+      "tuning_fork": "Tuning Fork",
+      "golden_dm": "Golden DM",
+      "landing_page": "Landing Page"
+    }
+  },
+  "publicLanding": {
+    "loading": "Loading…",
+    "notFoundTitle": "Page not found",
+    "notFoundBody": "This landing page may have been unpublished or never existed.",
+    "fallbackTitle": "Landing Page",
+    "emptyContent": "This page was published but doesn't have rendered content yet.",
+    "promiseLabel": "What this makes possible",
+    "proofLabel": "Proof",
+    "optionsLabel": "Options",
+    "ctaFallback": "Get started",
+    "publishedOn": "Published {{date}}",
+    "brand": "Find Your Top Talent"
+  },
+  "qolAssessment": {
+    "introEyebrow": "Quality of Life Map",
+    "introHeadline": "Rate 8 life areas",
+    "introSubhead": "See where you're thriving and where to grow.",
+    "introCta": "Map My Life",
+    "domainPrompt": "Select the stage that best represents your current state in this domain.",
+    "seeResults": "See Results",
+    "previous": "Previous",
+    "back": "Back",
+    "backUpper": "BACK",
+    "progressCount": "{{current}} of {{total}}"
+  },
+  "characterSnapshot": {
+    "backToGame": "Back to Game",
+    "titleNamed": "{{name}}'s Full Snapshot",
+    "titleGeneric": "Your Full Snapshot",
+    "subtitle": "Your self-understanding in one place",
+    "refresh": "Refresh",
+    "emptyTitle": "No Character Data Yet",
+    "emptyBody": "Complete assessments to build your character profile",
+    "discoverGenius": "Discover Your Genius",
+    "mapYourLife": "Map Your Life",
+    "zoneOfGenius": "Zone of Genius",
+    "archetype": "Archetype",
+    "corePattern": "Core Pattern",
+    "topThreeTalents": "Top 3 Talents",
+    "topTenTalents": "Top 10 Talents",
+    "masteryAction": "🔁 Mastery Action",
+    "talentFallback": "Talent {{id}}",
+    "qualityOfLifeMap": "Quality of Life Map",
+    "growingIntoBefore": "→ growing into ",
+    "stageFallback": "Stage {{stage}}",
+    "peakFallback": "Peak",
+    "domainNeedsAttention": "↓ needs attention",
+    "domainStrength": "✓ strength",
+    "multipleIntelligences": "Multiple Intelligences",
+    "personalityTests": "Personality Tests",
+    "enneagram": "Enneagram",
+    "enneagramType": "Type {{type}}: {{name}}",
+    "typeShort": "Type {{type}}",
+    "sixteenPersonalities": "16 Personalities (MBTI)",
+    "humanDesign": "Human Design",
+    "hdStrategy": "Strategy",
+    "hdAuthority": "Authority",
+    "hdProfile": "Profile",
+    "hdDefinition": "Definition",
+    "hdIncarnationCross": "Incarnation Cross",
+    "backToGameButton": "Back to Game"
+  },
+  "pathPage": {
+    "hero": {
+      "h1Before": "Solid Founder-Market Fit. Early",
+      "h1ProductMarketFit": "Product-Market Fit",
+      "h1Middle": ". Traction. Organic Demand.",
+      "h1InvestorsLovingIt": "Investors Loving It",
+      "h1After": ".",
+      "h2": "In 6–8 Weeks.",
+      "guarantee": "Money-Back Guaranteed.",
+      "fineprint": "Provided you do your part."
+    },
+    "ladder": {
+      "payAsYouProgress": "Pay as you progress",
+      "stepsWeeks": "7 steps · 6–8 weeks",
+      "step1": {
+        "step": "Step 1",
+        "title": "Name Your Top Talent",
+        "duration": "Minutes",
+        "price": "Free"
+      },
+      "step23": {
+        "step": "Step 2 + 3",
+        "title": "Articulate it with Precision · Enhance it with Business Structure",
+        "duration": "2-hour workshop",
+        "price": "$555"
+      },
+      "step4": {
+        "step": "Step 4",
+        "title": "Build Your Product, Package it, Strategize Distribution, Create Comms Kit, Pick a Business Model & License, Rehearse, Pass the \"Founder Consciousness Adjustment\", Add Leverage & Virality",
+        "duration": "3 weeks, alongside other conscious impact entrepreneurs",
+        "price": "$1,111"
+      },
+      "step5": {
+        "step": "Step 5",
+        "title": "Gift it or Sell It To Beta-Test That Everything Works",
+        "duration": "Estimated 1–3 weeks",
+        "price": "$333"
+      },
+      "step6": {
+        "step": "Step 6",
+        "title": "Laser-Focus Tactically and Go Live",
+        "duration": "2-week container",
+        "price": "$1,111",
+        "priceDetail": "+ $2,222 from your first $10k (1/3 of first $10k)"
+      },
+      "step7": {
+        "step": "Step 7",
+        "title": "Turn Organic Growth into Scaling Impact and Revenue",
+        "duration": "The next octave",
+        "price": "By invitation"
+      }
+    },
+    "totals": {
+      "beforeTotal": "The upfront path (Steps 1–5) totals",
+      "afterTotal": ". Step 6 adds",
+      "step6Upfront": "$1,111 upfront",
+      "and": "and",
+      "step6Share": "1/3 of your first $10k in revenue",
+      "tail": "— capped there. After that, 0%. Step 7 is by invitation only, after you have early product-market fit and organic demand."
+    },
+    "cta": {
+      "primary": "Start free with Step 1",
+      "secondary": "Book your Productize Yourself Session"
+    },
+    "close": {
+      "optional": "Every step is optional. Every step delivers a complete transformation in itself.",
+      "guarantee": "Pay as you progress. Money-back guarantee on every step."
+    }
+  },
+  "coreLoopHome": {
+    "myNextMove": "My Next Move",
+    "later": "Later",
+    "explore": "Explore",
+    "exploreAllSpaces": "Explore All Spaces",
+    "alreadyHaveAccount": "Already have an account?",
+    "signIn": "Sign in",
+    "celebrationTitle": "Great Progress!",
+    "celebrationMessage": "You're building your transformation journey."
+  },
+  "myArtifacts": {
+    "back": "Back",
+    "eyebrow": "My Artifacts",
+    "heading": "Your unique business, in your own words.",
+    "intro": "Each artifact below is one piece of your business, captured at a version and a precision score. As you iterate, create new versions — nothing is ever overwritten.",
+    "loading": "Loading your artifacts…",
+    "empty": {
+      "title": "No artifacts yet.",
+      "body": "Start with Step 1 — name your top talent in a couple of minutes. Everything else grows from there.",
+      "cta": "Find Your Top Talent"
+    },
+    "step": "Step {{number}}",
+    "artifactCount": "{{count}} artifacts",
+    "artifactCount_one": "{{count}} artifact",
+    "artifactCount_few": "{{count}} artifacts",
+    "artifactCount_many": "{{count}} artifacts",
+    "artifactCount_other": "{{count}} artifacts",
+    "collapse": "Collapse",
+    "readMore": "Read more",
+    "labels": {
+      "talentSentence": "Top Talent — one sentence",
+      "myth": "Myth",
+      "tribe": "Tribe",
+      "promise": "Transformational Promise",
+      "pain": "Pain",
+      "journey": "User Journey",
+      "valueLadder": "Value Ladder",
+      "uniqueProduct": "First Unique Product"
+    }
+  },
+  "onePager": {
+    "wordmarkAriaLabel": "Planetary OS — home",
+    "heroEyebrow": "Coordination infrastructure",
+    "heroTaglineBefore": "An operating system for a civilization that coordinates around",
+    "heroTaglineEmphasis": "who people actually are",
+    "heroTaglineAfter": ".",
+    "heroBody": "Planetary OS helps people find their unique contribution, find the right people to build with, and turn that into real ventures. It does the same thing at every scale: a person, a team, a community, ecosystems, evolution-oriented communities, network states, and land-based projects. The entire system runs on one core move: making a person's differentiated value legible enough that the right collaborations, ventures, and opportunities can form around it.",
+    "heroSoftCta": "Try it free in two minutes",
+    "shiftEyebrow": "The shift",
+    "shiftPara1": "Industrial civilization coordinated people by standardizing them: roles, credentials, replaceability. The world increasingly rewards the opposite, the differentiated way each person thinks, creates, and contributes. But that value stays trapped, often illegible even to the person who holds it, so it never gets coordinated. Planetary OS is the infrastructure that makes it legible.",
+    "shiftPara2": "Most communities are still directories of high-agency people, not coordination systems. They gather impressive people, but they do not reliably make the right people find and build with each other. Planetary OS turns a community's latent talent into coordination throughput by making each member's unique leverage precise enough to match, route, and activate.",
+    "kernelEyebrow": "The kernel",
+    "kernelPara1": "At the center is one atomic operation: turn a person's differentiated nature into a clear, usable profile of what they uniquely think, create, and contribute, in about fifteen minutes. Just as a computer's kernel manages memory and processes so applications can run, this kernel manages legible human difference so coordination can run. Everything else is built on top of it.",
+    "kernelPara2Before": "For communities, the first expression is",
+    "kernelPara2Emphasis": "Community Member Onboarding",
+    "kernelPara2After": ": precision purpose discovery, precision mission discovery, and precision resource mapping. The question is not only what someone is good at, but what role they are naturally here to play inside a living system.",
+    "gameplayEyebrow": "The gameplay",
+    "gameplayIntro": "You move through it like a game. Each step stands on its own, and each unlocks the next.",
+    "gameplay": {
+      "step1Title": "Top Talent",
+      "step1Desc": "name what you are uniquely great at.",
+      "step2Title": "Mission",
+      "step2Desc": "name where you are going.",
+      "step3Title": "Assets",
+      "step3Desc": "map what you already have to work with.",
+      "step4Title": "Matching",
+      "step4Desc": "meet the people you actually compound with.",
+      "step5Title": "Quality of Life",
+      "step5Desc": "surface who you will truly resonate with, so matches go deep, not wide.",
+      "step6Title": "Venture",
+      "step6Desc": "turn aligned people into something built."
+    },
+    "gameplayHolonic": "Each module is whole on its own and fits a coherent larger whole. That is what holonic means: standalone and part of the pattern at once.",
+    "metricEyebrow": "The metric",
+    "metricPara1Before": "The whole system exists to move one number:",
+    "metricPara1Emphasis": "collaboration rate",
+    "metricPara1After": ", the share of members who actually start building together. The hidden engine beneath every community's growth and output, and almost nobody measures it.",
+    "metricPara2": "Secondary metrics follow from that one: collaborations formed, ventures formed, projects launched, introductions converted, member retention through meaningful participation, and member GDP.",
+    "growsEyebrow": "How it grows",
+    "growsPara": "The same pattern runs at every scale, and it was proven on its own founder first, then a small founder cohort, before any network. The first holon tests every piece before the network inherits it. From one person, to a community, to an ecosystem, a network state, a land-based project.",
+    "touchEyebrow": "How to touch it",
+    "touchPara": "A person enters free, in about fifteen minutes. A community, ecosystem, or network runs it as the coordination layer beneath its membership, skinned to its own brand. It is open-source and forkable, owned by the people who use it.",
+    "primaryCta": "Find your top talent",
+    "ctaMeta": "Free · 2 minutes · No signup",
+    "secondaryDemo": "See a live demo of the platform",
+    "secondaryBook": "Book a chat with Aleksandr",
+    "stakeEyebrow": "The stake",
+    "stakeQuote": "A civilization that organizes around who people actually are, instead of flattening them into standardized roles. Make differentiated human value legible, and everything else, the matching, the ventures, the ecosystems and network states, follows.",
+    "footerTagline": "Built in the open. Owned by the people who use it."
+  },
+  "founderMarketFit": {
+    "heroEyebrow": "For founders between ventures",
+    "heroH1Line1": "You've already been building it.",
+    "heroH1Line2": "You just can't see it yet.",
+    "heroSub": "The pattern you keep seeing. The problem you can't stop working on. That's not a detour — that's the business.",
+    "heroCta": "See What You've Been Building",
+    "heroContext": "90-min diagnostic · $197 founding rate",
+    "painHeading": "Sound familiar?",
+    "painItem1Before": "\"I just need to figure out the right thing to ",
+    "painItem1Strong": "go all-in",
+    "painItem1After": " on.\"",
+    "painItem2Before": "\"I've been in this transition ",
+    "painItem2Strong": "for too long",
+    "painItem2After": ".\"",
+    "painItem3": "\"I'm so much more capable than my results show.\"",
+    "painItem4": "\"Something fundamental is off but I can't see what.\"",
+    "painItem5": "\"I feel like I'm drilling hoping I'm almost through the wall.\"",
+    "painReframeBefore": "This isn't a strategy problem. It's not a motivation problem. It's a ",
+    "painReframeStrong": "recognition",
+    "painReframeAfter": " problem. The business you're looking for is already inside the thing you can't stop doing. The pattern you keep seeing, the problem you keep circling — that's not scattered energy. That's signal.",
+    "painReframeP2": "You just need someone who can see the pattern from outside the loop.",
+    "mythHeading": "What the startup world gets wrong",
+    "mythP1": "Everyone tells you to find product-market fit through iteration. Test. Pivot. Talk to customers. Try keys in locks until one fits.",
+    "mythP2": "But what if the key is already inside you?",
+    "mythP3Strong": "Founder-Market Fit",
+    "mythP3After": " is the match between who you are at your core and what you build. When it's off: endless pivots, mediocre traction, burnout. When it's on: the venture compounds because it's built on who you actually are.",
+    "mythP4Before": "Most founders skip this step. They jump to \"what should I build?\" before answering ",
+    "mythP4Strong": "who am I when I'm at my brightest?",
+    "mythP5": "No amount of execution excellence fixes an inverted sequence.",
+    "revealBefore": "Before Product-Market Fit —",
+    "revealHeadline": "there's Founder-Market Fit.",
+    "revealAfter1": "The structural match between who you are and what you build. Without it, every venture feels like pushing uphill. The breakthrough stays \"right around the corner\" — and the corner keeps moving.",
+    "revealAfter2Before": "With it — unfair advantage. The thing that makes the hard parts feel like ",
+    "revealAfter2Em": "your",
+    "revealAfter2After": " hard parts.",
+    "revealReframeStrong": "You don't have yours yet.",
+    "revealReframeAfter": " That's the whole problem.",
+    "compassionHeading": "This isn't a character flaw.",
+    "compassionP1Before": "I believe every founder has one venture that's structurally theirs. Most never find it — not because they're not good enough, but because ",
+    "compassionP1Strong": "Founder-Market Fit is invisible from the inside.",
+    "compassionP2Before": "You can't read the label from inside the bottle. It's not about working harder, networking more, or finding the right co-founder. It's about seeing the one thing you can't see alone:",
+    "compassionP2Strong": " where your genius meets the market.",
+    "compassionP3": "Once someone maps it for you, it becomes obvious. The kind of obvious that makes you wonder how you missed it.",
+    "filterYesHeading": "This is for you if:",
+    "filterYes1": "You're a founder or builder who's been in transition too long",
+    "filterYes2": "You sense the gap between your potential and your traction",
+    "filterYes3": "You want structural clarity, not motivational pep talks",
+    "filterYes4": "You've done inner work and want it to connect to outer results",
+    "filterNoHeading": "This is NOT for you if:",
+    "filterNo1": "You want someone to hand you a business plan",
+    "filterNo2": "You're not ready to look honestly at who you are",
+    "filterNo3": "You want comfort, not recognition",
+    "methodHeading": "See yours in 90 minutes.",
+    "methodStep1Title": "Map",
+    "methodStep1Desc": "We map your unique gift: the patterns, strengths, and edges that make you irreplaceable.",
+    "methodStep2Title": "Match",
+    "methodStep2DescBefore": "We cross-reference with market reality: where does your gift meet a need that's urgent ",
+    "methodStep2DescEm": "now",
+    "methodStep2DescAfter": "?",
+    "methodStep3Title": "Move",
+    "methodStep3Desc": "We design your first moves: what to build, who it's for, and your concrete next steps.",
+    "deliverablesHeading": "What you walk out with",
+    "deliverable1Strong": "Your Founder-Market Fit",
+    "deliverable1After": " — the one sentence that names your alignment",
+    "deliverable2Strong": "Your venture direction",
+    "deliverable2After": " — the shape of the business that makes structural sense for you",
+    "deliverable3Strong": "Your next 3 moves",
+    "deliverable3After": " — concrete steps for this week, not someday",
+    "deliverable4Strong": "Session recording",
+    "deliverable4After": " — so you can revisit the insights",
+    "methodFootnote": "No pitch. No upsell. Just 90 minutes of someone seeing what you can't see from inside the loop.",
+    "credential1Label": "Founders mapped",
+    "credential2Label": "Years in career transformation",
+    "credential3Label": "Alum · AI & Human Potential",
+    "testimonial1Before": "\"This is a miracle of miracles. Other tools come at this half-baked and shallow; they've got no depth. Your approach, though — ",
+    "testimonial1Strong": "a tool that just plain works.",
+    "testimonial1Result": "Found Results",
+    "testimonial2Before": "\"Truly profound. I am so inspired to lean into my talents and ",
+    "testimonial2Strong": "share them globally.",
+    "testimonial2Result": "Found Purpose",
+    "testimonial3Before": "\"I got into my zone of genius and ",
+    "testimonial3Strong": "launched my blockchain wellness education project.",
+    "testimonial3Result": "Launched Project",
+    "testimonial4Before": "\"Getting unstuck. This is very valuable. Inspires & informs ",
+    "testimonial4Strong": "BRILLIANTLY!!",
+    "testimonial4Result": "Found Clarity",
+    "objection1Q": "\"What if I already have an idea?\"",
+    "objection1ABefore": "Then we stress-test it against your genius map. You'll know in 90 minutes if it's ",
+    "objection1AEm": "the one",
+    "objection1AAfter": " or a distraction.",
+    "objection2Q": "\"What if I'm not ready to commit?\"",
+    "objection2A": "This isn't a commitment to a venture. It's 90 minutes of clarity. You decide what to do with it after.",
+    "objection3Q": "\"How is this different from coaching?\"",
+    "objection3A": "Coaching is ongoing. This is a one-time diagnostic — a map, not a subscription.",
+    "bookHeading": "See yours.",
+    "bookUrgency": "Every month without Founder-Market Fit is a month of compounding in the wrong direction.",
+    "bookDetailFormat": "90 minutes · 1-on-1 · Zoom or in-person",
+    "bookFoundingRate": "founding rate",
+    "bookCta": "Book Your Session",
+    "bookGuarantee": "Clarity or your money back."
   }
 }

@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { ArrowRight } from "lucide-react";
 import GameShellV2 from "@/components/game/GameShellV2";
 import { markJourneyVisited } from "@/lib/journeyVisits";
@@ -26,57 +27,66 @@ import { markJourneyVisited } from "@/lib/journeyVisits";
 // short one-word forms. Durations + pricing locked 2026-04-20 (v9.2).
 
 type LadderRow = {
-  step: string;
-  title: string;
-  duration: string;
-  price: string;
-  priceDetail?: string;
+  id: string;
+  stepKey: string;
+  titleKey: string;
+  durationKey: string;
+  priceKey: string;
+  priceDetailKey?: string;
 };
 
+// Copy fields hold i18n keys, resolved with t() at render (see below).
+// `id` is a stable React key, independent of translated text.
 const LADDER: LadderRow[] = [
   {
-    step: "Step 1",
-    title: "Name Your Top Talent",
-    duration: "Minutes",
-    price: "Free",
+    id: "step1",
+    stepKey: "pathPage.ladder.step1.step",
+    titleKey: "pathPage.ladder.step1.title",
+    durationKey: "pathPage.ladder.step1.duration",
+    priceKey: "pathPage.ladder.step1.price",
   },
   {
-    step: "Step 2 + 3",
-    title:
-      "Articulate it with Precision · Enhance it with Business Structure",
-    duration: "2-hour workshop",
-    price: "$555",
+    id: "step23",
+    stepKey: "pathPage.ladder.step23.step",
+    titleKey: "pathPage.ladder.step23.title",
+    durationKey: "pathPage.ladder.step23.duration",
+    priceKey: "pathPage.ladder.step23.price",
   },
   {
-    step: "Step 4",
-    title: "Build Your Product, Package it, Strategize Distribution, Create Comms Kit, Pick a Business Model & License, Rehearse, Pass the \"Founder Consciousness Adjustment\", Add Leverage & Virality",
-    duration: "3 weeks, alongside other conscious impact entrepreneurs",
-    price: "$1,111",
+    id: "step4",
+    stepKey: "pathPage.ladder.step4.step",
+    titleKey: "pathPage.ladder.step4.title",
+    durationKey: "pathPage.ladder.step4.duration",
+    priceKey: "pathPage.ladder.step4.price",
   },
   {
-    step: "Step 5",
-    title: "Gift it or Sell It To Beta-Test That Everything Works",
-    duration: "Estimated 1–3 weeks",
-    price: "$333",
+    id: "step5",
+    stepKey: "pathPage.ladder.step5.step",
+    titleKey: "pathPage.ladder.step5.title",
+    durationKey: "pathPage.ladder.step5.duration",
+    priceKey: "pathPage.ladder.step5.price",
   },
   {
-    step: "Step 6",
-    title: "Laser-Focus Tactically and Go Live",
-    duration: "2-week container",
-    price: "$1,111",
-    priceDetail: "+ $2,222 from your first $10k (1/3 of first $10k)",
+    id: "step6",
+    stepKey: "pathPage.ladder.step6.step",
+    titleKey: "pathPage.ladder.step6.title",
+    durationKey: "pathPage.ladder.step6.duration",
+    priceKey: "pathPage.ladder.step6.price",
+    priceDetailKey: "pathPage.ladder.step6.priceDetail",
   },
   {
-    step: "Step 7",
-    title: "Turn Organic Growth into Scaling Impact and Revenue",
-    duration: "The next octave",
-    price: "By invitation",
+    id: "step7",
+    stepKey: "pathPage.ladder.step7.step",
+    titleKey: "pathPage.ladder.step7.title",
+    durationKey: "pathPage.ladder.step7.duration",
+    priceKey: "pathPage.ladder.step7.price",
   },
 ];
 
 // ─── Component ──────────────────────────────────────────────────────────────
 
 const PathPage = () => {
+  const { t } = useTranslation();
   // Day 65 wave 4 (Sasha 2026-05-15): cross-device visit tracking
   // via shared helper. See src/lib/journeyVisits.ts.
   useEffect(() => {
@@ -136,7 +146,7 @@ const PathPage = () => {
                     "var(--skin-text-halo-deep, 0 0 28px rgba(255,255,255,0.85), 0 1px 2px rgba(255,255,255,0.95), 0 0 1px rgba(11,42,90,0.65), 0 1px 0 rgba(11,42,90,0.45))",
                 }}
               >
-                Solid Founder-Market Fit. Early{" "}
+                {t("pathPage.hero.h1Before")}{" "}
                 <span
                   className="bg-clip-text text-transparent"
                   style={{
@@ -147,9 +157,9 @@ const PathPage = () => {
                     textShadow: "none",
                   }}
                 >
-                  Product-Market Fit
+                  {t("pathPage.hero.h1ProductMarketFit")}
                 </span>
-                . Traction. Organic Demand.{" "}
+                {t("pathPage.hero.h1Middle")}{" "}
                 <span
                   className="bg-clip-text text-transparent"
                   style={{
@@ -160,9 +170,9 @@ const PathPage = () => {
                     textShadow: "none",
                   }}
                 >
-                  Investors Loving It
+                  {t("pathPage.hero.h1InvestorsLovingIt")}
                 </span>
-                .
+                {t("pathPage.hero.h1After")}
               </h1>
 
               {/* Day 62 (Sasha 2026-05-05): Strong legibility cocktail. */}
@@ -175,7 +185,7 @@ const PathPage = () => {
                     "var(--skin-text-halo-deep, 0 0 28px rgba(255,255,255,0.85), 0 1px 2px rgba(255,255,255,0.95), 0 0 1px rgba(11,42,90,0.65), 0 1px 0 rgba(11,42,90,0.45))",
                 }}
               >
-                In 6–8 Weeks.
+                {t("pathPage.hero.h2")}
               </h2>
 
               <p
@@ -194,7 +204,7 @@ const PathPage = () => {
                     textShadow: "none",
                   }}
                 >
-                  Money-Back Guaranteed.
+                  {t("pathPage.hero.guarantee")}
                 </span>
               </p>
 
@@ -206,7 +216,7 @@ const PathPage = () => {
                     "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
                 }}
               >
-                Provided you do your part.
+                {t("pathPage.hero.fineprint")}
               </p>
             </section>
 
@@ -229,13 +239,13 @@ const PathPage = () => {
                     color: "var(--skin-text-muted-soft, rgba(26,30,58,0.6))",
                   }}
                 >
-                  Pay as you progress
+                  {t("pathPage.ladder.payAsYouProgress")}
                 </div>
                 <div
                   className="text-[10px] uppercase tracking-[0.22em]"
                   style={{ color: "var(--skin-text-faint, rgba(26,30,58,0.5))" }}
                 >
-                  7 steps · 6–8 weeks
+                  {t("pathPage.ladder.stepsWeeks")}
                 </div>
               </div>
 
@@ -248,7 +258,7 @@ const PathPage = () => {
               >
                 {LADDER.map((row) => (
                   <div
-                    key={row.step}
+                    key={row.id}
                     className="px-6 py-5 grid grid-cols-12 gap-4 items-start"
                     style={{
                       borderTop:
@@ -261,7 +271,7 @@ const PathPage = () => {
                         color: "var(--skin-selected-text, #5b21b6)",
                       }}
                     >
-                      {row.step}
+                      {t(row.stepKey)}
                     </div>
                     <div className="col-span-12 sm:col-span-6">
                       <h3
@@ -271,7 +281,7 @@ const PathPage = () => {
                           color: "var(--skin-text-primary, #0a1628)",
                         }}
                       >
-                        {row.title}
+                        {t(row.titleKey)}
                       </h3>
                       <p
                         className="text-[12px]"
@@ -280,7 +290,7 @@ const PathPage = () => {
                             "var(--skin-text-muted-soft, rgba(26,30,58,0.6))",
                         }}
                       >
-                        {row.duration}
+                        {t(row.durationKey)}
                       </p>
                     </div>
                     <div className="col-span-12 sm:col-span-4 sm:text-right">
@@ -290,9 +300,9 @@ const PathPage = () => {
                           color: "var(--skin-text-primary, #0a1628)",
                         }}
                       >
-                        {row.price}
+                        {t(row.priceKey)}
                       </div>
-                      {row.priceDetail && (
+                      {row.priceDetailKey && (
                         <div
                           className="text-[11px] mt-1 leading-relaxed"
                           style={{
@@ -300,7 +310,7 @@ const PathPage = () => {
                               "var(--skin-text-muted-soft, rgba(26,30,58,0.6))",
                           }}
                         >
-                          {row.priceDetail}
+                          {t(row.priceDetailKey)}
                         </div>
                       )}
                     </div>
@@ -323,30 +333,28 @@ const PathPage = () => {
                     color: "var(--skin-text-muted, rgba(26,30,58,0.72))",
                   }}
                 >
-                  The upfront path (Steps 1–5) totals{" "}
+                  {t("pathPage.totals.beforeTotal")}{" "}
                   <span
                     className="font-semibold"
                     style={{ color: "var(--skin-text-primary, #0a1628)" }}
                   >
                     $1,999
                   </span>
-                  . Step 6 adds{" "}
+                  {t("pathPage.totals.afterTotal")}{" "}
                   <span
                     className="font-semibold"
                     style={{ color: "var(--skin-text-primary, #0a1628)" }}
                   >
-                    $1,111 upfront
+                    {t("pathPage.totals.step6Upfront")}
                   </span>{" "}
-                  and{" "}
+                  {t("pathPage.totals.and")}{" "}
                   <span
                     className="font-semibold"
                     style={{ color: "var(--skin-text-primary, #0a1628)" }}
                   >
-                    1/3 of your first $10k in revenue
+                    {t("pathPage.totals.step6Share")}
                   </span>
-                  {" "}— capped there. After that, 0%. Step 7 is by
-                  invitation only, after you have early product-market fit
-                  and organic demand.
+                  {" "}{t("pathPage.totals.tail")}
                 </p>
               </div>
             </section>
@@ -365,7 +373,7 @@ const PathPage = () => {
                     "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.75))",
                 }}
               >
-                Start free with Step 1
+                {t("pathPage.cta.primary")}
                 <ArrowRight className="w-4 h-4 opacity-70" />
               </Link>
 
@@ -378,7 +386,7 @@ const PathPage = () => {
                     "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
                 }}
               >
-                Book your Productize Yourself Session
+                {t("pathPage.cta.secondary")}
                 <ArrowRight className="w-4 h-4 opacity-60" />
               </Link>
             </div>
@@ -393,8 +401,7 @@ const PathPage = () => {
                     "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
                 }}
               >
-                Every step is optional. Every step delivers a complete
-                transformation in itself.
+                {t("pathPage.close.optional")}
               </p>
               <p
                 className="text-[11px] leading-relaxed"
@@ -404,7 +411,7 @@ const PathPage = () => {
                     "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
                 }}
               >
-                Pay as you progress. Money-back guarantee on every step.
+                {t("pathPage.close.guarantee")}
               </p>
             </div>
         </div>

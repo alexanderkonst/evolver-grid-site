@@ -13,6 +13,7 @@ import { Badge } from "@/components/ui/badge";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { useStripePortal } from "@/hooks/use-stripe-portal";
+import { formatDate as formatDateLocale } from "@/i18n/format";
 
 interface UserProfile {
     id: string;
@@ -187,7 +188,7 @@ const Profile = () => {
     );
 
     const formatDate = (dateString: string) => {
-        return new Date(dateString).toLocaleDateString("en-US", {
+        return formatDateLocale(dateString, {
             year: "numeric",
             month: "long",
             day: "numeric",

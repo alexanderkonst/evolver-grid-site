@@ -2,6 +2,7 @@ import { memo } from "react";
 import { CalendarDays, Lock, MapPin, UserCheck, Users } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { EventWithRsvpCount } from "@/hooks/useEvents";
+import { formatDate as formatDateLocale } from "@/i18n/format";
 
 interface EventCardProps {
   event: EventWithRsvpCount;
@@ -10,7 +11,7 @@ interface EventCardProps {
 
 const formatDate = (dateStr: string) => {
   const date = new Date(dateStr + "T00:00:00");
-  return date.toLocaleDateString("en-US", {
+  return formatDateLocale(date, {
     weekday: "short",
     month: "short",
     day: "numeric",

@@ -15,6 +15,7 @@ import { getOrCreateGameProfileId } from "@/lib/gameProfile";
 import { logActionEvent } from "@/lib/actionEvents";
 import { getPostZogRedirect } from "@/lib/onboardingRouting";
 import { getZogAssessmentBasePath, getZogStepPath } from "./zogRoutes";
+import { formatDate } from "@/i18n/format";
 // Day 61+ (Sasha 2026-05-04): the CTA section below mirrors the
 // AppleseedDisplay reveal so both lanes (manual assessment + AI
 // reveal) hand the user the same offer artifact. See AppleseedDisplay
@@ -631,7 +632,7 @@ ${snapshotText}`;
     }).filter(Boolean);
   };
 
-  const currentDate = new Date().toLocaleDateString('en-US', {
+  const currentDate = formatDate(new Date(), {
     year: 'numeric',
     month: 'long',
     day: 'numeric'

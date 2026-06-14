@@ -31,6 +31,7 @@
 
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { supabase } from "@/integrations/supabase/client";
 
 type CtaShape = { text?: string; mechanism?: string; url?: string };
@@ -87,6 +88,7 @@ const WASH_BG =
   "var(--skin-page-wash, radial-gradient(ellipse 95% 105% at 95% 5%, rgba(255, 200, 130, 0.55) 0%, rgba(255, 218, 170, 0.45) 18%, rgba(252, 232, 200, 0.75) 38%, rgba(248, 240, 220, 0.92) 65%, rgba(245, 242, 235, 0.98) 88%))";
 
 export default function PublicLandingPage() {
+  const { t } = useTranslation();
   const { slugWithVersion } = useParams<{ slugWithVersion: string }>();
   const [dossier, setDossier] = useState<DossierRow | null>(null);
   const [loading, setLoading] = useState(true);
@@ -131,7 +133,7 @@ export default function PublicLandingPage() {
             color: "var(--skin-text-muted-soft, rgba(11, 42, 90, 0.55))",
           }}
         >
-          Loading…
+          {t('publicLanding.loading')}
         </div>
       </div>
     );
@@ -152,7 +154,7 @@ export default function PublicLandingPage() {
               color: "var(--skin-text-primary, #0b2a5a)",
             }}
           >
-            Page not found
+            {t('publicLanding.notFoundTitle')}
           </h1>
           <p
             className="mt-2"
@@ -163,7 +165,7 @@ export default function PublicLandingPage() {
               color: "var(--skin-text-muted, rgba(11, 42, 90, 0.62))",
             }}
           >
-            This landing page may have been unpublished or never existed.
+            {t('publicLanding.notFoundBody')}
           </p>
         </div>
       </div>
@@ -202,7 +204,7 @@ export default function PublicLandingPage() {
                 color: "var(--skin-text-primary, #0b2a5a)",
               }}
             >
-              {dossier.title || "Landing Page"}
+              {dossier.title || t('publicLanding.fallbackTitle')}
             </h1>
             <p
               style={{
@@ -212,7 +214,7 @@ export default function PublicLandingPage() {
                 color: "var(--skin-text-muted, rgba(11, 42, 90, 0.62))",
               }}
             >
-              This page was published but doesn't have rendered content yet.
+              {t('publicLanding.emptyContent')}
             </p>
           </section>
         )}
@@ -306,7 +308,7 @@ export default function PublicLandingPage() {
         {/* ═══ Promise ═══ */}
         {promiseSection && (
           <section className="space-y-3">
-            <SectionLabel>What this makes possible</SectionLabel>
+            <SectionLabel>{t('publicLanding.promiseLabel')}</SectionLabel>
             <div
               className="whitespace-pre-wrap"
               style={{
@@ -327,7 +329,7 @@ export default function PublicLandingPage() {
         {/* ═══ Proof ═══ Pull quotes */}
         {proofSection.length > 0 && (
           <section className="space-y-4">
-            <SectionLabel>Proof</SectionLabel>
+            <SectionLabel>{t('publicLanding.proofLabel')}</SectionLabel>
             <div className="space-y-4">
               {proofSection.map((p, i) => (
                 <blockquote
@@ -359,7 +361,7 @@ export default function PublicLandingPage() {
         {/* ═══ Value ladder ═══ */}
         {valueLadder && (
           <section className="space-y-3">
-            <SectionLabel>Options</SectionLabel>
+            <SectionLabel>{t('publicLanding.optionsLabel')}</SectionLabel>
             <div
               className="whitespace-pre-wrap"
               style={{
@@ -413,7 +415,7 @@ export default function PublicLandingPage() {
                     textShadow: "0 0 16px rgba(240,194,127,0.32), 0 1px 2px rgba(0,0,0,0.4)",
                   }}
                 >
-                  {cta.text || "Get started"}
+                  {cta.text || t('publicLanding.ctaFallback')}
                 </span>
                 <span
                   aria-hidden="true"
@@ -438,7 +440,7 @@ export default function PublicLandingPage() {
                   color: "var(--skin-text-primary, #0b2a5a)",
                 }}
               >
-                {cta.text || "Get started"}
+                {cta.text || t('publicLanding.ctaFallback')}
               </div>
             )}
           </section>
@@ -491,7 +493,7 @@ export default function PublicLandingPage() {
               fontVariantNumeric: "tabular-nums lining-nums",
             }}
           >
-            Published {new Date(dossier.published_at).toLocaleDateString()} ·{" "}
+            {t('publicLanding.publishedOn', { date: new Date(dossier.published_at).toLocaleDateString() })} ·{" "}
             {dossier.landing_page_version || "v?"}
           </div>
           <div
@@ -506,7 +508,7 @@ export default function PublicLandingPage() {
             }}
           >
             <span style={{ color: "#b8860b", textShadow: "0 0 6px rgba(240,194,127,0.5)" }}>✦</span>
-            {"  "}Find Your Top Talent
+            {"  "}{t('publicLanding.brand')}
           </div>
         </footer>
       </main>

@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, Sparkles } from "lucide-react";
+import { useTranslation } from "react-i18next";
+import type { TFunction } from "i18next";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 
 /* ──────────────────────────────────────────────
@@ -12,314 +14,122 @@ type VersionStage = "Concept" | "Prototype" | "PoC" | "Alpha" | "MVP" | "Commerc
 
 interface TaxonomyModule {
     id: string;
-    name: string;
+    // name, masterResult, dependencies copy live in i18n keyed by id
     version: string;
     stage: VersionStage;
-    masterResult: string;
     route?: string;        // start route, if navigable
-    dependencies?: string;
+    hasDependencies?: boolean;
     submoduleCount?: number;
 }
 
 interface SpaceDefinition {
     id: string;
-    label: string;
-    tagline: string;
+    // label + tagline copy live in i18n keyed by id
     emoji: string;
     color: string;
     colorEnd: string;
     modules: TaxonomyModule[];
 }
 
+/* ─── i18n copy resolvers (keyed by stable id) ─── */
+const spaceLabel = (t: TFunction, id: string) =>
+    t(`holonicModules.spaces.${id}.label`);
+const spaceTagline = (t: TFunction, id: string) =>
+    t(`holonicModules.spaces.${id}.tagline`);
+const moduleName = (t: TFunction, id: string) =>
+    t(`holonicModules.modules.${id}.name`);
+const moduleMasterResult = (t: TFunction, id: string) =>
+    t(`holonicModules.modules.${id}.masterResult`);
+const moduleDependencies = (t: TFunction, id: string) =>
+    t(`holonicModules.modules.${id}.dependencies`);
+
 /* ─── Spaces + Modules (from module_taxonomy.md v2.2) ─── */
 const SPACES: SpaceDefinition[] = [
     {
         id: "ME",
-        label: "ME",
-        tagline: "Know yourself, your profile",
         emoji: "🪞",
         color: "#8460ea",
         colorEnd: "#6894d0",
         modules: [
-            {
-                id: "zog",
-                name: "Zone of Genius",
-                version: "0.9",
-                stage: "MVP",
-                masterResult: "\"Who am I?\" → I know my genius and how to use it",
-                route: "/zone-of-genius/entry",
-                submoduleCount: 14,
-            },
-            {
-                id: "qol",
-                name: "Quality of Life",
-                version: "0.9",
-                stage: "MVP",
-                masterResult: "Fog about my life → Clear map of where I stand",
-                route: "/quality-of-life-map/assessment",
-                submoduleCount: 4,
-            },
-            {
-                id: "mission",
-                name: "Mission Discovery",
-                version: "0.7",
-                stage: "Alpha",
-                masterResult: "Unclear purpose → Clear life mission I can live",
-                route: "/mission-discovery",
-                dependencies: "ZoG recommended",
-                submoduleCount: 4,
-            },
-            {
-                id: "resources",
-                name: "Resource Mapping",
-                version: "0.7",
-                stage: "Alpha",
-                masterResult: "Hidden assets → Visible superpowers ready to share",
-                route: "/game/me/assets",
-                submoduleCount: 4,
-            },
-            {
-                id: "personality",
-                name: "Personality Tests",
-                version: "0.5",
-                stage: "PoC",
-                masterResult: "Surface knowledge → Deep personality insights",
-                route: "/resources/personality-tests",
-                submoduleCount: 4,
-            },
+            { id: "zog", version: "0.9", stage: "MVP", route: "/zone-of-genius/entry", submoduleCount: 14 },
+            { id: "qol", version: "0.9", stage: "MVP", route: "/quality-of-life-map/assessment", submoduleCount: 4 },
+            { id: "mission", version: "0.7", stage: "Alpha", route: "/mission-discovery", hasDependencies: true, submoduleCount: 4 },
+            { id: "resources", version: "0.7", stage: "Alpha", route: "/game/me/assets", submoduleCount: 4 },
+            { id: "personality", version: "0.5", stage: "PoC", route: "/resources/personality-tests", submoduleCount: 4 },
         ],
     },
     {
         id: "LEARN",
-        label: "LEARN",
-        tagline: "Practices, growth paths",
         emoji: "✨",
         color: "#6894d0",
         colorEnd: "#a7cbd4",
         modules: [
-            {
-                id: "daily-loop",
-                name: "Daily Loop",
-                version: "0.7",
-                stage: "Alpha",
-                masterResult: "Overwhelmed → Clear on my ONE next move",
-                route: "/game/next-move",
-                dependencies: "ZoG, QoL, Tour",
-                submoduleCount: 4,
-            },
-            {
-                id: "library",
-                name: "Library",
-                version: "0.7",
-                stage: "Alpha",
-                masterResult: "Stuck in my head → Embodied daily practice",
-                route: "/library",
-                submoduleCount: 6,
-            },
-            {
-                id: "growth-paths",
-                name: "Growth Paths",
-                version: "0.7",
-                stage: "Alpha",
-                masterResult: "Scattered efforts → Step-by-step mastery path",
-                route: "/game/learn/paths",
-                dependencies: "Onboarding",
-                submoduleCount: 48,
-            },
-            {
-                id: "skill-trees",
-                name: "Skill Trees",
-                version: "0.3",
-                stage: "Prototype",
-                masterResult: "Plateau → Next level unlocked",
-                route: "/game/skill-trees",
-                dependencies: "Basic onboarding",
-            },
+            { id: "daily-loop", version: "0.7", stage: "Alpha", route: "/game/next-move", hasDependencies: true, submoduleCount: 4 },
+            { id: "library", version: "0.7", stage: "Alpha", route: "/library", submoduleCount: 6 },
+            { id: "growth-paths", version: "0.7", stage: "Alpha", route: "/game/learn/paths", hasDependencies: true, submoduleCount: 48 },
+            { id: "skill-trees", version: "0.3", stage: "Prototype", route: "/game/skill-trees", hasDependencies: true },
         ],
     },
     {
         id: "MEET",
-        label: "MEET",
-        tagline: "Events, community",
         emoji: "🎉",
         color: "#a7cbd4",
         colorEnd: "#6894d0",
         modules: [
-            {
-                id: "events",
-                name: "Events",
-                version: "0.9",
-                stage: "MVP",
-                masterResult: "Solo journey → Part of live community",
-                route: "/game/meet",
-                submoduleCount: 4,
-            },
-            {
-                id: "mens-circle",
-                name: "Men's Circle",
-                version: "1.0",
-                stage: "Commercial",
-                masterResult: "Alone in my journey → Held by brothers",
-                route: "/mens-circle",
-                submoduleCount: 3,
-            },
+            { id: "events", version: "0.9", stage: "MVP", route: "/game/meet", submoduleCount: 4 },
+            { id: "mens-circle", version: "1.0", stage: "Commercial", route: "/mens-circle", submoduleCount: 3 },
         ],
     },
     {
         id: "COLLABORATE",
-        label: "COLLABORATE",
-        tagline: "Matchmaking, discover",
         emoji: "👥",
         color: "#29549f",
         colorEnd: "#6894d0",
         modules: [
-            {
-                id: "matchmaking",
-                name: "Matchmaking",
-                version: "0.7",
-                stage: "Alpha",
-                masterResult: "Alone → Matched with my people",
-                route: "/game/collaborate",
-                dependencies: "ZoG, Resources",
-                submoduleCount: 5,
-            },
-            {
-                id: "connections",
-                name: "Connections",
-                version: "0.5",
-                stage: "PoC",
-                masterResult: "Invisible network → See who's aligned with me",
-                route: "/game/collaborate/connections",
-                dependencies: "Profile complete",
-            },
+            { id: "matchmaking", version: "0.7", stage: "Alpha", route: "/game/collaborate", hasDependencies: true, submoduleCount: 5 },
+            { id: "connections", version: "0.5", stage: "PoC", route: "/game/collaborate/connections", hasDependencies: true },
         ],
     },
     {
         id: "BUILD",
-        label: "BUILD",
-        tagline: "Create your offer & products",
         emoji: "🛠️",
         color: "#1e4374",
         colorEnd: "#29549f",
         modules: [
-            {
-                id: "genius-business",
-                name: "Genius Business",
-                version: "0.7",
-                stage: "Alpha",
-                masterResult: "Hidden genius → Offer the world wants",
-                route: "/game/me/genius-business",
-                dependencies: "ZoG complete",
-                submoduleCount: 4,
-            },
-            {
-                id: "product-builder",
-                name: "Product Builder",
-                version: "0.7",
-                stage: "Alpha",
-                masterResult: "Idea in my head → Working product",
-                route: "/game/build/product-builder",
-                dependencies: "Genius Business recommended",
-                submoduleCount: 7,
-            },
-            {
-                id: "business-incubator",
-                name: "Business Incubator",
-                version: "0.3",
-                stage: "Prototype",
-                masterResult: "Building alone → Backed by a studio",
-                route: "/game/build",
-                dependencies: "Genius Business",
-            },
+            { id: "genius-business", version: "0.7", stage: "Alpha", route: "/game/me/genius-business", hasDependencies: true, submoduleCount: 4 },
+            { id: "product-builder", version: "0.7", stage: "Alpha", route: "/game/build/product-builder", hasDependencies: true, submoduleCount: 7 },
+            { id: "business-incubator", version: "0.3", stage: "Prototype", route: "/game/build", hasDependencies: true },
         ],
     },
     {
         id: "BUYSELL",
-        label: "OFFER",
-        tagline: "Marketplace",
         emoji: "🏪",
         color: "#2B2342",
         colorEnd: "#8460ea",
         modules: [
-            {
-                id: "marketplace",
-                name: "Marketplace",
-                version: "0.5",
-                stage: "PoC",
-                masterResult: "No visibility → My offer discoverable",
-                route: "/game/marketplace/browse",
-                dependencies: "Genius Offer",
-                submoduleCount: 3,
-            },
+            { id: "marketplace", version: "0.5", stage: "PoC", route: "/game/marketplace/browse", hasDependencies: true, submoduleCount: 3 },
         ],
     },
     {
         id: "SPECIAL",
-        label: "SPECIAL",
-        tagline: "Onboarding & tour",
         emoji: "🗺️",
         color: "#4a3f6b",
         colorEnd: "#6894d0",
         modules: [
-            {
-                id: "onboarding",
-                name: "Onboarding",
-                version: "0.7",
-                stage: "Alpha",
-                masterResult: "Stranger → System knows who I am",
-                route: "/start",
-                submoduleCount: 5,
-            },
-            {
-                id: "tour",
-                name: "Tour",
-                version: "0.5",
-                stage: "PoC",
-                masterResult: "Lost → Know exactly where to start",
-                dependencies: "Onboarding",
-                submoduleCount: 3,
-            },
+            { id: "onboarding", version: "0.7", stage: "Alpha", route: "/start", submoduleCount: 5 },
+            { id: "tour", version: "0.5", stage: "PoC", hasDependencies: true, submoduleCount: 3 },
         ],
     },
     {
         id: "STANDALONE",
-        label: "STANDALONE",
-        tagline: "Independent tools",
         emoji: "🎨",
         color: "#3a3050",
         colorEnd: "#6894d0",
         modules: [
-            {
-                id: "equilibrium",
-                name: "Equilibrium",
-                version: "0.9",
-                stage: "MVP",
-                masterResult: "Arbitrary willpower-driven work → Harmonious cycle-aware deep work",
-            },
-            {
-                id: "art",
-                name: "Art",
-                version: "0.5",
-                stage: "PoC",
-                masterResult: "Abstract self → Visual expression of my essence",
-                route: "/art",
-                submoduleCount: 5,
-            },
-            {
-                id: "transcriber",
-                name: "Transcriber",
-                version: "0.5",
-                stage: "PoC",
-                masterResult: "Video content → Searchable text transcript",
-                route: "/transcriber",
-            },
-            {
-                id: "clock",
-                name: "Clock",
-                version: "0.1",
-                stage: "Concept",
-                masterResult: "TBD",
-            },
+            { id: "equilibrium", version: "0.9", stage: "MVP" },
+            { id: "art", version: "0.5", stage: "PoC", route: "/art", submoduleCount: 5 },
+            { id: "transcriber", version: "0.5", stage: "PoC", route: "/transcriber" },
+            { id: "clock", version: "0.1", stage: "Concept" },
         ],
     },
 ];
@@ -348,6 +158,7 @@ const allSubmodulesCount = SPACES.reduce(
    ────────────────────────────────────────── */
 
 const HolonicMap = () => {
+    const { t } = useTranslation();
     const [hoveredId, setHoveredId] = useState<string | null>(null);
     const viewSize = 740;
     const cx = viewSize / 2;
@@ -412,7 +223,7 @@ const HolonicMap = () => {
             <svg
                 viewBox={`0 0 ${viewSize} ${viewSize}`}
                 className="w-full h-auto"
-                aria-label="Holonic system map — 23 modules across 8 spaces"
+                aria-label={t("holonicModules.map.ariaLabel", { modules: allModulesCount, spaces: SPACES.length })}
             >
                 <defs>
                     {SPACES.map((sp) => (
@@ -453,7 +264,7 @@ const HolonicMap = () => {
                             fontWeight="600"
                             letterSpacing="0.12em"
                         >
-                            {space.label}
+                            {spaceLabel(t, space.id)}
                         </text>
                     </g>
                 ))}
@@ -480,7 +291,7 @@ const HolonicMap = () => {
                     fontWeight="700"
                     letterSpacing="0.12em"
                 >
-                    YOU
+                    {t("holonicModules.map.center")}
                 </text>
 
                 {/* Connection lines */}
@@ -568,7 +379,7 @@ const HolonicMap = () => {
                                             transition: "color 0.2s",
                                         }}
                                     >
-                                        {module.name}
+                                        {moduleName(t, module.id)}
                                     </p>
                                 </div>
                             </foreignObject>
@@ -600,6 +411,7 @@ interface ModuleCardProps {
 }
 
 const ModuleCard = ({ module, space }: ModuleCardProps) => {
+    const { t } = useTranslation();
     const sc = stageColors[module.stage];
     const isNavigable = !!module.route;
 
@@ -619,7 +431,7 @@ const ModuleCard = ({ module, space }: ModuleCardProps) => {
                         color: "white",
                     }}
                 >
-                    {space.label}
+                    {spaceLabel(t, space.id)}
                 </span>
                 <span
                     className="text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full"
@@ -633,10 +445,10 @@ const ModuleCard = ({ module, space }: ModuleCardProps) => {
             <div className="flex items-start justify-between gap-3">
                 <div className="flex-1 min-w-0">
                     <h3 className="text-base font-display font-semibold text-white leading-tight mb-1 group-hover:text-[#a7cbd4] transition-colors">
-                        {module.name}
+                        {moduleName(t, module.id)}
                     </h3>
                     <p className="text-sm text-white/50 leading-relaxed">
-                        {module.masterResult}
+                        {moduleMasterResult(t, module.id)}
                     </p>
                 </div>
                 {isNavigable && (
@@ -647,10 +459,10 @@ const ModuleCard = ({ module, space }: ModuleCardProps) => {
             {/* Meta row */}
             <div className="flex items-center gap-3 mt-3 text-[11px] text-white/30">
                 {module.submoduleCount && (
-                    <span>{module.submoduleCount} submodules</span>
+                    <span>{t("holonicModules.card.submodules", { count: module.submoduleCount })}</span>
                 )}
-                {module.dependencies && (
-                    <span>Requires: {module.dependencies}</span>
+                {module.hasDependencies && (
+                    <span>{t("holonicModules.card.requires", { deps: moduleDependencies(t, module.id) })}</span>
                 )}
             </div>
         </div>
@@ -670,6 +482,7 @@ const ModuleCard = ({ module, space }: ModuleCardProps) => {
    PAGE — /modules
    ══════════════════════════════════════════ */
 const HolonicModulesPage = () => {
+    const { t } = useTranslation();
     const heroAnim = useScrollAnimation(0.1);
     const mapAnim = useScrollAnimation(0.15);
     const listAnim = useScrollAnimation(0.1);
@@ -695,16 +508,20 @@ const HolonicModulesPage = () => {
                     <div className="inline-flex items-center gap-2 mb-5 px-4 py-1.5 rounded-full bg-white/5 border border-white/10">
                         <Sparkles className="w-4 h-4 text-[#a7cbd4]" />
                         <span className="text-xs font-medium uppercase tracking-[0.15em] text-[#a7cbd4]">
-                            Module Taxonomy v2.2
+                            {t("holonicModules.hero.badge")}
                         </span>
                     </div>
                     <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-semibold text-white leading-[1.1] mb-5 tracking-tight">
-                        The Genius Business System
+                        {t("holonicModules.hero.title")}
                     </h1>
                     <p className="text-lg sm:text-xl text-white/50 leading-relaxed max-w-2xl mx-auto mb-8">
-                        {allModulesCount} modules · {allSubmodulesCount} submodules · 8 spaces.
+                        {t("holonicModules.hero.stats", {
+                            modules: allModulesCount,
+                            submodules: allSubmodulesCount,
+                            spaces: SPACES.length,
+                        })}
                         <br />
-                        Every module is a part of you.
+                        {t("holonicModules.hero.subtitle")}
                     </p>
 
                     {/* Stats row */}
@@ -716,7 +533,7 @@ const HolonicModulesPage = () => {
                             >
                                 <span className="text-sm">{s.emoji}</span>
                                 <span className="text-xs text-white/50 font-medium uppercase tracking-wider">
-                                    {s.label}
+                                    {spaceLabel(t, s.id)}
                                 </span>
                                 <span className="text-xs text-white/30">
                                     {s.modules.length}
@@ -788,14 +605,13 @@ const HolonicModulesPage = () => {
                                 <div>
                                     <h2 className="text-lg font-display font-semibold text-white flex items-center gap-2">
                                         <span>{space.emoji}</span>
-                                        {space.label}
+                                        {spaceLabel(t, space.id)}
                                         <span className="text-xs text-white/30 font-normal ml-1">
-                                            ({space.modules.length}{" "}
-                                            {space.modules.length === 1 ? "module" : "modules"})
+                                            {t("holonicModules.list.moduleCount", { count: space.modules.length })}
                                         </span>
                                     </h2>
                                     <p className="text-sm text-white/40">
-                                        {space.tagline}
+                                        {spaceTagline(t, space.id)}
                                     </p>
                                 </div>
                             </div>
@@ -819,24 +635,24 @@ const HolonicModulesPage = () => {
             <section className="py-16 px-6 border-t border-white/5">
                 <div className="container mx-auto max-w-2xl text-center">
                     <h2 className="text-2xl font-display font-semibold text-white mb-2">
-                        Versioning Scheme
+                        {t("holonicModules.versionScheme.title")}
                     </h2>
                     <p className="text-sm text-white/40 mb-6">
-                        Semantic versioning for product modules
+                        {t("holonicModules.versionScheme.subtitle")}
                     </p>
                     <div className="flex flex-wrap justify-center items-center gap-2 text-xs font-mono text-white/40">
-                        <span className="px-2 py-1 rounded bg-white/5">0.1 Concept</span>
+                        <span className="px-2 py-1 rounded bg-white/5">{t("holonicModules.versionScheme.concept")}</span>
                         <span className="text-white/20">→</span>
-                        <span className="px-2 py-1 rounded bg-white/5">0.3 Prototype</span>
+                        <span className="px-2 py-1 rounded bg-white/5">{t("holonicModules.versionScheme.prototype")}</span>
                         <span className="text-white/20">→</span>
-                        <span className="px-2 py-1 rounded bg-white/5">0.5 PoC</span>
+                        <span className="px-2 py-1 rounded bg-white/5">{t("holonicModules.versionScheme.poc")}</span>
                         <span className="text-white/20">→</span>
-                        <span className="px-2 py-1 rounded bg-white/5">0.7 Alpha</span>
+                        <span className="px-2 py-1 rounded bg-white/5">{t("holonicModules.versionScheme.alpha")}</span>
                         <span className="text-white/20">→</span>
-                        <span className="px-2 py-1 rounded bg-white/5">0.9 MVP</span>
+                        <span className="px-2 py-1 rounded bg-white/5">{t("holonicModules.versionScheme.mvp")}</span>
                         <span className="text-white/20">→</span>
                         <span className="px-2 py-1 rounded bg-[rgba(250,204,21,0.1)] text-[#facc15]">
-                            1.0 Commercial
+                            {t("holonicModules.versionScheme.commercial")}
                         </span>
                     </div>
                 </div>
@@ -847,11 +663,10 @@ const HolonicModulesPage = () => {
                 <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(132,96,234,0.1)_0%,transparent_60%)]" />
                 <div className="relative container mx-auto max-w-2xl">
                     <h2 className="text-3xl sm:text-4xl font-display font-semibold text-white mb-4">
-                        Start with what calls you
+                        {t("holonicModules.cta.title")}
                     </h2>
                     <p className="text-lg text-white/45 mb-8">
-                        Every module is an entry point. Pick one, begin, and the system
-                        meets you where you are.
+                        {t("holonicModules.cta.body")}
                     </p>
                     <Link
                         to="/start"
@@ -862,7 +677,7 @@ const HolonicModulesPage = () => {
                             boxShadow: "0 4px 20px rgba(132, 96, 234, 0.3)",
                         }}
                     >
-                        Begin Your Journey
+                        {t("holonicModules.cta.button")}
                         <ArrowRight className="w-5 h-5" />
                     </Link>
                 </div>

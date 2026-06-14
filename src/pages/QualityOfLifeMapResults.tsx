@@ -2,6 +2,7 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import { useRef, useState, useEffect } from "react";
 import type { FC } from "react";
 import { useTranslation } from "react-i18next";
+import { formatDate } from "@/i18n/format";
 import { Button } from "@/components/ui/button";
 // Day 67 (Sasha 2026-05-10): empty-state CTA migrated to shared
 // editorial pattern — same dark glass pill with breathing gold halo
@@ -404,7 +405,7 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
     pdf.setFontSize(10);
     pdf.setTextColor(...MUTED);
     pdf.text(
-      new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" }),
+      formatDate(new Date(), { year: "numeric", month: "long", day: "numeric" }),
       pageWidth / 2,
       y,
       { align: "center" }

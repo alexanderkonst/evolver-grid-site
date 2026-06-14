@@ -27,6 +27,7 @@ import type {
   CanvasArtifactStatus,
   ArtifactStatusValue,
 } from "@/types/canvas";
+import { formatDate } from "@/i18n/format";
 
 /* ────────────────────────────────────────
    ARTIFACT CONFIGURATION
@@ -619,7 +620,7 @@ const BuildCanvasPage = () => {
                   Facilitated by {canvas.facilitator}
                   {canvas.session_number ? ` · Session ${canvas.session_number}` : ""}
                   {canvas.session_date
-                    ? ` · ${new Date(canvas.session_date).toLocaleDateString("en-US", {
+                    ? ` · ${formatDate(canvas.session_date, {
                         month: "short",
                         day: "numeric",
                         year: "numeric",
