@@ -111,7 +111,7 @@ const PlaybookShell = ({
           floating-vs-flowing distinction. Sits at top:0 inside <main>'s
           scroll container (pane 3). */}
       <nav
-        aria-label="Playbook progression"
+        aria-label={t("playbookShell.navAriaLabel")}
         className="sticky top-0 z-20 -mx-4 sm:-mx-6 px-4 sm:px-6 py-3 sm:py-4 mb-5 sm:mb-6 backdrop-blur-xl"
         style={{
           // Day 91 (Sasha 2026-06-09): tokenized for Aurum. The old value

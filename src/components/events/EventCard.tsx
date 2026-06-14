@@ -1,4 +1,5 @@
 import { memo } from "react";
+import { useTranslation } from "react-i18next";
 import { CalendarDays, Lock, MapPin, UserCheck, Users } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { EventWithRsvpCount } from "@/hooks/useEvents";
@@ -45,6 +46,7 @@ const VISIBILITY_BADGES = {
 } as const;
 
 const EventCard = ({ event, onClick }: EventCardProps) => {
+  const { t } = useTranslation();
   const visibility = event.visibility ?? "public";
   const badge = VISIBILITY_BADGES[visibility as keyof typeof VISIBILITY_BADGES];
 
@@ -89,7 +91,10 @@ const EventCard = ({ event, onClick }: EventCardProps) => {
           <div className="flex items-center gap-2">
             <CalendarDays className="w-4 h-4 text-[#2c3150]/60" />
             <span>
-              {formatDate(event.event_date)} at {formatTime(event.event_time)}
+              {t("events.dateTimeAt", {
+                date: formatDate(event.event_date),
+                time: formatTime(event.event_time),
+              })}
             </span>
           </div>
 

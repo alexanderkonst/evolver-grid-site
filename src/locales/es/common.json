@@ -975,7 +975,17 @@
     "logOutTitle": "Cerrar sesión",
     "logOutLabel": "cerrar sesión",
     "logInTitle": "Iniciar sesión",
-    "logInLabel": "Iniciar sesión"
+    "logInLabel": "Iniciar sesión",
+    "journey": "CAMINO",
+    "aiOs": "AI OS",
+    "me": "YO",
+    "learn": "APRENDER",
+    "meet": "CONOCER",
+    "collaborate": "SOCIOS",
+    "build": "CONSTRUIR",
+    "offer": "OFRECER",
+    "lockedLabel": "{{space}}, bloqueado",
+    "lockedHeader": "{{space}} · Bloqueado"
   },
   "navigation": {
     "accountFallback": "Cuenta",
@@ -1040,7 +1050,8 @@
     "footerOpenText": "El método está abierto para leerse. La plataforma se puede forkear.",
     "forkOnGithub": "Forkéalo en GitHub →",
     "footerCollectiveText": "Córrelo para tu propia comunidad — bajo tu propia marca. 10% al procomún si te pasas a lo comercial (más los muchos otros beneficios de entrar en el colectivo de fundadores de impacto).",
-    "contactUs": "Contáctanos →"
+    "contactUs": "Contáctanos →",
+    "navAriaLabel": "Progresión del playbook"
   },
   "playbookHero": {
     "primaryCtaLabel": "Encuentra tu talento principal",
@@ -1115,6 +1126,167 @@
       "buildBusinessSix": {
         "label": "6. Construye un negocio sobre tu talento principal",
         "lockedHint": "Se desbloquea cuando activas tu talento principal o completas tu perfil de colaboración."
+      }
+    },
+    "aiOs": {
+      "install": {
+        "label": "Instalación en 60 segundos"
+      },
+      "suites": {
+        "label": "Habilidades de IA"
+      },
+      "clarity": {
+        "label": "Clarificar"
+      },
+      "iteration": {
+        "label": "Iterar"
+      },
+      "vibeCode": {
+        "label": "Vibe Code"
+      },
+      "design": {
+        "label": "Diseño"
+      },
+      "benchmark": {
+        "label": "Benchmarking"
+      },
+      "pricing": {
+        "label": "Trabaja con nosotros"
+      }
+    },
+    "me": {
+      "topTalent": {
+        "label": "Talento principal"
+      },
+      "ttStartHere": {
+        "label": "Empieza aquí"
+      },
+      "ttOverview": {
+        "label": "Resumen"
+      },
+      "ttHowItShowsUp": {
+        "label": "Cómo se manifiesta"
+      },
+      "ttThreeKeyTalents": {
+        "label": "Tres talentos en profundidad"
+      },
+      "ttTopShadow": {
+        "label": "Sombra principal"
+      },
+      "ttMastery": {
+        "label": "Camino de maestría"
+      },
+      "ttOneAction": {
+        "label": "Una acción"
+      },
+      "ttRoles": {
+        "label": "Entornos ideales"
+      },
+      "ttPartner": {
+        "label": "Socio complementario"
+      },
+      "ttMonetization": {
+        "label": "Monetización"
+      },
+      "ttUnifyingRole": {
+        "label": "Tu rol unificador"
+      },
+      "ttWhatsNext": {
+        "label": "¿Qué sigue?"
+      },
+      "mission": {
+        "label": "Misión"
+      },
+      "qol": {
+        "label": "Calidad de vida"
+      },
+      "assets": {
+        "label": "Activos"
+      }
+    },
+    "art": {
+      "root": {
+        "label": "🎨 Arte"
+      },
+      "gallery": {
+        "label": "Galería"
+      },
+      "ceremonial": {
+        "label": "Espacios ceremoniales"
+      },
+      "illustrations": {
+        "label": "Ilustraciones"
+      },
+      "starcodes": {
+        "label": "Códigos estelares"
+      },
+      "webportals": {
+        "label": "Portales web"
+      }
+    },
+    "meet": {
+      "browse": {
+        "label": "Explorar eventos"
+      },
+      "myRsvps": {
+        "label": "Mis confirmaciones"
+      },
+      "create": {
+        "label": "Crear evento"
+      }
+    },
+    "collaborate": {
+      "findCollaborators": {
+        "label": "Encontrar socios"
+      },
+      "connections": {
+        "label": "Conexiones",
+        "lockedHint": "Próximamente. La superficie de seguimiento de conexiones está en desarrollo."
+      },
+      "people": {
+        "label": "Directorio de personas",
+        "lockedHint": "Próximamente. El directorio necesita permisos de perfil antes de lanzarse."
+      },
+      "missionGroups": {
+        "label": "Grupos de misión",
+        "lockedHint": "Próximamente. El flujo de formación de grupos aún no está listo."
+      }
+    },
+    "build": {
+      "avb": {
+        "label": "Constructor automático de negocios"
+      },
+      "path": {
+        "label": "El camino a tu negocio único"
+      },
+      "playbook": {
+        "label": "Toma el playbook exacto"
+      },
+      "dashboard": {
+        "label": "Ver el panel"
+      },
+      "ignite": {
+        "label": "Sesión «Conviértete en producto»"
+      },
+      "equilibrium": {
+        "label": "Equilibrium"
+      },
+      "karime": {
+        "label": "La oferta única de Karime"
+      }
+    },
+    "offer": {
+      "overview": {
+        "label": "Resumen"
+      },
+      "myProducts": {
+        "label": "Mis productos"
+      },
+      "ignite": {
+        "label": "Sesión «Conviértete en producto»"
+      },
+      "publicPage": {
+        "label": "Mi página pública"
       }
     }
   },
@@ -5232,7 +5404,12 @@
     "faq2Q": "¿Y si no hay un negocio real en lo que hago?",
     "faq2A": "Todo talento principal es monetizable — la naturaleza no los desperdicia. Si el tuyo existe, es porque es útil, valioso y de ayuda para otras personas. La única pregunta es cómo se traduce en algo por lo que paguen. La sesión nombra las tres piezas (qué haces, quién paga por ello, por qué) y las reúne en una sola frase. Si no la encontramos en 2 horas, no pagas.",
     "methodologyLabel": "Visión general de la metodología · 6 min",
-    "methodologyVideoTitle": "La Sesión Productiza Yourself — Visión General de la Metodología"
+    "methodologyVideoTitle": "La Sesión Productiza Yourself — Visión General de la Metodología",
+    "logoAlt": "Encuentra tu talento principal",
+    "sectionLeaveWith": "Con qué te vas",
+    "sectionBook": "Reserva tu sesión",
+    "sectionAlternatesFaq": "Alternativas y preguntas frecuentes",
+    "sectionMethodologyVideo": "Vídeo de la metodología"
   },
   "geniusBusiness": {
     "loading": "Cargando...",
@@ -6469,5 +6646,126 @@
     "discoverMission": "Descubrir mi misión",
     "heading": "Tu misión",
     "oneSentence": "Una frase"
+  },
+  "nextMove": {
+    "title": "Mi siguiente paso",
+    "allComplete": "¡Has completado todas las acciones recomendadas!",
+    "exploreMore": "Explorar más →",
+    "pathLine": "Ruta {{path}} · {{duration}}",
+    "start": "EMPEZAR",
+    "xp": "+{{xp}} XP",
+    "notThis": "¿No es esto? Explora más →",
+    "paths": {
+      "genius": "Genio",
+      "body": "Cuerpo",
+      "mind": "Mente",
+      "emotions": "Emociones",
+      "spirit": "Espíritu"
+    },
+    "starterActions": {
+      "genius": "Articula tus 3 talentos principales",
+      "body": "Estiramiento matutino de 10 minutos",
+      "mind": "Lee 1 artículo educativo",
+      "emotions": "Anota algo en tu diario de gratitud",
+      "spirit": "Práctica de respiración de 5 minutos"
+    }
+  },
+  "meSummary": {
+    "discovering": "Descubriendo...",
+    "levelXp": "Nivel {{level}} · {{xp}} XP",
+    "progressToNext": "{{current}} / {{target}} para el nivel {{next}}",
+    "viewProfile": "Ver perfil →"
+  },
+  "emptyState": {
+    "zog": {
+      "message": "Vamos a descubrir quién eres",
+      "cta": "Descubrir mi talento principal"
+    },
+    "qol": {
+      "message": "Mira dónde estás en las 8 áreas de tu vida",
+      "cta": "Trazar el mapa de mi vida"
+    },
+    "action": {
+      "message": "¡Has completado todas las acciones recomendadas!",
+      "cta": "Explorar más"
+    }
+  },
+  "meSection": {
+    "avatarAlt": "Avatar de perfil",
+    "discoverArchetype": "Descubre tu arquetipo",
+    "levelLine": "Nivel {{level}} · {{xp}} XP",
+    "xpProgress": "{{current}} / {{needed}} XP",
+    "levelNext": "Nivel {{next}}"
+  },
+  "profileOverview": {
+    "loading": "Cargando perfil...",
+    "greeting": "¡Hola, {{name}}!",
+    "titleFallback": "Tu perfil",
+    "subtitle": "Conócete. Desarrolla tu personaje.",
+    "cards": {
+      "topTalent": "Talento principal",
+      "business": "Tu negocio",
+      "qualityOfLife": "Calidad de vida",
+      "mission": "Mi misión"
+    }
+  },
+  "myProducts": {
+    "toast": {
+      "copied": {
+        "title": "¡Enlace copiado!",
+        "description": "Compártelo con el mundo."
+      }
+    },
+    "title": "Mis productos",
+    "subtitle": "Tus ofertas y productos publicados.",
+    "fallbackHeadline": "Mi producto",
+    "statusLive": "En vivo",
+    "fallbackPromise": "Tu oferta transformadora",
+    "viewPage": "Ver página",
+    "copyLink": "Copiar enlace",
+    "empty": {
+      "title": "Aún no hay productos publicados.",
+      "cta": "Completa tu lienzo de negocio único para empezar."
+    }
+  },
+  "eventsSpace": {
+    "title": "Eventos",
+    "subtitle": "Encuentros y experiencias",
+    "otherLocations": "Otros lugares",
+    "filter": "Filtro",
+    "filterAll": "Todos los eventos",
+    "filterByLocation": "Por lugar",
+    "filterByCommunity": "Por comunidad",
+    "community": "Comunidad",
+    "allCommunities": "Todas las comunidades",
+    "viewPage": "Ver página",
+    "emptyTitle": "Aún no hay eventos",
+    "emptyDescAuthed": "Vuelve pronto o crea tu propio encuentro para la comunidad.",
+    "emptyDescGuest": "Vuelve pronto para ver los próximos encuentros de la comunidad.",
+    "createEvent": "Crear evento"
+  },
+  "appleseedView": {
+    "empty": {
+      "title": "Aún no tienes perfil de talento principal",
+      "body": "Genera tu Zone of Genius para ver tu perfil aquí.",
+      "cta": "Iniciar Zone of Genius"
+    },
+    "offer": {
+      "title": "Tu oferta única",
+      "body": "Ya sabes quién eres. Ahora descubre qué puedes ofrecer.",
+      "cta": "Crear mi oferta única →"
+    }
+  },
+  "events": {
+    "dateTimeAt": "{{date}} a las {{time}}"
+  },
+  "gameCelebration": {
+    "continue": "Continuar",
+    "title": "¡Bien hecho!",
+    "message": "Tu próximo paso está listo",
+    "xpBadge_one": "+{{count}} XP",
+    "xpBadge_few": "+{{count}} XP",
+    "xpBadge_many": "+{{count}} XP",
+    "xpBadge_other": "+{{count}} XP"
   }
 }

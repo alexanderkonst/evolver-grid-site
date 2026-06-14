@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { formatNumber } from "@/i18n/format";
 import { User } from "lucide-react";
 
@@ -19,6 +20,7 @@ export default function MeSummary({
     xpTotal,
     xpToNextLevel = 100,
 }: MeSummaryProps) {
+    const { t } = useTranslation();
     // Calculate XP progress within current level
     const xpInCurrentLevel = xpTotal % xpToNextLevel;
     const progressPercent = (xpInCurrentLevel / xpToNextLevel) * 100;
@@ -35,10 +37,10 @@ export default function MeSummary({
                 {/* Info */}
                 <div className="flex-1 min-w-0">
                     <h2 className="text-lg font-bold text-[#2c3150] font-display truncate">
-                        {archetypeTitle || "Discovering..."}
+                        {archetypeTitle || t("meSummary.discovering")}
                     </h2>
                     <p className="text-sm text-[var(--wabi-text-secondary)]">
-                        Level {level} · {formatNumber(xpTotal)} XP
+                        {t("meSummary.levelXp", { level, xp: formatNumber(xpTotal) })}
                     </p>
 
                     {/* XP Progress Bar */}
@@ -49,7 +51,11 @@ export default function MeSummary({
                         />
                     </div>
                     <p className="text-xs text-[var(--wabi-text-muted)] mt-1">
-                        {xpInCurrentLevel} / {xpToNextLevel} to level {level + 1}
+                        {t("meSummary.progressToNext", {
+                            current: xpInCurrentLevel,
+                            target: xpToNextLevel,
+                            next: level + 1,
+                        })}
                     </p>
                 </div>
             </div>
@@ -59,7 +65,7 @@ export default function MeSummary({
                 to="/game/me"
                 className="mt-4 text-sm text-[#8460ea] hover:underline flex items-center gap-1"
             >
-                View Profile →
+                {t("meSummary.viewProfile")}
             </Link>
         </div>
     );

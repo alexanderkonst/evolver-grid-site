@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { localizedOrigin } from "@/i18n/localeScope";
 import {
     Sparkles,
@@ -14,6 +15,7 @@ import { useToast } from "@/hooks/use-toast";
 
 const MyProductsPage = () => {
     const navigate = useNavigate();
+    const { t } = useTranslation();
     const business = usePublishedGeniusBusiness();
     const { toast } = useToast();
 
@@ -21,7 +23,7 @@ const MyProductsPage = () => {
         if (business?.productUrl) {
             const fullUrl = `${localizedOrigin()}${business.productUrl}`;
             await navigator.clipboard.writeText(fullUrl);
-            toast({ title: "Link copied!", description: "Share it with the world." });
+            toast({ title: t('myProducts.toast.copied.title'), description: t('myProducts.toast.copied.description') });
         }
     };
 
@@ -33,9 +35,9 @@ const MyProductsPage = () => {
                     <div className="mb-8">
                         <div className="flex items-center gap-3 mb-2">
                             <Package className="w-6 h-6 text-foreground" />
-                            <h1 className="text-2xl font-bold text-foreground">My Products</h1>
+                            <h1 className="text-2xl font-bold text-foreground">{t('myProducts.title')}</h1>
                         </div>
-                        <p className="text-muted-foreground">Your published offers and products.</p>
+                        <p className="text-muted-foreground">{t('myProducts.subtitle')}</p>
                     </div>
 
                     {business ? (
@@ -47,7 +49,7 @@ const MyProductsPage = () => {
                                     </div>
                                     <div>
                                         <h3 className="font-semibold text-foreground">
-                                            {business.landingContent?.headline || "My Genius Product"}
+                                            {business.landingContent?.headline || t('myProducts.fallbackHeadline')}
                                         </h3>
                                         <p className="text-xs text-muted-foreground mt-0.5">
                                             {business.productUrl}
@@ -55,11 +57,11 @@ const MyProductsPage = () => {
                                     </div>
                                 </div>
                                 <span className="px-2.5 py-1 rounded-full bg-green-100 text-green-700 text-xs font-semibold">
-                                    Live
+                                    {t('myProducts.statusLive')}
                                 </span>
                             </div>
                             <p className="text-sm text-muted-foreground mb-4">
-                                {business.deepTP?.promiseStatement || business.landingContent?.subheadline || "Your transformational offer"}
+                                {business.deepTP?.promiseStatement || business.landingContent?.subheadline || t('myProducts.fallbackPromise')}
                             </p>
                             <div className="flex flex-wrap gap-2">
                                 <Button
@@ -68,7 +70,7 @@ const MyProductsPage = () => {
                                     className="bg-primary hover:bg-primary/80 text-white text-xs"
                                 >
                                     <ExternalLink className="w-3.5 h-3.5 mr-1" />
-                                    View Page
+                                    {t('myProducts.viewPage')}
                                 </Button>
                                 <Button
                                     variant="outline"
@@ -77,15 +79,15 @@ const MyProductsPage = () => {
                                     className="text-xs border-border"
                                 >
                                     <Copy className="w-3.5 h-3.5 mr-1" />
-                                    Copy Link
+                                    {t('myProducts.copyLink')}
                                 </Button>
                             </div>
                         </div>
                     ) : (
                         <div className="rounded-xl border border-dashed border-border bg-muted/40 p-10 text-center">
                             <Package className="w-10 h-10 text-foreground/20 mx-auto mb-3" />
-                            <p className="text-muted-foreground text-sm">No products published yet.</p>
-                            <p className="text-muted-foreground text-xs mt-1">Complete your Unique Business Canvas to get started.</p>
+                            <p className="text-muted-foreground text-sm">{t('myProducts.empty.title')}</p>
+                            <p className="text-muted-foreground text-xs mt-1">{t('myProducts.empty.cta')}</p>
                         </div>
                     )}
                 </div>

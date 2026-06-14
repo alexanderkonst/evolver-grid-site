@@ -274,21 +274,21 @@ const SPACE_SECTIONS: SpaceSections = {
                 label: "Connections",
                 path: "/game/collaborate/connections",
                 locked: true,
-                lockedHint: "Coming soon — connection-tracking surface in progress.",
+                lockedHint: "Coming soon. Connection-tracking surface in progress.",
             },
             {
                 id: "people",
                 label: "People Directory",
                 path: "/game/collaborate/people",
                 locked: true,
-                lockedHint: "Coming soon — directory needs profile permissions before it ships.",
+                lockedHint: "Coming soon. Directory needs profile permissions before it ships.",
             },
             {
                 id: "mission",
                 label: "Mission Groups",
                 path: "/game/collaborate/mission",
                 locked: true,
-                lockedHint: "Coming soon — group-formation flow not yet ready.",
+                lockedHint: "Coming soon. Group-formation flow not yet ready.",
             },
         ],
     },
@@ -334,6 +334,125 @@ const SPACE_SECTIONS: SpaceSections = {
         ],
     },
 };
+
+/**
+ * i18n (Day 96, 2026-06-14): the STATIC SPACE_SECTIONS entries above carry
+ * English label / lockedHint strings as the structural source of truth
+ * (ids + paths + locked flags). To localize them WITHOUT scattering t()
+ * calls into a module-level constant (t is a hook — illegal at module
+ * scope), we keep the English in the object as a default and map each
+ * known section id to its `rail.*` catalog key here. `localizeSections`
+ * (called inside the component, where `t` is available) walks a resolved
+ * static spaceData tree and swaps label / lockedHint for their translated
+ * values, mirroring the existing rail.journey.* convention used by
+ * buildJourneySections. Dynamic builders (journey / learn / ubb) own their
+ * own t() calls and are NOT passed through this map.
+ */
+/** Space id -> i18n key for the pane-2 group title (JOURNEY/ME/LEARN/...).
+ * Reuses the spacesRail.* catalog so the pane header matches the rail + breadcrumb. */
+export const SPACE_TITLE_KEYS: Record<string, string> = {
+    journey: "spacesRail.journey",
+    "ai-os": "spacesRail.aiOs",
+    me: "spacesRail.me",
+    learn: "spacesRail.learn",
+    grow: "spacesRail.learn",
+    meet: "spacesRail.meet",
+    collaborate: "spacesRail.collaborate",
+    build: "spacesRail.build",
+    offer: "spacesRail.offer",
+};
+
+export const STATIC_LABEL_KEYS: Record<string, { label: string; lockedHint?: string }> = {
+    // AI OS space
+    "ai-os-install": { label: "rail.aiOs.install.label" },
+    "ai-os-suites": { label: "rail.aiOs.suites.label" },
+    "ai-os-clarity": { label: "rail.aiOs.clarity.label" },
+    "ai-os-iteration": { label: "rail.aiOs.iteration.label" },
+    "ai-os-vibe-code": { label: "rail.aiOs.vibeCode.label" },
+    "ai-os-design": { label: "rail.aiOs.design.label" },
+    "ai-os-benchmark": { label: "rail.aiOs.benchmark.label" },
+    "ai-os-pricing": { label: "rail.aiOs.pricing.label" },
+    // ME space
+    "top-talent": { label: "rail.me.topTalent.label" },
+    "tt-start-here": { label: "rail.me.ttStartHere.label" },
+    "tt-overview": { label: "rail.me.ttOverview.label" },
+    "tt-how-it-shows-up": { label: "rail.me.ttHowItShowsUp.label" },
+    "tt-three-key-talents": { label: "rail.me.ttThreeKeyTalents.label" },
+    "tt-top-shadow": { label: "rail.me.ttTopShadow.label" },
+    "tt-mastery": { label: "rail.me.ttMastery.label" },
+    "tt-one-action": { label: "rail.me.ttOneAction.label" },
+    "tt-roles": { label: "rail.me.ttRoles.label" },
+    "tt-partner": { label: "rail.me.ttPartner.label" },
+    "tt-monetization": { label: "rail.me.ttMonetization.label" },
+    "tt-unifying-role": { label: "rail.me.ttUnifyingRole.label" },
+    "tt-whats-next": { label: "rail.me.ttWhatsNext.label" },
+    "me-mission": { label: "rail.me.mission.label" },
+    "qol-results": { label: "rail.me.qol.label" },
+    "me-assets": { label: "rail.me.assets.label" },
+    // ME space — Art (alexanderkonst-only injected rows)
+    art: { label: "rail.art.root.label" },
+    "art-gallery": { label: "rail.art.gallery.label" },
+    "art-ceremonial": { label: "rail.art.ceremonial.label" },
+    "art-illustrations": { label: "rail.art.illustrations.label" },
+    "art-starcodes": { label: "rail.art.starcodes.label" },
+    "art-webportals": { label: "rail.art.webportals.label" },
+    // MEET space
+    browse: { label: "rail.meet.browse.label" },
+    "my-rsvps": { label: "rail.meet.myRsvps.label" },
+    create: { label: "rail.meet.create.label" },
+    // COLLABORATE space
+    "genius-match": { label: "rail.collaborate.findCollaborators.label" },
+    connections: {
+        label: "rail.collaborate.connections.label",
+        lockedHint: "rail.collaborate.connections.lockedHint",
+    },
+    people: {
+        label: "rail.collaborate.people.label",
+        lockedHint: "rail.collaborate.people.lockedHint",
+    },
+    mission: {
+        label: "rail.collaborate.missionGroups.label",
+        lockedHint: "rail.collaborate.missionGroups.lockedHint",
+    },
+    // BUILD space
+    "ubb-v2": { label: "rail.build.avb.label" },
+    "build-path": { label: "rail.build.path.label" },
+    "build-playbook": { label: "rail.build.playbook.label" },
+    "build-dashboard": { label: "rail.build.dashboard.label" },
+    "build-ignite": { label: "rail.build.ignite.label" },
+    "equilibrium-v2": { label: "rail.build.equilibrium.label" },
+    "build-karime": { label: "rail.build.karime.label" },
+    // OFFER space
+    overview: { label: "rail.offer.overview.label" },
+    "my-products": { label: "rail.offer.myProducts.label" },
+    ignite: { label: "rail.offer.ignite.label" },
+    "public-page": { label: "rail.offer.publicPage.label" },
+};
+
+/**
+ * Swap label / lockedHint on a static-derived section tree for their
+ * translated `rail.*` values. Sections whose id is absent from
+ * STATIC_LABEL_KEYS (e.g. dynamically-built journey / learn rows that
+ * already hold translated strings) pass through untouched.
+ */
+const localizeSections = (t: TFunction, sections: Section[]): Section[] =>
+    sections.map((section) => {
+        const keys = STATIC_LABEL_KEYS[section.id];
+        const subSections = section.subSections
+            ? localizeSections(t, section.subSections)
+            : section.subSections;
+        if (!keys) {
+            return subSections === section.subSections
+                ? section
+                : { ...section, subSections };
+        }
+        return {
+            ...section,
+            label: t(keys.label),
+            lockedHint: keys.lockedHint ? t(keys.lockedHint) : section.lockedHint,
+            subSections,
+        };
+    });
 
 interface SectionsPanelProps {
     activeSpaceId: string;
@@ -1045,7 +1164,17 @@ const SectionsPanel = ({
         return baseData;
     };
 
-    const spaceData = getSections();
+    // i18n (Day 96, 2026-06-14): localize the resolved tree. Static spaces
+    // (ME / AI OS / MEET / BUILD / OFFER / COLLABORATE) carry English in
+    // SPACE_SECTIONS as the structural default; localizeSections swaps
+    // label / lockedHint for their rail.* translations keyed on section id.
+    // Dynamically-built journey / learn / ubb rows already hold translated
+    // strings and have no STATIC_LABEL_KEYS entry, so they pass through
+    // untouched (no-op map).
+    const rawSpaceData = getSections();
+    const spaceData = rawSpaceData
+        ? { ...rawSpaceData, sections: localizeSections(t, rawSpaceData.sections) }
+        : rawSpaceData;
 
     const toggleExpand = (sectionId: string) => {
         setExpandedSections((prev) => ({
@@ -1194,7 +1323,7 @@ const SectionsPanel = ({
                         textShadow: "0 0 12px rgba(244, 212, 114, 0.35)",
                     }}
                 >
-                    {spaceData.title}
+                    {SPACE_TITLE_KEYS[activeSpaceId] ? t(SPACE_TITLE_KEYS[activeSpaceId], { defaultValue: spaceData.title }) : spaceData.title}
                 </span>
                 {onClose && (
                     <button

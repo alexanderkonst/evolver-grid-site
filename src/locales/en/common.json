@@ -188,7 +188,12 @@
     "faq2Q": "What if there's no actual business in what I do?",
     "faq2A": "Every top talent is monetizable — nature doesn't waste them. If yours exists, it's because it's useful, helpful, and valuable to other people. The only question is how it translates into something they'll pay for. The session names the three pieces (what you do, who pays for it, why) and pulls them into one sentence. If we don't find it in 2 hours, you don't pay.",
     "methodologyLabel": "Methodology overview · 6 min",
-    "methodologyVideoTitle": "The Productize Yourself Session — Methodology Overview"
+    "methodologyVideoTitle": "The Productize Yourself Session — Methodology Overview",
+    "logoAlt": "Find Your Top Talent",
+    "sectionLeaveWith": "What you leave with",
+    "sectionBook": "Book your session",
+    "sectionAlternatesFaq": "Alternates and FAQ",
+    "sectionMethodologyVideo": "Methodology video"
   },
   "auth": {
     "emailRequiredTitle": "Email required",
@@ -422,6 +427,167 @@
       "buildBusinessSix": {
         "label": "6. Build a business off your top talent",
         "lockedHint": "Unlocks after you activate your top talent or complete your collaboration profile."
+      }
+    },
+    "aiOs": {
+      "install": {
+        "label": "60-second install"
+      },
+      "suites": {
+        "label": "AI Skills"
+      },
+      "clarity": {
+        "label": "Clarify"
+      },
+      "iteration": {
+        "label": "Iterate"
+      },
+      "vibeCode": {
+        "label": "Vibe Code"
+      },
+      "design": {
+        "label": "Design"
+      },
+      "benchmark": {
+        "label": "Benchmarking"
+      },
+      "pricing": {
+        "label": "Work with us"
+      }
+    },
+    "me": {
+      "topTalent": {
+        "label": "Top Talent"
+      },
+      "ttStartHere": {
+        "label": "Start Here"
+      },
+      "ttOverview": {
+        "label": "Overview"
+      },
+      "ttHowItShowsUp": {
+        "label": "How It Shows Up"
+      },
+      "ttThreeKeyTalents": {
+        "label": "Three Talents in Depth"
+      },
+      "ttTopShadow": {
+        "label": "Top Shadow"
+      },
+      "ttMastery": {
+        "label": "Path of Mastery"
+      },
+      "ttOneAction": {
+        "label": "One Action"
+      },
+      "ttRoles": {
+        "label": "Ideal Environments"
+      },
+      "ttPartner": {
+        "label": "Complementary Partner"
+      },
+      "ttMonetization": {
+        "label": "Monetization"
+      },
+      "ttUnifyingRole": {
+        "label": "Your Unifying Role"
+      },
+      "ttWhatsNext": {
+        "label": "What's Next?"
+      },
+      "mission": {
+        "label": "Mission"
+      },
+      "qol": {
+        "label": "Quality of Life"
+      },
+      "assets": {
+        "label": "Assets"
+      }
+    },
+    "art": {
+      "root": {
+        "label": "🎨 Art"
+      },
+      "gallery": {
+        "label": "Gallery"
+      },
+      "ceremonial": {
+        "label": "Ceremonial Spaces"
+      },
+      "illustrations": {
+        "label": "Illustrations"
+      },
+      "starcodes": {
+        "label": "Star Codes"
+      },
+      "webportals": {
+        "label": "Webportals"
+      }
+    },
+    "meet": {
+      "browse": {
+        "label": "Browse Events"
+      },
+      "myRsvps": {
+        "label": "My RSVPs"
+      },
+      "create": {
+        "label": "Create Event"
+      }
+    },
+    "collaborate": {
+      "findCollaborators": {
+        "label": "Find Collaborators"
+      },
+      "connections": {
+        "label": "Connections",
+        "lockedHint": "Coming soon. Connection-tracking surface in progress."
+      },
+      "people": {
+        "label": "People Directory",
+        "lockedHint": "Coming soon. Directory needs profile permissions before it ships."
+      },
+      "missionGroups": {
+        "label": "Mission Groups",
+        "lockedHint": "Coming soon. Group-formation flow not yet ready."
+      }
+    },
+    "build": {
+      "avb": {
+        "label": "Automated Venture Builder"
+      },
+      "path": {
+        "label": "The path to your unique business"
+      },
+      "playbook": {
+        "label": "Take the exact playbook"
+      },
+      "dashboard": {
+        "label": "See the dashboard"
+      },
+      "ignite": {
+        "label": "Productize Yourself Session"
+      },
+      "equilibrium": {
+        "label": "Equilibrium"
+      },
+      "karime": {
+        "label": "Karime's Unique Offer"
+      }
+    },
+    "offer": {
+      "overview": {
+        "label": "Overview"
+      },
+      "myProducts": {
+        "label": "My Products"
+      },
+      "ignite": {
+        "label": "Productize Yourself Session"
+      },
+      "publicPage": {
+        "label": "My Public Page"
       }
     }
   },
@@ -2906,7 +3072,17 @@
     "logOutTitle": "Log Out",
     "logOutLabel": "log out",
     "logInTitle": "Log In",
-    "logInLabel": "Log In"
+    "logInLabel": "Log In",
+    "journey": "JOURNEY",
+    "aiOs": "AI OS",
+    "me": "ME",
+    "learn": "LEARN",
+    "meet": "MEET",
+    "collaborate": "COLLABORATE",
+    "build": "BUILD",
+    "offer": "OFFER",
+    "lockedLabel": "{{space}}, locked",
+    "lockedHeader": "{{space}} · Locked"
   },
   "profileSettings": {
     "toastErrorTitle": "Error",
@@ -3429,7 +3605,8 @@
     "footerOpenText": "The method is open to read. The platform is forkable.",
     "forkOnGithub": "Fork it on GitHub →",
     "footerCollectiveText": "Run it for your own community — under your own brand. 10% to commons if you go commercial (plus the many other benefits of entering the impact founder collective).",
-    "contactUs": "Contact us →"
+    "contactUs": "Contact us →",
+    "navAriaLabel": "Playbook progression"
   },
   "signupModal": {
     "defaultTitle": "Save Your Genius",
@@ -6465,5 +6642,126 @@
     "discoverMission": "Discover my mission",
     "heading": "Your Mission",
     "oneSentence": "One sentence"
+  },
+  "nextMove": {
+    "title": "My Next Move",
+    "allComplete": "You've completed all recommended actions!",
+    "exploreMore": "Explore More →",
+    "pathLine": "{{path}} Path · {{duration}}",
+    "start": "START",
+    "xp": "+{{xp}} XP",
+    "notThis": "Not this? Explore more →",
+    "paths": {
+      "genius": "Genius",
+      "body": "Body",
+      "mind": "Mind",
+      "emotions": "Emotions",
+      "spirit": "Spirit"
+    },
+    "starterActions": {
+      "genius": "Articulate Your Top 3 Talents",
+      "body": "10-Minute Morning Stretch",
+      "mind": "Read 1 Educational Article",
+      "emotions": "Gratitude Journal Entry",
+      "spirit": "5-Minute Breathing Practice"
+    }
+  },
+  "meSummary": {
+    "discovering": "Discovering...",
+    "levelXp": "Level {{level}} · {{xp}} XP",
+    "progressToNext": "{{current}} / {{target}} to level {{next}}",
+    "viewProfile": "View Profile →"
+  },
+  "emptyState": {
+    "zog": {
+      "message": "Let's discover who you are",
+      "cta": "Discover my top talent"
+    },
+    "qol": {
+      "message": "See where you are across 8 life areas",
+      "cta": "Map my life"
+    },
+    "action": {
+      "message": "You've completed all recommended actions!",
+      "cta": "Explore more"
+    }
+  },
+  "meSection": {
+    "avatarAlt": "Profile avatar",
+    "discoverArchetype": "Discover Your Archetype",
+    "levelLine": "Level {{level}} · {{xp}} XP",
+    "xpProgress": "{{current}} / {{needed}} XP",
+    "levelNext": "Level {{next}}"
+  },
+  "profileOverview": {
+    "loading": "Loading profile...",
+    "greeting": "Hello, {{name}}!",
+    "titleFallback": "Your Profile",
+    "subtitle": "Know yourself. Build your character.",
+    "cards": {
+      "topTalent": "Top Talent",
+      "business": "Your Business",
+      "qualityOfLife": "Quality of Life",
+      "mission": "My Mission"
+    }
+  },
+  "myProducts": {
+    "toast": {
+      "copied": {
+        "title": "Link copied!",
+        "description": "Share it with the world."
+      }
+    },
+    "title": "My Products",
+    "subtitle": "Your published offers and products.",
+    "fallbackHeadline": "My Product",
+    "statusLive": "Live",
+    "fallbackPromise": "Your transformational offer",
+    "viewPage": "View Page",
+    "copyLink": "Copy Link",
+    "empty": {
+      "title": "No products published yet.",
+      "cta": "Complete your Unique Business Canvas to get started."
+    }
+  },
+  "eventsSpace": {
+    "title": "Events",
+    "subtitle": "Gatherings and experiences",
+    "otherLocations": "Other locations",
+    "filter": "Filter",
+    "filterAll": "All Events",
+    "filterByLocation": "By Location",
+    "filterByCommunity": "By Community",
+    "community": "Community",
+    "allCommunities": "All Communities",
+    "viewPage": "View page",
+    "emptyTitle": "No events yet",
+    "emptyDescAuthed": "Check back soon or create your own community gathering.",
+    "emptyDescGuest": "Check back soon for upcoming community gatherings.",
+    "createEvent": "Create Event"
+  },
+  "appleseedView": {
+    "empty": {
+      "title": "No top-talent profile yet",
+      "body": "Generate your Zone of Genius to view your profile here.",
+      "cta": "Start Zone of Genius"
+    },
+    "offer": {
+      "title": "Your Unique Offer",
+      "body": "You know who you are. Now discover what you can offer.",
+      "cta": "Create My Unique Offer →"
+    }
+  },
+  "events": {
+    "dateTimeAt": "{{date}} at {{time}}"
+  },
+  "gameCelebration": {
+    "continue": "Continue",
+    "title": "Well done!",
+    "message": "Your next move is ready",
+    "xpBadge_one": "+{{count}} XP",
+    "xpBadge_few": "+{{count}} XP",
+    "xpBadge_many": "+{{count}} XP",
+    "xpBadge_other": "+{{count}} XP"
   }
 }

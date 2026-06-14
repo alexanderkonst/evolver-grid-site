@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import confetti from "canvas-confetti";
@@ -20,9 +21,13 @@ export default function CelebrationModal({
     isOpen,
     onClose,
     xpEarned = 15,
-    title = "Well done!",
-    message = "Your next move is ready",
+    title,
+    message,
 }: CelebrationModalProps) {
+    const { t } = useTranslation();
+    const resolvedTitle = title ?? t("gameCelebration.title");
+    const resolvedMessage = message ?? t("gameCelebration.message");
+
     useEffect(() => {
         if (isOpen) {
             // Fire confetti
@@ -55,12 +60,12 @@ export default function CelebrationModal({
 
                 {/* Title */}
                 <h2 className="text-2xl font-bold text-[#2c3150] mb-2">
-                    {title}
+                    {resolvedTitle}
                 </h2>
 
                 {/* XP Badge */}
                 <div className="inline-flex items-center justify-center gap-2 bg-[#8460ea]/10 text-[#8460ea] px-4 py-2 rounded-full text-lg font-semibold mb-4">
-                    +{xpEarned} XP
+                    {t("gameCelebration.xpBadge", { count: xpEarned })}
                 </div>
 
                 {/* Progress bar visual */}
@@ -72,14 +77,14 @@ export default function CelebrationModal({
                 </div>
 
                 {/* Message */}
-                <p className="text-[#2c3150]/70 mb-6">{message}</p>
+                <p className="text-[#2c3150]/70 mb-6">{resolvedMessage}</p>
 
                 {/* CTA */}
                 <Button
                     onClick={onClose}
                     className="w-full h-12 bg-gradient-to-r from-[#8460ea] to-[#6894d0] text-white font-semibold rounded-xl hover:scale-[1.02] active:scale-[0.98] transition-all"
                 >
-                    Continue
+                    {t("gameCelebration.continue")}
                     <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
             </DialogContent>

@@ -1,5 +1,7 @@
 import { ArrowRight } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { type UnifiedAction } from "@/types/actions";
+import { STARTER_ACTIONS, type VectorId } from "@/lib/domainMapping";
 
 // Vector icons by growth path
 const VECTOR_ICONS: Record<string, string> = {
@@ -28,9 +30,28 @@ export default function NextMoveCard({
     onExplore,
     isLoading = false,
 }: NextMoveCardProps) {
+    const { t } = useTranslation();
     const icon = action?.growthPath
         ? VECTOR_ICONS[action.growthPath.toLowerCase()] || VECTOR_ICONS.default
         : VECTOR_ICONS.default;
+
+    // Starter actions carry a localizable title via STARTER_ACTIONS[vector].titleKey.
+    // Detect them by their `starter:<vector>` id and resolve the title through i18n;
+    // otherwise fall back to the action's own (already-localized or dynamic) title.
+    const starterVector = action?.id?.startsWith("starter:")
+        ? (action.id.slice("starter:".length) as VectorId)
+        : null;
+    const titleText =
+        starterVector && STARTER_ACTIONS[starterVector]
+            ? t(STARTER_ACTIONS[starterVector].titleKey)
+            : action?.title;
+
+    // Localize the growth-path label; fall back to the raw value if unmapped.
+    const pathLabel = action?.growthPath
+        ? t(`nextMove.paths.${action.growthPath.toLowerCase()}`, {
+              defaultValue: action.growthPath,
+          })
+        : "";
 
     if (isLoading) {
         return (
@@ -50,17 +71,17 @@ export default function NextMoveCard({
     if (!action) {
         return (
             <div className="rounded-2xl liquid-glass ring-1 ring-white/10 p-6">
-                <h3 className="text-lg font-semibold text-white font-display mb-4">My Next Move</h3>
+                <h3 className="text-lg font-semibold text-white font-display mb-4">{t('nextMove.title')}</h3>
                 <div className="rounded-xl liquid-glass-strong ring-1 ring-white/15 p-6 text-center">
                     <div className="text-3xl mb-3">✨</div>
                     <p className="text-white/50 mb-4">
-                        You've completed all recommended actions!
+                        {t('nextMove.allComplete')}
                     </p>
                     <button
                         onClick={onExplore}
                         className="px-6 py-2.5 rounded-xl liquid-glass ring-1 ring-[#8460ea]/30 text-[#a4a3d0] hover:bg-white/5 transition-all text-sm font-medium"
                     >
-                        Explore More →
+                        {t('nextMove.exploreMore')}
                     </button>
                 </div>
             </div>
@@ -69,7 +90,7 @@ export default function NextMoveCard({
 
     return (
         <div className="rounded-2xl liquid-glass ring-1 ring-white/10 p-6 breathing-card">
-            <h3 className="text-lg font-semibold text-white font-display mb-4">My Next Move</h3>
+            <h3 className="text-lg font-semibold text-white font-display mb-4">{t('nextMove.title')}</h3>
 
             <div className="rounded-xl liquid-glass-strong ring-1 ring-white/15 p-6">
                 {/* Action Header */}
@@ -79,10 +100,13 @@ export default function NextMoveCard({
                     </div>
                     <div className="flex-1 min-w-0">
                         <h4 className="text-xl font-bold text-white leading-tight">
-                            {action.title}
+                            {titleText}
                         </h4>
                         <p className="text-sm text-white/40 mt-1">
-                            {action.growthPath} Path · {action.duration || "sm"}
+                            {t('nextMove.pathLine', {
+                                path: pathLabel,
+                                duration: action.duration || "sm",
+                            })}
                         </p>
                     </div>
                 </div>
@@ -102,8 +126,8 @@ export default function NextMoveCard({
                                hover:scale-[1.02] active:scale-[0.98] transition-all duration-200
                                flex items-center justify-center gap-2"
                 >
-                    START
-                    <span className="text-sm opacity-80">+{action.completionPayload?.xp || 15} XP</span>
+                    {t('nextMove.start')}
+                    <span className="text-sm opacity-80">{t('nextMove.xp', { xp: action.completionPayload?.xp || 15 })}</span>
                 </button>
             </div>
 
@@ -112,7 +136,7 @@ export default function NextMoveCard({
                 onClick={onExplore}
                 className="mt-4 text-sm text-white/30 hover:text-white/60 w-full text-center transition-colors"
             >
-                Not this? Explore more →
+                {t('nextMove.notThis')}
             </button>
         </div>
     );
