@@ -18,6 +18,7 @@ import React, {
   type ReactNode,
 } from "react";
 import { supabase } from "@/integrations/supabase/client";
+import i18n from "@/i18n/config";
 import { toast } from "sonner";
 import { getOrCreateGameProfileId } from "@/lib/gameProfile";
 import type {
@@ -551,6 +552,7 @@ export function UniqueBusinessProvider({ children }: { children: ReactNode }) {
             artifact_key: key,
             sibling_artifacts: getSiblingContext(key),
             root_context: rootContext,
+            target_language: i18n.resolvedLanguage,
           },
         });
         if (error) throw error;
@@ -573,6 +575,8 @@ export function UniqueBusinessProvider({ children }: { children: ReactNode }) {
           specificity_score: result.initial_specificity,
           step_number: 1,
           is_locked: false,
+          // i18n: stamp the UI language the AI generated this artifact in.
+          output_language: i18n.resolvedLanguage,
           // Day 74 Phase 2 (Sasha 2026-05-22): stamp the prompt version
           // alive at v1-generation time so future prompt edits can flag
           // this row as "prompt-stale — re-Improve for the new ceiling."
@@ -696,6 +700,7 @@ export function UniqueBusinessProvider({ children }: { children: ReactNode }) {
             sibling_artifacts: getSiblingContext(key),
             root_context: rootContext,
             previous_versions: prevVersions,
+            target_language: i18n.resolvedLanguage,
           },
         });
         if (error) throw error;
@@ -745,6 +750,8 @@ export function UniqueBusinessProvider({ children }: { children: ReactNode }) {
         what_changed: result.what_changed,
         step_number: current.version ? current.version + 1 : 1,
         is_locked: false,
+        // i18n: stamp the UI language the AI generated this improvement in.
+        output_language: i18n.resolvedLanguage,
         // Day 74 Phase 2 (Sasha 2026-05-22): stamp the prompt version this
         // improvement was produced under. Re-Improving against a later
         // prompt version flips the stamp; staleness compute uses the

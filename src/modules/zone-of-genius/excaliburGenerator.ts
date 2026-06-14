@@ -14,6 +14,7 @@
 
 import { AppleseedData } from './appleseedGenerator';
 import { supabase } from "@/integrations/supabase/client";
+import i18n from "@/i18n/config";
 import type { Viability } from "@/types/viability";
 
 // ---------------------------------------------------------------------------
@@ -361,7 +362,7 @@ export const generateExcalibur = async (appleseed: AppleseedData): Promise<Excal
   console.log("[generateExcalibur] Starting edge function call...");
 
   const { data, error } = await supabase.functions.invoke("generate-excalibur", {
-    body: { prompt, appleseed },
+    body: { prompt, appleseed, target_language: i18n.resolvedLanguage },
   });
 
   console.log("[generateExcalibur] Edge function returned", { hasData: !!data, hasError: !!error });
