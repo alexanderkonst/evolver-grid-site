@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { formatNumber } from "@/i18n/format";
 import { useNavigate } from "react-router-dom";
 import { Sparkles, Clock, Zap, Leaf } from "lucide-react";
 import Navigation from "@/components/Navigation";
@@ -121,7 +122,7 @@ const GameMap = () => {
                             Welcome back, <span className="text-[#8460ea]">{playerName}</span>
                         </h1>
                         <p className="text-[#a4a3d0] text-sm">
-                            Level {playerLevel} · {playerXP.toLocaleString()} XP
+                            Level {playerLevel} · {formatNumber(playerXP)} XP
                         </p>
                     </div>
 

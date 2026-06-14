@@ -2,7 +2,7 @@ import { memo } from "react";
 import { CalendarDays, Lock, MapPin, UserCheck, Users } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { EventWithRsvpCount } from "@/hooks/useEvents";
-import { formatDate as formatDateLocale } from "@/i18n/format";
+import { formatDate as formatDateLocale, formatTime as formatTimeLocale } from "@/i18n/format";
 
 interface EventCardProps {
   event: EventWithRsvpCount;
@@ -20,10 +20,10 @@ const formatDate = (dateStr: string) => {
 
 const formatTime = (timeStr: string) => {
   const [hours, minutes] = timeStr.split(":");
-  const hour = parseInt(hours, 10);
-  const ampm = hour >= 12 ? "PM" : "AM";
-  const hour12 = hour % 12 || 12;
-  return `${hour12}:${minutes} ${ampm}`;
+  const d = new Date();
+  d.setHours(parseInt(hours, 10), parseInt(minutes, 10), 0, 0);
+  // Locale-aware: en → 12h AM/PM, ru/es → 24h. No hardcoded English AM/PM.
+  return formatTimeLocale(d);
 };
 
 const VISIBILITY_BADGES = {

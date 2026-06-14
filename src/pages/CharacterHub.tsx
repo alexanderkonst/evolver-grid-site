@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { formatNumber } from "@/i18n/format";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Sparkles, Target, Heart, TrendingUp, Zap, Gift } from "lucide-react";
@@ -317,7 +318,7 @@ const CharacterHub = () => {
                             {profile?.first_name || user?.email?.split("@")[0] || t("characterHub.playerFallback")}
                         </h1>
                         <p className="text-[#8460ea] text-sm">
-                            {t("characterHub.levelLine", { level: profile?.level || 1, xp: (profile?.xp_total || 0).toLocaleString() })}
+                            {t("characterHub.levelLine", { level: profile?.level || 1, xp: formatNumber(profile?.xp_total || 0) })}
                         </p>
                         {zogSnapshot?.archetype_title && (
                             <p className="text-[#a4a3d0] text-xs mt-1">{zogSnapshot.archetype_title}</p>

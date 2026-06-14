@@ -15,7 +15,7 @@ import { getOrCreateGameProfileId } from "@/lib/gameProfile";
 import { awardXp } from "@/lib/xpSystem";
 import { awardFirstTimeBonus, getFirstTimeActionLabel } from "@/lib/xpService";
 import BackButton from "@/components/BackButton";
-import { formatDate } from "@/i18n/format";
+import { formatDate, formatTime } from "@/i18n/format";
 
 const formatDateTime = (dateStr: string, timeStr: string, timeZone: string) => {
   const dateTime = new Date(`${dateStr}T${timeStr}`);
@@ -26,12 +26,7 @@ const formatDateTime = (dateStr: string, timeStr: string, timeZone: string) => {
     day: "numeric",
     timeZone,
   });
-  const time = dateTime.toLocaleTimeString("en-US", {
-    hour: "numeric",
-    minute: "2-digit",
-    hour12: true,
-    timeZone,
-  });
+  const time = formatTime(dateTime, { hour: "numeric", minute: "2-digit", timeZone });
   return { date, time };
 };
 

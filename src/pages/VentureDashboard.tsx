@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { formatCurrency, formatNumber } from "@/i18n/format";
 import { useTranslation } from "react-i18next";
 import {
   RadarChart,
@@ -116,7 +117,7 @@ const RADAR_DATA = [
 
 // ─── Helpers ────────────────────────────────────────────────────────────────
 
-const formatCurrency = (v: number) => (v >= 1000 ? `$${(v / 1000).toFixed(1)}K` : `$${v}`);
+const formatCurrencyCompact = (v: number) => formatCurrency(v, "USD", { notation: "compact", maximumFractionDigits: 1 });
 
 /** Resolve skin-aware chart palette by reading the active <html data-skin>. */
 const useSkinChartPalette = () => {
@@ -415,7 +416,7 @@ const VentureDashboard = () => {
                   tick={{ fill: palette.tick, fontSize: 10 }}
                   axisLine={false}
                   tickLine={false}
-                  tickFormatter={(v) => formatCurrency(v)}
+                  tickFormatter={(v) => formatCurrencyCompact(v)}
                   width={45}
                 />
                 <Tooltip
@@ -428,7 +429,7 @@ const VentureDashboard = () => {
                     fontFamily: "DM Sans",
                     padding: "8px 12px",
                   }}
-                  formatter={(value: number) => [formatCurrency(value), "Total Revenue"]}
+                  formatter={(value: number) => [formatCurrencyCompact(value), "Total Revenue"]}
                 />
                 <Area type="monotone" dataKey="total" stroke={palette.accent} strokeWidth={2} fill="url(#gradTotal)" />
               </AreaChart>
@@ -460,7 +461,7 @@ const VentureDashboard = () => {
                           {r.status === "received" ? t('ventureDashboard.revenue.breakdown.received') : t('ventureDashboard.revenue.breakdown.pending')}
                         </span>
                       </div>
-                      <span className="text-xs font-mono" style={textPrimary}>{formatCurrency(rTotal)}</span>
+                      <span className="text-xs font-mono" style={textPrimary}>{formatCurrencyCompact(rTotal)}</span>
                     </div>
                     <div className="h-1 rounded-full overflow-hidden" style={{ background: "var(--skin-hairline, rgba(26,30,58,0.08))" }}>
                       <div
@@ -471,7 +472,7 @@ const VentureDashboard = () => {
                     <div className="flex items-center gap-3 mt-1">
                       {r.cash > 0 && <span className="text-[9px]" style={textMutedSoft}>{t('ventureDashboard.revenue.breakdown.cashAmount', { amount: r.cash })}</span>}
                       {r.inKind > 0 && <span className="text-[9px]" style={textMutedSoft}>{t('ventureDashboard.revenue.breakdown.inKindAmount', { amount: r.inKind })}</span>}
-                      {r.revShare > 0 && <span className="text-[9px]" style={textMutedSoft}>{t('ventureDashboard.revenue.breakdown.revShareAmount', { amount: r.revShare.toLocaleString() })}</span>}
+                      {r.revShare > 0 && <span className="text-[9px]" style={textMutedSoft}>{t('ventureDashboard.revenue.breakdown.revShareAmount', { amount: formatNumber(r.revShare) })}</span>}
                       <span className="text-[9px] ml-auto" style={textMutedSoft}>{r.type}</span>
                     </div>
                   </div>
@@ -485,7 +486,7 @@ const VentureDashboard = () => {
                 <span className="text-[10px] uppercase tracking-[0.18em]" style={textMuted}>{t('ventureDashboard.revenue.breakdown.total')}</span>
                 <span className="text-2xl font-medium" style={numerals}>
                   <span className="bg-clip-text text-transparent" style={GOLD_TEXT_STYLE}>
-                    {formatCurrency(totalAll)}
+                    {formatCurrencyCompact(totalAll)}
                   </span>
                 </span>
               </div>
