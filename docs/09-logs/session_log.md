@@ -8127,3 +8127,26 @@ Verified live in preview: cold `/` = venture hero + match journey shape; guest r
 - `src/hooks/useJourneyProgress.ts`: guest reveal unlocks JOURNEY #2
 - `docs/specs/funnel-v2/funnel-v2_product_spec.md`: dated §4.1 correction
 - `docs/09-logs/session_log.md`: this entry
+
+
+---
+
+## Day 101: The globalization engine — Russian + Spanish, full-stack (June 14, 2026)
+
+The platform now speaks Russian and Spanish, not as a bolt-on but as a reusable globalization engine. The full arc (Days 99 to 101) lives in `docs/specs/i18n/scope_of_work.md` (the SOW + build log is the source of technical truth; this entry is the narrative pointer, not a re-compression).
+
+The shape Sasha chose: full-stack depth across all three layers (UI chrome, data, AI-generated artifacts); English stays the default for cold funnel traffic with RU/ES reachable via a URL prefix (`/ru`, `/es`) composed outside the white-label skin basename, plus a switcher; AI translation to best ability with Sasha himself as the native-RU reviewer (he checks the platform, not the prompt internals). Layer 3 (model generation) trusts the model to write natively via a per-request `target_language`, with the reveal getting extra calibration.
+
+`react-i18next` with one `common` namespace; the catalog reached 4,355 keys at exact RU + ES parity (Spanish proved "language 2 is cheap": a single bulk pass over the English catalog, 0 missing). Extraction ran as parallel waves (one file per agent, no agent touching `src/locales`, deterministic central merge) to dodge write races. Layer 3 wires `languageDirective()` into seven generation edge functions; the reveal (Appleseed / ZoG) additionally gets `revealCalibration(lang)`, which ports the English prompt's "no abstract compound nouns" rule into the RU/ES failure mode (flat nominalizations, genitive chains, English calques) so a non-English reveal reads as living native prose, not translationese.
+
+This session closed the high-value remainder: the 5 standalone data hubs (talents, growthPaths, skillTrees, playbookSteps, assetCategories) localized via a `useLocalized<Hub>()` hook pattern (display swapped to the active locale, every id / matching / DB-persist / prompt-signal field left English by design), reveal calibration shipped, and the whole thing live-verified on a fresh dev server (`/ru/playbook` + `/es/playbook` render correctly, glossary right, zero console errors).
+
+Two judgment calls worth remembering. The seeded testimonials are real named-person quotes (Sergey Makarov, Sandra Otto, Oyi Sun, Karime Kuri); auto-translating someone's heartfelt words and presenting them as their quote is a misrepresentation risk and the "real-person content Sasha vets word-by-word" boundary, so quotes stay in original voice while the chrome around them is localized. And the mission-discovery wizard is deferred as one coherent unit, because its final column is the 583-mission catalog Sasha said to skip; localizing only the taxonomy would ship a half-English wizard below his polish bar. Selection there is ID-based, so one word ("do the missions too") unlocks the whole wizard safely later. Everything still open is explicitly deferred or parked, none of it on the first-impression path.
+
+**Files touched (this session)**
+- `src/data/growthPaths.ts`, `src/data/skillTrees.ts`, `src/modules/zone-of-genius/talents.ts`, `src/data/playbookSteps.ts`, `src/modules/asset-mapping/data/assetCategories.ts`: `useLocalized<Hub>()` hooks
+- consumers wired: `GrowthPathsPage`, `SkillTrees`, talents `Step0-3` + `CharacterSnapshot`, playbook shell/card/infographic + `MyArtifactsPage` + `PlaybookPage`, `AssetMappingWizard`
+- `src/locales/{en,ru,es}/common.json`: +587 keys (catalog now 4,355 each, full parity)
+- `supabase/functions/_shared/language.ts`: `revealCalibration(lang)`; wired into `generate-appleseed` + `generate-zog-snapshot`
+- `docs/specs/i18n/scope_of_work.md`: build log + deferral decisions
+- `docs/09-logs/session_log.md`: this entry
