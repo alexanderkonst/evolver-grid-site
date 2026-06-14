@@ -268,5 +268,193 @@
     "passwordHint": "Пароль должен быть не короче 6 символов",
     "submitLoading": "Обновляем...",
     "submit": "Обновить пароль"
+  },
+  "missionLanding": {
+    "heroTitle": "Найди свою миссию",
+    "heroTitleSaved": "Моя миссия",
+    "heroSubhead": "Вставь анализ от своего ИИ ниже. Мы выхватим ту единственную фразу, которая попадает в точку.",
+    "step1Eyebrow": "Шаг 1",
+    "step1Title": "Скопируй промпт",
+    "step1Desc": "Вставь его в ChatGPT, Claude или тот ИИ, который знает тебя лучше всех.",
+    "copyButton": "Копировать",
+    "copyButtonCopied": "Скопировано",
+    "step2Eyebrow": "Шаг 2",
+    "step2Label": "Вставь ответ своего ИИ",
+    "step2Placeholder": "Вставь ответ целиком — вместе со строкой '1 sentence synthesis:' в самом конце.",
+    "findMyMission": "Найти мою миссию",
+    "confirmEyebrow": "Одна фраза · можно править",
+    "confirmPlaceholder": "Впиши свою миссию одной фразой…",
+    "confirmHelper": "Нажми на фразу выше, чтобы её изменить. Именно она сохранится в твоём профиле.",
+    "back": "Назад",
+    "saving": "Сохраняю…",
+    "saveMyMission": "Сохранить мою миссию",
+    "savedEyebrow": "Моя миссия",
+    "edit": "Изменить",
+    "seeOnProfile": "Посмотреть в профиле",
+    "startOverLink": "Найти новую миссию с нуля",
+    "toastNoSummaryTitle": "Не нашли итоговую фразу",
+    "toastNoSummaryDesc": "Впиши свою миссию одной фразой ниже и сохрани.",
+    "toastEmptyTitle": "Добавь фразу миссии",
+    "toastEmptyDesc": "Поле миссии не может быть пустым.",
+    "toastNoProfileTitle": "Не удалось найти твой профиль",
+    "toastNoProfileDesc": "Обнови страницу и попробуй ещё раз.",
+    "toastSaveSchemaTitle": "Сохранение миссии временно недоступно",
+    "toastSaveSchemaDesc": "Базе данных платформы нужно разовое обновление. Мы уже занимаемся этим — попробуй ещё раз чуть позже.",
+    "toastSaveFailedTitle": "Не удалось сохранить миссию",
+    "toastSaveTryAgain": "Попробуй ещё раз.",
+    "editDialogTitle": "Изменить миссию?",
+    "editDialogDescDated": "Ты сохранил это {{date}}. Изменение заменит фразу — исходная не сохранится (история версий в планах).",
+    "editDialogDesc": "Изменение заменит сохранённую миссию. Исходная фраза не сохранится (история версий в планах).",
+    "editDialogKeep": "Оставить как есть",
+    "editDialogConfirm": "Да, дай изменить",
+    "startOverDialogTitle": "Найти новую миссию?",
+    "startOverDialogDescDated": "Ты сохранил текущую миссию {{date}}. Если начнёшь заново, вернёшься к промпту для ИИ — а текущая миссия останется в профиле, пока не сохранишь новую.",
+    "startOverDialogDesc": "Если начнёшь заново, вернёшься к промпту для ИИ. Текущая миссия останется в профиле, пока не сохранишь новую.",
+    "startOverDialogKeep": "Оставить текущую миссию",
+    "startOverDialogConfirm": "Да, начать заново"
+  },
+  "assetLanding": {
+    "toastPleaseSignIn": "Войди в аккаунт",
+    "toastCouldNotSaveTitle": "Не удалось сохранить в профиль",
+    "toastBufferedLocallyWithError": "Твои активы сохранены локально — попробуй ещё раз. ({{error}})",
+    "toastBufferedLocally": "Твои активы сохранены локально; попробуй ещё раз, чтобы синхронизировать.",
+    "toastAssetsSavedTitle": "Активы сохранены",
+    "toastAssetsSavedDesc": "Сохранено активов: {{saved}}{{skipped}}.",
+    "toastSkippedClause": ", пропущено: {{count}}",
+    "toastSomethingWentWrong": "Что-то пошло не так",
+    "celebrateResultText": "{{count}} актив на карте",
+    "heroTitleBefore": "Карта",
+    "heroTitleGold": "активов",
+    "heroSubtitle": "Собери свои ресурсы для коллабораций",
+    "choiceQuestion": "Как ты хочешь собрать карту своих активов?",
+    "cardAiEyebrow": "Извлечь через ИИ",
+    "cardAiTitle": "Извлечь через ИИ",
+    "cardAiBody": "Вставь то, как ИИ описал твои активы — а мы разложим их по таксономии.",
+    "cardManualEyebrow": "Вручную",
+    "cardManualTitle": "Добавить вручную",
+    "cardManualBody": "Пройди по категориям и добавляй активы по одному.",
+    "promptEyebrow": "Промпт для твоего ИИ",
+    "promptSubtitle": "Скопируй и спроси у того ИИ, с которым общаешься чаще всего.",
+    "copyButton": "Скопировать",
+    "copyButtonCopied": "Скопировано",
+    "pasteLabel": "Вставь ответ ИИ",
+    "pastePlaceholder": "Вставь список своих активов от ИИ…",
+    "backButton": "Назад",
+    "ctaMatching": "Сопоставляем…",
+    "ctaExtractAssets": "Извлечь активы",
+    "orAddManuallyLink": "Или добавь активы вручную →",
+    "matchedHeadingFound": "Найдено активов: {{count}}",
+    "matchedHeadingNone": "Точных совпадений нет",
+    "matchedSubtitleFound": "Проверь и сохрани их в профиль.",
+    "matchedSubtitleNone": "Попробуй добавить активы вручную через мастер.",
+    "returnToProfile": "Вернуться в профиль",
+    "ctaSaving": "Сохраняем…",
+    "ctaSaveToProfile": "Сохранить в профиль",
+    "addMoreManuallyLink": "Добавить ещё вручную →",
+    "maturityLabelMonetizableNow": "Готов монетизировать",
+    "maturityLabelNeedsPackaging": "Нужно упаковать",
+    "maturityLabelLatent": "Латентный",
+    "maturityLabelAspirational": "Желаемый",
+    "maturityLabelSymbolicOnly": "Только символический",
+    "maturityHintMonetizableNow": "Описан, готов к поставке, есть цена — мог бы принести доход уже в этом месяце, если запустить.",
+    "maturityHintNeedsPackaging": "Реальный и проверенный, но живёт у тебя в голове или в разрозненных артефактах. Две недели упаковки — и можно продавать.",
+    "maturityHintLatent": "Потенциал реален, но не проверен на рынке. Не протестирован или не описан.",
+    "maturityHintAspirational": "Связи, сеть, предполагаемый доступ. Дверь есть — но ты ещё не открыл её ради дохода или дистрибуции.",
+    "maturityHintSymbolicOnly": "Мифическое, биографическое или сакральное топливо. Реальное, но операционно инертное сегодня."
+  },
+  "qolResults": {
+    "loading": "Загружаем твои результаты...",
+    "emptyEyebrow": "Карта качества жизни",
+    "emptyHeadline": "Заверши оценку",
+    "emptySubhead": "Ответь по всем 8 сферам, чтобы увидеть результаты.",
+    "startAssessmentCta": "Начать оценку",
+    "heroEyebrow": "Качество жизни",
+    "heroSubhead": "Теперь ты знаешь, куда направить рост.",
+    "lifeAreasHeading": "8 сфер жизни",
+    "retakeCta": "Пройти заново",
+    "downloadPdfCta": "Скачать PDF",
+    "toastSaveFailedTitle": "Не удалось сохранить результаты",
+    "toastSaveFailedDesc": "Твои ответы всё ещё на этой странице. Попробуй ещё раз или обнови.",
+    "toastPdfDownloadedTitle": "PDF скачан",
+    "toastPdfDownloadedDesc": "Твой снимок сохранён.",
+    "toastDownloadFailedTitle": "Не удалось скачать",
+    "toastDownloadFailedGenerateDesc": "Не удалось сгенерировать PDF: {{error}}. Открой DevTools браузера → Console для деталей.",
+    "toastDownloadFailedSaveDesc": "Ошибка сохранения: {{error}}."
+  },
+  "rail": {
+    "hideSidebar": {
+      "title": "Скрыть панель (⌘B)",
+      "aria": "Скрыть панель"
+    },
+    "lockedFallback": "Закрыто",
+    "progress": {
+      "lockedCount": "{{locked}} из {{total}} закрыто"
+    },
+    "journey": {
+      "startHere": {
+        "label": "1. Начни с поиска своего главного таланта"
+      },
+      "activation": {
+        "label": "Узнай, как монетизировать свой главный талант (усиление, $37)",
+        "lockedHint": "Сначала сформулируй свой главный талант."
+      },
+      "missionDiscovery": {
+        "label": "2. Найди свою миссию",
+        "lockedHint": "Откроется, когда найдёшь свой главный талант."
+      },
+      "assetMapper": {
+        "label": "3. Составь карту своих активов",
+        "lockedHint": "Откроется, когда найдёшь свою миссию."
+      },
+      "qolAssess": {
+        "label": "4. Оцени качество своей жизни (по желанию)",
+        "lockedHint": "Откроется, когда составишь карту активов."
+      },
+      "findCollaborators": {
+        "label": "5. Найди коллабораторов",
+        "lockedHint": "Откроется, когда составишь карту активов."
+      },
+      "buildBusinessTerminus": {
+        "label": "5. Построй бизнес на своём главном таланте",
+        "lockedHint": "Откроется, когда найдёшь свой главный талант."
+      },
+      "buildBusinessSix": {
+        "label": "6. Построй бизнес на своём главном таланте",
+        "lockedHint": "Откроется, когда активируешь свой главный талант или заполнишь профиль для мэтчинга."
+      }
+    }
+  },
+  "shell": {
+    "breadcrumb": {
+      "findTopTalent": "Начни с поиска своего главного таланта",
+      "takePlaybook": "Возьми точный плейбук",
+      "seePath": "Увидь короткий путь к своему бизнесу",
+      "seeDashboard": "Посмотри, как мы это строим",
+      "mapAssets": "Составь карту своих активов",
+      "assessQol": "Оцени качество своей жизни",
+      "buildBusiness": "Построй бизнес на своём главном таланте",
+      "discoverMission": "Открой свою миссию",
+      "spaceFallback": "Путь"
+    },
+    "unlockHints": {
+      "nextMove": "Откроется после Шага 1",
+      "grow": "Откроется после твоего разбора «Найди свой главный талант».",
+      "learn": "Откроется после Шага 1",
+      "build": "Откроется после того, как ты активируешь свой главный талант или заполнишь профиль для мэтчинга.",
+      "meet": "Откроется после Шага 1",
+      "collaborate": "Откроется после Главного таланта + Миссии + Активов.",
+      "buysell": "Откроется после Шага 2"
+    },
+    "rail": {
+      "expand": "Развернуть панель",
+      "minimize": "Свернуть панель"
+    },
+    "sidebar": {
+      "expandTitle": "Развернуть боковую панель (⌘B)",
+      "expand": "Развернуть боковую панель"
+    },
+    "menu": {
+      "open": "Открыть меню"
+    }
   }
 }

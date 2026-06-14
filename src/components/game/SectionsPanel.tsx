@@ -1,4 +1,6 @@
 import { ReactNode, memo, useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
+import type { TFunction } from "i18next";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { useLocation } from "react-router-dom";
 import { ChevronRight, ChevronDown, X } from "lucide-react";
@@ -509,6 +511,7 @@ const buildLearnSections = (pathBase: "/library" | "/game/learn/library"): Secti
 type EntryPath = "match" | "build" | null;
 
 const buildJourneySections = (
+    t: TFunction,
     _currentPath: string,
     // Day 95 (Sasha 2026-06-13, rev 2): the $37 power-up row keys on the
     // NARROW, durable PAID signal from useDeeperAccess — true iff the
@@ -592,10 +595,10 @@ const buildJourneySections = (
               // Completion signal: journey-find-collaborators flag set on
               // first match_interests insert by the user.
               id: "journey-find-collaborators",
-              label: "5. Find collaborators",
+              label: t("rail.journey.findCollaborators.label"),
               path: "/game/collaborate/matches",
               locked: !assetsDone,
-              lockedHint: "Unlocks after you map your assets.",
+              lockedHint: t("rail.journey.findCollaborators.lockedHint"),
               completed: !!journeyProgress["journey-find-collaborators"],
           }
         : {
@@ -605,10 +608,10 @@ const buildJourneySections = (
               // the user has paid for Build; /ubb requires Build
               // entitlement to render anything meaningful.
               id: "journey-build-business",
-              label: "5. Build a business off your top talent",
+              label: t("rail.journey.buildBusinessTerminus.label"),
               path: "/path",
               locked: !topTalentDone,
-              lockedHint: "Unlocks after you find your top talent.",
+              lockedHint: t("rail.journey.buildBusinessTerminus.lockedHint"),
               completed: !!journeyProgress["journey-build-business"],
           };
 
@@ -624,11 +627,10 @@ const buildJourneySections = (
     const buildBusinessItem: Section | null = isMatch
         ? {
               id: "journey-build-business",
-              label: "6. Build a business off your top talent",
+              label: t("rail.journey.buildBusinessSix.label"),
               path: "/path",
               locked: !buildBusinessUnlocked,
-              lockedHint:
-                  "Unlocks after you activate your top talent or complete your collaboration profile.",
+              lockedHint: t("rail.journey.buildBusinessSix.lockedHint"),
               completed: !!journeyProgress["journey-build-business"],
           }
         : null;
@@ -636,7 +638,7 @@ const buildJourneySections = (
     return [
         {
             id: "journey-start-here",
-            label: "1. Start by finding your top talent",
+            label: t("rail.journey.startHere.label"),
             path: "/",
             completed: topTalentDone,
         },
@@ -677,7 +679,7 @@ const buildJourneySections = (
             // undersold the $37 deeper Top Talent reveal as skippable; "power-up"
             // frames it as a value-ladder enhancement and fits the sidequest /
             // game register. The QoL row keeps "(optional)"; that signal is right.
-            label: "Find out how to monetize your top talent (power-up, $37)",
+            label: t("rail.journey.activation.label"),
             variant: "sidequest",
             // Day 80 Wave 2.4: route to the dedicated standalone page,
             // not the AppleseedDisplay anchor (which surrounds the
@@ -698,7 +700,7 @@ const buildJourneySections = (
             // — there's nothing to deepen. Same lock pattern + popover
             // hint as the other numbered steps.
             locked: !topTalentDone,
-            lockedHint: "Articulate your top talent first.",
+            lockedHint: t("rail.journey.activation.lockedHint"),
             // Day 95 (Sasha 2026-06-13, rev 2): crosses out on the PAID
             // signal only (hasDeeperAccess = paid / coupon / tier). The
             // free reveal does NOT cross it out — Sasha's explicit intent,
@@ -709,18 +711,18 @@ const buildJourneySections = (
         },
         {
             id: "journey-mission-discovery",
-            label: "2. Discover your mission",
+            label: t("rail.journey.missionDiscovery.label"),
             path: "/mission-discovery",
             locked: !topTalentDone,
-            lockedHint: "Unlocks after you find your top talent.",
+            lockedHint: t("rail.journey.missionDiscovery.lockedHint"),
             completed: missionDone,
         },
         {
             id: "journey-asset-mapper",
-            label: "3. Map your assets",
+            label: t("rail.journey.assetMapper.label"),
             path: "/asset-mapping",
             locked: !missionDone,
-            lockedHint: "Unlocks after you discover your mission.",
+            lockedHint: t("rail.journey.assetMapper.lockedHint"),
             completed: assetsDone,
         },
         {
@@ -740,10 +742,10 @@ const buildJourneySections = (
             // to /quality-of-life-map/assessment if they want; the lock
             // is advisory (visual + popover hint), not access-gating.
             id: "journey-qol-assess",
-            label: "4. Assess your quality of life (optional)",
+            label: t("rail.journey.qolAssess.label"),
             path: "/quality-of-life-map/assessment",
             locked: !assetsDone,
-            lockedHint: "Unlocks after you map your assets.",
+            lockedHint: t("rail.journey.qolAssess.lockedHint"),
             completed: !!journeyProgress["journey-qol-assess"],
         },
         terminusItem,
@@ -761,6 +763,7 @@ const SectionsPanel = ({
     className,
     pageOwnsBackground = false,
 }: SectionsPanelProps) => {
+    const { t } = useTranslation();
     const location = useLocation();
     const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({});
     const [userEmail, setUserEmail] = useState<string | null>(null);
@@ -923,7 +926,7 @@ const SectionsPanel = ({
         if (activeSpaceId === "journey") {
             return {
                 ...baseData,
-                sections: buildJourneySections(location.pathname, hasDeeperAccess, journeyProgress, entryPath, activationDone),
+                sections: buildJourneySections(t, location.pathname, hasDeeperAccess, journeyProgress, entryPath, activationDone),
             };
         }
 
@@ -1197,8 +1200,8 @@ const SectionsPanel = ({
                     <button
                         onClick={onClose}
                         className="p-1.5 text-white/50 hover:text-white hover:bg-white/10 rounded-md transition-colors"
-                        title="Hide sidebar (⌘B)"
-                        aria-label="Hide sidebar"
+                        title={t("rail.hideSidebar.title")}
+                        aria-label={t("rail.hideSidebar.aria")}
                     >
                         <X className="w-4 h-4" />
                     </button>
@@ -1636,7 +1639,7 @@ const SectionsPanel = ({
                                             ? "0 0 6px rgba(244, 212, 114, 0.55)"
                                             : "none",
                                     }}
-                                    title={`${section.progress.locked} of ${section.progress.total} locked`}
+                                    title={t("rail.progress.lockedCount", { locked: section.progress.locked, total: section.progress.total })}
                                 >
                                     {section.progress.locked}/{section.progress.total}
                                 </span>
@@ -1715,7 +1718,7 @@ const SectionsPanel = ({
                                             textShadow: "0 0 10px rgba(244, 212, 114, 0.35), 0 1px 2px rgba(10,22,40,0.5)",
                                         }}
                                     >
-                                        {section.lockedHint || "Locked"}
+                                        {section.lockedHint || t("rail.lockedFallback")}
                                     </p>
                                 </div>
                             </PopoverContent>

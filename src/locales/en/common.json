@@ -268,5 +268,193 @@
     "passwordHint": "Password must be at least 6 characters",
     "submitLoading": "Updating...",
     "submit": "Update Password"
+  },
+  "missionLanding": {
+    "heroTitle": "Discover Your Mission",
+    "heroTitleSaved": "My Mission",
+    "heroSubhead": "Paste your AI's analysis below. We'll capture the one sentence that lands.",
+    "step1Eyebrow": "Step 1",
+    "step1Title": "Copy the prompt",
+    "step1Desc": "Paste it into ChatGPT, Claude, or whichever AI knows you best.",
+    "copyButton": "Copy",
+    "copyButtonCopied": "Copied",
+    "step2Eyebrow": "Step 2",
+    "step2Label": "Paste your AI's response",
+    "step2Placeholder": "Paste the full response — including the '1 sentence synthesis:' line at the end.",
+    "findMyMission": "Find my mission",
+    "confirmEyebrow": "One sentence · editable",
+    "confirmPlaceholder": "Type your one-sentence mission here…",
+    "confirmHelper": "Click the sentence above to edit. This is what gets saved to your profile.",
+    "back": "Back",
+    "saving": "Saving…",
+    "saveMyMission": "Save my mission",
+    "savedEyebrow": "My mission",
+    "edit": "Edit",
+    "seeOnProfile": "See on profile",
+    "startOverLink": "Discover a new mission from scratch",
+    "toastNoSummaryTitle": "Couldn't find a single-sentence summary",
+    "toastNoSummaryDesc": "Type your one-sentence mission below, then save.",
+    "toastEmptyTitle": "Add your mission sentence",
+    "toastEmptyDesc": "The mission field can't be empty.",
+    "toastNoProfileTitle": "Couldn't find your profile",
+    "toastNoProfileDesc": "Please refresh and try again.",
+    "toastSaveSchemaTitle": "Mission save is temporarily unavailable",
+    "toastSaveSchemaDesc": "The platform's database needs a one-time update. We're on it — please try again shortly.",
+    "toastSaveFailedTitle": "Couldn't save your mission",
+    "toastSaveTryAgain": "Please try again.",
+    "editDialogTitle": "Change your mission?",
+    "editDialogDescDated": "You saved this on {{date}}. Editing replaces it — the original sentence won't be preserved (version history is on the roadmap).",
+    "editDialogDesc": "Editing replaces your saved mission. The original sentence won't be preserved (version history is on the roadmap).",
+    "editDialogKeep": "Keep it as is",
+    "editDialogConfirm": "Yes, let me edit",
+    "startOverDialogTitle": "Discover a new mission?",
+    "startOverDialogDescDated": "You saved your current mission on {{date}}. Starting over routes you back to the AI prompt — your current mission stays on your profile until you save a new one.",
+    "startOverDialogDesc": "Starting over routes you back to the AI prompt. Your current mission stays on your profile until you save a new one.",
+    "startOverDialogKeep": "Keep my current mission",
+    "startOverDialogConfirm": "Yes, start fresh"
+  },
+  "assetLanding": {
+    "toastPleaseSignIn": "Please sign in",
+    "toastCouldNotSaveTitle": "Couldn't save to your profile",
+    "toastBufferedLocallyWithError": "Your assets are buffered locally — please retry. ({{error}})",
+    "toastBufferedLocally": "Your assets are buffered locally; please retry to sync.",
+    "toastAssetsSavedTitle": "Assets saved",
+    "toastAssetsSavedDesc": "Saved {{saved}} assets{{skipped}}.",
+    "toastSkippedClause": ", skipped {{count}}",
+    "toastSomethingWentWrong": "Something went wrong",
+    "celebrateResultText": "{{count}} asset mapped",
+    "heroTitleBefore": "Asset",
+    "heroTitleGold": "Mapping",
+    "heroSubtitle": "Map your resources for collaboration",
+    "choiceQuestion": "How would you like to map your assets?",
+    "cardAiEyebrow": "AI extract",
+    "cardAiTitle": "Use AI to extract",
+    "cardAiBody": "Paste an AI's read of your assets and we'll match them to the taxonomy.",
+    "cardManualEyebrow": "Manual",
+    "cardManualTitle": "Add manually",
+    "cardManualBody": "Walk the categories and add each asset one at a time.",
+    "promptEyebrow": "Prompt for your AI",
+    "promptSubtitle": "Copy this and ask the AI you talk to most.",
+    "copyButton": "Copy",
+    "copyButtonCopied": "Copied",
+    "pasteLabel": "Paste the AI's response",
+    "pastePlaceholder": "Paste the AI's list of your assets…",
+    "backButton": "Back",
+    "ctaMatching": "Matching…",
+    "ctaExtractAssets": "Extract Assets",
+    "orAddManuallyLink": "Or add assets manually →",
+    "matchedHeadingFound": "Found {{count}} assets",
+    "matchedHeadingNone": "No exact matches",
+    "matchedSubtitleFound": "Review and save these to your profile.",
+    "matchedSubtitleNone": "Try adding assets manually using the wizard.",
+    "returnToProfile": "Return to Profile",
+    "ctaSaving": "Saving…",
+    "ctaSaveToProfile": "Save to Profile",
+    "addMoreManuallyLink": "Add more manually →",
+    "maturityLabelMonetizableNow": "Monetizable now",
+    "maturityLabelNeedsPackaging": "Needs packaging",
+    "maturityLabelLatent": "Latent",
+    "maturityLabelAspirational": "Aspirational",
+    "maturityLabelSymbolicOnly": "Symbolic only",
+    "maturityHintMonetizableNow": "Documented, deliverable, priced — could produce revenue this month if activated.",
+    "maturityHintNeedsPackaging": "Real and proven, but lives in your head or scattered artifacts. Two weeks of packaging from sellable.",
+    "maturityHintLatent": "Potential is real but unproven in the market. Untested or undocumented.",
+    "maturityHintAspirational": "Relational / networked / intended access. The door exists; you have not opened it for revenue or distribution yet.",
+    "maturityHintSymbolicOnly": "Mythic, biographical, or sacred fuel. Real, but operationally inert today."
+  },
+  "qolResults": {
+    "loading": "Loading your results...",
+    "emptyEyebrow": "Quality of Life Map",
+    "emptyHeadline": "Complete Your Assessment",
+    "emptySubhead": "Answer all 8 domains to see your results.",
+    "startAssessmentCta": "Start Assessment",
+    "heroEyebrow": "Quality of Life",
+    "heroSubhead": "Now you know where to focus your growth.",
+    "lifeAreasHeading": "8 Life Areas",
+    "retakeCta": "Retake",
+    "downloadPdfCta": "Download PDF",
+    "toastSaveFailedTitle": "Could not save your results",
+    "toastSaveFailedDesc": "Your answers are still on this page. Try again or refresh.",
+    "toastPdfDownloadedTitle": "PDF Downloaded",
+    "toastPdfDownloadedDesc": "Your snapshot has been saved.",
+    "toastDownloadFailedTitle": "Download Failed",
+    "toastDownloadFailedGenerateDesc": "Couldn't generate PDF: {{error}}. Open browser DevTools → Console for details.",
+    "toastDownloadFailedSaveDesc": "Save error: {{error}}."
+  },
+  "rail": {
+    "hideSidebar": {
+      "title": "Hide sidebar (⌘B)",
+      "aria": "Hide sidebar"
+    },
+    "lockedFallback": "Locked",
+    "progress": {
+      "lockedCount": "{{locked}} of {{total}} locked"
+    },
+    "journey": {
+      "startHere": {
+        "label": "1. Start by finding your top talent"
+      },
+      "activation": {
+        "label": "Find out how to monetize your top talent (power-up, $37)",
+        "lockedHint": "Articulate your top talent first."
+      },
+      "missionDiscovery": {
+        "label": "2. Discover your mission",
+        "lockedHint": "Unlocks after you find your top talent."
+      },
+      "assetMapper": {
+        "label": "3. Map your assets",
+        "lockedHint": "Unlocks after you discover your mission."
+      },
+      "qolAssess": {
+        "label": "4. Assess your quality of life (optional)",
+        "lockedHint": "Unlocks after you map your assets."
+      },
+      "findCollaborators": {
+        "label": "5. Find collaborators",
+        "lockedHint": "Unlocks after you map your assets."
+      },
+      "buildBusinessTerminus": {
+        "label": "5. Build a business off your top talent",
+        "lockedHint": "Unlocks after you find your top talent."
+      },
+      "buildBusinessSix": {
+        "label": "6. Build a business off your top talent",
+        "lockedHint": "Unlocks after you activate your top talent or complete your collaboration profile."
+      }
+    }
+  },
+  "shell": {
+    "breadcrumb": {
+      "findTopTalent": "Start by finding your top talent",
+      "takePlaybook": "Take the exact playbook",
+      "seePath": "See the shortcut path to your business",
+      "seeDashboard": "See how we're building this",
+      "mapAssets": "Map your assets",
+      "assessQol": "Assess your quality of life",
+      "buildBusiness": "Build a business off your top talent",
+      "discoverMission": "Discover your mission",
+      "spaceFallback": "Journey"
+    },
+    "unlockHints": {
+      "nextMove": "Unlocks after Step 1",
+      "grow": "Unlocks after your Find Your Top Talent Reveal.",
+      "learn": "Unlocks after Step 1",
+      "build": "Unlocks after you activate your top talent or complete your collaboration profile.",
+      "meet": "Unlocks after Step 1",
+      "collaborate": "Unlocks after Top Talent + Mission + Assets.",
+      "buysell": "Unlocks after Step 2"
+    },
+    "rail": {
+      "expand": "Expand rail",
+      "minimize": "Minimize rail"
+    },
+    "sidebar": {
+      "expandTitle": "Expand sidebar (⌘B)",
+      "expand": "Expand sidebar"
+    },
+    "menu": {
+      "open": "Open menu"
+    }
   }
 }

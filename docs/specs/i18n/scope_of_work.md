@@ -36,9 +36,12 @@ This is **not a brochure site that needs its buttons translated.** It is an AI-n
 | 2b — Funnel chrome + RU (MatchFlowCta · journeySequence keys · OnboardingProgress · PlaybookHero; 41 keys) | ✅ 2026-06-14 | build green (12.2s), RU renders on `/ru` (playbook CTA etc.), `CONFIG → keys` refactors compile clean. **Rail labels extracted but `journeySequence.ts` not yet WIRED** (data file left untouched; consumer needs `t('journey.*')`). |
 | 2c — Ignition paid-session page + RU (24 keys) | ✅ 2026-06-14 | build green (11.2s), `/ru/ignite` fully RU (hero, guarantee, FAQs), no leak/errors. PlaybookPage is a wrapper (copy in `playbookSteps` data + children → later). |
 | 2d — Auth + ResetPassword flow + RU (75 keys) | ✅ 2026-06-14 | build green (11.2s), `/ru/auth` renders RU (tabs, form labels, claim copy), gold-span titles split, Zod/Supabase passthroughs left alone. Minor: one stray "Log In" button + JOURNEY rail still English (both unextracted shell). |
-| 2e+ — shell rail (SectionsPanel/GameShellV2) · Phase 0b plumbing (Zod/plural/format/calendar/preferred_language) · data hubs (missions 1166 etc.) · landmines (PDF/charts/emails) · Layer 3 · seeded · SEO · ES | ⏳ | the bulk remains |
+| 2e — Post-reveal money path + RU (MissionDiscovery, AssetMapping, QoL results; 106 keys) | ✅ 2026-06-14 | build green, prefix-normalized merge, charts/Zod skipped for landmine/Phase-0b passes |
+| 2f — Shell rail + breadcrumb + RU (SectionsPanel `buildJourneySections` t-threaded, GameShellV2 breadcrumb; 40 keys) | ✅ 2026-06-14 | build green (12.3s), `/ru` rail fully RU, number-pip regex preserved, `SPACE_SECTIONS` deliberately left (GameShellV2 consumer) |
+| 0b · `preferred_language` migration written (sync pending) | 🟡 | mirrors `preferred_skin`; activates on deploy |
+| 2g+ — `SPACE_SECTIONS`/UBB rail labels · Phase 0b (Zod/format/calendar/lang-sync) · data hubs · landmines (PDF/charts/emails) · Layer 3 · seeded · SEO · ES | ⏳ | the bulk remains |
 
-**Running tally (2026-06-14): ~212 keys across 10 files, 4 production builds green. The entire pre-login experience reads in Russian** (`/ru`, `/ru?path=match`, `/ru/ignite`, `/ru/auth`).
+**Running tally (2026-06-14): ~358 keys across 15 files, 6 production builds green. The entire pre-login funnel + the shell rail + the post-reveal money path read in Russian** (`/ru`, `/ru?path=match`, `/ru/ignite`, `/ru/auth`, the JOURNEY sidebar).
 
 **Milestone (2026-06-14): the public cold-funnel reads in Russian** — `/ru` (manifesto + playbook CTA), `/ru?path=match` (hero + match CTAs), `/ru/ignite` (paid session). ~137 keys, 3 production builds green. Ready for Sasha's Charge review.
 
