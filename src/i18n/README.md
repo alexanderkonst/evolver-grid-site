@@ -41,6 +41,16 @@ Missing keys fall back to English (no crash), but a missing key in `ru`/`es` mea
 
 Today everything is one `common` namespace, bundled statically. When catalogs grow, split by area (`funnel`, `profile`, `ubb`, …) and lazy-load per route via `i18next-http-backend` so each chunk only pulls its own messages.
 
+## RU translation glossary (charge-preserving — apply in every wave)
+
+Locked during review so future waves stay consistent:
+
+- **match / matching (the product)** → professional framing: `найти бизнес-партнёров`, `профессиональный мэтчинг`. **Never romantic** (not `найди мне пару`, not `метчмейкинг`). Sasha, 2026-06-14: *"у нас профессиональный, не романтический"*.
+- **top talent** → `главный талант` (consistent on every surface).
+- **Productize / Scale** → `Упакуй` / `Масштабируй` (punchy startup verbs, no corporate drift).
+- Em-dashes (тире) are correct standard Russian punctuation; the no-em-dash rule applies to Sasha's **English** copy and chat, not Russian prose.
+- Register: second-person `ты`/`вы` per surface, concrete, no corporate-speak. Preserve the charge over literal accuracy.
+
 ## Roadmap (Phase 0 increments)
 
 - [x] Engine + provider + persistence + pilot surface

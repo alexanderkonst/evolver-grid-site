@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
+import { useTranslation } from "react-i18next";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { CheckCircle, Lock } from "lucide-react";
@@ -18,6 +19,7 @@ const ResetPassword = () => {
     const [sessionReady, setSessionReady] = useState(false);
     const navigate = useNavigate();
     const { toast } = useToast();
+    const { t } = useTranslation();
 
     useEffect(() => {
         // Supabase automatically handles the recovery token from the URL
@@ -46,8 +48,8 @@ const ResetPassword = () => {
 
         if (password !== confirmPassword) {
             toast({
-                title: "Passwords don't match",
-                description: "Please make sure both passwords are the same.",
+                title: t('resetPassword.toastMismatchTitle'),
+                description: t('resetPassword.toastMismatchDescription'),
                 variant: "destructive",
             });
             return;
@@ -55,8 +57,8 @@ const ResetPassword = () => {
 
         if (password.length < 6) {
             toast({
-                title: "Password too short",
-                description: "Password must be at least 6 characters.",
+                title: t('resetPassword.toastTooShortTitle'),
+                description: t('resetPassword.toastTooShortDescription'),
                 variant: "destructive",
             });
             return;
@@ -73,8 +75,8 @@ const ResetPassword = () => {
 
             setSuccess(true);
             toast({
-                title: "Password updated!",
-                description: "Your password has been successfully reset.",
+                title: t('resetPassword.toastSuccessTitle'),
+                description: t('resetPassword.toastSuccessDescription'),
             });
 
             // Redirect to game after a short delay
@@ -100,9 +102,9 @@ const ResetPassword = () => {
                             <div className="mx-auto w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-4">
                                 <CheckCircle className="w-8 h-8 text-green-600" />
                             </div>
-                            <CardTitle className="text-2xl font-bold">Password Reset!</CardTitle>
+                            <CardTitle className="text-2xl font-bold">{t('resetPassword.successCardTitle')}</CardTitle>
                             <CardDescription>
-                                Your password has been successfully updated. Redirecting you to the game...
+                                {t('resetPassword.successCardDescription')}
                             </CardDescription>
                         </CardHeader>
                     </Card>
@@ -121,11 +123,11 @@ const ResetPassword = () => {
                         <div className="mx-auto w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
                             <Lock className="w-6 h-6 text-primary" />
                         </div>
-                        <CardTitle className="text-2xl font-bold">Set New Password</CardTitle>
+                        <CardTitle className="text-2xl font-bold">{t('resetPassword.formCardTitle')}</CardTitle>
                         <CardDescription>
                             {sessionReady
-                                ? "Enter your new password below."
-                                : "Please wait while we verify your reset link..."
+                                ? t('resetPassword.formCardDescriptionReady')
+                                : t('resetPassword.formCardDescriptionVerifying')
                             }
                         </CardDescription>
                     </CardHeader>
@@ -133,7 +135,7 @@ const ResetPassword = () => {
                         {sessionReady ? (
                             <form onSubmit={handleResetPassword} className="space-y-4">
                                 <div className="space-y-2">
-                                    <Label htmlFor="new-password">New Password</Label>
+                                    <Label htmlFor="new-password">{t('resetPassword.newPasswordLabel')}</Label>
                                     <Input
                                         id="new-password"
                                         type="password"
@@ -145,7 +147,7 @@ const ResetPassword = () => {
                                     />
                                 </div>
                                 <div className="space-y-2">
-                                    <Label htmlFor="confirm-password">Confirm Password</Label>
+                                    <Label htmlFor="confirm-password">{t('resetPassword.confirmPasswordLabel')}</Label>
                                     <Input
                                         id="confirm-password"
                                         type="password"
@@ -157,10 +159,10 @@ const ResetPassword = () => {
                                     />
                                 </div>
                                 <p className="text-xs text-muted-foreground">
-                                    Password must be at least 6 characters
+                                    {t('resetPassword.passwordHint')}
                                 </p>
                                 <Button type="submit" className="w-full" disabled={loading}>
-                                    {loading ? "Updating..." : "Update Password"}
+                                    {loading ? t('resetPassword.submitLoading') : t('resetPassword.submit')}
                                 </Button>
                             </form>
                         ) : (

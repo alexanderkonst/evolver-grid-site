@@ -6,5 +6,267 @@
     "code": "404",
     "title": "Oops! Page not found",
     "home": "Return to Home"
+  },
+  "matchHero": {
+    "seoTitle": "Find Your Top Talent · Find Your People",
+    "seoDescription": "A few simple prompts. Your talent in exact words, in two minutes. Then introductions to people whose work complements yours, with the collaboration spelled out.",
+    "seoOgTitle": "Find your people",
+    "eyebrow": "Find your people",
+    "headlineBefore": "The",
+    "headlineGold": "right people",
+    "headlineAfter": "change everything",
+    "tensionLine": "Most platforms flatten you into titles, résumés, and keywords",
+    "bridge": "A few simple prompts. Your talent in exact words, in two minutes. Then introductions to people whose work complements yours, with the collaboration spelled out",
+    "ctaLabel": "Match me",
+    "microcopy": "Free · 2 minutes · No signup to start"
+  },
+  "methodology": {
+    "seoTitle": "Find Your Top Talent. Productize It. Find Your People.",
+    "seoDescription": "Coordination infrastructure for conscious innovation. From individual genius to ventures to federated communities. Open-source, forkable.",
+    "headlineBefore": "Can you say what you do so",
+    "headlineClearly": "clearly",
+    "echoBefore": "right people",
+    "echoAlways": "always",
+    "echoAfter": "buy?",
+    "manifestoLine1Before": "Find Your",
+    "manifestoLine1Gold": "Top Talent",
+    "manifestoLine1After": ".",
+    "manifestoLine2Gold": "Productize",
+    "manifestoLine2After": "Yourself.",
+    "manifestoLine3Gold": "Scale",
+    "manifestoLine3After": "your Revenue and Impact."
+  },
+  "zogEntry": {
+    "toastSaveFailedTitle": "Save Failed",
+    "toastAutoSaveFailedDesc": "Your Top Talent couldn't be saved. Tap Save to retry.",
+    "toastTapSaveToRetry": "Tap Save to retry.",
+    "errorGeneric": "Something went wrong",
+    "errorGenerateProfile": "Something went wrong generating your profile. Please try again — it usually works on retry.",
+    "toastCouldNotSaveProfile": "Could not save your profile.",
+    "toastErrorTitle": "Error",
+    "toastSomethingWentWrongSaving": "Something went wrong while saving.",
+    "errorGenerateExcalibur": "Failed to generate your Excalibur. Please try again.",
+    "toastGenerationFailedTitle": "Generation Failed",
+    "toastPleaseTryAgain": "Please try again.",
+    "toastOfferSavedTitle": "Unique Offer Saved!",
+    "toastOfferSavedDesc": "Your genius offer has been saved.",
+    "toastXpAwardedTitle": "🎉 +{{xp}} XP (Genius)",
+    "toastProfileLeveledUp": "Your profile leveled up.",
+    "toastFirstTimeBonusTitle": "🎉 FIRST TIME BONUS!",
+    "toastFirstTimeBonusDesc": "+{{xp}} XP for your first {{action}}!",
+    "toastCouldNotSaveOffer": "Could not save your offer.",
+    "bannerSavingTo": "Saving your result to",
+    "bannerResultSaved": "Result saved. Check your email — the magic link unlocks your full playbook.",
+    "bannerSentTo": "Sent to",
+    "bannerWrongEmailRedo": "Wrong email? Redo",
+    "bannerCouldNotSaveTo": "We couldn't save your result to",
+    "bannerTryDifferentEmail": "Try a different email",
+    "excaliburLoadingTitle": "Creating your unique offer...",
+    "excaliburLoadingSubtitle": "One clear offer, one path forward...",
+    "seoTitle": "Top Talent Reveal — Free in 5 minutes",
+    "seoDescription": "A guided reveal that names your top talent with a specificity higher than any personality test. Free, takes 5 minutes, runs in your AI.",
+    "matchPreambleLine1": "Let's create your profile for matching.",
+    "matchPreambleLine2": "Good news: AI makes it real quick.",
+    "matchPreambleLine3": "We start with your top talent.",
+    "revealQuestion": "How do you want to reveal it?",
+    "cardFasterTitle": "Faster (1 min)",
+    "cardFasterSubtitle": "Paste from your AI. See your pattern.",
+    "cardGuidedTitle": "Guided (10–15 min)",
+    "cardGuidedSubtitle": "Take the full assessment.",
+    "aiPromptHeading": "Copy this prompt into your AI",
+    "aiPromptSubtitle": "ChatGPT, Claude, Gemini — any will work",
+    "copyButton": "Copy",
+    "copyButtonCopied": "Copied",
+    "ctaGotResponse": "I've got my AI's response",
+    "guidedAssessmentLink": "I'll do the guided assessment instead →",
+    "pasteHeading": "Paste your AI's response",
+    "pasteSubtitle": "The full response — we'll extract your pattern from it",
+    "pastePlaceholder": "Paste your AI's response here...",
+    "ctaRevealing": "Revealing...",
+    "ctaRevealTopTalent": "Reveal my top talent"
+  },
+  "matchCta": {
+    "topTalent": {
+      "primaryLabel": "Discover your mission"
+    },
+    "mission": {
+      "primaryLabel": "Map your assets",
+      "banner": {
+        "eyebrow": "Asset Mapping unlocked",
+        "line1": "Your mission reveals matches who are going in the same direction.",
+        "line2": "Mapping assets reveals the matching \"LEGO blocks\" each person is bringing."
+      }
+    },
+    "assets": {
+      "primaryLabel": "Find collaborators",
+      "banner": {
+        "eyebrow": "Collaboration profile complete",
+        "line1": "Your collaborators are now visible to you."
+      }
+    },
+    "qol": {
+      "primaryLabel": "See your refined matches"
+    },
+    "continueJourney": "Continue your journey",
+    "legacy": {
+      "unlockedEyebrow": "Unlocked"
+    }
+  },
+  "journey": {
+    "findTopTalent": {
+      "label": "1. Start by finding your top talent"
+    },
+    "takePlaybook": {
+      "label": "2. Take the exact playbook"
+    },
+    "seePath": {
+      "label": "3. See the shortcut path to your business"
+    },
+    "seeDashboard": {
+      "label": "4. See how we're building this"
+    },
+    "mapAssets": {
+      "label": "5. Map your assets"
+    },
+    "assessQol": {
+      "label": "6. Assess your quality of life"
+    },
+    "buildBusiness": {
+      "label": "7. Build a business off your top talent",
+      "lockedHint": "Unlocks after activation."
+    },
+    "discoverMission": {
+      "label": "8. Discover your mission",
+      "lockedHint": "Unlocks after you build a business off your top talent."
+    }
+  },
+  "onboarding": {
+    "step1Label": "Genius",
+    "step1Description": "Discover your Zone of Genius",
+    "step2Label": "Business",
+    "step2Description": "Create your Genius Business",
+    "step3Label": "Life Map",
+    "step3Description": "Assess your Quality of Life",
+    "step4Label": "Priorities",
+    "step4Description": "Set growth priorities",
+    "step5Label": "Recipe",
+    "step5Description": "Get your growth recipe",
+    "step6Label": "Daily",
+    "step6Description": "Enter the daily loop",
+    "step7Label": "Connect",
+    "step7Description": "Find your people",
+    "step8Label": "Mission",
+    "step8Description": "Discover your mission",
+    "stepCounter": "Step {{current}} of {{total}}: {{description}}"
+  },
+  "playbookHero": {
+    "primaryCtaLabel": "Find your top talent",
+    "metaLine": "Free · 2 minutes · No signup",
+    "secondaryCtaLabel": "See the exact playbook"
+  },
+  "ignite": {
+    "alreadyPaidLink": "Already paid? Book your session here →",
+    "videoLoading": "Loading…",
+    "heroTitle": "Walk out with a one-sentence business",
+    "heroSubA": "In 2 hours",
+    "heroSubB": "Or you don't pay",
+    "ctaGetBusiness": "Get my one-sentence business — $555",
+    "clarityLinkHero": "Not sure yet? Take 20 min — a first read on your situation, free →",
+    "leaveWithLabel": "What you leave with",
+    "leaveWith1": "A one-sentence business you recognize as yours",
+    "leaveWith2": "The audience it's actually for",
+    "leaveWith3": "The reason they'll pay",
+    "leaveWith4": "A single landing page that holds it all",
+    "leaveWithDisclaimer": "NOT a sales call for a \"long-term coaching engagement.\" A 2-hour working session that produces a landing page for your business.",
+    "priceAttribution": "2 hours · with a self-productization coach",
+    "guarantee": "If you don't leave with a one-sentence business you recognize as yours: you don't pay.",
+    "resonancePermission": "If your heart isn't resonating with this, don't sign up. This works because people come when they're ready — not when they're pressured or manipulated.",
+    "ctaBookSession": "Book my session — $555",
+    "clarityLinkFooter": "Not sure yet? 20 min — a first read on your situation, free. →",
+    "faq1Q": "What if I don't know my top talent yet?",
+    "faq1A": "Everyone has one. You can't see yours because it's been YOU your whole life — too natural to notice. The session names what's already there and turns it into a one-sentence business people will actually pay for.",
+    "faq2Q": "What if there's no actual business in what I do?",
+    "faq2A": "Every top talent is monetizable — nature doesn't waste them. If yours exists, it's because it's useful, helpful, and valuable to other people. The only question is how it translates into something they'll pay for. The session names the three pieces (what you do, who pays for it, why) and pulls them into one sentence. If we don't find it in 2 hours, you don't pay.",
+    "methodologyLabel": "Methodology overview · 6 min",
+    "methodologyVideoTitle": "The Productize Yourself Session — Methodology Overview"
+  },
+  "auth": {
+    "emailRequiredTitle": "Email required",
+    "emailRequiredDesc": "Please enter your email.",
+    "magicLinkSentTitle": "Magic link sent",
+    "magicLinkSentDesc": "Check {{email}} for a sign-in link.",
+    "magicLinkErrorTitle": "Couldn't send magic link",
+    "tryAgain": "Please try again.",
+    "alreadyHaveAccountTitle": "Looks like you already have an account",
+    "alreadyHaveAccountDesc": "If you just confirmed your email on another device, log in here. Forgot your password? Use the link above.",
+    "welcomeTitle": "Welcome.",
+    "accountCreatedDesc": "Account created. Redirecting…",
+    "checkInboxTitle": "Check your inbox",
+    "checkInboxDesc": "We sent a confirmation link to {{email}}. Click it to finish signing up.",
+    "signUpFailedTitle": "Sign up failed",
+    "welcomeBackTitle": "Welcome back!",
+    "redirecting": "Redirecting...",
+    "loginFailedTitle": "Login failed",
+    "testLoginFailedTitle": "Test login failed",
+    "emailAddressRequiredDesc": "Please enter your email address.",
+    "resetEmailSentTitle": "Reset email sent!",
+    "resetEmailSentDesc": "Check your inbox for password reset instructions.",
+    "resetEmailFailedTitle": "Failed to send reset email",
+    "resetPasswordTitle": "Reset Password",
+    "resetCheckEmailDesc": "Check your email for reset instructions.",
+    "resetEnterEmailDesc": "Enter your email and we'll send you a reset link.",
+    "resetIfAccountExists": "If an account with that email exists, you'll receive a password reset link shortly.",
+    "backToLogin": "Back to Login",
+    "emailLabel": "Email",
+    "emailPlaceholder": "you@example.com",
+    "sending": "Sending...",
+    "sendResetLink": "Send Reset Link",
+    "claimMatchTitle": "Now let's save your data so you don't lose it.",
+    "claimBuildTitle": "Enter your email — your free result stays safe there.",
+    "claimMatchDesc": "Magic link to your inbox. One click and you keep going with mission discovery.",
+    "claimBuildDesc": "We'll email you a one-click magic link. You can dive into your Top Talent now; the link just keeps your result waiting when you're ready to come back.",
+    "claimSendMagicLink": "Send me the magic link",
+    "claimReassurance": "No password to pick. No spam. Just your result, ready when you are.",
+    "createAccountTitlePrefix": "Create your",
+    "createAccountTitleGold": "account",
+    "welcomeTitleGold": "Welcome",
+    "welcomeTitleSuffix": ".",
+    "subtitleQol": "Sign in to save your Quality of Life Map. Retake anytime — track your growth over time.",
+    "subtitleMatch": "Save your data so you don't lose it. Then keep going with mission discovery.",
+    "subtitleOnboarding": "Save your Top Talent. Unlock your unique business.",
+    "subtitleReturning": "Pick up where you left off — your Top Talent and progress are waiting.",
+    "tabLogIn": "Log In",
+    "tabSignUp": "Sign Up",
+    "passwordLabel": "Password",
+    "forgotPassword": "Forgot password?",
+    "loggingIn": "Logging in…",
+    "logInButton": "Log In",
+    "or": "or",
+    "sendMagicLink": "Send me a magic link",
+    "firstNameLabel": "First Name",
+    "firstNamePlaceholder": "Jane",
+    "lastNameLabel": "Last Name",
+    "lastNamePlaceholder": "Doe",
+    "passwordHint": "At least 6 characters.",
+    "creatingAccount": "Creating account…",
+    "signUpButton": "Sign Up"
+  },
+  "resetPassword": {
+    "toastMismatchTitle": "Passwords don't match",
+    "toastMismatchDescription": "Please make sure both passwords are the same.",
+    "toastTooShortTitle": "Password too short",
+    "toastTooShortDescription": "Password must be at least 6 characters.",
+    "toastSuccessTitle": "Password updated!",
+    "toastSuccessDescription": "Your password has been successfully reset.",
+    "successCardTitle": "Password Reset!",
+    "successCardDescription": "Your password has been successfully updated. Redirecting you to the game...",
+    "formCardTitle": "Set New Password",
+    "formCardDescriptionReady": "Enter your new password below.",
+    "formCardDescriptionVerifying": "Please wait while we verify your reset link...",
+    "newPasswordLabel": "New Password",
+    "confirmPasswordLabel": "Confirm Password",
+    "passwordHint": "Password must be at least 6 characters",
+    "submitLoading": "Updating...",
+    "submit": "Update Password"
   }
 }

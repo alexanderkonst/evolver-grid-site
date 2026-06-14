@@ -151,6 +151,25 @@ A numbered table, four columns:
 3. **Verify (the gate, not the afterthought).** UI/code → preview MCP against the real change. Docs → re-read after editing. Multi-file refactors → smoke-test every entry point. **No verify, no ✅.**
 4. **Sign off.** I report DONE only when every row is ✅ with evidence column populated. The sign-off message includes the full table — Sasha sees the receipt, not just a "done." If something is genuinely "Phase 2", **Sasha decides** — not me. I name it as a question, not a decision: *"Add to DoD or carve out as separate task?"*
 
+### Build tasks: the three-DoD gate (Day 100, 2026-06-13)
+
+*Sasha named this out loud: for anything we actually BUILD (not a quick edit), one DoD table is not enough. The single DoD splits into three, run in sequence, each with its own sign-off. His words: "we first do the scope of work, then three DoDs."*
+
+A build task runs in four stages: **Scope of Work → Planning DoD → Implementation DoD → Debugging DoD.** Each DoD is its own table in chat, and each earns a "go" before the next starts.
+
+| Gate | Question it answers | Table contents | Exit |
+|---|---|---|---|
+| **Planning DoD** | Is the approach right, before any code? | Architecture, library, data model, routing, build order, deploy staging, open decisions for Sasha, pre-mortem | Sasha "go" on the plan |
+| **Implementation DoD** | Is it built, per the plan? | One row per build increment; every row observable and verified in preview | Every row ✅ with evidence |
+| **Debugging DoD** | Does it work, and did anything break? | Regression checks, edge cases, "nothing previously-working is now broken," console/network clean, cross-surface trace | Every row ✅; only then is the build done |
+
+Rules:
+- **No code before the Planning DoD is signed off.** The SoW frames WHAT; the Planning DoD locks HOW. A "proceed" on a SoW is not a "go" on a plan that does not exist yet.
+- **The Debugging DoD is its own gate, never folded into Implementation.** "Built" is not "works without breaking other things." The collateral breakage it catches is invisible from inside the Implementation DoD.
+- **Deploy sits downstream of all three** and is its own explicit, Sasha-vetted act for anything world-facing. It never auto-chains off "Debugging DoD ✅."
+- **Sister-DoDs vs the gate:** sister-DoDs split one job into parallel WAVES; the three-DoD gate splits one build into sequential PHASES. A large build can carry sister-DoDs inside its Implementation gate.
+- **The third gate is domain-adaptive.** "Debugging" (collateral breakage) is the right third gate for most code. But name the gate for the domain's real failure mode. For CONTENT / i18n / translation work the risks are COVERAGE (did every surface get caught, including non-DOM ones like PDFs, charts, emails) and CHARGE (did the meaning survive the translation), so the third gate becomes a **Coverage DoD + Charge DoD** pair. A string can render perfectly (passes "debugging") while the meaning is gone (fails "charge"). Do not default to "debugging" when the real risk is coverage or meaning. (Surfaced by the i18n roast, Day 101 / 2026-06-14.)
+
 ### The six radically-simple practices (in order of leverage)
 
 1. **Definition of Done before the work.** ☝ The one rule above.

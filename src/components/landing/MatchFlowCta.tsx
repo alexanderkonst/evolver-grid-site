@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { EditorialCta } from "@/components/ui/editorial-cta";
 import { useEntryPath } from "@/contexts/EntryPathContext";
 import { Ornament } from "@/lib/landingDesign";
@@ -34,13 +35,15 @@ import { Ornament } from "@/lib/landingDesign";
 type Step = "top-talent" | "mission" | "assets" | "qol";
 
 type UnlockBanner = {
-  eyebrow: string;
+  /** i18n key for the eyebrow label. */
+  eyebrowKey: string;
   /** Optional small caps glyph rendered on either side of the eyebrow.
    *  Used for the graduation step to give it ceremonial weight. */
   eyebrowGlyph?: string;
-  lines: string[];
-  /** Optional softer tertiary line (rendered italic, muted, after lines). */
-  psLine?: string;
+  /** i18n keys for each body line. */
+  lineKeys: string[];
+  /** Optional i18n key for a softer tertiary line (rendered italic, muted). */
+  psLineKey?: string;
   continueJourney?: boolean;
   /** Graduation flag — bumps the eyebrow size, adds an Ornament rule
    *  between eyebrow and body lines, increases vertical breathing. */
@@ -48,14 +51,16 @@ type UnlockBanner = {
 };
 
 type Config = {
-  primaryLabel: string;
+  /** i18n key for the primary CTA label. */
+  primaryLabelKey: string;
   primaryHref: string;
-  secondaryLabel?: string;
+  /** i18n key for the secondary CTA label. */
+  secondaryLabelKey?: string;
   secondaryHref?: string;
-  /** Legacy single-line unlock message. Currently unused (was on the
-   *  assets step; superseded by the full unlockBanner). Kept on the
-   *  type so future quiet-unlock moments have the option. */
-  unlockMessage?: string;
+  /** Legacy single-line unlock message i18n key. Currently unused (was
+   *  on the assets step; superseded by the full unlockBanner). Kept on
+   *  the type so future quiet-unlock moments have the option. */
+  unlockMessageKey?: string;
   /** Day 79: richer inline-unlock-banner shape. */
   unlockBanner?: UnlockBanner;
 };
@@ -66,7 +71,7 @@ const CONFIG: Record<Step, Config> = {
   // both visually long and stylistically loud next to the calm
   // celebration card above it. The action verb stands alone.
   "top-talent": {
-    primaryLabel: "Discover your mission",
+    primaryLabelKey: "matchCta.topTalent.primaryLabel",
     primaryHref: "/mission-discovery",
   },
   // §4.4.2 — After Mission Discovery completion.
@@ -76,13 +81,13 @@ const CONFIG: Record<Step, Config> = {
   // "Continue your journey" link gives a quiet escape hatch above the
   // primary CTA so the homebase is always one click away.
   mission: {
-    primaryLabel: "Map your assets",
+    primaryLabelKey: "matchCta.mission.primaryLabel",
     primaryHref: "/asset-mapping",
     unlockBanner: {
-      eyebrow: "Asset Mapping unlocked",
-      lines: [
-        "Your mission reveals matches who are going in the same direction.",
-        'Mapping assets reveals the matching "LEGO blocks" each person is bringing.',
+      eyebrowKey: "matchCta.mission.banner.eyebrow",
+      lineKeys: [
+        "matchCta.mission.banner.line1",
+        "matchCta.mission.banner.line2",
       ],
       continueJourney: true,
     },
@@ -104,18 +109,18 @@ const CONFIG: Record<Step, Config> = {
   //     surfacing it here as a competing CTA leaks attention.
   //   • Single-line banner + single forward CTA — funnel monogamy.
   assets: {
-    primaryLabel: "Find collaborators",
+    primaryLabelKey: "matchCta.assets.primaryLabel",
     primaryHref: "/game/collaborate/matches",
     unlockBanner: {
-      eyebrow: "Collaboration profile complete",
-      lines: ["Your collaborators are now visible to you."],
+      eyebrowKey: "matchCta.assets.banner.eyebrow",
+      lineKeys: ["matchCta.assets.banner.line1"],
       continueJourney: true,
       isGraduation: true,
     },
   },
   // §4.4.4 — After Quality of Life completion.
   qol: {
-    primaryLabel: "See your refined matches",
+    primaryLabelKey: "matchCta.qol.primaryLabel",
     primaryHref: "/game/collaborate/matches",
   },
 };
@@ -123,6 +128,7 @@ const CONFIG: Record<Step, Config> = {
 export const MatchFlowCta = ({ step }: { step: Step }) => {
   const { path } = useEntryPath();
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   // 2026-06-10 default flip: match funnel is the default — these
   // completion CTAs render for everyone except explicit ?path=build
@@ -182,7 +188,7 @@ export const MatchFlowCta = ({ step }: { step: Step }) => {
                 {banner.eyebrowGlyph}
               </span>
             )}
-            {banner.eyebrow}
+            {t(banner.eyebrowKey)}
             {banner.eyebrowGlyph && (
               <span
                 aria-hidden="true"
@@ -198,7 +204,7 @@ export const MatchFlowCta = ({ step }: { step: Step }) => {
               moment reads as arrival, not transition. */}
           {isGraduation && <Ornament className="my-4 sm:my-5" />}
 
-          {banner.lines.map((line, i) => (
+          {banner.lineKeys.map((lineKey, i) => (
             <p
               key={i}
               className="italic"
@@ -213,17 +219,17 @@ export const MatchFlowCta = ({ step }: { step: Step }) => {
                 color: "var(--skin-text-primary, #0a1628)",
                 textShadow:
                   "var(--skin-text-halo-deep, 0 0 22px rgba(255,255,255,0.7), 0 1px 2px rgba(255,255,255,0.9), 0 0 1px rgba(11,42,90,0.45), 0 1px 0 rgba(11,42,90,0.25))",
-                marginBottom: i < banner.lines.length - 1 ? "0.6rem" : 0,
+                marginBottom: i < banner.lineKeys.length - 1 ? "0.6rem" : 0,
               }}
             >
-              {line}
+              {t(lineKey)}
             </p>
           ))}
 
           {/* Softer tertiary PS line — sits below the body lines,
               muted register so it reads as a footnote, not a sibling
               of the main message. */}
-          {banner.psLine && (
+          {banner.psLineKey && (
             <p
               className="italic mx-auto"
               style={{
@@ -236,7 +242,7 @@ export const MatchFlowCta = ({ step }: { step: Step }) => {
                 maxWidth: "44ch",
               }}
             >
-              {banner.psLine}
+              {t(banner.psLineKey)}
             </p>
           )}
         </div>
@@ -245,7 +251,7 @@ export const MatchFlowCta = ({ step }: { step: Step }) => {
       {/* Legacy single-line unlock message — kept for any future step
           that wants the quiet treatment. None currently use it; the
           assets step migrated to the full unlockBanner above. */}
-      {cfg.unlockMessage && !banner && (
+      {cfg.unlockMessageKey && !banner && (
         <div className="text-center mb-7 sm:mb-8">
           <p
             className="mb-2"
@@ -258,7 +264,7 @@ export const MatchFlowCta = ({ step }: { step: Step }) => {
               color: "var(--skin-accent-gold, #b8860b)",
             }}
           >
-            Unlocked
+            {t("matchCta.legacy.unlockedEyebrow")}
           </p>
           <p
             className="italic mx-auto max-w-[44ch]"
@@ -273,7 +279,7 @@ export const MatchFlowCta = ({ step }: { step: Step }) => {
                 "var(--skin-text-halo-deep, 0 0 22px rgba(255,255,255,0.7), 0 1px 2px rgba(255,255,255,0.9), 0 0 1px rgba(11,42,90,0.45), 0 1px 0 rgba(11,42,90,0.25))",
             }}
           >
-            {cfg.unlockMessage}
+            {cfg.unlockMessageKey && t(cfg.unlockMessageKey)}
           </p>
         </div>
       )}
@@ -301,21 +307,21 @@ export const MatchFlowCta = ({ step }: { step: Step }) => {
               cursor: "pointer",
             }}
           >
-            Continue your journey →
+            {t("matchCta.continueJourney")} →
           </button>
         </div>
       )}
 
       <div className="flex flex-col items-center gap-4">
         <EditorialCta
-          label={cfg.primaryLabel}
+          label={t(cfg.primaryLabelKey)}
           onClick={() => navigate(cfg.primaryHref)}
         />
 
-        {cfg.secondaryLabel && cfg.secondaryHref && (
+        {cfg.secondaryLabelKey && cfg.secondaryHref && (
           <EditorialCta
             variant="secondary"
-            label={cfg.secondaryLabel}
+            label={t(cfg.secondaryLabelKey)}
             onClick={() => navigate(cfg.secondaryHref!)}
             icon={null}
           />

@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import PlaybookHero from "@/components/playbook/PlaybookHero";
 import { GOLD_TEXT_STYLE, Ornament } from "@/lib/landingDesign";
 import SEO from "@/components/SEO";
@@ -17,13 +18,14 @@ import SEO from "@/components/SEO";
  * funnel so the visual signature is consistent end-to-end.
  */
 const MethodologyLandingPage = () => {
+  const { t } = useTranslation();
   return (
     <>
       <SEO
-        title="Find Your Top Talent. Productize It. Find Your People."
-        description="Coordination infrastructure for conscious innovation. From individual genius to ventures to federated communities. Open-source, forkable."
+        title={t("methodology.seoTitle")}
+        description={t("methodology.seoDescription")}
         path="/"
-        ogTitle="Find Your Top Talent. Productize It. Find Your People."
+        ogTitle={t("methodology.seoTitle")}
       />
     {/* Day 80 (Sasha 2026-05-23): hero typography + container padding
         shifted one tier down so the full first-viewport stack (eyebrow,
@@ -52,7 +54,7 @@ const MethodologyLandingPage = () => {
               "var(--skin-text-halo-deep, 0 0 22px rgba(255,255,255,0.7), 0 1px 2px rgba(255,255,255,0.9), 0 0 1px rgba(11,42,90,0.45), 0 1px 0 rgba(11,42,90,0.25))",
           }}
         >
-          Can you say what you do so{" "}
+          {t("methodology.headlineBefore")}{" "}
           <span
             className="bg-clip-text text-transparent"
             style={{
@@ -62,7 +64,7 @@ const MethodologyLandingPage = () => {
               fontSize: "0.92em",
             }}
           >
-            clearly
+            {t("methodology.headlineClearly")}
           </span>
         </h1>
 
@@ -87,7 +89,7 @@ const MethodologyLandingPage = () => {
               "var(--skin-text-halo-deep, 0 0 28px rgba(255,255,255,0.85), 0 1px 2px rgba(255,255,255,0.95), 0 0 1px rgba(11,42,90,0.65), 0 1px 0 rgba(11,42,90,0.45))",
           }}
         >
-          right people{" "}
+          {t("methodology.echoBefore")}{" "}
           <span
             className="not-italic font-semibold bg-clip-text text-transparent"
             style={{
@@ -97,9 +99,9 @@ const MethodologyLandingPage = () => {
               fontSize: "0.92em",
             }}
           >
-            always
+            {t("methodology.echoAlways")}
           </span>{" "}
-          buy?
+          {t("methodology.echoAfter")}
         </p>
 
         {/* Top ornament bookend (bottom bookend retired — CTA emblem
@@ -128,14 +130,14 @@ const MethodologyLandingPage = () => {
           }}
         >
           <p className="text-lg sm:text-xl md:text-2xl font-bold leading-[1.4] tracking-[-0.005em]">
-            Find Your{" "}
+            {t("methodology.manifestoLine1Before")}{" "}
             <span
               className="bg-clip-text text-transparent"
               style={GOLD_TEXT_STYLE}
             >
-              Top Talent
+              {t("methodology.manifestoLine1Gold")}
             </span>
-            .
+            {t("methodology.manifestoLine1After")}
           </p>
 
           <p className="text-lg sm:text-xl md:text-2xl font-bold leading-[1.4] tracking-[-0.005em]">
@@ -143,9 +145,9 @@ const MethodologyLandingPage = () => {
               className="bg-clip-text text-transparent"
               style={GOLD_TEXT_STYLE}
             >
-              Productize
+              {t("methodology.manifestoLine2Gold")}
             </span>{" "}
-            Yourself.
+            {t("methodology.manifestoLine2After")}
           </p>
 
           {/* Day 58+ (Sasha 2026-05-03): "Build it. Launch it." line
@@ -159,9 +161,9 @@ const MethodologyLandingPage = () => {
               className="bg-clip-text text-transparent"
               style={GOLD_TEXT_STYLE}
             >
-              Scale
+              {t("methodology.manifestoLine3Gold")}
             </span>{" "}
-            your Revenue and Impact.
+            {t("methodology.manifestoLine3After")}
           </p>
         </div>
       </header>
