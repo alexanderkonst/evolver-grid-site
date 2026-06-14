@@ -28,6 +28,7 @@ import {
     type Recommendation
 } from "@/lib/myNextMoveLogic";
 import { useToast } from "@/hooks/use-toast";
+import { useTranslation } from "react-i18next";
 
 interface QolDomain {
     key: string;
@@ -38,6 +39,7 @@ interface QolDomain {
 const CoreLoopHome = () => {
     const navigate = useNavigate();
     const { toast } = useToast();
+    const { t } = useTranslation();
 
     // Loading state
     const [isLoading, setIsLoading] = useState(true);
@@ -239,7 +241,7 @@ const CoreLoopHome = () => {
                 {/* === MY NEXT MOVE SECTION === */}
                 {primaryRecommendation && (
                     <section className="space-y-3">
-                        <h2 className="text-lg font-semibold text-[#2c3150]">My Next Move</h2>
+                        <h2 className="text-lg font-semibold text-[#2c3150]">{t('coreLoopHome.myNextMove')}</h2>
 
                         {/* Primary Recommendation Card */}
                         <div className={`rounded-xl border-2 p-6 transition-all hover:shadow-lg
@@ -310,14 +312,14 @@ const CoreLoopHome = () => {
                                             size="sm"
                                             onClick={handleDismissNudge}
                                         >
-                                            Later
+                                            {t('coreLoopHome.later')}
                                         </Button>
                                         <Button
                                             variant="outline"
                                             size="sm"
                                             onClick={() => handleStartAction(nudgeRecommendation)}
                                         >
-                                            Explore
+                                            {t('coreLoopHome.explore')}
                                         </Button>
                                     </div>
                                 </div>
@@ -330,7 +332,7 @@ const CoreLoopHome = () => {
                                 to="/game/me"
                                 className="text-sm text-[rgba(44,49,80,0.6)] hover:text-[#2c3150] transition-colors"
                             >
-                                ▼ Explore All Spaces
+                                ▼ {t('coreLoopHome.exploreAllSpaces')}
                             </Link>
                         </div>
                     </section>
@@ -339,9 +341,9 @@ const CoreLoopHome = () => {
                 {/* Guest Sign In Prompt */}
                 {isGuest && (
                     <div className="text-center text-sm text-[#2c3150]/60 pt-4">
-                        Already have an account?{" "}
+                        {t('coreLoopHome.alreadyHaveAccount')}{" "}
                         <Link to="/auth" className="text-[#8460ea] hover:underline font-medium">
-                            Sign in
+                            {t('coreLoopHome.signIn')}
                         </Link>
                     </div>
                 )}
@@ -352,8 +354,8 @@ const CoreLoopHome = () => {
                 isOpen={showCelebrationModal}
                 onClose={() => setShowCelebrationModal(false)}
                 xpEarned={celebrationXp}
-                title="Great Progress!"
-                message="You're building your transformation journey."
+                title={t('coreLoopHome.celebrationTitle')}
+                message={t('coreLoopHome.celebrationMessage')}
             />
         </GameShellV2>
     );

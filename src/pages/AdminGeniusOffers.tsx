@@ -10,6 +10,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { User } from "@supabase/supabase-js";
 import BackButton from "@/components/BackButton";
+import { formatDate as formatDateLocale } from "@/i18n/format";
 import {
   Dialog,
   DialogContent,
@@ -161,7 +162,7 @@ const AdminGeniusOffers = () => {
   };
 
   const formatDate = (dateStr: string) => {
-    return new Date(dateStr).toLocaleDateString("en-US", {
+    return formatDateLocale(dateStr, {
       month: "short",
       day: "numeric",
       year: "numeric",

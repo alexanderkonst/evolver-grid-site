@@ -16,6 +16,8 @@
 
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import type { TFunction } from "i18next";
 import { supabase } from "@/integrations/supabase/client";
 
 type DossierRow = {
@@ -36,35 +38,40 @@ type DossierRow = {
 // section. The founder still sees the full taxonomy inside `/ubb` (the
 // in-app DossierScreen uses PHASE_LABELS from constants, not these
 // labels). Keeping the keys aligned with PHASE_OF below.
-const PHASE_LABELS: Record<string, string> = {
-  canvas: "Foundation",         // was "Canvas"
-  session: "First Session",     // was "Session Bridge"
-  marketing: "Why · How · Buy",  // was "Marketing" — describes core_belief, packaging, frictionless_purchase
-  distribution: "Where People Find It", // was "Distribution" — describes reach, delivery, spread
-  communications: "How It Speaks",      // was "Communications" — surface_inventory, tuning_fork, golden_dm
-  publication: "The Page",      // was "Publication"
+// Maps internal artifact-phase identifiers (data keys, kept English) to the
+// i18n key whose value is the visitor-facing chapter label. Resolved with
+// t() at render so labels translate while the DB keys stay stable.
+const PHASE_LABEL_KEYS: Record<string, string> = {
+  canvas: "publicDossier.phase.canvas",         // was "Canvas"
+  session: "publicDossier.phase.session",       // was "Session Bridge"
+  marketing: "publicDossier.phase.marketing",   // was "Marketing" — core_belief, packaging, frictionless_purchase
+  distribution: "publicDossier.phase.distribution", // was "Distribution" — reach, delivery, spread
+  communications: "publicDossier.phase.communications", // was "Communications" — surface_inventory, tuning_fork, golden_dm
+  publication: "publicDossier.phase.publication", // was "Publication"
 };
 
-const ARTIFACT_LABELS: Record<string, string> = {
-  uniqueness: "Uniqueness",
-  myth: "Myth",
-  tribe: "Tribe",
-  pain: "Pain",
-  promise: "Promise",
-  lead_magnet: "Lead Magnet",
-  value_ladder: "Value Ladder",
-  specificity_matrix: "Specificity Matrix",
-  session_bridge: "1st Session Design",
-  core_belief: "Core Belief",
-  packaging: "Packaging",
-  frictionless_purchase: "Frictionless Purchase",
-  reach: "Reach",
-  delivery: "Delivery",
-  spread: "Spread",
-  surface_inventory: "Surface Inventory",
-  tuning_fork: "Tuning Fork",
-  golden_dm: "Golden DM",
-  landing_page: "Landing Page",
+// Maps internal artifact identifiers (data keys, kept English) to the i18n
+// key whose value is the visitor-facing artifact title.
+const ARTIFACT_LABEL_KEYS: Record<string, string> = {
+  uniqueness: "publicDossier.artifact.uniqueness",
+  myth: "publicDossier.artifact.myth",
+  tribe: "publicDossier.artifact.tribe",
+  pain: "publicDossier.artifact.pain",
+  promise: "publicDossier.artifact.promise",
+  lead_magnet: "publicDossier.artifact.lead_magnet",
+  value_ladder: "publicDossier.artifact.value_ladder",
+  specificity_matrix: "publicDossier.artifact.specificity_matrix",
+  session_bridge: "publicDossier.artifact.session_bridge",
+  core_belief: "publicDossier.artifact.core_belief",
+  packaging: "publicDossier.artifact.packaging",
+  frictionless_purchase: "publicDossier.artifact.frictionless_purchase",
+  reach: "publicDossier.artifact.reach",
+  delivery: "publicDossier.artifact.delivery",
+  spread: "publicDossier.artifact.spread",
+  surface_inventory: "publicDossier.artifact.surface_inventory",
+  tuning_fork: "publicDossier.artifact.tuning_fork",
+  golden_dm: "publicDossier.artifact.golden_dm",
+  landing_page: "publicDossier.artifact.landing_page",
 };
 
 const PHASE_OF: Record<string, string> = {
@@ -87,6 +94,7 @@ const WASH_BG =
   "var(--skin-page-wash, radial-gradient(ellipse 95% 105% at 95% 5%, rgba(255, 200, 130, 0.45) 0%, rgba(255, 218, 170, 0.35) 18%, rgba(252, 232, 200, 0.65) 38%, rgba(248, 240, 220, 0.88) 65%, rgba(245, 242, 235, 0.96) 88%))";
 
 export default function PublicDossier() {
+  const { t } = useTranslation();
   const { slug } = useParams<{ slug: string }>();
   const [dossier, setDossier] = useState<DossierRow | null>(null);
   const [loading, setLoading] = useState(true);
@@ -125,7 +133,7 @@ export default function PublicDossier() {
             color: "var(--skin-text-muted-soft, rgba(11, 42, 90, 0.55))",
           }}
         >
-          Loading…
+          {t("publicDossier.loading")}
         </div>
       </div>
     );
@@ -146,7 +154,7 @@ export default function PublicDossier() {
               color: "var(--skin-text-primary, #0b2a5a)",
             }}
           >
-            Dossier not found
+            {t("publicDossier.notFound.title")}
           </h1>
           <p
             className="mt-2"
@@ -157,7 +165,7 @@ export default function PublicDossier() {
               color: "var(--skin-text-muted, rgba(11, 42, 90, 0.62))",
             }}
           >
-            This dossier may have been unpublished or never existed.
+            {t("publicDossier.notFound.body")}
           </p>
         </div>
       </div>
@@ -213,7 +221,8 @@ export default function PublicDossier() {
               >
                 {Number(dossier.specificity_avg || 0).toFixed(1)}
               </span>
-              {" avg specificity"}
+              {" "}
+              {t("publicDossier.glance.avgSpecificity")}
             </span>
             <span>·</span>
             <span>
@@ -228,11 +237,12 @@ export default function PublicDossier() {
               >
                 {Object.keys(snapshot).length}
               </span>
-              {" artifacts"}
+              {" "}
+              {t("publicDossier.glance.artifacts")}
             </span>
             <span>·</span>
             <span>
-              Published{" "}
+              {t("publicDossier.glance.published")}{" "}
               <span
                 className="not-italic"
                 style={{
@@ -282,7 +292,7 @@ export default function PublicDossier() {
                     color: "#b8860b",
                   }}
                 >
-                  {PHASE_LABELS[phase]}
+                  {t(PHASE_LABEL_KEYS[phase])}
                 </h2>
               </div>
               <div
@@ -319,7 +329,7 @@ export default function PublicDossier() {
             }}
           >
             <span style={{ color: "#b8860b", textShadow: "0 0 6px rgba(240,194,127,0.5)" }}>✦</span>
-            {"  "}Find Your Top Talent
+            {"  "}{t("publicDossier.footer.brand")}
           </div>
         </footer>
       </main>
@@ -336,6 +346,7 @@ function ArtifactBlock({
   artifactKey: string;
   data: { version: number; content: unknown; specificity_score: number };
 }) {
+  const { t } = useTranslation();
   return (
     <article
       className="rounded-2xl px-5 py-5"
@@ -357,7 +368,7 @@ function ArtifactBlock({
             color: "var(--skin-text-primary, #0b2a5a)",
           }}
         >
-          {ARTIFACT_LABELS[artifactKey] || artifactKey}
+          {ARTIFACT_LABEL_KEYS[artifactKey] ? t(ARTIFACT_LABEL_KEYS[artifactKey]) : artifactKey}
         </h3>
         <div
           style={{
@@ -370,7 +381,10 @@ function ArtifactBlock({
             fontVariantNumeric: "tabular-nums lining-nums",
           }}
         >
-          v{data.version} · specificity {Number(data.specificity_score).toFixed(1)}
+          {t("publicDossier.artifactMeta", {
+            version: data.version,
+            score: Number(data.specificity_score).toFixed(1),
+          })}
         </div>
       </div>
       <ContentRenderer content={data.content} />
@@ -384,6 +398,7 @@ function ArtifactBlock({
 // tracked-uppercase for field labels, gold middot bullets for arrays.
 
 function ContentRenderer({ content }: { content: unknown }) {
+  const { t } = useTranslation();
   if (content === null || content === undefined) {
     return (
       <div
@@ -394,7 +409,7 @@ function ContentRenderer({ content }: { content: unknown }) {
           color: "var(--skin-text-muted-soft, rgba(11, 42, 90, 0.45))",
         }}
       >
-        (empty)
+        {t("publicDossier.empty")}
       </div>
     );
   }
@@ -460,7 +475,7 @@ function ContentRenderer({ content }: { content: unknown }) {
                 >
                   {k.replace(/[_-]+/g, " ")}
                 </div>
-                <div className="mt-1.5">{renderValue(v)}</div>
+                <div className="mt-1.5">{renderValue(v, t)}</div>
               </div>
             );
           })}
@@ -475,7 +490,7 @@ function ContentRenderer({ content }: { content: unknown }) {
   );
 }
 
-function renderValue(v: unknown): React.ReactNode {
+function renderValue(v: unknown, t: TFunction): React.ReactNode {
   const proseStyle: React.CSSProperties = {
     fontFamily: "'Source Serif 4', serif",
     fontSize: "15.5px",
@@ -489,7 +504,7 @@ function renderValue(v: unknown): React.ReactNode {
         className="italic"
         style={{ ...proseStyle, color: "var(--skin-text-muted-soft, rgba(11, 42, 90, 0.45))" }}
       >
-        (empty)
+        {t("publicDossier.empty")}
       </span>
     );
   }
@@ -538,7 +553,7 @@ function renderValue(v: unknown): React.ReactNode {
               border: "0.5px solid var(--skin-hairline, rgba(26, 30, 58, 0.08))",
             }}
           >
-            {renderValue(x)}
+            {renderValue(x, t)}
           </div>
         ))}
       </div>
@@ -561,7 +576,7 @@ function renderValue(v: unknown): React.ReactNode {
             >
               {k.replace(/[_-]+/g, " ")}:
             </span>{" "}
-            <span style={proseStyle}>{renderValue(val)}</span>
+            <span style={proseStyle}>{renderValue(val, t)}</span>
           </div>
         ))}
       </div>

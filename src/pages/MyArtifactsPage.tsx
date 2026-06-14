@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { ArrowLeft } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import GameShellV2 from "@/components/game/GameShellV2";
@@ -47,20 +48,23 @@ interface Artifact {
   updated_at: string;
 }
 
-const ARTIFACT_LABELS: Record<ArtifactKey, string> = {
-  talent_sentence: "Top Talent — one sentence",
-  myth: "Myth",
-  tribe: "Tribe",
-  promise: "Transformational Promise",
-  pain: "Pain",
-  journey: "User Journey",
-  value_ladder: "Value Ladder",
-  unique_product: "First Unique Product",
+// Maps each DB artifact_key (persisted identifier) to its i18n label key.
+// The map keys are DB values; the values are translation keys resolved via t().
+const ARTIFACT_LABEL_KEYS: Record<ArtifactKey, string> = {
+  talent_sentence: "myArtifacts.labels.talentSentence",
+  myth: "myArtifacts.labels.myth",
+  tribe: "myArtifacts.labels.tribe",
+  promise: "myArtifacts.labels.promise",
+  pain: "myArtifacts.labels.pain",
+  journey: "myArtifacts.labels.journey",
+  value_ladder: "myArtifacts.labels.valueLadder",
+  unique_product: "myArtifacts.labels.uniqueProduct",
 };
 
 // ─── Component ─────────────────────────────────────────────────────────────
 
 const MyArtifactsPage = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [artifacts, setArtifacts] = useState<Artifact[]>([]);
   const [loading, setLoading] = useState(true);
@@ -154,7 +158,7 @@ const MyArtifactsPage = () => {
             }}
           >
             <ArrowLeft className="w-3 h-3" aria-hidden="true" />
-            <span>Back</span>
+            <span>{t("myArtifacts.back")}</span>
           </button>
 
           {/* Header */}
@@ -162,7 +166,7 @@ const MyArtifactsPage = () => {
             className="text-[10px] uppercase tracking-[0.32em] mb-4"
             style={{ color: "rgba(132,96,234,0.85)" }}
           >
-            My Artifacts
+            {t("myArtifacts.eyebrow")}
           </div>
           <h1
             className="text-3xl sm:text-4xl font-medium leading-[1.15] mb-3"
@@ -171,20 +175,18 @@ const MyArtifactsPage = () => {
               color: "rgba(231,233,229,0.98)",
             }}
           >
-            Your unique business, in your own words.
+            {t("myArtifacts.heading")}
           </h1>
           <p
             className="text-[14px] leading-relaxed mb-10 max-w-xl"
             style={{ color: "rgba(231,233,229,0.65)" }}
           >
-            Each artifact below is one piece of your business, captured at a
-            version and a precision score. As you iterate, create new versions
-            — nothing is ever overwritten.
+            {t("myArtifacts.intro")}
           </p>
 
           {loading ? (
             <div className="py-20 text-center text-white/50 text-sm">
-              Loading your artifacts…
+              {t("myArtifacts.loading")}
             </div>
           ) : artifacts.length === 0 ? (
             /* Empty state */
@@ -203,14 +205,13 @@ const MyArtifactsPage = () => {
                   color: "rgba(231,233,229,0.9)",
                 }}
               >
-                No artifacts yet.
+                {t("myArtifacts.empty.title")}
               </p>
               <p
                 className="text-sm mb-6 max-w-md mx-auto leading-relaxed"
                 style={{ color: "rgba(231,233,229,0.6)" }}
               >
-                Start with Step 1 — name your top talent in a couple of
-                minutes. Everything else grows from there.
+                {t("myArtifacts.empty.body")}
               </p>
               <button
                 type="button"
@@ -224,7 +225,7 @@ const MyArtifactsPage = () => {
                   boxShadow: "0 20px 60px -18px rgba(132,96,234,0.7)",
                 }}
               >
-                Find Your Top Talent
+                {t("myArtifacts.empty.cta")}
               </button>
             </div>
           ) : (
@@ -256,7 +257,7 @@ const MyArtifactsPage = () => {
                           className="text-[10px] uppercase tracking-[0.28em] mb-1"
                           style={{ color: "rgba(132,96,234,0.85)" }}
                         >
-                          Step {stepNumber}
+                          {t("myArtifacts.step", { number: stepNumber })}
                         </div>
                         <h2
                           className="text-base sm:text-lg"
@@ -272,7 +273,9 @@ const MyArtifactsPage = () => {
                         className="text-[10px] uppercase tracking-[0.22em]"
                         style={{ color: "rgba(231,233,229,0.4)" }}
                       >
-                        {items.length} artifact{items.length === 1 ? "" : "s"}
+                        {t("myArtifacts.artifactCount", {
+                          count: items.length,
+                        })}
                       </div>
                     </div>
 
@@ -280,8 +283,10 @@ const MyArtifactsPage = () => {
                     <div className="divide-y divide-white/[0.04]">
                       {items.map((a) => {
                         const isOpen = expanded.has(a.id);
-                        const label =
-                          ARTIFACT_LABELS[a.artifact_key] ?? a.artifact_key;
+                        const labelKey = ARTIFACT_LABEL_KEYS[a.artifact_key];
+                        const label = labelKey
+                          ? t(labelKey)
+                          : a.artifact_key;
                         const score = a.precision_score
                           ? `${Number(a.precision_score).toFixed(1)}/10`
                           : "—";
@@ -324,7 +329,9 @@ const MyArtifactsPage = () => {
                                 onClick={() => toggle(a.id)}
                                 className="mt-1 text-[10px] uppercase tracking-[0.18em] text-white/50 hover:text-white/80 transition-colors"
                               >
-                                {isOpen ? "Collapse" : "Read more"}
+                                {isOpen
+                                  ? t("myArtifacts.collapse")
+                                  : t("myArtifacts.readMore")}
                               </button>
                             )}
                           </div>

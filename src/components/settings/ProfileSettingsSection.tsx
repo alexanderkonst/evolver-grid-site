@@ -31,6 +31,9 @@ import { clearCachedZogSnapshot } from "@/lib/zogSnapshotCache";
 // Day 48 iter 12 (Sasha): shared design language for the landing-CTA
 // signature (glass-dark pill + ignite emblem + small-caps + breath).
 import { CTA_SMALL_CAPS_STYLE, igniteLogo } from "@/lib/landingDesign";
+// Locale-aware date formatting: dates follow the active UI language
+// instead of a hardcoded en-US locale.
+import { formatDate as formatDateI18n } from "@/i18n/format";
 
 /**
  * ProfileSettingsSection — extracted from src/pages/Profile.tsx (2026-04-21).
@@ -194,7 +197,7 @@ const ProfileSettingsSection = () => {
     );
 
     const formatDate = (dateString: string) =>
-        new Date(dateString).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
+        formatDateI18n(dateString, { year: "numeric", month: "long", day: "numeric" });
 
     const formatPurchaseSource = (source: string | null) => {
         if (!source) return "Unknown";

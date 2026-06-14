@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { GOLD_GRADIENT, GOLD_GLOW, Ornament, igniteLogo } from "@/lib/landingDesign";
 
 /**
@@ -31,13 +32,13 @@ import { GOLD_GRADIENT, GOLD_GLOW, Ornament, igniteLogo } from "@/lib/landingDes
 // (aurum / techstars) re-tone this standalone surface correctly.
 const NAVY = "var(--skin-text-primary, #0a1628)";
 
-const GAMEPLAY: Array<{ n: string; title: string; desc: string }> = [
-  { n: "1", title: "Top Talent", desc: "name what you are uniquely great at." },
-  { n: "2", title: "Mission", desc: "name where you are going." },
-  { n: "3", title: "Assets", desc: "map what you already have to work with." },
-  { n: "4", title: "Matching", desc: "meet the people you actually compound with." },
-  { n: "5", title: "Quality of Life", desc: "surface who you will truly resonate with, so matches go deep, not wide." },
-  { n: "6", title: "Venture", desc: "turn aligned people into something built." },
+const GAMEPLAY: Array<{ n: string; titleKey: string; descKey: string }> = [
+  { n: "1", titleKey: "onePager.gameplay.step1Title", descKey: "onePager.gameplay.step1Desc" },
+  { n: "2", titleKey: "onePager.gameplay.step2Title", descKey: "onePager.gameplay.step2Desc" },
+  { n: "3", titleKey: "onePager.gameplay.step3Title", descKey: "onePager.gameplay.step3Desc" },
+  { n: "4", titleKey: "onePager.gameplay.step4Title", descKey: "onePager.gameplay.step4Desc" },
+  { n: "5", titleKey: "onePager.gameplay.step5Title", descKey: "onePager.gameplay.step5Desc" },
+  { n: "6", titleKey: "onePager.gameplay.step6Title", descKey: "onePager.gameplay.step6Desc" },
 ];
 
 const Eyebrow = ({ children, size = "default" }: { children: ReactNode; size?: "default" | "large" }) => (
@@ -115,11 +116,13 @@ const bodyStyle = { color: "var(--skin-text-muted, rgba(26,30,58,0.8))" } as con
  * /1-pager IS the Planetary OS brand artifact, not the FYTT funnel,
  * so the wordmark should match the page identity.
  */
-const PlanetaryOSWordmark = () => (
+const PlanetaryOSWordmark = () => {
+  const { t } = useTranslation();
+  return (
   <Link
     to="/"
     className="fixed top-5 left-1/2 -translate-x-1/2 z-50 group inline-flex items-center gap-2.5 transition-opacity hover:opacity-80"
-    aria-label="Planetary OS — home"
+    aria-label={t("onePager.wordmarkAriaLabel")}
   >
     <img
       src={igniteLogo}
@@ -145,9 +148,11 @@ const PlanetaryOSWordmark = () => (
       Planetary OS
     </span>
   </Link>
-);
+  );
+};
 
 const OnePager = () => {
+  const { t } = useTranslation();
   const headlineHalo = "0 0 26px rgba(255,255,255,0.7), 0 1px 2px rgba(255,255,255,0.85)";
   return (
     <main
@@ -187,7 +192,7 @@ const OnePager = () => {
         {/* HERO — tightened mb (was 14/20, now 8/10), tightened sub-h1 max-width, soft break for clean wrap. */}
         <header className="text-center mb-8 sm:mb-10">
           <p className="text-[11px] uppercase tracking-[0.30em] mb-5" style={{ color: "var(--skin-text-muted, rgba(26,30,58,0.5))" }}>
-            Coordination infrastructure
+            {t("onePager.heroEyebrow")}
           </p>
           <h1
             className="font-bold leading-[1.04] tracking-[-0.01em]"
@@ -209,15 +214,11 @@ const OnePager = () => {
               lineHeight: 1.35,
             }}
           >
-            An operating system for a civilization that coordinates around{" "}
-            <GradientInk>who people actually are</GradientInk>.
+            {t("onePager.heroTaglineBefore")}{" "}
+            <GradientInk>{t("onePager.heroTaglineEmphasis")}</GradientInk>{t("onePager.heroTaglineAfter")}
           </p>
           <p className="mt-8 mx-auto max-w-[56ch] text-[15px] sm:text-base leading-relaxed" style={bodyStyle}>
-            Planetary OS helps people find their unique contribution, find the right people to build
-            with, and turn that into real ventures. It does the same thing at every scale: a person, a
-            team, a community, ecosystems, evolution-oriented communities, network states, and land-based
-            projects. The entire system runs on one core move: making a person's differentiated value
-            legible enough that the right collaborations, ventures, and opportunities can form around it.
+            {t("onePager.heroBody")}
           </p>
 
           {/* Inline soft CTA — for early-leavers who don't scroll to the dedicated cluster. */}
@@ -230,7 +231,7 @@ const OnePager = () => {
               paddingBottom: "2px",
             }}
           >
-            Try it free in two minutes
+            {t("onePager.heroSoftCta")}
             <ArrowRight className="w-3.5 h-3.5 opacity-70" />
           </Link>
         </header>
@@ -241,40 +242,27 @@ const OnePager = () => {
         {/* BODY — panel weight gradient by argument importance:
             standard / HEAVY / HEAVY / light / light / standard */}
         <div className="space-y-5">
-          <Panel eyebrow="The shift" weight="standard">
+          <Panel eyebrow={t("onePager.shiftEyebrow")} weight="standard">
             <p className="text-[15px] sm:text-base leading-relaxed" style={bodyStyle}>
-              Industrial civilization coordinated people by standardizing them: roles, credentials,
-              replaceability. The world increasingly rewards the opposite, the differentiated way each
-              person thinks, creates, and contributes. But that value stays trapped, often illegible even
-              to the person who holds it, so it never gets coordinated. Planetary OS is the infrastructure
-              that makes it legible.
+              {t("onePager.shiftPara1")}
             </p>
             <p className="text-[15px] sm:text-base leading-relaxed mt-4" style={bodyStyle}>
-              Most communities are still directories of high-agency people, not coordination systems. They gather impressive
-              people, but they do not reliably make the right people find and build with each other.
-              Planetary OS turns a community's latent talent into coordination throughput by making each
-              member's unique leverage precise enough to match, route, and activate.
+              {t("onePager.shiftPara2")}
             </p>
           </Panel>
 
-          <Panel eyebrow="The kernel" weight="heavy">
+          <Panel eyebrow={t("onePager.kernelEyebrow")} weight="heavy">
             <p className="text-[15px] sm:text-base leading-relaxed" style={bodyStyle}>
-              At the center is one atomic operation: turn a person's differentiated nature into a clear,
-              usable profile of what they uniquely think, create, and contribute, in about fifteen minutes.
-              Just as a computer's kernel manages memory and processes so applications can run, this kernel
-              manages legible human difference so coordination can run. Everything else is built on top of it.
+              {t("onePager.kernelPara1")}
             </p>
             <p className="text-[15px] sm:text-base leading-relaxed mt-4" style={bodyStyle}>
-              For communities, the first expression is <GradientInk>Community Member Onboarding</GradientInk>:
-              precision purpose discovery, precision mission discovery, and precision resource mapping. The
-              question is not only what someone is good at, but what role they are naturally here to play
-              inside a living system.
+              {t("onePager.kernelPara2Before")} <GradientInk>{t("onePager.kernelPara2Emphasis")}</GradientInk>{t("onePager.kernelPara2After")}
             </p>
           </Panel>
 
-          <Panel eyebrow="The gameplay" weight="heavy">
+          <Panel eyebrow={t("onePager.gameplayEyebrow")} weight="heavy">
             <p className="text-[15px] sm:text-base leading-relaxed mb-5" style={bodyStyle}>
-              You move through it like a game. Each step stands on its own, and each unlocks the next.
+              {t("onePager.gameplayIntro")}
             </p>
             <ol className="space-y-3">
               {GAMEPLAY.map((g) => (
@@ -291,43 +279,34 @@ const OnePager = () => {
                     {g.n}
                   </span>
                   <p className="text-[15px] sm:text-base leading-snug" style={{ color: "var(--skin-text-muted, rgba(26,30,58,0.82))" }}>
-                    <span className="font-semibold" style={{ color: NAVY }}>{g.title}:</span> {g.desc}
+                    <span className="font-semibold" style={{ color: NAVY }}>{t(g.titleKey)}:</span> {t(g.descKey)}
                   </p>
                 </li>
               ))}
             </ol>
             <p className="text-[13px] mt-5 italic" style={{ color: "var(--skin-text-muted, rgba(26,30,58,0.6))" }}>
-              Each module is whole on its own and fits a coherent larger whole. That is what holonic means:
-              standalone and part of the pattern at once.
+              {t("onePager.gameplayHolonic")}
             </p>
           </Panel>
 
-          <Panel eyebrow="The metric" weight="light">
+          <Panel eyebrow={t("onePager.metricEyebrow")} weight="light">
             <p className="text-[15px] sm:text-base leading-relaxed" style={bodyStyle}>
-              The whole system exists to move one number: <GradientInk>collaboration rate</GradientInk>, the
-              share of members who actually start building together. The hidden engine beneath every
-              community's growth and output, and almost nobody measures it.
+              {t("onePager.metricPara1Before")} <GradientInk>{t("onePager.metricPara1Emphasis")}</GradientInk>{t("onePager.metricPara1After")}
             </p>
             <p className="text-[15px] sm:text-base leading-relaxed mt-4" style={bodyStyle}>
-              Secondary metrics follow from that one: collaborations formed, ventures formed, projects
-              launched, introductions converted, member retention through meaningful participation, and
-              member GDP.
+              {t("onePager.metricPara2")}
             </p>
           </Panel>
 
-          <Panel eyebrow="How it grows" weight="light">
+          <Panel eyebrow={t("onePager.growsEyebrow")} weight="light">
             <p className="text-[15px] sm:text-base leading-relaxed" style={bodyStyle}>
-              The same pattern runs at every scale, and it was proven on its own founder first, then a small
-              founder cohort, before any network. The first holon tests every piece before the network
-              inherits it. From one person, to a community, to an ecosystem, a network state, a land-based project.
+              {t("onePager.growsPara")}
             </p>
           </Panel>
 
-          <Panel eyebrow="How to touch it" weight="standard">
+          <Panel eyebrow={t("onePager.touchEyebrow")} weight="standard">
             <p className="text-[15px] sm:text-base leading-relaxed" style={bodyStyle}>
-              A person enters free, in about fifteen minutes. A community, ecosystem, or network runs it as the
-              coordination layer beneath its membership, skinned to its own brand. It is open-source and
-              forkable, owned by the people who use it.
+              {t("onePager.touchPara")}
             </p>
           </Panel>
         </div>
@@ -354,11 +333,11 @@ const OnePager = () => {
                 filter: "drop-shadow(0 0 8px rgba(240, 194, 127, 0.5)) drop-shadow(0 0 2px rgba(212, 175, 55, 0.7))",
               }}
             />
-            Find your top talent
+            {t("onePager.primaryCta")}
             <ArrowRight className="w-4 h-4 opacity-70" />
           </Link>
           <p className="mt-4 text-[11px] uppercase tracking-[0.22em]" style={{ color: "var(--skin-text-muted, rgba(26,30,58,0.5))" }}>
-            Free · 2 minutes · No signup
+            {t("onePager.ctaMeta")}
           </p>
           <div className="mt-7 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[13px]">
             <Link
@@ -366,7 +345,7 @@ const OnePager = () => {
               className="inline-flex items-center gap-1.5 font-medium transition-opacity hover:opacity-70"
               style={{ color: "var(--skin-text-muted, rgba(26,30,58,0.7))" }}
             >
-              See a live demo of the platform
+              {t("onePager.secondaryDemo")}
               <ArrowRight className="w-3.5 h-3.5 opacity-60" />
             </Link>
             <a
@@ -376,7 +355,7 @@ const OnePager = () => {
               className="inline-flex items-center gap-1.5 font-medium transition-opacity hover:opacity-70"
               style={{ color: "var(--skin-text-muted, rgba(26,30,58,0.7))" }}
             >
-              Book a chat with Aleksandr
+              {t("onePager.secondaryBook")}
               <ArrowRight className="w-3.5 h-3.5 opacity-60" />
             </a>
           </div>
@@ -384,7 +363,7 @@ const OnePager = () => {
 
         {/* STAKE — closing pull-quote */}
         <section className="text-center mt-16 sm:mt-20 max-w-[54ch] mx-auto">
-          <Eyebrow>The stake</Eyebrow>
+          <Eyebrow>{t("onePager.stakeEyebrow")}</Eyebrow>
           <p
             className="italic"
             style={{
@@ -394,9 +373,7 @@ const OnePager = () => {
               lineHeight: 1.4,
             }}
           >
-            A civilization that organizes around who people actually are, instead of flattening them into
-            standardized roles. Make differentiated human value legible, and everything else, the matching,
-            the ventures, the ecosystems and network states, follows.
+            {t("onePager.stakeQuote")}
           </p>
         </section>
 
@@ -410,7 +387,7 @@ const OnePager = () => {
               color: "var(--skin-text-muted, rgba(26,30,58,0.55))",
             }}
           >
-            Built in the open. Owned by the people who use it.
+            {t("onePager.footerTagline")}
           </p>
           <p className="text-[10px] uppercase tracking-[0.28em]" style={{ color: "var(--skin-text-muted, rgba(26,30,58,0.4))" }}>
             Planetary OS · findyourtoptalent.com

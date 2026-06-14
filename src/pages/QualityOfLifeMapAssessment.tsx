@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { ArrowLeft, ArrowRight, Check } from "lucide-react";
 // Day 63 (Sasha 2026-05-06): Navigation import removed — shell now
 // owned by QolLayout (provides GameShellV2 chrome). The standalone
@@ -19,6 +20,7 @@ interface QualityOfLifeMapAssessmentProps {
 const QualityOfLifeMapAssessment = ({
   renderMode = "standalone",
 }: QualityOfLifeMapAssessmentProps) => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const returnTo = searchParams.get("return");
@@ -134,7 +136,7 @@ const QualityOfLifeMapAssessment = ({
             marginBottom: "16px",
           }}
         >
-          Quality of Life Map
+          {t('qolAssessment.introEyebrow')}
         </p>
 
         {/* Headline — bumped scale for hero impact (was clamp 28-42px,
@@ -152,7 +154,7 @@ const QualityOfLifeMapAssessment = ({
             maxWidth: "20ch",
           }}
         >
-          Rate 8 life areas
+          {t('qolAssessment.introHeadline')}
         </h1>
 
         {/* Subhead — Source Serif 4 italic, alpha 0.88 (Strong), halo-soft. */}
@@ -168,7 +170,7 @@ const QualityOfLifeMapAssessment = ({
             marginBottom: "44px",
           }}
         >
-          See where you're thriving and where to grow.
+          {t('qolAssessment.introSubhead')}
         </p>
 
         {/* CTA — editorial gold pattern. Widened proportions (max-w-md,
@@ -202,7 +204,7 @@ const QualityOfLifeMapAssessment = ({
           >
             ✦
           </span>
-          Map My Life
+          {t('qolAssessment.introCta')}
         </button>
       </div>
     </section>
@@ -281,7 +283,7 @@ const QualityOfLifeMapAssessment = ({
               textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.7))",
             }}
           >
-            Select the stage that best represents your current state in this domain.
+            {t('qolAssessment.domainPrompt')}
           </p>
         </div>
 
@@ -308,7 +310,7 @@ const QualityOfLifeMapAssessment = ({
                 fontSize: "13px",
               }}
             >
-              See Results
+              {t('qolAssessment.seeResults')}
               <ArrowRight className="ml-1 h-4 w-4" />
             </button>
           </div>
@@ -407,7 +409,7 @@ const QualityOfLifeMapAssessment = ({
             )}
           >
             <ArrowLeft className="mr-2 h-4 w-4" />
-            Previous
+            {t('qolAssessment.previous')}
           </Button>
 
           {/* Day 64 (Sasha 2026-05-07): bottom "See Results" button
@@ -436,11 +438,11 @@ const QualityOfLifeMapAssessment = ({
                 className="text-xs px-4 py-2 rounded-full border border-[var(--wabi-text-muted)]/20 text-[var(--wabi-text-secondary)] hover:bg-[var(--depth-violet)]/5 transition-colors"
               >
                 <ArrowLeft className="inline mr-1 h-3 w-3" />
-                Back
+                {t('qolAssessment.back')}
               </button>
             )}
             <div className="text-xs text-[var(--wabi-text-muted)] flex-1 text-center">
-              {currentIndex + 1} of {DOMAINS.length}
+              {t('qolAssessment.progressCount', { current: currentIndex + 1, total: DOMAINS.length })}
             </div>
             {/* Only show explicit button on last domain */}
             {isLastDomain && (
@@ -452,7 +454,7 @@ const QualityOfLifeMapAssessment = ({
                   !hasAnswer && "opacity-50"
                 )}
               >
-                See Results
+                {t('qolAssessment.seeResults')}
               </button>
             )}
           </div>
@@ -491,7 +493,7 @@ const QualityOfLifeMapAssessment = ({
             className="inline-flex items-center text-[var(--wabi-text-muted)] hover:text-[var(--wabi-text-secondary)] transition-colors"
           >
             <ArrowLeft className="mr-2 h-4 w-4" />
-            <BoldText>BACK</BoldText>
+            <BoldText>{t('qolAssessment.backUpper')}</BoldText>
           </button>
         </div>
       </div>

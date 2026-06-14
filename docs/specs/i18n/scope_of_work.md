@@ -44,9 +44,11 @@ This is **not a brochure site that needs its buttons translated.** It is an AI-n
 | 0b — calendar locale + `preferred_language` sync (`languageSync.ts`) wired | ✅ 2026-06-14 | build green; sync activates on migration deploy |
 | 2i–2j — 24 logged-in product surfaces + RU (core loop, offers, content, onboarding, events, community; 637 keys) | ✅ 2026-06-14 | build green (13.6s); 2 router-wrappers correctly skipped |
 | 0b — `output_language` migration (zog_snapshots, user_business_artifacts) written | 🟡 | Layer-3 cache-mismatch fix; activates on deploy + wiring |
-| 2k+ — remaining pages/admin · `SPACE_SECTIONS`/UBB rail · Phase 0b (Zod errorMap, format sweep) · data hubs (missions 1166…) · landmines (PDF/charts/15 emails) · **Layer 3 wiring** · seeded · SEO · ES | ⏳ | the bulk remains |
+| 2k — 12 more user-facing pages + RU (GameHome, HolonicModules, IntegralTheory, PublicDossier/Landing, QoL assessment, CharacterSnapshot, PathPage, CoreLoopHome, MyArtifacts, OnePager, FounderMarketFit; 447 keys) | ✅ 2026-06-14 | build green (19.7s) |
+| 0b — format sweep (9 files → locale-aware dates/numbers) | ✅ 2026-06-14 | done |
+| 2l+ — shared `domains.*` (Wealth/Health… duplicated in 3 components) · holomap/admin/per-client pages · `SPACE_SECTIONS`/UBB rail · Zod errorMap · data hubs (missions 1166…) · landmines (PDF/charts/15 emails) · **Layer 3 wiring** · seeded · SEO · ES | ⏳ | the bulk remains |
 
-**Running tally (2026-06-14): ~1,361 keys across ~49 files, 8 production builds green.** Most user-facing UI chrome (funnel + shell + post-reveal + profile/settings + core loop + offers + onboarding + events) reads Russian. Phase 0b: calendar locale + preferred_language sync done; output_language migration written; Zod errorMap + format sweep pending. Not started: data hubs · landmines (PDF/charts/emails) · Layer-3 generation wiring · seeded content · SEO · Spanish.
+**Running tally (2026-06-14): ~1,808 keys across ~70 files, 9 production builds green.** Most user-facing UI chrome (funnel + shell + post-reveal + profile/settings + core loop + offers + onboarding + events) reads Russian. Phase 0b: calendar locale + preferred_language sync done; output_language migration written; Zod errorMap + format sweep pending. Not started: data hubs · landmines (PDF/charts/emails) · Layer-3 generation wiring · seeded content · SEO · Spanish.
 
 **Milestone (2026-06-14): the public cold-funnel reads in Russian** — `/ru` (manifesto + playbook CTA), `/ru?path=match` (hero + match CTAs), `/ru/ignite` (paid session). ~137 keys, 3 production builds green. Ready for Sasha's Charge review.
 

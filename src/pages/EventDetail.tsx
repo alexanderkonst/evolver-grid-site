@@ -15,10 +15,11 @@ import { getOrCreateGameProfileId } from "@/lib/gameProfile";
 import { awardXp } from "@/lib/xpSystem";
 import { awardFirstTimeBonus, getFirstTimeActionLabel } from "@/lib/xpService";
 import BackButton from "@/components/BackButton";
+import { formatDate } from "@/i18n/format";
 
 const formatDateTime = (dateStr: string, timeStr: string, timeZone: string) => {
   const dateTime = new Date(`${dateStr}T${timeStr}`);
-  const date = dateTime.toLocaleDateString("en-US", {
+  const date = formatDate(dateTime, {
     weekday: "long",
     year: "numeric",
     month: "long",

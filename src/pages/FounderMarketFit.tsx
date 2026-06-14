@@ -1,9 +1,11 @@
 import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import "./FounderMarketFit.css";
 
 const CAL_LINK = "https://cal.com/aleksandrkonstantinov/fmf";
 
 const FounderMarketFit = () => {
+    const { t } = useTranslation();
     useEffect(() => {
         document.title = "Founder-Market Fit | Alexander Konstantinov";
         document.documentElement.classList.add("dark");
@@ -63,47 +65,42 @@ const FounderMarketFit = () => {
                     <div className="fmf-orb fmf-orb-3" />
                 </div>
                 <div className="fmf-container fmf-hero-content">
-                    <p className="fmf-eyebrow">For founders between ventures</p>
+                    <p className="fmf-eyebrow">{t('founderMarketFit.heroEyebrow')}</p>
                     <h1 className="fmf-h1">
-                        You've already been building it.
+                        {t('founderMarketFit.heroH1Line1')}
                         <br />
-                        <span className="fmf-gradient-text">You just can't see it yet.</span>
+                        <span className="fmf-gradient-text">{t('founderMarketFit.heroH1Line2')}</span>
                     </h1>
                     <p className="fmf-hero-sub">
-                        The pattern you keep seeing. The problem you can't stop working on.
-                        That's not a detour — that's the business.
+                        {t('founderMarketFit.heroSub')}
                     </p>
                     <a href="#book" className="fmf-cta-primary">
-                        See What You've Been Building
+                        {t('founderMarketFit.heroCta')}
                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
                             <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
                     </a>
-                    <p className="fmf-hero-context">90-min diagnostic · $197 founding rate</p>
+                    <p className="fmf-hero-context">{t('founderMarketFit.heroContext')}</p>
                 </div>
             </section>
 
             {/* ===== 2. PAIN — their own words ===== */}
             <section className="fmf-section fmf-problem">
                 <div className="fmf-container">
-                    <h2 className="fmf-h2">Sound familiar?</h2>
+                    <h2 className="fmf-h2">{t('founderMarketFit.painHeading')}</h2>
                     <ul className="fmf-pain-list">
-                        <li>"I just need to figure out the right thing to <strong>go all-in</strong> on."</li>
-                        <li>"I've been in this transition <strong>for too long</strong>."</li>
-                        <li>"I'm so much more capable than my results show."</li>
-                        <li>"Something fundamental is off but I can't see what."</li>
-                        <li>"I feel like I'm drilling hoping I'm almost through the wall."</li>
+                        <li>{t('founderMarketFit.painItem1Before')}<strong>{t('founderMarketFit.painItem1Strong')}</strong>{t('founderMarketFit.painItem1After')}</li>
+                        <li>{t('founderMarketFit.painItem2Before')}<strong>{t('founderMarketFit.painItem2Strong')}</strong>{t('founderMarketFit.painItem2After')}</li>
+                        <li>{t('founderMarketFit.painItem3')}</li>
+                        <li>{t('founderMarketFit.painItem4')}</li>
+                        <li>{t('founderMarketFit.painItem5')}</li>
                     </ul>
                     <div className="fmf-reframe">
                         <p>
-                            This isn't a strategy problem. It's not a motivation problem.
-                            It's a <strong>recognition</strong> problem. The business you're looking
-                            for is already inside the thing you can't stop doing. The pattern you keep
-                            seeing, the problem you keep circling — that's not scattered energy.
-                            That's signal.
+                            {t('founderMarketFit.painReframeBefore')}<strong>{t('founderMarketFit.painReframeStrong')}</strong>{t('founderMarketFit.painReframeAfter')}
                         </p>
                         <p>
-                            You just need someone who can see the pattern from outside the loop.
+                            {t('founderMarketFit.painReframeP2')}
                         </p>
                     </div>
                 </div>
@@ -112,27 +109,22 @@ const FounderMarketFit = () => {
             {/* ===== 2b. THE MYTH — what the startup world gets wrong ===== */}
             <section className="fmf-section fmf-myth">
                 <div className="fmf-container">
-                    <h2 className="fmf-h2">What the startup world gets wrong</h2>
+                    <h2 className="fmf-h2">{t('founderMarketFit.mythHeading')}</h2>
                     <div className="fmf-reframe">
                         <p>
-                            Everyone tells you to find product-market fit through iteration.
-                            Test. Pivot. Talk to customers. Try keys in locks until one fits.
+                            {t('founderMarketFit.mythP1')}
                         </p>
                         <p>
-                            But what if the key is already inside you?
+                            {t('founderMarketFit.mythP2')}
                         </p>
                         <p>
-                            <strong>Founder-Market Fit</strong> is the match between who you are
-                            at your core and what you build. When it's off: endless pivots,
-                            mediocre traction, burnout. When it's on: the venture compounds
-                            because it's built on who you actually are.
+                            <strong>{t('founderMarketFit.mythP3Strong')}</strong>{t('founderMarketFit.mythP3After')}
                         </p>
                         <p>
-                            Most founders skip this step. They jump to "what should I build?"
-                            before answering "<strong>who am I when I'm at my brightest?</strong>"
+                            {t('founderMarketFit.mythP4Before')}"<strong>{t('founderMarketFit.mythP4Strong')}</strong>"
                         </p>
                         <p>
-                            No amount of execution excellence fixes an inverted sequence.
+                            {t('founderMarketFit.mythP5')}
                         </p>
                     </div>
                 </div>
@@ -142,20 +134,18 @@ const FounderMarketFit = () => {
             <section className="fmf-section fmf-revelation">
                 <div className="fmf-container">
                     <div className="fmf-fmf-reveal">
-                        <p className="fmf-reveal-before">Before Product-Market Fit —</p>
-                        <h3 className="fmf-reveal-headline">there's Founder-Market Fit.</h3>
+                        <p className="fmf-reveal-before">{t('founderMarketFit.revealBefore')}</p>
+                        <h3 className="fmf-reveal-headline">{t('founderMarketFit.revealHeadline')}</h3>
                         <p className="fmf-reveal-after">
-                            The structural match between who you are and what you build.
-                            Without it, every venture feels like pushing uphill.
-                            The breakthrough stays "right around the corner" — and the corner keeps moving.
+                            {t('founderMarketFit.revealAfter1')}
                         </p>
                         <p className="fmf-reveal-after">
-                            With it — unfair advantage. The thing that makes the hard parts feel like <em>your</em> hard parts.
+                            {t('founderMarketFit.revealAfter2Before')}<em>{t('founderMarketFit.revealAfter2Em')}</em>{t('founderMarketFit.revealAfter2After')}
                         </p>
                     </div>
                     <div className="fmf-reframe">
                         <p>
-                            <strong>You don't have yours yet.</strong> That's the whole problem.
+                            <strong>{t('founderMarketFit.revealReframeStrong')}</strong>{t('founderMarketFit.revealReframeAfter')}
                         </p>
                     </div>
                 </div>
@@ -164,22 +154,16 @@ const FounderMarketFit = () => {
             {/* ===== 4. COMPASSION — not your fault, until it's obvious ===== */}
             <section className="fmf-section fmf-compassion">
                 <div className="fmf-container">
-                    <h2 className="fmf-h2">This isn't a character flaw.</h2>
+                    <h2 className="fmf-h2">{t('founderMarketFit.compassionHeading')}</h2>
                     <div className="fmf-reframe">
                         <p className="fmf-core-belief">
-                            I believe every founder has one venture that's structurally theirs.
-                            Most never find it — not because they're not good enough,
-                            but because <strong>Founder-Market Fit is invisible from the inside.</strong>
+                            {t('founderMarketFit.compassionP1Before')}<strong>{t('founderMarketFit.compassionP1Strong')}</strong>
                         </p>
                         <p>
-                            You can't read the label from inside the bottle.
-                            It's not about working harder, networking more, or finding
-                            the right co-founder. It's about seeing the one thing you can't see alone:
-                            <strong> where your genius meets the market.</strong>
+                            {t('founderMarketFit.compassionP2Before')}<strong>{t('founderMarketFit.compassionP2Strong')}</strong>
                         </p>
                         <p>
-                            Once someone maps it for you, it becomes obvious. The kind of obvious
-                            that makes you wonder how you missed it.
+                            {t('founderMarketFit.compassionP3')}
                         </p>
                     </div>
                 </div>
@@ -190,20 +174,20 @@ const FounderMarketFit = () => {
                 <div className="fmf-container">
                     <div className="fmf-filter-grid">
                         <div className="fmf-filter-col">
-                            <h3 className="fmf-h3">This is for you if:</h3>
+                            <h3 className="fmf-h3">{t('founderMarketFit.filterYesHeading')}</h3>
                             <ul className="fmf-filter-list fmf-filter-yes">
-                                <li>You're a founder or builder who's been in transition too long</li>
-                                <li>You sense the gap between your potential and your traction</li>
-                                <li>You want structural clarity, not motivational pep talks</li>
-                                <li>You've done inner work and want it to connect to outer results</li>
+                                <li>{t('founderMarketFit.filterYes1')}</li>
+                                <li>{t('founderMarketFit.filterYes2')}</li>
+                                <li>{t('founderMarketFit.filterYes3')}</li>
+                                <li>{t('founderMarketFit.filterYes4')}</li>
                             </ul>
                         </div>
                         <div className="fmf-filter-col">
-                            <h3 className="fmf-h3">This is NOT for you if:</h3>
+                            <h3 className="fmf-h3">{t('founderMarketFit.filterNoHeading')}</h3>
                             <ul className="fmf-filter-list fmf-filter-no">
-                                <li>You want someone to hand you a business plan</li>
-                                <li>You're not ready to look honestly at who you are</li>
-                                <li>You want comfort, not recognition</li>
+                                <li>{t('founderMarketFit.filterNo1')}</li>
+                                <li>{t('founderMarketFit.filterNo2')}</li>
+                                <li>{t('founderMarketFit.filterNo3')}</li>
                             </ul>
                         </div>
                     </div>
@@ -213,57 +197,57 @@ const FounderMarketFit = () => {
             {/* ===== 5. METHOD — see yours in 90 minutes ===== */}
             <section className="fmf-section fmf-solution">
                 <div className="fmf-container">
-                    <h2 className="fmf-h2">See yours in 90 minutes.</h2>
+                    <h2 className="fmf-h2">{t('founderMarketFit.methodHeading')}</h2>
                     <div className="fmf-steps">
                         <div className="fmf-step">
                             <div className="fmf-step-num">1</div>
-                            <h3 className="fmf-step-title">Map</h3>
+                            <h3 className="fmf-step-title">{t('founderMarketFit.methodStep1Title')}</h3>
                             <p className="fmf-step-desc">
-                                We map your unique gift: the patterns, strengths, and edges that make you irreplaceable.
+                                {t('founderMarketFit.methodStep1Desc')}
                             </p>
                         </div>
                         <div className="fmf-step-arrow" aria-hidden="true">→</div>
                         <div className="fmf-step">
                             <div className="fmf-step-num">2</div>
-                            <h3 className="fmf-step-title">Match</h3>
+                            <h3 className="fmf-step-title">{t('founderMarketFit.methodStep2Title')}</h3>
                             <p className="fmf-step-desc">
-                                We cross-reference with market reality: where does your gift meet a need that's urgent <em>now</em>?
+                                {t('founderMarketFit.methodStep2DescBefore')}<em>{t('founderMarketFit.methodStep2DescEm')}</em>{t('founderMarketFit.methodStep2DescAfter')}
                             </p>
                         </div>
                         <div className="fmf-step-arrow" aria-hidden="true">→</div>
                         <div className="fmf-step">
                             <div className="fmf-step-num">3</div>
-                            <h3 className="fmf-step-title">Move</h3>
+                            <h3 className="fmf-step-title">{t('founderMarketFit.methodStep3Title')}</h3>
                             <p className="fmf-step-desc">
-                                We design your first moves: what to build, who it's for, and your concrete next steps.
+                                {t('founderMarketFit.methodStep3Desc')}
                             </p>
                         </div>
                     </div>
 
                     <div className="fmf-deliverables">
-                        <h3 className="fmf-h3">What you walk out with</h3>
+                        <h3 className="fmf-h3">{t('founderMarketFit.deliverablesHeading')}</h3>
                         <div className="fmf-deliverable-grid">
                             <div className="fmf-deliverable">
                                 <span className="fmf-check" aria-hidden="true">✓</span>
-                                <strong>Your Founder-Market Fit</strong> — the one sentence that names your alignment
+                                <strong>{t('founderMarketFit.deliverable1Strong')}</strong>{t('founderMarketFit.deliverable1After')}
                             </div>
                             <div className="fmf-deliverable">
                                 <span className="fmf-check" aria-hidden="true">✓</span>
-                                <strong>Your venture direction</strong> — the shape of the business that makes structural sense for you
+                                <strong>{t('founderMarketFit.deliverable2Strong')}</strong>{t('founderMarketFit.deliverable2After')}
                             </div>
                             <div className="fmf-deliverable">
                                 <span className="fmf-check" aria-hidden="true">✓</span>
-                                <strong>Your next 3 moves</strong> — concrete steps for this week, not someday
+                                <strong>{t('founderMarketFit.deliverable3Strong')}</strong>{t('founderMarketFit.deliverable3After')}
                             </div>
                             <div className="fmf-deliverable">
                                 <span className="fmf-check" aria-hidden="true">✓</span>
-                                <strong>Session recording</strong> — so you can revisit the insights
+                                <strong>{t('founderMarketFit.deliverable4Strong')}</strong>{t('founderMarketFit.deliverable4After')}
                             </div>
                         </div>
                     </div>
 
                     <p className="fmf-method-footnote">
-                        No pitch. No upsell. Just 90 minutes of someone seeing what you can't see from inside the loop.
+                        {t('founderMarketFit.methodFootnote')}
                     </p>
                 </div>
             </section>
@@ -274,59 +258,55 @@ const FounderMarketFit = () => {
                     <div className="fmf-credentials">
                         <div className="fmf-credential">
                             <span className="fmf-credential-num">250+</span>
-                            <span className="fmf-credential-label">Founders mapped</span>
+                            <span className="fmf-credential-label">{t('founderMarketFit.credential1Label')}</span>
                         </div>
                         <div className="fmf-credential-divider" aria-hidden="true" />
                         <div className="fmf-credential">
                             <span className="fmf-credential-num">10+</span>
-                            <span className="fmf-credential-label">Years in career transformation</span>
+                            <span className="fmf-credential-label">{t('founderMarketFit.credential2Label')}</span>
                         </div>
                         <div className="fmf-credential-divider" aria-hidden="true" />
                         <div className="fmf-credential">
                             <span className="fmf-credential-num">MIT</span>
-                            <span className="fmf-credential-label">Alum · AI & Human Potential</span>
+                            <span className="fmf-credential-label">{t('founderMarketFit.credential3Label')}</span>
                         </div>
                     </div>
 
                     <div className="fmf-testimonials">
                         <div className="fmf-testimonial">
                             <p className="fmf-testimonial-quote">
-                                "This is a miracle of miracles. Other tools come at this half-baked and shallow;
-                                they've got no depth. Your approach, though — <strong>a tool that just plain works.</strong>"
+                                {t('founderMarketFit.testimonial1Before')}<strong>{t('founderMarketFit.testimonial1Strong')}</strong>"
                             </p>
                             <div className="fmf-testimonial-author">
                                 <span className="fmf-testimonial-name">Alexey</span>
-                                <span className="fmf-testimonial-result">Found Results</span>
+                                <span className="fmf-testimonial-result">{t('founderMarketFit.testimonial1Result')}</span>
                             </div>
                         </div>
                         <div className="fmf-testimonial">
                             <p className="fmf-testimonial-quote">
-                                "Truly profound. I am so inspired to lean into my talents
-                                and <strong>share them globally.</strong>"
+                                {t('founderMarketFit.testimonial2Before')}<strong>{t('founderMarketFit.testimonial2Strong')}</strong>"
                             </p>
                             <div className="fmf-testimonial-author">
                                 <span className="fmf-testimonial-name">Tshatiqua</span>
-                                <span className="fmf-testimonial-result">Found Purpose</span>
+                                <span className="fmf-testimonial-result">{t('founderMarketFit.testimonial2Result')}</span>
                             </div>
                         </div>
                         <div className="fmf-testimonial">
                             <p className="fmf-testimonial-quote">
-                                "I got into my zone of genius and <strong>launched my blockchain
-                                    wellness education project.</strong>"
+                                {t('founderMarketFit.testimonial3Before')}<strong>{t('founderMarketFit.testimonial3Strong')}</strong>"
                             </p>
                             <div className="fmf-testimonial-author">
                                 <span className="fmf-testimonial-name">Simba</span>
-                                <span className="fmf-testimonial-result">Launched Project</span>
+                                <span className="fmf-testimonial-result">{t('founderMarketFit.testimonial3Result')}</span>
                             </div>
                         </div>
                         <div className="fmf-testimonial">
                             <p className="fmf-testimonial-quote">
-                                "Getting unstuck. This is very valuable.
-                                Inspires & informs <strong>BRILLIANTLY!!</strong>"
+                                {t('founderMarketFit.testimonial4Before')}<strong>{t('founderMarketFit.testimonial4Strong')}</strong>"
                             </p>
                             <div className="fmf-testimonial-author">
                                 <span className="fmf-testimonial-name">Laura</span>
-                                <span className="fmf-testimonial-result">Found Clarity</span>
+                                <span className="fmf-testimonial-result">{t('founderMarketFit.testimonial4Result')}</span>
                             </div>
                         </div>
                     </div>
@@ -338,16 +318,16 @@ const FounderMarketFit = () => {
                 <div className="fmf-container">
                     <div className="fmf-objection-grid">
                         <div className="fmf-objection">
-                            <h4 className="fmf-objection-q">"What if I already have an idea?"</h4>
-                            <p>Then we stress-test it against your genius map. You'll know in 90 minutes if it's <em>the one</em> or a distraction.</p>
+                            <h4 className="fmf-objection-q">{t('founderMarketFit.objection1Q')}</h4>
+                            <p>{t('founderMarketFit.objection1ABefore')}<em>{t('founderMarketFit.objection1AEm')}</em>{t('founderMarketFit.objection1AAfter')}</p>
                         </div>
                         <div className="fmf-objection">
-                            <h4 className="fmf-objection-q">"What if I'm not ready to commit?"</h4>
-                            <p>This isn't a commitment to a venture. It's 90 minutes of clarity. You decide what to do with it after.</p>
+                            <h4 className="fmf-objection-q">{t('founderMarketFit.objection2Q')}</h4>
+                            <p>{t('founderMarketFit.objection2A')}</p>
                         </div>
                         <div className="fmf-objection">
-                            <h4 className="fmf-objection-q">"How is this different from coaching?"</h4>
-                            <p>Coaching is ongoing. This is a one-time diagnostic — a map, not a subscription.</p>
+                            <h4 className="fmf-objection-q">{t('founderMarketFit.objection3Q')}</h4>
+                            <p>{t('founderMarketFit.objection3A')}</p>
                         </div>
                     </div>
                 </div>
@@ -356,18 +336,18 @@ const FounderMarketFit = () => {
             {/* ===== 7b. CTA — do it ===== */}
             <section className="fmf-section fmf-book" id="book">
                 <div className="fmf-container fmf-book-inner">
-                    <h2 className="fmf-h2">See yours.</h2>
+                    <h2 className="fmf-h2">{t('founderMarketFit.bookHeading')}</h2>
                     <p className="fmf-urgency">
-                        Every month without Founder-Market Fit is a month of compounding in the wrong direction.
+                        {t('founderMarketFit.bookUrgency')}
                     </p>
                     <div className="fmf-book-details">
                         <div className="fmf-book-detail">
                             <span className="fmf-book-icon">📅</span>
-                            <span>90 minutes · 1-on-1 · Zoom or in-person</span>
+                            <span>{t('founderMarketFit.bookDetailFormat')}</span>
                         </div>
                         <div className="fmf-book-detail">
                             <span className="fmf-book-icon">💰</span>
-                            <span><s className="fmf-original-price">$397</s> <strong className="fmf-pilot-price">$197</strong> <span className="fmf-pilot-label">founding rate</span></span>
+                            <span><s className="fmf-original-price">$397</s> <strong className="fmf-pilot-price">$197</strong> <span className="fmf-pilot-label">{t('founderMarketFit.bookFoundingRate')}</span></span>
                         </div>
                     </div>
                     <a
@@ -376,14 +356,14 @@ const FounderMarketFit = () => {
                         rel="noopener noreferrer"
                         className="fmf-cta-primary fmf-cta-large"
                     >
-                        Book Your Session
+                        {t('founderMarketFit.bookCta')}
                         <svg width="20" height="20" viewBox="0 0 16 16" fill="none" aria-hidden="true">
                             <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
                     </a>
                     <div className="fmf-guarantee">
                         <span className="fmf-guarantee-icon" aria-hidden="true">🛡️</span>
-                        <p>Clarity or your money back.</p>
+                        <p>{t('founderMarketFit.bookGuarantee')}</p>
                     </div>
                 </div>
             </section>
