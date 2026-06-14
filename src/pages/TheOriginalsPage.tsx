@@ -1,36 +1,38 @@
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { Users, ExternalLink, Sparkles, ArrowRight } from "lucide-react";
 import GameShellV2 from "@/components/game/GameShellV2";
 
 interface Founder {
   name: string;
-  archetype: string;
-  tagline: string;
+  archetypeKey: string;
+  taglineKey: string;
   status: "active" | "in-progress";
 }
 
 const FOUNDERS: Founder[] = [
   {
     name: "Alexander",
-    archetype: "The Focus Lens",
-    tagline: "Helps build ventures from who you already are",
+    archetypeKey: "theOriginals.founders.alexander.archetype",
+    taglineKey: "theOriginals.founders.alexander.tagline",
     status: "active",
   },
   {
     name: "Oyi",
-    archetype: "Lotus Medicine Man",
-    tagline: "Restores what growing up took from you",
+    archetypeKey: "theOriginals.founders.oyi.archetype",
+    taglineKey: "theOriginals.founders.oyi.tagline",
     status: "active",
   },
   {
     name: "Sergey",
-    archetype: "The Vision Builder",
-    tagline: "Sees what your life is trying to become",
+    archetypeKey: "theOriginals.founders.sergey.archetype",
+    taglineKey: "theOriginals.founders.sergey.tagline",
     status: "in-progress",
   },
 ];
 
 const TheOriginalsPage = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
 
   return (
@@ -42,11 +44,10 @@ const TheOriginalsPage = () => {
             <Users className="w-7 h-7 text-[#8460ea]" />
           </div>
           <h1 className="text-3xl font-display font-bold text-[#2c3150] mb-3">
-            The Originals
+            {t('theOriginals.hero.title')}
           </h1>
           <p className="text-[#2c3150]/70 max-w-md mx-auto">
-            Founders who found their genius and built on it. Each person went
-            through the process, got clarity, and started building.
+            {t('theOriginals.hero.subtitle')}
           </p>
         </div>
 
@@ -71,13 +72,15 @@ const TheOriginalsPage = () => {
                           : "bg-amber-100 text-amber-700"
                       }`}
                     >
-                      {founder.status === "active" ? "Active" : "Building"}
+                      {founder.status === "active"
+                        ? t('theOriginals.status.active')
+                        : t('theOriginals.status.building')}
                     </span>
                   </div>
                   <p className="text-xs text-[#8460ea] uppercase tracking-wide mb-1">
-                    {founder.archetype}
+                    {t(founder.archetypeKey)}
                   </p>
-                  <p className="text-[#2c3150]/60 text-sm">{founder.tagline}</p>
+                  <p className="text-[#2c3150]/60 text-sm">{t(founder.taglineKey)}</p>
                 </div>
                 <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#8460ea]/20 to-[#c8b7d8]/30 flex items-center justify-center flex-shrink-0 ml-4">
                   <span className="text-lg font-bold text-[#8460ea]">
@@ -92,39 +95,36 @@ const TheOriginalsPage = () => {
         {/* What Is This */}
         <div className="p-5 bg-[var(--skin-card-fill,rgba(255,255,255,0.6))] rounded-xl border border-[#a4a3d0]/20">
           <h2 className="font-semibold text-[#2c3150] mb-2">
-            What is The Originals?
+            {t('theOriginals.about.heading')}
           </h2>
           <p className="text-sm text-[#2c3150]/70 leading-relaxed mb-3">
-            Everyone who's been through the Unique Business Canvas process joins
-            this group. It's not a marketing channel — it's a real group of
-            founders who share a similar experience and help each other grow.
+            {t('theOriginals.about.body1')}
           </p>
           <p className="text-sm text-[#2c3150]/70 leading-relaxed">
-            When one person succeeds, it raises the bar for everyone. Every win
-            is shared. Every breakthrough lifts the whole group.
+            {t('theOriginals.about.body2')}
           </p>
         </div>
 
         {/* Assembly Progress */}
         <div className="p-5 bg-gradient-to-r from-[#8460ea]/5 to-[#c8b7d8]/10 rounded-xl border border-[#8460ea]/15">
           <p className="text-xs text-[#8460ea] uppercase tracking-wide font-medium mb-3">
-            Where we are in the journey
+            {t('theOriginals.journey.label')}
           </p>
           <div className="flex items-center gap-1.5 flex-wrap">
             {[
-              { step: 0, label: "Founder", done: true },
-              { step: 1, label: "Test", done: true },
-              { step: 2, label: "Grow", current: true },
-              { step: 3, label: "Charge" },
-              { step: 4, label: "Community", done: true },
-              { step: 5, label: "Improve", current: true },
-              { step: 6, label: "Others" },
-              { step: 7, label: "$10K" },
-              { step: 8, label: "Match" },
-              { step: 9, label: "Products" },
-              { step: 10, label: "Self-org" },
-              { step: 11, label: "Spread" },
-              { step: 12, label: "Connect" },
+              { step: 0, labelKey: "theOriginals.journey.steps.0", done: true },
+              { step: 1, labelKey: "theOriginals.journey.steps.1", done: true },
+              { step: 2, labelKey: "theOriginals.journey.steps.2", current: true },
+              { step: 3, labelKey: "theOriginals.journey.steps.3" },
+              { step: 4, labelKey: "theOriginals.journey.steps.4", done: true },
+              { step: 5, labelKey: "theOriginals.journey.steps.5", current: true },
+              { step: 6, labelKey: "theOriginals.journey.steps.6" },
+              { step: 7, labelKey: "theOriginals.journey.steps.7" },
+              { step: 8, labelKey: "theOriginals.journey.steps.8" },
+              { step: 9, labelKey: "theOriginals.journey.steps.9" },
+              { step: 10, labelKey: "theOriginals.journey.steps.10" },
+              { step: 11, labelKey: "theOriginals.journey.steps.11" },
+              { step: 12, labelKey: "theOriginals.journey.steps.12" },
             ].map((s) => (
               <div
                 key={s.step}
@@ -135,14 +135,17 @@ const TheOriginalsPage = () => {
                     ? "bg-[#8460ea]/20 text-[#8460ea]"
                     : "bg-[#a4a3d0]/10 text-[#a4a3d0]"
                 }`}
-                title={`Step ${s.step}: ${s.label}`}
+                title={t('theOriginals.journey.stepTitle', {
+                  step: s.step,
+                  label: t(s.labelKey),
+                })}
               >
                 {s.done ? "✓" : s.step}
               </div>
             ))}
           </div>
           <p className="text-xs text-[#2c3150]/50 mt-2">
-            Step 2: Growing through word of mouth · 7/10 spots filled
+            {t('theOriginals.journey.statusLine')}
           </p>
         </div>
 
@@ -156,21 +159,21 @@ const TheOriginalsPage = () => {
             style={{ backgroundColor: "hsl(210, 70%, 15%)", color: "white" }}
           >
             <ExternalLink className="w-4 h-4" />
-            Join on Telegram
+            {t('theOriginals.cta.joinTelegram')}
           </a>
         </div>
 
         {/* Back to ZoG CTA */}
         <div className="text-center p-4 bg-gradient-to-br from-white via-[#f5f5ff] to-[#ebe8f7] rounded-xl border border-[#a4a3d0]/20">
           <p className="text-sm text-[#a4a3d0] mb-3">
-            Haven't found your genius yet?
+            {t('theOriginals.cta.notFoundYet')}
           </p>
           <button
             onClick={() => navigate("/zone-of-genius/entry")}
             className="inline-flex items-center gap-2 text-[#8460ea] text-sm font-medium hover:underline"
           >
             <Sparkles className="w-4 h-4" />
-            Discover Your Zone of Genius
+            {t('theOriginals.cta.discoverZoG')}
             <ArrowRight className="w-4 h-4" />
           </button>
         </div>

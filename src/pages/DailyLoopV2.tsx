@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { PremiumLoader } from "@/components/ui/PremiumLoader";
 import GameShellV2 from "@/components/game/GameShellV2";
 import MeSummary from "@/components/game/MeSummary";
@@ -18,6 +19,7 @@ import { durationToBucket } from "@/lib/actionEngine";
  */
 export default function DailyLoopV2() {
     const navigate = useNavigate();
+    const { t } = useTranslation();
 
     const [isLoading, setIsLoading] = useState(true);
     const [profile, setProfile] = useState<any>(null);
@@ -88,7 +90,7 @@ export default function DailyLoopV2() {
                             loop: "transformation",
                             title: starter.title,
                             duration: durationToBucket(starter.duration),
-                            whyRecommended: `Your ${vector} development supports your growth.`,
+                            whyRecommended: t('dailyLoop.whyRecommended', { vector }),
                             source: "lib/domainMapping.ts",
                             growthPath: vector,
                         });

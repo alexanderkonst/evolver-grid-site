@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useParams, useNavigate } from "react-router-dom";
 import { CalendarDays, Clock, Globe, Lock, MapPin, UserCheck, Users, Mail } from "lucide-react";
 import { PremiumLoader } from "@/components/ui/PremiumLoader";
@@ -34,6 +35,7 @@ const formatDateTime = (dateStr: string, timeStr: string, timeZone: string) => {
 };
 
 const EventDetail = () => {
+  const { t } = useTranslation();
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const { toast } = useToast();
@@ -63,8 +65,8 @@ const EventDetail = () => {
   const handleRsvp = async () => {
     if (!isAuthenticated) {
       toast({
-        title: "Sign in required",
-        description: "Please sign in to RSVP to events",
+        title: t('eventDetail.toastSignInRequiredTitle'),
+        description: t('eventDetail.toastSignInRequiredDesc'),
         variant: "destructive",
       });
       return;
@@ -75,8 +77,8 @@ const EventDetail = () => {
       await updateRsvp("going");
       refetch();
       toast({
-        title: "RSVP confirmed",
-        description: "You're attending this event.",
+        title: t('eventDetail.toastRsvpConfirmedTitle'),
+        description: t('eventDetail.toastRsvpConfirmedDesc'),
       });
 
       const wasAttending = previousStatus === "going" || previousStatus === "maybe";
@@ -86,22 +88,22 @@ const EventDetail = () => {
         const xpResult = await awardXp(profileId, 25, "spirit");
         if (xpResult.success) {
           toast({
-            title: "🎉 +25 XP (Spirit)",
-            description: "Thanks for committing to your community.",
+            title: t('eventDetail.toastXpTitle'),
+            description: t('eventDetail.toastXpDesc'),
           });
           const bonusResult = await awardFirstTimeBonus(profileId, "first_event_rsvp", 25, 2, "spirit");
           if (bonusResult.awarded) {
             toast({
-              title: "🎉 FIRST TIME BONUS!",
-              description: `+${bonusResult.xp} XP for your first ${getFirstTimeActionLabel("first_event_rsvp")}!`,
+              title: t('eventDetail.toastFirstTimeBonusTitle'),
+              description: t('eventDetail.toastFirstTimeBonusDesc', { xp: bonusResult.xp, action: getFirstTimeActionLabel("first_event_rsvp") }),
             });
           }
         }
       }
     } catch (err) {
       toast({
-        title: "Error",
-        description: "Failed to update RSVP",
+        title: t('eventDetail.toastErrorTitle'),
+        description: t('eventDetail.toastRsvpFailedDesc'),
         variant: "destructive",
       });
     }
@@ -112,8 +114,8 @@ const EventDetail = () => {
 
     if (wantsReminder && !reminderEmail) {
       toast({
-        title: "Email required",
-        description: "Add an email address to receive reminders.",
+        title: t('eventDetail.toastEmailRequiredTitle'),
+        description: t('eventDetail.toastEmailRequiredDesc'),
         variant: "destructive",
       });
       return;
@@ -143,14 +145,14 @@ const EventDetail = () => {
       }
 
       toast({
-        title: "Reminder updated",
-        description: wantsReminder ? "We'll send you a confirmation email." : "Reminder disabled.",
+        title: t('eventDetail.toastReminderUpdatedTitle'),
+        description: wantsReminder ? t('eventDetail.toastReminderEnabledDesc') : t('eventDetail.toastReminderDisabledDesc'),
       });
       refetch();
     } catch (err) {
       toast({
-        title: "Error",
-        description: "Failed to save reminder settings.",
+        title: t('eventDetail.toastErrorTitle'),
+        description: t('eventDetail.toastReminderFailedDesc'),
         variant: "destructive",
       });
     } finally {
@@ -179,8 +181,8 @@ const EventDetail = () => {
       <div className="min-h-dvh bg-[var(--skin-page-bg,#fff)] flex items-center justify-center">
         <div className="text-center p-6">
           <CalendarDays className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
-          <h2 className="text-xl font-semibold text-foreground mb-2">Event Not Found</h2>
-          <p className="text-muted-foreground mb-4">{error || "This event doesn't exist or has been removed."}</p>
+          <h2 className="text-xl font-semibold text-foreground mb-2">{t('eventDetail.notFoundTitle')}</h2>
+          <p className="text-muted-foreground mb-4">{error || t('eventDetail.notFoundDesc')}</p>
           <BackButton to="/game/events" />
         </div>
       </div>
@@ -205,10 +207,10 @@ const EventDetail = () => {
   const hasRsvp = currentStatus === "going";
   const visibility = event.visibility ?? "public";
   const visibilityConfig = {
-    public: { label: "Public", icon: Globe, className: "bg-muted text-foreground" },
-    community: { label: "Community", icon: Users, className: "bg-primary/10 text-primary" },
-    private: { label: "Private", icon: Lock, className: "bg-muted text-foreground" },
-    team: { label: "Team", icon: UserCheck, className: "bg-muted/40 text-foreground" },
+    public: { labelKey: "eventDetail.visibilityPublic", icon: Globe, className: "bg-muted text-foreground" },
+    community: { labelKey: "eventDetail.visibilityCommunity", icon: Users, className: "bg-primary/10 text-primary" },
+    private: { labelKey: "eventDetail.visibilityPrivate", icon: Lock, className: "bg-muted text-foreground" },
+    team: { labelKey: "eventDetail.visibilityTeam", icon: UserCheck, className: "bg-muted/40 text-foreground" },
   } as const;
   const visibilityBadge = visibilityConfig[visibility as keyof typeof visibilityConfig];
 
@@ -246,7 +248,7 @@ const EventDetail = () => {
               <div className="mb-4">
                 <span className={`inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-medium ${visibilityBadge.className}`}>
                   <visibilityBadge.icon className="w-4 h-4" />
-                  {visibilityBadge.label}
+                  {t(visibilityBadge.labelKey)}
                 </span>
               </div>
             )}
@@ -257,10 +259,10 @@ const EventDetail = () => {
               disabled={rsvpLoading || updating || !isAuthenticated || currentStatus === "going"}
               className={currentStatus === "going" ? "bg-emerald-500 hover:bg-emerald-500" : ""}
             >
-              {currentStatus === "going" ? "Attending" : "RSVP"}
+              {currentStatus === "going" ? t('eventDetail.rsvpButtonAttending') : t('eventDetail.rsvpButtonDefault')}
             </Button>
             {!isAuthenticated && (
-              <p className="text-xs text-muted-foreground mt-2">Sign in to RSVP</p>
+              <p className="text-xs text-muted-foreground mt-2">{t('eventDetail.signInToRsvp')}</p>
             )}
           </div>
 
@@ -274,14 +276,14 @@ const EventDetail = () => {
                 <p className="text-muted-foreground flex items-center gap-1">
                   <Clock className="w-4 h-4" />
                   {localDateTime.time}
-                  <span className="text-xs text-muted-foreground">Your time</span>
+                  <span className="text-xs text-muted-foreground">{t('eventDetail.yourTime')}</span>
                 </p>
                 <button
                   type="button"
                   className="text-xs text-amber-600 hover:text-amber-700 mt-1"
                   onClick={() => setShowOriginalTime((prev) => !prev)}
                 >
-                  {showOriginalTime ? "Hide original time" : "Show original time"}
+                  {showOriginalTime ? t('eventDetail.hideOriginalTime') : t('eventDetail.showOriginalTime')}
                 </button>
                 {showOriginalTime && (
                   <p className="text-xs text-muted-foreground mt-1">
@@ -303,7 +305,7 @@ const EventDetail = () => {
             <div className="flex items-start gap-3">
               <Users className="w-5 h-5 text-amber-500 mt-0.5" />
               <p className="text-foreground">
-                {goingCount} {goingCount === 1 ? "person" : "people"} going
+                {t('eventDetail.attendeesGoing', { count: goingCount })}
               </p>
             </div>
 
@@ -312,14 +314,14 @@ const EventDetail = () => {
               <div className="rounded-lg border border-border bg-muted/40 p-4 space-y-3">
                 <div className="flex items-center gap-2">
                   <Mail className="w-4 h-4 text-muted-foreground" />
-                  <p className="text-sm font-medium text-foreground">Email reminder</p>
+                  <p className="text-sm font-medium text-foreground">{t('eventDetail.emailReminderHeading')}</p>
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="rsvp-email">Email address</Label>
+                  <Label htmlFor="rsvp-email">{t('eventDetail.emailAddressLabel')}</Label>
                   <Input
                     id="rsvp-email"
                     type="email"
-                    placeholder="you@example.com"
+                    placeholder={t('eventDetail.emailPlaceholder')}
                     value={reminderEmail}
                     onChange={(e) => setReminderEmail(e.target.value)}
                     disabled={sendingReminder}
@@ -333,7 +335,7 @@ const EventDetail = () => {
                     disabled={sendingReminder}
                   />
                   <Label htmlFor="rsvp-reminder" className="text-sm text-muted-foreground">
-                    Send me a reminder
+                    {t('eventDetail.sendMeReminder')}
                   </Label>
                 </div>
                 <Button
@@ -342,7 +344,7 @@ const EventDetail = () => {
                   onClick={handleSaveReminder}
                   disabled={sendingReminder}
                 >
-                  {sendingReminder ? "Saving..." : "Save reminder"}
+                  {sendingReminder ? t('eventDetail.savingReminder') : t('eventDetail.saveReminder')}
                 </Button>
               </div>
             )}
@@ -362,7 +364,7 @@ const EventDetail = () => {
             {/* Description */}
             {event.description && (
               <div className="pt-4 border-t border-border">
-                <h3 className="font-medium text-foreground mb-2">About this event</h3>
+                <h3 className="font-medium text-foreground mb-2">{t('eventDetail.aboutThisEvent')}</h3>
                 <p className="text-muted-foreground whitespace-pre-wrap">{event.description}</p>
               </div>
             )}
@@ -371,20 +373,20 @@ const EventDetail = () => {
           {/* Attendees List */}
           {attendees.length > 0 && (
             <div className="p-6 bg-muted/40 border-t border-border/10">
-              <h3 className="font-medium text-foreground mb-3">Who's coming</h3>
+              <h3 className="font-medium text-foreground mb-3">{t('eventDetail.whosComing')}</h3>
               <div className="flex flex-wrap gap-2">
                 {goingAttendees.slice(0, maxAvatars).map((attendee, idx) => (
                   <div
                     key={attendee.user_id}
                     className="w-8 h-8 rounded-full bg-amber-400 flex items-center justify-center text-white text-xs font-medium"
-                    title={`User ${idx + 1}`}
+                    title={t('eventDetail.attendeeTitle', { num: idx + 1 })}
                   >
                     {idx + 1}
                   </div>
                 ))}
                 {extraCount > 0 && (
                   <span className="text-xs text-muted-foreground self-center">
-                    +{extraCount} more
+                    {t('eventDetail.attendeesExtraMore', { count: extraCount })}
                   </span>
                 )}
               </div>

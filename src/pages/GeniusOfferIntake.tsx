@@ -15,6 +15,7 @@ import BackButton from "@/components/BackButton";
 import { User } from "@supabase/supabase-js";
 import { GENIUS_OFFER_PROMPT_FULL, GENIUS_OFFER_PROMPT_SHORT } from "@/prompts";
 import { z } from "zod";
+import { useTranslation } from "react-i18next";
 
 // Zod schema mirrors the database CHECK constraints to give users a clean
 // error before the request hits the backend.
@@ -56,6 +57,7 @@ const GeniusOfferIntake = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const { toast } = useToast();
+  const { t } = useTranslation();
 
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
@@ -248,7 +250,7 @@ const GeniusOfferIntake = () => {
         best_clients: progress.best_clients,
       });
       if (!parsed.success) {
-        const firstError = parsed.error.errors[0]?.message ?? "Please review your inputs.";
+        const firstError = parsed.error.errors[0]?.message ?? t('geniusOfferIntake.toast.reviewInputs');
         toast({ title: firstError, variant: "destructive" });
         setSaving(false);
         return;
@@ -287,7 +289,7 @@ const GeniusOfferIntake = () => {
 
       setCurrentStep("submit");
     } catch (error) {
-      toast({ title: "Something went wrong. Please try again.", variant: "destructive" });
+      toast({ title: t('geniusOfferIntake.toast.somethingWrong'), variant: "destructive" });
     } finally {
       setSaving(false);
     }
@@ -322,17 +324,17 @@ const GeniusOfferIntake = () => {
         <div className="pt-32 pb-20 px-4">
           <div className="max-w-md mx-auto text-center space-y-6">
             <h1 className="text-3xl font-serif">
-              <BoldText>GENIUS OFFER CREATION</BoldText>
+              <BoldText>{t('geniusOfferIntake.auth.title')}</BoldText>
             </h1>
             <p className="text-muted-foreground">
-              Please log in or create a free account to continue your Genius Offer.
+              {t('geniusOfferIntake.auth.subtitle')}
             </p>
             <Button
               size="lg"
               onClick={() => navigate("/auth?redirect=/genius-offer-intake")}
               className="w-full"
             >
-              <BoldText>LOG IN OR SIGN UP</BoldText>
+              <BoldText>{t('geniusOfferIntake.auth.cta')}</BoldText>
             </Button>
           </div>
         </div>
@@ -352,16 +354,16 @@ const GeniusOfferIntake = () => {
               <Check className="h-8 w-8 text-accent" />
             </div>
             <h1 className="text-3xl md:text-4xl font-serif">
-              <BoldText>THANK YOU – I&apos;VE GOT EVERYTHING I NEED.</BoldText>
+              <BoldText>{t('geniusOfferIntake.submit.title')}</BoldText>
             </h1>
             <div className="space-y-4 text-muted-foreground text-lg leading-relaxed text-left">
-              <p>I&apos;ve received your info and will now craft your Genius Offer.</p>
-              <p>Within 48 hours you&apos;ll receive:</p>
+              <p>{t('geniusOfferIntake.submit.received')}</p>
+              <p>{t('geniusOfferIntake.submit.within48')}</p>
               <ul className="list-disc list-inside space-y-1 ml-2">
-                <li>A beautifully designed PDF of your Genius Offer</li>
-                <li>A short Loom video where I walk through what stands out and suggested next steps</li>
+                <li>{t('geniusOfferIntake.submit.deliverablePdf')}</li>
+                <li>{t('geniusOfferIntake.submit.deliverableLoom')}</li>
               </ul>
-              <p>You&apos;ll also be able to find your Genius Offer inside your profile once it&apos;s ready.</p>
+              <p>{t('geniusOfferIntake.submit.findInProfile')}</p>
             </div>
             <div className="pt-4 space-y-4">
               <Button
@@ -369,11 +371,11 @@ const GeniusOfferIntake = () => {
                 onClick={() => window.open("https://t.me/integralevolution", "_blank")}
                 className="w-full"
               >
-                <BoldText>MESSAGE ME ON TELEGRAM</BoldText>
+                <BoldText>{t('geniusOfferIntake.submit.telegramCta')}</BoldText>
               </Button>
               <BackButton
                 to="/game"
-                label="Back to Profile"
+                label={t('geniusOfferIntake.submit.backToProfile')}
                 variant="outline"
               />
             </div>
@@ -392,19 +394,19 @@ const GeniusOfferIntake = () => {
         <div className="max-w-xl mx-auto">
           {/* Step indicator */}
           <p className="text-xs text-center text-muted-foreground mb-8 uppercase ">
-            Step {getStepNumber()} of {getTotalSteps()}
+            {t('geniusOfferIntake.stepIndicator', { current: getStepNumber(), total: getTotalSteps() })}
           </p>
 
           {/* STEP: Name */}
           {currentStep === "name" && (
             <div className="space-y-8 text-center">
               <h1 className="text-2xl md:text-3xl font-serif">
-                <BoldText>WHAT&apos;S YOUR NAME?</BoldText>
+                <BoldText>{t('geniusOfferIntake.name.title')}</BoldText>
               </h1>
               <Input
                 value={progress.name}
                 onChange={(e) => setProgress(prev => ({ ...prev, name: e.target.value }))}
-                placeholder="Your full name"
+                placeholder={t('geniusOfferIntake.name.placeholder')}
                 className="text-center text-lg py-6"
                 autoFocus
               />
@@ -415,13 +417,13 @@ const GeniusOfferIntake = () => {
                     updateProgress({ name: progress.name.trim() });
                     setCurrentStep("email");
                   } else {
-                    toast({ title: "Please enter your name", variant: "destructive" });
+                    toast({ title: t('geniusOfferIntake.toast.enterName'), variant: "destructive" });
                   }
                 }}
                 className="w-full"
                 disabled={!progress.name.trim()}
               >
-                <BoldText>NEXT</BoldText>
+                <BoldText>{t('geniusOfferIntake.common.next')}</BoldText>
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </div>
@@ -437,10 +439,10 @@ const GeniusOfferIntake = () => {
                 className="mb-4"
               >
                 <ArrowLeft className="mr-2 h-4 w-4" />
-                Back
+                {t('geniusOfferIntake.common.back')}
               </Button>
               <h1 className="text-2xl md:text-3xl font-serif">
-                <BoldText>WHAT&apos;S YOUR BEST EMAIL?</BoldText>
+                <BoldText>{t('geniusOfferIntake.email.title')}</BoldText>
               </h1>
               <Input
                 type="email"
@@ -457,13 +459,13 @@ const GeniusOfferIntake = () => {
                     updateProgress({ email: progress.email.trim() });
                     setCurrentStep("ai_branch");
                   } else {
-                    toast({ title: "Please enter a valid email", variant: "destructive" });
+                    toast({ title: t('geniusOfferIntake.toast.enterEmail'), variant: "destructive" });
                   }
                 }}
                 className="w-full"
                 disabled={!progress.email.trim()}
               >
-                <BoldText>NEXT</BoldText>
+                <BoldText>{t('geniusOfferIntake.common.next')}</BoldText>
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </div>
@@ -479,13 +481,13 @@ const GeniusOfferIntake = () => {
                 className="mb-4"
               >
                 <ArrowLeft className="mr-2 h-4 w-4" />
-                Back
+                {t('geniusOfferIntake.common.back')}
               </Button>
               <h1 className="text-xl md:text-2xl font-serif leading-relaxed">
-                <BoldText>DO YOU HAVE AN AI ASSISTANT</BoldText>
+                <BoldText>{t('geniusOfferIntake.aiBranch.title')}</BoldText>
                 <br />
                 <span className="text-muted-foreground text-lg font-normal">
-                  (like ChatGPT, Claude, etc.) that knows you well, because you&apos;ve already shared your background, work and clients with it?
+                  {t('geniusOfferIntake.aiBranch.question')}
                 </span>
               </h1>
               <div className="flex flex-col gap-4">
@@ -498,7 +500,7 @@ const GeniusOfferIntake = () => {
                   }}
                   className="w-full py-6"
                 >
-                  <BoldText>YES</BoldText>
+                  <BoldText>{t('geniusOfferIntake.common.yes')}</BoldText>
                 </Button>
                 <Button
                   size="lg"
@@ -509,7 +511,7 @@ const GeniusOfferIntake = () => {
                   }}
                   className="w-full py-6"
                 >
-                  <BoldText>NO</BoldText>
+                  <BoldText>{t('geniusOfferIntake.common.no')}</BoldText>
                 </Button>
               </div>
             </div>
@@ -525,13 +527,13 @@ const GeniusOfferIntake = () => {
                 className="mb-4"
               >
                 <ArrowLeft className="mr-2 h-4 w-4" />
-                Back
+                {t('geniusOfferIntake.common.back')}
               </Button>
               <h1 className="text-xl md:text-2xl font-serif leading-relaxed">
-                <BoldText>HAVE YOU SOLD PRODUCTS OR SERVICES TO CLIENTS,</BoldText>
+                <BoldText>{t('geniusOfferIntake.aiKnowsOffers.title')}</BoldText>
                 <br />
                 <span className="text-muted-foreground text-lg font-normal">
-                  and has your AI assistant already &quot;seen&quot; or &quot;heard&quot; about what you sold and to whom?
+                  {t('geniusOfferIntake.aiKnowsOffers.question')}
                 </span>
               </h1>
               <div className="flex flex-col gap-4">
@@ -544,7 +546,7 @@ const GeniusOfferIntake = () => {
                   }}
                   className="w-full py-6"
                 >
-                  <BoldText>YES</BoldText>
+                  <BoldText>{t('geniusOfferIntake.common.yes')}</BoldText>
                 </Button>
                 <Button
                   size="lg"
@@ -555,7 +557,7 @@ const GeniusOfferIntake = () => {
                   }}
                   className="w-full py-6"
                 >
-                  <BoldText>NO</BoldText>
+                  <BoldText>{t('geniusOfferIntake.common.no')}</BoldText>
                 </Button>
               </div>
             </div>
@@ -571,15 +573,15 @@ const GeniusOfferIntake = () => {
                 className="mb-4"
               >
                 <ArrowLeft className="mr-2 h-4 w-4" />
-                Back
+                {t('geniusOfferIntake.common.back')}
               </Button>
               <h1 className="text-xl md:text-2xl font-serif text-center">
-                <BoldText>ASK YOUR AI THIS PROMPT</BoldText>
+                <BoldText>{t('geniusOfferIntake.aiPrompt.title')}</BoldText>
               </h1>
               <p className="text-sm text-muted-foreground text-center">
                 {progress.ai_knows_offers
-                  ? "Great. We'll let your AI model summarize your genius and past offers."
-                  : "No problem. We'll just use your AI to capture your genius signal."}
+                  ? t('geniusOfferIntake.aiPrompt.descKnows')
+                  : t('geniusOfferIntake.aiPrompt.descUnknown')}
               </p>
 
               <div className="p-4 bg-secondary/30 rounded-xl border border-border relative">
@@ -598,11 +600,11 @@ const GeniusOfferIntake = () => {
               </div>
 
               <div className="space-y-2">
-                <Label>Paste your AI&apos;s response here *</Label>
+                <Label>{t('geniusOfferIntake.aiPrompt.responseLabel')}</Label>
                 <Textarea
                   value={progress.ai_summary}
                   onChange={(e) => setProgress(prev => ({ ...prev, ai_summary: e.target.value }))}
-                  placeholder="Paste your AI's response here..."
+                  placeholder={t('geniusOfferIntake.aiPrompt.responsePlaceholder')}
                   className="min-h-[200px]"
                 />
               </div>
@@ -619,13 +621,13 @@ const GeniusOfferIntake = () => {
                       setCurrentStep("products_sold");
                     }
                   } else {
-                    toast({ title: "Please paste your AI's response", variant: "destructive" });
+                    toast({ title: t('geniusOfferIntake.toast.pasteResponse'), variant: "destructive" });
                   }
                 }}
                 className="w-full"
                 disabled={!progress.ai_summary.trim()}
               >
-                <BoldText>{progress.ai_knows_offers ? "SUBMIT" : "NEXT"}</BoldText>
+                <BoldText>{progress.ai_knows_offers ? t('geniusOfferIntake.common.submit') : t('geniusOfferIntake.common.next')}</BoldText>
                 {progress.ai_knows_offers ? <Check className="ml-2 h-4 w-4" /> : <ArrowRight className="ml-2 h-4 w-4" />}
               </Button>
             </div>
@@ -641,27 +643,27 @@ const GeniusOfferIntake = () => {
                 className="mb-4"
               >
                 <ArrowLeft className="mr-2 h-4 w-4" />
-                Back
+                {t('geniusOfferIntake.common.back')}
               </Button>
               <h1 className="text-xl md:text-2xl font-serif">
-                <BoldText>LET&apos;S MAP YOUR ZONE OF GENIUS</BoldText>
+                <BoldText>{t('geniusOfferIntake.zog.title')}</BoldText>
               </h1>
               <p className="text-muted-foreground">
-                You&apos;ll take a short assessment, and when you&apos;re done we&apos;ll bring you back here.
+                {t('geniusOfferIntake.zog.subtitle')}
               </p>
 
               {progress.zone_of_genius_completed ? (
                 <div className="space-y-4">
                   <div className="flex items-center justify-center gap-2 text-accent">
                     <Check className="h-5 w-5" />
-                    <span>Zone of Genius completed!</span>
+                    <span>{t('geniusOfferIntake.zog.completed')}</span>
                   </div>
                   <Button
                     size="lg"
                     onClick={() => setCurrentStep("mi_redirect")}
                     className="w-full"
                   >
-                    <BoldText>CONTINUE</BoldText>
+                    <BoldText>{t('geniusOfferIntake.common.continue')}</BoldText>
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
                 </div>
@@ -671,7 +673,7 @@ const GeniusOfferIntake = () => {
                   onClick={() => navigate("/zone-of-genius/assessment/step-0?return=genius-offer")}
                   className="w-full"
                 >
-                  <BoldText>TAKE THE ZONE OF GENIUS ASSESSMENT</BoldText>
+                  <BoldText>{t('geniusOfferIntake.zog.cta')}</BoldText>
                 </Button>
               )}
             </div>
@@ -687,27 +689,27 @@ const GeniusOfferIntake = () => {
                 className="mb-4"
               >
                 <ArrowLeft className="mr-2 h-4 w-4" />
-                Back
+                {t('geniusOfferIntake.common.back')}
               </Button>
               <h1 className="text-xl md:text-2xl font-serif">
-                <BoldText>NOW LET&apos;S MAP HOW YOU NATURALLY THINK</BoldText>
+                <BoldText>{t('geniusOfferIntake.mi.title')}</BoldText>
               </h1>
               <p className="text-muted-foreground">
-                This takes 2–3 minutes and is a simple drag-and-drop ranking.
+                {t('geniusOfferIntake.mi.subtitle')}
               </p>
 
               {progress.multiple_intelligences_completed ? (
                 <div className="space-y-4">
                   <div className="flex items-center justify-center gap-2 text-accent">
                     <Check className="h-5 w-5" />
-                    <span>Multiple Intelligences completed!</span>
+                    <span>{t('geniusOfferIntake.mi.completed')}</span>
                   </div>
                   <Button
                     size="lg"
                     onClick={() => setCurrentStep("products_sold")}
                     className="w-full"
                   >
-                    <BoldText>CONTINUE</BoldText>
+                    <BoldText>{t('geniusOfferIntake.common.continue')}</BoldText>
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
                 </div>
@@ -717,7 +719,7 @@ const GeniusOfferIntake = () => {
                   onClick={() => navigate("/intelligences?return=genius-offer")}
                   className="w-full"
                 >
-                  <BoldText>TAKE THE MULTIPLE INTELLIGENCES TEST</BoldText>
+                  <BoldText>{t('geniusOfferIntake.mi.cta')}</BoldText>
                 </Button>
               )}
             </div>
@@ -739,18 +741,18 @@ const GeniusOfferIntake = () => {
                 className="mb-4"
               >
                 <ArrowLeft className="mr-2 h-4 w-4" />
-                Back
+                {t('geniusOfferIntake.common.back')}
               </Button>
               <h1 className="text-xl md:text-2xl font-serif text-center">
-                <BoldText>WHAT PRODUCTS OR SERVICES HAVE YOU ALREADY SOLD?</BoldText>
+                <BoldText>{t('geniusOfferIntake.productsSold.title')}</BoldText>
               </h1>
               <p className="text-sm text-muted-foreground text-center">
-                If you&apos;ve sold your own offers before, describe them here. If not, you can skip this.
+                {t('geniusOfferIntake.productsSold.subtitle')}
               </p>
               <Textarea
                 value={progress.products_sold}
                 onChange={(e) => setProgress(prev => ({ ...prev, products_sold: e.target.value }))}
-                placeholder="I've sold..."
+                placeholder={t('geniusOfferIntake.productsSold.placeholder')}
                 className="min-h-[150px]"
               />
               <div className="flex gap-3">
@@ -763,7 +765,7 @@ const GeniusOfferIntake = () => {
                   }}
                   className="flex-1"
                 >
-                  Skip
+                  {t('geniusOfferIntake.common.skip')}
                 </Button>
                 <Button
                   size="lg"
@@ -773,7 +775,7 @@ const GeniusOfferIntake = () => {
                   }}
                   className="flex-1"
                 >
-                  <BoldText>NEXT</BoldText>
+                  <BoldText>{t('geniusOfferIntake.common.next')}</BoldText>
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
               </div>
@@ -790,18 +792,18 @@ const GeniusOfferIntake = () => {
                 className="mb-4"
               >
                 <ArrowLeft className="mr-2 h-4 w-4" />
-                Back
+                {t('geniusOfferIntake.common.back')}
               </Button>
               <h1 className="text-xl md:text-2xl font-serif text-center">
-                <BoldText>DESCRIBE 1–2 REAL CLIENTS YOU&apos;VE HELPED THE MOST</BoldText>
+                <BoldText>{t('geniusOfferIntake.bestClients.title')}</BoldText>
               </h1>
               <p className="text-sm text-muted-foreground text-center">
-                Think of your most satisfying or impactful client experiences. If you&apos;re just starting, you can skip this.
+                {t('geniusOfferIntake.bestClients.subtitle')}
               </p>
               <Textarea
                 value={progress.best_clients}
                 onChange={(e) => setProgress(prev => ({ ...prev, best_clients: e.target.value }))}
-                placeholder="My best client transformation was..."
+                placeholder={t('geniusOfferIntake.bestClients.placeholder')}
                 className="min-h-[150px]"
               />
               <div className="flex gap-3">
@@ -815,7 +817,7 @@ const GeniusOfferIntake = () => {
                   className="flex-1"
                   disabled={saving}
                 >
-                  Skip & Submit
+                  {t('geniusOfferIntake.bestClients.skipSubmit')}
                 </Button>
                 <Button
                   size="lg"
@@ -830,7 +832,7 @@ const GeniusOfferIntake = () => {
                     <span className="premium-spinner h-4 w-4" />
                   ) : (
                     <>
-                      <BoldText>SUBMIT</BoldText>
+                      <BoldText>{t('geniusOfferIntake.common.submit')}</BoldText>
                       <Check className="ml-2 h-4 w-4" />
                     </>
                   )}

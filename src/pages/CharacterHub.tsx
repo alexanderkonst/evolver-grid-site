@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { Sparkles, Target, Heart, TrendingUp, Zap, Gift } from "lucide-react";
 import { PremiumLoader } from "@/components/ui/PremiumLoader";
 import Navigation from "@/components/Navigation";
@@ -31,6 +32,7 @@ import { PILLARS } from "@/modules/mission-discovery/data/pillars";
 
 const CharacterHub = () => {
     const navigate = useNavigate();
+    const { t } = useTranslation();
     const [loading, setLoading] = useState(true);
     const [user, setUser] = useState<any>(null);
     const [profile, setProfile] = useState<any>(null);
@@ -103,14 +105,14 @@ const CharacterHub = () => {
             setQolSnapshot(qolData);
             if (qolData) {
                 setQolScores([
-                    { key: "health_stage", label: "Health", score: qolData.health_stage || 5 },
-                    { key: "wealth_stage", label: "Wealth", score: qolData.wealth_stage || 5 },
-                    { key: "happiness_stage", label: "Happiness", score: qolData.happiness_stage || 5 },
-                    { key: "love_relationships_stage", label: "Love", score: qolData.love_relationships_stage || 5 },
-                    { key: "impact_stage", label: "Impact", score: qolData.impact_stage || 5 },
-                    { key: "growth_stage", label: "Growth", score: qolData.growth_stage || 5 },
-                    { key: "social_ties_stage", label: "Social", score: qolData.social_ties_stage || 5 },
-                    { key: "home_stage", label: "Home", score: qolData.home_stage || 5 },
+                    { key: "health_stage", label: t("characterHub.qolHealth"), score: qolData.health_stage || 5 },
+                    { key: "wealth_stage", label: t("characterHub.qolWealth"), score: qolData.wealth_stage || 5 },
+                    { key: "happiness_stage", label: t("characterHub.qolHappiness"), score: qolData.happiness_stage || 5 },
+                    { key: "love_relationships_stage", label: t("characterHub.qolLove"), score: qolData.love_relationships_stage || 5 },
+                    { key: "impact_stage", label: t("characterHub.qolImpact"), score: qolData.impact_stage || 5 },
+                    { key: "growth_stage", label: t("characterHub.qolGrowth"), score: qolData.growth_stage || 5 },
+                    { key: "social_ties_stage", label: t("characterHub.qolSocial"), score: qolData.social_ties_stage || 5 },
+                    { key: "home_stage", label: t("characterHub.qolHome"), score: qolData.home_stage || 5 },
                 ]);
             }
         }
@@ -266,10 +268,10 @@ const CharacterHub = () => {
                 <main className="flex-grow flex items-center justify-center px-4">
                     <div className="text-center">
                         <h1 className="text-2xl font-bold text-white mb-4">
-                            <BoldText>SIGN IN TO ACCESS YOUR CHARACTER</BoldText>
+                            <BoldText>{t("characterHub.signInToAccess")}</BoldText>
                         </h1>
                         <Button onClick={() => navigate("/auth")} className="bg-amber-500 hover:bg-amber-600 text-[#2c3150]">
-                            Sign In
+                            {t("characterHub.signIn")}
                         </Button>
                     </div>
                 </main>
@@ -287,7 +289,7 @@ const CharacterHub = () => {
                     {/* Back link */}
                     <BackButton
                         to="/"
-                        label="Home"
+                        label={t("characterHub.backHome")}
                         className="text-[#a4a3d0] hover:text-white transition-colors mb-4"
                     />
 
@@ -312,10 +314,10 @@ const CharacterHub = () => {
                             </div>
                         )}
                         <h1 className="text-xl sm:text-2xl font-semibold text-white mb-1">
-                            {profile?.first_name || user?.email?.split("@")[0] || "Player"}
+                            {profile?.first_name || user?.email?.split("@")[0] || t("characterHub.playerFallback")}
                         </h1>
                         <p className="text-[#8460ea] text-sm">
-                            Level {profile?.level || 1} · {(profile?.xp_total || 0).toLocaleString()} XP
+                            {t("characterHub.levelLine", { level: profile?.level || 1, xp: (profile?.xp_total || 0).toLocaleString() })}
                         </p>
                         {zogSnapshot?.archetype_title && (
                             <p className="text-[#a4a3d0] text-xs mt-1">{zogSnapshot.archetype_title}</p>
@@ -324,16 +326,16 @@ const CharacterHub = () => {
 
                     {!user && (
                         <div className="rounded-2xl border border-amber-500/30 bg-amber-500/10 p-5 text-left mb-6">
-                            <p className="text-xs text-amber-300 font-medium mb-1">Anonymous Mode</p>
+                            <p className="text-xs text-amber-300 font-medium mb-1">{t("characterHub.anonymousMode")}</p>
                             <p className="text-sm text-[#a4a3d0] mb-3">
-                                You’re exploring without signing in. Sign in to save and sync your progress.
+                                {t("characterHub.anonymousModeBody")}
                             </p>
                             <Button
                                 size="sm"
                                 className="bg-amber-500 hover:bg-amber-600 text-[#2c3150]"
                                 onClick={() => navigate("/auth")}
                             >
-                                Sign In
+                                {t("characterHub.signIn")}
                             </Button>
                         </div>
                     )}
@@ -358,18 +360,18 @@ const CharacterHub = () => {
                                 {generatingColors ? (
                                     <>
                                         <span className="premium-spinner w-4 h-4 mr-2" />
-                                        Discovering Colors...
+                                        {t("characterHub.discoveringColors")}
                                     </>
                                 ) : (
                                     <>
                                         <Sparkles className="w-4 h-4 mr-2" />
-                                        Unlock Your Soul Colors
+                                        {t("characterHub.unlockSoulColors")}
                                     </>
                                 )}
                             </Button>
                         )}
 
-                        <p className="text-[#a4a3d0] text-xs mt-3">Tap to explore your paths</p>
+                        <p className="text-[#a4a3d0] text-xs mt-3">{t("characterHub.tapToExplore")}</p>
                     </div>
 
                     {/* 🌱 GENIUS GROWTH PATH */}
@@ -384,16 +386,16 @@ const CharacterHub = () => {
                             </div>
                         ) : (
                             <div className="rounded-2xl border border-[#8460ea]/30 bg-[#8460ea]/10 p-5 text-left">
-                                <p className="text-xs text-[#b691f2] font-medium mb-1">Your Zone of Genius</p>
+                                <p className="text-xs text-[#b691f2] font-medium mb-1">{t("characterHub.zogTitle")}</p>
                                 <p className="text-sm text-white mb-3">
-                                    Generate your Zone of Genius to unlock your profile.
+                                    {t("characterHub.zogBody")}
                                 </p>
                                 <Button
                                     size="sm"
                                     className="bg-[#8460ea] hover:bg-[#7050da] text-white"
                                     onClick={() => navigate("/zone-of-genius/entry")}
                                 >
-                                    Start Zone of Genius
+                                    {t("characterHub.zogStart")}
                                 </Button>
                             </div>
                         )}
@@ -401,9 +403,9 @@ const CharacterHub = () => {
                             <ExcaliburSummaryCard excalibur={excalibur} />
                         ) : appleseed ? (
                             <div className="rounded-2xl border border-violet-500/30 bg-violet-500/10 p-5 text-left">
-                                <p className="text-xs text-violet-300 font-medium mb-1">Your Unique Offer</p>
+                                <p className="text-xs text-violet-300 font-medium mb-1">{t("characterHub.uniqueOfferTitle")}</p>
                                 <p className="text-sm text-white mb-3">
-                                    You know WHO you are. Now discover WHAT you can offer.
+                                    {t("characterHub.uniqueOfferBody")}
                                 </p>
                                 <Button
                                     size="sm"
@@ -411,7 +413,7 @@ const CharacterHub = () => {
                                     className="bg-violet-500 text-white hover:bg-violet-600"
                                     onClick={() => navigate("/zone-of-genius/entry")}
                                 >
-                                    Create My Unique Offer →
+                                    {t("characterHub.uniqueOfferCta")} →
                                 </Button>
                             </div>
                         ) : null}
@@ -422,9 +424,9 @@ const CharacterHub = () => {
                         <div className="rounded-2xl border border-[#a4a3d0]/30 bg-[#2c3150]/40 p-5 text-left">
                             <div className="flex items-center justify-between gap-3 mb-3">
                                 <div>
-                                    <p className="text-xs text-[#8460ea] font-medium mb-1">My Mission</p>
+                                    <p className="text-xs text-[#8460ea] font-medium mb-1">{t("characterHub.myMission")}</p>
                                     <h3 className="text-base font-semibold text-white">
-                                        {missionCommitment?.mission_title || "Choose your mission"}
+                                        {missionCommitment?.mission_title || t("characterHub.chooseMission")}
                                     </h3>
                                 </div>
                                 <Button
@@ -433,7 +435,7 @@ const CharacterHub = () => {
                                     className="bg-[#8460ea] text-white hover:bg-[#7050da]"
                                     onClick={() => navigate("/game/mission")}
                                 >
-                                    {missionCommitment ? "Edit" : "Select"}
+                                    {missionCommitment ? t("characterHub.edit") : t("characterHub.select")}
                                 </Button>
                             </div>
                             {missionCommitment ? (
@@ -441,9 +443,9 @@ const CharacterHub = () => {
                                     <p>{missionCommitment.mission_statement}</p>
                                     {(missionCommitment.pillar || missionCommitment.focus_area) && (
                                         <p className="text-xs text-[#a4a3d0]/80">
-                                            {missionCommitment.pillar ? `Pillar: ${missionCommitment.pillar}` : ""}
+                                            {missionCommitment.pillar ? t("characterHub.pillarLabel", { pillar: missionCommitment.pillar }) : ""}
                                             {missionCommitment.pillar && missionCommitment.focus_area ? " · " : ""}
-                                            {missionCommitment.focus_area ? `Focus: ${missionCommitment.focus_area}` : ""}
+                                            {missionCommitment.focus_area ? t("characterHub.focusLabel", { focus: missionCommitment.focus_area }) : ""}
                                         </p>
                                     )}
                                     {missionCommitment.intro_text && (
@@ -452,7 +454,7 @@ const CharacterHub = () => {
                                 </div>
                             ) : (
                                 <p className="text-sm text-[#a4a3d0]">
-                                    Set your mission to unlock clearer matchmaking and community alignment.
+                                    {t("characterHub.setMissionBody")}
                                 </p>
                             )}
                         </div>
@@ -494,7 +496,7 @@ const CharacterHub = () => {
                     <div className="mb-6">
                         <h2 className="text-sm font-semibold text-muted-foreground mb-3 flex items-center gap-2">
                             <Sparkles className="w-4 h-4" />
-                            SUGGESTED FOR YOU
+                            {t("characterHub.suggestedForYou")}
                         </h2>
 
                         {/* Next Quest Card */}
@@ -511,7 +513,7 @@ const CharacterHub = () => {
                                         <div className="flex items-center gap-2 mb-1">
                                             <Target className="w-4 h-4" style={{ color: recommendations.quest.pathColor }} />
                                             <span className="text-xs font-medium" style={{ color: recommendations.quest.pathColor }}>
-                                                Next Quest
+                                                {t("characterHub.nextQuest")}
                                             </span>
                                         </div>
                                         <h3 className="font-semibold text-foreground">
@@ -527,7 +529,7 @@ const CharacterHub = () => {
                                         className="text-white hover:opacity-90"
                                         onClick={() => navigate("/map")}
                                     >
-                                        Start →
+                                        {t("characterHub.start")} →
                                     </Button>
                                 </div>
                             </div>
@@ -537,13 +539,13 @@ const CharacterHub = () => {
                                     <div>
                                         <div className="flex items-center gap-2 mb-1">
                                             <Target className="w-4 h-4 text-amber-400" />
-                                            <span className="text-xs text-amber-400 font-medium">Next Quest</span>
+                                            <span className="text-xs text-amber-400 font-medium">{t("characterHub.nextQuest")}</span>
                                         </div>
                                         <h3 className="font-semibold text-foreground">
-                                            Find Your First Quest
+                                            {t("characterHub.findFirstQuest")}
                                         </h3>
                                         <p className="text-xs text-muted-foreground mt-1">
-                                            Explore the Game Map to discover quests
+                                            {t("characterHub.findFirstQuestBody")}
                                         </p>
                                     </div>
                                     <Button
@@ -551,7 +553,7 @@ const CharacterHub = () => {
                                         className="bg-amber-500 hover:bg-amber-600 text-[#2c3150]"
                                         onClick={() => navigate("/map")}
                                     >
-                                        Explore →
+                                        {t("characterHub.explore")} →
                                     </Button>
                                 </div>
                             </div>
@@ -571,7 +573,7 @@ const CharacterHub = () => {
                                         <div className="flex items-center gap-2 mb-1">
                                             <Zap className="w-4 h-4" style={{ color: recommendations.upgrade.pathColor }} />
                                             <span className="text-xs font-medium" style={{ color: recommendations.upgrade.pathColor }}>
-                                                Recommended Upgrade
+                                                {t("characterHub.recommendedUpgrade")}
                                             </span>
                                         </div>
                                         <h3 className="font-semibold text-foreground">
@@ -588,7 +590,7 @@ const CharacterHub = () => {
                                         className="hover:opacity-80"
                                         onClick={() => navigate("/game/details")}
                                     >
-                                        View
+                                        {t("characterHub.view")}
                                     </Button>
                                 </div>
                             </div>
@@ -599,7 +601,7 @@ const CharacterHub = () => {
                     <div>
                         <h2 className="text-sm font-semibold text-muted-foreground mb-3 flex items-center gap-2">
                             <Heart className="w-4 h-4" />
-                            YOUR ASSESSMENTS
+                            {t("characterHub.yourAssessments")}
                         </h2>
 
                         {/* 4 Assessment Tiles */}
@@ -607,12 +609,12 @@ const CharacterHub = () => {
                             {/* Zone of Genius */}
                             <CharacterTile
                                 id="zog"
-                                title="Genius"
+                                title={t("characterHub.tileGenius")}
                                 icon={<Sparkles className="w-full h-full" />}
                                 color="#9b5de5"
                                 progress={zogSnapshot ? 100 : 0}
                                 isLocked={!zogSnapshot}
-                                unlockHint="Start"
+                                unlockHint={t("characterHub.tileStartHint")}
                                 size="sm"
                                 onClick={() => navigate(zogSnapshot ? "/zone-of-genius" : "/zone-of-genius/entry")}
                             />
@@ -620,12 +622,12 @@ const CharacterHub = () => {
                             {/* Quality of Life */}
                             <CharacterTile
                                 id="qol"
-                                title="Life"
+                                title={t("characterHub.tileLife")}
                                 icon={<Heart className="w-full h-full" />}
                                 color="#ff6b35"
                                 progress={qolSnapshot ? 100 : 0}
                                 isLocked={!qolSnapshot}
-                                unlockHint="Start"
+                                unlockHint={t("characterHub.tileStartHint")}
                                 size="sm"
                                 onClick={() => navigate(qolSnapshot ? "/quality-of-life-map/results" : "/quality-of-life-map/assessment")}
                             />
@@ -633,12 +635,12 @@ const CharacterHub = () => {
                             {/* Genius Offer */}
                             <CharacterTile
                                 id="genius-offer"
-                                title="Offer"
+                                title={t("characterHub.tileOffer")}
                                 icon={<Gift className="w-full h-full" />}
                                 color="#f5a623"
                                 progress={geniusOffer?.status === "completed" ? 100 : geniusOffer ? 50 : 0}
                                 isLocked={!zogSnapshot}
-                                unlockHint="ZoG"
+                                unlockHint={t("characterHub.tileZogHint")}
                                 size="sm"
                                 onClick={() => navigate(geniusOffer ? "/profile" : "/genius-offer-intake")}
                             />
@@ -646,7 +648,7 @@ const CharacterHub = () => {
                             {/* Multiple Intelligences */}
                             <CharacterTile
                                 id="mi"
-                                title="MI"
+                                title={t("characterHub.tileMi")}
                                 icon={<TrendingUp className="w-full h-full" />}
                                 color="#4361ee"
                                 size="sm"

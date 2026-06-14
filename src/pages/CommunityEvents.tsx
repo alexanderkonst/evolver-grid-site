@@ -1,4 +1,5 @@
 import { useMemo } from "react";
+import { useTranslation } from "react-i18next";
 import { useNavigate, useParams } from "react-router-dom";
 import { CalendarDays } from "lucide-react";
 import { PremiumLoader } from "@/components/ui/PremiumLoader";
@@ -11,6 +12,7 @@ import BackButton from "@/components/BackButton";
 const CommunityEvents = () => {
   const { communityId } = useParams<{ communityId: string }>();
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const { events, loading, error } = useEvents();
 
   const filteredEvents = useMemo(() => {
@@ -26,10 +28,10 @@ const CommunityEvents = () => {
         <div className="mb-8">
           <div className="flex items-center gap-3 mb-2">
             <CalendarDays className="w-6 h-6 text-foreground" />
-            <h1 className="text-2xl font-bold text-foreground">Community Events</h1>
+            <h1 className="text-2xl font-bold text-foreground">{t('communityEvents.heading')}</h1>
           </div>
           <p className="text-muted-foreground">
-            Community: {communityId}
+            {t('communityEvents.communityLabel')} {communityId}
           </p>
         </div>
 
@@ -50,10 +52,10 @@ const CommunityEvents = () => {
           <div className="rounded-xl border border-border bg-[var(--skin-card-fill,rgba(255,255,255,0.85))] backdrop-blur-sm p-8 shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
             <EmptyState
               icon={<CalendarDays className="w-6 h-6 text-muted-foreground" />}
-              title="No events yet"
-              description="Check back later for new community gatherings."
+              title={t('communityEvents.emptyTitle')}
+              description={t('communityEvents.emptyDescription')}
               action={{
-                label: "Browse Events",
+                label: t('communityEvents.browseEvents'),
                 onClick: () => navigate("/game/events"),
               }}
             />

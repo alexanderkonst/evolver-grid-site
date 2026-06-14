@@ -910,5 +910,870 @@
     "toastMissionSaved": "Mission saved",
     "toastSaveFailed": "Save failed",
     "toastSaveFailedDescription": "Unable to save your mission."
+  },
+  "today": {
+    "toastErrorTitle": "Error",
+    "toastLoadFailed": "Failed to load data",
+    "toastXpEarned": "+{{xp}} XP earned!",
+    "toastStreak": "Streak: {{days}} days 🔥",
+    "toastUpgradeCompleteTitle": "Upgrade Complete!",
+    "toastUpgradeXp": "+{{xp}} XP",
+    "toastArtifactCapturedTitle": "🎉 World Artifact Captured!",
+    "toastArtifactCapturedDesc": "Your real-world creation has been documented.",
+    "introEyebrow": "Transformation Space",
+    "introTitle": "Grow every day",
+    "introSubtitle": "One practice. Five paths. Consistent progress.",
+    "introCta": "Show Me Today's Practice",
+    "pageTitle": "Today",
+    "dayStreak": "{{count}} day streak",
+    "level": "Level {{level}}",
+    "xp": "{{xp}} XP",
+    "doneTitle": "Done for Today! 🎉",
+    "doneSubtitle": "You've completed your daily actions. Great work!",
+    "bonusSideQuest": "Bonus Side Quest",
+    "mainQuestLabel": "Main Quest",
+    "stageOf": "Stage {{current}} of {{total}}",
+    "complete": "Complete",
+    "captureOutput": "Capture Your Output",
+    "sideQuestLabel": "Side Quest (Practice)",
+    "completedLabel": "Completed: {{title}}",
+    "bonusPractice": "Bonus Practice",
+    "findingPractice": "Finding your practice...",
+    "practiceMeta": "{{minutes}} min • {{domain}}",
+    "recommendedFallback": "Recommended for your growth.",
+    "markAsDone": "Mark as Done",
+    "getRecommendation": "Get Practice Recommendation",
+    "upgradeLabel": "Upgrade (Growth Path)",
+    "lockedBadge": "Locked",
+    "upgradeDescFallback": "Unlock this upgrade to level up.",
+    "lockedRequires": "Locked — requires: {{prereqs}}",
+    "completeUpgrade": "Complete Upgrade",
+    "allUpgradesComplete": "All upgrades complete!",
+    "viewGrowthPaths": "View Growth Paths",
+    "todaysLog": "Today's Log",
+    "runMeta": "{{path}} • {{minutes}} min",
+    "artifactModalDesc": "Document your real-world creation — a post, pitch, demo, or any tangible output.",
+    "typeLabel": "Type *",
+    "typePost": "Post",
+    "typePitch": "Pitch",
+    "typeDemo": "Demo",
+    "typeDoc": "Doc",
+    "typeVideo": "Video",
+    "typeOther": "Other",
+    "linkLabel": "Link (optional)",
+    "notesLabel": "Notes (optional)",
+    "notesPlaceholder": "What did you create? How does it feel?",
+    "cancel": "Cancel",
+    "markArtifactDone": "Mark Artifact Done"
+  },
+  "dailyLoop": {
+    "whyRecommended": "Your {{vector}} development supports your growth."
+  },
+  "geniusOfferIntake": {
+    "toast": {
+      "reviewInputs": "Please review your inputs.",
+      "somethingWrong": "Something went wrong. Please try again.",
+      "enterName": "Please enter your name",
+      "enterEmail": "Please enter a valid email",
+      "pasteResponse": "Please paste your AI's response"
+    },
+    "common": {
+      "next": "NEXT",
+      "back": "Back",
+      "yes": "YES",
+      "no": "NO",
+      "submit": "SUBMIT",
+      "continue": "CONTINUE",
+      "skip": "Skip"
+    },
+    "auth": {
+      "title": "GENIUS OFFER CREATION",
+      "subtitle": "Please log in or create a free account to continue your Genius Offer.",
+      "cta": "LOG IN OR SIGN UP"
+    },
+    "submit": {
+      "title": "THANK YOU – I'VE GOT EVERYTHING I NEED.",
+      "received": "I've received your info and will now craft your Genius Offer.",
+      "within48": "Within 48 hours you'll receive:",
+      "deliverablePdf": "A beautifully designed PDF of your Genius Offer",
+      "deliverableLoom": "A short Loom video where I walk through what stands out and suggested next steps",
+      "findInProfile": "You'll also be able to find your Genius Offer inside your profile once it's ready.",
+      "telegramCta": "MESSAGE ME ON TELEGRAM",
+      "backToProfile": "Back to Profile"
+    },
+    "stepIndicator": "Step {{current}} of {{total}}",
+    "name": {
+      "title": "WHAT'S YOUR NAME?",
+      "placeholder": "Your full name"
+    },
+    "email": {
+      "title": "WHAT'S YOUR BEST EMAIL?"
+    },
+    "aiBranch": {
+      "title": "DO YOU HAVE AN AI ASSISTANT",
+      "question": "(like ChatGPT, Claude, etc.) that knows you well, because you've already shared your background, work and clients with it?"
+    },
+    "aiKnowsOffers": {
+      "title": "HAVE YOU SOLD PRODUCTS OR SERVICES TO CLIENTS,",
+      "question": "and has your AI assistant already \"seen\" or \"heard\" about what you sold and to whom?"
+    },
+    "aiPrompt": {
+      "title": "ASK YOUR AI THIS PROMPT",
+      "descKnows": "Great. We'll let your AI model summarize your genius and past offers.",
+      "descUnknown": "No problem. We'll just use your AI to capture your genius signal.",
+      "responseLabel": "Paste your AI's response here *",
+      "responsePlaceholder": "Paste your AI's response here..."
+    },
+    "zog": {
+      "title": "LET'S MAP YOUR ZONE OF GENIUS",
+      "subtitle": "You'll take a short assessment, and when you're done we'll bring you back here.",
+      "completed": "Zone of Genius completed!",
+      "cta": "TAKE THE ZONE OF GENIUS ASSESSMENT"
+    },
+    "mi": {
+      "title": "NOW LET'S MAP HOW YOU NATURALLY THINK",
+      "subtitle": "This takes 2–3 minutes and is a simple drag-and-drop ranking.",
+      "completed": "Multiple Intelligences completed!",
+      "cta": "TAKE THE MULTIPLE INTELLIGENCES TEST"
+    },
+    "productsSold": {
+      "title": "WHAT PRODUCTS OR SERVICES HAVE YOU ALREADY SOLD?",
+      "subtitle": "If you've sold your own offers before, describe them here. If not, you can skip this.",
+      "placeholder": "I've sold..."
+    },
+    "bestClients": {
+      "title": "DESCRIBE 1–2 REAL CLIENTS YOU'VE HELPED THE MOST",
+      "subtitle": "Think of your most satisfying or impactful client experiences. If you're just starting, you can skip this.",
+      "placeholder": "My best client transformation was...",
+      "skipSubmit": "Skip & Submit"
+    }
+  },
+  "geniusOffer": {
+    "back": "BACK",
+    "heroTitle": "TURN YOUR GENIUS INTO ONE CLEAR OFFER",
+    "heroSubtitleBefore": "In 48 hours, I'll turn your core talents and real client wins into ",
+    "heroSubtitleEmphasis": "one simple, sellable offer",
+    "heroSubtitleAfter": " you can start using immediately.",
+    "priceUnit": "USD · one-time",
+    "ctaButton": "GET YOUR GENIUS OFFER",
+    "alreadyPaidLink": "Already paid? Start the intake here →",
+    "whoForTitle": "WHO THIS IS FOR",
+    "whoFor1": "Founders and guides who already help people transform something in their life or work",
+    "whoFor2": "People who feel \"I do many things\" and struggle to explain it in one clear sentence",
+    "whoFor3": "Those who want a single concrete offer they can confidently share on calls, pages, and DMs",
+    "whatGetTitle": "WHAT YOU GET",
+    "whatGet1": "One clear Genius Offer sentence (what you do, for whom, to what result)",
+    "whatGet2": "A short description of the ideal client this offer is for",
+    "whatGet3": "A one-to-two paragraph offer description you can reuse on a page, email, or DM",
+    "whatGet4": "Delivered within 48 hours after you submit your intake",
+    "howWorksTitle": "HOW IT WORKS",
+    "step1Title": "Pay $111",
+    "step1Desc": "Click the button above to pay securely via Stripe.",
+    "step2Title": "Answer a few questions",
+    "step2Desc": "After payment, complete a short intake about your work and clients.",
+    "step3Title": "Receive your Genius Offer",
+    "step3Desc": "Within 48 hours, I'll send you your clear offer as a formatted document.",
+    "testimonialsEyebrow": "What people say about this work",
+    "testimonial1Bold": "This is a miracle of miracles.",
+    "testimonial1Rest": "I'm re-reading it—brilliant! Totally badass. Other tools come at this half-baked and shallow; they've got no depth. Your approach, though, I love it. A tool that just plain works!",
+    "testimonial2Bold": "I finally had language for something I'd felt my whole life.",
+    "testimonial2Rest": "This is very valuable. I resonate with all of this. Inspires & informs BRILLIANTLY!!",
+    "testimonial3Bold": "I got into my Zone of Genius and launched my blockchain wellness education project.",
+    "testimonial3Rest": "I am also grateful for this training. Obrigado!",
+    "testimonial4Bold": "It inspires and informs brilliantly.",
+    "testimonial4Rest": "This was an outstanding training! I am so grateful to know my zone of genius now (and why!). Truly profound.",
+    "finalCtaTitle": "READY TO CLARIFY YOUR OFFER?"
+  },
+  "characterHub": {
+    "qolHealth": "Health",
+    "qolWealth": "Wealth",
+    "qolHappiness": "Happiness",
+    "qolLove": "Love",
+    "qolImpact": "Impact",
+    "qolGrowth": "Growth",
+    "qolSocial": "Social",
+    "qolHome": "Home",
+    "signInToAccess": "SIGN IN TO ACCESS YOUR CHARACTER",
+    "signIn": "Sign In",
+    "backHome": "Home",
+    "playerFallback": "Player",
+    "levelLine": "Level {{level}} · {{xp}} XP",
+    "anonymousMode": "Anonymous Mode",
+    "anonymousModeBody": "You're exploring without signing in. Sign in to save and sync your progress.",
+    "discoveringColors": "Discovering Colors...",
+    "unlockSoulColors": "Unlock Your Soul Colors",
+    "tapToExplore": "Tap to explore your paths",
+    "zogTitle": "Your Zone of Genius",
+    "zogBody": "Generate your Zone of Genius to unlock your profile.",
+    "zogStart": "Start Zone of Genius",
+    "uniqueOfferTitle": "Your Unique Offer",
+    "uniqueOfferBody": "You know WHO you are. Now discover WHAT you can offer.",
+    "uniqueOfferCta": "Create My Unique Offer",
+    "myMission": "My Mission",
+    "chooseMission": "Choose your mission",
+    "edit": "Edit",
+    "select": "Select",
+    "pillarLabel": "Pillar: {{pillar}}",
+    "focusLabel": "Focus: {{focus}}",
+    "setMissionBody": "Set your mission to unlock clearer matchmaking and community alignment.",
+    "suggestedForYou": "SUGGESTED FOR YOU",
+    "nextQuest": "Next Quest",
+    "start": "Start",
+    "findFirstQuest": "Find Your First Quest",
+    "findFirstQuestBody": "Explore the Game Map to discover quests",
+    "explore": "Explore",
+    "recommendedUpgrade": "Recommended Upgrade",
+    "view": "View",
+    "yourAssessments": "YOUR ASSESSMENTS",
+    "tileGenius": "Genius",
+    "tileLife": "Life",
+    "tileOffer": "Offer",
+    "tileMi": "MI",
+    "tileStartHint": "Start",
+    "tileZogHint": "ZoG"
+  },
+  "skillTrees": {
+    "backToCharacter": "BACK TO CHARACTER",
+    "title": "SKILL TREES",
+    "subtitle": "Five paths of development. Each skill unlocks as you complete practices and quests.",
+    "legend": {
+      "locked": "Locked",
+      "available": "Available",
+      "inProgress": "In Progress",
+      "completed": "Completed"
+    }
+  },
+  "library": {
+    "filterAll": "All",
+    "durationMinutes": "{{count}} min",
+    "stepEyebrow": "Growth Sequence · Step {{number}}",
+    "emptyCategory": "No content in this category yet.",
+    "articleLinkTitleBefore": "Consciousness Meets",
+    "articleLinkTitleEmphasis": "Science",
+    "articleLinkDescription": "How inner experiences and science co-reveal the nature of reality.",
+    "readOnMedium": "Read on Medium",
+    "article27TitleBefore": "27-Perspective",
+    "article27TitleEmphasis": "Vision",
+    "article27Description": "Person-Perspectives as Dimensions of Reality",
+    "readTheArticle": "Read the article",
+    "ctaTitleEmphasis": "Ignition",
+    "ctaTitleAfter": "Session",
+    "ctaDescription": "One conversation that changes your trajectory.",
+    "startNow": "Start now",
+    "lockedTitle": "Locked",
+    "lockedHintFallback": "This module is being built. Stay tuned.",
+    "close": "Close",
+    "guidedBy": "Guided by {{teacher}}",
+    "growthSequence": "Growth Sequence",
+    "indexHero": "GROW",
+    "indexIntro": "Six steps. From scattered talent to centered mastery. Pick a step from the side panel — each one unlocks the next level of seeing."
+  },
+  "moduleDetail": {
+    "notFoundTitle": "Module Not Found",
+    "backToHome": "Back to Home",
+    "back": "BACK",
+    "oneTimePayment": "One-time payment · Instant access",
+    "whatThisIs": "WHAT THIS IS",
+    "whoItsFor": "WHO IT'S FOR",
+    "outcomes": "OUTCOMES",
+    "howItWorks": "HOW IT WORKS",
+    "accessAppLinks": "ACCESS & APP LINKS",
+    "originStory": "ORIGIN STORY",
+    "relatedModules": "RELATED MODULES"
+  },
+  "destiny": {
+    "nav": {
+      "back": "BACK",
+      "home": "HOME",
+      "isThisYou": "IS THIS YOU?",
+      "howItWorks": "HOW IT WORKS",
+      "about": "ABOUT",
+      "start": "START"
+    },
+    "hero": {
+      "overline": "DESTINY: YOUR UNIQUE GENIUS BUSINESS",
+      "headline": "YOUR OLD LIFE IS COLLAPSING. YOUR GENIUS ISN'T.",
+      "subheadlineBefore": "For founders and visionaries stuck in the in-between — too awake to go back, not yet clear how to go forward — I help you design one Minimally Viable ",
+      "subheadlineEmphasis": "Genius",
+      "subheadlineAfter": " Business that can actually pay your bills and honor your destiny.",
+      "bullet1": "Turn your soul work into one clear, sellable offer",
+      "bullet2": "Aim for a sane target (e.g. 5–10k/month on ~15–20 hours)",
+      "bullet3": "Stop scattering energy across 7 half-projects and build one true lane",
+      "ctaSubtext": "Or learn how this works ↓"
+    },
+    "cta": {
+      "book": "BOOK AN EXCALIBUR CALL",
+      "bookShort": "BOOK EXCALIBUR CALL"
+    },
+    "isThisYou": {
+      "heading": "YOU'RE IN THE FORGE, NOT JUST IN A PIVOT",
+      "intro": "You're not \"just changing careers.\" You're standing between worlds:",
+      "bullet1": "• The old way of working is dead or dying — your body and soul won't tolerate it anymore.",
+      "bullet2": "• You're receiving real visions — land, projects, communities, products — but they mostly live in your head, voice notes, or ceremony.",
+      "bullet3": "• Savings are melting, and your partner / family is shifting from \"I support you\" to \"I'm scared.\"",
+      "bullet4": "• You're highly capable (founder/leader energy), but right now your power is spread across too many ideas.",
+      "bullet5": "• If someone asked, \"So what exactly do you do?\" — you'd hesitate or give three different answers.",
+      "closer": "If this feels uncomfortably accurate, this work is for you."
+    },
+    "promise": {
+      "heading": "WHAT WE BUILD: A MINIMALLY VIABLE GENIUS BUSINESS",
+      "p1": "I don't help you \"find your purpose.\" You already hear it — that's why the old world hurts so much.",
+      "p2": "What I do is help you turn that loud inner knowing into one simple, grounded business model that:",
+      "bullet1": "• Is built around your true genius, not a trendy niche",
+      "bullet2": "• Speaks to a real, conscious pain in people you deeply understand",
+      "bullet3": "• Lives in a doable container (usually 1:1 or small-group deep work)",
+      "bullet4": "• Has realistic potential to generate thousands per month without burning you out",
+      "closer": "Think of it as Destiny, implemented: not as a fantasy, but as a business."
+    },
+    "method": {
+      "heading": "THE EXCALIBUR METHOD",
+      "subheading": "We don't manifest. We get radically honest, then build.",
+      "step1": {
+        "title": "NAME THE TRUTH",
+        "body": "We start with a real look at your life: projects, money, responsibilities, energy, partner dynamics. You keep what feeds you. We're not here to blow up your life — we're here to give your genius a viable lane."
+      },
+      "step2": {
+        "title": "MAP YOUR GENIUS (APPLESEED)",
+        "body": "We map your zone of genius: what you actually do when you're at your best, who you're naturally built to serve, and the archetypal roles you play. This becomes your Genius Map — the compass for everything that follows."
+      },
+      "step3": {
+        "title": "FORGE YOUR EXCALIBUR SENTENCE",
+        "body": "Together we craft a one-sentence unique genius offer that names your ideal person, their real, felt problem, the role you play, and the tangible shift you help create. Most people feel a mix of relief and \"oh shit, that's actually it.\""
+      },
+      "step4": {
+        "title": "DESIGN & TEST YOUR MVGB",
+        "body": "From that sentence, we design your Minimally Viable Genius Business: clear offer and outcome, container, price point, and simple, human outreach. Then you test it in real conversations, and we refine based on what lands, what doesn't, and what your body says yes to."
+      }
+    },
+    "forWhom": {
+      "forHeading": "WHO THIS IS FOR",
+      "for1": "Founders, ex-founders, and creative leaders who know they're here to change something real, not just make decent money.",
+      "for2": "People whose old professional identity has cracked, and pretending it still works feels like self-betrayal.",
+      "for3": "Those willing to tell the truth about money, fear, and desire — and then do focused work from there.",
+      "for4": "People ready to commit to one primary lane (for now) and give it a genuine chance.",
+      "notForHeading": "WHO THIS IS NOT FOR",
+      "notFor1": "Anyone looking for \"10k in 10 days\" hacks or copy-paste funnels.",
+      "notFor2": "People who want AI and automation to do the work instead of real conversations.",
+      "notFor3": "Folks unwilling to be seen more deeply than their current bio or brand.",
+      "notFor4": "Anyone who wants a guarantee without taking any risk or responsibility."
+    },
+    "howWeWork": {
+      "heading": "HOW WE WORK TOGETHER",
+      "intro": "We work in a focused, time-bound container (for example, 6–10 weeks), using:",
+      "item1": "– Deep 1:1 sessions (Zoom or in-person when possible)",
+      "item2": "– Voice / text between sessions for integration and tweaks",
+      "item3": "– Shared living documents (your Genius Map, Excalibur sentence, MVGB spec)",
+      "beforeAfter": "I don't sell endless months of \"support.\" We aim for a clear before/after: you enter in limbo, you leave with one working path.",
+      "valueHeading": "VALUE EXCHANGE",
+      "value1": "– We agree on a base fee for the container (discussed live).",
+      "value2": "– Plus a small share of revenue from your new MVGB only,",
+      "value3": "– Capped at a fixed amount, so it stays fair and non-extractive.",
+      "valueCloser": "I win when your genius starts feeding you. That's the point."
+    },
+    "about": {
+      "heading": "WHO'S HOLDING THIS WORK",
+      "bio1": "I'm Aleksandr — a systems architect, venture builder, and teacher of integral evolution.",
+      "bio2": "My life's work is helping people and projects move from myth-level vision to real-world structure. I've built and advised ventures at the intersection of tech, consciousness, and new systems, and helped founders name their true lane and design businesses around it.",
+      "bio3": "This offer — Destiny: Your Unique Genius Business — is my own MVGB. It's how my genius plugs straight into yours."
+    },
+    "finalCta": {
+      "heading": "READY TO STOP HOVERING BETWEEN WORLDS?",
+      "p1": "If you feel the gap between who you are and how you make a living getting more painful, that's not a bug — it's a summons.",
+      "p2": "This call is not a sales trap. It's a space to look honestly at where you are, name what's really trying to be born through you, and see whether this container is the right forge.",
+      "subtext": "One conversation. Full honesty. No pressure. If it's not the right time or fit, we'll both say so."
+    }
+  },
+  "foundersShowcase": {
+    "navDashboard": "← Dashboard",
+    "navHolomap": "Holo Map →",
+    "eyebrow": "The Originals",
+    "heroTitleLine1": "Founders Who Found",
+    "heroTitleLine2": "Their Genius",
+    "heroSubtitle": "Each person went through the Unique Business Canvas process. Their myth was discovered. Their business was designed around who they already are.",
+    "statCanvases": "canvases",
+    "statDays": "days",
+    "statAdSpend": "ad spend",
+    "statConversion": "conversion",
+    "inProgressBadge": "In Progress",
+    "lockedConsentBefore": "Full canvas will be visible once",
+    "lockedConsentAfter": "gives consent.",
+    "lockedMythIllustration": "The myth above is shown for illustration.",
+    "mythLabel": "The Myth",
+    "mythLieLabel": "LIE",
+    "mythTruthLabel": "TRUTH",
+    "canvasUniquenessLabel": "Uniqueness",
+    "canvasTribeLabel": "The Tribe",
+    "canvasPainLabel": "The Pain",
+    "promiseLabel": "The Promise",
+    "thesisQuote": "\"The myth IS the marketing. Operational fact, not theory.\"",
+    "ctaEyebrow": "Ready to Find Your Genius?",
+    "ctaTitleLine1": "Your Uniqueness IS",
+    "ctaTitleLine2": "Your Business",
+    "ctaSubtitle": "One session. Your myth discovered. Your canvas complete. The business you were always meant to build — revealed.",
+    "ctaButton": "Book Your Productize Yourself Session — $555",
+    "footerJoinCommunity": "Join the community →"
+  },
+  "monetization": {
+    "heroEyebrow": "Built in the open · paid in the open",
+    "heroTitle": "How this is paid for",
+    "heroSubBefore": "The whole model: what stays free, what is paid for, and why it grows",
+    "heroSubInk": "when you do",
+    "heroSubAfter": ".",
+    "heroBody": "The seed is free on purpose: a short profile that shows you what you are naturally great at, given away so it can spread. Nobody pays for the seed. The money comes from what grows around it, and every form of it is designed so the platform stays small while the people using it grow.",
+    "heroSoftCta": "Try the free seed yourself",
+    "seedEyebrow": "The seed is free",
+    "seedBody": "A two-minute talent profile, free for anyone. It is the front door, not a sample held back to upsell. The more people who hold a clear picture of what they uniquely bring, the better the whole thing works, so the front door stays open and free.",
+    "waysEyebrow": "Three ways it is paid for",
+    "way1Title": "People and groups pay to use it",
+    "way1Desc": "A person can go deeper for a small fee, then book a session, then get help building. A community can pay a regular fee to run the whole thing for its members, under its own name. And anyone can run their own copy and send back a small share once they are truly earning from it.",
+    "way2Title": "We share in what it helps build",
+    "way2Desc": "Where the platform is genuinely part of building a venture, it keeps a small, lasting share. We only earn when you do. This is invitation-based and only where we are truly in the loop, never a tax on every introduction.",
+    "way3Title": "Others pay to teach it",
+    "way3Desc": "In time, schools and programs can be certified to teach the method themselves, the way a coaching or yoga certification works.",
+    "orderEyebrow": "The order it grows",
+    "orderBody": "These turn on in sequence, not all at once. People first, you can use it today. Communities next, running it for their own members. Sharing in the ventures it helps build comes later, and only where we are genuinely part of the building. Licensing others to teach it comes last. Each step proves and funds the next.",
+    "principleEyebrow": "The principle",
+    "principleBodyBefore": "Three commitments hold it together. We stay small while the thing underneath grows. The code is open-source and forkable, meant to be owned by the people who use it, not locked behind a wall. And a fair share of what the network earns funds a shared commons, not a private fortune. The one number all of it serves is simple:",
+    "principleBodyInk": "how many people find their people and start building together",
+    "principleBodyAfter": ".",
+    "ctaPrimary": "Find your top talent",
+    "ctaMeta": "Free · 2 minutes · No signup",
+    "ctaReadOnePager": "Read the whole 1-pager",
+    "ctaBookChat": "Book a chat with Aleksandr",
+    "closeEyebrow": "The whole idea",
+    "closeQuote": "A business that earns by helping people succeed, and takes a fair slice for making it happen.",
+    "footerTagline": "Built in the open. Owned by the people who use it.",
+    "footerBrand": "Find Your Top Talent · findyourtoptalent.com"
+  },
+  "onboardingPage": {
+    "loaderText": "Preparing your journey..."
+  },
+  "multipleIntel": {
+    "toast": {
+      "loginRequired": "Please log in to save your results.",
+      "error": "Something went wrong. Please try again."
+    },
+    "success": {
+      "title": "SAVED",
+      "body": "Your Multiple Intelligences ranking has been added to your \"Who I Am and Where I Am\" snapshot.",
+      "top3Label": "Your Top 3:",
+      "continueGeniusOffer": "CONTINUE TO GENIUS OFFER CREATION",
+      "backToGame": "Back to Game"
+    },
+    "back": "BACK",
+    "hero": {
+      "title": "MULTIPLE INTELLIGENCES",
+      "subtitle": "Quick Self-Assessment",
+      "description": "A 2–3 minute drag-and-drop test to see which intelligences feel most natural to you.",
+      "startCta": "START THE ASSESSMENT"
+    },
+    "instructions": {
+      "before": "Reorder these from ",
+      "mostYou": "most \"you\"",
+      "middle": " at the top to ",
+      "leastYou": "least \"you\"",
+      "after": " at the bottom.",
+      "hint": "Think about: how much you love using it, how naturally it comes, and how often you solve problems this way."
+    },
+    "loginNote": "You'll need to log in to save your results.",
+    "submit": {
+      "saving": "SAVING...",
+      "save": "SAVE MY RANKING"
+    },
+    "intel": {
+      "verbal": {
+        "description": "You think and express through words, writing, and language."
+      },
+      "intrapersonal": {
+        "description": "You deeply sense your inner world, motives, and patterns."
+      },
+      "systemic": {
+        "description": "You see patterns, systems, and long-range implications."
+      },
+      "creative": {
+        "description": "You generate original ideas, images, and playful possibilities."
+      },
+      "somatic": {
+        "description": "You process and express through movement and the body."
+      },
+      "analytical": {
+        "description": "You break things down and reason clearly."
+      },
+      "spatial": {
+        "description": "You think in images, shapes, and visual relationships."
+      },
+      "emotional": {
+        "description": "You feel into atmospheres, moods, and emotional states."
+      },
+      "practical": {
+        "description": "You naturally organize, execute, and make things work."
+      },
+      "spiritual": {
+        "description": "You ask deep questions about what matters most and seek ultimate meaning."
+      },
+      "moral": {
+        "description": "You discern the right thing to do in this moment, in this situation."
+      }
+    }
+  },
+  "aiUpgrade": {
+    "nav": {
+      "back": "← Back"
+    },
+    "loading": "Loading...",
+    "auth": {
+      "title": "Sign in to access your AI Upgrade",
+      "subtitle": "Create a free account or log in so we can remember your upgrade.",
+      "loginSignup": "Log in / Sign up"
+    },
+    "toast": {
+      "activeTitle": "🎉 Your AI Upgrade is now active.",
+      "activeDesc": "Enjoy your enhanced AI experience!",
+      "copiedTitle": "Copied to clipboard!",
+      "copiedDesc": "Paste the prompt into your AI chat.",
+      "copyFailTitle": "Failed to copy",
+      "copyFailDesc": "Please try again or copy manually."
+    },
+    "launcher": {
+      "title": "Prompt Launcher",
+      "subtitle": "Tap to copy a prompt to your clipboard",
+      "copied": "✓ Copied!",
+      "contactTelegram": "Contact us on Telegram",
+      "boostIntel": "Boost Intelligence of Your AI Model",
+      "roast": "Roast the Result",
+      "roastAgain": "Another Round of Roasting",
+      "tenX": "10x Your Result",
+      "iteration": "Full Iteration Cycle"
+    },
+    "hero": {
+      "headline": "Your AI model can't think as fast as you and is slowing you down.",
+      "subhead": "Upgrade its thinking to match yours.",
+      "body": "This instant AI upgrade removes the bottleneck — giving your AI the speed, clarity, and reasoning your work demands."
+    },
+    "cta": {
+      "getUpgrade": "Get the Upgrade — $33",
+      "microcopy": "One-time payment · Instant access"
+    },
+    "promo": {
+      "toggle": "Have a promo code?",
+      "placeholder": "Enter promo code",
+      "apply": "Apply",
+      "validating": "Validating...",
+      "enterCode": "Please enter a promo code.",
+      "invalidCode": "Invalid or expired promo code."
+    },
+    "giftModal": {
+      "title": "Gift Unlocked! 🌐",
+      "line1": "Your promo code unlocks this product as a gift for you.",
+      "line2": "Enjoy, and may it serve you. 🌐",
+      "continue": "Continue"
+    },
+    "problem": {
+      "title": "The Problem",
+      "leadLine1": "Your mind moves fast.",
+      "leadLine2": "Your AI doesn't.",
+      "insteadIt": "Instead, it:",
+      "bullet1": "over-explains",
+      "bullet2": "loses nuance",
+      "bullet3": "breaks coherence",
+      "bullet4": "gives junior-level insights",
+      "bullet5": "interrupts your flow",
+      "bullet6": "dilutes your clarity",
+      "frictionLine1": "For high-level operators, this isn't noise —",
+      "frictionLine2": "it's friction you feel every day.",
+      "bottleneck": "If your work depends on clarity, synthesis, or precision, default AI becomes a bottleneck."
+    },
+    "upgrade": {
+      "title": "The Upgrade",
+      "intro": "This upgrade installs the thinking layer your AI has been missing.",
+      "itBecomes": "It becomes:",
+      "bullet1": "fast",
+      "bullet2": "structured",
+      "bullet3": "precise",
+      "bullet4": "context-aware",
+      "bullet5": "concise",
+      "bullet6": "coherent",
+      "bullet7": "reliable",
+      "movingWith": "Instead of dragging behind you, it starts moving with you.",
+      "notChatbot": "Not a chatbot.",
+      "cognitiveInstrument": "A cognitive instrument."
+    },
+    "whoFor": {
+      "title": "Who It's For",
+      "introLine1": "Built for the top 20% of operators who don't just use AI —",
+      "introLine2": "they think with it.",
+      "bullet1": "Strategic founders & CEOs",
+      "bullet2": "High-end consultants",
+      "bullet3": "Executive & performance coaches",
+      "bullet4": "Systems thinkers & polymaths",
+      "closing": "If clarity is your competitive advantage, this upgrade protects it and amplifies it."
+    },
+    "beforeAfter": {
+      "title": "Before / After",
+      "beforeLabel": "Before",
+      "afterLabel": "After",
+      "before1": "Vague, generic outputs",
+      "before2": "Loses track of context",
+      "before3": "Over-explains simple things",
+      "before4": "Requires constant re-prompting",
+      "after1": "Sharp, specific insights",
+      "after2": "Maintains coherence across sessions",
+      "after3": "Concise, action-oriented",
+      "after4": "Understands your intent the first time"
+    }
+  },
+  "communityEvents": {
+    "heading": "Community Events",
+    "communityLabel": "Community:",
+    "emptyTitle": "No events yet",
+    "emptyDescription": "Check back later for new community gatherings.",
+    "browseEvents": "Browse Events"
+  },
+  "eventDetail": {
+    "toastSignInRequiredTitle": "Sign in required",
+    "toastSignInRequiredDesc": "Please sign in to RSVP to events",
+    "toastRsvpConfirmedTitle": "RSVP confirmed",
+    "toastRsvpConfirmedDesc": "You're attending this event.",
+    "toastXpTitle": "🎉 +25 XP (Spirit)",
+    "toastXpDesc": "Thanks for committing to your community.",
+    "toastFirstTimeBonusTitle": "🎉 FIRST TIME BONUS!",
+    "toastFirstTimeBonusDesc": "+{{xp}} XP for your first {{action}}!",
+    "toastErrorTitle": "Error",
+    "toastRsvpFailedDesc": "Failed to update RSVP",
+    "toastEmailRequiredTitle": "Email required",
+    "toastEmailRequiredDesc": "Add an email address to receive reminders.",
+    "toastReminderUpdatedTitle": "Reminder updated",
+    "toastReminderEnabledDesc": "We'll send you a confirmation email.",
+    "toastReminderDisabledDesc": "Reminder disabled.",
+    "toastReminderFailedDesc": "Failed to save reminder settings.",
+    "notFoundTitle": "Event Not Found",
+    "notFoundDesc": "This event doesn't exist or has been removed.",
+    "visibilityPublic": "Public",
+    "visibilityCommunity": "Community",
+    "visibilityPrivate": "Private",
+    "visibilityTeam": "Team",
+    "rsvpButtonAttending": "Attending",
+    "rsvpButtonDefault": "RSVP",
+    "signInToRsvp": "Sign in to RSVP",
+    "yourTime": "Your time",
+    "hideOriginalTime": "Hide original time",
+    "showOriginalTime": "Show original time",
+    "attendeesGoing": "{{count}} people going",
+    "attendeesGoing_one": "{{count}} person going",
+    "attendeesGoing_few": "{{count}} people going",
+    "attendeesGoing_many": "{{count}} people going",
+    "emailReminderHeading": "Email reminder",
+    "emailAddressLabel": "Email address",
+    "emailPlaceholder": "you@example.com",
+    "sendMeReminder": "Send me a reminder",
+    "savingReminder": "Saving...",
+    "saveReminder": "Save reminder",
+    "aboutThisEvent": "About this event",
+    "whosComing": "Who's coming",
+    "attendeeTitle": "User {{num}}",
+    "attendeesExtraMore": "+{{count}} more",
+    "attendeesExtraMore_one": "+{{count}} more",
+    "attendeesExtraMore_few": "+{{count}} more",
+    "attendeesExtraMore_many": "+{{count}} more"
+  },
+  "contact": {
+    "back": "BACK",
+    "heading": "Let's Connect"
+  },
+  "feedback": {
+    "sessionType": {
+      "ignition": "Productize Yourself Session (90 min)",
+      "build": "The Build (multi-session)",
+      "group": "Group Build",
+      "other": "Other"
+    },
+    "submitted": {
+      "title": "Thank you, {{name}}.",
+      "body": "Your words will help someone else recognize their own genius. That's the real gift."
+    },
+    "backToHome": "Back to home",
+    "header": {
+      "title": "What happened in your session?",
+      "subtitleLine1": "Your honest experience — in a few sentences.",
+      "subtitleLine2": "No polish needed. The raw truth is always the most powerful."
+    },
+    "field": {
+      "name": {
+        "label": "Your name *",
+        "placeholder": "First name or full name"
+      },
+      "email": {
+        "label": "Email",
+        "note": "(optional — if you'd like a copy)"
+      },
+      "sessionType": {
+        "label": "Session type"
+      },
+      "beforeState": {
+        "label": "Before the session, I was...",
+        "note": "(optional)",
+        "placeholder": "e.g., stuck, confused, overthinking, giving it away for free..."
+      },
+      "shortQuote": {
+        "label": "The one thing you'd tell someone considering this *",
+        "placeholder": "1-2 sentences. What changed? What did you walk away with?"
+      },
+      "fullQuote": {
+        "label": "The full story",
+        "note": "(optional — as much or as little as you want)",
+        "placeholder": "What was happening before? What shifted? What's different now?"
+      }
+    },
+    "submit": {
+      "submitting": "Submitting...",
+      "cta": "Share your experience"
+    },
+    "privacy": {
+      "line1": "Your testimonial will be reviewed before being shared publicly.",
+      "line2": "We'll never share your email."
+    }
+  },
+  "mensCircle": {
+    "logoAlt": "Men's Circle",
+    "forWhomAlt": "For Whom",
+    "whatIsThisAlt": "What Is This",
+    "howMeetingGoesAlt": "How Meeting Goes",
+    "alexShamanicAlt": "Aleksandr - Shamanic",
+    "alexProfessionalAlt": "Aleksandr - Professional",
+    "safetyAndRulesAlt": "Safety and Rules",
+    "crossStarAlt": "Men's Circle"
+  },
+  "mensCircleThanks": {
+    "imageAlt": "Men's Circle",
+    "calGoogle": "Google Calendar",
+    "calOutlook": "Outlook",
+    "calApple": "Apple / iCal"
+  },
+  "ventureDashboard": {
+    "header": {
+      "live": "Live · Day 87",
+      "titleBefore": "Venture",
+      "titleGold": "Growth Dashboard",
+      "tagline": "Built in the open. Paid in the open. Open-source methodology."
+    },
+    "context": {
+      "ariaLabel": "What this dashboard is and what's coming next",
+      "whatThisIs": {
+        "eyebrow": "What this is",
+        "before": "The state of the venture, and the state of the founders building their",
+        "gold": "unique businesses",
+        "after": "inside it. The dashboard updates as both evolve."
+      },
+      "whatsComing": {
+        "eyebrow": "What's coming",
+        "before": "Founders who advance through the journey will be able to",
+        "gold": "fork this entire platform",
+        "after": "and offer it to their community — same engine, same methodology, their own tribe and brand. Every active founder becomes a node.",
+        "released": "Released in the next version."
+      }
+    },
+    "kpi": {
+      "totalRevenue": "Total Revenue",
+      "geniusFounders": "Genius Founders",
+      "continuationRate": "Continuation Rate"
+    },
+    "secondaryStats": {
+      "marketingSpend": "Marketing Spend",
+      "crmContacts": "CRM Contacts",
+      "daysActive": "Days Active"
+    },
+    "revenue": {
+      "timeline": {
+        "title": "Revenue Timeline",
+        "subtitle": "Cumulative revenue since Day 1",
+        "legend": "Total Revenue"
+      },
+      "breakdown": {
+        "title": "Revenue Breakdown",
+        "subtitle": "By founder · cash · in-kind · rev share",
+        "received": "received",
+        "pending": "pending",
+        "cashAmount": "${{amount}} cash",
+        "inKindAmount": "${{amount}} in-kind",
+        "revShareAmount": "${{amount}} rev share",
+        "total": "Total"
+      }
+    },
+    "nextMilestone": {
+      "eyebrow": "Next Milestone",
+      "title": "First $555 Productize Yourself Session from Funnel",
+      "stat1": "$1,696 received (cash + in-kind)",
+      "stat2": "3 canvases to N=10",
+      "stat3": "3/9 surfaces live"
+    },
+    "journey": {
+      "title": "The Journey",
+      "subtitle": "Eighty-seven days. Seven founders. One emerging field.",
+      "dayLabel": "Day {{day}}"
+    },
+    "systemicView": {
+      "title": "Systemic View",
+      "subtitle": "27 perspectives · 4 quadrants × 3 dantians · 7 stages",
+      "openHolomap": "Open Holomap →",
+      "average": "Average"
+    },
+    "footer": {
+      "builtInPublic": "Built in public · Updated in near-real time",
+      "copyright": "© 2026 Aleksandr Konstantinov"
+    }
+  },
+  "theOriginals": {
+    "hero": {
+      "title": "The Originals",
+      "subtitle": "Founders who found their genius and built on it. Each person went through the process, got clarity, and started building."
+    },
+    "status": {
+      "active": "Active",
+      "building": "Building"
+    },
+    "founders": {
+      "alexander": {
+        "archetype": "The Focus Lens",
+        "tagline": "Helps build ventures from who you already are"
+      },
+      "oyi": {
+        "archetype": "Lotus Medicine Man",
+        "tagline": "Restores what growing up took from you"
+      },
+      "sergey": {
+        "archetype": "The Vision Builder",
+        "tagline": "Sees what your life is trying to become"
+      }
+    },
+    "about": {
+      "heading": "What is The Originals?",
+      "body1": "Everyone who's been through the Unique Business Canvas process joins this group. It's not a marketing channel — it's a real group of founders who share a similar experience and help each other grow.",
+      "body2": "When one person succeeds, it raises the bar for everyone. Every win is shared. Every breakthrough lifts the whole group."
+    },
+    "journey": {
+      "label": "Where we are in the journey",
+      "steps": {
+        "0": "Founder",
+        "1": "Test",
+        "2": "Grow",
+        "3": "Charge",
+        "4": "Community",
+        "5": "Improve",
+        "6": "Others",
+        "7": "$10K",
+        "8": "Match",
+        "9": "Products",
+        "10": "Self-org",
+        "11": "Spread",
+        "12": "Connect"
+      },
+      "stepTitle": "Step {{step}}: {{label}}",
+      "statusLine": "Step 2: Growing through word of mouth · 7/10 spots filled"
+    },
+    "cta": {
+      "joinTelegram": "Join on Telegram",
+      "notFoundYet": "Haven't found your genius yet?",
+      "discoverZoG": "Discover Your Zone of Genius"
+    }
   }
 }

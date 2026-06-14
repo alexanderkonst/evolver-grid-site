@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -15,24 +16,25 @@ import BackButton from "@/components/BackButton";
 interface Intelligence {
   id: string;
   name: string;
-  description: string;
+  descriptionKey: string;
 }
 
 const INTELLIGENCES: Intelligence[] = [
-  { id: "verbal", name: "Verbal / Linguistic", description: "You think and express through words, writing, and language." },
-  { id: "intrapersonal", name: "Intrapersonal", description: "You deeply sense your inner world, motives, and patterns." },
-  { id: "systemic", name: "Systemic / Strategic", description: "You see patterns, systems, and long-range implications." },
-  { id: "creative", name: "Creative / Imaginal", description: "You generate original ideas, images, and playful possibilities." },
-  { id: "somatic", name: "Somatic / Kinesthetic", description: "You process and express through movement and the body." },
-  { id: "analytical", name: "Analytical / Logical", description: "You break things down and reason clearly." },
-  { id: "spatial", name: "Spatial / Visual", description: "You think in images, shapes, and visual relationships." },
-  { id: "emotional", name: "Emotional", description: "You feel into atmospheres, moods, and emotional states." },
-  { id: "practical", name: "Practical / Operational", description: "You naturally organize, execute, and make things work." },
-  { id: "spiritual", name: "Spiritual", description: "You ask deep questions about what matters most and seek ultimate meaning." },
-  { id: "moral", name: "Moral / Ethical", description: "You discern the right thing to do in this moment, in this situation." },
+  { id: "verbal", name: "Verbal / Linguistic", descriptionKey: "multipleIntel.intel.verbal.description" },
+  { id: "intrapersonal", name: "Intrapersonal", descriptionKey: "multipleIntel.intel.intrapersonal.description" },
+  { id: "systemic", name: "Systemic / Strategic", descriptionKey: "multipleIntel.intel.systemic.description" },
+  { id: "creative", name: "Creative / Imaginal", descriptionKey: "multipleIntel.intel.creative.description" },
+  { id: "somatic", name: "Somatic / Kinesthetic", descriptionKey: "multipleIntel.intel.somatic.description" },
+  { id: "analytical", name: "Analytical / Logical", descriptionKey: "multipleIntel.intel.analytical.description" },
+  { id: "spatial", name: "Spatial / Visual", descriptionKey: "multipleIntel.intel.spatial.description" },
+  { id: "emotional", name: "Emotional", descriptionKey: "multipleIntel.intel.emotional.description" },
+  { id: "practical", name: "Practical / Operational", descriptionKey: "multipleIntel.intel.practical.description" },
+  { id: "spiritual", name: "Spiritual", descriptionKey: "multipleIntel.intel.spiritual.description" },
+  { id: "moral", name: "Moral / Ethical", descriptionKey: "multipleIntel.intel.moral.description" },
 ];
 
 const MultipleIntelligences = () => {
+  const { t } = useTranslation();
   const { toast } = useToast();
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
@@ -92,7 +94,7 @@ const MultipleIntelligences = () => {
     e.preventDefault();
 
     if (!user) {
-      toast({ title: "Please log in to save your results.", variant: "destructive" });
+      toast({ title: t('multipleIntel.toast.loginRequired'), variant: "destructive" });
       navigate("/auth?redirect=/intelligences" + (returnTo ? `?return=${returnTo}` : ""));
       return;
     }
@@ -148,7 +150,7 @@ const MultipleIntelligences = () => {
 
       setIsSubmitted(true);
     } catch (error) {
-      toast({ title: "Something went wrong. Please try again.", variant: "destructive" });
+      toast({ title: t('multipleIntel.toast.error'), variant: "destructive" });
     } finally {
       setIsSubmitting(false);
     }
@@ -173,13 +175,13 @@ const MultipleIntelligences = () => {
               <Check className="h-8 w-8 text-accent" />
             </div>
             <h1 className="text-3xl md:text-4xl font-serif">
-              <BoldText>SAVED</BoldText>
+              <BoldText>{t('multipleIntel.success.title')}</BoldText>
             </h1>
             <p className="text-muted-foreground text-lg leading-relaxed">
-              Your Multiple Intelligences ranking has been added to your "Who I Am and Where I Am" snapshot.
+              {t('multipleIntel.success.body')}
             </p>
             <div className="p-4 bg-secondary/30 rounded-xl text-left">
-              <p className="text-sm font-semibold mb-2">Your Top 3:</p>
+              <p className="text-sm font-semibold mb-2">{t('multipleIntel.success.top3Label')}</p>
               <ol className="list-decimal list-inside space-y-1 text-muted-foreground">
                 {ranking.slice(0, 3).map((i) => (
                   <li key={i.id}>{i.name}</li>
@@ -193,12 +195,12 @@ const MultipleIntelligences = () => {
                 onClick={() => navigate("/genius-offer-intake?from=mi")}
                 className="w-full"
               >
-                <BoldText>CONTINUE TO GENIUS OFFER CREATION</BoldText>
+                <BoldText>{t('multipleIntel.success.continueGeniusOffer')}</BoldText>
               </Button>
             ) : (
               <BackButton
                 to="/game"
-                label="Back to Game"
+                label={t('multipleIntel.success.backToGame')}
                 className="mt-4"
               />
             )}
@@ -219,7 +221,7 @@ const MultipleIntelligences = () => {
         <div className="container mx-auto max-w-2xl">
           <BackButton
             to="/"
-            label={<BoldText>BACK</BoldText>}
+            label={<BoldText>{t('multipleIntel.back')}</BoldText>}
             className="text-muted-foreground hover:text-foreground transition-colors font-semibold"
           />
         </div>
@@ -229,15 +231,15 @@ const MultipleIntelligences = () => {
       <section className="py-12 px-4">
         <div className="max-w-2xl mx-auto text-center">
           <h1 className="text-3xl md:text-4xl font-serif mb-4">
-            <BoldText>MULTIPLE INTELLIGENCES</BoldText>
+            <BoldText>{t('multipleIntel.hero.title')}</BoldText>
           </h1>
-          <p className="text-xl text-muted-foreground mb-2">Quick Self-Assessment</p>
+          <p className="text-xl text-muted-foreground mb-2">{t('multipleIntel.hero.subtitle')}</p>
           <p className="text-muted-foreground mb-8">
-            A 2–3 minute drag-and-drop test to see which intelligences feel most natural to you.
+            {t('multipleIntel.hero.description')}
           </p>
           {!showAssessment && (
             <Button size="lg" onClick={() => setShowAssessment(true)}>
-              <BoldText>START THE ASSESSMENT</BoldText>
+              <BoldText>{t('multipleIntel.hero.startCta')}</BoldText>
             </Button>
           )}
         </div>
@@ -250,10 +252,10 @@ const MultipleIntelligences = () => {
             {/* Instructions */}
             <div className="text-center">
               <p className="text-muted-foreground">
-                Reorder these from <strong>most &quot;you&quot;</strong> at the top to <strong>least &quot;you&quot;</strong> at the bottom.
+                {t('multipleIntel.instructions.before')}<strong>{t('multipleIntel.instructions.mostYou')}</strong>{t('multipleIntel.instructions.middle')}<strong>{t('multipleIntel.instructions.leastYou')}</strong>{t('multipleIntel.instructions.after')}
               </p>
               <p className="text-xs text-muted-foreground mt-2">
-                Think about: how much you love using it, how naturally it comes, and how often you solve problems this way.
+                {t('multipleIntel.instructions.hint')}
               </p>
             </div>
 
@@ -277,7 +279,7 @@ const MultipleIntelligences = () => {
                   </span>
                   <div className="flex-1 min-w-0">
                     <p className="font-semibold text-sm">{intelligence.name}</p>
-                    <p className="text-xs text-muted-foreground">{intelligence.description}</p>
+                    <p className="text-xs text-muted-foreground">{t(intelligence.descriptionKey)}</p>
                   </div>
                   <div className="flex flex-col gap-1 flex-shrink-0">
                     <Button
@@ -307,12 +309,12 @@ const MultipleIntelligences = () => {
 
             {!user && (
               <p className="text-sm text-center text-muted-foreground">
-                You&apos;ll need to log in to save your results.
+                {t('multipleIntel.loginNote')}
               </p>
             )}
 
             <Button type="submit" size="lg" className="w-full" disabled={isSubmitting}>
-              <BoldText>{isSubmitting ? "SAVING..." : "SAVE MY RANKING"}</BoldText>
+              <BoldText>{isSubmitting ? t('multipleIntel.submit.saving') : t('multipleIntel.submit.save')}</BoldText>
             </Button>
           </form>
         </section>

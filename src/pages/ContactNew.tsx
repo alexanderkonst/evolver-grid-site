@@ -4,8 +4,10 @@ import { Button } from "@/components/ui/button";
 import { Mail } from "lucide-react";
 import BoldText from "@/components/BoldText";
 import BackButton from "@/components/BackButton";
+import { useTranslation } from "react-i18next";
 
 const ContactNew = () => {
+  const { t } = useTranslation();
   return (
     <div className="min-h-dvh flex flex-col">
       <Navigation />
@@ -16,7 +18,7 @@ const ContactNew = () => {
           <div className="mb-6">
             <BackButton
               to="/"
-              label={<BoldText>BACK</BoldText>}
+              label={<BoldText>{t('contact.back')}</BoldText>}
               className="text-muted-foreground hover:text-foreground transition-colors font-semibold"
             />
           </div>
@@ -26,7 +28,7 @@ const ContactNew = () => {
           <div className="container mx-auto max-w-2xl">
             <div className="text-center mb-12">
               <h1 className="text-5xl sm:text-6xl font-serif font-bold mb-4">
-                Let's Connect
+                {t('contact.heading')}
               </h1>
             </div>
 

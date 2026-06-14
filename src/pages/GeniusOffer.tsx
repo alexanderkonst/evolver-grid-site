@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -9,29 +10,31 @@ import { Button } from "@/components/ui/button";
 import { Check, ExternalLink } from "lucide-react";
 
 const GeniusOffer = () => {
+  const { t } = useTranslation();
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
   const testimonials = [
     {
-      boldLine: "This is a miracle of miracles.",
-      rest: "I'm re-reading it—brilliant! Totally badass. Other tools come at this half-baked and shallow; they've got no depth. Your approach, though, I love it. A tool that just plain works!",
+      boldLine: t('geniusOffer.testimonial1Bold'),
+      rest: t('geniusOffer.testimonial1Rest'),
       name: "Alexey"
     },
     {
-      boldLine: "I finally had language for something I'd felt my whole life.",
-      rest: "This is very valuable. I resonate with all of this. Inspires & informs BRILLIANTLY!!",
+      boldLine: t('geniusOffer.testimonial2Bold'),
+      rest: t('geniusOffer.testimonial2Rest'),
       name: "Laura"
     },
     {
-      boldLine: "I got into my Zone of Genius and launched my blockchain wellness education project.",
-      rest: "I am also grateful for this training. Obrigado!",
+      boldLine: t('geniusOffer.testimonial3Bold'),
+      rest: t('geniusOffer.testimonial3Rest'),
       name: "Simba"
     },
     {
-      boldLine: "It inspires and informs brilliantly.",
-      rest: "This was an outstanding training! I am so grateful to know my zone of genius now (and why!). Truly profound.",
+      boldLine: t('geniusOffer.testimonial4Bold'),
+      rest: t('geniusOffer.testimonial4Rest'),
       name: "Tshatiqua"
     }
   ];
@@ -46,7 +49,7 @@ const GeniusOffer = () => {
         <div className="container mx-auto max-w-3xl">
           <BackButton
             to="/"
-            label={<BoldText>BACK</BoldText>}
+            label={<BoldText>{t('geniusOffer.back')}</BoldText>}
             className="text-muted-foreground hover:text-foreground transition-colors font-semibold"
           />
         </div>
@@ -56,30 +59,30 @@ const GeniusOffer = () => {
       <section className="pt-8 pb-12 px-4">
         <div className="max-w-3xl mx-auto text-center space-y-6">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif leading-tight">
-            <BoldText>TURN YOUR GENIUS INTO ONE CLEAR OFFER</BoldText>
+            <BoldText>{t('geniusOffer.heroTitle')}</BoldText>
           </h1>
           <p className="text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto">
-            In 48 hours, I'll turn your core talents and real client wins into <strong>one simple, sellable offer</strong> you can start using immediately.
+            {t('geniusOffer.heroSubtitleBefore')}<strong>{t('geniusOffer.heroSubtitleEmphasis')}</strong>{t('geniusOffer.heroSubtitleAfter')}
           </p>
-          
+
           {/* Prominent Price */}
           <div className="py-4">
             <span className="text-4xl md:text-5xl font-serif font-bold text-accent">$111</span>
-            <span className="text-muted-foreground ml-2">USD · one-time</span>
+            <span className="text-muted-foreground ml-2">{t('geniusOffer.priceUnit')}</span>
           </div>
 
           <div className="space-y-3">
-            <Button 
-              size="lg" 
+            <Button
+              size="lg"
               className="text-lg px-8"
               onClick={() => window.open('https://buy.stripe.com/dRm9ATbMEayn8id5iUdEs0t', '_blank')}
             >
-              <BoldText>GET YOUR GENIUS OFFER</BoldText>
+              <BoldText>{t('geniusOffer.ctaButton')}</BoldText>
               <ExternalLink className="ml-2 h-5 w-5" />
             </Button>
             <p className="text-sm text-muted-foreground">
               <Link to="/genius-offer-intake" className="underline hover:text-foreground transition-colors">
-                Already paid? Start the intake here →
+                {t('geniusOffer.alreadyPaidLink')}
               </Link>
             </p>
           </div>
@@ -90,13 +93,13 @@ const GeniusOffer = () => {
       <section className="py-10 px-4 bg-secondary/30">
         <div className="max-w-3xl mx-auto">
           <h2 className="text-2xl md:text-3xl font-serif mb-6 text-center">
-            <BoldText>WHO THIS IS FOR</BoldText>
+            <BoldText>{t('geniusOffer.whoForTitle')}</BoldText>
           </h2>
           <ul className="space-y-3 max-w-2xl mx-auto">
             {[
-              "Founders and guides who already help people transform something in their life or work",
-              "People who feel \"I do many things\" and struggle to explain it in one clear sentence",
-              "Those who want a single concrete offer they can confidently share on calls, pages, and DMs",
+              t('geniusOffer.whoFor1'),
+              t('geniusOffer.whoFor2'),
+              t('geniusOffer.whoFor3'),
             ].map((item, idx) => (
               <li key={idx} className="flex items-start gap-3">
                 <Check className="h-5 w-5 text-accent mt-0.5 shrink-0" />
@@ -111,14 +114,14 @@ const GeniusOffer = () => {
       <section className="py-10 px-4">
         <div className="max-w-3xl mx-auto">
           <h2 className="text-2xl md:text-3xl font-serif mb-6 text-center">
-            <BoldText>WHAT YOU GET</BoldText>
+            <BoldText>{t('geniusOffer.whatGetTitle')}</BoldText>
           </h2>
           <ul className="space-y-3 max-w-2xl mx-auto">
             {[
-              "One clear Genius Offer sentence (what you do, for whom, to what result)",
-              "A short description of the ideal client this offer is for",
-              "A one-to-two paragraph offer description you can reuse on a page, email, or DM",
-              "Delivered within 48 hours after you submit your intake",
+              t('geniusOffer.whatGet1'),
+              t('geniusOffer.whatGet2'),
+              t('geniusOffer.whatGet3'),
+              t('geniusOffer.whatGet4'),
             ].map((item, idx) => (
               <li key={idx} className="flex items-start gap-3">
                 <Check className="h-5 w-5 text-accent mt-0.5 shrink-0" />
@@ -133,25 +136,25 @@ const GeniusOffer = () => {
       <section className="py-10 px-4 bg-secondary/30">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-2xl md:text-3xl font-serif mb-8 text-center">
-            <BoldText>HOW IT WORKS</BoldText>
+            <BoldText>{t('geniusOffer.howWorksTitle')}</BoldText>
           </h2>
 
           <div className="grid md:grid-cols-3 gap-6">
             {[
               {
                 step: "1",
-                title: "Pay $111",
-                description: "Click the button above to pay securely via Stripe.",
+                title: t('geniusOffer.step1Title'),
+                description: t('geniusOffer.step1Desc'),
               },
               {
                 step: "2",
-                title: "Answer a few questions",
-                description: "After payment, complete a short intake about your work and clients.",
+                title: t('geniusOffer.step2Title'),
+                description: t('geniusOffer.step2Desc'),
               },
               {
                 step: "3",
-                title: "Receive your Genius Offer",
-                description: "Within 48 hours, I'll send you your clear offer as a formatted document.",
+                title: t('geniusOffer.step3Title'),
+                description: t('geniusOffer.step3Desc'),
               },
             ].map((item, idx) => (
               <div key={idx} className="text-center space-y-3">
@@ -172,7 +175,7 @@ const GeniusOffer = () => {
       <section className="py-10 px-4">
         <div className="max-w-4xl mx-auto">
           <p className="text-xs uppercase  text-primary/70 text-center mb-4">
-            What people say about this work
+            {t('geniusOffer.testimonialsEyebrow')}
           </p>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mt-6">
@@ -197,26 +200,26 @@ const GeniusOffer = () => {
       <section className="py-12 px-4 bg-secondary/30">
         <div className="max-w-2xl mx-auto text-center space-y-5">
           <h2 className="text-2xl md:text-3xl font-serif">
-            <BoldText>READY TO CLARIFY YOUR OFFER?</BoldText>
+            <BoldText>{t('geniusOffer.finalCtaTitle')}</BoldText>
           </h2>
-          
+
           <div className="py-2">
             <span className="text-3xl font-serif font-bold text-accent">$111</span>
-            <span className="text-muted-foreground ml-2">USD · one-time</span>
+            <span className="text-muted-foreground ml-2">{t('geniusOffer.priceUnit')}</span>
           </div>
 
-          <Button 
-            size="lg" 
+          <Button
+            size="lg"
             className="text-lg px-8"
             onClick={() => window.open('https://buy.stripe.com/dRm9ATbMEayn8id5iUdEs0t', '_blank')}
           >
-            <BoldText>GET YOUR GENIUS OFFER</BoldText>
+            <BoldText>{t('geniusOffer.ctaButton')}</BoldText>
             <ExternalLink className="ml-2 h-5 w-5" />
           </Button>
-          
+
           <p className="text-sm text-muted-foreground">
             <Link to="/genius-offer-intake" className="underline hover:text-foreground transition-colors">
-              Already paid? Start the intake here →
+              {t('geniusOffer.alreadyPaidLink')}
             </Link>
           </p>
         </div>
