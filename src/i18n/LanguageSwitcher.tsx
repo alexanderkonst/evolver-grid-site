@@ -1,6 +1,8 @@
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Globe, Check } from "lucide-react";
 
+import { supabase } from "@/integrations/supabase/client";
 import { SUPPORTED_LANGUAGES } from "./config";
 import { buildLocalePath, LOCALE_STORAGE_KEY } from "./localeScope";
 import {
@@ -22,10 +24,10 @@ interface LanguageSwitcherProps {
  * URL (locale is a URL prefix: /ru, /es), preserving path + query + hash and
  * composing correctly with the white-label skin basename via buildLocalePath.
  *
- * Mounted once at App root (fixed top-right) so it is discoverable on every
- * surface — the funnel landing, the in-app shell, and the marketing pages.
  * The chip carries its own translucent background, so it stays legible on both
- * the dark funnel header and the light marketing pages.
+ * the dark funnel header and the light marketing pages. This is the reusable
+ * control; placement/visibility is decided by the caller (the guest-only global
+ * mount below, or the Settings "Language" row for logged-in users).
  */
 export const LanguageSwitcher = ({ className }: LanguageSwitcherProps) => {
   const { i18n, t } = useTranslation();
@@ -81,6 +83,35 @@ export const LanguageSwitcher = ({ className }: LanguageSwitcherProps) => {
       </DropdownMenuContent>
     </DropdownMenu>
   );
+};
+
+/**
+ * Global mount: the language choice is a cold-traffic decision, so the floating
+ * switcher shows ONLY to logged-out visitors (the people actually picking a
+ * language). Once signed in, the choice has persisted and the chrome stays
+ * clean — logged-in users change language from the Settings → Profile "Language"
+ * row instead. Renders nothing until the session is confirmed absent, so there
+ * is no flash for authenticated users.
+ */
+export const GlobalLanguageSwitcher = () => {
+  const [isGuest, setIsGuest] = useState(false);
+
+  useEffect(() => {
+    let mounted = true;
+    supabase.auth.getSession().then(({ data }) => {
+      if (mounted) setIsGuest(!data.session);
+    });
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_evt, session) => {
+      if (mounted) setIsGuest(!session);
+    });
+    return () => {
+      mounted = false;
+      subscription.unsubscribe();
+    };
+  }, []);
+
+  if (!isGuest) return null;
+  return <LanguageSwitcher className="fixed top-3 right-3 z-50" />;
 };
 
 export default LanguageSwitcher;

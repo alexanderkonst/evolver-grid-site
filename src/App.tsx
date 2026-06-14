@@ -6,7 +6,7 @@ import { lazy, Suspense, useEffect } from "react";
 import { BrowserRouter, Routes, Route, Navigate, Outlet, useLocation, useParams } from "react-router-dom";
 import CustomCursor from "@/components/CustomCursor";
 import SiteLogo from "@/components/SiteLogo";
-import LanguageSwitcher from "@/i18n/LanguageSwitcher";
+import { GlobalLanguageSwitcher } from "@/i18n/LanguageSwitcher";
 import RequireAuth from "@/components/RequireAuth";
 import MeGate from "@/components/MeGate";
 import RequireDeeperAccess from "@/components/RequireDeeperAccess";
@@ -371,10 +371,10 @@ const App = () => (
           {isAurumScope && <AurumScopeLock />}
           {isTechstarsScope && <TechstarsScopeLock />}
           <SiteLogo />
-          {/* Global language switcher — fixed top-right, discoverable on every
-              surface (funnel landing, in-app shell, marketing). Locale is a URL
-              prefix, so switching is a full navigation handled by the component. */}
-          <LanguageSwitcher className="fixed top-3 right-3 z-50" />
+          {/* Global language switcher — shows ONLY to logged-out visitors (the
+              cold traffic actually choosing a language); logged-in users change
+              it from Settings → Profile. Keeps deep in-app chrome uncluttered. */}
+          <GlobalLanguageSwitcher />
           <TitleManager />
           <ScrollRestoration />
           <PreviewBanner />

@@ -1514,7 +1514,9 @@
     "tabAppearance": "Apariencia",
     "footerForkLine": "Código abierto disponible. Forkéalo para ti o para tu comunidad: gratis.",
     "footerCommercialLine": "¿Vas a lo comercial? 10% de los ingresos, te quedas con tu marca.",
-    "sourceOnGithub": "Código fuente en GitHub"
+    "sourceOnGithub": "Código fuente en GitHub",
+    "languageRowTitle": "Idioma",
+    "languageRowHint": "Elige el idioma de la interfaz."
   },
   "today": {
     "toastErrorTitle": "Error",
