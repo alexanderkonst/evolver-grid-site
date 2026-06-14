@@ -1,4 +1,5 @@
 import { useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Camera } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
@@ -65,6 +66,7 @@ const ProfilePictureUpload = ({
   size = 120,
   onUpload,
 }: ProfilePictureUploadProps) => {
+  const { t } = useTranslation();
   const { toast } = useToast();
   const inputRef = useRef<HTMLInputElement | null>(null);
   const [uploading, setUploading] = useState(false);
@@ -76,7 +78,7 @@ const ProfilePictureUpload = ({
     if (!file) return;
 
     if (!file.type.startsWith("image/")) {
-      toast({ title: "Invalid file type", description: "Please upload an image.", variant: "destructive" });
+      toast({ title: t('profilePicUpload.invalidFileTitle'), description: t('profilePicUpload.invalidFileDescription'), variant: "destructive" });
       return;
     }
 
@@ -106,11 +108,11 @@ const ProfilePictureUpload = ({
       }
 
       onUpload?.(publicUrl);
-      toast({ title: "Profile picture updated" });
+      toast({ title: t('profilePicUpload.updatedTitle') });
     } catch (error: any) {
       toast({
-        title: "Upload failed",
-        description: error.message || "Unable to upload avatar.",
+        title: t('profilePicUpload.uploadFailedTitle'),
+        description: error.message || t('profilePicUpload.uploadFailedDescription'),
         variant: "destructive",
       });
     } finally {
@@ -131,7 +133,7 @@ const ProfilePictureUpload = ({
           {avatarUrl ? (
             <img
               src={avatarUrl}
-              alt="Profile avatar"
+              alt={t('profilePicUpload.avatarAlt')}
               loading="lazy"
               onError={(e) => {
                 e.currentTarget.src = "/placeholder.svg";
@@ -145,7 +147,7 @@ const ProfilePictureUpload = ({
             type="button"
             onClick={() => inputRef.current?.click()}
             className="absolute bottom-2 right-2 rounded-full bg-white/90 text-[#2c3150] p-2 shadow hover:bg-white"
-            aria-label="Upload profile picture"
+            aria-label={t('profilePicUpload.uploadAriaLabel')}
           >
             {uploading ? <span className="premium-spinner h-4 w-4" /> : <Camera className="h-4 w-4" />}
           </button>
@@ -158,7 +160,7 @@ const ProfilePictureUpload = ({
           className="hidden"
         />
         <Button variant="outline" size="sm" onClick={() => inputRef.current?.click()} disabled={uploading}>
-          {uploading ? "Uploading..." : "Change photo"}
+          {uploading ? t('profilePicUpload.uploadingButton') : t('profilePicUpload.changePhotoButton')}
         </Button>
       </div>
     </ErrorBoundary>

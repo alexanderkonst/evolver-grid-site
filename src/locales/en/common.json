@@ -4730,5 +4730,431 @@
     "startRefinement": "Start Refinement",
     "canvasTitle": "View Your Canvas",
     "canvasDescription": "See all 7 artifacts from your session"
+  },
+  "landingCarousel": {
+    "slide0": {
+      "headline": "PLANETARY OS",
+      "tagline": "Coordination infrastructure for human potential",
+      "thing0": {
+        "label": "Discover",
+        "desc": "Your unique genius"
+      },
+      "thing1": {
+        "label": "Map",
+        "desc": "Your life & assets"
+      },
+      "thing2": {
+        "label": "Connect",
+        "desc": "Your complementary people"
+      },
+      "cta": "For individuals. For communities. For Network States."
+    },
+    "slide1": {
+      "audienceTag": "For You",
+      "problem": "You know you're meant for more. You just can't name it yet.",
+      "headline": "KNOW YOURSELF.\nGROW YOURSELF.\nFIND YOUR PEOPLE.",
+      "tagline": "15 minutes to clarity. One week to direction.",
+      "thing0": {
+        "label": "Your Unique Gift",
+        "desc": "Words for what makes you, you"
+      },
+      "thing1": {
+        "label": "Your Life Map",
+        "desc": "Where you are. Where to go."
+      },
+      "thing2": {
+        "label": "Your People",
+        "desc": "Matched by complementary genius"
+      },
+      "cta": "There's always a next move. We'll tell you what it is."
+    },
+    "slide2": {
+      "audienceTag": "For Community Leaders",
+      "problem": "You can't coordinate what you can't see.",
+      "headline": "SEE EVERY TALENT.\nMATCH EVERY NEED.\nSCALE YOUR ATTENTION.",
+      "tagline": "The operating system your community is missing.",
+      "thing0": {
+        "label": "Talent Visibility",
+        "desc": "Every member's genius, mapped"
+      },
+      "thing1": {
+        "label": "Auto-Matching",
+        "desc": "AI connects complementary people"
+      },
+      "thing2": {
+        "label": "Growth Path",
+        "desc": "61 modules keep members engaged"
+      },
+      "cta": "Your community. Fully coordinated. Finally."
+    },
+    "slide3": {
+      "audienceTag": "For Network States",
+      "problem": "Network States need citizens who know their value",
+      "headline": "THE MEMBER PORTAL\nFOR NETWORK STATES",
+      "tagline": "AI-powered clarity. Human connection. Daily action.",
+      "thing0": {
+        "label": "Legible Citizens",
+        "desc": "Every talent visible, searchable"
+      },
+      "thing1": {
+        "label": "Asset Registry",
+        "desc": "Skills, network, resources mapped"
+      },
+      "thing2": {
+        "label": "Coordination Layer",
+        "desc": "Right people find right projects"
+      },
+      "cta": "Working prototype. Ready to deploy."
+    },
+    "slide4": {
+      "audienceTag": "For Venture Studios",
+      "problem": "You're betting on founders you don't fully understand",
+      "headline": "SEE FOUNDER DNA\nBEFORE YOU INVEST",
+      "tagline": "Genius profiles. Co-founder matching. Team composition.",
+      "thing0": {
+        "label": "Founder Profiles",
+        "desc": "Zone of Genius for every applicant"
+      },
+      "thing1": {
+        "label": "Gap Analysis",
+        "desc": "What's missing in the team?"
+      },
+      "thing2": {
+        "label": "Co-Founder Match",
+        "desc": "Find the complementary genius"
+      },
+      "cta": "De-risk your bets. Match your founders."
+    },
+    "slide5": {
+      "audienceTag": "For Regenerative Communities",
+      "problem": "Your community has everything it needs. It just can't see it.",
+      "headline": "MAP YOUR COMMONS.\nMATCH NEEDS TO GIFTS.",
+      "tagline": "Every skill. Every resource. Every connection. Visible.",
+      "thing0": {
+        "label": "Gift Mapping",
+        "desc": "What each member brings"
+      },
+      "thing1": {
+        "label": "Asset Commons",
+        "desc": "Tools, land, skills, networks"
+      },
+      "thing2": {
+        "label": "Need ↔ Offer",
+        "desc": "Automatic matching, gift economy"
+      },
+      "cta": "Regeneration starts with coordination."
+    },
+    "slide6": {
+      "audienceTag": "For DAOs & Web3",
+      "problem": "You have token holders. You need contributors.",
+      "headline": "FROM WALLETS\nTO WORKING GROUPS",
+      "tagline": "Know who should build what. Together.",
+      "thing0": {
+        "label": "Contributor Profiles",
+        "desc": "Beyond Discord roles"
+      },
+      "thing1": {
+        "label": "Skill Staking",
+        "desc": "Commit talents, not just tokens"
+      },
+      "thing2": {
+        "label": "Squad Formation",
+        "desc": "Auto-compose balanced teams"
+      },
+      "cta": "Coordination infrastructure for the decentralized age."
+    },
+    "slide7": {
+      "audienceTag": "For Conscious Communities",
+      "problem": "Awakening is personal. But the work is collective.",
+      "headline": "GROWTH AS INFRASTRUCTURE.\nCONNECTION AS PRACTICE.",
+      "tagline": "A shared developmental path for your community.",
+      "thing0": {
+        "label": "Inner Journey",
+        "desc": "Body, Emotions, Mind, Spirit, Genius"
+      },
+      "thing1": {
+        "label": "Shared Path",
+        "desc": "61 modules, one community"
+      },
+      "thing2": {
+        "label": "Soul Matches",
+        "desc": "Find your mirrors, find your complements"
+      },
+      "cta": "The portal for communities that grow together."
+    },
+    "slide8": {
+      "headline": "READY TO SEE\nYOUR GENIUS?",
+      "tagline": "15 minutes. Free. Forever yours."
+    },
+    "cta": {
+      "discover": "Discover My Genius",
+      "deploy": "Or: Deploy for your community →"
+    },
+    "menu": {
+      "home": "Home",
+      "individuals": "For Individuals",
+      "communityLeaders": "For Community Leaders",
+      "networkStates": "For Network States",
+      "ventureStudios": "For Venture Studios",
+      "regenCommunities": "For Regen Communities",
+      "daosWeb3": "For DAOs & Web3",
+      "consciousCommunities": "For Conscious Communities",
+      "getStarted": "Get Started"
+    }
+  },
+  "qolRecipe": {
+    "loading": "Loading growth recipe...",
+    "title": "Your Growth Recipe",
+    "subhead": "Optimal development sequence for",
+    "focus": "Focus",
+    "startImproving": "Start Improving",
+    "path": {
+      "uniqueness": "Uniqueness",
+      "mind": "Mind",
+      "spirit": "Spirit",
+      "emotions": "Emotions",
+      "body": "Body"
+    },
+    "domain": {
+      "wealth": "💰 Wealth",
+      "health": "💪 Health",
+      "happiness": "😊 Happiness",
+      "love": "❤️ Love",
+      "impact": "🌍 Impact",
+      "growth": "🌱 Growth",
+      "socialTies": "🤝 Social",
+      "home": "🏠 Home"
+    },
+    "wealth": {
+      "uniqueness": "Monetize your genius and signature value.",
+      "mind": "Rewire money beliefs and sharpen business thinking.",
+      "spirit": "Anchor wealth in service and aligned contribution.",
+      "emotions": "Clear fear or scarcity patterns around money.",
+      "body": "Build the energy to execute and sustain momentum."
+    },
+    "health": {
+      "body": "Strengthen the physical foundation first.",
+      "spirit": "Reconnect to meaning, purpose, and self-care.",
+      "emotions": "Release stress cycles and emotional eating.",
+      "mind": "Shift health beliefs and mental habits.",
+      "uniqueness": "Express health through your authentic rhythm."
+    },
+    "happiness": {
+      "emotions": "Build resilience and emotional regulation.",
+      "spirit": "Reconnect to joy, meaning, and inner peace.",
+      "mind": "Reframe thought loops and mental narratives.",
+      "body": "Stabilize energy through sleep, movement, and nourishment.",
+      "uniqueness": "Create happiness through your natural gifts."
+    },
+    "love": {
+      "emotions": "Heal patterns that block intimacy and trust.",
+      "spirit": "Lead with compassion, forgiveness, and heart.",
+      "mind": "Learn new relationship skills and communication.",
+      "body": "Ground connection through presence and embodiment.",
+      "uniqueness": "Show up as your truest self in love."
+    },
+    "impact": {
+      "uniqueness": "Lead with what only you can build.",
+      "spirit": "Anchor impact in mission and service.",
+      "mind": "Strengthen strategy, systems, and execution.",
+      "emotions": "Build courage and emotional leadership.",
+      "body": "Sustain impact with strong energy."
+    },
+    "growth": {
+      "spirit": "Deepen self-connection and purpose.",
+      "mind": "Expand learning and self-awareness.",
+      "emotions": "Integrate shadow work and emotional clarity.",
+      "uniqueness": "Evolve by expressing your gifts.",
+      "body": "Ground growth with daily practices."
+    },
+    "socialTies": {
+      "emotions": "Build trust, openness, and empathy.",
+      "spirit": "Show up in community with purpose.",
+      "mind": "Learn collaboration and social skills.",
+      "body": "Bring presence and consistency to relationships.",
+      "uniqueness": "Contribute your distinct gifts to the group."
+    },
+    "home": {
+      "body": "Create a stable physical foundation and routines.",
+      "emotions": "Make home a place of calm and safety.",
+      "mind": "Design systems that keep things orderly.",
+      "spirit": "Infuse your space with meaning and beauty.",
+      "uniqueness": "Shape home to reflect who you are."
+    }
+  },
+  "publicPageEditor": {
+    "header": {
+      "title": "Your Public Page",
+      "subtitle": "Customize how you appear to others and manage your creator storefront."
+    },
+    "fields": {
+      "displayName": {
+        "label": "Display Name",
+        "placeholder": "Your name"
+      },
+      "title": {
+        "label": "Title / Role",
+        "placeholder": "e.g. Integral Coach, Transformation Guide..."
+      },
+      "bio": {
+        "label": "Bio",
+        "placeholder": "Tell people about yourself and what you offer..."
+      },
+      "brandColor": {
+        "label": "Brand Color"
+      },
+      "slug": {
+        "label": "Page URL"
+      }
+    },
+    "publicToggle": {
+      "title": "Make Page Public",
+      "description": "Others can view your page at {{url}}"
+    },
+    "actions": {
+      "save": "Save Changes",
+      "preview": "Preview"
+    },
+    "tipNote": {
+      "label": "Tip:",
+      "before": "Add offers to your page from the",
+      "linkText": "Genius Offer",
+      "after": "module. They'll automatically appear on your public page."
+    },
+    "comingSoonNote": {
+      "label": "Note:",
+      "body": "Public page data is currently saved locally. Cloud persistence will be added when the database schema is extended."
+    },
+    "toast": {
+      "displayNameRequired": {
+        "title": "Display name required",
+        "description": "Please enter a name for your public page."
+      },
+      "slugRequired": {
+        "title": "URL slug required",
+        "description": "Please enter a URL for your public page."
+      },
+      "saved": {
+        "title": "Saved!",
+        "description": "Your page settings have been saved.",
+        "descriptionPublic": "Your page settings are saved. (Note: DB persistence coming soon)"
+      },
+      "error": {
+        "title": "Error",
+        "description": "Could not save your page. Please try again."
+      }
+    }
+  },
+  "createEvent": {
+    "toast": {
+      "missingFields": {
+        "title": "Missing fields",
+        "description": "Please enter a title and date/time."
+      },
+      "created": {
+        "title": "Event created!",
+        "description": "Your event has been created successfully."
+      },
+      "error": {
+        "title": "Error",
+        "description": "Failed to create event. Please try again."
+      }
+    },
+    "auth": {
+      "heading": "Sign in to create events",
+      "body": "You need an account to publish events for the community.",
+      "signIn": "Sign in",
+      "backToEvents": "Back to events"
+    },
+    "header": {
+      "title": "Create Event",
+      "subtitle": "Share a gathering with the community."
+    },
+    "fields": {
+      "title": {
+        "label": "Title *",
+        "placeholder": "Event title"
+      },
+      "description": {
+        "label": "Description",
+        "placeholder": "What's this event about?"
+      },
+      "dateTime": {
+        "label": "Date & time *"
+      },
+      "location": {
+        "label": "Location",
+        "placeholder": "Where will it take place?"
+      },
+      "community": {
+        "label": "Community",
+        "none": "No community"
+      },
+      "visibility": {
+        "label": "Visibility",
+        "placeholder": "Who can see this?",
+        "public": "Public — Anyone",
+        "community": "Community — Members only",
+        "private": "Private — Invite only",
+        "team": "Team — My team only"
+      },
+      "image": {
+        "label": "Image URL"
+      }
+    },
+    "actions": {
+      "cancel": "Cancel",
+      "creating": "Creating...",
+      "submit": "Create Event"
+    }
+  },
+  "profilePicUpload": {
+    "invalidFileTitle": "Invalid file type",
+    "invalidFileDescription": "Please upload an image.",
+    "updatedTitle": "Profile picture updated",
+    "uploadFailedTitle": "Upload failed",
+    "uploadFailedDescription": "Unable to upload avatar.",
+    "avatarAlt": "Profile avatar",
+    "uploadAriaLabel": "Upload profile picture",
+    "uploadingButton": "Uploading...",
+    "changePhotoButton": "Change photo"
+  },
+  "dailyLoopLayout": {
+    "me": {
+      "title": "Me",
+      "welcomeBack": "Welcome back",
+      "playerFallback": "Player",
+      "levelXp": "Level {{level}} · {{xp}} XP",
+      "streak": "{{count}}-day streak"
+    },
+    "myLife": {
+      "title": "My Life",
+      "domainFocus": "{{domain}} focus",
+      "empty": "No QoL focus yet. Complete your snapshot to unlock guidance."
+    },
+    "nextMove": {
+      "title": "My Next Move",
+      "loading": "Finding your next move...",
+      "errorTitle": "We hit a snag.",
+      "tryAgain": "Try again",
+      "actionTagFallback": "Action",
+      "whyPrefix": "Why:",
+      "alternatives": "Alternatives",
+      "doItNow": "Do it now",
+      "freedomMode": "Freedom Mode",
+      "emptyTitle": "No recommendation yet.",
+      "emptyBody": "Open Freedom Mode to choose a quick win while we learn more about you.",
+      "openFreedomMode": "Open Freedom Mode"
+    }
+  },
+  "myLifeSummary": {
+    "title": "My Life",
+    "focusLabel": "Focus:",
+    "sentimentThriving": "Thriving",
+    "sentimentBalanced": "Balanced",
+    "sentimentGrowing": "Growing",
+    "sentimentBuilding": "Building foundations",
+    "emptyState": "No life map yet",
+    "seeDetails": "See Details"
   }
 }

@@ -52,7 +52,9 @@ This is **not a brochure site that needs its buttons translated.** It is an AI-n
 | L3 server — output-language directive injected into 7 generation edge functions (`_shared/language.ts`) | ✅ 2026-06-14 | backward-compatible, deno-clean; inert until client passes `target_language` |
 | L3 client — `target_language` wired at all 6 generation sites + `output_language` stamped at 4 persist sites + types.ts column | ✅ 2026-06-14 | tsc clean; **RU generation live end-to-end** |
 | 2o — 12 more components + RU (GameShell nav, onboarding tour, profile/business, celebration, marketplace; 230 keys) | ✅ 2026-06-14 | build green (14.3s) |
-| 2p+ — data hubs (missions 1166, talents…) · holomap/admin · `SPACE_SECTIONS`/UBB rail · landmines (PDF/charts/15 emails) · reveal calibration · seeded · SEO · full ES catalog | ⏳ | the bulk remains |
+| 2p — last user-facing surfaces + RU (LandingPageCarousel, QoL recipe, CreateEvent, profile upload, DailyLoop/MyLife domain-wired; 254 keys). IntegralTheory page is self-bilingual. | ✅ 2026-06-14 | build green (12.4s). **User-facing RU UI coverage essentially complete.** |
+| ES catalog — bulk-translate the ~3,760 EN keys → es (the "language 2 is cheap" pass) | ⏳ next | |
+| 2q+ — **data hubs** (missions catalog ~2,300 strings + outcomes/challenges/focusAreas + talents/growthPaths/skillTrees/playbookSteps/assets) · landmines (15 emails/charts/PDF) · holomap/admin (deferred) · seeded · SEO · reveal calibration | ⏳ | reference-heavy bulk |
 
 **Running tally (2026-06-14): ~3,510 keys across ~134 files, 12 production builds green. Layer 3 LIVE end-to-end (RU generation). ES catalog seeded with official QoL.** Most user-facing UI chrome (funnel + shell + post-reveal + profile/settings + core loop + offers + onboarding + events) reads Russian. Phase 0b: calendar locale + preferred_language sync done; output_language migration written; Zod errorMap + format sweep pending. Not started: data hubs · landmines (PDF/charts/emails) · Layer-3 generation wiring · seeded content · SEO · Spanish.
 

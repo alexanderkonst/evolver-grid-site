@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 /**
  * Wabi-sabi + Apple aesthetic landing page
@@ -14,119 +15,120 @@ const LandingPage = () => {
     const [isTransitioning, setIsTransitioning] = useState(false);
     const autoAdvanceRef = useRef<NodeJS.Timeout | null>(null);
     const navigate = useNavigate();
+    const { t } = useTranslation();
     const totalSlides = 9;
 
     const slides = [
         {
             audienceTag: null,
             problem: null,
-            headline: "PLANETARY OS",
+            headline: t("landingCarousel.slide0.headline"),
             headlineHero: true,
-            tagline: "Coordination infrastructure for human potential",
+            tagline: t("landingCarousel.slide0.tagline"),
             things: [
-                { icon: "◎", label: "Discover", desc: "Your unique genius" },
-                { icon: "⬡", label: "Map", desc: "Your life & assets" },
-                { icon: "∞", label: "Connect", desc: "Your complementary people" },
+                { icon: "◎", label: t("landingCarousel.slide0.thing0.label"), desc: t("landingCarousel.slide0.thing0.desc") },
+                { icon: "⬡", label: t("landingCarousel.slide0.thing1.label"), desc: t("landingCarousel.slide0.thing1.desc") },
+                { icon: "∞", label: t("landingCarousel.slide0.thing2.label"), desc: t("landingCarousel.slide0.thing2.desc") },
             ],
-            cta: "For individuals. For communities. For Network States.",
+            cta: t("landingCarousel.slide0.cta"),
             gradient: "from-[#8460ea] via-[#a4a3d0] to-[#a7cbd4]",
         },
         {
-            audienceTag: "For You",
-            problem: "You know you're meant for more. You just can't name it yet.",
-            headline: "KNOW YOURSELF.\nGROW YOURSELF.\nFIND YOUR PEOPLE.",
-            tagline: "15 minutes to clarity. One week to direction.",
+            audienceTag: t("landingCarousel.slide1.audienceTag"),
+            problem: t("landingCarousel.slide1.problem"),
+            headline: t("landingCarousel.slide1.headline"),
+            tagline: t("landingCarousel.slide1.tagline"),
             things: [
-                { icon: "◎", label: "Your Unique Gift", desc: "Words for what makes you, you" },
-                { icon: "◈", label: "Your Life Map", desc: "Where you are. Where to go." },
-                { icon: "∞", label: "Your People", desc: "Matched by complementary genius" },
+                { icon: "◎", label: t("landingCarousel.slide1.thing0.label"), desc: t("landingCarousel.slide1.thing0.desc") },
+                { icon: "◈", label: t("landingCarousel.slide1.thing1.label"), desc: t("landingCarousel.slide1.thing1.desc") },
+                { icon: "∞", label: t("landingCarousel.slide1.thing2.label"), desc: t("landingCarousel.slide1.thing2.desc") },
             ],
-            cta: "There's always a next move. We'll tell you what it is.",
+            cta: t("landingCarousel.slide1.cta"),
             gradient: "from-[#c8b7d8] via-[#cea4ae] to-[#cec9b0]",
         },
         {
-            audienceTag: "For Community Leaders",
-            problem: "You can't coordinate what you can't see.",
-            headline: "SEE EVERY TALENT.\nMATCH EVERY NEED.\nSCALE YOUR ATTENTION.",
-            tagline: "The operating system your community is missing.",
+            audienceTag: t("landingCarousel.slide2.audienceTag"),
+            problem: t("landingCarousel.slide2.problem"),
+            headline: t("landingCarousel.slide2.headline"),
+            tagline: t("landingCarousel.slide2.tagline"),
             things: [
-                { icon: "◎", label: "Talent Visibility", desc: "Every member's genius, mapped" },
-                { icon: "⬡", label: "Auto-Matching", desc: "AI connects complementary people" },
-                { icon: "↑", label: "Growth Path", desc: "61 modules keep members engaged" },
+                { icon: "◎", label: t("landingCarousel.slide2.thing0.label"), desc: t("landingCarousel.slide2.thing0.desc") },
+                { icon: "⬡", label: t("landingCarousel.slide2.thing1.label"), desc: t("landingCarousel.slide2.thing1.desc") },
+                { icon: "↑", label: t("landingCarousel.slide2.thing2.label"), desc: t("landingCarousel.slide2.thing2.desc") },
             ],
-            cta: "Your community. Fully coordinated. Finally.",
+            cta: t("landingCarousel.slide2.cta"),
             gradient: "from-[#a7ccce] via-[#b1c9b6] to-[#cec9b0]",
         },
         {
-            audienceTag: "For Network States",
-            problem: "Network States need citizens who know their value",
-            headline: "THE MEMBER PORTAL\nFOR NETWORK STATES",
-            tagline: "AI-powered clarity. Human connection. Daily action.",
+            audienceTag: t("landingCarousel.slide3.audienceTag"),
+            problem: t("landingCarousel.slide3.problem"),
+            headline: t("landingCarousel.slide3.headline"),
+            tagline: t("landingCarousel.slide3.tagline"),
             things: [
-                { icon: "◎", label: "Legible Citizens", desc: "Every talent visible, searchable" },
-                { icon: "⬡", label: "Asset Registry", desc: "Skills, network, resources mapped" },
-                { icon: "∞", label: "Coordination Layer", desc: "Right people find right projects" },
+                { icon: "◎", label: t("landingCarousel.slide3.thing0.label"), desc: t("landingCarousel.slide3.thing0.desc") },
+                { icon: "⬡", label: t("landingCarousel.slide3.thing1.label"), desc: t("landingCarousel.slide3.thing1.desc") },
+                { icon: "∞", label: t("landingCarousel.slide3.thing2.label"), desc: t("landingCarousel.slide3.thing2.desc") },
             ],
-            cta: "Working prototype. Ready to deploy.",
+            cta: t("landingCarousel.slide3.cta"),
             gradient: "from-[#1e4374] via-[#29549f] to-[#6894d0]",
         },
         {
-            audienceTag: "For Venture Studios",
-            problem: "You're betting on founders you don't fully understand",
-            headline: "SEE FOUNDER DNA\nBEFORE YOU INVEST",
-            tagline: "Genius profiles. Co-founder matching. Team composition.",
+            audienceTag: t("landingCarousel.slide4.audienceTag"),
+            problem: t("landingCarousel.slide4.problem"),
+            headline: t("landingCarousel.slide4.headline"),
+            tagline: t("landingCarousel.slide4.tagline"),
             things: [
-                { icon: "◎", label: "Founder Profiles", desc: "Zone of Genius for every applicant" },
-                { icon: "⚡", label: "Gap Analysis", desc: "What's missing in the team?" },
-                { icon: "∞", label: "Co-Founder Match", desc: "Find the complementary genius" },
+                { icon: "◎", label: t("landingCarousel.slide4.thing0.label"), desc: t("landingCarousel.slide4.thing0.desc") },
+                { icon: "⚡", label: t("landingCarousel.slide4.thing1.label"), desc: t("landingCarousel.slide4.thing1.desc") },
+                { icon: "∞", label: t("landingCarousel.slide4.thing2.label"), desc: t("landingCarousel.slide4.thing2.desc") },
             ],
-            cta: "De-risk your bets. Match your founders.",
+            cta: t("landingCarousel.slide4.cta"),
             gradient: "from-[#2c3150] via-[#342c48] to-[#8460ea]",
         },
         {
-            audienceTag: "For Regenerative Communities",
-            problem: "Your community has everything it needs. It just can't see it.",
-            headline: "MAP YOUR COMMONS.\nMATCH NEEDS TO GIFTS.",
-            tagline: "Every skill. Every resource. Every connection. Visible.",
+            audienceTag: t("landingCarousel.slide5.audienceTag"),
+            problem: t("landingCarousel.slide5.problem"),
+            headline: t("landingCarousel.slide5.headline"),
+            tagline: t("landingCarousel.slide5.tagline"),
             things: [
-                { icon: "◎", label: "Gift Mapping", desc: "What each member brings" },
-                { icon: "⬡", label: "Asset Commons", desc: "Tools, land, skills, networks" },
-                { icon: "∞", label: "Need ↔ Offer", desc: "Automatic matching, gift economy" },
+                { icon: "◎", label: t("landingCarousel.slide5.thing0.label"), desc: t("landingCarousel.slide5.thing0.desc") },
+                { icon: "⬡", label: t("landingCarousel.slide5.thing1.label"), desc: t("landingCarousel.slide5.thing1.desc") },
+                { icon: "∞", label: t("landingCarousel.slide5.thing2.label"), desc: t("landingCarousel.slide5.thing2.desc") },
             ],
-            cta: "Regeneration starts with coordination.",
+            cta: t("landingCarousel.slide5.cta"),
             gradient: "from-[#b1c9b6] via-[#a7cbd4] to-[#e7e9e5]",
         },
         {
-            audienceTag: "For DAOs & Web3",
-            problem: "You have token holders. You need contributors.",
-            headline: "FROM WALLETS\nTO WORKING GROUPS",
-            tagline: "Know who should build what. Together.",
+            audienceTag: t("landingCarousel.slide6.audienceTag"),
+            problem: t("landingCarousel.slide6.problem"),
+            headline: t("landingCarousel.slide6.headline"),
+            tagline: t("landingCarousel.slide6.tagline"),
             things: [
-                { icon: "◎", label: "Contributor Profiles", desc: "Beyond Discord roles" },
-                { icon: "⬡", label: "Skill Staking", desc: "Commit talents, not just tokens" },
-                { icon: "∞", label: "Squad Formation", desc: "Auto-compose balanced teams" },
+                { icon: "◎", label: t("landingCarousel.slide6.thing0.label"), desc: t("landingCarousel.slide6.thing0.desc") },
+                { icon: "⬡", label: t("landingCarousel.slide6.thing1.label"), desc: t("landingCarousel.slide6.thing1.desc") },
+                { icon: "∞", label: t("landingCarousel.slide6.thing2.label"), desc: t("landingCarousel.slide6.thing2.desc") },
             ],
-            cta: "Coordination infrastructure for the decentralized age.",
+            cta: t("landingCarousel.slide6.cta"),
             gradient: "from-[#6894d0] via-[#a4a3d0] to-[#c2b9e1]",
         },
         {
-            audienceTag: "For Conscious Communities",
-            problem: "Awakening is personal. But the work is collective.",
-            headline: "GROWTH AS INFRASTRUCTURE.\nCONNECTION AS PRACTICE.",
-            tagline: "A shared developmental path for your community.",
+            audienceTag: t("landingCarousel.slide7.audienceTag"),
+            problem: t("landingCarousel.slide7.problem"),
+            headline: t("landingCarousel.slide7.headline"),
+            tagline: t("landingCarousel.slide7.tagline"),
             things: [
-                { icon: "◎", label: "Inner Journey", desc: "Body, Emotions, Mind, Spirit, Genius" },
-                { icon: "◈", label: "Shared Path", desc: "61 modules, one community" },
-                { icon: "∞", label: "Soul Matches", desc: "Find your mirrors, find your complements" },
+                { icon: "◎", label: t("landingCarousel.slide7.thing0.label"), desc: t("landingCarousel.slide7.thing0.desc") },
+                { icon: "◈", label: t("landingCarousel.slide7.thing1.label"), desc: t("landingCarousel.slide7.thing1.desc") },
+                { icon: "∞", label: t("landingCarousel.slide7.thing2.label"), desc: t("landingCarousel.slide7.thing2.desc") },
             ],
-            cta: "The portal for communities that grow together.",
+            cta: t("landingCarousel.slide7.cta"),
             gradient: "from-[#cdaed2] via-[#c8b7d8] to-[#a4a3d0]",
         },
         {
             audienceTag: null,
             problem: null,
-            headline: "READY TO SEE\nYOUR GENIUS?",
-            tagline: "15 minutes. Free. Forever yours.",
+            headline: t("landingCarousel.slide8.headline"),
+            tagline: t("landingCarousel.slide8.tagline"),
             things: null,
             cta: null,
             isCTA: true,
@@ -135,9 +137,15 @@ const LandingPage = () => {
     ];
 
     const menuItems = [
-        "Home", "For Individuals", "For Community Leaders", "For Network States",
-        "For Venture Studios", "For Regen Communities", "For DAOs & Web3",
-        "For Conscious Communities", "Get Started",
+        t("landingCarousel.menu.home"),
+        t("landingCarousel.menu.individuals"),
+        t("landingCarousel.menu.communityLeaders"),
+        t("landingCarousel.menu.networkStates"),
+        t("landingCarousel.menu.ventureStudios"),
+        t("landingCarousel.menu.regenCommunities"),
+        t("landingCarousel.menu.daosWeb3"),
+        t("landingCarousel.menu.consciousCommunities"),
+        t("landingCarousel.menu.getStarted"),
     ];
 
     const changeSlide = useCallback((newSlide: number) => {
@@ -258,7 +266,7 @@ const LandingPage = () => {
                     {!slide.isCTA && !slide.headlineHero && (
                         <button onClick={() => navigate("/start")}
                             className={`mb-8 inline-block px-10 py-4 text-base font-semibold rounded-2xl cursor-pointer transition-all duration-300 hover:-translate-y-1 active:scale-95 ${isDarkSlide ? "bg-white/20 text-white hover:bg-white/30 hover:shadow-[0_20px_60px_rgba(255,255,255,0.3)]" : "bg-[#29549f] text-white hover:bg-[#1e4374] hover:shadow-[0_20px_60px_rgba(41,84,159,0.4)]"}`}>
-                            Discover My Genius
+                            {t("landingCarousel.cta.discover")}
                         </button>
                     )}
 
@@ -266,7 +274,7 @@ const LandingPage = () => {
                     {slide.headlineHero && (
                         <button onClick={() => navigate("/start")}
                             className="mb-8 inline-block px-10 py-4 text-base font-semibold text-white bg-[#29549f] rounded-2xl cursor-pointer transition-all duration-300 hover:bg-[#1e4374] hover:-translate-y-1 hover:shadow-[0_20px_60px_rgba(41,84,159,0.4)] active:scale-95">
-                            Discover My Genius
+                            {t("landingCarousel.cta.discover")}
                         </button>
                     )}
 
@@ -295,11 +303,11 @@ const LandingPage = () => {
                         <div className="mt-6 animate-fade-in">
                             <button onClick={() => navigate("/start")}
                                 className="inline-block px-10 py-4 text-base font-semibold text-white bg-[#29549f] rounded-2xl cursor-pointer transition-all duration-300 hover:bg-[#1e4374] hover:-translate-y-1 hover:shadow-[0_20px_60px_rgba(41,84,159,0.4)] active:scale-95">
-                                Discover My Genius
+                                {t("landingCarousel.cta.discover")}
                             </button>
                             <br />
                             <button onClick={() => navigate("/contact")} className="inline-block mt-5 text-sm text-[#2c3150]/60 hover:text-[#29549f] transition-colors">
-                                Or: Deploy for your community →
+                                {t("landingCarousel.cta.deploy")}
                             </button>
                         </div>
                     )}

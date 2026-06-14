@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { Check, ExternalLink, Palette } from "lucide-react";
 import { PremiumLoader } from "@/components/ui/PremiumLoader";
 import { Button } from "@/components/ui/button";
@@ -35,6 +36,7 @@ interface PublicPageData {
 const PublicPageEditor = () => {
     const navigate = useNavigate();
     const { toast } = useToast();
+    const { t } = useTranslation();
 
     const [isLoading, setIsLoading] = useState(true);
     const [isSaving, setIsSaving] = useState(false);
@@ -98,8 +100,8 @@ const PublicPageEditor = () => {
     const handleSave = () => {
         if (!displayName.trim()) {
             toast({
-                title: "Display name required",
-                description: "Please enter a name for your public page.",
+                title: t('publicPageEditor.toast.displayNameRequired.title'),
+                description: t('publicPageEditor.toast.displayNameRequired.description'),
                 variant: "destructive"
             });
             return;
@@ -107,8 +109,8 @@ const PublicPageEditor = () => {
 
         if (!slug.trim()) {
             toast({
-                title: "URL slug required",
-                description: "Please enter a URL for your public page.",
+                title: t('publicPageEditor.toast.slugRequired.title'),
+                description: t('publicPageEditor.toast.slugRequired.description'),
                 variant: "destructive"
             });
             return;
@@ -128,15 +130,15 @@ const PublicPageEditor = () => {
             localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
 
             toast({
-                title: "Saved!",
+                title: t('publicPageEditor.toast.saved.title'),
                 description: isPublic
-                    ? `Your page settings are saved. (Note: DB persistence coming soon)`
-                    : "Your page settings have been saved.",
+                    ? t('publicPageEditor.toast.saved.descriptionPublic')
+                    : t('publicPageEditor.toast.saved.description'),
             });
         } catch (error) {
             toast({
-                title: "Error",
-                description: "Could not save your page. Please try again.",
+                title: t('publicPageEditor.toast.error.title'),
+                description: t('publicPageEditor.toast.error.description'),
                 variant: "destructive"
             });
         } finally {
@@ -159,9 +161,9 @@ const PublicPageEditor = () => {
             <div className="p-4 lg:p-6 max-w-2xl mx-auto">
                 {/* Header */}
                 <div className="mb-8">
-                    <h1 className="text-2xl font-bold text-[#2c3150] mb-2">Your Public Page</h1>
+                    <h1 className="text-2xl font-bold text-[#2c3150] mb-2">{t('publicPageEditor.header.title')}</h1>
                     <p className="text-[rgba(44,49,80,0.7)]">
-                        Customize how you appear to others and manage your creator storefront.
+                        {t('publicPageEditor.header.subtitle')}
                     </p>
                 </div>
 
@@ -175,36 +177,36 @@ const PublicPageEditor = () => {
                 <div className="space-y-6">
                     {/* Display Name */}
                     <div>
-                        <Label htmlFor="displayName">Display Name</Label>
+                        <Label htmlFor="displayName">{t('publicPageEditor.fields.displayName.label')}</Label>
                         <Input
                             id="displayName"
                             value={displayName}
                             onChange={(e) => handleDisplayNameChange(e.target.value)}
-                            placeholder="Your name"
+                            placeholder={t('publicPageEditor.fields.displayName.placeholder')}
                             className="mt-1"
                         />
                     </div>
 
                     {/* Title / Role */}
                     <div>
-                        <Label htmlFor="title">Title / Role</Label>
+                        <Label htmlFor="title">{t('publicPageEditor.fields.title.label')}</Label>
                         <Input
                             id="title"
                             value={title}
                             onChange={(e) => setTitle(e.target.value)}
-                            placeholder="e.g. Integral Coach, Transformation Guide..."
+                            placeholder={t('publicPageEditor.fields.title.placeholder')}
                             className="mt-1"
                         />
                     </div>
 
                     {/* Bio */}
                     <div>
-                        <Label htmlFor="bio">Bio</Label>
+                        <Label htmlFor="bio">{t('publicPageEditor.fields.bio.label')}</Label>
                         <Textarea
                             id="bio"
                             value={bio}
                             onChange={(e) => setBio(e.target.value)}
-                            placeholder="Tell people about yourself and what you offer..."
+                            placeholder={t('publicPageEditor.fields.bio.placeholder')}
                             rows={3}
                             className="mt-1"
                         />
@@ -214,7 +216,7 @@ const PublicPageEditor = () => {
                     <div>
                         <Label className="flex items-center gap-2">
                             <Palette className="w-4 h-4" />
-                            Brand Color
+                            {t('publicPageEditor.fields.brandColor.label')}
                         </Label>
                         <div className="flex items-center gap-2 mt-2">
                             {PRESET_COLORS.map((color) => (
@@ -239,7 +241,7 @@ const PublicPageEditor = () => {
 
                     {/* URL Slug */}
                     <div>
-                        <Label htmlFor="slug">Page URL</Label>
+                        <Label htmlFor="slug">{t('publicPageEditor.fields.slug.label')}</Label>
                         <div className="flex items-center gap-2 mt-1">
                             <Input
                                 id="slug"
@@ -254,9 +256,9 @@ const PublicPageEditor = () => {
                     {/* Public Toggle */}
                     <div className="flex items-center justify-between rounded-lg border border-[#a4a3d0]/20 p-4">
                         <div>
-                            <div className="font-medium text-[#2c3150]">Make Page Public</div>
+                            <div className="font-medium text-[#2c3150]">{t('publicPageEditor.publicToggle.title')}</div>
                             <div className="text-sm text-[#2c3150]/60">
-                                Others can view your page at /p/{slug || "your-slug"}
+                                {t('publicPageEditor.publicToggle.description', { url: `/p/${slug || "your-slug"}` })}
                             </div>
                         </div>
                         <button
@@ -281,7 +283,7 @@ const PublicPageEditor = () => {
                             ) : (
                                 <Check className="w-4 h-4 mr-2" />
                             )}
-                            Save Changes
+                            {t('publicPageEditor.actions.save')}
                         </Button>
                         {isPublic && slug && (
                             <Button
@@ -289,7 +291,7 @@ const PublicPageEditor = () => {
                                 onClick={() => window.open(`/p/${slug}`, "_blank")}
                             >
                                 <ExternalLink className="w-4 h-4 mr-2" />
-                                Preview
+                                {t('publicPageEditor.actions.preview')}
                             </Button>
                         )}
                     </div>
@@ -298,17 +300,15 @@ const PublicPageEditor = () => {
                 {/* Info note */}
                 <div className="mt-8 p-4 rounded-lg bg-blue-50 border border-blue-100">
                     <p className="text-sm text-blue-800">
-                        <strong>Tip:</strong> Add offers to your page from the{" "}
-                        <a href="/genius-offer" className="underline">Genius Offer</a> module.
-                        They'll automatically appear on your public page.
+                        <strong>{t('publicPageEditor.tipNote.label')}</strong> {t('publicPageEditor.tipNote.before')}{" "}
+                        <a href="/genius-offer" className="underline">{t('publicPageEditor.tipNote.linkText')}</a> {t('publicPageEditor.tipNote.after')}
                     </p>
                 </div>
 
                 {/* Coming soon note */}
                 <div className="mt-4 p-4 rounded-lg bg-amber-50 border border-amber-100">
                     <p className="text-sm text-amber-800">
-                        <strong>Note:</strong> Public page data is currently saved locally.
-                        Cloud persistence will be added when the database schema is extended.
+                        <strong>{t('publicPageEditor.comingSoonNote.label')}</strong> {t('publicPageEditor.comingSoonNote.body')}
                     </p>
                 </div>
             </div>
