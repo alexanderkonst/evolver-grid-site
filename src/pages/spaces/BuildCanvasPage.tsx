@@ -1,5 +1,6 @@
 import { useEffect, useState, Fragment } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import GameShellV2 from "@/components/game/GameShellV2";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import { supabase } from "@/integrations/supabase/client";
@@ -36,77 +37,77 @@ import { formatDate } from "@/i18n/format";
 const ARTIFACT_META = [
   {
     key: "uniqueness" as const,
-    label: "Uniqueness",
+    labelKey: "buildCanvas.artifact.uniqueness.label",
     number: 1,
     icon: Sparkles,
-    question: "Who am I at my brightest?",
-    description: "The intersection no one else occupies",
+    questionKey: "buildCanvas.artifact.uniqueness.question",
+    descKey: "buildCanvas.artifact.uniqueness.description",
     color: "#8460ea",
     bgFrom: "rgba(132,96,234,0.08)",
     bgTo: "rgba(200,183,216,0.12)",
   },
   {
     key: "myth" as const,
-    label: "Myth",
+    labelKey: "buildCanvas.artifact.myth.label",
     number: 2,
     icon: BookOpen,
-    question: "What must be true for my work to be inevitable?",
-    description: "The lie, the truth, the line that stops the scroll",
+    questionKey: "buildCanvas.artifact.myth.question",
+    descKey: "buildCanvas.artifact.myth.description",
     color: "#6b8dd6",
     bgFrom: "rgba(107,141,214,0.08)",
     bgTo: "rgba(132,96,234,0.10)",
   },
   {
     key: "tribe" as const,
-    label: "Tribe",
+    labelKey: "buildCanvas.artifact.tribe.label",
     number: 3,
     icon: Users,
-    question: "Who recognizes themselves in this myth?",
-    description: "Your people — qualifiers, life situation, language",
+    questionKey: "buildCanvas.artifact.tribe.question",
+    descKey: "buildCanvas.artifact.tribe.description",
     color: "#4aa87c",
     bgFrom: "rgba(74,168,124,0.08)",
     bgTo: "rgba(132,96,234,0.07)",
   },
   {
     key: "pain" as const,
-    label: "Pain",
+    labelKey: "buildCanvas.artifact.pain.label",
     number: 4,
     icon: AlertCircle,
-    question: "What's unbearable about their situation?",
-    description: "5-layer forensic trace — pressure to struggle synthesized",
+    questionKey: "buildCanvas.artifact.pain.question",
+    descKey: "buildCanvas.artifact.pain.description",
     color: "#e07850",
     bgFrom: "rgba(224,120,80,0.08)",
     bgTo: "rgba(200,183,216,0.10)",
   },
   {
     key: "promise" as const,
-    label: "Promise",
+    labelKey: "buildCanvas.artifact.promise.label",
     number: 5,
     icon: Target,
-    question: "What's the master transformational result?",
-    description: "The exact inversion of their pain",
+    questionKey: "buildCanvas.artifact.promise.question",
+    descKey: "buildCanvas.artifact.promise.description",
     color: "#8460ea",
     bgFrom: "rgba(132,96,234,0.08)",
     bgTo: "rgba(107,141,214,0.10)",
   },
   {
     key: "lead_magnet" as const,
-    label: "Lead Magnet",
+    labelKey: "buildCanvas.artifact.lead_magnet.label",
     number: 6,
     icon: Zap,
-    question: "How do they taste the transformation?",
-    description: "The pain card delivered through resonant channels",
+    questionKey: "buildCanvas.artifact.lead_magnet.question",
+    descKey: "buildCanvas.artifact.lead_magnet.description",
     color: "#d4a843",
     bgFrom: "rgba(212,168,67,0.08)",
     bgTo: "rgba(200,183,216,0.07)",
   },
   {
     key: "value_ladder" as const,
-    label: "Value Ladder",
+    labelKey: "buildCanvas.artifact.value_ladder.label",
     number: 7,
     icon: TrendingUp,
-    question: "What are the ascending containers?",
-    description: "Free → Entry → Journey → Container",
+    questionKey: "buildCanvas.artifact.value_ladder.question",
+    descKey: "buildCanvas.artifact.value_ladder.description",
     color: "#4aa87c",
     bgFrom: "rgba(74,168,124,0.08)",
     bgTo: "rgba(107,141,214,0.07)",
@@ -117,10 +118,10 @@ const ARTIFACT_META = [
    HELPERS
    ──────────────────────────────────────── */
 
-const statusConfig: Record<ArtifactStatusValue, { label: string; bg: string; text: string }> = {
-  landed: { label: "Landed", bg: "rgba(74,168,124,0.2)", text: "#5fc992" },
-  refining: { label: "Refining", bg: "rgba(212,168,67,0.2)", text: "#dbb64a" },
-  draft: { label: "Draft", bg: "rgba(255,255,255,0.05)", text: "rgba(255,255,255,0.4)" },
+const statusConfig: Record<ArtifactStatusValue, { labelKey: string; bg: string; text: string }> = {
+  landed: { labelKey: "buildCanvas.status.landed", bg: "rgba(74,168,124,0.2)", text: "#5fc992" },
+  refining: { labelKey: "buildCanvas.status.refining", bg: "rgba(212,168,67,0.2)", text: "#dbb64a" },
+  draft: { labelKey: "buildCanvas.status.draft", bg: "rgba(255,255,255,0.05)", text: "rgba(255,255,255,0.4)" },
 };
 
 const getPreview = (canvas: CanvasSnapshot, key: string): string | null => {
@@ -145,7 +146,13 @@ const getPrecision = (canvas: CanvasSnapshot, key: string): number | null => {
   return null;
 };
 
-const getDetailFields = (canvas: CanvasSnapshot, key: string): Array<{ label: string; value: string }> => {
+type TFunc = (key: string, opts?: Record<string, unknown>) => string;
+
+const getDetailFields = (
+  canvas: CanvasSnapshot,
+  key: string,
+  t: TFunc,
+): Array<{ label: string; value: string }> => {
   const artifact = canvas[key as keyof CanvasSnapshot];
   if (!artifact || typeof artifact !== "object") return [];
   const obj = artifact as unknown as Record<string, unknown>;
@@ -154,36 +161,45 @@ const getDetailFields = (canvas: CanvasSnapshot, key: string): Array<{ label: st
   // Different artifacts have different structures
   switch (key) {
     case "uniqueness":
-      if (obj.archetype) fields.push({ label: "Archetype", value: String(obj.archetype) });
-      if (obj.distillation) fields.push({ label: "Distillation", value: String(obj.distillation) });
-      if (obj.tagline) fields.push({ label: "Tagline", value: String(obj.tagline) });
+      if (obj.archetype) fields.push({ label: t("buildCanvas.detail.archetype"), value: String(obj.archetype) });
+      if (obj.distillation) fields.push({ label: t("buildCanvas.detail.distillation"), value: String(obj.distillation) });
+      if (obj.tagline) fields.push({ label: t("buildCanvas.detail.tagline"), value: String(obj.tagline) });
       break;
     case "myth":
-      if (obj.lie) fields.push({ label: "The Lie", value: String(obj.lie) });
-      if (obj.truth) fields.push({ label: "The Truth", value: String(obj.truth) });
-      if (obj.line) fields.push({ label: "The Line", value: String(obj.line) });
+      if (obj.lie) fields.push({ label: t("buildCanvas.detail.theLie"), value: String(obj.lie) });
+      if (obj.truth) fields.push({ label: t("buildCanvas.detail.theTruth"), value: String(obj.truth) });
+      if (obj.line) fields.push({ label: t("buildCanvas.detail.theLine"), value: String(obj.line) });
       break;
     case "tribe":
-      if (obj.name) fields.push({ label: "Tribe Name", value: String(obj.name) });
-      if (obj.description) fields.push({ label: "Description", value: String(obj.description) });
+      if (obj.name) fields.push({ label: t("buildCanvas.detail.tribeName"), value: String(obj.name) });
+      if (obj.description) fields.push({ label: t("buildCanvas.detail.description"), value: String(obj.description) });
       if (Array.isArray(obj.traits) && obj.traits.length) {
-        fields.push({ label: "Traits", value: (obj.traits as string[]).join(" · ") });
+        fields.push({ label: t("buildCanvas.detail.traits"), value: (obj.traits as string[]).join(" · ") });
       }
       break;
     case "pain":
       if (Array.isArray(obj.layers)) {
         (obj.layers as string[]).forEach((layer, i) => {
-          const layerNames = ["Pressure", "Consequences", "Cost of Inaction", "Urgency", "Struggle Synthesized"];
-          fields.push({ label: layerNames[i] || `Layer ${i + 1}`, value: layer });
+          const layerKeys = [
+            "buildCanvas.painLayer.pressure",
+            "buildCanvas.painLayer.consequences",
+            "buildCanvas.painLayer.costOfInaction",
+            "buildCanvas.painLayer.urgency",
+            "buildCanvas.painLayer.struggleSynthesized",
+          ];
+          const label = layerKeys[i]
+            ? t(layerKeys[i])
+            : t("buildCanvas.painLayer.fallback", { n: i + 1 });
+          fields.push({ label, value: layer });
         });
       }
       break;
     case "promise":
-      if (obj.statement) fields.push({ label: "Promise Statement", value: String(obj.statement) });
+      if (obj.statement) fields.push({ label: t("buildCanvas.detail.promiseStatement"), value: String(obj.statement) });
       break;
     case "lead_magnet":
-      if (obj.type) fields.push({ label: "Format", value: String(obj.type) });
-      if (obj.description) fields.push({ label: "Mechanism", value: String(obj.description) });
+      if (obj.type) fields.push({ label: t("buildCanvas.detail.format"), value: String(obj.type) });
+      if (obj.description) fields.push({ label: t("buildCanvas.detail.mechanism"), value: String(obj.description) });
       break;
     case "value_ladder":
       if (obj.tiers && Array.isArray(obj.tiers)) {
@@ -196,7 +212,7 @@ const getDetailFields = (canvas: CanvasSnapshot, key: string): Array<{ label: st
 
   // Fallback: fullText
   if (fields.length === 0 && typeof obj.fullText === "string") {
-    fields.push({ label: "Full Text", value: obj.fullText });
+    fields.push({ label: t("buildCanvas.detail.fullText"), value: obj.fullText });
   }
 
   return fields;
@@ -236,9 +252,10 @@ interface ArtifactCardProps {
 }
 
 const ArtifactCard = ({ meta, canvas, status, isExpanded, onToggle }: ArtifactCardProps) => {
+  const { t } = useTranslation();
   const preview = getPreview(canvas, meta.key);
   const precision = getPrecision(canvas, meta.key);
-  const details = getDetailFields(canvas, meta.key);
+  const details = getDetailFields(canvas, meta.key, t);
   const hasContent = preview || details.length > 0;
   const Icon = meta.icon;
   const st = statusConfig[status];
@@ -273,18 +290,18 @@ const ArtifactCard = ({ meta, canvas, status, isExpanded, onToggle }: ArtifactCa
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 mb-0.5">
             <span className="text-[11px] font-mono text-white/30">{meta.number}.</span>
-            <h3 className="text-sm font-semibold text-white">{meta.label}</h3>
+            <h3 className="text-sm font-semibold text-white">{t(meta.labelKey)}</h3>
             <span
               className="px-2 py-0.5 rounded-full text-[10px] font-medium"
               style={{ background: st.bg, color: st.text }}
             >
-              {st.label}
+              {t(st.labelKey)}
             </span>
             <PrecisionDot score={precision} />
           </div>
           {!isExpanded && (
             <p className="text-xs text-white/40 leading-relaxed truncate">
-              {preview || meta.question}
+              {preview || t(meta.questionKey)}
             </p>
           )}
         </div>
@@ -329,6 +346,7 @@ const ArtifactCard = ({ meta, canvas, status, isExpanded, onToggle }: ArtifactCa
    ──────────────────────────────────────── */
 
 const CanvasProgress = ({ status }: { status: CanvasArtifactStatus }) => {
+  const { t } = useTranslation();
   const values = Object.values(status);
   const landed = values.filter((v) => v === "landed").length;
   const refining = values.filter((v) => v === "refining").length;
@@ -339,9 +357,9 @@ const CanvasProgress = ({ status }: { status: CanvasArtifactStatus }) => {
   return (
     <div className="space-y-2">
       <div className="flex items-center justify-between text-xs">
-        <span className="text-white/40">Canvas Completion</span>
+        <span className="text-white/40">{t("buildCanvas.progress.label")}</span>
         <span className="font-mono text-primary">
-          {landed}/{total} landed
+          {t("buildCanvas.progress.count", { landed, total })}
         </span>
       </div>
       <div className="h-1.5 rounded-full bg-white/10 overflow-hidden">
@@ -364,6 +382,7 @@ const CanvasProgress = ({ status }: { status: CanvasArtifactStatus }) => {
 
 const BuildCanvasPage = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const [loading, setLoading] = useState(true);
   const [canvas, setCanvas] = useState<CanvasSnapshot | null>(null);
   const [expandedArtifacts, setExpandedArtifacts] = useState<Set<string>>(new Set());
@@ -424,7 +443,7 @@ const BuildCanvasPage = () => {
         <div className="flex items-center justify-center min-h-[60vh]">
           <div className="flex flex-col items-center gap-3">
             <div className="premium-spinner" />
-            <p className="text-sm text-white/30 animate-pulse">Loading canvas…</p>
+            <p className="text-sm text-white/30 animate-pulse">{t("buildCanvas.loading")}</p>
           </div>
         </div>
       </GameShellV2>
@@ -443,12 +462,10 @@ const BuildCanvasPage = () => {
                 <Layers className="w-9 h-9 text-primary" />
               </div>
               <h1 className="text-2xl font-display font-bold text-white mb-2">
-                Unique Business Canvas
+                {t("buildCanvas.empty.title")}
               </h1>
               <p className="text-white/50 max-w-md mx-auto leading-relaxed">
-                The Canvas is built during a facilitated Productize Yourself Session — 60–90 minutes
-                where we discover your uniqueness, forge your myth, identify your tribe,
-                and design your business around who you already are.
+                {t("buildCanvas.empty.subtitle")}
               </p>
             </div>
 
@@ -469,8 +486,8 @@ const BuildCanvasPage = () => {
                     </span>
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium text-white/25">{artifact.label}</p>
-                    <p className="text-[11px] text-white/20 truncate">{artifact.question}</p>
+                    <p className="text-sm font-medium text-white/25">{t(artifact.labelKey)}</p>
+                    <p className="text-[11px] text-white/20 truncate">{t(artifact.questionKey)}</p>
                   </div>
                 </div>
               ))}
@@ -479,22 +496,34 @@ const BuildCanvasPage = () => {
             {/* The derivation chain visual */}
             <div className="mb-8 p-4 rounded-xl liquid-glass ring-1 ring-white/10 max-w-md mx-auto">
               <p className="text-xs text-primary uppercase tracking-widest mb-2 font-medium">
-                How it works
+                {t("buildCanvas.howItWorks.title")}
               </p>
               <div className="flex items-center justify-center gap-1 text-[11px] text-white/30 font-mono flex-wrap">
-                {["Uniqueness", "→", "Myth", "→", "Tribe", "→", "Pain", "→", "Promise", "→", "Magnet", "→", "Ladder"].map(
-                  (item, i) => (
-                    <span
-                      key={i}
-                      className={item === "→" ? "text-white/15" : "px-1.5 py-0.5 rounded bg-white/5"}
-                    >
-                      {item}
-                    </span>
-                  )
-                )}
+                {[
+                  t("buildCanvas.chain.uniqueness"),
+                  "→",
+                  t("buildCanvas.chain.myth"),
+                  "→",
+                  t("buildCanvas.chain.tribe"),
+                  "→",
+                  t("buildCanvas.chain.pain"),
+                  "→",
+                  t("buildCanvas.chain.promise"),
+                  "→",
+                  t("buildCanvas.chain.magnet"),
+                  "→",
+                  t("buildCanvas.chain.ladder"),
+                ].map((item, i) => (
+                  <span
+                    key={i}
+                    className={item === "→" ? "text-white/15" : "px-1.5 py-0.5 rounded bg-white/5"}
+                  >
+                    {item}
+                  </span>
+                ))}
               </div>
               <p className="text-[11px] text-white/30 mt-2">
-                Each artifact derives from the previous. Change artifact 1 → everything downstream sharpens.
+                {t("buildCanvas.howItWorks.body")}
               </p>
             </div>
 
@@ -505,16 +534,16 @@ const BuildCanvasPage = () => {
                 onClick={() => window.open("https://www.calendly.com/konstantinov", "_blank")}
               >
                 <Flame className="w-4 h-4 mr-2" />
-                Book Productize Yourself Session — $555
+                {t("buildCanvas.empty.cta")}
               </Button>
               <p className="text-xs text-muted-foreground">
-                60–90 minutes · Full 7-artifact Canvas · AI-compiled in real time
+                {t("buildCanvas.empty.ctaCaption")}
               </p>
             </div>
 
             {/* If they already have Product Builder data, offer a link */}
             <div className="mt-10 pt-6 border-t border-white/10">
-              <p className="text-xs text-white/30 mb-3">Already have a product?</p>
+              <p className="text-xs text-white/30 mb-3">{t("buildCanvas.empty.alreadyHaveProduct")}</p>
               <Button
                 variant="outline"
                 size="sm"
@@ -522,7 +551,7 @@ const BuildCanvasPage = () => {
                 onClick={() => navigate("/game/build/product-builder")}
               >
                 <ArrowRight className="w-4 h-4 mr-1" />
-                Go to Product Builder
+                {t("buildCanvas.empty.goToProductBuilder")}
               </Button>
             </div>
           </div>
@@ -565,18 +594,17 @@ const BuildCanvasPage = () => {
                       border: "0.5px solid rgba(132,96,234,0.45)",
                     }}
                   >
-                    new · v2
+                    {t("buildCanvas.promo.badge")}
                   </span>
                   <p className="text-[10px] uppercase tracking-widest text-white/40">
-                    Improve loop · 27 perspectives
+                    {t("buildCanvas.promo.eyebrow")}
                   </p>
                 </div>
                 <h2 className="text-base sm:text-lg font-display font-bold text-white mb-1">
-                  Build with Improve — the v2 Unique Business Builder
+                  {t("buildCanvas.promo.title")}
                 </h2>
                 <p className="text-xs sm:text-[13px] text-white/60 leading-relaxed mb-3">
-                  Same canvas, now with a 27-perspective holonic roast per artifact.
-                  Specificity goes up. Versions never lost.
+                  {t("buildCanvas.promo.body")}
                 </p>
                 <Button
                   size="sm"
@@ -586,7 +614,7 @@ const BuildCanvasPage = () => {
                     navigate("/ubb");
                   }}
                 >
-                  Open v2
+                  {t("buildCanvas.promo.openBtn")}
                   <ArrowRight className="w-3.5 h-3.5 ml-1.5 group-hover:translate-x-0.5 transition-transform" />
                 </Button>
               </div>
@@ -610,15 +638,15 @@ const BuildCanvasPage = () => {
                 <Layers className="w-7 h-7 text-primary" />
               </div>
               <p className="text-[11px] text-primary uppercase tracking-[0.2em] mb-2 font-medium">
-                Unique Business Canvas · {canvas.version}
+                {t("buildCanvas.hero.eyebrow", { version: canvas.version })}
               </p>
               <h1 className="text-2xl lg:text-3xl font-display font-bold text-white mb-1">
-                {canvas.tagline || "My Unique Business"}
+                {canvas.tagline || t("buildCanvas.hero.fallbackTitle")}
               </h1>
               {canvas.facilitator && (
                 <p className="text-sm text-white/40">
-                  Facilitated by {canvas.facilitator}
-                  {canvas.session_number ? ` · Session ${canvas.session_number}` : ""}
+                  {t("buildCanvas.hero.facilitatedBy", { name: canvas.facilitator })}
+                  {canvas.session_number ? t("buildCanvas.hero.sessionSuffix", { n: canvas.session_number }) : ""}
                   {canvas.session_date
                     ? ` · ${formatDate(canvas.session_date, {
                         month: "short",
@@ -637,21 +665,21 @@ const BuildCanvasPage = () => {
           {/* ── Controls ── */}
           <div className="flex items-center justify-between">
             <h2 className="text-xs font-medium text-white/40 uppercase tracking-wider">
-              7 Artifacts
+              {t("buildCanvas.controls.heading")}
             </h2>
             <div className="flex gap-2">
               <button
                 onClick={expandAll}
                 className="text-[11px] text-primary hover:text-primary/80 transition-colors"
               >
-                Expand all
+                {t("buildCanvas.controls.expandAll")}
               </button>
               <span className="text-muted-foreground/30">·</span>
               <button
                 onClick={collapseAll}
                 className="text-[11px] text-primary hover:text-primary/80 transition-colors"
               >
-                Collapse all
+                {t("buildCanvas.controls.collapseAll")}
               </button>
             </div>
           </div>
@@ -674,7 +702,7 @@ const BuildCanvasPage = () => {
           {canvas.notes && (
             <div className="p-4 liquid-glass rounded-xl ring-1 ring-white/10">
               <p className="text-[11px] text-primary uppercase tracking-wider mb-2 font-medium">
-                Session Notes
+                {t("buildCanvas.sessionNotes")}
               </p>
               <p className="text-sm text-white/60 leading-relaxed whitespace-pre-wrap">
                 {canvas.notes}
@@ -689,7 +717,7 @@ const BuildCanvasPage = () => {
               onClick={() => navigate("/game/build/product-builder")}
             >
               <Zap className="w-4 h-4 mr-1.5" />
-              Build Landing Page
+              {t("buildCanvas.actions.buildLanding")}
             </Button>
             <Button
               variant="outline"
@@ -697,7 +725,7 @@ const BuildCanvasPage = () => {
               onClick={() => navigate("/game/build/refine")}
             >
               <ArrowRight className="w-4 h-4 mr-1.5" />
-              Refine Artifacts
+              {t("buildCanvas.actions.refineArtifacts")}
             </Button>
           </div>
 
@@ -708,14 +736,14 @@ const BuildCanvasPage = () => {
               onClick={() => navigate("/game/build/my-business")}
             >
               <Eye className="w-4 h-4 mx-auto mb-1" />
-              My Business
+              {t("buildCanvas.quickLinks.myBusiness")}
             </button>
             <button
               className="p-3 rounded-xl liquid-glass ring-1 ring-white/10 hover:ring-[#8460ea]/20 transition-all text-xs text-white/50 hover:text-primary"
               onClick={() => navigate("/the-originals")}
             >
               <Users className="w-4 h-4 mx-auto mb-1" />
-              The Originals
+              {t("buildCanvas.quickLinks.theOriginals")}
             </button>
           </div>
         </div>

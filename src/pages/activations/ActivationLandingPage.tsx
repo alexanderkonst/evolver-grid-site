@@ -1,6 +1,7 @@
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { ArrowLeft, ArrowRight, Check, ExternalLink, Sparkles } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { getActivationBySlug } from "@/data/activations";
 
 // Activation Landing Page — per-workshop sales/marketing surface.
@@ -8,6 +9,7 @@ import { getActivationBySlug } from "@/data/activations";
 // Success URL on Stripe should redirect to /activations/<slug>/access.
 
 const ActivationLandingPage = () => {
+  const { t } = useTranslation();
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
   const activation = slug ? getActivationBySlug(slug) : undefined;
@@ -30,7 +32,7 @@ const ActivationLandingPage = () => {
       >
         <div className="text-center space-y-4">
           <p className="text-base" style={{ color: "hsl(0 0% 100% / 0.7)" }}>
-            Activation not found: <code>{slug}</code>
+            {t("activationLanding.notFound")} <code>{slug}</code>
           </p>
           <Link
             to="/activations"
@@ -42,7 +44,7 @@ const ActivationLandingPage = () => {
             }}
           >
             <ArrowLeft className="w-3.5 h-3.5" />
-            Back to Activations
+            {t("activationLanding.backToActivations")}
           </Link>
         </div>
       </div>
@@ -77,7 +79,7 @@ const ActivationLandingPage = () => {
               }}
             >
               <ArrowLeft className="w-3.5 h-3.5" />
-              All Activations
+              {t("activationLanding.allActivations")}
             </button>
           </header>
 
@@ -87,7 +89,7 @@ const ActivationLandingPage = () => {
               className="text-[10px] tracking-[0.3em] uppercase font-medium"
               style={{ color: "hsl(40 60% 75% / 0.7)" }}
             >
-              {activation.duration} · Recorded activation
+              {t("activationLanding.heroEyebrow", { duration: activation.duration })}
             </p>
 
             <h1
@@ -135,7 +137,7 @@ const ActivationLandingPage = () => {
                 className="text-[10px] tracking-[0.25em] uppercase font-medium mb-2"
                 style={{ color: "hsl(195 35% 75% / 0.7)" }}
               >
-                Who this is for
+                {t("activationLanding.whoForLabel")}
               </p>
               <p
                 className="text-sm sm:text-base font-light leading-relaxed"
@@ -160,7 +162,7 @@ const ActivationLandingPage = () => {
                 className="text-[10px] tracking-[0.25em] uppercase font-medium mb-4"
                 style={{ color: "hsl(40 60% 75% / 0.7)" }}
               >
-                What you get
+                {t("activationLanding.whatYouGetLabel")}
               </p>
               <ul className="space-y-3">
                 {activation.outcomes.map((outcome, i) => (
@@ -202,7 +204,7 @@ const ActivationLandingPage = () => {
                 className="text-sm font-light"
                 style={{ color: "hsl(0 0% 100% / 0.55)" }}
               >
-                · one-time · lifetime access
+                {t("activationLanding.priceSuffix")}
               </span>
             </div>
 
@@ -217,7 +219,7 @@ const ActivationLandingPage = () => {
                   boxShadow: "0 4px 16px -2px hsla(40, 70%, 50%, 0.5)",
                 }}
               >
-                Get {activation.title}
+                {t("activationLanding.getCta", { title: activation.title })}
                 <ExternalLink className="w-3.5 h-3.5" />
               </a>
             ) : (
@@ -232,15 +234,15 @@ const ActivationLandingPage = () => {
                   }}
                 >
                   <Sparkles className="w-3.5 h-3.5" />
-                  Coming soon
+                  {t("activationLanding.comingSoon")}
                 </button>
                 <p
                   className="text-[11px] italic"
                   style={{ color: "hsl(0 0% 100% / 0.45)" }}
                 >
                   {isLive
-                    ? "Stripe checkout being wired up — back shortly."
-                    : "Activation in preparation. First batch ships soon."}
+                    ? t("activationLanding.checkoutWiringNote")
+                    : t("activationLanding.inPreparationNote")}
                 </p>
               </div>
             )}
@@ -253,7 +255,7 @@ const ActivationLandingPage = () => {
                 className="text-[10px] tracking-[0.25em] uppercase font-medium text-center"
                 style={{ color: "hsl(195 35% 75% / 0.7)" }}
               >
-                What past participants say
+                {t("activationLanding.testimonialsLabel")}
               </p>
               <div className="space-y-3">
                 {activation.testimonials.map((t, i) => (
@@ -292,13 +294,13 @@ const ActivationLandingPage = () => {
               style={{ color: "hsl(0 0% 100% / 0.5)" }}
             >
               <ArrowLeft className="w-3 h-3" />
-              All Activations
+              {t("activationLanding.allActivations")}
             </Link>
             <p
               className="text-[10px] font-light"
               style={{ color: "hsl(0 0% 100% / 0.35)" }}
             >
-              by Aleksandr Konstantinov · FindYourTopTalent.Com
+              {t("activationLanding.byline")}
             </p>
           </footer>
 

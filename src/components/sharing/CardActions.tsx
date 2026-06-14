@@ -11,6 +11,7 @@ import {
     Loader2,
 } from "lucide-react";
 import html2canvas from "html2canvas";
+import { useTranslation } from "react-i18next";
 import { useToast } from "@/hooks/use-toast";
 
 interface CardActionsProps {
@@ -62,6 +63,7 @@ const CardActions = ({
     darkMode = false,
     captureWidth,
 }: CardActionsProps) => {
+    const { t } = useTranslation();
     const { toast } = useToast();
     const [saving, setSaving] = useState(false);
     const [shareOpen, setShareOpen] = useState(false);
@@ -120,7 +122,7 @@ const CardActions = ({
     const handleSave = async () => {
         const el = captureRef.current;
         if (!el) {
-            toast({ title: "Couldn't capture card — element not found", variant: "destructive" });
+            toast({ title: t("cardActions.toast.captureFailed"), variant: "destructive" });
             return;
         }
         setSaving(true);
@@ -274,11 +276,11 @@ const CardActions = ({
             document.body.removeChild(link);
             // Revoke after the browser has had a tick to start the download.
             window.setTimeout(() => URL.revokeObjectURL(objectUrl), 1000);
-            toast({ title: "Saved to Downloads" });
+            toast({ title: t("cardActions.toast.saved") });
         } catch (err) {
             console.error("[CardActions] save failed:", err);
             toast({
-                title: "Save failed — try again",
+                title: t("cardActions.toast.saveFailed"),
                 description: err instanceof Error ? err.message : undefined,
                 variant: "destructive",
             });
@@ -298,10 +300,10 @@ const CardActions = ({
         try {
             await navigator.clipboard.writeText(shareText);
             setCopied(true);
-            toast({ title: "Copied to clipboard" });
+            toast({ title: t("cardActions.toast.copied") });
             window.setTimeout(() => setCopied(false), 2000);
         } catch {
-            toast({ title: "Copy failed", variant: "destructive" });
+            toast({ title: t("cardActions.toast.copyFailed"), variant: "destructive" });
         }
     };
 
@@ -337,15 +339,15 @@ const CardActions = ({
                 onClick={handleSave}
                 disabled={saving}
                 className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[11px] uppercase tracking-[0.14em] font-medium transition-all duration-200 ${idle} ${hover} ${buttonBg} disabled:opacity-50 disabled:cursor-wait`}
-                aria-label="Save card as image"
-                title="Save card as image"
+                aria-label={t("cardActions.save.ariaLabel")}
+                title={t("cardActions.save.ariaLabel")}
             >
                 {saving ? (
                     <Loader2 className="w-3.5 h-3.5 animate-spin" aria-hidden="true" />
                 ) : (
                     <Download className="w-3.5 h-3.5" aria-hidden="true" />
                 )}
-                <span>Save</span>
+                <span>{t("cardActions.save.label")}</span>
             </button>
 
             {/* divider dot */}
@@ -357,13 +359,13 @@ const CardActions = ({
                 type="button"
                 onClick={() => setShareOpen((o) => !o)}
                 className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[11px] uppercase tracking-[0.14em] font-medium transition-all duration-200 ${idle} ${hover} ${buttonBg}`}
-                aria-label="Share to socials"
+                aria-label={t("cardActions.share.ariaLabel")}
                 aria-expanded={shareOpen}
                 aria-haspopup="menu"
-                title="Share text to socials"
+                title={t("cardActions.share.title")}
             >
                 <Share2 className="w-3.5 h-3.5" aria-hidden="true" />
-                <span>Share</span>
+                <span>{t("cardActions.share.label")}</span>
             </button>
 
             {/* Share popover — portaled to <body> so the card's
@@ -409,7 +411,7 @@ const CardActions = ({
                         ) : (
                             <Copy className="w-4 h-4 text-[#8460ea]" aria-hidden="true" />
                         )}
-                        <span className="font-medium">{copied ? "Copied!" : "Copy text"}</span>
+                        <span className="font-medium">{copied ? t("cardActions.copy.done") : t("cardActions.copy.label")}</span>
                     </button>
                 </div>,
                 document.body,

@@ -16,6 +16,7 @@ import {
 import { useCreateEvent } from "@/hooks/useEvents";
 import { useToast } from "@/hooks/use-toast";
 import ErrorBoundary from "@/components/ErrorBoundary";
+import { useTranslation } from "react-i18next";
 
 interface CreateEventFormProps {
   onSuccess?: () => void;
@@ -36,6 +37,7 @@ const COMMON_TIMEZONES = [
 ];
 
 const CreateEventForm = ({ onSuccess }: CreateEventFormProps) => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const { toast } = useToast();
   const { createEvent, loading } = useCreateEvent();
@@ -57,8 +59,8 @@ const CreateEventForm = ({ onSuccess }: CreateEventFormProps) => {
 
     if (!formData.title || !formData.event_date || !formData.event_time) {
       toast({
-        title: "Missing fields",
-        description: "Please fill in title, date, and time",
+        title: t('createEventForm.toastMissingTitle'),
+        description: t('createEventForm.toastMissingDescription'),
         variant: "destructive",
       });
       return;
@@ -84,8 +86,8 @@ const CreateEventForm = ({ onSuccess }: CreateEventFormProps) => {
       });
 
       toast({
-        title: "Event created!",
-        description: "Your event has been created successfully",
+        title: t('createEventForm.toastCreatedTitle'),
+        description: t('createEventForm.toastCreatedDescription'),
       });
 
       setOpen(false);
@@ -107,8 +109,8 @@ const CreateEventForm = ({ onSuccess }: CreateEventFormProps) => {
       }
     } catch (err) {
       toast({
-        title: "Error",
-        description: "Failed to create event. Please try again.",
+        title: t('createEventForm.toastErrorTitle'),
+        description: t('createEventForm.toastErrorDescription'),
         variant: "destructive",
       });
     }
@@ -119,23 +121,23 @@ const CreateEventForm = ({ onSuccess }: CreateEventFormProps) => {
       <DialogTrigger asChild>
         <Button className="bg-amber-500 hover:bg-amber-600 text-white">
           <CalendarDays className="w-4 h-4 mr-2" />
-          Create Event
+          {t('createEventForm.triggerButton')}
         </Button>
       </DialogTrigger>
 
       <DialogContent className="sm:max-w-md">
         <ErrorBoundary>
           <DialogHeader>
-            <DialogTitle>Create New Event</DialogTitle>
+            <DialogTitle>{t('createEventForm.dialogTitle')}</DialogTitle>
           </DialogHeader>
 
           <form onSubmit={handleSubmit} className="space-y-4 mt-4">
             {/* Title */}
             <div className="space-y-2">
-              <Label htmlFor="title">Title *</Label>
+              <Label htmlFor="title">{t('createEventForm.labelTitle')}</Label>
               <Input
                 id="title"
-                placeholder="Event title"
+                placeholder={t('createEventForm.placeholderTitle')}
                 value={formData.title}
                 onChange={(e) => setFormData({ ...formData, title: e.target.value })}
                 required
@@ -146,11 +148,11 @@ const CreateEventForm = ({ onSuccess }: CreateEventFormProps) => {
             <div className="space-y-2">
               <Label htmlFor="description" className="flex items-center gap-2">
                 <FileText className="w-4 h-4 text-[#2c3150]/60" />
-                Description
+                {t('createEventForm.labelDescription')}
               </Label>
               <Textarea
                 id="description"
-                placeholder="What's this event about?"
+                placeholder={t('createEventForm.placeholderDescription')}
                 value={formData.description}
                 onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                 rows={3}
@@ -162,7 +164,7 @@ const CreateEventForm = ({ onSuccess }: CreateEventFormProps) => {
               <div className="space-y-2">
                 <Label htmlFor="date" className="flex items-center gap-2">
                   <CalendarDays className="w-4 h-4 text-[#2c3150]/60" />
-                  Date *
+                  {t('createEventForm.labelDate')}
                 </Label>
                 <Input
                   id="date"
@@ -175,7 +177,7 @@ const CreateEventForm = ({ onSuccess }: CreateEventFormProps) => {
               <div className="space-y-2">
                 <Label htmlFor="time" className="flex items-center gap-2">
                   <Clock className="w-4 h-4 text-[#2c3150]/60" />
-                  Time *
+                  {t('createEventForm.labelTime')}
                 </Label>
                 <Input
                   id="time"
@@ -191,7 +193,7 @@ const CreateEventForm = ({ onSuccess }: CreateEventFormProps) => {
             <div className="space-y-2">
               <Label htmlFor="timezone" className="flex items-center gap-2">
                 <Clock className="w-4 h-4 text-[#2c3150]/60" />
-                Timezone
+                {t('createEventForm.labelTimezone')}
               </Label>
               <select
                 id="timezone"
@@ -211,11 +213,11 @@ const CreateEventForm = ({ onSuccess }: CreateEventFormProps) => {
             <div className="space-y-2">
               <Label htmlFor="location" className="flex items-center gap-2">
                 <MapPin className="w-4 h-4 text-[#2c3150]/60" />
-                Location
+                {t('createEventForm.labelLocation')}
               </Label>
               <Input
                 id="location"
-                placeholder="Where will it take place?"
+                placeholder={t('createEventForm.placeholderLocation')}
                 value={formData.location}
                 onChange={(e) => setFormData({ ...formData, location: e.target.value })}
               />
@@ -225,7 +227,7 @@ const CreateEventForm = ({ onSuccess }: CreateEventFormProps) => {
             <div className="space-y-2">
               <Label htmlFor="photo" className="flex items-center gap-2">
                 <Image className="w-4 h-4 text-[#2c3150]/60" />
-                Photo URL
+                {t('createEventForm.labelPhotoUrl')}
               </Label>
               <Input
                 id="photo"
@@ -239,38 +241,38 @@ const CreateEventForm = ({ onSuccess }: CreateEventFormProps) => {
             <div className="space-y-2">
               <Label className="flex items-center gap-2">
                 <Users className="w-4 h-4 text-[#2c3150]/60" />
-                Visibility
+                {t('createEventForm.labelVisibility')}
               </Label>
               <Select
                 value={formData.visibility}
                 onValueChange={(value) => setFormData({ ...formData, visibility: value })}
               >
                 <SelectTrigger>
-                  <SelectValue placeholder="Who can see this?" />
+                  <SelectValue placeholder={t('createEventForm.placeholderVisibility')} />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="public">
                     <span className="flex items-center gap-2">
                       <Globe className="w-4 h-4" />
-                      Public — Anyone
+                      {t('createEventForm.visibilityPublic')}
                     </span>
                   </SelectItem>
                   <SelectItem value="community">
                     <span className="flex items-center gap-2">
                       <Users className="w-4 h-4" />
-                      Community — Members only
+                      {t('createEventForm.visibilityCommunity')}
                     </span>
                   </SelectItem>
                   <SelectItem value="private">
                     <span className="flex items-center gap-2">
                       <Lock className="w-4 h-4" />
-                      Private — Invite only
+                      {t('createEventForm.visibilityPrivate')}
                     </span>
                   </SelectItem>
                   <SelectItem value="team">
                     <span className="flex items-center gap-2">
                       <UserCheck className="w-4 h-4" />
-                      Team — My team only
+                      {t('createEventForm.visibilityTeam')}
                     </span>
                   </SelectItem>
                 </SelectContent>
@@ -285,7 +287,7 @@ const CreateEventForm = ({ onSuccess }: CreateEventFormProps) => {
                 onClick={() => setOpen(false)}
                 disabled={loading}
               >
-                Cancel
+                {t('createEventForm.cancelButton')}
               </Button>
               <Button
                 type="submit"
@@ -295,10 +297,10 @@ const CreateEventForm = ({ onSuccess }: CreateEventFormProps) => {
                 {loading ? (
                   <>
                     <span className="premium-spinner w-4 h-4 mr-2" />
-                    Creating...
+                    {t('createEventForm.submitCreating')}
                   </>
                 ) : (
-                  "Create Event"
+                  t('createEventForm.submitButton')
                 )}
               </Button>
             </div>

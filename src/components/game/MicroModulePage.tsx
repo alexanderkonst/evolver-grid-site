@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import ReactMarkdown from "react-markdown";
 import {
   Activity,
@@ -45,27 +46,27 @@ export interface MicroModuleProps {
 
 const PATH_CONFIG = {
   body: {
-    label: "Body",
+    labelKey: "microModule.path.body",
     icon: Activity,
     badge: "bg-[#b1c9b6]/30 text-[#2c3150]",
   },
   mind: {
-    label: "Mind",
+    labelKey: "microModule.path.mind",
     icon: Brain,
     badge: "bg-[#6894d0]/20 text-[#2c3150]",
   },
   emotions: {
-    label: "Emotions",
+    labelKey: "microModule.path.emotions",
     icon: Heart,
     badge: "bg-[#cea4ae]/30 text-[#2c3150]",
   },
   spirit: {
-    label: "Spirit",
+    labelKey: "microModule.path.spirit",
     icon: Sparkles,
     badge: "bg-[#c8b7d8]/30 text-[#2c3150]",
   },
   genius: {
-    label: "Genius",
+    labelKey: "microModule.path.genius",
     icon: Zap,
     badge: "bg-[#8460ea]/20 text-[#8460ea]",
   },
@@ -168,6 +169,7 @@ const MicroModulePage = ({
   nextModuleTitle,
   onComplete,
 }: MicroModuleProps) => {
+  const { t } = useTranslation();
   const pathConfig = PATH_CONFIG[path];
   const PathIcon = pathConfig.icon;
   const hasResources = resources && resources.length > 0;
@@ -178,7 +180,7 @@ const MicroModulePage = ({
         <div className="flex flex-wrap items-center gap-2 text-sm font-medium text-[#2c3150]/60">
           <span className={cn("inline-flex items-center gap-2 rounded-full px-3 py-1", pathConfig.badge)}>
             <PathIcon className="h-4 w-4" />
-            {pathConfig.label}
+            {t(pathConfig.labelKey)}
           </span>
           <span className="text-[#2c3150]/40">•</span>
           <span className="text-[#2c3150]/50">{moduleId}</span>
@@ -199,28 +201,28 @@ const MicroModulePage = ({
             />
           ) : (
             <div className="flex h-full w-full items-center justify-center text-sm text-[#2c3150]/50">
-              Video coming soon.
+              {t("microModule.videoComingSoon")}
             </div>
           )}
         </AspectRatio>
       </div>
 
       <div className="rounded-2xl border border-[#8460ea]/30 bg-[#8460ea]/5 p-5">
-        <p className="text-sm font-semibold uppercase tracking-wide text-[#8460ea]">Key Takeaway</p>
+        <p className="text-sm font-semibold uppercase tracking-wide text-[#8460ea]">{t("microModule.keyTakeaway")}</p>
         <p className="mt-3 text-base leading-relaxed text-[#2c3150]">{keyTakeaway}</p>
       </div>
 
-      <CollapsibleSection title="Experience" duration={experience.duration} defaultOpen>
+      <CollapsibleSection title={t("microModule.experience")} duration={experience.duration} defaultOpen>
         <MarkdownContent content={experience.instructions} />
       </CollapsibleSection>
 
-      <CollapsibleSection title="Integration" duration={integration.duration}>
+      <CollapsibleSection title={t("microModule.integration")} duration={integration.duration}>
         <MarkdownContent content={integration.instructions} />
       </CollapsibleSection>
 
       {hasResources && (
         <div className="rounded-2xl border border-[#a4a3d0]/20 bg-white/85 p-5 backdrop-blur-sm shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
-          <p className="text-sm font-semibold uppercase tracking-wide text-[#2c3150]/60">Resources</p>
+          <p className="text-sm font-semibold uppercase tracking-wide text-[#2c3150]/60">{t("microModule.resources")}</p>
           <div className="mt-4 space-y-3">
             {resources?.map((resource) => {
               const Icon = RESOURCE_ICONS[resource.type];
@@ -244,10 +246,12 @@ const MicroModulePage = ({
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <Button onClick={onComplete} className="sm:w-auto">
           <Check className="mr-2 h-4 w-4" />
-          Mark Complete
+          {t("microModule.markComplete")}
         </Button>
         <Button variant="outline" disabled={!nextModuleId} className="sm:w-auto">
-          {nextModuleTitle ? `Next: ${nextModuleTitle}` : "Next Module"}
+          {nextModuleTitle
+            ? t("microModule.nextNamed", { title: nextModuleTitle })
+            : t("microModule.nextModule")}
           <ArrowRight className="ml-2 h-4 w-4" />
         </Button>
       </div>

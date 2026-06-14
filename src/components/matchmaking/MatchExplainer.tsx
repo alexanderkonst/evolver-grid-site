@@ -1,4 +1,5 @@
 import { memo, useCallback, useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 // Day 80 Wave 2.19 (Sasha 2026-05-22): button + container restyled
@@ -97,6 +98,7 @@ const MatchExplainerInner = ({
   onDismiss,
   dismissing = false,
 }: MatchExplainerProps) => {
+  const { t } = useTranslation();
   // First-visit instances auto-expand; dismissed instances stay collapsed.
   const [expanded, setExpanded] = useState(() => seenAt === null);
 
@@ -115,7 +117,7 @@ const MatchExplainerInner = ({
        the canon for prominent panels carrying instructional value.
        Custom parchment background retired. */
     <section
-      aria-label="How introductions work"
+      aria-label={t("matchExplainer.title")}
       className="liquid-glass-strong mb-6 sm:mb-8 rounded-3xl overflow-hidden"
     >
       {/* Header — clickable to toggle.
@@ -141,7 +143,7 @@ const MatchExplainerInner = ({
             color: "var(--skin-text-primary, #0b2a5a)",
           }}
         >
-          How introductions work
+          {t("matchExplainer.title")}
         </span>
         {/* Day 91 (Sasha 2026-06-09): tokenized for Aurum. Chevrons + body
             spans below read --skin-text-muted; original navy literals stay
@@ -180,9 +182,9 @@ const MatchExplainerInner = ({
                 1
               </span>
               <span className="flex-1 text-[15px] sm:text-base leading-relaxed">
-                <strong style={{ fontWeight: 600 }}>AI suggests optimal matches.</strong>{" "}
+                <strong style={{ fontWeight: 600 }}>{t("matchExplainer.step1Title")}</strong>{" "}
                 <span style={{ color: "var(--skin-text-muted, rgba(11, 42, 90, 0.78))" }}>
-                  Click "I'd like to meet." whenever you'd like to get in touch.
+                  {t("matchExplainer.step1Body")}
                 </span>
               </span>
             </li>
@@ -202,9 +204,9 @@ const MatchExplainerInner = ({
                 2
               </span>
               <span className="flex-1 text-[15px] sm:text-base leading-relaxed">
-                <strong style={{ fontWeight: 600 }}>We send them a heads-up email</strong>{" "}
+                <strong style={{ fontWeight: 600 }}>{t("matchExplainer.step2Title")}</strong>{" "}
                 <span style={{ color: "var(--skin-text-muted, rgba(11, 42, 90, 0.78))" }}>
-                  explaining who you are and why we paired you. They can say "yes" or "not now".
+                  {t("matchExplainer.step2Body")}
                 </span>
               </span>
             </li>
@@ -224,9 +226,9 @@ const MatchExplainerInner = ({
                 3
               </span>
               <span className="flex-1 text-[15px] sm:text-base leading-relaxed">
-                <strong style={{ fontWeight: 600 }}>If they say yes,</strong>{" "}
+                <strong style={{ fontWeight: 600 }}>{t("matchExplainer.step3Title")}</strong>{" "}
                 <span style={{ color: "var(--skin-text-muted, rgba(11, 42, 90, 0.78))" }}>
-                  we send you both an intro email. You take it from there. If they don't respond, we leave it at that.
+                  {t("matchExplainer.step3Body")}
                 </span>
               </span>
             </li>
@@ -250,9 +252,9 @@ const MatchExplainerInner = ({
                 4
               </span>
               <span className="flex-1 text-[15px] sm:text-base leading-relaxed">
-                <strong style={{ fontWeight: 600 }}>It works both ways.</strong>{" "}
+                <strong style={{ fontWeight: 600 }}>{t("matchExplainer.step4Title")}</strong>{" "}
                 <span style={{ color: "var(--skin-text-muted, rgba(11, 42, 90, 0.78))" }}>
-                  When someone else wants to meet you, you'll get the same heads-up email. Reply "yes" if it's a fit, "not now" if it isn't.
+                  {t("matchExplainer.step4Body")}
                 </span>
               </span>
             </li>
@@ -292,7 +294,7 @@ const MatchExplainerInner = ({
                   draggable={false}
                 />
                 <span style={CTA_SMALL_CAPS_STYLE} className="text-xs sm:text-sm">
-                  Got it
+                  {t("matchExplainer.gotItCta")}
                 </span>
               </button>
             </div>

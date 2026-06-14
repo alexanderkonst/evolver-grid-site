@@ -1,4 +1,5 @@
 import { useState, useCallback } from "react";
+import { useTranslation } from "react-i18next";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Upload, Check, AlertCircle } from "lucide-react";
@@ -23,6 +24,7 @@ const PersonalityTestUploadModal = ({
     testName,
     onSuccess,
 }: PersonalityTestUploadModalProps) => {
+    const { t } = useTranslation();
     const { toast } = useToast();
     const [file, setFile] = useState<File | null>(null);
     const [preview, setPreview] = useState<string | null>(null);
@@ -88,7 +90,7 @@ const PersonalityTestUploadModal = ({
 
             setResults(data.results);
         } catch (err: any) {
-            setError(err.message || "Failed to analyze image");
+            setError(err.message || t('personalityUpload.errorAnalyze'));
         } finally {
             setAnalyzing(false);
         }
@@ -144,8 +146,8 @@ const PersonalityTestUploadModal = ({
             onSuccess?.(results);
 
             toast({
-                title: "Results saved!",
-                description: "+20 XP for exploring your inner landscape.",
+                title: t('personalityUpload.toastSavedTitle'),
+                description: t('personalityUpload.toastSavedDescription'),
             });
 
             // Close after brief delay to show success
@@ -153,7 +155,7 @@ const PersonalityTestUploadModal = ({
                 handleClose();
             }, 1500);
         } catch (err: any) {
-            setError(err.message || "Failed to save results");
+            setError(err.message || t('personalityUpload.errorSave'));
         } finally {
             setSaving(false);
         }
@@ -182,14 +184,14 @@ const PersonalityTestUploadModal = ({
             <div className="space-y-3">
                 <div className="p-3 rounded-lg bg-primary/10 border border-primary/20">
                     <div className="text-lg font-semibold text-foreground">
-                        Type {data.primary_type} - {data.primary_name}
+                        {t('personalityUpload.enneagramTypeLabel', { type: data.primary_type })} - {data.primary_name}
                     </div>
-                    <div className="text-sm text-muted-foreground">Primary Type</div>
+                    <div className="text-sm text-muted-foreground">{t('personalityUpload.enneagramPrimaryType')}</div>
                 </div>
                 <div className="space-y-2">
                     {sortedScores.map(({ type, score }) => (
                         <div key={type} className="flex items-center gap-2 text-sm">
-                            <span className="w-20 text-muted-foreground">Type {type}:</span>
+                            <span className="w-20 text-muted-foreground">{t('personalityUpload.enneagramTypeRow', { type })}</span>
                             <div className="flex-1 h-2 bg-muted rounded-full overflow-hidden">
                                 <div
                                     className="h-full bg-primary"
@@ -210,7 +212,7 @@ const PersonalityTestUploadModal = ({
                 <div className="text-lg font-semibold text-foreground">
                     {data.type_code} - {data.type_name}
                 </div>
-                <div className="text-sm text-muted-foreground">{data.variant} Variant</div>
+                <div className="text-sm text-muted-foreground">{t('personalityUpload.variantLabel', { variant: data.variant })}</div>
             </div>
             <div className="space-y-2">
                 {Object.entries(data.traits || {}).map(([trait, value]) => (
@@ -233,24 +235,24 @@ const PersonalityTestUploadModal = ({
         <div className="space-y-2">
             <div className="p-3 rounded-lg bg-primary/10 border border-primary/20">
                 <div className="text-lg font-semibold text-foreground">{data.type}</div>
-                <div className="text-sm text-muted-foreground">Profile {data.profile}</div>
+                <div className="text-sm text-muted-foreground">{t('personalityUpload.hdProfileLabel', { profile: data.profile })}</div>
             </div>
             <div className="grid grid-cols-2 gap-2 text-sm">
                 <div className="p-2 rounded bg-muted">
-                    <div className="text-muted-foreground text-xs">Strategy</div>
+                    <div className="text-muted-foreground text-xs">{t('personalityUpload.hdStrategy')}</div>
                     <div className="text-foreground">{data.strategy}</div>
                 </div>
                 <div className="p-2 rounded bg-muted">
-                    <div className="text-muted-foreground text-xs">Authority</div>
+                    <div className="text-muted-foreground text-xs">{t('personalityUpload.hdAuthority')}</div>
                     <div className="text-foreground">{data.authority}</div>
                 </div>
                 <div className="p-2 rounded bg-muted">
-                    <div className="text-muted-foreground text-xs">Definition</div>
+                    <div className="text-muted-foreground text-xs">{t('personalityUpload.hdDefinition')}</div>
                     <div className="text-foreground">{data.definition}</div>
                 </div>
                 {data.incarnation_cross && (
                     <div className="p-2 rounded bg-muted col-span-2">
-                        <div className="text-muted-foreground text-xs">Incarnation Cross</div>
+                        <div className="text-muted-foreground text-xs">{t('personalityUpload.hdIncarnationCross')}</div>
                         <div className="text-foreground">{data.incarnation_cross}</div>
                     </div>
                 )}
@@ -279,7 +281,7 @@ const PersonalityTestUploadModal = ({
                 <ErrorBoundary>
                     <DialogHeader>
                         <DialogTitle className="text-foreground">
-                            Upload Your {testName} Results
+                            {t('personalityUpload.dialogTitle', { testName })}
                         </DialogTitle>
                     </DialogHeader>
 
@@ -287,16 +289,16 @@ const PersonalityTestUploadModal = ({
                         {/* Example section */}
                         {!results && (
                             <div className="p-3 rounded-lg bg-muted/50 border border-border">
-                                <p className="text-xs uppercase  text-muted-foreground mb-2">What to upload</p>
+                                <p className="text-xs uppercase  text-muted-foreground mb-2">{t('personalityUpload.whatToUpload')}</p>
                                 <p className="text-sm text-foreground mb-3">
                                     {testType === 'enneagram' && (
-                                        <>Screenshot showing your Enneagram type with all 9 type scores (e.g., from Truity, Eclectic Energies, or similar). Should display bars/percentages for each type.</>
+                                        <>{t('personalityUpload.uploadHintEnneagram')}</>
                                     )}
                                     {testType === '16personalities' && (
-                                        <>Screenshot showing your 4-letter type code (e.g., INTJ-A), type name, and trait percentages for Mind, Energy, Nature, Tactics, and Identity.</>
+                                        <>{t('personalityUpload.uploadHint16Personalities')}</>
                                     )}
                                     {testType === 'human_design' && (
-                                        <>Screenshot showing your Human Design Type, Strategy, Authority, Profile, and Definition (e.g., from humdes.com).</>
+                                        <>{t('personalityUpload.uploadHintHumanDesign')}</>
                                     )}
                                 </p>
                                 <div className="rounded-lg overflow-hidden border border-border">
@@ -311,7 +313,7 @@ const PersonalityTestUploadModal = ({
                                         decoding="async"
                                         className="w-full h-auto max-h-32 object-cover object-top"
                                     />
-                                    <p className="text-[10px] text-muted-foreground text-center py-1 bg-muted/30">Example screenshot</p>
+                                    <p className="text-[10px] text-muted-foreground text-center py-1 bg-muted/30">{t('personalityUpload.exampleScreenshot')}</p>
                                 </div>
                             </div>
                         )}
@@ -338,13 +340,13 @@ const PersonalityTestUploadModal = ({
                                             decoding="async"
                                             className="max-h-48 mx-auto rounded"
                                         />
-                                        <p className="text-sm text-muted-foreground">Click or drop to change</p>
+                                        <p className="text-sm text-muted-foreground">{t('personalityUpload.clickOrDropToChange')}</p>
                                     </div>
                                 ) : (
                                     <div className="space-y-2">
                                         <Upload className="w-10 h-10 mx-auto text-muted-foreground" />
-                                        <p className="text-foreground">Drop screenshot here</p>
-                                        <p className="text-xs text-muted-foreground">or click to browse</p>
+                                        <p className="text-foreground">{t('personalityUpload.dropScreenshotHere')}</p>
+                                        <p className="text-xs text-muted-foreground">{t('personalityUpload.orClickToBrowse')}</p>
                                     </div>
                                 )}
                             </div>
@@ -352,7 +354,7 @@ const PersonalityTestUploadModal = ({
                             <div className="space-y-3">
                                 <div className="flex items-center gap-2 text-emerald-600">
                                     <Check className="w-5 h-5" />
-                                    <span className="font-medium">Results Extracted</span>
+                                    <span className="font-medium">{t('personalityUpload.resultsExtracted')}</span>
                                 </div>
                                 {renderResults()}
                             </div>
@@ -375,7 +377,7 @@ const PersonalityTestUploadModal = ({
                                         onClick={handleClose}
                                         className="flex-1"
                                     >
-                                        Cancel
+                                        {t('personalityUpload.cancel')}
                                     </Button>
                                     <Button
                                         onClick={handleAnalyze}
@@ -385,10 +387,10 @@ const PersonalityTestUploadModal = ({
                                         {analyzing ? (
                                             <>
                                                 <span className="premium-spinner w-4 h-4 mr-2" />
-                                                Analyzing...
+                                                {t('personalityUpload.analyzing')}
                                             </>
                                         ) : (
-                                            "Analyze →"
+                                            t('personalityUpload.analyze')
                                         )}
                                     </Button>
                                 </>
@@ -403,7 +405,7 @@ const PersonalityTestUploadModal = ({
                                         }}
                                         className="flex-1"
                                     >
-                                        Try Again
+                                        {t('personalityUpload.tryAgain')}
                                     </Button>
                                     <Button
                                         onClick={handleSave}
@@ -413,15 +415,15 @@ const PersonalityTestUploadModal = ({
                                         {saving ? (
                                             <>
                                                 <span className="premium-spinner w-4 h-4 mr-2" />
-                                                Saving...
+                                                {t('personalityUpload.saving')}
                                             </>
                                         ) : saved ? (
                                             <>
                                                 <Check className="w-4 h-4 mr-2" />
-                                                Saved!
+                                                {t('personalityUpload.saved')}
                                             </>
                                         ) : (
-                                            "Save to Profile"
+                                            t('personalityUpload.saveToProfile')
                                         )}
                                     </Button>
                                 </>

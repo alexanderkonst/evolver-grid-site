@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { ArrowLeft } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { PLAYBOOK_STEPS, PlaybookStep } from "@/data/playbookSteps";
@@ -49,6 +50,7 @@ const PlaybookShell = ({
   children,
 }: PlaybookShellProps) => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const resolveState = (s: PlaybookStep) =>
     getStepState ? getStepState(s) : defaultStateFor(s, currentSlug);
 
@@ -86,10 +88,10 @@ const PlaybookShell = ({
               "1px solid var(--skin-rule-strong, rgba(26,30,58,0.2))",
             color: "var(--skin-link-secondary, rgba(26,30,58,0.85))",
           }}
-          aria-label="Back to landing page"
+          aria-label={t("playbookShell.backAriaLabel")}
         >
           <ArrowLeft className="w-3 h-3" aria-hidden="true" />
-          <span>Back</span>
+          <span>{t("playbookShell.back")}</span>
         </button>
       </div>
 
@@ -187,7 +189,10 @@ const PlaybookShell = ({
                       : `0 1px 3px rgba(26,30,58,0.15)`,
                   }}
                   aria-current={isActive ? "step" : undefined}
-                  aria-label={`Step ${step.number}: ${step.subtitle}`}
+                  aria-label={t("playbookShell.stepAriaLabel", {
+                    number: step.number,
+                    subtitle: step.subtitle,
+                  })}
                 >
                   {step.number}
                 </button>
@@ -241,7 +246,7 @@ const PlaybookShell = ({
           className="text-xs leading-relaxed"
           style={{ color: "var(--skin-text-muted-soft, rgba(26,30,58,0.55))" }}
         >
-          The method is open to read. The platform is forkable.{" "}
+          {t("playbookShell.footerOpenText")}{" "}
           <a
             href="https://github.com/alexanderkonst/evolver-grid-site"
             target="_blank"
@@ -255,16 +260,14 @@ const PlaybookShell = ({
               color: "var(--skin-link-secondary, rgba(26,30,58,0.85))",
             }}
           >
-            Fork it on GitHub →
+            {t("playbookShell.forkOnGithub")}
           </a>
         </p>
         <p
           className="text-xs leading-relaxed max-w-xl mx-auto"
           style={{ color: "var(--skin-text-muted-soft, rgba(26,30,58,0.55))" }}
         >
-          Run it for your own community — under your own brand. 10% to commons
-          if you go commercial (plus the many other benefits of entering the
-          impact founder collective).{" "}
+          {t("playbookShell.footerCollectiveText")}{" "}
           <a
             href="https://t.me/integralevolution"
             target="_blank"
@@ -278,7 +281,7 @@ const PlaybookShell = ({
               color: "var(--skin-link-secondary, rgba(26,30,58,0.85))",
             }}
           >
-            Contact us →
+            {t("playbookShell.contactUs")}
           </a>
         </p>
       </div>

@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useLocation, Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import type { TFunction } from "i18next";
 import GameShellV2 from "@/components/game/GameShellV2";
 import { supabase } from "@/integrations/supabase/client";
 import { getOrCreateGameProfileId } from "@/lib/gameProfile";
@@ -66,10 +68,11 @@ type PerspectiveId =
 const MASTERY_CTA_URL = "https://t.me/integralevolution";
 
 interface PerspectiveConfig {
-    title: string;
-    subtitle: string;
+    // i18n keys (resolved with t() at render time), not literal copy.
+    titleKey: string;
+    subtitleKey: string;
     icon: React.ElementType;
-    render: (data: AppleseedData) => React.ReactNode;
+    render: (data: AppleseedData, t: TFunction) => React.ReactNode;
 }
 
 // ─── Shared editorial style fragments ─────────────────────────────────
@@ -253,6 +256,7 @@ const getUnifyingRoleData = (
  * data={data} />.
  */
 const UnifyingRoleSection = ({ data }: { data: AppleseedData }) => {
+    const { t } = useTranslation();
     const [userEmail, setUserEmail] = useState<string | null>(null);
     const [isOpen, setIsOpen] = useState(false);
 
@@ -275,7 +279,7 @@ const UnifyingRoleSection = ({ data }: { data: AppleseedData }) => {
                     className="italic text-base sm:text-lg leading-relaxed"
                     style={mutedStyle}
                 >
-                    Your Unifying Role profile is generated during your Top Talent Business Session.
+                    {t("zogPerspective.unifyingRole.introGenerated")}
                 </p>
                 <p
                     className="text-sm sm:text-base leading-relaxed"
@@ -285,7 +289,7 @@ const UnifyingRoleSection = ({ data }: { data: AppleseedData }) => {
                         textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
                     }}
                 >
-                    Where your Top Talent names <em>what you do</em>, your Unifying Role names <em>what you are</em> — the structural function your gift performs in the larger field: the split you heal, the two realms you bridge, the position you hold in the meshwork.
+                    {t("zogPerspective.unifyingRole.introBefore")} <em>{t("zogPerspective.unifyingRole.introWhatYouDo")}</em>{t("zogPerspective.unifyingRole.introMiddle")} <em>{t("zogPerspective.unifyingRole.introWhatYouAre")}</em>{t("zogPerspective.unifyingRole.introAfter")}
                 </p>
             </div>
 
@@ -306,7 +310,7 @@ const UnifyingRoleSection = ({ data }: { data: AppleseedData }) => {
                         letterSpacing: "0.02em",
                     }}
                 >
-                    <span>Book your session to generate it</span>
+                    <span>{t("zogPerspective.unifyingRole.bookCta")}</span>
                     <ArrowRight
                         aria-hidden="true"
                         className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 flex-shrink-0"
@@ -329,7 +333,7 @@ const UnifyingRoleSection = ({ data }: { data: AppleseedData }) => {
                         }}
                     >
                         <span className="flex items-center gap-3">
-                            <span style={eyebrowStyle}>{isOpen ? "Hide" : "Reveal"}</span>
+                            <span style={eyebrowStyle}>{isOpen ? t("zogPerspective.unifyingRole.hide") : t("zogPerspective.unifyingRole.reveal")}</span>
                             <span
                                 className="text-base sm:text-lg italic"
                                 style={{
@@ -339,7 +343,7 @@ const UnifyingRoleSection = ({ data }: { data: AppleseedData }) => {
                                     textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
                                 }}
                             >
-                                My Unifying Role
+                                {t("zogPerspective.unifyingRole.disclosureTitle")}
                             </span>
                         </span>
                         <ChevronDown
@@ -356,7 +360,7 @@ const UnifyingRoleSection = ({ data }: { data: AppleseedData }) => {
                                 className="rounded-2xl px-6 py-7 sm:px-8 sm:py-8 text-center"
                                 style={accentCardSurface}
                             >
-                                <p style={eyebrowStyle} className="mb-3">My unifying role is</p>
+                                <p style={eyebrowStyle} className="mb-3">{t("zogPerspective.unifyingRole.roleTitleEyebrow")}</p>
                                 <p
                                     className="leading-snug"
                                     style={{
@@ -377,7 +381,7 @@ const UnifyingRoleSection = ({ data }: { data: AppleseedData }) => {
                                 className="rounded-2xl px-6 py-5 sm:px-7 sm:py-6 text-center"
                                 style={cardSurface}
                             >
-                                <p style={eyebrowStyle} className="mb-2">In one line</p>
+                                <p style={eyebrowStyle} className="mb-2">{t("zogPerspective.unifyingRole.oneLineEyebrow")}</p>
                                 <p
                                     className="italic leading-snug"
                                     style={{
@@ -393,7 +397,7 @@ const UnifyingRoleSection = ({ data }: { data: AppleseedData }) => {
                             </div>
 
                             {/* The split you heal */}
-                            <FieldCard label="The Split You Heal">
+                            <FieldCard label={t("zogPerspective.unifyingRole.splitLabel")}>
                                 <p
                                     style={{
                                         fontFamily: "'Source Serif 4', Georgia, serif",
@@ -408,7 +412,7 @@ const UnifyingRoleSection = ({ data }: { data: AppleseedData }) => {
                             {role.the_two_poles && role.the_two_poles.length === 2 && (
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                     <div className="rounded-2xl px-5 py-5" style={cardSurface}>
-                                        <p style={eyebrowStyle} className="mb-2">Pole 1</p>
+                                        <p style={eyebrowStyle} className="mb-2">{t("zogPerspective.unifyingRole.pole1")}</p>
                                         <p
                                             className="leading-relaxed"
                                             style={{
@@ -421,7 +425,7 @@ const UnifyingRoleSection = ({ data }: { data: AppleseedData }) => {
                                         </p>
                                     </div>
                                     <div className="rounded-2xl px-5 py-5" style={cardSurface}>
-                                        <p style={eyebrowStyle} className="mb-2">Pole 2</p>
+                                        <p style={eyebrowStyle} className="mb-2">{t("zogPerspective.unifyingRole.pole2")}</p>
                                         <p
                                             className="leading-relaxed"
                                             style={{
@@ -437,7 +441,7 @@ const UnifyingRoleSection = ({ data }: { data: AppleseedData }) => {
                             )}
 
                             {/* Signature integration */}
-                            <FieldCard label="How You Perform the Unification">
+                            <FieldCard label={t("zogPerspective.unifyingRole.integrationLabel")}>
                                 <p
                                     style={{
                                         fontFamily: "'Source Serif 4', Georgia, serif",
@@ -452,7 +456,7 @@ const UnifyingRoleSection = ({ data }: { data: AppleseedData }) => {
                             {/* Before/After diptych */}
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div className="rounded-2xl px-5 py-5" style={cardSurface}>
-                                    <p style={eyebrowStyle} className="mb-2">Without You in the Room</p>
+                                    <p style={eyebrowStyle} className="mb-2">{t("zogPerspective.unifyingRole.withoutYou")}</p>
                                     <p
                                         className="leading-relaxed"
                                         style={{
@@ -465,7 +469,7 @@ const UnifyingRoleSection = ({ data }: { data: AppleseedData }) => {
                                     </p>
                                 </div>
                                 <div className="rounded-2xl px-5 py-5" style={accentCardSurface}>
-                                    <p style={eyebrowStyle} className="mb-2">When You Are Present</p>
+                                    <p style={eyebrowStyle} className="mb-2">{t("zogPerspective.unifyingRole.whenPresent")}</p>
                                     <p
                                         className="leading-relaxed"
                                         style={{
@@ -482,7 +486,7 @@ const UnifyingRoleSection = ({ data }: { data: AppleseedData }) => {
                             {/* Where this role matters most */}
                             {role.where_this_role_matters_most && role.where_this_role_matters_most.length > 0 && (
                                 <div className="space-y-3">
-                                    <p style={eyebrowStyle} className="px-1">Where This Role Matters Most</p>
+                                    <p style={eyebrowStyle} className="px-1">{t("zogPerspective.unifyingRole.whereMattersMost")}</p>
                                     <ul className="space-y-3">
                                         {role.where_this_role_matters_most.map((env, i) => (
                                             <li
@@ -514,7 +518,7 @@ const UnifyingRoleSection = ({ data }: { data: AppleseedData }) => {
                             )}
 
                             {/* The tribe that recognizes you */}
-                            <FieldCard label="The Tribe That Recognizes You">
+                            <FieldCard label={t("zogPerspective.unifyingRole.tribeLabel")}>
                                 <p
                                     style={{
                                         fontFamily: "'Source Serif 4', Georgia, serif",
@@ -530,7 +534,7 @@ const UnifyingRoleSection = ({ data }: { data: AppleseedData }) => {
                                 className="rounded-2xl px-6 py-7 sm:px-8 sm:py-8 text-center"
                                 style={accentCardSurface}
                             >
-                                <p style={eyebrowStyle} className="mb-3">Civilizational Function</p>
+                                <p style={eyebrowStyle} className="mb-3">{t("zogPerspective.unifyingRole.civilizationalFunction")}</p>
                                 <p
                                     className="leading-relaxed"
                                     style={{
@@ -567,15 +571,15 @@ const PERSPECTIVES: Partial<Record<PerspectiveId, PerspectiveConfig>> = {
         //   "You're in. Let's begin." + "Three moves." → header.
         // showHeading=false on the body to avoid doubling the heading
         // (perspective layout already renders title + subtitle).
-        title: "You're in. Let's begin.",
-        subtitle: "Three moves.",
+        titleKey: "zogPerspective.startHere.title",
+        subtitleKey: "zogPerspective.startHere.subtitle",
         icon: Sparkles,
         render: () => <ActivationSteps showHeading={false} />,
     },
     // ─── Four deep-profile perspectives ───
     "how-it-shows-up": {
-        title: "How It Shows Up",
-        subtitle: "Where your genius lights up in real life",
+        titleKey: "zogPerspective.howItShowsUp.title",
+        subtitleKey: "zogPerspective.howItShowsUp.subtitle",
         icon: Sparkles,
         render: (data) => (
             data.topTalentProfile?.how_genius_shows_up ? (
@@ -607,13 +611,13 @@ const PERSPECTIVES: Partial<Record<PerspectiveId, PerspectiveConfig>> = {
         // underneath as the unfolded explanation. Compact form is
         // optional — for pre-Day-61 snapshots that don't have it, only
         // the long form renders (back-compat).
-        title: "Three Talents in Depth",
+        titleKey: "zogPerspective.threeKeyTalents.title",
         // Day 62 (Sasha 2026-05-05): subtitle was "Each talent — the
         // handle from your reveal, then unfolded" — too poetic, didn't
         // name what the user gets. Replaced with a direct statement of
         // the transformational result: reading this page, you
         // understand what each of your three talents actually means.
-        subtitle: "What each of your three talents really means.",
+        subtitleKey: "zogPerspective.threeKeyTalents.subtitle",
         icon: Sparkles,
         render: (data) => {
             const longForms = data.topTalentProfile?.top_three_talents ?? [];
@@ -687,14 +691,14 @@ const PERSPECTIVES: Partial<Record<PerspectiveId, PerspectiveConfig>> = {
         },
     },
     "top-shadow": {
-        title: "Top Shadow",
-        subtitle: "The other side of the coin",
+        titleKey: "zogPerspective.topShadow.title",
+        subtitleKey: "zogPerspective.topShadow.subtitle",
         icon: Sparkles,
         // Day 58 (Sasha 2026-05-02): subpage now renders BOTH the
         // synthesized one-sentence form AND the full paragraph. The
         // sentence is the punchy headline; the paragraph is the
         // structural unfolding. Reveal card shows only the sentence.
-        render: (data) => {
+        render: (data, t) => {
             // Day 58+ (Sasha 2026-05-03): top_shadow_one_sentence renders
             // under "MY TOP SHADOW IS" eyebrow → first-person reflexive
             // ("myself"). edge_and_traps renders as a body paragraph in
@@ -713,7 +717,7 @@ const PERSPECTIVES: Partial<Record<PerspectiveId, PerspectiveConfig>> = {
                             className="rounded-2xl px-6 py-6 sm:px-8 sm:py-7 text-center"
                             style={accentCardSurface}
                         >
-                            <p style={eyebrowStyle} className="mb-3">My top shadow is</p>
+                            <p style={eyebrowStyle} className="mb-3">{t("zogPerspective.topShadow.eyebrow")}</p>
                             {/* Day 62 (Sasha 2026-05-05): Strong legibility
                                 cocktail per ui_playbook.md Part VIII — italic
                                 Cormorant body callout on variable-luminance bg. */}
@@ -751,13 +755,13 @@ const PERSPECTIVES: Partial<Record<PerspectiveId, PerspectiveConfig>> = {
         },
     },
     "one-action": {
-        title: "One Action",
-        subtitle: "The single action that, repeated, deepens your mastery",
+        titleKey: "zogPerspective.oneAction.title",
+        subtitleKey: "zogPerspective.oneAction.subtitle",
         icon: Sparkles,
-        render: (data) => (
+        render: (data, t) => (
             data.topTalentProfile?.flywheel_action ? (
                 <div className="rounded-2xl px-6 py-7 sm:px-8 sm:py-8 space-y-3" style={accentCardSurface}>
-                    <p style={eyebrowStyle}>Repeat this</p>
+                    <p style={eyebrowStyle}>{t("zogPerspective.oneAction.repeatEyebrow")}</p>
                     <p
                         className="text-base sm:text-lg leading-relaxed font-medium"
                         style={{
@@ -773,25 +777,25 @@ const PERSPECTIVES: Partial<Record<PerspectiveId, PerspectiveConfig>> = {
         ),
     },
     "bullseye": {
-        title: "Bullseye Sentence",
-        subtitle: "Your essence in one breath",
+        titleKey: "zogPerspective.bullseye.title",
+        subtitleKey: "zogPerspective.bullseye.subtitle",
         icon: Target,
-        render: (data) => (
+        render: (data, t) => (
             <div className="text-center py-8">
                 <p
                     className="text-2xl sm:text-3xl leading-relaxed font-medium"
                     style={titleStyle}
                 >
-                    I {data.bullseyeSentence}
+                    {t("zogPerspective.bullseye.iPrefix")} {data.bullseyeSentence}
                 </p>
             </div>
         ),
     },
     "vibrational-key": {
-        title: "Unique Vibrational Key",
-        subtitle: "Your archetypal name and tagline",
+        titleKey: "zogPerspective.vibrationalKey.title",
+        subtitleKey: "zogPerspective.vibrationalKey.subtitle",
         icon: Sparkles,
-        render: (data) => (
+        render: (data, t) => (
             <div className="space-y-6 text-center py-8">
                 <h2
                     className="text-3xl sm:text-4xl font-semibold leading-tight"
@@ -818,22 +822,22 @@ const PERSPECTIVES: Partial<Record<PerspectiveId, PerspectiveConfig>> = {
                 </p>
                 {data.vibrationalKey.tagline_simple && (
                     <p className="text-sm sm:text-base" style={mutedStyle}>
-                        In simple terms: {data.vibrationalKey.tagline_simple}
+                        {t("zogPerspective.vibrationalKey.inSimpleTerms", { text: data.vibrationalKey.tagline_simple })}
                     </p>
                 )}
             </div>
         ),
     },
     "three-lenses": {
-        title: "Zone of Genius — Three Lenses",
-        subtitle: "Actions → Prime Driver → Archetype",
+        titleKey: "zogPerspective.threeLenses.title",
+        subtitleKey: "zogPerspective.threeLenses.subtitle",
         icon: Zap,
-        render: (data) => (
+        render: (data, t) => (
             <div className="space-y-4">
-                <FieldCard label="My Top Actions">
+                <FieldCard label={t("zogPerspective.threeLenses.topActionsLabel")}>
                     <p className="font-medium">{data.threeLenses.actions.join(" • ")}</p>
                 </FieldCard>
-                <FieldCard label="My Prime Driver">
+                <FieldCard label={t("zogPerspective.threeLenses.primeDriverLabel")}>
                     <p className="font-semibold text-xl mb-1">{data.threeLenses.primeDriver}</p>
                     {data.threeLenses.primeDriver_meaning && (
                         <p className="text-sm" style={mutedStyle}>
@@ -841,7 +845,7 @@ const PERSPECTIVES: Partial<Record<PerspectiveId, PerspectiveConfig>> = {
                         </p>
                     )}
                 </FieldCard>
-                <FieldCard label="My Archetype">
+                <FieldCard label={t("zogPerspective.threeLenses.archetypeLabel")}>
                     <p className="font-semibold text-xl mb-1">{data.threeLenses.archetype}</p>
                     {data.threeLenses.archetype_meaning && (
                         <p className="text-sm" style={mutedStyle}>
@@ -849,12 +853,12 @@ const PERSPECTIVES: Partial<Record<PerspectiveId, PerspectiveConfig>> = {
                         </p>
                     )}
                 </FieldCard>
-                <FieldCard label="✦ One Action to Mastery" accent>
+                <FieldCard label={t("zogPerspective.threeLenses.oneActionLabel")} accent>
                     <p className="font-semibold text-lg mb-1">
-                        Put "{data.threeLenses.primeDriver}" on repeat.
+                        {t("zogPerspective.threeLenses.putOnRepeat", { driver: data.threeLenses.primeDriver })}
                     </p>
                     <p className="text-sm" style={mutedStyle}>
-                        This is the single action that, when practiced consistently, leads to full mastery of your genius.
+                        {t("zogPerspective.threeLenses.oneActionExplain")}
                     </p>
                 </FieldCard>
             </div>
@@ -863,8 +867,8 @@ const PERSPECTIVES: Partial<Record<PerspectiveId, PerspectiveConfig>> = {
     // "appreciated-for" — Day 58 (Sasha 2026-05-02): retired. Sasha:
     // "let's just delete it." Side-nav entry already removed.
     "mastery": {
-        title: "Path of Mastery",
-        subtitle: "Your seven stages of evolution",
+        titleKey: "zogPerspective.mastery.title",
+        subtitleKey: "zogPerspective.mastery.subtitle",
         icon: TrendingUp,
         render: (data) => (
             <div className="space-y-3">
@@ -903,10 +907,10 @@ const PERSPECTIVES: Partial<Record<PerspectiveId, PerspectiveConfig>> = {
         ),
     },
     "activities": {
-        title: "Professional Activities",
-        subtitle: "LinkedIn-searchable roles",
+        titleKey: "zogPerspective.activities.title",
+        subtitleKey: "zogPerspective.activities.subtitle",
         icon: Briefcase,
-        render: (data) => (
+        render: (data, t) => (
             <div className="space-y-3">
                 {data.professionalActivities?.map((item, index) => (
                     <div
@@ -915,22 +919,22 @@ const PERSPECTIVES: Partial<Record<PerspectiveId, PerspectiveConfig>> = {
                         style={cardSurface}
                     >
                         <p style={bodyStyle} className="font-semibold mb-1">{item.activity}</p>
-                        <p style={mutedStyle} className="text-sm">For: {item.targetAudience}</p>
-                        <p style={mutedStyle} className="text-sm">Purpose: {item.purpose}</p>
+                        <p style={mutedStyle} className="text-sm">{t("zogPerspective.activities.forPrefix", { audience: item.targetAudience })}</p>
+                        <p style={mutedStyle} className="text-sm">{t("zogPerspective.activities.purposePrefix", { purpose: item.purpose })}</p>
                     </div>
                 ))}
             </div>
         ),
     },
     "roles": {
-        title: "Ideal Environments",
-        subtitle: "Where your genius is most at home",
+        titleKey: "zogPerspective.roles.title",
+        subtitleKey: "zogPerspective.roles.subtitle",
         icon: Users,
         // Day 58 (Sasha 2026-05-02): content swapped from rolesEnvironments
         // to topTalentProfile.ideal_environments — three-bullet editorial
         // list matching the deep-profile register. Falls back to the legacy
         // rolesEnvironments shape for snapshots without the deep field.
-        render: (data) => {
+        render: (data, t) => {
             const envs = data.topTalentProfile?.ideal_environments;
             if (envs && envs.length > 0) {
                 return (
@@ -967,7 +971,7 @@ const PERSPECTIVES: Partial<Record<PerspectiveId, PerspectiveConfig>> = {
             return (
                 <div className="space-y-4">
                     {data.rolesEnvironments?.environment && (
-                        <FieldCard label="Ideal Environment" accent>
+                        <FieldCard label={t("zogPerspective.roles.idealEnvironmentLabel")} accent>
                             <span className="font-medium">{data.rolesEnvironments.environment}</span>
                         </FieldCard>
                     )}
@@ -976,14 +980,14 @@ const PERSPECTIVES: Partial<Record<PerspectiveId, PerspectiveConfig>> = {
         },
     },
     "partner": {
-        title: "Complementary Partner",
-        subtitle: "Who you most need beside you",
+        titleKey: "zogPerspective.partner.title",
+        subtitleKey: "zogPerspective.partner.subtitle",
         icon: Users,
         // Day 58 (Sasha 2026-05-02): the prompt now asks for ONE fused
         // paragraph in `synergy` rather than four piecemeal fields. We
         // show the paragraph as the primary read; the labeled grid is
         // kept as a legacy fallback for pre-Day-58 snapshots.
-        render: (data) => {
+        render: (data, t) => {
             const partner = data.complementaryPartner;
             const synergyParagraph = partner?.synergy?.trim();
             const hasLegacyDetails = Boolean(
@@ -1012,16 +1016,16 @@ const PERSPECTIVES: Partial<Record<PerspectiveId, PerspectiveConfig>> = {
             return (
                 <div className="space-y-4">
                     {partner?.skillsWise && (
-                        <FieldCard label="Skills-Wise">{partner.skillsWise}</FieldCard>
+                        <FieldCard label={t("zogPerspective.partner.skillsWiseLabel")}>{partner.skillsWise}</FieldCard>
                     )}
                     {partner?.geniusWise && (
-                        <FieldCard label="Genius-Wise">{partner.geniusWise}</FieldCard>
+                        <FieldCard label={t("zogPerspective.partner.geniusWiseLabel")}>{partner.geniusWise}</FieldCard>
                     )}
                     {partner?.archetypeWise && (
-                        <FieldCard label="Archetype-Wise">{partner.archetypeWise}</FieldCard>
+                        <FieldCard label={t("zogPerspective.partner.archetypeWiseLabel")}>{partner.archetypeWise}</FieldCard>
                     )}
                     {partner?.synergy && (
-                        <FieldCard label="The Synergy" accent>
+                        <FieldCard label={t("zogPerspective.partner.synergyLabel")} accent>
                             <span className="font-medium">{partner.synergy}</span>
                         </FieldCard>
                     )}
@@ -1030,8 +1034,8 @@ const PERSPECTIVES: Partial<Record<PerspectiveId, PerspectiveConfig>> = {
         },
     },
     "monetization": {
-        title: "Monetization",
-        subtitle: "How you turn your genius into revenue",
+        titleKey: "zogPerspective.monetization.title",
+        subtitleKey: "zogPerspective.monetization.subtitle",
         icon: DollarSign,
         // Day 58 (Sasha 2026-05-02 late evening): each subsection now
         // wrapped in its own bordered cream container so the eyebrow
@@ -1040,7 +1044,7 @@ const PERSPECTIVES: Partial<Record<PerspectiveId, PerspectiveConfig>> = {
         // gold-on-gold against the aurora page tint. Each container
         // has a strong gold hairline + a Cormorant section heading at
         // top, then the cards inside.
-        render: (data) => {
+        render: (data, t) => {
             const SectionContainer = ({
                 heading,
                 children,
@@ -1105,7 +1109,7 @@ const PERSPECTIVES: Partial<Record<PerspectiveId, PerspectiveConfig>> = {
             return (
                 <div className="space-y-6">
                     {data.monetizationAvenues && data.monetizationAvenues.length > 0 && (
-                        <SectionContainer heading="Monetization Avenues">
+                        <SectionContainer heading={t("zogPerspective.monetization.avenuesHeading")}>
                             <ul className="space-y-3">
                                 {data.monetizationAvenues.map((avenue, i) => (
                                     <ItemCard key={i}>{avenue}</ItemCard>
@@ -1115,7 +1119,7 @@ const PERSPECTIVES: Partial<Record<PerspectiveId, PerspectiveConfig>> = {
                     )}
 
                     {data.topTalentProfile?.career_sweet_spots && data.topTalentProfile.career_sweet_spots.length > 0 && (
-                        <SectionContainer heading="Career Sweet Spots">
+                        <SectionContainer heading={t("zogPerspective.monetization.sweetSpotsHeading")}>
                             <ul className="space-y-3">
                                 {data.topTalentProfile.career_sweet_spots.map((spot, i) => (
                                     <ItemCard key={i}>{spot}</ItemCard>
@@ -1144,8 +1148,8 @@ const PERSPECTIVES: Partial<Record<PerspectiveId, PerspectiveConfig>> = {
     // matches funnel monogamy: explains what the view IS + the only
     // CTA path to generate it (book the session).
     "unifying-role": {
-        title: "Your Unifying Role",
-        subtitle: "The split you heal. The crossing you are.",
+        titleKey: "zogPerspective.unifyingRoleConfig.title",
+        subtitleKey: "zogPerspective.unifyingRoleConfig.subtitle",
         icon: Users,
         // Day 68 (Sasha 2026-05-15): rendering moved into its own component
         // (UnifyingRoleSection above) so we can use hooks for the user-email
@@ -1159,10 +1163,10 @@ const PERSPECTIVES: Partial<Record<PerspectiveId, PerspectiveConfig>> = {
     // landing point at the end. CTA target preserved as
     // /ignite#pricing-section (matches the Step 3 CTA on Start Here).
     "whats-next": {
-        title: "What's Next?",
-        subtitle: "From recognition to action",
+        titleKey: "zogPerspective.whatsNext.title",
+        subtitleKey: "zogPerspective.whatsNext.subtitle",
         icon: Sparkles,
-        render: () => (
+        render: (_data, t) => (
             <div className="space-y-6 text-center">
                 <div
                     className="rounded-2xl px-6 py-7 sm:px-8 sm:py-9 space-y-5"
@@ -1177,7 +1181,7 @@ const PERSPECTIVES: Partial<Record<PerspectiveId, PerspectiveConfig>> = {
                             textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
                         }}
                     >
-                        You're more in touch with your top talent.
+                        {t("zogPerspective.whatsNext.bodyLine1")}
                     </p>
                     <p
                         className="text-base sm:text-lg leading-relaxed"
@@ -1188,9 +1192,9 @@ const PERSPECTIVES: Partial<Record<PerspectiveId, PerspectiveConfig>> = {
                             textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
                         }}
                     >
-                        Use it in your work—
+                        {t("zogPerspective.whatsNext.bodyLine2a")}
                         <br />
-                        or turn it into a business only you can build.
+                        {t("zogPerspective.whatsNext.bodyLine2b")}
                     </p>
                 </div>
                 <div className="pt-2">
@@ -1209,7 +1213,7 @@ const PERSPECTIVES: Partial<Record<PerspectiveId, PerspectiveConfig>> = {
                             letterSpacing: "0.02em",
                         }}
                     >
-                        <span>Turn it into a business</span>
+                        <span>{t("zogPerspective.whatsNext.cta")}</span>
                         <ArrowRight
                             aria-hidden="true"
                             className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 flex-shrink-0"
@@ -1220,8 +1224,8 @@ const PERSPECTIVES: Partial<Record<PerspectiveId, PerspectiveConfig>> = {
         ),
     },
     "life-scene": {
-        title: "Life Scene",
-        subtitle: "Sensory embodiment in flow",
+        titleKey: "zogPerspective.lifeScene.title",
+        subtitleKey: "zogPerspective.lifeScene.subtitle",
         icon: Eye,
         render: (data) => (
             <div className="rounded-2xl px-7 py-8" style={accentCardSurface}>
@@ -1235,8 +1239,8 @@ const PERSPECTIVES: Partial<Record<PerspectiveId, PerspectiveConfig>> = {
         ),
     },
     "visual-codes": {
-        title: "Visual Codes",
-        subtitle: "Symbolic anchors for your genius",
+        titleKey: "zogPerspective.visualCodes.title",
+        subtitleKey: "zogPerspective.visualCodes.subtitle",
         icon: Palette,
         render: (data) => (
             <div className="grid grid-cols-2 gap-4">
@@ -1254,8 +1258,8 @@ const PERSPECTIVES: Partial<Record<PerspectiveId, PerspectiveConfig>> = {
         ),
     },
     "elevator-pitch": {
-        title: "Elevator Pitch",
-        subtitle: "Your genius in 30 seconds",
+        titleKey: "zogPerspective.elevatorPitch.title",
+        subtitleKey: "zogPerspective.elevatorPitch.subtitle",
         icon: MessageSquare,
         render: (data) => (
             <div className="rounded-2xl px-7 py-8" style={accentCardSurface}>
@@ -1275,6 +1279,7 @@ const PERSPECTIVES: Partial<Record<PerspectiveId, PerspectiveConfig>> = {
 };
 
 const ZoGPerspectiveView = () => {
+    const { t } = useTranslation();
     const { perspectiveId } = useParams<{ perspectiveId: PerspectiveId }>();
     const location = useLocation();
     // Day 80 (Sasha 2026-05-23): CROSS-USER LEAK FIX. Previous code
@@ -1399,7 +1404,7 @@ const ZoGPerspectiveView = () => {
             <GameShellV2>
                 <div className="max-w-2xl mx-auto px-5 py-10 text-center">
                     <p className="italic" style={mutedStyle}>
-                        Unknown perspective.
+                        {t("zogPerspective.unknownPerspective")}
                     </p>
                 </div>
             </GameShellV2>
@@ -1450,13 +1455,13 @@ const ZoGPerspectiveView = () => {
             <div className="text-center py-10">
                 <p className="italic" style={mutedStyle}>
                     {snapshotMissing
-                        ? "No Top Talent data found yet. Complete the assessment first."
-                        : "Loading…"}
+                        ? t("zogPerspective.noDataYet")
+                        : t("zogPerspective.loading")}
                 </p>
             </div>
         );
     } else {
-        body = config.render(appleseedData!);
+        body = config.render(appleseedData!, t);
     }
 
     return (
@@ -1477,14 +1482,14 @@ const ZoGPerspectiveView = () => {
                         className="text-2xl sm:text-3xl font-semibold leading-tight tracking-tight"
                         style={titleStyle}
                     >
-                        {config.title}
+                        {t(config.titleKey)}
                     </h1>
 
                     <p
                         className="mt-2 text-base sm:text-lg italic"
                         style={mutedStyle}
                     >
-                        {config.subtitle}
+                        {t(config.subtitleKey)}
                     </p>
                 </header>
 
