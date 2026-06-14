@@ -1,5 +1,6 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { runViabilityPass } from "../_shared/viability.ts";
+import { resolveOutputLanguage, languageDirective } from "../_shared/language.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -254,7 +255,9 @@ serve(async (req) => {
   }
 
   try {
-    const { appleseed, prompt } = await req.json();
+    const body = await req.json();
+    const { appleseed, prompt } = body;
+    const outputLanguage = resolveOutputLanguage(body?.target_language);
 
     if (!prompt && !appleseed) {
       return new Response(
@@ -284,7 +287,7 @@ serve(async (req) => {
         messages: [
           {
             role: "system",
-            content: "You are a Genius Business Generator that outputs ONLY valid JSON. No markdown, no code blocks. You MUST include: 1) A memorable 3-word business name, 2) A Product Hunt style tagline (7 words max), 3) Clear Point A to Point B transformational promise. For every poetic term, also provide a plain-language explanation."
+            content: "You are a Genius Business Generator that outputs ONLY valid JSON. No markdown, no code blocks. You MUST include: 1) A memorable 3-word business name, 2) A Product Hunt style tagline (7 words max), 3) Clear Point A to Point B transformational promise. For every poetic term, also provide a plain-language explanation." + languageDirective(outputLanguage)
           },
           { role: "user", content: finalPrompt }
         ],

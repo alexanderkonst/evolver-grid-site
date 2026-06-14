@@ -1,5 +1,6 @@
 import "https://deno.land/x/xhr@0.1.0/mod.ts";
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
+import { resolveOutputLanguage, languageDirective } from "../_shared/language.ts";
 
 
 const corsHeaders = {
@@ -16,8 +17,10 @@ serve(async (req) => {
     // ZoG snapshot is open to anonymous test takers as well as logged-in users.
     // No auth gate here — the gateway-level verify_jwt is also off in config.toml.
 
-    const { prompt } = await req.json();
-    
+    const body = await req.json();
+    const { prompt, target_language } = body ?? {};
+    const outputLanguage = resolveOutputLanguage(target_language);
+
     if (!prompt) {
       return new Response(
         JSON.stringify({ error: 'Prompt is required' }),
@@ -41,7 +44,7 @@ serve(async (req) => {
         messages: [
           {
             role: 'user',
-            content: prompt
+            content: prompt + languageDirective(outputLanguage)
           }
         ],
       }),

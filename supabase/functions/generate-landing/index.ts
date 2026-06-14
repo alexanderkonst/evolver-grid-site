@@ -1,4 +1,5 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
+import { resolveOutputLanguage, languageDirective } from "../_shared/language.ts";
 
 const corsHeaders = {
     "Access-Control-Allow-Origin": "*",
@@ -54,7 +55,9 @@ serve(async (req) => {
     }
 
     try {
-        const { icp, pain, tp } = await req.json();
+        const body = await req.json();
+        const { icp, pain, tp } = body;
+        const outputLanguage = resolveOutputLanguage(body?.target_language);
 
         if (!icp || !tp) {
             return new Response(
@@ -98,7 +101,7 @@ Make it specific enough that they can repeat your offer to a friend after one re
             body: JSON.stringify({
                 model: "google/gemini-2.5-flash-lite",
                 messages: [
-                    { role: "system", content: GENERATE_LANDING_PROMPT },
+                    { role: "system", content: GENERATE_LANDING_PROMPT + languageDirective(outputLanguage) },
                     { role: "user", content: `Generate landing page copy:\n\n${context}` }
                 ],
             }),
