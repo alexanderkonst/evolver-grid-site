@@ -13,6 +13,7 @@
  */
 
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { ArrowRight, Brain, ListChecks, Clipboard, Check, Loader2 } from "lucide-react";
 import { Textarea } from "@/components/ui/textarea";
@@ -319,6 +320,7 @@ const tertiaryPill: React.CSSProperties = {
 };
 
 const AssetMappingLanding = () => {
+    const { t } = useTranslation();
     const navigate = useNavigate();
     const [searchParams] = useSearchParams();
     const returnPath = searchParams.get("return") || "/game/me";
@@ -363,7 +365,7 @@ const AssetMappingLanding = () => {
         try {
             const { data: { user } } = await supabase.auth.getUser();
             if (!user) {
-                toast({ title: "Please sign in", variant: "destructive" });
+                toast({ title: t('assetLanding.toastPleaseSignIn'), variant: "destructive" });
                 return;
             }
 
@@ -429,10 +431,10 @@ const AssetMappingLanding = () => {
 
             if (!result.success) {
                 toast({
-                    title: "Couldn't save to your profile",
+                    title: t('assetLanding.toastCouldNotSaveTitle'),
                     description: result.error
-                        ? `Your assets are buffered locally — please retry. (${result.error})`
-                        : "Your assets are buffered locally; please retry to sync.",
+                        ? t('assetLanding.toastBufferedLocallyWithError', { error: result.error })
+                        : t('assetLanding.toastBufferedLocally'),
                     variant: "destructive",
                 });
                 return;
@@ -441,8 +443,13 @@ const AssetMappingLanding = () => {
             setHasSaved(true);
             const totalSkipped = skippedCount + result.skipped;
             toast({
-                title: "Assets saved",
-                description: `Saved ${result.saved} assets${totalSkipped ? `, skipped ${totalSkipped}` : ""}.`,
+                title: t('assetLanding.toastAssetsSavedTitle'),
+                description: t('assetLanding.toastAssetsSavedDesc', {
+                    saved: result.saved,
+                    skipped: totalSkipped
+                        ? t('assetLanding.toastSkippedClause', { count: totalSkipped })
+                        : "",
+                }),
             });
 
             // Day 80 Wave 2 (Sasha 2026-05-22): graduation detection +
@@ -461,7 +468,7 @@ const AssetMappingLanding = () => {
                 const hasMission = !!(profileForGrad as { mission_discovered_at?: string | null } | null)?.mission_discovered_at;
                 const hasTalent = !!(profileForGrad as { last_zog_snapshot_id?: string | null } | null)?.last_zog_snapshot_id;
                 const isGraduation = hasMission && hasTalent;
-                const resultText = `${result.saved} asset${result.saved === 1 ? "" : "s"} mapped`;
+                const resultText = t('assetLanding.celebrateResultText', { count: result.saved });
                 window.dispatchEvent(
                     new CustomEvent("fytt:celebrate", {
                         detail: {
@@ -475,7 +482,7 @@ const AssetMappingLanding = () => {
                 // Defensive — never block save on celebration UX.
             }
         } catch (err) {
-            toast({ title: "Something went wrong", variant: "destructive" });
+            toast({ title: t('assetLanding.toastSomethingWentWrong'), variant: "destructive" });
         } finally {
             setIsSaving(false);
         }
@@ -624,12 +631,12 @@ const AssetMappingLanding = () => {
                                 "var(--skin-text-halo-deep, 0 0 22px rgba(255,255,255,0.7), 0 1px 2px rgba(255,255,255,0.9), 0 0 1px rgba(11,42,90,0.45), 0 1px 0 rgba(11,42,90,0.25))",
                         }}
                     >
-                        Asset{" "}
+                        {t('assetLanding.heroTitleBefore')}{" "}
                         <span
                             className="bg-clip-text text-transparent"
                             style={GOLD_TEXT_STYLE}
                         >
-                            Mapping
+                            {t('assetLanding.heroTitleGold')}
                         </span>
                     </h1>
                     <p
@@ -643,7 +650,7 @@ const AssetMappingLanding = () => {
                                 "var(--skin-text-halo-deep, 0 0 28px rgba(255,255,255,0.85), 0 1px 2px rgba(255,255,255,0.95), 0 0 1px rgba(11,42,90,0.65), 0 1px 0 rgba(11,42,90,0.45))",
                         }}
                     >
-                        Map your resources for collaboration
+                        {t('assetLanding.heroSubtitle')}
                     </p>
                     <Ornament className="my-6 sm:my-7" />
                 </header>
@@ -660,7 +667,7 @@ const AssetMappingLanding = () => {
                                 lineHeight: 1.55,
                             }}
                         >
-                            How would you like to map your assets?
+                            {t('assetLanding.choiceQuestion')}
                         </p>
 
                         <div className="grid gap-4 sm:grid-cols-2">
@@ -674,13 +681,13 @@ const AssetMappingLanding = () => {
                                     className="mb-2.5"
                                 >
                                     <Brain className="w-3.5 h-3.5 inline-block mr-1.5 align-[-2px]" />
-                                    AI extract
+                                    {t('assetLanding.cardAiEyebrow')}
                                 </div>
                                 <h3
                                     style={{ ...cormorantTitle, fontSize: "20px" }}
                                     className="mb-1.5"
                                 >
-                                    Use AI to extract
+                                    {t('assetLanding.cardAiTitle')}
                                 </h3>
                                 <p
                                     style={{
@@ -693,7 +700,7 @@ const AssetMappingLanding = () => {
                                         lineHeight: 1.5,
                                     }}
                                 >
-                                    Paste an AI's read of your assets and we'll match them to the taxonomy.
+                                    {t('assetLanding.cardAiBody')}
                                 </p>
                             </button>
 
@@ -707,13 +714,13 @@ const AssetMappingLanding = () => {
                                     className="mb-2.5"
                                 >
                                     <ListChecks className="w-3.5 h-3.5 inline-block mr-1.5 align-[-2px]" />
-                                    Manual
+                                    {t('assetLanding.cardManualEyebrow')}
                                 </div>
                                 <h3
                                     style={{ ...cormorantTitle, fontSize: "20px" }}
                                     className="mb-1.5"
                                 >
-                                    Add manually
+                                    {t('assetLanding.cardManualTitle')}
                                 </h3>
                                 <p
                                     style={{
@@ -726,7 +733,7 @@ const AssetMappingLanding = () => {
                                         lineHeight: 1.5,
                                     }}
                                 >
-                                    Walk the categories and add each asset one at a time.
+                                    {t('assetLanding.cardManualBody')}
                                 </p>
                             </button>
                         </div>
@@ -744,7 +751,7 @@ const AssetMappingLanding = () => {
                             <div className="flex items-start justify-between gap-3 mb-3">
                                 <div>
                                     <div style={eyebrowSmall} className="mb-1">
-                                        Prompt for your AI
+                                        {t('assetLanding.promptEyebrow')}
                                     </div>
                                     <p
                                         className="italic"
@@ -754,7 +761,7 @@ const AssetMappingLanding = () => {
                                             fontSize: "13px",
                                         }}
                                     >
-                                        Copy this and ask the AI you talk to most.
+                                        {t('assetLanding.promptSubtitle')}
                                     </p>
                                 </div>
                                 <button
@@ -767,7 +774,7 @@ const AssetMappingLanding = () => {
                                     ) : (
                                         <Clipboard className="w-3.5 h-3.5" />
                                     )}
-                                    {copied ? "Copied" : "Copy"}
+                                    {copied ? t('assetLanding.copyButtonCopied') : t('assetLanding.copyButton')}
                                 </button>
                             </div>
                             <pre
@@ -788,12 +795,12 @@ const AssetMappingLanding = () => {
                         {/* Textarea — editorial input */}
                         <div className="space-y-2">
                             <label style={labelMuted}>
-                                Paste the AI's response
+                                {t('assetLanding.pasteLabel')}
                             </label>
                             <Textarea
                                 value={aiResponse}
                                 onChange={(e) => setAiResponse(e.target.value)}
-                                placeholder="Paste the AI's list of your assets…"
+                                placeholder={t('assetLanding.pastePlaceholder')}
                                 className="min-h-[200px]"
                                 style={{
                                     fontFamily: "'Source Serif 4', serif",
@@ -814,7 +821,7 @@ const AssetMappingLanding = () => {
                                 style={tertiaryPill}
                             >
                                 <span aria-hidden="true">←</span>
-                                Back
+                                {t('assetLanding.backButton')}
                             </button>
                             <button
                                 onClick={handleMatchAssets}
@@ -831,7 +838,7 @@ const AssetMappingLanding = () => {
                                 ) : (
                                     <span aria-hidden="true" style={{ color: "var(--skin-cta-icon, rgba(244, 212, 114, 0.98))", fontSize: "16px" }}>✦</span>
                                 )}
-                                <span>{isMatching ? "Matching…" : "Extract Assets"}</span>
+                                <span>{isMatching ? t('assetLanding.ctaMatching') : t('assetLanding.ctaExtractAssets')}</span>
                                 {!isMatching && <ArrowRight className="w-4 h-4" />}
                             </button>
                         </div>
@@ -848,7 +855,7 @@ const AssetMappingLanding = () => {
                                     textUnderlineOffset: "3px",
                                 }}
                             >
-                                Or add assets manually →
+                                {t('assetLanding.orAddManuallyLink')}
                             </button>
                         </div>
                     </div>
@@ -868,7 +875,9 @@ const AssetMappingLanding = () => {
                                 }}
                                 className="leading-[1.2] mb-2"
                             >
-                                {matchedAssets.length > 0 ? `Found ${matchedAssets.length} assets` : "No exact matches"}
+                                {matchedAssets.length > 0
+                                    ? t('assetLanding.matchedHeadingFound', { count: matchedAssets.length })
+                                    : t('assetLanding.matchedHeadingNone')}
                             </h2>
                             <p
                                 className="italic"
@@ -880,8 +889,8 @@ const AssetMappingLanding = () => {
                                 }}
                             >
                                 {matchedAssets.length > 0
-                                    ? "Review and save these to your profile."
-                                    : "Try adding assets manually using the wizard."}
+                                    ? t('assetLanding.matchedSubtitleFound')
+                                    : t('assetLanding.matchedSubtitleNone')}
                             </p>
                         </div>
 
@@ -1010,7 +1019,7 @@ const AssetMappingLanding = () => {
                                                 style={tertiaryPill}
                                             >
                                                 <span aria-hidden="true">←</span>
-                                                Back
+                                                {t('assetLanding.backButton')}
                                             </button>
                                         )}
                                         {matchedAssets.length > 0 && (
@@ -1026,7 +1035,7 @@ const AssetMappingLanding = () => {
                                                         }}
                                                     >
                                                         <span aria-hidden="true" style={{ color: "var(--skin-cta-icon, rgba(244, 212, 114, 0.98))", fontSize: "16px" }}>✦</span>
-                                                        <span>Return to Profile</span>
+                                                        <span>{t('assetLanding.returnToProfile')}</span>
                                                         <ArrowRight className="w-4 h-4" />
                                                     </button>
                                                 )
@@ -1046,7 +1055,7 @@ const AssetMappingLanding = () => {
                                                     ) : (
                                                         <span aria-hidden="true" style={{ color: "var(--skin-cta-icon, rgba(244, 212, 114, 0.98))", fontSize: "16px" }}>✦</span>
                                                     )}
-                                                    <span>{isSaving ? "Saving…" : "Save to Profile"}</span>
+                                                    <span>{isSaving ? t('assetLanding.ctaSaving') : t('assetLanding.ctaSaveToProfile')}</span>
                                                 </button>
                                             )
                                         )}
@@ -1061,7 +1070,7 @@ const AssetMappingLanding = () => {
                                                 textUnderlineOffset: "3px",
                                             }}
                                         >
-                                            Add more manually →
+                                            {t('assetLanding.addMoreManuallyLink')}
                                         </button>
                                     </>
                                 );
@@ -1106,23 +1115,28 @@ const badgeBaseStyle: React.CSSProperties = {
     cursor: "help",
 };
 
-const MATURITY_LABEL: Record<AssetMaturity, string> = {
-    monetizable_now: "Monetizable now",
-    usable_but_needs_packaging: "Needs packaging",
-    latent: "Latent",
-    aspirational: "Aspirational",
-    symbolic_only: "Symbolic only",
+// Day 99 i18n pass: these tables now hold translation KEYS (resolved via
+// t() inside MaturityBadge), not literal English. Keeps the maturity →
+// label/hint mapping centralized while the actual copy lives in the
+// locale bundles under assetLanding.maturity*.
+const MATURITY_LABEL_KEY: Record<AssetMaturity, string> = {
+    monetizable_now: "assetLanding.maturityLabelMonetizableNow",
+    usable_but_needs_packaging: "assetLanding.maturityLabelNeedsPackaging",
+    latent: "assetLanding.maturityLabelLatent",
+    aspirational: "assetLanding.maturityLabelAspirational",
+    symbolic_only: "assetLanding.maturityLabelSymbolicOnly",
 };
 
-const MATURITY_HINT: Record<AssetMaturity, string> = {
-    monetizable_now: "Documented, deliverable, priced — could produce revenue this month if activated.",
-    usable_but_needs_packaging: "Real and proven, but lives in your head or scattered artifacts. Two weeks of packaging from sellable.",
-    latent: "Potential is real but unproven in the market. Untested or undocumented.",
-    aspirational: "Relational / networked / intended access. The door exists; you have not opened it for revenue or distribution yet.",
-    symbolic_only: "Mythic, biographical, or sacred fuel. Real, but operationally inert today.",
+const MATURITY_HINT_KEY: Record<AssetMaturity, string> = {
+    monetizable_now: "assetLanding.maturityHintMonetizableNow",
+    usable_but_needs_packaging: "assetLanding.maturityHintNeedsPackaging",
+    latent: "assetLanding.maturityHintLatent",
+    aspirational: "assetLanding.maturityHintAspirational",
+    symbolic_only: "assetLanding.maturityHintSymbolicOnly",
 };
 
 function MaturityBadge({ maturity }: { maturity: AssetMaturity }) {
+    const { t } = useTranslation();
     // Color-graded: green when monetizable now (ready to deploy), gold for
     // packaging-step-away (high-promise, near-ready), neutral for latent /
     // aspirational (real but not yet acting), dim for symbolic_only
@@ -1153,10 +1167,10 @@ function MaturityBadge({ maturity }: { maturity: AssetMaturity }) {
             };
     return (
         <span
-            title={MATURITY_HINT[maturity]}
+            title={t(MATURITY_HINT_KEY[maturity])}
             style={{ ...badgeBaseStyle, ...tone }}
         >
-            {MATURITY_LABEL[maturity]}
+            {t(MATURITY_LABEL_KEY[maturity])}
         </span>
     );
 }

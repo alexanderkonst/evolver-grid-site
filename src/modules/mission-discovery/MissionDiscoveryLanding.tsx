@@ -41,6 +41,7 @@
  */
 
 import { useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { ArrowRight, Clipboard, Check, ChevronRight, Pencil } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -172,6 +173,7 @@ const extractOneSentence = (raw: string): string | null => {
 type State = "prompt" | "confirm" | "saved";
 
 const MissionDiscoveryLanding = () => {
+    const { t } = useTranslation();
     const navigate = useNavigate();
     const [searchParams] = useSearchParams();
     const returnPath = searchParams.get("return") || "/";
@@ -288,8 +290,8 @@ const MissionDiscoveryLanding = () => {
             // sentence and force the user to delete most of it.
             setSentence("");
             toast({
-                title: "Couldn't find a single-sentence summary",
-                description: "Type your one-sentence mission below, then save.",
+                title: t("missionLanding.toastNoSummaryTitle"),
+                description: t("missionLanding.toastNoSummaryDesc"),
             });
         }
         setState("confirm");
@@ -299,8 +301,8 @@ const MissionDiscoveryLanding = () => {
         const finalSentence = sentence.trim();
         if (!finalSentence) {
             toast({
-                title: "Add your mission sentence",
-                description: "The mission field can't be empty.",
+                title: t("missionLanding.toastEmptyTitle"),
+                description: t("missionLanding.toastEmptyDesc"),
                 variant: "destructive",
             });
             return;
@@ -310,8 +312,8 @@ const MissionDiscoveryLanding = () => {
             const profileId = await getOrCreateGameProfileId();
             if (!profileId) {
                 toast({
-                    title: "Couldn't find your profile",
-                    description: "Please refresh and try again.",
+                    title: t("missionLanding.toastNoProfileTitle"),
+                    description: t("missionLanding.toastNoProfileDesc"),
                     variant: "destructive",
                 });
                 return;
@@ -417,7 +419,7 @@ const MissionDiscoveryLanding = () => {
             const errMessage =
                 (e && typeof e === "object" && typeof e.message === "string" && e.message) ||
                 (typeof e === "string" && e) ||
-                "Please try again.";
+                t("missionLanding.toastSaveTryAgain");
             const errCode = e && typeof e === "object" && typeof e.code === "string" ? e.code : undefined;
             const errDetails = e && typeof e === "object" && typeof e.details === "string" ? e.details : undefined;
             const errHint = e && typeof e === "object" && typeof e.hint === "string" ? e.hint : undefined;
@@ -432,10 +434,10 @@ const MissionDiscoveryLanding = () => {
             const isSchemaError = errCode === "42703" || errCode === "42P01" || errCode === "PGRST204";
             toast({
                 title: isSchemaError
-                    ? "Mission save is temporarily unavailable"
-                    : "Couldn't save your mission",
+                    ? t("missionLanding.toastSaveSchemaTitle")
+                    : t("missionLanding.toastSaveFailedTitle"),
                 description: isSchemaError
-                    ? "The platform's database needs a one-time update. We're on it — please try again shortly."
+                    ? t("missionLanding.toastSaveSchemaDesc")
                     : errCode
                         ? `${errMessage} (${errCode})`
                         : errMessage,
@@ -466,7 +468,7 @@ const MissionDiscoveryLanding = () => {
                         textShadow: HALO_SOFT,
                     }}
                 >
-                    {state === "saved" ? "My Mission" : "Discover Your Mission"}
+                    {state === "saved" ? t("missionLanding.heroTitleSaved") : t("missionLanding.heroTitle")}
                 </h1>
                 {state === "prompt" && (
                     <p
@@ -478,7 +480,7 @@ const MissionDiscoveryLanding = () => {
                             color: INK_BODY,
                         }}
                     >
-                        Paste your AI's analysis below. We'll capture the one sentence that lands.
+                        {t("missionLanding.heroSubhead")}
                     </p>
                 )}
             </section>
@@ -507,7 +509,7 @@ const MissionDiscoveryLanding = () => {
                                         color: "var(--skin-accent-gold, #b8860b)",
                                     }}
                                 >
-                                    Step 1
+                                    {t("missionLanding.step1Eyebrow")}
                                 </p>
                                 <h3
                                     className="mb-1"
@@ -518,10 +520,10 @@ const MissionDiscoveryLanding = () => {
                                         color: INK,
                                     }}
                                 >
-                                    Copy the prompt
+                                    {t("missionLanding.step1Title")}
                                 </h3>
                                 <p className="text-xs" style={{ color: INK_MUTED }}>
-                                    Paste it into ChatGPT, Claude, or whichever AI knows you best.
+                                    {t("missionLanding.step1Desc")}
                                 </p>
                             </div>
                             {/* Editorial Copy pill — gold-accent inline button
@@ -546,7 +548,7 @@ const MissionDiscoveryLanding = () => {
                                 }}
                             >
                                 {copied ? <Check className="w-3.5 h-3.5" /> : <Clipboard className="w-3.5 h-3.5" />}
-                                {copied ? "Copied" : "Copy"}
+                                {copied ? t("missionLanding.copyButtonCopied") : t("missionLanding.copyButton")}
                             </button>
                         </div>
                         <pre
@@ -587,7 +589,7 @@ const MissionDiscoveryLanding = () => {
                                 color: "var(--skin-accent-gold, #b8860b)",
                             }}
                         >
-                            Step 2
+                            {t("missionLanding.step2Eyebrow")}
                         </p>
                         <label
                             className="block mb-3"
@@ -598,12 +600,12 @@ const MissionDiscoveryLanding = () => {
                                 color: INK,
                             }}
                         >
-                            Paste your AI's response
+                            {t("missionLanding.step2Label")}
                         </label>
                         <Textarea
                             value={aiResponse}
                             onChange={(e) => setAiResponse(e.target.value)}
-                            placeholder="Paste the full response — including the '1 sentence synthesis:' line at the end."
+                            placeholder={t("missionLanding.step2Placeholder")}
                             className="min-h-[220px]"
                             style={{
                                 fontFamily: "'Source Serif 4', Georgia, serif",
@@ -615,7 +617,7 @@ const MissionDiscoveryLanding = () => {
                     <div className="flex justify-center">
                         <EditorialCta
                             variant="primary"
-                            label="Find my mission"
+                            label={t("missionLanding.findMyMission")}
                             onClick={() => {
                                 // Guard inline (EditorialCta has no disabled
                                 // prop). Empty paste = no-op; we don't even
@@ -638,7 +640,7 @@ const MissionDiscoveryLanding = () => {
                             style={{ color: "var(--skin-accent-gold, #b8860b)" }}
                         >
                             <Pencil className="w-3 h-3" aria-hidden="true" />
-                            One sentence · editable
+                            {t("missionLanding.confirmEyebrow")}
                         </p>
                         {/* Day 77 (Sasha 2026-05-20): textarea was
                             `border-none bg-transparent focus-visible:ring-0`
@@ -652,7 +654,7 @@ const MissionDiscoveryLanding = () => {
                         <Textarea
                             value={sentence}
                             onChange={(e) => setSentence(e.target.value)}
-                            placeholder="Type your one-sentence mission here…"
+                            placeholder={t("missionLanding.confirmPlaceholder")}
                             className="min-h-[120px] text-center resize-none focus-visible:ring-2 focus-visible:ring-[#d4af37]/55 transition-shadow"
                             style={{
                                 fontFamily: "'Cormorant Garamond', serif",
@@ -675,7 +677,7 @@ const MissionDiscoveryLanding = () => {
                                 color: INK_MUTED,
                             }}
                         >
-                            Click the sentence above to edit. This is what gets saved to your profile.
+                            {t("missionLanding.confirmHelper")}
                         </p>
                     </div>
 
@@ -686,7 +688,7 @@ const MissionDiscoveryLanding = () => {
                             isSaving gates handleSave inline. */}
                         <EditorialCta
                             variant="secondary"
-                            label="Back"
+                            label={t("missionLanding.back")}
                             onClick={() => {
                                 if (!isSaving) setState("prompt");
                             }}
@@ -695,7 +697,7 @@ const MissionDiscoveryLanding = () => {
                         />
                         <EditorialCta
                             variant="primary"
-                            label={isSaving ? "Saving…" : "Save my mission"}
+                            label={isSaving ? t("missionLanding.saving") : t("missionLanding.saveMyMission")}
                             onClick={() => {
                                 if (!isSaving && sentence.trim()) handleSave();
                             }}
@@ -715,7 +717,7 @@ const MissionDiscoveryLanding = () => {
                             className="text-[10px] uppercase tracking-[0.32em] font-medium mb-4"
                             style={{ color: "var(--skin-accent-gold, #b8860b)" }}
                         >
-                            My mission
+                            {t("missionLanding.savedEyebrow")}
                         </p>
                         <p
                             className="mx-auto max-w-[40ch]"
@@ -750,7 +752,7 @@ const MissionDiscoveryLanding = () => {
                             kept identical to the prior behavior. */}
                         <EditorialCta
                             variant="secondary"
-                            label="Edit"
+                            label={t("missionLanding.edit")}
                             onClick={() => setEditDialogOpen(true)}
                             icon={<Pencil className="w-4 h-4" />}
                             rightIcon={null}
@@ -762,7 +764,7 @@ const MissionDiscoveryLanding = () => {
                         {entryPath === "build" && (
                             <EditorialCta
                                 variant="primary"
-                                label="See on profile"
+                                label={t("missionLanding.seeOnProfile")}
                                 onClick={() => navigate("/game/me/mission")}
                                 rightIcon={<ChevronRight className="w-4 h-4" />}
                             />
@@ -789,7 +791,7 @@ const MissionDiscoveryLanding = () => {
                                 textUnderlineOffset: "3px",
                             }}
                         >
-                            Discover a new mission from scratch →
+                            {t("missionLanding.startOverLink")} →
                         </button>
                     </div>
 
@@ -818,7 +820,7 @@ const MissionDiscoveryLanding = () => {
                                 color: INK,
                             }}
                         >
-                            Change your mission?
+                            {t("missionLanding.editDialogTitle")}
                         </AlertDialogTitle>
                         <AlertDialogDescription
                             style={{
@@ -828,19 +830,21 @@ const MissionDiscoveryLanding = () => {
                             }}
                         >
                             {savedAt
-                                ? `You saved this on ${new Date(savedAt).toLocaleDateString(undefined, { month: "long", day: "numeric", year: "numeric" })}. Editing replaces it — the original sentence won't be preserved (version history is on the roadmap).`
-                                : "Editing replaces your saved mission. The original sentence won't be preserved (version history is on the roadmap)."}
+                                ? t("missionLanding.editDialogDescDated", {
+                                      date: new Date(savedAt).toLocaleDateString(undefined, { month: "long", day: "numeric", year: "numeric" }),
+                                  })
+                                : t("missionLanding.editDialogDesc")}
                         </AlertDialogDescription>
                     </AlertDialogHeader>
                     <AlertDialogFooter>
-                        <AlertDialogCancel>Keep it as is</AlertDialogCancel>
+                        <AlertDialogCancel>{t("missionLanding.editDialogKeep")}</AlertDialogCancel>
                         <AlertDialogAction
                             onClick={() => {
                                 setEditDialogOpen(false);
                                 setState("confirm");
                             }}
                         >
-                            Yes, let me edit
+                            {t("missionLanding.editDialogConfirm")}
                         </AlertDialogAction>
                     </AlertDialogFooter>
                 </AlertDialogContent>
@@ -863,7 +867,7 @@ const MissionDiscoveryLanding = () => {
                                 color: INK,
                             }}
                         >
-                            Discover a new mission?
+                            {t("missionLanding.startOverDialogTitle")}
                         </AlertDialogTitle>
                         <AlertDialogDescription
                             style={{
@@ -873,12 +877,14 @@ const MissionDiscoveryLanding = () => {
                             }}
                         >
                             {savedAt
-                                ? `You saved your current mission on ${new Date(savedAt).toLocaleDateString(undefined, { month: "long", day: "numeric", year: "numeric" })}. Starting over routes you back to the AI prompt — your current mission stays on your profile until you save a new one.`
-                                : "Starting over routes you back to the AI prompt. Your current mission stays on your profile until you save a new one."}
+                                ? t("missionLanding.startOverDialogDescDated", {
+                                      date: new Date(savedAt).toLocaleDateString(undefined, { month: "long", day: "numeric", year: "numeric" }),
+                                  })
+                                : t("missionLanding.startOverDialogDesc")}
                         </AlertDialogDescription>
                     </AlertDialogHeader>
                     <AlertDialogFooter>
-                        <AlertDialogCancel>Keep my current mission</AlertDialogCancel>
+                        <AlertDialogCancel>{t("missionLanding.startOverDialogKeep")}</AlertDialogCancel>
                         <AlertDialogAction
                             onClick={() => {
                                 setStartOverDialogOpen(false);
@@ -887,7 +893,7 @@ const MissionDiscoveryLanding = () => {
                                 setState("prompt");
                             }}
                         >
-                            Yes, start fresh
+                            {t("missionLanding.startOverDialogConfirm")}
                         </AlertDialogAction>
                     </AlertDialogFooter>
                 </AlertDialogContent>

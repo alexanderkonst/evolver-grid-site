@@ -1,6 +1,7 @@
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { useRef, useState, useEffect } from "react";
 import type { FC } from "react";
+import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 // Day 67 (Sasha 2026-05-10): empty-state CTA migrated to shared
 // editorial pattern — same dark glass pill with breathing gold halo
@@ -84,6 +85,7 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
   renderMode = "standalone",
 }) => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const [searchParams] = useSearchParams();
   const returnTo = searchParams.get("return");
   const { answers, reset, isComplete, isLoading } = useQolAssessment();
@@ -239,8 +241,8 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
         raw: err,
       });
       toast({
-        title: 'Could not save your results',
-        description: 'Your answers are still on this page. Try again or refresh.',
+        title: t('qolResults.toastSaveFailedTitle'),
+        description: t('qolResults.toastSaveFailedDesc'),
         variant: 'destructive',
       });
       return;
@@ -575,8 +577,8 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
         const e = err as { message?: string };
         console.error('[QoL] Fallback text-PDF generation also failed:', err);
         toast({
-          title: "Download Failed",
-          description: `Couldn't generate PDF: ${e?.message?.slice(0, 60) ?? 'unknown error'}. Open browser DevTools → Console for details.`,
+          title: t('qolResults.toastDownloadFailedTitle'),
+          description: t('qolResults.toastDownloadFailedGenerateDesc', { error: e?.message?.slice(0, 60) ?? 'unknown error' }),
           variant: "destructive",
         });
         return;
@@ -586,13 +588,13 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
     // pdf is non-null at this point — either rasterized or fallback.
     try {
       pdf.save(`quality-of-life-${new Date().toISOString().slice(0, 10)}.pdf`);
-      toast({ title: "PDF Downloaded", description: "Your snapshot has been saved." });
+      toast({ title: t('qolResults.toastPdfDownloadedTitle'), description: t('qolResults.toastPdfDownloadedDesc') });
     } catch (err) {
       const e = err as { message?: string };
       console.error('[QoL] PDF save (browser download) failed:', err);
       toast({
-        title: "Download Failed",
-        description: `Save error: ${e?.message?.slice(0, 60) ?? 'unknown'}.`,
+        title: t('qolResults.toastDownloadFailedTitle'),
+        description: t('qolResults.toastDownloadFailedSaveDesc', { error: e?.message?.slice(0, 60) ?? 'unknown' }),
         variant: "destructive",
       });
     }
@@ -621,7 +623,7 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
           }}
           className="animate-pulse"
         >
-          Loading your results...
+          {t('qolResults.loading')}
         </div>
       </div>
     );
@@ -650,7 +652,7 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
           }}
           className="mb-3"
         >
-          Quality of Life Map
+          {t('qolResults.emptyEyebrow')}
         </p>
         <h1
           style={{
@@ -664,7 +666,7 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
           }}
           className="mb-3"
         >
-          Complete Your Assessment
+          {t('qolResults.emptyHeadline')}
         </h1>
         <p
           style={{
@@ -681,7 +683,7 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
           }}
           className="mb-7"
         >
-          Answer all 8 domains to see your results.
+          {t('qolResults.emptySubhead')}
         </p>
         {/* Day 67 (Sasha 2026-05-10): the old liquid-glass-strong
             rectangle with the lone ✦ glyph was a different CTA dialect
@@ -691,7 +693,7 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
             glass pill, rotating ignite-logo emblem, small-caps tracked
             label, → arrow, gold-halo breath animation. */}
         <EditorialCta
-          label="Start Assessment"
+          label={t('qolResults.startAssessmentCta')}
           onClick={() => navigate("/quality-of-life-map/assessment")}
         />
       </div>
@@ -740,7 +742,7 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
         className="liquid-glass rounded-3xl p-6 sm:p-8 space-y-6"
       >
         <div className="text-center space-y-3">
-          <p style={heroEyebrowStyle}>Quality of Life</p>
+          <p style={heroEyebrowStyle}>{t('qolResults.heroEyebrow')}</p>
           <div className="inline-flex items-baseline gap-2">
             <span
               style={{
@@ -780,7 +782,7 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
               textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.7))",
             }}
           >
-            Now you know where to focus your growth.
+            {t('qolResults.heroSubhead')}
           </p>
         </div>
 
@@ -802,7 +804,7 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
           numbers speak. */}
       <div className="liquid-glass rounded-3xl p-6 sm:p-8">
         <p style={heroEyebrowStyle} className="mb-5">
-          8 Life Areas
+          {t('qolResults.lifeAreasHeading')}
         </p>
         <div className="space-y-3">
           {sortedAscending.map(({ domain, stageValue }) => {
@@ -869,7 +871,7 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
       <div className="grid grid-cols-2 gap-3">
         <EditorialCta
           variant="secondary"
-          label="Retake"
+          label={t('qolResults.retakeCta')}
           onClick={handleRetake}
           icon={<RefreshCw className="w-4 h-4" style={{ color: "#b8860b" }} />}
           rightIcon={null}
@@ -877,7 +879,7 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
         />
         <EditorialCta
           variant="secondary"
-          label="Download PDF"
+          label={t('qolResults.downloadPdfCta')}
           onClick={handleDownloadPdf}
           icon={<Download className="w-4 h-4" style={{ color: "#b8860b" }} />}
           rightIcon={null}

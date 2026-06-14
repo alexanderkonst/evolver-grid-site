@@ -1,4 +1,5 @@
 import { ReactNode, useState, useEffect, useRef, createContext, useContext } from "react";
+import { useTranslation } from "react-i18next";
 import { Link, useLocation, useNavigate, useNavigationType, Outlet } from "react-router-dom";
 import { ArrowLeft, Menu, PanelLeft } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
@@ -272,24 +273,28 @@ const MuxVideoBackground = () => {
 // Day 55 (Sasha 2026-04-29): journey labels recast as action+outcome
 // promises across the site. Mobile breadcrumb mirrors SectionsPanel
 // labels exactly so the user sees the same language across surfaces.
-const JOURNEY_SECTION_LABELS: Array<{ path: string; label: string }> = [
+// Day 92 (2026-06-13): copy fields extracted to i18n. `labelKey` is
+// resolved with t() at render (see mobile breadcrumb below). The `path`
+// fields stay byte-for-byte — they're the matching logic. Keys mirror
+// SectionsPanel.tsx `buildJourneySections` labels; keep both in sync.
+const JOURNEY_SECTION_LABELS: Array<{ path: string; labelKey: string }> = [
     // Day 63 (Sasha 2026-05-06): QoL assessment added to Journey pane 2 as
     // a locked tail item. Path lives at top of this list per the file's
     // longest-path-first sort rule (no `/quality-of-life-map` prefix
     // collisions with anything else, but the rule keeps the file
     // self-consistent). Mirror entry in SectionsPanel.tsx
     // `buildJourneySections` — keep both in sync.
-    { path: "/quality-of-life-map/assessment", label: "Assess your quality of life" },
-    { path: "/mission-discovery", label: "Discover your mission" },
-    { path: "/asset-mapping", label: "Map your assets" },
-    { path: "/playbook", label: "Take the exact playbook" },
-    { path: "/dashboard", label: "See how we're building this" },
+    { path: "/quality-of-life-map/assessment", labelKey: "shell.breadcrumb.assessQol" },
+    { path: "/mission-discovery", labelKey: "shell.breadcrumb.discoverMission" },
+    { path: "/asset-mapping", labelKey: "shell.breadcrumb.mapAssets" },
+    { path: "/playbook", labelKey: "shell.breadcrumb.takePlaybook" },
+    { path: "/dashboard", labelKey: "shell.breadcrumb.seeDashboard" },
     // Day 54 (Sasha 2026-04-28): /ai-os removed — elevated to its own
     // Space. Mobile breadcrumb for /ai-os now resolves via the AI OS
     // space's own pane 2 sections (Install / Suites / Benchmark / Pricing).
-    { path: "/path", label: "See the shortcut path to your business" },
-    { path: "/ubb", label: "Build a business off your top talent" },
-    { path: "/", label: "Start by finding your top talent" },
+    { path: "/path", labelKey: "shell.breadcrumb.seePath" },
+    { path: "/ubb", labelKey: "shell.breadcrumb.buildBusiness" },
+    { path: "/", labelKey: "shell.breadcrumb.findTopTalent" },
 ];
 
 // ─── Feature flags — hide-until-ready ────────────────────────────────
@@ -387,6 +392,7 @@ export const GameShellV2 = (props: GameShellV2Props) => {
  * Panel 3: Content area
  */
 const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showNavigation: forceShowNavigation, hideLogo, enableRailMinimize = false }: GameShellV2Props) => {
+    const { t } = useTranslation();
     // Day 82 v4 (Sasha 2026-05-24): pane-1 minimize state. Defaults to
     // ON when enableRailMinimize is enabled — Karime's pages open with
     // the rail in compact (icon-only) mode so the editorial card has
@@ -1119,13 +1125,13 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
     // "Unlocks after your Find Your Top Talent Reveal." Hovered
     // via the native `title` attribute on the locked chip.
     const unlockHints: Record<string, string> = {
-        "next-move": "Unlocks after Step 1",
-        "grow": "Unlocks after your Find Your Top Talent Reveal.",
-        "learn": "Unlocks after Step 1",
-        "build": "Unlocks after you activate your top talent or complete your collaboration profile.",
-        "meet": "Unlocks after Step 1",
-        "collaborate": "Unlocks after Top Talent + Mission + Assets.",
-        "buysell": "Unlocks after Step 2",
+        "next-move": t("shell.unlockHints.nextMove"),
+        "grow": t("shell.unlockHints.grow"),
+        "learn": t("shell.unlockHints.learn"),
+        "build": t("shell.unlockHints.build"),
+        "meet": t("shell.unlockHints.meet"),
+        "collaborate": t("shell.unlockHints.collaborate"),
+        "buysell": t("shell.unlockHints.buysell"),
     };
 
     // Nudge badges - visual indicators for unlocked spaces (disabled for now)
@@ -1490,8 +1496,8 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                                 ? "bg-[rgba(6,12,28,0.55)]"
                                 : "bg-[rgba(14,32,68,0.22)]",
                         )}
-                        title={railMinimized ? "Expand rail" : "Minimize rail"}
-                        aria-label={railMinimized ? "Expand rail" : "Minimize rail"}
+                        title={railMinimized ? t("shell.rail.expand") : t("shell.rail.minimize")}
+                        aria-label={railMinimized ? t("shell.rail.expand") : t("shell.rail.minimize")}
                         style={{
                             boxShadow:
                                 "inset -1px 0 0 rgba(212, 175, 55, 0.32), 2px 0 14px -8px rgba(244, 212, 114, 0.3)",
@@ -1588,8 +1594,8 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                                 ? "bg-[rgba(6,12,28,0.78)]"
                                 : "bg-[rgba(14,32,68,0.32)]"
                         )}
-                        title="Expand sidebar (⌘B)"
-                        aria-label="Expand sidebar"
+                        title={t("shell.sidebar.expandTitle")}
+                        aria-label={t("shell.sidebar.expand")}
                         style={{
                             boxShadow:
                                 "inset -1px 0 0 rgba(212, 175, 55, 0.5), 2px 0 18px -6px rgba(244, 212, 114, 0.4)",
@@ -1812,7 +1818,7 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                                 filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.5))',
                                 boxShadow: '0 0 12px -4px rgba(244,212,114,0.25)',
                             }}
-                            aria-label="Open menu"
+                            aria-label={t("shell.menu.open")}
                         >
                             <img
                                 /* V6 (Sasha 2026-05-19): use the canonical
@@ -1853,7 +1859,7 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                             space name when the section can't be derived
                             (e.g., paths that aren't section-mapped). */}
                         {(() => {
-                            const spaceLabel = SPACES.find(s => s.id === activeSpaceId)?.label || "Journey";
+                            const spaceLabel = SPACES.find(s => s.id === activeSpaceId)?.label || t("shell.breadcrumb.spaceFallback");
                             const pathname = location.pathname;
 
                             // Resolve active section label.
@@ -1864,7 +1870,7 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                                         pathname === s.path ||
                                         (s.path !== "/" && pathname.startsWith(s.path + "/")),
                                 );
-                                sectionLabel = match?.label ?? null;
+                                sectionLabel = match?.labelKey ? t(match.labelKey) : null;
                             } else {
                                 const space = (SPACE_SECTIONS as any)[activeSpaceId];
                                 if (space?.sections?.length) {
