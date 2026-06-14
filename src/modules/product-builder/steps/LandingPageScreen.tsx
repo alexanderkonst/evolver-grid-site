@@ -8,6 +8,7 @@ import { PRODUCT_BUILDER_STEPS } from "../productBuilderRoutes";
 import ProductBuilderLoading, { LOADING_MESSAGES } from "../ProductBuilderLoading";
 import ResonanceRating from "@/components/ui/ResonanceRating";
 import { supabase } from "@/integrations/supabase/client";
+import i18n from "@/i18n/config";
 
 const LandingPageScreen: React.FC = () => {
     const navigate = useNavigate();
@@ -36,6 +37,7 @@ const LandingPageScreen: React.FC = () => {
                     icp: state.deepICP,
                     pain: state.deepPain,
                     tp: state.deepTP,
+                    target_language: i18n.resolvedLanguage,
                 },
             });
 

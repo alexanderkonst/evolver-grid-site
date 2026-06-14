@@ -5,6 +5,7 @@ import { getOrCreateGameProfileId } from "@/lib/gameProfile";
 import { withRetry } from "@/lib/withRetry";
 import { AppleseedData } from "./appleseedGenerator";
 import { ExcaliburData } from "./excaliburGenerator";
+import i18n from "@/i18n/config";
 // Day 62 (Sasha 2026-05-05): cache invalidation on every successful
 // snapshot write. The zogSnapshotCache (in-memory + sessionStorage,
 // see src/lib/zogSnapshotCache.ts) was added Day 60 to make
@@ -246,6 +247,8 @@ export const saveAppleseed = async (
           archetype_title: appleseed.vibrationalKey.name,
           core_pattern: appleseed.bullseyeSentence,
           top_three_talents: appleseed.threeLenses.actions.slice(0, 3),
+          // i18n: stamp the UI language the AI generated this appleseed in.
+          output_language: i18n.resolvedLanguage,
         })
         .eq("id", snapshot.id),
     );

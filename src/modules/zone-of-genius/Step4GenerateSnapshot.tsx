@@ -3,6 +3,7 @@ import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import { useZoneOfGenius } from "./ZoneOfGeniusContext";
 import { TALENTS } from "./talents";
 import { supabase } from "@/integrations/supabase/client";
+import i18n from "@/i18n/config";
 import type { Json } from "@/integrations/supabase/types";
 import { toast } from "sonner";
 import { generateAppleseed, type AppleseedData } from "./appleseedGenerator";
@@ -241,7 +242,7 @@ const Step4GenerateSnapshot = () => {
       const prompt = buildPrompt();
 
       const { data, error } = await supabase.functions.invoke("generate-zog-snapshot", {
-        body: { prompt },
+        body: { prompt, target_language: i18n.resolvedLanguage },
       });
 
       if (error) {
@@ -311,6 +312,8 @@ const Step4GenerateSnapshot = () => {
           top_ten_talents: top10TalentNames,
           mastery_action: parsed.masteryAction || null,
           xp_awarded: false,
+          // i18n: stamp the UI language the AI generated this snapshot in.
+          output_language: i18n.resolvedLanguage,
         })
         .select('id, xp_awarded')
         .single();

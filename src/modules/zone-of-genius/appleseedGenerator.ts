@@ -745,6 +745,7 @@ export interface AppleseedData {
 // ---------------------------------------------------------------------------
 
 import { supabase } from "@/integrations/supabase/client";
+import i18n from "@/i18n/config";
 
 /**
  * If rawSignal is the structured JSON returned by `ZONE_OF_GENIUS_PROMPT`,
@@ -837,7 +838,7 @@ export const generateAppleseed = async (rawSignal: string): Promise<AppleseedDat
   const prompt = buildAppleseedPrompt(rawSignal);
 
   const { data, error } = await supabase.functions.invoke('generate-appleseed', {
-    body: { prompt, rawSignal }
+    body: { prompt, rawSignal, target_language: i18n.resolvedLanguage }
   });
 
   if (error) {
