@@ -1,4 +1,5 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
+import { resolveOutputLanguage, languageDirective } from "../_shared/language.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -144,7 +145,8 @@ serve(async (req) => {
   }
 
   try {
-    const { text, limit = 6 } = await req.json();
+    const { text, limit = 6, target_language } = await req.json();
+    const outputLanguage = resolveOutputLanguage(target_language);
 
     if (!text || typeof text !== "string") {
       return new Response(
@@ -272,7 +274,7 @@ Example output (excerpt — first 2 entries):
     "description": "An MIT educational credential that opens doors with founders, investors, and corporate partners. Compounds with every public mention; near-zero marginal cost to deploy.",
     "maturity": "monetizable_now"
   }
-]`
+]` + languageDirective(outputLanguage)
           },
           {
             role: "user",

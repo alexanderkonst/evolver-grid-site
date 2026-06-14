@@ -13,6 +13,7 @@
  */
 
 import { useEffect, useState } from "react";
+import i18n from "@/i18n/config";
 import { useTranslation } from "react-i18next";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { ArrowRight, Brain, ListChecks, Clipboard, Check, Loader2 } from "lucide-react";
@@ -122,7 +123,7 @@ const fetchAssetMatches = async (text: string): Promise<MatchedAsset[] | null> =
         // to 8, so users who pasted 20+ assets got truncated to 8. Bumped
         // to 50 to match the local-parser cap.
         const { data, error } = await supabase.functions.invoke("match-assets", {
-            body: { text, limit: 50 },
+            body: { text, limit: 50, target_language: i18n.resolvedLanguage },
         });
         if (error || !data?.matches) return null;
 

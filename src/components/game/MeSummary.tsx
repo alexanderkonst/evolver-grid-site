@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { formatNumber } from "@/i18n/format";
 import { User } from "lucide-react";
 
 interface MeSummaryProps {
@@ -37,7 +38,7 @@ export default function MeSummary({
                         {archetypeTitle || "Discovering..."}
                     </h2>
                     <p className="text-sm text-[var(--wabi-text-secondary)]">
-                        Level {level} · {xpTotal.toLocaleString()} XP
+                        Level {level} · {formatNumber(xpTotal)} XP
                     </p>
 
                     {/* XP Progress Bar */}
