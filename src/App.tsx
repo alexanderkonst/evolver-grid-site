@@ -246,6 +246,17 @@ const PageLoader = () => (
   </div>
 );
 
+// Day 102 (Sasha 2026-06-14): clean-URL bridge for the static Blue Lotus
+// microsite (public/karime/bluelotus). When the SPA fallback serves this app
+// for /karime/bluelotus, bounce to the real static file so the clean URL works
+// even where host _redirects directory rules are not honored.
+function ExternalRedirect({ to }: { to: string }) {
+  useEffect(() => {
+    window.location.replace(to);
+  }, [to]);
+  return null;
+}
+
 // Space pages - renamed: GROW, LEARN, MEET, COLLABORATE, BUILD, OFFER
 const GrowSpace = lazy(() => import("./pages/spaces/ProfileSpace")); // was Profile
 const LearnSpace = lazy(() => import("./pages/spaces/TransformationSpace")); // was Transformation
@@ -817,6 +828,9 @@ const App = () => (
                       Public route. Sasha sends URL manually on WhatsApp
                       after initial inbound. No sidebar entry. */}
                   <Route path="/build/karime/intake" element={<KarimeIntake />} />
+                  {/* Day 102 (Sasha): clean URL -> static Blue Lotus microsite (public/karime/bluelotus) */}
+                  <Route path="/karime/bluelotus" element={<ExternalRedirect to="/karime/bluelotus/index.html" />} />
+                  <Route path="/karime/bluelotus/*" element={<ExternalRedirect to="/karime/bluelotus/index.html" />} />
                   {/* TEMP: unguarded preview route for visual verification — REMOVE or convert to auth-gated after Sasha sign-off */}
                   <Route path="/preview/equilibrium-v2" element={<GameShellV2 hideLogo><EquilibriumV2Page /></GameShellV2>} />
                   {/* MDLS Preview · /mdls-preview · 2026-05-18 · ungated.
