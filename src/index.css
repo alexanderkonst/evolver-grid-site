@@ -948,6 +948,70 @@
 }
 
 /* ───────────────────────────────────────────────────────────────────
+   KARIME — Day 89 (Sasha 2026-06-06): rail palette + halo cohesion
+   ───────────────────────────────────────────────────────────────────
+   Sasha caught three palette disconnects and one halo gap in the
+   compact rail on the Lovable preview:
+
+   PALETTE: AI OS merkaba, ME torus, LEARN ✹, MEET ⚭, and COLLABORATE
+   ⇶ all render in their native cool / pink / green hues (defined in
+   the platform-wide SPACES const at SpacesRail.tsx:170-260). On
+   warm-cream Karime they read as foreign objects against the brass
+   altar palette of the Moroccan video bg. The platform-wide colors
+   are correct for the default skin; the fix is a Karime-only filter
+   that warm-tints these specific icons via the lock-wrapper span (two
+   levels deep inside the chip button — first span is the .relative
+   icon-wrapper, its first span is the .opacity-30-when-locked wrapper
+   that contains either ImageIcon's <img> or GlyphIcon's text span).
+   Applying filter at the wrapper level cascades to the icon child;
+   ImageIcon's own drop-shadow filter on the <img> is preserved
+   because child filters apply before parent filters in the rendering
+   pipeline (img drop-shadow → composited result → wrapper sepia +
+   saturate). JOURNEY, BUILD, OFFER are already in the warm palette
+   and stay untouched. Filter values tuned so the icons remain
+   legible at the locked 30%-opacity state and at the full opacity of
+   any future unlocked space.
+
+   HALO: chat (MessageCircle), settings (img), and theme toggle (Sun/
+   Moon) all carry the same quiet warm halo inline in SpacesRail.tsx
+   (drop-shadow 4px @ rgba 244,212,114, 0.25). LogOut and LogIn
+   (Lucide SVGs) were missing it — reads as the "afterthought tier"
+   of the utility row. Same filter chain applied via CSS instead of
+   editing the inline JSX, so the fix is Karime-scoped only and
+   doesn't shift the platform-default appearance. The PanelLeft
+   sidebar-toggle in GameShellV2 also lives outside the rail proper
+   but visually neighbors it on Karime; quieter halo (0.3 amplitude)
+   added so it reads as part of the same utility tier.
+   ─────────────────────────────────────────────────────────────────── */
+
+/* PALETTE — warm-tint filter on the cool-hued nav-chip icons.
+   Targets the lock-wrapper span (button > span:first-child >
+   span:first-child) so the filter cascades down and doesn't override
+   ImageIcon's own drop-shadow on the inner <img>. */
+[data-skin="karime"] [data-rail-compact="true"] button[data-tour-id="ai-os"] > span:first-child > span:first-child,
+[data-skin="karime"] [data-rail-compact="true"] button[data-tour-id="grow"] > span:first-child > span:first-child,
+[data-skin="karime"] [data-rail-compact="true"] button[data-tour-id="learn"] > span:first-child > span:first-child,
+[data-skin="karime"] [data-rail-compact="true"] button[data-tour-id="meet"] > span:first-child > span:first-child,
+[data-skin="karime"] [data-rail-compact="true"] button[data-tour-id="collaborate"] > span:first-child > span:first-child {
+  filter: sepia(0.55) saturate(0.5) hue-rotate(-10deg);
+}
+
+/* HALO — bring LogOut / LogIn into the same utility-tier glow as
+   chat / settings / theme. Lucide icons get stable class names of the
+   form `lucide-<kebab-of-name>`, so we target those specifically. */
+[data-skin="karime"] [data-rail-compact="true"] svg.lucide-log-out,
+[data-skin="karime"] [data-rail-compact="true"] svg.lucide-log-in {
+  filter: drop-shadow(0 0 4px rgba(244, 212, 114, 0.25)) !important;
+}
+
+/* HALO — sidebar toggle (PanelLeft icon, lives in GameShellV2 outside
+   the rail but visually adjacent). Slightly higher amplitude than the
+   utility tier to acknowledge its larger interaction footprint. */
+[data-skin="karime"] svg.lucide-panel-left {
+  filter: drop-shadow(0 0 4px rgba(244, 212, 114, 0.3));
+}
+
+/* ───────────────────────────────────────────────────────────────────
    DAOUNIVERSE SKIN — Day 84 (Sasha 2026-05-25)
    ───────────────────────────────────────────────────────────────────
    Per-community skin mirroring latamimpact.io. Editorial luxe-regenerative
