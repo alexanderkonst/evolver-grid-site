@@ -32,7 +32,7 @@
     "manifestoLine1Gold": "главный талант",
     "manifestoLine1After": ".",
     "manifestoLine2Gold": "Упакуй",
-    "manifestoLine2After": "Себя.",
+    "manifestoLine2After": "себя.",
     "manifestoLine3Gold": "Масштабируй",
     "manifestoLine3After": "свой доход и влияние."
   },
@@ -162,7 +162,7 @@
   "playbookHero": {
     "primaryCtaLabel": "Найди свой главный талант",
     "metaLine": "Бесплатно · 2 минуты · Без регистрации",
-    "secondaryCtaLabel": "Посмотри точный плейбук"
+    "secondaryCtaLabel": "Смотреть пошаговую инструкцию по само-упаковке"
   },
   "ignite": {
     "alreadyPaidLink": "Уже оплатили? Забронируйте сессию здесь →",
