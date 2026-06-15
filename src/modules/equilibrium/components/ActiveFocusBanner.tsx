@@ -13,6 +13,14 @@ interface ActiveFocusBannerProps {
    * Pulls the row out of DOING NOW; task stays active in Intuitive Tasks.
    */
   onDemoteFromDoNow: (id: string) => Promise<void> | void;
+  /**
+   * Surface treatment (Sasha 2026-06-14). `glass` = V2 liquid-glass
+   * banner (default, unchanged). `matte` = MDLS matte-polymer surface
+   * so the banner matches the matte register instead of intruding as
+   * frosted glass over cream cards. Emerald accent via `outline` in
+   * matte so it doesn't clobber the matte-polymer bezel/shadow.
+   */
+  variant?: "glass" | "matte";
 }
 
 /**
@@ -42,6 +50,7 @@ export const ActiveFocusBanner = ({
   loading,
   onCompleteTask,
   onDemoteFromDoNow,
+  variant = "glass",
 }: ActiveFocusBannerProps) => {
   if (focusedTaskIds.length === 0) return null;
 
@@ -65,14 +74,16 @@ export const ActiveFocusBanner = ({
 
   return (
     <section
+      data-testid="active-focus-banner"
       aria-labelledby="active-focus-banner-heading"
       className={cn(
-        "liquid-glass-strong rounded-3xl px-5 py-4 scroll-mt-24",
-        // Emerald glow ring — visual anchor; subtle enough to not
-        // dominate the page but distinct enough to read as "this is
-        // the now."
-        "ring-1 ring-emerald-300/40",
-        "shadow-[0_0_28px_rgba(74,222,128,0.14)]",
+        "rounded-3xl px-5 py-4 scroll-mt-24",
+        variant === "matte"
+          ? // MDLS: matte-polymer surface; emerald accent via outline
+            // so it doesn't clobber the matte bezel/shadow.
+            "mdls-matte-polymer mdls-matte-polymer--translucent outline outline-2 -outline-offset-2 outline-emerald-300/45"
+          : // V2: liquid-glass + emerald glow ring.
+            "liquid-glass-strong ring-1 ring-emerald-300/40 shadow-[0_0_28px_rgba(74,222,128,0.14)]",
       )}
     >
       <div className="flex items-center justify-between gap-3">
