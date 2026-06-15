@@ -77,23 +77,11 @@ function useWatchMode(): [WatchMode, (m: WatchMode) => void] {
   return [mode, setMode];
 }
 
-function useCycles(birthday?: string): AllCyclesV2 {
-  const [cycles, setCycles] = useState<AllCyclesV2>(() =>
-    getAllCyclesV2(Date.now(), birthday),
-  );
-
-  useEffect(() => {
-    const tick = () => setCycles(getAllCyclesV2(Date.now(), birthday));
-    const id = window.setInterval(tick, 60_000);
-    return () => window.clearInterval(id);
-  }, [birthday]);
-
-  return cycles;
-}
-
 export const EquilibriumMDLSPage = () => {
   const eq = useEquilibriumV2();
-  const cycles = useCycles(eq.birthday ?? undefined);
+  // Shared optimized cycle tick: 5-min cadence, hidden-tab pause,
+  // de-dupe, nowMs anchor for UpcomingTransitions. MDLS-default SOW R2.
+  const { cycles, nowMs: cyclesNowMs } = useCycles(eq.birthday ?? undefined);
   const [mode, setMode] = useWatchMode();
   const isAttune = mode === "attune";
 
@@ -113,7 +101,7 @@ export const EquilibriumMDLSPage = () => {
   }, [eq.tasksByWorkstream]);
 
   return (
-    <main className="mx-auto w-full max-w-2xl px-4 py-8 sm:px-6 sm:py-12">
+    <main className="mdls-eq-page mx-auto w-full max-w-2xl px-4 py-8 sm:px-6 sm:py-12">
       <BirthdayPrompt
         birthday={eq.birthday}
         loading={eq.loading}
@@ -124,7 +112,7 @@ export const EquilibriumMDLSPage = () => {
       <header className="mb-10">
         <HeroHeadline
           title="Equilibrium"
-          subtitle="Biologic Watch and Task Manager"
+          subtitle="Biologic Watch and Action Compass"
           variant="serif"
         />
         <div className="mt-6 flex justify-center">
@@ -144,7 +132,13 @@ export const EquilibriumMDLSPage = () => {
 
       <SectionAnchorNav mode={mode} />
 
-      <div className="flex flex-col gap-6">
+      {/* key={mode} re-mounts the stack on ATTUNE↔ACT toggle for a
+          cross-fade. One-shot CSS animation, perf-safe (no loop). */}
+      <div
+        key={mode}
+        className="flex flex-col gap-6"
+        style={{ animation: "eq-mode-fade 320ms ease-out" }}
+      >
         {/* ════════════ ATTUNE MODE ═════════════════════════════════ */}
 
         {isAttune && (
@@ -163,6 +157,66 @@ export const EquilibriumMDLSPage = () => {
               />
             </MattePolymerCard>
           </EmberBreath>
+        )}
+
+        {/* ATTUNE order locked by Sasha 2026-05-19 (matches V2):
+            Synthesis → Lunar → Day-of-Week → Solar → Zodiac. */}
+
+        {isAttune && (
+          <MattePolymerCard variant="translucent" id={SECTION_IDS.lunar}>
+            <SectionHeader title="Current Lunar Energy" />
+            {/* Phase-transition eyebrow — "since your last visit, the
+                moon moved into Gathering". Dismissible, localStorage-
+                tracked. */}
+            <PhaseTransitionEyebrow
+              currentSegmentIndex={cycles.lunar.segmentIndex}
+              currentPhaseName={cycles.lunar.phase.name}
+            />
+            <div className="mt-4">
+              <CycleEnergyBar
+                segments={LUNAR_SEGMENTS}
+                // Rotated display: Waning Gibbous = position 0 (Sasha
+                // 2026-05-18 round 2). Cycle math returns astronomical
+                // index from New Moon = 0; lunarDisplayIndex shifts by
+                // +3 mod 8. (Matches V2 — same lunarDisplayIndex call.)
+                currentIndex={lunarDisplayIndex(cycles.lunar.segmentIndex)}
+                progress={cycles.lunar.progress}
+                prevLabel={cycles.lunar.prevLabel}
+                currentLabel={cycles.lunar.currentLabel}
+                nextLabel={cycles.lunar.nextLabel}
+                activePillEmoji={cycles.lunar.holonicPhase.elementEmoji}
+                activePillEmojiTooltip={`${cycles.lunar.holonicPhase.element} — the umbrella for ${cycles.lunar.phase.name}`}
+                activePillSubLabel={formatPhaseEndsAt(
+                  cycles.lunar.phaseEndMs,
+                  cycles.lunar.daysRemainingInPhase,
+                )}
+              />
+            </div>
+            <MoonFocusInput
+              value={eq.state?.moon_focus_text ?? null}
+              loading={eq.loading}
+              onSave={eq.setMoonFocus}
+            />
+            {/* Coming-up: next 4 phase-boundary moments. Fed by the
+                cycle tick's nowMs (no own timer). */}
+            <UpcomingTransitions nowMs={cyclesNowMs} />
+          </MattePolymerCard>
+        )}
+
+        {isAttune && (
+          <MattePolymerCard variant="translucent" id={SECTION_IDS.dayOfWeek}>
+            <SectionHeader title="Current Day-of-Week Energy" />
+            <div className="mt-4">
+              <CycleEnergyBar
+                segments={DAY_OF_WEEK_SEGMENTS}
+                currentIndex={cycles.dayOfWeek.segmentIndex}
+                progress={cycles.dayOfWeek.progress}
+                prevLabel={cycles.dayOfWeek.prevLabel}
+                currentLabel={cycles.dayOfWeek.currentLabel}
+                nextLabel={cycles.dayOfWeek.nextLabel}
+              />
+            </div>
+          </MattePolymerCard>
         )}
 
         {isAttune && (
@@ -202,51 +256,22 @@ export const EquilibriumMDLSPage = () => {
           </MattePolymerCard>
         )}
 
-        {isAttune && (
-          <MattePolymerCard variant="translucent" id={SECTION_IDS.lunar}>
-            <SectionHeader title="Current Lunar Energy" />
-            <div className="mt-4">
-              <CycleEnergyBar
-                segments={LUNAR_SEGMENTS}
-                // Rotated display: Full Moon = position 0 (Sasha 2026-05-18).
-                currentIndex={lunarDisplayIndex(cycles.lunar.segmentIndex)}
-                progress={cycles.lunar.progress}
-                prevLabel={cycles.lunar.prevLabel}
-                currentLabel={cycles.lunar.currentLabel}
-                nextLabel={cycles.lunar.nextLabel}
-                activePillEmoji={cycles.lunar.holonicPhase.elementEmoji}
-                activePillEmojiTooltip={`${cycles.lunar.holonicPhase.element} — the umbrella for ${cycles.lunar.phase.name}`}
-                activePillSubLabel={formatPhaseEndsAt(
-                  cycles.lunar.phaseEndMs,
-                  cycles.lunar.daysRemainingInPhase,
-                )}
-              />
-            </div>
-            <MoonFocusInput
-              value={eq.state?.moon_focus_text ?? null}
-              loading={eq.loading}
-              onSave={eq.setMoonFocus}
-            />
-          </MattePolymerCard>
-        )}
-
-        {isAttune && (
-          <MattePolymerCard variant="translucent" id={SECTION_IDS.dayOfWeek}>
-            <SectionHeader title="Current Day-of-Week Energy" />
-            <div className="mt-4">
-              <CycleEnergyBar
-                segments={DAY_OF_WEEK_SEGMENTS}
-                currentIndex={cycles.dayOfWeek.segmentIndex}
-                progress={cycles.dayOfWeek.progress}
-                prevLabel={cycles.dayOfWeek.prevLabel}
-                currentLabel={cycles.dayOfWeek.currentLabel}
-                nextLabel={cycles.dayOfWeek.nextLabel}
-              />
-            </div>
-          </MattePolymerCard>
-        )}
-
         {/* ════════════ ACT MODE ════════════════════════════════════ */}
+
+        {/* Active Focus Banner — slim mirror of DOING NOW pinned at the
+            top so the user sees their priority on landing. Renders only
+            when something is in focus. matte variant matches MDLS
+            register (not V2's frosted glass). */}
+        {!isAttune && eq.focusedTaskIds.length > 0 && (
+          <ActiveFocusBanner
+            focusedTaskIds={eq.focusedTaskIds}
+            taskById={taskById}
+            loading={eq.loading}
+            onCompleteTask={eq.completeTask}
+            onDemoteFromDoNow={eq.demoteFromDoNow}
+            variant="matte"
+          />
+        )}
 
         {!isAttune && (
           <MattePolymerCard variant="translucent" id={SECTION_IDS.mission}>
@@ -255,7 +280,8 @@ export const EquilibriumMDLSPage = () => {
               <div className="flex-1">
                 <SectionHeader
                   title="Lifelong Dedication"
-                  infoIconCopy="Your lifelong dedication. What you keep doing with your life-energy — the chosen direction your action keeps taking, at life scale."
+                  infoIconCopy={EQ_INFO_COPY.mission}
+                  align="left"
                 />
                 <MissionSection
                   missionDisplay={eq.missionDisplay}
@@ -269,7 +295,7 @@ export const EquilibriumMDLSPage = () => {
 
         {!isAttune && (
           <MattePolymerCard variant="translucent" id={SECTION_IDS.role}>
-            <SectionHeader title="Role" />
+            <SectionHeader title="Role" infoIconCopy={EQ_INFO_COPY.role} />
             <RoleSection
               roleDisplay={eq.roleDisplay}
               loading={eq.loading}
@@ -295,11 +321,13 @@ export const EquilibriumMDLSPage = () => {
 
         {!isAttune && (
           <MattePolymerCard variant="translucent" id={SECTION_IDS.strategies}>
-            <div className="flex items-center gap-2">
-              <SectionHeader
-                title="Current Strategy"
-                infoIconCopy="Set when you have clarity"
-              />
+            <SectionHeader
+              title="Current Strategy"
+              infoIconCopy={EQ_INFO_COPY.strategies}
+            />
+            {/* Score button on its own line below the centered title
+                so the title stays centered (matches V2 placement). */}
+            <div className="mt-2 flex justify-end">
               <button
                 type="button"
                 onClick={() => void eq.scoreStrategies()}
@@ -315,7 +343,7 @@ export const EquilibriumMDLSPage = () => {
                       ? "Set your Lifelong Dedication or Role first"
                       : "Score each strategy 0–100 on alignment with your Lifelong Dedication + Role"
                 }
-                className="ml-auto rounded-full bg-[#0a1628] px-3 py-1.5 text-xs font-semibold uppercase tracking-wider text-white transition hover:bg-[#0a1628]/85 disabled:cursor-not-allowed disabled:opacity-40"
+                className="rounded-full bg-[#0a1628] px-3 py-1.5 text-xs font-semibold uppercase tracking-wider text-white transition hover:bg-[#0a1628]/85 disabled:cursor-not-allowed disabled:opacity-40"
               >
                 {eq.scoringStrategies ? "Scoring…" : "Score alignment"}
               </button>
@@ -335,7 +363,7 @@ export const EquilibriumMDLSPage = () => {
 
         {!isAttune && (
           <MattePolymerCard variant="translucent" id={SECTION_IDS.workstreams}>
-            <SectionHeader title="Workstreams" />
+            <SectionHeader title="Workstreams" infoIconCopy={EQ_INFO_COPY.workstreams} />
             <WorkstreamsSection
               workstreams={eq.workstreams}
               archivedWorkstreams={eq.archivedWorkstreams}
@@ -354,7 +382,7 @@ export const EquilibriumMDLSPage = () => {
 
         {!isAttune && (
           <MattePolymerCard variant="translucent" id={SECTION_IDS.goals}>
-            <SectionHeader title="Intuitive Tasks" />
+            <SectionHeader title="Intuitive Tasks" infoIconCopy={EQ_INFO_COPY.goals} />
             <SmartGoalsSection
               workstreamTitle={activeWorkstream?.title ?? null}
               tasks={activeTasks}
@@ -381,7 +409,7 @@ export const EquilibriumMDLSPage = () => {
         {!isAttune && (
           <EmberBreath active>
             <MattePolymerCard variant="translucent" id={SECTION_IDS.doNow} emphasized>
-              <SectionHeader title="DOING NOW" />
+              <SectionHeader title="DOING NOW" infoIconCopy={EQ_INFO_COPY.doNow} />
               <DoNowSection
                 focusedTaskIds={eq.focusedTaskIds}
                 taskById={taskById}
@@ -392,6 +420,23 @@ export const EquilibriumMDLSPage = () => {
               />
             </MattePolymerCard>
           </EmberBreath>
+        )}
+
+        {/* Harvest — cross-workstream completion celebration feed.
+            Lives below DOING NOW ("what am I doing now → what have I
+            reaped"). Parity with V2. */}
+        {!isAttune && (
+          <MattePolymerCard variant="translucent" id={SECTION_IDS.harvest}>
+            <SectionHeader title="Harvest" infoIconCopy={EQ_INFO_COPY.harvest} />
+            <HarvestSection
+              completedTasks={eq.completedTasksAll}
+              completedStrategies={eq.completedStrategies}
+              workstreams={eq.workstreams}
+              archivedWorkstreams={eq.archivedWorkstreams}
+              loading={eq.loading}
+              onUncompleteTask={eq.uncompleteTask}
+            />
+          </MattePolymerCard>
         )}
       </div>
 
@@ -408,11 +453,22 @@ export const EquilibriumMDLSPage = () => {
 const SectionHeader = ({
   title,
   infoIconCopy,
+  align = "center",
 }: {
   title: string;
   infoIconCopy?: string;
+  /** Centered by default (Sasha 2026-05-19 "center all box titles").
+   *  `left` is used where the header shares a row with another element
+   *  (the Lifelong Dedication seal medallion). */
+  align?: "center" | "left";
 }) => (
-  <div className="flex items-center gap-2">
+  <div
+    className={
+      align === "center"
+        ? "flex items-center justify-center gap-2"
+        : "flex items-center gap-2"
+    }
+  >
     <h2 className="eq-text-halo font-serif text-xl font-semibold text-[#0a1628] sm:text-2xl">
       {title}
     </h2>
