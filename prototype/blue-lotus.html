@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Loto Azul · Los Misterios</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Cormorant+SC:wght@400;500&family=Jost:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --void:#0B0613;
+    --void2:#160A22;
+    --amber:#E9B872;
+    --gold:#C9A24B;
+    --rose:#D98A86;
+    --ink:#E8DCEE;
+    --muted:#9A86AE;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    background:
+      radial-gradient(120% 90% at 50% 38%, var(--void2) 0%, var(--void) 55%, #050208 100%);
+    color:var(--ink);
+    font-family:'Cormorant Garamond',serif;
+    overflow:hidden;
+    height:100vh;
+  }
+  .stage{position:relative;width:100%;height:100vh;display:flex;align-items:center;justify-content:center}
+
+  /* breathing candle glow */
+  .glow{
+    position:absolute;left:50%;top:46%;width:780px;height:780px;
+    transform:translate(-50%,-50%);
+    background:radial-gradient(circle, rgba(233,184,114,0.42) 0%, rgba(217,138,134,0.16) 32%, rgba(11,6,19,0) 62%);
+    filter:blur(8px);
+    animation:breathe 7.5s ease-in-out infinite;
+    pointer-events:none;
+  }
+  @keyframes breathe{
+    0%,100%{opacity:.78;transform:translate(-50%,-50%) scale(1)}
+    50%{opacity:1;transform:translate(-50%,-50%) scale(1.06)}
+  }
+
+  /* drifting gold motes */
+  .mote{position:absolute;width:3px;height:3px;border-radius:50%;background:var(--amber);opacity:.0;box-shadow:0 0 6px 1px rgba(233,184,114,.7);animation:rise linear infinite}
+  @keyframes rise{0%{opacity:0;transform:translateY(40px)}10%{opacity:.7}90%{opacity:.5}100%{opacity:0;transform:translateY(-220px)}}
+
+  /* film grain + vignette */
+  .grain{position:fixed;inset:0;pointer-events:none;z-index:40;opacity:.06;mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+  .vignette{position:fixed;inset:0;pointer-events:none;z-index:39;
+    background:radial-gradient(120% 100% at 50% 42%, rgba(0,0,0,0) 48%, rgba(0,0,0,.55) 100%);}
+
+  /* hero composition */
+  .hero{position:relative;z-index:20;text-align:center;opacity:0;transform:translateY(18px);
+    transition:opacity 2.2s ease, transform 2.2s ease;transition-delay:.2s}
+  body.revealed .hero{opacity:1;transform:none}
+
+  .eyebrow{font-family:'Cormorant SC',serif;letter-spacing:.42em;font-size:13px;color:var(--muted);
+    display:flex;align-items:center;justify-content:center;gap:18px;margin-bottom:30px;text-transform:uppercase}
+  .eyebrow .rule{height:1px;width:54px;background:linear-gradient(90deg,transparent,rgba(201,162,75,.7),transparent)}
+
+  .lotus-wrap{position:relative;width:300px;height:300px;margin:0 auto -28px}
+  .bottle{position:relative;z-index:5}
+
+  .thesis{font-size:46px;font-weight:300;line-height:1.18;margin-top:14px;letter-spacing:.005em}
+  .thesis em{font-style:italic;color:var(--amber)}
+  .thesis .sub{display:block;font-size:18px;color:var(--muted);letter-spacing:.32em;font-family:'Cormorant SC',serif;margin-top:18px;text-transform:uppercase}
+
+  .triad{margin-top:34px;font-family:'Cormorant SC',serif;letter-spacing:.34em;font-size:15px;color:var(--ink);
+    display:flex;align-items:center;justify-content:center;gap:16px;text-transform:uppercase}
+  .triad .dot{color:var(--gold);opacity:.85}
+
+  .cta{margin-top:46px;display:inline-block;font-family:'Cormorant SC',serif;letter-spacing:.3em;font-size:14px;
+    text-transform:uppercase;color:var(--amber);padding:16px 40px;border:1px solid rgba(201,162,75,.45);border-radius:2px;
+    text-decoration:none;transition:.6s ease;position:relative}
+  .cta:hover{color:#0B0613;background:var(--amber);border-color:var(--amber);box-shadow:0 0 40px rgba(233,184,114,.35)}
+
+  /* lotus petals open on reveal */
+  .petal{transform-box:fill-box;transform-origin:50% 100%;transform:scale(.18) rotate(var(--r));opacity:0;
+    transition:transform 2.4s cubic-bezier(.2,.7,.2,1),opacity 1.8s ease}
+  body.revealed .petal{transform:scale(1) rotate(var(--r));opacity:1}
+
+  /* ENTRY THRESHOLD */
+  .threshold{position:fixed;inset:0;z-index:60;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    background:radial-gradient(120% 90% at 50% 45%, #120820 0%, #070310 70%, #040109 100%);
+    transition:opacity 1.6s ease;text-align:center}
+  body.revealed .threshold{opacity:0;pointer-events:none}
+  .threshold .school{font-family:'Cormorant SC',serif;letter-spacing:.46em;font-size:12px;color:var(--muted);text-transform:uppercase;margin-bottom:40px}
+  .threshold .invoke{font-size:34px;font-weight:300;font-style:italic;color:var(--ink);max-width:620px;line-height:1.3}
+  .enter{margin-top:64px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:20px;background:none;border:none}
+  .candle-ring{width:96px;height:96px;border-radius:50%;border:1px solid rgba(201,162,75,.4);
+    display:flex;align-items:center;justify-content:center;position:relative;transition:.6s}
+  .candle-ring::after{content:"";position:absolute;inset:-14px;border-radius:50%;
+    background:radial-gradient(circle,rgba(233,184,114,.5),transparent 65%);animation:breathe 4s ease-in-out infinite}
+  .enter:hover .candle-ring{border-color:var(--amber);transform:scale(1.04)}
+  .flame{width:14px;height:26px;border-radius:50% 50% 50% 50%/60% 60% 40% 40%;
+    background:radial-gradient(circle at 50% 70%, #FFF3D6 0%, var(--amber) 40%, var(--rose) 90%);
+    box-shadow:0 0 22px 6px rgba(233,184,114,.7);animation:flicker 1.6s ease-in-out infinite;position:relative;z-index:2}
+  @keyframes flicker{0%,100%{transform:scale(1) translateY(0);opacity:.95}50%{transform:scale(1.08) translateY(-1px);opacity:1}}
+  .enter .label{font-family:'Cormorant SC',serif;letter-spacing:.34em;font-size:13px;color:var(--amber);text-transform:uppercase}
+
+  .mute{position:fixed;top:26px;right:30px;z-index:70;font-family:'Cormorant SC',serif;letter-spacing:.2em;
+    font-size:11px;color:var(--muted);text-transform:uppercase;cursor:pointer;display:flex;gap:8px;align-items:center}
+  .mute .ico{width:7px;height:7px;border-radius:50%;background:var(--gold);opacity:.6}
+
+  @media (prefers-reduced-motion: reduce){*{animation:none!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+  <div class="grain"></div>
+  <div class="vignette"></div>
+  <div class="mute" id="mute"><span class="ico"></span> Sonido</div>
+
+  <div class="stage">
+    <div class="glow"></div>
+
+    <div class="hero">
+      <div class="eyebrow"><span class="rule"></span> Loto Azul · Caerulea VII <span class="rule"></span></div>
+
+      <div class="lotus-wrap">
+        <svg width="300" height="300" viewBox="0 0 300 300" aria-hidden="true">
+          <defs>
+            <linearGradient id="pg" x1="0" y1="1" x2="0" y2="0">
+              <stop offset="0" stop-color="#4A2E7A"/>
+              <stop offset="55" stop-color="#7C5BC0"/>
+              <stop offset="1" stop-color="#C9A24B"/>
+            </linearGradient>
+            <radialGradient id="halo" cx="50%" cy="55%" r="55%">
+              <stop offset="0" stop-color="rgba(233,184,114,.5)"/>
+              <stop offset="1" stop-color="rgba(233,184,114,0)"/>
+            </radialGradient>
+          </defs>
+          <circle cx="150" cy="160" r="120" fill="url(#halo)"/>
+          <g id="petals" transform="translate(150,168)"></g>
+        </svg>
+      </div>
+
+      <div class="bottle">
+        <svg width="118" height="190" viewBox="0 0 118 190" aria-hidden="true">
+          <defs>
+            <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#3a1f0e"/>
+              <stop offset=".5" stop-color="#7a4a1f"/>
+              <stop offset="1" stop-color="#2a1408"/>
+            </linearGradient>
+          </defs>
+          <rect x="46" y="6" width="26" height="20" rx="3" fill="#1c1226" stroke="#C9A24B" stroke-width="1" opacity=".9"/>
+          <rect x="52" y="22" width="14" height="12" fill="#241634"/>
+          <path d="M40 36 q19 -8 38 0 l6 18 q10 6 10 22 v78 q0 14 -14 14 H38 q-14 0 -14 -14 v-78 q0 -16 10 -22 z" fill="url(#glass)" stroke="#C9A24B" stroke-width="1.2" opacity=".96"/>
+          <ellipse cx="59" cy="150" rx="26" ry="30" fill="rgba(233,184,114,.22)"/>
+          <g transform="translate(59,150)" stroke="#E9B872" stroke-width="1.1" fill="none" opacity=".85">
+            <polygon points="0,-13 11,7 -11,7"/>
+            <polygon points="0,13 11,-7 -11,-7"/>
+          </g>
+        </svg>
+      </div>
+
+      <h1 class="thesis">No es una tintura. <em>Es una puerta.</em>
+        <span class="sub">Los Misterios del Loto Azul</span>
+      </h1>
+
+      <div class="triad">Sueño <span class="dot">·</span> Éxtasis <span class="dot">·</span> Apertura del Corazón</div>
+
+      <a class="cta" href="#">Cruzar el Umbral</a>
+    </div>
+  </div>
+
+  <div class="threshold" id="threshold">
+    <div class="school">Los Misterios del Loto Azul</div>
+    <div class="invoke">No encontraste esta flor por casualidad.</div>
+    <button class="enter" id="enter" aria-label="Encender la vela para entrar">
+      <div class="candle-ring"><div class="flame"></div></div>
+      <div class="label">Encender la vela · Entrar</div>
+    </button>
+  </div>
+
+<script>
+  const NS="http://www.w3.org/2000/svg";
+  const g=document.getElementById("petals");
+  const layers=[{r:88,w:30,fill:"url(#pg)",op:.95},{r:64,w:24,fill:"#8E6BCB",op:.9},{r:42,w:18,fill:"#B98AD8",op:.95}];
+  let count=8;
+  layers.forEach((L,li)=>{
+    for(let i=0;i<count;i++){
+      const ang=(360/count)*i + (li%2?22:0);
+      const p=document.createElementNS(NS,"path");
+      p.setAttribute("d",`M0,0 C ${L.w},-${L.r*0.55} ${L.w*0.4},-${L.r} 0,-${L.r} C -${L.w*0.4},-${L.r} -${L.w},-${L.r*0.55} 0,0 Z`);
+      p.setAttribute("fill",L.fill);
+      p.setAttribute("opacity",L.op);
+      p.setAttribute("stroke","#C9A24B");
+      p.setAttribute("stroke-width","0.6");
+      p.setAttribute("class","petal");
+      p.style.setProperty("--r",ang+"deg");
+      p.style.transitionDelay=(0.25*li + 0.05*i)+"s";
+      g.appendChild(p);
+    }
+  });
+
+  const stage=document.querySelector(".stage");
+  for(let i=0;i<14;i++){
+    const m=document.createElement("div");m.className="mote";
+    m.style.left=(20+Math.random()*60)+"%";
+    m.style.top=(35+Math.random()*40)+"%";
+    m.style.animationDuration=(7+Math.random()*8)+"s";
+    m.style.animationDelay=(Math.random()*6)+"s";
+    stage.appendChild(m);
+  }
+
+  function revealAltar(){document.body.classList.add("revealed");}
+  document.getElementById("enter").addEventListener("click",revealAltar);
+  window.revealAltar=revealAltar;
+</script>
+</body>
+</html>

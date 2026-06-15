@@ -36,6 +36,18 @@
       "runtimeExecutable": "python3",
       "runtimeArgs": ["-m", "http.server", "4621", "--directory", "/Users/alexanderkonst/gabriel-padilla-site"],
       "port": 4621
+    },
+    {
+      "name": "blue-lotus",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "4631", "--directory", "/Users/alexanderkonst/evolver-grid-site/prototype"],
+      "port": 4631
+    },
+    {
+      "name": "blue-lotus-site",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "4632", "--directory", "/Users/alexanderkonst/blue-lotus-site"],
+      "port": 4632
     }
   ]
 }
