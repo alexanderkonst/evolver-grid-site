@@ -75,13 +75,16 @@ function useWatchMode(): [WatchMode, (m: WatchMode) => void] {
  * nowMs anchor). MDLS-default SOW resource rule R2. */
 
 export const EquilibriumV2Page = () => {
-  // MDLS feature flag — when `?mdls=1` is in the URL or
-  // localStorage.equilibrium_mdls = "true", render the Stage-8 recompile.
-  // Otherwise legacy liquid-glass Equilibrium remains. See:
-  //   docs/specs/equilibrium/equilibrium_mdls_tracker.md
-  //   docs/specs/equilibrium/equilibrium_mdls_style_guide.md
-  const isMdls = useMdlsFlag();
-  if (isMdls) return <EquilibriumMDLSPage />;
+  // MDLS gate scrapped (Sasha 2026-06-14). The MDLS page is broken on
+  // disk (Lovable auto-committed a mid-merge state with duplicate
+  // useCycles + missing imports) and the matte-polymer parity attempt
+  // did not land well visually. Until MDLS is redone cleanly, `?mdls=1`
+  // is INERT: V2 (legacy liquid-glass) always renders here. The flag
+  // hook and MDLS page stay in the tree as inert dead code so a future
+  // rewrite can re-enable the gate without re-plumbing routing.
+  // To re-enable: uncomment the two lines below.
+  // const isMdls = useMdlsFlag();
+  // if (isMdls) return <EquilibriumMDLSPage />;
 
   const eq = useEquilibriumV2();
   const { cycles, nowMs: cyclesNowMs } = useCycles(eq.birthday ?? undefined);
