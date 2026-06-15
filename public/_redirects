@@ -1,1 +1,7 @@
+# Blue Lotus static microsite — serve it before the SPA catch-all.
+# Bare path -> trailing slash (so the page's relative assets resolve), then serve the static index.
+/karime/bluelotus            /karime/bluelotus/             301
+/karime/bluelotus/           /karime/bluelotus/index.html   200
+
+# SPA fallback for the React app (everything else).
 /* /index.html 200
