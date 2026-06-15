@@ -46,7 +46,7 @@
     {
       "name": "blue-lotus-site",
       "runtimeExecutable": "python3",
-      "runtimeArgs": ["-m", "http.server", "4632", "--directory", "/Users/alexanderkonst/blue-lotus-site"],
+      "runtimeArgs": ["-m", "http.server", "4632", "--directory", "/Users/alexanderkonst/evolver-grid-site/public"],
       "port": 4632
     }
   ]
