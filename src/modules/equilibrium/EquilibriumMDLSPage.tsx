@@ -1,11 +1,8 @@
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { InfoPopover } from "./components/InfoPopover";
 import { BirthdayPrompt } from "./components/BirthdayPrompt";
-import {
-  getAllCyclesV2,
-  getBirthdayArcPhaseNeighbors,
-  type AllCyclesV2,
-} from "@/lib/equilibrium-cycles";
+import { getBirthdayArcPhaseNeighbors } from "@/lib/equilibrium-cycles";
+import { useCycles, formatPhaseEndsAt } from "./hooks/useCycles";
 import { CycleEnergyBar } from "./components/CycleEnergyBar";
 import { SolarCycleBar } from "./components/SolarCycleBar";
 import { MissionSection } from "./components/MissionSection";
@@ -15,17 +12,21 @@ import { StrategiesSection } from "./components/StrategiesSection";
 import { WorkstreamsSection } from "./components/WorkstreamsSection";
 import { SmartGoalsSection } from "./components/SmartGoalsSection";
 import { DoNowSection } from "./components/DoNowSection";
+import { HarvestSection } from "./components/HarvestSection";
+import { PhaseTransitionEyebrow } from "./components/PhaseTransitionEyebrow";
+import { UpcomingTransitions } from "./components/UpcomingTransitions";
+import { ActiveFocusBanner } from "./components/ActiveFocusBanner";
 import { SynthesisCard } from "./components/SynthesisCard";
 import { SectionAnchorNav } from "./components/SectionAnchorNav";
 import { useEquilibriumV2 } from "./hooks/useEquilibriumV2";
 import {
   DAY_OF_WEEK_SEGMENTS,
   LUNAR_SEGMENTS,
-  SOLAR_SEGMENTS,
   ZODIAC_SEGMENTS,
   lunarDisplayIndex,
 } from "./cycleSegments";
 import { SECTION_IDS } from "./types";
+import { EQ_INFO_COPY } from "./equilibriumCopy";
 import type { WatchMode } from "./components/WatchModeToggle";
 import {
   HeroHeadline,
@@ -56,20 +57,6 @@ import {
  * Tracker:     docs/specs/equilibrium/equilibrium_mdls_tracker.md
  * Feature flag: useMdlsFlag (?mdls=1 or localStorage)
  */
-
-function formatPhaseEndsAt(phaseEndMs: number, daysRemaining: number): string {
-  const end = new Date(phaseEndMs);
-  const day = end.toLocaleDateString(undefined, {
-    weekday: "short",
-    month: "short",
-    day: "numeric",
-  });
-  const days =
-    daysRemaining < 1
-      ? `${Math.max(0, Math.round(daysRemaining * 24))}h left`
-      : `${daysRemaining.toFixed(1)} days left`;
-  return `ends ${day} · ${days}`;
-}
 
 const WATCH_MODE_KEY = "equilibrium_v2_watch_mode";
 

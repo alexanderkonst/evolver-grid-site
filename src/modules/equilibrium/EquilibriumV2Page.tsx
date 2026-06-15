@@ -1,14 +1,11 @@
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { cn } from "@/lib/utils";
 import { InfoPopover } from "./components/InfoPopover";
 import { BirthdayPrompt } from "./components/BirthdayPrompt";
 import { useMdlsFlag } from "./useMdlsFlag";
 import { EquilibriumMDLSPage } from "./EquilibriumMDLSPage";
-import {
-  getAllCyclesV2,
-  getBirthdayArcPhaseNeighbors,
-  type AllCyclesV2,
-} from "@/lib/equilibrium-cycles";
+import { getBirthdayArcPhaseNeighbors } from "@/lib/equilibrium-cycles";
+import { useCycles, formatPhaseEndsAt } from "./hooks/useCycles";
 import { CycleEnergyBar } from "./components/CycleEnergyBar";
 import { SolarCycleBar } from "./components/SolarCycleBar";
 import { EquilibriumSectionCard } from "./components/EquilibriumSectionCard";
@@ -35,6 +32,7 @@ import {
   lunarDisplayIndex,
 } from "./cycleSegments";
 import { SECTION_IDS } from "./types";
+import { EQ_INFO_COPY } from "./equilibriumCopy";
 
 /**
  * Equilibrium v2 — "Biologic Watch"
@@ -45,26 +43,6 @@ import { SECTION_IDS } from "./types";
  * `<CycleEnergyBar>` canonical visual. Other sections render placeholders;
  * subsequent waves wire them up + the Supabase-backed sections.
  */
-
-/**
- * Format the time-to-next-phase sub-label for the lunar pill stack.
- * "ends Tue May 19 · 2.3 days left"
- *
- * Locked 2026-05-16 per philosophical spine §6 — turns "a vibe" into
- * "a window." Users can schedule into the remainder of a phase.
- */
-function formatPhaseEndsAt(phaseEndMs: number, daysRemaining: number): string {
-  const end = new Date(phaseEndMs);
-  const day = end.toLocaleDateString(undefined, {
-    weekday: "short",
-    month: "short",
-    day: "numeric",
-  });
-  const days = daysRemaining < 1
-    ? `${Math.max(0, Math.round(daysRemaining * 24))}h left`
-    : `${daysRemaining.toFixed(1)} days left`;
-  return `ends ${day} · ${days}`;
-}
 
 /**
  * Watch mode persisted in localStorage so the user's preferred view sticks
@@ -91,90 +69,10 @@ function useWatchMode(): [WatchMode, (m: WatchMode) => void] {
   return [mode, setMode];
 }
 
-/**
- * Cycle math hook. Sasha 2026-05-19 responsiveness pass:
- *
- *   • Tick every 5 minutes (was 60s). Cycles change so slowly — the
- *     fastest is day-of-week, which updates once per day — that
- *     per-minute updates were pure overhead. 5 minutes = enough
- *     resolution for "ends Tue · 2.3 days left" labels to feel live.
- *
- *   • Pause when the tab is hidden. `document.visibilityState` lets
- *     browsers throttle hidden tabs anyway, but explicit pausing
- *     prevents the queued-tick-fires-on-focus pattern that was making
- *     the page feel like it "recalculates" on tab return.
- *
- *   • Recompute on visibility return. If the tab was hidden for hours,
- *     cycle state could be stale — refresh once on focus, then resume
- *     the 5-minute cadence.
- *
- *   • De-dupe identical states. If neither the orb position
- *     (`segmentIndex`) nor the half-day remaining changed across all
- *     four cycles, skip the setState. No state swap = no re-render
- *     cascade for downstream sections.
- */
-function cyclesShallowEqual(a: AllCyclesV2, b: AllCyclesV2): boolean {
-  const round = (n: number) => Math.floor(n * 10) / 10; // ~2.4h granularity
-  return (
-    a.solar.segmentIndex === b.solar.segmentIndex &&
-    a.zodiac.segmentIndex === b.zodiac.segmentIndex &&
-    a.lunar.segmentIndex === b.lunar.segmentIndex &&
-    a.dayOfWeek.segmentIndex === b.dayOfWeek.segmentIndex &&
-    round(a.lunar.daysRemainingInPhase) === round(b.lunar.daysRemainingInPhase) &&
-    round(a.solar.personalProgress * 100) === round(b.solar.personalProgress * 100)
-  );
-}
-
-interface CyclesSnapshot {
-  cycles: AllCyclesV2;
-  /** Timestamp the cycles were computed at — stable across re-renders
-   *  between ticks. Use this for components that need a "now" anchor
-   *  (e.g. UpcomingTransitions) so they only recompute on the tick,
-   *  not every render. Sasha 2026-05-24. */
-  nowMs: number;
-}
-
-function useCycles(birthday?: string): CyclesSnapshot {
-  const [snapshot, setSnapshot] = useState<CyclesSnapshot>(() => {
-    const nowMs = Date.now();
-    return { cycles: getAllCyclesV2(nowMs, birthday), nowMs };
-  });
-
-  useEffect(() => {
-    let cancelled = false;
-
-    const refresh = () => {
-      if (cancelled) return;
-      const nowMs = Date.now();
-      const next = getAllCyclesV2(nowMs, birthday);
-      setSnapshot((prev) =>
-        cyclesShallowEqual(prev.cycles, next) ? prev : { cycles: next, nowMs },
-      );
-    };
-
-    const tick = () => {
-      if (typeof document !== "undefined" && document.hidden) return;
-      refresh();
-    };
-
-    const onVisible = () => {
-      if (typeof document !== "undefined" && !document.hidden) refresh();
-    };
-
-    const intervalId = window.setInterval(tick, 5 * 60_000);
-    document.addEventListener("visibilitychange", onVisible);
-
-    refresh();
-
-    return () => {
-      cancelled = true;
-      window.clearInterval(intervalId);
-      document.removeEventListener("visibilitychange", onVisible);
-    };
-  }, [birthday]);
-
-  return snapshot;
-}
+/* cyclesShallowEqual + CyclesSnapshot + useCycles extracted to
+ * ./hooks/useCycles.ts (Sasha 2026-06-14) so both V2 and MDLS pages
+ * share the same optimized tick (5-min, hidden-tab pause, de-dupe,
+ * nowMs anchor). MDLS-default SOW resource rule R2. */
 
 export const EquilibriumV2Page = () => {
   // MDLS feature flag — when `?mdls=1` is in the URL or
@@ -463,7 +361,7 @@ export const EquilibriumV2Page = () => {
             */}
             <SectionHeader
               title="Lifelong Dedication"
-              infoIconCopy="One sentence at life scale — the chosen direction your action keeps taking. WHAT you're devoted to · BY WHAT MEANS · TOWARD WHAT. Example: 'Help humanity evolve into a consciously coordinated civilization by awakening individual genius, integrating consciousness with technology, and architecting systems that transform human potential into coherent collective flourishing.'"
+              infoIconCopy={EQ_INFO_COPY.mission}
             />
             <MissionSection
               missionDisplay={eq.missionDisplay}
@@ -484,7 +382,7 @@ export const EquilibriumV2Page = () => {
                 Talent. Your current Top Talent in plain words." */}
             <SectionHeader
               title="Role"
-              infoIconCopy="One sentence — your current Top Talent in plain words. Rarely changes. Synced from Top Talent Discovery. The 'how I show up' that the Lifelong Dedication points through."
+              infoIconCopy={EQ_INFO_COPY.role}
             />
             <RoleSection
               roleDisplay={eq.roleDisplay}
@@ -526,7 +424,7 @@ export const EquilibriumV2Page = () => {
             {/* Centered title (Sasha 2026-05-19: all box titles centered). */}
             <SectionHeader
               title="Current Strategy"
-              infoIconCopy="The 1–3 directions translating your Lifelong Dedication into action. One sentence each, action verb first. Set when you have clarity."
+              infoIconCopy={EQ_INFO_COPY.strategies}
             />
             {/*
               Score button — runs alignment scoring against the user's
@@ -582,7 +480,7 @@ export const EquilibriumV2Page = () => {
                 to reorder." Phase note: surface during Seeing onward. */}
             <SectionHeader
               title="Workstreams"
-              infoIconCopy="The streams of work the strategies open. Up to 7. Drag to reorder. Capture during the Seeing phase (First Quarter) when the 'how' becomes obvious — write it down before clarity drifts."
+              infoIconCopy={EQ_INFO_COPY.workstreams}
             />
             <WorkstreamsSection
               workstreams={eq.workstreams}
@@ -612,7 +510,7 @@ export const EquilibriumV2Page = () => {
                 DOING NOW. */}
             <SectionHeader
               title="Intuitive Tasks"
-              infoIconCopy="The concrete moves under each workstream. Up to 7 per stream. Drag to reorder. Press DO NOW on a task to promote it into your active focus."
+              infoIconCopy={EQ_INFO_COPY.goals}
             />
             <SmartGoalsSection
               workstreamTitle={activeWorkstream?.title ?? null}
@@ -656,7 +554,7 @@ export const EquilibriumV2Page = () => {
                 done-pile." */}
             <SectionHeader
               title="DOING NOW"
-              infoIconCopy="The chosen action — everything above collapses into one move. Up to 3 tasks, ONE recommended. Promote tasks here with the DO NOW button on a workstream task. Check the box to complete; it cascades back to the workstream's done-pile."
+              infoIconCopy={EQ_INFO_COPY.doNow}
             />
             <DoNowSection
               focusedTaskIds={eq.focusedTaskIds}
@@ -681,7 +579,7 @@ export const EquilibriumV2Page = () => {
           <EquilibriumSectionCard id={SECTION_IDS.harvest}>
             <SectionHeader
               title="Harvest"
-              infoIconCopy="What you've reaped. A running celebration of completed tasks across all workstreams, grouped by day. Each entry shows the workstream it came from, how long it was in focus, and when you completed it. Hover the check to restore a task if you closed it by accident."
+              infoIconCopy={EQ_INFO_COPY.harvest}
             />
             <HarvestSection
               completedTasks={eq.completedTasksAll}
