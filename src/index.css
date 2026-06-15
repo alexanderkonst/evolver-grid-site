@@ -895,8 +895,22 @@
 
 /* Re-center the logo <img> inside the new 48x48 grid box. Cancel
    the mx-auto + any inherited block alignment so grid place-items
-   handles both axes cleanly. */
-[data-skin="karime"] [data-rail-compact="true"] a[aria-label*="Find Your Top Talent"] img {
+   handles both axes cleanly.
+
+   Day 89 verify-fix #2 (Sasha 2026-06-06): the brand <Link> contains
+   TWO <img> tags — the mobile torus (`md:hidden`) and the desktop
+   wordmark (`hidden md:block`). The compact-rail rule at index.css
+   ~line 1971-1975 hides the wordmark via `.md\:block { display: none
+   !important; }`. My initial rule selected ALL imgs in the brand
+   link and applied `display: block !important`, which overrode the
+   compact-mode hide because the attribute-selector specificity beat
+   the class-selector specificity at equal !important. Result: the
+   wordmark stayed visible in compact mode (visible regression in the
+   live preview). Scope tightened to `img.md\:hidden` (the mobile
+   torus only) so the wordmark hide is restored. Same fix applied to
+   the drop-shadow halo rule below — without it, the halo was being
+   drawn around the wordmark too. */
+[data-skin="karime"] [data-rail-compact="true"] a[aria-label*="Find Your Top Talent"] img.md\:hidden {
   margin: 0 !important;
   display: block !important;
 }
@@ -926,7 +940,7 @@
    experience. Identical at desktop and mobile (no viewport
    conditionals); applies only to the actual <img> element so the
    spin animation isn't double-shadowed. */
-[data-skin="karime"] [data-rail-compact="true"] a[aria-label*="Find Your Top Talent"] img {
+[data-skin="karime"] [data-rail-compact="true"] a[aria-label*="Find Your Top Talent"] img.md\:hidden {
   filter:
     drop-shadow(0 0 8px rgba(244, 212, 114, 0.55))
     drop-shadow(0 0 14px rgba(212, 175, 55, 0.32))
