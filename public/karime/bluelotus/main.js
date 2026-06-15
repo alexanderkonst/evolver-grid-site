@@ -167,14 +167,11 @@
       });
     });
 
-    /* commerce buttons */
+    /* commerce buttons -> straight to WhatsApp */
     document.querySelectorAll("[data-buy]").forEach(function (btn) {
       btn.addEventListener("click", function (e) {
         e.preventDefault();
-        var tier = btn.getAttribute("data-buy");
-        var url = CFG.stripe && CFG.stripe[tier];
-        if (url) { window.location.href = url; }
-        else { window.location.href = "confirmation.html?tier=" + tier; }
+        window.location.href = waLink(btn.getAttribute("data-buy"));
       });
     });
   }
