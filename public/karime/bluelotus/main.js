@@ -14,6 +14,59 @@
     });
   }
   renderUsd();
+  initStarfield();
+
+  function initStarfield() {
+    var c = document.querySelector(".starfield");
+    if (!c || !c.getContext) return;
+    var ctx = c.getContext("2d");
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    var reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var stars = [];
+    function build() {
+      c.width = window.innerWidth * dpr;
+      c.height = window.innerHeight * dpr;
+      c.style.width = window.innerWidth + "px";
+      c.style.height = window.innerHeight + "px";
+      var n = Math.min(210, Math.round(window.innerWidth * window.innerHeight / 9500));
+      stars = [];
+      for (var i = 0; i < n; i++) {
+        var bright = Math.random() < 0.1;
+        stars.push({
+          x: Math.random() * c.width,
+          y: Math.random() * c.height,
+          r: ((bright ? 1.1 : 0.5) + Math.random() * (bright ? 0.8 : 0.5)) * dpr,
+          a: (bright ? 0.45 : 0.14) + Math.random() * 0.28,
+          tw: Math.random() * 6.283,
+          ts: 0.4 + Math.random() * 0.7,
+          warm: Math.random() < 0.55,
+          big: bright
+        });
+      }
+    }
+    function draw(t) {
+      ctx.clearRect(0, 0, c.width, c.height);
+      for (var i = 0; i < stars.length; i++) {
+        var s = stars[i];
+        var a = reduced ? s.a : s.a * (0.55 + 0.45 * Math.sin(t * 0.0009 * s.ts + s.tw));
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.r, 0, 6.283);
+        ctx.fillStyle = s.warm ? "rgba(245,226,194," + a + ")" : "rgba(206,196,230," + a + ")";
+        if (s.big) { ctx.shadowBlur = 6 * dpr; ctx.shadowColor = "rgba(233,184,114,0.55)"; }
+        else { ctx.shadowBlur = 0; }
+        ctx.fill();
+      }
+      ctx.shadowBlur = 0;
+      if (!reduced) requestAnimationFrame(draw);
+    }
+    build();
+    if (reduced) draw(0); else requestAnimationFrame(draw);
+    var rt;
+    window.addEventListener("resize", function () {
+      clearTimeout(rt);
+      rt = setTimeout(function () { build(); if (reduced) draw(0); }, 220);
+    });
+  }
 
   function waLink(tier) {
     var num = (CFG.whatsapp || "").replace(/[^0-9]/g, "");
