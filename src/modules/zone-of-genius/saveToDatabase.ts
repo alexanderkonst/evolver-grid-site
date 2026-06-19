@@ -5,6 +5,7 @@ import { getOrCreateGameProfileId } from "@/lib/gameProfile";
 import { withRetry } from "@/lib/withRetry";
 import { AppleseedData } from "./appleseedGenerator";
 import { ExcaliburData } from "./excaliburGenerator";
+import { SNAPSHOT_PENDING_SENTINEL } from "./snapshotSentinel";
 import i18n from "@/i18n/config";
 // Day 62 (Sasha 2026-05-05): cache invalidation on every successful
 // snapshot write. The zogSnapshotCache (in-memory + sessionStorage,
@@ -176,8 +177,8 @@ const getOrCreateSnapshot = async (
     .from("zog_snapshots")
     .insert({
       profile_id: profileId,
-      archetype_title: "Pending",
-      core_pattern: "Pending",
+      archetype_title: SNAPSHOT_PENDING_SENTINEL,
+      core_pattern: SNAPSHOT_PENDING_SENTINEL,
       top_ten_talents: [],
       top_three_talents: [],
       xp_awarded: false,
