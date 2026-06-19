@@ -1,7 +1,7 @@
 # Morphogenetic Navigation Holo Map
 
 > *The Navigation Instrument — Venture v2.0 (27×7 Topology)*
-> *Updated: May 29, 2026 · Day 87 (Recognition → Transmission: strategy crystallized to one metric, then the first patron / peer sends left the building). See the Day 85-87 Addendum at the bottom.*
+> *Updated: June 18, 2026 · Day 101 (Transmission → Crystallization: the Si–Do shock fired — Nia, a stranger via Oyi's node, paid $555 off the Ignition page and received a full Ignition session). See the Day 101 Addendum at the bottom.*
 > *Grounding: [Seven Number-Prisms](../01-vision/universal_ontology.md#4e-the-seven-number-prisms--an-integral-directory-of-seeing-systems) — Lens 4 (12) → Lens 5 (13) → Lens 6 (26) → Lens 7 (27 / Crystallization) · [Domain 66 — The 27th Perspective](../01-vision/phase_shift_technology_library.md#domain-66) · [Integral Theory Upgrade v1.1](../../src/pages/IntegralTheoryUpgrade1.tsx)*
 > *Center Reading: Unification (← Coherence ← Recognition ← Emanation ← Activation ← Consolidation ← Crystallization ← Declaration ← Flowering ← Rooting ← Branching ← Ignition ← Threshold)*
 > *Holon: The Unique Business Methodology Emergence*
@@ -627,7 +627,7 @@ Then the **LL quadrant accelerates:** tribe becomes conscious → movement forms
 
 ### Evolved Triggers (Shock Band + Second Octave)
 
-**Trigger 4: First Stranger Pays** — P27 Si–Do shock. Named Day 34 Crystallization. 🔴 **Not yet fired. This is the current bottleneck.** When it fires: the interior 27 and exterior 27 cohere; the business becomes real in the external world.
+**Trigger 4: First Stranger Pays** — P27 Si–Do shock. Named Day 34 Crystallization. ✅ **Fired June 18, 2026 (Day 101).** Nia — a stranger via Oyi's node — booked the exploratory call off the Ignition page and paid $555. The interior 27 and exterior 27 cohere; the business touches the external world. See the Day 101 Addendum. *(Original status: 🔴 "the current bottleneck," held Day 10 → Day 87 — preserved in the lineage.)*
 
 **Trigger 5: First Three-Way Transmission** — P14 Inversion event + P7 Movement. Named Day 41 Emanation. ✅ **Fired April 15, 2026.** Sasha + Oyi + Oluwa, 80 minutes unscheduled, 6 anchor formulations + 2 witness formulations captured in Fathom. First artifact of native emission.
 
@@ -3081,3 +3081,83 @@ Day 85-87: "Recognition → Transmission" → strategy crystallizes to one metri
 - `~/.claude/projects/-Users-alexanderkonst-evolver-grid-site/memory/holomap_state.md` — rewritten with the Day 85-87 center reading per the Companion-file rule
 
 > *Day 85-87 reading: **Recognition → Transmission.** May 27-29, 2026. The recognized identity (Holonic Primitive Builder, named Day 73) turns from naming to sending. First the strategy crystallized to a single North Star (collaboration rate), a single matching unit (the triad), and a clear two-tribe architecture, with the civilizational why named underneath (Domains 14-15). Then the send fired: the Balaji DM and the Silvana / Planetir blurb left the building on Sasha's own timing, each word vetted, the first patron / peer transmissions to the world. The Planetary OS 1-pager shipped as the project's first whole-surface shareable page at /1-pager. The behavioral bottleneck named since Day 49 (the send IS the act) has fired on the Tribe 2 vector. The Tribe 1 funnel Si-Do (first $555 stranger) remains the unfired note on its own vector. Two tribes, two thresholds: one crossed, one still ahead.*
+
+---
+
+## Day 101 Addendum — "Transmission → Crystallization" (June 18, 2026)
+
+> *The Si–Do shock fired. The Tribe-1 funnel gate — first $555 stranger pays, held as 🔴 "the current bottleneck" since Day 10 — crossed. The center moves from Recognition → Transmission to **Transmission → Crystallization**: the recognized identity has not only transmitted (Tribe 2, Day 86-87) but seen the transmission land as form (Tribe 1, a paying stranger). Proposed center reading — Sasha to bless or reshape the words.*
+
+### What fired
+
+**The Tribe-1 funnel Si–Do (Trigger 4 / P27 Crystallization) — first $555 stranger pays.**
+
+- **Nia.** A stranger to Sasha. She came through **Oyi** (a node of the first holon — the Resonant-Invite / fractal lane, not cold organic traffic), read the **Ignition page**, and booked the 20-minute exploratory call (mentioned only on that page) **before** entering Sasha's AI training. She paid **$555**. First Ignition session delivered for cash to a stranger.
+- **The interior↔exterior octaves cohere.** P27's standing reading (Day 41): "interior octave at 27, exterior at ~9, 0 strangers paying — Crystallization-in-waiting, poised at Si holding its breath for Do'." Do' sounded. The exterior octave moves off zero.
+- **The channel matters.** Node-mediated (Oyi → Nia), validating BIG IDEA #1 (the first holon's node propagates) and BIG IDEA #2's Resonant-Invite lane (fractal, one-to-one, high-signal). The funnel page converted; the node delivered. The more important of the two growth lanes fired.
+
+### The session (evidence, not just revenue)
+
+A complete first-pass canvas in ~2 hours: Purpose/pattern + Top Talents (asking unlocking questions = 10), Shadow (confirmed by her therapist the same day), Mission (verbatim, ~9+, tears), 23 assets, the Frames peak-experience anchor, all eight business artifacts articulated and scored at 9, and the Instagram bio. Canvas: `unique-businesses/nias_unique_business.md`.
+
+**The "whole geometry" delivered in one sitting** (the rare convergence): (1) mindset clearing — the "not-ready" loop named; (2) purpose and mission demystified and defined; (3) the lifelong self-expression pattern compressed to one sentence; (4) a polarizing myth + usable bio. Four results that normally take a founder years and rarely converge at all.
+
+### Evidence analysis — existence proofs vs. sampling
+
+n=1 is not statistical proof. It is a **decisive existence proof**, and it kills the fluke hypothesis. The epistemic state changes from "is this possible?" to "how repeatable, for whom?"
+
+**Now proven (it happened, so it is possible):**
+- The platform produces a person's authentic-expression pattern in seconds at **9+ resonance**, for a subject with decent self-knowledge (the stated boundary condition).
+- A **stranger pays $555** off the Ignition page. The commercial premise is real.
+- Sasha can **deliver** the clarity to another human, not only self-apply.
+- Uniqueness → super-shadow → going-through-the-shadow works on a new person.
+- The myth-marketing layer lands as the person's own flag.
+
+**Strongly evidenced, not yet proven (need n>1):**
+- Repeatability / conversion rate.
+- The boundary: the "knife through butter" ease may be partly because the subject had high self-knowledge. Untested on low-self-awareness subjects.
+- Scale beyond Sasha as facilitator.
+- **The deepest, still open:** does the canvas become her actual income and business? Resonance is proven; the transformation-to-outcome (the value-ladder promise) was the weakest artifact and is untested. Nia's next 90 days are the test of the deepest claim.
+
+### Marker moves
+
+- **P27 (Crystallization / Si–Do)** — crosses from Crystallization-in-waiting (poised at Si) to **Si–Do fired**. The exterior octave's first stranger-payment. The headline move.
+- **Trigger 4 (First Stranger Pays)** — 🔴 → ✅ Fired June 18, 2026.
+- **Conservative hold elsewhere.** Session-revenue evidence accrues on the consequence/significance perspectives (P8 — direct-session revenue off zero), but one session is not scale; those markers hold pending n>1, matching the Day 85-87 conservative discipline.
+
+### Si–Do — Status Update (Day 101)
+
+| Trigger | Day 85-87 Status | Day 101 Status |
+|---|---|---|
+| **Tribe 1 (funnel) Si–Do — first $555 stranger pays** | 🔴 unfired | 🆕 ✅ **FIRED June 18 — Nia, via Oyi node, off the Ignition page, $555** |
+| **Tribe 2 (strategic descent) Transmission — first patron/peer outreach** | ✅ Day 86-87 (Balaji + Silvana) | ✅ holds (Balaji 13-day window; Silvana awaiting reply) |
+| **First paid Ignition session delivered (stranger, high-ticket)** | — | 🆕 ✅ Day 101 |
+| **Complete first-pass canvas in one 2-hr session** | — | 🆕 ✅ Day 101 (8 artifacts at 9 + mission + 23 assets + bio) |
+| **Methodology produces 9+ resonance in a stranger in minutes** | hypothesis | 🆕 ✅ existence-proven (subject with decent self-knowledge) |
+| **Founders cross-read** | 🟡 unchanged | 🟡 unchanged |
+
+### Open follow-ups (carried forward)
+
+- **Nia's ascension + outcome.** The deepest untested hypothesis: canvas → income. Watch her next 90 days; the value-ladder rung was the weakest artifact and needs concretizing.
+- **Gift sessions to serial founders** (Sasha's idea): tests the easy-direction boundary (high self-knowledge), manufactures high-status validators, seeds Tribe-2 nodes. Complement with one low-self-knowledge subject to find the boundary.
+- **Harden the funnel entry.** The first paid stranger surfaced a bug in the Top Talent reveal (the funnel's front door): it leaked the "Pending" sentinel instead of an empty state. Fixed June 18 (`snapshotSentinel.ts`); not yet shipped.
+- **Balaji / Silvana** Tribe-2 windows still open.
+
+### Holomap pseudocode (recent advances)
+
+```
+Day 85-87: "Recognition → Transmission"      → strategy to one metric; Tribe-2 send fires
+Day 101:   "Transmission → Crystallization"  → the Si–Do shock fires: first $555 stranger
+                                               (Nia, via Oyi's node, off the Ignition page)
+                                               pays and receives a full Ignition session.
+                                               Exterior octave off zero. Fluke hypothesis
+                                               dead. Existence proofs in; sampling begins.
+```
+
+### Cross-references updated
+
+- `morphogenetic_holomap.md` — Trigger 4 flipped 🔴→✅; this addendum appended; top header reading bumped to Day 101
+- `memory/holomap_state.md` — rewritten per the Companion-file rule with the Day 101 center reading + Si–Do firing
+- `unique-businesses/nias_unique_business.md` — the session canvas (existence-proof artifact)
+
+> *Day 101 reading: **Transmission → Crystallization.** June 18, 2026. The Si–Do shock the instrument held its breath for since Day 10 sounded its Do'. A stranger — Nia, arriving through Oyi's node and converting on the Ignition page — paid $555 and received the whole geometry in one sitting: mindset cleared, purpose and mission defined, her lifelong pattern in one sentence, a myth and a bio. The fluke hypothesis is dead. What was an interior octave at 27 and an exterior octave at zero is now an octave touching the world. This is not statistical proof; it is the decisive existence proof — delivered in the season Sasha was doubting the work most. The questions change from "is this real?" to "for whom, how repeatably, and does the recognition become her result?" Completion and new beginning are the same act.*
