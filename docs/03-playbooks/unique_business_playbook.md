@@ -5,8 +5,8 @@
 
 > *"Work seen as sacred, executed as ceremony."*
 
-**Version:** 4.7  
-**Created:** February 2026 · Last updated: June 5, 2026 (Day 94: *The Transmission Principle added to Part 0, the transmission-not-report craft canonized and first shipped into the Top Talent reveal prompt (ZoG v2.1). Prior: Day 51 commercial-decentralization model (P15).*)  
+**Version:** 4.8  
+**Created:** February 2026 · Last updated: June 19, 2026 (Day 102: *Part I gains "The Loop: Self-Knowledge and Business Co-Arise" plus its cross-cultural mythic lineage: the bidirectional, recognition-hinged reading of "business is crystallized self-knowledge," surfaced live during the first paid stranger session. Prior: Day 94 Transmission Principle.*)  
 **Purpose:** The master playbook for AI-assisted genius-based venture building  
 **Execution:** [Customer Journey Playbook](./customer_journey_playbook.md) — the operational map from first touchpoint to paid session
 
@@ -953,6 +953,52 @@ TRANSFORMATIONAL PROMISE
 Everything downstream is *derived from*, not *invented separately*.
 
 This is why AI can now do what used to take teams of specialists: once the **seed crystal** (articulated genius) is in place, the rest is expansion, not creation.
+
+---
+
+## The Loop: Self-Knowledge and Business Co-Arise
+
+> *v1.0 · June 19, 2026. Named after the first paid stranger session, where the question surfaced live: are self-knowledge and the business actually one thing?*
+
+The First Domino diagram reads in one direction: genius → offer → venture. True, but incomplete. **The arrow runs both ways.**
+
+Self-knowledge and the business it produces are not two stages. They are one motion with two faces: the interior face (knowing who you are) and the exterior face (the form that knowing takes in the world). "Business is crystallized self-knowledge" is only half of it. The other half: **crystallizing the business deepens the self-knowledge.** Working the artifact, done as articulation, surfaces a more precise uniqueness. Self-knowledge begets a better business; a better business begets self-knowledge. They co-arise.
+
+**The hinge is recognition.** The loop only turns through the founder's own recognition: the body-yes, the resonance at 9 and above. That recognition is the bearing the whole spiral rotates on, and it is also the truth-detector. A feedback loop with no truth-check will amplify a comfortable lie as easily as a truth; the body-score is the error-correction that keeps the loop climbing toward what is real. It is also why conversion drops exactly where the truth has not been recognized yet.
+
+This resolves an apparent paradox. The law says advancement comes from deeper connection to uniqueness, not from polishing artifacts. But two different acts wear the same clothes:
+
+- **Articulation:** pushing the words to higher precision. This *is* deeper connection, the map sharpening the territory's self-portrait.
+- **Cosmetics:** rearranging surface copy divorced from the source.
+
+The law forbids the second, never the first. Articulation and connection are the same motion; the loop runs only when recognition is in the circuit.
+
+**Consequences:**
+
+1. **You cannot build someone's business for them.** Doing the artifact work without their recognition severs the hinge: you get polished copy with no living source, and they get no deepened self-knowledge. The nuance you would try to manufacture only exists on the far side of their recognition. You build *with* them, and the building is the deepening. (This is why The Build is co-creation, not done-for-you. It sells the loop, turned together, for longer.)
+2. **The loop is asymptotic.** Each turn closes a little of the precision gap and reveals the next increment. The gap never fully closes, which is why no founder graduates to zero. Self-knowledge ⇄ business is an infinite game. That is the LTV engine, not a flaw.
+
+### The Mythic Lineage: The Oldest Story
+
+This loop is not a clever framework. It is the human-scale, economic fractal of the **cosmogonic pattern**: the hidden becomes real by going into form and being recognized. Call it the first myth not by date but by structure. Cosmogony is where every mythology begins, the story of how the hidden became manifest, and the loop is that opening story told at the scale of a person and their work.
+
+The single line that *is* the loop is Sufi, a hadith qudsi central to Ibn Arabi:
+
+> *"I was a Hidden Treasure, and I longed to be known, so I created creation, that I might be known."*
+
+Hidden treasure is the un-expressed uniqueness. Longing to be known is the drive to express it. Creation is the business. Being known is recognition.
+
+Its other faces, the same pattern each time:
+
+- **The Hero's Return:** the boon from the abyss is the externalized form of what was found within, sealed only when the community recognizes it.
+- **The Parable of the Talents:** gifts (the English word carries both meanings) must be put to work, not buried; "well done" is the recognition that completes them.
+- **The Logos:** consciousness knows itself by speaking itself into form.
+- **Know Thyself, and recognition (Hegel):** self-consciousness becomes actual only through being recognized by another. The jar cannot read its own label.
+- **Dharma and Lila:** you realize the Self by acting out your own nature.
+- **Entelechy, acorn to oak:** potential is known only by being actualized.
+- **Alchemical individuation (Jung):** the opus transmutes self and gold together, through the integration of the shadow.
+
+**Why this belongs in the playbook:** the product is the modern instrument of this myth, a technology for the Hidden Treasure to become known. That is why a precise articulation lands at 9+ resonance in anyone with enough self-knowledge to feel it, and it is the deepest root of the Myth (Principle 8): the work is the modern engine of humanity's first story.
 
 ---
 
