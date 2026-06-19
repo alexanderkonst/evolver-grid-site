@@ -25,6 +25,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { getOrCreateGameProfileId } from "@/lib/gameProfile";
 import { generateZogPdf } from "@/modules/zone-of-genius/generateZogPdf";
 import type { AppleseedData as FullAppleseedData } from "@/modules/zone-of-genius/appleseedGenerator";
+import { hasRealArchetype } from "@/modules/zone-of-genius/snapshotSentinel";
 import type { ExcaliburData } from "@/modules/zone-of-genius/excaliburGenerator";
 import {
     getCachedZogSnapshot,
@@ -246,7 +247,7 @@ const ZoneOfGeniusOverview = () => {
                     if (apple) {
                         setAppleseedData(apple as unknown as AppleseedData);
                         setFullAppleseed(apple);
-                    } else if (cached.archetypeTitle) {
+                    } else if (hasRealArchetype(cached.archetypeTitle)) {
                         const talents = cached.topThreeTalentsLong || [];
                         setAppleseedData({
                             vibrationalKey: {
@@ -356,7 +357,7 @@ const ZoneOfGeniusOverview = () => {
                 if (apple) {
                     setAppleseedData(apple as unknown as AppleseedData);
                     setFullAppleseed(apple);
-                } else if (archetypeTitle) {
+                } else if (hasRealArchetype(archetypeTitle)) {
                     // Fallback: minimal appleseed from basic snapshot fields
                     const talents = topThreeTalents || [];
                     const fallback: AppleseedData = {
