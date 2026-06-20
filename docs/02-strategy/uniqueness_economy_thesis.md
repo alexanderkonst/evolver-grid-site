@@ -16,6 +16,54 @@ The economic form of the same claim:
 
 ---
 
+## 0.5 The bedrock — FIT (Day 108 excavation, June 20, 2026)
+
+*A 69-page excavation ("Human Uniqueness and AI," June 19-20) dug the thesis to bedrock and converged with the Sacred Space notes and the Day 107 session on the same primitive: **fit**. Three independent digs, one chamber, which is the recurrence-signature of a real primitive rather than a clever frame. This is the deepest layer; everything above is its expression.*
+
+**The bedrock stack:**
+
+- **Primitive:** Prosperity is constrained by fit. (Seed: *fit creates value.*)
+- **Mechanism:** Self-knowledge reveals fit → Technology makes fit visible → Matching coordinates fit → Fit creates prosperity. (Compressed: *See fit → Match fit → Coordinate fit → Prosperity.*)
+- **Civilizational myth:** Prosperity comes from fit; technology amplifies it.
+- **Historical arc:** every major technology increases humanity's capacity to discover and coordinate fit.
+- **Emerging era:** human uniqueness becomes visible, matchable, and coordinatable at scale.
+
+**How it relates to the uniqueness frame:** uniqueness is the *substance*, **fit is the primitive**, **visibility is the bottleneck.** "Prosperity is constrained by fit" sits beneath "uniqueness is the irreducible economic unit" and is sharper and more defensible. It also resolves the naming overlap: "fit" is ownable and primitive where "uniqueness economy" is academically occupied and abstract.
+
+**Two layers, stacked (never competing):**
+
+- **Primitive (Mind, the law):** *Prosperity is constrained by fit.* The controversial edge: fit is an economic variable, not a happiness variable. Money and success are *downstream* of fit, not upstream.
+- **Myth (Heart, the felt invitation):** *Don't fit in. Find where you fit.*
+
+**The deepest move: technology reveals fit, it does not create it.** Each major technology was a new pair of glasses that made a previously-invisible distinction visible, so humans could find the *right* thing instead of guessing. The fit already existed; the technology raised the resolution. The 12-year-old version:
+
+| Technology | Let you tell the right ___ apart from ... |
+|---|---|
+| Language | the right *meaning*, from a guess (danger vs hello, friend vs stranger) |
+| Writing | the right *knowledge*, from a half-remembered rumor (it stops dying with the knower) |
+| Money | the right *price*, from a vague "a lot" (a fair trade vs a rip-off, even with strangers) |
+| Markets | the right *trading partner*, from the indifferent crowd |
+| Guilds | the right *expert*, from a pretender |
+| Printing press | the right *idea*, from a game-of-telephone version |
+| Steam engine | the right *power on demand*, from waiting on wind, water, animals, muscle |
+| Factory | the right *task*, from one big messy blur of making |
+| Corporation | the right *role*, from "somebody's job" |
+| Mass media | the right *story*, from your village's gossip |
+| Computer | the right *answer*, from "roughly, maybe" |
+| Internet | the right *information*, from "somewhere out there, good luck" |
+| Social networks | the right *people*, from faces in a crowd |
+| Recommendation systems | the right *pick*, from an ocean of everything |
+| AI | the right *solution*, from trying every dead end |
+| **Self-knowledge + AI** | the right ***you***, from everything you are merely okay at |
+
+Every pair of glasses, all the way down, helped humanity tell **fit from misfit** a little better: the right thing from the almost-right thing. The newest pair is the first that turns the lens *inward*, so the thing being made visible is finally the person. That is why this is a completion (an octave turning inward), not "the next app."
+
+**The 12-holon myth ladder.** The same primitive expresses as a thesis → antithesis → synthesis myth at every holon: individual → team → organization → community → ecosystem → bioregion → civilization → humanity. Highest holon (humanity-wide): *Synthesis* "Human progress comes from discovering and coordinating unique contributions." *Essence* "Uniqueness in service of wholeness." *Significance* "Difference becomes infrastructure." *Consequence* "Humanity self-organizes through fit." The full per-holon ladder lives in the source excavation and is the content spine for the holonic landing pages (each holon gets its own myth and page, per `../03-playbooks/marketing_playbook.md`).
+
+**The shadow (keep it in view).** The Human Fit Age carries real shadows: identity fixation, over-optimization, treating humans as optimization targets, and mistaking fit-metrics for human flourishing. Holding the shadow named is what keeps the thesis from hardening into the next reductive ideology.
+
+---
+
 ## 1. The hero (peer invitation — NOT the economics)
 
 The page opens to peers, warm and second-person. The economics is the floor beneath, never the doorway. Audience: sovereign builders.

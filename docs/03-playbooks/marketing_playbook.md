@@ -93,6 +93,22 @@ Marketing and distribution are **different phases of one continuous flow**:
 
 ---
 
+## The Master Myth — FIT (Day 108, June 20, 2026)
+
+> Full bedrock + the historical "pair of glasses" table: [`uniqueness_economy_thesis.md`](../02-strategy/uniqueness_economy_thesis.md) §0.5.
+
+The current photon of truth for the whole movement is **fit** (the atom beneath "uniqueness," reached by three independent excavations).
+
+- **Old myth:** Fit in. (Change yourself for the system.)
+- **New myth:** Find where you fit. (Find the system for you.)
+- **Primitive beneath the myth:** *Prosperity is constrained by fit.* The blade is the inversion: money and success are downstream of fit, not upstream. Ship the inversion, not the bare word "fit" (which is a Rorschach on its own).
+
+**Category-creation lens (the new sense organ).** Every major technology was a new pair of glasses that revealed a previously-invisible distinction (the right conversation, knowledge, partner, idea, role, opportunity). The platform is the *next* pair of glasses: the first that reveals **human fit itself.** So the positioning is not "AI matching" (the mechanism, cold); it is *you can finally see what you are built for* (the new sense organ, the revelation).
+
+**The frequency rule (ties to Dual-Frequency Distribution).** Lead with **misfit** (the felt wound; funnel, pain-first) and promise **fit** (signal-first content). "Fit / misfit" is the lexical key to both frequencies. Fit is invisible; misfit is felt. Fish do not notice water; people notice friction.
+
+---
+
 # Part II: The Three Pillars of Marketing
 
 > These three pillars come first — tactics, channels, and messaging that don't rest on them tend to drift.
