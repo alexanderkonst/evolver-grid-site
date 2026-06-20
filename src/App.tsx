@@ -214,6 +214,7 @@ import Transcriber from "./pages/Transcriber";
 import { EquilibriumV2Page } from "./modules/equilibrium";
 import MdlsPreview from "./pages/MdlsPreview";
 import OnePager from "./pages/OnePager";
+import LandingThesis from "./pages/LandingThesis";
 import Monetization from "./pages/Monetization";
 import Sohn from "./pages/Sohn";
 import ArtPage from "./pages/game/ArtPiecePage";
@@ -841,6 +842,10 @@ const App = () => (
                   {/* Planetary OS public 1-pager · /1-pager · standalone (no shell),
                       shareable. Copy locked from docs/02-strategy/planetary_os_1pager.md. */}
                   <Route path="/1-pager" element={<OnePager />} />
+                  {/* The Uniqueness Economy thesis flag · /landing · standalone (no shell).
+                      Upgrade of /1-pager into the thesis landing for sovereign builders.
+                      Source of truth: docs/02-strategy/uniqueness_economy_thesis.md. */}
+                  <Route path="/landing" element={<LandingThesis />} />
                   {/* Public monetization explainer · /monetization · standalone (no shell),
                       radical-transparency framing, Liquid Glass register. */}
                   <Route path="/monetization" element={<Monetization />} />

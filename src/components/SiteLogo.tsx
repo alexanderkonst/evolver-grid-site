@@ -98,7 +98,10 @@ const SiteLogo = () => {
     // (not the FYTT funnel), so it ships its own PlanetaryOSWordmark in-page
     // instead of the global FYTT mark. /monetization keeps the FYTT global
     // mark since monetization IS funnel-side content.
-    const exactHidden = ["/", "/ignite", "/my-result", "/path", "/auth", "/dashboard", "/ai-os", "/library", "/prompt", "/ubb", "/mdls-preview", "/build/equilibrium", "/equilibrium", "/preview/equilibrium-v2", "/build/karime", "/build/karime/intake", "/1-pager"];
+    // Day 107 (Sasha 2026-06-19): /landing (The Uniqueness Economy thesis
+    // flag) ships its own in-page wordmark too — suppress the global FYTT
+    // mark so it doesn't double up at top-center.
+    const exactHidden = ["/", "/ignite", "/my-result", "/path", "/auth", "/dashboard", "/ai-os", "/library", "/prompt", "/ubb", "/mdls-preview", "/build/equilibrium", "/equilibrium", "/preview/equilibrium-v2", "/build/karime", "/build/karime/intake", "/1-pager", "/landing"];
     if (hidden.some(p => location.pathname.startsWith(p)) || exactHidden.includes(location.pathname)) return null;
 
     return (

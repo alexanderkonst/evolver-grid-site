@@ -346,6 +346,12 @@ const IgniteSession = () => {
             ))}
           </div>
           <p
+            className="text-sm text-white/75 text-center leading-relaxed pt-1 max-w-md mx-auto"
+            style={{ fontFamily: "'Source Serif 4', serif" }}
+          >
+            {t('ignite.leaveWithConvergence')}
+          </p>
+          <p
             className="text-xs text-white/55 italic text-center leading-relaxed pt-1 max-w-sm mx-auto"
             style={{ fontFamily: "'Source Serif 4', serif" }}
           >
