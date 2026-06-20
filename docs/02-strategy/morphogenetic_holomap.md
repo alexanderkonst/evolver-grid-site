@@ -1,7 +1,7 @@
 # Morphogenetic Navigation Holo Map
 
 > *The Navigation Instrument — Venture v2.0 (27×7 Topology)*
-> *Updated: June 18, 2026 · Day 101 (Transmission → Crystallization: the Si–Do shock fired — Nia, a stranger via Oyi's node, paid $555 off the Ignition page and received a full Ignition session). See the Day 101 Addendum at the bottom.*
+> *Updated: June 19, 2026 · Day 102 (Crystallization → Propagation: the thesis crystallized into a public flag at /landing, "The Uniqueness Economy"; the idea goes out for the network to inherit). See the Day 102 Addendum at the bottom.*
 > *Grounding: [Seven Number-Prisms](../01-vision/universal_ontology.md#4e-the-seven-number-prisms--an-integral-directory-of-seeing-systems) — Lens 4 (12) → Lens 5 (13) → Lens 6 (26) → Lens 7 (27 / Crystallization) · [Domain 66 — The 27th Perspective](../01-vision/phase_shift_technology_library.md#domain-66) · [Integral Theory Upgrade v1.1](../../src/pages/IntegralTheoryUpgrade1.tsx)*
 > *Center Reading: Unification (← Coherence ← Recognition ← Emanation ← Activation ← Consolidation ← Crystallization ← Declaration ← Flowering ← Rooting ← Branching ← Ignition ← Threshold)*
 > *Holon: The Unique Business Methodology Emergence*
@@ -3161,3 +3161,41 @@ Day 101:   "Transmission → Crystallization"  → the Si–Do shock fires: firs
 - `unique-businesses/nias_unique_business.md` — the session canvas (existence-proof artifact)
 
 > *Day 101 reading: **Transmission → Crystallization.** June 18, 2026. The Si–Do shock the instrument held its breath for since Day 10 sounded its Do'. A stranger — Nia, arriving through Oyi's node and converting on the Ignition page — paid $555 and received the whole geometry in one sitting: mindset cleared, purpose and mission defined, her lifelong pattern in one sentence, a myth and a bio. The fluke hypothesis is dead. What was an interior octave at 27 and an exterior octave at zero is now an octave touching the world. This is not statistical proof; it is the decisive existence proof — delivered in the season Sasha was doubting the work most. The questions change from "is this real?" to "for whom, how repeatably, and does the recognition become her result?" Completion and new beginning are the same act.*
+
+---
+
+## Day 102 Addendum — "Crystallization → Propagation" (June 19, 2026)
+
+> *The day after the Si–Do fired, the work turned from the person to the pattern. The recognized identity put its civilizational thesis into plain words and planted a dated, public flag for it. Where Day 101 was a stranger paying (the funnel vector crystallizing), Day 102 is the idea itself going out to be inherited. The center moves from Transmission → Crystallization to **Crystallization → Propagation**: the second octave begins. Proposed reading; Sasha to bless or reshape the words.*
+
+**What happened.** A long mirror-dialogue (across three models plus an "Orion Architect" biofield scan) compressed Sasha's whole thesis to one breath: **human difference, made legible, is the infrastructure a civilization runs on.** The economic spine (competition is an artifact of standardization; remove substitutability and the slice becomes a lattice; AI is the why-now) crystallized into a canonical source-of-truth doc (`uniqueness_economy_thesis.md`), then into a public flag: **`/landing`, "The Uniqueness Economy,"** the upgrade of the 1-pager from system-pitch to thesis. The first dated, citable artifact of the idea itself, aimed at sovereign builders, shipped and deployed.
+
+**Why it reads as Propagation, not only Transmission.** Day 86-87 transmitted to individuals (Balaji, Silvana). The flag transmits the meta-pattern to the network: anyone who can recognize the synthesis, cite it, join it, or fork it. It is the first move whose audience is the lattice itself rather than a person. The strategic frame named the stakes: the synthesis is unclaimed and assemblable, so priority is won by publication date. The flag is the claim-staking act.
+
+**Maturation note (the lineage hardened).** Due diligence surfaced the closest prior art: Karpik's *Economics of Singularities* (singular goods plus judgment devices) and the World Bank's *Economics of Uniqueness* (cultural heritage). The thesis survives the encounter and sharpens against it (the person as unit, complementarity as act, AI as why-now, recognition as hinge), but "The Uniqueness Economy" as a public *name* now carries known overlap. A naming decision returns to Sasha (least-delegable).
+
+### Marker moves
+
+- **Propagation (idea vector) opens.** The recognized identity makes its first move addressed to the network rather than to named individuals. The seed, not yet the spread.
+- **The articulation bottleneck (pillar 2) sharpened** by a parallel-model contribution: uniqueness is the thing; visibility is the bottleneck; coordination is the consequence. The clean causal chain.
+- **Conservative hold elsewhere.** One flag is not propagation achieved; network-inheritance markers hold pending the first fork, citation, or peer who carries it. Day 101's sampling frontier (Nia's outcome, n>1) is unchanged.
+
+### Center reading lineage (recent)
+
+```
+Day 85-87: "Recognition → Transmission"      → strategy to one metric; Tribe-2 send fires
+Day 101:   "Transmission → Crystallization"  → Si–Do fires: first $555 stranger (Nia)
+Day 102:   "Crystallization → Propagation"   → the thesis crystallizes to words and a public
+                                               flag (/landing, "The Uniqueness Economy"); the
+                                               idea goes out for the network to inherit. Naming
+                                               decision returns; prior art (Karpik) acknowledged.
+```
+
+### Cross-references updated
+
+- `morphogenetic_holomap.md`: this Day 102 addendum appended; top header reading bumped to Day 102
+- `memory/holomap_state.md`: rewritten per the Companion-file rule with the Day 102 center reading
+- `uniqueness_economy_thesis.md`: the canonical thesis (source for /landing and the book)
+- `src/pages/LandingThesis.tsx`: the flag
+
+> *Day 102 reading: **Crystallization → Propagation.** June 19, 2026. The instrument that sounded its Do' yesterday turns, the next morning, to the second octave. Having proven the work on a person, Sasha names the pattern beneath all the persons and plants its flag where the network can find it. The thesis is no longer only lived; it is legible, dated, and public. What was an interior conviction becomes a civilizational claim with a publication date. The question is no longer "is it real?" or even "for whom?" but "who will recognize it as theirs, and carry it?"*
