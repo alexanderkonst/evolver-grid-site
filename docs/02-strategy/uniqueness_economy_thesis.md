@@ -81,6 +81,13 @@ Sasha's note (verbatim):
 
 > Others gestured at the edge of this. Ricardo's comparative advantage, category-of-one positioning, blue ocean, the passion/creator economy. But they all treat uniqueness as a tactic for winning a slice. None made the full move: uniqueness as the economic ground that dissolves the slice entirely, plus the AI why-now. That gap is yours to claim.
 
+**Closest prior art (Day 107 due diligence — name the giants, then show the gap).** Two bodies of work already use this language, so they must be cited for the claim to be defensible:
+
+- **Lucien Karpik, *Valuing the Unique: The Economics of Singularities*** (Princeton). The strongest precedent. Karpik built an economics of incommensurable goods (wine, art, law) where price competition fails and buyers lean on "judgment devices" (critics, labels, rankings). Genuinely adjacent; acknowledge it. The gap: Karpik singularizes *goods and services*; this thesis makes the *person* the irreducible unit, adds complementarity-matching as the core act, the AI why-now that makes it mechanical at civilizational scale, and the consciousness shift. Karpik described a market for singular things; this describes a civilization organized around singular people.
+- **Licciardi & Amirtahmasebi, *The Economics of Uniqueness*** (World Bank) — historic city cores and cultural-heritage assets. Same words, different domain. Cite to dispatch the name-collision, not as a true precedent.
+
+**Naming caution:** because "economics of singularities" and "economics of uniqueness" are academically occupied, "The Uniqueness Economy" as a public name carries prior-art overlap. The thesis is distinct; the *name* may want to be more distinctive (Sasha's call, least-delegable). Differentiation to lean on: **the person as the unit, complementarity as the act, AI as the why-now, recognition as the hinge.**
+
 ---
 
 ## 7. The inner turn — the divine-scale loop (verbatim — Sasha)
@@ -96,6 +103,20 @@ Sasha's note (verbatim):
 ## 8. What is unclaimed (verbatim — Sasha)
 
 > Nobody, as far as this scan shows, has claimed: the individual's uniqueness as the irreducible economic unit → non-substitutability as the default (so competition is a category error, not a thing to escape) → complementarity-matching as the core economic act → AI as the why-now that makes it mechanically possible → and the consciousness shift underneath. That assembly, at civilizational scale, framed as a new economics, is unclaimed.
+
+---
+
+## Refinements (Day 107 — sharper framings to fold in)
+
+From a parallel model pass, two contributions worth keeping:
+
+**The causal chain (cleaner than the pillar list for a cold reader):** uniqueness is the thing; *visibility* (legibility, recognition) is the bottleneck; coordination is the consequence. This sharpens pillar 2: the bottleneck was never uniqueness itself, it was the inability to *see* it at scale. AI lifts the visibility constraint, and coordination falls out. (Possible one-liner: "Uniqueness is the thing. Visibility is the bottleneck. Coordination is the consequence.")
+
+**Old Myth / New Myth (civilization-scale framing):**
+- Old: to create order, people must become more alike.
+- New: to create order, people must become more knowable in their differences.
+
+Both fold cleanly into the existing thesis and could earn a place on the page once Sasha approves the wording.
 
 ---
 

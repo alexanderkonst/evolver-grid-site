@@ -80,7 +80,7 @@ const REVENUE_BREAKDOWN = [
   { name: "Oyi", cash: 566, inKind: 819, revShare: 0, type: "Cash + in-kind", status: "received", color: "#a06d08" },
   { name: "Karime", cash: 111, inKind: 200, revShare: 0, type: "Cash + in-kind", status: "received", color: "#7a5108" },
   { name: "Sergey", cash: 0, inKind: 0, revShare: 277, type: "Rev share", status: "pending", color: "#b8860b" },
-  { name: "New Client", cash: 555, inKind: 0, revShare: 0, type: "Cash ($555)", status: "received", color: "#d4af37" },
+  { name: "Nia", cash: 555, inKind: 0, revShare: 0, type: "Cash ($555)", status: "received", color: "#d4af37" },
 ];
 
 // ─── Timeline ───────────────────────────────────────────────────────────────
@@ -97,7 +97,7 @@ const TIMELINE = [
   { day: 43, date: "Apr 17", name: "Oyi", type: "Mexico Intensive Wrap", desc: "4-day Mexico hacker-house / collective venture building concludes. First in-person intensive at length. Oyi: \"This may be the best view in town. I am thankful.\"" },
   { day: 44, date: "Apr 18", name: "Kirill", type: "7th Founder Joins", desc: "Serial entrepreneur (17 businesses), integral practitioner, neuro-coaching trainer. Building QWATRA + GrowFox. \"The 7th note in the octave — the tension that longs to resolve into something new.\"" },
   { day: 46, date: "Apr 20", name: "Oyi", type: "In-kind ($319)", desc: "Five gifts totaling $319. Sustained gratitude continues — cumulative in-kind from Oyi now $819." },
-  { day: 107, date: "Jun 19", name: "New Client", type: "Cash ($555)", desc: "Productize Yourself Session · $555. Placeholder entry: confirm client name and how they came in with Sasha." },
+  { day: 106, date: "Jun 18", name: "Nia", type: "Cash ($555)", desc: "The funnel's first paying client: an Oyi referral who booked the 20-min exploratory call, then the session. Walked out with the not-ready loop named, purpose and mission defined, her lifelong pattern in one sentence, a polarizing myth and bio. Productize Yourself Session, $555." },
 ];
 
 // ─── Radar ──────────────────────────────────────────────────────────────────
