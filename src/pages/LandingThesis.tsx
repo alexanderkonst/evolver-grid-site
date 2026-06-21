@@ -16,28 +16,30 @@ import SEO from "@/components/SEO";
  * Audience: sovereign builders (peers), NOT cold funnel traffic.
  *
  * Day 107 (Sasha 2026-06-19): built from the strategy session that named the
- * publishing move. Arc = descent through the three depths:
- *   Hero (Heart, the peer invitation)
- *     → the pivot (difference is the infrastructure, the turn)
- *       → the economics + why-now + lineage (Mind, the proof)
- *         → Planetary OS (Gut, the embodiment)
- *           → the stake + the resonant invite.
- * Signature: the living lattice (distinct nodes joined by light) renders the
- * thesis literally — differences unite us, the visual opposite of slices.
- *
- * English-first v1. i18n (landing.* namespace, ru/es parity) is a follow-up;
- * the thesis is English-first and this surface targets English-speaking peers.
- *
+ * publishing move.
  * Day 109 (Sasha 2026-06-21): integrated the FIT bedrock (thesis doc §0.5-0.6).
- * Pivot now carries the keystone-arch signature (difference is what unity runs
- * on, rendered structurally). Added the fit layer to the Mind cluster: the
- * primitive ("prosperity is constrained by fit"), the two success models
- * (money is downstream), and the Architecture of Fit four-circle definition.
+ * Pivot carries the keystone-arch signature; the Mind cluster gained the fit
+ * layer (the primitive, the two success models, the Architecture of Fit).
+ * Day 109 (cont.): evolved into the MIRROR. Per the page's own first law
+ * (Mirror Not Teacher), the hero now reflects the reader's felt misfit and
+ * lets them recognize themselves BEFORE any thesis is explained. The heavy
+ * economic argument (non-substitutability, lineage, inner turn, the benefit
+ * ladder) moved to an appendix so the main flow transmits rather than lectures.
+ * Arc: Mirror (recognition) → bridge → the arch → fit → why-now → Planetary OS
+ * → invite → appendix (the full argument).
+ *
+ * English-first v1. i18n (landing.* namespace, ru/es parity) is a follow-up.
  */
 
 const NAVY = "var(--skin-text-primary, #0a1628)";
 const bodyStyle = { color: "var(--skin-text-muted, rgba(26,30,58,0.8))" } as const;
 const headlineHalo = "0 0 26px rgba(255,255,255,0.7), 0 1px 2px rgba(255,255,255,0.85)";
+const recognitionStyle = {
+  fontFamily: "'Cormorant Garamond', serif",
+  fontSize: "clamp(1.3rem, 3.4vw, 1.9rem)",
+  color: "var(--skin-text-muted, rgba(26,30,58,0.82))",
+  lineHeight: 1.4,
+} as const;
 
 const GradientInk = ({ children }: { children: ReactNode }) => (
   <span
@@ -98,11 +100,9 @@ const Panel = ({
 };
 
 /**
- * LivingLattice — the signature motif. Distinct nodes (no two the same size)
- * joined by hairlines of light. The form IS the thesis: difference is what
- * connects. Pure SVG + CSS keyframes, pointer-events none, sits behind the
- * hero and the pivot. Nodes pulse on staggered delays so the field feels
- * alive without ever pulling focus.
+ * LivingLattice — the ambient signature motif behind the hero. Distinct nodes
+ * (no two the same size) joined by hairlines of light: difference is what
+ * connects. Pure SVG + CSS keyframes, pointer-events none.
  */
 const NODES: Array<[number, number, number]> = [
   [120, 90, 3], [250, 180, 5.5], [420, 70, 2.5], [560, 150, 4], [700, 90, 3.2],
@@ -123,25 +123,15 @@ const LivingLattice = () => (
     style={{ height: "920px", maskImage: "linear-gradient(to bottom, black 55%, transparent 100%)", WebkitMaskImage: "linear-gradient(to bottom, black 55%, transparent 100%)" }}
   >
     <style>{`@keyframes latticePulse{0%,100%{opacity:.28}50%{opacity:.9}}`}</style>
-    <svg
-      viewBox="0 0 1000 760"
-      preserveAspectRatio="xMidYMid slice"
-      className="w-full h-full"
-    >
+    <svg viewBox="0 0 1000 760" preserveAspectRatio="xMidYMid slice" className="w-full h-full">
       <g stroke="rgba(196,154,59,0.18)" strokeWidth="0.8">
         {EDGES.map(([a, b], i) => (
           <line key={i} x1={NODES[a][0]} y1={NODES[a][1]} x2={NODES[b][0]} y2={NODES[b][1]} />
         ))}
       </g>
       {NODES.map(([x, y, r], i) => (
-        <circle
-          key={i}
-          cx={x}
-          cy={y}
-          r={r}
-          fill="rgba(212,175,55,0.85)"
-          style={{ animation: `latticePulse ${5 + (i % 4)}s ease-in-out ${(i % 5) * 0.7}s infinite` }}
-        />
+        <circle key={i} cx={x} cy={y} r={r} fill="rgba(212,175,55,0.85)"
+          style={{ animation: `latticePulse ${5 + (i % 4)}s ease-in-out ${(i % 5) * 0.7}s infinite` }} />
       ))}
     </svg>
   </div>
@@ -191,8 +181,8 @@ const KeystoneArch = () => {
   );
 };
 
-/* ── The Architecture of Fit — the precise definition (pins "fit" down so it
-   stops being a Rorschach). Four circles overlap into frictionless value. ── */
+/* ── The Architecture of Fit — the precise definition. Four circles overlap
+   into frictionless value. ── */
 const ArchitectureOfFit = () => (
   <figure className="mx-auto max-w-[440px]">
     <svg viewBox="0 0 640 560" className="w-full h-auto" role="img" aria-label="Four overlapping circles — who you are, what you can do, what energizes you, what others need — meeting at the center as frictionless value.">
@@ -232,6 +222,12 @@ const FlowRow = ({ label, steps, tone }: { label: string; steps: string[]; tone:
   );
 };
 
+const RECOGNITIONS = [
+  "The meeting where the one thing you are truly great at never came up.",
+  "The role that fit like a coat cut for someone else.",
+  "The hunch that your most valuable edge is exactly the part no résumé has a box for.",
+];
+
 const LADDER = [
   "Know what you are irreplaceable for",
   "Monetize it",
@@ -245,16 +241,16 @@ const LandingThesis = () => {
     <>
       <SEO
         title="The Uniqueness Economy"
-        description="Human difference, made legible, is the infrastructure a civilization runs on. Prosperity is constrained by fit: the new economics where competition is a category error and the market is a lattice, and why AI makes it possible now."
+        description="You are not a misfit; you have never been made visible. Prosperity is constrained by fit. The new economics where human difference, made legible, is the infrastructure a civilization runs on, and why AI makes it possible now."
         path="/landing"
-        ogTitle="The Uniqueness Economy"
+        ogTitle="You don't need to fit in. You need to find where you fit."
         jsonLd={{
           "@context": "https://schema.org",
           "@type": "CreativeWork",
           name: "The Uniqueness Economy",
           author: { "@type": "Person", name: "Alexander Konstantinov" },
           datePublished: "2026-06-19",
-          about: "An economics in which the irreducible unit is the non-substitutable person, competition is a category error, and human difference is the coordination infrastructure.",
+          about: "A recognition-first thesis: prosperity is constrained by fit, human difference is coordination infrastructure, and AI makes uniqueness visible and matchable at civilizational scale.",
         }}
       />
       <main
@@ -272,27 +268,10 @@ const LandingThesis = () => {
           className="fixed top-5 left-1/2 -translate-x-1/2 z-50 inline-flex items-center gap-2.5 transition-opacity hover:opacity-80"
           aria-label="Find Your Top Talent — home"
         >
-          <img
-            src={igniteLogo}
-            alt=""
-            aria-hidden="true"
-            className="h-5 w-auto"
-            style={{
-              filter: "drop-shadow(0 0 10px rgba(240, 194, 127, 0.45)) drop-shadow(0 0 3px rgba(212, 175, 55, 0.65))",
-              animation: "ornament-spin 48s linear infinite",
-            }}
-            draggable={false}
-          />
-          <span
-            style={{
-              fontFamily: "'Cormorant Garamond', serif",
-              fontWeight: 600,
-              fontSize: "13px",
-              letterSpacing: "0.22em",
-              textTransform: "uppercase",
-              color: "var(--skin-text-muted, rgba(26,30,58,0.7))",
-            }}
-          >
+          <img src={igniteLogo} alt="" aria-hidden="true" className="h-5 w-auto"
+            style={{ filter: "drop-shadow(0 0 10px rgba(240, 194, 127, 0.45)) drop-shadow(0 0 3px rgba(212, 175, 55, 0.65))", animation: "ornament-spin 48s linear infinite" }}
+            draggable={false} />
+          <span style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 600, fontSize: "13px", letterSpacing: "0.22em", textTransform: "uppercase", color: "var(--skin-text-muted, rgba(26,30,58,0.7))" }}>
             The Uniqueness Economy
           </span>
         </Link>
@@ -307,66 +286,36 @@ const LandingThesis = () => {
         <LivingLattice />
 
         <div className="relative z-10 max-w-[820px] mx-auto px-5 sm:px-8 pt-24 sm:pt-28 pb-16 sm:pb-20">
-          {/* ── HERO (Heart) — the peer invitation ── */}
-          <header className="text-center mb-10 sm:mb-14">
-            <Eyebrow>For sovereign builders</Eyebrow>
-            <p
-              className="mb-4 text-[15px] sm:text-base"
-              style={{ color: "var(--skin-text-muted, rgba(26,30,58,0.62))" }}
-            >
-              Each human is different. No two the same, right?
-            </p>
-            <h1
-              className="font-bold leading-[1.05] tracking-[-0.01em]"
-              style={{
-                fontFamily: "'Cormorant Garamond', serif",
-                fontSize: "clamp(2.6rem, 7.5vw, 5rem)",
-                color: NAVY,
-                textShadow: headlineHalo,
-              }}
-            >
-              What if our <GradientInk>difference</GradientInk> is what unites us?
+          {/* ── THE MIRROR (Heart) — recognition before any thesis ── */}
+          <header className="text-center mb-6 sm:mb-8">
+            <Eyebrow>First, a recognition</Eyebrow>
+            <h1 className="font-bold" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(2.4rem, 7vw, 4.6rem)", color: NAVY, textShadow: headlineHalo, lineHeight: 1.04 }}>
+              You have felt it.
             </h1>
-
-            {/* Benefit ladder — an ascent from self to civilization */}
-            <ol className="mt-10 sm:mt-12 max-w-[34rem] mx-auto space-y-3 text-left">
-              {LADDER.map((rung, i) => (
-                <li key={i} className="flex items-baseline gap-3.5">
-                  <span
-                    className="font-semibold tabular-nums shrink-0 bg-clip-text text-transparent"
-                    style={{
-                      fontFamily: "'Cormorant Garamond', serif",
-                      fontSize: "1.4rem",
-                      backgroundImage: GOLD_GRADIENT,
-                      filter: GOLD_GLOW,
-                    }}
-                  >
-                    {i + 1}
-                  </span>
-                  <span
-                    className="text-[15px] sm:text-base leading-snug"
-                    style={{ color: i === LADDER.length - 1 ? NAVY : "var(--skin-text-muted, rgba(26,30,58,0.82))", fontWeight: i === LADDER.length - 1 ? 600 : 400 }}
-                  >
-                    {rung}
-                  </span>
-                </li>
+            <div className="mt-8 sm:mt-10 max-w-[40rem] mx-auto space-y-4">
+              {RECOGNITIONS.map((line, i) => (
+                <p key={i} className="italic" style={recognitionStyle}>{line}</p>
               ))}
-            </ol>
+            </div>
+            <p className="mt-9 sm:mt-11 max-w-[36rem] mx-auto text-[15px] sm:text-base leading-relaxed" style={bodyStyle}>
+              That is not a flaw in you. It is a gap in what the world can see. You are not a misfit. You have simply never been made visible.
+            </p>
+            <p className="mt-7" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(1.6rem, 4.6vw, 2.6rem)", color: NAVY, lineHeight: 1.12 }}>
+              You don't need to fit in. You need to <GradientInk>find where you fit</GradientInk>.
+            </p>
+            <p className="mt-6 max-w-[34rem] mx-auto text-[15px] sm:text-base leading-relaxed" style={bodyStyle}>
+              What just moved in you has a name. And, it turns out, an economics.
+            </p>
 
             {/* Single primary CTA */}
-            <div className="mt-11 flex flex-col items-center gap-3">
+            <div className="mt-9 flex flex-col items-center gap-3">
               <Link
                 to="/"
                 className="liquid-glass-strong inline-flex items-center gap-3 rounded-full px-8 py-4 text-base font-semibold transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
                 style={{ color: NAVY, textShadow: "0 1px 2px rgba(255,255,255,0.7)", letterSpacing: "0.04em" }}
               >
-                <img
-                  src={igniteLogo}
-                  alt=""
-                  aria-hidden="true"
-                  className="h-4 w-auto"
-                  style={{ filter: "drop-shadow(0 0 8px rgba(240, 194, 127, 0.5)) drop-shadow(0 0 2px rgba(212, 175, 55, 0.7))" }}
-                />
+                <img src={igniteLogo} alt="" aria-hidden="true" className="h-4 w-auto"
+                  style={{ filter: "drop-shadow(0 0 8px rgba(240, 194, 127, 0.5)) drop-shadow(0 0 2px rgba(212, 175, 55, 0.7))" }} />
                 Find what you're irreplaceable for
                 <ArrowRight className="w-4 h-4 opacity-70" />
               </Link>
@@ -376,18 +325,13 @@ const LandingThesis = () => {
             </div>
           </header>
 
-          {/* ── THE PIVOT — difference is the infrastructure (the turn) ── */}
-          <section className="text-center my-20 sm:my-28 max-w-[46rem] mx-auto">
+          {/* ── THE BRIDGE + PIVOT — from you, to all of us ── */}
+          <section className="text-center my-16 sm:my-24 max-w-[46rem] mx-auto">
             <Ornament className="mb-12" />
-            <p
-              className="italic"
-              style={{
-                fontFamily: "'Cormorant Garamond', serif",
-                fontSize: "clamp(1.5rem, 3.6vw, 2.4rem)",
-                color: "var(--skin-text-muted, rgba(26,30,58,0.86))",
-                lineHeight: 1.32,
-              }}
-            >
+            <p className="italic mb-8" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(1.4rem, 3.6vw, 2.1rem)", color: NAVY, lineHeight: 1.28 }}>
+              What is true for you is true for all of us. What if our <GradientInk>difference</GradientInk> is what unites us?
+            </p>
+            <p className="italic" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(1.4rem, 3.4vw, 2.2rem)", color: "var(--skin-text-muted, rgba(26,30,58,0.86))", lineHeight: 1.34 }}>
               We keep trying to solve collaboration, coordination, thriving, infrastructure, even culture, as if each were a separate problem with its own system. They have one answer. Human difference, made legible, is the <GradientInk>infrastructure</GradientInk> they all run on. As simple, and as cosmic, as that.
             </p>
             <div className="mt-12 sm:mt-14 max-w-[40rem] mx-auto">
@@ -396,12 +340,11 @@ const LandingThesis = () => {
             <Ornament className="mt-12" />
           </section>
 
-          {/* ── THE FLOOR + ECONOMICS (Mind) — the proof ── */}
+          {/* ── THE FIT PAYOFF (Mind) — what just happened to you, made precise ── */}
           <div className="space-y-5">
-            {/* The deeper floor: FIT (the primitive beneath the uniqueness frame). */}
             <Panel eyebrow="The floor beneath it" weight="heavy">
               <p className="text-[15px] sm:text-base leading-relaxed" style={bodyStyle}>
-                Everyone has felt it: the quiet friction of being in the wrong place, doing work that almost fits. That feeling is not a flaw. It is data. Follow it all the way down and the whole thing rests on one small word.
+                That quiet friction you recognized is not random. Follow it all the way down and the whole thing rests on one small word.
               </p>
               <p className="mt-5 text-center" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(1.6rem, 4.2vw, 2.2rem)", color: NAVY, lineHeight: 1.15 }}>
                 Prosperity is constrained by <GradientInk>fit</GradientInk>.
@@ -424,30 +367,9 @@ const LandingThesis = () => {
               </div>
             </Panel>
 
-            <Panel eyebrow="The new economics" weight="heavy">
-              <p className="text-[15px] sm:text-base leading-relaxed" style={bodyStyle}>
-                For two centuries the economy ran on one hidden assumption: that people are substitutable. Standardize into a role, a box, a slot on a line, and the best fit wins. In that world value is a slice, and to get more you compete, because the person beside you can do your job.
-              </p>
-              <p className="text-[15px] sm:text-base leading-relaxed mt-4" style={bodyStyle}>
-                <GradientInk>Competition was never a law of economics. It was an artifact of standardization.</GradientInk> The irreducible unit of the emerging economy is not the role but the person, and a person, fully articulated, is non-substitutable. Two genuinely differentiated offers cannot compete in the deepest sense; they can only complement each other or pass each other by. Remove substitutability, and the slice dissolves. What replaces it is a lattice: distinct nodes whose wealth comes from their difference, not their rivalry.
-              </p>
-            </Panel>
-
             <Panel eyebrow="Why now" weight="standard">
               <p className="text-[15px] sm:text-base leading-relaxed" style={bodyStyle}>
-                This stayed a beautiful idea for centuries because two bottlenecks kept the uniqueness-economy impossible: you could not articulate a person's uniqueness with precision at scale, and you could not match people by the complementarity of their differences at scale. Both were too slow, too subjective. Artificial intelligence just dissolved both. For the first time, uniqueness can be named, and matched, at the scale of a civilization. The thesis is not "uniqueness is good." It is that the uniqueness-economy is now <GradientInk>mechanically possible</GradientInk>.
-              </p>
-            </Panel>
-
-            <Panel eyebrow="The lineage" weight="light">
-              <p className="text-[15px] sm:text-base leading-relaxed" style={bodyStyle}>
-                Others gestured at the edge of this. Ricardo's comparative advantage, category-of-one positioning, blue ocean, the creator economy. But each treats uniqueness as a tactic for winning a bigger slice. None made the full move: uniqueness as the economic ground that dissolves the slice entirely, plus the reason it becomes possible only now.
-              </p>
-            </Panel>
-
-            <Panel eyebrow="The inner turn" weight="light">
-              <p className="text-[15px] sm:text-base leading-relaxed" style={bodyStyle}>
-                To enter this economy a person must first know themselves. Self-knowledge and the business it produces turn out to be one motion with two faces, hinged on a single un-automatable point: your own recognition of yourself. The move from a standardized world to a differentiated one is therefore also a move in consciousness, from fitting the box to becoming the node.
+                This stayed a beautiful idea for centuries because two bottlenecks kept it impossible: you could not articulate a person's uniqueness with precision at scale, and you could not match people by the complementarity of their differences at scale. Both were too slow, too subjective. Artificial intelligence just dissolved both. For the first time, who you are can be named, and matched, at the scale of a civilization. The thesis is not "uniqueness is good." It is that this is now <GradientInk>mechanically possible</GradientInk>.
               </p>
             </Panel>
           </div>
@@ -476,15 +398,7 @@ const LandingThesis = () => {
           {/* ── THE STAKE — closing pull-quote ── */}
           <section className="text-center mt-20 sm:mt-24 max-w-[50ch] mx-auto">
             <Eyebrow>The end state</Eyebrow>
-            <p
-              className="italic"
-              style={{
-                fontFamily: "'Cormorant Garamond', serif",
-                fontSize: "clamp(1.3rem, 3vw, 1.85rem)",
-                color: "var(--skin-text-muted, rgba(26,30,58,0.84))",
-                lineHeight: 1.4,
-              }}
-            >
+            <p className="italic" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(1.3rem, 3vw, 1.85rem)", color: "var(--skin-text-muted, rgba(26,30,58,0.84))", lineHeight: 1.4 }}>
               A planetary lattice of self-known people coordinating their genius instead of standardizing it away. In this economy abundance is not extracted. It is the natural yield of difference allowed to complement itself.
             </p>
           </section>
@@ -492,10 +406,7 @@ const LandingThesis = () => {
           {/* ── THE RESONANT INVITE — single CTA for this stage ── */}
           <section className="mt-16 sm:mt-20 text-center">
             <Ornament className="mb-10" />
-            <h2
-              className="font-bold leading-[1.1] mb-6"
-              style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(1.8rem, 4vw, 2.6rem)", color: NAVY, textShadow: headlineHalo }}
-            >
+            <h2 className="font-bold leading-[1.1] mb-6" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(1.8rem, 4vw, 2.6rem)", color: NAVY, textShadow: headlineHalo }}>
               Build with other sovereign humans
             </h2>
             <a
@@ -514,6 +425,58 @@ const LandingThesis = () => {
                 <ArrowRight className="w-3.5 h-3.5 opacity-60" />
               </Link>
             </p>
+          </section>
+
+          {/* ── APPENDIX — the full argument, preserved for the ones who dig ── */}
+          <section className="mt-24 sm:mt-28">
+            <Ornament className="mb-10" />
+            <div className="text-center mb-8">
+              <Eyebrow>Appendix · the full argument</Eyebrow>
+              <h2 className="font-bold leading-[1.12]" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(1.6rem, 3.6vw, 2.3rem)", color: NAVY }}>
+                For the ones who dig
+              </h2>
+              <p className="mt-3 max-w-[40ch] mx-auto text-[14px] leading-relaxed" style={{ color: "var(--skin-text-muted, rgba(26,30,58,0.6))" }}>
+                The complete economic case, the lineage it stands on, and what you walk out with.
+              </p>
+            </div>
+            <div className="space-y-5">
+              <Panel eyebrow="The new economics" weight="standard">
+                <p className="text-[15px] sm:text-base leading-relaxed" style={bodyStyle}>
+                  For two centuries the economy ran on one hidden assumption: that people are substitutable. Standardize into a role, a box, a slot on a line, and the best fit wins. In that world value is a slice, and to get more you compete, because the person beside you can do your job.
+                </p>
+                <p className="text-[15px] sm:text-base leading-relaxed mt-4" style={bodyStyle}>
+                  <GradientInk>Competition was never a law of economics. It was an artifact of standardization.</GradientInk> The irreducible unit of the emerging economy is not the role but the person, and a person, fully articulated, is non-substitutable. Two genuinely differentiated offers cannot compete in the deepest sense; they can only complement each other or pass each other by. Remove substitutability, and the slice dissolves. What replaces it is a lattice: distinct nodes whose wealth comes from their difference, not their rivalry.
+                </p>
+              </Panel>
+
+              <Panel eyebrow="The lineage" weight="light">
+                <p className="text-[15px] sm:text-base leading-relaxed" style={bodyStyle}>
+                  Others gestured at the edge of this. Ricardo's comparative advantage, category-of-one positioning, blue ocean, the creator economy, and the economics of singularities. But each treats uniqueness as a tactic for winning a bigger slice. None made the full move: the person as the irreducible unit, complementarity as the core act, and the reason it becomes possible only now.
+                </p>
+              </Panel>
+
+              <Panel eyebrow="The inner turn" weight="light">
+                <p className="text-[15px] sm:text-base leading-relaxed" style={bodyStyle}>
+                  To enter this economy a person must first know themselves. Self-knowledge and the business it produces turn out to be one motion with two faces, hinged on a single un-automatable point: your own recognition of yourself. The move from a standardized world to a differentiated one is therefore also a move in consciousness, from fitting the box to becoming the node.
+                </p>
+              </Panel>
+
+              <Panel eyebrow="What becomes possible" weight="light">
+                <ol className="space-y-3">
+                  {LADDER.map((rung, i) => (
+                    <li key={i} className="flex items-baseline gap-3.5">
+                      <span className="font-semibold tabular-nums shrink-0 bg-clip-text text-transparent"
+                        style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.4rem", backgroundImage: GOLD_GRADIENT, filter: GOLD_GLOW }}>
+                        {i + 1}
+                      </span>
+                      <span className="text-[15px] sm:text-base leading-snug" style={{ color: i === LADDER.length - 1 ? NAVY : "var(--skin-text-muted, rgba(26,30,58,0.82))", fontWeight: i === LADDER.length - 1 ? 600 : 400 }}>
+                        {rung}
+                      </span>
+                    </li>
+                  ))}
+                </ol>
+              </Panel>
+            </div>
           </section>
 
           {/* ── FOOTER ── */}
