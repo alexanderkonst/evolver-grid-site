@@ -64,6 +64,47 @@ Every pair of glasses, all the way down, helped humanity tell **fit from misfit*
 
 ---
 
+## 0.6 The visual manifesto — assets from the "Coordination of Uniqueness" deck (Day 108)
+
+*A NotebookLM deck ("The Coordination of Uniqueness: from the infrastructure of sameness to the architecture of difference"), generated from this corpus, rendered the full thesis as a 12-beat visual manifesto. It is a fourth independent convergence on the same spine (alongside the Sacred Space notes, our sessions, and the ChatGPT excavation). Its lasting value is one signature image, one precise definition, and a storyboard. Re-render in the Stage-8 brand language before shipping; do not ship NotebookLM's pixels.*
+
+**The signature image: the keystone arch.** *Difference is not the opposite of unity. Difference is what unity runs on.* Drawn as a load-bearing arch of differently-cut puzzle pieces (stable) beside a tower of identical blocks (wobbling, collapsing). An arch cannot stand without the differences between its stones. This is the strongest single image in the body of work and the designated signature for "difference is infrastructure." Use it as the `/landing` pivot image; the living lattice stays the hero.
+
+**The precise definition of fit (answers the "fit is a Rorschach" risk).** *The Architecture of Fit:* fit is the overlap of four circles:
+
+1. who you uniquely are,
+2. what you can actually do,
+3. what naturally energizes you,
+4. what other people structurally need.
+
+Their intersection is **frictionless value.** Fit is not a vibe; it is that specific four-way overlap. This is the working definition to use wherever "fit" needs to be pinned down.
+
+**The two success models (the causality inversion as a diagram).**
+
+- *Standard Model* (the lie): Wants → Acquire Money → Buy Freedom → Achieve Success. Money treated as upstream; a life spent fighting uphill against friction.
+- *Primitive Model* (the truth): Legible Self-Knowledge → Precise Fit → Value Creation → Sustainable Money → Freedom. *The lie is not that money matters; the lie is that money is upstream.* The more fit, the less force.
+
+**The holonic verbs (one action per holon).** Self: *see* difference. Relationships: *find complementary* difference. Teams: *coordinate* difference. Ventures: *monetize* difference. Communities: *connect* difference. Civilization: *organize around* difference.
+
+**The 12-beat storyboard (maps ~1:1 onto `/landing` and the book outline):**
+
+1. Title: the coordination of uniqueness (sameness → architecture of difference)
+2. The historical mechanism for order was conformity (the standardization villain)
+3. The toll of invisible uniqueness (individual / founders / communities / coordination)
+4. The bottleneck is not the matching engine (it is the depth of self-knowledge)
+5. The eras of human coordination (Industrial vs Network)
+6. Difference is what unity runs on (the arch)
+7. The civilizational misunderstanding of causality (money treated as upstream)
+8. Success is a derivative of fit (the Primitive Model)
+9. The Architecture of Fit (the four-circle definition)
+10. A pattern that scales infinitely (the holonic mandala)
+11. The self-knowledge tech stack (findyourtoptalent.com as civilizational infrastructure, "Evolution-Oriented People Networks")
+12. Close: for the first time, we can organize around uniqueness
+
+*Source: `Coordinating_Uniqueness.pdf` (NotebookLM, June 20, 2026).*
+
+---
+
 ## 1. The hero (peer invitation — NOT the economics)
 
 The page opens to peers, warm and second-person. The economics is the floor beneath, never the doorway. Audience: sovereign builders.
