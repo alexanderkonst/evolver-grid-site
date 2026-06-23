@@ -8,6 +8,7 @@ import { getBirthdayArcPhaseNeighbors } from "@/lib/equilibrium-cycles";
 import { useCycles, formatPhaseEndsAt } from "./hooks/useCycles";
 import { CycleEnergyBar } from "./components/CycleEnergyBar";
 import { SolarCycleBar } from "./components/SolarCycleBar";
+import { SolarHolonicEssence } from "./components/SolarHolonicEssence";
 import { EquilibriumSectionCard } from "./components/EquilibriumSectionCard";
 import { MissionSection } from "./components/MissionSection";
 import { RoleSection } from "./components/RoleSection";
@@ -293,6 +294,15 @@ export const EquilibriumV2Page = () => {
                   />
                 );
               })()}
+            </div>
+
+            {/* The 4 holonic cycles of the Sun (Sasha 2026-06-22) —
+                Seeding → Sprouting → Fruiting → Harvest, birthday-anchored.
+                Shows where the user is in their solar year + its essence. */}
+            <div className="mt-6 border-t border-white/30 pt-6">
+              <SolarHolonicEssence
+                currentPhaseId={cycles.solar.personalHolonicPhase.id}
+              />
             </div>
           </EquilibriumSectionCard>
         )}

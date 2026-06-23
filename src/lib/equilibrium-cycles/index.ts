@@ -40,6 +40,85 @@ export function getHolonicPhase(progress: number): HolonicPhaseInfo {
   return HOLONIC_PHASES[idx];
 }
 
+// ─── SOLAR HOLONIC — the 4 cycles of the Sun ───────
+//
+// The solar year, cut by the two solstices and two equinoxes, carries
+// the holon's 4-phase pattern. Each cardinal point opens one phase; the
+// quarter that follows is that phase doing its work (Sasha, 2026-06-22):
+//
+//   Winter Solstice → WILL        🔥  the seed born in the dark
+//   Spring Equinox  → EMANATION   💧  the seed breaks ground
+//   Summer Solstice → DIGESTION   🌍  the fruit forms and fills
+//   Autumn Equinox  → ENRICHMENT  🌬️  gather what grew, ripen the next seed
+//
+// BIRTHDAY-ANCHORED: a person's birthday is their personal Winter
+// Solstice (their seed-point), so their year divides into these same 4
+// quarters from the birthday forward. `cardinal` names the cosmic turn
+// each phase corresponds to (literally true for the solstice-born, the
+// archetypal lineage for everyone else). Surfaced via `personalHolonicPhase`
+// on SolarState.
+//
+// Voice: Equilibrium rules apply (anti-ai-style.md) — concrete, charged,
+// no banned words (energy/alignment/flow/manifest/abundance/the universe).
+export interface SolarHolonicInfo {
+  id: HolonicPhase;
+  /** Life-cycle name shown to the user (grok-in-5s). */
+  name: string;
+  /** Cosmic cardinal point this phase corresponds to. */
+  cardinal: string;
+  /** Element emoji (matches HOLONIC_PHASES). */
+  emoji: string;
+  /** One-sentence essence in Sasha's solar voice. */
+  essence: string;
+}
+
+export const SOLAR_HOLONIC: Record<HolonicPhase, SolarHolonicInfo> = {
+  will: {
+    id: "will",
+    name: "Seeding",
+    cardinal: "Winter Solstice",
+    emoji: "🔥",
+    essence:
+      "The seed in the dark. Your year's reason forms before anything shows. Name the intention; don't force the how yet.",
+  },
+  emanation: {
+    id: "emanation",
+    name: "Sprouting",
+    cardinal: "Spring Equinox",
+    emoji: "💧",
+    essence:
+      "The seed breaks ground. What you named takes visible shape. Build it, give it, put the first work into the world.",
+  },
+  digestion: {
+    id: "digestion",
+    name: "Fruiting",
+    cardinal: "Summer Solstice",
+    emoji: "🌍",
+    essence:
+      "Full light. The fruit forms and fills. Ship the real thing, let the work be seen, bring it to ripeness.",
+  },
+  enrichment: {
+    id: "enrichment",
+    name: "Harvest",
+    cardinal: "Autumn Equinox",
+    emoji: "🌬️",
+    essence:
+      "Gather what grew. Reap it, thank it, let the field learn. The next seed is already ripening inside this one.",
+  },
+};
+
+/** Display order: the wheel runs from the seed forward. */
+export const SOLAR_HOLONIC_ORDER: HolonicPhase[] = [
+  "will",
+  "emanation",
+  "digestion",
+  "enrichment",
+];
+
+export function getSolarHolonic(phase: HolonicPhase): SolarHolonicInfo {
+  return SOLAR_HOLONIC[phase];
+}
+
 // ─── SHARED CYCLE STATE SHAPE ──────────────────────
 
 /**
