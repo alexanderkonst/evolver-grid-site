@@ -76,7 +76,14 @@ The **Morphogenetic Navigation Holo Map** is how Sasha reads the structural stat
 
 When Sasha says **"update the holomap"**, I follow that protocol precisely. The holomap being current means AI can look proactively from his life's-work perspective and be more agentic about it.
 
-**Companion-file rule (Day 62):** after writing the new addendum to the holomap, also **rewrite** (not append) `~/.claude/projects/-Users-alexanderkonst-evolver-grid-site/memory/holomap_state.md` so it reflects the NEW center reading + perspective advances + Si–Do status. The holomap holds the full lineage (append-only addenda); the memory companion holds only the latest snapshot — that file gets auto-loaded into every fresh session via `MEMORY.md`, so it must point at *current* truth, not stale state. Two-file pattern: holomap = full history; memory companion = current orientation pointer.
+**Companion-file rule (Day 62, simplified Day 103 — L1/L2 cache model):** think of it as a memory hierarchy. The **memory file `holomap_state.md` (L2) is the single source of truth for current state.** Update it whenever a development is major enough to change "where we are." Two things follow automatically and are therefore *never authored independently*:
+
+1. **The `MEMORY.md` pointer (L1) is a projection of L2, not a separate truth.** Whenever `holomap_state.md` changes, regenerate its `[Holomap state — current]` one-liner *from it* in the same action. They are one unit, never edited apart. L1 is the only surface auto-injected verbatim into every fresh session before any file is read, so if it drifts from L2 I recite stale state as live truth. That is the Day 103 bug (asserted a gate "unfired" that fired Day 101). A stale line here misrepresents who Sasha is and where his business stands; treat it that seriously.
+2. **The corpus holomap doc (`docs/02-strategy/morphogenetic_holomap.md`) is main store / disk** — source of truth for *history*. Append a dated addendum (append-only lineage) only when the development is big enough to belong in the permanent record. Sasha's call when to flush.
+
+So: keep **one** file fresh (L2), let the pointer be its shadow, flush to corpus on checkpoints. L2 = source of truth for *now*; corpus = source of truth for *history*; they never conflict because they answer different questions.
+
+**Memory-hygiene law (Day 103, applies to ALL `memory/` files, not just the holomap):** a memory snapshot is a timestamped belief, not live state. Whenever any `memory/` file is rewritten, its `MEMORY.md` index line is rewritten in the same action. Before asserting any present-tense status from memory (fired/unfired, shipped/parked, current count/price), verify against the source file or code first.
 
 ---
 
