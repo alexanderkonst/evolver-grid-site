@@ -169,6 +169,32 @@ describe("Solar holonic — the 4 cycles of the Sun (birthday-anchored)", () => 
     expect(getSolarHolonic(state.personalHolonicPhase.id).name).toBe(name);
   });
 
+  // What the watch's "4 cycles of the Sun" actually displays: the
+  // solstice/equinox-anchored phase (the real sky, same for everyone).
+  // Interior-of-quarter dates avoid boundary float fragility.
+  const solarCases = [
+    { label: "deep winter (Feb)",  utc: "2026-02-05T00:00:00Z", name: "Seeding" },
+    { label: "mid spring (Apr)",   utc: "2026-04-15T00:00:00Z", name: "Sprouting" },
+    { label: "mid summer (Jul)",   utc: "2026-07-15T00:00:00Z", name: "Fruiting" },
+    { label: "mid autumn (Oct)",   utc: "2026-10-15T00:00:00Z", name: "Harvest" },
+    // Sasha's case: day after the summer solstice → just entered Fruiting.
+    { label: "day after solstice", utc: "2026-06-22T00:00:00Z", name: "Fruiting" },
+    { label: "day before solstice",utc: "2026-06-18T00:00:00Z", name: "Sprouting" },
+  ] as const;
+
+  it.each(solarCases)("solarHolonicPhase: $label → $name", ({ utc, name }) => {
+    const state = getSolarState(Date.parse(utc));
+    expect(getSolarHolonic(state.solarHolonicPhase.id).name).toBe(name);
+  });
+
+  it("solarHolonicPhase ignores birthday (it tracks the Sun, not the person)", () => {
+    const ms = Date.parse("2026-07-15T00:00:00Z"); // mid summer → Fruiting
+    const withBday = getSolarState(ms, "1990-03-01");
+    const noBday = getSolarState(ms);
+    expect(withBday.solarHolonicPhase.id).toBe(noBday.solarHolonicPhase.id);
+    expect(getSolarHolonic(withBday.solarHolonicPhase.id).name).toBe("Fruiting");
+  });
+
   it("SOLAR_HOLONIC covers all 4 phases with no banned words", () => {
     const banned = /\b(energy|alignment|flow|vibration|vibes|manifest|abundance|the universe)\b/i;
     expect(SOLAR_HOLONIC_ORDER).toHaveLength(4);

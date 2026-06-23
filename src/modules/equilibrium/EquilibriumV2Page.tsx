@@ -4,7 +4,6 @@ import { InfoPopover } from "./components/InfoPopover";
 import { BirthdayPrompt } from "./components/BirthdayPrompt";
 import { useMdlsFlag } from "./useMdlsFlag";
 import { EquilibriumMDLSPage } from "./EquilibriumMDLSPage";
-import { getBirthdayArcPhaseNeighbors } from "@/lib/equilibrium-cycles";
 import { useCycles, formatPhaseEndsAt } from "./hooks/useCycles";
 import { CycleEnergyBar } from "./components/CycleEnergyBar";
 import { SolarCycleBar } from "./components/SolarCycleBar";
@@ -276,32 +275,22 @@ export const EquilibriumV2Page = () => {
             <SectionHeader title="Yearly Solar Energy Left" />
             <div className="mt-4">
               {/*
-                Solar uses its own visual (4-segment tube + golden orb + fractional
-                checkpoints) — fundamentally different from the orb-arc used
-                by lunar/zodiac/week. Pill labels are birthday-anchored phases per
-                philosophical spine §4 — NOT calendar seasons.
+                Arc + golden orb = fraction of the PERSONAL year remaining
+                (birthday-anchored). The 5-phase named pills (Big push /
+                Steady stretch / …) were removed 2026-06-22 (Sasha):
+                redundant with the 4 solar cycles below.
               */}
-              {(() => {
-                const { prev, current, next } = getBirthdayArcPhaseNeighbors(
-                  cycles.solar.personalProgress,
-                );
-                return (
-                  <SolarCycleBar
-                    progress={cycles.solar.personalProgress}
-                    prevLabel={prev}
-                    currentLabel={current}
-                    nextLabel={next}
-                  />
-                );
-              })()}
+              <SolarCycleBar progress={cycles.solar.personalProgress} />
             </div>
 
             {/* The 4 holonic cycles of the Sun (Sasha 2026-06-22) —
-                Seeding → Sprouting → Fruiting → Harvest, birthday-anchored.
-                Shows where the user is in their solar year + its essence. */}
+                Seeding → Sprouting → Fruiting → Harvest, anchored to the
+                ACTUAL solstices & equinoxes (the Sun's real season, same
+                for everyone). Shows which solar quarter we're in now +
+                its essence. */}
             <div className="mt-6 border-t border-white/30 pt-6">
               <SolarHolonicEssence
-                currentPhaseId={cycles.solar.personalHolonicPhase.id}
+                currentPhaseId={cycles.solar.solarHolonicPhase.id}
               />
             </div>
           </EquilibriumSectionCard>
