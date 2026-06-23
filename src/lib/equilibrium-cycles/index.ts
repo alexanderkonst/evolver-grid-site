@@ -232,6 +232,16 @@ export interface SolarState extends CycleSegmentState<SolarSegmentLabel> {
   holonicPhase: HolonicPhaseInfo;
   /** Holonic phase from personal year (if birthday set). */
   personalHolonicPhase: HolonicPhaseInfo;
+  /**
+   * Holonic phase of the ACTUAL solar year — anchored to the real
+   * solstices & equinoxes (sun longitude), NOT the birthday. Same for
+   * everyone: it's the sky's current season. Winter Solstice → Seeding,
+   * Spring Equinox → Sprouting, Summer Solstice → Fruiting, Autumn
+   * Equinox → Harvest. This is what the "4 cycles of the Sun" display
+   * uses (Sasha 2026-06-22: the cycles are of the Sun, so they track the
+   * Sun, not a personal anchor).
+   */
+  solarHolonicPhase: HolonicPhaseInfo;
   /** Current birthday-arc phase (personal year). */
   birthdayArcPhase: BirthdayArcPhase;
 }
@@ -317,6 +327,7 @@ export function getSolarState(now: number, birthday?: string): SolarState {
     nextLabel: SOLAR_SEGMENTS[nextIdx],
     holonicPhase: getHolonicPhase(yearProgress),
     personalHolonicPhase: getHolonicPhase(effectivePersonal),
+    solarHolonicPhase: getHolonicPhase(solsticeYearProgress),
     birthdayArcPhase: getBirthdayArcPhase(effectivePersonal),
   };
 }
