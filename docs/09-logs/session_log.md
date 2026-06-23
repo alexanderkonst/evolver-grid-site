@@ -8222,3 +8222,15 @@ The deepest move (Sasha flagged it as one of our most important captures): **tec
 Sasha shared a NotebookLM deck ("The Coordination of Uniqueness") generated from the corpus: a 12-beat visual manifesto that independently drew the same spine (standardization villain → toll of invisible uniqueness → bottleneck is self-knowledge not the matching engine → AI as commodity unlock → difference is infrastructure → causality inversion → success is a derivative of fit → the architecture of fit → holonic scaling → findyourtoptalent.com → organize around uniqueness). A fourth independent convergence on the same map.
 
 Captured the durable assets into `uniqueness_economy_thesis.md` §0.6: the **keystone-arch** as the designated signature image for "difference is infrastructure" (a load-bearing arch of different pieces vs a tower of identical blocks); the **Architecture of Fit** four-circle definition (who you uniquely are × what you can actually do × what naturally energizes you × what others structurally need → frictionless value), which finally pins "fit" down against the Rorschach risk; the **two success models** (Standard: money upstream; Primitive: self-knowledge → fit → value → money → freedom); the holonic action verbs; and the 12-beat storyboard. Flagged: re-render in the Stage-8 brand language rather than shipping NotebookLM's pixels; the live `/landing` pivot can swap to the arch on Sasha's go.
+
+---
+
+## Day 110: The 4 holonic cycles of the Sun, baked into Equilibrium (June 22, 2026)
+
+Started 3 days before Sasha's birthday — his solar year is phase-locked to the winter solstice, so for him the year opens at WILL. From that reflection we named the 4 cardinal-point essences of the solar year (Winter Solstice → WILL/seed-in-dark · Spring Equinox → EMANATION/sprout · Summer Solstice → DIGESTION/fruit · Autumn Equinox → ENRICHMENT/harvest), and shipped them into the watch.
+
+**What shipped:** a new birthday-anchored reading inside the Solar card — the 4 cycles (Seeding · Sprouting · Fruiting · Harvest) shown as a glass chip-row with the current one lit, the cosmic cardinal-point caption ("Summer Solstice turn"), and the current phase's one-sentence essence. Reuses the already-present `personalHolonicPhase` math (each person's birthday = their personal Winter Solstice; the year divides into 4 quarters forward). Essences written in Equilibrium voice (no banned words), charge intact.
+
+**Files:** `src/lib/equilibrium-cycles/index.ts` (new `SOLAR_HOLONIC` data + `getSolarHolonic`), `src/modules/equilibrium/components/SolarHolonicEssence.tsx` (new component), `src/modules/equilibrium/EquilibriumV2Page.tsx` (wired into Solar section), `__tests__/cycles.test.ts` (5 new tests). Verified live at `/preview/equilibrium-v2` (desktop + mobile), tests/typecheck/lint green, deployed to main.
+
+**Open / parked:** the solstice-anchored refinement to `holonic_cycles.md` (each phase gets its own clean quarter vs the spring-anchored table folding WILL+EMANATION) — offered, not yet captured. Could also feed the current solar essence into the Synthesis Reading (out of scope this round).

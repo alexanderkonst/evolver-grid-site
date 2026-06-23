@@ -34,6 +34,8 @@ import {
   PLANETARY_DAYS,
   getPlanetaryDayByJsDow,
   jsDowToMondayIndex,
+  getSolarHolonic,
+  SOLAR_HOLONIC_ORDER,
 } from "../index";
 
 const minAngularError = (actual: number, expected: number): number => {
@@ -146,6 +148,36 @@ describe("Sun's true longitude — Meeus equation of center", () => {
     const ms = Date.parse(utc);
     const state = getZodiacState(ms);
     expect(state.current.sign).toBe(sign);
+  });
+});
+
+describe("Solar holonic — the 4 cycles of the Sun (birthday-anchored)", () => {
+  // Birthday June 22; sample each personal quarter and assert the
+  // personalHolonicPhase resolves to the right Seeding/Sprouting/
+  // Fruiting/Harvest essence.
+  const bday = "1990-06-22";
+  const cases = [
+    { label: "Q1 (birthday)",        utc: "2024-06-23T00:00:00Z", id: "will",       name: "Seeding" },
+    { label: "Q2 (~4 months later)", utc: "2024-10-23T00:00:00Z", id: "emanation",  name: "Sprouting" },
+    { label: "Q3 (~7 months later)", utc: "2025-01-23T00:00:00Z", id: "digestion",  name: "Fruiting" },
+    { label: "Q4 (~10 months later)",utc: "2025-04-23T00:00:00Z", id: "enrichment", name: "Harvest" },
+  ] as const;
+
+  it.each(cases)("$label → $name", ({ utc, id, name }) => {
+    const state = getSolarState(Date.parse(utc), bday);
+    expect(state.personalHolonicPhase.id).toBe(id);
+    expect(getSolarHolonic(state.personalHolonicPhase.id).name).toBe(name);
+  });
+
+  it("SOLAR_HOLONIC covers all 4 phases with no banned words", () => {
+    const banned = /\b(energy|alignment|flow|vibration|vibes|manifest|abundance|the universe)\b/i;
+    expect(SOLAR_HOLONIC_ORDER).toHaveLength(4);
+    for (const phase of SOLAR_HOLONIC_ORDER) {
+      const info = getSolarHolonic(phase);
+      expect(info.name.length).toBeGreaterThan(0);
+      expect(info.essence.length).toBeGreaterThan(0);
+      expect(info.essence).not.toMatch(banned);
+    }
   });
 });
 
