@@ -16,6 +16,8 @@
 >
 > *Last updated: 2026-06-10 — **Match funnel becomes the default** (the live-demo fork closed). A demo in front of ~20 people exposed that the bare URL still served the OLD build funnel (post-reveal $555/$37 cards) and that a guest's Top Talent completion never unlocked JOURNEY #2 ("Discover your mission" stayed locked right after the reveal). Sasha's call: match flow (reveal → Mission → Assets → matchmaking) is now the default for all cold traffic — directly serves the North Star (collaboration rate) and the triad as matching unit. Sessions funnel preserved behind explicit `?path=build` links (sticky end-to-end), `/ignite` direct links, the $37 power-up at JOURNEY 1.5, and the $555 path at JOURNEY #6 → `/path`. Landing hero at `/` untouched (MethodologyLandingPage stays; MatchHero still needs `?path=match`). Guest gate fixed: on-device reveal now unlocks Mission pre-signup. Funnel-v2 spec §4.1 carries the dated correction. Verified in preview (cold visitor, guest unlock, both overrides, Sign-Up default, clean build). Si–Do unchanged: first $555 stranger from the funnel — the funnel strangers walk is now the one that was designed for them.*
 >
+> *Last updated: 2026-06-24 — Two holonic myth post drafts captured verbatim into Active Backlog → Content Launch Queue. Both are intended for launch as posts: (1) family / ripening / inner father-mother-child; (2) `Человек` as "a unique face of eternity" through Slavic language lineage + Vitruvian center + fifth element uniqueness.*
+>
 > *Last updated: 2026-06-09 — Status corrections + the asset inventory codified. **Silvana replied and connected Sasha to the Planetir team; a paid pilot is now under discussion** — the first live conversation on the reshaped Si-Do ("first community signs paid pilot"). **Victoria's 1-pager was sent 2026-05-29** (tracker had it as prepared-only; corrected). Balaji day-14 gate lands ~June 11 (one verbatim nudge if silence, then leave it). **The Hand codified:** ten aces + four-layer model + three-horizon strategy snapshot + the distributor-invitation one-liner (DRAFT, awaiting Sasha's vetting) recorded as a dated section in `unique-businesses/alexanders_unique_business.md` ("The Hand: Ten Aces & the Three-Horizon Strategy, June 9, 2026"); the easy, benefit-first onboarding sequence named as a sub-asset of ace 1. Full three-horizon forecast synthesis (7-doc corpus sweep + Fathom-verified claims) delivered in session. Calendar dates now authoritative over day numbers (three numbering systems have drifted across roadmap / session log / skin tracker). `MorphogeneticHolomap.tsx` visual surface synced to the Day 85-87 center reading (Recognition → Transmission, two-gate Si-Do).*
 >
 > *Last updated: 2026-06-03 (Day 92) — Signal-legibility correction from Scarlett / Prisma synthesis. Strategic wedge sharpened: lead with **collaboration rate for high-agency ecosystems**, not ontology, "Planetary OS," or abstract coordination. The buyer-legible problem: most communities are directories, identity fields, or inspiration theaters, not coordination systems; the expensive failure is that the right people do not find and build with each other fast enough. The crisp public frame becomes **founder-market-fit infrastructure for high-agency ecosystems**. The deep stack stays intact: Universal Ontology = root, Phase Shift Library = technology layer, SOHN = thesis, white-label = distribution model. But the entry language moves to the economic primitive: accurate articulation of each member's unique leverage so collaborations, ventures, and projects can self-organize. Added Phase Shift Library Domain 92: Signal Legibility as Provision.*
@@ -198,8 +200,113 @@
 
 > Items that need doing. Ordered by leverage.
 
+### Content Launch Queue — Holonic Myth Posts
+
+> *Captured verbatim 2026-06-24. Sasha explicitly named both as posts to launch.*
+
+#### Post Draft 1 — Family / Ripening / Inner Father-Mother-Child
+
+Woman, be ready to wait for him to ripen while your maternity is at risk.
+
+Man, be ready to father yourself into manhood and walk the hero's journey while your woman sabotages you, hurting each other just like your parents did.
+
+Until you together learn not to.
+
+Then the man ripens, and the woman is ready for motherhood.
+
+Both realize that every freaking second was infinitely beyond worth it for the gift.
+
+For the gift is a prosperous, happy, loving family.
+
+For the gift gets built.
+
+The inner father marries the inner mother.
+
+And the inner child is born.
+
+#### Post Draft 2 — Человек / A Unique Face of Eternity
+
+The other day, an old Russian word suddenly came back to me:
+
+**Человек (chelovek)** — human being.
+
+It caught my attention because this is how generations of my ancestors referred to themselves. It belongs to the Slavic language lineage that shaped my way of seeing the world.
+
+Every language carries wisdom.
+
+Every language preserves certain insights about reality.
+
+And sometimes a word is not merely a word. Sometimes it is a doorway.
+
+As I sat with it, another ancient word emerged:
+
+**Чело (chelo)** — brow, forehead, the foremost part of a person.
+
+Mainstream linguistics does not derive *человек* from the two words *чело* and *век* according to AI but *человек* = *чело* + *век* doesn't look like a big stretch, does it?
+
+**Чело** — the unique face through which a being meets life.
+
+**Век** — age, eternity, the long arc of existence.
+
+And suddenly:
+
+**Человек — a unique face of eternity.**
+
+A singular expression through which the infinite becomes visible.
+
+This reflection unexpectedly brought me back to Leonardo da Vinci's Vitruvian Man.
+
+What an extraordinary image.
+
+A human standing within a square and a circle.
+
+What struck me most is that the human, the square, and the circle all share the same center.
+
+The center of the geometry is the center of the person.
+
+The heart.
+
+It is as though Leonardo was pointing toward something profound:
+
+The place where individuality meets infinity is not somewhere out there.
+
+It is within.
+
+The square and the circle arise from the same center.
+
+So do we.
+
+The ancient traditions spoke of four elements: earth, water, air, and fire.
+
+But perhaps there is also a fifth element.
+
+Uniqueness.
+
+The mysterious capacity for existence to express itself as a singular perspective.
+
+The capacity for the universe to experience itself through a particular life.
+
+Not only through humans.
+
+Through every animal.
+
+Every tree.
+
+Every river.
+
+Every cloud.
+
+Every living being.
+
+Each carrying a perspective that has never existed before and will never exist again.
+
+Perhaps the deepest mystery is not that we are in the universe, but that the universe has learned to look back at itself through us.
+
+A unique face of eternity.
+
 | # | Item | Category | Priority |
 |---|------|----------|----------|
+| C8 | Launch holonic myth post pair: **Family / Ripening / Inner Father-Mother-Child** + **Человек / A Unique Face of Eternity**. Drafts captured verbatim above. | Content | 🔴 |
 | **LICENSING & REPURPOSE TRACK (new — Sequence C spine + multiplier)** |
 | L1 | Negotiate v1 licensing deal with Oyi — use 11-row checklist in `open_questions_from_oyi_session.md` (scope: 1 piece, 50/50 rev share default, 30-day exclusivity, 90-day freeze) | Business + Distribution | 🔴 |
 | L2 | `/playbook/discover` polish — 7 issues flagged April 16. Brief in `ai_tasks/PENDING_playbook_discover_polish.md`. **P0 unblock** for licensing distribution | Infra (Codex lane) | 🔴 |

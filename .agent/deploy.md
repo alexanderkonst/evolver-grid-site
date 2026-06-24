@@ -59,7 +59,7 @@ Specifically, Claude Code should:
    - `npm run corpus:drift` if corpus was touched.
    - `npx tsc --noEmit` if `src/` was touched.
    - Any feature-specific smoke check called out in the brief.
-3. Rename the brief `ai_tasks/PENDING_*.md → ai_tasks/DONE_*.md` and append a **"Notes from execution"** section at the bottom (what changed vs brief, pattern divergences, new files/migrations, verification results).
+3. (Retired Day 103: the `ai_tasks/PENDING_*.md → DONE_*.md` rename step is gone with the Codex workflow. Execution notes now belong in the commit message + the session log.)
 4. `git add -A` — stage everything.
 5. `git commit -m "<descriptive single-sentence>"` — NOT `"deploy"`. The one-word `deploy` is the terminal-sweep message used by Sasha's one-liner when it batches uncommitted dirty-tree edits into one snapshot. When Claude Code itself commits, each commit is a discrete unit of work — it should carry a readable message so `git log` is navigable. Never use `--no-verify` or `--no-gpg-sign`.
 6. `git push origin main` directly. This fires auto-deploy to all three surfaces. No PR. No staging. No branch.
