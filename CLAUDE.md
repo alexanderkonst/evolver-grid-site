@@ -76,14 +76,15 @@ The **Morphogenetic Navigation Holo Map** is how Sasha reads the structural stat
 
 When Sasha says **"update the holomap"**, I follow that protocol precisely. The holomap being current means AI can look proactively from his life's-work perspective and be more agentic about it.
 
-**Companion-file rule (Day 62, simplified Day 103 — L1/L2 cache model):** think of it as a memory hierarchy. The **memory file `holomap_state.md` (L2) is the single source of truth for current state.** Update it whenever a development is major enough to change "where we are." Two things follow automatically and are therefore *never authored independently*:
+**Holomap state rule (Day 62 → simplified Day 103 → final form: L1-only-for-volatile):** the original Day 62 "companion file" pattern (`memory/holomap_state.md` as parallel current-state snapshot) **leaked stale state on Day 103** and was retired. The clean rule:
 
-1. **The `MEMORY.md` pointer (L1) is a projection of L2, not a separate truth.** Whenever `holomap_state.md` changes, regenerate its `[Holomap state — current]` one-liner *from it* in the same action. They are one unit, never edited apart. L1 is the only surface auto-injected verbatim into every fresh session before any file is read, so if it drifts from L2 I recite stale state as live truth. That is the Day 103 bug (asserted a gate "unfired" that fired Day 101). A stale line here misrepresents who Sasha is and where his business stands; treat it that seriously.
-2. **The corpus holomap doc (`docs/02-strategy/morphogenetic_holomap.md`) is main store / disk** — source of truth for *history*. Append a dated addendum (append-only lineage) only when the development is big enough to belong in the permanent record. Sasha's call when to flush.
+- **Current state lives inline in `MEMORY.md`**, in the holomap pointer line. That line IS the live snapshot; it is not a pointer to one. `MEMORY.md` is the only surface always-loaded into every fresh session, so anything that goes stale must live there to be caught the moment it lags.
+- **History lives in `docs/02-strategy/morphogenetic_holomap.md`**, the corpus doc (append-only addenda). Flush a dated addendum when a development is big enough to belong in the permanent record. Sasha's call.
+- **`memory/holomap_state.md` is archived** as a historical snapshot only (see archive notice at top of the file). Do not rewrite it. Do not treat it as current. It exists for archival continuity.
 
-So: keep **one** file fresh (L2), let the pointer be its shadow, flush to corpus on checkpoints. L2 = source of truth for *now*; corpus = source of truth for *history*; they never conflict because they answer different questions.
+Why this shape: parallel compressions of corpus content into `memory/` files violate Sasha's "no parallel compressions" law and create exactly the cache-coherence bug that Domain 16 of `docs/01-vision/phase_shift_technology_library.md` ("The Mirror Must Not Lag") names. The fix is structural: one live source for volatile state, no companion that can quietly diverge.
 
-**Memory-hygiene law (Day 103, applies to ALL `memory/` files, not just the holomap):** a memory snapshot is a timestamped belief, not live state. Whenever any `memory/` file is rewritten, its `MEMORY.md` index line is rewritten in the same action. Before asserting any present-tense status from memory (fired/unfired, shipped/parked, current count/price), verify against the source file or code first.
+**Memory-hygiene law (Day 103, applies to ALL `memory/` files):** a memory snapshot is a timestamped belief, not live state. Long-form `memory/` files (like `top_talent_profile.md`) may continue to exist for reference, but their `MEMORY.md` index lines must carry no claims that can expire (no live status, no "current count/price/stage"). Volatile state belongs inline in `MEMORY.md` itself. Before asserting any present-tense status from memory (fired/unfired, shipped/parked, current N), verify against the source file or code first.
 
 ---
 
@@ -132,7 +133,6 @@ Plus `specs/` with equilibrium, ignite-landing subdirectories. When I don't know
 
 ## Repo landmarks
 
-- `AGENTS.md` — Codex workflow (`ai_tasks/PENDING_*.md → DONE_*.md`).
 - `.cursorrules` → `.agent/RULES.md` — autonomous execution mode.
 - `src/pages/MorphogeneticHolomap.tsx` — the visual surface of the navigation instrument.
 - `src/prompts/user/` and `src/prompts/extraction/` — prompt source of truth.
@@ -140,7 +140,6 @@ Plus `specs/` with equilibrium, ignite-landing subdirectories. When I don't know
 - `/api/` — Edge functions (Gemini 2.5 Flash).
 - `/equilibrium/` — sibling product.
 - `/notebooklm_sources/` — NotebookLM ingestion.
-- `/ai_tasks/` — Codex queue.
 
 ---
 

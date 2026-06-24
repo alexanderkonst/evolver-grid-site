@@ -17,7 +17,7 @@
 
 *Day 48 (April 22, 2026). Distilled snapshot. The canvas sprawls below — this is the top-of-the-file glance.*
 
-> **Organizing principle (Day 110): one holonic business, four scales.** Not four businesses (self-knowledge · venture building · matching · civilizational infrastructure) but one kernel running at the person, venture, community, and civilization scales. The full synthesis, the fit/recognition myth, the four-scale artifacts, and the tribe-of-tribes are in **§ Day 110 — The Holonic Synthesis** below.
+> **Organizing principle (Day 111): one holonic business, four scales, rooted in specific fit.** Not four businesses (self-knowledge · venture building · matching · civilizational infrastructure) but one kernel running at the person, venture, community, and civilization scales. The Day 110 synthesis named the fit/recognition architecture. Day 111 adds the root myth beneath it: every being is a unique face of eternity, and living systems ripen when those faces become legible enough to find fit, complements, shared work, and sustainable value flow without collapsing into sameness.
 
 ### Name & Surfaces
 - **Name:** Find Your Top Talent
@@ -828,6 +828,56 @@ The four do not compete for attention; they feed each other, which is the resolu
 
 ---
 
+### Day 111 — Root Myth v3.0 Seed: Unique Faces, Specific Fit (Wednesday, June 24, 2026)
+
+> *Captured after the `Человек` reflection ("a unique face of eternity") and the family / ripening myth converged with the business question. This is the v3.0 seed under Day 110, not a deletion of v2.1. Day 110 named the four-scale business architecture. Day 111 names why that architecture is sacred and why it changes teams, firms, communities, and civilization. Cross-reference: Phase Shift Library Domain 94, "The Unique Face of Eternity."*
+
+#### The root formulation
+
+> **A living system ripens when each unique face becomes legible enough to find its fit, join its complements, build what only that configuration can build, and let value flow through the whole.**
+
+Every being is a unique face of eternity: a singular perspective through which the infinite becomes visible to itself.
+
+This is not human exceptionalism. Every animal, tree, river, cloud, person, team, firm, community, and civilization carries a perspective that has never existed before and will never exist again. The fifth element is **uniqueness**: the capacity for existence to express itself as a singular perspective.
+
+#### The business myth, upgraded
+
+The prior myth was venture-scale:
+
+> *Your uniqueness IS your business.*
+
+Still true. But it now sits inside the deeper myth:
+
+> **Difference is not the opposite of unity. Difference is what unity runs on.**
+
+The business does not merely help people express themselves. It helps living systems coordinate difference.
+
+#### The scale ladder
+
+| Scale | Myth |
+|---|---|
+| **Family** | Love learns not to turn difference into threat. |
+| **Team** | Gifts learn to interlock without hierarchy flattening them. |
+| **Firm / venture** | Differentiated beings coordinate their gifts into value the world can recognize and exchange with. |
+| **Community** | Belonging means being seen precisely enough to be placed well. |
+| **Civilization** | Society stops standardizing people into roles and starts organizing around the irreducible face each being brings. |
+
+Business is the middle octave between family and civilization. It is more structured than intimacy and more immediate than civilizational architecture. A living business is a vessel where unique beings coordinate their gifts into value.
+
+#### What this changes downstream
+
+- **Myth artifact:** preserve v2.1 as genealogy; forge v3.0 from "grind is a lie" toward "living systems fail when they coordinate by sameness; they prosper when each difference becomes legible enough to find fit, complements, shared work, and value flow."
+- **Tribe artifact:** expands from "people who cannot name their business" to "people / teams / communities whose differentiated value is present but not yet legible enough to coordinate."
+- **Pain artifact:** the root pain becomes misfit through illegibility: gifts present, relations wrong, value trapped.
+- **Promise artifact:** the promise becomes specific fit made visible: the person, team, firm, or community can finally see what each person brings, who complements whom, what should be built, who should play which role, and how value should flow.
+- **Collaboration rate:** becomes the business metric expression of the myth. It measures whether a field has learned to coordinate difference.
+
+#### Canonical compression
+
+> **Family teaches the first grammar of difference. Business monetizes coordinated difference. Community socializes it. Civilization institutionalizes it.**
+
+---
+
 ## Table of Contents
 
 ### I. Core Artifacts (The 14-Domain OS)
@@ -909,7 +959,7 @@ The four do not compete for attention; they feed each other, which is the resolu
 | Artifact | Version | Precision | Status |
 |----------|---------|-----------|--------|
 | Uniqueness | **v2.0** (Person-Perspective Developer — The Lens Focuser) | — | ✅ Deepened |
-| Myth | **v2.1** (grind is a lie, uniqueness IS your business) | — | ✅ Crystallized |
+| Myth | **v2.1 preserved** (grind is a lie / uniqueness IS your business) → **v3.0 seed** (unique faces, specific fit) | — | 🔄 Forge v3.0 as additive layer from Day 111 |
 | Tribe | **v3.0** (Signal-First: Awakened Practitioners Who Can't Name Their Fire) | — | ✅ Signal-first evolution (Resonance Sort Protocol applied) |
 | Pain | **v3.1** (5-layer slicer per segment, 9.95 calibration) | **9.95** | ✅ Landed |
 | Dream Outcome | **v2.0** (inverse pain → integrated state) | — | ✅ Landed |

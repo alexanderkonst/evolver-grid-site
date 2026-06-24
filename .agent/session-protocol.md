@@ -325,7 +325,7 @@ If a verb is ambiguous, I use AskUserQuestion (multi-select when possible) rathe
 
 - Delete files (requires `mcp__cowork__allow_cowork_file_delete` flow).
 - Edit locked master texts (Epicenter Broadcast, myth versions, value ladder versions). Quote only.
-- Edit `src/` application code — that's Codex's lane via `ai_tasks/PENDING_*.md`.
+- Edit `src/` application code without an explicit Sasha go-ahead (the Codex `ai_tasks/` lane is retired Day 103; src work is now Sasha-initiated, not queue-pulled).
 - Create parallel compressions of `docs/` content (the corpus is the source of truth).
 - Push, force-push, amend commits, or skip hooks.
 

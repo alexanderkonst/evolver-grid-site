@@ -84,8 +84,8 @@ Alexander has consolidated onto the Claude ecosystem. Two Claude surfaces, one a
 
 ### Shared
 - Both read ALL files. Both CAN edit anywhere. `.agent/skills/` is shared.
-- `ai_tasks/PENDING_*.md → DONE_*.md` queue is **deprecated** (was Codex's workflow).
-- **Deprecated**: `.cursorrules`, Codex lane, Lovable DB lane, "Claude (Antigravity)" lane. Legacy references may remain in old files until pruned organically.
+- **Retired Day 103 (June 23, 2026):** the `ai_tasks/PENDING_*.md → DONE_*.md` queue + `AGENTS.md` (Codex workflow). Archived at `docs/archive/codex_workflow_2026/`. Single task system going forward: `docs/02-strategy/roadmap.md`.
+- **Also deprecated**: `.cursorrules`, Codex lane, Lovable DB lane, "Claude (Antigravity)" lane. Legacy references may remain in old files until pruned organically.
 - `CLAUDE.md` stays pointer-only. Neither surface adds third-party opinions to it.
 
 ### Install-level tools

@@ -42,8 +42,6 @@ Examples:
 
 **Revoke:** remove `[hold]`. Retroactive unholding is fine — the item becomes eligible on the next pulse run.
 
-**Bridge to Claude Code — `[brief]` tag.** Add `[brief]` to have the pulse task draft a Claude Code brief into `ai_tasks/PENDING_*.md` for Sasha's one-click dispatch. `[brief]` and `[hold]` can coexist — `[hold] [brief]` means "don't execute, but prepare the brief for me to send manually when I'm ready."
-
 ---
 
 ## §2. Whitelist — classes of work allowed autonomously
@@ -61,8 +59,6 @@ These are the only classes of work that can carry `[auto]`. Any `[auto]` item wh
 **2.5. Benchmark lab appends.** New session data added as a new `§3.N` under `docs/09-logs/transcripts/scaffold_engineering_lab.md`. Cross-session synthesis changes (§4) require Sasha → brief, don't act.
 
 **2.6. Corpus drift check.** Running the existing `corpus-drift-check` workflow, reporting drift. If drift requires a fix that is itself a documentation update within 2.1–2.5, execute. Otherwise brief.
-
-**2.7. Claude Code brief drafting.** Writing a new `ai_tasks/PENDING_*.md` brief for a task Sasha has tagged `[auto-brief]` (see §4). The pulse task does not dispatch the brief to Claude Code — it prepares the brief and queues it for Sasha's one-click approval.
 
 ---
 
@@ -82,18 +78,14 @@ Hard stop. Auto-execution must never touch these, even when the item appears to 
 
 ---
 
-## §4. Bridges to Claude Code
+## §4. Application-code work (retired Day 103)
 
-Application-code items (those that touch §3 blacklist paths by nature) are never auto-executed by the pulse task — the class layer already filters them out.
-
-When such an item carries `[brief]`, the pulse task prepares a Claude Code brief at `ai_tasks/PENDING_<slug>.md` following the existing Codex / Claude-Code brief format. It does NOT dispatch. Sasha reviews and fires it himself.
+Application-code items (those that touch §3 blacklist paths by nature) are never auto-executed by the pulse task. The Codex `ai_tasks/PENDING_*.md` queue and the `[brief]` tag mechanism that fed it are **retired as of Day 103 (June 23, 2026)** — see `docs/archive/codex_workflow_2026/README.md`. Sasha drafts and dispatches Claude Code work himself, in-session.
 
 Tag interactions under the opt-out model:
 
-- No tag → pulse evaluates against §2 whitelist; if match, executes; otherwise briefs.
-- `[hold]` → never executed; surfaces in the pulse log's "held by Sasha" section with the item's reason (Sasha can note reason next to the tag in Notes).
-- `[brief]` → pulse drafts a Claude Code brief at `ai_tasks/PENDING_<slug>.md`. If the item also fits the whitelist on the docs side, pulse may execute the docs-side work in addition (e.g., add a note to session_log, update a spec doc that the brief references).
-- `[hold] [brief]` → pulse drafts the Claude Code brief but executes nothing else. Sasha ships the brief when ready.
+- No tag → pulse evaluates against §2 whitelist; if match, executes; otherwise surfaces in the pulse log for Sasha.
+- `[hold]` → never executed; surfaces in the pulse log's "held by Sasha" section with the item's reason.
 
 ---
 

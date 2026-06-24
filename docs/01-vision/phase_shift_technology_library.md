@@ -6469,3 +6469,77 @@ The honest application of this domain is to apply it to itself, which surfaces t
 > *"Run vision and viability as two adversarial axes (fall in love, then burn it down, then keep the seed that survives both), and stop not at certainty but at kinetic calm: small enough to try, real enough to matter."*
 
 ---
+
+## Domain 94: The Unique Face of Eternity (Specific Fit as the Root Myth)
+
+> *Named June 24, 2026. Surfaced after the `Человек` reflection ("a unique face of eternity") and the family / ripening myth converged with the business question: if each being is a unique face of eternity, what are family, teams, firms, communities, and civilizations actually for? The answer: each is a coordination vessel for unique faces, at a different scale.*
+
+**The transformational result:** uniqueness stops being a personal-brand asset and becomes an ontological coordination principle. The business no longer says only "make difference legible." It says why difference is sacred, why fit creates value, and why living systems fail when they coordinate by sameness instead of precise complementarity.
+
+### 94a. The Sentence That Names It
+
+> *"A living system ripens when each unique face becomes legible enough to find its fit, join its complements, build what only that configuration can build, and let value flow through the whole."*
+
+### 94b. The Bedrock
+
+Every being is a unique face of eternity: a singular perspective through which the infinite becomes visible to itself.
+
+This is not human exceptionalism. Humans, animals, trees, rivers, clouds, teams, firms, communities, and civilizations are all holons with interior pattern and exterior form. Each carries a perspective that has never existed before and will never exist again.
+
+The fifth element is **uniqueness**: the capacity for existence to express itself as a singular perspective.
+
+The practical consequence is **specific fit**. If difference is sacred, then the purpose of a living system is not to erase difference, average it, flatten it into role compliance, or force belonging through sameness. The purpose is to make difference legible enough that the system can see:
+
+1. what each being uniquely brings,
+2. who or what complements it,
+3. what they can build together,
+4. what role each should play,
+5. and what value exchange makes the configuration sustainable.
+
+### 94c. The Scale Ladder
+
+| Scale | Myth |
+|---|---|
+| **Family** | Love learns not to turn difference into threat. |
+| **Team** | Gifts learn to interlock without hierarchy flattening them. |
+| **Firm / venture** | Differentiated beings coordinate their gifts into value the world can recognize and exchange with. |
+| **Community** | Belonging means being seen precisely enough to be placed well. |
+| **Civilization** | Society stops standardizing people into roles and starts organizing around the irreducible face each being brings. |
+
+Business is the middle octave between family and civilization. It is more structured than intimacy and more immediate than civilizational architecture. A living business is a vessel where unique beings coordinate their gifts into value.
+
+### 94d. Why This Changes the Business Myth
+
+The prior myth was venture-scale:
+
+> *Your uniqueness IS your business.*
+
+Still true. But it was a local expression of a deeper myth:
+
+> *Difference is not the opposite of unity. Difference is what unity runs on.*
+
+The business implication sharpens:
+
+> A team is not a group of people assigned to tasks. It is a constellation of unique faces whose differences become productive only when each person's contribution, complement, role, and shared build are visible.
+
+> A community is not its members. It is the weave of specific fits between them: who should meet, why now, what can be built, and what exchange or commitment makes it real.
+
+> A firm is not a machine for extracting labor. It is an economic body of coordinated uniqueness.
+
+This is why collaboration rate matters. Collaboration rate is the first crude measurement of whether a field has learned to coordinate difference.
+
+### 94e. Relationship to Other Domains
+
+- **Universal Ontology §6 (The Being):** this domain extends the essential-center / soul-colors model into specific fit across living systems.
+- **Domain 7 (Founder-First Inversion):** founder uniqueness determines value because uniqueness is how eternity particularizes into economic form.
+- **Domain 83 (Integrated Founder Stack):** the stack makes the person legible so the venture can form around their difference.
+- **Domain 84 (Holomap Instrument):** specific fit is what the holomap detects across primitives, stages, and perspectives.
+- **Domain 91 (SOHN):** self-organizing human networks emerge when differentiated value becomes precise and composable.
+- **Domain 92 (Signal Legibility as Provision):** provision follows legibility because exchange is specific fit made economic.
+- **Domain 93 (Vision ↔ Viability):** the viable wedge is the smallest specific fit the market can recognize now.
+
+### 94f. The One-Sentence Version
+
+> *"Uniqueness is the fifth element: every being is a unique face of eternity, and every living system ripens by making those faces legible enough to find fit, complements, shared work, and sustainable value flow without collapsing into sameness."*
+
+---
