@@ -6480,7 +6480,7 @@ The honest application of this domain is to apply it to itself, which surfaces t
 
 > *"A living system ripens when each unique face becomes legible enough to find its fit, join its complements, build what only that configuration can build, and let value flow through the whole."*
 
-### 94b. The Bedrock
+### 94b. The Root
 
 Every being is a unique face of eternity: a singular perspective through which the infinite becomes visible to itself.
 
