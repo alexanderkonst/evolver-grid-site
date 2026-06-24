@@ -3199,3 +3199,48 @@ Day 102:   "Crystallization → Propagation"   → the thesis crystallizes to wo
 - `src/pages/LandingThesis.tsx`: the flag
 
 > *Day 102 reading: **Crystallization → Propagation.** June 19, 2026. The instrument that sounded its Do' yesterday turns, the next morning, to the second octave. Having proven the work on a person, Sasha names the pattern beneath all the persons and plants its flag where the network can find it. The thesis is no longer only lived; it is legible, dated, and public. What was an interior conviction becomes a civilizational claim with a publication date. The question is no longer "is it real?" or even "for whom?" but "who will recognize it as theirs, and carry it?"*
+
+---
+
+## Day 103 addendum — Second client, first container, and the mirror-must-not-lag law
+
+*Day 103, June 22-23, 2026. Three things landed in one day: a second paying client crossed into a longer engagement, the offer's own shape surfaced as a live question, and an AI-architecture bug exposed a law that belongs in the library. This addendum holds all three so nothing lives only in a transient memory snapshot.*
+
+### What advanced
+
+- **n is climbing on the funnel vector.** **Roman** is the second paying-track client and the first to buy beyond a single session: a session plus a multi-session **container**. He is deciding remote vs in-person (open to flying out to do the work with Sasha) and for how long; payment pending. The frontier moves from "first stranger pays" (Day 101, Nia) to "first multi-session engagement." Nia → Roman is not yet a pattern, but it is no longer one event.
+- **The offer reveals its own shape: holonic.** Sasha names a live investigation: the product, and the myth beneath it, may be holonic in the strict sense (atomic at one layer, structurally rich at every deeper layer). A single Ignition Session is one whole; a container is the same whole at a deeper magnification; an ongoing engagement is the same whole at a deeper still. The value-ladder rung (the weakest artifact in Day 101's audit) may not be a ladder at all but a fractal of the same act. This is offer-shape work, not pricing work. Open.
+- **A memory-architecture bug exposed a law.** A fresh AI session confidently told Sasha a business gate was "still unfired" that had fired Day 101. Root cause: the always-loaded one-line pointer in `MEMORY.md` drifted from its source companion file (`holomap_state.md`). The cache the AI trusts most was the most stale. This crystallizes as **Domain 16 of the Phase Shift Technology Library: "The Mirror Must Not Lag — Self-Knowledge as a Living Signal, Not a Stored Fact."** The founding myth (self-knowledge is upstream of success) gains its fidelity condition: a stale self-model is a small lie about who you are, asserted with full confidence precisely because it was once true. See `docs/01-vision/phase_shift_technology_library.md` §16.
+- **The architecture corrected itself.** The L1/L2 companion-file pattern (Day 62) is downgraded to L1-only for volatile state. `holomap_state.md` is demoted from "single source of truth for current state" to a historical snapshot; the current-state pointer lives inline in `MEMORY.md` with a slim link back to this corpus doc. `CLAUDE.md` companion-file rule rewritten to the new model. Volatile state has one home (always-loaded); long stable references may stay as files but their pointers carry no claims that can expire. The bug class is closed by construction.
+
+### Si-Do — Status
+
+| Trigger | Status |
+|---|---|
+| **Tribe 1 (funnel) Si-Do — first $555 client** | ✅ FIRED Day 101 (June 18): Nia |
+| **First multi-session container** | 🆕 ✅ Day 103: Roman — open decisions remaining (remote vs in-person, duration, payment) |
+| **Tribe 2 patron/peer transmission** | ✅ Day 86-87 (Balaji + Silvana); windows open |
+| **Propagation (idea vector) — first public flag** | ✅ Day 102: /landing, "The Uniqueness Economy" |
+| **First fork / citation / peer who carries the thesis** | 🔴 not yet |
+| **Nia's and Roman's outcomes (canvas → income)** | 🟡 open: the deepest untested hypothesis |
+| **"Product/myth is holonic" — offer-shape investigation** | 🟡 open: surfaced Day 103, not yet resolved |
+
+### Center reading lineage (recent)
+
+```
+Day 85-87: "Recognition → Transmission"      → strategy to one metric; Tribe-2 send fires
+Day 101:   "Transmission → Crystallization"  → Si–Do fires: first $555 stranger (Nia)
+Day 102:   "Crystallization → Propagation"   → thesis crystallizes, /landing flag plants
+Day 103:   (no new center reading)           → n climbs (Roman, +container); offer-shape
+                                               surfaces as holonic; Domain 16 discovered;
+                                               memory architecture downgrades to L1-only.
+```
+
+### Cross-references updated
+
+- `docs/01-vision/phase_shift_technology_library.md`: Domain 16 added — "The Mirror Must Not Lag."
+- `CLAUDE.md`: Companion-file rule rewritten to L1-only-for-volatile model; memory-hygiene law added.
+- `memory/holomap_state.md`: demoted to historical snapshot (no longer source of truth for current state); see archive notice at top of file.
+- `memory/MEMORY.md`: holomap pointer slimmed to point at this corpus doc with brief inline current state.
+
+> *Day 103 reading (no new center, two adjacent ships and a law). The instrument does not advance a stage on June 22-23. It does three things at once: it lets n climb on the funnel vector (Roman, the first container); it surfaces the offer's own shape as an open question (holonic, not laddered); and it catches its own memory mis-firing and writes the law into the library. The most important act of the day is the smallest: an AI told its founder something false about him with full confidence, and that false confidence became a domain. Self-knowledge is upstream of success; the fidelity of self-knowledge over time is upstream of that.*
