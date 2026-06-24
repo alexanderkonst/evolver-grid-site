@@ -735,7 +735,7 @@ This is equivalent to one sales call if it works: the members experience value, 
 
 ### Day 110 — The Holonic Synthesis: One Business, Four Scales (Sunday, June 21, 2026)
 
-> *The breakthrough that resolves the "am I building four businesses?" question. Built on the fit/recognition bedrock (captured in [`uniqueness_economy_thesis.md`](../uniqueness_economy_thesis.md) §0.5-0.6) and four independent excavations of the thesis. This is the organizing principle ABOVE the two-tribe model (Days 85-92): it does not replace it, it nests it. Tribe 1 maps to the person + venture scales; Tribe 2 maps to the community + civilization scales. The fit/recognition myth is the single myth that runs at every scale. All prior artifacts (the grind-to-great myth, the three segments, the 4-Layer Positioning Stack, the civilizational frame) are preserved below as genealogy and now sit inside this frame.*
+> *The breakthrough that resolves the "am I building four businesses?" question. Built on the fit/recognition foundation (captured in [`uniqueness_economy_thesis.md`](../uniqueness_economy_thesis.md) §0.5-0.6) and four independent excavations of the thesis. This is the organizing principle ABOVE the two-tribe model (Days 85-92): it does not replace it, it nests it. Tribe 1 maps to the person + venture scales; Tribe 2 maps to the community + civilization scales. The fit/recognition myth is the single myth that runs at every scale. All prior artifacts (the grind-to-great myth, the three segments, the 4-Layer Positioning Stack, the civilizational frame) are preserved below as genealogy and now sit inside this frame.*
 
 #### The breakthrough: not four businesses, one holon
 
@@ -756,7 +756,7 @@ This is why it felt like four. From the outside, a holonic business that operate
 
 > **Make human difference legible, so fit can be seen, matched, and coordinated.**
 
-The bedrock beneath it:
+The foundation beneath it:
 
 - **Primitive:** prosperity is constrained by fit. Fit creates value; self-knowledge reveals fit; visibility is the bottleneck.
 - **Mechanism:** self-knowledge reveals fit, technology makes fit visible, matching coordinates fit, fit creates value.
