@@ -887,6 +887,7 @@ Business is the middle octave between family and civilization. It is more struct
 4. [The Artifacts](#the-artifacts)
    - [1. Myth](#1-myth)
    - [2. Unique Gift](#2-unique-gift)
+   - [2B. Shadow](#2b-shadow)
    - [3. Tribe (ICP)](#3-tribe-icp)
    - [4. Life Situation](#4-life-situation)
    - [5. Pain (Point A)](#5-pain-point-a--5-layer-slicer-per-segment)
@@ -958,7 +959,8 @@ Business is the middle octave between family and civilization. It is more struct
 
 | Artifact | Version | Precision | Status |
 |----------|---------|-----------|--------|
-| Uniqueness | **v2.0** (Person-Perspective Developer — The Lens Focuser) | — | ✅ Deepened |
+| Uniqueness | **v2.0 preserved** (Person-Perspective Developer — The Lens Focuser) → **v3.0 seed** (Holonic Uniqueness Across Scales) | **pending Sasha score** | 🔄 Highest resonance so far; score requested |
+| Shadow | **v1.0 seed** (Holonic Shadow Across Scales) | **pending Sasha score** | 🔄 First standalone shadow artifact |
 | Myth | **v2.1 preserved** (grind is a lie / uniqueness IS your business) → **v3.0 seed** (unique faces, specific fit) | — | 🔄 Forge v3.0 as additive layer from Day 111 |
 | Tribe | **v3.0** (Signal-First: Awakened Practitioners Who Can't Name Their Fire) | — | ✅ Signal-first evolution (Resonance Sort Protocol applied) |
 | Pain | **v3.1** (5-layer slicer per segment, 9.95 calibration) | **9.95** | ✅ Landed |
@@ -983,6 +985,7 @@ The exact order artifacts get produced — each one is the seed for the next:
 
 ```
 1. UNIQUENESS        → Who am I at my brightest?
+1.5. SHADOW          → Where does the gift invert, delay, overhold, or avoid proof?
 2. MYTH              → What must be true about the world for my work to be inevitable?
 3. TRIBE (ICP)       → Who recognizes themselves in this myth?
 4. PAIN (Point A)    → What is their situation and why is it unbearable?
@@ -1009,6 +1012,8 @@ The artifacts above feed into a **two-path execution structure:**
 - **Path A** (Product Creation): UX → UI → Software Architecture → Brand — **starts in parallel from Path B step 4**
 
 **The Uniqueness Shadow (step 1b):** The inverted gift — the blind spot that keeps them stuck. Discovered through Ogi's sessions: seeing someone's shadow IS part of seeing their genius. The shadow shows where the gift over-applies, under-applies, or blocks itself.
+
+**Day 111 update:** Shadow is now explicit as artifact 1.5 in Alexander's own business canon. This does not replace the earlier 7-step sequence; it makes the already-present shadow step visible and scoreable.
 
 > Full structure with playbook references: [Unique Business Playbook — Part IV: Master Execution Sequence](../../03-playbooks/unique_business_playbook.md#the-master-execution-sequence--two-path-architecture-april-4-2026)
 
@@ -1246,14 +1251,55 @@ Every grind-culture message — iterate more, hustle harder, follow the playbook
 3. **The methodology is self-referential:** Deepening the methodology's own seeing (Domains 42-45) IS the same move applied to itself. The method sharpens itself
 4. **The unfair advantage is structural:** No one can reproduce this specific refraction pattern — and now the pattern has a NAME (the lens focuser), a GEOMETRY (Structure × Depth), and a MECHANISM (one level deeper → something new is born)
 
+---
+
+#### v3.0 · June 24, 2026 — Holonic Uniqueness Across Scales
+
+> **Collapsed sentence:** I help living systems, from a person to a civilization, see the unique pattern inside each part and build the structure where those parts find fit, create value, and evolve together.
+
+> **Resonance marker:** Sasha called this the highest resonance seen so far. Previous uniqueness version: v2.0 was marked "Deepened" with no numeric precision score recorded. Pain v3.1 had 9.95, but that was the pain artifact, not the uniqueness score.
+
+| Holonic layer | Sasha's uniqueness at that scale |
+|---------------|----------------------------------|
+| **Individual** | You help a person see the one pattern that makes their scattered life, gifts, wounds, and work become one coherent path. |
+| **Family** | You see family as the first sacred coordination field where inner father, inner mother, and inner child learn to become embodied through love. |
+| **Group** | You reveal the hidden configuration in a room: who carries what, who complements whom, and what wants to form between them. |
+| **Team** | You turn a set of capable people into a living constellation by naming each person's natural role, complement, and shared build. |
+| **Business** | You compile uniqueness into economic form: a gift becomes an offer, a path, a product, a market, and a value flow. |
+| **Community** | You turn a community from a collection of members into a weave of specific fits, collaborations, ventures, and shared evolution. |
+| **Planetary** | You see humanity as a holonic civilization learning to organize around differentiated uniqueness instead of standardized roles. |
+
 **Version history:**
 
 | Version | Date | Core articulation | What shifted |
 |---------|------|-------------------|-------------|
+| **v3.0** | **June 24** | **Holonic Uniqueness Across Scales: the same gift expressed from individual to planetary civilization** | **The gift is no longer only lens-focusing; it is the ability to make unique patterns legible, placed, economic, relational, and civilizational without collapsing them into sameness** |
 | **v2.0** | **March 26** | **The Lens Focuser. Deepening sight. Structure × Depth → Novelty** | **Domains 42-45 revealed the common thread: every tool, session, prompt, artifact does ONE thing — helps the target see one level deeper** |
 | v1.0 | Feb 17 | Visionary Architect — Evolutionary Mirror. Awakening high-potentials by architecting living systems | Initial discovery. True but at surface depth — named what the gift LOOKS LIKE, not what it IS |
 
 > **The shift from v1.0 to v2.0:** v1.0 described the gift from the OUTSIDE (what it looks like: "architect," "mirror," "living systems"). v2.0 describes the gift from the INSIDE (what it IS: deepening sight). Same gift. Deeper articulation.
+
+> **The shift from v2.0 to v3.0:** v2.0 named the mechanism: deepening sight. v3.0 names the holonic scope: that same sight helps unique beings, teams, businesses, communities, and civilizations find specific fit and build value together.
+
+---
+
+### 2B. Shadow
+
+#### v1.0 · June 24, 2026 — Holonic Shadow Across Scales
+
+> **Collapsed sentence:** I can see the whole so vividly that I keep refining the sacred architecture instead of letting one imperfect, paid, relational, embodied instance prove it in the world.
+
+> **Resonance marker:** No standalone Shadow artifact or precision score was previously recorded in Artifact Status. Shadow existed implicitly in Top Shadow, recursive shadow notes, and the Two-Path Architecture's "Uniqueness Shadow" step.
+
+| Holonic layer | Sasha's shadow at that scale |
+|---------------|------------------------------|
+| **Individual** | You can keep deepening the map of the person while delaying the simple act that would let the path meet reality. |
+| **Family** | You can turn relational pain into cosmology before the ordinary human repair has fully happened. |
+| **Group** | You can overhold the whole field yourself instead of letting the group discover its own intelligence. |
+| **Team** | You can see the ideal team-pattern so clearly that actual imperfect execution feels too crude, too early, or too slow. |
+| **Business** | You can keep perfecting the business as a sacred architecture while postponing the blunt paid ask that proves the value flow. |
+| **Community** | You can be pulled toward civilizational-scale architecture before the first small community has repeatedly proven the weave. |
+| **Planetary** | You can identify with the scale of the vision and forget that the planetary field only opens through one real room, one real offer, one real exchange at a time. |
 
 ---
 
